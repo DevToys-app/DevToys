@@ -1,0 +1,1 @@
+- SetVersionTask.dll -> https://github.com/markheath/setversiontask

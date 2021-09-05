@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  IgnorableNamespaces="uap mp">
+
+    <Identity
+      Name="c12088ee-f979-4809-8039-7851a3aa2b7a"
+      Publisher="CN=ebaud"
+      Version="1.0.0.0" />
+
+    <mp:PhoneIdentity PhoneProductId="c12088ee-f979-4809-8039-7851a3aa2b7a" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+
+    <Properties>
+        <DisplayName>DevTools.Uwp</DisplayName>
+        <PublisherDisplayName>ebaud</PublisherDisplayName>
+        <Logo>Assets\Logo\StoreLogo.png</Logo>
+    </Properties>
+
+    <Dependencies>
+        <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
+    </Dependencies>
+
+    <Resources>
+        <Resource Language="x-generate"/>
+    </Resources>
+
+    <Applications>
+        <Application Id="App"
+          Executable="$targetnametoken$.exe"
+          EntryPoint="DevTools.Uwp.App">
+            <uap:VisualElements
+              DisplayName="DevTools.Uwp"
+              Square150x150Logo="Assets\Logo\Square150x150Logo.png"
+              Square44x44Logo="Assets\Logo\Square44x44Logo.png"
+              Description="DevTools.Uwp"
+              BackgroundColor="transparent">
+                <uap:DefaultTile Wide310x150Logo="Assets\Logo\Wide310x150Logo.png"/>
+                <uap:SplashScreen Image="Assets\Logo\SplashScreen.png" />
+            </uap:VisualElements>
+        </Application>
+    </Applications>
+
+    <Capabilities>
+        <Capability Name="internetClient" />
+    </Capabilities>
+</Package>
