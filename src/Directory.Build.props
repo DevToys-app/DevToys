@@ -1,0 +1,35 @@
+<Project>
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+
+        <Windows10SDKVersion>10.0.19041.0</Windows10SDKVersion>
+        <Windows10MinSDKVersion>10.0.16299.0</Windows10MinSDKVersion>
+        <LangVersion>latest</LangVersion>
+
+        <!-- Defines the bin and obj folder paths -->
+        <RepoRoot>$([System.IO.Path]::GetDirectoryName($([MSBuild]::GetPathOfFileAbove('.gitignore', '$(MSBuildThisFileDirectory)'))))\</RepoRoot>
+        <BaseOutputPath>$(RepoRoot)bin\</BaseOutputPath>
+        <BaseIntermediateOutputPath>$(RepoRoot)obj\$(Platform)\$(Configuration)\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+        <OutputPath>$(BaseOutputPath)$(Platform)\$(Configuration)\$(MSBuildProjectName)\</OutputPath>
+        <PackagesConfigRestorePath>$(RepoRoot)packages\</PackagesConfigRestorePath>
+
+        <!-- Enable generation of .tt files -->
+        <TransformOnBuild>true</TransformOnBuild>
+        <OverwriteReadOnlyOutputFiles>true</OverwriteReadOnlyOutputFiles>
+        <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '16.0' ">
+        <VisualStudioVersion>16.0</VisualStudioVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+        <!-- In Debug mode, don't generate .tt files at each build. -->
+        <TransformOutOfDateOnly>true</TransformOutOfDateOnly>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+    </PropertyGroup>
+</Project>
