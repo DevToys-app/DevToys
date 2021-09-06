@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DevTools.Impl</RootNamespace>
     <AssemblyName>DevTools.Impl</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
+    <DefaultLanguage>en</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">$(Windows10SDKVersion)</TargetPlatformVersion>
     <TargetPlatformMinVersion>$(Windows10MinSDKVersion)</TargetPlatformMinVersion>

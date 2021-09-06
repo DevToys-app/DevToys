@@ -5,7 +5,7 @@
         <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
 
         <Windows10SDKVersion>10.0.19041.0</Windows10SDKVersion>
-        <Windows10MinSDKVersion>10.0.16299.0</Windows10MinSDKVersion>
+        <Windows10MinSDKVersion>10.0.18362.0</Windows10MinSDKVersion>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
 
