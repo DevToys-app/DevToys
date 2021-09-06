@@ -1,16 +1,19 @@
 ﻿#nullable enable
 
 using DevTools.Core.Impl.Injection;
+using DevTools.Impl.Views;
 using DevTools.Localization;
 using System;
 using System.Globalization;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.UI.ViewManagement;
+using Windows.UI.WindowManagement.Preview;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-namespace DevTools.Uwp
+namespace DevTools
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
@@ -34,10 +37,11 @@ namespace DevTools.Uwp
             _mefComposer
                 = new MefComposer(
                     typeof(MefComposer).Assembly,
-                    typeof(Providers.Impl.Dummy).Assembly);
+                    typeof(Providers.Impl.Dummy).Assembly,
+                    typeof(Impl.Dummy).Assembly);
 
-            this.InitializeComponent();
-            this.Suspending += OnSuspending;
+            InitializeComponent();
+            Suspending += OnSuspending;
         }
 
         ~App()
@@ -73,6 +77,9 @@ namespace DevTools.Uwp
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            ApplicationView applicationView = ApplicationView.GetForCurrentView();
+            applicationView.SetPreferredMinSize(new Windows.Foundation.Size(300, 200));
+
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
             if (Window.Current.Content is not Frame rootFrame)
