@@ -1,4 +1,7 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿#nullable enable
+
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -11,7 +14,10 @@ namespace DevTools.Impl.Views
     {
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+
+            // Set custom title bar dragging area
+            Window.Current.SetTitleBar(AppTitleBar);
         }
     }
 }

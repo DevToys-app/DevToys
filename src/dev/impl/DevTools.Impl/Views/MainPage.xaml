@@ -14,9 +14,12 @@
         <Thickness x:Key="NavigationViewContentMargin">0,48,0,0</Thickness>
     </Page.Resources>
 
-    <Grid>
+    <Grid Background="Transparent">
+        <Grid.BackgroundTransition>
+            <BrushTransition />
+        </Grid.BackgroundTransition>
+
         <Border
-            IsHitTestVisible="False"
             VerticalAlignment="Top"
             Height="48"
             Margin="48,0,0,0">
@@ -35,9 +38,16 @@
                     Style="{StaticResource CaptionTextBlockStyle}" />
             </StackPanel>
         </Border>
+        <Border
+            x:Name="AppTitleBar"
+            Background="Transparent"
+            VerticalAlignment="Top"
+            Height="32"
+            Margin="48,0,0,0"
+            Canvas.ZIndex="1"/>
         <muxc:NavigationView
             x:Name="nvSample"
-            IsTitleBarAutoPaddingEnabled="True"
+            IsTitleBarAutoPaddingEnabled="False"
             IsSettingsVisible="False"
             IsBackButtonVisible="Collapsed"
             IsBackEnabled="False"

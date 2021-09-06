@@ -7,7 +7,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DevTools.Core.Impl</RootNamespace>
     <AssemblyName>DevTools.Core.Impl</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
+    <DefaultLanguage>en</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">$(Windows10SDKVersion)</TargetPlatformVersion>
     <TargetPlatformMinVersion>$(Windows10MinSDKVersion)</TargetPlatformMinVersion>
@@ -77,6 +77,9 @@
     <Compile Include="Injection\MefProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\SettingsProvider.cs" />
+    <Compile Include="Theme\ThemeListener.cs" />
+    <Compile Include="Threading\Thread.cs" />
+    <Compile Include="TitleBar.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="$(NuGet_MicrosoftNETCoreUniversalWindowsPlatform)" />

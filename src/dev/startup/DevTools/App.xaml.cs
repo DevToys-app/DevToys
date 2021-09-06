@@ -1,5 +1,7 @@
 ﻿#nullable enable
 
+using DevTools.Core;
+using DevTools.Core.Threading;
 using DevTools.Core.Impl.Injection;
 using DevTools.Impl.Views;
 using DevTools.Localization;
@@ -8,10 +10,12 @@ using System.Globalization;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.ViewManagement;
-using Windows.UI.WindowManagement.Preview;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Windows.ApplicationModel.Core;
+using DevTools.Core.Theme;
+using DevTools.Core.Settings;
 
 namespace DevTools
 {
@@ -21,6 +25,8 @@ namespace DevTools
     sealed partial class App : Application, IDisposable
     {
         private readonly MefComposer _mefComposer;
+        private readonly ISettingsProvider _settingsProvider;
+        private readonly Lazy<IThemeListener> _themeListener;
 
         private bool _isDisposed;
 
@@ -39,6 +45,9 @@ namespace DevTools
                     typeof(MefComposer).Assembly,
                     typeof(Providers.Impl.Dummy).Assembly,
                     typeof(Impl.Dummy).Assembly);
+
+            _settingsProvider = _mefComposer.ExportProvider.GetExport<ISettingsProvider>();
+            _themeListener = new Lazy<IThemeListener>(() => _mefComposer.ExportProvider.GetExport<IThemeListener>());
 
             InitializeComponent();
             Suspending += OnSuspending;
@@ -98,8 +107,14 @@ namespace DevTools
                 Window.Current.Content = rootFrame;
             }
 
+            _themeListener.Value.ThemeChanged += ThemeListener_ThemeChanged;
+            UpdateColorTheme();
+
             if (e.PrelaunchActivated == false)
             {
+                // On Windows 10 version 1607 or later, this code signals that this app wants to participate in prelaunch
+                CoreApplication.EnablePrelaunch(true);
+
                 if (rootFrame.Content == null)
                 {
                     // When the navigation stack isn't restored navigate to the first page,
@@ -134,6 +149,29 @@ namespace DevTools
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
+        }
+
+        private void ThemeListener_ThemeChanged(object sender, EventArgs e)
+        {
+            UpdateColorTheme();
+        }
+
+        private void UpdateColorTheme()
+        {
+            AppTheme theme = _settingsProvider.GetSetting(PredefinedSettings.Theme);
+
+            if (theme == AppTheme.Default)
+            {
+                theme = _themeListener.Value.CurrentTheme;
+            }
+
+            // Set theme for window root.
+            if (Window.Current.Content is FrameworkElement frameworkElement)
+            {
+                frameworkElement.RequestedTheme = theme == AppTheme.Light ? ElementTheme.Light : ElementTheme.Dark;
+            }
+
+            _mefComposer.ExportProvider.GetExport<ITitleBar>().SetupTitleBarAsync().Forget();
         }
     }
 }
