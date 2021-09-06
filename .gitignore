@@ -33,6 +33,9 @@ Generated\ Files/
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
 
+# Assembly Info file that is automatically updated on build
+SharedAssemblyInfo.cs
+
 # NUNIT
 *.VisualState.xml
 TestResult.xml

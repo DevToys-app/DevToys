@@ -42,12 +42,12 @@
         <ProjectGuid>361db7bc-be7b-41a2-a29a-978a9e3b4aa7</ProjectGuid>
         <TargetPlatformVersion>$(Windows10SDKVersion)</TargetPlatformVersion>
         <TargetPlatformMinVersion>$(Windows10MinSDKVersion)</TargetPlatformMinVersion>
-        <DefaultLanguage>en-US</DefaultLanguage>
+        <DefaultLanguage>en</DefaultLanguage>
         <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
         <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
         <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
         <GenerateTestArtifacts>True</GenerateTestArtifacts>
-        <AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
+        <AppxBundlePlatforms>x86|x64|arm|arm64</AppxBundlePlatforms>
         <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
         <AppxPackageDir>..\..\..\..\bin\AppPackages\</AppxPackageDir>
         <AppxBundle>Always</AppxBundle>
@@ -72,6 +72,6 @@
     </ItemGroup>
     <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
     <ItemGroup>
-        <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.19041.8" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="$(NuGet_MicrosoftWindowsSDKBuildTools)" PrivateAssets="all" />
     </ItemGroup>
 </Project>

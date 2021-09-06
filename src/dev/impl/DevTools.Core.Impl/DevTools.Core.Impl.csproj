@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="16.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <ProjectGuid>{E3E4E200-B380-4207-9A7E-4C9421904502}</ProjectGuid>
-    <OutputType>AppContainerExe</OutputType>
+    <ProjectGuid>{98274C08-4636-45EE-95AF-2C069BFBABD4}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DevTools.Uwp</RootNamespace>
-    <AssemblyName>DevTools.Uwp</AssemblyName>
-    <DefaultLanguage>en</DefaultLanguage>
+    <RootNamespace>DevTools.Core.Impl</RootNamespace>
+    <AssemblyName>DevTools.Core.Impl</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">$(Windows10SDKVersion)</TargetPlatformVersion>
     <TargetPlatformMinVersion>$(Windows10MinSDKVersion)</TargetPlatformMinVersion>
@@ -15,7 +15,6 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
-    <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -74,56 +73,16 @@
     <Compile Include="..\..\shared\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Injection\MefComposer.cs" />
+    <Compile Include="Injection\MefProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <AppxManifest Include="Package.appxmanifest">
-      <SubType>Designer</SubType>
-    </AppxManifest>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Properties\Default.rd.xml" />
-    <Content Include="..\DevTools.Startup\Assets\Logo\LockScreenLogo.scale-200.png">
-      <Link>Assets\Logo\LockScreenLogo.scale-200.png</Link>
-    </Content>
-    <Content Include="..\DevTools.Startup\Assets\Logo\SplashScreen.scale-200.png">
-      <Link>Assets\Logo\SplashScreen.scale-200.png</Link>
-    </Content>
-    <Content Include="..\DevTools.Startup\Assets\Logo\Square150x150Logo.scale-200.png">
-      <Link>Assets\Logo\Square150x150Logo.scale-200.png</Link>
-    </Content>
-    <Content Include="..\DevTools.Startup\Assets\Logo\Square44x44Logo.scale-200.png">
-      <Link>Assets\Logo\Square44x44Logo.scale-200.png</Link>
-    </Content>
-    <Content Include="..\DevTools.Startup\Assets\Logo\Square44x44Logo.targetsize-24_altform-unplated.png">
-      <Link>Assets\Logo\Square44x44Logo.targetsize-24_altform-unplated.png</Link>
-    </Content>
-    <Content Include="..\DevTools.Startup\Assets\Logo\StoreLogo.png">
-      <Link>Assets\Logo\StoreLogo.png</Link>
-    </Content>
-    <Content Include="..\DevTools.Startup\Assets\Logo\Wide310x150Logo.scale-200.png">
-      <Link>Assets\Logo\Wide310x150Logo.scale-200.png</Link>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Page Include="MainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <Compile Include="Settings\SettingsProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="$(NuGet_MicrosoftNETCoreUniversalWindowsPlatform)" />
+    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="$(NuGet_MicrosoftToolkitMvvm)" />
     <PackageReference Include="Microsoft.UI.Xaml" Version="$(NuGet_MicrosoftUIXaml)" />
+    <PackageReference Include="System.Composition" Version="$(NuGet_SystemComposition)" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\def\DevTools.Core\DevTools.Core.csproj">
@@ -134,17 +93,9 @@
       <Project>{ada9988b-e19b-4ee5-9162-dab3b12bcf9e}</Project>
       <Name>DevTools.Providers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\impl\DevTools.Core.Impl\DevTools.Core.Impl.csproj">
-      <Project>{98274c08-4636-45ee-95af-2c069bfbabd4}</Project>
-      <Name>DevTools.Core.Impl</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\impl\DevTools.Localization\DevTools.Localization.csproj">
-      <Project>{935D5DF8-C400-4CA6-AABE-34A06A69AF85}</Project>
+    <ProjectReference Include="..\DevTools.Localization\DevTools.Localization.csproj">
+      <Project>{935d5df8-c400-4ca6-aabe-34a06a69af85}</Project>
       <Name>DevTools.Localization</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\impl\DevTools.Providers.Impl\DevTools.Providers.Impl.csproj">
-      <Project>{8621ed11-e9dd-480a-be2b-c1db00919b6f}</Project>
-      <Name>DevTools.Providers.Impl</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
