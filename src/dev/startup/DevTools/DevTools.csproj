@@ -5,8 +5,8 @@
     <ProjectGuid>{E3E4E200-B380-4207-9A7E-4C9421904502}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DevTools.Uwp</RootNamespace>
-    <AssemblyName>DevTools.Uwp</AssemblyName>
+    <RootNamespace>DevTools</RootNamespace>
+    <AssemblyName>DevTools</AssemblyName>
     <DefaultLanguage>en</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">$(Windows10SDKVersion)</TargetPlatformVersion>
@@ -78,9 +78,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -88,7 +85,6 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Properties\Default.rd.xml" />
     <Content Include="..\DevTools.Startup\Assets\Logo\LockScreenLogo.scale-200.png">
       <Link>Assets\Logo\LockScreenLogo.scale-200.png</Link>
     </Content>
@@ -116,10 +112,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="$(NuGet_MicrosoftNETCoreUniversalWindowsPlatform)" />
@@ -137,6 +129,10 @@
     <ProjectReference Include="..\..\impl\DevTools.Core.Impl\DevTools.Core.Impl.csproj">
       <Project>{98274c08-4636-45ee-95af-2c069bfbabd4}</Project>
       <Name>DevTools.Core.Impl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\impl\DevTools.Impl\DevTools.Impl.csproj">
+      <Project>{e2f0c303-04fc-4504-a272-7662af9a0a80}</Project>
+      <Name>DevTools.Impl</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\impl\DevTools.Localization\DevTools.Localization.csproj">
       <Project>{935D5DF8-C400-4CA6-AABE-34A06A69AF85}</Project>

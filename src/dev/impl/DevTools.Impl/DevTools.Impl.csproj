@@ -2,11 +2,13 @@
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <ProjectGuid>{98274C08-4636-45EE-95AF-2C069BFBABD4}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E2F0C303-04FC-4504-A272-7662AF9A0A80}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DevTools.Core.Impl</RootNamespace>
-    <AssemblyName>DevTools.Core.Impl</AssemblyName>
+    <RootNamespace>DevTools.Impl</RootNamespace>
+    <AssemblyName>DevTools.Impl</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">$(Windows10SDKVersion)</TargetPlatformVersion>
@@ -14,7 +16,6 @@
     <MinimumVisualStudioVersion>16</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -73,13 +74,21 @@
     <Compile Include="..\..\shared\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Injection\MefComposer.cs" />
-    <Compile Include="Injection\MefProvider.cs" />
+    <Compile Include="Dummy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings\SettingsProvider.cs" />
+    <Compile Include="Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\startup\DevTools.Startup\Assets\Logo\Square44x44Logo.scale-200.png">
+      <Link>Assets\Logo\Square44x44Logo.scale-200.png</Link>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="$(NuGet_MicrosoftNETCoreUniversalWindowsPlatform)" />
+    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="$(NuGet_MicrosoftToolkitMvvm)" />
+    <PackageReference Include="Microsoft.UI.Xaml" Version="$(NuGet_MicrosoftUIXaml)" />
     <PackageReference Include="System.Composition" Version="$(NuGet_SystemComposition)" />
   </ItemGroup>
   <ItemGroup>
@@ -87,8 +96,21 @@
       <Project>{ef6a6707-44f2-4e76-98b8-11c9b40adc7e}</Project>
       <Name>DevTools.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\def\DevTools.Providers\DevTools.Providers.csproj">
+      <Project>{ada9988b-e19b-4ee5-9162-dab3b12bcf9e}</Project>
+      <Name>DevTools.Providers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DevTools.Localization\DevTools.Localization.csproj">
+      <Project>{935d5df8-c400-4ca6-aabe-34a06a69af85}</Project>
+      <Name>DevTools.Localization</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Page Include="Views\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
