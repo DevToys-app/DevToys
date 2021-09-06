@@ -1,4 +1,9 @@
-﻿using System;
+﻿#nullable enable
+
+using DevTools.Core.Impl.Injection;
+using DevTools.Localization;
+using System;
+using System.Globalization;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -10,16 +15,55 @@ namespace DevTools.Uwp
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App : Application
+    sealed partial class App : Application, IDisposable
     {
+        private readonly MefComposer _mefComposer;
+
+        private bool _isDisposed;
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
         public App()
         {
+            // Set the language of the app.
+            LanguageManager.Instance.SetCurrentCulture(CultureInfo.InstalledUICulture);
+
+            // Initialize MEF
+            _mefComposer
+                = new MefComposer(
+                    typeof(MefComposer).Assembly,
+                    typeof(Providers.Impl.Dummy).Assembly);
+
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+        }
+
+        ~App()
+        {
+            Dispose(false);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (_isDisposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                _mefComposer?.Dispose();
+            }
+
+            _isDisposed = true;
         }
 
         /// <summary>
@@ -29,11 +73,9 @@ namespace DevTools.Uwp
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            Frame rootFrame = Window.Current.Content as Frame;
-
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
-            if (rootFrame == null)
+            if (Window.Current.Content is not Frame rootFrame)
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
