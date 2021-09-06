@@ -19,6 +19,7 @@
             <BrushTransition />
         </Grid.BackgroundTransition>
 
+        <!-- Title and icon in the title bar -->
         <Border
             VerticalAlignment="Top"
             Height="48"
@@ -38,6 +39,8 @@
                     Style="{StaticResource CaptionTextBlockStyle}" />
             </StackPanel>
         </Border>
+
+        <!-- Draggable part of the title bar -->
         <Border
             x:Name="AppTitleBar"
             Background="Transparent"
@@ -45,6 +48,8 @@
             Height="32"
             Margin="48,0,0,0"
             Canvas.ZIndex="1"/>
+
+        <!-- Navigation view -->
         <muxc:NavigationView
             x:Name="nvSample"
             IsTitleBarAutoPaddingEnabled="False"
@@ -60,7 +65,7 @@
             IsTabStop="False">
 
             <muxc:NavigationView.AutoSuggestBox>
-                <AutoSuggestBox QueryIcon="Find" AutomationProperties.Name="Search" />
+                <AutoSuggestBox QueryIcon="Find" PlaceholderText="Search" />
             </muxc:NavigationView.AutoSuggestBox>
 
             <muxc:NavigationView.MenuItems>
@@ -69,7 +74,7 @@
                         <SymbolIcon Symbol="Play" />
                     </muxc:NavigationViewItem.Icon>
                 </muxc:NavigationViewItem>
-                <muxc:NavigationViewItem Content="Menu Item2" Tag="SamplePage2" x:Name="SamplePage2Item" SelectsOnInvoked="True">
+                <muxc:NavigationViewItem Content="Menu Item2" Tag="SamplePage2" x:Name="SamplePage2Item">
                     <muxc:NavigationViewItem.Icon>
                         <SymbolIcon Symbol="Save" />
                     </muxc:NavigationViewItem.Icon>
@@ -81,22 +86,20 @@
                 </muxc:NavigationViewItem>
             </muxc:NavigationView.MenuItems>
 
-            <muxc:NavigationView.PaneFooter>
-                <StackPanel x:Name="FooterStackPanel" Orientation="Vertical">
-                    <muxc:NavigationViewItem Content="Settings">
-                        <muxc:NavigationViewItem.Icon>
-                            <muxc:AnimatedIcon x:Name='AnimatedIcon'>
-                                <muxc:AnimatedIcon.Source>
-                                    <animatedvisuals:AnimatedSettingsVisualSource/>
-                                </muxc:AnimatedIcon.Source>
-                                <muxc:AnimatedIcon.FallbackIconSource>
-                                    <muxc:FontIconSource FontFamily="Segoe MDL2 Assets" Glyph="&#xE713;"/>
-                                </muxc:AnimatedIcon.FallbackIconSource>
-                            </muxc:AnimatedIcon>
-                        </muxc:NavigationViewItem.Icon>
-                    </muxc:NavigationViewItem>
-                </StackPanel>
-            </muxc:NavigationView.PaneFooter>
+            <muxc:NavigationView.FooterMenuItems>
+                <muxc:NavigationViewItem Content="Settings" SelectsOnInvoked="True">
+                    <muxc:NavigationViewItem.Icon>
+                        <muxc:AnimatedIcon>
+                            <muxc:AnimatedIcon.Source>
+                                <animatedvisuals:AnimatedSettingsVisualSource/>
+                            </muxc:AnimatedIcon.Source>
+                            <muxc:AnimatedIcon.FallbackIconSource>
+                                <muxc:FontIconSource FontFamily="FluentSystemIcons-Regular" Glyph="&#xF6AB;" />
+                            </muxc:AnimatedIcon.FallbackIconSource>
+                        </muxc:AnimatedIcon>
+                    </muxc:NavigationViewItem.Icon>
+                </muxc:NavigationViewItem>
+            </muxc:NavigationView.FooterMenuItems>
 
             <Frame x:Name="contentFrame" />
         </muxc:NavigationView>
