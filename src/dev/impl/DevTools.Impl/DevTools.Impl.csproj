@@ -74,6 +74,7 @@
     <Compile Include="..\..\shared\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Core\UI\Extensions\HighlighterExtension.cs" />
     <Compile Include="Dummy.cs" />
     <Compile Include="Models\MatchedToolProviderViewData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,6 +93,7 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="$(NuGet_MicrosoftNETCoreUniversalWindowsPlatform)" />
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="$(NuGet_MicrosoftToolkitMvvm)" />
     <PackageReference Include="Microsoft.UI.Xaml" Version="$(NuGet_MicrosoftUIXaml)" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed" Version="$(Nuget_MicrosoftXamlBehaviorsUwpManaged)" />
     <PackageReference Include="System.Composition" Version="$(NuGet_SystemComposition)" />
   </ItemGroup>
   <ItemGroup>

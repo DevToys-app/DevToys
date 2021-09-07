@@ -21,17 +21,11 @@ namespace DevTools.Providers.Impl
 
         public IEnumerable<MatchedToolProvider> GetTools(string? searchQuery)
         {
-            IOrderedEnumerable<Lazy<IToolProvider, ToolProviderMetadata>> orderedProviders
-                = _providers
-                    .Where(item => !item.Metadata.IsFooterItem)
-                    .OrderBy(item => item.Metadata.Order ?? int.MaxValue)
-                    .ThenBy(item => item.Value.DisplayName)
-                    .ThenBy(item => item.Metadata.Name);
-
             searchQuery = searchQuery?.Trim();
             string[]? searchQueries = searchQuery?.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
 
-            foreach (Lazy<IToolProvider, ToolProviderMetadata> provider in orderedProviders)
+            var results = new List<(MatchedToolProvider, ToolProviderMetadata)>();
+            foreach (Lazy<IToolProvider, ToolProviderMetadata> provider in _providers.Where(item => !item.Metadata.IsFooterItem))
             {
                 var matches = new List<MatchSpan>();
 
@@ -46,6 +40,7 @@ namespace DevTools.Providers.Impl
                             if (matchIndex > -1)
                             {
                                 matches.Add(new MatchSpan(matchIndex, query.Length));
+                                i = matchIndex + query.Length;
                             }
 
                             i++;
@@ -55,15 +50,27 @@ namespace DevTools.Providers.Impl
 
                 if (matches.Count > 0 || searchQueries?.Length == 0)
                 {
-                    yield return new MatchedToolProvider(provider.Value, matches.ToArray());
+                    results.Add((new MatchedToolProvider(provider.Value, matches.ToArray()), provider.Metadata));
                 }
             }
+
+            return
+                results
+                    .OrderByDescending(item => item.Item1.MatchedSpans.Length)
+                    .ThenBy(item => item.Item2.Order ?? int.MaxValue)
+                    .ThenBy(item => item.Item1.ToolProvider.DisplayName)
+                    .ThenBy(item => item.Item2.Name)
+                    .Select(item => item.Item1);
         }
 
         public IEnumerable<MatchedToolProvider> GetFooterTools()
         {
             var matches = Array.Empty<MatchSpan>();
-            foreach (Lazy<IToolProvider, ToolProviderMetadata> provider in _providers.Where(item => item.Metadata.IsFooterItem))
+            foreach (Lazy<IToolProvider, ToolProviderMetadata> provider
+                in _providers.Where(item => item.Metadata.IsFooterItem)
+                    .OrderBy(item => item.Metadata.Order ?? int.MaxValue)
+                    .ThenBy(item => item.Value.DisplayName)
+                    .ThenBy(item => item.Metadata.Name))
             {
                 yield return new MatchedToolProvider(provider.Value, matches);
             }

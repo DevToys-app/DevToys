@@ -30,5 +30,10 @@ namespace DevTools.Impl.Views
 
             base.OnNavigatedTo(e);
         }
+
+        private void SearchBoxKeyboardAccelerator_Invoked(Windows.UI.Xaml.Input.KeyboardAccelerator sender, Windows.UI.Xaml.Input.KeyboardAcceleratorInvokedEventArgs args)
+        {
+            SearchBox.Focus(FocusState.Keyboard);
+        }
     }
 }

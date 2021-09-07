@@ -6,8 +6,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-    xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
     xmlns:models="using:DevTools.Impl.Models"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:ex="using:DevTools.Impl.Core.UI.Extensions"
     mc:Ignorable="d"
     muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
     <Page.Resources>
@@ -69,12 +71,41 @@
 
             <muxc:NavigationView.MenuItemTemplate>
                 <DataTemplate x:DataType="models:MatchedToolProviderViewData">
-                    <muxc:NavigationViewItem Content="{x:Bind ToolProvider.DisplayName}" Icon="{x:Bind Icon}"/>
+                    <muxc:NavigationViewItem Icon="{x:Bind Icon}">
+                        <muxc:NavigationViewItem.Content>
+                            <RichTextBlock
+                                IsTextSelectionEnabled="False"
+                                TextWrapping="NoWrap"
+                                TextTrimming="CharacterEllipsis"
+                                ex:HighlighterExtension.Highlighters="{x:Bind MatchedSpans}">
+                                <Paragraph>
+                                    <Run Text="{x:Bind ToolProvider.DisplayName}"/>
+                                </Paragraph>
+                            </RichTextBlock>
+                        </muxc:NavigationViewItem.Content>
+                    </muxc:NavigationViewItem>
                 </DataTemplate>
             </muxc:NavigationView.MenuItemTemplate>
 
             <muxc:NavigationView.AutoSuggestBox>
-                <AutoSuggestBox QueryIcon="Find" PlaceholderText="Search" />
+                <AutoSuggestBox
+                    x:Name="SearchBox"
+                    QueryIcon="Find"
+                    PlaceholderText="Search"
+                    Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <i:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="TextChanged">
+                            <core:InvokeCommandAction
+                                Command="{x:Bind ViewModel.SearchBoxTextChangedCommand}"/>
+                        </core:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+                    <AutoSuggestBox.KeyboardAccelerators>
+                        <KeyboardAccelerator
+                            Key="F"
+                            Modifiers="Control"
+                            Invoked="SearchBoxKeyboardAccelerator_Invoked"/>
+                    </AutoSuggestBox.KeyboardAccelerators>
+                </AutoSuggestBox>
             </muxc:NavigationView.AutoSuggestBox>
 
             <Frame x:Name="contentFrame" />
