@@ -21,7 +21,9 @@ namespace DevTools.Localization
     {
         private static LanguageManager _languageManager;
 		
+        private readonly Base64EncoderDecoderStrings _base64encoderdecoder = new Base64EncoderDecoderStrings();
         private readonly MainPageStrings _mainpage = new MainPageStrings();
+        private readonly SettingsStrings _settings = new SettingsStrings();
 
         /// <summary>
         /// Gets an instance of <see cref="LanguageManager"/>.
@@ -34,9 +36,19 @@ namespace DevTools.Localization
         public FlowDirection FlowDirection { get; private set; }
 
         /// <summary>
+        /// Gets the <see cref="Base64EncoderDecoderStrings"/>.
+        /// </summary>
+        public Base64EncoderDecoderStrings Base64EncoderDecoder => _base64encoderdecoder;
+
+        /// <summary>
         /// Gets the <see cref="MainPageStrings"/>.
         /// </summary>
         public MainPageStrings MainPage => _mainpage;
+
+        /// <summary>
+        /// Gets the <see cref="SettingsStrings"/>.
+        /// </summary>
+        public SettingsStrings Settings => _settings;
 
         /// <summary>
         /// Retrieves the current culture.
@@ -69,6 +81,16 @@ namespace DevTools.Localization
         }
     }
 
+    public class Base64EncoderDecoderStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Localization/Base64EncoderDecoder");
+
+        /// <summary>
+        /// Gets the resource DisplayName.
+        /// </summary>
+        public string DisplayName => _resources.GetString("DisplayName");
+    }
+
     public class MainPageStrings : ObservableObject
     {
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Localization/MainPage");
@@ -77,5 +99,15 @@ namespace DevTools.Localization
         /// Gets the resource Yes.
         /// </summary>
         public string Yes => _resources.GetString("Yes");
+    }
+
+    public class SettingsStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Localization/Settings");
+
+        /// <summary>
+        /// Gets the resource DisplayName.
+        /// </summary>
+        public string DisplayName => _resources.GetString("DisplayName");
     }
 }

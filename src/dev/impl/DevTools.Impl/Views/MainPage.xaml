@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
+    xmlns:models="using:DevTools.Impl.Models"
     mc:Ignorable="d"
     muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
     <Page.Resources>
@@ -62,44 +63,19 @@
             ExpandedModeThresholdWidth="550"
             PaneDisplayMode="Auto"
             SelectionFollowsFocus="Disabled"
-            IsTabStop="False">
+            IsTabStop="False"
+            MenuItemsSource="{x:Bind ViewModel.ToolsMenuItems}"
+            FooterMenuItemsSource="{x:Bind ViewModel.FooterMenuItems}">
+
+            <muxc:NavigationView.MenuItemTemplate>
+                <DataTemplate x:DataType="models:MatchedToolProviderViewData">
+                    <muxc:NavigationViewItem Content="{x:Bind ToolProvider.DisplayName}" Icon="{x:Bind Icon}"/>
+                </DataTemplate>
+            </muxc:NavigationView.MenuItemTemplate>
 
             <muxc:NavigationView.AutoSuggestBox>
                 <AutoSuggestBox QueryIcon="Find" PlaceholderText="Search" />
             </muxc:NavigationView.AutoSuggestBox>
-
-            <muxc:NavigationView.MenuItems>
-                <muxc:NavigationViewItem Content="Menu Item1" Tag="SamplePage1" x:Name="SamplePage1Item">
-                    <muxc:NavigationViewItem.Icon>
-                        <SymbolIcon Symbol="Play" />
-                    </muxc:NavigationViewItem.Icon>
-                </muxc:NavigationViewItem>
-                <muxc:NavigationViewItem Content="Menu Item2" Tag="SamplePage2" x:Name="SamplePage2Item">
-                    <muxc:NavigationViewItem.Icon>
-                        <SymbolIcon Symbol="Save" />
-                    </muxc:NavigationViewItem.Icon>
-                </muxc:NavigationViewItem>
-                <muxc:NavigationViewItem Content="Menu Item3" Tag="SamplePage3" x:Name="SamplePage3Item">
-                    <muxc:NavigationViewItem.Icon>
-                        <SymbolIcon Symbol="Refresh" />
-                    </muxc:NavigationViewItem.Icon>
-                </muxc:NavigationViewItem>
-            </muxc:NavigationView.MenuItems>
-
-            <muxc:NavigationView.FooterMenuItems>
-                <muxc:NavigationViewItem Content="Settings" SelectsOnInvoked="True">
-                    <muxc:NavigationViewItem.Icon>
-                        <muxc:AnimatedIcon>
-                            <muxc:AnimatedIcon.Source>
-                                <animatedvisuals:AnimatedSettingsVisualSource/>
-                            </muxc:AnimatedIcon.Source>
-                            <muxc:AnimatedIcon.FallbackIconSource>
-                                <muxc:FontIconSource FontFamily="FluentSystemIcons-Regular" Glyph="&#xF6AB;" />
-                            </muxc:AnimatedIcon.FallbackIconSource>
-                        </muxc:AnimatedIcon>
-                    </muxc:NavigationViewItem.Icon>
-                </muxc:NavigationViewItem>
-            </muxc:NavigationView.FooterMenuItems>
 
             <Frame x:Name="contentFrame" />
         </muxc:NavigationView>

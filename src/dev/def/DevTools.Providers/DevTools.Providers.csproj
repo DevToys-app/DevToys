@@ -8,5 +8,8 @@
             <Link>Properties\SharedAssemblyInfo.cs</Link>
         </Compile>
     </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="System.Composition" Version="$(NuGet_SystemComposition)"/>
+    </ItemGroup>
 
 </Project>
