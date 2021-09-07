@@ -75,10 +75,13 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Dummy.cs" />
+    <Compile Include="Models\MatchedToolProviderViewData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Settings\SettingsToolProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\startup\DevTools.Startup\Assets\Logo\Square44x44Logo.scale-200.png">

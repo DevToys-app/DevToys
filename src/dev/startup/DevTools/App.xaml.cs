@@ -16,6 +16,9 @@ using Windows.UI.Xaml.Navigation;
 using Windows.ApplicationModel.Core;
 using DevTools.Core.Theme;
 using DevTools.Core.Settings;
+using DevTools.Core.Navigation;
+using DevTools.Core.Injection;
+using DevTools.Providers;
 
 namespace DevTools
 {
@@ -43,6 +46,7 @@ namespace DevTools
             _mefComposer
                 = new MefComposer(
                     typeof(MefComposer).Assembly,
+                    typeof(IToolProvider).Assembly,
                     typeof(Providers.Impl.Dummy).Assembly,
                     typeof(Impl.Dummy).Assembly);
 
@@ -120,7 +124,7 @@ namespace DevTools
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    rootFrame.Navigate(typeof(MainPage), new NavigationParameter(_mefComposer.ExportProvider.GetExport<IMefProvider>(), e.Arguments));
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();

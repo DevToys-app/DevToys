@@ -102,6 +102,12 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Strings\en\Base64EncoderDecoder.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Strings\en\Settings.resw" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

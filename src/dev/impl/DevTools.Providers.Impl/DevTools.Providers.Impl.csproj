@@ -74,6 +74,9 @@
     </Compile>
     <Compile Include="Dummy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ToolProviderFactory.cs" />
+    <Compile Include="Tools\Base64EncoderDecoder\Base64EncoderDecoderToolProvider.cs" />
+    <Compile Include="Tools\ToolProviderBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="$(NuGet_MicrosoftNETCoreUniversalWindowsPlatform)" />
