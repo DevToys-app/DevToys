@@ -64,6 +64,7 @@
     <Content Include="Assets\Logo\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Logo\Square44x44Logo.scale-200.png" />
     <Content Include="Assets\Logo\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\Logo\Square512.png" />
     <Content Include="Assets\Logo\StoreLogo.png" />
     <Content Include="Assets\Logo\Wide310x150Logo.scale-200.png" />
   </ItemGroup>

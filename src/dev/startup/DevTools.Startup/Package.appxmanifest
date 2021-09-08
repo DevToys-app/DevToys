@@ -50,6 +50,14 @@
                     <uap:Rotation Preference="portraitFlipped"/>
                 </uap:InitialRotationPreference>
             </uap:VisualElements>
+            <Extensions>
+                <uap:Extension Category="windows.protocol">
+                    <uap:Protocol Name="devtools">
+                        <uap:DisplayName>DevTools URI Scheme</uap:DisplayName>
+                        <uap:Logo>Assets\Logo\Square512.png</uap:Logo>
+                    </uap:Protocol>
+                </uap:Extension>
+            </Extensions>
         </Application>
     </Applications>
 
