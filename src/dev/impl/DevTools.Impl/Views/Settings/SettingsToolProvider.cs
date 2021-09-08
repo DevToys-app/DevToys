@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.AnimatedVisuals;
 using System;
 using System.Composition;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 
 namespace DevTools.Impl.Views.Settings
@@ -24,8 +25,8 @@ namespace DevTools.Impl.Views.Settings
                 Source = new AnimatedSettingsVisualSource(),
                 FallbackIconSource = new FontIconSource
                 {
-                    FontFamily = new FontFamily("FluentSystemIcons-Regular"),
-                    Glyph = "&#xF6AB;"
+                    FontFamily = (FontFamily)Application.Current.Resources["FluentSystemIcons"],
+                    Glyph = "\uF6A9"
                 }
             };
 

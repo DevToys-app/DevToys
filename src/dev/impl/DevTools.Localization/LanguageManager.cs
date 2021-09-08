@@ -96,9 +96,14 @@ namespace DevTools.Localization
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Localization/MainPage");
 
         /// <summary>
-        /// Gets the resource Yes.
+        /// Gets the resource OpenInNewWindow.
         /// </summary>
-        public string Yes => _resources.GetString("Yes");
+        public string OpenInNewWindow => _resources.GetString("OpenInNewWindow");
+
+        /// <summary>
+        /// Gets the resource Search.
+        /// </summary>
+        public string Search => _resources.GetString("Search");
     }
 
     public class SettingsStrings : ObservableObject
