@@ -1,24 +1,22 @@
 ﻿#nullable enable
 
-using DevTools.Core;
-using DevTools.Core.Threading;
 using DevTools.Core.Impl.Injection;
+using DevTools.Core.Injection;
+using DevTools.Core.Navigation;
+using DevTools.Core.Settings;
+using DevTools.Core.Theme;
 using DevTools.Impl.Views;
 using DevTools.Localization;
+using DevTools.Providers;
 using System;
 using System.Globalization;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using Windows.ApplicationModel.Core;
-using DevTools.Core.Theme;
-using DevTools.Core.Settings;
-using DevTools.Core.Navigation;
-using DevTools.Core.Injection;
-using DevTools.Providers;
 
 namespace DevTools
 {
@@ -174,8 +172,6 @@ namespace DevTools
             {
                 frameworkElement.RequestedTheme = theme == AppTheme.Light ? ElementTheme.Light : ElementTheme.Dark;
             }
-
-            _mefComposer.ExportProvider.GetExport<ITitleBar>().SetupTitleBarAsync().Forget();
         }
     }
 }

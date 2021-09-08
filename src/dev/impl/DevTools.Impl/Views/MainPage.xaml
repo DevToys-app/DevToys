@@ -1,5 +1,6 @@
 ﻿<Page
     x:Class="DevTools.Impl.Views.MainPage"
+    x:Name="Page"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -74,7 +75,10 @@
                     <muxc:NavigationViewItem Icon="{x:Bind Icon}">
                         <muxc:NavigationViewItem.ContextFlyout>
                             <MenuFlyout>
-                                <MenuFlyoutItem Text="{Binding Instance.MainPage.OpenInNewWindow, Source={StaticResource LanguageManager}}">
+                                <MenuFlyoutItem
+                                    Text="{Binding Instance.MainPage.OpenInNewWindow, Source={StaticResource LanguageManager}}"
+                                    Command="{Binding OpenToolInNewWindowCommand}"
+                                    CommandParameter="{x:Bind ToolProvider}">
                                     <MenuFlyoutItem.Icon>
                                         <FontIcon FontFamily="{StaticResource FluentSystemIcons}" Glyph="&#x00F8;" />
                                     </MenuFlyoutItem.Icon>

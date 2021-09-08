@@ -1,19 +1,24 @@
 ﻿#nullable enable
 
+using DevTools.Core;
+using DevTools.Core.Injection;
 using DevTools.Impl.Models;
+using DevTools.Impl.Views;
 using DevTools.Localization;
 using DevTools.Providers;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using System;
 using System.Collections.ObjectModel;
 using System.Composition;
+using System.Threading.Tasks;
 
 namespace DevTools.Impl.ViewModels
 {
     [Export(typeof(MainPageViewModel))]
-    [Shared]
     public sealed class MainPageViewModel : ObservableRecipient
     {
+        private readonly IMefProvider _mefProvider;
         private readonly IToolProviderFactory _toolProviderFactory;
 
         internal MainPageStrings Strings = LanguageManager.Instance.MainPage;
@@ -34,11 +39,15 @@ namespace DevTools.Impl.ViewModels
         internal string? SearchQuery { get; set; }
 
         [ImportingConstructor]
-        public MainPageViewModel(IToolProviderFactory toolProviderFactory)
+        public MainPageViewModel(
+            IMefProvider mefProvider,
+            IToolProviderFactory toolProviderFactory)
         {
+            _mefProvider = mefProvider;
             _toolProviderFactory = toolProviderFactory;
 
             SearchBoxTextChangedCommand = new RelayCommand(ExecuteSearchBoxTextChangedCommand);
+            OpenToolInNewWindowCommand = new AsyncRelayCommand<IToolProvider>(ExecuteOpenToolInNewWindowCommandAsync);
 
             SetFooterMenuItems();
             SearchTools(searchQuery: string.Empty);
@@ -51,6 +60,19 @@ namespace DevTools.Impl.ViewModels
         private void ExecuteSearchBoxTextChangedCommand()
         {
             SearchTools(SearchQuery);
+        }
+
+        #endregion
+
+        #region OpenToolInNewWindowCommand
+
+        public IRelayCommand<IToolProvider> OpenToolInNewWindowCommand { get; }
+
+        private async Task ExecuteOpenToolInNewWindowCommandAsync(IToolProvider? toolProvider)
+        {
+            Arguments.NotNull(toolProvider, nameof(toolProvider));
+
+            // await _windowManager.OpenNewWindowAsync(typeof(MainPage), toolProvider);
         }
 
         #endregion
