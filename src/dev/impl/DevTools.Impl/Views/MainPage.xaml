@@ -2,7 +2,6 @@
     x:Class="DevTools.Impl.Views.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:DevTools.Impl.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
@@ -10,9 +9,12 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:ex="using:DevTools.Impl.Core.UI.Extensions"
+    xmlns:localization="using:DevTools.Localization"
     mc:Ignorable="d"
     muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
     <Page.Resources>
+        <localization:LanguageManager x:Key="LanguageManager"/>
+
         <!--This top margin is the height of the custom TitleBar-->
         <Thickness x:Key="NavigationViewContentMargin">0,48,0,0</Thickness>
     </Page.Resources>
@@ -35,7 +37,6 @@
                     Width="16"
                     Height="16"/>
                 <TextBlock
-                    x:Name="AppTitle"
                     Text="DevTools"
                     VerticalAlignment="Center"
                     Margin="12,0,0,0"
@@ -54,7 +55,6 @@
 
         <!-- Navigation view -->
         <muxc:NavigationView
-            x:Name="nvSample"
             IsTitleBarAutoPaddingEnabled="False"
             IsSettingsVisible="False"
             IsBackButtonVisible="Collapsed"
@@ -72,6 +72,15 @@
             <muxc:NavigationView.MenuItemTemplate>
                 <DataTemplate x:DataType="models:MatchedToolProviderViewData">
                     <muxc:NavigationViewItem Icon="{x:Bind Icon}">
+                        <muxc:NavigationViewItem.ContextFlyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="{Binding Instance.MainPage.OpenInNewWindow, Source={StaticResource LanguageManager}}">
+                                    <MenuFlyoutItem.Icon>
+                                        <FontIcon FontFamily="{StaticResource FluentSystemIcons}" Glyph="&#x00F8;" />
+                                    </MenuFlyoutItem.Icon>
+                                </MenuFlyoutItem>
+                            </MenuFlyout>
+                        </muxc:NavigationViewItem.ContextFlyout>
                         <muxc:NavigationViewItem.Content>
                             <RichTextBlock
                                 IsTextSelectionEnabled="False"
@@ -91,7 +100,7 @@
                 <AutoSuggestBox
                     x:Name="SearchBox"
                     QueryIcon="Find"
-                    PlaceholderText="Search"
+                    PlaceholderText="{x:Bind ViewModel.Strings.Search}"
                     Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <i:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="TextChanged">

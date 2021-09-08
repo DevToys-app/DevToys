@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using DevTools.Impl.Models;
+using DevTools.Localization;
 using DevTools.Providers;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -14,6 +15,8 @@ namespace DevTools.Impl.ViewModels
     public sealed class MainPageViewModel : ObservableRecipient
     {
         private readonly IToolProviderFactory _toolProviderFactory;
+
+        internal MainPageStrings Strings = LanguageManager.Instance.MainPage;
 
         /// <summary>
         /// Items at the top of the NavigationView.
