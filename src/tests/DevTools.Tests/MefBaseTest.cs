@@ -1,6 +1,6 @@
 ﻿using DevTools.Core.Impl.Injection;
 using DevTools.Core.Injection;
-using DevTools.Localization;
+using DevTools.Common;
 using DevTools.Providers;
 using System;
 using System.Globalization;

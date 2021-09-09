@@ -7,8 +7,8 @@
     <ProjectGuid>{935D5DF8-C400-4CA6-AABE-34A06A69AF85}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DevTools.Localization</RootNamespace>
-    <AssemblyName>DevTools.Localization</AssemblyName>
+    <RootNamespace>DevTools.Common</RootNamespace>
+    <AssemblyName>DevTools.Common</AssemblyName>
     <DefaultLanguage>en</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">$(Windows10SDKVersion)</TargetPlatformVersion>
@@ -80,6 +80,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="UI\Controls\CustomPathIcon.cs" />
+    <Compile Include="UI\Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="UI\Converters\DoubleToGridLengthConverter.cs" />
+    <Compile Include="UI\Converters\InvertedBooleanConverter.cs" />
+    <Compile Include="UI\Extensions\HighlighterExtension.cs" />
     <Content Include="LanguageManager.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>LanguageManager.cs</LastGenOutput>
@@ -97,9 +102,13 @@
     <Content Include="Assets\FluentSystemIcons-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Resources.xaml">
+    <Page Include="Themes\Custom.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -107,6 +116,12 @@
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Strings\en\Settings.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\def\DevTools.Providers\DevTools.Providers.csproj">
+      <Project>{ada9988b-e19b-4ee5-9162-dab3b12bcf9e}</Project>
+      <Name>DevTools.Providers</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -38,7 +38,7 @@ using Windows.ApplicationModel.Resources;
 using Windows.Globalization;
 using Windows.UI.Xaml;
 
-namespace DevTools.Localization
+namespace DevTools.Common
 {
     public partial class LanguageManager : ObservableObject
     {
@@ -130,7 +130,7 @@ namespace DevTools.Localization
 
     public class <#= $"{fileName}Strings" #> : ObservableObject
     {
-        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Localization/<#= fileName #>");
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Common/<#= fileName #>");
 <#
             foreach (DictionaryEntry entry in reader) 
             { 

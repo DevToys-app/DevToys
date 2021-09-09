@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
 using DevTools.Core.Threading;
-using DevTools.Localization;
+using DevTools.Common;
 using System;
 using System.Composition;
 

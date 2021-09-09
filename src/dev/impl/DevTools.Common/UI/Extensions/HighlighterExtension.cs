@@ -11,7 +11,7 @@ using Windows.UI.Xaml.Documents;
 using Windows.UI.Xaml.Markup;
 using Windows.UI.Xaml.Media;
 
-namespace DevTools.Impl.Core.UI.Extensions
+namespace DevTools.Common.UI.Extensions
 {
     [MarkupExtensionReturnType(ReturnType = typeof(IList<TextHighlighter>))]
     [Bindable]

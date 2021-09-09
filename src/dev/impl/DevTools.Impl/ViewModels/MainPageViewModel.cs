@@ -3,7 +3,7 @@
 using DevTools.Core;
 using DevTools.Core.Threading;
 using DevTools.Impl.Models;
-using DevTools.Localization;
+using DevTools.Common;
 using DevTools.Providers;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -17,6 +17,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
+using Windows.UI.ViewManagement;
+using Windows.Foundation;
 
 namespace DevTools.Impl.ViewModels
 {
@@ -31,8 +33,11 @@ namespace DevTools.Impl.ViewModels
 
         private MatchedToolProviderViewData? _selectedItem;
         private string? _searchQuery;
+        private bool _isInCompactOverlayMode;
 
         internal MainPageStrings Strings = LanguageManager.Instance.MainPage;
+
+        internal ITitleBar TitleBar { get; }
 
         /// <summary>
         /// Items at the top of the NavigationView.
@@ -62,7 +67,7 @@ namespace DevTools.Impl.ViewModels
         }
 
         /// <summary>
-        /// The search query in the search bar.
+        /// Gets or sets search query in the search bar.
         /// </summary>
         internal string? SearchQuery
         {
@@ -79,27 +84,71 @@ namespace DevTools.Impl.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets whether the window is in Compact Overlay mode or not.
+        /// </summary>
+        internal bool IsInCompactOverlayMode
+        {
+            get => _isInCompactOverlayMode;
+            private set
+            {
+                _thread.ThrowIfNotOnUIThread();
+                if (_isInCompactOverlayMode != value)
+                {
+                    _isInCompactOverlayMode = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         [ImportingConstructor]
         public MainPageViewModel(
             IThread thread,
+            ITitleBar titleBar,
             IToolProviderFactory toolProviderFactory,
             IUriActivationProtocolService launchProtocolService)
         {
             _thread = thread;
             _toolProviderFactory = toolProviderFactory;
             _launchProtocolService = launchProtocolService;
+            TitleBar = titleBar;
 
             OpenToolInNewWindowCommand = new AsyncRelayCommand<ToolProviderMetadata>(ExecuteOpenToolInNewWindowCommandAsync);
+            ChangeViewModeCommand = new AsyncRelayCommand<ApplicationViewMode>(ExecuteChangeViewModeCommandAsync);
+
+            IsInCompactOverlayMode = ApplicationView.GetForCurrentView().ViewMode == ApplicationViewMode.CompactOverlay;
         }
 
         #region OpenToolInNewWindowCommand
 
-        public IRelayCommand<ToolProviderMetadata> OpenToolInNewWindowCommand { get; }
+        public IAsyncRelayCommand<ToolProviderMetadata> OpenToolInNewWindowCommand { get; }
 
         private async Task ExecuteOpenToolInNewWindowCommandAsync(ToolProviderMetadata? metadata)
         {
             Arguments.NotNull(metadata, nameof(metadata));
             await _launchProtocolService.LaunchNewAppInstance(metadata!.ProtocolName);
+        }
+
+        #endregion
+
+        #region ChangeViewModeCommand
+
+        public IAsyncRelayCommand<ApplicationViewMode> ChangeViewModeCommand { get; }
+
+        private async Task ExecuteChangeViewModeCommandAsync(ApplicationViewMode applicationViewMode)
+        {
+            Assumes.NotNull(SelectedMenuItem, nameof(SelectedMenuItem));
+
+            ViewModePreferences compactOptions = ViewModePreferences.CreateDefault(ApplicationViewMode.CompactOverlay);
+            compactOptions.CustomSize = new Size(SelectedMenuItem!.Metadata.CompactOverlayWidth, SelectedMenuItem.Metadata.CompactOverlayHeight);
+
+            if (await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(applicationViewMode, compactOptions))
+            {
+                await _thread.RunOnUIThreadAsync(() =>
+                {
+                    IsInCompactOverlayMode = applicationViewMode == ApplicationViewMode.CompactOverlay;
+                });
+            }
         }
 
         #endregion

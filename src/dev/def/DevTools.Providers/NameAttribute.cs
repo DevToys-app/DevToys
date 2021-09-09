@@ -3,6 +3,9 @@ using System.Composition;
 
 namespace DevTools.Providers
 {
+    /// <summary>
+    /// Indicates an internal non-localized name.
+    /// </summary>
     [MetadataAttribute]
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public sealed class NameAttribute : Attribute

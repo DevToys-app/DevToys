@@ -8,7 +8,8 @@
             <controls:XamlControlsResources.MergedDictionaries>
 
                 <!-- Other app resources here -->
-                <ResourceDictionary Source="ms-appx:///DevTools.Localization/Resources.xaml"/>
+                <ResourceDictionary Source="ms-appx:///DevTools.Common/Themes/Generic.xaml"/>
+                <ResourceDictionary Source="ms-appx:///DevTools.Common/Themes/Custom.xaml"/>
 
             </controls:XamlControlsResources.MergedDictionaries>
         </controls:XamlControlsResources>
