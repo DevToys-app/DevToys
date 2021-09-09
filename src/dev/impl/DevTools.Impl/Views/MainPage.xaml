@@ -65,20 +65,21 @@
             CompactModeThresholdWidth="450"
             ExpandedModeThresholdWidth="550"
             PaneDisplayMode="Auto"
-            SelectionFollowsFocus="Disabled"
             IsTabStop="False"
             MenuItemsSource="{x:Bind ViewModel.ToolsMenuItems}"
-            FooterMenuItemsSource="{x:Bind ViewModel.FooterMenuItems}">
+            FooterMenuItemsSource="{x:Bind ViewModel.FooterMenuItems}"
+            SelectedItem="{x:Bind ViewModel.SelectedMenuItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 
             <muxc:NavigationView.MenuItemTemplate>
                 <DataTemplate x:DataType="models:MatchedToolProviderViewData">
-                    <muxc:NavigationViewItem Icon="{x:Bind Icon}">
+                    <muxc:NavigationViewItem
+                        Icon="{x:Bind Icon.Result}">
                         <muxc:NavigationViewItem.ContextFlyout>
                             <MenuFlyout>
                                 <MenuFlyoutItem
                                     Text="{Binding Instance.MainPage.OpenInNewWindow, Source={StaticResource LanguageManager}}"
                                     Command="{Binding OpenToolInNewWindowCommand}"
-                                    CommandParameter="{x:Bind ToolProvider}">
+                                    CommandParameter="{x:Bind Metadata}">
                                     <MenuFlyoutItem.Icon>
                                         <FontIcon FontFamily="{StaticResource FluentSystemIcons}" Glyph="&#x00F8;" />
                                     </MenuFlyoutItem.Icon>
@@ -90,7 +91,7 @@
                                 IsTextSelectionEnabled="False"
                                 TextWrapping="NoWrap"
                                 TextTrimming="CharacterEllipsis"
-                                ex:HighlighterExtension.Highlighters="{x:Bind MatchedSpans}">
+                                ex:HighlighterExtension.Highlighters="{x:Bind MatchedSpans, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                 <Paragraph>
                                     <Run Text="{x:Bind ToolProvider.DisplayName}"/>
                                 </Paragraph>
@@ -106,12 +107,6 @@
                     QueryIcon="Find"
                     PlaceholderText="{x:Bind ViewModel.Strings.Search}"
                     Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                    <i:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="TextChanged">
-                            <core:InvokeCommandAction
-                                Command="{x:Bind ViewModel.SearchBoxTextChangedCommand}"/>
-                        </core:EventTriggerBehavior>
-                    </i:Interaction.Behaviors>
                     <AutoSuggestBox.KeyboardAccelerators>
                         <KeyboardAccelerator
                             Key="F"

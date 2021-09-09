@@ -2,19 +2,20 @@
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <ProjectGuid>{98274C08-4636-45EE-95AF-2C069BFBABD4}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{E1C4AB49-CFFF-420E-A182-E3028BD0493C}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DevTools.Core.Impl</RootNamespace>
-    <AssemblyName>DevTools.Core.Impl</AssemblyName>
-    <DefaultLanguage>en</DefaultLanguage>
+    <RootNamespace>DevTools.Tests</RootNamespace>
+    <AssemblyName>DevTools.Tests</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">$(Windows10SDKVersion)</TargetPlatformVersion>
     <TargetPlatformMinVersion>$(Windows10MinSDKVersion)</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>16</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
+    <UnitTestPlatformVersion Condition="'$(UnitTestPlatformVersion)' == ''">$(VisualStudioVersion)</UnitTestPlatformVersion>
+    <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -70,29 +71,74 @@
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\shared\SharedAssemblyInfo.cs">
-      <Link>Properties\SharedAssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="Injection\MefComposer.cs" />
-    <Compile Include="Injection\MefProvider.cs" />
-    <Compile Include="UriActivationProtocolService.cs" />
+    <SDKReference Include="TestPlatform.Universal, Version=$(UnitTestPlatformVersion)" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MefBaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings\SettingsProvider.cs" />
-    <Compile Include="Theme\ThemeListener.cs" />
-    <Compile Include="Threading\Thread.cs" />
-    <Compile Include="TitleBar.cs" />
+    <Compile Include="UnitTestApp.xaml.cs">
+      <DependentUpon>UnitTestApp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Providers\IToolProviderFactoryTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="UnitTestApp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="$(NuGet_MicrosoftNETCoreUniversalWindowsPlatform)" />
-    <PackageReference Include="System.Composition" Version="$(NuGet_SystemComposition)" />
+    <PackageReference Include="Microsoft.UI.Xaml" Version="$(NuGet_MicrosoftUIXaml)" />
+    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="$(NuGet_MicrosoftToolkitMvvm)" />
+    <PackageReference Include="MSTest.TestAdapter" Version="$(NuGet_MSTestTestAdapter)" />
+    <PackageReference Include="MSTest.TestFramework" Version="$(NuGet_MSTestTestFramework)" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\def\DevTools.Core\DevTools.Core.csproj">
+    <ProjectReference Include="..\..\dev\def\DevTools.Core\DevTools.Core.csproj">
       <Project>{ef6a6707-44f2-4e76-98b8-11c9b40adc7e}</Project>
       <Name>DevTools.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\dev\def\DevTools.Providers\DevTools.Providers.csproj">
+      <Project>{ada9988b-e19b-4ee5-9162-dab3b12bcf9e}</Project>
+      <Name>DevTools.Providers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\dev\impl\DevTools.Core.Impl\DevTools.Core.Impl.csproj">
+      <Project>{98274c08-4636-45ee-95af-2c069bfbabd4}</Project>
+      <Name>DevTools.Core.Impl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\dev\impl\DevTools.Impl\DevTools.Impl.csproj">
+      <Project>{e2f0c303-04fc-4504-a272-7662af9a0a80}</Project>
+      <Name>DevTools.Impl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\dev\impl\DevTools.Localization\DevTools.Localization.csproj">
+      <Project>{935d5df8-c400-4ca6-aabe-34a06a69af85}</Project>
+      <Name>DevTools.Localization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\dev\impl\DevTools.Providers.Impl\DevTools.Providers.Impl.csproj">
+      <Project>{8621ed11-e9dd-480a-be2b-c1db00919b6f}</Project>
+      <Name>DevTools.Providers.Impl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\dev\startup\DevTools\DevTools.csproj">
+      <Project>{e3e4e200-b380-4207-9a7e-4c9421904502}</Project>
+      <Name>DevTools</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

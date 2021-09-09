@@ -9,7 +9,10 @@
         </Compile>
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="System.Composition" Version="$(NuGet_SystemComposition)"/>
+        <PackageReference Include="System.Composition" Version="$(NuGet_SystemComposition)" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\DevTools.Core\DevTools.Core.csproj" />
     </ItemGroup>
 
 </Project>
