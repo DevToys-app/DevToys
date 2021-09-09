@@ -1,10 +1,8 @@
 ﻿#nullable enable
 
-using DevTools.Core;
 using DevTools.Core.Navigation;
 using DevTools.Core.Threading;
 using DevTools.Impl.ViewModels;
-using Windows.ApplicationModel.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -41,12 +39,11 @@ namespace DevTools.Impl.Views
         {
             var parameters = (NavigationParameter)e.Parameter;
 
-            // Setup the title bar.
-            parameters.ExportProvider.Import<ITitleBar>().SetupTitleBarAsync().Forget();
-
             // Set the view model
             ViewModel = parameters.ExportProvider.Import<MainPageViewModel>();
             DataContext = ViewModel;
+
+            ViewModel.OnNavigatedToAsync(parameters.Parameter).Forget();
 
             base.OnNavigatedTo(e);
         }

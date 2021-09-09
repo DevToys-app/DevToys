@@ -69,6 +69,7 @@ namespace DevTools.Core.Impl.Threading
                     {
                         try
                         {
+                            ThrowIfNotOnUIThread();
                             await action().ConfigureAwait(true);
                         }
                         catch (Exception ex)
@@ -104,6 +105,7 @@ namespace DevTools.Core.Impl.Threading
                     {
                         try
                         {
+                            ThrowIfNotOnUIThread();
                             result = await action().ConfigureAwait(true);
                         }
                         catch (Exception ex)

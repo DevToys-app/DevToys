@@ -13,7 +13,7 @@ namespace DevTools.Core.Threading
         /// <summary>
         /// Gets the task being watched. This property never changes and is never <c>null</c>.
         /// </summary>
-        public Task<TResult?>? Task { get; private set; }
+        public Task<TResult>? Task { get; private set; }
 
         /// <summary>
         /// Gets the result of the task. Returns the default value of TResult if the task has not completed successfully.
@@ -49,7 +49,7 @@ namespace DevTools.Core.Threading
         /// Initialize a new instance of the <see cref="TaskCompletionNotifier{TResult}"/> class.
         /// </summary>
         /// <param name="task">The <see cref="Task"/> to run.</param>
-        public TaskCompletionNotifier(Task<TResult?>? task)
+        public TaskCompletionNotifier(IThread thread, Task<TResult>? task)
         {
             try
             {
@@ -60,25 +60,28 @@ namespace DevTools.Core.Threading
 
                     task
                         .ContinueWith(
-                            t =>
+                            async t =>
                             {
                                 var propertyChanged = PropertyChanged;
                                 if (propertyChanged != null)
                                 {
-                                    propertyChanged(this, new PropertyChangedEventArgs(nameof(IsCompleted)));
-                                    if (t.IsCanceled)
+                                    await thread.RunOnUIThreadAsync(() =>
                                     {
-                                        propertyChanged(this, new PropertyChangedEventArgs(nameof(IsCanceled)));
-                                    }
-                                    else if (t.IsFaulted)
-                                    {
-                                        propertyChanged(this, new PropertyChangedEventArgs(nameof(IsFaulted)));
-                                    }
-                                    else
-                                    {
-                                        propertyChanged(this, new PropertyChangedEventArgs(nameof(IsSuccessfullyCompleted)));
-                                        propertyChanged(this, new PropertyChangedEventArgs(nameof(Result)));
-                                    }
+                                        propertyChanged.Invoke(this, new PropertyChangedEventArgs(nameof(IsCompleted)));
+                                        if (t.IsCanceled)
+                                        {
+                                            propertyChanged.Invoke(this, new PropertyChangedEventArgs(nameof(IsCanceled)));
+                                        }
+                                        else if (t.IsFaulted)
+                                        {
+                                            propertyChanged.Invoke(this, new PropertyChangedEventArgs(nameof(IsFaulted)));
+                                        }
+                                        else
+                                        {
+                                            propertyChanged.Invoke(this, new PropertyChangedEventArgs(nameof(IsSuccessfullyCompleted)));
+                                            propertyChanged.Invoke(this, new PropertyChangedEventArgs(nameof(Result)));
+                                        }
+                                    });
                                 }
                             },
                             CancellationToken.None,

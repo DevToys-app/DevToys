@@ -1,10 +1,12 @@
 ﻿#nullable enable
 
+using DevTools.Core;
 using DevTools.Core.Impl.Injection;
 using DevTools.Core.Injection;
 using DevTools.Core.Navigation;
 using DevTools.Core.Settings;
 using DevTools.Core.Theme;
+using DevTools.Core.Threading;
 using DevTools.Impl.Views;
 using DevTools.Localization;
 using DevTools.Providers;
@@ -88,29 +90,7 @@ namespace DevTools
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            ApplicationView applicationView = ApplicationView.GetForCurrentView();
-            applicationView.SetPreferredMinSize(new Windows.Foundation.Size(300, 200));
-
-            // Do not repeat app initialization when the Window already has content,
-            // just ensure that the window is active
-            if (Window.Current.Content is not Frame rootFrame)
-            {
-                // Create a Frame to act as the navigation context and navigate to the first page
-                rootFrame = new Frame();
-
-                rootFrame.NavigationFailed += OnNavigationFailed;
-
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
-                {
-                    //TODO: Load state from previously suspended application
-                }
-
-                // Place the frame in the current Window
-                Window.Current.Content = rootFrame;
-            }
-
-            _themeListener.Value.ThemeChanged += ThemeListener_ThemeChanged;
-            UpdateColorTheme();
+            Frame rootFrame = EnsureWindowIsInitialized();
 
             if (e.PrelaunchActivated == false)
             {
@@ -122,8 +102,34 @@ namespace DevTools
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(MainPage), new NavigationParameter(_mefComposer.ExportProvider.GetExport<IMefProvider>(), e.Arguments));
+                    rootFrame.Navigate(
+                        typeof(MainPage),
+                        new NavigationParameter(
+                            _mefComposer.ExportProvider.GetExport<IMefProvider>(),
+                            e.Arguments));
                 }
+
+                // Ensure the current window is active
+                Window.Current.Activate();
+            }
+        }
+
+        /// <summary>
+        /// Invoked when the application is activated by some means other than normal launching.
+        /// </summary>
+        protected override void OnActivated(IActivatedEventArgs args)
+        {
+            Frame rootFrame = EnsureWindowIsInitialized();
+
+            if (args.Kind == ActivationKind.Protocol)
+            {
+                var eventArgs = (ProtocolActivatedEventArgs)args;
+                rootFrame.Navigate(
+                    typeof(MainPage),
+                    new NavigationParameter(
+                        _mefComposer.ExportProvider.GetExport<IMefProvider>(),
+                        eventArgs.Uri.Query));
+
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
@@ -153,6 +159,29 @@ namespace DevTools
             deferral.Complete();
         }
 
+        private Frame EnsureWindowIsInitialized()
+        {
+            ApplicationView applicationView = ApplicationView.GetForCurrentView();
+            applicationView.SetPreferredMinSize(new Windows.Foundation.Size(300, 200));
+
+            // Do not repeat app initialization when the Window already has content,
+            // just ensure that the window is active
+            if (Window.Current.Content is not Frame rootFrame)
+            {
+                // Create a Frame to act as the navigation context and navigate to the first page
+                rootFrame = new Frame();
+                rootFrame.NavigationFailed += OnNavigationFailed;
+
+                // Place the frame in the current Window
+                Window.Current.Content = rootFrame;
+            }
+
+            _themeListener.Value.ThemeChanged += ThemeListener_ThemeChanged;
+            UpdateColorTheme();
+
+            return rootFrame;
+        }
+
         private void ThemeListener_ThemeChanged(object sender, EventArgs e)
         {
             UpdateColorTheme();
@@ -172,6 +201,9 @@ namespace DevTools
             {
                 frameworkElement.RequestedTheme = theme == AppTheme.Light ? ElementTheme.Light : ElementTheme.Dark;
             }
+
+            // Setup the title bar.
+            _mefComposer.ExportProvider.GetExport<ITitleBar>().SetupTitleBarAsync().Forget();
         }
     }
 }

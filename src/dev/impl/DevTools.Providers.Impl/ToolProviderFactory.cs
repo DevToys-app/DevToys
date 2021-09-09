@@ -21,10 +21,9 @@ namespace DevTools.Providers.Impl
 
         public IEnumerable<MatchedToolProvider> GetTools(string? searchQuery)
         {
-            searchQuery = searchQuery?.Trim();
             string[]? searchQueries = searchQuery?.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
 
-            var results = new List<(MatchedToolProvider, ToolProviderMetadata)>();
+            var results = new List<MatchedToolProvider>();
             foreach (Lazy<IToolProvider, ToolProviderMetadata> provider in _providers.Where(item => !item.Metadata.IsFooterItem))
             {
                 var matches = new List<MatchSpan>();
@@ -48,19 +47,22 @@ namespace DevTools.Providers.Impl
                     }
                 }
 
-                if (matches.Count > 0 || searchQueries?.Length == 0)
+                if (matches.Count > 0 || searchQueries is null || searchQueries.Length == 0)
                 {
-                    results.Add((new MatchedToolProvider(provider.Value, matches.ToArray()), provider.Metadata));
+                    results.Add(
+                        new MatchedToolProvider(
+                            provider.Metadata,
+                            provider.Value,
+                            matches.ToArray()));
                 }
             }
 
             return
                 results
-                    .OrderByDescending(item => item.Item1.MatchedSpans.Length)
-                    .ThenBy(item => item.Item2.Order ?? int.MaxValue)
-                    .ThenBy(item => item.Item1.ToolProvider.DisplayName)
-                    .ThenBy(item => item.Item2.Name)
-                    .Select(item => item.Item1);
+                    .OrderByDescending(item => item.MatchedSpans.Length)
+                    .ThenBy(item => item.Metadata.Order ?? int.MaxValue)
+                    .ThenBy(item => item.ToolProvider.DisplayName)
+                    .ThenBy(item => item.Metadata.Name);
         }
 
         public IEnumerable<MatchedToolProvider> GetFooterTools()
@@ -72,7 +74,7 @@ namespace DevTools.Providers.Impl
                     .ThenBy(item => item.Value.DisplayName)
                     .ThenBy(item => item.Metadata.Name))
             {
-                yield return new MatchedToolProvider(provider.Value, matches);
+                yield return new MatchedToolProvider(provider.Metadata, provider.Value, matches);
             }
         }
     }

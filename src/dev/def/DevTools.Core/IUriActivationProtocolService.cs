@@ -3,9 +3,9 @@
 namespace DevTools.Core
 {
     /// <summary>
-    /// Provides a service allowing to start new instance of the app.
+    /// Provides a service allowing to activate the app throught a URI protocol.
     /// </summary>
-    public interface ILaunchProtocolService
+    public interface IUriActivationProtocolService
     {
         /// <summary>
         /// Starts a new instance of the app with an argument.

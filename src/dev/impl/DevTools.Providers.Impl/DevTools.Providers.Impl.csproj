@@ -85,6 +85,10 @@
     <PackageReference Include="System.Composition" Version="$(NuGet_SystemComposition)" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\def\DevTools.Core\DevTools.Core.csproj">
+      <Project>{EF6A6707-44F2-4E76-98B8-11C9B40ADC7E}</Project>
+      <Name>DevTools.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\def\DevTools.Providers\DevTools.Providers.csproj">
       <Project>{ada9988b-e19b-4ee5-9162-dab3b12bcf9e}</Project>
       <Name>DevTools.Providers</Name>
