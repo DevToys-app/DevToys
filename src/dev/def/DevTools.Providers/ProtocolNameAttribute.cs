@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace DevTools.Providers
 {
+    /// <summary>
+    /// Indicates the tool name used through URI Activation Protocol to access this <see cref="IToolProvider"/>.
+    /// </summary>
     [MetadataAttribute]
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public sealed class ProtocolNameAttribute : Attribute

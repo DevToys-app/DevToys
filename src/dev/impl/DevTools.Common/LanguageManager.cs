@@ -15,7 +15,7 @@ using Windows.ApplicationModel.Resources;
 using Windows.Globalization;
 using Windows.UI.Xaml;
 
-namespace DevTools.Localization
+namespace DevTools.Common
 {
     public partial class LanguageManager : ObservableObject
     {
@@ -83,7 +83,7 @@ namespace DevTools.Localization
 
     public class Base64EncoderDecoderStrings : ObservableObject
     {
-        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Localization/Base64EncoderDecoder");
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Common/Base64EncoderDecoder");
 
         /// <summary>
         /// Gets the resource DisplayName.
@@ -93,7 +93,17 @@ namespace DevTools.Localization
 
     public class MainPageStrings : ObservableObject
     {
-        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Localization/MainPage");
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Common/MainPage");
+
+        /// <summary>
+        /// Gets the resource EnterCompactOverlayTooltip.
+        /// </summary>
+        public string EnterCompactOverlayTooltip => _resources.GetString("EnterCompactOverlayTooltip");
+
+        /// <summary>
+        /// Gets the resource ExitCompactOverlayTooltip.
+        /// </summary>
+        public string ExitCompactOverlayTooltip => _resources.GetString("ExitCompactOverlayTooltip");
 
         /// <summary>
         /// Gets the resource OpenInNewWindow.
@@ -108,7 +118,7 @@ namespace DevTools.Localization
 
     public class SettingsStrings : ObservableObject
     {
-        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Localization/Settings");
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Common/Settings");
 
         /// <summary>
         /// Gets the resource DisplayName.

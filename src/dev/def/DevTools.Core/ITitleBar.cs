@@ -1,12 +1,18 @@
-﻿using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace DevTools.Core
 {
     /// <summary>
     /// Provides a service designed to manager the window title bar.
     /// </summary>
-    public interface ITitleBar
+    public interface ITitleBar : INotifyPropertyChanged
     {
+        /// <summary>
+        /// Gets the width of the system-reserved region of the upper-right corner of the app window.
+        /// </summary>
+        double SystemOverlayRightInset { get; }
+
         /// <summary>
         /// Initialize the states of the title bar.
         /// </summary>

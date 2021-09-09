@@ -8,13 +8,20 @@
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:models="using:DevTools.Impl.Models"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
-    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:ex="using:DevTools.Impl.Core.UI.Extensions"
-    xmlns:localization="using:DevTools.Localization"
+    xmlns:icore="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:ex="using:DevTools.Common.UI.Extensions"
+    xmlns:converters="using:DevTools.Common.UI.Converters"
+    xmlns:common="using:DevTools.Common"
+    xmlns:controls="using:DevTools.Common.UI.Controls"
+    xmlns:viewmanagement="using:Windows.UI.ViewManagement"
     mc:Ignorable="d"
     muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
     <Page.Resources>
-        <localization:LanguageManager x:Key="LanguageManager"/>
+        <common:LanguageManager x:Key="LanguageManager"/>
+        <converters:DoubleToGridLengthConverter x:Key="DoubleToGridLengthConverter"/>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <converters:BooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" IsInverted="True"/>
+        <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
 
         <!--This top margin is the height of the custom TitleBar-->
         <Thickness x:Key="NavigationViewContentMargin">0,48,0,0</Thickness>
@@ -26,33 +33,101 @@
         </Grid.BackgroundTransition>
 
         <!-- Title and icon in the title bar -->
-        <Border
+        <Grid
             VerticalAlignment="Top"
             Height="48"
-            Margin="48,0,0,0">
-            <StackPanel Orientation="Horizontal">
+            Canvas.ZIndex="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="{x:Bind ViewModel.TitleBar.SystemOverlayRightInset, Mode=OneWay, Converter={StaticResource DoubleToGridLengthConverter}}" />
+            </Grid.ColumnDefinitions>
+            <Border
+                Grid.Column="0"
+                Width="48"
+                Visibility="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
+
+            <StackPanel
+                Grid.Column="1"
+                Orientation="Horizontal">
                 <Image
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     Source="/DevTools.Impl/Assets/Logo/Square44x44Logo.scale-200.png"
                     Width="16"
-                    Height="16"/>
+                    Height="16"
+                    Visibility="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
                 <TextBlock
                     Text="DevTools"
                     VerticalAlignment="Center"
                     Margin="12,0,0,0"
                     Style="{StaticResource CaptionTextBlockStyle}" />
             </StackPanel>
-        </Border>
 
-        <!-- Draggable part of the title bar -->
-        <Border
-            x:Name="AppTitleBar"
-            Background="Transparent"
-            VerticalAlignment="Top"
-            Height="32"
-            Margin="48,0,0,0"
-            Canvas.ZIndex="1"/>
+            <!-- Draggable part of the title bar -->
+            <Border
+                x:Name="AppTitleBar"
+                Grid.Column="1"
+                Background="Transparent"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Stretch"
+                Height="32"/>
+
+            <!-- Compact Overlay button -->
+            <Button
+                Grid.Column="2"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Width="46"
+                Height="32"
+                Padding="0"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                ToolTipService.ToolTip="{x:Bind ViewModel.Strings.EnterCompactOverlayTooltip}"
+                Visibility="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
+                Command="{x:Bind ViewModel.ChangeViewModeCommand}">
+                <Button.CommandParameter>
+                    <viewmanagement:ApplicationViewMode>CompactOverlay</viewmanagement:ApplicationViewMode>
+                </Button.CommandParameter>
+                <Button.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="Up" Modifiers="Control"/>
+                </Button.KeyboardAccelerators>
+                <controls:CustomPathIcon
+                    Data="{StaticResource EnterCompactOverlayPathIconData}"
+                    RenderTransformOrigin="0.5,0.5">
+                    <controls:CustomPathIcon.RenderTransform>
+                        <CompositeTransform Rotation="180"/>
+                    </controls:CustomPathIcon.RenderTransform>
+                </controls:CustomPathIcon>
+            </Button>
+            <Button
+                Grid.Column="2"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Width="46"
+                Height="32"
+                Padding="0"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                ToolTipService.ToolTip="{x:Bind ViewModel.Strings.ExitCompactOverlayTooltip}"
+                Visibility="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Command="{x:Bind ViewModel.ChangeViewModeCommand}">
+                <Button.CommandParameter>
+                    <viewmanagement:ApplicationViewMode>Default</viewmanagement:ApplicationViewMode>
+                </Button.CommandParameter>
+                <Button.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="Down" Modifiers="Control"/>
+                </Button.KeyboardAccelerators>
+                <controls:CustomPathIcon
+                    Data="{StaticResource ExitCompactOverlayPathIconData}"
+                    RenderTransformOrigin="0.5,0.5">
+                    <controls:CustomPathIcon.RenderTransform>
+                        <CompositeTransform Rotation="-90"/>
+                    </controls:CustomPathIcon.RenderTransform>
+                </controls:CustomPathIcon>
+            </Button>
+        </Grid>
 
         <!-- Navigation view -->
         <muxc:NavigationView
@@ -60,12 +135,13 @@
             IsSettingsVisible="False"
             IsBackButtonVisible="Collapsed"
             IsBackEnabled="False"
-            Header="Header"
-            AlwaysShowHeader="True"
             CompactModeThresholdWidth="450"
             ExpandedModeThresholdWidth="550"
             PaneDisplayMode="Auto"
             IsTabStop="False"
+            AlwaysShowHeader="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay}"
+            IsPaneVisible="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource InvertedBooleanConverter}}"
+            Header="{x:Bind ViewModel.SelectedMenuItem.ToolProvider.DisplayName, Mode=OneWay}"
             MenuItemsSource="{x:Bind ViewModel.ToolsMenuItems}"
             FooterMenuItemsSource="{x:Bind ViewModel.FooterMenuItems}"
             SelectedItem="{x:Bind ViewModel.SelectedMenuItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">

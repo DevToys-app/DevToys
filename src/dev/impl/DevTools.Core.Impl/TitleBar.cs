@@ -3,12 +3,14 @@
 using DevTools.Core.Settings;
 using DevTools.Core.Theme;
 using DevTools.Core.Threading;
+using System.ComponentModel;
 using System.Composition;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
+using Windows.UI.Xaml;
 
 namespace DevTools.Core.Impl
 {
@@ -19,6 +21,23 @@ namespace DevTools.Core.Impl
         private readonly IThread _thread;
         private readonly ISettingsProvider _settingsProvider;
         private readonly IThemeListener _themeListener;
+
+        private double _systemOverlayRightInset;
+
+        public double SystemOverlayRightInset
+        {
+            get => _systemOverlayRightInset;
+            private set
+            {
+                _systemOverlayRightInset = value;
+                _thread.RunOnUIThreadAsync(() =>
+                {
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SystemOverlayRightInset)));
+                });
+            }
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         [ImportingConstructor]
         public TitleBar(IThread thread, ISettingsProvider settingsProvider, IThemeListener themeListener)
@@ -41,7 +60,9 @@ namespace DevTools.Core.Impl
             _thread.ThrowIfNotOnUIThread();
             Arguments.NotNull(coreTitleBar, nameof(coreTitleBar));
 
+            Window.Current.SizeChanged += CurrentWindow_SizeChanged;
             coreTitleBar.ExtendViewIntoTitleBar = true;
+            SystemOverlayRightInset = coreTitleBar.SystemOverlayRightInset;
 
             // Register a handler for when the size of the overlaid caption control changes.
             // For example, when the app moves to a screen with a different DPI.
@@ -103,6 +124,11 @@ namespace DevTools.Core.Impl
         private void TitleBar_LayoutMetricsChanged(CoreApplicationViewTitleBar sender, object args)
         {
             SetupTitleBar(sender);
+        }
+
+        private void CurrentWindow_SizeChanged(object sender, WindowSizeChangedEventArgs e)
+        {
+            SystemOverlayRightInset = CoreApplication.GetCurrentView().TitleBar.SystemOverlayRightInset;
         }
     }
 }

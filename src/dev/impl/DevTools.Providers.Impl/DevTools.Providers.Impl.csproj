@@ -93,9 +93,9 @@
       <Project>{ada9988b-e19b-4ee5-9162-dab3b12bcf9e}</Project>
       <Name>DevTools.Providers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DevTools.Localization\DevTools.Localization.csproj">
+    <ProjectReference Include="..\DevTools.Common\DevTools.Common.csproj">
       <Project>{935d5df8-c400-4ca6-aabe-34a06a69af85}</Project>
-      <Name>DevTools.Localization</Name>
+      <Name>DevTools.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />

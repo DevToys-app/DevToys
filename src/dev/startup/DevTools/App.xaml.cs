@@ -8,7 +8,7 @@ using DevTools.Core.Settings;
 using DevTools.Core.Theme;
 using DevTools.Core.Threading;
 using DevTools.Impl.Views;
-using DevTools.Localization;
+using DevTools.Common;
 using DevTools.Providers;
 using System;
 using System.Globalization;
@@ -112,6 +112,9 @@ namespace DevTools
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
+
+            // Setup the title bar.
+            _mefComposer.ExportProvider.GetExport<ITitleBar>().SetupTitleBarAsync().Forget();
         }
 
         /// <summary>
@@ -132,6 +135,9 @@ namespace DevTools
 
                 // Ensure the current window is active
                 Window.Current.Activate();
+
+                // Setup the title bar.
+                _mefComposer.ExportProvider.GetExport<ITitleBar>().SetupTitleBarAsync().Forget();
             }
         }
 
@@ -201,9 +207,6 @@ namespace DevTools
             {
                 frameworkElement.RequestedTheme = theme == AppTheme.Light ? ElementTheme.Light : ElementTheme.Dark;
             }
-
-            // Setup the title bar.
-            _mefComposer.ExportProvider.GetExport<ITitleBar>().SetupTitleBarAsync().Forget();
         }
     }
 }

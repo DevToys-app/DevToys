@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
 using DevTools.Core.Threading;
-using DevTools.Localization;
+using DevTools.Common;
 using DevTools.Providers;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Controls;
@@ -18,6 +18,7 @@ namespace DevTools.Impl.Views.Settings
     [Export(typeof(IToolProvider))]
     [Name("Settings")]
     [ProtocolName("settings")]
+    [CompactOverlaySize(width: 400, height: 300)]
     [IsFooterItem]
     internal sealed class SettingsToolProvider : ObservableRecipient, IToolProvider
     {

@@ -36,7 +36,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevTools.Core.Impl", "dev\i
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevTools.Providers.Impl", "dev\impl\DevTools.Providers.Impl\DevTools.Providers.Impl.csproj", "{8621ED11-E9DD-480A-BE2B-C1DB00919B6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevTools.Localization", "dev\impl\DevTools.Localization\DevTools.Localization.csproj", "{935D5DF8-C400-4CA6-AABE-34A06A69AF85}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevTools.Common", "dev\impl\DevTools.Common\DevTools.Common.csproj", "{935D5DF8-C400-4CA6-AABE-34A06A69AF85}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevTools.Impl", "dev\impl\DevTools.Impl\DevTools.Impl.csproj", "{E2F0C303-04FC-4504-A272-7662AF9A0A80}"
 EndProject
