@@ -22,6 +22,7 @@ namespace DevTools.Common
         private static LanguageManager _languageManager;
 		
         private readonly Base64EncoderDecoderStrings _base64encoderdecoder = new Base64EncoderDecoderStrings();
+        private readonly JsonFormatterStrings _jsonformatter = new JsonFormatterStrings();
         private readonly MainPageStrings _mainpage = new MainPageStrings();
         private readonly SettingsStrings _settings = new SettingsStrings();
 
@@ -39,6 +40,11 @@ namespace DevTools.Common
         /// Gets the <see cref="Base64EncoderDecoderStrings"/>.
         /// </summary>
         public Base64EncoderDecoderStrings Base64EncoderDecoder => _base64encoderdecoder;
+
+        /// <summary>
+        /// Gets the <see cref="JsonFormatterStrings"/>.
+        /// </summary>
+        public JsonFormatterStrings JsonFormatter => _jsonformatter;
 
         /// <summary>
         /// Gets the <see cref="MainPageStrings"/>.
@@ -84,6 +90,16 @@ namespace DevTools.Common
     public class Base64EncoderDecoderStrings : ObservableObject
     {
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Common/Base64EncoderDecoder");
+
+        /// <summary>
+        /// Gets the resource DisplayName.
+        /// </summary>
+        public string DisplayName => _resources.GetString("DisplayName");
+    }
+
+    public class JsonFormatterStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Common/JsonFormatter");
 
         /// <summary>
         /// Gets the resource DisplayName.
