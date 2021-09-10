@@ -106,6 +106,7 @@
     <Content Include="..\DevTools.Startup\Assets\Logo\Wide310x150Logo.scale-200.png">
       <Link>Assets\Logo\Wide310x150Logo.scale-200.png</Link>
     </Content>
+    <Content Include="Properties\Default.rd.rd.xml" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
