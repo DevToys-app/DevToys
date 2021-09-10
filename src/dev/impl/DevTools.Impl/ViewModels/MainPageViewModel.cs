@@ -260,6 +260,7 @@ namespace DevTools.Impl.ViewModels
                     {
                         if (!snapshot.Contains(item.Key))
                         {
+                            // TODO: Use Insert instead of Add so we can insert the item in the right order it deserves.
                             ToolsMenuItems.Add(item.Key);
                         }
 

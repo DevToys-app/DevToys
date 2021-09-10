@@ -4,24 +4,25 @@ using DevTools.Core.Threading;
 using DevTools.Common;
 using System;
 using System.Composition;
+using Windows.ApplicationModel.DataTransfer;
 
-namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
+namespace DevTools.Providers.Impl.Tools.JsonFormatter
 {
     [Export(typeof(IToolProvider))]
-    [Name("Base64 Encoder/Decoder")]
-    [ProtocolName("base64")]
+    [Name("Json Formatter")]
+    [ProtocolName("jsonformat")]
     [Order(0)]
-    internal sealed class Base64EncoderDecoderToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class JsonFormatterToolProvider : ToolProviderBase, IToolProvider
     {
-        public string DisplayName => LanguageManager.Instance.Base64EncoderDecoder.DisplayName;
+        public string DisplayName => LanguageManager.Instance.JsonFormatter.DisplayName;
 
         public object IconSource { get; }
 
         [ImportingConstructor]
-        public Base64EncoderDecoderToolProvider(IThread thread)
+        public JsonFormatterToolProvider(IThread thread)
             : base(thread)
         {
-            IconSource = CreatePathIconFromPath(nameof(Base64EncoderDecoderToolProvider));
+            IconSource = CreatePathIconFromPath(nameof(JsonFormatterToolProvider));
         }
 
         public bool CanBeTreatedByTool(string data)
