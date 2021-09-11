@@ -15,6 +15,7 @@
     xmlns:controls="using:DevTools.Common.UI.Controls"
     xmlns:viewmanagement="using:Windows.UI.ViewManagement"
     mc:Ignorable="d"
+    NavigationCacheMode="Enabled"
     muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
     <Page.Resources>
         <common:LanguageManager x:Key="LanguageManager"/>

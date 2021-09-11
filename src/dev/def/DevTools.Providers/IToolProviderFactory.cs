@@ -8,6 +8,13 @@ namespace DevTools.Providers
     public interface IToolProviderFactory
     {
         /// <summary>
+        /// Get a tool view model
+        /// </summary>
+        /// <param name="provider"></param>
+        /// <returns></returns>
+        IToolViewModel GetToolViewModel(IToolProvider provider);
+
+        /// <summary>
         /// Gets the list of tools available.
         /// </summary>
         /// <param name="searchQuery">If not null or empty, the method will return items that match the given search query and order them.</param>

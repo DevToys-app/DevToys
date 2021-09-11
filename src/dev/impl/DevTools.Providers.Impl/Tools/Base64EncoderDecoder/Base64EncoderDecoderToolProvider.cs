@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using DevTools.Common;
+using DevTools.Core.Injection;
 using DevTools.Core.Threading;
 using System;
 using System.Composition;
@@ -19,10 +20,13 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
 
         public object IconSource => CreatePathIconFromPath(nameof(Base64EncoderDecoderToolProvider));
 
+        private readonly IMefProvider _mefProvider;
+
         [ImportingConstructor]
-        public Base64EncoderDecoderToolProvider(IThread thread)
+        public Base64EncoderDecoderToolProvider(IThread thread, IMefProvider mefProvider)
             : base(thread)
         {
+            _mefProvider = mefProvider;
         }
 
         public bool CanBeTreatedByTool(string data)
@@ -38,7 +42,7 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
 
         public IToolViewModel CreateTool()
         {
-            throw new NotImplementedException();
+            return _mefProvider.Import<Base64EncoderDecoderToolViewModel>();
         }
 
         private bool IsBase64DataStrict(string data)
@@ -84,11 +88,11 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
             {
                 current = decoded[i];
                 if (current == 65533) return false;
-                if (!(current == 0x9 
-                    || current == 0xA 
-                    || current == 0xD 
-                    || (current >= 0x20 && current <= 0xD7FF) 
-                    || (current >= 0xE000 && current <= 0xFFFD) 
+                if (!(current == 0x9
+                    || current == 0xA
+                    || current == 0xD
+                    || (current >= 0x20 && current <= 0xD7FF)
+                    || (current >= 0xE000 && current <= 0xFFFD)
                     || (current >= 0x10000 && current <= 0x10FFFF)))
                 {
                     return false;

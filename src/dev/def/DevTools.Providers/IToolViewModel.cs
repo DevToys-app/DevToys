@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace DevTools.Providers
 {
@@ -8,8 +9,9 @@ namespace DevTools.Providers
     public interface IToolViewModel : INotifyPropertyChanged
     {
         /// <summary>
-        /// Gets an instance of the view to display in the UI.
+        /// Get the type of the view to display in the UI.
         /// </summary>
-        IToolView View { get; }
+        /// <remarks>The type must be a page</remarks>
+        Type View { get; }
     }
 }
