@@ -1,11 +1,11 @@
 ﻿#nullable enable
 
-using DevTools.Core.Threading;
 using DevTools.Common;
+using DevTools.Core.Threading;
 using System;
 using System.Composition;
-using System.Text.RegularExpressions;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
 {
@@ -17,13 +17,12 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
     {
         public string DisplayName => LanguageManager.Instance.Base64EncoderDecoder.DisplayName;
 
-        public object IconSource { get; }
+        public object IconSource => CreatePathIconFromPath(nameof(Base64EncoderDecoderToolProvider));
 
         [ImportingConstructor]
         public Base64EncoderDecoderToolProvider(IThread thread)
             : base(thread)
         {
-            IconSource = CreatePathIconFromPath(nameof(Base64EncoderDecoderToolProvider));
         }
 
         public bool CanBeTreatedByTool(string data)
