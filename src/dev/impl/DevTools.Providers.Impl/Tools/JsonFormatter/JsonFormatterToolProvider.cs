@@ -1,8 +1,8 @@
 ﻿#nullable enable
 
 using DevTools.Common;
+using DevTools.Core.Injection;
 using DevTools.Core.Threading;
-using System;
 using System.Composition;
 
 namespace DevTools.Providers.Impl.Tools.JsonFormatter
@@ -17,10 +17,13 @@ namespace DevTools.Providers.Impl.Tools.JsonFormatter
 
         public object IconSource => CreatePathIconFromPath(nameof(JsonFormatterToolProvider));
 
+        private readonly IMefProvider _mefProvider;
+
         [ImportingConstructor]
-        public JsonFormatterToolProvider(IThread thread)
+        public JsonFormatterToolProvider(IThread thread, IMefProvider mefProvider)
             : base(thread)
         {
+            _mefProvider = mefProvider;
         }
 
         public bool CanBeTreatedByTool(string data)
@@ -31,7 +34,7 @@ namespace DevTools.Providers.Impl.Tools.JsonFormatter
 
         public IToolViewModel CreateTool()
         {
-            throw new NotImplementedException();
+            return _mefProvider.Import<JsonFormatterToolViewModel>();
         }
     }
 }

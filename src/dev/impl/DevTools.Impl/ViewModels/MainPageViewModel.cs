@@ -4,6 +4,7 @@ using DevTools.Common;
 using DevTools.Core;
 using DevTools.Core.Collections;
 using DevTools.Core.Threading;
+using DevTools.Impl.Messages;
 using DevTools.Impl.Models;
 using DevTools.Providers;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
@@ -19,6 +20,8 @@ using System.Threading.Tasks;
 using System.Web;
 using Windows.Foundation;
 using Windows.UI.ViewManagement;
+using Windows.UI.Xaml.Controls;
+using Microsoft.Toolkit.Mvvm.Messaging;
 using Windows.UI.Xaml;
 
 namespace DevTools.Impl.ViewModels
@@ -65,6 +68,10 @@ namespace DevTools.Impl.ViewModels
                 if (value is not null)
                 {
                     _selectedItem = value;
+
+                    IToolViewModel toolViewModel = _toolProviderFactory.GetToolViewModel(_selectedItem.ToolProvider);
+                    Messenger.Send(new NavigateToToolMessage(toolViewModel));
+
                     OnPropertyChanged(nameof(SelectedMenuItem));
                 }
             }
@@ -127,6 +134,9 @@ namespace DevTools.Impl.ViewModels
             _firstUpdateMenuTask = UpdateMenuAsync(searchQuery: string.Empty);
 
             Window.Current.Activated += Window_Activated;
+
+            // Activate the view model's messenger.
+            IsActive = true;
         }
 
         #region OpenToolInNewWindowCommand

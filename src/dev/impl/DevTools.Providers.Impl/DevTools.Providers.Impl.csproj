@@ -75,8 +75,16 @@
     <Compile Include="Dummy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToolProviderFactory.cs" />
+    <Compile Include="Tools\Base64EncoderDecoder\Base64EncoderDecoderToolPage.xaml.cs">
+      <DependentUpon>Base64EncoderDecoderToolPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tools\Base64EncoderDecoder\Base64EncoderDecoderToolProvider.cs" />
+    <Compile Include="Tools\Base64EncoderDecoder\Base64EncoderDecoderToolViewModel.cs" />
     <Compile Include="Tools\JsonFormatter\JsonFormatterToolProvider.cs" />
+    <Compile Include="Tools\JsonFormatter\JsonFormatterToolPage.xaml.cs">
+      <DependentUpon>JsonFormatterToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\JsonFormatter\JsonFormatterToolViewModel.cs" />
     <Compile Include="Tools\ToolProviderBase.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +106,16 @@
       <Project>{935d5df8-c400-4ca6-aabe-34a06a69af85}</Project>
       <Name>DevTools.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Tools\Base64EncoderDecoder\Base64EncoderDecoderToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tools\JsonFormatter\JsonFormatterToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

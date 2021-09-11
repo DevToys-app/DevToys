@@ -75,6 +75,7 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Dummy.cs" />
+    <Compile Include="Messages\NavigateToToolMessage.cs" />
     <Compile Include="Models\MatchedToolProviderViewData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
@@ -107,6 +108,10 @@
     <ProjectReference Include="..\DevTools.Common\DevTools.Common.csproj">
       <Project>{935d5df8-c400-4ca6-aabe-34a06a69af85}</Project>
       <Name>DevTools.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DevTools.Providers.Impl\DevTools.Providers.Impl.csproj">
+      <Project>{8621ED11-E9DD-480A-BE2B-C1DB00919B6F}</Project>
+      <Name>DevTools.Providers.Impl</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

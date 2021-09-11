@@ -11,12 +11,26 @@ namespace DevTools.Providers.Impl
     internal sealed class ToolProviderFactory : IToolProviderFactory
     {
         private readonly IEnumerable<Lazy<IToolProvider, ToolProviderMetadata>> _providers;
+        private readonly Dictionary<IToolProvider, IToolViewModel> _toolProviderToViewModelCache = new();
 
         [ImportingConstructor]
         public ToolProviderFactory(
             [ImportMany] IEnumerable<Lazy<IToolProvider, ToolProviderMetadata>> providers)
         {
             _providers = providers;
+        }
+
+        public IToolViewModel GetToolViewModel(IToolProvider provider)
+        {
+            if (_toolProviderToViewModelCache.TryGetValue(provider, out IToolViewModel viewModel))
+            {
+                return viewModel;
+            }
+
+            viewModel = provider.CreateTool();
+            _toolProviderToViewModelCache[provider] = provider.CreateTool();
+
+            return viewModel;
         }
 
         public IEnumerable<MatchedToolProvider> GetTools(string? searchQuery)
