@@ -73,6 +73,7 @@
     <Compile Include="..\..\shared\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Clipboard.cs" />
     <Compile Include="Injection\MefComposer.cs" />
     <Compile Include="Injection\MefProvider.cs" />
     <Compile Include="UriActivationProtocolService.cs" />

@@ -163,15 +163,30 @@
                             </MenuFlyout>
                         </muxc:NavigationViewItem.ContextFlyout>
                         <muxc:NavigationViewItem.Content>
-                            <RichTextBlock
-                                IsTextSelectionEnabled="False"
-                                TextWrapping="NoWrap"
-                                TextTrimming="CharacterEllipsis"
-                                ex:HighlighterExtension.Highlighters="{x:Bind MatchedSpans, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                <Paragraph>
-                                    <Run Text="{x:Bind ToolProvider.DisplayName}"/>
-                                </Paragraph>
-                            </RichTextBlock>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <RichTextBlock
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Stretch"
+                                    IsTextSelectionEnabled="False"
+                                    TextWrapping="NoWrap"
+                                    TextTrimming="CharacterEllipsis"
+                                    ex:HighlighterExtension.Highlighters="{x:Bind MatchedSpans, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                    <Paragraph>
+                                        <Run Text="{x:Bind ToolProvider.DisplayName}"/>
+                                    </Paragraph>
+                                </RichTextBlock>
+                                <muxc:ImageIcon
+                                    Grid.Column="1"
+                                    x:Name="NavigationViewItemRecommendedIcon"
+                                    x:Load="{x:Bind IsRecommended, Mode=OneWay}"
+                                    Source="ms-appx:///DevTools.Common/Assets/Icons/Idea.svg"
+                                    Height="16"
+                                    Width="16"/>
+                            </Grid>
                         </muxc:NavigationViewItem.Content>
                     </muxc:NavigationViewItem>
                 </DataTemplate>

@@ -53,7 +53,7 @@ namespace DevTools.Impl.Views.Settings
 
         public bool CanBeTreatedByTool(string data)
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         public IToolViewModel CreateTool()

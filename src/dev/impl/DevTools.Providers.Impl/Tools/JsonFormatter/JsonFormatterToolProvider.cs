@@ -27,7 +27,8 @@ namespace DevTools.Providers.Impl.Tools.JsonFormatter
 
         public bool CanBeTreatedByTool(string data)
         {
-            throw new NotImplementedException();
+            // TODO.
+            return false;
         }
 
         public IToolViewModel CreateTool()
