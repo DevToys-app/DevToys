@@ -149,7 +149,7 @@
             <muxc:NavigationView.MenuItemTemplate>
                 <DataTemplate x:DataType="models:MatchedToolProviderViewData">
                     <muxc:NavigationViewItem
-                        Icon="{x:Bind Icon.Result}">
+                        Icon="{x:Bind Icon.Result, Mode=OneWay}">
                         <muxc:NavigationViewItem.ContextFlyout>
                             <MenuFlyout>
                                 <MenuFlyoutItem

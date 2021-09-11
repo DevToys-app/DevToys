@@ -2,6 +2,7 @@
 
 using DevTools.Common;
 using DevTools.Core;
+using DevTools.Core.Collections;
 using DevTools.Core.Threading;
 using DevTools.Impl.Models;
 using DevTools.Providers;
@@ -9,7 +10,6 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Composition;
 using System.Globalization;
@@ -46,12 +46,12 @@ namespace DevTools.Impl.ViewModels
         /// <summary>
         /// Items at the top of the NavigationView.
         /// </summary>
-        internal ObservableCollection<MatchedToolProviderViewData> ToolsMenuItems { get; } = new();
+        internal OrderedObservableCollection<MatchedToolProviderViewData> ToolsMenuItems { get; } = new();
 
         /// <summary>
         /// Items at the bottom of the NavigationView. That includes Settings.
         /// </summary>
-        internal ObservableCollection<MatchedToolProviderViewData> FooterMenuItems { get; } = new();
+        internal OrderedObservableCollection<MatchedToolProviderViewData> FooterMenuItems { get; } = new();
 
         /// <summary>
         /// Gets or sets the selected menu item in the NavitationView.
@@ -210,7 +210,7 @@ namespace DevTools.Impl.ViewModels
             {
                 bool firstTime = string.IsNullOrEmpty(searchQuery) && _allToolsMenuitems.Count == 0;
 
-                var toolsMenuitems = new Dictionary<MatchedToolProviderViewData, MatchSpan[]?>();
+                var newToolsMenuitems = new Dictionary<MatchedToolProviderViewData, MatchSpan[]?>();
                 foreach (MatchedToolProvider matchedToolProvider in _toolProviderFactory.GetTools(searchQuery))
                 {
                     MatchedToolProviderViewData item;
@@ -237,7 +237,7 @@ namespace DevTools.Impl.ViewModels
                         matchSpans = matchedToolProvider.MatchedSpans;
                     }
 
-                    toolsMenuitems[item] = matchSpans;
+                    newToolsMenuitems[item] = matchSpans;
                 }
 
                 var footerMenuItems = new List<MatchedToolProviderViewData>();
@@ -256,24 +256,10 @@ namespace DevTools.Impl.ViewModels
 
                 await _thread.RunOnUIThreadAsync(() =>
                 {
-                    var snapshot = ToolsMenuItems.ToArray();
-                    for (int i = 0; i < snapshot.Length; i++)
-                    {
-                        var item = snapshot[i];
-                        if (!toolsMenuitems.ContainsKey(item))
-                        {
-                            ToolsMenuItems.Remove(item);
-                        }
-                    }
+                    ToolsMenuItems.Update(newToolsMenuitems.Keys);
 
-                    foreach (var item in toolsMenuitems)
+                    foreach (var item in newToolsMenuitems)
                     {
-                        if (!snapshot.Contains(item.Key))
-                        {
-                            // TODO: Use Insert instead of Add so we can insert the item in the right order it deserves.
-                            ToolsMenuItems.Add(item.Key);
-                        }
-
                         if (item.Value is not null)
                         {
                             item.Key.MatchedSpans = item.Value;
@@ -281,6 +267,8 @@ namespace DevTools.Impl.ViewModels
                     }
 
                     footerMenuItems.ForEach(item => FooterMenuItems.Add(item));
+
+                    OnPropertyChanged(nameof(SelectedMenuItem));
                 });
             }
         }
@@ -331,7 +319,7 @@ namespace DevTools.Impl.ViewModels
 
             using (await _sempahore.WaitAsync(CancellationToken.None).ConfigureAwait(false))
             {
-                if (recommendedTools.Length == 1 
+                if (recommendedTools.Length == 1
                     && ToolsMenuItems.Contains(recommendedTools[0])
                     && (oldRecommendedTools.Length != 1 || oldRecommendedTools[0] != recommendedTools[0]))
                 {

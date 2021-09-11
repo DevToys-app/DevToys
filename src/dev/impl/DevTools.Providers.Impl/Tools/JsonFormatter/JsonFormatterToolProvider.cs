@@ -1,10 +1,9 @@
 ﻿#nullable enable
 
-using DevTools.Core.Threading;
 using DevTools.Common;
+using DevTools.Core.Threading;
 using System;
 using System.Composition;
-using Windows.ApplicationModel.DataTransfer;
 
 namespace DevTools.Providers.Impl.Tools.JsonFormatter
 {
@@ -16,13 +15,12 @@ namespace DevTools.Providers.Impl.Tools.JsonFormatter
     {
         public string DisplayName => LanguageManager.Instance.JsonFormatter.DisplayName;
 
-        public object IconSource { get; }
+        public object IconSource => CreatePathIconFromPath(nameof(JsonFormatterToolProvider));
 
         [ImportingConstructor]
         public JsonFormatterToolProvider(IThread thread)
             : base(thread)
         {
-            IconSource = CreatePathIconFromPath(nameof(JsonFormatterToolProvider));
         }
 
         public bool CanBeTreatedByTool(string data)
