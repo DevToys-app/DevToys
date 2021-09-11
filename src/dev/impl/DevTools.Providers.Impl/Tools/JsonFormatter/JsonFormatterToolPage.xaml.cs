@@ -1,4 +1,6 @@
-﻿using DevTools.Core.Navigation;
+﻿#nullable enable
+
+using DevTools.Core.Navigation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -33,7 +35,7 @@ namespace DevTools.Providers.Impl.Tools.JsonFormatter
             var parameters = (NavigationParameter)e.Parameter;
 
             // Set the view model
-            ViewModel = (JsonFormatterToolViewModel)parameters.Parameter;
+            ViewModel = (JsonFormatterToolViewModel)parameters.Parameter!;
             DataContext = ViewModel;
 
             base.OnNavigatedTo(e);
