@@ -85,6 +85,7 @@
     <Compile Include="UI\Converters\DoubleToGridLengthConverter.cs" />
     <Compile Include="UI\Converters\InvertedBooleanConverter.cs" />
     <Compile Include="UI\Extensions\HighlighterExtension.cs" />
+    <Content Include="Assets\Icons\Idea.svg" />
     <Content Include="LanguageManager.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>LanguageManager.cs</LastGenOutput>

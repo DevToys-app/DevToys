@@ -42,5 +42,10 @@ namespace DevTools.Providers
             ToolProvider = Arguments.NotNull(toolProvider, nameof(toolProvider));
             MatchedSpans = Arguments.NotNull(matchedSpans, nameof(matchedSpans));
         }
+
+        protected void RaisePropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

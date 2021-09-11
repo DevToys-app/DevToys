@@ -1,9 +1,9 @@
 ﻿#nullable enable
 
+using DevTools.Common;
 using DevTools.Core;
 using DevTools.Core.Threading;
 using DevTools.Impl.Models;
-using DevTools.Common;
 using DevTools.Providers;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -17,8 +17,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
-using Windows.UI.ViewManagement;
 using Windows.Foundation;
+using Windows.UI.ViewManagement;
+using Windows.UI.Xaml;
 
 namespace DevTools.Impl.ViewModels
 {
@@ -26,14 +27,17 @@ namespace DevTools.Impl.ViewModels
     public sealed class MainPageViewModel : ObservableRecipient
     {
         private readonly IThread _thread;
+        private readonly IClipboard _clipboard;
         private readonly IToolProviderFactory _toolProviderFactory;
         private readonly IUriActivationProtocolService _launchProtocolService;
         private readonly List<MatchedToolProviderViewData> _allToolsMenuitems = new();
         private readonly DisposableSempahore _sempahore = new();
+        private readonly Task _firstUpdateMenuTask;
 
         private MatchedToolProviderViewData? _selectedItem;
         private string? _searchQuery;
         private bool _isInCompactOverlayMode;
+        private bool _allowSelectAutomaticallyRecommendedTool = true;
 
         internal MainPageStrings Strings = LanguageManager.Instance.MainPage;
 
@@ -104,11 +108,13 @@ namespace DevTools.Impl.ViewModels
         [ImportingConstructor]
         public MainPageViewModel(
             IThread thread,
+            IClipboard clipboard,
             ITitleBar titleBar,
             IToolProviderFactory toolProviderFactory,
             IUriActivationProtocolService launchProtocolService)
         {
             _thread = thread;
+            _clipboard = clipboard;
             _toolProviderFactory = toolProviderFactory;
             _launchProtocolService = launchProtocolService;
             TitleBar = titleBar;
@@ -117,6 +123,10 @@ namespace DevTools.Impl.ViewModels
             ChangeViewModeCommand = new AsyncRelayCommand<ApplicationViewMode>(ExecuteChangeViewModeCommandAsync);
 
             IsInCompactOverlayMode = ApplicationView.GetForCurrentView().ViewMode == ApplicationViewMode.CompactOverlay;
+
+            _firstUpdateMenuTask = UpdateMenuAsync(searchQuery: string.Empty);
+
+            Window.Current.Activated += Window_Activated;
         }
 
         #region OpenToolInNewWindowCommand
@@ -158,8 +168,10 @@ namespace DevTools.Impl.ViewModels
         /// </summary>
         internal async Task OnNavigatedToAsync(object? arguments)
         {
-            await UpdateMenuAsync(searchQuery: string.Empty).ConfigureAwait(false);
+            // Make sure the menu items exist.
+            await _firstUpdateMenuTask.ConfigureAwait(false);
 
+            MatchedToolProviderViewData? toolProviderViewDataToSelect = null;
             if (arguments is string argumentsString && !string.IsNullOrWhiteSpace(argumentsString))
             {
                 NameValueCollection parameters = HttpUtility.ParseQueryString(argumentsString.ToLower(CultureInfo.CurrentCulture));
@@ -167,28 +179,26 @@ namespace DevTools.Impl.ViewModels
 
                 if (!string.IsNullOrWhiteSpace(toolProviderProtocolName))
                 {
-                    MatchedToolProviderViewData? toolProviderViewData
+                    // The user opened a new instance of the app that should go a certain desired tool.
+                    // Let's make sure we won't switch to a recommended tool detected automatically.
+                    _allowSelectAutomaticallyRecommendedTool = false;
+
+                    toolProviderViewDataToSelect
                         = ToolsMenuItems.FirstOrDefault(
                             item => string.Equals(item.Metadata.ProtocolName, toolProviderProtocolName, StringComparison.OrdinalIgnoreCase));
 
-                    if (toolProviderViewData is null)
+                    if (toolProviderViewDataToSelect is null)
                     {
-                        toolProviderViewData
+                        toolProviderViewDataToSelect
                             = FooterMenuItems.FirstOrDefault(
                                 item => string.Equals(item.Metadata.ProtocolName, toolProviderProtocolName, StringComparison.OrdinalIgnoreCase));
                     }
-
-                    await _thread.RunOnUIThreadAsync(() =>
-                    {
-                        SelectedMenuItem = toolProviderViewData;
-                    });
-                    return;
                 }
             }
 
             await _thread.RunOnUIThreadAsync(() =>
             {
-                SelectedMenuItem = ToolsMenuItems.FirstOrDefault() ?? FooterMenuItems.FirstOrDefault();
+                SelectedMenuItem = toolProviderViewDataToSelect ?? ToolsMenuItems.FirstOrDefault() ?? FooterMenuItems.FirstOrDefault();
             });
         }
 
@@ -196,10 +206,8 @@ namespace DevTools.Impl.ViewModels
         {
             await TaskScheduler.Default;
 
-            using (await _sempahore.WaitAsync(CancellationToken.None))
+            using (await _sempahore.WaitAsync(CancellationToken.None).ConfigureAwait(false))
             {
-                var selectedMenuItem = SelectedMenuItem;
-
                 bool firstTime = string.IsNullOrEmpty(searchQuery) && _allToolsMenuitems.Count == 0;
 
                 var toolsMenuitems = new Dictionary<MatchedToolProviderViewData, MatchSpan[]?>();
@@ -211,6 +219,7 @@ namespace DevTools.Impl.ViewModels
                     {
                         item
                            = new MatchedToolProviderViewData(
+                               _thread,
                                matchedToolProvider.Metadata,
                                matchedToolProvider.ToolProvider,
                                matchedToolProvider.MatchedSpans);
@@ -238,6 +247,7 @@ namespace DevTools.Impl.ViewModels
                     {
                         footerMenuItems.Add(
                             new MatchedToolProviderViewData(
+                                _thread,
                                 matchedToolProvider.Metadata,
                                 matchedToolProvider.ToolProvider,
                                 matchedToolProvider.MatchedSpans));
@@ -272,6 +282,81 @@ namespace DevTools.Impl.ViewModels
 
                     footerMenuItems.ForEach(item => FooterMenuItems.Add(item));
                 });
+            }
+        }
+
+        private async Task UpdateRecommendedToolsAsync()
+        {
+            if (IsInCompactOverlayMode)
+            {
+                return;
+            }
+
+            // Make sure we work in background.
+            await TaskScheduler.Default;
+
+            // Retrieve the clipboard content.
+            string clipboardContent = await _clipboard.GetClipboardContentAsTextAsync().ConfigureAwait(false);
+
+            // Make sure the menu items exist.
+            await _firstUpdateMenuTask.ConfigureAwait(false);
+
+            MatchedToolProviderViewData[] oldRecommendedTools = _allToolsMenuitems.Where(item => item.IsRecommended).ToArray();
+
+            // Start check what tools can treat the clipboard content.
+            var tasks = new List<Task>();
+            for (int i = 0; i < _allToolsMenuitems.Count; i++)
+            {
+                MatchedToolProviderViewData tool = _allToolsMenuitems[i];
+                tasks.Add(
+                    Task.Run(async () =>
+                    {
+                        try
+                        {
+                            await tool.UpdateIsRecommendedAsync(clipboardContent).ConfigureAwait(false);
+                        }
+                        catch (Exception ex)
+                        {
+                            // TODO: Log this.
+                        }
+                    }));
+            }
+
+            await Task.WhenAll(tasks).ConfigureAwait(false);
+
+            MatchedToolProviderViewData[] recommendedTools
+                = _allToolsMenuitems
+                .Where(item => item.IsRecommended && !item.Metadata.IsFooterItem)
+                .ToArray();
+
+            using (await _sempahore.WaitAsync(CancellationToken.None).ConfigureAwait(false))
+            {
+                if (recommendedTools.Length == 1 
+                    && ToolsMenuItems.Contains(recommendedTools[0])
+                    && (oldRecommendedTools.Length != 1 || oldRecommendedTools[0] != recommendedTools[0]))
+                {
+                    // One unique tool is recommended.
+                    // The recommended tool is displayed in the top menu.
+                    // The recommended tool is different that the ones that were recommended before (if any...).
+                    // Let's select automatically this tool.
+                    await _thread.RunOnUIThreadAsync(() =>
+                    {
+                        if (!IsInCompactOverlayMode && _allowSelectAutomaticallyRecommendedTool)
+                        {
+                            SelectedMenuItem = recommendedTools[0];
+                        }
+                    });
+                }
+            }
+        }
+
+        private void Window_Activated(object sender, Windows.UI.Core.WindowActivatedEventArgs e)
+        {
+            if (e.WindowActivationState
+                    is Windows.UI.Core.CoreWindowActivationState.PointerActivated
+                    or Windows.UI.Core.CoreWindowActivationState.CodeActivated)
+            {
+                UpdateRecommendedToolsAsync().Forget();
             }
         }
     }
