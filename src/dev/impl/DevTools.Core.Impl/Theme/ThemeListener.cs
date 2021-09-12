@@ -33,6 +33,8 @@ namespace DevTools.Core.Impl.Theme
             _thread = thread;
             _settingsProvider = settingsProvider;
 
+            _settingsProvider.SettingChanged += SettingsProvider_SettingChanged;
+
             CurrentSystemTheme = Application.Current.RequestedTheme == ApplicationTheme.Dark ? AppTheme.Dark : AppTheme.Light;
             IsHighContrast = _accessible.HighContrast;
 
@@ -87,6 +89,14 @@ namespace DevTools.Core.Impl.Theme
             if (CurrentSystemTheme != currentAppTheme || IsHighContrast != _accessible.HighContrast)
             {
                 UpdateProperties();
+            }
+        }
+
+        private void SettingsProvider_SettingChanged(object sender, SettingChangedEventArgs e)
+        {
+            if (string.Equals(PredefinedSettings.Theme.Name, e.SettingName, StringComparison.Ordinal))
+            {
+                ApplyDesiredColorTheme();
             }
         }
 
