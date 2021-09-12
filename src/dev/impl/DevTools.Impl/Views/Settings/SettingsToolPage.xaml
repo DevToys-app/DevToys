@@ -63,10 +63,10 @@
             <ComboBox
                 SelectedValuePath="Tag"
                 SelectedValue="{x:Bind ViewModel.TextEditorFont, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                <ComboBoxItem Tag="CascadiaCode" Content="Cascadia Code"/>
-                <ComboBoxItem Tag="CascadiaMono" Content="Cascadia Mono"/>
-                <ComboBoxItem Tag="Consolas" Content="Consolas"/>
-                <ComboBoxItem Tag="SegoeUI" Content="Segoe UI"/>
+                <ComboBoxItem Tag="CascadiaCode" FontFamily="{StaticResource CascadiaCode}" Content="Cascadia Code"/>
+                <ComboBoxItem Tag="CascadiaMono" FontFamily="{StaticResource CascadiaMono}" Content="Cascadia Mono"/>
+                <ComboBoxItem Tag="Consolas" FontFamily="{StaticResource Consolas}" Content="Consolas"/>
+                <ComboBoxItem Tag="SegoeUI" FontFamily="{StaticResource SegoeUI}" Content="Segoe UI"/>
             </ComboBox>
         </controls:ExpandableSettingControl>
 
@@ -101,6 +101,7 @@
                     <StackPanel Grid.Column="1">
                         <HyperlinkButton Content="Source code" NavigateUri="http://www.microsoft.com" />
                         <HyperlinkButton Content="License" NavigateUri="http://www.microsoft.com" />
+                        <HyperlinkButton Content="Third party licenses" NavigateUri="http://www.microsoft.com" />
                         <HyperlinkButton Content="Report a problem" NavigateUri="http://www.microsoft.com" />
                     </StackPanel>
                 </Grid>
