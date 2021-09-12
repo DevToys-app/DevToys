@@ -17,6 +17,8 @@ namespace DevTools.Core.Impl.Settings
         private readonly ApplicationDataContainer _roamingSettings = ApplicationData.Current.RoamingSettings;
         private readonly ApplicationDataContainer _localSettings = ApplicationData.Current.LocalSettings;
 
+        public event EventHandler<SettingChangedEventArgs>? SettingChanged;
+
         public T GetSetting<T>(SettingDefinition<T> settingDefinition)
         {
             ApplicationDataContainer applicationDataContainer;
@@ -67,6 +69,8 @@ namespace DevTools.Core.Impl.Settings
             {
                 _localSettings.Values[settingDefinition.Name] = valueToSave;
             }
+
+            SettingChanged?.Invoke(this, new SettingChangedEventArgs(settingDefinition.Name, value));
         }
 
         public void ResetSetting<T>(SettingDefinition<T> settingDefinition)
@@ -79,6 +83,8 @@ namespace DevTools.Core.Impl.Settings
             {
                 _localSettings.Values.Remove(settingDefinition.Name);
             }
+
+            SettingChanged?.Invoke(this, new SettingChangedEventArgs(settingDefinition.Name, settingDefinition.DefaultValue));
         }
     }
 }

@@ -1,10 +1,17 @@
-﻿namespace DevTools.Core.Settings
+﻿using System;
+
+namespace DevTools.Core.Settings
 {
     /// <summary>
     /// Provides a set of methods to manage the application's settings.
     /// </summary>
     public interface ISettingsProvider
     {
+        /// <summary>
+        /// Raised when a setting value has changed.
+        /// </summary>
+        event EventHandler<SettingChangedEventArgs>? SettingChanged;
+
         /// <summary>
         /// Gets the value of a defined setting.
         /// </summary>

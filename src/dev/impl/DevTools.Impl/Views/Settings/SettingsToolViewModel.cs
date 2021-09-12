@@ -13,7 +13,6 @@ namespace DevTools.Impl.Views.Settings
     [Export(typeof(SettingsToolViewModel))]
     public sealed class SettingsToolViewModel : ObservableRecipient, IToolViewModel
     {
-        private readonly IThemeListener _themeListener;
         private readonly ISettingsProvider _settingsProvider;
 
         public Type View { get; } = typeof(SettingsToolPage);
@@ -23,11 +22,7 @@ namespace DevTools.Impl.Views.Settings
         internal AppTheme Theme
         {
             get => _settingsProvider.GetSetting(PredefinedSettings.Theme);
-            set
-            {
-                _settingsProvider.SetSetting(PredefinedSettings.Theme, value);
-                _themeListener.ApplyDesiredColorTheme();
-            }
+            set => _settingsProvider.SetSetting(PredefinedSettings.Theme, value);
         }
 
         internal bool SmartDetection
@@ -44,10 +39,8 @@ namespace DevTools.Impl.Views.Settings
 
         [ImportingConstructor]
         public SettingsToolViewModel(
-            IThemeListener themeListener,
             ISettingsProvider settingsProvider)
         {
-            _themeListener = themeListener;
             _settingsProvider = settingsProvider;
         }
     }
