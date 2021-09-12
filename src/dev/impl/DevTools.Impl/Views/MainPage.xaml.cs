@@ -9,6 +9,7 @@ using DevTools.Impl.ViewModels;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 namespace DevTools.Impl.Views
@@ -16,6 +17,7 @@ namespace DevTools.Impl.Views
     public sealed partial class MainPage : Page, IRecipient<NavigateToToolMessage>
     {
         private IMefProvider? _mefProvider;
+        private IThread? _thread;
 
         public static readonly DependencyProperty ViewModelProperty =
             DependencyProperty.Register(
@@ -49,6 +51,7 @@ namespace DevTools.Impl.Views
             var parameters = (NavigationParameter)e.Parameter;
 
             _mefProvider = parameters.ExportProvider;
+            _thread = _mefProvider.Import<IThread>();
 
             // Set the view model
             ViewModel = parameters.ExportProvider.Import<MainPageViewModel>();
@@ -66,15 +69,18 @@ namespace DevTools.Impl.Views
 
         public void Receive(NavigateToToolMessage message)
         {
-            // TODO: Use IThread.ThrowIfNotOnUIThread();
             Arguments.NotNull(message, nameof(message));
             Assumes.NotNull(_mefProvider, nameof(_mefProvider));
+            Assumes.NotNull(_thread, nameof(_thread));
+
+            _thread!.ThrowIfNotOnUIThread();
 
             contentFrame.Navigate(
                 message.ViewModel.View,
                 new NavigationParameter(
                     _mefProvider!,
-                    message.ViewModel));
+                    message.ViewModel),
+                new EntranceNavigationTransitionInfo());
         }
     }
 }
