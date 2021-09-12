@@ -1,14 +1,13 @@
 ﻿#nullable enable
 
+using DevTools.Common;
 using DevTools.Core;
 using DevTools.Core.Impl.Injection;
 using DevTools.Core.Injection;
 using DevTools.Core.Navigation;
-using DevTools.Core.Settings;
 using DevTools.Core.Theme;
 using DevTools.Core.Threading;
 using DevTools.Impl.Views;
-using DevTools.Common;
 using DevTools.Providers;
 using System;
 using System.Globalization;
@@ -28,7 +27,6 @@ namespace DevTools
     sealed partial class App : Application, IDisposable
     {
         private readonly MefComposer _mefComposer;
-        private readonly ISettingsProvider _settingsProvider;
         private readonly Lazy<IThemeListener> _themeListener;
 
         private bool _isDisposed;
@@ -50,7 +48,7 @@ namespace DevTools
                     typeof(Providers.Impl.Dummy).Assembly,
                     typeof(Impl.Dummy).Assembly);
 
-            _settingsProvider = _mefComposer.ExportProvider.GetExport<ISettingsProvider>();
+            // Importing it in a Lazy because we can't import it before a Window is created.
             _themeListener = new Lazy<IThemeListener>(() => _mefComposer.ExportProvider.GetExport<IThemeListener>());
 
             InitializeComponent();
@@ -182,31 +180,9 @@ namespace DevTools
                 Window.Current.Content = rootFrame;
             }
 
-            _themeListener.Value.ThemeChanged += ThemeListener_ThemeChanged;
-            UpdateColorTheme();
+            _themeListener.Value.ApplyDesiredColorTheme();
 
             return rootFrame;
-        }
-
-        private void ThemeListener_ThemeChanged(object sender, EventArgs e)
-        {
-            UpdateColorTheme();
-        }
-
-        private void UpdateColorTheme()
-        {
-            AppTheme theme = _settingsProvider.GetSetting(PredefinedSettings.Theme);
-
-            if (theme == AppTheme.Default)
-            {
-                theme = _themeListener.Value.CurrentTheme;
-            }
-
-            // Set theme for window root.
-            if (Window.Current.Content is FrameworkElement frameworkElement)
-            {
-                frameworkElement.RequestedTheme = theme == AppTheme.Light ? ElementTheme.Light : ElementTheme.Dark;
-            }
         }
     }
 }

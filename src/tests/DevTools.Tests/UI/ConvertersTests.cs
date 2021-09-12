@@ -64,5 +64,20 @@ namespace DevTools.Tests.UI
             Assert.AreEqual(converter.ThicknessOnEnumDetected, converter.Convert(AppBarClosedDisplayMode.Compact, null, "Compact", null));
             Assert.AreEqual(converter.ThicknessOnEnumNotDetected, converter.Convert(AppBarClosedDisplayMode.Compact, null, "Test", null));
         }
+
+        [TestMethod]
+        public void EnumToBooleanConverterTest()
+        {
+            var converter = new EnumToBooleanConverter();
+
+            Assert.IsFalse((bool)converter.Convert(null, null, "foo", null));
+            Assert.IsFalse((bool)converter.Convert(AppBarClosedDisplayMode.Compact, null, null, null));
+            Assert.IsFalse((bool)converter.Convert("foo", null, "foo", null));
+
+            Assert.IsTrue((bool)converter.Convert(AppBarClosedDisplayMode.Compact, null, "Compact", null));
+            Assert.IsFalse((bool)converter.Convert(AppBarClosedDisplayMode.Compact, null, "Test", null));
+
+            Assert.AreEqual(AppBarClosedDisplayMode.Compact, converter.ConvertBack(true, typeof(AppBarClosedDisplayMode), "Compact", null));
+        }
     }
 }

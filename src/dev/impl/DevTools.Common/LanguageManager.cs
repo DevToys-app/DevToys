@@ -20,7 +20,7 @@ namespace DevTools.Common
     public partial class LanguageManager : ObservableObject
     {
         private static LanguageManager _languageManager;
-		
+
         private readonly Base64EncoderDecoderStrings _base64encoderdecoder = new Base64EncoderDecoderStrings();
         private readonly CommonStrings _common = new CommonStrings();
         private readonly JsonFormatterStrings _jsonformatter = new JsonFormatterStrings();

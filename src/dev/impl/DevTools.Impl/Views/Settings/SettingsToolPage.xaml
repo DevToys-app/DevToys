@@ -2,17 +2,15 @@
     x:Class="DevTools.Impl.Views.Settings.SettingsToolPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:DevTools.Impl.Views.Settings"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="using:DevTools.Common.UI.Controls" xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:controls="using:DevTools.Common.UI.Controls"
+    xmlns:converters="using:DevTools.Common.UI.Converters"
     mc:Ignorable="d"
     NavigationCacheMode="Required">
     <Page.Resources>
-        <Style x:Key="SubTitleTextBlock" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="14" />
-            <Setter Property="FontWeight" Value="Medium" />
-            <Setter Property="Margin" Value="0,12,0,0" />
-        </Style>
+        <converters:EnumToBooleanConverter x:Key="EnumToBooleanConverter"/>
     </Page.Resources>
 
     <StackPanel Spacing="4">
@@ -23,52 +21,56 @@
         </StackPanel.ChildrenTransitions>
 
         <controls:ExpandableSettingControl
-            Title="App Theme"
-            Description="Select which app theme to display">
+            Title="{x:Bind ViewModel.Strings.AppTheme}"
+            Description="{x:Bind ViewModel.Strings.AppThemeDescription}">
             <controls:ExpandableSettingControl.Icon>
                 <FontIcon Glyph="&#xF592;" />
             </controls:ExpandableSettingControl.Icon>
             <controls:ExpandableSettingControl.ExpandableContent>
                 <StackPanel Spacing="4">
                     <RadioButton
-                        Content="Light"/>
+                        Content="{x:Bind ViewModel.Strings.Light}"
+                        IsChecked="{x:Bind ViewModel.Theme, Mode=TwoWay, ConverterParameter='Light', Converter={StaticResource EnumToBooleanConverter}}"/>
                     <RadioButton
-                        Content="Dark"/>
+                        Content="{x:Bind ViewModel.Strings.Dark}"
+                        IsChecked="{x:Bind ViewModel.Theme, Mode=TwoWay, ConverterParameter='Dark', Converter={StaticResource EnumToBooleanConverter}}"/>
                     <RadioButton
-                        Content="Use system settings"
-                        IsChecked="True"/>
+                        Content="{x:Bind ViewModel.Strings.UseSystemSettings}"
+                        IsChecked="{x:Bind ViewModel.Theme, Mode=TwoWay, ConverterParameter='Default', Converter={StaticResource EnumToBooleanConverter}}"/>
                 </StackPanel>
             </controls:ExpandableSettingControl.ExpandableContent>
         </controls:ExpandableSettingControl>
 
-        <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="Behaviors" />
+        <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Behaviors}" />
 
         <controls:ExpandableSettingControl
-            Title="Smart detection"
-            Description="Automatically detect the best tool based on the clipboard content">
+            Title="{x:Bind ViewModel.Strings.SmartDetection}"
+            Description="{x:Bind ViewModel.Strings.SmartDetectionDescription}">
             <controls:ExpandableSettingControl.Icon>
                 <FontIcon Glyph="&#xF4DA;" />
             </controls:ExpandableSettingControl.Icon>
-            <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" IsOn="True"/>
+            <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" IsOn="{x:Bind ViewModel.SmartDetection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <!-- TODO: Put a demo/tutorial in ExpandableContent property -->
         </controls:ExpandableSettingControl>
 
-        <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="Text editor" />
+        <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.TextEditor}" />
 
         <controls:ExpandableSettingControl
-            Title="Font">
+            Title="{x:Bind ViewModel.Strings.Font}">
             <controls:ExpandableSettingControl.Icon>
                 <FontIcon Glyph="&#xF7E4;" />
             </controls:ExpandableSettingControl.Icon>
-            <ComboBox>
-                <ComboBoxItem Content="Cascadia Code"/>
-                <ComboBoxItem Content="Cascadia Mono" IsSelected="True"/>
-                <ComboBoxItem Content="Consolas"/>
-                <ComboBoxItem Content="Segoe UI"/>
+            <ComboBox
+                SelectedValuePath="Tag"
+                SelectedValue="{x:Bind ViewModel.TextEditorFont, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBoxItem Tag="CascadiaCode" Content="Cascadia Code"/>
+                <ComboBoxItem Tag="CascadiaMono" Content="Cascadia Mono"/>
+                <ComboBoxItem Tag="Consolas" Content="Consolas"/>
+                <ComboBoxItem Tag="SegoeUI" Content="Segoe UI"/>
             </ComboBox>
         </controls:ExpandableSettingControl>
 
-        <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="About" />
+        <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.About}" />
 
         <controls:ExpandableSettingControl
             Title="DevTools"
@@ -79,7 +81,7 @@
         </controls:ExpandableSettingControl>
 
         <controls:ExpandableSettingControl
-            Title="Useful links">
+            Title="{x:Bind ViewModel.Strings.UsefulLinks}">
             <controls:ExpandableSettingControl.Icon>
                 <FontIcon Glyph="&#xF4E4;" />
             </controls:ExpandableSettingControl.Icon>

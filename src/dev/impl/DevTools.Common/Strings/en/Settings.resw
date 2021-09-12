@@ -117,7 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AppTheme" xml:space="preserve">
+    <value>App Theme</value>
+  </data>
+  <data name="AppThemeDescription" xml:space="preserve">
+    <value>Select which app theme to display</value>
+  </data>
+  <data name="Behaviors" xml:space="preserve">
+    <value>Behaviors</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Dark</value>
+  </data>
   <data name="DisplayName" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="Font" xml:space="preserve">
+    <value>Font</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="SmartDetection" xml:space="preserve">
+    <value>Smart detection</value>
+  </data>
+  <data name="SmartDetectionDescription" xml:space="preserve">
+    <value>Automatically detect the best tool based on the clipboard content</value>
+  </data>
+  <data name="TextEditor" xml:space="preserve">
+    <value>Text editor</value>
+  </data>
+  <data name="UsefulLinks" xml:space="preserve">
+    <value>Useful links</value>
+  </data>
+  <data name="UseSystemSettings" xml:space="preserve">
+    <value>Use system settings</value>
   </data>
 </root>
