@@ -1,0 +1,64 @@
+﻿<UserControl
+    x:Class="DevTools.Common.UI.Controls.ExpandableSettingControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DevTools.Common.UI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:converters="using:DevTools.Common.UI.Converters"
+    mc:Ignorable="d"
+    HorizontalAlignment="Stretch"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <UserControl.Resources>
+        <converters:NullToBooleanConverter x:Key="NullToTrueConverter"/>
+        <converters:NullToBooleanConverter x:Key="NullToFalseConverter" IsInverted="True"/>
+
+        <Style x:Key="GridSettingBlockStyle" TargetType="Grid">
+            <Setter Property="Background" Value="{ThemeResource ExpanderHeaderBackground}" />
+            <Setter Property="BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrush}" />
+            <Setter Property="BorderThickness" Value="{ThemeResource ExpanderHeaderBorderThickness}" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="MinHeight" Value="{StaticResource ExpanderMinHeight}" />
+            <Setter Property="Padding" Value="{StaticResource ExpanderContentPadding}" />
+            <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+
+        <!-- Use an Expander control if there is content to expand. -->
+        <Grid x:Name="ExpanderGrid" x:Load="{x:Bind ExpandableContent, Mode=OneWay, Converter={StaticResource NullToFalseConverter}}">
+            <muxc:Expander
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch">
+                <muxc:Expander.Header>
+                    <local:ExpandableSettingHeaderControl
+                        Title="{x:Bind Title, Mode=OneWay}"
+                        Margin="0,16"
+                        Description="{x:Bind Description, Mode=OneWay}"
+                        Icon="{x:Bind Icon, Mode=OneWay}"
+                        SettingActionableElement="{x:Bind SettingActionableElement, Mode=OneWay}" />
+                </muxc:Expander.Header>
+
+                <ContentPresenter
+                    HorizontalAlignment="Stretch"
+                    Margin="24,0,0,0"
+                    Content="{x:Bind ExpandableContent, Mode=OneWay}" />
+            </muxc:Expander>
+        </Grid>
+
+        <!-- Fake an expander control if there's no expandable content. -->
+        <Grid
+            x:Name="NonExpanderGrid"
+            x:Load="{x:Bind ExpandableContent, Mode=OneWay, Converter={StaticResource NullToTrueConverter}}"
+            Style="{StaticResource GridSettingBlockStyle}">
+            <local:ExpandableSettingHeaderControl
+                Title="{x:Bind Title, Mode=OneWay}"
+                Description="{x:Bind Description, Mode=OneWay}"
+                Icon="{x:Bind Icon, Mode=OneWay}"
+                SettingActionableElement="{x:Bind SettingActionableElement, Mode=OneWay}" />
+        </Grid>
+    </Grid>
+</UserControl>

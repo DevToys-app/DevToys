@@ -160,7 +160,7 @@
                                     Command="{Binding OpenToolInNewWindowCommand}"
                                     CommandParameter="{x:Bind Metadata}">
                                     <MenuFlyoutItem.Icon>
-                                        <FontIcon FontFamily="{StaticResource FluentSystemIcons}" Glyph="&#x00F8;" />
+                                        <FontIcon Glyph="&#x00F8;" />
                                     </MenuFlyoutItem.Icon>
                                 </MenuFlyoutItem>
                             </MenuFlyout>
@@ -212,7 +212,7 @@
 
             <ScrollViewer
                 Margin="12,0,0,0"
-                Padding="4,12,8,0"
+                Padding="4,12,16,0"
                 HorizontalScrollMode="Disabled"
                 VerticalScrollBarVisibility="Auto"
                 VerticalScrollMode="Enabled">
