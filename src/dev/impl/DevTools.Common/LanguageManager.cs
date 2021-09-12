@@ -22,6 +22,7 @@ namespace DevTools.Common
         private static LanguageManager _languageManager;
 		
         private readonly Base64EncoderDecoderStrings _base64encoderdecoder = new Base64EncoderDecoderStrings();
+        private readonly CommonStrings _common = new CommonStrings();
         private readonly JsonFormatterStrings _jsonformatter = new JsonFormatterStrings();
         private readonly MainPageStrings _mainpage = new MainPageStrings();
         private readonly SettingsStrings _settings = new SettingsStrings();
@@ -40,6 +41,11 @@ namespace DevTools.Common
         /// Gets the <see cref="Base64EncoderDecoderStrings"/>.
         /// </summary>
         public Base64EncoderDecoderStrings Base64EncoderDecoder => _base64encoderdecoder;
+
+        /// <summary>
+        /// Gets the <see cref="CommonStrings"/>.
+        /// </summary>
+        public CommonStrings Common => _common;
 
         /// <summary>
         /// Gets the <see cref="JsonFormatterStrings"/>.
@@ -97,6 +103,21 @@ namespace DevTools.Common
         public string DisplayName => _resources.GetString("DisplayName");
     }
 
+    public class CommonStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Common/Common");
+
+        /// <summary>
+        /// Gets the resource ToggleSwitchOff.
+        /// </summary>
+        public string ToggleSwitchOff => _resources.GetString("ToggleSwitchOff");
+
+        /// <summary>
+        /// Gets the resource ToggleSwitchOn.
+        /// </summary>
+        public string ToggleSwitchOn => _resources.GetString("ToggleSwitchOn");
+    }
+
     public class JsonFormatterStrings : ObservableObject
     {
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Common/JsonFormatter");
@@ -137,8 +158,68 @@ namespace DevTools.Common
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Common/Settings");
 
         /// <summary>
+        /// Gets the resource About.
+        /// </summary>
+        public string About => _resources.GetString("About");
+
+        /// <summary>
+        /// Gets the resource AppTheme.
+        /// </summary>
+        public string AppTheme => _resources.GetString("AppTheme");
+
+        /// <summary>
+        /// Gets the resource AppThemeDescription.
+        /// </summary>
+        public string AppThemeDescription => _resources.GetString("AppThemeDescription");
+
+        /// <summary>
+        /// Gets the resource Behaviors.
+        /// </summary>
+        public string Behaviors => _resources.GetString("Behaviors");
+
+        /// <summary>
+        /// Gets the resource Dark.
+        /// </summary>
+        public string Dark => _resources.GetString("Dark");
+
+        /// <summary>
         /// Gets the resource DisplayName.
         /// </summary>
         public string DisplayName => _resources.GetString("DisplayName");
+
+        /// <summary>
+        /// Gets the resource Font.
+        /// </summary>
+        public string Font => _resources.GetString("Font");
+
+        /// <summary>
+        /// Gets the resource Light.
+        /// </summary>
+        public string Light => _resources.GetString("Light");
+
+        /// <summary>
+        /// Gets the resource SmartDetection.
+        /// </summary>
+        public string SmartDetection => _resources.GetString("SmartDetection");
+
+        /// <summary>
+        /// Gets the resource SmartDetectionDescription.
+        /// </summary>
+        public string SmartDetectionDescription => _resources.GetString("SmartDetectionDescription");
+
+        /// <summary>
+        /// Gets the resource TextEditor.
+        /// </summary>
+        public string TextEditor => _resources.GetString("TextEditor");
+
+        /// <summary>
+        /// Gets the resource UsefulLinks.
+        /// </summary>
+        public string UsefulLinks => _resources.GetString("UsefulLinks");
+
+        /// <summary>
+        /// Gets the resource UseSystemSettings.
+        /// </summary>
+        public string UseSystemSettings => _resources.GetString("UseSystemSettings");
     }
 }

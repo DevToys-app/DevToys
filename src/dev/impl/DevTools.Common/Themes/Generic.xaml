@@ -1,7 +1,9 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:controls="using:DevTools.Common.UI.Controls">
+    xmlns:controls="using:DevTools.Common.UI.Controls"
+    xmlns:common="using:DevTools.Common">
+    <common:LanguageManager x:Key="LanguageManager"/>
 
     <Style TargetType="controls:CustomPathIcon">
         <Setter Property="Stretch" Value="Uniform"/>
@@ -12,5 +14,10 @@
 
     <Style TargetType="FontIcon">
         <Setter Property="FontFamily" Value="{StaticResource FluentSystemIcons}"/>
+    </Style>
+
+    <Style TargetType="ToggleSwitch">
+        <Setter Property="OnContent" Value="{Binding Instance.Common.ToggleSwitchOn, Source={StaticResource LanguageManager}}"/>
+        <Setter Property="OffContent" Value="{Binding Instance.Common.ToggleSwitchOff, Source={StaticResource LanguageManager}}"/>
     </Style>
 </ResourceDictionary>

@@ -3,6 +3,7 @@
 using DevTools.Common.UI.Converters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace DevTools.Tests.UI
 {
@@ -47,6 +48,21 @@ namespace DevTools.Tests.UI
 
             Assert.IsFalse((bool)converter.Convert(string.Empty, typeof(bool), null, null));
             Assert.IsTrue((bool)converter.Convert("foo", typeof(bool), null, null));
+        }
+
+        [TestMethod]
+        public void EnumToThicknessConverterTest()
+        {
+            var converter = new EnumToThicknessConverter();
+            converter.ThicknessOnEnumDetected = new Thickness(10);
+            converter.ThicknessOnEnumNotDetected = new Thickness(0);
+
+            Assert.AreEqual(converter.ThicknessOnEnumNotDetected, converter.Convert(null, null, "foo", null));
+            Assert.AreEqual(converter.ThicknessOnEnumNotDetected, converter.Convert(AppBarClosedDisplayMode.Compact, null, null, null));
+            Assert.AreEqual(converter.ThicknessOnEnumNotDetected, converter.Convert("foo", null, "foo", null));
+
+            Assert.AreEqual(converter.ThicknessOnEnumDetected, converter.Convert(AppBarClosedDisplayMode.Compact, null, "Compact", null));
+            Assert.AreEqual(converter.ThicknessOnEnumNotDetected, converter.Convert(AppBarClosedDisplayMode.Compact, null, "Test", null));
         }
     }
 }

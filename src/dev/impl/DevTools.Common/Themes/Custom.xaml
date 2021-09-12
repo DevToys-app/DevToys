@@ -24,6 +24,8 @@
         <Setter Property="MinWidth" Value="0" />
         <Setter Property="FocusVisualMargin" Value="-7,-3,-7,-3" />
         <Setter Property="CornerRadius" Value="{StaticResource ControlCornerRadius}" />
+        <Setter Property="OnContent" Value="{Binding Instance.Common.ToggleSwitchOn, Source={StaticResource LanguageManager}}"/>
+        <Setter Property="OffContent" Value="{Binding Instance.Common.ToggleSwitchOff, Source={StaticResource LanguageManager}}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleSwitch">
@@ -604,5 +606,11 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="SubTitleTextBlock" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="Margin" Value="0,12,0,0" />
     </Style>
 </ResourceDictionary>
