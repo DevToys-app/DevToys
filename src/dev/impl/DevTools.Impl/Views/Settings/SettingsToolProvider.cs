@@ -1,12 +1,12 @@
 ﻿#nullable enable
 
-using DevTools.Core.Threading;
 using DevTools.Common;
+using DevTools.Core.Injection;
+using DevTools.Core.Threading;
 using DevTools.Providers;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.AnimatedVisuals;
-using System;
 using System.Composition;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
@@ -18,20 +18,22 @@ namespace DevTools.Impl.Views.Settings
     [Export(typeof(IToolProvider))]
     [Name("Settings")]
     [ProtocolName("settings")]
-    [CompactOverlaySize(width: 400, height: 300)]
+    [CompactOverlaySize(width: 450, height: 300)]
     [IsFooterItem]
     internal sealed class SettingsToolProvider : ObservableRecipient, IToolProvider
     {
         private readonly IThread _thread;
+        private readonly IMefProvider _mefProvider;
 
         public string DisplayName => LanguageManager.Instance.Settings.DisplayName;
 
         public object IconSource { get; }
 
         [ImportingConstructor]
-        public SettingsToolProvider(IThread thread)
+        public SettingsToolProvider(IThread thread, IMefProvider mefProvider)
         {
             _thread = thread;
+            _mefProvider = mefProvider;
 
             IconSource
                 = new TaskCompletionNotifier<IconElement>(
@@ -58,7 +60,7 @@ namespace DevTools.Impl.Views.Settings
 
         public IToolViewModel CreateTool()
         {
-            throw new NotImplementedException();
+            return _mefProvider.Import<SettingsToolViewModel>();
         }
     }
 }

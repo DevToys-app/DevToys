@@ -26,6 +26,7 @@
 
         <!--This top margin is the height of the custom TitleBar-->
         <Thickness x:Key="NavigationViewContentMargin">0,48,0,0</Thickness>
+        <Thickness x:Key="NavigationViewHeaderMargin">16,42,0,0</Thickness>
     </Page.Resources>
 
     <Grid Background="Transparent">
@@ -140,7 +141,7 @@
             ExpandedModeThresholdWidth="550"
             PaneDisplayMode="Auto"
             IsTabStop="False"
-            AlwaysShowHeader="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay}"
+            AlwaysShowHeader="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource InvertedBooleanConverter}}"
             IsPaneVisible="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource InvertedBooleanConverter}}"
             Header="{x:Bind ViewModel.SelectedMenuItem.ToolProvider.DisplayName, Mode=OneWay}"
             MenuItemsSource="{x:Bind ViewModel.ToolsMenuItems}"
@@ -150,7 +151,8 @@
             <muxc:NavigationView.MenuItemTemplate>
                 <DataTemplate x:DataType="models:MatchedToolProviderViewData">
                     <muxc:NavigationViewItem
-                        Icon="{x:Bind Icon.Result, Mode=OneWay}">
+                        Icon="{x:Bind Icon.Result, Mode=OneWay}"
+                        Margin="12,0,12,0">
                         <muxc:NavigationViewItem.ContextFlyout>
                             <MenuFlyout>
                                 <MenuFlyoutItem
@@ -208,7 +210,14 @@
                 </AutoSuggestBox>
             </muxc:NavigationView.AutoSuggestBox>
 
-            <Frame x:Name="contentFrame" />
+            <ScrollViewer
+                Margin="12,0,0,0"
+                Padding="4,12,8,0"
+                HorizontalScrollMode="Disabled"
+                VerticalScrollBarVisibility="Auto"
+                VerticalScrollMode="Enabled">
+                <Frame x:Name="contentFrame" />
+            </ScrollViewer>
         </muxc:NavigationView>
     </Grid>
 </Page>

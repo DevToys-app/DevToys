@@ -82,7 +82,11 @@
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Settings\SettingsToolPage.xaml.cs">
+      <DependentUpon>SettingsToolPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Settings\SettingsToolProvider.cs" />
+    <Compile Include="Views\Settings\SettingsToolViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\startup\DevTools.Startup\Assets\Logo\Square44x44Logo.scale-200.png">
@@ -116,6 +120,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings\SettingsToolPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
