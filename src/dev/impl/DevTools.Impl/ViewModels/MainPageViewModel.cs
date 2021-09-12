@@ -38,6 +38,7 @@ namespace DevTools.Impl.ViewModels
         private readonly Task _firstUpdateMenuTask;
 
         private MatchedToolProviderViewData? _selectedItem;
+        private NavigationViewDisplayMode _navigationViewDisplayMode;
         private string? _searchQuery;
         private bool _isInCompactOverlayMode;
         private bool _allowSelectAutomaticallyRecommendedTool = true;
@@ -109,6 +110,20 @@ namespace DevTools.Impl.ViewModels
                     _isInCompactOverlayMode = value;
                     OnPropertyChanged();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets in what mode the navigation view is displayed.
+        /// </summary>
+        public NavigationViewDisplayMode NavigationViewDisplayMode // Important to keep this property Public to bind it to ChangePropertyAction in the XAML.
+        {
+            get => _navigationViewDisplayMode;
+            set
+            {
+                _thread.ThrowIfNotOnUIThread();
+                _navigationViewDisplayMode = value;
+                OnPropertyChanged();
             }
         }
 

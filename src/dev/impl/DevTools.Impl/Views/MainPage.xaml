@@ -11,18 +11,17 @@
     xmlns:icore="using:Microsoft.Xaml.Interactions.Core"
     xmlns:ex="using:DevTools.Common.UI.Extensions"
     xmlns:converters="using:DevTools.Common.UI.Converters"
-    xmlns:common="using:DevTools.Common"
     xmlns:controls="using:DevTools.Common.UI.Controls"
     xmlns:viewmanagement="using:Windows.UI.ViewManagement"
     mc:Ignorable="d"
     NavigationCacheMode="Enabled"
     muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
     <Page.Resources>
-        <common:LanguageManager x:Key="LanguageManager"/>
         <converters:DoubleToGridLengthConverter x:Key="DoubleToGridLengthConverter"/>
         <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <converters:BooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" IsInverted="True"/>
         <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
+        <converters:EnumToThicknessConverter x:Key="NavigationViewItemMarginConverter" ThicknessOnEnumDetected="0" ThicknessOnEnumNotDetected="12,0,12,0"/>
 
         <!--This top margin is the height of the custom TitleBar-->
         <Thickness x:Key="NavigationViewContentMargin">0,48,0,0</Thickness>
@@ -133,6 +132,7 @@
 
         <!-- Navigation view -->
         <muxc:NavigationView
+            x:Name="NavigationView"
             IsTitleBarAutoPaddingEnabled="False"
             IsSettingsVisible="False"
             IsBackButtonVisible="Collapsed"
@@ -147,12 +147,17 @@
             MenuItemsSource="{x:Bind ViewModel.ToolsMenuItems}"
             FooterMenuItemsSource="{x:Bind ViewModel.FooterMenuItems}"
             SelectedItem="{x:Bind ViewModel.SelectedMenuItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <i:Interaction.Behaviors>
+                <icore:EventTriggerBehavior EventName="DisplayModeChanged">
+                    <icore:ChangePropertyAction TargetObject="{x:Bind ViewModel}" PropertyName="NavigationViewDisplayMode" Value="{x:Bind NavigationView.DisplayMode, Mode=OneWay}"/>
+                </icore:EventTriggerBehavior>
+            </i:Interaction.Behaviors>
 
             <muxc:NavigationView.MenuItemTemplate>
                 <DataTemplate x:DataType="models:MatchedToolProviderViewData">
                     <muxc:NavigationViewItem
                         Icon="{x:Bind Icon.Result, Mode=OneWay}"
-                        Margin="12,0,12,0">
+                        Margin="{Binding NavigationViewDisplayMode, ConverterParameter='Compact', Converter={StaticResource NavigationViewItemMarginConverter}}">
                         <muxc:NavigationViewItem.ContextFlyout>
                             <MenuFlyout>
                                 <MenuFlyoutItem
