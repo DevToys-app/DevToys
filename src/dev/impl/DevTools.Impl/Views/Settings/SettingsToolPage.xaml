@@ -4,11 +4,105 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:DevTools.Impl.Views.Settings"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="using:DevTools.Common.UI.Controls" xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
     NavigationCacheMode="Required">
+    <Page.Resources>
+        <Style x:Key="SubTitleTextBlock" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="Margin" Value="0,12,0,0" />
+        </Style>
+    </Page.Resources>
 
-    <Grid>
-        <TextBlock Text="Settings"/>
-    </Grid>
+    <StackPanel Spacing="4">
+        <StackPanel.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
+            </TransitionCollection>
+        </StackPanel.ChildrenTransitions>
+
+        <controls:ExpandableSettingControl
+            Title="App Theme"
+            Description="Select which app theme to display">
+            <controls:ExpandableSettingControl.Icon>
+                <FontIcon Glyph="&#xF592;" />
+            </controls:ExpandableSettingControl.Icon>
+            <controls:ExpandableSettingControl.ExpandableContent>
+                <StackPanel Spacing="4">
+                    <RadioButton
+                        Content="Light"/>
+                    <RadioButton
+                        Content="Dark"/>
+                    <RadioButton
+                        Content="Use system settings"
+                        IsChecked="True"/>
+                </StackPanel>
+            </controls:ExpandableSettingControl.ExpandableContent>
+        </controls:ExpandableSettingControl>
+
+        <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="Behaviors" />
+
+        <controls:ExpandableSettingControl
+            Title="Smart detection"
+            Description="Automatically detect the best tool based on the clipboard content">
+            <controls:ExpandableSettingControl.Icon>
+                <FontIcon Glyph="&#xF4DA;" />
+            </controls:ExpandableSettingControl.Icon>
+            <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" IsOn="True"/>
+            <!-- TODO: Put a demo/tutorial in ExpandableContent property -->
+        </controls:ExpandableSettingControl>
+
+        <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="Text editor" />
+
+        <controls:ExpandableSettingControl
+            Title="Font">
+            <controls:ExpandableSettingControl.Icon>
+                <FontIcon Glyph="&#xF7E4;" />
+            </controls:ExpandableSettingControl.Icon>
+            <ComboBox>
+                <ComboBoxItem Content="Cascadia Code"/>
+                <ComboBoxItem Content="Cascadia Mono" IsSelected="True"/>
+                <ComboBoxItem Content="Consolas"/>
+                <ComboBoxItem Content="Segoe UI"/>
+            </ComboBox>
+        </controls:ExpandableSettingControl>
+
+        <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="About" />
+
+        <controls:ExpandableSettingControl
+            Title="DevTools"
+            Description="Version 1.0.0.0">
+            <controls:ExpandableSettingControl.Icon>
+                <muxc:ImageIcon Source="/DevTools.Impl/Assets/Logo/Square44x44Logo.scale-200.png" Height="16" />
+            </controls:ExpandableSettingControl.Icon>
+        </controls:ExpandableSettingControl>
+
+        <controls:ExpandableSettingControl
+            Title="Useful links">
+            <controls:ExpandableSettingControl.Icon>
+                <FontIcon Glyph="&#xF4E4;" />
+            </controls:ExpandableSettingControl.Icon>
+            <controls:ExpandableSettingControl.ExpandableContent>
+                <!-- TODO -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <HyperlinkButton Content="App website" NavigateUri="http://www.microsoft.com" />
+                        <HyperlinkButton Content="Privacy policy" NavigateUri="http://www.microsoft.com" />
+                        <HyperlinkButton Content="Rate and review on Microsoft Store" NavigateUri="http://www.microsoft.com" />
+                        <HyperlinkButton Content="Donate" NavigateUri="http://www.microsoft.com" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="1">
+                        <HyperlinkButton Content="Source code" NavigateUri="http://www.microsoft.com" />
+                        <HyperlinkButton Content="License" NavigateUri="http://www.microsoft.com" />
+                        <HyperlinkButton Content="Report a problem" NavigateUri="http://www.microsoft.com" />
+                    </StackPanel>
+                </Grid>
+            </controls:ExpandableSettingControl.ExpandableContent>
+        </controls:ExpandableSettingControl>
+    </StackPanel>
 </Page>

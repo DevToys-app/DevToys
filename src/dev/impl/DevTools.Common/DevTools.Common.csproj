@@ -81,9 +81,16 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="UI\Controls\CustomPathIcon.cs" />
+    <Compile Include="UI\Controls\ExpandableSettingControl.xaml.cs">
+      <DependentUpon>ExpandableSettingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\ExpandableSettingHeaderControl.xaml.cs">
+      <DependentUpon>ExpandableSettingHeaderControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="UI\Converters\DoubleToGridLengthConverter.cs" />
     <Compile Include="UI\Converters\InvertedBooleanConverter.cs" />
+    <Compile Include="UI\Converters\NullToBooleanConverter.cs" />
     <Compile Include="UI\Extensions\HighlighterExtension.cs" />
     <Content Include="Assets\Icons\Idea.svg" />
     <Content Include="LanguageManager.tt">
@@ -95,6 +102,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="$(NuGet_MicrosoftNETCoreUniversalWindowsPlatform)" />
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="$(NuGet_MicrosoftToolkitMvvm)" />
+    <PackageReference Include="Microsoft.UI.Xaml" Version="$(NuGet_MicrosoftUIXaml)" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -110,6 +118,14 @@
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Controls\ExpandableSettingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Controls\ExpandableSettingHeaderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
