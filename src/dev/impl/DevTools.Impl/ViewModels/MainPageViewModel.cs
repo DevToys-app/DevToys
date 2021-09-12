@@ -23,6 +23,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Windows.UI.Xaml;
+using DevTools.Core.Settings;
 
 namespace DevTools.Impl.ViewModels
 {
@@ -33,6 +34,7 @@ namespace DevTools.Impl.ViewModels
         private readonly IClipboard _clipboard;
         private readonly IToolProviderFactory _toolProviderFactory;
         private readonly IUriActivationProtocolService _launchProtocolService;
+        private readonly ISettingsProvider _settingsProvider;
         private readonly List<MatchedToolProviderViewData> _allToolsMenuitems = new();
         private readonly DisposableSempahore _sempahore = new();
         private readonly Task _firstUpdateMenuTask;
@@ -133,12 +135,14 @@ namespace DevTools.Impl.ViewModels
             IClipboard clipboard,
             ITitleBar titleBar,
             IToolProviderFactory toolProviderFactory,
-            IUriActivationProtocolService launchProtocolService)
+            IUriActivationProtocolService launchProtocolService,
+            ISettingsProvider settingsProvider)
         {
             _thread = thread;
             _clipboard = clipboard;
             _toolProviderFactory = toolProviderFactory;
             _launchProtocolService = launchProtocolService;
+            _settingsProvider = settingsProvider;
             TitleBar = titleBar;
 
             OpenToolInNewWindowCommand = new AsyncRelayCommand<ToolProviderMetadata>(ExecuteOpenToolInNewWindowCommandAsync);
@@ -300,7 +304,7 @@ namespace DevTools.Impl.ViewModels
 
         private async Task UpdateRecommendedToolsAsync()
         {
-            if (IsInCompactOverlayMode)
+            if (IsInCompactOverlayMode || !_settingsProvider.GetSetting(PredefinedSettings.SmartDetection))
             {
                 return;
             }

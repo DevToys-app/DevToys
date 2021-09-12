@@ -43,7 +43,7 @@ namespace DevTools.Common
     public partial class LanguageManager : ObservableObject
     {
         private static LanguageManager _languageManager;
-		
+
 <#
     foreach (var file in Directory.GetFiles(stringsFolder, "*.resw"))
     {

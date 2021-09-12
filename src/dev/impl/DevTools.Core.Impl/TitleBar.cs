@@ -80,7 +80,7 @@ namespace DevTools.Core.Impl
             AppTheme theme = _settingsProvider.GetSetting(PredefinedSettings.Theme);
             if (theme == AppTheme.Default)
             {
-                theme = _themeListener.CurrentTheme;
+                theme = _themeListener.CurrentSystemTheme;
             }
 
             if (theme == AppTheme.Dark)

@@ -87,6 +87,7 @@
     <Compile Include="UI\Controls\ExpandableSettingHeaderControl.xaml.cs">
       <DependentUpon>ExpandableSettingHeaderControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Converters\EnumToBooleanConverter.cs" />
     <Compile Include="UI\Converters\EnumToThicknessConverter.cs" />
     <Compile Include="UI\Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="UI\Converters\DoubleToGridLengthConverter.cs" />
@@ -146,6 +147,12 @@
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Strings\en\Common.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\CascadiaCode.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\CascadiaMono.ttf" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
