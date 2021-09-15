@@ -1,8 +1,10 @@
 ﻿#nullable enable
 
 using DevTools.Core.Navigation;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 
 namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
