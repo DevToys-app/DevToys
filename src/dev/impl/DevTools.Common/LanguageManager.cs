@@ -110,9 +110,54 @@ namespace DevTools.Common
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Common/Base64EncoderDecoder");
 
         /// <summary>
+        /// Gets the resource ConfigurationTitle.
+        /// </summary>
+        public string ConfigurationTitle => _resources.GetString("ConfigurationTitle");
+
+        /// <summary>
+        /// Gets the resource ConversionDecode.
+        /// </summary>
+        public string ConversionDecode => _resources.GetString("ConversionDecode");
+
+        /// <summary>
+        /// Gets the resource ConversionDescription.
+        /// </summary>
+        public string ConversionDescription => _resources.GetString("ConversionDescription");
+
+        /// <summary>
+        /// Gets the resource ConversionEncode.
+        /// </summary>
+        public string ConversionEncode => _resources.GetString("ConversionEncode");
+
+        /// <summary>
+        /// Gets the resource ConversionTitle.
+        /// </summary>
+        public string ConversionTitle => _resources.GetString("ConversionTitle");
+
+        /// <summary>
         /// Gets the resource DisplayName.
         /// </summary>
         public string DisplayName => _resources.GetString("DisplayName");
+
+        /// <summary>
+        /// Gets the resource EncodingDescription.
+        /// </summary>
+        public string EncodingDescription => _resources.GetString("EncodingDescription");
+
+        /// <summary>
+        /// Gets the resource EncodingTitle.
+        /// </summary>
+        public string EncodingTitle => _resources.GetString("EncodingTitle");
+
+        /// <summary>
+        /// Gets the resource InputTitle.
+        /// </summary>
+        public string InputTitle => _resources.GetString("InputTitle");
+
+        /// <summary>
+        /// Gets the resource OutputTitle.
+        /// </summary>
+        public string OutputTitle => _resources.GetString("OutputTitle");
     }
 
     public class CommonStrings : ObservableObject
