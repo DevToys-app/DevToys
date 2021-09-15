@@ -117,7 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ConfigurationTitle" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="ConversionDecode" xml:space="preserve">
+    <value>Decode</value>
+  </data>
+  <data name="ConversionDescription" xml:space="preserve">
+    <value>Select which conversion mode you want to use</value>
+  </data>
+  <data name="ConversionEncode" xml:space="preserve">
+    <value>Encode</value>
+  </data>
+  <data name="ConversionTitle" xml:space="preserve">
+    <value>Conversion</value>
+  </data>
   <data name="DisplayName" xml:space="preserve">
     <value>Base 64 Encoder/Decoder</value>
+  </data>
+  <data name="EncodingDescription" xml:space="preserve">
+    <value>Select which encoding do you want to use</value>
+  </data>
+  <data name="EncodingTitle" xml:space="preserve">
+    <value>Encoding</value>
+  </data>
+  <data name="InputTitle" xml:space="preserve">
+    <value>Input</value>
+  </data>
+  <data name="OutputTitle" xml:space="preserve">
+    <value>Output</value>
   </data>
 </root>
