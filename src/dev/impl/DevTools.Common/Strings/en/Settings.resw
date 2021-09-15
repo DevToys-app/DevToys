@@ -138,8 +138,20 @@
   <data name="Font" xml:space="preserve">
     <value>Font</value>
   </data>
+  <data name="HighlightCurrentLine" xml:space="preserve">
+    <value>Highlight current line</value>
+  </data>
+  <data name="HighlightCurrentLineDescription" xml:space="preserve">
+    <value>Change the background color of the current line so it's more visible</value>
+  </data>
   <data name="Light" xml:space="preserve">
     <value>Light</value>
+  </data>
+  <data name="LineNumbers" xml:space="preserve">
+    <value>Line numbers</value>
+  </data>
+  <data name="LineNumbersDescription" xml:space="preserve">
+    <value>Display line numbers in the text editor</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
     <value>Smart detection</value>
@@ -155,5 +167,8 @@
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
     <value>Use system settings</value>
+  </data>
+  <data name="WordWrap" xml:space="preserve">
+    <value>Wrap word</value>
   </data>
 </root>

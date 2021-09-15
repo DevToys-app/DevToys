@@ -2,7 +2,21 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:DevTools.Common.UI.Controls"
+    xmlns:textEditor="using:DevTools.Common.UI.Controls.TextEditor"
     xmlns:common="using:DevTools.Common">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light">
+            <SolidColorBrush x:Key="TextEditorForeground" Color="Black"/>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+            <SolidColorBrush x:Key="TextEditorForeground" Color="#F0F0F0"/>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="HighContrast">
+            <SolidColorBrush x:Key="TextEditorForeground" Color="{ThemeResource TextControlForeground}"/>
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+    
     <common:LanguageManager x:Key="LanguageManager"/>
 
     <Style TargetType="controls:CustomPathIcon">
@@ -19,5 +33,248 @@
     <Style TargetType="ToggleSwitch">
         <Setter Property="OnContent" Value="{Binding Instance.Common.ToggleSwitchOn, Source={StaticResource LanguageManager}}"/>
         <Setter Property="OffContent" Value="{Binding Instance.Common.ToggleSwitchOff, Source={StaticResource LanguageManager}}"/>
+    </Style>
+
+    <Style TargetType="textEditor:TextEditor">
+        <Setter Property="Foreground" Value="{ThemeResource TextEditorForeground}"/>
+        <Setter Property="Background" Value="{ThemeResource TextControlBackground}"/>
+        <Setter Property="SelectionHighlightColor" Value="{ThemeResource TextControlSelectionHighlightColor}"/>
+        <Setter Property="BorderBrush" Value="{ThemeResource TextControlBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="{ThemeResource TextControlBorderThemeThickness}"/>
+        <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+        <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
+        <Setter Property="ScrollViewer.HorizontalScrollMode" Value="Enabled"/>
+        <Setter Property="ScrollViewer.VerticalScrollMode" Value="Enabled"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="False"/>
+        <Setter Property="TextWrapping" Value="NoWrap"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="UseSystemFocusVisuals" Value="{ThemeResource IsApplicationFocusVisualKindReveal}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RichEditBox">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderContentPresenter" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlHeaderForegroundDisabled}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderElement" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBackgroundDisabled}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderElement" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBorderBrushDisabled}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentElement" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlForegroundDisabled}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaceholderTextContentPresenter" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlPlaceholderForegroundDisabled}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="PointerOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderElement" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBorderBrushPointerOver}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderElement" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBackgroundPointerOver}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaceholderTextContentPresenter" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlPlaceholderForegroundPointerOver}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentElement" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlForegroundPointerOver}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaceholderTextContentPresenter" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlPlaceholderForegroundFocused}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderElement" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBackgroundFocused}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderElement" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBorderBrushFocused}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentElement" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlForegroundFocused}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <ContentPresenter
+                            x:Name="HeaderContentPresenter"
+                            ContentTemplate="{TemplateBinding HeaderTemplate}"
+                            Content="{TemplateBinding Header}"
+                            FontWeight="Normal"
+                            Foreground="{ThemeResource TextControlHeaderForeground}"
+                            Margin="{ThemeResource RichEditBoxTopHeaderMargin}"
+                            Grid.Row="0"
+                            TextWrapping="Wrap"
+                            VerticalAlignment="Top"
+                            Visibility="Collapsed"
+                            x:DeferLoadStrategy="Lazy">
+                        </ContentPresenter>
+                        <Border
+                            x:Name="BorderElement"
+                            Background="{TemplateBinding Background}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            MinHeight="{ThemeResource TextControlThemeMinHeight}"
+                            MinWidth="{ThemeResource TextControlThemeMinWidth}"
+                            Grid.Row="1"/>
+                        <Grid x:Name="RootGrid" Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition x:Name="LineNumberColumnDefinition" Width="Auto"/>
+                                <ColumnDefinition x:Name="TextEditorColumnDefinition" Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Canvas x:Name="LineHighlighterAndIndicatorCanvas" Grid.ColumnSpan="2">
+                                <Border
+                                    x:Name="LineIndicator"
+                                    BorderBrush="{StaticResource SystemControlForegroundAccentBrush}"
+                                    Visibility="Collapsed"/>
+                                <Grid
+                                    x:Name="LineHighlighter"
+                                    Background="{ThemeResource SystemControlBackgroundListLowBrush}"
+                                    Opacity="0.65"
+                                    BorderThickness="0"
+                                    Visibility="Collapsed"/>
+                            </Canvas>
+                            <Grid
+                                x:Name="LineNumberGrid" 
+                                Grid.Column="0"
+                                BorderThickness="0,0,0,0"
+                                BorderBrush="{ThemeResource SystemControlBackgroundTransparentRevealBorderBrush}">
+                                <Canvas x:Name="LineNumberCanvas"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <ScrollViewer
+                                    x:Name="ContentElement"
+                                    AutomationProperties.AccessibilityView="Raw"
+                                    HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                                    HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
+                                    IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
+                                    IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
+                                    IsTabStop="False"
+                                    IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
+                                    Margin="{TemplateBinding BorderThickness}"
+                                    Padding="{TemplateBinding Padding}"
+                                    VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
+                                    VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
+                                    ZoomMode="Disabled"/>
+                            </Grid>
+                        </Grid>
+                        <TextBlock 
+                            x:Name="PlaceholderTextContentPresenter"
+                            Foreground="{ThemeResource TextControlPlaceholderForeground}"
+                            IsHitTestVisible="False"
+                            Margin="{TemplateBinding BorderThickness}"
+                            Padding="{TemplateBinding Padding}"
+                            Grid.Row="1"
+                            Text="{TemplateBinding PlaceholderText}"
+                            TextWrapping="{TemplateBinding TextWrapping}"
+                            TextAlignment="{TemplateBinding TextAlignment}"
+                            OpticalMarginAlignment="TrimSideBearings"/>
+                        <ContentPresenter
+                            x:Name="DescriptionPresenter"
+                            AutomationProperties.AccessibilityView="Raw"
+                            Content="{TemplateBinding Description}"
+                            Foreground="{ThemeResource SystemControlDescriptionTextForegroundBrush}"
+                            Grid.Row="2"
+                            x:Load="False"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ContextFlyout">
+            <Setter.Value>
+                <MenuFlyout>
+                    <MenuFlyoutItem
+                        Text="{Binding Instance.Common.Cut, Source={StaticResource LanguageManager}}"
+                        Command="{Binding CutCommand}">
+                        <MenuFlyoutItem.Icon>
+                            <FontIcon Glyph="&#xF33A;" />
+                        </MenuFlyoutItem.Icon>
+                        <MenuFlyoutItem.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="X" Modifiers="Control" IsEnabled="False"/>
+                        </MenuFlyoutItem.KeyboardAccelerators>
+                    </MenuFlyoutItem>
+                    <MenuFlyoutItem
+                        Text="{Binding Instance.Common.Copy, Source={StaticResource LanguageManager}}"
+                        Command="{Binding CopyCommand}">
+                        <MenuFlyoutItem.Icon>
+                            <FontIcon Glyph="&#xF32B;" />
+                        </MenuFlyoutItem.Icon>
+                        <MenuFlyoutItem.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="C" Modifiers="Control" IsEnabled="False"/>
+                        </MenuFlyoutItem.KeyboardAccelerators>
+                    </MenuFlyoutItem>
+                    <MenuFlyoutItem
+                        Text="{Binding Instance.Common.Paste, Source={StaticResource LanguageManager}}"
+                        Command="{Binding PasteCommand}">
+                        <MenuFlyoutItem.Icon>
+                            <FontIcon Glyph="&#xF2D5;" />
+                        </MenuFlyoutItem.Icon>
+                        <MenuFlyoutItem.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="V" Modifiers="Control" IsEnabled="False"/>
+                        </MenuFlyoutItem.KeyboardAccelerators>
+                    </MenuFlyoutItem>
+                    <MenuFlyoutItem
+                        Text="{Binding Instance.Common.Delete, Source={StaticResource LanguageManager}}"
+                        Command="{Binding DeleteCommand}">
+                        <MenuFlyoutItem.Icon>
+                            <FontIcon Glyph="&#xF34C;" />
+                        </MenuFlyoutItem.Icon>
+                        <MenuFlyoutItem.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="Delete" IsEnabled="False" />
+                        </MenuFlyoutItem.KeyboardAccelerators>
+                    </MenuFlyoutItem>
+                    <MenuFlyoutSeparator/>
+                    <MenuFlyoutItem
+                        Text="{Binding Instance.Common.Undo, Source={StaticResource LanguageManager}}"
+                        Command="{Binding UndoCommand}">
+                        <MenuFlyoutItem.Icon>
+                            <FontIcon Glyph="&#xF199;" />
+                        </MenuFlyoutItem.Icon>
+                        <MenuFlyoutItem.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="Z" Modifiers="Control" IsEnabled="False" />
+                        </MenuFlyoutItem.KeyboardAccelerators>
+                    </MenuFlyoutItem>
+                    <MenuFlyoutItem
+                        Text="{Binding Instance.Common.Redo, Source={StaticResource LanguageManager}}"
+                        Command="{Binding RedoCommand}">
+                        <MenuFlyoutItem.Icon>
+                            <FontIcon Glyph="&#xF16E;" />
+                        </MenuFlyoutItem.Icon>
+                        <MenuFlyoutItem.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="Y" Modifiers="Control" IsEnabled="False" />
+                        </MenuFlyoutItem.KeyboardAccelerators>
+                    </MenuFlyoutItem>
+                    <MenuFlyoutSeparator/>
+                    <MenuFlyoutItem
+                        Text="{Binding Instance.Common.SelectAll, Source={StaticResource LanguageManager}}"
+                        Command="{Binding SelectAllCommand}">
+                        <MenuFlyoutItem.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="A" Modifiers="Control" IsEnabled="False" />
+                        </MenuFlyoutItem.KeyboardAccelerators>
+                    </MenuFlyoutItem>
+                </MenuFlyout>
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>

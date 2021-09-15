@@ -37,6 +37,24 @@ namespace DevTools.Impl.Views.Settings
             set => _settingsProvider.SetSetting(PredefinedSettings.TextEditorFont, value);
         }
 
+        internal bool TextEditorTextWrapping
+        {
+            get => _settingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping);
+            set => _settingsProvider.SetSetting(PredefinedSettings.TextEditorTextWrapping, value);
+        }
+
+        internal bool TextEditorLineNumbers
+        {
+            get => _settingsProvider.GetSetting(PredefinedSettings.TextEditorLineNumbers);
+            set => _settingsProvider.SetSetting(PredefinedSettings.TextEditorLineNumbers, value);
+        }
+
+        internal bool TextEditorHighlightCurrentLine
+        {
+            get => _settingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine);
+            set => _settingsProvider.SetSetting(PredefinedSettings.TextEditorHighlightCurrentLine, value);
+        }
+
         [ImportingConstructor]
         public SettingsToolViewModel(
             ISettingsProvider settingsProvider)

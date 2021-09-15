@@ -30,5 +30,32 @@ namespace DevTools.Core.Settings
                 name: nameof(TextEditorFont),
                 isRoaming: true,
                 defaultValue: "CascadiaMono");
+
+        /// <summary>
+        /// Whether the text in the text editor should wrap.
+        /// </summary>
+        public static readonly SettingDefinition<bool> TextEditorTextWrapping
+            = new(
+                name: nameof(TextEditorTextWrapping),
+                isRoaming: true,
+                defaultValue: false);
+
+        /// <summary>
+        /// Whether the line numbers should be displayed in the text editor.
+        /// </summary>
+        public static readonly SettingDefinition<bool> TextEditorLineNumbers
+            = new(
+                name: nameof(TextEditorLineNumbers),
+                isRoaming: true,
+                defaultValue: true);
+
+        /// <summary>
+        /// Whether the line where the caret is should be highlighted in the text editor.
+        /// </summary>
+        public static readonly SettingDefinition<bool> TextEditorHighlightCurrentLine
+            = new(
+                name: nameof(TextEditorHighlightCurrentLine),
+                isRoaming: true,
+                defaultValue: true);
     }
 }
