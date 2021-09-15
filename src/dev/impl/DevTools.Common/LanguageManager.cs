@@ -108,6 +108,36 @@ namespace DevTools.Common
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Common/Common");
 
         /// <summary>
+        /// Gets the resource Copy.
+        /// </summary>
+        public string Copy => _resources.GetString("Copy");
+
+        /// <summary>
+        /// Gets the resource Cut.
+        /// </summary>
+        public string Cut => _resources.GetString("Cut");
+
+        /// <summary>
+        /// Gets the resource Delete.
+        /// </summary>
+        public string Delete => _resources.GetString("Delete");
+
+        /// <summary>
+        /// Gets the resource Paste.
+        /// </summary>
+        public string Paste => _resources.GetString("Paste");
+
+        /// <summary>
+        /// Gets the resource Redo.
+        /// </summary>
+        public string Redo => _resources.GetString("Redo");
+
+        /// <summary>
+        /// Gets the resource SelectAll.
+        /// </summary>
+        public string SelectAll => _resources.GetString("SelectAll");
+
+        /// <summary>
         /// Gets the resource ToggleSwitchOff.
         /// </summary>
         public string ToggleSwitchOff => _resources.GetString("ToggleSwitchOff");
@@ -116,6 +146,11 @@ namespace DevTools.Common
         /// Gets the resource ToggleSwitchOn.
         /// </summary>
         public string ToggleSwitchOn => _resources.GetString("ToggleSwitchOn");
+
+        /// <summary>
+        /// Gets the resource Undo.
+        /// </summary>
+        public string Undo => _resources.GetString("Undo");
     }
 
     public class JsonFormatterStrings : ObservableObject
@@ -193,9 +228,29 @@ namespace DevTools.Common
         public string Font => _resources.GetString("Font");
 
         /// <summary>
+        /// Gets the resource HighlightCurrentLine.
+        /// </summary>
+        public string HighlightCurrentLine => _resources.GetString("HighlightCurrentLine");
+
+        /// <summary>
+        /// Gets the resource HighlightCurrentLineDescription.
+        /// </summary>
+        public string HighlightCurrentLineDescription => _resources.GetString("HighlightCurrentLineDescription");
+
+        /// <summary>
         /// Gets the resource Light.
         /// </summary>
         public string Light => _resources.GetString("Light");
+
+        /// <summary>
+        /// Gets the resource LineNumbers.
+        /// </summary>
+        public string LineNumbers => _resources.GetString("LineNumbers");
+
+        /// <summary>
+        /// Gets the resource LineNumbersDescription.
+        /// </summary>
+        public string LineNumbersDescription => _resources.GetString("LineNumbersDescription");
 
         /// <summary>
         /// Gets the resource SmartDetection.
@@ -221,5 +276,10 @@ namespace DevTools.Common
         /// Gets the resource UseSystemSettings.
         /// </summary>
         public string UseSystemSettings => _resources.GetString("UseSystemSettings");
+
+        /// <summary>
+        /// Gets the resource WordWrap.
+        /// </summary>
+        public string WordWrap => _resources.GetString("WordWrap");
     }
 }

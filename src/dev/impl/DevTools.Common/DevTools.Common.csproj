@@ -80,6 +80,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="UI\Controls\TextEditor\CommandHandlerResult.cs" />
+    <Compile Include="UI\Controls\TextEditor\ICommandHandler.cs" />
+    <Compile Include="UI\Controls\TextEditor\IKeyboardCommand.cs" />
+    <Compile Include="UI\Controls\TextEditor\KeyboardCommand.cs" />
+    <Compile Include="UI\Controls\TextEditor\KeyboardCommandHandler.cs" />
+    <Compile Include="UI\Controls\TextEditor\TextFormatter.cs" />
+    <Compile Include="UI\Extensions\ColorHelper.cs" />
     <Compile Include="UI\Controls\CustomPathIcon.cs" />
     <Compile Include="UI\Controls\ExpandableSettingControl.xaml.cs">
       <DependentUpon>ExpandableSettingControl.xaml</DependentUpon>
@@ -87,13 +94,16 @@
     <Compile Include="UI\Controls\ExpandableSettingHeaderControl.xaml.cs">
       <DependentUpon>ExpandableSettingHeaderControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Controls\TextEditor\TextEditor.cs" />
     <Compile Include="UI\Converters\EnumToBooleanConverter.cs" />
     <Compile Include="UI\Converters\EnumToThicknessConverter.cs" />
     <Compile Include="UI\Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="UI\Converters\DoubleToGridLengthConverter.cs" />
     <Compile Include="UI\Converters\InvertedBooleanConverter.cs" />
     <Compile Include="UI\Converters\NullToBooleanConverter.cs" />
+    <Compile Include="UI\Extensions\Axis.cs" />
     <Compile Include="UI\Extensions\HighlighterExtension.cs" />
+    <Compile Include="UI\Extensions\ScrollViewerExtensions.cs" />
     <Content Include="Assets\Icons\Idea.svg" />
     <Content Include="LanguageManager.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -102,8 +112,12 @@
     <PRIResource Include="Strings\en\MainPage.resw" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="ColorCode.UWP" Version="$(Nuget_ColorCodeUwp)" />
+    <PackageReference Include="DiffPlex" Version="$(Nuget_DiffPlex)" />
+    <PackageReference Include="DirectN" Version="$(Nuget_DirectN)" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="$(NuGet_MicrosoftNETCoreUniversalWindowsPlatform)" />
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="$(NuGet_MicrosoftToolkitMvvm)" />
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls" Version="$(Nuget_MicrosoftToolkitUwpUIControls)" />
     <PackageReference Include="Microsoft.UI.Xaml" Version="$(NuGet_MicrosoftUIXaml)" />
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +151,10 @@
     <PRIResource Include="Strings\en\Settings.resw" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\def\DevTools.Core\DevTools.Core.csproj">
+      <Project>{ef6a6707-44f2-4e76-98b8-11c9b40adc7e}</Project>
+      <Name>DevTools.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\def\DevTools.Providers\DevTools.Providers.csproj">
       <Project>{ada9988b-e19b-4ee5-9162-dab3b12bcf9e}</Project>
       <Name>DevTools.Providers</Name>
@@ -154,6 +172,7 @@
   <ItemGroup>
     <Content Include="Assets\CascadiaMono.ttf" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

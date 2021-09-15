@@ -69,6 +69,29 @@
                 <ComboBoxItem Tag="SegoeUI" FontFamily="{StaticResource SegoeUI}" Content="Segoe UI"/>
             </ComboBox>
         </controls:ExpandableSettingControl>
+        <controls:ExpandableSettingControl
+            Title="{x:Bind ViewModel.Strings.WordWrap}">
+            <controls:ExpandableSettingControl.Icon>
+                <FontIcon Glyph="&#xF80E;" />
+            </controls:ExpandableSettingControl.Icon>
+            <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" IsOn="{x:Bind ViewModel.TextEditorTextWrapping, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </controls:ExpandableSettingControl>
+        <controls:ExpandableSettingControl
+            Title="{x:Bind ViewModel.Strings.LineNumbers}"
+            Description="{x:Bind ViewModel.Strings.LineNumbersDescription}">
+            <controls:ExpandableSettingControl.Icon>
+                <FontIcon Glyph="&#x01C0;" />
+            </controls:ExpandableSettingControl.Icon>
+            <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" IsOn="{x:Bind ViewModel.TextEditorLineNumbers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </controls:ExpandableSettingControl>
+        <controls:ExpandableSettingControl
+            Title="{x:Bind ViewModel.Strings.HighlightCurrentLine}"
+            Description="{x:Bind ViewModel.Strings.HighlightCurrentLineDescription}">
+            <controls:ExpandableSettingControl.Icon>
+                <FontIcon Glyph="&#xF2FB;" />
+            </controls:ExpandableSettingControl.Icon>
+            <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" IsOn="{x:Bind ViewModel.TextEditorHighlightCurrentLine, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </controls:ExpandableSettingControl>
 
         <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.About}" />
 
