@@ -45,5 +45,11 @@ namespace DevTools.Providers
         /// </remarks>
         [DefaultValue(500)]
         public int CompactOverlayWidth { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether the tool view can be scrolled.
+        /// </summary>
+        [DefaultValue(false)]
+        public bool NotScrollable { get; set; }
     }
 }

@@ -27,5 +27,13 @@ namespace DevTools.Core
                 throw new NullReferenceException(argumentName);
             }
         }
+
+        public static void IsTrue(bool value, string argumentName)
+        {
+            if (!value)
+            {
+                throw new Exception($"'{argumentName}' is expected to be True");
+            }
+        }
     }
 }

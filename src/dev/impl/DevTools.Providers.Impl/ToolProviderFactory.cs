@@ -28,7 +28,7 @@ namespace DevTools.Providers.Impl
             }
 
             viewModel = provider.CreateTool();
-            _toolProviderToViewModelCache[provider] = provider.CreateTool();
+            _toolProviderToViewModelCache[provider] = viewModel;
 
             return viewModel;
         }

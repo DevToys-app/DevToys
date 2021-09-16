@@ -6,13 +6,13 @@ using ColorCode.Parsing;
 using ColorCode.Styling;
 using DevTools.Common.UI.Extensions;
 using DevTools.Core.Threading;
+using Microsoft.Toolkit.Uwp.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
-using Windows.UI;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
 

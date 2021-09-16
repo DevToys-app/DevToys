@@ -10,6 +10,6 @@ namespace DevTools.Providers
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public sealed class IsFooterItemAttribute : Attribute
     {
-        public bool IsFooterItem { get; set; } = true;
+        public bool IsFooterItem { get; } = true;
     }
 }

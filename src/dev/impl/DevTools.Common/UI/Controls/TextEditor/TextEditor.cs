@@ -4,7 +4,9 @@ using DevTools.Common.UI.Extensions;
 using DevTools.Core;
 using DevTools.Core.Settings;
 using DevTools.Core.Threading;
+using DiffPlex.DiffBuilder;
 using Microsoft.Toolkit.Mvvm.Input;
+using Microsoft.Toolkit.Uwp.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -41,6 +43,7 @@ namespace DevTools.Common.UI.Controls.TextEditor
 
         private const string RichEditBoxDefaultLineEnding = "\r\n";
 
+        private readonly InlineDiffBuilder _inlineDiffBuilder = new InlineDiffBuilder();
         private readonly IList<TextBlock> _renderedLineNumberBlocks = new List<TextBlock>();
         private readonly Dictionary<string, double> _miniRequisiteIntegerTextRenderingWidthCache = new();
         private readonly SolidColorBrush _lineNumberDarkModeForegroundBrush = new("#99EEEEEE".ToColor());
@@ -59,6 +62,7 @@ namespace DevTools.Common.UI.Controls.TextEditor
         private bool _showLineNumbers;
         private bool _highlightCurrentLine;
         private bool _loaded;
+        private bool _isTextPendingUpdate;
         private bool _isDocumentLinesCachePendingUpdate = true;
         private bool _isSyntaxColorizationPendingUpdate = true;
         private bool _isSyntaxColorizationUpdateInProgress;
@@ -986,6 +990,13 @@ namespace DevTools.Common.UI.Controls.TextEditor
                 Document.GetText(TextGetOptions.UseCrlf, out var document);
                 _document = document;
 
+                if (!_isTextPendingUpdate)
+                {
+                    _isTextPendingUpdate = true;
+                    Text = document;
+                    _isTextPendingUpdate = false;
+                }
+
                 _isDocumentLinesCachePendingUpdate = true;
                 _isSyntaxColorizationPendingUpdate = true;
             }
@@ -1017,10 +1028,16 @@ namespace DevTools.Common.UI.Controls.TextEditor
             string? text = e.NewValue as string;
             var textEditorCore = (TextEditor)d;
 
-            bool isReadOnly = textEditorCore.IsReadOnly;
-            textEditorCore.IsReadOnly = false;
-            textEditorCore.Document.SetText(TextSetOptions.None, text);
-            textEditorCore.IsReadOnly = isReadOnly;
+
+            if (!textEditorCore._isTextPendingUpdate)
+            {
+                textEditorCore._isTextPendingUpdate = true;
+                bool isReadOnly = textEditorCore.IsReadOnly;
+                textEditorCore.IsReadOnly = false;
+                textEditorCore.Document.SetText(TextSetOptions.None, text ?? string.Empty);
+                textEditorCore.IsReadOnly = isReadOnly;
+                textEditorCore._isTextPendingUpdate = false;
+            }
         }
 
         private static Size GetTextSize(FontFamily font, double fontSize, string text)

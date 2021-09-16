@@ -29,10 +29,15 @@
     <Grid>
 
         <!-- Use an Expander control if there is content to expand. -->
-        <Grid x:Name="ExpanderGrid" x:Load="{x:Bind ExpandableContent, Mode=OneWay, Converter={StaticResource NullToFalseConverter}}">
+        <Grid
+            x:Name="ExpanderGrid"
+            x:Load="{x:Bind ExpandableContent, Mode=OneWay, Converter={StaticResource NullToFalseConverter}}">
             <muxc:Expander
                 HorizontalAlignment="Stretch"
-                HorizontalContentAlignment="Stretch">
+                HorizontalContentAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                VerticalContentAlignment="Stretch"
+                IsExpanded="{x:Bind IsExpanded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <muxc:Expander.Header>
                     <local:ExpandableSettingHeaderControl
                         Title="{x:Bind Title, Mode=OneWay}"
@@ -44,7 +49,6 @@
 
                 <ContentPresenter
                     HorizontalAlignment="Stretch"
-                    Margin="24,0,0,0"
                     Content="{x:Bind ExpandableContent, Mode=OneWay}" />
             </muxc:Expander>
         </Grid>
