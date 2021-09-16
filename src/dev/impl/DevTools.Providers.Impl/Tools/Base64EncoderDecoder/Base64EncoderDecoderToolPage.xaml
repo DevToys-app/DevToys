@@ -16,7 +16,74 @@
             <Setter Property="Margin" Value="0,12,0,0" />
         </Style>
     </Page.Resources>
-    <StackPanel Spacing="4">
+
+    <Grid RowSpacing="4" VerticalAlignment="Top"
+          Height="Auto"
+          Canvas.ZIndex="1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" MinHeight="150" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" MinHeight="150" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.ConfigurationTitle}" />
+
+        <controls:ExpandableSettingControl
+            Grid.Row="1"
+            Title="{x:Bind ViewModel.Strings.ConversionTitle}"
+            Description="{x:Bind ViewModel.Strings.ConversionDescription}">
+            <controls:ExpandableSettingControl.Icon>
+                <FontIcon Glyph="&#x00CA;" />
+            </controls:ExpandableSettingControl.Icon>
+            <ComboBox
+                SelectedValuePath="Tag"
+                SelectedValue="{x:Bind ViewModel.ConversionMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBoxItem Tag="Encode" Content="{x:Bind ViewModel.Strings.ConversionEncode}" />
+                <ComboBoxItem Tag="Decode" Content="{x:Bind ViewModel.Strings.ConversionDecode}"/>
+            </ComboBox>
+        </controls:ExpandableSettingControl>
+
+        <controls:ExpandableSettingControl
+            Grid.Row="2"
+            Title="{x:Bind ViewModel.Strings.EncodingTitle}"
+            Description="{x:Bind ViewModel.Strings.EncodingDescription}">
+            <controls:ExpandableSettingControl.Icon>
+                <FontIcon Glyph="&#xF7E4;" />
+            </controls:ExpandableSettingControl.Icon>
+            <ComboBox
+                SelectedValuePath="Tag"
+                SelectedValue="{x:Bind ViewModel.EncodingMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBoxItem Tag="UTF-8" Content="UTF-8" />
+                <ComboBoxItem Tag="ASCII" Content="ASCII" />
+            </ComboBox>
+        </controls:ExpandableSettingControl>
+
+        <TextBlock Grid.Row="3" Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.InputTitle}" />
+
+        <TextBox Grid.Row="4" x:Name="InputTextBox" 
+                 TextWrapping="Wrap" 
+                 AcceptsReturn="True" 
+                 IsSpellCheckEnabled="False" 
+                 Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 />
+
+        <TextBlock Grid.Row="5" Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.OutputTitle}" />
+
+        <TextBox Grid.Row="6" x:Name="OutputTextBox" 
+                 TextWrapping="Wrap" 
+                 AcceptsReturn="False" 
+                 IsSpellCheckEnabled="False" 
+                 IsReadOnly="True"
+                 Text="{x:Bind ViewModel.OutputValue, Mode=OneWay}"
+                 />
+
+    </Grid>
+
+    <!--<StackPanel Spacing="4">
         <StackPanel.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
@@ -73,8 +140,8 @@
                  MinWidth="400" 
                  MinHeight="150"
                  IsReadOnly="True"
-                 Text="{x:Bind ViewModel.OutputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 Text="{x:Bind ViewModel.OutputValue, Mode=OneWay}"
                  />
 
-    </StackPanel>
+    </StackPanel>-->
 </Page>
