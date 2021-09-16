@@ -6,17 +6,19 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using System;
 using System.Composition;
 using System.Text;
-using Windows.UI.Xaml.Controls;
 
 namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
 {
     [Export(typeof(Base64EncoderDecoderToolViewModel))]
     public class Base64EncoderDecoderToolViewModel : ObservableRecipient, IToolViewModel
     {
+        private const string DefaultEncoding = "UTF-8";
+        private const string DefaultConversion = "Encode";
+
         private string? _inputValue;
         private string? _outputValue;
-        private string? _encodingMode;
-        private string? _conversionMode;
+        private string _encodingMode = DefaultEncoding;
+        private string _conversionMode = DefaultConversion;
         private readonly IThread _thread;
 
         public Type View { get; } = typeof(Base64EncoderDecoderToolPage);
@@ -34,7 +36,7 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
                 _thread.ThrowIfNotOnUIThread();
                 _inputValue = value;
 
-                if (ConversionMode == "Encode")
+                if (string.Equals(ConversionMode, DefaultConversion, StringComparison.Ordinal))
                 {
                     OutputValue = EncodeBase64Data(value);
                 }
@@ -63,16 +65,9 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
         /// <summary>
         /// Gets or sets the conversion mode.
         /// </summary>
-        internal string? ConversionMode
+        internal string ConversionMode
         {
-            get
-            {
-                if (string.IsNullOrWhiteSpace(_conversionMode))
-                {
-                    return "Encode";
-                }
-                return _conversionMode;
-            }
+            get => _conversionMode;
             set
             {
                 _thread.ThrowIfNotOnUIThread();
@@ -86,16 +81,9 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
         /// <summary>
         /// Gets or sets the encoding mode.
         /// </summary>
-        internal string? EncodingMode
+        internal string EncodingMode
         {
-            get
-            {
-                if (string.IsNullOrWhiteSpace(_encodingMode))
-                {
-                    return "UTF-8";
-                }
-                return _encodingMode;
-            }
+            get => _encodingMode;
             set
             {
                 _thread.ThrowIfNotOnUIThread();
@@ -157,7 +145,7 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
 
         private Encoding GetEncoder()
         {
-            if (EncodingMode == "UTF-8")
+            if (string.Equals(EncodingMode, DefaultEncoding, StringComparison.Ordinal))
             {
                 return Encoding.UTF8;
             }
