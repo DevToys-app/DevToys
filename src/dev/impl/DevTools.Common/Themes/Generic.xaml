@@ -134,7 +134,7 @@
                             Background="{TemplateBinding Background}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             BorderBrush="{TemplateBinding BorderBrush}"
-                            CornerRadius="{TemplateBinding CornerRadius}"
+                            CornerRadius="4"
                             MinHeight="{ThemeResource TextControlThemeMinHeight}"
                             MinWidth="{ThemeResource TextControlThemeMinWidth}"
                             Grid.Row="1"/>

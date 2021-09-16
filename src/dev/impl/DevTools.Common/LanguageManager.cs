@@ -26,6 +26,7 @@ namespace DevTools.Common
         private readonly JsonFormatterStrings _jsonformatter = new JsonFormatterStrings();
         private readonly MainPageStrings _mainpage = new MainPageStrings();
         private readonly SettingsStrings _settings = new SettingsStrings();
+        private readonly TextDiffStrings _textdiff = new TextDiffStrings();
 
         /// <summary>
         /// Gets an instance of <see cref="LanguageManager"/>.
@@ -61,6 +62,11 @@ namespace DevTools.Common
         /// Gets the <see cref="SettingsStrings"/>.
         /// </summary>
         public SettingsStrings Settings => _settings;
+
+        /// <summary>
+        /// Gets the <see cref="TextDiffStrings"/>.
+        /// </summary>
+        public TextDiffStrings TextDiff => _textdiff;
 
         /// <summary>
         /// Retrieves the current culture.
@@ -281,5 +287,15 @@ namespace DevTools.Common
         /// Gets the resource WordWrap.
         /// </summary>
         public string WordWrap => _resources.GetString("WordWrap");
+    }
+
+    public class TextDiffStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Common/TextDiff");
+
+        /// <summary>
+        /// Gets the resource DisplayName.
+        /// </summary>
+        public string DisplayName => _resources.GetString("DisplayName");
     }
 }

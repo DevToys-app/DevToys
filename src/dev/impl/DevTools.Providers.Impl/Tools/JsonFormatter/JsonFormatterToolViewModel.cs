@@ -8,7 +8,7 @@ using System.Composition;
 namespace DevTools.Providers.Impl.Tools.JsonFormatter
 {
     [Export(typeof(JsonFormatterToolViewModel))]
-    public class JsonFormatterToolViewModel : ObservableRecipient, IToolViewModel
+    public sealed class JsonFormatterToolViewModel : ObservableRecipient, IToolViewModel
     {
         public Type View { get; } = typeof(JsonFormatterToolPage);
 

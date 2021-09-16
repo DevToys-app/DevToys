@@ -24,7 +24,8 @@
     <Grid
         x:Name="MainPanel"
         HorizontalAlignment="Stretch"
-        VerticalAlignment="Center">
+        VerticalAlignment="Center"
+        SizeChanged="MainPanel_SizeChanged">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />

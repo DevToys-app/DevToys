@@ -63,6 +63,19 @@ namespace DevTools.Common.UI.Controls
             set => SetValue(ExpandableContentProperty, value);
         }
 
+        public static readonly DependencyProperty IsExpandedProperty
+            = DependencyProperty.Register(
+                nameof(IsExpanded),
+                typeof(bool),
+                typeof(ExpandableSettingControl),
+                new PropertyMetadata(false));
+
+        public bool IsExpanded
+        {
+            get => (bool)GetValue(IsExpandedProperty);
+            set => SetValue(IsExpandedProperty, value);
+        }
+
         public ExpandableSettingControl()
         {
             InitializeComponent();

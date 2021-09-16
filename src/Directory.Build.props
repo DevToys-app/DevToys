@@ -40,7 +40,6 @@
     <PropertyGroup>
         <Nuget_ColorCodeUwp>2.0.9</Nuget_ColorCodeUwp>
         <Nuget_DiffPlex>1.7.0</Nuget_DiffPlex>
-        <Nuget_DirectN>1.9.1</Nuget_DirectN>
         <NuGet_MicrosoftNETCoreUniversalWindowsPlatform>6.2.12</NuGet_MicrosoftNETCoreUniversalWindowsPlatform>
         <NuGet_MicrosoftToolkitMvvm>7.0.2</NuGet_MicrosoftToolkitMvvm>
         <Nuget_MicrosoftToolkitUwpUIBehaviors>7.0.2</Nuget_MicrosoftToolkitUwpUIBehaviors>

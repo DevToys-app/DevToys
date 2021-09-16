@@ -27,7 +27,7 @@
                 <FontIcon Glyph="&#xF592;" />
             </controls:ExpandableSettingControl.Icon>
             <controls:ExpandableSettingControl.ExpandableContent>
-                <StackPanel Spacing="4">
+                <StackPanel Spacing="4" Margin="42,0,6,0">
                     <RadioButton
                         Content="{x:Bind ViewModel.Strings.Light}"
                         IsChecked="{x:Bind ViewModel.Theme, Mode=TwoWay, ConverterParameter='Light', Converter={StaticResource EnumToBooleanConverter}}"/>
@@ -110,7 +110,7 @@
             </controls:ExpandableSettingControl.Icon>
             <controls:ExpandableSettingControl.ExpandableContent>
                 <!-- TODO -->
-                <Grid>
+                <Grid Margin="42,0,6,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>

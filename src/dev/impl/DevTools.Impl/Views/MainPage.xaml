@@ -22,6 +22,8 @@
         <converters:BooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" IsInverted="True"/>
         <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
         <converters:EnumToThicknessConverter x:Key="NavigationViewItemMarginConverter" ThicknessOnEnumDetected="0" ThicknessOnEnumNotDetected="12,0,12,0"/>
+        <converters:BooleanToScrollModeConverter x:Key="BooleanToScrollModeConverter" ScrollModeOnTrue="Disabled" ScrollModeOnFalse="Enabled"/>
+        <converters:BooleanToScrollBarVisibilityConverter x:Key="BooleanToScrollBarVisibilityConverter" ScrollBarVisibilityOnTrue="Disabled" ScrollBarVisibilityOnFalse="Auto"/>
 
         <!--This top margin is the height of the custom TitleBar-->
         <Thickness x:Key="NavigationViewContentMargin">0,48,0,0</Thickness>
@@ -219,8 +221,8 @@
                 Margin="12,0,0,0"
                 Padding="4,12,16,0"
                 HorizontalScrollMode="Disabled"
-                VerticalScrollBarVisibility="Auto"
-                VerticalScrollMode="Enabled">
+                VerticalScrollBarVisibility="{x:Bind ViewModel.SelectedMenuItem.Metadata.NotScrollable, Mode=OneWay, Converter={StaticResource BooleanToScrollBarVisibilityConverter}}"
+                VerticalScrollMode="{x:Bind ViewModel.SelectedMenuItem.Metadata.NotScrollable, Mode=OneWay, Converter={StaticResource BooleanToScrollModeConverter}}">
                 <Frame x:Name="contentFrame" />
             </ScrollViewer>
         </muxc:NavigationView>

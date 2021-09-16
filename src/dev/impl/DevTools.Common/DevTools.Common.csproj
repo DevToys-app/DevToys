@@ -80,13 +80,23 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="UI\Controls\FormattedTextBlock\CustomDelimiterChunker.cs" />
+    <Compile Include="UI\Controls\FormattedTextBlock\CustomWordChunker.cs" />
+    <Compile Include="UI\Controls\FormattedTextBlock\FormattedTextBlock.xaml.cs">
+      <DependentUpon>FormattedTextBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\FormattedTextBlock\IFormattedTextBlock.cs" />
     <Compile Include="UI\Controls\TextEditor\CommandHandlerResult.cs" />
     <Compile Include="UI\Controls\TextEditor\ICommandHandler.cs" />
     <Compile Include="UI\Controls\TextEditor\IKeyboardCommand.cs" />
     <Compile Include="UI\Controls\TextEditor\KeyboardCommand.cs" />
     <Compile Include="UI\Controls\TextEditor\KeyboardCommandHandler.cs" />
+    <Compile Include="UI\Controls\TextEditor\RtfBuilder.cs" />
+    <Compile Include="UI\Controls\TextEditor\RtfFormat.cs" />
     <Compile Include="UI\Controls\TextEditor\TextFormatter.cs" />
-    <Compile Include="UI\Extensions\ColorHelper.cs" />
+    <Compile Include="UI\Converters\BooleanToScrollBarVisibilityConverter.cs" />
+    <Compile Include="UI\Converters\BooleanToScrollModeConverter.cs" />
+    <Compile Include="UI\Converters\BooleanToGridLengthConverter.cs" />
     <Compile Include="UI\Controls\CustomPathIcon.cs" />
     <Compile Include="UI\Controls\ExpandableSettingControl.xaml.cs">
       <DependentUpon>ExpandableSettingControl.xaml</DependentUpon>
@@ -114,7 +124,6 @@
   <ItemGroup>
     <PackageReference Include="ColorCode.UWP" Version="$(Nuget_ColorCodeUwp)" />
     <PackageReference Include="DiffPlex" Version="$(Nuget_DiffPlex)" />
-    <PackageReference Include="DirectN" Version="$(Nuget_DirectN)" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="$(NuGet_MicrosoftNETCoreUniversalWindowsPlatform)" />
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="$(NuGet_MicrosoftToolkitMvvm)" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls" Version="$(Nuget_MicrosoftToolkitUwpUIControls)" />
@@ -140,6 +149,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Controls\ExpandableSettingHeaderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Controls\FormattedTextBlock\FormattedTextBlock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -172,7 +185,9 @@
   <ItemGroup>
     <Content Include="Assets\CascadiaMono.ttf" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <PRIResource Include="Strings\en\TextDiff.resw" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
