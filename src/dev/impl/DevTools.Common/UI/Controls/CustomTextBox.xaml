@@ -40,6 +40,7 @@
             x:Name="TextBox"
             Grid.Row="1"
             Grid.Column="0"
+            TabIndex="1"
             IsSpellCheckEnabled="False"
             TextWrapping="{x:Bind AcceptsReturn, Mode=OneWay, Converter={StaticResource BooleanToTextWrappingConverter}}"
             IsReadOnly="{x:Bind IsReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -56,6 +57,7 @@
                 x:Name="PasteButton"
                 x:DeferLoadStrategy="Lazy"
                 Visibility="Collapsed"
+                TabIndex="0"
                 Click="PasteButton_Click">
                 <StackPanel Orientation="Horizontal" Spacing="4">
                     <FontIcon Glyph="&#xF2D5;"/>
@@ -65,6 +67,7 @@
             <Button
                 x:Name="CopyButton"
                 x:DeferLoadStrategy="Lazy"
+                TabIndex="2"
                 Visibility="Collapsed"
                 Click="CopyButton_Click">
                 <StackPanel Orientation="Horizontal" Spacing="4">
@@ -78,6 +81,7 @@
             x:DeferLoadStrategy="Lazy"
             Grid.Row="1"
             Grid.Column="1"
+            TabIndex="2"
             Margin="8,0,0,0"
             Visibility="Collapsed"
             ToolTipService.ToolTip="{Binding Instance.Common.Copy, Mode=OneTime, Source={StaticResource LanguageManager}}"
