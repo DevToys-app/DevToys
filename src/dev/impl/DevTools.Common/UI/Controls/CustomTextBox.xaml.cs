@@ -1,6 +1,9 @@
 ﻿#nullable enable
 
+using System;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.Storage;
+using Windows.Storage.Pickers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -83,6 +86,7 @@ namespace DevTools.Common.UI.Controls
                 if (PasteButton is not null)
                 {
                     GetPasteButton().Visibility = Visibility.Collapsed;
+                    GetOpenFileButton().Visibility = Visibility.Collapsed;
                 }
             }
             else
@@ -90,6 +94,7 @@ namespace DevTools.Common.UI.Controls
                 if (AcceptsReturn)
                 {
                     GetPasteButton().Visibility = Visibility.Visible;
+                    GetOpenFileButton().Visibility = Visibility.Visible;
                 }
 
                 if (InlinedCopyButton is not null)
@@ -112,6 +117,11 @@ namespace DevTools.Common.UI.Controls
         private Button GetPasteButton()
         {
             return (Button)(PasteButton ?? FindName(nameof(PasteButton)));
+        }
+
+        private Button GetOpenFileButton()
+        {
+            return (Button)(OpenFileButton ?? FindName(nameof(OpenFileButton)));
         }
 
         private Button GetInlinedCopyButton()
@@ -146,6 +156,36 @@ namespace DevTools.Common.UI.Controls
             data.SetText(Text);
 
             Clipboard.SetContent(data);
+        }
+
+        private async void OpenFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            var filePicker = new FileOpenPicker
+            {
+                ViewMode = PickerViewMode.List,
+                SuggestedStartLocation = PickerLocationId.ComputerFolder
+            };
+
+            filePicker.FileTypeFilter.Add("*");
+
+            StorageFile file = await filePicker.PickSingleFileAsync();
+            if (file is not null)
+            {
+                try
+                {
+                    string text = await FileIO.ReadTextAsync(file);
+                    await Dispatcher.RunAsync(
+                        Windows.UI.Core.CoreDispatcherPriority.Normal,
+                        () =>
+                        {
+                            Text = text;
+                        });
+                }
+                catch
+                {
+                    // TODO: Show a modal explaining the user that we can't read the file. Maybe it's not a text file.
+                }
+            }
         }
 
         private static void OnIsReadOnlyPropertyChangedCalled(DependencyObject sender, DependencyPropertyChangedEventArgs eventArgs)
