@@ -16,7 +16,7 @@
             <SolidColorBrush x:Key="TextEditorForeground" Color="{ThemeResource TextControlForeground}"/>
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
-    
+
     <common:LanguageManager x:Key="LanguageManager"/>
 
     <Style TargetType="controls:CustomPathIcon">
@@ -29,10 +29,10 @@
     <Style TargetType="FontIcon">
         <Setter Property="FontFamily" Value="{StaticResource FluentSystemIcons}"/>
     </Style>
-
+    
     <Style TargetType="ToggleSwitch">
-        <Setter Property="OnContent" Value="{Binding Instance.Common.ToggleSwitchOn, Source={StaticResource LanguageManager}}"/>
-        <Setter Property="OffContent" Value="{Binding Instance.Common.ToggleSwitchOff, Source={StaticResource LanguageManager}}"/>
+        <Setter Property="OnContent" Value="{Binding Instance.Common.ToggleSwitchOn, Mode=OneTime, Source={StaticResource LanguageManager}}"/>
+        <Setter Property="OffContent" Value="{Binding Instance.Common.ToggleSwitchOff, Mode=OneTime, Source={StaticResource LanguageManager}}"/>
     </Style>
 
     <Style TargetType="textEditor:TextEditor">
