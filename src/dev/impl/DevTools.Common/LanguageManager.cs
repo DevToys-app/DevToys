@@ -135,6 +135,11 @@ namespace DevTools.Common
         public string Delete => _resources.GetString("Delete");
 
         /// <summary>
+        /// Gets the resource OpenFile.
+        /// </summary>
+        public string OpenFile => _resources.GetString("OpenFile");
+
+        /// <summary>
         /// Gets the resource Paste.
         /// </summary>
         public string Paste => _resources.GetString("Paste");

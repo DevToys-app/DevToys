@@ -57,6 +57,13 @@
             <uap:Logo>Assets\Logo\Square512.png</uap:Logo>
           </uap:Protocol>
         </uap:Extension>
+        <uap:Extension Category="windows.fileOpenPicker">
+          <uap:FileOpenPicker>
+            <uap:SupportedFileTypes>
+              <uap:SupportsAnyFileType/>
+            </uap:SupportedFileTypes>
+          </uap:FileOpenPicker>
+        </uap:Extension>
       </Extensions>
     </Application>
   </Applications>
