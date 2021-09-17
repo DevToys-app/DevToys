@@ -34,7 +34,7 @@ namespace DevTools.Providers.Impl.Tools.HashGenerator
             set
             {
                 SetProperty(ref _isUppercase, value);
-                QueueHasCalculation();
+                QueueHashCalculation();
             }
         }
 
@@ -44,7 +44,7 @@ namespace DevTools.Providers.Impl.Tools.HashGenerator
             set
             {
                 SetProperty(ref _input, value);
-                QueueHasCalculation();
+                QueueHashCalculation();
             }
         }
 
@@ -78,7 +78,7 @@ namespace DevTools.Providers.Impl.Tools.HashGenerator
             _thread = thread;
         }
 
-        private void QueueHasCalculation()
+        private void QueueHashCalculation()
         {
             _hashCalculationQueue.Enqueue(Input ?? string.Empty);
             TreatQueueAsync().Forget();
@@ -126,13 +126,11 @@ namespace DevTools.Providers.Impl.Tools.HashGenerator
             await TaskScheduler.Default;
 
             HashAlgorithmProvider algorithmProvider = HashAlgorithmProvider.OpenAlgorithm(alrogithmName);
-            CryptographicHash objHash = algorithmProvider.CreateHash();
 
             IBuffer buffer = CryptographicBuffer.ConvertStringToBinary(text, BinaryStringEncoding.Utf8);
-            objHash.Append(buffer);
+            buffer = algorithmProvider.HashData(buffer);
 
-            buffer = objHash.GetValueAndReset();
-            string hash = CryptographicBuffer.ConvertBinaryToString(BinaryStringEncoding.Utf8, buffer);
+            string hash = CryptographicBuffer.EncodeToHexString(buffer);
 
             if (IsUppercase)
             {
