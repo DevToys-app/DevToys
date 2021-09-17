@@ -14,11 +14,11 @@ namespace DevTools.Providers.Impl.Tools.TextDiff
     [NotScrollable]
     internal sealed class TextDiffToolProvider : ToolProviderBase, IToolProvider
     {
+        private readonly IMefProvider _mefProvider;
+
         public string DisplayName => LanguageManager.Instance.TextDiff.DisplayName;
 
         public object IconSource => CreatePathIconFromPath(nameof(TextDiffToolProvider));
-
-        private readonly IMefProvider _mefProvider;
 
         [ImportingConstructor]
         public TextDiffToolProvider(IThread thread, IMefProvider mefProvider)

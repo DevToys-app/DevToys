@@ -23,6 +23,7 @@ namespace DevTools.Common
 
         private readonly Base64EncoderDecoderStrings _base64encoderdecoder = new Base64EncoderDecoderStrings();
         private readonly CommonStrings _common = new CommonStrings();
+        private readonly HashGeneratorStrings _hashgenerator = new HashGeneratorStrings();
         private readonly JsonFormatterStrings _jsonformatter = new JsonFormatterStrings();
         private readonly MainPageStrings _mainpage = new MainPageStrings();
         private readonly SettingsStrings _settings = new SettingsStrings();
@@ -47,6 +48,11 @@ namespace DevTools.Common
         /// Gets the <see cref="CommonStrings"/>.
         /// </summary>
         public CommonStrings Common => _common;
+
+        /// <summary>
+        /// Gets the <see cref="HashGeneratorStrings"/>.
+        /// </summary>
+        public HashGeneratorStrings HashGenerator => _hashgenerator;
 
         /// <summary>
         /// Gets the <see cref="JsonFormatterStrings"/>.
@@ -157,6 +163,16 @@ namespace DevTools.Common
         /// Gets the resource Undo.
         /// </summary>
         public string Undo => _resources.GetString("Undo");
+    }
+
+    public class HashGeneratorStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Common/HashGenerator");
+
+        /// <summary>
+        /// Gets the resource DisplayName.
+        /// </summary>
+        public string DisplayName => _resources.GetString("DisplayName");
     }
 
     public class JsonFormatterStrings : ObservableObject
