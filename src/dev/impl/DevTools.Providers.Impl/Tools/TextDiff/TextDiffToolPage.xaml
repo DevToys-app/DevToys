@@ -50,18 +50,14 @@
                         Grid.Column="0"
                         Grid.Row="0"
                         Margin="0,0,6,8">
-                        <TextBlock
-                            Style="{StaticResource SubTitleTextBlock}"
-                            Text="Old text"/>
+                        <TextBlock Text="Old text"/>
                     </Grid>
 
                     <Grid
                         Grid.Column="1"
                         Grid.Row="0"
                         Margin="6,0,0,8">
-                        <TextBlock
-                            Style="{StaticResource SubTitleTextBlock}"
-                            Text="New text"/>
+                        <TextBlock Text="New text"/>
                     </Grid>
 
                     <texteditor:TextEditor
@@ -84,9 +80,7 @@
         <Grid
             Grid.Row="1"
             Margin="0,0,0,8">
-            <TextBlock
-                Style="{StaticResource SubTitleTextBlock}"
-                Text="Difference"/>
+            <TextBlock Text="Difference"/>
         </Grid>
 
         <formattedtextblock:FormattedTextBlock
