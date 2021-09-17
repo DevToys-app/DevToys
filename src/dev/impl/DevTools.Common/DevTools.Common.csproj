@@ -80,6 +80,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="UI\Controls\CustomTextBox.xaml.cs">
+      <DependentUpon>CustomTextBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Controls\FormattedTextBlock\CustomDelimiterChunker.cs" />
     <Compile Include="UI\Controls\FormattedTextBlock\CustomWordChunker.cs" />
     <Compile Include="UI\Controls\FormattedTextBlock\FormattedTextBlock.xaml.cs">
@@ -94,6 +97,7 @@
     <Compile Include="UI\Controls\TextEditor\RtfBuilder.cs" />
     <Compile Include="UI\Controls\TextEditor\RtfFormat.cs" />
     <Compile Include="UI\Controls\TextEditor\TextFormatter.cs" />
+    <Compile Include="UI\Converters\BooleanToTextWrappingConverter.cs" />
     <Compile Include="UI\Converters\BooleanToScrollBarVisibilityConverter.cs" />
     <Compile Include="UI\Converters\BooleanToScrollModeConverter.cs" />
     <Compile Include="UI\Converters\BooleanToGridLengthConverter.cs" />
@@ -143,6 +147,10 @@
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Controls\CustomTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Controls\ExpandableSettingControl.xaml">
       <SubType>Designer</SubType>
