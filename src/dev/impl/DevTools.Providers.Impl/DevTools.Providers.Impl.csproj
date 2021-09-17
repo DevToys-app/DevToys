@@ -80,6 +80,11 @@
     </Compile>
     <Compile Include="Tools\Base64EncoderDecoder\Base64EncoderDecoderToolProvider.cs" />
     <Compile Include="Tools\Base64EncoderDecoder\Base64EncoderDecoderToolViewModel.cs" />
+    <Compile Include="Tools\HashGenerator\HashGeneratorToolPage.xaml.cs">
+      <DependentUpon>HashGeneratorToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\HashGenerator\HashGeneratorToolProvider.cs" />
+    <Compile Include="Tools\HashGenerator\HashGeneratorToolViewModel.cs" />
     <Compile Include="Tools\JsonFormatter\JsonFormatterToolProvider.cs" />
     <Compile Include="Tools\JsonFormatter\JsonFormatterToolPage.xaml.cs">
       <DependentUpon>JsonFormatterToolPage.xaml</DependentUpon>
@@ -117,6 +122,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Tools\HashGenerator\HashGeneratorToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Tools\JsonFormatter\JsonFormatterToolPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -126,6 +135,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

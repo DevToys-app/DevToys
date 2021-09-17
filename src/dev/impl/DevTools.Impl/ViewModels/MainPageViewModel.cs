@@ -43,6 +43,7 @@ namespace DevTools.Impl.ViewModels
         private NavigationViewDisplayMode _navigationViewDisplayMode;
         private string? _searchQuery;
         private bool _isInCompactOverlayMode;
+        private bool _isUpdatingSelectedItem;
         private bool _allowSelectAutomaticallyRecommendedTool = true;
 
         internal MainPageStrings Strings = LanguageManager.Instance.MainPage;
@@ -68,6 +69,12 @@ namespace DevTools.Impl.ViewModels
             set
             {
                 _thread.ThrowIfNotOnUIThread();
+                if (_isUpdatingSelectedItem)
+                {
+                    return;
+                }
+
+                _isUpdatingSelectedItem = true;
                 if (value is not null)
                 {
                     _selectedItem = value;
@@ -77,6 +84,7 @@ namespace DevTools.Impl.ViewModels
 
                     OnPropertyChanged(nameof(SelectedMenuItem));
                 }
+                _isUpdatingSelectedItem = false;
             }
         }
 
@@ -145,6 +153,7 @@ namespace DevTools.Impl.ViewModels
             _settingsProvider = settingsProvider;
             TitleBar = titleBar;
 
+            NavigationViewItemClickCommand = new RelayCommand<MatchedToolProviderViewData>(ExecuteNavigationViewItemClickCommand);
             OpenToolInNewWindowCommand = new AsyncRelayCommand<ToolProviderMetadata>(ExecuteOpenToolInNewWindowCommandAsync);
             ChangeViewModeCommand = new AsyncRelayCommand<ApplicationViewMode>(ExecuteChangeViewModeCommandAsync);
 
@@ -157,6 +166,18 @@ namespace DevTools.Impl.ViewModels
             // Activate the view model's messenger.
             IsActive = true;
         }
+
+        #region NavigationViewItemClickCommand
+
+        public IRelayCommand<MatchedToolProviderViewData> NavigationViewItemClickCommand { get; }
+
+        private void ExecuteNavigationViewItemClickCommand(MatchedToolProviderViewData? item)
+        {
+            Arguments.NotNull(item, nameof(item));
+            SelectedMenuItem = item;
+        }
+
+        #endregion
 
         #region OpenToolInNewWindowCommand
 
@@ -235,11 +256,13 @@ namespace DevTools.Impl.ViewModels
         {
             await TaskScheduler.Default;
 
+            var newToolsMenuitems = new Dictionary<MatchedToolProviderViewData, MatchSpan[]?>();
+            var footerMenuItems = new List<MatchedToolProviderViewData>();
+
             using (await _sempahore.WaitAsync(CancellationToken.None).ConfigureAwait(false))
             {
                 bool firstTime = string.IsNullOrEmpty(searchQuery) && _allToolsMenuitems.Count == 0;
 
-                var newToolsMenuitems = new Dictionary<MatchedToolProviderViewData, MatchSpan[]?>();
                 foreach (MatchedToolProvider matchedToolProvider in _toolProviderFactory.GetTools(searchQuery))
                 {
                     MatchedToolProviderViewData item;
@@ -269,7 +292,6 @@ namespace DevTools.Impl.ViewModels
                     newToolsMenuitems[item] = matchSpans;
                 }
 
-                var footerMenuItems = new List<MatchedToolProviderViewData>();
                 if (FooterMenuItems.Count == 0)
                 {
                     foreach (MatchedToolProvider matchedToolProvider in _toolProviderFactory.GetFooterTools())
@@ -282,24 +304,27 @@ namespace DevTools.Impl.ViewModels
                                 matchedToolProvider.MatchedSpans));
                     }
                 }
-
-                await _thread.RunOnUIThreadAsync(() =>
-                {
-                    ToolsMenuItems.Update(newToolsMenuitems.Keys);
-
-                    foreach (var item in newToolsMenuitems)
-                    {
-                        if (item.Value is not null)
-                        {
-                            item.Key.MatchedSpans = item.Value;
-                        }
-                    }
-
-                    footerMenuItems.ForEach(item => FooterMenuItems.Add(item));
-
-                    OnPropertyChanged(nameof(SelectedMenuItem));
-                });
             }
+
+            await _thread.RunOnUIThreadAsync(() =>
+            {
+                var oldSelectedItem = SelectedMenuItem;
+                ToolsMenuItems.Clear();
+                SelectedMenuItem = null;
+
+                foreach (var item in newToolsMenuitems)
+                {
+                    if (item.Value is not null)
+                    {
+                        item.Key.MatchedSpans = item.Value;
+                    }
+                }
+
+                ToolsMenuItems.Update(newToolsMenuitems.Keys);
+                footerMenuItems.ForEach(item => FooterMenuItems.Add(item));
+
+                SelectedMenuItem = oldSelectedItem;
+            });
         }
 
         private async Task UpdateRecommendedToolsAsync()

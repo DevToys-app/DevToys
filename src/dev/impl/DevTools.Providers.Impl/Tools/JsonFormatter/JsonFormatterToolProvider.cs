@@ -13,11 +13,11 @@ namespace DevTools.Providers.Impl.Tools.JsonFormatter
     [Order(0)]
     internal sealed class JsonFormatterToolProvider : ToolProviderBase, IToolProvider
     {
+        private readonly IMefProvider _mefProvider;
+
         public string DisplayName => LanguageManager.Instance.JsonFormatter.DisplayName;
 
         public object IconSource => CreatePathIconFromPath(nameof(JsonFormatterToolProvider));
-
-        private readonly IMefProvider _mefProvider;
 
         [ImportingConstructor]
         public JsonFormatterToolProvider(IThread thread, IMefProvider mefProvider)
