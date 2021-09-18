@@ -30,6 +30,13 @@ namespace DevTools.Core.Threading
         /// </summary>
         /// <param name="action">Action to run on the UI thread.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+        Task RunOnUIThreadAsync(ThreadPriority priority, Action action);
+
+        /// <summary>
+        /// Runs a given action on the UI thread and wait for its result asynchronously.
+        /// </summary>
+        /// <param name="action">Action to run on the UI thread.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         Task RunOnUIThreadAsync(Func<Task> action);
 
         /// <summary>
@@ -37,6 +44,20 @@ namespace DevTools.Core.Threading
         /// </summary>
         /// <param name="action">Action to run on the UI thread.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+        Task RunOnUIThreadAsync(ThreadPriority priority, Func<Task> action);
+
+        /// <summary>
+        /// Runs a given action on the UI thread and wait for its result asynchronously.
+        /// </summary>
+        /// <param name="action">Action to run on the UI thread.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         Task<T> RunOnUIThreadAsync<T>(Func<Task<T>> action);
+
+        /// <summary>
+        /// Runs a given action on the UI thread and wait for its result asynchronously.
+        /// </summary>
+        /// <param name="action">Action to run on the UI thread.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+        Task<T> RunOnUIThreadAsync<T>(ThreadPriority priority, Func<Task<T>> action);
     }
 }

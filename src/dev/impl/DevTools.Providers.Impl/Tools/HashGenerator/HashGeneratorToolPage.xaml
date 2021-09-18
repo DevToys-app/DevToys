@@ -16,39 +16,41 @@
             </TransitionCollection>
         </StackPanel.ChildrenTransitions>
 
-        <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="Configuration" />
+        <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Configuration}" />
 
         <controls:ExpandableSettingControl
-            Title="Uppercase">
+            Title="{x:Bind ViewModel.Strings.Uppercase}">
             <controls:ExpandableSettingControl.Icon>
                 <FontIcon Glyph="&#xF7B2;" />
             </controls:ExpandableSettingControl.Icon>
-            <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" IsOn="{x:Bind ViewModel.IsUppercase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <ToggleSwitch
+                Style="{StaticResource RightAlignedToggleSwitchStyle}"
+                IsOn="{x:Bind ViewModel.IsUppercase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         </controls:ExpandableSettingControl>
 
         <controls:CustomTextBox
-            Header="Input"
+            Header="{x:Bind ViewModel.Strings.Input}"
             Height="150"
             AcceptsReturn="True"
             Text="{x:Bind ViewModel.Input, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <controls:CustomTextBox
-            Header="MD5"
+            Header="{x:Bind ViewModel.Strings.MD5}"
             IsReadOnly="True"
             Text="{x:Bind ViewModel.MD5, Mode=OneWay}"/>
 
         <controls:CustomTextBox
-            Header="SHA1"
+            Header="{x:Bind ViewModel.Strings.SHA1}"
             IsReadOnly="True"
             Text="{x:Bind ViewModel.SHA1, Mode=OneWay}"/>
 
         <controls:CustomTextBox
-            Header="SHA256"
+            Header="{x:Bind ViewModel.Strings.SHA256}"
             IsReadOnly="True"
             Text="{x:Bind ViewModel.SHA256, Mode=OneWay}"/>
 
         <controls:CustomTextBox
-            Header="SHA512"
+            Header="{x:Bind ViewModel.Strings.SHA512}"
             IsReadOnly="True"
             Text="{x:Bind ViewModel.SHA512, Mode=OneWay}"/>
     </StackPanel>
