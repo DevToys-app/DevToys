@@ -89,6 +89,8 @@
       <DependentUpon>FormattedTextBlock.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Controls\FormattedTextBlock\IFormattedTextBlock.cs" />
+    <Compile Include="UI\Controls\HighlightSpan.cs" />
+    <Compile Include="UI\Controls\ICustomTextBox.cs" />
     <Compile Include="UI\Controls\TextEditor\CommandHandlerResult.cs" />
     <Compile Include="UI\Controls\TextEditor\ICommandHandler.cs" />
     <Compile Include="UI\Controls\TextEditor\IKeyboardCommand.cs" />
@@ -198,6 +200,9 @@
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Strings\en\HashGenerator.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Strings\en\RegEx.resw" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

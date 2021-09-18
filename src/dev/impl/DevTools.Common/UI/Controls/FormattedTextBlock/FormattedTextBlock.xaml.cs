@@ -45,6 +45,19 @@ namespace DevTools.Common.UI.Controls.FormattedTextBlock
             set => SetValue(SettingsProviderProperty, value);
         }
 
+        public static readonly DependencyProperty HeaderProperty
+            = DependencyProperty.Register(
+                nameof(Header),
+                typeof(object),
+                typeof(FormattedTextBlock),
+                new PropertyMetadata(null));
+
+        public object Header
+        {
+            get => (object)GetValue(HeaderProperty);
+            set => SetValue(HeaderProperty, value);
+        }
+
         public FormattedTextBlock()
         {
             InitializeComponent();
@@ -431,9 +444,19 @@ namespace DevTools.Common.UI.Controls.FormattedTextBlock
             return minRequisiteWidth;
         }
 
+        private ContentPresenter GetHeaderContentPresenter()
+        {
+            return (ContentPresenter)(HeaderContentPresenter ?? FindName(nameof(HeaderContentPresenter)));
+        }
+
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             _loaded = true;
+
+            if (Header is not null)
+            {
+                GetHeaderContentPresenter().Visibility = Visibility.Visible;
+            }
 
             ResetRootGridClipping();
 

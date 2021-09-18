@@ -10,6 +10,10 @@
     d:DesignWidth="400">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="CommonStates">
                 <VisualState x:Name="Disabled">
@@ -54,8 +58,20 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
+        <ContentPresenter
+            x:Name="HeaderContentPresenter"
+            x:DeferLoadStrategy="Lazy"
+            Grid.Row="0"
+            Content="{x:Bind Header}"
+            Foreground="{ThemeResource TextControlHeaderForeground}"
+            Margin="{ThemeResource TextBoxTopHeaderMargin}"
+            FontWeight="Normal"
+            TextWrapping="Wrap"
+            VerticalAlignment="Bottom"
+            Visibility="Collapsed"/>
         <Border
             x:Name="BorderElement"
+            Grid.Row="1"
             Background="{ThemeResource TextControlBackground}"
             BorderThickness="{ThemeResource TextControlBorderThemeThickness}"
             BorderBrush="{ThemeResource TextControlBorderBrush}"
@@ -64,6 +80,7 @@
             MinWidth="{ThemeResource TextControlThemeMinWidth}"/>
         <ScrollViewer
             x:Name="ContentElement"
+            Grid.Row="1"
             AutomationProperties.AccessibilityView="Raw"
             HorizontalScrollBarVisibility="Auto"
             HorizontalScrollMode="Enabled"

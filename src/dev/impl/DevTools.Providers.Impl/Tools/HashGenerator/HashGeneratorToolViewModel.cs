@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using DevTools.Common;
 using DevTools.Core.Threading;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using System;
@@ -27,6 +28,8 @@ namespace DevTools.Providers.Impl.Tools.HashGenerator
         private string? _sha512;
 
         public Type View { get; } = typeof(HashGeneratorToolPage);
+
+        internal HashGeneratorStrings Strings => LanguageManager.Instance.HashGenerator;
 
         internal bool IsUppercase
         {
