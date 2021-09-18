@@ -311,6 +311,7 @@ namespace DevTools.Common.UI.Controls
                 {
                     GetPasteButton().Visibility = Visibility.Collapsed;
                     GetOpenFileButton().Visibility = Visibility.Collapsed;
+                    GetClearButton().Visibility = Visibility.Collapsed;
                 }
             }
             else
@@ -319,6 +320,7 @@ namespace DevTools.Common.UI.Controls
                 if (AcceptsReturn)
                 {
                     GetOpenFileButton().Visibility = Visibility.Visible;
+                    GetClearButton().Visibility = Visibility.Visible;
                 }
 
                 if (InlinedCopyButton is not null)
@@ -346,6 +348,11 @@ namespace DevTools.Common.UI.Controls
         private Button GetOpenFileButton()
         {
             return (Button)(OpenFileButton ?? FindName(nameof(OpenFileButton)));
+        }
+
+        private Button GetClearButton()
+        {
+            return (Button)(ClearButton ?? FindName(nameof(ClearButton)));
         }
 
         private Button GetInlinedCopyButton()
@@ -453,6 +460,11 @@ namespace DevTools.Common.UI.Controls
                     // TODO: Show a modal explaining the user that we can't read the file. Maybe it's not a text file.
                 }
             }
+        }
+
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            Text = string.Empty;
         }
 
         private void RichEditBox_TextChanging(RichEditBox sender, RichEditBoxTextChangingEventArgs args)

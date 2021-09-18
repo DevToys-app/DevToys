@@ -123,9 +123,6 @@
   <data name="DisplayName" xml:space="preserve">
     <value>Text Diff</value>
   </data>
-  <data name="Inputs" xml:space="preserve">
-    <value>Inputs</value>
-  </data>
   <data name="LeftText" xml:space="preserve">
     <value>Old text</value>
   </data>

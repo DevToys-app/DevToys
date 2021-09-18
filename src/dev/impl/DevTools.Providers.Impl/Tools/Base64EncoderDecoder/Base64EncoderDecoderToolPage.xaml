@@ -18,29 +18,29 @@
         <StackPanel Spacing="4" Grid.Row="0" >
             <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.ConfigurationTitle}" />
             <controls:ExpandableSettingControl
-            Grid.Row="1"
-            Title="{x:Bind ViewModel.Strings.ConversionTitle}"
-            Description="{x:Bind ViewModel.Strings.ConversionDescription}">
+                Grid.Row="1"
+                Title="{x:Bind ViewModel.Strings.ConversionTitle}"
+                Description="{x:Bind ViewModel.Strings.ConversionDescription}">
                 <controls:ExpandableSettingControl.Icon>
                     <FontIcon Glyph="&#x00CA;" />
                 </controls:ExpandableSettingControl.Icon>
                 <ComboBox
-                SelectedValuePath="Tag"
-                SelectedValue="{x:Bind ViewModel.ConversionMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    SelectedValuePath="Tag"
+                    SelectedValue="{x:Bind ViewModel.ConversionMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <ComboBoxItem Tag="Encode" Content="{x:Bind ViewModel.Strings.ConversionEncode}" />
                     <ComboBoxItem Tag="Decode" Content="{x:Bind ViewModel.Strings.ConversionDecode}"/>
                 </ComboBox>
             </controls:ExpandableSettingControl>
             <controls:ExpandableSettingControl
-            Grid.Row="2"
-            Title="{x:Bind ViewModel.Strings.EncodingTitle}"
-            Description="{x:Bind ViewModel.Strings.EncodingDescription}">
+                Grid.Row="2"
+                Title="{x:Bind ViewModel.Strings.EncodingTitle}"
+                Description="{x:Bind ViewModel.Strings.EncodingDescription}">
                 <controls:ExpandableSettingControl.Icon>
                     <FontIcon Glyph="&#xF7E4;" />
                 </controls:ExpandableSettingControl.Icon>
                 <ComboBox
-                SelectedValuePath="Tag"
-                SelectedValue="{x:Bind ViewModel.EncodingMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    SelectedValuePath="Tag"
+                    SelectedValue="{x:Bind ViewModel.EncodingMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <ComboBoxItem Tag="UTF-8" Content="UTF-8" />
                     <ComboBoxItem Tag="ASCII" Content="ASCII" />
                 </ComboBox>
