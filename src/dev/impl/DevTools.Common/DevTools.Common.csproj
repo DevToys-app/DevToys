@@ -80,12 +80,17 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="UI\Controls\CustomTextBox.xaml.cs">
+      <DependentUpon>CustomTextBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Controls\FormattedTextBlock\CustomDelimiterChunker.cs" />
     <Compile Include="UI\Controls\FormattedTextBlock\CustomWordChunker.cs" />
     <Compile Include="UI\Controls\FormattedTextBlock\FormattedTextBlock.xaml.cs">
       <DependentUpon>FormattedTextBlock.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Controls\FormattedTextBlock\IFormattedTextBlock.cs" />
+    <Compile Include="UI\Controls\HighlightSpan.cs" />
+    <Compile Include="UI\Controls\ICustomTextBox.cs" />
     <Compile Include="UI\Controls\TextEditor\CommandHandlerResult.cs" />
     <Compile Include="UI\Controls\TextEditor\ICommandHandler.cs" />
     <Compile Include="UI\Controls\TextEditor\IKeyboardCommand.cs" />
@@ -94,6 +99,7 @@
     <Compile Include="UI\Controls\TextEditor\RtfBuilder.cs" />
     <Compile Include="UI\Controls\TextEditor\RtfFormat.cs" />
     <Compile Include="UI\Controls\TextEditor\TextFormatter.cs" />
+    <Compile Include="UI\Converters\BooleanToTextWrappingConverter.cs" />
     <Compile Include="UI\Converters\BooleanToScrollBarVisibilityConverter.cs" />
     <Compile Include="UI\Converters\BooleanToScrollModeConverter.cs" />
     <Compile Include="UI\Converters\BooleanToGridLengthConverter.cs" />
@@ -144,6 +150,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="UI\Controls\CustomTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Controls\ExpandableSettingControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -190,6 +200,9 @@
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Strings\en\HashGenerator.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Strings\en\RegEx.resw" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -26,6 +26,7 @@ namespace DevTools.Common
         private readonly HashGeneratorStrings _hashgenerator = new HashGeneratorStrings();
         private readonly JsonFormatterStrings _jsonformatter = new JsonFormatterStrings();
         private readonly MainPageStrings _mainpage = new MainPageStrings();
+        private readonly RegExStrings _regex = new RegExStrings();
         private readonly SettingsStrings _settings = new SettingsStrings();
         private readonly TextDiffStrings _textdiff = new TextDiffStrings();
 
@@ -63,6 +64,11 @@ namespace DevTools.Common
         /// Gets the <see cref="MainPageStrings"/>.
         /// </summary>
         public MainPageStrings MainPage => _mainpage;
+
+        /// <summary>
+        /// Gets the <see cref="RegExStrings"/>.
+        /// </summary>
+        public RegExStrings RegEx => _regex;
 
         /// <summary>
         /// Gets the <see cref="SettingsStrings"/>.
@@ -180,6 +186,11 @@ namespace DevTools.Common
         public string Delete => _resources.GetString("Delete");
 
         /// <summary>
+        /// Gets the resource OpenFile.
+        /// </summary>
+        public string OpenFile => _resources.GetString("OpenFile");
+
+        /// <summary>
         /// Gets the resource Paste.
         /// </summary>
         public string Paste => _resources.GetString("Paste");
@@ -215,9 +226,44 @@ namespace DevTools.Common
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Common/HashGenerator");
 
         /// <summary>
+        /// Gets the resource Configuration.
+        /// </summary>
+        public string Configuration => _resources.GetString("Configuration");
+
+        /// <summary>
         /// Gets the resource DisplayName.
         /// </summary>
         public string DisplayName => _resources.GetString("DisplayName");
+
+        /// <summary>
+        /// Gets the resource Input.
+        /// </summary>
+        public string Input => _resources.GetString("Input");
+
+        /// <summary>
+        /// Gets the resource MD5.
+        /// </summary>
+        public string MD5 => _resources.GetString("MD5");
+
+        /// <summary>
+        /// Gets the resource SHA1.
+        /// </summary>
+        public string SHA1 => _resources.GetString("SHA1");
+
+        /// <summary>
+        /// Gets the resource SHA256.
+        /// </summary>
+        public string SHA256 => _resources.GetString("SHA256");
+
+        /// <summary>
+        /// Gets the resource SHA512.
+        /// </summary>
+        public string SHA512 => _resources.GetString("SHA512");
+
+        /// <summary>
+        /// Gets the resource Uppercase.
+        /// </summary>
+        public string Uppercase => _resources.GetString("Uppercase");
     }
 
     public class JsonFormatterStrings : ObservableObject
@@ -253,6 +299,16 @@ namespace DevTools.Common
         /// Gets the resource Search.
         /// </summary>
         public string Search => _resources.GetString("Search");
+    }
+
+    public class RegExStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Common/RegEx");
+
+        /// <summary>
+        /// Gets the resource DisplayName.
+        /// </summary>
+        public string DisplayName => _resources.GetString("DisplayName");
     }
 
     public class SettingsStrings : ObservableObject
@@ -355,8 +411,28 @@ namespace DevTools.Common
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Common/TextDiff");
 
         /// <summary>
+        /// Gets the resource Difference.
+        /// </summary>
+        public string Difference => _resources.GetString("Difference");
+
+        /// <summary>
         /// Gets the resource DisplayName.
         /// </summary>
         public string DisplayName => _resources.GetString("DisplayName");
+
+        /// <summary>
+        /// Gets the resource Inputs.
+        /// </summary>
+        public string Inputs => _resources.GetString("Inputs");
+
+        /// <summary>
+        /// Gets the resource LeftText.
+        /// </summary>
+        public string LeftText => _resources.GetString("LeftText");
+
+        /// <summary>
+        /// Gets the resource RightText.
+        /// </summary>
+        public string RightText => _resources.GetString("RightText");
     }
 }

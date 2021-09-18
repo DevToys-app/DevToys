@@ -33,6 +33,11 @@ namespace DevTools.Core.Impl.Threading
 
         public Task RunOnUIThreadAsync(Action action)
         {
+            return RunOnUIThreadAsync(ThreadPriority.Normal, action);
+        }
+
+        public Task RunOnUIThreadAsync(ThreadPriority priority, Action action)
+        {
             if (action is null)
             {
                 return Task.CompletedTask;
@@ -45,11 +50,16 @@ namespace DevTools.Core.Impl.Threading
             }
             else
             {
-                return _uiDispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action()).AsTask();
+                return _uiDispatcher.RunAsync(GetDispatcherPriority(priority), () => action()).AsTask();
             }
         }
 
-        public async Task RunOnUIThreadAsync(Func<Task> action)
+        public Task RunOnUIThreadAsync(Func<Task> action)
+        {
+            return RunOnUIThreadAsync(ThreadPriority.Normal, action);
+        }
+
+        public async Task RunOnUIThreadAsync(ThreadPriority priority, Func<Task> action)
         {
             if (action is null)
             {
@@ -64,8 +74,8 @@ namespace DevTools.Core.Impl.Threading
             {
                 var tcs = new TaskCompletionSource<object>();
                 await _uiDispatcher.RunAsync(
-                    CoreDispatcherPriority.Normal,
-                    async() =>
+                    GetDispatcherPriority(priority),
+                    async () =>
                     {
                         try
                         {
@@ -78,9 +88,9 @@ namespace DevTools.Core.Impl.Threading
                         }
                         finally
                         {
-    #pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
                             tcs.TrySetResult(null);
-    #pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
                         }
                     });
 
@@ -88,7 +98,12 @@ namespace DevTools.Core.Impl.Threading
             }
         }
 
-        public async Task<T> RunOnUIThreadAsync<T>(Func<Task<T>> action)
+        public Task<T> RunOnUIThreadAsync<T>(Func<Task<T>> action)
+        {
+            return RunOnUIThreadAsync(ThreadPriority.Normal, action);
+        }
+
+        public async Task<T> RunOnUIThreadAsync<T>(ThreadPriority priority, Func<Task<T>> action)
         {
             Arguments.NotNull(action, nameof(action));
 
@@ -101,7 +116,7 @@ namespace DevTools.Core.Impl.Threading
                 T result = default!;
                 var tcs = new TaskCompletionSource<object>();
                 _uiDispatcher.RunAsync(
-                    CoreDispatcherPriority.Normal, async () =>
+                    GetDispatcherPriority(priority), async () =>
                     {
                         try
                         {
@@ -114,14 +129,29 @@ namespace DevTools.Core.Impl.Threading
                         }
                         finally
                         {
-    #pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
                             tcs.TrySetResult(null);
-    #pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
                         }
                     }).AsTask().ForgetSafely();
 
                 await tcs.Task.ConfigureAwait(false);
                 return result!;
+            }
+        }
+
+        private CoreDispatcherPriority GetDispatcherPriority(ThreadPriority priority)
+        {
+            switch (priority)
+            {
+                case ThreadPriority.Low:
+                    return CoreDispatcherPriority.Low;
+                case ThreadPriority.Normal:
+                    return CoreDispatcherPriority.Normal;
+                case ThreadPriority.High:
+                    return CoreDispatcherPriority.High;
+                default:
+                    throw new NotSupportedException();
             }
         }
     }

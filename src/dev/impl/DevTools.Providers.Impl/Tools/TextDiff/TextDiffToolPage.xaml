@@ -24,7 +24,6 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="{x:Bind ExandableInput.IsExpanded, Mode=OneWay, Converter={StaticResource BooleanToGridLengthConverter}}"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -34,64 +33,35 @@
             VerticalAlignment="Stretch"
             VerticalContentAlignment="Stretch"
             IsExpanded="True"
-            Title="Inputs">
+            Title="{x:Bind ViewModel.Strings.Inputs}">
             <controls:ExpandableSettingControl.ExpandableContent>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-
-                    <Grid
-                        Grid.Column="0"
-                        Grid.Row="0"
-                        Margin="0,0,6,8">
-                        <TextBlock
-                            Style="{StaticResource SubTitleTextBlock}"
-                            Text="Old text"/>
-                    </Grid>
-
-                    <Grid
-                        Grid.Column="1"
-                        Grid.Row="0"
-                        Margin="6,0,0,8">
-                        <TextBlock
-                            Style="{StaticResource SubTitleTextBlock}"
-                            Text="New text"/>
-                    </Grid>
 
                     <texteditor:TextEditor
                         Grid.Column="0"
-                        Grid.Row="1"
                         Margin="0,0,6,0"
                         SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
+                        Header="{x:Bind ViewModel.Strings.LeftText}"
                         Text="{x:Bind ViewModel.OldText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <texteditor:TextEditor
                         Grid.Column="1"
-                        Grid.Row="1"
                         Margin="6,0,0,0"
                         SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
+                        Header="{x:Bind ViewModel.Strings.RightText}"
                         Text="{x:Bind ViewModel.NewText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
             </controls:ExpandableSettingControl.ExpandableContent>
         </controls:ExpandableSettingControl>
 
-        <Grid
-            Grid.Row="1"
-            Margin="0,0,0,8">
-            <TextBlock
-                Style="{StaticResource SubTitleTextBlock}"
-                Text="Difference"/>
-        </Grid>
-
         <formattedtextblock:FormattedTextBlock
             x:Name="OuputTextEditor"
-            Grid.Row="2"
+            Grid.Row="1"
+            Header="{x:Bind ViewModel.Strings.Difference}"
             SettingsProvider="{x:Bind ViewModel.SettingsProvider}"/>
     </Grid>
 </Page>

@@ -117,19 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Difference" xml:space="preserve">
-    <value>Difference</value>
-  </data>
   <data name="DisplayName" xml:space="preserve">
-    <value>Text Diff</value>
-  </data>
-  <data name="Inputs" xml:space="preserve">
-    <value>Inputs</value>
-  </data>
-  <data name="LeftText" xml:space="preserve">
-    <value>Old text</value>
-  </data>
-  <data name="RightText" xml:space="preserve">
-    <value>New text</value>
+    <value>Regex Tester</value>
   </data>
 </root>
