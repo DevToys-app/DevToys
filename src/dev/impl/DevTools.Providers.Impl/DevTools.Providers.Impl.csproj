@@ -90,6 +90,11 @@
       <DependentUpon>JsonFormatterToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tools\JsonFormatter\JsonFormatterToolViewModel.cs" />
+    <Compile Include="Tools\RegEx\RegExToolPage.xaml.cs">
+      <DependentUpon>RegExToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\RegEx\RegExToolProvider.cs" />
+    <Compile Include="Tools\RegEx\RegExToolViewModel.cs" />
     <Compile Include="Tools\TextDiff\TextDiffToolPage.xaml.cs">
       <DependentUpon>TextDiffToolPage.xaml</DependentUpon>
     </Compile>
@@ -129,6 +134,10 @@
     <Page Include="Tools\JsonFormatter\JsonFormatterToolPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tools\RegEx\RegExToolPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Tools\TextDiff\TextDiffToolPage.xaml">
       <SubType>Designer</SubType>

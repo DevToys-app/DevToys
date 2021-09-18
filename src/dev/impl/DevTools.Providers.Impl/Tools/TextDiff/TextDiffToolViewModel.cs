@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using DevTools.Common;
 using DevTools.Common.UI.Controls.FormattedTextBlock;
 using DevTools.Core;
 using DevTools.Core.Settings;
@@ -25,6 +26,8 @@ namespace DevTools.Providers.Impl.Tools.TextDiff
         public Type View { get; } = typeof(TextDiffToolPage);
 
         internal ISettingsProvider SettingsProvider { get; }
+
+        internal TextDiffStrings Strings => LanguageManager.Instance.TextDiff;
 
         internal string? OldText
         {
@@ -78,7 +81,7 @@ namespace DevTools.Providers.Impl.Tools.TextDiff
 
             while (_comparisonQueue.TryDequeue(out (string? oldText, string? newText) item))
             {
-             //   await TextEditor!.ShowTextDiffAsync(item.oldText, item.newText);
+                //   await TextEditor!.ShowTextDiffAsync(item.oldText, item.newText);
             }
 
             _comparisonInProgress = false;
