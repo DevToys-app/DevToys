@@ -1,19 +1,14 @@
 ﻿<Page
     x:Class="DevTools.Providers.Impl.Tools.TextDiff.TextDiffToolPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:DevTools.Providers.Impl.Tools.TextDiff"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:texteditor="using:DevTools.Common.UI.Controls.TextEditor"
-    xmlns:controls="using:DevTools.Common.UI.Controls"
-    xmlns:converters="using:DevTools.Common.UI.Converters"
     xmlns:formattedtextblock="using:DevTools.Common.UI.Controls.FormattedTextBlock"
+    xmlns:texteditor="using:DevTools.Common.UI.Controls.TextEditor"
+    xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
     NavigationCacheMode="Required">
-    <Page.Resources>
-        <converters:BooleanToGridLengthConverter x:Key="BooleanToGridLengthConverter" GridLengthOnTrue="*" GridLengthOnFalse="Auto"/>
-    </Page.Resources>
 
     <Grid Margin="0,0,0,16">
         <Grid.ChildrenTransitions>
@@ -23,44 +18,59 @@
         </Grid.ChildrenTransitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="{x:Bind ExandableInput.IsExpanded, Mode=OneWay, Converter={StaticResource BooleanToGridLengthConverter}}"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition MinHeight="100"/>
+            <RowDefinition Height="16"/>
+            <RowDefinition MinHeight="100"/>
         </Grid.RowDefinitions>
 
-        <controls:ExpandableSettingControl
-            x:Name="ExandableInput"
-            Grid.Row="0"
-            VerticalAlignment="Stretch"
-            VerticalContentAlignment="Stretch"
-            IsExpanded="True"
-            Title="{x:Bind ViewModel.Strings.Inputs}">
-            <controls:ExpandableSettingControl.ExpandableContent>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="100"/>
+                <ColumnDefinition Width="16"/>
+                <ColumnDefinition MinWidth="100"/>
+            </Grid.ColumnDefinitions>
 
-                    <texteditor:TextEditor
-                        Grid.Column="0"
-                        Margin="0,0,6,0"
-                        SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
-                        Header="{x:Bind ViewModel.Strings.LeftText}"
-                        Text="{x:Bind ViewModel.OldText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <texteditor:TextEditor
+                Grid.Column="0"
+                SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
+                Header="{x:Bind ViewModel.Strings.LeftText}"
+                Text="{x:Bind ViewModel.OldText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                    <texteditor:TextEditor
-                        Grid.Column="1"
-                        Margin="6,0,0,0"
-                        SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
-                        Header="{x:Bind ViewModel.Strings.RightText}"
-                        Text="{x:Bind ViewModel.NewText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                </Grid>
-            </controls:ExpandableSettingControl.ExpandableContent>
-        </controls:ExpandableSettingControl>
+            <toolkit:GridSplitter
+                Grid.Column="1"
+                Width="16"
+                Margin="0,27,0,0"
+                ResizeBehavior="BasedOnAlignment"
+                ResizeDirection="Auto">
+                <toolkit:GridSplitter.Element>
+                    <FontIcon
+                        Glyph="&#xFD55;"
+                        FontSize="13"/>
+                </toolkit:GridSplitter.Element>
+            </toolkit:GridSplitter>
+
+            <texteditor:TextEditor
+                Grid.Column="2"
+                SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
+                Header="{x:Bind ViewModel.Strings.RightText}"
+                Text="{x:Bind ViewModel.NewText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </Grid>
+
+        <toolkit:GridSplitter
+            Grid.Row="1"
+            Height="16"
+            ResizeBehavior="BasedOnAlignment"
+            ResizeDirection="Auto">
+            <toolkit:GridSplitter.Element>
+                <FontIcon
+                    Glyph="&#xFD52;"
+                    FontSize="13"/>
+            </toolkit:GridSplitter.Element>
+        </toolkit:GridSplitter>
 
         <formattedtextblock:FormattedTextBlock
             x:Name="OuputTextEditor"
-            Grid.Row="1"
+            Grid.Row="2"
             Header="{x:Bind ViewModel.Strings.Difference}"
             SettingsProvider="{x:Bind ViewModel.SettingsProvider}"/>
     </Grid>

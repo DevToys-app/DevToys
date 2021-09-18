@@ -171,6 +171,11 @@ namespace DevTools.Common
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Common/Common");
 
         /// <summary>
+        /// Gets the resource Clear.
+        /// </summary>
+        public string Clear => _resources.GetString("Clear");
+
+        /// <summary>
         /// Gets the resource Copy.
         /// </summary>
         public string Copy => _resources.GetString("Copy");
@@ -419,11 +424,6 @@ namespace DevTools.Common
         /// Gets the resource DisplayName.
         /// </summary>
         public string DisplayName => _resources.GetString("DisplayName");
-
-        /// <summary>
-        /// Gets the resource Inputs.
-        /// </summary>
-        public string Inputs => _resources.GetString("Inputs");
 
         /// <summary>
         /// Gets the resource LeftText.

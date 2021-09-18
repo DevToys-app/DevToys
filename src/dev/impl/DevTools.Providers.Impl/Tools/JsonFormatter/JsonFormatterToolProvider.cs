@@ -3,6 +3,9 @@
 using DevTools.Common;
 using DevTools.Core.Injection;
 using DevTools.Core.Threading;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Composition;
 
 namespace DevTools.Providers.Impl.Tools.JsonFormatter
@@ -11,6 +14,7 @@ namespace DevTools.Providers.Impl.Tools.JsonFormatter
     [Name("Json Formatter")]
     [ProtocolName("jsonformat")]
     [Order(0)]
+    [NotScrollable]
     internal sealed class JsonFormatterToolProvider : ToolProviderBase, IToolProvider
     {
         private readonly IMefProvider _mefProvider;
@@ -28,13 +32,46 @@ namespace DevTools.Providers.Impl.Tools.JsonFormatter
 
         public bool CanBeTreatedByTool(string data)
         {
-            // TODO.
-            return false;
+            return IsValidJson(data);
         }
 
         public IToolViewModel CreateTool()
         {
             return _mefProvider.Import<JsonFormatterToolViewModel>();
+        }
+
+        private static bool IsValidJson(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return false;
+            }
+
+            input = input.Trim();
+
+            if ((input.StartsWith("{") && input.EndsWith("}")) //For object
+                || (input.StartsWith("[") && input.EndsWith("]"))) //For array
+            {
+                try
+                {
+                    JToken? jtoken = JToken.Parse(input);
+                    return jtoken is not null;
+                }
+                catch (JsonReaderException)
+                {
+                    // Exception in parsing json. It likely mean the text isn't a JSON.
+                    return false;
+                }
+                catch (Exception ex) //some other exception
+                {
+                    // TODO: Log this.
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

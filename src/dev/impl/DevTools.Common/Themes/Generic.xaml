@@ -3,7 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:DevTools.Common.UI.Controls"
     xmlns:textEditor="using:DevTools.Common.UI.Controls.TextEditor"
-    xmlns:common="using:DevTools.Common">
+    xmlns:common="using:DevTools.Common"
+    xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls">
 
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Light">
@@ -33,6 +34,37 @@
     <Style TargetType="ToggleSwitch">
         <Setter Property="OnContent" Value="{Binding Instance.Common.ToggleSwitchOn, Mode=OneTime, Source={StaticResource LanguageManager}}"/>
         <Setter Property="OffContent" Value="{Binding Instance.Common.ToggleSwitchOff, Mode=OneTime, Source={StaticResource LanguageManager}}"/>
+    </Style>
+
+    <Style TargetType="toolkit:GridSplitter">
+        <Setter Property="GripperForeground" Value="{ThemeResource ButtonForeground}"/>
+        <Setter Property="Foreground" Value="{ThemeResource ButtonForeground}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="toolkit:GridSplitter">
+                    <Grid x:Name="RootGrid" Background="{TemplateBinding Background}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="GridSplitterStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Target="RootGrid.Background" Value="{ThemeResource ButtonBackgroundPointerOver}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Target="RootGrid.Background" Value="{ThemeResource ButtonBackgroundPressed}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <ContentPresenter Content="{TemplateBinding Element}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style TargetType="textEditor:TextEditor">
@@ -120,6 +152,7 @@
                             x:Name="HeaderContentPresenter"
                             ContentTemplate="{TemplateBinding HeaderTemplate}"
                             Content="{TemplateBinding Header}"
+                            FontFamily="{ThemeResource ContentControlThemeFontFamily}"
                             FontWeight="Normal"
                             Foreground="{ThemeResource TextControlHeaderForeground}"
                             Margin="{ThemeResource RichEditBoxTopHeaderMargin}"
