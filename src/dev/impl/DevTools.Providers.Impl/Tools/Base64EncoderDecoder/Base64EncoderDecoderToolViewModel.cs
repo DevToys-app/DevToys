@@ -4,8 +4,10 @@ using DevTools.Common;
 using DevTools.Core.Threading;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using System;
+using System.Collections.Generic;
 using System.Composition;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
 {
@@ -19,7 +21,9 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
         private string? _outputValue;
         private string _encodingMode = DefaultEncoding;
         private string _conversionMode = DefaultConversion;
+        private bool _conversionInProgress;
         private readonly IThread _thread;
+        private readonly Queue<string> _conversionQueue = new();
 
         public Type View { get; } = typeof(Base64EncoderDecoderToolPage);
 
@@ -35,16 +39,8 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
             {
                 _thread.ThrowIfNotOnUIThread();
                 _inputValue = value;
-
-                if (string.Equals(ConversionMode, DefaultConversion, StringComparison.Ordinal))
-                {
-                    OutputValue = EncodeBase64Data(value);
-                }
-                else
-                {
-                    OutputValue = DecodeBase64Data(value);
-                }
                 OnPropertyChanged();
+                QueueConversionCalculation();
             }
         }
 
@@ -54,12 +50,7 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
         internal string? OutputValue
         {
             get => _outputValue;
-            set
-            {
-                _thread.ThrowIfNotOnUIThread();
-                _outputValue = value;
-                OnPropertyChanged();
-            }
+            private set => SetProperty(ref _outputValue, value);
         }
 
         /// <summary>
@@ -97,12 +88,54 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
             _thread = thread;
         }
 
-        public string EncodeBase64Data(string? data)
+        private void QueueConversionCalculation()
+        {
+            _conversionQueue.Enqueue(InputValue ?? string.Empty);
+            TreatQueueAsync().Forget();
+        }
+
+        private async Task TreatQueueAsync()
+        {
+            if (_conversionInProgress)
+            {
+                return;
+            }
+
+            _conversionInProgress = true;
+
+            await TaskScheduler.Default;
+
+            while (_conversionQueue.TryDequeue(out string text))
+            {
+                Task<string>? conversionResult = null;
+                if (string.Equals(ConversionMode, DefaultConversion, StringComparison.Ordinal))
+                {
+                    conversionResult = EncodeBase64DataAsync(text);
+                }
+                else
+                {
+                    conversionResult = DecodeBase64DataAsync(text);
+                }
+
+                await Task.WhenAll(conversionResult).ConfigureAwait(false);
+
+                _thread.RunOnUIThreadAsync(ThreadPriority.Low, () =>
+                {
+                    OutputValue = conversionResult.Result;
+                }).ForgetSafely();
+            }
+
+            _conversionInProgress = false;
+        }
+
+        private async Task<string> EncodeBase64DataAsync(string? data)
         {
             if (string.IsNullOrWhiteSpace(data))
             {
                 return string.Empty;
             }
+
+            await TaskScheduler.Default;
 
             string? encoded;
 
@@ -120,13 +153,14 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
             return encoded;
         }
 
-        public string DecodeBase64Data(string? data)
+        private async Task<string> DecodeBase64DataAsync(string? data)
         {
             if (string.IsNullOrWhiteSpace(data))
             {
                 return string.Empty;
             }
 
+            await TaskScheduler.Default;
             string? decoded;
 
             try

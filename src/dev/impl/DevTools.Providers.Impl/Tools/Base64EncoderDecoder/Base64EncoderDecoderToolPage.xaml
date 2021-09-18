@@ -7,18 +7,8 @@
     xmlns:controls="using:DevTools.Common.UI.Controls"
     mc:Ignorable="d"
     NavigationCacheMode="Required">
-    <Page.Resources>
-        <Style x:Key="SubTitleTextBlock" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="14" />
-            <Setter Property="FontWeight" Value="Medium" />
-            <Setter Property="Margin" Value="0,12,0,0" />
-        </Style>
-    </Page.Resources>
 
-    <Grid RowSpacing="4" 
-          VerticalAlignment="Top"
-          Height="Auto"
-          Canvas.ZIndex="1">
+    <Grid RowSpacing="4" Margin="0,0,0,16">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -57,26 +47,18 @@
             </controls:ExpandableSettingControl>
         </StackPanel>
 
-        <StackPanel Spacing="4" Grid.Row="1" >
-            <!--<TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.InputTitle}" />-->
-            <TextBox Header="{x:Bind ViewModel.Strings.InputTitle}" x:Name="InputTextBox" 
-                 TextWrapping="Wrap" 
-                 AcceptsReturn="True" 
-                 IsSpellCheckEnabled="False" 
-                 Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                 />
-        </StackPanel>
+        <controls:CustomTextBox
+            Grid.Row="1"
+            AcceptsReturn="True"
+            Header="{x:Bind ViewModel.Strings.InputTitle}"
+            Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <StackPanel Spacing="4" Grid.Row="3" >
-            <!--<TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.OutputTitle}" />-->
-            <TextBox Header="{x:Bind ViewModel.Strings.OutputTitle}" x:Name="OutputTextBox" 
-                 TextWrapping="Wrap" 
-                 AcceptsReturn="False" 
-                 IsSpellCheckEnabled="False" 
-                 IsReadOnly="True"
-                 Text="{x:Bind ViewModel.OutputValue, Mode=OneWay}"
-                 />
-        </StackPanel>
+        <controls:CustomTextBox
+            Grid.Row="2"
+            IsReadOnly="True"
+            AcceptsReturn="True"
+            Header="{x:Bind ViewModel.Strings.OutputTitle}"
+            Text="{x:Bind ViewModel.OutputValue, Mode=OneWay}"/>
 
     </Grid>
 </Page>

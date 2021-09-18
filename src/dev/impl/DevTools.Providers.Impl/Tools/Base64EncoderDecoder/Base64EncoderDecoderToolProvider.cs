@@ -14,6 +14,7 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
     [Name("Base64 Encoder/Decoder")]
     [ProtocolName("base64")]
     [Order(0)]
+    [NotScrollable]
     internal sealed class Base64EncoderDecoderToolProvider : ToolProviderBase, IToolProvider
     {
         public string DisplayName => LanguageManager.Instance.Base64EncoderDecoder.DisplayName;
@@ -36,8 +37,10 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
                 return false;
             }
 
-            var trimmedData = data.Trim();
-            return IsBase64DataStrict(trimmedData);
+            string? trimmedData = data.Trim();
+            bool isBase64 = IsBase64DataStrict(trimmedData);
+
+            return isBase64;
         }
 
         public IToolViewModel CreateTool()
