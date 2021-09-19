@@ -25,9 +25,12 @@ namespace DevTools.Providers
             set
             {
                 _matchedSpans = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AnyMatchedSpan)));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(MatchedSpans)));
             }
         }
+
+        public bool AnyMatchedSpan => MatchedSpans.Length > 0;
 
         /// <summary>
         /// Gets the metadata of the tool provider.

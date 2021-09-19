@@ -18,7 +18,7 @@ namespace DevTools.Impl.Views.Settings
     [Export(typeof(IToolProvider))]
     [Name("Settings")]
     [ProtocolName("settings")]
-    [CompactOverlaySize(width: 450, height: 300)]
+    [CompactOverlaySize(width: 400, height: 500)]
     [IsFooterItem]
     internal sealed class SettingsToolProvider : ObservableRecipient, IToolProvider
     {

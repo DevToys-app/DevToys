@@ -12,6 +12,8 @@
     d:DesignWidth="200">
     <UserControl.Resources>
         <common:LanguageManager x:Key="LanguageManager"/>
+
+        <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
         <converters:BooleanToTextWrappingConverter x:Key="BooleanToTextWrappingConverter" TextWrappingOnTrue="Wrap" TextWrappingOnFalse="NoWrap"/>
     </UserControl.Resources>
 
@@ -87,7 +89,7 @@
         </StackPanel>
         <TextBox
             x:Name="TextBox"
-            x:DeferLoadStrategy="Lazy"
+            x:Load="{x:Bind IsRichTextEdit, Converter={StaticResource InvertedBooleanConverter}}"
             Grid.Row="1"
             Grid.Column="0"
             Grid.ColumnSpan="2"
@@ -96,11 +98,10 @@
             TextWrapping="{x:Bind AcceptsReturn, Mode=OneWay, Converter={StaticResource BooleanToTextWrappingConverter}}"
             IsReadOnly="{x:Bind IsReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             AcceptsReturn="{x:Bind AcceptsReturn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            Text="{x:Bind Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            Visibility="Collapsed"/>
+            Text="{x:Bind Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <RichEditBox
             x:Name="RichEditBox"
-            x:DeferLoadStrategy="Lazy"
+            x:Load="{x:Bind IsRichTextEdit}"
             Grid.Row="1"
             Grid.Column="0"
             Grid.ColumnSpan="2"
@@ -108,8 +109,7 @@
             IsSpellCheckEnabled="False"
             TextWrapping="{x:Bind AcceptsReturn, Mode=OneWay, Converter={StaticResource BooleanToTextWrappingConverter}}"
             IsReadOnly="{x:Bind IsReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            AcceptsReturn="{x:Bind AcceptsReturn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            Visibility="Collapsed">
+            AcceptsReturn="{x:Bind AcceptsReturn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <RichEditBox.ContextFlyout>
                 <MenuFlyout>
                     <MenuFlyoutItem

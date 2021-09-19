@@ -24,6 +24,7 @@ using Windows.UI.Xaml.Controls;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Windows.UI.Xaml;
 using DevTools.Core.Settings;
+using ThreadPriority = DevTools.Core.Threading.ThreadPriority;
 
 namespace DevTools.Impl.ViewModels
 {
@@ -199,8 +200,6 @@ namespace DevTools.Impl.ViewModels
             OpenToolInNewWindowCommand = new AsyncRelayCommand<ToolProviderMetadata>(ExecuteOpenToolInNewWindowCommandAsync);
             ChangeViewModeCommand = new AsyncRelayCommand<ApplicationViewMode>(ExecuteChangeViewModeCommandAsync);
 
-            IsInCompactOverlayMode = ApplicationView.GetForCurrentView().ViewMode == ApplicationViewMode.CompactOverlay;
-
             _firstUpdateMenuTask = UpdateMenuAsync(searchQuery: string.Empty);
 
             Window.Current.Activated += Window_Activated;
@@ -288,10 +287,12 @@ namespace DevTools.Impl.ViewModels
                 }
             }
 
-            await _thread.RunOnUIThreadAsync(() =>
-            {
-                SelectedMenuItem = toolProviderViewDataToSelect ?? ToolsMenuItems.FirstOrDefault() ?? FooterMenuItems.FirstOrDefault();
-            });
+            await _thread.RunOnUIThreadAsync(
+                ThreadPriority.Low,
+                () =>
+                {
+                    SelectedMenuItem = toolProviderViewDataToSelect ?? ToolsMenuItems.FirstOrDefault() ?? FooterMenuItems.FirstOrDefault();
+                });
         }
 
         private async Task UpdateMenuAsync(string? searchQuery)
@@ -348,25 +349,27 @@ namespace DevTools.Impl.ViewModels
                 }
             }
 
-            await _thread.RunOnUIThreadAsync(() =>
-            {
-                var oldSelectedItem = SelectedMenuItem;
-                ToolsMenuItems.Clear();
-                SelectedMenuItem = null;
-
-                foreach (var item in newToolsMenuitems)
+            await _thread.RunOnUIThreadAsync(
+                ThreadPriority.Low,
+                () =>
                 {
-                    if (item.Value is not null)
+                    var oldSelectedItem = SelectedMenuItem;
+                    ToolsMenuItems.Clear();
+                    SelectedMenuItem = null;
+
+                    foreach (var item in newToolsMenuitems)
                     {
-                        item.Key.MatchedSpans = item.Value;
+                        if (item.Value is not null)
+                        {
+                            item.Key.MatchedSpans = item.Value;
+                        }
                     }
-                }
 
-                ToolsMenuItems.Update(newToolsMenuitems.Keys);
-                footerMenuItems.ForEach(item => FooterMenuItems.Add(item));
+                    ToolsMenuItems.Update(newToolsMenuitems.Keys);
+                    footerMenuItems.ForEach(item => FooterMenuItems.Add(item));
 
-                SelectedMenuItem = oldSelectedItem;
-            });
+                    SelectedMenuItem = oldSelectedItem;
+                });
         }
 
         private async Task UpdateRecommendedToolsAsync()
@@ -423,13 +426,15 @@ namespace DevTools.Impl.ViewModels
                     // The recommended tool is displayed in the top menu.
                     // The recommended tool is different that the ones that were recommended before (if any...).
                     // Let's select automatically this tool.
-                    await _thread.RunOnUIThreadAsync(() =>
-                    {
-                        if (!IsInCompactOverlayMode && _allowSelectAutomaticallyRecommendedTool)
+                    await _thread.RunOnUIThreadAsync(
+                        ThreadPriority.High,
+                        () =>
                         {
-                            SelectedMenuItem = recommendedTools[0];
-                        }
-                    });
+                            if (!IsInCompactOverlayMode && _allowSelectAutomaticallyRecommendedTool)
+                            {
+                                SelectedMenuItem = recommendedTools[0];
+                            }
+                        });
                 }
             }
         }
