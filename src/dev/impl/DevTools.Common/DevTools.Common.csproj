@@ -98,6 +98,9 @@
     <Compile Include="UI\Controls\TextEditor\KeyboardCommandHandler.cs" />
     <Compile Include="UI\Controls\TextEditor\RtfBuilder.cs" />
     <Compile Include="UI\Controls\TextEditor\RtfFormat.cs" />
+    <Compile Include="UI\Controls\TextEditor\TextEditor.xaml.cs">
+      <DependentUpon>TextEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Controls\TextEditor\TextFormatter.cs" />
     <Compile Include="UI\Converters\BooleanToTextWrappingConverter.cs" />
     <Compile Include="UI\Converters\BooleanToScrollBarVisibilityConverter.cs" />
@@ -110,7 +113,7 @@
     <Compile Include="UI\Controls\ExpandableSettingHeaderControl.xaml.cs">
       <DependentUpon>ExpandableSettingHeaderControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Controls\TextEditor\TextEditor.cs" />
+    <Compile Include="UI\Controls\TextEditor\TextEditorCore.cs" />
     <Compile Include="UI\Converters\EnumToBooleanConverter.cs" />
     <Compile Include="UI\Converters\EnumToThicknessConverter.cs" />
     <Compile Include="UI\Converters\BooleanToVisibilityConverter.cs" />
@@ -163,6 +166,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Controls\FormattedTextBlock\FormattedTextBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Controls\TextEditor\TextEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

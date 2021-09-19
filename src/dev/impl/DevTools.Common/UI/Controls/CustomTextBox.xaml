@@ -23,6 +23,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <ContentPresenter
             x:Name="HeaderContentPresenter"
@@ -36,11 +37,60 @@
             TextWrapping="Wrap"
             VerticalAlignment="Bottom"
             Visibility="Collapsed"/>
+        <StackPanel
+            Grid.Row="0"
+            Grid.Column="1"
+            Orientation="Horizontal"
+            HorizontalAlignment="Right"
+            Spacing="8"
+            Margin="0,0,0,8">
+            <Button
+                x:Name="PasteButton"
+                x:DeferLoadStrategy="Lazy"
+                Visibility="Collapsed"
+                TabIndex="0"
+                Click="PasteButton_Click">
+                <StackPanel Orientation="Horizontal" Spacing="4">
+                    <FontIcon Glyph="&#xF2D5;"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Instance.Common.Paste, Mode=OneTime, Source={StaticResource LanguageManager}}"/>
+                </StackPanel>
+            </Button>
+            <Button
+                x:Name="OpenFileButton"
+                x:DeferLoadStrategy="Lazy"
+                Visibility="Collapsed"
+                TabIndex="0"
+                ToolTipService.ToolTip="{Binding Instance.Common.OpenFile, Mode=OneTime, Source={StaticResource LanguageManager}}"
+                Click="OpenFileButton_Click">
+                <FontIcon Glyph="&#xF378;"/>
+            </Button>
+            <Button
+                x:Name="ClearButton"
+                x:DeferLoadStrategy="Lazy"
+                Visibility="Collapsed"
+                TabIndex="0"
+                ToolTipService.ToolTip="{Binding Instance.Common.Clear, Mode=OneTime, Source={StaticResource LanguageManager}}"
+                Click="ClearButton_Click">
+                <FontIcon Glyph="&#xF369;"/>
+            </Button>
+            <Button
+                x:Name="CopyButton"
+                x:DeferLoadStrategy="Lazy"
+                TabIndex="2"
+                Visibility="Collapsed"
+                Click="CopyButton_Click">
+                <StackPanel Orientation="Horizontal" Spacing="4">
+                    <FontIcon Glyph="&#xF32B;"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Instance.Common.Copy, Mode=OneTime, Source={StaticResource LanguageManager}}"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
         <TextBox
             x:Name="TextBox"
             x:DeferLoadStrategy="Lazy"
             Grid.Row="1"
             Grid.Column="0"
+            Grid.ColumnSpan="2"
             TabIndex="1"
             IsSpellCheckEnabled="False"
             TextWrapping="{x:Bind AcceptsReturn, Mode=OneWay, Converter={StaticResource BooleanToTextWrappingConverter}}"
@@ -53,6 +103,7 @@
             x:DeferLoadStrategy="Lazy"
             Grid.Row="1"
             Grid.Column="0"
+            Grid.ColumnSpan="2"
             TabIndex="1"
             IsSpellCheckEnabled="False"
             TextWrapping="{x:Bind AcceptsReturn, Mode=OneWay, Converter={StaticResource BooleanToTextWrappingConverter}}"
@@ -133,59 +184,11 @@
                 </MenuFlyout>
             </RichEditBox.ContextFlyout>
         </RichEditBox>
-        <StackPanel
-            Grid.Row="0"
-            Grid.Column="0"
-            Orientation="Horizontal"
-            HorizontalAlignment="Right"
-            Spacing="8"
-            Margin="0,0,0,8">
-            <Button
-                x:Name="PasteButton"
-                x:DeferLoadStrategy="Lazy"
-                Visibility="Collapsed"
-                TabIndex="0"
-                Click="PasteButton_Click">
-                <StackPanel Orientation="Horizontal" Spacing="4">
-                    <FontIcon Glyph="&#xF2D5;"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Binding Instance.Common.Paste, Mode=OneTime, Source={StaticResource LanguageManager}}"/>
-                </StackPanel>
-            </Button>
-            <Button
-                x:Name="OpenFileButton"
-                x:DeferLoadStrategy="Lazy"
-                Visibility="Collapsed"
-                TabIndex="0"
-                ToolTipService.ToolTip="{Binding Instance.Common.OpenFile, Mode=OneTime, Source={StaticResource LanguageManager}}"
-                Click="OpenFileButton_Click">
-                <FontIcon Glyph="&#xF378;"/>
-            </Button>
-            <Button
-                x:Name="ClearButton"
-                x:DeferLoadStrategy="Lazy"
-                Visibility="Collapsed"
-                TabIndex="0"
-                ToolTipService.ToolTip="{Binding Instance.Common.Clear, Mode=OneTime, Source={StaticResource LanguageManager}}"
-                Click="ClearButton_Click">
-                <FontIcon Glyph="&#xF369;"/>
-            </Button>
-            <Button
-                x:Name="CopyButton"
-                x:DeferLoadStrategy="Lazy"
-                TabIndex="2"
-                Visibility="Collapsed"
-                Click="CopyButton_Click">
-                <StackPanel Orientation="Horizontal" Spacing="4">
-                    <FontIcon Glyph="&#xF32B;"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Binding Instance.Common.Copy, Mode=OneTime, Source={StaticResource LanguageManager}}"/>
-                </StackPanel>
-            </Button>
-        </StackPanel>
         <Button
             x:Name="InlinedCopyButton"
             x:DeferLoadStrategy="Lazy"
             Grid.Row="1"
-            Grid.Column="1"
+            Grid.Column="2"
             TabIndex="2"
             Margin="8,0,0,0"
             Visibility="Collapsed"
