@@ -36,7 +36,7 @@ namespace DevTools.Providers.Impl.Tools.TextDiff
             {
                 SetProperty(ref _oldText, value, broadcast: true);
                 QueueComparison();
-                FormattedTextBlock?.SetInlineTextDiff(value, NewText, lineDiff: false);
+                OutputTextBlock?.SetInlineTextDiff(value, NewText, lineDiff: false);
             }
         }
 
@@ -47,11 +47,11 @@ namespace DevTools.Providers.Impl.Tools.TextDiff
             {
                 SetProperty(ref _newText, value, broadcast: true);
                 QueueComparison();
-                FormattedTextBlock?.SetInlineTextDiff(OldText, value, lineDiff: false);
+                OutputTextBlock?.SetInlineTextDiff(OldText, value, lineDiff: false);
             }
         }
 
-        internal IFormattedTextBlock? FormattedTextBlock { private get; set; }
+        internal IFormattedTextBlock? OutputTextBlock { private get; set; }
 
         [ImportingConstructor]
         public TextDiffToolViewModel(ISettingsProvider settingsProvider, IThread thread)
@@ -75,7 +75,7 @@ namespace DevTools.Providers.Impl.Tools.TextDiff
 
             _comparisonInProgress = true;
 
-            Assumes.NotNull(FormattedTextBlock, nameof(FormattedTextBlock));
+            Assumes.NotNull(OutputTextBlock, nameof(OutputTextBlock));
 
             await TaskScheduler.Default;
 
