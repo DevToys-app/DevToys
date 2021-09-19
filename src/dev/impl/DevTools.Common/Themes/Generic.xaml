@@ -67,7 +67,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="textEditor:TextEditor">
+    <Style TargetType="textEditor:TextEditorCore">
         <Setter Property="Foreground" Value="{ThemeResource TextEditorForeground}"/>
         <Setter Property="Background" Value="{ThemeResource TextControlBackground}"/>
         <Setter Property="SelectionHighlightColor" Value="{ThemeResource TextControlSelectionHighlightColor}"/>
@@ -88,7 +88,6 @@
                 <ControlTemplate TargetType="RichEditBox">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
@@ -148,20 +147,6 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <ContentPresenter
-                            x:Name="HeaderContentPresenter"
-                            ContentTemplate="{TemplateBinding HeaderTemplate}"
-                            Content="{TemplateBinding Header}"
-                            FontFamily="{ThemeResource ContentControlThemeFontFamily}"
-                            FontWeight="Normal"
-                            Foreground="{ThemeResource TextControlHeaderForeground}"
-                            Margin="{ThemeResource RichEditBoxTopHeaderMargin}"
-                            Grid.Row="0"
-                            TextWrapping="Wrap"
-                            VerticalAlignment="Top"
-                            Visibility="Collapsed"
-                            x:DeferLoadStrategy="Lazy">
-                        </ContentPresenter>
                         <Border
                             x:Name="BorderElement"
                             Background="{TemplateBinding Background}"
@@ -170,8 +155,8 @@
                             CornerRadius="4"
                             MinHeight="{ThemeResource TextControlThemeMinHeight}"
                             MinWidth="{ThemeResource TextControlThemeMinWidth}"
-                            Grid.Row="1"/>
-                        <Grid x:Name="RootGrid" Grid.Row="1">
+                            Grid.Row="0"/>
+                        <Grid x:Name="RootGrid" Grid.Row="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition x:Name="LineNumberColumnDefinition" Width="Auto"/>
                                 <ColumnDefinition x:Name="TextEditorColumnDefinition" Width="*"/>
@@ -204,6 +189,7 @@
                                     IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
                                     IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
                                     IsTabStop="False"
+                                    TabIndex="1"
                                     IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
                                     Margin="{TemplateBinding BorderThickness}"
                                     Padding="{TemplateBinding Padding}"
@@ -218,7 +204,7 @@
                             IsHitTestVisible="False"
                             Margin="{TemplateBinding BorderThickness}"
                             Padding="{TemplateBinding Padding}"
-                            Grid.Row="1"
+                            Grid.Row="0"
                             Text="{TemplateBinding PlaceholderText}"
                             TextWrapping="{TemplateBinding TextWrapping}"
                             TextAlignment="{TemplateBinding TextAlignment}"
@@ -228,7 +214,7 @@
                             AutomationProperties.AccessibilityView="Raw"
                             Content="{TemplateBinding Description}"
                             Foreground="{ThemeResource SystemControlDescriptionTextForegroundBrush}"
-                            Grid.Row="2"
+                            Grid.Row="1"
                             x:Load="False"/>
                     </Grid>
                 </ControlTemplate>

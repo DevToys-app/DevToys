@@ -30,7 +30,7 @@ namespace DevTools.Common.UI.Controls.TextEditor
     [TemplatePart(Name = LineHighlighterAndIndicatorCanvasName, Type = typeof(Canvas))]
     [TemplatePart(Name = LineHighlighterName, Type = typeof(Grid))]
     [TemplatePart(Name = LineIndicatorName, Type = typeof(Border))]
-    public sealed class TextEditor : RichEditBox
+    public sealed class TextEditorCore : RichEditBox
     {
         private const string ContentElementName = "ContentElement";
         private const string RootGridName = "RootGrid";
@@ -75,7 +75,7 @@ namespace DevTools.Common.UI.Controls.TextEditor
             = DependencyProperty.Register(
                 nameof(SettingsProvider),
                 typeof(ISettingsProvider),
-                typeof(TextEditor),
+                typeof(TextEditorCore),
                 new PropertyMetadata(null, OnSettingsProviderPropertyChangedCallback));
 
         public ISettingsProvider? SettingsProvider
@@ -88,7 +88,7 @@ namespace DevTools.Common.UI.Controls.TextEditor
             = DependencyProperty.Register(
                 nameof(Text),
                 typeof(string),
-                typeof(TextEditor),
+                typeof(TextEditorCore),
                 new PropertyMetadata(null, OnTextPropertyChangedCallback));
 
         public string? Text
@@ -97,9 +97,9 @@ namespace DevTools.Common.UI.Controls.TextEditor
             set => SetValue(TextProperty, value);
         }
 
-        public TextEditor()
+        public TextEditorCore()
         {
-            DefaultStyleKey = typeof(TextEditor);
+            DefaultStyleKey = typeof(TextEditorCore);
 
             DataContext = this;
             IsSpellCheckEnabled = false;
@@ -156,7 +156,7 @@ namespace DevTools.Common.UI.Controls.TextEditor
             = DependencyProperty.Register(
                 nameof(CutCommand),
                 typeof(IRelayCommand),
-                typeof(TextEditor),
+                typeof(TextEditorCore),
                 new PropertyMetadata(null));
 
         public IRelayCommand CutCommand
@@ -183,7 +183,7 @@ namespace DevTools.Common.UI.Controls.TextEditor
             = DependencyProperty.Register(
                 nameof(CopyCommand),
                 typeof(IRelayCommand),
-                typeof(TextEditor),
+                typeof(TextEditorCore),
                 new PropertyMetadata(null));
 
         public IRelayCommand CopyCommand
@@ -210,7 +210,7 @@ namespace DevTools.Common.UI.Controls.TextEditor
             = DependencyProperty.Register(
                 nameof(PasteCommand),
                 typeof(IAsyncRelayCommand),
-                typeof(TextEditor),
+                typeof(TextEditorCore),
                 new PropertyMetadata(null));
 
         public IAsyncRelayCommand PasteCommand
@@ -237,7 +237,7 @@ namespace DevTools.Common.UI.Controls.TextEditor
             = DependencyProperty.Register(
                 nameof(DeleteCommand),
                 typeof(IRelayCommand),
-                typeof(TextEditor),
+                typeof(TextEditorCore),
                 new PropertyMetadata(null));
 
         public IRelayCommand DeleteCommand
@@ -266,7 +266,7 @@ namespace DevTools.Common.UI.Controls.TextEditor
             = DependencyProperty.Register(
                 nameof(UndoCommand),
                 typeof(IRelayCommand),
-                typeof(TextEditor),
+                typeof(TextEditorCore),
                 new PropertyMetadata(null));
 
         public IRelayCommand UndoCommand
@@ -293,7 +293,7 @@ namespace DevTools.Common.UI.Controls.TextEditor
             = DependencyProperty.Register(
                 nameof(RedoCommand),
                 typeof(IRelayCommand),
-                typeof(TextEditor),
+                typeof(TextEditorCore),
                 new PropertyMetadata(null));
 
         public IRelayCommand RedoCommand
@@ -320,7 +320,7 @@ namespace DevTools.Common.UI.Controls.TextEditor
             = DependencyProperty.Register(
                 nameof(SelectAllCommand),
                 typeof(IRelayCommand),
-                typeof(TextEditor),
+                typeof(TextEditorCore),
                 new PropertyMetadata(null));
 
         public IRelayCommand SelectAllCommand
@@ -1017,7 +1017,7 @@ namespace DevTools.Common.UI.Controls.TextEditor
             ISettingsProvider? settingProvider = e.NewValue as ISettingsProvider;
             if (settingProvider is not null)
             {
-                var textEditorCore = (TextEditor)d;
+                var textEditorCore = (TextEditorCore)d;
                 settingProvider.SettingChanged += textEditorCore.SettingProvider_SettingChanged;
                 textEditorCore.ApplySettings();
             }
@@ -1026,7 +1026,7 @@ namespace DevTools.Common.UI.Controls.TextEditor
         private static void OnTextPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             string? text = e.NewValue as string;
-            var textEditorCore = (TextEditor)d;
+            var textEditorCore = (TextEditorCore)d;
 
 
             if (!textEditorCore._isTextPendingUpdate)

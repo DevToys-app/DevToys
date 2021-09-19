@@ -46,7 +46,9 @@
             </Grid.ColumnDefinitions>
 
             <texteditor:TextEditor
-                Grid.Column="0"/>
+                Grid.Column="0"
+                Header="Input"
+                Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
             <toolkit:GridSplitter
                 Grid.Column="1"
@@ -62,7 +64,8 @@
             </toolkit:GridSplitter>
 
             <formattedtextblock:FormattedTextBlock
-                Grid.Column="2"/>
+                Grid.Column="2"
+                Header="Output"/>
         </Grid>
     </Grid>
 </Page>

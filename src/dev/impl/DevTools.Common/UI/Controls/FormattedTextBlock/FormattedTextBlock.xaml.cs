@@ -11,6 +11,7 @@ using Microsoft.Toolkit.Uwp.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Xaml;
@@ -502,6 +503,17 @@ namespace DevTools.Common.UI.Controls.FormattedTextBlock
         private void OnRootGridSizeChanged(object sender, SizeChangedEventArgs _)
         {
             ResetRootGridClipping();
+        }
+
+        private void CopyButton_Click(object sender, RoutedEventArgs e)
+        {
+            var data = new DataPackage
+            {
+                RequestedOperation = DataPackageOperation.Copy
+            };
+            data.SetText(_document);
+
+            Clipboard.SetContent(data);
         }
 
         private static void OnSettingsProviderPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)

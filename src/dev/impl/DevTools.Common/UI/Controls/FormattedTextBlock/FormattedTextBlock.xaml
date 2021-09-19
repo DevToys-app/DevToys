@@ -14,6 +14,12 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="CommonStates">
                 <VisualState x:Name="Disabled">
@@ -58,10 +64,12 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
+
         <ContentPresenter
             x:Name="HeaderContentPresenter"
             x:DeferLoadStrategy="Lazy"
             Grid.Row="0"
+            Grid.Column="0"
             Content="{x:Bind Header}"
             Foreground="{ThemeResource TextControlHeaderForeground}"
             Margin="{ThemeResource TextBoxTopHeaderMargin}"
@@ -69,9 +77,28 @@
             TextWrapping="Wrap"
             VerticalAlignment="Bottom"
             Visibility="Collapsed"/>
+        <StackPanel
+            Grid.Row="0"
+            Grid.Column="1"
+            Orientation="Horizontal"
+            HorizontalAlignment="Right"
+            Spacing="8"
+            Margin="0,0,0,8">
+            <Button
+                x:Name="CopyButton"
+                TabIndex="2"
+                Click="CopyButton_Click">
+                <StackPanel Orientation="Horizontal" Spacing="4">
+                    <FontIcon Glyph="&#xF32B;"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Instance.Common.Copy, Mode=OneTime, Source={StaticResource LanguageManager}}"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        
         <Border
             x:Name="BorderElement"
             Grid.Row="1"
+            Grid.ColumnSpan="2"
             Background="{ThemeResource TextControlBackground}"
             BorderThickness="{ThemeResource TextControlBorderThemeThickness}"
             BorderBrush="{ThemeResource TextControlBorderBrush}"
@@ -81,6 +108,7 @@
         <ScrollViewer
             x:Name="ContentElement"
             Grid.Row="1"
+            Grid.ColumnSpan="2"
             AutomationProperties.AccessibilityView="Raw"
             HorizontalScrollBarVisibility="Auto"
             HorizontalScrollMode="Enabled"
