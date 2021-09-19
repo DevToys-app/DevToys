@@ -9,9 +9,9 @@ namespace DevTools.Core.Navigation
     {
         public IMefProvider ExportProvider { get; }
 
-        public object? Parameter { get; }
+        public object[] Parameter { get; }
 
-        public NavigationParameter(IMefProvider exportProvider, object? parameter)
+        public NavigationParameter(IMefProvider exportProvider, params object[] parameter)
         {
             ExportProvider = Arguments.NotNull(exportProvider, nameof(exportProvider));
             Parameter = parameter;

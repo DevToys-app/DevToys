@@ -7,9 +7,12 @@ namespace DevTools.Impl.Messages
     {
         internal IToolViewModel ViewModel { get; }
 
-        public NavigateToToolMessage(IToolViewModel viewModel)
+        internal string? ClipboardContentData { get; }
+
+        public NavigateToToolMessage(IToolViewModel viewModel, string? clipboardContentData)
         {
             ViewModel = Arguments.NotNull(viewModel, nameof(viewModel));
+            ClipboardContentData = clipboardContentData;
         }
     }
 }

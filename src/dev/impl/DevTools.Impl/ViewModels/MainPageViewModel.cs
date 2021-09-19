@@ -66,26 +66,7 @@ namespace DevTools.Impl.ViewModels
         internal MatchedToolProviderViewData? SelectedMenuItem
         {
             get => _selectedItem;
-            set
-            {
-                _thread.ThrowIfNotOnUIThread();
-                if (_isUpdatingSelectedItem)
-                {
-                    return;
-                }
-
-                _isUpdatingSelectedItem = true;
-                if (value is not null)
-                {
-                    _selectedItem = value;
-
-                    IToolViewModel toolViewModel = _toolProviderFactory.GetToolViewModel(_selectedItem.ToolProvider);
-                    Messenger.Send(new NavigateToToolMessage(toolViewModel));
-
-                    OnPropertyChanged(nameof(SelectedMenuItem));
-                }
-                _isUpdatingSelectedItem = false;
-            }
+            set => SetSelectedMenuItem(value, null);
         }
 
         /// <summary>
@@ -252,6 +233,25 @@ namespace DevTools.Impl.ViewModels
             });
         }
 
+        private void SetSelectedMenuItem(MatchedToolProviderViewData? value, string? clipboardContentData)
+        {
+            _thread.ThrowIfNotOnUIThread();
+            if (_isUpdatingSelectedItem)
+            {
+                return;
+            }
+
+            _isUpdatingSelectedItem = true;
+            if (value is not null)
+            {           
+                _selectedItem = value;
+                IToolViewModel toolViewModel = _toolProviderFactory.GetToolViewModel(_selectedItem.ToolProvider);
+                Messenger.Send(new NavigateToToolMessage(toolViewModel, clipboardContentData));
+                OnPropertyChanged(nameof(SelectedMenuItem));
+            }
+            _isUpdatingSelectedItem = false;
+        }
+
         private async Task UpdateMenuAsync(string? searchQuery)
         {
             await TaskScheduler.Default;
@@ -386,6 +386,7 @@ namespace DevTools.Impl.ViewModels
                         if (!IsInCompactOverlayMode && _allowSelectAutomaticallyRecommendedTool)
                         {
                             SelectedMenuItem = recommendedTools[0];
+                            SetSelectedMenuItem(recommendedTools[0], clipboardContent);
                         }
                     });
                 }

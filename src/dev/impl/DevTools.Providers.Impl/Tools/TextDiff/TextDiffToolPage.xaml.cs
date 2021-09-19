@@ -35,7 +35,7 @@ namespace DevTools.Providers.Impl.Tools.TextDiff
             var parameters = (NavigationParameter)e.Parameter;
 
             // Set the view model
-            ViewModel = (TextDiffToolViewModel)parameters.Parameter!;
+            ViewModel = (TextDiffToolViewModel)parameters.Parameter[0]!;
             DataContext = ViewModel;
 
             ViewModel.OutputTextBlock = OuputTextEditor;
