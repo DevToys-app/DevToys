@@ -153,13 +153,19 @@
                 <icore:EventTriggerBehavior EventName="DisplayModeChanged">
                     <icore:ChangePropertyAction TargetObject="{x:Bind ViewModel}" PropertyName="NavigationViewDisplayMode" Value="{x:Bind NavigationView.DisplayMode, Mode=OneWay}"/>
                 </icore:EventTriggerBehavior>
+                <icore:EventTriggerBehavior EventName="PaneClosing">
+                    <icore:ChangePropertyAction TargetObject="{x:Bind ViewModel}" PropertyName="IsNavigationViewPaneOpened" Value="False"/>
+                </icore:EventTriggerBehavior>
+                <icore:EventTriggerBehavior EventName="PaneOpening">
+                    <icore:ChangePropertyAction TargetObject="{x:Bind ViewModel}" PropertyName="IsNavigationViewPaneOpened" Value="True"/>
+                </icore:EventTriggerBehavior>
             </i:Interaction.Behaviors>
 
             <muxc:NavigationView.MenuItemTemplate>
                 <DataTemplate x:DataType="models:MatchedToolProviderViewData">
                     <muxc:NavigationViewItem
                         Icon="{x:Bind Icon.Result, Mode=OneWay}"
-                        Margin="{Binding NavigationViewDisplayMode, ConverterParameter='Compact', Converter={StaticResource NavigationViewItemMarginConverter}}">
+                        Margin="{Binding ActualNavigationViewDisplayMode, ConverterParameter='Compact', Converter={StaticResource NavigationViewItemMarginConverter}}">
                         <muxc:NavigationViewItem.ContextFlyout>
                             <MenuFlyout>
                                 <MenuFlyoutItem

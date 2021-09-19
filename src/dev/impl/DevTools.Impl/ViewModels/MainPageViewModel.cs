@@ -41,6 +41,7 @@ namespace DevTools.Impl.ViewModels
 
         private MatchedToolProviderViewData? _selectedItem;
         private NavigationViewDisplayMode _navigationViewDisplayMode;
+        private bool _isNavigationViewPaneOpened;
         private string? _searchQuery;
         private bool _isInCompactOverlayMode;
         private bool _isUpdatingSelectedItem;
@@ -134,6 +135,47 @@ namespace DevTools.Impl.ViewModels
                 _thread.ThrowIfNotOnUIThread();
                 _navigationViewDisplayMode = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(ActualNavigationViewDisplayMode));
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether the pane is opened.
+        /// </summary>
+        public bool IsNavigationViewPaneOpened // Important to keep this property Public to bind it to ChangePropertyAction in the XAML.
+        {
+            get => _isNavigationViewPaneOpened;
+            set
+            {
+                _thread.ThrowIfNotOnUIThread();
+                _isNavigationViewPaneOpened = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ActualNavigationViewDisplayMode));
+            }
+        }
+
+        /// <summary>
+        /// Gets the actual <see cref="NavigationViewDisplayMode"/> to apply to the navigation view menu items.
+        /// </summary>
+        public NavigationViewDisplayMode ActualNavigationViewDisplayMode
+        {
+            get
+            {
+                if (NavigationViewDisplayMode == NavigationViewDisplayMode.Expanded)
+                {
+                    if (IsNavigationViewPaneOpened)
+                    {
+                        return NavigationViewDisplayMode.Expanded;
+                    }
+                    else
+                    {
+                        return NavigationViewDisplayMode.Compact;
+                    }
+                }
+                else
+                {
+                    return NavigationViewDisplayMode;
+                }
             }
         }
 
