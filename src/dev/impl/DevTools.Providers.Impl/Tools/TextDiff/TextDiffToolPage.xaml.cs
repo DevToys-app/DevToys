@@ -38,7 +38,7 @@ namespace DevTools.Providers.Impl.Tools.TextDiff
             ViewModel = (TextDiffToolViewModel)parameters.Parameter!;
             DataContext = ViewModel;
 
-            ViewModel.FormattedTextBlock = OuputTextEditor;
+            ViewModel.OutputTextBlock = OuputTextEditor;
 
             base.OnNavigatedTo(e);
         }

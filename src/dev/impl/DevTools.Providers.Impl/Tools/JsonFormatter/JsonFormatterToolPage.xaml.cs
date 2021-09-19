@@ -38,6 +38,8 @@ namespace DevTools.Providers.Impl.Tools.JsonFormatter
             ViewModel = (JsonFormatterToolViewModel)parameters.Parameter!;
             DataContext = ViewModel;
 
+            ViewModel.OutputTextBlock = OutputTextBlock;
+
             base.OnNavigatedTo(e);
         }
     }

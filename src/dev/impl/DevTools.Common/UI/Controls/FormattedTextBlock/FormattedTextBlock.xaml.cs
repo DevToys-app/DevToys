@@ -78,8 +78,21 @@ namespace DevTools.Common.UI.Controls.FormattedTextBlock
 
             if (!string.IsNullOrEmpty(text))
             {
-                var formatter = new RichTextBlockFormatter(ActualTheme);
-                formatter.FormatRichTextBlock(text, language, RichTextBlock);
+                if (language is not null)
+                {
+                    var formatter = new RichTextBlockFormatter(ActualTheme);
+                    formatter.FormatRichTextBlock(text, language, RichTextBlock);
+                }
+                else
+                {
+                    var p = new Paragraph();
+                    var r = new Run()
+                    {
+                        Text = text
+                    };
+                    p.Inlines.Add(r);
+                    RichTextBlock.Blocks.Add(p);
+                }
             }
 
             ApplySettings();

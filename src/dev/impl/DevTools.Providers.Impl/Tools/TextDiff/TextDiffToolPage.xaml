@@ -39,7 +39,7 @@
             <toolkit:GridSplitter
                 Grid.Column="1"
                 Width="16"
-                Margin="0,27,0,0"
+                Margin="0,42,0,0"
                 ResizeBehavior="BasedOnAlignment"
                 ResizeDirection="Auto">
                 <toolkit:GridSplitter.Element>
