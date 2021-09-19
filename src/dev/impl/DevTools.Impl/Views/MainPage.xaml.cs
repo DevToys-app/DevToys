@@ -79,7 +79,7 @@ namespace DevTools.Impl.Views
                 message.ViewModel.View,
                 new NavigationParameter(
                     _mefProvider!,
-                    message.ViewModel),
+                    message.ViewModel, message.ClipboardContentData ?? string.Empty),
                 new EntranceNavigationTransitionInfo());
         }
     }

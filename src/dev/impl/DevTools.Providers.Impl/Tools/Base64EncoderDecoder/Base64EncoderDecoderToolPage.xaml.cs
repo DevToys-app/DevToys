@@ -35,8 +35,13 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
             var parameters = (NavigationParameter)e.Parameter;
 
             // Set the view model
-            ViewModel = (Base64EncoderDecoderToolViewModel)parameters.Parameter!;
+            ViewModel = (Base64EncoderDecoderToolViewModel)parameters.Parameter[0]!;
             DataContext = ViewModel;
+            if (!string.IsNullOrWhiteSpace((string)parameters.Parameter[1]))
+            {
+                ViewModel.ConversionMode = "Decode";
+                ViewModel.InputValue = (string)parameters.Parameter[1];
+            }
 
             base.OnNavigatedTo(e);
         }
