@@ -26,9 +26,9 @@ namespace DevTools.Common.UI.Controls
                 typeof(CustomTextBox),
                 new PropertyMetadata(null));
 
-        public object Header
+        public string? Header
         {
-            get => (object)GetValue(HeaderProperty);
+            get => (string?)GetValue(HeaderProperty);
             set => SetValue(HeaderProperty, value);
         }
 
@@ -264,7 +264,7 @@ namespace DevTools.Common.UI.Controls
         {
             if (Header is not null)
             {
-                GetHeaderContentPresenter().Visibility = Visibility.Visible;
+                GetHeaderTextBlock().Visibility = Visibility.Visible;
             }
 
             if (IsRichTextEdit)
@@ -360,9 +360,9 @@ namespace DevTools.Common.UI.Controls
             return (Button)(InlinedCopyButton ?? FindName(nameof(InlinedCopyButton)));
         }
 
-        private ContentPresenter GetHeaderContentPresenter()
+        private TextBlock GetHeaderTextBlock()
         {
-            return (ContentPresenter)(HeaderContentPresenter ?? FindName(nameof(HeaderContentPresenter)));
+            return (TextBlock)(HeaderTextBlock ?? FindName(nameof(HeaderTextBlock)));
         }
 
         private TextBox GetTextBox()
@@ -479,6 +479,18 @@ namespace DevTools.Common.UI.Controls
                     SetHighlights(_highlightedSpans);
                     _isTextPendingUpdate = false;
                 }
+            }
+        }
+
+        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (e.NewSize.Width < CommandsToolBar.ActualWidth + 100)
+            {
+                CommandsToolBar.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                CommandsToolBar.Visibility = Visibility.Visible;
             }
         }
 

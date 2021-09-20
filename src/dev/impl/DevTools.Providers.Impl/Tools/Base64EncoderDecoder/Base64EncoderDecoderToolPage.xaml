@@ -5,10 +5,24 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:DevTools.Common.UI.Controls"
+    xmlns:ex="using:DevTools.Common.UI.Extensions"
     mc:Ignorable="d"
     NavigationCacheMode="Required">
 
-    <Grid RowSpacing="4" Margin="0,0,0,16">
+    <Grid RowSpacing="12" Margin="0,0,0,16">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <ex:IsCompactOverlayModeTrigger TargetElement="{x:Bind}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="EncodingSetting.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -32,6 +46,7 @@
                 </ComboBox>
             </controls:ExpandableSettingControl>
             <controls:ExpandableSettingControl
+                x:Name="EncodingSetting"
                 Grid.Row="2"
                 Title="{x:Bind ViewModel.Strings.EncodingTitle}"
                 Description="{x:Bind ViewModel.Strings.EncodingDescription}">
@@ -41,20 +56,22 @@
                 <ComboBox
                     SelectedValuePath="Tag"
                     SelectedValue="{x:Bind ViewModel.EncodingMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                    <ComboBoxItem Tag="UTF-8" Content="UTF-8" />
-                    <ComboBoxItem Tag="ASCII" Content="ASCII" />
+                    <ComboBoxItem Tag="UTF-8" Content="{x:Bind ViewModel.Strings.Utf8}" />
+                    <ComboBoxItem Tag="ASCII" Content="{x:Bind ViewModel.Strings.Ascii}" />
                 </ComboBox>
             </controls:ExpandableSettingControl>
         </StackPanel>
 
         <controls:CustomTextBox
             Grid.Row="1"
+            MinHeight="150"
             AcceptsReturn="True"
             Header="{x:Bind ViewModel.Strings.InputTitle}"
             Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <controls:CustomTextBox
             Grid.Row="2"
+            MinHeight="150"
             IsReadOnly="True"
             AcceptsReturn="True"
             Header="{x:Bind ViewModel.Strings.OutputTitle}"

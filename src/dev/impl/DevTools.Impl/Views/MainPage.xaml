@@ -62,7 +62,7 @@
                     Height="16"
                     Visibility="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
                 <TextBlock
-                    Text="DevTools"
+                    Text="{x:Bind ViewModel.WindowTitle, Mode=OneWay}"
                     VerticalAlignment="Center"
                     Margin="12,0,0,0"
                     Style="{StaticResource CaptionTextBlockStyle}" />
@@ -145,7 +145,7 @@
             IsTabStop="False"
             AlwaysShowHeader="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource InvertedBooleanConverter}}"
             IsPaneVisible="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource InvertedBooleanConverter}}"
-            Header="{x:Bind ViewModel.SelectedMenuItem.ToolProvider.DisplayName, Mode=OneWay}"
+            Header="{x:Bind ViewModel.HeaderText, Mode=OneWay}"
             MenuItemsSource="{x:Bind ViewModel.ToolsMenuItems}"
             FooterMenuItemsSource="{x:Bind ViewModel.FooterMenuItems}"
             SelectedItem="{x:Bind ViewModel.SelectedMenuItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
@@ -153,13 +153,22 @@
                 <icore:EventTriggerBehavior EventName="DisplayModeChanged">
                     <icore:ChangePropertyAction TargetObject="{x:Bind ViewModel}" PropertyName="NavigationViewDisplayMode" Value="{x:Bind NavigationView.DisplayMode, Mode=OneWay}"/>
                 </icore:EventTriggerBehavior>
+                <icore:EventTriggerBehavior EventName="PaneClosing">
+                    <icore:ChangePropertyAction TargetObject="{x:Bind ViewModel}" PropertyName="IsNavigationViewPaneOpened" Value="False"/>
+                </icore:EventTriggerBehavior>
+                <icore:EventTriggerBehavior EventName="PaneOpening">
+                    <icore:ChangePropertyAction TargetObject="{x:Bind ViewModel}" PropertyName="IsNavigationViewPaneOpened" Value="True"/>
+                </icore:EventTriggerBehavior>
+                <icore:EventTriggerBehavior EventName="Loaded">
+                    <icore:ChangePropertyAction TargetObject="{x:Bind ViewModel}" PropertyName="IsNavigationViewPaneOpened" Value="{x:Bind NavigationView.IsPaneOpen}"/>
+                </icore:EventTriggerBehavior>
             </i:Interaction.Behaviors>
 
             <muxc:NavigationView.MenuItemTemplate>
                 <DataTemplate x:DataType="models:MatchedToolProviderViewData">
                     <muxc:NavigationViewItem
                         Icon="{x:Bind Icon.Result, Mode=OneWay}"
-                        Margin="{Binding NavigationViewDisplayMode, ConverterParameter='Compact', Converter={StaticResource NavigationViewItemMarginConverter}}">
+                        Margin="{Binding ActualNavigationViewDisplayMode, ConverterParameter='Compact', Converter={StaticResource NavigationViewItemMarginConverter}}">
                         <muxc:NavigationViewItem.ContextFlyout>
                             <MenuFlyout>
                                 <MenuFlyoutItem
@@ -178,7 +187,16 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
+                                <TextBlock
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Stretch"
+                                    TextWrapping="NoWrap"
+                                    TextTrimming="CharacterEllipsis"
+                                    Text="{x:Bind ToolProvider.DisplayName}"
+                                    Visibility="{x:Bind AnyMatchedSpan, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
                                 <RichTextBlock
+                                    x:Name="NavigationViewItemRichTextBlock"
+                                    x:Load="{x:Bind AnyMatchedSpan, Mode=OneWay}"
                                     Grid.Column="0"
                                     HorizontalAlignment="Stretch"
                                     IsTextSelectionEnabled="False"
@@ -190,9 +208,9 @@
                                     </Paragraph>
                                 </RichTextBlock>
                                 <muxc:ImageIcon
-                                    Grid.Column="1"
                                     x:Name="NavigationViewItemRecommendedIcon"
                                     x:Load="{x:Bind IsRecommended, Mode=OneWay}"
+                                    Grid.Column="1"
                                     Source="ms-appx:///DevTools.Common/Assets/Icons/Idea.svg"
                                     Height="16"
                                     Width="16"/>

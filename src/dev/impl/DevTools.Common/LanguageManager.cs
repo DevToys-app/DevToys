@@ -9,6 +9,7 @@
 //------------------------------------------------------------------------------
 
 using Microsoft.Toolkit.Mvvm.ComponentModel;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using Windows.ApplicationModel.Resources;
@@ -81,6 +82,32 @@ namespace DevTools.Common
         public TextDiffStrings TextDiff => _textdiff;
 
         /// <summary>
+        /// Gets the list of available languages in the app.
+        /// </summary>
+        public List<LanguageDefinition> AvailableLanguages
+            => new List<LanguageDefinition>
+            {
+                new LanguageDefinition
+                {
+                    Identifier = "default",
+                    DisplayName = Settings.DefaultLanguage,
+                    Culture = CultureInfo.InstalledUICulture
+                },
+                new LanguageDefinition
+                {
+                    Identifier = "english",
+                    DisplayName = "English",
+                    Culture = new CultureInfo("en")
+                },
+                new LanguageDefinition
+                {
+                    Identifier = "french",
+                    DisplayName = "français",
+                    Culture = new CultureInfo("fr")
+                }
+            };
+
+        /// <summary>
         /// Retrieves the current culture.
         /// </summary>
         public CultureInfo GetCurrentCulture()
@@ -114,6 +141,11 @@ namespace DevTools.Common
     public class Base64EncoderDecoderStrings : ObservableObject
     {
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Common/Base64EncoderDecoder");
+
+        /// <summary>
+        /// Gets the resource Ascii.
+        /// </summary>
+        public string Ascii => _resources.GetString("Ascii");
 
         /// <summary>
         /// Gets the resource ConfigurationTitle.
@@ -164,6 +196,11 @@ namespace DevTools.Common
         /// Gets the resource OutputTitle.
         /// </summary>
         public string OutputTitle => _resources.GetString("OutputTitle");
+
+        /// <summary>
+        /// Gets the resource Utf8.
+        /// </summary>
+        public string Utf8 => _resources.GetString("Utf8");
     }
 
     public class CommonStrings : ObservableObject
@@ -276,9 +313,49 @@ namespace DevTools.Common
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Common/JsonFormatter");
 
         /// <summary>
+        /// Gets the resource Configuration.
+        /// </summary>
+        public string Configuration => _resources.GetString("Configuration");
+
+        /// <summary>
         /// Gets the resource DisplayName.
         /// </summary>
         public string DisplayName => _resources.GetString("DisplayName");
+
+        /// <summary>
+        /// Gets the resource FourSpaces.
+        /// </summary>
+        public string FourSpaces => _resources.GetString("FourSpaces");
+
+        /// <summary>
+        /// Gets the resource Indentation.
+        /// </summary>
+        public string Indentation => _resources.GetString("Indentation");
+
+        /// <summary>
+        /// Gets the resource Input.
+        /// </summary>
+        public string Input => _resources.GetString("Input");
+
+        /// <summary>
+        /// Gets the resource Minified.
+        /// </summary>
+        public string Minified => _resources.GetString("Minified");
+
+        /// <summary>
+        /// Gets the resource OneTab.
+        /// </summary>
+        public string OneTab => _resources.GetString("OneTab");
+
+        /// <summary>
+        /// Gets the resource Output.
+        /// </summary>
+        public string Output => _resources.GetString("Output");
+
+        /// <summary>
+        /// Gets the resource TwoSpaces.
+        /// </summary>
+        public string TwoSpaces => _resources.GetString("TwoSpaces");
     }
 
     public class MainPageStrings : ObservableObject
@@ -304,6 +381,24 @@ namespace DevTools.Common
         /// Gets the resource Search.
         /// </summary>
         public string Search => _resources.GetString("Search");
+
+        /// <summary>
+        /// Gets the resource WindowTitle.
+        /// </summary>
+        public string WindowTitle => _resources.GetString("WindowTitle");
+
+        /// <summary>
+        /// Gets the resource WindowTitleWithToolName.
+        /// </summary>
+        public string WindowTitleWithToolName => _resources.GetString("WindowTitleWithToolName");
+
+        /// <summary>
+        /// Gets the resource WindowTitleWithToolName with format.
+        /// </summary>
+        public string GetFormattedWindowTitleWithToolName(string param0)
+        {
+            return string.Format(WindowTitleWithToolName, param0);
+        }
     }
 
     public class RegExStrings : ObservableObject
@@ -314,6 +409,16 @@ namespace DevTools.Common
         /// Gets the resource DisplayName.
         /// </summary>
         public string DisplayName => _resources.GetString("DisplayName");
+
+        /// <summary>
+        /// Gets the resource RegularExpression.
+        /// </summary>
+        public string RegularExpression => _resources.GetString("RegularExpression");
+
+        /// <summary>
+        /// Gets the resource Text.
+        /// </summary>
+        public string Text => _resources.GetString("Text");
     }
 
     public class SettingsStrings : ObservableObject
@@ -336,6 +441,11 @@ namespace DevTools.Common
         public string AppThemeDescription => _resources.GetString("AppThemeDescription");
 
         /// <summary>
+        /// Gets the resource AppTitle.
+        /// </summary>
+        public string AppTitle => _resources.GetString("AppTitle");
+
+        /// <summary>
         /// Gets the resource Behaviors.
         /// </summary>
         public string Behaviors => _resources.GetString("Behaviors");
@@ -344,6 +454,11 @@ namespace DevTools.Common
         /// Gets the resource Dark.
         /// </summary>
         public string Dark => _resources.GetString("Dark");
+
+        /// <summary>
+        /// Gets the resource DefaultLanguage.
+        /// </summary>
+        public string DefaultLanguage => _resources.GetString("DefaultLanguage");
 
         /// <summary>
         /// Gets the resource DisplayName.
@@ -364,6 +479,16 @@ namespace DevTools.Common
         /// Gets the resource HighlightCurrentLineDescription.
         /// </summary>
         public string HighlightCurrentLineDescription => _resources.GetString("HighlightCurrentLineDescription");
+
+        /// <summary>
+        /// Gets the resource Language.
+        /// </summary>
+        public string Language => _resources.GetString("Language");
+
+        /// <summary>
+        /// Gets the resource LanguageDescription.
+        /// </summary>
+        public string LanguageDescription => _resources.GetString("LanguageDescription");
 
         /// <summary>
         /// Gets the resource Light.
@@ -404,6 +529,19 @@ namespace DevTools.Common
         /// Gets the resource UseSystemSettings.
         /// </summary>
         public string UseSystemSettings => _resources.GetString("UseSystemSettings");
+
+        /// <summary>
+        /// Gets the resource Version.
+        /// </summary>
+        public string Version => _resources.GetString("Version");
+
+        /// <summary>
+        /// Gets the resource Version with format.
+        /// </summary>
+        public string GetFormattedVersion(string param0)
+        {
+            return string.Format(Version, param0);
+        }
 
         /// <summary>
         /// Gets the resource WordWrap.

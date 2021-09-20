@@ -13,6 +13,7 @@ namespace DevTools.Providers.Impl.Tools.HashGenerator
     [Name("Hash Generator")]
     [ProtocolName("hash")]
     [Order(0)]
+    [CompactOverlaySize(width: 400, height: 500)]
     internal sealed class HashGeneratorToolProvider : ToolProviderBase, IToolProvider
     {
         private readonly IThread _thread;

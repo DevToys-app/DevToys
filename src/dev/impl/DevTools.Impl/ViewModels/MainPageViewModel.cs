@@ -24,6 +24,7 @@ using Windows.UI.Xaml.Controls;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Windows.UI.Xaml;
 using DevTools.Core.Settings;
+using ThreadPriority = DevTools.Core.Threading.ThreadPriority;
 
 namespace DevTools.Impl.ViewModels
 {
@@ -41,6 +42,7 @@ namespace DevTools.Impl.ViewModels
 
         private MatchedToolProviderViewData? _selectedItem;
         private NavigationViewDisplayMode _navigationViewDisplayMode;
+        private bool _isNavigationViewPaneOpened;
         private string? _searchQuery;
         private bool _isInCompactOverlayMode;
         private bool _isUpdatingSelectedItem;
@@ -67,6 +69,40 @@ namespace DevTools.Impl.ViewModels
         {
             get => _selectedItem;
             set => SetSelectedMenuItem(value, null);
+        }
+    }
+        }
+
+        /// <summary>
+        /// Gets the text to show in the header of the app. The property returned null when is in compact overlay mode.
+        /// </summary>
+        internal string? HeaderText
+        {
+            get
+            {
+                if (IsInCompactOverlayMode)
+                {
+                    return null;
+                }
+
+                return SelectedMenuItem?.ToolProvider.DisplayName;
+            }
+        }
+
+        /// <summary>
+        /// Gets the text to show in the header of the app. The property returned null when is in compact overlay mode.
+        /// </summary>
+        internal string? WindowTitle
+        {
+            get
+            {
+                if (IsInCompactOverlayMode)
+                {
+                    return Strings.GetFormattedWindowTitleWithToolName(SelectedMenuItem?.ToolProvider.DisplayName);
+                }
+
+                return Strings.WindowTitle;
+            }
         }
 
         /// <summary>
@@ -100,6 +136,8 @@ namespace DevTools.Impl.ViewModels
                 {
                     _isInCompactOverlayMode = value;
                     OnPropertyChanged();
+                    OnPropertyChanged(nameof(HeaderText));
+                    OnPropertyChanged(nameof(WindowTitle));
                 }
             }
         }
@@ -115,6 +153,47 @@ namespace DevTools.Impl.ViewModels
                 _thread.ThrowIfNotOnUIThread();
                 _navigationViewDisplayMode = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(ActualNavigationViewDisplayMode));
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether the pane is opened.
+        /// </summary>
+        public bool IsNavigationViewPaneOpened // Important to keep this property Public to bind it to ChangePropertyAction in the XAML.
+        {
+            get => _isNavigationViewPaneOpened;
+            set
+            {
+                _thread.ThrowIfNotOnUIThread();
+                _isNavigationViewPaneOpened = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ActualNavigationViewDisplayMode));
+            }
+        }
+
+        /// <summary>
+        /// Gets the actual <see cref="NavigationViewDisplayMode"/> to apply to the navigation view menu items.
+        /// </summary>
+        public NavigationViewDisplayMode ActualNavigationViewDisplayMode
+        {
+            get
+            {
+                if (NavigationViewDisplayMode == NavigationViewDisplayMode.Expanded)
+                {
+                    if (IsNavigationViewPaneOpened)
+                    {
+                        return NavigationViewDisplayMode.Expanded;
+                    }
+                    else
+                    {
+                        return NavigationViewDisplayMode.Compact;
+                    }
+                }
+                else
+                {
+                    return NavigationViewDisplayMode;
+                }
             }
         }
 
@@ -137,8 +216,6 @@ namespace DevTools.Impl.ViewModels
             NavigationViewItemClickCommand = new RelayCommand<MatchedToolProviderViewData>(ExecuteNavigationViewItemClickCommand);
             OpenToolInNewWindowCommand = new AsyncRelayCommand<ToolProviderMetadata>(ExecuteOpenToolInNewWindowCommandAsync);
             ChangeViewModeCommand = new AsyncRelayCommand<ApplicationViewMode>(ExecuteChangeViewModeCommandAsync);
-
-            IsInCompactOverlayMode = ApplicationView.GetForCurrentView().ViewMode == ApplicationViewMode.CompactOverlay;
 
             _firstUpdateMenuTask = UpdateMenuAsync(searchQuery: string.Empty);
 
@@ -227,10 +304,12 @@ namespace DevTools.Impl.ViewModels
                 }
             }
 
-            await _thread.RunOnUIThreadAsync(() =>
-            {
-                SelectedMenuItem = toolProviderViewDataToSelect ?? ToolsMenuItems.FirstOrDefault() ?? FooterMenuItems.FirstOrDefault();
-            });
+            await _thread.RunOnUIThreadAsync(
+                ThreadPriority.Low,
+                () =>
+                {
+                    SelectedMenuItem = toolProviderViewDataToSelect ?? ToolsMenuItems.FirstOrDefault() ?? FooterMenuItems.FirstOrDefault();
+                });
         }
 
         private void SetSelectedMenuItem(MatchedToolProviderViewData? value, string? clipboardContentData)
@@ -306,25 +385,27 @@ namespace DevTools.Impl.ViewModels
                 }
             }
 
-            await _thread.RunOnUIThreadAsync(() =>
-            {
-                var oldSelectedItem = SelectedMenuItem;
-                ToolsMenuItems.Clear();
-                SelectedMenuItem = null;
-
-                foreach (var item in newToolsMenuitems)
+            await _thread.RunOnUIThreadAsync(
+                ThreadPriority.Low,
+                () =>
                 {
-                    if (item.Value is not null)
+                    var oldSelectedItem = SelectedMenuItem;
+                    ToolsMenuItems.Clear();
+                    SelectedMenuItem = null;
+
+                    foreach (var item in newToolsMenuitems)
                     {
-                        item.Key.MatchedSpans = item.Value;
+                        if (item.Value is not null)
+                        {
+                            item.Key.MatchedSpans = item.Value;
+                        }
                     }
-                }
 
-                ToolsMenuItems.Update(newToolsMenuitems.Keys);
-                footerMenuItems.ForEach(item => FooterMenuItems.Add(item));
+                    ToolsMenuItems.Update(newToolsMenuitems.Keys);
+                    footerMenuItems.ForEach(item => FooterMenuItems.Add(item));
 
-                SelectedMenuItem = oldSelectedItem;
-            });
+                    SelectedMenuItem = oldSelectedItem;
+                });
         }
 
         private async Task UpdateRecommendedToolsAsync()
@@ -381,14 +462,16 @@ namespace DevTools.Impl.ViewModels
                     // The recommended tool is displayed in the top menu.
                     // The recommended tool is different that the ones that were recommended before (if any...).
                     // Let's select automatically this tool.
-                    await _thread.RunOnUIThreadAsync(() =>
-                    {
-                        if (!IsInCompactOverlayMode && _allowSelectAutomaticallyRecommendedTool)
+                    await _thread.RunOnUIThreadAsync(
+                        ThreadPriority.High, 
+                        () =>
                         {
-                            SelectedMenuItem = recommendedTools[0];
-                            SetSelectedMenuItem(recommendedTools[0], clipboardContent);
-                        }
-                    });
+                            if (!IsInCompactOverlayMode && _allowSelectAutomaticallyRecommendedTool)
+                            {
+                                SelectedMenuItem = recommendedTools[0];
+                                SetSelectedMenuItem(recommendedTools[0], clipboardContent);
+                            }
+                        });
                 }
             }
         }
