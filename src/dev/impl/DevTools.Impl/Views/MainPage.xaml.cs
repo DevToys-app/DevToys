@@ -57,7 +57,7 @@ namespace DevTools.Impl.Views
             ViewModel = parameters.ExportProvider.Import<MainPageViewModel>();
             DataContext = ViewModel;
 
-            ViewModel.OnNavigatedToAsync(parameters.Parameter).Forget();
+            ViewModel.OnNavigatedToAsync(parameters.ViewModel).Forget();
 
             base.OnNavigatedTo(e);
         }
@@ -79,7 +79,7 @@ namespace DevTools.Impl.Views
                 message.ViewModel.View,
                 new NavigationParameter(
                     _mefProvider!,
-                    message.ViewModel),
+                    message.ViewModel, message.ClipboardContentData ?? string.Empty),
                 new EntranceNavigationTransitionInfo());
         }
     }
