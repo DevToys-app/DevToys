@@ -22,13 +22,13 @@
 
         <controls:CustomTextBox
             Grid.Row="0"
-            Header="Regular expression"
+            Header="{x:Bind ViewModel.Strings.RegularExpression}"
             Text="{x:Bind ViewModel.RegularExpression, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <controls:CustomTextBox
             x:Name="MatchTextBox"
             Grid.Row="1"
-            Header="Text"
+            Header="{x:Bind ViewModel.Strings.Text}"
             AcceptsReturn="True"
             IsRichTextEdit="True"
             Text="{x:Bind ViewModel.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>

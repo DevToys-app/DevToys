@@ -115,6 +115,12 @@ namespace DevTools.Providers.Impl.Tools.JsonFormatter
 
         private bool FormatJson(string input, out string output)
         {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                output = string.Empty;
+                return false;
+            }
+
             try
             {
                 JToken? jtoken = JToken.Parse(input);

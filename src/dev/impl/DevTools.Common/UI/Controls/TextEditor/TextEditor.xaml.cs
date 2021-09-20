@@ -40,13 +40,13 @@ namespace DevTools.Common.UI.Controls.TextEditor
         public static readonly DependencyProperty HeaderProperty
             = DependencyProperty.Register(
                 nameof(Header),
-                typeof(object),
+                typeof(string),
                 typeof(TextEditor),
                 new PropertyMetadata(null));
 
-        public object Header
+        public string? Header
         {
-            get => (object)GetValue(HeaderProperty);
+            get => (string?)GetValue(HeaderProperty);
             set => SetValue(HeaderProperty, value);
         }
 
@@ -94,6 +94,18 @@ namespace DevTools.Common.UI.Controls.TextEditor
         private void OnClearButtonClick(object sender, RoutedEventArgs e)
         {
             Text = string.Empty;
+        }
+
+        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (e.NewSize.Width < CommandsToolBar.ActualWidth + 100)
+            {
+                CommandsToolBar.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                CommandsToolBar.Visibility = Visibility.Visible;
+            }
         }
     }
 }

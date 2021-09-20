@@ -5,12 +5,15 @@ using DevTools.Core;
 using DevTools.Core.Impl.Injection;
 using DevTools.Core.Injection;
 using DevTools.Core.Navigation;
+using DevTools.Core.Settings;
 using DevTools.Core.Theme;
 using DevTools.Core.Threading;
 using DevTools.Impl.Views;
 using DevTools.Providers;
 using System;
 using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Core;
@@ -26,8 +29,8 @@ namespace DevTools
     /// </summary>
     sealed partial class App : Application, IDisposable
     {
-        private readonly MefComposer _mefComposer;
-        private readonly Lazy<IThemeListener> _themeListener;
+        private readonly Task<MefComposer> _mefComposer;
+        private readonly Lazy<Task<IThemeListener>> _themeListener;
 
         private bool _isDisposed;
 
@@ -37,19 +40,23 @@ namespace DevTools
         /// </summary>
         public App()
         {
-            // Set the language of the app.
+            // Set the language of the app for startup. By default, it's the same than Windows, or english.
+            // The language defined by the user will be applied later, once MEF is loaded, but before the UI shows up.
             LanguageManager.Instance.SetCurrentCulture(CultureInfo.InstalledUICulture);
 
             // Initialize MEF
             _mefComposer
-                = new MefComposer(
-                    typeof(MefComposer).Assembly,
-                    typeof(IToolProvider).Assembly,
-                    typeof(Providers.Impl.Dummy).Assembly,
-                    typeof(Impl.Dummy).Assembly);
+                = Task.Run(() =>
+                {
+                    return new MefComposer(
+                        typeof(MefComposer).Assembly,
+                        typeof(IToolProvider).Assembly,
+                        typeof(Providers.Impl.Dummy).Assembly,
+                        typeof(Impl.Dummy).Assembly);
+                });
 
             // Importing it in a Lazy because we can't import it before a Window is created.
-            _themeListener = new Lazy<IThemeListener>(() => _mefComposer.ExportProvider.GetExport<IThemeListener>());
+            _themeListener = new Lazy<Task<IThemeListener>>(async () => (await _mefComposer).ExportProvider.GetExport<IThemeListener>());
 
             InitializeComponent();
             Suspending += OnSuspending;
@@ -86,10 +93,11 @@ namespace DevTools
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
-            Frame rootFrame = EnsureWindowIsInitialized();
+            Frame rootFrame = await EnsureWindowIsInitializedAsync();
 
+            var mefComposer = await _mefComposer;
             if (e.PrelaunchActivated == false)
             {
                 // On Windows 10 version 1607 or later, this code signals that this app wants to participate in prelaunch
@@ -103,7 +111,7 @@ namespace DevTools
                     rootFrame.Navigate(
                         typeof(MainPage),
                         new NavigationParameter(
-                            _mefComposer.ExportProvider.GetExport<IMefProvider>(),
+                            mefComposer.ExportProvider.GetExport<IMefProvider>(),
                             viewModel: null,
                             query: e.Arguments));
                 }
@@ -113,30 +121,31 @@ namespace DevTools
             }
 
             // Setup the title bar.
-            _mefComposer.ExportProvider.GetExport<ITitleBar>().SetupTitleBarAsync().Forget();
+            mefComposer.ExportProvider.GetExport<ITitleBar>().SetupTitleBarAsync().Forget();
         }
 
         /// <summary>
         /// Invoked when the application is activated by some means other than normal launching.
         /// </summary>
-        protected override void OnActivated(IActivatedEventArgs args)
+        protected override async void OnActivated(IActivatedEventArgs args)
         {
-            Frame rootFrame = EnsureWindowIsInitialized();
+            Frame rootFrame = await EnsureWindowIsInitializedAsync();
 
+            var mefComposer = await _mefComposer;
             if (args.Kind == ActivationKind.Protocol)
             {
                 var eventArgs = (ProtocolActivatedEventArgs)args;
                 rootFrame.Navigate(
                     typeof(MainPage),
                     new NavigationParameter(
-                        _mefComposer.ExportProvider.GetExport<IMefProvider>(),
+                        mefComposer.ExportProvider.GetExport<IMefProvider>(),
                         eventArgs.Uri.Query));
 
                 // Ensure the current window is active
                 Window.Current.Activate();
 
                 // Setup the title bar.
-                _mefComposer.ExportProvider.GetExport<ITitleBar>().SetupTitleBarAsync().Forget();
+                mefComposer.ExportProvider.GetExport<ITitleBar>().SetupTitleBarAsync().Forget();
             }
         }
 
@@ -164,7 +173,7 @@ namespace DevTools
             deferral.Complete();
         }
 
-        private Frame EnsureWindowIsInitialized()
+        private async Task<Frame> EnsureWindowIsInitializedAsync()
         {
             ApplicationView applicationView = ApplicationView.GetForCurrentView();
             applicationView.SetPreferredMinSize(new Windows.Foundation.Size(300, 200));
@@ -181,7 +190,13 @@ namespace DevTools
                 Window.Current.Content = rootFrame;
             }
 
-            _themeListener.Value.ApplyDesiredColorTheme();
+            // Set the user-defined language.
+            string languageIdentifier = (await _mefComposer).ExportProvider.GetExport<ISettingsProvider>().GetSetting(PredefinedSettings.Language);
+            LanguageDefinition languageDefinition = LanguageManager.Instance.AvailableLanguages.First(l => string.Equals(l.Identifier, languageIdentifier));
+            LanguageManager.Instance.SetCurrentCulture(languageDefinition.Culture);
+
+            // Apply the app color theme.
+            (await _themeListener.Value).ApplyDesiredColorTheme();
 
             return rootFrame;
         }

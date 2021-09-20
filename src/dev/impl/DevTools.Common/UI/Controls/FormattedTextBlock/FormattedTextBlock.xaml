@@ -7,7 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="300"
-    d:DesignWidth="400">
+    d:DesignWidth="400"
+    SizeChanged="UserControl_SizeChanged">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -65,19 +66,20 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <ContentPresenter
-            x:Name="HeaderContentPresenter"
+        <TextBlock
+            x:Name="HeaderTextBlock"
             x:DeferLoadStrategy="Lazy"
             Grid.Row="0"
             Grid.Column="0"
-            Content="{x:Bind Header}"
-            Foreground="{ThemeResource TextControlHeaderForeground}"
+            Text="{x:Bind Header}"
             Margin="{ThemeResource TextBoxTopHeaderMargin}"
-            FontWeight="Normal"
+            Style="{StaticResource SubTitleTextBlock}"
             TextWrapping="Wrap"
             VerticalAlignment="Bottom"
-            Visibility="Collapsed"/>
+            Visibility="Collapsed">
+        </TextBlock>
         <StackPanel
+            x:Name="CommandsToolBar"
             Grid.Row="0"
             Grid.Column="1"
             Orientation="Horizontal"
@@ -145,14 +147,15 @@
                     HorizontalAlignment="Stretch"
                     BorderThickness="0,0,0,0"
                     BorderBrush="{ThemeResource SystemControlBackgroundTransparentRevealBorderBrush}"
-                    Margin="0,3,0,0"
-                    VerticalAlignment="Stretch">
+                    Margin="0,1,0,0"
+                    VerticalAlignment="Stretch"
+                    Spacing="0.6">
                 </StackPanel>
                 <RichTextBlock
                     x:Name="RichTextBlock"
                     Grid.Column="1"
-                    Padding="2,4,0,0"
-                    LineHeight="18"
+                    Padding="2,0,0,0"
+                    LineHeight="18.6"
                     ManipulationMode="All"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"/>

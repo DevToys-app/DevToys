@@ -127,6 +127,12 @@
     <value>Open in a new window</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Search</value>
+    <value>Type to search for tools...</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>DevTools</value>
+  </data>
+  <data name="WindowTitleWithToolName" xml:space="preserve">
+    <value>DevTools - {0}</value>
   </data>
 </root>

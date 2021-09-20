@@ -6,11 +6,33 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:formattedtextblock="using:DevTools.Common.UI.Controls.FormattedTextBlock"
     xmlns:texteditor="using:DevTools.Common.UI.Controls.TextEditor"
-    xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls" xmlns:ex="using:DevTools.Common.UI.Extensions"
     mc:Ignorable="d"
     NavigationCacheMode="Required">
 
     <Grid Margin="0,0,0,16">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <ex:IsCompactOverlayModeTrigger TargetElement="{x:Bind}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="InputGridSplitter.Visibility" Value="Collapsed"/>
+                        <Setter Target="OutputGridSplitter.Visibility" Value="Collapsed"/>
+                        <Setter Target="HorizontalGridSplitterRow.Height" Value="16" />
+                        <Setter Target="HorizontalRightTextEditorRow.Height" Value="*" />
+                        <Setter Target="HorizontalRightTextEditorRow.MinHeight" Value="200" />
+                        <Setter Target="HorizontalGridSplitterColumn.Width" Value="Auto" />
+                        <Setter Target="HorizontalRightTextEditorColumn.MinWidth" Value="0" />
+                        <Setter Target="HorizontalRightTextEditorColumn.Width" Value="Auto" />
+                        <Setter Target="RightTextEditor.(Grid.Column)" Value="0" />
+                        <Setter Target="RightTextEditor.(Grid.Row)" Value="2" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
         <Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
@@ -18,26 +40,36 @@
         </Grid.ChildrenTransitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition MinHeight="100"/>
+            <RowDefinition MinHeight="200"/>
             <RowDefinition Height="16"/>
-            <RowDefinition MinHeight="100"/>
+            <RowDefinition MinHeight="200"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition MinWidth="100"/>
-                <ColumnDefinition Width="16"/>
-                <ColumnDefinition MinWidth="100"/>
+                <ColumnDefinition MinWidth="150"/>
+                <ColumnDefinition x:Name="HorizontalGridSplitterColumn" Width="16"/>
+                <ColumnDefinition x:Name="HorizontalRightTextEditorColumn" MinWidth="150"/>
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition MinHeight="200"/>
+                <RowDefinition x:Name="HorizontalGridSplitterRow" Height="0"/>
+                <RowDefinition x:Name="HorizontalRightTextEditorRow" Height="0"/>
+            </Grid.RowDefinitions>
 
             <texteditor:TextEditor
+                x:Name="LeftTextEditor"
                 Grid.Column="0"
+                Grid.Row="0"
+                MinHeight="200"
                 SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
                 Header="{x:Bind ViewModel.Strings.LeftText}"
                 Text="{x:Bind ViewModel.OldText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
             <toolkit:GridSplitter
+                x:Name="InputGridSplitter"
                 Grid.Column="1"
+                Grid.Row="0"
                 Width="16"
                 Margin="0,42,0,0"
                 ResizeBehavior="BasedOnAlignment"
@@ -50,13 +82,17 @@
             </toolkit:GridSplitter>
 
             <texteditor:TextEditor
+                x:Name="RightTextEditor"
                 Grid.Column="2"
+                Grid.Row="0"
+                MinHeight="200"
                 SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
                 Header="{x:Bind ViewModel.Strings.RightText}"
                 Text="{x:Bind ViewModel.NewText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
 
         <toolkit:GridSplitter
+            x:Name="OutputGridSplitter"
             Grid.Row="1"
             Height="16"
             ResizeBehavior="BasedOnAlignment"
@@ -70,6 +106,7 @@
 
         <formattedtextblock:FormattedTextBlock
             x:Name="OuputTextEditor"
+            MinHeight="200"
             Grid.Row="2"
             Header="{x:Bind ViewModel.Strings.Difference}"
             SettingsProvider="{x:Bind ViewModel.SettingsProvider}"/>

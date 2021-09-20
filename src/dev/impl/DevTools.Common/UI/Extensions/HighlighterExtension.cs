@@ -57,22 +57,25 @@ namespace DevTools.Common.UI.Extensions
                 var value = (MatchSpan[])e.NewValue;
                 source.TextHighlighters.Clear();
 
-                TextHighlighter highlighter = new TextHighlighter()
+                if (value.Length > 0)
                 {
-                    Background = new SolidColorBrush(Colors.Yellow)
-                };
+                    TextHighlighter highlighter = new TextHighlighter()
+                    {
+                        Background = new SolidColorBrush(Colors.Yellow)
+                    };
 
-                for (int i = 0; i < value.Length; i++)
-                {
-                    highlighter.Ranges.Add(
-                        new TextRange
-                        {
-                            StartIndex = value[i].StartPosition,
-                            Length = value[i].Length
-                        });
+                    for (int i = 0; i < value.Length; i++)
+                    {
+                        highlighter.Ranges.Add(
+                            new TextRange
+                            {
+                                StartIndex = value[i].StartPosition,
+                                Length = value[i].Length
+                            });
+                    }
+
+                    source.TextHighlighters.Add(highlighter);
                 }
-
-                source.TextHighlighters.Add(highlighter);
             }
         }
     }

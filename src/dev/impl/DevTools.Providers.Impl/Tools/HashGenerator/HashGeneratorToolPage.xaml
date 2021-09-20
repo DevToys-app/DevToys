@@ -8,24 +8,26 @@
     mc:Ignorable="d"
     NavigationCacheMode="Required">
 
-    <StackPanel Spacing="12">
+    <StackPanel Margin="0,0,0,16" Spacing="12">
         <StackPanel.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
             </TransitionCollection>
         </StackPanel.ChildrenTransitions>
 
-        <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Configuration}" />
+        <StackPanel Spacing="4" >
+            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Configuration}" />
 
-        <controls:ExpandableSettingControl
-            Title="{x:Bind ViewModel.Strings.Uppercase}">
-            <controls:ExpandableSettingControl.Icon>
-                <FontIcon Glyph="&#xF7B2;" />
-            </controls:ExpandableSettingControl.Icon>
-            <ToggleSwitch
-                Style="{StaticResource RightAlignedToggleSwitchStyle}"
-                IsOn="{x:Bind ViewModel.IsUppercase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        </controls:ExpandableSettingControl>
+            <controls:ExpandableSettingControl
+                Title="{x:Bind ViewModel.Strings.Uppercase}">
+                <controls:ExpandableSettingControl.Icon>
+                    <FontIcon Glyph="&#xF7B2;" />
+                </controls:ExpandableSettingControl.Icon>
+                <ToggleSwitch
+                    Style="{StaticResource RightAlignedToggleSwitchStyle}"
+                    IsOn="{x:Bind ViewModel.IsUppercase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </controls:ExpandableSettingControl>
+        </StackPanel>
 
         <controls:CustomTextBox
             Header="{x:Bind ViewModel.Strings.Input}"
