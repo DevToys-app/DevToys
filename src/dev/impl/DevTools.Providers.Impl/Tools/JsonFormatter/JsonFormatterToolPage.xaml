@@ -29,7 +29,7 @@
             <controls:ExpandableSettingControl
                 VerticalAlignment="Stretch"
                 VerticalContentAlignment="Stretch"
-                Title="Indentation">
+                Title="{x:Bind ViewModel.Strings.Indentation}">
                 <ComboBox
                     SelectedValuePath="Tag"
                     SelectedValue="{x:Bind ViewModel.Indentation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">

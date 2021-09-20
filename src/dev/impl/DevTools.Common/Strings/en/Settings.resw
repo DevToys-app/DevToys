@@ -126,6 +126,9 @@
   <data name="AppThemeDescription" xml:space="preserve">
     <value>Select which app theme to display</value>
   </data>
+  <data name="AppTitle" xml:space="preserve">
+    <value>DevTools</value>
+  </data>
   <data name="Behaviors" xml:space="preserve">
     <value>Behaviors</value>
   </data>
@@ -167,6 +170,9 @@
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
     <value>Use system settings</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
     <value>Wrap word</value>

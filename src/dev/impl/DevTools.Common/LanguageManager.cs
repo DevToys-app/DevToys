@@ -301,6 +301,11 @@ namespace DevTools.Common
         public string FourSpaces => _resources.GetString("FourSpaces");
 
         /// <summary>
+        /// Gets the resource Indentation.
+        /// </summary>
+        public string Indentation => _resources.GetString("Indentation");
+
+        /// <summary>
         /// Gets the resource Input.
         /// </summary>
         public string Input => _resources.GetString("Input");
@@ -409,6 +414,11 @@ namespace DevTools.Common
         public string AppThemeDescription => _resources.GetString("AppThemeDescription");
 
         /// <summary>
+        /// Gets the resource AppTitle.
+        /// </summary>
+        public string AppTitle => _resources.GetString("AppTitle");
+
+        /// <summary>
         /// Gets the resource Behaviors.
         /// </summary>
         public string Behaviors => _resources.GetString("Behaviors");
@@ -477,6 +487,19 @@ namespace DevTools.Common
         /// Gets the resource UseSystemSettings.
         /// </summary>
         public string UseSystemSettings => _resources.GetString("UseSystemSettings");
+
+        /// <summary>
+        /// Gets the resource Version.
+        /// </summary>
+        public string Version => _resources.GetString("Version");
+
+        /// <summary>
+        /// Gets the resource Version with format.
+        /// </summary>
+        public string GetFormattedVersion(string param0)
+        {
+            return string.Format(Version, param0);
+        }
 
         /// <summary>
         /// Gets the resource WordWrap.
