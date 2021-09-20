@@ -9,6 +9,7 @@
 //------------------------------------------------------------------------------
 
 using Microsoft.Toolkit.Mvvm.ComponentModel;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using Windows.ApplicationModel.Resources;
@@ -79,6 +80,32 @@ namespace DevTools.Common
         /// Gets the <see cref="TextDiffStrings"/>.
         /// </summary>
         public TextDiffStrings TextDiff => _textdiff;
+
+        /// <summary>
+        /// Gets the list of available languages in the app.
+        /// </summary>
+        public List<LanguageDefinition> AvailableLanguages
+            => new List<LanguageDefinition>
+            {
+                new LanguageDefinition
+                {
+                    Identifier = "default",
+                    DisplayName = Settings.DefaultLanguage,
+                    Culture = CultureInfo.InstalledUICulture
+                },
+                new LanguageDefinition
+                {
+                    Identifier = "english",
+                    DisplayName = "English",
+                    Culture = new CultureInfo("en")
+                },
+                new LanguageDefinition
+                {
+                    Identifier = "french",
+                    DisplayName = "français",
+                    Culture = new CultureInfo("fr")
+                }
+            };
 
         /// <summary>
         /// Retrieves the current culture.
@@ -429,6 +456,11 @@ namespace DevTools.Common
         public string Dark => _resources.GetString("Dark");
 
         /// <summary>
+        /// Gets the resource DefaultLanguage.
+        /// </summary>
+        public string DefaultLanguage => _resources.GetString("DefaultLanguage");
+
+        /// <summary>
         /// Gets the resource DisplayName.
         /// </summary>
         public string DisplayName => _resources.GetString("DisplayName");
@@ -447,6 +479,16 @@ namespace DevTools.Common
         /// Gets the resource HighlightCurrentLineDescription.
         /// </summary>
         public string HighlightCurrentLineDescription => _resources.GetString("HighlightCurrentLineDescription");
+
+        /// <summary>
+        /// Gets the resource Language.
+        /// </summary>
+        public string Language => _resources.GetString("Language");
+
+        /// <summary>
+        /// Gets the resource LanguageDescription.
+        /// </summary>
+        public string LanguageDescription => _resources.GetString("LanguageDescription");
 
         /// <summary>
         /// Gets the resource Light.
