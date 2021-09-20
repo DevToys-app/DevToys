@@ -9,12 +9,18 @@ namespace DevTools.Core.Navigation
     {
         public IMefProvider ExportProvider { get; }
 
-        public object? Parameter { get; }
+        public string? Query { get; }
 
-        public NavigationParameter(IMefProvider exportProvider, object? parameter)
+        public object? ViewModel { get; }
+
+        public string? ClipBoardContent { get; }
+
+        public NavigationParameter(IMefProvider exportProvider, object? viewModel, string? clipBoardContent = null, string? query = null)
         {
             ExportProvider = Arguments.NotNull(exportProvider, nameof(exportProvider));
-            Parameter = parameter;
+            ViewModel = viewModel;
+            ClipBoardContent = clipBoardContent;
+            Query = query;
         }
     }
 }

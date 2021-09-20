@@ -35,7 +35,7 @@ namespace DevTools.Impl.Views.Settings
             var parameters = (NavigationParameter)e.Parameter;
 
             // Set the view model
-            ViewModel = (SettingsToolViewModel)parameters.Parameter!;
+            ViewModel = (SettingsToolViewModel)parameters.ViewModel;
             DataContext = ViewModel;
 
             base.OnNavigatedTo(e);

@@ -35,7 +35,7 @@ namespace DevTools.Providers.Impl.Tools.HashGenerator
             var parameters = (NavigationParameter)e.Parameter;
 
             // Set the view model
-            ViewModel = (HashGeneratorToolViewModel)parameters.Parameter!;
+            ViewModel = (HashGeneratorToolViewModel)parameters.ViewModel;
             DataContext = ViewModel;
 
             base.OnNavigatedTo(e);

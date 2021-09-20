@@ -35,10 +35,14 @@ namespace DevTools.Providers.Impl.Tools.JsonFormatter
             var parameters = (NavigationParameter)e.Parameter;
 
             // Set the view model
-            ViewModel = (JsonFormatterToolViewModel)parameters.Parameter!;
+            ViewModel = (JsonFormatterToolViewModel)parameters.ViewModel;
             DataContext = ViewModel;
 
             ViewModel.OutputTextBlock = OutputTextBlock;
+            if (!string.IsNullOrWhiteSpace(parameters.ClipBoardContent))
+            {
+                ViewModel.InputValue = parameters.ClipBoardContent;
+            }
 
             base.OnNavigatedTo(e);
         }
