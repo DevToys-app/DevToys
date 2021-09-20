@@ -33,10 +33,10 @@
                 <ComboBox
                     SelectedValuePath="Tag"
                     SelectedValue="{x:Bind ViewModel.Indentation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                    <ComboBoxItem Tag="TwoSpaces" Content="2 spaces"/>
-                    <ComboBoxItem Tag="FourSpaces" Content="4 spaces"/>
-                    <ComboBoxItem Tag="OneTab" Content="1 tab"/>
-                    <ComboBoxItem Tag="Minified" Content="Minified"/>
+                    <ComboBoxItem Tag="TwoSpaces" Content="{x:Bind ViewModel.Strings.TwoSpaces}"/>
+                    <ComboBoxItem Tag="FourSpaces" Content="{x:Bind ViewModel.Strings.FourSpaces}"/>
+                    <ComboBoxItem Tag="OneTab" Content="{x:Bind ViewModel.Strings.OneTab}"/>
+                    <ComboBoxItem Tag="Minified" Content="{x:Bind ViewModel.Strings.Minified}"/>
                 </ComboBox>
             </controls:ExpandableSettingControl>
         </StackPanel>
@@ -50,7 +50,7 @@
 
             <texteditor:TextEditor
                 Grid.Column="0"
-                Header="Input"
+                Header="{x:Bind ViewModel.Strings.Input}"
                 SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
                 Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
@@ -70,7 +70,7 @@
             <formattedtextblock:FormattedTextBlock
                 x:Name="OutputTextBlock"
                 Grid.Column="2"
-                Header="Output"
+                Header="{x:Bind ViewModel.Strings.Output}"
                 SettingsProvider="{x:Bind ViewModel.SettingsProvider}"/>
         </Grid>
     </Grid>

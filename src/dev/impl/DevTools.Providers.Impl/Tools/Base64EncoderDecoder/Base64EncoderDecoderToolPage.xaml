@@ -56,8 +56,8 @@
                 <ComboBox
                     SelectedValuePath="Tag"
                     SelectedValue="{x:Bind ViewModel.EncodingMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                    <ComboBoxItem Tag="UTF-8" Content="UTF-8" />
-                    <ComboBoxItem Tag="ASCII" Content="ASCII" />
+                    <ComboBoxItem Tag="UTF-8" Content="{x:Bind ViewModel.Strings.Utf8}" />
+                    <ComboBoxItem Tag="ASCII" Content="{x:Bind ViewModel.Strings.Ascii}" />
                 </ComboBox>
             </controls:ExpandableSettingControl>
         </StackPanel>
