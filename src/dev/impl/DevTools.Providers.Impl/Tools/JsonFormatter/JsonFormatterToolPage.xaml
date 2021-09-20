@@ -23,20 +23,23 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <controls:ExpandableSettingControl
-            Grid.Row="0"
-            VerticalAlignment="Stretch"
-            VerticalContentAlignment="Stretch"
-            Title="Indentation">
-            <ComboBox
-                SelectedValuePath="Tag"
-                SelectedValue="{x:Bind ViewModel.Indentation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                <ComboBoxItem Tag="TwoSpaces" Content="2 spaces"/>
-                <ComboBoxItem Tag="FourSpaces" Content="4 spaces"/>
-                <ComboBoxItem Tag="OneTab" Content="1 tab"/>
-                <ComboBoxItem Tag="Minified" Content="Minified"/>
-            </ComboBox>
-        </controls:ExpandableSettingControl>
+        <StackPanel Grid.Row="0" Spacing="4" >
+            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Configuration}" />
+
+            <controls:ExpandableSettingControl
+                VerticalAlignment="Stretch"
+                VerticalContentAlignment="Stretch"
+                Title="Indentation">
+                <ComboBox
+                    SelectedValuePath="Tag"
+                    SelectedValue="{x:Bind ViewModel.Indentation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBoxItem Tag="TwoSpaces" Content="2 spaces"/>
+                    <ComboBoxItem Tag="FourSpaces" Content="4 spaces"/>
+                    <ComboBoxItem Tag="OneTab" Content="1 tab"/>
+                    <ComboBoxItem Tag="Minified" Content="Minified"/>
+                </ComboBox>
+            </controls:ExpandableSettingControl>
+        </StackPanel>
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>

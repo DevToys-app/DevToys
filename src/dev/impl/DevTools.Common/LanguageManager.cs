@@ -276,6 +276,11 @@ namespace DevTools.Common
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Common/JsonFormatter");
 
         /// <summary>
+        /// Gets the resource Configuration.
+        /// </summary>
+        public string Configuration => _resources.GetString("Configuration");
+
+        /// <summary>
         /// Gets the resource DisplayName.
         /// </summary>
         public string DisplayName => _resources.GetString("DisplayName");

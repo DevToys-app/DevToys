@@ -40,13 +40,13 @@ namespace DevTools.Common.UI.Controls.TextEditor
         public static readonly DependencyProperty HeaderProperty
             = DependencyProperty.Register(
                 nameof(Header),
-                typeof(object),
+                typeof(string),
                 typeof(TextEditor),
                 new PropertyMetadata(null));
 
-        public object Header
+        public string? Header
         {
-            get => (object)GetValue(HeaderProperty);
+            get => (string?)GetValue(HeaderProperty);
             set => SetValue(HeaderProperty, value);
         }
 
