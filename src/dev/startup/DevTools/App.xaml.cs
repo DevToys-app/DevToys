@@ -104,7 +104,8 @@ namespace DevTools
                         typeof(MainPage),
                         new NavigationParameter(
                             _mefComposer.ExportProvider.GetExport<IMefProvider>(),
-                            e.Arguments));
+                            viewModel: null,
+                            query: e.Arguments));
                 }
 
                 // Ensure the current window is active

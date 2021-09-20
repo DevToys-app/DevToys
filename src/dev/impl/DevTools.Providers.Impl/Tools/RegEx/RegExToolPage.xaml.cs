@@ -35,7 +35,7 @@ namespace DevTools.Providers.Impl.Tools.RegEx
             var parameters = (NavigationParameter)e.Parameter;
 
             // Set the view model
-            ViewModel = (RegExToolViewModel)parameters.Parameter[0]!;
+            ViewModel = (RegExToolViewModel)parameters.ViewModel;
             DataContext = ViewModel;
 
             ViewModel.MatchTextBox = MatchTextBox;
