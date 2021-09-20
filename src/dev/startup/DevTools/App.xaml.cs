@@ -5,12 +5,14 @@ using DevTools.Core;
 using DevTools.Core.Impl.Injection;
 using DevTools.Core.Injection;
 using DevTools.Core.Navigation;
+using DevTools.Core.Settings;
 using DevTools.Core.Theme;
 using DevTools.Core.Threading;
 using DevTools.Impl.Views;
 using DevTools.Providers;
 using System;
 using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -38,7 +40,8 @@ namespace DevTools
         /// </summary>
         public App()
         {
-            // Set the language of the app.
+            // Set the language of the app for startup. By default, it's the same than Windows, or english.
+            // The language defined by the user will be applied later, once MEF is loaded, but before the UI shows up.
             LanguageManager.Instance.SetCurrentCulture(CultureInfo.InstalledUICulture);
 
             // Initialize MEF
@@ -186,7 +189,12 @@ namespace DevTools
                 Window.Current.Content = rootFrame;
             }
 
-            await _mefComposer;
+            // Set the user-defined language.
+            string languageIdentifier = (await _mefComposer).ExportProvider.GetExport<ISettingsProvider>().GetSetting(PredefinedSettings.Language);
+            LanguageDefinition languageDefinition = LanguageManager.Instance.AvailableLanguages.First(l => string.Equals(l.Identifier, languageIdentifier));
+            LanguageManager.Instance.SetCurrentCulture(languageDefinition.Culture);
+
+            // Apply the app color theme.
             (await _themeListener.Value).ApplyDesiredColorTheme();
 
             return rootFrame;

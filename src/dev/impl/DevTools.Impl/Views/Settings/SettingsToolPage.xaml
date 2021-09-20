@@ -21,6 +21,19 @@
         </StackPanel.ChildrenTransitions>
 
         <controls:ExpandableSettingControl
+            Title="{x:Bind ViewModel.Strings.Language}"
+            Description="{x:Bind ViewModel.Strings.LanguageDescription}">
+            <controls:ExpandableSettingControl.Icon>
+                <FontIcon Glyph="&#xF4F3;" />
+            </controls:ExpandableSettingControl.Icon>
+            <ComboBox
+                DisplayMemberPath="DisplayName"
+                SelectedValuePath="Identifier"
+                ItemsSource="{x:Bind ViewModel.AvailableLanguages}"
+                SelectedValue="{x:Bind ViewModel.Language, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            </ComboBox>
+        </controls:ExpandableSettingControl>
+        <controls:ExpandableSettingControl
             Title="{x:Bind ViewModel.Strings.AppTheme}"
             Description="{x:Bind ViewModel.Strings.AppThemeDescription}">
             <controls:ExpandableSettingControl.Icon>

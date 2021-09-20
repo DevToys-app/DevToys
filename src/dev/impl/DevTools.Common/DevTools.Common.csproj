@@ -74,6 +74,7 @@
     <Compile Include="..\..\shared\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="LanguageDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LanguageManager.cs">
       <DependentUpon>LanguageManager.tt</DependentUpon>
@@ -211,6 +212,9 @@
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Strings\en\RegEx.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Strings\fr\MainPage.resw" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
