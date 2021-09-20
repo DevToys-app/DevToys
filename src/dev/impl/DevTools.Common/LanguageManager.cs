@@ -116,6 +116,11 @@ namespace DevTools.Common
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("DevTools.Common/Base64EncoderDecoder");
 
         /// <summary>
+        /// Gets the resource Ascii.
+        /// </summary>
+        public string Ascii => _resources.GetString("Ascii");
+
+        /// <summary>
         /// Gets the resource ConfigurationTitle.
         /// </summary>
         public string ConfigurationTitle => _resources.GetString("ConfigurationTitle");
@@ -164,6 +169,11 @@ namespace DevTools.Common
         /// Gets the resource OutputTitle.
         /// </summary>
         public string OutputTitle => _resources.GetString("OutputTitle");
+
+        /// <summary>
+        /// Gets the resource Utf8.
+        /// </summary>
+        public string Utf8 => _resources.GetString("Utf8");
     }
 
     public class CommonStrings : ObservableObject
@@ -284,6 +294,36 @@ namespace DevTools.Common
         /// Gets the resource DisplayName.
         /// </summary>
         public string DisplayName => _resources.GetString("DisplayName");
+
+        /// <summary>
+        /// Gets the resource FourSpaces.
+        /// </summary>
+        public string FourSpaces => _resources.GetString("FourSpaces");
+
+        /// <summary>
+        /// Gets the resource Input.
+        /// </summary>
+        public string Input => _resources.GetString("Input");
+
+        /// <summary>
+        /// Gets the resource Minified.
+        /// </summary>
+        public string Minified => _resources.GetString("Minified");
+
+        /// <summary>
+        /// Gets the resource OneTab.
+        /// </summary>
+        public string OneTab => _resources.GetString("OneTab");
+
+        /// <summary>
+        /// Gets the resource Output.
+        /// </summary>
+        public string Output => _resources.GetString("Output");
+
+        /// <summary>
+        /// Gets the resource TwoSpaces.
+        /// </summary>
+        public string TwoSpaces => _resources.GetString("TwoSpaces");
     }
 
     public class MainPageStrings : ObservableObject
@@ -337,6 +377,16 @@ namespace DevTools.Common
         /// Gets the resource DisplayName.
         /// </summary>
         public string DisplayName => _resources.GetString("DisplayName");
+
+        /// <summary>
+        /// Gets the resource RegularExpression.
+        /// </summary>
+        public string RegularExpression => _resources.GetString("RegularExpression");
+
+        /// <summary>
+        /// Gets the resource Text.
+        /// </summary>
+        public string Text => _resources.GetString("Text");
     }
 
     public class SettingsStrings : ObservableObject

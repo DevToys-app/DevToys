@@ -120,4 +120,10 @@
   <data name="DisplayName" xml:space="preserve">
     <value>Regex Tester</value>
   </data>
+  <data name="RegularExpression" xml:space="preserve">
+    <value>Regular expression</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
 </root>
