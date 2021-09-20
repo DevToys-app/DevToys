@@ -147,14 +147,15 @@
                     HorizontalAlignment="Stretch"
                     BorderThickness="0,0,0,0"
                     BorderBrush="{ThemeResource SystemControlBackgroundTransparentRevealBorderBrush}"
-                    Margin="0,3,0,0"
-                    VerticalAlignment="Stretch">
+                    Margin="0,1,0,0"
+                    VerticalAlignment="Stretch"
+                    Spacing="0.6">
                 </StackPanel>
                 <RichTextBlock
                     x:Name="RichTextBlock"
                     Grid.Column="1"
-                    Padding="2,4,0,0"
-                    LineHeight="18"
+                    Padding="2,0,0,0"
+                    LineHeight="18.6"
                     ManipulationMode="All"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"/>
