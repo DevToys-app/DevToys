@@ -84,9 +84,42 @@ namespace DevTools.Impl.ViewModels
                     IToolViewModel toolViewModel = _toolProviderFactory.GetToolViewModel(_selectedItem.ToolProvider);
                     Messenger.Send(new NavigateToToolMessage(toolViewModel));
 
-                    OnPropertyChanged(nameof(SelectedMenuItem));
+                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(HeaderText));
                 }
                 _isUpdatingSelectedItem = false;
+            }
+        }
+
+        /// <summary>
+        /// Gets the text to show in the header of the app. The property returned null when is in compact overlay mode.
+        /// </summary>
+        internal string? HeaderText
+        {
+            get
+            {
+                if (IsInCompactOverlayMode)
+                {
+                    return null;
+                }
+
+                return SelectedMenuItem?.ToolProvider.DisplayName;
+            }
+        }
+
+        /// <summary>
+        /// Gets the text to show in the header of the app. The property returned null when is in compact overlay mode.
+        /// </summary>
+        internal string? WindowTitle
+        {
+            get
+            {
+                if (IsInCompactOverlayMode)
+                {
+                    return Strings.GetFormattedWindowTitleWithToolName(SelectedMenuItem?.ToolProvider.DisplayName);
+                }
+
+                return Strings.WindowTitle;
             }
         }
 
@@ -121,6 +154,8 @@ namespace DevTools.Impl.ViewModels
                 {
                     _isInCompactOverlayMode = value;
                     OnPropertyChanged();
+                    OnPropertyChanged(nameof(HeaderText));
+                    OnPropertyChanged(nameof(WindowTitle));
                 }
             }
         }

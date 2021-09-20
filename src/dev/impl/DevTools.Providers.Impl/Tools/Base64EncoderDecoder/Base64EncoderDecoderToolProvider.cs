@@ -14,7 +14,6 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
     [Name("Base64 Encoder/Decoder")]
     [ProtocolName("base64")]
     [Order(0)]
-    [NotScrollable]
     internal sealed class Base64EncoderDecoderToolProvider : ToolProviderBase, IToolProvider
     {
         public string DisplayName => LanguageManager.Instance.Base64EncoderDecoder.DisplayName;
