@@ -28,18 +28,18 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <ContentPresenter
-            x:Name="HeaderContentPresenter"
+        <TextBlock
+            x:Name="HeaderTextBlock"
             x:DeferLoadStrategy="Lazy"
             Grid.Row="0"
             Grid.Column="0"
-            Content="{x:Bind Header}"
-            Foreground="{ThemeResource TextControlHeaderForeground}"
+            Text="{x:Bind Header}"
             Margin="{ThemeResource TextBoxTopHeaderMargin}"
-            FontWeight="Normal"
+            Style="{StaticResource SubTitleTextBlock}"
             TextWrapping="Wrap"
             VerticalAlignment="Bottom"
-            Visibility="Collapsed"/>
+            Visibility="Collapsed">
+        </TextBlock>
         <StackPanel
             x:Name="CommandsToolBar"
             Grid.Row="0"

@@ -25,18 +25,17 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <ContentPresenter
-            x:Name="HeaderContentPresenter"
+        <TextBlock
+            x:Name="HeaderTextBlock"
             Grid.Row="0"
             Grid.Column="0"
-            Content="{x:Bind Header}"
+            Text="{x:Bind Header}"
+            Margin="{ThemeResource TextBoxTopHeaderMargin}"
+            Style="{StaticResource SubTitleTextBlock}"
             FontFamily="{ThemeResource ContentControlThemeFontFamily}"
-            FontWeight="Normal"
-            Foreground="{ThemeResource TextControlHeaderForeground}"
-            Margin="{ThemeResource RichEditBoxTopHeaderMargin}"
             TextWrapping="Wrap"
             VerticalAlignment="Bottom">
-        </ContentPresenter>
+        </TextBlock>
         <StackPanel
             x:Name="CommandsToolBar"
             Grid.Row="0"
