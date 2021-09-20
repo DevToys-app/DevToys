@@ -7,6 +7,7 @@ using DevTools.Providers;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using System;
 using System.Composition;
+using System.Reflection;
 
 namespace DevTools.Impl.Views.Settings
 {
@@ -54,6 +55,11 @@ namespace DevTools.Impl.Views.Settings
             get => _settingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine);
             set => _settingsProvider.SetSetting(PredefinedSettings.TextEditorHighlightCurrentLine, value);
         }
+
+        /// <summary>
+        /// Gets the version of the application.
+        /// </summary>
+        internal string Version => Strings.GetFormattedVersion(typeof(SettingsToolViewModel).GetTypeInfo().Assembly.GetName().Version.ToString());
 
         [ImportingConstructor]
         public SettingsToolViewModel(

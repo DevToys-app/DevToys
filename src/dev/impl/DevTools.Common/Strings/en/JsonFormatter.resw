@@ -126,6 +126,9 @@
   <data name="FourSpaces" xml:space="preserve">
     <value>4 spaces</value>
   </data>
+  <data name="Indentation" xml:space="preserve">
+    <value>Indentation</value>
+  </data>
   <data name="Input" xml:space="preserve">
     <value>Input</value>
   </data>
