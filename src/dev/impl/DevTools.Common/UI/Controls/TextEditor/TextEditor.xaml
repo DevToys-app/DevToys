@@ -8,7 +8,8 @@
     xmlns:local="using:DevTools.Common.UI.Controls.TextEditor"
     mc:Ignorable="d"
     d:DesignHeight="300"
-    d:DesignWidth="400">
+    d:DesignWidth="400"
+    SizeChanged="UserControl_SizeChanged">
     <UserControl.Resources>
         <common:LanguageManager x:Key="LanguageManager"/>
     </UserControl.Resources>
@@ -37,6 +38,7 @@
             VerticalAlignment="Bottom">
         </ContentPresenter>
         <StackPanel
+            x:Name="CommandsToolBar"
             Grid.Row="0"
             Grid.Column="1"
             Orientation="Horizontal"

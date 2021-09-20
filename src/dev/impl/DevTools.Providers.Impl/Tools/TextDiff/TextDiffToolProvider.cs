@@ -11,7 +11,6 @@ namespace DevTools.Providers.Impl.Tools.TextDiff
     [Name("Text Diff")]
     [ProtocolName("diff")]
     [Order(0)]
-    [NotScrollable]
     internal sealed class TextDiffToolProvider : ToolProviderBase, IToolProvider
     {
         private readonly IMefProvider _mefProvider;

@@ -95,5 +95,17 @@ namespace DevTools.Common.UI.Controls.TextEditor
         {
             Text = string.Empty;
         }
+
+        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (e.NewSize.Width < CommandsToolBar.ActualWidth + 100)
+            {
+                CommandsToolBar.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                CommandsToolBar.Visibility = Visibility.Visible;
+            }
+        }
     }
 }

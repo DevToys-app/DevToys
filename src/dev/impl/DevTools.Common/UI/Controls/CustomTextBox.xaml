@@ -9,7 +9,8 @@
     xmlns:converters="using:DevTools.Common.UI.Converters"
     mc:Ignorable="d"
     d:DesignHeight="24"
-    d:DesignWidth="200">
+    d:DesignWidth="200"
+    SizeChanged="UserControl_SizeChanged">
     <UserControl.Resources>
         <common:LanguageManager x:Key="LanguageManager"/>
 
@@ -40,6 +41,7 @@
             VerticalAlignment="Bottom"
             Visibility="Collapsed"/>
         <StackPanel
+            x:Name="CommandsToolBar"
             Grid.Row="0"
             Grid.Column="1"
             Orientation="Horizontal"

@@ -7,7 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="300"
-    d:DesignWidth="400">
+    d:DesignWidth="400"
+    SizeChanged="UserControl_SizeChanged">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -78,6 +79,7 @@
             VerticalAlignment="Bottom"
             Visibility="Collapsed"/>
         <StackPanel
+            x:Name="CommandsToolBar"
             Grid.Row="0"
             Grid.Column="1"
             Orientation="Horizontal"

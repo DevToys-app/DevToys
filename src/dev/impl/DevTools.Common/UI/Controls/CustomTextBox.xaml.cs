@@ -482,6 +482,18 @@ namespace DevTools.Common.UI.Controls
             }
         }
 
+        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (e.NewSize.Width < CommandsToolBar.ActualWidth + 100)
+            {
+                CommandsToolBar.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                CommandsToolBar.Visibility = Visibility.Visible;
+            }
+        }
+
         private static void OnIsReadOnlyPropertyChangedCalled(DependencyObject sender, DependencyPropertyChangedEventArgs eventArgs)
         {
             ((CustomTextBox)sender).UpdateUI();

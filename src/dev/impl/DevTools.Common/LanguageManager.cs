@@ -304,6 +304,24 @@ namespace DevTools.Common
         /// Gets the resource Search.
         /// </summary>
         public string Search => _resources.GetString("Search");
+
+        /// <summary>
+        /// Gets the resource WindowTitle.
+        /// </summary>
+        public string WindowTitle => _resources.GetString("WindowTitle");
+
+        /// <summary>
+        /// Gets the resource WindowTitleWithToolName.
+        /// </summary>
+        public string WindowTitleWithToolName => _resources.GetString("WindowTitleWithToolName");
+
+        /// <summary>
+        /// Gets the resource WindowTitleWithToolName with format.
+        /// </summary>
+        public string GetFormattedWindowTitleWithToolName(string param0)
+        {
+            return string.Format(WindowTitleWithToolName, param0);
+        }
     }
 
     public class RegExStrings : ObservableObject

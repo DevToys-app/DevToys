@@ -529,6 +529,18 @@ namespace DevTools.Common.UI.Controls.FormattedTextBlock
             Clipboard.SetContent(data);
         }
 
+        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (e.NewSize.Width < CommandsToolBar.ActualWidth + 100)
+            {
+                CommandsToolBar.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                CommandsToolBar.Visibility = Visibility.Visible;
+            }
+        }
+
         private static void OnSettingsProviderPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ISettingsProvider? settingProvider = e.NewValue as ISettingsProvider;

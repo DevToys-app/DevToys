@@ -122,6 +122,7 @@
     <Compile Include="UI\Converters\NullToBooleanConverter.cs" />
     <Compile Include="UI\Extensions\Axis.cs" />
     <Compile Include="UI\Extensions\HighlighterExtension.cs" />
+    <Compile Include="UI\Extensions\IsCompactOverlayModeTrigger.cs" />
     <Compile Include="UI\Extensions\ScrollViewerExtensions.cs" />
     <Content Include="Assets\Icons\Idea.svg" />
     <Content Include="LanguageManager.tt">
