@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using DevTools.Core;
 using DevTools.Core.Navigation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -35,7 +36,8 @@ namespace DevTools.Providers.Impl.Tools.HashGenerator
             var parameters = (NavigationParameter)e.Parameter;
 
             // Set the view model
-            ViewModel = (HashGeneratorToolViewModel)parameters.ViewModel;
+            Assumes.NotNull(parameters.ViewModel, nameof(parameters.ViewModel));
+            ViewModel = (HashGeneratorToolViewModel)parameters.ViewModel!;
             DataContext = ViewModel;
 
             base.OnNavigatedTo(e);

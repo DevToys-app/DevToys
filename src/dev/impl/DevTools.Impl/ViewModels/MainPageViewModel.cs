@@ -25,6 +25,8 @@ using Microsoft.Toolkit.Mvvm.Messaging;
 using Windows.UI.Xaml;
 using DevTools.Core.Settings;
 using ThreadPriority = DevTools.Core.Threading.ThreadPriority;
+using DevTools.Core.Navigation;
+using System.Diagnostics;
 
 namespace DevTools.Impl.ViewModels
 {
@@ -272,16 +274,16 @@ namespace DevTools.Impl.ViewModels
         /// <summary>
         /// Invoked when the Page is loaded and becomes the current source of a parent Frame.
         /// </summary>
-        internal async Task OnNavigatedToAsync(object? arguments)
+        internal async Task OnNavigatedToAsync(NavigationParameter parameters)
         {
             // Make sure the menu items exist.
             await _firstUpdateMenuTask.ConfigureAwait(false);
 
             MatchedToolProviderViewData? toolProviderViewDataToSelect = null;
-            if (arguments is string argumentsString && !string.IsNullOrWhiteSpace(argumentsString))
+            if (!string.IsNullOrWhiteSpace(parameters.Query))
             {
-                NameValueCollection parameters = HttpUtility.ParseQueryString(argumentsString.ToLower(CultureInfo.CurrentCulture));
-                string? toolProviderProtocolName = parameters.Get(Constants.UriActivationProtocolToolArgument);
+                NameValueCollection queryParameters = HttpUtility.ParseQueryString(parameters.Query!.ToLower(CultureInfo.CurrentCulture));
+                string? toolProviderProtocolName = queryParameters.Get(Constants.UriActivationProtocolToolArgument);
 
                 if (!string.IsNullOrWhiteSpace(toolProviderProtocolName))
                 {

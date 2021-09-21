@@ -7,6 +7,7 @@ using DevTools.Core.Threading;
 using DevTools.Impl.Messages;
 using DevTools.Impl.ViewModels;
 using Microsoft.Toolkit.Mvvm.Messaging;
+using System.Diagnostics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
@@ -57,7 +58,7 @@ namespace DevTools.Impl.Views
             ViewModel = parameters.ExportProvider.Import<MainPageViewModel>();
             DataContext = ViewModel;
 
-            ViewModel.OnNavigatedToAsync(parameters.ViewModel).Forget();
+            ViewModel.OnNavigatedToAsync(parameters).Forget();
 
             base.OnNavigatedTo(e);
         }
@@ -79,7 +80,8 @@ namespace DevTools.Impl.Views
                 message.ViewModel.View,
                 new NavigationParameter(
                     _mefProvider!,
-                    message.ViewModel, message.ClipboardContentData ?? string.Empty),
+                    message.ViewModel,
+                    message.ClipboardContentData),
                 new EntranceNavigationTransitionInfo());
         }
     }

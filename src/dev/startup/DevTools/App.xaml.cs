@@ -112,7 +112,6 @@ namespace DevTools
                         typeof(MainPage),
                         new NavigationParameter(
                             mefComposer.ExportProvider.GetExport<IMefProvider>(),
-                            viewModel: null,
                             query: e.Arguments));
                 }
 
@@ -139,7 +138,7 @@ namespace DevTools
                     typeof(MainPage),
                     new NavigationParameter(
                         mefComposer.ExportProvider.GetExport<IMefProvider>(),
-                        eventArgs.Uri.Query));
+                        query: eventArgs.Uri.Query));
 
                 // Ensure the current window is active
                 Window.Current.Activate();
