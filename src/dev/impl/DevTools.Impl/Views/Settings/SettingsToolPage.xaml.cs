@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using DevTools.Core;
 using DevTools.Core.Navigation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -35,7 +36,8 @@ namespace DevTools.Impl.Views.Settings
             var parameters = (NavigationParameter)e.Parameter;
 
             // Set the view model
-            ViewModel = (SettingsToolViewModel)parameters.ViewModel;
+            Assumes.NotNull(parameters.ViewModel, nameof(parameters.ViewModel));
+            ViewModel = (SettingsToolViewModel)parameters.ViewModel!;
             DataContext = ViewModel;
 
             base.OnNavigatedTo(e);

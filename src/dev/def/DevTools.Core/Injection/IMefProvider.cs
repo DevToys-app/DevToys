@@ -3,7 +3,7 @@
 namespace DevTools.Core.Injection
 {
     /// <summary>
-    /// Provides a way to import MEF components on the fly/
+    /// Provides a way to import MEF components on the fly.
     /// </summary>
     public interface IMefProvider
     {
