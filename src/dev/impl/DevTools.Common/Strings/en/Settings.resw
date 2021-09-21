@@ -127,7 +127,7 @@
     <value>Select which app theme to display</value>
   </data>
   <data name="AppTitle" xml:space="preserve">
-    <value>DevTools</value>
+    <value>DevToys</value>
   </data>
   <data name="Behaviors" xml:space="preserve">
     <value>Behaviors</value>

@@ -130,9 +130,9 @@
     <value>Type to search for tools...</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>DevTools</value>
+    <value>DevToys</value>
   </data>
   <data name="WindowTitleWithToolName" xml:space="preserve">
-    <value>DevTools - {0}</value>
+    <value>DevToys - {0}</value>
   </data>
 </root>

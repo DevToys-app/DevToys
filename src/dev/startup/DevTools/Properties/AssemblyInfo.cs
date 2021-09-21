@@ -1,3 +1,3 @@
 ﻿using System.Reflection;
 
-[assembly: AssemblyTitle("DevTools")]
+[assembly: AssemblyTitle("DevToys")]

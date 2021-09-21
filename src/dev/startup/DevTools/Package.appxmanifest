@@ -14,7 +14,7 @@
     <mp:PhoneIdentity PhoneProductId="c12088ee-f979-4809-8039-7851a3aa2b7a" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
     <Properties>
-        <DisplayName>DevTools</DisplayName>
+        <DisplayName>DevToys</DisplayName>
         <PublisherDisplayName>ebaud</PublisherDisplayName>
         <Logo>Assets\Logo\StoreLogo.png</Logo>
     </Properties>
@@ -32,10 +32,10 @@
           Executable="$targetnametoken$.exe"
           EntryPoint="DevTools.App">
             <uap:VisualElements
-              DisplayName="DevTools"
+              DisplayName="DevToys"
               Square150x150Logo="Assets\Logo\Square150x150Logo.png"
               Square44x44Logo="Assets\Logo\Square44x44Logo.png"
-              Description="DevTools"
+              Description="DevToys"
               BackgroundColor="transparent">
                 <uap:DefaultTile Wide310x150Logo="Assets\Logo\Wide310x150Logo.png"/>
                 <uap:SplashScreen Image="Assets\Logo\SplashScreen.png" />

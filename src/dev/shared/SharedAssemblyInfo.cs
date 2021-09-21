@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Etienne BAUDOUX")]
-[assembly: AssemblyProduct("DevTools")]
+[assembly: AssemblyProduct("DevToys")]
 [assembly: AssemblyCopyright("© Etienne BAUDOUX. All rights reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

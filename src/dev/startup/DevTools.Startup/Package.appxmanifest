@@ -16,7 +16,7 @@
   <mp:PhoneIdentity PhoneProductId="c12088ee-f979-4809-8039-7851a3aa2b7a" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>DevTools</DisplayName>
+    <DisplayName>DevToys</DisplayName>
     <PublisherDisplayName>ebaud</PublisherDisplayName>
     <Logo>Assets\Logo\StoreLogo.png</Logo>
   </Properties>
@@ -36,8 +36,8 @@
       EntryPoint="$targetentrypoint$"
       desktop4:SupportsMultipleInstances="true">
       <uap:VisualElements
-        DisplayName="DevTools"
-        Description="DevTools"
+        DisplayName="DevToys"
+        Description="DevToys"
         BackgroundColor="transparent"
         Square150x150Logo="Assets\Logo\Square150x150Logo.png"
         Square44x44Logo="Assets\Logo\Square44x44Logo.png">
@@ -52,8 +52,8 @@
       </uap:VisualElements>
       <Extensions>
         <uap:Extension Category="windows.protocol">
-          <uap:Protocol ReturnResults="none" Name="devtools">
-            <uap:DisplayName>DevTools URI Scheme</uap:DisplayName>
+          <uap:Protocol ReturnResults="none" Name="devtoys">
+            <uap:DisplayName>DevToys URI Scheme</uap:DisplayName>
             <uap:Logo>Assets\Logo\Square512.png</uap:Logo>
           </uap:Protocol>
         </uap:Extension>

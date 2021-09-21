@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevTools", "dev\startup\Dev
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B4C026E3-9BBF-434B-A14D-712C6A3731E4}"
 	ProjectSection(SolutionItems) = preProject
+		..\.vsconfig = ..\.vsconfig
+		..\CONTRIBUTING.md = ..\CONTRIBUTING.md
 		Directory.Build.props = Directory.Build.props
 		Directory.Build.targets = Directory.Build.targets
 		..\README.md = ..\README.md
