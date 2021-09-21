@@ -70,8 +70,6 @@ namespace DevTools.Impl.ViewModels
             get => _selectedItem;
             set => SetSelectedMenuItem(value, null);
         }
-    }
-        }
 
         /// <summary>
         /// Gets the text to show in the header of the app. The property returned null when is in compact overlay mode.
