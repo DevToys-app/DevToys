@@ -1,0 +1,31 @@
+{
+  "version": "1.0",
+  "components": [
+    "Microsoft.VisualStudio.Component.CoreEditor",
+    "Microsoft.VisualStudio.Workload.CoreEditor",
+    "Microsoft.NetCore.Component.Runtime.5.0",
+    "Microsoft.NetCore.Component.Runtime.3.1",
+    "Microsoft.NetCore.Component.SDK",
+    "Microsoft.VisualStudio.Component.NuGet",
+    "Microsoft.VisualStudio.Component.Roslyn.Compiler",
+    "Microsoft.VisualStudio.Component.Roslyn.LanguageServices",
+    "Microsoft.Component.MSBuild",
+    "Microsoft.VisualStudio.Component.TextTemplating",
+    "Microsoft.VisualStudio.Component.SQL.CLR",
+    "Microsoft.Net.Component.4.5.TargetingPack",
+    "Microsoft.VisualStudio.Component.DiagnosticTools",
+    "Microsoft.VisualStudio.Component.AppInsights.Tools",
+    "Microsoft.VisualStudio.Component.IntelliCode",
+    "Microsoft.VisualStudio.Component.Windows10SDK.19041",
+    "Microsoft.ComponentGroup.Blend",
+    "Microsoft.VisualStudio.ComponentGroup.MSIX.Packaging",
+    "Microsoft.Component.NetFX.Native",
+    "Microsoft.VisualStudio.ComponentGroup.UWP.NetCoreAndStandard",
+    "Microsoft.VisualStudio.Component.Graphics",
+    "Microsoft.VisualStudio.ComponentGroup.UWP.Xamarin",
+    "Microsoft.VisualStudio.ComponentGroup.UWP.Support",
+    "Microsoft.VisualStudio.Workload.Universal",
+    "Component.GitHub.VisualStudio",
+    "Microsoft.VisualStudio.Component.Git"
+  ]
+}

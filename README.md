@@ -1,20 +1,47 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+<p align="center">
+  <img width="128" align="center" src="src/dev/startup/DevTools.Startup/Assets/Logo/Square150x150Logo.scale-200.png">
+</p>
+<h1 align="center">
+  DevToys
+</h1>
+<p align="center">
+  A Swiss-knife for developers.
+</p>
+<p align="center">
+  <a style="text-decoration:none" href="//TODO">
+    <img src="https://img.shields.io/badge/Microsoft%20Store-DevToys-green" alt="Store link" />
+  </a>
+</p>
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+## Introduction
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+![DevToys](//TODO-Screenshot.png)
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+## How to install (as an end-user)
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+### Prerequisite
+- You need Windows 10 build 1903+ or later.
+
+### Microsoft Store
+- Search for DevToys in the Microsoft Store App or click [here](//TODO)
+
+### Manual
+
+- Download and extract the latest [release](//TODO).
+- Double click the *.msixbundle file.
+
+## Please, avoid selling this app as yours
+
+I don't care if you copy the source code to use in your project, but please avoid simply changing the name and selling as your work. 
+That's not why I'm sharing the source code, at all.
+
+## Contribute
+See [CONTRIBUTING](CONTRIBUTING.md)
+
+## Third-Party Softwares
+
+See [ThirdPartyNotices](//TODO)
+
+## License
+
+See [LICENSE](//TODO)
