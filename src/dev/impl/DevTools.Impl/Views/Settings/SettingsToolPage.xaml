@@ -112,7 +112,7 @@
             Title="{x:Bind ViewModel.Strings.AppTitle}"
             Description="{x:Bind ViewModel.Version}">
             <controls:ExpandableSettingControl.Icon>
-                <muxc:ImageIcon Source="/DevTools.Impl/Assets/Logo/Square44x44Logo.scale-200.png" Height="16" />
+                <muxc:ImageIcon Source="/DevTools.Impl/Assets/Logo/Square44x44Logo.targetsize-24_altform-unplated.png" Height="16" />
             </controls:ExpandableSettingControl.Icon>
         </controls:ExpandableSettingControl>
 

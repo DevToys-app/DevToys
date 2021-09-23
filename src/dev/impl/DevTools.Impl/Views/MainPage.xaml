@@ -26,8 +26,10 @@
         <converters:BooleanToScrollBarVisibilityConverter x:Key="BooleanToScrollBarVisibilityConverter" ScrollBarVisibilityOnTrue="Disabled" ScrollBarVisibilityOnFalse="Auto"/>
 
         <!--This top margin is the height of the custom TitleBar-->
-        <Thickness x:Key="NavigationViewContentMargin">0,48,0,0</Thickness>
-        <Thickness x:Key="NavigationViewHeaderMargin">16,42,0,0</Thickness>
+        <Thickness x:Key="NavigationViewContentMargin">0,32,0,0</Thickness>
+        <Thickness x:Key="NavigationViewHeaderMargin">16,6,0,0</Thickness>
+        <SolidColorBrush x:Key="NavigationViewContentBackground">Transparent</SolidColorBrush>
+        <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush">Transparent</SolidColorBrush>
     </Page.Resources>
 
     <Grid Background="Transparent">
@@ -57,7 +59,7 @@
                 <Image
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                    Source="/DevTools.Impl/Assets/Logo/Square44x44Logo.scale-200.png"
+                    Source="/DevTools.Impl/Assets/Logo/Square44x44Logo.targetsize-24_altform-unplated.png"
                     Width="16"
                     Height="16"
                     Visibility="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
