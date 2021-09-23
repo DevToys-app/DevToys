@@ -3,12 +3,15 @@
 using DevTools.Common;
 using DevTools.Core;
 using DevTools.Core.Collections;
+using DevTools.Core.Navigation;
+using DevTools.Core.Settings;
 using DevTools.Core.Threading;
 using DevTools.Impl.Messages;
 using DevTools.Impl.Models;
 using DevTools.Providers;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using Microsoft.Toolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -20,13 +23,9 @@ using System.Threading.Tasks;
 using System.Web;
 using Windows.Foundation;
 using Windows.UI.ViewManagement;
-using Windows.UI.Xaml.Controls;
-using Microsoft.Toolkit.Mvvm.Messaging;
 using Windows.UI.Xaml;
-using DevTools.Core.Settings;
+using Windows.UI.Xaml.Controls;
 using ThreadPriority = DevTools.Core.Threading.ThreadPriority;
-using DevTools.Core.Navigation;
-using System.Diagnostics;
 
 namespace DevTools.Impl.ViewModels
 {
@@ -40,7 +39,7 @@ namespace DevTools.Impl.ViewModels
         private readonly ISettingsProvider _settingsProvider;
         private readonly List<MatchedToolProviderViewData> _allToolsMenuitems = new();
         private readonly DisposableSempahore _sempahore = new();
-        private readonly Task _firstUpdateMenuTask;
+        private readonly Lazy<Task> _firstUpdateMenuTask;
 
         private MatchedToolProviderViewData? _selectedItem;
         private NavigationViewDisplayMode _navigationViewDisplayMode;
@@ -217,7 +216,7 @@ namespace DevTools.Impl.ViewModels
             OpenToolInNewWindowCommand = new AsyncRelayCommand<ToolProviderMetadata>(ExecuteOpenToolInNewWindowCommandAsync);
             ChangeViewModeCommand = new AsyncRelayCommand<ApplicationViewMode>(ExecuteChangeViewModeCommandAsync);
 
-            _firstUpdateMenuTask = UpdateMenuAsync(searchQuery: string.Empty);
+            _firstUpdateMenuTask = new Lazy<Task>(() => UpdateMenuAsync(searchQuery: string.Empty));
 
             Window.Current.Activated += Window_Activated;
 
@@ -277,7 +276,7 @@ namespace DevTools.Impl.ViewModels
         internal async Task OnNavigatedToAsync(NavigationParameter parameters)
         {
             // Make sure the menu items exist.
-            await _firstUpdateMenuTask.ConfigureAwait(false);
+            await _firstUpdateMenuTask.Value.ConfigureAwait(false);
 
             MatchedToolProviderViewData? toolProviderViewDataToSelect = null;
             if (!string.IsNullOrWhiteSpace(parameters.Query))
@@ -422,7 +421,7 @@ namespace DevTools.Impl.ViewModels
             string clipboardContent = await _clipboard.GetClipboardContentAsTextAsync().ConfigureAwait(false);
 
             // Make sure the menu items exist.
-            await _firstUpdateMenuTask.ConfigureAwait(false);
+            await _firstUpdateMenuTask.Value.ConfigureAwait(false);
 
             MatchedToolProviderViewData[] oldRecommendedTools = _allToolsMenuitems.Where(item => item.IsRecommended).ToArray();
 
@@ -468,7 +467,6 @@ namespace DevTools.Impl.ViewModels
                         {
                             if (!IsInCompactOverlayMode && _allowSelectAutomaticallyRecommendedTool)
                             {
-                                SelectedMenuItem = recommendedTools[0];
                                 SetSelectedMenuItem(recommendedTools[0], clipboardContent);
                             }
                         });
