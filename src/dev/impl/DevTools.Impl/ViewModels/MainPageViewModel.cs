@@ -326,6 +326,8 @@ namespace DevTools.Impl.ViewModels
                 IToolViewModel toolViewModel = _toolProviderFactory.GetToolViewModel(_selectedItem.ToolProvider);
                 Messenger.Send(new NavigateToToolMessage(toolViewModel, clipboardContentData));
                 OnPropertyChanged(nameof(SelectedMenuItem));
+                OnPropertyChanged(nameof(HeaderText));
+                OnPropertyChanged(nameof(WindowTitle));
             }
             _isUpdatingSelectedItem = false;
         }
