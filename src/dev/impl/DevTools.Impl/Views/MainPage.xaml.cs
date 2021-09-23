@@ -7,7 +7,6 @@ using DevTools.Core.Threading;
 using DevTools.Impl.Messages;
 using DevTools.Impl.ViewModels;
 using Microsoft.Toolkit.Mvvm.Messaging;
-using System.Diagnostics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
@@ -19,6 +18,7 @@ namespace DevTools.Impl.Views
     {
         private IMefProvider? _mefProvider;
         private IThread? _thread;
+        private NavigationParameter? _parameters;
 
         public static readonly DependencyProperty ViewModelProperty =
             DependencyProperty.Register(
@@ -45,20 +45,29 @@ namespace DevTools.Impl.Views
 
             // Register all recipient for messages
             WeakReferenceMessenger.Default.RegisterAll(this);
+
+            Loaded += MainPage_Loaded;
+        }
+
+        private void MainPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            Assumes.NotNull(_parameters, nameof(_parameters));
+
+            // Calling OnNavigatedToAsync in Loaded event instead of OnNavigatedTo because it needs access to CoreDispatcher,
+            // which isn't available before the main window is created.
+            ViewModel.OnNavigatedToAsync(_parameters!).Forget();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var parameters = (NavigationParameter)e.Parameter;
+            _parameters = (NavigationParameter)e.Parameter;
 
-            _mefProvider = parameters.ExportProvider;
+            _mefProvider = _parameters.ExportProvider;
             _thread = _mefProvider.Import<IThread>();
 
             // Set the view model
-            ViewModel = parameters.ExportProvider.Import<MainPageViewModel>();
+            ViewModel = _mefProvider!.Import<MainPageViewModel>();
             DataContext = ViewModel;
-
-            ViewModel.OnNavigatedToAsync(parameters).Forget();
 
             base.OnNavigatedTo(e);
         }
