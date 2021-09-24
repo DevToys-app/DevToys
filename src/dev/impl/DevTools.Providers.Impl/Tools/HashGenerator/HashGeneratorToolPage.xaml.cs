@@ -33,12 +33,15 @@ namespace DevTools.Providers.Impl.Tools.HashGenerator
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var parameters = (NavigationParameter)e.Parameter;
+            if (ViewModel is null)
+            {
+                var parameters = (NavigationParameter)e.Parameter;
 
-            // Set the view model
-            Assumes.NotNull(parameters.ViewModel, nameof(parameters.ViewModel));
-            ViewModel = (HashGeneratorToolViewModel)parameters.ViewModel!;
-            DataContext = ViewModel;
+                // Set the view model
+                Assumes.NotNull(parameters.ViewModel, nameof(parameters.ViewModel));
+                ViewModel = (HashGeneratorToolViewModel)parameters.ViewModel!;
+                DataContext = ViewModel;
+            }
 
             base.OnNavigatedTo(e);
         }

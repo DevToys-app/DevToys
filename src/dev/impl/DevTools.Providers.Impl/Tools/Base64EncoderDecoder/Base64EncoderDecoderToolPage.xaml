@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     NavigationCacheMode="Required">
 
-    <Grid RowSpacing="12" Margin="0,0,0,16">
+    <Grid x:Name="RootGrid" RowSpacing="12" Margin="0,0,0,16">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState>

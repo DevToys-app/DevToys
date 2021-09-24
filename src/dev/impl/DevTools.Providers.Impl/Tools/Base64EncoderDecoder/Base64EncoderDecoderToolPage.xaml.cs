@@ -35,13 +35,17 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
         {
             var parameters = (NavigationParameter)e.Parameter;
 
-            // Set the view model
-            Assumes.NotNull(parameters.ViewModel, nameof(parameters.ViewModel));
-            ViewModel = (Base64EncoderDecoderToolViewModel)parameters.ViewModel!;
-            DataContext = ViewModel;
+            if (ViewModel is null)
+            {
+                // Set the view model
+                Assumes.NotNull(parameters.ViewModel, nameof(parameters.ViewModel));
+                ViewModel = (Base64EncoderDecoderToolViewModel)parameters.ViewModel!;
+                DataContext = ViewModel;
+            }
+
             if (!string.IsNullOrWhiteSpace(parameters.ClipBoardContent))
             {
-                ViewModel.ConversionMode = "Decode";
+                ViewModel.ConversionMode = Base64EncoderDecoderToolViewModel.DecodeConversion;
                 ViewModel.InputValue = parameters.ClipBoardContent;
             }
 
