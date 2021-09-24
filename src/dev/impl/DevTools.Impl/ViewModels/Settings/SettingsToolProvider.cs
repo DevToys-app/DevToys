@@ -13,7 +13,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
-namespace DevTools.Impl.Views.Settings
+namespace DevTools.Impl.ViewModels.Settings
 {
     [Export(typeof(IToolProvider))]
     [Name("Settings")]

@@ -2,6 +2,7 @@
 
 using DevTools.Core;
 using DevTools.Core.Navigation;
+using DevTools.Impl.ViewModels.Settings;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;

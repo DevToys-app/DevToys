@@ -130,14 +130,14 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0">
                         <HyperlinkButton Content="App website" NavigateUri="http://www.microsoft.com" />
-                        <HyperlinkButton Content="Privacy policy" NavigateUri="http://www.microsoft.com" />
+                        <HyperlinkButton Content="{x:Bind ViewModel.Strings.PrivacyPolicy}" Command="{x:Bind ViewModel.PrivacyPolicyCommand}" />
                         <HyperlinkButton Content="Rate and review on Microsoft Store" NavigateUri="http://www.microsoft.com" />
                         <HyperlinkButton Content="Donate" NavigateUri="http://www.microsoft.com" />
                     </StackPanel>
                     <StackPanel Grid.Column="1">
                         <HyperlinkButton Content="Source code" NavigateUri="http://www.microsoft.com" />
-                        <HyperlinkButton Content="License" NavigateUri="http://www.microsoft.com" />
-                        <HyperlinkButton Content="Third party licenses" NavigateUri="http://www.microsoft.com" />
+                        <HyperlinkButton Content="{x:Bind ViewModel.Strings.License}" Command="{x:Bind ViewModel.LicenseCommand}" />
+                        <HyperlinkButton Content="{x:Bind ViewModel.Strings.ThirdPartyNotices}" Command="{x:Bind ViewModel.ThirdPartyNoticesCommand}" />
                         <HyperlinkButton Content="Report a problem" NavigateUri="http://www.microsoft.com" />
                     </StackPanel>
                 </Grid>

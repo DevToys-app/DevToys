@@ -74,6 +74,7 @@
     <Compile Include="..\..\shared\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="AssetsHelper.cs" />
     <Compile Include="LanguageDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LanguageManager.cs">
@@ -215,6 +216,20 @@
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Strings\fr\MainPage.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\LICENSE.md">
+      <Link>Assets\LICENSE.md</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\..\..\PRIVACY-POLICY.md">
+      <Link>Assets\PRIVACY-POLICY.md</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\..\..\THIRD-PARTY-NOTICES.md">
+      <Link>Assets\THIRD-PARTY-NOTICES.md</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

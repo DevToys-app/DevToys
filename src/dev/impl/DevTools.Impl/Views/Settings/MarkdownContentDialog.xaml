@@ -1,0 +1,29 @@
+﻿<UserControl
+    x:Class="DevTools.Impl.Views.Settings.MarkdownContentDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DevTools.Impl.Views.Settings"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <ScrollViewer 
+        VerticalScrollMode="Enabled"
+        VerticalScrollBarVisibility="Auto"
+        HorizontalScrollMode="Disabled"
+        HorizontalScrollBarVisibility="Hidden"
+        HorizontalContentAlignment="Stretch">
+        <controls:MarkdownTextBlock
+            x:Name="MarkdownTextBlock"
+            IsTextSelectionEnabled="True"
+            HorizontalAlignment="Stretch"
+            TextWrapping="Wrap"
+            Background="Transparent"
+            MaxWidth="500"
+            LinkClicked="MarkdownTextBlock_LinkClicked">
+        </controls:MarkdownTextBlock>
+    </ScrollViewer>
+</UserControl>

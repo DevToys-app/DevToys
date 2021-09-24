@@ -82,13 +82,17 @@
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Settings\MarkdownContentDialog.xaml.cs">
+      <DependentUpon>MarkdownContentDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Settings\SettingsToolPage.xaml.cs">
       <DependentUpon>SettingsToolPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Settings\SettingsToolProvider.cs" />
-    <Compile Include="Views\Settings\SettingsToolViewModel.cs" />
+    <Compile Include="ViewModels\Settings\SettingsToolProvider.cs" />
+    <Compile Include="ViewModels\Settings\SettingsToolViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="ColorCode.UWP" Version="$(Nuget_ColorCodeUwp)" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="$(NuGet_MicrosoftNETCoreUniversalWindowsPlatform)" />
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="$(NuGet_MicrosoftToolkitMvvm)" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Behaviors" Version="$(Nuget_MicrosoftToolkitUwpUIBehaviors)" />
@@ -118,6 +122,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Settings\MarkdownContentDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Settings\SettingsToolPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -128,6 +136,7 @@
       <Link>Assets\Logo\Square44x44Logo.altform-lightunplated_targetsize-16.png</Link>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

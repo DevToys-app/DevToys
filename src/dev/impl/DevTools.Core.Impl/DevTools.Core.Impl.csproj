@@ -82,6 +82,7 @@
     <Compile Include="Theme\ThemeListener.cs" />
     <Compile Include="Threading\Thread.cs" />
     <Compile Include="TitleBar.cs" />
+    <Compile Include="WindowManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="$(NuGet_MicrosoftNETCoreUniversalWindowsPlatform)" />
