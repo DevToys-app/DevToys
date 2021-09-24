@@ -4,6 +4,7 @@ using DevTools.Common;
 using DevTools.Core;
 using DevTools.Core.Settings;
 using DevTools.Core.Theme;
+using DevTools.Core.Threading;
 using DevTools.Impl.Views.Settings;
 using DevTools.Providers;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
@@ -13,12 +14,14 @@ using System.Collections.Generic;
 using System.Composition;
 using System.Reflection;
 using System.Threading.Tasks;
+using Windows.Services.Store;
 
 namespace DevTools.Impl.ViewModels.Settings
 {
     [Export(typeof(SettingsToolViewModel))]
     public sealed class SettingsToolViewModel : ObservableRecipient, IToolViewModel
     {
+        private readonly IThread _thread;
         private readonly IWindowManager _windowManager;
         private readonly ISettingsProvider _settingsProvider;
 
@@ -77,15 +80,18 @@ namespace DevTools.Impl.ViewModels.Settings
 
         [ImportingConstructor]
         public SettingsToolViewModel(
+            IThread thread,
             IWindowManager windowManager,
             ISettingsProvider settingsProvider)
         {
+            _thread = thread;
             _windowManager = windowManager;
             _settingsProvider = settingsProvider;
 
             PrivacyPolicyCommand = new AsyncRelayCommand(ExecutePrivacyPolicyCommandAsync);
             ThirdPartyNoticesCommand = new AsyncRelayCommand(ExecuteThirdPartyNoticesCommandAsync);
             LicenseCommand = new AsyncRelayCommand(ExecuteLicenseCommandAsync);
+            RateAndReviewCommand = new AsyncRelayCommand(ExecuteRateAndReviewCommandAsync);
         }
 
         #region PrivacyPolicyCommand
@@ -129,6 +135,22 @@ namespace DevTools.Impl.ViewModels.Settings
                     await AssetsHelper.GetLicenseAsync()),
                 Strings.Close,
                 title: Strings.License);
+        }
+
+        #endregion
+
+        #region RateAndReviewCommand
+
+        internal IAsyncRelayCommand RateAndReviewCommand { get; }
+
+        private async Task ExecuteRateAndReviewCommandAsync()
+        {
+            StoreContext storeContext = StoreContext.GetDefault();
+
+            StoreRateAndReviewResult result = await _thread.RunOnUIThreadAsync(async () =>
+            {
+                return await storeContext.RequestRateAndReviewAppAsync();
+            }).ConfigureAwait(false);
         }
 
         #endregion
