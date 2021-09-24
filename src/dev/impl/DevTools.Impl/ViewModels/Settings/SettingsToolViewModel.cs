@@ -1,20 +1,25 @@
 ﻿#nullable enable
 
 using DevTools.Common;
+using DevTools.Core;
 using DevTools.Core.Settings;
 using DevTools.Core.Theme;
+using DevTools.Impl.Views.Settings;
 using DevTools.Providers;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Composition;
 using System.Reflection;
+using System.Threading.Tasks;
 
-namespace DevTools.Impl.Views.Settings
+namespace DevTools.Impl.ViewModels.Settings
 {
     [Export(typeof(SettingsToolViewModel))]
     public sealed class SettingsToolViewModel : ObservableRecipient, IToolViewModel
     {
+        private readonly IWindowManager _windowManager;
         private readonly ISettingsProvider _settingsProvider;
 
         public Type View { get; } = typeof(SettingsToolPage);
@@ -72,9 +77,60 @@ namespace DevTools.Impl.Views.Settings
 
         [ImportingConstructor]
         public SettingsToolViewModel(
+            IWindowManager windowManager,
             ISettingsProvider settingsProvider)
         {
+            _windowManager = windowManager;
             _settingsProvider = settingsProvider;
+
+            PrivacyPolicyCommand = new AsyncRelayCommand(ExecutePrivacyPolicyCommandAsync);
+            ThirdPartyNoticesCommand = new AsyncRelayCommand(ExecuteThirdPartyNoticesCommandAsync);
+            LicenseCommand = new AsyncRelayCommand(ExecuteLicenseCommandAsync);
         }
+
+        #region PrivacyPolicyCommand
+
+        internal IAsyncRelayCommand PrivacyPolicyCommand { get; }
+
+        private async Task ExecutePrivacyPolicyCommandAsync()
+        {
+            await _windowManager.ShowContentDialogAsync(
+                new MarkdownContentDialog(
+                    await AssetsHelper.GetPrivacyStatementAsync()),
+                Strings.Close,
+                title: Strings.PrivacyPolicy);
+        }
+
+        #endregion
+
+        #region ThirdPartyNoticesCommand
+
+        internal IAsyncRelayCommand ThirdPartyNoticesCommand { get; }
+
+        private async Task ExecuteThirdPartyNoticesCommandAsync()
+        {
+            await _windowManager.ShowContentDialogAsync(
+                new MarkdownContentDialog(
+                    await AssetsHelper.GetThirdPartyNoticesAsync()),
+                Strings.Close,
+                title: Strings.ThirdPartyNotices);
+        }
+
+        #endregion
+
+        #region LicenseCommand
+
+        internal IAsyncRelayCommand LicenseCommand { get; }
+
+        private async Task ExecuteLicenseCommandAsync()
+        {
+            await _windowManager.ShowContentDialogAsync(
+                new MarkdownContentDialog(
+                    await AssetsHelper.GetLicenseAsync()),
+                Strings.Close,
+                title: Strings.License);
+        }
+
+        #endregion
     }
 }

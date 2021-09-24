@@ -132,6 +132,9 @@
   <data name="Behaviors" xml:space="preserve">
     <value>Behaviors</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
   <data name="Dark" xml:space="preserve">
     <value>Dark</value>
   </data>
@@ -156,6 +159,9 @@
   <data name="LanguageDescription" xml:space="preserve">
     <value>The app needs to be restarted when selecting another language</value>
   </data>
+  <data name="License" xml:space="preserve">
+    <value>License</value>
+  </data>
   <data name="Light" xml:space="preserve">
     <value>Light</value>
   </data>
@@ -165,6 +171,9 @@
   <data name="LineNumbersDescription" xml:space="preserve">
     <value>Display line numbers in the text editor</value>
   </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Privacy policy</value>
+  </data>
   <data name="SmartDetection" xml:space="preserve">
     <value>Smart detection</value>
   </data>
@@ -173,6 +182,9 @@
   </data>
   <data name="TextEditor" xml:space="preserve">
     <value>Text editor</value>
+  </data>
+  <data name="ThirdPartyNotices" xml:space="preserve">
+    <value>Third party licenses</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
     <value>Useful links</value>

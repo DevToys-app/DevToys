@@ -451,6 +451,11 @@ namespace DevTools.Common
         public string Behaviors => _resources.GetString("Behaviors");
 
         /// <summary>
+        /// Gets the resource Close.
+        /// </summary>
+        public string Close => _resources.GetString("Close");
+
+        /// <summary>
         /// Gets the resource Dark.
         /// </summary>
         public string Dark => _resources.GetString("Dark");
@@ -491,6 +496,11 @@ namespace DevTools.Common
         public string LanguageDescription => _resources.GetString("LanguageDescription");
 
         /// <summary>
+        /// Gets the resource License.
+        /// </summary>
+        public string License => _resources.GetString("License");
+
+        /// <summary>
         /// Gets the resource Light.
         /// </summary>
         public string Light => _resources.GetString("Light");
@@ -506,6 +516,11 @@ namespace DevTools.Common
         public string LineNumbersDescription => _resources.GetString("LineNumbersDescription");
 
         /// <summary>
+        /// Gets the resource PrivacyPolicy.
+        /// </summary>
+        public string PrivacyPolicy => _resources.GetString("PrivacyPolicy");
+
+        /// <summary>
         /// Gets the resource SmartDetection.
         /// </summary>
         public string SmartDetection => _resources.GetString("SmartDetection");
@@ -519,6 +534,11 @@ namespace DevTools.Common
         /// Gets the resource TextEditor.
         /// </summary>
         public string TextEditor => _resources.GetString("TextEditor");
+
+        /// <summary>
+        /// Gets the resource ThirdPartyNotices.
+        /// </summary>
+        public string ThirdPartyNotices => _resources.GetString("ThirdPartyNotices");
 
         /// <summary>
         /// Gets the resource UsefulLinks.
