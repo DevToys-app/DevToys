@@ -177,6 +177,13 @@
       <Link>Assets\THIRD-PARTY-NOTICES.md</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <PRIResource Include="Strings\fr\TextDiff.resw" />
+    <PRIResource Include="Strings\fr\Settings.resw" />
+    <PRIResource Include="Strings\fr\RegEx.resw" />
+    <PRIResource Include="Strings\fr\JsonFormatter.resw" />
+    <PRIResource Include="Strings\fr\HashGenerator.resw" />
+    <PRIResource Include="Strings\fr\Common.resw" />
+    <PRIResource Include="Strings\fr\Base64EncoderDecoder.resw" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
