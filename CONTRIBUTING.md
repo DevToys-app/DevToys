@@ -10,7 +10,7 @@ You can contribute to DevToys app by:
     * Improve CI/CD pipeline, prefix title with `[CI] `.
     * Cleanup code and code refactoring or anything else you want to change in the project not listed above, prefix title with `[OTHER] ` or assign a custom prefix with the same format (`[LABEL] `).
 - Internationalization and localization:
-    * //TODO: Explain how
+    * See instructions below.
 
 # How to Build and Run DevToys from source
 
@@ -23,6 +23,19 @@ You can contribute to DevToys app by:
 * Now you should be able to build and run DevToys on your machine. If it fails, try close the solution and reopen it again.
 
 **If x64 doesn't work, use the architecture of your system*
+
+# Internationalization and localization
+
+* After following `How to Build and Run DevToys from source`, open `src/DevTools.sln` with Visual Studio.
+* Copy the folder `dev/impl/DevTools.Common/Strings/en` and rename the copied folder with the language indication of your choice. For example, "fr-FR" for French (France).
+* Open each `.resw` files and translate the text.
+* Open `dev/impl/DevTools.Common/LanguageManager.tt`.
+* Copy the following block and add it to the line below: https://etienne-baudoux.visualstudio.com/Side%20projects/_git/DevTools/?path=src/dev/impl/DevTools.Common/LanguageManager.tt&version=GC35fe1ba4bf76a1a4e8274f8ce3119c384325634b&lineStyle=plain&line=100&lineEnd=106&lineStartColumn=18&lineEndColumn=18
+* Change the `Identifier`, `DisplayName` and `Culture` to match your language.
+* Save the file. Visual Studio will ask you to confirm. Click Yes.
+* Build and Run the app and test your changes.
+
+// TODO: We should seriously consider a solution where contributors don't need to change LanguageManager.tt
 
 # Coding
 
