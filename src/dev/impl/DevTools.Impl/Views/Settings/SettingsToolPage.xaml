@@ -143,5 +143,17 @@
                 </Grid>
             </controls:ExpandableSettingControl.ExpandableContent>
         </controls:ExpandableSettingControl>
+
+        <controls:ExpandableSettingControl
+            Title="{x:Bind ViewModel.Strings.OpenLogs}">
+            <controls:ExpandableSettingControl.Icon>
+                <FontIcon Glyph="&#x0032;" />
+            </controls:ExpandableSettingControl.Icon>
+            <Button
+                ToolTipService.ToolTip="{x:Bind ViewModel.Strings.OpenLogs}"
+                Command="{x:Bind ViewModel.OpenLogsCommand}">
+                <FontIcon Glyph="&#xF582;"/>
+            </Button>
+        </controls:ExpandableSettingControl>
     </StackPanel>
 </Page>

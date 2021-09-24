@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using DevTools.Common;
+using DevTools.Core;
 using DevTools.Core.Threading;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using System;
@@ -22,6 +23,7 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
         private string _encodingMode = DefaultEncoding;
         private string _conversionMode = DefaultConversion;
         private bool _conversionInProgress;
+        private readonly ILogger _logger;
         private readonly IThread _thread;
         private readonly Queue<string> _conversionQueue = new();
 
@@ -83,8 +85,9 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
         }
 
         [ImportingConstructor]
-        public Base64EncoderDecoderToolViewModel(IThread thread)
+        public Base64EncoderDecoderToolViewModel(ILogger logger, IThread thread)
         {
+            _logger = logger;
             _thread = thread;
         }
 
@@ -107,21 +110,19 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
 
             while (_conversionQueue.TryDequeue(out string text))
             {
-                Task<string>? conversionResult = null;
+                string conversionResult;
                 if (string.Equals(ConversionMode, DefaultConversion, StringComparison.Ordinal))
                 {
-                    conversionResult = EncodeBase64DataAsync(text);
+                    conversionResult = await EncodeBase64DataAsync(text).ConfigureAwait(false);
                 }
                 else
                 {
-                    conversionResult = DecodeBase64DataAsync(text);
+                    conversionResult = await DecodeBase64DataAsync(text).ConfigureAwait(false);
                 }
-
-                await Task.WhenAll(conversionResult).ConfigureAwait(false);
 
                 _thread.RunOnUIThreadAsync(ThreadPriority.Low, () =>
                 {
-                    OutputValue = conversionResult.Result;
+                    OutputValue = conversionResult;
                 }).ForgetSafely();
             }
 
@@ -137,7 +138,7 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
 
             await TaskScheduler.Default;
 
-            string? encoded;
+            string encoded = string.Empty;
 
             try
             {
@@ -145,9 +146,10 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
                 byte[] dataBytes = encoder.GetBytes(data);
                 encoded = Convert.ToBase64String(dataBytes);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return string.Empty;
+                _logger.LogFault("Base 64 - Encoder", ex, $"Encoding mode: {EncodingMode}");
+                return ex.Message;
             }
 
             return encoded;
@@ -161,7 +163,7 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
             }
 
             await TaskScheduler.Default;
-            string? decoded;
+            string decoded = string.Empty;
 
             try
             {
@@ -169,9 +171,14 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
                 Encoding encoder = GetEncoder();
                 decoded = encoder.GetString(decodedData);
             }
-            catch (Exception)
+            catch (FormatException)
             {
-                return string.Empty;
+                // ignore;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogFault("Base 64 - Decoder", ex, $"Encoding mode: {EncodingMode}");
+                return ex.Message;
             }
 
             return decoded;

@@ -21,6 +21,7 @@ namespace DevTools.Impl.ViewModels.Settings
     [Export(typeof(SettingsToolViewModel))]
     public sealed class SettingsToolViewModel : ObservableRecipient, IToolViewModel
     {
+        private readonly ILogger _logger;
         private readonly IThread _thread;
         private readonly IWindowManager _windowManager;
         private readonly ISettingsProvider _settingsProvider;
@@ -80,10 +81,12 @@ namespace DevTools.Impl.ViewModels.Settings
 
         [ImportingConstructor]
         public SettingsToolViewModel(
+            ILogger logger,
             IThread thread,
             IWindowManager windowManager,
             ISettingsProvider settingsProvider)
         {
+            _logger = logger;
             _thread = thread;
             _windowManager = windowManager;
             _settingsProvider = settingsProvider;
@@ -92,6 +95,7 @@ namespace DevTools.Impl.ViewModels.Settings
             ThirdPartyNoticesCommand = new AsyncRelayCommand(ExecuteThirdPartyNoticesCommandAsync);
             LicenseCommand = new AsyncRelayCommand(ExecuteLicenseCommandAsync);
             RateAndReviewCommand = new AsyncRelayCommand(ExecuteRateAndReviewCommandAsync);
+            OpenLogsCommand = new AsyncRelayCommand(ExecuteOpenLogsCommandAsync);
         }
 
         #region PrivacyPolicyCommand
@@ -151,6 +155,17 @@ namespace DevTools.Impl.ViewModels.Settings
             {
                 return await storeContext.RequestRateAndReviewAppAsync();
             }).ConfigureAwait(false);
+        }
+
+        #endregion
+
+        #region OpenLogsCommand
+
+        internal IAsyncRelayCommand OpenLogsCommand { get; }
+
+        private async Task ExecuteOpenLogsCommandAsync()
+        {
+            await _logger.OpenLogsAsync();
         }
 
         #endregion

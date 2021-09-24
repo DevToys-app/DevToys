@@ -171,6 +171,9 @@
   <data name="LineNumbersDescription" xml:space="preserve">
     <value>Display line numbers in the text editor</value>
   </data>
+  <data name="OpenLogs" xml:space="preserve">
+    <value>Open logs location</value>
+  </data>
   <data name="PrivacyPolicy" xml:space="preserve">
     <value>Privacy policy</value>
   </data>

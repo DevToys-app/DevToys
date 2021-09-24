@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using DevTools.Common;
+using DevTools.Core;
 using DevTools.Core.Injection;
 using DevTools.Core.Threading;
 using Newtonsoft.Json;
@@ -17,6 +18,7 @@ namespace DevTools.Providers.Impl.Tools.JsonFormatter
     [NotScrollable]
     internal sealed class JsonFormatterToolProvider : ToolProviderBase, IToolProvider
     {
+        private readonly ILogger _logger;
         private readonly IMefProvider _mefProvider;
 
         public string DisplayName => LanguageManager.Instance.JsonFormatter.DisplayName;
@@ -24,9 +26,10 @@ namespace DevTools.Providers.Impl.Tools.JsonFormatter
         public object IconSource => CreatePathIconFromPath(nameof(JsonFormatterToolProvider));
 
         [ImportingConstructor]
-        public JsonFormatterToolProvider(IThread thread, IMefProvider mefProvider)
+        public JsonFormatterToolProvider(ILogger logger, IThread thread, IMefProvider mefProvider)
             : base(thread)
         {
+            _logger = logger;
             _mefProvider = mefProvider;
         }
 
@@ -40,7 +43,7 @@ namespace DevTools.Providers.Impl.Tools.JsonFormatter
             return _mefProvider.Import<JsonFormatterToolViewModel>();
         }
 
-        private static bool IsValidJson(string input)
+        private bool IsValidJson(string input)
         {
             if (string.IsNullOrWhiteSpace(input))
             {
@@ -64,7 +67,7 @@ namespace DevTools.Providers.Impl.Tools.JsonFormatter
                 }
                 catch (Exception ex) //some other exception
                 {
-                    // TODO: Log this.
+                    _logger.LogFault("Check is string if JSON", ex);
                     return false;
                 }
             }

@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using DevTools.Common;
+using DevTools.Core;
 using DevTools.Core.Threading;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using System;
@@ -16,6 +17,7 @@ namespace DevTools.Providers.Impl.Tools.HashGenerator
     [Export(typeof(HashGeneratorToolViewModel))]
     public sealed class HashGeneratorToolViewModel : ObservableRecipient, IToolViewModel
     {
+        private readonly ILogger _logger;
         private readonly IThread _thread;
         private readonly Queue<string> _hashCalculationQueue = new();
 
@@ -76,8 +78,9 @@ namespace DevTools.Providers.Impl.Tools.HashGenerator
         }
 
         [ImportingConstructor]
-        public HashGeneratorToolViewModel(IThread thread)
+        public HashGeneratorToolViewModel(ILogger logger, IThread thread)
         {
+            _logger = logger;
             _thread = thread;
         }
 
@@ -128,20 +131,28 @@ namespace DevTools.Providers.Impl.Tools.HashGenerator
 
             await TaskScheduler.Default;
 
-            HashAlgorithmProvider algorithmProvider = HashAlgorithmProvider.OpenAlgorithm(alrogithmName);
-
-            IBuffer buffer = CryptographicBuffer.ConvertStringToBinary(text, BinaryStringEncoding.Utf8);
-            buffer = algorithmProvider.HashData(buffer);
-
-            string hash = CryptographicBuffer.EncodeToHexString(buffer);
-
-            if (IsUppercase)
+            try
             {
-                return hash.ToUpperInvariant();
+                HashAlgorithmProvider algorithmProvider = HashAlgorithmProvider.OpenAlgorithm(alrogithmName);
+
+                IBuffer buffer = CryptographicBuffer.ConvertStringToBinary(text, BinaryStringEncoding.Utf8);
+                buffer = algorithmProvider.HashData(buffer);
+
+                string hash = CryptographicBuffer.EncodeToHexString(buffer);
+
+                if (IsUppercase)
+                {
+                    return hash.ToUpperInvariant();
+                }
+                else
+                {
+                    return hash.ToLowerInvariant();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return hash.ToLowerInvariant();
+                _logger.LogFault("Hash Generator", ex, $"Alrogithm name: {alrogithmName}");
+                return ex.Message;
             }
         }
     }
