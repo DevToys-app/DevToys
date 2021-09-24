@@ -59,7 +59,7 @@
                 <Image
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                    Source="/DevTools.Impl/Assets/Logo/Square44x44Logo.targetsize-24_altform-unplated.png"
+                    Source="/DevTools.Impl/Assets/Logo/Square44x44Logo.altform-lightunplated_targetsize-16.png"
                     Width="16"
                     Height="16"
                     Visibility="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>

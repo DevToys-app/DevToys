@@ -85,9 +85,6 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\DevTools.Startup\Assets\Logo\LockScreenLogo.scale-200.png">
-      <Link>Assets\Logo\LockScreenLogo.scale-200.png</Link>
-    </Content>
     <Content Include="..\DevTools.Startup\Assets\Logo\SplashScreen.scale-200.png">
       <Link>Assets\Logo\SplashScreen.scale-200.png</Link>
     </Content>
@@ -96,12 +93,6 @@
     </Content>
     <Content Include="..\DevTools.Startup\Assets\Logo\Square44x44Logo.scale-200.png">
       <Link>Assets\Logo\Square44x44Logo.scale-200.png</Link>
-    </Content>
-    <Content Include="..\DevTools.Startup\Assets\Logo\Square44x44Logo.targetsize-24_altform-unplated.png">
-      <Link>Assets\Logo\Square44x44Logo.targetsize-24_altform-unplated.png</Link>
-    </Content>
-    <Content Include="..\DevTools.Startup\Assets\Logo\StoreLogo.png">
-      <Link>Assets\Logo\StoreLogo.png</Link>
     </Content>
     <Content Include="..\DevTools.Startup\Assets\Logo\Wide310x150Logo.scale-200.png">
       <Link>Assets\Logo\Wide310x150Logo.scale-200.png</Link>
@@ -144,6 +135,7 @@
       <Name>DevTools.Providers.Impl</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
