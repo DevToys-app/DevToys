@@ -17,6 +17,7 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
     {
         private const string DefaultEncoding = "UTF-8";
         private const string DefaultConversion = "Encode";
+        internal const string DecodeConversion = "Decode";
 
         private string? _inputValue;
         private string? _outputValue;
@@ -40,8 +41,7 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
             set
             {
                 _thread.ThrowIfNotOnUIThread();
-                _inputValue = value;
-                OnPropertyChanged();
+                SetProperty(ref _inputValue, value);
                 QueueConversionCalculation();
             }
         }
@@ -64,7 +64,7 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
             set
             {
                 _thread.ThrowIfNotOnUIThread();
-                _conversionMode = value;
+                SetProperty(ref _conversionMode, value);
                 string? tmp = InputValue;
                 InputValue = OutputValue;
                 OutputValue = tmp;
@@ -80,7 +80,7 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
             set
             {
                 _thread.ThrowIfNotOnUIThread();
-                _encodingMode = value;
+                SetProperty(ref _encodingMode, value);
             }
         }
 
