@@ -89,11 +89,6 @@
     <Compile Include="Views\Settings\SettingsToolViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\startup\DevTools.Startup\Assets\Logo\Square44x44Logo.targetsize-24_altform-unplated.png">
-      <Link>Assets\Logo\Square44x44Logo.targetsize-24_altform-unplated.png</Link>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="$(NuGet_MicrosoftNETCoreUniversalWindowsPlatform)" />
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="$(NuGet_MicrosoftToolkitMvvm)" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Behaviors" Version="$(Nuget_MicrosoftToolkitUwpUIBehaviors)" />
@@ -127,6 +122,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\startup\DevTools.Startup\Assets\Logo\Square44x44Logo.altform-lightunplated_targetsize-16.png">
+      <Link>Assets\Logo\Square44x44Logo.altform-lightunplated_targetsize-16.png</Link>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
