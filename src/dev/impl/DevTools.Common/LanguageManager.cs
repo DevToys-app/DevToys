@@ -521,6 +521,11 @@ namespace DevTools.Common
         public string PrivacyPolicy => _resources.GetString("PrivacyPolicy");
 
         /// <summary>
+        /// Gets the resource RateAndReview.
+        /// </summary>
+        public string RateAndReview => _resources.GetString("RateAndReview");
+
+        /// <summary>
         /// Gets the resource SmartDetection.
         /// </summary>
         public string SmartDetection => _resources.GetString("SmartDetection");

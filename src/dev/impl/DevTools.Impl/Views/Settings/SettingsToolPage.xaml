@@ -131,7 +131,7 @@
                     <StackPanel Grid.Column="0">
                         <HyperlinkButton Content="App website" NavigateUri="http://www.microsoft.com" />
                         <HyperlinkButton Content="{x:Bind ViewModel.Strings.PrivacyPolicy}" Command="{x:Bind ViewModel.PrivacyPolicyCommand}" />
-                        <HyperlinkButton Content="Rate and review on Microsoft Store" NavigateUri="http://www.microsoft.com" />
+                        <HyperlinkButton Content="{x:Bind ViewModel.Strings.RateAndReview}" Command="{x:Bind ViewModel.RateAndReviewCommand}" />
                         <HyperlinkButton Content="Donate" NavigateUri="http://www.microsoft.com" />
                     </StackPanel>
                     <StackPanel Grid.Column="1">
