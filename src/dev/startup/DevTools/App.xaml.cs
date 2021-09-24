@@ -55,6 +55,8 @@ namespace DevTools
                         typeof(Impl.Dummy).Assembly);
                 });
 
+            UnhandledException += OnUnhandledException;
+
             // Importing it in a Lazy because we can't import it before a Window is created.
             _themeListener = new Lazy<Task<IThemeListener>>(async () => (await _mefComposer).ExportProvider.GetExport<IThemeListener>());
 
@@ -170,6 +172,11 @@ namespace DevTools
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
+        }
+
+        private async void OnUnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
+        {
+            (await _mefComposer).ExportProvider.GetExport<ILogger>().LogFault("Unhandled problem", e.Exception);
         }
 
         private async Task<Frame> EnsureWindowIsInitializedAsync()

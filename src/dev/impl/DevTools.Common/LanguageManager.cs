@@ -516,6 +516,11 @@ namespace DevTools.Common
         public string LineNumbersDescription => _resources.GetString("LineNumbersDescription");
 
         /// <summary>
+        /// Gets the resource OpenLogs.
+        /// </summary>
+        public string OpenLogs => _resources.GetString("OpenLogs");
+
+        /// <summary>
         /// Gets the resource PrivacyPolicy.
         /// </summary>
         public string PrivacyPolicy => _resources.GetString("PrivacyPolicy");

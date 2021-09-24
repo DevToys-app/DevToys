@@ -26,6 +26,7 @@ namespace DevTools.Providers.Impl.Tools.JsonFormatter
         private const string OneTabIndentation = "OneTab";
         private const string NoIndentation = "Minified";
 
+        private readonly ILogger _logger;
         private readonly IThread _thread;
         private readonly Queue<string> _formattingQueue = new();
 
@@ -68,8 +69,9 @@ namespace DevTools.Providers.Impl.Tools.JsonFormatter
         internal IFormattedTextBlock? OutputTextBlock { private get; set; }
 
         [ImportingConstructor]
-        public JsonFormatterToolViewModel(IThread thread, ISettingsProvider settingsProvider)
+        public JsonFormatterToolViewModel(ILogger logger, IThread thread, ISettingsProvider settingsProvider)
         {
+            _logger = logger;
             _thread = thread;
             SettingsProvider = settingsProvider;
         }
@@ -175,7 +177,7 @@ namespace DevTools.Providers.Impl.Tools.JsonFormatter
             }
             catch (Exception ex) //some other exception
             {
-                // TODO: Log this.
+                _logger.LogFault("Json formatter", ex, $"Indentation: {Indentation}");
                 output = ex.Message;
                 return false;
             }

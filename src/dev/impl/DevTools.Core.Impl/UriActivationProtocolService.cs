@@ -14,11 +14,13 @@ namespace DevTools.Core.Impl
     [Shared]
     internal sealed class UriActivationProtocolService : IUriActivationProtocolService
     {
+        private readonly ILogger _logger;
         private readonly IThread _thread;
 
         [ImportingConstructor]
-        public UriActivationProtocolService(IThread thread)
+        public UriActivationProtocolService(ILogger logger, IThread thread)
         {
+            _logger = logger;
             _thread = thread;
         }
 
@@ -26,9 +28,10 @@ namespace DevTools.Core.Impl
         {
             return await _thread.RunOnUIThreadAsync(async () =>
             {
+                string uriToLaunch = Constants.UriActivationProtocolName;
+
                 try
                 {
-                    string uriToLaunch = Constants.UriActivationProtocolName;
 
                     if (!string.IsNullOrWhiteSpace(arguments))
                     {
@@ -48,7 +51,7 @@ namespace DevTools.Core.Impl
                 }
                 catch (Exception ex)
                 {
-                    // TODO: log this.
+                    _logger.LogFault("Launch new app instance", ex, $"Launch URI: {uriToLaunch}");
                 }
 
                 return false;

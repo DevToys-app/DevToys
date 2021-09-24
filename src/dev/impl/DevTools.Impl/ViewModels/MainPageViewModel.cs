@@ -32,6 +32,7 @@ namespace DevTools.Impl.ViewModels
     [Export(typeof(MainPageViewModel))]
     public sealed class MainPageViewModel : ObservableRecipient
     {
+        private readonly ILogger _logger;
         private readonly IThread _thread;
         private readonly IClipboard _clipboard;
         private readonly IToolProviderFactory _toolProviderFactory;
@@ -198,6 +199,7 @@ namespace DevTools.Impl.ViewModels
 
         [ImportingConstructor]
         public MainPageViewModel(
+            ILogger logger,
             IThread thread,
             IClipboard clipboard,
             ITitleBar titleBar,
@@ -205,6 +207,7 @@ namespace DevTools.Impl.ViewModels
             IUriActivationProtocolService launchProtocolService,
             ISettingsProvider settingsProvider)
         {
+            _logger = logger;
             _thread = thread;
             _clipboard = clipboard;
             _toolProviderFactory = toolProviderFactory;
@@ -321,7 +324,7 @@ namespace DevTools.Impl.ViewModels
 
             _isUpdatingSelectedItem = true;
             if (value is not null)
-            {           
+            {
                 _selectedItem = value;
                 IToolViewModel toolViewModel = _toolProviderFactory.GetToolViewModel(_selectedItem.ToolProvider);
                 Messenger.Send(new NavigateToToolMessage(toolViewModel, clipboardContentData));
@@ -336,77 +339,84 @@ namespace DevTools.Impl.ViewModels
         {
             await TaskScheduler.Default;
 
-            var newToolsMenuitems = new Dictionary<MatchedToolProviderViewData, MatchSpan[]?>();
-            var footerMenuItems = new List<MatchedToolProviderViewData>();
-
-            using (await _sempahore.WaitAsync(CancellationToken.None).ConfigureAwait(false))
+            try
             {
-                bool firstTime = string.IsNullOrEmpty(searchQuery) && _allToolsMenuitems.Count == 0;
+                var newToolsMenuitems = new Dictionary<MatchedToolProviderViewData, MatchSpan[]?>();
+                var footerMenuItems = new List<MatchedToolProviderViewData>();
 
-                foreach (MatchedToolProvider matchedToolProvider in _toolProviderFactory.GetTools(searchQuery))
+                using (await _sempahore.WaitAsync(CancellationToken.None).ConfigureAwait(false))
                 {
-                    MatchedToolProviderViewData item;
-                    MatchSpan[]? matchSpans = null;
-                    if (firstTime)
+                    bool firstTime = string.IsNullOrEmpty(searchQuery) && _allToolsMenuitems.Count == 0;
+
+                    foreach (MatchedToolProvider matchedToolProvider in _toolProviderFactory.GetTools(searchQuery))
                     {
-                        item
-                           = new MatchedToolProviderViewData(
-                               _thread,
-                               matchedToolProvider.Metadata,
-                               matchedToolProvider.ToolProvider,
-                               matchedToolProvider.MatchedSpans);
-                        _allToolsMenuitems.Add(item);
-                    }
-                    else
-                    {
-                        item
-                            = _allToolsMenuitems.FirstOrDefault(
-                                m => string.Equals(
-                                    m.Metadata.Name,
-                                    matchedToolProvider.Metadata.Name,
-                                    StringComparison.Ordinal));
-
-                        matchSpans = matchedToolProvider.MatchedSpans;
-                    }
-
-                    newToolsMenuitems[item] = matchSpans;
-                }
-
-                if (FooterMenuItems.Count == 0)
-                {
-                    foreach (MatchedToolProvider matchedToolProvider in _toolProviderFactory.GetFooterTools())
-                    {
-                        footerMenuItems.Add(
-                            new MatchedToolProviderViewData(
-                                _thread,
-                                matchedToolProvider.Metadata,
-                                matchedToolProvider.ToolProvider,
-                                matchedToolProvider.MatchedSpans));
-                    }
-                }
-            }
-
-            await _thread.RunOnUIThreadAsync(
-                ThreadPriority.Low,
-                () =>
-                {
-                    var oldSelectedItem = SelectedMenuItem;
-                    ToolsMenuItems.Clear();
-                    SelectedMenuItem = null;
-
-                    foreach (var item in newToolsMenuitems)
-                    {
-                        if (item.Value is not null)
+                        MatchedToolProviderViewData item;
+                        MatchSpan[]? matchSpans = null;
+                        if (firstTime)
                         {
-                            item.Key.MatchedSpans = item.Value;
+                            item
+                               = new MatchedToolProviderViewData(
+                                   _thread,
+                                   matchedToolProvider.Metadata,
+                                   matchedToolProvider.ToolProvider,
+                                   matchedToolProvider.MatchedSpans);
+                            _allToolsMenuitems.Add(item);
+                        }
+                        else
+                        {
+                            item
+                                = _allToolsMenuitems.FirstOrDefault(
+                                    m => string.Equals(
+                                        m.Metadata.Name,
+                                        matchedToolProvider.Metadata.Name,
+                                        StringComparison.Ordinal));
+
+                            matchSpans = matchedToolProvider.MatchedSpans;
+                        }
+
+                        newToolsMenuitems[item] = matchSpans;
+                    }
+
+                    if (FooterMenuItems.Count == 0)
+                    {
+                        foreach (MatchedToolProvider matchedToolProvider in _toolProviderFactory.GetFooterTools())
+                        {
+                            footerMenuItems.Add(
+                                new MatchedToolProviderViewData(
+                                    _thread,
+                                    matchedToolProvider.Metadata,
+                                    matchedToolProvider.ToolProvider,
+                                    matchedToolProvider.MatchedSpans));
                         }
                     }
+                }
 
-                    ToolsMenuItems.Update(newToolsMenuitems.Keys);
-                    footerMenuItems.ForEach(item => FooterMenuItems.Add(item));
+                await _thread.RunOnUIThreadAsync(
+                    ThreadPriority.Low,
+                    () =>
+                    {
+                        var oldSelectedItem = SelectedMenuItem;
+                        ToolsMenuItems.Clear();
+                        SelectedMenuItem = null;
 
-                    SelectedMenuItem = oldSelectedItem;
-                });
+                        foreach (var item in newToolsMenuitems)
+                        {
+                            if (item.Value is not null)
+                            {
+                                item.Key.MatchedSpans = item.Value;
+                            }
+                        }
+
+                        ToolsMenuItems.Update(newToolsMenuitems.Keys);
+                        footerMenuItems.ForEach(item => FooterMenuItems.Add(item));
+
+                        SelectedMenuItem = oldSelectedItem;
+                    });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogFault("Update main menu after a search", ex, $"Search query: {searchQuery}");
+            }
         }
 
         private async Task UpdateRecommendedToolsAsync()
@@ -441,7 +451,7 @@ namespace DevTools.Impl.ViewModels
                         }
                         catch (Exception ex)
                         {
-                            // TODO: Log this.
+                            _logger.LogFault("Check if tool is recommended", ex, $"Tool : {tool.Metadata.Name}");
                         }
                     }));
             }
@@ -464,7 +474,7 @@ namespace DevTools.Impl.ViewModels
                     // The recommended tool is different that the ones that were recommended before (if any...).
                     // Let's select automatically this tool.
                     await _thread.RunOnUIThreadAsync(
-                        ThreadPriority.High, 
+                        ThreadPriority.High,
                         () =>
                         {
                             if (!IsInCompactOverlayMode && _allowSelectAutomaticallyRecommendedTool)
