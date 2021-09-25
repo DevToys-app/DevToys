@@ -136,7 +136,7 @@
     <value>Coller</value>
   </data>
   <data name="Redo" xml:space="preserve">
-    <value>Refaire</value>
+    <value>Rétablir</value>
   </data>
   <data name="SelectAll" xml:space="preserve">
     <value>Sélectionner tout</value>
