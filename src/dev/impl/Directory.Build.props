@@ -7,13 +7,6 @@
 
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 
-        <!-- Defines the bin and obj folder paths -->
-        <RepoRoot>$([System.IO.Path]::GetDirectoryName($([MSBuild]::GetPathOfFileAbove('.gitignore', '$(MSBuildThisFileDirectory)'))))\</RepoRoot>
-        <BaseOutputPath>$(RepoRoot)bin\</BaseOutputPath>
-        <BaseIntermediateOutputPath>$(RepoRoot)obj\$(Platform)\$(Configuration)\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
-        <OutputPath>$(BaseOutputPath)$(Platform)\$(Configuration)\$(MSBuildProjectName)\</OutputPath>
-        <PackagesConfigRestorePath>$(RepoRoot)packages\</PackagesConfigRestorePath>
-
         <!-- Enable generation of .tt files -->
         <TransformOnBuild>true</TransformOnBuild>
         <OverwriteReadOnlyOutputFiles>true</OverwriteReadOnlyOutputFiles>

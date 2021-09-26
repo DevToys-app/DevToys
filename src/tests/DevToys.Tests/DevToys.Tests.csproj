@@ -16,9 +16,38 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnitTestPlatformVersion Condition="'$(UnitTestPlatformVersion)' == ''">$(VisualStudioVersion)</UnitTestPlatformVersion>
     <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
-    <RuntimeIdentifiers>win10</RuntimeIdentifiers>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+    <IsTestProject>true</IsTestProject>
   </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+        <DebugSymbols>true</DebugSymbols>
+        <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+        <DebugType>full</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+        <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+        <Optimize>true</Optimize>
+        <DebugType>pdbonly</DebugType>
+        <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Platform)' == 'x86'">
+        <PlatformTarget>x86</PlatformTarget>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Platform)' == 'x64'">
+        <PlatformTarget>x64</PlatformTarget>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Platform)' == 'ARM'">
+        <PlatformTarget>ARM</PlatformTarget>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Platform)' == 'ARM64'">
+        <PlatformTarget>ARM64</PlatformTarget>
+    </PropertyGroup>
+
   <ItemGroup>
     <SDKReference Include="TestPlatform.Universal, Version=$(UnitTestPlatformVersion)" />
   </ItemGroup>
