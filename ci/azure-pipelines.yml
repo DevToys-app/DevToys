@@ -20,6 +20,13 @@ jobs:
 - job: Build
   timeoutInMinutes: 120
   steps:
+  - task: UseDotNet@2
+    displayName: 'Use .NET Core sdk 3.1.100'
+    inputs:
+      packageType: sdk
+      version: 3.1.100
+      installationPath: $(Agent.ToolsDirectory)/dotnet
+
   - task: NuGetToolInstaller@1
     displayName: 'Install nuget tool'
 
@@ -27,6 +34,14 @@ jobs:
     displayName: 'Restore nuget package'
     inputs:
       restoreSolution: '$(solution)'
+
+  - task: MSBuild@1
+    displayName: 'Restore Nuget for WAPPROJ'
+    inputs:
+      solution: '**/*.wapproj'
+      platform: '$(BuildPlatform)'
+      configuration: '$(BuildConfiguration)'
+      msbuildArguments: '/t:restore'
 
   - task: MSBuild@1
     displayName: 'Build'
