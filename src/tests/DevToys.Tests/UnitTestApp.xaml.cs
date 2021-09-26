@@ -40,10 +40,10 @@ namespace DevToys.Tests
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
-            if (Window.Current.Content is not Frame rootFrame)
+            if (Window.Current.Content == null)
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
-                rootFrame = new Frame();
+                var rootFrame = new Frame();
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
