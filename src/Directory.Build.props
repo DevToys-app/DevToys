@@ -14,8 +14,8 @@
         <PackagesConfigRestorePath>$(RepoRoot)packages\</PackagesConfigRestorePath>
     </PropertyGroup>
 
-    <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '16.0' ">
-        <VisualStudioVersion>16.0</VisualStudioVersion>
+    <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '15.0' ">
+        <VisualStudioVersion>15.0</VisualStudioVersion>
     </PropertyGroup>
 
     <PropertyGroup>
