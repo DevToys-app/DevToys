@@ -36,10 +36,18 @@ jobs:
 #      restoreSolution: '$(solution)'
 
   - task: MSBuild@1
-    displayName: 'Restore Nuget for WAPPROJ'
+    displayName: 'Restore nuget for Solution'
+    inputs:
+      solution: '**/*.sln'
+      platform: '$(BuildPlatform)'
+      configuration: '$(BuildConfiguration)'
+      msbuildArguments: '/t:restore'
+
+  - task: MSBuild@1
+    displayName: 'Restore nuget for WAPPROJ'
     inputs:
       solution: '**/*.wapproj'
-      platform: '$(BuildPlatform)'
+      platform: 'x64'
       configuration: '$(BuildConfiguration)'
       msbuildArguments: '/t:restore'
 
@@ -47,7 +55,7 @@ jobs:
     displayName: 'Build'
     inputs:
       solution: '**/*.wapproj'
-      platform: 'x86'
+      platform: 'x64'
       configuration: '$(buildConfiguration)'
       msbuildArguments: '/t:build;_GenerateAppxPackage /p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=Sideload /p:AppxPackageSigningEnabled=false'
       maximumCpuCount: true
