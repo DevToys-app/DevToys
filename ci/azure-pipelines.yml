@@ -21,12 +21,15 @@ jobs:
   timeoutInMinutes: 120
   steps:
   - task: NuGetToolInstaller@1
+    displayName: 'Install nuget tool'
 
   - task: NuGetCommand@2
+    displayName: 'Restore nuget package'
     inputs:
       restoreSolution: '$(solution)'
 
   - task: MSBuild@1
+    displayName: 'Build'
     inputs:
       solution: '**/*.wapproj'
       platform: 'x86'
