@@ -13,16 +13,6 @@ Function Restore-PackagesUnder($searchRoot) {
         Write-Host "Restoring packages for $($_.FullName)..." -ForegroundColor $HeaderColor
         & "$toolsPath\Restore-NuGetPackages.ps1" -Path $_.FullName -Verbosity $nugetVerbosity -MSBuildPath $MSBuildPath
     }
-
-    # Restore vcxproj dependencies
-    $nugetPath = & "$PSScriptRoot\tools\Get-NuGetTool.ps1"
-    Get-ChildItem $searchRoot -rec |? { $_.FullName.EndsWith('.vcxproj') } |% {
-        $packages = Join-Path -Path $_.PSParentPath -ChildPath "nuget.config"
-        if (Test-Path $packages) {
-            Write-Host "Restoring packages for $(Convert-Path $_.PSParentPath)..." -ForegroundColor $HeaderColor
-            & $nugetPath restore $(Convert-Path $_.PSParentPath)
-        }
-    }
 }
 
 Push-Location $PSScriptRoot
@@ -34,7 +24,6 @@ try {
     $MSBuildPath = Get-MsBuildPath
     if ($VerbosePreference -eq 'continue') { $nugetVerbosity = 'Detailed' }
 
-    & "$PSScriptRoot\tools\Get-NuGetTool.ps1" | Out-Null
     Restore-PackagesUnder "$PSScriptRoot\src"
 
     Write-Host "Successfully restored all dependencies" -ForegroundColor Yellow

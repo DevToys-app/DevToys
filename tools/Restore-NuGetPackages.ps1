@@ -25,12 +25,9 @@ Param(
 )
 
 if ($Path.EndsWith('.sln')) {
-    if ($PSCmdlet.ShouldProcess($Path, 'dotnet restore')) {
-        Write-Verbose "Restoring NuGet packages for $Path with verbosity $Verbosity"
-        dotnet restore $Path -v $Verbosity
-        Invoke-Expression '& "$MSBuildPath" $Path /t:restore /v:$Verbosity'
-        if ($lastexitcode -ne 0) { throw }
-    }
+    Write-Verbose "Restoring NuGet packages for $Path with verbosity $Verbosity"
+    Invoke-Expression '& "$MSBuildPath" $Path /t:restore /v:$Verbosity'
+    if ($lastexitcode -ne 0) { throw }
 
     $slnDir = Split-Path -Path $Path -Parent
     $packagesConfig = Join-Path $slnDir "\nuget.config"
