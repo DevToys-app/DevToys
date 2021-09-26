@@ -116,7 +116,7 @@
     <Content Include="Assets\Logo\Wide310x150Logo.scale-400.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="$(Windows10SDKVersion)" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="$(NuGet_MicrosoftWindowsSDKBuildTools)" PrivateAssets="all" />
   </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
 </Project>

@@ -1,6 +1,4 @@
-﻿#nullable disable
-
-using DevToys.UI.Converters;
+﻿using DevToys.UI.Converters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
