@@ -13,6 +13,7 @@ variables:
   group: BuildPipelineVariables
   solution: '**/*.sln'
   buildPlatform: 'x86|x64|ARM|ARM64'
+  buildPlatformAlias: 'x86,x64,ARM,ARM64'
   buildConfiguration: 'Release'
   appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
@@ -20,26 +21,12 @@ jobs:
 - job: Build
   timeoutInMinutes: 120
   steps:
-#  - task: UseDotNet@2
-#    displayName: 'Use .NET Core sdk 3.1.100'
-#    inputs:
-#      packageType: sdk
-#      version: 3.1.100
-#      installationPath: $(Agent.ToolsDirectory)/dotnet
-
-#  - task: NuGetToolInstaller@1
-#    displayName: 'Install nuget tool'
-
-#  - task: NuGetCommand@2
-#    displayName: 'Restore nuget package'
-#    inputs:
-#      restoreSolution: '$(solution)'
 
   - task: MSBuild@1
     displayName: 'Restore nuget for Solution'
     inputs:
       solution: '**/*.sln'
-      platform: 'x64'
+      platform: '$(buildPlatformAlias)'
       configuration: '$(BuildConfiguration)'
       msbuildArguments: '/t:restore'
 
@@ -47,14 +34,14 @@ jobs:
     displayName: 'Restore nuget for WAPPROJ'
     inputs:
       solution: '**/*.wapproj'
-      platform: 'x64'
+      platform: '$(buildPlatformAlias)'
       configuration: '$(BuildConfiguration)'
       msbuildArguments: '/t:restore'
 
   - task: MSBuild@1
     displayName: 'Build'
     inputs:
-      solution: '**/*.wapproj'
+      solution: '**/*.sln'
       platform: 'x64'
       configuration: '$(buildConfiguration)'
       msbuildArguments: '/t:build;_GenerateAppxPackage /p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=Sideload /p:AppxPackageSigningEnabled=false'
