@@ -24,6 +24,7 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
         private string _encodingMode = DefaultEncoding;
         private string _conversionMode = DefaultConversion;
         private bool _conversionInProgress;
+        private bool _setPropertyInProgress;
         private readonly ILogger _logger;
         private readonly IThread _thread;
         private readonly Queue<string> _conversionQueue = new();
@@ -63,11 +64,14 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
             get => _conversionMode;
             set
             {
-                _thread.ThrowIfNotOnUIThread();
-                SetProperty(ref _conversionMode, value);
-                string? tmp = InputValue;
-                InputValue = OutputValue;
-                OutputValue = tmp;
+                if (!_setPropertyInProgress)
+                {
+                    _setPropertyInProgress = true;
+                    _thread.ThrowIfNotOnUIThread();
+                    SetProperty(ref _conversionMode, value);
+                    InputValue = OutputValue;
+                    _setPropertyInProgress = false;
+                }
             }
         }
 
@@ -81,6 +85,7 @@ namespace DevTools.Providers.Impl.Tools.Base64EncoderDecoder
             {
                 _thread.ThrowIfNotOnUIThread();
                 SetProperty(ref _encodingMode, value);
+                QueueConversionCalculation();
             }
         }
 
