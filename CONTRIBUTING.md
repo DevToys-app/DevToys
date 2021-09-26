@@ -18,19 +18,19 @@ You can contribute to DevToys app by:
 * Make sure you have Visual Studio 2019 16.10+ installed.
 * In Visual Studio Installer, install the required components by importing the `.vsconfig` file from the root of the repository. 
 * Run `init.ps1` in a PowerShell command prompt to restore all the dependencies.
-* Open `src/DevTools.sln` with Visual Studio and set Solution Platform to x64*.
-* Once opened, set `src/dev/startup/DevTools.Startup/DevTools.Startup.wapproj` as startup project.
+* Open `src/DevToys.sln` with Visual Studio and set Solution Platform to x64*.
+* Once opened, set `src/dev/startup/DevToys.Startup/DevToys.Startup.wapproj` as startup project.
 * Now you should be able to build and run DevToys on your machine. If it fails, try close the solution and reopen it again.
 
 **If x64 doesn't work, use the architecture of your system*
 
 # Internationalization and localization
 
-* After following `How to Build and Run DevToys from source`, open `src/DevTools.sln` with Visual Studio.
-* Copy the folder `dev/impl/DevTools.Common/Strings/en` and rename the copied folder with the language indication of your choice. For example, "fr-FR" for French (France).
+* After following `How to Build and Run DevToys from source`, open `src/DevToys.sln` with Visual Studio.
+* Copy the folder `dev/impl/DevToys.Common/Strings/en` and rename the copied folder with the language indication of your choice. For example, "fr-FR" for French (France).
 * Open each `.resw` files and translate the text.
-* Open `dev/impl/DevTools.Common/LanguageManager.tt`.
-* Copy the following block and add it to the line below: https://etienne-baudoux.visualstudio.com/Side%20projects/_git/DevTools/?path=src/dev/impl/DevTools.Common/LanguageManager.tt&version=GC35fe1ba4bf76a1a4e8274f8ce3119c384325634b&lineStyle=plain&line=100&lineEnd=106&lineStartColumn=18&lineEndColumn=18
+* Open `dev/impl/DevToys.Common/LanguageManager.tt`.
+* Copy the following block and add it to the line below: https://etienne-baudoux.visualstudio.com/Side%20projects/_git/DevToys/?path=src/dev/impl/DevToys.Common/LanguageManager.tt&version=GC35fe1ba4bf76a1a4e8274f8ce3119c384325634b&lineStyle=plain&line=100&lineEnd=106&lineStartColumn=18&lineEndColumn=18
 * Change the `Identifier`, `DisplayName` and `Culture` to match your language.
 * Save the file. Visual Studio will ask you to confirm. Click Yes.
 * Build and Run the app and test your changes.

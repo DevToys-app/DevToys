@@ -1,0 +1,17 @@
+<Project>
+    <!-- Update Assembly Version info on build -->
+    <PropertyGroup>
+        <SetVersionPath>$(RepoRoot)tools\SetVersionTask.dll</SetVersionPath>
+    </PropertyGroup>
+    <UsingTask TaskName="SetVersion" AssemblyFile="$(SetVersionPath)" />
+    <Target Name="UpdateVersionNumber" Condition="Exists('$(SetVersionPath)') AND '$(Configuration)' == 'Release'">
+        <Message Text="Updating Version..." />
+        <SetVersion
+            FileName="$(RepoRoot)src\dev\shared\SharedAssemblyInfo.cs"
+            AssemblyVersion="$([System.DateTime]::Now.ToString(yyyy.MM.dd.0))"
+            AssemblyFileVersion="$([System.DateTime]::Now.ToString(yyyy.MM.dd.0))" />
+    </Target>
+    <Target Name="BeforeBuild" DependsOnTargets="UpdateVersionNumber"/>
+
+    <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TextTemplating\Microsoft.TextTemplating.targets" />
+</Project>

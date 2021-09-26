@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="128" align="center" src="/src/dev/startup/DevTools.Startup/Assets/Logo/Square150x150Logo.scale-200.png">
+  <img width="128" align="center" src="/src/dev/startup/DevToys.Startup/Assets/Logo/Square150x150Logo.scale-200.png">
 </p>
 <h1 align="center">
   DevToys

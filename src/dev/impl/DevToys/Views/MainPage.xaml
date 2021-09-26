@@ -1,0 +1,250 @@
+﻿<Page
+    x:Class="DevToys.Views.MainPage"
+    x:Name="Page"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:DevToys.UI.Controls"
+    xmlns:converters="using:DevToys.UI.Converters"
+    xmlns:ex="using:DevToys.UI.Extensions"
+    xmlns:models="using:DevToys.Models"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:icore="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:viewmanagement="using:Windows.UI.ViewManagement"
+    mc:Ignorable="d"
+    NavigationCacheMode="Enabled"
+    muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
+    <Page.Resources>
+        <converters:DoubleToGridLengthConverter x:Key="DoubleToGridLengthConverter"/>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <converters:BooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" IsInverted="True"/>
+        <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
+        <converters:EnumToThicknessConverter x:Key="NavigationViewItemMarginConverter" ThicknessOnEnumDetected="0" ThicknessOnEnumNotDetected="12,0,12,0"/>
+        <converters:BooleanToScrollModeConverter x:Key="BooleanToScrollModeConverter" ScrollModeOnTrue="Disabled" ScrollModeOnFalse="Enabled"/>
+        <converters:BooleanToScrollBarVisibilityConverter x:Key="BooleanToScrollBarVisibilityConverter" ScrollBarVisibilityOnTrue="Disabled" ScrollBarVisibilityOnFalse="Auto"/>
+
+        <!--This top margin is the height of the custom TitleBar-->
+        <Thickness x:Key="NavigationViewContentMargin">0,32,0,0</Thickness>
+        <Thickness x:Key="NavigationViewHeaderMargin">16,6,0,0</Thickness>
+        <SolidColorBrush x:Key="NavigationViewContentBackground">Transparent</SolidColorBrush>
+        <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush">Transparent</SolidColorBrush>
+    </Page.Resources>
+
+    <Grid Background="Transparent">
+        <Grid.BackgroundTransition>
+            <BrushTransition />
+        </Grid.BackgroundTransition>
+
+        <!-- Title and icon in the title bar -->
+        <Grid
+            VerticalAlignment="Top"
+            Height="48"
+            Canvas.ZIndex="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="{x:Bind ViewModel.TitleBar.SystemOverlayRightInset, Mode=OneWay, Converter={StaticResource DoubleToGridLengthConverter}}" />
+            </Grid.ColumnDefinitions>
+            <Border
+                Grid.Column="0"
+                Width="48"
+                Visibility="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
+
+            <StackPanel
+                Grid.Column="1"
+                Orientation="Horizontal">
+                <Image
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Source="/Assets/Logo/Square44x44Logo.altform-lightunplated_targetsize-16.png"
+                    Width="16"
+                    Height="16"
+                    Visibility="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
+                <TextBlock
+                    Text="{x:Bind ViewModel.WindowTitle, Mode=OneWay}"
+                    VerticalAlignment="Center"
+                    Margin="12,0,0,0"
+                    Style="{StaticResource CaptionTextBlockStyle}" />
+            </StackPanel>
+
+            <!-- Draggable part of the title bar -->
+            <Border
+                x:Name="AppTitleBar"
+                Grid.Column="1"
+                Background="Transparent"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Stretch"
+                Height="32"/>
+
+            <!-- Compact Overlay button -->
+            <Button
+                Grid.Column="2"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Width="46"
+                Height="32"
+                Padding="0"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                ToolTipService.ToolTip="{x:Bind ViewModel.Strings.EnterCompactOverlayTooltip}"
+                Visibility="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
+                Command="{x:Bind ViewModel.ChangeViewModeCommand}">
+                <Button.CommandParameter>
+                    <viewmanagement:ApplicationViewMode>CompactOverlay</viewmanagement:ApplicationViewMode>
+                </Button.CommandParameter>
+                <Button.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="Up" Modifiers="Control"/>
+                </Button.KeyboardAccelerators>
+                <controls:CustomPathIcon
+                    Data="{StaticResource EnterCompactOverlayPathIconData}"
+                    RenderTransformOrigin="0.5,0.5">
+                    <controls:CustomPathIcon.RenderTransform>
+                        <CompositeTransform Rotation="180"/>
+                    </controls:CustomPathIcon.RenderTransform>
+                </controls:CustomPathIcon>
+            </Button>
+            <Button
+                Grid.Column="2"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Width="46"
+                Height="32"
+                Padding="0"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                ToolTipService.ToolTip="{x:Bind ViewModel.Strings.ExitCompactOverlayTooltip}"
+                Visibility="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Command="{x:Bind ViewModel.ChangeViewModeCommand}">
+                <Button.CommandParameter>
+                    <viewmanagement:ApplicationViewMode>Default</viewmanagement:ApplicationViewMode>
+                </Button.CommandParameter>
+                <Button.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="Down" Modifiers="Control"/>
+                </Button.KeyboardAccelerators>
+                <controls:CustomPathIcon
+                    Data="{StaticResource ExitCompactOverlayPathIconData}"
+                    RenderTransformOrigin="0.5,0.5">
+                    <controls:CustomPathIcon.RenderTransform>
+                        <CompositeTransform Rotation="-90"/>
+                    </controls:CustomPathIcon.RenderTransform>
+                </controls:CustomPathIcon>
+            </Button>
+        </Grid>
+
+        <!-- Navigation view -->
+        <muxc:NavigationView
+            x:Name="NavigationView"
+            IsTitleBarAutoPaddingEnabled="False"
+            IsSettingsVisible="False"
+            IsBackButtonVisible="Collapsed"
+            IsBackEnabled="False"
+            CompactModeThresholdWidth="450"
+            ExpandedModeThresholdWidth="550"
+            PaneDisplayMode="Auto"
+            IsTabStop="False"
+            AlwaysShowHeader="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource InvertedBooleanConverter}}"
+            IsPaneVisible="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource InvertedBooleanConverter}}"
+            Header="{x:Bind ViewModel.HeaderText, Mode=OneWay}"
+            MenuItemsSource="{x:Bind ViewModel.ToolsMenuItems}"
+            FooterMenuItemsSource="{x:Bind ViewModel.FooterMenuItems}"
+            SelectedItem="{x:Bind ViewModel.SelectedMenuItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <i:Interaction.Behaviors>
+                <icore:EventTriggerBehavior EventName="DisplayModeChanged">
+                    <icore:ChangePropertyAction TargetObject="{x:Bind ViewModel}" PropertyName="NavigationViewDisplayMode" Value="{x:Bind NavigationView.DisplayMode, Mode=OneWay}"/>
+                </icore:EventTriggerBehavior>
+                <icore:EventTriggerBehavior EventName="PaneClosing">
+                    <icore:ChangePropertyAction TargetObject="{x:Bind ViewModel}" PropertyName="IsNavigationViewPaneOpened" Value="False"/>
+                </icore:EventTriggerBehavior>
+                <icore:EventTriggerBehavior EventName="PaneOpening">
+                    <icore:ChangePropertyAction TargetObject="{x:Bind ViewModel}" PropertyName="IsNavigationViewPaneOpened" Value="True"/>
+                </icore:EventTriggerBehavior>
+                <icore:EventTriggerBehavior EventName="Loaded">
+                    <icore:ChangePropertyAction TargetObject="{x:Bind ViewModel}" PropertyName="IsNavigationViewPaneOpened" Value="{x:Bind NavigationView.IsPaneOpen}"/>
+                </icore:EventTriggerBehavior>
+            </i:Interaction.Behaviors>
+
+            <muxc:NavigationView.MenuItemTemplate>
+                <DataTemplate x:DataType="models:MatchedToolProviderViewData">
+                    <muxc:NavigationViewItem
+                        Icon="{x:Bind Icon.Result, Mode=OneWay}"
+                        Margin="{Binding ActualNavigationViewDisplayMode, ConverterParameter='Compact', Converter={StaticResource NavigationViewItemMarginConverter}}">
+                        <muxc:NavigationViewItem.ContextFlyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem
+                                    Text="{Binding Instance.MainPage.OpenInNewWindow, Source={StaticResource LanguageManager}}"
+                                    Command="{Binding OpenToolInNewWindowCommand}"
+                                    CommandParameter="{x:Bind Metadata}">
+                                    <MenuFlyoutItem.Icon>
+                                        <FontIcon Glyph="&#x00F8;" />
+                                    </MenuFlyoutItem.Icon>
+                                </MenuFlyoutItem>
+                            </MenuFlyout>
+                        </muxc:NavigationViewItem.ContextFlyout>
+                        <muxc:NavigationViewItem.Content>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Stretch"
+                                    TextWrapping="NoWrap"
+                                    TextTrimming="CharacterEllipsis"
+                                    Text="{x:Bind ToolProvider.DisplayName}"
+                                    Visibility="{x:Bind AnyMatchedSpan, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
+                                <RichTextBlock
+                                    x:Name="NavigationViewItemRichTextBlock"
+                                    x:Load="{x:Bind AnyMatchedSpan, Mode=OneWay}"
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Stretch"
+                                    IsTextSelectionEnabled="False"
+                                    TextWrapping="NoWrap"
+                                    TextTrimming="CharacterEllipsis"
+                                    ex:HighlighterExtension.Highlighters="{x:Bind MatchedSpans, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                    <Paragraph>
+                                        <Run Text="{x:Bind ToolProvider.DisplayName}"/>
+                                    </Paragraph>
+                                </RichTextBlock>
+                                <muxc:ImageIcon
+                                    x:Name="NavigationViewItemRecommendedIcon"
+                                    x:Load="{x:Bind IsRecommended, Mode=OneWay}"
+                                    Grid.Column="1"
+                                    Source="ms-appx:///DevToys/Assets/Icons/Idea.svg"
+                                    Height="16"
+                                    Width="16"/>
+                            </Grid>
+                        </muxc:NavigationViewItem.Content>
+                    </muxc:NavigationViewItem>
+                </DataTemplate>
+            </muxc:NavigationView.MenuItemTemplate>
+
+            <muxc:NavigationView.AutoSuggestBox>
+                <AutoSuggestBox
+                    x:Name="SearchBox"
+                    QueryIcon="Find"
+                    PlaceholderText="{x:Bind ViewModel.Strings.Search}"
+                    Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <AutoSuggestBox.KeyboardAccelerators>
+                        <KeyboardAccelerator
+                            Key="F"
+                            Modifiers="Control"
+                            Invoked="SearchBoxKeyboardAccelerator_Invoked"/>
+                    </AutoSuggestBox.KeyboardAccelerators>
+                </AutoSuggestBox>
+            </muxc:NavigationView.AutoSuggestBox>
+
+            <ScrollViewer
+                Margin="12,0,0,0"
+                Padding="4,12,16,0"
+                HorizontalScrollMode="Disabled"
+                VerticalScrollBarVisibility="{x:Bind ViewModel.SelectedMenuItem.Metadata.NotScrollable, Mode=OneWay, Converter={StaticResource BooleanToScrollBarVisibilityConverter}}"
+                VerticalScrollMode="{x:Bind ViewModel.SelectedMenuItem.Metadata.NotScrollable, Mode=OneWay, Converter={StaticResource BooleanToScrollModeConverter}}">
+                <Frame x:Name="contentFrame" />
+            </ScrollViewer>
+        </muxc:NavigationView>
+    </Grid>
+</Page>
