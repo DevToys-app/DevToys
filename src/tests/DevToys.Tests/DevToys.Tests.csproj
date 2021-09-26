@@ -17,6 +17,7 @@
     <UnitTestPlatformVersion Condition="'$(UnitTestPlatformVersion)' == ''">$(VisualStudioVersion)</UnitTestPlatformVersion>
     <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
     <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
     <SDKReference Include="TestPlatform.Universal, Version=$(UnitTestPlatformVersion)" />
@@ -59,6 +60,13 @@
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="$(NuGet_MicrosoftToolkitMvvm)" />
     <PackageReference Include="MSTest.TestAdapter" Version="$(NuGet_MSTestTestAdapter)" />
     <PackageReference Include="MSTest.TestFramework" Version="$(NuGet_MSTestTestFramework)" />
+    <PackageReference Include="System.Composition" Version="$(NuGet_SystemComposition)" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\dev\impl\DevToys\DevToys.csproj">
+      <Project>{E3E4E200-B380-4207-9A7E-4C9421904502}</Project>
+      <Name>DevToys</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
