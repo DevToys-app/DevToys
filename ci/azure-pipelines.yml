@@ -27,13 +27,13 @@ jobs:
       version: 3.1.100
       installationPath: $(Agent.ToolsDirectory)/dotnet
 
-  - task: NuGetToolInstaller@1
-    displayName: 'Install nuget tool'
+#  - task: NuGetToolInstaller@1
+#    displayName: 'Install nuget tool'
 
-  - task: NuGetCommand@2
-    displayName: 'Restore nuget package'
-    inputs:
-      restoreSolution: '$(solution)'
+#  - task: NuGetCommand@2
+#    displayName: 'Restore nuget package'
+#    inputs:
+#      restoreSolution: '$(solution)'
 
   - task: MSBuild@1
     displayName: 'Restore Nuget for WAPPROJ'
