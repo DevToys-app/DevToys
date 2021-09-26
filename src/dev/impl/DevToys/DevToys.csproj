@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <ProjectGuid>{E3E4E200-B380-4207-9A7E-4C9421904502}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevToys</RootNamespace>
+    <AssemblyName>DevToys</AssemblyName>
+    <DefaultLanguage>en</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">$(Windows10SDKVersion)</TargetPlatformVersion>
+    <TargetPlatformMinVersion>$(Windows10MinSDKVersion)</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>16</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
+    <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\shared\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
+    <Content Include="..\..\DevToys.Startup\Assets\Logo\Square44x44Logo.altform-lightunplated_targetsize-16.png">
+      <Link>Assets\Logo\Square44x44Logo.altform-lightunplated_targetsize-16.png</Link>
+    </Content>
+    <Content Include="Properties\Default.rd.rd.xml" />
+    <Compile Include="Api\Core\IClipboard.cs" />
+    <Compile Include="Api\Core\IMefProvider.cs" />
+    <Compile Include="Api\Core\ITitleBar.cs" />
+    <Compile Include="Api\Core\IUriActivationProtocolService.cs" />
+    <Compile Include="Api\Core\Navigation\IWindowManager.cs" />
+    <Compile Include="Api\Core\Navigation\NavigationParameter.cs" />
+    <Compile Include="Api\Core\Settings\ISettingsProvider.cs" />
+    <Compile Include="Api\Core\Settings\SettingChangedEventArgs.cs" />
+    <Compile Include="Api\Core\Settings\SettingDefinition.cs" />
+    <Compile Include="Api\Core\Theme\AppTheme.cs" />
+    <Compile Include="Api\Core\Theme\IThemeListener.cs" />
+    <Compile Include="Api\Tools\CompactOverlaySizeAttribute.cs" />
+    <Compile Include="Api\Tools\IsFooterItemAttribute.cs" />
+    <Compile Include="Api\Tools\IToolProvider.cs" />
+    <Compile Include="Api\Tools\IToolProviderFactory.cs" />
+    <Compile Include="Api\Tools\IToolViewModel.cs" />
+    <Compile Include="Api\Tools\MatchedToolProvider.cs" />
+    <Compile Include="Api\Tools\MatchSpan.cs" />
+    <Compile Include="Api\Tools\NameAttribute.cs" />
+    <Compile Include="Api\Tools\NotScrollableAttribute.cs" />
+    <Compile Include="Api\Tools\OrderAttribute.cs" />
+    <Compile Include="Api\Tools\ProtocolNameAttribute.cs" />
+    <Compile Include="Api\Tools\ToolProviderMetadata.cs" />
+    <Compile Include="Core\AssetsHelper.cs" />
+    <Compile Include="Core\Arguments.cs" />
+    <Compile Include="Core\Assumes.cs" />
+    <Compile Include="Core\Clipboard.cs" />
+    <Compile Include="Core\Collections\OrderedObservableCollection.cs" />
+    <Compile Include="Core\Constants.cs" />
+    <Compile Include="Core\Logger.cs" />
+    <Compile Include="Core\MefComposer.cs" />
+    <Compile Include="Core\MefProvider.cs" />
+    <Compile Include="Core\Navigation\WindowManager.cs" />
+    <Compile Include="Core\Settings\PredefinedSettings.cs" />
+    <Compile Include="Core\Settings\SettingsProvider.cs" />
+    <Compile Include="Core\Theme\ThemeListener.cs" />
+    <Compile Include="Core\Threading\DisposableSempahore.cs" />
+    <Compile Include="Core\Threading\TaskCompletionNotifier.cs" />
+    <Compile Include="Core\Threading\TaskExtension.cs" />
+    <Compile Include="Core\Threading\TaskSchedulerAwaiter.cs" />
+    <Compile Include="Core\Threading\ThreadHelper.cs" />
+    <Compile Include="Core\Threading\ThreadPriority.cs" />
+    <Compile Include="Core\TitleBar.cs" />
+    <Compile Include="Core\ToolProviderFactory.cs" />
+    <Compile Include="ViewModels\Tools\ToolProviderBase.cs" />
+    <Compile Include="Core\UriActivationProtocolService.cs" />
+    <Compile Include="LanguageDefinition.cs" />
+    <Compile Include="LanguageManager.cs">
+      <DependentUpon>LanguageManager.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Messages\NavigateToToolMessage.cs" />
+    <Compile Include="Models\MatchedToolProviderViewData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\ToolProviderBase.cs" />
+    <Compile Include="UI\Controls\CustomPathIcon.cs" />
+    <Compile Include="UI\Controls\CustomTextBox.xaml.cs">
+      <DependentUpon>CustomTextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\ExpandableSettingControl.xaml.cs">
+      <DependentUpon>ExpandableSettingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\ExpandableSettingHeaderControl.xaml.cs">
+      <DependentUpon>ExpandableSettingHeaderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\FormattedTextBlock\CustomDelimiterChunker.cs" />
+    <Compile Include="UI\Controls\FormattedTextBlock\CustomWordChunker.cs" />
+    <Compile Include="UI\Controls\FormattedTextBlock\FormattedTextBlock.xaml.cs">
+      <DependentUpon>FormattedTextBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\FormattedTextBlock\IFormattedTextBlock.cs" />
+    <Compile Include="UI\Controls\HighlightSpan.cs" />
+    <Compile Include="UI\Controls\ICustomTextBox.cs" />
+    <Compile Include="UI\Controls\TextEditor\CommandHandlerResult.cs" />
+    <Compile Include="UI\Controls\TextEditor\ICommandHandler.cs" />
+    <Compile Include="UI\Controls\TextEditor\IKeyboardCommand.cs" />
+    <Compile Include="UI\Controls\TextEditor\KeyboardCommand.cs" />
+    <Compile Include="UI\Controls\TextEditor\KeyboardCommandHandler.cs" />
+    <Compile Include="UI\Controls\TextEditor\RtfBuilder.cs" />
+    <Compile Include="UI\Controls\TextEditor\RtfFormat.cs" />
+    <Compile Include="UI\Controls\TextEditor\TextEditor.xaml.cs">
+      <DependentUpon>TextEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\TextEditor\TextEditorCore.cs" />
+    <Compile Include="UI\Controls\TextEditor\TextFormatter.cs" />
+    <Compile Include="UI\Converters\BooleanToGridLengthConverter.cs" />
+    <Compile Include="UI\Converters\BooleanToScrollBarVisibilityConverter.cs" />
+    <Compile Include="UI\Converters\BooleanToScrollModeConverter.cs" />
+    <Compile Include="UI\Converters\BooleanToTextWrappingConverter.cs" />
+    <Compile Include="UI\Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="UI\Converters\DoubleToGridLengthConverter.cs" />
+    <Compile Include="UI\Converters\EnumToBooleanConverter.cs" />
+    <Compile Include="UI\Converters\EnumToThicknessConverter.cs" />
+    <Compile Include="UI\Converters\InvertedBooleanConverter.cs" />
+    <Compile Include="UI\Converters\NullToBooleanConverter.cs" />
+    <Compile Include="UI\Extensions\Axis.cs" />
+    <Compile Include="UI\Extensions\HighlighterExtension.cs" />
+    <Compile Include="UI\Extensions\IsCompactOverlayModeTrigger.cs" />
+    <Compile Include="UI\Extensions\ScrollViewerExtensions.cs" />
+    <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\Tools\Settings\SettingsToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Settings\SettingsToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\Base64EncoderDecoder\Base64EncoderDecoderToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Base64EncoderDecoder\Base64EncoderDecoderToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\HashGenerator\HashGeneratorToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\HashGenerator\HashGeneratorToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\JsonFormatter\JsonFormatterToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\JsonFormatter\JsonFormatterToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\RegEx\RegExToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\RegEx\RegExToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\TextDiff\TextDiffToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\TextDiff\TextDiffToolViewModel.cs" />
+    <Compile Include="Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Base64EncoderDecoder\Base64EncoderDecoderToolPage.xaml.cs">
+      <DependentUpon>Base64EncoderDecoderToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\HashGenerator\HashGeneratorToolPage.xaml.cs">
+      <DependentUpon>HashGeneratorToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\JsonFormatter\JsonFormatterToolPage.xaml.cs">
+      <DependentUpon>JsonFormatterToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\RegEx\RegExToolPage.xaml.cs">
+      <DependentUpon>RegExToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Settings\MarkdownContentDialog.xaml.cs">
+      <DependentUpon>MarkdownContentDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Settings\SettingsToolPage.xaml.cs">
+      <DependentUpon>SettingsToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\TextDiff\TextDiffToolPage.xaml.cs">
+      <DependentUpon>TextDiffToolPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Icons\Idea.svg" />
+    <Content Include="Assets\CascadiaCode.ttf" />
+    <Content Include="Assets\CascadiaMono.ttf" />
+    <Content Include="Assets\FluentSystemIcons-Regular.ttf" />
+    <None Include="..\..\..\..\LICENSE.md">
+      <Link>Assets\LICENSE.md</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\..\..\PRIVACY-POLICY.md">
+      <Link>Assets\PRIVACY-POLICY.md</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\..\..\THIRD-PARTY-NOTICES.md">
+      <Link>Assets\THIRD-PARTY-NOTICES.md</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="LanguageManager.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LanguageManager.cs</LastGenOutput>
+    </Content>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Themes\Custom.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Controls\CustomTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Controls\ExpandableSettingControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Controls\ExpandableSettingHeaderControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Controls\FormattedTextBlock\FormattedTextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Controls\TextEditor\TextEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\Base64EncoderDecoder\Base64EncoderDecoderToolPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\HashGenerator\HashGeneratorToolPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\JsonFormatter\JsonFormatterToolPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\RegEx\RegExToolPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\Settings\MarkdownContentDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\Settings\SettingsToolPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\TextDiff\TextDiffToolPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <PRIResource Include="Strings\en\Base64EncoderDecoder.resw" />
+    <PRIResource Include="Strings\en\Common.resw" />
+    <PRIResource Include="Strings\en\HashGenerator.resw" />
+    <PRIResource Include="Strings\en\JsonFormatter.resw" />
+    <PRIResource Include="Strings\en\MainPage.resw" />
+    <PRIResource Include="Strings\en\RegEx.resw" />
+    <PRIResource Include="Strings\en\Settings.resw" />
+    <PRIResource Include="Strings\en\TextDiff.resw" />
+    <PRIResource Include="Strings\fr\Base64EncoderDecoder.resw" />
+    <PRIResource Include="Strings\fr\Common.resw" />
+    <PRIResource Include="Strings\fr\HashGenerator.resw" />
+    <PRIResource Include="Strings\fr\JsonFormatter.resw" />
+    <PRIResource Include="Strings\fr\MainPage.resw" />
+    <PRIResource Include="Strings\fr\RegEx.resw" />
+    <PRIResource Include="Strings\fr\Settings.resw" />
+    <PRIResource Include="Strings\fr\TextDiff.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="ColorCode.Core" Version="$(Nuget_ColorCodeUwp)" />
+    <PackageReference Include="ColorCode.UWP" Version="$(Nuget_ColorCodeUwp)" />
+    <PackageReference Include="DiffPlex" Version="$(Nuget_DiffPlex)" />
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="$(NuGet_MicrosoftNETCoreUniversalWindowsPlatform)" />
+    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="$(NuGet_MicrosoftToolkitMvvm)" />
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Behaviors" Version="$(Nuget_MicrosoftToolkitUwpUIBehaviors)" />
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls" Version="$(Nuget_MicrosoftToolkitUwpUIControls)" />
+    <PackageReference Include="Microsoft.UI.Xaml" Version="$(NuGet_MicrosoftUIXaml)" />
+    <PackageReference Include="Newtonsoft.Json" Version="$(NuGet_NewtonsoftJson)"/>
+    <PackageReference Include="System.Composition" Version="$(NuGet_SystemComposition)" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
