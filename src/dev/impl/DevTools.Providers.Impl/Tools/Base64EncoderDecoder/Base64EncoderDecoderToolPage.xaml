@@ -7,7 +7,7 @@
     xmlns:controls="using:DevTools.Common.UI.Controls"
     xmlns:ex="using:DevTools.Common.UI.Extensions"
     mc:Ignorable="d"
-    NavigationCacheMode="Required">
+    NavigationCacheMode="Disabled">
 
     <Grid x:Name="RootGrid" RowSpacing="12" Margin="0,0,0,16">
         <VisualStateManager.VisualStateGroups>
