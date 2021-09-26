@@ -16,13 +16,10 @@ variables:
   appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
 steps:
-- task: NuGetToolInstaller@1
-  displayName: 'Install nuget tools'
-
-- task: NuGetCommand@2
+- task: PowerShell@2
   displayName: 'Restore nuget package'
   inputs:
-    restoreSolution: '$(solution)'
+    filePath: 'init.ps1'
 
 - task: VSBuild@1
   displayName: 'Build solution'
