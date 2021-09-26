@@ -7,7 +7,7 @@ trigger:
 - main
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'windows-2022'
 
 variables:
   solution: '**/*.sln'
@@ -16,13 +16,13 @@ variables:
   appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
 steps:
-- task: NuGetToolInstaller@1
-
-- task: NuGetCommand@2
+- task: PowerShell@2
+  displayName: 'Restore nuget package'
   inputs:
-    restoreSolution: '$(solution)'
+    filePath: 'init.ps1'
 
 - task: VSBuild@1
+  displayName: 'Build solution'
   inputs:
     platform: 'x86'
     solution: '$(solution)'
