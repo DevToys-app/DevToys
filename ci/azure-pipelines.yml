@@ -3,9 +3,6 @@
 # Add steps that test and distribute an app, save build artifacts, and more:
 # https://aka.ms/yaml
 
-trigger:
-- main
-
 pool:
   vmImage: 'windows-latest'
 
