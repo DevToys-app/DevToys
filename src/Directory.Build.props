@@ -1,7 +1,7 @@
 <Project>
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-        <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+        <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
 
         <Windows10SDKVersion>10.0.19041.0</Windows10SDKVersion>
         <Windows10MinSDKVersion>10.0.18362.0</Windows10MinSDKVersion>
