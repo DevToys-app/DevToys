@@ -12,8 +12,7 @@ pool:
 variables:
   group: BuildPipelineVariables
   solution: '**/*.sln'
-  buildPlatform: 'x86|x64|ARM|ARM64'
-  buildPlatformAlias: 'x86,x64,ARM,ARM64'
+  buildPlatform: 'x86' #'x86|x64|ARM|ARM64'
   buildConfiguration: 'Release'
   appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
@@ -26,7 +25,7 @@ jobs:
     displayName: 'Restore nuget for Solution'
     inputs:
       solution: '**/*.sln'
-      platform: '$(buildPlatformAlias)'
+      platform: 'x86'
       configuration: '$(BuildConfiguration)'
       msbuildArguments: '/t:restore'
 
@@ -34,7 +33,7 @@ jobs:
     displayName: 'Restore nuget for WAPPROJ'
     inputs:
       solution: '**/*.wapproj'
-      platform: '$(buildPlatformAlias)'
+      platform: 'x86'
       configuration: '$(BuildConfiguration)'
       msbuildArguments: '/t:restore'
 
@@ -42,7 +41,7 @@ jobs:
     displayName: 'Build'
     inputs:
       solution: '**/*.sln'
-      platform: 'x64'
+      platform: 'x86'
       configuration: '$(buildConfiguration)'
       msbuildArguments: '/t:build;_GenerateAppxPackage /p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=Sideload /p:AppxPackageSigningEnabled=false'
       maximumCpuCount: true
