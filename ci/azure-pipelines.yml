@@ -38,13 +38,33 @@ jobs:
       msbuildArguments: '/t:restore'
 
   - task: MSBuild@1
-    displayName: 'Build'
+    displayName: 'Build Solution'
     inputs:
       solution: '**/*.sln'
       platform: 'x86'
       configuration: '$(buildConfiguration)'
+      maximumCpuCount: true
+
+  - task: MSBuild@1
+    displayName: 'Build MSIX'
+    inputs:
+      solution: '**/*.wapproj'
+      platform: 'x86'
+      configuration: '$(buildConfiguration)'
       msbuildArguments: '/t:build;_GenerateAppxPackage /p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=Sideload /p:AppxPackageSigningEnabled=false'
       maximumCpuCount: true
+
+  - task: VSTest@2
+    displayName: 'Tests'
+    inputs:
+      testSelector: 'testAssemblies'
+      testAssemblyVer2: |
+        **\*test*.dll
+        !**\*TestAdapter.dll
+        !**\obj\**
+      searchFolder: '$(System.DefaultWorkingDirectory)'
+      runInParallel: false
+      rerunFailedTests: false
 
   - task: CopyFiles@2
     displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
