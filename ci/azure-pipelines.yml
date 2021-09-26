@@ -17,12 +17,15 @@ variables:
 
 steps:
 - task: NuGetToolInstaller@1
+  displayName: 'Install nuget tools'
 
 - task: NuGetCommand@2
+  displayName: 'Restore nuget package'
   inputs:
     restoreSolution: '$(solution)'
 
 - task: VSBuild@1
+  displayName: 'Build solution'
   inputs:
     platform: 'x86'
     solution: '$(solution)'
