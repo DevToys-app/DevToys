@@ -39,7 +39,7 @@ jobs:
     displayName: 'Restore nuget for Solution'
     inputs:
       solution: '**/*.sln'
-      platform: '$(BuildPlatform)'
+      platform: 'x64'
       configuration: '$(BuildConfiguration)'
       msbuildArguments: '/t:restore'
 
