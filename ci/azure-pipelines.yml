@@ -27,24 +27,25 @@ jobs:
   #   inputs:
   #     restoreSolution: '**/*.wapproj'
 
-  - task: VSBuild@1
+  - task: MSBuild@1
+    displayName: 'Restore nuget'
     inputs:
-      solution: '**\*.sln'
-      platform: 'x86'
+      solution: '**/*.sln'
+      msbuildVersion: '16.0'
+      msbuildArchitecture: 'x86'
       configuration: '$(buildConfiguration)'
-      msbuildArgs: '/t:Restore'
-      clean: true
-      logProjectEvents: false
-      maximumCpuCount: false
+      msbuildArguments: '/t:restore'
+      logProjectEvents: true
+      createLogFile: true
 
   - task: MSBuild@1
+    displayName: 'Build'
     inputs:
       solution: '**/*.wapproj'
       msbuildVersion: '16.0'
       msbuildArchitecture: 'x86'
       configuration: '$(buildConfiguration)'
       msbuildArguments: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageSigningEnabled=false /p:AppxBundle=Always'
-      restoreNugetPackages: true
       logProjectEvents: true
       createLogFile: true
 
