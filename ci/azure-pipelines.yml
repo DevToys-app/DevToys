@@ -21,21 +21,21 @@ jobs:
   timeoutInMinutes: 120
   steps:
 
-  - task: MSBuild@1
-    displayName: 'Restore nuget for Solution through MSBuild'
-    inputs:
-      solution: '**/*.sln'
-      platform: 'x86'
-      configuration: '$(BuildConfiguration)'
-      msbuildArguments: '/t:restore'
-
-  - task: MSBuild@1
-    displayName: 'Restore nuget for WAPPROJ through MSBuild'
-    inputs:
-      solution: '**/*.wapproj'
-      platform: 'x86'
-      configuration: '$(BuildConfiguration)'
-      msbuildArguments: '/t:restore'
+#  - task: MSBuild@1
+#    displayName: 'Restore nuget for Solution through MSBuild'
+#    inputs:
+#      solution: '**/*.sln'
+#      platform: 'x86'
+#      configuration: '$(BuildConfiguration)'
+#      msbuildArguments: '/t:restore'
+#
+#  - task: MSBuild@1
+#    displayName: 'Restore nuget for WAPPROJ through MSBuild'
+#    inputs:
+#      solution: '**/*.wapproj'
+#      platform: 'x86'
+#      configuration: '$(BuildConfiguration)'
+#      msbuildArguments: '/t:restore'
 
   - task: VSBuild@1
     inputs:
@@ -51,7 +51,8 @@ jobs:
       solution: '**\*.sln'
       msbuildArgs: '/t:build'
       platform: 'x86'
-      configuration: 'Release'
+      configuration: '$(buildConfiguration)'
+      msbuildArguments: '/t:build;_GenerateAppxPackage /p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=Sideload /p:AppxPackageSigningEnabled=false'
       clean: true
       logProjectEvents: false
 
