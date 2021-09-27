@@ -12,6 +12,7 @@ pool:
 variables:
   group: BuildPipelineVariables
   solution: '**/*.sln'
+  uwpProject: '**/*.wapproj'
   buildPlatform: 'x86|x64|ARM|ARM64'
   buildConfiguration: 'Release'
   appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
@@ -57,23 +58,24 @@ jobs:
       msbuildArguments: '/t:restore'
 
   - task: MSBuild@1
-    displayName: 'Build solution'
+    displayName: 'Build UWP AppxBundle'
+    inputs:
+      solution: '$(uwpProject)'
+      configuration: '$(buildConfiguration)'
+      msbuildArguments: '/t:build /p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxPackageSigningEnabled=false /p:AppxBundle=Always /p:UapAppxPackageBuildMode=StoreUpload'
+      maximumCpuCount: true
+
+  - task: MSBuild@1
+    displayName: 'Build Tests'
     inputs:
       solution: '$(solution)'
       configuration: '$(buildConfiguration)'
-      msbuildArguments: '/t:build;_GenerateAppxPackage /p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxPackageSigningEnabled=false /p:AppxBundle=Always'
+      platform: 'x64'
+      msbuildArguments: '/t:build'
       maximumCpuCount: true
 
-  # Older version used in this test build https://etienne-baudoux.visualstudio.com/Side%20projects/_build/results?buildId=245
-  # - task: MSBuild@1
-  #   displayName: 'Build solution'
-  #   inputs:
-  #     solution: '**/*.sln'
-  #     configuration: '$(buildConfiguration)'
-  #     msbuildArguments: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageSigningEnabled=false /p:AppxBundle=Always'
-
   - task: VSTest@2
-    displayName: 'Tests'
+    displayName: 'Run Tests'
     inputs:
       testSelector: 'testAssemblies'
       testAssemblyVer2: |

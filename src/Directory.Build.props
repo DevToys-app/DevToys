@@ -8,9 +8,11 @@
 
         <!-- Defines the bin and obj folder paths -->
         <RepoRoot>$([System.IO.Path]::GetDirectoryName($([MSBuild]::GetPathOfFileAbove('.gitignore', '$(MSBuildThisFileDirectory)'))))\</RepoRoot>
-        <BaseOutputPath>$(RepoRoot)bin\</BaseOutputPath>
-        <BaseIntermediateOutputPath>$(RepoRoot)obj\$(Platform)\$(Configuration)\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
-        <OutputPath>$(BaseOutputPath)$(Platform)\$(Configuration)\$(MSBuildProjectName)\</OutputPath>
+        <BaseOutputPath>$(RepoRoot)bin\$(Configuration)\$(Platform)\</BaseOutputPath>
+        <OutputPath>$(BaseOutputPath)$(MSBuildProjectName)\</OutputPath>
+        <BaseIntermediateOutputPath>$(RepoRoot)obj\$(Platform)\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+        <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+        <GeneratedFilesDir>$(BaseIntermediateOutputPath)Generated Files\</GeneratedFilesDir>
         <PackagesConfigRestorePath>$(RepoRoot)packages\</PackagesConfigRestorePath>
     </PropertyGroup>
 
