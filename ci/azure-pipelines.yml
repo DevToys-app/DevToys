@@ -13,6 +13,7 @@ variables:
   group: BuildPipelineVariables
   solution: '**/*.sln'
   uwpProject: '**/*.wapproj'
+  testProject: '**/*test*.csproj'
   buildPlatform: 'x86|x64|ARM|ARM64'
   buildConfiguration: 'Release'
   appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
@@ -66,10 +67,10 @@ jobs:
       maximumCpuCount: true
 
   - task: MSBuild@1
-    displayName: 'Build Tests'
+    displayName: 'Build x64 Tests'
     inputs:
-      solution: '$(solution)'
-      configuration: '$(buildConfiguration)'
+      solution: '$(testProject)'
+      configuration: 'Debug'
       platform: 'x64'
       msbuildArguments: '/t:build'
       maximumCpuCount: true
