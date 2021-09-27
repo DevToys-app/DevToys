@@ -21,10 +21,7 @@ jobs:
   timeoutInMinutes: 120
   steps:
 
-  - task: NuGetToolInstaller@0
-    inputs:
-     versionSpec: '4.7.3'
-     checkLatest: true 
+  - task: NuGetToolInstaller@1
 
   - task: NuGetCommand@2
     inputs:
