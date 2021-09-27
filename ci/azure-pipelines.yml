@@ -21,6 +21,45 @@ jobs:
   timeoutInMinutes: 120
   steps:
 
+  - task: MSBuild@1
+    displayName: 'Restore x86 nuget'
+    inputs:
+      solution: '**/*.sln'
+      platform: 'x86'
+      configuration: '$(buildConfiguration)'
+      msbuildArguments: '/t:restore'
+
+  - task: MSBuild@1
+    displayName: 'Restore x64 nuget'
+    inputs:
+      solution: '**/*.sln'
+      platform: 'x64'
+      configuration: '$(buildConfiguration)'
+      msbuildArguments: '/t:restore'
+
+  - task: MSBuild@1
+    displayName: 'Restore arm nuget'
+    inputs:
+      solution: '**/*.sln'
+      platform: 'arm'
+      configuration: '$(buildConfiguration)'
+      msbuildArguments: '/t:restore'
+
+  - task: MSBuild@1
+    displayName: 'Restore arm64 nuget'
+    inputs:
+      solution: '**/*.sln'
+      platform: 'arm64'
+      configuration: '$(buildConfiguration)'
+      msbuildArguments: '/t:restore'
+
+  - task: MSBuild@1
+    displayName: 'Build solution'
+    inputs:
+      solution: '**/*.sln'
+      configuration: '$(buildConfiguration)'
+      msbuildArguments: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageSigningEnabled=false /p:AppxBundle=Always'
+
   # - task: NuGetToolInstaller@1
 
   # - task: NuGetCommand@2
