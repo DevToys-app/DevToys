@@ -21,17 +21,22 @@ jobs:
   timeoutInMinutes: 120
   steps:
 
-  - task: NuGetToolInstaller@1
+  # - task: NuGetToolInstaller@1
 
-  - task: NuGetCommand@2
-    inputs:
-      restoreSolution: '**/*.wapproj'
+  # - task: NuGetCommand@2
+  #   inputs:
+  #     restoreSolution: '**/*.wapproj'
 
-  - task: VSBuild@1
+  - task: MSBuild@1
     inputs:
       solution: '**/*.wapproj'
+      msbuildVersion: '16.0'
+      msbuildArchitecture: 'x64'
       configuration: '$(buildConfiguration)'
-      msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageSigningEnabled=false /p:AppxBundle=Always'
+      msbuildArguments: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageSigningEnabled=false /p:AppxBundle=Always'
+      restoreNugetPackages: true
+      logProjectEvents: true
+      createLogFile: true
 
 #  - task: MSBuild@1
 #    displayName: 'Restore nuget for Solution through MSBuild'
