@@ -37,22 +37,6 @@ jobs:
       configuration: '$(BuildConfiguration)'
       msbuildArguments: '/t:restore'
 
-  - task: NuGetCommand@2
-    displayName: 'Restore nuget for Solution through Nuget.exe'
-    inputs:
-      command: 'restore'
-      restoreSolution: '**/*.sln'
-      feedsToUse: 'select'
-      restoreDirectory: '/packages'
-  
-  - task: NuGetCommand@2
-    displayName: 'Restore nuget for WAPPROJ through Nuget.exe'
-    inputs:
-      command: 'restore'
-      restoreSolution: '**/*.wapproj'
-      feedsToUse: 'select'
-      restoreDirectory: '/packages'
-
   - task: VSBuild@1
     inputs:
       solution: '**\*.sln'
