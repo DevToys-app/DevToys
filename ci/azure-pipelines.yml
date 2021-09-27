@@ -37,67 +37,22 @@ jobs:
 #      configuration: '$(BuildConfiguration)'
 #      msbuildArguments: '/t:restore'
 
-  # - task: VSBuild@1
-  #   inputs:
-  #     solution: '**\*.sln'
-  #     msbuildArguments: '/t:Restore'
-  #     platform: 'x86'
-  #     configuration: 'Release'
-  #     clean: true
-  #     logProjectEvents: false
-  #     maximumCpuCount: false
-
   - task: VSBuild@1
-    displayName: 'Restore nuget x86'
     inputs:
       solution: '**\*.sln'
       platform: 'x86'
       configuration: '$(buildConfiguration)'
-      msbuildArguments: '/t:Restore'
-      clean: false
+      msbuildArgs: '/t:Restore'
+      clean: true
       logProjectEvents: false
       maximumCpuCount: false
 
   - task: VSBuild@1
-    displayName: 'Restore nuget x64'
-    inputs:
-      solution: '**\*.sln'
-      platform: 'x64'
-      configuration: '$(buildConfiguration)'
-      msbuildArguments: '/t:Restore'
-      clean: false
-      logProjectEvents: false
-      maximumCpuCount: false
-
-  - task: VSBuild@1
-    displayName: 'Restore nuget ARM'
-    inputs:
-      solution: '**\*.sln'
-      platform: 'ARM'
-      configuration: '$(buildConfiguration)'
-      msbuildArguments: '/t:Restore'
-      clean: false
-      logProjectEvents: false
-      maximumCpuCount: false
-
-  - task: VSBuild@1
-    displayName: 'Restore nuget ARM64'
-    inputs:
-      solution: '**\*.sln'
-      platform: 'ARM64'
-      configuration: '$(buildConfiguration)'
-      msbuildArguments: '/t:Restore'
-      clean: false
-      logProjectEvents: false
-      maximumCpuCount: false
-
-  - task: VSBuild@1
-    displayName: 'Restore nuget and Build solution'
     inputs:
       solution: '**\*.sln'
       platform: 'x86'
       configuration: '$(buildConfiguration)'
-      msbuildArguments: '/t:build;_GenerateAppxPackage /p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=Sideload /p:AppxPackageSigningEnabled=false'
+      msbuildArgs: '/t:build;_GenerateAppxPackage /p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=Sideload /p:AppxPackageSigningEnabled=false'
       clean: false
       logProjectEvents: false
       maximumCpuCount: false
