@@ -23,40 +23,52 @@ jobs:
   timeoutInMinutes: 240
   steps:
 
-  # Restore nuget package for x86. This should in fact restore packages for every platform.
-  - task: MSBuild@1
-    displayName: 'Restore x86 nuget'
+  - task: VisualStudioTestPlatformInstaller@1
+    displayName: 'Install Visual Studio Test Platform'
     inputs:
-      solution: '$(solution)'
-      platform: 'x86'
-      configuration: '$(buildConfiguration)'
-      msbuildArguments: '/t:restore'
+      packageFeedSelector: 'nugetOrg'
+      versionSelector: 'latestStable'
 
-  # Restoring nugets for every platforms sounds unnecessary but allows to create 'project.assets.json' files for 
-  # each platform, which is required in order to build in Release mode.
-  - task: MSBuild@1
-    displayName: 'Restore x64 nuget'
+  - task: PowerShell@2
+    displayName: 'Restore nuget packages'
     inputs:
-      solution: '$(solution)'
-      platform: 'x64'
-      configuration: '$(buildConfiguration)'
-      msbuildArguments: '/t:restore'
+      filePath: 'init.ps1'
+      failOnStderr: true
 
-  - task: MSBuild@1
-    displayName: 'Restore arm nuget'
-    inputs:
-      solution: '$(solution)'
-      platform: 'arm'
-      configuration: '$(buildConfiguration)'
-      msbuildArguments: '/t:restore'
+  # # Restore nuget package for x86. This should in fact restore packages for every platform.
+  # - task: MSBuild@1
+  #   displayName: 'Restore x86 nuget'
+  #   inputs:
+  #     solution: '$(solution)'
+  #     platform: 'x86'
+  #     configuration: '$(buildConfiguration)'
+  #     msbuildArguments: '/t:restore'
 
-  - task: MSBuild@1
-    displayName: 'Restore arm64 nuget'
-    inputs:
-      solution: '$(solution)'
-      platform: 'arm64'
-      configuration: '$(buildConfiguration)'
-      msbuildArguments: '/t:restore'
+  # # Restoring nugets for every platforms sounds unnecessary but allows to create 'project.assets.json' files for 
+  # # each platform, which is required in order to build in Release mode.
+  # - task: MSBuild@1
+  #   displayName: 'Restore x64 nuget'
+  #   inputs:
+  #     solution: '$(solution)'
+  #     platform: 'x64'
+  #     configuration: '$(buildConfiguration)'
+  #     msbuildArguments: '/t:restore'
+
+  # - task: MSBuild@1
+  #   displayName: 'Restore arm nuget'
+  #   inputs:
+  #     solution: '$(solution)'
+  #     platform: 'arm'
+  #     configuration: '$(buildConfiguration)'
+  #     msbuildArguments: '/t:restore'
+
+  # - task: MSBuild@1
+  #   displayName: 'Restore arm64 nuget'
+  #   inputs:
+  #     solution: '$(solution)'
+  #     platform: 'arm64'
+  #     configuration: '$(buildConfiguration)'
+  #     msbuildArguments: '/t:restore'
 
   - task: MSBuild@1
     displayName: 'Build UWP AppxBundle'
@@ -65,6 +77,13 @@ jobs:
       configuration: '$(buildConfiguration)'
       msbuildArguments: '/t:build /p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxPackageSigningEnabled=false /p:AppxBundle=Always /p:UapAppxPackageBuildMode=StoreUpload'
       maximumCpuCount: true
+
+  - task: CopyFiles@2
+    displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+    inputs:
+      SourceFolder: '$(system.defaultworkingdirectory)'
+      Contents: '**\bin\$(BuildConfiguration)\**'
+      TargetFolder: '$(build.artifactstagingdirectory)'
 
   - task: MSBuild@1
     displayName: 'Build x64 Tests'
@@ -94,12 +113,12 @@ jobs:
       runTestsInIsolation: true
       runOnlyImpactedTests: false
 
-  - task: CopyFiles@2
-    displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
-    inputs:
-      SourceFolder: '$(system.defaultworkingdirectory)'
-      Contents: '**\bin\$(BuildConfiguration)\**'
-      TargetFolder: '$(build.artifactstagingdirectory)'
+  # - task: CopyFiles@2
+  #   displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  #   inputs:
+  #     SourceFolder: '$(system.defaultworkingdirectory)'
+  #     Contents: '**\bin\$(BuildConfiguration)\**'
+  #     TargetFolder: '$(build.artifactstagingdirectory)'
 
   - task: PublishTestResults@2
     displayName: 'Publish Test Results **/TEST-*.xml'
