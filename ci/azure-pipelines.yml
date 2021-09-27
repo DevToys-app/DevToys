@@ -45,6 +45,7 @@ jobs:
       configuration: 'Release'
       clean: true
       logProjectEvents: false
+      maximumCpuCount: false
 
   - task: VSBuild@1
     inputs:
@@ -55,6 +56,7 @@ jobs:
       msbuildArguments: '/t:build;_GenerateAppxPackage /p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=Sideload /p:AppxPackageSigningEnabled=false'
       clean: true
       logProjectEvents: false
+      maximumCpuCount: false
 
   # - task: MSBuild@1
   #   displayName: 'Build Solution'
