@@ -31,7 +31,7 @@ jobs:
     inputs:
       solution: '**/*.wapproj'
       msbuildVersion: '16.0'
-      msbuildArchitecture: 'x64'
+      msbuildArchitecture: 'x86'
       configuration: '$(buildConfiguration)'
       msbuildArguments: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageSigningEnabled=false /p:AppxBundle=Always'
       restoreNugetPackages: true
