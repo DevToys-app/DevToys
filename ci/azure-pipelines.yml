@@ -27,6 +27,16 @@ jobs:
   #   inputs:
   #     restoreSolution: '**/*.wapproj'
 
+  - task: VSBuild@1
+    inputs:
+      solution: '**\*.sln'
+      platform: 'x86'
+      configuration: '$(buildConfiguration)'
+      msbuildArgs: '/t:Restore'
+      clean: true
+      logProjectEvents: false
+      maximumCpuCount: false
+
   - task: MSBuild@1
     inputs:
       solution: '**/*.wapproj'
