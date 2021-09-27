@@ -37,23 +37,23 @@ jobs:
 #      configuration: '$(BuildConfiguration)'
 #      msbuildArguments: '/t:restore'
 
-  - task: VSBuild@1
-    inputs:
-      solution: '**\*.sln'
-      msbuildArgs: '/t:Restore'
-      platform: 'x86'
-      configuration: 'Release'
-      clean: true
-      logProjectEvents: false
-      maximumCpuCount: false
+  # - task: VSBuild@1
+  #   inputs:
+  #     solution: '**\*.sln'
+  #     msbuildArguments: '/t:Restore'
+  #     platform: 'x86'
+  #     configuration: 'Release'
+  #     clean: true
+  #     logProjectEvents: false
+  #     maximumCpuCount: false
 
   - task: VSBuild@1
+    displayName: 'Restore nuget and Build solution'
     inputs:
       solution: '**\*.sln'
-      msbuildArgs: '/t:build'
       platform: 'x86'
       configuration: '$(buildConfiguration)'
-      msbuildArguments: '/t:build;_GenerateAppxPackage /p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=Sideload /p:AppxPackageSigningEnabled=false'
+      msbuildArguments: '/t:Restore;/t:build;_GenerateAppxPackage /p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=Sideload /p:AppxPackageSigningEnabled=false'
       clean: true
       logProjectEvents: false
       maximumCpuCount: false
