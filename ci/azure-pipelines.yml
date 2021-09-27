@@ -18,21 +18,24 @@ variables:
 
 jobs:
 - job: Build
-  timeoutInMinutes: 120
+  timeoutInMinutes: 240
   steps:
 
+  # Restore nuget package for x86. This should in fact restore packages for every platform.
   - task: MSBuild@1
     displayName: 'Restore x86 nuget'
     inputs:
-      solution: '**/*.sln'
+      solution: '$(solution)'
       platform: 'x86'
       configuration: '$(buildConfiguration)'
       msbuildArguments: '/t:restore'
 
+  # Restoring nugets for every platforms sounds unnecessary but allows to create 'project.assets.json' files for 
+  # each platform, which is required in order to build in Release mode.
   - task: MSBuild@1
     displayName: 'Restore x64 nuget'
     inputs:
-      solution: '**/*.sln'
+      solution: '$(solution)'
       platform: 'x64'
       configuration: '$(buildConfiguration)'
       msbuildArguments: '/t:restore'
@@ -40,7 +43,7 @@ jobs:
   - task: MSBuild@1
     displayName: 'Restore arm nuget'
     inputs:
-      solution: '**/*.sln'
+      solution: '$(solution)'
       platform: 'arm'
       configuration: '$(buildConfiguration)'
       msbuildArguments: '/t:restore'
@@ -48,7 +51,7 @@ jobs:
   - task: MSBuild@1
     displayName: 'Restore arm64 nuget'
     inputs:
-      solution: '**/*.sln'
+      solution: '$(solution)'
       platform: 'arm64'
       configuration: '$(buildConfiguration)'
       msbuildArguments: '/t:restore'
@@ -56,90 +59,18 @@ jobs:
   - task: MSBuild@1
     displayName: 'Build solution'
     inputs:
-      solution: '**/*.sln'
+      solution: '$(solution)'
       configuration: '$(buildConfiguration)'
-      msbuildArguments: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageSigningEnabled=false /p:AppxBundle=Always'
+      msbuildArguments: '/t:build;_GenerateAppxPackage /p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxPackageSigningEnabled=false /p:AppxBundle=Always'
+      maximumCpuCount: true
 
-  # - task: NuGetToolInstaller@1
-
-  # - task: NuGetCommand@2
-  #   inputs:
-  #     restoreSolution: '**/*.wapproj'
-
-  - task: MSBuild@1
-    displayName: 'Restore nuget'
-    inputs:
-      solution: '**/*.sln'
-      msbuildVersion: '16.0'
-      msbuildArchitecture: 'x86'
-      configuration: '$(buildConfiguration)'
-      msbuildArguments: '/t:restore'
-      logProjectEvents: true
-      createLogFile: true
-
-  - task: MSBuild@1
-    displayName: 'Build'
-    inputs:
-      solution: '**/*.wapproj'
-      msbuildVersion: '16.0'
-      msbuildArchitecture: 'x86'
-      configuration: '$(buildConfiguration)'
-      msbuildArguments: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageSigningEnabled=false /p:AppxBundle=Always'
-      logProjectEvents: true
-      createLogFile: true
-
-#  - task: MSBuild@1
-#    displayName: 'Restore nuget for Solution through MSBuild'
-#    inputs:
-#      solution: '**/*.sln'
-#      platform: 'x86'
-#      configuration: '$(BuildConfiguration)'
-#      msbuildArguments: '/t:restore'
-#
-#  - task: MSBuild@1
-#    displayName: 'Restore nuget for WAPPROJ through MSBuild'
-#    inputs:
-#      solution: '**/*.wapproj'
-#      platform: 'x86'
-#      configuration: '$(BuildConfiguration)'
-#      msbuildArguments: '/t:restore'
-
-  - task: VSBuild@1
-    inputs:
-      solution: '**\*.sln'
-      platform: 'x86'
-      configuration: '$(buildConfiguration)'
-      msbuildArgs: '/t:Restore'
-      clean: true
-      logProjectEvents: false
-      maximumCpuCount: false
-
-  - task: VSBuild@1
-    inputs:
-      solution: '**\*.sln'
-      platform: 'x86'
-      configuration: '$(buildConfiguration)'
-      msbuildArgs: '/t:build;_GenerateAppxPackage /p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=Sideload /p:AppxPackageSigningEnabled=false'
-      clean: false
-      logProjectEvents: false
-      maximumCpuCount: false
-
+  # Older version used in this test build https://etienne-baudoux.visualstudio.com/Side%20projects/_build/results?buildId=245
   # - task: MSBuild@1
-  #   displayName: 'Build Solution'
+  #   displayName: 'Build solution'
   #   inputs:
   #     solution: '**/*.sln'
-  #     platform: 'x86'
   #     configuration: '$(buildConfiguration)'
-  #     maximumCpuCount: true
-
-  # - task: MSBuild@1
-  #   displayName: 'Build MSIX'
-  #   inputs:
-  #     solution: '**/*.wapproj'
-  #     platform: 'x86'
-  #     configuration: '$(buildConfiguration)'
-  #     msbuildArguments: '/t:build;_GenerateAppxPackage /p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=Sideload /p:AppxPackageSigningEnabled=false'
-  #     maximumCpuCount: true
+  #     msbuildArguments: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageSigningEnabled=false /p:AppxBundle=Always'
 
   - task: VSTest@2
     displayName: 'Tests'
