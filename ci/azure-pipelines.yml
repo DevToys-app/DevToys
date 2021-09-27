@@ -7,7 +7,7 @@ trigger:
 - main
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'windows-2022'
 
 variables:
   group: BuildPipelineVariables
@@ -52,6 +52,24 @@ jobs:
       restoreSolution: '**/*.wapproj'
       feedsToUse: 'select'
       restoreDirectory: '/packages'
+
+  - task: VSBuild@1
+    inputs:
+      solution: '**\*.sln'
+      msbuildArgs: '/t:Restore'
+      platform: 'any cpu'
+      configuration: 'Release'
+      clean: true
+      logProjectEvents: false
+
+  - task: VSBuild@1
+    inputs:
+      solution: '**\*.sln'
+      msbuildArgs: '/t:build'
+      platform: 'x86'
+      configuration: 'Release'
+      clean: true
+      logProjectEvents: false
 
   - task: MSBuild@1
     displayName: 'Build Solution'
