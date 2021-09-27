@@ -76,17 +76,23 @@ jobs:
       maximumCpuCount: true
 
   - task: VSTest@2
-    displayName: 'Run Tests'
-    inputs:
-      testSelector: 'testAssemblies'
-      testAssemblyVer2: |
-        **\*test*.dll
-        **\*test*.exe
-        !**\*TestAdapter.dll
-        !**\obj\**
-      searchFolder: '$(System.DefaultWorkingDirectory)'
-      runInParallel: false
-      rerunFailedTests: false
+      displayName: 'Run Tests'
+      inputs:
+        platform: 'x64'
+        configuration: 'Debug'
+        testSelector: 'testAssemblies'
+        testAssemblyVer2: | # Required when testSelector == TestAssemblies
+          **\*test*.dll
+          **\*test*.build.appxrecipe
+          !**\*TestAdapter.dll
+          !**\obj\** 
+        searchFolder: '$(System.DefaultWorkingDirectory)'
+        resultsFolder: '$(System.DefaultWorkingDirectory)\TestResults'
+        runInParallel: false
+        codeCoverageEnabled: true
+        rerunFailedTests: false
+        runTestsInIsolation: true
+        runOnlyImpactedTests: false
 
   - task: CopyFiles@2
     displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
@@ -94,6 +100,10 @@ jobs:
       SourceFolder: '$(system.defaultworkingdirectory)'
       Contents: '**\bin\$(BuildConfiguration)\**'
       TargetFolder: '$(build.artifactstagingdirectory)'
+
+  - task: PublishTestResults@2
+     displayName: 'Publish Test Results **/TEST-*.xml'
+    condition: always()
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: drop'
