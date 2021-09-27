@@ -23,13 +23,6 @@ jobs:
   timeoutInMinutes: 240
   steps:
 
-  # Install the test platform required for running the UWP unit tests.
-  - task: VisualStudioTestPlatformInstaller@1
-    displayName: 'Install Visual Studio Test Platform'
-    inputs:
-      packageFeedSelector: 'nugetOrg'
-      versionSelector: 'latestStable'
-
   # Run the init.ps1, which mostly restores dependencies
   - task: PowerShell@2
     displayName: 'Restore nuget packages'
