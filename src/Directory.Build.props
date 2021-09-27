@@ -31,6 +31,6 @@
         <NuGet_MSTestTestFramework>2.1.1</NuGet_MSTestTestFramework>
         <NuGet_NewtonsoftJson>12.0.3</NuGet_NewtonsoftJson>
         <NuGet_SystemComposition>5.0.0</NuGet_SystemComposition>
-        <NuGet_SystemRuntimeCompilerServicesUnsafe>5.0.0</NuGet_SystemRuntimeCompilerServicesUnsafe>
+        <NuGet_SystemRuntime>4.3.0</NuGet_SystemRuntime>
     </PropertyGroup>
 </Project>
