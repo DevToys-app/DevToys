@@ -22,7 +22,7 @@ jobs:
   steps:
 
   - task: MSBuild@1
-    displayName: 'Restore nuget for Solution'
+    displayName: 'Restore nuget for Solution through MSBuild'
     inputs:
       solution: '**/*.sln'
       platform: 'x86'
@@ -30,12 +30,28 @@ jobs:
       msbuildArguments: '/t:restore'
 
   - task: MSBuild@1
-    displayName: 'Restore nuget for WAPPROJ'
+    displayName: 'Restore nuget for WAPPROJ through MSBuild'
     inputs:
       solution: '**/*.wapproj'
       platform: 'x86'
       configuration: '$(BuildConfiguration)'
       msbuildArguments: '/t:restore'
+
+  - task: NuGetCommand@2
+    displayName: 'Restore nuget for Solution through Nuget.exe'
+    inputs:
+      command: 'restore'
+      restoreSolution: '**/*.sln'
+      feedsToUse: 'select'
+      restoreDirectory: '/packages'
+  
+  - task: NuGetCommand@2
+    displayName: 'Restore nuget for WAPPROJ through Nuget.exe'
+    inputs:
+      command: 'restore'
+      restoreSolution: '**/*.wapproj'
+      feedsToUse: 'select'
+      restoreDirectory: '/packages'
 
   - task: MSBuild@1
     displayName: 'Build Solution'
