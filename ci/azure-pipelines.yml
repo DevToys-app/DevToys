@@ -81,6 +81,7 @@ jobs:
       testSelector: 'testAssemblies'
       testAssemblyVer2: |
         **\*test*.dll
+        **\*test*.exe
         !**\*TestAdapter.dll
         !**\obj\**
       searchFolder: '$(System.DefaultWorkingDirectory)'
