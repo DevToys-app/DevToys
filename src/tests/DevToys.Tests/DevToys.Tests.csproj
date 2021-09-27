@@ -18,6 +18,7 @@
     <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
     <IsTestProject>true</IsTestProject>
+    <AppxBundle>Never</AppxBundle>
   </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
         <DebugSymbols>true</DebugSymbols>
