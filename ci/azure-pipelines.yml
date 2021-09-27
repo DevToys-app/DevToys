@@ -41,7 +41,7 @@ jobs:
     inputs:
       solution: '**\*.sln'
       msbuildArgs: '/t:Restore'
-      platform: 'any cpu'
+      platform: 'x86'
       configuration: 'Release'
       clean: true
       logProjectEvents: false
