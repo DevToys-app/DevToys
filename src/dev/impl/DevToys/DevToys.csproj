@@ -141,6 +141,7 @@
     <Content Include="..\..\DevToys.Startup\Assets\Logo\Wide310x150Logo.scale-400.png">
       <Link>Assets\Logo\Wide310x150Logo.scale-400.png</Link>
     </Content>
+    <Content Include="Assets\DemoSmartDetection.gif" />
     <Content Include="Properties\Default.rd.rd.xml" />
     <Compile Include="Api\Core\IClipboard.cs" />
     <Compile Include="Api\Core\IMefProvider.cs" />
