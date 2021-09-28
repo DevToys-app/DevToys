@@ -63,7 +63,9 @@
                 <FontIcon Glyph="&#xF4DA;" />
             </controls:ExpandableSettingControl.Icon>
             <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" IsOn="{x:Bind ViewModel.SmartDetection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <!-- TODO: Put a demo/tutorial in ExpandableContent property -->
+            <controls:ExpandableSettingControl.ExpandableContent>
+                <Image Source="/Assets/DemoSmartDetection.gif" MinHeight="300"/>
+            </controls:ExpandableSettingControl.ExpandableContent>
         </controls:ExpandableSettingControl>
 
         <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.TextEditor}" />
