@@ -30,6 +30,9 @@
                 VerticalAlignment="Stretch"
                 VerticalContentAlignment="Stretch"
                 Title="{x:Bind ViewModel.Strings.Indentation}">
+                <controls:ExpandableSettingControl.Icon>
+                    <FontIcon Glyph="&#xF6F8;" />
+                </controls:ExpandableSettingControl.Icon>
                 <ComboBox
                     SelectedValuePath="Tag"
                     SelectedValue="{x:Bind ViewModel.Indentation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
