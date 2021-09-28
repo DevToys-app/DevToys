@@ -400,7 +400,6 @@
     <PackageReference Include="Microsoft.UI.Xaml" Version="$(NuGet_MicrosoftUIXaml)" />
     <PackageReference Include="Newtonsoft.Json" Version="$(NuGet_NewtonsoftJson)" />
     <PackageReference Include="System.Composition" Version="$(NuGet_SystemComposition)" />
-    <PackageReference Include="System.Runtime" Version="$(NuGet_SystemRuntime)" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
