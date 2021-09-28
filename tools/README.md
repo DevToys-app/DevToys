@@ -1,1 +1,1 @@
-- SetVersionTask.dll -> https://github.com/markheath/setversiontask
+- SetVersionTask.dll -> https://github.com/veler/SetVersionTask

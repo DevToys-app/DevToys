@@ -284,11 +284,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <AppxManifest Include="Package.appxmanifest">
-      <SubType>Designer</SubType>
-    </AppxManifest>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Assets\Icons\Idea.svg" />
     <Content Include="Assets\CascadiaCode.ttf" />
     <Content Include="Assets\CascadiaMono.ttf" />
@@ -313,6 +308,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <AppxManifest Include="..\..\shared\Package.appxmanifest">
+      <Link>Package.appxmanifest</Link>
+      <SubType>Designer</SubType>
+    </AppxManifest>
     <Page Include="Themes\Custom.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

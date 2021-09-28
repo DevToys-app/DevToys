@@ -7,17 +7,18 @@
   xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4"
   IgnorableNamespaces="uap mp desktop4">
 
+  <!-- Please DO NOT commit changes on the version number below unless you're about to release a new version of the app on the Store. -->
   <Identity
-    Name="020c5ec9-262d-4acd-92d0-26ec6e869879"
-    Publisher="CN=ebaud"
-    Version="1.0.0.0" />
+      Name="DevToysPreview"
+      Publisher="CN=3D87C8C2-C6F4-4875-B258-5FEC13B08F81"
+      Version="0.0.0.0" />
 
   <!-- TODO: maybe we need to remove this when adding runFullTrust capability -->
   <mp:PhoneIdentity PhoneProductId="c12088ee-f979-4809-8039-7851a3aa2b7a" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>DevToys</DisplayName>
-    <PublisherDisplayName>ebaud</PublisherDisplayName>
+    <DisplayName>DevToys - Preview</DisplayName>
+    <PublisherDisplayName>etiennebaudoux</PublisherDisplayName>
     <Logo>Assets\Logo\StoreLogo.png</Logo>
   </Properties>
 
@@ -36,8 +37,8 @@
       EntryPoint="$targetentrypoint$"
       desktop4:SupportsMultipleInstances="true">
       <uap:VisualElements
-        DisplayName="DevToys"
-        Description="DevToys"
+        DisplayName="DevToys - Preview"
+        Description="A Swiss-knife for developers."
         BackgroundColor="transparent"
         Square150x150Logo="Assets\Logo\Square150x150Logo.png"
         Square44x44Logo="Assets\Logo\Square44x44Logo.png">

@@ -39,16 +39,6 @@ You can contribute to DevToys app by:
 
 # Coding
 
-## Versioning
-
-The application version use the following pattern :
-
-```
-year.month.day.buildCountInTheDay
-```
-
-Each time that the solution is built in `Release` mode, version number are updated.
-
 ## Main architecture
 
 DevToys is using [MEF](https://docs.microsoft.com/en-us/dotnet/framework/mef/) as dependency injection framework.
