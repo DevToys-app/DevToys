@@ -59,11 +59,11 @@ jobs:
                          /p:AppxBundlePlatforms="$(buildPlatform)"
                          /p:AppxPackageDir="$(appxPackageDir)"
                          /p:AppxBundle=Always
-                         /p:UapAppxPackageBuildMode=Sideload
+                         /p:UapAppxPackageBuildMode=SideloadOnly
                          /p:AppxPackageSigningEnabled=true
                          /p:PackageCertificateKeyFile="$(signingCert.secureFilePath)"
-                         /p:PackageCertificatePassword="$(signingCert.password)"
                          /p:PackageCertificateThumbprint=""'
+                         # /p:PackageCertificatePassword="$(signingCert.password)"
       maximumCpuCount: true
 
   - task: PublishBuildArtifacts@1
