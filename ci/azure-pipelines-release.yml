@@ -15,7 +15,7 @@ variables:
   buildPlatform: 'x86|x64|ARM|ARM64'
   buildConfiguration: 'Release'
   appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
-  certificateSecureFilePath: 'DevToys.Startup.cer'
+  certificateSecureFilePath: 'DevToys.Startup_TemporaryKey.pfx'
 
 jobs:
 ### Sideload release ###
@@ -62,7 +62,7 @@ jobs:
                          /p:UapAppxPackageBuildMode=SideloadOnly
                          /p:AppxPackageSigningEnabled=true
                          /p:PackageCertificateKeyFile="$(signingCert.secureFilePath)"
-                         /p:PackageCertificatePassword="$(signingCert.password)"
+                         /p:PackageCertificatePassword=""
                          /p:PackageCertificateThumbprint=""'
       maximumCpuCount: true
 
