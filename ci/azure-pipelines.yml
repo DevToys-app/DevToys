@@ -11,16 +11,14 @@ pool:
 
 variables:
   group: BuildPipelineVariables
-  solution: '**/*.sln'
   uwpProject: '**/*.wapproj'
-  testProject: '**/*test*.csproj'
   buildPlatform: 'x86|x64|ARM|ARM64'
   buildConfiguration: 'Release'
   appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
 jobs:
 - job: Build
-  timeoutInMinutes: 240
+  timeoutInMinutes: 120
   steps:
 
   # Run the init.ps1, which mostly restores dependencies
@@ -30,16 +28,21 @@ jobs:
       filePath: 'init.ps1'
       failOnStderr: true
 
-  # Builds the APPXbundle
+  # Builds the msixbundle file
   - task: MSBuild@1
     displayName: 'Build UWP AppxBundle'
     inputs:
       solution: '$(uwpProject)'
       configuration: '$(buildConfiguration)'
-      msbuildArguments: '/t:build /p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxPackageSigningEnabled=false /p:AppxBundle=Always /p:UapAppxPackageBuildMode=StoreUpload'
+      msbuildArguments: '/t:build
+                         /p:AppxBundlePlatforms="$(buildPlatform)"
+                         /p:AppxPackageDir="$(appxPackageDir)"
+                         /p:AppxPackageSigningEnabled=false
+                         /p:AppxBundle=Always
+                         /p:UapAppxPackageBuildMode=StoreUpload'
       maximumCpuCount: true
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: drop'
     inputs:
-      PathtoPublish: '$(build.artifactstagingdirectory)'
+      PathtoPublish: '$(appxPackageDir)'
