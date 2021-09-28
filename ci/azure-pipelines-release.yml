@@ -63,7 +63,7 @@ jobs:
                          /p:AppxPackageSigningEnabled=true
                          /p:PackageCertificateKeyFile="$(signingCert.secureFilePath)"
                          /p:PackageCertificatePassword="$(signingCert.password)"
-                         /p:PackageCertificateThumbprint="$(signingCert.thumbprint)"'
+                         /p:PackageCertificateThumbprint=""'
       maximumCpuCount: true
 
   - task: PublishBuildArtifacts@1
