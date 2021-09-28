@@ -15,7 +15,7 @@ variables:
   buildPlatform: 'x86|x64|ARM|ARM64'
   buildConfiguration: 'Release'
   appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
-  certificateSecureFilePath: 'DevToys.Startup.pfx'
+  certificateSecureFilePath: 'DevToys.Startup.cer'
 
 jobs:
 ### Sideload release ###
