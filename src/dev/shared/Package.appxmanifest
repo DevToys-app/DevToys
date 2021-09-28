@@ -10,7 +10,7 @@
   <!-- Please DO NOT commit changes on the version number below unless you're about to release a new version of the app on the Store. -->
   <Identity
       Name="DevToysPreview"
-      Publisher="CN=3D87C8C2-C6F4-4875-B258-5FEC13B08F81"
+      Publisher="CN=etiennebaudoux"
       Version="0.0.0.0" />
 
   <!-- TODO: maybe we need to remove this when adding runFullTrust capability -->
