@@ -13,6 +13,7 @@ using DevToys.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Mvvm.Messaging;
+using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -25,7 +26,6 @@ using System.Web;
 using Windows.Foundation;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using ThreadPriority = DevToys.Core.Threading.ThreadPriority;
 
 namespace DevToys.ViewModels
@@ -115,8 +115,7 @@ namespace DevToys.ViewModels
                 ThreadHelper.ThrowIfNotOnUIThread();
                 if (_searchQuery != value)
                 {
-                    _searchQuery = value;
-                    OnPropertyChanged();
+                    SetProperty(ref _searchQuery, value);
                     UpdateMenuAsync(value).Forget();
                 }
             }
@@ -133,8 +132,7 @@ namespace DevToys.ViewModels
                 ThreadHelper.ThrowIfNotOnUIThread();
                 if (_isInCompactOverlayMode != value)
                 {
-                    _isInCompactOverlayMode = value;
-                    OnPropertyChanged();
+                    SetProperty(ref _isInCompactOverlayMode, value);
                     OnPropertyChanged(nameof(HeaderText));
                     OnPropertyChanged(nameof(WindowTitle));
                 }
@@ -150,8 +148,7 @@ namespace DevToys.ViewModels
             set
             {
                 ThreadHelper.ThrowIfNotOnUIThread();
-                _navigationViewDisplayMode = value;
-                OnPropertyChanged();
+                SetProperty(ref _navigationViewDisplayMode, value);
                 OnPropertyChanged(nameof(ActualNavigationViewDisplayMode));
             }
         }
@@ -165,8 +162,7 @@ namespace DevToys.ViewModels
             set
             {
                 ThreadHelper.ThrowIfNotOnUIThread();
-                _isNavigationViewPaneOpened = value;
-                OnPropertyChanged();
+                SetProperty(ref _isNavigationViewPaneOpened, value);
                 OnPropertyChanged(nameof(ActualNavigationViewDisplayMode));
             }
         }

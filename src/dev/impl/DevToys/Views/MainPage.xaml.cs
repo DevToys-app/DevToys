@@ -75,6 +75,26 @@ namespace DevToys.Views
             SearchBox.Focus(FocusState.Keyboard);
         }
 
+        private void NavigationView_DisplayModeChanged(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewDisplayModeChangedEventArgs args)
+        {
+            ViewModel.NavigationViewDisplayMode = NavigationView.DisplayMode;
+        }
+
+        private void NavigationView_PaneClosing(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewPaneClosingEventArgs args)
+        {
+            ViewModel.IsNavigationViewPaneOpened = false;
+        }
+
+        private void NavigationView_PaneOpening(Microsoft.UI.Xaml.Controls.NavigationView sender, object args)
+        {
+            ViewModel.IsNavigationViewPaneOpened = true;
+        }
+
+        private void NavigationView_Loaded(object sender, RoutedEventArgs e)
+        {
+            ViewModel.IsNavigationViewPaneOpened = NavigationView.IsPaneOpen;
+        }
+
         public void Receive(NavigateToToolMessage message)
         {
             Arguments.NotNull(message, nameof(message));

@@ -5,13 +5,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:DevToys.Models"
     xmlns:controls="using:DevToys.UI.Controls"
     xmlns:converters="using:DevToys.UI.Converters"
     xmlns:ex="using:DevToys.UI.Extensions"
-    xmlns:models="using:DevToys.Models"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-    xmlns:icore="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:viewmanagement="using:Windows.UI.ViewManagement"
     mc:Ignorable="d"
     NavigationCacheMode="Enabled"
@@ -150,21 +148,11 @@
             Header="{x:Bind ViewModel.HeaderText, Mode=OneWay}"
             MenuItemsSource="{x:Bind ViewModel.ToolsMenuItems}"
             FooterMenuItemsSource="{x:Bind ViewModel.FooterMenuItems}"
-            SelectedItem="{x:Bind ViewModel.SelectedMenuItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-            <i:Interaction.Behaviors>
-                <icore:EventTriggerBehavior EventName="DisplayModeChanged">
-                    <icore:ChangePropertyAction TargetObject="{x:Bind ViewModel}" PropertyName="NavigationViewDisplayMode" Value="{x:Bind NavigationView.DisplayMode, Mode=OneWay}"/>
-                </icore:EventTriggerBehavior>
-                <icore:EventTriggerBehavior EventName="PaneClosing">
-                    <icore:ChangePropertyAction TargetObject="{x:Bind ViewModel}" PropertyName="IsNavigationViewPaneOpened" Value="False"/>
-                </icore:EventTriggerBehavior>
-                <icore:EventTriggerBehavior EventName="PaneOpening">
-                    <icore:ChangePropertyAction TargetObject="{x:Bind ViewModel}" PropertyName="IsNavigationViewPaneOpened" Value="True"/>
-                </icore:EventTriggerBehavior>
-                <icore:EventTriggerBehavior EventName="Loaded">
-                    <icore:ChangePropertyAction TargetObject="{x:Bind ViewModel}" PropertyName="IsNavigationViewPaneOpened" Value="{x:Bind NavigationView.IsPaneOpen}"/>
-                </icore:EventTriggerBehavior>
-            </i:Interaction.Behaviors>
+            SelectedItem="{x:Bind ViewModel.SelectedMenuItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            DisplayModeChanged="NavigationView_DisplayModeChanged"
+            PaneClosing="NavigationView_PaneClosing"
+            PaneOpening="NavigationView_PaneOpening"
+            Loaded="NavigationView_Loaded">
 
             <muxc:NavigationView.MenuItemTemplate>
                 <DataTemplate x:DataType="models:MatchedToolProviderViewData">
