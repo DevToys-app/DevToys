@@ -62,8 +62,8 @@ jobs:
                          /p:UapAppxPackageBuildMode=SideloadOnly
                          /p:AppxPackageSigningEnabled=true
                          /p:PackageCertificateKeyFile="$(signingCert.secureFilePath)"
-                         /p:PackageCertificateThumbprint=""'
-                         # /p:PackageCertificatePassword="$(signingCert.password)"
+                         /p:PackageCertificatePassword="$(signingCert.password)"
+                         /p:PackageCertificateThumbprint="$(signingCert.thumbprint)"'
       maximumCpuCount: true
 
   - task: PublishBuildArtifacts@1
@@ -72,44 +72,44 @@ jobs:
       PathtoPublish: '$(appxPackageDir)'
 
 ### Store release ###
-- job: StoreRelease
-  displayName: 'Store Release Build'
-  timeoutInMinutes: 120
-  steps:
-
-  - task: PowerShell@2
-    displayName: 'Rename app in appxmanifest'
-    inputs:
-      targetType: 'inline'
-      script: |
-        [xml]$xmlDoc = Get-Content $(Build.SourcesDirectory)\src\dev\shared\Package.appxmanifest
-        $xmlDoc.Package.Identity.Name="64360VelerSoftware.DevToys"
-        $xmlDoc.Package.Properties.DisplayName="DevToys"
-        $xmlDoc.Package.Applications.Application.VisualElements.DisplayName="DevToys"
-        $xmlDoc.Save('$(Build.SourcesDirectory)\src\dev\shared\Package.appxmanifest')
-      failOnStderr: true
-
-  # Run the init.ps1, which mostly restores dependencies
-  - task: PowerShell@2
-    displayName: 'Restore nuget packages'
-    inputs:
-      filePath: 'init.ps1'
-      failOnStderr: true
-
-  # Builds the msixbundle file
-  - task: MSBuild@1
-    displayName: 'Build Store package'
-    inputs:
-      solution: '$(uwpProject)'
-      configuration: '$(buildConfiguration)'
-      msbuildArguments: '/t:build
-                         /p:AppxBundlePlatforms="$(buildPlatform)"
-                         /p:AppxPackageDir="$(appxPackageDir)"
-                         /p:AppxBundle=Always
-                         /p:UapAppxPackageBuildMode=StoreUpload'
-      maximumCpuCount: true
-
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: drop'
-    inputs:
-      PathtoPublish: '$(appxPackageDir)'
+#- job: StoreRelease
+#  displayName: 'Store Release Build'
+#  timeoutInMinutes: 120
+#  steps:
+#
+#  - task: PowerShell@2
+#    displayName: 'Rename app in appxmanifest'
+#    inputs:
+#      targetType: 'inline'
+#      script: |
+#        [xml]$xmlDoc = Get-Content $(Build.SourcesDirectory)\src\dev\shared\Package.appxmanifest
+#        $xmlDoc.Package.Identity.Name="64360VelerSoftware.DevToys"
+#        $xmlDoc.Package.Properties.DisplayName="DevToys"
+#        $xmlDoc.Package.Applications.Application.VisualElements.DisplayName="DevToys"
+#        $xmlDoc.Save('$(Build.SourcesDirectory)\src\dev\shared\Package.appxmanifest')
+#      failOnStderr: true
+#
+#  # Run the init.ps1, which mostly restores dependencies
+#  - task: PowerShell@2
+#    displayName: 'Restore nuget packages'
+#    inputs:
+#      filePath: 'init.ps1'
+#      failOnStderr: true
+#
+#  # Builds the msixbundle file
+#  - task: MSBuild@1
+#    displayName: 'Build Store package'
+#    inputs:
+#      solution: '$(uwpProject)'
+#      configuration: '$(buildConfiguration)'
+#      msbuildArguments: '/t:build
+#                         /p:AppxBundlePlatforms="$(buildPlatform)"
+#                         /p:AppxPackageDir="$(appxPackageDir)"
+#                         /p:AppxBundle=Always
+#                         /p:UapAppxPackageBuildMode=StoreUpload'
+#      maximumCpuCount: true
+#
+#  - task: PublishBuildArtifacts@1
+#    displayName: 'Publish Artifact: drop'
+#    inputs:
+#      PathtoPublish: '$(appxPackageDir)'
