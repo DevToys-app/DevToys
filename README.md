@@ -11,8 +11,11 @@
   <a style="text-decoration:none" href="https://etienne-baudoux.visualstudio.com/Side%20projects/_build/latest?definitionId=15&branchName=main">
     <img src="https://etienne-baudoux.visualstudio.com/Side%20projects/_apis/build/status/DevToys?branchName=main" alt="Build Status" />
   </a>
+  <a style="text-decoration:none" href="https://github.com/veler/DevToys/releases">
+    <img src="https://img.shields.io/github/release/veler/devtoys.svg?label=Latest%20version" alt="Latest version" />
+  </a>
   <a style="text-decoration:none" href="https://www.microsoft.com/store/apps/9PGCV4V3BK4W">
-    <img src="https://img.shields.io/badge/Microsoft%20Store-DevToys-green" alt="Store link" />
+    <img src="https://img.shields.io/badge/Microsoft%20Store-Download-green" alt="Store link" />
   </a>
 </p>
 
@@ -42,6 +45,7 @@ Many tools are available.
 ### Manual
 
 - Download and extract the latest [release](https://github.com/veler/DevToys/releases).
+- Install the certificate in `Trusted Root`.
 - Double click the *.msixbundle file.
 
 ## Please, avoid selling this app as yours
@@ -51,6 +55,9 @@ That's not why I'm sharing the source code, at all.
 
 ## Contribute
 See [CONTRIBUTING](CONTRIBUTING.md)
+
+## Privacy Policy
+See [PRIVACY POLICY](PRIVACY-POLICY.md)
 
 ## Third-Party Softwares
 
