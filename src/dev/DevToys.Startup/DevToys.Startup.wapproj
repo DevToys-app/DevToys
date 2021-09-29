@@ -54,6 +54,8 @@
     <AppxBundle>Always</AppxBundle>
     <EntryPointProjectUniqueName>..\impl\DevToys\DevToys.csproj</EntryPointProjectUniqueName>
     <UapAppxPackageBuildMode>StoreAndSideload</UapAppxPackageBuildMode>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\impl\DevToys\DevToys.csproj" />
@@ -116,8 +118,5 @@
       <SubType>Designer</SubType>
     </AppxManifest>
   </ItemGroup>
-  <!-- <ItemGroup>
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="$(NuGet_MicrosoftWindowsSDKBuildTools)" PrivateAssets="all" />
-  </ItemGroup> -->
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
 </Project>

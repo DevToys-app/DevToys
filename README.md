@@ -69,5 +69,5 @@ See [LICENSE](LICENSE.md)
 
 ## Special Thanks
 
-* Code contributors: [Krazus](https://github.com/krazus)
+* Code contributors: [BenjaminT](https://github.com/btiteux)
 * Designer: [Jakub](https://github.com/alur2020)
