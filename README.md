@@ -66,3 +66,8 @@ See [ThirdPartyNotices](THIRD-PARTY-NOTICES.md)
 ## License
 
 See [LICENSE](LICENSE.md)
+
+## Special Thanks
+
+* Code contributors: [Krazus](https://github.com/krazus)
+* Designer: [Jakub](https://github.com/alur2020)
