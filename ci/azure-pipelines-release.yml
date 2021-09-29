@@ -31,7 +31,7 @@ jobs:
       script: |
         [xml]$xmlDoc = Get-Content $(Build.SourcesDirectory)\src\dev\shared\Package.appxmanifest
         $xmlDoc.Package.Identity.Name="DevToys"
-        $xmlDoc.Package.Identity.Publisher="etiennebaudoux"
+        $xmlDoc.Package.Identity.Publisher="CN=etiennebaudoux"
         $xmlDoc.Package.Properties.DisplayName="DevToys"
         $xmlDoc.Package.Applications.Application.VisualElements.DisplayName="DevToys"
         $xmlDoc.Save('$(Build.SourcesDirectory)\src\dev\shared\Package.appxmanifest')
@@ -85,7 +85,7 @@ jobs:
       script: |
         [xml]$xmlDoc = Get-Content $(Build.SourcesDirectory)\src\dev\shared\Package.appxmanifest
         $xmlDoc.Package.Identity.Name="64360VelerSoftware.DevToys"
-        $xmlDoc.Package.Identity.Publisher="3D87C8C2-C6F4-4875-B258-5FEC13B08F81"
+        $xmlDoc.Package.Identity.Publisher="CN=3D87C8C2-C6F4-4875-B258-5FEC13B08F81"
         $xmlDoc.Package.Properties.DisplayName="DevToys"
         $xmlDoc.Package.Applications.Application.VisualElements.DisplayName="DevToys"
         $xmlDoc.Save('$(Build.SourcesDirectory)\src\dev\shared\Package.appxmanifest')
