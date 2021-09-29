@@ -55,12 +55,13 @@ jobs:
     displayName: 'Build Sideload package'
     inputs:
       solution: '$(uwpProject)'
+      platform: 'x86'
       configuration: '$(buildConfiguration)'
-      msbuildArguments: '/t:build
+      msbuildArguments: '/t:build;_GenerateAppxPackage 
                          /p:AppxBundlePlatforms="$(buildPlatform)"
                          /p:AppxPackageDir="$(appxPackageDir)"
                          /p:AppxBundle=Always
-                         /p:UapAppxPackageBuildMode=SideloadOnly
+                         /p:UapAppxPackageBuildMode=Sideload
                          /p:AppxPackageSigningEnabled=true
                          /p:PackageCertificateKeyFile="$(signingCert.secureFilePath)"
                          /p:PackageCertificatePassword=""
@@ -103,8 +104,9 @@ jobs:
     displayName: 'Build Store package'
     inputs:
       solution: '$(uwpProject)'
+      platform: 'x86'
       configuration: '$(buildConfiguration)'
-      msbuildArguments: '/t:build
+      msbuildArguments: '/t:build;_GenerateAppxPackage 
                          /p:AppxBundlePlatforms="$(buildPlatform)"
                          /p:AppxPackageDir="$(appxPackageDir)"
                          /p:AppxBundle=Always
