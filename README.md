@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="128" align="center" src="/src/dev/startup/DevToys.Startup/Assets/Logo/Square150x150Logo.scale-200.png">
+  <img width="128" align="center" src="/assets/logo/300x300.png">
 </p>
 <h1 align="center">
   DevToys
@@ -7,15 +7,29 @@
 <p align="center">
   A Swiss-knife for developers.
 </p>
-<p align="center">
-  <a style="text-decoration:none" href="//TODO">
+<p align="center">  
+  <a style="text-decoration:none" href="https://etienne-baudoux.visualstudio.com/Side%20projects/_build/latest?definitionId=15&branchName=main">
+    <img src="https://etienne-baudoux.visualstudio.com/Side%20projects/_apis/build/status/DevToys?branchName=main" alt="Build Status" />
+  </a>
+  <a style="text-decoration:none" href="https://www.microsoft.com/store/apps/9PGCV4V3BK4W">
     <img src="https://img.shields.io/badge/Microsoft%20Store-DevToys-green" alt="Store link" />
   </a>
 </p>
 
 ## Introduction
 
-![DevToys](//TODO-Screenshot.png)
+DevToys helps in everyday tasks like formatting JSON, comparing text, testing RegExp. No need to use many untruthful websites to do simple tasks with your data. With Smart Detection, DevToys is able to detect the best tool that can treat the data you copied in the clipboard of your Windows. Compact overlay lets you keep the app in small and on top of other windows. Multiple instances of the app can be used at once.
+
+Many tools are available.
+- Base 64 Encoder/Decoder
+- Hash Generator (MD5, SHA1, SHA256, SHA512)
+- Json Formatter
+- RegExp Tester
+- Text Comparer
+
+... and more are coming!
+
+![DevToys](/assets/screenshots/1.png)
 
 ## How to install (as an end-user)
 
@@ -23,11 +37,11 @@
 - You need Windows 10 build 1903+ or later.
 
 ### Microsoft Store
-- Search for DevToys in the Microsoft Store App or click [here](//TODO)
+- Search for DevToys in the Microsoft Store App or click [here](https://www.microsoft.com/store/apps/9PGCV4V3BK4W)
 
 ### Manual
 
-- Download and extract the latest [release](//TODO).
+- Download and extract the latest [release](https://github.com/veler/DevToys/releases).
 - Double click the *.msixbundle file.
 
 ## Please, avoid selling this app as yours
