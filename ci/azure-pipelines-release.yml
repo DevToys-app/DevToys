@@ -110,7 +110,8 @@ jobs:
                          /p:AppxBundlePlatforms="$(buildPlatform)"
                          /p:AppxPackageDir="$(appxPackageDir)"
                          /p:AppxBundle=Always
-                         /p:UapAppxPackageBuildMode=StoreUpload'
+                         /p:UapAppxPackageBuildMode=StoreUpload
+                         /p:AppxPackageSigningEnabled=false'
       maximumCpuCount: true
 
   - task: PublishBuildArtifacts@1
