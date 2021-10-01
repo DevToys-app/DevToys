@@ -78,3 +78,5 @@ Every tools available (i.e Base64 Encoder/Decoder, JSON Formatter, Settings...) 
 12. DO use prefix `Is`, `Has`, `Have`, `Any`, `Can` or similar keywords for Boolean names.
 
 13. DO use curly brackets for single line `if`, `for` and `foreach` statements.
+
+14. DO use nullable reference type by adding `#nullable enable` at the top of every C# file.

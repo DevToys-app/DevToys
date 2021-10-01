@@ -142,13 +142,18 @@
       <Link>Assets\Logo\Wide310x150Logo.scale-400.png</Link>
     </Content>
     <Content Include="Assets\DemoSmartDetection.gif" />
+    <Content Include="Assets\ReleaseNote.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Properties\Default.rd.rd.xml" />
     <Compile Include="Api\Core\IClipboard.cs" />
     <Compile Include="Api\Core\IMefProvider.cs" />
+    <Compile Include="Api\Core\InAppNotificationAddedEventArgs.cs" />
     <Compile Include="Api\Core\ITitleBar.cs" />
     <Compile Include="Api\Core\IUriActivationProtocolService.cs" />
     <Compile Include="Api\Core\Navigation\IWindowManager.cs" />
     <Compile Include="Api\Core\Navigation\NavigationParameter.cs" />
+    <Compile Include="Api\Core\INotificationService.cs" />
     <Compile Include="Api\Core\Settings\ISettingsProvider.cs" />
     <Compile Include="Api\Core\Settings\SettingChangedEventArgs.cs" />
     <Compile Include="Api\Core\Settings\SettingDefinition.cs" />
@@ -176,6 +181,7 @@
     <Compile Include="Core\MefComposer.cs" />
     <Compile Include="Core\MefProvider.cs" />
     <Compile Include="Core\Navigation\WindowManager.cs" />
+    <Compile Include="Core\NotificationService.cs" />
     <Compile Include="Core\Settings\PredefinedSettings.cs" />
     <Compile Include="Core\Settings\SettingsProvider.cs" />
     <Compile Include="Core\Theme\ThemeListener.cs" />
@@ -187,6 +193,10 @@
     <Compile Include="Core\Threading\ThreadPriority.cs" />
     <Compile Include="Core\TitleBar.cs" />
     <Compile Include="Core\ToolProviderFactory.cs" />
+    <Compile Include="UI\Controls\Notification.xaml.cs">
+      <DependentUpon>Notification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Converters\NullToVisibilityConverter.cs" />
     <Compile Include="ViewModels\Tools\ToolProviderBase.cs" />
     <Compile Include="Core\UriActivationProtocolService.cs" />
     <Compile Include="LanguageDefinition.cs" />
@@ -336,6 +346,10 @@
     <Page Include="UI\Controls\FormattedTextBlock\FormattedTextBlock.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Controls\Notification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Controls\TextEditor\TextEditor.xaml">
       <Generator>MSBuild:Compile</Generator>

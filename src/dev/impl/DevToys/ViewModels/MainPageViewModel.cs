@@ -23,7 +23,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
+using Windows.ApplicationModel;
 using Windows.Foundation;
+using Windows.Management.Deployment;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using ThreadPriority = DevToys.Core.Threading.ThreadPriority;
@@ -37,6 +39,7 @@ namespace DevToys.ViewModels
         private readonly IToolProviderFactory _toolProviderFactory;
         private readonly IUriActivationProtocolService _launchProtocolService;
         private readonly ISettingsProvider _settingsProvider;
+        private readonly INotificationService _notificationService;
         private readonly List<MatchedToolProviderViewData> _allToolsMenuitems = new();
         private readonly DisposableSempahore _sempahore = new();
         private readonly Lazy<Task> _firstUpdateMenuTask;
@@ -198,15 +201,16 @@ namespace DevToys.ViewModels
             ITitleBar titleBar,
             IToolProviderFactory toolProviderFactory,
             IUriActivationProtocolService launchProtocolService,
-            ISettingsProvider settingsProvider)
+            ISettingsProvider settingsProvider,
+            INotificationService notificationService)
         {
             _clipboard = clipboard;
             _toolProviderFactory = toolProviderFactory;
             _launchProtocolService = launchProtocolService;
             _settingsProvider = settingsProvider;
+            _notificationService = notificationService;
             TitleBar = titleBar;
 
-            NavigationViewItemClickCommand = new RelayCommand<MatchedToolProviderViewData>(ExecuteNavigationViewItemClickCommand);
             OpenToolInNewWindowCommand = new AsyncRelayCommand<ToolProviderMetadata>(ExecuteOpenToolInNewWindowCommandAsync);
             ChangeViewModeCommand = new AsyncRelayCommand<ApplicationViewMode>(ExecuteChangeViewModeCommandAsync);
 
@@ -217,18 +221,6 @@ namespace DevToys.ViewModels
             // Activate the view model's messenger.
             IsActive = true;
         }
-
-        #region NavigationViewItemClickCommand
-
-        public IRelayCommand<MatchedToolProviderViewData> NavigationViewItemClickCommand { get; }
-
-        private void ExecuteNavigationViewItemClickCommand(MatchedToolProviderViewData? item)
-        {
-            Arguments.NotNull(item, nameof(item));
-            SelectedMenuItem = item;
-        }
-
-        #endregion
 
         #region OpenToolInNewWindowCommand
 
@@ -296,6 +288,9 @@ namespace DevToys.ViewModels
                     }
                 }
             }
+
+            ShowReleaseNoteAsync().Forget();
+            ShowAvailableUpdateAsync().Forget();
 
             await ThreadHelper.RunOnUIThreadAsync(
                 ThreadPriority.Low,
@@ -472,6 +467,56 @@ namespace DevToys.ViewModels
                             }
                         });
                 }
+            }
+        }
+
+        private async Task ShowReleaseNoteAsync()
+        {
+            // Make sure we work in background.
+            await TaskScheduler.Default;
+
+            PackageVersion v = Package.Current.Id.Version;
+            string currentVersion = $"{v.Major}.{v.Minor}.{v.Build}.{v.Revision}";
+            string lastVersion = _settingsProvider.GetSetting(PredefinedSettings.LastVersionRan);
+
+            //if (!_settingsProvider.GetSetting(PredefinedSettings.FirstTimeStart) && currentVersion != lastVersion)
+            {
+                _notificationService.ShowInAppNotification(
+                    Strings.GetFormattedNotificationReleaseNoteTitle(currentVersion),
+                    Strings.NotificationReleaseNoteActionableActionText,
+                    () =>
+                    {
+                        ThreadHelper.ThrowIfNotOnUIThread();
+                        Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/veler/DevToys/releases")).AsTask().Forget();
+                    },
+                    await AssetsHelper.GetReleaseNoteAsync());
+            }
+
+            _settingsProvider.SetSetting(PredefinedSettings.FirstTimeStart, false);
+            _settingsProvider.SetSetting(PredefinedSettings.LastVersionRan, currentVersion);
+        }
+
+        private async Task ShowAvailableUpdateAsync()
+        {
+            // Make sure we work in background.
+            await TaskScheduler.Default;
+
+            // Get the current app's package for the current user.
+            var packageManager = new PackageManager();
+            var currentPackage = packageManager.FindPackageForUser(string.Empty, Package.Current.Id.FullName);
+
+            PackageUpdateAvailabilityResult result = await currentPackage.CheckUpdateAvailabilityAsync();
+
+            //if (result.Availability == PackageUpdateAvailability.Required || result.Availability == PackageUpdateAvailability.Available)
+            {
+                _notificationService.ShowInAppNotification(
+                    Strings.NotificationUpdateAvailableTitle,
+                    Strings.NotificationUpdateAvailableActionableActionText,
+                    () =>
+                    {
+                        ThreadHelper.ThrowIfNotOnUIThread();
+                        Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store://downloadsandupdates")).AsTask().Forget();
+                    });
             }
         }
 
