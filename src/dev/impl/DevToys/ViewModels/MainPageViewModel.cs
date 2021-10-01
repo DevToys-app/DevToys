@@ -479,7 +479,7 @@ namespace DevToys.ViewModels
             string currentVersion = $"{v.Major}.{v.Minor}.{v.Build}.{v.Revision}";
             string lastVersion = _settingsProvider.GetSetting(PredefinedSettings.LastVersionRan);
 
-            //if (!_settingsProvider.GetSetting(PredefinedSettings.FirstTimeStart) && currentVersion != lastVersion)
+            if (!_settingsProvider.GetSetting(PredefinedSettings.FirstTimeStart) && currentVersion != lastVersion)
             {
                 _notificationService.ShowInAppNotification(
                     Strings.GetFormattedNotificationReleaseNoteTitle(currentVersion),
@@ -507,7 +507,7 @@ namespace DevToys.ViewModels
 
             PackageUpdateAvailabilityResult result = await currentPackage.CheckUpdateAvailabilityAsync();
 
-            //if (result.Availability == PackageUpdateAvailability.Required || result.Availability == PackageUpdateAvailability.Available)
+            if (result.Availability == PackageUpdateAvailability.Required || result.Availability == PackageUpdateAvailability.Available)
             {
                 _notificationService.ShowInAppNotification(
                     Strings.NotificationUpdateAvailableTitle,

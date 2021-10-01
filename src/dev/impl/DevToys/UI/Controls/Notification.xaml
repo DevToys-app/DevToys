@@ -39,15 +39,10 @@
                     HorizontalAlignment="Right"
                     IsMasked="True"
                     Color="Black">
-                    <!--
-                        InfoBar alternative style:
-                        BorderBrush="{ThemeResource ToggleSwitchStrokeOn}"
-                        BorderThickness="0,4,0,0"
-                    -->
                     <muxc:InfoBar
                         Background="{ThemeResource SystemChromeMediumHighColor}"
-                        BorderBrush="{ThemeResource SystemControlTransientBorderBrush}"
-                        BorderThickness="1"
+                        BorderBrush="{ThemeResource ToggleSwitchStrokeOn}"
+                        BorderThickness="0,4,0,0"
                         CornerRadius="4"
                         MinWidth="250"
                         MaxWidth="450"
