@@ -12,7 +12,7 @@ pool:
 variables:
   group: BuildPipelineVariables
   uwpProject: '**/*.wapproj'
-  buildPlatform: 'x86|x64|ARM|ARM64'
+  buildPlatform: 'x86|x64|ARM'
   buildConfiguration: 'Release'
   appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
   certificateSecureFilePath: 'DevToys.Startup_TemporaryKey.pfx'

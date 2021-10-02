@@ -47,11 +47,7 @@
         <PlatformTarget>ARM</PlatformTarget>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Platform)' == 'ARM64'">
-        <PlatformTarget>ARM64</PlatformTarget>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM' or '$(Configuration)|$(Platform)' == 'Release|ARM64'">
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
         <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;ARM</DefineConstants>
     </PropertyGroup>
 
