@@ -116,6 +116,11 @@
             <controls:ExpandableSettingControl.Icon>
                 <muxc:ImageIcon Source="/Assets/Logo/Square44x44Logo.altform-lightunplated_targetsize-16.png" Height="16" />
             </controls:ExpandableSettingControl.Icon>
+            <Button
+                ToolTipService.ToolTip="{x:Bind ViewModel.Strings.Copy}"
+                Command="{x:Bind ViewModel.CopyVersionCommand}">
+                <FontIcon Glyph="&#xF32B;"/>
+            </Button>
         </controls:ExpandableSettingControl>
 
         <controls:ExpandableSettingControl
@@ -124,21 +129,20 @@
                 <FontIcon Glyph="&#xF4E4;" />
             </controls:ExpandableSettingControl.Icon>
             <controls:ExpandableSettingControl.ExpandableContent>
-                <!-- TODO -->
                 <Grid Margin="42,0,6,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0">
-                        <HyperlinkButton Content="Source code" NavigateUri="https://github.com/veler/DevToys" />
+                        <HyperlinkButton Content="{x:Bind ViewModel.Strings.SourceCode}" NavigateUri="https://github.com/veler/DevToys" />
                         <HyperlinkButton Content="{x:Bind ViewModel.Strings.PrivacyPolicy}" Command="{x:Bind ViewModel.PrivacyPolicyCommand}" />
                         <HyperlinkButton Content="{x:Bind ViewModel.Strings.RateAndReview}" Command="{x:Bind ViewModel.RateAndReviewCommand}" />
                     </StackPanel>
                     <StackPanel Grid.Column="1">
                         <HyperlinkButton Content="{x:Bind ViewModel.Strings.License}" Command="{x:Bind ViewModel.LicenseCommand}" />
                         <HyperlinkButton Content="{x:Bind ViewModel.Strings.ThirdPartyNotices}" Command="{x:Bind ViewModel.ThirdPartyNoticesCommand}" />
-                        <HyperlinkButton Content="Report a problem" NavigateUri="https://github.com/veler/DevToys/issues/new/choose" />
+                        <HyperlinkButton Content="{x:Bind ViewModel.Strings.ReportProblem}" NavigateUri="https://github.com/veler/DevToys/issues/new/choose" />
                     </StackPanel>
                 </Grid>
             </controls:ExpandableSettingControl.ExpandableContent>
