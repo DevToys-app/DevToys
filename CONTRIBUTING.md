@@ -3,12 +3,7 @@
 You can contribute to DevToys app by:
 - Report issues and bugs [here](https://github.com/veler/DevToys/issues/new?template=bug_report.md)
 - Submit feature requests [here](https://github.com/veler/DevToys/issues/new?template=feature_request.md)
-- Create a pull request to help:
-    * Fix an existing bug, prefix title with `[FIX] `.
-    * Implement new features, prefix title with `[FEATURE] `.
-    * Fix grammar errors or improve my documentations, prefix title with `[DOC] `.
-    * Improve CI/CD pipeline, prefix title with `[CI] `.
-    * Cleanup code and code refactoring or anything else you want to change in the project not listed above, prefix title with `[OTHER] ` or assign a custom prefix with the same format (`[LABEL] `).
+- Creating a pull request.
 - Internationalization and localization:
     * See instructions below.
 
