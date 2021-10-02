@@ -29,11 +29,9 @@ if ($Path.EndsWith('.sln')) {
     Invoke-Expression '& "$MSBuildPath" $Path /t:restore /p:Configuration=Release /p:platform=x86 /v:$Verbosity'
     Invoke-Expression '& "$MSBuildPath" $Path /t:restore /p:Configuration=Release /p:platform=x64 /v:$Verbosity'
     Invoke-Expression '& "$MSBuildPath" $Path /t:restore /p:Configuration=Release /p:platform=arm /v:$Verbosity'
-    Invoke-Expression '& "$MSBuildPath" $Path /t:restore /p:Configuration=Release /p:platform=arm64 /v:$Verbosity'
     Invoke-Expression '& "$MSBuildPath" $Path /t:restore /p:Configuration=Debug /p:platform=x86 /v:$Verbosity'
     Invoke-Expression '& "$MSBuildPath" $Path /t:restore /p:Configuration=Debug /p:platform=x64 /v:$Verbosity'
     Invoke-Expression '& "$MSBuildPath" $Path /t:restore /p:Configuration=Debug /p:platform=arm /v:$Verbosity'
-    Invoke-Expression '& "$MSBuildPath" $Path /t:restore /p:Configuration=Debug /p:platform=arm64 /v:$Verbosity'
     if ($lastexitcode -ne 0) { throw }
 
     $slnDir = Split-Path -Path $Path -Parent

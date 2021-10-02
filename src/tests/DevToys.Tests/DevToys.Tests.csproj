@@ -45,10 +45,6 @@
         <PlatformTarget>ARM</PlatformTarget>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Platform)' == 'ARM64'">
-        <PlatformTarget>ARM64</PlatformTarget>
-    </PropertyGroup>
-
   <ItemGroup>
     <SDKReference Include="TestPlatform.Universal, Version=$(UnitTestPlatformVersion)" />
   </ItemGroup>
