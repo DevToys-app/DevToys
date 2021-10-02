@@ -1,2 +1,2 @@
 ﻿  • In-app notifications.
-  • // TODO
+  • Bugs fixed
