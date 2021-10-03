@@ -416,16 +416,6 @@ namespace DevToys
         public string JsonToYaml => _resources.GetString("JsonToYaml");
 
         /// <summary>
-        /// Gets the resource Minified.
-        /// </summary>
-        public string Minified => _resources.GetString("Minified");
-
-        /// <summary>
-        /// Gets the resource OneTab.
-        /// </summary>
-        public string OneTab => _resources.GetString("OneTab");
-
-        /// <summary>
         /// Gets the resource Output.
         /// </summary>
         public string Output => _resources.GetString("Output");
