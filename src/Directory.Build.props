@@ -33,5 +33,6 @@
         <NuGet_MSTestTestFramework>2.1.1</NuGet_MSTestTestFramework>
         <NuGet_NewtonsoftJson>12.0.3</NuGet_NewtonsoftJson>
         <NuGet_SystemComposition>5.0.0</NuGet_SystemComposition>
+        <NuGet_YamlDotNet>11.2.1</NuGet_YamlDotNet>
     </PropertyGroup>
 </Project>

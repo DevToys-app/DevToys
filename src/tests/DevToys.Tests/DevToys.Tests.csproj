@@ -20,35 +20,32 @@
     <IsTestProject>true</IsTestProject>
     <AppxBundle>Never</AppxBundle>
   </PropertyGroup>
-    <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-        <DebugSymbols>true</DebugSymbols>
-        <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-        <DebugType>full</DebugType>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
-        <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-        <Optimize>true</Optimize>
-        <DebugType>pdbonly</DebugType>
-        <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Platform)' == 'x86'">
-        <PlatformTarget>x86</PlatformTarget>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Platform)' == 'x64'">
-        <PlatformTarget>x64</PlatformTarget>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Platform)' == 'ARM'">
-        <PlatformTarget>ARM</PlatformTarget>
-    </PropertyGroup>
-
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Platform)' == 'x86'">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Platform)' == 'x64'">
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Platform)' == 'ARM'">
+    <PlatformTarget>ARM</PlatformTarget>
+  </PropertyGroup>
   <ItemGroup>
     <SDKReference Include="TestPlatform.Universal, Version=$(UnitTestPlatformVersion)" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\YamlHelperTests.cs" />
+    <Compile Include="Helpers\JsonHelperTests.cs" />
     <Compile Include="MefBaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\Tools\HashGeneratorTests.cs" />

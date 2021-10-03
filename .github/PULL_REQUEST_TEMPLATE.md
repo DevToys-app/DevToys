@@ -39,3 +39,4 @@ Before creating this PR, have you:
 
 - [ ] Followed the code style guideline as described in [CONTRIBUTING.md](https://github.com/veler/DevToys/blob/main/CONTRIBUTING.md)
 - [ ] Verified that the change work in Release build configuration
+- [ ] Checked all unit tests pass
