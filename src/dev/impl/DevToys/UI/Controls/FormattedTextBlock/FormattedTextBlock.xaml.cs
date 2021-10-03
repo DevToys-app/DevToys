@@ -522,6 +522,11 @@ namespace DevToys.UI.Controls.FormattedTextBlock
 
         private void CopyButton_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(_document))
+            {
+                return;
+            }
+
             var data = new DataPackage
             {
                 RequestedOperation = DataPackageOperation.Copy
