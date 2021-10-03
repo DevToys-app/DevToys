@@ -486,6 +486,11 @@ namespace DevToys
         public string Close => _resources.GetString("Close");
 
         /// <summary>
+        /// Gets the resource Copy.
+        /// </summary>
+        public string Copy => _resources.GetString("Copy");
+
+        /// <summary>
         /// Gets the resource Dark.
         /// </summary>
         public string Dark => _resources.GetString("Dark");
@@ -561,6 +566,11 @@ namespace DevToys
         public string RateAndReview => _resources.GetString("RateAndReview");
 
         /// <summary>
+        /// Gets the resource ReportProblem.
+        /// </summary>
+        public string ReportProblem => _resources.GetString("ReportProblem");
+
+        /// <summary>
         /// Gets the resource SmartDetection.
         /// </summary>
         public string SmartDetection => _resources.GetString("SmartDetection");
@@ -569,6 +579,11 @@ namespace DevToys
         /// Gets the resource SmartDetectionDescription.
         /// </summary>
         public string SmartDetectionDescription => _resources.GetString("SmartDetectionDescription");
+
+        /// <summary>
+        /// Gets the resource SourceCode.
+        /// </summary>
+        public string SourceCode => _resources.GetString("SourceCode");
 
         /// <summary>
         /// Gets the resource TextEditor.

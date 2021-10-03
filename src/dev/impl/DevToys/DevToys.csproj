@@ -408,6 +408,7 @@
     <PackageReference Include="ColorCode.Core" Version="$(Nuget_ColorCodeUwp)" />
     <PackageReference Include="ColorCode.UWP" Version="$(Nuget_ColorCodeUwp)" />
     <PackageReference Include="DiffPlex" Version="$(Nuget_DiffPlex)" />
+    <PackageReference Include="GitInfo" Version="$(Nuget_GitInfo)" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="$(NuGet_MicrosoftNETCoreUniversalWindowsPlatform)" />
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="$(NuGet_MicrosoftToolkitMvvm)" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Behaviors" Version="$(Nuget_MicrosoftToolkitUwpUIBehaviors)" />
