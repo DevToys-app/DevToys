@@ -1,0 +1,75 @@
+﻿<UserControl
+    x:Class="DevToys.UI.Controls.Notification"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:core="using:DevToys.Api.Core"
+    xmlns:converters="using:DevToys.UI.Converters"
+    xmlns:wct="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <UserControl.Resources>
+        <converters:NullToVisibilityConverter x:Key="InvertedEmptyStringToVisibilityConverter" EnforceNonWhiteSpaceString="True" IsInverted="True"/>
+    </UserControl.Resources>
+
+    <ItemsControl
+        x:Name="ItemsControl"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Top"
+        Margin="0,48,16,0"
+        ScrollViewer.VerticalScrollMode="Disabled"
+        ScrollViewer.HorizontalScrollMode="Disabled"
+        HorizontalContentAlignment="Stretch">
+        <ItemsControl.ItemContainerTransitions>
+            <TransitionCollection>
+                <AddDeleteThemeTransition/>
+            </TransitionCollection>
+        </ItemsControl.ItemContainerTransitions>
+        <ItemsControl.ItemTemplate>
+            <DataTemplate x:DataType="core:InAppNotificationAddedEventArgs">
+                <wct:DropShadowPanel
+                    Margin="0,0,0,24"
+                    BlurRadius="24"
+                    ShadowOpacity="0.5"
+                    OffsetX="0"
+                    OffsetY="7"
+                    HorizontalAlignment="Right"
+                    IsMasked="True"
+                    Color="Black">
+                    <muxc:InfoBar
+                        Background="{ThemeResource SystemChromeMediumHighColor}"
+                        BorderBrush="{ThemeResource ToggleSwitchStrokeOn}"
+                        BorderThickness="0,4,0,0"
+                        CornerRadius="4"
+                        MinWidth="250"
+                        MaxWidth="450"
+                        MaxHeight="400"
+                        Padding="8"
+                        Title="{Binding Title}"
+                        IsOpen="True"
+                        Severity="Informational"
+                        IsIconVisible="False"
+                        Closing="InfoBar_Closing">
+                        <muxc:InfoBar.Content>
+                            <StackPanel Margin="0,0,0,4">
+                                <TextBlock
+                                    Visibility="{Binding Message, Converter={StaticResource InvertedEmptyStringToVisibilityConverter}}"
+                                    Margin="2 -10 0 4"
+                                    TextWrapping="WrapWholeWords"
+                                    Text="{Binding Message}"/>
+                                <HyperlinkButton
+                                    Margin="-10,0,0,0"
+                                    Visibility="{Binding ActionableLinkText, Converter={StaticResource InvertedEmptyStringToVisibilityConverter}}"
+                                    Content="{Binding ActionableLinkText}"
+                                    Click="ActionableButton_Click"/>
+                            </StackPanel>
+                        </muxc:InfoBar.Content>
+                    </muxc:InfoBar>
+                </wct:DropShadowPanel>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+</UserControl>

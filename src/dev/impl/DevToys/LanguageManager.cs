@@ -375,6 +375,34 @@ namespace DevToys
         public string ExitCompactOverlayTooltip => _resources.GetString("ExitCompactOverlayTooltip");
 
         /// <summary>
+        /// Gets the resource NotificationReleaseNoteActionableActionText.
+        /// </summary>
+        public string NotificationReleaseNoteActionableActionText => _resources.GetString("NotificationReleaseNoteActionableActionText");
+
+        /// <summary>
+        /// Gets the resource NotificationReleaseNoteTitle.
+        /// </summary>
+        public string NotificationReleaseNoteTitle => _resources.GetString("NotificationReleaseNoteTitle");
+
+        /// <summary>
+        /// Gets the resource NotificationReleaseNoteTitle with format.
+        /// </summary>
+        public string GetFormattedNotificationReleaseNoteTitle(string? param0)
+        {
+            return string.Format(NotificationReleaseNoteTitle, param0);
+        }
+
+        /// <summary>
+        /// Gets the resource NotificationUpdateAvailableActionableActionText.
+        /// </summary>
+        public string NotificationUpdateAvailableActionableActionText => _resources.GetString("NotificationUpdateAvailableActionableActionText");
+
+        /// <summary>
+        /// Gets the resource NotificationUpdateAvailableTitle.
+        /// </summary>
+        public string NotificationUpdateAvailableTitle => _resources.GetString("NotificationUpdateAvailableTitle");
+
+        /// <summary>
         /// Gets the resource OpenInNewWindow.
         /// </summary>
         public string OpenInNewWindow => _resources.GetString("OpenInNewWindow");

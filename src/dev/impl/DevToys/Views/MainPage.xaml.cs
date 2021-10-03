@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using DevToys.Api.Core;
 using DevToys.Api.Core.Injection;
 using DevToys.Api.Core.Navigation;
 using DevToys.Core;
@@ -51,10 +52,13 @@ namespace DevToys.Views
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             Assumes.NotNull(_parameters, nameof(_parameters));
+            Assumes.NotNull(_mefProvider, nameof(_mefProvider));
 
             // Calling OnNavigatedToAsync in Loaded event instead of OnNavigatedTo because it needs access to CoreDispatcher,
             // which isn't available before the main window is created.
             ViewModel.OnNavigatedToAsync(_parameters!).Forget();
+
+            NotificationControl.NotificationService = _mefProvider!.Import<INotificationService>();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
