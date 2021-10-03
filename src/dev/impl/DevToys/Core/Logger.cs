@@ -19,15 +19,24 @@ namespace DevToys.Core
 
         internal static async Task OpenLogsAsync()
         {
-            StorageFolder localCacheFolder = ApplicationData.Current.LocalCacheFolder;
-
-            IStorageItem file = await localCacheFolder.TryGetItemAsync(LogFileName);
-            if (file is not null and IStorageFile storageFile)
+            using (await _semaphore.WaitAsync(CancellationToken.None))
             {
-                await ThreadHelper.RunOnUIThreadAsync(async () =>
+                StorageFolder localCacheFolder = ApplicationData.Current.LocalCacheFolder;
+
+                IStorageItem file = await localCacheFolder.TryGetItemAsync(LogFileName);
+
+                if (file is null)
                 {
-                    await Launcher.LaunchFileAsync(storageFile);
-                });
+                    file = await localCacheFolder.CreateFileAsync(LogFileName, CreationCollisionOption.OpenIfExists);
+                }
+
+                if (file is not null and IStorageFile storageFile)
+                {
+                    await ThreadHelper.RunOnUIThreadAsync(async () =>
+                    {
+                        await Launcher.LaunchFileAsync(storageFile);
+                    });
+                }
             }
         }
 
@@ -67,7 +76,6 @@ namespace DevToys.Core
             }
             catch (Exception)
             {
-
             }
         }
     }
