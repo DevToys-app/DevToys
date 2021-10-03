@@ -234,5 +234,7 @@
                 <Frame x:Name="contentFrame" />
             </ScrollViewer>
         </muxc:NavigationView>
+
+        <controls:Notification x:Name="NotificationControl"/>
     </Grid>
 </Page>

@@ -11,6 +11,13 @@ namespace DevToys.Core
 {
     public static class AssetsHelper
     {
+        public static async Task<string> GetReleaseNoteAsync()
+        {
+            string result = await GetLocalFileContentAsync($"Assets\\ReleaseNote.txt").ConfigureAwait(false);
+
+            return result;
+        }
+
         public static async Task<string> GetPrivacyStatementAsync()
         {
             string result = await GetLocalFileContentAsync($"Assets\\PRIVACY-POLICY.md").ConfigureAwait(false);
