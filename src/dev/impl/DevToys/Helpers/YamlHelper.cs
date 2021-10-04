@@ -10,14 +10,14 @@ namespace DevToys.Helpers
         /// <summary>
         /// Detects whether the given string is a valid YAML or not.
         /// </summary>
-        internal static bool IsValidYaml(string input)
+        internal static bool IsValidYaml(string? input)
         {
             if (string.IsNullOrWhiteSpace(input))
             {
                 return false;
             }
 
-            input = input.Trim();
+            input = input!.Trim();
 
             try
             {

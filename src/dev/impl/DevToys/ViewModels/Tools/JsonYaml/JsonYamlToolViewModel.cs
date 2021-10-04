@@ -5,6 +5,7 @@ using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
 using DevToys.Core;
 using DevToys.Core.Threading;
+using DevToys.Helpers;
 using DevToys.UI.Controls.FormattedTextBlock;
 using DevToys.UI.Controls.FormattedTextBlock.Languages;
 using DevToys.Views.Tools.JsonYaml;
@@ -56,7 +57,22 @@ namespace DevToys.ViewModels.Tools.JsonYaml
                     _setPropertyInProgress = true;
                     ThreadHelper.ThrowIfNotOnUIThread();
                     SetProperty(ref _conversionMode, value);
-                    InputValue = _outputValue;
+
+                    if (string.Equals(value, JsonToYaml))
+                    {
+                        if (JsonHelper.IsValidJson(_outputValue))
+                        {
+                            InputValue = _outputValue;
+                        }
+                    }
+                    else
+                    {
+                        if (YamlHelper.IsValidYaml(_outputValue))
+                        {
+                            InputValue = _outputValue;
+                        }
+                    }
+
                     _setPropertyInProgress = false;
                 }
             }
@@ -192,9 +208,14 @@ namespace DevToys.ViewModels.Tools.JsonYaml
 
                 output = string.Empty;
             }
-            catch (Exception ex)
+            catch (JsonReaderException ex)
             {
                 output = ex.Message;
+            }
+            catch (Exception ex)
+            {
+                Logger.LogFault("Yaml to Json Converter", ex);
+                output = string.Empty;
             }
 
             return false;
@@ -250,11 +271,17 @@ namespace DevToys.ViewModels.Tools.JsonYaml
                 output = stringBuilder.ToString();
                 return true;
             }
-            catch (Exception ex)
+            catch (SemanticErrorException ex)
             {
                 output = ex.Message;
-                return false;
             }
+            catch (Exception ex)
+            {
+                Logger.LogFault("Yaml to Json Converter", ex);
+                output = string.Empty;
+            }
+
+            return false;
         }
     }
 }

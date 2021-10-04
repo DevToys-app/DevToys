@@ -12,14 +12,14 @@ namespace DevToys.Helpers
         /// <summary>
         /// Detects whether the given string is a valid JSON or not.
         /// </summary>
-        internal static bool IsValidJson(string input)
+        internal static bool IsValidJson(string? input)
         {
             if (string.IsNullOrWhiteSpace(input))
             {
                 return false;
             }
 
-            input = input.Trim();
+            input = input!.Trim();
 
             if ((input.StartsWith("{") && input.EndsWith("}")) //For object
                 || (input.StartsWith("[") && input.EndsWith("]"))) //For array
