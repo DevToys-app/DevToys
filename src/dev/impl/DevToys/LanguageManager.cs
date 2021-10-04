@@ -446,6 +446,34 @@ namespace DevToys
         public string ExitCompactOverlayTooltip => _resources.GetString("ExitCompactOverlayTooltip");
 
         /// <summary>
+        /// Gets the resource NotificationReleaseNoteActionableActionText.
+        /// </summary>
+        public string NotificationReleaseNoteActionableActionText => _resources.GetString("NotificationReleaseNoteActionableActionText");
+
+        /// <summary>
+        /// Gets the resource NotificationReleaseNoteTitle.
+        /// </summary>
+        public string NotificationReleaseNoteTitle => _resources.GetString("NotificationReleaseNoteTitle");
+
+        /// <summary>
+        /// Gets the resource NotificationReleaseNoteTitle with format.
+        /// </summary>
+        public string GetFormattedNotificationReleaseNoteTitle(string? param0)
+        {
+            return string.Format(NotificationReleaseNoteTitle, param0);
+        }
+
+        /// <summary>
+        /// Gets the resource NotificationUpdateAvailableActionableActionText.
+        /// </summary>
+        public string NotificationUpdateAvailableActionableActionText => _resources.GetString("NotificationUpdateAvailableActionableActionText");
+
+        /// <summary>
+        /// Gets the resource NotificationUpdateAvailableTitle.
+        /// </summary>
+        public string NotificationUpdateAvailableTitle => _resources.GetString("NotificationUpdateAvailableTitle");
+
+        /// <summary>
         /// Gets the resource OpenInNewWindow.
         /// </summary>
         public string OpenInNewWindow => _resources.GetString("OpenInNewWindow");
@@ -529,6 +557,11 @@ namespace DevToys
         public string Close => _resources.GetString("Close");
 
         /// <summary>
+        /// Gets the resource Copy.
+        /// </summary>
+        public string Copy => _resources.GetString("Copy");
+
+        /// <summary>
         /// Gets the resource Dark.
         /// </summary>
         public string Dark => _resources.GetString("Dark");
@@ -604,6 +637,11 @@ namespace DevToys
         public string RateAndReview => _resources.GetString("RateAndReview");
 
         /// <summary>
+        /// Gets the resource ReportProblem.
+        /// </summary>
+        public string ReportProblem => _resources.GetString("ReportProblem");
+
+        /// <summary>
         /// Gets the resource SmartDetection.
         /// </summary>
         public string SmartDetection => _resources.GetString("SmartDetection");
@@ -612,6 +650,11 @@ namespace DevToys
         /// Gets the resource SmartDetectionDescription.
         /// </summary>
         public string SmartDetectionDescription => _resources.GetString("SmartDetectionDescription");
+
+        /// <summary>
+        /// Gets the resource SourceCode.
+        /// </summary>
+        public string SourceCode => _resources.GetString("SourceCode");
 
         /// <summary>
         /// Gets the resource TextEditor.

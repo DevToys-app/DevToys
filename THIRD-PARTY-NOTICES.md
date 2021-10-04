@@ -5,9 +5,10 @@ This project incorporates components from the projects listed below. The origina
 1. Newtonsoft.Json (https://github.com/JamesNK/Newtonsoft.Json)
 2. ColorCode-Universal (https://github.com/CommunityToolkit/ColorCode-Universal)
 3. DiffPlex (https://github.com/mmanela/diffplex)
-4. Windows Community Toolkit (https://github.com/CommunityToolkit/WindowsCommunityToolkit)
-5. Notepads App (https://github.com/JasonStein/Notepads)
-6. YamlDotNet (https://github.com/aaubry/YamlDotNet)
+4. GitInfo (https://github.com/devlooped/GitInfo)
+5. Windows Community Toolkit (https://github.com/CommunityToolkit/WindowsCommunityToolkit)
+6. Notepads App (https://github.com/JasonStein/Notepads)
+7. YamlDotNet (https://github.com/aaubry/YamlDotNet)
 
 Newtonsoft.Json NOTICES AND INFORMATION BEGIN HERE
 =========================================
@@ -135,6 +136,30 @@ In no event and under no legal theory, whether in tort (including negligence), c
 While redistributing the Work or Derivative Works thereof, You may choose to offer, and charge a fee for, acceptance of support, warranty, indemnity, or other liability obligations and/or rights consistent with this License. However, in accepting such obligations, You may act only on Your own behalf and on Your sole responsibility, not on behalf of any other Contributor, and only if You agree to indemnify, defend, and hold each Contributor harmless for any liability incurred by, or claims asserted against, such Contributor by reason of your accepting any such warranty or additional liability.
 
 END OF TERMS AND CONDITIONS
+
+GitInfo NOTICES AND INFORMATION BEGIN HERE
+=========================================
+The MIT License (MIT)
+
+Copyright (c) Daniel Cazzulino and Contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 Windows Community Toolkit NOTICES AND INFORMATION BEGIN HERE
 =========================================

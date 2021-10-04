@@ -135,6 +135,9 @@
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
   <data name="Dark" xml:space="preserve">
     <value>Dark</value>
   </data>
@@ -180,11 +183,17 @@
   <data name="RateAndReview" xml:space="preserve">
     <value>Rate and review on Microsoft Store</value>
   </data>
+  <data name="ReportProblem" xml:space="preserve">
+    <value>Report a problem</value>
+  </data>
   <data name="SmartDetection" xml:space="preserve">
     <value>Smart detection</value>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
     <value>Automatically detect the best tool based on the clipboard content</value>
+  </data>
+  <data name="SourceCode" xml:space="preserve">
+    <value>Source code</value>
   </data>
   <data name="TextEditor" xml:space="preserve">
     <value>Text editor</value>

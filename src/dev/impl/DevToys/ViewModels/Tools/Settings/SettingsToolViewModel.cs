@@ -15,7 +15,10 @@ using System.Collections.Generic;
 using System.Composition;
 using System.Reflection;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Services.Store;
+using Clipboard = Windows.ApplicationModel.DataTransfer.Clipboard;
 
 namespace DevToys.ViewModels.Settings
 {
@@ -76,7 +79,25 @@ namespace DevToys.ViewModels.Settings
         /// <summary>
         /// Gets the version of the application.
         /// </summary>
-        internal string Version => Strings.GetFormattedVersion(typeof(SettingsToolViewModel).GetTypeInfo().Assembly.GetName().Version.ToString());
+        internal string Version
+        {
+            get
+            {
+                string version = Strings.GetFormattedVersion(typeof(SettingsToolViewModel).GetTypeInfo().Assembly.GetName().Version.ToString());
+
+                string architecture = Package.Current.Id.Architecture.ToString();
+#if DEBUG
+                string buildConfiguration = "DEBUG";
+#else
+                string buildConfiguration = "RELEASE";
+#endif
+
+                string gitBranch = ThisAssembly.Git.Branch;
+                string gitCommit = ThisAssembly.Git.Commit;
+
+                return $"{version} | {architecture} | {buildConfiguration} | {gitBranch} | {gitCommit}";
+            }
+        }
 
         [ImportingConstructor]
         public SettingsToolViewModel(
@@ -86,12 +107,30 @@ namespace DevToys.ViewModels.Settings
             _windowManager = windowManager;
             _settingsProvider = settingsProvider;
 
+            CopyVersionCommand = new RelayCommand(ExecuteCopyVersionCommand);
             PrivacyPolicyCommand = new AsyncRelayCommand(ExecutePrivacyPolicyCommandAsync);
             ThirdPartyNoticesCommand = new AsyncRelayCommand(ExecuteThirdPartyNoticesCommandAsync);
             LicenseCommand = new AsyncRelayCommand(ExecuteLicenseCommandAsync);
             RateAndReviewCommand = new AsyncRelayCommand(ExecuteRateAndReviewCommandAsync);
             OpenLogsCommand = new AsyncRelayCommand(ExecuteOpenLogsCommandAsync);
         }
+
+        #region CopyVersionCommand
+
+        internal IRelayCommand CopyVersionCommand { get; }
+
+        private void ExecuteCopyVersionCommand()
+        {
+            var data = new DataPackage
+            {
+                RequestedOperation = DataPackageOperation.Copy
+            };
+            data.SetText(Version);
+
+            Clipboard.SetContent(data);
+        }
+
+        #endregion
 
         #region PrivacyPolicyCommand
 
