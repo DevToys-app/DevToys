@@ -123,6 +123,19 @@
   <data name="ExitCompactOverlayTooltip" xml:space="preserve">
     <value>Retour en vue normal (Ctrl+Down)</value>
   </data>
+  <data name="NotificationReleaseNoteActionableActionText" xml:space="preserve">
+    <value>en savoir plus...</value>
+  </data>
+  <data name="NotificationReleaseNoteTitle" xml:space="preserve">
+    <value>On vient de mettre à jour! Quoi de neuf dans la version {0}? 🚀</value>
+    <comment>{0} is the current app version</comment>
+  </data>
+  <data name="NotificationUpdateAvailableActionableActionText" xml:space="preserve">
+    <value>mettre à jour maintenant...</value>
+  </data>
+  <data name="NotificationUpdateAvailableTitle" xml:space="preserve">
+    <value>Une mise à jour est disponible! 🚀</value>
+  </data>
   <data name="OpenInNewWindow" xml:space="preserve">
     <value>Ouvrir dans une nouvelle fenêtre</value>
   </data>

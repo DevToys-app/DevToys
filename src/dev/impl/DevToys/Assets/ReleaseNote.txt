@@ -1,0 +1,4 @@
+﻿  • In-app notifications.
+  • 3 bugs fixed.
+Upcoming in next update:
+  • Json <> Yaml converter!
