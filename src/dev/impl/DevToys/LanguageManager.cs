@@ -28,6 +28,7 @@ namespace DevToys
         private readonly CommonStrings _common = new CommonStrings();
         private readonly HashGeneratorStrings _hashgenerator = new HashGeneratorStrings();
         private readonly JsonFormatterStrings _jsonformatter = new JsonFormatterStrings();
+        private readonly JsonYamlStrings _jsonyaml = new JsonYamlStrings();
         private readonly MainPageStrings _mainpage = new MainPageStrings();
         private readonly RegExStrings _regex = new RegExStrings();
         private readonly SettingsStrings _settings = new SettingsStrings();
@@ -62,6 +63,11 @@ namespace DevToys
         /// Gets the <see cref="JsonFormatterStrings"/>.
         /// </summary>
         public JsonFormatterStrings JsonFormatter => _jsonformatter;
+
+        /// <summary>
+        /// Gets the <see cref="JsonYamlStrings"/>.
+        /// </summary>
+        public JsonYamlStrings JsonYaml => _jsonyaml;
 
         /// <summary>
         /// Gets the <see cref="MainPageStrings"/>.
@@ -358,6 +364,71 @@ namespace DevToys
         /// Gets the resource TwoSpaces.
         /// </summary>
         public string TwoSpaces => _resources.GetString("TwoSpaces");
+    }
+
+    public class JsonYamlStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("JsonYaml");
+
+        /// <summary>
+        /// Gets the resource Configuration.
+        /// </summary>
+        public string Configuration => _resources.GetString("Configuration");
+
+        /// <summary>
+        /// Gets the resource ConversionDescription.
+        /// </summary>
+        public string ConversionDescription => _resources.GetString("ConversionDescription");
+
+        /// <summary>
+        /// Gets the resource ConversionTitle.
+        /// </summary>
+        public string ConversionTitle => _resources.GetString("ConversionTitle");
+
+        /// <summary>
+        /// Gets the resource DisplayName.
+        /// </summary>
+        public string DisplayName => _resources.GetString("DisplayName");
+
+        /// <summary>
+        /// Gets the resource FourSpaces.
+        /// </summary>
+        public string FourSpaces => _resources.GetString("FourSpaces");
+
+        /// <summary>
+        /// Gets the resource Indentation.
+        /// </summary>
+        public string Indentation => _resources.GetString("Indentation");
+
+        /// <summary>
+        /// Gets the resource Input.
+        /// </summary>
+        public string Input => _resources.GetString("Input");
+
+        /// <summary>
+        /// Gets the resource InvalidYaml.
+        /// </summary>
+        public string InvalidYaml => _resources.GetString("InvalidYaml");
+
+        /// <summary>
+        /// Gets the resource JsonToYaml.
+        /// </summary>
+        public string JsonToYaml => _resources.GetString("JsonToYaml");
+
+        /// <summary>
+        /// Gets the resource Output.
+        /// </summary>
+        public string Output => _resources.GetString("Output");
+
+        /// <summary>
+        /// Gets the resource TwoSpaces.
+        /// </summary>
+        public string TwoSpaces => _resources.GetString("TwoSpaces");
+
+        /// <summary>
+        /// Gets the resource YamlToJson.
+        /// </summary>
+        public string YamlToJson => _resources.GetString("YamlToJson");
     }
 
     public class MainPageStrings : ObservableObject

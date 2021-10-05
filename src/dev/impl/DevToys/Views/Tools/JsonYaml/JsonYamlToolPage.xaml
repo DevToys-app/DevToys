@@ -1,0 +1,104 @@
+﻿<Page
+    x:Class="DevToys.Views.Tools.JsonYaml.JsonYamlToolPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:DevToys.UI.Controls"
+    xmlns:formattedtextblock="using:DevToys.UI.Controls.FormattedTextBlock"
+    xmlns:texteditor="using:DevToys.UI.Controls.TextEditor"
+    xmlns:ex="using:DevToys.UI.Extensions"
+    xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d"
+    NavigationCacheMode="Required">
+
+    <Grid Margin="0,0,0,16" RowSpacing="12">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <ex:IsCompactOverlayModeTrigger TargetElement="{x:Bind}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ConfigurationStackPanel.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel x:Name="ConfigurationStackPanel" Grid.Row="0" Spacing="4" >
+            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Configuration}" />
+
+            <controls:ExpandableSettingControl
+                Title="{x:Bind ViewModel.Strings.ConversionTitle}"
+                Description="{x:Bind ViewModel.Strings.ConversionDescription}">
+                <controls:ExpandableSettingControl.Icon>
+                    <FontIcon Glyph="&#xF18D;" />
+                </controls:ExpandableSettingControl.Icon>
+                <ComboBox
+                    SelectedValuePath="Tag"
+                    SelectedValue="{x:Bind ViewModel.ConversionMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBoxItem Tag="JsonToYaml" Content="{x:Bind ViewModel.Strings.JsonToYaml}"/>
+                    <ComboBoxItem Tag="YamlToJson" Content="{x:Bind ViewModel.Strings.YamlToJson}"/>
+                </ComboBox>
+            </controls:ExpandableSettingControl>
+
+            <controls:ExpandableSettingControl
+                Title="{x:Bind ViewModel.Strings.Indentation}">
+                <controls:ExpandableSettingControl.Icon>
+                    <FontIcon Glyph="&#xF6F8;" />
+                </controls:ExpandableSettingControl.Icon>
+                <ComboBox
+                    SelectedValuePath="Tag"
+                    SelectedValue="{x:Bind ViewModel.Indentation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBoxItem Tag="TwoSpaces" Content="{x:Bind ViewModel.Strings.TwoSpaces}"/>
+                    <ComboBoxItem Tag="FourSpaces" Content="{x:Bind ViewModel.Strings.FourSpaces}"/>
+                </ComboBox>
+            </controls:ExpandableSettingControl>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="100"/>
+                <ColumnDefinition Width="16"/>
+                <ColumnDefinition MinWidth="100"/>
+            </Grid.ColumnDefinitions>
+
+            <texteditor:TextEditor
+                Grid.Column="0"
+                Header="{x:Bind ViewModel.Strings.Input}"
+                SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
+                Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <toolkit:GridSplitter
+                Grid.Column="1"
+                Width="16"
+                Margin="0,42,0,0"
+                ResizeBehavior="BasedOnAlignment"
+                ResizeDirection="Auto">
+                <toolkit:GridSplitter.Element>
+                    <FontIcon
+                        Glyph="&#xFD55;"
+                        FontSize="13"/>
+                </toolkit:GridSplitter.Element>
+            </toolkit:GridSplitter>
+
+            <formattedtextblock:FormattedTextBlock
+                x:Name="OutputTextBlock"
+                Grid.Column="2"
+                Header="{x:Bind ViewModel.Strings.Output}"
+                SettingsProvider="{x:Bind ViewModel.SettingsProvider}"/>
+        </Grid>
+    </Grid>
+</Page>
