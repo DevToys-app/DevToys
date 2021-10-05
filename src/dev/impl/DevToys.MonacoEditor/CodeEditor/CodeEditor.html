@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        /* Just have Monaco Fill All Available Space within control */
+        #container {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+    <style id="dynamic">
+    </style>
+</head>
+<body>
+
+    <div id="container" onkeydown="keyDown(event)"></div>
+
+    <script src="ms-appx-web:///Monaco/monaco-editor/min/vs/loader.js"></script>
+    <script src="ms-appx-web:///Monaco/ts-helpermethods/registerCompletionItemProvider.js"></script>
+    <script src="ms-appx-web:///Monaco/ts-helpermethods/otherScriptsToBeOrganized.js"></script>
+    <script src="ms-appx-web:///Monaco/ts-helpermethods/updateSelectedContent.js"></script>
+
+    <script>
+        var editor;
+        var model;
+        var contexts = {};
+        var decorations = [];
+        var modifingSelection = false; // Supress updates to selection when making edits.
+
+        Debug.log("Starting Monaco Load");
+        require.config({ paths: { 'vs': 'ms-appx-web:///Monaco/monaco-editor/min/vs' } });
+        require(['vs/editor/editor.main'], function () {
+            Debug.log("Grabbing Monaco Options");
+
+            let opt = getOptions();
+            opt["value"] = Parent.getValue("Text");
+
+            editor = monaco.editor.create(document.getElementById('container'), opt);
+            model = editor.getModel();
+
+            // Listen for Content Changes
+            model.onDidChangeContent((event) => {
+                Parent.setValue("Text", model.getValue());
+                //console.log("buffers: " + JSON.stringify(model._buffer._pieceTree._buffers));
+                //console.log("commandMgr: " + JSON.stringify(model._commandManager));
+                //console.log("viewState:" + JSON.stringify(editor.saveViewState()));
+            });
+
+            // Listen for Selection Changes
+            editor.onDidChangeCursorSelection((event) => {
+                if (!modifingSelection) {
+                    console.log(event.source);
+                    Parent.setValue("SelectedText", model.getValueInRange(event.selection));
+                    Parent.setValue("SelectedRange", JSON.stringify(event.selection), "Selection");
+                }
+            })
+
+            // Set theme
+            let theme = Parent.getJsonValue("RequestedTheme");
+            theme = {
+                "0": "Default",
+                "1": "Light",
+                "2": "Dark"
+            }[theme];
+            if (theme == "Default") {
+                theme = Theme.currentThemeName.toString();
+            }
+            changeTheme(theme, Theme.isHighContrast.toString());
+
+            // Update Monaco Size when we receive a window resize event
+            window.addEventListener("resize", () => {
+                editor.layout();
+            });
+
+            // Disable WebView Scrollbar so Monaco Scrollbar can do heavy lifting
+            document.body.style.overflow = 'hidden';
+
+            // Callback to Parent that we're loaded
+            Debug.log("Loaded Monaco");
+            Parent.callAction("Loaded");
+        });
+    </script>
+</body>
+</html>

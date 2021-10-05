@@ -1,0 +1,27 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:monaco="using:DevToys.MonacoEditor">
+    
+    <Style TargetType="monaco:CodeEditor" >
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="monaco:CodeEditor">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                        <WebView x:Name="View"
+                                 Margin="{TemplateBinding Padding}"
+                                 Visibility="{Binding IsEditorLoaded,RelativeSource={RelativeSource TemplatedParent}}"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Stretch"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+</ResourceDictionary>
