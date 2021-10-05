@@ -197,6 +197,11 @@
       <DependentUpon>Notification.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Helpers\JsonHelper.cs" />
+    <Compile Include="Helpers\YamlHelper.cs" />
+    <Compile Include="UI\Controls\FormattedTextBlock\Languages\Yaml.cs" />
+    <Compile Include="ViewModels\Tools\JsonYaml\JsonYamlToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\JsonYaml\JsonYamlToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\ToolProviderBase.cs" />
     <Compile Include="Core\UriActivationProtocolService.cs" />
     <Compile Include="LanguageDefinition.cs" />
@@ -211,7 +216,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Tools\ToolProviderBase.cs" />
     <Compile Include="UI\Controls\CustomPathIcon.cs" />
     <Compile Include="UI\Controls\CustomTextBox.xaml.cs">
       <DependentUpon>CustomTextBox.xaml</DependentUpon>
@@ -278,6 +282,9 @@
     <Compile Include="Views\Tools\HashGenerator\HashGeneratorToolPage.xaml.cs">
       <DependentUpon>HashGeneratorToolPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Tools\JsonYaml\JsonYamlToolPage.xaml.cs">
+      <DependentUpon>JsonYamlToolPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Tools\JsonFormatter\JsonFormatterToolPage.xaml.cs">
       <DependentUpon>JsonFormatterToolPage.xaml</DependentUpon>
     </Compile>
@@ -323,6 +330,8 @@
       <Link>Package.appxmanifest</Link>
       <SubType>Designer</SubType>
     </AppxManifest>
+    <PRIResource Include="Strings\fr\JsonYaml.resw" />
+    <PRIResource Include="Strings\en\JsonYaml.resw" />
     <Page Include="Themes\Custom.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -364,6 +373,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Tools\HashGenerator\HashGeneratorToolPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\JsonYaml\JsonYamlToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -416,6 +429,7 @@
     <PackageReference Include="Microsoft.UI.Xaml" Version="$(NuGet_MicrosoftUIXaml)" />
     <PackageReference Include="Newtonsoft.Json" Version="$(NuGet_NewtonsoftJson)" />
     <PackageReference Include="System.Composition" Version="$(NuGet_SystemComposition)" />
+    <PackageReference Include="YamlDotNet" Version="$(NuGet_YamlDotNet)" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
