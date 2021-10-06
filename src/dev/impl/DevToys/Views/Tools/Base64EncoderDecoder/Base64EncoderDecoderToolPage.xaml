@@ -36,7 +36,7 @@
                 Title="{x:Bind ViewModel.Strings.ConversionTitle}"
                 Description="{x:Bind ViewModel.Strings.ConversionDescription}">
                 <controls:ExpandableSettingControl.Icon>
-                    <FontIcon Glyph="&#x00CA;" />
+                    <FontIcon Glyph="&#xF18D;" />
                 </controls:ExpandableSettingControl.Icon>
                 <ComboBox
                     SelectedValuePath="Tag"

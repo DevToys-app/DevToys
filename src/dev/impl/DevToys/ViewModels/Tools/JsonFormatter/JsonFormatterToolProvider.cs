@@ -3,6 +3,7 @@
 using DevToys.Api.Core.Injection;
 using DevToys.Api.Tools;
 using DevToys.Core;
+using DevToys.Helpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -31,46 +32,12 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
 
         public bool CanBeTreatedByTool(string data)
         {
-            return IsValidJson(data);
+            return JsonHelper.IsValidJson(data);
         }
 
         public IToolViewModel CreateTool()
         {
             return _mefProvider.Import<JsonFormatterToolViewModel>();
-        }
-
-        private bool IsValidJson(string input)
-        {
-            if (string.IsNullOrWhiteSpace(input))
-            {
-                return false;
-            }
-
-            input = input.Trim();
-
-            if ((input.StartsWith("{") && input.EndsWith("}")) //For object
-                || (input.StartsWith("[") && input.EndsWith("]"))) //For array
-            {
-                try
-                {
-                    JToken? jtoken = JToken.Parse(input);
-                    return jtoken is not null;
-                }
-                catch (JsonReaderException)
-                {
-                    // Exception in parsing json. It likely mean the text isn't a JSON.
-                    return false;
-                }
-                catch (Exception ex) //some other exception
-                {
-                    Logger.LogFault("Check is string if JSON", ex);
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
         }
     }
 }

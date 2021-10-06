@@ -29,6 +29,7 @@ Many tools are available.
 - Json Formatter
 - RegExp Tester
 - Text Comparer
+- Json <> Yaml converter
 
 ... and more are coming!
 

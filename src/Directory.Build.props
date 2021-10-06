@@ -37,5 +37,6 @@
         <Nuget_NitoAsyncEx>5.0.0</Nuget_NitoAsyncEx>
         <Nuget_ObservableVector>2.1.0</Nuget_ObservableVector>
         <NuGet_SystemComposition>5.0.0</NuGet_SystemComposition>
+        <NuGet_YamlDotNet>11.2.1</NuGet_YamlDotNet>
     </PropertyGroup>
 </Project>
