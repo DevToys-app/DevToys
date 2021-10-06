@@ -14,10 +14,10 @@ namespace DevToys.MonacoEditor.Monaco
         public bool? SupportThemeIcons { get; set; }
 
         [JsonProperty("uris", NullValueHandling = NullValueHandling.Ignore)]
-        public IDictionary<string, Uri> Uris { get; set; }
+        public IDictionary<string, Uri>? Uris { get; set; }
 
         [JsonProperty("value")]
-        public string Value { get; set; }
+        public string? Value { get; set; }
 
         public MarkdownString(string svalue)
             : this(svalue, false)

@@ -8,11 +8,11 @@ namespace DevToys.MonacoEditor.Helpers
     [AllowForWeb]
     public sealed class KeyboardListener
     {
-        private readonly WeakReference<CodeEditor> parent;
+        private readonly WeakReference<ICodeEditor> parent;
 
-        public KeyboardListener(CodeEditor parent) // TODO: Make Interface for event usage
+        public KeyboardListener(ICodeEditor parent) // TODO: Make Interface for event usage
         {
-            this.parent = new WeakReference<CodeEditor>(parent);
+            this.parent = new WeakReference<ICodeEditor>(parent);
         }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace DevToys.MonacoEditor.Helpers
         /// <returns></returns>
         public bool KeyDown(int keycode, bool ctrl, bool shift, bool alt, bool meta)
         {
-            if (parent.TryGetTarget(out CodeEditor editor))
+            if (parent.TryGetTarget(out ICodeEditor editor))
             {
                 return editor.TriggerKeyDown(new WebKeyEventArgs()
                 {

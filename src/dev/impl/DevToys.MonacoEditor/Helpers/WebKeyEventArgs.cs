@@ -2,7 +2,7 @@
 
 namespace DevToys.MonacoEditor.Helpers
 {
-    public delegate void WebKeyEventHandler(CodeEditor sender, WebKeyEventArgs args);
+    public delegate void WebKeyEventHandler(ICodeEditor sender, WebKeyEventArgs args);
 
     public sealed class WebKeyEventArgs
     {

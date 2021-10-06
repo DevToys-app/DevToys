@@ -26,6 +26,6 @@ namespace DevToys.MonacoEditor.Monaco.Editor
         /// The word.
         /// </summary>
         [JsonProperty("word")]
-        string Word { get; }
+        string? Word { get; }
     }
 }

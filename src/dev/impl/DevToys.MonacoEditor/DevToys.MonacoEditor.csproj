@@ -3,7 +3,7 @@
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <ProjectGuid>{0FE678BB-9F9B-4495-B777-F9B1E11DA20C}</ProjectGuid>
-    <OutputType>winmdobj</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DevToys.MonacoEditor</RootNamespace>
     <AssemblyName>DevToys.MonacoEditor</AssemblyName>
@@ -14,7 +14,6 @@
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <AllowCrossPlatformRetargeting>false</AllowCrossPlatformRetargeting>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
@@ -34,11 +33,14 @@
     <Compile Include="Extensions\WebViewExtensions.cs" />
     <Compile Include="Extensions\DispatcherExtensions.cs" />
     <Compile Include="Extensions\ThreadPriority.cs" />
+    <Compile Include="Helpers\DebugLogger.cs" />
     <Compile Include="Helpers\DisposableSempahore.cs" />
     <Compile Include="Helpers\IParentAccessorAcceptor.cs" />
     <Compile Include="Helpers\KeyboardListener.cs" />
     <Compile Include="Helpers\ParentAccessor.cs" />
+    <Compile Include="Helpers\ThemeListener.cs" />
     <Compile Include="Helpers\WebKeyEventArgs.cs" />
+    <Compile Include="ICodeEditor.cs" />
     <Compile Include="Monaco\Editor\AcceptSuggestionOnEnter.cs" />
     <Compile Include="Monaco\Editor\AccessibilitySupport.cs" />
     <Compile Include="Monaco\Editor\AccessibilitySupportConverter.cs" />

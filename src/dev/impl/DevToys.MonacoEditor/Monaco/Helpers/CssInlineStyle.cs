@@ -18,12 +18,12 @@ namespace DevToys.MonacoEditor.Monaco.Helpers
         // TODO: Provide Cursor: https://developer.mozilla.org/en-US/docs/Web/CSS/cursor
 
         // Setting a background inline will override any CssLineStyle.
-        public SolidColorBrush BackgroundColor { get; set; }
-        public SolidColorBrush ForegroundColor { get; set; }
+        public SolidColorBrush? BackgroundColor { get; set; }
+        public SolidColorBrush? ForegroundColor { get; set; }
 
-        public string Name { get; private set; }
+        public string? Name { get; private set; }
 
-        public CssInlineStyle(CodeEditor editor)
+        public CssInlineStyle(ICodeEditor editor)
         {
             Name = CssStyleBroker.GetInstance(editor).Register(this);
         }

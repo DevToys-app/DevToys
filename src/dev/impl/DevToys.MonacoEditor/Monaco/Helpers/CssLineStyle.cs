@@ -12,14 +12,14 @@ namespace DevToys.MonacoEditor.Monaco.Helpers
     /// </summary>
     public sealed class CssLineStyle : ICssStyle
     {
-        public SolidColorBrush BackgroundColor { get; set; }
+        public SolidColorBrush? BackgroundColor { get; set; }
 
         [Obsolete("Use ForegroundColor on CssInlineStyle instead, this is an overlay.")]
-        public SolidColorBrush ForegroundColor { get; set; }
+        public SolidColorBrush? ForegroundColor { get; set; }
 
-        public string Name { get; private set; }
+        public string? Name { get; private set; }
 
-        public CssLineStyle(CodeEditor editor)
+        public CssLineStyle(ICodeEditor editor)
         {
             Name = CssStyleBroker.GetInstance(editor).Register(this);
         }

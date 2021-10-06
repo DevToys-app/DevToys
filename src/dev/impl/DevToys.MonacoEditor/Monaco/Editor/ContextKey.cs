@@ -8,7 +8,7 @@ namespace DevToys.MonacoEditor.Monaco.Editor
     public sealed class ContextKey : IContextKey
     {
         [JsonIgnore]
-        private readonly WeakReference<CodeEditor> _editor;
+        private readonly WeakReference<ICodeEditor> _editor;
 
         [JsonProperty("key")]
         public string Key { get; private set; }
@@ -17,9 +17,9 @@ namespace DevToys.MonacoEditor.Monaco.Editor
         [JsonProperty("value")]
         public bool Value { get; private set; }
 
-        internal ContextKey(CodeEditor editor, string key, bool defaultValue)
+        internal ContextKey(ICodeEditor editor, string key, bool defaultValue)
         {
-            _editor = new WeakReference<CodeEditor>(editor);
+            _editor = new WeakReference<ICodeEditor>(editor);
 
             Key = key;
             DefaultValue = defaultValue;
@@ -27,7 +27,7 @@ namespace DevToys.MonacoEditor.Monaco.Editor
 
         private async void UpdateValueAsync()
         {
-            if (_editor.TryGetTarget(out CodeEditor editor))
+            if (_editor.TryGetTarget(out ICodeEditor editor))
             {
                 await editor.InvokeScriptAsync("updateContext", new object[] { Key, Value });
             }

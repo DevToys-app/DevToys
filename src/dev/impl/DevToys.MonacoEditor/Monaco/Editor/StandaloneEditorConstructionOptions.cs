@@ -15,7 +15,7 @@ namespace DevToys.MonacoEditor.Monaco.Editor
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        private readonly Dictionary<string, object?> _propertyBackingDictionary = new Dictionary<string, object>();
+        private readonly Dictionary<string, object?> _propertyBackingDictionary = new Dictionary<string, object?>();
 
         private T? GetPropertyValue<T>([CallerMemberName] string? propertyName = null)
         {
@@ -24,9 +24,9 @@ namespace DevToys.MonacoEditor.Monaco.Editor
                 throw new ArgumentNullException(nameof(propertyName));
             }
 
-            if (_propertyBackingDictionary.TryGetValue(propertyName, out object value))
+            if (_propertyBackingDictionary.TryGetValue(propertyName, out object? value))
             {
-                return (T)value;
+                return (T?)value;
             }
 
             return default;
@@ -39,7 +39,7 @@ namespace DevToys.MonacoEditor.Monaco.Editor
                 throw new ArgumentNullException(nameof(propertyName));
             }
 
-            if (EqualityComparer<T>.Default.Equals(newValue, GetPropertyValue<T>(propertyName)))
+            if (EqualityComparer<T?>.Default.Equals(newValue, GetPropertyValue<T?>(propertyName)))
             {
                 return false;
             }
@@ -88,7 +88,7 @@ namespace DevToys.MonacoEditor.Monaco.Editor
         /// The aria label for the editor's textarea (when it is focused).
         /// </summary>
         [JsonProperty("ariaLabel", NullValueHandling = NullValueHandling.Ignore)]
-        public string AriaLabel { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
+        public string? AriaLabel { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
 
         /// <summary>
         /// Options for auto closing brackets.
@@ -156,7 +156,7 @@ namespace DevToys.MonacoEditor.Monaco.Editor
         /// Control the behaviour of comments in the editor.
         /// </summary>
         [JsonProperty("comments", NullValueHandling = NullValueHandling.Ignore)]
-        public EditorCommentsOptions Comments { get => GetPropertyValue<EditorCommentsOptions>(); set => SetPropertyValue(value); }
+        public EditorCommentsOptions? Comments { get => GetPropertyValue<EditorCommentsOptions>(); set => SetPropertyValue(value); }
 
         /// <summary>
         /// Enable custom contextmenu.
@@ -249,7 +249,7 @@ namespace DevToys.MonacoEditor.Monaco.Editor
         /// Class name to be added to the editor.
         /// </summary>
         [JsonProperty("extraEditorClassName", NullValueHandling = NullValueHandling.Ignore)]
-        public string ExtraEditorClassName { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
+        public string? ExtraEditorClassName { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
 
         /// <summary>
         /// FastScrolling mulitplier speed when pressing `Alt`
@@ -262,7 +262,7 @@ namespace DevToys.MonacoEditor.Monaco.Editor
         /// Control the behavior of the find widget.
         /// </summary>
         [JsonProperty("find", NullValueHandling = NullValueHandling.Ignore)]
-        public EditorFindOptions Find { get => GetPropertyValue<EditorFindOptions>(); set => SetPropertyValue(value); }
+        public EditorFindOptions? Find { get => GetPropertyValue<EditorFindOptions?>(); set => SetPropertyValue(value); }
 
         /// <summary>
         /// Display overflow widgets as `fixed`.
@@ -297,7 +297,7 @@ namespace DevToys.MonacoEditor.Monaco.Editor
         /// The font family
         /// </summary>
         [JsonProperty("fontFamily", NullValueHandling = NullValueHandling.Ignore)]
-        public string FontFamily { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
+        public string? FontFamily { get => GetPropertyValue<string?>(); set => SetPropertyValue(value); }
 
         /// <summary>
         /// Enable font ligatures.
@@ -316,7 +316,7 @@ namespace DevToys.MonacoEditor.Monaco.Editor
         /// The font weight
         /// </summary>
         [JsonProperty("fontWeight", NullValueHandling = NullValueHandling.Ignore)]
-        public string FontWeight { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
+        public string? FontWeight { get => GetPropertyValue<string?>(); set => SetPropertyValue(value); }
 
         /// <summary>
         /// Enable format on paste.
@@ -343,7 +343,7 @@ namespace DevToys.MonacoEditor.Monaco.Editor
         /// Configuration options for go to location
         /// </summary>
         [JsonProperty("gotoLocation", NullValueHandling = NullValueHandling.Ignore)]
-        public GoToLocationOptions GotoLocation { get => GetPropertyValue<GoToLocationOptions>(); set => SetPropertyValue(value); }
+        public GoToLocationOptions? GotoLocation { get => GetPropertyValue<GoToLocationOptions?>(); set => SetPropertyValue(value); }
 
         /// <summary>
         /// Should the cursor be hidden in the overview ruler.
@@ -363,7 +363,7 @@ namespace DevToys.MonacoEditor.Monaco.Editor
         /// Configure the editor's hover.
         /// </summary>
         [JsonProperty("hover", NullValueHandling = NullValueHandling.Ignore)]
-        public EditorHoverOptions Hover { get => GetPropertyValue<EditorHoverOptions>(); set => SetPropertyValue(value); }
+        public EditorHoverOptions? Hover { get => GetPropertyValue<EditorHoverOptions?>(); set => SetPropertyValue(value); }
 
         /// <summary>
         /// This editor is used inside a diff editor.
@@ -381,7 +381,7 @@ namespace DevToys.MonacoEditor.Monaco.Editor
         /// Control the behavior and rendering of the code action lightbulb.
         /// </summary>
         [JsonProperty("lightbulb", NullValueHandling = NullValueHandling.Ignore)]
-        public EditorLightbulbOptions Lightbulb { get => GetPropertyValue<EditorLightbulbOptions>(); set => SetPropertyValue(value); }
+        public EditorLightbulbOptions? Lightbulb { get => GetPropertyValue<EditorLightbulbOptions?>(); set => SetPropertyValue(value); }
 
         /// <summary>
         /// The width reserved for line decorations (in px).
@@ -436,7 +436,7 @@ namespace DevToys.MonacoEditor.Monaco.Editor
         /// Control the behavior and rendering of the minimap.
         /// </summary>
         [JsonProperty("minimap", NullValueHandling = NullValueHandling.Ignore)]
-        public EditorMinimapOptions Minimap { get => GetPropertyValue<EditorMinimapOptions>(); set => SetPropertyValue(value); }
+        public EditorMinimapOptions? Minimap { get => GetPropertyValue<EditorMinimapOptions?>(); set => SetPropertyValue(value); }
 
         /// <summary>
         /// Control the mouse pointer style, either 'text' or 'default' or 'copy'
@@ -506,7 +506,7 @@ namespace DevToys.MonacoEditor.Monaco.Editor
         /// Parameter hint options.
         /// </summary>
         [JsonProperty("parameterHints", NullValueHandling = NullValueHandling.Ignore)]
-        public EditorParameterHintOptions ParameterHints { get => GetPropertyValue<EditorParameterHintOptions>(); set => SetPropertyValue(value); }
+        public EditorParameterHintOptions? ParameterHints { get => GetPropertyValue<EditorParameterHintOptions?>(); set => SetPropertyValue(value); }
 
         /// <summary>
         /// Controls whether to focus the inline editor in the peek widget by default.
@@ -569,7 +569,7 @@ namespace DevToys.MonacoEditor.Monaco.Editor
         /// Defaults to editable.
         /// </summary>
         [JsonProperty("renderValidationDecorations", NullValueHandling = NullValueHandling.Ignore)]
-        public string RenderValidationDecorations { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
+        public string? RenderValidationDecorations { get => GetPropertyValue<string?>(); set => SetPropertyValue(value); }
 
         /// <summary>
         /// Enable rendering of whitespace.
@@ -600,13 +600,13 @@ namespace DevToys.MonacoEditor.Monaco.Editor
         /// Defaults to empty array.
         /// </summary>
         [JsonProperty("rulers", NullValueHandling = NullValueHandling.Ignore)]
-        public int[] Rulers { get => GetPropertyValue<int[]>(); set => SetPropertyValue(value); }
+        public int[]? Rulers { get => GetPropertyValue<int[]>(); set => SetPropertyValue(value); }
 
         /// <summary>
         /// Control the behavior and rendering of the scrollbars.
         /// </summary>
         [JsonProperty("scrollbar", NullValueHandling = NullValueHandling.Ignore)]
-        public EditorScrollbarOptions Scrollbar { get => GetPropertyValue<EditorScrollbarOptions>(); set => SetPropertyValue(value); }
+        public EditorScrollbarOptions? Scrollbar { get => GetPropertyValue<EditorScrollbarOptions?>(); set => SetPropertyValue(value); }
 
         /// <summary>
         /// Enable that scrolling can go beyond the last column by a number of columns.
@@ -682,7 +682,7 @@ namespace DevToys.MonacoEditor.Monaco.Editor
         /// Suggest options.
         /// </summary>
         [JsonProperty("suggest", NullValueHandling = NullValueHandling.Ignore)]
-        public SuggestOptions Suggest { get => GetPropertyValue<SuggestOptions>(); set => SetPropertyValue(value); }
+        public SuggestOptions? Suggest { get => GetPropertyValue<SuggestOptions?>(); set => SetPropertyValue(value); }
 
         /// <summary>
         /// The font size for the suggest widget.
@@ -729,7 +729,7 @@ namespace DevToys.MonacoEditor.Monaco.Editor
         /// *
         /// </summary>
         [JsonProperty("wordSeparators", NullValueHandling = NullValueHandling.Ignore)]
-        public string WordSeparators { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
+        public string? WordSeparators { get => GetPropertyValue<string?>(); set => SetPropertyValue(value); }
 
         /// <summary>
         /// Control the wrapping of the editor.
@@ -747,14 +747,14 @@ namespace DevToys.MonacoEditor.Monaco.Editor
         /// Defaults to ' \t})]?|&amp;,;'.
         /// </summary>
         [JsonProperty("wordWrapBreakAfterCharacters", NullValueHandling = NullValueHandling.Ignore)]
-        public string WordWrapBreakAfterCharacters { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
+        public string? WordWrapBreakAfterCharacters { get => GetPropertyValue<string?>(); set => SetPropertyValue(value); }
 
         /// <summary>
         /// Configure word wrapping characters. A break will be introduced before these characters.
         /// Defaults to '{([+'.
         /// </summary>
         [JsonProperty("wordWrapBreakBeforeCharacters", NullValueHandling = NullValueHandling.Ignore)]
-        public string WordWrapBreakBeforeCharacters { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
+        public string? WordWrapBreakBeforeCharacters { get => GetPropertyValue<string?>(); set => SetPropertyValue(value); }
 
         /// <summary>
         /// Control the wrapping of the editor.
@@ -786,13 +786,13 @@ namespace DevToys.MonacoEditor.Monaco.Editor
         /// Defaults to 'simple'.
         /// </summary>
         [JsonProperty("wrappingStrategy", NullValueHandling = NullValueHandling.Ignore)]
-        public string WrappingStrategy { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
+        public string? WrappingStrategy { get => GetPropertyValue<string?>(); set => SetPropertyValue(value); }
 
         /// <summary>
         /// The initial editor dimension (to avoid measuring the container).
         /// </summary>
         [JsonProperty("dimension", NullValueHandling = NullValueHandling.Ignore)]
-        public IDimension Dimension { get => GetPropertyValue<IDimension>(); set => SetPropertyValue(value); }
+        public IDimension? Dimension { get => GetPropertyValue<IDimension?>(); set => SetPropertyValue(value); }
 
         /// <summary>
         /// Controls whether `tabSize` and `insertSpaces` will be automatically detected when a file
@@ -858,19 +858,19 @@ namespace DevToys.MonacoEditor.Monaco.Editor
         /// The initial model associated with this code editor.
         /// </summary>
         [JsonProperty("model")]
-        public IModel Model { get => GetPropertyValue<IModel>(); set => SetPropertyValue(value); }
+        public IModel? Model { get => GetPropertyValue<IModel?>(); set => SetPropertyValue(value); }
         /// <summary>
         /// The initial value of the auto created model in the editor.
         /// To not create automatically a model, use `model: null`.
         /// </summary>
         [JsonProperty("value", NullValueHandling = NullValueHandling.Ignore)]
-        public string Value { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
+        public string? Value { get => GetPropertyValue<string?>(); set => SetPropertyValue(value); }
         /// <summary>
         /// The initial language of the auto created model in the editor.
         /// To not create automatically a model, use `model: null`.
         /// </summary>
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
-        public string Language { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
+        public string? Language { get => GetPropertyValue<string?>(); set => SetPropertyValue(value); }
         /// <summary>
         /// Initial theme to be used for rendering.
         /// The current out-of-the-box available themes are: 'vs' (default), 'vs-dark', 'hc-black'.
@@ -878,7 +878,7 @@ namespace DevToys.MonacoEditor.Monaco.Editor
         /// To switch a theme, use `monaco.editor.setTheme`
         /// </summary>
         [JsonProperty("theme", NullValueHandling = NullValueHandling.Ignore)]
-        public string Theme { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
+        public string? Theme { get => GetPropertyValue<string?>(); set => SetPropertyValue(value); }
         /// <summary>
         /// An URL to open when Ctrl+H (Windows and Linux) or Cmd+H (OSX) is pressed in
         /// the accessibility help dialog in the editor.
@@ -886,7 +886,7 @@ namespace DevToys.MonacoEditor.Monaco.Editor
         /// Defaults to "https://go.microsoft.com/fwlink/?linkid=852450"
         /// </summary>
         [JsonProperty("accessibilityHelpUrl", NullValueHandling = NullValueHandling.Ignore)]
-        public string AccessibilityHelpUrl { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
+        public string? AccessibilityHelpUrl { get => GetPropertyValue<string?>(); set => SetPropertyValue(value); }
     }
 
 }

@@ -21,10 +21,10 @@
 
     <div id="container" onkeydown="keyDown(event)"></div>
 
-    <script src="ms-appx-web:///DevToys.MonacoEditor/monaco-editor/min/vs/loader.js"></script>
-    <script src="ms-appx-web:///DevToys.MonacoEditor/ts-helpermethods/registerCompletionItemProvider.js"></script>
-    <script src="ms-appx-web:///DevToys.MonacoEditor/ts-helpermethods/otherScriptsToBeOrganized.js"></script>
-    <script src="ms-appx-web:///DevToys.MonacoEditor/ts-helpermethods/updateSelectedContent.js"></script>
+    <script src="ms-appx-web:///monaco/monaco-editor/min/vs/loader.js"></script>
+    <script src="ms-appx-web:///monaco/ts-helpermethods/registerCompletionItemProvider.js"></script>
+    <script src="ms-appx-web:///monaco/ts-helpermethods/otherScriptsToBeOrganized.js"></script>
+    <script src="ms-appx-web:///monaco/ts-helpermethods/updateSelectedContent.js"></script>
 
     <script>
         var editor;
@@ -34,7 +34,7 @@
         var modifingSelection = false; // Supress updates to selection when making edits.
 
         Debug.log("Starting Monaco Load");
-        require.config({ paths: { 'vs': 'ms-appx-web:///DevToys.MonacoEditor/monaco-editor/min/vs' } });
+        require.config({ paths: { 'vs': 'ms-appx-web:///monaco/monaco-editor/min/vs' } });
         require(['vs/editor/editor.main'], function () {
             Debug.log("Grabbing Monaco Options");
 

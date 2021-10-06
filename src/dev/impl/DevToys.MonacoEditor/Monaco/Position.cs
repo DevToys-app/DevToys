@@ -37,9 +37,8 @@ namespace DevToys.MonacoEditor.Monaco
 
         public override bool Equals(object obj)
         {
-            if (obj is Position)
+            if (obj is Position other)
             {
-                var other = obj as Position;
                 return LineNumber == other.LineNumber && Column == other.Column;
             }
 
@@ -76,9 +75,9 @@ namespace DevToys.MonacoEditor.Monaco
 
         public int CompareTo(object obj)
         {
-            if (obj is IPosition)
+            if (obj is IPosition position)
             {
-                return CompareTo(Lift(obj as IPosition));
+                return CompareTo(Lift(position));
             }
 
             throw new NotImplementedException();

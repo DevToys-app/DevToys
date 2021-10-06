@@ -7,7 +7,6 @@ using DevToys.MonacoEditor.Monaco;
 using DevToys.MonacoEditor.Monaco.Editor;
 using DevToys.MonacoEditor.Monaco.Helpers;
 using Newtonsoft.Json;
-using Nito.AsyncEx;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,6 +26,11 @@ using Windows.UI.Xaml.Input;
 namespace DevToys.MonacoEditor.CodeEditorControl
 {
     /// <summary>
+    /// Action delegate for <see cref="CodeEditor.AddCommandAsync(int, CommandHandler)"/> and <see cref="CodeEditor.AddCommandAsync(int, CommandHandler, string)"/>.
+    /// </summary>
+    public delegate void CommandHandler();
+
+    /// <summary>
     /// UWP Windows Runtime Component wrapper for the Monaco CodeEditor
     /// https://microsoft.github.io/monaco-editor/
     /// This file contains Monaco IEditor method implementations we can call on our control.
@@ -34,18 +38,19 @@ namespace DevToys.MonacoEditor.CodeEditorControl
     /// https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.icommoncodeeditor.html
     /// </summary>
     [TemplatePart(Name = "View", Type = typeof(WebView))]
-    public sealed partial class CodeEditor : Control, INotifyPropertyChanged, IDisposable
+    public sealed partial class CodeEditor : Control, INotifyPropertyChanged, IDisposable, ICodeEditor, IParentAccessorAcceptor
     {
         private readonly DisposableSempahore _mutexMarkers = new DisposableSempahore();
         private readonly DisposableSempahore _mutexLineDecorations = new DisposableSempahore();
 
-        internal ParentAccessor? _parentAccessor;
         private bool _initialized;
-        private WebView _view;
+        private WebView? _view;
         private ModelHelper? _model;
-        private ThemeListener _themeListener;
-        private KeyboardListener _keyboardListener;
+        private ThemeListener? _themeListener;
+        private KeyboardListener? _keyboardListener;
         private long _themeToken;
+
+        public ParentAccessor? ParentAccessor { get; private set; }
 
         public bool IsSettingValue { get; set; }
 
@@ -73,7 +78,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             set => SetValue(TextProperty, value);
         }
 
-        public static DependencyProperty SelectedTextProperty { get; } 
+        public static DependencyProperty SelectedTextProperty { get; }
             = DependencyProperty.Register(
                 nameof(SelectedText),
                 typeof(string),
@@ -97,7 +102,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             set => SetValue(SelectedTextProperty, value);
         }
 
-        public static DependencyProperty SelectedRangeProperty { get; } 
+        public static DependencyProperty SelectedRangeProperty { get; }
             = DependencyProperty.Register(
                 nameof(SelectedRange),
                 typeof(Selection),
@@ -127,7 +132,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                         if (editor.Options != null)
                         {
                             editor.Options.Language = e.NewValue.ToString();
-                        } 
+                        }
                     }));
 
         /// <summary>
@@ -135,9 +140,9 @@ namespace DevToys.MonacoEditor.CodeEditorControl
         /// 
         /// Note: Most likely to change or move location.
         /// </summary>
-        public string CodeLanguage
+        public string? CodeLanguage
         {
-            get => (string)GetValue(CodeLanguageProperty);
+            get => (string?)GetValue(CodeLanguageProperty);
             set => SetValue(CodeLanguageProperty, value);
         }
 
@@ -158,7 +163,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                         if (editor.Options != null)
                         {
                             editor.Options.ReadOnly = bool.Parse(e.NewValue?.ToString() ?? "false");
-                        } 
+                        }
                     }));
 
         /// <summary>
@@ -170,7 +175,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             set => SetValue(ReadOnlyProperty, value);
         }
 
-        public static DependencyProperty OptionsProperty { get; } 
+        public static DependencyProperty OptionsProperty { get; }
             = DependencyProperty.Register(
                 nameof(Options),
                 typeof(StandaloneEditorConstructionOptions),
@@ -280,7 +285,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             set => SetValue(DecorationsProperty, value);
         }
 
-        public static DependencyProperty MarkersProperty { get; } 
+        public static DependencyProperty MarkersProperty { get; }
             = DependencyProperty.Register(
                 nameof(Markers),
                 typeof(IMarkerData),
@@ -342,29 +347,29 @@ namespace DevToys.MonacoEditor.CodeEditorControl
         /// <summary>
         /// When Editor is Loading, it is ready to receive commands to the Monaco Engine.
         /// </summary>
-        public new event RoutedEventHandler Loading;
+        public new event RoutedEventHandler? Loading;
 
         /// <summary>
         /// When Editor is Loaded, it has been rendered and is ready to be displayed.
         /// </summary>
-        public new event RoutedEventHandler Loaded;
+        public new event RoutedEventHandler? Loaded;
 
         /// <summary>
         /// Called when a link is Ctrl+Clicked on in the editor, set Handled to true to prevent opening.
         /// </summary>
-        public event TypedEventHandler<WebView, WebViewNewWindowRequestedEventArgs> OpenLinkRequested;
+        public event TypedEventHandler<WebView, WebViewNewWindowRequestedEventArgs>? OpenLinkRequested;
 
         /// <summary>
         /// Called when an internal exception is encountered while executing a command. (for testing/reporting issues)
         /// </summary>
-        public event TypedEventHandler<CodeEditor, Exception> InternalException;
+        public event TypedEventHandler<CodeEditor, Exception>? InternalException;
 
         /// <summary>
         /// Custom Keyboard Handler.
         /// </summary>
-        public new event WebKeyEventHandler KeyDown;
+        public new event WebKeyEventHandler? KeyDown;
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public static DependencyProperty IsEditorLoadedProperty { get; }
             = DependencyProperty.Register(
@@ -415,7 +420,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
 
             if (e.PropertyName == nameof(StandaloneEditorConstructionOptions.Language))
             {
-                await InvokeScriptAsync("updateLanguage", options.Language);
+                await InvokeScriptAsync("updateLanguage", options.Language ?? string.Empty);
                 if (CodeLanguage != options.Language)
                 {
                     CodeLanguage = options.Language;
@@ -514,13 +519,13 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                 _view.DOMContentLoaded += WebView_DOMContentLoaded;
                 _view.NavigationCompleted += WebView_NavigationCompleted;
                 _view.NewWindowRequested += WebView_NewWindowRequested;
-                _view.Source = new System.Uri("ms-appx-web:///DevToys.MonacoEditor/CodeEditor/CodeEditor.html");
+                _view.Source = new System.Uri("ms-appx-web:///monaco/CodeEditor/CodeEditor.html");
             }
 
             base.OnApplyTemplate();
         }
 
-        internal async Task SendScriptAsync(string script,
+        public async Task SendScriptAsync(string script,
             [CallerMemberName] string? member = null,
             [CallerFilePath] string? file = null,
             [CallerLineNumber] int line = 0)
@@ -528,7 +533,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             await SendScriptAsync<object>(script, member, file, line);
         }
 
-        internal async Task<T?> SendScriptAsync<T>(string script,
+        public async Task<T?> SendScriptAsync<T>(string script,
             [CallerMemberName] string? member = null,
             [CallerFilePath] string? file = null,
             [CallerLineNumber] int line = 0)
@@ -537,6 +542,10 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             {
                 try
                 {
+                    if (_view is null)
+                    {
+                        throw new NullReferenceException();
+                    }
                     return await _view.RunScriptAsync<T>(script, member, file, line);
                 }
                 catch (Exception e)
@@ -554,7 +563,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             return default;
         }
 
-        internal async Task InvokeScriptAsync(
+        public async Task InvokeScriptAsync(
             string method,
             object arg,
             bool serialize = true,
@@ -565,7 +574,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             await InvokeScriptAsync<object>(method, new object[] { arg }, serialize, member, file, line);
         }
 
-        internal async Task InvokeScriptAsync(
+        public async Task InvokeScriptAsync(
             string method,
             object[] args,
             bool serialize = true,
@@ -576,7 +585,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             await InvokeScriptAsync<object>(method, args, serialize, member, file, line);
         }
 
-        internal async Task<T?> InvokeScriptAsync<T>(
+        public async Task<T?> InvokeScriptAsync<T>(
             string method,
             object arg,
             bool serialize = true,
@@ -587,7 +596,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             return await InvokeScriptAsync<T>(method, new object[] { arg }, serialize, member, file, line);
         }
 
-        internal async Task<T?> InvokeScriptAsync<T>(
+        public async Task<T?> InvokeScriptAsync<T>(
             string method,
             object[] args,
             bool serialize = true,
@@ -599,6 +608,11 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             {
                 try
                 {
+
+                    if (_view is null)
+                    {
+                        throw new NullReferenceException();
+                    }
                     return await _view.InvokeScriptAsync<T>(method, args, serialize, member, file, line);
                 }
                 catch (Exception e)
@@ -623,8 +637,8 @@ namespace DevToys.MonacoEditor.CodeEditorControl
 
         public void Dispose()
         {
-            _parentAccessor?.Dispose();
-            _parentAccessor = null;
+            ParentAccessor?.Dispose();
+            ParentAccessor = null;
             CssStyleBroker.DetachEditor(this);
         }
 
@@ -646,6 +660,10 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             // If we're supposed to have focus, make sure we try and refocus on our now loaded webview.
             if (FocusManager.GetFocusedElement() == this)
             {
+                if (_view is null)
+                {
+                    throw new NullReferenceException();
+                }
                 _view.Focus(FocusState.Programmatic);
             }
 
@@ -656,9 +674,9 @@ namespace DevToys.MonacoEditor.CodeEditorControl
 #if DEBUG
             Debug.WriteLine("Navigation Starting");
 #endif
-            _parentAccessor = new ParentAccessor(this);
-            _parentAccessor.AddAssemblyForTypeLookup(typeof(Range).GetTypeInfo().Assembly);
-            _parentAccessor.RegisterAction("Loaded", CodeEditorLoaded);
+            ParentAccessor = new ParentAccessor(this);
+            ParentAccessor.AddAssemblyForTypeLookup(typeof(Range).GetTypeInfo().Assembly);
+            ParentAccessor.RegisterAction("Loaded", CodeEditorLoaded);
 
             _themeListener = new ThemeListener();
             _themeListener.ThemeChanged += ThemeListener_ThemeChanged;
@@ -666,8 +684,12 @@ namespace DevToys.MonacoEditor.CodeEditorControl
 
             _keyboardListener = new KeyboardListener(this);
 
+            if (_view is null)
+            {
+                throw new NullReferenceException();
+            }
             _view.AddWebAllowedObject("Debug", new DebugLogger());
-            _view.AddWebAllowedObject("Parent", _parentAccessor);
+            _view.AddWebAllowedObject("Parent", ParentAccessor);
             _view.AddWebAllowedObject("Theme", _themeListener);
             _view.AddWebAllowedObject("Keyboard", _keyboardListener);
         }
@@ -698,7 +720,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
 
             if (theme == ElementTheme.Default)
             {
-                tstr = _themeListener.CurrentThemeName;
+                tstr = _themeListener?.CurrentThemeName ?? string.Empty;
             }
             else
             {
@@ -707,7 +729,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
 
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
             {
-                await InvokeScriptAsync("changeTheme", new string[] { tstr, _themeListener.IsHighContrast.ToString() });
+                await InvokeScriptAsync("changeTheme", new string[] { tstr, _themeListener?.IsHighContrast.ToString() ?? string.Empty });
             });
         }
 
@@ -722,7 +744,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             }
         }
 
-        internal bool TriggerKeyDown(WebKeyEventArgs args)
+        public bool TriggerKeyDown(WebKeyEventArgs args)
         {
             KeyDown?.Invoke(this, args);
 
@@ -821,7 +843,15 @@ namespace DevToys.MonacoEditor.CodeEditorControl
         public IAsyncAction AddActionAsync(IActionDescriptor action)
         {
             var wref = new WeakReference<CodeEditor>(this);
-            _parentAccessor.RegisterAction("Action" + action.Id, new Action(() => { if (wref.TryGetTarget(out CodeEditor editor)) { action?.Run(editor, null); } }));
+            ParentAccessor?.RegisterAction(
+                "Action" + action.Id,
+                new Action(() => 
+                { 
+                    if (wref.TryGetTarget(out CodeEditor editor))
+                    {
+                        action?.Run(editor, null);
+                    }
+                }));
             return InvokeScriptAsync("addAction", action).AsAsyncAction();
         }
 
@@ -832,19 +862,23 @@ namespace DevToys.MonacoEditor.CodeEditorControl
         /// <returns>An async operation result to string</returns>
         public IAsyncOperation<string> InvokeScriptAsync(string script)
         {
+            if (_view is null)
+            {
+                throw new NullReferenceException();
+            }
             return _view.InvokeScriptAsync("eval", new[] { script });
         }
 
-        public IAsyncOperation<string> AddCommandAsync(int keybinding, CommandHandler handler)
+        public IAsyncOperation<string?> AddCommandAsync(int keybinding, CommandHandler handler)
         {
             return AddCommandAsync(keybinding, handler, string.Empty);
         }
 
-        public IAsyncOperation<string> AddCommandAsync(int keybinding, CommandHandler handler, string context)
+        public IAsyncOperation<string?> AddCommandAsync(int keybinding, CommandHandler handler, string context)
         {
             var name = "Command" + keybinding;
-            _parentAccessor?.RegisterAction(name, new Action(() => { handler?.Invoke(); }));
-            return InvokeScriptAsync<string>("addCommand", new object[] { keybinding, name, context }).AsAsyncOperation();
+            ParentAccessor?.RegisterAction(name, new Action(() => { handler?.Invoke(); }));
+            return InvokeScriptAsync<string?>("addCommand", new object[] { keybinding, name, context }).AsAsyncOperation();
         }
 
         public IAsyncOperation<ContextKey> CreateContextKeyAsync(string key, bool defaultValue)
@@ -857,7 +891,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             }).AsAsyncOperation();
         }
 
-        public IModel GetModel()
+        public IModel? GetModel()
         {
             return _model;
         }
@@ -889,7 +923,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
         /// </summary>
         /// <param name="newDecorations"></param>
         /// <returns></returns>
-        private IAsyncAction DeltaDecorationsHelperAsync([ReadOnlyArray] ModelDeltaDecoration[] newDecorations)
+        private IAsyncAction DeltaDecorationsHelperAsync([ReadOnlyArray] ModelDeltaDecoration[]? newDecorations)
         {
             var newDecorationsAdjust = newDecorations ?? Array.Empty<ModelDeltaDecoration>();
 
