@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using DevToys.MonacoEditor.CodeEditorControl;
 using System.Text;
 using Windows.UI.Text;
 using Windows.UI.Xaml.Media;
@@ -23,7 +24,7 @@ namespace DevToys.MonacoEditor.Monaco.Helpers
 
         public string? Name { get; private set; }
 
-        public CssInlineStyle(ICodeEditor editor)
+        public CssInlineStyle(CodeEditor editor)
         {
             Name = CssStyleBroker.GetInstance(editor).Register(this);
         }

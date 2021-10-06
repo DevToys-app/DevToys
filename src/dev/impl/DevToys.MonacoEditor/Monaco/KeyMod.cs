@@ -7,13 +7,13 @@ namespace DevToys.MonacoEditor.Monaco
     /// </summary>
     public sealed class KeyMod
     {
-        public const int WinCtrl = 256;
+        internal const int WinCtrl = 256;
 
-        public const int Alt = 512;
+        internal const int Alt = 512;
 
-        public const int Shift = 1024;
+        internal const int Shift = 1024;
 
-        public const int CtrlCmd = 2048;
+        internal const int CtrlCmd = 2048;
 
         public static int Chord(int firstPart, int secondPart)
         {

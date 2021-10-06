@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using DevToys.MonacoEditor.CodeEditorControl;
 using DevToys.MonacoEditor.Monaco.Languages;
 using Newtonsoft.Json;
 using System;
@@ -14,18 +15,18 @@ namespace DevToys.MonacoEditor.Monaco
     /// </summary>
     public sealed class LanguagesHelper
     {
-        private readonly WeakReference<ICodeEditor> _editor;
+        private readonly WeakReference<CodeEditor> _editor;
 
-        public LanguagesHelper(ICodeEditor editor)
+        public LanguagesHelper(CodeEditor editor)
         {
             // We need the editor component in order to execute JavaScript within 
             // the WebView environment to retrieve data (even though this Monaco class is static).
-            _editor = new WeakReference<ICodeEditor>(editor);
+            _editor = new WeakReference<CodeEditor>(editor);
         }
 
         public IAsyncOperation<IList<LanguageExtensionPoint>?>? GetLanguagesAsync()
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync<IList<LanguageExtensionPoint>>("monaco.languages.getLanguages()").AsAsyncOperation();
             }
@@ -35,7 +36,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncAction? RegisterAsync(LanguageExtensionPoint language)
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.InvokeScriptAsync("monaco.languages.register", language).AsAsyncAction();
             }
@@ -45,7 +46,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncAction? RegisterCompletionItemProviderAsync(string languageId, ICompletionItemProvider provider)
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 // Wrapper around CompletionItem Provider to Monaco editor.
                 // TODO: Add Incremented Id so that we can register multiple providers per language?
@@ -89,7 +90,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncAction? RegisterHoverProviderAsync(string languageId, IHoverProvider provider)
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 // Wrapper around Hover Provider to Monaco editor.
                 // TODO: Add Incremented Id so that we can register multiple providers per language?

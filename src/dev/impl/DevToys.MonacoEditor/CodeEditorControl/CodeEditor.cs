@@ -38,7 +38,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
     /// https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.icommoncodeeditor.html
     /// </summary>
     [TemplatePart(Name = "View", Type = typeof(WebView))]
-    public sealed partial class CodeEditor : Control, INotifyPropertyChanged, IDisposable, ICodeEditor, IParentAccessorAcceptor
+    public sealed partial class CodeEditor : Control, INotifyPropertyChanged, IDisposable, IParentAccessorAcceptor
     {
         private readonly DisposableSempahore _mutexMarkers = new DisposableSempahore();
         private readonly DisposableSempahore _mutexLineDecorations = new DisposableSempahore();
@@ -519,13 +519,13 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                 _view.DOMContentLoaded += WebView_DOMContentLoaded;
                 _view.NavigationCompleted += WebView_NavigationCompleted;
                 _view.NewWindowRequested += WebView_NewWindowRequested;
-                _view.Source = new System.Uri("ms-appx-web:///monaco/CodeEditor/CodeEditor.html");
+                _view.Source = new System.Uri("ms-appx-web:///DevToys.MonacoEditor/CodeEditorControl/CodeEditor.html");
             }
 
             base.OnApplyTemplate();
         }
 
-        public async Task SendScriptAsync(string script,
+        internal async Task SendScriptAsync(string script,
             [CallerMemberName] string? member = null,
             [CallerFilePath] string? file = null,
             [CallerLineNumber] int line = 0)
@@ -533,7 +533,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             await SendScriptAsync<object>(script, member, file, line);
         }
 
-        public async Task<T?> SendScriptAsync<T>(string script,
+        internal async Task<T?> SendScriptAsync<T>(string script,
             [CallerMemberName] string? member = null,
             [CallerFilePath] string? file = null,
             [CallerLineNumber] int line = 0)
@@ -563,7 +563,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             return default;
         }
 
-        public async Task InvokeScriptAsync(
+        internal async Task InvokeScriptAsync(
             string method,
             object arg,
             bool serialize = true,
@@ -574,7 +574,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             await InvokeScriptAsync<object>(method, new object[] { arg }, serialize, member, file, line);
         }
 
-        public async Task InvokeScriptAsync(
+        internal async Task InvokeScriptAsync(
             string method,
             object[] args,
             bool serialize = true,
@@ -585,7 +585,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             await InvokeScriptAsync<object>(method, args, serialize, member, file, line);
         }
 
-        public async Task<T?> InvokeScriptAsync<T>(
+        internal async Task<T?> InvokeScriptAsync<T>(
             string method,
             object arg,
             bool serialize = true,
@@ -596,7 +596,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             return await InvokeScriptAsync<T>(method, new object[] { arg }, serialize, member, file, line);
         }
 
-        public async Task<T?> InvokeScriptAsync<T>(
+        internal async Task<T?> InvokeScriptAsync<T>(
             string method,
             object[] args,
             bool serialize = true,

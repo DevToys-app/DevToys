@@ -1,4 +1,4 @@
-﻿//namespace Monaco.Helpers {
+﻿//namespace DevToys.MonacoEditor.Helpers {
     interface ParentAccessor {
         callAction(name: string): boolean;
         callEvent(name: string, parameters: string[]): Promise<string>;

@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using DevToys.MonacoEditor.CodeEditorControl;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,7 +13,7 @@ namespace DevToys.MonacoEditor.Monaco.Helpers
     {
         private static uint Id = 0;
         private readonly Dictionary<string, ICssStyle> _registered = new Dictionary<string, ICssStyle>();
-        private static readonly IDictionary<ICodeEditor, CssStyleBroker> instances = new Dictionary<ICodeEditor, CssStyleBroker>();
+        private static readonly IDictionary<CodeEditor, CssStyleBroker> instances = new Dictionary<CodeEditor, CssStyleBroker>();
 
         // Explicit static constructor to tell C# compiler
         // not to mark type as beforefieldinit
@@ -24,7 +25,7 @@ namespace DevToys.MonacoEditor.Monaco.Helpers
         {
         }
 
-        public static CssStyleBroker GetInstance(ICodeEditor editor)
+        public static CssStyleBroker GetInstance(CodeEditor editor)
         {
             if (instances.ContainsKey(editor))
             {
@@ -34,7 +35,7 @@ namespace DevToys.MonacoEditor.Monaco.Helpers
             return instances[editor] = new CssStyleBroker();
         }
 
-        public static bool DetachEditor(ICodeEditor editor)
+        public static bool DetachEditor(CodeEditor editor)
         {
             if (instances.ContainsKey(editor))
             {

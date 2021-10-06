@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using DevToys.MonacoEditor.CodeEditorControl;
 using DevToys.MonacoEditor.Monaco.Editor;
 using Newtonsoft.Json;
 using System;
@@ -9,17 +10,17 @@ using Windows.Foundation;
 namespace DevToys.MonacoEditor.Monaco
 {
     /// <summary>
-    /// Helper to access IModel interface methods off of ICodeEditor object.
+    /// Helper to access IModel interface methods off of CodeEditor object.
     /// https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.imodel.html
     /// https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.itextmodel.html
     /// </summary>
     public sealed class ModelHelper : IModel
     {
-        private readonly WeakReference<ICodeEditor> _editor;
+        private readonly WeakReference<CodeEditor> _editor;
 
-        public ModelHelper(ICodeEditor editor)
+        public ModelHelper(CodeEditor editor)
         {
-            _editor = new WeakReference<ICodeEditor>(editor);
+            _editor = new WeakReference<CodeEditor>(editor);
         }
 
         public string Id => throw new NotImplementedException();
@@ -28,7 +29,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncAction? DetectIndentationAsync(bool defaultInsertSpaces, bool defaultTabSize)
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.InvokeScriptAsync("model.detectIndentationAsync", new object[] { defaultInsertSpaces, defaultTabSize }).AsAsyncAction();
             }
@@ -38,7 +39,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncOperation<uint>? GetAlternativeVersionIdAsync()
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync<uint>("model.getAlternativeVersionId();").AsAsyncOperation();
             }
@@ -48,7 +49,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncOperation<string?>? GetEOLAsync()
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync<string>("model.getEOL();").AsAsyncOperation();
             }
@@ -58,7 +59,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncOperation<Range?>? GetFullModelRangeAsync()
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync<Range>("model.getFullModelRange();").AsAsyncOperation();
             }
@@ -68,7 +69,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncOperation<string?>? GetLineContentAsync(uint lineNumber)
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync<string>("model.getLineContent(" + lineNumber + ");").AsAsyncOperation();
             }
@@ -78,7 +79,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncOperation<uint>? GetLineCountAsync()
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync<uint>("model.getLineCount();").AsAsyncOperation();
             }
@@ -88,7 +89,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncOperation<uint>? GetLineFirstNonWhitespaceColumnAsync(uint lineNumber)
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync<uint>("model.getLineFirstNonWhitespaceColumn(" + lineNumber + ");").AsAsyncOperation();
             }
@@ -98,7 +99,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncOperation<uint>? GetLineLastNonWhitespaceColumnAsync(uint lineNumber)
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync<uint>("model.getLineLastNonWhitespaceColumn(" + lineNumber + ");").AsAsyncOperation();
             }
@@ -108,7 +109,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncOperation<uint>? GetLineLengthAsync(uint lineNumber)
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync<uint>("model.getLineLength(" + lineNumber + ");").AsAsyncOperation();
             }
@@ -118,7 +119,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncOperation<uint>? GetLineMaxColumnAsync(uint lineNumber)
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync<uint>("model.getLineMaxColumn(" + lineNumber + ");").AsAsyncOperation();
             }
@@ -128,7 +129,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncOperation<uint>? GetLineMinColumnAsync(uint lineNumber)
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync<uint>("model.getLineMinColumn(" + lineNumber + ");").AsAsyncOperation();
             }
@@ -138,7 +139,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncOperation<IEnumerable<string>?>? GetLinesContentAsync()
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync<IEnumerable<string>>("model.getLinesContent();").AsAsyncOperation();
             }
@@ -148,7 +149,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncOperation<string?>? GetModelIdAsync()
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync<string>("model.getModelId();").AsAsyncOperation();
             }
@@ -158,7 +159,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncOperation<uint>? GetOffsetAtAsync(IPosition position)
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync<uint>("model.getOffsetAt(" + JsonConvert.SerializeObject(position) + ");").AsAsyncOperation();
             }
@@ -168,7 +169,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncOperation<string?>? GetOneIndentAsync()
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync<string>("model.getOneIndent();").AsAsyncOperation();
             }
@@ -178,7 +179,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncOperation<Position?>? GetPositionAtAsync(uint offset)
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync<Position>("model.getPositionAt(" + offset + ");").AsAsyncOperation();
             }
@@ -188,7 +189,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncOperation<string?>? GetValueAsync()
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync<string>("model.getValue();").AsAsyncOperation();
             }
@@ -208,7 +209,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncOperation<string?>? GetValueInRangeAsync(IRange range)
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync<string>("model.getValueInRange(" + JsonConvert.SerializeObject(range) + ");").AsAsyncOperation();
             }
@@ -223,7 +224,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncOperation<uint>? GetValueLengthAsync()
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync<uint>("model.getValueLength();").AsAsyncOperation();
             }
@@ -243,7 +244,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncOperation<uint>? GetValueLengthInRangeAsync(IRange range)
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync<uint>("model.getValueLengthInRange(" + JsonConvert.SerializeObject(range) + ");").AsAsyncOperation();
             }
@@ -253,7 +254,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncOperation<uint>? GetVersionIdAsync()
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync<uint>("model.getVersionId();").AsAsyncOperation();
             }
@@ -264,7 +265,7 @@ namespace DevToys.MonacoEditor.Monaco
         // TODO: Need to investigate why with .NET Native the InterfaceToClassConverter isn't working anymore?
         public IAsyncOperation<WordAtPosition?>? GetWordAtPositionAsync(IPosition position)
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync<WordAtPosition>("model.getWordAtPosition(" + JsonConvert.SerializeObject(position) + ");").AsAsyncOperation();
             }
@@ -274,7 +275,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncOperation<WordAtPosition?>? GetWordUntilPositionAsync(IPosition position)
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync<WordAtPosition>("model.getWordUntilPosition(" + JsonConvert.SerializeObject(position) + ");").AsAsyncOperation();
             }
@@ -284,7 +285,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncOperation<Position?>? ModifyPositionAsync(IPosition position, int number)
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync<Position>("model.modifyPosition(" + JsonConvert.SerializeObject(position) + ", " + number + ");").AsAsyncOperation();
             }
@@ -294,7 +295,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncOperation<string?>? NormalizeIndentationAsync(string str)
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync<string>("model.normalizeIndentations(JSON.parse(" + JsonConvert.ToString(str) + "));").AsAsyncOperation();
             }
@@ -304,7 +305,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncAction? PushStackElementAsync()
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync("model.pushStackElement();").AsAsyncAction();
             }
@@ -319,7 +320,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncAction? SetValue(string newValue)
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync("model.setValue(JSON.parse(" + JsonConvert.ToString(newValue) + "));").AsAsyncAction();
             }
@@ -329,7 +330,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncOperation<Position?>? ValidatePositionAsync(IPosition position)
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync<Position?>("model.validatePosition(" + JsonConvert.SerializeObject(position) + ");").AsAsyncOperation();
             }
@@ -339,7 +340,7 @@ namespace DevToys.MonacoEditor.Monaco
 
         public IAsyncOperation<Range?>? ValidateRangeAsync(IRange range)
         {
-            if (_editor.TryGetTarget(out ICodeEditor editor))
+            if (_editor.TryGetTarget(out CodeEditor editor))
             {
                 return editor.SendScriptAsync<Range?>("model.validateRange(" + JsonConvert.SerializeObject(range) + ");").AsAsyncOperation();
             }

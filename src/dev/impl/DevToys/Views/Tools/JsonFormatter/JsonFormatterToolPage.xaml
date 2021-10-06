@@ -4,6 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:monaco="using:DevToys.MonacoEditor.CodeEditorControl"
     xmlns:controls="using:DevToys.UI.Controls"
     xmlns:formattedtextblock="using:DevToys.UI.Controls.FormattedTextBlock"
     xmlns:texteditor="using:DevToys.UI.Controls.TextEditor"
@@ -51,11 +52,19 @@
                 <ColumnDefinition MinWidth="100"/>
             </Grid.ColumnDefinitions>
 
-            <texteditor:TextEditor
+            <monaco:CodeEditor
+                x:Name="Editor"
+                Grid.Column="0"
+                TabIndex="0"
+                HasGlyphMargin="True"
+                CodeLanguage="csharp"
+                Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            </monaco:CodeEditor>
+            <!--<texteditor:TextEditor
                 Grid.Column="0"
                 Header="{x:Bind ViewModel.Strings.Input}"
                 SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
-                Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
 
             <toolkit:GridSplitter
                 Grid.Column="1"

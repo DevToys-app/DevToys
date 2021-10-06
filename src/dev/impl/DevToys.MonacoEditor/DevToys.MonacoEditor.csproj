@@ -3,7 +3,7 @@
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <ProjectGuid>{0FE678BB-9F9B-4495-B777-F9B1E11DA20C}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>winmdobj</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DevToys.MonacoEditor</RootNamespace>
     <AssemblyName>DevToys.MonacoEditor</AssemblyName>
@@ -14,6 +14,8 @@
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <AllowCrossPlatformRetargeting>false</AllowCrossPlatformRetargeting>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
@@ -40,7 +42,6 @@
     <Compile Include="Helpers\ParentAccessor.cs" />
     <Compile Include="Helpers\ThemeListener.cs" />
     <Compile Include="Helpers\WebKeyEventArgs.cs" />
-    <Compile Include="ICodeEditor.cs" />
     <Compile Include="Monaco\Editor\AcceptSuggestionOnEnter.cs" />
     <Compile Include="Monaco\Editor\AccessibilitySupport.cs" />
     <Compile Include="Monaco\Editor\AccessibilitySupportConverter.cs" />
@@ -213,7 +214,6 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="$(NuGet_NewtonsoftJson)" />
-    <PackageReference Include="Nito.AsyncEx" Version="$(Nuget_NitoAsyncEx)" />
     <PackageReference Include="ObservableVector" Version="$(Nuget_ObservableVector)" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />

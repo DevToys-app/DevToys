@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using DevToys.MonacoEditor.CodeEditorControl;
 using Newtonsoft.Json;
 using System.Runtime.InteropServices.WindowsRuntime;
 
@@ -50,6 +51,6 @@ namespace DevToys.MonacoEditor.Monaco.Editor
         [JsonProperty("precondition", NullValueHandling = NullValueHandling.Ignore)]
         string Precondition { get; }
 
-        void Run(ICodeEditor editor, [ReadOnlyArray] object[]? args);
+        void Run(CodeEditor editor, [ReadOnlyArray] object[]? args);
     }
 }

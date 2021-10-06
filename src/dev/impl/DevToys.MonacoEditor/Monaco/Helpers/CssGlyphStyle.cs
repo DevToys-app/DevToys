@@ -1,5 +1,7 @@
 ﻿#nullable enable
 
+using DevToys.MonacoEditor.CodeEditorControl;
+
 namespace DevToys.MonacoEditor.Monaco.Helpers
 {
     public sealed class CssGlyphStyle : ICssStyle
@@ -8,7 +10,7 @@ namespace DevToys.MonacoEditor.Monaco.Helpers
 
         public string? Name { get; private set; }
 
-        public CssGlyphStyle(ICodeEditor editor)
+        public CssGlyphStyle(CodeEditor editor)
         {
             Name = CssStyleBroker.GetInstance(editor).Register(this);
         }
