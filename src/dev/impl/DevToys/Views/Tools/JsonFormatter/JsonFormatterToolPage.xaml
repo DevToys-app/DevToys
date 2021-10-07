@@ -4,10 +4,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:monaco="using:DevToys.MonacoEditor.CodeEditorControl"
     xmlns:controls="using:DevToys.UI.Controls"
     xmlns:formattedtextblock="using:DevToys.UI.Controls.FormattedTextBlock"
-    xmlns:texteditor="using:DevToys.UI.Controls.TextEditor"
     xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
     NavigationCacheMode="Required">
@@ -52,19 +50,13 @@
                 <ColumnDefinition MinWidth="100"/>
             </Grid.ColumnDefinitions>
 
-            <monaco:CodeEditorCore
-                x:Name="Editor"
-                Grid.Column="0"
-                TabIndex="0"
-                HasGlyphMargin="True"
-                CodeLanguage="json"
-                Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-            </monaco:CodeEditorCore>
-            <!--<texteditor:TextEditor
+            <controls:CodeEditor
+                x:Name="InputCodeEditor"
                 Grid.Column="0"
                 Header="{x:Bind ViewModel.Strings.Input}"
                 SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
-                Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
+                Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                CodeLanguage="json"/>
 
             <toolkit:GridSplitter
                 Grid.Column="1"
@@ -79,11 +71,14 @@
                 </toolkit:GridSplitter.Element>
             </toolkit:GridSplitter>
 
-            <formattedtextblock:FormattedTextBlock
-                x:Name="OutputTextBlock"
+            <controls:CodeEditor
+                x:Name="OutputCodeEditor"
                 Grid.Column="2"
                 Header="{x:Bind ViewModel.Strings.Output}"
-                SettingsProvider="{x:Bind ViewModel.SettingsProvider}"/>
+                SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
+                Text="{x:Bind ViewModel.OutputValue, Mode=OneWay}"
+                CodeLanguage="json"
+                IsReadOnly="True"/>
         </Grid>
     </Grid>
 </Page>

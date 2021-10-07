@@ -193,6 +193,9 @@
     <Compile Include="Core\Threading\ThreadPriority.cs" />
     <Compile Include="Core\TitleBar.cs" />
     <Compile Include="Core\ToolProviderFactory.cs" />
+    <Compile Include="UI\Controls\CodeEditor.xaml.cs">
+      <DependentUpon>CodeEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Controls\Notification.xaml.cs">
       <DependentUpon>Notification.xaml</DependentUpon>
     </Compile>
@@ -339,6 +342,10 @@
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Controls\CodeEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Controls\CustomTextBox.xaml">
       <Generator>MSBuild:Compile</Generator>

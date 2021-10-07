@@ -44,6 +44,13 @@ namespace DevToys.MonacoEditor.Monaco.Editor
                 return false;
             }
 
+            if (_propertyBackingDictionary.TryGetValue(propertyName, out object? value)
+                && value is T typedValue
+                && typedValue.Equals(newValue))
+            {
+                return true;
+            }
+
             _propertyBackingDictionary[propertyName] = newValue;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             return true;
@@ -65,7 +72,7 @@ namespace DevToys.MonacoEditor.Monaco.Editor
         /// Defaults to 'on'.
         /// </summary>
         [JsonProperty("acceptSuggestionOnEnter", NullValueHandling = NullValueHandling.Ignore)]
-        public AcceptSuggestionOnEnter? AcceptSuggestionOnEnter 
+        public AcceptSuggestionOnEnter? AcceptSuggestionOnEnter
         {
             get => GetPropertyValue<AcceptSuggestionOnEnter?>();
             set => SetPropertyValue(value);

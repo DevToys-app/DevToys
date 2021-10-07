@@ -132,7 +132,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                 typeof(string),
                 typeof(CodeEditorCore),
                 new PropertyMetadata(
-                    "xml",
+                    string.Empty,
                     (d, e) =>
                     {
                         if (!(d is CodeEditorCore editor))
@@ -140,7 +140,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                             return;
                         }
 
-                        if (editor.Options != null)
+                        if (editor.Options != null && editor.IsEditorLoaded)
                         {
                             editor.Options.Language = e.NewValue.ToString();
                         }
@@ -171,7 +171,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                             return;
                         }
 
-                        if (editor.Options != null)
+                        if (editor.Options != null && editor.IsEditorLoaded)
                         {
                             editor.Options.ReadOnly = bool.Parse(e.NewValue?.ToString() ?? "false");
                         }
@@ -192,7 +192,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                 typeof(StandaloneEditorConstructionOptions),
                 typeof(CodeEditorCore),
                 new PropertyMetadata(
-                    new StandaloneEditorConstructionOptions(),
+                    null,
                     (d, e) =>
                     {
                         if (d is CodeEditorCore editor)
@@ -404,14 +404,14 @@ namespace DevToys.MonacoEditor.CodeEditorControl
         public CodeEditorCore()
         {
             DefaultStyleKey = typeof(CodeEditorCore);
-            if (Options != null)
-            {
-                // Set Pass-Thru Properties
-                Options.GlyphMargin = HasGlyphMargin;
 
-                // Register for changes
-                Options.PropertyChanged += Options_PropertyChanged;
-            }
+            Options = new StandaloneEditorConstructionOptions();
+
+            // Set Pass-Thru Properties
+            Options.GlyphMargin = HasGlyphMargin;
+
+            // Register for changes
+            Options.PropertyChanged += Options_PropertyChanged;
 
             // Initialize this here so property changed event will fire and register collection changed event.
             Decorations = new ObservableVector<ModelDeltaDecoration>();
@@ -778,6 +778,9 @@ namespace DevToys.MonacoEditor.CodeEditorControl
 
             // Now we're done loading
             Loading?.Invoke(this, new RoutedEventArgs());
+
+            Options.ReadOnly = ReadOnly;
+            Options.Language = CodeLanguage;
         }
 
         private void WebView_NewWindowRequested(WebView sender, WebViewNewWindowRequestedEventArgs args)

@@ -1,0 +1,174 @@
+﻿<UserControl
+    x:Class="DevToys.UI.Controls.CodeEditor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:monaco="using:DevToys.MonacoEditor.CodeEditorControl"
+    xmlns:DevToys="using:DevToys"
+    xmlns:converters="using:DevToys.UI.Converters"
+    mc:Ignorable="d"
+    d:DesignHeight="24"
+    d:DesignWidth="200"
+    SizeChanged="UserControl_SizeChanged">
+    <UserControl.Resources>
+        <DevToys:LanguageManager x:Key="LanguageManager"/>
+
+        <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
+        <converters:BooleanToTextWrappingConverter x:Key="BooleanToTextWrappingConverter" TextWrappingOnTrue="Wrap" TextWrappingOnFalse="NoWrap"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock
+            x:Name="HeaderTextBlock"
+            x:DeferLoadStrategy="Lazy"
+            Grid.Row="0"
+            Grid.Column="0"
+            Text="{x:Bind Header}"
+            Margin="{ThemeResource TextBoxTopHeaderMargin}"
+            Style="{StaticResource SubTitleTextBlock}"
+            TextWrapping="Wrap"
+            VerticalAlignment="Bottom"
+            Visibility="Collapsed">
+        </TextBlock>
+        <StackPanel
+            x:Name="CommandsToolBar"
+            Grid.Row="0"
+            Grid.Column="1"
+            Orientation="Horizontal"
+            HorizontalAlignment="Right"
+            Spacing="8"
+            Margin="0,0,0,8">
+            <Button
+                x:Name="PasteButton"
+                x:DeferLoadStrategy="Lazy"
+                Visibility="Collapsed"
+                TabIndex="0"
+                Click="PasteButton_Click">
+                <StackPanel Orientation="Horizontal" Spacing="4">
+                    <FontIcon Glyph="&#xF2D5;"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Instance.Common.Paste, Mode=OneTime, Source={StaticResource LanguageManager}}"/>
+                </StackPanel>
+            </Button>
+            <Button
+                x:Name="OpenFileButton"
+                x:DeferLoadStrategy="Lazy"
+                Visibility="Collapsed"
+                TabIndex="0"
+                ToolTipService.ToolTip="{Binding Instance.Common.OpenFile, Mode=OneTime, Source={StaticResource LanguageManager}}"
+                Click="OpenFileButton_Click">
+                <FontIcon Glyph="&#xF378;"/>
+            </Button>
+            <Button
+                x:Name="ClearButton"
+                x:DeferLoadStrategy="Lazy"
+                Visibility="Collapsed"
+                TabIndex="0"
+                ToolTipService.ToolTip="{Binding Instance.Common.Clear, Mode=OneTime, Source={StaticResource LanguageManager}}"
+                Click="ClearButton_Click">
+                <FontIcon Glyph="&#xF369;"/>
+            </Button>
+            <Button
+                x:Name="CopyButton"
+                x:DeferLoadStrategy="Lazy"
+                TabIndex="2"
+                Visibility="Collapsed"
+                Click="CopyButton_Click">
+                <StackPanel Orientation="Horizontal" Spacing="4">
+                    <FontIcon Glyph="&#xF32B;"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Instance.Common.Copy, Mode=OneTime, Source={StaticResource LanguageManager}}"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <monaco:CodeEditorCore
+            x:Name="CodeEditorCore"
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            TabIndex="1"
+            CodeLanguage="{x:Bind CodeLanguage, Mode=OneWay}"
+            Text="{x:Bind Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <monaco:CodeEditorCore.ContextFlyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem
+                        Text="{Binding Instance.Common.Cut, Source={StaticResource LanguageManager}}"
+                        Command="{Binding CutCommand}">
+                        <MenuFlyoutItem.Icon>
+                            <FontIcon Glyph="&#xF33A;" />
+                        </MenuFlyoutItem.Icon>
+                        <MenuFlyoutItem.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="X" Modifiers="Control" IsEnabled="False"/>
+                        </MenuFlyoutItem.KeyboardAccelerators>
+                    </MenuFlyoutItem>
+                    <MenuFlyoutItem
+                        Text="{Binding Instance.Common.Copy, Source={StaticResource LanguageManager}}"
+                        Command="{Binding CopyCommand}">
+                        <MenuFlyoutItem.Icon>
+                            <FontIcon Glyph="&#xF32B;" />
+                        </MenuFlyoutItem.Icon>
+                        <MenuFlyoutItem.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="C" Modifiers="Control" IsEnabled="False"/>
+                        </MenuFlyoutItem.KeyboardAccelerators>
+                    </MenuFlyoutItem>
+                    <MenuFlyoutItem
+                        Text="{Binding Instance.Common.Paste, Source={StaticResource LanguageManager}}"
+                        Command="{Binding PasteCommand}">
+                        <MenuFlyoutItem.Icon>
+                            <FontIcon Glyph="&#xF2D5;" />
+                        </MenuFlyoutItem.Icon>
+                        <MenuFlyoutItem.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="V" Modifiers="Control" IsEnabled="False"/>
+                        </MenuFlyoutItem.KeyboardAccelerators>
+                    </MenuFlyoutItem>
+                    <MenuFlyoutItem
+                        Text="{Binding Instance.Common.Delete, Source={StaticResource LanguageManager}}"
+                        Command="{Binding DeleteCommand}">
+                        <MenuFlyoutItem.Icon>
+                            <FontIcon Glyph="&#xF34C;" />
+                        </MenuFlyoutItem.Icon>
+                        <MenuFlyoutItem.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="Delete" IsEnabled="False" />
+                        </MenuFlyoutItem.KeyboardAccelerators>
+                    </MenuFlyoutItem>
+                    <MenuFlyoutSeparator/>
+                    <MenuFlyoutItem
+                        Text="{Binding Instance.Common.Undo, Source={StaticResource LanguageManager}}"
+                        Command="{Binding UndoCommand}">
+                        <MenuFlyoutItem.Icon>
+                            <FontIcon Glyph="&#xF199;" />
+                        </MenuFlyoutItem.Icon>
+                        <MenuFlyoutItem.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="Z" Modifiers="Control" IsEnabled="False" />
+                        </MenuFlyoutItem.KeyboardAccelerators>
+                    </MenuFlyoutItem>
+                    <MenuFlyoutItem
+                        Text="{Binding Instance.Common.Redo, Source={StaticResource LanguageManager}}"
+                        Command="{Binding RedoCommand}">
+                        <MenuFlyoutItem.Icon>
+                            <FontIcon Glyph="&#xF16E;" />
+                        </MenuFlyoutItem.Icon>
+                        <MenuFlyoutItem.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="Y" Modifiers="Control" IsEnabled="False" />
+                        </MenuFlyoutItem.KeyboardAccelerators>
+                    </MenuFlyoutItem>
+                    <MenuFlyoutSeparator/>
+                    <MenuFlyoutItem
+                        Text="{Binding Instance.Common.SelectAll, Source={StaticResource LanguageManager}}"
+                        Command="{Binding SelectAllCommand}">
+                        <MenuFlyoutItem.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="A" Modifiers="Control" IsEnabled="False" />
+                        </MenuFlyoutItem.KeyboardAccelerators>
+                    </MenuFlyoutItem>
+                </MenuFlyout>
+            </monaco:CodeEditorCore.ContextFlyout>
+        </monaco:CodeEditorCore>
+    </Grid>
+</UserControl>
