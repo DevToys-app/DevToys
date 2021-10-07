@@ -51,12 +51,6 @@ var updateContent = function (content) {
     }
 };
 
-
-
-
-
-
-
 var updateDecorations = function (newHighlights) {
     if (newHighlights) {
         decorations = editor.deltaDecorations(decorations, newHighlights);
@@ -106,7 +100,42 @@ var changeTheme = function (theme: string, highcontrast) {
     monaco.editor.setTheme(newTheme);
 };
 
-
+var setTheme = function (accentColor: string) {
+    // Define themes
+    // https://microsoft.github.io/monaco-editor/playground.html#customizing-the-appearence-exposed-colors
+    monaco.editor.defineTheme('vs-dark', {
+        base: 'vs-dark',
+        inherit: true,
+        rules: [],
+        colors: {
+            'foreground': '#FFFFFF',
+            'editor.foreground': '#FFFFFF',
+            'editor.background': '#00000000',
+            'editor.lineHighlightBackground': '#FFFFFF19',
+            'editorLineNumber.foreground': '#EEEEEE99',
+            'editorLineNumber.activeForeground': '#EEEEEE99',
+            'editor.inactiveSelectionBackground': '#00000000',
+            'editor.selectionForeground': '#FFFFFF',
+            'editor.selectionBackground': accentColor,
+        }
+    });
+    monaco.editor.defineTheme('vs', {
+        base: 'vs',
+        inherit: true,
+        rules: [],
+        colors: {
+            'foreground': '#000000',
+            'editor.foreground': '#000000',
+            'editor.background': '#FFFFFF00',
+            'editor.lineHighlightBackground': '#00000019',
+            'editorLineNumber.foreground': '#00000099',
+            'editorLineNumber.activeForeground': '#00000099',
+            'editor.inactiveSelectionBackground': '#00000000',
+            'editor.selectionForeground': '#000000',
+            'editor.selectionBackground': accentColor,
+        }
+    });
+}
 
 var keyDown = function (event) {
     //Debug.log("Key Down:" + event.keyCode + " " + event.ctrlKey);

@@ -57,7 +57,7 @@
                 Grid.Column="0"
                 TabIndex="0"
                 HasGlyphMargin="True"
-                CodeLanguage="csharp"
+                CodeLanguage="json"
                 Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             </monaco:CodeEditor>
             <!--<texteditor:TextEditor

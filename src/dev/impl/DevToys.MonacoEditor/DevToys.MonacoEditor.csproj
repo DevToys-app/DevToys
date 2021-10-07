@@ -30,6 +30,7 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="CodeEditorControl\CodeEditor.cs" />
+    <Compile Include="CodeEditorControl\InvertedBooleanConverter.cs" />
     <Compile Include="Extensions\JavaScriptExecutionException.cs" />
     <Compile Include="Extensions\JavaScriptInnerException.cs" />
     <Compile Include="Extensions\WebViewExtensions.cs" />
@@ -209,10 +210,12 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="$(NuGet_MicrosoftNETCoreUniversalWindowsPlatform)" />
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI" Version="$(Nuget_MicrosoftToolkitUwpUI)" />
     <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="$(Nuget_MicrosoftTypeScriptMSBuild)">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.UI.Xaml" Version="$(NuGet_MicrosoftUIXaml)" />
     <PackageReference Include="Newtonsoft.Json" Version="$(NuGet_NewtonsoftJson)" />
     <PackageReference Include="ObservableVector" Version="$(Nuget_ObservableVector)" />
   </ItemGroup>

@@ -1,11 +1,12 @@
 ﻿#nullable enable
 
 using System;
-using System.Diagnostics;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation.Metadata;
+using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
 
 namespace DevToys.MonacoEditor.Helpers
 {
@@ -19,9 +20,11 @@ namespace DevToys.MonacoEditor.Helpers
     public sealed class ThemeListener
     {
         private readonly AccessibilitySettings _accessible = new AccessibilitySettings();
-        private readonly UISettings _settings = new UISettings();
+        private readonly UISettings _uiSettings = new UISettings();
 
         public string CurrentThemeName { get { return CurrentTheme.ToString(); } } // For Web Retrieval
+
+        public string AccentColorHtmlHex { get; private set; }
 
         public ApplicationTheme CurrentTheme { get; set; }
 
@@ -31,63 +34,42 @@ namespace DevToys.MonacoEditor.Helpers
 
         public ThemeListener()
         {
+            AccentColorHtmlHex = ToHtmlHex(((SolidColorBrush)Application.Current.Resources["TextControlSelectionHighlightColor"]).Color);
             CurrentTheme = Application.Current.RequestedTheme;
             IsHighContrast = _accessible.HighContrast;
 
-            _accessible.HighContrastChanged += _accessible_HighContrastChanged;
-            _settings.ColorValuesChanged += _settings_ColorValuesChanged;
+            _accessible.HighContrastChanged += Accessible_HighContrastChanged;
+            _uiSettings.ColorValuesChanged += UiSettings_ColorValuesChanged;
 
-            // Fallback in case either of the above fail, we'll check when we get activated next.
-            Window.Current.CoreWindow.Activated += CoreWindow_Activated;
+            if (Window.Current.Content is FrameworkElement frameworkElement)
+            {
+                CurrentTheme = frameworkElement.ActualTheme == ElementTheme.Dark ? ApplicationTheme.Dark : ApplicationTheme.Light;
+                frameworkElement.ActualThemeChanged += Window_ActualThemeChanged;
+            }
         }
 
         ~ThemeListener()
         {
-            _accessible.HighContrastChanged -= _accessible_HighContrastChanged;
-            _settings.ColorValuesChanged -= _settings_ColorValuesChanged;
-
-            Window.Current.CoreWindow.Activated -= CoreWindow_Activated;
+            _accessible.HighContrastChanged -= Accessible_HighContrastChanged;
         }
 
-        private void _accessible_HighContrastChanged(AccessibilitySettings sender, object args)
+        private void Window_ActualThemeChanged(FrameworkElement sender, object args)
         {
-#if DEBUG
-            Debug.WriteLine("HighContrast Changed");
-#endif
-
             UpdateProperties();
         }
 
-        // Note: This can get called multiple times during HighContrast switch, do we care?
-        private async void _settings_ColorValuesChanged(UISettings sender, object args)
+        private async void UiSettings_ColorValuesChanged(UISettings sender, object args)
         {
             // Getting called off thread, so we need to dispatch to request value.
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
-                // TODO: This doesn't stop the multiple calls if we're in our faked 'White' HighContrast Mode below.
-                if (CurrentTheme != Application.Current.RequestedTheme ||
-                    IsHighContrast != _accessible.HighContrast)
-                {
-#if DEBUG
-                    Debug.WriteLine("Color Values Changed");
-#endif
-
-                    UpdateProperties();
-                }
+                UpdateProperties();
             });
         }
 
-        private void CoreWindow_Activated(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.WindowActivatedEventArgs args)
+        private void Accessible_HighContrastChanged(AccessibilitySettings sender, object args)
         {
-            if (CurrentTheme != Application.Current.RequestedTheme ||
-                IsHighContrast != _accessible.HighContrast)
-            {
-#if DEBUG
-                Debug.WriteLine("CoreWindow Activated Changed");
-#endif
-
-                UpdateProperties();
-            }
+            UpdateProperties();
         }
 
         /// <summary>
@@ -106,10 +88,17 @@ namespace DevToys.MonacoEditor.Helpers
             {
                 // Otherwise, we just set to what's in the system as we'd expect.
                 IsHighContrast = _accessible.HighContrast;
-                CurrentTheme = Application.Current.RequestedTheme;
+                CurrentTheme = ((FrameworkElement)Window.Current.Content).ActualTheme == ElementTheme.Dark ? ApplicationTheme.Dark : ApplicationTheme.Light;
             }
 
+            AccentColorHtmlHex = ToHtmlHex(((SolidColorBrush)Application.Current.Resources["TextControlSelectionHighlightColor"]).Color);
+
             ThemeChanged?.Invoke(this);
+        }
+
+        public static string ToHtmlHex(Color color)
+        {
+            return $"#{color.R:X2}{color.G:X2}{color.B:X2}{color.A:X2}";
         }
     }
 }

@@ -26,6 +26,7 @@
         <Nuget_GitInfo>2.2.0</Nuget_GitInfo>
         <NuGet_MicrosoftNETCoreUniversalWindowsPlatform>6.2.12</NuGet_MicrosoftNETCoreUniversalWindowsPlatform>
         <NuGet_MicrosoftToolkitMvvm>7.0.2</NuGet_MicrosoftToolkitMvvm>
+        <Nuget_MicrosoftToolkitUwpUI>7.0.2</Nuget_MicrosoftToolkitUwpUI>
         <Nuget_MicrosoftToolkitUwpUIBehaviors>7.0.2</Nuget_MicrosoftToolkitUwpUIBehaviors>
         <Nuget_MicrosoftToolkitUwpUIControls>7.0.2</Nuget_MicrosoftToolkitUwpUIControls>
         <Nuget_MicrosoftTypeScriptMSBuild>3.8.3</Nuget_MicrosoftTypeScriptMSBuild>

@@ -37,13 +37,24 @@ namespace DevToys.MonacoEditor.CodeEditorControl
     /// https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.ieditor.html
     /// https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.icommoncodeeditor.html
     /// </summary>
-    [TemplatePart(Name = "View", Type = typeof(WebView))]
+    [TemplatePart(Name = "WebViewElement", Type = typeof(WebView))]
+    [TemplateVisualState(Name = NormalState, GroupName = CommonStates)]
+    [TemplateVisualState(Name = PointerOverState, GroupName = CommonStates)]
+    [TemplateVisualState(Name = FocusedState, GroupName = CommonStates)]
+    [TemplateVisualState(Name = DisabledState, GroupName = CommonStates)]
     public sealed partial class CodeEditor : Control, INotifyPropertyChanged, IDisposable, IParentAccessorAcceptor
     {
+        internal const string CommonStates = "CommonStates";
+        internal const string NormalState = "Normal";
+        internal const string PointerOverState = "PointerOver";
+        internal const string FocusedState = "Focused";
+        internal const string DisabledState = "Disabled";
+
         private readonly DisposableSempahore _mutexMarkers = new DisposableSempahore();
         private readonly DisposableSempahore _mutexLineDecorations = new DisposableSempahore();
 
         private bool _initialized;
+        private Border? _pointerHandlerElement;
         private WebView? _view;
         private ModelHelper? _model;
         private ThemeListener? _themeListener;
@@ -480,20 +491,12 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                 _view.DOMContentLoaded -= WebView_DOMContentLoaded;
                 _view.NavigationCompleted -= WebView_NavigationCompleted;
                 _view.NewWindowRequested -= WebView_NewWindowRequested;
-                _initialized = false;
             }
 
             Decorations.VectorChanged -= Decorations_VectorChanged;
             Markers.VectorChanged -= Markers_VectorChanged;
 
             Options.PropertyChanged -= Options_PropertyChanged;
-
-            if (_themeListener != null)
-            {
-                _themeListener.ThemeChanged -= ThemeListener_ThemeChanged;
-            }
-
-            _themeListener = null;
 
             UnregisterPropertyChangedCallback(RequestedThemeProperty, _themeToken);
             _keyboardListener = null;
@@ -511,10 +514,16 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                 _initialized = false;
             }
 
-            _view = (WebView)GetTemplateChild("View");
+            _view = (WebView)GetTemplateChild("WebViewElement");
+            _pointerHandlerElement = (Border)GetTemplateChild("PointerHandlerElement");
 
             if (_view != null)
             {
+                _pointerHandlerElement.PointerEntered += PointerHandlerElement_PointerEntered;
+                _pointerHandlerElement.PointerExited += PointerHandlerElement_PointerExited;
+                _pointerHandlerElement.Tapped += PointerHandlerElement_Tapped;
+                _view.GotFocus += View_GotFocus;
+                _view.LostFocus += View_LostFocus;
                 _view.NavigationStarting += WebView_NavigationStarting;
                 _view.DOMContentLoaded += WebView_DOMContentLoaded;
                 _view.NavigationCompleted += WebView_NavigationCompleted;
@@ -523,6 +532,51 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             }
 
             base.OnApplyTemplate();
+        }
+
+        private async void PointerHandlerElement_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            _pointerHandlerElement!.IsHitTestVisible = false;
+            _view!.Focus(FocusState.Pointer);
+
+            // Make sure inner editor is focused
+            await SendScriptAsync("editor.focus();");
+        }
+
+        private void PointerHandlerElement_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            if (FocusManager.GetFocusedElement() == this)
+            {
+                VisualStateManager.GoToState(this, FocusedState, false);
+            }
+            else
+            {
+                VisualStateManager.GoToState(this, PointerOverState, false);
+            }
+        }
+
+        private void PointerHandlerElement_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            if (FocusManager.GetFocusedElement() == this)
+            {
+                VisualStateManager.GoToState(this, FocusedState, false);
+            }
+            else
+            {
+                VisualStateManager.GoToState(this, NormalState, false);
+            }
+        }
+
+        private void View_GotFocus(object sender, RoutedEventArgs args)
+        {
+            _pointerHandlerElement!.IsHitTestVisible = false;
+            VisualStateManager.GoToState(this, FocusedState, false);
+        }
+
+        private void View_LostFocus(object sender, RoutedEventArgs args)
+        {
+            _pointerHandlerElement!.IsHitTestVisible = true;
+            VisualStateManager.GoToState(this, NormalState, false);
         }
 
         internal async Task SendScriptAsync(string script,
@@ -637,6 +691,13 @@ namespace DevToys.MonacoEditor.CodeEditorControl
 
         public void Dispose()
         {
+            if (_themeListener != null)
+            {
+                _themeListener.ThemeChanged -= ThemeListener_ThemeChanged;
+            }
+
+            _themeListener = null;
+
             ParentAccessor?.Dispose();
             ParentAccessor = null;
             CssStyleBroker.DetachEditor(this);
@@ -655,7 +716,14 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             IsEditorLoaded = true;
 
             // Make sure inner editor is focused
-            await SendScriptAsync("editor.focus();");
+            //await SendScriptAsync("editor.focus();");
+
+            // Update theme
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
+            {
+                await InvokeScriptAsync("setTheme", args: new string[] { _themeListener!.AccentColorHtmlHex });
+                await InvokeScriptAsync("changeTheme", new string[] { _themeListener.CurrentTheme.ToString(), _themeListener.IsHighContrast.ToString() });
+            });
 
             // If we're supposed to have focus, make sure we try and refocus on our now loaded webview.
             if (FocusManager.GetFocusedElement() == this)
@@ -664,11 +732,17 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                 {
                     throw new NullReferenceException();
                 }
+                _pointerHandlerElement!.IsHitTestVisible = false;
                 _view.Focus(FocusState.Programmatic);
+            }
+            else
+            {
+                _pointerHandlerElement!.IsHitTestVisible = true;
             }
 
             Loaded?.Invoke(this, new RoutedEventArgs());
         }
+
         private void WebView_NavigationStarting(WebView sender, WebViewNavigationStartingEventArgs args)
         {
 #if DEBUG
@@ -729,19 +803,18 @@ namespace DevToys.MonacoEditor.CodeEditorControl
 
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
             {
-                await InvokeScriptAsync("changeTheme", new string[] { tstr, _themeListener?.IsHighContrast.ToString() ?? string.Empty });
+                await InvokeScriptAsync("setTheme", args: new string[] { _themeListener!.AccentColorHtmlHex });
+                await InvokeScriptAsync("changeTheme", new string[] { tstr, _themeListener.IsHighContrast.ToString() });
             });
         }
 
         private async void ThemeListener_ThemeChanged(ThemeListener sender)
         {
-            if (RequestedTheme == ElementTheme.Default)
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
             {
-                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
-                {
-                    await InvokeScriptAsync("changeTheme", args: new string[] { sender.CurrentTheme.ToString(), sender.IsHighContrast.ToString() });
-                });
-            }
+                await InvokeScriptAsync("setTheme", args: new string[] { sender.AccentColorHtmlHex });
+                await InvokeScriptAsync("changeTheme", args: new string[] { sender.CurrentTheme.ToString(), sender.IsHighContrast.ToString() });
+            });
         }
 
         public bool TriggerKeyDown(WebKeyEventArgs args)
@@ -845,8 +918,8 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             var wref = new WeakReference<CodeEditor>(this);
             ParentAccessor?.RegisterAction(
                 "Action" + action.Id,
-                new Action(() => 
-                { 
+                new Action(() =>
+                {
                     if (wref.TryGetTarget(out CodeEditor editor))
                     {
                         action?.Run(editor, null);

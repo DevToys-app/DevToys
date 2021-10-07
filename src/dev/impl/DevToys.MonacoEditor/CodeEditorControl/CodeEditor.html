@@ -71,6 +71,7 @@
             if (theme == "Default") {
                 theme = Theme.currentThemeName.toString();
             }
+            setTheme(theme, Theme.accentColorHtmlHex.toString());
             changeTheme(theme, Theme.isHighContrast.toString());
 
             // Update Monaco Size when we receive a window resize event
