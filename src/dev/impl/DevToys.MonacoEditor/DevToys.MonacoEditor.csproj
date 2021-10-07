@@ -29,7 +29,7 @@
     <Compile Include="..\..\shared\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="CodeEditorControl\CodeEditor.cs" />
+    <Compile Include="CodeEditorControl\CodeEditorCore.cs" />
     <Compile Include="CodeEditorControl\InvertedBooleanConverter.cs" />
     <Compile Include="Extensions\JavaScriptExecutionException.cs" />
     <Compile Include="Extensions\JavaScriptInnerException.cs" />
@@ -202,7 +202,7 @@
     </TypeScriptCompile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CodeEditorControl\CodeEditor.html" />
+    <Content Include="CodeEditorControl\CodeEditorCore.html" />
     <Content Include="monaco-editor\*.*" />
     <Content Include="monaco-editor\min\**\*.*" />
     <Content Include="ts-helpermethods\*.js" />

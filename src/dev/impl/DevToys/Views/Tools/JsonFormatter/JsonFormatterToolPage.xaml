@@ -52,14 +52,14 @@
                 <ColumnDefinition MinWidth="100"/>
             </Grid.ColumnDefinitions>
 
-            <monaco:CodeEditor
+            <monaco:CodeEditorCore
                 x:Name="Editor"
                 Grid.Column="0"
                 TabIndex="0"
                 HasGlyphMargin="True"
                 CodeLanguage="json"
                 Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-            </monaco:CodeEditor>
+            </monaco:CodeEditorCore>
             <!--<texteditor:TextEditor
                 Grid.Column="0"
                 Header="{x:Bind ViewModel.Strings.Input}"

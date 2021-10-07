@@ -26,12 +26,12 @@ using Windows.UI.Xaml.Input;
 namespace DevToys.MonacoEditor.CodeEditorControl
 {
     /// <summary>
-    /// Action delegate for <see cref="CodeEditor.AddCommandAsync(int, CommandHandler)"/> and <see cref="CodeEditor.AddCommandAsync(int, CommandHandler, string)"/>.
+    /// Action delegate for <see cref="CodeEditorCore.AddCommandAsync(int, CommandHandler)"/> and <see cref="CodeEditorCore.AddCommandAsync(int, CommandHandler, string)"/>.
     /// </summary>
     public delegate void CommandHandler();
 
     /// <summary>
-    /// UWP Windows Runtime Component wrapper for the Monaco CodeEditor
+    /// UWP Windows Runtime Component wrapper for the Monaco CodeEditorCore
     /// https://microsoft.github.io/monaco-editor/
     /// This file contains Monaco IEditor method implementations we can call on our control.
     /// https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.ieditor.html
@@ -42,7 +42,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
     [TemplateVisualState(Name = PointerOverState, GroupName = CommonStates)]
     [TemplateVisualState(Name = FocusedState, GroupName = CommonStates)]
     [TemplateVisualState(Name = DisabledState, GroupName = CommonStates)]
-    public sealed partial class CodeEditor : Control, INotifyPropertyChanged, IDisposable, IParentAccessorAcceptor
+    public sealed partial class CodeEditorCore : Control, INotifyPropertyChanged, IDisposable, IParentAccessorAcceptor
     {
         internal const string CommonStates = "CommonStates";
         internal const string NormalState = "Normal";
@@ -69,19 +69,19 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             = DependencyProperty.Register(
                 nameof(Text),
                 typeof(string),
-                typeof(CodeEditor),
+                typeof(CodeEditorCore),
                 new PropertyMetadata(
                     string.Empty,
                     (d, e) =>
                     {
-                        if (!((CodeEditor)d).IsSettingValue)
+                        if (!((CodeEditorCore)d).IsSettingValue)
                         {
-                            _ = ((CodeEditor)d).InvokeScriptAsync("updateContent", e.NewValue.ToString());
+                            _ = ((CodeEditorCore)d).InvokeScriptAsync("updateContent", e.NewValue.ToString());
                         }
                     }));
 
         /// <summary>
-        /// Get or Set the CodeEditor Text.
+        /// Get or Set the CodeEditorCore Text.
         /// </summary>
         public string Text
         {
@@ -93,19 +93,19 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             = DependencyProperty.Register(
                 nameof(SelectedText),
                 typeof(string),
-                typeof(CodeEditor),
+                typeof(CodeEditorCore),
                 new PropertyMetadata(
                     string.Empty,
                     (d, e) =>
                     {
-                        if (!((CodeEditor)d).IsSettingValue)
+                        if (!((CodeEditorCore)d).IsSettingValue)
                         {
-                            _ = ((CodeEditor)d).InvokeScriptAsync("updateSelectedContent", e.NewValue.ToString());
+                            _ = ((CodeEditorCore)d).InvokeScriptAsync("updateSelectedContent", e.NewValue.ToString());
                         }
                     }));
 
         /// <summary>
-        /// Get the current Primary Selected CodeEditor Text.
+        /// Get the current Primary Selected CodeEditorCore Text.
         /// </summary>
         public string SelectedText
         {
@@ -117,7 +117,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             = DependencyProperty.Register(
                 nameof(SelectedRange),
                 typeof(Selection),
-                typeof(CodeEditor),
+                typeof(CodeEditorCore),
                 new PropertyMetadata(null));
 
         public Selection SelectedRange
@@ -130,12 +130,12 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             = DependencyProperty.Register(
                 nameof(CodeLanguage),
                 typeof(string),
-                typeof(CodeEditor),
+                typeof(CodeEditorCore),
                 new PropertyMetadata(
                     "xml",
                     (d, e) =>
                     {
-                        if (!(d is CodeEditor editor))
+                        if (!(d is CodeEditorCore editor))
                         {
                             return;
                         }
@@ -147,7 +147,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                     }));
 
         /// <summary>
-        /// Set the Syntax Language for the Code CodeEditor.
+        /// Set the Syntax Language for the Code CodeEditorCore.
         /// 
         /// Note: Most likely to change or move location.
         /// </summary>
@@ -161,12 +161,12 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             = DependencyProperty.Register(
                 nameof(ReadOnly),
                 typeof(bool),
-                typeof(CodeEditor),
+                typeof(CodeEditorCore),
                 new PropertyMetadata(
                     false,
                     (d, e) =>
                     {
-                        if (!(d is CodeEditor editor))
+                        if (!(d is CodeEditorCore editor))
                         {
                             return;
                         }
@@ -178,7 +178,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                     }));
 
         /// <summary>
-        /// Set the ReadOnly option for the Code CodeEditor.
+        /// Set the ReadOnly option for the Code CodeEditorCore.
         /// </summary>
         public bool ReadOnly
         {
@@ -190,12 +190,12 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             = DependencyProperty.Register(
                 nameof(Options),
                 typeof(StandaloneEditorConstructionOptions),
-                typeof(CodeEditor),
+                typeof(CodeEditorCore),
                 new PropertyMetadata(
                     new StandaloneEditorConstructionOptions(),
                     (d, e) =>
                     {
-                        if (d is CodeEditor editor)
+                        if (d is CodeEditorCore editor)
                         {
                             if (e.OldValue is StandaloneEditorConstructionOptions oldValue)
                             {
@@ -210,7 +210,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                     }));
 
         /// <summary>
-        /// Get or set the CodeEditor Options. Node: Will overwrite CodeLanguage.
+        /// Get or set the CodeEditorCore Options. Node: Will overwrite CodeLanguage.
         /// </summary>
         public StandaloneEditorConstructionOptions Options
         {
@@ -222,16 +222,16 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             = DependencyProperty.Register(
                 nameof(HasGlyphMargin),
                 typeof(bool),
-                typeof(CodeEditor),
+                typeof(CodeEditorCore),
                 new PropertyMetadata(
                     false,
                     (d, e) =>
                     {
-                        ((CodeEditor)d).Options.GlyphMargin = e.NewValue as bool?;
+                        ((CodeEditorCore)d).Options.GlyphMargin = e.NewValue as bool?;
                     }));
 
         /// <summary>
-        /// Get or Set the CodeEditor Text.
+        /// Get or Set the CodeEditorCore Text.
         /// </summary>
         public bool HasGlyphMargin
         {
@@ -243,12 +243,12 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             = DependencyProperty.Register(
                 nameof(Decorations),
                 typeof(ModelDeltaDecoration),
-                typeof(CodeEditor),
+                typeof(CodeEditorCore),
                 new PropertyMetadata(
                     null,
                     async (d, e) =>
                     {
-                        if (d is CodeEditor editor)
+                        if (d is CodeEditorCore editor)
                         {
                             // We only want to do this one at a time per editor.
                             using (await editor._mutexLineDecorations.WaitAsync(CancellationToken.None))
@@ -300,12 +300,12 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             = DependencyProperty.Register(
                 nameof(Markers),
                 typeof(IMarkerData),
-                typeof(CodeEditor),
+                typeof(CodeEditorCore),
                 new PropertyMetadata(
                     null,
                     async (d, e) =>
                     {
-                        if (d is CodeEditor editor)
+                        if (d is CodeEditorCore editor)
                         {
                             // We only want to do this one at a time per editor.
                             using (await editor._mutexMarkers.WaitAsync(CancellationToken.None))
@@ -316,14 +316,14 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                                          e.NewValue == null)
                                 {
                                     // TODO: Can I simplify this in this case?
-                                    await editor.SetModelMarkersAsync("CodeEditor", Array.Empty<IMarkerData>());
+                                    await editor.SetModelMarkersAsync("CodeEditorCore", Array.Empty<IMarkerData>());
                                 }
 
                                 if (e.NewValue is IObservableVector<IMarkerData> value)
                                 {
                                     if (value.Count > 0)
                                     {
-                                        await editor.SetModelMarkersAsync("CodeEditor", value.ToArray());
+                                        await editor.SetModelMarkersAsync("CodeEditorCore", value.ToArray());
                                     }
 
                                     value.VectorChanged -= editor.Markers_VectorChanged;
@@ -340,7 +340,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                 // Need to recall mutex as this is called from outside of this initial callback setting it up.
                 using (await _mutexMarkers.WaitAsync(CancellationToken.None))
                 {
-                    await SetModelMarkersAsync("CodeEditor", sender.ToArray());
+                    await SetModelMarkersAsync("CodeEditorCore", sender.ToArray());
                 }
             }
         }
@@ -373,7 +373,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
         /// <summary>
         /// Called when an internal exception is encountered while executing a command. (for testing/reporting issues)
         /// </summary>
-        public event TypedEventHandler<CodeEditor, Exception>? InternalException;
+        public event TypedEventHandler<CodeEditorCore, Exception>? InternalException;
 
         /// <summary>
         /// Custom Keyboard Handler.
@@ -386,7 +386,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             = DependencyProperty.Register(
                 nameof(IsEditorLoaded),
                 typeof(string),
-                typeof(CodeEditor),
+                typeof(CodeEditorCore),
                 new PropertyMetadata(false));
 
         /// <summary>
@@ -401,9 +401,9 @@ namespace DevToys.MonacoEditor.CodeEditorControl
         /// <summary>
         /// Construct a new IStandAloneCodeEditor.
         /// </summary>
-        public CodeEditor()
+        public CodeEditorCore()
         {
-            DefaultStyleKey = typeof(CodeEditor);
+            DefaultStyleKey = typeof(CodeEditorCore);
             if (Options != null)
             {
                 // Set Pass-Thru Properties
@@ -528,7 +528,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                 _view.DOMContentLoaded += WebView_DOMContentLoaded;
                 _view.NavigationCompleted += WebView_NavigationCompleted;
                 _view.NewWindowRequested += WebView_NewWindowRequested;
-                _view.Source = new System.Uri("ms-appx-web:///DevToys.MonacoEditor/CodeEditorControl/CodeEditor.html");
+                _view.Source = new System.Uri("ms-appx-web:///DevToys.MonacoEditor/CodeEditorControl/CodeEditorCore.html");
             }
 
             base.OnApplyTemplate();
@@ -788,7 +788,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
 
         private async void RequestedTheme_PropertyChanged(DependencyObject obj, DependencyProperty property)
         {
-            var editor = (CodeEditor)obj;
+            var editor = (CodeEditorCore)obj;
             var theme = editor.RequestedTheme;
             var tstr = string.Empty;
 
@@ -915,12 +915,12 @@ namespace DevToys.MonacoEditor.CodeEditorControl
 
         public IAsyncAction AddActionAsync(IActionDescriptor action)
         {
-            var wref = new WeakReference<CodeEditor>(this);
+            var wref = new WeakReference<CodeEditorCore>(this);
             ParentAccessor?.RegisterAction(
                 "Action" + action.Id,
                 new Action(() =>
                 {
-                    if (wref.TryGetTarget(out CodeEditor editor))
+                    if (wref.TryGetTarget(out CodeEditorCore editor))
                     {
                         action?.Run(editor, null);
                     }

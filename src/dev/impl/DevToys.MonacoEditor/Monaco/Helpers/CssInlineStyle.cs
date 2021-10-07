@@ -24,7 +24,7 @@ namespace DevToys.MonacoEditor.Monaco.Helpers
 
         public string? Name { get; private set; }
 
-        public CssInlineStyle(CodeEditor editor)
+        public CssInlineStyle(CodeEditorCore editor)
         {
             Name = CssStyleBroker.GetInstance(editor).Register(this);
         }

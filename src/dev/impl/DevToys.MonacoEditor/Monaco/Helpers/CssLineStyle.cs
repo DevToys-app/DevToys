@@ -20,7 +20,7 @@ namespace DevToys.MonacoEditor.Monaco.Helpers
 
         public string? Name { get; private set; }
 
-        public CssLineStyle(CodeEditor editor)
+        public CssLineStyle(CodeEditorCore editor)
         {
             Name = CssStyleBroker.GetInstance(editor).Register(this);
         }

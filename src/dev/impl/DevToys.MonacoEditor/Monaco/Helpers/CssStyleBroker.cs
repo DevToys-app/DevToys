@@ -13,7 +13,7 @@ namespace DevToys.MonacoEditor.Monaco.Helpers
     {
         private static uint Id = 0;
         private readonly Dictionary<string, ICssStyle> _registered = new Dictionary<string, ICssStyle>();
-        private static readonly IDictionary<CodeEditor, CssStyleBroker> instances = new Dictionary<CodeEditor, CssStyleBroker>();
+        private static readonly IDictionary<CodeEditorCore, CssStyleBroker> instances = new Dictionary<CodeEditorCore, CssStyleBroker>();
 
         // Explicit static constructor to tell C# compiler
         // not to mark type as beforefieldinit
@@ -25,7 +25,7 @@ namespace DevToys.MonacoEditor.Monaco.Helpers
         {
         }
 
-        public static CssStyleBroker GetInstance(CodeEditor editor)
+        public static CssStyleBroker GetInstance(CodeEditorCore editor)
         {
             if (instances.ContainsKey(editor))
             {
@@ -35,7 +35,7 @@ namespace DevToys.MonacoEditor.Monaco.Helpers
             return instances[editor] = new CssStyleBroker();
         }
 
-        public static bool DetachEditor(CodeEditor editor)
+        public static bool DetachEditor(CodeEditorCore editor)
         {
             if (instances.ContainsKey(editor))
             {

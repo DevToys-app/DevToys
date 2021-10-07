@@ -10,7 +10,7 @@ namespace DevToys.MonacoEditor.Monaco.Helpers
 
         public string? Name { get; private set; }
 
-        public CssGlyphStyle(CodeEditor editor)
+        public CssGlyphStyle(CodeEditorCore editor)
         {
             Name = CssStyleBroker.GetInstance(editor).Register(this);
         }

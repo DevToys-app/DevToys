@@ -7,10 +7,10 @@
 
     <monaco:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
 
-    <Style TargetType="monaco:CodeEditor" >
+    <Style TargetType="monaco:CodeEditorCore" >
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="monaco:CodeEditor">
+                <ControlTemplate TargetType="monaco:CodeEditorCore">
                     <Grid>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">

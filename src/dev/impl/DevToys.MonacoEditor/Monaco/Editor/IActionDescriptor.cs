@@ -51,6 +51,6 @@ namespace DevToys.MonacoEditor.Monaco.Editor
         [JsonProperty("precondition", NullValueHandling = NullValueHandling.Ignore)]
         string Precondition { get; }
 
-        void Run(CodeEditor editor, [ReadOnlyArray] object[]? args);
+        void Run(CodeEditorCore editor, [ReadOnlyArray] object[]? args);
     }
 }
