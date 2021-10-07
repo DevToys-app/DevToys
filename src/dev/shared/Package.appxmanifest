@@ -13,7 +13,7 @@
     <Identity
         Name="DevToysPreview"
         Publisher="CN=etiennebaudoux"
-        Version="0.5.2.0" />
+        Version="0.0.0.0" />
 
     <!-- TODO: maybe we need to remove this when adding runFullTrust capability -->
     <mp:PhoneIdentity PhoneProductId="c12088ee-f979-4809-8039-7851a3aa2b7a" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
