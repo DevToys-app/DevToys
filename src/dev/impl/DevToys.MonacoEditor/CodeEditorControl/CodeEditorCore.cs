@@ -719,11 +719,8 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             //await SendScriptAsync("editor.focus();");
 
             // Update theme
-            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
-            {
-                await InvokeScriptAsync("setTheme", args: new string[] { _themeListener!.AccentColorHtmlHex });
-                await InvokeScriptAsync("changeTheme", new string[] { _themeListener.CurrentTheme.ToString(), _themeListener.IsHighContrast.ToString() });
-            });
+            await InvokeScriptAsync("setTheme", args: new string[] { _themeListener!.AccentColorHtmlHex });
+            await InvokeScriptAsync("changeTheme", new string[] { _themeListener.CurrentTheme.ToString(), _themeListener.IsHighContrast.ToString() });
 
             // If we're supposed to have focus, make sure we try and refocus on our now loaded webview.
             if (FocusManager.GetFocusedElement() == this)
@@ -762,6 +759,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             {
                 throw new NullReferenceException();
             }
+
             _view.AddWebAllowedObject("Debug", new DebugLogger());
             _view.AddWebAllowedObject("Parent", ParentAccessor);
             _view.AddWebAllowedObject("Theme", _themeListener);

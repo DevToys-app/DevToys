@@ -31,7 +31,7 @@ namespace DevToys.UI.Controls
                         if (e.NewValue is ISettingsProvider settingsProvider)
                         {
                             var codeEditor = (CodeEditor)d;
-                            settingsProvider.SettingChanged += codeEditor.CodeEditor_SettingChanged;
+                            settingsProvider.SettingChanged += codeEditor.SettingsProvider_SettingChanged;
                         }
                     }));
 
@@ -105,6 +105,7 @@ namespace DevToys.UI.Controls
         private void CodeEditorCore_Loading(object sender, RoutedEventArgs e)
         {
             CodeEditorCore.HasGlyphMargin = false;
+            CodeEditorCore.Options.GlyphMargin = false;
             CodeEditorCore.Options.MouseWheelZoom = false;
             CodeEditorCore.Options.OverviewRulerBorder = false;
             CodeEditorCore.Options.ScrollBeyondLastLine = false;
@@ -148,7 +149,6 @@ namespace DevToys.UI.Controls
             {
                 CodeEditorCore.Options.WordWrapMinified = settingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping);
                 CodeEditorCore.Options.WordWrap = settingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping) ? WordWrap.On : WordWrap.Off;
-                CodeEditorCore.Options.GlyphMargin = false;
                 CodeEditorCore.Options.LineNumbers = settingsProvider.GetSetting(PredefinedSettings.TextEditorLineNumbers) ? LineNumbersType.On : LineNumbersType.Off;
                 CodeEditorCore.Options.RenderLineHighlight = settingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine) ? RenderLineHighlight.All : RenderLineHighlight.None;
 
@@ -269,7 +269,7 @@ namespace DevToys.UI.Controls
             Text = string.Empty;
         }
 
-        private void CodeEditor_SettingChanged(object sender, SettingChangedEventArgs e)
+        private void SettingsProvider_SettingChanged(object sender, SettingChangedEventArgs e)
         {
             ApplySettings();
         }

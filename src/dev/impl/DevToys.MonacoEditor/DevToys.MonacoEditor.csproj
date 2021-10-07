@@ -205,8 +205,8 @@
     <Content Include="CodeEditorControl\CodeEditorCore.html" />
     <Content Include="monaco-editor\*.*" />
     <Content Include="monaco-editor\min\**\*.*" />
+    <EmbeddedResource Include="Properties\DevToys.rd.xml" />
     <Content Include="ts-helpermethods\*.js" />
-    <EmbeddedResource Include="Properties\DevToys.MonacoEditor.rd.xml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="$(NuGet_MicrosoftNETCoreUniversalWindowsPlatform)" />

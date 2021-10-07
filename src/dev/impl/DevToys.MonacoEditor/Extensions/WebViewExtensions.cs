@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using DevToys.MonacoEditor.Monaco.Editor;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
@@ -7,12 +8,55 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.Data.Json;
+using Windows.Storage;
 using Windows.UI.Xaml.Controls;
 
 namespace DevToys.MonacoEditor.Extensions
 {
     internal static class WebViewExtensions
     {
+
+        private static readonly JsonSerializerSettings _settings = new JsonSerializerSettings()
+        {
+            NullValueHandling = NullValueHandling.Ignore,
+            ContractResolver = new CamelCasePropertyNamesContractResolver()
+        };
+
+        static WebViewExtensions()
+        {
+            _settings.Converters.Add(new AcceptSuggestionOnEnterConverter());
+            _settings.Converters.Add(new AccessibilitySupportConverter());
+            _settings.Converters.Add(new AutoClosingBracketsConverter());
+            _settings.Converters.Add(new AutoClosingOvertypeConverter());
+            _settings.Converters.Add(new AutoClosingQuotesConverter());
+            _settings.Converters.Add(new AutoFindInSelectionConverter());
+            _settings.Converters.Add(new AutoIndentConverter());
+            _settings.Converters.Add(new AutoSurroundConverter());
+            _settings.Converters.Add(new CursorBlinkingConverter());
+            _settings.Converters.Add(new CursorStyleConverter());
+            _settings.Converters.Add(new CursorSurroundingLinesStyleConverter());
+            _settings.Converters.Add(new FoldingStrategyConverter());
+            _settings.Converters.Add(new InsertModeConverter());
+            _settings.Converters.Add(new InterfaceToClassConverter<IWordAtPosition, WordAtPosition>());
+            _settings.Converters.Add(new LineNumbersTypeConverter());
+            _settings.Converters.Add(new MatchBracketsConverter());
+            _settings.Converters.Add(new MouseStyleConverter());
+            _settings.Converters.Add(new MultiCursorModifierConverter());
+            _settings.Converters.Add(new MultiCursorPasteConverter());
+            _settings.Converters.Add(new MultipleConverter());
+            _settings.Converters.Add(new RenderLineHighlightConverter());
+            _settings.Converters.Add(new RenderWhitespaceConverter());
+            _settings.Converters.Add(new ScrollbarBehaviorConverter());
+            _settings.Converters.Add(new ShowConverter());
+            _settings.Converters.Add(new SideConverter());
+            _settings.Converters.Add(new SnippetSuggestionsConverter());
+            _settings.Converters.Add(new SuggestSelectionConverter());
+            _settings.Converters.Add(new TabCompletionConverter());
+            _settings.Converters.Add(new WordWrapConverter());
+            _settings.Converters.Add(new WrappingIndentConverter());
+            _settings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter() { NamingStrategy = new CamelCaseNamingStrategy() });
+        }
+
         public static async Task RunScriptAsync(
             this WebView _view,
             string script,
@@ -89,12 +133,6 @@ namespace DevToys.MonacoEditor.Extensions
 
             return default;
         }
-
-        private static readonly JsonSerializerSettings _settings = new JsonSerializerSettings()
-        {
-            NullValueHandling = NullValueHandling.Ignore,
-            ContractResolver = new CamelCasePropertyNamesContractResolver()
-        };
 
         public static async Task InvokeScriptAsync(
             this WebView _view,

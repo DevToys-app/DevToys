@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <Package
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
@@ -13,7 +13,7 @@
     <Identity
         Name="DevToysPreview"
         Publisher="CN=etiennebaudoux"
-        Version="0.0.0.0" />
+        Version="0.5.2.0" />
 
     <!-- TODO: maybe we need to remove this when adding runFullTrust capability -->
     <mp:PhoneIdentity PhoneProductId="c12088ee-f979-4809-8039-7851a3aa2b7a" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
