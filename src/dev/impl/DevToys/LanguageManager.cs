@@ -637,6 +637,11 @@ namespace DevToys
         public string RateAndReview => _resources.GetString("RateAndReview");
 
         /// <summary>
+        /// Gets the resource RenderWhitespace.
+        /// </summary>
+        public string RenderWhitespace => _resources.GetString("RenderWhitespace");
+
+        /// <summary>
         /// Gets the resource ReportProblem.
         /// </summary>
         public string ReportProblem => _resources.GetString("ReportProblem");

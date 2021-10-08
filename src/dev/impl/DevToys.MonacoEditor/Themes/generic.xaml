@@ -2,7 +2,6 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:monaco="using:DevToys.MonacoEditor.CodeEditorControl"
-    xmlns:ui="using:Microsoft.Toolkit.Uwp.UI"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls">
 
     <monaco:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>

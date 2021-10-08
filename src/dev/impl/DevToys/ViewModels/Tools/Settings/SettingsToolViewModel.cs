@@ -81,6 +81,12 @@ namespace DevToys.ViewModels.Settings
             set => _settingsProvider.SetSetting(PredefinedSettings.TextEditorHighlightCurrentLine, value);
         }
 
+        internal bool TextEditorRenderWhitespace
+        {
+            get => _settingsProvider.GetSetting(PredefinedSettings.TextEditorRenderWhitespace);
+            set => _settingsProvider.SetSetting(PredefinedSettings.TextEditorRenderWhitespace, value);
+        }
+
         /// <summary>
         /// Gets the version of the application.
         /// </summary>

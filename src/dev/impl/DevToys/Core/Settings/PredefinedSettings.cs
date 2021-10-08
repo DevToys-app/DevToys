@@ -104,5 +104,14 @@ namespace DevToys.Core.Settings
                 name: nameof(TextEditorHighlightCurrentLine),
                 isRoaming: true,
                 defaultValue: true);
+
+        /// <summary>
+        /// Whether white spaces should be rendered in the text editor.
+        /// </summary>
+        public static readonly SettingDefinition<bool> TextEditorRenderWhitespace
+            = new(
+                name: nameof(TextEditorRenderWhitespace),
+                isRoaming: true,
+                defaultValue: false);
     }
 }

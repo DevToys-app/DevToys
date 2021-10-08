@@ -42,7 +42,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
     [TemplateVisualState(Name = PointerOverState, GroupName = CommonStates)]
     [TemplateVisualState(Name = FocusedState, GroupName = CommonStates)]
     [TemplateVisualState(Name = DisabledState, GroupName = CommonStates)]
-    public sealed partial class CodeEditorCore : Control, INotifyPropertyChanged, IDisposable, IParentAccessorAcceptor
+    public sealed partial class CodeEditorCore : Control, IDisposable, IParentAccessorAcceptor
     {
         internal const string CommonStates = "CommonStates";
         internal const string NormalState = "Normal";
@@ -506,6 +506,8 @@ namespace DevToys.MonacoEditor.CodeEditorControl
         {
             if (_view != null)
             {
+                _view.GotFocus -= View_GotFocus;
+                _view.LostFocus -= View_LostFocus;
                 _view.NavigationStarting -= WebView_NavigationStarting;
                 _view.DOMContentLoaded -= WebView_DOMContentLoaded;
                 _view.NavigationCompleted -= WebView_NavigationCompleted;
@@ -644,11 +646,6 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             return default;
         }
 
-        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         public void Dispose()
         {
             if (_themeListener != null)
@@ -675,9 +672,6 @@ namespace DevToys.MonacoEditor.CodeEditorControl
         {
             IsEditorLoaded = true;
 
-            // Make sure inner editor is focused
-            //await SendScriptAsync("editor.focus();");
-
             // Update theme
             await InvokeScriptAsync("setTheme", args: new string[] { _themeListener!.AccentColorHtmlHex });
             await InvokeScriptAsync("changeTheme", new string[] { _themeListener.CurrentTheme.ToString(), _themeListener.IsHighContrast.ToString() });
@@ -690,9 +684,6 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                     throw new NullReferenceException();
                 }
                 _view.Focus(FocusState.Programmatic);
-            }
-            else
-            {
             }
 
             Loaded?.Invoke(this, new RoutedEventArgs());

@@ -95,7 +95,7 @@ namespace DevToys.UI.Controls
 
         public CodeEditor()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
             CodeEditorCore.Loading += CodeEditorCore_Loading;
 
@@ -112,7 +112,15 @@ namespace DevToys.UI.Controls
             CodeEditorCore.Options.OverviewRulerBorder = false;
             CodeEditorCore.Options.ScrollBeyondLastLine = false;
             CodeEditorCore.Options.FontLigatures = true;
+            CodeEditorCore.Options.SnippetSuggestions = SnippetSuggestions.None;
+            CodeEditorCore.Options.CodeLens = false;
+            CodeEditorCore.Options.QuickSuggestions = false;
+            CodeEditorCore.Options.WordBasedSuggestions = false;
             CodeEditorCore.Options.Minimap = new EditorMinimapOptions()
+            {
+                Enabled = false
+            };
+            CodeEditorCore.Options.Hover = new EditorHoverOptions()
             {
                 Enabled = false
             };
@@ -154,6 +162,7 @@ namespace DevToys.UI.Controls
                 CodeEditorCore.Options.WordWrap = settingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping) ? WordWrap.On : WordWrap.Off;
                 CodeEditorCore.Options.LineNumbers = settingsProvider.GetSetting(PredefinedSettings.TextEditorLineNumbers) ? LineNumbersType.On : LineNumbersType.Off;
                 CodeEditorCore.Options.RenderLineHighlight = settingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine) ? RenderLineHighlight.All : RenderLineHighlight.None;
+                CodeEditorCore.Options.RenderWhitespace = settingsProvider.GetSetting(PredefinedSettings.TextEditorRenderWhitespace) ? RenderWhitespace.All : RenderWhitespace.None;
                 CodeEditorCore.Options.FontFamily = settingsProvider.GetSetting(PredefinedSettings.TextEditorFont);
             }
         }

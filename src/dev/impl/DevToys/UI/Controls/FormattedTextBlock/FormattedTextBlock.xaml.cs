@@ -233,7 +233,7 @@ namespace DevToys.UI.Controls.FormattedTextBlock
             ISettingsProvider? settingsProvider = SettingsProvider;
             if (settingsProvider is not null)
             {
-                RichTextBlock.FontFamily = (FontFamily)Application.Current.Resources[settingsProvider.GetSetting(PredefinedSettings.TextEditorFont)];
+                RichTextBlock.FontFamily = new FontFamily(settingsProvider.GetSetting(PredefinedSettings.TextEditorFont));
                 RichTextBlock.TextWrapping = settingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping) ? TextWrapping.Wrap : TextWrapping.NoWrap;
                 _showLineNumbers = settingsProvider.GetSetting(PredefinedSettings.TextEditorLineNumbers);
                 _highlightCurrentLine = settingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine);

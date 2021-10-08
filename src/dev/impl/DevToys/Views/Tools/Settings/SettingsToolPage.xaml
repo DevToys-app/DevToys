@@ -103,6 +103,13 @@
             </controls:ExpandableSettingControl.Icon>
             <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" IsOn="{x:Bind ViewModel.TextEditorHighlightCurrentLine, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         </controls:ExpandableSettingControl>
+        <controls:ExpandableSettingControl
+            Title="{x:Bind ViewModel.Strings.RenderWhitespace}">
+            <controls:ExpandableSettingControl.Icon>
+                <FontIcon Glyph="&#xF6F8;" />
+            </controls:ExpandableSettingControl.Icon>
+            <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" IsOn="{x:Bind ViewModel.TextEditorRenderWhitespace, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </controls:ExpandableSettingControl>
 
         <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.About}" />
 

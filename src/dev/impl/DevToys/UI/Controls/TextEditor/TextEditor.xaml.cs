@@ -52,7 +52,7 @@ namespace DevToys.UI.Controls.TextEditor
 
         public TextEditor()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void OnPasteButtonClick(object sender, RoutedEventArgs e)
