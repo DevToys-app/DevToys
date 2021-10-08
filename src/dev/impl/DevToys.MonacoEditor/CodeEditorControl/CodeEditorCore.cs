@@ -54,7 +54,6 @@ namespace DevToys.MonacoEditor.CodeEditorControl
         private readonly DisposableSempahore _mutexLineDecorations = new DisposableSempahore();
 
         private bool _initialized;
-        private Border? _pointerHandlerElement;
         private WebView? _view;
         private ModelHelper? _model;
         private ThemeListener? _themeListener;
@@ -515,13 +514,9 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             }
 
             _view = (WebView)GetTemplateChild("WebViewElement");
-            _pointerHandlerElement = (Border)GetTemplateChild("PointerHandlerElement");
 
             if (_view != null)
             {
-                _pointerHandlerElement.PointerEntered += PointerHandlerElement_PointerEntered;
-                _pointerHandlerElement.PointerExited += PointerHandlerElement_PointerExited;
-                _pointerHandlerElement.Tapped += PointerHandlerElement_Tapped;
                 _view.GotFocus += View_GotFocus;
                 _view.LostFocus += View_LostFocus;
                 _view.NavigationStarting += WebView_NavigationStarting;
@@ -534,48 +529,13 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             base.OnApplyTemplate();
         }
 
-        private async void PointerHandlerElement_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            _pointerHandlerElement!.IsHitTestVisible = false;
-            _view!.Focus(FocusState.Pointer);
-
-            // Make sure inner editor is focused
-            await SendScriptAsync("editor.focus();");
-        }
-
-        private void PointerHandlerElement_PointerEntered(object sender, PointerRoutedEventArgs e)
-        {
-            if (FocusManager.GetFocusedElement() == this)
-            {
-                VisualStateManager.GoToState(this, FocusedState, false);
-            }
-            else
-            {
-                VisualStateManager.GoToState(this, PointerOverState, false);
-            }
-        }
-
-        private void PointerHandlerElement_PointerExited(object sender, PointerRoutedEventArgs e)
-        {
-            if (FocusManager.GetFocusedElement() == this)
-            {
-                VisualStateManager.GoToState(this, FocusedState, false);
-            }
-            else
-            {
-                VisualStateManager.GoToState(this, NormalState, false);
-            }
-        }
-
         private void View_GotFocus(object sender, RoutedEventArgs args)
         {
-            _pointerHandlerElement!.IsHitTestVisible = false;
             VisualStateManager.GoToState(this, FocusedState, false);
         }
 
         private void View_LostFocus(object sender, RoutedEventArgs args)
         {
-            _pointerHandlerElement!.IsHitTestVisible = true;
             VisualStateManager.GoToState(this, NormalState, false);
         }
 
@@ -729,12 +689,10 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                 {
                     throw new NullReferenceException();
                 }
-                _pointerHandlerElement!.IsHitTestVisible = false;
                 _view.Focus(FocusState.Programmatic);
             }
             else
             {
-                _pointerHandlerElement!.IsHitTestVisible = true;
             }
 
             Loaded?.Invoke(this, new RoutedEventArgs());

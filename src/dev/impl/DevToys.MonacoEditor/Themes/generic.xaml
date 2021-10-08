@@ -65,13 +65,6 @@
                                 VerticalAlignment="Stretch">
                             </WebView>
                         </Border>
-                        <Border
-                            x:Name="PointerHandlerElement"
-                            Background="Transparent"
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"
-                            IsHitTestVisible="False"
-                            ui:FrameworkElementExtensions.Cursor="IBeam"/>
                         <muxc:ProgressRing
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
