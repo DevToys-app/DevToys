@@ -379,8 +379,6 @@ namespace DevToys.MonacoEditor.CodeEditorControl
         /// </summary>
         public new event WebKeyEventHandler? KeyDown;
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-
         public static DependencyProperty IsEditorLoadedProperty { get; }
             = DependencyProperty.Register(
                 nameof(IsEditorLoaded),
