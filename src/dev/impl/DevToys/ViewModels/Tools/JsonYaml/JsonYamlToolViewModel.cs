@@ -1,13 +1,10 @@
 ﻿#nullable enable
 
-using ColorCode;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
 using DevToys.Core;
 using DevToys.Core.Threading;
 using DevToys.Helpers;
-using DevToys.UI.Controls.FormattedTextBlock;
-using DevToys.UI.Controls.FormattedTextBlock.Languages;
 using DevToys.Views.Tools.JsonYaml;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Newtonsoft.Json;
@@ -36,7 +33,9 @@ namespace DevToys.ViewModels.Tools.JsonYaml
         private bool _conversionInProgress;
         private bool _setPropertyInProgress;
         private string? _inputValue;
+        private string? _inputValueLanguage;
         private string? _outputValue;
+        private string? _outputValueLanguage;
         private string _indentation = TwoSpaceIndentation;
         private string _conversionMode = JsonToYaml;
 
@@ -60,16 +59,20 @@ namespace DevToys.ViewModels.Tools.JsonYaml
 
                     if (string.Equals(value, JsonToYaml))
                     {
-                        if (JsonHelper.IsValidJson(_outputValue))
+                        if (JsonHelper.IsValidJson(OutputValue))
                         {
-                            InputValue = _outputValue;
+                            InputValue = OutputValue;
+                            InputValueLanguage = "json";
+                            OutputValueLanguage = "yaml";
                         }
                     }
                     else
                     {
-                        if (YamlHelper.IsValidYaml(_outputValue))
+                        if (YamlHelper.IsValidYaml(OutputValue))
                         {
-                            InputValue = _outputValue;
+                            InputValue = OutputValue;
+                            InputValueLanguage = "yaml";
+                            OutputValueLanguage = "json";
                         }
                     }
 
@@ -104,16 +107,41 @@ namespace DevToys.ViewModels.Tools.JsonYaml
             }
         }
 
-        internal ISettingsProvider SettingsProvider { get; }
+        /// <summary>
+        /// Gets or sets the input code editor's language.
+        /// </summary>
+        internal string? InputValueLanguage
+        {
+            get => _inputValueLanguage;
+            set => SetProperty(ref _inputValueLanguage, value);
+        }
 
-        internal IFormattedTextBlock? OutputTextBlock { private get; set; }
+        /// <summary>
+        /// Gets or sets the output text.
+        /// </summary>
+        internal string? OutputValue
+        {
+            get => _outputValue;
+            set => SetProperty(ref _outputValue, value);
+        }
+
+        /// <summary>
+        /// Gets or sets the output code editor's language.
+        /// </summary>
+        internal string? OutputValueLanguage
+        {
+            get => _outputValueLanguage;
+            set => SetProperty(ref _outputValueLanguage, value);
+        }
+
+        internal ISettingsProvider SettingsProvider { get; }
 
         [ImportingConstructor]
         public JsonYamlToolViewModel(ISettingsProvider settingsProvider)
         {
             SettingsProvider = settingsProvider;
-
-            Languages.Load(new Yaml());
+            InputValueLanguage = "json";
+            OutputValueLanguage = "yaml";
         }
 
         private void QueueConversion()
@@ -129,8 +157,6 @@ namespace DevToys.ViewModels.Tools.JsonYaml
                 return;
             }
 
-            Assumes.NotNull(OutputTextBlock, nameof(OutputTextBlock));
-
             _conversionInProgress = true;
 
             await TaskScheduler.Default;
@@ -139,29 +165,18 @@ namespace DevToys.ViewModels.Tools.JsonYaml
             {
                 bool success;
                 string result;
-                ILanguage language;
                 if (string.Equals(ConversionMode, JsonToYaml, StringComparison.Ordinal))
                 {
                     success = ConvertJsonToYaml(text, out result);
-                    language = Languages.FindById("yaml");
                 }
                 else
                 {
                     success = ConvertYamlToJson(text, out result);
-                    language = Languages.JavaScript;
                 }
 
                 ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, () =>
                 {
-                    _outputValue = result;
-                    if (success)
-                    {
-                        OutputTextBlock!.SetText(result, language);
-                    }
-                    else
-                    {
-                        OutputTextBlock!.SetText(result);
-                    }
+                    OutputValue = result;
                 }).ForgetSafely();
             }
 

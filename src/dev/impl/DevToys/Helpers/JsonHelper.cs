@@ -16,7 +16,7 @@ namespace DevToys.Helpers
         {
             if (string.IsNullOrWhiteSpace(input))
             {
-                return false;
+                return true;
             }
 
             input = input!.Trim();

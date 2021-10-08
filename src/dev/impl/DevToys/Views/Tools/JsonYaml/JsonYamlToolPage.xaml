@@ -75,11 +75,12 @@
                 <ColumnDefinition MinWidth="100"/>
             </Grid.ColumnDefinitions>
 
-            <texteditor:TextEditor
+            <controls:CodeEditor
                 Grid.Column="0"
                 Header="{x:Bind ViewModel.Strings.Input}"
                 SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
-                Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                CodeLanguage="{x:Bind ViewModel.InputValueLanguage, Mode=OneWay}"/>
 
             <toolkit:GridSplitter
                 Grid.Column="1"
@@ -94,11 +95,13 @@
                 </toolkit:GridSplitter.Element>
             </toolkit:GridSplitter>
 
-            <formattedtextblock:FormattedTextBlock
-                x:Name="OutputTextBlock"
+            <controls:CodeEditor
                 Grid.Column="2"
+                IsReadOnly="True"
                 Header="{x:Bind ViewModel.Strings.Output}"
-                SettingsProvider="{x:Bind ViewModel.SettingsProvider}"/>
+                SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
+                Text="{x:Bind ViewModel.OutputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                CodeLanguage="{x:Bind ViewModel.OutputValueLanguage, Mode=OneWay}"/>
         </Grid>
     </Grid>
 </Page>

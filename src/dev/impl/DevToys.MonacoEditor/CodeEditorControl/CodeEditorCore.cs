@@ -721,11 +721,11 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                 await DeltaDecorationsHelperAsync(Decorations.ToArray());
             }
 
-            // Now we're done loading
-            Loading?.Invoke(this, new RoutedEventArgs());
-
             Options.ReadOnly = ReadOnly;
             Options.Language = CodeLanguage;
+
+            // Now we're done loading
+            Loading?.Invoke(this, new RoutedEventArgs());
         }
 
         private void WebView_NewWindowRequested(WebView sender, WebViewNewWindowRequestedEventArgs args)

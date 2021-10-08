@@ -43,8 +43,6 @@ namespace DevToys.Views.Tools.JsonYaml
                 Assumes.NotNull(parameters.ViewModel, nameof(parameters.ViewModel));
                 ViewModel = (JsonYamlToolViewModel)parameters.ViewModel!;
                 DataContext = ViewModel;
-
-                ViewModel.OutputTextBlock = OutputTextBlock;
             }
 
             if (!string.IsNullOrWhiteSpace(parameters.ClipBoardContent))
