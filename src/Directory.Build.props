@@ -35,9 +35,9 @@
         <NuGet_MSTestTestAdapter>2.1.1</NuGet_MSTestTestAdapter>
         <NuGet_MSTestTestFramework>2.1.1</NuGet_MSTestTestFramework>
         <NuGet_NewtonsoftJson>12.0.3</NuGet_NewtonsoftJson>
-        <Nuget_NitoAsyncEx>5.0.0</Nuget_NitoAsyncEx>
         <Nuget_ObservableVector>2.1.0</Nuget_ObservableVector>
         <NuGet_SystemComposition>5.0.0</NuGet_SystemComposition>
+        <NuGet_Win2D>1.26.0</NuGet_Win2D>
         <NuGet_YamlDotNet>11.2.1</NuGet_YamlDotNet>
     </PropertyGroup>
 </Project>

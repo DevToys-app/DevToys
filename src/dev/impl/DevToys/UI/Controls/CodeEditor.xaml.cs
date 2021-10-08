@@ -97,18 +97,21 @@ namespace DevToys.UI.Controls
         {
             this.InitializeComponent();
 
-            CodeEditorCore.Loading+=CodeEditorCore_Loading;
+            CodeEditorCore.Loading += CodeEditorCore_Loading;
 
             UpdateUI();
         }
 
         private void CodeEditorCore_Loading(object sender, RoutedEventArgs e)
         {
+            CodeEditorCore.Loading -= CodeEditorCore_Loading;
+
             CodeEditorCore.HasGlyphMargin = false;
             CodeEditorCore.Options.GlyphMargin = false;
             CodeEditorCore.Options.MouseWheelZoom = false;
             CodeEditorCore.Options.OverviewRulerBorder = false;
             CodeEditorCore.Options.ScrollBeyondLastLine = false;
+            CodeEditorCore.Options.FontLigatures = true;
             CodeEditorCore.Options.Minimap = new EditorMinimapOptions()
             {
                 Enabled = false
@@ -151,9 +154,7 @@ namespace DevToys.UI.Controls
                 CodeEditorCore.Options.WordWrap = settingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping) ? WordWrap.On : WordWrap.Off;
                 CodeEditorCore.Options.LineNumbers = settingsProvider.GetSetting(PredefinedSettings.TextEditorLineNumbers) ? LineNumbersType.On : LineNumbersType.Off;
                 CodeEditorCore.Options.RenderLineHighlight = settingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine) ? RenderLineHighlight.All : RenderLineHighlight.None;
-
-                //FontFamily = (FontFamily)Application.Current.Resources[settingsProvider.GetSetting(PredefinedSettings.TextEditorFont)];
-
+                CodeEditorCore.Options.FontFamily = settingsProvider.GetSetting(PredefinedSettings.TextEditorFont);
             }
         }
 
@@ -271,7 +272,10 @@ namespace DevToys.UI.Controls
 
         private void SettingsProvider_SettingChanged(object sender, SettingChangedEventArgs e)
         {
-            ApplySettings();
+            if (e.SettingName.Contains("TextEditor"))
+            {
+                ApplySettings();
+            }
         }
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)

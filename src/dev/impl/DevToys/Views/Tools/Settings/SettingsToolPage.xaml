@@ -76,12 +76,8 @@
                 <FontIcon Glyph="&#xF7E4;" />
             </controls:ExpandableSettingControl.Icon>
             <ComboBox
-                SelectedValuePath="Tag"
+                ItemsSource="{x:Bind ViewModel.SupportedFonts, Mode=OneWay}"
                 SelectedValue="{x:Bind ViewModel.TextEditorFont, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                <ComboBoxItem Tag="CascadiaCode" FontFamily="{StaticResource CascadiaCode}" Content="Cascadia Code"/>
-                <ComboBoxItem Tag="CascadiaMono" FontFamily="{StaticResource CascadiaMono}" Content="Cascadia Mono"/>
-                <ComboBoxItem Tag="Consolas" FontFamily="{StaticResource Consolas}" Content="Consolas"/>
-                <ComboBoxItem Tag="SegoeUI" FontFamily="{StaticResource SegoeUI}" Content="Segoe UI"/>
             </ComboBox>
         </controls:ExpandableSettingControl>
         <controls:ExpandableSettingControl
