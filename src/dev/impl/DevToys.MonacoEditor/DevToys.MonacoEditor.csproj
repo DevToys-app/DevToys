@@ -66,6 +66,7 @@
     <Compile Include="Monaco\Editor\CursorStyleConverter.cs" />
     <Compile Include="Monaco\Editor\CursorSurroundingLinesStyle.cs" />
     <Compile Include="Monaco\Editor\CursorSurroundingLinesStyleConverter.cs" />
+    <Compile Include="Monaco\Editor\DiffEditorConstructionOptions.cs" />
     <Compile Include="Monaco\Editor\Dimension.cs" />
     <Compile Include="Monaco\Editor\EditorFindOptions.cs" />
     <Compile Include="Monaco\Editor\EditorHoverOptions.cs" />

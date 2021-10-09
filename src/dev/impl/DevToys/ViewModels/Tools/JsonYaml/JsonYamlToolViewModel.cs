@@ -62,18 +62,20 @@ namespace DevToys.ViewModels.Tools.JsonYaml
                         if (JsonHelper.IsValidJson(OutputValue))
                         {
                             InputValue = OutputValue;
-                            InputValueLanguage = "json";
-                            OutputValueLanguage = "yaml";
                         }
+
+                        InputValueLanguage = "json";
+                        OutputValueLanguage = "yaml";
                     }
                     else
                     {
                         if (YamlHelper.IsValidYaml(OutputValue))
                         {
                             InputValue = OutputValue;
-                            InputValueLanguage = "yaml";
-                            OutputValueLanguage = "json";
                         }
+
+                        InputValueLanguage = "yaml";
+                        OutputValueLanguage = "json";
                     }
 
                     _setPropertyInProgress = false;

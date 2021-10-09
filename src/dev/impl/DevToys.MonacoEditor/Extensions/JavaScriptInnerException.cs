@@ -9,7 +9,7 @@ namespace DevToys.MonacoEditor.Extensions
         public string JavaScriptStackTrace { get; private set; } // TODO Use Enum of JS error types https://www.w3schools.com/js/js_errors.asp
 
         public JavaScriptInnerException(string message, string stack)
-            : base(message)
+            : base(message + "\r\n" + stack)
         {
             JavaScriptStackTrace = stack;
         }

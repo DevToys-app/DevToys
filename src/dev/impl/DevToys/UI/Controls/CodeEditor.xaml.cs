@@ -3,6 +3,7 @@
 using DevToys.Api.Core.Settings;
 using DevToys.Core;
 using DevToys.Core.Settings;
+using DevToys.MonacoEditor.Extensions;
 using DevToys.MonacoEditor.Monaco.Editor;
 using System;
 using System.Threading.Tasks;
@@ -54,6 +55,19 @@ namespace DevToys.UI.Controls
             set => SetValue(HeaderProperty, value);
         }
 
+        public static readonly DependencyProperty ErrorMessageProperty
+            = DependencyProperty.Register(
+                nameof(ErrorMessage),
+                typeof(string),
+                typeof(CodeEditor),
+                new PropertyMetadata(string.Empty));
+
+        public string ErrorMessage
+        {
+            get => (string)GetValue(ErrorMessageProperty);
+            set => SetValue(ErrorMessageProperty, value);
+        }
+
         public static readonly DependencyProperty IsReadOnlyProperty
             = DependencyProperty.Register(
                 nameof(IsReadOnly),
@@ -93,13 +107,76 @@ namespace DevToys.UI.Controls
             set => SetValue(TextProperty, value);
         }
 
+        public static readonly DependencyProperty IsDiffViewModeProperty
+            = DependencyProperty.Register(
+                nameof(IsDiffViewMode),
+                typeof(bool),
+                typeof(CodeEditor),
+                new PropertyMetadata(false));
+
+        public bool IsDiffViewMode
+        {
+            get => (bool)GetValue(IsDiffViewModeProperty);
+            set => SetValue(IsDiffViewModeProperty, value);
+        }
+
+        public static readonly DependencyProperty DiffLeftTextProperty
+            = DependencyProperty.Register(
+                nameof(DiffLeftText),
+                typeof(string),
+                typeof(CodeEditor),
+                new PropertyMetadata(string.Empty));
+
+        public string DiffLeftText
+        {
+            get => (string)GetValue(DiffLeftTextProperty);
+            set => SetValue(DiffLeftTextProperty, value);
+        }
+
+        public static readonly DependencyProperty DiffRightTextProperty
+            = DependencyProperty.Register(
+                nameof(DiffRightText),
+                typeof(string),
+                typeof(CodeEditor),
+                new PropertyMetadata(string.Empty));
+
+        public string DiffRightText
+        {
+            get => (string)GetValue(DiffRightTextProperty);
+            set => SetValue(DiffRightTextProperty, value);
+        }
+
+        public static readonly DependencyProperty InlineDiffViewModeProperty
+            = DependencyProperty.Register(
+                nameof(InlineDiffViewMode),
+                typeof(bool),
+                typeof(CodeEditor),
+                new PropertyMetadata(
+                    false,
+                    (d, e) =>
+                    {
+                        ((CodeEditor)d).CodeEditorCore.DiffOptions.RenderSideBySide = !(bool)e.NewValue;
+                    }));
+
+        public bool InlineDiffViewMode
+        {
+            get => (bool)GetValue(InlineDiffViewModeProperty);
+            set => SetValue(InlineDiffViewModeProperty, value);
+        }
+
         public CodeEditor()
         {
             InitializeComponent();
 
             CodeEditorCore.Loading += CodeEditorCore_Loading;
+            CodeEditorCore.InternalException += CodeEditorCore_InternalException;
 
             UpdateUI();
+        }
+
+        private void CodeEditorCore_InternalException(MonacoEditor.CodeEditorControl.CodeEditorCore sender, Exception args)
+        {
+            ErrorMessage = $"{args.Message}\r\n{args.InnerException?.Message}";
         }
 
         private void CodeEditorCore_Loading(object sender, RoutedEventArgs e)
@@ -121,6 +198,23 @@ namespace DevToys.UI.Controls
                 Enabled = false
             };
             CodeEditorCore.Options.Hover = new EditorHoverOptions()
+            {
+                Enabled = false
+            };
+
+            CodeEditorCore.DiffOptions.GlyphMargin = false;
+            CodeEditorCore.DiffOptions.MouseWheelZoom = false;
+            CodeEditorCore.DiffOptions.OverviewRulerBorder = false;
+            CodeEditorCore.DiffOptions.ScrollBeyondLastLine = false;
+            CodeEditorCore.DiffOptions.FontLigatures = true;
+            CodeEditorCore.DiffOptions.SnippetSuggestions = SnippetSuggestions.None;
+            CodeEditorCore.DiffOptions.CodeLens = false;
+            CodeEditorCore.DiffOptions.QuickSuggestions = false;
+            CodeEditorCore.DiffOptions.Minimap = new EditorMinimapOptions()
+            {
+                Enabled = false
+            };
+            CodeEditorCore.DiffOptions.Hover = new EditorHoverOptions()
             {
                 Enabled = false
             };
@@ -164,6 +258,12 @@ namespace DevToys.UI.Controls
                 CodeEditorCore.Options.RenderLineHighlight = settingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine) ? RenderLineHighlight.All : RenderLineHighlight.None;
                 CodeEditorCore.Options.RenderWhitespace = settingsProvider.GetSetting(PredefinedSettings.TextEditorRenderWhitespace) ? RenderWhitespace.All : RenderWhitespace.None;
                 CodeEditorCore.Options.FontFamily = settingsProvider.GetSetting(PredefinedSettings.TextEditorFont);
+                CodeEditorCore.DiffOptions.WordWrapMinified = settingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping);
+                CodeEditorCore.DiffOptions.WordWrap = settingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping) ? WordWrap.On : WordWrap.Off;
+                CodeEditorCore.DiffOptions.LineNumbers = settingsProvider.GetSetting(PredefinedSettings.TextEditorLineNumbers) ? LineNumbersType.On : LineNumbersType.Off;
+                CodeEditorCore.DiffOptions.RenderLineHighlight = settingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine) ? RenderLineHighlight.All : RenderLineHighlight.None;
+                CodeEditorCore.DiffOptions.RenderWhitespace = settingsProvider.GetSetting(PredefinedSettings.TextEditorRenderWhitespace) ? RenderWhitespace.All : RenderWhitespace.None;
+                CodeEditorCore.DiffOptions.FontFamily = settingsProvider.GetSetting(PredefinedSettings.TextEditorFont);
             }
         }
 
@@ -194,6 +294,21 @@ namespace DevToys.UI.Controls
                 GetPasteButton().Visibility = Visibility.Visible;
                 GetOpenFileButton().Visibility = Visibility.Visible;
                 GetClearButton().Visibility = Visibility.Visible;
+            }
+
+            if (IsDiffViewMode)
+            {
+                if (CopyButton is not null)
+                {
+                    CopyButton.Visibility = Visibility.Collapsed;
+                }
+
+                if (PasteButton is not null)
+                {
+                    PasteButton.Visibility = Visibility.Collapsed;
+                    OpenFileButton.Visibility = Visibility.Collapsed;
+                    ClearButton.Visibility = Visibility.Collapsed;
+                }
             }
         }
 

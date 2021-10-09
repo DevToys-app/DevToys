@@ -51,6 +51,19 @@ var updateContent = function (content) {
     }
 };
 
+var updateDiffContent = function (left, right) {
+    var diffModel = (model as unknown) as monaco.editor.IDiffEditorModel;
+
+    // Need to ignore updates from us notifying of a change
+    if (left != diffModel.original.getValue()) {
+        diffModel.original.setValue(left);
+    }
+
+    if (right != diffModel.modified.getValue()) {
+        diffModel.modified.setValue(right);
+    }
+};
+
 var updateDecorations = function (newHighlights) {
     if (newHighlights) {
         decorations = editor.deltaDecorations(decorations, newHighlights);
@@ -79,9 +92,31 @@ var getOptions = function (): monaco.editor.IEditorOptions {
     return {};
 };
 
+var getDiffOptions = function (): monaco.editor.IDiffEditorOptions {
+    let opt = null;
+    try {
+        opt = JSON.parse(Parent.getJsonValue("DiffOptions"));
+    } finally {
+
+    }
+
+    if (opt != null && typeof opt === "object") {
+        return opt;
+    }
+
+    return {};
+};
+
 var updateOptions = function (opt: monaco.editor.IEditorOptions) {
     if (opt != null && typeof opt === "object") {
         editor.updateOptions(opt);
+    }
+};
+
+var updateDiffOptions = function (opt: monaco.editor.IDiffEditorOptions) {
+    var diffEditor = (editor as unknown) as monaco.editor.IStandaloneDiffEditor;
+    if (opt != null && typeof opt === "object") {
+        diffEditor.updateOptions(opt);
     }
 };
 

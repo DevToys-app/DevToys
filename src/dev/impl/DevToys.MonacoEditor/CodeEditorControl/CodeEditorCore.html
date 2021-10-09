@@ -38,28 +38,42 @@
         require(['vs/editor/editor.main'], function () {
             Debug.log("Grabbing Monaco Options");
 
-            let opt = getOptions();
-            opt["value"] = Parent.getValue("Text");
+            var isDiffView = Parent.getValue("IsDiffViewMode");
 
-            editor = monaco.editor.create(document.getElementById('container'), opt);
-            model = editor.getModel();
+            if (isDiffView) {
+                let opt = getDiffOptions();
+                editor = monaco.editor.createDiffEditor(document.getElementById('container'), opt);
+                var originalModel = monaco.editor.createModel("", "text/plain");
+                var modifiedModel = monaco.editor.createModel("", "text/plain");
+                editor.setModel({
+                    original: originalModel,
+                    modified: modifiedModel
+                });
+                model = editor.getModel();
+            }
+            else {
+                let opt = getOptions();
+                opt["value"] = Parent.getValue("Text");
+                editor = monaco.editor.create(document.getElementById('container'), opt);
+                model = editor.getModel();
 
-            // Listen for Content Changes
-            model.onDidChangeContent((event) => {
-                Parent.setValue("Text", model.getValue());
-                //console.log("buffers: " + JSON.stringify(model._buffer._pieceTree._buffers));
-                //console.log("commandMgr: " + JSON.stringify(model._commandManager));
-                //console.log("viewState:" + JSON.stringify(editor.saveViewState()));
-            });
+                // Listen for Content Changes
+                model.onDidChangeContent((event) => {
+                    Parent.setValue("Text", model.getValue());
+                    //console.log("buffers: " + JSON.stringify(model._buffer._pieceTree._buffers));
+                    //console.log("commandMgr: " + JSON.stringify(model._commandManager));
+                    //console.log("viewState:" + JSON.stringify(editor.saveViewState()));
+                });
 
-            // Listen for Selection Changes
-            editor.onDidChangeCursorSelection((event) => {
-                if (!modifingSelection) {
-                    console.log(event.source);
-                    Parent.setValue("SelectedText", model.getValueInRange(event.selection));
-                    Parent.setValue("SelectedRange", JSON.stringify(event.selection), "Selection");
-                }
-            })
+                // Listen for Selection Changes
+                editor.onDidChangeCursorSelection((event) => {
+                    if (!modifingSelection) {
+                        console.log(event.source);
+                        Parent.setValue("SelectedText", model.getValueInRange(event.selection));
+                        Parent.setValue("SelectedRange", JSON.stringify(event.selection), "Selection");
+                    }
+                })
+            }
 
             // Set theme
             let theme = Parent.getJsonValue("RequestedTheme");

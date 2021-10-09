@@ -16,6 +16,6 @@ namespace DevToys.MonacoEditor.Monaco.Editor
         /// To switch a theme, use `monaco.editor.setTheme`
         /// </summary>
         [JsonProperty("theme", NullValueHandling = NullValueHandling.Ignore)]
-        string Theme { get; set; }
+        string? Theme { get; set; }
     }
 }

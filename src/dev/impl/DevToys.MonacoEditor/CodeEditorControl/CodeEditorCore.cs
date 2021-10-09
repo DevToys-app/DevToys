@@ -174,6 +174,10 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                         {
                             editor.Options.ReadOnly = bool.Parse(e.NewValue?.ToString() ?? "false");
                         }
+                        if (editor.DiffOptions != null && editor.IsEditorLoaded)
+                        {
+                            editor.DiffOptions.OriginalEditable = !bool.Parse(e.NewValue?.ToString() ?? "false");
+                        }
                     }));
 
         /// <summary>
@@ -227,6 +231,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                     (d, e) =>
                     {
                         ((CodeEditorCore)d).Options.GlyphMargin = e.NewValue as bool?;
+                        ((CodeEditorCore)d).DiffOptions.GlyphMargin = e.NewValue as bool?;
                     }));
 
         /// <summary>
@@ -354,6 +359,95 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             set => SetValue(MarkersProperty, value);
         }
 
+        public static DependencyProperty IsDiffViewModeProperty { get; }
+            = DependencyProperty.Register(
+                nameof(IsDiffViewMode),
+                typeof(bool),
+                typeof(CodeEditorCore),
+                new PropertyMetadata(false));
+
+        public bool IsDiffViewMode
+        {
+            get => (bool)GetValue(IsDiffViewModeProperty);
+            set => SetValue(IsDiffViewModeProperty, value);
+        }
+
+        public static DependencyProperty DiffLeftTextProperty { get; }
+            = DependencyProperty.Register(
+                nameof(DiffLeftText),
+                typeof(string),
+                typeof(CodeEditorCore),
+                new PropertyMetadata(
+                    string.Empty,
+                    (d, e) =>
+                    {
+                        var codeEditor = (CodeEditorCore)d;
+                        if (!codeEditor.IsSettingValue && codeEditor.IsDiffViewMode)
+                        {
+                            _ = codeEditor.InvokeScriptAsync("updateDiffContent", new object[] { e.NewValue.ToString(), codeEditor.DiffRightText });
+                        }
+                    }));
+
+        public string DiffLeftText
+        {
+            get => (string)GetValue(DiffLeftTextProperty);
+            set => SetValue(DiffLeftTextProperty, value);
+        }
+
+        public static DependencyProperty DiffRightTextProperty { get; }
+            = DependencyProperty.Register(
+                nameof(DiffRightText),
+                typeof(string),
+                typeof(CodeEditorCore),
+                new PropertyMetadata(
+                    string.Empty,
+                    (d, e) =>
+                    {
+                        var codeEditor = (CodeEditorCore)d;
+                        if (!codeEditor.IsSettingValue && codeEditor.IsDiffViewMode)
+                        {
+                            _ = codeEditor.InvokeScriptAsync("updateDiffContent", new object[] { codeEditor.DiffLeftText, e.NewValue.ToString() });
+                        }
+                    }));
+
+        public string DiffRightText
+        {
+            get => (string)GetValue(DiffRightTextProperty);
+            set => SetValue(DiffRightTextProperty, value);
+        }
+
+        public static DependencyProperty DiffOptionsProperty { get; }
+            = DependencyProperty.Register(
+                nameof(DiffOptions),
+                typeof(DiffEditorConstructionOptions),
+                typeof(CodeEditorCore),
+                new PropertyMetadata(
+                    null,
+                    (d, e) =>
+                    {
+                        if (d is CodeEditorCore editor)
+                        {
+                            if (e.OldValue is DiffEditorConstructionOptions oldValue)
+                            {
+                                oldValue.PropertyChanged -= editor.DiffOptions_PropertyChanged;
+                            }
+
+                            if (e.NewValue is DiffEditorConstructionOptions value)
+                            {
+                                value.PropertyChanged += editor.DiffOptions_PropertyChanged;
+                            }
+                        }
+                    }));
+
+        /// <summary>
+        /// Get or set the CodeEditorCore Options. Node: Will overwrite CodeLanguage.
+        /// </summary>
+        public DiffEditorConstructionOptions DiffOptions
+        {
+            get => (DiffEditorConstructionOptions)GetValue(DiffOptionsProperty);
+            set => SetValue(DiffOptionsProperty, value);
+        }
+
         /// <summary>
         /// When Editor is Loading, it is ready to receive commands to the Monaco Engine.
         /// </summary>
@@ -403,12 +497,15 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             DefaultStyleKey = typeof(CodeEditorCore);
 
             Options = new StandaloneEditorConstructionOptions();
+            DiffOptions = new DiffEditorConstructionOptions();
 
             // Set Pass-Thru Properties
             Options.GlyphMargin = HasGlyphMargin;
+            DiffOptions.GlyphMargin = HasGlyphMargin;
 
             // Register for changes
             Options.PropertyChanged += Options_PropertyChanged;
+            DiffOptions.PropertyChanged += DiffOptions_PropertyChanged;
 
             // Initialize this here so property changed event will fire and register collection changed event.
             Decorations = new ObservableVector<ModelDeltaDecoration>();
@@ -421,7 +518,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
 
         private async void Options_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (!(sender is StandaloneEditorConstructionOptions options))
+            if (!(sender is StandaloneEditorConstructionOptions options) || IsDiffViewMode)
             {
                 return;
             }
@@ -454,6 +551,32 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             await InvokeScriptAsync("updateOptions", options);
         }
 
+        private async void DiffOptions_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (!(sender is DiffEditorConstructionOptions options) || !IsDiffViewMode)
+            {
+                return;
+            }
+
+            if (e.PropertyName == nameof(DiffEditorConstructionOptions.GlyphMargin))
+            {
+                if (HasGlyphMargin != options.GlyphMargin)
+                {
+                    options.GlyphMargin = HasGlyphMargin;
+                }
+            }
+
+            if (e.PropertyName == nameof(DiffEditorConstructionOptions.ReadOnly))
+            {
+                if (ReadOnly != options.ReadOnly)
+                {
+                    options.ReadOnly = ReadOnly;
+                }
+            }
+
+            await InvokeScriptAsync("updateDiffOptions", options);
+        }
+
         private void CodeEditor_Loaded(object sender, RoutedEventArgs e)
         {
             // Do this the 2nd time around.
@@ -462,6 +585,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                 _model = new ModelHelper(this);
 
                 Options.PropertyChanged += Options_PropertyChanged;
+                DiffOptions.PropertyChanged += DiffOptions_PropertyChanged;
 
                 Decorations.VectorChanged += Decorations_VectorChanged;
                 Markers.VectorChanged += Markers_VectorChanged;
@@ -494,6 +618,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             Markers.VectorChanged -= Markers_VectorChanged;
 
             Options.PropertyChanged -= Options_PropertyChanged;
+            DiffOptions.PropertyChanged -= DiffOptions_PropertyChanged;
 
             UnregisterPropertyChangedCallback(RequestedThemeProperty, _themeToken);
             _keyboardListener = null;
@@ -723,6 +848,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
 
             Options.ReadOnly = ReadOnly;
             Options.Language = CodeLanguage;
+            DiffOptions.OriginalEditable = !ReadOnly;
 
             // Now we're done loading
             Loading?.Invoke(this, new RoutedEventArgs());
