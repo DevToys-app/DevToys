@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <Package
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
@@ -6,73 +6,78 @@
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
   xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
   IgnorableNamespaces="uap mp desktop4">
 
-  <!-- Please DO NOT commit changes on the version number below unless you're about to release a new version of the app on the Store. -->
-  <Identity
-      Name="DevToysPreview"
-      Publisher="CN=etiennebaudoux"
-      Version="0.0.0.0" />
+    <!-- Please DO NOT commit changes on the version number below unless you're about to release a new version of the app on the Store. -->
+    <Identity
+        Name="DevToysPreview"
+        Publisher="CN=etiennebaudoux"
+        Version="0.6.0.0" />
 
-  <!-- TODO: maybe we need to remove this when adding runFullTrust capability -->
-  <mp:PhoneIdentity PhoneProductId="c12088ee-f979-4809-8039-7851a3aa2b7a" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+    <!-- TODO: maybe we need to remove this when adding runFullTrust capability -->
+    <mp:PhoneIdentity PhoneProductId="c12088ee-f979-4809-8039-7851a3aa2b7a" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
-  <Properties>
-    <DisplayName>DevToys - Preview</DisplayName>
-    <PublisherDisplayName>etiennebaudoux</PublisherDisplayName>
-    <Logo>Assets\Logo\StoreLogo.png</Logo>
-  </Properties>
+    <Properties>
+        <DisplayName>DevToys - Preview</DisplayName>
+        <PublisherDisplayName>etiennebaudoux</PublisherDisplayName>
+        <Logo>Assets\Logo\StoreLogo.png</Logo>
+    </Properties>
 
-  <Dependencies>
-    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
-    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.14393.0" MaxVersionTested="10.0.14393.0" />
-  </Dependencies>
+    <Dependencies>
+        <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
+        <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.14393.0" MaxVersionTested="10.0.14393.0" />
+    </Dependencies>
 
-  <Resources>
-    <Resource Language="x-generate"/>
-  </Resources>
+    <Resources>
+        <Resource Language="x-generate"/>
+    </Resources>
 
-  <Applications>
-    <Application Id="App"
-      Executable="$targetnametoken$.exe"
-      EntryPoint="$targetentrypoint$"
-      desktop4:SupportsMultipleInstances="true">
-      <uap:VisualElements
-        DisplayName="DevToys - Preview"
-        Description="A Swiss-knife for developers."
-        BackgroundColor="transparent"
-        Square150x150Logo="Assets\Logo\Square150x150Logo.png"
-        Square44x44Logo="Assets\Logo\Square44x44Logo.png">
-        <uap:DefaultTile Wide310x150Logo="Assets\Logo\Wide310x150Logo.png" ShortName="DevToys" Square310x310Logo="Assets\Logo\LargeTile.png" Square71x71Logo="Assets\Logo\SmallTile.png">
-          <uap:ShowNameOnTiles>
-            <uap:ShowOn Tile="square150x150Logo"/>
-            <uap:ShowOn Tile="wide310x150Logo"/>
-            <uap:ShowOn Tile="square310x310Logo"/>
-          </uap:ShowNameOnTiles>
-        </uap:DefaultTile >
-        <uap:SplashScreen Image="Assets\Logo\SplashScreen.png" uap5:Optional="true" />
-        <uap:InitialRotationPreference>
-          <uap:Rotation Preference="landscape"/>
-          <uap:Rotation Preference="portrait"/>
-          <uap:Rotation Preference="landscapeFlipped"/>
-          <uap:Rotation Preference="portraitFlipped"/>
-        </uap:InitialRotationPreference>
-      </uap:VisualElements>
-      <Extensions>
-        <uap:Extension Category="windows.protocol">
-          <uap:Protocol ReturnResults="none" Name="devtoys">
-            <uap:DisplayName>DevToys URI Scheme</uap:DisplayName>
-            <uap:Logo>Assets\Logo\Square512.png</uap:Logo>
-          </uap:Protocol>
-        </uap:Extension>
-        <uap:Extension Category="windows.fileOpenPicker">
-          <uap:FileOpenPicker>
-            <uap:SupportedFileTypes>
-              <uap:SupportsAnyFileType/>
-            </uap:SupportedFileTypes>
-          </uap:FileOpenPicker>
-        </uap:Extension>
-      </Extensions>
-    </Application>
-  </Applications>
+    <Applications>
+        <Application Id="App"
+          Executable="$targetnametoken$.exe"
+          EntryPoint="$targetentrypoint$"
+          desktop4:SupportsMultipleInstances="true">
+            <uap:VisualElements
+              DisplayName="DevToys - Preview"
+              Description="A Swiss-knife for developers."
+              BackgroundColor="transparent"
+              Square150x150Logo="Assets\Logo\Square150x150Logo.png"
+              Square44x44Logo="Assets\Logo\Square44x44Logo.png">
+                <uap:DefaultTile Wide310x150Logo="Assets\Logo\Wide310x150Logo.png" ShortName="DevToys" Square310x310Logo="Assets\Logo\LargeTile.png" Square71x71Logo="Assets\Logo\SmallTile.png">
+                    <uap:ShowNameOnTiles>
+                        <uap:ShowOn Tile="square150x150Logo"/>
+                        <uap:ShowOn Tile="wide310x150Logo"/>
+                        <uap:ShowOn Tile="square310x310Logo"/>
+                    </uap:ShowNameOnTiles>
+                </uap:DefaultTile >
+                <uap:SplashScreen Image="Assets\Logo\SplashScreen.png" uap5:Optional="true" />
+                <uap:InitialRotationPreference>
+                    <uap:Rotation Preference="landscape"/>
+                    <uap:Rotation Preference="portrait"/>
+                    <uap:Rotation Preference="landscapeFlipped"/>
+                    <uap:Rotation Preference="portraitFlipped"/>
+                </uap:InitialRotationPreference>
+            </uap:VisualElements>
+            <Extensions>
+                <uap:Extension Category="windows.protocol">
+                    <uap:Protocol ReturnResults="none" Name="devtoys">
+                        <uap:DisplayName>DevToys URI Scheme</uap:DisplayName>
+                        <uap:Logo>Assets\Logo\Square512.png</uap:Logo>
+                    </uap:Protocol>
+                </uap:Extension>
+                <uap:Extension Category="windows.fileOpenPicker">
+                    <uap:FileOpenPicker>
+                        <uap:SupportedFileTypes>
+                            <uap:SupportsAnyFileType/>
+                        </uap:SupportedFileTypes>
+                    </uap:FileOpenPicker>
+                </uap:Extension>
+            </Extensions>
+        </Application>
+    </Applications>
+
+    <Capabilities>
+        <rescap:Capability Name="inputInjectionBrokered" />
+    </Capabilities>
 </Package>

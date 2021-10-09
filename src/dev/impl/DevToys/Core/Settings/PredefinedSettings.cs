@@ -53,6 +53,22 @@ namespace DevToys.Core.Settings
                 isRoaming: true,
                 defaultValue: true);
 
+        public static readonly string[] SupportedFonts
+            = new[]
+            {
+                "Fira Code",
+                "Source Code Pro",
+                "DejaVu Sans Mono",
+                "Menlo",
+                "Hack",
+                "Monaco",
+                "Cascadia Code",
+                "Cascadia Mono",
+                "Consolas",
+                "Courier New",
+                "Segoe UI",
+            };
+
         /// <summary>
         /// The font family name to use in the text editor.
         /// </summary>
@@ -60,7 +76,7 @@ namespace DevToys.Core.Settings
             = new(
                 name: nameof(TextEditorFont),
                 isRoaming: true,
-                defaultValue: "CascadiaMono");
+                defaultValue: "Cascadia Mono");
 
         /// <summary>
         /// Whether the text in the text editor should wrap.
@@ -88,5 +104,14 @@ namespace DevToys.Core.Settings
                 name: nameof(TextEditorHighlightCurrentLine),
                 isRoaming: true,
                 defaultValue: true);
+
+        /// <summary>
+        /// Whether white spaces should be rendered in the text editor.
+        /// </summary>
+        public static readonly SettingDefinition<bool> TextEditorRenderWhitespace
+            = new(
+                name: nameof(TextEditorRenderWhitespace),
+                isRoaming: true,
+                defaultValue: false);
     }
 }

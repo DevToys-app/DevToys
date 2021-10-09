@@ -87,7 +87,11 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
             for (int i = 0; i < decoded.Length; i++)
             {
                 current = decoded[i];
-                if (current == 65533) return false;
+                if (current == 65533)
+                {
+                    return false;
+                }
+
                 if (!(current == 0x9
                     || current == 0xA
                     || current == 0xD

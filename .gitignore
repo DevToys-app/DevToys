@@ -36,6 +36,13 @@ Generated\ Files/
 # Assembly Info file that is automatically updated on build
 SharedAssemblyInfo.cs
 
+# TypeScript ignores
+*.js
+*.js.map
+
+# Monaco Dependency (Download from https://microsoft.github.io/monaco-editor/)
+src/dev/impl/DevToys.MonacoEditor/monaco-editor
+
 # NUNIT
 *.VisualState.xml
 TestResult.xml

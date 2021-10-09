@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <ProjectGuid>{0FE678BB-9F9B-4495-B777-F9B1E11DA20C}</ProjectGuid>
+    <OutputType>winmdobj</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevToys.MonacoEditor</RootNamespace>
+    <AssemblyName>DevToys.MonacoEditor</AssemblyName>
+    <DefaultLanguage>en</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">$(Windows10SDKVersion)</TargetPlatformVersion>
+    <TargetPlatformMinVersion>$(Windows10MinSDKVersion)</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <AllowCrossPlatformRetargeting>false</AllowCrossPlatformRetargeting>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>false</TypeScriptSourceMap>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\shared\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="CodeEditorControl\CodeEditorCore.cs" />
+    <Compile Include="CodeEditorControl\InvertedBooleanConverter.cs" />
+    <Compile Include="Extensions\JavaScriptExecutionException.cs" />
+    <Compile Include="Extensions\JavaScriptInnerException.cs" />
+    <Compile Include="Extensions\WebViewExtensions.cs" />
+    <Compile Include="Extensions\DispatcherExtensions.cs" />
+    <Compile Include="Extensions\ThreadPriority.cs" />
+    <Compile Include="Helpers\DebugLogger.cs" />
+    <Compile Include="Helpers\DisposableSempahore.cs" />
+    <Compile Include="Helpers\IParentAccessorAcceptor.cs" />
+    <Compile Include="Helpers\KeyboardListener.cs" />
+    <Compile Include="Helpers\ParentAccessor.cs" />
+    <Compile Include="Helpers\ThemeListener.cs" />
+    <Compile Include="Helpers\WebKeyEventArgs.cs" />
+    <Compile Include="Monaco\Editor\AcceptSuggestionOnEnter.cs" />
+    <Compile Include="Monaco\Editor\AccessibilitySupport.cs" />
+    <Compile Include="Monaco\Editor\AccessibilitySupportConverter.cs" />
+    <Compile Include="Monaco\Editor\AutoClosingBrackets.cs" />
+    <Compile Include="Monaco\Editor\AutoClosingBracketsConverter.cs" />
+    <Compile Include="Monaco\Editor\AutoClosingOvertype.cs" />
+    <Compile Include="Monaco\Editor\AcceptSuggestionOnEnterConverter.cs" />
+    <Compile Include="Monaco\Editor\AutoClosingOvertypeConverter.cs" />
+    <Compile Include="Monaco\Editor\AutoClosingQuotes.cs" />
+    <Compile Include="Monaco\Editor\AutoClosingQuotesConverter.cs" />
+    <Compile Include="Monaco\Editor\AutoFindInSelection.cs" />
+    <Compile Include="Monaco\Editor\AutoFindInSelectionConverter.cs" />
+    <Compile Include="Monaco\Editor\AutoIndent.cs" />
+    <Compile Include="Monaco\Editor\AutoIndentConverter.cs" />
+    <Compile Include="Monaco\Editor\AutoSurround.cs" />
+    <Compile Include="Monaco\Editor\AutoSurroundConverter.cs" />
+    <Compile Include="Monaco\Editor\ContextKey.cs" />
+    <Compile Include="Monaco\Editor\CursorBlinking.cs" />
+    <Compile Include="Monaco\Editor\CursorBlinkingConverter.cs" />
+    <Compile Include="Monaco\Editor\CursorStyle.cs" />
+    <Compile Include="Monaco\Editor\CursorStyleConverter.cs" />
+    <Compile Include="Monaco\Editor\CursorSurroundingLinesStyle.cs" />
+    <Compile Include="Monaco\Editor\CursorSurroundingLinesStyleConverter.cs" />
+    <Compile Include="Monaco\Editor\DiffEditorConstructionOptions.cs" />
+    <Compile Include="Monaco\Editor\Dimension.cs" />
+    <Compile Include="Monaco\Editor\EditorFindOptions.cs" />
+    <Compile Include="Monaco\Editor\EditorHoverOptions.cs" />
+    <Compile Include="Monaco\Editor\EditorLightbulbOptions.cs" />
+    <Compile Include="Monaco\Editor\EditorMinimapOptions.cs" />
+    <Compile Include="Monaco\Editor\EndOfLinePreference.cs" />
+    <Compile Include="Monaco\Editor\EndOfLineSequence.cs" />
+    <Compile Include="Monaco\Editor\FoldingStrategy.cs" />
+    <Compile Include="Monaco\Editor\FoldingStrategyConverter.cs" />
+    <Compile Include="Monaco\Editor\GoToLocationOptions.cs" />
+    <Compile Include="Monaco\Editor\IActionDescriptor.cs" />
+    <Compile Include="Monaco\Editor\IContextKey.cs" />
+    <Compile Include="Monaco\Editor\IDiffEditorConstructionOptions.cs" />
+    <Compile Include="Monaco\Editor\IDiffEditorOptions.cs" />
+    <Compile Include="Monaco\Editor\IDimension.cs" />
+    <Compile Include="Monaco\Editor\EditorCommentsOptions.cs" />
+    <Compile Include="Monaco\Editor\IEditorConstructionOptions.cs" />
+    <Compile Include="Monaco\Editor\IEditorOptions.cs" />
+    <Compile Include="Monaco\Editor\EditorParameterHintOptions.cs" />
+    <Compile Include="Monaco\Editor\EditorScrollbarOptions.cs" />
+    <Compile Include="Monaco\Editor\IGlobalEditorOptions.cs" />
+    <Compile Include="Monaco\Editor\IMarker.cs" />
+    <Compile Include="Monaco\Editor\IMarkerData.cs" />
+    <Compile Include="Monaco\Editor\IModel.cs" />
+    <Compile Include="Monaco\Editor\InterfaceToClassConverter.cs" />
+    <Compile Include="Monaco\Editor\ModelDecorationMinimapOptions.cs" />
+    <Compile Include="Monaco\Editor\ModelDecorationOptions.cs" />
+    <Compile Include="Monaco\Editor\ModelDecorationOverviewRulerOptions.cs" />
+    <Compile Include="Monaco\Editor\ModelDeltaDecoration.cs" />
+    <Compile Include="Monaco\Editor\InsertMode.cs" />
+    <Compile Include="Monaco\Editor\InsertModeConverter.cs" />
+    <Compile Include="Monaco\Editor\RelatedInformation.cs" />
+    <Compile Include="Monaco\Editor\SingleEditOperation.cs" />
+    <Compile Include="Monaco\Editor\IStandaloneEditorConstructionOptions.cs" />
+    <Compile Include="Monaco\Editor\SuggestOptions.cs" />
+    <Compile Include="Monaco\Editor\IWordAtPosition.cs" />
+    <Compile Include="Monaco\Editor\LineNumbersType.cs" />
+    <Compile Include="Monaco\Editor\LineNumbersTypeConverter.cs" />
+    <Compile Include="Monaco\Editor\Marker.cs" />
+    <Compile Include="Monaco\Editor\MarkerData.cs" />
+    <Compile Include="Monaco\Editor\MatchBrackets.cs" />
+    <Compile Include="Monaco\Editor\MatchBracketsConverter.cs" />
+    <Compile Include="Monaco\Editor\MouseStyle.cs" />
+    <Compile Include="Monaco\Editor\MouseStyleConverter.cs" />
+    <Compile Include="Monaco\Editor\MultiCursorModifier.cs" />
+    <Compile Include="Monaco\Editor\MultiCursorModifierConverter.cs" />
+    <Compile Include="Monaco\Editor\MultiCursorPaste.cs" />
+    <Compile Include="Monaco\Editor\MultiCursorPasteConverter.cs" />
+    <Compile Include="Monaco\Editor\Multiple.cs" />
+    <Compile Include="Monaco\Editor\MultipleConverter.cs" />
+    <Compile Include="Monaco\Editor\RenderLineHighlight.cs" />
+    <Compile Include="Monaco\Editor\RenderLineHighlightConverter.cs" />
+    <Compile Include="Monaco\Editor\RenderWhitespace.cs" />
+    <Compile Include="Monaco\Editor\RenderWhitespaceConverter.cs" />
+    <Compile Include="Monaco\Editor\ScrollbarBehavior.cs" />
+    <Compile Include="Monaco\Editor\ScrollbarBehaviorConverter.cs" />
+    <Compile Include="Monaco\Editor\Show.cs" />
+    <Compile Include="Monaco\Editor\ShowConverter.cs" />
+    <Compile Include="Monaco\Editor\Side.cs" />
+    <Compile Include="Monaco\Editor\SideConverter.cs" />
+    <Compile Include="Monaco\Editor\SnippetSuggestions.cs" />
+    <Compile Include="Monaco\Editor\SnippetSuggestionsConverter.cs" />
+    <Compile Include="Monaco\Editor\StandaloneEditorConstructionOptions.cs" />
+    <Compile Include="Monaco\Editor\SuggestSelection.cs" />
+    <Compile Include="Monaco\Editor\SuggestSelectionConverter.cs" />
+    <Compile Include="Monaco\Editor\TabCompletion.cs" />
+    <Compile Include="Monaco\Editor\TabCompletionConverter.cs" />
+    <Compile Include="Monaco\Editor\TrackedRangeStickiness.cs" />
+    <Compile Include="Monaco\Editor\WordAtPosition.cs" />
+    <Compile Include="Monaco\Editor\WordWrap.cs" />
+    <Compile Include="Monaco\Editor\WordWrapConverter.cs" />
+    <Compile Include="Monaco\Editor\WrappingIndent.cs" />
+    <Compile Include="Monaco\Editor\WrappingIndentConverter.cs" />
+    <Compile Include="Monaco\Helpers\CssGlyphStyle.cs" />
+    <Compile Include="Monaco\Helpers\CssInlineStyle.cs" />
+    <Compile Include="Monaco\Helpers\CssLineStyle.cs" />
+    <Compile Include="Monaco\Helpers\CssStyleBroker.cs" />
+    <Compile Include="Monaco\Helpers\CssStyleConverter.cs" />
+    <Compile Include="Monaco\Helpers\ICssStyle.cs" />
+    <Compile Include="Monaco\Helpers\Json.cs" />
+    <Compile Include="Monaco\Helpers\TextDecoration.cs" />
+    <Compile Include="Monaco\Helpers\TextDecorationConverter.cs" />
+    <Compile Include="Monaco\LanguagesHelper.cs" />
+    <Compile Include="Monaco\Languages\Command.cs" />
+    <Compile Include="Monaco\Languages\CompletionContext.cs" />
+    <Compile Include="Monaco\Languages\CompletionItem.cs" />
+    <Compile Include="Monaco\Languages\CompletionItemInsertTextRule.cs" />
+    <Compile Include="Monaco\Languages\CompletionItemKind.cs" />
+    <Compile Include="Monaco\Languages\ICompletionItemProvider.cs" />
+    <Compile Include="Monaco\Languages\CompletionList.cs" />
+    <Compile Include="Monaco\Languages\CompletionTriggerKind.cs" />
+    <Compile Include="Monaco\Languages\Hover.cs" />
+    <Compile Include="Monaco\Languages\IHoverProvider.cs" />
+    <Compile Include="Monaco\Languages\LanguageExtensionPoint.cs" />
+    <Compile Include="Monaco\MarkdownString.cs" />
+    <Compile Include="Monaco\IPosition.cs" />
+    <Compile Include="Monaco\IRange.cs" />
+    <Compile Include="Monaco\KeyCode.cs" />
+    <Compile Include="Monaco\KeyMod.cs" />
+    <Compile Include="Monaco\MarkdownStringExtensions.cs" />
+    <Compile Include="Monaco\MarkerSeverity.cs" />
+    <Compile Include="Monaco\MarkerTag.cs" />
+    <Compile Include="Monaco\ModelHelper.cs" />
+    <Compile Include="Monaco\Position.cs" />
+    <Compile Include="Monaco\Range.cs" />
+    <Compile Include="Monaco\Selection.cs" />
+    <Compile Include="Monaco\SelectionDirection.cs" />
+    <Compile Include="Monaco\Uri.cs" />
+    <Compile Include="Monaco\IUriComponents.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <TypeScriptCompile Include="ts-helpermethods\Monaco.Helpers.KeyboardListener.ts">
+      <SubType>Designer</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ts-helpermethods\Monaco.Helpers.ParentAccessor.ts">
+      <SubType>Designer</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ts-helpermethods\updateSelectedContent.ts">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ts-helpermethods\otherScriptsToBeOrganized.ts">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ts-helpermethods\registerCompletionItemProvider.ts">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </TypeScriptCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CodeEditorControl\CodeEditorCore.html" />
+    <Content Include="monaco-editor\*.*" />
+    <Content Include="monaco-editor\min\**\*.*" />
+    <EmbeddedResource Include="Properties\DevToys.rd.xml" />
+    <Content Include="ts-helpermethods\*.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="$(NuGet_MicrosoftNETCoreUniversalWindowsPlatform)" />
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI" Version="$(Nuget_MicrosoftToolkitUwpUI)" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="$(Nuget_MicrosoftTypeScriptMSBuild)">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.UI.Xaml" Version="$(NuGet_MicrosoftUIXaml)" />
+    <PackageReference Include="Newtonsoft.Json" Version="$(NuGet_NewtonsoftJson)" />
+    <PackageReference Include="ObservableVector" Version="$(Nuget_ObservableVector)" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

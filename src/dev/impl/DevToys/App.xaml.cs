@@ -9,6 +9,7 @@ using DevToys.Core;
 using DevToys.Core.Settings;
 using DevToys.Core.Threading;
 using DevToys.Views;
+using Microsoft.Graphics.Canvas.Text;
 using System;
 using System.Globalization;
 using System.Linq;
@@ -31,6 +32,7 @@ namespace DevToys
     {
         private readonly Task<MefComposer> _mefComposer;
         private readonly Lazy<Task<IThemeListener>> _themeListener;
+        private readonly Lazy<Task<ISettingsProvider>> _settingsProvider;
 
         private bool _isDisposed;
 
@@ -56,6 +58,7 @@ namespace DevToys
 
             // Importing it in a Lazy because we can't import it before a Window is created.
             _themeListener = new Lazy<Task<IThemeListener>>(async () => (await _mefComposer).ExportProvider.GetExport<IThemeListener>());
+            _settingsProvider = new Lazy<Task<ISettingsProvider>>(async () => (await _mefComposer).ExportProvider.GetExport<ISettingsProvider>());
 
             InitializeComponent();
             Suspending += OnSuspending;
@@ -218,7 +221,31 @@ namespace DevToys
             // Apply the app color theme.
             (await _themeListener.Value).ApplyDesiredColorTheme();
 
+            // Change the text editor font if the current font isn't available on the system.
+            ValidateDefaultTextEditorFontAsync().Forget();
+
             return rootFrame;
+        }
+
+        private async Task ValidateDefaultTextEditorFontAsync()
+        {
+            await TaskScheduler.Default;
+
+            ISettingsProvider settingsProvider = await _settingsProvider.Value;
+            string currentFont = settingsProvider.GetSetting(PredefinedSettings.TextEditorFont);
+            string[] systemFonts = CanvasTextFormat.GetSystemFontFamilies();
+
+            if (!systemFonts.Contains(currentFont))
+            {
+                for (int i = 0; i < PredefinedSettings.SupportedFonts.Length; i++)
+                {
+                    if (systemFonts.Contains(PredefinedSettings.SupportedFonts[i]))
+                    {
+                        settingsProvider.SetSetting(PredefinedSettings.TextEditorFont, PredefinedSettings.SupportedFonts[i]);
+                        return;
+                    }
+                }
+            }
         }
     }
 }

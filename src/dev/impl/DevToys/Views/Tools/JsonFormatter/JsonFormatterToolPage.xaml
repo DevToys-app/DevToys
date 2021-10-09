@@ -6,7 +6,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:DevToys.UI.Controls"
     xmlns:formattedtextblock="using:DevToys.UI.Controls.FormattedTextBlock"
-    xmlns:texteditor="using:DevToys.UI.Controls.TextEditor"
     xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
     NavigationCacheMode="Required">
@@ -51,11 +50,13 @@
                 <ColumnDefinition MinWidth="100"/>
             </Grid.ColumnDefinitions>
 
-            <texteditor:TextEditor
+            <controls:CodeEditor
+                x:Name="InputCodeEditor"
                 Grid.Column="0"
                 Header="{x:Bind ViewModel.Strings.Input}"
                 SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
-                Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                CodeLanguage="json"/>
 
             <toolkit:GridSplitter
                 Grid.Column="1"
@@ -70,11 +71,14 @@
                 </toolkit:GridSplitter.Element>
             </toolkit:GridSplitter>
 
-            <formattedtextblock:FormattedTextBlock
-                x:Name="OutputTextBlock"
+            <controls:CodeEditor
+                x:Name="OutputCodeEditor"
                 Grid.Column="2"
                 Header="{x:Bind ViewModel.Strings.Output}"
-                SettingsProvider="{x:Bind ViewModel.SettingsProvider}"/>
+                SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
+                Text="{x:Bind ViewModel.OutputValue, Mode=OneWay}"
+                CodeLanguage="json"
+                IsReadOnly="True"/>
         </Grid>
     </Grid>
 </Page>

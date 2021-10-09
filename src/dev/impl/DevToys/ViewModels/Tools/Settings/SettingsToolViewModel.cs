@@ -8,11 +8,14 @@ using DevToys.Core;
 using DevToys.Core.Settings;
 using DevToys.Core.Threading;
 using DevToys.Views.Tools.Settings;
+using Microsoft.Graphics.Canvas.Text;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Composition;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
@@ -52,6 +55,8 @@ namespace DevToys.ViewModels.Settings
             set => _settingsProvider.SetSetting(PredefinedSettings.SmartDetection, value);
         }
 
+        internal ObservableCollection<string> SupportedFonts { get; } = new();
+
         internal string TextEditorFont
         {
             get => _settingsProvider.GetSetting(PredefinedSettings.TextEditorFont);
@@ -74,6 +79,12 @@ namespace DevToys.ViewModels.Settings
         {
             get => _settingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine);
             set => _settingsProvider.SetSetting(PredefinedSettings.TextEditorHighlightCurrentLine, value);
+        }
+
+        internal bool TextEditorRenderWhitespace
+        {
+            get => _settingsProvider.GetSetting(PredefinedSettings.TextEditorRenderWhitespace);
+            set => _settingsProvider.SetSetting(PredefinedSettings.TextEditorRenderWhitespace, value);
         }
 
         /// <summary>
@@ -113,6 +124,8 @@ namespace DevToys.ViewModels.Settings
             LicenseCommand = new AsyncRelayCommand(ExecuteLicenseCommandAsync);
             RateAndReviewCommand = new AsyncRelayCommand(ExecuteRateAndReviewCommandAsync);
             OpenLogsCommand = new AsyncRelayCommand(ExecuteOpenLogsCommandAsync);
+
+            LoadSupportedFontsAsync().Forget();
         }
 
         #region CopyVersionCommand
@@ -203,5 +216,22 @@ namespace DevToys.ViewModels.Settings
         }
 
         #endregion
+
+        private async Task LoadSupportedFontsAsync()
+        {
+            await TaskScheduler.Default;
+
+            string[] systemFonts = CanvasTextFormat.GetSystemFontFamilies();
+
+            for (int i = 0; i < PredefinedSettings.SupportedFonts.Length; i++)
+            {
+                if (systemFonts.Contains(PredefinedSettings.SupportedFonts[i]))
+                {
+                    SupportedFonts.Add(PredefinedSettings.SupportedFonts[i]);
+                }
+            }
+
+            OnPropertyChanged(nameof(TextEditorFont));
+        }
     }
 }

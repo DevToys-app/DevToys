@@ -183,6 +183,9 @@
   <data name="RateAndReview" xml:space="preserve">
     <value>Évaluez et commentez sur Microsoft Store</value>
   </data>
+  <data name="RenderWhitespace" xml:space="preserve">
+    <value>Afficher les espaces blanc</value>
+  </data>
   <data name="ReportProblem" xml:space="preserve">
     <value>Signaler un problème</value>
   </data>

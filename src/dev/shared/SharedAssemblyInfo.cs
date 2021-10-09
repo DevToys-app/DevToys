@@ -37,7 +37,7 @@ using System.Runtime.CompilerServices;
 
 // Please DO NOT commit changes on the 2 lines below unless
 // you're about to release a new version of the app on the Store.
-[assembly: AssemblyVersion("0.0.0.0")]
-[assembly: AssemblyFileVersion("0.0.0.0")]
+[assembly: AssemblyVersion("0.6.0.0")]
+[assembly: AssemblyFileVersion("0.6.0.0")]
 
 [assembly: InternalsVisibleTo("DevToys.Tests")]

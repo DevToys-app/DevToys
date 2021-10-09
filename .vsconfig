@@ -9,6 +9,9 @@
     "Microsoft.VisualStudio.Component.NuGet",
     "Microsoft.VisualStudio.Component.Roslyn.Compiler",
     "Microsoft.VisualStudio.Component.Roslyn.LanguageServices",
+    "Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions",
+    "Microsoft.VisualStudio.Component.TypeScript.4.3",
+    "Microsoft.VisualStudio.Component.JavaScript.TypeScript",
     "Microsoft.Component.MSBuild",
     "Microsoft.VisualStudio.Component.TextTemplating",
     "Microsoft.VisualStudio.Component.SQL.CLR",
@@ -17,6 +20,7 @@
     "Microsoft.VisualStudio.Component.AppInsights.Tools",
     "Microsoft.VisualStudio.Component.IntelliCode",
     "Microsoft.VisualStudio.Component.Windows10SDK.19041",
+    "Microsoft.VisualStudio.Component.Node.Tools",
     "Microsoft.ComponentGroup.Blend",
     "Microsoft.VisualStudio.ComponentGroup.MSIX.Packaging",
     "Microsoft.Component.NetFX.Native",
@@ -25,7 +29,6 @@
     "Microsoft.VisualStudio.ComponentGroup.UWP.Xamarin",
     "Microsoft.VisualStudio.ComponentGroup.UWP.Support",
     "Microsoft.VisualStudio.Workload.Universal",
-    "Component.GitHub.VisualStudio",
     "Microsoft.VisualStudio.Component.Git"
   ]
 }

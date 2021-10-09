@@ -3,10 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <FontFamily x:Key="FluentSystemIcons">ms-appx:///Assets/FluentSystemIcons-Regular.ttf#FluentSystemIcons-Regular</FontFamily>
-    <FontFamily x:Key="CascadiaMono">ms-appx:///Assets/CascadiaMono.ttf#Cascadia Mono</FontFamily>
-    <FontFamily x:Key="CascadiaCode">ms-appx:///Assets/CascadiaCode.ttf#Cascadia Code</FontFamily>
-    <FontFamily x:Key="SegoeUI">Segoe UI</FontFamily>
-    <FontFamily x:Key="Consolas">Consolas</FontFamily>
 
     <!-- Icons. Most of them are from https://github.com/microsoft/fluentui-system-icons/blob/master/icons.md -->
     <x:String x:Key="EnterCompactOverlayPathIconData">M41.6339 8.13376C42.122 7.64561 42.122 6.85415 41.6339 6.36599C41.1457 5.87784 40.3543 5.87784 39.8661 6.36599L29.5002 16.732V7.25C29.5002 6.55964 28.9405 6 28.2502 6C27.5598 6 27.0002 6.55964 27.0002 7.25V19.75C27.0002 20.4404 27.5598 21 28.2502 21H40.75C41.4404 21 42 20.4404 42 19.75C42 19.0596 41.4404 18.5 40.75 18.5H31.2676L41.6339 8.13376ZM8.5 12.25C8.5 10.1789 10.1789 8.5 12.25 8.5H20.1346C20.825 8.5 21.3846 7.94036 21.3846 7.25C21.3846 6.55964 20.825 6 20.1346 6H12.25C8.79822 6 6 8.79822 6 12.25V35.75C6 39.2018 8.79822 42 12.25 42H35.75C39.2018 42 42 39.2018 42 35.75V27.8654C42 27.175 41.4404 26.6154 40.75 26.6154C40.0596 26.6154 39.5 27.175 39.5 27.8654V35.75C39.5 37.8211 37.8211 39.5 35.75 39.5H24V29.2499C24 26.3504 21.6495 23.9999 18.75 23.9999H8.5V12.25ZM8.5 26.4999H18.75C20.2688 26.4999 21.5 27.7311 21.5 29.2499V39.5H12.25C10.1789 39.5 8.5 37.8211 8.5 35.75V26.4999Z</x:String>

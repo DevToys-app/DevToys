@@ -1,0 +1,79 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:monaco="using:DevToys.MonacoEditor.CodeEditorControl"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls">
+
+    <monaco:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
+
+    <Style TargetType="monaco:CodeEditorCore" >
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="monaco:CodeEditorCore">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderElement" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBackgroundDisabled}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderElement" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBorderBrushDisabled}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="PointerOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderElement" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBorderBrushPointerOver}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderElement" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBackgroundPointerOver}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderElement" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBackgroundFocused}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderElement" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBorderBrushFocused}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border
+                            x:Name="BorderElement"
+                            Background="{ThemeResource TextControlBackground}"
+                            BorderThickness="{ThemeResource TextControlBorderThemeThickness}"
+                            BorderBrush="{ThemeResource TextControlBorderBrush}"
+                            CornerRadius="4"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            IsHitTestVisible="False">
+                            <WebView
+                                x:Name="WebViewElement"
+                                DefaultBackgroundColor="Transparent"
+                                Margin="{TemplateBinding Padding}"
+                                Visibility="{Binding IsEditorLoaded,RelativeSource={RelativeSource TemplatedParent}}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch">
+                            </WebView>
+                        </Border>
+                        <muxc:ProgressRing
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Height="48"
+                            Width="48"
+                            IsActive="{Binding IsEditorLoaded, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource InvertedBooleanConverter}}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+</ResourceDictionary>

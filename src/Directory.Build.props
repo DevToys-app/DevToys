@@ -21,19 +21,21 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <Nuget_ColorCodeUwp>2.0.6</Nuget_ColorCodeUwp>
-        <Nuget_DiffPlex>1.7.0</Nuget_DiffPlex>
         <Nuget_GitInfo>2.2.0</Nuget_GitInfo>
         <NuGet_MicrosoftNETCoreUniversalWindowsPlatform>6.2.12</NuGet_MicrosoftNETCoreUniversalWindowsPlatform>
         <NuGet_MicrosoftToolkitMvvm>7.0.2</NuGet_MicrosoftToolkitMvvm>
+        <Nuget_MicrosoftToolkitUwpUI>7.0.2</Nuget_MicrosoftToolkitUwpUI>
         <Nuget_MicrosoftToolkitUwpUIBehaviors>7.0.2</Nuget_MicrosoftToolkitUwpUIBehaviors>
         <Nuget_MicrosoftToolkitUwpUIControls>7.0.2</Nuget_MicrosoftToolkitUwpUIControls>
+        <Nuget_MicrosoftTypeScriptMSBuild>4.4.2</Nuget_MicrosoftTypeScriptMSBuild>
         <NuGet_MicrosoftUIXaml>2.6.2</NuGet_MicrosoftUIXaml>
         <NuGet_MicrosoftWindowsSDKBuildTools>10.0.20348.19</NuGet_MicrosoftWindowsSDKBuildTools>
         <NuGet_MSTestTestAdapter>2.1.1</NuGet_MSTestTestAdapter>
         <NuGet_MSTestTestFramework>2.1.1</NuGet_MSTestTestFramework>
         <NuGet_NewtonsoftJson>12.0.3</NuGet_NewtonsoftJson>
+        <Nuget_ObservableVector>2.1.0</Nuget_ObservableVector>
         <NuGet_SystemComposition>5.0.0</NuGet_SystemComposition>
+        <NuGet_Win2D>1.26.0</NuGet_Win2D>
         <NuGet_YamlDotNet>11.2.1</NuGet_YamlDotNet>
     </PropertyGroup>
 </Project>
