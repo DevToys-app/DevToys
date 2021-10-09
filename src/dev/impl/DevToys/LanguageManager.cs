@@ -637,6 +637,11 @@ namespace DevToys
         public string RateAndReview => _resources.GetString("RateAndReview");
 
         /// <summary>
+        /// Gets the resource RenderWhitespace.
+        /// </summary>
+        public string RenderWhitespace => _resources.GetString("RenderWhitespace");
+
+        /// <summary>
         /// Gets the resource ReportProblem.
         /// </summary>
         public string ReportProblem => _resources.GetString("ReportProblem");
@@ -700,6 +705,11 @@ namespace DevToys
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("TextDiff");
 
         /// <summary>
+        /// Gets the resource Configuration.
+        /// </summary>
+        public string Configuration => _resources.GetString("Configuration");
+
+        /// <summary>
         /// Gets the resource Difference.
         /// </summary>
         public string Difference => _resources.GetString("Difference");
@@ -708,6 +718,11 @@ namespace DevToys
         /// Gets the resource DisplayName.
         /// </summary>
         public string DisplayName => _resources.GetString("DisplayName");
+
+        /// <summary>
+        /// Gets the resource InlineDifference.
+        /// </summary>
+        public string InlineDifference => _resources.GetString("InlineDifference");
 
         /// <summary>
         /// Gets the resource LeftText.

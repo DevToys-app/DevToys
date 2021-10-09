@@ -193,13 +193,15 @@
     <Compile Include="Core\Threading\ThreadPriority.cs" />
     <Compile Include="Core\TitleBar.cs" />
     <Compile Include="Core\ToolProviderFactory.cs" />
+    <Compile Include="UI\Controls\CodeEditor.xaml.cs">
+      <DependentUpon>CodeEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Controls\Notification.xaml.cs">
       <DependentUpon>Notification.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Helpers\JsonHelper.cs" />
     <Compile Include="Helpers\YamlHelper.cs" />
-    <Compile Include="UI\Controls\FormattedTextBlock\Languages\Yaml.cs" />
     <Compile Include="ViewModels\Tools\JsonYaml\JsonYamlToolProvider.cs" />
     <Compile Include="ViewModels\Tools\JsonYaml\JsonYamlToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\ToolProviderBase.cs" />
@@ -226,26 +228,8 @@
     <Compile Include="UI\Controls\ExpandableSettingHeaderControl.xaml.cs">
       <DependentUpon>ExpandableSettingHeaderControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Controls\FormattedTextBlock\CustomDelimiterChunker.cs" />
-    <Compile Include="UI\Controls\FormattedTextBlock\CustomWordChunker.cs" />
-    <Compile Include="UI\Controls\FormattedTextBlock\FormattedTextBlock.xaml.cs">
-      <DependentUpon>FormattedTextBlock.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Controls\FormattedTextBlock\IFormattedTextBlock.cs" />
     <Compile Include="UI\Controls\HighlightSpan.cs" />
     <Compile Include="UI\Controls\ICustomTextBox.cs" />
-    <Compile Include="UI\Controls\TextEditor\CommandHandlerResult.cs" />
-    <Compile Include="UI\Controls\TextEditor\ICommandHandler.cs" />
-    <Compile Include="UI\Controls\TextEditor\IKeyboardCommand.cs" />
-    <Compile Include="UI\Controls\TextEditor\KeyboardCommand.cs" />
-    <Compile Include="UI\Controls\TextEditor\KeyboardCommandHandler.cs" />
-    <Compile Include="UI\Controls\TextEditor\RtfBuilder.cs" />
-    <Compile Include="UI\Controls\TextEditor\RtfFormat.cs" />
-    <Compile Include="UI\Controls\TextEditor\TextEditor.xaml.cs">
-      <DependentUpon>TextEditor.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Controls\TextEditor\TextEditorCore.cs" />
-    <Compile Include="UI\Controls\TextEditor\TextFormatter.cs" />
     <Compile Include="UI\Converters\BooleanToGridLengthConverter.cs" />
     <Compile Include="UI\Converters\BooleanToScrollBarVisibilityConverter.cs" />
     <Compile Include="UI\Converters\BooleanToScrollModeConverter.cs" />
@@ -303,8 +287,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Icons\Idea.svg" />
-    <Content Include="Assets\CascadiaCode.ttf" />
-    <Content Include="Assets\CascadiaMono.ttf" />
     <Content Include="Assets\FluentSystemIcons-Regular.ttf" />
     <None Include="..\..\..\..\LICENSE.md">
       <Link>Assets\LICENSE.md</Link>
@@ -340,6 +322,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="UI\Controls\CodeEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Controls\CustomTextBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -352,17 +338,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UI\Controls\FormattedTextBlock\FormattedTextBlock.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="UI\Controls\Notification.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Controls\TextEditor\TextEditor.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -418,9 +396,6 @@
     <PRIResource Include="Strings\fr\TextDiff.resw" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="ColorCode.Core" Version="$(Nuget_ColorCodeUwp)" />
-    <PackageReference Include="ColorCode.UWP" Version="$(Nuget_ColorCodeUwp)" />
-    <PackageReference Include="DiffPlex" Version="$(Nuget_DiffPlex)" />
     <PackageReference Include="GitInfo" Version="$(Nuget_GitInfo)" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="$(NuGet_MicrosoftNETCoreUniversalWindowsPlatform)" />
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="$(NuGet_MicrosoftToolkitMvvm)" />
@@ -430,9 +405,16 @@
     <PackageReference Include="Newtonsoft.Json" Version="$(NuGet_NewtonsoftJson)" />
     <PackageReference Include="System.Composition" Version="$(NuGet_SystemComposition)" />
     <PackageReference Include="YamlDotNet" Version="$(NuGet_YamlDotNet)" />
+    <PackageReference Include="Win2D.uwp" Version="$(Nuget_Win2D)" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DevToys.MonacoEditor\DevToys.MonacoEditor.csproj">
+      <Project>{0fe678bb-9f9b-4495-b777-f9b1e11da20c}</Project>
+      <Name>DevToys.MonacoEditor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

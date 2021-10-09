@@ -1,0 +1,34 @@
+﻿<!--
+    To fully enable reflection for App1.MyClass and all of its public/private members
+    <Type Name="App1.MyClass" Dynamic="Required All"/>
+    
+    To enable dynamic creation of the specific instantiation of AppClass<T> over System.Int32
+    <TypeInstantiation Name="App1.AppClass" Arguments="System.Int32" Activate="Required Public" />
+    
+    Using the Namespace directive to apply reflection policy to all the types in a particular namespace
+    <Namespace Name="DataClasses.ViewModels" Serialize="All" />
+
+    Runtime Directives are documented at http://go.microsoft.com/fwlink/?LinkID=391919
+-->
+
+<Directives xmlns="http://schemas.microsoft.com/netfx/2013/01/metadata">
+    <Library Name="DevToys.MonacoEditor">
+        <!-- Add your library directives here -->
+        <Namespace Name="DevToys.MonacoEditor.Monaco.Editor" Serialize="All" Dynamic="All"/>
+        <Namespace Name="DevToys.MonacoEditor.Monaco.Helpers" Serialize="All" Dynamic="All"/>
+        <Namespace Name="DevToys.MonacoEditor.Monaco.Languages" Serialize="All" Dynamic="All"/>
+        <Namespace Name="DevToys.MonacoEditor.Monaco" Serialize="All" Dynamic="All"/>
+        <Namespace Name="DevToys.MonacoEditor" Serialize="All" Dynamic="All"/>
+
+        <Type Name="DevToys.MonacoEditor.Monaco.Helpers.InterfaceToClassConverter{TInterface, TClass}">
+            <GenericParameter Name="TInterface" Dynamic="All" />
+            <GenericParameter Name="TClass" Dynamic="All" />
+        </Type>
+
+        <Type Name="Newtonsoft.Json.JsonConvert">
+            <Method Name="SerializeObject">
+                <Parameter Name="value" Serialize="Required All" Dynamic="Required All" />
+            </Method>
+        </Type>
+    </Library>
+</Directives>

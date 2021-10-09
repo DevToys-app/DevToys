@@ -15,6 +15,12 @@ Function Restore-PackagesUnder($searchRoot) {
     }
 }
 
+Function Restore-MonacoEditor() {
+    # Restore Monaco Editor
+    Write-Host "Restoring Monaco Editor..." -ForegroundColor $HeaderColor
+    & "$toolsPath\Restore-MonacoEditor.ps1"
+}
+
 Push-Location $PSScriptRoot
 try {
     $EnvVarsSet = $false
@@ -25,6 +31,8 @@ try {
     if ($VerbosePreference -eq 'continue') { $nugetVerbosity = 'Detailed' }
 
     Restore-PackagesUnder "$PSScriptRoot\src"
+
+    Restore-MonacoEditor
 
     Write-Host "Successfully restored all dependencies" -ForegroundColor Yellow
 }

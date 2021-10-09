@@ -117,11 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Configuration" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
   <data name="Difference" xml:space="preserve">
     <value>Différence</value>
   </data>
   <data name="DisplayName" xml:space="preserve">
     <value>Comparateur de texte</value>
+  </data>
+  <data name="InlineDifference" xml:space="preserve">
+    <value>Mode inline</value>
   </data>
   <data name="LeftText" xml:space="preserve">
     <value>Ancien texte</value>

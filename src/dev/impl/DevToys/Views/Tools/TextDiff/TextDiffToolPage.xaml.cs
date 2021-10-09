@@ -42,8 +42,6 @@ namespace DevToys.Views.Tools.TextDiff
                 Assumes.NotNull(parameters.ViewModel, nameof(parameters.ViewModel));
                 ViewModel = (TextDiffToolViewModel)parameters.ViewModel!;
                 DataContext = ViewModel;
-
-                ViewModel.OutputTextBlock = OuputTextEditor;
             }
 
             base.OnNavigatedTo(e);

@@ -1,11 +1,9 @@
 ﻿#nullable enable
 
-using ColorCode;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
 using DevToys.Core;
 using DevToys.Core.Threading;
-using DevToys.UI.Controls.FormattedTextBlock;
 using DevToys.Views.Tools.JsonFormatter;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Newtonsoft.Json;
@@ -31,6 +29,7 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
 
         private bool _formattingInProgress;
         private string? _inputValue;
+        private string? _outputValue;
         private string _indentation = TwoSpaceIndentation;
 
         public Type View { get; } = typeof(JsonFormatterToolPage);
@@ -63,9 +62,14 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
             }
         }
 
+        internal string? OutputValue
+        {
+            get => _outputValue;
+            set => SetProperty(ref _outputValue, value);
+        }
+
         internal ISettingsProvider SettingsProvider { get; }
 
-        internal IFormattedTextBlock? OutputTextBlock { private get; set; }
 
         [ImportingConstructor]
         public JsonFormatterToolViewModel(ISettingsProvider settingsProvider)
@@ -86,8 +90,6 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
                 return;
             }
 
-            Assumes.NotNull(OutputTextBlock, nameof(OutputTextBlock));
-
             _formattingInProgress = true;
 
             await TaskScheduler.Default;
@@ -98,14 +100,7 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
 
                 ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, () =>
                 {
-                    if (success)
-                    {
-                        OutputTextBlock!.SetText(result, Languages.JavaScript);
-                    }
-                    else
-                    {
-                        OutputTextBlock!.SetText(result);
-                    }
+                    OutputValue = result;
                 }).ForgetSafely();
             }
 

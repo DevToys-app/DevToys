@@ -42,8 +42,6 @@ namespace DevToys.Views.Tools.JsonFormatter
                 Assumes.NotNull(parameters.ViewModel, nameof(parameters.ViewModel));
                 ViewModel = (JsonFormatterToolViewModel)parameters.ViewModel!;
                 DataContext = ViewModel;
-
-                ViewModel.OutputTextBlock = OutputTextBlock;
             }
 
             if (!string.IsNullOrWhiteSpace(parameters.ClipBoardContent))
