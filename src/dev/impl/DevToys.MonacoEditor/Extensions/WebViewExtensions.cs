@@ -8,7 +8,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.Data.Json;
-using Windows.Storage;
 using Windows.UI.Xaml.Controls;
 
 namespace DevToys.MonacoEditor.Extensions

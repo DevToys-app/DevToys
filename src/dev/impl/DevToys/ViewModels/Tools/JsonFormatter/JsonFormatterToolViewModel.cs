@@ -1,11 +1,9 @@
 ﻿#nullable enable
 
-using ColorCode;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
 using DevToys.Core;
 using DevToys.Core.Threading;
-using DevToys.UI.Controls.FormattedTextBlock;
 using DevToys.Views.Tools.JsonFormatter;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Newtonsoft.Json;

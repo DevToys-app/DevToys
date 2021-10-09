@@ -3,7 +3,6 @@
 using DevToys.Api.Core.Settings;
 using DevToys.Core;
 using DevToys.Core.Settings;
-using DevToys.MonacoEditor.Extensions;
 using DevToys.MonacoEditor.Monaco.Editor;
 using System;
 using System.Threading.Tasks;

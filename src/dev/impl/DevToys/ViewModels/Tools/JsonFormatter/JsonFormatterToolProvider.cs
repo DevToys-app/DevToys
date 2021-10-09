@@ -2,11 +2,7 @@
 
 using DevToys.Api.Core.Injection;
 using DevToys.Api.Tools;
-using DevToys.Core;
 using DevToys.Helpers;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
 using System.Composition;
 
 namespace DevToys.ViewModels.Tools.JsonFormatter

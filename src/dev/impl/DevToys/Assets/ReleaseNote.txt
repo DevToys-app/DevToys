@@ -1,4 +1,8 @@
-﻿  • Json <> Yaml converter
+﻿  • Brand new text editor which implies:
+    • Better Text Diff tool
+    • Better Json <> Yaml tool
+    • Better Json Formatter tool
+    • Less UI delay
 Upcoming in future updates:
   • JWT Decoder
   • Json to C#

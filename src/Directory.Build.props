@@ -21,8 +21,6 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <Nuget_ColorCodeUwp>2.0.6</Nuget_ColorCodeUwp>
-        <Nuget_DiffPlex>1.7.0</Nuget_DiffPlex>
         <Nuget_GitInfo>2.2.0</Nuget_GitInfo>
         <NuGet_MicrosoftNETCoreUniversalWindowsPlatform>6.2.12</NuGet_MicrosoftNETCoreUniversalWindowsPlatform>
         <NuGet_MicrosoftToolkitMvvm>7.0.2</NuGet_MicrosoftToolkitMvvm>
