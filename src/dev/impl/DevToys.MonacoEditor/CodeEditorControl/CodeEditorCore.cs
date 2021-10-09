@@ -177,6 +177,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                         if (editor.DiffOptions != null && editor.IsEditorLoaded)
                         {
                             editor.DiffOptions.OriginalEditable = !bool.Parse(e.NewValue?.ToString() ?? "false");
+                            editor.DiffOptions.ReadOnly = bool.Parse(e.NewValue?.ToString() ?? "false");
                         }
                     }));
 
@@ -849,6 +850,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             Options.ReadOnly = ReadOnly;
             Options.Language = CodeLanguage;
             DiffOptions.OriginalEditable = !ReadOnly;
+            DiffOptions.ReadOnly = ReadOnly;
 
             // Now we're done loading
             Loading?.Invoke(this, new RoutedEventArgs());
