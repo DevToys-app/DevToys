@@ -321,6 +321,7 @@ namespace DevToys.UI.Controls
                 string? text = await dataPackageView.GetTextAsync();
 
                 CodeEditorCore.SelectedText = text;
+                CodeEditorCore.Focus(FocusState.Programmatic);
             }
             catch (Exception ex)
             {
