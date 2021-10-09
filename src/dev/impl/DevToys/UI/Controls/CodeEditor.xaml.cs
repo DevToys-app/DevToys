@@ -5,12 +5,9 @@ using DevToys.Core;
 using DevToys.Core.Settings;
 using DevToys.MonacoEditor.Monaco.Editor;
 using System;
-using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 using Windows.Storage.Pickers;
-using Windows.System;
-using Windows.UI.Input.Preview.Injection;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Clipboard = Windows.ApplicationModel.DataTransfer.Clipboard;
@@ -323,22 +320,7 @@ namespace DevToys.UI.Controls
 
                 string? text = await dataPackageView.GetTextAsync();
 
-                // Inject Ctrl+V in the editor.
-                InputInjector inputInjector = InputInjector.TryCreate();
-                var ctrlKey = new InjectedInputKeyboardInfo();
-                ctrlKey.VirtualKey = (ushort)VirtualKey.LeftControl;
-                ctrlKey.KeyOptions = InjectedInputKeyOptions.None;
-                var vKey = new InjectedInputKeyboardInfo();
-                vKey.VirtualKey = (ushort)VirtualKey.V;
-                vKey.KeyOptions = InjectedInputKeyOptions.None;
-
-                CodeEditorCore.Focus(FocusState.Pointer);
-                await Task.Delay(100);
-
-                inputInjector.InjectKeyboardInput(new[] { ctrlKey, vKey });
-
-                ctrlKey.KeyOptions = InjectedInputKeyOptions.KeyUp;
-                inputInjector.InjectKeyboardInput(new[] { ctrlKey });
+                CodeEditorCore.SelectedText = text;
             }
             catch (Exception ex)
             {
