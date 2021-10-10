@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
 using DevToys.Core;
 using DevToys.Core.Threading;
@@ -18,10 +19,19 @@ namespace DevToys.ViewModels.Tools.HashGenerator
     [Export(typeof(HashGeneratorToolViewModel))]
     public sealed class HashGeneratorToolViewModel : ObservableRecipient, IToolViewModel
     {
+        /// <summary>
+        /// Whether the generated hash should be uppercase or lowercase.
+        /// </summary>
+        private static readonly SettingDefinition<bool> Uppercase
+            = new(
+                name: $"{nameof(HashGeneratorToolViewModel)}.{nameof(Uppercase)}",
+                isRoaming: true,
+                defaultValue: false);
+
+        private readonly ISettingsProvider _settingsProvider;
         private readonly Queue<string> _hashCalculationQueue = new();
 
         private bool _calculationInProgress;
-        private bool _isUppercase;
         private string? _input;
         private string? _md5;
         private string? _sha1;
@@ -34,11 +44,15 @@ namespace DevToys.ViewModels.Tools.HashGenerator
 
         internal bool IsUppercase
         {
-            get => _isUppercase;
+            get => _settingsProvider.GetSetting(Uppercase);
             set
             {
-                SetProperty(ref _isUppercase, value);
-                QueueHashCalculation();
+                if (_settingsProvider.GetSetting(Uppercase) != value)
+                {
+                    _settingsProvider.SetSetting(Uppercase, value);
+                    OnPropertyChanged();
+                    QueueHashCalculation();
+                }
             }
         }
 
@@ -74,6 +88,12 @@ namespace DevToys.ViewModels.Tools.HashGenerator
         {
             get => _sha512;
             private set => SetProperty(ref _sha512, value);
+        }
+
+        [ImportingConstructor]
+        public HashGeneratorToolViewModel(ISettingsProvider settingsProvider)
+        {
+            _settingsProvider = settingsProvider;
         }
 
         private void QueueHashCalculation()

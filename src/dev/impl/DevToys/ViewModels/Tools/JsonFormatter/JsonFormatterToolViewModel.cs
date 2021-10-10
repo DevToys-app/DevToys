@@ -20,6 +20,15 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
     [Export(typeof(JsonFormatterToolViewModel))]
     public sealed class JsonFormatterToolViewModel : ObservableRecipient, IToolViewModel
     {
+        /// <summary>
+        /// The indentation to apply while formatting.
+        /// </summary>
+        private static readonly SettingDefinition<string> Indentation
+            = new(
+                name: $"{nameof(JsonFormatterToolViewModel)}.{nameof(Indentation)}",
+                isRoaming: true,
+                defaultValue: TwoSpaceIndentation);
+
         private const string TwoSpaceIndentation = "TwoSpaces";
         private const string FourSpaceIndentation = "FourSpaces";
         private const string OneTabIndentation = "OneTab";
@@ -30,7 +39,6 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
         private bool _formattingInProgress;
         private string? _inputValue;
         private string? _outputValue;
-        private string _indentation = TwoSpaceIndentation;
 
         public Type View { get; } = typeof(JsonFormatterToolPage);
 
@@ -39,13 +47,17 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
         /// <summary>
         /// Gets or sets the desired indentation.
         /// </summary>
-        internal string Indentation
+        internal string IndentationMode
         {
-            get => _indentation;
+            get => SettingsProvider.GetSetting(Indentation);
             set
             {
-                SetProperty(ref _indentation, value);
-                QueueFormatting();
+                if (!string.Equals(SettingsProvider.GetSetting(Indentation), value, StringComparison.Ordinal))
+                {
+                    SettingsProvider.SetSetting(Indentation, value);
+                    OnPropertyChanged();
+                    QueueFormatting();
+                }
             }
         }
 
@@ -124,7 +136,7 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
                     using (var stringWriter = new StringWriter(stringBuilder))
                     using (var jsonTextWriter = new JsonTextWriter(stringWriter))
                     {
-                        switch (Indentation)
+                        switch (IndentationMode)
                         {
                             case TwoSpaceIndentation:
                                 jsonTextWriter.Formatting = Formatting.Indented;
@@ -169,7 +181,7 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
             }
             catch (Exception ex) //some other exception
             {
-                Logger.LogFault("Json formatter", ex, $"Indentation: {Indentation}");
+                Logger.LogFault("Json formatter", ex, $"Indentation: {IndentationMode}");
                 output = ex.Message;
                 return false;
             }

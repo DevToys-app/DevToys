@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
 using DevToys.Core;
 using DevToys.Core.Threading;
@@ -16,17 +17,35 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
     [Export(typeof(Base64EncoderDecoderToolViewModel))]
     public class Base64EncoderDecoderToolViewModel : ObservableRecipient, IToolViewModel
     {
+        /// <summary>
+        /// Whether the tool should encode or decode Base64.
+        /// </summary>
+        private static readonly SettingDefinition<string> Conversion
+            = new(
+                name: $"{nameof(Base64EncoderDecoderToolViewModel)}.{nameof(Conversion)}",
+                isRoaming: true,
+                defaultValue: DefaultConversion);
+
+        /// <summary>
+        /// Whether the tool should encode/decode in Unicode or ASCII.
+        /// </summary>
+        private static readonly SettingDefinition<string> Encoder
+            = new(
+                name: $"{nameof(Base64EncoderDecoderToolViewModel)}.{nameof(Encoder)}",
+                isRoaming: true,
+                defaultValue: DefaultEncoding);
+
         private const string DefaultEncoding = "UTF-8";
         private const string DefaultConversion = "Encode";
         internal const string DecodeConversion = "Decode";
 
+        private readonly ISettingsProvider _settingsProvider;
+        private readonly Queue<string> _conversionQueue = new();
+
         private string? _inputValue;
         private string? _outputValue;
-        private string _encodingMode = DefaultEncoding;
-        private string _conversionMode = DefaultConversion;
         private bool _conversionInProgress;
         private bool _setPropertyInProgress;
-        private readonly Queue<string> _conversionQueue = new();
 
         public Type View { get; } = typeof(Base64EncoderDecoderToolPage);
 
@@ -60,14 +79,18 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
         /// </summary>
         internal string ConversionMode
         {
-            get => _conversionMode;
+            get => _settingsProvider.GetSetting(Conversion);
             set
             {
                 if (!_setPropertyInProgress)
                 {
                     _setPropertyInProgress = true;
                     ThreadHelper.ThrowIfNotOnUIThread();
-                    SetProperty(ref _conversionMode, value);
+                    if (!string.Equals(_settingsProvider.GetSetting(Conversion), value, StringComparison.Ordinal))
+                    {
+                        _settingsProvider.SetSetting(Conversion, value);
+                        OnPropertyChanged();
+                    }
                     InputValue = OutputValue;
                     _setPropertyInProgress = false;
                 }
@@ -79,13 +102,23 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
         /// </summary>
         internal string EncodingMode
         {
-            get => _encodingMode;
+            get => _settingsProvider.GetSetting(Encoder);
             set
             {
                 ThreadHelper.ThrowIfNotOnUIThread();
-                SetProperty(ref _encodingMode, value);
-                QueueConversionCalculation();
+                if (!string.Equals(_settingsProvider.GetSetting(Encoder), value, StringComparison.Ordinal))
+                {
+                    _settingsProvider.SetSetting(Encoder, value);
+                    OnPropertyChanged();
+                    QueueConversionCalculation();
+                }
             }
+        }
+
+        [ImportingConstructor]
+        public Base64EncoderDecoderToolViewModel(ISettingsProvider settingsProvider)
+        {
+            _settingsProvider = settingsProvider;
         }
 
         private void QueueConversionCalculation()

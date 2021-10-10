@@ -33,6 +33,13 @@ namespace DevToys.Api.Core.Settings
         /// <param name="defaultValue">The default value of the setting.</param>
         public SettingDefinition(string name, bool isRoaming, T defaultValue)
         {
+            if (string.IsNullOrEmpty(name) || name.Length > 255)
+            {
+                // For both LocalSettings and RoamingSettings, the name of each setting can be 255 characters in length at most.
+                // see https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdata.localsettings?view=winrt-22000#remarks
+                throw new ArgumentOutOfRangeException(nameof(name));
+            }
+
             IsRoaming = isRoaming;
             Name = name;
             DefaultValue = defaultValue;

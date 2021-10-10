@@ -100,7 +100,9 @@
             TextWrapping="{x:Bind AcceptsReturn, Mode=OneWay, Converter={StaticResource BooleanToTextWrappingConverter}}"
             IsReadOnly="{x:Bind IsReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             AcceptsReturn="{x:Bind AcceptsReturn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            Text="{x:Bind Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            Text="{x:Bind Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            CopyingToClipboard="TextBox_CopyingToClipboard"
+            CuttingToClipboard="TextBox_CuttingToClipboard"/>
         <RichEditBox
             x:Name="RichEditBox"
             x:Load="{x:Bind IsRichTextEdit}"
@@ -111,7 +113,9 @@
             IsSpellCheckEnabled="False"
             TextWrapping="{x:Bind AcceptsReturn, Mode=OneWay, Converter={StaticResource BooleanToTextWrappingConverter}}"
             IsReadOnly="{x:Bind IsReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            AcceptsReturn="{x:Bind AcceptsReturn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            AcceptsReturn="{x:Bind AcceptsReturn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            CopyingToClipboard="RichEditBox_CopyingToClipboard"
+            CuttingToClipboard="RichEditBox_CuttingToClipboard">
             <RichEditBox.ContextFlyout>
                 <MenuFlyout>
                     <MenuFlyoutItem

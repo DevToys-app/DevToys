@@ -187,6 +187,18 @@ namespace DevToys
         {
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
+
+            try
+            {
+                // Bug #22: Here we flush the Clipboard to make sure content in clipboard to remain available
+                // after the application shuts down.
+                Windows.ApplicationModel.DataTransfer.Clipboard.Flush();
+            }
+            catch (Exception)
+            {
+                // ignore
+            }
+
             deferral.Complete();
         }
 
