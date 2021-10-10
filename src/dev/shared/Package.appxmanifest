@@ -76,8 +76,4 @@
             </Extensions>
         </Application>
     </Applications>
-
-    <Capabilities>
-        <rescap:Capability Name="inputInjectionBrokered" />
-    </Capabilities>
 </Package>
