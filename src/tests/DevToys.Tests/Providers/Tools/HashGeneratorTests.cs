@@ -19,6 +19,7 @@ namespace DevToys.Tests.Providers.Tools
 
             await ThreadHelper.RunOnUIThreadAsync(() =>
             {
+                viewModel.IsUppercase = false;
                 viewModel.Input = input;
             });
 
