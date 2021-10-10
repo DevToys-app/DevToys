@@ -116,6 +116,7 @@ namespace DevToys.UI.Controls
         private void ExecuteCutCommand()
         {
             RichEditBox.TextDocument.Selection.Cut();
+            Clipboard.Flush();
         }
 
         #endregion
