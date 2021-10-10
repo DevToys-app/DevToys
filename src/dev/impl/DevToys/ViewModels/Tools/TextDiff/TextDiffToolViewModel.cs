@@ -12,7 +12,15 @@ namespace DevToys.ViewModels.Tools.TextDiff
     [Export(typeof(TextDiffToolViewModel))]
     public sealed class TextDiffToolViewModel : ObservableRecipient, IToolViewModel
     {
-        private bool _inlineMode;
+        /// <summary>
+        /// Whether the text difference should be displayed inlined or side by side.
+        /// </summary>
+        private static readonly SettingDefinition<bool> Inline
+            = new(
+                name: $"{nameof(TextDiffToolViewModel)}.{nameof(Inline)}",
+                isRoaming: true,
+                defaultValue: false);
+
         private string? _oldText;
         private string? _newText;
 
@@ -24,8 +32,15 @@ namespace DevToys.ViewModels.Tools.TextDiff
 
         internal bool InlineMode
         {
-            get => _inlineMode;
-            set => SetProperty(ref _inlineMode, value, broadcast: true);
+            get => SettingsProvider.GetSetting(Inline);
+            set
+            {
+                if (SettingsProvider.GetSetting(Inline) != value)
+                {
+                    SettingsProvider.SetSetting(Inline, value);
+                    OnPropertyChanged();
+                }
+            }
         }
 
         internal string? OldText

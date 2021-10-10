@@ -23,6 +23,24 @@ namespace DevToys.ViewModels.Tools.JsonYaml
     [Export(typeof(JsonYamlToolViewModel))]
     public sealed class JsonYamlToolViewModel : ObservableRecipient, IToolViewModel
     {
+        /// <summary>
+        /// Whether the tool should convert JSON to YAML or YAML to JSON.
+        /// </summary>
+        private static readonly SettingDefinition<string> Conversion
+            = new(
+                name: $"{nameof(JsonYamlToolViewModel)}.{nameof(Conversion)}",
+                isRoaming: true,
+                defaultValue: JsonToYaml);
+
+        /// <summary>
+        /// The indentation to apply while converting.
+        /// </summary>
+        private static readonly SettingDefinition<string> Indentation
+            = new(
+                name: $"{nameof(JsonYamlToolViewModel)}.{nameof(Indentation)}",
+                isRoaming: true,
+                defaultValue: TwoSpaceIndentation);
+
         internal const string JsonToYaml = nameof(JsonToYaml);
         internal const string YamlToJson = nameof(YamlToJson);
         private const string TwoSpaceIndentation = "TwoSpaces";
@@ -36,8 +54,6 @@ namespace DevToys.ViewModels.Tools.JsonYaml
         private string? _inputValueLanguage;
         private string? _outputValue;
         private string? _outputValueLanguage;
-        private string _indentation = TwoSpaceIndentation;
-        private string _conversionMode = JsonToYaml;
 
         public Type View { get; } = typeof(JsonYamlToolPage);
 
@@ -48,34 +64,38 @@ namespace DevToys.ViewModels.Tools.JsonYaml
         /// </summary>
         internal string ConversionMode
         {
-            get => _conversionMode;
+            get => SettingsProvider.GetSetting(Conversion);
             set
             {
                 if (!_setPropertyInProgress)
                 {
                     _setPropertyInProgress = true;
                     ThreadHelper.ThrowIfNotOnUIThread();
-                    SetProperty(ref _conversionMode, value);
-
-                    if (string.Equals(value, JsonToYaml))
+                    if (!string.Equals(SettingsProvider.GetSetting(Conversion), value, StringComparison.Ordinal))
                     {
-                        if (JsonHelper.IsValidJson(OutputValue))
-                        {
-                            InputValue = OutputValue;
-                        }
+                        SettingsProvider.SetSetting(Conversion, value);
+                        OnPropertyChanged();
 
-                        InputValueLanguage = "json";
-                        OutputValueLanguage = "yaml";
-                    }
-                    else
-                    {
-                        if (YamlHelper.IsValidYaml(OutputValue))
+                        if (string.Equals(value, JsonToYaml))
                         {
-                            InputValue = OutputValue;
-                        }
+                            if (JsonHelper.IsValidJson(OutputValue))
+                            {
+                                InputValue = OutputValue;
+                            }
 
-                        InputValueLanguage = "yaml";
-                        OutputValueLanguage = "json";
+                            InputValueLanguage = "json";
+                            OutputValueLanguage = "yaml";
+                        }
+                        else
+                        {
+                            if (YamlHelper.IsValidYaml(OutputValue))
+                            {
+                                InputValue = OutputValue;
+                            }
+
+                            InputValueLanguage = "yaml";
+                            OutputValueLanguage = "json";
+                        }
                     }
 
                     _setPropertyInProgress = false;
@@ -86,13 +106,17 @@ namespace DevToys.ViewModels.Tools.JsonYaml
         /// <summary>
         /// Gets or sets the desired indentation.
         /// </summary>
-        internal string Indentation
+        internal string IndentationMode
         {
-            get => _indentation;
+            get => SettingsProvider.GetSetting(Indentation);
             set
             {
-                SetProperty(ref _indentation, value);
-                QueueConversion();
+                if (!string.Equals(SettingsProvider.GetSetting(Indentation), value, StringComparison.Ordinal))
+                {
+                    SettingsProvider.SetSetting(Indentation, value);
+                    OnPropertyChanged();
+                    QueueConversion();
+                }
             }
         }
 
@@ -199,7 +223,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml
                 if (jsonObject is not null && jsonObject is not string)
                 {
                     int indent = 0;
-                    switch (Indentation)
+                    switch (IndentationMode)
                     {
                         case TwoSpaceIndentation:
                             indent = 2;
@@ -263,7 +287,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml
                 using (var stringWriter = new StringWriter(stringBuilder))
                 using (var jsonTextWriter = new JsonTextWriter(stringWriter))
                 {
-                    switch (Indentation)
+                    switch (IndentationMode)
                     {
                         case TwoSpaceIndentation:
                             jsonTextWriter.Formatting = Formatting.Indented;
