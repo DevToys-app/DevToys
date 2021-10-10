@@ -140,8 +140,7 @@ namespace DevToys.ViewModels.Settings
             };
             data.SetText(Version);
 
-            Clipboard.SetContentWithOptions(data, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
-            Clipboard.Flush();
+            Clipboard.SetContent(data);
         }
 
         #endregion
