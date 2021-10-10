@@ -37,14 +37,13 @@ jobs:
         $xmlDoc.Save('$(Build.SourcesDirectory)\src\dev\shared\Package.appxmanifest')
       failOnStderr: true
 
-  - task: PowerShell@3
+  - task: PowerShell@2
     displayName: 'Use Release Logo'
     inputs:
       targetType: 'inline'
       script: |
-        gci $(Build.SourcesDirectory)\src -Include *.csproj, *.appxmanifest, *.wapproj -recurse | ForEach
-        {
-          (Get-Content $_ -Raw | ForEach {$_ -replace "Assets\\Logo-Prev", "Assets\Logo"}) | Set-Content $_ -NoNewline
+        gci $(Build.SourcesDirectory)\src -Include *.csproj, *.appxmanifest, *.wapproj -recurse | ForEach -Process {
+        (Get-Content $_ -Raw | ForEach -Process {$_ -replace "Assets\\Logo-Prev", "Assets\Logo"}) | Set-Content $_ -NoNewline
         }
       failOnStderr: true
 
@@ -103,14 +102,13 @@ jobs:
         $xmlDoc.Save('$(Build.SourcesDirectory)\src\dev\shared\Package.appxmanifest')
       failOnStderr: true
 
-  - task: PowerShell@3
+  - task: PowerShell@2
     displayName: 'Use Release Logo'
     inputs:
       targetType: 'inline'
       script: |
-        gci $(Build.SourcesDirectory)\src -Include *.csproj, *.appxmanifest, *.wapproj -Recurse | ForEach
-        {
-          (Get-Content $_ -Raw | ForEach { $_ -replace "Assets\\Logo-Prev", "Assets\Logo" }) | Set-Content $_ -NoNewline
+        gci $(Build.SourcesDirectory)\src -Include *.csproj, *.appxmanifest, *.wapproj -recurse | ForEach -Process {
+        (Get-Content $_ -Raw | ForEach -Process {$_ -replace "Assets\\Logo-Prev", "Assets\Logo"}) | Set-Content $_ -NoNewline
         }
       failOnStderr: true
 
