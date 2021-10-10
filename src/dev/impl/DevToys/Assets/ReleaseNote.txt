@@ -1,8 +1,10 @@
 ﻿  • Brand new text editor which implies:
-    • Better Text Diff tool
-    • Better Json <> Yaml tool
-    • Better Json Formatter tool
+    • Better Text Diff toy
+    • Better Json <> Yaml toy
+    • Better Json Formatter toy
     • Less UI delay
+    • Toys settings are now persisted between app session
+    • Fixed bugs related to clipboard
 Upcoming in future updates:
   • JWT Decoder
   • Json to C#
