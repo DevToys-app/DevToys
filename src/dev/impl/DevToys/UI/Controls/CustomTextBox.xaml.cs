@@ -132,7 +132,6 @@ namespace DevToys.UI.Controls
         private void ExecuteCopyCommand()
         {
             RichEditBox.TextDocument.Selection.Copy();
-            Clipboard.Flush();
         }
 
         #endregion
@@ -378,23 +377,6 @@ namespace DevToys.UI.Controls
             return (RichEditBox)(RichEditBox ?? FindName(nameof(RichEditBox)));
         }
 
-        private void CopyTextBoxSelectionToClipboard()
-        {
-            DataPackage dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
-            dataPackage.SetText(TextBox.SelectedText);
-            Clipboard.SetContentWithOptions(dataPackage, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
-            Clipboard.Flush(); // This method allows the content to remain available after the application shuts down.
-        }
-
-        private void CopyRichEditBoxSelectionToClipboard()
-        {
-            RichEditBox.Document.Selection.GetText(TextGetOptions.UseCrlf, out string text);
-            DataPackage dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
-            dataPackage.SetText(text);
-            Clipboard.SetContentWithOptions(dataPackage, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
-            Clipboard.Flush(); // This method allows the content to remain available after the application shuts down.
-        }
-
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             UpdateUI();
@@ -449,8 +431,7 @@ namespace DevToys.UI.Controls
             };
             data.SetText(Text);
 
-            Clipboard.SetContentWithOptions(data, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
-            Clipboard.Flush(); // This method allows the content to remain available after the application shuts down.
+            Clipboard.SetContent(data);
         }
 
         private async void OpenFileButton_Click(object sender, RoutedEventArgs e)
@@ -501,30 +482,6 @@ namespace DevToys.UI.Controls
                     _isTextPendingUpdate = false;
                 }
             }
-        }
-
-        private void TextBox_CopyingToClipboard(TextBox sender, TextControlCopyingToClipboardEventArgs args)
-        {
-            CopyTextBoxSelectionToClipboard();
-            args.Handled = true;
-        }
-
-        private void TextBox_CuttingToClipboard(TextBox sender, TextControlCuttingToClipboardEventArgs args)
-        {
-            CopyTextBoxSelectionToClipboard();
-            args.Handled = true;
-        }
-
-        private void RichEditBox_CopyingToClipboard(RichEditBox sender, TextControlCopyingToClipboardEventArgs args)
-        {
-            CopyRichEditBoxSelectionToClipboard();
-            args.Handled = true;
-        }
-
-        private void RichEditBox_CuttingToClipboard(RichEditBox sender, TextControlCuttingToClipboardEventArgs args)
-        {
-            CopyRichEditBoxSelectionToClipboard();
-            args.Handled = true;
         }
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
