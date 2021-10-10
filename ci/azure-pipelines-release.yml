@@ -37,6 +37,16 @@ jobs:
         $xmlDoc.Save('$(Build.SourcesDirectory)\src\dev\shared\Package.appxmanifest')
       failOnStderr: true
 
+  - task: PowerShell@2
+    displayName: 'Use Release Logo'
+    inputs:
+      targetType: 'inline'
+      script: |
+        gci $(Build.SourcesDirectory)\src -Include *.csproj, *.appxmanifest, *.wapproj -recurse | ForEach -Process {
+        (Get-Content $_ -Raw | ForEach -Process {$_ -replace "Assets\\Logo-Prev", "Assets\Logo"}) | Set-Content $_ -NoNewline
+        }
+      failOnStderr: true
+
   - task: DownloadSecureFile@1
     displayName: 'Download certificate'
     name: signingCert
@@ -45,7 +55,7 @@ jobs:
 
   # Run the init.ps1, which mostly restores dependencies
   - task: PowerShell@2
-    displayName: 'Restore nuget packages'
+    displayName: 'Restore nuget packages & Monaco editor'
     inputs:
       filePath: 'init.ps1'
       failOnStderr: true
@@ -92,9 +102,19 @@ jobs:
         $xmlDoc.Save('$(Build.SourcesDirectory)\src\dev\shared\Package.appxmanifest')
       failOnStderr: true
 
+  - task: PowerShell@2
+    displayName: 'Use Release Logo'
+    inputs:
+      targetType: 'inline'
+      script: |
+        gci $(Build.SourcesDirectory)\src -Include *.csproj, *.appxmanifest, *.wapproj -recurse | ForEach -Process {
+        (Get-Content $_ -Raw | ForEach -Process {$_ -replace "Assets\\Logo-Prev", "Assets\Logo"}) | Set-Content $_ -NoNewline
+        }
+      failOnStderr: true
+
   # Run the init.ps1, which mostly restores dependencies
   - task: PowerShell@2
-    displayName: 'Restore nuget packages'
+    displayName: 'Restore nuget packages & Monaco editor'
     inputs:
       filePath: 'init.ps1'
       failOnStderr: true
