@@ -37,7 +37,7 @@ jobs:
         $xmlDoc.Save('$(Build.SourcesDirectory)\src\dev\shared\Package.appxmanifest')
       failOnStderr: true
 
-  - task: PowerShell@2
+  - task: PowerShell@3
     displayName: 'Use Release Logo'
     inputs:
       targetType: 'inline'
@@ -56,7 +56,7 @@ jobs:
 
   # Run the init.ps1, which mostly restores dependencies
   - task: PowerShell@2
-    displayName: 'Restore nuget packages'
+    displayName: 'Restore nuget packages & Monaco editor'
     inputs:
       filePath: 'init.ps1'
       failOnStderr: true
@@ -103,20 +103,20 @@ jobs:
         $xmlDoc.Save('$(Build.SourcesDirectory)\src\dev\shared\Package.appxmanifest')
       failOnStderr: true
 
-  - task: PowerShell@2
+  - task: PowerShell@3
     displayName: 'Use Release Logo'
     inputs:
       targetType: 'inline'
       script: |
-        gci $(Build.SourcesDirectory)\src -Include *.csproj, *.appxmanifest, *.wapproj -recurse | ForEach
+        gci $(Build.SourcesDirectory)\src -Include *.csproj, *.appxmanifest, *.wapproj -Recurse | ForEach
         {
-          (Get-Content $_ -Raw | ForEach {$_ -replace "Assets\\Logo-Prev", "Assets\Logo"}) | Set-Content $_ -NoNewline
+          (Get-Content $_ -Raw | ForEach { $_ -replace "Assets\\Logo-Prev", "Assets\Logo" }) | Set-Content $_ -NoNewline
         }
       failOnStderr: true
 
   # Run the init.ps1, which mostly restores dependencies
   - task: PowerShell@2
-    displayName: 'Restore nuget packages'
+    displayName: 'Restore nuget packages & Monaco editor'
     inputs:
       filePath: 'init.ps1'
       failOnStderr: true
