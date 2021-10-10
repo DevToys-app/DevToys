@@ -1,10 +1,12 @@
 ﻿  • Brand new text editor which implies:
-    • Better Text Diff toy
-    • Better Json <> Yaml toy
-    • Better Json Formatter toy
-    • Less UI delay
-    • Toys settings are now persisted between app session
-    • Fixed bugs related to clipboard
+      • Better performances
+      • Better syntax highlighting
+      • More responsive UI
+      • New option for rendering white spaces
+  • Text Diff toy now supports Inline and Side by Side mode
+  • Json <> Yaml, Text Diff and Json Formatter toys support the new text editor
+  • Toys settings are now persisted between app session
+  • Fixed bugs related to clipboard
 Upcoming in future updates:
   • JWT Decoder
   • Json to C#
