@@ -337,7 +337,8 @@ namespace DevToys.UI.Controls
             };
             data.SetText(Text ?? string.Empty);
 
-            Clipboard.SetContent(data);
+            Clipboard.SetContentWithOptions(data, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
+            Clipboard.Flush();
         }
 
         private async void OpenFileButton_Click(object sender, RoutedEventArgs e)
