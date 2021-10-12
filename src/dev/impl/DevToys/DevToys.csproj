@@ -312,8 +312,6 @@
       <Link>Package.appxmanifest</Link>
       <SubType>Designer</SubType>
     </AppxManifest>
-    <PRIResource Include="Strings\fr\JsonYaml.resw" />
-    <PRIResource Include="Strings\en\JsonYaml.resw" />
     <Page Include="Themes\Custom.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -378,22 +376,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <PRIResource Include="Strings\en\Base64EncoderDecoder.resw" />
-    <PRIResource Include="Strings\en\Common.resw" />
-    <PRIResource Include="Strings\en\HashGenerator.resw" />
-    <PRIResource Include="Strings\en\JsonFormatter.resw" />
-    <PRIResource Include="Strings\en\MainPage.resw" />
-    <PRIResource Include="Strings\en\RegEx.resw" />
-    <PRIResource Include="Strings\en\Settings.resw" />
-    <PRIResource Include="Strings\en\TextDiff.resw" />
-    <PRIResource Include="Strings\fr\Base64EncoderDecoder.resw" />
-    <PRIResource Include="Strings\fr\Common.resw" />
-    <PRIResource Include="Strings\fr\HashGenerator.resw" />
-    <PRIResource Include="Strings\fr\JsonFormatter.resw" />
-    <PRIResource Include="Strings\fr\MainPage.resw" />
-    <PRIResource Include="Strings\fr\RegEx.resw" />
-    <PRIResource Include="Strings\fr\Settings.resw" />
-    <PRIResource Include="Strings\fr\TextDiff.resw" />
+    <PRIResource Include="Strings\*\*.resw" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="GitInfo" Version="$(Nuget_GitInfo)" />
