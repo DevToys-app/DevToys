@@ -195,6 +195,12 @@
   <data name="SmartDetectionDescription" xml:space="preserve">
     <value>Détecter automatiquement le meilleur outil en fonction du contenu du presse-papiers</value>
   </data>
+  <data name="SmartDetectionHowTo" xml:space="preserve">
+    <value>Comment utiliser la  Détection intelligente</value>
+  </data>
+  <data name="SmartDetectionPaste" xml:space="preserve">
+    <value>Coller automatiquement le contenu du presse-papier lorsqu'un outil recommandé est sélectionné.</value>
+  </data>
   <data name="SourceCode" xml:space="preserve">
     <value>Code source</value>
   </data>
