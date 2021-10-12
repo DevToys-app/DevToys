@@ -109,7 +109,7 @@ namespace DevToys
                 new LanguageDefinition
                 {
                     Identifier = "french",
-                    DisplayName = "Français",
+                    DisplayName = "français",
                     Culture = new CultureInfo("fr")
                 }
             };
