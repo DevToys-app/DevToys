@@ -1,9 +1,12 @@
 ﻿#nullable enable
 
 using DevToys.Core;
+using DevToys.Models.Enumerations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.IO;
+using System.Text;
 
 namespace DevToys.Helpers
 {
@@ -12,7 +15,7 @@ namespace DevToys.Helpers
         /// <summary>
         /// Detects whether the given string is a valid JSON or not.
         /// </summary>
-        internal static bool IsValidJson(string? input)
+        internal static bool IsValid(string? input)
         {
             if (string.IsNullOrWhiteSpace(input))
             {
@@ -43,6 +46,76 @@ namespace DevToys.Helpers
             else
             {
                 return false;
+            }
+        }
+
+        /// <summary>
+        /// Format a string to the specified JSON format.
+        /// </summary>
+        internal static string Format(string? input, IndentationEnumeration indentationMode)
+        {
+            if (string.IsNullOrWhiteSpace(input) || indentationMode == null)
+            {
+                return string.Empty;
+            }
+
+            if (!IsValid(input))
+            {
+                return string.Empty;
+            }
+
+            try
+            {
+                JToken? jtoken = JToken.Parse(input!);
+                if (jtoken is not null)
+                {
+                    var stringBuilder = new StringBuilder();
+                    using (var stringWriter = new StringWriter(stringBuilder))
+                    using (var jsonTextWriter = new JsonTextWriter(stringWriter))
+                    {
+                        if (indentationMode.Equals(IndentationEnumeration.TwoSpaceIndentation))
+                        {
+                            jsonTextWriter.Formatting = Formatting.Indented;
+                            jsonTextWriter.IndentChar = ' ';
+                            jsonTextWriter.Indentation = 2;
+                        }
+                        else if (indentationMode.Equals(IndentationEnumeration.FourSpaceIndentation))
+                        {
+                            jsonTextWriter.Formatting = Formatting.Indented;
+                            jsonTextWriter.IndentChar = ' ';
+                            jsonTextWriter.Indentation = 4;
+                        }
+                        else if (indentationMode.Equals(IndentationEnumeration.OneTabIndentation))
+                        {
+                            jsonTextWriter.Formatting = Formatting.Indented;
+                            jsonTextWriter.IndentChar = '\t';
+                            jsonTextWriter.Indentation = 1;
+                        }
+                        else if (indentationMode.Equals(IndentationEnumeration.NoIndentation))
+                        {
+                            jsonTextWriter.Formatting = Formatting.None;
+                        }
+                        else
+                        {
+                            throw new NotSupportedException();
+                        }
+
+                        jtoken.WriteTo(jsonTextWriter);
+                    }
+
+                    return stringBuilder.ToString();
+                }
+
+                return string.Empty;
+            }
+            catch (JsonReaderException ex)
+            {
+                return ex.Message;
+            }
+            catch (Exception ex) //some other exception
+            {
+                Logger.LogFault("Json formatter", ex, $"Indentation: {indentationMode}");
+                return ex.Message;
             }
         }
     }

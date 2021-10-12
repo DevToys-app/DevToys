@@ -177,6 +177,7 @@
     <Compile Include="Core\Clipboard.cs" />
     <Compile Include="Core\Collections\OrderedObservableCollection.cs" />
     <Compile Include="Core\Constants.cs" />
+    <Compile Include="Core\Enumeration.cs" />
     <Compile Include="Core\Logger.cs" />
     <Compile Include="Core\MefComposer.cs" />
     <Compile Include="Core\MefProvider.cs" />
@@ -193,6 +194,7 @@
     <Compile Include="Core\Threading\ThreadPriority.cs" />
     <Compile Include="Core\TitleBar.cs" />
     <Compile Include="Core\ToolProviderFactory.cs" />
+    <Compile Include="Models\Enumerations\IndentationEnumeration.cs" />
     <Compile Include="UI\Controls\CodeEditor.xaml.cs">
       <DependentUpon>CodeEditor.xaml</DependentUpon>
     </Compile>
