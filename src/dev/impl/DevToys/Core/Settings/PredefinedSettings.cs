@@ -53,6 +53,15 @@ namespace DevToys.Core.Settings
                 isRoaming: true,
                 defaultValue: true);
 
+        /// <summary>
+        /// Whether the application should automatically paste the content of the clipboard when selecting a tool that has been automatically recommended by Smart Detection.
+        /// </summary>
+        public static readonly SettingDefinition<bool> SmartDetectionPaste
+            = new(
+                name: nameof(SmartDetectionPaste),
+                isRoaming: true,
+                defaultValue: true);
+
         public static readonly string[] SupportedFonts
             = new[]
             {

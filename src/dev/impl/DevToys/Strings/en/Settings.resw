@@ -195,6 +195,12 @@
   <data name="SmartDetectionDescription" xml:space="preserve">
     <value>Automatically detect the best tool based on the clipboard content</value>
   </data>
+  <data name="SmartDetectionHowTo" xml:space="preserve">
+    <value>How to use Smart Detection</value>
+  </data>
+  <data name="SmartDetectionPaste" xml:space="preserve">
+    <value>Automatically paste the clipboard content when selecting a recommended tool</value>
+  </data>
   <data name="SourceCode" xml:space="preserve">
     <value>Source code</value>
   </data>

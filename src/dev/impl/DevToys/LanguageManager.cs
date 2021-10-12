@@ -657,6 +657,16 @@ namespace DevToys
         public string SmartDetectionDescription => _resources.GetString("SmartDetectionDescription");
 
         /// <summary>
+        /// Gets the resource SmartDetectionHowTo.
+        /// </summary>
+        public string SmartDetectionHowTo => _resources.GetString("SmartDetectionHowTo");
+
+        /// <summary>
+        /// Gets the resource SmartDetectionPaste.
+        /// </summary>
+        public string SmartDetectionPaste => _resources.GetString("SmartDetectionPaste");
+
+        /// <summary>
         /// Gets the resource SourceCode.
         /// </summary>
         public string SourceCode => _resources.GetString("SourceCode");
