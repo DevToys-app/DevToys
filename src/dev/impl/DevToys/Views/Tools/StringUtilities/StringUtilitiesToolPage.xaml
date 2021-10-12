@@ -1,0 +1,119 @@
+﻿<Page
+    x:Class="DevToys.Views.Tools.StringUtilities.StringUtilitiesToolPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:DevToys.UI.Controls"
+    xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d"
+    NavigationCacheMode="Required">
+
+    <Grid Margin="0,0,0,16" RowSpacing="12" ColumnSpacing="12">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <controls:CustomTextBox
+            Grid.Row="1"
+            Grid.Column="0"
+            Header="{x:Bind ViewModel.Strings.String}"
+            AcceptsReturn="True"
+            IsRichTextEdit="False"
+            Text="{x:Bind ViewModel.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <StackPanel
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Spacing="4">
+            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Convert}" />
+
+            <toolkit:WrapPanel VerticalSpacing="4" HorizontalSpacing="4">
+                <Button Content="{x:Bind ViewModel.Strings.SentenceCase}"/>
+                <Button Content="{x:Bind ViewModel.Strings.LowerCase}"/>
+                <Button Content="{x:Bind ViewModel.Strings.UpperCase}"/>
+                <Button Content="{x:Bind ViewModel.Strings.TitleCase}"/>
+                <Button Content="{x:Bind ViewModel.Strings.CamelCase}"/>
+                <Button Content="{x:Bind ViewModel.Strings.PascalCase}"/>
+                <Button Content="{x:Bind ViewModel.Strings.AlternatingCase}"/>
+                <Button Content="{x:Bind ViewModel.Strings.InverseCase}"/>
+            </toolkit:WrapPanel>
+        </StackPanel>
+
+        <ScrollViewer
+            Grid.Row="1"
+            Grid.Column="1"
+            VerticalScrollBarVisibility="Auto"
+            VerticalScrollMode="Enabled"
+            HorizontalScrollMode="Disabled"
+            HorizontalScrollBarVisibility="Hidden">
+            <StackPanel Spacing="4">
+                <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Selection}" />
+                <Grid ColumnSpacing="12" RowSpacing="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Line}"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="0"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Column}"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="0"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Position}"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="0"/>
+                </Grid>
+
+                <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Statistics}" />
+                <Grid ColumnSpacing="12" RowSpacing="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Characters}"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="0"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Words}"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="0"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Lines}"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="0"/>
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Sentences}"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Text="0"/>
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Paragraphs}"/>
+                    <TextBlock Grid.Row="4" Grid.Column="1" Text="0"/>
+                    <TextBlock Grid.Row="5" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Bytes}"/>
+                    <TextBlock Grid.Row="5" Grid.Column="1" Text="0"/>
+                </Grid>
+
+                <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.WordDistribution}" />
+                <TextBox MaxHeight="150" IsReadOnly="True"/>
+
+                <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.CharacterDistribution}" />
+                <TextBox MaxHeight="150" IsReadOnly="True"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

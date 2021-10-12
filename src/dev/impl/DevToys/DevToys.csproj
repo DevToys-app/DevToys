@@ -204,6 +204,8 @@
     <Compile Include="Helpers\YamlHelper.cs" />
     <Compile Include="ViewModels\Tools\JsonYaml\JsonYamlToolProvider.cs" />
     <Compile Include="ViewModels\Tools\JsonYaml\JsonYamlToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\StringUtilities\StringUtilitiesToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\StringUtilities\StringUtilitiesToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\ToolProviderBase.cs" />
     <Compile Include="Core\UriActivationProtocolService.cs" />
     <Compile Include="LanguageDefinition.cs" />
@@ -281,6 +283,9 @@
     <Compile Include="Views\Tools\Settings\SettingsToolPage.xaml.cs">
       <DependentUpon>SettingsToolPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Tools\StringUtilities\StringUtilitiesToolPage.xaml.cs">
+      <DependentUpon>StringUtilitiesToolPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Tools\TextDiff\TextDiffToolPage.xaml.cs">
       <DependentUpon>TextDiffToolPage.xaml</DependentUpon>
     </Compile>
@@ -312,6 +317,7 @@
       <Link>Package.appxmanifest</Link>
       <SubType>Designer</SubType>
     </AppxManifest>
+    <PRIResource Include="Strings\en\StringUtilities.resw" />
     <Page Include="Themes\Custom.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -372,6 +378,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Tools\StringUtilities\StringUtilitiesToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Tools\TextDiff\TextDiffToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -399,6 +409,7 @@
       <Name>DevToys.MonacoEditor</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
