@@ -54,11 +54,6 @@ namespace DevToys.Helpers
         /// </summary>
         internal static string Format(string? input, Indentation indentationMode)
         {
-            if (indentationMode == null)
-            {
-                return string.Empty;
-            }
-
             if (!IsValid(input))
             {
                 return string.Empty;
@@ -73,33 +68,29 @@ namespace DevToys.Helpers
                     using (var stringWriter = new StringWriter(stringBuilder))
                     using (var jsonTextWriter = new JsonTextWriter(stringWriter))
                     {
-                        if (indentationMode.Equals(Indentation.TwoSpaces))
+                        switch (indentationMode)
                         {
-                            jsonTextWriter.Formatting = Formatting.Indented;
-                            jsonTextWriter.IndentChar = ' ';
-                            jsonTextWriter.Indentation = 2;
+                            case Indentation.TwoSpaces:
+                                jsonTextWriter.Formatting = Formatting.Indented;
+                                jsonTextWriter.IndentChar = ' ';
+                                jsonTextWriter.Indentation = 2;
+                                break;
+                            case Indentation.FourSpaces:
+                                jsonTextWriter.Formatting = Formatting.Indented;
+                                jsonTextWriter.IndentChar = ' ';
+                                jsonTextWriter.Indentation = 4;
+                                break;
+                            case Indentation.OneTab:
+                                jsonTextWriter.Formatting = Formatting.Indented;
+                                jsonTextWriter.IndentChar = '\t';
+                                jsonTextWriter.Indentation = 1;
+                                break;
+                            case Indentation.Minified:
+                                jsonTextWriter.Formatting = Formatting.None;
+                                break;
+                            default:
+                                throw new NotSupportedException();
                         }
-                        else if (indentationMode.Equals(Indentation.FourSpaces))
-                        {
-                            jsonTextWriter.Formatting = Formatting.Indented;
-                            jsonTextWriter.IndentChar = ' ';
-                            jsonTextWriter.Indentation = 4;
-                        }
-                        else if (indentationMode.Equals(Indentation.OneTab))
-                        {
-                            jsonTextWriter.Formatting = Formatting.Indented;
-                            jsonTextWriter.IndentChar = '\t';
-                            jsonTextWriter.Indentation = 1;
-                        }
-                        else if (indentationMode.Equals(Indentation.Minified))
-                        {
-                            jsonTextWriter.Formatting = Formatting.None;
-                        }
-                        else
-                        {
-                            throw new NotSupportedException();
-                        }
-
                         jtoken.WriteTo(jsonTextWriter);
                     }
 

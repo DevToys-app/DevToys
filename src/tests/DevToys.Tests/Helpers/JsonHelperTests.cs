@@ -27,7 +27,7 @@ namespace DevToys.Tests.Helpers
         [DataRow("   { \"foo\": 123 }  ", "{\r\n  \"foo\": 123\r\n}")]
         public void FormatTwoSpaces(string input, string expectedResult)
         {
-            Assert.AreEqual(expectedResult, JsonHelper.Format(input, Indentation.TwoSpaces));
+            Assert.AreEqual(expectedResult, JsonHelper.Format(input, IndentationDisplayPair.TwoSpaces));
         }
 
         [DataTestMethod]
@@ -38,7 +38,7 @@ namespace DevToys.Tests.Helpers
         [DataRow("   { \"foo\": 123 }  ", "{\r\n    \"foo\": 123\r\n}")]
         public void FormatFourSpaces(string input, string expectedResult)
         {
-            Assert.AreEqual(expectedResult, JsonHelper.Format(input, Indentation.FourSpaces));
+            Assert.AreEqual(expectedResult, JsonHelper.Format(input, IndentationDisplayPair.FourSpaces));
         }
 
         [DataTestMethod]
@@ -49,7 +49,7 @@ namespace DevToys.Tests.Helpers
         [DataRow("   { \"foo\": 123 }  ", "{\r\n\t\"foo\": 123\r\n}")]
         public void FormatOneTab(string input, string expectedResult)
         {
-            Assert.AreEqual(expectedResult, JsonHelper.Format(input, Indentation.OneTab));
+            Assert.AreEqual(expectedResult, JsonHelper.Format(input, IndentationDisplayPair.OneTab));
         }
 
         [DataTestMethod]
@@ -60,7 +60,7 @@ namespace DevToys.Tests.Helpers
         [DataRow("   { \"foo\": 123 }  ", "{\"foo\":123}")]
         public void FormatMinified(string input, string expectedResult)
         {
-            Assert.AreEqual(expectedResult, JsonHelper.Format(input, Indentation.Minified));
+            Assert.AreEqual(expectedResult, JsonHelper.Format(input, IndentationDisplayPair.Minified));
         }
 
         [DataTestMethod]

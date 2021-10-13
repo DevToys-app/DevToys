@@ -2,7 +2,6 @@
 
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
-using DevToys.Core;
 using DevToys.Core.Threading;
 using DevToys.Helpers;
 using DevToys.Models;
@@ -23,11 +22,11 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
         /// <summary>
         /// The indentation to apply while formatting.
         /// </summary>
-        private static readonly SettingDefinition<Indentations> Indentation
+        private static readonly SettingDefinition<Indentation> Indentation
             = new(
-                name: $"{nameof(JsonFormatterToolViewModel)}.{nameof(Indentation)}",
+                name: $"{nameof(JsonFormatter.JsonFormatterToolViewModel)}.{nameof(Indentation)}",
                 isRoaming: true,
-                defaultValue: Models.Indentation.TwoSpaces.Value);
+                defaultValue: Models.Indentation.TwoSpaces);
 
         private readonly Queue<string> _formattingQueue = new();
 
@@ -42,13 +41,13 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
         /// <summary>
         /// Gets or sets the desired indentation.
         /// </summary>
-        internal Indentation IndentationMode
+        internal IndentationDisplayPair IndentationMode
         {
             get
             {
-                Indentations settingsValue = SettingsProvider.GetSetting(Indentation);
+                Indentation settingsValue = SettingsProvider.GetSetting(Indentation);
                 var indentation = Indentations.FirstOrDefault(x => x.Value == settingsValue);
-                return indentation ?? Models.Indentation.TwoSpaces;
+                return indentation ?? Models.IndentationDisplayPair.TwoSpaces;
             }
             set
             {
@@ -64,11 +63,11 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
         /// <summary>
         /// Get a list of supported Indentation
         /// </summary>
-        internal ObservableCollection<Indentation> Indentations => new ObservableCollection<Indentation> {
-            Models.Indentation.TwoSpaces,
-            Models.Indentation.FourSpaces,
-            Models.Indentation.OneTab,
-            Models.Indentation.Minified,
+        internal IReadOnlyList<IndentationDisplayPair> Indentations = new ObservableCollection<IndentationDisplayPair> {
+            Models.IndentationDisplayPair.TwoSpaces,
+            Models.IndentationDisplayPair.FourSpaces,
+            Models.IndentationDisplayPair.OneTab,
+            Models.IndentationDisplayPair.Minified,
         };
 
         /// <summary>
@@ -117,7 +116,7 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
 
             while (_formattingQueue.TryDequeue(out string text))
             {
-                string? result = JsonHelper.Format(text, IndentationMode);
+                string? result = JsonHelper.Format(text, IndentationMode.Value);
                 if (result != null)
                 {
                     ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, () =>
