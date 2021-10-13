@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
 using DevToys.Core;
-using DevToys.Models.Enumerations;
+using DevToys.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -52,9 +52,9 @@ namespace DevToys.Helpers
         /// <summary>
         /// Format a string to the specified JSON format.
         /// </summary>
-        internal static string Format(string? input, IndentationEnumeration indentationMode)
+        internal static string Format(string? input, Indentation indentationMode)
         {
-            if (string.IsNullOrWhiteSpace(input) || indentationMode == null)
+            if (indentationMode == null)
             {
                 return string.Empty;
             }
@@ -73,25 +73,25 @@ namespace DevToys.Helpers
                     using (var stringWriter = new StringWriter(stringBuilder))
                     using (var jsonTextWriter = new JsonTextWriter(stringWriter))
                     {
-                        if (indentationMode.Equals(IndentationEnumeration.TwoSpaceIndentation))
+                        if (indentationMode.Equals(Indentation.TwoSpaces))
                         {
                             jsonTextWriter.Formatting = Formatting.Indented;
                             jsonTextWriter.IndentChar = ' ';
                             jsonTextWriter.Indentation = 2;
                         }
-                        else if (indentationMode.Equals(IndentationEnumeration.FourSpaceIndentation))
+                        else if (indentationMode.Equals(Indentation.FourSpaces))
                         {
                             jsonTextWriter.Formatting = Formatting.Indented;
                             jsonTextWriter.IndentChar = ' ';
                             jsonTextWriter.Indentation = 4;
                         }
-                        else if (indentationMode.Equals(IndentationEnumeration.OneTabIndentation))
+                        else if (indentationMode.Equals(Indentation.OneTab))
                         {
                             jsonTextWriter.Formatting = Formatting.Indented;
                             jsonTextWriter.IndentChar = '\t';
                             jsonTextWriter.Indentation = 1;
                         }
-                        else if (indentationMode.Equals(IndentationEnumeration.NoIndentation))
+                        else if (indentationMode.Equals(Indentation.Minified))
                         {
                             jsonTextWriter.Formatting = Formatting.None;
                         }

@@ -1,5 +1,5 @@
 ﻿using DevToys.Helpers;
-using DevToys.Models.Enumerations;
+using DevToys.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DevToys.Tests.Helpers
@@ -25,9 +25,9 @@ namespace DevToys.Tests.Helpers
         [DataRow(" ", "")]
         [DataRow("   {  }  ", "{}")]
         [DataRow("   { \"foo\": 123 }  ", "{\r\n  \"foo\": 123\r\n}")]
-        public void FormatTwoSpaceIndentation(string input, string expectedResult)
+        public void FormatTwoSpaces(string input, string expectedResult)
         {
-            Assert.AreEqual(expectedResult, JsonHelper.Format(input, IndentationEnumeration.TwoSpaceIndentation));
+            Assert.AreEqual(expectedResult, JsonHelper.Format(input, Indentation.TwoSpaces));
         }
 
         [DataTestMethod]
@@ -36,9 +36,9 @@ namespace DevToys.Tests.Helpers
         [DataRow(" ", "")]
         [DataRow("   {  }  ", "{}")]
         [DataRow("   { \"foo\": 123 }  ", "{\r\n    \"foo\": 123\r\n}")]
-        public void FormatFourSpaceIndentation(string input, string expectedResult)
+        public void FormatFourSpaces(string input, string expectedResult)
         {
-            Assert.AreEqual(expectedResult, JsonHelper.Format(input, IndentationEnumeration.FourSpaceIndentation));
+            Assert.AreEqual(expectedResult, JsonHelper.Format(input, Indentation.FourSpaces));
         }
 
         [DataTestMethod]
@@ -47,9 +47,9 @@ namespace DevToys.Tests.Helpers
         [DataRow(" ", "")]
         [DataRow("   {  }  ", "{}")]
         [DataRow("   { \"foo\": 123 }  ", "{\r\n\t\"foo\": 123\r\n}")]
-        public void FormatOneTabIndentation(string input, string expectedResult)
+        public void FormatOneTab(string input, string expectedResult)
         {
-            Assert.AreEqual(expectedResult, JsonHelper.Format(input, IndentationEnumeration.OneTabIndentation));
+            Assert.AreEqual(expectedResult, JsonHelper.Format(input, Indentation.OneTab));
         }
 
         [DataTestMethod]
@@ -58,9 +58,9 @@ namespace DevToys.Tests.Helpers
         [DataRow(" ", "")]
         [DataRow("   {  }  ", "{}")]
         [DataRow("   { \"foo\": 123 }  ", "{\"foo\":123}")]
-        public void FormatNoIndentation(string input, string expectedResult)
+        public void FormatMinified(string input, string expectedResult)
         {
-            Assert.AreEqual(expectedResult, JsonHelper.Format(input, IndentationEnumeration.NoIndentation));
+            Assert.AreEqual(expectedResult, JsonHelper.Format(input, Indentation.Minified));
         }
 
         [DataTestMethod]

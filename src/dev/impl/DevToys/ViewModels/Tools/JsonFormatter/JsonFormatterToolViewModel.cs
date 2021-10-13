@@ -5,13 +5,14 @@ using DevToys.Api.Tools;
 using DevToys.Core;
 using DevToys.Core.Threading;
 using DevToys.Helpers;
-using DevToys.Models.Enumerations;
+using DevToys.Models;
 using DevToys.Views.Tools.JsonFormatter;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Composition;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DevToys.ViewModels.Tools.JsonFormatter
@@ -22,11 +23,11 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
         /// <summary>
         /// The indentation to apply while formatting.
         /// </summary>
-        private static readonly SettingDefinition<string> Indentation
+        private static readonly SettingDefinition<Indentations> Indentation
             = new(
                 name: $"{nameof(JsonFormatterToolViewModel)}.{nameof(Indentation)}",
                 isRoaming: true,
-                defaultValue: IndentationEnumeration.TwoSpaceIndentation.Code);
+                defaultValue: Models.Indentation.TwoSpaces.Value);
 
         private readonly Queue<string> _formattingQueue = new();
 
@@ -41,18 +42,19 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
         /// <summary>
         /// Gets or sets the desired indentation.
         /// </summary>
-        internal IndentationEnumeration IndentationMode
+        internal Indentation IndentationMode
         {
             get
             {
-                string? settingsValue = SettingsProvider.GetSetting(Indentation);
-                return Enumeration.FromCode<IndentationEnumeration>(settingsValue);
+                Indentations settingsValue = SettingsProvider.GetSetting(Indentation);
+                var indentation = Indentations.FirstOrDefault(x => x.Value == settingsValue);
+                return indentation ?? Models.Indentation.TwoSpaces;
             }
             set
             {
                 if (!IndentationMode.Equals(value))
                 {
-                    SettingsProvider.SetSetting(Indentation, value.Code);
+                    SettingsProvider.SetSetting(Indentation, value.Value);
                     OnPropertyChanged();
                     QueueFormatting();
                 }
@@ -62,7 +64,12 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
         /// <summary>
         /// Get a list of supported Indentation
         /// </summary>
-        internal ObservableCollection<IndentationEnumeration> Indentations => IndentationEnumeration.Gets();
+        internal ObservableCollection<Indentation> Indentations => new ObservableCollection<Indentation> {
+            Models.Indentation.TwoSpaces,
+            Models.Indentation.FourSpaces,
+            Models.Indentation.OneTab,
+            Models.Indentation.Minified,
+        };
 
         /// <summary>
         /// Gets or sets the input text.
