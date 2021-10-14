@@ -117,109 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
-    <value>О приложении</value>
+  <data name="Configuration" xml:space="preserve">
+    <value>Configuration</value>
   </data>
-  <data name="AppTheme" xml:space="preserve">
-    <value>Тема приложения</value>
+  <data name="ConversionDescription" xml:space="preserve">
+    <value>Sélectionnez l'action que vous souhaitez utiliser</value>
   </data>
-  <data name="AppThemeDescription" xml:space="preserve">
-    <value>Выберите тему приложения для отображения</value>
+  <data name="ConversionTitle" xml:space="preserve">
+    <value>Action</value>
   </data>
-  <data name="AppTitle" xml:space="preserve">
-    <value>DevToys</value>
-  </data>
-  <data name="Behaviors" xml:space="preserve">
-    <value>Поведение</value>
-  </data>
-  <data name="Close" xml:space="preserve">
-    <value>Закрыть</value>
-  </data>
-  <data name="Copy" xml:space="preserve">
-    <value>Копировать</value>
-  </data>
-  <data name="Dark" xml:space="preserve">
-    <value>Темная</value>
-  </data>
-  <data name="DefaultLanguage" xml:space="preserve">
-    <value>Такой же, как в Microsoft Windows</value>
+  <data name="Decode" xml:space="preserve">
+    <value>Decoder</value>
   </data>
   <data name="DisplayName" xml:space="preserve">
-    <value>Параметры</value>
+    <value>Décodeur JWT</value>
   </data>
-  <data name="Font" xml:space="preserve">
-    <value>Шрифт</value>
+  <data name="Encode" xml:space="preserve">
+    <value>Encoder</value>
   </data>
-  <data name="HighlightCurrentLine" xml:space="preserve">
-    <value>Выделение текущей строки</value>
+  <data name="EncodingDescription" xml:space="preserve">
+    <value>Sélectionnez l'algorithme d'encodage que vous souhaitez utiliser.</value>
   </data>
-  <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>Улучшение видимости текущей строки за счет изменения цвета фона</value>
+  <data name="EncodingTitle" xml:space="preserve">
+    <value>Encodage</value>
   </data>
-  <data name="Language" xml:space="preserve">
-    <value>Язык</value>
+  <data name="HeaderLabel" xml:space="preserve">
+    <value>En-tête</value>
   </data>
-  <data name="LanguageDescription" xml:space="preserve">
-    <value>Для применения другого языка необходим перезапуск приложения</value>
+  <data name="JwtTokenLabel" xml:space="preserve">
+    <value>Jeton JWT</value>
   </data>
-  <data name="License" xml:space="preserve">
-    <value>Лицензия</value>
+  <data name="PayloadLabel" xml:space="preserve">
+    <value>Charge utile</value>
   </data>
-  <data name="Light" xml:space="preserve">
-    <value>Светлая</value>
-  </data>
-  <data name="LineNumbers" xml:space="preserve">
-    <value>Нумерация строк</value>
-  </data>
-  <data name="LineNumbersDescription" xml:space="preserve">
-    <value>Отображение нумерации строк в текстовом редакторе</value>
-  </data>
-  <data name="OpenLogs" xml:space="preserve">
-    <value>Открыть логи</value>
-  </data>
-  <data name="PrivacyPolicy" xml:space="preserve">
-    <value>Политика конфиденциальности</value>
-  </data>
-  <data name="RateAndReview" xml:space="preserve">
-    <value>Оценить приложение в Microsoft Store</value>
-  </data>
-  <data name="RenderWhitespace" xml:space="preserve">
-    <value>Отображение пространства отступа</value>
-  </data>
-  <data name="ReportProblem" xml:space="preserve">
-    <value>Сообщить о проблеме</value>
-  </data>
-  <data name="SmartDetection" xml:space="preserve">
-    <value>Умное определение</value>
-  </data>
-  <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Автоматическое определение инструмента на основе содержимого буфера обмена</value>
-  </data>
-  <data name="SmartDetectionHowTo" xml:space="preserve">
-    <value>How to use Smart Detection</value>
-  </data>
-  <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automatically paste the clipboard content when selecting a recommended tool</value>
-  </data>
-  <data name="SourceCode" xml:space="preserve">
-    <value>Исходный код</value>
-  </data>
-  <data name="TextEditor" xml:space="preserve">
-    <value>Текстовый редактор</value>
-  </data>
-  <data name="ThirdPartyNotices" xml:space="preserve">
-    <value>Сторонние лицензии</value>
-  </data>
-  <data name="UsefulLinks" xml:space="preserve">
-    <value>Полезные ссылки</value>
-  </data>
-  <data name="UseSystemSettings" xml:space="preserve">
-    <value>Использовать параметры системы</value>
-  </data>
-  <data name="Version" xml:space="preserve">
-    <value>Версия {0}</value>
-  </data>
-  <data name="WordWrap" xml:space="preserve">
-    <value>Перенос по словам</value>
+  <data name="SecurityLabel" xml:space="preserve">
+    <value>Sécurité</value>
   </data>
 </root>
