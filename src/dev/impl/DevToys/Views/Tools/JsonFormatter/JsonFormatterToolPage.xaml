@@ -32,12 +32,9 @@
                     <FontIcon Glyph="&#xF6F8;" />
                 </controls:ExpandableSettingControl.Icon>
                 <ComboBox
-                    SelectedValuePath="Tag"
+                    ItemsSource="{x:Bind ViewModel.Indentations}"
+                    DisplayMemberPath="DisplayName"
                     SelectedValue="{x:Bind ViewModel.IndentationMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                    <ComboBoxItem Tag="TwoSpaces" Content="{x:Bind ViewModel.Strings.TwoSpaces}"/>
-                    <ComboBoxItem Tag="FourSpaces" Content="{x:Bind ViewModel.Strings.FourSpaces}"/>
-                    <ComboBoxItem Tag="OneTab" Content="{x:Bind ViewModel.Strings.OneTab}"/>
-                    <ComboBoxItem Tag="Minified" Content="{x:Bind ViewModel.Strings.Minified}"/>
                 </ComboBox>
             </controls:ExpandableSettingControl>
         </StackPanel>

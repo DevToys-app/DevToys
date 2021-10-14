@@ -78,7 +78,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml
 
                         if (string.Equals(value, JsonToYaml))
                         {
-                            if (JsonHelper.IsValidJson(OutputValue))
+                            if (JsonHelper.IsValid(OutputValue))
                             {
                                 InputValue = OutputValue;
                             }
