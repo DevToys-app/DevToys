@@ -31,7 +31,7 @@
             x:Name="HeaderCodeEditor"
             Grid.Row="1"
             Header="{x:Bind ViewModel.Strings.HeaderLabel}"
-            Text="{x:Bind ViewModel.JwtHeader, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            Text="{x:Bind ViewModel.JwtHeader, Mode=OneWay}"
             CodeLanguage="json"
             IsReadOnly="True"/>
 
@@ -39,7 +39,7 @@
             x:Name="PayloadCodeEditor"
             Grid.Row="2"
             Header="{x:Bind ViewModel.Strings.PayloadLabel}"
-            Text="{x:Bind ViewModel.JwtPayload, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            Text="{x:Bind ViewModel.JwtPayload, Mode=OneWay}"
             CodeLanguage="json"
             IsReadOnly="True"/>
 

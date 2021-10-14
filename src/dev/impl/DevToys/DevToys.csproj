@@ -320,9 +320,6 @@
       <Link>Package.appxmanifest</Link>
       <SubType>Designer</SubType>
     </AppxManifest>
-    <PRIResource Include="Strings\ru\JwtDecoderEncoder.resw" />
-    <PRIResource Include="Strings\en\JwtDecoderEncoder.resw" />
-    <PRIResource Include="Strings\fr\JwtDecoderEncoder.resw" />
     <Page Include="Themes\Custom.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -402,9 +399,7 @@
     <PackageReference Include="Microsoft.UI.Xaml" Version="$(NuGet_MicrosoftUIXaml)" />
     <PackageReference Include="Newtonsoft.Json" Version="$(NuGet_NewtonsoftJson)" />
     <PackageReference Include="System.Composition" Version="$(NuGet_SystemComposition)" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt">
-      <Version>6.13.1</Version>
-    </PackageReference>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="$(NuGet_IdentityModelTokenJwt)" />
     <PackageReference Include="YamlDotNet" Version="$(NuGet_YamlDotNet)" />
     <PackageReference Include="Win2D.uwp" Version="$(Nuget_Win2D)" />
   </ItemGroup>

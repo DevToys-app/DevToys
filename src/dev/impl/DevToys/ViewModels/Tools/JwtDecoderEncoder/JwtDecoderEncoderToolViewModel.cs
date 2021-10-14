@@ -78,7 +78,7 @@ namespace DevToys.ViewModels.Tools.JwtDecoderEncoder
 
             while (_decodingQueue.TryDequeue(out string text))
             {
-                bool success = JwtDecode(text, out string header, out string payload);
+                JwtDecode(text, out string header, out string payload);
                 ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, () =>
                 {
                     JwtHeader = header;
@@ -89,13 +89,13 @@ namespace DevToys.ViewModels.Tools.JwtDecoderEncoder
             _decodingInProgress = false;
         }
 
-        private bool JwtDecode(string input, out string header, out string payload)
+        private void JwtDecode(string input, out string header, out string payload)
         {
             if (string.IsNullOrWhiteSpace(input))
             {
                 header = string.Empty;
                 payload = string.Empty;
-                return false;
+                return;
             }
 
             try
@@ -104,14 +104,12 @@ namespace DevToys.ViewModels.Tools.JwtDecoderEncoder
                 JwtSecurityToken jwtSecurityToken = handler.ReadJwtToken(input);
                 header = JsonHelper.Format(jwtSecurityToken.Header.SerializeToJson(), Indentation.TwoSpaces);
                 payload = JsonHelper.Format(jwtSecurityToken.Payload.SerializeToJson(), Indentation.TwoSpaces);
-                return true;
             }
             catch (Exception ex)
             {
                 header = ex.Message;
                 payload = ex.Message;
             }
-            return false;
         }
     }
 }
