@@ -86,6 +86,19 @@ namespace DevToys.UI.Controls
             set => SetValue(TextProperty, value);
         }
 
+        public static readonly DependencyProperty SelectionStartProperty
+            = DependencyProperty.Register(
+                nameof(SelectionStart),
+                typeof(int),
+                typeof(CustomTextBox),
+                new PropertyMetadata(0));
+
+        public int SelectionStart
+        {
+            get => (int)GetValue(SelectionStartProperty);
+            set => SetValue(SelectionStartProperty, value);
+        }
+
         public CustomTextBox()
         {
             InitializeComponent();
@@ -526,6 +539,11 @@ namespace DevToys.UI.Controls
         {
             CopyRichEditBoxSelectionToClipboard();
             args.Handled = true;
+        }
+
+        private void RichEditBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            SelectionStart = RichEditBox.Document.Selection.StartPosition;
         }
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)

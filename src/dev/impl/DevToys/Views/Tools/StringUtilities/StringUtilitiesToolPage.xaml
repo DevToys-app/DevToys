@@ -32,7 +32,8 @@
             Header="{x:Bind ViewModel.Strings.String}"
             AcceptsReturn="True"
             IsRichTextEdit="False"
-            Text="{x:Bind ViewModel.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            Text="{x:Bind ViewModel.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            SelectionStart="{x:Bind ViewModel.SelectionStart, Mode=OneWay}"/>
 
         <StackPanel
             Grid.Row="0"
@@ -48,6 +49,11 @@
                 <Button Content="{x:Bind ViewModel.Strings.TitleCase}"/>
                 <Button Content="{x:Bind ViewModel.Strings.CamelCase}"/>
                 <Button Content="{x:Bind ViewModel.Strings.PascalCase}"/>
+                <Button Content="{x:Bind ViewModel.Strings.SnakeCase}"/>
+                <Button Content="{x:Bind ViewModel.Strings.ConstantCase}"/>
+                <Button Content="{x:Bind ViewModel.Strings.KebabCase}"/>
+                <Button Content="{x:Bind ViewModel.Strings.CobolCase}"/>
+                <Button Content="{x:Bind ViewModel.Strings.TrainCase}"/>
                 <Button Content="{x:Bind ViewModel.Strings.AlternatingCase}"/>
                 <Button Content="{x:Bind ViewModel.Strings.InverseCase}"/>
             </toolkit:WrapPanel>
@@ -77,7 +83,7 @@
                     <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Column}"/>
                     <TextBlock Grid.Row="1" Grid.Column="1" Text="0"/>
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Position}"/>
-                    <TextBlock Grid.Row="2" Grid.Column="1" Text="0"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{x:Bind ViewModel.SelectionStart, Mode=OneWay}"/>
                 </Grid>
 
                 <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Statistics}" />

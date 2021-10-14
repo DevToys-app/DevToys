@@ -101,6 +101,7 @@
             IsReadOnly="{x:Bind IsReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             AcceptsReturn="{x:Bind AcceptsReturn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             Text="{x:Bind Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            SelectionStart="{x:Bind SelectionStart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             CopyingToClipboard="TextBox_CopyingToClipboard"
             CuttingToClipboard="TextBox_CuttingToClipboard"/>
         <RichEditBox
@@ -114,6 +115,7 @@
             TextWrapping="{x:Bind AcceptsReturn, Mode=OneWay, Converter={StaticResource BooleanToTextWrappingConverter}}"
             IsReadOnly="{x:Bind IsReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             AcceptsReturn="{x:Bind AcceptsReturn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            SelectionChanged="RichEditBox_SelectionChanged"
             CopyingToClipboard="RichEditBox_CopyingToClipboard"
             CuttingToClipboard="RichEditBox_CuttingToClipboard">
             <RichEditBox.ContextFlyout>

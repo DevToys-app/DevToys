@@ -736,9 +736,19 @@ namespace DevToys
         public string Characters => _resources.GetString("Characters");
 
         /// <summary>
+        /// Gets the resource CobolCase.
+        /// </summary>
+        public string CobolCase => _resources.GetString("CobolCase");
+
+        /// <summary>
         /// Gets the resource Column.
         /// </summary>
         public string Column => _resources.GetString("Column");
+
+        /// <summary>
+        /// Gets the resource ConstantCase.
+        /// </summary>
+        public string ConstantCase => _resources.GetString("ConstantCase");
 
         /// <summary>
         /// Gets the resource Convert.
@@ -754,6 +764,11 @@ namespace DevToys
         /// Gets the resource InverseCase.
         /// </summary>
         public string InverseCase => _resources.GetString("InverseCase");
+
+        /// <summary>
+        /// Gets the resource KebabCase.
+        /// </summary>
+        public string KebabCase => _resources.GetString("KebabCase");
 
         /// <summary>
         /// Gets the resource Line.
@@ -801,6 +816,11 @@ namespace DevToys
         public string Sentences => _resources.GetString("Sentences");
 
         /// <summary>
+        /// Gets the resource SnakeCase.
+        /// </summary>
+        public string SnakeCase => _resources.GetString("SnakeCase");
+
+        /// <summary>
         /// Gets the resource Statistics.
         /// </summary>
         public string Statistics => _resources.GetString("Statistics");
@@ -814,6 +834,11 @@ namespace DevToys
         /// Gets the resource TitleCase.
         /// </summary>
         public string TitleCase => _resources.GetString("TitleCase");
+
+        /// <summary>
+        /// Gets the resource TrainCase.
+        /// </summary>
+        public string TrainCase => _resources.GetString("TrainCase");
 
         /// <summary>
         /// Gets the resource UpperCase.

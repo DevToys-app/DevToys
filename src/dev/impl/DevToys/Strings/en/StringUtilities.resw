@@ -132,8 +132,14 @@
   <data name="Characters" xml:space="preserve">
     <value>Characters:</value>
   </data>
+  <data name="CobolCase" xml:space="preserve">
+    <value>COBOL-CASE</value>
+  </data>
   <data name="Column" xml:space="preserve">
     <value>Column:</value>
+  </data>
+  <data name="ConstantCase" xml:space="preserve">
+    <value>CONSTANT_CASE</value>
   </data>
   <data name="Convert" xml:space="preserve">
     <value>Convert</value>
@@ -143,6 +149,9 @@
   </data>
   <data name="InverseCase" xml:space="preserve">
     <value>InVeRsE CaSe</value>
+  </data>
+  <data name="KebabCase" xml:space="preserve">
+    <value>kebab-case</value>
   </data>
   <data name="Line" xml:space="preserve">
     <value>Line:</value>
@@ -171,6 +180,9 @@
   <data name="Sentences" xml:space="preserve">
     <value>Sentences:</value>
   </data>
+  <data name="SnakeCase" xml:space="preserve">
+    <value>snake_case</value>
+  </data>
   <data name="Statistics" xml:space="preserve">
     <value>Statistics</value>
   </data>
@@ -179,6 +191,9 @@
   </data>
   <data name="TitleCase" xml:space="preserve">
     <value>Title Case</value>
+  </data>
+  <data name="TrainCase" xml:space="preserve">
+    <value>Train-Case</value>
   </data>
   <data name="UpperCase" xml:space="preserve">
     <value>UPPER CASE</value>
