@@ -47,7 +47,7 @@ namespace DevToys.Views.Tools.JsonYaml
 
             if (!string.IsNullOrWhiteSpace(parameters.ClipBoardContent))
             {
-                if (JsonHelper.IsValidJson(parameters.ClipBoardContent!))
+                if (JsonHelper.IsValid(parameters.ClipBoardContent!))
                 {
                     ViewModel.ConversionMode = JsonYamlToolViewModel.JsonToYaml;
                 }
