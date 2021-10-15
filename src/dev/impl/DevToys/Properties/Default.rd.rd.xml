@@ -23,6 +23,7 @@
     -->
         <Namespace Name="Microsoft.Toolkit.Mvvm" Dynamic="Required All" />
         <Namespace Name="DevToys" Dynamic="Required All" />
+        <Namespace Name="System.IdentityModel.Tokens.Jwt" Dynamic="Required All"/>
 
         <!-- Add your application specific runtime directives here. -->
     </Application>

@@ -24,7 +24,7 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
         /// </summary>
         private static readonly SettingDefinition<Indentation> Indentation
             = new(
-                name: $"{nameof(JsonFormatter.JsonFormatterToolViewModel)}.{nameof(Indentation)}",
+                name: $"{nameof(JsonFormatterToolViewModel)}.{nameof(Indentation)}",
                 isRoaming: true,
                 defaultValue: Models.Indentation.TwoSpaces);
 
@@ -47,11 +47,11 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
             {
                 Indentation settingsValue = SettingsProvider.GetSetting(Indentation);
                 var indentation = Indentations.FirstOrDefault(x => x.Value == settingsValue);
-                return indentation ?? Models.IndentationDisplayPair.TwoSpaces;
+                return indentation ?? IndentationDisplayPair.TwoSpaces;
             }
             set
             {
-                if (!IndentationMode.Equals(value))
+                if (IndentationMode != value)
                 {
                     SettingsProvider.SetSetting(Indentation, value.Value);
                     OnPropertyChanged();

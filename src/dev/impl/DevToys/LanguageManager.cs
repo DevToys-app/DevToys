@@ -29,6 +29,7 @@ namespace DevToys
         private readonly HashGeneratorStrings _hashgenerator = new HashGeneratorStrings();
         private readonly JsonFormatterStrings _jsonformatter = new JsonFormatterStrings();
         private readonly JsonYamlStrings _jsonyaml = new JsonYamlStrings();
+        private readonly JwtDecoderEncoderStrings _jwtdecoderencoder = new JwtDecoderEncoderStrings();
         private readonly MainPageStrings _mainpage = new MainPageStrings();
         private readonly RegExStrings _regex = new RegExStrings();
         private readonly SettingsStrings _settings = new SettingsStrings();
@@ -68,6 +69,11 @@ namespace DevToys
         /// Gets the <see cref="JsonYamlStrings"/>.
         /// </summary>
         public JsonYamlStrings JsonYaml => _jsonyaml;
+
+        /// <summary>
+        /// Gets the <see cref="JwtDecoderEncoderStrings"/>.
+        /// </summary>
+        public JwtDecoderEncoderStrings JwtDecoderEncoder => _jwtdecoderencoder;
 
         /// <summary>
         /// Gets the <see cref="MainPageStrings"/>.
@@ -435,6 +441,71 @@ namespace DevToys
         /// Gets the resource YamlToJson.
         /// </summary>
         public string YamlToJson => _resources.GetString("YamlToJson");
+    }
+
+    public class JwtDecoderEncoderStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("JwtDecoderEncoder");
+
+        /// <summary>
+        /// Gets the resource Configuration.
+        /// </summary>
+        public string Configuration => _resources.GetString("Configuration");
+
+        /// <summary>
+        /// Gets the resource ConversionDescription.
+        /// </summary>
+        public string ConversionDescription => _resources.GetString("ConversionDescription");
+
+        /// <summary>
+        /// Gets the resource ConversionTitle.
+        /// </summary>
+        public string ConversionTitle => _resources.GetString("ConversionTitle");
+
+        /// <summary>
+        /// Gets the resource Decode.
+        /// </summary>
+        public string Decode => _resources.GetString("Decode");
+
+        /// <summary>
+        /// Gets the resource DisplayName.
+        /// </summary>
+        public string DisplayName => _resources.GetString("DisplayName");
+
+        /// <summary>
+        /// Gets the resource Encode.
+        /// </summary>
+        public string Encode => _resources.GetString("Encode");
+
+        /// <summary>
+        /// Gets the resource EncodingDescription.
+        /// </summary>
+        public string EncodingDescription => _resources.GetString("EncodingDescription");
+
+        /// <summary>
+        /// Gets the resource EncodingTitle.
+        /// </summary>
+        public string EncodingTitle => _resources.GetString("EncodingTitle");
+
+        /// <summary>
+        /// Gets the resource HeaderLabel.
+        /// </summary>
+        public string HeaderLabel => _resources.GetString("HeaderLabel");
+
+        /// <summary>
+        /// Gets the resource JwtTokenLabel.
+        /// </summary>
+        public string JwtTokenLabel => _resources.GetString("JwtTokenLabel");
+
+        /// <summary>
+        /// Gets the resource PayloadLabel.
+        /// </summary>
+        public string PayloadLabel => _resources.GetString("PayloadLabel");
+
+        /// <summary>
+        /// Gets the resource SecurityLabel.
+        /// </summary>
+        public string SecurityLabel => _resources.GetString("SecurityLabel");
     }
 
     public class MainPageStrings : ObservableObject
