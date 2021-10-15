@@ -64,7 +64,7 @@ namespace DevToys.Core
                     {
                         $"# - [{DateTime.Now.ToString("G", DateTimeFormatInfo.InvariantInfo)}]",
                         $"Feature name: {featureName}",
-                        $"Custom message: {message}",
+                        $"Custom message: {message ?? string.Empty}",
                         $"Exception message: {ex.Message}",
                         $"Exception stack trace:",
                         ex.StackTrace,
