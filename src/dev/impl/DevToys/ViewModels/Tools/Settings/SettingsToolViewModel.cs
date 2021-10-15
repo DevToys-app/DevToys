@@ -55,6 +55,12 @@ namespace DevToys.ViewModels.Settings
             set => _settingsProvider.SetSetting(PredefinedSettings.SmartDetection, value);
         }
 
+        internal bool SmartDetectionPaste
+        {
+            get => _settingsProvider.GetSetting(PredefinedSettings.SmartDetectionPaste);
+            set => _settingsProvider.SetSetting(PredefinedSettings.SmartDetectionPaste, value);
+        }
+
         internal ObservableCollection<string> SupportedFonts { get; } = new();
 
         internal string TextEditorFont

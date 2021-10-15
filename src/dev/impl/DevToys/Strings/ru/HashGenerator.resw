@@ -117,109 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
-    <value>About</value>
-  </data>
-  <data name="AppTheme" xml:space="preserve">
-    <value>App Theme</value>
-  </data>
-  <data name="AppThemeDescription" xml:space="preserve">
-    <value>Select which app theme to display</value>
-  </data>
-  <data name="AppTitle" xml:space="preserve">
-    <value>DevToys</value>
-  </data>
-  <data name="Behaviors" xml:space="preserve">
-    <value>Behaviors</value>
-  </data>
-  <data name="Close" xml:space="preserve">
-    <value>Close</value>
-  </data>
-  <data name="Copy" xml:space="preserve">
-    <value>Copy</value>
-  </data>
-  <data name="Dark" xml:space="preserve">
-    <value>Dark</value>
-  </data>
-  <data name="DefaultLanguage" xml:space="preserve">
-    <value>Same as Microsoft Windows</value>
+  <data name="Configuration" xml:space="preserve">
+    <value>Установки</value>
   </data>
   <data name="DisplayName" xml:space="preserve">
-    <value>Settings</value>
+    <value>Генерирование Hash</value>
   </data>
-  <data name="Font" xml:space="preserve">
-    <value>Font</value>
+  <data name="Input" xml:space="preserve">
+    <value>Ввод</value>
   </data>
-  <data name="HighlightCurrentLine" xml:space="preserve">
-    <value>Highlight current line</value>
+  <data name="MD5" xml:space="preserve">
+    <value>MD5</value>
   </data>
-  <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>Change the background color of the current line so it's more visible</value>
+  <data name="SHA1" xml:space="preserve">
+    <value>SHA1</value>
   </data>
-  <data name="Language" xml:space="preserve">
-    <value>Language</value>
+  <data name="SHA256" xml:space="preserve">
+    <value>SHA256</value>
   </data>
-  <data name="LanguageDescription" xml:space="preserve">
-    <value>The app needs to be restarted when selecting another language</value>
+  <data name="SHA512" xml:space="preserve">
+    <value>SHA512</value>
   </data>
-  <data name="License" xml:space="preserve">
-    <value>License</value>
-  </data>
-  <data name="Light" xml:space="preserve">
-    <value>Light</value>
-  </data>
-  <data name="LineNumbers" xml:space="preserve">
-    <value>Line numbers</value>
-  </data>
-  <data name="LineNumbersDescription" xml:space="preserve">
-    <value>Display line numbers in the text editor</value>
-  </data>
-  <data name="OpenLogs" xml:space="preserve">
-    <value>Open logs</value>
-  </data>
-  <data name="PrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
-  </data>
-  <data name="RateAndReview" xml:space="preserve">
-    <value>Rate and review on Microsoft Store</value>
-  </data>
-  <data name="RenderWhitespace" xml:space="preserve">
-    <value>Render white space</value>
-  </data>
-  <data name="ReportProblem" xml:space="preserve">
-    <value>Report a problem</value>
-  </data>
-  <data name="SmartDetection" xml:space="preserve">
-    <value>Smart detection</value>
-  </data>
-  <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Automatically detect the best tool based on the clipboard content</value>
-  </data>
-  <data name="SmartDetectionHowTo" xml:space="preserve">
-    <value>How to use Smart Detection</value>
-  </data>
-  <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automatically paste the clipboard content when selecting a recommended tool</value>
-  </data>
-  <data name="SourceCode" xml:space="preserve">
-    <value>Source code</value>
-  </data>
-  <data name="TextEditor" xml:space="preserve">
-    <value>Text editor</value>
-  </data>
-  <data name="ThirdPartyNotices" xml:space="preserve">
-    <value>Third party licenses</value>
-  </data>
-  <data name="UsefulLinks" xml:space="preserve">
-    <value>Useful links</value>
-  </data>
-  <data name="UseSystemSettings" xml:space="preserve">
-    <value>Use system settings</value>
-  </data>
-  <data name="Version" xml:space="preserve">
-    <value>Version {0}</value>
-  </data>
-  <data name="WordWrap" xml:space="preserve">
-    <value>Wrap word</value>
+  <data name="Uppercase" xml:space="preserve">
+    <value>Верхний регистр</value>
   </data>
 </root>

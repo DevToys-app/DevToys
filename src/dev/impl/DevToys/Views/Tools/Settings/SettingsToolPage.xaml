@@ -64,7 +64,15 @@
             </controls:ExpandableSettingControl.Icon>
             <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" IsOn="{x:Bind ViewModel.SmartDetection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <controls:ExpandableSettingControl.ExpandableContent>
-                <Image Source="/Assets/DemoSmartDetection.gif" MinHeight="300"/>
+                <StackPanel Spacing="4" HorizontalAlignment="Stretch">
+                    <CheckBox
+                        IsChecked="{x:Bind ViewModel.SmartDetection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Content="{x:Bind ViewModel.Strings.SmartDetectionPaste}"
+                        HorizontalAlignment="Stretch"/>
+
+                    <TextBlock Text="{x:Bind ViewModel.Strings.SmartDetectionHowTo}"/>
+                    <Image Source="/Assets/DemoSmartDetection.gif" MinHeight="300"/>
+                </StackPanel>
             </controls:ExpandableSettingControl.ExpandableContent>
         </controls:ExpandableSettingControl>
 

@@ -28,7 +28,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml
 
         public bool CanBeTreatedByTool(string data)
         {
-            return JsonHelper.IsValidJson(data) || YamlHelper.IsValidYaml(data);
+            return JsonHelper.IsValid(data) || YamlHelper.IsValidYaml(data);
         }
 
         public IToolViewModel CreateTool()

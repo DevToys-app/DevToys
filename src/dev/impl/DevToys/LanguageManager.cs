@@ -109,6 +109,12 @@ namespace DevToys
                 },
                 new LanguageDefinition
                 {
+                    Identifier = "russian",
+                    DisplayName = "Русский",
+                    Culture = new CultureInfo("ru")
+                },
+                new LanguageDefinition
+                {
                     Identifier = "french",
                     DisplayName = "français",
                     Culture = new CultureInfo("fr")
@@ -655,6 +661,16 @@ namespace DevToys
         /// Gets the resource SmartDetectionDescription.
         /// </summary>
         public string SmartDetectionDescription => _resources.GetString("SmartDetectionDescription");
+
+        /// <summary>
+        /// Gets the resource SmartDetectionHowTo.
+        /// </summary>
+        public string SmartDetectionHowTo => _resources.GetString("SmartDetectionHowTo");
+
+        /// <summary>
+        /// Gets the resource SmartDetectionPaste.
+        /// </summary>
+        public string SmartDetectionPaste => _resources.GetString("SmartDetectionPaste");
 
         /// <summary>
         /// Gets the resource SourceCode.
