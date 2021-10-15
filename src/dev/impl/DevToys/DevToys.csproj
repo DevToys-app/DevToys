@@ -193,6 +193,7 @@
     <Compile Include="Core\Threading\ThreadPriority.cs" />
     <Compile Include="Core\TitleBar.cs" />
     <Compile Include="Core\ToolProviderFactory.cs" />
+    <Compile Include="Helpers\JwtHelper.cs" />
     <Compile Include="Models\IndentationDisplayPair.cs" />
     <Compile Include="Models\Indentation.cs" />
     <Compile Include="UI\Controls\CodeEditor.xaml.cs">
@@ -206,6 +207,8 @@
     <Compile Include="Helpers\YamlHelper.cs" />
     <Compile Include="ViewModels\Tools\JsonYaml\JsonYamlToolProvider.cs" />
     <Compile Include="ViewModels\Tools\JsonYaml\JsonYamlToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\JwtDecoderEncoder\JwtDecoderEncoderToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\JwtDecoderEncoder\JwtDecoderEncoderToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\ToolProviderBase.cs" />
     <Compile Include="Core\UriActivationProtocolService.cs" />
     <Compile Include="LanguageDefinition.cs" />
@@ -273,6 +276,9 @@
     </Compile>
     <Compile Include="Views\Tools\JsonFormatter\JsonFormatterToolPage.xaml.cs">
       <DependentUpon>JsonFormatterToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\JwtDecoderEncoder\JwtDecoderEncoderToolPage.xaml.cs">
+      <DependentUpon>JwtDecoderEncoderToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\RegEx\RegExToolPage.xaml.cs">
       <DependentUpon>RegExToolPage.xaml</DependentUpon>
@@ -362,6 +368,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Tools\JwtDecoderEncoder\JwtDecoderEncoderToolPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Tools\RegEx\RegExToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -389,6 +399,7 @@
     <PackageReference Include="Microsoft.UI.Xaml" Version="$(NuGet_MicrosoftUIXaml)" />
     <PackageReference Include="Newtonsoft.Json" Version="$(NuGet_NewtonsoftJson)" />
     <PackageReference Include="System.Composition" Version="$(NuGet_SystemComposition)" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="$(NuGet_IdentityModelTokenJwt)" />
     <PackageReference Include="YamlDotNet" Version="$(NuGet_YamlDotNet)" />
     <PackageReference Include="Win2D.uwp" Version="$(Nuget_Win2D)" />
   </ItemGroup>

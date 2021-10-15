@@ -37,5 +37,6 @@
         <NuGet_SystemComposition>5.0.0</NuGet_SystemComposition>
         <NuGet_Win2D>1.26.0</NuGet_Win2D>
         <NuGet_YamlDotNet>11.2.1</NuGet_YamlDotNet>
+        <NuGet_IdentityModelTokenJwt>6.13.1</NuGet_IdentityModelTokenJwt>
     </PropertyGroup>
 </Project>
