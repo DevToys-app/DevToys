@@ -435,7 +435,7 @@ namespace DevToys.ViewModels
                         }
                         catch (Exception ex)
                         {
-                            Logger.LogFault("Check if tool is recommended", ex, $"Tool : {tool.Metadata.Name}");
+                            Logger.LogFault("SmartDetection - Check if tool is recommended", ex, $"Tool : {tool.Metadata.Name}");
                         }
                     }));
             }
@@ -526,7 +526,7 @@ namespace DevToys.ViewModels
                     is Windows.UI.Core.CoreWindowActivationState.PointerActivated
                     or Windows.UI.Core.CoreWindowActivationState.CodeActivated)
             {
-                UpdateRecommendedToolsAsync().Forget();
+                UpdateRecommendedToolsAsync().ForgetSafely((ex) => Logger.LogFault("SmartDetection", ex));
             }
         }
     }
