@@ -193,6 +193,8 @@
     <Compile Include="Core\Threading\ThreadPriority.cs" />
     <Compile Include="Core\TitleBar.cs" />
     <Compile Include="Core\ToolProviderFactory.cs" />
+    <Compile Include="Models\IndentationDisplayPair.cs" />
+    <Compile Include="Models\Indentation.cs" />
     <Compile Include="UI\Controls\CodeEditor.xaml.cs">
       <DependentUpon>CodeEditor.xaml</DependentUpon>
     </Compile>

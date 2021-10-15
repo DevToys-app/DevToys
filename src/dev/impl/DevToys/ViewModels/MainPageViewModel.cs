@@ -48,6 +48,8 @@ namespace DevToys.ViewModels
         private NavigationViewDisplayMode _navigationViewDisplayMode;
         private bool _isNavigationViewPaneOpened;
         private string? _searchQuery;
+        private string? _clipboardContent;
+        private bool _pasteInFirstSelectedToolIsAllowed;
         private bool _isInCompactOverlayMode;
         private bool _isUpdatingSelectedItem;
         private bool _allowSelectAutomaticallyRecommendedTool = true;
@@ -72,7 +74,7 @@ namespace DevToys.ViewModels
         internal MatchedToolProviderViewData? SelectedMenuItem
         {
             get => _selectedItem;
-            set => SetSelectedMenuItem(value, null);
+            set => SetSelectedMenuItem(value, _clipboardContent);
         }
 
         /// <summary>
@@ -296,7 +298,7 @@ namespace DevToys.ViewModels
                 ThreadPriority.Low,
                 () =>
                 {
-                    SelectedMenuItem = toolProviderViewDataToSelect ?? ToolsMenuItems.FirstOrDefault() ?? FooterMenuItems.FirstOrDefault();
+                    SetSelectedMenuItem(toolProviderViewDataToSelect ?? ToolsMenuItems.FirstOrDefault() ?? FooterMenuItems.FirstOrDefault(), null);
                 });
         }
 
@@ -313,6 +315,16 @@ namespace DevToys.ViewModels
             {
                 _selectedItem = value;
                 IToolViewModel toolViewModel = _toolProviderFactory.GetToolViewModel(_selectedItem.ToolProvider);
+
+                if (!_pasteInFirstSelectedToolIsAllowed // If this is not the first tool we select since the last time tools have been recommended
+                    || !_selectedItem.IsRecommended // or that the selected tool isn't recommended
+                    || !_settingsProvider.GetSetting(PredefinedSettings.SmartDetectionPaste)) // or that the user doesn't want to paste automatically in recommended tools
+                {
+                    clipboardContentData = null;
+                }
+
+                _pasteInFirstSelectedToolIsAllowed = false;
+
                 Messenger.Send(new NavigateToToolMessage(toolViewModel, clipboardContentData));
                 OnPropertyChanged(nameof(SelectedMenuItem));
                 OnPropertyChanged(nameof(HeaderText));
@@ -381,7 +393,7 @@ namespace DevToys.ViewModels
                     {
                         var oldSelectedItem = SelectedMenuItem;
                         ToolsMenuItems.Clear();
-                        SelectedMenuItem = null;
+                        SetSelectedMenuItem(null, null);
 
                         foreach (var item in newToolsMenuitems)
                         {
@@ -394,7 +406,7 @@ namespace DevToys.ViewModels
                         ToolsMenuItems.Update(newToolsMenuitems.Keys);
                         footerMenuItems.ForEach(item => FooterMenuItems.Add(item));
 
-                        SelectedMenuItem = oldSelectedItem;
+                        SetSelectedMenuItem(oldSelectedItem, null);
                     });
             }
             catch (Exception ex)
@@ -414,7 +426,13 @@ namespace DevToys.ViewModels
             await TaskScheduler.Default;
 
             // Retrieve the clipboard content.
-            string clipboardContent = await _clipboard.GetClipboardContentAsTextAsync().ConfigureAwait(false);
+            string? clipboardContent = await _clipboard.GetClipboardContentAsTextAsync().ConfigureAwait(false);
+
+            if (string.Equals(clipboardContent, _clipboardContent))
+            {
+                // The clipboard didn't change. Do no compute recommended tools again.
+                return;
+            }
 
             // Make sure the menu items exist.
             await _firstUpdateMenuTask.Value.ConfigureAwait(false);
@@ -442,16 +460,28 @@ namespace DevToys.ViewModels
 
             await Task.WhenAll(tasks).ConfigureAwait(false);
 
-            MatchedToolProviderViewData[] recommendedTools
+            MatchedToolProviderViewData[] newRecommendedTools
                 = _allToolsMenuitems
                 .Where(item => item.IsRecommended && !item.Metadata.IsFooterItem)
                 .ToArray();
 
+            _clipboardContent = clipboardContent;
+            if (oldRecommendedTools.SequenceEqual(newRecommendedTools))
+            {
+                // The detected recommended tools is the same than before. Let's make sure we won't
+                // paste automatically.
+                _pasteInFirstSelectedToolIsAllowed = false;
+                return;
+            }
+            else
+            {
+                _pasteInFirstSelectedToolIsAllowed = true;
+            }
+
             using (await _sempahore.WaitAsync(CancellationToken.None).ConfigureAwait(false))
             {
-                if (recommendedTools.Length == 1
-                    && ToolsMenuItems.Contains(recommendedTools[0])
-                    && (oldRecommendedTools.Length != 1 || oldRecommendedTools[0] != recommendedTools[0]))
+                if (newRecommendedTools.Length == 1
+                    && ToolsMenuItems.Contains(newRecommendedTools[0]))
                 {
                     // One unique tool is recommended.
                     // The recommended tool is displayed in the top menu.
@@ -463,7 +493,7 @@ namespace DevToys.ViewModels
                         {
                             if (!IsInCompactOverlayMode && _allowSelectAutomaticallyRecommendedTool)
                             {
-                                SetSelectedMenuItem(recommendedTools[0], clipboardContent);
+                                SetSelectedMenuItem(newRecommendedTools[0], _clipboardContent);
                             }
                         });
                 }
