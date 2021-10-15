@@ -49,6 +49,28 @@ Many tools are available.
 - Install the certificate in `Trusted Root`.
 - Double click the *.msixbundle file.
 
+## How to run DevToys
+
+### Using Start Menu
+Open Windows start menu, type `DevToys` and press `[Enter]`.
+
+### Using PowerShell
+
+A cool thing about DevToys is that you can start it in command line! For this, simply open a PowerShell command prompt and type
+`start devtoys:?tool={tool name}`
+
+For example, `start devtoys:?tool=jsonyaml` will open DevToys and start on the `Json <> Yaml` tool.
+
+Here is the list of tool name you can use:
+- `base64` - Base64 Encoder/Decoder
+- `hash` - Hash Generator
+- `jsonformat` Json Formatter
+- `jsonyaml` - Json <> Yaml 
+- `jwt` - JWT Decoder
+- `regex` - Regular Expression Tester
+- `diff` - Text Comparer
+- `settings` - Settings
+
 ## Please, avoid selling this app as yours
 
 I don't care if you copy the source code to use in your project, but please avoid simply changing the name and selling as your work. 
