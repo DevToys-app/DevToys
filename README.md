@@ -5,7 +5,7 @@
   DevToys
 </h1>
 <p align="center">
-  A Swiss-knife for developers.
+  A Swiss Army knife for developers.
 </p>
 <p align="center">  
   <a style="text-decoration:none" href="https://etienne-baudoux.visualstudio.com/Side%20projects/_build/latest?definitionId=15&branchName=main">
