@@ -101,7 +101,7 @@
             IsReadOnly="{x:Bind IsReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             AcceptsReturn="{x:Bind AcceptsReturn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             Text="{x:Bind Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            SelectionStart="{x:Bind SelectionStart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            SelectionChanged="TextBox_SelectionChanged"
             CopyingToClipboard="TextBox_CopyingToClipboard"
             CuttingToClipboard="TextBox_CuttingToClipboard"/>
         <RichEditBox

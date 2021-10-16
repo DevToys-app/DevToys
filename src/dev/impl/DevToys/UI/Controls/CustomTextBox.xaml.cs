@@ -529,6 +529,11 @@ namespace DevToys.UI.Controls
             args.Handled = true;
         }
 
+        private void TextBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            SelectionStart = TextBox.SelectionStart;
+        }
+
         private void RichEditBox_CopyingToClipboard(RichEditBox sender, TextControlCopyingToClipboardEventArgs args)
         {
             CopyRichEditBoxSelectionToClipboard();
