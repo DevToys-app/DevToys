@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <Package
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
@@ -13,7 +13,7 @@
     <Identity
         Name="DevToysPreview"
         Publisher="CN=etiennebaudoux"
-        Version="0.6.0.0" />
+        Version="0.0.0.0" />
 
     <!-- TODO: maybe we need to remove this when adding runFullTrust capability -->
     <mp:PhoneIdentity PhoneProductId="c12088ee-f979-4809-8039-7851a3aa2b7a" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
@@ -40,7 +40,7 @@
           desktop4:SupportsMultipleInstances="true">
             <uap:VisualElements
               DisplayName="DevToys - Preview"
-              Description="A Swiss-knife for developers."
+              Description="A Swiss Army knife for developers."
               BackgroundColor="transparent"
               Square150x150Logo="Assets\Logo-Prev\Square150x150Logo.png"
               Square44x44Logo="Assets\Logo-Prev\Square44x44Logo.png">
