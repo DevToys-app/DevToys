@@ -2,33 +2,32 @@
 
 using DevToys.Api.Core.Navigation;
 using DevToys.Core;
-using DevToys.Helpers;
-using DevToys.ViewModels.Tools.JsonYaml;
+using DevToys.ViewModels.Tools.JwtDecoderEncoder;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-namespace DevToys.Views.Tools.JsonYaml
+namespace DevToys.Views.Tools.JwtDecoderEncoder
 {
-    public sealed partial class JsonYamlToolPage : Page
+    public sealed partial class JwtDecoderEncoderToolPage : Page
     {
         public static readonly DependencyProperty ViewModelProperty
             = DependencyProperty.Register(
                 nameof(ViewModel),
-                typeof(JsonYamlToolViewModel),
-                typeof(JsonYamlToolPage),
+                typeof(JwtDecoderEncoderToolViewModel),
+                typeof(JwtDecoderEncoderToolPage),
                 new PropertyMetadata(null));
 
         /// <summary>
         /// Gets the page's view model.
         /// </summary>
-        public JsonYamlToolViewModel ViewModel
+        public JwtDecoderEncoderToolViewModel ViewModel
         {
-            get => (JsonYamlToolViewModel)GetValue(ViewModelProperty);
+            get => (JwtDecoderEncoderToolViewModel)GetValue(ViewModelProperty);
             set => SetValue(ViewModelProperty, value);
         }
 
-        public JsonYamlToolPage()
+        public JwtDecoderEncoderToolPage()
         {
             InitializeComponent();
         }
@@ -41,22 +40,13 @@ namespace DevToys.Views.Tools.JsonYaml
             {
                 // Set the view model
                 Assumes.NotNull(parameters.ViewModel, nameof(parameters.ViewModel));
-                ViewModel = (JsonYamlToolViewModel)parameters.ViewModel!;
+                ViewModel = (JwtDecoderEncoderToolViewModel)parameters.ViewModel!;
                 DataContext = ViewModel;
             }
 
             if (!string.IsNullOrWhiteSpace(parameters.ClipBoardContent))
             {
-                if (JsonHelper.IsValid(parameters.ClipBoardContent!))
-                {
-                    ViewModel.ConversionMode = JsonYamlToolViewModel.JsonToYaml;
-                }
-                else
-                {
-                    ViewModel.ConversionMode = JsonYamlToolViewModel.YamlToJson;
-                }
-
-                ViewModel.InputValue = parameters.ClipBoardContent;
+                ViewModel.JwtToken = parameters.ClipBoardContent;
             }
 
             base.OnNavigatedTo(e);

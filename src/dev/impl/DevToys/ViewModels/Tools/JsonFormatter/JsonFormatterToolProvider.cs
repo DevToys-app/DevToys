@@ -28,7 +28,7 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
 
         public bool CanBeTreatedByTool(string data)
         {
-            return JsonHelper.IsValidJson(data);
+            return JsonHelper.IsValid(data);
         }
 
         public IToolViewModel CreateTool()

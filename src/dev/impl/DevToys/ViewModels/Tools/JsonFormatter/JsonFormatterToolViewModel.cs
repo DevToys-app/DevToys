@@ -2,17 +2,16 @@
 
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
-using DevToys.Core;
 using DevToys.Core.Threading;
+using DevToys.Helpers;
+using DevToys.Models;
 using DevToys.Views.Tools.JsonFormatter;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Composition;
-using System.IO;
-using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DevToys.ViewModels.Tools.JsonFormatter
@@ -23,16 +22,11 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
         /// <summary>
         /// The indentation to apply while formatting.
         /// </summary>
-        private static readonly SettingDefinition<string> Indentation
+        private static readonly SettingDefinition<Indentation> Indentation
             = new(
                 name: $"{nameof(JsonFormatterToolViewModel)}.{nameof(Indentation)}",
                 isRoaming: true,
-                defaultValue: TwoSpaceIndentation);
-
-        private const string TwoSpaceIndentation = "TwoSpaces";
-        private const string FourSpaceIndentation = "FourSpaces";
-        private const string OneTabIndentation = "OneTab";
-        private const string NoIndentation = "Minified";
+                defaultValue: Models.Indentation.TwoSpaces);
 
         private readonly Queue<string> _formattingQueue = new();
 
@@ -47,19 +41,34 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
         /// <summary>
         /// Gets or sets the desired indentation.
         /// </summary>
-        internal string IndentationMode
+        internal IndentationDisplayPair IndentationMode
         {
-            get => SettingsProvider.GetSetting(Indentation);
+            get
+            {
+                Indentation settingsValue = SettingsProvider.GetSetting(Indentation);
+                var indentation = Indentations.FirstOrDefault(x => x.Value == settingsValue);
+                return indentation ?? IndentationDisplayPair.TwoSpaces;
+            }
             set
             {
-                if (!string.Equals(SettingsProvider.GetSetting(Indentation), value, StringComparison.Ordinal))
+                if (IndentationMode != value)
                 {
-                    SettingsProvider.SetSetting(Indentation, value);
+                    SettingsProvider.SetSetting(Indentation, value.Value);
                     OnPropertyChanged();
                     QueueFormatting();
                 }
             }
         }
+
+        /// <summary>
+        /// Get a list of supported Indentation
+        /// </summary>
+        internal IReadOnlyList<IndentationDisplayPair> Indentations = new ObservableCollection<IndentationDisplayPair> {
+            Models.IndentationDisplayPair.TwoSpaces,
+            Models.IndentationDisplayPair.FourSpaces,
+            Models.IndentationDisplayPair.OneTab,
+            Models.IndentationDisplayPair.Minified,
+        };
 
         /// <summary>
         /// Gets or sets the input text.
@@ -81,7 +90,6 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
         }
 
         internal ISettingsProvider SettingsProvider { get; }
-
 
         [ImportingConstructor]
         public JsonFormatterToolViewModel(ISettingsProvider settingsProvider)
@@ -108,83 +116,17 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
 
             while (_formattingQueue.TryDequeue(out string text))
             {
-                var success = FormatJson(text, out string result);
-
-                ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, () =>
+                string? result = JsonHelper.Format(text, IndentationMode.Value);
+                if (result != null)
                 {
-                    OutputValue = result;
-                }).ForgetSafely();
+                    ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, () =>
+                    {
+                        OutputValue = result;
+                    }).ForgetSafely();
+                }
             }
 
             _formattingInProgress = false;
-        }
-
-        private bool FormatJson(string input, out string output)
-        {
-            if (string.IsNullOrWhiteSpace(input))
-            {
-                output = string.Empty;
-                return false;
-            }
-
-            try
-            {
-                JToken? jtoken = JToken.Parse(input);
-                if (jtoken is not null)
-                {
-                    var stringBuilder = new StringBuilder();
-                    using (var stringWriter = new StringWriter(stringBuilder))
-                    using (var jsonTextWriter = new JsonTextWriter(stringWriter))
-                    {
-                        switch (IndentationMode)
-                        {
-                            case TwoSpaceIndentation:
-                                jsonTextWriter.Formatting = Formatting.Indented;
-                                jsonTextWriter.IndentChar = ' ';
-                                jsonTextWriter.Indentation = 2;
-                                break;
-
-                            case FourSpaceIndentation:
-                                jsonTextWriter.Formatting = Formatting.Indented;
-                                jsonTextWriter.IndentChar = ' ';
-                                jsonTextWriter.Indentation = 4;
-                                break;
-
-                            case OneTabIndentation:
-                                jsonTextWriter.Formatting = Formatting.Indented;
-                                jsonTextWriter.IndentChar = '\t';
-                                jsonTextWriter.Indentation = 1;
-                                break;
-
-                            case NoIndentation:
-                                jsonTextWriter.Formatting = Formatting.None;
-                                break;
-
-                            default:
-                                throw new NotSupportedException();
-                        }
-
-                        jtoken.WriteTo(jsonTextWriter);
-                    }
-
-                    output = stringBuilder.ToString();
-                    return true;
-                }
-
-                output = string.Empty;
-                return false;
-            }
-            catch (JsonReaderException ex)
-            {
-                output = ex.Message;
-                return false;
-            }
-            catch (Exception ex) //some other exception
-            {
-                Logger.LogFault("Json formatter", ex, $"Indentation: {IndentationMode}");
-                output = ex.Message;
-                return false;
-            }
         }
     }
 }

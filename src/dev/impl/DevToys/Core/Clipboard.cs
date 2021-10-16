@@ -5,6 +5,8 @@ using DevToys.Core.Threading;
 using System;
 using System.Composition;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.Security.EnterpriseData;
 using Windows.UI.Xaml;
 
 namespace DevToys.Core
@@ -13,6 +15,8 @@ namespace DevToys.Core
     [Shared]
     internal sealed class Clipboard : IClipboard
     {
+        private const string TextFormat = "Text";
+
         private bool _isWindowInForeground;
 
         [ImportingConstructor]
@@ -30,7 +34,15 @@ namespace DevToys.Core
                     throw new InvalidOperationException("Unable to retrieve the content of the clipboard because the application isn't in foreground.");
                 }
 
-                return (await Windows.ApplicationModel.DataTransfer.Clipboard.GetContent().GetTextAsync()) ?? string.Empty;
+                DataPackageView clipboardContent = Windows.ApplicationModel.DataTransfer.Clipboard.GetContent();
+                ProtectionPolicyEvaluationResult accessResult = await clipboardContent.RequestAccessAsync();
+                if (accessResult == ProtectionPolicyEvaluationResult.Allowed
+                    && clipboardContent.Contains(TextFormat))
+                {
+                    return await clipboardContent.GetTextAsync(TextFormat) ?? string.Empty;
+                }
+
+                return string.Empty;
             });
         }
 

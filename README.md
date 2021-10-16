@@ -5,7 +5,7 @@
   DevToys
 </h1>
 <p align="center">
-  A Swiss-knife for developers.
+  A Swiss Army knife for developers.
 </p>
 <p align="center">  
   <a style="text-decoration:none" href="https://etienne-baudoux.visualstudio.com/Side%20projects/_build/latest?definitionId=15&branchName=main">
@@ -48,6 +48,28 @@ Many tools are available.
 - Download and extract the latest [release](https://github.com/veler/DevToys/releases).
 - Install the certificate in `Trusted Root`.
 - Double click the *.msixbundle file.
+
+## How to run DevToys
+
+### Using Start Menu
+Open Windows start menu, type `DevToys` and press `[Enter]`.
+
+### Using PowerShell
+
+A cool thing about DevToys is that you can start it in command line! For this, simply open a PowerShell command prompt and type
+`start devtoys:?tool={tool name}`
+
+For example, `start devtoys:?tool=jsonyaml` will open DevToys and start on the `Json <> Yaml` tool.
+
+Here is the list of tool name you can use:
+- `base64` - Base64 Encoder/Decoder
+- `hash` - Hash Generator
+- `jsonformat` Json Formatter
+- `jsonyaml` - Json <> Yaml 
+- `jwt` - JWT Decoder
+- `regex` - Regular Expression Tester
+- `diff` - Text Comparer
+- `settings` - Settings
 
 ## Please, avoid selling this app as yours
 
