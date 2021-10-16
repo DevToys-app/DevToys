@@ -43,19 +43,19 @@
             <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Convert}" />
 
             <toolkit:WrapPanel VerticalSpacing="4" HorizontalSpacing="4">
-                <Button Content="{x:Bind ViewModel.Strings.SentenceCase}"/>
-                <Button Content="{x:Bind ViewModel.Strings.LowerCase}"/>
-                <Button Content="{x:Bind ViewModel.Strings.UpperCase}"/>
-                <Button Content="{x:Bind ViewModel.Strings.TitleCase}"/>
-                <Button Content="{x:Bind ViewModel.Strings.CamelCase}"/>
-                <Button Content="{x:Bind ViewModel.Strings.PascalCase}"/>
-                <Button Content="{x:Bind ViewModel.Strings.SnakeCase}"/>
-                <Button Content="{x:Bind ViewModel.Strings.ConstantCase}"/>
-                <Button Content="{x:Bind ViewModel.Strings.KebabCase}"/>
-                <Button Content="{x:Bind ViewModel.Strings.CobolCase}"/>
-                <Button Content="{x:Bind ViewModel.Strings.TrainCase}"/>
-                <Button Content="{x:Bind ViewModel.Strings.AlternatingCase}"/>
-                <Button Content="{x:Bind ViewModel.Strings.InverseCase}"/>
+                <Button Content="{x:Bind ViewModel.Strings.SentenceCase}" Command="{x:Bind ViewModel.SentenceCaseCommand}"/>
+                <Button Content="{x:Bind ViewModel.Strings.LowerCase}" Command="{x:Bind ViewModel.LowerCaseCommand}"/>
+                <Button Content="{x:Bind ViewModel.Strings.UpperCase}" Command="{x:Bind ViewModel.UpperCaseCommand}"/>
+                <Button Content="{x:Bind ViewModel.Strings.TitleCase}" Command="{x:Bind ViewModel.TitleCaseCommand}"/>
+                <Button Content="{x:Bind ViewModel.Strings.CamelCase}" Command="{x:Bind ViewModel.CamelCaseCommand}"/>
+                <Button Content="{x:Bind ViewModel.Strings.PascalCase}" Command="{x:Bind ViewModel.PascalCaseCommand}"/>
+                <Button Content="{x:Bind ViewModel.Strings.SnakeCase}" Command="{x:Bind ViewModel.SnakeCaseCommand}"/>
+                <Button Content="{x:Bind ViewModel.Strings.ConstantCase}" Command="{x:Bind ViewModel.ConstantCaseCommand}"/>
+                <Button Content="{x:Bind ViewModel.Strings.KebabCase}" Command="{x:Bind ViewModel.KebabCaseCommand}"/>
+                <Button Content="{x:Bind ViewModel.Strings.CobolCase}" Command="{x:Bind ViewModel.CobolCaseCommand}"/>
+                <Button Content="{x:Bind ViewModel.Strings.TrainCase}" Command="{x:Bind ViewModel.TrainCaseCommand}"/>
+                <Button Content="{x:Bind ViewModel.Strings.AlternatingCase}" Command="{x:Bind ViewModel.AlternatingCaseCommand}"/>
+                <Button Content="{x:Bind ViewModel.Strings.InverseCase}" Command="{x:Bind ViewModel.InverseCaseCommand}"/>
             </toolkit:WrapPanel>
         </StackPanel>
 
@@ -66,7 +66,7 @@
             VerticalScrollMode="Enabled"
             HorizontalScrollMode="Disabled"
             HorizontalScrollBarVisibility="Hidden">
-            <StackPanel Spacing="4">
+            <StackPanel Spacing="4" MaxWidth="250">
                 <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Selection}" />
                 <Grid ColumnSpacing="12" RowSpacing="4">
                     <Grid.ColumnDefinitions>
