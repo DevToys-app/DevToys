@@ -1,14 +1,8 @@
-﻿  • Brand new text editor which implies:
-      • Better performances
-      • Better syntax highlighting
-      • More responsive UI
-      • New option for rendering white spaces
-  • Text Diff toy now supports Inline and Side by Side mode
-  • Json <> Yaml, Text Diff and Json Formatter toys support the new text editor
-  • Toys settings are now persisted between app session
-  • Fixed bugs related to clipboard
-Upcoming in future updates:
-  • JWT Decoder
-  • Json to C#
-  • String inspector
-  • Markdown editor with preview
+﻿New Features
+  • JWT Decoder tool!
+  • Added an option to disable automatic paste in Smart Detection.
+Improvements
+  • Russian language is now available.
+  • Smart Detection got smarter.
+Bug Fixes
+  • Fixed another bug with the logger.
