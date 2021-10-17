@@ -19,15 +19,17 @@
         <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <converters:BooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" IsInverted="True"/>
         <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
+        <converters:EnumToBooleanConverter x:Key="InvertedEnumToBooleanConverter" IsInverted="True"/>
         <converters:EnumToThicknessConverter x:Key="NavigationViewItemMarginConverter" ThicknessOnEnumDetected="0" ThicknessOnEnumNotDetected="12,0,12,0"/>
+        <converters:EnumToThicknessConverter x:Key="NavigationViewAutoSuggestBoxMarginConverter" ThicknessOnEnumDetected="0,36,0,0" ThicknessOnEnumNotDetected="0"/>
+        <converters:EnumToThicknessConverter x:Key="AppTitleMarginConverter" ThicknessOnEnumDetected="24,0,0,0" ThicknessOnEnumNotDetected="56,0,0,0"/>
+        <converters:BooleanToThicknessConverter x:Key="NavigationViewContentScrollViewerMarginConverter" ThicknessOnTrue="12,32,0,0" ThicknessOnFalse="12,0,0,0"/>
         <converters:BooleanToScrollModeConverter x:Key="BooleanToScrollModeConverter" ScrollModeOnTrue="Disabled" ScrollModeOnFalse="Enabled"/>
         <converters:BooleanToScrollBarVisibilityConverter x:Key="BooleanToScrollBarVisibilityConverter" ScrollBarVisibilityOnTrue="Disabled" ScrollBarVisibilityOnFalse="Auto"/>
 
         <!--This top margin is the height of the custom TitleBar-->
-        <Thickness x:Key="NavigationViewContentMargin">0,32,0,0</Thickness>
-        <Thickness x:Key="NavigationViewHeaderMargin">16,6,0,0</Thickness>
-        <SolidColorBrush x:Key="NavigationViewContentBackground">Transparent</SolidColorBrush>
-        <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush">Transparent</SolidColorBrush>
+        <Thickness x:Key="NavigationViewHeaderMargin">16,42,0,0</Thickness>
+        <CornerRadius x:Key="NavigationViewContentGridCornerRadius">0</CornerRadius>
     </Page.Resources>
 
     <Grid Background="Transparent">
@@ -48,7 +50,8 @@
             </Grid.ColumnDefinitions>
             <Border
                 Grid.Column="0"
-                Width="48"
+                Width="0"
+                Margin="{x:Bind ViewModel.ActualNavigationViewDisplayMode, Mode=OneWay, ConverterParameter='Expanded', Converter={StaticResource AppTitleMarginConverter}}"
                 Visibility="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
 
             <StackPanel
@@ -143,6 +146,7 @@
             ExpandedModeThresholdWidth="550"
             PaneDisplayMode="Auto"
             IsTabStop="False"
+            IsPaneToggleButtonVisible="{x:Bind ViewModel.ActualNavigationViewDisplayMode, Mode=OneWay, ConverterParameter='Expanded', Converter={StaticResource InvertedEnumToBooleanConverter}}"
             AlwaysShowHeader="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource InvertedBooleanConverter}}"
             IsPaneVisible="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource InvertedBooleanConverter}}"
             Header="{x:Bind ViewModel.HeaderText, Mode=OneWay}"
@@ -213,6 +217,7 @@
             <muxc:NavigationView.AutoSuggestBox>
                 <AutoSuggestBox
                     x:Name="SearchBox"
+                    TabIndex="0"
                     QueryIcon="Find"
                     PlaceholderText="{x:Bind ViewModel.Strings.Search}"
                     Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
@@ -226,7 +231,7 @@
             </muxc:NavigationView.AutoSuggestBox>
 
             <ScrollViewer
-                Margin="12,0,0,0"
+                Margin="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource NavigationViewContentScrollViewerMarginConverter}}"
                 Padding="4,12,16,0"
                 HorizontalScrollMode="Disabled"
                 VerticalScrollBarVisibility="{x:Bind ViewModel.SelectedMenuItem.Metadata.NotScrollable, Mode=OneWay, Converter={StaticResource BooleanToScrollBarVisibilityConverter}}"

@@ -202,6 +202,7 @@
     <Compile Include="UI\Controls\Notification.xaml.cs">
       <DependentUpon>Notification.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Converters\BooleanToThicknessConverter.cs" />
     <Compile Include="UI\Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Helpers\JsonHelper.cs" />
     <Compile Include="Helpers\YamlHelper.cs" />
@@ -394,6 +395,7 @@
     <PackageReference Include="GitInfo" Version="$(Nuget_GitInfo)" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="$(NuGet_MicrosoftNETCoreUniversalWindowsPlatform)" />
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="$(NuGet_MicrosoftToolkitMvvm)" />
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI" Version="$(Nuget_MicrosoftToolkitUwpUI)" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Behaviors" Version="$(Nuget_MicrosoftToolkitUwpUIBehaviors)" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls" Version="$(Nuget_MicrosoftToolkitUwpUIControls)" />
     <PackageReference Include="Microsoft.UI.Xaml" Version="$(NuGet_MicrosoftUIXaml)" />

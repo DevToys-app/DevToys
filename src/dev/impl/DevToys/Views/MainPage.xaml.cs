@@ -8,6 +8,7 @@ using DevToys.Core.Threading;
 using DevToys.Messages;
 using DevToys.ViewModels;
 using Microsoft.Toolkit.Mvvm.Messaging;
+using Microsoft.Toolkit.Uwp.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
@@ -54,6 +55,8 @@ namespace DevToys.Views
             Assumes.NotNull(_parameters, nameof(_parameters));
             Assumes.NotNull(_mefProvider, nameof(_mefProvider));
 
+            SearchBox.Focus(FocusState.Keyboard);
+
             // Calling OnNavigatedToAsync in Loaded event instead of OnNavigatedTo because it needs access to CoreDispatcher,
             // which isn't available before the main window is created.
             ViewModel.OnNavigatedToAsync(_parameters!).Forget();
@@ -82,21 +85,41 @@ namespace DevToys.Views
         private void NavigationView_DisplayModeChanged(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewDisplayModeChangedEventArgs args)
         {
             ViewModel.NavigationViewDisplayMode = NavigationView.DisplayMode;
+            UpdateNavigationViewPaneMargin();
         }
 
         private void NavigationView_PaneClosing(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewPaneClosingEventArgs args)
         {
             ViewModel.IsNavigationViewPaneOpened = false;
+            UpdateNavigationViewPaneMargin();
         }
 
         private void NavigationView_PaneOpening(Microsoft.UI.Xaml.Controls.NavigationView sender, object args)
         {
             ViewModel.IsNavigationViewPaneOpened = true;
+            UpdateNavigationViewPaneMargin();
         }
 
         private void NavigationView_Loaded(object sender, RoutedEventArgs e)
         {
             ViewModel.IsNavigationViewPaneOpened = NavigationView.IsPaneOpen;
+            UpdateNavigationViewPaneMargin();
+        }
+
+        private void UpdateNavigationViewPaneMargin()
+        {
+            var paneContentGrid = (Grid?)NavigationView.FindDescendant("PaneContentGrid");
+            if (paneContentGrid is not null)
+            {
+                if (ViewModel.ActualNavigationViewDisplayMode == Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode.Expanded)
+                {
+                    paneContentGrid.Margin = new Thickness(3, top: 43, 3, -1);
+                }
+                else
+                {
+                    paneContentGrid.Margin = (Thickness)Application.Current.Resources["NavigationViewPaneContentGridMargin"];
+                }
+            }
         }
 
         public void Receive(NavigateToToolMessage message)
