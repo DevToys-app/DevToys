@@ -249,11 +249,11 @@ namespace DevToys
 
             if (!systemFonts.Contains(currentFont))
             {
-                for (int i = 0; i < PredefinedSettings.SupportedFonts.Length; i++)
+                for (int i = 0; i < PredefinedSettings.DefaultFonts.Length; i++)
                 {
-                    if (systemFonts.Contains(PredefinedSettings.SupportedFonts[i]))
+                    if (systemFonts.Contains(PredefinedSettings.DefaultFonts[i]))
                     {
-                        settingsProvider.SetSetting(PredefinedSettings.TextEditorFont, PredefinedSettings.SupportedFonts[i]);
+                        settingsProvider.SetSetting(PredefinedSettings.TextEditorFont, PredefinedSettings.DefaultFonts[i]);
                         return;
                     }
                 }

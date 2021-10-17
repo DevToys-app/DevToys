@@ -86,6 +86,11 @@
             <ComboBox
                 ItemsSource="{x:Bind ViewModel.SupportedFonts, Mode=OneWay}"
                 SelectedValue="{x:Bind ViewModel.TextEditorFont, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" FontFamily="{Binding}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
             </ComboBox>
         </controls:ExpandableSettingControl>
         <controls:ExpandableSettingControl
