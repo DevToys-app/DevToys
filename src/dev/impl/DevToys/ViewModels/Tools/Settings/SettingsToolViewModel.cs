@@ -131,7 +131,7 @@ namespace DevToys.ViewModels.Settings
             RateAndReviewCommand = new AsyncRelayCommand(ExecuteRateAndReviewCommandAsync);
             OpenLogsCommand = new AsyncRelayCommand(ExecuteOpenLogsCommandAsync);
 
-            LoadSupportedFontsAsync().Forget();
+            LoadFonts();
         }
 
         #region CopyVersionCommand
@@ -224,18 +224,13 @@ namespace DevToys.ViewModels.Settings
 
         #endregion
 
-        private async Task LoadSupportedFontsAsync()
+        private void LoadFonts()
         {
-            await TaskScheduler.Default;
-
             string[] systemFonts = CanvasTextFormat.GetSystemFontFamilies();
 
-            for (int i = 0; i < PredefinedSettings.SupportedFonts.Length; i++)
+            for (int i = 0; i < systemFonts.Length; i++)
             {
-                if (systemFonts.Contains(PredefinedSettings.SupportedFonts[i]))
-                {
-                    SupportedFonts.Add(PredefinedSettings.SupportedFonts[i]);
-                }
+                SupportedFonts.Add(systemFonts[i]);
             }
 
             OnPropertyChanged(nameof(TextEditorFont));
