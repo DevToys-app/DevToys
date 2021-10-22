@@ -8,7 +8,7 @@ using DevToys.Core.Threading;
 using DevToys.Messages;
 using DevToys.ViewModels;
 using Microsoft.Toolkit.Mvvm.Messaging;
-using Microsoft.Toolkit.Uwp.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
@@ -18,6 +18,11 @@ namespace DevToys.Views
 {
     public sealed partial class MainPage : Page, IRecipient<NavigateToToolMessage>
     {
+        private const string CompactOverlayStateName = "CompactOverlay";
+        private const string NavigationViewExpandedStateName = "NavigationViewExpanded";
+        private const string NavigationViewCompactStateName = "NavigationViewCompact";
+        private const string NavigationViewMinimalStateName = "NavigationViewMinimal";
+
         private IMefProvider? _mefProvider;
         private NavigationParameter? _parameters;
 
@@ -48,6 +53,7 @@ namespace DevToys.Views
             WeakReferenceMessenger.Default.RegisterAll(this);
 
             Loaded += MainPage_Loaded;
+            SizeChanged += MainPage_SizeChanged;
         }
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
@@ -62,6 +68,13 @@ namespace DevToys.Views
             ViewModel.OnNavigatedToAsync(_parameters!).Forget();
 
             NotificationControl.NotificationService = _mefProvider!.Import<INotificationService>();
+
+            UpdateVisualState();
+        }
+
+        private void MainPage_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            UpdateVisualState();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -85,39 +98,51 @@ namespace DevToys.Views
         private void NavigationView_DisplayModeChanged(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewDisplayModeChangedEventArgs args)
         {
             ViewModel.NavigationViewDisplayMode = NavigationView.DisplayMode;
-            UpdateNavigationViewPaneMargin();
+            UpdateVisualState();
         }
 
         private void NavigationView_PaneClosing(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewPaneClosingEventArgs args)
         {
             ViewModel.IsNavigationViewPaneOpened = false;
-            UpdateNavigationViewPaneMargin();
+            UpdateVisualState();
         }
 
         private void NavigationView_PaneOpening(Microsoft.UI.Xaml.Controls.NavigationView sender, object args)
         {
             ViewModel.IsNavigationViewPaneOpened = true;
-            UpdateNavigationViewPaneMargin();
+            UpdateVisualState();
         }
 
         private void NavigationView_Loaded(object sender, RoutedEventArgs e)
         {
             ViewModel.IsNavigationViewPaneOpened = NavigationView.IsPaneOpen;
-            UpdateNavigationViewPaneMargin();
+            UpdateVisualState();
         }
 
-        private void UpdateNavigationViewPaneMargin()
+        private void UpdateVisualState()
         {
-            var paneContentGrid = (Grid?)NavigationView.FindDescendant("PaneContentGrid");
-            if (paneContentGrid is not null)
+            var view = ApplicationView.GetForCurrentView();
+            bool isCompactOverlayMode = view.ViewMode == ApplicationViewMode.CompactOverlay;
+
+            if (isCompactOverlayMode)
             {
-                if (ViewModel.ActualNavigationViewDisplayMode == Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode.Expanded)
+                VisualStateManager.GoToState(this, CompactOverlayStateName, useTransitions: true);
+            }
+            else
+            {
+                switch ((NavigationViewDisplayMode)ViewModel.NavigationViewDisplayMode)
                 {
-                    paneContentGrid.Margin = new Thickness(3, top: 43, 3, -1);
-                }
-                else
-                {
-                    paneContentGrid.Margin = (Thickness)Application.Current.Resources["NavigationViewPaneContentGridMargin"];
+                    case NavigationViewDisplayMode.Minimal:
+                        VisualStateManager.GoToState(this, NavigationViewMinimalStateName, useTransitions: true);
+                        break;
+
+                    case NavigationViewDisplayMode.Compact:
+                        VisualStateManager.GoToState(this, NavigationViewCompactStateName, useTransitions: true);
+                        break;
+
+                    case NavigationViewDisplayMode.Expanded:
+                        VisualStateManager.GoToState(this, NavigationViewExpandedStateName, useTransitions: true);
+                        break;
                 }
             }
         }

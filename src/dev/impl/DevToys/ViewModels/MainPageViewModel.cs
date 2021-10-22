@@ -84,11 +84,6 @@ namespace DevToys.ViewModels
         {
             get
             {
-                if (IsInCompactOverlayMode)
-                {
-                    return null;
-                }
-
                 return SelectedMenuItem?.ToolProvider.DisplayName;
             }
         }
@@ -147,7 +142,7 @@ namespace DevToys.ViewModels
         /// <summary>
         /// Gets or sets in what mode the navigation view is displayed.
         /// </summary>
-        public NavigationViewDisplayMode NavigationViewDisplayMode // Important to keep this property Public to bind it to ChangePropertyAction in the XAML.
+        internal NavigationViewDisplayMode NavigationViewDisplayMode
         {
             get => _navigationViewDisplayMode;
             set
@@ -161,7 +156,7 @@ namespace DevToys.ViewModels
         /// <summary>
         /// Gets or sets whether the pane is opened.
         /// </summary>
-        public bool IsNavigationViewPaneOpened // Important to keep this property Public to bind it to ChangePropertyAction in the XAML.
+        internal bool IsNavigationViewPaneOpened
         {
             get => _isNavigationViewPaneOpened;
             set
@@ -179,16 +174,9 @@ namespace DevToys.ViewModels
         {
             get
             {
-                if (NavigationViewDisplayMode == NavigationViewDisplayMode.Expanded)
+                if (IsNavigationViewPaneOpened)
                 {
-                    if (IsNavigationViewPaneOpened)
-                    {
-                        return NavigationViewDisplayMode.Expanded;
-                    }
-                    else
-                    {
-                        return NavigationViewDisplayMode.Compact;
-                    }
+                    return NavigationViewDisplayMode.Expanded;
                 }
                 else
                 {
