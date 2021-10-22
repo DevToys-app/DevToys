@@ -19,9 +19,9 @@
         <converters:BooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" IsInverted="True"/>
         <converters:BooleanToScrollModeConverter x:Key="BooleanToScrollModeConverter" ScrollModeOnTrue="Auto" ScrollModeOnFalse="Enabled"/>
         <converters:EnumToThicknessConverter x:Key="NavigationViewItemMarginConverter" ThicknessOnEnumDetected="0" ThicknessOnEnumNotDetected="12,0,12,0"/>
-        
+
         <!--This top margin is the height of the custom TitleBar-->
-        <Thickness x:Key="NavigationViewContentMargin">0,48,0,0</Thickness>
+        <Thickness x:Key="NavigationViewContentMargin">0,46,0,0</Thickness>
         <Thickness x:Key="NavigationViewContentGridBorderThickness">1,1,0,0</Thickness>
         <CornerRadius x:Key="NavigationViewContentGridCornerRadius">8,0,0,0</CornerRadius>
     </Page.Resources>
@@ -33,7 +33,6 @@
                     <VisualState.Setters>
                         <Setter Target="CompactOverlayButton.Visibility" Value="Collapsed" />
                         <Setter Target="NonCompactOverlayButton.Visibility" Value="Visible" />
-                        <Setter Target="AppTitleLeftBorder.Width" Value="16" />
                         <Setter Target="NavigationView.AlwaysShowHeader" Value="False" />
                         <Setter Target="NavigationView.IsPaneVisible" Value="False" />
                         <Setter Target="ContentScrollViewer.Padding" Value="12,12,12,0"/>
@@ -45,23 +44,24 @@
                         <Setter Target="NavigationView.IsPaneToggleButtonVisible" Value="False" />
                         <Setter Target="NavigationView.IsPaneVisible" Value="True" />
                         <Setter Target="NavigationView.IsPaneOpen" Value="True" />
+                        <Setter Target="NavigationViewPaneHeader.Height" Value="38" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="NavigationViewCompact">
                     <VisualState.Setters>
-                        <Setter Target="HeaderTextBlock.Margin" Value="56,38,0,0" />
+                        <Setter Target="AppTitleLeftBorder.Width" Value="48" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="NavigationViewMinimal">
                     <VisualState.Setters>
-                        <Setter Target="AppTitleLeftBorder.Width" Value="96" />
+                        <Setter Target="AppTitleLeftBorder.Width" Value="48" />
                         <Setter Target="ContentScrollViewer.Padding" Value="12,12,12,0"/>
                         <Setter Target="HeaderTextBlock.Margin" Value="12,12,0,0" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        
+
         <Grid.BackgroundTransition>
             <BrushTransition />
         </Grid.BackgroundTransition>
@@ -80,7 +80,7 @@
             <Border
                 Name="AppTitleLeftBorder"
                 Grid.Column="0"
-                Width="48"/>
+                Width="16"/>
 
             <StackPanel
                 Grid.Column="1"
@@ -168,8 +168,8 @@
             Name="NavigationView"
             IsTitleBarAutoPaddingEnabled="False"
             IsSettingsVisible="False"
-            IsBackButtonVisible="Visible"
-            IsBackEnabled="{x:Bind contentFrame.CanGoBack, Mode=OneWay}"
+            IsBackButtonVisible="Collapsed"
+            IsBackEnabled="False"
             CompactModeThresholdWidth="640"
             ExpandedModeThresholdWidth="1008"
             PaneDisplayMode="Auto"
@@ -183,6 +183,26 @@
             PaneClosing="NavigationView_PaneClosing"
             PaneOpening="NavigationView_PaneOpening"
             Loaded="NavigationView_Loaded">
+
+            <muxc:NavigationView.PaneHeader>
+                <Border Name="NavigationViewPaneHeader" Height="0"/>
+            </muxc:NavigationView.PaneHeader>
+
+            <muxc:NavigationView.AutoSuggestBox>
+                <AutoSuggestBox
+                    Name="SearchBox"
+                    TabIndex="0"
+                    QueryIcon="Find"
+                    PlaceholderText="{x:Bind ViewModel.Strings.Search}"
+                    Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <AutoSuggestBox.KeyboardAccelerators>
+                        <KeyboardAccelerator
+                            Key="F"
+                            Modifiers="Control"
+                            Invoked="SearchBoxKeyboardAccelerator_Invoked"/>
+                    </AutoSuggestBox.KeyboardAccelerators>
+                </AutoSuggestBox>
+            </muxc:NavigationView.AutoSuggestBox>
 
             <muxc:NavigationView.MenuItemTemplate>
                 <DataTemplate x:DataType="models:MatchedToolProviderViewData">
@@ -240,21 +260,6 @@
                 </DataTemplate>
             </muxc:NavigationView.MenuItemTemplate>
 
-            <muxc:NavigationView.AutoSuggestBox>
-                <AutoSuggestBox
-                    x:Name="SearchBox"
-                    TabIndex="0"
-                    QueryIcon="Find"
-                    PlaceholderText="{x:Bind ViewModel.Strings.Search}"
-                    Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                    <AutoSuggestBox.KeyboardAccelerators>
-                        <KeyboardAccelerator
-                            Key="F"
-                            Modifiers="Control"
-                            Invoked="SearchBoxKeyboardAccelerator_Invoked"/>
-                    </AutoSuggestBox.KeyboardAccelerators>
-                </AutoSuggestBox>
-            </muxc:NavigationView.AutoSuggestBox>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
