@@ -26,10 +26,12 @@ DevToys helps in everyday tasks like formatting JSON, comparing text, testing Re
 Many tools are available.
 - Base 64 Encoder/Decoder
 - Hash Generator (MD5, SHA1, SHA256, SHA512)
+- JWT Decoder
 - Json Formatter
 - RegExp Tester
 - Text Comparer
 - Json <> Yaml converter
+- String Utilities
 
 ... and more are coming!
 
@@ -68,6 +70,7 @@ Here is the list of tool name you can use:
 - `jsonyaml` - Json <> Yaml 
 - `jwt` - JWT Decoder
 - `regex` - Regular Expression Tester
+- `string` - String Utilities
 - `diff` - Text Comparer
 - `settings` - Settings
 

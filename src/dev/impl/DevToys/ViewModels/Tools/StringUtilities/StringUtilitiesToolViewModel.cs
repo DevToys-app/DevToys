@@ -736,10 +736,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                     }
 
                     // Detect sentences.
-                    if (currentChar == '.'
-                        || currentChar == '?'
-                        || currentChar == '!'
-                        || currentChar == '\r')
+                    if (currentChar is '.' or '?' or '!' or '\r')
                     {
                         if (!IsSpanEmptyOrNotLetterAndDigit(text, sentenceBeginningPosition, i))
                         {
