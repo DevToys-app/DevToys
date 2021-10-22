@@ -117,11 +117,59 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Configuration" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="CultureInvariant" xml:space="preserve">
+    <value>Culture Invariant</value>
+  </data>
+  <data name="CultureInvariantDescription" xml:space="preserve">
+    <value>Specifies that cultural differences in language is ignored.</value>
+  </data>
   <data name="DisplayName" xml:space="preserve">
     <value>Проверка регулярных выражений</value>
   </data>
+  <data name="EcmaScript" xml:space="preserve">
+    <value>ECMA Script</value>
+  </data>
+  <data name="EcmaScriptDescription" xml:space="preserve">
+    <value>Enables ECMAScript-compliant behavior for the expression. This value can be used only in conjunction with the Ignore Case and Multiline options.</value>
+  </data>
+  <data name="IgnoreCase" xml:space="preserve">
+    <value>Ignore Case</value>
+  </data>
+  <data name="IgnoreCaseDescription" xml:space="preserve">
+    <value>Specifies case-insensitive matching.</value>
+  </data>
+  <data name="IgnoreWhitespace" xml:space="preserve">
+    <value>Ignore Whitespace</value>
+  </data>
+  <data name="IgnoreWhitespaceDescription" xml:space="preserve">
+    <value>Eliminates unescaped white space from the pattern and enables comments marked with #. However, this value does not affect or eliminate white space in character classes, numeric quantifiers, or tokens that mark the beginning of individual regular expression language elements.</value>
+  </data>
+  <data name="Multiline" xml:space="preserve">
+    <value>Multiline</value>
+  </data>
+  <data name="MultilineDescription" xml:space="preserve">
+    <value>Changes the meaning of ^ and $ so they match at the beginning and end, respectively, of any line, and not just the beginning and end of the entire string.</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
   <data name="RegularExpression" xml:space="preserve">
     <value>Регулярное выражение</value>
+  </data>
+  <data name="RightToLeft" xml:space="preserve">
+    <value>RightToLeft</value>
+  </data>
+  <data name="RightToLeftDescription" xml:space="preserve">
+    <value>Specifies that the search will be from right to left instead of from left to right.</value>
+  </data>
+  <data name="Singleline" xml:space="preserve">
+    <value>Singleline</value>
+  </data>
+  <data name="SinglelineDescription" xml:space="preserve">
+    <value>Changes the meaning of the dot (.) so it matches every character (instead of every character except \n).</value>
   </data>
   <data name="Text" xml:space="preserve">
     <value>Текст</value>

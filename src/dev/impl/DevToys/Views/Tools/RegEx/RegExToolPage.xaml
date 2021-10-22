@@ -17,20 +17,80 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <StackPanel Grid.Row="0" Spacing="4" >
+            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Configuration}" />
+
+            <controls:ExpandableSettingControl
+                Title="{x:Bind ViewModel.Strings.Options}"
+                ContentBackground="Transparent">
+                <controls:ExpandableSettingControl.Icon>
+                    <FontIcon Glyph="&#xF6A9;" />
+                </controls:ExpandableSettingControl.Icon>
+                <controls:ExpandableSettingControl.ExpandableContent>
+                    <StackPanel Spacing="0" HorizontalAlignment="Stretch">
+                        <controls:ExpandableSettingControl
+                            CornerRadius="0"
+                            Title="{x:Bind ViewModel.Strings.IgnoreCase}"
+                            Description="{x:Bind ViewModel.Strings.IgnoreCaseDescription}">
+                            <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}"/>
+                        </controls:ExpandableSettingControl>
+                        <controls:ExpandableSettingControl
+                            CornerRadius="0"
+                            Title="{x:Bind ViewModel.Strings.IgnoreWhitespace}"
+                            Description="{x:Bind ViewModel.Strings.IgnoreWhitespaceDescription}">
+                            <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}"/>
+                        </controls:ExpandableSettingControl>
+                        <controls:ExpandableSettingControl
+                            CornerRadius="0"
+                            Title="{x:Bind ViewModel.Strings.CultureInvariant}"
+                            Description="{x:Bind ViewModel.Strings.CultureInvariantDescription}">
+                            <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}"/>
+                        </controls:ExpandableSettingControl>
+                        <controls:ExpandableSettingControl
+                            CornerRadius="0"
+                            Title="{x:Bind ViewModel.Strings.Singleline}"
+                            Description="{x:Bind ViewModel.Strings.SinglelineDescription}">
+                            <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}"/>
+                        </controls:ExpandableSettingControl>
+                        <controls:ExpandableSettingControl
+                            CornerRadius="0"
+                            Title="{x:Bind ViewModel.Strings.Multiline}"
+                            Description="{x:Bind ViewModel.Strings.MultilineDescription}">
+                            <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}"/>
+                        </controls:ExpandableSettingControl>
+                        <controls:ExpandableSettingControl
+                            CornerRadius="0"
+                            Title="{x:Bind ViewModel.Strings.RightToLeft}"
+                            Description="{x:Bind ViewModel.Strings.RightToLeftDescription}">
+                            <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}"/>
+                        </controls:ExpandableSettingControl>
+                        <controls:ExpandableSettingControl
+                            CornerRadius="0,0,4,4"
+                            Title="{x:Bind ViewModel.Strings.EcmaScript}"
+                            Description="{x:Bind ViewModel.Strings.EcmaScriptDescription}">
+                            <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}"/>
+                        </controls:ExpandableSettingControl>
+                    </StackPanel>
+                </controls:ExpandableSettingControl.ExpandableContent>
+            </controls:ExpandableSettingControl>
+        </StackPanel>
+
         <controls:CustomTextBox
-            Grid.Row="0"
+            Grid.Row="1"
             Header="{x:Bind ViewModel.Strings.RegularExpression}"
             Text="{x:Bind ViewModel.RegularExpression, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <controls:CustomTextBox
             x:Name="MatchTextBox"
-            Grid.Row="1"
+            Grid.Row="2"
             Header="{x:Bind ViewModel.Strings.Text}"
             AcceptsReturn="True"
             IsRichTextEdit="True"
+            MinHeight="150"
             Text="{x:Bind ViewModel.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </Page>
