@@ -14,7 +14,7 @@ using Clipboard = Windows.ApplicationModel.DataTransfer.Clipboard;
 
 namespace DevToys.UI.Controls
 {
-    public sealed partial class CodeEditor : UserControl
+    public sealed partial class CodeEditor : UserControl, IDisposable
     {
         public static readonly DependencyProperty SettingsProviderProperty
             = DependencyProperty.Register(
@@ -168,6 +168,11 @@ namespace DevToys.UI.Controls
             CodeEditorCore.InternalException += CodeEditorCore_InternalException;
 
             UpdateUI();
+        }
+
+        public void Dispose()
+        {
+            CodeEditorCore.Dispose();
         }
 
         private void CodeEditorCore_InternalException(MonacoEditor.CodeEditorControl.CodeEditorCore sender, Exception args)
