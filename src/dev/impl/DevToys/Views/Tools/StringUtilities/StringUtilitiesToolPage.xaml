@@ -43,6 +43,7 @@
             <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Convert}" />
 
             <toolkit:WrapPanel VerticalSpacing="4" HorizontalSpacing="4">
+                <Button Content="{x:Bind ViewModel.Strings.OriginalCase}" Command="{x:Bind ViewModel.OriginalCaseCommand, Mode=OneWay}"/>
                 <Button Content="{x:Bind ViewModel.Strings.SentenceCase}" Command="{x:Bind ViewModel.SentenceCaseCommand}"/>
                 <Button Content="{x:Bind ViewModel.Strings.LowerCase}" Command="{x:Bind ViewModel.LowerCaseCommand}"/>
                 <Button Content="{x:Bind ViewModel.Strings.UpperCase}" Command="{x:Bind ViewModel.UpperCaseCommand}"/>
@@ -59,75 +60,71 @@
             </toolkit:WrapPanel>
         </StackPanel>
 
-        <ScrollViewer
+        <StackPanel
             Grid.Row="1"
             Grid.Column="1"
-            VerticalScrollBarVisibility="Auto"
-            VerticalScrollMode="Enabled"
-            HorizontalScrollMode="Disabled"
-            HorizontalScrollBarVisibility="Hidden">
-            <StackPanel Spacing="4" MaxWidth="250">
-                <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Selection}" />
-                <Grid ColumnSpacing="12" RowSpacing="4">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Line}"/>
-                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Bind ViewModel.Line, Mode=OneWay}"/>
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Column}"/>
-                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{x:Bind ViewModel.Column, Mode=OneWay}"/>
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Position}"/>
-                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{x:Bind ViewModel.SelectionStart, Mode=OneWay}"/>
-                </Grid>
+            Spacing="4"
+            MaxWidth="200">
+            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Selection}" />
+            <Grid ColumnSpacing="12" RowSpacing="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Line}"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Bind ViewModel.Line, Mode=OneWay}"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Column}"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="{x:Bind ViewModel.Column, Mode=OneWay}"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Position}"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="{x:Bind ViewModel.SelectionStart, Mode=OneWay}"/>
+            </Grid>
 
-                <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Statistics}" />
-                <Grid ColumnSpacing="12" RowSpacing="4">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Characters}"/>
-                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Bind ViewModel.Characters, Mode=OneWay}"/>
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Words}"/>
-                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{x:Bind ViewModel.Words, Mode=OneWay}"/>
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Lines}"/>
-                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{x:Bind ViewModel.Lines, Mode=OneWay}"/>
-                    <TextBlock Grid.Row="3" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Sentences}"/>
-                    <TextBlock Grid.Row="3" Grid.Column="1" Text="{x:Bind ViewModel.Sentences, Mode=OneWay}"/>
-                    <TextBlock Grid.Row="4" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Paragraphs}"/>
-                    <TextBlock Grid.Row="4" Grid.Column="1" Text="{x:Bind ViewModel.Paragraphs, Mode=OneWay}"/>
-                    <TextBlock Grid.Row="5" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Bytes}"/>
-                    <TextBlock Grid.Row="5" Grid.Column="1" Text="{x:Bind ViewModel.Bytes, Mode=OneWay}"/>
-                </Grid>
+            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Statistics}" />
+            <Grid ColumnSpacing="12" RowSpacing="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Characters}"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Bind ViewModel.Characters, Mode=OneWay}"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Words}"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="{x:Bind ViewModel.Words, Mode=OneWay}"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Lines}"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="{x:Bind ViewModel.Lines, Mode=OneWay}"/>
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Sentences}"/>
+                <TextBlock Grid.Row="3" Grid.Column="1" Text="{x:Bind ViewModel.Sentences, Mode=OneWay}"/>
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Paragraphs}"/>
+                <TextBlock Grid.Row="4" Grid.Column="1" Text="{x:Bind ViewModel.Paragraphs, Mode=OneWay}"/>
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Bytes}"/>
+                <TextBlock Grid.Row="5" Grid.Column="1" Text="{x:Bind ViewModel.Bytes, Mode=OneWay}"/>
+            </Grid>
 
-                <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.WordDistribution}" />
-                <TextBox
-                    MaxHeight="200"
-                    IsReadOnly="True"
-                    AcceptsReturn="True"
-                    Text="{x:Bind ViewModel.WordDistribution, Mode=OneWay}"/>
+            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.WordDistribution}" />
+            <TextBox
+                MaxHeight="200"
+                IsReadOnly="True"
+                AcceptsReturn="True"
+                Text="{x:Bind ViewModel.WordDistribution, Mode=OneWay}"/>
 
-                <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.CharacterDistribution}" />
-                <TextBox
-                    MaxHeight="200"
-                    IsReadOnly="True"
-                    AcceptsReturn="True"
-                    Text="{x:Bind ViewModel.CharacterDistribution, Mode=OneWay}"/>
-            </StackPanel>
-        </ScrollViewer>
+            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.CharacterDistribution}" />
+            <TextBox
+                MaxHeight="200"
+                IsReadOnly="True"
+                AcceptsReturn="True"
+                Text="{x:Bind ViewModel.CharacterDistribution, Mode=OneWay}"/>
+        </StackPanel>
     </Grid>
 </Page>

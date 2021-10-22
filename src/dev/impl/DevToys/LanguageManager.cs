@@ -873,6 +873,11 @@ namespace DevToys
         public string LowerCase => _resources.GetString("LowerCase");
 
         /// <summary>
+        /// Gets the resource OriginalCase.
+        /// </summary>
+        public string OriginalCase => _resources.GetString("OriginalCase");
+
+        /// <summary>
         /// Gets the resource Paragraphs.
         /// </summary>
         public string Paragraphs => _resources.GetString("Paragraphs");

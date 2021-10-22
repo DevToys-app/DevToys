@@ -162,6 +162,9 @@
   <data name="LowerCase" xml:space="preserve">
     <value>lower case</value>
   </data>
+  <data name="OriginalCase" xml:space="preserve">
+    <value>Original text</value>
+  </data>
   <data name="Paragraphs" xml:space="preserve">
     <value>Paragraphs:</value>
   </data>

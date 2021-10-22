@@ -52,6 +52,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                         _textBackup = value;
                     }
                     SetProperty(ref _text, value);
+                    OnPropertyChanged(nameof(OriginalCaseCommand));
                     QueueTextStatisticCalculation();
                 }
             }
@@ -136,6 +137,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
         [ImportingConstructor]
         public StringUtilitiesToolViewModel()
         {
+            OriginalCaseCommand = new RelayCommand(ExecuteOriginalCaseCommand, CanExecuteOriginalCaseCommand);
             SentenceCaseCommand = new RelayCommand(ExecuteSentenceCaseCommand);
             LowerCaseCommand = new RelayCommand(ExecuteLowerCaseCommand);
             UpperCaseCommand = new RelayCommand(ExecuteUpperCaseCommand);
@@ -154,6 +156,27 @@ namespace DevToys.ViewModels.Tools.StringUtilities
             QueueTextStatisticCalculation();
         }
 
+        #region OriginalCaseCommand
+
+        public IRelayCommand OriginalCaseCommand { get; }
+
+        private bool CanExecuteOriginalCaseCommand()
+        {
+            return !string.IsNullOrEmpty(_textBackup) && !string.Equals(_text, _textBackup, StringComparison.Ordinal);
+        }
+
+        private void ExecuteOriginalCaseCommand()
+        {
+            lock (_lockObject)
+            {
+                _forbidBackup = true;
+                Text = _textBackup;
+                _forbidBackup = false;
+            }
+        }
+
+        #endregion
+
         #region SentenceCaseCommand
 
         public IRelayCommand SentenceCaseCommand { get; }
@@ -169,10 +192,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
             bool newSentence = true;
             for (int i = 0; i < sentenceCaseString.Length; i++)
             {
-                if (sentenceCaseString[i] == '.'
-                    || sentenceCaseString[i] == '?'
-                    || sentenceCaseString[i] == '!'
-                    || sentenceCaseString[i] == '\r')
+                if (sentenceCaseString[i] is '.' or '?' or '!' or '\r')
                 {
                     newSentence = true;
                     continue;
