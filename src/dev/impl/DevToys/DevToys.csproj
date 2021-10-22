@@ -236,7 +236,6 @@
     <Compile Include="UI\Controls\HighlightSpan.cs" />
     <Compile Include="UI\Controls\ICustomTextBox.cs" />
     <Compile Include="UI\Converters\BooleanToGridLengthConverter.cs" />
-    <Compile Include="UI\Converters\BooleanToScrollBarVisibilityConverter.cs" />
     <Compile Include="UI\Converters\BooleanToScrollModeConverter.cs" />
     <Compile Include="UI\Converters\BooleanToTextWrappingConverter.cs" />
     <Compile Include="UI\Converters\BooleanToVisibilityConverter.cs" />

@@ -19,6 +19,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -649,7 +650,13 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                 _view.DOMContentLoaded += WebView_DOMContentLoaded;
                 _view.NavigationCompleted += WebView_NavigationCompleted;
                 _view.NewWindowRequested += WebView_NewWindowRequested;
-                _view.Source = new System.Uri("ms-appx-web:///DevToys.MonacoEditor/CodeEditorControl/CodeEditorCore.html");
+                Task.Delay(250).ContinueWith(async _ =>
+                {
+                    await _view.Dispatcher.RunIdleAsync((IdleDispatchedHandlerArgs e) =>
+                    {
+                        _view.Source = new System.Uri("ms-appx-web:///DevToys.MonacoEditor/CodeEditorControl/CodeEditorCore.html");
+                    });
+                });
             }
 
             base.OnApplyTemplate();

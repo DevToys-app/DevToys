@@ -8,6 +8,7 @@ using DevToys.Core.Threading;
 using DevToys.Messages;
 using DevToys.ViewModels;
 using Microsoft.Toolkit.Mvvm.Messaging;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
@@ -17,6 +18,11 @@ namespace DevToys.Views
 {
     public sealed partial class MainPage : Page, IRecipient<NavigateToToolMessage>
     {
+        private const string CompactOverlayStateName = "CompactOverlay";
+        private const string NavigationViewExpandedStateName = "NavigationViewExpanded";
+        private const string NavigationViewCompactStateName = "NavigationViewCompact";
+        private const string NavigationViewMinimalStateName = "NavigationViewMinimal";
+
         private IMefProvider? _mefProvider;
         private NavigationParameter? _parameters;
 
@@ -47,6 +53,7 @@ namespace DevToys.Views
             WeakReferenceMessenger.Default.RegisterAll(this);
 
             Loaded += MainPage_Loaded;
+            SizeChanged += MainPage_SizeChanged;
         }
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
@@ -54,11 +61,20 @@ namespace DevToys.Views
             Assumes.NotNull(_parameters, nameof(_parameters));
             Assumes.NotNull(_mefProvider, nameof(_mefProvider));
 
+            SearchBox.Focus(FocusState.Keyboard);
+
             // Calling OnNavigatedToAsync in Loaded event instead of OnNavigatedTo because it needs access to CoreDispatcher,
             // which isn't available before the main window is created.
             ViewModel.OnNavigatedToAsync(_parameters!).Forget();
 
             NotificationControl.NotificationService = _mefProvider!.Import<INotificationService>();
+
+            UpdateVisualState();
+        }
+
+        private void MainPage_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            UpdateVisualState();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -82,21 +98,53 @@ namespace DevToys.Views
         private void NavigationView_DisplayModeChanged(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewDisplayModeChangedEventArgs args)
         {
             ViewModel.NavigationViewDisplayMode = NavigationView.DisplayMode;
+            UpdateVisualState();
         }
 
         private void NavigationView_PaneClosing(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewPaneClosingEventArgs args)
         {
             ViewModel.IsNavigationViewPaneOpened = false;
+            UpdateVisualState();
         }
 
         private void NavigationView_PaneOpening(Microsoft.UI.Xaml.Controls.NavigationView sender, object args)
         {
             ViewModel.IsNavigationViewPaneOpened = true;
+            UpdateVisualState();
         }
 
         private void NavigationView_Loaded(object sender, RoutedEventArgs e)
         {
             ViewModel.IsNavigationViewPaneOpened = NavigationView.IsPaneOpen;
+            UpdateVisualState();
+        }
+
+        private void UpdateVisualState()
+        {
+            var view = ApplicationView.GetForCurrentView();
+            bool isCompactOverlayMode = view.ViewMode == ApplicationViewMode.CompactOverlay;
+
+            if (isCompactOverlayMode)
+            {
+                VisualStateManager.GoToState(this, CompactOverlayStateName, useTransitions: true);
+            }
+            else
+            {
+                switch ((NavigationViewDisplayMode)ViewModel.NavigationViewDisplayMode)
+                {
+                    case NavigationViewDisplayMode.Minimal:
+                        VisualStateManager.GoToState(this, NavigationViewMinimalStateName, useTransitions: true);
+                        break;
+
+                    case NavigationViewDisplayMode.Compact:
+                        VisualStateManager.GoToState(this, NavigationViewCompactStateName, useTransitions: true);
+                        break;
+
+                    case NavigationViewDisplayMode.Expanded:
+                        VisualStateManager.GoToState(this, NavigationViewExpandedStateName, useTransitions: true);
+                        break;
+                }
+            }
         }
 
         public void Receive(NavigateToToolMessage message)
