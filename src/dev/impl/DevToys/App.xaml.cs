@@ -105,36 +105,14 @@ namespace DevToys
                 // On Windows 10 version 1607 or later, this code signals that this app wants to participate in prelaunch
                 CoreApplication.EnablePrelaunch(true);
 
-                if (rootFrame.Content == null)
-                {
-                    // When the navigation stack isn't restored navigate to the first page,
-                    // configuring the new page by passing required information as a navigation
-                    // parameter
-                    rootFrame.Navigate(
-                        typeof(MainPage),
-                        new NavigationParameter(
-                            mefComposer.ExportProvider.GetExport<IMefProvider>(),
-                            query: e.Arguments),
-                        new SuppressNavigationTransitionInfo());
-                }
+                await NavigateToMainPageAsync(rootFrame, e.Arguments);
 
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
             else
             {
-                if (rootFrame.Content == null)
-                {
-                    // When the navigation stack isn't restored navigate to the first page,
-                    // configuring the new page by passing required information as a navigation
-                    // parameter
-                    rootFrame.Navigate(
-                        typeof(MainPage),
-                        new NavigationParameter(
-                            mefComposer.ExportProvider.GetExport<IMefProvider>(),
-                            query: e.Arguments),
-                        new SuppressNavigationTransitionInfo());
-                }
+                await NavigateToMainPageAsync(rootFrame, e.Arguments);
             }
 
             // Setup the title bar.
@@ -239,6 +217,24 @@ namespace DevToys
             return rootFrame;
         }
 
+        private async Task NavigateToMainPageAsync(Frame rootFrame, string arguments)
+        {
+            if (rootFrame.Content == null)
+            {
+                var mefComposer = await _mefComposer;
+
+                // When the navigation stack isn't restored navigate to the first page,
+                // configuring the new page by passing required information as a navigation
+                // parameter
+                rootFrame.Navigate(
+                    typeof(MainPage),
+                    new NavigationParameter(
+                        mefComposer.ExportProvider.GetExport<IMefProvider>(),
+                        query: arguments),
+                    new SuppressNavigationTransitionInfo());
+            }
+        }
+
         private async Task ValidateDefaultTextEditorFontAsync()
         {
             await TaskScheduler.Default;
@@ -249,11 +245,11 @@ namespace DevToys
 
             if (!systemFonts.Contains(currentFont))
             {
-                for (int i = 0; i < PredefinedSettings.SupportedFonts.Length; i++)
+                for (int i = 0; i < PredefinedSettings.DefaultFonts.Length; i++)
                 {
-                    if (systemFonts.Contains(PredefinedSettings.SupportedFonts[i]))
+                    if (systemFonts.Contains(PredefinedSettings.DefaultFonts[i]))
                     {
-                        settingsProvider.SetSetting(PredefinedSettings.TextEditorFont, PredefinedSettings.SupportedFonts[i]);
+                        settingsProvider.SetSetting(PredefinedSettings.TextEditorFont, PredefinedSettings.DefaultFonts[i]);
                         return;
                     }
                 }

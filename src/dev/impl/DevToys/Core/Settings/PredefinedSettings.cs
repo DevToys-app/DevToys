@@ -62,7 +62,7 @@ namespace DevToys.Core.Settings
                 isRoaming: true,
                 defaultValue: true);
 
-        public static readonly string[] SupportedFonts
+        public static readonly string[] DefaultFonts
             = new[]
             {
                 "Fira Code",

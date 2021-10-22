@@ -16,21 +16,52 @@
     muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
     <Page.Resources>
         <converters:DoubleToGridLengthConverter x:Key="DoubleToGridLengthConverter"/>
-        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <converters:BooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" IsInverted="True"/>
-        <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
+        <converters:BooleanToScrollModeConverter x:Key="BooleanToScrollModeConverter" ScrollModeOnTrue="Auto" ScrollModeOnFalse="Enabled"/>
         <converters:EnumToThicknessConverter x:Key="NavigationViewItemMarginConverter" ThicknessOnEnumDetected="0" ThicknessOnEnumNotDetected="12,0,12,0"/>
-        <converters:BooleanToScrollModeConverter x:Key="BooleanToScrollModeConverter" ScrollModeOnTrue="Disabled" ScrollModeOnFalse="Enabled"/>
-        <converters:BooleanToScrollBarVisibilityConverter x:Key="BooleanToScrollBarVisibilityConverter" ScrollBarVisibilityOnTrue="Disabled" ScrollBarVisibilityOnFalse="Auto"/>
 
         <!--This top margin is the height of the custom TitleBar-->
-        <Thickness x:Key="NavigationViewContentMargin">0,32,0,0</Thickness>
-        <Thickness x:Key="NavigationViewHeaderMargin">16,6,0,0</Thickness>
-        <SolidColorBrush x:Key="NavigationViewContentBackground">Transparent</SolidColorBrush>
-        <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush">Transparent</SolidColorBrush>
+        <Thickness x:Key="NavigationViewContentMargin">0,46,0,0</Thickness>
+        <Thickness x:Key="NavigationViewContentGridBorderThickness">1,1,0,0</Thickness>
+        <CornerRadius x:Key="NavigationViewContentGridCornerRadius">8,0,0,0</CornerRadius>
     </Page.Resources>
 
     <Grid Background="Transparent">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="CompactOverlay">
+                    <VisualState.Setters>
+                        <Setter Target="CompactOverlayButton.Visibility" Value="Collapsed" />
+                        <Setter Target="NonCompactOverlayButton.Visibility" Value="Visible" />
+                        <Setter Target="NavigationView.AlwaysShowHeader" Value="False" />
+                        <Setter Target="NavigationView.IsPaneVisible" Value="False" />
+                        <Setter Target="ContentScrollViewer.Padding" Value="12,12,12,0"/>
+                        <Setter Target="HeaderTextBlock.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NavigationViewExpanded">
+                    <VisualState.Setters>
+                        <Setter Target="NavigationView.IsPaneToggleButtonVisible" Value="False" />
+                        <Setter Target="NavigationView.IsPaneVisible" Value="True" />
+                        <Setter Target="NavigationView.IsPaneOpen" Value="True" />
+                        <Setter Target="NavigationViewPaneHeader.Height" Value="38" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NavigationViewCompact">
+                    <VisualState.Setters>
+                        <Setter Target="AppTitleLeftBorder.Width" Value="48" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NavigationViewMinimal">
+                    <VisualState.Setters>
+                        <Setter Target="AppTitleLeftBorder.Width" Value="48" />
+                        <Setter Target="ContentScrollViewer.Padding" Value="12,12,12,0"/>
+                        <Setter Target="HeaderTextBlock.Margin" Value="12,12,0,0" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
         <Grid.BackgroundTransition>
             <BrushTransition />
         </Grid.BackgroundTransition>
@@ -47,9 +78,9 @@
                 <ColumnDefinition Width="{x:Bind ViewModel.TitleBar.SystemOverlayRightInset, Mode=OneWay, Converter={StaticResource DoubleToGridLengthConverter}}" />
             </Grid.ColumnDefinitions>
             <Border
+                Name="AppTitleLeftBorder"
                 Grid.Column="0"
-                Width="48"
-                Visibility="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
+                Width="16"/>
 
             <StackPanel
                 Grid.Column="1"
@@ -59,8 +90,7 @@
                     VerticalAlignment="Center"
                     Source="/Assets/Logo/Square44x44Logo.altform-lightunplated_targetsize-16.png"
                     Width="16"
-                    Height="16"
-                    Visibility="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
+                    Height="16"/>
                 <TextBlock
                     Text="{x:Bind ViewModel.WindowTitle, Mode=OneWay}"
                     VerticalAlignment="Center"
@@ -79,6 +109,7 @@
 
             <!-- Compact Overlay button -->
             <Button
+                Name="CompactOverlayButton"
                 Grid.Column="2"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
@@ -88,7 +119,6 @@
                 Background="Transparent"
                 BorderBrush="Transparent"
                 ToolTipService.ToolTip="{x:Bind ViewModel.Strings.EnterCompactOverlayTooltip}"
-                Visibility="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
                 Command="{x:Bind ViewModel.ChangeViewModeCommand}">
                 <Button.CommandParameter>
                     <viewmanagement:ApplicationViewMode>CompactOverlay</viewmanagement:ApplicationViewMode>
@@ -105,6 +135,7 @@
                 </controls:CustomPathIcon>
             </Button>
             <Button
+                Name="NonCompactOverlayButton"
                 Grid.Column="2"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
@@ -113,8 +144,8 @@
                 Padding="0"
                 Background="Transparent"
                 BorderBrush="Transparent"
+                Visibility="Collapsed"
                 ToolTipService.ToolTip="{x:Bind ViewModel.Strings.ExitCompactOverlayTooltip}"
-                Visibility="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
                 Command="{x:Bind ViewModel.ChangeViewModeCommand}">
                 <Button.CommandParameter>
                     <viewmanagement:ApplicationViewMode>Default</viewmanagement:ApplicationViewMode>
@@ -134,18 +165,17 @@
 
         <!-- Navigation view -->
         <muxc:NavigationView
-            x:Name="NavigationView"
+            Name="NavigationView"
             IsTitleBarAutoPaddingEnabled="False"
             IsSettingsVisible="False"
             IsBackButtonVisible="Collapsed"
             IsBackEnabled="False"
-            CompactModeThresholdWidth="450"
-            ExpandedModeThresholdWidth="550"
+            CompactModeThresholdWidth="640"
+            ExpandedModeThresholdWidth="1008"
             PaneDisplayMode="Auto"
             IsTabStop="False"
-            AlwaysShowHeader="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource InvertedBooleanConverter}}"
-            IsPaneVisible="{x:Bind ViewModel.IsInCompactOverlayMode, Mode=OneWay, Converter={StaticResource InvertedBooleanConverter}}"
-            Header="{x:Bind ViewModel.HeaderText, Mode=OneWay}"
+            AlwaysShowHeader="True"
+            IsPaneToggleButtonVisible="True"
             MenuItemsSource="{x:Bind ViewModel.ToolsMenuItems}"
             FooterMenuItemsSource="{x:Bind ViewModel.FooterMenuItems}"
             SelectedItem="{x:Bind ViewModel.SelectedMenuItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -153,6 +183,26 @@
             PaneClosing="NavigationView_PaneClosing"
             PaneOpening="NavigationView_PaneOpening"
             Loaded="NavigationView_Loaded">
+
+            <muxc:NavigationView.PaneHeader>
+                <Border Name="NavigationViewPaneHeader" Height="0"/>
+            </muxc:NavigationView.PaneHeader>
+
+            <muxc:NavigationView.AutoSuggestBox>
+                <AutoSuggestBox
+                    Name="SearchBox"
+                    TabIndex="0"
+                    QueryIcon="Find"
+                    PlaceholderText="{x:Bind ViewModel.Strings.Search}"
+                    Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <AutoSuggestBox.KeyboardAccelerators>
+                        <KeyboardAccelerator
+                            Key="F"
+                            Modifiers="Control"
+                            Invoked="SearchBoxKeyboardAccelerator_Invoked"/>
+                    </AutoSuggestBox.KeyboardAccelerators>
+                </AutoSuggestBox>
+            </muxc:NavigationView.AutoSuggestBox>
 
             <muxc:NavigationView.MenuItemTemplate>
                 <DataTemplate x:DataType="models:MatchedToolProviderViewData">
@@ -210,29 +260,28 @@
                 </DataTemplate>
             </muxc:NavigationView.MenuItemTemplate>
 
-            <muxc:NavigationView.AutoSuggestBox>
-                <AutoSuggestBox
-                    x:Name="SearchBox"
-                    QueryIcon="Find"
-                    PlaceholderText="{x:Bind ViewModel.Strings.Search}"
-                    Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                    <AutoSuggestBox.KeyboardAccelerators>
-                        <KeyboardAccelerator
-                            Key="F"
-                            Modifiers="Control"
-                            Invoked="SearchBoxKeyboardAccelerator_Invoked"/>
-                    </AutoSuggestBox.KeyboardAccelerators>
-                </AutoSuggestBox>
-            </muxc:NavigationView.AutoSuggestBox>
-
-            <ScrollViewer
-                Margin="12,0,0,0"
-                Padding="4,12,16,0"
-                HorizontalScrollMode="Disabled"
-                VerticalScrollBarVisibility="{x:Bind ViewModel.SelectedMenuItem.Metadata.NotScrollable, Mode=OneWay, Converter={StaticResource BooleanToScrollBarVisibilityConverter}}"
-                VerticalScrollMode="{x:Bind ViewModel.SelectedMenuItem.Metadata.NotScrollable, Mode=OneWay, Converter={StaticResource BooleanToScrollModeConverter}}">
-                <Frame x:Name="contentFrame" />
-            </ScrollViewer>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Name="HeaderTextBlock"
+                    Grid.Row="0"
+                    Margin="56,48,0,0"
+                    Text="{x:Bind ViewModel.HeaderText, Mode=OneWay}"
+                    FontSize="24"/>
+                <ScrollViewer
+                    Name="ContentScrollViewer"
+                    Grid.Row="1"
+                    Padding="56,12,56,0"
+                    HorizontalScrollMode="Disabled"
+                    VerticalScrollMode="{x:Bind ViewModel.SelectedMenuItem.Metadata.NotScrollable, Mode=OneWay, Converter={StaticResource BooleanToScrollModeConverter}}">
+                    <Frame
+                        x:Name="contentFrame"
+                        Padding="0,0,0,24"/>
+                </ScrollViewer>
+            </Grid>
         </muxc:NavigationView>
 
         <controls:Notification x:Name="NotificationControl"/>
