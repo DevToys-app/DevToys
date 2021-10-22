@@ -563,6 +563,23 @@ namespace DevToys.UI.Controls
             }
         }
 
+        private void InputSizeFit_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (TextBox is not null)
+            {
+                InputSizeFit.MinHeight = TextBox.MinHeight;
+                TextBox.Height = InputSizeFit.ActualHeight;
+                TextBox.Width = InputSizeFit.ActualWidth;
+            }
+
+            if (RichEditBox is not null)
+            {
+                InputSizeFit.MinHeight = RichEditBox.MinHeight;
+                RichEditBox.Height = InputSizeFit.ActualHeight;
+                RichEditBox.Width = InputSizeFit.ActualWidth;
+            }
+        }
+
         private static void OnIsReadOnlyPropertyChangedCalled(DependencyObject sender, DependencyPropertyChangedEventArgs eventArgs)
         {
             ((CustomTextBox)sender).UpdateUI();

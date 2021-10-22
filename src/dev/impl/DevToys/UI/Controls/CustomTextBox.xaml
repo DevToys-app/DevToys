@@ -89,109 +89,124 @@
                 </StackPanel>
             </Button>
         </StackPanel>
-        <TextBox
-            x:Name="TextBox"
-            x:Load="{x:Bind IsRichTextEdit, Converter={StaticResource InvertedBooleanConverter}}"
+        <Border
+            x:Name="InputSizeFit"
             Grid.Row="1"
             Grid.Column="0"
             Grid.ColumnSpan="2"
-            TabIndex="1"
-            IsSpellCheckEnabled="False"
-            TextWrapping="{x:Bind AcceptsReturn, Mode=OneWay, Converter={StaticResource BooleanToTextWrappingConverter}}"
-            IsReadOnly="{x:Bind IsReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            AcceptsReturn="{x:Bind AcceptsReturn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            Text="{x:Bind Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            SelectionChanged="TextBox_SelectionChanged"
-            CopyingToClipboard="TextBox_CopyingToClipboard"
-            CuttingToClipboard="TextBox_CuttingToClipboard"/>
-        <RichEditBox
-            x:Name="RichEditBox"
-            x:Load="{x:Bind IsRichTextEdit}"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            SizeChanged="InputSizeFit_SizeChanged"/>
+        <Canvas
             Grid.Row="1"
             Grid.Column="0"
-            Grid.ColumnSpan="2"
-            TabIndex="1"
-            IsSpellCheckEnabled="False"
-            TextWrapping="{x:Bind AcceptsReturn, Mode=OneWay, Converter={StaticResource BooleanToTextWrappingConverter}}"
-            IsReadOnly="{x:Bind IsReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            AcceptsReturn="{x:Bind AcceptsReturn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            SelectionChanged="RichEditBox_SelectionChanged"
-            CopyingToClipboard="RichEditBox_CopyingToClipboard"
-            CuttingToClipboard="RichEditBox_CuttingToClipboard">
-            <RichEditBox.ContextFlyout>
-                <MenuFlyout>
-                    <MenuFlyoutItem
-                        Text="{Binding Instance.Common.Cut, Source={StaticResource LanguageManager}}"
-                        Command="{Binding CutCommand}">
-                        <MenuFlyoutItem.Icon>
-                            <FontIcon Glyph="&#xF33A;" />
-                        </MenuFlyoutItem.Icon>
-                        <MenuFlyoutItem.KeyboardAccelerators>
-                            <KeyboardAccelerator Key="X" Modifiers="Control" IsEnabled="False"/>
-                        </MenuFlyoutItem.KeyboardAccelerators>
-                    </MenuFlyoutItem>
-                    <MenuFlyoutItem
-                        Text="{Binding Instance.Common.Copy, Source={StaticResource LanguageManager}}"
-                        Command="{Binding CopyCommand}">
-                        <MenuFlyoutItem.Icon>
-                            <FontIcon Glyph="&#xF32B;" />
-                        </MenuFlyoutItem.Icon>
-                        <MenuFlyoutItem.KeyboardAccelerators>
-                            <KeyboardAccelerator Key="C" Modifiers="Control" IsEnabled="False"/>
-                        </MenuFlyoutItem.KeyboardAccelerators>
-                    </MenuFlyoutItem>
-                    <MenuFlyoutItem
-                        Text="{Binding Instance.Common.Paste, Source={StaticResource LanguageManager}}"
-                        Command="{Binding PasteCommand}">
-                        <MenuFlyoutItem.Icon>
-                            <FontIcon Glyph="&#xF2D5;" />
-                        </MenuFlyoutItem.Icon>
-                        <MenuFlyoutItem.KeyboardAccelerators>
-                            <KeyboardAccelerator Key="V" Modifiers="Control" IsEnabled="False"/>
-                        </MenuFlyoutItem.KeyboardAccelerators>
-                    </MenuFlyoutItem>
-                    <MenuFlyoutItem
-                        Text="{Binding Instance.Common.Delete, Source={StaticResource LanguageManager}}"
-                        Command="{Binding DeleteCommand}">
-                        <MenuFlyoutItem.Icon>
-                            <FontIcon Glyph="&#xF34C;" />
-                        </MenuFlyoutItem.Icon>
-                        <MenuFlyoutItem.KeyboardAccelerators>
-                            <KeyboardAccelerator Key="Delete" IsEnabled="False" />
-                        </MenuFlyoutItem.KeyboardAccelerators>
-                    </MenuFlyoutItem>
-                    <MenuFlyoutSeparator/>
-                    <MenuFlyoutItem
-                        Text="{Binding Instance.Common.Undo, Source={StaticResource LanguageManager}}"
-                        Command="{Binding UndoCommand}">
-                        <MenuFlyoutItem.Icon>
-                            <FontIcon Glyph="&#xF199;" />
-                        </MenuFlyoutItem.Icon>
-                        <MenuFlyoutItem.KeyboardAccelerators>
-                            <KeyboardAccelerator Key="Z" Modifiers="Control" IsEnabled="False" />
-                        </MenuFlyoutItem.KeyboardAccelerators>
-                    </MenuFlyoutItem>
-                    <MenuFlyoutItem
-                        Text="{Binding Instance.Common.Redo, Source={StaticResource LanguageManager}}"
-                        Command="{Binding RedoCommand}">
-                        <MenuFlyoutItem.Icon>
-                            <FontIcon Glyph="&#xF16E;" />
-                        </MenuFlyoutItem.Icon>
-                        <MenuFlyoutItem.KeyboardAccelerators>
-                            <KeyboardAccelerator Key="Y" Modifiers="Control" IsEnabled="False" />
-                        </MenuFlyoutItem.KeyboardAccelerators>
-                    </MenuFlyoutItem>
-                    <MenuFlyoutSeparator/>
-                    <MenuFlyoutItem
-                        Text="{Binding Instance.Common.SelectAll, Source={StaticResource LanguageManager}}"
-                        Command="{Binding SelectAllCommand}">
-                        <MenuFlyoutItem.KeyboardAccelerators>
-                            <KeyboardAccelerator Key="A" Modifiers="Control" IsEnabled="False" />
-                        </MenuFlyoutItem.KeyboardAccelerators>
-                    </MenuFlyoutItem>
-                </MenuFlyout>
-            </RichEditBox.ContextFlyout>
-        </RichEditBox>
+            Grid.ColumnSpan="2">
+            <TextBox
+                x:Name="TextBox"
+                x:Load="{x:Bind IsRichTextEdit, Converter={StaticResource InvertedBooleanConverter}}"
+                TabIndex="1"
+                IsSpellCheckEnabled="False"
+                ScrollViewer.VerticalScrollMode="Enabled"
+                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                ScrollViewer.HorizontalScrollMode="Enabled"
+                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                TextWrapping="{x:Bind AcceptsReturn, Mode=OneWay, Converter={StaticResource BooleanToTextWrappingConverter}}"
+                IsReadOnly="{x:Bind IsReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                AcceptsReturn="{x:Bind AcceptsReturn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Text="{x:Bind Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                SelectionChanged="TextBox_SelectionChanged"
+                CopyingToClipboard="TextBox_CopyingToClipboard"
+                CuttingToClipboard="TextBox_CuttingToClipboard"/>
+            <RichEditBox
+                x:Name="RichEditBox"
+                x:Load="{x:Bind IsRichTextEdit}"
+                TabIndex="1"
+                IsSpellCheckEnabled="False"
+                ScrollViewer.VerticalScrollMode="Enabled"
+                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                ScrollViewer.HorizontalScrollMode="Enabled"
+                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                TextWrapping="{x:Bind AcceptsReturn, Mode=OneWay, Converter={StaticResource BooleanToTextWrappingConverter}}"
+                IsReadOnly="{x:Bind IsReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                AcceptsReturn="{x:Bind AcceptsReturn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                SelectionChanged="RichEditBox_SelectionChanged"
+                CopyingToClipboard="RichEditBox_CopyingToClipboard"
+                CuttingToClipboard="RichEditBox_CuttingToClipboard">
+                <RichEditBox.ContextFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem
+                            Text="{Binding Instance.Common.Cut, Source={StaticResource LanguageManager}}"
+                            Command="{Binding CutCommand}">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xF33A;" />
+                            </MenuFlyoutItem.Icon>
+                            <MenuFlyoutItem.KeyboardAccelerators>
+                                <KeyboardAccelerator Key="X" Modifiers="Control" IsEnabled="False"/>
+                            </MenuFlyoutItem.KeyboardAccelerators>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem
+                            Text="{Binding Instance.Common.Copy, Source={StaticResource LanguageManager}}"
+                            Command="{Binding CopyCommand}">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xF32B;" />
+                            </MenuFlyoutItem.Icon>
+                            <MenuFlyoutItem.KeyboardAccelerators>
+                                <KeyboardAccelerator Key="C" Modifiers="Control" IsEnabled="False"/>
+                            </MenuFlyoutItem.KeyboardAccelerators>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem
+                            Text="{Binding Instance.Common.Paste, Source={StaticResource LanguageManager}}"
+                            Command="{Binding PasteCommand}">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xF2D5;" />
+                            </MenuFlyoutItem.Icon>
+                            <MenuFlyoutItem.KeyboardAccelerators>
+                                <KeyboardAccelerator Key="V" Modifiers="Control" IsEnabled="False"/>
+                            </MenuFlyoutItem.KeyboardAccelerators>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem
+                            Text="{Binding Instance.Common.Delete, Source={StaticResource LanguageManager}}"
+                            Command="{Binding DeleteCommand}">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xF34C;" />
+                            </MenuFlyoutItem.Icon>
+                            <MenuFlyoutItem.KeyboardAccelerators>
+                                <KeyboardAccelerator Key="Delete" IsEnabled="False" />
+                            </MenuFlyoutItem.KeyboardAccelerators>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutSeparator/>
+                        <MenuFlyoutItem
+                            Text="{Binding Instance.Common.Undo, Source={StaticResource LanguageManager}}"
+                            Command="{Binding UndoCommand}">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xF199;" />
+                            </MenuFlyoutItem.Icon>
+                            <MenuFlyoutItem.KeyboardAccelerators>
+                                <KeyboardAccelerator Key="Z" Modifiers="Control" IsEnabled="False" />
+                            </MenuFlyoutItem.KeyboardAccelerators>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem
+                            Text="{Binding Instance.Common.Redo, Source={StaticResource LanguageManager}}"
+                            Command="{Binding RedoCommand}">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xF16E;" />
+                            </MenuFlyoutItem.Icon>
+                            <MenuFlyoutItem.KeyboardAccelerators>
+                                <KeyboardAccelerator Key="Y" Modifiers="Control" IsEnabled="False" />
+                            </MenuFlyoutItem.KeyboardAccelerators>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutSeparator/>
+                        <MenuFlyoutItem
+                            Text="{Binding Instance.Common.SelectAll, Source={StaticResource LanguageManager}}"
+                            Command="{Binding SelectAllCommand}">
+                            <MenuFlyoutItem.KeyboardAccelerators>
+                                <KeyboardAccelerator Key="A" Modifiers="Control" IsEnabled="False" />
+                            </MenuFlyoutItem.KeyboardAccelerators>
+                        </MenuFlyoutItem>
+                    </MenuFlyout>
+                </RichEditBox.ContextFlyout>
+            </RichEditBox>
+        </Canvas>
         <Button
             x:Name="InlinedCopyButton"
             x:DeferLoadStrategy="Lazy"
