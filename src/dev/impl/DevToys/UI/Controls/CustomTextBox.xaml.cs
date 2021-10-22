@@ -86,6 +86,19 @@ namespace DevToys.UI.Controls
             set => SetValue(TextProperty, value);
         }
 
+        public static readonly DependencyProperty SelectionStartProperty
+            = DependencyProperty.Register(
+                nameof(SelectionStart),
+                typeof(int),
+                typeof(CustomTextBox),
+                new PropertyMetadata(0));
+
+        public int SelectionStart
+        {
+            get => (int)GetValue(SelectionStartProperty);
+            set => SetValue(SelectionStartProperty, value);
+        }
+
         public CustomTextBox()
         {
             InitializeComponent();
@@ -516,6 +529,11 @@ namespace DevToys.UI.Controls
             args.Handled = true;
         }
 
+        private void TextBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            SelectionStart = TextBox.SelectionStart;
+        }
+
         private void RichEditBox_CopyingToClipboard(RichEditBox sender, TextControlCopyingToClipboardEventArgs args)
         {
             CopyRichEditBoxSelectionToClipboard();
@@ -528,6 +546,11 @@ namespace DevToys.UI.Controls
             args.Handled = true;
         }
 
+        private void RichEditBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            SelectionStart = RichEditBox.Document.Selection.StartPosition;
+        }
+
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             if (e.NewSize.Width < CommandsToolBar.ActualWidth + 100)
@@ -537,6 +560,23 @@ namespace DevToys.UI.Controls
             else
             {
                 CommandsToolBar.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void InputSizeFit_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (TextBox is not null)
+            {
+                InputSizeFit.MinHeight = TextBox.MinHeight;
+                TextBox.Height = InputSizeFit.ActualHeight;
+                TextBox.Width = InputSizeFit.ActualWidth;
+            }
+
+            if (RichEditBox is not null)
+            {
+                InputSizeFit.MinHeight = RichEditBox.MinHeight;
+                RichEditBox.Height = InputSizeFit.ActualHeight;
+                RichEditBox.Width = InputSizeFit.ActualWidth;
             }
         }
 

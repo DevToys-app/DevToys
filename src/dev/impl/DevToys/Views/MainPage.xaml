@@ -35,7 +35,7 @@
                         <Setter Target="NonCompactOverlayButton.Visibility" Value="Visible" />
                         <Setter Target="NavigationView.AlwaysShowHeader" Value="False" />
                         <Setter Target="NavigationView.IsPaneVisible" Value="False" />
-                        <Setter Target="ContentScrollViewer.Padding" Value="12,12,12,0"/>
+                        <Setter Target="ContentScrollViewer.Padding" Value="12,0,12,0"/>
                         <Setter Target="HeaderTextBlock.Visibility" Value="Collapsed" />
                     </VisualState.Setters>
                 </VisualState>
