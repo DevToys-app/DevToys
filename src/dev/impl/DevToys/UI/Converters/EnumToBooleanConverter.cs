@@ -11,11 +11,13 @@ namespace DevToys.UI.Converters
     /// </summary>
     public sealed class EnumToBooleanConverter : IValueConverter
     {
+        public bool IsInverted { get; set; }
+
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if (value is null || parameter is null || !(value is Enum))
             {
-                return false;
+                return IsInverted;
             }
 
             var currentState = value.ToString();
@@ -26,11 +28,11 @@ namespace DevToys.UI.Converters
             {
                 if (string.Equals(currentState, stateStringsSplitted[i].Trim(), StringComparison.Ordinal))
                 {
-                    return true;
+                    return !IsInverted;
                 }
             }
 
-            return false;
+            return IsInverted;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
