@@ -64,7 +64,7 @@
             Grid.Row="1"
             Grid.Column="1"
             Spacing="4"
-            MaxWidth="200">
+            Width="200">
             <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Selection}" />
             <Grid ColumnSpacing="12" RowSpacing="4">
                 <Grid.ColumnDefinitions>
