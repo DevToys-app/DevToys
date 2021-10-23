@@ -117,6 +117,8 @@
                 MaxHeight="200"
                 IsReadOnly="True"
                 AcceptsReturn="True"
+                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                ScrollViewer.HorizontalScrollBarVisibility="Auto"
                 Text="{x:Bind ViewModel.WordDistribution, Mode=OneWay}"/>
 
             <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.CharacterDistribution}" />
@@ -124,6 +126,8 @@
                 MaxHeight="200"
                 IsReadOnly="True"
                 AcceptsReturn="True"
+                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                ScrollViewer.HorizontalScrollBarVisibility="Auto"
                 Text="{x:Bind ViewModel.CharacterDistribution, Mode=OneWay}"/>
         </StackPanel>
     </Grid>
