@@ -33,6 +33,7 @@ namespace DevToys
         private readonly MainPageStrings _mainpage = new MainPageStrings();
         private readonly RegExStrings _regex = new RegExStrings();
         private readonly SettingsStrings _settings = new SettingsStrings();
+        private readonly StringUtilitiesStrings _stringutilities = new StringUtilitiesStrings();
         private readonly TextDiffStrings _textdiff = new TextDiffStrings();
 
         /// <summary>
@@ -89,6 +90,11 @@ namespace DevToys
         /// Gets the <see cref="SettingsStrings"/>.
         /// </summary>
         public SettingsStrings Settings => _settings;
+
+        /// <summary>
+        /// Gets the <see cref="StringUtilitiesStrings"/>.
+        /// </summary>
+        public StringUtilitiesStrings StringUtilities => _stringutilities;
 
         /// <summary>
         /// Gets the <see cref="TextDiffStrings"/>.
@@ -785,6 +791,161 @@ namespace DevToys
         /// Gets the resource WordWrap.
         /// </summary>
         public string WordWrap => _resources.GetString("WordWrap");
+    }
+
+    public class StringUtilitiesStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("StringUtilities");
+
+        /// <summary>
+        /// Gets the resource AlternatingCase.
+        /// </summary>
+        public string AlternatingCase => _resources.GetString("AlternatingCase");
+
+        /// <summary>
+        /// Gets the resource Bytes.
+        /// </summary>
+        public string Bytes => _resources.GetString("Bytes");
+
+        /// <summary>
+        /// Gets the resource CamelCase.
+        /// </summary>
+        public string CamelCase => _resources.GetString("CamelCase");
+
+        /// <summary>
+        /// Gets the resource CharacterDistribution.
+        /// </summary>
+        public string CharacterDistribution => _resources.GetString("CharacterDistribution");
+
+        /// <summary>
+        /// Gets the resource Characters.
+        /// </summary>
+        public string Characters => _resources.GetString("Characters");
+
+        /// <summary>
+        /// Gets the resource CobolCase.
+        /// </summary>
+        public string CobolCase => _resources.GetString("CobolCase");
+
+        /// <summary>
+        /// Gets the resource Column.
+        /// </summary>
+        public string Column => _resources.GetString("Column");
+
+        /// <summary>
+        /// Gets the resource ConstantCase.
+        /// </summary>
+        public string ConstantCase => _resources.GetString("ConstantCase");
+
+        /// <summary>
+        /// Gets the resource Convert.
+        /// </summary>
+        public string Convert => _resources.GetString("Convert");
+
+        /// <summary>
+        /// Gets the resource DisplayName.
+        /// </summary>
+        public string DisplayName => _resources.GetString("DisplayName");
+
+        /// <summary>
+        /// Gets the resource InverseCase.
+        /// </summary>
+        public string InverseCase => _resources.GetString("InverseCase");
+
+        /// <summary>
+        /// Gets the resource KebabCase.
+        /// </summary>
+        public string KebabCase => _resources.GetString("KebabCase");
+
+        /// <summary>
+        /// Gets the resource Line.
+        /// </summary>
+        public string Line => _resources.GetString("Line");
+
+        /// <summary>
+        /// Gets the resource Lines.
+        /// </summary>
+        public string Lines => _resources.GetString("Lines");
+
+        /// <summary>
+        /// Gets the resource LowerCase.
+        /// </summary>
+        public string LowerCase => _resources.GetString("LowerCase");
+
+        /// <summary>
+        /// Gets the resource OriginalCase.
+        /// </summary>
+        public string OriginalCase => _resources.GetString("OriginalCase");
+
+        /// <summary>
+        /// Gets the resource Paragraphs.
+        /// </summary>
+        public string Paragraphs => _resources.GetString("Paragraphs");
+
+        /// <summary>
+        /// Gets the resource PascalCase.
+        /// </summary>
+        public string PascalCase => _resources.GetString("PascalCase");
+
+        /// <summary>
+        /// Gets the resource Position.
+        /// </summary>
+        public string Position => _resources.GetString("Position");
+
+        /// <summary>
+        /// Gets the resource Selection.
+        /// </summary>
+        public string Selection => _resources.GetString("Selection");
+
+        /// <summary>
+        /// Gets the resource SentenceCase.
+        /// </summary>
+        public string SentenceCase => _resources.GetString("SentenceCase");
+
+        /// <summary>
+        /// Gets the resource Sentences.
+        /// </summary>
+        public string Sentences => _resources.GetString("Sentences");
+
+        /// <summary>
+        /// Gets the resource SnakeCase.
+        /// </summary>
+        public string SnakeCase => _resources.GetString("SnakeCase");
+
+        /// <summary>
+        /// Gets the resource Statistics.
+        /// </summary>
+        public string Statistics => _resources.GetString("Statistics");
+
+        /// <summary>
+        /// Gets the resource String.
+        /// </summary>
+        public string String => _resources.GetString("String");
+
+        /// <summary>
+        /// Gets the resource TitleCase.
+        /// </summary>
+        public string TitleCase => _resources.GetString("TitleCase");
+
+        /// <summary>
+        /// Gets the resource TrainCase.
+        /// </summary>
+        public string TrainCase => _resources.GetString("TrainCase");
+
+        /// <summary>
+        /// Gets the resource UpperCase.
+        /// </summary>
+        public string UpperCase => _resources.GetString("UpperCase");
+
+        /// <summary>
+        /// Gets the resource WordDistribution.
+        /// </summary>
+        public string WordDistribution => _resources.GetString("WordDistribution");
+
+        /// <summary>
+        /// Gets the resource Words.
+        /// </summary>
+        public string Words => _resources.GetString("Words");
     }
 
     public class TextDiffStrings : ObservableObject
