@@ -121,10 +121,10 @@
     <value>Configuration</value>
   </data>
   <data name="CultureInvariant" xml:space="preserve">
-    <value>Culture Invariant</value>
+    <value>Culture Indépendente</value>
   </data>
   <data name="CultureInvariantDescription" xml:space="preserve">
-    <value>Specifies that cultural differences in language is ignored.</value>
+    <value>Indique que les différences culturelles dans la langue ne sont pas prises en compte.</value>
   </data>
   <data name="DisplayName" xml:space="preserve">
     <value>Testeur de RegEx</value>
@@ -133,25 +133,25 @@
     <value>ECMA Script</value>
   </data>
   <data name="EcmaScriptDescription" xml:space="preserve">
-    <value>Enables ECMAScript-compliant behavior for the expression. This value can be used only in conjunction with the Culture Invariant, Ignore Case and Multiline options.</value>
+    <value>Active un comportement conforme ECMAScript pour l’expression. Cette valeur ne peut être utilisée qu'en conjonction avec les options Culture Indépendente, Ignorer la Casse et Multiligne.</value>
   </data>
   <data name="IgnoreCase" xml:space="preserve">
-    <value>Ignore Case</value>
+    <value>Ignorer la Casse</value>
   </data>
   <data name="IgnoreCaseDescription" xml:space="preserve">
-    <value>Specifies case-insensitive matching.</value>
+    <value>Spécifie la correspondance qui ne respecte pas la casse.</value>
   </data>
   <data name="IgnoreWhitespace" xml:space="preserve">
-    <value>Ignore Whitespace</value>
+    <value>Ignorer les Espaces Blancs</value>
   </data>
   <data name="IgnoreWhitespaceDescription" xml:space="preserve">
-    <value>Eliminates unescaped white space from the pattern and enables comments marked with #. However, this value does not affect or eliminate white space in character classes, numeric quantifiers, or tokens that mark the beginning of individual regular expression language elements.</value>
+    <value>Élimine l'espace blanc sans séquence d'échappement du modèle et active les commentaires marqués avec #. Cependant, cette valeur n’affecte ni n’élimine l’espace blanc dans les classes de caractères, les quantificateurs numériques ou les jetons qui marquent le début d’éléments de langage d’expression régulière.</value>
   </data>
   <data name="Multiline" xml:space="preserve">
-    <value>Multiline</value>
+    <value>Multiligne</value>
   </data>
   <data name="MultilineDescription" xml:space="preserve">
-    <value>Changes the meaning of ^ and $ so they match at the beginning and end, respectively, of any line, and not just the beginning and end of the entire string.</value>
+    <value>Modifie la signification de ^ et $ de sorte qu'ils correspondent respectivement au début et à la fin de n'importe quelle ligne, et non simplement au début et à la fin de la chaîne entière.</value>
   </data>
   <data name="Options" xml:space="preserve">
     <value>Options</value>
@@ -160,16 +160,16 @@
     <value>Expression regulière</value>
   </data>
   <data name="RightToLeft" xml:space="preserve">
-    <value>RightToLeft</value>
+    <value>Droite à Gauche</value>
   </data>
   <data name="RightToLeftDescription" xml:space="preserve">
-    <value>Specifies that the search will be from right to left instead of from left to right.</value>
+    <value>Spécifie que la recherche sera effectuée de droite à gauche et non de gauche à droite.</value>
   </data>
   <data name="Singleline" xml:space="preserve">
     <value>Singleline</value>
   </data>
   <data name="SinglelineDescription" xml:space="preserve">
-    <value>Changes the meaning of the dot (.) so it matches every character (instead of every character except \n).</value>
+    <value>Modifie la signification du point (.) de sorte qu'il corresponde à chaque caractère (et non à chaque caractère sauf \n).</value>
   </data>
   <data name="Text" xml:space="preserve">
     <value>Texte</value>

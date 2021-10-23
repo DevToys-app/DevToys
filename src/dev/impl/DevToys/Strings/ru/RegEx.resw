@@ -160,7 +160,7 @@
     <value>Регулярное выражение</value>
   </data>
   <data name="RightToLeft" xml:space="preserve">
-    <value>RightToLeft</value>
+    <value>Right To Left</value>
   </data>
   <data name="RightToLeftDescription" xml:space="preserve">
     <value>Specifies that the search will be from right to left instead of from left to right.</value>
