@@ -745,6 +745,11 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                         }
                     }
 
+                    if (currentChar == '\r')
+                    {
+                        continue;
+                    }
+
                     if (currentChar == ' ')
                     {
                         currentChar = '⎵';
