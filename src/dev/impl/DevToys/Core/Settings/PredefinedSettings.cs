@@ -84,7 +84,7 @@ namespace DevToys.Core.Settings
         public static readonly SettingDefinition<string> TextEditorFont
             = new(
                 name: nameof(TextEditorFont),
-                isRoaming: true,
+                isRoaming: false,
                 defaultValue: "Cascadia Mono");
 
         /// <summary>
