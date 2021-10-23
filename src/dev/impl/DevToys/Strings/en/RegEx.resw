@@ -133,7 +133,7 @@
     <value>ECMA Script</value>
   </data>
   <data name="EcmaScriptDescription" xml:space="preserve">
-    <value>Enables ECMAScript-compliant behavior for the expression. This value can be used only in conjunction with the Ignore Case and Multiline options.</value>
+    <value>Enables ECMAScript-compliant behavior for the expression. This value can be used only in conjunction with the Culture Invariant, Ignore Case and Multiline options.</value>
   </data>
   <data name="IgnoreCase" xml:space="preserve">
     <value>Ignore Case</value>
