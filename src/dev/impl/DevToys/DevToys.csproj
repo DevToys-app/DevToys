@@ -142,6 +142,10 @@
       <Link>Assets\Logo\Wide310x150Logo.scale-400.png</Link>
     </Content>
     <Content Include="Assets\DemoSmartDetection.gif" />
+    <Content Include="Assets\GitHubMarkdownCss\github-markdown-dark.css" />
+    <Content Include="Assets\GitHubMarkdownCss\github-markdown-light.css" />
+    <Content Include="Assets\GitHubMarkdownCss\github-markdown.css" />
+    <Content Include="Assets\GitHubMarkdownCss\index.html" />
     <Content Include="Assets\ReleaseNote.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -194,6 +198,7 @@
     <Compile Include="Core\TitleBar.cs" />
     <Compile Include="Core\ToolProviderFactory.cs" />
     <Compile Include="Helpers\JwtHelper.cs" />
+    <Compile Include="Messages\NavigateToMarkdownPreviewHtmlMessage.cs" />
     <Compile Include="Models\IndentationDisplayPair.cs" />
     <Compile Include="Models\Indentation.cs" />
     <Compile Include="UI\Controls\CodeEditor.xaml.cs">
@@ -209,6 +214,8 @@
     <Compile Include="ViewModels\Tools\JsonYaml\JsonYamlToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\JwtDecoderEncoder\JwtDecoderEncoderToolProvider.cs" />
     <Compile Include="ViewModels\Tools\JwtDecoderEncoder\JwtDecoderEncoderToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\MarkdownPreview\MarkdownPreviewToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\MarkdownPreview\MarkdownPreviewToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\StringUtilities\StringUtilitiesToolProvider.cs" />
     <Compile Include="ViewModels\Tools\StringUtilities\StringUtilitiesToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\ToolProviderBase.cs" />
@@ -280,6 +287,9 @@
     </Compile>
     <Compile Include="Views\Tools\JwtDecoderEncoder\JwtDecoderEncoderToolPage.xaml.cs">
       <DependentUpon>JwtDecoderEncoderToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\MarkdownPreview\MarkdownPreviewToolPage.xaml.cs">
+      <DependentUpon>MarkdownPreviewToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\RegEx\RegExToolPage.xaml.cs">
       <DependentUpon>RegExToolPage.xaml</DependentUpon>
@@ -376,6 +386,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Tools\MarkdownPreview\MarkdownPreviewToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Tools\RegEx\RegExToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -400,6 +414,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="GitInfo" Version="$(Nuget_GitInfo)" />
+    <PackageReference Include="Markdig" Version="$(Nuget_Markdig)" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="$(NuGet_MicrosoftNETCoreUniversalWindowsPlatform)" />
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="$(NuGet_MicrosoftToolkitMvvm)" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Behaviors" Version="$(Nuget_MicrosoftToolkitUwpUIBehaviors)" />
