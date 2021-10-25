@@ -69,6 +69,7 @@ Here is the list of tool name you can use:
 - `jsonformat` Json Formatter
 - `jsonyaml` - Json <> Yaml 
 - `jwt` - JWT Decoder
+- `markdown` - Markdown Preview
 - `regex` - Regular Expression Tester
 - `string` - String Utilities
 - `diff` - Text Comparer
