@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
 using DevToys.Core.Threading;
 using DevToys.UI.Controls;
@@ -17,6 +18,48 @@ namespace DevToys.ViewModels.Tools.RegEx
     [Export(typeof(RegExToolViewModel))]
     public sealed class RegExToolViewModel : ObservableRecipient, IToolViewModel
     {
+        private static readonly SettingDefinition<bool> IgnoreCaseSetting
+            = new(
+                name: $"{nameof(RegExToolViewModel)}.{nameof(IgnoreCaseSetting)}",
+                isRoaming: true,
+                defaultValue: false);
+
+        private static readonly SettingDefinition<bool> IgnoreWhitespaceSetting
+            = new(
+                name: $"{nameof(RegExToolViewModel)}.{nameof(IgnoreWhitespaceSetting)}",
+                isRoaming: true,
+                defaultValue: false);
+
+        private static readonly SettingDefinition<bool> CultureInvariantSetting
+            = new(
+                name: $"{nameof(RegExToolViewModel)}.{nameof(CultureInvariantSetting)}",
+                isRoaming: true,
+                defaultValue: false);
+
+        private static readonly SettingDefinition<bool> SinglelineSetting
+            = new(
+                name: $"{nameof(RegExToolViewModel)}.{nameof(SinglelineSetting)}",
+                isRoaming: true,
+                defaultValue: false);
+
+        private static readonly SettingDefinition<bool> MultilineSetting
+            = new(
+                name: $"{nameof(RegExToolViewModel)}.{nameof(MultilineSetting)}",
+                isRoaming: true,
+                defaultValue: false);
+
+        private static readonly SettingDefinition<bool> RightToLeftSetting
+            = new(
+                name: $"{nameof(RegExToolViewModel)}.{nameof(RightToLeftSetting)}",
+                isRoaming: true,
+                defaultValue: false);
+
+        private static readonly SettingDefinition<bool> EcmaScriptSetting
+            = new(
+                name: $"{nameof(RegExToolViewModel)}.{nameof(EcmaScriptSetting)}",
+                isRoaming: true,
+                defaultValue: false);
+
         private readonly Queue<(string pattern, string text)> _regExMatchingQueue = new();
 
         private bool _calculationInProgress;
@@ -26,6 +69,106 @@ namespace DevToys.ViewModels.Tools.RegEx
         public Type View { get; } = typeof(RegExToolPage);
 
         internal RegExStrings Strings => LanguageManager.Instance.RegEx;
+
+        internal ISettingsProvider SettingsProvider { get; }
+
+        internal bool IgnoreCase
+        {
+            get => SettingsProvider.GetSetting(IgnoreCaseSetting);
+            set
+            {
+                if (SettingsProvider.GetSetting(IgnoreCaseSetting) != value)
+                {
+                    SettingsProvider.SetSetting(IgnoreCaseSetting, value);
+                    OnPropertyChanged();
+                    QueueRegExMatch();
+                }
+            }
+        }
+
+        internal bool IgnoreWhitespace
+        {
+            get => SettingsProvider.GetSetting(IgnoreWhitespaceSetting);
+            set
+            {
+                if (SettingsProvider.GetSetting(IgnoreWhitespaceSetting) != value)
+                {
+                    SettingsProvider.SetSetting(IgnoreWhitespaceSetting, value);
+                    OnPropertyChanged();
+                    QueueRegExMatch();
+                }
+            }
+        }
+
+        internal bool CultureInvariant
+        {
+            get => SettingsProvider.GetSetting(CultureInvariantSetting);
+            set
+            {
+                if (SettingsProvider.GetSetting(CultureInvariantSetting) != value)
+                {
+                    SettingsProvider.SetSetting(CultureInvariantSetting, value);
+                    OnPropertyChanged();
+                    QueueRegExMatch();
+                }
+            }
+        }
+
+        internal bool Singleline
+        {
+            get => SettingsProvider.GetSetting(SinglelineSetting);
+            set
+            {
+                if (SettingsProvider.GetSetting(SinglelineSetting) != value)
+                {
+                    SettingsProvider.SetSetting(SinglelineSetting, value);
+                    OnPropertyChanged();
+                    QueueRegExMatch();
+                }
+            }
+        }
+
+        internal bool Multiline
+        {
+            get => SettingsProvider.GetSetting(MultilineSetting);
+            set
+            {
+                if (SettingsProvider.GetSetting(MultilineSetting) != value)
+                {
+                    SettingsProvider.SetSetting(MultilineSetting, value);
+                    OnPropertyChanged();
+                    QueueRegExMatch();
+                }
+            }
+        }
+
+        internal bool RightToLeft
+        {
+            get => SettingsProvider.GetSetting(RightToLeftSetting);
+            set
+            {
+                if (SettingsProvider.GetSetting(RightToLeftSetting) != value)
+                {
+                    SettingsProvider.SetSetting(RightToLeftSetting, value);
+                    OnPropertyChanged();
+                    QueueRegExMatch();
+                }
+            }
+        }
+
+        internal bool EcmaScript
+        {
+            get => SettingsProvider.GetSetting(EcmaScriptSetting);
+            set
+            {
+                if (SettingsProvider.GetSetting(EcmaScriptSetting) != value)
+                {
+                    SettingsProvider.SetSetting(EcmaScriptSetting, value);
+                    OnPropertyChanged();
+                    QueueRegExMatch();
+                }
+            }
+        }
 
         internal string? RegularExpression
         {
@@ -48,6 +191,12 @@ namespace DevToys.ViewModels.Tools.RegEx
         }
 
         internal ICustomTextBox? MatchTextBox { private get; set; }
+
+        [ImportingConstructor]
+        public RegExToolViewModel(ISettingsProvider settingsProvider)
+        {
+            SettingsProvider = settingsProvider;
+        }
 
         private void QueueRegExMatch()
         {
@@ -74,7 +223,7 @@ namespace DevToys.ViewModels.Tools.RegEx
                 {
                     string pattern = data.pattern.Trim('/');
 
-                    var regex = new Regex(data.pattern, RegexOptions.Multiline);
+                    var regex = new Regex(data.pattern, GetOptions());
                     MatchCollection matches = regex.Matches(data.text.Replace("\r\n", "\r"));
 
                     foreach (Match match in matches)
@@ -103,6 +252,41 @@ namespace DevToys.ViewModels.Tools.RegEx
             }
 
             _calculationInProgress = false;
+        }
+
+        private RegexOptions GetOptions()
+        {
+            RegexOptions options = RegexOptions.None;
+            if (EcmaScript)
+            {
+                options |= RegexOptions.ECMAScript;
+            }
+            if (CultureInvariant)
+            {
+                options |= RegexOptions.CultureInvariant;
+            }
+            if (IgnoreCase)
+            {
+                options |= RegexOptions.IgnoreCase;
+            }
+            if (IgnoreWhitespace && !EcmaScript)
+            {
+                options |= RegexOptions.IgnorePatternWhitespace;
+            }
+            if (Singleline && !EcmaScript)
+            {
+                options |= RegexOptions.Singleline;
+            }
+            if (Multiline)
+            {
+                options |= RegexOptions.Multiline;
+            }
+            if (RightToLeft && !EcmaScript)
+            {
+                options |= RegexOptions.RightToLeft;
+            }
+
+            return options;
         }
     }
 }

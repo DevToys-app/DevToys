@@ -3,6 +3,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Markup;
+using Windows.UI.Xaml.Media;
 
 namespace DevToys.UI.Controls
 {
@@ -74,6 +75,32 @@ namespace DevToys.UI.Controls
         {
             get => (bool)GetValue(IsExpandedProperty);
             set => SetValue(IsExpandedProperty, value);
+        }
+
+        public static readonly DependencyProperty ContentBackgroundProperty
+            = DependencyProperty.Register(
+                nameof(ContentBackground),
+                typeof(Brush),
+                typeof(ExpandableSettingControl),
+                new PropertyMetadata(Application.Current.Resources["ExpanderContentBackground"]));
+
+        public Brush ContentBackground
+        {
+            get => (Brush)GetValue(ContentBackgroundProperty);
+            set => SetValue(ContentBackgroundProperty, value);
+        }
+
+        public static readonly DependencyProperty HeaderBackgroundProperty
+            = DependencyProperty.Register(
+                nameof(HeaderBackground),
+                typeof(Brush),
+                typeof(ExpandableSettingControl),
+                new PropertyMetadata(Application.Current.Resources["ExpanderHeaderBackground"]));
+
+        public Brush HeaderBackground
+        {
+            get => (Brush)GetValue(HeaderBackgroundProperty);
+            set => SetValue(HeaderBackgroundProperty, value);
         }
 
         public ExpandableSettingControl()

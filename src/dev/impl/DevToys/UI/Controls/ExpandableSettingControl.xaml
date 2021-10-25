@@ -9,6 +9,7 @@
     xmlns:converters="using:DevToys.UI.Converters"
     mc:Ignorable="d"
     HorizontalAlignment="Stretch"
+    CornerRadius="{ThemeResource ControlCornerRadius}"
     d:DesignHeight="300"
     d:DesignWidth="400">
     <UserControl.Resources>
@@ -16,13 +17,11 @@
         <converters:NullToBooleanConverter x:Key="NullToFalseConverter" IsInverted="True"/>
 
         <Style x:Key="GridSettingBlockStyle" TargetType="Grid">
-            <Setter Property="Background" Value="{ThemeResource ExpanderHeaderBackground}" />
             <Setter Property="BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrush}" />
             <Setter Property="BorderThickness" Value="{ThemeResource ExpanderHeaderBorderThickness}" />
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Setter Property="MinHeight" Value="{StaticResource ExpanderMinHeight}" />
             <Setter Property="Padding" Value="{StaticResource ExpanderContentPadding}" />
-            <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
         </Style>
     </UserControl.Resources>
 
@@ -37,6 +36,9 @@
                 HorizontalContentAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 VerticalContentAlignment="Stretch"
+                Padding="0"
+                Background="{x:Bind ContentBackground, Mode=OneWay}"
+                CornerRadius="{x:Bind CornerRadius}"
                 IsExpanded="{x:Bind IsExpanded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <muxc:Expander.Header>
                     <local:ExpandableSettingHeaderControl
@@ -57,7 +59,9 @@
         <Grid
             x:Name="NonExpanderGrid"
             x:Load="{x:Bind ExpandableContent, Mode=OneWay, Converter={StaticResource NullToTrueConverter}}"
-            Style="{StaticResource GridSettingBlockStyle}">
+            Style="{StaticResource GridSettingBlockStyle}"
+            Background="{x:Bind HeaderBackground, Mode=OneWay}"
+            CornerRadius="{x:Bind CornerRadius}">
             <local:ExpandableSettingHeaderControl
                 Title="{x:Bind Title, Mode=OneWay}"
                 Description="{x:Bind Description, Mode=OneWay}"

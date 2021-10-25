@@ -40,7 +40,7 @@
                 <FontIcon Glyph="&#xF592;" />
             </controls:ExpandableSettingControl.Icon>
             <controls:ExpandableSettingControl.ExpandableContent>
-                <StackPanel Spacing="4" Margin="42,0,6,0">
+                <StackPanel Padding="12" Spacing="4" Margin="42,0,6,0">
                     <RadioButton
                         Content="{x:Bind ViewModel.Strings.Light}"
                         IsChecked="{x:Bind ViewModel.Theme, Mode=TwoWay, ConverterParameter='Light', Converter={StaticResource EnumToBooleanConverter}}"/>
@@ -64,7 +64,7 @@
             </controls:ExpandableSettingControl.Icon>
             <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" IsOn="{x:Bind ViewModel.SmartDetection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <controls:ExpandableSettingControl.ExpandableContent>
-                <StackPanel Spacing="4" HorizontalAlignment="Stretch">
+                <StackPanel Padding="12" Spacing="4" Margin="42,0,42,0" HorizontalAlignment="Stretch">
                     <CheckBox
                         IsChecked="{x:Bind ViewModel.SmartDetection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         Content="{x:Bind ViewModel.Strings.SmartDetectionPaste}"
@@ -145,7 +145,7 @@
                 <FontIcon Glyph="&#xF4E4;" />
             </controls:ExpandableSettingControl.Icon>
             <controls:ExpandableSettingControl.ExpandableContent>
-                <Grid Margin="42,0,6,0">
+                <Grid Margin="42,12,6,12">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>

@@ -590,14 +590,94 @@ namespace DevToys
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("RegEx");
 
         /// <summary>
+        /// Gets the resource Configuration.
+        /// </summary>
+        public string Configuration => _resources.GetString("Configuration");
+
+        /// <summary>
+        /// Gets the resource CultureInvariant.
+        /// </summary>
+        public string CultureInvariant => _resources.GetString("CultureInvariant");
+
+        /// <summary>
+        /// Gets the resource CultureInvariantDescription.
+        /// </summary>
+        public string CultureInvariantDescription => _resources.GetString("CultureInvariantDescription");
+
+        /// <summary>
         /// Gets the resource DisplayName.
         /// </summary>
         public string DisplayName => _resources.GetString("DisplayName");
 
         /// <summary>
+        /// Gets the resource EcmaScript.
+        /// </summary>
+        public string EcmaScript => _resources.GetString("EcmaScript");
+
+        /// <summary>
+        /// Gets the resource EcmaScriptDescription.
+        /// </summary>
+        public string EcmaScriptDescription => _resources.GetString("EcmaScriptDescription");
+
+        /// <summary>
+        /// Gets the resource IgnoreCase.
+        /// </summary>
+        public string IgnoreCase => _resources.GetString("IgnoreCase");
+
+        /// <summary>
+        /// Gets the resource IgnoreCaseDescription.
+        /// </summary>
+        public string IgnoreCaseDescription => _resources.GetString("IgnoreCaseDescription");
+
+        /// <summary>
+        /// Gets the resource IgnoreWhitespace.
+        /// </summary>
+        public string IgnoreWhitespace => _resources.GetString("IgnoreWhitespace");
+
+        /// <summary>
+        /// Gets the resource IgnoreWhitespaceDescription.
+        /// </summary>
+        public string IgnoreWhitespaceDescription => _resources.GetString("IgnoreWhitespaceDescription");
+
+        /// <summary>
+        /// Gets the resource Multiline.
+        /// </summary>
+        public string Multiline => _resources.GetString("Multiline");
+
+        /// <summary>
+        /// Gets the resource MultilineDescription.
+        /// </summary>
+        public string MultilineDescription => _resources.GetString("MultilineDescription");
+
+        /// <summary>
+        /// Gets the resource Options.
+        /// </summary>
+        public string Options => _resources.GetString("Options");
+
+        /// <summary>
         /// Gets the resource RegularExpression.
         /// </summary>
         public string RegularExpression => _resources.GetString("RegularExpression");
+
+        /// <summary>
+        /// Gets the resource RightToLeft.
+        /// </summary>
+        public string RightToLeft => _resources.GetString("RightToLeft");
+
+        /// <summary>
+        /// Gets the resource RightToLeftDescription.
+        /// </summary>
+        public string RightToLeftDescription => _resources.GetString("RightToLeftDescription");
+
+        /// <summary>
+        /// Gets the resource Singleline.
+        /// </summary>
+        public string Singleline => _resources.GetString("Singleline");
+
+        /// <summary>
+        /// Gets the resource SinglelineDescription.
+        /// </summary>
+        public string SinglelineDescription => _resources.GetString("SinglelineDescription");
 
         /// <summary>
         /// Gets the resource Text.
