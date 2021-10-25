@@ -32,6 +32,7 @@ Many tools are available.
 - Text Comparer
 - Json <> Yaml converter
 - String Utilities
+- Markdown Preview
 
 ... and more are coming!
 
