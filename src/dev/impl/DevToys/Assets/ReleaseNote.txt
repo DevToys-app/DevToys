@@ -1,8 +1,9 @@
-﻿New Features
-  • JWT Decoder tool!
-  • Added an option to disable automatic paste in Smart Detection.
-Improvements
-  • Russian language is now available.
-  • Smart Detection got smarter.
-Bug Fixes
-  • Fixed another bug with the logger.
+﻿🎉 New Features
+  • Markdown Preview tool.
+  • String analysis and converter tool.
+👏 Improvements
+  • RegEx Tester tool got new options.
+  • New layout.
+  • Text editor can now use any font.
+🐛 Bug Fixes
+  • Minor bugs fixed.
