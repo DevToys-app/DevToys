@@ -117,11 +117,59 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Configuration" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="CultureInvariant" xml:space="preserve">
+    <value>Culture Indépendente</value>
+  </data>
+  <data name="CultureInvariantDescription" xml:space="preserve">
+    <value>Indique que les différences culturelles dans la langue ne sont pas prises en compte.</value>
+  </data>
   <data name="DisplayName" xml:space="preserve">
     <value>Testeur de RegEx</value>
   </data>
+  <data name="EcmaScript" xml:space="preserve">
+    <value>ECMA Script</value>
+  </data>
+  <data name="EcmaScriptDescription" xml:space="preserve">
+    <value>Active un comportement conforme ECMAScript pour l’expression. Cette valeur ne peut être utilisée qu'en conjonction avec les options Culture Indépendente, Ignorer la Casse et Multiligne.</value>
+  </data>
+  <data name="IgnoreCase" xml:space="preserve">
+    <value>Ignorer la Casse</value>
+  </data>
+  <data name="IgnoreCaseDescription" xml:space="preserve">
+    <value>Spécifie la correspondance qui ne respecte pas la casse.</value>
+  </data>
+  <data name="IgnoreWhitespace" xml:space="preserve">
+    <value>Ignorer les Espaces Blancs</value>
+  </data>
+  <data name="IgnoreWhitespaceDescription" xml:space="preserve">
+    <value>Élimine l'espace blanc sans séquence d'échappement du modèle et active les commentaires marqués avec #. Cependant, cette valeur n’affecte ni n’élimine l’espace blanc dans les classes de caractères, les quantificateurs numériques ou les jetons qui marquent le début d’éléments de langage d’expression régulière.</value>
+  </data>
+  <data name="Multiline" xml:space="preserve">
+    <value>Multiligne</value>
+  </data>
+  <data name="MultilineDescription" xml:space="preserve">
+    <value>Modifie la signification de ^ et $ de sorte qu'ils correspondent respectivement au début et à la fin de n'importe quelle ligne, et non simplement au début et à la fin de la chaîne entière.</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
   <data name="RegularExpression" xml:space="preserve">
     <value>Expression regulière</value>
+  </data>
+  <data name="RightToLeft" xml:space="preserve">
+    <value>Droite à Gauche</value>
+  </data>
+  <data name="RightToLeftDescription" xml:space="preserve">
+    <value>Spécifie que la recherche sera effectuée de droite à gauche et non de gauche à droite.</value>
+  </data>
+  <data name="Singleline" xml:space="preserve">
+    <value>Singleline</value>
+  </data>
+  <data name="SinglelineDescription" xml:space="preserve">
+    <value>Modifie la signification du point (.) de sorte qu'il corresponde à chaque caractère (et non à chaque caractère sauf \n).</value>
   </data>
   <data name="Text" xml:space="preserve">
     <value>Texte</value>

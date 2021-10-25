@@ -4,9 +4,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:DevToys.UI.Controls"
+    xmlns:controls="using:DevToys.UI.Controls" xmlns:converters="using:DevToys.UI.Converters"
     mc:Ignorable="d"
     NavigationCacheMode="Required">
+    <Page.Resources>
+        <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
+    </Page.Resources>
 
     <Grid Margin="0,0,0,16" RowSpacing="12">
         <Grid.ChildrenTransitions>
@@ -17,20 +20,97 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <StackPanel Grid.Row="0" Spacing="4" >
+            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Configuration}" />
+
+            <controls:ExpandableSettingControl
+                Title="{x:Bind ViewModel.Strings.Options}"
+                ContentBackground="Transparent">
+                <controls:ExpandableSettingControl.Icon>
+                    <FontIcon Glyph="&#xF6A9;" />
+                </controls:ExpandableSettingControl.Icon>
+                <controls:ExpandableSettingControl.ExpandableContent>
+                    <StackPanel Spacing="0" HorizontalAlignment="Stretch">
+                        <controls:ExpandableSettingControl
+                            CornerRadius="0,0,4,4"
+                            Title="{x:Bind ViewModel.Strings.EcmaScript}"
+                            Description="{x:Bind ViewModel.Strings.EcmaScriptDescription}">
+                            <ToggleSwitch
+                                Style="{StaticResource RightAlignedToggleSwitchStyle}"
+                                IsOn="{x:Bind ViewModel.EcmaScript, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </controls:ExpandableSettingControl>
+                        <controls:ExpandableSettingControl
+                            CornerRadius="0"
+                            Title="{x:Bind ViewModel.Strings.CultureInvariant}"
+                            Description="{x:Bind ViewModel.Strings.CultureInvariantDescription}">
+                            <ToggleSwitch
+                                Style="{StaticResource RightAlignedToggleSwitchStyle}"
+                                IsOn="{x:Bind ViewModel.CultureInvariant, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </controls:ExpandableSettingControl>
+                        <controls:ExpandableSettingControl
+                            CornerRadius="0"
+                            Title="{x:Bind ViewModel.Strings.IgnoreCase}"
+                            Description="{x:Bind ViewModel.Strings.IgnoreCaseDescription}">
+                            <ToggleSwitch
+                                Style="{StaticResource RightAlignedToggleSwitchStyle}"
+                                IsOn="{x:Bind ViewModel.IgnoreCase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </controls:ExpandableSettingControl>
+                        <controls:ExpandableSettingControl
+                            CornerRadius="0"
+                            Title="{x:Bind ViewModel.Strings.IgnoreWhitespace}"
+                            Description="{x:Bind ViewModel.Strings.IgnoreWhitespaceDescription}">
+                            <ToggleSwitch
+                                Style="{StaticResource RightAlignedToggleSwitchStyle}"
+                                IsOn="{x:Bind ViewModel.IgnoreWhitespace, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                IsEnabled="{x:Bind ViewModel.EcmaScript, Mode=OneWay, Converter={StaticResource InvertedBooleanConverter}}"/>
+                        </controls:ExpandableSettingControl>
+                        <controls:ExpandableSettingControl
+                            CornerRadius="0"
+                            Title="{x:Bind ViewModel.Strings.Singleline}"
+                            Description="{x:Bind ViewModel.Strings.SinglelineDescription}">
+                            <ToggleSwitch
+                                Style="{StaticResource RightAlignedToggleSwitchStyle}"
+                                IsOn="{x:Bind ViewModel.Singleline, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                IsEnabled="{x:Bind ViewModel.EcmaScript, Mode=OneWay, Converter={StaticResource InvertedBooleanConverter}}"/>
+                        </controls:ExpandableSettingControl>
+                        <controls:ExpandableSettingControl
+                            CornerRadius="0"
+                            Title="{x:Bind ViewModel.Strings.Multiline}"
+                            Description="{x:Bind ViewModel.Strings.MultilineDescription}">
+                            <ToggleSwitch
+                                Style="{StaticResource RightAlignedToggleSwitchStyle}"
+                                IsOn="{x:Bind ViewModel.Multiline, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </controls:ExpandableSettingControl>
+                        <controls:ExpandableSettingControl
+                            CornerRadius="0"
+                            Title="{x:Bind ViewModel.Strings.RightToLeft}"
+                            Description="{x:Bind ViewModel.Strings.RightToLeftDescription}">
+                            <ToggleSwitch
+                                Style="{StaticResource RightAlignedToggleSwitchStyle}"
+                                IsOn="{x:Bind ViewModel.RightToLeft, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                IsEnabled="{x:Bind ViewModel.EcmaScript, Mode=OneWay, Converter={StaticResource InvertedBooleanConverter}}"/>
+                        </controls:ExpandableSettingControl>
+                    </StackPanel>
+                </controls:ExpandableSettingControl.ExpandableContent>
+            </controls:ExpandableSettingControl>
+        </StackPanel>
+
         <controls:CustomTextBox
-            Grid.Row="0"
+            Grid.Row="1"
             Header="{x:Bind ViewModel.Strings.RegularExpression}"
             Text="{x:Bind ViewModel.RegularExpression, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <controls:CustomTextBox
             x:Name="MatchTextBox"
-            Grid.Row="1"
+            Grid.Row="2"
             Header="{x:Bind ViewModel.Strings.Text}"
             AcceptsReturn="True"
             IsRichTextEdit="True"
+            MinHeight="150"
             Text="{x:Bind ViewModel.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </Page>
