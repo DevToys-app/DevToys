@@ -154,7 +154,7 @@ namespace DevToys.Views
 
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            contentFrame.Navigate(
+            ContentFrame.Navigate(
                 message.ViewModel.View,
                 new NavigationParameter(
                     _mefProvider!,
