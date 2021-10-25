@@ -31,6 +31,7 @@ namespace DevToys
         private readonly JsonYamlStrings _jsonyaml = new JsonYamlStrings();
         private readonly JwtDecoderEncoderStrings _jwtdecoderencoder = new JwtDecoderEncoderStrings();
         private readonly MainPageStrings _mainpage = new MainPageStrings();
+        private readonly MarkdownPreviewStrings _markdownpreview = new MarkdownPreviewStrings();
         private readonly RegExStrings _regex = new RegExStrings();
         private readonly SettingsStrings _settings = new SettingsStrings();
         private readonly StringUtilitiesStrings _stringutilities = new StringUtilitiesStrings();
@@ -80,6 +81,11 @@ namespace DevToys
         /// Gets the <see cref="MainPageStrings"/>.
         /// </summary>
         public MainPageStrings MainPage => _mainpage;
+
+        /// <summary>
+        /// Gets the <see cref="MarkdownPreviewStrings"/>.
+        /// </summary>
+        public MarkdownPreviewStrings MarkdownPreview => _markdownpreview;
 
         /// <summary>
         /// Gets the <see cref="RegExStrings"/>.
@@ -583,6 +589,51 @@ namespace DevToys
         {
             return string.Format(WindowTitleWithToolName, param0);
         }
+    }
+
+    public class MarkdownPreviewStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("MarkdownPreview");
+
+        /// <summary>
+        /// Gets the resource Configuration.
+        /// </summary>
+        public string Configuration => _resources.GetString("Configuration");
+
+        /// <summary>
+        /// Gets the resource Dark.
+        /// </summary>
+        public string Dark => _resources.GetString("Dark");
+
+        /// <summary>
+        /// Gets the resource DisplayName.
+        /// </summary>
+        public string DisplayName => _resources.GetString("DisplayName");
+
+        /// <summary>
+        /// Gets the resource Input.
+        /// </summary>
+        public string Input => _resources.GetString("Input");
+
+        /// <summary>
+        /// Gets the resource Light.
+        /// </summary>
+        public string Light => _resources.GetString("Light");
+
+        /// <summary>
+        /// Gets the resource Output.
+        /// </summary>
+        public string Output => _resources.GetString("Output");
+
+        /// <summary>
+        /// Gets the resource Theme.
+        /// </summary>
+        public string Theme => _resources.GetString("Theme");
+
+        /// <summary>
+        /// Gets the resource ThemeDescription.
+        /// </summary>
+        public string ThemeDescription => _resources.GetString("ThemeDescription");
     }
 
     public class RegExStrings : ObservableObject

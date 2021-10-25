@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <title>DevToys Markdown Preview</title>
+    <meta name="color-scheme" content="{{renderTheme}}">
+    <link rel="stylesheet" href="ms-appx-web:///Assets/GitHubMarkdownCss/github-markdown.css">
+    <link rel="stylesheet" href="ms-appx-web:///Assets/GitHubMarkdownCss/github-markdown-{{renderTheme}}.css">
+    <style>
+        body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 45px;
+            background-color: {{backgroundColor}};
+        }
+    </style>
+</head>
+<body>
+    <article class="markdown-body">
+        {{htmlBody}}
+    </article>
+</body>
+</html>
