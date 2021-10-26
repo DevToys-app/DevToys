@@ -196,10 +196,10 @@
     <value>Автоматическое определение инструмента на основе содержимого буфера обмена</value>
   </data>
   <data name="SmartDetectionHowTo" xml:space="preserve">
-    <value>How to use Smart Detection</value>
+    <value>Как работает умное определение</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automatically paste the clipboard content when selecting a recommended tool</value>
+    <value>Автоматически вставлять содержимое буфера обмена при выборе инструмента</value>
   </data>
   <data name="SourceCode" xml:space="preserve">
     <value>Исходный код</value>

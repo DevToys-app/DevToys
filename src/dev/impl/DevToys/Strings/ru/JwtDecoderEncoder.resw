@@ -118,39 +118,39 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Установки</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Select which action you want to use</value>
+    <value>Выберите желаемое действие</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Action</value>
+    <value>Действие</value>
   </data>
   <data name="Decode" xml:space="preserve">
-    <value>Decode</value>
+    <value>Декодировать</value>
   </data>
   <data name="DisplayName" xml:space="preserve">
-    <value>JWT Debugger</value>
+    <value>Отладка JWT</value>
   </data>
   <data name="Encode" xml:space="preserve">
-    <value>Encode</value>
+    <value>Кодировать</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
-    <value>Select which encoding algorithm you want to use</value>
+    <value>Выберите желаемый алгоритм кодирования</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
-    <value>Encoding</value>
+    <value>Кодирование</value>
   </data>
   <data name="HeaderLabel" xml:space="preserve">
-    <value>Header</value>
+    <value>Заголовок</value>
   </data>
   <data name="JwtTokenLabel" xml:space="preserve">
-    <value>Jwt Token</value>
+    <value>JWT-токен</value>
   </data>
   <data name="PayloadLabel" xml:space="preserve">
-    <value>Payload</value>
+    <value>Набор полей</value>
   </data>
   <data name="SecurityLabel" xml:space="preserve">
-    <value>Security</value>
+    <value>Безопасность</value>
   </data>
 </root>
