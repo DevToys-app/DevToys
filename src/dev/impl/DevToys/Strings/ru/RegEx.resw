@@ -118,58 +118,58 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Установки</value>
   </data>
   <data name="CultureInvariant" xml:space="preserve">
-    <value>Culture Invariant</value>
+    <value>Инвариантная культура</value>
   </data>
   <data name="CultureInvariantDescription" xml:space="preserve">
-    <value>Specifies that cultural differences in language is ignored.</value>
+    <value>Указывает, что культурные различия в языке игнорируются.</value>
   </data>
   <data name="DisplayName" xml:space="preserve">
     <value>Проверка регулярных выражений</value>
   </data>
   <data name="EcmaScript" xml:space="preserve">
-    <value>ECMA Script</value>
+    <value>ECMAScript</value>
   </data>
   <data name="EcmaScriptDescription" xml:space="preserve">
-    <value>Enables ECMAScript-compliant behavior for the expression. This value can be used only in conjunction with the Culture Invariant, Ignore Case and Multiline options.</value>
+    <value>Включает ECMAScript-совместимое поведение. Это значение может использоваться только в сочетании с инвариантной культурой, игнорированием регистра и многострочными литералами.</value>
   </data>
   <data name="IgnoreCase" xml:space="preserve">
-    <value>Ignore Case</value>
+    <value>Игнорирование регистра</value>
   </data>
   <data name="IgnoreCaseDescription" xml:space="preserve">
-    <value>Specifies case-insensitive matching.</value>
+    <value>Указывает, что чувствительность к регистру игнорируется.</value>
   </data>
   <data name="IgnoreWhitespace" xml:space="preserve">
-    <value>Ignore Whitespace</value>
+    <value>Игнорирование пропусков</value>
   </data>
   <data name="IgnoreWhitespaceDescription" xml:space="preserve">
-    <value>Eliminates unescaped white space from the pattern and enables comments marked with #. However, this value does not affect or eliminate white space in character classes, numeric quantifiers, or tokens that mark the beginning of individual regular expression language elements.</value>
+    <value>Устраняет пропуски из шаблона и обеспечивает отмеченные # комментарии. Это значение не влияет на пропуски в классах символов, числовых квантов или токенов, которые отмечают начало отдельных элементов регулярного выражения.</value>
   </data>
   <data name="Multiline" xml:space="preserve">
-    <value>Multiline</value>
+    <value>Многострочные литералы</value>
   </data>
   <data name="MultilineDescription" xml:space="preserve">
-    <value>Changes the meaning of ^ and $ so they match at the beginning and end, respectively, of any line, and not just the beginning and end of the entire string.</value>
+    <value>Изменяет значение ^ и $ для совпадения в начале и в конце любой линии, а не только в начале и в конце всей строки.</value>
   </data>
   <data name="Options" xml:space="preserve">
-    <value>Options</value>
+    <value>Опции</value>
   </data>
   <data name="RegularExpression" xml:space="preserve">
     <value>Регулярное выражение</value>
   </data>
   <data name="RightToLeft" xml:space="preserve">
-    <value>Right To Left</value>
+    <value>Справа налево</value>
   </data>
   <data name="RightToLeftDescription" xml:space="preserve">
-    <value>Specifies that the search will be from right to left instead of from left to right.</value>
+    <value>Указывает, что поиск выполняется справа налево, а не наоборот.</value>
   </data>
   <data name="Singleline" xml:space="preserve">
-    <value>Singleline</value>
+    <value>Однострочные литералы</value>
   </data>
   <data name="SinglelineDescription" xml:space="preserve">
-    <value>Changes the meaning of the dot (.) so it matches every character (instead of every character except \n).</value>
+    <value>Изменяет значение (.) для соответствия каждому символу (вместо каждого символа, исключая \n).</value>
   </data>
   <data name="Text" xml:space="preserve">
     <value>Текст</value>
