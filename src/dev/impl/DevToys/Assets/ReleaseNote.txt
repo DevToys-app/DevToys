@@ -1,10 +1,7 @@
 ﻿🎉 New Features
-  • Markdown Preview tool.
-  • String analysis and converter tool.
+  • Nothing
 👏 Improvements
-  • RegEx Tester tool got new options.
-  • New layout.
-  • Text editor can now use any font.
   • Russian translation improved.
+  • Markdown Preview now uses the app theme as a default preview theme. 
 🐛 Bug Fixes
-  • Minor bugs fixed.
+  • Fixed a bug with dark theme.
