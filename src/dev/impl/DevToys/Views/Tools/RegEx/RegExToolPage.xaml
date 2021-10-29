@@ -28,8 +28,7 @@
             <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Configuration}" />
 
             <controls:ExpandableSettingControl
-                Title="{x:Bind ViewModel.Strings.Options}"
-                ContentBackground="Transparent">
+                Title="{x:Bind ViewModel.Strings.Options}">
                 <controls:ExpandableSettingControl.Icon>
                     <FontIcon Glyph="&#xF6A9;" />
                 </controls:ExpandableSettingControl.Icon>
