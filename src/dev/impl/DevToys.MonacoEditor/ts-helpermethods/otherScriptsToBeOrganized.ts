@@ -115,7 +115,7 @@ var updateOptions = function (opt: monaco.editor.IEditorOptions) {
 
 var updateDiffOptions = function (opt: monaco.editor.IDiffEditorOptions) {
     var diffEditor = (editor as unknown) as monaco.editor.IStandaloneDiffEditor;
-    if (opt != null && typeof opt === "object") {
+    if (diffEditor != null && opt != null && typeof opt === "object") {
         diffEditor.updateOptions(opt);
     }
 };

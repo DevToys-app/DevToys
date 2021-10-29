@@ -23,6 +23,8 @@ namespace DevToys.Core.Theme
 
         public AppTheme CurrentAppTheme => _settingsProvider.GetSetting(PredefinedSettings.Theme);
 
+        public ApplicationTheme ActualAppTheme { get; private set; }
+
         public bool IsHighContrast { get; private set; }
 
         public event EventHandler? ThemeChanged;
@@ -59,6 +61,7 @@ namespace DevToys.Core.Theme
             if (Window.Current.Content is FrameworkElement frameworkElement)
             {
                 frameworkElement.RequestedTheme = theme == AppTheme.Light ? ElementTheme.Light : ElementTheme.Dark;
+                ActualAppTheme = theme == AppTheme.Light ? ApplicationTheme.Light : ApplicationTheme.Dark;
             }
         }
 
@@ -96,6 +99,7 @@ namespace DevToys.Core.Theme
             if (string.Equals(PredefinedSettings.Theme.Name, e.SettingName, StringComparison.Ordinal))
             {
                 ApplyDesiredColorTheme();
+                ThemeChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
