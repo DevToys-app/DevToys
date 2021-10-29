@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using DevToys.Api.Core.Settings;
+using DevToys.Api.Core.Theme;
 using DevToys.Api.Tools;
 using DevToys.Core;
 using DevToys.Core.Threading;
@@ -23,12 +24,13 @@ namespace DevToys.ViewModels.Tools.MarkdownPreview
     {
         private static string? _htmlDocument;
 
-        private static readonly SettingDefinition<ApplicationTheme> ThemeSetting
+        private static readonly SettingDefinition<string?> ThemeSetting
             = new(
                 name: $"{nameof(MarkdownPreviewToolViewModel)}.{nameof(ThemeSetting)}",
                 isRoaming: true,
-                defaultValue: ApplicationTheme.Light);
+                defaultValue: null);
 
+        private readonly IThemeListener _themeListener;
         private readonly Queue<string> _workQueue = new();
 
         private bool _workInProgress;
@@ -53,12 +55,20 @@ namespace DevToys.ViewModels.Tools.MarkdownPreview
 
         internal ApplicationTheme Theme
         {
-            get => SettingsProvider.GetSetting(ThemeSetting);
+            get
+            {
+                string? theme = SettingsProvider.GetSetting(ThemeSetting);
+                if (string.IsNullOrEmpty(theme))
+                {
+                    theme = _themeListener.ActualAppTheme.ToString();
+                }
+                return (ApplicationTheme)Enum.Parse(typeof(ApplicationTheme), theme);
+            }
             set
             {
-                if (SettingsProvider.GetSetting(ThemeSetting) != value)
+                if (!string.Equals(SettingsProvider.GetSetting(ThemeSetting), value.ToString()))
                 {
-                    SettingsProvider.SetSetting(ThemeSetting, value);
+                    SettingsProvider.SetSetting(ThemeSetting, value.ToString());
                     OnPropertyChanged();
                     QueueWork();
                 }
@@ -68,8 +78,9 @@ namespace DevToys.ViewModels.Tools.MarkdownPreview
         internal ISettingsProvider SettingsProvider { get; }
 
         [ImportingConstructor]
-        public MarkdownPreviewToolViewModel(ISettingsProvider settingsProvider)
+        public MarkdownPreviewToolViewModel(ISettingsProvider settingsProvider, IThemeListener themeListener)
         {
+            _themeListener = themeListener;
             SettingsProvider = settingsProvider;
 
             // Activate the view model's messenger.

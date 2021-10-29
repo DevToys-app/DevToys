@@ -1,5 +1,7 @@
 ﻿#nullable enable
 
+using DevToys.Api.Core.Theme;
+using DevToys.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Markup;
@@ -10,9 +12,13 @@ namespace DevToys.UI.Controls
     [ContentProperty(Name = nameof(SettingActionableElement))]
     public sealed partial class ExpandableSettingControl : UserControl
     {
+        private bool _isAppThemeChanging;
+        private bool _isDefaultHeaderBackgroundValue = true;
+        private bool _isDefaultContentBackgroundValue = true;
+
         public FrameworkElement? SettingActionableElement { get; set; }
 
-        public static readonly DependencyProperty TitleProperty 
+        public static readonly DependencyProperty TitleProperty
             = DependencyProperty.Register(
                 nameof(Title),
                 typeof(string),
@@ -51,7 +57,7 @@ namespace DevToys.UI.Controls
             set => SetValue(IconProperty, value);
         }
 
-        public static readonly DependencyProperty ExpandableContentProperty 
+        public static readonly DependencyProperty ExpandableContentProperty
             = DependencyProperty.Register(
                 nameof(ExpandableContent),
                 typeof(FrameworkElement),
@@ -82,7 +88,14 @@ namespace DevToys.UI.Controls
                 nameof(ContentBackground),
                 typeof(Brush),
                 typeof(ExpandableSettingControl),
-                new PropertyMetadata(Application.Current.Resources["ExpanderContentBackground"]));
+                new PropertyMetadata(null, (d, e) =>
+                {
+                    var ctrl = (ExpandableSettingControl)d;
+                    if (!ctrl._isAppThemeChanging)
+                    {
+                        ctrl._isDefaultContentBackgroundValue = false;
+                    }
+                }));
 
         public Brush ContentBackground
         {
@@ -95,7 +108,14 @@ namespace DevToys.UI.Controls
                 nameof(HeaderBackground),
                 typeof(Brush),
                 typeof(ExpandableSettingControl),
-                new PropertyMetadata(Application.Current.Resources["ExpanderHeaderBackground"]));
+                new PropertyMetadata(null, (d, e) =>
+                {
+                    var ctrl = (ExpandableSettingControl)d;
+                    if (!ctrl._isAppThemeChanging)
+                    {
+                        ctrl._isDefaultHeaderBackgroundValue = false;
+                    }
+                }));
 
         public Brush HeaderBackground
         {
@@ -106,6 +126,30 @@ namespace DevToys.UI.Controls
         public ExpandableSettingControl()
         {
             InitializeComponent();
+
+            MefComposer.Provider.Import<IThemeListener>().ThemeChanged += ExpandableSettingControl_ThemeChanged;
+
+            _isAppThemeChanging = true;
+            ContentBackground = (Brush)Application.Current.Resources["ExpanderContentBackground"];
+            HeaderBackground = (Brush)Application.Current.Resources["ExpanderHeaderBackground"];
+            _isAppThemeChanging = false;
+        }
+
+        private void ExpandableSettingControl_ThemeChanged(object sender, System.EventArgs e)
+        {
+            _isAppThemeChanging = true;
+
+            if (_isDefaultContentBackgroundValue)
+            {
+                ContentBackground = (Brush)Application.Current.Resources["ExpanderContentBackground"];
+            }
+
+            if (_isDefaultHeaderBackgroundValue)
+            {
+                HeaderBackground = (Brush)Application.Current.Resources["ExpanderHeaderBackground"];
+            }
+
+            _isAppThemeChanging = false;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System;
+using Windows.UI.Xaml;
 
 namespace DevToys.Api.Core.Theme
 {
@@ -15,6 +16,11 @@ namespace DevToys.Api.Core.Theme
         /// Gets the current app theme.
         /// </summary>
         AppTheme CurrentAppTheme { get; }
+
+        /// <summary>
+        /// Gets the actual theme applied in the app.
+        /// </summary>
+        ApplicationTheme ActualAppTheme { get; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the current theme is high contrast.
