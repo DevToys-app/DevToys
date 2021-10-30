@@ -7,7 +7,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DevToys.MonacoEditor</RootNamespace>
     <AssemblyName>DevToys.MonacoEditor</AssemblyName>
-    <DefaultLanguage>en</DefaultLanguage>
+    <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">$(Windows10SDKVersion)</TargetPlatformVersion>
     <TargetPlatformMinVersion>$(Windows10MinSDKVersion)</TargetPlatformMinVersion>

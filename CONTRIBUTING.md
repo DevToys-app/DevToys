@@ -22,15 +22,9 @@ You can contribute to DevToys app by:
 # Internationalization and localization
 
 * After following `How to Build and Run DevToys from source`, open `src/DevToys.sln` with Visual Studio.
-* Copy the folder `dev/impl/DevToys/Strings/en` and rename the copied folder with the language indication of your choice. For example, "fr-FR" for French (France).
+* Copy the folder `dev/impl/DevToys/Strings/en-US` and rename the copied folder with the language indication of your choice. For example, "fr-FR" for French (France).
 * Open each `.resw` files and translate the text.
-* Open `dev/impl/DevToys/LanguageManager.tt`.
-* [Copy the following block](https://github.com/veler/DevToys/blob/6c7e6ca48ea8fe2a313a917528e7751f6ec61be5/src/dev/impl/DevToys/LanguageManager.tt#L91-L96) and add it to the line below: 
-* Change the `Identifier`, `DisplayName` and `Culture` to match your language.
-* Save the file. Visual Studio will ask you to confirm. Click Yes.
 * Build and Run the app and test your changes.
-
-// TODO: We should seriously consider a solution where contributors don't need to change LanguageManager.tt
 
 # Coding
 

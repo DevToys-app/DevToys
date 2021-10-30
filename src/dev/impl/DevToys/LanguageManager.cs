@@ -110,34 +110,18 @@ namespace DevToys
         /// <summary>
         /// Gets the list of available languages in the app.
         /// </summary>
-        public List<LanguageDefinition> AvailableLanguages
-            => new List<LanguageDefinition>
+        public List<LanguageDefinition> AvailableLanguages { get; }
+
+        public LanguageManager()
+        {
+            AvailableLanguages = new List<LanguageDefinition>();
+            AvailableLanguages.Add(new LanguageDefinition()); // default language
+            IReadOnlyList<string> supportedLanguageIdentifiers = ApplicationLanguages.ManifestLanguages;
+            for (int i = 0; i < supportedLanguageIdentifiers.Count; i++)
             {
-                new LanguageDefinition
-                {
-                    Identifier = "default",
-                    DisplayName = Settings.DefaultLanguage,
-                    Culture = CultureInfo.InstalledUICulture
-                },
-                new LanguageDefinition
-                {
-                    Identifier = "english",
-                    DisplayName = "English",
-                    Culture = new CultureInfo("en")
-                },
-                new LanguageDefinition
-                {
-                    Identifier = "russian",
-                    DisplayName = "Русский",
-                    Culture = new CultureInfo("ru")
-                },
-                new LanguageDefinition
-                {
-                    Identifier = "french",
-                    DisplayName = "français",
-                    Culture = new CultureInfo("fr")
-                }
-            };
+                AvailableLanguages.Add(new LanguageDefinition(supportedLanguageIdentifiers[i]));
+            }
+        }
 
         /// <summary>
         /// Retrieves the current culture.
@@ -150,13 +134,13 @@ namespace DevToys
         /// <summary>
         /// Change the current culture of the application
         /// </summary>
-        public void SetCurrentCulture(CultureInfo culture)
+        public void SetCurrentCulture(LanguageDefinition language)
         {
-            CultureInfo.DefaultThreadCurrentCulture = culture;
-            CultureInfo.DefaultThreadCurrentUICulture = culture;
-            ApplicationLanguages.PrimaryLanguageOverride = culture.TextInfo.CultureName;
+            CultureInfo.DefaultThreadCurrentCulture = language.Culture;
+            CultureInfo.DefaultThreadCurrentUICulture = language.Culture;
+            ApplicationLanguages.PrimaryLanguageOverride = language.Identifier;
 
-            if (culture.TextInfo.IsRightToLeft)
+            if (language.Culture.TextInfo.IsRightToLeft)
             {
                 FlowDirection = FlowDirection.RightToLeft;
             }

@@ -16,7 +16,7 @@ namespace DevToys.Tests
         public MefBaseTest()
         {
             // Do all the tests in English.
-            LanguageManager.Instance.SetCurrentCulture(new CultureInfo("en"));
+            LanguageManager.Instance.SetCurrentCulture(new LanguageDefinition("en-US"));
 
             _mefComposer
                 = new MefComposer(

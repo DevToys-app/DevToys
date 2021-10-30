@@ -28,7 +28,7 @@
             </controls:ExpandableSettingControl.Icon>
             <ComboBox
                 DisplayMemberPath="DisplayName"
-                SelectedValuePath="Identifier"
+                SelectedValuePath="InternalName"
                 ItemsSource="{x:Bind ViewModel.AvailableLanguages}"
                 SelectedValue="{x:Bind ViewModel.Language, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             </ComboBox>
