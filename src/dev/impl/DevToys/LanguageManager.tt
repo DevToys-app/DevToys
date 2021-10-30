@@ -111,6 +111,12 @@ namespace DevToys
                     Identifier = "french",
                     DisplayName = "français",
                     Culture = new CultureInfo("fr")
+                },
+                new LanguageDefinition
+                {
+                    Identifier = "czech",
+                    DisplayName = "Czech",
+                    Culture = new CultureInfo("cs")
                 }
             };
 
