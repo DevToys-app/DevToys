@@ -83,73 +83,9 @@ namespace DevToys.UI.Controls
             set => SetValue(IsExpandedProperty, value);
         }
 
-        public static readonly DependencyProperty ContentBackgroundProperty
-            = DependencyProperty.Register(
-                nameof(ContentBackground),
-                typeof(Brush),
-                typeof(ExpandableSettingControl),
-                new PropertyMetadata(null, (d, e) =>
-                {
-                    var ctrl = (ExpandableSettingControl)d;
-                    if (!ctrl._isAppThemeChanging)
-                    {
-                        ctrl._isDefaultContentBackgroundValue = false;
-                    }
-                }));
-
-        public Brush ContentBackground
-        {
-            get => (Brush)GetValue(ContentBackgroundProperty);
-            set => SetValue(ContentBackgroundProperty, value);
-        }
-
-        public static readonly DependencyProperty HeaderBackgroundProperty
-            = DependencyProperty.Register(
-                nameof(HeaderBackground),
-                typeof(Brush),
-                typeof(ExpandableSettingControl),
-                new PropertyMetadata(null, (d, e) =>
-                {
-                    var ctrl = (ExpandableSettingControl)d;
-                    if (!ctrl._isAppThemeChanging)
-                    {
-                        ctrl._isDefaultHeaderBackgroundValue = false;
-                    }
-                }));
-
-        public Brush HeaderBackground
-        {
-            get => (Brush)GetValue(HeaderBackgroundProperty);
-            set => SetValue(HeaderBackgroundProperty, value);
-        }
-
         public ExpandableSettingControl()
         {
             InitializeComponent();
-
-            MefComposer.Provider.Import<IThemeListener>().ThemeChanged += ExpandableSettingControl_ThemeChanged;
-
-            _isAppThemeChanging = true;
-            ContentBackground = (Brush)Application.Current.Resources["ExpanderContentBackground"];
-            HeaderBackground = (Brush)Application.Current.Resources["ExpanderHeaderBackground"];
-            _isAppThemeChanging = false;
-        }
-
-        private void ExpandableSettingControl_ThemeChanged(object sender, System.EventArgs e)
-        {
-            _isAppThemeChanging = true;
-
-            if (_isDefaultContentBackgroundValue)
-            {
-                ContentBackground = (Brush)Application.Current.Resources["ExpanderContentBackground"];
-            }
-
-            if (_isDefaultHeaderBackgroundValue)
-            {
-                HeaderBackground = (Brush)Application.Current.Resources["ExpanderHeaderBackground"];
-            }
-
-            _isAppThemeChanging = false;
         }
     }
 }
