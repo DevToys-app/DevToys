@@ -21,9 +21,10 @@ You can contribute to DevToys app by:
 
 # Internationalization and localization
 
-* After following `How to Build and Run DevToys from source`, open `src/DevToys.sln` with Visual Studio.
-* Copy the folder `dev/impl/DevToys/Strings/en-US` and rename the copied folder with the language indication of your choice. For example, "fr-FR" for French (France).
-* Open each `.resw` files and translate the text.
+* After following `How to Build and Run DevToys from source`, close Visual Studio, if any instance is running.
+* In File Explorer, copy the folder `dev/impl/DevToys/Strings/en-US` and rename the copied folder with the language indication of your choice. For example, "fr-FR" for French (France).
+* Open `src/DevToys.sln` with Visual Studio.
+* Open each `.resw` files from the language folder you created and translate the text.
 * Build and Run the app and test your changes.
 
 # Coding
