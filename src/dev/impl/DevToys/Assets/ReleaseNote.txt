@@ -1,6 +1,7 @@
 ﻿🎉 New Features
   • Nothing
 👏 Improvements
-  • Nothing
+  • Added Czech language (thanks @morning4coffee-dev !)
 🐛 Bug Fixes
   • Fixed a bug with dark theme.
+  • Fixed a bug where the code editor isn't clickable.
