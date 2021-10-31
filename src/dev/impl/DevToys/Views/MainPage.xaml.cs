@@ -69,6 +69,10 @@ namespace DevToys.Views
 
             NotificationControl.NotificationService = _mefProvider!.Import<INotificationService>();
 
+            // Bug #54: Force to go to Expanded visual state on start fix an issue where starting the app
+            //          with a size that made the app going to Compact state break the layout and Monaco Editor.
+            VisualStateManager.GoToState(this, NavigationViewExpandedStateName, useTransitions: true);
+
             UpdateVisualState();
         }
 
