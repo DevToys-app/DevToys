@@ -44,7 +44,7 @@ namespace DevToys
         {
             // Set the language of the app for startup. By default, it's the same than Windows, or english.
             // The language defined by the user will be applied later, once MEF is loaded, but before the UI shows up.
-            LanguageManager.Instance.SetCurrentCulture(CultureInfo.InstalledUICulture);
+            LanguageManager.Instance.SetCurrentCulture(LanguageManager.Instance.AvailableLanguages[0]);
 
             // Initialize MEF
             _mefComposer
@@ -205,8 +205,10 @@ namespace DevToys
 
             // Set the user-defined language.
             string languageIdentifier = (await _mefComposer).ExportProvider.GetExport<ISettingsProvider>().GetSetting(PredefinedSettings.Language);
-            LanguageDefinition languageDefinition = LanguageManager.Instance.AvailableLanguages.First(l => string.Equals(l.Identifier, languageIdentifier));
-            LanguageManager.Instance.SetCurrentCulture(languageDefinition.Culture);
+            LanguageDefinition languageDefinition
+                = LanguageManager.Instance.AvailableLanguages.FirstOrDefault(l => string.Equals(l.InternalName, languageIdentifier))
+                ?? LanguageManager.Instance.AvailableLanguages[0];
+            LanguageManager.Instance.SetCurrentCulture(languageDefinition);
 
             // Apply the app color theme.
             (await _themeListener.Value).ApplyDesiredColorTheme();

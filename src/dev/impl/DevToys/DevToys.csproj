@@ -7,7 +7,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DevToys</RootNamespace>
     <AssemblyName>DevToys</AssemblyName>
-    <DefaultLanguage>en</DefaultLanguage>
+    <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">$(Windows10SDKVersion)</TargetPlatformVersion>
     <TargetPlatformMinVersion>$(Windows10MinSDKVersion)</TargetPlatformMinVersion>
@@ -334,18 +334,6 @@
       <Link>Package.appxmanifest</Link>
       <SubType>Designer</SubType>
     </AppxManifest>
-    <PRIResource Include="Strings\cs\TextDiff.resw" />
-    <PRIResource Include="Strings\cs\StringUtilities.resw" />
-    <PRIResource Include="Strings\cs\Settings.resw" />
-    <PRIResource Include="Strings\cs\RegEx.resw" />
-    <PRIResource Include="Strings\cs\MarkdownPreview.resw" />
-    <PRIResource Include="Strings\cs\MainPage.resw" />
-    <PRIResource Include="Strings\cs\JwtDecoderEncoder.resw" />
-    <PRIResource Include="Strings\cs\JsonYaml.resw" />
-    <PRIResource Include="Strings\cs\JsonFormatter.resw" />
-    <PRIResource Include="Strings\cs\HashGenerator.resw" />
-    <PRIResource Include="Strings\cs\Common.resw" />
-    <PRIResource Include="Strings\cs\Base64EncoderDecoder.resw" />
     <Page Include="Themes\Custom.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
