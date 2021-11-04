@@ -12,7 +12,7 @@ namespace DevToys.ViewModels.Tools.HashGenerator
     [Export(typeof(IToolProvider))]
     [Name("Hash Generator")]
     [ProtocolName("hash")]
-    [Order(2)]
+    [Order(3)]
     [CompactOverlaySize(width: 400, height: 500)]
     internal sealed class HashGeneratorToolProvider : ToolProviderBase, IToolProvider
     {

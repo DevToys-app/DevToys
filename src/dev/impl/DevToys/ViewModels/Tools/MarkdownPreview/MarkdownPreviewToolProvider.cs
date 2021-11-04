@@ -10,7 +10,7 @@ namespace DevToys.ViewModels.Tools.MarkdownPreview
     [Export(typeof(IToolProvider))]
     [Name("Markdown Preview")]
     [ProtocolName("markdown")]
-    [Order(2)]
+    [Order(4)]
     [NotScrollable]
     internal sealed class MarkdownPreviewToolProvider : ToolProviderBase, IToolProvider
     {

@@ -60,11 +60,13 @@
                     Value="{x:Bind ViewModel.NumberOfGuidsToGenerate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     SpinButtonPlacementMode="Compact"
                     SmallChange="1"
-                    LargeChange="10"/>
+                    LargeChange="10"
+                    Minimum="1"/>
             </StackPanel>
         </StackPanel>
 
         <controls:CustomTextBox
+            x:Name="OutputTextBox"
             Grid.Row="2"
             Header="{x:Bind ViewModel.Strings.Guids}"
             MinHeight="150"

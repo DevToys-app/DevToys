@@ -9,7 +9,7 @@ namespace DevToys.ViewModels.Tools.GuidGenerator
     [Export(typeof(IToolProvider))]
     [Name("Guid Generator")]
     [ProtocolName("guid")]
-    [Order(2)]
+    [Order(3)]
     [CompactOverlaySize(width: 400, height: 500)]
     internal sealed class GuidGeneratorToolProvider : ToolProviderBase, IToolProvider
     {

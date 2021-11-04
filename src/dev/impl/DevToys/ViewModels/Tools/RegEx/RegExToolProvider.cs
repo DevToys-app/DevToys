@@ -9,7 +9,7 @@ namespace DevToys.ViewModels.Tools.RegEx
     [Export(typeof(IToolProvider))]
     [Name("Regular Expression Tester")]
     [ProtocolName("regex")]
-    [Order(0)]
+    [Order(2)]
     [NotScrollable]
     internal sealed class RegExToolProvider : ToolProviderBase, IToolProvider
     {

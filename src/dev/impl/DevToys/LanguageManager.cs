@@ -320,11 +320,6 @@ namespace DevToys
         public string Hyphens => _resources.GetString("Hyphens");
 
         /// <summary>
-        /// Gets the resource Input.
-        /// </summary>
-        public string Input => _resources.GetString("Input");
-
-        /// <summary>
         /// Gets the resource MultiplySymbol.
         /// </summary>
         public string MultiplySymbol => _resources.GetString("MultiplySymbol");

@@ -9,7 +9,7 @@ namespace DevToys.ViewModels.Tools.TextDiff
     [Export(typeof(IToolProvider))]
     [Name("Text Diff")]
     [ProtocolName("diff")]
-    [Order(0)]
+    [Order(2)]
     [NotScrollable]
     internal sealed class TextDiffToolProvider : ToolProviderBase, IToolProvider
     {

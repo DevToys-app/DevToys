@@ -11,7 +11,6 @@ using DevToys.Core.Threading;
 using DevToys.Views;
 using Microsoft.Graphics.Canvas.Text;
 using System;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;

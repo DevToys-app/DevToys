@@ -2,6 +2,7 @@
 
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
+using DevToys.UI.Controls;
 using DevToys.Views.Tools.GuidGenerator;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -93,6 +94,8 @@ namespace DevToys.ViewModels.Tools.GuidGenerator
             set => SetProperty(ref _output, value);
         }
 
+        internal ICustomTextBox? OutputTextBox { private get; set; }
+
         [ImportingConstructor]
         public GuidGeneratorToolViewModel(ISettingsProvider settingsProvider)
         {
@@ -130,6 +133,7 @@ namespace DevToys.ViewModels.Tools.GuidGenerator
             }
 
             Output += newGuids.ToString();
+            OutputTextBox?.ScrollToBottom();
         }
 
         #endregion

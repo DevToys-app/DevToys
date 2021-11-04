@@ -42,6 +42,8 @@ namespace DevToys.Views.Tools.GuidGenerator
                 Assumes.NotNull(parameters.ViewModel, nameof(parameters.ViewModel));
                 ViewModel = (GuidGeneratorToolViewModel)parameters.ViewModel!;
                 DataContext = ViewModel;
+
+                ViewModel.OutputTextBox = OutputTextBox;
             }
 
             base.OnNavigatedTo(e);

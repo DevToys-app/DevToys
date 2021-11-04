@@ -12,6 +12,7 @@ using Windows.UI;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using Clipboard = Windows.ApplicationModel.DataTransfer.Clipboard;
 
 namespace DevToys.UI.Controls
@@ -288,6 +289,30 @@ namespace DevToys.UI.Controls
             }
 
             richEditBox.TextDocument.ApplyDisplayUpdates();
+        }
+
+        public void ScrollToBottom()
+        {
+            if (IsRichTextEdit)
+            {
+                RichEditBox.Document.GetRange(0, Text.Length).ScrollIntoView(PointOptions.None);
+            }
+            else
+            {
+                var grid = (Grid)VisualTreeHelper.GetChild(TextBox, 0);
+                for (var i = 0; i <= VisualTreeHelper.GetChildrenCount(grid) - 1; i++)
+                {
+                    object obj = VisualTreeHelper.GetChild(grid, i);
+                    if (!(obj is ScrollViewer))
+                    {
+                        continue;
+                    }
+
+                    ((ScrollViewer)obj).ChangeView(0.0f, ((ScrollViewer)obj).ExtentHeight, 1.0f);
+
+                    break;
+                }
+            }
         }
 
         private void UpdateUI()
