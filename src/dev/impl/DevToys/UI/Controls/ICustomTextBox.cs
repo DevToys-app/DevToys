@@ -7,5 +7,7 @@ namespace DevToys.UI.Controls
     public interface ICustomTextBox
     {
         void SetHighlights(IEnumerable<HighlightSpan> spans);
+
+        void ScrollToBottom();
     }
 }

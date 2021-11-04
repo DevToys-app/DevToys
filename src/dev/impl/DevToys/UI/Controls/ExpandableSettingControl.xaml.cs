@@ -1,21 +1,14 @@
 ﻿#nullable enable
 
-using DevToys.Api.Core.Theme;
-using DevToys.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Markup;
-using Windows.UI.Xaml.Media;
 
 namespace DevToys.UI.Controls
 {
     [ContentProperty(Name = nameof(SettingActionableElement))]
     public sealed partial class ExpandableSettingControl : UserControl
     {
-        private bool _isAppThemeChanging;
-        private bool _isDefaultHeaderBackgroundValue = true;
-        private bool _isDefaultContentBackgroundValue = true;
-
         public FrameworkElement? SettingActionableElement { get; set; }
 
         public static readonly DependencyProperty TitleProperty

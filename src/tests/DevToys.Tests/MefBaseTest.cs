@@ -1,7 +1,6 @@
 ﻿using DevToys.Api.Core.Injection;
 using DevToys.Core;
 using System;
-using System.Globalization;
 
 namespace DevToys.Tests
 {

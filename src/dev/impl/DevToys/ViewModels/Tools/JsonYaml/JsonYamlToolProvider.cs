@@ -10,7 +10,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml
     [Export(typeof(IToolProvider))]
     [Name("Json <> Yaml")]
     [ProtocolName("jsonyaml")]
-    [Order(0)]
+    [Order(1)]
     [NotScrollable]
     internal sealed class JsonYamlToolProvider : ToolProviderBase, IToolProvider
     {
