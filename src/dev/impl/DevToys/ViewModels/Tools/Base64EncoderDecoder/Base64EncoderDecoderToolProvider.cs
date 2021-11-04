@@ -12,7 +12,7 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
     [Export(typeof(IToolProvider))]
     [Name("Base64 Encoder/Decoder")]
     [ProtocolName("base64")]
-    [Order(0)]
+    [Order(1)]
     internal sealed class Base64EncoderDecoderToolProvider : ToolProviderBase, IToolProvider
     {
         public string DisplayName => LanguageManager.Instance.Base64EncoderDecoder.DisplayName;

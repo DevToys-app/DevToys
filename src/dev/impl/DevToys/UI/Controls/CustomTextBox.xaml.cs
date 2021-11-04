@@ -73,6 +73,19 @@ namespace DevToys.UI.Controls
             set => SetValue(AcceptsReturnProperty, value);
         }
 
+        public static readonly DependencyProperty CanClearWhenReadOnlyProperty
+            = DependencyProperty.Register(
+                nameof(CanClearWhenReadOnly),
+                typeof(bool),
+                typeof(CustomTextBox),
+                new PropertyMetadata(false, OnCanClearWhenReadOnlyPropertyChangedCalled));
+
+        public bool CanClearWhenReadOnly
+        {
+            get => (bool)GetValue(CanClearWhenReadOnlyProperty);
+            set => SetValue(CanClearWhenReadOnlyProperty, value);
+        }
+
         public static readonly DependencyProperty TextProperty
             = DependencyProperty.Register(
                 nameof(Text),
@@ -307,6 +320,13 @@ namespace DevToys.UI.Controls
 
             if (IsReadOnly)
             {
+                if (PasteButton is not null)
+                {
+                    GetPasteButton().Visibility = Visibility.Collapsed;
+                    GetOpenFileButton().Visibility = Visibility.Collapsed;
+                    GetClearButton().Visibility = Visibility.Collapsed;
+                }
+
                 if (!AcceptsReturn)
                 {
                     GetInlinedCopyButton().Visibility = Visibility.Visible;
@@ -322,13 +342,14 @@ namespace DevToys.UI.Controls
                         GetInlinedCopyButton().Visibility = Visibility.Collapsed;
                     }
                     GetCopyButton().Visibility = Visibility.Visible;
-                }
-
-                if (PasteButton is not null)
-                {
-                    GetPasteButton().Visibility = Visibility.Collapsed;
-                    GetOpenFileButton().Visibility = Visibility.Collapsed;
-                    GetClearButton().Visibility = Visibility.Collapsed;
+                    if (CanClearWhenReadOnly)
+                    {
+                        GetClearButton().Visibility = Visibility.Visible;
+                    }
+                    else if (ClearButton is not null)
+                    {
+                        GetClearButton().Visibility = Visibility.Collapsed;
+                    }
                 }
             }
             else
@@ -586,6 +607,11 @@ namespace DevToys.UI.Controls
         }
 
         private static void OnAcceptsReturnPropertyChangedCalled(DependencyObject sender, DependencyPropertyChangedEventArgs eventArgs)
+        {
+            ((CustomTextBox)sender).UpdateUI();
+        }
+
+        private static void OnCanClearWhenReadOnlyPropertyChangedCalled(DependencyObject sender, DependencyPropertyChangedEventArgs eventArgs)
         {
             ((CustomTextBox)sender).UpdateUI();
         }
