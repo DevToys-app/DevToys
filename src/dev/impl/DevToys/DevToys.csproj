@@ -210,6 +210,8 @@
     <Compile Include="UI\Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Helpers\JsonHelper.cs" />
     <Compile Include="Helpers\YamlHelper.cs" />
+    <Compile Include="ViewModels\Tools\GuidGenerator\GuidGeneratorToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\GuidGenerator\GuidGeneratorToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\JsonYaml\JsonYamlToolProvider.cs" />
     <Compile Include="ViewModels\Tools\JsonYaml\JsonYamlToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\JwtDecoderEncoder\JwtDecoderEncoderToolProvider.cs" />
@@ -275,6 +277,9 @@
     </Compile>
     <Compile Include="Views\Tools\Base64EncoderDecoder\Base64EncoderDecoderToolPage.xaml.cs">
       <DependentUpon>Base64EncoderDecoderToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\GuidGenerator\GuidGeneratoToolPage.xaml.cs">
+      <DependentUpon>GuidGeneratoToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\HashGenerator\HashGeneratorToolPage.xaml.cs">
       <DependentUpon>HashGeneratorToolPage.xaml</DependentUpon>
@@ -369,6 +374,10 @@
     <Page Include="Views\Tools\Base64EncoderDecoder\Base64EncoderDecoderToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\GuidGenerator\GuidGeneratoToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Tools\HashGenerator\HashGeneratorToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>

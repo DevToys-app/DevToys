@@ -1,5 +1,4 @@
-﻿using DevToys.Core.Threading;
-using DevToys.ViewModels.Tools.StringUtilities;
+﻿using DevToys.ViewModels.Tools.StringUtilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
 

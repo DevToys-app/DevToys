@@ -26,6 +26,7 @@ namespace DevToys
 
         private readonly Base64EncoderDecoderStrings _base64encoderdecoder = new Base64EncoderDecoderStrings();
         private readonly CommonStrings _common = new CommonStrings();
+        private readonly GuidGeneratorStrings _guidgenerator = new GuidGeneratorStrings();
         private readonly HashGeneratorStrings _hashgenerator = new HashGeneratorStrings();
         private readonly JsonFormatterStrings _jsonformatter = new JsonFormatterStrings();
         private readonly JsonYamlStrings _jsonyaml = new JsonYamlStrings();
@@ -56,6 +57,11 @@ namespace DevToys
         /// Gets the <see cref="CommonStrings"/>.
         /// </summary>
         public CommonStrings Common => _common;
+
+        /// <summary>
+        /// Gets the <see cref="GuidGeneratorStrings"/>.
+        /// </summary>
+        public GuidGeneratorStrings GuidGenerator => _guidgenerator;
 
         /// <summary>
         /// Gets the <see cref="HashGeneratorStrings"/>.
@@ -277,6 +283,51 @@ namespace DevToys
         /// Gets the resource Undo.
         /// </summary>
         public string Undo => _resources.GetString("Undo");
+    }
+
+    public class GuidGeneratorStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("GuidGenerator");
+
+        /// <summary>
+        /// Gets the resource Configuration.
+        /// </summary>
+        public string Configuration => _resources.GetString("Configuration");
+
+        /// <summary>
+        /// Gets the resource DisplayName.
+        /// </summary>
+        public string DisplayName => _resources.GetString("DisplayName");
+
+        /// <summary>
+        /// Gets the resource Generate.
+        /// </summary>
+        public string Generate => _resources.GetString("Generate");
+
+        /// <summary>
+        /// Gets the resource GenerateButton.
+        /// </summary>
+        public string GenerateButton => _resources.GetString("GenerateButton");
+
+        /// <summary>
+        /// Gets the resource Guids.
+        /// </summary>
+        public string Guids => _resources.GetString("Guids");
+
+        /// <summary>
+        /// Gets the resource Hyphens.
+        /// </summary>
+        public string Hyphens => _resources.GetString("Hyphens");
+
+        /// <summary>
+        /// Gets the resource MultiplySymbol.
+        /// </summary>
+        public string MultiplySymbol => _resources.GetString("MultiplySymbol");
+
+        /// <summary>
+        /// Gets the resource Uppercase.
+        /// </summary>
+        public string Uppercase => _resources.GetString("Uppercase");
     }
 
     public class HashGeneratorStrings : ObservableObject
