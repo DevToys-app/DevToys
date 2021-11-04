@@ -98,4 +98,4 @@ See [LICENSE](LICENSE.md)
 ## Special Thanks
 
 * Code contributors: [BenjaminT](https://github.com/btiteux)
-* Designer: [Jakub](https://github.com/alur2020)
+* Designer: [Jakub](https://github.com/AlurDesign)
