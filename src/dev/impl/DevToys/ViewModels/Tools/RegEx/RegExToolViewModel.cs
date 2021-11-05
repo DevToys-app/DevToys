@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
 using DevToys.Core.Threading;
@@ -60,8 +61,10 @@ namespace DevToys.ViewModels.Tools.RegEx
                 isRoaming: true,
                 defaultValue: false);
 
+        private readonly IMarketingService _marketingService;
         private readonly Queue<(string pattern, string text)> _regExMatchingQueue = new();
 
+        private bool _toolSuccessfullyWorked;
         private bool _calculationInProgress;
         private string? _regularExpression;
         private string? _text;
@@ -193,9 +196,10 @@ namespace DevToys.ViewModels.Tools.RegEx
         internal ICustomTextBox? MatchTextBox { private get; set; }
 
         [ImportingConstructor]
-        public RegExToolViewModel(ISettingsProvider settingsProvider)
+        public RegExToolViewModel(ISettingsProvider settingsProvider, IMarketingService marketingService)
         {
             SettingsProvider = settingsProvider;
+            _marketingService = marketingService;
         }
 
         private void QueueRegExMatch()
@@ -248,6 +252,12 @@ namespace DevToys.ViewModels.Tools.RegEx
                     () =>
                     {
                         MatchTextBox?.SetHighlights(spans);
+
+                        if (spans.Count > 0 && !_toolSuccessfullyWorked)
+                        {
+                            _toolSuccessfullyWorked = true;
+                            _marketingService.NotifyToolSuccessfullyWorked();
+                        }
                     }).ForgetSafely();
             }
 

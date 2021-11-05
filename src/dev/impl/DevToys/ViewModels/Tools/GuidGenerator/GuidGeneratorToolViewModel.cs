@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
 using DevToys.UI.Controls;
@@ -42,8 +43,11 @@ namespace DevToys.ViewModels.Tools.GuidGenerator
                 isRoaming: true,
                 defaultValue: 1);
 
+        private readonly IMarketingService _marketingService;
         private readonly ISettingsProvider _settingsProvider;
+
         private string _output = string.Empty;
+        private bool _toolSuccessfullyWorked;
 
         public Type View { get; } = typeof(GuidGeneratoToolPage);
 
@@ -97,9 +101,10 @@ namespace DevToys.ViewModels.Tools.GuidGenerator
         internal ICustomTextBox? OutputTextBox { private get; set; }
 
         [ImportingConstructor]
-        public GuidGeneratorToolViewModel(ISettingsProvider settingsProvider)
+        public GuidGeneratorToolViewModel(ISettingsProvider settingsProvider, IMarketingService marketingService)
         {
             _settingsProvider = settingsProvider;
+            _marketingService = marketingService;
 
             GenerateCommand = new RelayCommand(ExecuteGenerateCommand);
         }
@@ -134,6 +139,12 @@ namespace DevToys.ViewModels.Tools.GuidGenerator
 
             Output += newGuids.ToString();
             OutputTextBox?.ScrollToBottom();
+
+            if (!_toolSuccessfullyWorked)
+            {
+                _toolSuccessfullyWorked = true;
+                _marketingService.NotifyToolSuccessfullyWorked();
+            }
         }
 
         #endregion

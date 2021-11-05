@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using DevToys.Api.Core;
 using DevToys.Api.Tools;
 using DevToys.Core.Threading;
 using DevToys.Views.Tools.StringUtilities;
@@ -20,6 +21,9 @@ namespace DevToys.ViewModels.Tools.StringUtilities
     {
         private static readonly object _lockObject = new();
 
+        private readonly IMarketingService _marketingService;
+
+        private bool _toolSuccessfullyWorked;
         private bool _forbidBackup;
         private string? _text;
         private string? _textBackup;
@@ -135,8 +139,9 @@ namespace DevToys.ViewModels.Tools.StringUtilities
         }
 
         [ImportingConstructor]
-        public StringUtilitiesToolViewModel()
+        public StringUtilitiesToolViewModel(IMarketingService marketingService)
         {
+            _marketingService = marketingService;
             OriginalCaseCommand = new RelayCommand(ExecuteOriginalCaseCommand, CanExecuteOriginalCaseCommand);
             SentenceCaseCommand = new RelayCommand(ExecuteSentenceCaseCommand);
             LowerCaseCommand = new RelayCommand(ExecuteLowerCaseCommand);
@@ -787,6 +792,12 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                     Bytes = bytes;
                     WordDistribution = wordDistribution;
                     CharacterDistribution = characterDistribution;
+
+                    if (!_toolSuccessfullyWorked)
+                    {
+                        _toolSuccessfullyWorked = true;
+                        _marketingService.NotifyToolSuccessfullyWorked();
+                    }
                 });
         }
 
