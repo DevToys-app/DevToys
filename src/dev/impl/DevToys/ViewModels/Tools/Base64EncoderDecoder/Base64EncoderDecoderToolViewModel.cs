@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
 using DevToys.Core;
@@ -39,6 +40,7 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
         private const string DefaultConversion = "Encode";
         internal const string DecodeConversion = "Decode";
 
+        private readonly IMarketingService _marketingService;
         private readonly ISettingsProvider _settingsProvider;
         private readonly Queue<string> _conversionQueue = new();
 
@@ -46,6 +48,7 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
         private string? _outputValue;
         private bool _conversionInProgress;
         private bool _setPropertyInProgress;
+        private bool _toolSuccessfullyWorked;
 
         public Type View { get; } = typeof(Base64EncoderDecoderToolPage);
 
@@ -116,9 +119,10 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
         }
 
         [ImportingConstructor]
-        public Base64EncoderDecoderToolViewModel(ISettingsProvider settingsProvider)
+        public Base64EncoderDecoderToolViewModel(ISettingsProvider settingsProvider, IMarketingService marketingService)
         {
             _settingsProvider = settingsProvider;
+            _marketingService = marketingService;
         }
 
         private void QueueConversionCalculation()
@@ -153,6 +157,12 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
                 ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, () =>
                 {
                     OutputValue = conversionResult;
+
+                    if (!_toolSuccessfullyWorked)
+                    {
+                        _toolSuccessfullyWorked = true;
+                        _marketingService.NotifyToolSuccessfullyWorked();
+                    }
                 }).ForgetSafely();
             }
 

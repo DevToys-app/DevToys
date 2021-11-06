@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
 using DevToys.Core;
@@ -46,8 +47,10 @@ namespace DevToys.ViewModels.Tools.JsonYaml
         private const string TwoSpaceIndentation = "TwoSpaces";
         private const string FourSpaceIndentation = "FourSpaces";
 
+        private readonly IMarketingService _marketingService;
         private readonly Queue<string> _conversionQueue = new();
 
+        private bool _toolSuccessfullyWorked;
         private bool _conversionInProgress;
         private bool _setPropertyInProgress;
         private string? _inputValue;
@@ -163,9 +166,10 @@ namespace DevToys.ViewModels.Tools.JsonYaml
         internal ISettingsProvider SettingsProvider { get; }
 
         [ImportingConstructor]
-        public JsonYamlToolViewModel(ISettingsProvider settingsProvider)
+        public JsonYamlToolViewModel(ISettingsProvider settingsProvider, IMarketingService marketingService)
         {
             SettingsProvider = settingsProvider;
+            _marketingService = marketingService;
             InputValueLanguage = "json";
             OutputValueLanguage = "yaml";
         }
@@ -203,6 +207,12 @@ namespace DevToys.ViewModels.Tools.JsonYaml
                 ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, () =>
                 {
                     OutputValue = result;
+
+                    if (success && !_toolSuccessfullyWorked)
+                    {
+                        _toolSuccessfullyWorked = true;
+                        _marketingService.NotifyToolSuccessfullyWorked();
+                    }
                 }).ForgetSafely();
             }
 
