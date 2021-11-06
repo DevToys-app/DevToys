@@ -1,6 +1,6 @@
 ﻿🎉 New Features
   • GUID Generator!
 👏 Improvements
-  • N/A
+  • Changed the order of tools in the list
 🐛 Bug Fixes
   • App was failing at detecting updates.
