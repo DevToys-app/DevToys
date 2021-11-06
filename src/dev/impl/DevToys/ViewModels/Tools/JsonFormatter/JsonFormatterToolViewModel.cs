@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
 using DevToys.Core.Threading;
@@ -28,8 +29,10 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
                 isRoaming: true,
                 defaultValue: Models.Indentation.TwoSpaces);
 
+        private readonly IMarketingService _marketingService;
         private readonly Queue<string> _formattingQueue = new();
 
+        private bool _toolSuccessfullyWorked;
         private bool _formattingInProgress;
         private string? _inputValue;
         private string? _outputValue;
@@ -92,9 +95,10 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
         internal ISettingsProvider SettingsProvider { get; }
 
         [ImportingConstructor]
-        public JsonFormatterToolViewModel(ISettingsProvider settingsProvider)
+        public JsonFormatterToolViewModel(ISettingsProvider settingsProvider, IMarketingService marketingService)
         {
             SettingsProvider = settingsProvider;
+            _marketingService = marketingService;
         }
 
         private void QueueFormatting()
@@ -122,6 +126,12 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
                     ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, () =>
                     {
                         OutputValue = result;
+
+                        if (!_toolSuccessfullyWorked)
+                        {
+                            _toolSuccessfullyWorked = true;
+                            _marketingService.NotifyToolSuccessfullyWorked();
+                        }
                     }).ForgetSafely();
                 }
             }

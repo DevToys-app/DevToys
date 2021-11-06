@@ -570,6 +570,21 @@ namespace DevToys
         public string ExitCompactOverlayTooltip => _resources.GetString("ExitCompactOverlayTooltip");
 
         /// <summary>
+        /// Gets the resource NotificationRateAppActionableActionText.
+        /// </summary>
+        public string NotificationRateAppActionableActionText => _resources.GetString("NotificationRateAppActionableActionText");
+
+        /// <summary>
+        /// Gets the resource NotificationRateAppMessage.
+        /// </summary>
+        public string NotificationRateAppMessage => _resources.GetString("NotificationRateAppMessage");
+
+        /// <summary>
+        /// Gets the resource NotificationRateAppTitle.
+        /// </summary>
+        public string NotificationRateAppTitle => _resources.GetString("NotificationRateAppTitle");
+
+        /// <summary>
         /// Gets the resource NotificationReleaseNoteActionableActionText.
         /// </summary>
         public string NotificationReleaseNoteActionableActionText => _resources.GetString("NotificationReleaseNoteActionableActionText");

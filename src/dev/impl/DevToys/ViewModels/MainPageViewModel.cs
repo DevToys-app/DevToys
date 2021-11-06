@@ -40,6 +40,7 @@ namespace DevToys.ViewModels
         private readonly IUriActivationProtocolService _launchProtocolService;
         private readonly ISettingsProvider _settingsProvider;
         private readonly INotificationService _notificationService;
+        private readonly IMarketingService _marketingService;
         private readonly List<MatchedToolProviderViewData> _allToolsMenuitems = new();
         private readonly DisposableSempahore _sempahore = new();
         private readonly Lazy<Task> _firstUpdateMenuTask;
@@ -192,13 +193,15 @@ namespace DevToys.ViewModels
             IToolProviderFactory toolProviderFactory,
             IUriActivationProtocolService launchProtocolService,
             ISettingsProvider settingsProvider,
-            INotificationService notificationService)
+            INotificationService notificationService,
+            IMarketingService marketingService)
         {
             _clipboard = clipboard;
             _toolProviderFactory = toolProviderFactory;
             _launchProtocolService = launchProtocolService;
             _settingsProvider = settingsProvider;
             _notificationService = notificationService;
+            _marketingService = marketingService;
             TitleBar = titleBar;
 
             OpenToolInNewWindowCommand = new AsyncRelayCommand<ToolProviderMetadata>(ExecuteOpenToolInNewWindowCommandAsync);
@@ -279,6 +282,7 @@ namespace DevToys.ViewModels
                 }
             }
 
+            _marketingService.NotifyAppStarted();
             ShowReleaseNoteAsync().Forget();
             ShowAvailableUpdateAsync().Forget();
 
@@ -464,6 +468,10 @@ namespace DevToys.ViewModels
             else
             {
                 _pasteInFirstSelectedToolIsAllowed = true;
+                if (newRecommendedTools.Length > 0)
+                {
+                    _marketingService.NotifySmartDetectionWorked();
+                }
             }
 
             using (await _sempahore.WaitAsync(CancellationToken.None).ConfigureAwait(false))
@@ -508,6 +516,8 @@ namespace DevToys.ViewModels
                         Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/veler/DevToys/releases")).AsTask().Forget();
                     },
                     await AssetsHelper.GetReleaseNoteAsync());
+
+                _marketingService.NotifyAppJustUpdated();
             }
 
             _settingsProvider.SetSetting(PredefinedSettings.FirstTimeStart, false);
@@ -519,11 +529,7 @@ namespace DevToys.ViewModels
             // Make sure we work in background.
             await TaskScheduler.Default;
 
-            // Get the current app's package for the current user.
-            var packageManager = new PackageManager();
-            var currentPackage = packageManager.FindPackageForUser(string.Empty, Package.Current.Id.FullName);
-
-            PackageUpdateAvailabilityResult result = await currentPackage.CheckUpdateAvailabilityAsync();
+            PackageUpdateAvailabilityResult result = await Package.Current.CheckUpdateAvailabilityAsync();
 
             if (result.Availability == PackageUpdateAvailability.Required || result.Availability == PackageUpdateAvailability.Available)
             {

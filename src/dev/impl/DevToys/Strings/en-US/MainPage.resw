@@ -123,6 +123,15 @@
   <data name="ExitCompactOverlayTooltip" xml:space="preserve">
     <value>Back to full view (Ctrl+Down)</value>
   </data>
+  <data name="NotificationRateAppActionableActionText" xml:space="preserve">
+    <value>rate us now...</value>
+  </data>
+  <data name="NotificationRateAppMessage" xml:space="preserve">
+    <value>Enjoying DevToys? Please consider rating us!</value>
+  </data>
+  <data name="NotificationRateAppTitle" xml:space="preserve">
+    <value>Um... hi! 😅</value>
+  </data>
   <data name="NotificationReleaseNoteActionableActionText" xml:space="preserve">
     <value>read more...</value>
   </data>
