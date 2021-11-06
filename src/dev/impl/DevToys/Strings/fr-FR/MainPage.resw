@@ -124,13 +124,13 @@
     <value>Retour en vue normal (Ctrl+Down)</value>
   </data>
   <data name="NotificationRateAppActionableActionText" xml:space="preserve">
-    <value>rate us now...</value>
+    <value>évaluez maintenant...</value>
   </data>
   <data name="NotificationRateAppMessage" xml:space="preserve">
-    <value>Enjoying DevToys? Please consider rating us!</value>
+    <value>Vous aimez DevToys? N'hésitez pas à évaluer l'app!</value>
   </data>
   <data name="NotificationRateAppTitle" xml:space="preserve">
-    <value>Um... hi! 😅</value>
+    <value>Hum... bonjour! 😅</value>
   </data>
   <data name="NotificationReleaseNoteActionableActionText" xml:space="preserve">
     <value>en savoir plus...</value>
