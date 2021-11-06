@@ -52,10 +52,7 @@ namespace DevToys.Core
             UpdateMarketingStateAsync(state =>
             {
                 state.LastUpdateDate = DateTime.Now;
-            }).ContinueWith(_ =>
-            {
-                TryOfferUserToRateApp();
-            });
+            }).ForgetSafely();
         }
 
         public void NotifyAppStarted()
@@ -63,10 +60,7 @@ namespace DevToys.Core
             UpdateMarketingStateAsync(state =>
             {
                 state.StartSinceLastProblemEncounteredCount++;
-            }).ContinueWith(_ =>
-            {
-                TryOfferUserToRateApp();
-            });
+            }).ForgetSafely();
         }
 
         public void NotifySmartDetectionWorked()
@@ -77,7 +71,7 @@ namespace DevToys.Core
             }).ContinueWith(_ =>
             {
                 TryOfferUserToRateApp();
-            });
+            }).ForgetSafely();
         }
 
         public void NotifyToolSuccessfullyWorked()
@@ -88,7 +82,7 @@ namespace DevToys.Core
             }).ContinueWith(_ =>
             {
                 TryOfferUserToRateApp();
-            });
+            }).ForgetSafely();
         }
 
         private void TryOfferUserToRateApp()
