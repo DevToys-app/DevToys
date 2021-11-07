@@ -117,44 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="EnterCompactOverlayTooltip" xml:space="preserve">
-    <value>Trzymaj na wierzchu (Ctrl+Up)</value>
+  <data name="Configuration" xml:space="preserve">
+    <value>Konfiguracja</value>
   </data>
-  <data name="ExitCompactOverlayTooltip" xml:space="preserve">
-    <value>Powrót do pełnego widoku (Ctrl+Down)</value>
+  <data name="DisplayName" xml:space="preserve">
+    <value>Generator GUID</value>
   </data>
-  <data name="NotificationRateAppActionableActionText" xml:space="preserve">
-    <value>oceń nas...</value>
+  <data name="Generate" xml:space="preserve">
+    <value>Generuj</value>
   </data>
-  <data name="NotificationRateAppMessage" xml:space="preserve">
-    <value>Lubisz DevToys? Oceń nas!</value>
+  <data name="GenerateButton" xml:space="preserve">
+    <value>Generuj GUID(y)</value>
   </data>
-  <data name="NotificationRateAppTitle" xml:space="preserve">
-    <value>Hej! 😅</value>
+  <data name="Guids" xml:space="preserve">
+    <value>GUID(y)</value>
   </data>
-  <data name="NotificationReleaseNoteActionableActionText" xml:space="preserve">
-    <value>czytaj więcej...</value>
+  <data name="Hyphens" xml:space="preserve">
+    <value>Myślniki</value>
   </data>
-  <data name="NotificationReleaseNoteTitle" xml:space="preserve">
-    <value>DevToys zostało zaktualizowane 🚀 Zobacz co nowego w wesji {0}</value>
-    <comment>{0} is the current app version</comment>
+  <data name="MultiplySymbol" xml:space="preserve">
+    <value>×</value>
   </data>
-  <data name="NotificationUpdateAvailableActionableActionText" xml:space="preserve">
-    <value>aktualizuj teraz...</value>
-  </data>
-  <data name="NotificationUpdateAvailableTitle" xml:space="preserve">
-    <value>Aktualizacja jest dostępna! 🚀</value>
-  </data>
-  <data name="OpenInNewWindow" xml:space="preserve">
-    <value>Otwórz w nowym oknie</value>
-  </data>
-  <data name="Search" xml:space="preserve">
-    <value>Wpisz, aby wyszukać narzędzia...</value>
-  </data>
-  <data name="WindowTitle" xml:space="preserve">
-    <value>DevToys</value>
-  </data>
-  <data name="WindowTitleWithToolName" xml:space="preserve">
-    <value>DevToys - {0}</value>
+  <data name="Uppercase" xml:space="preserve">
+    <value>Wielka litera</value>
   </data>
 </root>
