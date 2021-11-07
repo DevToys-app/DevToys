@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Core.Theme;
 using DevToys.Api.Tools;
@@ -30,9 +31,11 @@ namespace DevToys.ViewModels.Tools.MarkdownPreview
                 isRoaming: true,
                 defaultValue: null);
 
+        private readonly IMarketingService _marketingService;
         private readonly IThemeListener _themeListener;
         private readonly Queue<string> _workQueue = new();
 
+        private bool _toolSuccessfullyWorked;
         private bool _workInProgress;
         private string? _inputValue;
 
@@ -78,8 +81,9 @@ namespace DevToys.ViewModels.Tools.MarkdownPreview
         internal ISettingsProvider SettingsProvider { get; }
 
         [ImportingConstructor]
-        public MarkdownPreviewToolViewModel(ISettingsProvider settingsProvider, IThemeListener themeListener)
+        public MarkdownPreviewToolViewModel(ISettingsProvider settingsProvider, IMarketingService marketingService, IThemeListener themeListener)
         {
+            _marketingService = marketingService;
             _themeListener = themeListener;
             SettingsProvider = settingsProvider;
 
@@ -113,6 +117,12 @@ namespace DevToys.ViewModels.Tools.MarkdownPreview
                 ThreadHelper.RunOnUIThreadAsync(() =>
                 {
                     Messenger.Send(new NavigateToMarkdownPreviewHtmlMessage(html));
+
+                    if (!_toolSuccessfullyWorked)
+                    {
+                        _toolSuccessfullyWorked = true;
+                        _marketingService.NotifyToolSuccessfullyWorked();
+                    }
                 }).ForgetSafely();
             }
 

@@ -10,7 +10,7 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
     [Export(typeof(IToolProvider))]
     [Name("Json Formatter")]
     [ProtocolName("jsonformat")]
-    [Order(0)]
+    [Order(1)]
     [NotScrollable]
     internal sealed class JsonFormatterToolProvider : ToolProviderBase, IToolProvider
     {

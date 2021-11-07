@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
 using DevToys.Core;
@@ -28,9 +29,11 @@ namespace DevToys.ViewModels.Tools.HashGenerator
                 isRoaming: true,
                 defaultValue: false);
 
+        private readonly IMarketingService _marketingService;
         private readonly ISettingsProvider _settingsProvider;
         private readonly Queue<string> _hashCalculationQueue = new();
 
+        private bool _toolSuccessfullyWorked;
         private bool _calculationInProgress;
         private string? _input;
         private string? _md5;
@@ -91,9 +94,10 @@ namespace DevToys.ViewModels.Tools.HashGenerator
         }
 
         [ImportingConstructor]
-        public HashGeneratorToolViewModel(ISettingsProvider settingsProvider)
+        public HashGeneratorToolViewModel(ISettingsProvider settingsProvider, IMarketingService marketingService)
         {
             _settingsProvider = settingsProvider;
+            _marketingService = marketingService;
         }
 
         private void QueueHashCalculation()
@@ -128,6 +132,12 @@ namespace DevToys.ViewModels.Tools.HashGenerator
                     SHA1 = sha1CalculationTask.Result;
                     SHA256 = sha256CalculationTask.Result;
                     SHA512 = sha512CalculationTask.Result;
+
+                    if (!_toolSuccessfullyWorked)
+                    {
+                        _toolSuccessfullyWorked = true;
+                        _marketingService.NotifyToolSuccessfullyWorked();
+                    }
                 }).ForgetSafely();
             }
 

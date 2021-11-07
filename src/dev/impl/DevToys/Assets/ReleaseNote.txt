@@ -1,7 +1,6 @@
 ﻿🎉 New Features
-  • Nothing
+  • GUID Generator!
 👏 Improvements
-  • Added Czech language (thanks @morning4coffee-dev !)
+  • Changed the order of tools in the list
 🐛 Bug Fixes
-  • Fixed a bug with dark theme.
-  • Fixed a bug where the code editor isn't clickable.
+  • App was failing at detecting updates.

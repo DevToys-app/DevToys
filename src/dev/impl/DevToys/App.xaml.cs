@@ -11,7 +11,6 @@ using DevToys.Core.Threading;
 using DevToys.Views;
 using Microsoft.Graphics.Canvas.Text;
 using System;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
@@ -31,8 +30,9 @@ namespace DevToys
     sealed partial class App : Application, IDisposable
     {
         private readonly Task<MefComposer> _mefComposer;
-        private readonly Lazy<Task<IThemeListener>> _themeListener;
-        private readonly Lazy<Task<ISettingsProvider>> _settingsProvider;
+        private readonly AsyncLazy<IThemeListener> _themeListener;
+        private readonly AsyncLazy<ISettingsProvider> _settingsProvider;
+        private readonly AsyncLazy<IMarketingService> _marketingService;
 
         private bool _isDisposed;
 
@@ -57,8 +57,9 @@ namespace DevToys
             UnhandledException += OnUnhandledException;
 
             // Importing it in a Lazy because we can't import it before a Window is created.
-            _themeListener = new Lazy<Task<IThemeListener>>(async () => (await _mefComposer).ExportProvider.GetExport<IThemeListener>());
-            _settingsProvider = new Lazy<Task<ISettingsProvider>>(async () => (await _mefComposer).ExportProvider.GetExport<ISettingsProvider>());
+            _themeListener = new AsyncLazy<IThemeListener>(async () => (await _mefComposer).ExportProvider.GetExport<IThemeListener>());
+            _settingsProvider = new AsyncLazy<ISettingsProvider>(async () => (await _mefComposer).ExportProvider.GetExport<ISettingsProvider>());
+            _marketingService = new AsyncLazy<IMarketingService>(async () => (await _mefComposer).ExportProvider.GetExport<IMarketingService>());
 
             InitializeComponent();
             Suspending += OnSuspending;
@@ -180,9 +181,10 @@ namespace DevToys
             deferral.Complete();
         }
 
-        private void OnUnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
+        private async void OnUnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
         {
             Logger.LogFault("Unhandled problem", e.Exception);
+            await (await _marketingService.GetValueAsync()).NotifyAppEncounteredAProblemAsync();
         }
 
         private async Task<Frame> EnsureWindowIsInitializedAsync()
@@ -211,7 +213,7 @@ namespace DevToys
             LanguageManager.Instance.SetCurrentCulture(languageDefinition);
 
             // Apply the app color theme.
-            (await _themeListener.Value).ApplyDesiredColorTheme();
+            (await _themeListener.GetValueAsync()).ApplyDesiredColorTheme();
 
             // Change the text editor font if the current font isn't available on the system.
             ValidateDefaultTextEditorFontAsync().Forget();
@@ -241,7 +243,7 @@ namespace DevToys
         {
             await TaskScheduler.Default;
 
-            ISettingsProvider settingsProvider = await _settingsProvider.Value;
+            ISettingsProvider settingsProvider = await _settingsProvider.GetValueAsync();
             string currentFont = settingsProvider.GetSetting(PredefinedSettings.TextEditorFont);
             string[] systemFonts = CanvasTextFormat.GetSystemFontFamilies();
 

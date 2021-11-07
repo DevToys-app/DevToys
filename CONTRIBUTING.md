@@ -11,7 +11,7 @@ You can contribute to DevToys app by:
 
 * Make sure your machine is running on Windows 10 1903+.
 * Make sure you have Visual Studio 2019 16.10+ installed.
-* In Visual Studio Installer, install the required components by importing the [.vsconfig](.vsconfig) file. 
+* In Visual Studio Installer, install the required components by importing the [vs2022.vsconfig](vs2022.vsconfig) or [vs2019.vsconfig](vs2019.vsconfig) file. 
 * Run `init.ps1` in a PowerShell command prompt to restore all the dependencies.
 * Open `src/DevToys.sln` with Visual Studio and set Solution Platform to x64*.
 * Once opened, set `src/dev/startup/DevToys.Startup/DevToys.Startup.wapproj` as startup project.

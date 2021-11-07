@@ -117,44 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="EnterCompactOverlayTooltip" xml:space="preserve">
-    <value>Vždy navrchu (Ctrl+Up)</value>
+  <data name="Configuration" xml:space="preserve">
+    <value>Configuration</value>
   </data>
-  <data name="ExitCompactOverlayTooltip" xml:space="preserve">
-    <value>Zpět na plné zobrazení (Ctrl+Down)</value>
+  <data name="DisplayName" xml:space="preserve">
+    <value>Générateur de Guid</value>
   </data>
-  <data name="NotificationRateAppActionableActionText" xml:space="preserve">
-    <value>rate us now...</value>
+  <data name="Generate" xml:space="preserve">
+    <value>Générer</value>
   </data>
-  <data name="NotificationRateAppMessage" xml:space="preserve">
-    <value>Enjoying DevToys? Please consider rating us!</value>
+  <data name="GenerateButton" xml:space="preserve">
+    <value>Générer le(s) GUID(s)</value>
   </data>
-  <data name="NotificationRateAppTitle" xml:space="preserve">
-    <value>Um... hi! 😅</value>
+  <data name="Guids" xml:space="preserve">
+    <value>GUID(s)</value>
   </data>
-  <data name="NotificationReleaseNoteActionableActionText" xml:space="preserve">
-    <value>zjistit více...</value>
+  <data name="Hyphens" xml:space="preserve">
+    <value>Tirets</value>
   </data>
-  <data name="NotificationReleaseNoteTitle" xml:space="preserve">
-    <value>Právě jsme vydali novou aktualizaci! Zjistěte, co je nového v {0}? 🚀</value>
-    <comment>{0} is the current app version</comment>
+  <data name="MultiplySymbol" xml:space="preserve">
+    <value>x</value>
   </data>
-  <data name="NotificationUpdateAvailableActionableActionText" xml:space="preserve">
-    <value>aktualizovat nyní...</value>
-  </data>
-  <data name="NotificationUpdateAvailableTitle" xml:space="preserve">
-    <value>K dispozici je nová aktualizace! 🚀</value>
-  </data>
-  <data name="OpenInNewWindow" xml:space="preserve">
-    <value>Otevřít v novém okně</value>
-  </data>
-  <data name="Search" xml:space="preserve">
-    <value>Hledat nástroje...</value>
-  </data>
-  <data name="WindowTitle" xml:space="preserve">
-    <value>DevToys</value>
-  </data>
-  <data name="WindowTitleWithToolName" xml:space="preserve">
-    <value>DevToys - {0}</value>
+  <data name="Uppercase" xml:space="preserve">
+    <value>Majuscule</value>
   </data>
 </root>

@@ -1,10 +1,23 @@
 Function Get-MsBuildPath {
+    if (-not (Test-Path "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"))
+    {
+        Throw "Unable to find 'vswhere.exe'. Is Visual Studio installed?"
+    }
+
+    $path = ""
     try {
-        & "${env:ProgramFiles}\microsoft visual studio\installer\vswhere.exe" -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
+        $path = & "${env:ProgramFiles}\microsoft visual studio\installer\vswhere.exe" -latest -prerelease -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
     }
     catch {
-        & "${env:ProgramFiles(x86)}\microsoft visual studio\installer\vswhere.exe" -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
+        $path = & "${env:ProgramFiles(x86)}\microsoft visual studio\installer\vswhere.exe" -latest -prerelease -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
     }
+
+    if (!$path)
+    {
+        Write-Error "Unable to find MSBuild. Try importing './.vsconfig' into Visual Studio Installer."
+    }
+
+    return $path
 }
 
 Function Restore-PackagesUnder($searchRoot) {

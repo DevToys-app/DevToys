@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using DevToys.Api.Core;
 using DevToys.Api.Tools;
 using DevToys.Core.Threading;
 using DevToys.Helpers;
@@ -17,8 +18,10 @@ namespace DevToys.ViewModels.Tools.JwtDecoderEncoder
     [Export(typeof(JwtDecoderEncoderToolViewModel))]
     public sealed class JwtDecoderEncoderToolViewModel : ObservableRecipient, IToolViewModel
     {
+        private readonly IMarketingService _marketingService;
         private readonly Queue<string> _decodingQueue = new();
 
+        private bool _toolSuccessfullyWorked;
         private bool _decodingInProgress;
         private string? _jwtToken;
         private string? _jwtHeader;
@@ -59,6 +62,12 @@ namespace DevToys.ViewModels.Tools.JwtDecoderEncoder
             set => SetProperty(ref _jwtPayload, value);
         }
 
+        [ImportingConstructor]
+        public JwtDecoderEncoderToolViewModel(IMarketingService marketingService)
+        {
+            _marketingService = marketingService;
+        }
+
         private void QueueConversion()
         {
             _decodingQueue.Enqueue(JwtToken ?? string.Empty);
@@ -83,6 +92,12 @@ namespace DevToys.ViewModels.Tools.JwtDecoderEncoder
                 {
                     JwtHeader = header;
                     JwtPayload = payload;
+
+                    if (!_toolSuccessfullyWorked)
+                    {
+                        _toolSuccessfullyWorked = true;
+                        _marketingService.NotifyToolSuccessfullyWorked();
+                    }
                 }).ForgetSafely();
             }
 

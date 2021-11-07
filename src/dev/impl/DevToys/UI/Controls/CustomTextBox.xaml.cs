@@ -12,6 +12,7 @@ using Windows.UI;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using Clipboard = Windows.ApplicationModel.DataTransfer.Clipboard;
 
 namespace DevToys.UI.Controls
@@ -71,6 +72,19 @@ namespace DevToys.UI.Controls
         {
             get => (bool)GetValue(AcceptsReturnProperty);
             set => SetValue(AcceptsReturnProperty, value);
+        }
+
+        public static readonly DependencyProperty CanClearWhenReadOnlyProperty
+            = DependencyProperty.Register(
+                nameof(CanClearWhenReadOnly),
+                typeof(bool),
+                typeof(CustomTextBox),
+                new PropertyMetadata(false, OnCanClearWhenReadOnlyPropertyChangedCalled));
+
+        public bool CanClearWhenReadOnly
+        {
+            get => (bool)GetValue(CanClearWhenReadOnlyProperty);
+            set => SetValue(CanClearWhenReadOnlyProperty, value);
         }
 
         public static readonly DependencyProperty TextProperty
@@ -277,6 +291,30 @@ namespace DevToys.UI.Controls
             richEditBox.TextDocument.ApplyDisplayUpdates();
         }
 
+        public void ScrollToBottom()
+        {
+            if (IsRichTextEdit)
+            {
+                RichEditBox.Document.GetRange(0, Text.Length).ScrollIntoView(PointOptions.None);
+            }
+            else
+            {
+                var grid = (Grid)VisualTreeHelper.GetChild(TextBox, 0);
+                for (var i = 0; i <= VisualTreeHelper.GetChildrenCount(grid) - 1; i++)
+                {
+                    object obj = VisualTreeHelper.GetChild(grid, i);
+                    if (!(obj is ScrollViewer))
+                    {
+                        continue;
+                    }
+
+                    ((ScrollViewer)obj).ChangeView(0.0f, ((ScrollViewer)obj).ExtentHeight, 1.0f);
+
+                    break;
+                }
+            }
+        }
+
         private void UpdateUI()
         {
             if (Header is not null)
@@ -307,6 +345,13 @@ namespace DevToys.UI.Controls
 
             if (IsReadOnly)
             {
+                if (PasteButton is not null)
+                {
+                    GetPasteButton().Visibility = Visibility.Collapsed;
+                    GetOpenFileButton().Visibility = Visibility.Collapsed;
+                    GetClearButton().Visibility = Visibility.Collapsed;
+                }
+
                 if (!AcceptsReturn)
                 {
                     GetInlinedCopyButton().Visibility = Visibility.Visible;
@@ -322,13 +367,14 @@ namespace DevToys.UI.Controls
                         GetInlinedCopyButton().Visibility = Visibility.Collapsed;
                     }
                     GetCopyButton().Visibility = Visibility.Visible;
-                }
-
-                if (PasteButton is not null)
-                {
-                    GetPasteButton().Visibility = Visibility.Collapsed;
-                    GetOpenFileButton().Visibility = Visibility.Collapsed;
-                    GetClearButton().Visibility = Visibility.Collapsed;
+                    if (CanClearWhenReadOnly)
+                    {
+                        GetClearButton().Visibility = Visibility.Visible;
+                    }
+                    else if (ClearButton is not null)
+                    {
+                        GetClearButton().Visibility = Visibility.Collapsed;
+                    }
                 }
             }
             else
@@ -586,6 +632,11 @@ namespace DevToys.UI.Controls
         }
 
         private static void OnAcceptsReturnPropertyChangedCalled(DependencyObject sender, DependencyPropertyChangedEventArgs eventArgs)
+        {
+            ((CustomTextBox)sender).UpdateUI();
+        }
+
+        private static void OnCanClearWhenReadOnlyPropertyChangedCalled(DependencyObject sender, DependencyPropertyChangedEventArgs eventArgs)
         {
             ((CustomTextBox)sender).UpdateUI();
         }

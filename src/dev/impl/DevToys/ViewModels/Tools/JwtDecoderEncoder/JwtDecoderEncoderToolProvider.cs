@@ -10,7 +10,7 @@ namespace DevToys.ViewModels.Tools.JwtDecoderEncoder
     [Export(typeof(IToolProvider))]
     [Name("Jwt Decoder / Encoder")]
     [ProtocolName("jwt")]
-    [Order(0)]
+    [Order(1)]
     [NotScrollable]
     internal sealed class JwtDecoderEncoderToolProvider : ToolProviderBase, IToolProvider
     {
