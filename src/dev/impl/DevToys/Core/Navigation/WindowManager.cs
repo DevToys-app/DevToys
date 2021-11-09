@@ -1,10 +1,10 @@
 ﻿#nullable enable
 
-using DevToys.Api.Core.Navigation;
-using DevToys.Core.Threading;
 using System;
 using System.Composition;
 using System.Threading.Tasks;
+using DevToys.Api.Core.Navigation;
+using DevToys.Core.Threading;
 using Windows.ApplicationModel;
 using Windows.UI.Xaml.Controls;
 

@@ -1,10 +1,10 @@
 ﻿#nullable enable
 
-using DevToys.Api.Core;
-using DevToys.Core.Threading;
 using System;
 using System.Composition;
 using System.Threading.Tasks;
+using DevToys.Api.Core;
+using DevToys.Core.Threading;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Security.EnterpriseData;
 using Windows.UI.Xaml;

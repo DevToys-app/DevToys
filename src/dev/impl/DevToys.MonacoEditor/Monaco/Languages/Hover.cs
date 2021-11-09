@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
-using Newtonsoft.Json;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Newtonsoft.Json;
 
 namespace DevToys.MonacoEditor.Monaco.Languages
 {

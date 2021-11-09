@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
-using Newtonsoft.Json;
 using System;
+using Newtonsoft.Json;
 
 namespace DevToys.MonacoEditor.Monaco.Editor
 {
@@ -19,19 +19,15 @@ namespace DevToys.MonacoEditor.Monaco.Editor
                 return null;
             }
 
-            var value = serializer.Deserialize<string>(reader);
-            switch (value)
+            string? value = serializer.Deserialize<string>(reader);
+            return value switch
             {
-                case "all":
-                    return RenderLineHighlight.All;
-                case "gutter":
-                    return RenderLineHighlight.Gutter;
-                case "line":
-                    return RenderLineHighlight.Line;
-                case "none":
-                    return RenderLineHighlight.None;
-            }
-            throw new Exception("Cannot unmarshal type RenderLineHighlight");
+                "all" => RenderLineHighlight.All,
+                "gutter" => RenderLineHighlight.Gutter,
+                "line" => RenderLineHighlight.Line,
+                "none" => RenderLineHighlight.None,
+                _ => throw new Exception("Cannot unmarshal type RenderLineHighlight"),
+            };
         }
 
         public override void WriteJson(JsonWriter writer, object? untypedValue, JsonSerializer serializer)

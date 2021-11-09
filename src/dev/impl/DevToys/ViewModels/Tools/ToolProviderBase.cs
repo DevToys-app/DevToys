@@ -1,9 +1,9 @@
 ﻿#nullable enable
 
+using System.Threading.Tasks;
 using DevToys.Core;
 using DevToys.Core.Threading;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Markup;

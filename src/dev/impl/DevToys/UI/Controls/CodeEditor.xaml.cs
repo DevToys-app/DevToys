@@ -1,10 +1,10 @@
 ﻿#nullable enable
 
+using System;
 using DevToys.Api.Core.Settings;
 using DevToys.Core;
 using DevToys.Core.Settings;
 using DevToys.MonacoEditor.Monaco.Editor;
-using System;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 using Windows.Storage.Pickers;
@@ -361,7 +361,7 @@ namespace DevToys.UI.Controls
             {
                 try
                 {
-                    string text = await FileIO.ReadTextAsync(file);
+                    string? text = await FileIO.ReadTextAsync(file);
                     await Dispatcher.RunAsync(
                         Windows.UI.Core.CoreDispatcherPriority.Normal,
                         () =>

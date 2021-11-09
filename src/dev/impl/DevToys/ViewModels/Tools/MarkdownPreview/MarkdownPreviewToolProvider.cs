@@ -1,9 +1,9 @@
 ﻿#nullable enable
 
-using DevToys.Api.Core.Injection;
-using DevToys.Api.Tools;
 using System.Composition;
 using System.Text.RegularExpressions;
+using DevToys.Api.Core.Injection;
+using DevToys.Api.Tools;
 
 namespace DevToys.ViewModels.Tools.MarkdownPreview
 {
@@ -14,7 +14,7 @@ namespace DevToys.ViewModels.Tools.MarkdownPreview
     [NotScrollable]
     internal sealed class MarkdownPreviewToolProvider : ToolProviderBase, IToolProvider
     {
-        private static readonly Regex MarkdownLinkDetection = new Regex(@"\[[^]]+\]\(https?:\/\/\S+\)", RegexOptions.Compiled);
+        private static readonly Regex MarkdownLinkDetection = new(@"\[[^]]+\]\(https?:\/\/\S+\)", RegexOptions.Compiled);
 
         private readonly IMefProvider _mefProvider;
 

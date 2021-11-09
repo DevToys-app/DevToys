@@ -23,15 +23,15 @@ namespace DevToys.UI.Converters
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value == null || parameter == null || !(value is Enum))
+            if (value == null || parameter == null || value is not Enum)
             {
                 return ThicknessOnEnumNotDetected;
             }
 
-            var currentState = value.ToString();
-            var stateStrings = parameter.ToString();
+            string? currentState = value.ToString();
+            string? stateStrings = parameter.ToString();
 
-            string[] stateStringsSplitted = stateStrings.Split(',');
+            string[]? stateStringsSplitted = stateStrings.Split(',');
             for (int i = 0; i < stateStringsSplitted.Length; i++)
             {
                 if (string.Equals(currentState, stateStringsSplitted[i].Trim(), StringComparison.Ordinal))

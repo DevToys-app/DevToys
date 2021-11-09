@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
-using Newtonsoft.Json;
 using System;
+using Newtonsoft.Json;
 
 namespace DevToys.MonacoEditor.Monaco.Editor
 {
@@ -19,16 +19,13 @@ namespace DevToys.MonacoEditor.Monaco.Editor
                 return null;
             }
 
-            var value = serializer.Deserialize<string>(reader);
-            switch (value)
+            string? value = serializer.Deserialize<string>(reader);
+            return value switch
             {
-                case "auto":
-                    return FoldingStrategy.Auto;
-                case "indentation":
-                    return FoldingStrategy.Indentation;
-            }
-
-            throw new Exception("Cannot unmarshal type FoldingStrategy");
+                "auto" => FoldingStrategy.Auto,
+                "indentation" => FoldingStrategy.Indentation,
+                _ => throw new Exception("Cannot unmarshal type FoldingStrategy"),
+            };
         }
 
         public override void WriteJson(JsonWriter writer, object? untypedValue, JsonSerializer serializer)

@@ -1,7 +1,7 @@
-﻿using DevToys.Core.Threading;
+﻿using System.Threading.Tasks;
+using DevToys.Core.Threading;
 using DevToys.ViewModels.Tools.HashGenerator;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Threading.Tasks;
 
 namespace DevToys.Tests.Providers.Tools
 {
@@ -15,7 +15,7 @@ namespace DevToys.Tests.Providers.Tools
         [DataRow("Hello There", "4313da7166cfbabe16be21f43d5ba8f32ad7e7508a5754843ce6be3be00a24b0962e4b585ec9b8736774fbda649c8671440391705646254b79618b385395be13")]
         public async Task LowerCaseHashingAsync(string input, string expectedResult)
         {
-            var viewModel = ExportProvider.Import<HashGeneratorToolViewModel>();
+            HashGeneratorToolViewModel viewModel = ExportProvider.Import<HashGeneratorToolViewModel>();
 
             await ThreadHelper.RunOnUIThreadAsync(() =>
             {
@@ -35,7 +35,7 @@ namespace DevToys.Tests.Providers.Tools
         [DataRow("Hello There", "4313DA7166CFBABE16BE21F43D5BA8F32AD7E7508A5754843CE6BE3BE00A24B0962E4B585EC9B8736774FBDA649C8671440391705646254B79618B385395BE13")]
         public async Task UpperCaseHashingAsync(string input, string expectedResult)
         {
-            var viewModel = ExportProvider.Import<HashGeneratorToolViewModel>();
+            HashGeneratorToolViewModel viewModel = ExportProvider.Import<HashGeneratorToolViewModel>();
 
             await ThreadHelper.RunOnUIThreadAsync(() =>
             {

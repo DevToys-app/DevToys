@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
-using Newtonsoft.Json;
 using System;
+using Newtonsoft.Json;
 
 namespace DevToys.MonacoEditor.Monaco.Editor
 {
@@ -19,18 +19,14 @@ namespace DevToys.MonacoEditor.Monaco.Editor
                 return null;
             }
 
-            var value = serializer.Deserialize<string>(reader);
-            switch (value)
+            string? value = serializer.Deserialize<string>(reader);
+            return value switch
             {
-                case "copy":
-                    return MouseStyle.Copy;
-                case "default":
-                    return MouseStyle.Default;
-                case "text":
-                    return MouseStyle.Text;
-            }
-
-            throw new Exception("Cannot unmarshal type MouseStyle");
+                "copy" => MouseStyle.Copy,
+                "default" => MouseStyle.Default,
+                "text" => MouseStyle.Text,
+                _ => throw new Exception("Cannot unmarshal type MouseStyle"),
+            };
         }
 
         public override void WriteJson(JsonWriter writer, object? untypedValue, JsonSerializer serializer)

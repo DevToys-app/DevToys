@@ -1,9 +1,9 @@
-﻿using DevToys.Api.Tools;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using DevToys.Api.Tools;
 using DevToys.Core.Threading;
 using DevToys.ViewModels.Tools.Base64EncoderDecoder;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DevToys.Tests.Providers.Tools
 {
@@ -20,8 +20,8 @@ namespace DevToys.Tests.Providers.Tools
         [DataRow("SGVsbG8gVa29y", false)]
         public void CanBeTreatedByTool(string input, bool expectedResult)
         {
-            var result = ExportProvider.Import<IToolProviderFactory>().GetTools(string.Empty);
-            var base64Tool = result.First(item => item.Metadata.ProtocolName == "base64");
+            System.Collections.Generic.IEnumerable<MatchedToolProvider> result = ExportProvider.Import<IToolProviderFactory>().GetTools(string.Empty);
+            MatchedToolProvider base64Tool = result.First(item => item.Metadata.ProtocolName == "base64");
 
             Assert.AreEqual(expectedResult, base64Tool.ToolProvider.CanBeTreatedByTool(input));
         }
@@ -33,7 +33,7 @@ namespace DevToys.Tests.Providers.Tools
         [DataRow("Hello There", "SGVsbG8gVGhlcmU=")]
         public async Task EncoderAsync(string input, string expectedResult)
         {
-            var viewModel = ExportProvider.Import<Base64EncoderDecoderToolViewModel>();
+            Base64EncoderDecoderToolViewModel viewModel = ExportProvider.Import<Base64EncoderDecoderToolViewModel>();
 
             await ThreadHelper.RunOnUIThreadAsync(() =>
             {
@@ -53,7 +53,7 @@ namespace DevToys.Tests.Providers.Tools
         [DataRow("SGVsbG8gVGhlcmU=", "Hello There")]
         public async Task DecodeAsync(string input, string expectedResult)
         {
-            var viewModel = ExportProvider.Import<Base64EncoderDecoderToolViewModel>();
+            Base64EncoderDecoderToolViewModel viewModel = ExportProvider.Import<Base64EncoderDecoderToolViewModel>();
 
             await ThreadHelper.RunOnUIThreadAsync(() =>
             {

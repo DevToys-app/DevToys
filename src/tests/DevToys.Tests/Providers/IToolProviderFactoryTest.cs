@@ -1,6 +1,6 @@
-﻿using DevToys.Api.Tools;
+﻿using System.Linq;
+using DevToys.Api.Tools;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Linq;
 
 namespace DevToys.Tests.Providers
 {
@@ -17,8 +17,8 @@ namespace DevToys.Tests.Providers
         [DataRow("ENCODER ", 1)]
         public void GetTools(string searchquery, int expectedMatchSpanCount)
         {
-            var result = ExportProvider.Import<IToolProviderFactory>().GetTools(searchquery);
-            var base64Tool = result.First(item => item.Metadata.ProtocolName == "base64");
+            System.Collections.Generic.IEnumerable<MatchedToolProvider> result = ExportProvider.Import<IToolProviderFactory>().GetTools(searchquery);
+            MatchedToolProvider base64Tool = result.First(item => item.Metadata.ProtocolName == "base64");
             Assert.AreEqual(expectedMatchSpanCount, base64Tool.MatchedSpans.Length);
         }
     }

@@ -1,9 +1,9 @@
 ﻿#nullable enable
 
-using DevToys.Api.Core.Injection;
 using System.Collections.Generic;
 using System.Composition;
 using System.Composition.Hosting;
+using DevToys.Api.Core.Injection;
 
 namespace DevToys.Core
 {

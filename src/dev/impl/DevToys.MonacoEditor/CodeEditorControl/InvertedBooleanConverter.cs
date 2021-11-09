@@ -13,7 +13,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var valueBool = value as bool?;
+            bool? valueBool = value as bool?;
             if (valueBool == null)
             {
                 return DependencyProperty.UnsetValue;

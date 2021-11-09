@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
-using Newtonsoft.Json;
 using System;
+using Newtonsoft.Json;
 
 namespace DevToys.MonacoEditor.Monaco.Editor
 {
@@ -19,17 +19,14 @@ namespace DevToys.MonacoEditor.Monaco.Editor
                 return null;
             }
 
-            var value = serializer.Deserialize<string>(reader);
-            switch (value)
+            string? value = serializer.Deserialize<string>(reader);
+            return value switch
             {
-                case "auto":
-                    return ScrollbarBehavior.Auto;
-                case "hidden":
-                    return ScrollbarBehavior.Hidden;
-                case "visible":
-                    return ScrollbarBehavior.Visible;
-            }
-            throw new Exception("Cannot unmarshal type ScrollbarBehavior");
+                "auto" => ScrollbarBehavior.Auto,
+                "hidden" => ScrollbarBehavior.Hidden,
+                "visible" => ScrollbarBehavior.Visible,
+                _ => throw new Exception("Cannot unmarshal type ScrollbarBehavior"),
+            };
         }
 
         public override void WriteJson(JsonWriter writer, object? untypedValue, JsonSerializer serializer)

@@ -1,5 +1,12 @@
 ﻿#nullable enable
 
+using System;
+using System.Collections.Generic;
+using System.Composition;
+using System.Dynamic;
+using System.IO;
+using System.Text;
+using System.Threading.Tasks;
 using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
@@ -9,13 +16,6 @@ using DevToys.Helpers;
 using DevToys.Views.Tools.JsonYaml;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Composition;
-using System.Dynamic;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 using YamlDotNet.Core;
 using YamlDotNet.Serialization;
 
@@ -191,7 +191,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml
 
             await TaskScheduler.Default;
 
-            while (_conversionQueue.TryDequeue(out string text))
+            while (_conversionQueue.TryDequeue(out string? text))
             {
                 bool success;
                 string result;
@@ -230,23 +230,15 @@ namespace DevToys.ViewModels.Tools.JsonYaml
             try
             {
                 dynamic jsonObject = JsonConvert.DeserializeObject<ExpandoObject>(input);
-                if (jsonObject is not null && jsonObject is not string)
+                if (jsonObject is not null and not string)
                 {
                     int indent = 0;
-                    switch (IndentationMode)
+                    indent = IndentationMode switch
                     {
-                        case TwoSpaceIndentation:
-                            indent = 2;
-                            break;
-
-                        case FourSpaceIndentation:
-                            indent = 4;
-                            break;
-
-                        default:
-                            throw new NotSupportedException();
-                    }
-
+                        TwoSpaceIndentation => 2,
+                        FourSpaceIndentation => 4,
+                        _ => throw new NotSupportedException(),
+                    };
                     var serializer
                         = Serializer.FromValueSerializer(
                             new SerializerBuilder().BuildValueSerializer(),
@@ -287,7 +279,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml
                 var deserializer = new Deserializer();
                 object? yamlObject = deserializer.Deserialize(stringReader);
 
-                if (yamlObject is null || yamlObject is string)
+                if (yamlObject is null or string)
                 {
                     output = Strings.InvalidYaml;
                     return false;

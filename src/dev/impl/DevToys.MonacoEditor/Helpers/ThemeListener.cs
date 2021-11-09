@@ -19,8 +19,8 @@ namespace DevToys.MonacoEditor.Helpers
     [AllowForWeb]
     public sealed class ThemeListener
     {
-        private readonly AccessibilitySettings _accessible = new AccessibilitySettings();
-        private readonly UISettings _uiSettings = new UISettings();
+        private readonly AccessibilitySettings _accessible = new();
+        private readonly UISettings _uiSettings = new();
 
         public string CurrentThemeName { get { return CurrentTheme.ToString(); } } // For Web Retrieval
 

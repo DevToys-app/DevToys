@@ -1,11 +1,11 @@
 ﻿#nullable enable
 
+using System;
+using System.Composition;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Core.Theme;
 using DevToys.Core.Settings;
 using DevToys.Core.Threading;
-using System;
-using System.Composition;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 

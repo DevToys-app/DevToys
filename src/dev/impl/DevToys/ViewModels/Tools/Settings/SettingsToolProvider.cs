@@ -1,13 +1,13 @@
 ﻿#nullable enable
 
+using System.Composition;
+using System.Threading.Tasks;
 using DevToys.Api.Core.Injection;
 using DevToys.Api.Tools;
 using DevToys.Core.Threading;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.AnimatedVisuals;
-using System.Composition;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;

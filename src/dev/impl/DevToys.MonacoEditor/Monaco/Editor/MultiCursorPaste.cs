@@ -11,7 +11,7 @@ namespace DevToys.MonacoEditor.Monaco.Editor
     /// </summary>
     [JsonConverter(typeof(MultiCursorPasteConverter))]
     public enum MultiCursorPaste
-    { 
+    {
         Full,
         Spread
     }

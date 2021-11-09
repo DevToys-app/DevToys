@@ -1,5 +1,8 @@
 ﻿#nullable enable
 
+using System;
+using System.Composition;
+using System.Text;
 using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
@@ -7,9 +10,6 @@ using DevToys.UI.Controls;
 using DevToys.Views.Tools.GuidGenerator;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
-using System;
-using System.Composition;
-using System.Text;
 
 namespace DevToys.ViewModels.Tools.GuidGenerator
 {
@@ -128,7 +128,7 @@ namespace DevToys.ViewModels.Tools.GuidGenerator
             var newGuids = new StringBuilder();
             for (int i = 0; i < NumberOfGuidsToGenerate; i++)
             {
-                string guid = Guid.NewGuid().ToString(guidStringFormat);
+                string? guid = Guid.NewGuid().ToString(guidStringFormat);
                 if (IsUppercase)
                 {
                     guid = guid.ToUpperInvariant();

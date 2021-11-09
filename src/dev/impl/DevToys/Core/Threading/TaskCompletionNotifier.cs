@@ -20,7 +20,7 @@ namespace DevToys.Core.Threading
         /// <summary>
         /// Gets the result of the task. Returns the default value of TResult if the task has not completed successfully.
         /// </summary>
-        public TResult? Result => (Task != null && Task.Status == TaskStatus.RanToCompletion) ? Task.Result : default(TResult);
+        public TResult? Result => (Task != null && Task.Status == TaskStatus.RanToCompletion) ? Task.Result : default;
 
         /// <summary>
         /// Gets whether the task has completed.
@@ -58,13 +58,13 @@ namespace DevToys.Core.Threading
                 Task = task;
                 if (task != null && !task.IsCompleted)
                 {
-                    var scheduler = (SynchronizationContext.Current == null) ? TaskScheduler.Current : TaskScheduler.FromCurrentSynchronizationContext();
+                    TaskScheduler? scheduler = (SynchronizationContext.Current == null) ? TaskScheduler.Current : TaskScheduler.FromCurrentSynchronizationContext();
 
                     task
                         .ContinueWith(
                             async t =>
                             {
-                                var propertyChanged = PropertyChanged;
+                                PropertyChangedEventHandler? propertyChanged = PropertyChanged;
                                 if (propertyChanged != null)
                                 {
                                     await ThreadHelper.RunOnUIThreadAsync(() =>

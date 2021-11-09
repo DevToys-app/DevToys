@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
-using Newtonsoft.Json;
 using System;
+using Newtonsoft.Json;
 
 namespace DevToys.MonacoEditor.Monaco.Editor
 {
@@ -16,22 +16,16 @@ namespace DevToys.MonacoEditor.Monaco.Editor
                 return null;
             }
 
-            var value = serializer.Deserialize<string>(reader);
-            switch (value)
+            string? value = serializer.Deserialize<string>(reader);
+            return value switch
             {
-                case "blink":
-                    return CursorBlinking.Blink;
-                case "expand":
-                    return CursorBlinking.Expand;
-                case "phase":
-                    return CursorBlinking.Phase;
-                case "smooth":
-                    return CursorBlinking.Smooth;
-                case "solid":
-                    return CursorBlinking.Solid;
-            }
-
-            throw new Exception("Cannot unmarshal type CursorBlinking");
+                "blink" => CursorBlinking.Blink,
+                "expand" => CursorBlinking.Expand,
+                "phase" => CursorBlinking.Phase,
+                "smooth" => CursorBlinking.Smooth,
+                "solid" => CursorBlinking.Solid,
+                _ => throw new Exception("Cannot unmarshal type CursorBlinking"),
+            };
         }
 
         public override void WriteJson(JsonWriter writer, object? untypedValue, JsonSerializer serializer)

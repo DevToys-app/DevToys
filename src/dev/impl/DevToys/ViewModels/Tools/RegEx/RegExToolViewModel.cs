@@ -1,5 +1,10 @@
 ﻿#nullable enable
 
+using System;
+using System.Collections.Generic;
+using System.Composition;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
@@ -7,11 +12,6 @@ using DevToys.Core.Threading;
 using DevToys.UI.Controls;
 using DevToys.Views.Tools.RegEx;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Composition;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Windows.UI;
 
 namespace DevToys.ViewModels.Tools.RegEx
@@ -225,7 +225,7 @@ namespace DevToys.ViewModels.Tools.RegEx
 
                 try
                 {
-                    string pattern = data.pattern.Trim('/');
+                    string? pattern = data.pattern.Trim('/');
 
                     var regex = new Regex(data.pattern, GetOptions());
                     MatchCollection matches = regex.Matches(data.text.Replace("\r\n", "\r"));
@@ -248,7 +248,7 @@ namespace DevToys.ViewModels.Tools.RegEx
                 }
 
                 ThreadHelper.RunOnUIThreadAsync(
-                    ThreadPriority.Low, 
+                    ThreadPriority.Low,
                     () =>
                     {
                         MatchTextBox?.SetHighlights(spans);

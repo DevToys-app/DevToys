@@ -1,5 +1,10 @@
 ﻿#nullable enable
 
+using System;
+using System.Collections.Generic;
+using System.Composition;
+using System.Text;
+using System.Threading.Tasks;
 using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
@@ -7,11 +12,6 @@ using DevToys.Core;
 using DevToys.Core.Threading;
 using DevToys.Views.Tools.Base64EncoderDecoder;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Composition;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
 {
@@ -142,7 +142,7 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
 
             await TaskScheduler.Default;
 
-            while (_conversionQueue.TryDequeue(out string text))
+            while (_conversionQueue.TryDequeue(out string? text))
             {
                 string conversionResult;
                 if (string.Equals(ConversionMode, DefaultConversion, StringComparison.Ordinal))
@@ -178,12 +178,11 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
 
             await TaskScheduler.Default;
 
-            string encoded = string.Empty;
-
+            string? encoded;
             try
             {
                 Encoding encoder = GetEncoder();
-                byte[] dataBytes = encoder.GetBytes(data);
+                byte[]? dataBytes = encoder.GetBytes(data);
                 encoded = Convert.ToBase64String(dataBytes);
             }
             catch (Exception ex)
@@ -203,11 +202,11 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
             }
 
             await TaskScheduler.Default;
-            string decoded = string.Empty;
+            string? decoded = string.Empty;
 
             try
             {
-                byte[] decodedData = Convert.FromBase64String(data);
+                byte[]? decodedData = Convert.FromBase64String(data);
                 Encoding encoder = GetEncoder();
                 decoded = encoder.GetString(decodedData);
             }
