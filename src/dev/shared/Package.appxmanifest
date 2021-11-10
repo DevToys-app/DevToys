@@ -35,8 +35,8 @@
 
     <Applications>
         <Application Id="App"
-          Executable="$targetnametoken$.exe"
-          EntryPoint="$targetentrypoint$"
+          Executable="DevToys.exe"
+          EntryPoint="DevToys.App"
           desktop4:SupportsMultipleInstances="true">
             <uap:VisualElements
               DisplayName="DevToys - Preview"
