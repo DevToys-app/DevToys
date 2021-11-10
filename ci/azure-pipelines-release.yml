@@ -15,6 +15,7 @@ variables:
   buildPlatform: 'x86|x64|ARM'
   buildConfiguration: 'Release'
   appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
+  buildFolder: '$(Build.SourcesDirectory)\bin\'
   certificateSecureFilePath: 'DevToys.Startup_TemporaryKey.pfx'
 
 jobs:
@@ -67,7 +68,7 @@ jobs:
       solution: '$(uwpProject)'
       platform: 'x86'
       configuration: '$(buildConfiguration)'
-      msbuildArguments: '/bl
+      msbuildArguments: '/bl:"$(buildFolder)\msbuild.binlog"
                          /t:build;_GenerateAppxPackage 
                          /p:AppxBundlePlatforms="$(buildPlatform)"
                          /p:AppxPackageDir="$(appxPackageDir)"
@@ -83,6 +84,13 @@ jobs:
     displayName: 'Publish Artifact: drop'
     inputs:
       PathtoPublish: '$(appxPackageDir)'
+    condition: succeeded()
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: output'
+    inputs:
+      PathtoPublish: '$(buildFolder)'
+    condition: failed()
 
 ### Store release ###
 - job: StoreRelease
@@ -127,7 +135,7 @@ jobs:
       solution: '$(uwpProject)'
       platform: 'x86'
       configuration: '$(buildConfiguration)'
-      msbuildArguments: '/bl
+      msbuildArguments: '/bl:"$(buildFolder)\msbuild.binlog"
                          /t:build;_GenerateAppxPackage 
                          /p:AppxBundlePlatforms="$(buildPlatform)"
                          /p:AppxPackageDir="$(appxPackageDir)"
@@ -140,3 +148,10 @@ jobs:
     displayName: 'Publish Artifact: drop'
     inputs:
       PathtoPublish: '$(appxPackageDir)'
+    condition: succeeded()
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: output'
+    inputs:
+      PathtoPublish: '$(buildFolder)'
+    condition: failed()
