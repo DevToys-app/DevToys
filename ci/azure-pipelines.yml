@@ -15,6 +15,7 @@ variables:
   buildPlatform: 'x86|x64|ARM'
   buildConfiguration: 'Release'
   appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
+  buildFolder: '$(Agent.BuildDirectory)\bin\'
 
 jobs:
 - job: Build
@@ -34,7 +35,7 @@ jobs:
     inputs:
       solution: '$(uwpProject)'
       configuration: '$(buildConfiguration)'
-      msbuildArguments: '/bl:"$(Agent.BuildDirectory)\msbuild.binlog"
+      msbuildArguments: '/bl:"$(buildFolder)\msbuild.binlog"
                          /t:build
                          /p:AppxBundlePlatforms="$(buildPlatform)"
                          /p:AppxPackageDir="$(appxPackageDir)"
@@ -52,5 +53,5 @@ jobs:
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: output'
     inputs:
-      PathtoPublish: '$(Agent.BuildDirectory)'
+      PathtoPublish: '$(buildFolder)'
     condition: failed()
