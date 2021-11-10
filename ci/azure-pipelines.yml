@@ -19,6 +19,7 @@ variables:
 jobs:
 - job: Build
   timeoutInMinutes: 120
+  continueOnError: true
   steps:
 
   # Run the init.ps1, which mostly restores dependencies
