@@ -1,13 +1,13 @@
 ﻿#nullable enable
 
-using DevToys.Api.Core;
-using DevToys.Core.Threading;
-using DevToys.Models;
-using Newtonsoft.Json;
 using System;
 using System.Composition;
 using System.Threading;
 using System.Threading.Tasks;
+using DevToys.Api.Core;
+using DevToys.Core.Threading;
+using DevToys.Models;
+using Newtonsoft.Json;
 using Windows.Services.Store;
 using Windows.Storage;
 
@@ -20,11 +20,11 @@ namespace DevToys.Core
         private const string StoredFileName = "marketingInfo.json";
 
         private readonly INotificationService _notificationService;
-        private readonly DisposableSempahore _semaphore = new DisposableSempahore();
-        private readonly object _lock = new object();
+        private readonly DisposableSempahore _semaphore = new();
+        private readonly AsyncLazy<MarketingState> _marketingState;
+        private readonly object _lock = new();
 
         private bool _rateOfferInProgress;
-        private AsyncLazy<MarketingState> _marketingState;
 
         [ImportingConstructor]
         public MarketingService(INotificationService notificationService)
@@ -119,7 +119,7 @@ namespace DevToys.Core
                 state.LastAppRatingOfferDate = DateTime.Now;
             });
 
-            StoreContext storeContext = StoreContext.GetDefault();
+            var storeContext = StoreContext.GetDefault();
 
             StoreRateAndReviewResult result = await ThreadHelper.RunOnUIThreadAsync(async () =>
             {
@@ -246,7 +246,7 @@ namespace DevToys.Core
 
                     StorageFile file = await localCacheFolder.CreateFileAsync(StoredFileName, CreationCollisionOption.ReplaceExisting);
 
-                    string fileContent
+                    string? fileContent
                         = JsonConvert.SerializeObject(
                             state,
                             Formatting.Indented);
@@ -271,10 +271,10 @@ namespace DevToys.Core
 
                     IStorageItem? file = await localCacheFolder.TryGetItemAsync(StoredFileName);
 
-                    if (file is not null && file is StorageFile storageFile)
+                    if (file is not null and StorageFile storageFile)
                     {
-                        string fileContent = await FileIO.ReadTextAsync(storageFile);
-                        var result = JsonConvert.DeserializeObject<MarketingState>(fileContent);
+                        string? fileContent = await FileIO.ReadTextAsync(storageFile);
+                        MarketingState? result = JsonConvert.DeserializeObject<MarketingState>(fileContent);
                         if (result is not null)
                         {
                             return result;

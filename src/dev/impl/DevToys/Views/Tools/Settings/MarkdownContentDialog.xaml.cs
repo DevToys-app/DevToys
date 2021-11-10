@@ -18,7 +18,7 @@ namespace DevToys.Views.Tools.Settings
         {
             try
             {
-                string uriToLaunch = e.Link;
+                string? uriToLaunch = e.Link;
                 var uri = new Uri(uriToLaunch);
 
                 await Windows.System.Launcher.LaunchUriAsync(uri);

@@ -15,15 +15,15 @@ namespace DevToys.UI.Converters
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value is null || parameter is null || !(value is Enum))
+            if (value is null || parameter is null || value is not Enum)
             {
                 return IsInverted;
             }
 
-            var currentState = value.ToString();
-            var stateStrings = parameter.ToString();
+            string? currentState = value.ToString();
+            string? stateStrings = parameter.ToString();
 
-            string[] stateStringsSplitted = stateStrings.Split(',');
+            string[]? stateStringsSplitted = stateStrings.Split(',');
             for (int i = 0; i < stateStringsSplitted.Length; i++)
             {
                 if (string.Equals(currentState, stateStringsSplitted[i].Trim(), StringComparison.Ordinal))
@@ -37,9 +37,8 @@ namespace DevToys.UI.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            string? parameterString = parameter as string;
-            var valueBool = value as bool?;
-            if (parameterString is null || valueBool is null)
+            bool? valueBool = value as bool?;
+            if (parameter is not string parameterString || valueBool is null)
             {
                 return DependencyProperty.UnsetValue;
             }

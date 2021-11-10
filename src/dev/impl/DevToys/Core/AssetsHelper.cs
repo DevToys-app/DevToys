@@ -1,10 +1,10 @@
 ﻿#nullable enable
 
-using DevToys.Core.Threading;
 using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using DevToys.Core.Threading;
 using Windows.Storage;
 
 namespace DevToys.Core
@@ -13,28 +13,28 @@ namespace DevToys.Core
     {
         public static async Task<string> GetReleaseNoteAsync()
         {
-            string result = await GetLocalFileContentAsync($"Assets\\ReleaseNote.txt").ConfigureAwait(false);
+            string? result = await GetLocalFileContentAsync($"Assets\\ReleaseNote.txt").ConfigureAwait(false);
 
             return result;
         }
 
         public static async Task<string> GetPrivacyStatementAsync()
         {
-            string result = await GetLocalFileContentAsync($"Assets\\PRIVACY-POLICY.md").ConfigureAwait(false);
+            string? result = await GetLocalFileContentAsync($"Assets\\PRIVACY-POLICY.md").ConfigureAwait(false);
 
             return result;
         }
 
         public static async Task<string> GetThirdPartyNoticesAsync()
         {
-            string result = await GetLocalFileContentAsync($"Assets\\THIRD-PARTY-NOTICES.md").ConfigureAwait(false);
+            string? result = await GetLocalFileContentAsync($"Assets\\THIRD-PARTY-NOTICES.md").ConfigureAwait(false);
 
             return result;
         }
 
         public static async Task<string> GetLicenseAsync()
         {
-            string result = await GetLocalFileContentAsync($"Assets\\LICENSE.md").ConfigureAwait(false);
+            string? result = await GetLocalFileContentAsync($"Assets\\LICENSE.md").ConfigureAwait(false);
 
             return result;
         }

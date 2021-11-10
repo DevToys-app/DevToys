@@ -1,12 +1,12 @@
 ﻿#nullable enable
 
+using System;
+using System.IO;
+using System.Text;
 using DevToys.Core;
 using DevToys.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.IO;
-using System.Text;
 
 namespace DevToys.Helpers
 {
@@ -29,7 +29,7 @@ namespace DevToys.Helpers
             {
                 try
                 {
-                    JToken? jtoken = JToken.Parse(input);
+                    var jtoken = JToken.Parse(input);
                     return jtoken is not null;
                 }
                 catch (JsonReaderException)
@@ -61,7 +61,7 @@ namespace DevToys.Helpers
 
             try
             {
-                JToken? jtoken = JToken.Parse(input!);
+                var jtoken = JToken.Parse(input!);
                 if (jtoken is not null)
                 {
                     var stringBuilder = new StringBuilder();

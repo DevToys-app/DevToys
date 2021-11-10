@@ -1,10 +1,10 @@
 ﻿#nullable enable
 
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
 
 namespace DevToys.MonacoEditor.Monaco.Editor
 {
@@ -12,7 +12,7 @@ namespace DevToys.MonacoEditor.Monaco.Editor
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        private readonly Dictionary<string, object?> _propertyBackingDictionary = new Dictionary<string, object?>();
+        private readonly Dictionary<string, object?> _propertyBackingDictionary = new();
 
         private T? GetPropertyValue<T>([CallerMemberName] string? propertyName = null)
         {

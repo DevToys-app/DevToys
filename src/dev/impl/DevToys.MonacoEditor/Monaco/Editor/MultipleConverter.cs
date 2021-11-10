@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
-using Newtonsoft.Json;
 using System;
+using Newtonsoft.Json;
 
 namespace DevToys.MonacoEditor.Monaco.Editor
 {
@@ -19,17 +19,14 @@ namespace DevToys.MonacoEditor.Monaco.Editor
                 return null;
             }
 
-            var value = serializer.Deserialize<string>(reader);
-            switch (value)
+            string? value = serializer.Deserialize<string>(reader);
+            return value switch
             {
-                case "goto":
-                    return Multiple.Goto;
-                case "gotoAndPeek":
-                    return Multiple.GotoAndPeek;
-                case "peek":
-                    return Multiple.Peek;
-            }
-            throw new Exception("Cannot unmarshal type Multiple");
+                "goto" => Multiple.Goto,
+                "gotoAndPeek" => Multiple.GotoAndPeek,
+                "peek" => Multiple.Peek,
+                _ => throw new Exception("Cannot unmarshal type Multiple"),
+            };
         }
 
         public override void WriteJson(JsonWriter writer, object? untypedValue, JsonSerializer serializer)

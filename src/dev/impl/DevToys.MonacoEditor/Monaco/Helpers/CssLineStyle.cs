@@ -1,8 +1,8 @@
 ﻿#nullable enable
 
-using DevToys.MonacoEditor.CodeEditorControl;
 using System;
 using System.Text;
+using DevToys.MonacoEditor.CodeEditorControl;
 using Windows.UI.Xaml.Media;
 
 namespace DevToys.MonacoEditor.Monaco.Helpers
@@ -27,7 +27,7 @@ namespace DevToys.MonacoEditor.Monaco.Helpers
 
         public string ToCss()
         {
-            StringBuilder output = new StringBuilder(40);
+            var output = new StringBuilder(40);
             if (BackgroundColor != null)
             {
                 output.AppendLine(string.Format("background: #{0:X2}{1:X2}{2:X2};", BackgroundColor.Color.R,

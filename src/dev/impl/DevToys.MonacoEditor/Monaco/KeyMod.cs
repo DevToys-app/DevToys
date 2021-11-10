@@ -18,7 +18,7 @@ namespace DevToys.MonacoEditor.Monaco
         public static int Chord(int firstPart, int secondPart)
         {
             // https://github.com/Microsoft/vscode/blob/master/src/vs/base/common/keyCodes.ts#L410
-            var chordPart = ZeroFillRightShift((secondPart & 0x0000ffff) << 16, 0);
+            int chordPart = ZeroFillRightShift((secondPart & 0x0000ffff) << 16, 0);
             return ZeroFillRightShift(firstPart | chordPart, 0);
         }
 

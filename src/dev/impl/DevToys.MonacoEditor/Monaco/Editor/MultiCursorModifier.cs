@@ -9,9 +9,9 @@ namespace DevToys.MonacoEditor.Monaco.Editor
     /// Defaults to 'alt'
     /// </summary>
     [JsonConverter(typeof(MultiCursorModifierConverter))]
-    public enum MultiCursorModifier 
+    public enum MultiCursorModifier
     {
         Alt,
-        CtrlCmd 
+        CtrlCmd
     }
 }

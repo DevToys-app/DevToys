@@ -21,8 +21,8 @@ namespace DevToys.Helpers
 
             try
             {
-                object result = new DeserializerBuilder().Build().Deserialize<object>(input);
-                return result is not null && result is not string;
+                object? result = new DeserializerBuilder().Build().Deserialize<object>(input);
+                return result is not null and not string;
             }
             catch (Exception)
             {

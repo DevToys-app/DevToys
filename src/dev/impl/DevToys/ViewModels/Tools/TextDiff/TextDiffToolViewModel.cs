@@ -1,11 +1,11 @@
 ﻿#nullable enable
 
+using System;
+using System.Composition;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
 using DevToys.Views.Tools.TextDiff;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
-using System;
-using System.Composition;
 
 namespace DevToys.ViewModels.Tools.TextDiff
 {

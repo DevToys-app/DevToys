@@ -115,17 +115,13 @@ namespace DevToys.MonacoEditor.Extensions
 
         private static CoreDispatcherPriority GetDispatcherPriority(ThreadPriority priority)
         {
-            switch (priority)
+            return priority switch
             {
-                case ThreadPriority.Low:
-                    return CoreDispatcherPriority.Low;
-                case ThreadPriority.Normal:
-                    return CoreDispatcherPriority.Normal;
-                case ThreadPriority.High:
-                    return CoreDispatcherPriority.High;
-                default:
-                    throw new NotSupportedException();
-            }
+                ThreadPriority.Low => CoreDispatcherPriority.Low,
+                ThreadPriority.Normal => CoreDispatcherPriority.Normal,
+                ThreadPriority.High => CoreDispatcherPriority.High,
+                _ => throw new NotSupportedException(),
+            };
         }
     }
 }

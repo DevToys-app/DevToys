@@ -9,7 +9,7 @@ namespace DevToys.Core.Threading
 {
     internal static class ThreadHelper
     {
-        private readonly static CoreDispatcher _uiDispatcher = CoreApplication.MainView.CoreWindow.Dispatcher;
+        private static readonly CoreDispatcher _uiDispatcher = CoreApplication.MainView.CoreWindow.Dispatcher;
 
         internal static void ThrowIfNotOnUIThread()
         {
@@ -138,17 +138,13 @@ namespace DevToys.Core.Threading
 
         private static CoreDispatcherPriority GetDispatcherPriority(ThreadPriority priority)
         {
-            switch (priority)
+            return priority switch
             {
-                case ThreadPriority.Low:
-                    return CoreDispatcherPriority.Low;
-                case ThreadPriority.Normal:
-                    return CoreDispatcherPriority.Normal;
-                case ThreadPriority.High:
-                    return CoreDispatcherPriority.High;
-                default:
-                    throw new NotSupportedException();
-            }
+                ThreadPriority.Low => CoreDispatcherPriority.Low,
+                ThreadPriority.Normal => CoreDispatcherPriority.Normal,
+                ThreadPriority.High => CoreDispatcherPriority.High,
+                _ => throw new NotSupportedException(),
+            };
         }
     }
 }

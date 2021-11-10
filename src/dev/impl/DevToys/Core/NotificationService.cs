@@ -1,8 +1,8 @@
 ﻿#nullable enable
 
-using DevToys.Api.Core;
 using System;
 using System.Composition;
+using DevToys.Api.Core;
 
 namespace DevToys.Core
 {

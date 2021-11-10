@@ -1,5 +1,14 @@
 ﻿#nullable enable
 
+using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Composition;
+using System.Globalization;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Web;
 using DevToys.Api.Core;
 using DevToys.Api.Core.Navigation;
 using DevToys.Api.Core.Settings;
@@ -14,18 +23,8 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Microsoft.UI.Xaml.Controls;
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Composition;
-using System.Globalization;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web;
 using Windows.ApplicationModel;
 using Windows.Foundation;
-using Windows.Management.Deployment;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using ThreadPriority = DevToys.Core.Threading.ThreadPriority;
@@ -235,7 +234,7 @@ namespace DevToys.ViewModels
         {
             Assumes.NotNull(SelectedMenuItem, nameof(SelectedMenuItem));
 
-            ViewModePreferences compactOptions = ViewModePreferences.CreateDefault(ApplicationViewMode.CompactOverlay);
+            var compactOptions = ViewModePreferences.CreateDefault(ApplicationViewMode.CompactOverlay);
             compactOptions.CustomSize = new Size(SelectedMenuItem!.Metadata.CompactOverlayWidth, SelectedMenuItem.Metadata.CompactOverlayHeight);
 
             if (await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(applicationViewMode, compactOptions))
@@ -383,11 +382,11 @@ namespace DevToys.ViewModels
                     ThreadPriority.Low,
                     () =>
                     {
-                        var oldSelectedItem = SelectedMenuItem;
+                        MatchedToolProviderViewData? oldSelectedItem = SelectedMenuItem;
                         ToolsMenuItems.Clear();
                         SetSelectedMenuItem(null, null);
 
-                        foreach (var item in newToolsMenuitems)
+                        foreach (KeyValuePair<MatchedToolProviderViewData, MatchSpan[]?> item in newToolsMenuitems)
                         {
                             if (item.Value is not null)
                             {
@@ -502,8 +501,8 @@ namespace DevToys.ViewModels
             await TaskScheduler.Default;
 
             PackageVersion v = Package.Current.Id.Version;
-            string currentVersion = $"{v.Major}.{v.Minor}.{v.Build}.{v.Revision}";
-            string lastVersion = _settingsProvider.GetSetting(PredefinedSettings.LastVersionRan);
+            string? currentVersion = $"{v.Major}.{v.Minor}.{v.Build}.{v.Revision}";
+            string? lastVersion = _settingsProvider.GetSetting(PredefinedSettings.LastVersionRan);
 
             if (!_settingsProvider.GetSetting(PredefinedSettings.FirstTimeStart) && currentVersion != lastVersion)
             {
@@ -531,7 +530,7 @@ namespace DevToys.ViewModels
 
             PackageUpdateAvailabilityResult result = await Package.Current.CheckUpdateAvailabilityAsync();
 
-            if (result.Availability == PackageUpdateAvailability.Required || result.Availability == PackageUpdateAvailability.Available)
+            if (result.Availability is PackageUpdateAvailability.Required or PackageUpdateAvailability.Available)
             {
                 _notificationService.ShowInAppNotification(
                     Strings.NotificationUpdateAvailableTitle,

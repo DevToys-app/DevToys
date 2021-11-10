@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
-using Newtonsoft.Json;
 using System;
+using Newtonsoft.Json;
 
 namespace DevToys.MonacoEditor.Monaco.Editor
 {
@@ -19,18 +19,14 @@ namespace DevToys.MonacoEditor.Monaco.Editor
                 return null;
             }
 
-            var value = serializer.Deserialize<string>(reader);
-            switch (value)
+            string? value = serializer.Deserialize<string>(reader);
+            return value switch
             {
-                case "always":
-                    return AutoFindInSelection.Always;
-                case "multiline":
-                    return AutoFindInSelection.Multiline;
-                case "never":
-                    return AutoFindInSelection.Never;
-            }
-
-            throw new Exception("Cannot unmarshal type AutoFindInSelection");
+                "always" => AutoFindInSelection.Always,
+                "multiline" => AutoFindInSelection.Multiline,
+                "never" => AutoFindInSelection.Never,
+                _ => throw new Exception("Cannot unmarshal type AutoFindInSelection"),
+            };
         }
 
         public override void WriteJson(JsonWriter writer, object? untypedValue, JsonSerializer serializer)

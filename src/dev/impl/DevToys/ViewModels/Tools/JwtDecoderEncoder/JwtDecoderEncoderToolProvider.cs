@@ -1,9 +1,9 @@
 ﻿#nullable enable
 
+using System.Composition;
 using DevToys.Api.Core.Injection;
 using DevToys.Api.Tools;
 using DevToys.Helpers;
-using System.Composition;
 
 namespace DevToys.ViewModels.Tools.JwtDecoderEncoder
 {

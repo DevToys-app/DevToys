@@ -1,5 +1,9 @@
 ﻿#nullable enable
 
+using System;
+using System.Collections.Generic;
+using System.Composition;
+using System.Threading.Tasks;
 using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Core.Theme;
@@ -11,10 +15,6 @@ using DevToys.Views.Tools.MarkdownPreview;
 using Markdig;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Messaging;
-using System;
-using System.Collections.Generic;
-using System.Composition;
-using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Xaml;
 
@@ -110,9 +110,9 @@ namespace DevToys.ViewModels.Tools.MarkdownPreview
 
             await TaskScheduler.Default;
 
-            while (_workQueue.TryDequeue(out string text))
+            while (_workQueue.TryDequeue(out string? text))
             {
-                string html = await MarkdownToHtmlPageAsync(text, Theme);
+                string? html = await MarkdownToHtmlPageAsync(text, Theme);
 
                 ThreadHelper.RunOnUIThreadAsync(() =>
                 {
@@ -134,7 +134,7 @@ namespace DevToys.ViewModels.Tools.MarkdownPreview
             await TaskScheduler.Default;
 
             MarkdownPipeline pipeline = new MarkdownPipelineBuilder().UseEmojiAndSmiley().UseSmartyPants().UseAdvancedExtensions().Build();
-            string htmlBody = Markdown.ToHtml(markdown, pipeline);
+            string? htmlBody = Markdown.ToHtml(markdown, pipeline);
 
             if (string.IsNullOrEmpty(_htmlDocument))
             {
@@ -144,7 +144,7 @@ namespace DevToys.ViewModels.Tools.MarkdownPreview
 
             Assumes.NotNullOrEmpty(_htmlDocument, nameof(_htmlDocument));
 
-            string htmlDocument
+            string? htmlDocument
                 = ((string)_htmlDocument!.Clone())
                 .Replace("{{renderTheme}}", theme.ToString().ToLower())
                 .Replace("{{backgroundColor}}", theme == ApplicationTheme.Dark ? "#0d1117" : "#ffffff")

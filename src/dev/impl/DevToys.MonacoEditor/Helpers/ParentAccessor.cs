@@ -1,11 +1,11 @@
 ﻿#nullable enable
 
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Windows.Foundation;
 using Windows.Foundation.Metadata;
 
@@ -117,7 +117,7 @@ namespace DevToys.MonacoEditor.Helpers
         {
             if (parent.TryGetTarget(out IParentAccessorAcceptor tobj))
             {
-                var propinfo = typeinfo.GetProperty(name);
+                PropertyInfo? propinfo = typeinfo.GetProperty(name);
                 return propinfo?.GetValue(tobj);
             }
 
@@ -128,8 +128,8 @@ namespace DevToys.MonacoEditor.Helpers
         {
             if (parent.TryGetTarget(out IParentAccessorAcceptor tobj))
             {
-                var propinfo = typeinfo.GetProperty(name);
-                var obj = propinfo?.GetValue(tobj);
+                PropertyInfo? propinfo = typeinfo.GetProperty(name);
+                object? obj = propinfo?.GetValue(tobj);
 
                 return JsonConvert.SerializeObject(obj, new JsonSerializerSettings()
                 {
@@ -153,11 +153,11 @@ namespace DevToys.MonacoEditor.Helpers
             if (parent.TryGetTarget(out IParentAccessorAcceptor tobj))
             {
                 // TODO: Support params for multi-level digging?
-                var propinfo = typeinfo.GetProperty(name);
-                var prop = propinfo?.GetValue(tobj);
+                PropertyInfo? propinfo = typeinfo.GetProperty(name);
+                object? prop = propinfo?.GetValue(tobj);
                 if (prop != null)
                 {
-                    var childinfo = prop.GetType().GetProperty(child);
+                    PropertyInfo? childinfo = prop.GetType().GetProperty(child);
                     return childinfo?.GetValue(prop);
                 }
             }
@@ -174,7 +174,7 @@ namespace DevToys.MonacoEditor.Helpers
         {
             if (parent.TryGetTarget(out IParentAccessorAcceptor tobj))
             {
-                var propinfo = typeinfo.GetProperty(name); // TODO: Cache these?
+                PropertyInfo? propinfo = typeinfo.GetProperty(name); // TODO: Cache these?
                 tobj.IsSettingValue = true;
                 propinfo?.SetValue(tobj, value);
                 tobj.IsSettingValue = false;
@@ -191,15 +191,15 @@ namespace DevToys.MonacoEditor.Helpers
         {
             if (parent.TryGetTarget(out IParentAccessorAcceptor tobj))
             {
-                var propinfo = typeinfo.GetProperty(name);
-                var typeobj = LookForTypeByName(type);
+                PropertyInfo? propinfo = typeinfo.GetProperty(name);
+                Type? typeobj = LookForTypeByName(type);
 
                 if (typeobj is null)
                 {
                     throw new Exception("Type not found");
                 }
 
-                var obj = JsonConvert.DeserializeObject(value, typeobj);
+                object? obj = JsonConvert.DeserializeObject(value, typeobj);
 
                 tobj.IsSettingValue = true;
                 propinfo?.SetValue(tobj, obj);
@@ -218,9 +218,9 @@ namespace DevToys.MonacoEditor.Helpers
             }
 
             // Search in Other Assemblies
-            foreach (var assembly in Assemblies)
+            foreach (Assembly? assembly in Assemblies)
             {
-                foreach (var typeInfo in assembly.ExportedTypes)
+                foreach (Type? typeInfo in assembly.ExportedTypes)
                 {
                     if (typeInfo.Name == name)
                     {

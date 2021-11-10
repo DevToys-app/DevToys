@@ -30,7 +30,7 @@
         <Nuget_MicrosoftToolkitUwpUIControls>7.0.2</Nuget_MicrosoftToolkitUwpUIControls>
         <Nuget_MicrosoftTypeScriptMSBuild>4.4.2</Nuget_MicrosoftTypeScriptMSBuild>
         <NuGet_MicrosoftUIXaml>2.6.2</NuGet_MicrosoftUIXaml>
-        <NuGet_MicrosoftWindowsSDKBuildTools>10.0.20348.19</NuGet_MicrosoftWindowsSDKBuildTools>
+        <NuGet_MicrosoftWindowsSDKBuildTools>10.0.22000.194</NuGet_MicrosoftWindowsSDKBuildTools>
         <NuGet_MSTestTestAdapter>2.1.1</NuGet_MSTestTestAdapter>
         <NuGet_MSTestTestFramework>2.1.1</NuGet_MSTestTestFramework>
         <NuGet_NewtonsoftJson>12.0.3</NuGet_NewtonsoftJson>

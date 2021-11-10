@@ -11,10 +11,10 @@ namespace DevToys.MonacoEditor.Monaco.Editor
     /// </summary>
     [JsonConverter(typeof(RenderWhitespaceConverter))]
     public enum RenderWhitespace
-    { 
+    {
         All,
         Boundary,
         None,
-        Selection 
+        Selection
     }
 }

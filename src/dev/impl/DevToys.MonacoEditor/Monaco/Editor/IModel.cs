@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using Windows.Foundation;
 
 namespace DevToys.MonacoEditor.Monaco.Editor

@@ -1,8 +1,8 @@
 ﻿#nullable enable
 
+using System.ComponentModel;
 using DevToys.Api.Core.Injection;
 using DevToys.Core;
-using System.ComponentModel;
 
 namespace DevToys.Api.Core.Navigation
 {
