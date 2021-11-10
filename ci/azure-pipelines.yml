@@ -19,7 +19,6 @@ variables:
 jobs:
 - job: Build
   timeoutInMinutes: 120
-  continueOnError: true
   steps:
 
   # Run the init.ps1, which mostly restores dependencies
@@ -35,7 +34,7 @@ jobs:
     inputs:
       solution: '$(uwpProject)'
       configuration: '$(buildConfiguration)'
-      msbuildArguments: '/bl
+      msbuildArguments: '/bl:"$(appxPackageDir)\msbuild.binlog"
                          /t:build
                          /p:AppxBundlePlatforms="$(buildPlatform)"
                          /p:AppxPackageDir="$(appxPackageDir)"
@@ -48,3 +47,4 @@ jobs:
     displayName: 'Publish Artifact: drop'
     inputs:
       PathtoPublish: '$(appxPackageDir)'
+    condition: always()
