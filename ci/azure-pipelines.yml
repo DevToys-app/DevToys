@@ -15,7 +15,7 @@ variables:
   buildPlatform: 'x86|x64|ARM'
   buildConfiguration: 'Release'
   appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
-  buildFolder: '$(Agent.BuildDirectory)'
+  buildFolder: '$(Build.SourcesDirectory)\bin\'
 
 jobs:
 - job: Build
