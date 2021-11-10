@@ -48,6 +48,8 @@
     <UapAppxPackageBuildMode>StoreAndSideload</UapAppxPackageBuildMode>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <!-- Workaround to https://github.com/microsoft/microsoft-ui-xaml/issues/6195 -->
     <AppxUseHardlinksIfPossible>false</AppxUseHardlinksIfPossible>
   </PropertyGroup>
