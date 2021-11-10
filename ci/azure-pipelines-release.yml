@@ -67,7 +67,8 @@ jobs:
       solution: '$(uwpProject)'
       platform: 'x86'
       configuration: '$(buildConfiguration)'
-      msbuildArguments: '/t:build;_GenerateAppxPackage 
+      msbuildArguments: '/bl
+                         /t:build;_GenerateAppxPackage 
                          /p:AppxBundlePlatforms="$(buildPlatform)"
                          /p:AppxPackageDir="$(appxPackageDir)"
                          /p:AppxBundle=Always
@@ -126,7 +127,8 @@ jobs:
       solution: '$(uwpProject)'
       platform: 'x86'
       configuration: '$(buildConfiguration)'
-      msbuildArguments: '/t:build;_GenerateAppxPackage 
+      msbuildArguments: '/bl
+                         /t:build;_GenerateAppxPackage 
                          /p:AppxBundlePlatforms="$(buildPlatform)"
                          /p:AppxPackageDir="$(appxPackageDir)"
                          /p:AppxBundle=Always
