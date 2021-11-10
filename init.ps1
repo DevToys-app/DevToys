@@ -1,4 +1,9 @@
-Function Get-MsBuildPath {
+param (
+    [Parameter(Mandatory = $false)]
+    [Boolean]$VsPreview=$true
+)
+
+Function Get-MsBuildPath($useVsPreview) {
     if (-not (Test-Path "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"))
     {
         Throw "Unable to find 'vswhere.exe'. Is Visual Studio installed?"
@@ -6,10 +11,16 @@ Function Get-MsBuildPath {
 
     $path = ""
     try {
-        $path = & "${env:ProgramFiles}\microsoft visual studio\installer\vswhere.exe" -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
+        if ($useVsPreview)
+        {
+            $path = & "${env:ProgramFiles(x86)}\microsoft visual studio\installer\vswhere.exe" -latest -prerelease -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
+        }
+        else
+        {
+            $path = & "${env:ProgramFiles(x86)}\microsoft visual studio\installer\vswhere.exe" -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
+        }
     }
     catch {
-        $path = & "${env:ProgramFiles(x86)}\microsoft visual studio\installer\vswhere.exe" -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
     }
 
     if (!$path)
@@ -40,7 +51,7 @@ try {
     $HeaderColor = 'Green'
     $toolsPath = "$PSScriptRoot\tools"
     $nugetVerbosity = 'minimal'
-    $MSBuildPath = Get-MsBuildPath
+    $MSBuildPath = Get-MsBuildPath $VsPreview
     if ($VerbosePreference -eq 'continue') { $nugetVerbosity = 'Detailed' }
 
     Restore-PackagesUnder "$PSScriptRoot\src"

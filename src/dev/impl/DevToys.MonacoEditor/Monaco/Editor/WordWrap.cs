@@ -14,8 +14,8 @@ namespace DevToys.MonacoEditor.Monaco.Editor
     /// Defaults to "off".
     /// </summary>
     [JsonConverter(typeof(WordWrapConverter))]
-    public enum WordWrap 
-    { 
+    public enum WordWrap
+    {
         Bounded,
         Off,
         On,

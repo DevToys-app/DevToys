@@ -1,5 +1,11 @@
 ﻿#nullable enable
 
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Composition;
+using System.Reflection;
+using System.Threading.Tasks;
 using DevToys.Api.Core.Navigation;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Core.Theme;
@@ -11,12 +17,6 @@ using DevToys.Views.Tools.Settings;
 using Microsoft.Graphics.Canvas.Text;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Composition;
-using System.Reflection;
-using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Services.Store;
@@ -99,17 +99,17 @@ namespace DevToys.ViewModels.Settings
         {
             get
             {
-                string version = Strings.GetFormattedVersion(typeof(SettingsToolViewModel).GetTypeInfo().Assembly.GetName().Version.ToString());
+                string? version = Strings.GetFormattedVersion(typeof(SettingsToolViewModel).GetTypeInfo().Assembly.GetName().Version.ToString());
 
-                string architecture = Package.Current.Id.Architecture.ToString();
+                string? architecture = Package.Current.Id.Architecture.ToString();
 #if DEBUG
-                string buildConfiguration = "DEBUG";
+                string? buildConfiguration = "DEBUG";
 #else
                 string buildConfiguration = "RELEASE";
 #endif
 
-                string gitBranch = ThisAssembly.Git.Branch;
-                string gitCommit = ThisAssembly.Git.Commit;
+                string? gitBranch = ThisAssembly.Git.Branch;
+                string? gitCommit = ThisAssembly.Git.Commit;
 
                 return $"{version} | {architecture} | {buildConfiguration} | {gitBranch} | {gitCommit}";
             }
@@ -202,7 +202,7 @@ namespace DevToys.ViewModels.Settings
 
         private async Task ExecuteRateAndReviewCommandAsync()
         {
-            StoreContext storeContext = StoreContext.GetDefault();
+            var storeContext = StoreContext.GetDefault();
 
             StoreRateAndReviewResult result = await ThreadHelper.RunOnUIThreadAsync(async () =>
             {
@@ -225,7 +225,7 @@ namespace DevToys.ViewModels.Settings
 
         private void LoadFonts()
         {
-            string[] systemFonts = CanvasTextFormat.GetSystemFontFamilies();
+            string[]? systemFonts = CanvasTextFormat.GetSystemFontFamilies();
 
             for (int i = 0; i < systemFonts.Length; i++)
             {

@@ -1,11 +1,11 @@
 ﻿#nullable enable
 
-using DevToys.Api.Core;
-using DevToys.Core.Threading;
 using System;
 using System.Composition;
 using System.Globalization;
 using System.Threading.Tasks;
+using DevToys.Api.Core;
+using DevToys.Core.Threading;
 using Windows.ApplicationModel;
 using Windows.System;
 
@@ -19,7 +19,7 @@ namespace DevToys.Core
         {
             return await ThreadHelper.RunOnUIThreadAsync(async () =>
             {
-                string uriToLaunch = Constants.UriActivationProtocolName;
+                string? uriToLaunch = Constants.UriActivationProtocolName;
 
                 try
                 {

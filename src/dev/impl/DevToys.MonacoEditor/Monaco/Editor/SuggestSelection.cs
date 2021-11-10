@@ -9,9 +9,9 @@ namespace DevToys.MonacoEditor.Monaco.Editor
     /// </summary>
     [JsonConverter(typeof(SuggestSelectionConverter))]
     public enum SuggestSelection
-    { 
+    {
         First,
-        RecentlyUsed, 
+        RecentlyUsed,
         RecentlyUsedByPrefix
     }
 }

@@ -1,11 +1,5 @@
 ﻿#nullable enable
 
-using DevToys.Api.Core;
-using DevToys.Api.Tools;
-using DevToys.Core.Threading;
-using DevToys.Views.Tools.StringUtilities;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Composition;
@@ -13,6 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using DevToys.Api.Core;
+using DevToys.Api.Tools;
+using DevToys.Core.Threading;
+using DevToys.Views.Tools.StringUtilities;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
 
 namespace DevToys.ViewModels.Tools.StringUtilities
 {
@@ -307,7 +307,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
             }
 
             var camelCaseStringBuilder = new StringBuilder();
-            var nextLetterOrDigitShouldBeUppercase = false;
+            bool nextLetterOrDigitShouldBeUppercase = false;
 
             for (int i = 0; i < text.Length; i++)
             {
@@ -361,7 +361,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
             }
 
             var pascalCaseStringBuilder = new StringBuilder();
-            var nextLetterOrDigitShouldBeUppercase = true;
+            bool nextLetterOrDigitShouldBeUppercase = true;
 
             for (int i = 0; i < text.Length; i++)
             {
@@ -410,7 +410,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                 return;
             }
 
-            var snakeCase = SnakeConstantKebabCobolCaseConverter(text, '_', isUpperCase: false);
+            string? snakeCase = SnakeConstantKebabCobolCaseConverter(text, '_', isUpperCase: false);
 
             lock (_lockObject)
             {
@@ -434,7 +434,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                 return;
             }
 
-            var constantCase = SnakeConstantKebabCobolCaseConverter(text, '_', isUpperCase: true);
+            string? constantCase = SnakeConstantKebabCobolCaseConverter(text, '_', isUpperCase: true);
 
             lock (_lockObject)
             {
@@ -458,7 +458,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                 return;
             }
 
-            var kebabCase = SnakeConstantKebabCobolCaseConverter(text, '-', isUpperCase: false);
+            string? kebabCase = SnakeConstantKebabCobolCaseConverter(text, '-', isUpperCase: false);
 
             lock (_lockObject)
             {
@@ -482,7 +482,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                 return;
             }
 
-            var cobolCase = SnakeConstantKebabCobolCaseConverter(text, '-', isUpperCase: true);
+            string? cobolCase = SnakeConstantKebabCobolCaseConverter(text, '-', isUpperCase: true);
 
             lock (_lockObject)
             {
@@ -508,7 +508,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
 
             var snakeCaseStringBuilder = new StringBuilder();
 
-            var nextNonLetterOrDigitShouldBeIgnored = true;
+            bool nextNonLetterOrDigitShouldBeIgnored = true;
             for (int i = 0; i < text.Length; i++)
             {
                 char currentChar = text[i];
@@ -629,7 +629,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
         {
             var snakeCaseStringBuilder = new StringBuilder();
 
-            var nextNonLetterOrDigitShouldBeIgnored = true;
+            bool nextNonLetterOrDigitShouldBeIgnored = true;
             for (int i = 0; i < text.Length; i++)
             {
                 char currentChar = text[i];
@@ -691,8 +691,8 @@ namespace DevToys.ViewModels.Tools.StringUtilities
             int sentences = 0;
             int paragraphs = 1;
             int bytes = 0;
-            string wordDistribution = string.Empty;
-            string characterDistribution = string.Empty;
+            string? wordDistribution = string.Empty;
+            string? characterDistribution = string.Empty;
 
             if (!string.IsNullOrEmpty(text))
             {
@@ -708,7 +708,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
 
                 // Word distribution
                 var stringBuilder = new StringBuilder();
-                var wordFrequency
+                IOrderedEnumerable<IGrouping<string, Match>>? wordFrequency
                     = matches
                     .Where(m => m.Length > 0)
                     .GroupBy(m => m.Value)
@@ -774,7 +774,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
 
                 // Character distributions
                 stringBuilder.Clear();
-                foreach (var item in characterFrequency.OrderByDescending(m => m.Value).ThenBy(m => m.Key))
+                foreach (KeyValuePair<char, int> item in characterFrequency.OrderByDescending(m => m.Value).ThenBy(m => m.Key))
                 {
                     stringBuilder.AppendLine($"{item.Key}: {item.Value}");
                 }

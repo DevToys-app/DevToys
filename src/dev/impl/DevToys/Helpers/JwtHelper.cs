@@ -21,7 +21,7 @@ namespace DevToys.Helpers
 
             try
             {
-                JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
+                var handler = new JwtSecurityTokenHandler();
                 JwtSecurityToken jwtSecurityToken = handler.ReadJwtToken(input);
                 return jwtSecurityToken is not null;
             }

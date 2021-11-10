@@ -1,6 +1,6 @@
-﻿using DevToys.ViewModels.Tools.StringUtilities;
+﻿using System.Threading.Tasks;
+using DevToys.ViewModels.Tools.StringUtilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Threading.Tasks;
 
 namespace DevToys.Tests.Providers.Tools
 {
@@ -32,7 +32,7 @@ Let's look at these in more detail.";
         [TestMethod]
         public async Task CalculateSelectionStatisticsAsync()
         {
-            var viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
+            StringUtilitiesToolViewModel viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
 
             viewModel.Text = Text;
             viewModel.SelectionStart = 0;
@@ -74,7 +74,7 @@ Let's look at these in more detail.";
         [TestMethod]
         public async Task CalculateTextStatisticsAsync()
         {
-            var viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
+            StringUtilitiesToolViewModel viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
 
             viewModel.Text = Text;
 
@@ -91,7 +91,7 @@ Let's look at these in more detail.";
         [TestMethod]
         public void SentenceCase()
         {
-            var viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
+            StringUtilitiesToolViewModel viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
 
             viewModel.Text = Text;
 
@@ -125,7 +125,7 @@ Let's look at these in more detail.";
         [TestMethod]
         public void LowerCase()
         {
-            var viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
+            StringUtilitiesToolViewModel viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
 
             viewModel.Text = Text;
 
@@ -159,7 +159,7 @@ let's look at these in more detail.";
         [TestMethod]
         public void UpperCase()
         {
-            var viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
+            StringUtilitiesToolViewModel viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
 
             viewModel.Text = Text;
 
@@ -193,7 +193,7 @@ LET'S LOOK AT THESE IN MORE DETAIL.";
         [TestMethod]
         public void TitleCase()
         {
-            var viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
+            StringUtilitiesToolViewModel viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
 
             viewModel.Text = Text;
 
@@ -227,7 +227,7 @@ Let'S Look At These In More Detail.";
         [TestMethod]
         public void CamelCase()
         {
-            var viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
+            StringUtilitiesToolViewModel viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
 
             viewModel.Text = Text;
 
@@ -261,7 +261,7 @@ LetSLookAtTheseInMoreDetail";
         [TestMethod]
         public void PascalCase()
         {
-            var viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
+            StringUtilitiesToolViewModel viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
 
             viewModel.Text = Text;
 
@@ -295,7 +295,7 @@ LetSLookAtTheseInMoreDetail";
         [TestMethod]
         public void SnakeCase()
         {
-            var viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
+            StringUtilitiesToolViewModel viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
 
             viewModel.Text = Text;
 
@@ -329,7 +329,7 @@ let_s_look_at_these_in_more_detail";
         [TestMethod]
         public void ConstantCase()
         {
-            var viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
+            StringUtilitiesToolViewModel viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
 
             viewModel.Text = Text;
 
@@ -363,7 +363,7 @@ LET_S_LOOK_AT_THESE_IN_MORE_DETAIL";
         [TestMethod]
         public void KebabCase()
         {
-            var viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
+            StringUtilitiesToolViewModel viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
 
             viewModel.Text = Text;
 
@@ -397,7 +397,7 @@ let-s-look-at-these-in-more-detail";
         [TestMethod]
         public void CobolCase()
         {
-            var viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
+            StringUtilitiesToolViewModel viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
 
             viewModel.Text = Text;
 
@@ -431,7 +431,7 @@ LET-S-LOOK-AT-THESE-IN-MORE-DETAIL";
         [TestMethod]
         public void TrainCase()
         {
-            var viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
+            StringUtilitiesToolViewModel viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
 
             viewModel.Text = Text;
 
@@ -465,7 +465,7 @@ Let-S-Look-At-These-In-More-Detail";
         [TestMethod]
         public void AlterningCase()
         {
-            var viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
+            StringUtilitiesToolViewModel viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
 
             viewModel.Text = Text;
 
@@ -499,7 +499,7 @@ LeT'S LoOk aT ThEsE In mOrE DeTaIl.";
         [TestMethod]
         public void InverseCase()
         {
-            var viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
+            StringUtilitiesToolViewModel viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
 
             viewModel.Text = Text;
 

@@ -1,5 +1,11 @@
 ﻿#nullable enable
 
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Composition;
+using System.Linq;
+using System.Threading.Tasks;
 using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
@@ -8,12 +14,6 @@ using DevToys.Helpers;
 using DevToys.Models;
 using DevToys.Views.Tools.JsonFormatter;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Composition;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DevToys.ViewModels.Tools.JsonFormatter
 {
@@ -49,7 +49,7 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
             get
             {
                 Indentation settingsValue = SettingsProvider.GetSetting(Indentation);
-                var indentation = Indentations.FirstOrDefault(x => x.Value == settingsValue);
+                IndentationDisplayPair? indentation = Indentations.FirstOrDefault(x => x.Value == settingsValue);
                 return indentation ?? IndentationDisplayPair.TwoSpaces;
             }
             set
@@ -118,7 +118,7 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
 
             await TaskScheduler.Default;
 
-            while (_formattingQueue.TryDequeue(out string text))
+            while (_formattingQueue.TryDequeue(out string? text))
             {
                 string? result = JsonHelper.Format(text, IndentationMode.Value);
                 if (result != null)

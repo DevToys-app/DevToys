@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
-using DevToys.MonacoEditor.CodeEditorControl;
 using System;
+using DevToys.MonacoEditor.CodeEditorControl;
 using Windows.Foundation.Metadata;
 
 namespace DevToys.MonacoEditor.Helpers

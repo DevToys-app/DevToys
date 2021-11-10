@@ -11,8 +11,10 @@ namespace DevToys.Tests.UI
         [TestMethod]
         public void BooleanToVisibilityConverterTest()
         {
-            var converter = new BooleanToVisibilityConverter();
-            converter.IsInverted = false;
+            var converter = new BooleanToVisibilityConverter
+            {
+                IsInverted = false
+            };
 
             Assert.AreEqual(Visibility.Visible, converter.Convert(true, typeof(Visibility), null, null));
             Assert.AreEqual(Visibility.Collapsed, converter.Convert(false, typeof(Visibility), null, null));
@@ -26,8 +28,10 @@ namespace DevToys.Tests.UI
         [TestMethod]
         public void NullToBooleanConverterTest()
         {
-            var converter = new NullToBooleanConverter();
-            converter.IsInverted = false;
+            var converter = new NullToBooleanConverter
+            {
+                IsInverted = false
+            };
 
             Assert.IsTrue((bool)converter.Convert(null, typeof(bool), null, null));
             Assert.IsFalse((bool)converter.Convert(1, typeof(bool), null, null));
@@ -51,9 +55,11 @@ namespace DevToys.Tests.UI
         [TestMethod]
         public void EnumToThicknessConverterTest()
         {
-            var converter = new EnumToThicknessConverter();
-            converter.ThicknessOnEnumDetected = new Thickness(10);
-            converter.ThicknessOnEnumNotDetected = new Thickness(0);
+            var converter = new EnumToThicknessConverter
+            {
+                ThicknessOnEnumDetected = new Thickness(10),
+                ThicknessOnEnumNotDetected = new Thickness(0)
+            };
 
             Assert.AreEqual(converter.ThicknessOnEnumNotDetected, converter.Convert(null, null, "foo", null));
             Assert.AreEqual(converter.ThicknessOnEnumNotDetected, converter.Convert(AppBarClosedDisplayMode.Compact, null, null, null));

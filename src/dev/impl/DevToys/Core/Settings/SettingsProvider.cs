@@ -1,11 +1,11 @@
 ﻿#nullable enable
 
-using DevToys.Api.Core.Settings;
-using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Composition;
 using System.Globalization;
+using DevToys.Api.Core.Settings;
+using Newtonsoft.Json;
 using Windows.Storage;
 
 namespace DevToys.Core.Settings

@@ -1,10 +1,10 @@
 ﻿#nullable enable
 
+using System.Composition;
+using System.Threading.Tasks;
 using DevToys.Api.Core.Injection;
 using DevToys.Api.Tools;
 using DevToys.Core.Threading;
-using System.Composition;
-using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 
 namespace DevToys.ViewModels.Tools.HashGenerator

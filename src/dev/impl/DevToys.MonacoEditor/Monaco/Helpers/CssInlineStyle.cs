@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
-using DevToys.MonacoEditor.CodeEditorControl;
 using System.Text;
+using DevToys.MonacoEditor.CodeEditorControl;
 using Windows.UI.Text;
 using Windows.UI.Xaml.Media;
 
@@ -31,10 +31,10 @@ namespace DevToys.MonacoEditor.Monaco.Helpers
 
         public string ToCss()
         {
-            StringBuilder output = new StringBuilder(40);
+            var output = new StringBuilder(40);
             if (TextDecoration != TextDecoration.None)
             {
-                string text = TextDecoration.ToString().ToLower();
+                string? text = TextDecoration.ToString().ToLower();
                 if (TextDecoration == TextDecoration.LineThrough)
                 {
                     text = "line-through";

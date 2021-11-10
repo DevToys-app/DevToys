@@ -51,7 +51,7 @@ namespace DevToys.Core.Threading
 
         public async Task<T> GetValueAsync()
         {
-            return IsValueCreated? await _innerLazy.Value : _innerLazy.Value.Result;
+            return IsValueCreated ? await _innerLazy.Value : _innerLazy.Value.Result;
         }
     }
 }

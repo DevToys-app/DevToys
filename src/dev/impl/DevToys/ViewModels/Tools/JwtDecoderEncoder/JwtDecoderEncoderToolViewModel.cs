@@ -1,5 +1,10 @@
 ﻿#nullable enable
 
+using System;
+using System.Collections.Generic;
+using System.Composition;
+using System.IdentityModel.Tokens.Jwt;
+using System.Threading.Tasks;
 using DevToys.Api.Core;
 using DevToys.Api.Tools;
 using DevToys.Core.Threading;
@@ -7,11 +12,6 @@ using DevToys.Helpers;
 using DevToys.Models;
 using DevToys.Views.Tools.JwtDecoderEncoder;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Composition;
-using System.IdentityModel.Tokens.Jwt;
-using System.Threading.Tasks;
 
 namespace DevToys.ViewModels.Tools.JwtDecoderEncoder
 {
@@ -85,9 +85,9 @@ namespace DevToys.ViewModels.Tools.JwtDecoderEncoder
 
             await TaskScheduler.Default;
 
-            while (_decodingQueue.TryDequeue(out string text))
+            while (_decodingQueue.TryDequeue(out string? text))
             {
-                JwtDecode(text, out string header, out string payload);
+                JwtDecode(text, out string? header, out string? payload);
                 ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, () =>
                 {
                     JwtHeader = header;
@@ -115,7 +115,7 @@ namespace DevToys.ViewModels.Tools.JwtDecoderEncoder
 
             try
             {
-                JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
+                var handler = new JwtSecurityTokenHandler();
                 JwtSecurityToken jwtSecurityToken = handler.ReadJwtToken(input);
                 header = JsonHelper.Format(jwtSecurityToken.Header.SerializeToJson(), Indentation.TwoSpaces);
                 payload = JsonHelper.Format(jwtSecurityToken.Payload.SerializeToJson(), Indentation.TwoSpaces);

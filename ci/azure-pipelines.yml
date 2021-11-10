@@ -7,7 +7,7 @@ trigger:
 - main
 
 pool:
-  vmImage: 'windows-2022'
+  vmImage: 'windows-2019'
 
 variables:
   group: BuildPipelineVariables
@@ -15,6 +15,7 @@ variables:
   buildPlatform: 'x86|x64|ARM'
   buildConfiguration: 'Release'
   appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
+  buildFolder: '$(Build.SourcesDirectory)\bin\'
 
 jobs:
 - job: Build
@@ -23,7 +24,7 @@ jobs:
 
   # Run the init.ps1, which mostly restores dependencies
   - task: PowerShell@2
-    displayName: 'Restore nuget packages'
+    displayName: 'Restore nuget packages & Monaco editor'
     inputs:
       filePath: 'init.ps1'
       failOnStderr: true
@@ -34,7 +35,8 @@ jobs:
     inputs:
       solution: '$(uwpProject)'
       configuration: '$(buildConfiguration)'
-      msbuildArguments: '/t:build
+      msbuildArguments: '/bl:"$(buildFolder)\msbuild.binlog"
+                         /t:build
                          /p:AppxBundlePlatforms="$(buildPlatform)"
                          /p:AppxPackageDir="$(appxPackageDir)"
                          /p:AppxPackageSigningEnabled=false
@@ -46,3 +48,10 @@ jobs:
     displayName: 'Publish Artifact: drop'
     inputs:
       PathtoPublish: '$(appxPackageDir)'
+    condition: succeeded()
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: output'
+    inputs:
+      PathtoPublish: '$(buildFolder)'
+    condition: failed()

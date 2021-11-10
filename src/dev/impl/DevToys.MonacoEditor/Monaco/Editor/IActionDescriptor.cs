@@ -1,8 +1,8 @@
 ﻿#nullable enable
 
+using System.Runtime.InteropServices.WindowsRuntime;
 using DevToys.MonacoEditor.CodeEditorControl;
 using Newtonsoft.Json;
-using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace DevToys.MonacoEditor.Monaco.Editor
 {

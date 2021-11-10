@@ -1,10 +1,10 @@
 ﻿#nullable enable
 
-using DevToys.Api.Tools;
 using System;
 using System.Collections.Generic;
 using System.Composition;
 using System.Linq;
+using DevToys.Api.Tools;
 
 namespace DevToys.Providers.Impl
 {
@@ -45,7 +45,7 @@ namespace DevToys.Providers.Impl
 
                 if (searchQueries is not null)
                 {
-                    foreach (string query in searchQueries)
+                    foreach (string? query in searchQueries)
                     {
                         int i = 0;
                         while (i < provider.Value.DisplayName?.Length && i > -1)
@@ -82,7 +82,7 @@ namespace DevToys.Providers.Impl
 
         public IEnumerable<MatchedToolProvider> GetFooterTools()
         {
-            var matches = Array.Empty<MatchSpan>();
+            MatchSpan[]? matches = Array.Empty<MatchSpan>();
             foreach (Lazy<IToolProvider, ToolProviderMetadata> provider
                 in _providers.Where(item => item.Metadata.IsFooterItem)
                     .OrderBy(item => item.Metadata.Order ?? int.MaxValue)

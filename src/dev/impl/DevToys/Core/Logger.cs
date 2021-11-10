@@ -1,11 +1,11 @@
 ﻿#nullable enable
 
-using DevToys.Core.Threading;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using DevToys.Core.Threading;
 using Windows.Storage;
 using Windows.System;
 
@@ -15,7 +15,7 @@ namespace DevToys.Core
     {
         private const string LogFileName = "logs.txt";
 
-        private readonly static DisposableSempahore _semaphore = new DisposableSempahore();
+        private static readonly DisposableSempahore _semaphore = new();
 
         internal static async Task OpenLogsAsync()
         {

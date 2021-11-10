@@ -1,8 +1,8 @@
 ﻿#nullable enable
 
+using System.Collections.ObjectModel;
 using DevToys.Api.Core;
 using DevToys.Core.Threading;
-using System.Collections.ObjectModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -58,7 +58,7 @@ namespace DevToys.UI.Controls
 
         private static void OnNotificationServicePropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            INotificationService? notificationService = e.NewValue as INotificationService;
+            var notificationService = e.NewValue as INotificationService;
             if (notificationService is not null)
             {
                 ((Notification)d).ListenToNotifications(notificationService);

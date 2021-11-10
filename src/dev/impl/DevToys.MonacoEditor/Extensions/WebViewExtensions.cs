@@ -1,12 +1,12 @@
 ﻿#nullable enable
 
-using DevToys.MonacoEditor.Monaco.Editor;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using System;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using DevToys.MonacoEditor.Monaco.Editor;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using Windows.Data.Json;
 using Windows.UI.Xaml.Controls;
 
@@ -15,7 +15,7 @@ namespace DevToys.MonacoEditor.Extensions
     internal static class WebViewExtensions
     {
 
-        private static readonly JsonSerializerSettings _settings = new JsonSerializerSettings()
+        private static readonly JsonSerializerSettings _settings = new()
         {
             NullValueHandling = NullValueHandling.Ignore,
             ContractResolver = new CamelCasePropertyNamesContractResolver()
@@ -73,7 +73,7 @@ namespace DevToys.MonacoEditor.Extensions
             [CallerFilePath] string? file = null,
             [CallerLineNumber] int line = 0)
         {
-            var start = "try {\n";
+            string? start = "try {\n";
             if (typeof(T) != typeof(object))
             {
                 script = script.Trim(';');
@@ -83,7 +83,7 @@ namespace DevToys.MonacoEditor.Extensions
             {
                 start += script;
             }
-            var fullscript = start +
+            string? fullscript = start +
                 "\n} catch (err) { JSON.stringify({ wv_internal_error: true, message: err.message, description: err.description, number: err.number, stack: err.stack }); }";
 
             if (_view.Dispatcher.HasThreadAccess)
@@ -115,7 +115,7 @@ namespace DevToys.MonacoEditor.Extensions
 
         private static async Task<T?> RunScriptHelperAsync<T>(WebView _view, string script)
         {
-            var returnstring = await _view.InvokeScriptAsync("eval", new string[] { script });
+            string? returnstring = await _view.InvokeScriptAsync("eval", new string[] { script });
 
             if (JsonObject.TryParse(returnstring, out JsonObject result))
             {
@@ -125,7 +125,7 @@ namespace DevToys.MonacoEditor.Extensions
                 }
             }
 
-            if (returnstring != null && returnstring != "null")
+            if (returnstring is not null and not "null")
             {
                 return JsonConvert.DeserializeObject<T>(returnstring);
             }
@@ -184,7 +184,7 @@ namespace DevToys.MonacoEditor.Extensions
             {
                 sanitizedargs = args.Select(item =>
                 {
-                    if (item is int || item is double)
+                    if (item is int or double)
                     {
                         return item.ToString();
                     }
@@ -204,7 +204,7 @@ namespace DevToys.MonacoEditor.Extensions
                 sanitizedargs = args.Select(item => item.ToString()).ToArray();
             }
 
-            var script = method + "(" + string.Join(",", sanitizedargs) + ");";
+            string? script = method + "(" + string.Join(",", sanitizedargs) + ");";
 
             return await RunScriptAsync<T>(_view, script, member, file, line);
         }

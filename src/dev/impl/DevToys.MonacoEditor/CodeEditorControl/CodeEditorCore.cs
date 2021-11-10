@@ -1,12 +1,5 @@
 ﻿#nullable enable
 
-using Collections.Generic;
-using DevToys.MonacoEditor.Extensions;
-using DevToys.MonacoEditor.Helpers;
-using DevToys.MonacoEditor.Monaco;
-using DevToys.MonacoEditor.Monaco.Editor;
-using DevToys.MonacoEditor.Monaco.Helpers;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +10,13 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading;
 using System.Threading.Tasks;
+using Collections.Generic;
+using DevToys.MonacoEditor.Extensions;
+using DevToys.MonacoEditor.Helpers;
+using DevToys.MonacoEditor.Monaco;
+using DevToys.MonacoEditor.Monaco.Editor;
+using DevToys.MonacoEditor.Monaco.Helpers;
+using Newtonsoft.Json;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Core;
@@ -51,8 +51,8 @@ namespace DevToys.MonacoEditor.CodeEditorControl
         internal const string FocusedState = "Focused";
         internal const string DisabledState = "Disabled";
 
-        private readonly DisposableSempahore _mutexMarkers = new DisposableSempahore();
-        private readonly DisposableSempahore _mutexLineDecorations = new DisposableSempahore();
+        private readonly DisposableSempahore _mutexMarkers = new();
+        private readonly DisposableSempahore _mutexLineDecorations = new();
 
         private bool _initialized;
         private WebView? _view;
@@ -135,7 +135,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                     string.Empty,
                     (d, e) =>
                     {
-                        if (!(d is CodeEditorCore editor))
+                        if (d is not CodeEditorCore editor)
                         {
                             return;
                         }
@@ -166,7 +166,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                     false,
                     (d, e) =>
                     {
-                        if (!(d is CodeEditorCore editor))
+                        if (d is not CodeEditorCore editor)
                         {
                             return;
                         }
@@ -520,7 +520,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
 
         private async void Options_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (!(sender is StandaloneEditorConstructionOptions options) || IsDiffViewMode)
+            if (sender is not StandaloneEditorConstructionOptions options || IsDiffViewMode)
             {
                 return;
             }
@@ -555,7 +555,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
 
         private async void DiffOptions_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (!(sender is DiffEditorConstructionOptions options) || !IsDiffViewMode)
+            if (sender is not DiffEditorConstructionOptions options || !IsDiffViewMode)
             {
                 return;
             }
@@ -872,8 +872,8 @@ namespace DevToys.MonacoEditor.CodeEditorControl
         private async void RequestedTheme_PropertyChanged(DependencyObject obj, DependencyProperty property)
         {
             var editor = (CodeEditorCore)obj;
-            var theme = editor.RequestedTheme;
-            var tstr = string.Empty;
+            ElementTheme theme = editor.RequestedTheme;
+            string? tstr = string.Empty;
 
             if (theme == ElementTheme.Default)
             {
@@ -1032,7 +1032,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
 
         public IAsyncOperation<string?> AddCommandAsync(int keybinding, CommandHandler handler, string context)
         {
-            var name = "Command" + keybinding;
+            string? name = "Command" + keybinding;
             ParentAccessor?.RegisterAction(name, new Action(() => { handler?.Invoke(); }));
             return InvokeScriptAsync<string?>("addCommand", new object[] { keybinding, name, context }).AsAsyncOperation();
         }
@@ -1081,7 +1081,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
         /// <returns></returns>
         private IAsyncAction DeltaDecorationsHelperAsync([ReadOnlyArray] ModelDeltaDecoration[]? newDecorations)
         {
-            var newDecorationsAdjust = newDecorations ?? Array.Empty<ModelDeltaDecoration>();
+            ModelDeltaDecoration[]? newDecorationsAdjust = newDecorations ?? Array.Empty<ModelDeltaDecoration>();
 
             // Update Styles
             return InvokeScriptAsync("updateStyle", CssStyleBroker.GetInstance(this).GetStyles()).ContinueWith((noop) =>

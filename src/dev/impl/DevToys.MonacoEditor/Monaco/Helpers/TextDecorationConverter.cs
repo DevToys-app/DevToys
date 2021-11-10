@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
-using Newtonsoft.Json;
 using System;
+using Newtonsoft.Json;
 
 namespace DevToys.MonacoEditor.Monaco.Helpers
 {
@@ -16,23 +16,17 @@ namespace DevToys.MonacoEditor.Monaco.Helpers
                 return null;
             }
 
-            var value = serializer.Deserialize<string>(reader);
-            switch (value)
+            string? value = serializer.Deserialize<string>(reader);
+            return value switch
             {
-                case "none":
-                    return TextDecoration.None;
-                case "underline":
-                    return TextDecoration.Underline;
-                case "overline":
-                    return TextDecoration.Overline;
-                case "line-through":
-                    return TextDecoration.LineThrough;
-                case "initial":
-                    return TextDecoration.Initial;
-                case "inherit":
-                    return TextDecoration.Inherit;
-            }
-            throw new Exception("Cannot unmarshal type TextDecoration");
+                "none" => TextDecoration.None,
+                "underline" => TextDecoration.Underline,
+                "overline" => TextDecoration.Overline,
+                "line-through" => TextDecoration.LineThrough,
+                "initial" => TextDecoration.Initial,
+                "inherit" => TextDecoration.Inherit,
+                _ => throw new Exception("Cannot unmarshal type TextDecoration"),
+            };
         }
 
         public override void WriteJson(JsonWriter writer, object? untypedValue, JsonSerializer serializer)

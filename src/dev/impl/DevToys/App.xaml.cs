@@ -1,5 +1,8 @@
 ﻿#nullable enable
 
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using DevToys.Api.Core;
 using DevToys.Api.Core.Injection;
 using DevToys.Api.Core.Navigation;
@@ -10,9 +13,6 @@ using DevToys.Core.Settings;
 using DevToys.Core.Threading;
 using DevToys.Views;
 using Microsoft.Graphics.Canvas.Text;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Core;
@@ -100,7 +100,7 @@ namespace DevToys
         {
             Frame rootFrame = await EnsureWindowIsInitializedAsync();
 
-            var mefComposer = await _mefComposer;
+            MefComposer? mefComposer = await _mefComposer;
             if (e.PrelaunchActivated == false)
             {
                 // On Windows 10 version 1607 or later, this code signals that this app wants to participate in prelaunch
@@ -127,7 +127,7 @@ namespace DevToys
         {
             Frame rootFrame = await EnsureWindowIsInitializedAsync();
 
-            var mefComposer = await _mefComposer;
+            MefComposer? mefComposer = await _mefComposer;
             if (args.Kind == ActivationKind.Protocol)
             {
                 var eventArgs = (ProtocolActivatedEventArgs)args;
@@ -164,7 +164,7 @@ namespace DevToys
         /// <param name="e">Details about the suspend request.</param>
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
-            var deferral = e.SuspendingOperation.GetDeferral();
+            SuspendingDeferral? deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
 
             try
@@ -189,7 +189,7 @@ namespace DevToys
 
         private async Task<Frame> EnsureWindowIsInitializedAsync()
         {
-            ApplicationView applicationView = ApplicationView.GetForCurrentView();
+            var applicationView = ApplicationView.GetForCurrentView();
             applicationView.SetPreferredMinSize(new Windows.Foundation.Size(300, 200));
 
             // Do not repeat app initialization when the Window already has content,
@@ -197,8 +197,10 @@ namespace DevToys
             if (Window.Current.Content is not Frame rootFrame)
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
-                rootFrame = new Frame();
-                rootFrame.CacheSize = 10;
+                rootFrame = new Frame
+                {
+                    CacheSize = 10
+                };
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
                 // Place the frame in the current Window
@@ -206,7 +208,7 @@ namespace DevToys
             }
 
             // Set the user-defined language.
-            string languageIdentifier = (await _mefComposer).ExportProvider.GetExport<ISettingsProvider>().GetSetting(PredefinedSettings.Language);
+            string? languageIdentifier = (await _mefComposer).ExportProvider.GetExport<ISettingsProvider>().GetSetting(PredefinedSettings.Language);
             LanguageDefinition languageDefinition
                 = LanguageManager.Instance.AvailableLanguages.FirstOrDefault(l => string.Equals(l.InternalName, languageIdentifier))
                 ?? LanguageManager.Instance.AvailableLanguages[0];
@@ -225,7 +227,7 @@ namespace DevToys
         {
             if (rootFrame.Content == null)
             {
-                var mefComposer = await _mefComposer;
+                MefComposer? mefComposer = await _mefComposer;
 
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
@@ -244,8 +246,8 @@ namespace DevToys
             await TaskScheduler.Default;
 
             ISettingsProvider settingsProvider = await _settingsProvider.GetValueAsync();
-            string currentFont = settingsProvider.GetSetting(PredefinedSettings.TextEditorFont);
-            string[] systemFonts = CanvasTextFormat.GetSystemFontFamilies();
+            string? currentFont = settingsProvider.GetSetting(PredefinedSettings.TextEditorFont);
+            string[]? systemFonts = CanvasTextFormat.GetSystemFontFamilies();
 
             if (!systemFonts.Contains(currentFont))
             {

@@ -1,5 +1,9 @@
 ﻿#nullable enable
 
+using System;
+using System.Collections.Generic;
+using System.Composition;
+using System.Threading.Tasks;
 using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
@@ -7,10 +11,6 @@ using DevToys.Core;
 using DevToys.Core.Threading;
 using DevToys.Views.Tools.HashGenerator;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Composition;
-using System.Threading.Tasks;
 using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.Core;
 using Windows.Storage.Streams;
@@ -117,7 +117,7 @@ namespace DevToys.ViewModels.Tools.HashGenerator
 
             await TaskScheduler.Default;
 
-            while (_hashCalculationQueue.TryDequeue(out string text))
+            while (_hashCalculationQueue.TryDequeue(out string? text))
             {
                 Task<string> md5CalculationTask = CalculateHashAsync(HashAlgorithmNames.Md5, text);
                 Task<string> sha1CalculationTask = CalculateHashAsync(HashAlgorithmNames.Sha1, text);
@@ -155,12 +155,12 @@ namespace DevToys.ViewModels.Tools.HashGenerator
 
             try
             {
-                HashAlgorithmProvider algorithmProvider = HashAlgorithmProvider.OpenAlgorithm(alrogithmName);
+                var algorithmProvider = HashAlgorithmProvider.OpenAlgorithm(alrogithmName);
 
                 IBuffer buffer = CryptographicBuffer.ConvertStringToBinary(text, BinaryStringEncoding.Utf8);
                 buffer = algorithmProvider.HashData(buffer);
 
-                string hash = CryptographicBuffer.EncodeToHexString(buffer);
+                string? hash = CryptographicBuffer.EncodeToHexString(buffer);
 
                 if (IsUppercase)
                 {

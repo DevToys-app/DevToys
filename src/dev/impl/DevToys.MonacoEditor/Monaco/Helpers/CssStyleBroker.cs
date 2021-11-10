@@ -1,8 +1,8 @@
 ﻿#nullable enable
 
-using DevToys.MonacoEditor.CodeEditorControl;
 using System.Collections.Generic;
 using System.Text;
+using DevToys.MonacoEditor.CodeEditorControl;
 
 namespace DevToys.MonacoEditor.Monaco.Helpers
 {
@@ -12,7 +12,7 @@ namespace DevToys.MonacoEditor.Monaco.Helpers
     public sealed class CssStyleBroker
     {
         private static uint Id = 0;
-        private readonly Dictionary<string, ICssStyle> _registered = new Dictionary<string, ICssStyle>();
+        private readonly Dictionary<string, ICssStyle> _registered = new();
         private static readonly IDictionary<CodeEditorCore, CssStyleBroker> instances = new Dictionary<CodeEditorCore, CssStyleBroker>();
 
         // Explicit static constructor to tell C# compiler
@@ -53,7 +53,7 @@ namespace DevToys.MonacoEditor.Monaco.Helpers
         public string Register(ICssStyle style)
         {
             Id += 1;
-            var name = "generated-style-" + Id;
+            string? name = "generated-style-" + Id;
             _registered.Add(name, style);
             return name;
         }
@@ -64,7 +64,7 @@ namespace DevToys.MonacoEditor.Monaco.Helpers
         /// <returns></returns>
         public string GetStyles()
         {
-            StringBuilder rules = new StringBuilder(100);
+            var rules = new StringBuilder(100);
             foreach (ICssStyle css in _registered.Values)
             {
                 rules.AppendLine(css.ToCss());

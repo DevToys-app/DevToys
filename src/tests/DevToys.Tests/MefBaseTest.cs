@@ -1,6 +1,6 @@
-﻿using DevToys.Api.Core.Injection;
+﻿using System;
+using DevToys.Api.Core.Injection;
 using DevToys.Core;
-using System;
 
 namespace DevToys.Tests
 {

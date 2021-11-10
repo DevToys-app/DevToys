@@ -1,8 +1,8 @@
 ﻿#nullable enable
 
+using System;
 using DevToys.MonacoEditor.CodeEditorControl;
 using Newtonsoft.Json;
-using System;
 
 namespace DevToys.MonacoEditor.Monaco.Editor
 {

@@ -1,10 +1,10 @@
 ﻿#nullable enable
 
-using DevToys.Api.Core.Injection;
 using System;
 using System.Collections.Generic;
 using System.Composition.Hosting;
 using System.Reflection;
+using DevToys.Api.Core.Injection;
 
 namespace DevToys.Core
 {
@@ -63,7 +63,7 @@ namespace DevToys.Core
 
             var assemblies = new HashSet<Assembly>(_assemblies);
 
-            var configuration = new ContainerConfiguration()
+            ContainerConfiguration? configuration = new ContainerConfiguration()
                 .WithAssemblies(assemblies);
 
             ExportProvider = configuration.CreateContainer();

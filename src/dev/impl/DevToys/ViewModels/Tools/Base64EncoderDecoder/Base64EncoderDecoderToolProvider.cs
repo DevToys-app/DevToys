@@ -1,11 +1,11 @@
 ﻿#nullable enable
 
-using DevToys.Api.Core.Injection;
-using DevToys.Api.Tools;
 using System;
 using System.Composition;
 using System.Text;
 using System.Text.RegularExpressions;
+using DevToys.Api.Core.Injection;
+using DevToys.Api.Tools;
 
 namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
 {
@@ -62,8 +62,8 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
                 return false;
             }
 
-            var equalIndex = data.IndexOf('=');
-            var length = data.Length;
+            int equalIndex = data.IndexOf('=');
+            int length = data.Length;
 
             if (!(equalIndex == -1 || equalIndex == length - 1 || (equalIndex == length - 2 && data[length - 1] == '=')))
             {
@@ -74,7 +74,7 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
 
             try
             {
-                byte[] decodedData = Convert.FromBase64String(data);
+                byte[]? decodedData = Convert.FromBase64String(data);
                 decoded = Encoding.UTF8.GetString(decodedData);
             }
             catch (Exception)
@@ -92,12 +92,14 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
                     return false;
                 }
 
+#pragma warning disable IDE0078 // Use pattern matching
                 if (!(current == 0x9
                     || current == 0xA
                     || current == 0xD
                     || (current >= 0x20 && current <= 0xD7FF)
                     || (current >= 0xE000 && current <= 0xFFFD)
                     || (current >= 0x10000 && current <= 0x10FFFF)))
+#pragma warning restore IDE0078 // Use pattern matching
                 {
                     return false;
                 }

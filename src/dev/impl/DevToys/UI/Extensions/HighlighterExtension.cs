@@ -1,8 +1,8 @@
 ﻿#nullable enable
 
-using DevToys.Api.Tools;
 using System;
 using System.Collections.Generic;
+using DevToys.Api.Tools;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -59,7 +59,7 @@ namespace DevToys.UI.Extensions
 
                 if (value.Length > 0)
                 {
-                    TextHighlighter highlighter = new TextHighlighter()
+                    var highlighter = new TextHighlighter()
                     {
                         Background = new SolidColorBrush(Colors.Yellow)
                     };

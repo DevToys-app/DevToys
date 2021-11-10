@@ -1,10 +1,10 @@
 ﻿#nullable enable
 
-using DevToys.Core;
-using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DevToys.Core;
+using Microsoft.Toolkit.Mvvm.Input;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 using Windows.Storage.Pickers;
@@ -259,7 +259,7 @@ namespace DevToys.UI.Controls
                 return;
             }
 
-            var richEditBox = GetRichEditBox();
+            RichEditBox? richEditBox = GetRichEditBox();
             richEditBox.TextDocument.BatchDisplayUpdates();
 
             if (highlightsToRemove is not null)
@@ -300,10 +300,10 @@ namespace DevToys.UI.Controls
             else
             {
                 var grid = (Grid)VisualTreeHelper.GetChild(TextBox, 0);
-                for (var i = 0; i <= VisualTreeHelper.GetChildrenCount(grid) - 1; i++)
+                for (int i = 0; i <= VisualTreeHelper.GetChildrenCount(grid) - 1; i++)
                 {
                     object obj = VisualTreeHelper.GetChild(grid, i);
-                    if (!(obj is ScrollViewer))
+                    if (obj is not ScrollViewer)
                     {
                         continue;
                     }
@@ -324,7 +324,7 @@ namespace DevToys.UI.Controls
 
             if (IsRichTextEdit)
             {
-                var richEditBox = GetRichEditBox();
+                RichEditBox? richEditBox = GetRichEditBox();
                 richEditBox.Visibility = Visibility.Visible;
                 richEditBox.TextChanging += RichEditBox_TextChanging;
                 richEditBox.SelectionFlyout = null;
@@ -440,7 +440,7 @@ namespace DevToys.UI.Controls
 
         private void CopyTextBoxSelectionToClipboard()
         {
-            DataPackage dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
+            var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
             dataPackage.SetText(TextBox.SelectedText);
             Clipboard.SetContentWithOptions(dataPackage, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
             Clipboard.Flush(); // This method allows the content to remain available after the application shuts down.
@@ -448,8 +448,8 @@ namespace DevToys.UI.Controls
 
         private void CopyRichEditBoxSelectionToClipboard()
         {
-            RichEditBox.Document.Selection.GetText(TextGetOptions.UseCrlf, out string text);
-            DataPackage dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
+            RichEditBox.Document.Selection.GetText(TextGetOptions.UseCrlf, out string? text);
+            var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
             dataPackage.SetText(text);
             Clipboard.SetContentWithOptions(dataPackage, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
             Clipboard.Flush(); // This method allows the content to remain available after the application shuts down.
@@ -469,7 +469,7 @@ namespace DevToys.UI.Controls
         {
             if (IsRichTextEdit)
             {
-                var richEditBox = GetRichEditBox();
+                RichEditBox? richEditBox = GetRichEditBox();
                 if (!richEditBox.TextDocument.CanPaste())
                 {
                     return;
@@ -528,7 +528,7 @@ namespace DevToys.UI.Controls
             {
                 try
                 {
-                    string text = await FileIO.ReadTextAsync(file);
+                    string? text = await FileIO.ReadTextAsync(file);
                     await Dispatcher.RunAsync(
                         Windows.UI.Core.CoreDispatcherPriority.Normal,
                         () =>
@@ -554,7 +554,7 @@ namespace DevToys.UI.Controls
             {
                 if (!_isTextPendingUpdate)
                 {
-                    RichEditBox.TextDocument.GetText(TextGetOptions.UseCrlf, out var document);
+                    RichEditBox.TextDocument.GetText(TextGetOptions.UseCrlf, out string? document);
                     _isTextPendingUpdate = true;
                     Text = document;
                     SetHighlights(_highlightedSpans);
