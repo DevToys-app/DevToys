@@ -49,7 +49,7 @@
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <!-- Workaround to https://github.com/microsoft/microsoft-ui-xaml/issues/6195 -->
-    <!-- <AppxUseHardlinksIfPossible>false</AppxUseHardlinksIfPossible> -->
+    <AppxUseHardlinksIfPossible>false</AppxUseHardlinksIfPossible>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\impl\DevToys\DevToys.csproj" />
