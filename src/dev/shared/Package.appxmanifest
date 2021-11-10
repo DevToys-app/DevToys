@@ -35,7 +35,7 @@
 
     <Applications>
         <Application Id="App"
-          Executable="DevToys.exe"
+          Executable="$targetnametoken$.exe"
           EntryPoint="$targetentrypoint$"
           desktop4:SupportsMultipleInstances="true">
             <uap:VisualElements
@@ -76,4 +76,8 @@
             </Extensions>
         </Application>
     </Applications>
+
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+  </Capabilities>
 </Package>

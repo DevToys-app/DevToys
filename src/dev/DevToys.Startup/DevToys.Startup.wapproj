@@ -113,4 +113,7 @@
     </AppxManifest>
   </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
+  <ItemGroup>
+      <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="$(NuGet_MicrosoftWindowsSDKBuildTools)" PrivateAssets="all" />
+  </ItemGroup>
 </Project>
