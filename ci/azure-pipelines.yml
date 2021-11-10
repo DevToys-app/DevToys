@@ -34,7 +34,7 @@ jobs:
     inputs:
       solution: '$(uwpProject)'
       configuration: '$(buildConfiguration)'
-      msbuildArguments: '/bl:"$(appxPackageDir)\msbuild.binlog"
+      msbuildArguments: '/bl:"$(Build.BinariesDirectory)\msbuild.binlog"
                          /t:build
                          /p:AppxBundlePlatforms="$(buildPlatform)"
                          /p:AppxPackageDir="$(appxPackageDir)"
@@ -47,4 +47,10 @@ jobs:
     displayName: 'Publish Artifact: drop'
     inputs:
       PathtoPublish: '$(appxPackageDir)'
-    condition: always()
+    condition: succeeded()
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: output'
+    inputs:
+      PathtoPublish: '$(Build.BinariesDirectory)'
+    condition: failed()
