@@ -33,9 +33,29 @@ You can contribute to DevToys app by:
 
 DevToys is using [MEF](https://docs.microsoft.com/en-us/dotnet/framework/mef/) as dependency injection framework.
 Every tools available (i.e Base64 Encoder/Decoder, JSON Formatter, Settings...) are dynamically discovered and instanciated through MEF. A tool is divided in 3 components:
-1. `IToolProvider` and its metadata, which represents the tool as displayed in the main menu in the app. `IToolProvider` should be MEF exported.
-2. `IToolViewModel`, which is a ViewModel as described by MVVM pattern in UWP. It doesn't have to be MEF exported but may be required depending on what the tool needs to work.
+1. [IToolProvider](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/Api/Tools/IToolProvider.cs) and its metadata, which represents the tool as displayed in the main menu in the app. `IToolProvider` should be MEF exported.
+2. [IToolViewModel](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/Api/Tools/IToolViewModel.cs), which is a ViewModel as described by [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) pattern in UWP. It doesn't have to be MEF exported but may be required depending on what the tool needs to work.
 3. A `Page` that represents the view of the tool.
+
+The tool provider is instantiated when the app starts. The view and view models are instantiated when the user selects the tool in the main menu.
+
+## IToolProvider metadata
+
+Several attributes can be used when implementing an `IToolProvider`. They can be used in customize the behavior of the tool in DevToys without needing to implement a special logic for it.
+You can find the attributes [here](https://github.com/veler/DevToys/tree/main/src/dev/impl/DevToys/Api/Tools). Here is a non-exhaustive list of attribute to use:
+* [CompactOverlaySizeAttribute](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/Api/Tools/CompactOverlaySizeAttribute.cs)
+* [IsFooterItemAttribute](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/Api/Tools/IsFooterItemAttribute.cs)
+* [NameAttribute](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/Api/Tools/NameAttribute.cs)
+* [NotScrollableAttribute](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/Api/Tools/NotScrollableAttribute.cs)
+* [OrderAttribute](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/Api/Tools/OrderAttribute.cs)
+* [ProtocolNameAttribute](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/Api/Tools/ProtocolNameAttribute.cs)
+
+## Sample
+
+A good tool to take example on is `Json <> Yaml` converter.
+* [The tool provider](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/ViewModels/Tools/JsonYaml/JsonYamlToolProvider.cs)
+* [The view model](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/ViewModels/Tools/JsonYaml/JsonYamlToolViewModel.cs)
+* [The view](https://github.com/veler/DevToys/tree/main/src/dev/impl/DevToys/Views/Tools/JsonYaml)
 
 ## Code Style
 
