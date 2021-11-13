@@ -21,6 +21,14 @@
     <Compile Include="..\..\shared\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ViewModels\Tools\HtmlEncoderDecoder\HtmlEncoderDecoderToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\HtmlEncoderDecoder\HtmlEncoderDecoderToolViewModel.cs" />
+    <Compile Include="Views\Tools\HtmlEncoderDecoder\HtmlEncoderDecoderToolPage.xaml.cs">
+      <DependentUpon>HtmlEncoderDecoderToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\URLEncoderDecoder\UrlEncoderDecoderToolPage.xaml.cs">
+      <DependentUpon>UrlEncoderDecoderToolPage.xaml</DependentUpon>
+    </Compile>
     <Content Include="..\..\DevToys.Startup\Assets\Logo-Prev\SplashScreen.scale-100.png">
       <Link>Assets\Logo\SplashScreen.scale-100.png</Link>
     </Content>
@@ -276,6 +284,8 @@
     <Compile Include="ViewModels\Tools\RegEx\RegExToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\TextDiff\TextDiffToolProvider.cs" />
     <Compile Include="ViewModels\Tools\TextDiff\TextDiffToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\UrlEncoderDecoder\UrlEncoderDecoderToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\UrlEncoderDecoder\UrlEncoderDecoderToolViewModel.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -422,6 +432,14 @@
     <Page Include="Views\Tools\TextDiff\TextDiffToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\HtmlEncoderDecoder\HtmlEncoderDecoderToolPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\URLEncoderDecoder\UrlEncoderDecoderToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <PRIResource Include="Strings\*\*.resw" />
   </ItemGroup>
