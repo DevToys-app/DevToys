@@ -28,6 +28,7 @@ namespace DevToys
         private readonly CommonStrings _common = new CommonStrings();
         private readonly GuidGeneratorStrings _guidgenerator = new GuidGeneratorStrings();
         private readonly HashGeneratorStrings _hashgenerator = new HashGeneratorStrings();
+        private readonly HtmlEncoderDecoderStrings _htmlencoderdecoder = new HtmlEncoderDecoderStrings();
         private readonly JsonFormatterStrings _jsonformatter = new JsonFormatterStrings();
         private readonly JsonYamlStrings _jsonyaml = new JsonYamlStrings();
         private readonly JwtDecoderEncoderStrings _jwtdecoderencoder = new JwtDecoderEncoderStrings();
@@ -37,6 +38,7 @@ namespace DevToys
         private readonly SettingsStrings _settings = new SettingsStrings();
         private readonly StringUtilitiesStrings _stringutilities = new StringUtilitiesStrings();
         private readonly TextDiffStrings _textdiff = new TextDiffStrings();
+        private readonly UrlEncoderDecoderStrings _urlencoderdecoder = new UrlEncoderDecoderStrings();
 
         /// <summary>
         /// Gets an instance of <see cref="LanguageManager"/>.
@@ -67,6 +69,11 @@ namespace DevToys
         /// Gets the <see cref="HashGeneratorStrings"/>.
         /// </summary>
         public HashGeneratorStrings HashGenerator => _hashgenerator;
+
+        /// <summary>
+        /// Gets the <see cref="HtmlEncoderDecoderStrings"/>.
+        /// </summary>
+        public HtmlEncoderDecoderStrings HtmlEncoderDecoder => _htmlencoderdecoder;
 
         /// <summary>
         /// Gets the <see cref="JsonFormatterStrings"/>.
@@ -112,6 +119,11 @@ namespace DevToys
         /// Gets the <see cref="TextDiffStrings"/>.
         /// </summary>
         public TextDiffStrings TextDiff => _textdiff;
+
+        /// <summary>
+        /// Gets the <see cref="UrlEncoderDecoderStrings"/>.
+        /// </summary>
+        public UrlEncoderDecoderStrings UrlEncoderDecoder => _urlencoderdecoder;
 
         /// <summary>
         /// Gets the list of available languages in the app.
@@ -373,6 +385,61 @@ namespace DevToys
         /// Gets the resource Uppercase.
         /// </summary>
         public string Uppercase => _resources.GetString("Uppercase");
+    }
+
+    public class HtmlEncoderDecoderStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("HtmlEncoderDecoder");
+
+        /// <summary>
+        /// Gets the resource ConfigurationTitle.
+        /// </summary>
+        public string ConfigurationTitle => _resources.GetString("ConfigurationTitle");
+
+        /// <summary>
+        /// Gets the resource ConversionDecode.
+        /// </summary>
+        public string ConversionDecode => _resources.GetString("ConversionDecode");
+
+        /// <summary>
+        /// Gets the resource ConversionDescription.
+        /// </summary>
+        public string ConversionDescription => _resources.GetString("ConversionDescription");
+
+        /// <summary>
+        /// Gets the resource ConversionEncode.
+        /// </summary>
+        public string ConversionEncode => _resources.GetString("ConversionEncode");
+
+        /// <summary>
+        /// Gets the resource ConversionTitle.
+        /// </summary>
+        public string ConversionTitle => _resources.GetString("ConversionTitle");
+
+        /// <summary>
+        /// Gets the resource DisplayName.
+        /// </summary>
+        public string DisplayName => _resources.GetString("DisplayName");
+
+        /// <summary>
+        /// Gets the resource EncodingDescription.
+        /// </summary>
+        public string EncodingDescription => _resources.GetString("EncodingDescription");
+
+        /// <summary>
+        /// Gets the resource EncodingTitle.
+        /// </summary>
+        public string EncodingTitle => _resources.GetString("EncodingTitle");
+
+        /// <summary>
+        /// Gets the resource InputTitle.
+        /// </summary>
+        public string InputTitle => _resources.GetString("InputTitle");
+
+        /// <summary>
+        /// Gets the resource OutputTitle.
+        /// </summary>
+        public string OutputTitle => _resources.GetString("OutputTitle");
     }
 
     public class JsonFormatterStrings : ObservableObject
@@ -1162,5 +1229,60 @@ namespace DevToys
         /// Gets the resource RightText.
         /// </summary>
         public string RightText => _resources.GetString("RightText");
+    }
+
+    public class UrlEncoderDecoderStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("UrlEncoderDecoder");
+
+        /// <summary>
+        /// Gets the resource ConfigurationTitle.
+        /// </summary>
+        public string ConfigurationTitle => _resources.GetString("ConfigurationTitle");
+
+        /// <summary>
+        /// Gets the resource ConversionDecode.
+        /// </summary>
+        public string ConversionDecode => _resources.GetString("ConversionDecode");
+
+        /// <summary>
+        /// Gets the resource ConversionDescription.
+        /// </summary>
+        public string ConversionDescription => _resources.GetString("ConversionDescription");
+
+        /// <summary>
+        /// Gets the resource ConversionEncode.
+        /// </summary>
+        public string ConversionEncode => _resources.GetString("ConversionEncode");
+
+        /// <summary>
+        /// Gets the resource ConversionTitle.
+        /// </summary>
+        public string ConversionTitle => _resources.GetString("ConversionTitle");
+
+        /// <summary>
+        /// Gets the resource DisplayName.
+        /// </summary>
+        public string DisplayName => _resources.GetString("DisplayName");
+
+        /// <summary>
+        /// Gets the resource EncodingDescription.
+        /// </summary>
+        public string EncodingDescription => _resources.GetString("EncodingDescription");
+
+        /// <summary>
+        /// Gets the resource EncodingTitle.
+        /// </summary>
+        public string EncodingTitle => _resources.GetString("EncodingTitle");
+
+        /// <summary>
+        /// Gets the resource InputTitle.
+        /// </summary>
+        public string InputTitle => _resources.GetString("InputTitle");
+
+        /// <summary>
+        /// Gets the resource OutputTitle.
+        /// </summary>
+        public string OutputTitle => _resources.GetString("OutputTitle");
     }
 }
