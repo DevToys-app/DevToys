@@ -33,6 +33,8 @@ Many tools are available.
 - Text Comparer
 - Json <> Yaml converter
 - String Utilities
+- URL Encoder/Decoder
+- HTML Encoder/Decoder
 - Markdown Preview
 
 ... and more are coming!
@@ -75,6 +77,8 @@ Here is the list of tool name you can use:
 - `markdown` - Markdown Preview
 - `regex` - Regular Expression Tester
 - `string` - String Utilities
+- `url` - URL Encoder/Decoder
+- `html` - HTML Encoder/Decoder
 - `diff` - Text Comparer
 - `settings` - Settings
 
