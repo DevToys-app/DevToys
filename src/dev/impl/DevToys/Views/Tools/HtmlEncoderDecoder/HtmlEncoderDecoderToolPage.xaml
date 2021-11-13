@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="DevToys.Views.Tools.Base64EncoderDecoder.Base64EncoderDecoderToolPage"
+    x:Class="DevToys.Views.Tools.HtmlEncoderDecoder.HtmlEncoderDecoderToolPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -10,25 +10,12 @@
     NavigationCacheMode="Disabled">
 
     <Grid x:Name="RootGrid" RowSpacing="12" Margin="0,0,0,16">
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState>
-                    <VisualState.StateTriggers>
-                        <ex:IsCompactOverlayModeTrigger TargetElement="{x:Bind}" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="EncodingSetting.Visibility" Value="Collapsed" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-
         <Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
             </TransitionCollection>
         </Grid.ChildrenTransitions>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -49,21 +36,6 @@
                     SelectedValue="{x:Bind ViewModel.ConversionMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <ComboBoxItem Tag="Encode" Content="{x:Bind ViewModel.Strings.ConversionEncode}" />
                     <ComboBoxItem Tag="Decode" Content="{x:Bind ViewModel.Strings.ConversionDecode}"/>
-                </ComboBox>
-            </controls:ExpandableSettingControl>
-            <controls:ExpandableSettingControl
-                x:Name="EncodingSetting"
-                Grid.Row="2"
-                Title="{x:Bind ViewModel.Strings.EncodingTitle}"
-                Description="{x:Bind ViewModel.Strings.EncodingDescription}">
-                <controls:ExpandableSettingControl.Icon>
-                    <FontIcon Glyph="&#xF7E4;" />
-                </controls:ExpandableSettingControl.Icon>
-                <ComboBox
-                    SelectedValuePath="Tag"
-                    SelectedValue="{x:Bind ViewModel.EncodingMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                    <ComboBoxItem Tag="UTF-8" Content="{x:Bind ViewModel.Strings.Utf8}" />
-                    <ComboBoxItem Tag="ASCII" Content="{x:Bind ViewModel.Strings.Ascii}" />
                 </ComboBox>
             </controls:ExpandableSettingControl>
         </StackPanel>
