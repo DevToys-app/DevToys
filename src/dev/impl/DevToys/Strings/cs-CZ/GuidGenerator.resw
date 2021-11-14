@@ -118,27 +118,27 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Konfigurace</value>
   </data>
   <data name="DisplayName" xml:space="preserve">
-    <value>Guid Generator</value>
+    <value>Guid Generátor</value>
   </data>
   <data name="Generate" xml:space="preserve">
-    <value>Generate</value>
+    <value>Generovat</value>
   </data>
   <data name="GenerateButton" xml:space="preserve">
-    <value>Generate GUID(s)</value>
+    <value>Generovat GUID(y)</value>
   </data>
   <data name="Guids" xml:space="preserve">
-    <value>GUID(s)</value>
+    <value>GUID(y)</value>
   </data>
   <data name="Hyphens" xml:space="preserve">
-    <value>Hyphens</value>
+    <value>Spojovníky</value>
   </data>
   <data name="MultiplySymbol" xml:space="preserve">
     <value>x</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
-    <value>Uppercase</value>
+    <value>Velká písmena</value>
   </data>
 </root>
