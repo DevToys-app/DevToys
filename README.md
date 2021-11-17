@@ -72,7 +72,7 @@ Here is the list of tool name you can use:
 - `hash` - Hash Generator
 - `guid` - Guid Generator
 - `jsonformat` Json Formatter
-- `jsonyaml` - Json <> Yaml 
+- `jsonyaml` - Json <> Yaml
 - `jwt` - JWT Decoder
 - `markdown` - Markdown Preview
 - `regex` - Regular Expression Tester

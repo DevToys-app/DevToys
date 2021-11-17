@@ -1,6 +1,8 @@
 ﻿🎉 New Features
-  • GUID Generator!
+  • URL Encoder/Decoder
+  • HTML Encoder/Decoder
 👏 Improvements
-  • Changed the order of tools in the list
+  • Added Polish translation
+  • Improved Czech translation
 🐛 Bug Fixes
-  • App was failing at detecting updates.
+  • None
