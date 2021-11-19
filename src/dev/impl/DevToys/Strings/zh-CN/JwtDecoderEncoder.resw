@@ -118,37 +118,37 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>配置</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Select which action you want to use</value>
+    <value>选择你想使用的转换模式</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Action</value>
+    <value>转换</value>
   </data>
   <data name="Decode" xml:space="preserve">
-    <value>Decode</value>
+    <value>解码</value>
   </data>
   <data name="DisplayName" xml:space="preserve">
-    <value>JWT 解码</value>
+    <value>JWT 解码器</value>
   </data>
   <data name="Encode" xml:space="preserve">
-    <value>Encode</value>
+    <value>编码</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
-    <value>Select which encoding algorithm you want to use</value>
+    <value>选择你想使用的字符编码</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
-    <value>Encoding</value>
+    <value>字符编码</value>
   </data>
   <data name="HeaderLabel" xml:space="preserve">
-    <value>Header</value>
+    <value>头部 (Header)</value>
   </data>
   <data name="JwtTokenLabel" xml:space="preserve">
-    <value>Jwt Token</value>
+    <value>Jwt 令牌 (Jwt Token)</value>
   </data>
   <data name="PayloadLabel" xml:space="preserve">
-    <value>Payload</value>
+    <value>负载 (Payload)</value>
   </data>
   <data name="SecurityLabel" xml:space="preserve">
     <value>Security</value>

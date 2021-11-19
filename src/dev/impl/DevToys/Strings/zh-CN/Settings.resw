@@ -163,7 +163,7 @@
     <value>修改界面语言后，需要重新启动应用程序</value>
   </data>
   <data name="License" xml:space="preserve">
-    <value>License</value>
+    <value>许可证</value>
   </data>
   <data name="Light" xml:space="preserve">
     <value>浅色</value>
@@ -178,16 +178,16 @@
     <value>显示日志</value>
   </data>
   <data name="PrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
+    <value>隐私政策</value>
   </data>
   <data name="RateAndReview" xml:space="preserve">
-    <value>Rate and review on Microsoft Store</value>
+    <value>在微软商店中评价和评论</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
     <value>显示空格</value>
   </data>
   <data name="ReportProblem" xml:space="preserve">
-    <value>Report a problem</value>
+    <value>报告问题</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
     <value>智能检测</value>
@@ -202,16 +202,16 @@
     <value>选择推荐工具时自动粘贴剪贴板内容</value>
   </data>
   <data name="SourceCode" xml:space="preserve">
-    <value>Source code</value>
+    <value>源代码</value>
   </data>
   <data name="TextEditor" xml:space="preserve">
     <value>文本编辑器</value>
   </data>
   <data name="ThirdPartyNotices" xml:space="preserve">
-    <value>Third party licenses</value>
+    <value>第三方许可证</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>Useful links</value>
+    <value>更多链接</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
     <value>使用 Windows 默认</value>

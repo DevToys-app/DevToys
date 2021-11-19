@@ -118,21 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>配置</value>
   </data>
   <data name="Difference" xml:space="preserve">
-    <value>Difference</value>
+    <value>差异</value>
   </data>
   <data name="DisplayName" xml:space="preserve">
     <value>文本比较</value>
   </data>
   <data name="InlineDifference" xml:space="preserve">
-    <value>Inline mode</value>
+    <value>内联模式</value>
   </data>
   <data name="LeftText" xml:space="preserve">
-    <value>Old text</value>
+    <value>旧文本</value>
   </data>
   <data name="RightText" xml:space="preserve">
-    <value>New text</value>
+    <value>新文本</value>
   </data>
 </root>

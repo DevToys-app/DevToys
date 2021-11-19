@@ -118,27 +118,27 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>配置</value>
   </data>
   <data name="DisplayName" xml:space="preserve">
     <value>Guid 生成器</value>
   </data>
   <data name="Generate" xml:space="preserve">
-    <value>Generate</value>
+    <value>生成</value>
   </data>
   <data name="GenerateButton" xml:space="preserve">
-    <value>Generate GUID(s)</value>
+    <value>生成 GUID(s)</value>
   </data>
   <data name="Guids" xml:space="preserve">
     <value>GUID(s)</value>
   </data>
   <data name="Hyphens" xml:space="preserve">
-    <value>Hyphens</value>
+    <value>连字符</value>
   </data>
   <data name="MultiplySymbol" xml:space="preserve">
     <value>x</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
-    <value>Uppercase</value>
+    <value>大写字母</value>
   </data>
 </root>

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Clear" xml:space="preserve">
-    <value>清理</value>
+    <value>清空</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>复制</value>
