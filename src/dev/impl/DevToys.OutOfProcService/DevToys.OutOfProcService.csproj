@@ -6,9 +6,13 @@
     <!-- When switching to .Net 6, perhaps we can use ARM and ARM64.
     The reason why we don't have ARM right now is that this project
     is a WPF app, which isn't supported in ARM. -->
-    <Platforms>x86;x64</Platforms>
-    <RuntimeIdentifiers>win-x86;win-x64</RuntimeIdentifiers>
+    <Platforms>x86;x64;ARM</Platforms>
+    <RuntimeIdentifiers>win-x86;win-x64;win-arm</RuntimeIdentifiers>
   </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Platform)' == 'ARM'">
+        <PlatformTarget>ARM</PlatformTarget>
+    </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Windows.CsWinRT" Version="$(NuGet_MicrosoftWindowsCsWinRT)" />
