@@ -12,7 +12,7 @@ pool:
 variables:
   group: BuildPipelineVariables
   uwpProject: '**/*.wapproj'
-  buildPlatform: 'x86|x64|ARM'
+  buildPlatform: 'x86|x64|arm64'
   buildConfiguration: 'Release'
   appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
   buildFolder: '$(Build.SourcesDirectory)\bin\'
@@ -30,12 +30,12 @@ jobs:
     inputs:
       targetType: 'inline'
       script: |
-        [xml]$xmlDoc = Get-Content $(Build.SourcesDirectory)\src\dev\shared\Package.appxmanifest
+        [xml]$xmlDoc = Get-Content $(Build.SourcesDirectory)\src\dev\DevToys.Startup\Package.appxmanifest
         $xmlDoc.Package.Identity.Name="DevToys"
         $xmlDoc.Package.Identity.Publisher="CN=etiennebaudoux"
         $xmlDoc.Package.Properties.DisplayName="DevToys"
         $xmlDoc.Package.Applications.Application.VisualElements.DisplayName="DevToys"
-        $xmlDoc.Save('$(Build.SourcesDirectory)\src\dev\shared\Package.appxmanifest')
+        $xmlDoc.Save('$(Build.SourcesDirectory)\src\dev\DevToys.Startup\Package.appxmanifest')
       failOnStderr: true
 
   - task: PowerShell@2
@@ -54,6 +54,12 @@ jobs:
     inputs:
       secureFile: '$(certificateSecureFilePath)'
 
+  - task: UseDotNet@2
+    displayName: 'Set to use .Net 6.0'
+    inputs:
+      packageType: sdk
+      version: 6.x
+
   # Run the init.ps1, which mostly restores dependencies
   - task: PowerShell@2
     displayName: 'Restore nuget packages & Monaco editor'
@@ -69,7 +75,8 @@ jobs:
       platform: 'x86'
       configuration: '$(buildConfiguration)'
       msbuildArguments: '/bl:"$(buildFolder)\msbuild.binlog"
-                         /t:build;_GenerateAppxPackage 
+                         /t:build;_GenerateAppxPackage
+                         /restore
                          /p:AppxBundlePlatforms="$(buildPlatform)"
                          /p:AppxPackageDir="$(appxPackageDir)"
                          /p:AppxBundle=Always
@@ -103,12 +110,12 @@ jobs:
     inputs:
       targetType: 'inline'
       script: |
-        [xml]$xmlDoc = Get-Content $(Build.SourcesDirectory)\src\dev\shared\Package.appxmanifest
+        [xml]$xmlDoc = Get-Content $(Build.SourcesDirectory)\src\dev\DevToys.Startup\Package.appxmanifest
         $xmlDoc.Package.Identity.Name="64360VelerSoftware.DevToys"
         $xmlDoc.Package.Identity.Publisher="CN=3D87C8C2-C6F4-4875-B258-5FEC13B08F81"
         $xmlDoc.Package.Properties.DisplayName="DevToys"
         $xmlDoc.Package.Applications.Application.VisualElements.DisplayName="DevToys"
-        $xmlDoc.Save('$(Build.SourcesDirectory)\src\dev\shared\Package.appxmanifest')
+        $xmlDoc.Save('$(Build.SourcesDirectory)\src\dev\DevToys.Startup\Package.appxmanifest')
       failOnStderr: true
 
   - task: PowerShell@2
@@ -120,6 +127,12 @@ jobs:
         (Get-Content $_ -Raw | ForEach -Process {$_ -replace "Assets\\Logo-Prev", "Assets\Logo"}) | Set-Content $_ -NoNewline
         }
       failOnStderr: true
+
+  - task: UseDotNet@2
+    displayName: 'Set to use .Net 6.0'
+    inputs:
+      packageType: sdk
+      version: 6.x
 
   # Run the init.ps1, which mostly restores dependencies
   - task: PowerShell@2
@@ -136,7 +149,8 @@ jobs:
       platform: 'x86'
       configuration: '$(buildConfiguration)'
       msbuildArguments: '/bl:"$(buildFolder)\msbuild.binlog"
-                         /t:build;_GenerateAppxPackage 
+                         /t:build;_GenerateAppxPackage
+                         /restore
                          /p:AppxBundlePlatforms="$(buildPlatform)"
                          /p:AppxPackageDir="$(appxPackageDir)"
                          /p:AppxBundle=Always

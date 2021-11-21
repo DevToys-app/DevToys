@@ -1,8 +1,6 @@
-﻿#nullable enable
+﻿using System.Collections.Generic;
 
-using System.Collections.Generic;
-
-namespace DevToys.Api.Core.Injection
+namespace DevToys.Shared.Api.Core
 {
     /// <summary>
     /// Provides a way to import MEF components on the fly.

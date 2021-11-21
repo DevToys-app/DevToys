@@ -4,13 +4,15 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using DevToys.Api.Core;
-using DevToys.Api.Core.Injection;
 using DevToys.Api.Core.Navigation;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Core.Theme;
 using DevToys.Core;
 using DevToys.Core.Settings;
 using DevToys.Core.Threading;
+using DevToys.Shared.Api.Core;
+using DevToys.Shared.Core;
+using DevToys.Shared.Core.Threading;
 using DevToys.Views;
 using Microsoft.Graphics.Canvas.Text;
 using Windows.ApplicationModel;
@@ -51,7 +53,8 @@ namespace DevToys
                 = Task.Run(() =>
                 {
                     return new MefComposer(
-                        typeof(MefComposer).Assembly);
+                        typeof(App).Assembly,
+                        typeof(Shared.Constants).Assembly);
                 });
 
             UnhandledException += OnUnhandledException;

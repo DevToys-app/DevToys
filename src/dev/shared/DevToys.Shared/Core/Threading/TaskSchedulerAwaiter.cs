@@ -1,11 +1,9 @@
-﻿#nullable enable
-
-using System;
+﻿using System;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DevToys.Core.Threading
+namespace DevToys.Shared.Core.Threading
 {
     /// <summary>
     /// An awaiter returned from <see cref="GetAwaiter(TaskScheduler)"/>.

@@ -8,6 +8,7 @@ using DevToys.Core.Settings;
 using DevToys.Core.Threading;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
+using DevToys.Shared.Core.Threading;
 
 namespace DevToys.Core.Theme
 {

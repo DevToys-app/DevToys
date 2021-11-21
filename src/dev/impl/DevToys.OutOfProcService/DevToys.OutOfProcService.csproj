@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows$(Windows10MinSDKVersion)</TargetFramework>
+
+    <Platforms>x86;x64;arm64</Platforms>
+    <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
+  </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Platform)' == 'arm64'">
+        <PlatformTarget>arm64</PlatformTarget>
+    </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Windows.CsWinRT" Version="$(NuGet_MicrosoftWindowsCsWinRT)" />
+    <PackageReference Include="Newtonsoft.Json" Version="$(NuGet_NewtonsoftJson)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\shared\SharedAssemblyInfo.cs" Link="Properties\SharedAssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\shared\DevToys.Shared\DevToys.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <CsWinRTWindowsMetadata>sdk</CsWinRTWindowsMetadata>
+  </PropertyGroup>
+</Project>

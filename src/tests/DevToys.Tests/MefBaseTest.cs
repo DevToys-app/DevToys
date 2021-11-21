@@ -1,6 +1,7 @@
 ﻿using System;
-using DevToys.Api.Core.Injection;
-using DevToys.Core;
+using DevToys.Shared.Api.Core;
+using DevToys.Shared.Core;
+using DevToys.ViewModels;
 
 namespace DevToys.Tests
 {
@@ -19,6 +20,7 @@ namespace DevToys.Tests
 
             _mefComposer
                 = new MefComposer(
+                    typeof(MainPageViewModel).Assembly,
                     typeof(MefComposer).Assembly);
 
             ExportProvider = _mefComposer.ExportProvider.GetExport<IMefProvider>();

@@ -1,11 +1,12 @@
 ﻿#nullable enable
 
 using DevToys.Api.Core;
-using DevToys.Api.Core.Injection;
+using DevToys.Shared.Api.Core;
 using DevToys.Api.Core.Navigation;
-using DevToys.Core;
+using DevToys.Shared.Core.Threading;
 using DevToys.Core.Threading;
 using DevToys.Messages;
+using DevToys.Shared.Core;
 using DevToys.ViewModels;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Windows.UI.ViewManagement;

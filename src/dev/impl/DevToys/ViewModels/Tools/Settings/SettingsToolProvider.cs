@@ -2,7 +2,7 @@
 
 using System.Composition;
 using System.Threading.Tasks;
-using DevToys.Api.Core.Injection;
+using DevToys.Shared.Api.Core;
 using DevToys.Api.Tools;
 using DevToys.Core.Threading;
 using Microsoft.Toolkit.Mvvm.ComponentModel;

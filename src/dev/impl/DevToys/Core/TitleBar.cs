@@ -8,6 +8,7 @@ using DevToys.Api.Core.Settings;
 using DevToys.Api.Core.Theme;
 using DevToys.Core.Settings;
 using DevToys.Core.Threading;
+using DevToys.Shared.Core;
 using Windows.ApplicationModel.Core;
 using Windows.UI;
 using Windows.UI.Core;

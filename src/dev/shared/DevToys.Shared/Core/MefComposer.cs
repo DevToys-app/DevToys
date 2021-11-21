@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Composition.Hosting;
 using System.Reflection;
-using DevToys.Api.Core.Injection;
+using DevToys.Shared.Api.Core;
 
-namespace DevToys.Core
+namespace DevToys.Shared.Core
 {
     /// <summary>
     /// Provides a set of methods to initialize and manage MEF.

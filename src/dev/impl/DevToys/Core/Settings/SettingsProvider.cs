@@ -39,7 +39,7 @@ namespace DevToys.Core.Settings
                 }
                 else if (typeof(IList).IsAssignableFrom(typeof(T)))
                 {
-                    return JsonConvert.DeserializeObject<T>(applicationDataContainer.Values[settingDefinition.Name]?.ToString() ?? string.Empty);
+                    return JsonConvert.DeserializeObject<T>(applicationDataContainer.Values[settingDefinition.Name]?.ToString() ?? string.Empty)!;
                 }
 
                 return (T)Convert.ChangeType(applicationDataContainer.Values[settingDefinition.Name], typeof(T), CultureInfo.InvariantCulture);

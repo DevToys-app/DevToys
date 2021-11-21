@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
 using System.Composition;
-using DevToys.Api.Core.Injection;
+using DevToys.Shared.Api.Core;
 using DevToys.Api.Tools;
 
 namespace DevToys.ViewModels.Tools.HtmlEncoderDecoder

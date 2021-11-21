@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
 using System;
-using DevToys.Core;
+using DevToys.Shared.Core;
 
 namespace DevToys.Api.Core
 {

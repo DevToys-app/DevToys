@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using DevToys.Api.Core;
 using DevToys.Api.Tools;
 using DevToys.Core.Threading;
+using DevToys.Shared.Core.Threading;
 using DevToys.Views.Tools.StringUtilities;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;

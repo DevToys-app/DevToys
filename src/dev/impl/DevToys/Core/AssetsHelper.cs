@@ -4,7 +4,7 @@ using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using DevToys.Core.Threading;
+using DevToys.Shared.Core.Threading;
 using Windows.Storage;
 
 namespace DevToys.Core

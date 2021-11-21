@@ -12,7 +12,7 @@ pool:
 variables:
   group: BuildPipelineVariables
   uwpProject: '**/*.wapproj'
-  buildPlatform: 'x86|x64|ARM'
+  buildPlatform: 'x86|x64|arm64'
   buildConfiguration: 'Release'
   appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
   buildFolder: '$(Build.SourcesDirectory)\bin\'
@@ -21,6 +21,12 @@ jobs:
 - job: Build
   timeoutInMinutes: 120
   steps:
+
+  - task: UseDotNet@2
+    displayName: 'Set to use .Net 6.0'
+    inputs:
+      packageType: sdk
+      version: 6.x
 
   # Run the init.ps1, which mostly restores dependencies
   - task: PowerShell@2
@@ -37,6 +43,7 @@ jobs:
       configuration: '$(buildConfiguration)'
       msbuildArguments: '/bl:"$(buildFolder)\msbuild.binlog"
                          /t:build
+                         /restore
                          /p:AppxBundlePlatforms="$(buildPlatform)"
                          /p:AppxPackageDir="$(appxPackageDir)"
                          /p:AppxPackageSigningEnabled=false

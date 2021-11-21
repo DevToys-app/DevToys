@@ -2,7 +2,7 @@
 
 using System;
 using System.ComponentModel;
-using DevToys.Core;
+using DevToys.Shared.Core;
 
 namespace DevToys.Api.Tools
 {

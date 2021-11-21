@@ -1,8 +1,6 @@
-﻿#nullable enable
+﻿using System;
 
-using System;
-
-namespace DevToys.Core
+namespace DevToys.Shared.Core
 {
     public static class Assumes
     {

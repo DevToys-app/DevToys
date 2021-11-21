@@ -10,6 +10,7 @@ using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
 using DevToys.Core;
 using DevToys.Core.Threading;
+using DevToys.Shared.Core.Threading;
 using DevToys.Views.Tools.Base64EncoderDecoder;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 
