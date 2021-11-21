@@ -1,27 +1,6 @@
 <Project>
     <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
 
-    <PropertyGroup>
-        <LangVersion>latest</LangVersion>
-        <Nullable>enable</Nullable>
-
-        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-
-        <!-- Enable generation of .tt files -->
-        <TransformOnBuild>true</TransformOnBuild>
-        <OverwriteReadOnlyOutputFiles>true</OverwriteReadOnlyOutputFiles>
-        <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
-    </PropertyGroup>
-
-    <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '16.0' ">
-        <VisualStudioVersion>16.0</VisualStudioVersion>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-        <!-- In Debug mode, don't generate .tt files at each build. -->
-        <TransformOutOfDateOnly>true</TransformOutOfDateOnly>
-    </PropertyGroup>
-
     <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
         <DebugSymbols>true</DebugSymbols>
         <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>

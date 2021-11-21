@@ -16,6 +16,7 @@ using DevToys.MonacoEditor.Helpers;
 using DevToys.MonacoEditor.Monaco;
 using DevToys.MonacoEditor.Monaco.Editor;
 using DevToys.MonacoEditor.Monaco.Helpers;
+using DevToys.Shared.Core.Threading;
 using Newtonsoft.Json;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -453,12 +454,12 @@ namespace DevToys.MonacoEditor.CodeEditorControl
         /// <summary>
         /// When Editor is Loading, it is ready to receive commands to the Monaco Engine.
         /// </summary>
-        public new event RoutedEventHandler? Loading;
+        public event RoutedEventHandler? EditorLoading;
 
         /// <summary>
         /// When Editor is Loaded, it has been rendered and is ready to be displayed.
         /// </summary>
-        public new event RoutedEventHandler? Loaded;
+        public event RoutedEventHandler? EditorLoaded;
 
         /// <summary>
         /// Called when a link is Ctrl+Clicked on in the editor, set Handled to true to prevent opening.
@@ -473,7 +474,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
         /// <summary>
         /// Custom Keyboard Handler.
         /// </summary>
-        public new event WebKeyEventHandler? KeyDown;
+        public event WebKeyEventHandler? EditorKeyDown;
 
         public static DependencyProperty IsEditorLoadedProperty { get; }
             = DependencyProperty.Register(
@@ -596,11 +597,11 @@ namespace DevToys.MonacoEditor.CodeEditorControl
 
                 _initialized = true;
 
-                Loading?.Invoke(this, new RoutedEventArgs());
+                EditorLoading?.Invoke(this, new RoutedEventArgs());
 
                 Unloaded += CodeEditor_Unloaded;
 
-                Loaded?.Invoke(this, new RoutedEventArgs());
+                EditorLoaded?.Invoke(this, new RoutedEventArgs());
             }
         }
 
@@ -817,7 +818,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                 _view.Focus(FocusState.Programmatic);
             }
 
-            Loaded?.Invoke(this, new RoutedEventArgs());
+            EditorLoaded?.Invoke(this, new RoutedEventArgs());
         }
 
         private void WebView_NavigationStarting(WebView sender, WebViewNavigationStartingEventArgs args)
@@ -860,7 +861,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             DiffOptions.ReadOnly = ReadOnly;
 
             // Now we're done loading
-            Loading?.Invoke(this, new RoutedEventArgs());
+            EditorLoading?.Invoke(this, new RoutedEventArgs());
         }
 
         private void WebView_NewWindowRequested(WebView sender, WebViewNewWindowRequestedEventArgs args)
@@ -902,7 +903,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
 
         public bool TriggerKeyDown(WebKeyEventArgs args)
         {
-            KeyDown?.Invoke(this, args);
+            EditorKeyDown?.Invoke(this, args);
 
             return args.Handled;
         }

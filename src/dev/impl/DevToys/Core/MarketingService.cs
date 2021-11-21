@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using DevToys.Api.Core;
 using DevToys.Core.Threading;
 using DevToys.Models;
+using DevToys.Shared.Core.Threading;
 using Newtonsoft.Json;
 using Windows.Services.Store;
 using Windows.Storage;
@@ -99,6 +100,12 @@ namespace DevToys.Core
                 {
                     _rateOfferInProgress = true;
 
+                    UpdateMarketingStateAsync(state =>
+                    {
+                        state.AppRatingOfferCount++;
+                        state.LastAppRatingOfferDate = DateTime.Now;
+                    }).ForgetSafely();
+
                     _notificationService.ShowInAppNotification(
                         LanguageManager.Instance.MainPage.NotificationRateAppTitle,
                         LanguageManager.Instance.MainPage.NotificationRateAppActionableActionText,
@@ -113,12 +120,6 @@ namespace DevToys.Core
 
         private async Task RateAsync()
         {
-            await UpdateMarketingStateAsync(state =>
-            {
-                state.AppRatingOfferCount++;
-                state.LastAppRatingOfferDate = DateTime.Now;
-            });
-
             var storeContext = StoreContext.GetDefault();
 
             StoreRateAndReviewResult result = await ThreadHelper.RunOnUIThreadAsync(async () =>

@@ -54,6 +54,7 @@
     <AppxUseHardlinksIfPossible>false</AppxUseHardlinksIfPossible>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\impl\DevToys.OutOfProcService\DevToys.OutOfProcService.csproj" />
     <ProjectReference Include="..\impl\DevToys\DevToys.csproj" />
   </ItemGroup>
   <ItemGroup>
@@ -108,14 +109,13 @@
     <Content Include="Assets\Logo-Prev\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Logo-Prev\Wide310x150Logo.scale-400.png" />
   </ItemGroup>
-  <ItemGroup>
-    <AppxManifest Include="..\shared\Package.appxmanifest">
-      <Link>Package.appxmanifest</Link>
-      <SubType>Designer</SubType>
-    </AppxManifest>
-  </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
   <ItemGroup>
-      <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="$(NuGet_MicrosoftWindowsSDKBuildTools)" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="$(NuGet_MicrosoftWindowsSDKBuildTools)" PrivateAssets="all" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
   </ItemGroup>
 </Project>

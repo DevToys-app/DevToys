@@ -1,8 +1,8 @@
 ﻿#nullable enable
 
 using DevToys.Api.Core.Navigation;
-using DevToys.Core;
 using DevToys.Messages;
+using DevToys.Shared.Core;
 using DevToys.ViewModels.Tools.MarkdownPreview;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Windows.UI.Xaml;

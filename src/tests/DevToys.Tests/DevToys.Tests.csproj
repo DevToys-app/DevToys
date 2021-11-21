@@ -91,6 +91,10 @@
       <Project>{E3E4E200-B380-4207-9A7E-4C9421904502}</Project>
       <Name>DevToys</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\dev\shared\DevToys.Shared\DevToys.Shared.csproj">
+      <Project>{ccbcaefe-b245-413a-9c37-a21ce99eecb9}</Project>
+      <Name>DevToys.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

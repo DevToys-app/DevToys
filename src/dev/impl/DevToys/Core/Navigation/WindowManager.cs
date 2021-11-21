@@ -5,6 +5,7 @@ using System.Composition;
 using System.Threading.Tasks;
 using DevToys.Api.Core.Navigation;
 using DevToys.Core.Threading;
+using DevToys.Shared.Core;
 using Windows.ApplicationModel;
 using Windows.UI.Xaml.Controls;
 

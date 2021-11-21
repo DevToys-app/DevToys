@@ -164,7 +164,7 @@ namespace DevToys.UI.Controls
         {
             InitializeComponent();
 
-            CodeEditorCore.Loading += CodeEditorCore_Loading;
+            CodeEditorCore.EditorLoading += CodeEditorCore_Loading;
             CodeEditorCore.InternalException += CodeEditorCore_InternalException;
 
             UpdateUI();
@@ -182,7 +182,7 @@ namespace DevToys.UI.Controls
 
         private void CodeEditorCore_Loading(object sender, RoutedEventArgs e)
         {
-            CodeEditorCore.Loading -= CodeEditorCore_Loading;
+            CodeEditorCore.EditorLoading -= CodeEditorCore_Loading;
 
             CodeEditorCore.HasGlyphMargin = false;
             CodeEditorCore.Options.GlyphMargin = false;

@@ -54,7 +54,7 @@ namespace DevToys.MonacoEditor.Monaco
                 {
                     if (args != null && args.Length >= 2)
                     {
-                        CompletionList? items = await provider.ProvideCompletionItemsAsync(editor.GetModel()!, JsonConvert.DeserializeObject<Position>(args[0]), JsonConvert.DeserializeObject<CompletionContext>(args[1]));
+                        CompletionList? items = await provider.ProvideCompletionItemsAsync(editor.GetModel()!, JsonConvert.DeserializeObject<Position>(args[0])!, JsonConvert.DeserializeObject<CompletionContext>(args[1])!);
 
                         if (items != null)
                         {
@@ -71,7 +71,7 @@ namespace DevToys.MonacoEditor.Monaco
                     {
                         Position? position = JsonConvert.DeserializeObject<Position>(args[0]);
                         CompletionItem? requestedItem = JsonConvert.DeserializeObject<CompletionItem>(args[1]);
-                        CompletionItem? completionItem = await provider.ResolveCompletionItemAsync(editor.GetModel()!, position, requestedItem);
+                        CompletionItem? completionItem = await provider.ResolveCompletionItemAsync(editor.GetModel()!, position!, requestedItem!);
 
                         if (completionItem != null)
                         {
@@ -98,7 +98,7 @@ namespace DevToys.MonacoEditor.Monaco
                 {
                     if (args != null && args.Length >= 1)
                     {
-                        Hover? hover = await provider.ProvideHover(editor.GetModel()!, JsonConvert.DeserializeObject<Position>(args[0]));
+                        Hover? hover = await provider.ProvideHover(editor.GetModel()!, JsonConvert.DeserializeObject<Position>(args[0])!);
 
                         if (hover != null)
                         {

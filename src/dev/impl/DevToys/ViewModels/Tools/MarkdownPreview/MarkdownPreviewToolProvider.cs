@@ -2,7 +2,7 @@
 
 using System.Composition;
 using System.Text.RegularExpressions;
-using DevToys.Api.Core.Injection;
+using DevToys.Shared.Api.Core;
 using DevToys.Api.Tools;
 
 namespace DevToys.ViewModels.Tools.MarkdownPreview

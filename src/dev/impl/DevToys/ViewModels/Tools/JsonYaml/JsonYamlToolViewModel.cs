@@ -12,6 +12,7 @@ using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
 using DevToys.Core;
 using DevToys.Core.Threading;
+using DevToys.Shared.Core.Threading;
 using DevToys.Helpers;
 using DevToys.Views.Tools.JsonYaml;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
@@ -229,7 +230,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml
 
             try
             {
-                dynamic jsonObject = JsonConvert.DeserializeObject<ExpandoObject>(input);
+                dynamic? jsonObject = JsonConvert.DeserializeObject<ExpandoObject>(input);
                 if (jsonObject is not null and not string)
                 {
                     int indent = 0;
