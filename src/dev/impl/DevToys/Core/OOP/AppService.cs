@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using DevToys.Api.Core.OOP;
+using DevToys.OutOfProcService.OutOfProcServices;
 using DevToys.Shared.Core;
 using DevToys.Shared.Core.OOP;
 using DevToys.Shared.Core.Threading;
@@ -52,9 +53,12 @@ namespace DevToys.Core.OOP
             return (T)result;
         }
 
-        private void OnAppSuspending(object sender, SuspendingEventArgs e)
+        private async void OnAppSuspending(object sender, SuspendingEventArgs e)
         {
             SuspendingDeferral? deferral = e.SuspendingOperation.GetDeferral();
+
+            // Shut down the Win32 app.
+            await SendMessageAndGetResponseAsync<ShutdownMessage>(new ShutdownMessage());
 
             Disconnect();
 

@@ -38,6 +38,12 @@ namespace DevToys.OutOfProcService.Core.OOP
             ConnectAsync().Forget();
         }
 
+        internal void IndicateAppServiceConnectionLost()
+        {
+            Disconnect();
+            _appServiceConnectionClosedTask.TrySetResult();
+        }
+
         internal Task WaitAppServiceConnectionCloseAsync()
         {
             return _appServiceConnectionClosedTask.Task;
@@ -224,11 +230,6 @@ namespace DevToys.OutOfProcService.Core.OOP
             await _pipeClientStream!.WriteAsync(messageBuffer, 0, messageBuffer.Length);
             await _pipeClientStream.FlushAsync();
             _pipeClientStream.WaitForPipeDrain();
-        }
-
-        private void IndicateAppServiceConnectionLost()
-        {
-            _appServiceConnectionClosedTask.TrySetResult();
         }
 
         private static string GetPackageSid()

@@ -3,8 +3,11 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows$(Windows10MinSDKVersion)</TargetFramework>
-    <Platforms>ARM32;x86;x64</Platforms>
-    <RuntimeIdentifiers>win-x86;win-x64;win-arm</RuntimeIdentifiers>
+    <!-- When switching to .Net 6, perhaps we can use ARM and ARM64.
+    The reason why we don't have ARM right now is that this project
+    is a WPF app, which isn't supported in ARM. -->
+    <Platforms>x86;x64</Platforms>
+    <RuntimeIdentifiers>win-x86;win-x64</RuntimeIdentifiers>
   </PropertyGroup>
 
   <ItemGroup>
