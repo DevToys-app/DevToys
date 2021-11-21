@@ -3,9 +3,9 @@
 using System.Collections.Generic;
 using System.Composition;
 using System.Composition.Hosting;
-using DevToys.Api.Core.Injection;
+using DevToys.Shared.Api.Core;
 
-namespace DevToys.Core
+namespace DevToys.Shared.Core
 {
     [Export(typeof(IMefProvider))]
     [Shared]

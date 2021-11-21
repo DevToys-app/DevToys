@@ -17,13 +17,13 @@
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Debug|ARM">
+    <ProjectConfiguration Include="Debug|arm64">
       <Configuration>Debug</Configuration>
-      <Platform>ARM</Platform>
+      <Platform>arm64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|ARM">
+    <ProjectConfiguration Include="Release|arm64">
       <Configuration>Release</Configuration>
-      <Platform>ARM</Platform>
+      <Platform>arm64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup>
@@ -40,7 +40,7 @@
     <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
     <DisableXbfLineInfo>False</DisableXbfLineInfo>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
-    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+    <AppxBundlePlatforms>x86|x64|arm64</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <AppxPackageDir>..\..\..\bin\AppPackages\</AppxPackageDir>
     <AppxBundle>Always</AppxBundle>
@@ -54,6 +54,7 @@
     <AppxUseHardlinksIfPossible>false</AppxUseHardlinksIfPossible>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\impl\DevToys.OutOfProcService\DevToys.OutOfProcService.csproj" />
     <ProjectReference Include="..\impl\DevToys\DevToys.csproj" />
   </ItemGroup>
   <ItemGroup>
@@ -108,14 +109,14 @@
     <Content Include="Assets\Logo-Prev\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Logo-Prev\Wide310x150Logo.scale-400.png" />
   </ItemGroup>
+  <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
   <ItemGroup>
-    <AppxManifest Include="..\shared\Package.appxmanifest">
-      <Link>Package.appxmanifest</Link>
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="$(NuGet_MicrosoftWindowsSDKBuildTools)" PrivateAssets="all" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
   </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
-  <!-- <ItemGroup>
-      <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="$(NuGet_MicrosoftWindowsSDKBuildTools)" PrivateAssets="all" />
-  </ItemGroup> -->
 </Project>

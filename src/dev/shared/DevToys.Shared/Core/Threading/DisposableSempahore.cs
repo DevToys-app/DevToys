@@ -1,10 +1,8 @@
-﻿#nullable enable
-
-using System;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DevToys.MonacoEditor.Helpers
+namespace DevToys.Shared.Core.Threading
 {
     /// <summary>
     /// Represents a semaphore that free other threads when disposing the result of the <see cref="WaitAsync(CancellationToken)"/> method..

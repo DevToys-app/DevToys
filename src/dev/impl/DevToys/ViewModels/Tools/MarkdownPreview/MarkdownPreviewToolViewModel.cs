@@ -8,8 +8,8 @@ using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Core.Theme;
 using DevToys.Api.Tools;
-using DevToys.Core;
 using DevToys.Core.Threading;
+using DevToys.Shared.Core.Threading;
 using DevToys.Messages;
 using DevToys.Views.Tools.MarkdownPreview;
 using Markdig;
@@ -17,6 +17,7 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Windows.Storage;
 using Windows.UI.Xaml;
+using DevToys.Shared.Core;
 
 namespace DevToys.ViewModels.Tools.MarkdownPreview
 {

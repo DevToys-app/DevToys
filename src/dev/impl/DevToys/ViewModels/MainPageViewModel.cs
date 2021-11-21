@@ -19,6 +19,8 @@ using DevToys.Core.Settings;
 using DevToys.Core.Threading;
 using DevToys.Messages;
 using DevToys.Models;
+using DevToys.Shared.Core;
+using DevToys.Shared.Core.Threading;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Mvvm.Messaging;

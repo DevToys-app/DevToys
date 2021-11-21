@@ -4,6 +4,8 @@ using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
+using DevToys.Shared.Core.Threading;
+using DevToys.Shared.Core;
 
 namespace DevToys.Core.Threading
 {

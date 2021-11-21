@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
+  IgnorableNamespaces="uap uap5 mp">
+
+    <!-- Please DO NOT commit changes on the version number below unless you're about to release a new version of the app on the Store. -->
+    <Identity
+        Name="f668c062-a3c9-41d6-a9f7-c06fad5f1049"
+        Publisher="CN=etiennebaudoux"
+        Version="0.0.0.0" />
+
+    <mp:PhoneIdentity PhoneProductId="f668c062-a3c9-41d6-a9f7-c06fad5f1049" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+
+    <Properties>
+        <DisplayName>DevToys</DisplayName>
+        <PublisherDisplayName>etiennebaudoux</PublisherDisplayName>
+        <Logo>Assets\Logo\StoreLogo.png</Logo>
+    </Properties>
+
+    <Dependencies>
+        <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
+    </Dependencies>
+
+    <Resources>
+        <Resource Language="x-generate"/>
+    </Resources>
+
+    <Applications>
+        <Application Id="App"
+          Executable="$targetnametoken$.exe"
+          EntryPoint="DevToys.App">
+            <uap:VisualElements
+              DisplayName="DevToys"
+              Description="A Swiss Army knife for developers."
+              BackgroundColor="transparent"
+              Square150x150Logo="Assets\Logo\Square150x150Logo.png"
+              Square44x44Logo="Assets\Logo\Square44x44Logo.png">
+            </uap:VisualElements>
+        </Application>
+    </Applications>
+</Package>

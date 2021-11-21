@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
 using DevToys.Api.Core.Navigation;
-using DevToys.Core;
+using DevToys.Shared.Core;
 using DevToys.ViewModels.Tools.GuidGenerator;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;

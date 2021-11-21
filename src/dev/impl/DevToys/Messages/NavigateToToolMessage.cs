@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
 using DevToys.Api.Tools;
-using DevToys.Core;
+using DevToys.Shared.Core;
 
 namespace DevToys.Messages
 {

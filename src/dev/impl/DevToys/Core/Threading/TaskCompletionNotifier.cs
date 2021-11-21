@@ -3,6 +3,7 @@
 using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
+using DevToys.Shared.Core.Threading;
 
 namespace DevToys.Core.Threading
 {

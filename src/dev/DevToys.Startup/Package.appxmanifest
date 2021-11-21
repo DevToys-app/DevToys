@@ -4,19 +4,18 @@
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:uap4="http://schemas.microsoft.com/appx/manifest/uap/windows10/4"
   xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
+  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
   xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-  IgnorableNamespaces="uap mp desktop4">
+  IgnorableNamespaces="uap uap4 uap5 mp rescap desktop desktop4">
 
     <!-- Please DO NOT commit changes on the version number below unless you're about to release a new version of the app on the Store. -->
     <Identity
         Name="DevToysPreview"
         Publisher="CN=etiennebaudoux"
         Version="0.0.0.0" />
-
-    <!-- TODO: maybe we need to remove this when adding runFullTrust capability -->
-    <mp:PhoneIdentity PhoneProductId="c12088ee-f979-4809-8039-7851a3aa2b7a" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
     <Properties>
         <DisplayName>DevToys - Preview</DisplayName>
@@ -38,6 +37,7 @@
           Executable="$targetnametoken$.exe"
           EntryPoint="$targetentrypoint$"
           desktop4:SupportsMultipleInstances="true">
+
             <uap:VisualElements
               DisplayName="DevToys - Preview"
               Description="A Swiss Army knife for developers."
@@ -59,6 +59,7 @@
                     <uap:Rotation Preference="portraitFlipped"/>
                 </uap:InitialRotationPreference>
             </uap:VisualElements>
+
             <Extensions>
                 <uap:Extension Category="windows.protocol">
                     <uap:Protocol ReturnResults="none" Name="devtoys">
@@ -66,6 +67,7 @@
                         <uap:Logo>Assets\Logo-Prev\Square512.png</uap:Logo>
                     </uap:Protocol>
                 </uap:Extension>
+
                 <uap:Extension Category="windows.fileOpenPicker">
                     <uap:FileOpenPicker>
                         <uap:SupportedFileTypes>
@@ -73,7 +75,14 @@
                         </uap:SupportedFileTypes>
                     </uap:FileOpenPicker>
                 </uap:Extension>
+
+                <desktop:Extension Category="windows.fullTrustProcess" Executable="DevToys.OutOfProcService\DevToys.OutOfProcService.exe" />
+
             </Extensions>
         </Application>
     </Applications>
+
+    <Capabilities>
+        <rescap:Capability Name="runFullTrust" />
+    </Capabilities>
 </Package>

@@ -4,7 +4,7 @@ using System;
 using System.Composition;
 using System.Text;
 using System.Text.RegularExpressions;
-using DevToys.Api.Core.Injection;
+using DevToys.Shared.Api.Core;
 using DevToys.Api.Tools;
 
 namespace DevToys.ViewModels.Tools.Base64EncoderDecoder

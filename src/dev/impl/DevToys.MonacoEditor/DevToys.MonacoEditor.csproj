@@ -31,13 +31,12 @@
     </Compile>
     <Compile Include="CodeEditorControl\CodeEditorCore.cs" />
     <Compile Include="CodeEditorControl\InvertedBooleanConverter.cs" />
+    <Compile Include="Extensions\DispatcherExtensions.cs" />
     <Compile Include="Extensions\JavaScriptExecutionException.cs" />
     <Compile Include="Extensions\JavaScriptInnerException.cs" />
-    <Compile Include="Extensions\WebViewExtensions.cs" />
-    <Compile Include="Extensions\DispatcherExtensions.cs" />
     <Compile Include="Extensions\ThreadPriority.cs" />
+    <Compile Include="Extensions\WebViewExtensions.cs" />
     <Compile Include="Helpers\DebugLogger.cs" />
-    <Compile Include="Helpers\DisposableSempahore.cs" />
     <Compile Include="Helpers\IParentAccessorAcceptor.cs" />
     <Compile Include="Helpers\KeyboardListener.cs" />
     <Compile Include="Helpers\ParentAccessor.cs" />
@@ -219,6 +218,12 @@
     <PackageReference Include="Microsoft.UI.Xaml" Version="$(NuGet_MicrosoftUIXaml)" />
     <PackageReference Include="Newtonsoft.Json" Version="$(NuGet_NewtonsoftJson)" />
     <PackageReference Include="ObservableVector" Version="$(Nuget_ObservableVector)" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\shared\DevToys.Shared\DevToys.Shared.csproj">
+      <Project>{ccbcaefe-b245-413a-9c37-a21ce99eecb9}</Project>
+      <Name>DevToys.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

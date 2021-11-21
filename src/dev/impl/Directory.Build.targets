@@ -12,7 +12,7 @@
             FileName="$(RepoRoot)src\dev\shared\SharedAssemblyInfo.cs"
             Version="$(AppVersionNumber)" />
         <SetVersion
-            FileName="$(RepoRoot)src\dev\shared\Package.appxmanifest"
+            FileName="$(RepoRoot)src\dev\DevToys.Startup\Package.appxmanifest"
             Version="$(AppVersionNumber)" />
     </Target>
     <Target Name="BeforeBuild" DependsOnTargets="UpdateVersionNumber"/>

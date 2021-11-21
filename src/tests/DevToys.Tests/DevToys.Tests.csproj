@@ -37,8 +37,8 @@
   <PropertyGroup Condition="'$(Platform)' == 'x64'">
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Platform)' == 'ARM'">
-    <PlatformTarget>ARM</PlatformTarget>
+  <PropertyGroup Condition="'$(Platform)' == 'arm64'">
+    <PlatformTarget>arm64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <SDKReference Include="TestPlatform.Universal, Version=$(UnitTestPlatformVersion)" />
@@ -84,12 +84,16 @@
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="$(NuGet_MicrosoftToolkitMvvm)" />
     <PackageReference Include="MSTest.TestAdapter" Version="$(NuGet_MSTestTestAdapter)" />
     <PackageReference Include="MSTest.TestFramework" Version="$(NuGet_MSTestTestFramework)" />
-    <PackageReference Include="System.Composition" Version="$(NuGet_SystemComposition)" />
+    <PackageReference Include="System.Composition" Version="$(NuGet_DotNet)" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\dev\impl\DevToys\DevToys.csproj">
       <Project>{E3E4E200-B380-4207-9A7E-4C9421904502}</Project>
       <Name>DevToys</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\dev\shared\DevToys.Shared\DevToys.Shared.csproj">
+      <Project>{ccbcaefe-b245-413a-9c37-a21ce99eecb9}</Project>
+      <Name>DevToys.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />

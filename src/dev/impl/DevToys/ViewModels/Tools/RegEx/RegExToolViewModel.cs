@@ -9,6 +9,7 @@ using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
 using DevToys.Core.Threading;
+using DevToys.Shared.Core.Threading;
 using DevToys.UI.Controls;
 using DevToys.Views.Tools.RegEx;
 using Microsoft.Toolkit.Mvvm.ComponentModel;

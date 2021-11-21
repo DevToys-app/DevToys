@@ -21,6 +21,9 @@
     <Compile Include="..\..\shared\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Api\Core\OOP\IAppService.cs" />
+    <Compile Include="Core\OOP\AppService.cs" />
+    <Compile Include="Core\Threading\AsyncLazy.cs" />
     <Compile Include="ViewModels\Tools\HtmlEncoderDecoder\HtmlEncoderDecoderToolProvider.cs" />
     <Compile Include="ViewModels\Tools\HtmlEncoderDecoder\HtmlEncoderDecoderToolViewModel.cs" />
     <Compile Include="Views\Tools\HtmlEncoderDecoder\HtmlEncoderDecoderToolPage.xaml.cs">
@@ -160,7 +163,6 @@
     <Content Include="Properties\Default.rd.rd.xml" />
     <Compile Include="Api\Core\IClipboard.cs" />
     <Compile Include="Api\Core\IMarketingService.cs" />
-    <Compile Include="Api\Core\IMefProvider.cs" />
     <Compile Include="Api\Core\InAppNotificationAddedEventArgs.cs" />
     <Compile Include="Api\Core\ITitleBar.cs" />
     <Compile Include="Api\Core\IUriActivationProtocolService.cs" />
@@ -185,25 +187,17 @@
     <Compile Include="Api\Tools\ProtocolNameAttribute.cs" />
     <Compile Include="Api\Tools\ToolProviderMetadata.cs" />
     <Compile Include="Core\AssetsHelper.cs" />
-    <Compile Include="Core\Arguments.cs" />
-    <Compile Include="Core\Assumes.cs" />
     <Compile Include="Core\Clipboard.cs" />
     <Compile Include="Core\Collections\OrderedObservableCollection.cs" />
     <Compile Include="Core\Constants.cs" />
     <Compile Include="Core\Logger.cs" />
     <Compile Include="Core\MarketingService.cs" />
-    <Compile Include="Core\MefComposer.cs" />
-    <Compile Include="Core\MefProvider.cs" />
     <Compile Include="Core\Navigation\WindowManager.cs" />
     <Compile Include="Core\NotificationService.cs" />
     <Compile Include="Core\Settings\PredefinedSettings.cs" />
     <Compile Include="Core\Settings\SettingsProvider.cs" />
     <Compile Include="Core\Theme\ThemeListener.cs" />
-    <Compile Include="Core\Threading\AsyncLazy.cs" />
-    <Compile Include="Core\Threading\DisposableSempahore.cs" />
     <Compile Include="Core\Threading\TaskCompletionNotifier.cs" />
-    <Compile Include="Core\Threading\TaskExtension.cs" />
-    <Compile Include="Core\Threading\TaskSchedulerAwaiter.cs" />
     <Compile Include="Core\Threading\ThreadHelper.cs" />
     <Compile Include="Core\Threading\ThreadPriority.cs" />
     <Compile Include="Core\TitleBar.cs" />
@@ -349,8 +343,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <AppxManifest Include="..\..\shared\Package.appxmanifest">
-      <Link>Package.appxmanifest</Link>
+    <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
     <Page Include="Themes\Custom.xaml">
@@ -452,7 +445,7 @@
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls" Version="$(Nuget_MicrosoftToolkitUwpUIControls)" />
     <PackageReference Include="Microsoft.UI.Xaml" Version="$(NuGet_MicrosoftUIXaml)" />
     <PackageReference Include="Newtonsoft.Json" Version="$(NuGet_NewtonsoftJson)" />
-    <PackageReference Include="System.Composition" Version="$(NuGet_SystemComposition)" />
+    <PackageReference Include="System.Composition" Version="$(NuGet_DotNet)" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="$(NuGet_IdentityModelTokenJwt)" />
     <PackageReference Include="YamlDotNet" Version="$(NuGet_YamlDotNet)" />
     <PackageReference Include="Win2D.uwp" Version="$(Nuget_Win2D)" />
@@ -461,12 +454,20 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\shared\DevToys.Shared\DevToys.Shared.csproj">
+      <Project>{ccbcaefe-b245-413a-9c37-a21ce99eecb9}</Project>
+      <Name>DevToys.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DevToys.MonacoEditor\DevToys.MonacoEditor.csproj">
       <Project>{0fe678bb-9f9b-4495-b777-f9b1e11da20c}</Project>
       <Name>DevToys.MonacoEditor</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <SDKReference Include="WindowsDesktop, Version=10.0.19041.0">
+      <Name>Windows Desktop Extensions for the UWP</Name>
+    </SDKReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
