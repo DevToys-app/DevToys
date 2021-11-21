@@ -2,22 +2,19 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows$(Windows10MinSDKVersion)</TargetFramework>
-    <!-- When switching to .Net 6, perhaps we can use ARM and ARM64.
-    The reason why we don't have ARM right now is that this project
-    is a WPF app, which isn't supported in ARM. -->
-    <Platforms>x86;x64;ARM</Platforms>
-    <RuntimeIdentifiers>win-x86;win-x64;win-arm</RuntimeIdentifiers>
+    <TargetFramework>net6.0-windows$(Windows10MinSDKVersion)</TargetFramework>
+
+    <Platforms>x86;x64;arm64</Platforms>
+    <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
   </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Platform)' == 'ARM'">
-        <PlatformTarget>ARM</PlatformTarget>
+    <PropertyGroup Condition="'$(Platform)' == 'arm64'">
+        <PlatformTarget>arm64</PlatformTarget>
     </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Windows.CsWinRT" Version="$(NuGet_MicrosoftWindowsCsWinRT)" />
     <PackageReference Include="Newtonsoft.Json" Version="$(NuGet_NewtonsoftJson)" />
-    <PackageReference Include="System.Security.Principal.Windows" Version="$(NuGet_DotNet)" />
   </ItemGroup>
 
   <ItemGroup>

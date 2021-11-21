@@ -12,7 +12,7 @@ pool:
 variables:
   group: BuildPipelineVariables
   uwpProject: '**/*.wapproj'
-  buildPlatform: 'x86|x64|ARM'
+  buildPlatform: 'x86|x64|arm64'
   buildConfiguration: 'Release'
   appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
   buildFolder: '$(Build.SourcesDirectory)\bin\'

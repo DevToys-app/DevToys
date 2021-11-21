@@ -4,7 +4,7 @@
         <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
 
         <Windows10SDKVersion>10.0.19041.0</Windows10SDKVersion>
-        <Windows10MinSDKVersion>10.0.18362.0</Windows10MinSDKVersion>
+        <Windows10MinSDKVersion>10.0.19041.0</Windows10MinSDKVersion>
 
         <!-- Defines the bin and obj folder paths -->
         <RepoRoot>$([System.IO.Path]::GetDirectoryName($([MSBuild]::GetPathOfFileAbove('.gitignore', '$(MSBuildThisFileDirectory)'))))\</RepoRoot>
@@ -17,7 +17,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <NuGet_DotNet>5.0.0</NuGet_DotNet>
+        <NuGet_DotNet>6.0.0</NuGet_DotNet>
         <Nuget_GitInfo>2.2.0</Nuget_GitInfo>
         <Nuget_Markdig>0.26.0</Nuget_Markdig>
         <NuGet_MicrosoftNETCoreUniversalWindowsPlatform>6.2.12</NuGet_MicrosoftNETCoreUniversalWindowsPlatform>

@@ -22,11 +22,11 @@
         <PlatformTarget>x64</PlatformTarget>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Platform)' == 'ARM'">
-        <PlatformTarget>ARM</PlatformTarget>
+    <PropertyGroup Condition="'$(Platform)' == 'arm64'">
+        <PlatformTarget>arm64</PlatformTarget>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|arm64'">
         <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;ARM</DefineConstants>
     </PropertyGroup>
 
