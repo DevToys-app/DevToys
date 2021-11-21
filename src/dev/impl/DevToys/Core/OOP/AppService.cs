@@ -22,7 +22,7 @@ namespace DevToys.Core.OOP
     internal sealed class AppService : IAppService
     {
         private const string FullTrustAppContractName = "Windows.ApplicationModel.FullTrustAppContract";
-        private const string PipeName = $"LOCAL\\{Shared.Constants.AppServiceName}";
+        private const string PipeName = "LOCAL\\{0}";
 
         private readonly ConcurrentDictionary<Guid, TaskCompletionSource<AppServiceMessageBase>> _inProgressMessages = new();
         private readonly ConcurrentDictionary<Guid, IProgress<AppServiceProgressMessage>> _progressReporters = new();
@@ -138,7 +138,7 @@ namespace DevToys.Core.OOP
 
                 _pipeServerStream
                     = new NamedPipeServerStream(
-                        PipeName,
+                        string.Format(PipeName, Shared.Constants.AppServiceName),
                         PipeDirection.InOut,
                         NamedPipeServerStream.MaxAllowedServerInstances,
                         PipeTransmissionMode.Message,

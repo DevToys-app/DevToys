@@ -1,4 +1,5 @@
-﻿using DevToys.OutOfProcService.Core.OOP;
+﻿using System.Threading.Tasks;
+using DevToys.OutOfProcService.Core.OOP;
 using DevToys.Shared.Api.Core;
 using DevToys.Shared.Core;
 

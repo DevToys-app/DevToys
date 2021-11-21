@@ -17,6 +17,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
+        <NuGet_DotNet>5.0.0</NuGet_DotNet>
         <Nuget_GitInfo>2.2.0</Nuget_GitInfo>
         <Nuget_Markdig>0.26.0</Nuget_Markdig>
         <NuGet_MicrosoftNETCoreUniversalWindowsPlatform>6.2.12</NuGet_MicrosoftNETCoreUniversalWindowsPlatform>
@@ -32,7 +33,6 @@
         <NuGet_MSTestTestFramework>2.1.1</NuGet_MSTestTestFramework>
         <NuGet_NewtonsoftJson>12.0.3</NuGet_NewtonsoftJson>
         <Nuget_ObservableVector>2.1.0</Nuget_ObservableVector>
-        <NuGet_SystemComposition>5.0.0</NuGet_SystemComposition>
         <NuGet_Win2D>1.26.0</NuGet_Win2D>
         <NuGet_YamlDotNet>11.2.1</NuGet_YamlDotNet>
         <NuGet_IdentityModelTokenJwt>6.13.1</NuGet_IdentityModelTokenJwt>

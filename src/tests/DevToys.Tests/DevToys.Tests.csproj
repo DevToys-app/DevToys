@@ -84,7 +84,7 @@
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="$(NuGet_MicrosoftToolkitMvvm)" />
     <PackageReference Include="MSTest.TestAdapter" Version="$(NuGet_MSTestTestAdapter)" />
     <PackageReference Include="MSTest.TestFramework" Version="$(NuGet_MSTestTestFramework)" />
-    <PackageReference Include="System.Composition" Version="$(NuGet_SystemComposition)" />
+    <PackageReference Include="System.Composition" Version="$(NuGet_DotNet)" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\dev\impl\DevToys\DevToys.csproj">

@@ -1,4 +1,6 @@
-﻿using System.Composition;
+﻿using System;
+using System.Composition;
+using System.IO;
 using DevToys.Shared.Core.OOP;
 
 namespace DevToys.OutOfProcService.API.Core.OOP
