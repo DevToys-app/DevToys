@@ -118,4 +118,5 @@
       <SubType>Designer</SubType>
     </AppxManifest>
   </ItemGroup>
+  <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
 </Project>
