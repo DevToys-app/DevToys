@@ -4,6 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows$(Windows10MinSDKVersion)</TargetFramework>
     <Platforms>ARM32;x86;x64</Platforms>
+    <RuntimeIdentifiers>win-x86;win-x64;win-arm</RuntimeIdentifiers>
   </PropertyGroup>
 
   <ItemGroup>
