@@ -75,7 +75,8 @@ jobs:
       platform: 'x86'
       configuration: '$(buildConfiguration)'
       msbuildArguments: '/bl:"$(buildFolder)\msbuild.binlog"
-                         /t:build;_GenerateAppxPackage 
+                         /t:build;_GenerateAppxPackage
+                         /restore
                          /p:AppxBundlePlatforms="$(buildPlatform)"
                          /p:AppxPackageDir="$(appxPackageDir)"
                          /p:AppxBundle=Always
@@ -148,7 +149,8 @@ jobs:
       platform: 'x86'
       configuration: '$(buildConfiguration)'
       msbuildArguments: '/bl:"$(buildFolder)\msbuild.binlog"
-                         /t:build;_GenerateAppxPackage 
+                         /t:build;_GenerateAppxPackage
+                         /restore
                          /p:AppxBundlePlatforms="$(buildPlatform)"
                          /p:AppxPackageDir="$(appxPackageDir)"
                          /p:AppxBundle=Always

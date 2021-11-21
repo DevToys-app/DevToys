@@ -43,6 +43,7 @@ jobs:
       configuration: '$(buildConfiguration)'
       msbuildArguments: '/bl:"$(buildFolder)\msbuild.binlog"
                          /t:build
+                         /restore
                          /p:AppxBundlePlatforms="$(buildPlatform)"
                          /p:AppxPackageDir="$(appxPackageDir)"
                          /p:AppxPackageSigningEnabled=false
