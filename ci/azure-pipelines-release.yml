@@ -54,6 +54,12 @@ jobs:
     inputs:
       secureFile: '$(certificateSecureFilePath)'
 
+  - task: UseDotNet@2
+    displayName: 'Set to use .Net 6.0'
+    inputs:
+      packageType: sdk
+      version: 6.x
+
   # Run the init.ps1, which mostly restores dependencies
   - task: PowerShell@2
     displayName: 'Restore nuget packages & Monaco editor'
@@ -120,6 +126,12 @@ jobs:
         (Get-Content $_ -Raw | ForEach -Process {$_ -replace "Assets\\Logo-Prev", "Assets\Logo"}) | Set-Content $_ -NoNewline
         }
       failOnStderr: true
+
+  - task: UseDotNet@2
+    displayName: 'Set to use .Net 6.0'
+    inputs:
+      packageType: sdk
+      version: 6.x
 
   # Run the init.ps1, which mostly restores dependencies
   - task: PowerShell@2
