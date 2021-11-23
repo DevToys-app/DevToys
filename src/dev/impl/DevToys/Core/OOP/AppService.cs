@@ -25,6 +25,7 @@ namespace DevToys.Core.OOP
         private const string FullTrustAppContractName = "Windows.ApplicationModel.FullTrustAppContract";
         private const string PipeName = "LOCAL\\{0}";
 
+        private readonly DisposableSempahore _sempahore = new();
         private readonly ConcurrentDictionary<Guid, TaskCompletionSource<AppServiceMessageBase>> _inProgressMessages = new();
         private readonly ConcurrentDictionary<Guid, IProgress<AppServiceProgressMessage>> _progressReporters = new();
         private NamedPipeServerStream? _pipeServerStream;
@@ -72,27 +73,31 @@ namespace DevToys.Core.OOP
 
             try
             {
-                await TaskScheduler.Default;
-
-                // Make sure we're connected to the app service.
-                await ConnectAsync();
-                ThrowIfNotConnected();
-
-                // Give a unique ID to the message.
-                message.MessageId = Guid.NewGuid();
-
-                // start tracking the message.
                 var messageCompletionSource = new TaskCompletionSource<AppServiceMessageBase>();
-                _inProgressMessages.TryAdd(message.MessageId.Value, messageCompletionSource);
-                _progressReporters.TryAdd(message.MessageId.Value, progress);
 
-                // Send the message.
-                string jsonMessage = JsonConvert.SerializeObject(message, Shared.Constants.AppServiceJsonSerializerSettings);
-                byte[] messageBuffer = Encoding.UTF8.GetBytes(jsonMessage);
+                using (await _sempahore.WaitAsync(CancellationToken.None))
+                {
+                    await TaskScheduler.Default;
 
-                _pipeServerStream!.Write(messageBuffer, 0, messageBuffer.Length);
-                _pipeServerStream.Flush();
-                _pipeServerStream.WaitForPipeDrain();
+                    // Make sure we're connected to the app service.
+                    await ConnectAsync();
+                    ThrowIfNotConnected();
+
+                    // Give a unique ID to the message.
+                    message.MessageId = Guid.NewGuid();
+
+                    // start tracking the message.
+                    _inProgressMessages.TryAdd(message.MessageId.Value, messageCompletionSource);
+                    _progressReporters.TryAdd(message.MessageId.Value, progress);
+
+                    // Send the message.
+                    string jsonMessage = JsonConvert.SerializeObject(message, Shared.Constants.AppServiceJsonSerializerSettings);
+                    byte[] messageBuffer = Encoding.UTF8.GetBytes(jsonMessage);
+
+                    _pipeServerStream!.Write(messageBuffer, 0, messageBuffer.Length);
+                    _pipeServerStream.Flush();
+                    _pipeServerStream.WaitForPipeDrain();
+                }
 
                 // Wait for the answer of the app service.
                 AppServiceMessageBase result = await messageCompletionSource.Task;

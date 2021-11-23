@@ -26,6 +26,7 @@ namespace DevToys.OutOfProcService.Core.OOP
     {
         private const string PipeName = @"Sessions\{0}\AppContainerNamedObjects\{1}\{2}";
 
+        private readonly DisposableSempahore _sempahore = new();
         private readonly TaskCompletionSource _appServiceConnectionClosedTask = new();
         private readonly IMefProvider _mefProvider;
 
@@ -222,14 +223,17 @@ namespace DevToys.OutOfProcService.Core.OOP
 
         private async Task SendMessageAsync(AppServiceMessageBase inputMessage)
         {
-            ThrowIfNotConnected();
+            using (await _sempahore.WaitAsync(CancellationToken.None))
+            {
+                ThrowIfNotConnected();
 
-            string jsonMessage = JsonConvert.SerializeObject(inputMessage, Shared.Constants.AppServiceJsonSerializerSettings);
-            byte[] messageBuffer = Encoding.UTF8.GetBytes(jsonMessage);
+                string jsonMessage = JsonConvert.SerializeObject(inputMessage, Shared.Constants.AppServiceJsonSerializerSettings);
+                byte[] messageBuffer = Encoding.UTF8.GetBytes(jsonMessage);
 
-            await _pipeClientStream!.WriteAsync(messageBuffer, 0, messageBuffer.Length);
-            await _pipeClientStream.FlushAsync();
-            _pipeClientStream.WaitForPipeDrain();
+                await _pipeClientStream!.WriteAsync(messageBuffer, 0, messageBuffer.Length);
+                await _pipeClientStream.FlushAsync();
+                _pipeClientStream.WaitForPipeDrain();
+            }
         }
 
         private static string GetPackageSid()

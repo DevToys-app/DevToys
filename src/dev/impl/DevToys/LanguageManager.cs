@@ -34,6 +34,7 @@ namespace DevToys
         private readonly JwtDecoderEncoderStrings _jwtdecoderencoder = new JwtDecoderEncoderStrings();
         private readonly MainPageStrings _mainpage = new MainPageStrings();
         private readonly MarkdownPreviewStrings _markdownpreview = new MarkdownPreviewStrings();
+        private readonly PngJpgCompressorStrings _pngjpgcompressor = new PngJpgCompressorStrings();
         private readonly RegExStrings _regex = new RegExStrings();
         private readonly SettingsStrings _settings = new SettingsStrings();
         private readonly StringUtilitiesStrings _stringutilities = new StringUtilitiesStrings();
@@ -99,6 +100,11 @@ namespace DevToys
         /// Gets the <see cref="MarkdownPreviewStrings"/>.
         /// </summary>
         public MarkdownPreviewStrings MarkdownPreview => _markdownpreview;
+
+        /// <summary>
+        /// Gets the <see cref="PngJpgCompressorStrings"/>.
+        /// </summary>
+        public PngJpgCompressorStrings PngJpgCompressor => _pngjpgcompressor;
 
         /// <summary>
         /// Gets the <see cref="RegExStrings"/>.
@@ -751,6 +757,41 @@ namespace DevToys
         /// Gets the resource ThemeDescription.
         /// </summary>
         public string ThemeDescription => _resources.GetString("ThemeDescription");
+    }
+
+    public class PngJpgCompressorStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("PngJpgCompressor");
+
+        /// <summary>
+        /// Gets the resource Configuration.
+        /// </summary>
+        public string Configuration => _resources.GetString("Configuration");
+
+        /// <summary>
+        /// Gets the resource DisplayName.
+        /// </summary>
+        public string DisplayName => _resources.GetString("DisplayName");
+
+        /// <summary>
+        /// Gets the resource InvalidSelectedFiles.
+        /// </summary>
+        public string InvalidSelectedFiles => _resources.GetString("InvalidSelectedFiles");
+
+        /// <summary>
+        /// Gets the resource SelectFilesInstruction1.
+        /// </summary>
+        public string SelectFilesInstruction1 => _resources.GetString("SelectFilesInstruction1");
+
+        /// <summary>
+        /// Gets the resource SelectFilesInstruction2.
+        /// </summary>
+        public string SelectFilesInstruction2 => _resources.GetString("SelectFilesInstruction2");
+
+        /// <summary>
+        /// Gets the resource SelectFilesInstruction3.
+        /// </summary>
+        public string SelectFilesInstruction3 => _resources.GetString("SelectFilesInstruction3");
     }
 
     public class RegExStrings : ObservableObject

@@ -1,0 +1,247 @@
+﻿<Page
+    x:Class="DevToys.Views.Tools.PngJpgCompressor.PngJpgCompressorToolPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:DevToys.UI.Converters"
+    xmlns:local="using:DevToys.ViewModels.Tools.PngJpgCompressor"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    mc:Ignorable="d"
+    NavigationCacheMode="Required">
+    <Page.Resources>
+        <converters:BooleanToVisibilityConverter x:Name="BooleanToVisibilityConverter"/>
+        <converters:BooleanToDoubleConverter x:Name="BooleanToDoubleConverter" ValueOnFalse="0.0" ValueOnTrue="1.0"/>
+
+        <Style x:Key="CompressionWorkItemBackgroundGridStyle" TargetType="Grid">
+            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="Background" Value="{ThemeResource ExpanderHeaderBackground}" />
+            <Setter Property="BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrush}" />
+            <Setter Property="BorderThickness" Value="{ThemeResource ExpanderHeaderBorderThickness}" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="MinHeight" Value="{StaticResource ExpanderMinHeight}" />
+            <Setter Property="Padding" Value="{StaticResource ExpanderContentPadding}" />
+        </Style>
+    </Page.Resources>
+
+    <StackPanel Margin="0,0,0,16" Spacing="12">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="SelectFilesPointerHover">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsSelectFilesAreaHighlithed, Mode=OneWay}"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="SelectFilesRectangle.Stroke" Value="{ThemeResource TextControlHeaderForeground}" />
+                        <Setter Target="SelectFilesRectangle.Fill" Value="{ThemeResource ButtonBackgroundPointerOver}" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <StackPanel.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
+            </TransitionCollection>
+        </StackPanel.ChildrenTransitions>
+
+        <Grid
+            AllowDrop="True"
+            Background="Transparent"
+            CornerRadius="4">
+            <i:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="DragOver">
+                    <core:InvokeCommandAction
+                        Command="{x:Bind ViewModel.SelectFilesAreaDragOverCommand}"/>
+                </core:EventTriggerBehavior>
+                <core:EventTriggerBehavior EventName="DragLeave">
+                    <core:InvokeCommandAction
+                        Command="{x:Bind ViewModel.SelectFilesAreaDragLeaveCommand}"/>
+                </core:EventTriggerBehavior>
+                <core:EventTriggerBehavior EventName="Drop">
+                    <core:InvokeCommandAction
+                        Command="{x:Bind ViewModel.SelectFilesAreaDragDropCommand}"/>
+                </core:EventTriggerBehavior>
+            </i:Interaction.Behaviors>
+            <Rectangle
+                x:Name="SelectFilesRectangle"
+                Stroke="{ThemeResource TextControlHeaderForegroundDisabled}"
+                StrokeDashArray="4 4"
+                StrokeThickness="2"
+                Fill="Transparent">
+            </Rectangle>
+            <StackPanel
+                Spacing="8"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="24">
+                <TextBlock
+                    Text="{x:Bind ViewModel.Strings.SelectFilesInstruction1}"
+                    TextTrimming="CharacterEllipsis"
+                    TextWrapping="WrapWholeWords"
+                    HorizontalAlignment="Center"/>
+                <TextBlock
+                    Text="{x:Bind ViewModel.Strings.SelectFilesInstruction2}"
+                    HorizontalAlignment="Center"/>
+                <Button
+                    Style="{StaticResource AccentButtonStyle}"
+                    Content="{x:Bind ViewModel.Strings.SelectFilesInstruction3}"
+                    HorizontalAlignment="Center"
+                    Command="{x:Bind ViewModel.SelectFilesBrowseCommand}"/>
+                <TextBlock
+                    Text="{x:Bind ViewModel.Strings.InvalidSelectedFiles}"
+                    HorizontalAlignment="Center"
+                    FontSize="11"
+                    Foreground="Red"
+                    Visibility="{x:Bind ViewModel.HasInvalidFilesSelected, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel
+            Orientation="Horizontal"
+            Spacing="8"
+            HorizontalAlignment="Right">
+            <Button
+                Style="{StaticResource AccentButtonStyle}">
+                <StackPanel Orientation="Horizontal" Spacing="4">
+                    <FontIcon Glyph="&#xF67F;"/>
+                    <TextBlock VerticalAlignment="Center" Text="Save all"/>
+                </StackPanel>
+            </Button>
+            <Button
+                Command="{x:Bind ViewModel.DeleteAllCommand}">
+                <StackPanel Orientation="Horizontal" Spacing="4">
+                    <FontIcon Glyph="&#xF34C;"/>
+                    <TextBlock VerticalAlignment="Center" Text="Delete all"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <ItemsControl
+            ItemsSource="{x:Bind ViewModel.CompressionWorkQueue}">
+            <ItemsControl.ItemContainerTransitions>
+                <TransitionCollection>
+                    <AddDeleteThemeTransition />
+                </TransitionCollection>
+            </ItemsControl.ItemContainerTransitions>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="local:ImageCompressionWorkItem">
+                    <Grid Style="{StaticResource CompressionWorkItemBackgroundGridStyle}" Margin="0,4,0,0">
+                        <Grid
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid
+                                Grid.Column="0">
+                                <FontIcon
+                                    Grid.Column="0"
+                                    x:Name="IsDoneIndication"
+                                    x:Load="{x:Bind IsDone, Mode=OneWay}"
+                                    Opacity="{x:Bind IsDone, Mode=OneWay, Converter={StaticResource BooleanToDoubleConverter}}"
+                                    FontFamily="{StaticResource FluentSystemIcons}"
+                                    HorizontalAlignment="Left"
+                                    Width="42"
+                                    Height="42"
+                                    FontSize="42"
+                                    Foreground="Green"
+                                    Glyph="&#xF298;">
+                                    <FontIcon.OpacityTransition>
+                                        <ScalarTransition/>
+                                    </FontIcon.OpacityTransition>
+                                </FontIcon>
+                                <FontIcon
+                                    Grid.Column="0"
+                                    x:Name="HasFailedIndication"
+                                    x:Load="{x:Bind HasFailed, Mode=OneWay}"
+                                    Opacity="{x:Bind HasFailed, Mode=OneWay, Converter={StaticResource BooleanToDoubleConverter}}"
+                                    FontFamily="{StaticResource FluentSystemIcons}"
+                                    HorizontalAlignment="Left"
+                                    Width="42"
+                                    Height="42"
+                                    FontSize="42"
+                                    Foreground="Red"
+                                    Glyph="&#xF36D;">
+                                    <FontIcon.OpacityTransition>
+                                        <ScalarTransition/>
+                                    </FontIcon.OpacityTransition>
+                                </FontIcon>
+                                <muxc:ProgressRing
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Left"
+                                    Width="42"
+                                    Height="42"
+                                    IsIndeterminate="False"
+                                    Value="{x:Bind ProgressPercentage, Mode=OneWay}"/>
+                            </Grid>
+                            <StackPanel
+                                Grid.Column="1"
+                                Margin="12,0,0,0"
+                                Spacing="4"
+                                VerticalAlignment="Center">
+                                <TextBlock
+                                    Text="{x:Bind FileName}"
+                                    TextWrapping="Wrap" />
+                                <TextBlock
+                                    Text="{x:Bind OriginalFileSize, Mode=OneWay}"
+                                    Opacity="0.75"/>
+                            </StackPanel>
+                            <StackPanel
+                                Grid.Column="2"
+                                Margin="12,0,0,0"
+                                Spacing="4"
+                                VerticalAlignment="Center">
+                                <TextBlock
+                                    HorizontalAlignment="Right"
+                                    Text="{x:Bind CompressionRatio, Mode=OneWay}" />
+                                <TextBlock
+                                    Text="{x:Bind NewFileSize, Mode=OneWay}"
+                                    Opacity="0.75"/>
+                            </StackPanel>
+                            <StackPanel
+                                Grid.Column="3"
+                                Margin="12,0,0,0"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <Button
+                                    x:Name="CancelButton"
+                                    x:Load="{x:Bind CanCancel, Mode=OneWay}"
+                                    Style="{StaticResource CommandBarFlyoutEllipsisButtonStyle}"
+                                    ToolTipService.ToolTip="Cancel">
+                                    <FontIcon
+                                        FontFamily="{StaticResource FluentSystemIcons}"
+                                        Glyph="&#xF75A;"/>
+                                </Button>
+                                <Button
+                                    x:Name="SaveButton"
+                                    x:Load="{x:Bind IsDone, Mode=OneWay}"
+                                    Style="{StaticResource CommandBarFlyoutEllipsisButtonStyle}"
+                                    ToolTipService.ToolTip="Save as">
+                                    <FontIcon
+                                        FontFamily="{StaticResource FluentSystemIcons}"
+                                        Glyph="&#xF67F;"/>
+                                </Button>
+                                <Button
+                                    x:Name="DeleteButton"
+                                    x:Load="{x:Bind CanDelete, Mode=OneWay}"
+                                    Style="{StaticResource CommandBarFlyoutEllipsisButtonStyle}"
+                                    Command="{x:Bind DeleteCommand}"
+                                    ToolTipService.ToolTip="Delete">
+                                    <FontIcon
+                                        FontFamily="{StaticResource FluentSystemIcons}"
+                                        Glyph="&#xF34C;"/>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
+</Page>
