@@ -29,6 +29,12 @@
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Assets\ect-0.8.3.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
   <PropertyGroup>
     <CsWinRTWindowsMetadata>sdk</CsWinRTWindowsMetadata>
   </PropertyGroup>

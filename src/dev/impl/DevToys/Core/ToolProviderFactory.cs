@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Composition;
 using System.Linq;
+using System.Threading.Tasks;
 using DevToys.Api.Tools;
+using DevToys.Core;
 
 namespace DevToys.Providers.Impl
 {
@@ -19,6 +21,8 @@ namespace DevToys.Providers.Impl
             [ImportMany] IEnumerable<Lazy<IToolProvider, ToolProviderMetadata>> providers)
         {
             _providers = providers;
+
+            App.Current.Suspending += OnAppSuspending; ;
         }
 
         public IToolViewModel GetToolViewModel(IToolProvider provider)
@@ -91,6 +95,36 @@ namespace DevToys.Providers.Impl
             {
                 yield return new MatchedToolProvider(provider.Metadata, provider.Value, matches);
             }
+        }
+
+        public async Task CleanupAsync()
+        {
+            foreach (IToolViewModel toolViewModel in _toolProviderToViewModelCache.Values)
+            {
+                try
+                {
+                    if (toolViewModel is IDisposable disposable)
+                    {
+                        disposable.Dispose();
+                    }
+
+                    if (toolViewModel is IAsyncDisposable asyncDisposable)
+                    {
+                        await asyncDisposable.DisposeAsync();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogFault("ToolProviderFactory", ex, $"Unable to cleanup the tool '{toolViewModel.GetType().Name}'.");
+                }
+            }
+
+            _toolProviderToViewModelCache.Clear();
+        }
+
+        private async void OnAppSuspending(object sender, Windows.ApplicationModel.SuspendingEventArgs e)
+        {
+            await CleanupAsync();
         }
     }
 }

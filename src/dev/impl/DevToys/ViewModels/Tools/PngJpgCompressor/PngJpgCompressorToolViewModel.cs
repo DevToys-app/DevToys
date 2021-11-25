@@ -22,7 +22,7 @@ using Windows.UI.Xaml;
 namespace DevToys.ViewModels.Tools.PngJpgCompressor
 {
     [Export(typeof(PngJpgCompressorToolViewModel))]
-    public sealed class PngJpgCompressorToolViewModel : ObservableRecipient, IToolViewModel
+    public sealed class PngJpgCompressorToolViewModel : ObservableRecipient, IToolViewModel, IDisposable
     {
         private static readonly string[] SupportedFileExtensions = new[] { ".png", ".jpg", ".jpeg" };
 
@@ -59,6 +59,19 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
             SelectFilesAreaDragDropCommand = new AsyncRelayCommand<DragEventArgs>(ExecuteSelectFilesAreaDragDropCommandAsync);
             SelectFilesBrowseCommand = new AsyncRelayCommand(ExecuteSelectFilesBrowseCommandAsync);
             DeleteAllCommand = new RelayCommand(ExecuteDeleteAllCommand);
+        }
+
+        public void Dispose()
+        {
+            // Cancel all compression work in progress.
+            var works = CompressionWorkQueue.ToList();
+            foreach (ImageCompressionWorkItem? work in works)
+            {
+                work.CancelCommand.Execute(null);
+            }
+
+            // Delete all completed compression work.
+            DeleteAllCommand.Execute(null);
         }
 
         #region SelectFilesAreaDragOverCommand
@@ -184,6 +197,7 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
                 if (workItem.CanDelete)
                 {
                     CompressionWorkQueue.Remove(workItem);
+                    workItem.Dispose();
                 }
                 else
                 {
@@ -217,6 +231,7 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
             var workItem = (ImageCompressionWorkItem)sender;
             workItem.DeleteItemRequested -= WorkItem_DeleteItemRequested;
             CompressionWorkQueue.Remove(workItem);
+            workItem.Dispose();
         }
     }
 }

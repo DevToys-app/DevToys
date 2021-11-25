@@ -7,5 +7,14 @@ namespace DevToys.Shared.AppServiceMessages.PngJpgCompressor
     {
         [JsonProperty]
         internal string? ErrorMessage { get; set; }
+
+        [JsonProperty]
+        internal long NewFileSize { get; set; }
+
+        [JsonProperty]
+        internal double PercentageSaved { get; set; }
+
+        [JsonProperty]
+        internal string TempCompressedFilePath { get; set; } = string.Empty;
     }
 }

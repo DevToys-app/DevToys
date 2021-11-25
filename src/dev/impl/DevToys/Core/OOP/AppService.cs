@@ -38,17 +38,31 @@ namespace DevToys.Core.OOP
 
         public Task<T> SendMessageAndGetResponseAsync<T>(AppServiceMessageBase message) where T : AppServiceMessageBase
         {
-            return SendMessageAndGetResponseAsync<T>(message, DummyProgress.DefaultInstance);
+            return SendMessageAndGetResponseAsync<T>(message, CancellationToken.None);
         }
 
-        public async Task<T> SendMessageAndGetResponseAsync<T>(AppServiceMessageBase message, IProgress<AppServiceProgressMessage> progress) where T : AppServiceMessageBase
+        public Task<T> SendMessageAndGetResponseAsync<T>(AppServiceMessageBase message, CancellationToken cancellationToken) where T : AppServiceMessageBase
+        {
+            return SendMessageAndGetResponseAsync<T>(message, DummyProgress.DefaultInstance, cancellationToken);
+        }
+
+        public Task<T> SendMessageAndGetResponseAsync<T>(AppServiceMessageBase message, IProgress<AppServiceProgressMessage> progress) where T : AppServiceMessageBase
+        {
+            return SendMessageAndGetResponseAsync<T>(message, progress, CancellationToken.None);
+        }
+
+        public async Task<T> SendMessageAndGetResponseAsync<T>(AppServiceMessageBase message, IProgress<AppServiceProgressMessage> progress, CancellationToken cancellationToken) where T : AppServiceMessageBase
         {
             Arguments.NotNull(progress, nameof(progress));
 
-            AppServiceMessageBase? result = await SendMessageAsync(message, progress);
+            AppServiceMessageBase? result = await InternalSendMessageAndGetResponseAsync(message, progress, cancellationToken);
             if (result is null)
             {
                 throw new Exception("Unable to send a message to the app service.");
+            }
+            else if (result is AppServiceCancelMessage)
+            {
+                throw new OperationCanceledException("The message sent through the app service has been canceled.");
             }
 
             return (T)result;
@@ -66,43 +80,47 @@ namespace DevToys.Core.OOP
             deferral.Complete();
         }
 
-        private async Task<AppServiceMessageBase?> SendMessageAsync(AppServiceMessageBase message, IProgress<AppServiceProgressMessage> progress)
+        private async Task<AppServiceMessageBase?> InternalSendMessageAndGetResponseAsync(AppServiceMessageBase message, IProgress<AppServiceProgressMessage> progress, CancellationToken cancellationToken)
         {
             Arguments.NotNull(message, nameof(message));
             Arguments.NotNull(progress, nameof(progress));
 
             try
             {
+                var messageId = Guid.NewGuid();
                 var messageCompletionSource = new TaskCompletionSource<AppServiceMessageBase>();
 
-                using (await _sempahore.WaitAsync(CancellationToken.None))
+                using (await _sempahore.WaitAsync(cancellationToken))
                 {
                     await TaskScheduler.Default;
 
                     // Make sure we're connected to the app service.
                     await ConnectAsync();
                     ThrowIfNotConnected();
+                    cancellationToken.ThrowIfCancellationRequested();
 
                     // Give a unique ID to the message.
-                    message.MessageId = Guid.NewGuid();
+                    message.MessageId = messageId;
 
                     // start tracking the message.
                     _inProgressMessages.TryAdd(message.MessageId.Value, messageCompletionSource);
                     _progressReporters.TryAdd(message.MessageId.Value, progress);
 
                     // Send the message.
-                    string jsonMessage = JsonConvert.SerializeObject(message, Shared.Constants.AppServiceJsonSerializerSettings);
-                    byte[] messageBuffer = Encoding.UTF8.GetBytes(jsonMessage);
-
-                    _pipeServerStream!.Write(messageBuffer, 0, messageBuffer.Length);
-                    _pipeServerStream.Flush();
-                    _pipeServerStream.WaitForPipeDrain();
+                    SendMessage(message);
                 }
 
                 // Wait for the answer of the app service.
-                AppServiceMessageBase result = await messageCompletionSource.Task;
-                _progressReporters.TryRemove(message.MessageId.Value, out _);
-                return result;
+                using (CancellationTokenRegistration cancellationTokenRegistration
+                    = cancellationToken.Register(() =>
+                    {
+                        OnSendMessageCanceledAsync(messageId).Forget();
+                    }))
+                {
+                    AppServiceMessageBase result = await messageCompletionSource.Task;
+                    _progressReporters.TryRemove(message.MessageId.Value, out _);
+                    return result;
+                }
             }
             catch (Exception ex)
             {
@@ -112,7 +130,33 @@ namespace DevToys.Core.OOP
             return null;
         }
 
-        internal void Disconnect()
+        private void SendMessage(AppServiceMessageBase message)
+        {
+            string jsonMessage = JsonConvert.SerializeObject(message, Shared.Constants.AppServiceJsonSerializerSettings);
+            byte[] messageBuffer = Encoding.UTF8.GetBytes(jsonMessage);
+
+            _pipeServerStream!.Write(messageBuffer, 0, messageBuffer.Length);
+            _pipeServerStream.Flush();
+            _pipeServerStream.WaitForPipeDrain();
+        }
+
+        private async Task OnSendMessageCanceledAsync(Guid messageId)
+        {
+            ThrowIfNotConnected();
+            using (await _sempahore.WaitAsync(CancellationToken.None))
+            {
+                await TaskScheduler.Default;
+
+                // Send the cancellation message.
+                var message = new AppServiceCancelMessage
+                {
+                    MessageId = messageId
+                };
+                SendMessage(message);
+            }
+        }
+
+        private void Disconnect()
         {
             foreach (TaskCompletionSource<AppServiceMessageBase>? messageCompletionSource in _inProgressMessages.Values)
             {

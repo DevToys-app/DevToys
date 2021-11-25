@@ -1,12 +1,14 @@
 ﻿#nullable enable
 
 using System;
+using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using DevToys.Api.Core.OOP;
+using DevToys.Core;
 using DevToys.Core.Threading;
 using DevToys.Shared.AppServiceMessages.PngJpgCompressor;
 using DevToys.Shared.Core;
-using DevToys.Shared.Core.OOP;
 using DevToys.Shared.Core.Threading;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -15,12 +17,14 @@ using Windows.Storage.FileProperties;
 
 namespace DevToys.ViewModels.Tools.PngJpgCompressor
 {
-    internal sealed class ImageCompressionWorkItem : ObservableRecipient, IProgress<AppServiceProgressMessage>
+    internal sealed class ImageCompressionWorkItem : ObservableRecipient, IDisposable
     {
+        private readonly CancellationTokenSource _cancellationTokenSource = new();
         private int _progressionPercentage;
         private string _originalFileSize = string.Empty;
         private string _newFileSize = string.Empty;
         private string _compressionRatio = string.Empty;
+        private string? _tempCompressedFilePath;
         private bool _isDone;
         private bool _hasFailed;
         private bool _canCancel;
@@ -131,6 +135,21 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
             ConvertAsync(appService).Forget();
         }
 
+        public void Dispose()
+        {
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(_tempCompressedFilePath) && File.Exists(_tempCompressedFilePath))
+                {
+                    File.Delete(_tempCompressedFilePath);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogFault(nameof(ImageCompressionWorkItem), ex, "Unable to dispose the the work item");
+            }
+        }
+
         #region DeleteCommand
 
         public IRelayCommand DeleteCommand { get; }
@@ -159,30 +178,10 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
 
         private void ExecuteCancelCommand()
         {
+            _cancellationTokenSource.Cancel();
         }
 
         #endregion
-
-        private async Task ComputePropertiesAsync(StorageFile file)
-        {
-            BasicProperties fileProperties = await file.GetBasicPropertiesAsync();
-
-            string[] sizes = { "Bytes", "KB", "MB", "GB", "TB" };
-            double fileSize = fileProperties.Size;
-            int order = 0;
-            while (fileSize >= 1024 && order < sizes.Length - 1)
-            {
-                order++;
-                fileSize /= 1024;
-            }
-
-            string fileSizeString = string.Format("{0:0.##} {1}", fileSize, sizes[order]);
-
-            await ThreadHelper.RunOnUIThreadAsync(() =>
-            {
-                OriginalFileSize = fileSizeString;
-            });
-        }
 
         private async Task ConvertAsync(IAppService appService)
         {
@@ -193,35 +192,69 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
                 FilePath = FilePath,
             };
 
-            PngJpgCompressorWorkResultMessage result
-                = await appService.SendMessageAndGetResponseAsync<PngJpgCompressorWorkResultMessage>(
-                    message,
-                    progress: this);
+            try
+            {
+                PngJpgCompressorWorkResultMessage result
+                    = await appService.SendMessageAndGetResponseAsync<PngJpgCompressorWorkResultMessage>(
+                        message,
+                        _cancellationTokenSource.Token);
+
+                _tempCompressedFilePath = result.TempCompressedFilePath;
+
+                await ThreadHelper.RunOnUIThreadAsync(() =>
+                {
+                    CanCancel = false;
+                    ProgressPercentage = 0;
+                    if (string.IsNullOrEmpty(result.ErrorMessage))
+                    {
+                        IsDone = true;
+                        CompressionRatio = result.PercentageSaved.ToString("P");
+                        NewFileSize = HumanizeFileSize(result.NewFileSize);
+                    }
+                    else
+                    {
+                        HasFailed = true;
+                        Logger.Log("PNG/JPG Compressor", result.ErrorMessage ?? string.Empty);
+                    }
+                    CanDelete = true;
+                });
+            }
+            catch (OperationCanceledException)
+            {
+                await ThreadHelper.RunOnUIThreadAsync(() =>
+                {
+                    CanCancel = false;
+                    IsDone = true;
+                    CanDelete = true;
+                    DeleteCommand.Execute(null);
+                });
+            }
+        }
+
+        private async Task ComputePropertiesAsync(StorageFile file)
+        {
+            BasicProperties fileProperties = await file.GetBasicPropertiesAsync();
+
+            string fileSize = HumanizeFileSize(fileProperties.Size);
 
             await ThreadHelper.RunOnUIThreadAsync(() =>
             {
-                CanCancel = false;
-                ProgressPercentage = 0;
-                if (string.IsNullOrEmpty(result.ErrorMessage))
-                {
-                    IsDone = true;
-                    CompressionRatio = "## %";
-                    NewFileSize = "#.## MB";
-                }
-                else
-                {
-                    HasFailed = true;
-                }
-                CanDelete = true;
+                OriginalFileSize = fileSize;
             });
         }
 
-        public void Report(AppServiceProgressMessage value)
+        private string HumanizeFileSize(double fileSize)
         {
-            ThreadHelper.RunOnUIThreadAsync(() =>
+            string[] sizes = { "Bytes", "KB", "MB", "GB", "TB" };
+            int order = 0;
+            while (fileSize >= 1024 && order < sizes.Length - 1)
             {
-                ProgressPercentage = value.ProgressPercentage;
-            });
+                order++;
+                fileSize /= 1024;
+            }
+
+            string fileSizeString = string.Format("{0:0.##} {1}", fileSize, sizes[order]);
+            return fileSizeString;
         }
     }
 }

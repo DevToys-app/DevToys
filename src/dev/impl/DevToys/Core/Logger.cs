@@ -41,6 +41,14 @@ namespace DevToys.Core
             }
         }
 
+        internal static void Log(string featureName, string message)
+        {
+            lock (_semaphore)
+            {
+                LogFaultAsync(featureName, null, message).ForgetSafely();
+            }
+        }
+
         internal static void LogFault(string featureName, Exception ex, string? message = null)
         {
             lock (_semaphore)
@@ -49,7 +57,7 @@ namespace DevToys.Core
             }
         }
 
-        private static async Task LogFaultAsync(string featureName, Exception ex, string? message)
+        private static async Task LogFaultAsync(string featureName, Exception? ex, string? message)
         {
             await TaskScheduler.Default;
 
@@ -61,18 +69,33 @@ namespace DevToys.Core
 
                     StorageFile logFile = await localCacheFolder.CreateFileAsync(LogFileName, CreationCollisionOption.OpenIfExists);
 
-                    var logsLine = new List<string>
+                    if (ex is null)
                     {
-                        $"# - [{DateTime.Now.ToString("G", DateTimeFormatInfo.InvariantInfo)}]",
-                        $"Feature name: {featureName}",
-                        $"Custom message: {message ?? string.Empty}",
-                        $"Exception message: {ex.Message}",
-                        $"Exception stack trace:",
-                        ex.StackTrace,
-                        string.Empty // empty line
-                    };
+                        var logsLine = new List<string>
+                        {
+                            $"# - [{DateTime.Now.ToString("G", DateTimeFormatInfo.InvariantInfo)}]",
+                            $"Feature name: {featureName}",
+                            $"Custom message: {message ?? string.Empty}",
+                            string.Empty // empty line
+                        };
 
-                    await FileIO.AppendLinesAsync(logFile, logsLine);
+                        await FileIO.AppendLinesAsync(logFile, logsLine);
+                    }
+                    else
+                    {
+                        var logsLine = new List<string>
+                        {
+                            $"# - [{DateTime.Now.ToString("G", DateTimeFormatInfo.InvariantInfo)}]",
+                            $"Feature name: {featureName}",
+                            $"Custom message: {message ?? string.Empty}",
+                            $"Exception message: {ex.Message}",
+                            $"Exception stack trace:",
+                            ex.StackTrace,
+                            string.Empty // empty line
+                        };
+
+                        await FileIO.AppendLinesAsync(logFile, logsLine);
+                    }
                 }
             }
             catch (Exception)

@@ -1,4 +1,5 @@
 ﻿using System.Composition;
+using System.Threading;
 using System.Threading.Tasks;
 using DevToys.OutOfProcService.API.Core.OOP;
 using DevToys.OutOfProcService.Core.OOP;
@@ -17,7 +18,7 @@ namespace DevToys.OutOfProcService.OutOfProcServices
             _appService = appService;
         }
 
-        protected override Task<ShutdownMessage> ProcessMessageAsync(ShutdownMessage inputMessage)
+        protected override Task<ShutdownMessage> ProcessMessageAsync(ShutdownMessage inputMessage, CancellationToken cancellationToken)
         {
             _appService.IndicateAppServiceConnectionLost();
             return Task.FromResult(inputMessage);

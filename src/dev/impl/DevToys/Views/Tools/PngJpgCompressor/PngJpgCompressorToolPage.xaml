@@ -177,7 +177,7 @@
                                     HorizontalAlignment="Left"
                                     Width="42"
                                     Height="42"
-                                    IsIndeterminate="False"
+                                    IsIndeterminate="{x:Bind CanCancel, Mode=OneWay}"
                                     Value="{x:Bind ProgressPercentage, Mode=OneWay}"/>
                             </Grid>
                             <StackPanel
@@ -213,6 +213,7 @@
                                     x:Name="CancelButton"
                                     x:Load="{x:Bind CanCancel, Mode=OneWay}"
                                     Style="{StaticResource CommandBarFlyoutEllipsisButtonStyle}"
+                                    Command="{x:Bind CancelCommand}"
                                     ToolTipService.ToolTip="Cancel">
                                     <FontIcon
                                         FontFamily="{StaticResource FluentSystemIcons}"
