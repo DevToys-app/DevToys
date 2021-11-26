@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Bytes" xml:space="preserve">
+    <value>Bytes</value>
+  </data>
   <data name="Clear" xml:space="preserve">
     <value>清空</value>
   </data>
@@ -129,6 +132,15 @@
   <data name="Delete" xml:space="preserve">
     <value>删除</value>
   </data>
+  <data name="Gigabytes" xml:space="preserve">
+    <value>GB</value>
+  </data>
+  <data name="Kilobytes" xml:space="preserve">
+    <value>KB</value>
+  </data>
+  <data name="Megabytes" xml:space="preserve">
+    <value>MB</value>
+  </data>
   <data name="OpenFile" xml:space="preserve">
     <value>打开文件</value>
   </data>
@@ -140,6 +152,9 @@
   </data>
   <data name="SelectAll" xml:space="preserve">
     <value>选择全部</value>
+  </data>
+  <data name="Terabytes" xml:space="preserve">
+    <value>TB</value>
   </data>
   <data name="ToggleSwitchOff" xml:space="preserve">
     <value>关</value>

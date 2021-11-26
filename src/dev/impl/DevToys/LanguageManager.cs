@@ -34,6 +34,7 @@ namespace DevToys
         private readonly JwtDecoderEncoderStrings _jwtdecoderencoder = new JwtDecoderEncoderStrings();
         private readonly MainPageStrings _mainpage = new MainPageStrings();
         private readonly MarkdownPreviewStrings _markdownpreview = new MarkdownPreviewStrings();
+        private readonly PngJpgCompressorStrings _pngjpgcompressor = new PngJpgCompressorStrings();
         private readonly RegExStrings _regex = new RegExStrings();
         private readonly SettingsStrings _settings = new SettingsStrings();
         private readonly StringUtilitiesStrings _stringutilities = new StringUtilitiesStrings();
@@ -99,6 +100,11 @@ namespace DevToys
         /// Gets the <see cref="MarkdownPreviewStrings"/>.
         /// </summary>
         public MarkdownPreviewStrings MarkdownPreview => _markdownpreview;
+
+        /// <summary>
+        /// Gets the <see cref="PngJpgCompressorStrings"/>.
+        /// </summary>
+        public PngJpgCompressorStrings PngJpgCompressor => _pngjpgcompressor;
 
         /// <summary>
         /// Gets the <see cref="RegExStrings"/>.
@@ -242,6 +248,11 @@ namespace DevToys
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("Common");
 
         /// <summary>
+        /// Gets the resource Bytes.
+        /// </summary>
+        public string Bytes => _resources.GetString("Bytes");
+
+        /// <summary>
         /// Gets the resource Clear.
         /// </summary>
         public string Clear => _resources.GetString("Clear");
@@ -262,6 +273,21 @@ namespace DevToys
         public string Delete => _resources.GetString("Delete");
 
         /// <summary>
+        /// Gets the resource Gigabytes.
+        /// </summary>
+        public string Gigabytes => _resources.GetString("Gigabytes");
+
+        /// <summary>
+        /// Gets the resource Kilobytes.
+        /// </summary>
+        public string Kilobytes => _resources.GetString("Kilobytes");
+
+        /// <summary>
+        /// Gets the resource Megabytes.
+        /// </summary>
+        public string Megabytes => _resources.GetString("Megabytes");
+
+        /// <summary>
         /// Gets the resource OpenFile.
         /// </summary>
         public string OpenFile => _resources.GetString("OpenFile");
@@ -280,6 +306,11 @@ namespace DevToys
         /// Gets the resource SelectAll.
         /// </summary>
         public string SelectAll => _resources.GetString("SelectAll");
+
+        /// <summary>
+        /// Gets the resource Terabytes.
+        /// </summary>
+        public string Terabytes => _resources.GetString("Terabytes");
 
         /// <summary>
         /// Gets the resource ToggleSwitchOff.
@@ -751,6 +782,86 @@ namespace DevToys
         /// Gets the resource ThemeDescription.
         /// </summary>
         public string ThemeDescription => _resources.GetString("ThemeDescription");
+    }
+
+    public class PngJpgCompressorStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("PngJpgCompressor");
+
+        /// <summary>
+        /// Gets the resource Cancel.
+        /// </summary>
+        public string Cancel => _resources.GetString("Cancel");
+
+        /// <summary>
+        /// Gets the resource Configuration.
+        /// </summary>
+        public string Configuration => _resources.GetString("Configuration");
+
+        /// <summary>
+        /// Gets the resource Delete.
+        /// </summary>
+        public string Delete => _resources.GetString("Delete");
+
+        /// <summary>
+        /// Gets the resource DeleteAll.
+        /// </summary>
+        public string DeleteAll => _resources.GetString("DeleteAll");
+
+        /// <summary>
+        /// Gets the resource DetailsTitle.
+        /// </summary>
+        public string DetailsTitle => _resources.GetString("DetailsTitle");
+
+        /// <summary>
+        /// Gets the resource DisplayName.
+        /// </summary>
+        public string DisplayName => _resources.GetString("DisplayName");
+
+        /// <summary>
+        /// Gets the resource FileSizeDisplay.
+        /// </summary>
+        public string FileSizeDisplay => _resources.GetString("FileSizeDisplay");
+
+        /// <summary>
+        /// Gets the resource InvalidSelectedFiles.
+        /// </summary>
+        public string InvalidSelectedFiles => _resources.GetString("InvalidSelectedFiles");
+
+        /// <summary>
+        /// Gets the resource OK.
+        /// </summary>
+        public string OK => _resources.GetString("OK");
+
+        /// <summary>
+        /// Gets the resource SaveAll.
+        /// </summary>
+        public string SaveAll => _resources.GetString("SaveAll");
+
+        /// <summary>
+        /// Gets the resource SaveAs.
+        /// </summary>
+        public string SaveAs => _resources.GetString("SaveAs");
+
+        /// <summary>
+        /// Gets the resource SeeErrorMessage.
+        /// </summary>
+        public string SeeErrorMessage => _resources.GetString("SeeErrorMessage");
+
+        /// <summary>
+        /// Gets the resource SelectFilesInstruction1.
+        /// </summary>
+        public string SelectFilesInstruction1 => _resources.GetString("SelectFilesInstruction1");
+
+        /// <summary>
+        /// Gets the resource SelectFilesInstruction2.
+        /// </summary>
+        public string SelectFilesInstruction2 => _resources.GetString("SelectFilesInstruction2");
+
+        /// <summary>
+        /// Gets the resource SelectFilesInstruction3.
+        /// </summary>
+        public string SelectFilesInstruction3 => _resources.GetString("SelectFilesInstruction3");
     }
 
     public class RegExStrings : ObservableObject

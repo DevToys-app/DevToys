@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Composition;
 using System.Diagnostics;
@@ -26,6 +27,8 @@ namespace DevToys.OutOfProcService.Core.OOP
     {
         private const string PipeName = @"Sessions\{0}\AppContainerNamedObjects\{1}\{2}";
 
+        private readonly ConcurrentDictionary<Guid, CancellationTokenSource> _inProgressMessages = new();
+        private readonly DisposableSempahore _sempahore = new();
         private readonly TaskCompletionSource _appServiceConnectionClosedTask = new();
         private readonly IMefProvider _mefProvider;
 
@@ -156,7 +159,18 @@ namespace DevToys.OutOfProcService.Core.OOP
 
                 if (inputMessage.MessageId.HasValue)
                 {
-                    ProcessMessageAsync(inputMessage).Forget();
+                    CancellationToken cancellationToken = CancellationToken.None;
+                    var cancellationTokenSource = new CancellationTokenSource();
+                    if (!_inProgressMessages.TryAdd(inputMessage.MessageId.Value, cancellationTokenSource))
+                    {
+                        cancellationTokenSource.Dispose();
+                    }
+                    else
+                    {
+                        cancellationToken = cancellationTokenSource.Token;
+                    }
+
+                    ProcessMessageAsync(inputMessage, cancellationToken).Forget();
                 }
                 else
                 {
@@ -173,13 +187,20 @@ namespace DevToys.OutOfProcService.Core.OOP
             }
         }
 
-        private async Task ProcessMessageAsync(AppServiceMessageBase inputMessage)
+        private async Task ProcessMessageAsync(AppServiceMessageBase inputMessage, CancellationToken cancellationToken)
         {
             ThrowIfNotConnected();
             IOutOfProcService? service = null;
 
             try
             {
+                if (inputMessage is AppServiceCancelMessage cancelMessage
+                    && _inProgressMessages.TryGetValue(cancelMessage.MessageId!.Value, out CancellationTokenSource? cancellationTokenSource))
+                {
+                    cancellationTokenSource.Cancel();
+                    return;
+                }
+
                 // Get the service that corresponds to the message.
                 IEnumerable<Lazy<IOutOfProcService, OutOfProcServiceMetadata>> services
                     = _mefProvider.ImportMany<Lazy<IOutOfProcService, OutOfProcServiceMetadata>>();
@@ -187,11 +208,19 @@ namespace DevToys.OutOfProcService.Core.OOP
                 service.ReportProgress += Service_ReportProgress;
 
                 // Invoke the service.
-                AppServiceMessageBase outputMessage = await service.ProcessMessageAsync(inputMessage);
+                AppServiceMessageBase outputMessage = await service.ProcessMessageAsync(inputMessage, cancellationToken);
                 outputMessage.MessageId = inputMessage.MessageId;
 
                 // Send the service result as a response to the UWP app.
                 await SendMessageAsync(outputMessage);
+            }
+            catch (OperationCanceledException)
+            {
+                // Let the UWP app that the message got canceled.
+                await SendMessageAsync(new AppServiceCancelMessage
+                {
+                    MessageId = inputMessage.MessageId
+                });
             }
             catch (Exception)
             {
@@ -199,6 +228,11 @@ namespace DevToys.OutOfProcService.Core.OOP
             }
             finally
             {
+                if (_inProgressMessages.TryRemove(inputMessage.MessageId!.Value, out CancellationTokenSource? cancellationTokenSource))
+                {
+                    cancellationTokenSource.Dispose();
+                }
+
                 if (service is not null)
                 {
                     service.ReportProgress -= Service_ReportProgress;
@@ -222,14 +256,17 @@ namespace DevToys.OutOfProcService.Core.OOP
 
         private async Task SendMessageAsync(AppServiceMessageBase inputMessage)
         {
-            ThrowIfNotConnected();
+            using (await _sempahore.WaitAsync(CancellationToken.None))
+            {
+                ThrowIfNotConnected();
 
-            string jsonMessage = JsonConvert.SerializeObject(inputMessage, Shared.Constants.AppServiceJsonSerializerSettings);
-            byte[] messageBuffer = Encoding.UTF8.GetBytes(jsonMessage);
+                string jsonMessage = JsonConvert.SerializeObject(inputMessage, Shared.Constants.AppServiceJsonSerializerSettings);
+                byte[] messageBuffer = Encoding.UTF8.GetBytes(jsonMessage);
 
-            await _pipeClientStream!.WriteAsync(messageBuffer, 0, messageBuffer.Length);
-            await _pipeClientStream.FlushAsync();
-            _pipeClientStream.WaitForPipeDrain();
+                await _pipeClientStream!.WriteAsync(messageBuffer, 0, messageBuffer.Length);
+                await _pipeClientStream.FlushAsync();
+                _pipeClientStream.WaitForPipeDrain();
+            }
         }
 
         private static string GetPackageSid()

@@ -7,6 +7,7 @@ using DevToys.Api.Core;
 using DevToys.Api.Core.Navigation;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Core.Theme;
+using DevToys.Api.Tools;
 using DevToys.Core;
 using DevToys.Core.Settings;
 using DevToys.Core.Threading;
@@ -188,6 +189,8 @@ namespace DevToys
         {
             Logger.LogFault("Unhandled problem", e.Exception);
             await (await _marketingService.GetValueAsync()).NotifyAppEncounteredAProblemAsync();
+
+            await (await _mefComposer).ExportProvider.GetExport<IToolProviderFactory>().CleanupAsync();
         }
 
         private async Task<Frame> EnsureWindowIsInitializedAsync()
