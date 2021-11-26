@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DevToys.Api.Tools
 {
@@ -29,5 +30,10 @@ namespace DevToys.Api.Tools
         /// Gets the list of tools available that have the <see cref="IsFooterItemAttribute"/>.
         /// </summary>
         IEnumerable<MatchedToolProvider> GetFooterTools();
+
+        /// <summary>
+        /// Called when the app is shutting down. Asks ever tools to cleanup resources.
+        /// </summary>
+        Task CleanupAsync();
     }
 }

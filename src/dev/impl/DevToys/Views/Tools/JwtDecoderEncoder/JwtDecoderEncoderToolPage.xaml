@@ -22,6 +22,7 @@
         </Grid.RowDefinitions>
 
         <controls:CustomTextBox
+            Margin="0,12,0,0"
             Header="{x:Bind ViewModel.Strings.JwtTokenLabel}"
             Height="150"
             AcceptsReturn="True"

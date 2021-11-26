@@ -13,21 +13,26 @@ namespace DevToys.OutOfProcService.OutOfProcServices
         where TOutput : AppServiceMessageBase
     {
         private readonly DisposableSempahore _sempahore = new();
-        private Guid? _messageId;
         private bool _messageIsProcessing;
+
+        public Guid MessageId { get; private set; } = Guid.Empty;
 
         public event EventHandler<AppServiceProgressMessageEventArgs>? ReportProgress;
 
-        public async Task<AppServiceMessageBase> ProcessMessageAsync(AppServiceMessageBase inputMessage)
+        public async Task<AppServiceMessageBase> ProcessMessageAsync(AppServiceMessageBase inputMessage, CancellationToken cancellationToken)
         {
+            Assumes.NotNull(inputMessage.MessageId, nameof(inputMessage.MessageId));
+
             _messageIsProcessing = true;
-            _messageId = inputMessage.MessageId;
-            TOutput result = await ProcessMessageAsync((TInput)inputMessage);
+            MessageId = inputMessage.MessageId!.Value;
+            TOutput result = await ProcessMessageAsync((TInput)inputMessage, cancellationToken);
             _messageIsProcessing = false;
+
+            cancellationToken.ThrowIfCancellationRequested();
             return result;
         }
 
-        protected abstract Task<TOutput> ProcessMessageAsync(TInput inputMessage);
+        protected abstract Task<TOutput> ProcessMessageAsync(TInput inputMessage, CancellationToken cancellationToken);
 
         protected async Task ReportProgressAsync(int progressPercentage, string? message = null)
         {
@@ -36,7 +41,7 @@ namespace DevToys.OutOfProcService.OutOfProcServices
             using (await _sempahore.WaitAsync(CancellationToken.None))
             {
                 Assumes.IsTrue(_messageIsProcessing, nameof(_messageIsProcessing));
-                var eventArgs = new AppServiceProgressMessageEventArgs(_messageId!.Value, progressPercentage, message);
+                var eventArgs = new AppServiceProgressMessageEventArgs(MessageId, progressPercentage, message);
                 ReportProgress?.Invoke(this, eventArgs);
                 await eventArgs.MessageCompletedTask.Task;
             }

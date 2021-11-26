@@ -24,10 +24,17 @@
     <Compile Include="Api\Core\OOP\IAppService.cs" />
     <Compile Include="Core\OOP\AppService.cs" />
     <Compile Include="Core\Threading\AsyncLazy.cs" />
+    <Compile Include="UI\Converters\BooleanToDoubleConverter.cs" />
     <Compile Include="ViewModels\Tools\HtmlEncoderDecoder\HtmlEncoderDecoderToolProvider.cs" />
     <Compile Include="ViewModels\Tools\HtmlEncoderDecoder\HtmlEncoderDecoderToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\PngJpgCompressor\ImageCompressionWorkItem.cs" />
+    <Compile Include="ViewModels\Tools\PngJpgCompressor\PngJpgCompressorToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\PngJpgCompressor\PngJpgCompressorToolViewModel.cs" />
     <Compile Include="Views\Tools\HtmlEncoderDecoder\HtmlEncoderDecoderToolPage.xaml.cs">
       <DependentUpon>HtmlEncoderDecoderToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\PngJpgCompressor\PngJpgCompressorToolPage.xaml.cs">
+      <DependentUpon>PngJpgCompressorToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\URLEncoderDecoder\UrlEncoderDecoderToolPage.xaml.cs">
       <DependentUpon>UrlEncoderDecoderToolPage.xaml</DependentUpon>
@@ -346,6 +353,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <PRIResource Include="Strings\en-US\PngJpgCompressor.resw" />
     <Page Include="Themes\Custom.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -403,6 +411,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Tools\MarkdownPreview\MarkdownPreviewToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tools\PngJpgCompressor\PngJpgCompressorToolPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
