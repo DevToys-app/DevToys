@@ -32,7 +32,7 @@ Many tools are available.
 - RegExp Tester
 - Text Comparer
 - Json <> Yaml converter
-- PNG/JPG image compressor
+- PNG/JPEG image compressor
 - String Utilities
 - URL Encoder/Decoder
 - HTML Encoder/Decoder
@@ -75,7 +75,7 @@ Here is the list of tool name you can use:
 - `jsonformat` Json Formatter
 - `jsonyaml` - Json <> Yaml
 - `jwt` - JWT Decoder
-- `imgcomp` - PNG/JPG compressor
+- `imgcomp` - PNG/JPEG compressor
 - `markdown` - Markdown Preview
 - `regex` - Regular Expression Tester
 - `string` - String Utilities

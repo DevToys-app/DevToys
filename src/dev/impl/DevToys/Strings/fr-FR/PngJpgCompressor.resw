@@ -133,7 +133,7 @@
     <value>Détails</value>
   </data>
   <data name="DisplayName" xml:space="preserve">
-    <value>Compresseur de PNG/JPG</value>
+    <value>Compresseur de PNG/JPEG</value>
   </data>
   <data name="FileSizeDisplay" xml:space="preserve">
     <value>{0:0.##} {1}</value>
