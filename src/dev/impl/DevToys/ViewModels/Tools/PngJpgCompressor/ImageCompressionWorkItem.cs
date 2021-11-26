@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,21 +15,33 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
+using Windows.Storage.Pickers;
+using Windows.UI.Xaml.Controls;
 
 namespace DevToys.ViewModels.Tools.PngJpgCompressor
 {
     internal sealed class ImageCompressionWorkItem : ObservableRecipient, IDisposable
     {
+        private static readonly string[] SizesStrings
+            = {
+                LanguageManager.Instance.Common.Bytes,
+                LanguageManager.Instance.Common.Kilobytes,
+                LanguageManager.Instance.Common.Megabytes,
+                LanguageManager.Instance.Common.Gigabytes,
+                LanguageManager.Instance.Common.Terabytes
+            };
+
         private readonly CancellationTokenSource _cancellationTokenSource = new();
         private int _progressionPercentage;
         private string _originalFileSize = string.Empty;
         private string _newFileSize = string.Empty;
         private string _compressionRatio = string.Empty;
-        private string? _tempCompressedFilePath;
         private bool _isDone;
         private bool _hasFailed;
         private bool _canCancel;
         private bool _canDelete;
+
+        internal PngJpgCompressorStrings Strings => LanguageManager.Instance.PngJpgCompressor;
 
         internal string FileName { get; }
 
@@ -114,9 +127,11 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
             }
         }
 
-        internal event EventHandler? DeleteItemRequested;
+        internal string? ErrorMessage { get; private set; }
 
-        internal event EventHandler? SaveItemRequested;
+        internal string? TempCompressedFilePath { get; private set; }
+
+        internal event EventHandler? DeleteItemRequested;
 
         internal ImageCompressionWorkItem(IAppService appService, StorageFile file)
         {
@@ -128,8 +143,9 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
             CanCancel = true;
 
             DeleteCommand = new RelayCommand(ExecuteDeleteCommand);
-            SaveCommand = new RelayCommand(ExecuteSaveCommand);
+            SaveCommand = new AsyncRelayCommand(ExecuteSaveCommandAsync);
             CancelCommand = new RelayCommand(ExecuteCancelCommand);
+            ShowErrorMessageCommand = new AsyncRelayCommand(ExecuteShowErrorMessageCommandAsync);
 
             ComputePropertiesAsync(file).Forget();
             ConvertAsync(appService).Forget();
@@ -139,9 +155,9 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
         {
             try
             {
-                if (!string.IsNullOrWhiteSpace(_tempCompressedFilePath) && File.Exists(_tempCompressedFilePath))
+                if (!string.IsNullOrWhiteSpace(TempCompressedFilePath) && File.Exists(TempCompressedFilePath))
                 {
-                    File.Delete(_tempCompressedFilePath);
+                    File.Delete(TempCompressedFilePath);
                 }
             }
             catch (Exception ex)
@@ -163,11 +179,26 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
 
         #region SaveCommand
 
-        public IRelayCommand SaveCommand { get; }
+        public IAsyncRelayCommand SaveCommand { get; }
 
-        private void ExecuteSaveCommand()
+        private async Task ExecuteSaveCommandAsync()
         {
-            SaveItemRequested?.Invoke(this, EventArgs.Empty);
+            string? fileExtension = Path.GetExtension(FilePath);
+
+            var savePicker = new FileSavePicker();
+            savePicker.SuggestedStartLocation = PickerLocationId.ComputerFolder;
+            savePicker.FileTypeChoices.Add(
+                fileExtension.Replace(".", string.Empty).ToUpperInvariant(),
+                new List<string>() { fileExtension!.ToLowerInvariant() });
+
+            StorageFile? newFile = await savePicker.PickSaveFileAsync();
+            if (newFile is not null)
+            {
+                StorageFile tempCompressedFile = await StorageFile.GetFileFromPathAsync(TempCompressedFilePath);
+                await tempCompressedFile.CopyAndReplaceAsync(newFile);
+
+                DeleteCommand.Execute(this);
+            }
         }
 
         #endregion
@@ -179,6 +210,25 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
         private void ExecuteCancelCommand()
         {
             _cancellationTokenSource.Cancel();
+        }
+
+        #endregion
+
+        #region ShowErrorMessageCommand
+
+        public IAsyncRelayCommand ShowErrorMessageCommand { get; }
+
+        private async Task ExecuteShowErrorMessageCommandAsync()
+        {
+            var dialog = new ContentDialog
+            {
+                Title = Strings.DetailsTitle,
+                CloseButtonText = Strings.OK,
+                DefaultButton = ContentDialogButton.Close,
+                Content = ErrorMessage!
+            };
+
+            await dialog.ShowAsync();
         }
 
         #endregion
@@ -199,7 +249,7 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
                         message,
                         _cancellationTokenSource.Token);
 
-                _tempCompressedFilePath = result.TempCompressedFilePath;
+                TempCompressedFilePath = result.TempCompressedFilePath;
 
                 await ThreadHelper.RunOnUIThreadAsync(() =>
                 {
@@ -214,7 +264,8 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
                     else
                     {
                         HasFailed = true;
-                        Logger.Log("PNG/JPG Compressor", result.ErrorMessage ?? string.Empty);
+                        ErrorMessage = result.ErrorMessage ?? string.Empty;
+                        Logger.Log("PNG/JPG Compressor", ErrorMessage);
                     }
                     CanDelete = true;
                 });
@@ -245,15 +296,14 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
 
         private string HumanizeFileSize(double fileSize)
         {
-            string[] sizes = { "Bytes", "KB", "MB", "GB", "TB" };
             int order = 0;
-            while (fileSize >= 1024 && order < sizes.Length - 1)
+            while (fileSize >= 1024 && order < SizesStrings.Length - 1)
             {
                 order++;
                 fileSize /= 1024;
             }
 
-            string fileSizeString = string.Format("{0:0.##} {1}", fileSize, sizes[order]);
+            string fileSizeString = string.Format(Strings.FileSizeDisplay, fileSize, SizesStrings[order]);
             return fileSizeString;
         }
     }

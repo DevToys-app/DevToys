@@ -48,6 +48,7 @@
         </StackPanel.ChildrenTransitions>
 
         <Grid
+            Margin="0,12,0,0"
             AllowDrop="True"
             Background="Transparent"
             CornerRadius="4">
@@ -104,17 +105,18 @@
             Spacing="8"
             HorizontalAlignment="Right">
             <Button
-                Style="{StaticResource AccentButtonStyle}">
+                Style="{StaticResource AccentButtonStyle}"
+                Command="{x:Bind ViewModel.SaveAllCommand}">
                 <StackPanel Orientation="Horizontal" Spacing="4">
                     <FontIcon Glyph="&#xF67F;"/>
-                    <TextBlock VerticalAlignment="Center" Text="Save all"/>
+                    <TextBlock VerticalAlignment="Center" Text="{x:Bind ViewModel.Strings.SaveAll}"/>
                 </StackPanel>
             </Button>
             <Button
                 Command="{x:Bind ViewModel.DeleteAllCommand}">
                 <StackPanel Orientation="Horizontal" Spacing="4">
                     <FontIcon Glyph="&#xF34C;"/>
-                    <TextBlock VerticalAlignment="Center" Text="Delete all"/>
+                    <TextBlock VerticalAlignment="Center" Text="{x:Bind ViewModel.Strings.DeleteAll}"/>
                 </StackPanel>
             </Button>
         </StackPanel>
@@ -214,7 +216,7 @@
                                     x:Load="{x:Bind CanCancel, Mode=OneWay}"
                                     Style="{StaticResource CommandBarFlyoutEllipsisButtonStyle}"
                                     Command="{x:Bind CancelCommand}"
-                                    ToolTipService.ToolTip="Cancel">
+                                    ToolTipService.ToolTip="{x:Bind Strings.Cancel}">
                                     <FontIcon
                                         FontFamily="{StaticResource FluentSystemIcons}"
                                         Glyph="&#xF75A;"/>
@@ -223,17 +225,28 @@
                                     x:Name="SaveButton"
                                     x:Load="{x:Bind IsDone, Mode=OneWay}"
                                     Style="{StaticResource CommandBarFlyoutEllipsisButtonStyle}"
-                                    ToolTipService.ToolTip="Save as">
+                                    Command="{x:Bind SaveCommand}"
+                                    ToolTipService.ToolTip="{x:Bind Strings.SaveAs}">
                                     <FontIcon
                                         FontFamily="{StaticResource FluentSystemIcons}"
                                         Glyph="&#xF67F;"/>
+                                </Button>
+                                <Button
+                                    x:Name="ErrorMessageButton"
+                                    x:Load="{x:Bind HasFailed, Mode=OneWay}"
+                                    Style="{StaticResource CommandBarFlyoutEllipsisButtonStyle}"
+                                    Command="{x:Bind ShowErrorMessageCommand}"
+                                    ToolTipService.ToolTip="{x:Bind Strings.SeeErrorMessage}">
+                                    <FontIcon
+                                        FontFamily="{StaticResource FluentSystemIcons}"
+                                        Glyph="&#xF350;"/>
                                 </Button>
                                 <Button
                                     x:Name="DeleteButton"
                                     x:Load="{x:Bind CanDelete, Mode=OneWay}"
                                     Style="{StaticResource CommandBarFlyoutEllipsisButtonStyle}"
                                     Command="{x:Bind DeleteCommand}"
-                                    ToolTipService.ToolTip="Delete">
+                                    ToolTipService.ToolTip="{x:Bind Strings.Delete}">
                                     <FontIcon
                                         FontFamily="{StaticResource FluentSystemIcons}"
                                         Glyph="&#xF34C;"/>

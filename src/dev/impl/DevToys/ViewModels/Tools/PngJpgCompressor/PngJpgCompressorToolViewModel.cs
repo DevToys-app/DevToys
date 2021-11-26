@@ -59,13 +59,14 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
             SelectFilesAreaDragDropCommand = new AsyncRelayCommand<DragEventArgs>(ExecuteSelectFilesAreaDragDropCommandAsync);
             SelectFilesBrowseCommand = new AsyncRelayCommand(ExecuteSelectFilesBrowseCommandAsync);
             DeleteAllCommand = new RelayCommand(ExecuteDeleteAllCommand);
+            SaveAllCommand = new AsyncRelayCommand(ExecuteSaveAllCommandAsync);
         }
 
         public void Dispose()
         {
             // Cancel all compression work in progress.
             var works = CompressionWorkQueue.ToList();
-            foreach (ImageCompressionWorkItem? work in works)
+            foreach (ImageCompressionWorkItem work in works)
             {
                 work.CancelCommand.Execute(null);
             }
@@ -208,6 +209,38 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
 
         #endregion
 
+        #region SaveAllCommand
+
+        public IAsyncRelayCommand SaveAllCommand { get; }
+
+        private async Task ExecuteSaveAllCommandAsync()
+        {
+            var works = CompressionWorkQueue.ToList();
+
+            if (works.Any(work => work.IsDone))
+            {
+                var folderPicker = new FolderPicker();
+                folderPicker.ViewMode = PickerViewMode.List;
+                StorageFolder? selectedFolder = await folderPicker.PickSingleFolderAsync();
+                if (selectedFolder is not null)
+                {
+                    foreach (ImageCompressionWorkItem work in works)
+                    {
+                        if (work.IsDone)
+                        {
+                            StorageFile newFile = await selectedFolder.CreateFileAsync(work.FileName, CreationCollisionOption.ReplaceExisting);
+                            StorageFile tempCompressedFile = await StorageFile.GetFileFromPathAsync(work.TempCompressedFilePath);
+                            await tempCompressedFile.CopyAndReplaceAsync(newFile);
+
+                            work.DeleteCommand.Execute(null);
+                        }
+                    }
+                }
+            }
+        }
+
+        #endregion
+
         private void QueueNewConversion(StorageFile file)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
@@ -216,14 +249,8 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
             {
                 var workItem = new ImageCompressionWorkItem(_appService, file);
                 workItem.DeleteItemRequested += WorkItem_DeleteItemRequested;
-                workItem.SaveItemRequested += WorkItem_SaveItemRequested;
                 CompressionWorkQueue.Insert(0, workItem);
             }
-        }
-
-        private void WorkItem_SaveItemRequested(object sender, EventArgs e)
-        {
-            // TODO
         }
 
         private void WorkItem_DeleteItemRequested(object sender, EventArgs e)
