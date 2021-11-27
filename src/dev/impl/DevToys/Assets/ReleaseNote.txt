@@ -1,8 +1,7 @@
 ﻿🎉 New Features
-  • URL Encoder/Decoder
-  • HTML Encoder/Decoder
+  • PNG/JPEG Compressor
 👏 Improvements
-  • Added Polish translation
-  • Improved Czech translation
+  • Added Simplified Chinese translation
 🐛 Bug Fixes
-  • None
+  • Fixed the layout of some tools in Overlay Mode
+  • Fixed a bug that was offering to rate the app too often
