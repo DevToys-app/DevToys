@@ -57,6 +57,11 @@ A good tool to take example on is `Json <> Yaml` converter.
 * [The view model](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/ViewModels/Tools/JsonYaml/JsonYamlToolViewModel.cs)
 * [The view](https://github.com/veler/DevToys/tree/main/src/dev/impl/DevToys/Views/Tools/JsonYaml)
 
+## Things to keep in mind
+
+We try to avoid at maximum to use any UWP capability/permission like `internet`, `camera`, `location`...etc. The reason why is that this app is designed to be tool that we can **trust** when pasting sensitive data inside.
+Therefore, when doing changes to DevToys, please try at maximum to avoid any capability requirement.
+
 ## Code Style
 
 1. DO use `PascalCase`:
