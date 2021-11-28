@@ -12,7 +12,6 @@ pool:
 variables:
   group: BuildPipelineVariables
   uwpProject: '**/*.wapproj'
-  buildPlatform: 'x86|x64|arm64'
   buildConfiguration: 'Release'
   appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
   buildFolder: '$(Build.SourcesDirectory)\bin\'
@@ -23,6 +22,8 @@ jobs:
 - job: SideloadRelease
   displayName: 'Sideload Release Build'
   timeoutInMinutes: 120
+  variables:
+    buildPlatform: 'x86|x64|arm64'
   steps:
 
   - task: PowerShell@2
@@ -103,6 +104,8 @@ jobs:
 - job: StoreRelease
   displayName: 'Store Release Build'
   timeoutInMinutes: 120
+  variables:
+    buildPlatform: 'x86|x64'
   steps:
 
   - task: PowerShell@2
