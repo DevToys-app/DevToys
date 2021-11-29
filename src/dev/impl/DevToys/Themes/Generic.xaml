@@ -34,8 +34,21 @@
         <Setter Property="Fill" Value="{ThemeResource ApplicationForegroundThemeBrush}"/>
     </Style>
 
+    <Style TargetType="ContentControl">
+        <Setter Property="HighContrastAdjustment" Value="None"/>
+    </Style>
+
+    <Style TargetType="ContentPresenter">
+        <Setter Property="HighContrastAdjustment" Value="None"/>
+    </Style>
+
     <Style TargetType="FontIcon">
         <Setter Property="FontFamily" Value="{StaticResource FluentSystemIcons}"/>
+        <Setter Property="HighContrastAdjustment" Value="None"/>
+    </Style>
+
+    <Style TargetType="TextBlock">
+        <Setter Property="HighContrastAdjustment" Value="None"/>
     </Style>
     
     <Style TargetType="ToggleSwitch">

@@ -49,7 +49,7 @@ namespace DevToys.ViewModels.Tools.GuidGenerator
         private string _output = string.Empty;
         private bool _toolSuccessfullyWorked;
 
-        public Type View { get; } = typeof(GuidGeneratoToolPage);
+        public Type View { get; } = typeof(GuidGeneratorToolPage);
 
         internal GuidGeneratorStrings Strings => LanguageManager.Instance.GuidGenerator;
 

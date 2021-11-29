@@ -121,6 +121,7 @@
                 Background="Transparent"
                 BorderBrush="Transparent"
                 ToolTipService.ToolTip="{x:Bind ViewModel.Strings.EnterCompactOverlayTooltip}"
+                AutomationProperties.Name="{x:Bind ViewModel.Strings.EnterCompactOverlayTooltip}"
                 Command="{x:Bind ViewModel.ChangeViewModeCommand}">
                 <Button.CommandParameter>
                     <viewmanagement:ApplicationViewMode>CompactOverlay</viewmanagement:ApplicationViewMode>
@@ -148,6 +149,7 @@
                 BorderBrush="Transparent"
                 Visibility="Collapsed"
                 ToolTipService.ToolTip="{x:Bind ViewModel.Strings.ExitCompactOverlayTooltip}"
+                AutomationProperties.Name="{x:Bind ViewModel.Strings.ExitCompactOverlayTooltip}"
                 Command="{x:Bind ViewModel.ChangeViewModeCommand}">
                 <Button.CommandParameter>
                     <viewmanagement:ApplicationViewMode>Default</viewmanagement:ApplicationViewMode>
@@ -210,7 +212,8 @@
                 <DataTemplate x:DataType="models:MatchedToolProviderViewData">
                     <muxc:NavigationViewItem
                         Icon="{x:Bind Icon.Result, Mode=OneWay}"
-                        Margin="{Binding ActualNavigationViewDisplayMode, ConverterParameter='Compact', Converter={StaticResource NavigationViewItemMarginConverter}}">
+                        Margin="{Binding ActualNavigationViewDisplayMode, ConverterParameter='Compact', Converter={StaticResource NavigationViewItemMarginConverter}}"
+                        AutomationProperties.Name="{x:Bind ToolProvider.AccessibleName}">
                         <muxc:NavigationViewItem.ContextFlyout>
                             <MenuFlyout>
                                 <MenuFlyoutItem

@@ -183,6 +183,11 @@ namespace DevToys
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("Base64EncoderDecoder");
 
         /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
         /// Gets the resource Ascii.
         /// </summary>
         public string Ascii => _resources.GetString("Ascii");
@@ -333,6 +338,11 @@ namespace DevToys
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("GuidGenerator");
 
         /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
         /// Gets the resource Configuration.
         /// </summary>
         public string Configuration => _resources.GetString("Configuration");
@@ -368,6 +378,11 @@ namespace DevToys
         public string MultiplySymbol => _resources.GetString("MultiplySymbol");
 
         /// <summary>
+        /// Gets the resource NumberOfGuidsToGenerate_AutomationProperties_Name.
+        /// </summary>
+        public string NumberOfGuidsToGenerate_AutomationProperties_Name => _resources.GetString("NumberOfGuidsToGenerate_AutomationProperties_Name");
+
+        /// <summary>
         /// Gets the resource Uppercase.
         /// </summary>
         public string Uppercase => _resources.GetString("Uppercase");
@@ -376,6 +391,11 @@ namespace DevToys
     public class HashGeneratorStrings : ObservableObject
     {
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("HashGenerator");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
 
         /// <summary>
         /// Gets the resource Configuration.
@@ -421,6 +441,11 @@ namespace DevToys
     public class HtmlEncoderDecoderStrings : ObservableObject
     {
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("HtmlEncoderDecoder");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
 
         /// <summary>
         /// Gets the resource ConfigurationTitle.
@@ -478,6 +503,11 @@ namespace DevToys
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("JsonFormatter");
 
         /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
         /// Gets the resource Configuration.
         /// </summary>
         public string Configuration => _resources.GetString("Configuration");
@@ -526,6 +556,11 @@ namespace DevToys
     public class JsonYamlStrings : ObservableObject
     {
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("JsonYaml");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
 
         /// <summary>
         /// Gets the resource Configuration.
@@ -591,6 +626,11 @@ namespace DevToys
     public class JwtDecoderEncoderStrings : ObservableObject
     {
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("JwtDecoderEncoder");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
 
         /// <summary>
         /// Gets the resource Configuration.
@@ -744,6 +784,11 @@ namespace DevToys
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("MarkdownPreview");
 
         /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
         /// Gets the resource Configuration.
         /// </summary>
         public string Configuration => _resources.GetString("Configuration");
@@ -787,6 +832,11 @@ namespace DevToys
     public class PngJpgCompressorStrings : ObservableObject
     {
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("PngJpgCompressor");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
 
         /// <summary>
         /// Gets the resource Cancel.
@@ -867,6 +917,11 @@ namespace DevToys
     public class RegExStrings : ObservableObject
     {
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("RegEx");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
 
         /// <summary>
         /// Gets the resource Configuration.
@@ -1157,6 +1212,11 @@ namespace DevToys
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("StringUtilities");
 
         /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
         /// Gets the resource AlternatingCase.
         /// </summary>
         public string AlternatingCase => _resources.GetString("AlternatingCase");
@@ -1312,6 +1372,11 @@ namespace DevToys
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("TextDiff");
 
         /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
         /// Gets the resource Configuration.
         /// </summary>
         public string Configuration => _resources.GetString("Configuration");
@@ -1345,6 +1410,11 @@ namespace DevToys
     public class UrlEncoderDecoderStrings : ObservableObject
     {
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("UrlEncoderDecoder");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
 
         /// <summary>
         /// Gets the resource ConfigurationTitle.

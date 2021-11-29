@@ -17,6 +17,8 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
     {
         public string DisplayName => LanguageManager.Instance.Base64EncoderDecoder.DisplayName;
 
+        public string AccessibleName => LanguageManager.Instance.Base64EncoderDecoder.AccessibleName;
+
         public object IconSource => CreatePathIconFromPath(nameof(Base64EncoderDecoderToolProvider));
 
         private readonly IMefProvider _mefProvider;

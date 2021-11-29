@@ -25,6 +25,8 @@ namespace DevToys.ViewModels.Settings
 
         public string DisplayName => LanguageManager.Instance.Settings.DisplayName;
 
+        public string AccessibleName => DisplayName;
+
         public object IconSource { get; }
 
         [ImportingConstructor]

@@ -14,6 +14,8 @@ namespace DevToys.ViewModels.Tools.HtmlEncoderDecoder
     {
         public string DisplayName => LanguageManager.Instance.HtmlEncoderDecoder.DisplayName;
 
+        public string AccessibleName => LanguageManager.Instance.HtmlEncoderDecoder.AccessibleName;
+
         public object IconSource => CreatePathIconFromPath(nameof(HtmlEncoderDecoderToolProvider));
 
         private readonly IMefProvider _mefProvider;

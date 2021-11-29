@@ -12,7 +12,12 @@ namespace DevToys.Api.Tools
         /// <summary>
         /// Gets the name of the tool. It will be displayed in the list of tools.
         /// </summary>
-        string? DisplayName { get; }
+        string DisplayName { get; }
+
+        /// <summary>
+        /// Gets the name of the tool that will be told to the user when using screen reader.
+        /// </summary>
+        string AccessibleName { get; }
 
         /// <summary>
         /// Gets an object type that has a width, height and image data. It can be an icon through a font, an SVG...etc.

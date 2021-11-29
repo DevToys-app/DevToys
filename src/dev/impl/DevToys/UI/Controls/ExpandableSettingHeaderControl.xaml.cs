@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Markup;
 
@@ -16,7 +17,12 @@ namespace DevToys.UI.Controls
                nameof(Title),
                typeof(string),
                typeof(ExpandableSettingHeaderControl),
-               new PropertyMetadata(string.Empty));
+               new PropertyMetadata(
+                   string.Empty,
+                   (d, e) =>
+                   {
+                       AutomationProperties.SetName(d, (string)e.NewValue);
+                   }));
 
         public string Title
         {
@@ -29,7 +35,12 @@ namespace DevToys.UI.Controls
                 nameof(Description),
                 typeof(string),
                 typeof(ExpandableSettingHeaderControl),
-                new PropertyMetadata(string.Empty));
+                new PropertyMetadata(
+                    string.Empty,
+                    (d, e) =>
+                    {
+                        AutomationProperties.SetHelpText(d, (string)e.NewValue);
+                    }));
 
         public string Description
         {

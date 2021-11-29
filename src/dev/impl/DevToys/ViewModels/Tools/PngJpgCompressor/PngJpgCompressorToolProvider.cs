@@ -19,6 +19,8 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
 
         public string DisplayName => LanguageManager.Instance.PngJpgCompressor.DisplayName;
 
+        public string AccessibleName => LanguageManager.Instance.PngJpgCompressor.AccessibleName;
+
         public object IconSource
             => new TaskCompletionNotifier<IconElement>(
                 ThreadHelper.RunOnUIThreadAsync(() =>

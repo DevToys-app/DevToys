@@ -15,7 +15,9 @@ namespace DevToys.ViewModels.Tools.RegEx
     {
         private readonly IMefProvider _mefProvider;
 
-        public string? DisplayName => LanguageManager.Instance.RegEx.DisplayName;
+        public string DisplayName => LanguageManager.Instance.RegEx.DisplayName;
+
+        public string AccessibleName => LanguageManager.Instance.RegEx.AccessibleName;
 
         public object IconSource => CreatePathIconFromPath(nameof(RegExToolProvider));
 

@@ -18,7 +18,9 @@ namespace DevToys.ViewModels.Tools.HashGenerator
     {
         private readonly IMefProvider _mefProvider;
 
-        public string? DisplayName => LanguageManager.Instance.HashGenerator.DisplayName;
+        public string DisplayName => LanguageManager.Instance.HashGenerator.DisplayName;
+
+        public string AccessibleName => LanguageManager.Instance.HashGenerator.AccessibleName;
 
         public object IconSource
             => new TaskCompletionNotifier<IconElement>(

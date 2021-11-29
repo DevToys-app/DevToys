@@ -15,7 +15,9 @@ namespace DevToys.ViewModels.Tools.GuidGenerator
     {
         private readonly IMefProvider _mefProvider;
 
-        public string? DisplayName => LanguageManager.Instance.GuidGenerator.DisplayName;
+        public string DisplayName => LanguageManager.Instance.GuidGenerator.DisplayName;
+
+        public string AccessibleName => LanguageManager.Instance.GuidGenerator.AccessibleName;
 
         public object IconSource => CreatePathIconFromPath(nameof(GuidGeneratorToolProvider));
 
