@@ -459,54 +459,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <PRIResource Include="Strings\cs-CZ\Base64EncoderDecoder.resw" />
-    <PRIResource Include="Strings\cs-CZ\Common.resw" />
-    <PRIResource Include="Strings\cs-CZ\HashGenerator.resw" />
-    <PRIResource Include="Strings\cs-CZ\JsonFormatter.resw" />
-    <PRIResource Include="Strings\cs-CZ\JsonYaml.resw" />
-    <PRIResource Include="Strings\cs-CZ\JwtDecoderEncoder.resw" />
-    <PRIResource Include="Strings\cs-CZ\MainPage.resw" />
-    <PRIResource Include="Strings\cs-CZ\MarkdownPreview.resw" />
-    <PRIResource Include="Strings\cs-CZ\RegEx.resw" />
-    <PRIResource Include="Strings\cs-CZ\Settings.resw" />
-    <PRIResource Include="Strings\cs-CZ\StringUtilities.resw" />
-    <PRIResource Include="Strings\cs-CZ\TextDiff.resw" />
-    <PRIResource Include="Strings\en-US\Base64EncoderDecoder.resw" />
-    <PRIResource Include="Strings\en-US\Common.resw" />
-    <PRIResource Include="Strings\en-US\HashGenerator.resw" />
-    <PRIResource Include="Strings\en-US\JsonFormatter.resw" />
-    <PRIResource Include="Strings\en-US\JsonYaml.resw" />
-    <PRIResource Include="Strings\en-US\JwtDecoderEncoder.resw" />
-    <PRIResource Include="Strings\en-US\MainPage.resw" />
-    <PRIResource Include="Strings\en-US\MarkdownPreview.resw" />
-    <PRIResource Include="Strings\en-US\RegEx.resw" />
-    <PRIResource Include="Strings\en-US\Settings.resw" />
-    <PRIResource Include="Strings\en-US\StringUtilities.resw" />
-    <PRIResource Include="Strings\en-US\TextDiff.resw" />
-    <PRIResource Include="Strings\fr-FR\Base64EncoderDecoder.resw" />
-    <PRIResource Include="Strings\fr-FR\Common.resw" />
-    <PRIResource Include="Strings\fr-FR\HashGenerator.resw" />
-    <PRIResource Include="Strings\fr-FR\JsonFormatter.resw" />
-    <PRIResource Include="Strings\fr-FR\JsonYaml.resw" />
-    <PRIResource Include="Strings\fr-FR\JwtDecoderEncoder.resw" />
-    <PRIResource Include="Strings\fr-FR\MainPage.resw" />
-    <PRIResource Include="Strings\fr-FR\MarkdownPreview.resw" />
-    <PRIResource Include="Strings\fr-FR\RegEx.resw" />
-    <PRIResource Include="Strings\fr-FR\Settings.resw" />
-    <PRIResource Include="Strings\fr-FR\StringUtilities.resw" />
-    <PRIResource Include="Strings\fr-FR\TextDiff.resw" />
-    <PRIResource Include="Strings\ru-RU\Base64EncoderDecoder.resw" />
-    <PRIResource Include="Strings\ru-RU\Common.resw" />
-    <PRIResource Include="Strings\ru-RU\HashGenerator.resw" />
-    <PRIResource Include="Strings\ru-RU\JsonFormatter.resw" />
-    <PRIResource Include="Strings\ru-RU\JsonYaml.resw" />
-    <PRIResource Include="Strings\ru-RU\JwtDecoderEncoder.resw" />
-    <PRIResource Include="Strings\ru-RU\MainPage.resw" />
-    <PRIResource Include="Strings\ru-RU\MarkdownPreview.resw" />
-    <PRIResource Include="Strings\ru-RU\RegEx.resw" />
-    <PRIResource Include="Strings\ru-RU\Settings.resw" />
-    <PRIResource Include="Strings\ru-RU\StringUtilities.resw" />
-    <PRIResource Include="Strings\ru-RU\TextDiff.resw" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="GitInfo" Version="$(Nuget_GitInfo)" />
