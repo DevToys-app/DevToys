@@ -7,20 +7,20 @@ using DevToys.Core.Threading;
 using DevToys.Shared.Api.Core;
 using Windows.UI.Xaml.Controls;
 
-namespace DevToys.ViewModels.Tools.HexConverter
+namespace DevToys.ViewModels.Tools.NumberBaseConverter
 {
     [Export(typeof(IToolProvider))]
-    [Name("Hex Converter")]
-    [ProtocolName("hex")]
+    [Name("Number Base Converter")]
+    [ProtocolName("baseconverter")]
     [Order(0)]
     [CompactOverlaySize(width: 400, height: 500)]
-    internal sealed class HexConverterToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class NumberBaseConverterToolProvider : ToolProviderBase, IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 
-        public string DisplayName => LanguageManager.Instance.HexConverter.DisplayName;
+        public string DisplayName => LanguageManager.Instance.NumberBaseConverter.DisplayName;
 
-        public string AccessibleName => LanguageManager.Instance.HexConverter.AccessibleName;
+        public string AccessibleName => LanguageManager.Instance.NumberBaseConverter.AccessibleName;
 
 
         public object IconSource
@@ -35,7 +35,7 @@ namespace DevToys.ViewModels.Tools.HexConverter
                 }));
 
         [ImportingConstructor]
-        public HexConverterToolProvider(IMefProvider mefProvider)
+        public NumberBaseConverterToolProvider(IMefProvider mefProvider)
         {
             _mefProvider = mefProvider;
         }
@@ -47,7 +47,7 @@ namespace DevToys.ViewModels.Tools.HexConverter
 
         public IToolViewModel CreateTool()
         {
-            return _mefProvider.Import<HexConverterToolViewModel>();
+            return _mefProvider.Import<NumberBaseConverterToolViewModel>();
         }
     }
 }

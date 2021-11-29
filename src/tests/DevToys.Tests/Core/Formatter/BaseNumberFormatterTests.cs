@@ -12,7 +12,7 @@ namespace DevToys.Tests.Core.Formatter
         [DataRow("C6AE A155", 3333333333, true)]
         public void HexadecimalToDecimal(string input, long expectedResult, bool isFormatted)
         {
-            Assert.AreEqual(expectedResult, BaseNumberFormatter.StringToBase(input, BaseNumberFormat.Hexadecimal));
+            Assert.AreEqual(expectedResult, NumberBaseFormatter.StringToBase(input, NumberBaseFormat.Hexadecimal));
         }
 
         [DataTestMethod]
@@ -20,7 +20,7 @@ namespace DevToys.Tests.Core.Formatter
         [DataRow("30 653 520 525", 3333333333, true)]
         public void OctalToDecimal(string input, long expectedResult, bool isFormatted)
         {
-            Assert.AreEqual(expectedResult, BaseNumberFormatter.StringToBase(input, BaseNumberFormat.Octal));
+            Assert.AreEqual(expectedResult, NumberBaseFormatter.StringToBase(input, NumberBaseFormat.Octal));
         }
 
         [DataTestMethod]
@@ -30,7 +30,7 @@ namespace DevToys.Tests.Core.Formatter
         [DataRow("1100 0110 1010 1110 1010 0001 0101 0101", 3333333333, true)]
         public void BinaryToDecimal(string input, long expectedResult, bool isFormatted)
         {
-            Assert.AreEqual(expectedResult, BaseNumberFormatter.StringToBase(input, BaseNumberFormat.Binary));
+            Assert.AreEqual(expectedResult, NumberBaseFormatter.StringToBase(input, NumberBaseFormat.Binary));
         }
 
         [DataTestMethod]
@@ -38,7 +38,7 @@ namespace DevToys.Tests.Core.Formatter
         [DataRow(3333333333, "C6AE A155", true)]
         public void DecimalToHexadecimal(long input, string expectedResult, bool isFormatted)
         {
-            Assert.AreEqual(expectedResult, BaseNumberFormatter.LongToBase(input, BaseNumberFormat.Hexadecimal, isFormatted));
+            Assert.AreEqual(expectedResult, NumberBaseFormatter.LongToBase(input, NumberBaseFormat.Hexadecimal, isFormatted));
         }
 
         [DataTestMethod]
@@ -46,7 +46,7 @@ namespace DevToys.Tests.Core.Formatter
         [DataRow(3333333333, "30 653 520 525", true)]
         public void DecimalToOctal(long input, string expectedResult, bool isFormatted)
         {
-            Assert.AreEqual(expectedResult, BaseNumberFormatter.LongToBase(input, BaseNumberFormat.Octal, isFormatted));
+            Assert.AreEqual(expectedResult, NumberBaseFormatter.LongToBase(input, NumberBaseFormat.Octal, isFormatted));
         }
 
         [DataTestMethod]
@@ -56,7 +56,7 @@ namespace DevToys.Tests.Core.Formatter
         [DataRow(3333333333, "1100 0110 1010 1110 1010 0001 0101 0101", true)]
         public void DecimalToBinary(long input, string expectedResult, bool isFormatted)
         {
-            Assert.AreEqual(expectedResult, BaseNumberFormatter.LongToBase(input, BaseNumberFormat.Binary, isFormatted));
+            Assert.AreEqual(expectedResult, NumberBaseFormatter.LongToBase(input, NumberBaseFormat.Binary, isFormatted));
         }
     }
 }

@@ -2,32 +2,32 @@
 
 using DevToys.Api.Core.Navigation;
 using DevToys.Shared.Core;
-using DevToys.ViewModels.Tools.HexConverter;
+using DevToys.ViewModels.Tools.NumberBaseConverter;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-namespace DevToys.Views.Tools.HexConverter
+namespace DevToys.Views.Tools.NumberBaseConverter
 {
-    public sealed partial class HexConverterToolPage : Page
+    public sealed partial class NumberBaseConverterToolPage : Page
     {
         public static readonly DependencyProperty ViewModelProperty
             = DependencyProperty.Register(
                 nameof(ViewModel),
-                typeof(HexConverterToolViewModel),
-                typeof(HexConverterToolPage),
+                typeof(NumberBaseConverterToolViewModel),
+                typeof(NumberBaseConverterToolPage),
                 new PropertyMetadata(null));
 
         /// <summary>
         /// Gets the page's view model.
         /// </summary>
-        public HexConverterToolViewModel ViewModel
+        public NumberBaseConverterToolViewModel ViewModel
         {
-            get => (HexConverterToolViewModel)GetValue(ViewModelProperty);
+            get => (NumberBaseConverterToolViewModel)GetValue(ViewModelProperty);
             set => SetValue(ViewModelProperty, value);
         }
 
-        public HexConverterToolPage()
+        public NumberBaseConverterToolPage()
         {
             InitializeComponent();
         }
@@ -40,7 +40,7 @@ namespace DevToys.Views.Tools.HexConverter
 
                 // Set the view model
                 Assumes.NotNull(parameters.ViewModel, nameof(parameters.ViewModel));
-                ViewModel = (HexConverterToolViewModel)parameters.ViewModel!;
+                ViewModel = (NumberBaseConverterToolViewModel)parameters.ViewModel!;
                 DataContext = ViewModel;
             }
 

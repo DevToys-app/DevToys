@@ -14,20 +14,20 @@ using DevToys.Core.Formatter;
 using DevToys.Core.Threading;
 using DevToys.Models;
 using DevToys.Shared.Core.Threading;
-using DevToys.Views.Tools.HexConverter;
+using DevToys.Views.Tools.NumberBaseConverter;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 
-namespace DevToys.ViewModels.Tools.HexConverter
+namespace DevToys.ViewModels.Tools.NumberBaseConverter
 {
-    [Export(typeof(HexConverterToolViewModel))]
-    public sealed class HexConverterToolViewModel : ObservableRecipient, IToolViewModel
+    [Export(typeof(NumberBaseConverterToolViewModel))]
+    public sealed class NumberBaseConverterToolViewModel : ObservableRecipient, IToolViewModel
     {
         /// <summary>
         /// Which format is the input number.
         /// </summary>
         private static readonly SettingDefinition<Radix> BaseNumber
             = new(
-                name: $"{nameof(HexConverterToolViewModel)}.{nameof(BaseNumber)}",
+                name: $"{nameof(NumberBaseConverterToolViewModel)}.{nameof(BaseNumber)}",
                 isRoaming: true,
                 defaultValue: Radix.Decimal);
 
@@ -36,7 +36,7 @@ namespace DevToys.ViewModels.Tools.HexConverter
         /// </summary>
         private static readonly SettingDefinition<bool> Formatted
             = new(
-                name: $"{nameof(HexConverterToolViewModel)}.{nameof(Formatted)}",
+                name: $"{nameof(NumberBaseConverterToolViewModel)}.{nameof(Formatted)}",
                 isRoaming: true,
                 defaultValue: true);
 
@@ -54,9 +54,9 @@ namespace DevToys.ViewModels.Tools.HexConverter
         private bool _conversionInProgress;
         private bool _toolSuccessfullyWorked;
 
-        internal HexConverterStrings Strings => LanguageManager.Instance.HexConverter;
+        internal NumberBaseConverterStrings Strings => LanguageManager.Instance.NumberBaseConverter;
 
-        public Type View { get; } = typeof(HexConverterToolPage);
+        public Type View { get; } = typeof(NumberBaseConverterToolPage);
 
         /// <summary>
         /// Gets or sets the input text.
@@ -107,13 +107,13 @@ namespace DevToys.ViewModels.Tools.HexConverter
             private set => SetProperty(ref _infoBarMessage, value);
         }
 
-        internal BaseNumberFormat InputBaseNumber
+        internal NumberBaseFormat InputBaseNumber
         {
             get
             {
                 Radix settingsValue = _settingsProvider.GetSetting(BaseNumber);
-                BaseNumberFormat? baseNumberFormat = BaseNumbers.FirstOrDefault(x => x.Value == settingsValue);
-                return baseNumberFormat ?? BaseNumberFormat.Decimal;
+                NumberBaseFormat? baseNumberFormat = BaseNumbers.FirstOrDefault(x => x.Value == settingsValue);
+                return baseNumberFormat ?? NumberBaseFormat.Decimal;
             }
             set
             {
@@ -121,21 +121,21 @@ namespace DevToys.ViewModels.Tools.HexConverter
                 {
                     _settingsProvider.SetSetting(BaseNumber, value.Value);
 
-                    if (InputBaseNumber == BaseNumberFormat.Octal)
+                    if (InputBaseNumber == NumberBaseFormat.Octal)
                     {
-                        InputValue = BaseNumberFormatter.RemoveFormatting(OctalValue).ToString();
+                        InputValue = NumberBaseFormatter.RemoveFormatting(OctalValue).ToString();
                     }
-                    else if (InputBaseNumber == BaseNumberFormat.Binary)
+                    else if (InputBaseNumber == NumberBaseFormat.Binary)
                     {
-                        InputValue = BaseNumberFormatter.RemoveFormatting(BinaryValue).ToString();
+                        InputValue = NumberBaseFormatter.RemoveFormatting(BinaryValue).ToString();
                     }
-                    else if (InputBaseNumber == BaseNumberFormat.Hexadecimal)
+                    else if (InputBaseNumber == NumberBaseFormat.Hexadecimal)
                     {
-                        InputValue = BaseNumberFormatter.RemoveFormatting(HexaDecimalValue).ToString();
+                        InputValue = NumberBaseFormatter.RemoveFormatting(HexaDecimalValue).ToString();
                     }
                     else
                     {
-                        InputValue = BaseNumberFormatter.RemoveFormatting(DecimalValue).ToString();
+                        InputValue = NumberBaseFormatter.RemoveFormatting(DecimalValue).ToString();
                     }
                     OnPropertyChanged();
                     QueueFormatting();
@@ -146,11 +146,11 @@ namespace DevToys.ViewModels.Tools.HexConverter
         /// <summary>
         /// Get a list of supported BaseNumbers
         /// </summary>
-        internal IReadOnlyList<BaseNumberFormat> BaseNumbers = new ObservableCollection<BaseNumberFormat> {
-            BaseNumberFormat.Octal,
-            BaseNumberFormat.Binary,
-            BaseNumberFormat.Decimal,
-            BaseNumberFormat.Hexadecimal,
+        internal IReadOnlyList<NumberBaseFormat> BaseNumbers = new ObservableCollection<NumberBaseFormat> {
+            NumberBaseFormat.Octal,
+            NumberBaseFormat.Binary,
+            NumberBaseFormat.Decimal,
+            NumberBaseFormat.Hexadecimal,
         };
 
         internal bool IsFormatted
@@ -168,7 +168,7 @@ namespace DevToys.ViewModels.Tools.HexConverter
         }
 
         [ImportingConstructor]
-        public HexConverterToolViewModel(ISettingsProvider settingsProvider, IMarketingService marketingService)
+        public NumberBaseConverterToolViewModel(ISettingsProvider settingsProvider, IMarketingService marketingService)
         {
             _settingsProvider = settingsProvider;
             _marketingService = marketingService;
@@ -201,13 +201,13 @@ namespace DevToys.ViewModels.Tools.HexConverter
                 bool isInfoBarOpen = false;
                 try
                 {
-                    long? baseValue = BaseNumberFormatter.StringToBase(value, InputBaseNumber);
+                    long? baseValue = NumberBaseFormatter.StringToBase(value, InputBaseNumber);
                     if (baseValue != null)
                     {
-                        octalValue = BaseNumberFormatter.LongToBase(baseValue.Value, BaseNumberFormat.Octal, IsFormatted);
-                        binaryValue = BaseNumberFormatter.LongToBase(baseValue.Value, BaseNumberFormat.Binary, IsFormatted);
-                        decimalValue = BaseNumberFormatter.LongToBase(baseValue.Value, BaseNumberFormat.Decimal, IsFormatted);
-                        hexaDecimalValue = BaseNumberFormatter.LongToBase(baseValue.Value, BaseNumberFormat.Hexadecimal, IsFormatted);
+                        octalValue = NumberBaseFormatter.LongToBase(baseValue.Value, NumberBaseFormat.Octal, IsFormatted);
+                        binaryValue = NumberBaseFormatter.LongToBase(baseValue.Value, NumberBaseFormat.Binary, IsFormatted);
+                        decimalValue = NumberBaseFormatter.LongToBase(baseValue.Value, NumberBaseFormat.Decimal, IsFormatted);
+                        hexaDecimalValue = NumberBaseFormatter.LongToBase(baseValue.Value, NumberBaseFormat.Hexadecimal, IsFormatted);
                     }
                 }
                 catch (OverflowException exception)
@@ -217,7 +217,7 @@ namespace DevToys.ViewModels.Tools.HexConverter
                 }
                 catch (Exception ex)
                 {
-                    Logger.LogFault("HexConverter", ex, $"Input base number: {InputBaseNumber}");
+                    Logger.LogFault("NumberBaseConverter", ex, $"Input base number: {InputBaseNumber}");
                 }
 
                 ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, () =>

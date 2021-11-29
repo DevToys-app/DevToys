@@ -118,46 +118,46 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Outil de conversion hexadécimal</value>
+    <value>Number Base Converter tool</value>
   </data>
   <data name="BinaryLabel" xml:space="preserve">
-    <value>Binaire</value>
+    <value>Binary</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
     <value>Configuration</value>
   </data>
   <data name="DecimalLabel" xml:space="preserve">
-    <value>Décimal</value>
+    <value>Decimal</value>
   </data>
   <data name="DisplayName" xml:space="preserve">
-    <value>Convertisseur hexadécimal</value>
+    <value>Number Base Converter</value>
   </data>
   <data name="Format" xml:space="preserve">
-    <value>Format du numéro</value>
+    <value>Format number</value>
   </data>
   <data name="HexadecimalLabel" xml:space="preserve">
-    <value>Hexadécimal</value>
+    <value>Hexadecimal</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Entrée</value>
+    <value>Input</value>
   </data>
   <data name="InputTypeBinary" xml:space="preserve">
-    <value>Binaire</value>
+    <value>Binary</value>
   </data>
   <data name="InputTypeDecimal" xml:space="preserve">
-    <value>Décimal</value>
+    <value>Decimal</value>
   </data>
   <data name="InputTypeDescription" xml:space="preserve">
-    <value>Sélectionnez le type d'entrée que vous souhaitez utiliser</value>
+    <value>Select which Input type you want to use</value>
   </data>
   <data name="InputTypeHexadecimal" xml:space="preserve">
-    <value>Hexadécimal</value>
+    <value>Hexadecimal</value>
   </data>
   <data name="InputTypeOctal" xml:space="preserve">
     <value>Octal</value>
   </data>
   <data name="InputTypeTitle" xml:space="preserve">
-    <value>Type d'entrée</value>
+    <value>Input type</value>
   </data>
   <data name="OctalLabel" xml:space="preserve">
     <value>Octal</value>

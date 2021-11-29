@@ -5,16 +5,16 @@ using DevToys.Models;
 
 namespace DevToys.Core.Formatter
 {
-    internal static class BaseNumberFormatter
+    internal static class NumberBaseFormatter
     {
         /// <summary>
         /// Based on <see cref="System.ParseNumbers"/>
         /// https://github.com/dotnet/runtime/blob/main/src/libraries/System.Private.CoreLib/src/System/ParseNumbers.cs
         /// </summary>
         /// <param name="value">Current value</param>
-        /// <param name="baseNumber">Current base number <see cref="BaseNumberFormat"/></param>
-        /// <returns>Value converted to <see cref="BaseNumberFormat.Decimal"/></returns>
-        public static long? StringToBase(string value, BaseNumberFormat baseNumber)
+        /// <param name="baseNumber">Current base number <see cref="NumberBaseFormat"/></param>
+        /// <returns>Value converted to <see cref="NumberBaseFormat.Decimal"/></returns>
+        public static long? StringToBase(string value, NumberBaseFormat baseNumber)
         {
             if (value.Length <= 0)
             {
@@ -24,13 +24,13 @@ namespace DevToys.Core.Formatter
             int length = value.Length;
             int index = 0;
 
-            Span<char> values = RemoveFormatting(value);
+            Span<char> unformattedValue = RemoveFormatting(value);
 
             // Check for a sign
             int sign = 1;
-            if (values[index] == '-')
+            if (unformattedValue[index] == '-')
             {
-                if (baseNumber != BaseNumberFormat.Decimal)
+                if (baseNumber != NumberBaseFormat.Decimal)
                 {
                     throw new ArgumentException($"Base {baseNumber} can't have a negative number");
                 }
@@ -38,7 +38,7 @@ namespace DevToys.Core.Formatter
                 sign = -1;
                 index++;
             }
-            else if (values[index] == '+')
+            else if (unformattedValue[index] == '+')
             {
                 index++;
             }
@@ -47,12 +47,12 @@ namespace DevToys.Core.Formatter
             long maxVal;
 
             // Allow all non-decimal numbers to set the sign bit.
-            if (baseNumber == BaseNumberFormat.Decimal)
+            if (baseNumber == NumberBaseFormat.Decimal)
             {
                 maxVal = 0x7FFFFFFFFFFFFFFF / 10;
 
                 // Read all of the digits and convert to a number
-                while (index < length && IsDigit(values[index], baseNumber.BaseNumber, out int current))
+                while (index < length && IsDigit(unformattedValue[index], baseNumber.BaseNumber, out int current))
                 {
                     // Check for overflows - this is sufficient & correct.
                     if (result > maxVal || result < 0)
@@ -78,7 +78,7 @@ namespace DevToys.Core.Formatter
                     0xfffffffffffffff / 2;
 
                 // Read all of the digits and convert to a number
-                while (index < values.Length && IsDigit(values[index], baseNumber.BaseNumber, out int current))
+                while (index < unformattedValue.Length && IsDigit(unformattedValue[index], baseNumber.BaseNumber, out int current))
                 {
                     // Check for overflows - this is sufficient & correct.
                     if (result > maxVal)
@@ -98,7 +98,7 @@ namespace DevToys.Core.Formatter
                 }
             }
 
-            if (baseNumber == BaseNumberFormat.Decimal)
+            if (baseNumber == NumberBaseFormat.Decimal)
             {
                 result *= sign;
             }
@@ -114,7 +114,7 @@ namespace DevToys.Core.Formatter
         /// <param name="baseNumber"></param>
         /// <param name="isFormatted">Define if the number need to base formatted</param>
         /// <returns></returns>
-        public static string LongToBase(long number, BaseNumberFormat baseNumber, bool isFormatted)
+        public static string LongToBase(long number, NumberBaseFormat baseNumber, bool isFormatted)
         {
             Span<char> buffer = stackalloc char[67]; // Longest possible string length for an integer in binary notation with prefix
 
@@ -162,7 +162,7 @@ namespace DevToys.Core.Formatter
                 }
             }
 
-            if (baseNumber == BaseNumberFormat.Decimal)
+            if (baseNumber == NumberBaseFormat.Decimal)
             {
                 // If it was negative, append the sign.
                 if (isNegative)
@@ -183,7 +183,7 @@ namespace DevToys.Core.Formatter
             }
 
             // Add padding left for Binary Format
-            if (baseNumber == BaseNumberFormat.Binary)
+            if (baseNumber == NumberBaseFormat.Binary)
             {
                 int reminder = ++index % baseNumber.GroupSize;
                 for (int padIndex = 0; reminder != 0 && padIndex < baseNumber.GroupSize - reminder; padIndex++)
