@@ -50,6 +50,11 @@ Many tools are available.
 ### Microsoft Store
 - Search for DevToys in the Microsoft Store App or click [here](https://www.microsoft.com/store/apps/9PGCV4V3BK4W)
 
+### WinGet
+- Open a PowerShell command prompt.
+- Type `winget search DevToys` to search and see details about DevToys.
+- Type `winget install DevToys` to install the app.
+
 ### Manual
 
 - Download and extract the latest [release](https://github.com/veler/DevToys/releases).
