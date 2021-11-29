@@ -18,7 +18,9 @@ namespace DevToys.ViewModels.Tools.StringUtilities
     {
         private readonly IMefProvider _mefProvider;
 
-        public string? DisplayName => LanguageManager.Instance.StringUtilities.DisplayName;
+        public string DisplayName => LanguageManager.Instance.StringUtilities.DisplayName;
+
+        public string AccessibleName => LanguageManager.Instance.StringUtilities.AccessibleName;
 
         public object IconSource
             => new TaskCompletionNotifier<IconElement>(

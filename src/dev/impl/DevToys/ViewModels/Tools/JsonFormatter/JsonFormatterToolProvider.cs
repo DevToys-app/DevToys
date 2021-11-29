@@ -18,6 +18,8 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
 
         public string DisplayName => LanguageManager.Instance.JsonFormatter.DisplayName;
 
+        public string AccessibleName => LanguageManager.Instance.JsonFormatter.AccessibleName;
+
         public object IconSource => CreatePathIconFromPath(nameof(JsonFormatterToolProvider));
 
         [ImportingConstructor]

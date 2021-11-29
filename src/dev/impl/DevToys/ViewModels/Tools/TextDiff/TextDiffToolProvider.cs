@@ -17,6 +17,8 @@ namespace DevToys.ViewModels.Tools.TextDiff
 
         public string DisplayName => LanguageManager.Instance.TextDiff.DisplayName;
 
+        public string AccessibleName => LanguageManager.Instance.TextDiff.AccessibleName;
+
         public object IconSource => CreatePathIconFromPath(nameof(TextDiffToolProvider));
 
         [ImportingConstructor]

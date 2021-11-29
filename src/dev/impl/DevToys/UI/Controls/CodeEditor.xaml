@@ -47,12 +47,14 @@
             Orientation="Horizontal"
             HorizontalAlignment="Right"
             Spacing="8"
-            Margin="0,0,0,8">
+            Margin="0,0,0,8"
+            AutomationProperties.LabeledBy="{x:Bind HeaderTextBlock}">
             <Button
                 x:Name="PasteButton"
                 x:DeferLoadStrategy="Lazy"
                 Visibility="Collapsed"
                 TabIndex="0"
+                AutomationProperties.Name="{Binding Instance.Common.Paste, Mode=OneTime, Source={StaticResource LanguageManager}}"
                 Click="PasteButton_Click">
                 <StackPanel Orientation="Horizontal" Spacing="4">
                     <FontIcon Glyph="&#xF2D5;"/>
@@ -65,6 +67,7 @@
                 Visibility="Collapsed"
                 TabIndex="0"
                 ToolTipService.ToolTip="{Binding Instance.Common.OpenFile, Mode=OneTime, Source={StaticResource LanguageManager}}"
+                AutomationProperties.Name="{Binding Instance.Common.OpenFile, Mode=OneTime, Source={StaticResource LanguageManager}}"
                 Click="OpenFileButton_Click">
                 <FontIcon Glyph="&#xF378;"/>
             </Button>
@@ -74,6 +77,7 @@
                 Visibility="Collapsed"
                 TabIndex="0"
                 ToolTipService.ToolTip="{Binding Instance.Common.Clear, Mode=OneTime, Source={StaticResource LanguageManager}}"
+                AutomationProperties.Name="{Binding Instance.Common.Clear, Mode=OneTime, Source={StaticResource LanguageManager}}"
                 Click="ClearButton_Click">
                 <FontIcon Glyph="&#xF369;"/>
             </Button>
@@ -82,6 +86,7 @@
                 x:DeferLoadStrategy="Lazy"
                 TabIndex="2"
                 Visibility="Collapsed"
+                AutomationProperties.Name="{Binding Instance.Common.Copy, Mode=OneTime, Source={StaticResource LanguageManager}}"
                 Click="CopyButton_Click">
                 <StackPanel Orientation="Horizontal" Spacing="4">
                     <FontIcon Glyph="&#xF32B;"/>
@@ -99,13 +104,15 @@
             Text="{x:Bind Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             IsDiffViewMode="{x:Bind IsDiffViewMode}"
             DiffLeftText="{x:Bind DiffLeftText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            DiffRightText="{x:Bind DiffRightText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            DiffRightText="{x:Bind DiffRightText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            AutomationProperties.LabeledBy="{x:Bind HeaderTextBlock}"/>
         <TextBlock
             Grid.Row="1"
             Grid.Column="0"
             Grid.ColumnSpan="2"
             Text="{x:Bind ErrorMessage, Mode=OneWay}"
             Visibility="{x:Bind ErrorMessage, Mode=OneWay, Converter={StaticResource InvertedNullToVisibilityConverter}}"
-            IsTextSelectionEnabled="True"/>
+            IsTextSelectionEnabled="True"
+            AutomationProperties.LabeledBy="{x:Bind HeaderTextBlock}"/>
     </Grid>
 </UserControl>

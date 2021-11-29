@@ -20,6 +20,8 @@ namespace DevToys.ViewModels.Tools.MarkdownPreview
 
         public string DisplayName => LanguageManager.Instance.MarkdownPreview.DisplayName;
 
+        public string AccessibleName => LanguageManager.Instance.MarkdownPreview.AccessibleName;
+
         public object IconSource => CreatePathIconFromPath(nameof(MarkdownPreviewToolProvider));
 
         [ImportingConstructor]

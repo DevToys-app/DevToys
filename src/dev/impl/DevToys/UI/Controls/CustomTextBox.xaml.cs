@@ -129,6 +129,8 @@ namespace DevToys.UI.Controls
             SelectAllCommand = new RelayCommand(ExecuteSelectAllCommand, CanExecuteSelectAllCommand);
 
             DataContext = this;
+
+            UpdateUI();
         }
 
         #region CutCommand

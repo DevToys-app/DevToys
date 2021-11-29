@@ -25,6 +25,7 @@
     <Compile Include="Core\OOP\AppService.cs" />
     <Compile Include="Core\Threading\AsyncLazy.cs" />
     <Compile Include="UI\Converters\BooleanToDoubleConverter.cs" />
+    <Compile Include="UI\Converters\BooleanToIntegerConverter.cs" />
     <Compile Include="ViewModels\Tools\HtmlEncoderDecoder\HtmlEncoderDecoderToolProvider.cs" />
     <Compile Include="ViewModels\Tools\HtmlEncoderDecoder\HtmlEncoderDecoderToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\PngJpgCompressor\ImageCompressionWorkItem.cs" />
@@ -293,8 +294,8 @@
     <Compile Include="Views\Tools\Base64EncoderDecoder\Base64EncoderDecoderToolPage.xaml.cs">
       <DependentUpon>Base64EncoderDecoderToolPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tools\GuidGenerator\GuidGeneratoToolPage.xaml.cs">
-      <DependentUpon>GuidGeneratoToolPage.xaml</DependentUpon>
+    <Compile Include="Views\Tools\GuidGenerator\GuidGeneratorToolPage.xaml.cs">
+      <DependentUpon>GuidGeneratorToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\HashGenerator\HashGeneratorToolPage.xaml.cs">
       <DependentUpon>HashGeneratorToolPage.xaml</DependentUpon>
@@ -390,7 +391,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Tools\GuidGenerator\GuidGeneratoToolPage.xaml">
+    <Page Include="Views\Tools\GuidGenerator\GuidGeneratorToolPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

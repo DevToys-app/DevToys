@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Markup;
 
@@ -79,6 +80,12 @@ namespace DevToys.UI.Controls
         public ExpandableSettingControl()
         {
             InitializeComponent();
+        }
+
+        private void Expander_Loaded(object sender, RoutedEventArgs e)
+        {
+            AutomationProperties.SetName(Expander, Title);
+            AutomationProperties.SetHelpText(Expander, Description);
         }
     }
 }

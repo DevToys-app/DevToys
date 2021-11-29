@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="DevToys.Views.Tools.GuidGenerator.GuidGeneratoToolPage"
+    x:Class="DevToys.Views.Tools.GuidGenerator.GuidGeneratorToolPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -26,6 +26,7 @@
             <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Configuration}" />
 
             <controls:ExpandableSettingControl
+                TabIndex="0"
                 Title="{x:Bind ViewModel.Strings.Hyphens}">
                 <controls:ExpandableSettingControl.Icon>
                     <FontIcon Glyph="&#xF4E0;" />
@@ -36,6 +37,7 @@
             </controls:ExpandableSettingControl>
 
             <controls:ExpandableSettingControl
+                TabIndex="1"
                 Title="{x:Bind ViewModel.Strings.Uppercase}">
                 <controls:ExpandableSettingControl.Icon>
                     <FontIcon Glyph="&#xF7B2;" />
@@ -51,23 +53,27 @@
 
             <StackPanel Spacing="8" Orientation="Horizontal">
                 <Button
+                    TabIndex="3"
                     Style="{StaticResource AccentButtonStyle}"
                     Content="{x:Bind ViewModel.Strings.GenerateButton}"
                     Command="{x:Bind ViewModel.GenerateCommand}"/>
                 <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{x:Bind ViewModel.Strings.MultiplySymbol}"/>
                 <muxc:NumberBox
+                    TabIndex="2"
                     MinWidth="100"
                     Value="{x:Bind ViewModel.NumberOfGuidsToGenerate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     SpinButtonPlacementMode="Compact"
                     SmallChange="1"
                     LargeChange="10"
-                    Minimum="1"/>
+                    Minimum="1"
+                    AutomationProperties.Name="{x:Bind ViewModel.Strings.NumberOfGuidsToGenerate_AutomationProperties_Name}"/>
             </StackPanel>
         </StackPanel>
 
         <controls:CustomTextBox
             x:Name="OutputTextBox"
             Grid.Row="2"
+            TabIndex="4"
             Header="{x:Bind ViewModel.Strings.Guids}"
             MinHeight="150"
             AcceptsReturn="True"
