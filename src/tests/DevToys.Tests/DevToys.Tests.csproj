@@ -44,6 +44,7 @@
     <SDKReference Include="TestPlatform.Universal, Version=$(UnitTestPlatformVersion)" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Formatter\BaseNumberFormatterTests.cs" />
     <Compile Include="Helpers\YamlHelperTests.cs" />
     <Compile Include="Helpers\JsonHelperTests.cs" />
     <Compile Include="MefBaseTest.cs" />
@@ -88,7 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\dev\impl\DevToys\DevToys.csproj">
-      <Project>{E3E4E200-B380-4207-9A7E-4C9421904502}</Project>
+      <Project>{e3e4e200-b380-4207-9a7e-4c9421904502}</Project>
       <Name>DevToys</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\dev\shared\DevToys.Shared\DevToys.Shared.csproj">

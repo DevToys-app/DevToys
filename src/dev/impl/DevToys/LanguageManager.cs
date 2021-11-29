@@ -34,6 +34,7 @@ namespace DevToys
         private readonly JwtDecoderEncoderStrings _jwtdecoderencoder = new JwtDecoderEncoderStrings();
         private readonly MainPageStrings _mainpage = new MainPageStrings();
         private readonly MarkdownPreviewStrings _markdownpreview = new MarkdownPreviewStrings();
+        private readonly NumberBaseConverterStrings _numberbaseconverter = new NumberBaseConverterStrings();
         private readonly PngJpgCompressorStrings _pngjpgcompressor = new PngJpgCompressorStrings();
         private readonly RegExStrings _regex = new RegExStrings();
         private readonly SettingsStrings _settings = new SettingsStrings();
@@ -100,6 +101,11 @@ namespace DevToys
         /// Gets the <see cref="MarkdownPreviewStrings"/>.
         /// </summary>
         public MarkdownPreviewStrings MarkdownPreview => _markdownpreview;
+
+        /// <summary>
+        /// Gets the <see cref="NumberBaseConverterStrings"/>.
+        /// </summary>
+        public NumberBaseConverterStrings NumberBaseConverter => _numberbaseconverter;
 
         /// <summary>
         /// Gets the <see cref="PngJpgCompressorStrings"/>.
@@ -827,6 +833,86 @@ namespace DevToys
         /// Gets the resource ThemeDescription.
         /// </summary>
         public string ThemeDescription => _resources.GetString("ThemeDescription");
+    }
+
+    public class NumberBaseConverterStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("NumberBaseConverter");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
+        /// Gets the resource BinaryLabel.
+        /// </summary>
+        public string BinaryLabel => _resources.GetString("BinaryLabel");
+
+        /// <summary>
+        /// Gets the resource ConfigurationTitle.
+        /// </summary>
+        public string ConfigurationTitle => _resources.GetString("ConfigurationTitle");
+
+        /// <summary>
+        /// Gets the resource DecimalLabel.
+        /// </summary>
+        public string DecimalLabel => _resources.GetString("DecimalLabel");
+
+        /// <summary>
+        /// Gets the resource DisplayName.
+        /// </summary>
+        public string DisplayName => _resources.GetString("DisplayName");
+
+        /// <summary>
+        /// Gets the resource Format.
+        /// </summary>
+        public string Format => _resources.GetString("Format");
+
+        /// <summary>
+        /// Gets the resource HexadecimalLabel.
+        /// </summary>
+        public string HexadecimalLabel => _resources.GetString("HexadecimalLabel");
+
+        /// <summary>
+        /// Gets the resource Input.
+        /// </summary>
+        public string Input => _resources.GetString("Input");
+
+        /// <summary>
+        /// Gets the resource InputTypeBinary.
+        /// </summary>
+        public string InputTypeBinary => _resources.GetString("InputTypeBinary");
+
+        /// <summary>
+        /// Gets the resource InputTypeDecimal.
+        /// </summary>
+        public string InputTypeDecimal => _resources.GetString("InputTypeDecimal");
+
+        /// <summary>
+        /// Gets the resource InputTypeDescription.
+        /// </summary>
+        public string InputTypeDescription => _resources.GetString("InputTypeDescription");
+
+        /// <summary>
+        /// Gets the resource InputTypeHexadecimal.
+        /// </summary>
+        public string InputTypeHexadecimal => _resources.GetString("InputTypeHexadecimal");
+
+        /// <summary>
+        /// Gets the resource InputTypeOctal.
+        /// </summary>
+        public string InputTypeOctal => _resources.GetString("InputTypeOctal");
+
+        /// <summary>
+        /// Gets the resource InputTypeTitle.
+        /// </summary>
+        public string InputTypeTitle => _resources.GetString("InputTypeTitle");
+
+        /// <summary>
+        /// Gets the resource OctalLabel.
+        /// </summary>
+        public string OctalLabel => _resources.GetString("OctalLabel");
     }
 
     public class PngJpgCompressorStrings : ObservableObject
