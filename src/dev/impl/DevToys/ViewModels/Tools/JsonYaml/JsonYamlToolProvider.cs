@@ -18,6 +18,8 @@ namespace DevToys.ViewModels.Tools.JsonYaml
 
         public string DisplayName => LanguageManager.Instance.JsonYaml.DisplayName;
 
+        public string AccessibleName => LanguageManager.Instance.JsonYaml.AccessibleName;
+
         public object IconSource => CreatePathIconFromPath(nameof(JsonYamlToolProvider));
 
         [ImportingConstructor]

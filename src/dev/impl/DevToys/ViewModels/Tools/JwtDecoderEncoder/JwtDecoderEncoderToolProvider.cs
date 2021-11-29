@@ -18,6 +18,8 @@ namespace DevToys.ViewModels.Tools.JwtDecoderEncoder
 
         public string DisplayName => LanguageManager.Instance.JwtDecoderEncoder.DisplayName;
 
+        public string AccessibleName => LanguageManager.Instance.JwtDecoderEncoder.AccessibleName;
+
         public object IconSource => CreatePathIconFromPath(nameof(JwtDecoderEncoderToolProvider));
 
         [ImportingConstructor]

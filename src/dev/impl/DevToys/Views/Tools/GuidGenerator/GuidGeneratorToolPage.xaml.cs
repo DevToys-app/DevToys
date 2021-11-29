@@ -9,13 +9,13 @@ using Windows.UI.Xaml.Navigation;
 
 namespace DevToys.Views.Tools.GuidGenerator
 {
-    public sealed partial class GuidGeneratoToolPage : Page
+    public sealed partial class GuidGeneratorToolPage : Page
     {
         public static readonly DependencyProperty ViewModelProperty
             = DependencyProperty.Register(
                 nameof(ViewModel),
                 typeof(GuidGeneratorToolViewModel),
-                typeof(GuidGeneratoToolPage),
+                typeof(GuidGeneratorToolPage),
                 new PropertyMetadata(null));
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace DevToys.Views.Tools.GuidGenerator
             set => SetValue(ViewModelProperty, value);
         }
 
-        public GuidGeneratoToolPage()
+        public GuidGeneratorToolPage()
         {
             InitializeComponent();
         }

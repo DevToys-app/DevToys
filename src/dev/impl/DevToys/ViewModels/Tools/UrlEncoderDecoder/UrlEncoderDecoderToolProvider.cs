@@ -17,6 +17,8 @@ namespace DevToys.ViewModels.Tools.UrlEncoderDecoder
     {
         public string DisplayName => LanguageManager.Instance.UrlEncoderDecoder.DisplayName;
 
+        public string AccessibleName => LanguageManager.Instance.UrlEncoderDecoder.AccessibleName;
+
         public object IconSource
             => new TaskCompletionNotifier<IconElement>(
                 ThreadHelper.RunOnUIThreadAsync(() =>

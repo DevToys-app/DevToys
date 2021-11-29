@@ -106,6 +106,7 @@
             HorizontalAlignment="Right">
             <Button
                 Style="{StaticResource AccentButtonStyle}"
+                AutomationProperties.Name="{x:Bind ViewModel.Strings.SaveAll}"
                 Command="{x:Bind ViewModel.SaveAllCommand}">
                 <StackPanel Orientation="Horizontal" Spacing="4">
                     <FontIcon Glyph="&#xF67F;"/>
@@ -113,6 +114,7 @@
                 </StackPanel>
             </Button>
             <Button
+                AutomationProperties.Name="{x:Bind ViewModel.Strings.DeleteAll}"
                 Command="{x:Bind ViewModel.DeleteAllCommand}">
                 <StackPanel Orientation="Horizontal" Spacing="4">
                     <FontIcon Glyph="&#xF34C;"/>
@@ -188,6 +190,7 @@
                                 Spacing="4"
                                 VerticalAlignment="Center">
                                 <TextBlock
+                                    Name="FileNameHeader"
                                     Text="{x:Bind FileName}"
                                     TextWrapping="Wrap" />
                                 <TextBlock
@@ -210,43 +213,44 @@
                                 Grid.Column="3"
                                 Margin="12,0,0,0"
                                 VerticalAlignment="Center"
-                                Orientation="Horizontal">
+                                Orientation="Horizontal"
+                                AutomationProperties.LabeledBy="{Binding ElementName=FileNameHeader}">
                                 <Button
-                                    x:Name="CancelButton"
-                                    x:Load="{x:Bind CanCancel, Mode=OneWay}"
+                                    Visibility="{x:Bind CanCancel, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     Style="{StaticResource CommandBarFlyoutEllipsisButtonStyle}"
                                     Command="{x:Bind CancelCommand}"
-                                    ToolTipService.ToolTip="{x:Bind Strings.Cancel}">
+                                    ToolTipService.ToolTip="{x:Bind Strings.Cancel}"
+                                    AutomationProperties.Name="{x:Bind Strings.Cancel}">
                                     <FontIcon
                                         FontFamily="{StaticResource FluentSystemIcons}"
                                         Glyph="&#xF75A;"/>
                                 </Button>
                                 <Button
-                                    x:Name="SaveButton"
-                                    x:Load="{x:Bind IsDone, Mode=OneWay}"
+                                    Visibility="{x:Bind IsDone, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     Style="{StaticResource CommandBarFlyoutEllipsisButtonStyle}"
                                     Command="{x:Bind SaveCommand}"
-                                    ToolTipService.ToolTip="{x:Bind Strings.SaveAs}">
+                                    ToolTipService.ToolTip="{x:Bind Strings.SaveAs}"
+                                    AutomationProperties.Name="{x:Bind Strings.SaveAs}">
                                     <FontIcon
                                         FontFamily="{StaticResource FluentSystemIcons}"
                                         Glyph="&#xF67F;"/>
                                 </Button>
                                 <Button
-                                    x:Name="ErrorMessageButton"
-                                    x:Load="{x:Bind HasFailed, Mode=OneWay}"
+                                    Visibility="{x:Bind HasFailed, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     Style="{StaticResource CommandBarFlyoutEllipsisButtonStyle}"
                                     Command="{x:Bind ShowErrorMessageCommand}"
-                                    ToolTipService.ToolTip="{x:Bind Strings.SeeErrorMessage}">
+                                    ToolTipService.ToolTip="{x:Bind Strings.SeeErrorMessage}"
+                                    AutomationProperties.Name="{x:Bind Strings.SeeErrorMessage}">
                                     <FontIcon
                                         FontFamily="{StaticResource FluentSystemIcons}"
                                         Glyph="&#xF350;"/>
                                 </Button>
                                 <Button
-                                    x:Name="DeleteButton"
-                                    x:Load="{x:Bind CanDelete, Mode=OneWay}"
+                                    Visibility="{x:Bind CanDelete, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     Style="{StaticResource CommandBarFlyoutEllipsisButtonStyle}"
                                     Command="{x:Bind DeleteCommand}"
-                                    ToolTipService.ToolTip="{x:Bind Strings.Delete}">
+                                    ToolTipService.ToolTip="{x:Bind Strings.Delete}"
+                                    AutomationProperties.Name="{x:Bind Strings.Delete}">
                                     <FontIcon
                                         FontFamily="{StaticResource FluentSystemIcons}"
                                         Glyph="&#xF34C;"/>
