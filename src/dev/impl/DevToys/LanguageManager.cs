@@ -469,6 +469,11 @@ namespace DevToys
         public string DisplayName => _resources.GetString("DisplayName");
 
         /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
         /// Gets the resource Format.
         /// </summary>
         public string Format => _resources.GetString("Format");

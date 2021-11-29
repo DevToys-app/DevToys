@@ -33,6 +33,9 @@
     <Compile Include="ViewModels\Tools\PngJpgCompressor\ImageCompressionWorkItem.cs" />
     <Compile Include="ViewModels\Tools\PngJpgCompressor\PngJpgCompressorToolProvider.cs" />
     <Compile Include="ViewModels\Tools\PngJpgCompressor\PngJpgCompressorToolViewModel.cs" />
+    <Compile Include="Views\Tools\GuidGenerator\GuidGeneratorToolPage.xaml.cs">
+      <DependentUpon>GuidGeneratorToolPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Tools\HtmlEncoderDecoder\HtmlEncoderDecoderToolPage.xaml.cs">
       <DependentUpon>HtmlEncoderDecoderToolPage.xaml</DependentUpon>
     </Compile>
@@ -301,9 +304,6 @@
     </Compile>
     <Compile Include="Views\Tools\HexConverter\HexConverterToolPage.xaml.cs">
       <DependentUpon>HexConverterToolPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Tools\GuidGenerator\GuidGeneratoToolPage.xaml.cs">
-      <DependentUpon>GuidGeneratoToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\HashGenerator\HashGeneratorToolPage.xaml.cs">
       <DependentUpon>HashGeneratorToolPage.xaml</DependentUpon>

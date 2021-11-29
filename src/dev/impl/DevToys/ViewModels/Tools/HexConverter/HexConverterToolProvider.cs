@@ -18,7 +18,10 @@ namespace DevToys.ViewModels.Tools.HexConverter
     {
         private readonly IMefProvider _mefProvider;
 
-        public string? DisplayName => LanguageManager.Instance.HexConverter.DisplayName;
+        public string DisplayName => LanguageManager.Instance.HexConverter.DisplayName;
+
+        public string AccessibleName => LanguageManager.Instance.HexConverter.AccessibleName;
+
 
         public object IconSource
             => new TaskCompletionNotifier<IconElement>(
