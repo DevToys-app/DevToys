@@ -118,22 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Guid Generator tool</value>
+    <value>UUID Generator tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Configuration</value>
   </data>
   <data name="DisplayName" xml:space="preserve">
-    <value>Guid Generator</value>
+    <value>UUID Generator</value>
   </data>
   <data name="Generate" xml:space="preserve">
     <value>Generate</value>
   </data>
   <data name="GenerateButton" xml:space="preserve">
-    <value>Generate GUID(s)</value>
+    <value>Generate UUID(s)</value>
   </data>
   <data name="Guids" xml:space="preserve">
-    <value>GUID(s)</value>
+    <value>UUID(s)</value>
   </data>
   <data name="Hyphens" xml:space="preserve">
     <value>Hyphens</value>
@@ -142,9 +142,21 @@
     <value>x</value>
   </data>
   <data name="NumberOfGuidsToGenerate_AutomationProperties_Name" xml:space="preserve">
-    <value>Number of GUID to generate</value>
+    <value>Number of UUID to generate</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
     <value>Uppercase</value>
+  </data>
+  <data name="UuidVersionFour" xml:space="preserve">
+    <value>4 (GUID)</value>
+  </data>
+  <data name="UuidVersionOne" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="VersionDescription" xml:space="preserve">
+    <value>Choose the version of UUID to generate</value>
+  </data>
+  <data name="VersionTitle" xml:space="preserve">
+    <value>UUID version</value>
   </data>
 </root>

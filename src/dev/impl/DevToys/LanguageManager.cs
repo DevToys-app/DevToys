@@ -386,6 +386,26 @@ namespace DevToys
         /// Gets the resource Uppercase.
         /// </summary>
         public string Uppercase => _resources.GetString("Uppercase");
+
+        /// <summary>
+        /// Gets the resource UuidVersionFour.
+        /// </summary>
+        public string UuidVersionFour => _resources.GetString("UuidVersionFour");
+
+        /// <summary>
+        /// Gets the resource UuidVersionOne.
+        /// </summary>
+        public string UuidVersionOne => _resources.GetString("UuidVersionOne");
+
+        /// <summary>
+        /// Gets the resource VersionDescription.
+        /// </summary>
+        public string VersionDescription => _resources.GetString("VersionDescription");
+
+        /// <summary>
+        /// Gets the resource VersionTitle.
+        /// </summary>
+        public string VersionTitle => _resources.GetString("VersionTitle");
     }
 
     public class HashGeneratorStrings : ObservableObject
