@@ -5,11 +5,26 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:DevToys.UI.Controls"
+    xmlns:ex="using:DevToys.UI.Extensions"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
     NavigationCacheMode="Required">
 
     <Grid Margin="0,0,0,16" RowSpacing="12">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <ex:IsCompactOverlayModeTrigger TargetElement="{x:Bind}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="HyphensSetting.Visibility" Value="Collapsed" />
+                        <Setter Target="UppercaseSetting.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
         <Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
@@ -26,6 +41,7 @@
             <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Configuration}" />
 
             <controls:ExpandableSettingControl
+                x:Name="HyphensSetting"
                 TabIndex="0"
                 Title="{x:Bind ViewModel.Strings.Hyphens}">
                 <controls:ExpandableSettingControl.Icon>
@@ -37,7 +53,8 @@
             </controls:ExpandableSettingControl>
 
             <controls:ExpandableSettingControl
-                TabIndex="1"
+                x:Name="UppercaseSetting"
+                TabIndex="0"
                 Title="{x:Bind ViewModel.Strings.Uppercase}">
                 <controls:ExpandableSettingControl.Icon>
                     <FontIcon Glyph="&#xF7B2;" />
@@ -46,6 +63,21 @@
                     Style="{StaticResource RightAlignedToggleSwitchStyle}"
                     IsOn="{x:Bind ViewModel.IsUppercase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </controls:ExpandableSettingControl>
+
+            <controls:ExpandableSettingControl
+                TabIndex="0"
+                Title="{x:Bind ViewModel.Strings.VersionTitle}"
+                Description="{x:Bind ViewModel.Strings.VersionDescription}">
+                <controls:ExpandableSettingControl.Icon>
+                    <FontIcon Glyph="&#xF587;" />
+                </controls:ExpandableSettingControl.Icon>
+                <ComboBox
+                    SelectedValuePath="Tag"
+                    SelectedValue="{x:Bind ViewModel.UuidVersion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBoxItem Tag="One" Content="{x:Bind ViewModel.Strings.UuidVersionOne}" />
+                    <ComboBoxItem Tag="Four" Content="{x:Bind ViewModel.Strings.UuidVersionFour}"/>
+                </ComboBox>
+            </controls:ExpandableSettingControl>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Spacing="4" >
@@ -53,13 +85,13 @@
 
             <StackPanel Spacing="8" Orientation="Horizontal">
                 <Button
-                    TabIndex="3"
+                    TabIndex="2"
                     Style="{StaticResource AccentButtonStyle}"
                     Content="{x:Bind ViewModel.Strings.GenerateButton}"
                     Command="{x:Bind ViewModel.GenerateCommand}"/>
                 <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{x:Bind ViewModel.Strings.MultiplySymbol}"/>
                 <muxc:NumberBox
-                    TabIndex="2"
+                    TabIndex="1"
                     MinWidth="100"
                     Value="{x:Bind ViewModel.NumberOfGuidsToGenerate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     SpinButtonPlacementMode="Compact"
@@ -73,7 +105,7 @@
         <controls:CustomTextBox
             x:Name="OutputTextBox"
             Grid.Row="2"
-            TabIndex="4"
+            TabIndex="3"
             Header="{x:Bind ViewModel.Strings.Guids}"
             MinHeight="150"
             AcceptsReturn="True"
