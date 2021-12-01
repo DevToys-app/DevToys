@@ -24,6 +24,7 @@
     <Compile Include="Api\Core\OOP\IAppService.cs" />
     <Compile Include="Core\OOP\AppService.cs" />
     <Compile Include="Core\Threading\AsyncLazy.cs" />
+    <Compile Include="Helpers\NumberBaseHelper.cs" />
     <Compile Include="Models\Radix.cs" />
     <Compile Include="Models\NumberBaseFormat.cs" />
     <Compile Include="UI\Converters\BooleanToDoubleConverter.cs" />
