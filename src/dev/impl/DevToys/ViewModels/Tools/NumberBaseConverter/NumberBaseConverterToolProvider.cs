@@ -3,7 +3,9 @@
 using System.Composition;
 using System.Threading.Tasks;
 using DevToys.Api.Tools;
+using DevToys.Core.Formatter;
 using DevToys.Core.Threading;
+using DevToys.Helpers;
 using DevToys.Shared.Api.Core;
 using Windows.UI.Xaml.Controls;
 
@@ -21,7 +23,6 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
         public string DisplayName => LanguageManager.Instance.NumberBaseConverter.DisplayName;
 
         public string AccessibleName => LanguageManager.Instance.NumberBaseConverter.AccessibleName;
-
 
         public object IconSource
             => new TaskCompletionNotifier<IconElement>(
@@ -42,7 +43,8 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
 
         public bool CanBeTreatedByTool(string data)
         {
-            return false;
+            data = NumberBaseFormatter.RemoveFormatting(data).ToString();
+            return NumberBaseHelper.IsValidBinary(data) || NumberBaseHelper.IsValidHexadecimal(data);
         }
 
         public IToolViewModel CreateTool()
