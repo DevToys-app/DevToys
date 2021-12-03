@@ -505,14 +505,21 @@ namespace DevToys.UI.Controls
 
         private void CopyButton_Click(object sender, RoutedEventArgs e)
         {
-            var data = new DataPackage
+            try
             {
-                RequestedOperation = DataPackageOperation.Copy
-            };
-            data.SetText(Text);
+                var data = new DataPackage
+                {
+                    RequestedOperation = DataPackageOperation.Copy
+                };
+                data.SetText(Text);
 
-            Clipboard.SetContentWithOptions(data, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
-            Clipboard.Flush(); // This method allows the content to remain available after the application shuts down.
+                Clipboard.SetContentWithOptions(data, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
+                Clipboard.Flush(); // This method allows the content to remain available after the application shuts down.
+            }
+            catch (Exception ex)
+            {
+                Logger.LogFault("Failed to copy from custom text box", ex);
+            }
         }
 
         private async void OpenFileButton_Click(object sender, RoutedEventArgs e)
