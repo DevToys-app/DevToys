@@ -30,6 +30,7 @@ Many tools are available.
 - JWT Decoder
 - Json Formatter
 - RegExp Tester
+- Number Base Converter
 - Text Comparer
 - Json <> Yaml converter
 - PNG/JPEG image compressor
@@ -83,6 +84,7 @@ Here is the list of tool name you can use:
 - `imgcomp` - PNG/JPEG compressor
 - `markdown` - Markdown Preview
 - `regex` - Regular Expression Tester
+- `baseconverter` - Number Base Converter
 - `string` - String Utilities
 - `url` - URL Encoder/Decoder
 - `html` - HTML Encoder/Decoder
