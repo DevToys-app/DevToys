@@ -10,7 +10,7 @@ namespace DevToys.OutOfProcService.OutOfProcServices
 {
     internal abstract class OutOfProcServiceBase<TInput, TOutput> : IOutOfProcService
         where TInput : AppServiceMessageBase
-        where TOutput : AppServiceMessageBase
+        where TOutput : AppServiceMessageBase?
     {
         private readonly DisposableSempahore _sempahore = new();
         private bool _messageIsProcessing;
@@ -19,7 +19,7 @@ namespace DevToys.OutOfProcService.OutOfProcServices
 
         public event EventHandler<AppServiceProgressMessageEventArgs>? ReportProgress;
 
-        public async Task<AppServiceMessageBase> ProcessMessageAsync(AppServiceMessageBase inputMessage, CancellationToken cancellationToken)
+        public async Task<AppServiceMessageBase?> ProcessMessageAsync(AppServiceMessageBase inputMessage, CancellationToken cancellationToken)
         {
             Assumes.NotNull(inputMessage.MessageId, nameof(inputMessage.MessageId));
 
