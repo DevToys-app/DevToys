@@ -208,11 +208,14 @@ namespace DevToys.OutOfProcService.Core.OOP
                 service.ReportProgress += Service_ReportProgress;
 
                 // Invoke the service.
-                AppServiceMessageBase outputMessage = await service.ProcessMessageAsync(inputMessage, cancellationToken);
-                outputMessage.MessageId = inputMessage.MessageId;
+                AppServiceMessageBase? outputMessage = await service.ProcessMessageAsync(inputMessage, cancellationToken);
+                if (outputMessage is not null)
+                {
+                    outputMessage.MessageId = inputMessage.MessageId;
 
-                // Send the service result as a response to the UWP app.
-                await SendMessageAsync(outputMessage);
+                    // Send the service result as a response to the UWP app.
+                    await SendMessageAsync(outputMessage);
+                }
             }
             catch (OperationCanceledException)
             {

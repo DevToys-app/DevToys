@@ -4,6 +4,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Composition;
 using System.IO.Pipes;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -36,6 +37,15 @@ namespace DevToys.Core.OOP
             App.Current.Suspending += OnAppSuspending;
         }
 
+        public async Task SendMessageAsync(AppServiceMessageBase message)
+        {
+            await InternalSendMessageAndGetResponseAsync(
+                waitForResult: false,
+                message,
+                DummyProgress.DefaultInstance,
+                CancellationToken.None);
+        }
+
         public Task<T> SendMessageAndGetResponseAsync<T>(AppServiceMessageBase message) where T : AppServiceMessageBase
         {
             return SendMessageAndGetResponseAsync<T>(message, CancellationToken.None);
@@ -55,7 +65,13 @@ namespace DevToys.Core.OOP
         {
             Arguments.NotNull(progress, nameof(progress));
 
-            AppServiceMessageBase? result = await InternalSendMessageAndGetResponseAsync(message, progress, cancellationToken);
+            AppServiceMessageBase? result
+                = await InternalSendMessageAndGetResponseAsync(
+                    waitForResult: true,
+                    message,
+                    progress,
+                    cancellationToken);
+
             if (result is null)
             {
                 throw new Exception("Unable to send a message to the app service.");
@@ -73,14 +89,14 @@ namespace DevToys.Core.OOP
             SuspendingDeferral? deferral = e.SuspendingOperation.GetDeferral();
 
             // Shut down the Win32 app.
-            await SendMessageAndGetResponseAsync<ShutdownMessage>(new ShutdownMessage());
+            await SendMessageAsync(new ShutdownMessage());
 
             Disconnect();
 
             deferral.Complete();
         }
 
-        private async Task<AppServiceMessageBase?> InternalSendMessageAndGetResponseAsync(AppServiceMessageBase message, IProgress<AppServiceProgressMessage> progress, CancellationToken cancellationToken)
+        private async Task<AppServiceMessageBase?> InternalSendMessageAndGetResponseAsync(bool waitForResult, AppServiceMessageBase message, IProgress<AppServiceProgressMessage> progress, CancellationToken cancellationToken)
         {
             Arguments.NotNull(message, nameof(message));
             Arguments.NotNull(progress, nameof(progress));
@@ -103,23 +119,29 @@ namespace DevToys.Core.OOP
                     message.MessageId = messageId;
 
                     // start tracking the message.
-                    _inProgressMessages.TryAdd(message.MessageId.Value, messageCompletionSource);
-                    _progressReporters.TryAdd(message.MessageId.Value, progress);
+                    if (waitForResult)
+                    {
+                        _inProgressMessages.TryAdd(message.MessageId.Value, messageCompletionSource);
+                        _progressReporters.TryAdd(message.MessageId.Value, progress);
+                    }
 
                     // Send the message.
                     SendMessage(message);
                 }
 
-                // Wait for the answer of the app service.
-                using (CancellationTokenRegistration cancellationTokenRegistration
-                    = cancellationToken.Register(() =>
-                    {
-                        OnSendMessageCanceledAsync(messageId).Forget();
-                    }))
+                if (waitForResult)
                 {
-                    AppServiceMessageBase result = await messageCompletionSource.Task;
-                    _progressReporters.TryRemove(message.MessageId.Value, out _);
-                    return result;
+                    // Wait for the answer of the app service.
+                    using (CancellationTokenRegistration cancellationTokenRegistration
+                        = cancellationToken.Register(() =>
+                        {
+                            OnSendMessageCanceledAsync(messageId).Forget();
+                        }))
+                    {
+                        AppServiceMessageBase result = await messageCompletionSource.Task;
+                        _progressReporters.TryRemove(message.MessageId.Value, out _);
+                        return result;
+                    }
                 }
             }
             catch (Exception ex)
