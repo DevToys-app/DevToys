@@ -68,6 +68,16 @@ dotnet_naming_symbols.constant_fields.required_modifiers          = const
 dotnet_style_namespace_match_folder=true:warning
 dotnet_style_allow_multiple_blank_lines_experimental=true:warning
 dotnet_code_quality_unused_parameters=all:warning
+# CS8600: Converting null literal or possible null value to non-nullable type.
+dotnet_diagnostic.CS8600.severity = error
+# CS8604: Possible null reference argument.
+dotnet_diagnostic.CS8604.severity = error
+# CS8765: Nullability of type of parameter doesn't match overridden member (possibly because of nullability attributes).
+dotnet_diagnostic.CS8765.severity = error
+# CS8602: Dereference of a possibly null reference.
+dotnet_diagnostic.CS8602.severity = error
+# CS0162: Unreachable code detected
+dotnet_diagnostic.CS0162.severity = error
 ###############################
 # C# Coding Conventions       #
 ###############################

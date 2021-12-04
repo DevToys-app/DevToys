@@ -132,16 +132,15 @@ namespace DevToys.Core.OOP
                 if (waitForResult)
                 {
                     // Wait for the answer of the app service.
-                    using (CancellationTokenRegistration cancellationTokenRegistration
+                    using CancellationTokenRegistration cancellationTokenRegistration
                         = cancellationToken.Register(() =>
                         {
                             OnSendMessageCanceledAsync(messageId).Forget();
-                        }))
-                    {
-                        AppServiceMessageBase result = await messageCompletionSource.Task;
-                        _progressReporters.TryRemove(message.MessageId.Value, out _);
-                        return result;
-                    }
+                        });
+
+                    AppServiceMessageBase result = await messageCompletionSource.Task;
+                    _progressReporters.TryRemove(message.MessageId.Value, out _);
+                    return result;
                 }
             }
             catch (Exception ex)

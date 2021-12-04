@@ -52,7 +52,7 @@ namespace DevToys.ViewModels.Tools.GuidGenerator
                 isRoaming: true,
                 defaultValue: 1);
 
-        private static readonly Random Random = new Random();
+        private static readonly Random Random = new();
 
         private static readonly DateTimeOffset GregorianCalendarStart = new(1582, 10, 15, 0, 0, 0, TimeSpan.Zero);
         private const int VariantByte = 8;
