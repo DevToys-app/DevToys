@@ -13,6 +13,6 @@ namespace DevToys.OutOfProcService.API.Core.OOP
 
         event EventHandler<AppServiceProgressMessageEventArgs>? ReportProgress;
 
-        Task<AppServiceMessageBase> ProcessMessageAsync(AppServiceMessageBase inputMessage, CancellationToken cancellationToken);
+        Task<AppServiceMessageBase?> ProcessMessageAsync(AppServiceMessageBase inputMessage, CancellationToken cancellationToken);
     }
 }
