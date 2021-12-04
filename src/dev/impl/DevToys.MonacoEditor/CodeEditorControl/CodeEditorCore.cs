@@ -127,7 +127,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             set => SetValue(SelectedRangeProperty, value);
         }
 
-        internal static DependencyProperty CodeLanguageProperty { get; }
+        public static DependencyProperty CodeLanguageProperty { get; }
             = DependencyProperty.Register(
                 nameof(CodeLanguage),
                 typeof(string),
@@ -158,7 +158,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             set => SetValue(CodeLanguageProperty, value);
         }
 
-        internal static DependencyProperty ReadOnlyProperty { get; }
+        public static DependencyProperty ReadOnlyProperty { get; }
             = DependencyProperty.Register(
                 nameof(ReadOnly),
                 typeof(bool),
@@ -756,7 +756,6 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             {
                 try
                 {
-
                     if (_view is null)
                     {
                         throw new NullReferenceException();
@@ -785,10 +784,7 @@ namespace DevToys.MonacoEditor.CodeEditorControl
                 _themeListener.ThemeChanged -= ThemeListener_ThemeChanged;
             }
 
-            _themeListener = null;
-
             ParentAccessor?.Dispose();
-            ParentAccessor = null;
             CssStyleBroker.DetachEditor(this);
         }
 

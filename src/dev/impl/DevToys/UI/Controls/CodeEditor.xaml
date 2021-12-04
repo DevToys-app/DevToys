@@ -94,18 +94,23 @@
                 </StackPanel>
             </Button>
         </StackPanel>
-        <monaco:CodeEditorCore
-            x:Name="CodeEditorCore"
+        <Grid
+            x:Name="CodeEditorCoreContainer"
             Grid.Row="1"
             Grid.Column="0"
-            Grid.ColumnSpan="2"
-            TabIndex="1"
-            CodeLanguage="{x:Bind CodeLanguage, Mode=OneWay}"
-            Text="{x:Bind Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            IsDiffViewMode="{x:Bind IsDiffViewMode}"
-            DiffLeftText="{x:Bind DiffLeftText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            DiffRightText="{x:Bind DiffRightText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            AutomationProperties.LabeledBy="{x:Bind HeaderTextBlock}"/>
+            Grid.ColumnSpan="2">
+            <!--<monaco:CodeEditorCore
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                TabIndex="1"
+                CodeLanguage="{x:Bind CodeLanguage, Mode=OneWay}"
+                Text="{x:Bind Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                IsDiffViewMode="{x:Bind IsDiffViewMode}"
+                DiffLeftText="{x:Bind DiffLeftText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                DiffRightText="{x:Bind DiffRightText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                AutomationProperties.LabeledBy="{x:Bind HeaderTextBlock}"/>-->
+        </Grid>
         <TextBlock
             Grid.Row="1"
             Grid.Column="0"

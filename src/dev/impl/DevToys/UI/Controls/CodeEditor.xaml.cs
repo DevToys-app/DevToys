@@ -4,18 +4,25 @@ using System;
 using DevToys.Api.Core.Settings;
 using DevToys.Core;
 using DevToys.Core.Settings;
+using DevToys.MonacoEditor.CodeEditorControl;
 using DevToys.MonacoEditor.Monaco.Editor;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 using Clipboard = Windows.ApplicationModel.DataTransfer.Clipboard;
 
 namespace DevToys.UI.Controls
 {
     public sealed partial class CodeEditor : UserControl, IDisposable
     {
+        private readonly object _lockObject = new();
+        private int _codeEditorCodeReloadTentative;
+        private CodeEditorCore _codeEditorCore;
+
         public static readonly DependencyProperty SettingsProviderProperty
             = DependencyProperty.Register(
                 nameof(SettingsProvider),
@@ -151,7 +158,10 @@ namespace DevToys.UI.Controls
                     false,
                     (d, e) =>
                     {
-                        ((CodeEditor)d).CodeEditorCore.DiffOptions.RenderSideBySide = !(bool)e.NewValue;
+                        lock (((CodeEditor)d)._lockObject)
+                        {
+                            ((CodeEditor)d)._codeEditorCore.DiffOptions.RenderSideBySide = !(bool)e.NewValue;
+                        }
                     }));
 
         public bool InlineDiffViewMode
@@ -164,63 +174,78 @@ namespace DevToys.UI.Controls
         {
             InitializeComponent();
 
-            CodeEditorCore.EditorLoading += CodeEditorCore_Loading;
-            CodeEditorCore.InternalException += CodeEditorCore_InternalException;
+            _codeEditorCore = ReloadCodeEditorCore();
 
             UpdateUI();
         }
 
         public void Dispose()
         {
-            CodeEditorCore.Dispose();
+            lock (_lockObject)
+            {
+                _codeEditorCore.Dispose();
+            }
         }
 
-        private void CodeEditorCore_InternalException(MonacoEditor.CodeEditorControl.CodeEditorCore sender, Exception args)
+        private void CodeEditorCore_InternalException(CodeEditorCore sender, Exception args)
         {
-            ErrorMessage = $"{args.Message}\r\n{args.InnerException?.Message}";
+            if (_codeEditorCodeReloadTentative >= 5)
+            {
+                ErrorMessage = $"{args.Message}\r\n{args.InnerException?.Message}";
+                Logger.LogFault(nameof(CodeEditor), args, args.InnerException?.Message ?? args.Message);
+            }
+            else
+            {
+                ReloadCodeEditorCore();
+            }
+
+            _codeEditorCodeReloadTentative++;
         }
 
         private void CodeEditorCore_Loading(object sender, RoutedEventArgs e)
         {
-            CodeEditorCore.EditorLoading -= CodeEditorCore_Loading;
+            lock (_lockObject)
+            {
+                _codeEditorCore.EditorLoading -= CodeEditorCore_Loading;
 
-            CodeEditorCore.HasGlyphMargin = false;
-            CodeEditorCore.Options.GlyphMargin = false;
-            CodeEditorCore.Options.MouseWheelZoom = false;
-            CodeEditorCore.Options.OverviewRulerBorder = false;
-            CodeEditorCore.Options.ScrollBeyondLastLine = false;
-            CodeEditorCore.Options.FontLigatures = true;
-            CodeEditorCore.Options.SnippetSuggestions = SnippetSuggestions.None;
-            CodeEditorCore.Options.CodeLens = false;
-            CodeEditorCore.Options.QuickSuggestions = false;
-            CodeEditorCore.Options.WordBasedSuggestions = false;
-            CodeEditorCore.Options.Minimap = new EditorMinimapOptions()
-            {
-                Enabled = false
-            };
-            CodeEditorCore.Options.Hover = new EditorHoverOptions()
-            {
-                Enabled = false
-            };
+                _codeEditorCore.HasGlyphMargin = false;
+                _codeEditorCore.Options.GlyphMargin = false;
+                _codeEditorCore.Options.MouseWheelZoom = false;
+                _codeEditorCore.Options.OverviewRulerBorder = false;
+                _codeEditorCore.Options.ScrollBeyondLastLine = false;
+                _codeEditorCore.Options.FontLigatures = true;
+                _codeEditorCore.Options.SnippetSuggestions = SnippetSuggestions.None;
+                _codeEditorCore.Options.CodeLens = false;
+                _codeEditorCore.Options.QuickSuggestions = false;
+                _codeEditorCore.Options.WordBasedSuggestions = false;
+                _codeEditorCore.Options.Minimap = new EditorMinimapOptions()
+                {
+                    Enabled = false
+                };
+                _codeEditorCore.Options.Hover = new EditorHoverOptions()
+                {
+                    Enabled = false
+                };
 
-            CodeEditorCore.DiffOptions.GlyphMargin = false;
-            CodeEditorCore.DiffOptions.MouseWheelZoom = false;
-            CodeEditorCore.DiffOptions.OverviewRulerBorder = false;
-            CodeEditorCore.DiffOptions.ScrollBeyondLastLine = false;
-            CodeEditorCore.DiffOptions.FontLigatures = true;
-            CodeEditorCore.DiffOptions.SnippetSuggestions = SnippetSuggestions.None;
-            CodeEditorCore.DiffOptions.CodeLens = false;
-            CodeEditorCore.DiffOptions.QuickSuggestions = false;
-            CodeEditorCore.DiffOptions.Minimap = new EditorMinimapOptions()
-            {
-                Enabled = false
-            };
-            CodeEditorCore.DiffOptions.Hover = new EditorHoverOptions()
-            {
-                Enabled = false
-            };
+                _codeEditorCore.DiffOptions.GlyphMargin = false;
+                _codeEditorCore.DiffOptions.MouseWheelZoom = false;
+                _codeEditorCore.DiffOptions.OverviewRulerBorder = false;
+                _codeEditorCore.DiffOptions.ScrollBeyondLastLine = false;
+                _codeEditorCore.DiffOptions.FontLigatures = true;
+                _codeEditorCore.DiffOptions.SnippetSuggestions = SnippetSuggestions.None;
+                _codeEditorCore.DiffOptions.CodeLens = false;
+                _codeEditorCore.DiffOptions.QuickSuggestions = false;
+                _codeEditorCore.DiffOptions.Minimap = new EditorMinimapOptions()
+                {
+                    Enabled = false
+                };
+                _codeEditorCore.DiffOptions.Hover = new EditorHoverOptions()
+                {
+                    Enabled = false
+                };
 
-            ApplySettings();
+                ApplySettings();
+            }
         }
 
         private Button GetCopyButton()
@@ -248,23 +273,110 @@ namespace DevToys.UI.Controls
             return (TextBlock)(HeaderTextBlock ?? FindName(nameof(HeaderTextBlock)));
         }
 
+        private CodeEditorCore ReloadCodeEditorCore()
+        {
+            lock (_lockObject)
+            {
+                if (_codeEditorCore is not null)
+                {
+                    _codeEditorCore.EditorLoading -= CodeEditorCore_Loading;
+                    _codeEditorCore.InternalException -= CodeEditorCore_InternalException;
+                    _codeEditorCore.SetBinding(CodeEditorCore.CodeLanguageProperty, new Binding());
+                    _codeEditorCore.SetBinding(CodeEditorCore.TextProperty, new Binding());
+                    _codeEditorCore.SetBinding(CodeEditorCore.IsDiffViewModeProperty, new Binding());
+                    _codeEditorCore.SetBinding(CodeEditorCore.DiffLeftTextProperty, new Binding());
+                    _codeEditorCore.SetBinding(CodeEditorCore.DiffRightTextProperty, new Binding());
+                    _codeEditorCore.SetBinding(AutomationProperties.LabeledByProperty, new Binding());
+                    CodeEditorCoreContainer.Children.Clear();
+                    _codeEditorCore.Dispose();
+                }
+
+                _codeEditorCore = new CodeEditorCore();
+                _codeEditorCore.EditorLoading += CodeEditorCore_Loading;
+                _codeEditorCore.InternalException += CodeEditorCore_InternalException;
+
+                _codeEditorCore.SetBinding(
+                    CodeEditorCore.CodeLanguageProperty,
+                    new Binding()
+                    {
+                        Path = new PropertyPath(nameof(CodeLanguage)),
+                        Source = this,
+                        Mode = BindingMode.OneWay
+                    });
+
+                _codeEditorCore.SetBinding(
+                    CodeEditorCore.TextProperty,
+                    new Binding()
+                    {
+                        Path = new PropertyPath(nameof(Text)),
+                        Source = this,
+                        Mode = BindingMode.TwoWay,
+                        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                    });
+
+                _codeEditorCore.SetBinding(
+                    CodeEditorCore.IsDiffViewModeProperty,
+                    new Binding()
+                    {
+                        Path = new PropertyPath(nameof(IsDiffViewMode)),
+                        Source = this,
+                        Mode = BindingMode.OneWay
+                    });
+
+                _codeEditorCore.SetBinding(
+                    CodeEditorCore.DiffLeftTextProperty,
+                    new Binding()
+                    {
+                        Path = new PropertyPath(nameof(DiffLeftText)),
+                        Source = this,
+                        Mode = BindingMode.TwoWay,
+                        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                    });
+
+                _codeEditorCore.SetBinding(
+                    CodeEditorCore.DiffRightTextProperty,
+                    new Binding()
+                    {
+                        Path = new PropertyPath(nameof(DiffRightText)),
+                        Source = this,
+                        Mode = BindingMode.TwoWay,
+                        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                    });
+
+                _codeEditorCore.SetBinding(
+                    AutomationProperties.LabeledByProperty,
+                    new Binding()
+                    {
+                        ElementName = nameof(HeaderTextBlock),
+                        Source = this,
+                        Mode = BindingMode.OneTime
+                    });
+
+                CodeEditorCoreContainer.Children.Add(_codeEditorCore);
+                return _codeEditorCore;
+            }
+        }
+
         private void ApplySettings()
         {
             ISettingsProvider? settingsProvider = SettingsProvider;
             if (settingsProvider is not null)
             {
-                CodeEditorCore.Options.WordWrapMinified = settingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping);
-                CodeEditorCore.Options.WordWrap = settingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping) ? WordWrap.On : WordWrap.Off;
-                CodeEditorCore.Options.LineNumbers = settingsProvider.GetSetting(PredefinedSettings.TextEditorLineNumbers) ? LineNumbersType.On : LineNumbersType.Off;
-                CodeEditorCore.Options.RenderLineHighlight = settingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine) ? RenderLineHighlight.All : RenderLineHighlight.None;
-                CodeEditorCore.Options.RenderWhitespace = settingsProvider.GetSetting(PredefinedSettings.TextEditorRenderWhitespace) ? RenderWhitespace.All : RenderWhitespace.None;
-                CodeEditorCore.Options.FontFamily = settingsProvider.GetSetting(PredefinedSettings.TextEditorFont);
-                CodeEditorCore.DiffOptions.WordWrapMinified = settingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping);
-                CodeEditorCore.DiffOptions.WordWrap = settingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping) ? WordWrap.On : WordWrap.Off;
-                CodeEditorCore.DiffOptions.LineNumbers = settingsProvider.GetSetting(PredefinedSettings.TextEditorLineNumbers) ? LineNumbersType.On : LineNumbersType.Off;
-                CodeEditorCore.DiffOptions.RenderLineHighlight = settingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine) ? RenderLineHighlight.All : RenderLineHighlight.None;
-                CodeEditorCore.DiffOptions.RenderWhitespace = settingsProvider.GetSetting(PredefinedSettings.TextEditorRenderWhitespace) ? RenderWhitespace.All : RenderWhitespace.None;
-                CodeEditorCore.DiffOptions.FontFamily = settingsProvider.GetSetting(PredefinedSettings.TextEditorFont);
+                lock (_lockObject)
+                {
+                    _codeEditorCore.Options.WordWrapMinified = settingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping);
+                    _codeEditorCore.Options.WordWrap = settingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping) ? WordWrap.On : WordWrap.Off;
+                    _codeEditorCore.Options.LineNumbers = settingsProvider.GetSetting(PredefinedSettings.TextEditorLineNumbers) ? LineNumbersType.On : LineNumbersType.Off;
+                    _codeEditorCore.Options.RenderLineHighlight = settingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine) ? RenderLineHighlight.All : RenderLineHighlight.None;
+                    _codeEditorCore.Options.RenderWhitespace = settingsProvider.GetSetting(PredefinedSettings.TextEditorRenderWhitespace) ? RenderWhitespace.All : RenderWhitespace.None;
+                    _codeEditorCore.Options.FontFamily = settingsProvider.GetSetting(PredefinedSettings.TextEditorFont);
+                    _codeEditorCore.DiffOptions.WordWrapMinified = settingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping);
+                    _codeEditorCore.DiffOptions.WordWrap = settingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping) ? WordWrap.On : WordWrap.Off;
+                    _codeEditorCore.DiffOptions.LineNumbers = settingsProvider.GetSetting(PredefinedSettings.TextEditorLineNumbers) ? LineNumbersType.On : LineNumbersType.Off;
+                    _codeEditorCore.DiffOptions.RenderLineHighlight = settingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine) ? RenderLineHighlight.All : RenderLineHighlight.None;
+                    _codeEditorCore.DiffOptions.RenderWhitespace = settingsProvider.GetSetting(PredefinedSettings.TextEditorRenderWhitespace) ? RenderWhitespace.All : RenderWhitespace.None;
+                    _codeEditorCore.DiffOptions.FontFamily = settingsProvider.GetSetting(PredefinedSettings.TextEditorFont);
+                }
             }
         }
 
@@ -325,8 +437,11 @@ namespace DevToys.UI.Controls
 
                 string? text = await dataPackageView.GetTextAsync();
 
-                CodeEditorCore.SelectedText = text;
-                CodeEditorCore.Focus(FocusState.Programmatic);
+                lock (_lockObject)
+                {
+                    _codeEditorCore.SelectedText = text;
+                    _codeEditorCore.Focus(FocusState.Programmatic);
+                }
             }
             catch (Exception ex)
             {
@@ -412,7 +527,10 @@ namespace DevToys.UI.Controls
         private static void OnIsReadOnlyPropertyChangedCalled(DependencyObject sender, DependencyPropertyChangedEventArgs eventArgs)
         {
             var codeEditor = (CodeEditor)sender;
-            codeEditor.CodeEditorCore.ReadOnly = (bool)eventArgs.NewValue;
+            lock (codeEditor._lockObject)
+            {
+                codeEditor._codeEditorCore.ReadOnly = (bool)eventArgs.NewValue;
+            }
             codeEditor.UpdateUI();
         }
     }
