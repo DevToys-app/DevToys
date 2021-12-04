@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 using System.Globalization;
 using System.Text;
 using DevToys.Models;
@@ -200,15 +202,15 @@ namespace DevToys.Core.Formatter
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static Span<char> RemoveFormatting(string value)
+        public static Span<char> RemoveFormatting(string? value)
         {
-            if (string.IsNullOrWhiteSpace(value))
+            if (string.IsNullOrWhiteSpace(value!))
             {
                 return Span<char>.Empty;
             }
 
             string currentCulture = CultureInfo.CurrentCulture.NumberFormat.NumberGroupSeparator;
-            Span<char> values = new char[value.Length];
+            Span<char> values = new char[value!.Length];
             int valueIndex = 0;
             for (int i = 0; i < values.Length; i++)
             {
