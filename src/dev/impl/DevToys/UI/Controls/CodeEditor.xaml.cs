@@ -336,14 +336,21 @@ namespace DevToys.UI.Controls
 
         private void CopyButton_Click(object sender, RoutedEventArgs e)
         {
-            var data = new DataPackage
+            try
             {
-                RequestedOperation = DataPackageOperation.Copy
-            };
-            data.SetText(Text ?? string.Empty);
+                var data = new DataPackage
+                {
+                    RequestedOperation = DataPackageOperation.Copy
+                };
+                data.SetText(Text ?? string.Empty);
 
-            Clipboard.SetContentWithOptions(data, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
-            Clipboard.Flush();
+                Clipboard.SetContentWithOptions(data, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
+                Clipboard.Flush();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogFault("Failed to copy from code editor", ex);
+            }
         }
 
         private async void OpenFileButton_Click(object sender, RoutedEventArgs e)
