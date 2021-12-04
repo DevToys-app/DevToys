@@ -185,8 +185,10 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
         {
             string? fileExtension = Path.GetExtension(FilePath);
 
-            var savePicker = new FileSavePicker();
-            savePicker.SuggestedStartLocation = PickerLocationId.ComputerFolder;
+            var savePicker = new FileSavePicker
+            {
+                SuggestedStartLocation = PickerLocationId.ComputerFolder
+            };
             savePicker.FileTypeChoices.Add(
                 fileExtension.Replace(".", string.Empty).ToUpperInvariant(),
                 new List<string>() { fileExtension!.ToLowerInvariant() });

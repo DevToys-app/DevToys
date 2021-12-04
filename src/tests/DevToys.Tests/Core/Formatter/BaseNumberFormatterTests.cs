@@ -8,27 +8,27 @@ namespace DevToys.Tests.Core.Formatter
     public class BaseNumberFormatterTests
     {
         [DataTestMethod]
-        [DataRow("C6AEA155", 3333333333, false)]
-        [DataRow("C6AE A155", 3333333333, true)]
-        public void HexadecimalToDecimal(string input, long expectedResult, bool isFormatted)
+        [DataRow("C6AEA155", 3333333333)]
+        [DataRow("C6AE A155", 3333333333)]
+        public void HexadecimalToDecimal(string input, long expectedResult)
         {
             Assert.AreEqual(expectedResult, NumberBaseFormatter.StringToBase(input, NumberBaseFormat.Hexadecimal));
         }
 
         [DataTestMethod]
-        [DataRow("30653520525", 3333333333, false)]
-        [DataRow("30 653 520 525", 3333333333, true)]
-        public void OctalToDecimal(string input, long expectedResult, bool isFormatted)
+        [DataRow("30653520525", 3333333333)]
+        [DataRow("30 653 520 525", 3333333333)]
+        public void OctalToDecimal(string input, long expectedResult)
         {
             Assert.AreEqual(expectedResult, NumberBaseFormatter.StringToBase(input, NumberBaseFormat.Octal));
         }
 
         [DataTestMethod]
-        [DataRow("000101001101", 333, false)]
-        [DataRow("0001 0100 1101", 333, true)]
-        [DataRow("11000110101011101010000101010101", 3333333333, false)]
-        [DataRow("1100 0110 1010 1110 1010 0001 0101 0101", 3333333333, true)]
-        public void BinaryToDecimal(string input, long expectedResult, bool isFormatted)
+        [DataRow("000101001101", 333)]
+        [DataRow("0001 0100 1101", 333)]
+        [DataRow("11000110101011101010000101010101", 3333333333)]
+        [DataRow("1100 0110 1010 1110 1010 0001 0101 0101", 3333333333)]
+        public void BinaryToDecimal(string input, long expectedResult)
         {
             Assert.AreEqual(expectedResult, NumberBaseFormatter.StringToBase(input, NumberBaseFormat.Binary));
         }
