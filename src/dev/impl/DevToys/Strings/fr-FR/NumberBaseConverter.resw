@@ -164,8 +164,10 @@
   </data>
   <data name="ValueInvalid" xml:space="preserve">
     <value>La valeur actuelle n'est pas une valeur {0} valide.</value>
+    <comment>The parameter is the Base Number Type (Decimal, Octal, ...)</comment>
   </data>
   <data name="ValueOverflow" xml:space="preserve">
     <value>Impossible d'analyser la valeur actuelle qui dépasse la valeur maximale {0}</value>
+    <comment>The parameter is the Max value of a long</comment>
   </data>
 </root>
