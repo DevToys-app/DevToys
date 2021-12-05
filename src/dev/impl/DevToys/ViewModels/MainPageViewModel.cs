@@ -176,7 +176,12 @@ namespace DevToys.ViewModels
         {
             get
             {
-                if (IsNavigationViewPaneOpened)
+                if (NavigationViewDisplayMode == NavigationViewDisplayMode.Expanded
+                    && !IsNavigationViewPaneOpened)
+                {
+                    return NavigationViewDisplayMode.Compact;
+                }
+                else if (IsNavigationViewPaneOpened)
                 {
                     return NavigationViewDisplayMode.Expanded;
                 }

@@ -18,7 +18,7 @@
         <converters:DoubleToGridLengthConverter x:Key="DoubleToGridLengthConverter"/>
         <converters:BooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" IsInverted="True"/>
         <converters:BooleanToScrollModeConverter x:Key="BooleanToScrollModeConverter" ScrollModeOnTrue="Auto" ScrollModeOnFalse="Enabled"/>
-        <converters:EnumToThicknessConverter x:Key="NavigationViewItemMarginConverter" ThicknessOnEnumDetected="0" ThicknessOnEnumNotDetected="12,0,12,0"/>
+        <converters:EnumToThicknessConverter x:Key="NavigationViewItemMarginConverter" ThicknessOnEnumDetected="12,0,12,0" ThicknessOnEnumNotDetected="0"/>
 
         <!--This top margin is the height of the custom TitleBar-->
         <Thickness x:Key="NavigationViewContentMargin">0,46,0,0</Thickness>
@@ -38,24 +38,19 @@
                         <Setter Target="ContentScrollViewer.Padding" Value="12,0,12,0"/>
                         <Setter Target="ContentFrame.Padding" Value="0,0,0,0"/>
                         <Setter Target="HeaderTextBlock.Visibility" Value="Collapsed" />
+                        <Setter Target="AppTitleLeftBorder.Width" Value="16" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="NavigationViewExpanded">
                     <VisualState.Setters>
-                        <Setter Target="NavigationView.IsPaneToggleButtonVisible" Value="False" />
-                        <Setter Target="NavigationView.IsPaneVisible" Value="True" />
-                        <Setter Target="NavigationView.IsPaneOpen" Value="True" />
-                        <Setter Target="NavigationViewPaneHeader.Height" Value="38" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="NavigationViewCompact">
                     <VisualState.Setters>
-                        <Setter Target="AppTitleLeftBorder.Width" Value="48" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="NavigationViewMinimal">
                     <VisualState.Setters>
-                        <Setter Target="AppTitleLeftBorder.Width" Value="48" />
                         <Setter Target="ContentScrollViewer.Padding" Value="12,12,12,0"/>
                         <Setter Target="ContentFrame.Padding" Value="0,0,0,0"/>
                         <Setter Target="HeaderTextBlock.Margin" Value="12,12,0,0" />
@@ -82,7 +77,7 @@
             <Border
                 Name="AppTitleLeftBorder"
                 Grid.Column="0"
-                Width="16"/>
+                Width="48"/>
 
             <StackPanel
                 Grid.Column="1"
@@ -188,10 +183,6 @@
             PaneOpening="NavigationView_PaneOpening"
             Loaded="NavigationView_Loaded">
 
-            <muxc:NavigationView.PaneHeader>
-                <Border Name="NavigationViewPaneHeader" Height="0"/>
-            </muxc:NavigationView.PaneHeader>
-
             <muxc:NavigationView.AutoSuggestBox>
                 <AutoSuggestBox
                     Name="SearchBox"
@@ -212,7 +203,7 @@
                 <DataTemplate x:DataType="models:MatchedToolProviderViewData">
                     <muxc:NavigationViewItem
                         Icon="{x:Bind Icon.Result, Mode=OneWay}"
-                        Margin="{Binding ActualNavigationViewDisplayMode, ConverterParameter='Compact', Converter={StaticResource NavigationViewItemMarginConverter}}"
+                        Margin="{Binding ActualNavigationViewDisplayMode, ConverterParameter='Expanded', Converter={StaticResource NavigationViewItemMarginConverter}}"
                         AutomationProperties.Name="{x:Bind ToolProvider.AccessibleName}">
                         <muxc:NavigationViewItem.ContextFlyout>
                             <MenuFlyout>
