@@ -9,6 +9,8 @@ namespace DevToys.Core.Formatter
 {
     internal static class NumberBaseFormatter
     {
+        private static NumberBaseConverterStrings Strings => LanguageManager.Instance.NumberBaseConverter;
+
         /// <summary>
         /// Based on <see cref="System.ParseNumbers"/>
         /// https://github.com/dotnet/runtime/blob/main/src/libraries/System.Private.CoreLib/src/System/ParseNumbers.cs
@@ -54,12 +56,22 @@ namespace DevToys.Core.Formatter
                 maxVal = 0x7FFFFFFFFFFFFFFF / 10;
 
                 // Read all of the digits and convert to a number
-                while (index < length && IsDigit(unformattedValue[index], baseNumber.BaseNumber, out int current))
+                while (index < length)
                 {
+                    if (!IsValidChar(unformattedValue[index], baseNumber))
+                    {
+                        throw new InvalidOperationException(string.Format(Strings.ValueInvalid, baseNumber.DisplayName));
+                    }
+
+                    if (!IsDigit(unformattedValue[index], baseNumber.BaseNumber, out int current))
+                    {
+                        break;
+                    }
+
                     // Check for overflows - this is sufficient & correct.
                     if (result > maxVal || result < 0)
                     {
-                        throw new OverflowException($"Unable to parse the current value exceded max value ({long.MaxValue})");
+                        throw new OverflowException(string.Format(Strings.ValueOverflow, long.MaxValue));
                     }
 
                     result = result * baseNumber.BaseNumber + current;
@@ -68,7 +80,7 @@ namespace DevToys.Core.Formatter
 
                 if (result is < 0 and not 0x800000000000000)
                 {
-                    throw new OverflowException($"Unable to parse the current value exceded max value ({long.MaxValue})");
+                    throw new OverflowException(string.Format(Strings.ValueOverflow, long.MaxValue));
                 }
             }
             else
@@ -80,8 +92,18 @@ namespace DevToys.Core.Formatter
                     0xfffffffffffffff / 2;
 
                 // Read all of the digits and convert to a number
-                while (index < unformattedValue.Length && IsDigit(unformattedValue[index], baseNumber.BaseNumber, out int current))
+                while (index < unformattedValue.Length)
                 {
+                    if (!IsValidChar(unformattedValue[index], baseNumber))
+                    {
+                        throw new InvalidOperationException(string.Format(Strings.ValueInvalid,baseNumber.DisplayName));
+                    }
+
+                    if (!IsDigit(unformattedValue[index], baseNumber.BaseNumber, out int current))
+                    {
+                        break;
+                    }
+
                     // Check for overflows - this is sufficient & correct.
                     if (result > maxVal)
                     {
@@ -223,9 +245,32 @@ namespace DevToys.Core.Formatter
             return values;
         }
 
+        private static bool IsValidChar(char c, NumberBaseFormat baseNumber)
+        {
+            switch (baseNumber.Value)
+            {
+                case Radix.Binary:
+                    if (c is '0' or '1')
+                    {
+                        return true;
+                    }
+                    return false;
+                case Radix.Decimal:
+                case Radix.Octal:
+                    return char.IsNumber(c);
+                case Radix.Hexdecimal:
+                    return (char.IsNumber(c) || 
+                        (c >= 'a' && c <= 'f') || 
+                        (c >= 'A' && c <= 'F'));
+                default:
+                    return true;
+            }
+        }
+
         private static bool IsDigit(char c, int radix, out int result)
         {
             int tmp;
+
             if ((uint)(c - '0') <= 9)
             {
                 result = tmp = c - '0';
@@ -243,7 +288,6 @@ namespace DevToys.Core.Formatter
                 result = -1;
                 return false;
             }
-
             return tmp < radix;
         }
     }
