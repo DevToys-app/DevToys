@@ -151,6 +151,9 @@
   <data name="Search" xml:space="preserve">
     <value>Taper pour recherche un outil...</value>
   </data>
+  <data name="SearchNoResultsFound" xml:space="preserve">
+    <value>Aucun résultat trouvé</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
   </data>

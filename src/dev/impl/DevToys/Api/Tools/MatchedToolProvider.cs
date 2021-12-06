@@ -34,8 +34,11 @@ namespace DevToys.Api.Tools
             set
             {
                 _matchedSpans = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AnyMatchedSpan)));
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(MatchedSpans)));
+                ThreadHelper.RunOnUIThreadAsync(() =>
+                {
+                    RaisePropertyChanged(nameof(AnyMatchedSpan));
+                    RaisePropertyChanged(nameof(MatchedSpans));
+                }).Forget();
             }
         }
 
@@ -73,11 +76,11 @@ namespace DevToys.Api.Tools
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public MatchedToolProvider(ToolProviderMetadata metadata, IToolProvider toolProvider, MatchSpan[]? matchedSpans = null)
+        public MatchedToolProvider(ToolProviderMetadata metadata, IToolProvider toolProvider)
         {
             Metadata = Arguments.NotNull(metadata, nameof(metadata));
             ToolProvider = Arguments.NotNull(toolProvider, nameof(toolProvider));
-            MatchedSpans = matchedSpans ?? Array.Empty<MatchSpan>();
+            MatchedSpans = Array.Empty<MatchSpan>();
         }
 
         internal async Task UpdateIsRecommendedAsync(string clipboardContent)

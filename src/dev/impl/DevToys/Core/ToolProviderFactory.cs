@@ -53,9 +53,7 @@ namespace DevToys.Providers.Impl
 
             return
                 SortTools(
-                    SearchTools(
-                        GetAllTools(),
-                        searchQueries)
+                    SearchTools(searchQueries)
                     .ToList());
         }
 
@@ -104,38 +102,37 @@ namespace DevToys.Providers.Impl
             await CleanupAsync();
         }
 
-        private IEnumerable<MatchedToolProvider> SearchTools(IEnumerable<MatchedToolProvider> providers, string[]? searchQueries)
+        private IEnumerable<MatchedToolProvider> SearchTools(string[]? searchQueries)
         {
             if (searchQueries is not null)
             {
-                foreach (MatchedToolProvider provider in providers)
+                foreach (MatchedToolProvider provider in GetAllTools())
                 {
-                    var matches = new List<MatchSpan>();
-
-                    foreach (string? query in searchQueries)
+                    if (provider.ChildrenTools.Count == 0) // do not search groups.
                     {
-                        int i = 0;
-                        while (i < provider.ToolProvider.DisplayName?.Length && i > -1)
+                        var matches = new List<MatchSpan>();
+
+                        foreach (string? query in searchQueries)
                         {
-                            int matchIndex = provider.ToolProvider.DisplayName.IndexOf(query, i, StringComparison.OrdinalIgnoreCase);
-                            if (matchIndex > -1)
+                            int i = 0;
+                            while (i < provider.ToolProvider.DisplayName?.Length && i > -1)
                             {
-                                matches.Add(new MatchSpan(matchIndex, query.Length));
-                                i = matchIndex + query.Length;
+                                int matchIndex = provider.ToolProvider.DisplayName.IndexOf(query, i, StringComparison.OrdinalIgnoreCase);
+                                if (matchIndex > -1)
+                                {
+                                    matches.Add(new MatchSpan(matchIndex, query.Length));
+                                    i = matchIndex + query.Length;
+                                }
+
+                                i++;
                             }
-
-                            i++;
                         }
-                    }
 
-                    if (matches.Count > 0)
-                    {
-                        // Return a new MatchedToolProvider with the matches.
-                        yield return
-                            new MatchedToolProvider(
-                                provider.Metadata,
-                                provider.ToolProvider,
-                                matches.ToArray());
+                        if (matches.Count > 0)
+                        {
+                            provider.MatchedSpans = matches.ToArray();
+                            yield return provider;
+                        }
                     }
                 }
             }
