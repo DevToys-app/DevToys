@@ -118,15 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FormattersAccessibleName" xml:space="preserve">
-    <value>Formateurs</value>
+    <value>Formatters</value>
   </data>
   <data name="FormattersDisplayName" xml:space="preserve">
-    <value>Formateurs</value>
+    <value>Formatters</value>
   </data>
   <data name="TextAccessibleName" xml:space="preserve">
-    <value>Texte</value>
+    <value>Text</value>
   </data>
   <data name="TextDisplayName" xml:space="preserve">
-    <value>Texte</value>
+    <value>Text</value>
   </data>
 </root>
