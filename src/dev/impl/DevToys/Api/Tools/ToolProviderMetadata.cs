@@ -13,6 +13,12 @@ namespace DevToys.Api.Tools
         public string Name { get; set; } = string.Empty;
 
         /// <summary>
+        /// Gets or sets the internal non-localized name of the parent provider.
+        /// </summary>
+        [DefaultValue("")]
+        public string Parent { get; set; } = string.Empty;
+
+        /// <summary>
         /// Gets or sets the order in which this tool should appear.
         /// </summary>
         [DefaultValue(int.MaxValue)]

@@ -40,6 +40,7 @@ namespace DevToys
         private readonly SettingsStrings _settings = new SettingsStrings();
         private readonly StringUtilitiesStrings _stringutilities = new StringUtilitiesStrings();
         private readonly TextDiffStrings _textdiff = new TextDiffStrings();
+        private readonly ToolGroupsStrings _toolgroups = new ToolGroupsStrings();
         private readonly UrlEncoderDecoderStrings _urlencoderdecoder = new UrlEncoderDecoderStrings();
 
         /// <summary>
@@ -131,6 +132,11 @@ namespace DevToys
         /// Gets the <see cref="TextDiffStrings"/>.
         /// </summary>
         public TextDiffStrings TextDiff => _textdiff;
+
+        /// <summary>
+        /// Gets the <see cref="ToolGroupsStrings"/>.
+        /// </summary>
+        public ToolGroupsStrings ToolGroups => _toolgroups;
 
         /// <summary>
         /// Gets the <see cref="UrlEncoderDecoderStrings"/>.
@@ -1511,6 +1517,31 @@ namespace DevToys
         /// Gets the resource RightText.
         /// </summary>
         public string RightText => _resources.GetString("RightText");
+    }
+
+    public class ToolGroupsStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("ToolGroups");
+
+        /// <summary>
+        /// Gets the resource FormattersAccessibleName.
+        /// </summary>
+        public string FormattersAccessibleName => _resources.GetString("FormattersAccessibleName");
+
+        /// <summary>
+        /// Gets the resource FormattersDisplayName.
+        /// </summary>
+        public string FormattersDisplayName => _resources.GetString("FormattersDisplayName");
+
+        /// <summary>
+        /// Gets the resource TextAccessibleName.
+        /// </summary>
+        public string TextAccessibleName => _resources.GetString("TextAccessibleName");
+
+        /// <summary>
+        /// Gets the resource TextDisplayName.
+        /// </summary>
+        public string TextDisplayName => _resources.GetString("TextDisplayName");
     }
 
     public class UrlEncoderDecoderStrings : ObservableObject
