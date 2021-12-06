@@ -151,6 +151,9 @@
   <data name="Search" xml:space="preserve">
     <value>搜索工具…</value>
   </data>
+  <data name="SearchNoResultsFound" xml:space="preserve">
+    <value>No results found</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
   </data>

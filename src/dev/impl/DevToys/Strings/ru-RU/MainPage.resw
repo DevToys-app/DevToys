@@ -151,6 +151,9 @@
   <data name="Search" xml:space="preserve">
     <value>Найти инструмент</value>
   </data>
+  <data name="SearchNoResultsFound" xml:space="preserve">
+    <value>No results found</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
   </data>

@@ -10,7 +10,7 @@
     xmlns:converters="using:DevToys.UI.Converters"
     xmlns:ex="using:DevToys.UI.Extensions"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-    xmlns:viewmanagement="using:Windows.UI.ViewManagement"
+    xmlns:viewmanagement="using:Windows.UI.ViewManagement" xmlns:i="using:Microsoft.Xaml.Interactivity" xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     mc:Ignorable="d"
     NavigationCacheMode="Enabled"
     muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
@@ -188,13 +188,37 @@
                     KeyboardAcceleratorPlacementMode="Hidden"
                     QueryIcon="Find"
                     PlaceholderText="{x:Bind ViewModel.Strings.Search}"
-                    Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    ItemsSource="{x:Bind ViewModel.SearchResults, Mode=OneWay}"
+                    TextMemberPath="ToolProvider.DisplayName">
+                    <i:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="TextChanged">
+                            <core:InvokeCommandAction Command="{x:Bind ViewModel.SearchBoxTextChangedCommand}"/>
+                        </core:EventTriggerBehavior>
+                        <core:EventTriggerBehavior EventName="QuerySubmitted">
+                            <core:InvokeCommandAction Command="{x:Bind ViewModel.SearchBoxQuerySubmittedCommand}"/>
+                        </core:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
                     <AutoSuggestBox.KeyboardAccelerators>
                         <KeyboardAccelerator
                             Key="F"
                             Modifiers="Control"
                             Invoked="SearchBoxKeyboardAccelerator_Invoked"/>
                     </AutoSuggestBox.KeyboardAccelerators>
+                    <AutoSuggestBox.ItemTemplate>
+                        <DataTemplate x:DataType="tools:MatchedToolProvider">
+                            <RichTextBlock
+                                HorizontalAlignment="Stretch"
+                                IsTextSelectionEnabled="False"
+                                TextWrapping="NoWrap"
+                                TextTrimming="CharacterEllipsis"
+                                ex:HighlighterExtension.Highlighters="{x:Bind MatchedSpans, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                <Paragraph>
+                                    <Run Text="{x:Bind ToolProvider.DisplayName}"/>
+                                </Paragraph>
+                            </RichTextBlock>
+                        </DataTemplate>
+                    </AutoSuggestBox.ItemTemplate>
                 </AutoSuggestBox>
             </muxc:NavigationView.AutoSuggestBox>
 
@@ -228,21 +252,7 @@
                                     HorizontalAlignment="Stretch"
                                     TextWrapping="NoWrap"
                                     TextTrimming="CharacterEllipsis"
-                                    Text="{x:Bind ToolProvider.DisplayName}"
-                                    Visibility="{x:Bind AnyMatchedSpan, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
-                                <RichTextBlock
-                                    x:Name="NavigationViewItemRichTextBlock"
-                                    x:Load="{x:Bind AnyMatchedSpan, Mode=OneWay}"
-                                    Grid.Column="0"
-                                    HorizontalAlignment="Stretch"
-                                    IsTextSelectionEnabled="False"
-                                    TextWrapping="NoWrap"
-                                    TextTrimming="CharacterEllipsis"
-                                    ex:HighlighterExtension.Highlighters="{x:Bind MatchedSpans, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                    <Paragraph>
-                                        <Run Text="{x:Bind ToolProvider.DisplayName}"/>
-                                    </Paragraph>
-                                </RichTextBlock>
+                                    Text="{x:Bind ToolProvider.DisplayName}"/>
                                 <muxc:ImageIcon
                                     x:Name="NavigationViewItemRecommendedIcon"
                                     x:Load="{x:Bind IsRecommended, Mode=OneWay}"

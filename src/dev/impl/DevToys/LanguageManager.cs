@@ -793,6 +793,11 @@ namespace DevToys
         public string Search => _resources.GetString("Search");
 
         /// <summary>
+        /// Gets the resource SearchNoResultsFound.
+        /// </summary>
+        public string SearchNoResultsFound => _resources.GetString("SearchNoResultsFound");
+
+        /// <summary>
         /// Gets the resource WindowTitle.
         /// </summary>
         public string WindowTitle => _resources.GetString("WindowTitle");
