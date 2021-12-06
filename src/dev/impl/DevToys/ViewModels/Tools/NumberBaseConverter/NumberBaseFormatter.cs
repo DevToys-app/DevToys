@@ -20,19 +20,19 @@ namespace DevToys.Core.Formatter
         /// <returns>Value converted to <see cref="NumberBaseFormat.Decimal"/></returns>
         public static long? StringToBase(string value, NumberBaseFormat baseNumber)
         {
-            if (value.Length <= 0)
+            if (string.IsNullOrWhiteSpace(value))
             {
                 return null;
             }
 
-            int length = value.Length;
             int index = 0;
 
-            Span<char> unformattedValue = RemoveFormatting(value);
+            Span<char> spanValue = value!.ToCharArray();
+            int length = RemoveFormatting(spanValue);
 
             // Check for a sign
             int sign = 1;
-            if (unformattedValue[index] == '-')
+            if (spanValue[index] == '-')
             {
                 if (baseNumber != NumberBaseFormat.Decimal)
                 {
@@ -42,7 +42,7 @@ namespace DevToys.Core.Formatter
                 sign = -1;
                 index++;
             }
-            else if (unformattedValue[index] == '+')
+            else if (spanValue[index] == '+')
             {
                 index++;
             }
@@ -58,12 +58,12 @@ namespace DevToys.Core.Formatter
                 // Read all of the digits and convert to a number
                 while (index < length)
                 {
-                    if (!IsValidChar(unformattedValue[index], baseNumber))
+                    if (!IsValidChar(spanValue[index], baseNumber))
                     {
                         throw new InvalidOperationException(string.Format(Strings.ValueInvalid, baseNumber.DisplayName));
                     }
 
-                    if (!IsDigit(unformattedValue[index], baseNumber.BaseNumber, out int current))
+                    if (!IsDigit(spanValue[index], baseNumber.BaseNumber, out int current))
                     {
                         break;
                     }
@@ -92,14 +92,14 @@ namespace DevToys.Core.Formatter
                     0xfffffffffffffff / 2;
 
                 // Read all of the digits and convert to a number
-                while (index < unformattedValue.Length)
+                while (index < length)
                 {
-                    if (!IsValidChar(unformattedValue[index], baseNumber))
+                    if (!IsValidChar(spanValue[index], baseNumber))
                     {
-                        throw new InvalidOperationException(string.Format(Strings.ValueInvalid,baseNumber.DisplayName));
+                        throw new InvalidOperationException(string.Format(Strings.ValueInvalid, baseNumber.DisplayName));
                     }
 
-                    if (!IsDigit(unformattedValue[index], baseNumber.BaseNumber, out int current))
+                    if (!IsDigit(spanValue[index], baseNumber.BaseNumber, out int current))
                     {
                         break;
                     }
@@ -224,25 +224,41 @@ namespace DevToys.Core.Formatter
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static Span<char> RemoveFormatting(string? value)
+        public static string RemoveFormatting(string? value)
         {
             if (string.IsNullOrWhiteSpace(value!))
             {
-                return Span<char>.Empty;
+                return string.Empty;
+            }
+
+            Span<char> valueSpan = value!.ToCharArray();
+            int length = RemoveFormatting(valueSpan);
+            var result = new StringBuilder();
+            for (int i = 0; i < length; i++)
+            {
+                result.Append(valueSpan[i]);
+            }
+            return result.ToString();
+        }
+
+        private static int RemoveFormatting(Span<char> values)
+        {
+            if (values.Length == 0)
+            {
+                return 0;
             }
 
             string currentCulture = CultureInfo.CurrentCulture.NumberFormat.NumberGroupSeparator;
-            Span<char> values = new char[value!.Length];
-            int valueIndex = 0;
+            int maxLength = 0;
             for (int i = 0; i < values.Length; i++)
             {
-                if (!char.IsWhiteSpace(value[i]) && value[i] != Convert.ToChar(currentCulture))
+                if (!char.IsWhiteSpace(values[i]) && values[i] != Convert.ToChar(currentCulture))
                 {
-                    values[valueIndex] = value[i];
-                    valueIndex++;
+                    values[maxLength] = values[i];
+                    maxLength++;
                 }
             }
-            return values;
+            return maxLength;
         }
 
         private static bool IsValidChar(char c, NumberBaseFormat baseNumber)
@@ -259,8 +275,8 @@ namespace DevToys.Core.Formatter
                 case Radix.Octal:
                     return char.IsNumber(c);
                 case Radix.Hexdecimal:
-                    return (char.IsNumber(c) || 
-                        (c >= 'a' && c <= 'f') || 
+                    return (char.IsNumber(c) ||
+                        (c >= 'a' && c <= 'f') ||
                         (c >= 'A' && c <= 'F'));
                 default:
                     return true;
