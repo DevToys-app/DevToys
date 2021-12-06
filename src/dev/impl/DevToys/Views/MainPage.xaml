@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:models="using:DevToys.Models"
+    xmlns:tools="using:DevToys.Api.Tools"
     xmlns:controls="using:DevToys.UI.Controls"
     xmlns:converters="using:DevToys.UI.Converters"
     xmlns:ex="using:DevToys.UI.Extensions"
@@ -18,7 +18,6 @@
         <converters:DoubleToGridLengthConverter x:Key="DoubleToGridLengthConverter"/>
         <converters:BooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" IsInverted="True"/>
         <converters:BooleanToScrollModeConverter x:Key="BooleanToScrollModeConverter" ScrollModeOnTrue="Auto" ScrollModeOnFalse="Enabled"/>
-        <converters:EnumToThicknessConverter x:Key="NavigationViewItemMarginConverter" ThicknessOnEnumDetected="12,0,12,0" ThicknessOnEnumNotDetected="0"/>
 
         <!--This top margin is the height of the custom TitleBar-->
         <Thickness x:Key="NavigationViewContentMargin">0,46,0,0</Thickness>
@@ -171,7 +170,6 @@
             IsBackEnabled="False"
             CompactModeThresholdWidth="640"
             ExpandedModeThresholdWidth="1008"
-            PaneDisplayMode="Auto"
             IsTabStop="False"
             AlwaysShowHeader="True"
             IsPaneToggleButtonVisible="True"
@@ -187,6 +185,7 @@
                 <AutoSuggestBox
                     Name="SearchBox"
                     TabIndex="0"
+                    KeyboardAcceleratorPlacementMode="Hidden"
                     QueryIcon="Find"
                     PlaceholderText="{x:Bind ViewModel.Strings.Search}"
                     Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
@@ -200,11 +199,12 @@
             </muxc:NavigationView.AutoSuggestBox>
 
             <muxc:NavigationView.MenuItemTemplate>
-                <DataTemplate x:DataType="models:MatchedToolProviderViewData">
+                <DataTemplate x:DataType="tools:MatchedToolProvider">
                     <muxc:NavigationViewItem
                         Icon="{x:Bind Icon.Result, Mode=OneWay}"
-                        Margin="{Binding ActualNavigationViewDisplayMode, ConverterParameter='Expanded', Converter={StaticResource NavigationViewItemMarginConverter}}"
-                        AutomationProperties.Name="{x:Bind ToolProvider.AccessibleName}">
+                        AutomationProperties.Name="{x:Bind ToolProvider.AccessibleName}"
+                        MenuItemsSource="{x:Bind ChildrenTools, Mode=OneWay}"
+                        IsExpanded="{x:Bind HasRecommandedChildrenTool, Mode=OneWay}">
                         <muxc:NavigationViewItem.ContextFlyout>
                             <MenuFlyout>
                                 <MenuFlyoutItem
