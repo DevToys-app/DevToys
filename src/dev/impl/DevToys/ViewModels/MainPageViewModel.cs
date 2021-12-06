@@ -18,6 +18,7 @@ using DevToys.Core.Collections;
 using DevToys.Core.Settings;
 using DevToys.Core.Threading;
 using DevToys.Messages;
+using DevToys.Models;
 using DevToys.Shared.Core;
 using DevToys.Shared.Core.Threading;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
@@ -121,6 +122,11 @@ namespace DevToys.ViewModels
         }
 
         /// <summary>
+        /// Gets or sets the list of items to displayed in the Search Box after a search.
+        /// </summary>
+        internal ExtendedObservableCollection<MatchedToolProvider> SearchResults { get; } = new();
+
+        /// <summary>
         /// Gets whether the window is in Compact Overlay mode or not.
         /// </summary>
         internal bool IsInCompactOverlayMode
@@ -184,6 +190,8 @@ namespace DevToys.ViewModels
 
             OpenToolInNewWindowCommand = new AsyncRelayCommand<ToolProviderMetadata>(ExecuteOpenToolInNewWindowCommandAsync);
             ChangeViewModeCommand = new AsyncRelayCommand<ApplicationViewMode>(ExecuteChangeViewModeCommandAsync);
+            SearchBoxTextChangedCommand = new AsyncRelayCommand<Windows.UI.Xaml.Controls.AutoSuggestBoxTextChangedEventArgs>(ExecuteSearchBoxTextChangedCommandAsync);
+            SearchBoxQuerySubmittedCommand = new RelayCommand<Windows.UI.Xaml.Controls.AutoSuggestBoxQuerySubmittedEventArgs>(ExecuteSearchBoxQuerySubmittedCommand);
 
             _menuInitializationTask = BuildMenuAsync();
 
@@ -223,6 +231,80 @@ namespace DevToys.ViewModels
                     IsInCompactOverlayMode = applicationViewMode == ApplicationViewMode.CompactOverlay;
                 });
             }
+        }
+
+        #endregion
+
+        #region SearchBoxTextChangedCommand
+
+        public IAsyncRelayCommand<Windows.UI.Xaml.Controls.AutoSuggestBoxTextChangedEventArgs> SearchBoxTextChangedCommand { get; }
+
+        private async Task ExecuteSearchBoxTextChangedCommandAsync(Windows.UI.Xaml.Controls.AutoSuggestBoxTextChangedEventArgs? parameters)
+        {
+            Arguments.NotNull(parameters, nameof(parameters));
+
+            await TaskScheduler.Default;
+
+            MatchedToolProvider[]? searchResult = null;
+
+            if (parameters!.Reason == Windows.UI.Xaml.Controls.AutoSuggestionBoxTextChangeReason.UserInput)
+            {
+                string? searchQuery = SearchQuery;
+                if (!string.IsNullOrEmpty(searchQuery))
+                {
+                    IEnumerable<MatchedToolProvider> matchedTools
+                        = await _toolProviderFactory.SearchToolsAsync(searchQuery!).ConfigureAwait(false);
+
+                    if (matchedTools.Any())
+                    {
+                        searchResult = matchedTools.ToArray();
+                    }
+                    else
+                    {
+                        searchResult = new[]
+                        {
+                            new MatchedToolProvider(new ToolProviderMetadata(), new NoResultFoundMockToolProvider())
+                        };
+                    }
+                }
+            }
+
+            await ThreadHelper.RunOnUIThreadAsync(() =>
+            {
+                if (searchResult is null)
+                {
+                    SearchResults.Clear();
+                }
+                else
+                {
+                    SearchResults.Update(searchResult);
+                }
+            });
+        }
+
+        #endregion
+
+        #region SearchBoxQuerySubmittedCommand
+
+        public IRelayCommand<Windows.UI.Xaml.Controls.AutoSuggestBoxQuerySubmittedEventArgs> SearchBoxQuerySubmittedCommand { get; }
+
+        private void ExecuteSearchBoxQuerySubmittedCommand(Windows.UI.Xaml.Controls.AutoSuggestBoxQuerySubmittedEventArgs? parameters)
+        {
+            Arguments.NotNull(parameters, nameof(parameters));
+
+            if (string.IsNullOrEmpty(parameters!.QueryText))
+            {
+                // Nothing has been search. Do nothing.
+                return;
+            }
+
+            if (parameters.ChosenSuggestion is null or NoResultFoundMockToolProvider)
+            {
+                // TODO: Show a page indicating "No results match your search".
+                return;
+            }
+
+            SetSelectedMenuItem((MatchedToolProvider)parameters.ChosenSuggestion!, clipboardContentData: null);
         }
 
         #endregion
@@ -309,8 +391,8 @@ namespace DevToys.ViewModels
 
             try
             {
-                IEnumerable<MatchedToolProvider> tools = await _toolProviderFactory.GetToolsTreeAsync();
-                IEnumerable<MatchedToolProvider> footerTools = await _toolProviderFactory.GetFooterToolsAsync();
+                IEnumerable<MatchedToolProvider> tools = await _toolProviderFactory.GetToolsTreeAsync().ConfigureAwait(false);
+                IEnumerable<MatchedToolProvider> footerTools = await _toolProviderFactory.GetFooterToolsAsync().ConfigureAwait(false);
 
                 await ThreadHelper.RunOnUIThreadAsync(
                     ThreadPriority.Low,

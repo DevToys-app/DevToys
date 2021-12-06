@@ -13,7 +13,7 @@ namespace DevToys.ViewModels.Tools
     [Export(typeof(IToolProvider))]
     [Name(InternalName)]
     [Parent(TextGroupToolProvider.InternalName)]
-    [ProtocolName("text")]
+    [ProtocolName("formatters")]
     [Order(2)]
     internal sealed class FormattersGroupToolProvider : ToolProviderBase, IToolProvider
     {
