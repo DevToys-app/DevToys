@@ -47,6 +47,9 @@ namespace DevToys.Views
         {
             InitializeComponent();
 
+            // Workaround for a bug where opening the window in compact display mode will misalign the content layout.
+            NavigationView.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Left;
+
             // Set custom title bar dragging area
             Window.Current.SetTitleBar(AppTitleBar);
 
@@ -75,6 +78,9 @@ namespace DevToys.Views
             VisualStateManager.GoToState(this, NavigationViewExpandedStateName, useTransitions: true);
 
             UpdateVisualState();
+
+            // Workaround for a bug where opening the window in compact display mode will misalign the content layout.
+            NavigationView.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Auto;
         }
 
         private void MainPage_SizeChanged(object sender, SizeChangedEventArgs e)

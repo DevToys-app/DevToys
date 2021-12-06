@@ -18,21 +18,27 @@ namespace DevToys.Api.Tools
         IToolViewModel GetToolViewModel(IToolProvider provider);
 
         /// <summary>
-        /// Gets the list of tools available.
+        /// Gets a flat list of tools that match the given query.
         /// </summary>
-        /// <param name="searchQuery">If not null or empty, the method will return items that match the given search query and order them.</param>
-        /// <returns>
-        /// Returns a list of provider along with an array of parts that matched <paramref name="searchQuery"/>.
-        /// </returns>
-        IEnumerable<MatchedToolProvider> GetTools(string? searchQuery);
+        Task<IEnumerable<MatchedToolProvider>> SearchToolsAsync(string searchQuery);
+
+        /// <summary>
+        /// Gets a hierarchical list of available tools. This does not include footer tools.
+        /// </summary>
+        Task<IEnumerable<MatchedToolProvider>> GetToolsTreeAsync();
+
+        /// <summary>
+        /// Gets a flat list containing all the tools available.
+        /// </summary>
+        IEnumerable<MatchedToolProvider> GetAllTools();
 
         /// <summary>
         /// Gets the list of tools available that have the <see cref="IsFooterItemAttribute"/>.
         /// </summary>
-        IEnumerable<MatchedToolProvider> GetFooterTools();
+        Task<IEnumerable<MatchedToolProvider>> GetFooterToolsAsync();
 
         /// <summary>
-        /// Called when the app is shutting down. Asks ever tools to cleanup resources.
+        /// Called when the app is shutting down. Asks every tools to cleanup resources.
         /// </summary>
         Task CleanupAsync();
     }

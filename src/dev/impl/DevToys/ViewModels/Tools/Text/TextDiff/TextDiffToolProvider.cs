@@ -8,6 +8,7 @@ namespace DevToys.ViewModels.Tools.TextDiff
 {
     [Export(typeof(IToolProvider))]
     [Name("Text Diff")]
+    [Parent(TextGroupToolProvider.InternalName)]
     [ProtocolName("diff")]
     [Order(2)]
     [NotScrollable]
