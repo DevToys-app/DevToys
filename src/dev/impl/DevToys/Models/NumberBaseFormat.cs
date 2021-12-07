@@ -7,18 +7,18 @@ namespace DevToys.Models
     {
         private static NumberBaseConverterStrings Strings => LanguageManager.Instance.NumberBaseConverter;
 
-        public static readonly NumberBaseFormat Octal = new(
-            displayName: Strings.OctalLabel,
-            value: Radix.Octal,
-            baseNumber:8,
-            groupSize: CultureInfo.CurrentCulture.NumberFormat.NumberGroupSizes[0],
-            groupSeparator: ' ');
-
         public static readonly NumberBaseFormat Binary = new(
             displayName: Strings.BinaryLabel,
             value: Radix.Binary,
             baseNumber: 2,
             groupSize: 4,
+            groupSeparator: ' ');
+
+        public static readonly NumberBaseFormat Octal = new(
+            displayName: Strings.OctalLabel,
+            value: Radix.Octal,
+            baseNumber: 8,
+            groupSize: CultureInfo.CurrentCulture.NumberFormat.NumberGroupSizes[0],
             groupSeparator: ' ');
 
         public static readonly NumberBaseFormat Decimal = new(

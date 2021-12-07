@@ -215,6 +215,11 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
                     isInfoBarOpen = true;
                     infoBarMessage = exception.Message;
                 }
+                catch (InvalidOperationException exception)
+                {
+                    isInfoBarOpen = true;
+                    infoBarMessage = exception.Message;
+                }
                 catch (Exception ex)
                 {
                     Logger.LogFault("NumberBaseConverter", ex, $"Input base number: {InputBaseNumber}");
