@@ -47,80 +47,7 @@ namespace DevToys.Core.Formatter
                 index++;
             }
 
-            long result = 0;
-            long maxVal;
-
-            // Allow all non-decimal numbers to set the sign bit.
-            if (baseNumber == NumberBaseFormat.Decimal)
-            {
-                maxVal = 0x7FFFFFFFFFFFFFFF / 10;
-
-                // Read all of the digits and convert to a number
-                while (index < length)
-                {
-                    if (!IsValidChar(spanValue[index], baseNumber))
-                    {
-                        throw new InvalidOperationException(string.Format(Strings.ValueInvalid, baseNumber.DisplayName));
-                    }
-
-                    if (!IsDigit(spanValue[index], baseNumber.BaseNumber, out int current))
-                    {
-                        break;
-                    }
-
-                    // Check for overflows - this is sufficient & correct.
-                    if (result > maxVal || result < 0)
-                    {
-                        throw new OverflowException(string.Format(Strings.ValueOverflow, long.MaxValue));
-                    }
-
-                    result = result * baseNumber.BaseNumber + current;
-                    index++;
-                }
-
-                if (result is < 0 and not 0x800000000000000)
-                {
-                    throw new OverflowException(string.Format(Strings.ValueOverflow, long.MaxValue));
-                }
-            }
-            else
-            {
-                maxVal =
-                    baseNumber.BaseNumber == 10 ? 0xfffffffffffffff / 10 :
-                    baseNumber.BaseNumber == 16 ? 0xfffffffffffffff / 16 :
-                    baseNumber.BaseNumber == 8 ? 0xfffffffffffffff / 8 :
-                    0xfffffffffffffff / 2;
-
-                // Read all of the digits and convert to a number
-                while (index < length)
-                {
-                    if (!IsValidChar(spanValue[index], baseNumber))
-                    {
-                        throw new InvalidOperationException(string.Format(Strings.ValueInvalid, baseNumber.DisplayName));
-                    }
-
-                    if (!IsDigit(spanValue[index], baseNumber.BaseNumber, out int current))
-                    {
-                        break;
-                    }
-
-                    // Check for overflows - this is sufficient & correct.
-                    if (result > maxVal)
-                    {
-                        throw new OverflowException($"Unable to parse the current value exceded max value ({long.MaxValue})");
-                    }
-
-                    long temp = result * baseNumber.BaseNumber + current;
-
-                    if (temp < result) // this means overflow as well
-                    {
-                        throw new OverflowException($"Unable to parse the current value exceded max value ({long.MaxValue})");
-                    }
-
-                    result = temp;
-                    index++;
-                }
-            }
+            long result = GetLong(baseNumber, spanValue, index, length);
 
             if (baseNumber == NumberBaseFormat.Decimal)
             {
@@ -259,6 +186,62 @@ namespace DevToys.Core.Formatter
                 }
             }
             return maxLength;
+        }
+
+        private static long GetLong(NumberBaseFormat baseNumber, ReadOnlySpan<char> spanValue, int index, int length)
+        {
+            ulong result = 0;
+            ulong maxVal = 0x7FFFFFFFFFFFFFFF / 10;
+
+            // Read all of the digits and convert to a number
+            while (index < length)
+            {
+                if (!IsValidChar(spanValue[index], baseNumber))
+                {
+                    throw new InvalidOperationException(string.Format(Strings.ValueInvalid, baseNumber.DisplayName));
+                }
+
+                if (!IsDigit(spanValue[index], baseNumber.BaseNumber, out int current))
+                {
+                    break;
+                }
+
+                if (baseNumber == NumberBaseFormat.Decimal)
+                {
+                    // Check for overflows - this is sufficient & correct.
+                    if (result > maxVal || result < 0)
+                    {
+                        throw new OverflowException(string.Format(Strings.ValueOverflow, long.MaxValue));
+                    }
+
+                    result = result * (ulong)baseNumber.BaseNumber + (ulong)current;
+                    index++;
+                }
+                else
+                {
+                    // Check for overflows - this is sufficient & correct.
+                    if (result > maxVal)
+                    {
+                        throw new OverflowException($"Unable to parse the current value exceded max value ({long.MaxValue})");
+                    }
+
+                    ulong temp = result * (ulong)baseNumber.BaseNumber + (ulong)current;
+
+                    if (temp < result) // this means overflow as well
+                    {
+                        throw new OverflowException($"Unable to parse the current value exceded max value ({long.MaxValue})");
+                    }
+
+                    result = temp;
+                    index++;
+                }
+            }
+
+            if (baseNumber == NumberBaseFormat.Decimal && (long)result is < 0 and not 0x800000000000000)
+            {
+                throw new OverflowException(string.Format(Strings.ValueOverflow, long.MaxValue));
+            }
+            return (long)result;
         }
 
         private static bool IsValidChar(char c, NumberBaseFormat baseNumber)
