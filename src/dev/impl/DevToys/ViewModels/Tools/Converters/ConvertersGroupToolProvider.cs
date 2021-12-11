@@ -20,7 +20,7 @@ namespace DevToys.ViewModels.Tools
 
         public override string AccessibleName => LanguageManager.Instance.ToolGroups.ConvertersAccessibleName;
 
-        public override TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF2BB");
+        public override TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("Converters.svg");
 
         [ImportingConstructor]
         public ConvertersGroupToolProvider(IMefProvider mefProvider)

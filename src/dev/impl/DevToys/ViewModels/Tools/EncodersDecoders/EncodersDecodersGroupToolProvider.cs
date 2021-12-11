@@ -20,7 +20,7 @@ namespace DevToys.ViewModels.Tools
 
         public override string AccessibleName => LanguageManager.Instance.ToolGroups.EncodersDecodersAccessibleName;
 
-        public override TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF2BB");
+        public override TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("EncodersDecoders.svg");
 
         [ImportingConstructor]
         public EncodersDecodersGroupToolProvider(IMefProvider mefProvider)
