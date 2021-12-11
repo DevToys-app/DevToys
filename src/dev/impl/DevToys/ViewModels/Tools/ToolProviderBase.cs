@@ -1,6 +1,8 @@
 ﻿#nullable enable
 
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Numerics;
 using System.Threading.Tasks;
@@ -20,7 +22,10 @@ namespace DevToys.ViewModels.Tools
 {
     internal abstract class ToolProviderBase
     {
+        private const int IconMinimalSize = 16;
         protected const string AssetsFolderPath = "ms-appx:///Assets/";
+
+        private static readonly Dictionary<string, string> IconFileNameToSvgMap = new();
 
         protected TaskCompletionNotifier<IconElement> CreatePathIconFromPath(string resourceName)
         {
@@ -66,13 +71,17 @@ namespace DevToys.ViewModels.Tools
                         ElementTheme actualTheme = windowFrame.ActualTheme;
                         return Task.Run(async () =>
                         {
-                            await TaskScheduler.Default;
+                            if (!IconFileNameToSvgMap.TryGetValue(iconFileName, out string svgFileContent))
+                            {
+                                await TaskScheduler.Default;
 
-                            StorageFolder installationFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+                                StorageFolder installationFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
 
-                            IStorageItem file = await installationFolder.TryGetItemAsync("Assets\\Icons\\" + iconFileName);
+                                IStorageItem file = await installationFolder.TryGetItemAsync("Assets\\Icons\\" + iconFileName);
 
-                            string svgFileContent = File.ReadAllText(file.Path);
+                                svgFileContent = File.ReadAllText(file.Path);
+                                IconFileNameToSvgMap[iconFileName] = svgFileContent;
+                            }
 
                             if (actualTheme == ElementTheme.Dark)
                             {
@@ -83,7 +92,7 @@ namespace DevToys.ViewModels.Tools
                                 svgFileContent = svgFileContent.Replace("#ffffff", "#000000").Replace("#FFFFFFFF", "#000000");
                             }
 
-                            return await ThreadHelper.RunOnUIThreadAsync(ThreadPriority.High, async () =>
+                            return await ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, async () =>
                             {
                                 var svgSource = new SvgImageSource();
 
@@ -105,6 +114,11 @@ namespace DevToys.ViewModels.Tools
                                         if (parent is not null)
                                         {
                                             newSize = parent.ActualSize.ToSize();
+                                        }
+
+                                        if (newSize.Width < IconMinimalSize || newSize.Height < IconMinimalSize)
+                                        {
+                                            return;
                                         }
 
                                         svgSource = new SvgImageSource();
