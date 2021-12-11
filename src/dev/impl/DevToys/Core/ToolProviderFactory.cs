@@ -54,8 +54,8 @@ namespace DevToys.Providers.Impl
 
             return
                 SortTools(
-                    SearchTools(searchQueries)
-                    .ToList());
+                    SearchTools(searchQueries).ToList(),
+                    takeConsiderationOfMatches: true);
         }
 
         public async Task<IEnumerable<MatchedToolProvider>> GetToolsTreeAsync()
@@ -75,7 +75,7 @@ namespace DevToys.Providers.Impl
             if (matchedProvider is not null)
             {
                 var result = GetAllChildrenTools(matchedProvider.ChildrenTools).ToList();
-                return SortTools(result).Select(item => item.ToolProvider);
+                return SortTools(result, takeConsiderationOfMatches: false).Select(item => item.ToolProvider);
             }
 
             return Array.Empty<IToolProvider>();
@@ -199,20 +199,31 @@ namespace DevToys.Providers.Impl
             }
         }
 
-        private IEnumerable<MatchedToolProvider> SortTools(IReadOnlyList<MatchedToolProvider> providers)
+        private IEnumerable<MatchedToolProvider> SortTools(IReadOnlyList<MatchedToolProvider> providers, bool takeConsiderationOfMatches)
         {
             foreach (MatchedToolProvider provider in providers)
             {
-                provider.ChildrenTools = SortTools(provider.ChildrenTools).ToList();
+                provider.ChildrenTools = SortTools(provider.ChildrenTools, takeConsiderationOfMatches).ToList();
             }
 
-            return
-                providers
-                    .OrderByDescending(item => item.MatchedSpans.Length)
-                    .ThenByDescending(item => item.TotalMatchCount)
-                    .ThenBy(item => item.Metadata.Order ?? int.MaxValue)
-                    .ThenBy(item => item.ToolProvider.MenuDisplayName)
-                    .ThenBy(item => item.Metadata.Name);
+            if (takeConsiderationOfMatches)
+            {
+                return
+                    providers
+                        .OrderByDescending(item => item.MatchedSpans.Length)
+                        .ThenByDescending(item => item.TotalMatchCount)
+                        .ThenBy(item => item.Metadata.Order ?? int.MaxValue)
+                        .ThenBy(item => item.ToolProvider.MenuDisplayName)
+                        .ThenBy(item => item.Metadata.Name);
+            }
+            else
+            {
+                return
+                    providers
+                        .OrderBy(item => item.Metadata.Order ?? int.MaxValue)
+                        .ThenBy(item => item.ToolProvider.MenuDisplayName)
+                        .ThenBy(item => item.Metadata.Name);
+            }
         }
 
         private async Task<ImmutableArray<MatchedToolProvider>> BuildToolsTreeAsync()
@@ -252,7 +263,7 @@ namespace DevToys.Providers.Impl
                 }
             }
 
-            return SortTools(results).ToImmutableArray();
+            return SortTools(results, takeConsiderationOfMatches: false).ToImmutableArray();
         }
 
         private async Task<ImmutableArray<MatchedToolProvider>> BuildFooterToolsAsync()
@@ -260,7 +271,7 @@ namespace DevToys.Providers.Impl
             await TaskScheduler.Default;
 
             ImmutableArray<MatchedToolProvider>.Builder result = ImmutableArray.CreateBuilder<MatchedToolProvider>();
-            foreach (MatchedToolProvider provider in SortTools(GetAllTools().Where(item => item.Metadata.IsFooterItem).ToList()))
+            foreach (MatchedToolProvider provider in SortTools(GetAllTools().Where(item => item.Metadata.IsFooterItem).ToList(), takeConsiderationOfMatches: false))
             {
                 result.Add(provider);
             }
@@ -278,7 +289,7 @@ namespace DevToys.Providers.Impl
                 .ToList();
 
             return
-                SortTools(matchedToolProviders)
+                SortTools(matchedToolProviders, takeConsiderationOfMatches: false)
                 .ToImmutableArray();
         }
     }
