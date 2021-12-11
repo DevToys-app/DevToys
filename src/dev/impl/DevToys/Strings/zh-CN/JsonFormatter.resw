@@ -123,9 +123,6 @@
   <data name="Configuration" xml:space="preserve">
     <value>配置</value>
   </data>
-  <data name="DisplayName" xml:space="preserve">
-    <value>Json 格式化</value>
-  </data>
   <data name="FourSpaces" xml:space="preserve">
     <value>空格: 4</value>
   </data>
@@ -146,5 +143,14 @@
   </data>
   <data name="TwoSpaces" xml:space="preserve">
     <value>空格: 2</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Indent or minify Json data</value>
+  </data>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>Json</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Json Formatter</value>
   </data>
 </root>

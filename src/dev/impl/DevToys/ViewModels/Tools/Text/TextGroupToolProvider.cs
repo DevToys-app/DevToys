@@ -1,11 +1,9 @@
 ﻿#nullable enable
 
 using System.Composition;
-using System.Threading.Tasks;
 using DevToys.Api.Tools;
 using DevToys.Core.Threading;
 using DevToys.Shared.Api.Core;
-using DevToys.ViewModels.Tools.TextDiff;
 using Windows.UI.Xaml.Controls;
 
 namespace DevToys.ViewModels.Tools
@@ -13,43 +11,21 @@ namespace DevToys.ViewModels.Tools
     [Export(typeof(IToolProvider))]
     [Name(InternalName)]
     [ProtocolName("text")]
-    [Order(2)]
-    internal sealed class TextGroupToolProvider : ToolProviderBase, IToolProvider
+    [Order(4)]
+    internal sealed class TextGroupToolProvider : GroupToolProviderBase
     {
-        internal const string InternalName = "Text Group";
+        internal const string InternalName = "TextGroup";
 
-        private readonly IMefProvider _mefProvider;
+        public override string MenuDisplayName => LanguageManager.Instance.ToolGroups.TextDisplayName;
 
-        public string DisplayName => LanguageManager.Instance.ToolGroups.TextDisplayName;
+        public override string AccessibleName => LanguageManager.Instance.ToolGroups.TextDisplayName;
 
-        public string AccessibleName => LanguageManager.Instance.ToolGroups.TextAccessibleName;
-
-        public object IconSource
-            => new TaskCompletionNotifier<IconElement>(
-                ThreadHelper.RunOnUIThreadAsync(() =>
-                {
-                    return Task.FromResult<IconElement>(
-                        new FontIcon
-                        {
-                            Glyph = "\uF2BB" // TODO
-                        });
-                }));
+        public override TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF2BB");
 
         [ImportingConstructor]
         public TextGroupToolProvider(IMefProvider mefProvider)
+            : base(mefProvider)
         {
-            _mefProvider = mefProvider;
-        }
-
-        public bool CanBeTreatedByTool(string data)
-        {
-            return false;
-        }
-
-        public IToolViewModel CreateTool()
-        {
-            // TODO: Create a view model specific to a group.
-            return _mefProvider.Import<TextDiffToolViewModel>();
         }
     }
 }

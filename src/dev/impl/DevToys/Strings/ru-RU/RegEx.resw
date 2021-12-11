@@ -129,7 +129,7 @@
   <data name="CultureInvariantDescription" xml:space="preserve">
     <value>Указывает, что культурные различия в языке игнорируются.</value>
   </data>
-  <data name="DisplayName" xml:space="preserve">
+  <data name="MenuDisplayName" xml:space="preserve">
     <value>Проверка регулярных выражений</value>
   </data>
   <data name="EcmaScript" xml:space="preserve">
@@ -176,5 +176,11 @@
   </data>
   <data name="Text" xml:space="preserve">
     <value>Текст</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Validate and test regular expressions</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Regex Tester</value>
   </data>
 </root>

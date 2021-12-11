@@ -26,18 +26,32 @@
     <Compile Include="Core\OOP\AppService.cs" />
     <Compile Include="Core\Threading\AsyncLazy.cs" />
     <Compile Include="Helpers\NumberBaseHelper.cs" />
+    <Compile Include="Messages\OpenToolInNewWindowMessage.cs" />
+    <Compile Include="Messages\ChangeSelectedMenuItemMessage.cs" />
     <Compile Include="Models\NoResultFoundMockToolProvider.cs" />
     <Compile Include="Models\Radix.cs" />
     <Compile Include="Models\NumberBaseFormat.cs" />
+    <Compile Include="UI\Controls\ToolProvidersGridView.xaml.cs">
+      <DependentUpon>ToolProvidersGridView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Converters\BooleanToDoubleConverter.cs" />
     <Compile Include="UI\Converters\BooleanToIntegerConverter.cs" />
-    <Compile Include="ViewModels\Tools\HtmlEncoderDecoder\HtmlEncoderDecoderToolProvider.cs" />
-    <Compile Include="ViewModels\Tools\HtmlEncoderDecoder\HtmlEncoderDecoderToolViewModel.cs" />
-    <Compile Include="ViewModels\Tools\PngJpgCompressor\ImageCompressionWorkItem.cs" />
-    <Compile Include="ViewModels\Tools\PngJpgCompressor\PngJpgCompressorToolProvider.cs" />
-    <Compile Include="ViewModels\Tools\PngJpgCompressor\PngJpgCompressorToolViewModel.cs" />
-    <Compile Include="ViewModels\Tools\Text\Formatters\FormattersGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Converters\ConvertersGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\EncodersDecodersGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Generators\GeneratorsGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Graphic\GraphicGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\GroupToolProviderBase.cs" />
+    <Compile Include="ViewModels\Tools\GroupToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\HtmlEncoderDecoder\HtmlEncoderDecoderToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\HtmlEncoderDecoder\HtmlEncoderDecoderToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\Graphic\PngJpgCompressor\ImageCompressionWorkItem.cs" />
+    <Compile Include="ViewModels\Tools\Graphic\PngJpgCompressor\PngJpgCompressorToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Graphic\PngJpgCompressor\PngJpgCompressorToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\Formatters\FormattersGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Text\TextGroupToolProvider.cs" />
+    <Compile Include="Views\Tools\GroupToolPage.xaml.cs">
+      <DependentUpon>GroupToolPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Tools\GuidGenerator\GuidGeneratorToolPage.xaml.cs">
       <DependentUpon>GuidGeneratorToolPage.xaml</DependentUpon>
     </Compile>
@@ -175,6 +189,33 @@
     <Content Include="Assets\GitHubMarkdownCss\github-markdown-light.css" />
     <Content Include="Assets\GitHubMarkdownCss\github-markdown.css" />
     <Content Include="Assets\GitHubMarkdownCss\index.html" />
+    <Content Include="Assets\Icons\HtmlEncoder.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\Guid.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\MarkdownPreview.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\JWT.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\JsonYaml.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\RegexTester.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\JsonFormatter.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\Base64.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\TextDiff.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\ReleaseNote.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -208,7 +249,7 @@
     <Compile Include="Core\Clipboard.cs" />
     <Compile Include="Core\Collections\ExtendedObservableCollection.cs" />
     <Compile Include="Core\Constants.cs" />
-    <Compile Include="ViewModels\Tools\NumberBaseConverter\NumberBaseFormatter.cs" />
+    <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\NumberBaseFormatter.cs" />
     <Compile Include="Core\Logger.cs" />
     <Compile Include="Core\MarketingService.cs" />
     <Compile Include="Core\Navigation\WindowManager.cs" />
@@ -235,18 +276,18 @@
     <Compile Include="UI\Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Helpers\JsonHelper.cs" />
     <Compile Include="Helpers\YamlHelper.cs" />
-    <Compile Include="ViewModels\Tools\NumberBaseConverter\NumberBaseConverterToolProvider.cs" />
-    <Compile Include="ViewModels\Tools\NumberBaseConverter\NumberBaseConverterToolViewModel.cs" />
-    <Compile Include="ViewModels\Tools\GuidGenerator\GuidGeneratorToolProvider.cs" />
-    <Compile Include="ViewModels\Tools\GuidGenerator\GuidGeneratorToolViewModel.cs" />
-    <Compile Include="ViewModels\Tools\JsonYaml\JsonYamlToolProvider.cs" />
-    <Compile Include="ViewModels\Tools\JsonYaml\JsonYamlToolViewModel.cs" />
-    <Compile Include="ViewModels\Tools\JwtDecoderEncoder\JwtDecoderEncoderToolProvider.cs" />
-    <Compile Include="ViewModels\Tools\JwtDecoderEncoder\JwtDecoderEncoderToolViewModel.cs" />
-    <Compile Include="ViewModels\Tools\MarkdownPreview\MarkdownPreviewToolProvider.cs" />
-    <Compile Include="ViewModels\Tools\MarkdownPreview\MarkdownPreviewToolViewModel.cs" />
-    <Compile Include="ViewModels\Tools\StringUtilities\StringUtilitiesToolProvider.cs" />
-    <Compile Include="ViewModels\Tools\StringUtilities\StringUtilitiesToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\NumberBaseConverterToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\NumberBaseConverterToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\Generators\GuidGenerator\GuidGeneratorToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Generators\GuidGenerator\GuidGeneratorToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\Converters\JsonYaml\JsonYamlToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Converters\JsonYaml\JsonYamlToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtDecoderEncoderToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtDecoderEncoderToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\Text\MarkdownPreview\MarkdownPreviewToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Text\MarkdownPreview\MarkdownPreviewToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\Text\StringUtilities\StringUtilitiesToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Text\StringUtilities\StringUtilitiesToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\ToolProviderBase.cs" />
     <Compile Include="Core\UriActivationProtocolService.cs" />
     <Compile Include="LanguageDefinition.cs" />
@@ -288,18 +329,18 @@
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\Tools\Settings\SettingsToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Settings\SettingsToolViewModel.cs" />
-    <Compile Include="ViewModels\Tools\Base64EncoderDecoder\Base64EncoderDecoderToolProvider.cs" />
-    <Compile Include="ViewModels\Tools\Base64EncoderDecoder\Base64EncoderDecoderToolViewModel.cs" />
-    <Compile Include="ViewModels\Tools\HashGenerator\HashGeneratorToolProvider.cs" />
-    <Compile Include="ViewModels\Tools\HashGenerator\HashGeneratorToolViewModel.cs" />
-    <Compile Include="ViewModels\Tools\Text\Formatters\JsonFormatter\JsonFormatterToolProvider.cs" />
-    <Compile Include="ViewModels\Tools\Text\Formatters\JsonFormatter\JsonFormatterToolViewModel.cs" />
-    <Compile Include="ViewModels\Tools\RegEx\RegExToolProvider.cs" />
-    <Compile Include="ViewModels\Tools\RegEx\RegExToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\Base64EncoderDecoder\Base64EncoderDecoderToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\Base64EncoderDecoder\Base64EncoderDecoderToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\Generators\HashGenerator\HashGeneratorToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Generators\HashGenerator\HashGeneratorToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\Formatters\JsonFormatter\JsonFormatterToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Formatters\JsonFormatter\JsonFormatterToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\Text\RegEx\RegExToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Text\RegEx\RegExToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Text\TextDiff\TextDiffToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Text\TextDiff\TextDiffToolViewModel.cs" />
-    <Compile Include="ViewModels\Tools\UrlEncoderDecoder\UrlEncoderDecoderToolProvider.cs" />
-    <Compile Include="ViewModels\Tools\UrlEncoderDecoder\UrlEncoderDecoderToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\UrlEncoderDecoder\UrlEncoderDecoderToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\UrlEncoderDecoder\UrlEncoderDecoderToolViewModel.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -379,6 +420,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Controls\ToolProvidersGridView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Controls\CustomTextBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -402,6 +447,10 @@
     <Page Include="Views\Tools\Base64EncoderDecoder\Base64EncoderDecoderToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\GroupToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Tools\GuidGenerator\GuidGeneratorToolPage.xaml">
       <SubType>Designer</SubType>

@@ -135,9 +135,6 @@
   <data name="ConversionTitle" xml:space="preserve">
     <value>Conversion</value>
   </data>
-  <data name="DisplayName" xml:space="preserve">
-    <value>Encodeur/Décodeur d'URL</value>
-  </data>
   <data name="EncodingDescription" xml:space="preserve">
     <value>Sélectionner l'encodage désiré</value>
   </data>
@@ -149,5 +146,14 @@
   </data>
   <data name="OutputTitle" xml:space="preserve">
     <value>Sortie</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Encoder ou décoder tous les caractères applicables à leurs entités URL correspondantes</value>
+  </data>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>URL</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Encodeur / Décodeur d'URL</value>
   </data>
 </root>

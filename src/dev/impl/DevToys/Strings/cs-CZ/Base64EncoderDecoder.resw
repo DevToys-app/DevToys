@@ -138,8 +138,8 @@
   <data name="ConversionTitle" xml:space="preserve">
     <value>Převod</value>
   </data>
-  <data name="DisplayName" xml:space="preserve">
-    <value>Kodér/dekodér Base 64</value>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>Base 64</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
     <value>Zvolte, které kódování chcete použít</value>
@@ -155,5 +155,11 @@
   </data>
   <data name="Utf8" xml:space="preserve">
     <value>UTF-8</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Encode and decode Base64 data</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Kodér/dekodér Base 64</value>
   </data>
 </root>

@@ -132,9 +132,6 @@
   <data name="Decode" xml:space="preserve">
     <value>Dekódovat</value>
   </data>
-  <data name="DisplayName" xml:space="preserve">
-    <value>Dekodér JWT</value>
-  </data>
   <data name="Encode" xml:space="preserve">
     <value>Zakódovat</value>
   </data>
@@ -155,5 +152,14 @@
   </data>
   <data name="SecurityLabel" xml:space="preserve">
     <value>Zabezpečení</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Decode a JWT header, payload and signature</value>
+  </data>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>Dekodér JWT</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Dekodér JWT</value>
   </data>
 </root>

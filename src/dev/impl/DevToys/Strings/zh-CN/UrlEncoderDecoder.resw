@@ -135,9 +135,6 @@
   <data name="ConversionTitle" xml:space="preserve">
     <value>转换</value>
   </data>
-  <data name="DisplayName" xml:space="preserve">
-    <value>URL 编码器/解码器</value>
-  </data>
   <data name="EncodingDescription" xml:space="preserve">
     <value>选择你想使用的字符编码</value>
   </data>
@@ -149,5 +146,14 @@
   </data>
   <data name="OutputTitle" xml:space="preserve">
     <value>输出</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Encode or decode all the applicable characters to their corresponding URL entities</value>
+  </data>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>URL</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>URL Encoder / Decoder</value>
   </data>
 </root>

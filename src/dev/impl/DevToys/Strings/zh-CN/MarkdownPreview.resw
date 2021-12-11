@@ -126,7 +126,7 @@
   <data name="Dark" xml:space="preserve">
     <value>深色</value>
   </data>
-  <data name="DisplayName" xml:space="preserve">
+  <data name="MenuDisplayName" xml:space="preserve">
     <value>Markdown 预览</value>
   </data>
   <data name="Input" xml:space="preserve">
@@ -143,5 +143,11 @@
   </data>
   <data name="ThemeDescription" xml:space="preserve">
     <value>选择使用哪个主题来预览 Markdown</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Preview a Markdown document with a GitHub-like render</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Markdown Preview</value>
   </data>
 </root>

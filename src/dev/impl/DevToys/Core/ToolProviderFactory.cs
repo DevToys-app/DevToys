@@ -14,6 +14,7 @@ using DevToys.Shared.Core.Threading;
 namespace DevToys.Providers.Impl
 {
     [Export(typeof(IToolProviderFactory))]
+    [Shared]
     internal sealed class ToolProviderFactory : IToolProviderFactory
     {
         private readonly ImmutableArray<MatchedToolProvider> _allProviders;
@@ -67,6 +68,19 @@ namespace DevToys.Providers.Impl
             return _allProviders;
         }
 
+        public IEnumerable<IToolProvider> GetAllChildrenTools(IToolProvider toolProvider)
+        {
+            MatchedToolProvider? matchedProvider = GetAllTools().FirstOrDefault(item => item.ToolProvider == toolProvider);
+
+            if (matchedProvider is not null)
+            {
+                var result = GetAllChildrenTools(matchedProvider.ChildrenTools).ToList();
+                return SortTools(result).Select(item => item.ToolProvider);
+            }
+
+            return Array.Empty<IToolProvider>();
+        }
+
         public async Task<IEnumerable<MatchedToolProvider>> GetFooterToolsAsync()
         {
             return await _footerProviders;
@@ -102,35 +116,82 @@ namespace DevToys.Providers.Impl
             await CleanupAsync();
         }
 
+        private IEnumerable<MatchedToolProvider> GetAllChildrenTools(IReadOnlyList<MatchedToolProvider> items)
+        {
+            foreach (MatchedToolProvider item in items)
+            {
+                if (item.ChildrenTools.Count == 0)
+                {
+                    yield return item;
+                }
+                else
+                {
+                    foreach (MatchedToolProvider child in GetAllChildrenTools(item.ChildrenTools))
+                    {
+                        yield return child;
+                    }
+                }
+            }
+        }
+
         private IEnumerable<MatchedToolProvider> SearchTools(string[]? searchQueries)
         {
             if (searchQueries is not null)
             {
                 foreach (MatchedToolProvider provider in GetAllTools())
                 {
-                    if (provider.ChildrenTools.Count == 0) // do not search groups.
+                    if (provider.ChildrenTools.Count == 0                                       // do not search groups.
+                        && !string.IsNullOrWhiteSpace(provider.ToolProvider.SearchDisplayName)) // do not search tools without search display name.
                     {
                         var matches = new List<MatchSpan>();
+
+                        int totalMatchCount = 0;
 
                         foreach (string? query in searchQueries)
                         {
                             int i = 0;
-                            while (i < provider.ToolProvider.DisplayName?.Length && i > -1)
+                            while (i < provider.ToolProvider.SearchDisplayName?.Length && i > -1)
                             {
-                                int matchIndex = provider.ToolProvider.DisplayName.IndexOf(query, i, StringComparison.OrdinalIgnoreCase);
+                                int matchIndex = provider.ToolProvider.SearchDisplayName.IndexOf(query, i, StringComparison.OrdinalIgnoreCase);
                                 if (matchIndex > -1)
                                 {
                                     matches.Add(new MatchSpan(matchIndex, query.Length));
                                     i = matchIndex + query.Length;
+                                    totalMatchCount++;
+                                }
+
+                                i++;
+                            }
+
+                            i = 0;
+                            while (i < provider.ToolProvider.MenuDisplayName?.Length && i > -1)
+                            {
+                                int matchIndex = provider.ToolProvider.MenuDisplayName.IndexOf(query, i, StringComparison.OrdinalIgnoreCase);
+                                if (matchIndex > -1)
+                                {
+                                    totalMatchCount++;
+                                }
+
+                                i++;
+                            }
+
+                            i = 0;
+                            while (i < provider.ToolProvider.Description?.Length && i > -1)
+                            {
+                                int matchIndex = provider.ToolProvider.Description.IndexOf(query, i, StringComparison.OrdinalIgnoreCase);
+                                if (matchIndex > -1)
+                                {
+                                    totalMatchCount++;
                                 }
 
                                 i++;
                             }
                         }
 
-                        if (matches.Count > 0)
+                        if (totalMatchCount > 0)
                         {
                             provider.MatchedSpans = matches.ToArray();
+                            provider.TotalMatchCount = totalMatchCount;
                             yield return provider;
                         }
                     }
@@ -148,8 +209,9 @@ namespace DevToys.Providers.Impl
             return
                 providers
                     .OrderByDescending(item => item.MatchedSpans.Length)
+                    .ThenByDescending(item => item.TotalMatchCount)
                     .ThenBy(item => item.Metadata.Order ?? int.MaxValue)
-                    .ThenBy(item => item.ToolProvider.DisplayName)
+                    .ThenBy(item => item.ToolProvider.MenuDisplayName)
                     .ThenBy(item => item.Metadata.Name);
         }
 

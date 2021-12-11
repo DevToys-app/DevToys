@@ -3,16 +3,22 @@
 using System;
 using System.ComponentModel;
 using DevToys.Api.Tools;
+using DevToys.Core.Threading;
+using Windows.UI.Xaml.Controls;
 
 namespace DevToys.Models
 {
     internal sealed class NoResultFoundMockToolProvider : IToolProvider
     {
-        public string DisplayName => LanguageManager.Instance.MainPage.SearchNoResultsFound;
+        public string MenuDisplayName => LanguageManager.Instance.MainPage.SearchNoResultsFound;
+
+        public string? SearchDisplayName => LanguageManager.Instance.MainPage.SearchNoResultsFound;
+
+        public string? Description => LanguageManager.Instance.MainPage.SearchNoResultsFound;
 
         public string AccessibleName => LanguageManager.Instance.MainPage.SearchNoResultsFound;
 
-        public object IconSource => null!;
+        public TaskCompletionNotifier<IconElement> IconSource => null!;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 

@@ -20,7 +20,7 @@ namespace DevToys.Tests.Providers.Tools
         [DataRow("SGVsbG8gVa29y", false)]
         public async Task CanBeTreatedByTool(string input, bool expectedResult)
         {
-            await ThreadHelper.RunOnUIThreadAsync(async () =>
+            await ThreadHelper.RunOnUIThreadAsync(() =>
             {
                 System.Collections.Generic.IEnumerable<MatchedToolProvider> result = ExportProvider.Import<IToolProviderFactory>().GetAllTools();
                 MatchedToolProvider base64Tool = result.First(item => item.Metadata.ProtocolName == "base64");

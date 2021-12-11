@@ -117,11 +117,35 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ConvertersAccessibleName" xml:space="preserve">
+    <value>Convertisseurs</value>
+  </data>
+  <data name="ConvertersDisplayName" xml:space="preserve">
+    <value>Convertisseurs</value>
+  </data>
+  <data name="EncodersDecodersAccessibleName" xml:space="preserve">
+    <value>Encodeurs et décodeurs</value>
+  </data>
+  <data name="EncodersDecodersDisplayName" xml:space="preserve">
+    <value>Encodeurs / Décodeurs</value>
+  </data>
   <data name="FormattersAccessibleName" xml:space="preserve">
-    <value>Formateurs</value>
+    <value>Formatteurs</value>
   </data>
   <data name="FormattersDisplayName" xml:space="preserve">
-    <value>Formateurs</value>
+    <value>Formatteurs</value>
+  </data>
+  <data name="GeneratorsAccessibleName" xml:space="preserve">
+    <value>Générateurs</value>
+  </data>
+  <data name="GeneratorsDisplayName" xml:space="preserve">
+    <value>Générateurs</value>
+  </data>
+  <data name="GraphicAccessibleName" xml:space="preserve">
+    <value>Gaphique</value>
+  </data>
+  <data name="GraphicDisplayName" xml:space="preserve">
+    <value>Gaphique</value>
   </data>
   <data name="TextAccessibleName" xml:space="preserve">
     <value>Texte</value>

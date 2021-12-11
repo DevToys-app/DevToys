@@ -34,7 +34,7 @@ using ThreadPriority = DevToys.Core.Threading.ThreadPriority;
 namespace DevToys.ViewModels
 {
     [Export(typeof(MainPageViewModel))]
-    public sealed class MainPageViewModel : ObservableRecipient
+    public sealed class MainPageViewModel : ObservableRecipient, IRecipient<ChangeSelectedMenuItemMessage>, IRecipient<OpenToolInNewWindowMessage>
     {
         private readonly IClipboard _clipboard;
         private readonly IToolProviderFactory _toolProviderFactory;
@@ -75,19 +75,13 @@ namespace DevToys.ViewModels
         internal MatchedToolProvider? SelectedMenuItem
         {
             get => _selectedItem;
-            set => SetSelectedMenuItem(value, _clipboardContent);
+            set => SetSelectedMenuItem(value, _clipboardContent, programmaticalSelection: false);
         }
 
         /// <summary>
         /// Gets the text to show in the header of the app. The property returned null when is in compact overlay mode.
         /// </summary>
-        internal string? HeaderText
-        {
-            get
-            {
-                return SelectedMenuItem?.ToolProvider.DisplayName;
-            }
-        }
+        internal string? HeaderText => SelectedMenuItem?.ToolProvider.SearchDisplayName;
 
         /// <summary>
         /// Gets the text to show in the header of the app. The property returned null when is in compact overlay mode.
@@ -98,7 +92,7 @@ namespace DevToys.ViewModels
             {
                 if (IsInCompactOverlayMode)
                 {
-                    return Strings.GetFormattedWindowTitleWithToolName(SelectedMenuItem?.ToolProvider.DisplayName);
+                    return Strings.GetFormattedWindowTitleWithToolName(SelectedMenuItem?.ToolProvider.SearchDisplayName);
                 }
 
                 return Strings.WindowTitle;
@@ -207,6 +201,7 @@ namespace DevToys.ViewModels
 
         private async Task ExecuteOpenToolInNewWindowCommandAsync(ToolProviderMetadata? metadata)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             Arguments.NotNull(metadata, nameof(metadata));
             await _launchProtocolService.LaunchNewAppInstance(metadata!.ProtocolName);
         }
@@ -309,6 +304,20 @@ namespace DevToys.ViewModels
 
         #endregion
 
+        public void Receive(ChangeSelectedMenuItemMessage message)
+        {
+            IEnumerable<MatchedToolProvider> toolProviders = _toolProviderFactory.GetAllTools();
+            MatchedToolProvider toolProvider = toolProviders.First(tool => tool.ToolProvider == message.ToolProvider);
+            SetSelectedMenuItem(toolProvider, clipboardContentData: null);
+        }
+
+        public void Receive(OpenToolInNewWindowMessage message)
+        {
+            IEnumerable<MatchedToolProvider> toolProviders = _toolProviderFactory.GetAllTools();
+            MatchedToolProvider toolProvider = toolProviders.First(tool => tool.ToolProvider == message.ToolProvider);
+            OpenToolInNewWindowCommand.Execute(toolProvider.Metadata);
+        }
+
         /// <summary>
         /// Invoked when the Page is loaded and becomes the current source of a parent Frame.
         /// </summary>
@@ -329,16 +338,15 @@ namespace DevToys.ViewModels
                     // Let's make sure we won't switch to a recommended tool detected automatically.
                     _allowSelectAutomaticallyRecommendedTool = false;
 
+                    IEnumerable<MatchedToolProvider> toolProviders = _toolProviderFactory.GetAllTools();
+
                     toolProviderViewDataToSelect
-                        = ToolsMenuItems.FirstOrDefault(
+                        = toolProviders.FirstOrDefault(
                             item => string.Equals(item.Metadata.ProtocolName, toolProviderProtocolName, StringComparison.OrdinalIgnoreCase));
 
-                    if (toolProviderViewDataToSelect is null)
-                    {
-                        toolProviderViewDataToSelect
-                            = FooterMenuItems.FirstOrDefault(
-                                item => string.Equals(item.Metadata.ProtocolName, toolProviderProtocolName, StringComparison.OrdinalIgnoreCase));
-                    }
+                    // Wait a little bit here. We do that so the NavigationView gets a chance to render. Without this wait, selecting a tool
+                    // that is a child to a parent menu item won't expand the parents.
+                    await Task.Delay(100).ConfigureAwait(false);
                 }
             }
 
@@ -354,7 +362,7 @@ namespace DevToys.ViewModels
                 });
         }
 
-        private void SetSelectedMenuItem(MatchedToolProvider? value, string? clipboardContentData)
+        private void SetSelectedMenuItem(MatchedToolProvider? value, string? clipboardContentData, bool programmaticalSelection = true)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             if (_isUpdatingSelectedItem)
@@ -377,10 +385,18 @@ namespace DevToys.ViewModels
 
                 _pasteInFirstSelectedToolIsAllowed = false;
 
+                IDisposable? menuItemShouldBeExpandedLock = null;
+                if (programmaticalSelection)
+                {
+                    menuItemShouldBeExpandedLock = value.ForceMenuItemShouldBeExpanded();
+                }
+
                 Messenger.Send(new NavigateToToolMessage(toolViewModel, clipboardContentData));
                 OnPropertyChanged(nameof(SelectedMenuItem));
                 OnPropertyChanged(nameof(HeaderText));
                 OnPropertyChanged(nameof(WindowTitle));
+
+                menuItemShouldBeExpandedLock?.Dispose();
             }
             _isUpdatingSelectedItem = false;
         }
