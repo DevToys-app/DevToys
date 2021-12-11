@@ -123,9 +123,6 @@
   <data name="Configuration" xml:space="preserve">
     <value>Configuration</value>
   </data>
-  <data name="DisplayName" xml:space="preserve">
-    <value>Formatteur de JSON</value>
-  </data>
   <data name="FourSpaces" xml:space="preserve">
     <value>4 espaces</value>
   </data>
@@ -146,5 +143,14 @@
   </data>
   <data name="TwoSpaces" xml:space="preserve">
     <value>2 espaces</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Indente ou minifie du Json</value>
+  </data>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>Json</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Formatteur de Json</value>
   </data>
 </root>

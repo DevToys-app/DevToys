@@ -1,0 +1,24 @@
+﻿<Page
+    x:Class="DevToys.Views.Tools.GroupToolPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:DevToys.UI.Controls"
+    mc:Ignorable="d"
+    NavigationCacheMode="Required">
+
+    <Grid x:Name="RootGrid" RowSpacing="12" Margin="0,0,0,16">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <controls:ToolProvidersGridView
+            TabIndex="0"
+            Tools="{x:Bind ViewModel.ToolProviders, Mode=OneWay}"
+            ToolClickCommand="{x:Bind ViewModel.NavigateToToolCommand}"
+            OpenToolInNewWindowClickCommand="{x:Bind ViewModel.OpenToolInNewWindowClickCommand}"/>
+    </Grid>
+</Page>

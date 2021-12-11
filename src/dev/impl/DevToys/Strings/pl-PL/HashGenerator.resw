@@ -123,9 +123,6 @@
   <data name="Configuration" xml:space="preserve">
     <value>Konfiguracja</value>
   </data>
-  <data name="DisplayName" xml:space="preserve">
-    <value>Generator Hash</value>
-  </data>
   <data name="Input" xml:space="preserve">
     <value>Wejście</value>
   </data>
@@ -143,5 +140,14 @@
   </data>
   <data name="Uppercase" xml:space="preserve">
     <value>Wielka litera</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Calculate MD5, SHA1, SHA256 and SHA512 hash from text data</value>
+  </data>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>Hash</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Hash Generator</value>
   </data>
 </root>

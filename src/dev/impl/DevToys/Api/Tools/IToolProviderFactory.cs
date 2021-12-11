@@ -33,6 +33,11 @@ namespace DevToys.Api.Tools
         IEnumerable<MatchedToolProvider> GetAllTools();
 
         /// <summary>
+        /// Gets a flat list of all the children and sub-children of a given tool provider.
+        /// </summary>
+        IEnumerable<IToolProvider> GetAllChildrenTools(IToolProvider toolProvider);
+
+        /// <summary>
         /// Gets the list of tools available that have the <see cref="IsFooterItemAttribute"/>.
         /// </summary>
         Task<IEnumerable<MatchedToolProvider>> GetFooterToolsAsync();

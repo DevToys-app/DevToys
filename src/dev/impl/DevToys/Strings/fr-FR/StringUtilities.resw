@@ -147,9 +147,6 @@
   <data name="Convert" xml:space="preserve">
     <value>Convertir</value>
   </data>
-  <data name="DisplayName" xml:space="preserve">
-    <value>Chaîne de caractères</value>
-  </data>
   <data name="InverseCase" xml:space="preserve">
     <value>InVeRsE CaSe</value>
   </data>
@@ -209,5 +206,14 @@
   </data>
   <data name="Words" xml:space="preserve">
     <value>Mots:</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Analyser un texte et le convertir dans une casse différente</value>
+  </data>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>Inspecteur &amp; Convertisseur de Casse</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Inspecteur et Convertisseur de Casse de texte</value>
   </data>
 </root>

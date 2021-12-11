@@ -126,7 +126,7 @@
   <data name="Difference" xml:space="preserve">
     <value>Rozdíl</value>
   </data>
-  <data name="DisplayName" xml:space="preserve">
+  <data name="MenuDisplayName" xml:space="preserve">
     <value>Rozdílnost textu</value>
   </data>
   <data name="InlineDifference" xml:space="preserve">
@@ -137,5 +137,11 @@
   </data>
   <data name="RightText" xml:space="preserve">
     <value>Nový text</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Compare two texts</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Text Comparer</value>
   </data>
 </root>

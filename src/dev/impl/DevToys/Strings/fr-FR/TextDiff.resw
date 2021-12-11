@@ -126,7 +126,7 @@
   <data name="Difference" xml:space="preserve">
     <value>Différence</value>
   </data>
-  <data name="DisplayName" xml:space="preserve">
+  <data name="MenuDisplayName" xml:space="preserve">
     <value>Comparateur de texte</value>
   </data>
   <data name="InlineDifference" xml:space="preserve">
@@ -137,5 +137,11 @@
   </data>
   <data name="RightText" xml:space="preserve">
     <value>Nouveau texte</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Comparer deux textes</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Comparateur de texte</value>
   </data>
 </root>

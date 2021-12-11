@@ -126,7 +126,7 @@
   <data name="Dark" xml:space="preserve">
     <value>Tmavý</value>
   </data>
-  <data name="DisplayName" xml:space="preserve">
+  <data name="MenuDisplayName" xml:space="preserve">
     <value>Náhled Markdown</value>
   </data>
   <data name="Input" xml:space="preserve">
@@ -143,5 +143,11 @@
   </data>
   <data name="ThemeDescription" xml:space="preserve">
     <value>Změna motivu Markdown náhledu</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Preview a Markdown document with a GitHub-like render</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Náhled Markdown</value>
   </data>
 </root>

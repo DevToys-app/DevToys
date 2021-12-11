@@ -1,8 +1,10 @@
 ﻿#nullable enable
 
+using System;
 using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
+using DevToys.Shared.Core;
 using DevToys.Shared.Core.Threading;
 
 namespace DevToys.Core.Threading
@@ -11,8 +13,10 @@ namespace DevToys.Core.Threading
     /// Watches a task and raises property-changed notifications when the task completes.
     /// </summary>
     /// <typeparam name="TResult">The type of the result of the task.</typeparam>
-    internal sealed class TaskCompletionNotifier<TResult> : INotifyPropertyChanged
+    public sealed class TaskCompletionNotifier<TResult> : INotifyPropertyChanged
     {
+        private readonly Func<Task<TResult>?> _taskFactory;
+
         /// <summary>
         /// Gets the task being watched. This property never changes and is never <c>null</c>.
         /// </summary>
@@ -51,11 +55,25 @@ namespace DevToys.Core.Threading
         /// <summary>
         /// Initialize a new instance of the <see cref="TaskCompletionNotifier{TResult}"/> class.
         /// </summary>
-        /// <param name="task">The <see cref="Task"/> to run.</param>
-        internal TaskCompletionNotifier(Task<TResult>? task)
+        /// <param name="taskFactory">The <see cref="Task"/> to run.</param>
+        internal TaskCompletionNotifier(Func<Task<TResult>?> taskFactory)
+        {
+            _taskFactory = Arguments.NotNull(taskFactory, nameof(taskFactory));
+
+            RunTask();
+        }
+
+        internal void Reset()
+        {
+            RunTask();
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(string.Empty));
+        }
+
+        private void RunTask()
         {
             try
             {
+                Task<TResult>? task = _taskFactory();
                 Task = task;
                 if (task != null && !task.IsCompleted)
                 {

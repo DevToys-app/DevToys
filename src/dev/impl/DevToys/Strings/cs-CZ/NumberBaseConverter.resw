@@ -129,9 +129,6 @@
   <data name="DecimalLabel" xml:space="preserve">
     <value>Decimal</value>
   </data>
-  <data name="DisplayName" xml:space="preserve">
-    <value>Number Base Converter</value>
-  </data>
   <data name="Format" xml:space="preserve">
     <value>Format number</value>
   </data>
@@ -169,5 +166,14 @@
   <data name="ValueOverflow" xml:space="preserve">
     <value>Unable to parse the current value exceed max value {0}</value>
     <comment>The parameter is the Max value of a long</comment>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Convert numbers from one base to another</value>
+  </data>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>Number Base</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Number Base Converter</value>
   </data>
 </root>
