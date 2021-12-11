@@ -1026,6 +1026,32 @@ namespace DevToys
         public string OctalLabel => _resources.GetString("OctalLabel");
 
         /// <summary>
+        /// Gets the resource ValueInvalid.
+        /// </summary>
+        public string ValueInvalid => _resources.GetString("ValueInvalid");
+
+        /// <summary>
+        /// Gets the resource ValueInvalid with format.
+        /// </summary>
+        public string GetFormattedValueInvalid(string? param0)
+        {
+            return string.Format(ValueInvalid, param0);
+        }
+
+        /// <summary>
+        /// Gets the resource ValueOverflow.
+        /// </summary>
+        public string ValueOverflow => _resources.GetString("ValueOverflow");
+
+        /// <summary>
+        /// Gets the resource ValueOverflow with format.
+        /// </summary>
+        public string GetFormattedValueOverflow(string? param0)
+        {
+            return string.Format(ValueOverflow, param0);
+        }
+
+        /// <summary>
         /// Gets the resource Description.
         /// </summary>
         public string Description => _resources.GetString("Description");

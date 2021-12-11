@@ -159,6 +159,14 @@
   <data name="OctalLabel" xml:space="preserve">
     <value>Octal</value>
   </data>
+  <data name="ValueInvalid" xml:space="preserve">
+    <value>The current value isn't a valid {0}</value>
+    <comment>The parameter is the Base Number Type (Decimal, Octal, ...)</comment>
+  </data>
+  <data name="ValueOverflow" xml:space="preserve">
+    <value>Unable to parse the current value exceed max value {0}</value>
+    <comment>The parameter is the Max value of a long</comment>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Convert numbers from one base to another</value>
   </data>
