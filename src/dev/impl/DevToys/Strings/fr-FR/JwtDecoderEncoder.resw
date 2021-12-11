@@ -132,9 +132,6 @@
   <data name="Decode" xml:space="preserve">
     <value>Decoder</value>
   </data>
-  <data name="DisplayName" xml:space="preserve">
-    <value>Décodeur JWT</value>
-  </data>
   <data name="Encode" xml:space="preserve">
     <value>Encoder</value>
   </data>
@@ -155,5 +152,14 @@
   </data>
   <data name="SecurityLabel" xml:space="preserve">
     <value>Sécurité</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Décoder un en-tête, une charge utile et une signature JWT</value>
+  </data>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>Décodeur JWT</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Décodeur JWT</value>
   </data>
 </root>

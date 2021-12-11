@@ -7,7 +7,7 @@
     xmlns:controls="using:DevToys.UI.Controls"
     xmlns:ex="using:DevToys.UI.Extensions"
     mc:Ignorable="d"
-    NavigationCacheMode="Disabled">
+    NavigationCacheMode="Required">
 
     <Grid x:Name="RootGrid" RowSpacing="12" Margin="0,0,0,16">
         <Grid.ChildrenTransitions>

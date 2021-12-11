@@ -135,9 +135,6 @@
   <data name="ConversionTitle" xml:space="preserve">
     <value>Převod</value>
   </data>
-  <data name="DisplayName" xml:space="preserve">
-    <value>Kodér/dekodér HTML</value>
-  </data>
   <data name="EncodingDescription" xml:space="preserve">
     <value>Zvolte, které kódování chcete použít</value>
   </data>
@@ -149,5 +146,14 @@
   </data>
   <data name="OutputTitle" xml:space="preserve">
     <value>Výstup</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Encode or decode all the applicable characters to their corresponding HTML entities</value>
+  </data>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>HTML</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Kodér / Dekodér HTML</value>
   </data>
 </root>

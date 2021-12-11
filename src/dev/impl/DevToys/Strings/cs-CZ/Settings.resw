@@ -144,7 +144,7 @@
   <data name="DefaultLanguage" xml:space="preserve">
     <value>Stejný jako v Microsoft Windows</value>
   </data>
-  <data name="DisplayName" xml:space="preserve">
+  <data name="MenuDisplayName" xml:space="preserve">
     <value>Nastavení</value>
   </data>
   <data name="Font" xml:space="preserve">
@@ -221,5 +221,11 @@
   </data>
   <data name="WordWrap" xml:space="preserve">
     <value>Obalení slov</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Customize DevToys look &amp; feel</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Nastavení</value>
   </data>
 </root>

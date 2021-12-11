@@ -190,7 +190,7 @@
                     PlaceholderText="{x:Bind ViewModel.Strings.Search}"
                     Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     ItemsSource="{x:Bind ViewModel.SearchResults, Mode=OneWay}"
-                    TextMemberPath="ToolProvider.DisplayName">
+                    TextMemberPath="ToolProvider.SearchDisplayName">
                     <i:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="TextChanged">
                             <core:InvokeCommandAction Command="{x:Bind ViewModel.SearchBoxTextChangedCommand}"/>
@@ -214,7 +214,7 @@
                                 TextTrimming="CharacterEllipsis"
                                 ex:HighlighterExtension.Highlighters="{x:Bind MatchedSpans, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                 <Paragraph>
-                                    <Run Text="{x:Bind ToolProvider.DisplayName}"/>
+                                    <Run Text="{x:Bind ToolProvider.SearchDisplayName}"/>
                                 </Paragraph>
                             </RichTextBlock>
                         </DataTemplate>
@@ -228,7 +228,7 @@
                         Icon="{x:Bind Icon.Result, Mode=OneWay}"
                         AutomationProperties.Name="{x:Bind ToolProvider.AccessibleName}"
                         MenuItemsSource="{x:Bind ChildrenTools, Mode=OneWay}"
-                        IsExpanded="{x:Bind HasRecommandedChildrenTool, Mode=OneWay}">
+                        IsExpanded="{x:Bind MenuItemShouldBeExpanded, Mode=OneWay}">
                         <muxc:NavigationViewItem.ContextFlyout>
                             <MenuFlyout>
                                 <MenuFlyoutItem
@@ -236,7 +236,7 @@
                                     Command="{Binding OpenToolInNewWindowCommand}"
                                     CommandParameter="{x:Bind Metadata}">
                                     <MenuFlyoutItem.Icon>
-                                        <FontIcon Glyph="&#x00F8;" />
+                                        <FontIcon Glyph="&#xF8B5;" />
                                     </MenuFlyoutItem.Icon>
                                 </MenuFlyoutItem>
                             </MenuFlyout>
@@ -252,7 +252,7 @@
                                     HorizontalAlignment="Stretch"
                                     TextWrapping="NoWrap"
                                     TextTrimming="CharacterEllipsis"
-                                    Text="{x:Bind ToolProvider.DisplayName}"/>
+                                    Text="{x:Bind ToolProvider.MenuDisplayName}"/>
                                 <muxc:ImageIcon
                                     x:Name="NavigationViewItemRecommendedIcon"
                                     x:Load="{x:Bind IsRecommended, Mode=OneWay}"

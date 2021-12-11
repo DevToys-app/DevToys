@@ -129,9 +129,6 @@
   <data name="ConversionTitle" xml:space="preserve">
     <value>Konwersja</value>
   </data>
-  <data name="DisplayName" xml:space="preserve">
-    <value>Json &lt;&gt; Yaml</value>
-  </data>
   <data name="FourSpaces" xml:space="preserve">
     <value>4 spacje</value>
   </data>
@@ -155,5 +152,14 @@
   </data>
   <data name="YamlToJson" xml:space="preserve">
     <value>Yaml do Json</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Convert Json data to Yaml and vice versa</value>
+  </data>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>Json &lt;&gt; Yaml</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Json &lt;&gt; Yaml Converter</value>
   </data>
 </root>

@@ -230,9 +230,9 @@ namespace DevToys
         public string ConversionTitle => _resources.GetString("ConversionTitle");
 
         /// <summary>
-        /// Gets the resource DisplayName.
+        /// Gets the resource MenuDisplayName.
         /// </summary>
-        public string DisplayName => _resources.GetString("DisplayName");
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
 
         /// <summary>
         /// Gets the resource EncodingDescription.
@@ -258,6 +258,16 @@ namespace DevToys
         /// Gets the resource Utf8.
         /// </summary>
         public string Utf8 => _resources.GetString("Utf8");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
     }
 
     public class CommonStrings : ObservableObject
@@ -360,9 +370,9 @@ namespace DevToys
         public string Configuration => _resources.GetString("Configuration");
 
         /// <summary>
-        /// Gets the resource DisplayName.
+        /// Gets the resource MenuDisplayName.
         /// </summary>
-        public string DisplayName => _resources.GetString("DisplayName");
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
 
         /// <summary>
         /// Gets the resource Generate.
@@ -418,6 +428,16 @@ namespace DevToys
         /// Gets the resource VersionTitle.
         /// </summary>
         public string VersionTitle => _resources.GetString("VersionTitle");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
     }
 
     public class HashGeneratorStrings : ObservableObject
@@ -435,9 +455,9 @@ namespace DevToys
         public string Configuration => _resources.GetString("Configuration");
 
         /// <summary>
-        /// Gets the resource DisplayName.
+        /// Gets the resource MenuDisplayName.
         /// </summary>
-        public string DisplayName => _resources.GetString("DisplayName");
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
 
         /// <summary>
         /// Gets the resource Input.
@@ -468,6 +488,16 @@ namespace DevToys
         /// Gets the resource Uppercase.
         /// </summary>
         public string Uppercase => _resources.GetString("Uppercase");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
     }
 
     public class HtmlEncoderDecoderStrings : ObservableObject
@@ -505,9 +535,9 @@ namespace DevToys
         public string ConversionTitle => _resources.GetString("ConversionTitle");
 
         /// <summary>
-        /// Gets the resource DisplayName.
+        /// Gets the resource MenuDisplayName.
         /// </summary>
-        public string DisplayName => _resources.GetString("DisplayName");
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
 
         /// <summary>
         /// Gets the resource EncodingDescription.
@@ -528,6 +558,16 @@ namespace DevToys
         /// Gets the resource OutputTitle.
         /// </summary>
         public string OutputTitle => _resources.GetString("OutputTitle");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
     }
 
     public class JsonFormatterStrings : ObservableObject
@@ -545,9 +585,9 @@ namespace DevToys
         public string Configuration => _resources.GetString("Configuration");
 
         /// <summary>
-        /// Gets the resource DisplayName.
+        /// Gets the resource MenuDisplayName.
         /// </summary>
-        public string DisplayName => _resources.GetString("DisplayName");
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
 
         /// <summary>
         /// Gets the resource FourSpaces.
@@ -583,6 +623,16 @@ namespace DevToys
         /// Gets the resource TwoSpaces.
         /// </summary>
         public string TwoSpaces => _resources.GetString("TwoSpaces");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
     }
 
     public class JsonYamlStrings : ObservableObject
@@ -610,9 +660,9 @@ namespace DevToys
         public string ConversionTitle => _resources.GetString("ConversionTitle");
 
         /// <summary>
-        /// Gets the resource DisplayName.
+        /// Gets the resource MenuDisplayName.
         /// </summary>
-        public string DisplayName => _resources.GetString("DisplayName");
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
 
         /// <summary>
         /// Gets the resource FourSpaces.
@@ -653,6 +703,16 @@ namespace DevToys
         /// Gets the resource YamlToJson.
         /// </summary>
         public string YamlToJson => _resources.GetString("YamlToJson");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
     }
 
     public class JwtDecoderEncoderStrings : ObservableObject
@@ -685,9 +745,9 @@ namespace DevToys
         public string Decode => _resources.GetString("Decode");
 
         /// <summary>
-        /// Gets the resource DisplayName.
+        /// Gets the resource MenuDisplayName.
         /// </summary>
-        public string DisplayName => _resources.GetString("DisplayName");
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
 
         /// <summary>
         /// Gets the resource Encode.
@@ -723,6 +783,16 @@ namespace DevToys
         /// Gets the resource SecurityLabel.
         /// </summary>
         public string SecurityLabel => _resources.GetString("SecurityLabel");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
     }
 
     public class MainPageStrings : ObservableObject
@@ -836,9 +906,9 @@ namespace DevToys
         public string Dark => _resources.GetString("Dark");
 
         /// <summary>
-        /// Gets the resource DisplayName.
+        /// Gets the resource MenuDisplayName.
         /// </summary>
-        public string DisplayName => _resources.GetString("DisplayName");
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
 
         /// <summary>
         /// Gets the resource Input.
@@ -864,6 +934,16 @@ namespace DevToys
         /// Gets the resource ThemeDescription.
         /// </summary>
         public string ThemeDescription => _resources.GetString("ThemeDescription");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
     }
 
     public class NumberBaseConverterStrings : ObservableObject
@@ -891,9 +971,9 @@ namespace DevToys
         public string DecimalLabel => _resources.GetString("DecimalLabel");
 
         /// <summary>
-        /// Gets the resource DisplayName.
+        /// Gets the resource MenuDisplayName.
         /// </summary>
-        public string DisplayName => _resources.GetString("DisplayName");
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
 
         /// <summary>
         /// Gets the resource Format.
@@ -944,6 +1024,16 @@ namespace DevToys
         /// Gets the resource OctalLabel.
         /// </summary>
         public string OctalLabel => _resources.GetString("OctalLabel");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
     }
 
     public class PngJpgCompressorStrings : ObservableObject
@@ -981,9 +1071,9 @@ namespace DevToys
         public string DetailsTitle => _resources.GetString("DetailsTitle");
 
         /// <summary>
-        /// Gets the resource DisplayName.
+        /// Gets the resource MenuDisplayName.
         /// </summary>
-        public string DisplayName => _resources.GetString("DisplayName");
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
 
         /// <summary>
         /// Gets the resource FileSizeDisplay.
@@ -1029,6 +1119,16 @@ namespace DevToys
         /// Gets the resource SelectFilesInstruction3.
         /// </summary>
         public string SelectFilesInstruction3 => _resources.GetString("SelectFilesInstruction3");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
     }
 
     public class RegExStrings : ObservableObject
@@ -1056,9 +1156,9 @@ namespace DevToys
         public string CultureInvariantDescription => _resources.GetString("CultureInvariantDescription");
 
         /// <summary>
-        /// Gets the resource DisplayName.
+        /// Gets the resource MenuDisplayName.
         /// </summary>
-        public string DisplayName => _resources.GetString("DisplayName");
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
 
         /// <summary>
         /// Gets the resource EcmaScript.
@@ -1134,6 +1234,16 @@ namespace DevToys
         /// Gets the resource Text.
         /// </summary>
         public string Text => _resources.GetString("Text");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
     }
 
     public class SettingsStrings : ObservableObject
@@ -1186,9 +1296,9 @@ namespace DevToys
         public string DefaultLanguage => _resources.GetString("DefaultLanguage");
 
         /// <summary>
-        /// Gets the resource DisplayName.
+        /// Gets the resource MenuDisplayName.
         /// </summary>
-        public string DisplayName => _resources.GetString("DisplayName");
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
 
         /// <summary>
         /// Gets the resource Font.
@@ -1322,6 +1432,16 @@ namespace DevToys
         /// Gets the resource WordWrap.
         /// </summary>
         public string WordWrap => _resources.GetString("WordWrap");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
     }
 
     public class StringUtilitiesStrings : ObservableObject
@@ -1379,9 +1499,9 @@ namespace DevToys
         public string Convert => _resources.GetString("Convert");
 
         /// <summary>
-        /// Gets the resource DisplayName.
+        /// Gets the resource MenuDisplayName.
         /// </summary>
-        public string DisplayName => _resources.GetString("DisplayName");
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
 
         /// <summary>
         /// Gets the resource InverseCase.
@@ -1482,6 +1602,16 @@ namespace DevToys
         /// Gets the resource Words.
         /// </summary>
         public string Words => _resources.GetString("Words");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
     }
 
     public class TextDiffStrings : ObservableObject
@@ -1504,9 +1634,9 @@ namespace DevToys
         public string Difference => _resources.GetString("Difference");
 
         /// <summary>
-        /// Gets the resource DisplayName.
+        /// Gets the resource MenuDisplayName.
         /// </summary>
-        public string DisplayName => _resources.GetString("DisplayName");
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
 
         /// <summary>
         /// Gets the resource InlineDifference.
@@ -1522,11 +1652,41 @@ namespace DevToys
         /// Gets the resource RightText.
         /// </summary>
         public string RightText => _resources.GetString("RightText");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
     }
 
     public class ToolGroupsStrings : ObservableObject
     {
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("ToolGroups");
+
+        /// <summary>
+        /// Gets the resource ConvertersAccessibleName.
+        /// </summary>
+        public string ConvertersAccessibleName => _resources.GetString("ConvertersAccessibleName");
+
+        /// <summary>
+        /// Gets the resource ConvertersDisplayName.
+        /// </summary>
+        public string ConvertersDisplayName => _resources.GetString("ConvertersDisplayName");
+
+        /// <summary>
+        /// Gets the resource EncodersDecodersAccessibleName.
+        /// </summary>
+        public string EncodersDecodersAccessibleName => _resources.GetString("EncodersDecodersAccessibleName");
+
+        /// <summary>
+        /// Gets the resource EncodersDecodersDisplayName.
+        /// </summary>
+        public string EncodersDecodersDisplayName => _resources.GetString("EncodersDecodersDisplayName");
 
         /// <summary>
         /// Gets the resource FormattersAccessibleName.
@@ -1537,6 +1697,26 @@ namespace DevToys
         /// Gets the resource FormattersDisplayName.
         /// </summary>
         public string FormattersDisplayName => _resources.GetString("FormattersDisplayName");
+
+        /// <summary>
+        /// Gets the resource GeneratorsAccessibleName.
+        /// </summary>
+        public string GeneratorsAccessibleName => _resources.GetString("GeneratorsAccessibleName");
+
+        /// <summary>
+        /// Gets the resource GeneratorsDisplayName.
+        /// </summary>
+        public string GeneratorsDisplayName => _resources.GetString("GeneratorsDisplayName");
+
+        /// <summary>
+        /// Gets the resource GraphicAccessibleName.
+        /// </summary>
+        public string GraphicAccessibleName => _resources.GetString("GraphicAccessibleName");
+
+        /// <summary>
+        /// Gets the resource GraphicDisplayName.
+        /// </summary>
+        public string GraphicDisplayName => _resources.GetString("GraphicDisplayName");
 
         /// <summary>
         /// Gets the resource TextAccessibleName.
@@ -1584,9 +1764,9 @@ namespace DevToys
         public string ConversionTitle => _resources.GetString("ConversionTitle");
 
         /// <summary>
-        /// Gets the resource DisplayName.
+        /// Gets the resource MenuDisplayName.
         /// </summary>
-        public string DisplayName => _resources.GetString("DisplayName");
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
 
         /// <summary>
         /// Gets the resource EncodingDescription.
@@ -1607,5 +1787,15 @@ namespace DevToys
         /// Gets the resource OutputTitle.
         /// </summary>
         public string OutputTitle => _resources.GetString("OutputTitle");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
     }
 }

@@ -23,32 +23,34 @@ namespace DevToys.ViewModels.Settings
     {
         private readonly IMefProvider _mefProvider;
 
-        public string DisplayName => LanguageManager.Instance.Settings.DisplayName;
+        public string MenuDisplayName => LanguageManager.Instance.Settings.MenuDisplayName;
 
-        public string AccessibleName => DisplayName;
+        public string? SearchDisplayName => LanguageManager.Instance.Settings.SearchDisplayName;
 
-        public object IconSource { get; }
+        public string? Description => LanguageManager.Instance.Settings.Description;
+
+        public string AccessibleName => MenuDisplayName;
+
+        public TaskCompletionNotifier<IconElement> IconSource
+            => new TaskCompletionNotifier<IconElement>(() =>
+                ThreadHelper.RunOnUIThreadAsync(() =>
+                {
+                    return Task.FromResult<IconElement>(
+                        new AnimatedIcon
+                        {
+                            Source = new AnimatedSettingsVisualSource(),
+                            FallbackIconSource = new Microsoft.UI.Xaml.Controls.FontIconSource
+                            {
+                                FontFamily = (FontFamily)Application.Current.Resources["FluentSystemIcons"],
+                                Glyph = "\uF6A9"
+                            }
+                        });
+                }));
 
         [ImportingConstructor]
         public SettingsToolProvider(IMefProvider mefProvider)
         {
             _mefProvider = mefProvider;
-
-            IconSource
-                = new TaskCompletionNotifier<IconElement>(
-                    ThreadHelper.RunOnUIThreadAsync(() =>
-                    {
-                        return Task.FromResult<IconElement>(
-                            new AnimatedIcon
-                            {
-                                Source = new AnimatedSettingsVisualSource(),
-                                FallbackIconSource = new Microsoft.UI.Xaml.Controls.FontIconSource
-                                {
-                                    FontFamily = (FontFamily)Application.Current.Resources["FluentSystemIcons"],
-                                    Glyph = "\uF6A9"
-                                }
-                            });
-                    }));
         }
 
         public bool CanBeTreatedByTool(string data)

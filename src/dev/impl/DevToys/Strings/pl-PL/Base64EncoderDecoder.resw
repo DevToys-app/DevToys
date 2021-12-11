@@ -138,7 +138,7 @@
   <data name="ConversionTitle" xml:space="preserve">
     <value>Konwersja</value>
   </data>
-  <data name="DisplayName" xml:space="preserve">
+  <data name="MenuDisplayName" xml:space="preserve">
     <value>Kodowanie Base 64</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">

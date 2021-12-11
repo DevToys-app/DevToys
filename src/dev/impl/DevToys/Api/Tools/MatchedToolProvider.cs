@@ -19,6 +19,7 @@ namespace DevToys.Api.Tools
     {
         private readonly List<MatchedToolProvider> _childrenTools = new();
         private MatchSpan[] _matchedSpans = Array.Empty<MatchSpan>();
+        private bool _isBeingProgrammaticallySelected;
 
         /// <summary>
         /// Gets the tool provider.
@@ -26,7 +27,7 @@ namespace DevToys.Api.Tools
         public IToolProvider ToolProvider { get; }
 
         /// <summary>
-        /// Gets or sets the list of spans that matched the search in the <see cref="IToolProvider.DisplayName"/>.
+        /// Gets or sets the list of spans that matched the search in the <see cref="IToolProvider.SearchDisplayName"/>.
         /// </summary>
         public MatchSpan[] MatchedSpans
         {
@@ -36,13 +37,15 @@ namespace DevToys.Api.Tools
                 _matchedSpans = value;
                 ThreadHelper.RunOnUIThreadAsync(() =>
                 {
-                    RaisePropertyChanged(nameof(AnyMatchedSpan));
                     RaisePropertyChanged(nameof(MatchedSpans));
                 }).Forget();
             }
         }
 
-        public bool AnyMatchedSpan => MatchedSpans.Length > 0;
+        /// <summary>
+        /// Gets or sets the total amount of match in after a search (which can be different from <see cref="MatchedSpans"/>).
+        /// </summary>
+        public int TotalMatchCount { get; set; }
 
         /// <summary>
         /// Gets the metadata of the tool provider.
@@ -70,9 +73,11 @@ namespace DevToys.Api.Tools
             }
         }
 
-        public bool HasRecommandedChildrenTool => ChildrenTools.Any(item => item.IsRecommended || item.HasRecommandedChildrenTool);
+        public bool MenuItemShouldBeExpanded
+            => _isBeingProgrammaticallySelected
+            || ChildrenTools.Any(item => item.IsRecommended || item.MenuItemShouldBeExpanded);
 
-        internal TaskCompletionNotifier<IconElement> Icon => (TaskCompletionNotifier<IconElement>)ToolProvider.IconSource;
+        internal TaskCompletionNotifier<IconElement> Icon => ToolProvider.IconSource;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -103,24 +108,47 @@ namespace DevToys.Api.Tools
 
             if (child.IsRecommended)
             {
-                RaisePropertyChanged(nameof(HasRecommandedChildrenTool));
+                RaisePropertyChanged(nameof(MenuItemShouldBeExpanded));
             }
 
             child.PropertyChanged += Child_PropertyChanged;
         }
 
+        internal IDisposable ForceMenuItemShouldBeExpanded()
+        {
+            // Notify that parents menu item should be expanded if they're not yet.
+            _isBeingProgrammaticallySelected = true;
+            RaisePropertyChanged(nameof(MenuItemShouldBeExpanded));
+            return new SelectMenuItemProgrammaticallyResult(this);
+        }
+
         private void Child_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if ((e.PropertyName == nameof(IsRecommended) || e.PropertyName == nameof(HasRecommandedChildrenTool))
-                && HasRecommandedChildrenTool)
+            if ((e.PropertyName == nameof(IsRecommended) || e.PropertyName == nameof(MenuItemShouldBeExpanded))
+                && MenuItemShouldBeExpanded)
             {
-                RaisePropertyChanged(nameof(HasRecommandedChildrenTool));
+                RaisePropertyChanged(nameof(MenuItemShouldBeExpanded));
             }
         }
 
         protected void RaisePropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private class SelectMenuItemProgrammaticallyResult : IDisposable
+        {
+            private readonly MatchedToolProvider _matchedToolProvider;
+
+            public SelectMenuItemProgrammaticallyResult(MatchedToolProvider matchedToolProvider)
+            {
+                _matchedToolProvider = matchedToolProvider;
+            }
+
+            public void Dispose()
+            {
+                _matchedToolProvider._isBeingProgrammaticallySelected = false;
+            }
         }
     }
 }

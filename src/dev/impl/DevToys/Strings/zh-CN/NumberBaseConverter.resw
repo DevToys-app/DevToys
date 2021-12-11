@@ -129,9 +129,6 @@
   <data name="DecimalLabel" xml:space="preserve">
     <value>Decimal</value>
   </data>
-  <data name="DisplayName" xml:space="preserve">
-    <value>Number Base Converter</value>
-  </data>
   <data name="Format" xml:space="preserve">
     <value>Format number</value>
   </data>
@@ -161,5 +158,14 @@
   </data>
   <data name="OctalLabel" xml:space="preserve">
     <value>Octal</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Convert numbers from one base to another</value>
+  </data>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>Number Base</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Number Base Converter</value>
   </data>
 </root>

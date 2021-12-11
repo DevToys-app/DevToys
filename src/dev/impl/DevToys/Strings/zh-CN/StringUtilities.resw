@@ -147,9 +147,6 @@
   <data name="Convert" xml:space="preserve">
     <value>转换</value>
   </data>
-  <data name="DisplayName" xml:space="preserve">
-    <value>字符串实用工具</value>
-  </data>
   <data name="InverseCase" xml:space="preserve">
     <value>InVeRsE CaSe</value>
   </data>
@@ -209,5 +206,14 @@
   </data>
   <data name="Words" xml:space="preserve">
     <value>单词:</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Analyze text and convert it to a different case</value>
+  </data>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>Inspector &amp; Case Converter</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Text Case Converter and Inspector</value>
   </data>
 </root>

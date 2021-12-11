@@ -135,8 +135,8 @@
   <data name="DetailsTitle" xml:space="preserve">
     <value>Détails</value>
   </data>
-  <data name="DisplayName" xml:space="preserve">
-    <value>Compresseur de PNG/JPEG</value>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>Compresseur de PNG / JPEG</value>
   </data>
   <data name="FileSizeDisplay" xml:space="preserve">
     <value>{0:0.##} {1}</value>
@@ -165,5 +165,11 @@
   </data>
   <data name="SelectFilesInstruction3" xml:space="preserve">
     <value>Selectionner des fichiers</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Optimiseur PNG et JPEG sans perte</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Compresseur de PNG / JPEG</value>
   </data>
 </root>

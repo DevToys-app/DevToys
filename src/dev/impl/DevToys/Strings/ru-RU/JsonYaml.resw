@@ -129,7 +129,7 @@
   <data name="ConversionTitle" xml:space="preserve">
     <value>Преобразование</value>
   </data>
-  <data name="DisplayName" xml:space="preserve">
+  <data name="MenuDisplayName" xml:space="preserve">
     <value>Преобразование Json &lt;&gt; Yaml</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
@@ -144,9 +144,6 @@
   <data name="InvalidYaml" xml:space="preserve">
     <value>Введенный Yaml недопустим.</value>
   </data>
-  <data name="JsonToYaml" xml:space="preserve">
-    <value>Json в Yaml</value>
-  </data>
   <data name="Output" xml:space="preserve">
     <value>Вывод</value>
   </data>
@@ -155,5 +152,14 @@
   </data>
   <data name="YamlToJson" xml:space="preserve">
     <value>Yaml в Json</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Convert Json data to Yaml and vice versa</value>
+  </data>
+  <data name="MenuDisplayName1" xml:space="preserve">
+    <value>Json &lt;&gt; Yaml</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Json &lt;&gt; Yaml Converter</value>
   </data>
 </root>

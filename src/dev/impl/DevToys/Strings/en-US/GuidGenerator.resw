@@ -123,8 +123,8 @@
   <data name="Configuration" xml:space="preserve">
     <value>Configuration</value>
   </data>
-  <data name="DisplayName" xml:space="preserve">
-    <value>UUID Generator</value>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>UUID</value>
   </data>
   <data name="Generate" xml:space="preserve">
     <value>Generate</value>
@@ -158,5 +158,11 @@
   </data>
   <data name="VersionTitle" xml:space="preserve">
     <value>UUID version</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Generate UUIDs version 1 and 4</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>UUID Generator</value>
   </data>
 </root>
