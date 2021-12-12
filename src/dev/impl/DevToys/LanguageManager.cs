@@ -885,6 +885,11 @@ namespace DevToys
         public string OpenInNewWindow => _resources.GetString("OpenInNewWindow");
 
         /// <summary>
+        /// Gets the resource PinToolToStart.
+        /// </summary>
+        public string PinToolToStart => _resources.GetString("PinToolToStart");
+
+        /// <summary>
         /// Gets the resource Search.
         /// </summary>
         public string Search => _resources.GetString("Search");

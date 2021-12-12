@@ -12,6 +12,8 @@ namespace DevToys.ViewModels.Tools
     [Name(InternalName)]
     [ProtocolName("encodersdecoders")]
     [Order(1)]
+    [NotSearchable]
+    [NoCompactOverlaySupport]
     internal sealed class EncodersDecodersGroupToolProvider : GroupToolProviderBase
     {
         internal const string InternalName = "EncodersDecodersGroup";

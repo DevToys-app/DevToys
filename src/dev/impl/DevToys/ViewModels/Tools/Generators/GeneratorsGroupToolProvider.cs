@@ -12,6 +12,8 @@ namespace DevToys.ViewModels.Tools
     [Name(InternalName)]
     [ProtocolName("generators")]
     [Order(3)]
+    [NotSearchable]
+    [NoCompactOverlaySupport]
     internal sealed class GeneratorsGroupToolProvider : GroupToolProviderBase
     {
         internal const string InternalName = "GeneratorsGroup";

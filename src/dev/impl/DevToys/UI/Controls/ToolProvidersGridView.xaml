@@ -100,15 +100,16 @@
                             Click="OpenInNewWindowButton_Click">
                             <FontIcon FontFamily="{StaticResource FluentSystemIcons}" FontSize="16" Glyph="&#xF8B5;"/>
                         </Button>
-                        <!--<Button
+                        <Button
                             Style="{StaticResource CommandBarFlyoutEllipsisButtonStyle}"
                             Height="32"
                             Width="32"
                             Padding="4"
-                            AutomationProperties.Name="Share"
-                            ToolTipService.ToolTip="Share">
-                            <FontIcon FontFamily="{StaticResource FluentSystemIcons}" FontSize="16" Glyph="&#xF6AF;"/>
-                        </Button>-->
+                            AutomationProperties.Name="{Binding Instance.MainPage.PinToolToStart, Source={StaticResource LanguageManager}}"
+                            ToolTipService.ToolTip="{Binding Instance.MainPage.PinToolToStart, Source={StaticResource LanguageManager}}"
+                            Click="PinToolToStartCommandButton_Click">
+                            <FontIcon FontFamily="{StaticResource FluentSystemIcons}" FontSize="16" Glyph="&#xF601;"/>
+                        </Button>
                     </StackPanel>
                 </Grid>
             </DataTemplate>

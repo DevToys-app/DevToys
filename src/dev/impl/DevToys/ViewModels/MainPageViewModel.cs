@@ -28,6 +28,7 @@ using Microsoft.Toolkit.Mvvm.Messaging;
 using Microsoft.UI.Xaml.Controls;
 using Windows.ApplicationModel;
 using Windows.Foundation;
+using Windows.UI.StartScreen;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using ThreadPriority = DevToys.Core.Threading.ThreadPriority;
@@ -35,7 +36,11 @@ using ThreadPriority = DevToys.Core.Threading.ThreadPriority;
 namespace DevToys.ViewModels
 {
     [Export(typeof(MainPageViewModel))]
-    public sealed class MainPageViewModel : ObservableRecipient, IRecipient<ChangeSelectedMenuItemMessage>, IRecipient<OpenToolInNewWindowMessage>
+    public sealed class MainPageViewModel
+        : ObservableRecipient,
+        IRecipient<ChangeSelectedMenuItemMessage>,
+        IRecipient<OpenToolInNewWindowMessage>,
+        IRecipient<PinToolToStartMessage>
     {
         private readonly IClipboard _clipboard;
         private readonly IToolProviderFactory _toolProviderFactory;
@@ -184,6 +189,7 @@ namespace DevToys.ViewModels
             TitleBar = titleBar;
 
             OpenToolInNewWindowCommand = new AsyncRelayCommand<ToolProviderMetadata>(ExecuteOpenToolInNewWindowCommandAsync);
+            PinToolToStartCommand = new AsyncRelayCommand<ToolProviderMetadata>(ExecutePinToolToStartCommandAsync);
             ChangeViewModeCommand = new AsyncRelayCommand<ApplicationViewMode>(ExecuteChangeViewModeCommandAsync);
             SearchBoxTextChangedCommand = new AsyncRelayCommand<Windows.UI.Xaml.Controls.AutoSuggestBoxTextChangedEventArgs>(ExecuteSearchBoxTextChangedCommandAsync);
             SearchBoxQuerySubmittedCommand = new AsyncRelayCommand<Windows.UI.Xaml.Controls.AutoSuggestBoxQuerySubmittedEventArgs>(ExecuteSearchBoxQuerySubmittedCommandAsync);
@@ -205,6 +211,35 @@ namespace DevToys.ViewModels
             ThreadHelper.ThrowIfNotOnUIThread();
             Arguments.NotNull(metadata, nameof(metadata));
             await _launchProtocolService.LaunchNewAppInstance(metadata!.ProtocolName);
+        }
+
+        #endregion
+
+        #region PinToolToStartCommand
+
+        public IAsyncRelayCommand<ToolProviderMetadata> PinToolToStartCommand { get; }
+
+        private async Task ExecutePinToolToStartCommandAsync(ToolProviderMetadata? metadata)
+        {
+            try
+            {
+                ThreadHelper.ThrowIfNotOnUIThread();
+                Arguments.NotNull(metadata, nameof(metadata));
+
+                if (SecondaryTile.Exists(metadata!.Name))
+                {
+                    return;
+                }
+
+                IEnumerable<MatchedToolProvider> toolProviders = _toolProviderFactory.GetAllTools();
+                MatchedToolProvider toolProvider = toolProviders.First(tool => tool.Metadata == metadata);
+
+                await _launchProtocolService.PinToolToStart(toolProvider);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogFault("Pin to start command", ex);
+            }
         }
 
         #endregion
@@ -337,6 +372,13 @@ namespace DevToys.ViewModels
             OpenToolInNewWindowCommand.Execute(toolProvider.Metadata);
         }
 
+        public void Receive(PinToolToStartMessage message)
+        {
+            IEnumerable<MatchedToolProvider> toolProviders = _toolProviderFactory.GetAllTools();
+            MatchedToolProvider toolProvider = toolProviders.First(tool => tool.ToolProvider == message.ToolProvider);
+            PinToolToStartCommand.Execute(toolProvider.Metadata);
+        }
+
         /// <summary>
         /// Invoked when the Page is loaded and becomes the current source of a parent Frame.
         /// </summary>
@@ -378,7 +420,7 @@ namespace DevToys.ViewModels
                 () =>
                 {
                     SetSelectedMenuItem(
-                        toolProviderViewDataToSelect 
+                        toolProviderViewDataToSelect
                         ?? ToolsMenuItems.FirstOrDefault(item => item is MatchedToolProvider) as MatchedToolProvider
                         ?? FooterMenuItems.FirstOrDefault(),
                         null);

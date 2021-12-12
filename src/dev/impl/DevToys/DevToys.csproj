@@ -23,11 +23,13 @@
     </Compile>
     <Compile Include="Api\Core\OOP\IAppService.cs" />
     <Compile Include="Api\Tools\MenuPlacement.cs" />
+    <Compile Include="Api\Tools\NoCompactOverlaySupportAttribute.cs" />
     <Compile Include="Api\Tools\NotSearchableAttribute.cs" />
     <Compile Include="Api\Tools\ParentAttribute.cs" />
     <Compile Include="Core\OOP\AppService.cs" />
     <Compile Include="Core\Threading\AsyncLazy.cs" />
     <Compile Include="Helpers\NumberBaseHelper.cs" />
+    <Compile Include="Messages\PinToolToStartMessage.cs" />
     <Compile Include="Messages\OpenToolInNewWindowMessage.cs" />
     <Compile Include="Messages\ChangeSelectedMenuItemMessage.cs" />
     <Compile Include="Models\NoResultFoundMockToolProvider.cs" />
@@ -317,7 +319,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Controls\CustomPathIcon.cs" />
     <Compile Include="UI\Controls\CustomTextBox.xaml.cs">
       <DependentUpon>CustomTextBox.xaml</DependentUpon>
     </Compile>

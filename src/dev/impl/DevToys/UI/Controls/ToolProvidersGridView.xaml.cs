@@ -50,6 +50,19 @@ namespace DevToys.UI.Controls
             set => SetValue(OpenToolInNewWindowClickCommandProperty, value);
         }
 
+        public static readonly DependencyProperty PinToolToStartClickCommandProperty
+            = DependencyProperty.Register(
+                nameof(PinToolToStartClickCommand),
+                typeof(IRelayCommand<IToolProvider>),
+                typeof(ToolProvidersGridView),
+                new PropertyMetadata(null));
+
+        public IRelayCommand<IToolProvider>? PinToolToStartClickCommand
+        {
+            get => (IRelayCommand<IToolProvider>?)GetValue(PinToolToStartClickCommandProperty);
+            set => SetValue(PinToolToStartClickCommandProperty, value);
+        }
+
         public ToolProvidersGridView()
         {
             InitializeComponent();
@@ -63,6 +76,11 @@ namespace DevToys.UI.Controls
         private void OpenInNewWindowButton_Click(object sender, RoutedEventArgs e)
         {
             OpenToolInNewWindowClickCommand?.Execute(((FrameworkElement)sender).DataContext);
+        }
+
+        private void PinToolToStartCommandButton_Click(object sender, RoutedEventArgs e)
+        {
+            PinToolToStartClickCommand?.Execute(((FrameworkElement)sender).DataContext);
         }
     }
 }
