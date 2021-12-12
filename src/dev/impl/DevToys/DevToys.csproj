@@ -54,6 +54,7 @@
     <Compile Include="ViewModels\Tools\Graphic\PngJpgCompressor\PngJpgCompressorToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Formatters\FormattersGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\GroupToolViewModelBase.cs" />
+    <Compile Include="ViewModels\Tools\SearchResult\SearchResultToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Text\TextGroupToolProvider.cs" />
     <Compile Include="Views\Tools\AllTools\AllToolsToolPage.xaml.cs">
       <DependentUpon>AllToolsToolPage.xaml</DependentUpon>
@@ -422,7 +423,6 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <PRIResource Include="Strings\en-US\AllTools.resw" />
     <PRIResource Include="Strings\*\*.resw" />
     <Page Include="Themes\Custom.xaml">
       <Generator>MSBuild:Compile</Generator>

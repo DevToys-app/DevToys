@@ -12,9 +12,9 @@ namespace DevToys.ViewModels.Tools
     {
         private readonly IMefProvider _mefProvider;
 
-        public string? SearchDisplayName => MenuDisplayName;
+        public virtual string? SearchDisplayName => MenuDisplayName;
 
-        public string? Description { get; } = null;
+        public virtual string? Description { get; } = null;
 
         public abstract string MenuDisplayName { get; }
 
@@ -32,7 +32,7 @@ namespace DevToys.ViewModels.Tools
             return false;
         }
 
-        public IToolViewModel CreateTool()
+        public virtual IToolViewModel CreateTool()
         {
             return
                  new GroupToolViewModel(
