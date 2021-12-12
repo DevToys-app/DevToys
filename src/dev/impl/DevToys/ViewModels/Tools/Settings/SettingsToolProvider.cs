@@ -18,7 +18,7 @@ namespace DevToys.ViewModels.Settings
     [Name("Settings")]
     [ProtocolName("settings")]
     [CompactOverlaySize(width: 400, height: 500)]
-    [IsFooterItem]
+    [MenuPlacement(MenuPlacement.Footer)]
     internal sealed class SettingsToolProvider : ObservableRecipient, IToolProvider
     {
         private readonly IMefProvider _mefProvider;

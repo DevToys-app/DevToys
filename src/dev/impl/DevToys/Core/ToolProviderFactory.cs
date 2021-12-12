@@ -19,6 +19,7 @@ namespace DevToys.Providers.Impl
     {
         private readonly ImmutableArray<MatchedToolProvider> _allProviders;
         private readonly Task<ImmutableArray<MatchedToolProvider>> _providersTree;
+        private readonly Task<ImmutableArray<MatchedToolProvider>> _headerProviders;
         private readonly Task<ImmutableArray<MatchedToolProvider>> _footerProviders;
         private readonly Dictionary<IToolProvider, IToolViewModel> _toolProviderToViewModelCache = new();
 
@@ -28,6 +29,7 @@ namespace DevToys.Providers.Impl
         {
             _allProviders = BuildAllTools(providers);
             _providersTree = BuildToolsTreeAsync();
+            _headerProviders = BuildHeaderToolsAsync();
             _footerProviders = BuildFooterToolsAsync();
 
             App.Current.Suspending += OnAppSuspending;
@@ -79,6 +81,11 @@ namespace DevToys.Providers.Impl
             }
 
             return Array.Empty<IToolProvider>();
+        }
+
+        public async Task<IEnumerable<MatchedToolProvider>> GetHeaderToolsAsync()
+        {
+            return await _headerProviders;
         }
 
         public async Task<IEnumerable<MatchedToolProvider>> GetFooterToolsAsync()
@@ -140,7 +147,8 @@ namespace DevToys.Providers.Impl
             {
                 foreach (MatchedToolProvider provider in GetAllTools())
                 {
-                    if (provider.ChildrenTools.Count == 0                                       // do not search groups.
+                    if (!provider.Metadata.NotSearchable                                        // do not search tools marked as non-searchable
+                        && provider.ChildrenTools.Count == 0                                    // do not search groups.
                         && !string.IsNullOrWhiteSpace(provider.ToolProvider.SearchDisplayName)) // do not search tools without search display name.
                     {
                         var matches = new List<MatchSpan>();
@@ -233,7 +241,7 @@ namespace DevToys.Providers.Impl
             var results = new List<MatchedToolProvider>();
             IEnumerable<MatchedToolProvider> matchedToolProviders
                 = GetAllTools()
-                    .Where(item => !item.Metadata.IsFooterItem);
+                    .Where(item => item.Metadata.MenuPlacement == MenuPlacement.Body);
 
             foreach (MatchedToolProvider provider in matchedToolProviders)
             {
@@ -266,12 +274,41 @@ namespace DevToys.Providers.Impl
             return SortTools(results, takeConsiderationOfMatches: false).ToImmutableArray();
         }
 
+        private async Task<ImmutableArray<MatchedToolProvider>> BuildHeaderToolsAsync()
+        {
+            await TaskScheduler.Default;
+
+            ImmutableArray<MatchedToolProvider>.Builder result = ImmutableArray.CreateBuilder<MatchedToolProvider>();
+            foreach (
+                MatchedToolProvider provider
+                in
+                SortTools(
+                    GetAllTools()
+                        .Where(
+                            item => item.Metadata.MenuPlacement == MenuPlacement.Header)
+                        .ToList(),
+                    takeConsiderationOfMatches: false))
+            {
+                result.Add(provider);
+            }
+
+            return result.ToImmutable();
+        }
+
         private async Task<ImmutableArray<MatchedToolProvider>> BuildFooterToolsAsync()
         {
             await TaskScheduler.Default;
 
             ImmutableArray<MatchedToolProvider>.Builder result = ImmutableArray.CreateBuilder<MatchedToolProvider>();
-            foreach (MatchedToolProvider provider in SortTools(GetAllTools().Where(item => item.Metadata.IsFooterItem).ToList(), takeConsiderationOfMatches: false))
+            foreach (
+                MatchedToolProvider provider
+                in
+                SortTools(
+                    GetAllTools()
+                        .Where(
+                            item => item.Metadata.MenuPlacement == MenuPlacement.Footer)
+                        .ToList(),
+                    takeConsiderationOfMatches: false))
             {
                 result.Add(provider);
             }

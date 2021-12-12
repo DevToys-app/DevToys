@@ -38,7 +38,12 @@ namespace DevToys.Api.Tools
         IEnumerable<IToolProvider> GetAllChildrenTools(IToolProvider toolProvider);
 
         /// <summary>
-        /// Gets the list of tools available that have the <see cref="IsFooterItemAttribute"/>.
+        /// Gets the list of tools available that have should be displayed in the header.
+        /// </summary>
+        Task<IEnumerable<MatchedToolProvider>> GetHeaderToolsAsync();
+
+        /// <summary>
+        /// Gets the list of tools available that have should be displayed in the footer.
         /// </summary>
         Task<IEnumerable<MatchedToolProvider>> GetFooterToolsAsync();
 
