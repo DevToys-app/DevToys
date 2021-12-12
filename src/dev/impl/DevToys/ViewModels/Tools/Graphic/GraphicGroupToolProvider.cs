@@ -12,6 +12,8 @@ namespace DevToys.ViewModels.Tools
     [Name(InternalName)]
     [ProtocolName("graphic")]
     [Order(5)]
+    [NotSearchable]
+    [NoCompactOverlaySupport]
     internal sealed class GraphicGroupToolProvider : GroupToolProviderBase
     {
         internal const string InternalName = "GraphicGroup";

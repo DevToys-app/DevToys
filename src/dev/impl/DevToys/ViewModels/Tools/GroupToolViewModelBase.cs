@@ -18,6 +18,7 @@ namespace DevToys.ViewModels.Tools
         {
             NavigateToToolCommand = new RelayCommand<IToolProvider>(ExecuteNavigateToToolCommand);
             OpenToolInNewWindowClickCommand = new RelayCommand<IToolProvider>(ExecuteOpenToolInNewWindowClickCommand);
+            PinToolToStartClickCommand = new RelayCommand<IToolProvider>(ExecutePinToolToStartClickCommand);
 
             // Activate the view model's messenger.
             IsActive = true;
@@ -43,6 +44,18 @@ namespace DevToys.ViewModels.Tools
         {
             Arguments.NotNull(metadata, nameof(metadata));
             Messenger.Send(new OpenToolInNewWindowMessage(metadata!));
+        }
+
+        #endregion
+
+        #region PinToolToStartClickCommand
+
+        public IRelayCommand<IToolProvider> PinToolToStartClickCommand { get; }
+
+        private void ExecutePinToolToStartClickCommand(IToolProvider? metadata)
+        {
+            Arguments.NotNull(metadata, nameof(metadata));
+            Messenger.Send(new PinToolToStartMessage(metadata!));
         }
 
         #endregion

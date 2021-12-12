@@ -12,6 +12,8 @@ namespace DevToys.ViewModels.Tools
     [Name(InternalName)]
     [ProtocolName("text")]
     [Order(4)]
+    [NotSearchable]
+    [NoCompactOverlaySupport]
     internal sealed class TextGroupToolProvider : GroupToolProviderBase
     {
         internal const string InternalName = "TextGroup";

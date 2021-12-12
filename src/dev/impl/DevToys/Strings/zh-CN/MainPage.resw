@@ -148,6 +148,9 @@
   <data name="OpenInNewWindow" xml:space="preserve">
     <value>在新窗口中打开</value>
   </data>
+  <data name="PinToolToStart" xml:space="preserve">
+    <value>Pin tool to Start</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>搜索工具…</value>
   </data>
