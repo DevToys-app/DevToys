@@ -234,19 +234,11 @@ namespace DevToys.ViewModels
                 IEnumerable<MatchedToolProvider> toolProviders = _toolProviderFactory.GetAllTools();
                 MatchedToolProvider toolProvider = toolProviders.First(tool => tool.Metadata == metadata);
 
-                var tile
-                    = new SecondaryTile(
-                        tileId: metadata.ProtocolName,
-                        displayName: toolProvider.ToolProvider.SearchDisplayName,
-                        arguments: metadata.ProtocolName,
-                        new Uri("ms-appx:///Assets/Logo/Square150x150Logo.png"),
-                        TileSize.Default);
-
-                await tile.RequestCreateAsync();
+                await _launchProtocolService.PinToolToStart(toolProvider);
             }
             catch (Exception ex)
             {
-                Logger.LogFault("Pin to start", ex);
+                Logger.LogFault("Pin to start command", ex);
             }
         }
 

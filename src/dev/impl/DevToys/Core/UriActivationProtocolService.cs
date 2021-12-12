@@ -1,13 +1,17 @@
 ﻿#nullable enable
 
 using System;
+using System.Collections.Generic;
 using System.Composition;
 using System.Globalization;
 using System.Threading.Tasks;
 using DevToys.Api.Core;
+using DevToys.Api.Tools;
 using DevToys.Core.Threading;
+using DevToys.Shared.Core;
 using Windows.ApplicationModel;
 using Windows.System;
+using Windows.UI.StartScreen;
 
 namespace DevToys.Core
 {
@@ -19,16 +23,10 @@ namespace DevToys.Core
         {
             return await ThreadHelper.RunOnUIThreadAsync(async () =>
             {
-                string? uriToLaunch = Constants.UriActivationProtocolName;
+                string? uriToLaunch = GenerateLaunchUri(arguments);
 
                 try
                 {
-
-                    if (!string.IsNullOrWhiteSpace(arguments))
-                    {
-                        uriToLaunch += $"?{Constants.UriActivationProtocolToolArgument}={arguments}";
-                    }
-
                     var launchOptions
                         = new LauncherOptions
                         {
@@ -47,6 +45,53 @@ namespace DevToys.Core
 
                 return false;
             });
+        }
+
+        public async Task<bool> PinToolToStart(MatchedToolProvider toolProvider)
+        {
+            try
+            {
+                var tile
+                    = new SecondaryTile(
+                        tileId: toolProvider.Metadata.ProtocolName,
+                        displayName: toolProvider.ToolProvider.SearchDisplayName,
+                        arguments: GenerateLaunchArguments(toolProvider.Metadata.ProtocolName),
+                        new Uri("ms-appx:///Assets/Logo/Square150x150Logo.png"),
+                        TileSize.Default);
+
+                return await tile.RequestCreateAsync();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogFault("Pin to start", ex);
+            }
+
+            return false;
+        }
+
+        private string GenerateLaunchArguments(string? toolProtocol)
+        {
+            string arguments = string.Empty;
+
+            if (!string.IsNullOrWhiteSpace(toolProtocol))
+            {
+                arguments += $"{Constants.UriActivationProtocolToolArgument}={toolProtocol}";
+            }
+
+            return arguments;
+        }
+
+        private string GenerateLaunchUri(string? toolProtocol)
+        {
+            string? uriToLaunch = Constants.UriActivationProtocolName;
+
+            string arguments = GenerateLaunchArguments(toolProtocol);
+            if (!string.IsNullOrEmpty(arguments))
+            {
+                uriToLaunch += "?" + arguments;
+            }
+
+            return uriToLaunch;
         }
     }
 }
