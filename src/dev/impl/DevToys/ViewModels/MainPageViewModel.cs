@@ -21,6 +21,7 @@ using DevToys.Messages;
 using DevToys.Models;
 using DevToys.Shared.Core;
 using DevToys.Shared.Core.Threading;
+using DevToys.ViewModels.Tools;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Mvvm.Messaging;
@@ -185,7 +186,7 @@ namespace DevToys.ViewModels
             OpenToolInNewWindowCommand = new AsyncRelayCommand<ToolProviderMetadata>(ExecuteOpenToolInNewWindowCommandAsync);
             ChangeViewModeCommand = new AsyncRelayCommand<ApplicationViewMode>(ExecuteChangeViewModeCommandAsync);
             SearchBoxTextChangedCommand = new AsyncRelayCommand<Windows.UI.Xaml.Controls.AutoSuggestBoxTextChangedEventArgs>(ExecuteSearchBoxTextChangedCommandAsync);
-            SearchBoxQuerySubmittedCommand = new RelayCommand<Windows.UI.Xaml.Controls.AutoSuggestBoxQuerySubmittedEventArgs>(ExecuteSearchBoxQuerySubmittedCommand);
+            SearchBoxQuerySubmittedCommand = new AsyncRelayCommand<Windows.UI.Xaml.Controls.AutoSuggestBoxQuerySubmittedEventArgs>(ExecuteSearchBoxQuerySubmittedCommandAsync);
 
             _menuInitializationTask = BuildMenuAsync();
 
@@ -281,11 +282,13 @@ namespace DevToys.ViewModels
 
         #region SearchBoxQuerySubmittedCommand
 
-        public IRelayCommand<Windows.UI.Xaml.Controls.AutoSuggestBoxQuerySubmittedEventArgs> SearchBoxQuerySubmittedCommand { get; }
+        public IAsyncRelayCommand<Windows.UI.Xaml.Controls.AutoSuggestBoxQuerySubmittedEventArgs> SearchBoxQuerySubmittedCommand { get; }
 
-        private void ExecuteSearchBoxQuerySubmittedCommand(Windows.UI.Xaml.Controls.AutoSuggestBoxQuerySubmittedEventArgs? parameters)
+        private async Task ExecuteSearchBoxQuerySubmittedCommandAsync(Windows.UI.Xaml.Controls.AutoSuggestBoxQuerySubmittedEventArgs? parameters)
         {
             Arguments.NotNull(parameters, nameof(parameters));
+
+            ThreadHelper.ThrowIfNotOnUIThread();
 
             if (string.IsNullOrEmpty(parameters!.QueryText))
             {
@@ -293,10 +296,26 @@ namespace DevToys.ViewModels
                 return;
             }
 
-            if (parameters.ChosenSuggestion is null or NoResultFoundMockToolProvider)
+            if (parameters.ChosenSuggestion is null)
             {
-                // TODO: Show a page indicating "No results match your search".
+                IEnumerable<MatchedToolProvider> matchedTools
+                    = await _toolProviderFactory.SearchToolsAsync(parameters.QueryText)
+                    .ConfigureAwait(true); // make sure to stay on the UI thread.
+
+                SetSelectedMenuItem(
+                    SearchResultToolProvider.CreateResult(
+                        parameters.QueryText,
+                        matchedTools),
+                    clipboardContentData: null);
                 return;
+            }
+            else if (((MatchedToolProvider)parameters.ChosenSuggestion).ToolProvider is NoResultFoundMockToolProvider)
+            {
+                SetSelectedMenuItem(
+                    SearchResultToolProvider.CreateResult(
+                        parameters.QueryText,
+                        Array.Empty<MatchedToolProvider>()),
+                    clipboardContentData: null);
             }
 
             SetSelectedMenuItem((MatchedToolProvider)parameters.ChosenSuggestion!, clipboardContentData: null);
