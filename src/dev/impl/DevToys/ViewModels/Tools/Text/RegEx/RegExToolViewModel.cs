@@ -14,6 +14,8 @@ using DevToys.UI.Controls;
 using DevToys.Views.Tools.RegEx;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Windows.UI;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace DevToys.ViewModels.Tools.RegEx
 {
@@ -218,6 +220,16 @@ namespace DevToys.ViewModels.Tools.RegEx
 
             _calculationInProgress = true;
 
+            Color highlighterForegroundColor;
+            Color highlighterBackgroundColor;
+            await ThreadHelper.RunOnUIThreadAsync(() =>
+            {
+                ElementTheme currentTheme = ((Frame)Window.Current.Content).ActualTheme;
+                string? highlighterBackgroundResourceName = currentTheme == ElementTheme.Light ? "SystemAccentColorLight2" : "SystemAccentColorDark1";
+                highlighterForegroundColor = currentTheme == ElementTheme.Light ? Colors.Black : Colors.White;
+                highlighterBackgroundColor = (Color)Application.Current.Resources[highlighterBackgroundResourceName];
+            });
+
             await TaskScheduler.Default;
 
             while (_regExMatchingQueue.TryDequeue(out (string pattern, string text) data))
@@ -238,8 +250,8 @@ namespace DevToys.ViewModels.Tools.RegEx
                             {
                                 StartIndex = match.Index,
                                 Length = match.Length,
-                                BackgroundColor = Colors.Yellow,
-                                ForegroundColor = Colors.Black
+                                BackgroundColor = highlighterBackgroundColor,
+                                ForegroundColor = highlighterForegroundColor
                             });
                     }
                 }

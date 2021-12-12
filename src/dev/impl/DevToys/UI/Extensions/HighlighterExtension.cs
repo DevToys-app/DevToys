@@ -59,9 +59,14 @@ namespace DevToys.UI.Extensions
 
                 if (value.Length > 0)
                 {
+                    ElementTheme currentTheme = ((Frame)Window.Current.Content).ActualTheme;
+                    string? highlighterBackgroundResourceName = currentTheme == ElementTheme.Light ? "SystemAccentColorLight2" : "SystemAccentColorDark1";
+                    Color highlighterForegroundColor = currentTheme == ElementTheme.Light ? Colors.Black : Colors.White;
+
                     var highlighter = new TextHighlighter()
                     {
-                        Background = new SolidColorBrush(Colors.Yellow)
+                        Background = new SolidColorBrush((Color)Application.Current.Resources[highlighterBackgroundResourceName]),
+                        Foreground = new SolidColorBrush(highlighterForegroundColor)
                     };
 
                     for (int i = 0; i < value.Length; i++)
