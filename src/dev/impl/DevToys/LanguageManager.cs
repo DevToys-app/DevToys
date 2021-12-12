@@ -38,6 +38,7 @@ namespace DevToys
         private readonly NumberBaseConverterStrings _numberbaseconverter = new NumberBaseConverterStrings();
         private readonly PngJpgCompressorStrings _pngjpgcompressor = new PngJpgCompressorStrings();
         private readonly RegExStrings _regex = new RegExStrings();
+        private readonly SearchResultStrings _searchresult = new SearchResultStrings();
         private readonly SettingsStrings _settings = new SettingsStrings();
         private readonly StringUtilitiesStrings _stringutilities = new StringUtilitiesStrings();
         private readonly TextDiffStrings _textdiff = new TextDiffStrings();
@@ -123,6 +124,11 @@ namespace DevToys
         /// Gets the <see cref="RegExStrings"/>.
         /// </summary>
         public RegExStrings RegEx => _regex;
+
+        /// <summary>
+        /// Gets the <see cref="SearchResultStrings"/>.
+        /// </summary>
+        public SearchResultStrings SearchResult => _searchresult;
 
         /// <summary>
         /// Gets the <see cref="SettingsStrings"/>.
@@ -1291,6 +1297,29 @@ namespace DevToys
         /// Gets the resource SearchDisplayName.
         /// </summary>
         public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+    }
+
+    public class SearchResultStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("SearchResult");
+
+        /// <summary>
+        /// Gets the resource SearchResults.
+        /// </summary>
+        public string SearchResults => _resources.GetString("SearchResults");
+
+        /// <summary>
+        /// Gets the resource SearchResults with format.
+        /// </summary>
+        public string GetFormattedSearchResults(string? param0)
+        {
+            return string.Format(SearchResults, param0);
+        }
+
+        /// <summary>
+        /// Gets the resource NoResultsFound.
+        /// </summary>
+        public string NoResultsFound => _resources.GetString("NoResultsFound");
     }
 
     public class SettingsStrings : ObservableObject
