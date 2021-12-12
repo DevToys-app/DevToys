@@ -21,6 +21,7 @@
         <converters:DoubleToGridLengthConverter x:Key="DoubleToGridLengthConverter"/>
         <converters:BooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" IsInverted="True"/>
         <converters:BooleanToScrollModeConverter x:Key="BooleanToScrollModeConverter" ScrollModeOnTrue="Auto" ScrollModeOnFalse="Enabled"/>
+        <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
 
         <!--This top margin is the height of the custom TitleBar-->
         <Thickness x:Key="NavigationViewContentMargin">0,46,0,0</Thickness>
@@ -37,7 +38,7 @@
                         <Setter Target="NonCompactOverlayButton.Visibility" Value="Visible" />
                         <Setter Target="NavigationView.AlwaysShowHeader" Value="False" />
                         <Setter Target="NavigationView.IsPaneVisible" Value="False" />
-                        <Setter Target="ContentScrollViewer.Padding" Value="12,0,12,0"/>
+                        <Setter Target="ScrollViewerContent.Margin" Value="12,0,12,0"/>
                         <Setter Target="ContentFrame.Padding" Value="0,0,0,0"/>
                         <Setter Target="HeaderTextBlock.Visibility" Value="Collapsed" />
                         <Setter Target="AppTitleLeftBorder.Width" Value="16" />
@@ -49,13 +50,13 @@
                 </VisualState>
                 <VisualState x:Name="NavigationViewCompact">
                     <VisualState.Setters>
+                        <Setter Target="ScrollViewerContent.Margin" Value="24,48,24,0"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="NavigationViewMinimal">
                     <VisualState.Setters>
-                        <Setter Target="ContentScrollViewer.Padding" Value="12,12,12,0"/>
-                        <Setter Target="ContentFrame.Padding" Value="0,0,0,0"/>
-                        <Setter Target="HeaderTextBlock.Margin" Value="12,12,0,0" />
+                        <Setter Target="ScrollViewerContent.Margin" Value="12,12,12,0"/>
+                        <Setter Target="ContentFrame.Padding" Value="0,12,0,0"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -110,13 +111,13 @@
             <Button
                 Name="CompactOverlayButton"
                 Grid.Column="2"
+                Style="{StaticResource CommandBarFlyoutEllipsisButtonStyle}"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
                 Width="46"
                 Height="32"
                 Padding="0"
-                Background="Transparent"
-                BorderBrush="Transparent"
+                IsEnabled="{x:Bind ViewModel.SelectedMenuItem.Metadata.NoCompactOverlaySupport, Mode=OneWay, Converter={StaticResource InvertedBooleanConverter}}"
                 ToolTipService.ToolTip="{x:Bind ViewModel.Strings.EnterCompactOverlayTooltip}"
                 AutomationProperties.Name="{x:Bind ViewModel.Strings.EnterCompactOverlayTooltip}"
                 Command="{x:Bind ViewModel.ChangeViewModeCommand}">
@@ -126,24 +127,27 @@
                 <Button.KeyboardAccelerators>
                     <KeyboardAccelerator Key="Up" Modifiers="Control"/>
                 </Button.KeyboardAccelerators>
-                <controls:CustomPathIcon
+                <Viewbox
+                    Height="16"
+                    Width="16">
+                    <PathIcon
                     Data="{StaticResource EnterCompactOverlayPathIconData}"
                     RenderTransformOrigin="0.5,0.5">
-                    <controls:CustomPathIcon.RenderTransform>
-                        <CompositeTransform Rotation="180"/>
-                    </controls:CustomPathIcon.RenderTransform>
-                </controls:CustomPathIcon>
+                        <PathIcon.RenderTransform>
+                            <CompositeTransform Rotation="180"/>
+                        </PathIcon.RenderTransform>
+                    </PathIcon>
+                </Viewbox>
             </Button>
             <Button
                 Name="NonCompactOverlayButton"
                 Grid.Column="2"
+                Style="{StaticResource CommandBarFlyoutEllipsisButtonStyle}"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
                 Width="46"
                 Height="32"
                 Padding="0"
-                Background="Transparent"
-                BorderBrush="Transparent"
                 Visibility="Collapsed"
                 ToolTipService.ToolTip="{x:Bind ViewModel.Strings.ExitCompactOverlayTooltip}"
                 AutomationProperties.Name="{x:Bind ViewModel.Strings.ExitCompactOverlayTooltip}"
@@ -154,13 +158,17 @@
                 <Button.KeyboardAccelerators>
                     <KeyboardAccelerator Key="Down" Modifiers="Control"/>
                 </Button.KeyboardAccelerators>
-                <controls:CustomPathIcon
+                <Viewbox
+                    Height="16"
+                    Width="16">
+                    <PathIcon
                     Data="{StaticResource ExitCompactOverlayPathIconData}"
                     RenderTransformOrigin="0.5,0.5">
-                    <controls:CustomPathIcon.RenderTransform>
-                        <CompositeTransform Rotation="-90"/>
-                    </controls:CustomPathIcon.RenderTransform>
-                </controls:CustomPathIcon>
+                        <PathIcon.RenderTransform>
+                            <CompositeTransform Rotation="-90"/>
+                        </PathIcon.RenderTransform>
+                    </PathIcon>
+                </Viewbox>
             </Button>
         </Grid>
 
@@ -244,6 +252,14 @@
                                                 <FontIcon Glyph="&#xF8B5;" />
                                             </MenuFlyoutItem.Icon>
                                         </MenuFlyoutItem>
+                                        <MenuFlyoutItem
+                                            Text="{Binding Instance.MainPage.PinToolToStart, Source={StaticResource LanguageManager}}"
+                                            Command="{Binding PinToolToStartCommand}"
+                                            CommandParameter="{x:Bind Metadata}">
+                                            <MenuFlyoutItem.Icon>
+                                                <FontIcon Glyph="&#xF70F;" />
+                                            </MenuFlyoutItem.Icon>
+                                        </MenuFlyoutItem>
                                     </MenuFlyout>
                                 </muxc:NavigationViewItem.ContextFlyout>
                                 <muxc:NavigationViewItem.Content>
@@ -278,28 +294,27 @@
                 </ui:MainMenuNavigationViewMenuItemSelector>
             </muxc:NavigationView.MenuItemTemplateSelector>
 
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <TextBlock
-                    Name="HeaderTextBlock"
-                    Grid.Row="0"
-                    Margin="56,48,0,0"
-                    Text="{x:Bind ViewModel.HeaderText, Mode=OneWay}"
-                    FontSize="24"/>
-                <ScrollViewer
-                    Name="ContentScrollViewer"
-                    Grid.Row="1"
-                    Padding="56,12,56,0"
-                    HorizontalScrollMode="Disabled"
-                    VerticalScrollMode="{x:Bind ViewModel.SelectedMenuItem.Metadata.NotScrollable, Mode=OneWay, Converter={StaticResource BooleanToScrollModeConverter}}">
+            <ScrollViewer
+                HorizontalScrollMode="Disabled"
+                VerticalScrollMode="{x:Bind ViewModel.SelectedMenuItem.Metadata.NotScrollable, Mode=OneWay, Converter={StaticResource BooleanToScrollModeConverter}}">
+                <Grid
+                    Name="ScrollViewerContent"
+                    Margin="56,48,56,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock
+                        Name="HeaderTextBlock"
+                        Grid.Row="0"
+                        Text="{x:Bind ViewModel.HeaderText, Mode=OneWay}"
+                        FontSize="24"/>
                     <Frame
+                        Grid.Row="1"
                         Name="ContentFrame"
-                        Padding="0,0,0,24"/>
-                </ScrollViewer>
-            </Grid>
+                        Padding="0,12,0,24"/>
+                </Grid>
+            </ScrollViewer>
         </muxc:NavigationView>
 
         <controls:Notification x:Name="NotificationControl"/>

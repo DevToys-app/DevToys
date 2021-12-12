@@ -12,6 +12,8 @@ namespace DevToys.ViewModels.Tools
     [Name(InternalName)]
     [ProtocolName("formatters")]
     [Order(2)]
+    [NotSearchable]
+    [NoCompactOverlaySupport]
     internal sealed class FormattersGroupToolProvider : GroupToolProviderBase
     {
         internal const string InternalName = "FormattersGroup";

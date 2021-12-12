@@ -148,6 +148,9 @@
   <data name="OpenInNewWindow" xml:space="preserve">
     <value>Otwórz w nowym oknie</value>
   </data>
+  <data name="PinToolToStart" xml:space="preserve">
+    <value>Pin tool to Start</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>Wpisz, aby wyszukać narzędzia...</value>
   </data>

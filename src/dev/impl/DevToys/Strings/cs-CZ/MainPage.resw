@@ -148,6 +148,9 @@
   <data name="OpenInNewWindow" xml:space="preserve">
     <value>Otevřít v novém okně</value>
   </data>
+  <data name="PinToolToStart" xml:space="preserve">
+    <value>Pin tool to Start</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>Hledat nástroje...</value>
   </data>

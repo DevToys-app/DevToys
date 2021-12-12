@@ -65,5 +65,11 @@ namespace DevToys.Api.Tools
         /// </summary>
         [DefaultValue(false)]
         public bool NotSearchable { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether the tool can supports Compact Overlay mode.
+        /// </summary>
+        [DefaultValue(false)]
+        public bool NoCompactOverlaySupport { get; set; }
     }
 }

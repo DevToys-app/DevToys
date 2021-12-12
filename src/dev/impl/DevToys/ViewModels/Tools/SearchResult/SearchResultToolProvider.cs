@@ -17,7 +17,8 @@ namespace DevToys.ViewModels.Tools
             return new MatchedToolProvider(
                 new ToolProviderMetadata
                 {
-                    Name = "SearchResult"
+                    Name = "SearchResult",
+                    NoCompactOverlaySupport = true,
                 },
                 new SearchResultToolProvider(
                     searchQuery,

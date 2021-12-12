@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System.Threading.Tasks;
+using DevToys.Api.Tools;
 
 namespace DevToys.Api.Core
 {
@@ -14,5 +15,12 @@ namespace DevToys.Api.Core
         /// </summary>
         /// <returns>Returns <code>True</code> if it succeeded.</returns>
         Task<bool> LaunchNewAppInstance(string? arguments = null);
+
+        /// <summary>
+        /// Creates a tile on the Windows start menu that points to a given tool.
+        /// </summary>
+        /// <param name="toolProvider">The tool to pin</param>
+        /// <returns>Returns <code>True</code> if it succeeded.</returns>
+        Task<bool> PinToolToStart(MatchedToolProvider toolProvider);
     }
 }

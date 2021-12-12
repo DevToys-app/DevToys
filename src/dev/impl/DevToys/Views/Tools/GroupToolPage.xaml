@@ -19,6 +19,7 @@
             TabIndex="0"
             Tools="{x:Bind ViewModel.ToolProviders, Mode=OneWay}"
             ToolClickCommand="{x:Bind ViewModel.NavigateToToolCommand}"
-            OpenToolInNewWindowClickCommand="{x:Bind ViewModel.OpenToolInNewWindowClickCommand}"/>
+            OpenToolInNewWindowClickCommand="{x:Bind ViewModel.OpenToolInNewWindowClickCommand}"
+            PinToolToStartClickCommand="{x:Bind ViewModel.PinToolToStartClickCommand}"/>
     </Grid>
 </Page>

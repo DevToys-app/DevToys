@@ -12,6 +12,8 @@ namespace DevToys.ViewModels.Tools
     [Name(InternalName)]
     [ProtocolName("converters")]
     [Order(0)]
+    [NotSearchable]
+    [NoCompactOverlaySupport]
     internal sealed class ConvertersGroupToolProvider : GroupToolProviderBase
     {
         internal const string InternalName = "ConvertersGroup";
