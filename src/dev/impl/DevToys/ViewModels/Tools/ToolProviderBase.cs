@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -25,7 +26,7 @@ namespace DevToys.ViewModels.Tools
         private const int IconMinimalSize = 16;
         protected const string AssetsFolderPath = "ms-appx:///Assets/";
 
-        private static readonly Dictionary<string, string> IconFileNameToSvgMap = new();
+        private static readonly ConcurrentDictionary<string, string> IconFileNameToSvgMap = new();
 
         protected TaskCompletionNotifier<IconElement> CreatePathIconFromPath(string resourceName)
         {

@@ -62,10 +62,10 @@ namespace DevToys.ViewModels
         /// <summary>
         /// Items at the top of the NavigationView.
         /// </summary>
-        internal ExtendedObservableCollection<MatchedToolProvider> ToolsMenuItems { get; } = new();
+        internal ExtendedObservableCollection<object> ToolsMenuItems { get; } = new();
 
         /// <summary>
-        /// Items at the bottom of the NavigationView. That includes Settings.
+        /// Items at the bottom of the NavigationView.
         /// </summary>
         internal ExtendedObservableCollection<MatchedToolProvider> FooterMenuItems { get; } = new();
 
@@ -358,7 +358,11 @@ namespace DevToys.ViewModels
                 ThreadPriority.Low,
                 () =>
                 {
-                    SetSelectedMenuItem(toolProviderViewDataToSelect ?? ToolsMenuItems.FirstOrDefault() ?? FooterMenuItems.FirstOrDefault(), null);
+                    SetSelectedMenuItem(
+                        toolProviderViewDataToSelect 
+                        ?? ToolsMenuItems.FirstOrDefault(item => item is MatchedToolProvider) as MatchedToolProvider
+                        ?? FooterMenuItems.FirstOrDefault(),
+                        null);
                 });
         }
 
@@ -371,32 +375,39 @@ namespace DevToys.ViewModels
             }
 
             _isUpdatingSelectedItem = true;
-            if (value is not null)
+            try
             {
-                _selectedItem = value;
-                IToolViewModel toolViewModel = _toolProviderFactory.GetToolViewModel(_selectedItem.ToolProvider);
-
-                if (!_pasteInFirstSelectedToolIsAllowed // If this is not the first tool we select since the last time tools have been recommended
-                    || !_selectedItem.IsRecommended // or that the selected tool isn't recommended
-                    || !_settingsProvider.GetSetting(PredefinedSettings.SmartDetectionPaste)) // or that the user doesn't want to paste automatically in recommended tools
+                if (value is not null)
                 {
-                    clipboardContentData = null;
+                    _selectedItem = value;
+                    IToolViewModel toolViewModel = _toolProviderFactory.GetToolViewModel(_selectedItem.ToolProvider);
+
+                    if (!_pasteInFirstSelectedToolIsAllowed // If this is not the first tool we select since the last time tools have been recommended
+                        || !_selectedItem.IsRecommended // or that the selected tool isn't recommended
+                        || !_settingsProvider.GetSetting(PredefinedSettings.SmartDetectionPaste)) // or that the user doesn't want to paste automatically in recommended tools
+                    {
+                        clipboardContentData = null;
+                    }
+
+                    _pasteInFirstSelectedToolIsAllowed = false;
+
+                    IDisposable? menuItemShouldBeExpandedLock = null;
+                    if (programmaticalSelection)
+                    {
+                        menuItemShouldBeExpandedLock = value.ForceMenuItemShouldBeExpanded();
+                    }
+
+                    Messenger.Send(new NavigateToToolMessage(toolViewModel, clipboardContentData));
+                    OnPropertyChanged(nameof(SelectedMenuItem));
+                    OnPropertyChanged(nameof(HeaderText));
+                    OnPropertyChanged(nameof(WindowTitle));
+
+                    menuItemShouldBeExpandedLock?.Dispose();
                 }
-
-                _pasteInFirstSelectedToolIsAllowed = false;
-
-                IDisposable? menuItemShouldBeExpandedLock = null;
-                if (programmaticalSelection)
-                {
-                    menuItemShouldBeExpandedLock = value.ForceMenuItemShouldBeExpanded();
-                }
-
-                Messenger.Send(new NavigateToToolMessage(toolViewModel, clipboardContentData));
-                OnPropertyChanged(nameof(SelectedMenuItem));
-                OnPropertyChanged(nameof(HeaderText));
-                OnPropertyChanged(nameof(WindowTitle));
-
-                menuItemShouldBeExpandedLock?.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogFault("NavigationView", ex, "Unable to select a menu item");
             }
             _isUpdatingSelectedItem = false;
         }
@@ -407,13 +418,25 @@ namespace DevToys.ViewModels
 
             try
             {
-                IEnumerable<MatchedToolProvider> tools = await _toolProviderFactory.GetToolsTreeAsync().ConfigureAwait(false);
-                IEnumerable<MatchedToolProvider> footerTools = await _toolProviderFactory.GetFooterToolsAsync().ConfigureAwait(false);
+                var tasks = new List<Task<IEnumerable<MatchedToolProvider>>>
+                {
+                    _toolProviderFactory.GetToolsTreeAsync(),
+                    _toolProviderFactory.GetHeaderToolsAsync(),
+                    _toolProviderFactory.GetFooterToolsAsync()
+                };
+
+                await Task.WhenAll(tasks).ConfigureAwait(false);
+
+                IEnumerable<MatchedToolProvider> tools = await tasks[0];
+                IEnumerable<MatchedToolProvider> headerTools = await tasks[1];
+                IEnumerable<MatchedToolProvider> footerTools = await tasks[2];
 
                 await ThreadHelper.RunOnUIThreadAsync(
                     ThreadPriority.Low,
                     () =>
                     {
+                        ToolsMenuItems.AddRange(headerTools);
+                        ToolsMenuItems.Add(new NavigationViewItemSeparator());
                         ToolsMenuItems.AddRange(tools);
                         FooterMenuItems.AddRange(footerTools);
                     });
@@ -499,7 +522,7 @@ namespace DevToys.ViewModels
             using (await _sempahore.WaitAsync(CancellationToken.None).ConfigureAwait(false))
             {
                 if (newRecommendedTools.Length == 1
-                    && IsToolDisplayedInMenu(ToolsMenuItems, newRecommendedTools[0]))
+                    && IsToolDisplayedInMenu(ToolsMenuItems.OfType<MatchedToolProvider>(), newRecommendedTools[0]))
                 {
                     // One unique tool is recommended.
                     // The recommended tool is displayed in the top menu.

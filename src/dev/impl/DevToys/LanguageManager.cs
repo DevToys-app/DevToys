@@ -24,6 +24,7 @@ namespace DevToys
     {
         private static LanguageManager? _languageManager;
 
+        private readonly AllToolsStrings _alltools = new AllToolsStrings();
         private readonly Base64EncoderDecoderStrings _base64encoderdecoder = new Base64EncoderDecoderStrings();
         private readonly CommonStrings _common = new CommonStrings();
         private readonly GuidGeneratorStrings _guidgenerator = new GuidGeneratorStrings();
@@ -52,6 +53,11 @@ namespace DevToys
         /// Gets if the text must be written from left to right or from right to left.
         /// </summary>
         public FlowDirection FlowDirection { get; private set; }
+
+        /// <summary>
+        /// Gets the <see cref="AllToolsStrings"/>.
+        /// </summary>
+        public AllToolsStrings AllTools => _alltools;
 
         /// <summary>
         /// Gets the <see cref="Base64EncoderDecoderStrings"/>.
@@ -188,6 +194,21 @@ namespace DevToys
             // All the properties changed.
             OnPropertyChanged(new PropertyChangedEventArgs(string.Empty));
         }
+    }
+
+    public class AllToolsStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("AllTools");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
+        /// Gets the resource MenuDisplayName.
+        /// </summary>
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
     }
 
     public class Base64EncoderDecoderStrings : ObservableObject

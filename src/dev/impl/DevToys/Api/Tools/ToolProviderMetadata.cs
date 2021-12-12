@@ -25,10 +25,10 @@ namespace DevToys.Api.Tools
         public int? Order { get; set; }
 
         /// <summary>
-        /// Gets or sets whether the tool should be displayed in the footer of the menu.
+        /// Gets or sets where the tool should be displayed in navigation view.
         /// </summary>
-        [DefaultValue(false)]
-        public bool IsFooterItem { get; set; }
+        [DefaultValue(MenuPlacement.Body)]
+        public MenuPlacement MenuPlacement { get; set; }
 
         /// <summary>
         /// Gets or sets the tool name used through URI Activation Protocol to access this tool.
@@ -59,5 +59,11 @@ namespace DevToys.Api.Tools
         /// </summary>
         [DefaultValue(false)]
         public bool NotScrollable { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether the tool can be searched.
+        /// </summary>
+        [DefaultValue(false)]
+        public bool NotSearchable { get; set; }
     }
 }
