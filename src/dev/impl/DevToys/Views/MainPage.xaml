@@ -6,11 +6,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:tools="using:DevToys.Api.Tools"
+    xmlns:ui="using:DevToys.UI"
     xmlns:controls="using:DevToys.UI.Controls"
     xmlns:converters="using:DevToys.UI.Converters"
     xmlns:ex="using:DevToys.UI.Extensions"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-    xmlns:viewmanagement="using:Windows.UI.ViewManagement" xmlns:i="using:Microsoft.Xaml.Interactivity" xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:viewmanagement="using:Windows.UI.ViewManagement"
     mc:Ignorable="d"
     NavigationCacheMode="Enabled"
     muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
@@ -222,49 +225,58 @@
                 </AutoSuggestBox>
             </muxc:NavigationView.AutoSuggestBox>
 
-            <muxc:NavigationView.MenuItemTemplate>
-                <DataTemplate x:DataType="tools:MatchedToolProvider">
-                    <muxc:NavigationViewItem
-                        Icon="{x:Bind Icon.Result, Mode=OneWay}"
-                        AutomationProperties.Name="{x:Bind ToolProvider.AccessibleName}"
-                        MenuItemsSource="{x:Bind ChildrenTools, Mode=OneWay}"
-                        IsExpanded="{x:Bind MenuItemShouldBeExpanded, Mode=OneWay}">
-                        <muxc:NavigationViewItem.ContextFlyout>
-                            <MenuFlyout>
-                                <MenuFlyoutItem
-                                    Text="{Binding Instance.MainPage.OpenInNewWindow, Source={StaticResource LanguageManager}}"
-                                    Command="{Binding OpenToolInNewWindowCommand}"
-                                    CommandParameter="{x:Bind Metadata}">
-                                    <MenuFlyoutItem.Icon>
-                                        <FontIcon Glyph="&#xF8B5;" />
-                                    </MenuFlyoutItem.Icon>
-                                </MenuFlyoutItem>
-                            </MenuFlyout>
-                        </muxc:NavigationViewItem.ContextFlyout>
-                        <muxc:NavigationViewItem.Content>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock
-                                    Grid.Column="0"
-                                    HorizontalAlignment="Stretch"
-                                    TextWrapping="NoWrap"
-                                    TextTrimming="CharacterEllipsis"
-                                    Text="{x:Bind ToolProvider.MenuDisplayName}"/>
-                                <muxc:ImageIcon
-                                    x:Name="NavigationViewItemRecommendedIcon"
-                                    x:Load="{x:Bind IsRecommended, Mode=OneWay}"
-                                    Grid.Column="1"
-                                    Source="/Assets/Icons/Idea.svg"
-                                    Height="16"
-                                    Width="16"/>
-                            </Grid>
-                        </muxc:NavigationViewItem.Content>
-                    </muxc:NavigationViewItem>
-                </DataTemplate>
-            </muxc:NavigationView.MenuItemTemplate>
+            <muxc:NavigationView.MenuItemTemplateSelector>
+                <ui:MainMenuNavigationViewMenuItemSelector>
+                    <ui:MainMenuNavigationViewMenuItemSelector.ToolProvider>
+                        <DataTemplate x:DataType="tools:MatchedToolProvider">
+                            <muxc:NavigationViewItem
+                                Icon="{x:Bind Icon.Result, Mode=OneWay}"
+                                AutomationProperties.Name="{x:Bind ToolProvider.AccessibleName}"
+                                MenuItemsSource="{x:Bind ChildrenTools, Mode=OneWay}"
+                                IsExpanded="{x:Bind MenuItemShouldBeExpanded, Mode=OneWay}">
+                                <muxc:NavigationViewItem.ContextFlyout>
+                                    <MenuFlyout>
+                                        <MenuFlyoutItem
+                                            Text="{Binding Instance.MainPage.OpenInNewWindow, Source={StaticResource LanguageManager}}"
+                                            Command="{Binding OpenToolInNewWindowCommand}"
+                                            CommandParameter="{x:Bind Metadata}">
+                                            <MenuFlyoutItem.Icon>
+                                                <FontIcon Glyph="&#xF8B5;" />
+                                            </MenuFlyoutItem.Icon>
+                                        </MenuFlyoutItem>
+                                    </MenuFlyout>
+                                </muxc:NavigationViewItem.ContextFlyout>
+                                <muxc:NavigationViewItem.Content>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock
+                                            Grid.Column="0"
+                                            HorizontalAlignment="Stretch"
+                                            TextWrapping="NoWrap"
+                                            TextTrimming="CharacterEllipsis"
+                                            Text="{x:Bind ToolProvider.MenuDisplayName}"/>
+                                        <muxc:ImageIcon
+                                            x:Name="NavigationViewItemRecommendedIcon"
+                                            x:Load="{x:Bind IsRecommended, Mode=OneWay}"
+                                            Grid.Column="1"
+                                            Source="/Assets/Icons/Idea.svg"
+                                            Height="16"
+                                            Width="16"/>
+                                    </Grid>
+                                </muxc:NavigationViewItem.Content>
+                            </muxc:NavigationViewItem>
+                        </DataTemplate>
+                    </ui:MainMenuNavigationViewMenuItemSelector.ToolProvider>
+                    <ui:MainMenuNavigationViewMenuItemSelector.Separator>
+                        <DataTemplate>
+                            <muxc:NavigationViewItemSeparator/>
+                        </DataTemplate>
+                    </ui:MainMenuNavigationViewMenuItemSelector.Separator>
+                </ui:MainMenuNavigationViewMenuItemSelector>
+            </muxc:NavigationView.MenuItemTemplateSelector>
 
             <Grid>
                 <Grid.RowDefinitions>

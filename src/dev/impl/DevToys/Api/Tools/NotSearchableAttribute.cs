@@ -6,12 +6,12 @@ using System.Composition;
 namespace DevToys.Api.Tools
 {
     /// <summary>
-    /// Indicates whether the <see cref="IToolProvider"/> should be displayed at the bottom in the navigation view or not.
+    /// Indicates that the tool can not be searched.
     /// </summary>
     [MetadataAttribute]
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-    public sealed class IsFooterItemAttribute : Attribute
+    public sealed class NotSearchableAttribute : Attribute
     {
-        public bool IsFooterItem { get; } = true;
+        public bool NotSearchable { get; } = true;
     }
 }

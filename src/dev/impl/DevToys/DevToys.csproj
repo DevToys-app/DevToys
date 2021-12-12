@@ -22,6 +22,8 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Api\Core\OOP\IAppService.cs" />
+    <Compile Include="Api\Tools\MenuPlacement.cs" />
+    <Compile Include="Api\Tools\NotSearchableAttribute.cs" />
     <Compile Include="Api\Tools\ParentAttribute.cs" />
     <Compile Include="Core\OOP\AppService.cs" />
     <Compile Include="Core\Threading\AsyncLazy.cs" />
@@ -36,6 +38,9 @@
     </Compile>
     <Compile Include="UI\Converters\BooleanToDoubleConverter.cs" />
     <Compile Include="UI\Converters\BooleanToIntegerConverter.cs" />
+    <Compile Include="UI\MainMenuNavigationViewMenuItemSelector.cs" />
+    <Compile Include="ViewModels\Tools\AllTools\AllToolsToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\AllTools\AllToolsToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Converters\ConvertersGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\EncodersDecodersGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Generators\GeneratorsGroupToolProvider.cs" />
@@ -48,7 +53,11 @@
     <Compile Include="ViewModels\Tools\Graphic\PngJpgCompressor\PngJpgCompressorToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Graphic\PngJpgCompressor\PngJpgCompressorToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Formatters\FormattersGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\GroupToolViewModelBase.cs" />
     <Compile Include="ViewModels\Tools\Text\TextGroupToolProvider.cs" />
+    <Compile Include="Views\Tools\AllTools\AllToolsToolPage.xaml.cs">
+      <DependentUpon>AllToolsToolPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Tools\GroupToolPage.xaml.cs">
       <DependentUpon>GroupToolPage.xaml</DependentUpon>
     </Compile>
@@ -240,7 +249,7 @@
     <Compile Include="Api\Core\Theme\AppTheme.cs" />
     <Compile Include="Api\Core\Theme\IThemeListener.cs" />
     <Compile Include="Api\Tools\CompactOverlaySizeAttribute.cs" />
-    <Compile Include="Api\Tools\IsFooterItemAttribute.cs" />
+    <Compile Include="Api\Tools\MenuPlacementAttribute.cs" />
     <Compile Include="Api\Tools\IToolProvider.cs" />
     <Compile Include="Api\Tools\IToolProviderFactory.cs" />
     <Compile Include="Api\Tools\IToolViewModel.cs" />
@@ -413,6 +422,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <PRIResource Include="Strings\en-US\AllTools.resw" />
     <PRIResource Include="Strings\*\*.resw" />
     <Page Include="Themes\Custom.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -449,6 +459,10 @@
     <Page Include="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\AllTools\AllToolsToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Tools\Base64EncoderDecoder\Base64EncoderDecoderToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
