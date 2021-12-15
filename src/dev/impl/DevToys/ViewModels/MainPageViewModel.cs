@@ -453,16 +453,15 @@ namespace DevToys.ViewModels
                     _pasteInFirstSelectedToolIsAllowed = false;
 
                     IDisposable? menuItemShouldBeExpandedLock = null;
-                    if (programmaticalSelection)
+                    if (programmaticalSelection && NavigationViewDisplayMode is NavigationViewDisplayMode.Expanded)
                     {
                         menuItemShouldBeExpandedLock = value.ForceMenuItemShouldBeExpanded();
                     }
-
                     Messenger.Send(new NavigateToToolMessage(toolViewModel, clipboardContentData));
+
                     OnPropertyChanged(nameof(SelectedMenuItem));
                     OnPropertyChanged(nameof(HeaderText));
                     OnPropertyChanged(nameof(WindowTitle));
-
                     menuItemShouldBeExpandedLock?.Dispose();
                 }
             }
