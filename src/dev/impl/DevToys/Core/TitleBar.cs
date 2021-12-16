@@ -46,6 +46,7 @@ namespace DevToys.Core
         {
             _settingsProvider = settingsProvider;
             _themeListener = themeListener;
+            _themeListener.ThemeChanged += ThemeListener_ThemeChanged;
         }
 
         public Task SetupTitleBarAsync()
@@ -53,6 +54,14 @@ namespace DevToys.Core
             return ThreadHelper.RunOnUIThreadAsync(() =>
             {
                 SetupTitleBar(CoreApplication.GetCurrentView().TitleBar);
+            });
+        }
+
+        private void ThemeListener_ThemeChanged(object sender, System.EventArgs e)
+        {
+            ThreadHelper.RunOnUIThreadAsync(() =>
+            {
+                ApplyThemeForTitleBarButtons();
             });
         }
 

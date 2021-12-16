@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Formatter\BaseNumberFormatterTests.cs" />
+    <Compile Include="Core\Threading\AsyncLazyTests.cs" />
+    <Compile Include="Core\Threading\TaskCompletionNotifierTests.cs" />
     <Compile Include="Helpers\YamlHelperTests.cs" />
     <Compile Include="Helpers\JsonHelperTests.cs" />
     <Compile Include="MefBaseTest.cs" />
@@ -97,6 +99,7 @@
       <Name>DevToys.Shared</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

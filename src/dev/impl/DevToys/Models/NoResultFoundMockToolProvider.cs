@@ -29,7 +29,6 @@ namespace DevToys.Models
 
         public IToolViewModel CreateTool()
         {
-            // TODO: Show a page indicating "No results match your search".
             throw new NotSupportedException();
         }
     }

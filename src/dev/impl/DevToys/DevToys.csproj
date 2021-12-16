@@ -360,10 +360,8 @@
     <Compile Include="UI\Converters\EnumToThicknessConverter.cs" />
     <Compile Include="UI\Converters\InvertedBooleanConverter.cs" />
     <Compile Include="UI\Converters\NullToBooleanConverter.cs" />
-    <Compile Include="UI\Extensions\Axis.cs" />
     <Compile Include="UI\Extensions\HighlighterExtension.cs" />
     <Compile Include="UI\Extensions\IsCompactOverlayModeTrigger.cs" />
-    <Compile Include="UI\Extensions\ScrollViewerExtensions.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\Tools\Settings\SettingsToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Settings\SettingsToolViewModel.cs" />
