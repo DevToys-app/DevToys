@@ -35,6 +35,7 @@
     <Compile Include="Models\NoResultFoundMockToolProvider.cs" />
     <Compile Include="Models\Radix.cs" />
     <Compile Include="Models\NumberBaseFormat.cs" />
+    <Compile Include="Models\TileIconSizeDefinition.cs" />
     <Compile Include="UI\Controls\ToolProvidersGridView.xaml.cs">
       <DependentUpon>ToolProvidersGridView.xaml</DependentUpon>
     </Compile>
@@ -237,6 +238,26 @@
     <Content Include="Assets\ReleaseNote.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\TileTemplate\SmallTile.scale-100.png" />
+    <Content Include="Assets\TileTemplate\SmallTile.scale-125.png" />
+    <Content Include="Assets\TileTemplate\SmallTile.scale-150.png" />
+    <Content Include="Assets\TileTemplate\SmallTile.scale-200.png" />
+    <Content Include="Assets\TileTemplate\SmallTile.scale-400.png" />
+    <Content Include="Assets\TileTemplate\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\TileTemplate\Square150x150Logo.scale-125.png" />
+    <Content Include="Assets\TileTemplate\Square150x150Logo.scale-150.png" />
+    <Content Include="Assets\TileTemplate\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\TileTemplate\Square150x150Logo.scale-400.png" />
+    <Content Include="Assets\TileTemplate\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\TileTemplate\Square44x44Logo.scale-125.png" />
+    <Content Include="Assets\TileTemplate\Square44x44Logo.scale-150.png" />
+    <Content Include="Assets\TileTemplate\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\TileTemplate\Square44x44Logo.scale-400.png" />
+    <Content Include="Assets\TileTemplate\Square44x44Logo.targetsize-16.png" />
+    <Content Include="Assets\TileTemplate\Square44x44Logo.targetsize-24.png" />
+    <Content Include="Assets\TileTemplate\Square44x44Logo.targetsize-256.png" />
+    <Content Include="Assets\TileTemplate\Square44x44Logo.targetsize-32.png" />
+    <Content Include="Assets\TileTemplate\Square44x44Logo.targetsize-48.png" />
     <Content Include="Properties\Default.rd.rd.xml" />
     <Compile Include="Api\Core\IClipboard.cs" />
     <Compile Include="Api\Core\IMarketingService.cs" />
