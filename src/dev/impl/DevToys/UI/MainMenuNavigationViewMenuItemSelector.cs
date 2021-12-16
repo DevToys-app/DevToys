@@ -20,7 +20,7 @@ namespace DevToys.UI
             {
                 return ToolProvider;
             }
-            else if (item is Microsoft.UI.Xaml.Controls.NavigationViewItemSeparator navigationViewItemSeparator)
+            else if (item is Microsoft.UI.Xaml.Controls.NavigationViewItemSeparator)
             {
                 return Separator;
             }

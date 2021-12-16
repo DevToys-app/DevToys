@@ -34,5 +34,29 @@ namespace DevToys.Tests.Providers
                 }
             });
         }
+
+        [TestMethod]
+        public async Task ToolTree()
+        {
+            await ThreadHelper.RunOnUIThreadAsync(async () =>
+            {
+                System.Collections.Generic.IEnumerable<MatchedToolProvider> result = await ExportProvider.Import<IToolProviderFactory>().GetToolsTreeAsync();
+
+                Assert.IsTrue(result.Count() > 0);
+                Assert.IsTrue(result.First().ChildrenTools.Count > 0);
+            });
+        }
+
+        [TestMethod]
+        public async Task ChildrenTool()
+        {
+            await ThreadHelper.RunOnUIThreadAsync(async () =>
+            {
+                System.Collections.Generic.IEnumerable<MatchedToolProvider> result = await ExportProvider.Import<IToolProviderFactory>().GetToolsTreeAsync();
+                System.Collections.Generic.IEnumerable<IToolProvider> result2 = ExportProvider.Import<IToolProviderFactory>().GetAllChildrenTools(result.First().ToolProvider);
+
+                Assert.IsTrue(result2.Count() > 0);
+            });
+        }
     }
 }
