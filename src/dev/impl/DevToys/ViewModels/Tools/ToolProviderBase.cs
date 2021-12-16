@@ -84,14 +84,7 @@ namespace DevToys.ViewModels.Tools
                                 IconFileNameToSvgMap[iconFileName] = svgFileContent;
                             }
 
-                            if (actualTheme == ElementTheme.Dark)
-                            {
-                                svgFileContent = svgFileContent.Replace("#FF000000", "#FFFFFFFF").Replace("#000000", "#FFFFFF");
-                            }
-                            else
-                            {
-                                svgFileContent = svgFileContent.Replace("#ffffff", "#000000").Replace("#FFFFFFFF", "#000000");
-                            }
+                            svgFileContent = ApplyThemeToSvgIcon(actualTheme, svgFileContent);
 
                             return await ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, async () =>
                             {
@@ -126,6 +119,8 @@ namespace DevToys.ViewModels.Tools
                                         svgSource.RasterizePixelHeight = newSize.Height;
                                         svgSource.RasterizePixelWidth = newSize.Width;
 
+                                        svgFileContent = ApplyThemeToSvgIcon(imageIcon.ActualTheme, svgFileContent);
+
                                         using (Stream stream = GenerateStreamFromString(svgFileContent))
                                         {
                                             await svgSource.SetSourceAsync(stream.AsRandomAccessStream());
@@ -156,6 +151,18 @@ namespace DevToys.ViewModels.Tools
             writer.Flush();
             stream.Position = 0;
             return stream;
+        }
+
+        private string ApplyThemeToSvgIcon(ElementTheme theme, string svg)
+        {
+            if (theme == ElementTheme.Dark)
+            {
+                return svg.Replace("#FF000000", "#FFFFFFFF").Replace("#000000", "#FFFFFF");
+            }
+            else
+            {
+                return svg.Replace("#ffffff", "#000000").Replace("#FFFFFFFF", "#000000");
+            }
         }
 
         private FrameworkElement? FindParentWithSmallerSize(FrameworkElement origin, Vector2 currentSize)
