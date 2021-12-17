@@ -257,7 +257,7 @@
                                             Command="{Binding PinToolToStartCommand}"
                                             CommandParameter="{x:Bind Metadata}">
                                             <MenuFlyoutItem.Icon>
-                                                <FontIcon Glyph="&#xF70F;" />
+                                                <FontIcon Glyph="&#xF601;" />
                                             </MenuFlyoutItem.Icon>
                                         </MenuFlyoutItem>
                                     </MenuFlyout>

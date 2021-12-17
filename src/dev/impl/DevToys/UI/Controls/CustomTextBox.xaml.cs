@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DevToys.Core;
+using DevToys.Core.Threading;
 using Microsoft.Toolkit.Mvvm.Input;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
@@ -545,9 +546,26 @@ namespace DevToys.UI.Controls
                             Text = text;
                         });
                 }
-                catch
+                catch (Exception ex)
                 {
-                    // TODO: Show a modal explaining the user that we can't read the file. Maybe it's not a text file.
+                    Logger.LogFault("Failed to load a file into a code editor", ex);
+
+                    await ThreadHelper.RunOnUIThreadAsync(async () =>
+                    {
+                        var confirmationDialog = new ContentDialog
+                        {
+                            Title = LanguageManager.Instance.Common.UnableOpenFile,
+                            Content = LanguageManager.Instance.Common.GetFormattedUnableOpenFileDescription(file.Name),
+                            CloseButtonText = LanguageManager.Instance.Common.Ok,
+                            PrimaryButtonText = LanguageManager.Instance.Settings.OpenLogs,
+                            DefaultButton = ContentDialogButton.Close
+                        };
+
+                        if (await confirmationDialog.ShowAsync() == ContentDialogResult.Primary)
+                        {
+                            await Logger.OpenLogsAsync();
+                        }
+                    });
                 }
             }
         }

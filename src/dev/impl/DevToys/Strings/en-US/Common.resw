@@ -141,6 +141,9 @@
   <data name="Megabytes" xml:space="preserve">
     <value>MB</value>
   </data>
+  <data name="Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
   <data name="OpenFile" xml:space="preserve">
     <value>Load a file</value>
   </data>
@@ -161,6 +164,12 @@
   </data>
   <data name="ToggleSwitchOn" xml:space="preserve">
     <value>On</value>
+  </data>
+  <data name="UnableOpenFile" xml:space="preserve">
+    <value>Unable to open this file</value>
+  </data>
+  <data name="UnableOpenFileDescription" xml:space="preserve">
+    <value>Unable to load the file '{0}'. For more details, please check the log.</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>Undo</value>
