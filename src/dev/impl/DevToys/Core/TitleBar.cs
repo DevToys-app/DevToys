@@ -25,6 +25,7 @@ namespace DevToys.Core
         private readonly IThemeListener _themeListener;
 
         private double _systemOverlayRightInset;
+        private bool _coreTitleBarEventAttached;
 
         public double SystemOverlayRightInset
         {
@@ -76,7 +77,13 @@ namespace DevToys.Core
 
             // Register a handler for when the size of the overlaid caption control changes.
             // For example, when the app moves to a screen with a different DPI.
-            coreTitleBar.LayoutMetricsChanged += TitleBar_LayoutMetricsChanged;
+            if (!_coreTitleBarEventAttached)
+            {
+                coreTitleBar.LayoutMetricsChanged += TitleBar_LayoutMetricsChanged;
+
+                // Doing this allows us to avoid registering the event each time we switch from Overlay Mode to normal mode.
+                _coreTitleBarEventAttached = true;
+            }
 
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
 

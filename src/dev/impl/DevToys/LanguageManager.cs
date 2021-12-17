@@ -342,6 +342,11 @@ namespace DevToys
         public string Megabytes => _resources.GetString("Megabytes");
 
         /// <summary>
+        /// Gets the resource Ok.
+        /// </summary>
+        public string Ok => _resources.GetString("Ok");
+
+        /// <summary>
         /// Gets the resource OpenFile.
         /// </summary>
         public string OpenFile => _resources.GetString("OpenFile");
@@ -375,6 +380,24 @@ namespace DevToys
         /// Gets the resource ToggleSwitchOn.
         /// </summary>
         public string ToggleSwitchOn => _resources.GetString("ToggleSwitchOn");
+
+        /// <summary>
+        /// Gets the resource UnableOpenFile.
+        /// </summary>
+        public string UnableOpenFile => _resources.GetString("UnableOpenFile");
+
+        /// <summary>
+        /// Gets the resource UnableOpenFileDescription.
+        /// </summary>
+        public string UnableOpenFileDescription => _resources.GetString("UnableOpenFileDescription");
+
+        /// <summary>
+        /// Gets the resource UnableOpenFileDescription with format.
+        /// </summary>
+        public string GetFormattedUnableOpenFileDescription(string? param0)
+        {
+            return string.Format(UnableOpenFileDescription, param0);
+        }
 
         /// <summary>
         /// Gets the resource Undo.

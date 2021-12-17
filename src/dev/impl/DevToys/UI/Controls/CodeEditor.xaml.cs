@@ -4,6 +4,7 @@ using System;
 using DevToys.Api.Core.Settings;
 using DevToys.Core;
 using DevToys.Core.Settings;
+using DevToys.Core.Threading;
 using DevToys.MonacoEditor.CodeEditorControl;
 using DevToys.MonacoEditor.Monaco.Editor;
 using Windows.ApplicationModel.DataTransfer;
@@ -196,7 +197,13 @@ namespace DevToys.UI.Controls
             }
             else
             {
-                ReloadCodeEditorCore();
+                try
+                {
+                    ReloadCodeEditorCore();
+                }
+                catch
+                {
+                }
             }
 
             _codeEditorCodeReloadTentative++;
@@ -494,7 +501,23 @@ namespace DevToys.UI.Controls
                 catch (Exception ex)
                 {
                     Logger.LogFault("Failed to load a file into a code editor", ex);
-                    // TODO: Show a modal explaining the user that we can't read the file. Maybe it's not a text file.
+
+                    await ThreadHelper.RunOnUIThreadAsync(async () =>
+                    {
+                        var confirmationDialog = new ContentDialog
+                        {
+                            Title = LanguageManager.Instance.Common.UnableOpenFile,
+                            Content = LanguageManager.Instance.Common.GetFormattedUnableOpenFileDescription(file.Name),
+                            CloseButtonText = LanguageManager.Instance.Common.Ok,
+                            PrimaryButtonText = LanguageManager.Instance.Settings.OpenLogs,
+                            DefaultButton = ContentDialogButton.Close
+                        };
+
+                        if (await confirmationDialog.ShowAsync() == ContentDialogResult.Primary)
+                        {
+                            await Logger.OpenLogsAsync();
+                        }
+                    });
                 }
             }
         }
