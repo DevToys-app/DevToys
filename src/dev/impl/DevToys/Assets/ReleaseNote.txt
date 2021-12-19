@@ -1,8 +1,14 @@
 ﻿🎉 New Features
-  • Number Base Converter tool!
+  • Pin a tool to Start
+  • Added a All Tools page
 👏 Improvements
-  • Improved overall accessibility
-  • Renamed GUID Generator to UUID Generator
-  • Added UUID Version 1 to UUID Generator
+  • Main menu is now always collapsible
+  • Tools are now under categories
+  • Search and Regex highlighting match accent color
+  • Code editor automatically reloads when crashing
+  • General improvement in search
+  • All icons are now rounded
 🐛 Bug Fixes
-  • N/A
+  • Deadlock when closing the app
+  • Multiple bugs in Number Base Converter tool
+  • Title bar buttons were not following the theme
