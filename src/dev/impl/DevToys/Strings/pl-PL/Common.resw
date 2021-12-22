@@ -162,6 +162,12 @@
   <data name="ToggleSwitchOn" xml:space="preserve">
     <value>Właczone</value>
   </data>
+  <data name="UnableOpenFile" xml:space="preserve">
+    <value>Unable to open this file</value>
+  </data>
+  <data name="UnableOpenFileDescription" xml:space="preserve">
+    <value>Unable to load the file '{0}'. For more details, please check the log.</value>
+  </data>
   <data name="Undo" xml:space="preserve">
     <value>Cofnij</value>
   </data>
