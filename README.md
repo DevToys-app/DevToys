@@ -24,20 +24,26 @@
 DevToys helps in everyday tasks like formatting JSON, comparing text, testing RegExp. No need to use many untruthful websites to do simple tasks with your data. With Smart Detection, DevToys is able to detect the best tool that can treat the data you copied in the clipboard of your Windows. Compact overlay lets you keep the app in small and on top of other windows. Multiple instances of the app can be used at once.
 
 Many tools are available.
-- Base 64 Encoder/Decoder
-- Hash Generator (MD5, SHA1, SHA256, SHA512)
-- UUID Generator
-- JWT Decoder
-- Json Formatter
-- RegExp Tester
-- Number Base Converter
-- Text Comparer
-- Json <> Yaml converter
-- PNG/JPEG image compressor
-- String Utilities
-- URL Encoder/Decoder
-- HTML Encoder/Decoder
-- Markdown Preview
+- Converters
+  - Json <> Yaml
+  - Number Base
+- Encoders / Decoders
+  - HTML
+  - URL
+  - Base64
+  - JWT Decoder
+- Formatters
+  - Json
+- Generators
+  - Hash (MD5, SHA1, SHA256, SHA512)
+  - UUID 1 and 4
+- Text
+  - Inspector & Case Converter
+  - Regex Tester
+  - Text Comparer
+  - Markdown Preview
+- Graphic
+  - PNG / JPEG Compressor
 
 ... and more are coming!
 
