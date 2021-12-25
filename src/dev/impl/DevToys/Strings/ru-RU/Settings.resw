@@ -142,7 +142,7 @@
     <value>Темная</value>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>Такой же, как в Microsoft Windows</value>
+    <value>Как в системе</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Параметры</value>
@@ -223,9 +223,9 @@
     <value>Перенос по словам</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Customize DevToys look &amp; feel</value>
+    <value>Кастомизация и настройка приложения</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Settings</value>
+    <value>Параметры</value>
   </data>
 </root>

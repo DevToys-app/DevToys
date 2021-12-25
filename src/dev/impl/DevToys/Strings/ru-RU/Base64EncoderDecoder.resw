@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Base 64 Encoder and Decoder tool</value>
+    <value>Инструмент преобразования Base 64</value>
   </data>
   <data name="Ascii" xml:space="preserve">
     <value>ASCII</value>
@@ -139,7 +139,7 @@
     <value>Преобразование</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Преобразование Base 64</value>
+    <value>Base 64</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
     <value>Выберите используемую кодировку</value>
@@ -155,5 +155,11 @@
   </data>
   <data name="Utf8" xml:space="preserve">
     <value>UTF-8</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Преобразование данных в соответствии со стандартом Base64</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Преобразование Base 64</value>
   </data>
 </root>

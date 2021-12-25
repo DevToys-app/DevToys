@@ -118,58 +118,58 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>PNG and JPEG compressor tool</value>
+    <value>Инструмент сжатия PNG и JPEG</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Отмена</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Установки</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Удалить</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
-    <value>Delete all</value>
+    <value>Удалить все</value>
   </data>
   <data name="DetailsTitle" xml:space="preserve">
-    <value>Details</value>
+    <value>Подробности</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>PNG/JPEG Compressor</value>
+    <value>Сжатие PNG и JPEG</value>
   </data>
   <data name="FileSizeDisplay" xml:space="preserve">
     <value>{0:0.##} {1}</value>
-    <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
+    <comment>{0} - десятичное число, представляющее размер файла. {1} - единица измерения, например, Байт, КБ, МБ, ГБ, ТБ.</comment>
   </data>
   <data name="InvalidSelectedFiles" xml:space="preserve">
-    <value>Only .png, .jpg and .jpeg files can be used.</value>
+    <value>Можно использовать только файлы .png, .jpg и .jpeg</value>
   </data>
   <data name="OK" xml:space="preserve">
-    <value>OK</value>
+    <value>ОК</value>
   </data>
   <data name="SaveAll" xml:space="preserve">
-    <value>Save all</value>
+    <value>Сохранить все</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>Save as</value>
+    <value>Сохранить как</value>
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
-    <value>See details</value>
+    <value>См. подробности</value>
   </data>
   <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>Drag &amp; drop PNG or JPEG files here</value>
+    <value>Перетащите файлы изображений сюда</value>
   </data>
   <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>or</value>
+    <value>или</value>
   </data>
   <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>Browse files</value>
+    <value>Выберите файлы</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Lossless PNG and JPEG optimizer</value>
+    <value>Оптимизация PNG и JPEG путем сжатия без потерь</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>PNG / JPEG Compressor</value>
+    <value>Сжатие PNG и JPEG</value>
   </data>
 </root>

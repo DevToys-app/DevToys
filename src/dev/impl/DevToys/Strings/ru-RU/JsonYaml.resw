@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>JSON to YAML and YAML to JSON converter tool</value>
+    <value>Инструмент конвертирования Json &lt;&gt; Yaml</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Установки</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Выберите режим преобразования</value>
+    <value>Выберите режим конвертирования</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Преобразование</value>
+    <value>Конвертирование</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Преобразование Json &lt;&gt; Yaml</value>
+    <value>Json &lt;&gt; Yaml</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
     <value>4 пробела</value>
@@ -144,6 +144,9 @@
   <data name="InvalidYaml" xml:space="preserve">
     <value>Введенный Yaml недопустим.</value>
   </data>
+  <data name="JsonToYaml" xml:space="preserve">
+    <value>Json в Yaml</value>
+  </data>
   <data name="Output" xml:space="preserve">
     <value>Вывод</value>
   </data>
@@ -154,12 +157,9 @@
     <value>Yaml в Json</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Convert Json data to Yaml and vice versa</value>
-  </data>
-  <data name="MenuDisplayName1" xml:space="preserve">
-    <value>Json &lt;&gt; Yaml</value>
+    <value>Конвертирование данных Json в Yaml и наоборот</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Json &lt;&gt; Yaml Converter</value>
+    <value>Конвертирование Json &lt;&gt; Yaml</value>
   </data>
 </root>
