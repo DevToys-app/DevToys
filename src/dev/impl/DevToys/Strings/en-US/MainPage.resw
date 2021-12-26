@@ -151,6 +151,9 @@
   <data name="PinToolToStart" xml:space="preserve">
     <value>Pin tool to Start</value>
   </data>
+  <data name="PinToolToStartProblem" xml:space="preserve">
+    <value>Unable to pin the tool to start. For more details, please check the log.</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>Type to search for tools...</value>
   </data>

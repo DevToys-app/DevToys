@@ -48,6 +48,7 @@ namespace DevToys.ViewModels
         private readonly ISettingsProvider _settingsProvider;
         private readonly INotificationService _notificationService;
         private readonly IMarketingService _marketingService;
+        private readonly IWindowManager _windowManager;
         private readonly DisposableSempahore _sempahore = new();
         private readonly Task _menuInitializationTask;
 
@@ -178,7 +179,8 @@ namespace DevToys.ViewModels
             IUriActivationProtocolService launchProtocolService,
             ISettingsProvider settingsProvider,
             INotificationService notificationService,
-            IMarketingService marketingService)
+            IMarketingService marketingService,
+            IWindowManager windowManager)
         {
             _clipboard = clipboard;
             _toolProviderFactory = toolProviderFactory;
@@ -186,6 +188,7 @@ namespace DevToys.ViewModels
             _settingsProvider = settingsProvider;
             _notificationService = notificationService;
             _marketingService = marketingService;
+            _windowManager = windowManager;
             TitleBar = titleBar;
 
             OpenToolInNewWindowCommand = new AsyncRelayCommand<ToolProviderMetadata>(ExecuteOpenToolInNewWindowCommandAsync);
@@ -234,7 +237,13 @@ namespace DevToys.ViewModels
                 IEnumerable<MatchedToolProvider> toolProviders = _toolProviderFactory.GetAllTools();
                 MatchedToolProvider toolProvider = toolProviders.First(tool => tool.Metadata == metadata);
 
-                await _launchProtocolService.PinToolToStart(toolProvider);
+                if (!await _launchProtocolService.PinToolToStart(toolProvider))
+                {
+                    if (!await _windowManager.ShowContentDialogAsync(Strings.PinToolToStartProblem, LanguageManager.Instance.Common.Ok, LanguageManager.Instance.Settings.OpenLogs))
+                    {
+                        await Logger.OpenLogsAsync();
+                    }
+                }
             }
             catch (Exception ex)
             {
