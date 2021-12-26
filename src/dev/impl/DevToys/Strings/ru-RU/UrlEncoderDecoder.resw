@@ -118,42 +118,42 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>URL Encoder and Decoder tool</value>
+    <value>Инструмент преобразования URL</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Установки</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
-    <value>Decode</value>
+    <value>Декодер</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Select which conversion mode you want to use</value>
+    <value>Выберите режим преобразования</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
-    <value>Encode</value>
+    <value>Энкодер</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Conversion</value>
-  </data>
-  <data name="EncodingDescription" xml:space="preserve">
-    <value>Select which encoding do you want to use</value>
-  </data>
-  <data name="EncodingTitle" xml:space="preserve">
-    <value>Encoding</value>
-  </data>
-  <data name="InputTitle" xml:space="preserve">
-    <value>Input</value>
-  </data>
-  <data name="OutputTitle" xml:space="preserve">
-    <value>Output</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Encode or decode all the applicable characters to their corresponding URL entities</value>
+    <value>Преобразование</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>URL</value>
   </data>
+  <data name="EncodingDescription" xml:space="preserve">
+    <value>Выберите используемую кодировку</value>
+  </data>
+  <data name="EncodingTitle" xml:space="preserve">
+    <value>Кодирование</value>
+  </data>
+  <data name="InputTitle" xml:space="preserve">
+    <value>Ввод</value>
+  </data>
+  <data name="OutputTitle" xml:space="preserve">
+    <value>Вывод</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Преобразование применимых символов в соответствующие им объекты URL</value>
+  </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>URL Encoder / Decoder</value>
+    <value>Преобразование URL</value>
   </data>
 </root>

@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>String utilities tool</value>
+    <value>Инструмент конвертирования регистров</value>
   </data>
   <data name="AlternatingCase" xml:space="preserve">
     <value>чЕрЕдОвАнИе рЕгИсТрОв</value>
   </data>
   <data name="Bytes" xml:space="preserve">
-    <value>Байты:</value>
+    <value>Байт:</value>
   </data>
   <data name="CamelCase" xml:space="preserve">
     <value>верблюжийРегистр</value>
@@ -146,6 +146,9 @@
   </data>
   <data name="Convert" xml:space="preserve">
     <value>Преобразование</value>
+  </data>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>Конвертирование регистров</value>
   </data>
   <data name="InverseCase" xml:space="preserve">
     <value>оБрАтНоЕ ЧеРеДоВаНиЕ РеГиСтРоВ</value>
@@ -208,12 +211,9 @@
     <value>Слова:</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Analyze text and convert it to a different case</value>
-  </data>
-  <data name="MenuDisplayName" xml:space="preserve">
-    <value>Inspector &amp; Case Converter</value>
+    <value>Анализирование текста и конвертирование регистров</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Text Case Converter and Inspector</value>
+    <value>Конвертирование регистров</value>
   </data>
 </root>
