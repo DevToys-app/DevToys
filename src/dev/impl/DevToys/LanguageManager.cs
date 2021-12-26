@@ -913,6 +913,11 @@ namespace DevToys
         public string PinToolToStart => _resources.GetString("PinToolToStart");
 
         /// <summary>
+        /// Gets the resource PinToolToStartProblem.
+        /// </summary>
+        public string PinToolToStartProblem => _resources.GetString("PinToolToStartProblem");
+
+        /// <summary>
         /// Gets the resource Search.
         /// </summary>
         public string Search => _resources.GetString("Search");

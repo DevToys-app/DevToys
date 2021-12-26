@@ -151,6 +151,9 @@
   <data name="PinToolToStart" xml:space="preserve">
     <value>Épingler à l'écran de démarrage</value>
   </data>
+  <data name="PinToolToStartProblem" xml:space="preserve">
+    <value>Impossible d'épingler l'outil à l'écran de démarrage. Pour plus de détails, veuillez consulter les logs.</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>Taper pour recherche un outil...</value>
   </data>
