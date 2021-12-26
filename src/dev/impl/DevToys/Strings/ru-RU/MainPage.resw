@@ -124,13 +124,13 @@
     <value>Вернуться к полному представлению (CTRL + СТРЕЛКА ВНИЗ)</value>
   </data>
   <data name="NotificationRateAppActionableActionText" xml:space="preserve">
-    <value>rate us now...</value>
+    <value>оценить сейчас...</value>
   </data>
   <data name="NotificationRateAppMessage" xml:space="preserve">
-    <value>Enjoying DevToys? Please consider rating us!</value>
+    <value>Нравится DevToys? Пожалуйста, оцените нас!</value>
   </data>
   <data name="NotificationRateAppTitle" xml:space="preserve">
-    <value>Um... hi! 😅</value>
+    <value>Эм... Привет! 😅</value>
   </data>
   <data name="NotificationReleaseNoteActionableActionText" xml:space="preserve">
     <value>подробнее...</value>
@@ -149,13 +149,13 @@
     <value>Открыть в новом окне</value>
   </data>
   <data name="PinToolToStart" xml:space="preserve">
-    <value>Pin tool to Start</value>
+    <value>Закрепить в меню «Пуск»</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Найти инструмент</value>
+    <value>Найти инструмент...</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
-    <value>No results found</value>
+    <value>Результаты отсутствуют</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
