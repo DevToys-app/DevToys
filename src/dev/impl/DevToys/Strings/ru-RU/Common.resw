@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Bytes" xml:space="preserve">
-    <value>Bytes</value>
+    <value>Байт</value>
   </data>
   <data name="Clear" xml:space="preserve">
     <value>Очистить</value>
@@ -133,13 +133,16 @@
     <value>Удалить</value>
   </data>
   <data name="Gigabytes" xml:space="preserve">
-    <value>GB</value>
+    <value>ГБ</value>
   </data>
   <data name="Kilobytes" xml:space="preserve">
-    <value>KB</value>
+    <value>КБ</value>
   </data>
   <data name="Megabytes" xml:space="preserve">
-    <value>MB</value>
+    <value>МБ</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>ОК</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
     <value>Выбрать файл</value>
@@ -154,13 +157,19 @@
     <value>Выбрать все</value>
   </data>
   <data name="Terabytes" xml:space="preserve">
-    <value>TB</value>
+    <value>ТБ</value>
   </data>
   <data name="ToggleSwitchOff" xml:space="preserve">
     <value>Откл.</value>
   </data>
   <data name="ToggleSwitchOn" xml:space="preserve">
     <value>Вкл.</value>
+  </data>
+  <data name="UnableOpenFile" xml:space="preserve">
+    <value>Невозможно открыть файл</value>
+  </data>
+  <data name="UnableOpenFileDescription" xml:space="preserve">
+    <value>Невозможно открыть файл '{0}'. Для получения подробной информации проверьте логи.</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>Отменить</value>
