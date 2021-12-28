@@ -118,13 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>JSON Formatter tool</value>
+    <value>JSON 字符串格式化工具</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>配置</value>
   </data>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>JSON 字符串格式化工具</value>
+  </data>
   <data name="FourSpaces" xml:space="preserve">
-    <value>空格: 4</value>
+    <value>4个空格</value>
   </data>
   <data name="Indentation" xml:space="preserve">
     <value>缩进</value>
@@ -136,21 +139,18 @@
     <value>压缩</value>
   </data>
   <data name="OneTab" xml:space="preserve">
-    <value>Tab: 1</value>
+    <value>1个制表键</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>输出</value>
   </data>
   <data name="TwoSpaces" xml:space="preserve">
-    <value>空格: 2</value>
+    <value>2个空格</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Indent or minify Json data</value>
-  </data>
-  <data name="MenuDisplayName" xml:space="preserve">
-    <value>Json</value>
+    <value>缩进或压缩 JSON 字符串数据</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Json Formatter</value>
+    <value>JSON 字符串格式化工具</value>
   </data>
 </root>
