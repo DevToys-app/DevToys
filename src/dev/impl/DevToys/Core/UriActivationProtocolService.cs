@@ -132,14 +132,15 @@ namespace DevToys.Core
                 tile.VisualElements.Square44x44Logo = new Uri($"ms-appdata:///local/{toolProvider.Metadata.ProtocolName}/{square44IconName}.png");
                 tile.VisualElements.Square71x71Logo = new Uri($"ms-appdata:///local/{toolProvider.Metadata.ProtocolName}/{smallTileIconName}.png");
 
-                return await tile.RequestCreateForSelectionAsync(Window.Current.Bounds);
+                await tile.RequestCreateForSelectionAsync(Window.Current.Bounds);
             }
             catch (Exception ex)
             {
                 Logger.LogFault("Pin to start", ex);
+                return false;
             }
 
-            return false;
+            return true;
         }
 
         private string GenerateLaunchArguments(string? toolProtocol)
