@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>URL Encoder and Decoder tool</value>
+    <value>URL 编码 / 解码工具</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
     <value>配置</value>
@@ -127,7 +127,7 @@
     <value>解码</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>选择你想使用的转换模式</value>
+    <value>选择您想使用的转换格式</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
     <value>编码</value>
@@ -135,11 +135,14 @@
   <data name="ConversionTitle" xml:space="preserve">
     <value>转换</value>
   </data>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>URL 编码 / 解码工具</value>
+  </data>
   <data name="EncodingDescription" xml:space="preserve">
-    <value>选择你想使用的字符编码</value>
+    <value>选择您想使用的字符编码</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
-    <value>字符编码</value>
+    <value>编码</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
     <value>输入</value>
@@ -148,12 +151,9 @@
     <value>输出</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Encode or decode all the applicable characters to their corresponding URL entities</value>
-  </data>
-  <data name="MenuDisplayName" xml:space="preserve">
-    <value>URL</value>
+    <value>将所有适用字符编码或解码为对应的URL</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>URL Encoder / Decoder</value>
+    <value>URL 编码 / 解码工具</value>
   </data>
 </root>
