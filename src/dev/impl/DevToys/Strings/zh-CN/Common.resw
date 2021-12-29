@@ -171,12 +171,6 @@
   <data name="UnableOpenFileDescription" xml:space="preserve">
     <value>抱歉，不能加载文件 '{0}' 的具体内容。欲了解更多详情，请查看日志文件记录。</value>
   </data>
-  <data name="UnableOpenFile" xml:space="preserve">
-    <value>Unable to open this file</value>
-  </data>
-  <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>Unable to load the file '{0}'. For more details, please check the log.</value>
-  </data>
   <data name="Undo" xml:space="preserve">
     <value>撤销</value>
   </data>
