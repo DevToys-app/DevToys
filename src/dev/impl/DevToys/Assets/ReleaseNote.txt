@@ -1,6 +1,7 @@
 ﻿🎉 New Features
   • N/A
 👏 Improvements
-  • Updated Russian translation
+  • Updated Simplified Chinese translation
 🐛 Bug Fixes
-  • Pin tool to Start was not working
+  • Fixed blurry SVG icons
+  • Fixed minor bugs in Pin tool to Start feature
