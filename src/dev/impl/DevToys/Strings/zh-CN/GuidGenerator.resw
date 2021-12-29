@@ -118,19 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>UUID Generator tool</value>
+    <value>通用唯一识别码（UUID）生成工具</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>配置</value>
+  </data>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>通用唯一识别码（UUID）生成工具</value>
   </data>
   <data name="Generate" xml:space="preserve">
     <value>生成</value>
   </data>
   <data name="GenerateButton" xml:space="preserve">
-    <value>生成 UUID(s)</value>
+    <value>生成 UUID</value>
   </data>
   <data name="Guids" xml:space="preserve">
-    <value>UUID(s)</value>
+    <value>生成的通用唯一识别码（UUID）</value>
   </data>
   <data name="Hyphens" xml:space="preserve">
     <value>连字符</value>
@@ -139,30 +142,27 @@
     <value>x</value>
   </data>
   <data name="NumberOfGuidsToGenerate_AutomationProperties_Name" xml:space="preserve">
-    <value>Number of UUID to generate</value>
+    <value>要生成的 UUID 个数</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
     <value>大写字母</value>
   </data>
   <data name="UuidVersionFour" xml:space="preserve">
-    <value>4 (GUID)</value>
+    <value>版本4(GUID)</value>
   </data>
   <data name="UuidVersionOne" xml:space="preserve">
-    <value>1</value>
+    <value>版本1</value>
   </data>
   <data name="VersionDescription" xml:space="preserve">
-    <value>Choose the version of UUID to generate</value>
+    <value>选择要生成的 UUID 版本</value>
   </data>
   <data name="VersionTitle" xml:space="preserve">
-    <value>UUID version</value>
+    <value>UUID 版本</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generate UUIDs version 1 and 4</value>
-  </data>
-  <data name="MenuDisplayName" xml:space="preserve">
-    <value>UUID</value>
+    <value>生成带有UUID 1 和 4 的版本</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>UUID Generator</value>
+    <value>通用唯一识别码（UUID）生成工具</value>
   </data>
 </root>
