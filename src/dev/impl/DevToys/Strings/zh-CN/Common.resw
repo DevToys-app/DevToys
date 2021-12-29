@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Bytes" xml:space="preserve">
-    <value>Bytes</value>
+    <value>字节</value>
   </data>
   <data name="Clear" xml:space="preserve">
     <value>清空</value>
@@ -141,6 +141,9 @@
   <data name="Megabytes" xml:space="preserve">
     <value>MB</value>
   </data>
+  <data name="Ok" xml:space="preserve">
+    <value>确定</value>
+  </data>
   <data name="OpenFile" xml:space="preserve">
     <value>打开文件</value>
   </data>
@@ -157,10 +160,16 @@
     <value>TB</value>
   </data>
   <data name="ToggleSwitchOff" xml:space="preserve">
-    <value>关</value>
+    <value>关闭</value>
   </data>
   <data name="ToggleSwitchOn" xml:space="preserve">
-    <value>开</value>
+    <value>打开</value>
+  </data>
+  <data name="UnableOpenFile" xml:space="preserve">
+    <value>抱歉，不能打开这个文件</value>
+  </data>
+  <data name="UnableOpenFileDescription" xml:space="preserve">
+    <value>抱歉，不能加载文件 '{0}' 的具体内容。欲了解更多详情，请查看日志文件记录。</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>撤销</value>

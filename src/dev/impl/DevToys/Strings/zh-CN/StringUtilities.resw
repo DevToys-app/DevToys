@@ -118,73 +118,76 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>String utilities tool</value>
+    <value>字符串实用工具</value>
   </data>
   <data name="AlternatingCase" xml:space="preserve">
-    <value>aLtErNaTiNg cAsE</value>
+    <value>交替大小写转换（aLtErNaTiNg cAsE）</value>
   </data>
   <data name="Bytes" xml:space="preserve">
-    <value>字节:</value>
+    <value>字节：</value>
   </data>
   <data name="CamelCase" xml:space="preserve">
-    <value>camelCase</value>
+    <value>驼峰式命名法转换（camelCase）</value>
   </data>
   <data name="CharacterDistribution" xml:space="preserve">
     <value>字符分布</value>
   </data>
   <data name="Characters" xml:space="preserve">
-    <value>字符:</value>
+    <value>字符：</value>
   </data>
   <data name="CobolCase" xml:space="preserve">
-    <value>COBOL-CASE</value>
+    <value>变量字母大写转换（COBOL-CASE）</value>
   </data>
   <data name="Column" xml:space="preserve">
-    <value>列:</value>
+    <value>列：</value>
   </data>
   <data name="ConstantCase" xml:space="preserve">
-    <value>CONSTANT_CASE</value>
+    <value>常量大写转换（CONSTANT_CASE）</value>
   </data>
   <data name="Convert" xml:space="preserve">
     <value>转换</value>
   </data>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>字符串实用工具</value>
+  </data>
   <data name="InverseCase" xml:space="preserve">
-    <value>InVeRsE CaSe</value>
+    <value>反式交替大小写转换（InVeRsE CaSe）</value>
   </data>
   <data name="KebabCase" xml:space="preserve">
-    <value>kebab-case</value>
+    <value>短横线命名法转换（kebab-case）</value>
   </data>
   <data name="Line" xml:space="preserve">
-    <value>行:</value>
+    <value>行：</value>
   </data>
   <data name="Lines" xml:space="preserve">
-    <value>行:</value>
+    <value>行：</value>
   </data>
   <data name="LowerCase" xml:space="preserve">
-    <value>lower case</value>
+    <value>小写转换（lower case）</value>
   </data>
   <data name="OriginalCase" xml:space="preserve">
-    <value>Original text</value>
+    <value>原始字符串</value>
   </data>
   <data name="Paragraphs" xml:space="preserve">
-    <value>段落:</value>
+    <value>段落：</value>
   </data>
   <data name="PascalCase" xml:space="preserve">
-    <value>PascalCase</value>
+    <value>帕斯卡命名法转换（PascalCase）</value>
   </data>
   <data name="Position" xml:space="preserve">
-    <value>位置:</value>
+    <value>位置：</value>
   </data>
   <data name="Selection" xml:space="preserve">
     <value>选择</value>
   </data>
   <data name="SentenceCase" xml:space="preserve">
-    <value>Sentence case</value>
+    <value>句子首字母大写转换（Sentence case）</value>
   </data>
   <data name="Sentences" xml:space="preserve">
-    <value>句子:</value>
+    <value>句子：</value>
   </data>
   <data name="SnakeCase" xml:space="preserve">
-    <value>snake_case</value>
+    <value>蛇形命名法转换（snake_case）</value>
   </data>
   <data name="Statistics" xml:space="preserve">
     <value>统计</value>
@@ -193,27 +196,24 @@
     <value>字符串</value>
   </data>
   <data name="TitleCase" xml:space="preserve">
-    <value>Title Case</value>
+    <value>单词首字母大写转换（Title Case）</value>
   </data>
   <data name="TrainCase" xml:space="preserve">
-    <value>Train-Case</value>
+    <value>变量首字母大写转换（Train-Case）</value>
   </data>
   <data name="UpperCase" xml:space="preserve">
-    <value>UPPER CASE</value>
+    <value>大写转换（UPPER CASE）</value>
   </data>
   <data name="WordDistribution" xml:space="preserve">
     <value>单词分布</value>
   </data>
   <data name="Words" xml:space="preserve">
-    <value>单词:</value>
+    <value>单词：</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Analyze text and convert it to a different case</value>
-  </data>
-  <data name="MenuDisplayName" xml:space="preserve">
-    <value>Inspector &amp; Case Converter</value>
+    <value>分析文本并将其转换为其他的格式</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Text Case Converter and Inspector</value>
+    <value>字符串实用工具</value>
   </data>
 </root>

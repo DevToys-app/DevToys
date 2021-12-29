@@ -118,19 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>JSON to YAML and YAML to JSON converter tool</value>
+    <value>JSON / YAML 字符格式互转工具</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>配置</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>选择你想使用的转换模式</value>
+    <value>选择您想使用的转换格式</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
     <value>转换</value>
   </data>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>JSON / YAML 字符格式互转工具</value>
+  </data>
   <data name="FourSpaces" xml:space="preserve">
-    <value>空格: 4</value>
+    <value>4个空格</value>
   </data>
   <data name="Indentation" xml:space="preserve">
     <value>缩进</value>
@@ -139,27 +142,24 @@
     <value>输入</value>
   </data>
   <data name="InvalidYaml" xml:space="preserve">
-    <value>输入的 YAML 无效。</value>
+    <value>输入的YAML字符无效，请及时修改。</value>
   </data>
   <data name="JsonToYaml" xml:space="preserve">
-    <value>Json -&gt; Yaml</value>
+    <value>JSON 转换到 YAML</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>输出</value>
   </data>
   <data name="TwoSpaces" xml:space="preserve">
-    <value>空格: 2</value>
+    <value>2个空格</value>
   </data>
   <data name="YamlToJson" xml:space="preserve">
-    <value>Yaml -&gt; Json</value>
+    <value>YAML 转换到 JSON</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Convert Json data to Yaml and vice versa</value>
-  </data>
-  <data name="MenuDisplayName" xml:space="preserve">
-    <value>Json &lt;&gt; Yaml</value>
+    <value>JSON / YAML 字符相互转换</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Json &lt;&gt; Yaml Converter</value>
+    <value>JSON / YAML 字符格式互转工具</value>
   </data>
 </root>

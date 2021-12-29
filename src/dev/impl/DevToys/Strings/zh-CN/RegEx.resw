@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Regular expression tester tool</value>
+    <value>正则表达式测试工具</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>配置</value>
@@ -127,34 +127,34 @@
     <value>固定区域性</value>
   </data>
   <data name="CultureInvariantDescription" xml:space="preserve">
-    <value>指定忽略语言中的区域性差异。</value>
+    <value>指定忽略语言中的区域性差异</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>正则表达式测试</value>
+    <value>正则表达式测试工具</value>
   </data>
   <data name="EcmaScript" xml:space="preserve">
-    <value>ECMA Script</value>
+    <value>ECMA 脚本</value>
   </data>
   <data name="EcmaScriptDescription" xml:space="preserve">
-    <value>为表达式启用符合 ECMAScript 的行为。 该值只能与固定区域性、忽略大小写和多行模式一起使用。</value>
+    <value>为表达式启用符合ecmascript的行为。此值只能与区域性不变量、忽略大小写和多行选项一起使用。</value>
   </data>
   <data name="IgnoreCase" xml:space="preserve">
     <value>忽略大小写</value>
   </data>
   <data name="IgnoreCaseDescription" xml:space="preserve">
-    <value>指定不区分大小写的匹配。</value>
+    <value>指定不区分大小写的匹配</value>
   </data>
   <data name="IgnoreWhitespace" xml:space="preserve">
-    <value>忽略空白</value>
+    <value>忽略空格字符</value>
   </data>
   <data name="IgnoreWhitespaceDescription" xml:space="preserve">
-    <value>消除模式中的非转义空白并启用由 # 标记的注释。 但是，此值不影响或消除标记单独的正则表达式语言元素的开头的字符类、数值量词或标记的空格。</value>
+    <value>消除模式中未转义的空格，并启用#标记的注释。但是，此值不影响或消除标记单独的正则表达式语言元素的开头的字符类、数值量词或标记的空格。</value>
   </data>
   <data name="Multiline" xml:space="preserve">
     <value>多行模式</value>
   </data>
   <data name="MultilineDescription" xml:space="preserve">
-    <value>更改 ^ 和 $ 的含义，使它们分别在任意一行的行首和行尾匹配，而不仅仅在整个字符串的开头和结尾匹配。</value>
+    <value>改变^和$的含义，使它们分别在任意行的开头和结尾匹配，而不只是整个字符串的开头和结尾。</value>
   </data>
   <data name="Options" xml:space="preserve">
     <value>选项</value>
@@ -166,7 +166,7 @@
     <value>从右到左模式</value>
   </data>
   <data name="RightToLeftDescription" xml:space="preserve">
-    <value>指定搜索从右向左而不是从左向右进行。</value>
+    <value>指定搜索从右向左而不是从左向右进行</value>
   </data>
   <data name="Singleline" xml:space="preserve">
     <value>单行模式</value>
@@ -175,12 +175,12 @@
     <value>更改点 (.) 的含义，以使它与每个字符（而不是除 \n 之外的所有字符）匹配。</value>
   </data>
   <data name="Text" xml:space="preserve">
-    <value>Text</value>
+    <value>文本</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Validate and test regular expressions</value>
+    <value>验证和测试正则表达式</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Regex Tester</value>
+    <value>正则表达式测试工具</value>
   </data>
 </root>
