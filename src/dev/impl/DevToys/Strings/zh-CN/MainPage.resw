@@ -137,28 +137,28 @@
   </data>
   <data name="NotificationReleaseNoteTitle" xml:space="preserve">
     <value>我们刚刚更新！{0} 有什么新内容？🚀</value>
-    <comment>{0} is the current app version</comment>
+    <comment>当前应用的版本是 {0} </comment>
   </data>
   <data name="NotificationUpdateAvailableActionableActionText" xml:space="preserve">
     <value>现在更新…</value>
   </data>
   <data name="NotificationUpdateAvailableTitle" xml:space="preserve">
-    <value>有更新了！🚀</value>
+    <value>现在有可用的更新了! 🚀</value>
   </data>
   <data name="OpenInNewWindow" xml:space="preserve">
     <value>在新窗口中打开</value>
   </data>
   <data name="PinToolToStart" xml:space="preserve">
-    <value>Pin tool to Start</value>
+    <value>将磁贴固定到”开始“菜单</value>
   </data>
   <data name="PinToolToStartProblem" xml:space="preserve">
     <value>Unable to pin the tool to start. For more details, please check the log.</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>搜索工具…</value>
+    <value>搜索您想要使用的工具类型</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
-    <value>No results found</value>
+    <value>抱歉，没有找到您要查找的信息</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
