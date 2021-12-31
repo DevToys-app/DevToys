@@ -139,7 +139,7 @@
     <value>x</value>
   </data>
   <data name="NumberOfGuidsToGenerate_AutomationProperties_Name" xml:space="preserve">
-    <value>Number of UUID to generate</value>
+    <value>Počet UUID k vygenerování</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
     <value>Velká písmena</value>
@@ -151,13 +151,13 @@
     <value>1</value>
   </data>
   <data name="VersionDescription" xml:space="preserve">
-    <value>Choose the version of UUID to generate</value>
+    <value>Verze UUID pro generovaní</value>
   </data>
   <data name="VersionTitle" xml:space="preserve">
-    <value>UUID version</value>
+    <value>Verze UUID</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generate UUIDs version 1 and 4</value>
+    <value>Generovat UUID verzi 1 a 4</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>UUID</value>
