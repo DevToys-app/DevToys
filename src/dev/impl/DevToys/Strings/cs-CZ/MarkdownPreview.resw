@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Markdown preview tool</value>
+    <value>Nástroj pro náhled Mardown</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Konfigurace</value>
@@ -145,7 +145,7 @@
     <value>Změna motivu Markdown náhledu</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Preview a Markdown document with a GitHub-like render</value>
+    <value>Náhled dokumentu Markdown podobný GitHubu</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Náhled Markdown</value>

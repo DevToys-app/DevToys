@@ -149,13 +149,13 @@
     <value>Otevřít v novém okně</value>
   </data>
   <data name="PinToolToStart" xml:space="preserve">
-    <value>Pin tool to Start</value>
+    <value>Připnout nástroj na Start</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Hledat nástroje...</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
-    <value>No results found</value>
+    <value>Nebyly nalezeny žádné výsledky</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
