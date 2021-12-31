@@ -118,62 +118,62 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Number Base Converter tool</value>
+    <value>Nástroj pro převod číselného základu</value>
   </data>
   <data name="BinaryLabel" xml:space="preserve">
-    <value>Binary</value>
+    <value>Binární</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Konfigurace</value>
   </data>
   <data name="DecimalLabel" xml:space="preserve">
-    <value>Decimal</value>
+    <value>Desetinné číslo</value>
   </data>
   <data name="Format" xml:space="preserve">
-    <value>Format number</value>
+    <value>Formát čísla</value>
   </data>
   <data name="HexadecimalLabel" xml:space="preserve">
-    <value>Hexadecimal</value>
+    <value>Hexadecimální</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>Vstup</value>
   </data>
   <data name="InputTypeBinary" xml:space="preserve">
-    <value>Binary</value>
+    <value>Binární</value>
   </data>
   <data name="InputTypeDecimal" xml:space="preserve">
-    <value>Decimal</value>
+    <value>Desetinné číslo</value>
   </data>
   <data name="InputTypeDescription" xml:space="preserve">
-    <value>Select which Input type you want to use</value>
+    <value>Zvolte typ vstupu, který chcete použít</value>
   </data>
   <data name="InputTypeHexadecimal" xml:space="preserve">
-    <value>Hexadecimal</value>
+    <value>Hexadecimální</value>
   </data>
   <data name="InputTypeOctal" xml:space="preserve">
-    <value>Octal</value>
+    <value>Osmičková</value>
   </data>
   <data name="InputTypeTitle" xml:space="preserve">
-    <value>Input type</value>
+    <value>Typ vstupu</value>
   </data>
   <data name="OctalLabel" xml:space="preserve">
-    <value>Octal</value>
+    <value>Osmičková</value>
   </data>
   <data name="ValueInvalid" xml:space="preserve">
-    <value>The current value isn't a valid {0}</value>
+    <value>Aktuální hodnota je neplatná {0}</value>
     <comment>The parameter is the Base Number Type (Decimal, Octal, ...)</comment>
   </data>
   <data name="ValueOverflow" xml:space="preserve">
-    <value>Unable to parse the current value exceed max value {0}</value>
+    <value>Nelze analyzovat, aktuální hodnota přesahuje maximální hodnotu {0}</value>
     <comment>The parameter is the Max value of a long</comment>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Convert numbers from one base to another</value>
+    <value>Převod čísel z jednoho základu na druhý</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Number Base</value>
+    <value>Číselný základ</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Number Base Converter</value>
+    <value>Převodník číselného základu</value>
   </data>
 </root>
