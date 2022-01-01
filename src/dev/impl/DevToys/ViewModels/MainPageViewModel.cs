@@ -239,7 +239,7 @@ namespace DevToys.ViewModels
 
                 if (!await _launchProtocolService.PinToolToStart(toolProvider))
                 {
-                    if (!await _windowManager.ShowContentDialogAsync(Strings.PinToolToStartProblem, LanguageManager.Instance.Common.Ok, LanguageManager.Instance.Settings.OpenLogs))
+                    if (await _windowManager.ShowContentDialogAsync(Strings.PinToolToStartProblem, LanguageManager.Instance.Common.Ok, LanguageManager.Instance.Settings.OpenLogs))
                     {
                         await Logger.OpenLogsAsync();
                     }
