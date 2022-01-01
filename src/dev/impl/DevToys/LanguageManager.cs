@@ -33,6 +33,7 @@ namespace DevToys
         private readonly JsonFormatterStrings _jsonformatter = new JsonFormatterStrings();
         private readonly JsonYamlStrings _jsonyaml = new JsonYamlStrings();
         private readonly JwtDecoderEncoderStrings _jwtdecoderencoder = new JwtDecoderEncoderStrings();
+        private readonly LoremIpsumGeneratorStrings _loremipsumgenerator = new LoremIpsumGeneratorStrings();
         private readonly MainPageStrings _mainpage = new MainPageStrings();
         private readonly MarkdownPreviewStrings _markdownpreview = new MarkdownPreviewStrings();
         private readonly NumberBaseConverterStrings _numberbaseconverter = new NumberBaseConverterStrings();
@@ -99,6 +100,11 @@ namespace DevToys
         /// Gets the <see cref="JwtDecoderEncoderStrings"/>.
         /// </summary>
         public JwtDecoderEncoderStrings JwtDecoderEncoder => _jwtdecoderencoder;
+
+        /// <summary>
+        /// Gets the <see cref="LoremIpsumGeneratorStrings"/>.
+        /// </summary>
+        public LoremIpsumGeneratorStrings LoremIpsumGenerator => _loremipsumgenerator;
 
         /// <summary>
         /// Gets the <see cref="MainPageStrings"/>.
@@ -843,6 +849,76 @@ namespace DevToys
         /// Gets the resource SearchDisplayName.
         /// </summary>
         public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+    }
+
+    public class LoremIpsumGeneratorStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("LoremIpsumGenerator");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
+        /// Gets the resource Configuration.
+        /// </summary>
+        public string Configuration => _resources.GetString("Configuration");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource LengthDescription.
+        /// </summary>
+        public string LengthDescription => _resources.GetString("LengthDescription");
+
+        /// <summary>
+        /// Gets the resource LengthTitle.
+        /// </summary>
+        public string LengthTitle => _resources.GetString("LengthTitle");
+
+        /// <summary>
+        /// Gets the resource MenuDisplayName.
+        /// </summary>
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
+
+        /// <summary>
+        /// Gets the resource Output.
+        /// </summary>
+        public string Output => _resources.GetString("Output");
+
+        /// <summary>
+        /// Gets the resource ParagraphsType.
+        /// </summary>
+        public string ParagraphsType => _resources.GetString("ParagraphsType");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+
+        /// <summary>
+        /// Gets the resource SentencesType.
+        /// </summary>
+        public string SentencesType => _resources.GetString("SentencesType");
+
+        /// <summary>
+        /// Gets the resource TypeDescription.
+        /// </summary>
+        public string TypeDescription => _resources.GetString("TypeDescription");
+
+        /// <summary>
+        /// Gets the resource TypeTitle.
+        /// </summary>
+        public string TypeTitle => _resources.GetString("TypeTitle");
+
+        /// <summary>
+        /// Gets the resource WordsType.
+        /// </summary>
+        public string WordsType => _resources.GetString("WordsType");
     }
 
     public class MainPageStrings : ObservableObject
