@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Composition;
 using System.Globalization;
+using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using DevToys.Api.Core;
@@ -87,19 +88,37 @@ namespace DevToys.Core
             {
                 ThreadHelper.ThrowIfNotOnUIThread();
 
-                var tileIconGenerationTasks = new List<Task>();
+                var tileIconGenerationTasks = new List<Task<TileIconSizeDefinition?>>();
                 for (int i = 0; i < ToolTileIconSizeDefinitions.Length; i++)
                 {
-                    TileIconSizeDefinition? iconDefinition = ToolTileIconSizeDefinitions[i];
-                    tileIconGenerationTasks.Add(
-                        GenerateCustomTileIconAsync(
-                            iconDefinition.Size,
-                            iconDefinition.ToolIconRatio,
-                            iconDefinition.IconName,
-                            toolProvider));
+                    TileIconSizeDefinition iconDefinition = ToolTileIconSizeDefinitions[i];
+                    tileIconGenerationTasks.Add(GenerateCustomTileIconAsync(iconDefinition, toolProvider));
                 }
 
                 await Task.WhenAll(tileIconGenerationTasks).ConfigureAwait(true);
+
+                string? smallTileIconName
+                    = tileIconGenerationTasks
+                    .Where(t => t.Result is not null && t.Result.IconName.StartsWith("SmallTile", StringComparison.Ordinal))
+                    .OrderBy(t => t.Result!.Size)
+                    .FirstOrDefault()?.Result!.IconName;
+
+                string? square44IconName
+                    = tileIconGenerationTasks
+                    .Where(t => t.Result is not null && t.Result.IconName.StartsWith("Square44x44Logo", StringComparison.Ordinal))
+                    .OrderBy(t => t.Result!.Size)
+                    .FirstOrDefault()?.Result!.IconName;
+
+                string? square150IconName
+                    = tileIconGenerationTasks
+                    .Where(t => t.Result is not null && t.Result.IconName.StartsWith("Square150x150Logo", StringComparison.Ordinal))
+                    .OrderBy(t => t.Result!.Size)
+                    .FirstOrDefault()?.Result!.IconName;
+
+                if (string.IsNullOrEmpty(smallTileIconName) || string.IsNullOrEmpty(square44IconName) || string.IsNullOrEmpty(square150IconName))
+                {
+                    Logger.Log("Pin to start", "Unable to generate one of the required tile icon.");
+                }
 
                 var tile = new SecondaryTile(
                     tileId: toolProvider.Metadata.ProtocolName)
@@ -109,18 +128,19 @@ namespace DevToys.Core
                     RoamingEnabled = false
                 };
                 tile.VisualElements.ShowNameOnSquare150x150Logo = true;
-                tile.VisualElements.Square150x150Logo = new Uri($"ms-appdata:///local/{toolProvider.Metadata.ProtocolName}/Square150x150Logo.scale-100.png");
-                tile.VisualElements.Square44x44Logo = new Uri($"ms-appdata:///local/{toolProvider.Metadata.ProtocolName}/Square44x44Logo.scale-100.png");
-                tile.VisualElements.Square71x71Logo = new Uri($"ms-appdata:///local/{toolProvider.Metadata.ProtocolName}/SmallTile.scale-100.png");
+                tile.VisualElements.Square150x150Logo = new Uri($"ms-appdata:///local/{toolProvider.Metadata.ProtocolName}/{square150IconName}.png");
+                tile.VisualElements.Square44x44Logo = new Uri($"ms-appdata:///local/{toolProvider.Metadata.ProtocolName}/{square44IconName}.png");
+                tile.VisualElements.Square71x71Logo = new Uri($"ms-appdata:///local/{toolProvider.Metadata.ProtocolName}/{smallTileIconName}.png");
 
-                return await tile.RequestCreateForSelectionAsync(Window.Current.Bounds);
+                await tile.RequestCreateForSelectionAsync(Window.Current.Bounds);
             }
             catch (Exception ex)
             {
                 Logger.LogFault("Pin to start", ex);
+                return false;
             }
 
-            return false;
+            return true;
         }
 
         private string GenerateLaunchArguments(string? toolProtocol)
@@ -148,135 +168,152 @@ namespace DevToys.Core
             return uriToLaunch;
         }
 
-        private async Task GenerateCustomTileIconAsync(int targetSize, double toolIconRatio, string inputFileName, MatchedToolProvider toolProvider)
+        private async Task<TileIconSizeDefinition?> GenerateCustomTileIconAsync(TileIconSizeDefinition tileIconSizeDefinition, MatchedToolProvider toolProvider)
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
-
-            /*
-             * The code below generates the following equivalent:
-             *     <Canvas HorizontalAlignment="Left" VerticalAlignment="Top">
-             *         <Grid>
-             *             <Image Source="image.scale-100.png" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
-             *             <Viewbox HorizontalAlignment="Center" VerticalAlignment="Center">
-             *                 <IconElement/>
-             *             </Viewbox>
-             *         </Grid>
-             *     </Canvas>
-             */
-
-            StorageFolder installationFolder = Package.Current.InstalledLocation;
-            var backgroundIconImageFile = (StorageFile)await installationFolder.TryGetItemAsync($"Assets\\TileTemplate\\{inputFileName}.png");
-
-            using (IRandomAccessStream fileStream = await backgroundIconImageFile.OpenAsync(FileAccessMode.Read, StorageOpenOptions.AllowOnlyReaders))
+            try
             {
-                var backgroundIconImageSource = new BitmapImage
+                ThreadHelper.ThrowIfNotOnUIThread();
+
+                /*
+                 * The code below generates the following equivalent:
+                 *     <Canvas HorizontalAlignment="Left" VerticalAlignment="Top">
+                 *         <Grid>
+                 *             <Image Source="image.scale-100.png" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
+                 *             <Viewbox HorizontalAlignment="Center" VerticalAlignment="Center">
+                 *                 <IconElement/>
+                 *             </Viewbox>
+                 *         </Grid>
+                 *     </Canvas>
+                 */
+
+                StorageFolder installationFolder = Package.Current.InstalledLocation;
+                if (!await installationFolder.FileExistsAsync($"Assets\\TileTemplate\\{tileIconSizeDefinition.IconName}.png", isRecursive: false))
                 {
-                    DecodePixelWidth = targetSize,
-                    DecodePixelHeight = targetSize
-                };
-                await backgroundIconImageSource.SetSourceAsync(fileStream);
+                    // Tile template file isn't installed.
+                    return null;
+                }
 
-                var container = new Grid()
+                StorageFile? backgroundIconImageFile = await installationFolder.GetFileAsync($"Assets\\TileTemplate\\{tileIconSizeDefinition.IconName}.png");
+
+                using (IRandomAccessStream fileStream = await backgroundIconImageFile.OpenAsync(FileAccessMode.Read, StorageOpenOptions.AllowOnlyReaders))
                 {
-                    HorizontalAlignment = HorizontalAlignment.Left,
-                    VerticalAlignment = VerticalAlignment.Top,
-                    Height = targetSize,
-                    Width = targetSize,
-                    MaxHeight = targetSize,
-                    MaxWidth = targetSize,
-                    Background = new SolidColorBrush(Colors.Transparent),
-                    Margin = new Thickness(-1 * targetSize, -1 * targetSize, 0, 0),
-                    RequestedTheme = ElementTheme.Dark
-                };
+                    var backgroundIconImageSource = new BitmapImage
+                    {
+                        DecodePixelWidth = tileIconSizeDefinition.Size,
+                        DecodePixelHeight = tileIconSizeDefinition.Size
+                    };
+                    await backgroundIconImageSource.SetSourceAsync(fileStream);
 
-                var backgroundIcon = new Image
-                {
-                    Height = targetSize,
-                    Width = targetSize,
-                    Source = backgroundIconImageSource,
-                    Stretch = Stretch.UniformToFill
-                };
+                    var container = new Grid()
+                    {
+                        HorizontalAlignment = HorizontalAlignment.Left,
+                        VerticalAlignment = VerticalAlignment.Top,
+                        Height = tileIconSizeDefinition.Size,
+                        Width = tileIconSizeDefinition.Size,
+                        MaxHeight = tileIconSizeDefinition.Size,
+                        MaxWidth = tileIconSizeDefinition.Size,
+                        Background = new SolidColorBrush(Colors.Transparent),
+                        Margin = new Thickness(-1 * tileIconSizeDefinition.Size, -1 * tileIconSizeDefinition.Size, 0, 0),
+                        RequestedTheme = ElementTheme.Dark
+                    };
 
-                IconElement toolIcon = await toolProvider.Icon.Task!.ConfigureAwait(true);
-                Assumes.NotNull(toolIcon, nameof(toolIcon));
+                    var backgroundIcon = new Image
+                    {
+                        Height = tileIconSizeDefinition.Size,
+                        Width = tileIconSizeDefinition.Size,
+                        Source = backgroundIconImageSource,
+                        Stretch = Stretch.UniformToFill
+                    };
 
-                toolIcon.Height = targetSize / toolIconRatio;
-                toolIcon.Width = targetSize / toolIconRatio;
+                    IconElement toolIcon = await toolProvider.Icon.Task!.ConfigureAwait(true);
+                    Assumes.NotNull(toolIcon, nameof(toolIcon));
 
-                var toolIconViewBox = new Viewbox
-                {
-                    Height = targetSize / toolIconRatio,
-                    Width = targetSize / toolIconRatio,
-                    Margin = new Thickness(0, 3, 0, 0),
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    Child = toolIcon
-                };
+                    toolIcon.Height = tileIconSizeDefinition.Size / tileIconSizeDefinition.ToolIconRatio;
+                    toolIcon.Width = tileIconSizeDefinition.Size / tileIconSizeDefinition.ToolIconRatio;
 
-                container.Children.Add(backgroundIcon);
-                container.Children.Add(toolIconViewBox);
+                    var toolIconViewBox = new Viewbox
+                    {
+                        Height = tileIconSizeDefinition.Size / tileIconSizeDefinition.ToolIconRatio,
+                        Width = tileIconSizeDefinition.Size / tileIconSizeDefinition.ToolIconRatio,
+                        Margin = new Thickness(0, 3, 0, 0),
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Child = toolIcon
+                    };
 
-                ((Grid)((Page)((Frame)Window.Current.Content).Content).Content).Children.Insert(0, container);
+                    container.Children.Add(backgroundIcon);
+                    container.Children.Add(toolIconViewBox);
 
-                container.UpdateLayout();
+                    ((Grid)((Page)((Frame)Window.Current.Content).Content).Content).Children.Insert(0, container);
 
-                var iconSizeUpdatedTask = new TaskCompletionSource<object?>();
-                long registrationToken = 0;
+                    container.UpdateLayout();
 
-                var imageIcon = toolIcon as ImageIcon;
-                if (imageIcon is not null)
-                {
-                    registrationToken = imageIcon.RegisterPropertyChangedCallback(ImageIcon.SourceProperty, (s, e) =>
+                    var iconSizeUpdatedTask = new TaskCompletionSource<object?>();
+                    long registrationToken = 0;
+
+                    var imageIcon = toolIcon as ImageIcon;
+                    if (imageIcon is not null)
+                    {
+                        registrationToken = imageIcon.RegisterPropertyChangedCallback(ImageIcon.SourceProperty, (s, e) =>
+                        {
+                            iconSizeUpdatedTask.TrySetResult(null);
+                        });
+                    }
+                    else
                     {
                         iconSizeUpdatedTask.TrySetResult(null);
-                    });
+                    }
+
+                    // Wait that the icon updates its size and maybe its color theme.
+                    await Task.WhenAny(iconSizeUpdatedTask.Task, Task.Delay(500)).ConfigureAwait(true);
+
+                    if (imageIcon is not null)
+                    {
+                        imageIcon.UnregisterPropertyChangedCallback(ImageIcon.SourceProperty, registrationToken);
+                    }
+
+                    ThreadHelper.ThrowIfNotOnUIThread();
+
+                    // Create an image from the canvas.
+                    var resultBitmap = new RenderTargetBitmap();
+                    await resultBitmap.RenderAsync(container);
+
+                    ((Grid)((Page)((Frame)Window.Current.Content).Content).Content).Children.Remove(container);
+
+                    ThreadHelper.ThrowIfNotOnUIThread();
+
+                    // Save the image on the hard drive.
+                    IBuffer pixelBuffer = await resultBitmap.GetPixelsAsync();
+                    byte[] pixels = pixelBuffer.ToArray();
+                    var displayInformation = DisplayInformation.GetForCurrentView();
+                    StorageFile file = await ApplicationData.Current.LocalFolder.CreateFileAsync($"{toolProvider.Metadata.ProtocolName}\\{tileIconSizeDefinition.IconName}.png", CreationCollisionOption.ReplaceExisting);
+
+                    ThreadHelper.ThrowIfNotOnUIThread();
+
+                    using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                    {
+                        BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
+                        encoder.SetPixelData(
+                            BitmapPixelFormat.Bgra8,
+                            BitmapAlphaMode.Straight,
+                            (uint)resultBitmap.PixelWidth,
+                            (uint)resultBitmap.PixelHeight,
+                            displayInformation.RawDpiX,
+                            displayInformation.RawDpiY,
+                            pixels);
+
+                        await encoder.FlushAsync();
+                    }
                 }
-                else
-                {
-                    iconSizeUpdatedTask.TrySetResult(null);
-                }
 
-                // Wait that the icon updates its size and maybe its color theme.
-                await Task.WhenAny(iconSizeUpdatedTask.Task, Task.Delay(500)).ConfigureAwait(true);
-
-                if (imageIcon is not null)
-                {
-                    imageIcon.UnregisterPropertyChangedCallback(ImageIcon.SourceProperty, registrationToken);
-                }
-
-                ThreadHelper.ThrowIfNotOnUIThread();
-
-                // Create an image from the canvas.
-                var resultBitmap = new RenderTargetBitmap();
-                await resultBitmap.RenderAsync(container);
-
-                ((Grid)((Page)((Frame)Window.Current.Content).Content).Content).Children.Remove(container);
-
-                ThreadHelper.ThrowIfNotOnUIThread();
-
-                // Save the image on the hard drive.
-                IBuffer pixelBuffer = await resultBitmap.GetPixelsAsync();
-                byte[] pixels = pixelBuffer.ToArray();
-                var displayInformation = DisplayInformation.GetForCurrentView();
-                StorageFile file = await ApplicationData.Current.LocalFolder.CreateFileAsync($"{toolProvider.Metadata.ProtocolName}\\{inputFileName}.png", CreationCollisionOption.ReplaceExisting);
-
-                ThreadHelper.ThrowIfNotOnUIThread();
-
-                using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
-                {
-                    BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
-                    encoder.SetPixelData(
-                        BitmapPixelFormat.Bgra8,
-                        BitmapAlphaMode.Straight,
-                        (uint)resultBitmap.PixelWidth,
-                        (uint)resultBitmap.PixelHeight,
-                        displayInformation.RawDpiX,
-                        displayInformation.RawDpiY,
-                        pixels);
-
-                    await encoder.FlushAsync();
-                }
+                return tileIconSizeDefinition;
             }
+            catch (Exception ex)
+            {
+                Logger.LogFault("Generate tile icon", ex, $"Target size: {tileIconSizeDefinition.Size}; Tool icon ratio: {tileIconSizeDefinition.ToolIconRatio}; Input file name: {tileIconSizeDefinition.IconName}");
+            }
+
+            return null;
         }
     }
 }
