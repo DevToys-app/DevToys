@@ -1,14 +1,7 @@
 ﻿🎉 New Features
-  • Pin a tool to Start
-  • Added a All Tools page
+  • N/A
 👏 Improvements
-  • Main menu is now always collapsible
-  • Tools are now under categories
-  • Search and Regex highlighting match accent color
-  • Code editor automatically reloads when crashing
-  • General improvement in search
-  • All icons are now rounded
+  • Updated Simplified Chinese translation
 🐛 Bug Fixes
-  • Deadlock when closing the app
-  • Multiple bugs in Number Base Converter tool
-  • Title bar buttons were not following the theme
+  • Fixed blurry SVG icons
+  • Fixed minor bugs in Pin tool to Start feature

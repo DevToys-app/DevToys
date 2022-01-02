@@ -116,8 +116,8 @@ namespace DevToys.ViewModels.Tools
                                         }
 
                                         svgSource = new SvgImageSource();
-                                        svgSource.RasterizePixelHeight = newSize.Height;
-                                        svgSource.RasterizePixelWidth = newSize.Width;
+                                        svgSource.RasterizePixelHeight = newSize.Height * 2; /* Multiply per 2 to to avoid blurry icons */
+                                        svgSource.RasterizePixelWidth = newSize.Width * 2; /* Multiply per 2 to to avoid blurry icons */
 
                                         svgFileContent = ApplyThemeToSvgIcon(imageIcon.ActualTheme, svgFileContent);
 

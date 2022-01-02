@@ -20,7 +20,8 @@ namespace DevToys.Api.Core
         /// Creates a tile on the Windows start menu that points to a given tool.
         /// </summary>
         /// <param name="toolProvider">The tool to pin</param>
-        /// <returns>Returns <code>True</code> if it succeeded.</returns>
+        /// <returns>Returns <code>False</code> if the method internally failed.
+        /// It will still return <code>True</code> if the user refuse to proceed when being prompt for pinning.</returns>
         Task<bool> PinToolToStart(MatchedToolProvider toolProvider);
     }
 }
