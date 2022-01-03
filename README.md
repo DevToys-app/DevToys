@@ -97,11 +97,6 @@ Here is the list of tool name you can use:
 - `diff` - Text Comparer
 - `settings` - Settings
 
-## Please, avoid selling this app as yours
-
-I don't care if you copy the source code to use in your project, but please avoid simply changing the name and selling as your work without further change. 
-That's not why I'm sharing the source code, at all.
-
 ## Contribute
 See [CONTRIBUTING](CONTRIBUTING.md)
 
