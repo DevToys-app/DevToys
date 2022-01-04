@@ -97,11 +97,6 @@ Here is the list of tool name you can use:
 - `diff` - Text Comparer
 - `settings` - Settings
 
-## Please, avoid selling this app as yours
-
-I don't care if you copy the source code to use in your project, but please avoid simply changing the name and selling as your work without further change. 
-That's not why I'm sharing the source code, at all.
-
 ## Contribute
 See [CONTRIBUTING](CONTRIBUTING.md)
 
@@ -115,6 +110,10 @@ See [ThirdPartyNotices](THIRD-PARTY-NOTICES.md)
 ## License
 
 See [LICENSE](LICENSE.md)
+
+### A few words regarding the license
+
+DevToys is using a license that permits redistribution of the app as trialware or shareware without changes. However, the authors @veler and @btiteux would prefer you not. If you believe you have a strong reason to do so, kindly reach out to discuss with us first.
 
 ## Special Thanks
 
