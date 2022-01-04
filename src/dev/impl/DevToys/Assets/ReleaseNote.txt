@@ -1,7 +1,9 @@
 ﻿🎉 New Features
   • N/A
 👏 Improvements
-  • Updated Simplified Chinese translation
+  • Added Portuguese translation
+  • Updated Czech translation
+  • Renamed Simplified Chinese translation
+  • Minor UI update
 🐛 Bug Fixes
-  • Fixed blurry SVG icons
-  • Fixed minor bugs in Pin tool to Start feature
+  • N/A
