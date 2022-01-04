@@ -37,6 +37,7 @@ Many tools are available.
 - Generators
   - Hash (MD5, SHA1, SHA256, SHA512)
   - UUID 1 and 4
+  - Lorem Ipsum
 - Text
   - Inspector & Case Converter
   - Regex Tester
@@ -84,6 +85,7 @@ Here is the list of tool name you can use:
 - `base64` - Base64 Encoder/Decoder
 - `hash` - Hash Generator
 - `uuid` - UUID Generator
+- `loremipsum` - Lorem Ipsum Generator
 - `jsonformat` Json Formatter
 - `jsonyaml` - Json <> Yaml
 - `jwt` - JWT Decoder

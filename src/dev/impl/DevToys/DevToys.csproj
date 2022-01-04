@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -47,6 +47,8 @@
     <Compile Include="ViewModels\Tools\Converters\ConvertersGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\EncodersDecodersGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Generators\GeneratorsGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Graphic\GraphicGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\GroupToolProviderBase.cs" />
     <Compile Include="ViewModels\Tools\GroupToolViewModel.cs" />
@@ -70,6 +72,9 @@
     </Compile>
     <Compile Include="Views\Tools\HtmlEncoderDecoder\HtmlEncoderDecoderToolPage.xaml.cs">
       <DependentUpon>HtmlEncoderDecoderToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\LoremIpsumGenerator\LoremIpsumGeneratorToolPage.xaml.cs">
+      <DependentUpon>LoremIpsumGeneratorToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\PngJpgCompressor\PngJpgCompressorToolPage.xaml.cs">
       <DependentUpon>PngJpgCompressorToolPage.xaml</DependentUpon>
@@ -212,6 +217,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Icons\Guid.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\LoremIpsum.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Icons\MarkdownPreview.svg">
@@ -496,6 +504,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Tools\LoremIpsumGenerator\LoremIpsumGeneratorToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Tools\NumberBaseConverter\NumberBaseConverterToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -562,6 +574,7 @@
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls" Version="$(Nuget_MicrosoftToolkitUwpUIControls)" />
     <PackageReference Include="Microsoft.UI.Xaml" Version="$(NuGet_MicrosoftUIXaml)" />
     <PackageReference Include="Newtonsoft.Json" Version="$(NuGet_NewtonsoftJson)" />
+    <PackageReference Include="NLipsum" Version="$(NuGet_NLipsum)"/>
     <PackageReference Include="System.Composition" Version="$(NuGet_DotNet)" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="$(NuGet_IdentityModelTokenJwt)" />
     <PackageReference Include="YamlDotNet" Version="$(NuGet_YamlDotNet)" />
