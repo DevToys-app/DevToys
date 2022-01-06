@@ -119,5 +119,10 @@ DevToys is using a license that permits redistribution of the app as trialware o
 
 ## Special Thanks
 
-* Code contributors: [BenjaminT](https://github.com/btiteux)
-* Designer: [Jakub](https://github.com/AlurDesign)
+### Code contributors
+<a href="https://github.com/veler/devtoys/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=veler/devtoys" />
+</a>
+
+### Designers
+[Jakub](https://github.com/AlurDesign)
