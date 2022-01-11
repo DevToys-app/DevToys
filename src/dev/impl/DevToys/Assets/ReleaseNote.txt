@@ -1,9 +1,5 @@
-﻿🎉 New Features
-  • N/A
-👏 Improvements
-  • Added Portuguese translation
-  • Updated Czech translation
-  • Renamed Simplified Chinese translation
-  • Minor UI update
-🐛 Bug Fixes
-  • N/A
+﻿Nothing since the last update, except that we just reached version 1.0.0.0! I knoooow, it's crazy, right!? What a milestone!
+
+Big thank to the UWP Community who helped making this possible!
+
+... But wait, it's not over, there's more coming very soon...
