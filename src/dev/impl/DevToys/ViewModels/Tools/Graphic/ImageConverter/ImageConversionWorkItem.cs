@@ -26,7 +26,7 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
         private string _fileSize = string.Empty;
 
-        internal PngJpgCompressorStrings Strings => LanguageManager.Instance.PngJpgCompressor;
+        internal ImageConverterStrings Strings => LanguageManager.Instance.ImageConverter;
 
         internal string FileName { get; }
 
