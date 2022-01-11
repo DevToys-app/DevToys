@@ -30,6 +30,7 @@ namespace DevToys
         private readonly GuidGeneratorStrings _guidgenerator = new GuidGeneratorStrings();
         private readonly HashGeneratorStrings _hashgenerator = new HashGeneratorStrings();
         private readonly HtmlEncoderDecoderStrings _htmlencoderdecoder = new HtmlEncoderDecoderStrings();
+        private readonly ImageConverterStrings _imageconverter = new ImageConverterStrings();
         private readonly JsonFormatterStrings _jsonformatter = new JsonFormatterStrings();
         private readonly JsonYamlStrings _jsonyaml = new JsonYamlStrings();
         private readonly JwtDecoderEncoderStrings _jwtdecoderencoder = new JwtDecoderEncoderStrings();
@@ -84,6 +85,11 @@ namespace DevToys
         /// Gets the <see cref="HtmlEncoderDecoderStrings"/>.
         /// </summary>
         public HtmlEncoderDecoderStrings HtmlEncoderDecoder => _htmlencoderdecoder;
+
+        /// <summary>
+        /// Gets the <see cref="ImageConverterStrings"/>.
+        /// </summary>
+        public ImageConverterStrings ImageConverter => _imageconverter;
 
         /// <summary>
         /// Gets the <see cref="JsonFormatterStrings"/>.
@@ -618,6 +624,121 @@ namespace DevToys
         /// Gets the resource SearchDisplayName.
         /// </summary>
         public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+    }
+
+    public class ImageConverterStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("ImageConverter");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
+        /// Gets the resource Cancel.
+        /// </summary>
+        public string Cancel => _resources.GetString("Cancel");
+
+        /// <summary>
+        /// Gets the resource Configuration.
+        /// </summary>
+        public string Configuration => _resources.GetString("Configuration");
+
+        /// <summary>
+        /// Gets the resource Delete.
+        /// </summary>
+        public string Delete => _resources.GetString("Delete");
+
+        /// <summary>
+        /// Gets the resource DeleteAll.
+        /// </summary>
+        public string DeleteAll => _resources.GetString("DeleteAll");
+
+        /// <summary>
+        /// Gets the resource DetailsTitle.
+        /// </summary>
+        public string DetailsTitle => _resources.GetString("DetailsTitle");
+
+        /// <summary>
+        /// Gets the resource MenuDisplayName.
+        /// </summary>
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
+
+        /// <summary>
+        /// Gets the resource FileSizeDisplay.
+        /// </summary>
+        public string FileSizeDisplay => _resources.GetString("FileSizeDisplay");
+
+        /// <summary>
+        /// Gets the resource InvalidSelectedFiles.
+        /// </summary>
+        public string InvalidSelectedFiles => _resources.GetString("InvalidSelectedFiles");
+
+        /// <summary>
+        /// Gets the resource OK.
+        /// </summary>
+        public string OK => _resources.GetString("OK");
+
+        /// <summary>
+        /// Gets the resource SaveAll.
+        /// </summary>
+        public string SaveAll => _resources.GetString("SaveAll");
+
+        /// <summary>
+        /// Gets the resource SaveAs.
+        /// </summary>
+        public string SaveAs => _resources.GetString("SaveAs");
+
+        /// <summary>
+        /// Gets the resource SeeErrorMessage.
+        /// </summary>
+        public string SeeErrorMessage => _resources.GetString("SeeErrorMessage");
+
+        /// <summary>
+        /// Gets the resource SelectFilesInstruction1.
+        /// </summary>
+        public string SelectFilesInstruction1 => _resources.GetString("SelectFilesInstruction1");
+
+        /// <summary>
+        /// Gets the resource SelectFilesInstruction2.
+        /// </summary>
+        public string SelectFilesInstruction2 => _resources.GetString("SelectFilesInstruction2");
+
+        /// <summary>
+        /// Gets the resource SelectFilesInstruction3.
+        /// </summary>
+        public string SelectFilesInstruction3 => _resources.GetString("SelectFilesInstruction3");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+
+        /// <summary>
+        /// Gets the resource ConversionTitle.
+        /// </summary>
+        public string ConversionTitle => _resources.GetString("ConversionTitle");
+
+        /// <summary>
+        /// Gets the resource ConvertedFormatDescription.
+        /// </summary>
+        public string ConvertedFormatDescription => _resources.GetString("ConvertedFormatDescription");
+
+        /// <summary>
+        /// Gets the resource JPG.
+        /// </summary>
+        public string JPG => _resources.GetString("JPG");
+
+        /// <summary>
+        /// Gets the resource PNG.
+        /// </summary>
+        public string PNG => _resources.GetString("PNG");
     }
 
     public class JsonFormatterStrings : ObservableObject
