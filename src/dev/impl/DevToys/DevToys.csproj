@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -67,19 +67,19 @@
     <Compile Include="Views\Tools\GroupToolPage.xaml.cs">
       <DependentUpon>GroupToolPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tools\GuidGenerator\GuidGeneratorToolPage.xaml.cs">
+    <Compile Include="Views\Tools\Generators\GuidGenerator\GuidGeneratorToolPage.xaml.cs">
       <DependentUpon>GuidGeneratorToolPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tools\HtmlEncoderDecoder\HtmlEncoderDecoderToolPage.xaml.cs">
+    <Compile Include="Views\Tools\EncodersDecoders\HtmlEncoderDecoder\HtmlEncoderDecoderToolPage.xaml.cs">
       <DependentUpon>HtmlEncoderDecoderToolPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tools\LoremIpsumGenerator\LoremIpsumGeneratorToolPage.xaml.cs">
+    <Compile Include="Views\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolPage.xaml.cs">
       <DependentUpon>LoremIpsumGeneratorToolPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tools\PngJpgCompressor\PngJpgCompressorToolPage.xaml.cs">
+    <Compile Include="Views\Tools\Graphic\PngJpgCompressor\PngJpgCompressorToolPage.xaml.cs">
       <DependentUpon>PngJpgCompressorToolPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tools\URLEncoderDecoder\UrlEncoderDecoderToolPage.xaml.cs">
+    <Compile Include="Views\Tools\EncodersDecoders\URLEncoderDecoder\UrlEncoderDecoderToolPage.xaml.cs">
       <DependentUpon>UrlEncoderDecoderToolPage.xaml</DependentUpon>
     </Compile>
     <Content Include="..\..\DevToys.Startup\Assets\Logo-Prev\SplashScreen.scale-100.png">
@@ -388,28 +388,28 @@
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tools\Base64EncoderDecoder\Base64EncoderDecoderToolPage.xaml.cs">
+    <Compile Include="Views\Tools\EncodersDecoders\Base64EncoderDecoder\Base64EncoderDecoderToolPage.xaml.cs">
       <DependentUpon>Base64EncoderDecoderToolPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tools\NumberBaseConverter\NumberBaseConverterToolPage.xaml.cs">
+    <Compile Include="Views\Tools\Converters\NumberBaseConverter\NumberBaseConverterToolPage.xaml.cs">
       <DependentUpon>NumberBaseConverterToolPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tools\HashGenerator\HashGeneratorToolPage.xaml.cs">
+    <Compile Include="Views\Tools\Generators\HashGenerator\HashGeneratorToolPage.xaml.cs">
       <DependentUpon>HashGeneratorToolPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tools\JsonYaml\JsonYamlToolPage.xaml.cs">
+    <Compile Include="Views\Tools\Converters\JsonYaml\JsonYamlToolPage.xaml.cs">
       <DependentUpon>JsonYamlToolPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tools\JsonFormatter\JsonFormatterToolPage.xaml.cs">
+    <Compile Include="Views\Tools\Formatters\JsonFormatter\JsonFormatterToolPage.xaml.cs">
       <DependentUpon>JsonFormatterToolPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tools\JwtDecoderEncoder\JwtDecoderEncoderToolPage.xaml.cs">
+    <Compile Include="Views\Tools\EncodersDecoders\JwtDecoderEncoder\JwtDecoderEncoderToolPage.xaml.cs">
       <DependentUpon>JwtDecoderEncoderToolPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tools\MarkdownPreview\MarkdownPreviewToolPage.xaml.cs">
+    <Compile Include="Views\Tools\Text\MarkdownPreview\MarkdownPreviewToolPage.xaml.cs">
       <DependentUpon>MarkdownPreviewToolPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tools\RegEx\RegExToolPage.xaml.cs">
+    <Compile Include="Views\Tools\Text\RegEx\RegExToolPage.xaml.cs">
       <DependentUpon>RegExToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\Settings\MarkdownContentDialog.xaml.cs">
@@ -418,10 +418,10 @@
     <Compile Include="Views\Tools\Settings\SettingsToolPage.xaml.cs">
       <DependentUpon>SettingsToolPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tools\StringUtilities\StringUtilitiesToolPage.xaml.cs">
+    <Compile Include="Views\Tools\Text\StringUtilities\StringUtilitiesToolPage.xaml.cs">
       <DependentUpon>StringUtilitiesToolPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tools\TextDiff\TextDiffToolPage.xaml.cs">
+    <Compile Include="Views\Tools\Text\TextDiff\TextDiffToolPage.xaml.cs">
       <DependentUpon>TextDiffToolPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -492,7 +492,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Tools\Base64EncoderDecoder\Base64EncoderDecoderToolPage.xaml">
+    <Page Include="Views\Tools\EncodersDecoders\Base64EncoderDecoder\Base64EncoderDecoderToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -500,43 +500,43 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Tools\GuidGenerator\GuidGeneratorToolPage.xaml">
+    <Page Include="Views\Tools\Generators\GuidGenerator\GuidGeneratorToolPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Tools\LoremIpsumGenerator\LoremIpsumGeneratorToolPage.xaml">
+    <Page Include="Views\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Tools\NumberBaseConverter\NumberBaseConverterToolPage.xaml">
+    <Page Include="Views\Tools\Converters\NumberBaseConverter\NumberBaseConverterToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Tools\HashGenerator\HashGeneratorToolPage.xaml">
+    <Page Include="Views\Tools\Generators\HashGenerator\HashGeneratorToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Tools\JsonYaml\JsonYamlToolPage.xaml">
+    <Page Include="Views\Tools\Converters\JsonYaml\JsonYamlToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Tools\JsonFormatter\JsonFormatterToolPage.xaml">
+    <Page Include="Views\Tools\Formatters\JsonFormatter\JsonFormatterToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Tools\JwtDecoderEncoder\JwtDecoderEncoderToolPage.xaml">
+    <Page Include="Views\Tools\EncodersDecoders\JwtDecoderEncoder\JwtDecoderEncoderToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Tools\MarkdownPreview\MarkdownPreviewToolPage.xaml">
+    <Page Include="Views\Tools\Text\MarkdownPreview\MarkdownPreviewToolPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Tools\PngJpgCompressor\PngJpgCompressorToolPage.xaml">
+    <Page Include="Views\Tools\Graphic\PngJpgCompressor\PngJpgCompressorToolPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Tools\RegEx\RegExToolPage.xaml">
+    <Page Include="Views\Tools\Text\RegEx\RegExToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -548,19 +548,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Tools\StringUtilities\StringUtilitiesToolPage.xaml">
+    <Page Include="Views\Tools\Text\StringUtilities\StringUtilitiesToolPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Tools\TextDiff\TextDiffToolPage.xaml">
+    <Page Include="Views\Tools\Text\TextDiff\TextDiffToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Tools\HtmlEncoderDecoder\HtmlEncoderDecoderToolPage.xaml">
+    <Page Include="Views\Tools\EncodersDecoders\HtmlEncoderDecoder\HtmlEncoderDecoderToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Tools\URLEncoderDecoder\UrlEncoderDecoderToolPage.xaml">
+    <Page Include="Views\Tools\EncodersDecoders\URLEncoderDecoder\UrlEncoderDecoderToolPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -574,7 +574,7 @@
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls" Version="$(Nuget_MicrosoftToolkitUwpUIControls)" />
     <PackageReference Include="Microsoft.UI.Xaml" Version="$(NuGet_MicrosoftUIXaml)" />
     <PackageReference Include="Newtonsoft.Json" Version="$(NuGet_NewtonsoftJson)" />
-    <PackageReference Include="NLipsum" Version="$(NuGet_NLipsum)"/>
+    <PackageReference Include="NLipsum" Version="$(NuGet_NLipsum)" />
     <PackageReference Include="System.Composition" Version="$(NuGet_DotNet)" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="$(NuGet_IdentityModelTokenJwt)" />
     <PackageReference Include="YamlDotNet" Version="$(NuGet_YamlDotNet)" />
