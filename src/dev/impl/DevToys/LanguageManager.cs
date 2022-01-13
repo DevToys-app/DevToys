@@ -26,6 +26,7 @@ namespace DevToys
 
         private readonly AllToolsStrings _alltools = new AllToolsStrings();
         private readonly Base64EncoderDecoderStrings _base64encoderdecoder = new Base64EncoderDecoderStrings();
+        private readonly ColorBlindnessSimulatorStrings _colorblindnesssimulator = new ColorBlindnessSimulatorStrings();
         private readonly CommonStrings _common = new CommonStrings();
         private readonly GuidGeneratorStrings _guidgenerator = new GuidGeneratorStrings();
         private readonly HashGeneratorStrings _hashgenerator = new HashGeneratorStrings();
@@ -65,6 +66,11 @@ namespace DevToys
         /// Gets the <see cref="Base64EncoderDecoderStrings"/>.
         /// </summary>
         public Base64EncoderDecoderStrings Base64EncoderDecoder => _base64encoderdecoder;
+
+        /// <summary>
+        /// Gets the <see cref="ColorBlindnessSimulatorStrings"/>.
+        /// </summary>
+        public ColorBlindnessSimulatorStrings ColorBlindnessSimulator => _colorblindnesssimulator;
 
         /// <summary>
         /// Gets the <see cref="CommonStrings"/>.
@@ -301,6 +307,51 @@ namespace DevToys
         /// Gets the resource SearchDisplayName.
         /// </summary>
         public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+    }
+
+    public class ColorBlindnessSimulatorStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("ColorBlindnessSimulator");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
+        /// Gets the resource MenuDisplayName.
+        /// </summary>
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+
+        /// <summary>
+        /// Gets the resource InvalidSelectedFiles.
+        /// </summary>
+        public string InvalidSelectedFiles => _resources.GetString("InvalidSelectedFiles");
+
+        /// <summary>
+        /// Gets the resource SelectFilesInstruction1.
+        /// </summary>
+        public string SelectFilesInstruction1 => _resources.GetString("SelectFilesInstruction1");
+
+        /// <summary>
+        /// Gets the resource SelectFilesInstruction2.
+        /// </summary>
+        public string SelectFilesInstruction2 => _resources.GetString("SelectFilesInstruction2");
+
+        /// <summary>
+        /// Gets the resource SelectFilesInstruction3.
+        /// </summary>
+        public string SelectFilesInstruction3 => _resources.GetString("SelectFilesInstruction3");
     }
 
     public class CommonStrings : ObservableObject
