@@ -731,14 +731,39 @@ namespace DevToys
         public string ConvertedFormatDescription => _resources.GetString("ConvertedFormatDescription");
 
         /// <summary>
-        /// Gets the resource JPG.
+        /// Gets the resource JPEG.
         /// </summary>
-        public string JPG => _resources.GetString("JPG");
+        public string JPEG => _resources.GetString("JPEG");
 
         /// <summary>
         /// Gets the resource PNG.
         /// </summary>
         public string PNG => _resources.GetString("PNG");
+
+        /// <summary>
+        /// Gets the resource BMP.
+        /// </summary>
+        public string BMP => _resources.GetString("BMP");
+
+        /// <summary>
+        /// Gets the resource GIF.
+        /// </summary>
+        public string GIF => _resources.GetString("GIF");
+
+        /// <summary>
+        /// Gets the resource HEIF.
+        /// </summary>
+        public string HEIF => _resources.GetString("HEIF");
+
+        /// <summary>
+        /// Gets the resource JPEGXR.
+        /// </summary>
+        public string JPEGXR => _resources.GetString("JPEGXR");
+
+        /// <summary>
+        /// Gets the resource TIFF.
+        /// </summary>
+        public string TIFF => _resources.GetString("TIFF");
     }
 
     public class JsonFormatterStrings : ObservableObject

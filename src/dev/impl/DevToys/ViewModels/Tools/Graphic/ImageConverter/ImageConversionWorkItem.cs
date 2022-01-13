@@ -1,14 +1,19 @@
 ﻿#nullable enable
 
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using DevToys.Core.Threading;
 using DevToys.Shared.Core;
 using DevToys.Shared.Core.Threading;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
+using Windows.Storage.Pickers;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml.Controls;
 
 namespace DevToys.ViewModels.Tools.ImageConverter
@@ -32,6 +37,8 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
         internal string FilePath { get; }
 
+        internal SoftwareBitmap Bitmap { get; }
+
         internal string FileSize
         {
             get => _fileSize;
@@ -52,6 +59,12 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
             FileName = file.Name;
             FilePath = file.Path;
+
+            using (IRandomAccessStream stream = Task.Run(async () => await file.OpenAsync(FileAccessMode.Read)).Result)
+            {
+                BitmapDecoder decoder = Task.Run(async () => await BitmapDecoder.CreateAsync(stream)).Result;
+                Bitmap = Task.Run(async () => await decoder.GetSoftwareBitmapAsync()).Result;
+            }
 
             DeleteCommand = new RelayCommand(ExecuteDeleteCommand);
             SaveCommand = new AsyncRelayCommand(ExecuteSaveCommandAsync);
@@ -77,7 +90,31 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
         private async Task ExecuteSaveCommandAsync()
         {
+            string? fileExtension = Path.GetExtension(FilePath);
 
+            var savePicker = new FileSavePicker
+            {
+                SuggestedStartLocation = PickerLocationId.ComputerFolder
+            };
+
+            savePicker.FileTypeChoices.Add(
+                fileExtension.Replace(".", string.Empty).ToUpperInvariant(),
+                new List<string>() { fileExtension!.ToLowerInvariant() });
+
+            StorageFile? newFile = await savePicker.PickSaveFileAsync();
+
+            if (newFile is not null)
+            {
+                using (IRandomAccessStream outputStream = await newFile.OpenAsync(FileAccessMode.ReadWrite))
+                {
+                    //TO DO: Select proper encoder
+                    BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, outputStream);
+                    encoder.SetSoftwareBitmap(Bitmap);
+                    await encoder.FlushAsync();
+                }
+
+                DeleteCommand.Execute(this);
+            }
         }
 
         #endregion

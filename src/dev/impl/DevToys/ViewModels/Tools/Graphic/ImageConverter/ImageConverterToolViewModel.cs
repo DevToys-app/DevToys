@@ -12,9 +12,12 @@ using DevToys.Views.Tools.ImageConverter;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace DevToys.ViewModels.Tools.ImageConverter
 {
@@ -52,7 +55,7 @@ namespace DevToys.ViewModels.Tools.ImageConverter
             SelectFilesAreaDragDropCommand = new AsyncRelayCommand<DragEventArgs>(ExecuteSelectFilesAreaDragDropCommandAsync);
             SelectFilesBrowseCommand = new AsyncRelayCommand(ExecuteSelectFilesBrowseCommandAsync);
             DeleteAllCommand = new RelayCommand(ExecuteDeleteAllCommand);
-            //SaveAllCommand = new AsyncRelayCommand(ExecuteSaveAllCommandAsync);
+            SaveAllCommand = new AsyncRelayCommand(ExecuteSaveAllCommandAsync);
 
             ConvertedFormat = "PNG";
         }
@@ -185,7 +188,32 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
         #endregion
 
+        #region SaveAllCommand
+
         public IAsyncRelayCommand SaveAllCommand { get; }
+
+        private async Task ExecuteSaveAllCommandAsync()
+        {
+            var works = ConversionWorkQueue.ToList();
+
+            var folderPicker = new FolderPicker
+            {
+                ViewMode = PickerViewMode.List
+            };
+
+            StorageFolder? selectedFolder = await folderPicker.PickSingleFolderAsync();
+
+            if (selectedFolder is not null)
+            {
+                foreach (ImageConversionWorkItem work in works)
+                {
+                    //TO DO
+                    work.DeleteCommand.Execute(null);
+                }
+            }
+        }
+
+        #endregion
 
         private void QueueNewConversion(StorageFile file)
         {

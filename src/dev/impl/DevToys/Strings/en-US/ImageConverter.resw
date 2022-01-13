@@ -178,10 +178,25 @@
   <data name="ConvertedFormatDescription" xml:space="preserve">
     <value>Select the converted file format</value>
   </data>
-  <data name="JPG" xml:space="preserve">
-    <value>JPG</value>
+  <data name="JPEG" xml:space="preserve">
+    <value>JPEG</value>
   </data>
   <data name="PNG" xml:space="preserve">
     <value>PNG</value>
+  </data>
+  <data name="BMP" xml:space="preserve">
+    <value>BMP</value>
+  </data>
+  <data name="GIF" xml:space="preserve">
+    <value>GIF</value>
+  </data>
+  <data name="HEIF" xml:space="preserve">
+    <value>HEIF</value>
+  </data>
+  <data name="JPEGXR" xml:space="preserve">
+    <value>JPEG XR</value>
+  </data>
+  <data name="TIFF" xml:space="preserve">
+    <value>TIFF</value>
   </data>
 </root>
