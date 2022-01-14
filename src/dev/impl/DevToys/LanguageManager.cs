@@ -352,6 +352,41 @@ namespace DevToys
         /// Gets the resource SelectFilesInstruction3.
         /// </summary>
         public string SelectFilesInstruction3 => _resources.GetString("SelectFilesInstruction3");
+
+        /// <summary>
+        /// Gets the resource SaveAs.
+        /// </summary>
+        public string SaveAs => _resources.GetString("SaveAs");
+
+        /// <summary>
+        /// Gets the resource Cancel.
+        /// </summary>
+        public string Cancel => _resources.GetString("Cancel");
+
+        /// <summary>
+        /// Gets the resource DeuteranopiaSimulation.
+        /// </summary>
+        public string DeuteranopiaSimulation => _resources.GetString("DeuteranopiaSimulation");
+
+        /// <summary>
+        /// Gets the resource OriginalPicture.
+        /// </summary>
+        public string OriginalPicture => _resources.GetString("OriginalPicture");
+
+        /// <summary>
+        /// Gets the resource ProtanopiaSimulation.
+        /// </summary>
+        public string ProtanopiaSimulation => _resources.GetString("ProtanopiaSimulation");
+
+        /// <summary>
+        /// Gets the resource TritanopiaSimulation.
+        /// </summary>
+        public string TritanopiaSimulation => _resources.GetString("TritanopiaSimulation");
+
+        /// <summary>
+        /// Gets the resource SelectFilesInstruction4.
+        /// </summary>
+        public string SelectFilesInstruction4 => _resources.GetString("SelectFilesInstruction4");
     }
 
     public class CommonStrings : ObservableObject

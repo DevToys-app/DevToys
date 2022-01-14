@@ -70,6 +70,9 @@
     <Compile Include="Views\Tools\Graphic\ColorBlindnessSimulator\ColorBlindnessSimulatorToolPage.xaml.cs">
       <DependentUpon>ColorBlindnessSimulatorToolPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Tools\Graphic\ColorBlindnessSimulator\ImagePreview.xaml.cs">
+      <DependentUpon>ImagePreview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Tools\GroupToolPage.xaml.cs">
       <DependentUpon>GroupToolPage.xaml</DependentUpon>
     </Compile>
@@ -504,6 +507,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Tools\Graphic\ColorBlindnessSimulator\ColorBlindnessSimulatorToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tools\Graphic\ColorBlindnessSimulator\ImagePreview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

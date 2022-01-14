@@ -1,0 +1,75 @@
+﻿<UserControl
+    x:Class="DevToys.Views.Tools.ColorBlindnessSimulator.ImagePreview"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    SizeChanged="UserControl_SizeChanged">
+
+    <Grid RowSpacing="6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0" ColumnSpacing="12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                Text="{x:Bind Header, Mode=OneWay}"
+                Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                Style="{StaticResource SubTitleTextBlock}"
+                TextWrapping="Wrap"
+                VerticalAlignment="Center">
+            </TextBlock>
+            <StackPanel
+                x:Name="CommandsToolBar"
+                Grid.Column="1"
+                Orientation="Horizontal"
+                HorizontalAlignment="Right"
+                Spacing="8"
+                Margin="0,0,0,8"
+                AutomationProperties.LabeledBy="{Binding ElementName=HeaderTextBlock}">
+                <Button
+                    AutomationProperties.Name="View"
+                    Click="ViewButton_Click">
+                    <StackPanel Orientation="Horizontal" Spacing="4">
+                        <FontIcon Glyph="&#xF3FB;"/>
+                        <TextBlock VerticalAlignment="Center" Text="View"/>
+                    </StackPanel>
+                </Button>
+                <Button
+                    ToolTipService.ToolTip="{Binding Instance.Common.Copy, Mode=OneTime, Source={StaticResource LanguageManager}}"
+                    AutomationProperties.Name="{Binding Instance.Common.Copy, Mode=OneTime, Source={StaticResource LanguageManager}}"
+                    Click="CopyButton_Click">
+                    <FontIcon Glyph="&#xF32B;"/>
+                </Button>
+                <Button
+                    ToolTipService.ToolTip="{x:Bind Strings.SaveAs}"
+                    AutomationProperties.Name="{x:Bind Strings.SaveAs}"
+                    Click="SaveAsButton_Click">
+                    <FontIcon Glyph="&#xF67F;"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <Border
+            x:Name="OutputFitSize"
+            Grid.Row="1"
+            MinHeight="150"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            SizeChanged="OutputFitSize_SizeChanged"/>
+        <Canvas
+            Grid.Row="1">
+            <Image
+                x:Name="OutputRenderer"
+                Source="{x:Bind ImageSource, Mode=OneWay}"/>
+        </Canvas>
+    </Grid>
+</UserControl>

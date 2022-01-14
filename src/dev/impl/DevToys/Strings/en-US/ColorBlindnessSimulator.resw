@@ -141,4 +141,25 @@
   <data name="SelectFilesInstruction3" xml:space="preserve">
     <value>Browse files</value>
   </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>Save as</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="DeuteranopiaSimulation" xml:space="preserve">
+    <value>Deuteranopia simulation</value>
+  </data>
+  <data name="OriginalPicture" xml:space="preserve">
+    <value>Original</value>
+  </data>
+  <data name="ProtanopiaSimulation" xml:space="preserve">
+    <value>Protanopia simulation</value>
+  </data>
+  <data name="TritanopiaSimulation" xml:space="preserve">
+    <value>Tritanopia simulation</value>
+  </data>
+  <data name="SelectFilesInstruction4" xml:space="preserve">
+    <value>Paste</value>
+  </data>
 </root>
