@@ -30,7 +30,6 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
     [Export(typeof(ColorBlindnessSimulatorToolViewModel))]
     public sealed class ColorBlindnessSimulatorToolViewModel : ObservableRecipient, IToolViewModel, IDisposable
     {
-        private const string TempFolderName = "ColorBlindnessSimulator";
         private static readonly string[] SupportedFileExtensions = new[] { ".png", ".jpg", ".jpeg", ".bmp" };
 
         private readonly object _lockObject = new();
@@ -124,6 +123,7 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
         {
             _cancellationTokenSource?.Cancel();
             _cancellationTokenSource?.Dispose();
+            ClearTempFiles();
         }
 
         public void UpdateProgress(bool force = false)
@@ -264,8 +264,7 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
                         using (IRandomAccessStreamWithContentType imageStream = await imageReceived.OpenReadAsync())
                         {
                             StorageFolder localCacheFolder = ApplicationData.Current.LocalCacheFolder;
-                            StorageFolder subFolder = await localCacheFolder.CreateFolderAsync(TempFolderName, CreationCollisionOption.OpenIfExists);
-                            StorageFile storageFile = await subFolder.CreateFileAsync($"{Guid.NewGuid()}.jpeg", CreationCollisionOption.ReplaceExisting);
+                            StorageFile storageFile = await localCacheFolder.CreateFileAsync($"{Guid.NewGuid()}.jpeg", CreationCollisionOption.ReplaceExisting);
 
                             using (IRandomAccessStream? stream = await storageFile.OpenAsync(FileAccessMode.ReadWrite))
                             {
@@ -333,12 +332,14 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
 
             cancellationToken.ThrowIfCancellationRequested();
 
+            string randomFileName = Guid.NewGuid().ToString();
+
             var workTasks
                 = new List<Task<Uri>>
                 {
                         Task.Run(async () =>
                         {
-                            return await SaveImageToFileAsync(bgra8SourcePixels, width, height, Path.GetFileNameWithoutExtension(file.Name), "Original");
+                            return await SaveImageToFileAsync(bgra8SourcePixels, width, height, Path.GetFileNameWithoutExtension(randomFileName), "Original");
                         }),
                         Task.Run(async () =>
                         {
@@ -348,7 +349,7 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
                                     (p) => { _protanopiaProgress = p; UpdateProgress(); },
                                     cancellationToken);
                             UpdateProgress(force: true);
-                            return await SaveImageToFileAsync(protanopiaBgraPixels, width, height, Path.GetFileNameWithoutExtension(file.Name), "Protanopia");
+                            return await SaveImageToFileAsync(protanopiaBgraPixels, width, height, Path.GetFileNameWithoutExtension(randomFileName), "Protanopia");
                         }),
                         Task.Run(async () =>
                         {
@@ -358,7 +359,7 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
                                     (p) => { _tritanopiaProgress = p; UpdateProgress(); },
                                     cancellationToken);
                             UpdateProgress(force: true);
-                            return await SaveImageToFileAsync(tritanopiaBgraPixels, width, height, Path.GetFileNameWithoutExtension(file.Name), "Tritanopia");
+                            return await SaveImageToFileAsync(tritanopiaBgraPixels, width, height, Path.GetFileNameWithoutExtension(randomFileName), "Tritanopia");
                         }),
                         Task.Run(async () =>
                         {
@@ -368,7 +369,7 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
                                     (p) => { _deuteranopiaProgress = p; UpdateProgress(); },
                                     cancellationToken);
                             UpdateProgress(force: true);
-                            return await SaveImageToFileAsync(deuteranopiaBgraPixels, width, height, Path.GetFileNameWithoutExtension(file.Name), "Deuteranopia");
+                            return await SaveImageToFileAsync(deuteranopiaBgraPixels, width, height, Path.GetFileNameWithoutExtension(randomFileName), "Deuteranopia");
                         })
                 };
 
@@ -384,6 +385,10 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
                 ProtanopiaOutput = workTasks[1].Result;
                 TritanopiaOutput = workTasks[2].Result;
                 DeuteranopiaOutput = workTasks[3].Result;
+                OnPropertyChanged(nameof(OriginalOutput)); // Do this in case if the new file path is the same than before but with a different image.
+                OnPropertyChanged(nameof(ProtanopiaOutput));
+                OnPropertyChanged(nameof(TritanopiaOutput));
+                OnPropertyChanged(nameof(DeuteranopiaOutput));
 
                 IsProgressGridVisible = false;
                 IsResultGridVisible = true;
@@ -421,8 +426,7 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
         {
             await TaskScheduler.Default;
             StorageFolder localCacheFolder = ApplicationData.Current.LocalCacheFolder;
-            StorageFolder subFolder = await localCacheFolder.CreateFolderAsync(TempFolderName, CreationCollisionOption.OpenIfExists);
-            StorageFile storageFile = await subFolder.CreateFileAsync($"{imageName}-{disabilityName}.png", CreationCollisionOption.ReplaceExisting);
+            StorageFile storageFile = await localCacheFolder.CreateFileAsync($"{imageName}-{disabilityName}.png", CreationCollisionOption.ReplaceExisting);
 
             _tempFileNames.Add(storageFile.Path);
 
