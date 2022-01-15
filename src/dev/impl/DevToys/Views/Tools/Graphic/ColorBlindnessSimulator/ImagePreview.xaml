@@ -8,8 +8,19 @@
     d:DesignHeight="300"
     d:DesignWidth="400"
     SizeChanged="UserControl_SizeChanged">
+    <UserControl.Resources>
+        <Style x:Key="CardStyle" TargetType="Grid">
+            <Setter Property="BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrush}" />
+            <Setter Property="BorderThickness" Value="{ThemeResource ExpanderHeaderBorderThickness}" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="MinHeight" Value="{StaticResource ExpanderMinHeight}" />
+            <Setter Property="Padding" Value="{StaticResource ExpanderContentPadding}" />
+            <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}"/>
+            <Setter Property="Background" Value="{ThemeResource ExpanderHeaderBackground}"/>
+        </Style>
+    </UserControl.Resources>
 
-    <Grid RowSpacing="6">
+    <Grid Style="{StaticResource CardStyle}" RowSpacing="6">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="1*"/>

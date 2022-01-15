@@ -13,17 +13,6 @@
     NavigationCacheMode="Required">
     <Page.Resources>
         <converters:BooleanToVisibilityConverter x:Name="BooleanToVisibilityConverter"/>
-        <converters:BooleanToDoubleConverter x:Name="BooleanToDoubleConverter" ValueOnFalse="0.0" ValueOnTrue="1.0"/>
-
-        <Style x:Key="CompressionWorkItemBackgroundGridStyle" TargetType="Grid">
-            <Setter Property="CornerRadius" Value="4" />
-            <Setter Property="Background" Value="{ThemeResource ExpanderHeaderBackground}" />
-            <Setter Property="BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrush}" />
-            <Setter Property="BorderThickness" Value="{ThemeResource ExpanderHeaderBorderThickness}" />
-            <Setter Property="HorizontalAlignment" Value="Stretch" />
-            <Setter Property="MinHeight" Value="{StaticResource ExpanderMinHeight}" />
-            <Setter Property="Padding" Value="{StaticResource ExpanderContentPadding}" />
-        </Style>
     </Page.Resources>
 
     <Grid Margin="0,0,0,16" RowSpacing="12">
