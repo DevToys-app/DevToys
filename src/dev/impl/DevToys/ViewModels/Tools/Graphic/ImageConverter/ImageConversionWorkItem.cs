@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using DevToys.Core.Threading;
+using DevToys.Helpers;
 using DevToys.Shared.Core;
 using DevToys.Shared.Core.Threading;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
@@ -67,7 +68,7 @@ namespace DevToys.ViewModels.Tools.ImageConverter
             }
 
             DeleteCommand = new RelayCommand(ExecuteDeleteCommand);
-            SaveCommand = new AsyncRelayCommand(ExecuteSaveCommandAsync);
+            SaveCommand = new AsyncRelayCommand<ImageConverterToolViewModel>(ExecuteSaveCommandAsync);
             ShowErrorMessageCommand = new AsyncRelayCommand(ExecuteShowErrorMessageCommandAsync);
 
             ComputePropertiesAsync(file).Forget();
@@ -88,7 +89,7 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
         public IAsyncRelayCommand SaveCommand { get; }
 
-        private async Task ExecuteSaveCommandAsync()
+        private async Task ExecuteSaveCommandAsync(ImageConverterToolViewModel viewModel)
         {
             string? fileExtension = Path.GetExtension(FilePath);
 
@@ -107,8 +108,7 @@ namespace DevToys.ViewModels.Tools.ImageConverter
             {
                 using (IRandomAccessStream outputStream = await newFile.OpenAsync(FileAccessMode.ReadWrite))
                 {
-                    //TO DO: Select proper encoder
-                    BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, outputStream);
+                    BitmapEncoder encoder = await BitmapEncoder.CreateAsync(ImageHelper.GetEncoderGuid(viewModel.ConvertedFormat), outputStream);
                     encoder.SetSoftwareBitmap(Bitmap);
                     await encoder.FlushAsync();
                 }

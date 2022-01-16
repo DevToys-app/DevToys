@@ -9,7 +9,8 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity" xmlns:converters="using:DevToys.UI.Converters"
     xmlns:controls="using:DevToys.UI.Controls"
     mc:Ignorable="d"
-    NavigationCacheMode="Required">
+    NavigationCacheMode="Required"
+    x:Name="ThisPage">
     <Page.Resources>
         <converters:BooleanToVisibilityConverter x:Name="BooleanToVisibilityConverter"/>
         <converters:BooleanToDoubleConverter x:Name="BooleanToDoubleConverter" ValueOnFalse="0.0" ValueOnTrue="1.0"/>
@@ -191,6 +192,7 @@
                                 <Button
                                     Style="{StaticResource CommandBarFlyoutEllipsisButtonStyle}"
                                     Command="{x:Bind SaveCommand}"
+                                    CommandParameter="{Binding ViewModel, ElementName=ThisPage}"
                                     ToolTipService.ToolTip="{x:Bind Strings.SaveAs}"
                                     AutomationProperties.Name="{x:Bind Strings.SaveAs}">
                                     <FontIcon

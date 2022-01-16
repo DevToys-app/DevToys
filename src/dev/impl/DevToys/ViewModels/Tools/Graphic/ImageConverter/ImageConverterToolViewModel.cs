@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DevToys.Api.Tools;
 using DevToys.Core.Threading;
+using DevToys.Helpers;
 using DevToys.Shared.Core;
 using DevToys.Views.Tools.ImageConverter;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
@@ -17,14 +18,13 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media.Imaging;
 
 namespace DevToys.ViewModels.Tools.ImageConverter
 {
     [Export(typeof(ImageConverterToolViewModel))]
     public sealed class ImageConverterToolViewModel : ObservableRecipient, IToolViewModel, IDisposable
     {
-        private static readonly string[] SupportedFileExtensions = new[] { ".png", ".jpg", ".jpeg" };
+        private static readonly string[] SupportedFileExtensions = new[] { ".png", ".jpg", ".jpeg", ".jfif", ".pjpeg", ".pjp", ".jxr", ".bmp", ".tiff", ".tif", ".heif", ".gif" };
 
         private bool _isSelectFilesAreaHighlithed;
         private bool _hasInvalidFilesSelected;
@@ -57,12 +57,16 @@ namespace DevToys.ViewModels.Tools.ImageConverter
             DeleteAllCommand = new RelayCommand(ExecuteDeleteAllCommand);
             SaveAllCommand = new AsyncRelayCommand(ExecuteSaveAllCommandAsync);
 
+            InitializeComboBox();
+        }
+
+        private void InitializeComboBox()
+        {
             ConvertedFormat = "PNG";
         }
 
         public void Dispose()
         {
-            // Delete all completed compression work.
             DeleteAllCommand.Execute(null);
         }
 
@@ -207,7 +211,14 @@ namespace DevToys.ViewModels.Tools.ImageConverter
             {
                 foreach (ImageConversionWorkItem work in works)
                 {
-                    //TO DO
+                    StorageFile newFile = await selectedFolder.CreateFileAsync(work.FileName, CreationCollisionOption.ReplaceExisting);
+                    using (IRandomAccessStream outputStream = await newFile.OpenAsync(FileAccessMode.ReadWrite))
+                    {
+                        BitmapEncoder encoder = await BitmapEncoder.CreateAsync(ImageHelper.GetEncoderGuid(ConvertedFormat), outputStream);
+                        encoder.SetSoftwareBitmap(work.Bitmap);
+                        await encoder.FlushAsync();
+                    }
+
                     work.DeleteCommand.Execute(null);
                 }
             }
