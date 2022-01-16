@@ -26,7 +26,7 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
 
         public string AccessibleName => LanguageManager.Instance.Base64EncoderDecoder.AccessibleName;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("Base64.svg");
+        public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\u0100");
 
         private readonly IMefProvider _mefProvider;
 

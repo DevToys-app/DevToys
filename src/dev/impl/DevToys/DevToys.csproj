@@ -438,6 +438,9 @@
   <ItemGroup>
     <Content Include="Assets\Icons\Idea.svg" />
     <Content Include="Assets\FluentSystemIcons-Regular.ttf" />
+    <Content Include="..\..\..\..\assets\font\DevToys-Tools-Icons.ttf">
+      <Link>Assets\DevToys-Tools-Icons.ttf</Link>
+    </Content>
     <None Include="..\..\..\..\LICENSE.md">
       <Link>Assets\LICENSE.md</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
