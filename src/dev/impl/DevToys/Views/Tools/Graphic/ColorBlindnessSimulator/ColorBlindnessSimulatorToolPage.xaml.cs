@@ -2,34 +2,32 @@
 
 using DevToys.Api.Core.Navigation;
 using DevToys.Shared.Core;
-using DevToys.ViewModels.Tools.PngJpgCompressor;
+using DevToys.ViewModels.Tools.ColorBlindnessSimulator;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-namespace DevToys.Views.Tools.PngJpgCompressor
+namespace DevToys.Views.Tools.ColorBlindnessSimulator
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class PngJpgCompressorToolPage : Page
+    public sealed partial class ColorBlindnessSimulatorToolPage : Page
     {
         public static readonly DependencyProperty ViewModelProperty
           = DependencyProperty.Register(
               nameof(ViewModel),
-              typeof(PngJpgCompressorToolViewModel),
-              typeof(PngJpgCompressorToolPage),
+              typeof(ColorBlindnessSimulatorToolViewModel),
+              typeof(ColorBlindnessSimulatorToolPage),
               new PropertyMetadata(null));
 
         /// <summary>
         /// Gets the page's view model.
         /// </summary>
-        public PngJpgCompressorToolViewModel ViewModel
+        public ColorBlindnessSimulatorToolViewModel ViewModel
         {
-            get => (PngJpgCompressorToolViewModel)GetValue(ViewModelProperty);
+            get => (ColorBlindnessSimulatorToolViewModel)GetValue(ViewModelProperty);
             set => SetValue(ViewModelProperty, value);
         }
-        public PngJpgCompressorToolPage()
+
+        public ColorBlindnessSimulatorToolPage()
         {
             InitializeComponent();
         }
@@ -42,7 +40,7 @@ namespace DevToys.Views.Tools.PngJpgCompressor
             {
                 // Set the view model
                 Assumes.NotNull(parameters.ViewModel, nameof(parameters.ViewModel));
-                ViewModel = (PngJpgCompressorToolViewModel)parameters.ViewModel!;
+                ViewModel = (ColorBlindnessSimulatorToolViewModel)parameters.ViewModel!;
                 DataContext = ViewModel;
             }
 
