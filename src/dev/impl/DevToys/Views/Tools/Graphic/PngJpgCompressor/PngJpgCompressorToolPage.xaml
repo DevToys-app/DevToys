@@ -90,6 +90,7 @@
                     Style="{StaticResource AccentButtonStyle}"
                     Content="{x:Bind ViewModel.Strings.SelectFilesInstruction3}"
                     HorizontalAlignment="Center"
+                    MinWidth="100"
                     Command="{x:Bind ViewModel.SelectFilesBrowseCommand}"/>
                 <TextBlock
                     Text="{x:Bind ViewModel.Strings.InvalidSelectedFiles}"

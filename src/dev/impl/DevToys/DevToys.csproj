@@ -28,6 +28,7 @@
     <Compile Include="Api\Tools\ParentAttribute.cs" />
     <Compile Include="Core\OOP\AppService.cs" />
     <Compile Include="Core\Threading\AsyncLazy.cs" />
+    <Compile Include="Helpers\ColorBlindnessSimulatorHelper.cs" />
     <Compile Include="Helpers\NumberBaseHelper.cs" />
     <Compile Include="Messages\PinToolToStartMessage.cs" />
     <Compile Include="Messages\OpenToolInNewWindowMessage.cs" />
@@ -49,6 +50,8 @@
     <Compile Include="ViewModels\Tools\Generators\GeneratorsGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\Graphic\ColorBlindnessSimulator\ColorBlindnessSimulatorToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Graphic\ColorBlindnessSimulator\ColorBlindnessSimulatorToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Graphic\GraphicGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\GroupToolProviderBase.cs" />
     <Compile Include="ViewModels\Tools\GroupToolViewModel.cs" />
@@ -63,6 +66,12 @@
     <Compile Include="ViewModels\Tools\Text\TextGroupToolProvider.cs" />
     <Compile Include="Views\Tools\AllTools\AllToolsToolPage.xaml.cs">
       <DependentUpon>AllToolsToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Graphic\ColorBlindnessSimulator\ColorBlindnessSimulatorToolPage.xaml.cs">
+      <DependentUpon>ColorBlindnessSimulatorToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Graphic\ColorBlindnessSimulator\ImagePreview.xaml.cs">
+      <DependentUpon>ImagePreview.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\GroupToolPage.xaml.cs">
       <DependentUpon>GroupToolPage.xaml</DependentUpon>
@@ -207,6 +216,7 @@
     <Content Include="Assets\GitHubMarkdownCss\github-markdown-light.css" />
     <Content Include="Assets\GitHubMarkdownCss\github-markdown.css" />
     <Content Include="Assets\GitHubMarkdownCss\index.html" />
+    <Content Include="Assets\Icons\ColorBlindnessSimulator.svg" />
     <Content Include="Assets\Icons\EncodersDecoders.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -495,6 +505,14 @@
     <Page Include="Views\Tools\EncodersDecoders\Base64EncoderDecoder\Base64EncoderDecoderToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\Graphic\ColorBlindnessSimulator\ColorBlindnessSimulatorToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tools\Graphic\ColorBlindnessSimulator\ImagePreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Tools\GroupToolPage.xaml">
       <SubType>Designer</SubType>

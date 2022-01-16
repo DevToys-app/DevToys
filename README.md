@@ -7,15 +7,18 @@
 <p align="center">
   A Swiss Army knife for developers.
 </p>
-<p align="center">  
-  <a style="text-decoration:none" href="https://etienne-baudoux.visualstudio.com/Side%20projects/_build/latest?definitionId=15&branchName=main">
+<p align="center">
+  <a style="text-decoration:none" href="https://etienne-baudoux.visualstudio.com/Side%20projects/_build/latest?definitionId=15&branchName=main" target="_blank">
     <img src="https://etienne-baudoux.visualstudio.com/Side%20projects/_apis/build/status/DevToys?branchName=main" alt="Build Status" />
   </a>
-  <a style="text-decoration:none" href="https://github.com/veler/DevToys/releases">
+  <a style="text-decoration:none" href="https://github.com/veler/DevToys/releases" target="_blank">
     <img src="https://img.shields.io/github/release/veler/devtoys.svg?label=Latest%20version" alt="Latest version" />
   </a>
-  <a style="text-decoration:none" href="https://www.microsoft.com/store/apps/9PGCV4V3BK4W">
+  <a style="text-decoration:none" href="https://www.microsoft.com/store/apps/9PGCV4V3BK4W" target="_blank">
     <img src="https://img.shields.io/badge/Microsoft%20Store-Download-green" alt="Store link" />
+  </a>
+  <a style="text-decoration:none" href="https://devtoys.app" target="_blank">
+    <img src="https://img.shields.io/badge/Website-devtoys.app-blue" alt="Website" />
   </a>
 </p>
 
@@ -44,6 +47,7 @@ Many tools are available.
   - Text Comparer
   - Markdown Preview
 - Graphic
+  - Color Blindness Simulator
   - PNG / JPEG Compressor
 
 ... and more are coming!
@@ -89,6 +93,7 @@ Here is the list of tool name you can use:
 - `jsonformat` Json Formatter
 - `jsonyaml` - Json <> Yaml
 - `jwt` - JWT Decoder
+- `colorblind` - Color Blindness Simulator
 - `imgcomp` - PNG/JPEG compressor
 - `markdown` - Markdown Preview
 - `regex` - Regular Expression Tester
