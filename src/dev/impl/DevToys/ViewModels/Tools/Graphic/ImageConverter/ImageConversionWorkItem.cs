@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using DevToys.Core.Threading;
 using DevToys.Helpers;
@@ -91,7 +92,7 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
         private async Task ExecuteSaveCommandAsync(ImageConverterToolViewModel viewModel)
         {
-            string? fileExtension = Path.GetExtension(FilePath);
+            string? fileExtension = ImageHelper.GetExtension(viewModel.ConvertedFormat);
 
             var savePicker = new FileSavePicker
             {
@@ -108,7 +109,8 @@ namespace DevToys.ViewModels.Tools.ImageConverter
             {
                 using (IRandomAccessStream outputStream = await newFile.OpenAsync(FileAccessMode.ReadWrite))
                 {
-                    BitmapEncoder encoder = await BitmapEncoder.CreateAsync(ImageHelper.GetEncoderGuid(viewModel.ConvertedFormat), outputStream);
+                    BitmapEncoder? encoder = await ImageHelper.GetEncoderAsync(viewModel.ConvertedFormat, outputStream);
+
                     encoder.SetSoftwareBitmap(Bitmap);
                     await encoder.FlushAsync();
                 }

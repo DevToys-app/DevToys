@@ -212,9 +212,10 @@ namespace DevToys.ViewModels.Tools.ImageConverter
                 foreach (ImageConversionWorkItem work in works)
                 {
                     StorageFile newFile = await selectedFolder.CreateFileAsync(work.FileName, CreationCollisionOption.ReplaceExisting);
+                    await newFile.RenameAsync(string.Concat(newFile.DisplayName, ImageHelper.GetExtension(ConvertedFormat)), NameCollisionOption.GenerateUniqueName);
                     using (IRandomAccessStream outputStream = await newFile.OpenAsync(FileAccessMode.ReadWrite))
                     {
-                        BitmapEncoder encoder = await BitmapEncoder.CreateAsync(ImageHelper.GetEncoderGuid(ConvertedFormat), outputStream);
+                        BitmapEncoder? encoder = await ImageHelper.GetEncoderAsync(ConvertedFormat, outputStream);
                         encoder.SetSoftwareBitmap(work.Bitmap);
                         await encoder.FlushAsync();
                     }
