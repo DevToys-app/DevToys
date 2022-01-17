@@ -89,7 +89,6 @@
     <Compile Include="Views\Tools\ImageConverter\ImageConverterToolPage.xaml.cs">
       <DependentUpon>ImageConverterToolPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tools\PngJpgCompressor\PngJpgCompressorToolPage.xaml.cs">
     <Compile Include="Views\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolPage.xaml.cs">
       <DependentUpon>LoremIpsumGeneratorToolPage.xaml</DependentUpon>
     </Compile>
@@ -538,7 +537,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Tools\NumberBaseConverter\NumberBaseConverterToolPage.xaml">
     <Page Include="Views\Tools\Converters\NumberBaseConverter\NumberBaseConverterToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
