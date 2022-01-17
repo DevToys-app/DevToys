@@ -2,6 +2,7 @@
 
 using System;
 using System.Threading.Tasks;
+using Windows.Foundation;
 using Windows.Graphics.Imaging;
 using Windows.Storage.Streams;
 
@@ -38,8 +39,8 @@ namespace DevToys.Helpers
 
             if (IsJpegFormat(format))
             {
-                var booleanBitmapTypedValue = new BitmapTypedValue(true, Windows.Foundation.PropertyType.Boolean);
-                encodingOptions.Add("Lossless", booleanBitmapTypedValue);
+                var booleanBitmapTypedValue = new BitmapTypedValue(1, PropertyType.Single);
+                encodingOptions.Add("ImageQuality", booleanBitmapTypedValue);
             }
 
             if (encodingOptions is not null)
