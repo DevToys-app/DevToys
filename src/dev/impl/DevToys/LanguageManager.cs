@@ -26,6 +26,7 @@ namespace DevToys
 
         private readonly AllToolsStrings _alltools = new AllToolsStrings();
         private readonly Base64EncoderDecoderStrings _base64encoderdecoder = new Base64EncoderDecoderStrings();
+        private readonly ColorBlindnessSimulatorStrings _colorblindnesssimulator = new ColorBlindnessSimulatorStrings();
         private readonly CommonStrings _common = new CommonStrings();
         private readonly GuidGeneratorStrings _guidgenerator = new GuidGeneratorStrings();
         private readonly HashGeneratorStrings _hashgenerator = new HashGeneratorStrings();
@@ -34,6 +35,7 @@ namespace DevToys
         private readonly JsonFormatterStrings _jsonformatter = new JsonFormatterStrings();
         private readonly JsonYamlStrings _jsonyaml = new JsonYamlStrings();
         private readonly JwtDecoderEncoderStrings _jwtdecoderencoder = new JwtDecoderEncoderStrings();
+        private readonly LoremIpsumGeneratorStrings _loremipsumgenerator = new LoremIpsumGeneratorStrings();
         private readonly MainPageStrings _mainpage = new MainPageStrings();
         private readonly MarkdownPreviewStrings _markdownpreview = new MarkdownPreviewStrings();
         private readonly NumberBaseConverterStrings _numberbaseconverter = new NumberBaseConverterStrings();
@@ -65,6 +67,11 @@ namespace DevToys
         /// Gets the <see cref="Base64EncoderDecoderStrings"/>.
         /// </summary>
         public Base64EncoderDecoderStrings Base64EncoderDecoder => _base64encoderdecoder;
+
+        /// <summary>
+        /// Gets the <see cref="ColorBlindnessSimulatorStrings"/>.
+        /// </summary>
+        public ColorBlindnessSimulatorStrings ColorBlindnessSimulator => _colorblindnesssimulator;
 
         /// <summary>
         /// Gets the <see cref="CommonStrings"/>.
@@ -105,6 +112,11 @@ namespace DevToys
         /// Gets the <see cref="JwtDecoderEncoderStrings"/>.
         /// </summary>
         public JwtDecoderEncoderStrings JwtDecoderEncoder => _jwtdecoderencoder;
+
+        /// <summary>
+        /// Gets the <see cref="LoremIpsumGeneratorStrings"/>.
+        /// </summary>
+        public LoremIpsumGeneratorStrings LoremIpsumGenerator => _loremipsumgenerator;
 
         /// <summary>
         /// Gets the <see cref="MainPageStrings"/>.
@@ -301,6 +313,86 @@ namespace DevToys
         /// Gets the resource SearchDisplayName.
         /// </summary>
         public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+    }
+
+    public class ColorBlindnessSimulatorStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("ColorBlindnessSimulator");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
+        /// Gets the resource MenuDisplayName.
+        /// </summary>
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+
+        /// <summary>
+        /// Gets the resource InvalidSelectedFiles.
+        /// </summary>
+        public string InvalidSelectedFiles => _resources.GetString("InvalidSelectedFiles");
+
+        /// <summary>
+        /// Gets the resource SelectFilesInstruction1.
+        /// </summary>
+        public string SelectFilesInstruction1 => _resources.GetString("SelectFilesInstruction1");
+
+        /// <summary>
+        /// Gets the resource SelectFilesInstruction2.
+        /// </summary>
+        public string SelectFilesInstruction2 => _resources.GetString("SelectFilesInstruction2");
+
+        /// <summary>
+        /// Gets the resource SelectFilesInstruction3.
+        /// </summary>
+        public string SelectFilesInstruction3 => _resources.GetString("SelectFilesInstruction3");
+
+        /// <summary>
+        /// Gets the resource SaveAs.
+        /// </summary>
+        public string SaveAs => _resources.GetString("SaveAs");
+
+        /// <summary>
+        /// Gets the resource Cancel.
+        /// </summary>
+        public string Cancel => _resources.GetString("Cancel");
+
+        /// <summary>
+        /// Gets the resource DeuteranopiaSimulation.
+        /// </summary>
+        public string DeuteranopiaSimulation => _resources.GetString("DeuteranopiaSimulation");
+
+        /// <summary>
+        /// Gets the resource OriginalPicture.
+        /// </summary>
+        public string OriginalPicture => _resources.GetString("OriginalPicture");
+
+        /// <summary>
+        /// Gets the resource ProtanopiaSimulation.
+        /// </summary>
+        public string ProtanopiaSimulation => _resources.GetString("ProtanopiaSimulation");
+
+        /// <summary>
+        /// Gets the resource TritanopiaSimulation.
+        /// </summary>
+        public string TritanopiaSimulation => _resources.GetString("TritanopiaSimulation");
+
+        /// <summary>
+        /// Gets the resource SelectFilesInstruction4.
+        /// </summary>
+        public string SelectFilesInstruction4 => _resources.GetString("SelectFilesInstruction4");
     }
 
     public class CommonStrings : ObservableObject
@@ -989,6 +1081,76 @@ namespace DevToys
         /// Gets the resource SearchDisplayName.
         /// </summary>
         public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+    }
+
+    public class LoremIpsumGeneratorStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("LoremIpsumGenerator");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
+        /// Gets the resource Configuration.
+        /// </summary>
+        public string Configuration => _resources.GetString("Configuration");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource LengthDescription.
+        /// </summary>
+        public string LengthDescription => _resources.GetString("LengthDescription");
+
+        /// <summary>
+        /// Gets the resource LengthTitle.
+        /// </summary>
+        public string LengthTitle => _resources.GetString("LengthTitle");
+
+        /// <summary>
+        /// Gets the resource MenuDisplayName.
+        /// </summary>
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
+
+        /// <summary>
+        /// Gets the resource Output.
+        /// </summary>
+        public string Output => _resources.GetString("Output");
+
+        /// <summary>
+        /// Gets the resource ParagraphsType.
+        /// </summary>
+        public string ParagraphsType => _resources.GetString("ParagraphsType");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+
+        /// <summary>
+        /// Gets the resource SentencesType.
+        /// </summary>
+        public string SentencesType => _resources.GetString("SentencesType");
+
+        /// <summary>
+        /// Gets the resource TypeDescription.
+        /// </summary>
+        public string TypeDescription => _resources.GetString("TypeDescription");
+
+        /// <summary>
+        /// Gets the resource TypeTitle.
+        /// </summary>
+        public string TypeTitle => _resources.GetString("TypeTitle");
+
+        /// <summary>
+        /// Gets the resource WordsType.
+        /// </summary>
+        public string WordsType => _resources.GetString("WordsType");
     }
 
     public class MainPageStrings : ObservableObject

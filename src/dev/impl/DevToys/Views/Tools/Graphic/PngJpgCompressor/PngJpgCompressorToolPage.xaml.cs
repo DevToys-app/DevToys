@@ -15,11 +15,11 @@ namespace DevToys.Views.Tools.PngJpgCompressor
     public sealed partial class PngJpgCompressorToolPage : Page
     {
         public static readonly DependencyProperty ViewModelProperty
-       = DependencyProperty.Register(
-           nameof(ViewModel),
-           typeof(PngJpgCompressorToolViewModel),
-           typeof(PngJpgCompressorToolPage),
-           new PropertyMetadata(null));
+          = DependencyProperty.Register(
+              nameof(ViewModel),
+              typeof(PngJpgCompressorToolViewModel),
+              typeof(PngJpgCompressorToolPage),
+              new PropertyMetadata(null));
 
         /// <summary>
         /// Gets the page's view model.

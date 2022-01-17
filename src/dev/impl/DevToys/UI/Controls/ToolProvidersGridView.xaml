@@ -70,7 +70,7 @@
                         Grid.Row="1"
                         Style="{StaticResource BodyStrongTextBlockStyle}"
                         Foreground="{ThemeResource GridViewItemForeground}"
-                        Text="{x:Bind MenuDisplayName}"
+                        Text="{x:Bind SearchDisplayName}"
                         TextWrapping="Wrap"
                         TextTrimming="CharacterEllipsis" />
                     <TextBlock
