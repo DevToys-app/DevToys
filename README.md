@@ -49,6 +49,7 @@ Many tools are available.
 - Graphic
   - Color Blindness Simulator
   - PNG / JPEG Compressor
+  - Image Converter
 
 ... and more are coming!
 
