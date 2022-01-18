@@ -70,7 +70,6 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
             DeleteCommand = new RelayCommand(ExecuteDeleteCommand);
             SaveCommand = new AsyncRelayCommand<ImageConverterToolViewModel>(ExecuteSaveCommandAsync);
-            ShowErrorMessageCommand = new AsyncRelayCommand(ExecuteShowErrorMessageCommandAsync);
 
             ComputePropertiesAsync(file).Forget();
         }
@@ -117,25 +116,6 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
                 DeleteCommand.Execute(this);
             }
-        }
-
-        #endregion
-
-        #region ShowErrorMessageCommand
-
-        public IAsyncRelayCommand ShowErrorMessageCommand { get; }
-
-        private async Task ExecuteShowErrorMessageCommandAsync()
-        {
-            var dialog = new ContentDialog
-            {
-                Title = Strings.DetailsTitle,
-                CloseButtonText = Strings.OK,
-                DefaultButton = ContentDialogButton.Close,
-                Content = ErrorMessage!
-            };
-
-            await dialog.ShowAsync();
         }
 
         #endregion

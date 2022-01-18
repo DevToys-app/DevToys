@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Composition;
@@ -31,7 +33,9 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
         public Type View { get; } = typeof(ImageConverterToolPage);
 
-        public string ConvertedFormat;
+        public string ConvertedFormat { get; set; }
+
+        internal ObservableCollection<ImageConversionWorkItem> ConversionWorkQueue { get; } = new();
 
         internal ImageConverterStrings Strings => LanguageManager.Instance.ImageConverter;
 
@@ -69,8 +73,6 @@ namespace DevToys.ViewModels.Tools.ImageConverter
         {
             DeleteAllCommand.Execute(null);
         }
-
-        internal ObservableCollection<ImageConversionWorkItem> ConversionWorkQueue { get; } = new();
 
         #region SelectFilesAreaDragOverCommand
 

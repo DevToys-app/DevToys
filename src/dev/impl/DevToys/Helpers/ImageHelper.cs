@@ -10,13 +10,7 @@ namespace DevToys.Helpers
 {
     public static class ImageHelper
     {
-        public static bool IsPngFormat(string format) { return format is "PNG"; }
-        public static bool IsJpegFormat(string format) { return format is "JPEG" or "JPEGXR"; }
-        public static bool IsBmpFormat(string format) { return format is "BMP"; }
-        public static bool IsTiffFormat(string format) { return format is "TIFF"; }
-        public static bool IsHeifFormat(string format) { return format is "HEIF"; }
-        public static bool IsGifFormat(string format) { return format is "GIF"; }
-
+        public static bool IsJpegFormat(string format) { return string.Equals(format, "JPEG") || string.Equals(format, "JPEGXR"); }
 
         public static string GetExtension(string format)
         {
@@ -29,7 +23,7 @@ namespace DevToys.Helpers
                 "TIFF" => ".tif",
                 "HEIF" => ".heic",
                 "GIF" => ".gif",
-                _ => throw new Exception()
+                _ => throw new NotSupportedException()
             };
         }
 
@@ -43,7 +37,7 @@ namespace DevToys.Helpers
                 encodingOptions.Add("ImageQuality", booleanBitmapTypedValue);
             }
 
-            if (encodingOptions is not null)
+            if (encodingOptions.Count > 0)
             {
                 return await BitmapEncoder.CreateAsync(GetEncoderGuid(format), encoderAccessStream, encodingOptions);
             }
@@ -64,7 +58,7 @@ namespace DevToys.Helpers
                 "TIFF" => BitmapEncoder.TiffEncoderId,
                 "HEIF" => BitmapEncoder.HeifEncoderId,
                 "GIF" => BitmapEncoder.GifEncoderId,
-                _ => throw new Exception()
+                _ => throw new NotSupportedException()
             };
         }
     }
