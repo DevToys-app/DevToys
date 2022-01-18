@@ -131,9 +131,7 @@ namespace DevToys.ViewModels.Tools.ImageConverter
                 {
                     if (storageItem is StorageFile file)
                     {
-                        string fileExtension = Path.GetExtension(file.Name);
-
-                        if (SupportedFileExtensions.Any(ext => string.Equals(ext, fileExtension, StringComparison.OrdinalIgnoreCase)))
+                        if (SupportedFileExtensions.Any(ext => string.Equals(ext, Path.GetExtension(file.Name), StringComparison.OrdinalIgnoreCase)))
                         {
                             QueueNewConversion(file);
                         }
