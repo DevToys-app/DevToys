@@ -26,7 +26,7 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
         internal string FilePath { get; }
 
-        internal SoftwareBitmap Bitmap { get; }
+        internal SoftwareBitmap Bitmap { get; private set; }
 
         internal string FileSize
         {
@@ -49,16 +49,11 @@ namespace DevToys.ViewModels.Tools.ImageConverter
             FileName = file.Name;
             FilePath = file.Path;
 
-            using (IRandomAccessStream stream = Task.Run(async () => await file.OpenAsync(FileAccessMode.Read)).Result)
-            {
-                BitmapDecoder decoder = Task.Run(async () => await BitmapDecoder.CreateAsync(stream)).Result;
-                Bitmap = Task.Run(async () => await decoder.GetSoftwareBitmapAsync()).Result;
-            }
-
             DeleteCommand = new RelayCommand(ExecuteDeleteCommand);
             SaveCommand = new AsyncRelayCommand<ImageConverterToolViewModel>(ExecuteSaveCommandAsync);
 
             ComputePropertiesAsync(file).Forget();
+            DecodeImageAsync(file).Forget();
         }
 
         #region DeleteCommand
@@ -111,6 +106,15 @@ namespace DevToys.ViewModels.Tools.ImageConverter
         {
             var storageFileSize = (await file.GetBasicPropertiesAsync()).Size;
             FileSize = StorageFileHelper.HumanizeFileSize(storageFileSize, Strings.FileSizeDisplay);
+        }
+
+        private async Task DecodeImageAsync(StorageFile file)
+        {
+            using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.Read))
+            {
+                BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
+                Bitmap = await decoder.GetSoftwareBitmapAsync();
+            }
         }
     }
 }
