@@ -2,8 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using DevToys.Core.Threading;
 using DevToys.Helpers;
@@ -13,24 +11,13 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Windows.Graphics.Imaging;
 using Windows.Storage;
-using Windows.Storage.FileProperties;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
-using Windows.UI.Xaml.Controls;
 
 namespace DevToys.ViewModels.Tools.ImageConverter
 {
     internal sealed class ImageConversionWorkItem : ObservableRecipient
     {
-        private static readonly string[] SizesStrings
-            = {
-                LanguageManager.Instance.Common.Bytes,
-                LanguageManager.Instance.Common.Kilobytes,
-                LanguageManager.Instance.Common.Megabytes,
-                LanguageManager.Instance.Common.Gigabytes,
-                LanguageManager.Instance.Common.Terabytes
-            };
-
         private string _fileSize = string.Empty;
 
         internal ImageConverterStrings Strings => LanguageManager.Instance.ImageConverter;
@@ -122,27 +109,8 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
         private async Task ComputePropertiesAsync(StorageFile file)
         {
-            BasicProperties fileProperties = await file.GetBasicPropertiesAsync();
-
-            string fileSize = HumanizeFileSize(fileProperties.Size);
-
-            await ThreadHelper.RunOnUIThreadAsync(() =>
-            {
-                FileSize = fileSize;
-            });
-        }
-
-        private string HumanizeFileSize(double fileSize)
-        {
-            int order = 0;
-            while (fileSize >= 1024 && order < SizesStrings.Length - 1)
-            {
-                order++;
-                fileSize /= 1024;
-            }
-
-            string fileSizeString = string.Format(Strings.FileSizeDisplay, fileSize, SizesStrings[order]);
-            return fileSizeString;
+            var storageFileSize = (await file.GetBasicPropertiesAsync()).Size;
+            FileSize = StorageFileHelper.HumanizeFileSize(storageFileSize, Strings.FileSizeDisplay);
         }
     }
 }
