@@ -133,7 +133,7 @@ namespace DevToys.ViewModels.Tools.ImageConverter
                     {
                         if (SupportedFileExtensions.Any(ext => string.Equals(ext, file.FileType, StringComparison.OrdinalIgnoreCase)))
                         {
-                            QueueNewConversion(file);
+                            QueueNewConversionWorkItem(file);
                         }
                         else
                         {
@@ -174,7 +174,7 @@ namespace DevToys.ViewModels.Tools.ImageConverter
                 IReadOnlyList<StorageFile> files = await filePicker.PickMultipleFilesAsync();
                 for (int i = 0; i < files.Count; i++)
                 {
-                    QueueNewConversion(files[i]);
+                    QueueNewConversionWorkItem(files[i]);
                 }
             });
         }
@@ -227,7 +227,7 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
         #endregion
 
-        private void QueueNewConversion(StorageFile file)
+        private void QueueNewConversionWorkItem(StorageFile file)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
