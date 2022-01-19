@@ -10,7 +10,7 @@ namespace DevToys.Helpers
 {
     public static class ImageHelper
     {
-        public static bool IsJpegFormat(string format) { return string.Equals(format, "JPEG") || string.Equals(format, "JPEGXR"); }
+        public static bool IsJpegFormat(string format) { return string.Equals(format, "JPEG", StringComparison.Ordinal) || string.Equals(format, "JPEGXR", StringComparison.Ordinal); }
 
         public static string GetExtension(string format)
         {

@@ -469,12 +469,6 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <PRIResource Include="Strings\zh-Hans\ImageConverter.resw" />
-    <PRIResource Include="Strings\ru-RU\ImageConverter.resw" />
-    <PRIResource Include="Strings\pt-PT\ImageConverter.resw" />
-    <PRIResource Include="Strings\pl-PL\ImageConverter.resw" />
-    <PRIResource Include="Strings\fr-FR\ImageConverter.resw" />
-    <PRIResource Include="Strings\cs-CZ\ImageConverter.resw" />
     <PRIResource Include="Strings\*\*.resw" />
     <Page Include="Themes\Custom.xaml">
       <Generator>MSBuild:Compile</Generator>
