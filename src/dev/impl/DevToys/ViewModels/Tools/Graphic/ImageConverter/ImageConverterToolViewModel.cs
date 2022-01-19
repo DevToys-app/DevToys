@@ -26,7 +26,7 @@ namespace DevToys.ViewModels.Tools.ImageConverter
     [Export(typeof(ImageConverterToolViewModel))]
     public sealed class ImageConverterToolViewModel : ObservableRecipient, IToolViewModel, IDisposable
     {
-        private static readonly string[] SupportedFileExtensions = new[] { ".png", ".jpg", ".jpeg", ".jfif", ".pjpeg", ".pjp", ".jxr", ".bmp", ".tiff", ".tif", ".heif", ".gif" };
+        private static readonly string[] SupportedFileExtensions = new[] { ".png", ".jpg", ".jpeg", ".bmp" };
 
         private bool _isSelectFilesAreaHighlithed;
         private bool _hasInvalidFilesSelected;

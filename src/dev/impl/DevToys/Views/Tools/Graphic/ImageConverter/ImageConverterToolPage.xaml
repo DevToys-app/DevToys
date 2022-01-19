@@ -61,11 +61,7 @@
                     SelectedValue="{x:Bind ViewModel.ConvertedFormat, Mode=TwoWay}">
                     <ComboBoxItem Tag="PNG" Content="{x:Bind ViewModel.Strings.PNG}"/>
                     <ComboBoxItem Tag="JPEG" Content="{x:Bind ViewModel.Strings.JPEG}"/>
-                    <ComboBoxItem Tag="JPEGXR" Content="{x:Bind ViewModel.Strings.JPEGXR}"/>
                     <ComboBoxItem Tag="BMP" Content="{x:Bind ViewModel.Strings.BMP}"/>
-                    <ComboBoxItem Tag="TIFF" Content="{x:Bind ViewModel.Strings.TIFF}"/>
-                    <ComboBoxItem Tag="HEIF" Content="{x:Bind ViewModel.Strings.HEIF}"/>
-                    <ComboBoxItem Tag="GIF" Content="{x:Bind ViewModel.Strings.GIF}"/>
                 </ComboBox>
             </controls:ExpandableSettingControl>
         </StackPanel>
