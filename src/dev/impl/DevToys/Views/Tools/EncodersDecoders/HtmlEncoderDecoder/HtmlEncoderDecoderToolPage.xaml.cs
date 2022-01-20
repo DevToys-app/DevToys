@@ -46,7 +46,7 @@ namespace DevToys.Views.Tools.HtmlEncoderDecoder
 
             if (!string.IsNullOrWhiteSpace(parameters.ClipBoardContent))
             {
-                ViewModel.ConversionMode = HtmlEncoderDecoderToolViewModel.DecodeConversion;
+                ViewModel.IsEncodeMode = false;
                 ViewModel.InputValue = parameters.ClipBoardContent;
             }
 
