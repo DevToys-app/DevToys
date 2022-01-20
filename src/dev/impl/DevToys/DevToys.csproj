@@ -33,6 +33,7 @@
     <Compile Include="Messages\PinToolToStartMessage.cs" />
     <Compile Include="Messages\OpenToolInNewWindowMessage.cs" />
     <Compile Include="Messages\ChangeSelectedMenuItemMessage.cs" />
+    <Compile Include="Models\HashingAlgorithm.cs" />
     <Compile Include="Models\NoResultFoundMockToolProvider.cs" />
     <Compile Include="Models\Radix.cs" />
     <Compile Include="Models\NumberBaseFormat.cs" />
@@ -47,6 +48,8 @@
     <Compile Include="ViewModels\Tools\AllTools\AllToolsToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Converters\ConvertersGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\EncodersDecodersGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Generators\CheckSumGenerator\CheckSumGeneratorToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Generators\CheckSumGenerator\CheckSumGeneratorToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Generators\GeneratorsGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolViewModel.cs" />
@@ -66,6 +69,9 @@
     <Compile Include="ViewModels\Tools\Text\TextGroupToolProvider.cs" />
     <Compile Include="Views\Tools\AllTools\AllToolsToolPage.xaml.cs">
       <DependentUpon>AllToolsToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Generators\CheckSumGenerator\CheckSumGeneratorToolPage.xaml.cs">
+      <DependentUpon>CheckSumGeneratorToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\Graphic\ColorBlindnessSimulator\ColorBlindnessSimulatorToolPage.xaml.cs">
       <DependentUpon>ColorBlindnessSimulatorToolPage.xaml</DependentUpon>
@@ -505,6 +511,10 @@
     <Page Include="Views\Tools\EncodersDecoders\Base64EncoderDecoder\Base64EncoderDecoderToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\Generators\CheckSumGenerator\CheckSumGeneratorToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Tools\Graphic\ColorBlindnessSimulator\ColorBlindnessSimulatorToolPage.xaml">
       <SubType>Designer</SubType>

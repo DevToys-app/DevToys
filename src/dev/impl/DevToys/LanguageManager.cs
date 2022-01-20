@@ -30,6 +30,7 @@ namespace DevToys
         private readonly CommonStrings _common = new CommonStrings();
         private readonly GuidGeneratorStrings _guidgenerator = new GuidGeneratorStrings();
         private readonly HashGeneratorStrings _hashgenerator = new HashGeneratorStrings();
+        private readonly CheckSumGeneratorStrings _checksumgenerator = new CheckSumGeneratorStrings();
         private readonly HtmlEncoderDecoderStrings _htmlencoderdecoder = new HtmlEncoderDecoderStrings();
         private readonly JsonFormatterStrings _jsonformatter = new JsonFormatterStrings();
         private readonly JsonYamlStrings _jsonyaml = new JsonYamlStrings();
@@ -86,6 +87,11 @@ namespace DevToys
         /// Gets the <see cref="HashGeneratorStrings"/>.
         /// </summary>
         public HashGeneratorStrings HashGenerator => _hashgenerator;
+
+        /// <summary>
+        /// Gets the <see cref="CheckSumGeneratorStrings"/>.
+        /// </summary>
+        public CheckSumGeneratorStrings CheckSumGenerator => _checksumgenerator;
 
         /// <summary>
         /// Gets the <see cref="HtmlEncoderDecoderStrings"/>.
@@ -640,6 +646,87 @@ namespace DevToys
         /// Gets the resource SearchDisplayName.
         /// </summary>
         public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+    }
+
+    //TODO: Update this accordingly
+    public class CheckSumGeneratorStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("CheckSumGenerator");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString(nameof(AccessibleName));
+
+        /// <summary>
+        /// Gets the resource Configuration.
+        /// </summary>
+        public string Configuration => _resources.GetString(nameof(Configuration));
+
+        /// <summary>
+        /// Gets the resource MenuDisplayName.
+        /// </summary>
+        public string MenuDisplayName => _resources.GetString(nameof(MenuDisplayName));
+
+        /// <summary>
+        /// Gets the resource Input.
+        /// </summary>
+        public string Input => _resources.GetString(nameof(Input));
+
+        /// <summary>
+        /// Gets the resource Uppercase.
+        /// </summary>
+        public string Uppercase => _resources.GetString(nameof(Uppercase));
+
+        /// <summary>
+        /// Gets the resource Hashing Algorithm Title.
+        /// </summary>
+        public string HashingAlgorithmTitle => _resources.GetString(nameof(HashingAlgorithmTitle));
+
+        /// <summary>
+        /// Gets the resource Hashing Algorithm Description.
+        /// </summary>
+        public string HashingAlgorithmDescription => _resources.GetString(nameof(HashingAlgorithmDescription));
+
+        /// <summary>
+        /// Gets the resource SelectFilesInstruction1.
+        /// </summary>
+        public string SelectFilesInstruction1 => _resources.GetString(nameof(SelectFilesInstruction1));
+
+        /// <summary>
+        /// Gets the resource SelectFilesInstruction2.
+        /// </summary>
+        public string SelectFilesInstruction2 => _resources.GetString(nameof(SelectFilesInstruction2));
+
+        /// <summary>
+        /// Gets the resource SelectFilesInstruction3.
+        /// </summary>
+        public string SelectFilesInstruction3 => _resources.GetString(nameof(SelectFilesInstruction3));
+
+        /// <summary>
+        /// Gets the resource SelectFilesInstruction4.
+        /// </summary>
+        public string SelectFilesInstruction4 => _resources.GetString(nameof(SelectFilesInstruction4));
+
+        /// <summary>
+        /// Gets the resource Output.
+        /// </summary>
+        public string Output => _resources.GetString(nameof(Output));
+
+        /// <summary>
+        /// Gets the resource Output Comparer.
+        /// </summary>
+        public string OutputComparer => _resources.GetString(nameof(OutputComparer));
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString(nameof(Description));
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString(nameof(SearchDisplayName));
     }
 
     public class HtmlEncoderDecoderStrings : ObservableObject
