@@ -22,11 +22,11 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
         /// <summary>
         /// Whether the tool should encode or decode Base64.
         /// </summary>
-        private static readonly SettingDefinition<string> Conversion
+        private static readonly SettingDefinition<bool> EncodeMode
             = new(
-                name: $"{nameof(Base64EncoderDecoderToolViewModel)}.{nameof(Conversion)}",
+                name: $"{nameof(Base64EncoderDecoderToolViewModel)}.{nameof(EncodeMode)}",
                 isRoaming: true,
-                defaultValue: DefaultConversion);
+                defaultValue: true);
 
         /// <summary>
         /// Whether the tool should encode/decode in Unicode or ASCII.
@@ -38,8 +38,6 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
                 defaultValue: DefaultEncoding);
 
         private const string DefaultEncoding = "UTF-8";
-        private const string DefaultConversion = "Encode";
-        internal const string DecodeConversion = "Decode";
 
         private readonly IMarketingService _marketingService;
         private readonly ISettingsProvider _settingsProvider;
@@ -81,18 +79,18 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
         /// <summary>
         /// Gets or sets the conversion mode.
         /// </summary>
-        internal string ConversionMode
+        internal bool IsEncodeMode
         {
-            get => _settingsProvider.GetSetting(Conversion);
+            get => _settingsProvider.GetSetting(EncodeMode);
             set
             {
                 if (!_setPropertyInProgress)
                 {
                     _setPropertyInProgress = true;
                     ThreadHelper.ThrowIfNotOnUIThread();
-                    if (!string.Equals(_settingsProvider.GetSetting(Conversion), value, StringComparison.Ordinal))
+                    if (_settingsProvider.GetSetting(EncodeMode) != value)
                     {
-                        _settingsProvider.SetSetting(Conversion, value);
+                        _settingsProvider.SetSetting(EncodeMode, value);
                         OnPropertyChanged();
                     }
                     InputValue = OutputValue;
@@ -146,7 +144,7 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
             while (_conversionQueue.TryDequeue(out string? text))
             {
                 string conversionResult;
-                if (string.Equals(ConversionMode, DefaultConversion, StringComparison.Ordinal))
+                if (IsEncodeMode)
                 {
                     conversionResult = await EncodeBase64DataAsync(text).ConfigureAwait(false);
                 }

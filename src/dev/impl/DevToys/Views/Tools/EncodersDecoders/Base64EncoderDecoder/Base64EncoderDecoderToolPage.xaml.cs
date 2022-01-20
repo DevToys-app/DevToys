@@ -46,7 +46,7 @@ namespace DevToys.Views.Tools.Base64EncoderDecoder
 
             if (!string.IsNullOrWhiteSpace(parameters.ClipBoardContent))
             {
-                ViewModel.ConversionMode = Base64EncoderDecoderToolViewModel.DecodeConversion;
+                ViewModel.IsEncodeMode = false;
                 ViewModel.InputValue = parameters.ClipBoardContent;
             }
 
