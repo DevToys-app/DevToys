@@ -138,8 +138,8 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
             CancelCommand = new RelayCommand(ExecuteCancelCommand);
             ShowErrorMessageCommand = new AsyncRelayCommand(ExecuteShowErrorMessageCommandAsync);
 
-            ComputePropertiesAsync(file).Forget();
-            ConvertAsync(appService).Forget();
+            ComputePropertiesAsync(file).ForgetSafely();
+            ConvertAsync(appService).ForgetSafely();
         }
 
         public void Dispose()
@@ -228,6 +228,8 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
 
         private async Task ComputePropertiesAsync(StorageFile file)
         {
+            await TaskScheduler.Default;
+
             var storageFileSize = (await file.GetBasicPropertiesAsync()).Size;
             OriginalFileSize = StorageFileHelper.HumanizeFileSize(storageFileSize, Strings.FileSizeDisplay);
         }

@@ -26,7 +26,7 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
         internal string FilePath { get; }
 
-        internal SoftwareBitmap Bitmap { get; private set; }
+        internal SoftwareBitmap? Bitmap { get; private set; }
 
         internal string FileSize
         {
@@ -104,12 +104,16 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
         private async Task ComputePropertiesAsync(StorageFile file)
         {
+            await TaskScheduler.Default;
+
             var storageFileSize = (await file.GetBasicPropertiesAsync()).Size;
             FileSize = StorageFileHelper.HumanizeFileSize(storageFileSize, Strings.FileSizeDisplay);
         }
 
         private async Task DecodeImageAsync(StorageFile file)
         {
+            await TaskScheduler.Default;
+
             using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.Read))
             {
                 BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
