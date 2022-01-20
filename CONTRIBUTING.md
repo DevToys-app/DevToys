@@ -44,7 +44,6 @@ The tool provider is instantiated when the app starts. The view and view models 
 Several attributes can be used when implementing an `IToolProvider`. They can be used in customize the behavior of the tool in DevToys without needing to implement a special logic for it.
 You can find the attributes [here](https://github.com/veler/DevToys/tree/main/src/dev/impl/DevToys/Api/Tools). Here is a non-exhaustive list of attribute to use:
 * [CompactOverlaySizeAttribute](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/Api/Tools/CompactOverlaySizeAttribute.cs)
-* [IsFooterItemAttribute](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/Api/Tools/IsFooterItemAttribute.cs)
 * [NameAttribute](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/Api/Tools/NameAttribute.cs)
 * [NotScrollableAttribute](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/Api/Tools/NotScrollableAttribute.cs)
 * [OrderAttribute](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/Api/Tools/OrderAttribute.cs)
@@ -53,9 +52,9 @@ You can find the attributes [here](https://github.com/veler/DevToys/tree/main/sr
 ## Sample
 
 A good tool to take example on is `Json <> Yaml` converter.
-* [The tool provider](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/ViewModels/Tools/JsonYaml/JsonYamlToolProvider.cs)
-* [The view model](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/ViewModels/Tools/JsonYaml/JsonYamlToolViewModel.cs)
-* [The view](https://github.com/veler/DevToys/tree/main/src/dev/impl/DevToys/Views/Tools/JsonYaml)
+* [The tool provider](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/ViewModels/Tools/Converters/JsonYaml/JsonYamlToolProvider.cs)
+* [The view model](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/ViewModels/Tools/Converters/JsonYaml/JsonYamlToolViewModel.cs)
+* [The view](https://github.com/veler/DevToys/tree/main/src/dev/impl/DevToys/Views/Tools/Converters/JsonYaml)
 
 ## Things to keep in mind
 
