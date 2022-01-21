@@ -120,11 +120,32 @@
   <data name="AccessibleName" xml:space="preserve">
     <value>CheckSum Generator tool</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Configuration" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Generate an hash with CheckSum based on a file</value>
   </data>
+  <data name="HashingAlgorithmDescription" xml:space="preserve">
+    <value>Select which hashing algorithm you want to use</value>
+  </data>
+  <data name="HashingAlgorithmTitle" xml:space="preserve">
+    <value>Hashing Algorithm</value>
+  </data>
+  <data name="Input" xml:space="preserve">
+    <value>Input</value>
+  </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>CheckSum Generator</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>Output</value>
+  </data>
+  <data name="OutputComparer" xml:space="preserve">
+    <value>Output Comparer</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Save as</value>
@@ -133,12 +154,18 @@
     <value>CheckSum Generator</value>
   </data>
   <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>Drag &amp;amp; drop a file here</value>
+    <value>Drag &amp; drop a file here</value>
   </data>
   <data name="SelectFilesInstruction2" xml:space="preserve">
     <value>or</value>
   </data>
   <data name="SelectFilesInstruction3" xml:space="preserve">
     <value>Browse files</value>
+  </data>
+  <data name="SelectFilesInstruction4" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="Uppercase" xml:space="preserve">
+    <value>Uppercase</value>
   </data>
 </root>

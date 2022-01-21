@@ -29,11 +29,13 @@
     <Compile Include="Core\OOP\AppService.cs" />
     <Compile Include="Core\Threading\AsyncLazy.cs" />
     <Compile Include="Helpers\ColorBlindnessSimulatorHelper.cs" />
+    <Compile Include="Helpers\HashingHelper.cs" />
     <Compile Include="Helpers\NumberBaseHelper.cs" />
     <Compile Include="Messages\PinToolToStartMessage.cs" />
     <Compile Include="Messages\OpenToolInNewWindowMessage.cs" />
     <Compile Include="Messages\ChangeSelectedMenuItemMessage.cs" />
     <Compile Include="Models\HashingAlgorithm.cs" />
+    <Compile Include="Models\HashingProgress.cs" />
     <Compile Include="Models\NoResultFoundMockToolProvider.cs" />
     <Compile Include="Models\Radix.cs" />
     <Compile Include="Models\NumberBaseFormat.cs" />

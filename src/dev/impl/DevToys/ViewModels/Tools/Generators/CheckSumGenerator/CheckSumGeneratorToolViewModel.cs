@@ -22,9 +22,15 @@ using Windows.Storage.FileProperties;
 using DevToys.Shared.Core.Threading;
 using Windows.Storage.Pickers;
 using Windows.UI.Xaml;
+using System.Linq;
+using DevToys.Core;
+using Clipboard = Windows.ApplicationModel.DataTransfer.Clipboard;
+using DevToys.Helpers;
+using System.Threading;
 
 namespace DevToys.ViewModels.Tools.CheckSumGenerator
 {
+    [Export(typeof(CheckSumGeneratorToolViewModel))]
     public sealed class CheckSumGeneratorToolViewModel : ObservableRecipient, IToolViewModel
     {
         //TODO: We could use some basic caching
@@ -50,11 +56,17 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
         private readonly IMarketingService _marketingService;
         private readonly ISettingsProvider _settingsProvider;
 
+        private readonly object _lockObject = new();
+        private CancellationTokenSource _cancellationTokenSource = new();
         private bool _isSelectFilesAreaHighlithed;
         private bool _isCalculationInProgress;
         private IStorageFile? _inputFile;
+        private int _progress;
         private string? _output;
         private string? _outputComparer;
+        private bool _toolSuccessfullyWorked;
+        private bool _hasCancelledCalculation;
+        private HashingAlgorithmDisplayPair? _outputHashingAlgorithm;
 
         internal CheckSumGeneratorStrings Strings => LanguageManager.Instance.CheckSumGenerator;
 
@@ -74,18 +86,32 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
             }
         }
 
-        internal HashingAlgorithm InputHashingAlgorithm
+        internal HashingAlgorithmDisplayPair InputHashingAlgorithm
         {
-            get => _settingsProvider.GetSetting(HashingAlgorithmSetting);
+            get
+            {
+                HashingAlgorithm settingValue = _settingsProvider.GetSetting(HashingAlgorithmSetting);
+                return HashingAlgorithms.FirstOrDefault(x => x.Value == settingValue) ?? HashingAlgorithmDisplayPair.MD5;
+            }
+
             set
             {
                 if (InputHashingAlgorithm != value)
                 {
-                    _settingsProvider.SetSetting(HashingAlgorithmSetting, value);
+                    _settingsProvider.SetSetting(HashingAlgorithmSetting, value.Value);
                     OnPropertyChanged();
-                    CheckSum();
+                    if(!_hasCancelledCalculation)
+                    {
+                        CheckSum();
+                    }
                 }
             }
+        }
+
+        internal int Progress
+        {
+            get => _progress;
+            set => SetProperty(ref _progress, value);
         }
 
         internal IStorageFile? InputFile
@@ -128,14 +154,15 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
         /// <summary>
         /// Get a list of supported Hashing Algorithms
         /// </summary>
-        internal IReadOnlyList<HashingAlgorithm> HashingAlgorithms = new ObservableCollection<HashingAlgorithm> {
-            HashingAlgorithm.MD5,
-            HashingAlgorithm.SHA1,
-            HashingAlgorithm.SHA256,
-            HashingAlgorithm.SHA384,
-            HashingAlgorithm.SHA512,
+        internal IReadOnlyList<HashingAlgorithmDisplayPair> HashingAlgorithms = new ObservableCollection<HashingAlgorithmDisplayPair>
+        {
+            HashingAlgorithmDisplayPair.MD5,
+            HashingAlgorithmDisplayPair.SHA1,
+            HashingAlgorithmDisplayPair.SHA256,
+            HashingAlgorithmDisplayPair.SHA384,
+            HashingAlgorithmDisplayPair.SHA512,
         };
-        private bool _toolSuccessfullyWorked;
+        
 
         [ImportingConstructor]
         public CheckSumGeneratorToolViewModel(ISettingsProvider settingsProvider, IMarketingService marketingService)
@@ -147,6 +174,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
             SelectFilesAreaDragDropCommand = new AsyncRelayCommand<DragEventArgs>(ExecuteSelectFilesAreaDragDropCommandAsync);
             SelectFilesBrowseCommand = new AsyncRelayCommand(ExecuteSelectFilesBrowseCommandAsync);
             SelectFilesPasteCommand = new AsyncRelayCommand(ExecuteSelectFilesPasteCommandAsync);
+            CancelCommand = new RelayCommand(ExecuteCancelCommand);
         }
 
         #region SelectFilesAreaDragOverCommand
@@ -207,14 +235,15 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
 
         private async Task ExecuteSelectFilesBrowseCommandAsync()
         {
+            var filePicker = new FileOpenPicker
+            {
+                ViewMode = PickerViewMode.List,
+                SuggestedStartLocation = PickerLocationId.ComputerFolder,
+            };
+            filePicker.FileTypeFilter.Add("*");
+
             await ThreadHelper.RunOnUIThreadAsync(async () =>
             {
-                var filePicker = new FileOpenPicker
-                {
-                    ViewMode = PickerViewMode.List,
-                    SuggestedStartLocation = PickerLocationId.ComputerFolder
-                };
-
                 StorageFile file = await filePicker.PickSingleFileAsync();
                 if (file != null)
                 {
@@ -236,7 +265,6 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
                 DataPackageView? dataPackageView = Clipboard.GetContent();
 
                 IStorageItem? storageItem = await ExtractStorageItem(dataPackageView);
-
                 if (storageItem is StorageFile file)
                 {
                     InputFile = file;
@@ -246,9 +274,36 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
 
         #endregion
 
+        #region CancelCommand
+
+        public IRelayCommand CancelCommand { get; }
+
+        private void ExecuteCancelCommand()
+        {
+            lock (_lockObject)
+            {
+                _hasCancelledCalculation = true;
+                _cancellationTokenSource.Cancel();
+                _cancellationTokenSource.Dispose();
+
+                _cancellationTokenSource = new CancellationTokenSource();
+                
+                if(_outputHashingAlgorithm != null)
+                {
+                    InputHashingAlgorithm = _outputHashingAlgorithm;
+                }
+
+                IsCalculationInProgress = false;
+                ResetProgress();
+                _hasCancelledCalculation = false;
+            }
+        }
+
+        #endregion
+
         private void UpdateOutputCase()
         {
-            if(string.IsNullOrEmpty(Output))
+            if(string.IsNullOrWhiteSpace(Output))
             {
                 return;
             }
@@ -263,22 +318,35 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
             }
         }
 
-        private void CheckSum() => CheckSumAsync().Forget();
+        private void CheckSum()
+        {
+            lock (_lockObject)
+            {
+                ResetProgress();
+                CheckSumAsync().Forget();
+            }
+        }
 
         private async Task CheckSumAsync()
         {
-            if (_isCalculationInProgress)
+            if (IsCalculationInProgress)
             {
                 return;
             }
 
-            _isCalculationInProgress = true;
+            IsCalculationInProgress = true;
 
-            string hashOutput = await CalculateHash(InputHashingAlgorithm, InputFile);
+            string? hashOutput = await CalculateFileHash(InputHashingAlgorithm.Value, InputFile);
 
             ThreadHelper.RunOnUIThreadAsync(() =>
             {
-                Output = hashOutput;
+                if(!string.IsNullOrWhiteSpace(hashOutput))
+                {
+                    Output = hashOutput;
+                    _outputHashingAlgorithm = InputHashingAlgorithm;
+                }
+                
+                IsCalculationInProgress = false;
 
                 if (!_toolSuccessfullyWorked)
                 {
@@ -286,36 +354,60 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
                     _marketingService.NotifyToolSuccessfullyWorked();
                 }
             }).ForgetSafely();
-
-            _isCalculationInProgress = false;
         }
 
-        private async Task<string> CalculateHash(HashingAlgorithm inputHashingAlgorithm, IStorageFile? inputFile)
+        private async Task<string?> CalculateFileHash(HashingAlgorithm inputHashingAlgorithm, IStorageFile? inputFile)
         {
-            if (inputFile is null)
+            try
             {
-                return string.Empty;
-            }
+                if(inputFile is null)
+                {
+                    return string.Empty;
+                }
 
-            BasicProperties fileProps = await inputFile.GetBasicPropertiesAsync();
-            if (fileProps is null || fileProps.Size == 0)
+                BasicProperties? fileProps = await inputFile.GetBasicPropertiesAsync();
+                if (fileProps is null || fileProps.Size == 0)
+                {
+                    return string.Empty;
+                }
+
+                using var hashAlgo = HashAlgorithm.Create(inputHashingAlgorithm.ToString());
+                Stream? fileStream = await inputFile.OpenStreamForReadAsync();
+                
+                byte[]? fileHash = await HashingHelper.ComputeHashAsync(
+                    hashAlgo,
+                    fileStream,
+                    new Progress<HashingProgress>(UpdateProgress),
+                    _cancellationTokenSource.Token);
+
+                string? fileHashString = BitConverter
+                    .ToString(fileHash)
+                    .Replace("-", string.Empty);
+
+                if (!IsUppercase)
+                {
+                    return fileHashString.ToLowerInvariant();
+                }
+                return fileHashString;
+            }
+            catch (OperationCanceledException)
             {
-                return string.Empty;
+                return null;
             }
-
-            using var hashAlgo = HashAlgorithm.Create(inputHashingAlgorithm.ToString());
-
-            Stream? fileStream = await inputFile.OpenStreamForReadAsync();
-            byte[]? fileHash = hashAlgo.ComputeHash(fileStream);
-
-            string? fileHashString = BitConverter.ToString(fileHash).Replace("-", string.Empty);
-
-            if (IsUppercase)
+            catch (Exception ex)
             {
-                return fileHashString.ToUpperInvariant();
+                Logger.LogFault("CheckSum Generator", ex, $"Failed to calculate FileHash, algorithm used: {inputHashingAlgorithm}");
+                return ex.Message;
             }
-            return fileHashString;
         }
+
+        private void UpdateProgress(HashingProgress hashingProgress) =>
+            ThreadHelper.RunOnUIThreadAsync(() => Progress = hashingProgress.GetPercentage())
+                .ForgetSafely();
+
+        private void ResetProgress() =>
+            ThreadHelper.RunOnUIThreadAsync(() => Progress = 0)
+                .ForgetSafely();
 
         private async Task<IStorageItem?> ExtractStorageItem(DataPackageView data)
         {

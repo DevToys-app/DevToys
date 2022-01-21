@@ -5,12 +5,33 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:DevToys.UI.Controls" 
+    xmlns:controlsToolKit="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core" 
-    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:i="using:Microsoft.Xaml.Interactivity" 
+    xmlns:converters="using:DevToys.UI.Converters"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
     NavigationCacheMode="Required">
 
+    <Page.Resources>
+        <converters:BooleanToVisibilityConverter x:Name="BooleanToVisibilityConverter"/>
+    </Page.Resources>
+
     <StackPanel Margin="0,0,0,16" Spacing="12">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="SelectFilesPointerHover">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsSelectFilesAreaHighlighted, Mode=OneWay}"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="SelectFilesRectangle.Stroke" Value="{ThemeResource TextControlHeaderForeground}" />
+                        <Setter Target="SelectFilesRectangle.Fill" Value="{ThemeResource ButtonBackgroundPointerOver}" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
         <StackPanel.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
@@ -44,7 +65,6 @@
             </controls:ExpandableSettingControl>
         </StackPanel>
 
-        <!-- File Picker -->
         <Grid
             Grid.Row="0"
             Margin="0,12,0,0"
@@ -109,6 +129,23 @@
             </StackPanel>
         </Grid>
 
+        <Grid Grid.Row="1" Margin="0,20,0,0" Visibility="{x:Bind ViewModel.IsCalculationInProgress, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <muxc:ProgressRing
+                Height="64"
+                Width="64"
+                IsIndeterminate="False"
+                Value="{x:Bind ViewModel.Progress, Mode=OneWay}"/>
+            <Button
+                Style="{StaticResource CommandBarFlyoutEllipsisButtonStyle}"
+                Margin="3,-1,0,0"
+                Command="{x:Bind ViewModel.CancelCommand}"
+                ToolTipService.ToolTip="{x:Bind ViewModel.Strings.Cancel}"
+                AutomationProperties.Name="{x:Bind ViewModel.Strings.Cancel}">
+                <FontIcon Glyph="&#xF75A;"/>
+            </Button>
+        </Grid>
+
+
         <controls:CustomTextBox
             Header="{x:Bind ViewModel.Strings.Output}"
             IsReadOnly="True"
@@ -119,5 +156,15 @@
             Height="50"
             AcceptsReturn="True"
             Text="{x:Bind ViewModel.OutputComparer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+        <controlsToolKit:Loading x:Name="LoadingControl" IsLoading="{x:Bind ViewModel.IsCalculationInProgress}"  >
+            <StackPanel Orientation="Horizontal" Padding="12">
+                <Grid Margin="0,0,8,0">
+                    <Image Source="../../Assets/ToolkitLogo.png" Height="50" />
+                    <ProgressRing IsActive="True" Foreground="Blue" />
+                </Grid>
+                <TextBlock Text="Loading" Foreground="Black" VerticalAlignment="Center" />
+            </StackPanel>
+        </controlsToolKit:Loading>
     </StackPanel>
 </Page>

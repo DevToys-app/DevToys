@@ -34,6 +34,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
         //TODO: Create svg
         public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("checksum.svg");
 
+        [ImportingConstructor]
         public CheckSumGeneratorToolProvider(IMefProvider mefProvider)
         {
             _mefProvider = mefProvider;
