@@ -7,6 +7,11 @@ assignees: ''
 
 ---
 
+<!-- Please keep the text below -->
+Vote on this issue by adding a 👍 reaction.
+If you want to implement this feature, comment to let us know (we'll work with you on design, scheduling, etc.)
+<!-- Please keep the text above -->
+
 **Is your feature request related to a problem? Please describe.**
 A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
 
