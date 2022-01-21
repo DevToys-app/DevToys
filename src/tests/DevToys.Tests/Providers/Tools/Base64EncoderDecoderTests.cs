@@ -54,6 +54,7 @@ namespace DevToys.Tests.Providers.Tools
         [DataRow("", "")]
         [DataRow(" ", "")]
         [DataRow("SGVsbG8gVGhlcmU=", "Hello There")]
+        [DataRow("SGVsbG8gVGhlcmU", "Hello There")]
         public async Task DecodeAsync(string input, string expectedResult)
         {
             Base64EncoderDecoderToolViewModel viewModel = ExportProvider.Import<Base64EncoderDecoderToolViewModel>();

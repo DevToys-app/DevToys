@@ -201,6 +201,13 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
                 return string.Empty;
             }
 
+            int remainder = data!.Length % 4;
+            if (remainder > 0)
+            {
+                int padding = 4 - remainder;
+                data = data.PadRight(data.Length + padding, '=');
+            }
+
             await TaskScheduler.Default;
             string? decoded = string.Empty;
 
