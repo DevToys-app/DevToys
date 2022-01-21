@@ -22,21 +22,19 @@ namespace DevToys.Helpers
             byte[] readAheadBuffer = new byte[bufferSize];
             byte[] buffer;
 
-            int readAheadBytesRead = await stream.ReadAsync(readAheadBuffer, 0, readAheadBuffer.Length, cancellationToken);
+            int readAheadBytes = await stream.ReadAsync(readAheadBuffer, 0, bufferSize, cancellationToken);
             int bytesRead;
-
-            long size = stream.Length;
-            long totalBytesRead = readAheadBytesRead;
+            long totalBytesRead = readAheadBytes;
 
             do
             {
-                bytesRead = readAheadBytesRead;
+                bytesRead = readAheadBytes;
                 buffer = readAheadBuffer;
 
-                readAheadBytesRead = await stream.ReadAsync(readAheadBuffer, 0, readAheadBuffer.Length, cancellationToken);
-                totalBytesRead += readAheadBytesRead;
+                readAheadBytes = await stream.ReadAsync(readAheadBuffer, 0, bufferSize, cancellationToken);
+                totalBytesRead += readAheadBytes;
 
-                if (readAheadBytesRead == 0)
+                if (readAheadBytes == 0)
                 {
                     hashAlgorithm.TransformFinalBlock(buffer, 0, bytesRead);
                 }
@@ -45,14 +43,10 @@ namespace DevToys.Helpers
                     hashAlgorithm.TransformBlock(buffer, 0, bytesRead, buffer, 0);
                 }
 
-                progress.Report(new HashingProgress(size, totalBytesRead));
+                progress.Report(new HashingProgress(stream.Length, totalBytesRead));
+                cancellationToken.ThrowIfCancellationRequested();
 
-                if (cancellationToken.IsCancellationRequested)
-                {
-                    cancellationToken.ThrowIfCancellationRequested();
-                }
-
-            } while (readAheadBytesRead != 0);
+            } while (readAheadBytes != 0);
 
             return hashAlgorithm.Hash ?? Array.Empty<byte>();
         }
