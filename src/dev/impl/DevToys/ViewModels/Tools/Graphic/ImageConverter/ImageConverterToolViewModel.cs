@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Composition;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using DevToys.Api.Tools;
@@ -209,23 +208,32 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
             if (selectedFolder is not null)
             {
+                ICollection<Task> conversionTasks = new List<Task>();
+
                 foreach (ImageConversionWorkItem work in works)
                 {
-                    StorageFile newFile = await selectedFolder.CreateFileAsync(work.FileName, CreationCollisionOption.ReplaceExisting);
-                    await newFile.RenameAsync(string.Concat(newFile.DisplayName, ImageHelper.GetExtension(ConvertedFormat)), NameCollisionOption.GenerateUniqueName);
-                    using (IRandomAccessStream outputStream = await newFile.OpenAsync(FileAccessMode.ReadWrite))
-                    {
-                        BitmapEncoder? encoder = await ImageHelper.GetEncoderAsync(ConvertedFormat, outputStream);
-                        encoder.SetSoftwareBitmap(work.Bitmap);
-                        await encoder.FlushAsync();
-                    }
-
-                    work.DeleteCommand.Execute(null);
+                    conversionTasks.Add(SaveConversionWorkItem(selectedFolder, work));
                 }
+
+                await Task.WhenAll(conversionTasks);
             }
         }
 
         #endregion
+
+        private async Task SaveConversionWorkItem(StorageFolder selectedFolder, ImageConversionWorkItem work)
+        {
+            StorageFile newFile = await selectedFolder.CreateFileAsync(work.FileName, CreationCollisionOption.ReplaceExisting);
+            await newFile.RenameAsync(string.Concat(newFile.DisplayName, ImageHelper.GetExtension(ConvertedFormat)), NameCollisionOption.GenerateUniqueName);
+            using (IRandomAccessStream outputStream = await newFile.OpenAsync(FileAccessMode.ReadWrite))
+            {
+                BitmapEncoder? encoder = await ImageHelper.GetEncoderAsync(ConvertedFormat, outputStream);
+                encoder.SetSoftwareBitmap(work.Bitmap);
+                await encoder.FlushAsync();
+            }
+
+            work.DeleteCommand.Execute(null);
+        }
 
         private void QueueNewConversionWorkItem(StorageFile file)
         {
