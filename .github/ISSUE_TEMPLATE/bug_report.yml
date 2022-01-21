@@ -1,0 +1,48 @@
+name: Bug Report
+description: Create a bug report to help improve DevToys
+labels: [bug]
+body:
+  - type: textarea
+    attributes:
+      label: Description
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Steps To Reproduce
+      description: Steps to reproduce the behavior.
+      placeholder: |
+        1. Go to '....'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See the error
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen.
+    validations:
+      required: true
+  - type: input
+    id: devtoys-version
+    attributes:
+      label: DevToys Version
+      description: Which version of DevToys are you using? The version number can be found by going to DevToys' Settings > About
+      placeholder: "e.g. Version: 1.0.0.0 | X64; OS Version: 10.0.22000.282"
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Relevant Assets/Logs
+      description: |
+        A list of assets (logs, screenshots, etc) relevant to this bug.
+
+        Tip: You can attach image(s) or log file(s) by clicking this area to highlight it and then dragging files in.
+      placeholder: |
+        To upload the log, access it from Settings -> About -> Open log location; Or
+        - Copy the `logs.txt` file from `%localappdata%\Packages\64360VelerSoftware.DevToys_j80j2txgjg9dj\LocalCache`
+        - Drag and drop them into this text area.
+    validations:
+      required: true
