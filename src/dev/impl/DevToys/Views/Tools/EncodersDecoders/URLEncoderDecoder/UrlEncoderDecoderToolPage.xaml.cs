@@ -46,7 +46,7 @@ namespace DevToys.Views.Tools.UrlEncoderDecoder
 
             if (!string.IsNullOrWhiteSpace(parameters.ClipBoardContent))
             {
-                ViewModel.ConversionMode = UrlEncoderDecoderToolViewModel.DecodeConversion;
+                ViewModel.IsEncodeMode = false;
                 ViewModel.InputValue = parameters.ClipBoardContent;
             }
 
