@@ -35,7 +35,7 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
 
         private CancellationTokenSource? _cancellationTokenSource;
         private DateTime _timeSinceLastprogressUpdate;
-        private bool _isSelectFilesAreaHighlithed;
+        private bool _isSelectFilesAreaHighlighted;
         private bool _hasInvalidFilesSelected;
         private bool _isResultGridVisible;
         private bool _isProgressGridVisible;
@@ -52,10 +52,10 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
 
         internal ColorBlindnessSimulatorStrings Strings => LanguageManager.Instance.ColorBlindnessSimulator;
 
-        internal bool IsSelectFilesAreaHighlithed
+        internal bool IsSelectFilesAreaHighlighted
         {
-            get => _isSelectFilesAreaHighlithed;
-            set => SetProperty(ref _isSelectFilesAreaHighlithed, value);
+            get => _isSelectFilesAreaHighlighted;
+            set => SetProperty(ref _isSelectFilesAreaHighlighted, value);
         }
 
         internal bool HasInvalidFilesSelected
@@ -149,7 +149,7 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
                 parameters.Handled = false;
             }
 
-            IsSelectFilesAreaHighlithed = true;
+            IsSelectFilesAreaHighlighted = true;
             HasInvalidFilesSelected = false;
         }
 
@@ -161,7 +161,7 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
 
         private void ExecuteSelectFilesAreaDragLeaveCommand(DragEventArgs? parameters)
         {
-            IsSelectFilesAreaHighlithed = false;
+            IsSelectFilesAreaHighlighted = false;
             HasInvalidFilesSelected = false;
         }
 
@@ -177,7 +177,7 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
 
             await ThreadHelper.RunOnUIThreadAsync(async () =>
             {
-                IsSelectFilesAreaHighlithed = false;
+                IsSelectFilesAreaHighlighted = false;
                 if (!parameters!.DataView.Contains(StandardDataFormats.StorageItems))
                 {
                     return;
