@@ -70,7 +70,8 @@
         <muxc:InfoBar 
             IsOpen="{x:Bind ViewModel.IsInfoBarOpen, Mode=OneWay}" 
             Severity="Error" 
-            Message="{x:Bind ViewModel.InfoBarMessage, Mode=OneWay}" />
+            Message="{x:Bind ViewModel.InfoBarMessage, Mode=OneWay}" 
+            CloseButtonCommand="{x:Bind ViewModel.CloseInfoBarButtonCommand}"/>
 
         <Grid
             Margin="0,12,0,0"

@@ -68,6 +68,7 @@ namespace DevToys.ViewModels.Tools.ImageConverter
             SelectFilesBrowseCommand = new AsyncRelayCommand(ExecuteSelectFilesBrowseCommandAsync);
             DeleteAllCommand = new RelayCommand(ExecuteDeleteAllCommand);
             SaveAllCommand = new AsyncRelayCommand(ExecuteSaveAllCommandAsync);
+            CloseInfoBarButtonCommand = new RelayCommand(ExecuteCloseInfoBarButtonCommand);
 
             InitializeComboBox();
         }
@@ -119,8 +120,6 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
         private async Task ExecuteSelectFilesAreaDragDropCommandAsync(DragEventArgs? parameters)
         {
-            IsInfoBarOpen = true;
-
             try
             {
                 Arguments.NotNull(parameters, nameof(parameters));
@@ -240,6 +239,17 @@ namespace DevToys.ViewModels.Tools.ImageConverter
                 }
             }
             catch (Exception) { IsInfoBarOpen = true; }
+        }
+
+        #endregion
+
+        #region CloseInfoBarButtonCommand
+
+        public IRelayCommand CloseInfoBarButtonCommand { get; }
+
+        private void ExecuteCloseInfoBarButtonCommand()
+        {
+            IsInfoBarOpen = false;
         }
 
         #endregion
