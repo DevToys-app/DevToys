@@ -15,7 +15,7 @@
     <Identity
         Name="DevToysPreview"
         Publisher="CN=etiennebaudoux"
-        Version="0.0.0.0" />
+        Version="1.0.1.0" />
 
     <Properties>
         <DisplayName>DevToys - Preview</DisplayName>
