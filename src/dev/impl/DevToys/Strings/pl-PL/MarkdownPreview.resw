@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Markdown preview tool</value>
+    <value>Narzędzie Podglądu Markdown</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Konfiguracja</value>
@@ -145,9 +145,9 @@
     <value>Wybierz motyw, którego chcesz użyć, aby wyświetlić podgląd Markdown</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Preview a Markdown document with a GitHub-like render</value>
+    <value>Wyświetl dokument Markdown za pomocą renderowania w stylu GitHuba</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Markdown Preview</value>
+    <value>Podgląd Markdown</value>
   </data>
 </root>
