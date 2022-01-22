@@ -461,6 +461,28 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <PRIResource Include="Strings\hu-HU\UrlEncoderDecoder.resw" />
+    <PRIResource Include="Strings\hu-HU\ToolGroups.resw" />
+    <PRIResource Include="Strings\hu-HU\TextDiff.resw" />
+    <PRIResource Include="Strings\hu-HU\StringUtilities.resw" />
+    <PRIResource Include="Strings\hu-HU\Settings.resw" />
+    <PRIResource Include="Strings\hu-HU\SearchResult.resw" />
+    <PRIResource Include="Strings\hu-HU\RegEx.resw" />
+    <PRIResource Include="Strings\hu-HU\PngJpgCompressor.resw" />
+    <PRIResource Include="Strings\hu-HU\NumberBaseConverter.resw" />
+    <PRIResource Include="Strings\hu-HU\MarkdownPreview.resw" />
+    <PRIResource Include="Strings\hu-HU\MainPage.resw" />
+    <PRIResource Include="Strings\hu-HU\LoremIpsumGenerator.resw" />
+    <PRIResource Include="Strings\hu-HU\JwtDecoderEncoder.resw" />
+    <PRIResource Include="Strings\hu-HU\JsonYaml.resw" />
+    <PRIResource Include="Strings\hu-HU\JsonFormatter.resw" />
+    <PRIResource Include="Strings\hu-HU\HtmlEncoderDecoder.resw" />
+    <PRIResource Include="Strings\hu-HU\HashGenerator.resw" />
+    <PRIResource Include="Strings\hu-HU\GuidGenerator.resw" />
+    <PRIResource Include="Strings\hu-HU\Common.resw" />
+    <PRIResource Include="Strings\hu-HU\ColorBlindnessSimulator.resw" />
+    <PRIResource Include="Strings\hu-HU\Base64EncoderDecoder.resw" />
+    <PRIResource Include="Strings\hu-HU\AllTools.resw" />
     <PRIResource Include="Strings\*\*.resw" />
     <Page Include="Themes\Custom.xaml">
       <Generator>MSBuild:Compile</Generator>
