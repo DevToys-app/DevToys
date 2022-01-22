@@ -130,7 +130,7 @@
     <value>Dekódolás</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Válaszd ki melyik konverzió módot akarod használni</value>
+    <value>Válaszd ki a kívánt konverzió módot</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
     <value>Kódolás</value>
@@ -142,7 +142,7 @@
     <value>Base 64</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
-    <value>Válaszd ki melyik kódolót akarod használni</value>
+    <value>Válaszd ki a kívánt kódolót</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
     <value>Kódolás</value>

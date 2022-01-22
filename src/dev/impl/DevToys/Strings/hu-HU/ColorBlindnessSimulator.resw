@@ -127,7 +127,7 @@
     <value>Színvakság szimulációja egy képen vagy képernyőképen</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Szívakság Szimulátor</value>
+    <value>Színvakság Szimulátor</value>
   </data>
   <data name="InvalidSelectedFiles" xml:space="preserve">
     <value>Csak .png, .jpg, .jpeg vagy .bmp fájlok használhatóak.</value>

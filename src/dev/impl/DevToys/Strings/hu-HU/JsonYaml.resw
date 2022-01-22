@@ -124,7 +124,7 @@
     <value>Konfiguráció</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Válaszd ki melyik átalakító módot akarod használni</value>
+    <value>Válaszd ki a kívánt átalakító módot</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
     <value>Átalakítás</value>

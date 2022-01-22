@@ -124,7 +124,7 @@
     <value>Konfiguráció</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Válaszd ki melyik akciót akarod használni</value>
+    <value>Válaszd ki a kívánt akciót</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
     <value>Akció</value>
@@ -139,7 +139,7 @@
     <value>Kódolás</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
-    <value>Válaszd ki melyik kódoló algoritmust akarod használni</value>
+    <value>Válaszd ki a kívánt kódoló algoritmust</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
     <value>Kódolás</value>

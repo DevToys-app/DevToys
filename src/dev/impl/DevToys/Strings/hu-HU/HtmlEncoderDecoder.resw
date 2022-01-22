@@ -127,7 +127,7 @@
     <value>Dekódolás</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Válaszd ki melyik átalakító módot akarod használni</value>
+    <value>Válaszd ki a kívánt átalakító módot</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
     <value>Kódolás</value>
@@ -139,7 +139,7 @@
     <value>HTML</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
-    <value>Válaszd ki melyik kódolót akarod használni</value>
+    <value>Válaszd ki a kívánt kódolót</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
     <value>Kódolás</value>

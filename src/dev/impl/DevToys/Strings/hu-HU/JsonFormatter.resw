@@ -151,6 +151,6 @@
     <value>Json adat indentálása vagy kicsinyítése</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Json Formáló</value>
+    <value>Json Formázó</value>
   </data>
 </root>

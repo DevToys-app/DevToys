@@ -170,10 +170,10 @@
     <value>Világos</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>Sor száma</value>
+    <value>Sorok számozása</value>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>Sorok számának megjelenítése</value>
+    <value>Sorok számozásának megjelenítése</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
     <value>Logok megnyitása</value>
