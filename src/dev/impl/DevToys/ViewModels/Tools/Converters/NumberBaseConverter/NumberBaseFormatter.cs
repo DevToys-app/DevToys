@@ -222,14 +222,14 @@ namespace DevToys.Core.Formatter
                     // Check for overflows - this is sufficient & correct.
                     if (result > maxVal)
                     {
-                        throw new OverflowException($"Unable to parse the current value exceded max value ({long.MaxValue})");
+                        throw new OverflowException(string.Format(Strings.ValueOverflow, long.MaxValue));
                     }
 
                     ulong temp = result * (ulong)baseNumber.BaseNumber + (ulong)current;
 
                     if (temp < result) // this means overflow as well
                     {
-                        throw new OverflowException($"Unable to parse the current value exceded max value ({long.MaxValue})");
+                        throw new OverflowException(string.Format(Strings.ValueOverflow, long.MaxValue));
                     }
 
                     result = temp;
