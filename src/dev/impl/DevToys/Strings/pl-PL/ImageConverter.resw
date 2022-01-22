@@ -199,4 +199,7 @@
   <data name="TIFF" xml:space="preserve">
     <value>TIFF</value>
   </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>An unexpected error has occurred, the conversion may not have been performed.</value>
+  </data>
 </root>

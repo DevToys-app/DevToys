@@ -856,6 +856,11 @@ namespace DevToys
         /// Gets the resource TIFF.
         /// </summary>
         public string TIFF => _resources.GetString("TIFF");
+
+        /// <summary>
+        /// Gets the resource ErrorMessage.
+        /// </summary>
+        public string ErrorMessage => _resources.GetString("ErrorMessage");
     }
 
     public class JsonFormatterStrings : ObservableObject

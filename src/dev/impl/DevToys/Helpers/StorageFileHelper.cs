@@ -1,10 +1,5 @@
 ﻿#nullable enable
 
-using System;
-using System.Threading.Tasks;
-using Windows.Storage;
-using Windows.Storage.FileProperties;
-
 namespace DevToys.Helpers
 {
     public static class StorageFileHelper

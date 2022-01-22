@@ -19,6 +19,7 @@ namespace DevToys.ViewModels.Tools.ImageConverter
     internal sealed class ImageConversionWorkItem : ObservableRecipient
     {
         private string _fileSize = string.Empty;
+        private readonly Action<Exception> _errorHandler = HandleError;
 
         internal ImageConverterStrings Strings => LanguageManager.Instance.ImageConverter;
 
@@ -33,7 +34,6 @@ namespace DevToys.ViewModels.Tools.ImageConverter
             get => _fileSize;
             private set
             {
-                ThreadHelper.ThrowIfNotOnUIThread();
                 SetProperty(ref _fileSize, value);
             }
         }
@@ -52,8 +52,8 @@ namespace DevToys.ViewModels.Tools.ImageConverter
             DeleteCommand = new RelayCommand(ExecuteDeleteCommand);
             SaveCommand = new AsyncRelayCommand<ImageConverterToolViewModel>(ExecuteSaveCommandAsync);
 
-            ComputePropertiesAsync(file).Forget();
-            DecodeImageAsync(file).Forget();
+            ComputePropertiesAsync(file).ForgetSafely(_errorHandler);
+            DecodeImageAsync(file).ForgetSafely(_errorHandler);
         }
 
         #region DeleteCommand
@@ -101,6 +101,11 @@ namespace DevToys.ViewModels.Tools.ImageConverter
         }
 
         #endregion
+
+        private static void HandleError(Exception e)
+        {
+            throw e;
+        }
 
         private async Task ComputePropertiesAsync(StorageFile file)
         {

@@ -29,6 +29,7 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
         private bool _isSelectFilesAreaHighlithed;
         private bool _hasInvalidFilesSelected;
+        private bool _isInfoBarOpen;
 
         public Type View { get; } = typeof(ImageConverterToolPage);
 
@@ -37,6 +38,8 @@ namespace DevToys.ViewModels.Tools.ImageConverter
         internal ObservableCollection<ImageConversionWorkItem> ConversionWorkQueue { get; } = new();
 
         internal ImageConverterStrings Strings => LanguageManager.Instance.ImageConverter;
+
+        internal string InfoBarMessage => Strings.ErrorMessage;
 
         internal bool IsSelectFilesAreaHighlithed
         {
@@ -48,6 +51,12 @@ namespace DevToys.ViewModels.Tools.ImageConverter
         {
             get => _hasInvalidFilesSelected;
             set => SetProperty(ref _hasInvalidFilesSelected, value);
+        }
+
+        internal bool IsInfoBarOpen
+        {
+            get => _isInfoBarOpen;
+            set => SetProperty(ref _isInfoBarOpen, value);
         }
 
         [ImportingConstructor]
@@ -110,41 +119,47 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
         private async Task ExecuteSelectFilesAreaDragDropCommandAsync(DragEventArgs? parameters)
         {
-            Arguments.NotNull(parameters, nameof(parameters));
+            IsInfoBarOpen = true;
 
-            await ThreadHelper.RunOnUIThreadAsync(async () =>
+            try
             {
-                IsSelectFilesAreaHighlithed = false;
-                if (!parameters!.DataView.Contains(StandardDataFormats.StorageItems))
-                {
-                    return;
-                }
+                Arguments.NotNull(parameters, nameof(parameters));
 
-                IReadOnlyList<IStorageItem>? storageItems = await parameters.DataView.GetStorageItemsAsync();
-                if (storageItems is null || storageItems.Count == 0)
+                await ThreadHelper.RunOnUIThreadAsync(async () =>
                 {
-                    return;
-                }
-
-                foreach (IStorageItem storageItem in storageItems)
-                {
-                    if (storageItem is StorageFile file)
+                    IsSelectFilesAreaHighlithed = false;
+                    if (!parameters!.DataView.Contains(StandardDataFormats.StorageItems))
                     {
-                        if (SupportedFileExtensions.Any(ext => string.Equals(ext, file.FileType, StringComparison.OrdinalIgnoreCase)))
+                        return;
+                    }
+
+                    IReadOnlyList<IStorageItem>? storageItems = await parameters.DataView.GetStorageItemsAsync();
+                    if (storageItems is null || storageItems.Count == 0)
+                    {
+                        return;
+                    }
+
+                    foreach (IStorageItem storageItem in storageItems)
+                    {
+                        if (storageItem is StorageFile file)
                         {
-                            QueueNewConversionWorkItem(file);
+                            if (SupportedFileExtensions.Any(ext => string.Equals(ext, file.FileType, StringComparison.OrdinalIgnoreCase)))
+                            {
+                                QueueNewConversionWorkItem(file);
+                            }
+                            else
+                            {
+                                HasInvalidFilesSelected = true;
+                            }
                         }
                         else
                         {
                             HasInvalidFilesSelected = true;
                         }
                     }
-                    else
-                    {
-                        HasInvalidFilesSelected = true;
-                    }
-                }
-            }).ConfigureAwait(false);
+                }).ConfigureAwait(false);
+            }
+            catch (Exception) { IsInfoBarOpen = true; }
         }
 
         #endregion
@@ -155,27 +170,31 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
         private async Task ExecuteSelectFilesBrowseCommandAsync()
         {
-            await ThreadHelper.RunOnUIThreadAsync(async () =>
+            try
             {
-                HasInvalidFilesSelected = false;
-
-                var filePicker = new FileOpenPicker
+                await ThreadHelper.RunOnUIThreadAsync(async () =>
                 {
-                    ViewMode = PickerViewMode.List,
-                    SuggestedStartLocation = PickerLocationId.ComputerFolder
-                };
+                    HasInvalidFilesSelected = false;
 
-                for (int i = 0; i < SupportedFileExtensions.Length; i++)
-                {
-                    filePicker.FileTypeFilter.Add(SupportedFileExtensions[i]);
-                }
+                    var filePicker = new FileOpenPicker
+                    {
+                        ViewMode = PickerViewMode.List,
+                        SuggestedStartLocation = PickerLocationId.ComputerFolder
+                    };
 
-                IReadOnlyList<StorageFile> files = await filePicker.PickMultipleFilesAsync();
-                for (int i = 0; i < files.Count; i++)
-                {
-                    QueueNewConversionWorkItem(files[i]);
-                }
-            });
+                    for (int i = 0; i < SupportedFileExtensions.Length; i++)
+                    {
+                        filePicker.FileTypeFilter.Add(SupportedFileExtensions[i]);
+                    }
+
+                    IReadOnlyList<StorageFile> files = await filePicker.PickMultipleFilesAsync();
+                    for (int i = 0; i < files.Count; i++)
+                    {
+                        QueueNewConversionWorkItem(files[i]);
+                    }
+                });
+            }
+            catch (Exception) { IsInfoBarOpen = true; }
         }
 
         #endregion
@@ -197,26 +216,30 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
         private async Task ExecuteSaveAllCommandAsync()
         {
-            var works = ConversionWorkQueue.ToList();
-
-            var folderPicker = new FolderPicker
+            try
             {
-                ViewMode = PickerViewMode.List
-            };
+                var works = ConversionWorkQueue.ToList();
 
-            StorageFolder? selectedFolder = await folderPicker.PickSingleFolderAsync();
-
-            if (selectedFolder is not null)
-            {
-                ICollection<Task> conversionTasks = new List<Task>();
-
-                foreach (ImageConversionWorkItem work in works)
+                var folderPicker = new FolderPicker
                 {
-                    conversionTasks.Add(SaveConversionWorkItem(selectedFolder, work));
-                }
+                    ViewMode = PickerViewMode.List
+                };
 
-                await Task.WhenAll(conversionTasks);
+                StorageFolder? selectedFolder = await folderPicker.PickSingleFolderAsync();
+
+                if (selectedFolder is not null)
+                {
+                    ICollection<Task> conversionTasks = new List<Task>();
+
+                    foreach (ImageConversionWorkItem work in works)
+                    {
+                        conversionTasks.Add(SaveConversionWorkItem(selectedFolder, work));
+                    }
+
+                    await Task.WhenAll(conversionTasks);
+                }
             }
+            catch (Exception) { IsInfoBarOpen = true; }
         }
 
         #endregion

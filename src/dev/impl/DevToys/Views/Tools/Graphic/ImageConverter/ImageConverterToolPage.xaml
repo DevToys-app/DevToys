@@ -8,6 +8,7 @@
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity" xmlns:converters="using:DevToys.UI.Converters"
     xmlns:controls="using:DevToys.UI.Controls"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
     NavigationCacheMode="Required"
     x:Name="ThisPage">
@@ -65,6 +66,11 @@
                 </ComboBox>
             </controls:ExpandableSettingControl>
         </StackPanel>
+
+        <muxc:InfoBar 
+            IsOpen="{x:Bind ViewModel.IsInfoBarOpen, Mode=OneWay}" 
+            Severity="Error" 
+            Message="{x:Bind ViewModel.InfoBarMessage, Mode=OneWay}" />
 
         <Grid
             Margin="0,12,0,0"
