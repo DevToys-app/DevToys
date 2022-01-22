@@ -1,10 +1,10 @@
 ﻿#nullable enable
 
 using DevToys.Api.Core.Navigation;
-using DevToys.Core.Formatter;
 using DevToys.Helpers;
 using DevToys.Models;
 using DevToys.Shared.Core;
+using DevToys.ViewModels.Tools.Converters.NumberBaseConverter;
 using DevToys.ViewModels.Tools.NumberBaseConverter;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;

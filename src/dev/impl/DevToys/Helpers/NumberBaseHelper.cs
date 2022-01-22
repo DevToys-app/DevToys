@@ -1,7 +1,6 @@
 ﻿#nullable enable
 
 using System.Globalization;
-using DevToys.Core.Formatter;
 
 namespace DevToys.Helpers
 {
