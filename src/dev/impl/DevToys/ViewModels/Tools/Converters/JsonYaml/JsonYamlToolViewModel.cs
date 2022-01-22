@@ -242,7 +242,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml
                     };
                     var serializer
                         = Serializer.FromValueSerializer(
-                            new SerializerBuilder().BuildValueSerializer(),
+                            new SerializerBuilder().WithTypeConverter(new DoubleConverter()).BuildValueSerializer(),
                             EmitterSettings.Default.WithBestIndent(indent).WithIndentedSequences());
 
                     string? yaml = serializer.Serialize(jsonObject);
