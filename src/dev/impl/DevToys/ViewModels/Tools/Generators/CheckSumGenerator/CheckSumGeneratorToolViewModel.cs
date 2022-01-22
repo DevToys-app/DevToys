@@ -58,7 +58,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
 
         private readonly object _lockObject = new();
         private CancellationTokenSource _cancellationTokenSource = new();
-        private bool _isSelectFilesAreaHighlithed;
+        private bool _isSelectFilesAreaHighlighted;
         private bool _isCalculationInProgress;
         private IStorageFile? _inputFile;
         private int _progress;
@@ -129,8 +129,8 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
 
         internal bool IsSelectFilesAreaHighlighted
         {
-            get => _isSelectFilesAreaHighlithed;
-            set => SetProperty(ref _isSelectFilesAreaHighlithed, value);
+            get => _isSelectFilesAreaHighlighted;
+            set => SetProperty(ref _isSelectFilesAreaHighlighted, value);
         }
 
         internal bool IsCalculationInProgress

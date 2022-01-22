@@ -47,6 +47,7 @@
     <Compile Include="Core\Formatter\BaseNumberFormatterTests.cs" />
     <Compile Include="Core\Threading\AsyncLazyTests.cs" />
     <Compile Include="Core\Threading\TaskCompletionNotifierTests.cs" />
+    <Compile Include="Helpers\HashingHelperTests.cs" />
     <Compile Include="Helpers\YamlHelperTests.cs" />
     <Compile Include="Helpers\JsonHelperTests.cs" />
     <Compile Include="MefBaseTest.cs" />

@@ -4,15 +4,15 @@ namespace DevToys.Models
 {
     public class HashingProgress
     {
-        public long Total { get; }
-        public long Completed { get; }
+        public long TotalBytes { get; }
+        public long CompletedBytes { get; }
 
-        public int GetPercentage() => (int)Math.Floor(100f * Completed / Total);
+        public int GetPercentage() => (int)Math.Floor(100f * CompletedBytes / TotalBytes);
 
-        public HashingProgress(long total, long completed = 0)
+        public HashingProgress(long totalBytes, long completedBytes = 0)
         {
-            Total = total;
-            Completed = completed;
+            TotalBytes = totalBytes;
+            CompletedBytes = completedBytes;
         }
     }
 }

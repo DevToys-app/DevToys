@@ -26,7 +26,7 @@ namespace DevToys.Helpers
             int bytesRead;
             long totalBytesRead = readAheadBytes;
 
-            do
+            while (readAheadBytes != 0)
             {
                 bytesRead = readAheadBytes;
                 buffer = readAheadBuffer;
@@ -45,9 +45,7 @@ namespace DevToys.Helpers
 
                 progress.Report(new HashingProgress(stream.Length, totalBytesRead));
                 cancellationToken.ThrowIfCancellationRequested();
-
-            } while (readAheadBytes != 0);
-
+            }
             return hashAlgorithm.Hash ?? Array.Empty<byte>();
         }
     }
