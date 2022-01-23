@@ -42,6 +42,7 @@ namespace DevToys.Tests.Providers.Tools
             {
                 viewModel.IsEncodeMode = true;
                 viewModel.InputValue = input;
+                viewModel.IsGzipMode = false;
             });
 
             await Task.Delay(100);
@@ -62,6 +63,49 @@ namespace DevToys.Tests.Providers.Tools
             {
                 viewModel.IsEncodeMode = false;
                 viewModel.InputValue = input;
+                viewModel.IsGzipMode = false;
+            });
+
+            await Task.Delay(100);
+
+            Assert.AreEqual(expectedResult, viewModel.OutputValue);
+        }
+
+        [DataTestMethod]
+        [DataRow(null, "")]
+        [DataRow("", "")]
+        [DataRow(" ", "")]
+        [DataRow("Hello There", "H4sIAAAAAAAAC/JIzcnJVwjJSC1KBQAAAP//")]
+        public async Task EncodeGzipAsync(string input, string expectedResult)
+        {
+            Base64EncoderDecoderToolViewModel viewModel = ExportProvider.Import<Base64EncoderDecoderToolViewModel>();
+
+            await ThreadHelper.RunOnUIThreadAsync(() =>
+            {
+                viewModel.IsEncodeMode = true;
+                viewModel.InputValue = input;
+                viewModel.IsGzipMode = true;
+            });
+
+            await Task.Delay(100);
+
+            Assert.AreEqual(expectedResult, viewModel.OutputValue);
+        }
+
+        [DataTestMethod]
+        [DataRow(null, "")]
+        [DataRow("", "")]
+        [DataRow(" ", "")]
+        [DataRow("H4sIAAAAAAAAC/JIzcnJVwjJSC1KBQAAAP//", "Hello There")]
+        public async Task DecodeGzipAsync(string input, string expectedResult)
+        {
+            Base64EncoderDecoderToolViewModel viewModel = ExportProvider.Import<Base64EncoderDecoderToolViewModel>();
+
+            await ThreadHelper.RunOnUIThreadAsync(() =>
+            {
+                viewModel.IsEncodeMode = false;
+                viewModel.InputValue = input;
+                viewModel.IsGzipMode = true;
             });
 
             await Task.Delay(100);
