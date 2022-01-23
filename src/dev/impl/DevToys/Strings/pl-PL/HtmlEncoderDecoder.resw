@@ -118,42 +118,42 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>HTML Encoder and Decoder tool</value>
+    <value>Narzędzie Enkodujące i Dekodujące HTML</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Konfiguracja</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
-    <value>Decode</value>
+    <value>Dekoduj</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Select which conversion mode you want to use</value>
+    <value>Wybierz, którego rodzaju konwersji chcesz użyć</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
-    <value>Encode</value>
+    <value>Enkoduj</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Conversion</value>
+    <value>Konwersja</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
-    <value>Select which encoding do you want to use</value>
+    <value>Wybierz, którego enkodowania chcesz użyć</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
-    <value>Encoding</value>
+    <value>Enkodowanie</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>Input</value>
+    <value>Wejście</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Output</value>
+    <value>Wyjście</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Encode or decode all the applicable characters to their corresponding HTML entities</value>
+    <value>Enkoduj lub dekoduj wszystkie możliwe znaki do ich HTML-owej reprezentacji</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>HTML</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>HTML Encoder / Decoder</value>
+    <value>Enkoder / Dekoder HTML</value>
   </data>
 </root>
