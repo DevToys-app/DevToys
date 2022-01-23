@@ -3,6 +3,8 @@
 using System;
 using System.Collections.Generic;
 using System.Composition;
+using System.IO;
+using System.IO.Compression;
 using System.Text;
 using System.Threading.Tasks;
 using DevToys.Api.Core;
@@ -25,6 +27,15 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
         private static readonly SettingDefinition<bool> EncodeMode
             = new(
                 name: $"{nameof(Base64EncoderDecoderToolViewModel)}.{nameof(EncodeMode)}",
+                isRoaming: true,
+                defaultValue: true);
+        
+        /// <summary>
+        /// Whether the tool should handle the data with gzip.
+        /// </summary>
+        private static readonly SettingDefinition<bool> GzipMode
+            = new(
+                name: $"{nameof(Base64EncoderDecoderToolViewModel)}.{nameof(GzipMode)}",
                 isRoaming: true,
                 defaultValue: true);
 
@@ -95,6 +106,24 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
                     }
                     InputValue = OutputValue;
                     _setPropertyInProgress = false;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the conversion mode.
+        /// </summary>
+        internal bool IsGzipMode
+        {
+            get => _settingsProvider.GetSetting(GzipMode);
+            set
+            {
+                ThreadHelper.ThrowIfNotOnUIThread();
+                if (_settingsProvider.GetSetting(GzipMode) != value)
+                {
+                    _settingsProvider.SetSetting(GzipMode, value);
+                    OnPropertyChanged();
+                    QueueConversionCalculation();
                 }
             }
         }
@@ -182,6 +211,10 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
             {
                 Encoding encoder = GetEncoder();
                 byte[]? dataBytes = encoder.GetBytes(data);
+                if (IsGzipMode)
+                {
+                    CompressGZip(ref dataBytes);
+                }
                 encoded = Convert.ToBase64String(dataBytes);
             }
             catch (Exception ex)
@@ -206,6 +239,10 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
             try
             {
                 byte[]? decodedData = Convert.FromBase64String(data);
+                if (IsGzipMode)
+                {
+                    DecompressGZip(ref decodedData);
+                }
                 Encoding encoder = GetEncoder();
                 decoded = encoder.GetString(decodedData);
             }
@@ -229,6 +266,38 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
                 return Encoding.UTF8;
             }
             return Encoding.ASCII;
+        }
+
+        private void CompressGZip(ref byte[]? data)
+        {
+            if (data == null)
+            {
+                return;
+            }
+
+            using (var outputStream = new MemoryStream())
+            using (var gzip = new GZipStream(outputStream, CompressionMode.Compress))
+            {
+                gzip.Write(data, 0, data.Length);
+                gzip.Flush();
+                data = outputStream.ToArray();
+            }
+        }
+
+        private void DecompressGZip(ref byte[]? data)
+        {
+            if (data == null)
+            {
+                return;
+            }
+
+            using (var inputStream = new MemoryStream(data))
+            using (var gzip = new GZipStream(inputStream, CompressionMode.Decompress))
+            using (var outputStream = new MemoryStream())
+            {
+                gzip.CopyTo(outputStream);
+                data = outputStream.ToArray();
+            }
         }
     }
 }

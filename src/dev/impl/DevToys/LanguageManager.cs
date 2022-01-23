@@ -307,6 +307,26 @@ namespace DevToys
         /// Gets the resource SearchDisplayName.
         /// </summary>
         public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+
+        /// <summary>
+        /// Gets the resource CompressionGZipTitle.
+        /// </summary>
+        public string CompressionGZipTitle => _resources.GetString("CompressionGZipTitle");
+
+        /// <summary>
+        /// Gets the resource CompressionGZipDescription.
+        /// </summary>
+        public string CompressionGZipDescription => _resources.GetString("CompressionGZipDescription");
+
+        /// <summary>
+        /// Gets the resource CompressionGZipDisabled.
+        /// </summary>
+        public string CompressionGZipDisabled => _resources.GetString("CompressionGZipDisabled");
+
+        /// <summary>
+        /// Gets the resource CompressionGZipEnabled.
+        /// </summary>
+        public string CompressionGZipEnabled => _resources.GetString("CompressionGZipEnabled");
     }
 
     public class ColorBlindnessSimulatorStrings : ObservableObject

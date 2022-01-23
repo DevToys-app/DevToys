@@ -38,7 +38,6 @@
         <StackPanel Spacing="4" Grid.Row="0" >
             <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.ConfigurationTitle}" />
             <controls:ExpandableSettingControl
-                Grid.Row="1"
                 Title="{x:Bind ViewModel.Strings.ConversionTitle}"
                 Description="{x:Bind ViewModel.Strings.ConversionDescription}">
                 <controls:ExpandableSettingControl.Icon>
@@ -50,8 +49,19 @@
                     IsOn="{x:Bind ViewModel.IsEncodeMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </controls:ExpandableSettingControl>
             <controls:ExpandableSettingControl
+                x:Name="GZipSetting"
+                Title="{x:Bind ViewModel.Strings.CompressionGZipTitle}"
+                Description="{x:Bind ViewModel.Strings.CompressionGZipDescription}">
+                <controls:ExpandableSettingControl.Icon>
+                    <FontIcon Glyph="&#xF435;"/>
+                </controls:ExpandableSettingControl.Icon>
+                <ToggleSwitch 
+                    Style="{StaticResource RightAlignedToggleSwitchStyle}"
+                    OnContent="{x:Bind ViewModel.Strings.CompressionGZipEnabled}" OffContent="{x:Bind ViewModel.Strings.CompressionGZipDisabled}"
+                    IsOn="{x:Bind ViewModel.IsGzipMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </controls:ExpandableSettingControl>
+            <controls:ExpandableSettingControl
                 x:Name="EncodingSetting"
-                Grid.Row="2"
                 Title="{x:Bind ViewModel.Strings.EncodingTitle}"
                 Description="{x:Bind ViewModel.Strings.EncodingDescription}">
                 <controls:ExpandableSettingControl.Icon>
