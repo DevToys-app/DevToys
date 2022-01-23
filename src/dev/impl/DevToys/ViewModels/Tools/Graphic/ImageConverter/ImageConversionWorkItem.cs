@@ -13,6 +13,7 @@ using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
+using Windows.UI.Core;
 
 namespace DevToys.ViewModels.Tools.ImageConverter
 {
@@ -34,6 +35,7 @@ namespace DevToys.ViewModels.Tools.ImageConverter
             get => _fileSize;
             private set
             {
+                ThreadHelper.ThrowIfNotOnUIThread();
                 SetProperty(ref _fileSize, value);
             }
         }
@@ -112,7 +114,8 @@ namespace DevToys.ViewModels.Tools.ImageConverter
             await TaskScheduler.Default;
 
             var storageFileSize = (await file.GetBasicPropertiesAsync()).Size;
-            FileSize = StorageFileHelper.HumanizeFileSize(storageFileSize, Strings.FileSizeDisplay);
+            var fileSize = StorageFileHelper.HumanizeFileSize(storageFileSize, Strings.FileSizeDisplay);
+            await ThreadHelper.RunOnUIThreadAsync(() => FileSize = fileSize);
         }
 
         private async Task DecodeImageAsync(StorageFile file)
@@ -122,7 +125,8 @@ namespace DevToys.ViewModels.Tools.ImageConverter
             using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.Read))
             {
                 BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
-                Bitmap = await decoder.GetSoftwareBitmapAsync();
+                var bitmap = await decoder.GetSoftwareBitmapAsync();
+                await ThreadHelper.RunOnUIThreadAsync(() => Bitmap = bitmap);
             }
         }
     }
