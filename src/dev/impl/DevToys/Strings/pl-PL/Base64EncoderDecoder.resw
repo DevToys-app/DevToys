@@ -156,4 +156,16 @@
   <data name="Utf8" xml:space="preserve">
     <value>UTF-8</value>
   </data>
+    <data name="CompressionGZipTitle" xml:space="preserve">
+    <value>GZip Compression</value>
+  </data>
+  <data name="CompressionGZipDescription" xml:space="preserve">
+    <value>Select whether to use GZip compression/decompression together with Base 64</value>
+  </data>
+  <data name="CompressionGZipDisabled" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="CompressionGZipEnabled" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
 </root>
