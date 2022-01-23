@@ -53,6 +53,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
 
         private readonly IMarketingService _marketingService;
         private readonly ISettingsProvider _settingsProvider;
+        private readonly int _displayAboveIterations = 124;
 
         private readonly object _lockObject = new();
         private CancellationTokenSource _cancellationTokenSource = new();
@@ -64,6 +65,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
         private string? _outputComparer;
         private bool _toolSuccessfullyWorked;
         private bool _hasCancelledCalculation;
+        private bool _shouldDisplayProgress;
         private HashingAlgorithmDisplayPair? _outputHashingAlgorithm;
 
         internal CheckSumGeneratorStrings Strings => LanguageManager.Instance.CheckSumGenerator;
@@ -98,7 +100,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
                 {
                     _settingsProvider.SetSetting(HashingAlgorithmSetting, value.Value);
                     OnPropertyChanged();
-                    if(!_hasCancelledCalculation)
+                    if (!_hasCancelledCalculation)
                     {
                         CheckSum();
                     }
@@ -131,10 +133,10 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
             set => SetProperty(ref _isSelectFilesAreaHighlighted, value);
         }
 
-        internal bool IsCalculationInProgress
+        internal bool ShouldDisplayProgress
         {
-            get => _isCalculationInProgress;
-            set => SetProperty(ref _isCalculationInProgress, value);
+            get => _shouldDisplayProgress;
+            set => SetProperty(ref _shouldDisplayProgress, value);
         }
 
         internal string? Output
@@ -160,7 +162,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
             HashingAlgorithmDisplayPair.SHA384,
             HashingAlgorithmDisplayPair.SHA512,
         };
-        
+
 
         [ImportingConstructor]
         public CheckSumGeneratorToolViewModel(ISettingsProvider settingsProvider, IMarketingService marketingService)
@@ -285,15 +287,16 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
                 _cancellationTokenSource.Dispose();
 
                 _cancellationTokenSource = new CancellationTokenSource();
-                
-                if(_outputHashingAlgorithm != null)
+
+                if (_outputHashingAlgorithm != null)
                 {
                     InputHashingAlgorithm = _outputHashingAlgorithm;
                 }
 
-                IsCalculationInProgress = false;
-                ResetProgress();
+                _isCalculationInProgress = false;
                 _hasCancelledCalculation = false;
+                ShouldDisplayProgress = false;
+                ResetProgress();
             }
         }
 
@@ -301,7 +304,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
 
         private void UpdateOutputCase()
         {
-            if(string.IsNullOrWhiteSpace(Output))
+            if (string.IsNullOrWhiteSpace(Output))
             {
                 return;
             }
@@ -327,24 +330,25 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
 
         private async Task CheckSumAsync()
         {
-            if (IsCalculationInProgress)
+            if (_isCalculationInProgress)
             {
                 return;
             }
 
-            IsCalculationInProgress = true;
+            _isCalculationInProgress = true;
 
             string? hashOutput = await CalculateFileHash(InputHashingAlgorithm.Value, InputFile);
 
             ThreadHelper.RunOnUIThreadAsync(() =>
             {
-                if(!string.IsNullOrWhiteSpace(hashOutput))
+                if (hashOutput != null)
                 {
                     Output = hashOutput;
                     _outputHashingAlgorithm = InputHashingAlgorithm;
                 }
-                
-                IsCalculationInProgress = false;
+
+                _isCalculationInProgress = false;
+                ShouldDisplayProgress = false;
 
                 if (!_toolSuccessfullyWorked)
                 {
@@ -358,25 +362,16 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
         {
             try
             {
-                if(inputFile is null)
-                {
-                    return string.Empty;
-                }
-
-                BasicProperties? fileProps = await inputFile.GetBasicPropertiesAsync();
-                if (fileProps is null || fileProps.Size == 0)
-                {
-                    return string.Empty;
-                }
-
-                using var hashAlgo = HashAlgorithm.Create(inputHashingAlgorithm.ToString());
+                using HashAlgorithm? hashAlgo = CreateHashAlgorithm(inputHashingAlgorithm);
                 Stream? fileStream = await inputFile.OpenStreamForReadAsync();
-                
+
+                ShouldDisplayProgress = HashingHelper.ComputeHashIterations(fileStream) > _displayAboveIterations;
+
                 byte[]? fileHash = await HashingHelper.ComputeHashAsync(
-                    hashAlgo,
-                    fileStream,
-                    new Progress<HashingProgress>(UpdateProgress),
-                    _cancellationTokenSource.Token);
+                        hashAlgo,
+                        fileStream,
+                        new Progress<HashingProgress>(UpdateProgress),
+                        _cancellationTokenSource.Token);
 
                 string? fileHashString = BitConverter
                     .ToString(fileHash)
@@ -399,13 +394,10 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
             }
         }
 
-        private void UpdateProgress(HashingProgress hashingProgress) =>
-            ThreadHelper.RunOnUIThreadAsync(() => Progress = hashingProgress.GetPercentage())
-                .ForgetSafely();
+        private void UpdateProgress(HashingProgress hashingProgress) => 
+            ThreadHelper.RunOnUIThreadAsync(() => Progress = hashingProgress.GetPercentage()).ForgetSafely();
 
-        private void ResetProgress() =>
-            ThreadHelper.RunOnUIThreadAsync(() => Progress = 0)
-                .ForgetSafely();
+        private void ResetProgress() => ThreadHelper.RunOnUIThreadAsync(() => Progress = 0).ForgetSafely();
 
         private async Task<IStorageItem?> ExtractStorageItem(DataPackageView data)
         {
@@ -422,5 +414,17 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
 
             return copiedFile[0];
         }
+
+        private HashAlgorithm CreateHashAlgorithm(HashingAlgorithm hashingAlgorithm) =>
+            hashingAlgorithm switch
+            {
+                HashingAlgorithm.MD5 => MD5.Create(),
+                HashingAlgorithm.SHA1 => SHA1.Create(),
+                HashingAlgorithm.SHA256 => SHA256.Create(),
+                HashingAlgorithm.SHA384 => SHA384.Create(),
+                HashingAlgorithm.SHA512 => SHA512.Create(),
+                _ => throw new ArgumentException("Hash Algorithm not supported", nameof(HashingAlgorithm))
+            };
+        
     }
 }

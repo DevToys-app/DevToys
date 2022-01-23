@@ -231,7 +231,6 @@
     <Content Include="Assets\Icons\Converters.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Icons\CheckSum.svg" />
     <Content Include="Assets\Icons\HtmlEncoder.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

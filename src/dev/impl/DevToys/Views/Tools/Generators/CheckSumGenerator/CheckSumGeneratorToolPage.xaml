@@ -129,7 +129,7 @@
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="1" Margin="0,20,0,0" Visibility="{x:Bind ViewModel.IsCalculationInProgress, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <Grid Grid.Row="1" Margin="0,20,0,0" Visibility="{x:Bind ViewModel.ShouldDisplayProgress, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
             <muxc:ProgressRing
                 Height="64"
                 Width="64"
@@ -157,7 +157,7 @@
             AcceptsReturn="True"
             Text="{x:Bind ViewModel.OutputComparer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-        <controlsToolKit:Loading x:Name="LoadingControl" IsLoading="{x:Bind ViewModel.IsCalculationInProgress}"  >
+        <controlsToolKit:Loading x:Name="LoadingControl" IsLoading="{x:Bind ViewModel.ShouldDisplayProgress}"  >
             <StackPanel Orientation="Horizontal" Padding="12">
                 <Grid Margin="0,0,8,0">
                     <Image Source="../../Assets/ToolkitLogo.png" Height="50" />

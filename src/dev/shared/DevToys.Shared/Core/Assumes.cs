@@ -35,5 +35,13 @@ namespace DevToys.Shared.Core
                 throw new Exception($"'{argumentName}' is expected to be True");
             }
         }
+
+        public static void NotZeroOrBelow(long value, string argumentName)
+        {
+            if(value <= 0)
+            {
+                throw new ArgumentException("Value can't be zero or below zero", argumentName);
+            }
+        }
     }
 }

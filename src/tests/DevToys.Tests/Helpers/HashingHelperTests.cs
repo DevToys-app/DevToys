@@ -12,6 +12,25 @@ namespace DevToys.Tests.Helpers
     [TestClass]
     public class HashingHelperTests
     {
+        [TestMethod]
+        public void ComputeHashShouldThrowIfStreamIsNull()
+        {
+            ArgumentException ex = Assert.ThrowsException<ArgumentException>(async () =>
+                    await HashingHelper.ComputeHashAsync(MD5.Create(), null, new Progress<HashingProgress>((_) => { })));
+            Assert.AreEqual(ex.ParamName, "stream");
+        }
+
+        [TestMethod]
+        public void ComputeHashShouldThrowIfHashingAlgorithmIsNull()
+        {
+            using(var stream = new MemoryStream())
+            {
+                ArgumentException ex = Assert.ThrowsException<ArgumentException>(async () =>
+                   await HashingHelper.ComputeHashAsync(null, stream, new Progress<HashingProgress>((_) => { })));
+                Assert.AreEqual(ex.ParamName, "hashAlgorithm");
+            }
+        }
+
         [DataTestMethod]
         [DataRow("", "")]
         [DataRow(" ", "7215EE9C7D9DC229D2921A40E899EC5F")]
@@ -21,7 +40,7 @@ namespace DevToys.Tests.Helpers
         {
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(input)))
             {
-                byte[] bytesResult = await HashingHelper.ComputeHashAsync(HashAlgorithm.Create("MD5"), stream, new Progress<HashingProgress>((_) => { }));
+                byte[] bytesResult = await HashingHelper.ComputeHashAsync(MD5.Create(), stream, new Progress<HashingProgress>((_) => { }));
 
                 string result = FormatResult(BitConverter.ToString(bytesResult));
 
@@ -38,7 +57,7 @@ namespace DevToys.Tests.Helpers
         {
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(input)))
             {
-                byte[] bytesResult = await HashingHelper.ComputeHashAsync(HashAlgorithm.Create("SHA1"), stream, new Progress<HashingProgress>((_) => { }));
+                byte[] bytesResult = await HashingHelper.ComputeHashAsync(SHA1.Create(), stream, new Progress<HashingProgress>((_) => { }));
 
                 string result = FormatResult(BitConverter.ToString(bytesResult));
 
@@ -55,7 +74,7 @@ namespace DevToys.Tests.Helpers
         {
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(input)))
             {
-                byte[] bytesResult = await HashingHelper.ComputeHashAsync(HashAlgorithm.Create("SHA256"), stream, new Progress<HashingProgress>((_) => { }));
+                byte[] bytesResult = await HashingHelper.ComputeHashAsync(SHA256.Create(), stream, new Progress<HashingProgress>((_) => { }));
 
                 string result = FormatResult(BitConverter.ToString(bytesResult));
 
@@ -72,7 +91,7 @@ namespace DevToys.Tests.Helpers
         {
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(input)))
             {
-                byte[] bytesResult = await HashingHelper.ComputeHashAsync(HashAlgorithm.Create("SHA384"), stream, new Progress<HashingProgress>((_) => { }));
+                byte[] bytesResult = await HashingHelper.ComputeHashAsync(SHA384.Create(), stream, new Progress<HashingProgress>((_) => { }));
 
                 string result = FormatResult(BitConverter.ToString(bytesResult));
 
@@ -89,11 +108,61 @@ namespace DevToys.Tests.Helpers
         {
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(input)))
             {
-                byte[] bytesResult = await HashingHelper.ComputeHashAsync(HashAlgorithm.Create("SHA512"), stream, new Progress<HashingProgress>((_) => { }));
+                byte[] bytesResult = await HashingHelper.ComputeHashAsync(SHA512.Create(), stream, new Progress<HashingProgress>((_) => { }));
 
                 string result = FormatResult(BitConverter.ToString(bytesResult));
 
                 Assert.AreEqual(expectedResult, result);
+            }
+        }
+
+        [DataTestMethod]
+        [DataRow(0)]
+        [DataRow(-1)]
+        [DataRow(-100)]
+        [DataRow(int.MinValue)]
+        public void ComputeHashIterationsShouldThrowIfBufferSizeIsZeroOrBelow(int bufferSize)
+        {
+            byte[] byteArray = Array.Empty<byte>();
+            using (var stream = new MemoryStream(byteArray))
+            {
+                ArgumentException ex = Assert.ThrowsException<ArgumentException>(() =>
+                    HashingHelper.ComputeHashIterations(stream, bufferSize));
+                Assert.AreEqual(ex.ParamName, "bufferSize");
+            }
+        }
+
+        [DataTestMethod]
+        [DataRow(100, 10, 10)]
+        [DataRow(1000, 10, 100)]
+        [DataRow(10000, 100, 100)]
+        [DataRow(0, 10, 0)]
+        [DataRow(1, 1, 1)]
+        [DataRow(1, 10, 1)]
+        public void ComputeHashIterations(int streamSize, int bufferSize, int expectedResult)
+        {
+            byte[] byteArray = new byte[streamSize];
+            using (var stream = new MemoryStream(byteArray))
+            {
+                long iterations = HashingHelper.ComputeHashIterations(stream, bufferSize);
+
+                Assert.AreEqual(expectedResult, iterations);
+            }
+        }
+
+        [DataTestMethod]
+        [DataRow(1048576, 1)]
+        [DataRow(5242880, 5)]
+        [DataRow(10485760, 10)]
+        [DataRow(104857600, 100)]
+        public void ComputeHashingIterationsWithDefaultBufferSize(long streamSize, int expectedResult)
+        {
+            byte[] byteArray = new byte[streamSize];
+            using (var stream = new MemoryStream(byteArray))
+            {
+                long iterations = HashingHelper.ComputeHashIterations(stream);
+
+                Assert.AreEqual(expectedResult, iterations);
             }
         }
 

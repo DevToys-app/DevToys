@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using DevToys.Models;
+using DevToys.Shared.Core;
 
 namespace DevToys.Helpers
 {
@@ -19,6 +17,9 @@ namespace DevToys.Helpers
         CancellationToken cancellationToken = default,
         int bufferSize = 1024 * 1024)
         {
+            Assumes.NotNull(stream, nameof(stream));
+            Assumes.NotNull(hashAlgorithm, nameof(hashAlgorithm));
+
             byte[] readAheadBuffer = new byte[bufferSize];
             byte[] buffer;
 
@@ -47,6 +48,23 @@ namespace DevToys.Helpers
                 cancellationToken.ThrowIfCancellationRequested();
             }
             return hashAlgorithm.Hash ?? Array.Empty<byte>();
+        }
+
+        internal static int ComputeHashIterations(Stream stream, int bufferSize = 1024 * 1024)
+        {
+            Assumes.NotNull(stream, nameof(stream));
+            Assumes.NotZeroOrBelow(bufferSize, nameof(bufferSize));
+
+            if(stream.Length == 0)
+            {
+                return 0;
+            }
+            else if(bufferSize >= stream.Length)
+            {
+                return 1;
+            }
+
+            return (int)(stream.Length / bufferSize);
         }
     }
 }
