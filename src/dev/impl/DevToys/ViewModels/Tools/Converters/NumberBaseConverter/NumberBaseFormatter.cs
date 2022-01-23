@@ -191,7 +191,7 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
         private static long GetLong(NumberBaseFormat baseNumber, ReadOnlySpan<char> spanValue, int index, int length)
         {
             ulong result = 0;
-            ulong maxVal = 0x7FFFFFFFFFFFFFFF / 10;
+            ulong maxVal;
             if (baseNumber == NumberBaseFormat.Binary)
             {
                 maxVal = 0xffffffffffffffff / 2;
@@ -203,6 +203,10 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
             else if (baseNumber == NumberBaseFormat.Hexadecimal)
             {
                 maxVal = 0xffffffffffffffff / 16;
+            }
+            else
+            {
+                maxVal = 0x7FFFFFFFFFFFFFFF / 10;
             }
 
             // Read all of the digits and convert to a number
