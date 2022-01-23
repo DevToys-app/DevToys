@@ -118,48 +118,42 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Narzędzie Konwertowania JSON do YAML oraz YAML do JSON</value>
+    <value>URL Kódoló és dekódoló eszköz</value>
   </data>
-  <data name="Configuration" xml:space="preserve">
-    <value>Konfiguracja</value>
+  <data name="ConfigurationTitle" xml:space="preserve">
+    <value>Konfiguráció</value>
+  </data>
+  <data name="ConversionDecode" xml:space="preserve">
+    <value>Dekódolás</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Wybierz tryb konwersji, którego chcesz użyć</value>
+    <value>Válaszd ki a kívánt átalakítót</value>
+  </data>
+  <data name="ConversionEncode" xml:space="preserve">
+    <value>Kódolás</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Konwersja</value>
-  </data>
-  <data name="FourSpaces" xml:space="preserve">
-    <value>4 spacje</value>
-  </data>
-  <data name="Indentation" xml:space="preserve">
-    <value>Indentacja</value>
-  </data>
-  <data name="Input" xml:space="preserve">
-    <value>Wejście</value>
-  </data>
-  <data name="InvalidYaml" xml:space="preserve">
-    <value>Wprowadzony YAML jest nieprawidłowy</value>
-  </data>
-  <data name="JsonToYaml" xml:space="preserve">
-    <value>JSON do YAML</value>
-  </data>
-  <data name="Output" xml:space="preserve">
-    <value>Wyjście</value>
-  </data>
-  <data name="TwoSpaces" xml:space="preserve">
-    <value>2 spacje</value>
-  </data>
-  <data name="YamlToJson" xml:space="preserve">
-    <value>YAML do JSON</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Konwertuj dane JSON do YAML oraz vice-versa</value>
+    <value>Átalakítás</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>JSON &lt;&gt; Yaml</value>
+    <value>URL</value>
+  </data>
+  <data name="EncodingDescription" xml:space="preserve">
+    <value>Válaszd ki a kívánt kódolót</value>
+  </data>
+  <data name="EncodingTitle" xml:space="preserve">
+    <value>Kódolás</value>
+  </data>
+  <data name="InputTitle" xml:space="preserve">
+    <value>Bementek</value>
+  </data>
+  <data name="OutputTitle" xml:space="preserve">
+    <value>Kimenet</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Kódolja vagy dekódolja az összes megfelelő karaktert a megfelelő URL-entitásukra</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Konwerter JSON &lt;&gt; YAML Converter</value>
+    <value>URL Kódoló / Dekódoló</value>
   </data>
 </root>

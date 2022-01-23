@@ -118,48 +118,42 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Narzędzie Konwertowania JSON do YAML oraz YAML do JSON</value>
+    <value>Lorem Ipsum Generáló eszköz</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Konfiguracja</value>
-  </data>
-  <data name="ConversionDescription" xml:space="preserve">
-    <value>Wybierz tryb konwersji, którego chcesz użyć</value>
-  </data>
-  <data name="ConversionTitle" xml:space="preserve">
-    <value>Konwersja</value>
-  </data>
-  <data name="FourSpaces" xml:space="preserve">
-    <value>4 spacje</value>
-  </data>
-  <data name="Indentation" xml:space="preserve">
-    <value>Indentacja</value>
-  </data>
-  <data name="Input" xml:space="preserve">
-    <value>Wejście</value>
-  </data>
-  <data name="InvalidYaml" xml:space="preserve">
-    <value>Wprowadzony YAML jest nieprawidłowy</value>
-  </data>
-  <data name="JsonToYaml" xml:space="preserve">
-    <value>JSON do YAML</value>
-  </data>
-  <data name="Output" xml:space="preserve">
-    <value>Wyjście</value>
-  </data>
-  <data name="TwoSpaces" xml:space="preserve">
-    <value>2 spacje</value>
-  </data>
-  <data name="YamlToJson" xml:space="preserve">
-    <value>YAML do JSON</value>
+    <value>Konfiguráció</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Konwertuj dane JSON do YAML oraz vice-versa</value>
+    <value>Lorem Ipsum helykitöltő generálása</value>
+  </data>
+  <data name="LengthDescription" xml:space="preserve">
+    <value>Generálandó szavak, mondatok vagy paragrafusok száma</value>
+  </data>
+  <data name="LengthTitle" xml:space="preserve">
+    <value>Hossz</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>JSON &lt;&gt; Yaml</value>
+    <value>Lorem Ipsum</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>Kimenet</value>
+  </data>
+  <data name="ParagraphsType" xml:space="preserve">
+    <value>Paragrafusok</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Konwerter JSON &lt;&gt; YAML Converter</value>
+    <value>Lorem Ipsum Generáló</value>
+  </data>
+  <data name="SentencesType" xml:space="preserve">
+    <value>Mondatok</value>
+  </data>
+  <data name="TypeDescription" xml:space="preserve">
+    <value>Lorem Ipsum szavak, mondatok vagy paragrafusok generálása</value>
+  </data>
+  <data name="TypeTitle" xml:space="preserve">
+    <value>Típus</value>
+  </data>
+  <data name="WordsType" xml:space="preserve">
+    <value>Szavak</value>
   </data>
 </root>

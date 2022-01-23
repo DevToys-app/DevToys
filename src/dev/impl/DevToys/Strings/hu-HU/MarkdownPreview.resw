@@ -118,48 +118,36 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Narzędzie Konwertowania JSON do YAML oraz YAML do JSON</value>
+    <value>Markdown előnézet eszköz</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Konfiguracja</value>
+    <value>Konfiguráció</value>
   </data>
-  <data name="ConversionDescription" xml:space="preserve">
-    <value>Wybierz tryb konwersji, którego chcesz użyć</value>
-  </data>
-  <data name="ConversionTitle" xml:space="preserve">
-    <value>Konwersja</value>
-  </data>
-  <data name="FourSpaces" xml:space="preserve">
-    <value>4 spacje</value>
-  </data>
-  <data name="Indentation" xml:space="preserve">
-    <value>Indentacja</value>
-  </data>
-  <data name="Input" xml:space="preserve">
-    <value>Wejście</value>
-  </data>
-  <data name="InvalidYaml" xml:space="preserve">
-    <value>Wprowadzony YAML jest nieprawidłowy</value>
-  </data>
-  <data name="JsonToYaml" xml:space="preserve">
-    <value>JSON do YAML</value>
-  </data>
-  <data name="Output" xml:space="preserve">
-    <value>Wyjście</value>
-  </data>
-  <data name="TwoSpaces" xml:space="preserve">
-    <value>2 spacje</value>
-  </data>
-  <data name="YamlToJson" xml:space="preserve">
-    <value>YAML do JSON</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Konwertuj dane JSON do YAML oraz vice-versa</value>
+  <data name="Dark" xml:space="preserve">
+    <value>Sötét</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>JSON &lt;&gt; Yaml</value>
+    <value>Markdown Előnézet</value>
+  </data>
+  <data name="Input" xml:space="preserve">
+    <value>Markdown</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Világos</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>Előnézet</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Téma</value>
+  </data>
+  <data name="ThemeDescription" xml:space="preserve">
+    <value>Válaszd ki a Markdown előnézet témáját</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Markdown dokumentum előnézete GitHub-szerű renderelő segítségével</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Konwerter JSON &lt;&gt; YAML Converter</value>
+    <value>Markdown Előnézet</value>
   </data>
 </root>

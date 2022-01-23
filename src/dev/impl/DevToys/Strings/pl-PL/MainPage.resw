@@ -137,7 +137,7 @@
   </data>
   <data name="NotificationReleaseNoteTitle" xml:space="preserve">
     <value>DevToys zostało zaktualizowane 🚀 Zobacz co nowego w wesji {0}</value>
-    <comment>{0} is the current app version</comment>
+    <comment>{0} to aktualna wersja aplikacji</comment>
   </data>
   <data name="NotificationUpdateAvailableActionableActionText" xml:space="preserve">
     <value>aktualizuj teraz...</value>
@@ -149,16 +149,16 @@
     <value>Otwórz w nowym oknie</value>
   </data>
   <data name="PinToolToStart" xml:space="preserve">
-    <value>Pin tool to Start</value>
+    <value>Przypmnij narzędzie do Menu Start</value>
   </data>
   <data name="PinToolToStartProblem" xml:space="preserve">
-    <value>Unable to pin the tool to start. For more details, please check the log.</value>
+    <value>Nie można przypiąć narzędzia do Menu Start. Po więcej informacji sprawdź dziennik zdarzeń.</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Wpisz, aby wyszukać narzędzia...</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
-    <value>No results found</value>
+    <value>Nrak wyników</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>

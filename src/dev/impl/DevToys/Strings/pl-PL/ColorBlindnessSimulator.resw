@@ -118,48 +118,48 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Color Blindness Simulator tool</value>
+    <value>Narzędzie Symulowania Ślepoty Barw</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Color Blindness Simulator</value>
+    <value>Symulator Ślepoty Barw</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Simulate color blindness on a picture or screenshot</value>
+    <value>Symuluj ślepotę barw na zdjęciu lub zrzucie ekranu</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Color Blindness Simulator</value>
+    <value>Symulator Ślepoty Barw</value>
   </data>
   <data name="InvalidSelectedFiles" xml:space="preserve">
-    <value>Only a .png, .jpg, .jpeg or .bmp file can be used.</value>
+    <value>Można użyć jedynie plików .png, .jpg, .jpeg lub .bmp.</value>
   </data>
   <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>Drag &amp; drop a PNG, JPEG or BMP file here</value>
+    <value>Przeciągnij i upuść tutaj plik PNG, JPEG lub BMP</value>
   </data>
   <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>or</value>
+    <value>lub</value>
   </data>
   <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>Browse files</value>
+    <value>Przeglądaj pliki</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>Save as</value>
+    <value>Zapisz jako</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Anuluj</value>
   </data>
   <data name="DeuteranopiaSimulation" xml:space="preserve">
-    <value>Deuteranopia simulation</value>
+    <value>Symulacja deuteranopii</value>
   </data>
   <data name="OriginalPicture" xml:space="preserve">
-    <value>Original</value>
+    <value>Oryginalne</value>
   </data>
   <data name="ProtanopiaSimulation" xml:space="preserve">
-    <value>Protanopia simulation</value>
+    <value>Symulacja protanopii</value>
   </data>
   <data name="TritanopiaSimulation" xml:space="preserve">
-    <value>Tritanopia simulation</value>
+    <value>Symulacja tritanopii</value>
   </data>
   <data name="SelectFilesInstruction4" xml:space="preserve">
-    <value>Paste</value>
+    <value>Wklej</value>
   </data>
 </root>

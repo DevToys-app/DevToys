@@ -118,48 +118,39 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Narzędzie Konwertowania JSON do YAML oraz YAML do JSON</value>
+    <value>JSON Formázó eszköz</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Konfiguracja</value>
-  </data>
-  <data name="ConversionDescription" xml:space="preserve">
-    <value>Wybierz tryb konwersji, którego chcesz użyć</value>
-  </data>
-  <data name="ConversionTitle" xml:space="preserve">
-    <value>Konwersja</value>
-  </data>
-  <data name="FourSpaces" xml:space="preserve">
-    <value>4 spacje</value>
-  </data>
-  <data name="Indentation" xml:space="preserve">
-    <value>Indentacja</value>
-  </data>
-  <data name="Input" xml:space="preserve">
-    <value>Wejście</value>
-  </data>
-  <data name="InvalidYaml" xml:space="preserve">
-    <value>Wprowadzony YAML jest nieprawidłowy</value>
-  </data>
-  <data name="JsonToYaml" xml:space="preserve">
-    <value>JSON do YAML</value>
-  </data>
-  <data name="Output" xml:space="preserve">
-    <value>Wyjście</value>
-  </data>
-  <data name="TwoSpaces" xml:space="preserve">
-    <value>2 spacje</value>
-  </data>
-  <data name="YamlToJson" xml:space="preserve">
-    <value>YAML do JSON</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Konwertuj dane JSON do YAML oraz vice-versa</value>
+    <value>Konfiguráció</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>JSON &lt;&gt; Yaml</value>
+    <value>Json</value>
+  </data>
+  <data name="FourSpaces" xml:space="preserve">
+    <value>4 szóköz</value>
+  </data>
+  <data name="Indentation" xml:space="preserve">
+    <value>Indentálás</value>
+  </data>
+  <data name="Input" xml:space="preserve">
+    <value>Bemenet</value>
+  </data>
+  <data name="Minified" xml:space="preserve">
+    <value>Kicsinyített</value>
+  </data>
+  <data name="OneTab" xml:space="preserve">
+    <value>1 tab</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>Kimenet</value>
+  </data>
+  <data name="TwoSpaces" xml:space="preserve">
+    <value>2 szóköz</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Json adat indentálása vagy kicsinyítése</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Konwerter JSON &lt;&gt; YAML Converter</value>
+    <value>Json Formázó</value>
   </data>
 </root>

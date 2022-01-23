@@ -117,49 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AccessibleName" xml:space="preserve">
-    <value>Narzędzie Konwertowania JSON do YAML oraz YAML do JSON</value>
+  <data name="Bytes" xml:space="preserve">
+    <value>Bájtok</value>
   </data>
-  <data name="Configuration" xml:space="preserve">
-    <value>Konfiguracja</value>
+  <data name="Clear" xml:space="preserve">
+    <value>Tisztítás</value>
   </data>
-  <data name="ConversionDescription" xml:space="preserve">
-    <value>Wybierz tryb konwersji, którego chcesz użyć</value>
+  <data name="Copy" xml:space="preserve">
+    <value>Másolás</value>
   </data>
-  <data name="ConversionTitle" xml:space="preserve">
-    <value>Konwersja</value>
+  <data name="Cut" xml:space="preserve">
+    <value>Vágás</value>
   </data>
-  <data name="FourSpaces" xml:space="preserve">
-    <value>4 spacje</value>
+  <data name="Delete" xml:space="preserve">
+    <value>Törlés</value>
   </data>
-  <data name="Indentation" xml:space="preserve">
-    <value>Indentacja</value>
+  <data name="Gigabytes" xml:space="preserve">
+    <value>GB</value>
   </data>
-  <data name="Input" xml:space="preserve">
-    <value>Wejście</value>
+  <data name="Kilobytes" xml:space="preserve">
+    <value>KB</value>
   </data>
-  <data name="InvalidYaml" xml:space="preserve">
-    <value>Wprowadzony YAML jest nieprawidłowy</value>
+  <data name="Megabytes" xml:space="preserve">
+    <value>MB</value>
   </data>
-  <data name="JsonToYaml" xml:space="preserve">
-    <value>JSON do YAML</value>
+  <data name="Ok" xml:space="preserve">
+    <value>OK</value>
   </data>
-  <data name="Output" xml:space="preserve">
-    <value>Wyjście</value>
+  <data name="OpenFile" xml:space="preserve">
+    <value>Fájl betöltése</value>
   </data>
-  <data name="TwoSpaces" xml:space="preserve">
-    <value>2 spacje</value>
+  <data name="Paste" xml:space="preserve">
+    <value>Beillesztés</value>
   </data>
-  <data name="YamlToJson" xml:space="preserve">
-    <value>YAML do JSON</value>
+  <data name="Redo" xml:space="preserve">
+    <value>Újra</value>
   </data>
-  <data name="Description" xml:space="preserve">
-    <value>Konwertuj dane JSON do YAML oraz vice-versa</value>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Minden kijelölése</value>
   </data>
-  <data name="MenuDisplayName" xml:space="preserve">
-    <value>JSON &lt;&gt; Yaml</value>
+  <data name="Terabytes" xml:space="preserve">
+    <value>TB</value>
   </data>
-  <data name="SearchDisplayName" xml:space="preserve">
-    <value>Konwerter JSON &lt;&gt; YAML Converter</value>
+  <data name="ToggleSwitchOff" xml:space="preserve">
+    <value>Ki</value>
+  </data>
+  <data name="ToggleSwitchOn" xml:space="preserve">
+    <value>Be</value>
+  </data>
+  <data name="UnableOpenFile" xml:space="preserve">
+    <value>Nem lehet ezt a fájlt megnyitni</value>
+  </data>
+  <data name="UnableOpenFileDescription" xml:space="preserve">
+    <value>Nem lehet a '{0}' fájlt megnyitni. További információkért, ellenőrizd a log fájlokat.</value>
+  </data>
+  <data name="Undo" xml:space="preserve">
+    <value>Újra</value>
   </data>
 </root>

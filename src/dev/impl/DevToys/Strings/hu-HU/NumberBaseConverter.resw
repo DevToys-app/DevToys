@@ -118,48 +118,62 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Narzędzie Konwertowania JSON do YAML oraz YAML do JSON</value>
+    <value>Számbázis Átváltó eszköz</value>
   </data>
-  <data name="Configuration" xml:space="preserve">
-    <value>Konfiguracja</value>
+  <data name="BinaryLabel" xml:space="preserve">
+    <value>Bináris</value>
   </data>
-  <data name="ConversionDescription" xml:space="preserve">
-    <value>Wybierz tryb konwersji, którego chcesz użyć</value>
+  <data name="ConfigurationTitle" xml:space="preserve">
+    <value>Konfiguráció</value>
   </data>
-  <data name="ConversionTitle" xml:space="preserve">
-    <value>Konwersja</value>
-  </data>
-  <data name="FourSpaces" xml:space="preserve">
-    <value>4 spacje</value>
-  </data>
-  <data name="Indentation" xml:space="preserve">
-    <value>Indentacja</value>
-  </data>
-  <data name="Input" xml:space="preserve">
-    <value>Wejście</value>
-  </data>
-  <data name="InvalidYaml" xml:space="preserve">
-    <value>Wprowadzony YAML jest nieprawidłowy</value>
-  </data>
-  <data name="JsonToYaml" xml:space="preserve">
-    <value>JSON do YAML</value>
-  </data>
-  <data name="Output" xml:space="preserve">
-    <value>Wyjście</value>
-  </data>
-  <data name="TwoSpaces" xml:space="preserve">
-    <value>2 spacje</value>
-  </data>
-  <data name="YamlToJson" xml:space="preserve">
-    <value>YAML do JSON</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Konwertuj dane JSON do YAML oraz vice-versa</value>
+  <data name="DecimalLabel" xml:space="preserve">
+    <value>Decimális</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>JSON &lt;&gt; Yaml</value>
+    <value>Számbázis</value>
+  </data>
+  <data name="Format" xml:space="preserve">
+    <value>Szám formázása</value>
+  </data>
+  <data name="HexadecimalLabel" xml:space="preserve">
+    <value>Hexadecimális</value>
+  </data>
+  <data name="Input" xml:space="preserve">
+    <value>Bemenet</value>
+  </data>
+  <data name="InputTypeBinary" xml:space="preserve">
+    <value>Bináris</value>
+  </data>
+  <data name="InputTypeDecimal" xml:space="preserve">
+    <value>Decimális</value>
+  </data>
+  <data name="InputTypeDescription" xml:space="preserve">
+    <value>Válaszd ki melyik bemeneti típust akarod használni</value>
+  </data>
+  <data name="InputTypeHexadecimal" xml:space="preserve">
+    <value>Hexadecimális</value>
+  </data>
+  <data name="InputTypeOctal" xml:space="preserve">
+    <value>Octal</value>
+  </data>
+  <data name="InputTypeTitle" xml:space="preserve">
+    <value>Bemeneti típus</value>
+  </data>
+  <data name="OctalLabel" xml:space="preserve">
+    <value>Octal</value>
+  </data>
+  <data name="ValueInvalid" xml:space="preserve">
+    <value>A jelenlegi érték nem érvényes {0}</value>
+    <comment>A paraméter a számbázis típus (Decimalális, Octal, ...)</comment>
+  </data>
+  <data name="ValueOverflow" xml:space="preserve">
+    <value>Nem lehet az aktuális értéket elemezni, mert meghaladja a maximális értéket {0}</value>
+    <comment>A paraméter a maxiláis értéke a long típusnak</comment>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Átváltás egyik számbázisból egy másikba</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Konwerter JSON &lt;&gt; YAML Converter</value>
+    <value>Számbázis átváltó</value>
   </data>
 </root>

@@ -118,48 +118,69 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Narzędzie Konwertowania JSON do YAML oraz YAML do JSON</value>
+    <value>Reguláris kifejezés tesztelő eszköz</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Konfiguracja</value>
+    <value>Konfiguráció</value>
   </data>
-  <data name="ConversionDescription" xml:space="preserve">
-    <value>Wybierz tryb konwersji, którego chcesz użyć</value>
+  <data name="CultureInvariant" xml:space="preserve">
+    <value>Culture Invariant</value>
   </data>
-  <data name="ConversionTitle" xml:space="preserve">
-    <value>Konwersja</value>
-  </data>
-  <data name="FourSpaces" xml:space="preserve">
-    <value>4 spacje</value>
-  </data>
-  <data name="Indentation" xml:space="preserve">
-    <value>Indentacja</value>
-  </data>
-  <data name="Input" xml:space="preserve">
-    <value>Wejście</value>
-  </data>
-  <data name="InvalidYaml" xml:space="preserve">
-    <value>Wprowadzony YAML jest nieprawidłowy</value>
-  </data>
-  <data name="JsonToYaml" xml:space="preserve">
-    <value>JSON do YAML</value>
-  </data>
-  <data name="Output" xml:space="preserve">
-    <value>Wyjście</value>
-  </data>
-  <data name="TwoSpaces" xml:space="preserve">
-    <value>2 spacje</value>
-  </data>
-  <data name="YamlToJson" xml:space="preserve">
-    <value>YAML do JSON</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Konwertuj dane JSON do YAML oraz vice-versa</value>
+  <data name="CultureInvariantDescription" xml:space="preserve">
+    <value>Meghatározza, hogy a program figyelmen kívül hagyja a nyelvi kulturális különbségeket.</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>JSON &lt;&gt; Yaml</value>
+    <value>Regex Tesztelő</value>
+  </data>
+  <data name="EcmaScript" xml:space="preserve">
+    <value>ECMA Script</value>
+  </data>
+  <data name="EcmaScriptDescription" xml:space="preserve">
+    <value>Engedélyezi az ECMAScript-kompatibilis viselkedést a kifejezés számára. Ez az érték csak a Culture Invariant, Kis- és nagybetűk figyelmen kívül hagyása és a Többsoros beállításokkal együtt használható.</value>
+  </data>
+  <data name="IgnoreCase" xml:space="preserve">
+    <value>Kis- és nagybetűk figyelmen kívűl hagyása</value>
+  </data>
+  <data name="IgnoreCaseDescription" xml:space="preserve">
+    <value>Meghatározza a kis- és nagybetűk közötti egyezést.</value>
+  </data>
+  <data name="IgnoreWhitespace" xml:space="preserve">
+    <value>Whitespacek Figyelmenkívűl hagyása</value>
+  </data>
+  <data name="IgnoreWhitespaceDescription" xml:space="preserve">
+    <value>Kiküszöböli az unescaped white space-eket a mintából és engedélyezi a kommenteket amik #-el vannak jelölve. Viszont, ez az érték nem befojásolja vagy szünteti meg a white space-eket a karakter osztályokban, numerikus kvantorokban, vagy tokenekben amik az egyedi reguláris kifejezés nyelvi elemek kezdéseit jelölik.</value>
+  </data>
+  <data name="Multiline" xml:space="preserve">
+    <value>Többsoros</value>
+  </data>
+  <data name="MultilineDescription" xml:space="preserve">
+    <value>Megváltoztatja a ^ és a $ jelentését úgy, hogy bármely sor elejét és végét jelentse és nem csak az egész szöveg elejét és végét.</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Opciók</value>
+  </data>
+  <data name="RegularExpression" xml:space="preserve">
+    <value>Reguláris kifejezés</value>
+  </data>
+  <data name="RightToLeft" xml:space="preserve">
+    <value>Jobbról barla</value>
+  </data>
+  <data name="RightToLeftDescription" xml:space="preserve">
+    <value>Meghatározza, hogy a keresés jobbról balra fog történni balról jobbra helyett.</value>
+  </data>
+  <data name="Singleline" xml:space="preserve">
+    <value>Egysoros</value>
+  </data>
+  <data name="SinglelineDescription" xml:space="preserve">
+    <value>Megváltoztatja a pont (.) jelentését, hogy minden karakter egyezését jelentse (Ahelyett, hogy minden karaktert kivéve a \n-t)</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Szöveg</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Regurális kifejezések tesztelése és validálása</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Konwerter JSON &lt;&gt; YAML Converter</value>
+    <value>Regex Tesztelő</value>
   </data>
 </root>

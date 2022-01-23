@@ -118,48 +118,48 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Narzędzie Konwertowania JSON do YAML oraz YAML do JSON</value>
-  </data>
-  <data name="Configuration" xml:space="preserve">
-    <value>Konfiguracja</value>
-  </data>
-  <data name="ConversionDescription" xml:space="preserve">
-    <value>Wybierz tryb konwersji, którego chcesz użyć</value>
-  </data>
-  <data name="ConversionTitle" xml:space="preserve">
-    <value>Konwersja</value>
-  </data>
-  <data name="FourSpaces" xml:space="preserve">
-    <value>4 spacje</value>
-  </data>
-  <data name="Indentation" xml:space="preserve">
-    <value>Indentacja</value>
-  </data>
-  <data name="Input" xml:space="preserve">
-    <value>Wejście</value>
-  </data>
-  <data name="InvalidYaml" xml:space="preserve">
-    <value>Wprowadzony YAML jest nieprawidłowy</value>
-  </data>
-  <data name="JsonToYaml" xml:space="preserve">
-    <value>JSON do YAML</value>
-  </data>
-  <data name="Output" xml:space="preserve">
-    <value>Wyjście</value>
-  </data>
-  <data name="TwoSpaces" xml:space="preserve">
-    <value>2 spacje</value>
-  </data>
-  <data name="YamlToJson" xml:space="preserve">
-    <value>YAML do JSON</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Konwertuj dane JSON do YAML oraz vice-versa</value>
+    <value>Színvakság szimulációs eszköz</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>JSON &lt;&gt; Yaml</value>
+    <value>Szívakság Szimulátor</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Színvakság szimulációja egy képen vagy képernyőképen</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Konwerter JSON &lt;&gt; YAML Converter</value>
+    <value>Színvakság Szimulátor</value>
+  </data>
+  <data name="InvalidSelectedFiles" xml:space="preserve">
+    <value>Csak .png, .jpg, .jpeg vagy .bmp fájlok használhatóak.</value>
+  </data>
+  <data name="SelectFilesInstruction1" xml:space="preserve">
+    <value>Húzz be egy PNG, JPEG vagy BMP fájlt ide</value>
+  </data>
+  <data name="SelectFilesInstruction2" xml:space="preserve">
+    <value>vagy</value>
+  </data>
+  <data name="SelectFilesInstruction3" xml:space="preserve">
+    <value>Fájlok tallózása</value>
+  </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>Mentés másként</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Mégse</value>
+  </data>
+  <data name="DeuteranopiaSimulation" xml:space="preserve">
+    <value>Deuteranopia szimuláció</value>
+  </data>
+  <data name="OriginalPicture" xml:space="preserve">
+    <value>Eredeti</value>
+  </data>
+  <data name="ProtanopiaSimulation" xml:space="preserve">
+    <value>Protanopia szimuláció</value>
+  </data>
+  <data name="TritanopiaSimulation" xml:space="preserve">
+    <value>Tritanopia szimuláció</value>
+  </data>
+  <data name="SelectFilesInstruction4" xml:space="preserve">
+    <value>Beillesztés</value>
   </data>
 </root>

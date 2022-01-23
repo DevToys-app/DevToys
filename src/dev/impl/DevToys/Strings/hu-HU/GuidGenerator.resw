@@ -118,48 +118,51 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Narzędzie Konwertowania JSON do YAML oraz YAML do JSON</value>
+    <value>UUID Generáló eszköz</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Konfiguracja</value>
-  </data>
-  <data name="ConversionDescription" xml:space="preserve">
-    <value>Wybierz tryb konwersji, którego chcesz użyć</value>
-  </data>
-  <data name="ConversionTitle" xml:space="preserve">
-    <value>Konwersja</value>
-  </data>
-  <data name="FourSpaces" xml:space="preserve">
-    <value>4 spacje</value>
-  </data>
-  <data name="Indentation" xml:space="preserve">
-    <value>Indentacja</value>
-  </data>
-  <data name="Input" xml:space="preserve">
-    <value>Wejście</value>
-  </data>
-  <data name="InvalidYaml" xml:space="preserve">
-    <value>Wprowadzony YAML jest nieprawidłowy</value>
-  </data>
-  <data name="JsonToYaml" xml:space="preserve">
-    <value>JSON do YAML</value>
-  </data>
-  <data name="Output" xml:space="preserve">
-    <value>Wyjście</value>
-  </data>
-  <data name="TwoSpaces" xml:space="preserve">
-    <value>2 spacje</value>
-  </data>
-  <data name="YamlToJson" xml:space="preserve">
-    <value>YAML do JSON</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Konwertuj dane JSON do YAML oraz vice-versa</value>
+    <value>Konfiguráció</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>JSON &lt;&gt; Yaml</value>
+    <value>UUID</value>
+  </data>
+  <data name="Generate" xml:space="preserve">
+    <value>Generálás</value>
+  </data>
+  <data name="GenerateButton" xml:space="preserve">
+    <value>UUID(k) generálása</value>
+  </data>
+  <data name="Guids" xml:space="preserve">
+    <value>UUID(k)</value>
+  </data>
+  <data name="Hyphens" xml:space="preserve">
+    <value>Kötőjelek</value>
+  </data>
+  <data name="MultiplySymbol" xml:space="preserve">
+    <value>x</value>
+  </data>
+  <data name="NumberOfGuidsToGenerate_AutomationProperties_Name" xml:space="preserve">
+    <value>Generálandó UUIDk száma</value>
+  </data>
+  <data name="Uppercase" xml:space="preserve">
+    <value>Nagybetűs</value>
+  </data>
+  <data name="UuidVersionFour" xml:space="preserve">
+    <value>4 (GUID)</value>
+  </data>
+  <data name="UuidVersionOne" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="VersionDescription" xml:space="preserve">
+    <value>Válaszd ki a generálandó UUIDk verzióját</value>
+  </data>
+  <data name="VersionTitle" xml:space="preserve">
+    <value>UUID verzió</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>1-es és 4-es verziójú UUIDk generálása</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Konwerter JSON &lt;&gt; YAML Converter</value>
+    <value>UUID Generátor</value>
   </data>
 </root>

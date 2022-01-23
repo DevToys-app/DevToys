@@ -117,49 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AccessibleName" xml:space="preserve">
-    <value>Narzędzie Konwertowania JSON do YAML oraz YAML do JSON</value>
+  <data name="ConvertersAccessibleName" xml:space="preserve">
+    <value>Átalakítók</value>
   </data>
-  <data name="Configuration" xml:space="preserve">
-    <value>Konfiguracja</value>
+  <data name="ConvertersDisplayName" xml:space="preserve">
+    <value>Átalakítók</value>
   </data>
-  <data name="ConversionDescription" xml:space="preserve">
-    <value>Wybierz tryb konwersji, którego chcesz użyć</value>
+  <data name="EncodersDecodersAccessibleName" xml:space="preserve">
+    <value>Kódolók és dekódolók</value>
   </data>
-  <data name="ConversionTitle" xml:space="preserve">
-    <value>Konwersja</value>
+  <data name="EncodersDecodersDisplayName" xml:space="preserve">
+    <value>Kódolók / Dekódolók</value>
   </data>
-  <data name="FourSpaces" xml:space="preserve">
-    <value>4 spacje</value>
+  <data name="FormattersAccessibleName" xml:space="preserve">
+    <value>Formázók</value>
   </data>
-  <data name="Indentation" xml:space="preserve">
-    <value>Indentacja</value>
+  <data name="FormattersDisplayName" xml:space="preserve">
+    <value>Formázók</value>
   </data>
-  <data name="Input" xml:space="preserve">
-    <value>Wejście</value>
+  <data name="GeneratorsAccessibleName" xml:space="preserve">
+    <value>Generálók</value>
   </data>
-  <data name="InvalidYaml" xml:space="preserve">
-    <value>Wprowadzony YAML jest nieprawidłowy</value>
+  <data name="GeneratorsDisplayName" xml:space="preserve">
+    <value>Generálók</value>
   </data>
-  <data name="JsonToYaml" xml:space="preserve">
-    <value>JSON do YAML</value>
+  <data name="GraphicAccessibleName" xml:space="preserve">
+    <value>Grafikus</value>
   </data>
-  <data name="Output" xml:space="preserve">
-    <value>Wyjście</value>
+  <data name="GraphicDisplayName" xml:space="preserve">
+    <value>Grafikus</value>
   </data>
-  <data name="TwoSpaces" xml:space="preserve">
-    <value>2 spacje</value>
+  <data name="TextAccessibleName" xml:space="preserve">
+    <value>Szöveg</value>
   </data>
-  <data name="YamlToJson" xml:space="preserve">
-    <value>YAML do JSON</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Konwertuj dane JSON do YAML oraz vice-versa</value>
-  </data>
-  <data name="MenuDisplayName" xml:space="preserve">
-    <value>JSON &lt;&gt; Yaml</value>
-  </data>
-  <data name="SearchDisplayName" xml:space="preserve">
-    <value>Konwerter JSON &lt;&gt; YAML Converter</value>
+  <data name="TextDisplayName" xml:space="preserve">
+    <value>Szöveg</value>
   </data>
 </root>

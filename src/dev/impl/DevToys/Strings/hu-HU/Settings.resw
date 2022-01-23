@@ -117,49 +117,116 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AccessibleName" xml:space="preserve">
-    <value>Narzędzie Konwertowania JSON do YAML oraz YAML do JSON</value>
+  <data name="About" xml:space="preserve">
+    <value>Rólunk</value>
   </data>
-  <data name="Configuration" xml:space="preserve">
-    <value>Konfiguracja</value>
+  <data name="AppTheme" xml:space="preserve">
+    <value>App Téma</value>
   </data>
-  <data name="ConversionDescription" xml:space="preserve">
-    <value>Wybierz tryb konwersji, którego chcesz użyć</value>
+  <data name="AppThemeDescription" xml:space="preserve">
+    <value>Válaszd ki a megjelenítendő témát</value>
   </data>
-  <data name="ConversionTitle" xml:space="preserve">
-    <value>Konwersja</value>
+  <data name="AppTitle" xml:space="preserve">
+    <value>DevToys</value>
   </data>
-  <data name="FourSpaces" xml:space="preserve">
-    <value>4 spacje</value>
+  <data name="Behaviors" xml:space="preserve">
+    <value>Viselkedések</value>
   </data>
-  <data name="Indentation" xml:space="preserve">
-    <value>Indentacja</value>
+  <data name="Close" xml:space="preserve">
+    <value>Bezár</value>
   </data>
-  <data name="Input" xml:space="preserve">
-    <value>Wejście</value>
+  <data name="Copy" xml:space="preserve">
+    <value>Másolás</value>
   </data>
-  <data name="InvalidYaml" xml:space="preserve">
-    <value>Wprowadzony YAML jest nieprawidłowy</value>
+  <data name="Dark" xml:space="preserve">
+    <value>Sötét</value>
   </data>
-  <data name="JsonToYaml" xml:space="preserve">
-    <value>JSON do YAML</value>
-  </data>
-  <data name="Output" xml:space="preserve">
-    <value>Wyjście</value>
-  </data>
-  <data name="TwoSpaces" xml:space="preserve">
-    <value>2 spacje</value>
-  </data>
-  <data name="YamlToJson" xml:space="preserve">
-    <value>YAML do JSON</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Konwertuj dane JSON do YAML oraz vice-versa</value>
+  <data name="DefaultLanguage" xml:space="preserve">
+    <value>Microsoft Windows-al megegyező</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>JSON &lt;&gt; Yaml</value>
+    <value>Beállítások</value>
+  </data>
+  <data name="Font" xml:space="preserve">
+    <value>Betűtípus</value>
+  </data>
+  <data name="HighlightCurrentLine" xml:space="preserve">
+    <value>Aktuális sor kijelölése</value>
+  </data>
+  <data name="HighlightCurrentLineDescription" xml:space="preserve">
+    <value>Aktuális sor hátterének megváltoztatása a jobb láthatóság érdekében</value>
+    <comment>Aktuális sor hátterének megváltoztatása a jobb láthatóság érdekében</comment>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Nyelv</value>
+  </data>
+  <data name="LanguageDescription" xml:space="preserve">
+    <value>A programot újra kell indítani nyelv választása során</value>
+  </data>
+  <data name="License" xml:space="preserve">
+    <value>Licensz</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Világos</value>
+  </data>
+  <data name="LineNumbers" xml:space="preserve">
+    <value>Sorok számozása</value>
+  </data>
+  <data name="LineNumbersDescription" xml:space="preserve">
+    <value>Sorok számozásának megjelenítése</value>
+  </data>
+  <data name="OpenLogs" xml:space="preserve">
+    <value>Logok megnyitása</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Adatvédelmi irányelvek</value>
+  </data>
+  <data name="RateAndReview" xml:space="preserve">
+    <value>Értékelés a Microsoft Store-ban</value>
+  </data>
+  <data name="RenderWhitespace" xml:space="preserve">
+    <value>White space-ek mutatása</value>
+  </data>
+  <data name="ReportProblem" xml:space="preserve">
+    <value>Probléma jelentése</value>
+  </data>
+  <data name="SmartDetection" xml:space="preserve">
+    <value>Intelligens észlelés</value>
+  </data>
+  <data name="SmartDetectionDescription" xml:space="preserve">
+    <value>Automatikusan észleli a legjobb eszközt a vágólap tartalmának alapján</value>
+  </data>
+  <data name="SmartDetectionHowTo" xml:space="preserve">
+    <value>Az intelligens észlelés használata</value>
+  </data>
+  <data name="SmartDetectionPaste" xml:space="preserve">
+    <value>Automatikusan illessze be a vágólap tartalmát a javasolt eszköz kiválasztása során</value>
+  </data>
+  <data name="SourceCode" xml:space="preserve">
+    <value>Forráskód</value>
+  </data>
+  <data name="TextEditor" xml:space="preserve">
+    <value>Szöveg szerkesztő</value>
+  </data>
+  <data name="ThirdPartyNotices" xml:space="preserve">
+    <value>Third party licenszek</value>
+  </data>
+  <data name="UsefulLinks" xml:space="preserve">
+    <value>Hasznos linkek</value>
+  </data>
+  <data name="UseSystemSettings" xml:space="preserve">
+    <value>Rendszerbeállítások használata</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>{0} verzió</value>
+  </data>
+  <data name="WordWrap" xml:space="preserve">
+    <value>Szavak törése</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>DevToys kinézetének &amp; érzésének személyre szabása</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Konwerter JSON &lt;&gt; YAML Converter</value>
+    <value>Beállítások</value>
   </data>
 </root>
