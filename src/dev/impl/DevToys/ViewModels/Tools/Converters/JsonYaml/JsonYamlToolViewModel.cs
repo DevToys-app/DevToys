@@ -51,6 +51,11 @@ namespace DevToys.ViewModels.Tools.JsonYaml
         private readonly IMarketingService _marketingService;
         private readonly Queue<string> _conversionQueue = new();
 
+        private readonly JsonSerializerSettings _defaultJsonSerializerSettings = new()
+        {
+            FloatParseHandling = FloatParseHandling.Decimal
+        };
+
         private bool _toolSuccessfullyWorked;
         private bool _conversionInProgress;
         private bool _setPropertyInProgress;
@@ -230,7 +235,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml
 
             try
             {
-                dynamic? jsonObject = JsonConvert.DeserializeObject<ExpandoObject>(input);
+                dynamic? jsonObject = JsonConvert.DeserializeObject<ExpandoObject>(input, _defaultJsonSerializerSettings);
                 if (jsonObject is not null and not string)
                 {
                     int indent = 0;
@@ -242,7 +247,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml
                     };
                     var serializer
                         = Serializer.FromValueSerializer(
-                            new SerializerBuilder().WithTypeConverter(new DoubleConverter()).BuildValueSerializer(),
+                            new SerializerBuilder().BuildValueSerializer(),
                             EmitterSettings.Default.WithBestIndent(indent).WithIndentedSequences());
 
                     string? yaml = serializer.Serialize(jsonObject);
