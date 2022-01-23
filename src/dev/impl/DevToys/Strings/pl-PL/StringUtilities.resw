@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>String utilities tool</value>
+    <value>Narzędzie Manipulacji Tekstem</value>
   </data>
   <data name="AlternatingCase" xml:space="preserve">
     <value>aLtErNaTiNg cAsE</value>
@@ -208,12 +208,12 @@
     <value>Słowa:</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Analyze text and convert it to a different case</value>
+    <value>Analizuj tekst i konwertuj go do innej wielkości liter</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Inspector &amp; Case Converter</value>
+    <value>Manipulator Tekstu</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Text Case Converter and Inspector</value>
+    <value>Inspektor i manipulator wielkości liter tekstu</value>
   </data>
 </root>

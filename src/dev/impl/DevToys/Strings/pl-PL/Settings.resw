@@ -220,12 +220,12 @@
     <value>Wersja {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Zawijaj słowa</value>
+    <value>Zawijaj wiersze</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Customize DevToys look &amp; feel</value>
+    <value>Dostosuj wygląd DevToys</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Settings</value>
+    <value>Ustawienia</value>
   </data>
 </root>
