@@ -7,6 +7,7 @@ using System.Composition;
 using System.Linq;
 using System.Threading.Tasks;
 using DevToys.Api.Tools;
+using DevToys.Core;
 using DevToys.Core.Threading;
 using DevToys.Helpers;
 using DevToys.Shared.Core;
@@ -158,7 +159,11 @@ namespace DevToys.ViewModels.Tools.ImageConverter
                     }
                 }).ConfigureAwait(false);
             }
-            catch (Exception) { IsInfoBarOpen = true; }
+            catch (Exception ex)
+            {
+                Logger.LogFault(nameof(ImageConverterToolViewModel), ex, "Unable to recognize files.");
+                IsInfoBarOpen = true;
+            }
         }
 
         #endregion
@@ -193,7 +198,11 @@ namespace DevToys.ViewModels.Tools.ImageConverter
                     }
                 });
             }
-            catch (Exception) { IsInfoBarOpen = true; }
+            catch (Exception ex)
+            {
+                Logger.LogFault(nameof(ImageConverterToolViewModel), ex, "Unable to browse file(s).");
+                IsInfoBarOpen = true;
+            }
         }
 
         #endregion
@@ -238,7 +247,11 @@ namespace DevToys.ViewModels.Tools.ImageConverter
                     await Task.WhenAll(conversionTasks);
                 }
             }
-            catch (Exception) { IsInfoBarOpen = true; }
+            catch (Exception ex)
+            {
+                Logger.LogFault(nameof(ImageConverterToolViewModel), ex, "Unable to save all files.");
+                IsInfoBarOpen = true;
+            }
         }
 
         #endregion
