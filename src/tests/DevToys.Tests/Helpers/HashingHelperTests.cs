@@ -97,6 +97,6 @@ namespace DevToys.Tests.Helpers
             }
         }
 
-        private string FormatResult(this string input) => input.Replace("-", string.Empty);
+        private string FormatResult(string input) => input.Replace("-", string.Empty);
     }
 }

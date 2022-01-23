@@ -118,54 +118,51 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>CheckSum Generator tool</value>
+    <value>Ferramenta geradora de CheckSum</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancelar</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Configuração</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generate an hash with CheckSum based on a file</value>
+    <value>Gerar um hash com CheckSum baseado num ficheiro</value>
   </data>
   <data name="HashingAlgorithmDescription" xml:space="preserve">
-    <value>Select which hashing algorithm you want to use</value>
+    <value>Selecione o algoritmo de hash que deseja utilisar</value>
   </data>
   <data name="HashingAlgorithmTitle" xml:space="preserve">
-    <value>Hashing Algorithm</value>
+    <value>Algoritmo de hash</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>Entrada</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>CheckSum</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>Resultado</value>
   </data>
   <data name="OutputComparer" xml:space="preserve">
-    <value>Output Comparer</value>
-  </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Save as</value>
+    <value>Comparador de resultado</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>CheckSum</value>
   </data>
   <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>Drag &amp; drop a file here</value>
+    <value>Arraste e largue um ficheiro aqui</value>
   </data>
   <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>or</value>
+    <value>ou</value>
   </data>
   <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>Browse files</value>
+    <value>Procurar ficheiros</value>
   </data>
   <data name="SelectFilesInstruction4" xml:space="preserve">
-    <value>Paste</value>
+    <value>Colar</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
-    <value>Uppercase</value>
+    <value>Maiúsculas</value>
   </data>
 </root>

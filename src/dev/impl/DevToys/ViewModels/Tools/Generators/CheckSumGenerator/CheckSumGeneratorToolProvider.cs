@@ -1,11 +1,6 @@
 ﻿#nullable enable
 
-using System;
-using System.Collections.Generic;
 using System.Composition;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DevToys.Api.Tools;
 using DevToys.Core.Threading;
 using DevToys.Shared.Api.Core;
@@ -32,7 +27,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
         public string AccessibleName => LanguageManager.Instance.CheckSumGenerator.AccessibleName;
 
         //TODO: Create svg
-        public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("checksum.svg");
+        public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF56F");
 
         [ImportingConstructor]
         public CheckSumGeneratorToolProvider(IMefProvider mefProvider)

@@ -33,8 +33,6 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
     [Export(typeof(CheckSumGeneratorToolViewModel))]
     public sealed class CheckSumGeneratorToolViewModel : ObservableRecipient, IToolViewModel
     {
-        //TODO: We could use some basic caching
-
         /// <summary>
         /// Whether the generated hash should be uppercase or lowercase.
         /// </summary>
