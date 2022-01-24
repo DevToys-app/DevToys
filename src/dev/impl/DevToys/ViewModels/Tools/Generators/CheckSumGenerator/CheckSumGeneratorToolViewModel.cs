@@ -18,7 +18,6 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
-using Windows.Storage.FileProperties;
 using DevToys.Shared.Core.Threading;
 using Windows.Storage.Pickers;
 using Windows.UI.Xaml;
@@ -330,7 +329,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
 
         private async Task CheckSumAsync()
         {
-            if (_isCalculationInProgress)
+            if (_isCalculationInProgress || InputFile is null)
             {
                 return;
             }
