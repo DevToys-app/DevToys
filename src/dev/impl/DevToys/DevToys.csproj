@@ -30,6 +30,7 @@
     <Compile Include="Core\Threading\AsyncLazy.cs" />
     <Compile Include="Helpers\ColorBlindnessSimulatorHelper.cs" />
     <Compile Include="Helpers\NumberBaseHelper.cs" />
+    <Compile Include="Helpers\XmlHelper.cs" />
     <Compile Include="Messages\PinToolToStartMessage.cs" />
     <Compile Include="Messages\OpenToolInNewWindowMessage.cs" />
     <Compile Include="Messages\ChangeSelectedMenuItemMessage.cs" />
@@ -47,6 +48,8 @@
     <Compile Include="ViewModels\Tools\AllTools\AllToolsToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Converters\ConvertersGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\EncodersDecodersGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Formatters\XmlFormatter\XmlFormatterToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Formatters\XmlFormatter\XmlFormatterToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Generators\GeneratorsGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolViewModel.cs" />
@@ -66,6 +69,9 @@
     <Compile Include="ViewModels\Tools\Text\TextGroupToolProvider.cs" />
     <Compile Include="Views\Tools\AllTools\AllToolsToolPage.xaml.cs">
       <DependentUpon>AllToolsToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Formatters\XmlFormatter\XmlFormatterToolPage.xaml.cs">
+      <DependentUpon>XmlFormatterToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\Graphic\ColorBlindnessSimulator\ColorBlindnessSimulatorToolPage.xaml.cs">
       <DependentUpon>ColorBlindnessSimulatorToolPage.xaml</DependentUpon>
@@ -525,6 +531,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Tools\EncodersDecoders\Base64EncoderDecoder\Base64EncoderDecoderToolPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\Formatters\XmlFormatter\XmlFormatterToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
