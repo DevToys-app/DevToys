@@ -362,7 +362,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
             try
             {
                 using HashAlgorithm? hashAlgo = CreateHashAlgorithm(inputHashingAlgorithm);
-                Stream? fileStream = await inputFile.OpenStreamForReadAsync();
+                using Stream? fileStream = await inputFile.OpenStreamForReadAsync();
 
                 ShouldDisplayProgress = HashingHelper.ComputeHashIterations(fileStream) > _displayAboveIterations;
 

@@ -15,6 +15,7 @@
 
     <Page.Resources>
         <converters:BooleanToVisibilityConverter x:Name="BooleanToVisibilityConverter"/>
+        <converters:InvertedBooleanConverter x:Name="InvertedBooleanConverter"/>
     </Page.Resources>
 
     <StackPanel Margin="0,0,0,16" Spacing="12">
@@ -60,6 +61,7 @@
                 <ComboBox
                     ItemsSource="{x:Bind ViewModel.HashingAlgorithms}"
                     DisplayMemberPath="DisplayName"
+                    IsEnabled="{x:Bind ViewModel.ShouldDisplayProgress, Mode=OneWay, Converter={StaticResource InvertedBooleanConverter}}"
                     SelectedValue="{x:Bind ViewModel.InputHashingAlgorithm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 </ComboBox>
             </controls:ExpandableSettingControl>
