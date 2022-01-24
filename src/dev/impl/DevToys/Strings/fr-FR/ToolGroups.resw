@@ -142,10 +142,10 @@
     <value>Générateurs</value>
   </data>
   <data name="GraphicAccessibleName" xml:space="preserve">
-    <value>Gaphique</value>
+    <value>Graphique</value>
   </data>
   <data name="GraphicDisplayName" xml:space="preserve">
-    <value>Gaphique</value>
+    <value>Graphique</value>
   </data>
   <data name="TextAccessibleName" xml:space="preserve">
     <value>Texte</value>
