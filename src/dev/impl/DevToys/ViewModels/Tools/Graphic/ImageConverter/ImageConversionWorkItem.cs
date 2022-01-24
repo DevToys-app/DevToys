@@ -13,11 +13,10 @@ using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
-using Windows.UI.Core;
 
 namespace DevToys.ViewModels.Tools.ImageConverter
 {
-    internal sealed class ImageConversionWorkItem : ObservableRecipient
+    internal sealed class ImageConversionWorkItem : ObservableRecipient, IDisposable
     {
         private string _fileSize = string.Empty;
         private readonly Action<Exception> _errorHandler = HandleError;
@@ -27,6 +26,8 @@ namespace DevToys.ViewModels.Tools.ImageConverter
         internal string FileName { get; }
 
         internal string FilePath { get; }
+
+        internal string DisplayName { get; }
 
         internal SoftwareBitmap? Bitmap { get; private set; }
 
@@ -50,6 +51,7 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
             FileName = file.Name;
             FilePath = file.Path;
+            DisplayName = file.DisplayName;
 
             DeleteCommand = new RelayCommand(ExecuteDeleteCommand);
             SaveCommand = new AsyncRelayCommand<ImageConverterToolViewModel>(ExecuteSaveCommandAsync);
@@ -98,6 +100,7 @@ namespace DevToys.ViewModels.Tools.ImageConverter
                     await encoder.FlushAsync();
                 }
 
+                Dispose();
                 DeleteCommand.Execute(this);
             }
         }
@@ -127,6 +130,14 @@ namespace DevToys.ViewModels.Tools.ImageConverter
                 BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
                 var bitmap = await decoder.GetSoftwareBitmapAsync();
                 await ThreadHelper.RunOnUIThreadAsync(() => Bitmap = bitmap);
+            }
+        }
+
+        public void Dispose()
+        {
+            if (Bitmap is not null)
+            {
+                Bitmap.Dispose();
             }
         }
     }
