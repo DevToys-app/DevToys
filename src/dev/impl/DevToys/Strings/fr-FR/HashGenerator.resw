@@ -150,4 +150,13 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Générateur de Hash</value>
   </data>
+  <data name="OutputBase64" xml:space="preserve">
+    <value>Base64</value>
+  </data>
+  <data name="OutputHex" xml:space="preserve">
+    <value>Hex</value>
+  </data>
+  <data name="OutputTypeTitle" xml:space="preserve">
+    <value>Le type de sortie</value>
+  </data>
 </root>
