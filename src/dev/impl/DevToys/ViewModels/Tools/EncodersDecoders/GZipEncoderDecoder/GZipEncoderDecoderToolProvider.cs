@@ -23,7 +23,7 @@ namespace DevToys.ViewModels.Tools.GZipEncoderDecoder
 
         public string AccessibleName => LanguageManager.Instance.GZipEncoderDecoder.AccessibleName;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("Gzip.svg"); // TODO: icon. Dont know how to create svg stuff
+        public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF435");
 
         private readonly IMefProvider _mefProvider;
 

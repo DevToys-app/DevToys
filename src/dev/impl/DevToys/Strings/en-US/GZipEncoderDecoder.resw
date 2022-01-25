@@ -130,19 +130,19 @@
     <value>Decompress</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Select compress or decompress</value>
+    <value>Select whether the input should be compressed or decompressed</value>
   </data>
   <data name="ConversionCompress" xml:space="preserve">
     <value>Compress</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Compress/Decompress</value>
+    <value>GZip Compress/Decompress</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>GZip</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
-    <value>Compress or decompress strings with GZip</value>
+    <value>Select whether the input should be compressed or decompressed</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
     <value>Encoding</value>
@@ -160,6 +160,6 @@
     <value>Compress or decompress strings</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>GZip Compress/Decompress</value>
+    <value>GZip Compress / Decompress</value>
   </data>
 </root>
