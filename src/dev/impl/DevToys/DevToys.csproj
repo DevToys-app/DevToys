@@ -46,6 +46,8 @@
     <Compile Include="ViewModels\Tools\AllTools\AllToolsToolProvider.cs" />
     <Compile Include="ViewModels\Tools\AllTools\AllToolsToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Converters\ConvertersGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Converters\JsonYaml\DecimalJsonConverter.cs" />
+    <Compile Include="ViewModels\Tools\Converters\JsonYaml\DecimalYamlTypeResolver.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\EncodersDecodersGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Generators\GeneratorsGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolProvider.cs" />
