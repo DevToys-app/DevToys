@@ -108,8 +108,6 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
         public async Task<SoftwareBitmap> DecodeImageAsync()
         {
-            await TaskScheduler.Default;
-
             using (IRandomAccessStream stream = await File.OpenAsync(FileAccessMode.Read))
             {
                 BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
