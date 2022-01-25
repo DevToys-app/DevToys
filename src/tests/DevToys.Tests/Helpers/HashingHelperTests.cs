@@ -2,6 +2,7 @@
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using DevToys.Helpers;
 using DevToys.Models;
@@ -16,7 +17,7 @@ namespace DevToys.Tests.Helpers
         public void ComputeHashShouldThrowIfStreamIsNull()
         {
             ArgumentException ex = Assert.ThrowsException<ArgumentException>(async () =>
-                    await HashingHelper.ComputeHashAsync(MD5.Create(), null, new Progress<HashingProgress>((_) => { })));
+                    await HashingHelper.ComputeHashAsync(MD5.Create(), null, new Progress<HashingProgress>((_) => { }), new CancellationToken()));
             Assert.AreEqual(ex.ParamName, "stream");
         }
 
@@ -26,7 +27,7 @@ namespace DevToys.Tests.Helpers
             using(var stream = new MemoryStream())
             {
                 ArgumentException ex = Assert.ThrowsException<ArgumentException>(async () =>
-                   await HashingHelper.ComputeHashAsync(null, stream, new Progress<HashingProgress>((_) => { })));
+                   await HashingHelper.ComputeHashAsync(null, stream, new Progress<HashingProgress>((_) => { }), new CancellationToken()));
                 Assert.AreEqual(ex.ParamName, "hashAlgorithm");
             }
         }
@@ -40,7 +41,7 @@ namespace DevToys.Tests.Helpers
         {
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(input)))
             {
-                byte[] bytesResult = await HashingHelper.ComputeHashAsync(MD5.Create(), stream, new Progress<HashingProgress>((_) => { }));
+                byte[] bytesResult = await HashingHelper.ComputeHashAsync(MD5.Create(), stream, new Progress<HashingProgress>((_) => { }), new CancellationToken());
 
                 string result = FormatResult(BitConverter.ToString(bytesResult));
 
@@ -57,7 +58,7 @@ namespace DevToys.Tests.Helpers
         {
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(input)))
             {
-                byte[] bytesResult = await HashingHelper.ComputeHashAsync(SHA1.Create(), stream, new Progress<HashingProgress>((_) => { }));
+                byte[] bytesResult = await HashingHelper.ComputeHashAsync(SHA1.Create(), stream, new Progress<HashingProgress>((_) => { }), new CancellationToken());
 
                 string result = FormatResult(BitConverter.ToString(bytesResult));
 
@@ -74,7 +75,7 @@ namespace DevToys.Tests.Helpers
         {
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(input)))
             {
-                byte[] bytesResult = await HashingHelper.ComputeHashAsync(SHA256.Create(), stream, new Progress<HashingProgress>((_) => { }));
+                byte[] bytesResult = await HashingHelper.ComputeHashAsync(SHA256.Create(), stream, new Progress<HashingProgress>((_) => { }), new CancellationToken());
 
                 string result = FormatResult(BitConverter.ToString(bytesResult));
 
@@ -91,7 +92,7 @@ namespace DevToys.Tests.Helpers
         {
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(input)))
             {
-                byte[] bytesResult = await HashingHelper.ComputeHashAsync(SHA384.Create(), stream, new Progress<HashingProgress>((_) => { }));
+                byte[] bytesResult = await HashingHelper.ComputeHashAsync(SHA384.Create(), stream, new Progress<HashingProgress>((_) => { }), new CancellationToken());
 
                 string result = FormatResult(BitConverter.ToString(bytesResult));
 
@@ -108,7 +109,7 @@ namespace DevToys.Tests.Helpers
         {
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(input)))
             {
-                byte[] bytesResult = await HashingHelper.ComputeHashAsync(SHA512.Create(), stream, new Progress<HashingProgress>((_) => { }));
+                byte[] bytesResult = await HashingHelper.ComputeHashAsync(SHA512.Create(), stream, new Progress<HashingProgress>((_) => { }), new CancellationToken());
 
                 string result = FormatResult(BitConverter.ToString(bytesResult));
 

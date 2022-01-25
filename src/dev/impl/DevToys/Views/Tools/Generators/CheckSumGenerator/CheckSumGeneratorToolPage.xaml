@@ -158,15 +158,5 @@
             Height="50"
             AcceptsReturn="True"
             Text="{x:Bind ViewModel.OutputComparer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-        <controlsToolKit:Loading x:Name="LoadingControl" IsLoading="{x:Bind ViewModel.ShouldDisplayProgress}"  >
-            <StackPanel Orientation="Horizontal" Padding="12">
-                <Grid Margin="0,0,8,0">
-                    <Image Source="../../Assets/ToolkitLogo.png" Height="50" />
-                    <ProgressRing IsActive="True" Foreground="Blue" />
-                </Grid>
-                <TextBlock Text="Loading" Foreground="Black" VerticalAlignment="Center" />
-            </StackPanel>
-        </controlsToolKit:Loading>
     </StackPanel>
 </Page>

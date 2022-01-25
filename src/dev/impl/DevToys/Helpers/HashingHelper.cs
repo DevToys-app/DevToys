@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 using System.IO;
 using System.Security.Cryptography;
 using System.Threading;
@@ -11,14 +13,14 @@ namespace DevToys.Helpers
     internal static class HashingHelper
     {
         internal static async Task<byte[]> ComputeHashAsync(
-        HashAlgorithm hashAlgorithm,
-        Stream stream,
-        IProgress<HashingProgress> progress,
-        CancellationToken cancellationToken = default,
-        int bufferSize = 1024 * 1024)
+            HashAlgorithm hashAlgorithm,
+            Stream stream,
+            IProgress<HashingProgress> progress,
+            CancellationToken cancellationToken,
+            int bufferSize = 1024 * 1024)
         {
-            Assumes.NotNull(stream, nameof(stream));
-            Assumes.NotNull(hashAlgorithm, nameof(hashAlgorithm));
+            Arguments.NotNull(stream, nameof(stream));
+            Arguments.NotNull(hashAlgorithm, nameof(hashAlgorithm));
 
             byte[] readAheadBuffer = new byte[bufferSize];
             byte[] buffer;
@@ -52,8 +54,8 @@ namespace DevToys.Helpers
 
         internal static int ComputeHashIterations(Stream stream, int bufferSize = 1024 * 1024)
         {
-            Assumes.NotNull(stream, nameof(stream));
-            Assumes.NotZeroOrBelow(bufferSize, nameof(bufferSize));
+            Arguments.NotNull(stream, nameof(stream));
+            Arguments.NotZeroOrBelow(bufferSize, nameof(bufferSize));
 
             if(stream.Length == 0)
             {

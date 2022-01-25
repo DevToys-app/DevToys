@@ -173,7 +173,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
             SelectFilesAreaDragDropCommand = new AsyncRelayCommand<DragEventArgs>(ExecuteSelectFilesAreaDragDropCommandAsync);
             SelectFilesBrowseCommand = new AsyncRelayCommand(ExecuteSelectFilesBrowseCommandAsync);
             SelectFilesPasteCommand = new AsyncRelayCommand(ExecuteSelectFilesPasteCommandAsync);
-            CancelCommand = new RelayCommand(ExecuteCancelCommand);
+            CancelCommand = new RelayCommand(() => ExecuteCancelCommand(shouldRevertHashingAlgo: true));
         }
 
         #region SelectFilesAreaDragOverCommand
@@ -277,7 +277,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
 
         public IRelayCommand CancelCommand { get; }
 
-        private void ExecuteCancelCommand()
+        private void ExecuteCancelCommand(bool shouldRevertHashingAlgo)
         {
             lock (_lockObject)
             {
@@ -287,7 +287,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
 
                 _cancellationTokenSource = new CancellationTokenSource();
 
-                if (_outputHashingAlgorithm != null)
+                if (shouldRevertHashingAlgo && _outputHashingAlgorithm != null)
                 {
                     InputHashingAlgorithm = _outputHashingAlgorithm;
                 }
@@ -322,7 +322,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
         {
             lock (_lockObject)
             {
-                ResetProgress();
+                ExecuteCancelCommand(shouldRevertHashingAlgo: false);
                 CheckSumAsync().Forget();
             }
         }
@@ -336,9 +336,15 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
 
             _isCalculationInProgress = true;
 
-            string? hashOutput = await CalculateFileHash(InputHashingAlgorithm.Value, InputFile);
+            await TaskScheduler.Default;
 
-            ThreadHelper.RunOnUIThreadAsync(() =>
+            using Stream? fileStream = await InputFile.OpenStreamForReadAsync();
+
+            await ThreadHelper.RunOnUIThreadAsync(() => ShouldDisplayProgress = HashingHelper.ComputeHashIterations(fileStream) > _displayAboveIterations);
+
+            string? hashOutput = await CalculateFileHash(InputHashingAlgorithm.Value, fileStream);
+
+            await ThreadHelper.RunOnUIThreadAsync(() =>
             {
                 if (hashOutput != null)
                 {
@@ -354,17 +360,14 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
                     _toolSuccessfullyWorked = true;
                     _marketingService.NotifyToolSuccessfullyWorked();
                 }
-            }).ForgetSafely();
+            });
         }
 
-        private async Task<string?> CalculateFileHash(HashingAlgorithm inputHashingAlgorithm, IStorageFile? inputFile)
+        private async Task<string?> CalculateFileHash(HashingAlgorithm inputHashingAlgorithm, Stream fileStream)
         {
             try
             {
                 using HashAlgorithm? hashAlgo = CreateHashAlgorithm(inputHashingAlgorithm);
-                using Stream? fileStream = await inputFile.OpenStreamForReadAsync();
-
-                ShouldDisplayProgress = HashingHelper.ComputeHashIterations(fileStream) > _displayAboveIterations;
 
                 byte[]? fileHash = await HashingHelper.ComputeHashAsync(
                         hashAlgo,
@@ -393,7 +396,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
             }
         }
 
-        private void UpdateProgress(HashingProgress hashingProgress) => 
+        private void UpdateProgress(HashingProgress hashingProgress) =>
             ThreadHelper.RunOnUIThreadAsync(() => Progress = hashingProgress.GetPercentage()).ForgetSafely();
 
         private void ResetProgress() => ThreadHelper.RunOnUIThreadAsync(() => Progress = 0).ForgetSafely();
