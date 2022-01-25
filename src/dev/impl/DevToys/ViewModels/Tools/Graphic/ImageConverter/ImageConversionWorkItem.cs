@@ -35,8 +35,6 @@ namespace DevToys.ViewModels.Tools.ImageConverter
             }
         }
 
-        internal string? ErrorMessage { get; private set; }
-
         internal event EventHandler? DeleteItemRequested;
 
         internal ImageConversionWorkItem(StorageFile file)
