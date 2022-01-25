@@ -263,7 +263,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml
             }
             catch (Exception ex)
             {
-                Logger.LogFault("Yaml to Json Converter", ex);
+                Logger.LogFault("Json to Yaml Converter", ex);
                 output = string.Empty;
             }
 
