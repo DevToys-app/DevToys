@@ -461,28 +461,6 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <PRIResource Include="Strings\zh-Hant\UrlEncoderDecoder.resw" />
-    <PRIResource Include="Strings\zh-Hant\ToolGroups.resw" />
-    <PRIResource Include="Strings\zh-Hant\TextDiff.resw" />
-    <PRIResource Include="Strings\zh-Hant\StringUtilities.resw" />
-    <PRIResource Include="Strings\zh-Hant\Settings.resw" />
-    <PRIResource Include="Strings\zh-Hant\SearchResult.resw" />
-    <PRIResource Include="Strings\zh-Hant\RegEx.resw" />
-    <PRIResource Include="Strings\zh-Hant\PngJpgCompressor.resw" />
-    <PRIResource Include="Strings\zh-Hant\NumberBaseConverter.resw" />
-    <PRIResource Include="Strings\zh-Hant\MarkdownPreview.resw" />
-    <PRIResource Include="Strings\zh-Hant\MainPage.resw" />
-    <PRIResource Include="Strings\zh-Hant\LoremIpsumGenerator.resw" />
-    <PRIResource Include="Strings\zh-Hant\JwtDecoderEncoder.resw" />
-    <PRIResource Include="Strings\zh-Hant\JsonYaml.resw" />
-    <PRIResource Include="Strings\zh-Hant\JsonFormatter.resw" />
-    <PRIResource Include="Strings\zh-Hant\HtmlEncoderDecoder.resw" />
-    <PRIResource Include="Strings\zh-Hant\HashGenerator.resw" />
-    <PRIResource Include="Strings\zh-Hant\GuidGenerator.resw" />
-    <PRIResource Include="Strings\zh-Hant\Common.resw" />
-    <PRIResource Include="Strings\zh-Hant\ColorBlindnessSimulator.resw" />
-    <PRIResource Include="Strings\zh-Hant\Base64EncoderDecoder.resw" />
-    <PRIResource Include="Strings\zh-Hant\AllTools.resw" />
     <PRIResource Include="Strings\*\*.resw" />
     <Page Include="Themes\Custom.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -647,4 +625,3 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-</Project>
