@@ -46,6 +46,8 @@
     <Compile Include="ViewModels\Tools\AllTools\AllToolsToolProvider.cs" />
     <Compile Include="ViewModels\Tools\AllTools\AllToolsToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Converters\ConvertersGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Converters\JsonYaml\DecimalJsonConverter.cs" />
     <Compile Include="ViewModels\Tools\Converters\JsonYaml\DecimalYamlTypeResolver.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\EncodersDecodersGroupToolProvider.cs" />
@@ -68,6 +70,9 @@
     <Compile Include="ViewModels\Tools\Text\TextGroupToolProvider.cs" />
     <Compile Include="Views\Tools\AllTools\AllToolsToolPage.xaml.cs">
       <DependentUpon>AllToolsToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolPage.xaml.cs">
+      <DependentUpon>GZipEncoderDecoderToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\Graphic\ColorBlindnessSimulator\ColorBlindnessSimulatorToolPage.xaml.cs">
       <DependentUpon>ColorBlindnessSimulatorToolPage.xaml</DependentUpon>
@@ -463,28 +468,6 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <PRIResource Include="Strings\ja-JP\UrlEncoderDecoder.resw" />
-    <PRIResource Include="Strings\ja-JP\ToolGroups.resw" />
-    <PRIResource Include="Strings\ja-JP\TextDiff.resw" />
-    <PRIResource Include="Strings\ja-JP\StringUtilities.resw" />
-    <PRIResource Include="Strings\ja-JP\Settings.resw" />
-    <PRIResource Include="Strings\ja-JP\SearchResult.resw" />
-    <PRIResource Include="Strings\ja-JP\RegEx.resw" />
-    <PRIResource Include="Strings\ja-JP\PngJpgCompressor.resw" />
-    <PRIResource Include="Strings\ja-JP\NumberBaseConverter.resw" />
-    <PRIResource Include="Strings\ja-JP\MarkdownPreview.resw" />
-    <PRIResource Include="Strings\ja-JP\MainPage.resw" />
-    <PRIResource Include="Strings\ja-JP\LoremIpsumGenerator.resw" />
-    <PRIResource Include="Strings\ja-JP\JwtDecoderEncoder.resw" />
-    <PRIResource Include="Strings\ja-JP\JsonYaml.resw" />
-    <PRIResource Include="Strings\ja-JP\JsonFormatter.resw" />
-    <PRIResource Include="Strings\ja-JP\HtmlEncoderDecoder.resw" />
-    <PRIResource Include="Strings\ja-JP\HashGenerator.resw" />
-    <PRIResource Include="Strings\ja-JP\GuidGenerator.resw" />
-    <PRIResource Include="Strings\ja-JP\Common.resw" />
-    <PRIResource Include="Strings\ja-JP\ColorBlindnessSimulator.resw" />
-    <PRIResource Include="Strings\ja-JP\Base64EncoderDecoder.resw" />
-    <PRIResource Include="Strings\ja-JP\AllTools.resw" />
     <PRIResource Include="Strings\*\*.resw" />
     <Page Include="Themes\Custom.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -525,6 +508,10 @@
     <Page Include="Views\Tools\AllTools\AllToolsToolPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Tools\EncodersDecoders\Base64EncoderDecoder\Base64EncoderDecoderToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
