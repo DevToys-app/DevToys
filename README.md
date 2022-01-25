@@ -8,8 +8,8 @@
   A Swiss Army knife for developers.
 </p>
 <p align="center">
-  <a style="text-decoration:none" href="https://etienne-baudoux.visualstudio.com/Side%20projects/_build/latest?definitionId=15&branchName=main" target="_blank">
-    <img src="https://etienne-baudoux.visualstudio.com/Side%20projects/_apis/build/status/DevToys?branchName=main" alt="Build Status" />
+  <a style="text-decoration:none" href="https://etienne-baudoux.visualstudio.com/DevToys/_build?definitionId=19&branchName=main" target="_blank">
+    <img src="https://etienne-baudoux.visualstudio.com/DevToys/_apis/build/status/DevToys?branchName=main" alt="Build Status" />
   </a>
   <a style="text-decoration:none" href="https://github.com/veler/DevToys/releases" target="_blank">
     <img src="https://img.shields.io/github/release/veler/devtoys.svg?label=Latest%20version" alt="Latest version" />
@@ -73,6 +73,12 @@ Many tools are available.
 - Download and extract the latest [release](https://github.com/veler/DevToys/releases).
 - Install the certificate in `Trusted Root`.
 - Double click the *.msixbundle file.
+
+## App Permission
+
+DevToys works entirely offline, meaning that none of the data used by the app goes on internet. However, the app requires some other permissions in order to work correctly.
+1. `Uses all system resources` - This permission is required for some tools like `PNG / JPEG Compressor` or (upcoming) `On-screen color picker / measurer`, which use a 3rd part Open-Source Win32 process like [Efficient-Compression-Tool](https://github.com/fhanau/Efficient-Compression-Tool).
+All the code requiring this permission can be found [here](https://github.com/veler/DevToys/tree/main/src/dev/impl/DevToys.OutOfProcService).
 
 ## How to run DevToys
 

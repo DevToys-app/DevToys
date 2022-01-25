@@ -118,9 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="SearchResults" xml:space="preserve">
-    <value>Search results for "{0}"</value>
+    <value>Wyniki wyszukiwania "{0}"</value>
   </data>
   <data name="NoResultsFound" xml:space="preserve">
-    <value>No results found</value>
+    <value>Brak wyników</value>
   </data>
 </root>

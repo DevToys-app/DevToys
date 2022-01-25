@@ -15,7 +15,7 @@
                 <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
             </TransitionCollection>
         </Grid.ChildrenTransitions>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -31,12 +31,10 @@
                 <controls:ExpandableSettingControl.Icon>
                     <FontIcon Glyph="&#xF18D;" />
                 </controls:ExpandableSettingControl.Icon>
-                <ComboBox
-                    SelectedValuePath="Tag"
-                    SelectedValue="{x:Bind ViewModel.ConversionMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                    <ComboBoxItem Tag="Encode" Content="{x:Bind ViewModel.Strings.ConversionEncode}" />
-                    <ComboBoxItem Tag="Decode" Content="{x:Bind ViewModel.Strings.ConversionDecode}"/>
-                </ComboBox>
+                <ToggleSwitch 
+                    Style="{StaticResource RightAlignedToggleSwitchStyle}"
+                    OnContent="{x:Bind ViewModel.Strings.ConversionEncode}" OffContent="{x:Bind ViewModel.Strings.ConversionDecode}"
+                    IsOn="{x:Bind ViewModel.IsEncodeMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </controls:ExpandableSettingControl>
         </StackPanel>
 

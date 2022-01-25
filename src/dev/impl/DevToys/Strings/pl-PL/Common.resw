@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Bytes" xml:space="preserve">
-    <value>Bytes</value>
+    <value>B</value>
   </data>
   <data name="Clear" xml:space="preserve">
     <value>Wyczyść</value>
@@ -160,13 +160,13 @@
     <value>Wyłączone</value>
   </data>
   <data name="ToggleSwitchOn" xml:space="preserve">
-    <value>Właczone</value>
+    <value>Włączone</value>
   </data>
   <data name="UnableOpenFile" xml:space="preserve">
-    <value>Unable to open this file</value>
+    <value>Nie można otworzyć tego pliku</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>Unable to load the file '{0}'. For more details, please check the log.</value>
+    <value>Nie można otworzyć pliku '{0}'. Po więcej informacji sprawdź dziennik zdarzeń.</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>Cofnij</value>

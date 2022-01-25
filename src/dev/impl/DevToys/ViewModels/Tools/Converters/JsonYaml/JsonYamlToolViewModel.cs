@@ -19,6 +19,7 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Newtonsoft.Json;
 using YamlDotNet.Core;
 using YamlDotNet.Serialization;
+using DevToys.ViewModels.Tools.Converters.JsonYaml;
 
 namespace DevToys.ViewModels.Tools.JsonYaml
 {
@@ -50,6 +51,11 @@ namespace DevToys.ViewModels.Tools.JsonYaml
 
         private readonly IMarketingService _marketingService;
         private readonly Queue<string> _conversionQueue = new();
+
+        private readonly JsonSerializerSettings _defaultJsonSerializerSettings = new()
+        {
+            FloatParseHandling = FloatParseHandling.Decimal
+        };
 
         private bool _toolSuccessfullyWorked;
         private bool _conversionInProgress;
@@ -230,7 +236,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml
 
             try
             {
-                dynamic? jsonObject = JsonConvert.DeserializeObject<ExpandoObject>(input);
+                dynamic? jsonObject = JsonConvert.DeserializeObject<ExpandoObject>(input, _defaultJsonSerializerSettings);
                 if (jsonObject is not null and not string)
                 {
                     int indent = 0;
@@ -277,7 +283,10 @@ namespace DevToys.ViewModels.Tools.JsonYaml
             {
                 using var stringReader = new StringReader(input);
 
-                var deserializer = new Deserializer();
+                var deserializer = new DeserializerBuilder()
+                    .WithNodeTypeResolver(new DecimalYamlTypeResolver())
+                    .Build();
+
                 object? yamlObject = deserializer.Deserialize(stringReader);
 
                 if (yamlObject is null or string)
@@ -308,7 +317,10 @@ namespace DevToys.ViewModels.Tools.JsonYaml
                             throw new NotSupportedException();
                     }
 
-                    var jsonSerializer = new JsonSerializer();
+                    var jsonSerializer = JsonSerializer.CreateDefault(new JsonSerializerSettings()
+                    {
+                        Converters = { new DecimalJsonConverter() }
+                    });
                     jsonSerializer.Serialize(jsonTextWriter, yamlObject);
                 }
 

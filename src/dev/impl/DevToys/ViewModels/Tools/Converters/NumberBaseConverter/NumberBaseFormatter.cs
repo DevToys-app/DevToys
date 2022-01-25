@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Text;
 using DevToys.Models;
 
-namespace DevToys.Core.Formatter
+namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
 {
     internal static class NumberBaseFormatter
     {
@@ -70,7 +70,7 @@ namespace DevToys.Core.Formatter
             Span<char> buffer = stackalloc char[67]; // Longest possible string length for an integer in binary notation with prefix
 
             // If the number is negative, make it positive and remember the sign.
-            long ul;
+            ulong ul;
             bool isNegative = false;
             if (number < 0)
             {
@@ -78,11 +78,11 @@ namespace DevToys.Core.Formatter
 
                 // For base 10, write out -num, but other bases write out the
                 // 2's complement bit pattern
-                ul = (10 == baseNumber.BaseNumber) ? -number : number;
+                ul = baseNumber == NumberBaseFormat.Decimal ? (ulong)-number : (ulong)number;
             }
             else
             {
-                ul = number;
+                ul = (ulong)number;
             }
 
             // Special case the 0.
@@ -95,13 +95,13 @@ namespace DevToys.Core.Formatter
             else
             {
                 index = 0;
-                for (int i = 0; i < buffer.Length; i++) // for loop instead of do{...}while(l!=0) to help JIT eliminate span bounds checks
+                for (int i = 0; i < buffer.Length; i++)
                 {
-                    long div = ul / baseNumber.BaseNumber; // TODO https://github.com/dotnet/runtime/issues/5213
-                    int charVal = (int)(ul - (div * baseNumber.BaseNumber));
+                    ulong div = ul / (ulong)baseNumber.BaseNumber;
+                    int charVal = (int)(ul - div * (ulong)baseNumber.BaseNumber);
                     ul = div;
 
-                    buffer[i] = (charVal < 10) ?
+                    buffer[i] = charVal < 10 ?
                         (char)(charVal + '0') :
                         (char)(charVal + 'a' - 10);
 
@@ -191,7 +191,23 @@ namespace DevToys.Core.Formatter
         private static long GetLong(NumberBaseFormat baseNumber, ReadOnlySpan<char> spanValue, int index, int length)
         {
             ulong result = 0;
-            ulong maxVal = 0x7FFFFFFFFFFFFFFF / 10;
+            ulong maxVal;
+            if (baseNumber == NumberBaseFormat.Binary)
+            {
+                maxVal = 0xffffffffffffffff / 2;
+            }
+            else if (baseNumber == NumberBaseFormat.Octal)
+            {
+                maxVal = 0xffffffffffffffff / 8;
+            }
+            else if (baseNumber == NumberBaseFormat.Hexadecimal)
+            {
+                maxVal = 0xffffffffffffffff / 16;
+            }
+            else
+            {
+                maxVal = 0x7FFFFFFFFFFFFFFF / 10;
+            }
 
             // Read all of the digits and convert to a number
             while (index < length)
@@ -222,14 +238,14 @@ namespace DevToys.Core.Formatter
                     // Check for overflows - this is sufficient & correct.
                     if (result > maxVal)
                     {
-                        throw new OverflowException($"Unable to parse the current value exceded max value ({long.MaxValue})");
+                        throw new OverflowException(string.Format(Strings.ValueOverflow, long.MaxValue));
                     }
 
                     ulong temp = result * (ulong)baseNumber.BaseNumber + (ulong)current;
 
                     if (temp < result) // this means overflow as well
                     {
-                        throw new OverflowException($"Unable to parse the current value exceded max value ({long.MaxValue})");
+                        throw new OverflowException(string.Format(Strings.ValueOverflow, long.MaxValue));
                     }
 
                     result = temp;
@@ -258,9 +274,9 @@ namespace DevToys.Core.Formatter
                 case Radix.Octal:
                     return char.IsNumber(c);
                 case Radix.Hexdecimal:
-                    return (char.IsNumber(c) ||
-                        (c >= 'a' && c <= 'f') ||
-                        (c >= 'A' && c <= 'F'));
+                    return char.IsNumber(c) ||
+                        c >= 'a' && c <= 'f' ||
+                        c >= 'A' && c <= 'F';
                 default:
                     return true;
             }

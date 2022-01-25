@@ -2,10 +2,10 @@
 
 using System.Composition;
 using DevToys.Api.Tools;
-using DevToys.Core.Formatter;
 using DevToys.Core.Threading;
 using DevToys.Helpers;
 using DevToys.Shared.Api.Core;
+using DevToys.ViewModels.Tools.Converters.NumberBaseConverter;
 using Windows.UI.Xaml.Controls;
 
 namespace DevToys.ViewModels.Tools.NumberBaseConverter

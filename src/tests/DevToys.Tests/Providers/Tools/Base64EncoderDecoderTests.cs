@@ -40,7 +40,7 @@ namespace DevToys.Tests.Providers.Tools
 
             await ThreadHelper.RunOnUIThreadAsync(() =>
             {
-                viewModel.ConversionMode = "Encode";
+                viewModel.IsEncodeMode = true;
                 viewModel.InputValue = input;
             });
 
@@ -60,7 +60,7 @@ namespace DevToys.Tests.Providers.Tools
 
             await ThreadHelper.RunOnUIThreadAsync(() =>
             {
-                viewModel.ConversionMode = "Decode";
+                viewModel.IsEncodeMode = false;
                 viewModel.InputValue = input;
             });
 
