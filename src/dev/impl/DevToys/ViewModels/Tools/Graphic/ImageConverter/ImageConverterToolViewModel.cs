@@ -270,13 +270,7 @@ namespace DevToys.ViewModels.Tools.ImageConverter
         private async Task SaveConversionWorkItem(StorageFolder selectedFolder, ImageConversionWorkItem work)
         {
             StorageFile newFile = await selectedFolder.CreateFileAsync(string.Concat(work.File.DisplayName, ImageHelper.GetExtension(ConvertedFormat)), CreationCollisionOption.ReplaceExisting);
-            using (IRandomAccessStream outputStream = await newFile.OpenAsync(FileAccessMode.ReadWrite))
-            {
-                BitmapEncoder? encoder = await ImageHelper.GetEncoderAsync(ConvertedFormat, outputStream);
-                var bitmap = await work.DecodeImageAsync();
-                encoder.SetSoftwareBitmap(bitmap);
-                await encoder.FlushAsync();
-            }
+            await work.Process(this, newFile);
 
             work.DeleteCommand.Execute(null);
         }
