@@ -15,7 +15,7 @@
     <img src="https://img.shields.io/github/release/veler/devtoys.svg?label=Latest%20version" alt="Latest version" />
   </a>
   <a style="text-decoration:none" href="https://www.microsoft.com/store/apps/9PGCV4V3BK4W" target="_blank">
-    <img src="https://img.shields.io/badge/Microsoft%20Store-Download-green" alt="Store link" />
+    <img src="https://img.shields.io/badge/Microsoft%20Store-Download-brightgreen" alt="Store link" />
   </a>
   <a style="text-decoration:none" href="https://devtoys.app" target="_blank">
     <img src="https://img.shields.io/badge/Website-devtoys.app-blue" alt="Website" />
