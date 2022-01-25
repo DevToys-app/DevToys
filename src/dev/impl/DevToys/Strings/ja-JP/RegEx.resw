@@ -117,40 +117,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ConvertersAccessibleName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>正規表現テスター</value>
   </data>
-  <data name="ConvertersDisplayName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="Configuration" xml:space="preserve">
+    <value>構成</value>
   </data>
-  <data name="EncodersDecodersAccessibleName" xml:space="preserve">
-    <value>Encodeurs et décodeurs</value>
+  <data name="CultureInvariant" xml:space="preserve">
+    <value>Culture Invariant</value>
   </data>
-  <data name="EncodersDecodersDisplayName" xml:space="preserve">
-    <value>Encodeurs / Décodeurs</value>
+  <data name="CultureInvariantDescription" xml:space="preserve">
+    <value>プログラミング言語固有の文化的な違いを無視します</value>
   </data>
-  <data name="FormattersAccessibleName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>正規表現テスター</value>
   </data>
-  <data name="FormattersDisplayName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="EcmaScript" xml:space="preserve">
+    <value>ECMA Script</value>
   </data>
-  <data name="GeneratorsAccessibleName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="EcmaScriptDescription" xml:space="preserve">
+    <value>ECMAScript準拠の動作を有効にします。 この値は、Culture Invariant、Ignore Case、およびMultilineオプションと組み合わせてのみ使用できます</value>
   </data>
-  <data name="GeneratorsDisplayName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="IgnoreCase" xml:space="preserve">
+    <value>Ignore Case</value>
   </data>
-  <data name="GraphicAccessibleName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="IgnoreCaseDescription" xml:space="preserve">
+    <value>大文字と小文字を区別しないように指定します</value>
   </data>
-  <data name="GraphicDisplayName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="IgnoreWhitespace" xml:space="preserve">
+    <value>Ignore Whitespace</value>
   </data>
-  <data name="TextAccessibleName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="IgnoreWhitespaceDescription" xml:space="preserve">
+    <value>パターンからエスケープされていない空白を削除し、# でマークされたコメントを有効にします。 ただし、この値は、個々の正規表現言語要素の始まりを示す文字クラスや数値数量詞、トークンの空白に影響を与えたり、削除したりすることはありません。</value>
   </data>
-  <data name="TextDisplayName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="Multiline" xml:space="preserve">
+    <value>Multiline</value>
+  </data>
+  <data name="MultilineDescription" xml:space="preserve">
+    <value>^ と $ の意味を変更して、文字列全体の最初と最後だけでなく、任意の行の最初と最後でそれぞれ一致するようにします</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="RegularExpression" xml:space="preserve">
+    <value>正規表現</value>
+  </data>
+  <data name="RightToLeft" xml:space="preserve">
+    <value>右から左</value>
+  </data>
+  <data name="RightToLeftDescription" xml:space="preserve">
+    <value>検索が左から右ではなく右から左になるように指定します。</value>
+  </data>
+  <data name="Singleline" xml:space="preserve">
+    <value>Singleline</value>
+  </data>
+  <data name="SinglelineDescription" xml:space="preserve">
+    <value>ドット (.) の意味を変更して、（\n を除くすべての文字ではなく）すべての文字に一致するようにします</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>テキスト</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>正規表現の検証及びテスト</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>正規表現テスター</value>
   </data>
 </root>

@@ -117,40 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ConvertersAccessibleName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>Markdown 預覽工具</value>
   </data>
-  <data name="ConvertersDisplayName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="Configuration" xml:space="preserve">
+    <value>設定</value>
   </data>
-  <data name="EncodersDecodersAccessibleName" xml:space="preserve">
-    <value>Encodeurs et décodeurs</value>
+  <data name="Dark" xml:space="preserve">
+    <value>暗色</value>
   </data>
-  <data name="EncodersDecodersDisplayName" xml:space="preserve">
-    <value>Encodeurs / Décodeurs</value>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>Markdown 預覽</value>
   </data>
-  <data name="FormattersAccessibleName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="Input" xml:space="preserve">
+    <value>Markdown</value>
   </data>
-  <data name="FormattersDisplayName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="Light" xml:space="preserve">
+    <value>亮色</value>
   </data>
-  <data name="GeneratorsAccessibleName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="Output" xml:space="preserve">
+    <value>預覽</value>
   </data>
-  <data name="GeneratorsDisplayName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="Theme" xml:space="preserve">
+    <value>主題</value>
   </data>
-  <data name="GraphicAccessibleName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="ThemeDescription" xml:space="preserve">
+    <value>選擇預覽 Markdown 時使用的主題</value>
   </data>
-  <data name="GraphicDisplayName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="Description" xml:space="preserve">
+    <value>使用與 GitHub 類似的編排器來預覽 Markdown 文件</value>
   </data>
-  <data name="TextAccessibleName" xml:space="preserve">
-    <value>Texte</value>
-  </data>
-  <data name="TextDisplayName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Markdown 預覽</value>
   </data>
 </root>

@@ -117,40 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ConvertersAccessibleName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>Lorem Ipsum （ダミーテキスト）生成ツール</value>
   </data>
-  <data name="ConvertersDisplayName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="Configuration" xml:space="preserve">
+    <value>構成</value>
   </data>
-  <data name="EncodersDecodersAccessibleName" xml:space="preserve">
-    <value>Encodeurs et décodeurs</value>
+  <data name="Description" xml:space="preserve">
+    <value>ダミーテキストを生成します</value>
   </data>
-  <data name="EncodersDecodersDisplayName" xml:space="preserve">
-    <value>Encodeurs / Décodeurs</value>
+  <data name="LengthDescription" xml:space="preserve">
+    <value>生成する単語、文、または段落の数</value>
   </data>
-  <data name="FormattersAccessibleName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="LengthTitle" xml:space="preserve">
+    <value>長さ</value>
   </data>
-  <data name="FormattersDisplayName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>Lorem Ipsum （ダミーテキスト）</value>
   </data>
-  <data name="GeneratorsAccessibleName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="Output" xml:space="preserve">
+    <value>出力</value>
   </data>
-  <data name="GeneratorsDisplayName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="ParagraphsType" xml:space="preserve">
+    <value>段落</value>
   </data>
-  <data name="GraphicAccessibleName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Lorem Ipsum （ダミーテキスト）生成ツール</value>
   </data>
-  <data name="GraphicDisplayName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="SentencesType" xml:space="preserve">
+    <value>文</value>
   </data>
-  <data name="TextAccessibleName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="TypeDescription" xml:space="preserve">
+    <value>ダミーテキストの単語、文、または段落を生成します</value>
   </data>
-  <data name="TextDisplayName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="TypeTitle" xml:space="preserve">
+    <value>文章の種類</value>
+  </data>
+  <data name="WordsType" xml:space="preserve">
+    <value>単語</value>
   </data>
 </root>

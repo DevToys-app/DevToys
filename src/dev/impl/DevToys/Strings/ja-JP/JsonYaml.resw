@@ -117,40 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ConvertersAccessibleName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>JSON と YAML を相互に変換するツールです</value>
   </data>
-  <data name="ConvertersDisplayName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="Configuration" xml:space="preserve">
+    <value>構成</value>
   </data>
-  <data name="EncodersDecodersAccessibleName" xml:space="preserve">
-    <value>Encodeurs et décodeurs</value>
+  <data name="ConversionDescription" xml:space="preserve">
+    <value>使いたい変換モードを選択してください</value>
   </data>
-  <data name="EncodersDecodersDisplayName" xml:space="preserve">
-    <value>Encodeurs / Décodeurs</value>
+  <data name="ConversionTitle" xml:space="preserve">
+    <value>変換</value>
   </data>
-  <data name="FormattersAccessibleName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>JSON &lt;&gt; YAML</value>
   </data>
-  <data name="FormattersDisplayName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="FourSpaces" xml:space="preserve">
+    <value>4 スペース</value>
   </data>
-  <data name="GeneratorsAccessibleName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="Indentation" xml:space="preserve">
+    <value>インデント</value>
   </data>
-  <data name="GeneratorsDisplayName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="Input" xml:space="preserve">
+    <value>入力</value>
   </data>
-  <data name="GraphicAccessibleName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="InvalidYaml" xml:space="preserve">
+    <value>入力した YAML が不正な形式です</value>
   </data>
-  <data name="GraphicDisplayName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="JsonToYaml" xml:space="preserve">
+    <value>JSON から YAML</value>
   </data>
-  <data name="TextAccessibleName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="Output" xml:space="preserve">
+    <value>出力</value>
   </data>
-  <data name="TextDisplayName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="TwoSpaces" xml:space="preserve">
+    <value>2 スペース</value>
+  </data>
+  <data name="YamlToJson" xml:space="preserve">
+    <value>YAML から JSON</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>JSON データを YAML （またはその逆）に変換します</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>JSON &lt;&gt; YAML 変換ツール</value>
   </data>
 </root>

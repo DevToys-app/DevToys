@@ -118,39 +118,39 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ConvertersAccessibleName" xml:space="preserve">
-    <value>Convertisseurs</value>
+    <value>轉換器</value>
   </data>
   <data name="ConvertersDisplayName" xml:space="preserve">
-    <value>Convertisseurs</value>
+    <value>轉換器</value>
   </data>
   <data name="EncodersDecodersAccessibleName" xml:space="preserve">
-    <value>Encodeurs et décodeurs</value>
+    <value>編碼器與解碼器</value>
   </data>
   <data name="EncodersDecodersDisplayName" xml:space="preserve">
-    <value>Encodeurs / Décodeurs</value>
+    <value>編碼/解碼器</value>
   </data>
   <data name="FormattersAccessibleName" xml:space="preserve">
-    <value>Formatteurs</value>
+    <value>格式器</value>
   </data>
   <data name="FormattersDisplayName" xml:space="preserve">
-    <value>Formatteurs</value>
+    <value>格式器</value>
   </data>
   <data name="GeneratorsAccessibleName" xml:space="preserve">
-    <value>Générateurs</value>
+    <value>產生器</value>
   </data>
   <data name="GeneratorsDisplayName" xml:space="preserve">
-    <value>Générateurs</value>
+    <value>產生器</value>
   </data>
   <data name="GraphicAccessibleName" xml:space="preserve">
-    <value>Graphique</value>
+    <value>圖形</value>
   </data>
   <data name="GraphicDisplayName" xml:space="preserve">
-    <value>Graphique</value>
+    <value>圖形</value>
   </data>
   <data name="TextAccessibleName" xml:space="preserve">
-    <value>Texte</value>
+    <value>文字</value>
   </data>
   <data name="TextDisplayName" xml:space="preserve">
-    <value>Texte</value>
+    <value>文字</value>
   </data>
 </root>

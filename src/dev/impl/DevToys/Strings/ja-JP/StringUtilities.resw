@@ -117,40 +117,103 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ConvertersAccessibleName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>文字列ユーティリティ</value>
   </data>
-  <data name="ConvertersDisplayName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="AlternatingCase" xml:space="preserve">
+    <value>aLtErNaTiNg cAsE</value>
   </data>
-  <data name="EncodersDecodersAccessibleName" xml:space="preserve">
-    <value>Encodeurs et décodeurs</value>
+  <data name="Bytes" xml:space="preserve">
+    <value>バイト数:</value>
   </data>
-  <data name="EncodersDecodersDisplayName" xml:space="preserve">
-    <value>Encodeurs / Décodeurs</value>
+  <data name="CamelCase" xml:space="preserve">
+    <value>camelCase</value>
   </data>
-  <data name="FormattersAccessibleName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="CharacterDistribution" xml:space="preserve">
+    <value>文字の分布</value>
   </data>
-  <data name="FormattersDisplayName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="Characters" xml:space="preserve">
+    <value>文字数:</value>
   </data>
-  <data name="GeneratorsAccessibleName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="CobolCase" xml:space="preserve">
+    <value>COBOL-CASE</value>
   </data>
-  <data name="GeneratorsDisplayName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="Column" xml:space="preserve">
+    <value>カラム:</value>
   </data>
-  <data name="GraphicAccessibleName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="ConstantCase" xml:space="preserve">
+    <value>CONSTANT_CASE</value>
   </data>
-  <data name="GraphicDisplayName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="Convert" xml:space="preserve">
+    <value>変換</value>
   </data>
-  <data name="TextAccessibleName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>文字列の検査と変換</value>
   </data>
-  <data name="TextDisplayName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="InverseCase" xml:space="preserve">
+    <value>InVeRsE CaSe</value>
+  </data>
+  <data name="KebabCase" xml:space="preserve">
+    <value>kebab-case</value>
+  </data>
+  <data name="Line" xml:space="preserve">
+    <value>行:</value>
+  </data>
+  <data name="Lines" xml:space="preserve">
+    <value>行数:</value>
+  </data>
+  <data name="LowerCase" xml:space="preserve">
+    <value>lower case</value>
+  </data>
+  <data name="OriginalCase" xml:space="preserve">
+    <value>オリジナル テキスト</value>
+  </data>
+  <data name="Paragraphs" xml:space="preserve">
+    <value>段落数:</value>
+  </data>
+  <data name="PascalCase" xml:space="preserve">
+    <value>PascalCase</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>位置:</value>
+  </data>
+  <data name="Selection" xml:space="preserve">
+    <value>選択中の位置</value>
+  </data>
+  <data name="SentenceCase" xml:space="preserve">
+    <value>Sentence case</value>
+  </data>
+  <data name="Sentences" xml:space="preserve">
+    <value>文数:</value>
+  </data>
+  <data name="SnakeCase" xml:space="preserve">
+    <value>snake_case</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>統計</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value>文字列</value>
+  </data>
+  <data name="TitleCase" xml:space="preserve">
+    <value>Title Case</value>
+  </data>
+  <data name="TrainCase" xml:space="preserve">
+    <value>Train-Case</value>
+  </data>
+  <data name="UpperCase" xml:space="preserve">
+    <value>UPPER CASE</value>
+  </data>
+  <data name="WordDistribution" xml:space="preserve">
+    <value>単語の分布</value>
+  </data>
+  <data name="Words" xml:space="preserve">
+    <value>単語数:</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>テキストを分析し、大文字小文字を変換します</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>文字列の検査と変換</value>
   </data>
 </root>

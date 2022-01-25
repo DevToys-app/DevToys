@@ -117,40 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ConvertersAccessibleName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>色盲模擬工具</value>
   </data>
-  <data name="ConvertersDisplayName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>色盲模擬器</value>
   </data>
-  <data name="EncodersDecodersAccessibleName" xml:space="preserve">
-    <value>Encodeurs et décodeurs</value>
+  <data name="Description" xml:space="preserve">
+    <value>模擬色盲人士看到圖片或截圖的狀況</value>
   </data>
-  <data name="EncodersDecodersDisplayName" xml:space="preserve">
-    <value>Encodeurs / Décodeurs</value>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>色盲模擬器</value>
   </data>
-  <data name="FormattersAccessibleName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="InvalidSelectedFiles" xml:space="preserve">
+    <value>僅支援 .png、.jpg、.jpeg 或 .bmp 檔案。</value>
   </data>
-  <data name="FormattersDisplayName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="SelectFilesInstruction1" xml:space="preserve">
+    <value>將 PNG、JPEG，或是 BMP 檔案拖至這裡</value>
   </data>
-  <data name="GeneratorsAccessibleName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="SelectFilesInstruction2" xml:space="preserve">
+    <value>或</value>
   </data>
-  <data name="GeneratorsDisplayName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="SelectFilesInstruction3" xml:space="preserve">
+    <value>瀏覽檔案</value>
   </data>
-  <data name="GraphicAccessibleName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="SaveAs" xml:space="preserve">
+    <value>另存為</value>
   </data>
-  <data name="GraphicDisplayName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
   </data>
-  <data name="TextAccessibleName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="DeuteranopiaSimulation" xml:space="preserve">
+    <value>綠色盲模擬</value>
   </data>
-  <data name="TextDisplayName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="OriginalPicture" xml:space="preserve">
+    <value>原始</value>
+  </data>
+  <data name="ProtanopiaSimulation" xml:space="preserve">
+    <value>紅色盲模擬</value>
+  </data>
+  <data name="TritanopiaSimulation" xml:space="preserve">
+    <value>藍色盲模擬</value>
+  </data>
+  <data name="SelectFilesInstruction4" xml:space="preserve">
+    <value>貼上</value>
   </data>
 </root>

@@ -117,40 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ConvertersAccessibleName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="Bytes" xml:space="preserve">
+    <value>バイト</value>
   </data>
-  <data name="ConvertersDisplayName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
   </data>
-  <data name="EncodersDecodersAccessibleName" xml:space="preserve">
-    <value>Encodeurs et décodeurs</value>
+  <data name="Copy" xml:space="preserve">
+    <value>コピー</value>
   </data>
-  <data name="EncodersDecodersDisplayName" xml:space="preserve">
-    <value>Encodeurs / Décodeurs</value>
+  <data name="Cut" xml:space="preserve">
+    <value>切り取り</value>
   </data>
-  <data name="FormattersAccessibleName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="Delete" xml:space="preserve">
+    <value>削除</value>
   </data>
-  <data name="FormattersDisplayName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="Gigabytes" xml:space="preserve">
+    <value>GB</value>
   </data>
-  <data name="GeneratorsAccessibleName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="Kilobytes" xml:space="preserve">
+    <value>KB</value>
   </data>
-  <data name="GeneratorsDisplayName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="Megabytes" xml:space="preserve">
+    <value>MB</value>
   </data>
-  <data name="GraphicAccessibleName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="Ok" xml:space="preserve">
+    <value>OK</value>
   </data>
-  <data name="GraphicDisplayName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="OpenFile" xml:space="preserve">
+    <value>ファイルの読み込み</value>
   </data>
-  <data name="TextAccessibleName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="Paste" xml:space="preserve">
+    <value>貼り付け</value>
   </data>
-  <data name="TextDisplayName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="Redo" xml:space="preserve">
+    <value>やり直し</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>すべてを選択</value>
+  </data>
+  <data name="Terabytes" xml:space="preserve">
+    <value>TB</value>
+  </data>
+  <data name="ToggleSwitchOff" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="ToggleSwitchOn" xml:space="preserve">
+    <value>On</value>
+  </data>
+  <data name="UnableOpenFile" xml:space="preserve">
+    <value>ファイル読み込めません</value>
+  </data>
+  <data name="UnableOpenFileDescription" xml:space="preserve">
+    <value>ファイル読み込めません '{0}'. 詳細はログを参照してください</value>
+  </data>
+  <data name="Undo" xml:space="preserve">
+    <value>元に戻す</value>
   </data>
 </root>

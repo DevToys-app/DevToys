@@ -117,40 +117,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ConvertersAccessibleName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>UUID 產生工具</value>
   </data>
-  <data name="ConvertersDisplayName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="Configuration" xml:space="preserve">
+    <value>設定</value>
   </data>
-  <data name="EncodersDecodersAccessibleName" xml:space="preserve">
-    <value>Encodeurs et décodeurs</value>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>UUID</value>
   </data>
-  <data name="EncodersDecodersDisplayName" xml:space="preserve">
-    <value>Encodeurs / Décodeurs</value>
+  <data name="Generate" xml:space="preserve">
+    <value>產生</value>
   </data>
-  <data name="FormattersAccessibleName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="GenerateButton" xml:space="preserve">
+    <value>產生 UUID</value>
   </data>
-  <data name="FormattersDisplayName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="Guids" xml:space="preserve">
+    <value>UUID</value>
   </data>
-  <data name="GeneratorsAccessibleName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="Hyphens" xml:space="preserve">
+    <value>連字號</value>
   </data>
-  <data name="GeneratorsDisplayName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="MultiplySymbol" xml:space="preserve">
+    <value>x</value>
   </data>
-  <data name="GraphicAccessibleName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="NumberOfGuidsToGenerate_AutomationProperties_Name" xml:space="preserve">
+    <value>要產生的 UUID 數量</value>
   </data>
-  <data name="GraphicDisplayName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="Uppercase" xml:space="preserve">
+    <value>大寫</value>
   </data>
-  <data name="TextAccessibleName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="UuidVersionFour" xml:space="preserve">
+    <value>4 (GUID)</value>
   </data>
-  <data name="TextDisplayName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="UuidVersionOne" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="VersionDescription" xml:space="preserve">
+    <value>選擇要產生的 UUID 的版本</value>
+  </data>
+  <data name="VersionTitle" xml:space="preserve">
+    <value>UUID 版本</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>產生版本 1 或 4 的 UUID</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>UUID 產生器</value>
   </data>
 </root>

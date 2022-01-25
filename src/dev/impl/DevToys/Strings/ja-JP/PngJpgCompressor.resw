@@ -117,40 +117,59 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ConvertersAccessibleName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>PNG 及び JPEG の圧縮ツール</value>
   </data>
-  <data name="ConvertersDisplayName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>キャンセル</value>
   </data>
-  <data name="EncodersDecodersAccessibleName" xml:space="preserve">
-    <value>Encodeurs et décodeurs</value>
+  <data name="Configuration" xml:space="preserve">
+    <value>構成</value>
   </data>
-  <data name="EncodersDecodersDisplayName" xml:space="preserve">
-    <value>Encodeurs / Décodeurs</value>
+  <data name="Delete" xml:space="preserve">
+    <value>削除</value>
   </data>
-  <data name="FormattersAccessibleName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="DeleteAll" xml:space="preserve">
+    <value>全て削除</value>
   </data>
-  <data name="FormattersDisplayName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="DetailsTitle" xml:space="preserve">
+    <value>詳細</value>
   </data>
-  <data name="GeneratorsAccessibleName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>PNG 及び JPEG の圧縮ツール</value>
   </data>
-  <data name="GeneratorsDisplayName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="FileSizeDisplay" xml:space="preserve">
+    <value>{0:0.##} {1}</value>
+    <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
   </data>
-  <data name="GraphicAccessibleName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="InvalidSelectedFiles" xml:space="preserve">
+    <value>.png、.jpg、.jpeg 形式のファイルのみ使用できます</value>
   </data>
-  <data name="GraphicDisplayName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
   </data>
-  <data name="TextAccessibleName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="SaveAll" xml:space="preserve">
+    <value>全て保存</value>
   </data>
-  <data name="TextDisplayName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="SaveAs" xml:space="preserve">
+    <value>名前を付けて保存</value>
+  </data>
+  <data name="SeeErrorMessage" xml:space="preserve">
+    <value>詳細を見る</value>
+  </data>
+  <data name="SelectFilesInstruction1" xml:space="preserve">
+    <value>PNG、JPEG形式のファイルをドラッグ＆ドロップしてください</value>
+  </data>
+  <data name="SelectFilesInstruction2" xml:space="preserve">
+    <value>もしくは</value>
+  </data>
+  <data name="SelectFilesInstruction3" xml:space="preserve">
+    <value>ファイルを参照</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>無劣化 PNG 及び JPEG の最適化ツール</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>PNG 及び JPEG の圧縮ツール</value>
   </data>
 </root>

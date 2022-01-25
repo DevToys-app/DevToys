@@ -117,40 +117,63 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ConvertersAccessibleName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>數值進制轉換工具</value>
   </data>
-  <data name="ConvertersDisplayName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="BinaryLabel" xml:space="preserve">
+    <value>二進位</value>
   </data>
-  <data name="EncodersDecodersAccessibleName" xml:space="preserve">
-    <value>Encodeurs et décodeurs</value>
+  <data name="ConfigurationTitle" xml:space="preserve">
+    <value>設定</value>
   </data>
-  <data name="EncodersDecodersDisplayName" xml:space="preserve">
-    <value>Encodeurs / Décodeurs</value>
+  <data name="DecimalLabel" xml:space="preserve">
+    <value>十進位</value>
   </data>
-  <data name="FormattersAccessibleName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>數值進制</value>
   </data>
-  <data name="FormattersDisplayName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="Format" xml:space="preserve">
+    <value>格式化數值</value>
   </data>
-  <data name="GeneratorsAccessibleName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="HexadecimalLabel" xml:space="preserve">
+    <value>十六進位</value>
   </data>
-  <data name="GeneratorsDisplayName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="Input" xml:space="preserve">
+    <value>輸入</value>
   </data>
-  <data name="GraphicAccessibleName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="InputTypeBinary" xml:space="preserve">
+    <value>二進位</value>
   </data>
-  <data name="GraphicDisplayName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="InputTypeDecimal" xml:space="preserve">
+    <value>十進位</value>
   </data>
-  <data name="TextAccessibleName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="InputTypeDescription" xml:space="preserve">
+    <value>選取您想使用的輸入類型</value>
   </data>
-  <data name="TextDisplayName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="InputTypeHexadecimal" xml:space="preserve">
+    <value>十六進位</value>
+  </data>
+  <data name="InputTypeOctal" xml:space="preserve">
+    <value>八進位</value>
+  </data>
+  <data name="InputTypeTitle" xml:space="preserve">
+    <value>輸入類型</value>
+  </data>
+  <data name="OctalLabel" xml:space="preserve">
+    <value>八進位</value>
+  </data>
+  <data name="ValueInvalid" xml:space="preserve">
+    <value>目前數值無效 {0}</value>
+    <comment>The parameter is the Base Number Type (Decimal, Octal, ...)</comment>
+  </data>
+  <data name="ValueOverflow" xml:space="preserve">
+    <value>此數值超出最大值 ({0})，故無法轉換</value>
+    <comment>The parameter is the Max value of a long</comment>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>轉換數值的進制</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>數值進制轉換器</value>
   </data>
 </root>

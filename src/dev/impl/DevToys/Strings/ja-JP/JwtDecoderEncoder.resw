@@ -117,40 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ConvertersAccessibleName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>JWT デコーダー</value>
   </data>
-  <data name="ConvertersDisplayName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="Configuration" xml:space="preserve">
+    <value>構成</value>
   </data>
-  <data name="EncodersDecodersAccessibleName" xml:space="preserve">
-    <value>Encodeurs et décodeurs</value>
+  <data name="ConversionDescription" xml:space="preserve">
+    <value>実行したい操作を選択してください</value>
   </data>
-  <data name="EncodersDecodersDisplayName" xml:space="preserve">
-    <value>Encodeurs / Décodeurs</value>
+  <data name="ConversionTitle" xml:space="preserve">
+    <value>操作</value>
   </data>
-  <data name="FormattersAccessibleName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="Decode" xml:space="preserve">
+    <value>デコード</value>
   </data>
-  <data name="FormattersDisplayName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>JWT デコーダー</value>
   </data>
-  <data name="GeneratorsAccessibleName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="Encode" xml:space="preserve">
+    <value>エンコード</value>
   </data>
-  <data name="GeneratorsDisplayName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="EncodingDescription" xml:space="preserve">
+    <value>使用する文字コードを選択します</value>
   </data>
-  <data name="GraphicAccessibleName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="EncodingTitle" xml:space="preserve">
+    <value>文字コード</value>
   </data>
-  <data name="GraphicDisplayName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="HeaderLabel" xml:space="preserve">
+    <value>ヘッダー</value>
   </data>
-  <data name="TextAccessibleName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="JwtTokenLabel" xml:space="preserve">
+    <value>JWT トークン</value>
   </data>
-  <data name="TextDisplayName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="PayloadLabel" xml:space="preserve">
+    <value>ペイロード</value>
+  </data>
+  <data name="SecurityLabel" xml:space="preserve">
+    <value>セキュリティ</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>JWT ヘッダー、ペイロード、署名をデコードします</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>JWT デコーダー</value>
   </data>
 </root>

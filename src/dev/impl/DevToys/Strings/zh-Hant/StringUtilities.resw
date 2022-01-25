@@ -117,40 +117,103 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ConvertersAccessibleName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>字串常用工具</value>
   </data>
-  <data name="ConvertersDisplayName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="AlternatingCase" xml:space="preserve">
+    <value>交替式大小寫</value>
   </data>
-  <data name="EncodersDecodersAccessibleName" xml:space="preserve">
-    <value>Encodeurs et décodeurs</value>
+  <data name="Bytes" xml:space="preserve">
+    <value>位元組：</value>
   </data>
-  <data name="EncodersDecodersDisplayName" xml:space="preserve">
-    <value>Encodeurs / Décodeurs</value>
+  <data name="CamelCase" xml:space="preserve">
+    <value>駝峰型大小寫</value>
   </data>
-  <data name="FormattersAccessibleName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="CharacterDistribution" xml:space="preserve">
+    <value>字元分布</value>
   </data>
-  <data name="FormattersDisplayName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="Characters" xml:space="preserve">
+    <value>字元：</value>
   </data>
-  <data name="GeneratorsAccessibleName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="CobolCase" xml:space="preserve">
+    <value>COBOL 式大小寫</value>
   </data>
-  <data name="GeneratorsDisplayName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="Column" xml:space="preserve">
+    <value>列：</value>
   </data>
-  <data name="GraphicAccessibleName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="ConstantCase" xml:space="preserve">
+    <value>固定大小寫</value>
   </data>
-  <data name="GraphicDisplayName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="Convert" xml:space="preserve">
+    <value>轉換</value>
   </data>
-  <data name="TextAccessibleName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>檢查工具 &amp; 大小寫轉換工具</value>
   </data>
-  <data name="TextDisplayName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="InverseCase" xml:space="preserve">
+    <value>反轉大小寫</value>
+  </data>
+  <data name="KebabCase" xml:space="preserve">
+    <value>串燒型大小寫</value>
+  </data>
+  <data name="Line" xml:space="preserve">
+    <value>行：</value>
+  </data>
+  <data name="Lines" xml:space="preserve">
+    <value>行：</value>
+  </data>
+  <data name="LowerCase" xml:space="preserve">
+    <value>小寫</value>
+  </data>
+  <data name="OriginalCase" xml:space="preserve">
+    <value>原始文字</value>
+  </data>
+  <data name="Paragraphs" xml:space="preserve">
+    <value>段落：</value>
+  </data>
+  <data name="PascalCase" xml:space="preserve">
+    <value>帕斯卡大小寫</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>位置：</value>
+  </data>
+  <data name="Selection" xml:space="preserve">
+    <value>選取</value>
+  </data>
+  <data name="SentenceCase" xml:space="preserve">
+    <value>句子式大小寫</value>
+  </data>
+  <data name="Sentences" xml:space="preserve">
+    <value>句子：</value>
+  </data>
+  <data name="SnakeCase" xml:space="preserve">
+    <value>蛇型大小寫</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>統計資料</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value>字串</value>
+  </data>
+  <data name="TitleCase" xml:space="preserve">
+    <value>標題式大小寫</value>
+  </data>
+  <data name="TrainCase" xml:space="preserve">
+    <value>火車型大小寫</value>
+  </data>
+  <data name="UpperCase" xml:space="preserve">
+    <value>大寫</value>
+  </data>
+  <data name="WordDistribution" xml:space="preserve">
+    <value>單字分布</value>
+  </data>
+  <data name="Words" xml:space="preserve">
+    <value>單字：</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>分析文字並轉換至其他大小寫風格</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>文字大小寫轉換及檢查工具</value>
   </data>
 </root>

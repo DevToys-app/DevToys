@@ -117,40 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ConvertersAccessibleName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>JWT 解碼工具</value>
   </data>
-  <data name="ConvertersDisplayName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="Configuration" xml:space="preserve">
+    <value>設定</value>
   </data>
-  <data name="EncodersDecodersAccessibleName" xml:space="preserve">
-    <value>Encodeurs et décodeurs</value>
+  <data name="ConversionDescription" xml:space="preserve">
+    <value>選取您想使用的操作</value>
   </data>
-  <data name="EncodersDecodersDisplayName" xml:space="preserve">
-    <value>Encodeurs / Décodeurs</value>
+  <data name="ConversionTitle" xml:space="preserve">
+    <value>操作</value>
   </data>
-  <data name="FormattersAccessibleName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="Decode" xml:space="preserve">
+    <value>解碼</value>
   </data>
-  <data name="FormattersDisplayName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>JWT 解碼器</value>
   </data>
-  <data name="GeneratorsAccessibleName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="Encode" xml:space="preserve">
+    <value>編碼</value>
   </data>
-  <data name="GeneratorsDisplayName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="EncodingDescription" xml:space="preserve">
+    <value>選擇您想使用的編碼演算法</value>
   </data>
-  <data name="GraphicAccessibleName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="EncodingTitle" xml:space="preserve">
+    <value>編碼</value>
   </data>
-  <data name="GraphicDisplayName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="HeaderLabel" xml:space="preserve">
+    <value>標頭</value>
   </data>
-  <data name="TextAccessibleName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="JwtTokenLabel" xml:space="preserve">
+    <value>Jwt 權杖</value>
   </data>
-  <data name="TextDisplayName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="PayloadLabel" xml:space="preserve">
+    <value>裝載</value>
+  </data>
+  <data name="SecurityLabel" xml:space="preserve">
+    <value>安全性</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>解碼 JWT 標頭、裝載及簽名</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>JWT 解碼器</value>
   </data>
 </root>

@@ -117,40 +117,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ConvertersAccessibleName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>正規表示式測試工具</value>
   </data>
-  <data name="ConvertersDisplayName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="Configuration" xml:space="preserve">
+    <value>設定</value>
   </data>
-  <data name="EncodersDecodersAccessibleName" xml:space="preserve">
-    <value>Encodeurs et décodeurs</value>
+  <data name="CultureInvariant" xml:space="preserve">
+    <value>忽略文化特性</value>
   </data>
-  <data name="EncodersDecodersDisplayName" xml:space="preserve">
-    <value>Encodeurs / Décodeurs</value>
+  <data name="CultureInvariantDescription" xml:space="preserve">
+    <value>忽略語言中的文化差異。</value>
   </data>
-  <data name="FormattersAccessibleName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>Regex 測試工具</value>
   </data>
-  <data name="FormattersDisplayName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="EcmaScript" xml:space="preserve">
+    <value>ECMAScript</value>
   </data>
-  <data name="GeneratorsAccessibleName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="EcmaScriptDescription" xml:space="preserve">
+    <value>為表示式啟用符合 ECMAScript 的行為。僅能與忽略文化特性、忽略大小寫，及多行選項同時使用。</value>
   </data>
-  <data name="GeneratorsDisplayName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="IgnoreCase" xml:space="preserve">
+    <value>忽略大小寫</value>
   </data>
-  <data name="GraphicAccessibleName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="IgnoreCaseDescription" xml:space="preserve">
+    <value>排除大小寫差異。</value>
   </data>
-  <data name="GraphicDisplayName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="IgnoreWhitespace" xml:space="preserve">
+    <value>忽略空白</value>
   </data>
-  <data name="TextAccessibleName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="IgnoreWhitespaceDescription" xml:space="preserve">
+    <value>從模式中排除未逸出的空白字元並啟用以 # 標記的註解。然而此並不會影響或排除在字元類別、數量詞或標記正規表示式開頭的權杖中的空白字元。</value>
   </data>
-  <data name="TextDisplayName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="Multiline" xml:space="preserve">
+    <value>多行</value>
+  </data>
+  <data name="MultilineDescription" xml:space="preserve">
+    <value>修改 ^ 和 $ 的功能，以符合任何行的開頭及結尾。而非僅符合整個字串的開頭及結尾。</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>選項</value>
+  </data>
+  <data name="RegularExpression" xml:space="preserve">
+    <value>正規表示式</value>
+  </data>
+  <data name="RightToLeft" xml:space="preserve">
+    <value>右至左</value>
+  </data>
+  <data name="RightToLeftDescription" xml:space="preserve">
+    <value>指定由右至左搜尋，而非由左至右。</value>
+  </data>
+  <data name="Singleline" xml:space="preserve">
+    <value>單行</value>
+  </data>
+  <data name="SinglelineDescription" xml:space="preserve">
+    <value>修改 . 的功能，以符合所有字元 (而非除了 \n 以外的所有字元)。</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>文字</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>驗證並測試正規表示式</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Regex 測試工具</value>
   </data>
 </root>

@@ -117,40 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ConvertersAccessibleName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="Bytes" xml:space="preserve">
+    <value>位元組</value>
   </data>
-  <data name="ConvertersDisplayName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="Clear" xml:space="preserve">
+    <value>清除</value>
   </data>
-  <data name="EncodersDecodersAccessibleName" xml:space="preserve">
-    <value>Encodeurs et décodeurs</value>
+  <data name="Copy" xml:space="preserve">
+    <value>複製</value>
   </data>
-  <data name="EncodersDecodersDisplayName" xml:space="preserve">
-    <value>Encodeurs / Décodeurs</value>
+  <data name="Cut" xml:space="preserve">
+    <value>剪下</value>
   </data>
-  <data name="FormattersAccessibleName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="Delete" xml:space="preserve">
+    <value>刪除</value>
   </data>
-  <data name="FormattersDisplayName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="Gigabytes" xml:space="preserve">
+    <value>GB</value>
   </data>
-  <data name="GeneratorsAccessibleName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="Kilobytes" xml:space="preserve">
+    <value>KB</value>
   </data>
-  <data name="GeneratorsDisplayName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="Megabytes" xml:space="preserve">
+    <value>MB</value>
   </data>
-  <data name="GraphicAccessibleName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="Ok" xml:space="preserve">
+    <value>OK</value>
   </data>
-  <data name="GraphicDisplayName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="OpenFile" xml:space="preserve">
+    <value>載入檔案</value>
   </data>
-  <data name="TextAccessibleName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="Paste" xml:space="preserve">
+    <value>貼上</value>
   </data>
-  <data name="TextDisplayName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="Redo" xml:space="preserve">
+    <value>取消復原</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>全選</value>
+  </data>
+  <data name="Terabytes" xml:space="preserve">
+    <value>TB</value>
+  </data>
+  <data name="ToggleSwitchOff" xml:space="preserve">
+    <value>關</value>
+  </data>
+  <data name="ToggleSwitchOn" xml:space="preserve">
+    <value>開</value>
+  </data>
+  <data name="UnableOpenFile" xml:space="preserve">
+    <value>無法開啟此檔案</value>
+  </data>
+  <data name="UnableOpenFileDescription" xml:space="preserve">
+    <value>無法載入此檔案 '{0}'。詳情請查看記錄檔。</value>
+  </data>
+  <data name="Undo" xml:space="preserve">
+    <value>復原</value>
   </data>
 </root>

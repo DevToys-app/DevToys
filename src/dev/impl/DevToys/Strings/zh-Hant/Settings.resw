@@ -117,40 +117,115 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ConvertersAccessibleName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="About" xml:space="preserve">
+    <value>關於</value>
   </data>
-  <data name="ConvertersDisplayName" xml:space="preserve">
-    <value>Convertisseurs</value>
+  <data name="AppTheme" xml:space="preserve">
+    <value>應用程式主題</value>
   </data>
-  <data name="EncodersDecodersAccessibleName" xml:space="preserve">
-    <value>Encodeurs et décodeurs</value>
+  <data name="AppThemeDescription" xml:space="preserve">
+    <value>選取要顯示的應用程式主題</value>
   </data>
-  <data name="EncodersDecodersDisplayName" xml:space="preserve">
-    <value>Encodeurs / Décodeurs</value>
+  <data name="AppTitle" xml:space="preserve">
+    <value>DevToys</value>
   </data>
-  <data name="FormattersAccessibleName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="Behaviors" xml:space="preserve">
+    <value>行為</value>
   </data>
-  <data name="FormattersDisplayName" xml:space="preserve">
-    <value>Formatteurs</value>
+  <data name="Close" xml:space="preserve">
+    <value>關閉</value>
   </data>
-  <data name="GeneratorsAccessibleName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="Copy" xml:space="preserve">
+    <value>複製</value>
   </data>
-  <data name="GeneratorsDisplayName" xml:space="preserve">
-    <value>Générateurs</value>
+  <data name="Dark" xml:space="preserve">
+    <value>暗色</value>
   </data>
-  <data name="GraphicAccessibleName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="DefaultLanguage" xml:space="preserve">
+    <value>與 Windows 相同</value>
   </data>
-  <data name="GraphicDisplayName" xml:space="preserve">
-    <value>Graphique</value>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>設定</value>
   </data>
-  <data name="TextAccessibleName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="Font" xml:space="preserve">
+    <value>字型</value>
   </data>
-  <data name="TextDisplayName" xml:space="preserve">
-    <value>Texte</value>
+  <data name="HighlightCurrentLine" xml:space="preserve">
+    <value>醒目顯示目前行</value>
+  </data>
+  <data name="HighlightCurrentLineDescription" xml:space="preserve">
+    <value>更改目前所在行的背景顏色</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>語言</value>
+  </data>
+  <data name="LanguageDescription" xml:space="preserve">
+    <value>更改語言後必須重新啟動應用程式</value>
+  </data>
+  <data name="License" xml:space="preserve">
+    <value>授權</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>亮色</value>
+  </data>
+  <data name="LineNumbers" xml:space="preserve">
+    <value>行號</value>
+  </data>
+  <data name="LineNumbersDescription" xml:space="preserve">
+    <value>在文字編輯器中顯示行號</value>
+  </data>
+  <data name="OpenLogs" xml:space="preserve">
+    <value>開啟記錄檔</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>隱私政策</value>
+  </data>
+  <data name="RateAndReview" xml:space="preserve">
+    <value>在 Microsoft 商店上評論我們</value>
+  </data>
+  <data name="RenderWhitespace" xml:space="preserve">
+    <value>轉譯空白字元</value>
+  </data>
+  <data name="ReportProblem" xml:space="preserve">
+    <value>回報問題</value>
+  </data>
+  <data name="SmartDetection" xml:space="preserve">
+    <value>智慧偵測</value>
+  </data>
+  <data name="SmartDetectionDescription" xml:space="preserve">
+    <value>根據剪貼簿內容自動偵測最佳工具</value>
+  </data>
+  <data name="SmartDetectionHowTo" xml:space="preserve">
+    <value>如何使用智慧偵測</value>
+  </data>
+  <data name="SmartDetectionPaste" xml:space="preserve">
+    <value>選擇建議工具時自動貼上剪貼簿內容</value>
+  </data>
+  <data name="SourceCode" xml:space="preserve">
+    <value>原始碼</value>
+  </data>
+  <data name="TextEditor" xml:space="preserve">
+    <value>文字編輯器</value>
+  </data>
+  <data name="ThirdPartyNotices" xml:space="preserve">
+    <value>第三方授權</value>
+  </data>
+  <data name="UsefulLinks" xml:space="preserve">
+    <value>實用連結</value>
+  </data>
+  <data name="UseSystemSettings" xml:space="preserve">
+    <value>使用系統設定</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>版本 {0}</value>
+  </data>
+  <data name="WordWrap" xml:space="preserve">
+    <value>自動換行</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>自訂 DevToys 的外觀</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>設定</value>
   </data>
 </root>
