@@ -76,7 +76,7 @@ Many tools are available.
 ## App Permission
 
 DevToys works entirely offline, meaning that none of the data used by the app goes on internet. However, the app requires some other permissions in order to work correctly.
-1. `Uses all system resources` - This permission is required for some tools like `PNG / JPEG Compressor` or (upcomming) `On-screen color picker / measurer`, which use a 3rd part Open-Source Win32 process like [Efficient-Compression-Tool](https://github.com/fhanau/Efficient-Compression-Tool).
+1. `Uses all system resources` - This permission is required for some tools like `PNG / JPEG Compressor` or (upcoming) `On-screen color picker / measurer`, which use a 3rd part Open-Source Win32 process like [Efficient-Compression-Tool](https://github.com/fhanau/Efficient-Compression-Tool).
 All the code requiring this permission can be found [here](https://github.com/veler/DevToys/tree/main/src/dev/impl/DevToys.OutOfProcService).
 
 ## How to run DevToys
