@@ -16,19 +16,13 @@ using Windows.Storage.Streams;
 
 namespace DevToys.ViewModels.Tools.ImageConverter
 {
-    internal sealed class ImageConversionWorkItem : ObservableRecipient, IDisposable
+    internal sealed class ImageConversionWorkItem : ObservableRecipient
     {
         private string _fileSize = string.Empty;
 
         internal ImageConverterStrings Strings => LanguageManager.Instance.ImageConverter;
 
-        internal string FileName { get; }
-
-        internal string FilePath { get; }
-
-        internal string DisplayName { get; }
-
-        internal SoftwareBitmap? Bitmap { get; private set; }
+        internal StorageFile File { get; }
 
         internal string FileSize
         {
@@ -48,15 +42,12 @@ namespace DevToys.ViewModels.Tools.ImageConverter
         {
             Arguments.NotNull(file, nameof(file));
 
-            FileName = file.Name;
-            FilePath = file.Path;
-            DisplayName = file.DisplayName;
+            File = file;
 
             DeleteCommand = new RelayCommand(ExecuteDeleteCommand);
             SaveCommand = new AsyncRelayCommand<ImageConverterToolViewModel>(ExecuteSaveCommandAsync);
 
             ComputePropertiesAsync(file).ForgetSafely();
-            DecodeImageAsync(file).ForgetSafely();
         }
 
         #region DeleteCommand
@@ -95,11 +86,11 @@ namespace DevToys.ViewModels.Tools.ImageConverter
                 {
                     BitmapEncoder? encoder = await ImageHelper.GetEncoderAsync(viewModel.ConvertedFormat, outputStream);
 
-                    encoder.SetSoftwareBitmap(Bitmap);
+                    var bitmap = await DecodeImageAsync();
+                    encoder.SetSoftwareBitmap(bitmap);
                     await encoder.FlushAsync();
                 }
 
-                Dispose();
                 DeleteCommand.Execute(this);
             }
         }
@@ -115,23 +106,14 @@ namespace DevToys.ViewModels.Tools.ImageConverter
             await ThreadHelper.RunOnUIThreadAsync(() => FileSize = fileSize);
         }
 
-        private async Task DecodeImageAsync(StorageFile file)
+        public async Task<SoftwareBitmap> DecodeImageAsync()
         {
             await TaskScheduler.Default;
 
-            using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.Read))
+            using (IRandomAccessStream stream = await File.OpenAsync(FileAccessMode.Read))
             {
                 BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
-                var bitmap = await decoder.GetSoftwareBitmapAsync();
-                await ThreadHelper.RunOnUIThreadAsync(() => Bitmap = bitmap);
-            }
-        }
-
-        public void Dispose()
-        {
-            if (Bitmap is not null)
-            {
-                Bitmap.Dispose();
+                return await decoder.GetSoftwareBitmapAsync();
             }
         }
     }

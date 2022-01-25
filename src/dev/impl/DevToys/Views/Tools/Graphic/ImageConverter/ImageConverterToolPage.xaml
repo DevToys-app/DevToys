@@ -174,7 +174,7 @@
                                 VerticalAlignment="Center">
                                 <TextBlock
                                     Name="FileNameHeader"
-                                    Text="{x:Bind FileName}"
+                                    Text="{x:Bind File.Name}"
                                     TextWrapping="Wrap" />
                                 <TextBlock
                                     Text="{x:Bind FileSize, Mode=OneWay}"

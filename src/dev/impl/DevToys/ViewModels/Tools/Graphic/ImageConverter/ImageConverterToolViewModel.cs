@@ -269,15 +269,15 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
         private async Task SaveConversionWorkItem(StorageFolder selectedFolder, ImageConversionWorkItem work)
         {
-            StorageFile newFile = await selectedFolder.CreateFileAsync(string.Concat(work.DisplayName, ImageHelper.GetExtension(ConvertedFormat)), CreationCollisionOption.ReplaceExisting);
+            StorageFile newFile = await selectedFolder.CreateFileAsync(string.Concat(work.File.DisplayName, ImageHelper.GetExtension(ConvertedFormat)), CreationCollisionOption.ReplaceExisting);
             using (IRandomAccessStream outputStream = await newFile.OpenAsync(FileAccessMode.ReadWrite))
             {
                 BitmapEncoder? encoder = await ImageHelper.GetEncoderAsync(ConvertedFormat, outputStream);
-                encoder.SetSoftwareBitmap(work.Bitmap);
+                var bitmap = await work.DecodeImageAsync();
+                encoder.SetSoftwareBitmap(bitmap);
                 await encoder.FlushAsync();
             }
 
-            work.Dispose();
             work.DeleteCommand.Execute(null);
         }
 
@@ -285,7 +285,7 @@ namespace DevToys.ViewModels.Tools.ImageConverter
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            if (!ConversionWorkQueue.Any(item => string.Equals(item.FilePath, file.Path, StringComparison.OrdinalIgnoreCase)))
+            if (!ConversionWorkQueue.Any(item => string.Equals(item.File.Path, file.Path, StringComparison.OrdinalIgnoreCase)))
             {
                 var workItem = new ImageConversionWorkItem(file);
                 workItem.DeleteItemRequested += WorkItem_DeleteItemRequested;
@@ -297,7 +297,6 @@ namespace DevToys.ViewModels.Tools.ImageConverter
         {
             var workItem = (ImageConversionWorkItem)sender;
             workItem.DeleteItemRequested -= WorkItem_DeleteItemRequested;
-            workItem.Dispose();
             ConversionWorkQueue.Remove(workItem);
         }
     }
