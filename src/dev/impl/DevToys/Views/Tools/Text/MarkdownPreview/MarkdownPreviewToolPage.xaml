@@ -76,11 +76,26 @@
 
             <toolkit:HeaderedContentControl
                 Grid.Column="2"
-                Header="{x:Bind ViewModel.Strings.Output}"
-                Margin="0,16,0,0"
+                Margin="0,0,0,0"
                 MinHeight="150"
                 HorizontalContentAlignment="Stretch"
                 VerticalContentAlignment="Stretch">
+                <toolkit:HeaderedContentControl.Header>
+                    <toolkit:DockPanel>
+                        <TextBlock VerticalAlignment="Bottom" Text="{x:Bind ViewModel.Strings.Output}"></TextBlock>
+                        <Button
+                            x:Name="CopyButton"
+                            TabIndex="2"
+                            HorizontalAlignment="Right"
+                            AutomationProperties.Name="{Binding Instance.Common.Copy, Mode=OneTime, Source={StaticResource LanguageManager}}"
+                            Click="CopyButton_Click">
+                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                <FontIcon Glyph="&#xF32B;"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Binding Instance.Common.Copy, Mode=OneTime, Source={StaticResource LanguageManager}}"/>
+                            </StackPanel>
+                        </Button>
+                    </toolkit:DockPanel>
+                </toolkit:HeaderedContentControl.Header>
                 <Border
                     CornerRadius="4"
                     Margin="0,8,0,0"

@@ -1,13 +1,17 @@
 ﻿#nullable enable
 
+using System;
 using DevToys.Api.Core.Navigation;
+using DevToys.Core;
 using DevToys.Messages;
 using DevToys.Shared.Core;
 using DevToys.ViewModels.Tools.MarkdownPreview;
 using Microsoft.Toolkit.Mvvm.Messaging;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Clipboard = Windows.ApplicationModel.DataTransfer.Clipboard;
 
 namespace DevToys.Views.Tools.MarkdownPreview
 {
@@ -64,6 +68,26 @@ namespace DevToys.Views.Tools.MarkdownPreview
         {
             Arguments.NotNull(message, nameof(message));
             PreviewWebView.NavigateToString(message.Html);
+        }
+
+        private async void CopyButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var data = new DataPackage
+                {
+                    RequestedOperation = DataPackageOperation.Copy
+                };
+                string markdownBodyEl = "document.getElementsByClassName('markdown-body')[0].innerHTML";
+                data.SetText(await PreviewWebView.InvokeScriptAsync("eval", new string[] { markdownBodyEl }) ?? string.Empty);
+
+                Clipboard.SetContentWithOptions(data, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
+                Clipboard.Flush();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogFault("Failed to copy from webview", ex);
+            }
         }
     }
 }
