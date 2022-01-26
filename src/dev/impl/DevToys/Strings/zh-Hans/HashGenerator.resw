@@ -145,7 +145,7 @@
     <value>大写字母</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>从文本数据计算MD5, SHA1, SHA256和SHA512哈希值</value>
+    <value>从文本数据计算 MD5, SHA1, SHA256 和 SHA512 哈希值</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>哈希散列（Hash）生成工具</value>
