@@ -29,6 +29,7 @@ namespace DevToys
         private readonly ColorBlindnessSimulatorStrings _colorblindnesssimulator = new ColorBlindnessSimulatorStrings();
         private readonly CommonStrings _common = new CommonStrings();
         private readonly GuidGeneratorStrings _guidgenerator = new GuidGeneratorStrings();
+        private readonly GZipEncoderDecoderStrings _gzipencoderdecoder = new GZipEncoderDecoderStrings();
         private readonly HashGeneratorStrings _hashgenerator = new HashGeneratorStrings();
         private readonly HtmlEncoderDecoderStrings _htmlencoderdecoder = new HtmlEncoderDecoderStrings();
         private readonly JsonFormatterStrings _jsonformatter = new JsonFormatterStrings();
@@ -82,6 +83,11 @@ namespace DevToys
         /// Gets the <see cref="GuidGeneratorStrings"/>.
         /// </summary>
         public GuidGeneratorStrings GuidGenerator => _guidgenerator;
+
+        /// <summary>
+        /// Gets the <see cref="GZipEncoderDecoderStrings"/>.
+        /// </summary>
+        public GZipEncoderDecoderStrings GZipEncoderDecoder => _gzipencoderdecoder;
 
         /// <summary>
         /// Gets the <see cref="HashGeneratorStrings"/>.
@@ -576,6 +582,86 @@ namespace DevToys
         /// Gets the resource VersionTitle.
         /// </summary>
         public string VersionTitle => _resources.GetString("VersionTitle");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+    }
+
+    public class GZipEncoderDecoderStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("GZipEncoderDecoder");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
+        /// Gets the resource Ascii.
+        /// </summary>
+        public string Ascii => _resources.GetString("Ascii");
+
+        /// <summary>
+        /// Gets the resource ConfigurationTitle.
+        /// </summary>
+        public string ConfigurationTitle => _resources.GetString("ConfigurationTitle");
+
+        /// <summary>
+        /// Gets the resource ConversionDecompress.
+        /// </summary>
+        public string ConversionDecompress => _resources.GetString("ConversionDecompress");
+
+        /// <summary>
+        /// Gets the resource ConversionDescription.
+        /// </summary>
+        public string ConversionDescription => _resources.GetString("ConversionDescription");
+
+        /// <summary>
+        /// Gets the resource ConversionCompress.
+        /// </summary>
+        public string ConversionCompress => _resources.GetString("ConversionCompress");
+
+        /// <summary>
+        /// Gets the resource ConversionTitle.
+        /// </summary>
+        public string ConversionTitle => _resources.GetString("ConversionTitle");
+
+        /// <summary>
+        /// Gets the resource MenuDisplayName.
+        /// </summary>
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
+
+        /// <summary>
+        /// Gets the resource EncodingDescription.
+        /// </summary>
+        public string EncodingDescription => _resources.GetString("EncodingDescription");
+
+        /// <summary>
+        /// Gets the resource EncodingTitle.
+        /// </summary>
+        public string EncodingTitle => _resources.GetString("EncodingTitle");
+
+        /// <summary>
+        /// Gets the resource InputTitle.
+        /// </summary>
+        public string InputTitle => _resources.GetString("InputTitle");
+
+        /// <summary>
+        /// Gets the resource OutputTitle.
+        /// </summary>
+        public string OutputTitle => _resources.GetString("OutputTitle");
+
+        /// <summary>
+        /// Gets the resource Utf8.
+        /// </summary>
+        public string Utf8 => _resources.GetString("Utf8");
 
         /// <summary>
         /// Gets the resource Description.

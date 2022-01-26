@@ -44,7 +44,7 @@
     <SDKReference Include="TestPlatform.Universal, Version=$(UnitTestPlatformVersion)" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Formatter\BaseNumberFormatterTests.cs" />
+    <Compile Include="Providers\Tools\BaseNumberFormatterTests.cs" />
     <Compile Include="Core\Threading\AsyncLazyTests.cs" />
     <Compile Include="Core\Threading\TaskCompletionNotifierTests.cs" />
     <Compile Include="Helpers\YamlHelperTests.cs" />

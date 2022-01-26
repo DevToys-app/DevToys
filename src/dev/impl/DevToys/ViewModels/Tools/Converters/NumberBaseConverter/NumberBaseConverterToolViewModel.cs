@@ -10,10 +10,10 @@ using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
 using DevToys.Core;
-using DevToys.Core.Formatter;
 using DevToys.Core.Threading;
 using DevToys.Models;
 using DevToys.Shared.Core.Threading;
+using DevToys.ViewModels.Tools.Converters.NumberBaseConverter;
 using DevToys.Views.Tools.NumberBaseConverter;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 
