@@ -51,6 +51,7 @@ namespace DevToys.Helpers
                 var xmlWriterSettings = new XmlWriterSettings()
                 {
                     Async = true,
+                    OmitXmlDeclaration = true,
                     NewLineOnAttributes = newLineOnAttributes,
                 };
 

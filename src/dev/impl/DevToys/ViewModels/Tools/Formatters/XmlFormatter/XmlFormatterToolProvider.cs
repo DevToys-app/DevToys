@@ -19,15 +19,15 @@ namespace DevToys.ViewModels.Tools.Formatters.XmlFormatter
     {
         private readonly IMefProvider _mefProvider;
 
-        public string MenuDisplayName => "Xml"; // LanguageManager.Instance.XmlFormatter.MenuDisplayName;
+        public string MenuDisplayName => LanguageManager.Instance.XmlFormatter.MenuDisplayName;
 
-        public string? SearchDisplayName => "XML Formatter"; //LanguageManager.Instance.XmlFormatter.SearchDisplayName;
+        public string? SearchDisplayName => LanguageManager.Instance.XmlFormatter.SearchDisplayName;
 
-        public string? Description => "Indent or minify XML data"; //LanguageManager.Instance.XmlFormatter.Description;
+        public string? Description => LanguageManager.Instance.XmlFormatter.Description;
 
-        public string AccessibleName => "XML Formatter tool"; //LanguageManager.Instance.XmlFormatter.AccessibleName;
+        public string AccessibleName => LanguageManager.Instance.XmlFormatter.AccessibleName;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("JsonFormatter.svg");
+        public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uf2ef");
 
         [ImportingConstructor]
         public XmlFormatterToolProvider(IMefProvider mefProvider)

@@ -467,6 +467,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <PRIResource Include="Strings\en-US\XmlFormatter.resw" />
     <PRIResource Include="Strings\ja-JP\UrlEncoderDecoder.resw" />
     <PRIResource Include="Strings\ja-JP\ToolGroups.resw" />
     <PRIResource Include="Strings\ja-JP\TextDiff.resw" />

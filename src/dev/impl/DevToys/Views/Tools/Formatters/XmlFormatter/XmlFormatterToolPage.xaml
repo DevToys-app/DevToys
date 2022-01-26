@@ -41,7 +41,10 @@
             <controls:ExpandableSettingControl
                 VerticalAlignment="Stretch"
                 VerticalContentAlignment="Stretch"
-                Title="Put attributes on new line"> 
+                Title="{x:Bind ViewModel.Strings.NewLineOnAttributesName}">
+                <controls:ExpandableSettingControl.Icon>
+                    <FontIcon Glyph="&#xf7ed;" />
+                </controls:ExpandableSettingControl.Icon>
                 <ToggleSwitch 
                     Style="{StaticResource RightAlignedToggleSwitchStyle}" 
                     IsOn="{x:Bind ViewModel.IsNewLineOnAttributes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
@@ -63,8 +66,11 @@
                 Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 CodeLanguage="xml"/>
 
-            <!--<TextBox AcceptsReturn="True"
-            TextWrapping="Wrap" Grid.Column="0" Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
+            <!--<TextBox 
+                AcceptsReturn="True"
+                TextWrapping="Wrap" 
+                Grid.Column="0" 
+                Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
 
             <toolkit:GridSplitter
                 Grid.Column="1"
@@ -79,8 +85,10 @@
                 </toolkit:GridSplitter.Element>
             </toolkit:GridSplitter>
 
-            <!--<TextBox Grid.Column="2"    AcceptsReturn="True"
-            TextWrapping="Wrap"
+            <!--<TextBox 
+                Grid.Column="2"    
+                AcceptsReturn="True"
+                TextWrapping="Wrap"
                 Text="{x:Bind ViewModel.OutputValue, Mode=OneWay}" IsReadOnly="True" />-->
 
             <controls:CodeEditor

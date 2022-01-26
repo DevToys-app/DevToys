@@ -49,7 +49,7 @@ namespace DevToys.ViewModels.Tools.Formatters.XmlFormatter
 
         public Type View { get; } = typeof(XmlFormatterToolPage);
 
-        internal JsonFormatterStrings Strings => LanguageManager.Instance.JsonFormatter;
+        internal XmlFormatterStrings Strings => LanguageManager.Instance.XmlFormatter;
 
         /// <summary>
         /// Gets or sets the desired indentation.
