@@ -142,7 +142,7 @@
     <value>Vložený YAML je neplatný.</value>
   </data>
   <data name="JsonToYaml" xml:space="preserve">
-    <value>Json na Yaml</value>
+    <value>JSON na YAML</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Výstup</value>
@@ -151,15 +151,15 @@
     <value>2 místa</value>
   </data>
   <data name="YamlToJson" xml:space="preserve">
-    <value>Yaml na Json</value>
+    <value>YAML na JSON</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Převod Json na Yaml a obráceně</value>
+    <value>Převod JSON na YAML a obráceně</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Json &lt;&gt; Yaml</value>
+    <value>JSON &lt;&gt; YAML</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Převodník Json &lt;&gt; Yaml</value>
+    <value>PřevodníkJSON &lt;&gt; YAML</value>
   </data>
 </root>

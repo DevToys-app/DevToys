@@ -142,7 +142,7 @@
     <value>Wprowadzony YAML jest nieprawidłowy.</value>
   </data>
   <data name="JsonToYaml" xml:space="preserve">
-    <value>Json do Yaml</value>
+    <value>JSON do YAML</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Wyjście</value>
@@ -151,15 +151,15 @@
     <value>2 spacje</value>
   </data>
   <data name="YamlToJson" xml:space="preserve">
-    <value>Yaml do Json</value>
+    <value>YAML do JSON</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Convert Json data to Yaml and vice versa</value>
+    <value>Convert JSON data to YAML and vice versa</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Json &lt;&gt; Yaml</value>
+    <value>JSON &lt;&gt; YAML</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Json &lt;&gt; Yaml Converter</value>
+    <value>JSON &lt;&gt; YAML Converter</value>
   </data>
 </root>

@@ -124,7 +124,7 @@
     <value>Установки</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Json</value>
+    <value>JSON</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
     <value>4 пробела</value>
@@ -148,9 +148,9 @@
     <value>2 пробела</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Переопределение отступов или минимизация данных Json</value>
+    <value>Переопределение отступов или минимизация данных JSON</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Форматирование Json</value>
+    <value>Форматирование JSON</value>
   </data>
 </root>

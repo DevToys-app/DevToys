@@ -53,6 +53,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\Tools\HashGeneratorTests.cs" />
     <Compile Include="Providers\Tools\Base64EncoderDecoderTests.cs" />
+    <Compile Include="Providers\Tools\SqlFormatterTests.cs" />
     <Compile Include="Providers\Tools\StringUtilitiesTests.cs" />
     <Compile Include="UI\ConvertersTests.cs" />
     <Compile Include="UnitTestApp.xaml.cs">

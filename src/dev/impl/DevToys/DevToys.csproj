@@ -30,9 +30,32 @@
     <Compile Include="Core\Threading\AsyncLazy.cs" />
     <Compile Include="Helpers\ColorBlindnessSimulatorHelper.cs" />
     <Compile Include="Helpers\NumberBaseHelper.cs" />
+    <Compile Include="Helpers\SqlFormatter\Core\Formatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Core\Indentation.cs" />
+    <Compile Include="Helpers\SqlFormatter\Core\InlineBlock.cs" />
+    <Compile Include="Helpers\SqlFormatter\Core\Params.cs" />
+    <Compile Include="Helpers\SqlFormatter\Core\RegexFactory.cs" />
+    <Compile Include="Helpers\SqlFormatter\Core\Token.cs" />
+    <Compile Include="Helpers\SqlFormatter\Core\Tokenizer.cs" />
+    <Compile Include="Helpers\SqlFormatter\Core\TokenType.cs" />
+    <Compile Include="Helpers\SqlFormatter\Core\TokenHelper.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\Db2Formatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\MariaDbFormatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\MySqlFormatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\N1qlFormatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\PlSqlFormatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\PostgreSqlFormatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\RedshiftFormatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\SparkSqlFormatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\TSqlFormatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\StandardSqlFormatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\SqlFormatterHelper.cs" />
+    <Compile Include="Helpers\SqlFormatter\SqlFormatterOptions.cs" />
+    <Compile Include="Helpers\SqlFormatter\SqlLanguage.cs" />
     <Compile Include="Messages\PinToolToStartMessage.cs" />
     <Compile Include="Messages\OpenToolInNewWindowMessage.cs" />
     <Compile Include="Messages\ChangeSelectedMenuItemMessage.cs" />
+    <Compile Include="Models\SqlLanguageDisplayPair.cs" />
     <Compile Include="Models\NoResultFoundMockToolProvider.cs" />
     <Compile Include="Models\Radix.cs" />
     <Compile Include="Models\NumberBaseFormat.cs" />
@@ -47,6 +70,8 @@
     <Compile Include="ViewModels\Tools\AllTools\AllToolsToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Converters\ConvertersGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\EncodersDecodersGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Formatters\SqlFormatter\SqlFormatterToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Formatters\SqlFormatter\SqlFormatterToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Generators\GeneratorsGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolViewModel.cs" />
@@ -66,6 +91,9 @@
     <Compile Include="ViewModels\Tools\Text\TextGroupToolProvider.cs" />
     <Compile Include="Views\Tools\AllTools\AllToolsToolPage.xaml.cs">
       <DependentUpon>AllToolsToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Formatters\SqlFormatter\SqlFormatterToolPage.xaml.cs">
+      <DependentUpon>SqlFormatterToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\Graphic\ColorBlindnessSimulator\ColorBlindnessSimulatorToolPage.xaml.cs">
       <DependentUpon>ColorBlindnessSimulatorToolPage.xaml</DependentUpon>
@@ -250,6 +278,7 @@
     <Content Include="Assets\Icons\Base64.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Icons\SqlFormatter.svg" />
     <Content Include="Assets\Icons\TextDiff.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -503,6 +532,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Tools\EncodersDecoders\Base64EncoderDecoder\Base64EncoderDecoderToolPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\Formatters\SqlFormatter\SqlFormatterToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -42,6 +42,7 @@ namespace DevToys
         private readonly RegExStrings _regex = new RegExStrings();
         private readonly SearchResultStrings _searchresult = new SearchResultStrings();
         private readonly SettingsStrings _settings = new SettingsStrings();
+        private readonly SqlFormatterStrings _sqlformatter = new SqlFormatterStrings();
         private readonly StringUtilitiesStrings _stringutilities = new StringUtilitiesStrings();
         private readonly TextDiffStrings _textdiff = new TextDiffStrings();
         private readonly ToolGroupsStrings _toolgroups = new ToolGroupsStrings();
@@ -146,6 +147,11 @@ namespace DevToys
         /// Gets the <see cref="SettingsStrings"/>.
         /// </summary>
         public SettingsStrings Settings => _settings;
+
+        /// <summary>
+        /// Gets the <see cref="SqlFormatterStrings"/>.
+        /// </summary>
+        public SqlFormatterStrings SqlFormatter => _sqlformatter;
 
         /// <summary>
         /// Gets the <see cref="StringUtilitiesStrings"/>.
@@ -1713,6 +1719,121 @@ namespace DevToys
         /// Gets the resource SearchDisplayName.
         /// </summary>
         public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+    }
+
+    public class SqlFormatterStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("SqlFormatter");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
+        /// Gets the resource Configuration.
+        /// </summary>
+        public string Configuration => _resources.GetString("Configuration");
+
+        /// <summary>
+        /// Gets the resource MenuDisplayName.
+        /// </summary>
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
+
+        /// <summary>
+        /// Gets the resource FourSpaces.
+        /// </summary>
+        public string FourSpaces => _resources.GetString("FourSpaces");
+
+        /// <summary>
+        /// Gets the resource Indentation.
+        /// </summary>
+        public string Indentation => _resources.GetString("Indentation");
+
+        /// <summary>
+        /// Gets the resource Input.
+        /// </summary>
+        public string Input => _resources.GetString("Input");
+
+        /// <summary>
+        /// Gets the resource OneTab.
+        /// </summary>
+        public string OneTab => _resources.GetString("OneTab");
+
+        /// <summary>
+        /// Gets the resource Output.
+        /// </summary>
+        public string Output => _resources.GetString("Output");
+
+        /// <summary>
+        /// Gets the resource TwoSpaces.
+        /// </summary>
+        public string TwoSpaces => _resources.GetString("TwoSpaces");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+
+        /// <summary>
+        /// Gets the resource SqlLanguage.
+        /// </summary>
+        public string SqlLanguage => _resources.GetString("SqlLanguage");
+
+        /// <summary>
+        /// Gets the resource SqlLanguageDb2.
+        /// </summary>
+        public string SqlLanguageDb2 => _resources.GetString("SqlLanguageDb2");
+
+        /// <summary>
+        /// Gets the resource SqlLanguageMariaDb.
+        /// </summary>
+        public string SqlLanguageMariaDb => _resources.GetString("SqlLanguageMariaDb");
+
+        /// <summary>
+        /// Gets the resource SqlLanguageMySql.
+        /// </summary>
+        public string SqlLanguageMySql => _resources.GetString("SqlLanguageMySql");
+
+        /// <summary>
+        /// Gets the resource SqlLanguageN1ql.
+        /// </summary>
+        public string SqlLanguageN1ql => _resources.GetString("SqlLanguageN1ql");
+
+        /// <summary>
+        /// Gets the resource SqlLanguagePlSql.
+        /// </summary>
+        public string SqlLanguagePlSql => _resources.GetString("SqlLanguagePlSql");
+
+        /// <summary>
+        /// Gets the resource SqlLanguagePostgreSql.
+        /// </summary>
+        public string SqlLanguagePostgreSql => _resources.GetString("SqlLanguagePostgreSql");
+
+        /// <summary>
+        /// Gets the resource SqlLanguageRedShift.
+        /// </summary>
+        public string SqlLanguageRedShift => _resources.GetString("SqlLanguageRedShift");
+
+        /// <summary>
+        /// Gets the resource SqlLanguageSpark.
+        /// </summary>
+        public string SqlLanguageSpark => _resources.GetString("SqlLanguageSpark");
+
+        /// <summary>
+        /// Gets the resource SqlLanguageSql.
+        /// </summary>
+        public string SqlLanguageSql => _resources.GetString("SqlLanguageSql");
+
+        /// <summary>
+        /// Gets the resource SqlLanguageTsql.
+        /// </summary>
+        public string SqlLanguageTsql => _resources.GetString("SqlLanguageTsql");
     }
 
     public class StringUtilitiesStrings : ObservableObject
