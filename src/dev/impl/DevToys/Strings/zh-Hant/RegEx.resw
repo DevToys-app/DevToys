@@ -117,115 +117,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
-    <value>アプリについて</value>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>正規表示式測試工具</value>
   </data>
-  <data name="AppTheme" xml:space="preserve">
-    <value>アプリのテーマ</value>
+  <data name="Configuration" xml:space="preserve">
+    <value>設定</value>
   </data>
-  <data name="AppThemeDescription" xml:space="preserve">
-    <value>表示するアプリのテーマを選択します</value>
+  <data name="CultureInvariant" xml:space="preserve">
+    <value>忽略文化特性</value>
   </data>
-  <data name="AppTitle" xml:space="preserve">
-    <value>DevToys</value>
-  </data>
-  <data name="Behaviors" xml:space="preserve">
-    <value>動作</value>
-  </data>
-  <data name="Close" xml:space="preserve">
-    <value>閉じる</value>
-  </data>
-  <data name="Copy" xml:space="preserve">
-    <value>コピー</value>
-  </data>
-  <data name="Dark" xml:space="preserve">
-    <value>ダーク</value>
-  </data>
-  <data name="DefaultLanguage" xml:space="preserve">
-    <value>Windows に合わせる</value>
+  <data name="CultureInvariantDescription" xml:space="preserve">
+    <value>忽略語言中的文化差異。</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>設定</value>
+    <value>Regex 測試工具</value>
   </data>
-  <data name="Font" xml:space="preserve">
-    <value>フォント</value>
+  <data name="EcmaScript" xml:space="preserve">
+    <value>ECMAScript</value>
   </data>
-  <data name="HighlightCurrentLine" xml:space="preserve">
-    <value>選択された行のハイライト</value>
+  <data name="EcmaScriptDescription" xml:space="preserve">
+    <value>為表示式啟用符合 ECMAScript 的行為。僅能與忽略文化特性、忽略大小寫，及多行選項同時使用。</value>
   </data>
-  <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>選択中の行の背景色を変更して、見やすくします</value>
+  <data name="IgnoreCase" xml:space="preserve">
+    <value>忽略大小寫</value>
   </data>
-  <data name="Language" xml:space="preserve">
-    <value>言語</value>
+  <data name="IgnoreCaseDescription" xml:space="preserve">
+    <value>排除大小寫差異。</value>
   </data>
-  <data name="LanguageDescription" xml:space="preserve">
-    <value>別の言語を選択するときは、アプリを再起動する必要があります</value>
+  <data name="IgnoreWhitespace" xml:space="preserve">
+    <value>忽略空白</value>
   </data>
-  <data name="License" xml:space="preserve">
-    <value>ライセンス</value>
+  <data name="IgnoreWhitespaceDescription" xml:space="preserve">
+    <value>從模式中排除未逸出的空白字元並啟用以 # 標記的註解。然而此並不會影響或排除在字元類別、數量詞或標記正規表示式開頭的權杖中的空白字元。</value>
   </data>
-  <data name="Light" xml:space="preserve">
-    <value>ライト</value>
+  <data name="Multiline" xml:space="preserve">
+    <value>多行</value>
   </data>
-  <data name="LineNumbers" xml:space="preserve">
-    <value>行数</value>
+  <data name="MultilineDescription" xml:space="preserve">
+    <value>修改 ^ 和 $ 的功能，以符合任何行的開頭及結尾。而非僅符合整個字串的開頭及結尾。</value>
   </data>
-  <data name="LineNumbersDescription" xml:space="preserve">
-    <value>テキストエディタ内で行番号を表示する</value>
+  <data name="Options" xml:space="preserve">
+    <value>選項</value>
   </data>
-  <data name="OpenLogs" xml:space="preserve">
-    <value>ログを開く</value>
+  <data name="RegularExpression" xml:space="preserve">
+    <value>正規表示式</value>
   </data>
-  <data name="PrivacyPolicy" xml:space="preserve">
-    <value>プライバシーポリシー</value>
+  <data name="RightToLeft" xml:space="preserve">
+    <value>右至左</value>
   </data>
-  <data name="RateAndReview" xml:space="preserve">
-    <value>MicrosoftStoreの評価とレビュー</value>
+  <data name="RightToLeftDescription" xml:space="preserve">
+    <value>指定由右至左搜尋，而非由左至右。</value>
   </data>
-  <data name="RenderWhitespace" xml:space="preserve">
-    <value>空白文字を表示</value>
+  <data name="Singleline" xml:space="preserve">
+    <value>單行</value>
   </data>
-  <data name="ReportProblem" xml:space="preserve">
-    <value>問題を報告</value>
+  <data name="SinglelineDescription" xml:space="preserve">
+    <value>修改 . 的功能，以符合所有字元 (而非除了 \n 以外的所有字元)。</value>
   </data>
-  <data name="SmartDetection" xml:space="preserve">
-    <value>スマート検出</value>
-  </data>
-  <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>クリップボードの内容に基づいて最適なツールを自動的に検出します</value>
-  </data>
-  <data name="SmartDetectionHowTo" xml:space="preserve">
-    <value>スマート検出の使い方</value>
-  </data>
-  <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>推奨ツールを選択するときにクリップボードの内容を自動的に貼り付けます</value>
-  </data>
-  <data name="SourceCode" xml:space="preserve">
-    <value>ソースコード</value>
-  </data>
-  <data name="TextEditor" xml:space="preserve">
-    <value>テキストエディタ</value>
-  </data>
-  <data name="ThirdPartyNotices" xml:space="preserve">
-    <value>サードパーティ ライセンス</value>
-  </data>
-  <data name="UsefulLinks" xml:space="preserve">
-    <value>便利なリンク</value>
-  </data>
-  <data name="UseSystemSettings" xml:space="preserve">
-    <value>システム設定に従う</value>
-  </data>
-  <data name="Version" xml:space="preserve">
-    <value>バージョン {0}</value>
-  </data>
-  <data name="WordWrap" xml:space="preserve">
-    <value>ワード ラップ</value>
+  <data name="Text" xml:space="preserve">
+    <value>文字</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>DevToys の見た目や使い勝手をカスタマイズしよう</value>
+    <value>驗證並測試正規表示式</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>設定</value>
+    <value>Regex 測試工具</value>
   </data>
 </root>

@@ -117,115 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
-    <value>アプリについて</value>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>GZip Encoder and Decoder tool</value>
   </data>
-  <data name="AppTheme" xml:space="preserve">
-    <value>アプリのテーマ</value>
+  <data name="Ascii" xml:space="preserve">
+    <value>ASCII</value>
   </data>
-  <data name="AppThemeDescription" xml:space="preserve">
-    <value>表示するアプリのテーマを選択します</value>
+  <data name="ConfigurationTitle" xml:space="preserve">
+    <value>Configuration</value>
   </data>
-  <data name="AppTitle" xml:space="preserve">
-    <value>DevToys</value>
+  <data name="ConversionDecompress" xml:space="preserve">
+    <value>Decompress</value>
   </data>
-  <data name="Behaviors" xml:space="preserve">
-    <value>動作</value>
+  <data name="ConversionDescription" xml:space="preserve">
+    <value>Select compress or decompress</value>
   </data>
-  <data name="Close" xml:space="preserve">
-    <value>閉じる</value>
+  <data name="ConversionCompress" xml:space="preserve">
+    <value>Compress</value>
   </data>
-  <data name="Copy" xml:space="preserve">
-    <value>コピー</value>
-  </data>
-  <data name="Dark" xml:space="preserve">
-    <value>ダーク</value>
-  </data>
-  <data name="DefaultLanguage" xml:space="preserve">
-    <value>Windows に合わせる</value>
+  <data name="ConversionTitle" xml:space="preserve">
+    <value>Compress/Decompress</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>設定</value>
+    <value>GZip</value>
   </data>
-  <data name="Font" xml:space="preserve">
-    <value>フォント</value>
+  <data name="EncodingDescription" xml:space="preserve">
+    <value>Compress or decompress strings with GZip</value>
   </data>
-  <data name="HighlightCurrentLine" xml:space="preserve">
-    <value>選択された行のハイライト</value>
+  <data name="EncodingTitle" xml:space="preserve">
+    <value>Encoding</value>
   </data>
-  <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>選択中の行の背景色を変更して、見やすくします</value>
+  <data name="InputTitle" xml:space="preserve">
+    <value>Input</value>
   </data>
-  <data name="Language" xml:space="preserve">
-    <value>言語</value>
+  <data name="OutputTitle" xml:space="preserve">
+    <value>Output</value>
   </data>
-  <data name="LanguageDescription" xml:space="preserve">
-    <value>別の言語を選択するときは、アプリを再起動する必要があります</value>
-  </data>
-  <data name="License" xml:space="preserve">
-    <value>ライセンス</value>
-  </data>
-  <data name="Light" xml:space="preserve">
-    <value>ライト</value>
-  </data>
-  <data name="LineNumbers" xml:space="preserve">
-    <value>行数</value>
-  </data>
-  <data name="LineNumbersDescription" xml:space="preserve">
-    <value>テキストエディタ内で行番号を表示する</value>
-  </data>
-  <data name="OpenLogs" xml:space="preserve">
-    <value>ログを開く</value>
-  </data>
-  <data name="PrivacyPolicy" xml:space="preserve">
-    <value>プライバシーポリシー</value>
-  </data>
-  <data name="RateAndReview" xml:space="preserve">
-    <value>MicrosoftStoreの評価とレビュー</value>
-  </data>
-  <data name="RenderWhitespace" xml:space="preserve">
-    <value>空白文字を表示</value>
-  </data>
-  <data name="ReportProblem" xml:space="preserve">
-    <value>問題を報告</value>
-  </data>
-  <data name="SmartDetection" xml:space="preserve">
-    <value>スマート検出</value>
-  </data>
-  <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>クリップボードの内容に基づいて最適なツールを自動的に検出します</value>
-  </data>
-  <data name="SmartDetectionHowTo" xml:space="preserve">
-    <value>スマート検出の使い方</value>
-  </data>
-  <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>推奨ツールを選択するときにクリップボードの内容を自動的に貼り付けます</value>
-  </data>
-  <data name="SourceCode" xml:space="preserve">
-    <value>ソースコード</value>
-  </data>
-  <data name="TextEditor" xml:space="preserve">
-    <value>テキストエディタ</value>
-  </data>
-  <data name="ThirdPartyNotices" xml:space="preserve">
-    <value>サードパーティ ライセンス</value>
-  </data>
-  <data name="UsefulLinks" xml:space="preserve">
-    <value>便利なリンク</value>
-  </data>
-  <data name="UseSystemSettings" xml:space="preserve">
-    <value>システム設定に従う</value>
-  </data>
-  <data name="Version" xml:space="preserve">
-    <value>バージョン {0}</value>
-  </data>
-  <data name="WordWrap" xml:space="preserve">
-    <value>ワード ラップ</value>
+  <data name="Utf8" xml:space="preserve">
+    <value>UTF-8</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>DevToys の見た目や使い勝手をカスタマイズしよう</value>
+    <value>Compress or decompress strings</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>設定</value>
+    <value>GZip Compress/Decompress</value>
   </data>
 </root>

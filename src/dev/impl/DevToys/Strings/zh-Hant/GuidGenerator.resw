@@ -117,115 +117,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
-    <value>アプリについて</value>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>UUID 產生工具</value>
   </data>
-  <data name="AppTheme" xml:space="preserve">
-    <value>アプリのテーマ</value>
-  </data>
-  <data name="AppThemeDescription" xml:space="preserve">
-    <value>表示するアプリのテーマを選択します</value>
-  </data>
-  <data name="AppTitle" xml:space="preserve">
-    <value>DevToys</value>
-  </data>
-  <data name="Behaviors" xml:space="preserve">
-    <value>動作</value>
-  </data>
-  <data name="Close" xml:space="preserve">
-    <value>閉じる</value>
-  </data>
-  <data name="Copy" xml:space="preserve">
-    <value>コピー</value>
-  </data>
-  <data name="Dark" xml:space="preserve">
-    <value>ダーク</value>
-  </data>
-  <data name="DefaultLanguage" xml:space="preserve">
-    <value>Windows に合わせる</value>
+  <data name="Configuration" xml:space="preserve">
+    <value>設定</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>設定</value>
+    <value>UUID</value>
   </data>
-  <data name="Font" xml:space="preserve">
-    <value>フォント</value>
+  <data name="Generate" xml:space="preserve">
+    <value>產生</value>
   </data>
-  <data name="HighlightCurrentLine" xml:space="preserve">
-    <value>選択された行のハイライト</value>
+  <data name="GenerateButton" xml:space="preserve">
+    <value>產生 UUID</value>
   </data>
-  <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>選択中の行の背景色を変更して、見やすくします</value>
+  <data name="Guids" xml:space="preserve">
+    <value>UUID</value>
   </data>
-  <data name="Language" xml:space="preserve">
-    <value>言語</value>
+  <data name="Hyphens" xml:space="preserve">
+    <value>連字號</value>
   </data>
-  <data name="LanguageDescription" xml:space="preserve">
-    <value>別の言語を選択するときは、アプリを再起動する必要があります</value>
+  <data name="MultiplySymbol" xml:space="preserve">
+    <value>x</value>
   </data>
-  <data name="License" xml:space="preserve">
-    <value>ライセンス</value>
+  <data name="NumberOfGuidsToGenerate_AutomationProperties_Name" xml:space="preserve">
+    <value>要產生的 UUID 數量</value>
   </data>
-  <data name="Light" xml:space="preserve">
-    <value>ライト</value>
+  <data name="Uppercase" xml:space="preserve">
+    <value>大寫</value>
   </data>
-  <data name="LineNumbers" xml:space="preserve">
-    <value>行数</value>
+  <data name="UuidVersionFour" xml:space="preserve">
+    <value>4 (GUID)</value>
   </data>
-  <data name="LineNumbersDescription" xml:space="preserve">
-    <value>テキストエディタ内で行番号を表示する</value>
+  <data name="UuidVersionOne" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="OpenLogs" xml:space="preserve">
-    <value>ログを開く</value>
+  <data name="VersionDescription" xml:space="preserve">
+    <value>選擇要產生的 UUID 的版本</value>
   </data>
-  <data name="PrivacyPolicy" xml:space="preserve">
-    <value>プライバシーポリシー</value>
-  </data>
-  <data name="RateAndReview" xml:space="preserve">
-    <value>MicrosoftStoreの評価とレビュー</value>
-  </data>
-  <data name="RenderWhitespace" xml:space="preserve">
-    <value>空白文字を表示</value>
-  </data>
-  <data name="ReportProblem" xml:space="preserve">
-    <value>問題を報告</value>
-  </data>
-  <data name="SmartDetection" xml:space="preserve">
-    <value>スマート検出</value>
-  </data>
-  <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>クリップボードの内容に基づいて最適なツールを自動的に検出します</value>
-  </data>
-  <data name="SmartDetectionHowTo" xml:space="preserve">
-    <value>スマート検出の使い方</value>
-  </data>
-  <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>推奨ツールを選択するときにクリップボードの内容を自動的に貼り付けます</value>
-  </data>
-  <data name="SourceCode" xml:space="preserve">
-    <value>ソースコード</value>
-  </data>
-  <data name="TextEditor" xml:space="preserve">
-    <value>テキストエディタ</value>
-  </data>
-  <data name="ThirdPartyNotices" xml:space="preserve">
-    <value>サードパーティ ライセンス</value>
-  </data>
-  <data name="UsefulLinks" xml:space="preserve">
-    <value>便利なリンク</value>
-  </data>
-  <data name="UseSystemSettings" xml:space="preserve">
-    <value>システム設定に従う</value>
-  </data>
-  <data name="Version" xml:space="preserve">
-    <value>バージョン {0}</value>
-  </data>
-  <data name="WordWrap" xml:space="preserve">
-    <value>ワード ラップ</value>
+  <data name="VersionTitle" xml:space="preserve">
+    <value>UUID 版本</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>DevToys の見た目や使い勝手をカスタマイズしよう</value>
+    <value>產生版本 1 或 4 的 UUID</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>設定</value>
+    <value>UUID 產生器</value>
   </data>
 </root>

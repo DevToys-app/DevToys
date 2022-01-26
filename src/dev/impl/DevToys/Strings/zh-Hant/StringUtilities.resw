@@ -117,115 +117,103 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
-    <value>アプリについて</value>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>字串常用工具</value>
   </data>
-  <data name="AppTheme" xml:space="preserve">
-    <value>アプリのテーマ</value>
+  <data name="AlternatingCase" xml:space="preserve">
+    <value>交替式大小寫</value>
   </data>
-  <data name="AppThemeDescription" xml:space="preserve">
-    <value>表示するアプリのテーマを選択します</value>
+  <data name="Bytes" xml:space="preserve">
+    <value>位元組：</value>
   </data>
-  <data name="AppTitle" xml:space="preserve">
-    <value>DevToys</value>
+  <data name="CamelCase" xml:space="preserve">
+    <value>駝峰型大小寫</value>
   </data>
-  <data name="Behaviors" xml:space="preserve">
-    <value>動作</value>
+  <data name="CharacterDistribution" xml:space="preserve">
+    <value>字元分布</value>
   </data>
-  <data name="Close" xml:space="preserve">
-    <value>閉じる</value>
+  <data name="Characters" xml:space="preserve">
+    <value>字元：</value>
   </data>
-  <data name="Copy" xml:space="preserve">
-    <value>コピー</value>
+  <data name="CobolCase" xml:space="preserve">
+    <value>COBOL 式大小寫</value>
   </data>
-  <data name="Dark" xml:space="preserve">
-    <value>ダーク</value>
+  <data name="Column" xml:space="preserve">
+    <value>列：</value>
   </data>
-  <data name="DefaultLanguage" xml:space="preserve">
-    <value>Windows に合わせる</value>
+  <data name="ConstantCase" xml:space="preserve">
+    <value>固定大小寫</value>
+  </data>
+  <data name="Convert" xml:space="preserve">
+    <value>轉換</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>設定</value>
+    <value>檢查工具 &amp; 大小寫轉換工具</value>
   </data>
-  <data name="Font" xml:space="preserve">
-    <value>フォント</value>
+  <data name="InverseCase" xml:space="preserve">
+    <value>反轉大小寫</value>
   </data>
-  <data name="HighlightCurrentLine" xml:space="preserve">
-    <value>選択された行のハイライト</value>
+  <data name="KebabCase" xml:space="preserve">
+    <value>串燒型大小寫</value>
   </data>
-  <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>選択中の行の背景色を変更して、見やすくします</value>
+  <data name="Line" xml:space="preserve">
+    <value>行：</value>
   </data>
-  <data name="Language" xml:space="preserve">
-    <value>言語</value>
+  <data name="Lines" xml:space="preserve">
+    <value>行：</value>
   </data>
-  <data name="LanguageDescription" xml:space="preserve">
-    <value>別の言語を選択するときは、アプリを再起動する必要があります</value>
+  <data name="LowerCase" xml:space="preserve">
+    <value>小寫</value>
   </data>
-  <data name="License" xml:space="preserve">
-    <value>ライセンス</value>
+  <data name="OriginalCase" xml:space="preserve">
+    <value>原始文字</value>
   </data>
-  <data name="Light" xml:space="preserve">
-    <value>ライト</value>
+  <data name="Paragraphs" xml:space="preserve">
+    <value>段落：</value>
   </data>
-  <data name="LineNumbers" xml:space="preserve">
-    <value>行数</value>
+  <data name="PascalCase" xml:space="preserve">
+    <value>帕斯卡大小寫</value>
   </data>
-  <data name="LineNumbersDescription" xml:space="preserve">
-    <value>テキストエディタ内で行番号を表示する</value>
+  <data name="Position" xml:space="preserve">
+    <value>位置：</value>
   </data>
-  <data name="OpenLogs" xml:space="preserve">
-    <value>ログを開く</value>
+  <data name="Selection" xml:space="preserve">
+    <value>選取</value>
   </data>
-  <data name="PrivacyPolicy" xml:space="preserve">
-    <value>プライバシーポリシー</value>
+  <data name="SentenceCase" xml:space="preserve">
+    <value>句子式大小寫</value>
   </data>
-  <data name="RateAndReview" xml:space="preserve">
-    <value>MicrosoftStoreの評価とレビュー</value>
+  <data name="Sentences" xml:space="preserve">
+    <value>句子：</value>
   </data>
-  <data name="RenderWhitespace" xml:space="preserve">
-    <value>空白文字を表示</value>
+  <data name="SnakeCase" xml:space="preserve">
+    <value>蛇型大小寫</value>
   </data>
-  <data name="ReportProblem" xml:space="preserve">
-    <value>問題を報告</value>
+  <data name="Statistics" xml:space="preserve">
+    <value>統計資料</value>
   </data>
-  <data name="SmartDetection" xml:space="preserve">
-    <value>スマート検出</value>
+  <data name="String" xml:space="preserve">
+    <value>字串</value>
   </data>
-  <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>クリップボードの内容に基づいて最適なツールを自動的に検出します</value>
+  <data name="TitleCase" xml:space="preserve">
+    <value>標題式大小寫</value>
   </data>
-  <data name="SmartDetectionHowTo" xml:space="preserve">
-    <value>スマート検出の使い方</value>
+  <data name="TrainCase" xml:space="preserve">
+    <value>火車型大小寫</value>
   </data>
-  <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>推奨ツールを選択するときにクリップボードの内容を自動的に貼り付けます</value>
+  <data name="UpperCase" xml:space="preserve">
+    <value>大寫</value>
   </data>
-  <data name="SourceCode" xml:space="preserve">
-    <value>ソースコード</value>
+  <data name="WordDistribution" xml:space="preserve">
+    <value>單字分布</value>
   </data>
-  <data name="TextEditor" xml:space="preserve">
-    <value>テキストエディタ</value>
-  </data>
-  <data name="ThirdPartyNotices" xml:space="preserve">
-    <value>サードパーティ ライセンス</value>
-  </data>
-  <data name="UsefulLinks" xml:space="preserve">
-    <value>便利なリンク</value>
-  </data>
-  <data name="UseSystemSettings" xml:space="preserve">
-    <value>システム設定に従う</value>
-  </data>
-  <data name="Version" xml:space="preserve">
-    <value>バージョン {0}</value>
-  </data>
-  <data name="WordWrap" xml:space="preserve">
-    <value>ワード ラップ</value>
+  <data name="Words" xml:space="preserve">
+    <value>單字：</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>DevToys の見た目や使い勝手をカスタマイズしよう</value>
+    <value>分析文字並轉換至其他大小寫風格</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>設定</value>
+    <value>文字大小寫轉換及檢查工具</value>
   </data>
 </root>

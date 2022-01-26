@@ -19,6 +19,7 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Newtonsoft.Json;
 using YamlDotNet.Core;
 using YamlDotNet.Serialization;
+using DevToys.ViewModels.Tools.Converters.JsonYaml;
 
 namespace DevToys.ViewModels.Tools.JsonYaml
 {
@@ -263,7 +264,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml
             }
             catch (Exception ex)
             {
-                Logger.LogFault("Yaml to Json Converter", ex);
+                Logger.LogFault("Json to Yaml Converter", ex);
                 output = string.Empty;
             }
 
@@ -282,7 +283,10 @@ namespace DevToys.ViewModels.Tools.JsonYaml
             {
                 using var stringReader = new StringReader(input);
 
-                var deserializer = new Deserializer();
+                var deserializer = new DeserializerBuilder()
+                    .WithNodeTypeResolver(new DecimalYamlTypeResolver())
+                    .Build();
+
                 object? yamlObject = deserializer.Deserialize(stringReader);
 
                 if (yamlObject is null or string)
@@ -313,7 +317,10 @@ namespace DevToys.ViewModels.Tools.JsonYaml
                             throw new NotSupportedException();
                     }
 
-                    var jsonSerializer = new JsonSerializer();
+                    var jsonSerializer = JsonSerializer.CreateDefault(new JsonSerializerSettings()
+                    {
+                        Converters = { new DecimalJsonConverter() }
+                    });
                     jsonSerializer.Serialize(jsonTextWriter, yamlObject);
                 }
 
