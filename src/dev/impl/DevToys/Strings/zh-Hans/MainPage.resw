@@ -149,10 +149,10 @@
     <value>在新窗口中打开</value>
   </data>
   <data name="PinToolToStart" xml:space="preserve">
-    <value>将磁贴固定到”开始“菜单</value>
+    <value>将磁贴固定到“开始”菜单</value>
   </data>
   <data name="PinToolToStartProblem" xml:space="preserve">
-    <value>Unable to pin the tool to start. For more details, please check the log.</value>
+    <value>无法将工具固定到“开始”菜单。若要了解更多细节，请查看日记。</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>搜索您想要使用的工具类型</value>
