@@ -26,6 +26,7 @@ namespace DevToys
 
         private readonly AllToolsStrings _alltools = new AllToolsStrings();
         private readonly Base64EncoderDecoderStrings _base64encoderdecoder = new Base64EncoderDecoderStrings();
+        private readonly CheckSumGeneratorStrings _checksumgenerator = new CheckSumGeneratorStrings();
         private readonly ColorBlindnessSimulatorStrings _colorblindnesssimulator = new ColorBlindnessSimulatorStrings();
         private readonly CommonStrings _common = new CommonStrings();
         private readonly GuidGeneratorStrings _guidgenerator = new GuidGeneratorStrings();
@@ -68,6 +69,11 @@ namespace DevToys
         /// Gets the <see cref="Base64EncoderDecoderStrings"/>.
         /// </summary>
         public Base64EncoderDecoderStrings Base64EncoderDecoder => _base64encoderdecoder;
+
+        /// <summary>
+        /// Gets the <see cref="CheckSumGeneratorStrings"/>.
+        /// </summary>
+        public CheckSumGeneratorStrings CheckSumGenerator => _checksumgenerator;
 
         /// <summary>
         /// Gets the <see cref="ColorBlindnessSimulatorStrings"/>.
@@ -319,6 +325,96 @@ namespace DevToys
         /// Gets the resource SearchDisplayName.
         /// </summary>
         public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+    }
+
+    public class CheckSumGeneratorStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("CheckSumGenerator");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
+        /// Gets the resource Cancel.
+        /// </summary>
+        public string Cancel => _resources.GetString("Cancel");
+
+        /// <summary>
+        /// Gets the resource Configuration.
+        /// </summary>
+        public string Configuration => _resources.GetString("Configuration");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource HashingAlgorithmDescription.
+        /// </summary>
+        public string HashingAlgorithmDescription => _resources.GetString("HashingAlgorithmDescription");
+
+        /// <summary>
+        /// Gets the resource HashingAlgorithmTitle.
+        /// </summary>
+        public string HashingAlgorithmTitle => _resources.GetString("HashingAlgorithmTitle");
+
+        /// <summary>
+        /// Gets the resource Input.
+        /// </summary>
+        public string Input => _resources.GetString("Input");
+
+        /// <summary>
+        /// Gets the resource MenuDisplayName.
+        /// </summary>
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
+
+        /// <summary>
+        /// Gets the resource Output.
+        /// </summary>
+        public string Output => _resources.GetString("Output");
+
+        /// <summary>
+        /// Gets the resource OutputComparer.
+        /// </summary>
+        public string OutputComparer => _resources.GetString("OutputComparer");
+
+        /// <summary>
+        /// Gets the resource SaveAs.
+        /// </summary>
+        public string SaveAs => _resources.GetString("SaveAs");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+
+        /// <summary>
+        /// Gets the resource SelectFilesInstruction1.
+        /// </summary>
+        public string SelectFilesInstruction1 => _resources.GetString("SelectFilesInstruction1");
+
+        /// <summary>
+        /// Gets the resource SelectFilesInstruction2.
+        /// </summary>
+        public string SelectFilesInstruction2 => _resources.GetString("SelectFilesInstruction2");
+
+        /// <summary>
+        /// Gets the resource SelectFilesInstruction3.
+        /// </summary>
+        public string SelectFilesInstruction3 => _resources.GetString("SelectFilesInstruction3");
+
+        /// <summary>
+        /// Gets the resource SelectFilesInstruction4.
+        /// </summary>
+        public string SelectFilesInstruction4 => _resources.GetString("SelectFilesInstruction4");
+
+        /// <summary>
+        /// Gets the resource Uppercase.
+        /// </summary>
+        public string Uppercase => _resources.GetString("Uppercase");
     }
 
     public class ColorBlindnessSimulatorStrings : ObservableObject

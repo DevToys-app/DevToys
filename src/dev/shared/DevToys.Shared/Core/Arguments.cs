@@ -33,5 +33,15 @@ namespace DevToys.Shared.Core
 
             return value!;
         }
+
+        public static long NotZeroOrBelow(long value, string argumentName)
+        {
+            if (value <= 0)
+            {
+                throw new ArgumentException("Value can't be zero or below zero", argumentName);
+            }
+
+            return value;
+        }
     }
 }

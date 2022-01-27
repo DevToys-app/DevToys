@@ -31,10 +31,14 @@
     <Compile Include="Helpers\StorageFileHelper.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\ColorBlindnessSimulatorHelper.cs" />
+    <Compile Include="Helpers\HashingHelper.cs" />
     <Compile Include="Helpers\NumberBaseHelper.cs" />
     <Compile Include="Messages\PinToolToStartMessage.cs" />
     <Compile Include="Messages\OpenToolInNewWindowMessage.cs" />
     <Compile Include="Messages\ChangeSelectedMenuItemMessage.cs" />
+    <Compile Include="Models\HashingAlgorithm.cs" />
+    <Compile Include="Models\HashingAlgorithmDisplayPair.cs" />
+    <Compile Include="Models\HashingProgress.cs" />
     <Compile Include="Models\NoResultFoundMockToolProvider.cs" />
     <Compile Include="Models\Radix.cs" />
     <Compile Include="Models\NumberBaseFormat.cs" />
@@ -53,6 +57,8 @@
     <Compile Include="ViewModels\Tools\Converters\JsonYaml\DecimalJsonConverter.cs" />
     <Compile Include="ViewModels\Tools\Converters\JsonYaml\DecimalYamlTypeResolver.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\EncodersDecodersGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Generators\CheckSumGenerator\CheckSumGeneratorToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Generators\CheckSumGenerator\CheckSumGeneratorToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Generators\GeneratorsGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolViewModel.cs" />
@@ -78,6 +84,9 @@
     </Compile>
     <Compile Include="Views\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolPage.xaml.cs">
       <DependentUpon>GZipEncoderDecoderToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Generators\CheckSumGenerator\CheckSumGeneratorToolPage.xaml.cs">
+      <DependentUpon>CheckSumGeneratorToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\Graphic\ColorBlindnessSimulator\ColorBlindnessSimulatorToolPage.xaml.cs">
       <DependentUpon>ColorBlindnessSimulatorToolPage.xaml</DependentUpon>
@@ -524,6 +533,10 @@
     <Page Include="Views\Tools\EncodersDecoders\Base64EncoderDecoder\Base64EncoderDecoderToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\Generators\CheckSumGenerator\CheckSumGeneratorToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Tools\Graphic\ColorBlindnessSimulator\ColorBlindnessSimulatorToolPage.xaml">
       <SubType>Designer</SubType>
