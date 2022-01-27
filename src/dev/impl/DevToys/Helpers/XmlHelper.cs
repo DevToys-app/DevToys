@@ -23,6 +23,11 @@ namespace DevToys.Helpers
 
             input = input!.Trim();
 
+            if (input.Length < 4)
+            {
+                return false;
+            }
+
             if (input.StartsWith("<") && input.EndsWith(">"))
             {
                 return true;
