@@ -50,7 +50,9 @@ namespace DevToys.ViewModels.Tools.HashGenerator
         private string? _sha1;
         private string? _sha256;
         private string? _sha512;
-        private const string DefaultOutputType = "Hex";
+        private const string HexOutput = "Hex";
+        private const string Base64Output = "Base64";
+        private const string DefaultOutputType = HexOutput;
 
         public Type View { get; } = typeof(HashGeneratorToolPage);
 
@@ -186,11 +188,11 @@ namespace DevToys.ViewModels.Tools.HashGenerator
                 buffer = algorithmProvider.HashData(buffer);
 
                 string? hash="";
-                if (OutputType == "Hex")
+                if (string.Equals(OutputType, HexOutput))
                 {
                     hash = CryptographicBuffer.EncodeToHexString(buffer);
                 }
-                else if (OutputType == "Base64")
+                else if (string.Equals(OutputType, Base64Output))
                 {
                     hash = CryptographicBuffer.EncodeToBase64String(buffer);
                 }
