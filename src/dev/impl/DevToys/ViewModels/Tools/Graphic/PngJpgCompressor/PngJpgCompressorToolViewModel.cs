@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Composition;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using DevToys.Api.Core.OOP;
@@ -133,9 +132,7 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
                     IStorageItem storageItem = storageItems[i];
                     if (storageItem is StorageFile file)
                     {
-                        string fileExtension = Path.GetExtension(file.Name);
-
-                        if (SupportedFileExtensions.Any(ext => string.Equals(ext, fileExtension, StringComparison.OrdinalIgnoreCase)))
+                        if (SupportedFileExtensions.Any(ext => string.Equals(ext, file.FileType, StringComparison.OrdinalIgnoreCase)))
                         {
                             QueueNewConversion(file);
                         }

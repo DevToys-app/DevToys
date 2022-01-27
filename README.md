@@ -49,6 +49,7 @@ Many tools are available.
 - Graphic
   - Color Blindness Simulator
   - PNG / JPEG Compressor
+  - Image Converter
 
 ... and more are coming!
 
@@ -101,6 +102,7 @@ Here is the list of tool name you can use:
 - `jwt` - JWT Decoder
 - `colorblind` - Color Blindness Simulator
 - `imgcomp` - PNG/JPEG compressor
+- `imageconverter` - Image Converter
 - `markdown` - Markdown Preview
 - `regex` - Regular Expression Tester
 - `baseconverter` - Number Base Converter
