@@ -66,7 +66,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
         private bool _hasCancelledCalculation;
         private bool _shouldDisplayProgress;
         private HashingAlgorithmDisplayPair? _outputHashingAlgorithm;
-        private Queue<Task> _computationTaskQueue = new();
+        private readonly Queue<Task> _computationTaskQueue = new();
 
         internal CheckSumGeneratorStrings Strings => LanguageManager.Instance.CheckSumGenerator;
 
