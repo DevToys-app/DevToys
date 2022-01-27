@@ -117,59 +117,115 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AccessibleName" xml:space="preserve">
-    <value>PNG / JPEG 图片压缩工具</value>
+  <data name="About" xml:space="preserve">
+    <value>Riguardo</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>取消</value>
+  <data name="AppTheme" xml:space="preserve">
+    <value>Tema app</value>
   </data>
-  <data name="Configuration" xml:space="preserve">
-    <value>配置</value>
+  <data name="AppThemeDescription" xml:space="preserve">
+    <value>Seleziona il tema dell'app da visualizzare</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>删除</value>
+  <data name="AppTitle" xml:space="preserve">
+    <value>DevToys</value>
   </data>
-  <data name="DeleteAll" xml:space="preserve">
-    <value>全部删除</value>
+  <data name="Behaviors" xml:space="preserve">
+    <value>Comportamenti</value>
   </data>
-  <data name="DetailsTitle" xml:space="preserve">
-    <value>详细内容</value>
+  <data name="Close" xml:space="preserve">
+    <value>Chiudi</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copia</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Scuro</value>
+  </data>
+  <data name="DefaultLanguage" xml:space="preserve">
+    <value>Quella di Windows</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>PNG / JPEG 图片压缩工具</value>
+    <value>Impostazioni</value>
   </data>
-  <data name="FileSizeDisplay" xml:space="preserve">
-    <value>{0:0.##} {1}</value>
-    <comment>{0}是表示文件大小的十进制数。“{1}”为单位，如Bytes、KB、MB、GB、TB</comment>
+  <data name="Font" xml:space="preserve">
+    <value>Font</value>
   </data>
-  <data name="InvalidSelectedFiles" xml:space="preserve">
-    <value>只能压缩 .png、.jpg 和 .jpeg 文件</value>
+  <data name="HighlightCurrentLine" xml:space="preserve">
+    <value>Evidenzia la riga corrente</value>
   </data>
-  <data name="OK" xml:space="preserve">
-    <value>确定</value>
+  <data name="HighlightCurrentLineDescription" xml:space="preserve">
+    <value>Cambia il colore di sfondo della linea corrente in modo che sia più visibile</value>
   </data>
-  <data name="SaveAll" xml:space="preserve">
-    <value>全部保存</value>
+  <data name="Language" xml:space="preserve">
+    <value>Lingua</value>
   </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>另存为</value>
+  <data name="LanguageDescription" xml:space="preserve">
+    <value>L'app deve essere riavviata quando si seleziona un'altra lingua</value>
   </data>
-  <data name="SeeErrorMessage" xml:space="preserve">
-    <value>查看详细信息</value>
+  <data name="License" xml:space="preserve">
+    <value>Licenza</value>
   </data>
-  <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>拖放 PNG / JPEG 文件到框内</value>
+  <data name="Light" xml:space="preserve">
+    <value>Chiaro</value>
   </data>
-  <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>或者</value>
+  <data name="LineNumbers" xml:space="preserve">
+    <value>Numero linee</value>
   </data>
-  <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>选择计算机上面的文件</value>
+  <data name="LineNumbersDescription" xml:space="preserve">
+    <value>Visualizza i numeri di riga nell'editor di testo</value>
+  </data>
+  <data name="OpenLogs" xml:space="preserve">
+    <value>Apri il file di log</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Politica sulla riservatezza</value>
+  </data>
+  <data name="RateAndReview" xml:space="preserve">
+    <value>Valuta e recensisci nel Microsoft Store</value>
+  </data>
+  <data name="RenderWhitespace" xml:space="preserve">
+    <value>Rendering degli spazi bianchi</value>
+  </data>
+  <data name="ReportProblem" xml:space="preserve">
+    <value>Segnala un problema</value>
+  </data>
+  <data name="SmartDetection" xml:space="preserve">
+    <value>Rilevamento intelligente</value>
+  </data>
+  <data name="SmartDetectionDescription" xml:space="preserve">
+    <value>Rileva automaticamente lo strumento migliore in base al contenuto degli appunti</value>
+  </data>
+  <data name="SmartDetectionHowTo" xml:space="preserve">
+    <value>Come utilizzare il rilevamento intelligente</value>
+  </data>
+  <data name="SmartDetectionPaste" xml:space="preserve">
+    <value>Incolla automaticamente il contenuto degli appunti quando selezioni uno strumento consigliato</value>
+  </data>
+  <data name="SourceCode" xml:space="preserve">
+    <value>Codice sorgente</value>
+  </data>
+  <data name="TextEditor" xml:space="preserve">
+    <value>Editor di testo</value>
+  </data>
+  <data name="ThirdPartyNotices" xml:space="preserve">
+    <value>Licenze di terze parti</value>
+  </data>
+  <data name="UsefulLinks" xml:space="preserve">
+    <value>Link utili</value>
+  </data>
+  <data name="UseSystemSettings" xml:space="preserve">
+    <value>Usa impostazioni di sistema</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Versione {0}</value>
+  </data>
+  <data name="WordWrap" xml:space="preserve">
+    <value>Manda a capo le parole</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>无损的 PNG 和 JPEG 优化器</value>
+    <value>Modifica la visuale e il funzionamento di DevToys</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>PNG / JPEG 图片压缩工具</value>
+    <value>Impostazioni</value>
   </data>
 </root>

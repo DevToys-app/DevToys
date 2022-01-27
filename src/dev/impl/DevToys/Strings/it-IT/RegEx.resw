@@ -118,58 +118,69 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>PNG / JPEG 图片压缩工具</value>
-  </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>取消</value>
+    <value>Strumento per testare espressioni regolari</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>配置</value>
+    <value>Configurazione</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>删除</value>
+  <data name="CultureInvariant" xml:space="preserve">
+    <value>Cultura invariante</value>
   </data>
-  <data name="DeleteAll" xml:space="preserve">
-    <value>全部删除</value>
-  </data>
-  <data name="DetailsTitle" xml:space="preserve">
-    <value>详细内容</value>
+  <data name="CultureInvariantDescription" xml:space="preserve">
+    <value>Specifica che le differenze culturali nella lingua vengono ignorate.</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>PNG / JPEG 图片压缩工具</value>
+    <value>Tester espressioni regolari</value>
   </data>
-  <data name="FileSizeDisplay" xml:space="preserve">
-    <value>{0:0.##} {1}</value>
-    <comment>{0}是表示文件大小的十进制数。“{1}”为单位，如Bytes、KB、MB、GB、TB</comment>
+  <data name="EcmaScript" xml:space="preserve">
+    <value>ECMAScript</value>
   </data>
-  <data name="InvalidSelectedFiles" xml:space="preserve">
-    <value>只能压缩 .png、.jpg 和 .jpeg 文件</value>
+  <data name="EcmaScriptDescription" xml:space="preserve">
+    <value>Abilita il comportamento conforme a ECMAScript per l'espressione. Questo valore può essere utilizzato solo insieme alle opzioni "Cultura invariante", "Ignora distinzione lettere" e "Multilinea".</value>
   </data>
-  <data name="OK" xml:space="preserve">
-    <value>确定</value>
+  <data name="IgnoreCase" xml:space="preserve">
+    <value>Ignora distinzione lettere</value>
   </data>
-  <data name="SaveAll" xml:space="preserve">
-    <value>全部保存</value>
+  <data name="IgnoreCaseDescription" xml:space="preserve">
+    <value>Specifica la corrispondenza senza distinzione tra maiuscole e minuscole.</value>
   </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>另存为</value>
+  <data name="IgnoreWhitespace" xml:space="preserve">
+    <value>Ignora gli spazi bianchi</value>
   </data>
-  <data name="SeeErrorMessage" xml:space="preserve">
-    <value>查看详细信息</value>
+  <data name="IgnoreWhitespaceDescription" xml:space="preserve">
+    <value>Elimina lo spazio bianco senza escape dal pattern e abilita i commenti contrassegnati con #. Tuttavia, questo valore non influisce o elimina gli spazi vuoti nelle classi di caratteri, quantificatori numerici o token che segnano l'inizio dei singoli elementi del linguaggio delle espressioni regolari.</value>
   </data>
-  <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>拖放 PNG / JPEG 文件到框内</value>
+  <data name="Multiline" xml:space="preserve">
+    <value>Multilinea</value>
   </data>
-  <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>或者</value>
+  <data name="MultilineDescription" xml:space="preserve">
+    <value>Cambia il significato di ^ e $ in modo che corrispondano rispettivamente all'inizio e alla fine di qualsiasi riga e non solo all'inizio e alla fine dell'intera stringa.</value>
   </data>
-  <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>选择计算机上面的文件</value>
+  <data name="Options" xml:space="preserve">
+    <value>Opzioni</value>
+  </data>
+  <data name="RegularExpression" xml:space="preserve">
+    <value>Espressioni regolari</value>
+  </data>
+  <data name="RightToLeft" xml:space="preserve">
+    <value>Destra a sinistra</value>
+  </data>
+  <data name="RightToLeftDescription" xml:space="preserve">
+    <value>Specifica che la ricerca sarà da destra a sinistra anziché da sinistra a destra.</value>
+  </data>
+  <data name="Singleline" xml:space="preserve">
+    <value>Linea singola</value>
+  </data>
+  <data name="SinglelineDescription" xml:space="preserve">
+    <value>Cambia il significato del punto (.) in modo che corrisponda a tutti i caratteri (anziché a tutti i caratteri tranne \n).</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Testo</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>无损的 PNG 和 JPEG 优化器</value>
+    <value>Convalida e verifica le espressioni regolari</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>PNG / JPEG 图片压缩工具</value>
+    <value>Tester espressioni regolari</value>
   </data>
 </root>

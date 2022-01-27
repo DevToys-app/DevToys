@@ -118,58 +118,48 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>PNG / JPEG 图片压缩工具</value>
+    <value>Strumento di codifica e decodifica Base 64</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>取消</value>
+  <data name="Ascii" xml:space="preserve">
+    <value>ASCII</value>
   </data>
-  <data name="Configuration" xml:space="preserve">
-    <value>配置</value>
+  <data name="ConfigurationTitle" xml:space="preserve">
+    <value>Configurazione</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>删除</value>
+  <data name="ConversionDecode" xml:space="preserve">
+    <value>Decodifica</value>
   </data>
-  <data name="DeleteAll" xml:space="preserve">
-    <value>全部删除</value>
+  <data name="ConversionDescription" xml:space="preserve">
+    <value>Seleziona la modalità di conversione che vuoi usare</value>
   </data>
-  <data name="DetailsTitle" xml:space="preserve">
-    <value>详细内容</value>
+  <data name="ConversionEncode" xml:space="preserve">
+    <value>Codifica</value>
+  </data>
+  <data name="ConversionTitle" xml:space="preserve">
+    <value>Conversione</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>PNG / JPEG 图片压缩工具</value>
+    <value>Base 64</value>
   </data>
-  <data name="FileSizeDisplay" xml:space="preserve">
-    <value>{0:0.##} {1}</value>
-    <comment>{0}是表示文件大小的十进制数。“{1}”为单位，如Bytes、KB、MB、GB、TB</comment>
+  <data name="EncodingDescription" xml:space="preserve">
+    <value>Seleziona la modalità di codifica che vuoi usare</value>
   </data>
-  <data name="InvalidSelectedFiles" xml:space="preserve">
-    <value>只能压缩 .png、.jpg 和 .jpeg 文件</value>
+  <data name="EncodingTitle" xml:space="preserve">
+    <value>Codifica</value>
   </data>
-  <data name="OK" xml:space="preserve">
-    <value>确定</value>
+  <data name="InputTitle" xml:space="preserve">
+    <value>Input</value>
   </data>
-  <data name="SaveAll" xml:space="preserve">
-    <value>全部保存</value>
+  <data name="OutputTitle" xml:space="preserve">
+    <value>Output</value>
   </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>另存为</value>
-  </data>
-  <data name="SeeErrorMessage" xml:space="preserve">
-    <value>查看详细信息</value>
-  </data>
-  <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>拖放 PNG / JPEG 文件到框内</value>
-  </data>
-  <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>或者</value>
-  </data>
-  <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>选择计算机上面的文件</value>
+  <data name="Utf8" xml:space="preserve">
+    <value>UTF-8</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>无损的 PNG 和 JPEG 优化器</value>
+    <value>Codifica e decodifica dati in Base 64</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>PNG / JPEG 图片压缩工具</value>
+    <value>Codificatore / Decodificatore Base 64</value>
   </data>
 </root>

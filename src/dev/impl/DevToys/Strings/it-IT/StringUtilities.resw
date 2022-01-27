@@ -118,58 +118,102 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>PNG / JPEG 图片压缩工具</value>
+    <value>Strumento di utilità per le stringhe</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>取消</value>
+  <data name="AlternatingCase" xml:space="preserve">
+    <value>aLtErNaTiNg cAsE</value>
   </data>
-  <data name="Configuration" xml:space="preserve">
-    <value>配置</value>
+  <data name="Bytes" xml:space="preserve">
+    <value>Bytes:</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>删除</value>
+  <data name="CamelCase" xml:space="preserve">
+    <value>camelCase</value>
   </data>
-  <data name="DeleteAll" xml:space="preserve">
-    <value>全部删除</value>
+  <data name="CharacterDistribution" xml:space="preserve">
+    <value>Distribuzione dei caratteri</value>
   </data>
-  <data name="DetailsTitle" xml:space="preserve">
-    <value>详细内容</value>
+  <data name="Characters" xml:space="preserve">
+    <value>Caratteri:</value>
+  </data>
+  <data name="CobolCase" xml:space="preserve">
+    <value>COBOL-CASE</value>
+  </data>
+  <data name="Column" xml:space="preserve">
+    <value>Colonna:</value>
+  </data>
+  <data name="ConstantCase" xml:space="preserve">
+    <value>CONSTANT_CASE</value>
+  </data>
+  <data name="Convert" xml:space="preserve">
+    <value>Converti</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>PNG / JPEG 图片压缩工具</value>
+    <value>Ispettore e convertitore di casi</value>
   </data>
-  <data name="FileSizeDisplay" xml:space="preserve">
-    <value>{0:0.##} {1}</value>
-    <comment>{0}是表示文件大小的十进制数。“{1}”为单位，如Bytes、KB、MB、GB、TB</comment>
+  <data name="InverseCase" xml:space="preserve">
+    <value>InVeRsE CaSe</value>
   </data>
-  <data name="InvalidSelectedFiles" xml:space="preserve">
-    <value>只能压缩 .png、.jpg 和 .jpeg 文件</value>
+  <data name="KebabCase" xml:space="preserve">
+    <value>kebab-case</value>
   </data>
-  <data name="OK" xml:space="preserve">
-    <value>确定</value>
+  <data name="Line" xml:space="preserve">
+    <value>Line:</value>
   </data>
-  <data name="SaveAll" xml:space="preserve">
-    <value>全部保存</value>
+  <data name="Lines" xml:space="preserve">
+    <value>Lines:</value>
   </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>另存为</value>
+  <data name="LowerCase" xml:space="preserve">
+    <value>lower case</value>
   </data>
-  <data name="SeeErrorMessage" xml:space="preserve">
-    <value>查看详细信息</value>
+  <data name="OriginalCase" xml:space="preserve">
+    <value>Testo originale</value>
   </data>
-  <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>拖放 PNG / JPEG 文件到框内</value>
+  <data name="Paragraphs" xml:space="preserve">
+    <value>Paragrafi:</value>
   </data>
-  <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>或者</value>
+  <data name="PascalCase" xml:space="preserve">
+    <value>PascalCase</value>
   </data>
-  <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>选择计算机上面的文件</value>
+  <data name="Position" xml:space="preserve">
+    <value>Posizione:</value>
+  </data>
+  <data name="Selection" xml:space="preserve">
+    <value>Selezione</value>
+  </data>
+  <data name="SentenceCase" xml:space="preserve">
+    <value>Sentence case</value>
+  </data>
+  <data name="Sentences" xml:space="preserve">
+    <value>Frasi:</value>
+  </data>
+  <data name="SnakeCase" xml:space="preserve">
+    <value>snake_case</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Statistiche</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value>Stringa</value>
+  </data>
+  <data name="TitleCase" xml:space="preserve">
+    <value>Title Case</value>
+  </data>
+  <data name="TrainCase" xml:space="preserve">
+    <value>Train-Case</value>
+  </data>
+  <data name="UpperCase" xml:space="preserve">
+    <value>UPPER CASE</value>
+  </data>
+  <data name="WordDistribution" xml:space="preserve">
+    <value>Distribuzione parole</value>
+  </data>
+  <data name="Words" xml:space="preserve">
+    <value>Parole:</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>无损的 PNG 和 JPEG 优化器</value>
+    <value>Analizza il testo e convertilo</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>PNG / JPEG 图片压缩工具</value>
+    <value>Convertitore e ispettore di casi di testo</value>
   </data>
 </root>
