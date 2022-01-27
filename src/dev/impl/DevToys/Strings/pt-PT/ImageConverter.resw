@@ -130,7 +130,7 @@
     <value>Apagar</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
-    <value>Apagar todos</value>
+    <value>Apagar tudo</value>
   </data>
   <data name="DetailsTitle" xml:space="preserve">
     <value>Detalhes</value>
@@ -140,10 +140,10 @@
   </data>
   <data name="FileSizeDisplay" xml:space="preserve">
     <value>{0:0.##} {1}</value>
-    <comment>{0} é um número decimal que representa um tamanho de arquivo. {1} é uma unidade, como Bytes, KB, MB, GB, TB</comment>
+    <comment>{0} é um número decimal que representa o tamanho do ficheiro. {1} é uma unidade, como Bytes, KB, MB, GB, TB</comment>
   </data>
   <data name="InvalidSelectedFiles" xml:space="preserve">
-    <value>Apenas arquivos .png, .jpg e .jpeg podem ser usados.</value>
+    <value>Apenas ficheiros .png, .jpg e .jpeg podem ser usados.</value>
   </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
@@ -158,7 +158,7 @@
     <value>Ver detalhes</value>
   </data>
   <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>Arraste e largue arquivos de imagem aqui</value>
+    <value>Arraste e largue os ficheiros das imagens aqui</value>
   </data>
   <data name="SelectFilesInstruction2" xml:space="preserve">
     <value>ou</value>
@@ -176,7 +176,7 @@
     <value>Conversão</value>
   </data>
   <data name="ConvertedFormatDescription" xml:space="preserve">
-    <value>Selecione o formato de arquivo convertido</value>
+    <value>Selecione o formato do ficheiro convertido</value>
   </data>
   <data name="JPEG" xml:space="preserve">
     <value>JPEG</value>
