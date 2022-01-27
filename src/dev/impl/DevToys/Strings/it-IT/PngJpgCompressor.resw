@@ -118,58 +118,58 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>PNG / JPEG 图片压缩工具</value>
+    <value>Strumento di compressione PNG e JPEG</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancella</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>配置</value>
+    <value>Configurazione</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>删除</value>
+    <value>Elimina</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
-    <value>全部删除</value>
+    <value>Elimina tutto</value>
   </data>
   <data name="DetailsTitle" xml:space="preserve">
-    <value>详细内容</value>
+    <value>Dettagli</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>PNG / JPEG 图片压缩工具</value>
+    <value>Compressore PNG / JPEG</value>
   </data>
   <data name="FileSizeDisplay" xml:space="preserve">
     <value>{0:0.##} {1}</value>
-    <comment>{0}是表示文件大小的十进制数。“{1}”为单位，如Bytes、KB、MB、GB、TB</comment>
+    <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
   </data>
   <data name="InvalidSelectedFiles" xml:space="preserve">
-    <value>只能压缩 .png、.jpg 和 .jpeg 文件</value>
+    <value>È possibile utilizzare solo file .png, .jpg e .jpeg.</value>
   </data>
   <data name="OK" xml:space="preserve">
-    <value>确定</value>
+    <value>OK</value>
   </data>
   <data name="SaveAll" xml:space="preserve">
-    <value>全部保存</value>
+    <value>Salva tutto</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>另存为</value>
+    <value>Salva come</value>
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
-    <value>查看详细信息</value>
+    <value>Guarda dettagli</value>
   </data>
   <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>拖放 PNG / JPEG 文件到框内</value>
+    <value>Trascina qui un file PNG o JPEG</value>
   </data>
   <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>或者</value>
+    <value>o</value>
   </data>
   <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>选择计算机上面的文件</value>
+    <value>Sfoglia i file</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>无损的 PNG 和 JPEG 优化器</value>
+    <value>Ottimizzatore PNG e JPEG senza perdita di dati</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>PNG / JPEG 图片压缩工具</value>
+    <value>Compressore PNG / JPEG</value>
   </data>
 </root>

@@ -118,58 +118,62 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>PNG / JPEG 图片压缩工具</value>
+    <value>Strumento di conversione della base numerica</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>取消</value>
+  <data name="BinaryLabel" xml:space="preserve">
+    <value>Binario</value>
   </data>
-  <data name="Configuration" xml:space="preserve">
-    <value>配置</value>
+  <data name="ConfigurationTitle" xml:space="preserve">
+    <value>Configurazione</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>删除</value>
-  </data>
-  <data name="DeleteAll" xml:space="preserve">
-    <value>全部删除</value>
-  </data>
-  <data name="DetailsTitle" xml:space="preserve">
-    <value>详细内容</value>
+  <data name="DecimalLabel" xml:space="preserve">
+    <value>Decimale</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>PNG / JPEG 图片压缩工具</value>
+    <value>Base numero</value>
   </data>
-  <data name="FileSizeDisplay" xml:space="preserve">
-    <value>{0:0.##} {1}</value>
-    <comment>{0}是表示文件大小的十进制数。“{1}”为单位，如Bytes、KB、MB、GB、TB</comment>
+  <data name="Format" xml:space="preserve">
+    <value>Formatta numero</value>
   </data>
-  <data name="InvalidSelectedFiles" xml:space="preserve">
-    <value>只能压缩 .png、.jpg 和 .jpeg 文件</value>
+  <data name="HexadecimalLabel" xml:space="preserve">
+    <value>Esadecimale</value>
   </data>
-  <data name="OK" xml:space="preserve">
-    <value>确定</value>
+  <data name="Input" xml:space="preserve">
+    <value>Input</value>
   </data>
-  <data name="SaveAll" xml:space="preserve">
-    <value>全部保存</value>
+  <data name="InputTypeBinary" xml:space="preserve">
+    <value>Binario</value>
   </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>另存为</value>
+  <data name="InputTypeDecimal" xml:space="preserve">
+    <value>Decimale</value>
   </data>
-  <data name="SeeErrorMessage" xml:space="preserve">
-    <value>查看详细信息</value>
+  <data name="InputTypeDescription" xml:space="preserve">
+    <value>Seleziona il tipo di input che vuoi usare</value>
   </data>
-  <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>拖放 PNG / JPEG 文件到框内</value>
+  <data name="InputTypeHexadecimal" xml:space="preserve">
+    <value>Esadecimale</value>
   </data>
-  <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>或者</value>
+  <data name="InputTypeOctal" xml:space="preserve">
+    <value>Ottale</value>
   </data>
-  <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>选择计算机上面的文件</value>
+  <data name="InputTypeTitle" xml:space="preserve">
+    <value>Tipo in input</value>
+  </data>
+  <data name="OctalLabel" xml:space="preserve">
+    <value>Ottale</value>
+  </data>
+  <data name="ValueInvalid" xml:space="preserve">
+    <value>Il valore corrente non è un {0} valido</value>
+    <comment>The parameter is the Base Number Type (Decimal, Octal, ...)</comment>
+  </data>
+  <data name="ValueOverflow" xml:space="preserve">
+    <value>Il valore corrente non può essere convertito poiché supera il valore massimo ({0})</value>
+    <comment>The parameter is the Max value of a long</comment>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>无损的 PNG 和 JPEG 优化器</value>
+    <value>Converti i numeri da una base all'altra</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>PNG / JPEG 图片压缩工具</value>
+    <value>Convertitore di base numerica</value>
   </data>
 </root>
