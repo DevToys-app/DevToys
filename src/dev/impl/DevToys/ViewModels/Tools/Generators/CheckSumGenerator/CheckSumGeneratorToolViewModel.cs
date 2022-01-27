@@ -324,6 +324,12 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
             lock (_lockObject)
             {
                 ExecuteCancelCommand(shouldRevertHashingAlgo: false);
+
+                if (_computationTaskQueue.Count > 0 && _computationTaskQueue.Peek().IsCompleted)
+                {
+                    _computationTaskQueue.Dequeue();
+                }
+
                 _computationTaskQueue.Enqueue(CheckSumAsync());
             }
         }
@@ -367,8 +373,6 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
                     _marketingService.NotifyToolSuccessfullyWorked();
                 }
             });
-
-            _ = _computationTaskQueue.Dequeue();
         }
 
         private async Task<string?> CalculateFileHash(HashingAlgorithm inputHashingAlgorithm, Stream fileStream)
