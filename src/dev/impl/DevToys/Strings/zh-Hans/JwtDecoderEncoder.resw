@@ -157,7 +157,7 @@
     <value>安全</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>解码JWT报头、有效数据和签名</value>
+    <value>解码 JWT 报头、有效数据和签名</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>JWT 解码工具</value>
