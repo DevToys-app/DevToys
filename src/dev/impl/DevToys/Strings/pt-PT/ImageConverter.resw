@@ -118,65 +118,65 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Image Converter tool</value>
+    <value>Ferramenta de conversão de imagem</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancelar</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Configuração</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Apagar</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
-    <value>Delete all</value>
+    <value>Apagar tudo</value>
   </data>
   <data name="DetailsTitle" xml:space="preserve">
-    <value>Details</value>
+    <value>Detalhes</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Image Converter</value>
+    <value>Conversor de imagem</value>
   </data>
   <data name="FileSizeDisplay" xml:space="preserve">
     <value>{0:0.##} {1}</value>
-    <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
+    <comment>{0} é um número decimal que representa o tamanho do ficheiro. {1} é uma unidade, como Bytes, KB, MB, GB, TB</comment>
   </data>
   <data name="InvalidSelectedFiles" xml:space="preserve">
-    <value>Only .png, .jpg and .jpeg files can be used.</value>
+    <value>Apenas ficheiros .png, .jpg e .jpeg podem ser usados.</value>
   </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="SaveAll" xml:space="preserve">
-    <value>Save all</value>
+    <value>Guardar todos</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>Save as</value>
+    <value>Guardar como</value>
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
-    <value>See details</value>
+    <value>Ver detalhes</value>
   </data>
   <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>Drag &amp; drop image files here</value>
+    <value>Arraste e largue os ficheiros das imagens aqui</value>
   </data>
   <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>or</value>
+    <value>ou</value>
   </data>
   <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>Browse files</value>
+    <value>Procurar ficheiros</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Lossless image converter</value>
+    <value>Conversor de imagem sem perdas</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Image Converter</value>
+    <value>Conversor de imagem</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Conversion</value>
+    <value>Conversão</value>
   </data>
   <data name="ConvertedFormatDescription" xml:space="preserve">
-    <value>Select the converted file format</value>
+    <value>Selecione o formato do ficheiro convertido</value>
   </data>
   <data name="JPEG" xml:space="preserve">
     <value>JPEG</value>
@@ -200,6 +200,6 @@
     <value>TIFF</value>
   </data>
   <data name="ErrorMessage" xml:space="preserve">
-    <value>An unexpected error has occurred, the conversion may not have been performed.</value>
+    <value>Ocorreu um erro inesperado, a conversão pode não ter sido realizada.</value>
   </data>
 </root>
