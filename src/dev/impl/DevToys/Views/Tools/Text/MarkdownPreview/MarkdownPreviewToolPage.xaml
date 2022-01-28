@@ -88,7 +88,7 @@
                             TabIndex="2"
                             HorizontalAlignment="Right"
                             AutomationProperties.Name="{Binding Instance.Common.Copy, Mode=OneTime, Source={StaticResource LanguageManager}}"
-                            Click="CopyButton_Click">
+                            Command="{x:Bind ViewModel.CopyHtmlCommand}">
                             <StackPanel Orientation="Horizontal" Spacing="4">
                                 <FontIcon Glyph="&#xF32B;"/>
                                 <TextBlock VerticalAlignment="Center" Text="{Binding Instance.Common.Copy, Mode=OneTime, Source={StaticResource LanguageManager}}"/>
