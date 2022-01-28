@@ -15,7 +15,7 @@
     <img src="https://img.shields.io/github/release/veler/devtoys.svg?label=Latest%20version" alt="Latest version" />
   </a>
   <a style="text-decoration:none" href="https://www.microsoft.com/store/apps/9PGCV4V3BK4W" target="_blank">
-    <img src="https://img.shields.io/badge/Microsoft%20Store-Download-green" alt="Store link" />
+    <img src="https://img.shields.io/badge/Microsoft%20Store-Download-brightgreen" alt="Store link" />
   </a>
   <a style="text-decoration:none" href="https://devtoys.app" target="_blank">
     <img src="https://img.shields.io/badge/Website-devtoys.app-blue" alt="Website" />
@@ -41,6 +41,7 @@ Many tools are available.
   - Hash (MD5, SHA1, SHA256, SHA512)
   - UUID 1 and 4
   - Lorem Ipsum
+  - Check Sum
 - Text
   - Inspector & Case Converter
   - Regex Tester
@@ -49,6 +50,7 @@ Many tools are available.
 - Graphic
   - Color Blindness Simulator
   - PNG / JPEG Compressor
+  - Image Converter
 
 ... and more are coming!
 
@@ -76,7 +78,7 @@ Many tools are available.
 ## App Permission
 
 DevToys works entirely offline, meaning that none of the data used by the app goes on internet. However, the app requires some other permissions in order to work correctly.
-1. `Uses all system resources` - This permission is required for some tools like `PNG / JPEG Compressor` or (upcomming) `On-screen color picker / measurer`, which use a 3rd part Open-Source Win32 process like [Efficient-Compression-Tool](https://github.com/fhanau/Efficient-Compression-Tool).
+1. `Uses all system resources` - This permission is required for some tools like `PNG / JPEG Compressor` or (upcoming) `On-screen color picker / measurer`, which use a 3rd part Open-Source Win32 process like [Efficient-Compression-Tool](https://github.com/fhanau/Efficient-Compression-Tool).
 All the code requiring this permission can be found [here](https://github.com/veler/DevToys/tree/main/src/dev/impl/DevToys.OutOfProcService).
 
 ## How to run DevToys
@@ -96,11 +98,13 @@ Here is the list of tool name you can use:
 - `hash` - Hash Generator
 - `uuid` - UUID Generator
 - `loremipsum` - Lorem Ipsum Generator
+- `checksum` - CheckSum File
 - `jsonformat` Json Formatter
 - `jsonyaml` - Json <> Yaml
 - `jwt` - JWT Decoder
 - `colorblind` - Color Blindness Simulator
 - `imgcomp` - PNG/JPEG compressor
+- `imageconverter` - Image Converter
 - `markdown` - Markdown Preview
 - `regex` - Regular Expression Tester
 - `baseconverter` - Number Base Converter

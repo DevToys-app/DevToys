@@ -150,4 +150,13 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>ハッシュ生成ツール</value>
   </data>
+  <data name="OutputBase64" xml:space="preserve">
+    <value>Base64</value>
+  </data>
+  <data name="OutputHex" xml:space="preserve">
+    <value>Hex</value>
+  </data>
+  <data name="OutputTypeTitle" xml:space="preserve">
+    <value>出力タイプ</value>
+  </data>
 </root>

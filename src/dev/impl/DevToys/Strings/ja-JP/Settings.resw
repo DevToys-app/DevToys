@@ -184,7 +184,7 @@
     <value>MicrosoftStoreの評価とレビュー</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>Render white space</value>
+    <value>空白文字を表示</value>
   </data>
   <data name="ReportProblem" xml:space="preserve">
     <value>問題を報告</value>
