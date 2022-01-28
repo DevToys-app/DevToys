@@ -66,6 +66,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
         private bool _hasCancelledCalculation;
         private bool _shouldDisplayProgress;
         private HashingAlgorithmDisplayPair? _outputHashingAlgorithm;
+        private readonly Queue<Task> _computationTaskQueue = new();
 
         internal CheckSumGeneratorStrings Strings => LanguageManager.Instance.CheckSumGenerator;
 
@@ -161,7 +162,6 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
             HashingAlgorithmDisplayPair.SHA384,
             HashingAlgorithmDisplayPair.SHA512,
         };
-
 
         [ImportingConstructor]
         public CheckSumGeneratorToolViewModel(ISettingsProvider settingsProvider, IMarketingService marketingService)
@@ -282,9 +282,9 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
             lock (_lockObject)
             {
                 _hasCancelledCalculation = true;
+                
                 _cancellationTokenSource.Cancel();
                 _cancellationTokenSource.Dispose();
-
                 _cancellationTokenSource = new CancellationTokenSource();
 
                 if (shouldRevertHashingAlgo && _outputHashingAlgorithm != null)
@@ -295,6 +295,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
                 _isCalculationInProgress = false;
                 _hasCancelledCalculation = false;
                 ShouldDisplayProgress = false;
+
                 ResetProgress();
             }
         }
@@ -323,7 +324,13 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
             lock (_lockObject)
             {
                 ExecuteCancelCommand(shouldRevertHashingAlgo: false);
-                CheckSumAsync().Forget();
+
+                if (_computationTaskQueue.Count > 0 && _computationTaskQueue.Peek().IsCompleted)
+                {
+                    _computationTaskQueue.Dequeue();
+                }
+
+                _computationTaskQueue.Enqueue(CheckSumAsync());
             }
         }
 
@@ -338,6 +345,11 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
 
             await TaskScheduler.Default;
 
+            if (_computationTaskQueue.Count > 1)
+            {
+                await _computationTaskQueue.Dequeue();
+            }
+
             using Stream? fileStream = await InputFile.OpenStreamForReadAsync();
 
             await ThreadHelper.RunOnUIThreadAsync(() => ShouldDisplayProgress = HashingHelper.ComputeHashIterations(fileStream) > _displayAboveIterations);
@@ -346,14 +358,14 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
 
             await ThreadHelper.RunOnUIThreadAsync(() =>
             {
+                _isCalculationInProgress = false;
+                ShouldDisplayProgress = false;
+
                 if (hashOutput != null)
                 {
                     Output = hashOutput;
                     _outputHashingAlgorithm = InputHashingAlgorithm;
                 }
-
-                _isCalculationInProgress = false;
-                ShouldDisplayProgress = false;
 
                 if (!_toolSuccessfullyWorked)
                 {
@@ -427,6 +439,5 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
                 HashingAlgorithm.SHA512 => SHA512.Create(),
                 _ => throw new ArgumentException("Hash Algorithm not supported", nameof(HashingAlgorithm))
             };
-        
     }
 }
