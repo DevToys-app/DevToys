@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Composition;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using DevToys.Api.Core.OOP;
@@ -28,17 +27,17 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
 
         private readonly IAppService _appService;
 
-        private bool _isSelectFilesAreaHighlithed;
+        private bool _isSelectFilesAreaHighlighted;
         private bool _hasInvalidFilesSelected;
 
         public Type View { get; } = typeof(PngJpgCompressorToolPage);
 
         internal PngJpgCompressorStrings Strings => LanguageManager.Instance.PngJpgCompressor;
 
-        internal bool IsSelectFilesAreaHighlithed
+        internal bool IsSelectFilesAreaHighlighted
         {
-            get => _isSelectFilesAreaHighlithed;
-            set => SetProperty(ref _isSelectFilesAreaHighlithed, value);
+            get => _isSelectFilesAreaHighlighted;
+            set => SetProperty(ref _isSelectFilesAreaHighlighted, value);
         }
 
         internal bool HasInvalidFilesSelected
@@ -88,7 +87,7 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
                 parameters.Handled = false;
             }
 
-            IsSelectFilesAreaHighlithed = true;
+            IsSelectFilesAreaHighlighted = true;
             HasInvalidFilesSelected = false;
         }
 
@@ -100,7 +99,7 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
 
         private void ExecuteSelectFilesAreaDragLeaveCommand(DragEventArgs? parameters)
         {
-            IsSelectFilesAreaHighlithed = false;
+            IsSelectFilesAreaHighlighted = false;
             HasInvalidFilesSelected = false;
         }
 
@@ -116,7 +115,7 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
 
             await ThreadHelper.RunOnUIThreadAsync(async () =>
             {
-                IsSelectFilesAreaHighlithed = false;
+                IsSelectFilesAreaHighlighted = false;
                 if (!parameters!.DataView.Contains(StandardDataFormats.StorageItems))
                 {
                     return;
@@ -133,9 +132,7 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
                     IStorageItem storageItem = storageItems[i];
                     if (storageItem is StorageFile file)
                     {
-                        string fileExtension = Path.GetExtension(file.Name);
-
-                        if (SupportedFileExtensions.Any(ext => string.Equals(ext, fileExtension, StringComparison.OrdinalIgnoreCase)))
+                        if (SupportedFileExtensions.Any(ext => string.Equals(ext, file.FileType, StringComparison.OrdinalIgnoreCase)))
                         {
                             QueueNewConversion(file);
                         }
