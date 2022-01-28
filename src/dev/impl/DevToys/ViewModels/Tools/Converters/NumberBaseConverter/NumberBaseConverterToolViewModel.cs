@@ -112,7 +112,7 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
                 {
                     return;
                 }
-
+                
                 SetProperty(ref _decimalValue, value);
                 InputBaseNumber = NumberBaseFormat.Decimal;
                 InputValue = NumberBaseFormatter.RemoveFormatting(DecimalValue).ToString();
@@ -249,10 +249,10 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
 
                 ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, () =>
                 {
-                    FillPropertyValues(ref _binaryValue, binaryValue, nameof(BinaryValue));
-                    FillPropertyValues(ref _octalValue, octalValue, nameof(OctalValue));
-                    FillPropertyValues(ref _decimalValue, decimalValue, nameof(DecimalValue));
-                    FillPropertyValues(ref _hexadecimalValue, hexaDecimalValue, nameof(HexaDecimalValue));
+                    FillPropertyValues(ref _binaryValue, binaryValue, nameof(BinaryValue), NumberBaseFormat.Binary);
+                    FillPropertyValues(ref _octalValue, octalValue, nameof(OctalValue), NumberBaseFormat.Octal);
+                    FillPropertyValues(ref _decimalValue, decimalValue, nameof(DecimalValue), NumberBaseFormat.Decimal);
+                    FillPropertyValues(ref _hexadecimalValue, hexaDecimalValue, nameof(HexaDecimalValue), NumberBaseFormat.Hexadecimal);
 
                     InfoBarMessage = infoBarMessage;
                     IsInfoBarOpen = isInfoBarOpen;
@@ -268,9 +268,12 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
             _conversionInProgress = false;
         }
 
-        private void FillPropertyValues(ref string? property, string? value, string viewModelName)
+        private void FillPropertyValues(ref string? property, string? value, string viewModelName, NumberBaseFormat format)
         {
-            SetProperty(ref property, value, viewModelName);
+            if (format != InputBaseNumber)
+            {
+                SetProperty(ref property, value, viewModelName);
+            }
         }
     }
 }
