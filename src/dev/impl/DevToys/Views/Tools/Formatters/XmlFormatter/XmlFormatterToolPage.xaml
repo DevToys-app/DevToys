@@ -66,11 +66,6 @@
                 Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 CodeLanguage="xml"/>
 
-            <!--<TextBox 
-                AcceptsReturn="True"
-                TextWrapping="Wrap" 
-                Grid.Column="0" 
-                Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
 
             <toolkit:GridSplitter
                 Grid.Column="1"
@@ -84,12 +79,6 @@
                         FontSize="13"/>
                 </toolkit:GridSplitter.Element>
             </toolkit:GridSplitter>
-
-            <!--<TextBox 
-                Grid.Column="2"    
-                AcceptsReturn="True"
-                TextWrapping="Wrap"
-                Text="{x:Bind ViewModel.OutputValue, Mode=OneWay}" IsReadOnly="True" />-->
 
             <controls:CodeEditor
                 x:Name="OutputCodeEditor"
