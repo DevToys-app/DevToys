@@ -143,7 +143,7 @@
     <comment>{0}是表示文件大小的十进制数。“{1}”为单位，如Bytes、KB、MB、GB、TB</comment>
   </data>
   <data name="InvalidSelectedFiles" xml:space="preserve">
-    <value>只能转换.png、.jpg和.jpeg文件</value>
+    <value>只能压缩 .png、.jpg 和 .jpeg 文件</value>
   </data>
   <data name="OK" xml:space="preserve">
     <value>确定</value>
@@ -158,7 +158,7 @@
     <value>查看详细信息</value>
   </data>
   <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>拖放PNG / JPEG 文件到框内</value>
+    <value>拖放 PNG / JPEG 文件到框内</value>
   </data>
   <data name="SelectFilesInstruction2" xml:space="preserve">
     <value>或者</value>
@@ -167,7 +167,7 @@
     <value>选择计算机上面的文件</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>无损的PNG和JPEG优化器</value>
+    <value>无损的 PNG 和 JPEG 优化器</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>PNG / JPEG 图片压缩工具</value>

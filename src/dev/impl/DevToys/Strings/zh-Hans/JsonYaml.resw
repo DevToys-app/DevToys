@@ -133,7 +133,7 @@
     <value>JSON / YAML 字符格式互转工具</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
-    <value>4个空格</value>
+    <value>4 个空格</value>
   </data>
   <data name="Indentation" xml:space="preserve">
     <value>缩进</value>
@@ -142,7 +142,7 @@
     <value>输入</value>
   </data>
   <data name="InvalidYaml" xml:space="preserve">
-    <value>输入的YAML字符无效，请及时修改。</value>
+    <value>输入的 YAML 字符无效，请及时修改。</value>
   </data>
   <data name="JsonToYaml" xml:space="preserve">
     <value>JSON 转换到 YAML</value>
@@ -151,7 +151,7 @@
     <value>输出</value>
   </data>
   <data name="TwoSpaces" xml:space="preserve">
-    <value>2个空格</value>
+    <value>2 个空格</value>
   </data>
   <data name="YamlToJson" xml:space="preserve">
     <value>YAML 转换到 JSON</value>

@@ -136,7 +136,7 @@
     <value>ECMA 脚本</value>
   </data>
   <data name="EcmaScriptDescription" xml:space="preserve">
-    <value>为表达式启用符合ecmascript的行为。此值只能与区域性不变量、忽略大小写和多行选项一起使用。</value>
+    <value>为表达式启用符合 ECMAScript 的行为。此值只能与区域性不变量、忽略大小写和多行选项一起使用。</value>
   </data>
   <data name="IgnoreCase" xml:space="preserve">
     <value>忽略大小写</value>
