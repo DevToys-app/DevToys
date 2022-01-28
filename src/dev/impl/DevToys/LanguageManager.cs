@@ -828,6 +828,21 @@ namespace DevToys
         /// Gets the resource SearchDisplayName.
         /// </summary>
         public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+
+        /// <summary>
+        /// Gets the resource OutputBase64.
+        /// </summary>
+        public string OutputBase64 => _resources.GetString("OutputBase64");
+
+        /// <summary>
+        /// Gets the resource OutputHex.
+        /// </summary>
+        public string OutputHex => _resources.GetString("OutputHex");
+
+        /// <summary>
+        /// Gets the resource OutputTypeTitle.
+        /// </summary>
+        public string OutputTypeTitle => _resources.GetString("OutputTypeTitle");
     }
 
     public class HtmlEncoderDecoderStrings : ObservableObject

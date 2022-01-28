@@ -30,6 +30,15 @@ namespace DevToys.ViewModels.Tools.HashGenerator
                 isRoaming: true,
                 defaultValue: false);
 
+        /// <summary>
+        /// The Output Code to generate.
+        /// </summary>
+        private static readonly SettingDefinition<string> OutType
+            = new(
+                name: $"{nameof(HashGeneratorToolViewModel)}.{nameof(OutType)}",
+                isRoaming: true,
+                defaultValue: DefaultOutputType);
+
         private readonly IMarketingService _marketingService;
         private readonly ISettingsProvider _settingsProvider;
         private readonly Queue<string> _hashCalculationQueue = new();
@@ -41,6 +50,9 @@ namespace DevToys.ViewModels.Tools.HashGenerator
         private string? _sha1;
         private string? _sha256;
         private string? _sha512;
+        private const string HexOutput = "Hex";
+        private const string Base64Output = "Base64";
+        private const string DefaultOutputType = HexOutput;
 
         public Type View { get; } = typeof(HashGeneratorToolPage);
 
@@ -54,6 +66,20 @@ namespace DevToys.ViewModels.Tools.HashGenerator
                 if (_settingsProvider.GetSetting(Uppercase) != value)
                 {
                     _settingsProvider.SetSetting(Uppercase, value);
+                    OnPropertyChanged();
+                    QueueHashCalculation();
+                }
+            }
+        }
+
+        internal string OutputType
+        {
+            get => _settingsProvider.GetSetting(OutType);
+            set
+            {
+                if (_settingsProvider.GetSetting(OutType) != value)
+                {
+                    _settingsProvider.SetSetting(OutType, value);
                     OnPropertyChanged();
                     QueueHashCalculation();
                 }
@@ -161,7 +187,15 @@ namespace DevToys.ViewModels.Tools.HashGenerator
                 IBuffer buffer = CryptographicBuffer.ConvertStringToBinary(text, BinaryStringEncoding.Utf8);
                 buffer = algorithmProvider.HashData(buffer);
 
-                string? hash = CryptographicBuffer.EncodeToHexString(buffer);
+                string? hash="";
+                if (string.Equals(OutputType, HexOutput))
+                {
+                    hash = CryptographicBuffer.EncodeToHexString(buffer);
+                }
+                else if (string.Equals(OutputType, Base64Output))
+                {
+                    hash = CryptographicBuffer.EncodeToBase64String(buffer);
+                }
 
                 if (IsUppercase)
                 {
