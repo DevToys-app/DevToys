@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using DevToys.Api.Core;
 using DevToys.Api.Tools;
 using DevToys.Core;
 using DevToys.Core.Threading;
@@ -32,6 +33,7 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
 
         private readonly object _lockObject = new();
         private readonly List<string> _tempFileNames = new();
+        private readonly IMarketingService _marketingService;
 
         private CancellationTokenSource? _cancellationTokenSource;
         private DateTime _timeSinceLastprogressUpdate;
@@ -107,8 +109,10 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
         }
 
         [ImportingConstructor]
-        public ColorBlindnessSimulatorToolViewModel()
+        public ColorBlindnessSimulatorToolViewModel(IMarketingService marketingService)
         {
+            _marketingService = marketingService;
+
             SelectFilesAreaDragOverCommand = new RelayCommand<DragEventArgs>(ExecuteSelectFilesAreaDragOverCommand);
             SelectFilesAreaDragLeaveCommand = new RelayCommand<DragEventArgs>(ExecuteSelectFilesAreaDragLeaveCommand);
             SelectFilesAreaDragDropCommand = new AsyncRelayCommand<DragEventArgs>(ExecuteSelectFilesAreaDragDropCommandAsync);
@@ -390,6 +394,8 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
 
                 IsProgressGridVisible = false;
                 IsResultGridVisible = true;
+
+                _marketingService.NotifyToolSuccessfullyWorked();
             });
         }
 
