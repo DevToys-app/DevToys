@@ -157,7 +157,7 @@
     <value>Elija la versión de UUID para generar</value>
   </data>
   <data name="VersionTitle" xml:space="preserve">
-    <value>versión de UUID</value>
+    <value>Versión de UUID</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Generar UUID versión 1 y 4</value>

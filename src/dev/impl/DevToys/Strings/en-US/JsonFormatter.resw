@@ -124,7 +124,7 @@
     <value>Configuration</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Json</value>
+    <value>JSON</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
     <value>4 spaces</value>
@@ -148,9 +148,9 @@
     <value>2 spaces</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Indent or minify Json data</value>
+    <value>Indent or minify JSON data</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Json Formatter</value>
+    <value>JSON Formatter</value>
   </data>
 </root>

@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using DevToys.Api.Core;
 using DevToys.Api.Tools;
 using DevToys.Core;
 using DevToys.Core.Threading;
@@ -32,10 +33,11 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
 
         private readonly object _lockObject = new();
         private readonly List<string> _tempFileNames = new();
+        private readonly IMarketingService _marketingService;
 
         private CancellationTokenSource? _cancellationTokenSource;
         private DateTime _timeSinceLastprogressUpdate;
-        private bool _isSelectFilesAreaHighlithed;
+        private bool _isSelectFilesAreaHighlighted;
         private bool _hasInvalidFilesSelected;
         private bool _isResultGridVisible;
         private bool _isProgressGridVisible;
@@ -52,10 +54,10 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
 
         internal ColorBlindnessSimulatorStrings Strings => LanguageManager.Instance.ColorBlindnessSimulator;
 
-        internal bool IsSelectFilesAreaHighlithed
+        internal bool IsSelectFilesAreaHighlighted
         {
-            get => _isSelectFilesAreaHighlithed;
-            set => SetProperty(ref _isSelectFilesAreaHighlithed, value);
+            get => _isSelectFilesAreaHighlighted;
+            set => SetProperty(ref _isSelectFilesAreaHighlighted, value);
         }
 
         internal bool HasInvalidFilesSelected
@@ -107,8 +109,10 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
         }
 
         [ImportingConstructor]
-        public ColorBlindnessSimulatorToolViewModel()
+        public ColorBlindnessSimulatorToolViewModel(IMarketingService marketingService)
         {
+            _marketingService = marketingService;
+
             SelectFilesAreaDragOverCommand = new RelayCommand<DragEventArgs>(ExecuteSelectFilesAreaDragOverCommand);
             SelectFilesAreaDragLeaveCommand = new RelayCommand<DragEventArgs>(ExecuteSelectFilesAreaDragLeaveCommand);
             SelectFilesAreaDragDropCommand = new AsyncRelayCommand<DragEventArgs>(ExecuteSelectFilesAreaDragDropCommandAsync);
@@ -149,7 +153,7 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
                 parameters.Handled = false;
             }
 
-            IsSelectFilesAreaHighlithed = true;
+            IsSelectFilesAreaHighlighted = true;
             HasInvalidFilesSelected = false;
         }
 
@@ -161,7 +165,7 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
 
         private void ExecuteSelectFilesAreaDragLeaveCommand(DragEventArgs? parameters)
         {
-            IsSelectFilesAreaHighlithed = false;
+            IsSelectFilesAreaHighlighted = false;
             HasInvalidFilesSelected = false;
         }
 
@@ -177,7 +181,7 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
 
             await ThreadHelper.RunOnUIThreadAsync(async () =>
             {
-                IsSelectFilesAreaHighlithed = false;
+                IsSelectFilesAreaHighlighted = false;
                 if (!parameters!.DataView.Contains(StandardDataFormats.StorageItems))
                 {
                     return;
@@ -390,6 +394,8 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
 
                 IsProgressGridVisible = false;
                 IsResultGridVisible = true;
+
+                _marketingService.NotifyToolSuccessfullyWorked();
             });
         }
 

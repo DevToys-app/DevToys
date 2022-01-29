@@ -28,7 +28,7 @@ DevToys helps in daily tasks like formatting JSON, comparing text, testing RegEx
 
 Many tools are available.
 - Converters
-  - Json <> Yaml
+  - JSON <> YAML
   - Number Base
 - Encoders / Decoders
   - HTML
@@ -36,11 +36,13 @@ Many tools are available.
   - Base64
   - JWT Decoder
 - Formatters
-  - Json
+  - JSON
+  - SQL
 - Generators
   - Hash (MD5, SHA1, SHA256, SHA512)
   - UUID 1 and 4
   - Lorem Ipsum
+  - Check Sum
 - Text
   - Inspector & Case Converter
   - Regex Tester
@@ -49,6 +51,7 @@ Many tools are available.
 - Graphic
   - Color Blindness Simulator
   - PNG / JPEG Compressor
+  - Image Converter
 
 ... and more are coming!
 
@@ -96,11 +99,14 @@ Here is the list of tool name you can use:
 - `hash` - Hash Generator
 - `uuid` - UUID Generator
 - `loremipsum` - Lorem Ipsum Generator
+- `checksum` - CheckSum File
 - `jsonformat` Json Formatter
+- `sqlformat` - SQL Formatter
 - `jsonyaml` - Json <> Yaml
 - `jwt` - JWT Decoder
 - `colorblind` - Color Blindness Simulator
 - `imgcomp` - PNG/JPEG compressor
+- `imageconverter` - Image Converter
 - `markdown` - Markdown Preview
 - `regex` - Regular Expression Tester
 - `baseconverter` - Number Base Converter

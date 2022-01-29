@@ -20,7 +20,7 @@
             <VisualStateGroup>
                 <VisualState x:Name="SelectFilesPointerHover">
                     <VisualState.StateTriggers>
-                        <StateTrigger IsActive="{x:Bind ViewModel.IsSelectFilesAreaHighlithed, Mode=OneWay}"/>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsSelectFilesAreaHighlighted, Mode=OneWay}"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="SelectFilesRectangle.Stroke" Value="{ThemeResource TextControlHeaderForeground}" />

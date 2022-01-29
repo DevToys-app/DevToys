@@ -157,9 +157,9 @@
     <value>UTF-8</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Kódovat a dekódovat data Base64</value>
+    <value>Kódování a dekódování dat Base64</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Kodér/dekodér Base 64</value>
+    <value>Kodér / Dekodér Base 64</value>
   </data>
 </root>

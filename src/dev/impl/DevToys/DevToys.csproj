@@ -28,12 +28,41 @@
     <Compile Include="Api\Tools\ParentAttribute.cs" />
     <Compile Include="Core\OOP\AppService.cs" />
     <Compile Include="Core\Threading\AsyncLazy.cs" />
+    <Compile Include="Helpers\StorageFileHelper.cs" />
+    <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\ColorBlindnessSimulatorHelper.cs" />
+    <Compile Include="Helpers\HashingHelper.cs" />
     <Compile Include="Helpers\NumberBaseHelper.cs" />
     <Compile Include="Helpers\XmlHelper.cs" />
+    <Compile Include="Helpers\SqlFormatter\Core\Formatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Core\Indentation.cs" />
+    <Compile Include="Helpers\SqlFormatter\Core\InlineBlock.cs" />
+    <Compile Include="Helpers\SqlFormatter\Core\Params.cs" />
+    <Compile Include="Helpers\SqlFormatter\Core\RegexFactory.cs" />
+    <Compile Include="Helpers\SqlFormatter\Core\Token.cs" />
+    <Compile Include="Helpers\SqlFormatter\Core\Tokenizer.cs" />
+    <Compile Include="Helpers\SqlFormatter\Core\TokenType.cs" />
+    <Compile Include="Helpers\SqlFormatter\Core\TokenHelper.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\Db2Formatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\MariaDbFormatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\MySqlFormatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\N1qlFormatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\PlSqlFormatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\PostgreSqlFormatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\RedshiftFormatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\SparkSqlFormatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\TSqlFormatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\StandardSqlFormatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\SqlFormatterHelper.cs" />
+    <Compile Include="Helpers\SqlFormatter\SqlFormatterOptions.cs" />
+    <Compile Include="Helpers\SqlFormatter\SqlLanguage.cs" />
     <Compile Include="Messages\PinToolToStartMessage.cs" />
     <Compile Include="Messages\OpenToolInNewWindowMessage.cs" />
     <Compile Include="Messages\ChangeSelectedMenuItemMessage.cs" />
+    <Compile Include="Models\HashingAlgorithm.cs" />
+    <Compile Include="Models\HashingAlgorithmDisplayPair.cs" />
+    <Compile Include="Models\HashingProgress.cs" />
+    <Compile Include="Models\SqlLanguageDisplayPair.cs" />
     <Compile Include="Models\NoResultFoundMockToolProvider.cs" />
     <Compile Include="Models\Radix.cs" />
     <Compile Include="Models\NumberBaseFormat.cs" />
@@ -54,12 +83,19 @@
     <Compile Include="ViewModels\Tools\EncodersDecoders\EncodersDecodersGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Formatters\XmlFormatter\XmlFormatterToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Formatters\XmlFormatter\XmlFormatterToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\Formatters\SqlFormatter\SqlFormatterToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Formatters\SqlFormatter\SqlFormatterToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\Generators\CheckSumGenerator\CheckSumGeneratorToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Generators\CheckSumGenerator\CheckSumGeneratorToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Generators\GeneratorsGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Graphic\ColorBlindnessSimulator\ColorBlindnessSimulatorToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Graphic\ColorBlindnessSimulator\ColorBlindnessSimulatorToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Graphic\GraphicGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Graphic\ImageConverter\ImageConversionWorkItem.cs" />
+    <Compile Include="ViewModels\Tools\Graphic\ImageConverter\ImageConverterToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Graphic\ImageConverter\ImageConverterToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\GroupToolProviderBase.cs" />
     <Compile Include="ViewModels\Tools\GroupToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\HtmlEncoderDecoder\HtmlEncoderDecoderToolProvider.cs" />
@@ -79,6 +115,11 @@
     </Compile>
     <Compile Include="Views\Tools\Formatters\XmlFormatter\XmlFormatterToolPage.xaml.cs">
       <DependentUpon>XmlFormatterToolPage.xaml</DependentUpon>
+    <Compile Include="Views\Tools\Formatters\SqlFormatter\SqlFormatterToolPage.xaml.cs">
+      <DependentUpon>SqlFormatterToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Generators\CheckSumGenerator\CheckSumGeneratorToolPage.xaml.cs">
+      <DependentUpon>CheckSumGeneratorToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\Graphic\ColorBlindnessSimulator\ColorBlindnessSimulatorToolPage.xaml.cs">
       <DependentUpon>ColorBlindnessSimulatorToolPage.xaml</DependentUpon>
@@ -94,6 +135,9 @@
     </Compile>
     <Compile Include="Views\Tools\EncodersDecoders\HtmlEncoderDecoder\HtmlEncoderDecoderToolPage.xaml.cs">
       <DependentUpon>HtmlEncoderDecoderToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Graphic\ImageConverter\ImageConverterToolPage.xaml.cs">
+      <DependentUpon>ImageConverterToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolPage.xaml.cs">
       <DependentUpon>LoremIpsumGeneratorToolPage.xaml</DependentUpon>
@@ -263,6 +307,7 @@
     <Content Include="Assets\Icons\Base64.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Icons\SqlFormatter.svg" />
     <Content Include="Assets\Icons\TextDiff.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -524,6 +569,11 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Tools\Formatters\XmlFormatter\XmlFormatterToolPage.xaml">
+    <Page Include="Views\Tools\Generators\CheckSumGenerator\CheckSumGeneratorToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tools\Formatters\SqlFormatter\SqlFormatterToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -546,6 +596,10 @@
     <Page Include="Views\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tools\Graphic\ImageConverter\ImageConverterToolPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Tools\Converters\NumberBaseConverter\NumberBaseConverterToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -151,7 +151,7 @@
     <value>Elimina los espacios en blanco sin escape del patrón y habilita los comentarios marcados con #. Sin embargo, este valor no afecta ni elimina los espacios en blanco en las clases de caracteres, los cuantificadores numéricos o los tokens que marcan el comienzo de los elementos individuales del lenguaje de expresiones regulares.</value>
   </data>
   <data name="Multiline" xml:space="preserve">
-    <value>multilínea</value>
+    <value>Multilínea</value>
   </data>
   <data name="MultilineDescription" xml:space="preserve">
     <value>Cambia el significado de ^ y $ para que coincidan al principio y al final, respectivamente, de cualquier línea, y no solo al principio y al final de toda la cadena.</value>
@@ -160,10 +160,10 @@
     <value>Opciones</value>
   </data>
   <data name="RegularExpression" xml:space="preserve">
-    <value>expresiones regulares</value>
+    <value>Expresiones regulares</value>
   </data>
   <data name="RightToLeft" xml:space="preserve">
-    <value>De Derecha a Izquierda</value>
+    <value>De derecha a izquierda</value>
   </data>
   <data name="RightToLeftDescription" xml:space="preserve">
     <value>Especifica que la búsqueda será de derecha a izquierda en lugar de izquierda a derecha.</value>

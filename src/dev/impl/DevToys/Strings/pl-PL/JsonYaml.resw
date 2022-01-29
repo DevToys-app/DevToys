@@ -157,7 +157,7 @@
     <value>Konwertuj dane JSON do YAML oraz vice-versa</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>JSON &lt;&gt; Yaml</value>
+    <value>JSON &lt;&gt; YAML</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Konwerter JSON &lt;&gt; YAML Converter</value>
