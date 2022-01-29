@@ -118,42 +118,42 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Lorem Ipsum Generator tool</value>
+    <value>Nástroj pro generování Lorem Ipsum</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Konfigurace</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generate Lorem Ipsum placeholder text</value>
+    <value>Generování dočasného Lorem Ipsum textu</value>
   </data>
   <data name="LengthDescription" xml:space="preserve">
-    <value>Number of words, sentences or paragraphs to generate</value>
+    <value>Počet slov, vět nebo odstavců na vygenerování</value>
   </data>
   <data name="LengthTitle" xml:space="preserve">
-    <value>Length</value>
+    <value>Počet</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Lorem Ipsum</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>Výstup</value>
   </data>
   <data name="ParagraphsType" xml:space="preserve">
-    <value>Paragraphs</value>
+    <value>Odstavce</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Lorem Ipsum Generator</value>
+    <value>Generátor Lorem Ipsum</value>
   </data>
   <data name="SentencesType" xml:space="preserve">
-    <value>Sentences</value>
+    <value>Věty</value>
   </data>
   <data name="TypeDescription" xml:space="preserve">
-    <value>Generate words, sentences or paragraphs of Lorem Ipsum</value>
+    <value>Generovat slova, věty nebo odstavce</value>
   </data>
   <data name="TypeTitle" xml:space="preserve">
-    <value>Type</value>
+    <value>Druh</value>
   </data>
   <data name="WordsType" xml:space="preserve">
-    <value>Words</value>
+    <value>Slova</value>
   </data>
 </root>
