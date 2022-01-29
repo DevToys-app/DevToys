@@ -115,6 +115,7 @@
     </Compile>
     <Compile Include="Views\Tools\Formatters\XmlFormatter\XmlFormatterToolPage.xaml.cs">
       <DependentUpon>XmlFormatterToolPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Tools\Formatters\SqlFormatter\SqlFormatterToolPage.xaml.cs">
       <DependentUpon>SqlFormatterToolPage.xaml</DependentUpon>
     </Compile>
@@ -569,6 +570,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Tools\Formatters\XmlFormatter\XmlFormatterToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Tools\Generators\CheckSumGenerator\CheckSumGeneratorToolPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
