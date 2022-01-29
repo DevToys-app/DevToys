@@ -118,48 +118,48 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Color Blindness Simulator tool</value>
+    <value>Nástroj pro Simulaci Barvosleposti</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Color Blindness Simulator</value>
+    <value>Simulátor Barvosleposti</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Simulate color blindness on a picture or screenshot</value>
+    <value>Simulování barvosleposti na obrázku nebo snímku obrazovky</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Color Blindness Simulator</value>
+    <value>Simulátor Barvosleposti</value>
   </data>
   <data name="InvalidSelectedFiles" xml:space="preserve">
-    <value>Only a .png, .jpg, .jpeg or .bmp file can be used.</value>
+    <value>Pouze soubory .png, .jpg, .jpeg nebo .bmp mohou být použity.</value>
   </data>
   <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>Drag &amp; drop a PNG, JPEG or BMP file here</value>
+    <value>Sem přetáhněte soubory PNG, JPEG nebo BMP</value>
   </data>
   <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>or</value>
+    <value>nebo</value>
   </data>
   <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>Browse files</value>
+    <value>Procházet soubory</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>Save as</value>
+    <value>Uložit jako</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Zrušit</value>
   </data>
   <data name="DeuteranopiaSimulation" xml:space="preserve">
-    <value>Deuteranopia simulation</value>
+    <value>Simulace Deuteranopie</value>
   </data>
   <data name="OriginalPicture" xml:space="preserve">
-    <value>Original</value>
+    <value>Originální</value>
   </data>
   <data name="ProtanopiaSimulation" xml:space="preserve">
-    <value>Protanopia simulation</value>
+    <value>Simulace Protanopie</value>
   </data>
   <data name="TritanopiaSimulation" xml:space="preserve">
-    <value>Tritanopia simulation</value>
+    <value>Simulace Tritanopie</value>
   </data>
   <data name="SelectFilesInstruction4" xml:space="preserve">
-    <value>Paste</value>
+    <value>Vložit</value>
   </data>
 </root>
