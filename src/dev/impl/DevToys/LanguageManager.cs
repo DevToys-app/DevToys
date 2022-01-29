@@ -1725,6 +1725,11 @@ namespace DevToys
         /// Gets the resource SearchDisplayName.
         /// </summary>
         public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+
+        /// <summary>
+        /// Gets the resource SelectFilesInstruction4.
+        /// </summary>
+        public string SelectFilesInstruction4 => _resources.GetString("SelectFilesInstruction4");
     }
 
     public class RegExStrings : ObservableObject

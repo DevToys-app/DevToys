@@ -57,6 +57,7 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
             SelectFilesAreaDragLeaveCommand = new RelayCommand<DragEventArgs>(ExecuteSelectFilesAreaDragLeaveCommand);
             SelectFilesAreaDragDropCommand = new AsyncRelayCommand<DragEventArgs>(ExecuteSelectFilesAreaDragDropCommandAsync);
             SelectFilesBrowseCommand = new AsyncRelayCommand(ExecuteSelectFilesBrowseCommandAsync);
+            SelectFolderBrowseCommand = new AsyncRelayCommand(ExecuteSelectFolderBrowseCommandAsync);
             DeleteAllCommand = new RelayCommand(ExecuteDeleteAllCommand);
             SaveAllCommand = new AsyncRelayCommand(ExecuteSaveAllCommandAsync);
         }
@@ -176,6 +177,36 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
                 for (int i = 0; i < files.Count; i++)
                 {
                     QueueNewConversion(files[i]);
+                }
+            });
+        }
+
+        #endregion
+
+        #region SelectFolderBrowseCommand
+        public IAsyncRelayCommand SelectFolderBrowseCommand { get; }
+
+        private async Task ExecuteSelectFolderBrowseCommandAsync()
+        {
+            await ThreadHelper.RunOnUIThreadAsync(async () =>
+            {
+                HasInvalidFilesSelected = false;
+
+                var folderPicker = new FolderPicker
+                {
+                    ViewMode = PickerViewMode.List,
+                    SuggestedStartLocation = PickerLocationId.ComputerFolder
+                };
+
+                for (int i = 0; i < SupportedFileExtensions.Length; i++)
+                {
+                    folderPicker.FileTypeFilter.Add(SupportedFileExtensions[i]);
+                }
+
+                StorageFolder files = await folderPicker.PickSingleFolderAsync();
+                foreach(StorageFile file in await files.GetFilesAsync())
+                {
+                    QueueNewConversion(file);
                 }
             });
         }

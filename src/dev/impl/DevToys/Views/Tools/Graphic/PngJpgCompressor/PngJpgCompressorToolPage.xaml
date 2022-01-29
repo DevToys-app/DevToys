@@ -86,12 +86,24 @@
                 <TextBlock
                     Text="{x:Bind ViewModel.Strings.SelectFilesInstruction2}"
                     HorizontalAlignment="Center"/>
-                <Button
-                    Style="{StaticResource AccentButtonStyle}"
-                    Content="{x:Bind ViewModel.Strings.SelectFilesInstruction3}"
-                    HorizontalAlignment="Center"
-                    MinWidth="100"
-                    Command="{x:Bind ViewModel.SelectFilesBrowseCommand}"/>
+                <StackPanel 
+                    Orientation="Horizontal" 
+                    Spacing="4" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center">
+                    <Button
+                        Style="{StaticResource AccentButtonStyle}"
+                        Content="{x:Bind ViewModel.Strings.SelectFilesInstruction3}"
+                        HorizontalAlignment="Center"
+                        MinWidth="100"
+                        Command="{x:Bind ViewModel.SelectFilesBrowseCommand}"/>
+                    <Button
+                        Style="{StaticResource AccentButtonStyle}"
+                        Content="{x:Bind ViewModel.Strings.SelectFilesInstruction4}"
+                        HorizontalAlignment="Center"
+                        MinWidth="100"
+                        Command="{x:Bind ViewModel.SelectFolderBrowseCommand}"/>
+                </StackPanel>
                 <TextBlock
                     Text="{x:Bind ViewModel.Strings.InvalidSelectedFiles}"
                     HorizontalAlignment="Center"

@@ -172,4 +172,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Compresor de PNG / JPEG</value>
   </data>
+  <data name="SelectFilesInstruction4" xml:space="preserve">
+    <value>Buscar carpeta</value>
+  </data>
 </root>
