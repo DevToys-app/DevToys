@@ -124,7 +124,7 @@
     <value>キャンセル</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>設定</value>
+    <value>構成</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>ファイルのチェックサム値を生成し比較します</value>
@@ -154,7 +154,7 @@
     <value>CheckSum</value>
   </data>
   <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>ここにファイルをドラッグアンドドロップ</value>
+    <value>ここにファイルをドラッグ アンド ドロップ</value>
   </data>
   <data name="SelectFilesInstruction2" xml:space="preserve">
     <value>または</value>
