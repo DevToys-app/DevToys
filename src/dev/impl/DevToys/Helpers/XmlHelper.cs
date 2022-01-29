@@ -57,15 +57,17 @@ namespace DevToys.Helpers
                 return string.Empty;
             }
 
+            input = input!.Trim();
+
             try
             {
                 var xmlDocument = new XmlDocument();
                 xmlDocument.LoadXml(input);
-
+                  
                 var xmlWriterSettings = new XmlWriterSettings()
                 {
                     Async = true,
-                    OmitXmlDeclaration = true,
+                    OmitXmlDeclaration = xmlDocument.FirstChild.NodeType != XmlNodeType.XmlDeclaration,
                     NewLineOnAttributes = newLineOnAttributes,
                 };
 
@@ -102,7 +104,7 @@ namespace DevToys.Helpers
             {
                 return ex.Message;
             }
-            catch (Exception ex) //some other exception
+            catch (Exception ex) // some other exception
             {
                 Logger.LogFault("Xml formatter", ex, $"Indentation: {indentationMode}");
                 return ex.Message;
