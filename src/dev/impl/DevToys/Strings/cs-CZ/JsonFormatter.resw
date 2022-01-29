@@ -148,9 +148,9 @@
     <value>Odsazení nebo zmenšení dat Json</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Json</value>
+    <value>JSON</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Formátování Json</value>
+    <value>Formátování JSON</value>
   </data>
 </root>

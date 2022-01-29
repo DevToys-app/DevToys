@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>JSON Formatter tool</value>
+    <value>SQL Formatter tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Configuration</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>JSON</value>
+    <value>SQL</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
     <value>4 spaces</value>
@@ -134,9 +134,6 @@
   </data>
   <data name="Input" xml:space="preserve">
     <value>Input</value>
-  </data>
-  <data name="Minified" xml:space="preserve">
-    <value>Minified</value>
   </data>
   <data name="OneTab" xml:space="preserve">
     <value>1 tab</value>
@@ -148,9 +145,42 @@
     <value>2 spaces</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Indent or minify JSON data</value>
+    <value>Indent SQL queries</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>JSON Formatter</value>
+    <value>SQL Formatter</value>
+  </data>
+  <data name="SqlLanguage" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="SqlLanguageDb2" xml:space="preserve">
+    <value>Db2</value>
+  </data>
+  <data name="SqlLanguageMariaDb" xml:space="preserve">
+    <value>MariaDB</value>
+  </data>
+  <data name="SqlLanguageMySql" xml:space="preserve">
+    <value>MySQL</value>
+  </data>
+  <data name="SqlLanguageN1ql" xml:space="preserve">
+    <value>N1QL</value>
+  </data>
+  <data name="SqlLanguagePlSql" xml:space="preserve">
+    <value>PL/SQL</value>
+  </data>
+  <data name="SqlLanguagePostgreSql" xml:space="preserve">
+    <value>PostgreSQL</value>
+  </data>
+  <data name="SqlLanguageRedShift" xml:space="preserve">
+    <value>Amazon Redshift</value>
+  </data>
+  <data name="SqlLanguageSpark" xml:space="preserve">
+    <value>Spark SQL</value>
+  </data>
+  <data name="SqlLanguageSql" xml:space="preserve">
+    <value>Standard SQL</value>
+  </data>
+  <data name="SqlLanguageTsql" xml:space="preserve">
+    <value>Transact-SQL</value>
   </data>
 </root>
