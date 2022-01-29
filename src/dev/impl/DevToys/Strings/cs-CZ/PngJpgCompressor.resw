@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Nástroj pro kompresy PNG a JPEG</value>
+    <value>Nástroj pro kompresi PNG a JPEG</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Zrušit</value>
@@ -158,7 +158,7 @@
     <value>Zobrazit podrobnosti</value>
   </data>
   <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>Sem přetáhněte soubory PNG nebo JPEG.</value>
+    <value>Sem přetáhněte soubory PNG nebo JPEG</value>
   </data>
   <data name="SelectFilesInstruction2" xml:space="preserve">
     <value>nebo</value>
@@ -167,7 +167,7 @@
     <value>Procházet soubory</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Bezztrátový optimalizér PNG a JPEG</value>
+    <value>Bezztrátové optimalizování PNG a JPEG</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Kompresor PNG / JPEG</value>

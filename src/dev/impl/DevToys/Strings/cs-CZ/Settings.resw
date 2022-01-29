@@ -220,7 +220,7 @@
     <value>Verze {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Obalení slov</value>
+    <value>Zalamování řádků</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Přizpůsobení vzhledu a funkčnosti DevToys</value>

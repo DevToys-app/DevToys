@@ -133,7 +133,7 @@
     <value>Tester regulárních výrazů</value>
   </data>
   <data name="EcmaScript" xml:space="preserve">
-    <value>Skript ECMA</value>
+    <value>ECMA Script</value>
   </data>
   <data name="EcmaScriptDescription" xml:space="preserve">
     <value>Povolí chování výrazu v souladu s ECMAScript. Tuto hodnotu lze použít pouze ve spojení s možnostmi Kulturní invariant, Ignorovat malá a velká písmena a Víceřádkový.</value>

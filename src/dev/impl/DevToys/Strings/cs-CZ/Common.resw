@@ -163,10 +163,10 @@
     <value>Zapnuto</value>
   </data>
   <data name="UnableOpenFile" xml:space="preserve">
-    <value>Unable to open this file</value>
+    <value>Tento soubor nelze otevřít</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>Unable to load the file '{0}'. For more details, please check the log.</value>
+    <value>Nelze načíst soubor '{0}'. Více podrobností naleznete v logu.</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>Vrátit zpět</value>

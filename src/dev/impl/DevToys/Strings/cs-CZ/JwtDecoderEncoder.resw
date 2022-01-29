@@ -148,13 +148,13 @@
     <value>Token Jwt</value>
   </data>
   <data name="PayloadLabel" xml:space="preserve">
-    <value>Užitečné zatížení</value>
+    <value>Obsah</value>
   </data>
   <data name="SecurityLabel" xml:space="preserve">
     <value>Zabezpečení</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Dekódování hlavičky, užitečného zatížení a podpisu JWT</value>
+    <value>Dekódování hlavičky, obsahu a podpisu JWT</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Dekodér JWT</value>
