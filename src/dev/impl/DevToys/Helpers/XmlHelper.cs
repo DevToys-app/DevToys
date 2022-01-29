@@ -23,16 +23,25 @@ namespace DevToys.Helpers
 
             input = input!.Trim();
 
-            if (input.Length < 4)
+            if (!input.StartsWith("<") || !input.EndsWith(">"))
             {
                 return false;
             }
 
-            if (input.StartsWith("<") && input.EndsWith(">"))
+            try
             {
+                var xmlDocument = new XmlDocument();
+
+                // If loading failed, it's not valid Xml.
+                xmlDocument.LoadXml(input);
+
                 return true;
             }
-            else
+            catch (XmlException)
+            {
+                return false;
+            }
+            catch (Exception)
             {
                 return false;
             }
@@ -43,7 +52,7 @@ namespace DevToys.Helpers
         /// </summary>
         internal static string Format(string? input, Indentation indentationMode, bool newLineOnAttributes)
         {
-            if (!IsValid(input))
+            if (string.IsNullOrWhiteSpace(input))
             {
                 return string.Empty;
             }
@@ -51,7 +60,7 @@ namespace DevToys.Helpers
             try
             {
                 var xmlDocument = new XmlDocument();
-                xmlDocument.Load(new StringReader(input));
+                xmlDocument.LoadXml(input);
 
                 var xmlWriterSettings = new XmlWriterSettings()
                 {
