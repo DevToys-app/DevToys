@@ -66,33 +66,73 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
             get => _inputValue;
             set
             {
-                SetProperty(ref _inputValue, value);
+                _inputValue = value;
                 QueueFormatting();
+            }
+        }
+
+        internal string? BinaryValue
+        {
+            get => _binaryValue;
+            set
+            {
+                if (value == _binaryValue)
+                {
+                    return;
+                }
+
+                SetProperty(ref _binaryValue, value);
+                InputBaseNumber = NumberBaseFormat.Binary;
+                InputValue = NumberBaseFormatter.RemoveFormatting(BinaryValue).ToString();
             }
         }
 
         internal string? OctalValue
         {
             get => _octalValue;
-            private set => SetProperty(ref _octalValue, value);
-        }
+            set
+            {
+                if (value == _octalValue)
+                {
+                    return;
+                }
 
-        internal string? BinaryValue
-        {
-            get => _binaryValue;
-            private set => SetProperty(ref _binaryValue, value);
+                SetProperty(ref _octalValue, value);
+                InputBaseNumber = NumberBaseFormat.Octal;
+                InputValue = NumberBaseFormatter.RemoveFormatting(OctalValue).ToString();
+            }
         }
 
         internal string? DecimalValue
         {
             get => _decimalValue;
-            private set => SetProperty(ref _decimalValue, value);
+            set
+            {
+                if (value == _decimalValue)
+                {
+                    return;
+                }
+
+                SetProperty(ref _decimalValue, value);
+                InputBaseNumber = NumberBaseFormat.Decimal;
+                InputValue = NumberBaseFormatter.RemoveFormatting(DecimalValue).ToString();
+            }
         }
 
         internal string? HexaDecimalValue
         {
             get => _hexadecimalValue;
-            private set => SetProperty(ref _hexadecimalValue, value);
+            set
+            {
+                if (value == _hexadecimalValue)
+                {
+                    return;
+                }
+
+                SetProperty(ref _hexadecimalValue, value);
+                InputBaseNumber = NumberBaseFormat.Hexadecimal;
+                InputValue = NumberBaseFormatter.RemoveFormatting(HexaDecimalValue).ToString();
+            }
         }
 
         internal bool IsInfoBarOpen
@@ -120,25 +160,7 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
                 if (InputBaseNumber != value)
                 {
                     _settingsProvider.SetSetting(BaseNumber, value.Value);
-
-                    if (InputBaseNumber == NumberBaseFormat.Octal)
-                    {
-                        InputValue = NumberBaseFormatter.RemoveFormatting(OctalValue).ToString();
-                    }
-                    else if (InputBaseNumber == NumberBaseFormat.Binary)
-                    {
-                        InputValue = NumberBaseFormatter.RemoveFormatting(BinaryValue).ToString();
-                    }
-                    else if (InputBaseNumber == NumberBaseFormat.Hexadecimal)
-                    {
-                        InputValue = NumberBaseFormatter.RemoveFormatting(HexaDecimalValue).ToString();
-                    }
-                    else
-                    {
-                        InputValue = NumberBaseFormatter.RemoveFormatting(DecimalValue).ToString();
-                    }
                     OnPropertyChanged();
-                    QueueFormatting();
                 }
             }
         }
@@ -227,10 +249,11 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
 
                 ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, () =>
                 {
-                    OctalValue = octalValue;
-                    BinaryValue = binaryValue;
-                    DecimalValue = decimalValue;
-                    HexaDecimalValue = hexaDecimalValue;
+                    FillPropertyValues(ref _binaryValue, binaryValue, nameof(BinaryValue), NumberBaseFormat.Binary);
+                    FillPropertyValues(ref _octalValue, octalValue, nameof(OctalValue), NumberBaseFormat.Octal);
+                    FillPropertyValues(ref _decimalValue, decimalValue, nameof(DecimalValue), NumberBaseFormat.Decimal);
+                    FillPropertyValues(ref _hexadecimalValue, hexaDecimalValue, nameof(HexaDecimalValue), NumberBaseFormat.Hexadecimal);
+
                     InfoBarMessage = infoBarMessage;
                     IsInfoBarOpen = isInfoBarOpen;
 
@@ -243,6 +266,14 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
             }
 
             _conversionInProgress = false;
+        }
+
+        private void FillPropertyValues(ref string? property, string? value, string viewModelName, NumberBaseFormat format)
+        {
+            if (format != InputBaseNumber)
+            {
+                SetProperty(ref property, value, viewModelName);
+            }
         }
     }
 }
