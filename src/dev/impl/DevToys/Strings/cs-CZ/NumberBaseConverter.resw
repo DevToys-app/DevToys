@@ -118,37 +118,37 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Nástroj pro převod číselného základu</value>
+    <value>Nástroj pro převod mezi číselnými soustavami</value>
   </data>
   <data name="BinaryLabel" xml:space="preserve">
-    <value>Binární</value>
+    <value>Dvojková</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
     <value>Konfigurace</value>
   </data>
   <data name="DecimalLabel" xml:space="preserve">
-    <value>Desetinné číslo</value>
+    <value>Desítková</value>
   </data>
   <data name="Format" xml:space="preserve">
-    <value>Formát čísla</value>
+    <value>Formátovat čísla</value>
   </data>
   <data name="HexadecimalLabel" xml:space="preserve">
-    <value>Hexadecimální</value>
+    <value>Šestnáctková</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>Vstup</value>
   </data>
   <data name="InputTypeBinary" xml:space="preserve">
-    <value>Binární</value>
+    <value>Dvojková</value>
   </data>
   <data name="InputTypeDecimal" xml:space="preserve">
-    <value>Desetinné číslo</value>
+    <value>Desítková</value>
   </data>
   <data name="InputTypeDescription" xml:space="preserve">
     <value>Zvolte typ vstupu, který chcete použít</value>
   </data>
   <data name="InputTypeHexadecimal" xml:space="preserve">
-    <value>Hexadecimální</value>
+    <value>Šestnáctková</value>
   </data>
   <data name="InputTypeOctal" xml:space="preserve">
     <value>Osmičková</value>
@@ -168,12 +168,12 @@
     <comment>The parameter is the Max value of a long</comment>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Převod čísel z jednoho základu na druhý</value>
+    <value>Převod čísel z jedné soustavy do druhé</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Číselný základ</value>
+    <value>Číselné soustavy</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Převodník číselného základu</value>
+    <value>Převodník číselných soustav</value>
   </data>
 </root>

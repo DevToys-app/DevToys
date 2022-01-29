@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Nástroj pro vygenerovaní Hash</value>
+    <value>Nástroj pro generovaní Hashů</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Konfigurace</value>
@@ -142,7 +142,7 @@
     <value>Velká písmena</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Výpočet hashe MD5, SHA1, SHA256 a SHA512 z textových dat</value>
+    <value>Výpočet hashe MD5, SHA1, SHA256 a SHA512 z textu</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Hash</value>

@@ -118,51 +118,51 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>CheckSum Generator tool</value>
+    <value>Nástroj pro generování Kontrolního součtu</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Zrušit</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Konfigurace</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generate an hash with CheckSum based on a file</value>
+    <value>Generování Hashe s Kontrolním součtem souboru</value>
   </data>
   <data name="HashingAlgorithmDescription" xml:space="preserve">
-    <value>Select which hashing algorithm you want to use</value>
+    <value>Zvolte hashovací algoritmus který chcete použít</value>
   </data>
   <data name="HashingAlgorithmTitle" xml:space="preserve">
-    <value>Hashing Algorithm</value>
+    <value>Hashovací Algoritmus</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>Vstup</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>CheckSum</value>
+    <value>Kontrolní součet</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>Výstup</value>
   </data>
   <data name="OutputComparer" xml:space="preserve">
-    <value>Output Comparer</value>
+    <value>Porovnání s výstupem</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>CheckSum</value>
+    <value>Kontrolní součet</value>
   </data>
   <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>Drag &amp; drop a file here</value>
+    <value>Sem přetáhněte soubory</value>
   </data>
   <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>or</value>
+    <value>nebo</value>
   </data>
   <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>Browse files</value>
+    <value>Procházet soubory</value>
   </data>
   <data name="SelectFilesInstruction4" xml:space="preserve">
-    <value>Paste</value>
+    <value>Vložit</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
-    <value>Uppercase</value>
+    <value>Velká písmena</value>
   </data>
 </root>
