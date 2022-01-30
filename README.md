@@ -100,7 +100,7 @@ Here is the list of tool name you can use:
 - `hash` - Hash Generator
 - `uuid` - UUID Generator
 - `loremipsum` - Lorem Ipsum Generator
-- `checksum` - CheckSum File
+- `checksum` - Checksum File
 - `jsonformat` Json Formatter
 - `sqlformat` - SQL Formatter
 - `jsonyaml` - Json <> Yaml

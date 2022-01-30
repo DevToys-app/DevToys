@@ -9,7 +9,7 @@ using Windows.UI.Xaml.Controls;
 namespace DevToys.ViewModels.Tools.CheckSumGenerator
 {
     [Export(typeof(IToolProvider))]
-    [Name("CheckSum Generator")]
+    [Name("Checksum Generator")]
     [Parent(GeneratorsGroupToolProvider.InternalName)]
     [ProtocolName("checksum")]
     [Order(3)]

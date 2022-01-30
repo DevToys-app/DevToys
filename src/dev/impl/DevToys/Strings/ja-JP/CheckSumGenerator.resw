@@ -139,7 +139,7 @@
     <value>入力</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>CheckSum</value>
+    <value>Checksum</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>出力</value>
@@ -147,23 +147,8 @@
   <data name="OutputComparer" xml:space="preserve">
     <value>比較</value>
   </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>名前を付けて保存</value>
-  </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>CheckSum</value>
-  </data>
-  <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>ここにファイルをドラッグ アンド ドロップ</value>
-  </data>
-  <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>または</value>
-  </data>
-  <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>ファイルを選択</value>
-  </data>
-  <data name="SelectFilesInstruction4" xml:space="preserve">
-    <value>クリップボードのファイルを開く</value>
+    <value>Checksum Generator</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
     <value>大文字を使用する</value>
