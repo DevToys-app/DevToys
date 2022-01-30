@@ -129,18 +129,6 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Színvakság Szimulátor</value>
   </data>
-  <data name="InvalidSelectedFiles" xml:space="preserve">
-    <value>Csak .png, .jpg, .jpeg vagy .bmp fájlok használhatóak.</value>
-  </data>
-  <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>Húzz be egy PNG, JPEG vagy BMP fájlt ide</value>
-  </data>
-  <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>vagy</value>
-  </data>
-  <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>Fájlok tallózása</value>
-  </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Mentés másként</value>
   </data>
@@ -158,8 +146,5 @@
   </data>
   <data name="TritanopiaSimulation" xml:space="preserve">
     <value>Tritanopia szimuláció</value>
-  </data>
-  <data name="SelectFilesInstruction4" xml:space="preserve">
-    <value>Beillesztés</value>
   </data>
 </root>

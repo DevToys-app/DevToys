@@ -142,9 +142,6 @@
     <value>{0:0.##} {1}</value>
     <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
   </data>
-  <data name="InvalidSelectedFiles" xml:space="preserve">
-    <value>È possibile utilizzare solo file .png, .jpg e .jpeg.</value>
-  </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
   </data>
@@ -156,15 +153,6 @@
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
     <value>Guarda dettagli</value>
-  </data>
-  <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>Trascina qui un file PNG o JPEG</value>
-  </data>
-  <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>o</value>
-  </data>
-  <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>Sfoglia i file</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Ottimizzatore PNG e JPEG senza perdita di dati</value>

@@ -142,9 +142,6 @@
     <value>{0:0.##} {1}</value>
     <comment>{0} é um número decimal que representa o tamanho do ficheiro. {1} é uma unidade, como Bytes, KB, MB, GB, TB</comment>
   </data>
-  <data name="InvalidSelectedFiles" xml:space="preserve">
-    <value>Apenas ficheiros .png, .jpg e .jpeg podem ser usados.</value>
-  </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
   </data>
@@ -156,15 +153,6 @@
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
     <value>Ver detalhes</value>
-  </data>
-  <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>Arraste e largue os ficheiros das imagens aqui</value>
-  </data>
-  <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>ou</value>
-  </data>
-  <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>Procurar ficheiros</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Conversor de imagem sem perdas</value>

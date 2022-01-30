@@ -150,18 +150,6 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>CheckSum</value>
   </data>
-  <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>Arraste e largue um ficheiro aqui</value>
-  </data>
-  <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>ou</value>
-  </data>
-  <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>Procurar ficheiros</value>
-  </data>
-  <data name="SelectFilesInstruction4" xml:space="preserve">
-    <value>Colar</value>
-  </data>
   <data name="Uppercase" xml:space="preserve">
     <value>Maiúsculas</value>
   </data>

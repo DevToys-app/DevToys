@@ -129,18 +129,6 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>色盲模擬器</value>
   </data>
-  <data name="InvalidSelectedFiles" xml:space="preserve">
-    <value>僅支援 .png、.jpg、.jpeg 或 .bmp 檔案。</value>
-  </data>
-  <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>將 PNG、JPEG，或是 BMP 檔案拖至這裡</value>
-  </data>
-  <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>或</value>
-  </data>
-  <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>瀏覽檔案</value>
-  </data>
   <data name="SaveAs" xml:space="preserve">
     <value>另存為</value>
   </data>
@@ -158,8 +146,5 @@
   </data>
   <data name="TritanopiaSimulation" xml:space="preserve">
     <value>藍色盲模擬</value>
-  </data>
-  <data name="SelectFilesInstruction4" xml:space="preserve">
-    <value>貼上</value>
   </data>
 </root>

@@ -129,18 +129,6 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Simulador de Daltonismo</value>
   </data>
-  <data name="InvalidSelectedFiles" xml:space="preserve">
-    <value>Solo archivos .png, .jpg, .jpeg o .bmp pueden ser usados.</value>
-  </data>
-  <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>Arrastrá y solta un archivo PNG, JPEG o BMP acá</value>
-  </data>
-  <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>o</value>
-  </data>
-  <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>Buscar archivos</value>
-  </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Guardar como</value>
   </data>
@@ -158,8 +146,5 @@
   </data>
   <data name="TritanopiaSimulation" xml:space="preserve">
     <value>Simulación de tritanopía</value>
-  </data>
-  <data name="SelectFilesInstruction4" xml:space="preserve">
-    <value>Pegar</value>
   </data>
 </root>

@@ -129,18 +129,6 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Color Blindness Simulator</value>
   </data>
-  <data name="InvalidSelectedFiles" xml:space="preserve">
-    <value>Only a .png, .jpg, .jpeg or .bmp file can be used.</value>
-  </data>
-  <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>Drag &amp; drop a PNG, JPEG or BMP file here</value>
-  </data>
-  <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>or</value>
-  </data>
-  <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>Browse files</value>
-  </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Save as</value>
   </data>
@@ -158,8 +146,5 @@
   </data>
   <data name="TritanopiaSimulation" xml:space="preserve">
     <value>Tritanopia simulation</value>
-  </data>
-  <data name="SelectFilesInstruction4" xml:space="preserve">
-    <value>Paste</value>
   </data>
 </root>
