@@ -394,11 +394,6 @@ namespace DevToys
         public string OutputComparer => _resources.GetString("OutputComparer");
 
         /// <summary>
-        /// Gets the resource SaveAs.
-        /// </summary>
-        public string SaveAs => _resources.GetString("SaveAs");
-
-        /// <summary>
         /// Gets the resource SearchDisplayName.
         /// </summary>
         public string SearchDisplayName => _resources.GetString("SearchDisplayName");
