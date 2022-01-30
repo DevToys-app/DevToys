@@ -33,6 +33,7 @@
     <Compile Include="Helpers\ColorBlindnessSimulatorHelper.cs" />
     <Compile Include="Helpers\HashingHelper.cs" />
     <Compile Include="Helpers\NumberBaseHelper.cs" />
+    <Compile Include="Helpers\XmlHelper.cs" />
     <Compile Include="Helpers\SqlFormatter\Core\Formatter.cs" />
     <Compile Include="Helpers\SqlFormatter\Core\Indentation.cs" />
     <Compile Include="Helpers\SqlFormatter\Core\InlineBlock.cs" />
@@ -80,6 +81,8 @@
     <Compile Include="ViewModels\Tools\Converters\JsonYaml\DecimalJsonConverter.cs" />
     <Compile Include="ViewModels\Tools\Converters\JsonYaml\DecimalYamlTypeResolver.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\EncodersDecodersGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Formatters\XmlFormatter\XmlFormatterToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Formatters\XmlFormatter\XmlFormatterToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Formatters\SqlFormatter\SqlFormatterToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Formatters\SqlFormatter\SqlFormatterToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Generators\CheckSumGenerator\CheckSumGeneratorToolProvider.cs" />
@@ -109,6 +112,9 @@
     </Compile>
     <Compile Include="Views\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolPage.xaml.cs">
       <DependentUpon>GZipEncoderDecoderToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Formatters\XmlFormatter\XmlFormatterToolPage.xaml.cs">
+      <DependentUpon>XmlFormatterToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\Formatters\SqlFormatter\SqlFormatterToolPage.xaml.cs">
       <DependentUpon>SqlFormatterToolPage.xaml</DependentUpon>
@@ -562,6 +568,10 @@
     <Page Include="Views\Tools\EncodersDecoders\Base64EncoderDecoder\Base64EncoderDecoderToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\Formatters\XmlFormatter\XmlFormatterToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Tools\Generators\CheckSumGenerator\CheckSumGeneratorToolPage.xaml">
       <SubType>Designer</SubType>
