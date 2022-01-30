@@ -50,6 +50,7 @@ namespace DevToys
         private readonly TextDiffStrings _textdiff = new TextDiffStrings();
         private readonly ToolGroupsStrings _toolgroups = new ToolGroupsStrings();
         private readonly UrlEncoderDecoderStrings _urlencoderdecoder = new UrlEncoderDecoderStrings();
+        private readonly XmlFormatterStrings _xmlformatter = new XmlFormatterStrings();
 
         /// <summary>
         /// Gets an instance of <see cref="LanguageManager"/>.
@@ -190,6 +191,11 @@ namespace DevToys
         /// Gets the <see cref="UrlEncoderDecoderStrings"/>.
         /// </summary>
         public UrlEncoderDecoderStrings UrlEncoderDecoder => _urlencoderdecoder;
+
+        /// <summary>
+        /// Gets the <see cref="XmlFormatterStrings"/>.
+        /// </summary>
+        public XmlFormatterStrings XmlFormatter => _xmlformatter;
 
         /// <summary>
         /// Gets the list of available languages in the app.
@@ -2537,5 +2543,75 @@ namespace DevToys
         /// Gets the resource SearchDisplayName.
         /// </summary>
         public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+    }
+
+    public class XmlFormatterStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("XmlFormatter");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
+        /// Gets the resource Configuration.
+        /// </summary>
+        public string Configuration => _resources.GetString("Configuration");
+
+        /// <summary>
+        /// Gets the resource MenuDisplayName.
+        /// </summary>
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
+
+        /// <summary>
+        /// Gets the resource FourSpaces.
+        /// </summary>
+        public string FourSpaces => _resources.GetString("FourSpaces");
+
+        /// <summary>
+        /// Gets the resource Indentation.
+        /// </summary>
+        public string Indentation => _resources.GetString("Indentation");
+
+        /// <summary>
+        /// Gets the resource Input.
+        /// </summary>
+        public string Input => _resources.GetString("Input");
+
+        /// <summary>
+        /// Gets the resource Minified.
+        /// </summary>
+        public string Minified => _resources.GetString("Minified");
+
+        /// <summary>
+        /// Gets the resource OneTab.
+        /// </summary>
+        public string OneTab => _resources.GetString("OneTab");
+
+        /// <summary>
+        /// Gets the resource Output.
+        /// </summary>
+        public string Output => _resources.GetString("Output");
+
+        /// <summary>
+        /// Gets the resource TwoSpaces.
+        /// </summary>
+        public string TwoSpaces => _resources.GetString("TwoSpaces");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+
+        /// <summary>
+        /// Gets the resource NewLineOnAttributesName.
+        /// </summary>
+        public string NewLineOnAttributesName => _resources.GetString("NewLineOnAttributesName");
     }
 }
