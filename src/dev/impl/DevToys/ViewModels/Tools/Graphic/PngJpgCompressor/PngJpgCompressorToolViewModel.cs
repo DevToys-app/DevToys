@@ -109,6 +109,8 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
                 {
                     ViewMode = PickerViewMode.List
                 };
+
+                folderPicker.FileTypeFilter.Add("*");
                 StorageFolder? selectedFolder = await folderPicker.PickSingleFolderAsync();
                 if (selectedFolder is not null)
                 {

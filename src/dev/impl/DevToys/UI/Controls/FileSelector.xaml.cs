@@ -245,10 +245,7 @@ namespace DevToys.UI.Controls
                 ViewMode = PickerViewMode.List
             };
 
-            for (int i = 0; i < _allowedFileExtensions.Length; i++)
-            {
-                folderPicker.FileTypeFilter.Add(_allowedFileExtensions[i]);
-            }
+            folderPicker.FileTypeFilter.Add("*");
 
             StorageFolder folder = await folderPicker.PickSingleFolderAsync();
 

@@ -99,6 +99,7 @@ namespace DevToys.ViewModels.Tools.ImageConverter
                     ViewMode = PickerViewMode.List
                 };
 
+                folderPicker.FileTypeFilter.Add("*");
                 StorageFolder? selectedFolder = await folderPicker.PickSingleFolderAsync();
 
                 if (selectedFolder is not null)
