@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>CheckSum Generator tool</value>
+    <value>Checksum Generator tool</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
@@ -127,7 +127,7 @@
     <value>Configuration</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generate an hash with CheckSum based on a file</value>
+    <value>Generate an hash with Checksum based on a file</value>
   </data>
   <data name="HashingAlgorithmDescription" xml:space="preserve">
     <value>Select which hashing algorithm you want to use</value>
@@ -139,7 +139,7 @@
     <value>Input</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>CheckSum</value>
+    <value>Checksum</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Output</value>
@@ -148,19 +148,7 @@
     <value>Output Comparer</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>CheckSum</value>
-  </data>
-  <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>Drag &amp; drop a file here</value>
-  </data>
-  <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>or</value>
-  </data>
-  <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>Browse files</value>
-  </data>
-  <data name="SelectFilesInstruction4" xml:space="preserve">
-    <value>Paste</value>
+    <value>Checksum Generator</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
     <value>Uppercase</value>

@@ -129,18 +129,6 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Simulasi Buta Warna</value>
   </data>
-  <data name="InvalidSelectedFiles" xml:space="preserve">
-    <value>Hanya file .png, .jpg, .jpeg atau .bmp yang bisa digunakan</value>
-  </data>
-  <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>Pindahkan file PNG, JPEG atau BMP kesini</value>
-  </data>
-  <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>atau</value>
-  </data>
-  <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>Cari File</value>
-  </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Simpan sebagai</value>
   </data>
@@ -158,8 +146,5 @@
   </data>
   <data name="TritanopiaSimulation" xml:space="preserve">
     <value>Simulasi Tritanopia</value>
-  </data>
-  <data name="SelectFilesInstruction4" xml:space="preserve">
-    <value>Paste</value>
   </data>
 </root>

@@ -394,34 +394,9 @@ namespace DevToys
         public string OutputComparer => _resources.GetString("OutputComparer");
 
         /// <summary>
-        /// Gets the resource SaveAs.
-        /// </summary>
-        public string SaveAs => _resources.GetString("SaveAs");
-
-        /// <summary>
         /// Gets the resource SearchDisplayName.
         /// </summary>
         public string SearchDisplayName => _resources.GetString("SearchDisplayName");
-
-        /// <summary>
-        /// Gets the resource SelectFilesInstruction1.
-        /// </summary>
-        public string SelectFilesInstruction1 => _resources.GetString("SelectFilesInstruction1");
-
-        /// <summary>
-        /// Gets the resource SelectFilesInstruction2.
-        /// </summary>
-        public string SelectFilesInstruction2 => _resources.GetString("SelectFilesInstruction2");
-
-        /// <summary>
-        /// Gets the resource SelectFilesInstruction3.
-        /// </summary>
-        public string SelectFilesInstruction3 => _resources.GetString("SelectFilesInstruction3");
-
-        /// <summary>
-        /// Gets the resource SelectFilesInstruction4.
-        /// </summary>
-        public string SelectFilesInstruction4 => _resources.GetString("SelectFilesInstruction4");
 
         /// <summary>
         /// Gets the resource Uppercase.
@@ -454,26 +429,6 @@ namespace DevToys
         public string SearchDisplayName => _resources.GetString("SearchDisplayName");
 
         /// <summary>
-        /// Gets the resource InvalidSelectedFiles.
-        /// </summary>
-        public string InvalidSelectedFiles => _resources.GetString("InvalidSelectedFiles");
-
-        /// <summary>
-        /// Gets the resource SelectFilesInstruction1.
-        /// </summary>
-        public string SelectFilesInstruction1 => _resources.GetString("SelectFilesInstruction1");
-
-        /// <summary>
-        /// Gets the resource SelectFilesInstruction2.
-        /// </summary>
-        public string SelectFilesInstruction2 => _resources.GetString("SelectFilesInstruction2");
-
-        /// <summary>
-        /// Gets the resource SelectFilesInstruction3.
-        /// </summary>
-        public string SelectFilesInstruction3 => _resources.GetString("SelectFilesInstruction3");
-
-        /// <summary>
         /// Gets the resource SaveAs.
         /// </summary>
         public string SaveAs => _resources.GetString("SaveAs");
@@ -502,11 +457,6 @@ namespace DevToys
         /// Gets the resource TritanopiaSimulation.
         /// </summary>
         public string TritanopiaSimulation => _resources.GetString("TritanopiaSimulation");
-
-        /// <summary>
-        /// Gets the resource SelectFilesInstruction4.
-        /// </summary>
-        public string SelectFilesInstruction4 => _resources.GetString("SelectFilesInstruction4");
     }
 
     public class CommonStrings : ObservableObject
@@ -537,6 +487,70 @@ namespace DevToys
         /// Gets the resource Delete.
         /// </summary>
         public string Delete => _resources.GetString("Delete");
+
+        /// <summary>
+        /// Gets the resource FileSelectorBrowseFiles.
+        /// </summary>
+        public string FileSelectorBrowseFiles => _resources.GetString("FileSelectorBrowseFiles");
+
+        /// <summary>
+        /// Gets the resource FileSelectorBrowseFolders.
+        /// </summary>
+        public string FileSelectorBrowseFolders => _resources.GetString("FileSelectorBrowseFolders");
+
+        /// <summary>
+        /// Gets the resource FileSelectorDragDropAnyFile.
+        /// </summary>
+        public string FileSelectorDragDropAnyFile => _resources.GetString("FileSelectorDragDropAnyFile");
+
+        /// <summary>
+        /// Gets the resource FileSelectorDragDropAnyFiles.
+        /// </summary>
+        public string FileSelectorDragDropAnyFiles => _resources.GetString("FileSelectorDragDropAnyFiles");
+
+        /// <summary>
+        /// Gets the resource FileSelectorDragDropAnySpecificFile.
+        /// </summary>
+        public string FileSelectorDragDropAnySpecificFile => _resources.GetString("FileSelectorDragDropAnySpecificFile");
+
+        /// <summary>
+        /// Gets the resource FileSelectorDragDropAnySpecificFile with format.
+        /// </summary>
+        public string GetFormattedFileSelectorDragDropAnySpecificFile(string? param0)
+        {
+            return string.Format(FileSelectorDragDropAnySpecificFile, param0);
+        }
+
+        /// <summary>
+        /// Gets the resource FileSelectorDragDropAnySpecificFiles.
+        /// </summary>
+        public string FileSelectorDragDropAnySpecificFiles => _resources.GetString("FileSelectorDragDropAnySpecificFiles");
+
+        /// <summary>
+        /// Gets the resource FileSelectorDragDropAnySpecificFiles with format.
+        /// </summary>
+        public string GetFormattedFileSelectorDragDropAnySpecificFiles(string? param0)
+        {
+            return string.Format(FileSelectorDragDropAnySpecificFiles, param0);
+        }
+
+        /// <summary>
+        /// Gets the resource FileSelectorInvalidSelectedFiles.
+        /// </summary>
+        public string FileSelectorInvalidSelectedFiles => _resources.GetString("FileSelectorInvalidSelectedFiles");
+
+        /// <summary>
+        /// Gets the resource FileSelectorInvalidSelectedFiles with format.
+        /// </summary>
+        public string GetFormattedFileSelectorInvalidSelectedFiles(string? param0)
+        {
+            return string.Format(FileSelectorInvalidSelectedFiles, param0);
+        }
+
+        /// <summary>
+        /// Gets the resource FileSelectorOr.
+        /// </summary>
+        public string FileSelectorOr => _resources.GetString("FileSelectorOr");
 
         /// <summary>
         /// Gets the resource Gigabytes.
@@ -972,11 +986,6 @@ namespace DevToys
         public string FileSizeDisplay => _resources.GetString("FileSizeDisplay");
 
         /// <summary>
-        /// Gets the resource InvalidSelectedFiles.
-        /// </summary>
-        public string InvalidSelectedFiles => _resources.GetString("InvalidSelectedFiles");
-
-        /// <summary>
         /// Gets the resource OK.
         /// </summary>
         public string OK => _resources.GetString("OK");
@@ -995,21 +1004,6 @@ namespace DevToys
         /// Gets the resource SeeErrorMessage.
         /// </summary>
         public string SeeErrorMessage => _resources.GetString("SeeErrorMessage");
-
-        /// <summary>
-        /// Gets the resource SelectFilesInstruction1.
-        /// </summary>
-        public string SelectFilesInstruction1 => _resources.GetString("SelectFilesInstruction1");
-
-        /// <summary>
-        /// Gets the resource SelectFilesInstruction2.
-        /// </summary>
-        public string SelectFilesInstruction2 => _resources.GetString("SelectFilesInstruction2");
-
-        /// <summary>
-        /// Gets the resource SelectFilesInstruction3.
-        /// </summary>
-        public string SelectFilesInstruction3 => _resources.GetString("SelectFilesInstruction3");
 
         /// <summary>
         /// Gets the resource Description.
@@ -1689,11 +1683,6 @@ namespace DevToys
         public string FileSizeDisplay => _resources.GetString("FileSizeDisplay");
 
         /// <summary>
-        /// Gets the resource InvalidSelectedFiles.
-        /// </summary>
-        public string InvalidSelectedFiles => _resources.GetString("InvalidSelectedFiles");
-
-        /// <summary>
         /// Gets the resource OK.
         /// </summary>
         public string OK => _resources.GetString("OK");
@@ -1712,21 +1701,6 @@ namespace DevToys
         /// Gets the resource SeeErrorMessage.
         /// </summary>
         public string SeeErrorMessage => _resources.GetString("SeeErrorMessage");
-
-        /// <summary>
-        /// Gets the resource SelectFilesInstruction1.
-        /// </summary>
-        public string SelectFilesInstruction1 => _resources.GetString("SelectFilesInstruction1");
-
-        /// <summary>
-        /// Gets the resource SelectFilesInstruction2.
-        /// </summary>
-        public string SelectFilesInstruction2 => _resources.GetString("SelectFilesInstruction2");
-
-        /// <summary>
-        /// Gets the resource SelectFilesInstruction3.
-        /// </summary>
-        public string SelectFilesInstruction3 => _resources.GetString("SelectFilesInstruction3");
 
         /// <summary>
         /// Gets the resource Description.

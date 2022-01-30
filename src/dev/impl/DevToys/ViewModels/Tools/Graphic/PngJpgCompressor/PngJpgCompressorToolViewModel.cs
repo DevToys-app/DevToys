@@ -23,28 +23,11 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
     [Export(typeof(PngJpgCompressorToolViewModel))]
     public sealed class PngJpgCompressorToolViewModel : ObservableRecipient, IToolViewModel, IDisposable
     {
-        private static readonly string[] SupportedFileExtensions = new[] { ".png", ".jpg", ".jpeg" };
-
         private readonly IAppService _appService;
-
-        private bool _isSelectFilesAreaHighlighted;
-        private bool _hasInvalidFilesSelected;
 
         public Type View { get; } = typeof(PngJpgCompressorToolPage);
 
         internal PngJpgCompressorStrings Strings => LanguageManager.Instance.PngJpgCompressor;
-
-        internal bool IsSelectFilesAreaHighlighted
-        {
-            get => _isSelectFilesAreaHighlighted;
-            set => SetProperty(ref _isSelectFilesAreaHighlighted, value);
-        }
-
-        internal bool HasInvalidFilesSelected
-        {
-            get => _hasInvalidFilesSelected;
-            set => SetProperty(ref _hasInvalidFilesSelected, value);
-        }
 
         internal ObservableCollection<ImageCompressionWorkItem> CompressionWorkQueue { get; } = new();
 
@@ -53,10 +36,7 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
         {
             _appService = appService;
 
-            SelectFilesAreaDragOverCommand = new RelayCommand<DragEventArgs>(ExecuteSelectFilesAreaDragOverCommand);
-            SelectFilesAreaDragLeaveCommand = new RelayCommand<DragEventArgs>(ExecuteSelectFilesAreaDragLeaveCommand);
-            SelectFilesAreaDragDropCommand = new AsyncRelayCommand<DragEventArgs>(ExecuteSelectFilesAreaDragDropCommandAsync);
-            SelectFilesBrowseCommand = new AsyncRelayCommand(ExecuteSelectFilesBrowseCommandAsync);
+            FilesSelectedCommand = new RelayCommand<StorageFile[]>(ExecuteFilesSelectedCommand);
             DeleteAllCommand = new RelayCommand(ExecuteDeleteAllCommand);
             SaveAllCommand = new AsyncRelayCommand(ExecuteSaveAllCommandAsync);
         }
@@ -74,110 +54,19 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
             DeleteAllCommand.Execute(null);
         }
 
-        #region SelectFilesAreaDragOverCommand
+        #region FilesSelectedCommand
 
-        public IRelayCommand<DragEventArgs> SelectFilesAreaDragOverCommand { get; }
+        public IRelayCommand<StorageFile[]> FilesSelectedCommand { get; }
 
-        private void ExecuteSelectFilesAreaDragOverCommand(DragEventArgs? parameters)
+        private void ExecuteFilesSelectedCommand(StorageFile[]? files)
         {
-            Arguments.NotNull(parameters, nameof(parameters));
-            if (parameters!.DataView.Contains(StandardDataFormats.StorageItems))
+            if (files is not null)
             {
-                parameters.AcceptedOperation = DataPackageOperation.Copy;
-                parameters.Handled = false;
+                foreach (StorageFile file in files)
+                {
+                    QueueNewConversion(file);
+                }
             }
-
-            IsSelectFilesAreaHighlighted = true;
-            HasInvalidFilesSelected = false;
-        }
-
-        #endregion
-
-        #region SelectFilesAreaDragLeaveCommand
-
-        public IRelayCommand<DragEventArgs> SelectFilesAreaDragLeaveCommand { get; }
-
-        private void ExecuteSelectFilesAreaDragLeaveCommand(DragEventArgs? parameters)
-        {
-            IsSelectFilesAreaHighlighted = false;
-            HasInvalidFilesSelected = false;
-        }
-
-        #endregion
-
-        #region SelectFilesAreaDragDropCommand
-
-        public IAsyncRelayCommand<DragEventArgs> SelectFilesAreaDragDropCommand { get; }
-
-        private async Task ExecuteSelectFilesAreaDragDropCommandAsync(DragEventArgs? parameters)
-        {
-            Arguments.NotNull(parameters, nameof(parameters));
-
-            await ThreadHelper.RunOnUIThreadAsync(async () =>
-            {
-                IsSelectFilesAreaHighlighted = false;
-                if (!parameters!.DataView.Contains(StandardDataFormats.StorageItems))
-                {
-                    return;
-                }
-
-                IReadOnlyList<IStorageItem>? storageItems = await parameters.DataView.GetStorageItemsAsync();
-                if (storageItems is null || storageItems.Count == 0)
-                {
-                    return;
-                }
-
-                for (int i = 0; i < storageItems.Count; i++)
-                {
-                    IStorageItem storageItem = storageItems[i];
-                    if (storageItem is StorageFile file)
-                    {
-                        if (SupportedFileExtensions.Any(ext => string.Equals(ext, file.FileType, StringComparison.OrdinalIgnoreCase)))
-                        {
-                            QueueNewConversion(file);
-                        }
-                        else
-                        {
-                            HasInvalidFilesSelected = true;
-                        }
-                    }
-                    else
-                    {
-                        HasInvalidFilesSelected = true;
-                    }
-                }
-            }).ConfigureAwait(false);
-        }
-
-        #endregion
-
-        #region SelectFilesBrowseCommand
-
-        public IAsyncRelayCommand SelectFilesBrowseCommand { get; }
-
-        private async Task ExecuteSelectFilesBrowseCommandAsync()
-        {
-            await ThreadHelper.RunOnUIThreadAsync(async () =>
-            {
-                HasInvalidFilesSelected = false;
-
-                var filePicker = new FileOpenPicker
-                {
-                    ViewMode = PickerViewMode.List,
-                    SuggestedStartLocation = PickerLocationId.ComputerFolder
-                };
-
-                for (int i = 0; i < SupportedFileExtensions.Length; i++)
-                {
-                    filePicker.FileTypeFilter.Add(SupportedFileExtensions[i]);
-                }
-
-                IReadOnlyList<StorageFile> files = await filePicker.PickMultipleFilesAsync();
-                for (int i = 0; i < files.Count; i++)
-                {
-                    QueueNewConversion(files[i]);
-                }
-            });
         }
 
         #endregion
@@ -220,6 +109,8 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
                 {
                     ViewMode = PickerViewMode.List
                 };
+
+                folderPicker.FileTypeFilter.Add("*");
                 StorageFolder? selectedFolder = await folderPicker.PickSingleFolderAsync();
                 if (selectedFolder is not null)
                 {
