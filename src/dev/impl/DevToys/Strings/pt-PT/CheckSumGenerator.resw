@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Ferramenta geradora de CheckSum</value>
+    <value>Ferramenta geradora de Checksum</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancelar</value>
@@ -127,7 +127,7 @@
     <value>Configuração</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Gerar um hash com CheckSum baseado num ficheiro</value>
+    <value>Gerar um hash com Checksum baseado num ficheiro</value>
   </data>
   <data name="HashingAlgorithmDescription" xml:space="preserve">
     <value>Selecione o algoritmo de hash que deseja utilisar</value>
@@ -139,7 +139,7 @@
     <value>Entrada</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>CheckSum</value>
+    <value>Checksum</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Resultado</value>
@@ -148,7 +148,7 @@
     <value>Comparador de resultado</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>CheckSum</value>
+    <value>Checksum Generator</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
     <value>Maiúsculas</value>

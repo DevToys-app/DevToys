@@ -98,7 +98,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
                     OnPropertyChanged();
                     if (!_hasCancelledCalculation)
                     {
-                        CheckSum();
+                        Checksum();
                     }
                 }
             }
@@ -118,7 +118,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
                 if (InputFile != value)
                 {
                     SetProperty(ref _inputFile, value);
-                    CheckSum();
+                    Checksum();
                 }
             }
         }
@@ -223,7 +223,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
             }
         }
 
-        private void CheckSum()
+        private void Checksum()
         {
             lock (_lockObject)
             {
@@ -307,7 +307,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
             }
             catch (Exception ex)
             {
-                Logger.LogFault("CheckSum Generator", ex, $"Failed to calculate FileHash, algorithm used: {inputHashingAlgorithm}");
+                Logger.LogFault("Checksum Generator", ex, $"Failed to calculate FileHash, algorithm used: {inputHashingAlgorithm}");
                 return ex.Message;
             }
         }

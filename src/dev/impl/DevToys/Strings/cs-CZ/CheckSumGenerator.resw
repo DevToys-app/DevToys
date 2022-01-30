@@ -148,7 +148,7 @@
     <value>Porovnání s výstupem</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Kontrolní součet</value>
+    <value>Checksum Generator</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
     <value>Velká písmena</value>
