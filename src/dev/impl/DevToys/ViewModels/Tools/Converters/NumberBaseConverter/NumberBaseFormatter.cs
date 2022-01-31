@@ -141,6 +141,10 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
         private static string FormatNumber(ReadOnlySpan<char> buffer, NumberBaseFormat baseNumber, bool isFormatted, int index)
         {
             var builder = new StringBuilder();
+            if (buffer[index - 1] == '-')
+            {
+                builder.Append(buffer[--index]);
+            }
 
             for (int builderIndex = --index; builderIndex >= 0; builderIndex--)
             {
