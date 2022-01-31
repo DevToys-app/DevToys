@@ -49,6 +49,12 @@ namespace DevToys.Tests.Providers.Tools
         [DataTestMethod]
         [DataRow("30653520525&")]
         [DataRow("30 653 520 525 &")]
+        [DataRow("306535205258")]
+        [DataRow("30 653 520 525 8")]
+        [DataRow("306535295256")]
+        [DataRow("30 653 529 525 6")]
+        [DataRow("3065352a5256")]
+        [DataRow("3065352A5256")]
         public void OctalToDecimalShouldThrowInvalidOperationException(string input)
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
