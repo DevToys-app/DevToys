@@ -36,19 +36,26 @@
         <controls:CustomTextBox
             Header="{x:Bind ViewModel.Strings.HexadecimalLabel}"
             Text="{x:Bind ViewModel.HexaDecimalValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            />
+            LostFocus="{x:Bind ViewModel.InputFocusChanged}"
+            Tag="Hexadecimal"/>
 
         <controls:CustomTextBox
             Header="{x:Bind ViewModel.Strings.DecimalLabel}"
             AcceptsReturn="False"
-            Text="{x:Bind ViewModel.DecimalValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            Text="{x:Bind ViewModel.DecimalValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            LostFocus="{x:Bind ViewModel.InputFocusChanged}"
+            Tag="Decimal"/>
 
         <controls:CustomTextBox
             Header="{x:Bind ViewModel.Strings.OctalLabel}"
-            Text="{x:Bind ViewModel.OctalValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            Text="{x:Bind ViewModel.OctalValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            LostFocus="{x:Bind ViewModel.InputFocusChanged}"
+            Tag="Octal"/>
 
         <controls:CustomTextBox
             Header="{x:Bind ViewModel.Strings.BinaryLabel}"
-            Text="{x:Bind ViewModel.BinaryValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            Text="{x:Bind ViewModel.BinaryValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            LostFocus="{x:Bind ViewModel.InputFocusChanged}"
+            Tag="Binary"/>
     </StackPanel>
 </Page>

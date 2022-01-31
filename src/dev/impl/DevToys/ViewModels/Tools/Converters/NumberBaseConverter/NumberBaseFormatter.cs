@@ -122,6 +122,24 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
                 }
             }
 
+            return FormatNumber(buffer, baseNumber, isFormatted, index);
+        }
+
+        /// <summary>
+        /// Format <paramref name="number"/> based on <paramref name="baseNumber"/> format definition 
+        /// </summary>
+        /// <param name="number">String representation of the number</param>
+        /// <param name="baseNumber">Current base number <see cref="NumberBaseFormat"/></param>
+        /// <returns>Formatted number based on <paramref name="baseNumber"/> format definition</returns>
+        public static string FormatNumber(string number, NumberBaseFormat baseNumber)
+        {
+            char[] charArray = RemoveFormatting(number).ToCharArray();
+            Array.Reverse(charArray);
+            return FormatNumber(charArray, baseNumber, true, charArray.Length);
+        }
+
+        private static string FormatNumber(ReadOnlySpan<char> buffer, NumberBaseFormat baseNumber, bool isFormatted, int index)
+        {
             var builder = new StringBuilder();
 
             for (int builderIndex = --index; builderIndex >= 0; builderIndex--)

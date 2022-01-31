@@ -13,9 +13,11 @@ using DevToys.Core;
 using DevToys.Core.Threading;
 using DevToys.Models;
 using DevToys.Shared.Core.Threading;
+using DevToys.UI.Controls;
 using DevToys.ViewModels.Tools.Converters.NumberBaseConverter;
 using DevToys.Views.Tools.NumberBaseConverter;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Windows.UI.Xaml;
 
 namespace DevToys.ViewModels.Tools.NumberBaseConverter
 {
@@ -184,7 +186,7 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
                 {
                     _settingsProvider.SetSetting(Formatted, value);
                     OnPropertyChanged();
-                    QueueFormatting();
+                    QueueFormatting(true);
                 }
             }
         }
@@ -194,15 +196,42 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
         {
             _settingsProvider = settingsProvider;
             _marketingService = marketingService;
+            InputFocusChanged = ControlFocusChanged;
         }
 
-        private void QueueFormatting()
+        internal RoutedEventHandler InputFocusChanged { get; }
+        private void ControlFocusChanged(object source, RoutedEventArgs args)
+        {
+            if (!IsFormatted)
+            {
+                return;
+            }
+
+            var input = (CustomTextBox)source;
+            switch(input.Tag)
+            {
+                case "Binary" when InputBaseNumber == NumberBaseFormat.Binary:
+                    input.Text = NumberBaseFormatter.FormatNumber(input.Text, InputBaseNumber);
+                    break;
+                case "Octal" when InputBaseNumber == NumberBaseFormat.Octal:
+                    input.Text = NumberBaseFormatter.FormatNumber(input.Text, InputBaseNumber);
+                    break;
+                case "Decimal" when InputBaseNumber == NumberBaseFormat.Decimal:
+                    input.Text = NumberBaseFormatter.FormatNumber(input.Text, InputBaseNumber);
+                    break;
+                case "Hexadecimal" when InputBaseNumber == NumberBaseFormat.Hexadecimal:
+                    input.Text = NumberBaseFormatter.FormatNumber(input.Text, InputBaseNumber);
+                    break;
+            }
+        }
+
+        private void QueueFormatting(bool formatAll = false)
         {
             _convertQueue.Enqueue(InputValue ?? string.Empty);
-            TreatQueueAsync().Forget();
+            TreatQueueAsync(formatAll).Forget();
         }
 
-        private async Task TreatQueueAsync()
+        private async Task TreatQueueAsync(bool formatAll)
         {
             if (_conversionInProgress)
             {
@@ -249,10 +278,10 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
 
                 ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, () =>
                 {
-                    FillPropertyValues(ref _binaryValue, binaryValue, nameof(BinaryValue), NumberBaseFormat.Binary);
-                    FillPropertyValues(ref _octalValue, octalValue, nameof(OctalValue), NumberBaseFormat.Octal);
-                    FillPropertyValues(ref _decimalValue, decimalValue, nameof(DecimalValue), NumberBaseFormat.Decimal);
-                    FillPropertyValues(ref _hexadecimalValue, hexaDecimalValue, nameof(HexaDecimalValue), NumberBaseFormat.Hexadecimal);
+                    FillPropertyValues(ref _binaryValue, binaryValue, nameof(BinaryValue), formatAll || NumberBaseFormat.Binary != InputBaseNumber);
+                    FillPropertyValues(ref _octalValue, octalValue, nameof(OctalValue), formatAll || NumberBaseFormat.Octal != InputBaseNumber);
+                    FillPropertyValues(ref _decimalValue, decimalValue, nameof(DecimalValue), formatAll || NumberBaseFormat.Decimal != InputBaseNumber);
+                    FillPropertyValues(ref _hexadecimalValue, hexaDecimalValue, nameof(HexaDecimalValue), formatAll || NumberBaseFormat.Hexadecimal != InputBaseNumber);
 
                     InfoBarMessage = infoBarMessage;
                     IsInfoBarOpen = isInfoBarOpen;
@@ -268,9 +297,9 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
             _conversionInProgress = false;
         }
 
-        private void FillPropertyValues(ref string? property, string? value, string viewModelName, NumberBaseFormat format)
+        private void FillPropertyValues(ref string? property, string? value, string viewModelName, bool format)
         {
-            if (format != InputBaseNumber)
+            if (format)
             {
                 SetProperty(ref property, value, viewModelName);
             }
