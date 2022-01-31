@@ -69,6 +69,11 @@ jobs:
         **\$(buildConfiguration)\**\*.Tests.build.appxrecipe
         !**\obj\**
       searchFolder: '$(System.DefaultWorkingDirectory)'
+      otherConsoleOptions: '/Framework:FrameworkUap10'
+      platform: '$(BuildPlatform)'
+      configuration: '$(BuildConfiguration)'
+      diagnosticsEnabled: True
+      collectDumpOn: always
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: drop'
