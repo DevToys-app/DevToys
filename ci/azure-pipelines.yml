@@ -12,6 +12,7 @@ pool:
 variables:
   group: BuildPipelineVariables
   uwpProject: '**/*.wapproj'
+  testProject: '**/*.Tests.csproj'
   buildPlatform: 'x86|x64|arm64'
   buildConfiguration: 'Release'
   appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
@@ -50,6 +51,25 @@ jobs:
                          /p:AppxBundle=Always
                          /p:UapAppxPackageBuildMode=StoreUpload'
       maximumCpuCount: true
+
+  # Builds unit tests
+  - task: MSBuild@1
+    displayName: 'Build Unit Tests'
+    inputs:
+      solution: '$(testProject)'
+      configuration: '$(buildConfiguration)'
+      msbuildArguments: '/t:build /restore'
+      maximumCpuCount: true
+
+  - task: VSTest@2
+    displayName: 'Run Unit Tests'
+    inputs:
+      testSelector: 'testAssemblies'
+      testAssemblyVer2: |
+        **\$(buildConfiguration)\**\*.Tests.dll
+        !**\*TestAdapter.dll
+        !**\obj\**
+      searchFolder: '$(System.DefaultWorkingDirectory)'
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: drop'
