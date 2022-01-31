@@ -66,8 +66,7 @@ jobs:
     inputs:
       testSelector: 'testAssemblies'
       testAssemblyVer2: |
-        **\$(buildConfiguration)\**\*.Tests.dll
-        !**\*TestAdapter.dll
+        **\$(buildConfiguration)\**\*.Tests.build.appxrecipe
         !**\obj\**
       searchFolder: '$(System.DefaultWorkingDirectory)'
 
