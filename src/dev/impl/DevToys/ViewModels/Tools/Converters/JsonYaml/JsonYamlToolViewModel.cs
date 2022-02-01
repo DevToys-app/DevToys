@@ -19,7 +19,11 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Newtonsoft.Json;
 using YamlDotNet.Core;
 using YamlDotNet.Serialization;
-using DevToys.ViewModels.Tools.Converters.JsonYaml;
+using DevToys.Models;
+using System.Collections.ObjectModel;
+using System.Linq;
+using DevToys.ViewModels.Tools.JsonYaml.Services.Abstractions;
+using DevToys.ViewModels.Tools.Converters.JsonYaml.Services;
 
 namespace DevToys.ViewModels.Tools.JsonYaml
 {
@@ -27,27 +31,50 @@ namespace DevToys.ViewModels.Tools.JsonYaml
     public sealed class JsonYamlToolViewModel : ObservableRecipient, IToolViewModel
     {
         /// <summary>
-        /// Whether the tool should convert JSON to YAML or YAML to JSON.
+        /// Gets or sets the input code editor's language.
         /// </summary>
-        private static readonly SettingDefinition<string> Conversion
+        private static readonly SettingDefinition<GeneratorLanguages> InputLanguage
             = new(
-                name: $"{nameof(JsonYamlToolViewModel)}.{nameof(Conversion)}",
+                name: $"{nameof(JsonYamlToolViewModel)}.{nameof(InputLanguage)}",
                 isRoaming: true,
-                defaultValue: JsonToYaml);
+                defaultValue: GeneratorLanguages.Json);
+
+        /// <summary>
+        /// Gets or sets the output code editor's language.
+        /// </summary>
+        private static readonly SettingDefinition<GeneratorLanguages> OutputLanguage
+            = new(
+                name: $"{nameof(JsonYamlToolViewModel)}.{nameof(OutputLanguage)}",
+                isRoaming: true,
+                defaultValue: GeneratorLanguages.Yaml);
 
         /// <summary>
         /// The indentation to apply while converting.
         /// </summary>
-        private static readonly SettingDefinition<string> Indentation
+        private static readonly SettingDefinition<Indentation> Indentation
             = new(
                 name: $"{nameof(JsonYamlToolViewModel)}.{nameof(Indentation)}",
                 isRoaming: true,
-                defaultValue: TwoSpaceIndentation);
+                defaultValue: Models.Indentation.TwoSpaces);
 
-        internal const string JsonToYaml = nameof(JsonToYaml);
-        internal const string YamlToJson = nameof(YamlToJson);
-        private const string TwoSpaceIndentation = "TwoSpaces";
-        private const string FourSpaceIndentation = "FourSpaces";
+        /// <summary>
+        /// Get a list of supported Indentation
+        /// </summary>
+        internal IReadOnlyList<IndentationDisplayPair> Indentations = new ObservableCollection<IndentationDisplayPair> {
+            Models.IndentationDisplayPair.TwoSpaces,
+            Models.IndentationDisplayPair.FourSpaces,
+            Models.IndentationDisplayPair.OneTab,
+            Models.IndentationDisplayPair.Minified,
+        };
+
+        /// <summary>
+        /// Get a list of supported languages
+        /// </summary>
+        internal IReadOnlyList<GeneratorLanguageDisplayPair> Languages = new ObservableCollection<GeneratorLanguageDisplayPair>
+        {
+            GeneratorLanguageDisplayPair.Json,
+            GeneratorLanguageDisplayPair.Yaml,
+        };
 
         private readonly IMarketingService _marketingService;
         private readonly Queue<string> _conversionQueue = new();
@@ -59,71 +86,30 @@ namespace DevToys.ViewModels.Tools.JsonYaml
 
         private bool _toolSuccessfullyWorked;
         private bool _conversionInProgress;
-        private bool _setPropertyInProgress;
         private string? _inputValue;
-        private string? _inputValueLanguage;
         private string? _outputValue;
-        private string? _outputValueLanguage;
 
         public Type View { get; } = typeof(JsonYamlToolPage);
 
         internal JsonYamlStrings Strings => LanguageManager.Instance.JsonYaml;
 
         /// <summary>
-        /// Gets or sets the desired conversion mode.
-        /// </summary>
-        internal string ConversionMode
-        {
-            get => SettingsProvider.GetSetting(Conversion);
-            set
-            {
-                if (!_setPropertyInProgress)
-                {
-                    _setPropertyInProgress = true;
-                    ThreadHelper.ThrowIfNotOnUIThread();
-                    if (!string.Equals(SettingsProvider.GetSetting(Conversion), value, StringComparison.Ordinal))
-                    {
-                        SettingsProvider.SetSetting(Conversion, value);
-                        OnPropertyChanged();
-
-                        if (string.Equals(value, JsonToYaml))
-                        {
-                            if (JsonHelper.IsValid(OutputValue))
-                            {
-                                InputValue = OutputValue;
-                            }
-
-                            InputValueLanguage = "json";
-                            OutputValueLanguage = "yaml";
-                        }
-                        else
-                        {
-                            if (YamlHelper.IsValidYaml(OutputValue))
-                            {
-                                InputValue = OutputValue;
-                            }
-
-                            InputValueLanguage = "yaml";
-                            OutputValueLanguage = "json";
-                        }
-                    }
-
-                    _setPropertyInProgress = false;
-                }
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the desired indentation.
         /// </summary>
-        internal string IndentationMode
+        internal IndentationDisplayPair IndentationMode
         {
-            get => SettingsProvider.GetSetting(Indentation);
+            get
+            {
+                Indentation settingsValue = SettingsProvider.GetSetting(Indentation);
+                IndentationDisplayPair? indentation = Indentations.FirstOrDefault(x => x.Value == settingsValue);
+                return indentation ?? IndentationDisplayPair.TwoSpaces;
+            }
             set
             {
-                if (!string.Equals(SettingsProvider.GetSetting(Indentation), value, StringComparison.Ordinal))
+                if (IndentationMode != value)
                 {
-                    SettingsProvider.SetSetting(Indentation, value);
+                    SettingsProvider.SetSetting(Indentation, value.Value);
+                    Converters.ConfigureService(OutputValueLanguage.Value, (service) => service.SetSerializerConfigurations(ConverterConfiguration.Indentation, IndentationMode.Value));
                     OnPropertyChanged();
                     QueueConversion();
                 }
@@ -146,10 +132,23 @@ namespace DevToys.ViewModels.Tools.JsonYaml
         /// <summary>
         /// Gets or sets the input code editor's language.
         /// </summary>
-        internal string? InputValueLanguage
+        internal GeneratorLanguageDisplayPair InputValueLanguage
         {
-            get => _inputValueLanguage;
-            set => SetProperty(ref _inputValueLanguage, value);
+            get
+            {
+                GeneratorLanguages settingsValue = SettingsProvider.GetSetting(InputLanguage);
+                GeneratorLanguageDisplayPair? language = Languages.FirstOrDefault(x => x.Value == settingsValue);
+                return language ?? GeneratorLanguageDisplayPair.Json;
+            }
+            set
+            {
+                if (InputValueLanguage != value)
+                {
+                    SettingsProvider.SetSetting(InputLanguage, value.Value);
+                    OnPropertyChanged();
+                    QueueConversion();
+                }
+            }
         }
 
         /// <summary>
@@ -164,21 +163,36 @@ namespace DevToys.ViewModels.Tools.JsonYaml
         /// <summary>
         /// Gets or sets the output code editor's language.
         /// </summary>
-        internal string? OutputValueLanguage
+        internal GeneratorLanguageDisplayPair OutputValueLanguage
         {
-            get => _outputValueLanguage;
-            set => SetProperty(ref _outputValueLanguage, value);
+            get
+            {
+                GeneratorLanguages settingsValue = SettingsProvider.GetSetting(OutputLanguage);
+                GeneratorLanguageDisplayPair? language = Languages.FirstOrDefault(x => x.Value == settingsValue);
+                return language ?? GeneratorLanguageDisplayPair.Yaml;
+            }
+            set
+            {
+                if (OutputValueLanguage != value)
+                {
+                    SettingsProvider.SetSetting(OutputLanguage, value.Value);
+                    Converters.ConfigureService(value.Value, (service) => service.SetSerializerConfigurations(ConverterConfiguration.Indentation, IndentationMode.Value));
+                    OnPropertyChanged();
+                    QueueConversion();
+                }
+            }
         }
 
         internal ISettingsProvider SettingsProvider { get; }
+        private readonly IConverterContainer<GeneratorLanguages> Converters;
 
         [ImportingConstructor]
-        public JsonYamlToolViewModel(ISettingsProvider settingsProvider, IMarketingService marketingService)
+        public JsonYamlToolViewModel(ISettingsProvider settingsProvider, IMarketingService marketingService, IConverterContainer<GeneratorLanguages> converterService)
         {
             SettingsProvider = settingsProvider;
             _marketingService = marketingService;
-            InputValueLanguage = "json";
-            OutputValueLanguage = "yaml";
+            Converters = converterService;
+            Converters.ConfigureService(OutputValueLanguage.Value, (service) => service.SetSerializerConfigurations(ConverterConfiguration.Indentation, IndentationMode.Value));
         }
 
         private void QueueConversion()
@@ -200,17 +214,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml
 
             while (_conversionQueue.TryDequeue(out string? text))
             {
-                bool success;
-                string result;
-                if (string.Equals(ConversionMode, JsonToYaml, StringComparison.Ordinal))
-                {
-                    success = ConvertJsonToYaml(text, out result);
-                }
-                else
-                {
-                    success = ConvertYamlToJson(text, out result);
-                }
-
+                bool success = Convert(text, out string result);
                 ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, () =>
                 {
                     OutputValue = result;
@@ -226,7 +230,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml
             _conversionInProgress = false;
         }
 
-        private bool ConvertJsonToYaml(string input, out string output)
+        private bool Convert(string input, out string output)
         {
             if (string.IsNullOrWhiteSpace(input))
             {
@@ -236,104 +240,15 @@ namespace DevToys.ViewModels.Tools.JsonYaml
 
             try
             {
-                dynamic? jsonObject = JsonConvert.DeserializeObject<ExpandoObject>(input, _defaultJsonSerializerSettings);
-                if (jsonObject is not null and not string)
-                {
-                    int indent = 0;
-                    indent = IndentationMode switch
-                    {
-                        TwoSpaceIndentation => 2,
-                        FourSpaceIndentation => 4,
-                        _ => throw new NotSupportedException(),
-                    };
-                    var serializer
-                        = Serializer.FromValueSerializer(
-                            new SerializerBuilder().BuildValueSerializer(),
-                            EmitterSettings.Default.WithBestIndent(indent).WithIndentedSequences());
-
-                    string? yaml = serializer.Serialize(jsonObject);
-                    output = yaml ?? string.Empty;
-                    return true;
-                }
-
-                output = string.Empty;
+                return Converters.TryConvert(input, out output, InputValueLanguage.Value, OutputValueLanguage.Value);
             }
-            catch (JsonReaderException ex)
+            catch (Exception ex) when (ex is SemanticErrorException or JsonReaderException)
             {
                 output = ex.Message;
             }
             catch (Exception ex)
             {
-                Logger.LogFault("Json to Yaml Converter", ex);
-                output = string.Empty;
-            }
-
-            return false;
-        }
-
-        private bool ConvertYamlToJson(string input, out string output)
-        {
-            if (string.IsNullOrWhiteSpace(input))
-            {
-                output = string.Empty;
-                return false;
-            }
-
-            try
-            {
-                using var stringReader = new StringReader(input);
-
-                var deserializer = new DeserializerBuilder()
-                    .WithNodeTypeResolver(new DecimalYamlTypeResolver())
-                    .Build();
-
-                object? yamlObject = deserializer.Deserialize(stringReader);
-
-                if (yamlObject is null or string)
-                {
-                    output = Strings.InvalidYaml;
-                    return false;
-                }
-
-                var stringBuilder = new StringBuilder();
-                using (var stringWriter = new StringWriter(stringBuilder))
-                using (var jsonTextWriter = new JsonTextWriter(stringWriter))
-                {
-                    switch (IndentationMode)
-                    {
-                        case TwoSpaceIndentation:
-                            jsonTextWriter.Formatting = Formatting.Indented;
-                            jsonTextWriter.IndentChar = ' ';
-                            jsonTextWriter.Indentation = 2;
-                            break;
-
-                        case FourSpaceIndentation:
-                            jsonTextWriter.Formatting = Formatting.Indented;
-                            jsonTextWriter.IndentChar = ' ';
-                            jsonTextWriter.Indentation = 4;
-                            break;
-
-                        default:
-                            throw new NotSupportedException();
-                    }
-
-                    var jsonSerializer = JsonSerializer.CreateDefault(new JsonSerializerSettings()
-                    {
-                        Converters = { new DecimalJsonConverter() }
-                    });
-                    jsonSerializer.Serialize(jsonTextWriter, yamlObject);
-                }
-
-                output = stringBuilder.ToString();
-                return true;
-            }
-            catch (SemanticErrorException ex)
-            {
-                output = ex.Message;
-            }
-            catch (Exception ex)
-            {
-                Logger.LogFault("Yaml to Json Converter", ex);
+                Logger.LogFault($"{InputValueLanguage.Value} to {OutputValueLanguage.Value} Converter", ex);
                 output = string.Empty;
             }
 
