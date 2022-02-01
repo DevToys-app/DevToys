@@ -5,7 +5,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:DevToys="using:DevToys"
-    xmlns:ex="using:DevToys.UI.Extensions"
     xmlns:converters="using:DevToys.UI.Converters"
     mc:Ignorable="d"
     d:DesignHeight="24"
@@ -47,8 +46,8 @@
             Grid.Column="1"
             Orientation="Horizontal"
             HorizontalAlignment="Right"
+            Spacing="8"
             Margin="0,0,0,8"
-            ex:SpacingExtension.Horizontal="8"
             AutomationProperties.LabeledBy="{Binding ElementName=HeaderTextBlock}">
             <Button
                 x:Name="PasteButton"
