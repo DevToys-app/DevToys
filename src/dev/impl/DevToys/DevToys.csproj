@@ -63,6 +63,8 @@
     <Compile Include="Models\HashingAlgorithmDisplayPair.cs" />
     <Compile Include="Models\HashingProgress.cs" />
     <Compile Include="Models\SqlLanguageDisplayPair.cs" />
+    <Compile Include="Models\GeneratorLanguageDisplayPair.cs" />
+    <Compile Include="Models\GeneratorLanguages.cs" />
     <Compile Include="Models\NoResultFoundMockToolProvider.cs" />
     <Compile Include="Models\Radix.cs" />
     <Compile Include="Models\NumberBaseFormat.cs" />
@@ -79,10 +81,18 @@
     <Compile Include="ViewModels\Tools\AllTools\AllToolsToolProvider.cs" />
     <Compile Include="ViewModels\Tools\AllTools\AllToolsToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Converters\ConvertersGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Converters\JsonYaml\Services\ConverterConfiguration.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolProvider.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Converters\JsonYaml\DecimalJsonConverter.cs" />
     <Compile Include="ViewModels\Tools\Converters\JsonYaml\DecimalYamlTypeResolver.cs" />
+    <Compile Include="ViewModels\Tools\Converters\JsonYaml\Services\Abstractions\IConverterContainer.cs" />
+    <Compile Include="ViewModels\Tools\Converters\JsonYaml\Services\Abstractions\IConverterService.cs" />
+    <Compile Include="ViewModels\Tools\Converters\JsonYaml\Services\Abstractions\ServiceTypeAttribute.cs" />
+    <Compile Include="ViewModels\Tools\Converters\JsonYaml\Services\ConverterService.cs" />
+    <Compile Include="ViewModels\Tools\Converters\JsonYaml\Services\Exceptions\UnknownConfigurationException.cs" />
+    <Compile Include="ViewModels\Tools\Converters\JsonYaml\Services\Converters\JsonConverterService.cs" />
+    <Compile Include="ViewModels\Tools\Converters\JsonYaml\Services\Converters\YamlConverterService.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\EncodersDecodersGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Formatters\XmlFormatter\XmlFormatterToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Formatters\XmlFormatter\XmlFormatterToolViewModel.cs" />
