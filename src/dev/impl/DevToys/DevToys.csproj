@@ -70,6 +70,8 @@
     <Compile Include="UI\Controls\FileSelector.xaml.cs">
       <DependentUpon>FileSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Extensions\MarginExtension.cs" />
+    <Compile Include="UI\Extensions\SpacingExtension.cs" />
     <Compile Include="UI\Controls\ToolProvidersGridView.xaml.cs">
       <DependentUpon>ToolProvidersGridView.xaml</DependentUpon>
     </Compile>
