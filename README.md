@@ -66,16 +66,21 @@ Many tools are available.
 ### Microsoft Store
 - Search for DevToys in the Microsoft Store App or click [here](https://www.microsoft.com/store/apps/9PGCV4V3BK4W)
 
+### Manual
+
+- Download and extract the latest [release](https://github.com/veler/DevToys/releases).
+- Double click the *.msixbundle file.
+- Install.
+
 ### WinGet
 - Open a PowerShell command prompt.
 - Type `winget search DevToys` to search and see details about DevToys.
 - Type `winget install DevToys` to install the app.
 
-### Manual
+__Note:__ a Microsoft Store account is required for WinGet. We're trying to workaround it. See here https://github.com/microsoft/winget-pkgs/pull/43996
 
-- Download and extract the latest [release](https://github.com/veler/DevToys/releases).
-- Install the certificate in `Trusted Root`.
-- Double click the *.msixbundle file.
+### Chocolatey
+Work in progress: [#183](https://github.com/veler/DevToys/issues/183)
 
 ## App Permission
 
