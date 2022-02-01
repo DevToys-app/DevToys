@@ -44,7 +44,7 @@
                 <controls:ExpandableSettingControl.Icon>
                     <FontIcon Glyph="&#xF18D;" />
                 </controls:ExpandableSettingControl.Icon>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Spacing="4" Orientation="Horizontal">
                     <ComboBox
                         ItemsSource="{x:Bind ViewModel.Languages}"
                         DisplayMemberPath="DisplayName"
