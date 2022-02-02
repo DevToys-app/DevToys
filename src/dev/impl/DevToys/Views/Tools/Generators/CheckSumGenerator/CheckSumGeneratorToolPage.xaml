@@ -5,8 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:DevToys.UI.Controls"
-    xmlns:core="using:Microsoft.Xaml.Interactions.Core" 
-    xmlns:i="using:Microsoft.Xaml.Interactivity" 
     xmlns:converters="using:DevToys.UI.Converters"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
@@ -18,20 +16,6 @@
     </Page.Resources>
 
     <StackPanel Margin="0,0,0,16" Spacing="12">
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState x:Name="SelectFilesPointerHover">
-                    <VisualState.StateTriggers>
-                        <StateTrigger IsActive="{x:Bind ViewModel.IsSelectFilesAreaHighlighted, Mode=OneWay}"/>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="SelectFilesRectangle.Stroke" Value="{ThemeResource TextControlHeaderForeground}" />
-                        <Setter Target="SelectFilesRectangle.Fill" Value="{ThemeResource ButtonBackgroundPointerOver}" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-
         <StackPanel.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
@@ -66,69 +50,11 @@
             </controls:ExpandableSettingControl>
         </StackPanel>
 
-        <Grid
-            Grid.Row="0"
+        <controls:FileSelector
             Margin="0,12,0,0"
-            AllowDrop="True"
-            Background="Transparent"
-            CornerRadius="4">
-            <i:Interaction.Behaviors>
-                <core:EventTriggerBehavior EventName="DragOver">
-                    <core:InvokeCommandAction
-                        Command="{x:Bind ViewModel.SelectFilesAreaDragOverCommand}"/>
-                </core:EventTriggerBehavior>
-                <core:EventTriggerBehavior EventName="DragLeave">
-                    <core:InvokeCommandAction
-                        Command="{x:Bind ViewModel.SelectFilesAreaDragLeaveCommand}"/>
-                </core:EventTriggerBehavior>
-                <core:EventTriggerBehavior EventName="Drop">
-                    <core:InvokeCommandAction
-                        Command="{x:Bind ViewModel.SelectFilesAreaDragDropCommand}"/>
-                </core:EventTriggerBehavior>
-            </i:Interaction.Behaviors>
-            <Rectangle
-                x:Name="SelectFilesRectangle"
-                Stroke="{ThemeResource TextControlHeaderForegroundDisabled}"
-                StrokeDashArray="4 4"
-                StrokeThickness="2"
-                Fill="Transparent">
-            </Rectangle>
-            <StackPanel
-                Spacing="8"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Margin="24">
-                <TextBlock
-                    Text="{x:Bind ViewModel.Strings.SelectFilesInstruction1}"
-                    TextTrimming="CharacterEllipsis"
-                    TextWrapping="WrapWholeWords"
-                    HorizontalAlignment="Center"/>
-                <TextBlock
-                    Text="{x:Bind ViewModel.Strings.SelectFilesInstruction2}"
-                    HorizontalAlignment="Center"/>
-                <StackPanel
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Center"
-                    Spacing="6">
-                    <Button
-                        x:Name="BrowseFileButton"
-                        Style="{StaticResource AccentButtonStyle}"
-                        VerticalAlignment="Center"
-                        MinWidth="100"
-                        Content="{x:Bind ViewModel.Strings.SelectFilesInstruction3}"
-                        Command="{x:Bind ViewModel.SelectFilesBrowseCommand}"/>
-                    <TextBlock
-                        Text="/"
-                        VerticalAlignment="Center"/>
-                    <Button
-                        Style="{StaticResource AccentButtonStyle}"
-                        VerticalAlignment="Center"
-                        MinWidth="100"
-                        Content="{x:Bind ViewModel.Strings.SelectFilesInstruction4}"
-                        Command="{x:Bind ViewModel.SelectFilesPasteCommand}"/>
-                </StackPanel>
-            </StackPanel>
-        </Grid>
+            AllowedFileExtensions="*"
+            AllowMultipleFileSelection="False"
+            FilesSelectedCommand="{x:Bind ViewModel.FilesSelectedCommand}"/>
 
         <Grid Grid.Row="1" Margin="0,20,0,0" Visibility="{x:Bind ViewModel.ShouldDisplayProgress, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
             <muxc:ProgressRing

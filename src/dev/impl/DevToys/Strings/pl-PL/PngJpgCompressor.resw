@@ -142,9 +142,6 @@
     <value>{0:0.##} {1}</value>
     <comment>{0} to liczba dziesiętna, reprezejtująca rozmiar pliku. {1} to jednostka, np. B, KB, MB, GB, TB</comment>
   </data>
-  <data name="InvalidSelectedFiles" xml:space="preserve">
-    <value>Można użyć jedynie plików .png, .jpg oraz .jpeg.</value>
-  </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
   </data>
@@ -156,15 +153,6 @@
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
     <value>Zobacz szczegóły</value>
-  </data>
-  <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>Przeciągnij i upuść tutaj pliki PNG lub JPEG</value>
-  </data>
-  <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>lub</value>
-  </data>
-  <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>Przeglądaj pliki</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Bezstranty optymalizator PNG i JPEG</value>

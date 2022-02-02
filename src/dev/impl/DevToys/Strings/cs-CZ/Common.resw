@@ -132,6 +132,33 @@
   <data name="Delete" xml:space="preserve">
     <value>Odstranit</value>
   </data>
+  <data name="FileSelectorBrowseFiles" xml:space="preserve">
+    <value>Browse files</value>
+  </data>
+  <data name="FileSelectorBrowseFolders" xml:space="preserve">
+    <value>Browse folders</value>
+  </data>
+  <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
+    <value>Drag &amp; drop any file here</value>
+  </data>
+  <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
+    <value>Drag &amp; drop any files here</value>
+  </data>
+  <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
+    <value>Drag &amp; drop a {0} file here</value>
+    <comment>{0} is a single file extension like "PNG"</comment>
+  </data>
+  <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
+    <value>Drag &amp; drop any {0} files here</value>
+    <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
+  </data>
+  <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
+    <value>Only {0} file(s) can be used.</value>
+    <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
+  </data>
+  <data name="FileSelectorOr" xml:space="preserve">
+    <value>or</value>
+  </data>
   <data name="Gigabytes" xml:space="preserve">
     <value>GB</value>
   </data>

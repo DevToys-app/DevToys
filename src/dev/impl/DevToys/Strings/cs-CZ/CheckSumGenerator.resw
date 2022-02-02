@@ -148,19 +148,7 @@
     <value>Porovnání s výstupem</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Kontrolní součet</value>
-  </data>
-  <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>Sem přetáhněte soubory</value>
-  </data>
-  <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>nebo</value>
-  </data>
-  <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>Procházet soubory</value>
-  </data>
-  <data name="SelectFilesInstruction4" xml:space="preserve">
-    <value>Vložit</value>
+    <value>Checksum Generator</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
     <value>Velká písmena</value>

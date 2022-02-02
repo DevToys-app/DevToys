@@ -10,26 +10,17 @@ using DevToys.Api.Tools;
 using DevToys.Core;
 using DevToys.Core.Threading;
 using DevToys.Helpers;
-using DevToys.Shared.Core;
 using DevToys.Views.Tools.ImageConverter;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
-using Windows.ApplicationModel.DataTransfer;
-using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.Pickers;
-using Windows.Storage.Streams;
-using Windows.UI.Xaml;
 
 namespace DevToys.ViewModels.Tools.ImageConverter
 {
     [Export(typeof(ImageConverterToolViewModel))]
     public sealed class ImageConverterToolViewModel : ObservableRecipient, IToolViewModel, IDisposable
     {
-        private static readonly string[] SupportedFileExtensions = new[] { ".png", ".jpg", ".jpeg", ".bmp" };
-
-        private bool _isSelectFilesAreaHighlithed;
-        private bool _hasInvalidFilesSelected;
         private bool _isInfoBarOpen;
 
         public Type View { get; } = typeof(ImageConverterToolPage);
@@ -42,18 +33,6 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
         internal string InfoBarMessage => Strings.ErrorMessage;
 
-        internal bool IsSelectFilesAreaHighlithed
-        {
-            get => _isSelectFilesAreaHighlithed;
-            set => SetProperty(ref _isSelectFilesAreaHighlithed, value);
-        }
-
-        internal bool HasInvalidFilesSelected
-        {
-            get => _hasInvalidFilesSelected;
-            set => SetProperty(ref _hasInvalidFilesSelected, value);
-        }
-
         internal bool IsInfoBarOpen
         {
             get => _isInfoBarOpen;
@@ -63,19 +42,12 @@ namespace DevToys.ViewModels.Tools.ImageConverter
         [ImportingConstructor]
         public ImageConverterToolViewModel()
         {
-            SelectFilesAreaDragOverCommand = new RelayCommand<DragEventArgs>(ExecuteSelectFilesAreaDragOverCommand);
-            SelectFilesAreaDragLeaveCommand = new RelayCommand<DragEventArgs>(ExecuteSelectFilesAreaDragLeaveCommand);
-            SelectFilesAreaDragDropCommand = new AsyncRelayCommand<DragEventArgs>(ExecuteSelectFilesAreaDragDropCommandAsync);
-            SelectFilesBrowseCommand = new AsyncRelayCommand(ExecuteSelectFilesBrowseCommandAsync);
+            FilesSelectedCommand = new RelayCommand<StorageFile[]>(ExecuteFilesSelectedCommand);
             DeleteAllCommand = new RelayCommand(ExecuteDeleteAllCommand);
             SaveAllCommand = new AsyncRelayCommand(ExecuteSaveAllCommandAsync);
             CloseInfoBarButtonCommand = new RelayCommand(ExecuteCloseInfoBarButtonCommand);
 
-            InitializeComboBox();
-        }
-
-        private void InitializeComboBox()
-        {
+            // Initialize ComboBox
             ConvertedFormat = "PNG";
         }
 
@@ -84,124 +56,18 @@ namespace DevToys.ViewModels.Tools.ImageConverter
             DeleteAllCommand.Execute(null);
         }
 
-        #region SelectFilesAreaDragOverCommand
+        #region FilesSelectedCommand
 
-        public IRelayCommand<DragEventArgs> SelectFilesAreaDragOverCommand { get; }
+        public IRelayCommand<StorageFile[]> FilesSelectedCommand { get; }
 
-        private void ExecuteSelectFilesAreaDragOverCommand(DragEventArgs? parameters)
+        private void ExecuteFilesSelectedCommand(StorageFile[]? files)
         {
-            Arguments.NotNull(parameters, nameof(parameters));
-            if (parameters!.DataView.Contains(StandardDataFormats.StorageItems))
+            if (files is not null)
             {
-                parameters.AcceptedOperation = DataPackageOperation.Copy;
-                parameters.Handled = false;
-            }
-
-            IsSelectFilesAreaHighlithed = true;
-            HasInvalidFilesSelected = false;
-        }
-
-        #endregion
-
-        #region SelectFilesAreaDragLeaveCommand
-
-        public IRelayCommand<DragEventArgs> SelectFilesAreaDragLeaveCommand { get; }
-
-        private void ExecuteSelectFilesAreaDragLeaveCommand(DragEventArgs? parameters)
-        {
-            IsSelectFilesAreaHighlithed = false;
-            HasInvalidFilesSelected = false;
-        }
-
-        #endregion
-
-        #region SelectFilesAreaDragDropCommand
-
-        public IAsyncRelayCommand<DragEventArgs> SelectFilesAreaDragDropCommand { get; }
-
-        private async Task ExecuteSelectFilesAreaDragDropCommandAsync(DragEventArgs? parameters)
-        {
-            try
-            {
-                Arguments.NotNull(parameters, nameof(parameters));
-
-                await ThreadHelper.RunOnUIThreadAsync(async () =>
+                foreach (StorageFile file in files)
                 {
-                    IsSelectFilesAreaHighlithed = false;
-                    if (!parameters!.DataView.Contains(StandardDataFormats.StorageItems))
-                    {
-                        return;
-                    }
-
-                    IReadOnlyList<IStorageItem>? storageItems = await parameters.DataView.GetStorageItemsAsync();
-                    if (storageItems is null || storageItems.Count == 0)
-                    {
-                        return;
-                    }
-
-                    foreach (IStorageItem storageItem in storageItems)
-                    {
-                        if (storageItem is StorageFile file)
-                        {
-                            if (SupportedFileExtensions.Any(ext => string.Equals(ext, file.FileType, StringComparison.OrdinalIgnoreCase)))
-                            {
-                                QueueNewConversionWorkItem(file);
-                            }
-                            else
-                            {
-                                HasInvalidFilesSelected = true;
-                            }
-                        }
-                        else
-                        {
-                            HasInvalidFilesSelected = true;
-                        }
-                    }
-                }).ConfigureAwait(false);
-            }
-            catch (Exception ex)
-            {
-                Logger.LogFault(nameof(ImageConverterToolViewModel), ex, "Unable to recognize files.");
-                IsInfoBarOpen = true;
-            }
-        }
-
-        #endregion
-
-        #region SelectFilesBrowseCommand
-
-        public IAsyncRelayCommand SelectFilesBrowseCommand { get; }
-
-        private async Task ExecuteSelectFilesBrowseCommandAsync()
-        {
-            try
-            {
-                await ThreadHelper.RunOnUIThreadAsync(async () =>
-                {
-                    HasInvalidFilesSelected = false;
-
-                    var filePicker = new FileOpenPicker
-                    {
-                        ViewMode = PickerViewMode.List,
-                        SuggestedStartLocation = PickerLocationId.ComputerFolder
-                    };
-
-                    for (int i = 0; i < SupportedFileExtensions.Length; i++)
-                    {
-                        filePicker.FileTypeFilter.Add(SupportedFileExtensions[i]);
-                    }
-
-                    IReadOnlyList<StorageFile> files = await filePicker.PickMultipleFilesAsync();
-                    for (int i = 0; i < files.Count; i++)
-                    {
-                        QueueNewConversionWorkItem(files[i]);
-                    }
-                });
-            }
-            catch (Exception ex)
-            {
-                Logger.LogFault(nameof(ImageConverterToolViewModel), ex, "Unable to browse file(s).");
-                IsInfoBarOpen = true;
+                    QueueNewConversionWorkItem(file);
+                }
             }
         }
 
@@ -233,6 +99,7 @@ namespace DevToys.ViewModels.Tools.ImageConverter
                     ViewMode = PickerViewMode.List
                 };
 
+                folderPicker.FileTypeFilter.Add("*");
                 StorageFolder? selectedFolder = await folderPicker.PickSingleFolderAsync();
 
                 if (selectedFolder is not null)

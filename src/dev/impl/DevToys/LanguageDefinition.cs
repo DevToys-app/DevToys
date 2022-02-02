@@ -36,17 +36,17 @@ namespace DevToys
 
         public LanguageDefinition(string? identifier)
         {
-            if (!string.IsNullOrEmpty(identifier))
+            if (string.IsNullOrEmpty(identifier))
+            {
+                Culture = new CultureInfo(Windows.System.UserProfile.GlobalizationPreferences.Languages[0]);
+                DisplayName = new SettingsStrings().DefaultLanguage;
+                InternalName = "default";
+            }
+            else
             {
                 Culture = new CultureInfo(identifier!);
                 DisplayName = Culture.NativeName;
                 InternalName = Culture.Name;
-            }
-            else
-            {
-                Culture = CultureInfo.InstalledUICulture;
-                DisplayName = new SettingsStrings().DefaultLanguage;
-                InternalName = "default";
             }
 
             Identifier = Culture.Name;

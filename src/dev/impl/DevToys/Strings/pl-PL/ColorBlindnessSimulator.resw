@@ -129,18 +129,6 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Symulator Ślepoty Barw</value>
   </data>
-  <data name="InvalidSelectedFiles" xml:space="preserve">
-    <value>Można użyć jedynie plików .png, .jpg, .jpeg lub .bmp.</value>
-  </data>
-  <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>Przeciągnij i upuść tutaj plik PNG, JPEG lub BMP</value>
-  </data>
-  <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>lub</value>
-  </data>
-  <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>Przeglądaj pliki</value>
-  </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Zapisz jako</value>
   </data>
@@ -158,8 +146,5 @@
   </data>
   <data name="TritanopiaSimulation" xml:space="preserve">
     <value>Symulacja tritanopii</value>
-  </data>
-  <data name="SelectFilesInstruction4" xml:space="preserve">
-    <value>Wklej</value>
   </data>
 </root>

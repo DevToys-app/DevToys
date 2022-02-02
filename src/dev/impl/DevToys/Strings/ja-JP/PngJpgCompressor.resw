@@ -142,9 +142,6 @@
     <value>{0:0.##} {1}</value>
     <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
   </data>
-  <data name="InvalidSelectedFiles" xml:space="preserve">
-    <value>.png、.jpg、.jpeg 形式のファイルのみ使用できます</value>
-  </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
   </data>
@@ -156,15 +153,6 @@
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
     <value>詳細を見る</value>
-  </data>
-  <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>PNG、JPEG形式のファイルをドラッグ＆ドロップしてください</value>
-  </data>
-  <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>もしくは</value>
-  </data>
-  <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>ファイルを参照</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>無劣化 PNG 及び JPEG の最適化ツール</value>

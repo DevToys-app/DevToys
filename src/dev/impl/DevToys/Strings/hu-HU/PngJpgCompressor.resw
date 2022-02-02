@@ -142,9 +142,6 @@
     <value>{0:0.##} {1}</value>
     <comment>{0} egy decimális szám, amely a fájl méretét reprezentálja. {1} egy egység, mint a Bájt, KB, MB, GB, TB</comment>
   </data>
-  <data name="InvalidSelectedFiles" xml:space="preserve">
-    <value>Csak .png, .jpg és .jpeg fájlok használhatóak.</value>
-  </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
   </data>
@@ -156,15 +153,6 @@
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
     <value>Részletek megjelenítése</value>
-  </data>
-  <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>Húzz be egy PNG vagy JPEG fájlt ide</value>
-  </data>
-  <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>vagy</value>
-  </data>
-  <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>Fájlok tallózása</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Veszteség mentes PNG és JPEG optimalizáló</value>

@@ -67,6 +67,9 @@
     <Compile Include="Models\Radix.cs" />
     <Compile Include="Models\NumberBaseFormat.cs" />
     <Compile Include="Models\TileIconSizeDefinition.cs" />
+    <Compile Include="UI\Controls\FileSelector.xaml.cs">
+      <DependentUpon>FileSelector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Controls\ToolProvidersGridView.xaml.cs">
       <DependentUpon>ToolProvidersGridView.xaml</DependentUpon>
     </Compile>
@@ -530,6 +533,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\Controls\CodeEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Controls\FileSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

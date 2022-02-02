@@ -142,9 +142,6 @@
     <value>{0:0.##} {1}</value>
     <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
   </data>
-  <data name="InvalidSelectedFiles" xml:space="preserve">
-    <value>Hanya file .png, .jpg dan .jpeg yang bisa digunakan</value>
-  </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
   </data>
@@ -156,15 +153,6 @@
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
     <value>Lihat detail</value>
-  </data>
-  <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>Pindah dan letakkan file PNG atau JPEG disini</value>
-  </data>
-  <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>atau</value>
-  </data>
-  <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>Cari file</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Pengoptimal PNG dan JPEG tanpa pengurangn</value>

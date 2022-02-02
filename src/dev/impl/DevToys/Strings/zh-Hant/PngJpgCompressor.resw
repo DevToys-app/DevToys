@@ -142,9 +142,6 @@
     <value>{0:0.##} {1}</value>
     <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
   </data>
-  <data name="InvalidSelectedFiles" xml:space="preserve">
-    <value>僅可使用 .png、.jpg 及 .jpeg 檔案。</value>
-  </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
   </data>
@@ -156,15 +153,6 @@
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
     <value>檢視詳細資訊</value>
-  </data>
-  <data name="SelectFilesInstruction1" xml:space="preserve">
-    <value>將 PNG 或 JPEG 檔案拖至此處</value>
-  </data>
-  <data name="SelectFilesInstruction2" xml:space="preserve">
-    <value>或</value>
-  </data>
-  <data name="SelectFilesInstruction3" xml:space="preserve">
-    <value>瀏覽檔案</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>PNG 及 JPEG 的不失真最佳化工具</value>
