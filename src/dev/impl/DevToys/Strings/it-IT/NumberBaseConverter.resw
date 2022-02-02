@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Strumento di conversione della base numerica</value>
+    <value>Strumento conversione della base numerica</value>
   </data>
   <data name="BinaryLabel" xml:space="preserve">
     <value>Binario</value>
@@ -130,7 +130,7 @@
     <value>Decimale</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Base numero</value>
+    <value>Base numerica</value>
   </data>
   <data name="Format" xml:space="preserve">
     <value>Formatta numero</value>
