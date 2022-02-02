@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Strumento di simulazione di daltonismo</value>
+    <value>Strumento Simulatore Daltonismo</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Simulatore di daltonismo</value>
+    <value>Simulatore daltonismo</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Simula il daltonismo su un'immagine o uno screenshot</value>
+    <value>Simula il daltonismo su un'immagine</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Simulatore di daltonismo</value>
+    <value>Simulatore daltonismo</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Salva come</value>
@@ -136,15 +136,15 @@
     <value>Cancella</value>
   </data>
   <data name="DeuteranopiaSimulation" xml:space="preserve">
-    <value>Simulazione di deuteranopia</value>
+    <value>Deuteranopia</value>
   </data>
   <data name="OriginalPicture" xml:space="preserve">
     <value>Originale</value>
   </data>
   <data name="ProtanopiaSimulation" xml:space="preserve">
-    <value>Simulazione di protanopia</value>
+    <value>Protanopia</value>
   </data>
   <data name="TritanopiaSimulation" xml:space="preserve">
-    <value>Simulazione di tritanopia</value>
+    <value>Tritanopia</value>
   </data>
 </root>
