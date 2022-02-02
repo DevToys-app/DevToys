@@ -34,6 +34,7 @@ Many tools are available.
   - HTML
   - URL
   - Base64
+  - GZip
   - JWT Decoder
 - Formatters
   - JSON
@@ -43,7 +44,7 @@ Many tools are available.
   - Hash (MD5, SHA1, SHA256, SHA512)
   - UUID 1 and 4
   - Lorem Ipsum
-  - Check Sum
+  - Checksum
 - Text
   - Inspector & Case Converter
   - Regex Tester
@@ -102,12 +103,14 @@ For example, `start devtoys:?tool=jsonyaml` will open DevToys and start on the `
 
 Here is the list of tool name you can use:
 - `base64` - Base64 Encoder/Decoder
+- `gzip` - GZip Encoder/Decoder
 - `hash` - Hash Generator
 - `uuid` - UUID Generator
 - `loremipsum` - Lorem Ipsum Generator
 - `checksum` - Checksum File
 - `jsonformat` Json Formatter
 - `sqlformat` - SQL Formatter
+- `xmlformat` - XML Formatter
 - `jsonyaml` - Json <> Yaml
 - `jwt` - JWT Decoder
 - `colorblind` - Color Blindness Simulator
