@@ -5,7 +5,7 @@
   • SQL Formatter!
   • XML Formatter!
 👏 Improvements
-  • Added Polish, Hungarian, Japanese, Traditional Chinese, Italian Chinese translation
+  • Added Polish, Hungarian, Japanese, Traditional Chinese, Italian translation
   • Hash Generator can now output in Base64
   • We can now copy the Markdown Preview output
 🐛 Bug Fixes
