@@ -1,0 +1,21 @@
+<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>devtoys</id>
+    <version>0.0.1</version>
+    <packageSourceUrl>https://github.com/veler/DevToys</packageSourceUrl>
+    <owners>Rafael Lopez</owners>
+    <title>DevToys</title>
+    <authors>Etienne BAUDOUX</authors>
+    <projectUrl>https://devtoys.app/</projectUrl>
+    <iconUrl>https://devtoys.app/img/hero-logo.png</iconUrl>
+    <licenseUrl>https://github.com/veler/DevToys/blob/main/LICENSE.md</licenseUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <tags>devtoys</tags>
+    <summary>A Swiss Army knife for developers.</summary>
+    <description>A Swiss Army knife for developers.</description>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
