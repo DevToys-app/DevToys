@@ -77,6 +77,11 @@ Many tools are available.
 - Type `winget search DevToys` to search and see details about DevToys.
 - Type `winget install DevToys` to install the app.
 
+### Chocolatey
+- Make sure you already have [Chocolatey](https://chocolatey.org/) installed on your computer.
+- Open a PowerShell command prompt.
+- Type `choco install devtoys` or visit the [chocolatey community package](https://community.chocolatey.org/packages/devtoys/).
+
 __Note:__ a Microsoft Store account is required for WinGet. We're trying to workaround it. See here https://github.com/microsoft/winget-pkgs/pull/43996
 
 ### Chocolatey
