@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Strumento per testare espressioni regolari</value>
+    <value>Strumento Tester Espressioni Regolari</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Configurazione</value>
@@ -145,7 +145,7 @@
     <value>Specifica la corrispondenza senza distinzione tra maiuscole e minuscole.</value>
   </data>
   <data name="IgnoreWhitespace" xml:space="preserve">
-    <value>Ignora gli spazi bianchi</value>
+    <value>Ignora spazi bianchi</value>
   </data>
   <data name="IgnoreWhitespaceDescription" xml:space="preserve">
     <value>Elimina lo spazio bianco senza escape dal pattern e abilita i commenti contrassegnati con #. Tuttavia, questo valore non influisce o elimina gli spazi vuoti nelle classi di caratteri, quantificatori numerici o token che segnano l'inizio dei singoli elementi del linguaggio delle espressioni regolari.</value>
@@ -163,7 +163,7 @@
     <value>Espressioni regolari</value>
   </data>
   <data name="RightToLeft" xml:space="preserve">
-    <value>Destra a sinistra</value>
+    <value>Da destra a sinistra</value>
   </data>
   <data name="RightToLeftDescription" xml:space="preserve">
     <value>Specifica che la ricerca sarà da destra a sinistra anziché da sinistra a destra.</value>
