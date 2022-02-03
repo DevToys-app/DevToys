@@ -118,42 +118,42 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>XML Formatter tool</value>
+    <value>XML 格式化工具</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>配置</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>XML</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
-    <value>4 spaces</value>
+    <value>4 个空格</value>
   </data>
   <data name="Indentation" xml:space="preserve">
-    <value>Indentation</value>
+    <value>缩进</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>输入</value>
   </data>
   <data name="Minified" xml:space="preserve">
-    <value>Minified</value>
+    <value>压缩</value>
   </data>
   <data name="OneTab" xml:space="preserve">
-    <value>1 tab</value>
+    <value>1 个制表符</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>输出</value>
   </data>
   <data name="TwoSpaces" xml:space="preserve">
-    <value>2 spaces</value>
+    <value>2 个空格</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Indent or minify XML data</value>
+    <value>格式化或压缩一个 XML 字符串</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>XML Formatter</value>
+    <value>XML 格式化工具</value>
   </data>
   <data name="NewLineOnAttributesName" xml:space="preserve">
-    <value>Put attributes on new line</value>
+    <value>将属性置于新行</value>
   </data>
 </root>

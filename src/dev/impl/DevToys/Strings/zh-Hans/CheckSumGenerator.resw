@@ -118,39 +118,39 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Checksum Generator tool</value>
+    <value>Checksum 生成工具</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>配置</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generate a hash with Checksum based on a file</value>
+    <value>基于文件的 CheckSum 生成一个 Hash 值</value>
   </data>
   <data name="HashingAlgorithmDescription" xml:space="preserve">
-    <value>Select which hashing algorithm you want to use</value>
+    <value>选择您想使用的哈希算法</value>
   </data>
   <data name="HashingAlgorithmTitle" xml:space="preserve">
-    <value>Hashing Algorithm</value>
+    <value>哈希算法</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>输入</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Checksum</value>
+    <value>Checksum（校验和）</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>输出</value>
   </data>
   <data name="OutputComparer" xml:space="preserve">
-    <value>Output Comparer</value>
+    <value>比较输出</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Checksum Generator</value>
+    <value>Checksum 生成工具</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
-    <value>Uppercase</value>
+    <value>大写输出</value>
   </data>
 </root>
