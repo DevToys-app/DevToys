@@ -42,7 +42,7 @@ if ((Get-AppxPackage -name $PackageArgs.packageName).Version -Match $Version) {
     Write-Host Removing already installed version first. ;
     Get-AppxPackage -Name $PackageArgs.packageName | Remove-AppxPackage;
   } else {
-    Write-Host The $Version version of Files is already installed. If you want to reinstall use --force ;
+    Write-Host The $Version version of the package is already installed. If you want to reinstall use --force ;
     return;
   };
 };
