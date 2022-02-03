@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Strumento di confronto del testo</value>
+    <value>Strumento Comparatore di testo</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Configurazione</value>
@@ -127,16 +127,16 @@
     <value>Differenza</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Differenza testo</value>
+    <value>Comparatore di testo</value>
   </data>
   <data name="InlineDifference" xml:space="preserve">
     <value>Modalità in linea</value>
   </data>
   <data name="LeftText" xml:space="preserve">
-    <value>Vecchio testo</value>
+    <value>Primo testo</value>
   </data>
   <data name="RightText" xml:space="preserve">
-    <value>Testo nuovo</value>
+    <value>Secondo testo</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Confronta due testi</value>
