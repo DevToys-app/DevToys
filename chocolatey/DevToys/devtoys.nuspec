@@ -2,7 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>devtoys</id>
-    <version>0.0.1</version>
+    <id>DevToys</id>
+    <version>1.0.2.0</version>
     <packageSourceUrl>https://github.com/veler/DevToys</packageSourceUrl>
     <owners>Rafael Lopez</owners>
     <title>DevToys</title>
