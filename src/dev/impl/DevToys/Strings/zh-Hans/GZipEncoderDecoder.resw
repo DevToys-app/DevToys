@@ -139,7 +139,7 @@
     <value>GZip 压缩 / 解压</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>GZip 编码 / 解码工具</value>
+    <value>GZip</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
     <value>使用 GZip 压缩或解压字符串</value>

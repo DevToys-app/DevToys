@@ -139,7 +139,7 @@
     <value>转换</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Base 64 编码 / 解码工具</value>
+    <value>Base 64</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
     <value>选择您想使用的字符编码</value>

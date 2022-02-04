@@ -124,7 +124,7 @@
     <value>配置</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>通用唯一识别码（UUID）生成工具</value>
+    <value>通用唯一识别码（UUID）</value>
   </data>
   <data name="Generate" xml:space="preserve">
     <value>生成</value>

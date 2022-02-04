@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>图像转换工具</value>
+    <value>图片格式转换工具</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>取消</value>
@@ -133,14 +133,14 @@
     <value>全部删除</value>
   </data>
   <data name="DetailsTitle" xml:space="preserve">
-    <value>细节</value>
+    <value>详情细节</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>图像转换工具</value>
+    <value>图片格式转换</value>
   </data>
   <data name="FileSizeDisplay" xml:space="preserve">
     <value>{0:0.##} {1}</value>
-    <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
+    <comment>{0} 是一个表示文件大小的十进制数字。{1} 是一个单位，比如 Bytes, KB, MB, GB, TB</comment>
   </data>
   <data name="OK" xml:space="preserve">
     <value>确定</value>
@@ -155,16 +155,16 @@
     <value>查看详细内容</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>无损图像转换</value>
+    <value>无损的图片格式转换工具</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>图像转换工具</value>
+    <value>图片格式转换工具</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
     <value>转换</value>
   </data>
   <data name="ConvertedFormatDescription" xml:space="preserve">
-    <value>选择转换后的文件格式</value>
+    <value>选择输出的图片格式</value>
   </data>
   <data name="JPEG" xml:space="preserve">
     <value>JPEG</value>
@@ -188,6 +188,6 @@
     <value>TIFF</value>
   </data>
   <data name="ErrorMessage" xml:space="preserve">
-    <value>发生意外错误，转换可能没有执行。</value>
+    <value>发生了一个意外错误，转换操作可能未被完成。</value>
   </data>
 </root>

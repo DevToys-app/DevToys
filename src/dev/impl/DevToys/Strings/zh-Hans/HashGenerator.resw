@@ -124,7 +124,7 @@
     <value>配置</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>哈希散列（Hash）生成工具</value>
+    <value>哈希散列（Hash）</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>输入</value>

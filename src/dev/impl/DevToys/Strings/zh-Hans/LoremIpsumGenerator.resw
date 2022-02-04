@@ -133,7 +133,7 @@
     <value>长度</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>乱数假文（Lorem Ipsum）生成工具</value>
+    <value>乱数假文（Lorem Ipsum）</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>输出</value>

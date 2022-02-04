@@ -127,19 +127,19 @@
     <value>配置</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>从文件生成一个带有校验和的哈希值</value>
+    <value>基于文件的校验和生成一个哈希值</value>
   </data>
   <data name="HashingAlgorithmDescription" xml:space="preserve">
-    <value>选择您想要使用的散列算法</value>
+    <value>选择您想要使用的哈希算法</value>
   </data>
   <data name="HashingAlgorithmTitle" xml:space="preserve">
-    <value>散列算法</value>
+    <value>哈希算法</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>输入</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>校验和（Checksum）生成工具</value>
+    <value>校验和（Checksum）</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>输出</value>

@@ -124,7 +124,7 @@
     <value>配置</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>JSON 字符串格式化工具</value>
+    <value>JSON 字符串</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
     <value>4 个空格</value>

@@ -130,7 +130,7 @@
     <value>十进制</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>进制转换工具</value>
+    <value>进制转换</value>
   </data>
   <data name="Format" xml:space="preserve">
     <value>数字格式化</value>
