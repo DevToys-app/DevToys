@@ -11,6 +11,10 @@
     <iconUrl>https://devtoys.app/img/hero-logo.png</iconUrl>
     <licenseUrl>https://github.com/veler/DevToys/blob/main/LICENSE.md</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <projectSourceUrl>https://github.com/veler/DevToys.git</projectSourceUrl>
+    <docsUrl>https://github.com/veler/DevToys/blob/main/README.md</docsUrl>
+    <mailingListUrl>https://github.com/veler/DevToys/discussions</mailingListUrl>
+    <bugTrackerUrl>https://github.com/veler/DevToys/issues</bugTrackerUrl>
     <tags>devtoys</tags>
     <summary>A Swiss Army knife for developers.</summary>
     <description>DevToys helps in daily tasks like formatting JSON, comparing text, testing RegExp. No need to use many untruthful websites to do simple tasks with your data. With Smart Detection, DevToys is able to detect the best tool that can treat the data you copied in the clipboard of your Windows. Compact overlay lets you keep the app in small and on top of other windows. Multiple instances of the app can be used at once.</description>
