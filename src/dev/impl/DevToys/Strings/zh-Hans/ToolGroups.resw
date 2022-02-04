@@ -142,10 +142,10 @@
     <value>生成类型工具</value>
   </data>
   <data name="GraphicAccessibleName" xml:space="preserve">
-    <value>图片处理类型工具</value>
+    <value>图像处理类型工具</value>
   </data>
   <data name="GraphicDisplayName" xml:space="preserve">
-    <value>图片处理类型工具</value>
+    <value>图像处理类型工具</value>
   </data>
   <data name="TextAccessibleName" xml:space="preserve">
     <value>文本处理类型工具</value>

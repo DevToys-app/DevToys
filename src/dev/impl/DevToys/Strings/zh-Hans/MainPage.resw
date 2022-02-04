@@ -155,7 +155,7 @@
     <value>无法将工具固定到“开始”菜单。若要了解更多细节，请查看日记。</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>搜索您想要使用的工具类型</value>
+    <value>搜索您想要使用的工具名称</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
     <value>抱歉，没有找到您要查找的信息</value>

@@ -124,7 +124,7 @@
     <value>配置</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>生成 Lorem Ipsum 占位符文本</value>
+    <value>生成乱数假文占位符文本</value>
   </data>
   <data name="LengthDescription" xml:space="preserve">
     <value>要生成的单词、句子或段落的数量</value>
@@ -148,7 +148,7 @@
     <value>句子</value>
   </data>
   <data name="TypeDescription" xml:space="preserve">
-    <value>生成单词、句子或段落形式的 Lorem Ipsum</value>
+    <value>生成单词、句子或段落形式的乱数假文</value>
   </data>
   <data name="TypeTitle" xml:space="preserve">
     <value>类型</value>
