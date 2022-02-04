@@ -3,7 +3,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using DevToys.Core;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 using Windows.Storage.Pickers;
@@ -103,12 +102,13 @@ namespace DevToys.Views.Tools.ColorBlindnessSimulator
             {
                 var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
                 dataPackage.SetBitmap(RandomAccessStreamReference.CreateFromFile(await StorageFile.GetFileFromPathAsync(Source!.OriginalString)));
+
                 Clipboard.SetContentWithOptions(dataPackage, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
                 Clipboard.Flush(); // This method allows the content to remain available after the application shuts down.
             }
             catch (Exception ex)
             {
-                Logger.LogFault("Failed to copy from image preview", ex);
+                Core.Logger.LogFault("Failed to copy from image preview", ex);
             }
         }
 
