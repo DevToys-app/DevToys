@@ -136,7 +136,7 @@
     <value>入力</value>
   </data>
   <data name="Minified" xml:space="preserve">
-    <value>軽量化</value>
+    <value>縮小</value>
   </data>
   <data name="OneTab" xml:space="preserve">
     <value>1 タブ</value>
@@ -148,7 +148,7 @@
     <value>2 スペース</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>JSONデータを軽量化したりもとに戻したりします</value>
+    <value>JSON データを整形または縮小します</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>JSON フォーマッター</value>

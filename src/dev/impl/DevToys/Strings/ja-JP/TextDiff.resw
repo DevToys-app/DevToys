@@ -139,7 +139,7 @@
     <value>新しいテキスト</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>2つのテキストを比較</value>
+    <value>2 つのテキストを比較</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>テキスト比較ツール</value>

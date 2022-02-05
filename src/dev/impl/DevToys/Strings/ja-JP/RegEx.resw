@@ -133,10 +133,10 @@
     <value>正規表現テスター</value>
   </data>
   <data name="EcmaScript" xml:space="preserve">
-    <value>ECMA Script</value>
+    <value>ECMAScript</value>
   </data>
   <data name="EcmaScriptDescription" xml:space="preserve">
-    <value>ECMAScript準拠の動作を有効にします。 この値は、Culture Invariant、Ignore Case、およびMultilineオプションと組み合わせてのみ使用できます</value>
+    <value>ECMAScript 準拠の動作を有効にします。 この値は Culture Invariant、Ignore Case、および Multiline オプションとの組み合わせのみ使用できます</value>
   </data>
   <data name="IgnoreCase" xml:space="preserve">
     <value>Ignore Case</value>
@@ -148,13 +148,13 @@
     <value>Ignore Whitespace</value>
   </data>
   <data name="IgnoreWhitespaceDescription" xml:space="preserve">
-    <value>パターンからエスケープされていない空白を削除し、# でマークされたコメントを有効にします。 ただし、この値は、個々の正規表現言語要素の始まりを示す文字クラスや数値数量詞、トークンの空白に影響を与えたり、削除したりすることはありません。</value>
+    <value>エスケープされていない空白をパターンから除外し、# の後ろのコメントを有効にします。 ただし、文字クラス内、数量詞内、言語要素を導入する文字シーケンス内の空白文字は無視されません</value>
   </data>
   <data name="Multiline" xml:space="preserve">
     <value>Multiline</value>
   </data>
   <data name="MultilineDescription" xml:space="preserve">
-    <value>^ と $ の意味を変更して、文字列全体の最初と最後だけでなく、任意の行の最初と最後でそれぞれ一致するようにします</value>
+    <value>^ と $ の意味を変更して、文字列全体の先頭と末尾だけでなく、任意の行の先頭と末尾でそれぞれが一致するようにします</value>
   </data>
   <data name="Options" xml:space="preserve">
     <value>設定</value>
@@ -163,16 +163,16 @@
     <value>正規表現</value>
   </data>
   <data name="RightToLeft" xml:space="preserve">
-    <value>右から左</value>
+    <value>Right To Left</value>
   </data>
   <data name="RightToLeftDescription" xml:space="preserve">
-    <value>検索が左から右ではなく右から左になるように指定します。</value>
+    <value>検索の方向を右から左になるように指定します</value>
   </data>
   <data name="Singleline" xml:space="preserve">
     <value>Singleline</value>
   </data>
   <data name="SinglelineDescription" xml:space="preserve">
-    <value>ドット (.) の意味を変更して、（\n を除くすべての文字ではなく）すべての文字に一致するようにします</value>
+    <value>ドット (.) は任意の 1 文字として一致させます (\n を除くすべての文字の代用)</value>
   </data>
   <data name="Text" xml:space="preserve">
     <value>テキスト</value>
