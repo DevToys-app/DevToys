@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>校验和（Checksum）生成工具</value>
+    <value>校验和（Checksum）工具</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>取消</value>
@@ -148,7 +148,7 @@
     <value>比较输出</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>校验和（Checksum）生成工具</value>
+    <value>校验和（Checksum）工具</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
     <value>大写字母</value>

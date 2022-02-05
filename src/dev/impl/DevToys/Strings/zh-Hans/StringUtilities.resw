@@ -127,7 +127,7 @@
     <value>字节：</value>
   </data>
   <data name="CamelCase" xml:space="preserve">
-    <value>驼峰式命名法转换（camelCase）</value>
+    <value>驼峰命名法转换（camelCase）</value>
   </data>
   <data name="CharacterDistribution" xml:space="preserve">
     <value>字符分布</value>
