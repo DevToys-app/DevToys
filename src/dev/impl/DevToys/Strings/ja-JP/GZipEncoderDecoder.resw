@@ -124,7 +124,7 @@
     <value>ASCII</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>設定</value>
+    <value>構成</value>
   </data>
   <data name="ConversionDecompress" xml:space="preserve">
     <value>展開</value>
