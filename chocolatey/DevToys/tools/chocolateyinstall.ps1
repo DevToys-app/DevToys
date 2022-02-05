@@ -29,6 +29,8 @@ $PackageArgs = @{
   fileFullPath = Join-Path $InstallDir $([IO.Path]::GetFileName($Url64))
 }
 
+Get-ChocolateyWebFile @PackageArgs
+
 if ((Get-AppxPackage -name $AppxPackageName).Version -Match $Version) {
   if($env:ChocolateyForce) {
     #You can't install the same version of an appx package, you need to remove it first
