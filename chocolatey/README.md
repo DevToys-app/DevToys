@@ -7,6 +7,7 @@ First of all, ```update.ps1``` script uses [Automatic Package Updater Module](ht
 - After install Automatic Package Updater Module launch ```update.ps1```.
 - A .nupkg package related to the latest version published as release in GitHub will be created.
 - If you already have a .nupkg created for the latest version but you would like to recreate it, you should uncomment the ```-Force``` parameter present in ```update.ps1``` script (line ```update -ChecksumFor 64 #-Force```).
+- Remove **.Msixbundle** file from inside .nupkg file (it will be placed in tools folder). Note: this could be automated (to do?)
 
 ## Pushing versions to Chocolatey
 
