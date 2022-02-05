@@ -127,7 +127,7 @@
     <value>解码</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>选择您想使用的转换格式</value>
+    <value>选择您想使用的转换模式</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
     <value>编码</value>
