@@ -3,7 +3,7 @@
   <metadata>
     <id>DevToys</id>
     <version>1.0.2.0</version>
-    <packageSourceUrl>https://github.com/veler/DevToys</packageSourceUrl>
+    <packageSourceUrl>https://github.com/rlm96/DevToys/tree/main/chocolatey/DevToys</packageSourceUrl>
     <owners>Rafael Lopez</owners>
     <title>DevToys</title>
     <authors>Etienne BAUDOUX</authors>
