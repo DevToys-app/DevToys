@@ -188,6 +188,6 @@
     <value>TIFF</value>
   </data>
   <data name="ErrorMessage" xml:space="preserve">
-    <value>发生了一个意外错误，转换操作可能未被完成。</value>
+    <value>发生了一个意外错误，转换操作可能未被执行。</value>
   </data>
 </root>

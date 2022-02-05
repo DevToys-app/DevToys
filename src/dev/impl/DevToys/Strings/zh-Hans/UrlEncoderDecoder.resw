@@ -136,7 +136,7 @@
     <value>转换</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>URL 编码 / 解码工具</value>
+    <value>URL</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
     <value>选择您想使用的字符编码</value>
@@ -151,7 +151,7 @@
     <value>输出</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>将所有适用字符编码或解码为对应的 URL</value>
+    <value>将所有适用的字符编码或解码为对应的 URL 输出</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>URL 编码 / 解码工具</value>

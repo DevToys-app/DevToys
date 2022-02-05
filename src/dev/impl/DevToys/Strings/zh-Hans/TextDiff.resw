@@ -127,7 +127,7 @@
     <value>差异</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>文本比较工具</value>
+    <value>文本比较</value>
   </data>
   <data name="InlineDifference" xml:space="preserve">
     <value>内联模式</value>

@@ -178,7 +178,7 @@
     <value>Spark SQL</value>
   </data>
   <data name="SqlLanguageSql" xml:space="preserve">
-    <value>Standard SQL</value>
+    <value>标准 SQL</value>
   </data>
   <data name="SqlLanguageTsql" xml:space="preserve">
     <value>Transact-SQL</value>

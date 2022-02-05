@@ -133,7 +133,7 @@
     <value>解码</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>JWT 解码工具</value>
+    <value>JWT</value>
   </data>
   <data name="Encode" xml:space="preserve">
     <value>编码</value>

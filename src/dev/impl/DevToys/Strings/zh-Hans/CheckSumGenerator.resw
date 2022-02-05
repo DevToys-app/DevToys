@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Checksum 生成工具</value>
+    <value>校验和（Checksum）生成工具</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>取消</value>
@@ -127,7 +127,7 @@
     <value>配置</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>基于文件的 CheckSum 生成一个 Hash 值</value>
+    <value>基于文件的校验和生成一个哈希值</value>
   </data>
   <data name="HashingAlgorithmDescription" xml:space="preserve">
     <value>选择您想使用的哈希算法</value>
@@ -139,7 +139,7 @@
     <value>输入</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Checksum（校验和）</value>
+    <value>校验和（Checksum）</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>输出</value>
@@ -148,9 +148,9 @@
     <value>比较输出</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Checksum 生成工具</value>
+    <value>校验和（Checksum）生成工具</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
-    <value>大写输出</value>
+    <value>大写字母</value>
   </data>
 </root>

@@ -130,7 +130,7 @@
     <value>指定忽略语言中的区域性差异</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>正则表达式测试工具</value>
+    <value>正则表达式测试</value>
   </data>
   <data name="EcmaScript" xml:space="preserve">
     <value>ECMA 脚本</value>
