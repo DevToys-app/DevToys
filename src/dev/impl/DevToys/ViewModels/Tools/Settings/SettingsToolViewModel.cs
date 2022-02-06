@@ -139,14 +139,21 @@ namespace DevToys.ViewModels.Settings
 
         private void ExecuteCopyVersionCommand()
         {
-            var data = new DataPackage
+            try
             {
-                RequestedOperation = DataPackageOperation.Copy
-            };
-            data.SetText(Version);
+                var data = new DataPackage
+                {
+                    RequestedOperation = DataPackageOperation.Copy
+                };
+                data.SetText(Version);
 
-            Clipboard.SetContentWithOptions(data, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
-            Clipboard.Flush();
+                Clipboard.SetContentWithOptions(data, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
+                Clipboard.Flush();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogFault($"Failed to copy data from copy version command, version: ${Version}", ex);
+            }
         }
 
         #endregion
