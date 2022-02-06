@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:DevToys.UI.Controls"
+    xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
     NavigationCacheMode="Required">
 
@@ -17,8 +18,9 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition MinHeight="200"/>
+            <RowDefinition Height="16" />
+            <RowDefinition MinHeight="200"/>
         </Grid.RowDefinitions>
 
         <controls:CustomTextBox
@@ -36,9 +38,22 @@
             CodeLanguage="json"
             IsReadOnly="True"/>
 
+        <toolkit:GridSplitter
+            x:Name="PayloadGridSplitter"
+            Grid.Row="2"
+            Height="16"
+            ResizeBehavior="BasedOnAlignment"
+            ResizeDirection="Auto">
+            <toolkit:GridSplitter.Element>
+                <FontIcon
+                    Glyph="&#xFD52;"
+                    FontSize="13"/>
+            </toolkit:GridSplitter.Element>
+        </toolkit:GridSplitter>
+        
         <controls:CodeEditor
             x:Name="PayloadCodeEditor"
-            Grid.Row="2"
+            Grid.Row="3"
             Header="{x:Bind ViewModel.Strings.PayloadLabel}"
             Text="{x:Bind ViewModel.JwtPayload, Mode=OneWay}"
             CodeLanguage="json"
