@@ -35,6 +35,30 @@ namespace DevToys.Tests.Providers
             });
         }
 
+        [DataTestMethod]
+        [DataRow(null, 0)]
+        [DataRow("", 0)]
+        [DataRow(" ", 0)]
+        [DataRow("RFC 4648", 1)]
+        [DataRow("RFC4648", 1)]
+        [DataRow(" RFC 4648 base64 ", 1)]
+        public async Task SearchToolsKeyword(string searchquery, int expectedMatchCount)
+        {
+            await ThreadHelper.RunOnUIThreadAsync(async () =>
+            {
+                System.Collections.Generic.IEnumerable<MatchedToolProvider> result = await ExportProvider.Import<IToolProviderFactory>().SearchToolsAsync(searchquery);
+
+                if (expectedMatchCount > 0)
+                {
+                    Assert.AreEqual(expectedMatchCount, result.ToList().Count);
+                }
+                else
+                {
+                    Assert.IsFalse(result.Any());
+                }
+            });
+        }
+
         [TestMethod]
         public async Task ToolTree()
         {
