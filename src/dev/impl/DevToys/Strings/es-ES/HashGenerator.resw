@@ -159,4 +159,7 @@
   <data name="OutputTypeTitle" xml:space="preserve">
     <value>Tipo de Salida</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Hash</value>
+  </data>
 </root>
