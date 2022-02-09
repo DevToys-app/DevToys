@@ -191,6 +191,6 @@
     <value>Došlo k neočekávané chybě, konverze možná nebyla provedena.</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>BMP GIF HEIF JPEG XR PNG TIFF</value>
+    <value>BMP GIF HEIF JPG XR PNG TIFF</value>
   </data>
 </root>
