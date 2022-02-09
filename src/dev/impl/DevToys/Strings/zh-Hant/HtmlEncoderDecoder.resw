@@ -156,4 +156,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>HTML 編碼/解碼器</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>HTML</value>
+  </data>
 </root>

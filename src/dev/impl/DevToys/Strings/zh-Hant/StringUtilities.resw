@@ -216,4 +216,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>文字大小寫轉換及檢查工具</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Text String</value>
+  </data>
 </root>
