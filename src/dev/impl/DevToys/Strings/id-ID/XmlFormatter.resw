@@ -156,4 +156,7 @@
   <data name="NewLineOnAttributesName" xml:space="preserve">
     <value>Put attributes on new line</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>XML</value>
+  </data>
 </root>

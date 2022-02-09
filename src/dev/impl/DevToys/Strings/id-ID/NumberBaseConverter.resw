@@ -176,4 +176,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Konversi Basis Data</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Binary Octal Decimal Hexadecimal</value>
+  </data>
 </root>
