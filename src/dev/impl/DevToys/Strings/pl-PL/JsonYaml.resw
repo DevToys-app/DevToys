@@ -162,4 +162,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Konwerter JSON &lt;&gt; YAML Converter</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>JSON YAML</value>
+  </data>
 </root>

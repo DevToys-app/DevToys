@@ -153,4 +153,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Formater JSON-a</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>JSON</value>
+  </data>
 </root>
