@@ -156,4 +156,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Codificador / Decodificador de HTML</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>HTML</value>
+  </data>
 </root>
