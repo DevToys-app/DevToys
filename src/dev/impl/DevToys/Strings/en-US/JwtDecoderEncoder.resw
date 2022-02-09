@@ -162,4 +162,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>JWT Decoder</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>JWT</value>
+  </data>
 </root>

@@ -228,4 +228,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Settings</value>
+  </data>
 </root>
