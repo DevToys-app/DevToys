@@ -27,6 +27,8 @@ namespace DevToys.ViewModels.Tools.HashGenerator
 
         public string AccessibleName => LanguageManager.Instance.HashGenerator.AccessibleName;
 
+        public string? SearchKeywords => LanguageManager.Instance.HashGenerator.SearchKeywords;
+
         public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF409");
 
         [ImportingConstructor]

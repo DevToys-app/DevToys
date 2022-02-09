@@ -27,6 +27,8 @@ namespace DevToys.ViewModels.Tools.Formatters.XmlFormatter
 
         public string AccessibleName => LanguageManager.Instance.XmlFormatter.AccessibleName;
 
+        public string? SearchKeywords => LanguageManager.Instance.XmlFormatter.SearchKeywords;
+
         public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uf2ef");
 
         [ImportingConstructor]

@@ -27,6 +27,8 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
 
         public string AccessibleName => LanguageManager.Instance.JsonFormatter.AccessibleName;
 
+        public string? SearchKeywords => LanguageManager.Instance.JsonFormatter.SearchKeywords;
+
         public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("JsonFormatter.svg");
 
         [ImportingConstructor]

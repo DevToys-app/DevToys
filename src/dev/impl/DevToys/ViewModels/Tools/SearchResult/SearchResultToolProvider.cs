@@ -46,6 +46,8 @@ namespace DevToys.ViewModels.Tools
 
         public string? Description => null;
 
+        public string? SearchKeywords => GetTitle();
+
         public bool CanBeTreatedByTool(string data)
         {
             return false;

@@ -20,6 +20,8 @@ namespace DevToys.ViewModels.Tools
 
         public abstract string AccessibleName { get; }
 
+        public virtual string? SearchKeywords { get; }
+
         public abstract TaskCompletionNotifier<IconElement> IconSource { get; }
 
         public GroupToolProviderBase(IMefProvider mefProvider)

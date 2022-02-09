@@ -23,6 +23,8 @@ namespace DevToys.ViewModels.Tools.GZipEncoderDecoder
 
         public string AccessibleName => LanguageManager.Instance.GZipEncoderDecoder.AccessibleName;
 
+        public string? SearchKeywords => LanguageManager.Instance.GZipEncoderDecoder.SearchKeywords;
+
         public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF435");
 
         private readonly IMefProvider _mefProvider;

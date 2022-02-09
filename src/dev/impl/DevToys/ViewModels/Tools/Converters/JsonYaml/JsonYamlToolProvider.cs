@@ -27,6 +27,8 @@ namespace DevToys.ViewModels.Tools.JsonYaml
 
         public string AccessibleName => LanguageManager.Instance.JsonYaml.AccessibleName;
 
+        public string? SearchKeywords => LanguageManager.Instance.JsonYaml.SearchKeywords;
+
         public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("JsonYaml.svg");
 
         [ImportingConstructor]

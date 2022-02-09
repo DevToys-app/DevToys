@@ -26,6 +26,8 @@ namespace DevToys.ViewModels.Tools.RegEx
 
         public string AccessibleName => LanguageManager.Instance.RegEx.AccessibleName;
 
+        public string? SearchKeywords => LanguageManager.Instance.RegEx.SearchKeywords;
+
         public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("RegexTester.svg");
 
         [ImportingConstructor]
