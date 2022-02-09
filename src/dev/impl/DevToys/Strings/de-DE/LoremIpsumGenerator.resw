@@ -156,4 +156,7 @@
   <data name="WordsType" xml:space="preserve">
     <value>Wörter</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Lorem Ipsum</value>
+  </data>
 </root>
