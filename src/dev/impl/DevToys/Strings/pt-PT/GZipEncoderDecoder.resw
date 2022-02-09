@@ -162,4 +162,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>GZip Comprimir/Descomprimir</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>GZip</value>
+  </data>
 </root>
