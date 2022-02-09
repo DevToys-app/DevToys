@@ -183,4 +183,7 @@
   <data name="SqlLanguageTsql" xml:space="preserve">
     <value>Transact-SQL</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Db2 MariaDB My N1QL PL/ Postgre Amazon Redshift Spark Transact- SQL</value>
+  </data>
 </root>
