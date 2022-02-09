@@ -144,4 +144,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Comparateur de texte</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Text Diff comparer</value>
+  </data>
 </root>
