@@ -153,4 +153,7 @@
   <data name="Uppercase" xml:space="preserve">
     <value>Velká písmena</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Checksum</value>
+  </data>
 </root>

@@ -162,4 +162,8 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Kodér / Dekodér Base 64</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>RFC 4648</value>
+    <comment>Alternative search keywords.</comment>
+  </data>
 </root>

@@ -150,4 +150,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Náhled Markdown</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>MD</value>
+  </data>
 </root>
