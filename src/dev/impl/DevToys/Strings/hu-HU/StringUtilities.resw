@@ -216,4 +216,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Szöveg Írás Mód Átalakító és Elemző</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Text String</value>
+  </data>
 </root>

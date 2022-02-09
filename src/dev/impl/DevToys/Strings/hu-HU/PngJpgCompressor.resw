@@ -160,4 +160,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>PNG / JPEG Tömörítő</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>PNG JPEG</value>
+  </data>
 </root>
