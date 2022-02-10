@@ -10,7 +10,7 @@ namespace DevToys.Helpers.SqlFormatter.Core
 {
     internal static class RegexFactory
     {
-        private static readonly Regex SpecialCharacterRegex = new(@"[.*+?^${}()|[\]\\]", RegexOptions.Compiled);
+        private static readonly Regex SpecialCharacterRegex = new(@"[.*+?^${}()|[\]\\]");
         private static readonly Dictionary<string, string> Patterns = new Dictionary<string, string>()
         {
             { "``", "((`[^`]*($|`))+)" },
@@ -29,33 +29,33 @@ namespace DevToys.Helpers.SqlFormatter.Core
             IOrderedEnumerable<string> sortedOperators = SortByLengthDesc(multiLetterOperators);
             IEnumerable<string> escapedOperators = sortedOperators.Select(item => EscapeSpecialCharacters(item));
             string operators = string.Join("|", escapedOperators);
-            return new Regex(@$"^({operators}|.)", RegexOptions.Compiled);
+            return new Regex(@$"^({operators}|.)");
         }
 
         internal static Regex CreateLineCommentRegex(string[] lineCommentTypes)
         {
-            return new Regex("^((?:" + string.Join('|', lineCommentTypes.Select(item => EscapeSpecialCharacters(item))) + ").*?)(?:\\r\\n|\\r|\\n|$)", RegexOptions.Compiled | RegexOptions.Singleline);
+            return new Regex($"^((?:{string.Join('|', lineCommentTypes.Select(item => EscapeSpecialCharacters(item)))}).*?)(?:\\r\\n|\\r|\\n|$)", RegexOptions.Singleline);
         }
 
         internal static Regex CreateReservedWordRegex(string[] reservedWords)
         {
             if (reservedWords.Length == 0)
             {
-                return new Regex(@"^\b$", RegexOptions.Compiled);
+                return new Regex(@"^\b$");
             }
 
             string reservedWordsPattern = string.Join('|', SortByLengthDesc(reservedWords)).Replace(" ", "\\s+");
-            return new Regex(@$"^({reservedWordsPattern})\b", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+            return new Regex(@$"^({reservedWordsPattern})\b", RegexOptions.IgnoreCase);
         }
 
         internal static Regex CreateWordRegex(string[] specialCharacters)
         {
-            return new Regex(@"^([\p{L}\p{M}\p{Nd}\p{Pc}\p{Cf}\p{Cs}\p{Co}" + string.Join(string.Empty, specialCharacters) + "]+)", RegexOptions.Compiled);
+            return new Regex(@"^([\p{L}\p{M}\p{Nd}\p{Pc}\p{Cf}\p{Cs}\p{Co}" + $"{string.Join(string.Empty, specialCharacters)}]+)");
         }
 
         internal static Regex CreateStringRegex(string[] stringTypes)
         {
-            return new Regex("^(" + CreateStringPattern(stringTypes) + ")", RegexOptions.Compiled);
+            return new Regex($"^({CreateStringPattern(stringTypes)})");
         }
 
         /// <summary>
@@ -83,12 +83,12 @@ namespace DevToys.Helpers.SqlFormatter.Core
 
             string typesRegex = string.Join('|', types.Select(item => EscapeSpecialCharacters(item.ToString())));
 
-            return new Regex("^((?:" + typesRegex + ")(?:" + pattern + "))", RegexOptions.Compiled);
+            return new Regex($"^((?:{typesRegex})(?:{pattern}))");
         }
 
         internal static Regex CreateParenRegex(string[] parens)
         {
-            return new Regex("^(" + string.Join('|', parens.Select(item => EscapeParen(item))) + ")", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+            return new Regex($"^({string.Join('|', parens.Select(item => EscapeParen(item)))})", RegexOptions.IgnoreCase);
         }
 
         private static string EscapeParen(string paren)
@@ -101,7 +101,7 @@ namespace DevToys.Helpers.SqlFormatter.Core
             else
             {
                 // longer word
-                return "\\b" + paren + "\\b";
+                return $"\\b{paren}\\b";
             }
         }
 
@@ -112,7 +112,7 @@ namespace DevToys.Helpers.SqlFormatter.Core
 
         private static string EscapeSpecialCharacters(string input)
         {
-            return SpecialCharacterRegex.Replace(input, "\\$&");
+            return  SpecialCharacterRegex.Replace(input, "\\$&");
         }
     }
 }

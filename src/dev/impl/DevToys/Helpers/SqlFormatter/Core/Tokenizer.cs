@@ -8,8 +8,8 @@ namespace DevToys.Helpers.SqlFormatter.Core
 {
     internal class Tokenizer
     {
-        private static readonly Regex NumberRegex = new Regex(@"^((-\s*)?[0-9]+(\.[0-9]+)?([eE]-?[0-9]+(\.[0-9]+)?)?|0x[0-9a-fA-F]+|0b[01]+)\b", RegexOptions.Compiled);
-        private static readonly Regex BlockCommentRegex = new Regex(@"^(\/\*(.*?)*?(?:\*\/|$))", RegexOptions.Compiled | RegexOptions.Singleline);
+        private static readonly Regex NumberRegex = new Regex(@"^((-\s*)?[0-9]+(\.[0-9]+)?([eE]-?[0-9]+(\.[0-9]+)?)?|0x[0-9a-fA-F]+|0b[01]+)\b");
+        private static readonly Regex BlockCommentRegex = new Regex(@"^(\/\*(.*?)*?(?:\*\/|$))", RegexOptions.Singleline);
 
         private readonly Regex _operatorRegex;
         private readonly Regex _lineCommentRegex;
@@ -188,14 +188,7 @@ namespace DevToys.Helpers.SqlFormatter.Core
         private Token? GetPlaceholderTokenWithKey(string input, int pointerIndex, Regex? regex)
         {
             return GetTokenOnFirstMatch(input, pointerIndex, TokenType.PlaceHolder, regex);
-        }
-
-        private string GetEscapedPlaceholderKey(string key, string quoteChar)
-        {
-            string? escapeRegexPattern = new Regex(@"[.*+?^${}()|[\]\\]").Replace("\\" + quoteChar, "\\$&");
-            var escapeRegex = new Regex(escapeRegexPattern);
-            return escapeRegex.Replace(key, quoteChar);
-        }
+        }     
 
         private Token? GetNumberToken(string input, int pointerIndex)
         {

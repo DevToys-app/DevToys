@@ -11,8 +11,8 @@ namespace DevToys.Helpers.SqlFormatter.Core
 {
     internal abstract class Formatter
     {
-        private static readonly Regex WhitespacesRegex = new Regex(@"\s+$", RegexOptions.Compiled);
-        private static readonly Regex CommentWhitespacesRegex = new Regex(@"\n[ \t]*", RegexOptions.Compiled);
+        private static readonly Regex WhitespacesRegex = new Regex(@"\s+$");
+        private static readonly Regex CommentWhitespacesRegex = new Regex(@"\n[ \t]*");
 
         private readonly InlineBlock _inlineBlock = new();
         private readonly StringBuilder _queryBuilder = new();
