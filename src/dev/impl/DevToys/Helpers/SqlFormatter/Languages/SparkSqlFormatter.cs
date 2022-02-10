@@ -255,8 +255,8 @@ namespace DevToys.Helpers.SqlFormatter.Languages
                     stringTypes: new[] { "\"\"", "''", "``", "{}" },
                     openParens: new[] { "(", "CASE" },
                     closeParens: new[] { ")", "END" },
-                    indexedPlaceholderTypes: new[] { "?" },
-                    namedPlaceholderTypes: new[] { "$" },
+                    indexedPlaceholderTypes: new[] { '?' },
+                    namedPlaceholderTypes: new[] { '$' },
                     lineCommentTypes: new[] { "--" },
                     specialWordChars: Array.Empty<string>(),
                     operators: new[]
@@ -269,27 +269,28 @@ namespace DevToys.Helpers.SqlFormatter.Languages
                     });
         }
 
-        protected override Token TokenOverride(Token token)
+        protected override Token TokenOverride(Token token, ReadOnlySpan<char> querySpan)
         {
             // Fix cases where names are ambiguously keywords or functions
-            if (TokenHelper.isWindow(token))
+            if (token.isWindow(querySpan.Slice(token)))
             {
                 Token? aheadToken = TokenLookAhead();
-                if (aheadToken is not null && aheadToken.Type == TokenType.OpenParen)
+                if (aheadToken is { Type: TokenType.OpenParen })
                 {
                     // This is a function call, treat it as a reserved word
-                    return new Token(token.Value, TokenType.Reserved);
+                    return new Token(token.Index, token.Length, TokenType.Reserved, token.PrecedingWitespaceLength);
                 }
             }
 
             // Fix cases where names are ambiguously keywords or properties
-            if (TokenHelper.isEnd(token))
+            if (token.isEnd(querySpan.Slice(token)))
             {
                 Token? backToken = TokenLookBehind();
-                if (backToken is not null && backToken.Type == TokenType.Operator && string.Equals(backToken.Value, ".", StringComparison.Ordinal))
+                if (backToken != null && backToken.Value.Type == TokenType.Operator &&
+                     backToken.Value.Length == 1 && querySpan[backToken.Value.Index] == '.')
                 {
                     // This is window().end (or similar) not CASE ... END
-                    return new Token(token.Value, TokenType.Word);
+                    return new Token(token.Index, token.Length, TokenType.Word, token.PrecedingWitespaceLength);
                 }
             }
 

@@ -74,14 +74,14 @@ namespace DevToys.Helpers.SqlFormatter.Core
             return string.Join('|', stringTypes.Select(item => Patterns[item]));
         }
 
-        internal static Regex? CreatePlaceholderRegex(string[] types, string pattern)
+        internal static Regex? CreatePlaceholderRegex(char[] types, string pattern)
         {
             if (types is null || types.Length == 0)
             {
                 return null;
             }
 
-            string typesRegex = string.Join('|', types.Select(item => EscapeSpecialCharacters(item)));
+            string typesRegex = string.Join('|', types.Select(item => EscapeSpecialCharacters(item.ToString())));
 
             return new Regex("^((?:" + typesRegex + ")(?:" + pattern + "))", RegexOptions.Compiled);
         }

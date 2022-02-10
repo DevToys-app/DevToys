@@ -388,8 +388,8 @@ namespace DevToys.Helpers.SqlFormatter.Languages
                     stringTypes: new[] { "\"\"", "''", "``" },
                     openParens: new[] { "(" },
                     closeParens: new[] { ")" },
-                    indexedPlaceholderTypes: new[] { "?" },
-                    namedPlaceholderTypes: new[] { "@", "#", "$" },
+                    indexedPlaceholderTypes: new[] { '?' },
+                    namedPlaceholderTypes: new[] { '@', '#', '$' },
                     lineCommentTypes: new[] { "--" },
                     specialWordChars: Array.Empty<string>(),
                     operators: new[]
