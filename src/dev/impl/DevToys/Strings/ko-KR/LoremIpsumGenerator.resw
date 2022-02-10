@@ -124,7 +124,7 @@
     <value>설정</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>로렌 입숨 방식의 무의미한 내용을 생성합니다.</value>
+    <value>로렌 입숨 방식의 무의미한 문구를 생성합니다.</value>
   </data>
   <data name="LengthDescription" xml:space="preserve">
     <value>단어, 문장 및 문단 개수를 선택 후 생성합니다.</value>
@@ -151,7 +151,7 @@
     <value>로렌 입숨 내용을 생성할 단어, 문장 및 문단 개수를 선택 후 생성합니다.</value>
   </data>
   <data name="TypeTitle" xml:space="preserve">
-    <value>형식</value>
+    <value>단위</value>
   </data>
   <data name="WordsType" xml:space="preserve">
     <value>단어</value>

@@ -151,6 +151,6 @@
     <value>체크섬 생성기</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
-    <value>대문자</value>
+    <value>대문자 사용</value>
   </data>
 </root>

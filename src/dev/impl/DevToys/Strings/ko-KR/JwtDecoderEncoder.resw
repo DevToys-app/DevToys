@@ -148,13 +148,13 @@
     <value>헤더</value>
   </data>
   <data name="JwtTokenLabel" xml:space="preserve">
-    <value>Jwt 토큰</value>
+    <value>JWT 토큰</value>
   </data>
   <data name="PayloadLabel" xml:space="preserve">
-    <value>Jwt 내용</value>
+    <value>JWT 내용</value>
   </data>
   <data name="SecurityLabel" xml:space="preserve">
-    <value>보안</value>
+    <value>JWT 서명</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>JWT 헤더, 내용과 서명을 디코드 합니다.</value>
