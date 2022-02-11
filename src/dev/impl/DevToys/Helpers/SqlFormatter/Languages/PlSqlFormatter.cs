@@ -445,9 +445,9 @@ namespace DevToys.Helpers.SqlFormatter.Languages
         protected override Token TokenOverride(Token token, ReadOnlySpan<char> querySpan)
         {
 
-            if (token.isSet(querySpan.Slice(token)) 
+            if (token.IsSet(querySpan.Slice(token)) 
                 && _previousReservedToken != null
-                && _previousReservedToken.Value.isBy(querySpan.Slice(_previousReservedToken.Value)))
+                && _previousReservedToken.Value.IsBy(querySpan.Slice(_previousReservedToken.Value)))
             {
                 return new Token(token.Index, token.Length, TokenType.Reserved, token.PrecedingWitespaceLength);
             }

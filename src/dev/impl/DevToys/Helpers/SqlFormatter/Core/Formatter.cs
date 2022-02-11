@@ -192,7 +192,7 @@ namespace DevToys.Helpers.SqlFormatter.Core
             {
                 Token? t = TokenLookBehind(2);
 
-                if (t != null && t.Value.isBetween(querySpan.Slice(t.Value)))
+                if (t != null && t.Value.IsBetween(querySpan.Slice(t.Value)))
                 {
                     FormatWithSpaces(token, querySpan);
                     return;
@@ -290,7 +290,7 @@ namespace DevToys.Helpers.SqlFormatter.Core
                 return;
             }
             else if (_previousReservedToken is not null
-                && _previousReservedToken.Value.isLimit(querySpan.Slice(_previousReservedToken.Value)))
+                && _previousReservedToken.Value.IsLimit(querySpan.Slice(_previousReservedToken.Value)))
             {
                 return;
             }

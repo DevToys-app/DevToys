@@ -272,7 +272,7 @@ namespace DevToys.Helpers.SqlFormatter.Languages
         protected override Token TokenOverride(Token token, ReadOnlySpan<char> querySpan)
         {
             // Fix cases where names are ambiguously keywords or functions
-            if (token.isWindow(querySpan.Slice(token)))
+            if (token.IsWindow(querySpan.Slice(token)))
             {
                 Token? aheadToken = TokenLookAhead();
                 if (aheadToken is { Type: TokenType.OpenParen })
@@ -283,7 +283,7 @@ namespace DevToys.Helpers.SqlFormatter.Languages
             }
 
             // Fix cases where names are ambiguously keywords or properties
-            if (token.isEnd(querySpan.Slice(token)))
+            if (token.IsEnd(querySpan.Slice(token)))
             {
                 Token? backToken = TokenLookBehind();
                 if (backToken is not null 
