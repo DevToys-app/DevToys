@@ -67,4 +67,3 @@ catch {
 finally {
     Pop-Location
 }
-pause
