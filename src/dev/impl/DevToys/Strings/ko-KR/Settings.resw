@@ -117,50 +117,115 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AccessibleName" xml:space="preserve">
-    <value>Alat konversi PNG dan JPEG</value>
+  <data name="About" xml:space="preserve">
+    <value>이 프로그램은</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Batal</value>
+  <data name="AppTheme" xml:space="preserve">
+    <value>앱 테마</value>
   </data>
-  <data name="Configuration" xml:space="preserve">
-    <value>Konfigurasi</value>
+  <data name="AppThemeDescription" xml:space="preserve">
+    <value>표시할 앱 테마를 선택합니다.</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Hapus</value>
+  <data name="AppTitle" xml:space="preserve">
+    <value>DevToys</value>
   </data>
-  <data name="DeleteAll" xml:space="preserve">
-    <value>Hapus semua</value>
+  <data name="Behaviors" xml:space="preserve">
+    <value>동작</value>
   </data>
-  <data name="DetailsTitle" xml:space="preserve">
-    <value>Detail</value>
+  <data name="Close" xml:space="preserve">
+    <value>닫기</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>복사</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>어둡게</value>
+  </data>
+  <data name="DefaultLanguage" xml:space="preserve">
+    <value>OS 언어와 동일하게</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Komporesi PNG / JPEG</value>
+    <value>설정</value>
   </data>
-  <data name="FileSizeDisplay" xml:space="preserve">
-    <value>{0:0.##} {1}</value>
-    <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
+  <data name="Font" xml:space="preserve">
+    <value>글꼴</value>
   </data>
-  <data name="OK" xml:space="preserve">
-    <value>OK</value>
+  <data name="HighlightCurrentLine" xml:space="preserve">
+    <value>선택한 줄 강조</value>
   </data>
-  <data name="SaveAll" xml:space="preserve">
-    <value>Simpan semua</value>
+  <data name="HighlightCurrentLineDescription" xml:space="preserve">
+    <value>선택한 줄을 잘 보일 만한 배경색으로 바꿉니다.</value>
   </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Simpan sebagai</value>
+  <data name="Language" xml:space="preserve">
+    <value>언어</value>
   </data>
-  <data name="SeeErrorMessage" xml:space="preserve">
-    <value>Lihat detail</value>
+  <data name="LanguageDescription" xml:space="preserve">
+    <value>다른 언어를 선택한 뒤 앱을 재시작해야 합니다.</value>
+  </data>
+  <data name="License" xml:space="preserve">
+    <value>라이선스</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>밝게</value>
+  </data>
+  <data name="LineNumbers" xml:space="preserve">
+    <value>줄 위치</value>
+  </data>
+  <data name="LineNumbersDescription" xml:space="preserve">
+    <value>편집기에 각 줄마다 수를 표시합니다.</value>
+  </data>
+  <data name="OpenLogs" xml:space="preserve">
+    <value>로그 열기</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>개인정보 보호정책</value>
+  </data>
+  <data name="RateAndReview" xml:space="preserve">
+    <value>Microsoft Store에 평가 및 리뷰 남기기</value>
+  </data>
+  <data name="RenderWhitespace" xml:space="preserve">
+    <value>공백 문자 표시</value>
+  </data>
+  <data name="ReportProblem" xml:space="preserve">
+    <value>문제 보고</value>
+  </data>
+  <data name="SmartDetection" xml:space="preserve">
+    <value>향상된 감지</value>
+  </data>
+  <data name="SmartDetectionDescription" xml:space="preserve">
+    <value>클립보드 내용을 자동으로 감지하여 적합한 도구를 알아서 선택합니다.</value>
+  </data>
+  <data name="SmartDetectionHowTo" xml:space="preserve">
+    <value>향상된 감지 사용 방법</value>
+  </data>
+  <data name="SmartDetectionPaste" xml:space="preserve">
+    <value>추천한 도구를 선택할 때 자동으로 클립보드 내용을 붙여넣습니다.</value>
+  </data>
+  <data name="SourceCode" xml:space="preserve">
+    <value>소스 코드</value>
+  </data>
+  <data name="TextEditor" xml:space="preserve">
+    <value>텍스트 편집기</value>
+  </data>
+  <data name="ThirdPartyNotices" xml:space="preserve">
+    <value>타사 라이선스</value>
+  </data>
+  <data name="UsefulLinks" xml:space="preserve">
+    <value>유용한 링크</value>
+  </data>
+  <data name="UseSystemSettings" xml:space="preserve">
+    <value>시스템 설정 사용</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>버전 {0}</value>
+  </data>
+  <data name="WordWrap" xml:space="preserve">
+    <value>자동 줄바꿈</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Pengoptimal PNG dan JPEG tanpa pengurangn</value>
+    <value>DevToys 앱의 디자인을 설정합니다.</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Kompresi PNG / JPEG</value>
-  </data>
-  <data name="SearchKeywords" xml:space="preserve">
-    <value>PNG JPG</value>
+    <value>설정</value>
   </data>
 </root>

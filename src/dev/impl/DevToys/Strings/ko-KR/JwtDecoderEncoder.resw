@@ -118,49 +118,48 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Alat konversi PNG dan JPEG</value>
-  </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Batal</value>
+    <value>JWT 디코딩 도구</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Konfigurasi</value>
+    <value>설정</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Hapus</value>
+  <data name="ConversionDescription" xml:space="preserve">
+    <value>사용할 작업을 선택하세요.</value>
   </data>
-  <data name="DeleteAll" xml:space="preserve">
-    <value>Hapus semua</value>
+  <data name="ConversionTitle" xml:space="preserve">
+    <value>작업</value>
   </data>
-  <data name="DetailsTitle" xml:space="preserve">
-    <value>Detail</value>
+  <data name="Decode" xml:space="preserve">
+    <value>디코드</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Komporesi PNG / JPEG</value>
+    <value>JWT 디코딩</value>
   </data>
-  <data name="FileSizeDisplay" xml:space="preserve">
-    <value>{0:0.##} {1}</value>
-    <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
+  <data name="Encode" xml:space="preserve">
+    <value>인코드</value>
   </data>
-  <data name="OK" xml:space="preserve">
-    <value>OK</value>
+  <data name="EncodingDescription" xml:space="preserve">
+    <value>사용할 인코딩 알고리즘을 선택합니다.</value>
   </data>
-  <data name="SaveAll" xml:space="preserve">
-    <value>Simpan semua</value>
+  <data name="EncodingTitle" xml:space="preserve">
+    <value>인코딩</value>
   </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Simpan sebagai</value>
+  <data name="HeaderLabel" xml:space="preserve">
+    <value>헤더</value>
   </data>
-  <data name="SeeErrorMessage" xml:space="preserve">
-    <value>Lihat detail</value>
+  <data name="JwtTokenLabel" xml:space="preserve">
+    <value>JWT 토큰</value>
+  </data>
+  <data name="PayloadLabel" xml:space="preserve">
+    <value>JWT 내용</value>
+  </data>
+  <data name="SecurityLabel" xml:space="preserve">
+    <value>JWT 서명</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Pengoptimal PNG dan JPEG tanpa pengurangn</value>
+    <value>JWT 헤더, 내용과 서명을 디코드 합니다.</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Kompresi PNG / JPEG</value>
-  </data>
-  <data name="SearchKeywords" xml:space="preserve">
-    <value>PNG JPG</value>
+    <value>JWT 디코딩</value>
   </data>
 </root>

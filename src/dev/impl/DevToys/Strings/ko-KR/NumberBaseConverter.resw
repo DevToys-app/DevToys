@@ -118,49 +118,62 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Alat konversi PNG dan JPEG</value>
+    <value>진수 변환 도구</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Batal</value>
+  <data name="BinaryLabel" xml:space="preserve">
+    <value>2진수</value>
   </data>
-  <data name="Configuration" xml:space="preserve">
-    <value>Konfigurasi</value>
+  <data name="ConfigurationTitle" xml:space="preserve">
+    <value>설정</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Hapus</value>
-  </data>
-  <data name="DeleteAll" xml:space="preserve">
-    <value>Hapus semua</value>
-  </data>
-  <data name="DetailsTitle" xml:space="preserve">
-    <value>Detail</value>
+  <data name="DecimalLabel" xml:space="preserve">
+    <value>10진수</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Komporesi PNG / JPEG</value>
+    <value>진수 변환</value>
   </data>
-  <data name="FileSizeDisplay" xml:space="preserve">
-    <value>{0:0.##} {1}</value>
-    <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
+  <data name="Format" xml:space="preserve">
+    <value>숫자에 형식 부여</value>
   </data>
-  <data name="OK" xml:space="preserve">
-    <value>OK</value>
+  <data name="HexadecimalLabel" xml:space="preserve">
+    <value>16진수</value>
   </data>
-  <data name="SaveAll" xml:space="preserve">
-    <value>Simpan semua</value>
+  <data name="Input" xml:space="preserve">
+    <value>입력할 수</value>
   </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Simpan sebagai</value>
+  <data name="InputTypeBinary" xml:space="preserve">
+    <value>2진수 입력</value>
   </data>
-  <data name="SeeErrorMessage" xml:space="preserve">
-    <value>Lihat detail</value>
+  <data name="InputTypeDecimal" xml:space="preserve">
+    <value>10진수 입력</value>
+  </data>
+  <data name="InputTypeDescription" xml:space="preserve">
+    <value>사용할 형식을 선택하세요.</value>
+  </data>
+  <data name="InputTypeHexadecimal" xml:space="preserve">
+    <value>16진수 입력</value>
+  </data>
+  <data name="InputTypeOctal" xml:space="preserve">
+    <value>8진수 입력</value>
+  </data>
+  <data name="InputTypeTitle" xml:space="preserve">
+    <value>입력 형식</value>
+  </data>
+  <data name="OctalLabel" xml:space="preserve">
+    <value>8진수</value>
+  </data>
+  <data name="ValueInvalid" xml:space="preserve">
+    <value>{0} 수치 값이 올바르지 않습니다.</value>
+    <comment>The parameter is the Base Number Type (Decimal, Octal, ...)</comment>
+  </data>
+  <data name="ValueOverflow" xml:space="preserve">
+    <value>해당 수치가 너무 커서 변환할 수 없습니다. ({0})</value>
+    <comment>The parameter is the Max value of a long</comment>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Pengoptimal PNG dan JPEG tanpa pengurangn</value>
+    <value>입력한 수치 값을 다른 진수로 변환합니다.</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Kompresi PNG / JPEG</value>
-  </data>
-  <data name="SearchKeywords" xml:space="preserve">
-    <value>PNG JPG</value>
+    <value>진수 변환 도구</value>
   </data>
 </root>

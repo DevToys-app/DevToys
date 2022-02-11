@@ -118,49 +118,102 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Alat konversi PNG dan JPEG</value>
+    <value>문자열 유틸리티 도구</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Batal</value>
+  <data name="AlternatingCase" xml:space="preserve">
+    <value>aLtErNaTiNg cAsE</value>
   </data>
-  <data name="Configuration" xml:space="preserve">
-    <value>Konfigurasi</value>
+  <data name="Bytes" xml:space="preserve">
+    <value>Bytes:</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Hapus</value>
+  <data name="CamelCase" xml:space="preserve">
+    <value>camelCase</value>
   </data>
-  <data name="DeleteAll" xml:space="preserve">
-    <value>Hapus semua</value>
+  <data name="CharacterDistribution" xml:space="preserve">
+    <value>문자 배포 결과</value>
   </data>
-  <data name="DetailsTitle" xml:space="preserve">
-    <value>Detail</value>
+  <data name="Characters" xml:space="preserve">
+    <value>문자:</value>
+  </data>
+  <data name="CobolCase" xml:space="preserve">
+    <value>COBOL-CASE</value>
+  </data>
+  <data name="Column" xml:space="preserve">
+    <value>열:</value>
+  </data>
+  <data name="ConstantCase" xml:space="preserve">
+    <value>CONSTANT_CASE</value>
+  </data>
+  <data name="Convert" xml:space="preserve">
+    <value>변환</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Komporesi PNG / JPEG</value>
+    <value>분석 및 대소문자 변환기</value>
   </data>
-  <data name="FileSizeDisplay" xml:space="preserve">
-    <value>{0:0.##} {1}</value>
-    <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
+  <data name="InverseCase" xml:space="preserve">
+    <value>InVeRsE CaSe</value>
   </data>
-  <data name="OK" xml:space="preserve">
-    <value>OK</value>
+  <data name="KebabCase" xml:space="preserve">
+    <value>kebab-case</value>
   </data>
-  <data name="SaveAll" xml:space="preserve">
-    <value>Simpan semua</value>
+  <data name="Line" xml:space="preserve">
+    <value>줄:</value>
   </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Simpan sebagai</value>
+  <data name="Lines" xml:space="preserve">
+    <value>행 개수:</value>
   </data>
-  <data name="SeeErrorMessage" xml:space="preserve">
-    <value>Lihat detail</value>
+  <data name="LowerCase" xml:space="preserve">
+    <value>모두 소문자</value>
+  </data>
+  <data name="OriginalCase" xml:space="preserve">
+    <value>원본 텍스트</value>
+  </data>
+  <data name="Paragraphs" xml:space="preserve">
+    <value>문단:</value>
+  </data>
+  <data name="PascalCase" xml:space="preserve">
+    <value>PascalCase</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>위치:</value>
+  </data>
+  <data name="Selection" xml:space="preserve">
+    <value>선택 항목</value>
+  </data>
+  <data name="SentenceCase" xml:space="preserve">
+    <value>Sentence case</value>
+  </data>
+  <data name="Sentences" xml:space="preserve">
+    <value>문장:</value>
+  </data>
+  <data name="SnakeCase" xml:space="preserve">
+    <value>snake_case</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>통계</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value>문자열</value>
+  </data>
+  <data name="TitleCase" xml:space="preserve">
+    <value>Title Case</value>
+  </data>
+  <data name="TrainCase" xml:space="preserve">
+    <value>Train-Case</value>
+  </data>
+  <data name="UpperCase" xml:space="preserve">
+    <value>모두 대문자</value>
+  </data>
+  <data name="WordDistribution" xml:space="preserve">
+    <value>단어 배포 결과</value>
+  </data>
+  <data name="Words" xml:space="preserve">
+    <value>단어:</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Pengoptimal PNG dan JPEG tanpa pengurangn</value>
+    <value>문자 분석 후 적합한 대소문자 구분 방식을 변경합니다.</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Kompresi PNG / JPEG</value>
-  </data>
-  <data name="SearchKeywords" xml:space="preserve">
-    <value>PNG JPG</value>
+    <value>텍스트 대소문자 변환 및 분석</value>
   </data>
 </root>

@@ -117,50 +117,53 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AccessibleName" xml:space="preserve">
-    <value>Alat konversi PNG dan JPEG</value>
+  <data name="EnterCompactOverlayTooltip" xml:space="preserve">
+    <value>항상 위로 (Ctrl+Up)</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Batal</value>
+  <data name="ExitCompactOverlayTooltip" xml:space="preserve">
+    <value>전체 보기로 돌아가기 (Ctrl+Down)</value>
   </data>
-  <data name="Configuration" xml:space="preserve">
-    <value>Konfigurasi</value>
+  <data name="NotificationRateAppActionableActionText" xml:space="preserve">
+    <value>지금 도구를 평가해 주세요...</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Hapus</value>
+  <data name="NotificationRateAppMessage" xml:space="preserve">
+    <value>DevToys 사용에 만족하시나요? 좋은 평점 부탁드립니다!</value>
   </data>
-  <data name="DeleteAll" xml:space="preserve">
-    <value>Hapus semua</value>
+  <data name="NotificationRateAppTitle" xml:space="preserve">
+    <value>안녕...하세요! 😅</value>
   </data>
-  <data name="DetailsTitle" xml:space="preserve">
-    <value>Detail</value>
+  <data name="NotificationReleaseNoteActionableActionText" xml:space="preserve">
+    <value>더 읽기...</value>
   </data>
-  <data name="MenuDisplayName" xml:space="preserve">
-    <value>Komporesi PNG / JPEG</value>
+  <data name="NotificationReleaseNoteTitle" xml:space="preserve">
+    <value>업데이트 완료! {0} 버전의 새로운 점은? 🚀</value>
+    <comment>{0} is the current app version</comment>
   </data>
-  <data name="FileSizeDisplay" xml:space="preserve">
-    <value>{0:0.##} {1}</value>
-    <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
+  <data name="NotificationUpdateAvailableActionableActionText" xml:space="preserve">
+    <value>지금 업데이트...</value>
   </data>
-  <data name="OK" xml:space="preserve">
-    <value>OK</value>
+  <data name="NotificationUpdateAvailableTitle" xml:space="preserve">
+    <value>새 업데이트가 도착했습니다! 🚀</value>
   </data>
-  <data name="SaveAll" xml:space="preserve">
-    <value>Simpan semua</value>
+  <data name="OpenInNewWindow" xml:space="preserve">
+    <value>새 창으로 열기</value>
   </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Simpan sebagai</value>
+  <data name="PinToolToStart" xml:space="preserve">
+    <value>도구를 찍어 시작합니다.</value>
   </data>
-  <data name="SeeErrorMessage" xml:space="preserve">
-    <value>Lihat detail</value>
+  <data name="PinToolToStartProblem" xml:space="preserve">
+    <value>도구를 찍어 시작할 수 없습니다. 로그를 통해 자세한 내용을 보실 수 있습니다.</value>
   </data>
-  <data name="Description" xml:space="preserve">
-    <value>Pengoptimal PNG dan JPEG tanpa pengurangn</value>
+  <data name="Search" xml:space="preserve">
+    <value>도구명을 입력하여 검색...</value>
   </data>
-  <data name="SearchDisplayName" xml:space="preserve">
-    <value>Kompresi PNG / JPEG</value>
+  <data name="SearchNoResultsFound" xml:space="preserve">
+    <value>검색한 도구가 없습니다.</value>
   </data>
-  <data name="SearchKeywords" xml:space="preserve">
-    <value>PNG JPG</value>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>DevToys</value>
+  </data>
+  <data name="WindowTitleWithToolName" xml:space="preserve">
+    <value>DevToys - {0}</value>
   </data>
 </root>

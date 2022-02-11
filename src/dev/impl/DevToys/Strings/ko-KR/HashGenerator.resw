@@ -118,49 +118,45 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Alat konversi PNG dan JPEG</value>
-  </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Batal</value>
+    <value>해시 생성 도구</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Konfigurasi</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Hapus</value>
-  </data>
-  <data name="DeleteAll" xml:space="preserve">
-    <value>Hapus semua</value>
-  </data>
-  <data name="DetailsTitle" xml:space="preserve">
-    <value>Detail</value>
+    <value>설정</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Komporesi PNG / JPEG</value>
+    <value>해시</value>
   </data>
-  <data name="FileSizeDisplay" xml:space="preserve">
-    <value>{0:0.##} {1}</value>
-    <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
+  <data name="Input" xml:space="preserve">
+    <value>입력 내용</value>
   </data>
-  <data name="OK" xml:space="preserve">
-    <value>OK</value>
+  <data name="MD5" xml:space="preserve">
+    <value>MD5</value>
   </data>
-  <data name="SaveAll" xml:space="preserve">
-    <value>Simpan semua</value>
+  <data name="SHA1" xml:space="preserve">
+    <value>SHA1</value>
   </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Simpan sebagai</value>
+  <data name="SHA256" xml:space="preserve">
+    <value>SHA256</value>
   </data>
-  <data name="SeeErrorMessage" xml:space="preserve">
-    <value>Lihat detail</value>
+  <data name="SHA512" xml:space="preserve">
+    <value>SHA512</value>
+  </data>
+  <data name="Uppercase" xml:space="preserve">
+    <value>대문자 사용</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Pengoptimal PNG dan JPEG tanpa pengurangn</value>
+    <value>텍스트로부터 MD5, SHA1, SHA256 및 SHA512 해시를 계산합니다.</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Kompresi PNG / JPEG</value>
+    <value>해시 생성기</value>
   </data>
-  <data name="SearchKeywords" xml:space="preserve">
-    <value>PNG JPG</value>
+  <data name="OutputBase64" xml:space="preserve">
+    <value>Base64</value>
+  </data>
+  <data name="OutputHex" xml:space="preserve">
+    <value>16진수</value>
+  </data>
+  <data name="OutputTypeTitle" xml:space="preserve">
+    <value>출력 유형</value>
   </data>
 </root>

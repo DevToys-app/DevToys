@@ -118,49 +118,76 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Alat konversi PNG dan JPEG</value>
+    <value>이미지 변환 도구</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Batal</value>
+    <value>취소</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Konfigurasi</value>
+    <value>설정</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Hapus</value>
+    <value>삭제</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
-    <value>Hapus semua</value>
+    <value>모두 삭제</value>
   </data>
   <data name="DetailsTitle" xml:space="preserve">
-    <value>Detail</value>
+    <value>상세</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Komporesi PNG / JPEG</value>
+    <value>이미지 변환기</value>
   </data>
   <data name="FileSizeDisplay" xml:space="preserve">
     <value>{0:0.##} {1}</value>
     <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
   </data>
   <data name="OK" xml:space="preserve">
-    <value>OK</value>
+    <value>확인</value>
   </data>
   <data name="SaveAll" xml:space="preserve">
-    <value>Simpan semua</value>
+    <value>모두 저장</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>Simpan sebagai</value>
+    <value>다른 이름으로 저장</value>
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
-    <value>Lihat detail</value>
+    <value>상세 보기</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Pengoptimal PNG dan JPEG tanpa pengurangn</value>
+    <value>무손실 이미지 변환기</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Kompresi PNG / JPEG</value>
+    <value>이미지 변환기</value>
   </data>
-  <data name="SearchKeywords" xml:space="preserve">
-    <value>PNG JPG</value>
+  <data name="ConversionTitle" xml:space="preserve">
+    <value>변환</value>
+  </data>
+  <data name="ConvertedFormatDescription" xml:space="preserve">
+    <value>변환 형식을 선택합니다.</value>
+  </data>
+  <data name="JPEG" xml:space="preserve">
+    <value>JPEG</value>
+  </data>
+  <data name="PNG" xml:space="preserve">
+    <value>PNG</value>
+  </data>
+  <data name="BMP" xml:space="preserve">
+    <value>BMP</value>
+  </data>
+  <data name="GIF" xml:space="preserve">
+    <value>GIF</value>
+  </data>
+  <data name="HEIF" xml:space="preserve">
+    <value>HEIF</value>
+  </data>
+  <data name="JPEGXR" xml:space="preserve">
+    <value>JPEG XR</value>
+  </data>
+  <data name="TIFF" xml:space="preserve">
+    <value>TIFF</value>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>예기치 못한 오류가 발생하였습니다. 변환 작업이 정상적으로 이루어지지 않았습니다.</value>
   </data>
 </root>

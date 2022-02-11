@@ -117,50 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AccessibleName" xml:space="preserve">
-    <value>Alat konversi PNG dan JPEG</value>
+  <data name="SearchResults" xml:space="preserve">
+    <value>"{0}" 검색 결과</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Batal</value>
-  </data>
-  <data name="Configuration" xml:space="preserve">
-    <value>Konfigurasi</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Hapus</value>
-  </data>
-  <data name="DeleteAll" xml:space="preserve">
-    <value>Hapus semua</value>
-  </data>
-  <data name="DetailsTitle" xml:space="preserve">
-    <value>Detail</value>
-  </data>
-  <data name="MenuDisplayName" xml:space="preserve">
-    <value>Komporesi PNG / JPEG</value>
-  </data>
-  <data name="FileSizeDisplay" xml:space="preserve">
-    <value>{0:0.##} {1}</value>
-    <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
-  </data>
-  <data name="OK" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="SaveAll" xml:space="preserve">
-    <value>Simpan semua</value>
-  </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Simpan sebagai</value>
-  </data>
-  <data name="SeeErrorMessage" xml:space="preserve">
-    <value>Lihat detail</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Pengoptimal PNG dan JPEG tanpa pengurangn</value>
-  </data>
-  <data name="SearchDisplayName" xml:space="preserve">
-    <value>Kompresi PNG / JPEG</value>
-  </data>
-  <data name="SearchKeywords" xml:space="preserve">
-    <value>PNG JPG</value>
+  <data name="NoResultsFound" xml:space="preserve">
+    <value>결과를 찾지 못했습니다.</value>
   </data>
 </root>

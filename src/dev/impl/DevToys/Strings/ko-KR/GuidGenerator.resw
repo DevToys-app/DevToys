@@ -118,49 +118,51 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Alat konversi PNG dan JPEG</value>
-  </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Batal</value>
+    <value>UUID 생성 도구</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Konfigurasi</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Hapus</value>
-  </data>
-  <data name="DeleteAll" xml:space="preserve">
-    <value>Hapus semua</value>
-  </data>
-  <data name="DetailsTitle" xml:space="preserve">
-    <value>Detail</value>
+    <value>설정</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Komporesi PNG / JPEG</value>
+    <value>UUID</value>
   </data>
-  <data name="FileSizeDisplay" xml:space="preserve">
-    <value>{0:0.##} {1}</value>
-    <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
+  <data name="Generate" xml:space="preserve">
+    <value>생성</value>
   </data>
-  <data name="OK" xml:space="preserve">
-    <value>OK</value>
+  <data name="GenerateButton" xml:space="preserve">
+    <value>UUID 생성</value>
   </data>
-  <data name="SaveAll" xml:space="preserve">
-    <value>Simpan semua</value>
+  <data name="Guids" xml:space="preserve">
+    <value>UUID 목록</value>
   </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Simpan sebagai</value>
+  <data name="Hyphens" xml:space="preserve">
+    <value>붙임표(-)</value>
   </data>
-  <data name="SeeErrorMessage" xml:space="preserve">
-    <value>Lihat detail</value>
+  <data name="MultiplySymbol" xml:space="preserve">
+    <value>x</value>
+  </data>
+  <data name="NumberOfGuidsToGenerate_AutomationProperties_Name" xml:space="preserve">
+    <value>생성할 UUID 개수</value>
+  </data>
+  <data name="Uppercase" xml:space="preserve">
+    <value>대문자 사용</value>
+  </data>
+  <data name="UuidVersionFour" xml:space="preserve">
+    <value>4 (GUID)</value>
+  </data>
+  <data name="UuidVersionOne" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="VersionDescription" xml:space="preserve">
+    <value>UUID 생성 버전을 선택합니다.</value>
+  </data>
+  <data name="VersionTitle" xml:space="preserve">
+    <value>UUID 버전</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Pengoptimal PNG dan JPEG tanpa pengurangn</value>
+    <value>UUID 버전 1 과 4로 새 식별자를 생성합니다.</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Kompresi PNG / JPEG</value>
-  </data>
-  <data name="SearchKeywords" xml:space="preserve">
-    <value>PNG JPG</value>
+    <value>UUID 생성기</value>
   </data>
 </root>

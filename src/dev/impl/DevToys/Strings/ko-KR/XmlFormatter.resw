@@ -118,49 +118,42 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Alat konversi PNG dan JPEG</value>
-  </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Batal</value>
+    <value>XML 형식 정렬 도구</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Konfigurasi</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Hapus</value>
-  </data>
-  <data name="DeleteAll" xml:space="preserve">
-    <value>Hapus semua</value>
-  </data>
-  <data name="DetailsTitle" xml:space="preserve">
-    <value>Detail</value>
+    <value>설정</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Komporesi PNG / JPEG</value>
+    <value>XML</value>
   </data>
-  <data name="FileSizeDisplay" xml:space="preserve">
-    <value>{0:0.##} {1}</value>
-    <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
+  <data name="FourSpaces" xml:space="preserve">
+    <value>공백 4자</value>
   </data>
-  <data name="OK" xml:space="preserve">
-    <value>OK</value>
+  <data name="Indentation" xml:space="preserve">
+    <value>들여쓰기</value>
   </data>
-  <data name="SaveAll" xml:space="preserve">
-    <value>Simpan semua</value>
+  <data name="Input" xml:space="preserve">
+    <value>입력 내용</value>
   </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Simpan sebagai</value>
+  <data name="Minified" xml:space="preserve">
+    <value>축소</value>
   </data>
-  <data name="SeeErrorMessage" xml:space="preserve">
-    <value>Lihat detail</value>
+  <data name="OneTab" xml:space="preserve">
+    <value>1개의 탭문자</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>출력 내용</value>
+  </data>
+  <data name="TwoSpaces" xml:space="preserve">
+    <value>공백 2자</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Pengoptimal PNG dan JPEG tanpa pengurangn</value>
+    <value>XML 데이터 들여쓰기로 예쁘게 표시하거나 축소하여 용량을 줄입니다.</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Kompresi PNG / JPEG</value>
+    <value>XML 형식 정렬</value>
   </data>
-  <data name="SearchKeywords" xml:space="preserve">
-    <value>PNG JPG</value>
+  <data name="NewLineOnAttributesName" xml:space="preserve">
+    <value>새 줄에 특성 넣기</value>
   </data>
 </root>

@@ -17,34 +17,26 @@ namespace DevToys.Helpers
         /// </summary>
         internal static bool IsValid(string? input)
         {
-            if (string.IsNullOrWhiteSpace(input))
+            input = input?.Trim();
+
+            if (input == null)
             {
+                return true;
+            }
+
+            try
+            {
+                var jtoken = JToken.Parse(input);
+                return jtoken is not null;
+            }
+            catch (JsonReaderException)
+            {
+                // Exception in parsing json. It likely mean the text isn't a JSON.
                 return false;
             }
-
-            input = input!.Trim();
-
-            if ((input.StartsWith("{") && input.EndsWith("}")) //For object
-                || (input.StartsWith("[") && input.EndsWith("]"))) //For array
+            catch (Exception ex) //some other exception
             {
-                try
-                {
-                    var jtoken = JToken.Parse(input);
-                    return jtoken is not null;
-                }
-                catch (JsonReaderException)
-                {
-                    // Exception in parsing json. It likely mean the text isn't a JSON.
-                    return false;
-                }
-                catch (Exception ex) //some other exception
-                {
-                    Logger.LogFault("Check is string if JSON", ex);
-                    return false;
-                }
-            }
-            else
-            {
+                Logger.LogFault("Check if string is JSON", ex);
                 return false;
             }
         }
@@ -54,14 +46,14 @@ namespace DevToys.Helpers
         /// </summary>
         internal static string Format(string? input, Indentation indentationMode)
         {
-            if (!IsValid(input))
+            if (input == null || !IsValid(input))
             {
                 return string.Empty;
             }
 
             try
             {
-                var jtoken = JToken.Parse(input!);
+                var jtoken = JToken.Parse(input);
                 if (jtoken is not null)
                 {
                     var stringBuilder = new StringBuilder();

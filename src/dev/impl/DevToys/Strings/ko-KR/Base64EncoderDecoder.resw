@@ -118,49 +118,48 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Alat konversi PNG dan JPEG</value>
+    <value>Base 64 인코딩 및 디코딩 도구</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Batal</value>
+  <data name="Ascii" xml:space="preserve">
+    <value>ASCII</value>
   </data>
-  <data name="Configuration" xml:space="preserve">
-    <value>Konfigurasi</value>
+  <data name="ConfigurationTitle" xml:space="preserve">
+    <value>설정</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Hapus</value>
+  <data name="ConversionDecode" xml:space="preserve">
+    <value>디코드</value>
   </data>
-  <data name="DeleteAll" xml:space="preserve">
-    <value>Hapus semua</value>
+  <data name="ConversionDescription" xml:space="preserve">
+    <value>사용할 변환 작업 선택합니다.</value>
   </data>
-  <data name="DetailsTitle" xml:space="preserve">
-    <value>Detail</value>
+  <data name="ConversionEncode" xml:space="preserve">
+    <value>인코드</value>
+  </data>
+  <data name="ConversionTitle" xml:space="preserve">
+    <value>변환</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Komporesi PNG / JPEG</value>
+    <value>Base 64</value>
   </data>
-  <data name="FileSizeDisplay" xml:space="preserve">
-    <value>{0:0.##} {1}</value>
-    <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
+  <data name="EncodingDescription" xml:space="preserve">
+    <value>사용할 변환 작업을 선택합니다.</value>
   </data>
-  <data name="OK" xml:space="preserve">
-    <value>OK</value>
+  <data name="EncodingTitle" xml:space="preserve">
+    <value>인코딩</value>
   </data>
-  <data name="SaveAll" xml:space="preserve">
-    <value>Simpan semua</value>
+  <data name="InputTitle" xml:space="preserve">
+    <value>입력 내용</value>
   </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Simpan sebagai</value>
+  <data name="OutputTitle" xml:space="preserve">
+    <value>출력 내용</value>
   </data>
-  <data name="SeeErrorMessage" xml:space="preserve">
-    <value>Lihat detail</value>
+  <data name="Utf8" xml:space="preserve">
+    <value>UTF-8</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Pengoptimal PNG dan JPEG tanpa pengurangn</value>
+    <value>Base64 데이터를 인코딩 하거나 디코딩을 수행합니다.</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Kompresi PNG / JPEG</value>
-  </data>
-  <data name="SearchKeywords" xml:space="preserve">
-    <value>PNG JPG</value>
+    <value>Base 64 인코딩 / 디코딩</value>
   </data>
 </root>
