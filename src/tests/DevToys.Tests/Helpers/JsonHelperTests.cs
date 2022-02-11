@@ -8,7 +8,9 @@ namespace DevToys.Tests.Helpers
     public class JsonHelperTests
     {
         [DataTestMethod]
-        [DataRow(null, false)]
+        [DataRow(null, true)]
+        [DataRow("\"foo\"", true)]
+        [DataRow("123", true)]
         [DataRow("", false)]
         [DataRow(" ", false)]
         [DataRow("   {  }  ", true)]
