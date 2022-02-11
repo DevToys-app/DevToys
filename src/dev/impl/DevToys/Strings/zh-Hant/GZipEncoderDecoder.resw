@@ -118,76 +118,48 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>圖片轉檔工具</value>
+    <value>GZip 編碼及解碼工具</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>取消</value>
+  <data name="Ascii" xml:space="preserve">
+    <value>ASCII</value>
   </data>
-  <data name="Configuration" xml:space="preserve">
+  <data name="ConfigurationTitle" xml:space="preserve">
     <value>設定</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>刪除</value>
+  <data name="ConversionDecompress" xml:space="preserve">
+    <value>解壓縮</value>
   </data>
-  <data name="DeleteAll" xml:space="preserve">
-    <value>全部刪除</value>
+  <data name="ConversionDescription" xml:space="preserve">
+    <value>選擇要對輸入內容進行壓縮或解壓縮</value>
   </data>
-  <data name="DetailsTitle" xml:space="preserve">
-    <value>詳情</value>
-  </data>
-  <data name="MenuDisplayName" xml:space="preserve">
-    <value>圖片轉檔工具</value>
-  </data>
-  <data name="FileSizeDisplay" xml:space="preserve">
-    <value>{0:0.##} {1}</value>
-    <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
-  </data>
-  <data name="OK" xml:space="preserve">
-    <value>確定</value>
-  </data>
-  <data name="SaveAll" xml:space="preserve">
-    <value>全部儲存</value>
-  </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>另存為</value>
-  </data>
-  <data name="SeeErrorMessage" xml:space="preserve">
-    <value>查看詳情</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>不失真的圖片轉檔工具</value>
-  </data>
-  <data name="SearchDisplayName" xml:space="preserve">
-    <value>圖片轉檔工具</value>
+  <data name="ConversionCompress" xml:space="preserve">
+    <value>壓縮</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>轉換</value>
+    <value>GZip 編碼/解碼</value>
   </data>
-  <data name="ConvertedFormatDescription" xml:space="preserve">
-    <value>選擇要轉換成的檔案格式</value>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>GZip</value>
   </data>
-  <data name="JPEG" xml:space="preserve">
-    <value>JPEG</value>
+  <data name="EncodingDescription" xml:space="preserve">
+    <value>選擇要對輸入內容進行壓縮或解壓縮</value>
   </data>
-  <data name="PNG" xml:space="preserve">
-    <value>PNG</value>
+  <data name="EncodingTitle" xml:space="preserve">
+    <value>編碼</value>
   </data>
-  <data name="BMP" xml:space="preserve">
-    <value>BMP</value>
+  <data name="InputTitle" xml:space="preserve">
+    <value>輸入</value>
   </data>
-  <data name="GIF" xml:space="preserve">
-    <value>GIF</value>
+  <data name="OutputTitle" xml:space="preserve">
+    <value>輸出</value>
   </data>
-  <data name="HEIF" xml:space="preserve">
-    <value>HEIF</value>
+  <data name="Utf8" xml:space="preserve">
+    <value>UTF-8</value>
   </data>
-  <data name="JPEGXR" xml:space="preserve">
-    <value>JPEG XR</value>
+  <data name="Description" xml:space="preserve">
+    <value>壓縮或解壓縮字串</value>
   </data>
-  <data name="TIFF" xml:space="preserve">
-    <value>TIFF</value>
-  </data>
-  <data name="ErrorMessage" xml:space="preserve">
-    <value>發生意外錯誤，轉換可能尚未完成。</value>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>GZip 編碼 / 解碼</value>
   </data>
 </root>

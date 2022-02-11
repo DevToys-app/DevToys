@@ -145,7 +145,7 @@
     <value>輸出</value>
   </data>
   <data name="TwoSpaces" xml:space="preserve">
-    <value>2 的空白</value>
+    <value>2 個空白</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>為 Json 資料縮排或最小化</value>
