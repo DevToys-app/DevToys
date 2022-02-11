@@ -112,7 +112,7 @@ namespace DevToys.Helpers.SqlFormatter.Core
 
         private static string EscapeSpecialCharacters(string input)
         {
-            return  SpecialCharacterRegex.Replace(input, "\\$&");
+            return SpecialCharacterRegex.Replace(input, "\\$&");
         }
     }
 }

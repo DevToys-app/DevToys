@@ -286,8 +286,10 @@ namespace DevToys.Helpers.SqlFormatter.Languages
             if (token.isEnd(querySpan.Slice(token)))
             {
                 Token? backToken = TokenLookBehind();
-                if (backToken != null && backToken.Value.Type == TokenType.Operator &&
-                     backToken.Value.Length == 1 && querySpan[backToken.Value.Index] == '.')
+                if (backToken is not null 
+                    && backToken.Value.Type == TokenType.Operator 
+                    && backToken.Value.Length == 1 
+                    && querySpan[backToken.Value.Index] == '.')
                 {
                     // This is window().end (or similar) not CASE ... END
                     return new Token(token.Index, token.Length, TokenType.Word, token.PrecedingWitespaceLength);
