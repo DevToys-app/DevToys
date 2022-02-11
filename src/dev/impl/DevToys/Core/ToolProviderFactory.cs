@@ -171,7 +171,8 @@ namespace DevToys.Providers.Impl
                                 i++;
                             }
 
-                            if(provider.ToolProvider.SearchKeywords is not null)
+                            if (provider.ToolProvider.SearchKeywords is not null
+                                && !string.IsNullOrEmpty(provider.ToolProvider.SearchKeywords))
                             {
                                 string searchKeyword = System.Text.RegularExpressions.Regex.Replace(provider.ToolProvider.SearchKeywords, @"\s", "");
                                 i = 0;
