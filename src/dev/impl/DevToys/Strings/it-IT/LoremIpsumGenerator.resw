@@ -157,6 +157,6 @@
     <value>Parole</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Lorem Ipsum</value>
+    <value />
   </data>
 </root>

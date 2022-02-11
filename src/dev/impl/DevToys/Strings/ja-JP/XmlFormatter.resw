@@ -157,6 +157,6 @@
     <value>ノードの属性で改行する</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>XML</value>
+    <value />
   </data>
 </root>

@@ -163,6 +163,6 @@
     <value>GZip 압축 및 풀기</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>GZip</value>
+    <value />
   </data>
 </root>

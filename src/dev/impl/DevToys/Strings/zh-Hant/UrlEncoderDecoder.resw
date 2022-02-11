@@ -157,6 +157,6 @@
     <value>網址編碼/解碼器</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>URL</value>
+    <value />
   </data>
 </root>

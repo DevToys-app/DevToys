@@ -163,6 +163,6 @@
     <value>Dekoder JWT</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>JWT</value>
+    <value />
   </data>
 </root>

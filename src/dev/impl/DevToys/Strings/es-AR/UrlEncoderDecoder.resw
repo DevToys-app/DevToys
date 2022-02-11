@@ -157,6 +157,6 @@
     <value>Codificador / Decodificador de URLs</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>URL</value>
+    <value />
   </data>
 </root>

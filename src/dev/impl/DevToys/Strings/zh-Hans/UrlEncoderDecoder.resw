@@ -157,6 +157,6 @@
     <value>URL 编码 / 解码工具</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>URL</value>
+    <value />
   </data>
 </root>

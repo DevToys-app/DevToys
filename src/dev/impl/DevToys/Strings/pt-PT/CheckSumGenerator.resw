@@ -154,6 +154,6 @@
     <value>Maiúsculas</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Checksum</value>
+    <value />
   </data>
 </root>

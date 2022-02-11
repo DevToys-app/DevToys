@@ -157,6 +157,6 @@
     <value>Преобразование URL</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>URL</value>
+    <value />
   </data>
 </root>

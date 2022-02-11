@@ -163,6 +163,6 @@
     <value>JSON &lt;&gt; YAML 변환기</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>JSON YAML</value>
+    <value />
   </data>
 </root>

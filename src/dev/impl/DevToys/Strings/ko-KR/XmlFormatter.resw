@@ -157,6 +157,6 @@
     <value>새 줄에 특성 넣기</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>XML</value>
+    <value />
   </data>
 </root>

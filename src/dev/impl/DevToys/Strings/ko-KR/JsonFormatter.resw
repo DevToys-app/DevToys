@@ -154,6 +154,6 @@
     <value>JSON 형식 정렬 도구</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>JSON</value>
+    <value />
   </data>
 </root>

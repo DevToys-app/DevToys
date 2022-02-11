@@ -160,6 +160,6 @@
     <value>Typ wyjścia</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Hash</value>
+    <value />
   </data>
 </root>

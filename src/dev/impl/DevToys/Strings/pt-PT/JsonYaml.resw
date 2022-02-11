@@ -163,6 +163,6 @@
     <value>Conversor JSON &lt;&gt; YAML</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>JSON YAML</value>
+    <value />
   </data>
 </root>

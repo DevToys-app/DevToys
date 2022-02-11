@@ -163,6 +163,6 @@
     <value>JWT 解码工具</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>JWT</value>
+    <value />
   </data>
 </root>

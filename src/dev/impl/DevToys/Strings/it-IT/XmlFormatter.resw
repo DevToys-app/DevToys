@@ -157,6 +157,6 @@
     <value>Metti gli attributi su una nuova riga</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>XML</value>
+    <value />
   </data>
 </root>

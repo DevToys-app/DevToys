@@ -157,6 +157,6 @@
     <value>Letakkan atribut di baris baru</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>XML</value>
+    <value />
   </data>
 </root>

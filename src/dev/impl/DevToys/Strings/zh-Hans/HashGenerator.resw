@@ -160,6 +160,6 @@
     <value>輸出類型</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Hash</value>
+    <value />
   </data>
 </root>

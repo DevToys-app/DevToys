@@ -163,6 +163,6 @@
     <value>Json &lt;&gt; Yaml 轉換器</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>JSON YAML</value>
+    <value />
   </data>
 </root>

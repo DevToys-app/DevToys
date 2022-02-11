@@ -217,6 +217,6 @@
     <value>Text Case Converter and Inspector</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Text String</value>
+    <value>String</value>
   </data>
 </root>

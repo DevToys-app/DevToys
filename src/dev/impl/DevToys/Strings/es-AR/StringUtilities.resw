@@ -217,6 +217,6 @@
     <value>Inspector y Conversor de Texto</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Text String</value>
+    <value>String</value>
   </data>
 </root>

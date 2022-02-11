@@ -154,6 +154,6 @@
     <value>JSON フォーマッター</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>JSON</value>
+    <value />
   </data>
 </root>

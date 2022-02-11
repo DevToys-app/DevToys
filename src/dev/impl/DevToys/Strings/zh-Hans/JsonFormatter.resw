@@ -154,6 +154,6 @@
     <value>JSON 字符串格式化工具</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>JSON</value>
+    <value />
   </data>
 </root>

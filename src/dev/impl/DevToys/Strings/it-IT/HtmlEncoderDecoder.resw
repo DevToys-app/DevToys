@@ -157,6 +157,6 @@
     <value>Codifica / Decodifica HTML</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>HTML</value>
+    <value />
   </data>
 </root>

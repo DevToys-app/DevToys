@@ -154,6 +154,6 @@
     <value>Formátování JSON</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>JSON</value>
+    <value />
   </data>
 </root>
