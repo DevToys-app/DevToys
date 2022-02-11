@@ -150,4 +150,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>마크다운 미리보기</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>MD</value>
+  </data>
 </root>

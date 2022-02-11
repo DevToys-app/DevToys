@@ -228,4 +228,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>설정</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Configurations Options</value>
+  </data>
 </root>

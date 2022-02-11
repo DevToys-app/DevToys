@@ -216,4 +216,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>텍스트 대소문자 변환 및 분석</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Text String</value>
+  </data>
 </root>

@@ -156,4 +156,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>URL 인코딩 / 디코딩</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>URL</value>
+  </data>
 </root>
