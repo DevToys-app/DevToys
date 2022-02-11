@@ -118,105 +118,72 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>文字列ユーティリティ</value>
+    <value>SQL Formatter tool</value>
   </data>
-  <data name="AlternatingCase" xml:space="preserve">
-    <value>aLtErNaTiNg cAsE</value>
-  </data>
-  <data name="Bytes" xml:space="preserve">
-    <value>バイト数 : </value>
-  </data>
-  <data name="CamelCase" xml:space="preserve">
-    <value>camelCase</value>
-  </data>
-  <data name="CharacterDistribution" xml:space="preserve">
-    <value>文字の分布</value>
-  </data>
-  <data name="Characters" xml:space="preserve">
-    <value>文字数 : </value>
-  </data>
-  <data name="CobolCase" xml:space="preserve">
-    <value>COBOL-CASE</value>
-  </data>
-  <data name="Column" xml:space="preserve">
-    <value>カラム : </value>
-  </data>
-  <data name="ConstantCase" xml:space="preserve">
-    <value>CONSTANT_CASE</value>
-  </data>
-  <data name="Convert" xml:space="preserve">
-    <value>変換</value>
+  <data name="Configuration" xml:space="preserve">
+    <value>Configuration</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>文字列の検査と変換</value>
+    <value>SQL</value>
   </data>
-  <data name="InverseCase" xml:space="preserve">
-    <value>InVeRsE CaSe</value>
+  <data name="FourSpaces" xml:space="preserve">
+    <value>4 spaces</value>
   </data>
-  <data name="KebabCase" xml:space="preserve">
-    <value>kebab-case</value>
+  <data name="Indentation" xml:space="preserve">
+    <value>Indentation</value>
   </data>
-  <data name="Line" xml:space="preserve">
-    <value>行 : </value>
+  <data name="Input" xml:space="preserve">
+    <value>Input</value>
   </data>
-  <data name="Lines" xml:space="preserve">
-    <value>行数 : </value>
+  <data name="OneTab" xml:space="preserve">
+    <value>1 tab</value>
   </data>
-  <data name="LowerCase" xml:space="preserve">
-    <value>lower case</value>
+  <data name="Output" xml:space="preserve">
+    <value>Output</value>
   </data>
-  <data name="OriginalCase" xml:space="preserve">
-    <value>オリジナル テキスト</value>
-  </data>
-  <data name="Paragraphs" xml:space="preserve">
-    <value>段落数 : </value>
-  </data>
-  <data name="PascalCase" xml:space="preserve">
-    <value>PascalCase</value>
-  </data>
-  <data name="Position" xml:space="preserve">
-    <value>先頭から : </value>
-  </data>
-  <data name="Selection" xml:space="preserve">
-    <value>選択中の位置</value>
-  </data>
-  <data name="SentenceCase" xml:space="preserve">
-    <value>Sentence case</value>
-  </data>
-  <data name="Sentences" xml:space="preserve">
-    <value>文数 : </value>
-  </data>
-  <data name="SnakeCase" xml:space="preserve">
-    <value>snake_case</value>
-  </data>
-  <data name="Statistics" xml:space="preserve">
-    <value>統計</value>
-  </data>
-  <data name="String" xml:space="preserve">
-    <value>文字列</value>
-  </data>
-  <data name="TitleCase" xml:space="preserve">
-    <value>Title Case</value>
-  </data>
-  <data name="TrainCase" xml:space="preserve">
-    <value>Train-Case</value>
-  </data>
-  <data name="UpperCase" xml:space="preserve">
-    <value>UPPER CASE</value>
-  </data>
-  <data name="WordDistribution" xml:space="preserve">
-    <value>単語の分布</value>
-  </data>
-  <data name="Words" xml:space="preserve">
-    <value>単語数 : </value>
+  <data name="TwoSpaces" xml:space="preserve">
+    <value>2 spaces</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>テキストを分析し、大文字小文字を変換します</value>
+    <value>Indent SQL queries</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>文字列の検査と変換</value>
+    <value>SQL Formatter</value>
+  </data>
+  <data name="SqlLanguage" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="SqlLanguageDb2" xml:space="preserve">
+    <value>Db2</value>
+  </data>
+  <data name="SqlLanguageMariaDb" xml:space="preserve">
+    <value>MariaDB</value>
+  </data>
+  <data name="SqlLanguageMySql" xml:space="preserve">
+    <value>MySQL</value>
+  </data>
+  <data name="SqlLanguageN1ql" xml:space="preserve">
+    <value>N1QL</value>
+  </data>
+  <data name="SqlLanguagePlSql" xml:space="preserve">
+    <value>PL/SQL</value>
+  </data>
+  <data name="SqlLanguagePostgreSql" xml:space="preserve">
+    <value>PostgreSQL</value>
+  </data>
+  <data name="SqlLanguageRedShift" xml:space="preserve">
+    <value>Amazon Redshift</value>
+  </data>
+  <data name="SqlLanguageSpark" xml:space="preserve">
+    <value>Spark SQL</value>
+  </data>
+  <data name="SqlLanguageSql" xml:space="preserve">
+    <value>Standard SQL</value>
+  </data>
+  <data name="SqlLanguageTsql" xml:space="preserve">
+    <value>Transact-SQL</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Text String</value>
+    <value>Db2 MariaDB MySQL N1QL PL/SQL PostgreSQL Amazon Redshift Spark SQL Standard SQL Transact-SQL</value>
   </data>
 </root>

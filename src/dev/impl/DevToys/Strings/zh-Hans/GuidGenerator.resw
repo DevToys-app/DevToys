@@ -148,7 +148,7 @@
     <value>大写字母</value>
   </data>
   <data name="UuidVersionFour" xml:space="preserve">
-    <value>版本4（UUID）</value>
+    <value>版本4（GUID）</value>
   </data>
   <data name="UuidVersionOne" xml:space="preserve">
     <value>版本1</value>

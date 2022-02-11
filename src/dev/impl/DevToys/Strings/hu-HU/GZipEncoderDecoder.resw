@@ -118,105 +118,51 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>文字列ユーティリティ</value>
+    <value>GZip Encoder and Decoder tool</value>
   </data>
-  <data name="AlternatingCase" xml:space="preserve">
-    <value>aLtErNaTiNg cAsE</value>
+  <data name="Ascii" xml:space="preserve">
+    <value>ASCII</value>
   </data>
-  <data name="Bytes" xml:space="preserve">
-    <value>バイト数 : </value>
+  <data name="ConfigurationTitle" xml:space="preserve">
+    <value>Configuration</value>
   </data>
-  <data name="CamelCase" xml:space="preserve">
-    <value>camelCase</value>
+  <data name="ConversionDecompress" xml:space="preserve">
+    <value>Decompress</value>
   </data>
-  <data name="CharacterDistribution" xml:space="preserve">
-    <value>文字の分布</value>
+  <data name="ConversionDescription" xml:space="preserve">
+    <value>Select whether the input should be compressed or decompressed</value>
   </data>
-  <data name="Characters" xml:space="preserve">
-    <value>文字数 : </value>
+  <data name="ConversionCompress" xml:space="preserve">
+    <value>Compress</value>
   </data>
-  <data name="CobolCase" xml:space="preserve">
-    <value>COBOL-CASE</value>
-  </data>
-  <data name="Column" xml:space="preserve">
-    <value>カラム : </value>
-  </data>
-  <data name="ConstantCase" xml:space="preserve">
-    <value>CONSTANT_CASE</value>
-  </data>
-  <data name="Convert" xml:space="preserve">
-    <value>変換</value>
+  <data name="ConversionTitle" xml:space="preserve">
+    <value>GZip Compress/Decompress</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>文字列の検査と変換</value>
+    <value>GZip</value>
   </data>
-  <data name="InverseCase" xml:space="preserve">
-    <value>InVeRsE CaSe</value>
+  <data name="EncodingDescription" xml:space="preserve">
+    <value>Select whether the input should be compressed or decompressed</value>
   </data>
-  <data name="KebabCase" xml:space="preserve">
-    <value>kebab-case</value>
+  <data name="EncodingTitle" xml:space="preserve">
+    <value>Encoding</value>
   </data>
-  <data name="Line" xml:space="preserve">
-    <value>行 : </value>
+  <data name="InputTitle" xml:space="preserve">
+    <value>Input</value>
   </data>
-  <data name="Lines" xml:space="preserve">
-    <value>行数 : </value>
+  <data name="OutputTitle" xml:space="preserve">
+    <value>Output</value>
   </data>
-  <data name="LowerCase" xml:space="preserve">
-    <value>lower case</value>
-  </data>
-  <data name="OriginalCase" xml:space="preserve">
-    <value>オリジナル テキスト</value>
-  </data>
-  <data name="Paragraphs" xml:space="preserve">
-    <value>段落数 : </value>
-  </data>
-  <data name="PascalCase" xml:space="preserve">
-    <value>PascalCase</value>
-  </data>
-  <data name="Position" xml:space="preserve">
-    <value>先頭から : </value>
-  </data>
-  <data name="Selection" xml:space="preserve">
-    <value>選択中の位置</value>
-  </data>
-  <data name="SentenceCase" xml:space="preserve">
-    <value>Sentence case</value>
-  </data>
-  <data name="Sentences" xml:space="preserve">
-    <value>文数 : </value>
-  </data>
-  <data name="SnakeCase" xml:space="preserve">
-    <value>snake_case</value>
-  </data>
-  <data name="Statistics" xml:space="preserve">
-    <value>統計</value>
-  </data>
-  <data name="String" xml:space="preserve">
-    <value>文字列</value>
-  </data>
-  <data name="TitleCase" xml:space="preserve">
-    <value>Title Case</value>
-  </data>
-  <data name="TrainCase" xml:space="preserve">
-    <value>Train-Case</value>
-  </data>
-  <data name="UpperCase" xml:space="preserve">
-    <value>UPPER CASE</value>
-  </data>
-  <data name="WordDistribution" xml:space="preserve">
-    <value>単語の分布</value>
-  </data>
-  <data name="Words" xml:space="preserve">
-    <value>単語数 : </value>
+  <data name="Utf8" xml:space="preserve">
+    <value>UTF-8</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>テキストを分析し、大文字小文字を変換します</value>
+    <value>Compress or decompress strings</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>文字列の検査と変換</value>
+    <value>GZip Compress / Decompress</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Text String</value>
+    <value />
   </data>
 </root>
