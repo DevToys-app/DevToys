@@ -211,7 +211,9 @@ namespace DevToys.Helpers.SqlFormatter.Core
         {
             // A reserved word cannot be preceded by a "."
             // this makes it so in "mytable.from", "from" is not considered a reserved word
-            if (previousToken != null && previousToken.Value.Length == 1 && input[previousToken.Value.Index] == '.')
+            if (previousToken is not null 
+                && previousToken.Value.Length == 1 
+                && input[previousToken.Value.Index] == '.')
             {
                 return null;
             }
@@ -249,9 +251,9 @@ namespace DevToys.Helpers.SqlFormatter.Core
                 return null;
             }
 
-            Match matche = regex.Match(input, pointerIndex, input.Length - pointerIndex);
+            Match match = regex.Match(input, pointerIndex, input.Length - pointerIndex);
 
-            return matche.Success ? new Token(pointerIndex, matche.Length, type) : null;
+            return match.Success ? new Token(pointerIndex, match.Length, type) : null;
         }
     }
 }
