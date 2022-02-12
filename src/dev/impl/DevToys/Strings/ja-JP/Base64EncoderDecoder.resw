@@ -162,4 +162,8 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Base64 エンコーダー / デコーダー</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>RFC 4648</value>
+    <comment>Alternative search keywords. Enables searching for words that are not included in Description, MenuDisplayName, and SearchDisplayName.</comment>
+  </data>
 </root>

@@ -28,6 +28,8 @@ namespace DevToys.ViewModels.AllTools
 
         public string AccessibleName => LanguageManager.Instance.AllTools.AccessibleName;
 
+        public string? SearchKeywords => MenuDisplayName;
+
         public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF480");
 
         [ImportingConstructor]

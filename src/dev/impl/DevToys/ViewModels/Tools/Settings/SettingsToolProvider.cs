@@ -31,6 +31,8 @@ namespace DevToys.ViewModels.Settings
 
         public string AccessibleName => MenuDisplayName;
 
+        public string? SearchKeywords => LanguageManager.Instance.Settings.SearchKeywords;
+
         public TaskCompletionNotifier<IconElement> IconSource
             => new TaskCompletionNotifier<IconElement>(() =>
                 ThreadHelper.RunOnUIThreadAsync(() =>

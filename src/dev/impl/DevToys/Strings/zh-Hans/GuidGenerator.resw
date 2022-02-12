@@ -148,7 +148,7 @@
     <value>大写字母</value>
   </data>
   <data name="UuidVersionFour" xml:space="preserve">
-    <value>版本4（UUID）</value>
+    <value>版本4（GUID）</value>
   </data>
   <data name="UuidVersionOne" xml:space="preserve">
     <value>版本1</value>
@@ -164,5 +164,8 @@
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>通用唯一识别码（UUID）生成工具</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>GUID</value>
   </data>
 </root>

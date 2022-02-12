@@ -156,4 +156,7 @@
   <data name="NewLineOnAttributesName" xml:space="preserve">
     <value>새 줄에 특성 넣기</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value />
+  </data>
 </root>

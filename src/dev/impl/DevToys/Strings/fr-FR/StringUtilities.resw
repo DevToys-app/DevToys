@@ -216,4 +216,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Inspecteur et Convertisseur de Casse de texte</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>String</value>
+  </data>
 </root>

@@ -27,6 +27,8 @@ namespace DevToys.ViewModels.Tools.JwtDecoderEncoder
 
         public string AccessibleName => LanguageManager.Instance.JwtDecoderEncoder.AccessibleName;
 
+        public string? SearchKeywords => LanguageManager.Instance.JwtDecoderEncoder.SearchKeywords;
+
         public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("JWT.svg");
 
         [ImportingConstructor]

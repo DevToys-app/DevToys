@@ -183,4 +183,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>正規表現テスター</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Regular expression</value>
+  </data>
 </root>

@@ -160,4 +160,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>PNG / JPEG 最適化</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>JPG</value>
+  </data>
 </root>
