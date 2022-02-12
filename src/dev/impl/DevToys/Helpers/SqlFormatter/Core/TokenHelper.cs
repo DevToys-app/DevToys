@@ -7,53 +7,46 @@ namespace DevToys.Helpers.SqlFormatter.Core
 {
     internal static class TokenHelper
     {
-        private static readonly TimeSpan TimeOut = TimeSpan.FromMilliseconds(500);
-        private static readonly Regex AndRegex = new("^AND$", RegexOptions.IgnoreCase | RegexOptions.Compiled, TimeOut);
-        private static readonly Regex BetweenRegex = new("^BETWEEN$", RegexOptions.IgnoreCase | RegexOptions.Compiled, TimeOut);
-        private static readonly Regex LimitRegex = new("^LIMIT$", RegexOptions.IgnoreCase | RegexOptions.Compiled, TimeOut);
-        private static readonly Regex SetRegex = new("^SET$", RegexOptions.IgnoreCase | RegexOptions.Compiled, TimeOut);
-        private static readonly Regex ByRegex = new("^BY$", RegexOptions.IgnoreCase | RegexOptions.Compiled, TimeOut);
-        private static readonly Regex WindowRegex = new("^WINDOW$", RegexOptions.IgnoreCase | RegexOptions.Compiled, TimeOut);
-        private static readonly Regex EndRegex = new("^END$", RegexOptions.IgnoreCase | RegexOptions.Compiled, TimeOut);
-
-        internal static bool IsAnd(Token? token)
+        internal static bool IsAnd(this Token token, ReadOnlySpan<char> tokenValueSpan)
         {
-            return IsToken(token, TokenType.ReservedNewLine, AndRegex);
+            return IsToken(token.Type, TokenType.ReservedNewLine, tokenValueSpan, "AND".AsSpan());
         }
 
-        internal static bool isBetween(Token? token)
+        internal static bool IsBetween(this Token token, ReadOnlySpan<char> tokenValueSpan)
         {
-            return IsToken(token, TokenType.Reserved, BetweenRegex);
+            return IsToken(token.Type, TokenType.Reserved, tokenValueSpan, "BETWEEN".AsSpan());
         }
 
-        internal static bool isLimit(Token? token)
+        internal static bool IsLimit(this Token token, ReadOnlySpan<char> tokenValueSpan)
         {
-            return IsToken(token, TokenType.ReservedTopLevel, LimitRegex);
+            return IsToken(token.Type, TokenType.ReservedTopLevel, tokenValueSpan, "LIMIT".AsSpan());
         }
 
-        internal static bool isSet(Token? token)
+        internal static bool IsSet(this Token token, ReadOnlySpan<char> tokenValueSpan)
         {
-            return IsToken(token, TokenType.ReservedTopLevel, SetRegex);
+            return IsToken(token.Type, TokenType.ReservedTopLevel, tokenValueSpan, "SET".AsSpan());
         }
 
-        internal static bool isBy(Token? token)
+        internal static bool IsBy(this Token token, ReadOnlySpan<char> tokenValueSpan)
         {
-            return IsToken(token, TokenType.Reserved, ByRegex);
+            return IsToken(token.Type, TokenType.Reserved, tokenValueSpan, "BY".AsSpan());
         }
 
-        internal static bool isWindow(Token? token)
+        internal static bool IsWindow(this Token token, ReadOnlySpan<char> tokenValueSpan)
         {
-            return IsToken(token, TokenType.ReservedTopLevel, WindowRegex);
+            return IsToken(token.Type, TokenType.ReservedTopLevel, tokenValueSpan, "WINDOW".AsSpan());
         }
 
-        internal static bool isEnd(Token? token)
+        internal static bool IsEnd(this Token token, ReadOnlySpan<char> tokenValueSpan)
         {
-            return IsToken(token, TokenType.CloseParen, EndRegex);
+            return IsToken(token.Type, TokenType.CloseParen, tokenValueSpan, "END".AsSpan());
         }
 
-        private static bool IsToken(Token? token, TokenType type, Regex regex)
+        private static bool IsToken(TokenType type, TokenType otherType,
+            ReadOnlySpan<char> tokenValueSpan, ReadOnlySpan<char> otherSpan)
         {
-            return token?.Type == type && regex.IsMatch(token?.Value);
+            return type == otherType &&
+                   tokenValueSpan.Equals(otherSpan, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

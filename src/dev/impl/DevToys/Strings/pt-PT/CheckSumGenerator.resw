@@ -153,4 +153,7 @@
   <data name="Uppercase" xml:space="preserve">
     <value>Maiúsculas</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value />
+  </data>
 </root>

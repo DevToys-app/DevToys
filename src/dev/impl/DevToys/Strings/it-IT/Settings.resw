@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>Riguardo</value>
+    <value>Informazioni</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>Tema app</value>
+    <value>Tema</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>Seleziona il tema dell'app da visualizzare</value>
+    <value>Seleziona il tema dell'app</value>
   </data>
   <data name="AppTitle" xml:space="preserve">
     <value>DevToys</value>
@@ -142,7 +142,7 @@
     <value>Scuro</value>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>Quella di Windows</value>
+    <value>Predefinita di Windows</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Impostazioni</value>
@@ -151,16 +151,16 @@
     <value>Font</value>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
-    <value>Evidenzia la riga corrente</value>
+    <value>Evidenzia riga corrente</value>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>Cambia il colore di sfondo della linea corrente in modo che sia più visibile</value>
+    <value>Cambia il colore di riempimento della riga corrente per aumentarne la visibilità</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Lingua</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>L'app deve essere riavviata quando si seleziona un'altra lingua</value>
+    <value>Riavvio dell'app necessario per apportare modifiche alla lingua</value>
   </data>
   <data name="License" xml:space="preserve">
     <value>Licenza</value>
@@ -175,28 +175,28 @@
     <value>Visualizza i numeri di riga nell'editor di testo</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Apri il file di log</value>
+    <value>Apri file di log</value>
   </data>
   <data name="PrivacyPolicy" xml:space="preserve">
-    <value>Politica sulla riservatezza</value>
+    <value>Privacy Policy</value>
   </data>
   <data name="RateAndReview" xml:space="preserve">
     <value>Valuta e recensisci nel Microsoft Store</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>Rendering degli spazi bianchi</value>
+    <value>Reindirizza spazi bianchi</value>
   </data>
   <data name="ReportProblem" xml:space="preserve">
     <value>Segnala un problema</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
-    <value>Rilevamento intelligente</value>
+    <value>Rilevamento Intelligente</value>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Rileva automaticamente lo strumento migliore in base al contenuto degli appunti</value>
+    <value>Rileva automaticamente lo strumento adatto all'uso in base al contenuto degli appunti</value>
   </data>
   <data name="SmartDetectionHowTo" xml:space="preserve">
-    <value>Come utilizzare il rilevamento intelligente</value>
+    <value>Come utilizzare il Rilevamento Intelligente</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
     <value>Incolla automaticamente il contenuto degli appunti quando selezioni uno strumento consigliato</value>
@@ -211,21 +211,24 @@
     <value>Licenze di terze parti</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>Link utili</value>
+    <value>Collegamenti utili</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
-    <value>Usa impostazioni di sistema</value>
+    <value>Predefinito di Sistema</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Versione {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Manda a capo le parole</value>
+    <value>A capo automatico</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Modifica la visuale e il funzionamento di DevToys</value>
+    <value>Modifica lo stile e il funzionamento di DevToys</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Impostazioni</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Configurations Options Settings</value>
   </data>
 </root>

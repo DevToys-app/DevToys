@@ -26,6 +26,8 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
 
         public string AccessibleName => LanguageManager.Instance.CheckSumGenerator.AccessibleName;
 
+        public string? SearchKeywords => LanguageManager.Instance.CheckSumGenerator.SearchKeywords;
+
         public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF56F");
 
         [ImportingConstructor]

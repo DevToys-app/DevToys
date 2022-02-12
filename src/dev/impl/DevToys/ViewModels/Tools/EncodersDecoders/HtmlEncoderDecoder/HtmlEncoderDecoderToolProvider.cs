@@ -23,6 +23,8 @@ namespace DevToys.ViewModels.Tools.HtmlEncoderDecoder
 
         public string AccessibleName => LanguageManager.Instance.HtmlEncoderDecoder.AccessibleName;
 
+        public string? SearchKeywords => LanguageManager.Instance.HtmlEncoderDecoder.SearchKeywords;
+
         public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("HtmlEncoder.svg");
 
         private readonly IMefProvider _mefProvider;

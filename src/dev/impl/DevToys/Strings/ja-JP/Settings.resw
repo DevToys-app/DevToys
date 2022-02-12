@@ -121,10 +121,10 @@
     <value>アプリについて</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>アプリのテーマ</value>
+    <value>配色テーマ</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>表示するアプリのテーマを選択します</value>
+    <value>アプリで使用するテーマを選択します</value>
   </data>
   <data name="AppTitle" xml:space="preserve">
     <value>DevToys</value>
@@ -142,7 +142,7 @@
     <value>ダーク</value>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>Windows に合わせる</value>
+    <value>Windows の言語に合わせる</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>設定</value>
@@ -160,7 +160,7 @@
     <value>言語</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>別の言語を選択するときは、アプリを再起動する必要があります</value>
+    <value>The app needs to be restarted when selecting another language</value>
   </data>
   <data name="License" xml:space="preserve">
     <value>ライセンス</value>
@@ -169,10 +169,10 @@
     <value>ライト</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>行数</value>
+    <value>行番号の表示</value>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>テキストエディタ内で行番号を表示する</value>
+    <value>テキストエディターで行番号を表示する</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
     <value>ログを開く</value>
@@ -181,7 +181,7 @@
     <value>プライバシーポリシー</value>
   </data>
   <data name="RateAndReview" xml:space="preserve">
-    <value>MicrosoftStoreの評価とレビュー</value>
+    <value>Microsoft Store の評価とレビュー</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
     <value>空白文字を表示</value>
@@ -193,10 +193,10 @@
     <value>スマート検出</value>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>クリップボードの内容に基づいて最適なツールを自動的に検出します</value>
+    <value>クリップボードの内容から最適なツールを自動的に検出します</value>
   </data>
   <data name="SmartDetectionHowTo" xml:space="preserve">
-    <value>スマート検出の使い方</value>
+    <value>スマート検出のデモ</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
     <value>推奨ツールを選択するときにクリップボードの内容を自動的に貼り付けます</value>
@@ -205,7 +205,7 @@
     <value>ソースコード</value>
   </data>
   <data name="TextEditor" xml:space="preserve">
-    <value>テキストエディタ</value>
+    <value>テキストエディター</value>
   </data>
   <data name="ThirdPartyNotices" xml:space="preserve">
     <value>サードパーティ ライセンス</value>
@@ -217,7 +217,7 @@
     <value>システム設定に従う</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>バージョン {0}</value>
+    <value>Version {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
     <value>ワード ラップ</value>
@@ -227,5 +227,8 @@
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>設定</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Configurations Options Settings 構成</value>
   </data>
 </root>

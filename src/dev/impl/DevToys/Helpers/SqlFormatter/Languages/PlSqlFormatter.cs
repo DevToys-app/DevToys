@@ -435,21 +435,24 @@ namespace DevToys.Helpers.SqlFormatter.Languages
                     stringTypes: new[] { "\"\"", "N''", "''", "``" },
                     openParens: new[] { "(", "CASE" },
                     closeParens: new[] { ")", "END" },
-                    indexedPlaceholderTypes: new[] { "?" },
-                    namedPlaceholderTypes: new[] { ":" },
+                    indexedPlaceholderTypes: new[] { '?' },
+                    namedPlaceholderTypes: new[] { ':' },
                     lineCommentTypes: new[] { "--" },
                     specialWordChars: new[] { "_", "$", "#", ".", "@" },
                     operators: new[] { "||", "**", "!=", ":=" });
         }
 
-        protected override Token TokenOverride(Token token)
+        protected override Token TokenOverride(Token token, ReadOnlySpan<char> querySpan)
         {
-            if (TokenHelper.isSet(token) && TokenHelper.isBy(base._previousReservedToken))
+
+            if (token.IsSet(querySpan.Slice(token)) 
+                && _previousReservedToken != null
+                && _previousReservedToken.Value.IsBy(querySpan.Slice(_previousReservedToken.Value)))
             {
-                return new Token(token.Value, TokenType.Reserved);
+                return new Token(token.Index, token.Length, TokenType.Reserved, token.PrecedingWitespaceLength);
             }
 
-            return base.TokenOverride(token);
+            return base.TokenOverride(token, querySpan);
         }
     }
 }

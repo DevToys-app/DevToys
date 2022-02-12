@@ -162,4 +162,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>GZip Komprimace / Dekomprimace</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value />
+  </data>
 </root>

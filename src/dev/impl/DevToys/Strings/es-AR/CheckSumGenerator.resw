@@ -127,7 +127,7 @@
     <value>Configuration</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generate an hash with Checksum based on a file</value>
+    <value>Generate a hash with Checksum based on a file</value>
   </data>
   <data name="HashingAlgorithmDescription" xml:space="preserve">
     <value>Select which hashing algorithm you want to use</value>
@@ -152,5 +152,8 @@
   </data>
   <data name="Uppercase" xml:space="preserve">
     <value>Uppercase</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value />
   </data>
 </root>

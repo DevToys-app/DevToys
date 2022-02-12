@@ -130,7 +130,7 @@
     <value>生成</value>
   </data>
   <data name="GenerateButton" xml:space="preserve">
-    <value>UUIDの生成</value>
+    <value>UUID の生成</value>
   </data>
   <data name="Guids" xml:space="preserve">
     <value>UUID(s)</value>
@@ -145,7 +145,7 @@
     <value>生成する UUID の数</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
-    <value>大文字</value>
+    <value>大文字を使用する</value>
   </data>
   <data name="UuidVersionFour" xml:space="preserve">
     <value>4 (GUID)</value>
@@ -160,9 +160,12 @@
     <value>UUID バージョン</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>バージョン1及びバージョン4のUUIDを生成する</value>
+    <value>バージョン 1 およびバージョン 4 の UUID (GUID) を生成する</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>UUID 生成ツール</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value />
   </data>
 </root>
