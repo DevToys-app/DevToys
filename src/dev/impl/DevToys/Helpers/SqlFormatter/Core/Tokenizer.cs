@@ -8,9 +8,8 @@ namespace DevToys.Helpers.SqlFormatter.Core
 {
     internal class Tokenizer
     {
-        private static readonly Regex WhitespaceRegex = new Regex(@"^(\s+)", RegexOptions.Compiled);
-        private static readonly Regex NumberRegex = new Regex(@"^((-\s*)?[0-9]+(\.[0-9]+)?([eE]-?[0-9]+(\.[0-9]+)?)?|0x[0-9a-fA-F]+|0b[01]+)\b", RegexOptions.Compiled);
-        private static readonly Regex BlockCommentRegex = new Regex(@"^(\/\*(.*?)*?(?:\*\/|$))", RegexOptions.Compiled | RegexOptions.Singleline);
+        private static readonly Regex NumberRegex = new Regex(@"^((-\s*)?[0-9]+(\.[0-9]+)?([eE]-?[0-9]+(\.[0-9]+)?)?|0x[0-9a-fA-F]+|0b[01]+)\b", RegexOptions.Compiled, RegexFactory.DefaultMatchTimeout);
+        private static readonly Regex BlockCommentRegex = new Regex(@"^(\/\*(.*?)*?(?:\*\/|$))", RegexOptions.Singleline | RegexOptions.Compiled, RegexFactory.DefaultMatchTimeout);
 
         private readonly Regex _operatorRegex;
         private readonly Regex _lineCommentRegex;
@@ -24,7 +23,6 @@ namespace DevToys.Helpers.SqlFormatter.Core
         private readonly Regex _closeParenRegex;
         private readonly Regex? _indexedPlaceholderRegex;
         private readonly Regex? _indentNamedPlaceholderRegex;
-        private readonly Regex? _stringNamedPlaceholderRegex;
 
         /// <summary>
         /// Initializes a new instance of <see cref="Tokenizer"/> class.
@@ -49,8 +47,8 @@ namespace DevToys.Helpers.SqlFormatter.Core
             string[] stringTypes,
             string[] openParens,
             string[] closeParens,
-            string[] indexedPlaceholderTypes,
-            string[] namedPlaceholderTypes,
+            char[] indexedPlaceholderTypes,
+            char[] namedPlaceholderTypes,
             string[] lineCommentTypes,
             string[] specialWordChars,
             string[]? operators = null)
@@ -73,7 +71,6 @@ namespace DevToys.Helpers.SqlFormatter.Core
             _closeParenRegex = RegexFactory.CreateParenRegex(closeParens);
             _indexedPlaceholderRegex = RegexFactory.CreatePlaceholderRegex(indexedPlaceholderTypes, "[0-9]*");
             _indentNamedPlaceholderRegex = RegexFactory.CreatePlaceholderRegex(namedPlaceholderTypes, "[a-zA-Z0-9._$]+");
-            _stringNamedPlaceholderRegex = RegexFactory.CreatePlaceholderRegex(namedPlaceholderTypes, RegexFactory.CreateStringPattern(stringTypes));
         }
 
         /// <summary>
@@ -85,31 +82,28 @@ namespace DevToys.Helpers.SqlFormatter.Core
         {
             var tokens = new List<Token>();
             Token? token = null;
+            int pointerIndex = 0;
 
             // Keep processing the string until it is empty
-            while (input.Length > 0)
+            while (pointerIndex != input.Length)
             {
-                // TODO: This is a direct translation from https://github.com/zeroturnaround/sql-formatter
-                // The current algorithm allocates a lot of strings, which is terrible from memory consumption perspective.
+                // grab any preceding whitespace length
+                int precedingWitespaceLenght = GetPrecedingWitespaceLenght(input, pointerIndex);
 
-                // grab any preceding whitespace
-                string whitespaceBefore = GetWhitespace(input);
-                if (whitespaceBefore.Length > 0)
-                {
-                    input = input.Substring(whitespaceBefore.Length);
-                }
+                pointerIndex += precedingWitespaceLenght;
 
-                if (input.Length > 0)
+                if (pointerIndex != input.Length)
                 {
                     // Get the next token and the token type
-                    token = GetNextToken(input, token);
+                    token = GetNextToken(input, pointerIndex, previousToken: token);
 
                     if (token is not null)
                     {
-                        // Advance the string
-                        input = input.Substring(token.Value.Length);
-                        token.WhitespaceBefore = whitespaceBefore;
-                        tokens.Add(token);
+                        Token t = token.Value;
+                        // Advance the index pointer string
+                        pointerIndex += t.Length;
+                        t.PrecedingWitespaceLength = precedingWitespaceLenght;
+                        tokens.Add(t);
                     }
                 }
             }
@@ -117,167 +111,149 @@ namespace DevToys.Helpers.SqlFormatter.Core
             return tokens;
         }
 
-        private string GetWhitespace(string input)
+        private int GetPrecedingWitespaceLenght(string input, int pointerIndex)
         {
-            MatchCollection? matches = WhitespaceRegex.Matches(input);
-            return matches is null || matches.Count == 0 ? string.Empty : matches[0].Value;
-        }
-
-        private Token? GetNextToken(string input, Token? previousToken)
-        {
-            return GetCommentToken(input)
-                ?? GetStringToken(input)
-                ?? GetOpenParenToken(input)
-                ?? GetCloseParenToken(input)
-                ?? GetPlaceholderToken(input)
-                ?? GetNumberToken(input)
-                ?? GetReservedWordToken(input, previousToken)
-                ?? GetWordToken(input)
-                ?? GetOperatorToken(input);
-        }
-
-        private Token? GetCommentToken(string input)
-        {
-            return GetLineCommentToken(input)
-                ?? GetBlockCommentToken(input);
-        }
-
-        private Token? GetLineCommentToken(string input)
-        {
-            return GetTokenOnFirstMatch(input, TokenType.LineComment, _lineCommentRegex);
-        }
-
-        private Token? GetBlockCommentToken(string input)
-        {
-            return GetTokenOnFirstMatch(input, TokenType.BlockComment, BlockCommentRegex);
-        }
-
-        private Token? GetStringToken(string input)
-        {
-            return GetTokenOnFirstMatch(input, TokenType.String, _stringRegex);
-        }
-
-        private Token? GetOpenParenToken(string input)
-        {
-            return GetTokenOnFirstMatch(input, TokenType.OpenParen, _openParenRegex);
-        }
-
-        private Token? GetCloseParenToken(string input)
-        {
-            return GetTokenOnFirstMatch(input, TokenType.CloseParen, _closeParenRegex);
-        }
-
-        private Token? GetPlaceholderToken(string input)
-        {
-            return GetIdentNamedPlaceholderToken(input)
-                ?? GetStringNamedPlaceholderToken(input)
-                ?? GetIndexedPlaceholderToken(input);
-        }
-
-        private Token? GetIdentNamedPlaceholderToken(string input)
-        {
-            return GetPlaceholderTokenWithKey(input, _indentNamedPlaceholderRegex, (v) => v.Substring(1));
-        }
-
-        private Token? GetStringNamedPlaceholderToken(string input)
-        {
-            return GetPlaceholderTokenWithKey(
-                input,
-                _stringNamedPlaceholderRegex,
-                (v) => GetEscapedPlaceholderKey(
-                    key: v.Substring(1, 1),
-                    quoteChar: v.Substring(v.Length - 2)));
-        }
-
-        private Token? GetIndexedPlaceholderToken(string input)
-        {
-            return GetPlaceholderTokenWithKey(input, _indexedPlaceholderRegex, (v) => v.Substring(1));
-        }
-
-        private Token? GetPlaceholderTokenWithKey(string input, Regex? regex, Func<string, string> parseKey)
-        {
-            Token? token = GetTokenOnFirstMatch(input, TokenType.PlaceHolder, regex);
-            if (token is not null)
+            int i = 0;
+            int len = input.Length - pointerIndex;
+            for (; i < len; i++)
             {
-                token.Key = parseKey(token.Value);
+                if (!char.IsWhiteSpace(input[i + pointerIndex]))
+                {
+                    break;
+                }
             }
-
-            return token;
+            return i;
         }
 
-        private string GetEscapedPlaceholderKey(string key, string quoteChar)
+        private Token? GetNextToken(string input, int pointerIndex, Token? previousToken)
         {
-            string? escapeRegexPattern = new Regex(@"[.*+?^${}()|[\]\\]").Replace("\\" + quoteChar, "\\$&");
-            var escapeRegex = new Regex(escapeRegexPattern);
-            return escapeRegex.Replace(key, quoteChar);
+            return GetCommentToken(input, pointerIndex)
+                ?? GetStringToken(input, pointerIndex)
+                ?? GetOpenParenToken(input, pointerIndex)
+                ?? GetCloseParenToken(input, pointerIndex)
+                ?? GetPlaceholderToken(input, pointerIndex)
+                ?? GetNumberToken(input, pointerIndex)
+                ?? GetReservedWordToken(input, pointerIndex, previousToken)
+                ?? GetWordToken(input, pointerIndex)
+                ?? GetOperatorToken(input, pointerIndex);
         }
 
-        private Token? GetNumberToken(string input)
+        private Token? GetCommentToken(string input, int pointerIndex)
+        {
+            return GetLineCommentToken(input, pointerIndex)
+                ?? GetBlockCommentToken(input, pointerIndex);
+        }
+
+        private Token? GetLineCommentToken(string input, int pointerIndex)
+        {
+            return GetTokenOnFirstMatch(input, pointerIndex, TokenType.LineComment, _lineCommentRegex);
+        }
+
+        private Token? GetBlockCommentToken(string input, int pointerIndex)
+        {
+            return GetTokenOnFirstMatch(input, pointerIndex, TokenType.BlockComment, BlockCommentRegex);
+        }
+
+        private Token? GetStringToken(string input, int pointerIndex)
+        {
+            return GetTokenOnFirstMatch(input, pointerIndex, TokenType.String, _stringRegex);
+        }
+
+        private Token? GetOpenParenToken(string input, int pointerIndex)
+        {
+            return GetTokenOnFirstMatch(input, pointerIndex, TokenType.OpenParen, _openParenRegex);
+        }
+
+        private Token? GetCloseParenToken(string input, int pointerIndex)
+        {
+            return GetTokenOnFirstMatch(input, pointerIndex, TokenType.CloseParen, _closeParenRegex);
+        }
+
+        private Token? GetPlaceholderToken(string input, int pointerIndex)
+        {
+            return GetIdentNamedPlaceholderToken(input, pointerIndex)
+                ?? GetIndexedPlaceholderToken(input, pointerIndex);
+        }
+
+        private Token? GetIdentNamedPlaceholderToken(string input, int pointerIndex)
+        {
+            return GetPlaceholderTokenWithKey(input, pointerIndex, _indentNamedPlaceholderRegex);
+        }
+
+        private Token? GetIndexedPlaceholderToken(string input, int pointerIndex)
+        {
+            return GetPlaceholderTokenWithKey(input, pointerIndex, _indexedPlaceholderRegex);
+        }
+
+        private Token? GetPlaceholderTokenWithKey(string input, int pointerIndex, Regex? regex)
+        {
+            return GetTokenOnFirstMatch(input, pointerIndex, TokenType.PlaceHolder, regex);
+        }
+
+        private Token? GetNumberToken(string input, int pointerIndex)
         {
             // Decimal, binary, or hex numbers
-            return GetTokenOnFirstMatch(input, TokenType.Number, NumberRegex);
+            return GetTokenOnFirstMatch(input, pointerIndex, TokenType.Number, NumberRegex);
         }
 
-        private Token? GetWordToken(string input)
+        private Token? GetWordToken(string input, int pointerIndex)
         {
-            return GetTokenOnFirstMatch(input, TokenType.Word, _wordRegex);
+            return GetTokenOnFirstMatch(input, pointerIndex, TokenType.Word, _wordRegex);
         }
 
-        private Token? GetOperatorToken(string input)
+        private Token? GetOperatorToken(string input, int pointerIndex)
         {
             // Punctuation and symbols
-            return GetTokenOnFirstMatch(input, TokenType.Operator, _operatorRegex);
+            return GetTokenOnFirstMatch(input, pointerIndex, TokenType.Operator, _operatorRegex);
         }
 
-        private Token? GetReservedWordToken(string input, Token? previousToken)
+        private Token? GetReservedWordToken(string input, int pointerIndex, Token? previousToken)
         {
             // A reserved word cannot be preceded by a "."
             // this makes it so in "mytable.from", "from" is not considered a reserved word
-            if (previousToken is not null && string.Equals(".", previousToken.Value))
+            if (previousToken is not null 
+                && previousToken.Value.Length == 1 
+                && input[previousToken.Value.Index] == '.')
             {
                 return null;
             }
 
-            return GetTopLevelReservedToken(input)
-                ?? GetNewlineReservedToken(input)
-                ?? GetTopLevelReservedTokenNoIndent(input)
-                ?? GetPlainReservedToken(input);
+            return GetTopLevelReservedToken(input, pointerIndex)
+                ?? GetNewlineReservedToken(input, pointerIndex)
+                ?? GetTopLevelReservedTokenNoIndent(input, pointerIndex)
+                ?? GetPlainReservedToken(input, pointerIndex);
         }
 
-        private Token? GetTopLevelReservedToken(string input)
+        private Token? GetTopLevelReservedToken(string input, int pointerIndex)
         {
-            return GetTokenOnFirstMatch(input, TokenType.ReservedTopLevel, _reservedTopLevelRegex);
+            return GetTokenOnFirstMatch(input, pointerIndex, TokenType.ReservedTopLevel, _reservedTopLevelRegex);
         }
 
-        private Token? GetNewlineReservedToken(string input)
+        private Token? GetNewlineReservedToken(string input, int pointerIndex)
         {
-            return GetTokenOnFirstMatch(input, TokenType.ReservedNewLine, _reservedNewLineRegex);
+            return GetTokenOnFirstMatch(input, pointerIndex, TokenType.ReservedNewLine, _reservedNewLineRegex);
         }
 
-        private Token? GetTopLevelReservedTokenNoIndent(string input)
+        private Token? GetTopLevelReservedTokenNoIndent(string input, int pointerIndex)
         {
-            return GetTokenOnFirstMatch(input, TokenType.ReservedTopLevelNoIndent, _reservedTopLevelNoIndentRegex);
+            return GetTokenOnFirstMatch(input, pointerIndex, TokenType.ReservedTopLevelNoIndent, _reservedTopLevelNoIndentRegex);
         }
 
-        private Token? GetPlainReservedToken(string input)
+        private Token? GetPlainReservedToken(string input, int pointerIndex)
         {
-            return GetTokenOnFirstMatch(input, TokenType.Reserved, _reservedPlainRegex);
+            return GetTokenOnFirstMatch(input, pointerIndex, TokenType.Reserved, _reservedPlainRegex);
         }
 
-        private Token? GetTokenOnFirstMatch(string input, TokenType type, Regex? regex)
+        private Token? GetTokenOnFirstMatch(string input, int pointerIndex, TokenType type, Regex? regex)
         {
             if (regex is null)
             {
                 return null;
             }
 
-            MatchCollection? matches = regex.Matches(input);
-            if (matches is null || matches.Count == 0)
-            {
-                return null;
-            }
+            Match match = regex.Match(input, pointerIndex, input.Length - pointerIndex);
 
-            return new Token(matches[0].Value, type);
+            return match.Success ? new Token(pointerIndex, match.Length, type) : null;
         }
     }
 }
