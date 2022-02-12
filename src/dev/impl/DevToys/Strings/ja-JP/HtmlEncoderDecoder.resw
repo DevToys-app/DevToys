@@ -151,9 +151,12 @@
     <value>出力</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>該当するすべての文字を、対応するHTMLエンティティにエンコードまたはデコードします</value>
+    <value>該当するすべての文字を、対応する HTML エンティティにエンコードまたはデコードします</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>HTML エンコーダー / デコーダー</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value />
   </data>
 </root>

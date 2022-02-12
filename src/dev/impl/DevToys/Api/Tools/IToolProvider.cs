@@ -36,6 +36,11 @@ namespace DevToys.Api.Tools
         string AccessibleName { get; }
 
         /// <summary>
+        /// Gets the keywords of the tool that are searched in the localized environment.
+        /// </summary>
+        string? SearchKeywords { get; }
+
+        /// <summary>
         /// Gets an object type that has a width, height and image data. It can be an icon through a font, an SVG...etc.
         /// </summary>
         TaskCompletionNotifier<IconElement> IconSource { get; }

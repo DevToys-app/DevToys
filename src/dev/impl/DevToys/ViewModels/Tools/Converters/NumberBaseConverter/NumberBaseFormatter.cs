@@ -271,8 +271,10 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
                     }
                     return false;
                 case Radix.Decimal:
-                case Radix.Octal:
                     return char.IsNumber(c);
+                case Radix.Octal:
+                    return char.IsNumber(c) &&
+                        c is >= '0' and <= '7';
                 case Radix.Hexdecimal:
                     return char.IsNumber(c) ||
                         c >= 'a' && c <= 'f' ||

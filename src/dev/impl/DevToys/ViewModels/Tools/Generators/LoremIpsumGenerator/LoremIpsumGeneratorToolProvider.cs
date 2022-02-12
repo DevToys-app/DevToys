@@ -19,11 +19,17 @@ namespace DevToys.ViewModels.Tools.LoremIpsumGenerator
         private readonly IMefProvider _mefProvider;
 
         public string MenuDisplayName => LanguageManager.Instance.LoremIpsumGenerator.MenuDisplayName;
+
         public string? SearchDisplayName => LanguageManager.Instance.LoremIpsumGenerator.SearchDisplayName;
+
         public string? Description => LanguageManager.Instance.LoremIpsumGenerator.Description;
+
         public string AccessibleName => LanguageManager.Instance.LoremIpsumGenerator.AccessibleName;
+
+        public string? SearchKeywords => LanguageManager.Instance.LoremIpsumGenerator.SearchKeywords;
+
         public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("LoremIpsum.svg");
-        
+
         [ImportingConstructor]
         public LoremIpsumGeneratorToolProvider(IMefProvider mefProvider)
         {

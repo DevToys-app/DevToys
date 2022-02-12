@@ -147,4 +147,7 @@
   <data name="TritanopiaSimulation" xml:space="preserve">
     <value>Tritanopia simulation</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value />
+  </data>
 </root>

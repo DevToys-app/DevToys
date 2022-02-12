@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EnterCompactOverlayTooltip" xml:space="preserve">
-    <value>Tieni in prim piano (Ctrl+↑)</value>
+    <value>Entra in modalità Compact Overlay (Ctrl+↑)</value>
   </data>
   <data name="ExitCompactOverlayTooltip" xml:space="preserve">
-    <value>Back to full view (Ctrl+↓)</value>
+    <value>Esci dalla modalità Compact Overlay (Ctrl+↓)</value>
   </data>
   <data name="NotificationRateAppActionableActionText" xml:space="preserve">
-    <value>valutaci ora...</value>
+    <value>Valutaci ora...</value>
   </data>
   <data name="NotificationRateAppMessage" xml:space="preserve">
     <value>Ti piace DevToys? Sentiti libero di valutarci!</value>
@@ -133,14 +133,14 @@
     <value>Um... ciao! 😅</value>
   </data>
   <data name="NotificationReleaseNoteActionableActionText" xml:space="preserve">
-    <value>per saperne di più...</value>
+    <value>Per saperne di più...</value>
   </data>
   <data name="NotificationReleaseNoteTitle" xml:space="preserve">
     <value>Ci siamo appena aggiornati! Cosa c'è di nuovo in {0}? 🚀</value>
     <comment>{0} is the current app version</comment>
   </data>
   <data name="NotificationUpdateAvailableActionableActionText" xml:space="preserve">
-    <value>aggiorna ora...</value>
+    <value>Aggiorna ora...</value>
   </data>
   <data name="NotificationUpdateAvailableTitle" xml:space="preserve">
     <value>È disponibile un aggiornamento! 🚀</value>
@@ -152,10 +152,10 @@
     <value>Aggiungi a Start</value>
   </data>
   <data name="PinToolToStartProblem" xml:space="preserve">
-    <value>Impossibile aggiungere a start. Per maggiori dettagli, controlla il file di log.</value>
+    <value>Impossibile aggiungere a Start. Per maggiori dettagli, controlla il file di log.</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Digita per cercare gli strumenti...</value>
+    <value>Scrivi per cercare gli strumenti...</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
     <value>Nessun risultato trovato</value>

@@ -143,8 +143,15 @@ namespace DevToys.UI.Controls
 
         private void ExecuteCutCommand()
         {
-            RichEditBox.TextDocument.Selection.Cut();
-            Clipboard.Flush();
+            try
+            {
+                RichEditBox.TextDocument.Selection.Cut();
+                Clipboard.Flush();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogFault("Failed to cut from custom text box", ex);
+            }
         }
 
         #endregion
@@ -160,8 +167,15 @@ namespace DevToys.UI.Controls
 
         private void ExecuteCopyCommand()
         {
-            RichEditBox.TextDocument.Selection.Copy();
-            Clipboard.Flush();
+            try
+            {
+                RichEditBox.TextDocument.Selection.Copy();
+                Clipboard.Flush();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogFault("Failed to copy from custom text box", ex);
+            }
         }
 
         #endregion
@@ -441,19 +455,33 @@ namespace DevToys.UI.Controls
 
         private void CopyTextBoxSelectionToClipboard()
         {
-            var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
-            dataPackage.SetText(TextBox.SelectedText);
-            Clipboard.SetContentWithOptions(dataPackage, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
-            Clipboard.Flush(); // This method allows the content to remain available after the application shuts down.
+            try
+            {
+                var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
+                dataPackage.SetText(TextBox.SelectedText);
+                Clipboard.SetContentWithOptions(dataPackage, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
+                Clipboard.Flush(); // This method allows the content to remain available after the application shuts down.
+            }
+            catch (Exception ex)
+            {
+                Logger.LogFault("Failed to copy from custom text box", ex);
+            }
         }
 
         private void CopyRichEditBoxSelectionToClipboard()
         {
-            RichEditBox.Document.Selection.GetText(TextGetOptions.UseCrlf, out string? text);
-            var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
-            dataPackage.SetText(text);
-            Clipboard.SetContentWithOptions(dataPackage, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
-            Clipboard.Flush(); // This method allows the content to remain available after the application shuts down.
+            try
+            {
+                RichEditBox.Document.Selection.GetText(TextGetOptions.UseCrlf, out string? text);
+                var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
+                dataPackage.SetText(text);
+                Clipboard.SetContentWithOptions(dataPackage, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
+                Clipboard.Flush(); // This method allows the content to remain available after the application shuts down.
+            }
+            catch (Exception ex)
+            {
+                Logger.LogFault("Failed to copy from custom text box", ex);
+            }
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)

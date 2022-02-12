@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Strumento di utilità per le stringhe</value>
+    <value>Strumento Ispettore e Convertitore di casi</value>
   </data>
   <data name="AlternatingCase" xml:space="preserve">
     <value>aLtErNaTiNg cAsE</value>
   </data>
   <data name="Bytes" xml:space="preserve">
-    <value>Bytes:</value>
+    <value>Byte:</value>
   </data>
   <data name="CamelCase" xml:space="preserve">
     <value>camelCase</value>
   </data>
   <data name="CharacterDistribution" xml:space="preserve">
-    <value>Distribuzione dei caratteri</value>
+    <value>Distribuzione caratteri</value>
   </data>
   <data name="Characters" xml:space="preserve">
     <value>Caratteri:</value>
@@ -148,7 +148,7 @@
     <value>Converti</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Ispettore e convertitore di casi</value>
+    <value>Ispettore e Convertitore di casi</value>
   </data>
   <data name="InverseCase" xml:space="preserve">
     <value>InVeRsE CaSe</value>
@@ -157,10 +157,10 @@
     <value>kebab-case</value>
   </data>
   <data name="Line" xml:space="preserve">
-    <value>Line:</value>
+    <value>Linea:</value>
   </data>
   <data name="Lines" xml:space="preserve">
-    <value>Lines:</value>
+    <value>Linee:</value>
   </data>
   <data name="LowerCase" xml:space="preserve">
     <value>lower case</value>
@@ -193,7 +193,7 @@
     <value>Statistiche</value>
   </data>
   <data name="String" xml:space="preserve">
-    <value>Stringa</value>
+    <value>Testo</value>
   </data>
   <data name="TitleCase" xml:space="preserve">
     <value>Title Case</value>
@@ -211,9 +211,12 @@
     <value>Parole:</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Analizza il testo e convertilo</value>
+    <value>Analizza e converti il testo</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Convertitore e ispettore di casi di testo</value>
+    <value>Ispettore e Convertitore di casi</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Text String</value>
   </data>
 </root>

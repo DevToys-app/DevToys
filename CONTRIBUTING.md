@@ -14,7 +14,7 @@ You can contribute to DevToys app by:
 * In Visual Studio Installer, install the required components by importing the [vs2022.vsconfig](vs2022.vsconfig) or [vs2019.vsconfig](vs2019.vsconfig) file. 
 * Run `init.ps1` in a PowerShell command prompt to restore all the dependencies.
 * Open `src/DevToys.sln` with Visual Studio and set Solution Platform to x64*.
-* Once opened, set `src/dev/startup/DevToys.Startup/DevToys.Startup.wapproj` as startup project.
+* Once opened, set `src/dev/DevToys.Startup/DevToys.Startup.wapproj` as startup project.
 * Now you should be able to build and run DevToys on your machine. If it fails, try close the solution and reopen it again.
 
 **If x64 doesn't work, use the architecture of your system*

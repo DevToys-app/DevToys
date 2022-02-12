@@ -28,6 +28,8 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
 
         public string AccessibleName => LanguageManager.Instance.NumberBaseConverter.AccessibleName;
 
+        public string? SearchKeywords => LanguageManager.Instance.NumberBaseConverter.SearchKeywords;
+
         public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uFE2C");
 
         [ImportingConstructor]

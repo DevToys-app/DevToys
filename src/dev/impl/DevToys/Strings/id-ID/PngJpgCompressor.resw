@@ -146,7 +146,7 @@
     <value>OK</value>
   </data>
   <data name="SaveAll" xml:space="preserve">
-    <value>Simpan semual</value>
+    <value>Simpan semua</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Simpan sebagai</value>
@@ -159,5 +159,8 @@
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Kompresi PNG / JPEG</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>JPG</value>
   </data>
 </root>

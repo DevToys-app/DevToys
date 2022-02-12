@@ -124,7 +124,7 @@
     <value>変換ツール</value>
   </data>
   <data name="EncodersDecodersAccessibleName" xml:space="preserve">
-    <value>エンコーダー及びデコーダー</value>
+    <value>エンコーダーおよびデコーダー</value>
   </data>
   <data name="EncodersDecodersDisplayName" xml:space="preserve">
     <value>エンコーダー / デコーダー</value>

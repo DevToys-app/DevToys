@@ -183,4 +183,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Tester regulárních výrazů</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Regular expression</value>
+  </data>
 </root>
