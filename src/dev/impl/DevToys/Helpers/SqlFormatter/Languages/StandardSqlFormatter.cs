@@ -381,8 +381,8 @@ namespace DevToys.Helpers.SqlFormatter.Languages
                     stringTypes: new[] { "\"\"", "''" },
                     openParens: new[] { "(", "CASE" },
                     closeParens: new[] { ")", "END" },
-                    indexedPlaceholderTypes: new[] { "?" },
-                    namedPlaceholderTypes: Array.Empty<string>(),
+                    indexedPlaceholderTypes: new[] { '?' },
+                    namedPlaceholderTypes: Array.Empty<char>(),
                     lineCommentTypes: new[] { "--" },
                     specialWordChars: Array.Empty<string>());
         }

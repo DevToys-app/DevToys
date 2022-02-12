@@ -18,19 +18,20 @@ namespace DevToys.Helpers.SqlFormatter.Core
             _params = parameters;
         }
 
-        internal string? Get(Token token)
+        internal string? Get(string key)
         {
             if (_params is null)
             {
-                return token.Value;
+                return null;
             }
 
-            if (!string.IsNullOrEmpty(token.Key))
+            if (key is not null && key.Length != 0)
             {
-                return _params[token.Key!];
+                _params.TryGetValue(key, out string? paramValue);
+                return paramValue;
             }
 
-            return _params.Values.ToArray()[_index++];
+            return _params.ElementAtOrDefault(_index++).Value ?? null;
         }
     }
 }
