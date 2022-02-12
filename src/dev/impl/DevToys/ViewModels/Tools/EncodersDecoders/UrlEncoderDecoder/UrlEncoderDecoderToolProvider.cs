@@ -25,6 +25,8 @@ namespace DevToys.ViewModels.Tools.UrlEncoderDecoder
 
         public string AccessibleName => LanguageManager.Instance.UrlEncoderDecoder.AccessibleName;
 
+        public string? SearchKeywords => LanguageManager.Instance.UrlEncoderDecoder.SearchKeywords;
+
         public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF4E4");
 
         [ImportingConstructor]

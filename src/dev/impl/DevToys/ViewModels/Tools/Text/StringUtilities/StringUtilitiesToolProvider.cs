@@ -26,6 +26,8 @@ namespace DevToys.ViewModels.Tools.StringUtilities
 
         public string AccessibleName => LanguageManager.Instance.StringUtilities.AccessibleName;
 
+        public string? SearchKeywords => LanguageManager.Instance.StringUtilities.SearchKeywords;
+
         public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF793");
 
         [ImportingConstructor]

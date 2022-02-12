@@ -26,6 +26,8 @@ namespace DevToys.ViewModels.Tools.SqlFormatter
 
         public string AccessibleName => LanguageManager.Instance.SqlFormatter.AccessibleName;
 
+        public string? SearchKeywords => LanguageManager.Instance.SqlFormatter.SearchKeywords;
+
         public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("SqlFormatter.svg");
 
         [ImportingConstructor]

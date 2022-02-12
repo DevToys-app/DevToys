@@ -175,7 +175,7 @@
     <value>PascalCase</value>
   </data>
   <data name="Position" xml:space="preserve">
-    <value>先頭からの位置 : </value>
+    <value>先頭から : </value>
   </data>
   <data name="Selection" xml:space="preserve">
     <value>選択中の位置</value>
@@ -215,5 +215,8 @@
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>文字列の検査と変換</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Text String</value>
   </data>
 </root>

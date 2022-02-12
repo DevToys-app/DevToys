@@ -26,6 +26,8 @@ namespace DevToys.ViewModels.Tools.GuidGenerator
 
         public string AccessibleName => LanguageManager.Instance.GuidGenerator.AccessibleName;
 
+        public string? SearchKeywords => LanguageManager.Instance.GuidGenerator.SearchKeywords;
+
         public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("Guid.svg");
 
         [ImportingConstructor]

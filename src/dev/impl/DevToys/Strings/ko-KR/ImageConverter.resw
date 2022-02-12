@@ -190,4 +190,7 @@
   <data name="ErrorMessage" xml:space="preserve">
     <value>예기치 못한 오류가 발생하였습니다. 변환 작업이 정상적으로 이루어지지 않았습니다.</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>BMP GIF HEIF JPG XR PNG TIFF</value>
+  </data>
 </root>

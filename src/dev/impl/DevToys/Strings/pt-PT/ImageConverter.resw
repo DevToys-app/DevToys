@@ -190,4 +190,7 @@
   <data name="ErrorMessage" xml:space="preserve">
     <value>Ocorreu um erro inesperado, a conversão pode não ter sido realizada.</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>BMP GIF HEIF JPG XR PNG TIFF</value>
+  </data>
 </root>
