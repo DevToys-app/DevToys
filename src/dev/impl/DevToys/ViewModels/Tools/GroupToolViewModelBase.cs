@@ -14,6 +14,8 @@ namespace DevToys.ViewModels.Tools
     {
         public IEnumerable<IToolProvider>? ToolProviders { get; protected set; }
 
+        public bool IsToolProvidersEmpty => !ToolProviders?.GetEnumerator().MoveNext() ?? true;
+
         public GroupToolViewModelBase()
         {
             NavigateToToolCommand = new RelayCommand<IToolProvider>(ExecuteNavigateToToolCommand);
