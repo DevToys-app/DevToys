@@ -3,6 +3,7 @@
 using System;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Xml;
 using DevToys.Core;
 using DevToys.Models;
@@ -98,6 +99,18 @@ namespace DevToys.Helpers
                     xmlDocument.Save(xmlWriter);
                 }
 
+                if (xmlDocument.FirstChild.NodeType == XmlNodeType.XmlDeclaration)
+                {
+                    Match match = Regex.Match(xmlDocument.FirstChild.InnerText, @"(?<=encoding\s*=\s*"")[^""]*", RegexOptions.None);
+                    if (match.Success)
+                    {
+                        stringBuilder = stringBuilder.Replace("utf-16", match.Value);
+                    }
+                    else
+                    {
+                        stringBuilder = stringBuilder.Replace("encoding=\"utf-16\"", "");
+                    }
+                }
                 return stringBuilder.ToString();
             }
             catch (XmlException ex)
