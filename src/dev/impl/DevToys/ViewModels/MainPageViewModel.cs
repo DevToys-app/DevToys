@@ -360,6 +360,7 @@ namespace DevToys.ViewModels
                         parameters.QueryText,
                         Array.Empty<MatchedToolProvider>()),
                     clipboardContentData: null);
+                return;
             }
 
             SetSelectedMenuItem((MatchedToolProvider)parameters.ChosenSuggestion!, clipboardContentData: null);
