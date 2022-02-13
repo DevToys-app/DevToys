@@ -70,6 +70,7 @@
             Grid.Row="1"
             MinHeight="150"
             AcceptsReturn="True"
+            IsRichTextEdit="True"
             Header="{x:Bind ViewModel.Strings.InputTitle}"
             Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
@@ -78,6 +79,7 @@
             MinHeight="150"
             IsReadOnly="True"
             AcceptsReturn="True"
+            IsRichTextEdit="True"
             Header="{x:Bind ViewModel.Strings.OutputTitle}"
             Text="{x:Bind ViewModel.OutputValue, Mode=OneWay}"/>
 

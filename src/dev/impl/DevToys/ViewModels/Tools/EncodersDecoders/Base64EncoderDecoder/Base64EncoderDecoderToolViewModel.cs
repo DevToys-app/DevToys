@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Composition;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DevToys.Api.Core;
@@ -207,7 +208,16 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
             {
                 byte[]? decodedData = Convert.FromBase64String(data);
                 Encoding encoder = GetEncoder();
-                decoded = encoder.GetString(decodedData);
+                if (encoder is UTF8Encoding && decodedData != null)
+                {
+                    byte[] preamble = encoder.GetPreamble();
+                    if (decodedData.Take(preamble.Length).SequenceEqual(preamble))
+                    {
+                        // need to keep it this way to have the dom char
+                        decoded += Encoding.Unicode.GetString(preamble, 0, 1);
+                    }
+                }
+                decoded += encoder.GetString(decodedData);
             }
             catch (FormatException)
             {
@@ -226,7 +236,7 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
         {
             if (string.Equals(EncodingMode, DefaultEncoding, StringComparison.Ordinal))
             {
-                return Encoding.UTF8;
+                return new UTF8Encoding(true);
             }
             return Encoding.ASCII;
         }
