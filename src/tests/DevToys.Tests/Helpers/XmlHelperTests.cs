@@ -77,5 +77,18 @@ namespace DevToys.Tests.Helpers
         {
             Assert.AreEqual(expectedResult, XmlHelper.Format(input, Indentation.Minified, newLineOnAttributes));
         }
+
+        [DataTestMethod]
+        [DataRow(null, "")]
+        [DataRow("", "")]
+        [DataRow("<?xml version=\"1.0\" ?><Document version=\"0.1\"><Element /></Document>", "<?xml version=\"1.0\" ?><Document version=\"0.1\"><Element /></Document>")]
+        [DataRow("<?xml version=\"1.0\" encoding=\"utf-8\"?><Document version=\"0.1\"><Element /></Document>", "<?xml version=\"1.0\" encoding=\"utf-8\"?><Document version=\"0.1\"><Element /></Document>")]
+        [DataRow("<?xml version=\"1.0\" encoding=\"utf-16\"?><Document version=\"0.1\"><Element /></Document>", "<?xml version=\"1.0\" encoding=\"utf-16\"?><Document version=\"0.1\"><Element /></Document>")]
+        [DataRow("<?xml version=\"1.0\" encoding=\"test\"?><Document version=\"0.1\"><Element /></Document>", "<?xml version=\"1.0\" encoding=\"test\"?><Document version=\"0.1\"><Element /></Document>")]
+        [DataRow("<Document version=\"0.1\"><Element /></Document>", "<Document version=\"0.1\"><Element /></Document>")]
+        public void CheckEncoding(string input, string expectedResult, bool newLineOnAttributes = false)
+        {
+            Assert.AreEqual(expectedResult, XmlHelper.Format(input, Indentation.Minified, newLineOnAttributes));
+        }
     }
 }
