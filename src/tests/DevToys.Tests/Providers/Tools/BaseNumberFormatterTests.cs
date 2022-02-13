@@ -126,5 +126,41 @@ namespace DevToys.Tests.Providers.Tools
         {
             Assert.AreEqual(expectedResult, NumberBaseFormatter.RemoveFormatting(input));
         }
+
+        [DataTestMethod]
+        [DataRow("000101001101", "0001 0100 1101")]
+        [DataRow("00 01 01 00 11 01", "0001 0100 1101")]
+        public void FormatBinary(string input, string expectedResult)
+        {
+            Assert.AreEqual(expectedResult, NumberBaseFormatter.FormatNumber(input, NumberBaseFormat.Binary));
+        }
+
+        [DataTestMethod]
+        [DataRow("2061 210 44  034 ", "206 121 044 034")]
+        [DataRow("206121044034", "206 121 044 034")]
+        public void FormatOctal(string input, string expectedResult)
+        {
+            Assert.AreEqual(expectedResult, NumberBaseFormatter.FormatNumber(input, NumberBaseFormat.Octal));
+        }
+
+        [DataTestMethod]
+        [DataRow("123456", "123,456")]
+        [DataRow("12345", "12,345")]
+        [DataRow("-123456", "-123,456")]
+        [DataRow("-12345", "-12,345")]
+        [DataRow("-12,3456", "-123,456")]
+        public void FormatDecimal(string input, string expectedResult)
+        {
+            Assert.AreEqual(expectedResult, NumberBaseFormatter.FormatNumber(input, NumberBaseFormat.Decimal));
+        }
+
+        [DataTestMethod]
+        [DataRow("C6AEA155", "C6AE A155")]
+        [DataRow("C6AE A155", "C6AE A155")]
+        [DataRow(" C 6AE A1  5 5", "C6AE A155")]
+        public void FormatHexadecimal(string input, string expectedResult)
+        {
+            Assert.AreEqual(expectedResult, NumberBaseFormatter.FormatNumber(input, NumberBaseFormat.Hexadecimal));
+        }
     }
 }
