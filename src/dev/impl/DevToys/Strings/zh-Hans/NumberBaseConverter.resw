@@ -130,7 +130,7 @@
     <value>十进制</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>进制转换工具</value>
+    <value>进制转换</value>
   </data>
   <data name="Format" xml:space="preserve">
     <value>数字格式化</value>
@@ -148,7 +148,7 @@
     <value>十进制</value>
   </data>
   <data name="InputTypeDescription" xml:space="preserve">
-    <value>选择您想使用的数字进制来进行输入</value>
+    <value>选择您输入的数字的进制类型</value>
   </data>
   <data name="InputTypeHexadecimal" xml:space="preserve">
     <value>十六进制</value>

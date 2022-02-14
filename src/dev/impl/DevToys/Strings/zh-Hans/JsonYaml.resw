@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>JSON / YAML 字符格式互转工具</value>
+    <value>JSON / YAML 数据类型互转工具</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>配置</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>选择您想使用的转换格式</value>
+    <value>选择您想使用的转换模式</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
     <value>转换</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>JSON / YAML 字符格式互转工具</value>
+    <value>JSON &lt;&gt; YAML</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
     <value>4 个空格</value>
@@ -142,7 +142,7 @@
     <value>输入</value>
   </data>
   <data name="InvalidYaml" xml:space="preserve">
-    <value>输入的 YAML 字符无效，请及时修改。</value>
+    <value>输入的 YAML 字符串无效。</value>
   </data>
   <data name="JsonToYaml" xml:space="preserve">
     <value>JSON 转换到 YAML</value>
@@ -157,10 +157,10 @@
     <value>YAML 转换到 JSON</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>JSON / YAML 字符相互转换</value>
+    <value>JSON / YAML 数据类型相互转换</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>JSON / YAML 字符格式互转工具</value>
+    <value>JSON / YAML 数据类型互转工具</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value />
