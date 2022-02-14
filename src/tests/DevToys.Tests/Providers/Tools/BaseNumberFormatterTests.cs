@@ -49,6 +49,12 @@ namespace DevToys.Tests.Providers.Tools
         [DataTestMethod]
         [DataRow("30653520525&")]
         [DataRow("30 653 520 525 &")]
+        [DataRow("306535205258")]
+        [DataRow("30 653 520 525 8")]
+        [DataRow("306535295256")]
+        [DataRow("30 653 529 525 6")]
+        [DataRow("3065352a5256")]
+        [DataRow("3065352A5256")]
         public void OctalToDecimalShouldThrowInvalidOperationException(string input)
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
@@ -119,6 +125,42 @@ namespace DevToys.Tests.Providers.Tools
         public void RemoveFormatting(string input, string expectedResult)
         {
             Assert.AreEqual(expectedResult, NumberBaseFormatter.RemoveFormatting(input));
+        }
+
+        [DataTestMethod]
+        [DataRow("000101001101", "0001 0100 1101")]
+        [DataRow("00 01 01 00 11 01", "0001 0100 1101")]
+        public void FormatBinary(string input, string expectedResult)
+        {
+            Assert.AreEqual(expectedResult, NumberBaseFormatter.FormatNumber(input, NumberBaseFormat.Binary));
+        }
+
+        [DataTestMethod]
+        [DataRow("2061 210 44  034 ", "206 121 044 034")]
+        [DataRow("206121044034", "206 121 044 034")]
+        public void FormatOctal(string input, string expectedResult)
+        {
+            Assert.AreEqual(expectedResult, NumberBaseFormatter.FormatNumber(input, NumberBaseFormat.Octal));
+        }
+
+        [DataTestMethod]
+        [DataRow("123456", "123,456")]
+        [DataRow("12345", "12,345")]
+        [DataRow("-123456", "-123,456")]
+        [DataRow("-12345", "-12,345")]
+        [DataRow("-12,3456", "-123,456")]
+        public void FormatDecimal(string input, string expectedResult)
+        {
+            Assert.AreEqual(expectedResult, NumberBaseFormatter.FormatNumber(input, NumberBaseFormat.Decimal));
+        }
+
+        [DataTestMethod]
+        [DataRow("C6AEA155", "C6AE A155")]
+        [DataRow("C6AE A155", "C6AE A155")]
+        [DataRow(" C 6AE A1  5 5", "C6AE A155")]
+        public void FormatHexadecimal(string input, string expectedResult)
+        {
+            Assert.AreEqual(expectedResult, NumberBaseFormatter.FormatNumber(input, NumberBaseFormat.Hexadecimal));
         }
     }
 }

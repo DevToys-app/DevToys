@@ -190,4 +190,7 @@
   <data name="ErrorMessage" xml:space="preserve">
     <value>发生了一个意外错误，转换操作可能未被执行。</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>BMP GIF HEIF JPG XR PNG TIFF</value>
+  </data>
 </root>

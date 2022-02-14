@@ -165,4 +165,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>通用唯一识别码（UUID）生成工具</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>GUID</value>
+  </data>
 </root>

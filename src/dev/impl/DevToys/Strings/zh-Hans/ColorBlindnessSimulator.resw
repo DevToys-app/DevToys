@@ -147,4 +147,7 @@
   <data name="TritanopiaSimulation" xml:space="preserve">
     <value>蓝色盲模拟</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Color Blindness</value>
+  </data>
 </root>

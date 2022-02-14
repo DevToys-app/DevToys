@@ -144,4 +144,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Porovnávač textu</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Diff comparer</value>
+  </data>
 </root>

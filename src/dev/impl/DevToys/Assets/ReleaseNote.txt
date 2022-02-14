@@ -1,14 +1,13 @@
 ﻿🎉 New Features
-  • GZip Compressor / Decompressor!
-  • Image Converter!
-  • Checksum Generator!
-  • SQL Formatter!
-  • XML Formatter!
+  • You can now install DevToys with Chocolatey!
 👏 Improvements
-  • Added Polish, Hungarian, Japanese, Traditional Chinese, Italian Chinese translation
-  • Hash Generator can now output in Base64
-  • We can now copy the Markdown Preview output
+  • Added Korean translation
+  • Updated Japanese, Italian, Indonesian, Traditional Chinese
+  • Search bar now support alternative keywords
+  • SQL Formater is faster an use less memory
+  • Minor UI update in JWT Decoder
+  • Number Base Converter UX updated
 🐛 Bug Fixes
-  • Fixed many minor issues in Number Base Converter, JSON <> YAML Converter, UUID Converter, Settings
-  • Fixed a few minor UI issues
-  • Updated DevToys icon to avoid license violation
+  • Crash with text fields and folder selector
+  • Crash with decimals in JSON <> YAML
+  • Bugs impacting RegEx Tester, Base64 Encoder / Decoder, JSON Formatter, XML Formatter, JSON <> YAML, Number Base Converter

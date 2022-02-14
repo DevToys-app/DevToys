@@ -136,15 +136,18 @@
     <value>キャンセル</value>
   </data>
   <data name="DeuteranopiaSimulation" xml:space="preserve">
-    <value>先天赤緑異常シミュレーション</value>
+    <value>(D) 2 型 2 色覚</value>
   </data>
   <data name="OriginalPicture" xml:space="preserve">
-    <value>元の画像</value>
+    <value>オリジナル</value>
   </data>
   <data name="ProtanopiaSimulation" xml:space="preserve">
-    <value>1型2色覚異常シミュレーション</value>
+    <value>(P) 1 型 2 色覚</value>
   </data>
   <data name="TritanopiaSimulation" xml:space="preserve">
-    <value>3型色覚異常シミュレーション</value>
+    <value>(T) 3 型 2 色覚</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Color Blindness</value>
   </data>
 </root>

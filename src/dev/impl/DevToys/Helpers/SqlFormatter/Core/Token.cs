@@ -2,20 +2,19 @@
 
 namespace DevToys.Helpers.SqlFormatter.Core
 {
-    internal sealed class Token
+    internal struct Token
     {
-        internal string Value { get; }
+        internal readonly int Index { get; }
+        internal readonly int Length { get; }
+        internal int PrecedingWitespaceLength { get; set; }
+        internal readonly TokenType Type { get; }
 
-        internal TokenType Type { get; }
-
-        internal string? WhitespaceBefore { get; set; }
-
-        internal string? Key { get; set; }
-
-        public Token(string value, TokenType type)
+        public Token(int index, int length, TokenType type, int precedingWitespaceLength = 0)
         {
-            Value = value;
+            Index = index;
+            Length = length;
             Type = type;
+            PrecedingWitespaceLength = precedingWitespaceLength;
         }
     }
 }

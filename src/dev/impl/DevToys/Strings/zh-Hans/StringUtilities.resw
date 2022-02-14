@@ -216,4 +216,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>字符串实用工具</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Text String</value>
+  </data>
 </root>

@@ -171,6 +171,24 @@ namespace DevToys.Providers.Impl
                                 i++;
                             }
 
+                            if (provider.ToolProvider.SearchKeywords is not null
+                                && !string.IsNullOrEmpty(provider.ToolProvider.SearchKeywords))
+                            {
+                                string searchKeyword = System.Text.RegularExpressions.Regex.Replace(provider.ToolProvider.SearchKeywords, @"\s", "");
+                                i = 0;
+                                while (i < searchKeyword.Length && i > -1)
+                                {
+                                    int matchIndex = searchKeyword.IndexOf(query, i, StringComparison.OrdinalIgnoreCase);
+                                    if (matchIndex > -1)
+                                    {
+                                        i = matchIndex + query.Length;
+                                        totalMatchCount++;
+                                    }
+
+                                    i++;
+                                }
+                            }
+
                             i = 0;
                             while (i < provider.ToolProvider.MenuDisplayName?.Length && i > -1)
                             {

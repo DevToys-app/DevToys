@@ -124,7 +124,7 @@
     <value>ASCII</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>設定</value>
+    <value>構成</value>
   </data>
   <data name="ConversionDecompress" xml:space="preserve">
     <value>展開</value>
@@ -161,5 +161,8 @@
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>GZip を利用した文字列の圧縮と展開</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value />
   </data>
 </root>

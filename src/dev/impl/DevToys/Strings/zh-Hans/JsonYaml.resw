@@ -162,4 +162,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>JSON / YAML 数据类型互转工具</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value />
+  </data>
 </root>

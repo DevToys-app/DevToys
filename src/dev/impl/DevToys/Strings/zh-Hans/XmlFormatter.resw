@@ -156,4 +156,7 @@
   <data name="NewLineOnAttributesName" xml:space="preserve">
     <value>将属性置于新行</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value />
+  </data>
 </root>

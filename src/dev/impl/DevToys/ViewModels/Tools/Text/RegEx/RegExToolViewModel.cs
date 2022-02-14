@@ -241,14 +241,15 @@ namespace DevToys.ViewModels.Tools.RegEx
                     string? pattern = data.pattern.Trim('/');
 
                     var regex = new Regex(data.pattern, GetOptions());
-                    MatchCollection matches = regex.Matches(data.text.Replace("\r\n", "\r"));
+                    MatchCollection matches = regex.Matches(data.text);
 
                     foreach (Match match in matches)
                     {
+                        int lineCount = CountLines(data.text, match.Index);
                         spans.Add(
                             new HighlightSpan()
                             {
-                                StartIndex = match.Index,
+                                StartIndex = match.Index - lineCount,
                                 Length = match.Length,
                                 BackgroundColor = highlighterBackgroundColor,
                                 ForegroundColor = highlighterForegroundColor
@@ -310,6 +311,23 @@ namespace DevToys.ViewModels.Tools.RegEx
             }
 
             return options;
+        }
+
+        private int CountLines(string input, int maxLength)
+        {
+            int lines = 0;
+            int i = 0;
+            while (i > -1 && i < maxLength)
+            {
+                i = input.IndexOf("\r\n", startIndex: i);
+                if (i > -1 && i < maxLength)
+                {
+                    lines++;
+                    i++;
+                }
+            }
+
+            return lines;
         }
     }
 }

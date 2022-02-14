@@ -26,6 +26,8 @@ namespace DevToys.ViewModels.Tools.TextDiff
 
         public string AccessibleName => LanguageManager.Instance.TextDiff.AccessibleName;
 
+        public string? SearchKeywords => LanguageManager.Instance.TextDiff.SearchKeywords;
+
         public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("TextDiff.svg");
 
         [ImportingConstructor]

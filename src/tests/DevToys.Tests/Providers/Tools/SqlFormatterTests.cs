@@ -58,8 +58,8 @@ VALUES
             AssertFormat(formatter, input, expectedResult);
 
             // recognizes @variables
-            input = "SELECT @variable, @\"var name\", @[var name];";
-            expectedResult = "SELECT\r\n  @variable,\r\n  @\"var name\",\r\n  @[var name];";
+            input = "SELECT @variable;";
+            expectedResult = "SELECT\r\n  @variable;";
             AssertFormat(formatter, input, expectedResult);
 
             // formats SELECT query with CROSS JOIN
@@ -605,8 +605,8 @@ SET
             AssertFormat(formatter, input, expectedResult);
 
             // recognizes $variables
-            input = "SELECT $variable, $\'var name\', $\"var name\", $`var name`;";
-            expectedResult = "SELECT\r\n  $variable,\r\n  $'var name',\r\n  $\"var name\",\r\n  $`var name`;";
+            input = "SELECT $variable;";
+            expectedResult = "SELECT\r\n  $variable;";
             AssertFormat(formatter, input, expectedResult);
         }
 

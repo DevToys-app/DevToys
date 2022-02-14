@@ -165,4 +165,7 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Generator UUID</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>GUID</value>
+  </data>
 </root>

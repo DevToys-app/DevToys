@@ -25,6 +25,8 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
 
         public string AccessibleName => LanguageManager.Instance.PngJpgCompressor.AccessibleName;
 
+        public string? SearchKeywords => LanguageManager.Instance.PngJpgCompressor.SearchKeywords;
+
         public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF488");
 
         [ImportingConstructor]
