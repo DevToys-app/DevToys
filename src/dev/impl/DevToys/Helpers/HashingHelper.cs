@@ -23,7 +23,7 @@ namespace DevToys.Helpers
             Arguments.NotNull(hashAlgorithm, nameof(hashAlgorithm));
 
             byte[] readAheadBuffer = new byte[bufferSize];
-            byte[] buffer;
+            byte[] buffer = new byte[bufferSize];
 
             int readAheadBytes = await stream.ReadAsync(readAheadBuffer, 0, bufferSize, cancellationToken);
             int bytesRead;
@@ -32,7 +32,7 @@ namespace DevToys.Helpers
             while (readAheadBytes != 0)
             {
                 bytesRead = readAheadBytes;
-                buffer = readAheadBuffer;
+                Buffer.BlockCopy(readAheadBuffer, 0, buffer, 0, bytesRead);
 
                 readAheadBytes = await stream.ReadAsync(readAheadBuffer, 0, bufferSize, cancellationToken);
                 totalBytesRead += readAheadBytes;
