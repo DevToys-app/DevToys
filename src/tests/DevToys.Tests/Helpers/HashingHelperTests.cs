@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
@@ -13,21 +14,29 @@ namespace DevToys.Tests.Helpers
     [TestClass]
     public class HashingHelperTests
     {
-        [TestMethod]
-        public void ComputeHashShouldThrowIfStreamIsNull()
+        private static byte[] _twoMBArray;
+
+        [ClassInitialize]
+        public static void Initialize(TestContext _)
         {
-            ArgumentException ex = Assert.ThrowsException<ArgumentException>(async () =>
-                    await HashingHelper.ComputeHashAsync(MD5.Create(), null, new Progress<HashingProgress>((_) => { }), new CancellationToken()));
+            _twoMBArray = Enumerable.Repeat<byte>(1, 1024 * 1024 * 2).ToArray();
+        }
+
+        [TestMethod]
+        public async Task ComputeHashShouldThrowIfStreamIsNull()
+        {
+            ArgumentNullException ex = await Assert.ThrowsExceptionAsync<ArgumentNullException>(() =>
+                    HashingHelper.ComputeHashAsync(MD5.Create(), null, new Progress<HashingProgress>((_) => { }), new CancellationToken()));
             Assert.AreEqual(ex.ParamName, "stream");
         }
 
         [TestMethod]
-        public void ComputeHashShouldThrowIfHashingAlgorithmIsNull()
+        public async Task ComputeHashShouldThrowIfHashingAlgorithmIsNull()
         {
-            using(var stream = new MemoryStream())
+            using (var stream = new MemoryStream())
             {
-                ArgumentException ex = Assert.ThrowsException<ArgumentException>(async () =>
-                   await HashingHelper.ComputeHashAsync(null, stream, new Progress<HashingProgress>((_) => { }), new CancellationToken()));
+                ArgumentNullException ex = await Assert.ThrowsExceptionAsync<ArgumentNullException>(() =>
+                   HashingHelper.ComputeHashAsync(null, stream, new Progress<HashingProgress>((_) => { }), new CancellationToken()));
                 Assert.AreEqual(ex.ParamName, "hashAlgorithm");
             }
         }
@@ -49,6 +58,19 @@ namespace DevToys.Tests.Helpers
             }
         }
 
+        [TestMethod]
+        public async Task ComputeHashMD5ForLargeFile()
+        {
+            using (var stream = new MemoryStream(_twoMBArray))
+            {
+                byte[] bytesResult = await HashingHelper.ComputeHashAsync(MD5.Create(), stream, new Progress<HashingProgress>((_) => { }), new CancellationToken());
+
+                string result = FormatResult(BitConverter.ToString(bytesResult));
+
+                Assert.AreEqual("9F05E7ADB91551CA82CF646CA371344A", result);
+            }
+        }
+
         [DataTestMethod]
         [DataRow("", "")]
         [DataRow(" ", "B858CB282617FB0956D960215C8E84D1CCF909C6")]
@@ -63,6 +85,19 @@ namespace DevToys.Tests.Helpers
                 string result = FormatResult(BitConverter.ToString(bytesResult));
 
                 Assert.AreEqual(expectedResult, result);
+            }
+        }
+
+        [TestMethod]
+        public async Task ComputeHashSHA1ForLargeFile()
+        {
+            using (var stream = new MemoryStream(_twoMBArray))
+            {
+                byte[] bytesResult = await HashingHelper.ComputeHashAsync(SHA1.Create(), stream, new Progress<HashingProgress>((_) => { }), new CancellationToken());
+
+                string result = FormatResult(BitConverter.ToString(bytesResult));
+
+                Assert.AreEqual("F613FCBB54EF5E04D50D734FB0457B245833702B", result);
             }
         }
 
@@ -83,6 +118,19 @@ namespace DevToys.Tests.Helpers
             }
         }
 
+        [TestMethod]
+        public async Task ComputeHashSHA256ForLargeFile()
+        {
+            using (var stream = new MemoryStream(_twoMBArray))
+            {
+                byte[] bytesResult = await HashingHelper.ComputeHashAsync(SHA256.Create(), stream, new Progress<HashingProgress>((_) => { }), new CancellationToken());
+
+                string result = FormatResult(BitConverter.ToString(bytesResult));
+
+                Assert.AreEqual("6D75695D93DEB1BF5805617CFBA166466CF60DC0A99A8014FA58893F358F33B8", result);
+            }
+        }
+
         [DataTestMethod]
         [DataRow("", "")]
         [DataRow(" ", "588016EB10045DD85834D67D187D6B97858F38C58C690320C4A64E0C2F92EEBD9F1BD74DE256E8268815905159449566")]
@@ -100,6 +148,19 @@ namespace DevToys.Tests.Helpers
             }
         }
 
+        [TestMethod]
+        public async Task ComputeHashSHA384ForLargeFile()
+        {
+            using (var stream = new MemoryStream(_twoMBArray))
+            {
+                byte[] bytesResult = await HashingHelper.ComputeHashAsync(SHA384.Create(), stream, new Progress<HashingProgress>((_) => { }), new CancellationToken());
+
+                string result = FormatResult(BitConverter.ToString(bytesResult));
+
+                Assert.AreEqual("DBC3E43FA05876C686A500F648D815B4CEEE99C1761C58EFB031C8E439884D0C4363C8BC56A9F9AD5343B4E8EFDE6D37", result);
+            }
+        }
+
         [DataTestMethod]
         [DataRow("", "")]
         [DataRow(" ", "F90DDD77E400DFE6A3FCF479B00B1EE29E7015C5BB8CD70F5F15B4886CC339275FF553FC8A053F8DDC7324F45168CFFAF81F8C3AC93996F6536EEF38E5E40768")]
@@ -114,6 +175,19 @@ namespace DevToys.Tests.Helpers
                 string result = FormatResult(BitConverter.ToString(bytesResult));
 
                 Assert.AreEqual(expectedResult, result);
+            }
+        }
+
+        [TestMethod]
+        public async Task ComputeHashSHA512ForLargeFile()
+        {
+            using (var stream = new MemoryStream(_twoMBArray))
+            {
+                byte[] bytesResult = await HashingHelper.ComputeHashAsync(SHA512.Create(), stream, new Progress<HashingProgress>((_) => { }), new CancellationToken());
+
+                string result = FormatResult(BitConverter.ToString(bytesResult));
+
+                Assert.AreEqual("417E836E280AEF701556B6135CA4B690819F82B4CF82EAD3B493B5BBC41174B9A868A68F13C90FA1A9DCDCA72BFB6268ABC061C702450BD1F838F59E33E9686D", result);
             }
         }
 
