@@ -46,5 +46,17 @@ namespace DevToys.Views.Tools.HashGenerator
 
             base.OnNavigatedTo(e);
         }
+
+        private void OutputType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if ((sender as ComboBox)?.SelectedValue as string == "Base64")
+            {
+                IsUppercaseToggleSwitch.IsEnabled = false;
+            }
+            else
+            {
+                IsUppercaseToggleSwitch.IsEnabled = true;
+            }
+        }
     }
 }
