@@ -285,11 +285,25 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
             {
                 using HashAlgorithm? hashAlgo = CreateHashAlgorithm(inputHashingAlgorithm);
 
+                long fileSize = fileStream.Length;
+                int bufferSize;
+                if (fileSize > int.MaxValue)
+                {
+                    string message = LanguageManager.Instance.Common.UnableOpenFile;
+                    Exception exception = new FileLoadException(message);
+                    throw new FileLoadException(message);
+                }
+                else
+                {
+                    bufferSize = (int)fileSize;
+                }
+
                 byte[]? fileHash = await HashingHelper.ComputeHashAsync(
                         hashAlgo,
                         fileStream,
                         new Progress<HashingProgress>(UpdateProgress),
-                        _cancellationTokenSource.Token);
+                        _cancellationTokenSource.Token,
+                        bufferSize);
 
                 string? fileHashString = BitConverter
                     .ToString(fileHash)
