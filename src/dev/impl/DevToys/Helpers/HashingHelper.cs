@@ -36,11 +36,16 @@ namespace DevToys.Helpers
             {
                 hashAlgorithm.TransformBlock(buffer, 0, bytesRead, buffer, 0);
                 totalBytesRead += bytesRead;
+                ProgessAndCancelation();
+            }
+            hashAlgorithm.TransformFinalBlock(buffer, 0, bytesRead);
+            ProgessAndCancelation();
 
+            void ProgessAndCancelation()
+            {
                 progress.Report(new HashingProgress(stream.Length, totalBytesRead));
                 cancellationToken.ThrowIfCancellationRequested();
             }
-            hashAlgorithm.TransformFinalBlock(buffer, 0, bytesRead);
 
             return hashAlgorithm.Hash ?? Array.Empty<byte>();
         }
