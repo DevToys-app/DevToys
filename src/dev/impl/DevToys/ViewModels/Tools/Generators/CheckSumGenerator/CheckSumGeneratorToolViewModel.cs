@@ -21,6 +21,7 @@ using DevToys.Shared.Core.Threading;
 using DevToys.Views.Tools.CheckSumGenerator;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using Microsoft.UI.Xaml.Controls;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 
@@ -61,6 +62,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
         private bool _toolSuccessfullyWorked;
         private bool _hasCancelledCalculation;
         private bool _shouldDisplayProgress;
+        private HashComparisonResult? _hashComparisonResult;
         private HashingAlgorithmDisplayPair? _outputHashingAlgorithm;
         private readonly Queue<Task> _computationTaskQueue = new();
 
@@ -132,13 +134,27 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
         internal string? Output
         {
             get => _output;
-            set => SetProperty(ref _output, value);
+            set
+            {
+                SetProperty(ref _output, value);
+                EvaluateOutputComparisonResult();
+            }
         }
 
         internal string? OutputComparer
         {
             get => _outputComparer;
-            set => SetProperty(ref _outputComparer, value);
+            set
+            {
+                SetProperty(ref _outputComparer, value);
+                EvaluateOutputComparisonResult();
+            }
+        }
+
+        internal HashComparisonResult? HashComparisonResult
+        {
+            get => _hashComparisonResult;
+            private set => SetProperty(ref _hashComparisonResult, value);
         }
 
         /// <summary>
@@ -343,5 +359,19 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
                 HashingAlgorithm.SHA512 => SHA512.Create(),
                 _ => throw new ArgumentException("Hash Algorithm not supported", nameof(HashingAlgorithm))
             };
+
+        private void EvaluateOutputComparisonResult()
+        {
+            if (!string.IsNullOrEmpty(OutputComparer) && !string.IsNullOrEmpty(Output))
+            {
+                HashComparisonResult = string.Equals(OutputComparer, Output, StringComparison.OrdinalIgnoreCase)
+                    ? new HashComparisonResult(InfoBarSeverity.Success, Strings.HashesMatch)
+                    : new HashComparisonResult(InfoBarSeverity.Error, Strings.HashesMismatch);
+            }
+            else
+            {
+                HashComparisonResult = HashComparisonResult.None;
+            }
+        }
     }
 }
