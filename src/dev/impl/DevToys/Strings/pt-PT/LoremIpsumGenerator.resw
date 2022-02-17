@@ -147,6 +147,9 @@
   <data name="SentencesType" xml:space="preserve">
     <value>Sentenças</value>
   </data>
+  <data name="StartWithLoremTitle" xml:space="preserve">
+    <value>Start with 'Lorem ipsum dolor sit amet...'</value>
+  </data>
   <data name="TypeDescription" xml:space="preserve">
     <value>Gera palavras, sentenças ou parágrafos de Lorem Ipsum</value>
   </data>

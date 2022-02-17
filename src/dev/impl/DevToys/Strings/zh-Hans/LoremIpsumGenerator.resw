@@ -147,6 +147,9 @@
   <data name="SentencesType" xml:space="preserve">
     <value>句子</value>
   </data>
+  <data name="StartWithLoremTitle" xml:space="preserve">
+    <value>Start with 'Lorem ipsum dolor sit amet...'</value>
+  </data>
   <data name="TypeDescription" xml:space="preserve">
     <value>生成单词、句子或段落形式的乱数假文</value>
   </data>
