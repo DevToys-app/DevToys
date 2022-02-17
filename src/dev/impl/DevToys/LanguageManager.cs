@@ -1401,6 +1401,11 @@ namespace DevToys
         public string SentencesType => _resources.GetString("SentencesType");
 
         /// <summary>
+        /// Gets the resource StartWithLoremTitle.
+        /// </summary>
+        public string StartWithLoremTitle => _resources.GetString("StartWithLoremTitle");
+
+        /// <summary>
         /// Gets the resource TypeDescription.
         /// </summary>
         public string TypeDescription => _resources.GetString("TypeDescription");
