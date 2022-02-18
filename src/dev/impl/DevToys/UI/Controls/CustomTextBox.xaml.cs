@@ -128,6 +128,7 @@ namespace DevToys.UI.Controls
             UndoCommand = new RelayCommand(ExecuteUndoCommand, CanExecuteUndoCommand);
             RedoCommand = new RelayCommand(ExecuteRedoCommand, CanExecuteRedoCommand);
             SelectAllCommand = new RelayCommand(ExecuteSelectAllCommand, CanExecuteSelectAllCommand);
+            RefreshCommand = new RelayCommand(ExecuteRefreshCommand, CanExecuteRefreshCommand);
 
             DataContext = this;
         }
@@ -262,6 +263,23 @@ namespace DevToys.UI.Controls
 
         #endregion
 
+        #region RefreshCommand
+
+        public IRelayCommand RefreshCommand { get; }
+
+        private bool CanExecuteRefreshCommand()
+        {
+            var hasDelegateHandler = RefreshClickHandler != null;
+            return RichEditBox != null && IsEnabled && hasDelegateHandler;
+        }
+        
+        private void ExecuteRefreshCommand()
+        {
+            RefreshButton_Click(this, null!);
+        }
+
+        #endregion RefreshCommand
+
         public void SetHighlights(IEnumerable<HighlightSpan>? spans)
         {
             IEnumerable<HighlightSpan>? highlightsToRemove = _highlightedSpans?.Except(spans ?? Array.Empty<HighlightSpan>());
@@ -360,6 +378,11 @@ namespace DevToys.UI.Controls
 
             if (IsReadOnly)
             {
+                if (RefreshClickHandler is not null)
+                {
+                    GetRefreshButton().Visibility = Visibility.Visible;
+                }
+
                 if (PasteButton is not null)
                 {
                     GetPasteButton().Visibility = Visibility.Collapsed;
@@ -452,6 +475,26 @@ namespace DevToys.UI.Controls
         {
             return (RichEditBox)(RichEditBox ?? FindName(nameof(RichEditBox)));
         }
+        private Button GetRefreshButton()
+        {
+            return (Button)(RefreshButton ?? FindName(nameof(RefreshButton)));
+        }
+
+        #region Refresh button click handler delegate
+
+        public delegate void CustomTextBoxClickHandler(object sender, RoutedEventArgs e);
+
+        public event CustomTextBoxClickHandler RefreshClickHandler;
+
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (RefreshClickHandler is not null)
+            {
+                RefreshClickHandler(sender, e);
+            }
+        }
+
+        #endregion Refresh button click handler delegate
 
         private void CopyTextBoxSelectionToClipboard()
         {

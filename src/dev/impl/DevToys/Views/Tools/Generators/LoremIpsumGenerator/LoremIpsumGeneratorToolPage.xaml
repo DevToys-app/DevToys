@@ -76,6 +76,7 @@
             AcceptsReturn="True"
             IsReadOnly="True"
             CanClearWhenReadOnly="True"
+            RefreshClickHandler="RefreshButtonClick"
             Text="{x:Bind ViewModel.Output, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></controls:CustomTextBox>
     </Grid>
 </Page>

@@ -180,6 +180,9 @@
   <data name="Redo" xml:space="preserve">
     <value>Annulla ultima modifica</value>
   </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
   <data name="SelectAll" xml:space="preserve">
     <value>Seleziona tutto</value>
   </data>

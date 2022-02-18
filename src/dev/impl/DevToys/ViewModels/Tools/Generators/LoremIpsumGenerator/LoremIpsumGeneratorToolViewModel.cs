@@ -119,7 +119,7 @@ namespace DevToys.ViewModels.Tools.LoremIpsumGenerator
             QueueGeneration();
         }
 
-        private void QueueGeneration()
+        public void QueueGeneration()
         {
             _generationQueue.Enqueue((LoremIpsumType, LoremIpsumLength, StartWithLorem));
             TreatQueueAsync().Forget();
