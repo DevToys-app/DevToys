@@ -40,7 +40,7 @@ namespace DevToys.ViewModels.Tools.JwtDecoderEncoder
             get => _jwtToken;
             set
             {
-                SetProperty(ref _jwtToken, value);
+                SetProperty(ref _jwtToken, value?.Trim());
                 QueueConversion();
             }
         }
