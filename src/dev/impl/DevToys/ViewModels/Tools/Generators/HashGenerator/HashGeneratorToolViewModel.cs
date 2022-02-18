@@ -190,21 +190,15 @@ namespace DevToys.ViewModels.Tools.HashGenerator
                 string? hash="";
                 if (string.Equals(OutputType, HexOutput))
                 {
-                    hash = CryptographicBuffer.EncodeToHexString(buffer);
+                    hash = IsUppercase
+                        ? CryptographicBuffer.EncodeToHexString(buffer).ToUpperInvariant()
+                        : CryptographicBuffer.EncodeToHexString(buffer).ToLowerInvariant();
                 }
                 else if (string.Equals(OutputType, Base64Output))
                 {
                     hash = CryptographicBuffer.EncodeToBase64String(buffer);
                 }
-
-                if (IsUppercase)
-                {
-                    return hash.ToUpperInvariant();
-                }
-                else
-                {
-                    return hash.ToLowerInvariant();
-                }
+                return hash;
             }
             catch (Exception ex)
             {

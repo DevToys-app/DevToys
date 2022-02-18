@@ -24,6 +24,7 @@
                     <FontIcon Glyph="&#xF7B2;" />
                 </controls:ExpandableSettingControl.Icon>
                 <ToggleSwitch
+                    x:Name="IsUppercaseToggleSwitch"
                     Style="{StaticResource RightAlignedToggleSwitchStyle}"
                     IsOn="{x:Bind ViewModel.IsUppercase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </controls:ExpandableSettingControl>
@@ -35,7 +36,8 @@
                 </controls:ExpandableSettingControl.Icon>
                 <ComboBox
                     SelectedValuePath="Tag"
-                    SelectedValue="{x:Bind ViewModel.OutputType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    SelectedValue="{x:Bind ViewModel.OutputType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    SelectionChanged="OutputType_SelectionChanged">
                     <ComboBoxItem Tag="Hex" Content="{x:Bind ViewModel.Strings.OutputHex}" />
                     <ComboBoxItem Tag="Base64" Content="{x:Bind ViewModel.Strings.OutputBase64}"/>
                 </ComboBox>
