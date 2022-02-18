@@ -22,33 +22,31 @@ namespace DevToys.Helpers
             Arguments.NotNull(stream, nameof(stream));
             Arguments.NotNull(hashAlgorithm, nameof(hashAlgorithm));
 
-            byte[] readAheadBuffer = new byte[bufferSize];
             byte[] buffer = new byte[bufferSize];
 
-            int readAheadBytes = await stream.ReadAsync(readAheadBuffer, 0, bufferSize, cancellationToken);
-            int bytesRead;
-            long totalBytesRead = readAheadBytes;
-
-            while (readAheadBytes != 0)
+            if (stream.Length == 0)
             {
-                bytesRead = readAheadBytes;
-                Buffer.BlockCopy(readAheadBuffer, 0, buffer, 0, bytesRead);
+                return Array.Empty<byte>();
+            }
 
-                readAheadBytes = await stream.ReadAsync(readAheadBuffer, 0, bufferSize, cancellationToken);
-                totalBytesRead += readAheadBytes;
+            int bytesRead = 0;
+            long totalBytesRead = 0;
 
-                if (readAheadBytes == 0)
-                {
-                    hashAlgorithm.TransformFinalBlock(buffer, 0, bytesRead);
-                }
-                else
-                {
-                    hashAlgorithm.TransformBlock(buffer, 0, bytesRead, buffer, 0);
-                }
+            while ((bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length, cancellationToken)) != 0)
+            {
+                hashAlgorithm.TransformBlock(buffer, 0, bytesRead, buffer, 0);
+                totalBytesRead += bytesRead;
+                ProgessAndCancellation();
+            }
+            hashAlgorithm.TransformFinalBlock(buffer, 0, bytesRead);
+            ProgessAndCancellation();
 
+            void ProgessAndCancellation()
+            {
                 progress.Report(new HashingProgress(stream.Length, totalBytesRead));
                 cancellationToken.ThrowIfCancellationRequested();
             }
+
             return hashAlgorithm.Hash ?? Array.Empty<byte>();
         }
 
