@@ -137,7 +137,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
             set
             {
                 SetProperty(ref _output, value);
-                EvaluateOutputComparisonResult();
+                HashComparisonResult = EvaluateOutputComparisonResult(value, OutputComparer);
             }
         }
 
@@ -147,7 +147,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
             set
             {
                 SetProperty(ref _outputComparer, value);
-                EvaluateOutputComparisonResult();
+                HashComparisonResult = EvaluateOutputComparisonResult(Output, value);
             }
         }
 
@@ -360,17 +360,20 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
                 _ => throw new ArgumentException("Hash Algorithm not supported", nameof(HashingAlgorithm))
             };
 
-        private void EvaluateOutputComparisonResult()
+        /// <summary>
+        /// Evaluates the Output Comparison.
+        /// </summary>
+        private HashComparisonResult? EvaluateOutputComparisonResult(string? output, string? comparerOutput)
         {
-            if (!string.IsNullOrEmpty(OutputComparer) && !string.IsNullOrEmpty(Output))
+            if (!string.IsNullOrEmpty(output) && !string.IsNullOrEmpty(comparerOutput))
             {
-                HashComparisonResult = string.Equals(OutputComparer, Output, StringComparison.OrdinalIgnoreCase)
+                return string.Equals(output, comparerOutput, StringComparison.OrdinalIgnoreCase)
                     ? new HashComparisonResult(InfoBarSeverity.Success, Strings.HashesMatch)
                     : new HashComparisonResult(InfoBarSeverity.Error, Strings.HashesMismatch);
             }
             else
             {
-                HashComparisonResult = HashComparisonResult.None;
+                return HashComparisonResult.None;
             }
         }
     }
