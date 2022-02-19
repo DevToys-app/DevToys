@@ -5,6 +5,7 @@
         Octal,
         Binary,
         Decimal,
-        Hexdecimal
+        Hexdecimal,
+        Custom
     }
 }

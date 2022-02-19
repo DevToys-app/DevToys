@@ -45,7 +45,7 @@ namespace DevToys.Models
 
         public char GroupSeparator { get; }
 
-        private NumberBaseFormat(string displayName, Radix value, int baseNumber, int groupSize, char groupSeparator)
+        internal NumberBaseFormat(string displayName, Radix value, int baseNumber, int groupSize, char groupSeparator)
         {
             DisplayName = displayName;
             Value = value;
@@ -56,7 +56,7 @@ namespace DevToys.Models
 
         public bool Equals(NumberBaseFormat other)
         {
-            return other.Value == Value;
+            return other.Value == Value && other.BaseNumber == BaseNumber;
         }
     }
 }
