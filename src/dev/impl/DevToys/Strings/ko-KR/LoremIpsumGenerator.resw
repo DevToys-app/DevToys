@@ -147,6 +147,9 @@
   <data name="SentencesType" xml:space="preserve">
     <value>문장</value>
   </data>
+  <data name="StartWithLoremTitle" xml:space="preserve">
+    <value>Start with 'Lorem ipsum dolor sit amet...'</value>
+  </data>
   <data name="TypeDescription" xml:space="preserve">
     <value>로렌 입숨 내용을 생성할 단어, 문장 및 문단 개수를 선택 후 생성합니다.</value>
   </data>

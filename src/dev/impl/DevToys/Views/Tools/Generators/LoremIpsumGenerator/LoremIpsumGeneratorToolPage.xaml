@@ -54,6 +54,17 @@
                     SpinButtonPlacementMode="Compact"
                     Value="{x:Bind ViewModel.LoremIpsumLength, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </controls:ExpandableSettingControl>
+            <controls:ExpandableSettingControl
+                x:Name="StartWithLoremIpsumSetting"
+                TabIndex="0"
+                Title="{x:Bind ViewModel.Strings.StartWithLoremTitle}">
+              <controls:ExpandableSettingControl.Icon>
+                <FontIcon Glyph="&#xF6A9;" />
+              </controls:ExpandableSettingControl.Icon>
+              <ToggleSwitch
+                  Style="{StaticResource RightAlignedToggleSwitchStyle}"
+                  IsOn="{x:Bind ViewModel.StartWithLorem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </controls:ExpandableSettingControl>
         </StackPanel>
 
         <controls:CustomTextBox
