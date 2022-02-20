@@ -57,7 +57,7 @@ jobs:
     displayName: 'Build Unit Tests'
     inputs:
       solution: '$(testProject)'
-      configuration: '$(buildConfiguration)'
+      configuration: 'Debug'
       msbuildArguments: '/t:build /restore'
       maximumCpuCount: true
 
