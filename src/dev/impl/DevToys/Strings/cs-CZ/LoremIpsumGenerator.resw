@@ -147,6 +147,9 @@
   <data name="SentencesType" xml:space="preserve">
     <value>Věty</value>
   </data>
+  <data name="StartWithLoremTitle" xml:space="preserve">
+    <value>Start with 'Lorem ipsum dolor sit amet...'</value>
+  </data>
   <data name="TypeDescription" xml:space="preserve">
     <value>Generovat slova, věty nebo odstavce</value>
   </data>

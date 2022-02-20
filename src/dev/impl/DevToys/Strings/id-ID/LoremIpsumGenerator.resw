@@ -147,6 +147,9 @@
   <data name="SentencesType" xml:space="preserve">
     <value>Kalimat</value>
   </data>
+  <data name="StartWithLoremTitle" xml:space="preserve">
+    <value>Start with 'Lorem ipsum dolor sit amet...'</value>
+  </data>
   <data name="TypeDescription" xml:space="preserve">
     <value>Buat kata, kalimat atau paragraf Lorem Ipsum</value>
   </data>
