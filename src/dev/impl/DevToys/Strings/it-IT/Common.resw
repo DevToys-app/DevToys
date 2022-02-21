@@ -136,7 +136,7 @@
     <value>Seleziona file</value>
   </data>
   <data name="FileSelectorBrowseFolders" xml:space="preserve">
-    <value>Browse folders</value>
+    <value>Seleziona cartella</value>
   </data>
   <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
     <value>Trascina file qui</value>
@@ -172,7 +172,7 @@
     <value>OK</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
-    <value>Carica file</value>
+    <value>Apri file</value>
   </data>
   <data name="Paste" xml:space="preserve">
     <value>Incolla</value>
