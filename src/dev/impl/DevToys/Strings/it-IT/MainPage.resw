@@ -124,7 +124,7 @@
     <value>Esci dalla modalità Compact Overlay (Ctrl+↓)</value>
   </data>
   <data name="NotificationRateAppActionableActionText" xml:space="preserve">
-    <value>Valutaci ora...</value>
+    <value>Valutaci ora</value>
   </data>
   <data name="NotificationRateAppMessage" xml:space="preserve">
     <value>Ti piace DevToys? Sentiti libero di valutarci!</value>
@@ -133,14 +133,14 @@
     <value>Um... ciao! 😅</value>
   </data>
   <data name="NotificationReleaseNoteActionableActionText" xml:space="preserve">
-    <value>Per saperne di più...</value>
+    <value>Per saperne di più</value>
   </data>
   <data name="NotificationReleaseNoteTitle" xml:space="preserve">
     <value>Ci siamo appena aggiornati! Cosa c'è di nuovo in {0}? 🚀</value>
     <comment>{0} is the current app version</comment>
   </data>
   <data name="NotificationUpdateAvailableActionableActionText" xml:space="preserve">
-    <value>Aggiorna ora...</value>
+    <value>Aggiorna ora</value>
   </data>
   <data name="NotificationUpdateAvailableTitle" xml:space="preserve">
     <value>È disponibile un aggiornamento! 🚀</value>
@@ -155,7 +155,7 @@
     <value>Impossibile aggiungere a Start. Per maggiori dettagli, controlla il file di log.</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Scrivi per cercare gli strumenti...</value>
+    <value>Cerca strumenti</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
     <value>Nessun risultato trovato</value>
