@@ -160,7 +160,7 @@
     <value>言語</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>The app needs to be restarted when selecting another language</value>
+    <value>別の言語を選択した際は、アプリを再起動する必要があります</value>
   </data>
   <data name="License" xml:space="preserve">
     <value>ライセンス</value>
