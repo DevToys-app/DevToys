@@ -412,6 +412,16 @@ namespace DevToys
         /// Gets the resource SearchKeywords.
         /// </summary>
         public string SearchKeywords => _resources.GetString("SearchKeywords");
+
+        /// <summary>
+        /// Gets the resource HashesMatch.
+        /// </summary>
+        public string HashesMatch => _resources.GetString("HashesMatch");
+
+        /// <summary>
+        /// Gets the resource HashesMismatch.
+        /// </summary>
+        public string HashesMismatch => _resources.GetString("HashesMismatch");
     }
 
     public class ColorBlindnessSimulatorStrings : ObservableObject
