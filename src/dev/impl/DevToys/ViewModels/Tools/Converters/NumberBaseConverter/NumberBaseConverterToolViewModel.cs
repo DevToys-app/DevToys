@@ -208,7 +208,13 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
             }
 
             var input = (CustomTextBox)source;
-            switch(input.Tag)
+
+            if (input.Text.Length == 0)
+            {
+                return;
+            }
+
+            switch (input.Tag)
             {
                 case "Binary" when InputBaseNumber == NumberBaseFormat.Binary:
                     input.Text = NumberBaseFormatter.FormatNumber(input.Text, InputBaseNumber);
