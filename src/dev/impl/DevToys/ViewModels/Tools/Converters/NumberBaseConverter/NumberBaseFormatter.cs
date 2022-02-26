@@ -11,7 +11,6 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
 {
     internal static class NumberBaseFormatter
     {
-        private static readonly char[] baseDict = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".ToCharArray();
         private static NumberBaseConverterStrings Strings => LanguageManager.Instance.NumberBaseConverter;
 
         /// <summary>
@@ -138,7 +137,7 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
             int index;
             if (0 == ul)
             {
-                buffer[0] = '0';
+                buffer[0] = baseNumber.Dictionary[0];
                 index = 1;
             }
             else
@@ -147,12 +146,10 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
                 for (int i = 0; i < buffer.Length; i++)
                 {
                     ulong div = ul / (ulong)baseNumber.BaseNumber;
-                    int charVal = (int)(ul - div * (ulong)baseNumber.BaseNumber);
+                    int charVal = (int)(ul % (ulong)baseNumber.BaseNumber);
                     ul = div;
 
-                    buffer[i] = charVal < 10 ?
-                        (char)(charVal + '0') :
-                        (char)(charVal + 'a' - 10);
+                    buffer[i] = baseNumber.Dictionary[charVal];
 
                     if (ul == 0)
                     {
@@ -172,41 +169,6 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
             }
 
             return FormatNumber(buffer, baseNumber, isFormatted, index);
-        }
-
-        /// <summary>
-        /// Based on <see cref="System.ParseNumbers"/>
-        /// https://github.com/dotnet/runtime/blob/main/src/libraries/System.Private.CoreLib/src/System/ParseNumbers.cs
-        /// </summary>
-        /// <param name="number">Current number to convert</param>
-        /// <param name="baseNumber"></param>
-        /// <param name="isFormatted">Define if the number need to base formatted</param>
-        /// <returns></returns>
-        public static string LongToBase(long number, int baseSize)
-        {
-            var buffer = new StringBuilder(); // Longest possible string length for an integer in binary notation with prefix
-
-            // If the number is negative, make it positive and remember the sign.
-            ulong ul = (ulong)number;
-
-            // Special case the 0.
-            if (0 == ul)
-            {
-                buffer[0] = '0';
-            }
-            else
-            {
-                while (ul > 0)
-                {
-                    ulong div = ul / (ulong)baseSize;
-                    int charVal = (int)(ul % (ulong)baseSize);
-                    ul = div;
-
-                    buffer.Insert(0, baseDict[charVal]);
-                }
-            }
-
-            return buffer.ToString();
         }
 
         /// <summary>
@@ -249,7 +211,11 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
                 }
             }
 
-            return builder.ToString().ToUpperInvariant();
+            if (baseNumber.Dictionary.AllowsFormatting)
+            {
+                return builder.ToString().ToUpperInvariant();
+            }
+            return builder.ToString();
         }
 
         /// <summary>
@@ -356,9 +322,19 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
         {
             for (result = 0; result < baseNumber.BaseNumber; result++)
             {
-                if(baseDict[result] == c)
+                if (baseNumber.Dictionary.AllowsFormatting)
                 {
-                    return true;
+                    if (char.ToLowerInvariant(baseNumber.Dictionary[result]) == char.ToLowerInvariant(c))
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    if (baseNumber.Dictionary[result] == c)
+                    {
+                        return true;
+                    }
                 }
             }
             result = -1;
