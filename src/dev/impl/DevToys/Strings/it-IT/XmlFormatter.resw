@@ -148,7 +148,7 @@
     <value>2 spazi</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Identifica o minimizza dati XML</value>
+    <value>Indenta o minimizza dati XML</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Formattatore XML</value>
