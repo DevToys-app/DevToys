@@ -133,7 +133,7 @@
     <value>Decodifica</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Decodificatore JWT</value>
+    <value>JWT</value>
   </data>
   <data name="Encode" xml:space="preserve">
     <value>Codifica</value>
