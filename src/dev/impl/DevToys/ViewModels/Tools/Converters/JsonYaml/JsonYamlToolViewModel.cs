@@ -20,6 +20,7 @@ using Newtonsoft.Json;
 using YamlDotNet.Core;
 using YamlDotNet.Serialization;
 using DevToys.ViewModels.Tools.Converters.JsonYaml;
+using Newtonsoft.Json.Linq;
 
 namespace DevToys.ViewModels.Tools.JsonYaml
 {
@@ -74,7 +75,20 @@ namespace DevToys.ViewModels.Tools.JsonYaml
         /// </summary>
         internal string ConversionMode
         {
-            get => SettingsProvider.GetSetting(Conversion);
+            get
+            {
+                string? current = SettingsProvider.GetSetting(Conversion);
+                if (string.IsNullOrWhiteSpace(current) ||
+                    string.Equals(current, JsonToYaml, StringComparison.Ordinal))
+                {
+                    InputValueLanguage = "json";
+                    OutputValueLanguage = "yaml";
+                    return JsonToYaml;
+                }
+                InputValueLanguage = "yaml";
+                OutputValueLanguage = "json";
+                return YamlToJson;
+            }
             set
             {
                 if (!_setPropertyInProgress)
@@ -236,7 +250,23 @@ namespace DevToys.ViewModels.Tools.JsonYaml
 
             try
             {
-                dynamic? jsonObject = JsonConvert.DeserializeObject<ExpandoObject>(input, _defaultJsonSerializerSettings);
+                object? jsonObject = null;
+                var token = JToken.Parse(input);
+                if (token is null)
+                {
+                    output = string.Empty;
+                    return false;
+                }
+
+                if (token is JArray)
+                {
+                    jsonObject = JsonConvert.DeserializeObject<ExpandoObject[]>(input, _defaultJsonSerializerSettings);
+                }
+                else
+                {
+                    jsonObject = JsonConvert.DeserializeObject<ExpandoObject>(input, _defaultJsonSerializerSettings);
+                }
+
                 if (jsonObject is not null and not string)
                 {
                     int indent = 0;
