@@ -44,6 +44,5 @@ namespace DevToys.Views.Tools.LoremIpsumGenerator
             base.OnNavigatedTo(e);
         }
 
-        protected void RefreshButtonClick(object sender, RoutedEventArgs e) => ViewModel.QueueGeneration();
     }
 }

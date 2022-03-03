@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
 using DevToys.Core;
 using DevToys.Core.Threading;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -128,7 +129,6 @@ namespace DevToys.UI.Controls
             UndoCommand = new RelayCommand(ExecuteUndoCommand, CanExecuteUndoCommand);
             RedoCommand = new RelayCommand(ExecuteRedoCommand, CanExecuteRedoCommand);
             SelectAllCommand = new RelayCommand(ExecuteSelectAllCommand, CanExecuteSelectAllCommand);
-            RefreshCommand = new RelayCommand(ExecuteRefreshCommand, CanExecuteRefreshCommand);
 
             DataContext = this;
         }
@@ -263,23 +263,6 @@ namespace DevToys.UI.Controls
 
         #endregion
 
-        #region RefreshCommand
-
-        public IRelayCommand RefreshCommand { get; }
-
-        private bool CanExecuteRefreshCommand()
-        {
-            var hasDelegateHandler = RefreshClickHandler != null;
-            return RichEditBox != null && IsEnabled && hasDelegateHandler;
-        }
-        
-        private void ExecuteRefreshCommand()
-        {
-            RefreshButton_Click(this, null!);
-        }
-
-        #endregion RefreshCommand
-
         public void SetHighlights(IEnumerable<HighlightSpan>? spans)
         {
             IEnumerable<HighlightSpan>? highlightsToRemove = _highlightedSpans?.Except(spans ?? Array.Empty<HighlightSpan>());
@@ -378,7 +361,7 @@ namespace DevToys.UI.Controls
 
             if (IsReadOnly)
             {
-                if (RefreshClickHandler is not null)
+                if (RefreshCommand is not null)
                 {
                     GetRefreshButton().Visibility = Visibility.Visible;
                 }
@@ -480,17 +463,15 @@ namespace DevToys.UI.Controls
             return (Button)(RefreshButton ?? FindName(nameof(RefreshButton)));
         }
 
-        #region Refresh button click handler delegate
+        #region Refresh command (optional)
+        public ICommand? RefreshCommand { get; set; }
 
-        public delegate void CustomTextBoxClickHandler(object sender, RoutedEventArgs e);
-
-        public event CustomTextBoxClickHandler RefreshClickHandler;
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
-            if (RefreshClickHandler is not null)
+            if (RefreshCommand is not null && RefreshCommand.CanExecute(e))
             {
-                RefreshClickHandler(sender, e);
+                RefreshCommand.Execute(e);
             }
         }
 
