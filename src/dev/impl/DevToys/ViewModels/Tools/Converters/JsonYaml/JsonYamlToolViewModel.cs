@@ -2,28 +2,20 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Composition;
-using System.Dynamic;
-using System.IO;
-using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
 using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
-using DevToys.Core;
 using DevToys.Core.Threading;
+using DevToys.Helpers.JsonYaml;
+using DevToys.Models;
 using DevToys.Shared.Core.Threading;
 using DevToys.Views.Tools.JsonYaml;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Newtonsoft.Json;
-using YamlDotNet.Core;
-using YamlDotNet.Serialization;
-using DevToys.ViewModels.Tools.Converters.JsonYaml;
-using Newtonsoft.Json.Linq;
-using DevToys.Models;
-using System.Collections.ObjectModel;
-using System.Linq;
-using DevToys.Helpers.JsonYaml;
 
 namespace DevToys.ViewModels.Tools.JsonYaml
 {
@@ -42,12 +34,6 @@ namespace DevToys.ViewModels.Tools.JsonYaml
         /// <summary>
         /// The indentation to apply while converting.
         /// </summary>
-        //private static readonly SettingDefinition<string> Indentation
-        //    = new(
-        //        name: $"{nameof(JsonYamlToolViewModel)}.{nameof(Indentation)}",
-        //        isRoaming: true,
-        //        defaultValue: TwoSpaceIndentation);
-
         private static readonly SettingDefinition<Indentation> Indentation
             = new(
                 name: $"{nameof(JsonYamlToolViewModel)}.{nameof(Indentation)}",
@@ -165,23 +151,6 @@ namespace DevToys.ViewModels.Tools.JsonYaml
             Models.IndentationDisplayPair.TwoSpaces,
             Models.IndentationDisplayPair.FourSpaces
         };
-
-        ///// <summary>
-        ///// Gets or sets the desired indentation.
-        ///// </summary>
-        //internal string IndentationMode
-        //{
-        //    get => SettingsProvider.GetSetting(Indentation);
-        //    set
-        //    {
-        //        if (!string.Equals(SettingsProvider.GetSetting(Indentation), value, StringComparison.Ordinal))
-        //        {
-        //            SettingsProvider.SetSetting(Indentation, value);
-        //            OnPropertyChanged();
-        //            QueueConversion();
-        //        }
-        //    }
-        //}
 
         /// <summary>
         /// Gets or sets the input text.
