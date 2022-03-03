@@ -4,11 +4,14 @@ using System;
 using System.IO;
 using System.Text;
 using DevToys.Core;
+using DevToys.Helpers.JsonYaml.Core;
 using DevToys.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using YamlDotNet.Core;
+using YamlDotNet.Serialization;
 
-namespace DevToys.Helpers
+namespace DevToys.Helpers.JsonYaml
 {
     internal static class JsonHelper
     {
@@ -99,6 +102,73 @@ namespace DevToys.Helpers
             {
                 Logger.LogFault("Json formatter", ex, $"Indentation: {indentationMode}");
                 return ex.Message;
+            }
+        }
+
+        /// <summary>
+        /// Convert a Yaml string to Json
+        /// </summary>
+        internal static string? ConvertFromYaml(string? input, Indentation indentationMode)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return string.Empty;
+            }
+
+            try
+            {
+                using var stringReader = new StringReader(input);
+
+                IDeserializer deserializer = new DeserializerBuilder()
+                    .WithNodeTypeResolver(new DecimalYamlTypeResolver())
+                    .Build();
+
+                object? yamlObject = deserializer.Deserialize(stringReader);
+
+                if (yamlObject is null or string)
+                {
+                    return null;
+                }
+
+                var stringBuilder = new StringBuilder();
+                using (var stringWriter = new StringWriter(stringBuilder))
+                using (var jsonTextWriter = new JsonTextWriter(stringWriter))
+                {
+                    switch (indentationMode)
+                    {
+                        case Indentation.TwoSpaces:
+                            jsonTextWriter.Formatting = Formatting.Indented;
+                            jsonTextWriter.IndentChar = ' ';
+                            jsonTextWriter.Indentation = 2;
+                            break;
+
+                        case Indentation.FourSpaces:
+                            jsonTextWriter.Formatting = Formatting.Indented;
+                            jsonTextWriter.IndentChar = ' ';
+                            jsonTextWriter.Indentation = 4;
+                            break;
+
+                        default:
+                            throw new NotSupportedException();
+                    }
+
+                    var jsonSerializer = JsonSerializer.CreateDefault(new JsonSerializerSettings()
+                    {
+                        Converters = { new DecimalJsonConverter() }
+                    });
+                    jsonSerializer.Serialize(jsonTextWriter, yamlObject);
+                }
+
+                return stringBuilder.ToString();
+            }
+            catch (SemanticErrorException ex)
+            {
+                return ex.Message;
+            }
+            catch (Exception ex)
+            {
+                Logger.LogFault("Yaml to Json Converter", ex);
+                return string.Empty;
             }
         }
     }

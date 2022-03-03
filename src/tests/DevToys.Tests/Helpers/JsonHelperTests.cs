@@ -1,4 +1,4 @@
-﻿using DevToys.Helpers;
+﻿using DevToys.Helpers.JsonYaml;
 using DevToys.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -63,6 +63,11 @@ namespace DevToys.Tests.Helpers
         public void FormatMinified(string input, string expectedResult)
         {
             Assert.AreEqual(expectedResult, JsonHelper.Format(input, Indentation.Minified));
+        }
+
+        public void ConvertFromYaml(string input, string expected)
+        {
+
         }
     }
 }

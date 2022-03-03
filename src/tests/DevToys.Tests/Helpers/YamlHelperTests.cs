@@ -1,4 +1,4 @@
-﻿using DevToys.Helpers;
+﻿using DevToys.Helpers.JsonYaml;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DevToys.Tests.Helpers

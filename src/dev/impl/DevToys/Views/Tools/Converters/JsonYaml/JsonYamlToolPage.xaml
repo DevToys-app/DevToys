@@ -58,10 +58,9 @@
                     <FontIcon Glyph="&#xF6F8;" />
                 </controls:ExpandableSettingControl.Icon>
                 <ComboBox
-                    SelectedValuePath="Tag"
+                    ItemsSource="{x:Bind ViewModel.Indentations}"
+                    DisplayMemberPath="DisplayName"
                     SelectedValue="{x:Bind ViewModel.IndentationMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                    <ComboBoxItem Tag="TwoSpaces" Content="{x:Bind ViewModel.Strings.TwoSpaces}"/>
-                    <ComboBoxItem Tag="FourSpaces" Content="{x:Bind ViewModel.Strings.FourSpaces}"/>
                 </ComboBox>
             </controls:ExpandableSettingControl>
         </StackPanel>

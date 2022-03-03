@@ -13,7 +13,6 @@ using DevToys.Api.Tools;
 using DevToys.Core;
 using DevToys.Core.Threading;
 using DevToys.Shared.Core.Threading;
-using DevToys.Helpers;
 using DevToys.Views.Tools.JsonYaml;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Newtonsoft.Json;
@@ -21,6 +20,10 @@ using YamlDotNet.Core;
 using YamlDotNet.Serialization;
 using DevToys.ViewModels.Tools.Converters.JsonYaml;
 using Newtonsoft.Json.Linq;
+using DevToys.Models;
+using System.Collections.ObjectModel;
+using System.Linq;
+using DevToys.Helpers.JsonYaml;
 
 namespace DevToys.ViewModels.Tools.JsonYaml
 {
@@ -39,11 +42,17 @@ namespace DevToys.ViewModels.Tools.JsonYaml
         /// <summary>
         /// The indentation to apply while converting.
         /// </summary>
-        private static readonly SettingDefinition<string> Indentation
+        //private static readonly SettingDefinition<string> Indentation
+        //    = new(
+        //        name: $"{nameof(JsonYamlToolViewModel)}.{nameof(Indentation)}",
+        //        isRoaming: true,
+        //        defaultValue: TwoSpaceIndentation);
+
+        private static readonly SettingDefinition<Indentation> Indentation
             = new(
                 name: $"{nameof(JsonYamlToolViewModel)}.{nameof(Indentation)}",
                 isRoaming: true,
-                defaultValue: TwoSpaceIndentation);
+                defaultValue: Models.Indentation.TwoSpaces);
 
         internal const string JsonToYaml = nameof(JsonToYaml);
         internal const string YamlToJson = nameof(YamlToJson);
@@ -130,19 +139,49 @@ namespace DevToys.ViewModels.Tools.JsonYaml
         /// <summary>
         /// Gets or sets the desired indentation.
         /// </summary>
-        internal string IndentationMode
+        internal IndentationDisplayPair IndentationMode
         {
-            get => SettingsProvider.GetSetting(Indentation);
+            get
+            {
+                Indentation settingsValue = SettingsProvider.GetSetting(Indentation);
+                IndentationDisplayPair? indentation = Indentations.FirstOrDefault(x => x.Value == settingsValue);
+                return indentation ?? IndentationDisplayPair.TwoSpaces;
+            }
             set
             {
-                if (!string.Equals(SettingsProvider.GetSetting(Indentation), value, StringComparison.Ordinal))
+                if (IndentationMode != value)
                 {
-                    SettingsProvider.SetSetting(Indentation, value);
+                    SettingsProvider.SetSetting(Indentation, value.Value);
                     OnPropertyChanged();
                     QueueConversion();
                 }
             }
         }
+
+        /// <summary>
+        /// Get a list of supported Indentation
+        /// </summary>
+        internal IReadOnlyList<IndentationDisplayPair> Indentations = new ObservableCollection<IndentationDisplayPair> {
+            Models.IndentationDisplayPair.TwoSpaces,
+            Models.IndentationDisplayPair.FourSpaces
+        };
+
+        ///// <summary>
+        ///// Gets or sets the desired indentation.
+        ///// </summary>
+        //internal string IndentationMode
+        //{
+        //    get => SettingsProvider.GetSetting(Indentation);
+        //    set
+        //    {
+        //        if (!string.Equals(SettingsProvider.GetSetting(Indentation), value, StringComparison.Ordinal))
+        //        {
+        //            SettingsProvider.SetSetting(Indentation, value);
+        //            OnPropertyChanged();
+        //            QueueConversion();
+        //        }
+        //    }
+        //}
 
         /// <summary>
         /// Gets or sets the input text.
@@ -214,22 +253,29 @@ namespace DevToys.ViewModels.Tools.JsonYaml
 
             while (_conversionQueue.TryDequeue(out string? text))
             {
-                bool success;
-                string result;
+                string? result;
                 if (string.Equals(ConversionMode, JsonToYaml, StringComparison.Ordinal))
                 {
-                    success = ConvertJsonToYaml(text, out result);
+                    result = YamlHelper.ConvertFromJson(text, IndentationMode.Value);
+                    if (string.IsNullOrEmpty(result))
+                    {
+                        result = Strings.InvalidYaml;
+                    }
                 }
                 else
                 {
-                    success = ConvertYamlToJson(text, out result);
+                    result = JsonHelper.ConvertFromYaml(text, IndentationMode.Value);
+                    if (string.IsNullOrEmpty(result))
+                    {
+                        result = Strings.InvalidYaml;
+                    }
                 }
 
                 ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, () =>
                 {
                     OutputValue = result;
 
-                    if (success && !_toolSuccessfullyWorked)
+                    if (!string.IsNullOrWhiteSpace(result) && !_toolSuccessfullyWorked)
                     {
                         _toolSuccessfullyWorked = true;
                         _marketingService.NotifyToolSuccessfullyWorked();
@@ -240,134 +286,134 @@ namespace DevToys.ViewModels.Tools.JsonYaml
             _conversionInProgress = false;
         }
 
-        private bool ConvertJsonToYaml(string input, out string output)
-        {
-            if (string.IsNullOrWhiteSpace(input))
-            {
-                output = string.Empty;
-                return false;
-            }
+        //private bool ConvertJsonToYaml(string input, out string output)
+        //{
+        //    if (string.IsNullOrWhiteSpace(input))
+        //    {
+        //        output = string.Empty;
+        //        return false;
+        //    }
 
-            try
-            {
-                object? jsonObject = null;
-                var token = JToken.Parse(input);
-                if (token is null)
-                {
-                    output = string.Empty;
-                    return false;
-                }
+        //    try
+        //    {
+        //        object? jsonObject = null;
+        //        var token = JToken.Parse(input);
+        //        if (token is null)
+        //        {
+        //            output = string.Empty;
+        //            return false;
+        //        }
 
-                if (token is JArray)
-                {
-                    jsonObject = JsonConvert.DeserializeObject<ExpandoObject[]>(input, _defaultJsonSerializerSettings);
-                }
-                else
-                {
-                    jsonObject = JsonConvert.DeserializeObject<ExpandoObject>(input, _defaultJsonSerializerSettings);
-                }
+        //        if (token is JArray)
+        //        {
+        //            jsonObject = JsonConvert.DeserializeObject<ExpandoObject[]>(input, _defaultJsonSerializerSettings);
+        //        }
+        //        else
+        //        {
+        //            jsonObject = JsonConvert.DeserializeObject<ExpandoObject>(input, _defaultJsonSerializerSettings);
+        //        }
 
-                if (jsonObject is not null and not string)
-                {
-                    int indent = 0;
-                    indent = IndentationMode switch
-                    {
-                        TwoSpaceIndentation => 2,
-                        FourSpaceIndentation => 4,
-                        _ => throw new NotSupportedException(),
-                    };
-                    var serializer
-                        = Serializer.FromValueSerializer(
-                            new SerializerBuilder().BuildValueSerializer(),
-                            EmitterSettings.Default.WithBestIndent(indent).WithIndentedSequences());
+        //        if (jsonObject is not null and not string)
+        //        {
+        //            int indent = 0;
+        //            indent = IndentationMode switch
+        //            {
+        //                TwoSpaceIndentation => 2,
+        //                FourSpaceIndentation => 4,
+        //                _ => throw new NotSupportedException(),
+        //            };
+        //            var serializer
+        //                = Serializer.FromValueSerializer(
+        //                    new SerializerBuilder().BuildValueSerializer(),
+        //                    EmitterSettings.Default.WithBestIndent(indent).WithIndentedSequences());
 
-                    string? yaml = serializer.Serialize(jsonObject);
-                    output = yaml ?? string.Empty;
-                    return true;
-                }
+        //            string? yaml = serializer.Serialize(jsonObject);
+        //            output = yaml ?? string.Empty;
+        //            return true;
+        //        }
 
-                output = string.Empty;
-            }
-            catch (JsonReaderException ex)
-            {
-                output = ex.Message;
-            }
-            catch (Exception ex)
-            {
-                Logger.LogFault("Json to Yaml Converter", ex);
-                output = string.Empty;
-            }
+        //        output = string.Empty;
+        //    }
+        //    catch (JsonReaderException ex)
+        //    {
+        //        output = ex.Message;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.LogFault("Json to Yaml Converter", ex);
+        //        output = string.Empty;
+        //    }
 
-            return false;
-        }
+        //    return false;
+        //}
 
-        private bool ConvertYamlToJson(string input, out string output)
-        {
-            if (string.IsNullOrWhiteSpace(input))
-            {
-                output = string.Empty;
-                return false;
-            }
+        //private bool ConvertYamlToJson(string input, out string output)
+        //{
+        //    if (string.IsNullOrWhiteSpace(input))
+        //    {
+        //        output = string.Empty;
+        //        return false;
+        //    }
 
-            try
-            {
-                using var stringReader = new StringReader(input);
+        //    try
+        //    {
+        //        using var stringReader = new StringReader(input);
 
-                var deserializer = new DeserializerBuilder()
-                    .WithNodeTypeResolver(new DecimalYamlTypeResolver())
-                    .Build();
+        //        var deserializer = new DeserializerBuilder()
+        //            .WithNodeTypeResolver(new DecimalYamlTypeResolver())
+        //            .Build();
 
-                object? yamlObject = deserializer.Deserialize(stringReader);
+        //        object? yamlObject = deserializer.Deserialize(stringReader);
 
-                if (yamlObject is null or string)
-                {
-                    output = Strings.InvalidYaml;
-                    return false;
-                }
+        //        if (yamlObject is null or string)
+        //        {
+        //            output = Strings.InvalidYaml;
+        //            return false;
+        //        }
 
-                var stringBuilder = new StringBuilder();
-                using (var stringWriter = new StringWriter(stringBuilder))
-                using (var jsonTextWriter = new JsonTextWriter(stringWriter))
-                {
-                    switch (IndentationMode)
-                    {
-                        case TwoSpaceIndentation:
-                            jsonTextWriter.Formatting = Formatting.Indented;
-                            jsonTextWriter.IndentChar = ' ';
-                            jsonTextWriter.Indentation = 2;
-                            break;
+        //        var stringBuilder = new StringBuilder();
+        //        using (var stringWriter = new StringWriter(stringBuilder))
+        //        using (var jsonTextWriter = new JsonTextWriter(stringWriter))
+        //        {
+        //            switch (IndentationMode)
+        //            {
+        //                case TwoSpaceIndentation:
+        //                    jsonTextWriter.Formatting = Formatting.Indented;
+        //                    jsonTextWriter.IndentChar = ' ';
+        //                    jsonTextWriter.Indentation = 2;
+        //                    break;
 
-                        case FourSpaceIndentation:
-                            jsonTextWriter.Formatting = Formatting.Indented;
-                            jsonTextWriter.IndentChar = ' ';
-                            jsonTextWriter.Indentation = 4;
-                            break;
+        //                case FourSpaceIndentation:
+        //                    jsonTextWriter.Formatting = Formatting.Indented;
+        //                    jsonTextWriter.IndentChar = ' ';
+        //                    jsonTextWriter.Indentation = 4;
+        //                    break;
 
-                        default:
-                            throw new NotSupportedException();
-                    }
+        //                default:
+        //                    throw new NotSupportedException();
+        //            }
 
-                    var jsonSerializer = JsonSerializer.CreateDefault(new JsonSerializerSettings()
-                    {
-                        Converters = { new DecimalJsonConverter() }
-                    });
-                    jsonSerializer.Serialize(jsonTextWriter, yamlObject);
-                }
+        //            var jsonSerializer = JsonSerializer.CreateDefault(new JsonSerializerSettings()
+        //            {
+        //                Converters = { new DecimalJsonConverter() }
+        //            });
+        //            jsonSerializer.Serialize(jsonTextWriter, yamlObject);
+        //        }
 
-                output = stringBuilder.ToString();
-                return true;
-            }
-            catch (SemanticErrorException ex)
-            {
-                output = ex.Message;
-            }
-            catch (Exception ex)
-            {
-                Logger.LogFault("Yaml to Json Converter", ex);
-                output = string.Empty;
-            }
+        //        output = stringBuilder.ToString();
+        //        return true;
+        //    }
+        //    catch (SemanticErrorException ex)
+        //    {
+        //        output = ex.Message;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.LogFault("Yaml to Json Converter", ex);
+        //        output = string.Empty;
+        //    }
 
-            return false;
-        }
+        //    return false;
+        //}
     }
 }
