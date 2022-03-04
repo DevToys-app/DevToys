@@ -21,11 +21,11 @@ namespace DevToys.Tests.Providers
         {
             await ThreadHelper.RunOnUIThreadAsync(async () =>
             {
-                System.Collections.Generic.IEnumerable<MatchedToolProvider> result = await ExportProvider.Import<IToolProviderFactory>().SearchToolsAsync(searchquery);
+                System.Collections.Generic.IEnumerable<ToolProviderViewItem> result = await ExportProvider.Import<IToolProviderFactory>().SearchToolsAsync(searchquery);
 
                 if (expectedMatchSpanCount > 0)
                 {
-                    MatchedToolProvider base64Tool = result.First(item => item.Metadata.ProtocolName == "base64");
+                    ToolProviderViewItem base64Tool = result.First(item => item.Metadata.ProtocolName == "base64");
                     Assert.AreEqual(expectedMatchSpanCount, base64Tool.MatchedSpans.Length);
                 }
                 else
@@ -46,7 +46,7 @@ namespace DevToys.Tests.Providers
         {
             await ThreadHelper.RunOnUIThreadAsync(async () =>
             {
-                System.Collections.Generic.IEnumerable<MatchedToolProvider> result = await ExportProvider.Import<IToolProviderFactory>().SearchToolsAsync(searchquery);
+                System.Collections.Generic.IEnumerable<ToolProviderViewItem> result = await ExportProvider.Import<IToolProviderFactory>().SearchToolsAsync(searchquery);
 
                 if (expectedMatchCount > 0)
                 {
@@ -64,7 +64,7 @@ namespace DevToys.Tests.Providers
         {
             await ThreadHelper.RunOnUIThreadAsync(async () =>
             {
-                System.Collections.Generic.IEnumerable<MatchedToolProvider> result = await ExportProvider.Import<IToolProviderFactory>().GetToolsTreeAsync();
+                System.Collections.Generic.IEnumerable<ToolProviderViewItem> result = await ExportProvider.Import<IToolProviderFactory>().GetToolsTreeAsync();
 
                 Assert.IsTrue(result.Count() > 0);
                 Assert.IsTrue(result.First().ChildrenTools.Count > 0);
@@ -76,8 +76,8 @@ namespace DevToys.Tests.Providers
         {
             await ThreadHelper.RunOnUIThreadAsync(async () =>
             {
-                System.Collections.Generic.IEnumerable<MatchedToolProvider> result = await ExportProvider.Import<IToolProviderFactory>().GetToolsTreeAsync();
-                System.Collections.Generic.IEnumerable<IToolProvider> result2 = ExportProvider.Import<IToolProviderFactory>().GetAllChildrenTools(result.First().ToolProvider);
+                System.Collections.Generic.IEnumerable<ToolProviderViewItem> result = await ExportProvider.Import<IToolProviderFactory>().GetToolsTreeAsync();
+                System.Collections.Generic.IEnumerable<ToolProviderViewItem> result2 = ExportProvider.Import<IToolProviderFactory>().GetAllChildrenTools(result.First().ToolProvider);
 
                 Assert.IsTrue(result2.Count() > 0);
             });

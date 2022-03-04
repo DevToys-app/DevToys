@@ -22,8 +22,8 @@ namespace DevToys.Tests.Providers.Tools
         {
             await ThreadHelper.RunOnUIThreadAsync(() =>
             {
-                System.Collections.Generic.IEnumerable<MatchedToolProvider> result = ExportProvider.Import<IToolProviderFactory>().GetAllTools();
-                MatchedToolProvider base64Tool = result.First(item => item.Metadata.ProtocolName == "base64");
+                System.Collections.Generic.IEnumerable<ToolProviderViewItem> result = ExportProvider.Import<IToolProviderFactory>().GetAllTools();
+                ToolProviderViewItem base64Tool = result.First(item => item.Metadata.ProtocolName == "base64");
 
                 Assert.AreEqual(expectedResult, base64Tool.ToolProvider.CanBeTreatedByTool(input));
             });

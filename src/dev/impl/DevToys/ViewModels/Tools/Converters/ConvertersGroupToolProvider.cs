@@ -13,6 +13,7 @@ namespace DevToys.ViewModels.Tools
     [ProtocolName("converters")]
     [Order(0)]
     [NotSearchable]
+    [NotFavorable]
     [NoCompactOverlaySupport]
     internal sealed class ConvertersGroupToolProvider : GroupToolProviderBase
     {

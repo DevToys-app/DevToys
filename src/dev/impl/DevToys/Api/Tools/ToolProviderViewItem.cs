@@ -9,17 +9,19 @@ using DevToys.Core.Threading;
 using DevToys.Shared.Core;
 using Windows.UI.Xaml.Controls;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace DevToys.Api.Tools
 {
     /// <summary>
     /// Represents a tool provider that matched a certain search.
     /// </summary>
-    public class MatchedToolProvider : INotifyPropertyChanged
+    public class ToolProviderViewItem : INotifyPropertyChanged
     {
-        private readonly List<MatchedToolProvider> _childrenTools = new();
+        private readonly List<ToolProviderViewItem> _childrenTools = new();
         private MatchSpan[] _matchedSpans = Array.Empty<MatchSpan>();
         private bool _isBeingProgrammaticallySelected;
+        private bool _isFavorite;
 
         /// <summary>
         /// Gets the tool provider.
@@ -57,7 +59,25 @@ namespace DevToys.Api.Tools
         /// </summary>
         public bool IsRecommended { get; private set; }
 
-        public IReadOnlyList<MatchedToolProvider> ChildrenTools
+        /// <summary>
+        /// Gets whether the tool
+        /// </summary>
+        public bool IsFavorite
+        {
+            get => _isFavorite;
+            set
+            {
+                _isFavorite = value;
+                RaisePropertyChanged(nameof(IsFavorite));
+            }
+        }
+
+        /// <summary>
+        /// Gets the name of the tool that will be displayed in the main menu of the app.
+        /// </summary>
+        public string MenuDisplayName { get; private set; }
+
+        public IReadOnlyList<ToolProviderViewItem> ChildrenTools
         {
             get => _childrenTools;
             set
@@ -65,7 +85,7 @@ namespace DevToys.Api.Tools
                 _childrenTools.Clear();
                 if (value is not null)
                 {
-                    foreach (MatchedToolProvider item in value)
+                    foreach (ToolProviderViewItem item in value)
                     {
                         AddChildTool(item);
                     }
@@ -81,11 +101,23 @@ namespace DevToys.Api.Tools
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public MatchedToolProvider(ToolProviderMetadata metadata, IToolProvider toolProvider)
+        internal static ToolProviderViewItem CreateToolProviderViewItemWithLongMenuDisplayName(ToolProviderViewItem item)
+        {
+            var newItem = new ToolProviderViewItem(item.Metadata, item.ToolProvider, item.IsFavorite);
+            newItem.MenuDisplayName = item.ToolProvider.SearchDisplayName ?? item.ToolProvider.MenuDisplayName;
+            return newItem;
+        }
+
+        public ToolProviderViewItem(
+            ToolProviderMetadata metadata,
+            IToolProvider toolProvider,
+            bool isFavorite)
         {
             Metadata = Arguments.NotNull(metadata, nameof(metadata));
             ToolProvider = Arguments.NotNull(toolProvider, nameof(toolProvider));
             MatchedSpans = Array.Empty<MatchSpan>();
+            IsFavorite = isFavorite;
+            MenuDisplayName = toolProvider.MenuDisplayName;
         }
 
         internal async Task UpdateIsRecommendedAsync(string clipboardContent)
@@ -100,7 +132,7 @@ namespace DevToys.Api.Tools
             }).Forget();
         }
 
-        internal void AddChildTool(MatchedToolProvider child)
+        internal void AddChildTool(ToolProviderViewItem child)
         {
             Arguments.NotNull(child, nameof(child));
 
@@ -138,16 +170,16 @@ namespace DevToys.Api.Tools
 
         private class SelectMenuItemProgrammaticallyResult : IDisposable
         {
-            private readonly MatchedToolProvider _matchedToolProvider;
+            private readonly ToolProviderViewItem _ToolProviderViewItem;
 
-            public SelectMenuItemProgrammaticallyResult(MatchedToolProvider matchedToolProvider)
+            public SelectMenuItemProgrammaticallyResult(ToolProviderViewItem ToolProviderViewItem)
             {
-                _matchedToolProvider = matchedToolProvider;
+                _ToolProviderViewItem = ToolProviderViewItem;
             }
 
             public void Dispose()
             {
-                _matchedToolProvider._isBeingProgrammaticallySelected = false;
+                _ToolProviderViewItem._isBeingProgrammaticallySelected = false;
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,6 +12,11 @@ namespace DevToys.Api.Tools
     public interface IToolProviderFactory
     {
         /// <summary>
+        /// Raised when one tool has been added or removed from favorites.
+        /// </summary>
+        event EventHandler? IsToolFavoriteChanged;
+
+        /// <summary>
         /// Get a tool view model
         /// </summary>
         /// <param name="provider"></param>
@@ -20,32 +26,37 @@ namespace DevToys.Api.Tools
         /// <summary>
         /// Gets a flat list of tools that match the given query.
         /// </summary>
-        Task<IEnumerable<MatchedToolProvider>> SearchToolsAsync(string searchQuery);
+        Task<IEnumerable<ToolProviderViewItem>> SearchToolsAsync(string searchQuery);
 
         /// <summary>
         /// Gets a hierarchical list of available tools. This does not include footer tools.
         /// </summary>
-        Task<IEnumerable<MatchedToolProvider>> GetToolsTreeAsync();
+        Task<IEnumerable<ToolProviderViewItem>> GetToolsTreeAsync();
 
         /// <summary>
         /// Gets a flat list containing all the tools available.
         /// </summary>
-        IEnumerable<MatchedToolProvider> GetAllTools();
+        IEnumerable<ToolProviderViewItem> GetAllTools();
 
         /// <summary>
         /// Gets a flat list of all the children and sub-children of a given tool provider.
         /// </summary>
-        IEnumerable<IToolProvider> GetAllChildrenTools(IToolProvider toolProvider);
+        IEnumerable<ToolProviderViewItem> GetAllChildrenTools(IToolProvider toolProvider);
 
         /// <summary>
         /// Gets the list of tools available that have should be displayed in the header.
         /// </summary>
-        Task<IEnumerable<MatchedToolProvider>> GetHeaderToolsAsync();
+        Task<IEnumerable<ToolProviderViewItem>> GetHeaderToolsAsync();
 
         /// <summary>
         /// Gets the list of tools available that have should be displayed in the footer.
         /// </summary>
-        Task<IEnumerable<MatchedToolProvider>> GetFooterToolsAsync();
+        Task<IEnumerable<ToolProviderViewItem>> GetFooterToolsAsync();
+
+        /// <summary>
+        /// Sets whether the given tool is favorite or not.
+        /// </summary>
+        void SetToolIsFavorite(ToolProviderViewItem toolProviderViewItem, bool isFavorite);
 
         /// <summary>
         /// Called when the app is shutting down. Asks every tools to cleanup resources.

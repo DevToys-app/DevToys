@@ -22,6 +22,6 @@ namespace DevToys.Api.Core
         /// <param name="toolProvider">The tool to pin</param>
         /// <returns>Returns <code>False</code> if the method internally failed.
         /// It will still return <code>True</code> if the user refuse to proceed when being prompt for pinning.</returns>
-        Task<bool> PinToolToStart(MatchedToolProvider toolProvider);
+        Task<bool> PinToolToStart(ToolProviderViewItem toolProvider);
     }
 }

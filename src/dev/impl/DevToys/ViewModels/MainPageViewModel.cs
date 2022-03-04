@@ -40,7 +40,9 @@ namespace DevToys.ViewModels
         : ObservableRecipient,
         IRecipient<ChangeSelectedMenuItemMessage>,
         IRecipient<OpenToolInNewWindowMessage>,
-        IRecipient<PinToolToStartMessage>
+        IRecipient<PinToolToStartMessage>,
+        IRecipient<AddToFavoritesMessage>,
+        IRecipient<RemoveFromFavoritesMessage>
     {
         private readonly IClipboard _clipboard;
         private readonly IToolProviderFactory _toolProviderFactory;
@@ -51,8 +53,9 @@ namespace DevToys.ViewModels
         private readonly IWindowManager _windowManager;
         private readonly DisposableSempahore _sempahore = new();
         private readonly Task _menuInitializationTask;
+        private readonly NavigationViewItemSeparator _headerSeparatorControl = new NavigationViewItemSeparator();
 
-        private MatchedToolProvider? _selectedItem;
+        private ToolProviderViewItem? _selectedItem;
         private NavigationViewDisplayMode _navigationViewDisplayMode;
         private bool _isNavigationViewPaneOpened;
         private string? _searchQuery;
@@ -74,12 +77,12 @@ namespace DevToys.ViewModels
         /// <summary>
         /// Items at the bottom of the NavigationView.
         /// </summary>
-        internal ExtendedObservableCollection<MatchedToolProvider> FooterMenuItems { get; } = new();
+        internal ExtendedObservableCollection<ToolProviderViewItem> FooterMenuItems { get; } = new();
 
         /// <summary>
         /// Gets or sets the selected menu item in the NavitationView.
         /// </summary>
-        internal MatchedToolProvider? SelectedMenuItem
+        internal ToolProviderViewItem? SelectedMenuItem
         {
             get => _selectedItem;
             set => SetSelectedMenuItem(value, _clipboardContent, programmaticalSelection: false);
@@ -125,7 +128,7 @@ namespace DevToys.ViewModels
         /// <summary>
         /// Gets or sets the list of items to displayed in the Search Box after a search.
         /// </summary>
-        internal ExtendedObservableCollection<MatchedToolProvider> SearchResults { get; } = new();
+        internal ExtendedObservableCollection<ToolProviderViewItem> SearchResults { get; } = new();
 
         /// <summary>
         /// Gets whether the window is in Compact Overlay mode or not.
@@ -193,6 +196,8 @@ namespace DevToys.ViewModels
 
             OpenToolInNewWindowCommand = new AsyncRelayCommand<ToolProviderMetadata>(ExecuteOpenToolInNewWindowCommandAsync);
             PinToolToStartCommand = new AsyncRelayCommand<ToolProviderMetadata>(ExecutePinToolToStartCommandAsync);
+            AddToFavoritesCommand = new RelayCommand<ToolProviderViewItem>(ExecuteAddToFavoritesCommand);
+            RemoveFromFavoritesCommand = new RelayCommand<ToolProviderViewItem>(ExecuteRemoveFromFavoritesCommand);
             ChangeViewModeCommand = new AsyncRelayCommand<ApplicationViewMode>(ExecuteChangeViewModeCommandAsync);
             SearchBoxTextChangedCommand = new AsyncRelayCommand<Windows.UI.Xaml.Controls.AutoSuggestBoxTextChangedEventArgs>(ExecuteSearchBoxTextChangedCommandAsync);
             SearchBoxQuerySubmittedCommand = new AsyncRelayCommand<Windows.UI.Xaml.Controls.AutoSuggestBoxQuerySubmittedEventArgs>(ExecuteSearchBoxQuerySubmittedCommandAsync);
@@ -234,8 +239,8 @@ namespace DevToys.ViewModels
                     return;
                 }
 
-                IEnumerable<MatchedToolProvider> toolProviders = _toolProviderFactory.GetAllTools();
-                MatchedToolProvider toolProvider = toolProviders.First(tool => tool.Metadata == metadata);
+                IEnumerable<ToolProviderViewItem> toolProviders = _toolProviderFactory.GetAllTools();
+                ToolProviderViewItem toolProvider = toolProviders.First(tool => tool.Metadata == metadata);
 
                 if (!await _launchProtocolService.PinToolToStart(toolProvider))
                 {
@@ -248,6 +253,70 @@ namespace DevToys.ViewModels
             catch (Exception ex)
             {
                 Logger.LogFault("Pin to start command", ex);
+            }
+        }
+
+        #endregion
+
+        #region AddToFavoritesCommand
+
+        public IRelayCommand<ToolProviderViewItem> AddToFavoritesCommand { get; }
+
+        private void ExecuteAddToFavoritesCommand(ToolProviderViewItem? toolProviderViewItem)
+        {
+            try
+            {
+                ThreadHelper.ThrowIfNotOnUIThread();
+                Arguments.NotNull(toolProviderViewItem, nameof(toolProviderViewItem));
+
+                _toolProviderFactory.SetToolIsFavorite(toolProviderViewItem!, true);
+
+                int index = ToolsMenuItems.IndexOf(_headerSeparatorControl);
+                Assumes.IsTrue(index >= -1, nameof(index));
+
+                ToolsMenuItems.Insert(
+                    index,
+                    ToolProviderViewItem.CreateToolProviderViewItemWithLongMenuDisplayName(toolProviderViewItem!));
+            }
+            catch (Exception ex)
+            {
+                Logger.LogFault("add to favorites command", ex);
+            }
+        }
+
+        #endregion
+
+        #region RemoveFromFavoritesCommand
+
+        public IRelayCommand<ToolProviderViewItem> RemoveFromFavoritesCommand { get; }
+
+        private void ExecuteRemoveFromFavoritesCommand(ToolProviderViewItem? toolProviderViewItem)
+        {
+            try
+            {
+                ThreadHelper.ThrowIfNotOnUIThread();
+                Arguments.NotNull(toolProviderViewItem, nameof(toolProviderViewItem));
+
+                int index = ToolsMenuItems.IndexOf(_headerSeparatorControl);
+                Assumes.IsTrue(index >= -1, nameof(index));
+
+                for (int i = 0; i < index; i++)
+                {
+                    var tool = ToolsMenuItems[i] as ToolProviderViewItem;
+                    if (tool is not null
+                        && tool.IsFavorite
+                        && string.Equals(tool.Metadata.Name, toolProviderViewItem!.Metadata.Name, StringComparison.Ordinal))
+                    {
+                        ToolsMenuItems.RemoveAt(i);
+                        break;
+                    }
+                }
+
+                _toolProviderFactory.SetToolIsFavorite(toolProviderViewItem!, false);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogFault("remove to favorites command", ex);
             }
         }
 
@@ -285,14 +354,14 @@ namespace DevToys.ViewModels
 
             await TaskScheduler.Default;
 
-            MatchedToolProvider[]? searchResult = null;
+            ToolProviderViewItem[]? searchResult = null;
 
             if (parameters!.Reason == Windows.UI.Xaml.Controls.AutoSuggestionBoxTextChangeReason.UserInput)
             {
                 string? searchQuery = SearchQuery;
                 if (!string.IsNullOrEmpty(searchQuery))
                 {
-                    IEnumerable<MatchedToolProvider> matchedTools
+                    IEnumerable<ToolProviderViewItem> matchedTools
                         = await _toolProviderFactory.SearchToolsAsync(searchQuery!).ConfigureAwait(false);
 
                     if (matchedTools.Any())
@@ -303,7 +372,7 @@ namespace DevToys.ViewModels
                     {
                         searchResult = new[]
                         {
-                            new MatchedToolProvider(new ToolProviderMetadata(), new NoResultFoundMockToolProvider())
+                            new ToolProviderViewItem(new ToolProviderMetadata(), new NoResultFoundMockToolProvider(), isFavorite: false)
                         };
                     }
                 }
@@ -342,7 +411,7 @@ namespace DevToys.ViewModels
 
             if (parameters.ChosenSuggestion is null)
             {
-                IEnumerable<MatchedToolProvider> matchedTools
+                IEnumerable<ToolProviderViewItem> matchedTools
                     = await _toolProviderFactory.SearchToolsAsync(parameters.QueryText)
                     .ConfigureAwait(true); // make sure to stay on the UI thread.
 
@@ -353,40 +422,46 @@ namespace DevToys.ViewModels
                     clipboardContentData: null);
                 return;
             }
-            else if (((MatchedToolProvider)parameters.ChosenSuggestion).ToolProvider is NoResultFoundMockToolProvider)
+            else if (((ToolProviderViewItem)parameters.ChosenSuggestion).ToolProvider is NoResultFoundMockToolProvider)
             {
                 SetSelectedMenuItem(
                     SearchResultToolProvider.CreateResult(
                         parameters.QueryText,
-                        Array.Empty<MatchedToolProvider>()),
+                        Array.Empty<ToolProviderViewItem>()),
                     clipboardContentData: null);
                 return;
             }
 
-            SetSelectedMenuItem((MatchedToolProvider)parameters.ChosenSuggestion!, clipboardContentData: null);
+            SetSelectedMenuItem((ToolProviderViewItem)parameters.ChosenSuggestion!, clipboardContentData: null);
         }
 
         #endregion
 
         public void Receive(ChangeSelectedMenuItemMessage message)
         {
-            IEnumerable<MatchedToolProvider> toolProviders = _toolProviderFactory.GetAllTools();
-            MatchedToolProvider toolProvider = toolProviders.First(tool => tool.ToolProvider == message.ToolProvider);
+            IEnumerable<ToolProviderViewItem> toolProviders = _toolProviderFactory.GetAllTools();
+            ToolProviderViewItem toolProvider = toolProviders.First(tool => tool.ToolProvider == message.ToolProvider);
             SetSelectedMenuItem(toolProvider, clipboardContentData: null);
         }
 
         public void Receive(OpenToolInNewWindowMessage message)
         {
-            IEnumerable<MatchedToolProvider> toolProviders = _toolProviderFactory.GetAllTools();
-            MatchedToolProvider toolProvider = toolProviders.First(tool => tool.ToolProvider == message.ToolProvider);
-            OpenToolInNewWindowCommand.Execute(toolProvider.Metadata);
+            OpenToolInNewWindowCommand.Execute(message.ToolProviderMetadata);
         }
 
         public void Receive(PinToolToStartMessage message)
         {
-            IEnumerable<MatchedToolProvider> toolProviders = _toolProviderFactory.GetAllTools();
-            MatchedToolProvider toolProvider = toolProviders.First(tool => tool.ToolProvider == message.ToolProvider);
-            PinToolToStartCommand.Execute(toolProvider.Metadata);
+            PinToolToStartCommand.Execute(message.ToolProviderMetadata);
+        }
+
+        public void Receive(AddToFavoritesMessage message)
+        {
+            AddToFavoritesCommand.Execute(message.Tool);
+        }
+
+        public void Receive(RemoveFromFavoritesMessage message)
+        {
+            RemoveFromFavoritesCommand.Execute(message.Tool);
         }
 
         /// <summary>
@@ -397,7 +472,7 @@ namespace DevToys.ViewModels
             // Make sure the menu is populated.
             await _menuInitializationTask.ConfigureAwait(false);
 
-            MatchedToolProvider? toolProviderViewDataToSelect = null;
+            ToolProviderViewItem? toolProviderViewDataToSelect = null;
             if (!string.IsNullOrWhiteSpace(parameters.Query))
             {
                 NameValueCollection queryParameters = HttpUtility.ParseQueryString(parameters.Query!.ToLower(CultureInfo.CurrentCulture));
@@ -409,7 +484,7 @@ namespace DevToys.ViewModels
                     // Let's make sure we won't switch to a recommended tool detected automatically.
                     _allowSelectAutomaticallyRecommendedTool = false;
 
-                    IEnumerable<MatchedToolProvider> toolProviders = _toolProviderFactory.GetAllTools();
+                    IEnumerable<ToolProviderViewItem> toolProviders = _toolProviderFactory.GetAllTools();
 
                     toolProviderViewDataToSelect
                         = toolProviders.FirstOrDefault(
@@ -431,13 +506,13 @@ namespace DevToys.ViewModels
                 {
                     SetSelectedMenuItem(
                         toolProviderViewDataToSelect
-                        ?? ToolsMenuItems.FirstOrDefault(item => item is MatchedToolProvider) as MatchedToolProvider
+                        ?? ToolsMenuItems.FirstOrDefault(item => item is ToolProviderViewItem) as ToolProviderViewItem
                         ?? FooterMenuItems.FirstOrDefault(),
                         null);
                 });
         }
 
-        private void SetSelectedMenuItem(MatchedToolProvider? value, string? clipboardContentData, bool programmaticalSelection = true)
+        private void SetSelectedMenuItem(ToolProviderViewItem? value, string? clipboardContentData, bool programmaticalSelection = true)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             if (_isUpdatingSelectedItem)
@@ -488,7 +563,7 @@ namespace DevToys.ViewModels
 
             try
             {
-                var tasks = new List<Task<IEnumerable<MatchedToolProvider>>>
+                var tasks = new List<Task<IEnumerable<ToolProviderViewItem>>>
                 {
                     _toolProviderFactory.GetToolsTreeAsync(),
                     _toolProviderFactory.GetHeaderToolsAsync(),
@@ -497,16 +572,16 @@ namespace DevToys.ViewModels
 
                 await Task.WhenAll(tasks).ConfigureAwait(false);
 
-                IEnumerable<MatchedToolProvider> tools = await tasks[0];
-                IEnumerable<MatchedToolProvider> headerTools = await tasks[1];
-                IEnumerable<MatchedToolProvider> footerTools = await tasks[2];
+                IEnumerable<ToolProviderViewItem> tools = await tasks[0];
+                IEnumerable<ToolProviderViewItem> headerTools = await tasks[1];
+                IEnumerable<ToolProviderViewItem> footerTools = await tasks[2];
 
                 await ThreadHelper.RunOnUIThreadAsync(
                     ThreadPriority.Low,
                     () =>
                     {
                         ToolsMenuItems.AddRange(headerTools);
-                        ToolsMenuItems.Add(new NavigationViewItemSeparator());
+                        ToolsMenuItems.Add(_headerSeparatorControl);
                         ToolsMenuItems.AddRange(tools);
                         FooterMenuItems.AddRange(footerTools);
                     });
@@ -539,18 +614,18 @@ namespace DevToys.ViewModels
             // Make sure the menu is populated.
             await _menuInitializationTask.ConfigureAwait(false);
 
-            IEnumerable<MatchedToolProvider> allTools = _toolProviderFactory.GetAllTools();
+            IEnumerable<ToolProviderViewItem> allTools = _toolProviderFactory.GetAllTools();
 
-            MatchedToolProvider[] oldRecommendedTools
+            ToolProviderViewItem[] oldRecommendedTools
                 = allTools
                     .Where(item => item.IsRecommended)
                     .ToArray(); // Make a copy so we can compare with a newer list once we computed recommended items.
 
             // Start check what tools can treat the clipboard content.
             var tasks = new List<Task>();
-            foreach (MatchedToolProvider tool in allTools)
+            foreach (ToolProviderViewItem tool in allTools)
             {
-                MatchedToolProvider currentTool = tool;
+                ToolProviderViewItem currentTool = tool;
                 tasks.Add(
                     Task.Run(async () =>
                     {
@@ -567,7 +642,7 @@ namespace DevToys.ViewModels
 
             await Task.WhenAll(tasks).ConfigureAwait(false);
 
-            MatchedToolProvider[] newRecommendedTools
+            ToolProviderViewItem[] newRecommendedTools
                 = allTools
                     .Where(item => item.IsRecommended)
                     .ToArray();
@@ -592,7 +667,7 @@ namespace DevToys.ViewModels
             using (await _sempahore.WaitAsync(CancellationToken.None).ConfigureAwait(false))
             {
                 if (newRecommendedTools.Length == 1
-                    && IsToolDisplayedInMenu(ToolsMenuItems.OfType<MatchedToolProvider>(), newRecommendedTools[0]))
+                    && IsToolDisplayedInMenu(ToolsMenuItems.OfType<ToolProviderViewItem>(), newRecommendedTools[0]))
                 {
                     // One unique tool is recommended.
                     // The recommended tool is displayed in the top menu.
@@ -611,19 +686,19 @@ namespace DevToys.ViewModels
             }
         }
 
-        private bool IsToolDisplayedInMenu(IEnumerable<MatchedToolProvider> tools, MatchedToolProvider matchedToolProvider)
+        private bool IsToolDisplayedInMenu(IEnumerable<ToolProviderViewItem> tools, ToolProviderViewItem ToolProviderViewItem)
         {
             Arguments.NotNull(tools, nameof(tools));
-            Arguments.NotNull(matchedToolProvider, nameof(matchedToolProvider));
+            Arguments.NotNull(ToolProviderViewItem, nameof(ToolProviderViewItem));
 
-            if (tools.Contains(matchedToolProvider))
+            if (tools.Contains(ToolProviderViewItem))
             {
                 return true;
             }
 
-            foreach (MatchedToolProvider tool in tools)
+            foreach (ToolProviderViewItem tool in tools)
             {
-                if (IsToolDisplayedInMenu(tool.ChildrenTools, matchedToolProvider))
+                if (IsToolDisplayedInMenu(tool.ChildrenTools, ToolProviderViewItem))
                 {
                     return true;
                 }

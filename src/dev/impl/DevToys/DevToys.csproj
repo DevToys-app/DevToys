@@ -24,6 +24,7 @@
     <Compile Include="Api\Core\OOP\IAppService.cs" />
     <Compile Include="Api\Tools\MenuPlacement.cs" />
     <Compile Include="Api\Tools\NoCompactOverlaySupportAttribute.cs" />
+    <Compile Include="Api\Tools\NotFavorableAttribute.cs" />
     <Compile Include="Api\Tools\NotSearchableAttribute.cs" />
     <Compile Include="Api\Tools\ParentAttribute.cs" />
     <Compile Include="Core\OOP\AppService.cs" />
@@ -56,6 +57,8 @@
     <Compile Include="Helpers\SqlFormatter\SqlFormatterHelper.cs" />
     <Compile Include="Helpers\SqlFormatter\SqlFormatterOptions.cs" />
     <Compile Include="Helpers\SqlFormatter\SqlLanguage.cs" />
+    <Compile Include="Messages\RemoveFromFavoritesMessage.cs" />
+    <Compile Include="Messages\AddToFavoritesMessage.cs" />
     <Compile Include="Messages\PinToolToStartMessage.cs" />
     <Compile Include="Messages\OpenToolInNewWindowMessage.cs" />
     <Compile Include="Messages\ChangeSelectedMenuItemMessage.cs" />
@@ -358,7 +361,7 @@
     <Compile Include="Api\Tools\IToolProvider.cs" />
     <Compile Include="Api\Tools\IToolProviderFactory.cs" />
     <Compile Include="Api\Tools\IToolViewModel.cs" />
-    <Compile Include="Api\Tools\MatchedToolProvider.cs" />
+    <Compile Include="Api\Tools\ToolProviderViewItem.cs" />
     <Compile Include="Api\Tools\MatchSpan.cs" />
     <Compile Include="Api\Tools\NameAttribute.cs" />
     <Compile Include="Api\Tools\NotScrollableAttribute.cs" />
