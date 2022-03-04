@@ -82,8 +82,8 @@
     <Compile Include="ViewModels\Tools\Converters\ConvertersGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolProvider.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolViewModel.cs" />
-    <Compile Include="ViewModels\Tools\Converters\JsonYaml\DecimalJsonConverter.cs" />
-    <Compile Include="ViewModels\Tools\Converters\JsonYaml\DecimalYamlTypeResolver.cs" />
+    <Compile Include="Helpers\JsonYaml\Core\DecimalJsonConverter.cs" />
+    <Compile Include="Helpers\JsonYaml\Core\DecimalYamlTypeResolver.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\EncodersDecodersGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Formatters\XmlFormatter\XmlFormatterToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Formatters\XmlFormatter\XmlFormatterToolViewModel.cs" />
@@ -394,8 +394,8 @@
       <DependentUpon>Notification.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Converters\NullToVisibilityConverter.cs" />
-    <Compile Include="Helpers\JsonHelper.cs" />
-    <Compile Include="Helpers\YamlHelper.cs" />
+    <Compile Include="Helpers\JsonYaml\JsonHelper.cs" />
+    <Compile Include="Helpers\JsonYaml\YamlHelper.cs" />
     <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\NumberBaseConverterToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\NumberBaseConverterToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Generators\GuidGenerator\GuidGeneratorToolProvider.cs" />
