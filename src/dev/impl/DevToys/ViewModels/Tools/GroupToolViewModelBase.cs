@@ -12,13 +12,7 @@ namespace DevToys.ViewModels.Tools
 {
     public abstract class GroupToolViewModelBase : ObservableRecipient
     {
-        private IEnumerable<ToolProviderViewItem>? _toolProviders;
-
-        public IEnumerable<ToolProviderViewItem>? ToolProviders
-        {
-            get => _toolProviders;
-            set => SetProperty(ref _toolProviders, value);
-        }
+        public IEnumerable<ToolProviderViewItem>? ToolProviders { get; protected set; }
 
         public bool IsToolProvidersEmpty
         {

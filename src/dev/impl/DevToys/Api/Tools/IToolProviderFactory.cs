@@ -12,11 +12,6 @@ namespace DevToys.Api.Tools
     public interface IToolProviderFactory
     {
         /// <summary>
-        /// Raised when one tool has been added or removed from favorites.
-        /// </summary>
-        event EventHandler? IsToolFavoriteChanged;
-
-        /// <summary>
         /// Get a tool view model
         /// </summary>
         /// <param name="provider"></param>

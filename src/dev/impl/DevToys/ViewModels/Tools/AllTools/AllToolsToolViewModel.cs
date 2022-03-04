@@ -12,29 +12,13 @@ namespace DevToys.ViewModels.AllTools
     [Export(typeof(AllToolsToolViewModel))]
     public sealed class AllToolsToolViewModel : GroupToolViewModelBase, IToolViewModel
     {
-        private readonly IToolProviderFactory _toolProviderFactory;
-
         public Type View { get; } = typeof(AllToolsToolPage);
 
         [ImportingConstructor]
         public AllToolsToolViewModel(IToolProviderFactory toolProviderFactory)
         {
-            _toolProviderFactory = toolProviderFactory;
-
-            UpdateToolProviders();
-
-            toolProviderFactory.IsToolFavoriteChanged += ToolProviderFactory_IsToolFavoriteChanged;
-        }
-
-        private void ToolProviderFactory_IsToolFavoriteChanged(object sender, EventArgs e)
-        {
-            //UpdateToolProviders();
-        }
-
-        private void UpdateToolProviders()
-        {
             ToolProviders
-             = _toolProviderFactory
+             = toolProviderFactory
                  .GetAllTools()
                  .Where(tool => tool.ChildrenTools.Count == 0 && tool.Metadata.MenuPlacement != MenuPlacement.Header) // Don't show tool groups and tools displayed in the menu header.
                  .OrderBy(tool => tool.Metadata.MenuPlacement)                                                        // Show first items from the Body, then the Footer of the menu.
