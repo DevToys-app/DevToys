@@ -5,72 +5,48 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Composition;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
-using DevToys.Api.Tools;
-using DevToys.Core;
 using DevToys.Core.Threading;
-using DevToys.Messages;
-using DevToys.Models;
 using DevToys.Shared.Core.Threading;
+using DevToys.Api.Tools;
+using DevToys.Models;
 using DevToys.UI.Controls;
-using DevToys.ViewModels.Tools.Converters.NumberBaseConverter;
-using DevToys.Views.Tools.NumberBaseConverter;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Windows.UI.Xaml;
+using DevToys.Core;
+using DevToys.Messages;
 
-namespace DevToys.ViewModels.Tools.NumberBaseConverter
+namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
 {
-    [Export(typeof(NumberBaseConverterToolViewModel))]
-    public sealed class NumberBaseConverterToolViewModel : ObservableRecipient, IToolViewModel, IRecipient<ChangeInfoBarStatusMessage>
+    [Export(typeof(BasicNumberBaseConverterControlViewModel))]
+    public class BasicNumberBaseConverterControlViewModel : ObservableRecipient, IToolViewModel, IRecipient<ChangeNumberFormattingMessage>
     {
         /// <summary>
         /// Which format is the input number.
         /// </summary>
-        private static readonly SettingDefinition<Radix> BaseNumber
-            = new(
-                name: $"{nameof(NumberBaseConverterToolViewModel)}.{nameof(BaseNumber)}",
-                isRoaming: true,
-                defaultValue: Radix.Decimal);
+        private Radix _baseNumber = Radix.Decimal;
 
         /// <summary>
         /// Whether the value should be formatted or not.
         /// </summary>
-        private static readonly SettingDefinition<bool> Formatted
-            = new(
-                name: $"{nameof(NumberBaseConverterToolViewModel)}.{nameof(Formatted)}",
-                isRoaming: true,
-                defaultValue: true);
+        private bool _formatted = true;
 
         private readonly Queue<string> _convertQueue = new();
-        private readonly ISettingsProvider _settingsProvider;
-        private readonly IMarketingService _marketingService;
 
         private string? _inputValue;
         private string? _octalValue;
         private string? _binaryValue;
         private string? _decimalValue;
         private string? _hexadecimalValue;
-        private string? _infoBarMessage;
-        private bool _isInfoBarOpen;
         private bool _conversionInProgress;
         private bool _toolSuccessfullyWorked;
-        private bool _advancedMode;
 
+        public Type View { get; } = typeof(BasicNumberBaseConverterControlViewModel);
         internal NumberBaseConverterStrings Strings => LanguageManager.Instance.NumberBaseConverter;
-
-        public Type View { get; } = typeof(NumberBaseConverterToolPage);
-
-        internal bool AdvancedMode
-        {
-            get => _advancedMode;
-            set
-            {
-                SetProperty(ref _advancedMode, value);
-            }
-        }
 
         /// <summary>
         /// Gets or sets the input text.
@@ -149,32 +125,19 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
             }
         }
 
-        internal bool IsInfoBarOpen
-        {
-            get => _isInfoBarOpen;
-            set => SetProperty(ref _isInfoBarOpen, value);
-        }
-
-        internal string? InfoBarMessage
-        {
-            get => _infoBarMessage;
-            set => SetProperty(ref _infoBarMessage, value);
-        }
-
         internal NumberBaseFormat InputBaseNumber
         {
             get
             {
-                Radix settingsValue = _settingsProvider.GetSetting(BaseNumber);
-                NumberBaseFormat? baseNumberFormat = BaseNumbers.FirstOrDefault(x => x.Value == settingsValue);
+                NumberBaseFormat? baseNumberFormat = BaseNumbers.FirstOrDefault(x => x.Value == _baseNumber);
                 return baseNumberFormat ?? NumberBaseFormat.Decimal;
             }
             set
             {
                 if (InputBaseNumber != value)
                 {
-                    _settingsProvider.SetSetting(BaseNumber, value.Value);
-                    OnPropertyChanged();
+                    SetProperty(ref _baseNumber, value.Value);
+                    //OnPropertyChanged();
                 }
             }
         }
@@ -191,26 +154,22 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
 
         internal bool IsFormatted
         {
-            get => _settingsProvider.GetSetting(Formatted);
+            get => _formatted;
             set
             {
-                if (_settingsProvider.GetSetting(Formatted) != value)
+                if (_formatted != value)
                 {
-                    _settingsProvider.SetSetting(Formatted, value);
-                    OnPropertyChanged();
-                    Messenger.Send(new ChangeNumberFormattingMessage(value));
-                    //QueueFormatting(true);
+                    SetProperty(ref _formatted, value);
+                    //OnPropertyChanged();
+                    QueueFormatting(true);
                 }
             }
         }
 
-        [ImportingConstructor]
-        public NumberBaseConverterToolViewModel(ISettingsProvider settingsProvider, IMarketingService marketingService)
+        public BasicNumberBaseConverterControlViewModel()
         {
-            _settingsProvider = settingsProvider;
-            _marketingService = marketingService;
-            InputFocusChanged = ControlFocusChanged;
             IsActive = true;
+            InputFocusChanged = ControlFocusChanged;
         }
 
         internal RoutedEventHandler InputFocusChanged { get; }
@@ -222,12 +181,6 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
             }
 
             var input = (CustomTextBox)source;
-
-            if (input.Text.Length == 0)
-            {
-                return;
-            }
-
             switch (input.Tag)
             {
                 case "Binary" when InputBaseNumber == NumberBaseFormat.Binary:
@@ -303,13 +256,15 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
                     FillPropertyValues(ref _decimalValue, decimalValue, nameof(DecimalValue), formatAll || NumberBaseFormat.Decimal != InputBaseNumber);
                     FillPropertyValues(ref _hexadecimalValue, hexaDecimalValue, nameof(HexaDecimalValue), formatAll || NumberBaseFormat.Hexadecimal != InputBaseNumber);
 
-                    InfoBarMessage = infoBarMessage;
-                    IsInfoBarOpen = isInfoBarOpen;
+                    if (isInfoBarOpen)
+                    {
+                        Messenger.Send(new ChangeInfoBarStatusMessage(infoBarMessage));
+                    }
 
                     if (!_toolSuccessfullyWorked)
                     {
                         _toolSuccessfullyWorked = true;
-                        _marketingService.NotifyToolSuccessfullyWorked();
+                        //_marketingService.NotifyToolSuccessfullyWorked();
                     }
                 }).ForgetSafely();
             }
@@ -325,10 +280,9 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
             }
         }
 
-        public void Receive(ChangeInfoBarStatusMessage message)
+        public void Receive(ChangeNumberFormattingMessage message)
         {
-            InfoBarMessage = message.Message;
-            IsInfoBarOpen = true;
+            IsFormatted = message.IsFormatted;
         }
     }
 }

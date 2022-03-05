@@ -5,9 +5,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:DevToys.UI.Controls" xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:converters="using:DevToys.UI.Converters"
+    xmlns:nbc="using:DevToys.Views.Tools.Converters.NumberBaseConverter"
     mc:Ignorable="d"
     NavigationCacheMode="Required">
-
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <converters:BooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" IsInverted="True"/>
+    </UserControl.Resources>
+    
     <StackPanel Margin="0,0,0,16" Spacing="12">
         <StackPanel.ChildrenTransitions>
             <TransitionCollection>
@@ -26,6 +32,15 @@
                     Style="{StaticResource RightAlignedToggleSwitchStyle}"
                     IsOn="{x:Bind ViewModel.IsFormatted, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </controls:ExpandableSettingControl>
+            <controls:ExpandableSettingControl
+                Title="{x:Bind ViewModel.Strings.AdvancedModeLabel}">
+                <controls:ExpandableSettingControl.Icon>
+                    <FontIcon Glyph="&#xF7B2;" />
+                </controls:ExpandableSettingControl.Icon>
+                <ToggleSwitch
+                    Style="{StaticResource RightAlignedToggleSwitchStyle}"
+                    IsOn="{x:Bind ViewModel.AdvancedMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </controls:ExpandableSettingControl>
         </StackPanel>
 
         <muxc:InfoBar 
@@ -33,7 +48,14 @@
             Severity="Warning" 
             Message="{x:Bind ViewModel.InfoBarMessage, Mode=OneWay}" />
 
-        <controls:CustomTextBox
+        <Grid Visibility="{x:Bind ViewModel.AdvancedMode, Mode=OneWay, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
+            <nbc:BasicNumberBaseConverterControl/>
+        </Grid>
+        <Grid Visibility="{x:Bind ViewModel.AdvancedMode, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <nbc:AdvancedNumberBaseConverterControl/>
+        </Grid>
+
+        <!--<controls:CustomTextBox
             Header="{x:Bind ViewModel.Strings.HexadecimalLabel}"
             Text="{x:Bind ViewModel.HexaDecimalValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             LostFocus="{x:Bind ViewModel.InputFocusChanged}"
@@ -56,6 +78,6 @@
             Header="{x:Bind ViewModel.Strings.BinaryLabel}"
             Text="{x:Bind ViewModel.BinaryValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             LostFocus="{x:Bind ViewModel.InputFocusChanged}"
-            Tag="Binary"/>
+            Tag="Binary"/>-->
     </StackPanel>
 </Page>
