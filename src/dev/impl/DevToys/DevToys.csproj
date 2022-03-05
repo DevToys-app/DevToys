@@ -56,6 +56,8 @@
     <Compile Include="Helpers\SqlFormatter\SqlFormatterHelper.cs" />
     <Compile Include="Helpers\SqlFormatter\SqlFormatterOptions.cs" />
     <Compile Include="Helpers\SqlFormatter\SqlLanguage.cs" />
+    <Compile Include="Messages\ChangeInfoBarStatusMessage.cs" />
+    <Compile Include="Messages\ChangeNumberFormattingMessage.cs" />
     <Compile Include="Messages\PinToolToStartMessage.cs" />
     <Compile Include="Messages\OpenToolInNewWindowMessage.cs" />
     <Compile Include="Messages\ChangeSelectedMenuItemMessage.cs" />
@@ -81,6 +83,8 @@
     <Compile Include="ViewModels\Tools\AllTools\AllToolsToolProvider.cs" />
     <Compile Include="ViewModels\Tools\AllTools\AllToolsToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Converters\ConvertersGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\AdvancedNumberBaseConverterControlViewModel.cs" />
+    <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\BasicNumberBaseConverterControlViewModel.cs" />
     <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\NumberBaseFormatFactory.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolProvider.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolViewModel.cs" />
@@ -115,6 +119,12 @@
     <Compile Include="ViewModels\Tools\Text\TextGroupToolProvider.cs" />
     <Compile Include="Views\Tools\AllTools\AllToolsToolPage.xaml.cs">
       <DependentUpon>AllToolsToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Converters\NumberBaseConverter\AdvancedNumberBaseConverterControl.xaml.cs">
+      <DependentUpon>AdvancedNumberBaseConverterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Converters\NumberBaseConverter\BasicNumberBaseConverterControl.xaml.cs">
+      <DependentUpon>BasicNumberBaseConverterControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolPage.xaml.cs">
       <DependentUpon>GZipEncoderDecoderToolPage.xaml</DependentUpon>
@@ -568,6 +578,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Tools\AllTools\AllToolsToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tools\Converters\NumberBaseConverter\AdvancedNumberBaseConverterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tools\Converters\NumberBaseConverter\BasicNumberBaseConverterControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
