@@ -123,16 +123,6 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
             }
         }
 
-        private NumberBaseFormat PrepareCustomBase(NumberBaseFormat format, string? inputDict)
-        {
-            if (inputDict is not null)
-            {
-                char[] dict = inputDict.ToCharArray();
-                return new(format, dict.Length, dict);
-            }
-            return format;
-        }
-
         internal bool UseInputCustomDictionary
         {
             get => _useInputCustomDictionary;
@@ -176,6 +166,11 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
             NumberBaseFormat.RFC4648_Base64UrlEncode,
             new NumberBaseFormat("Custom base", Radix.Custom, 16, 2, ' ')
         };
+
+        public AdvancedNumberBaseConverterControlViewModel()
+        {
+            IsActive = true;
+        }
 
         private void QueueFormatting()
         {
@@ -240,6 +235,16 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
             }
 
             _conversionInProgress = false;
+        }
+
+        private NumberBaseFormat PrepareCustomBase(NumberBaseFormat format, string? inputDict)
+        {
+            if (inputDict is not null)
+            {
+                char[] dict = inputDict.ToCharArray();
+                return new(format, dict.Length, dict);
+            }
+            return format;
         }
 
         public void Receive(ChangeNumberFormattingMessage message)
