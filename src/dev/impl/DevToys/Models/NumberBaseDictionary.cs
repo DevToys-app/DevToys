@@ -12,11 +12,22 @@ namespace DevToys.Models
             _dictionary: "0123456789ABCDEF".ToCharArray(), 
             formatting: true);
 
-        public static readonly NumberBaseDictionary Base63Dictionary = new(
-            _dictionary: "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".ToCharArray(),
+        public static readonly NumberBaseDictionary RFC4648Base32Dictionary = new(
+            _dictionary: "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567".ToCharArray(),
             formatting: false);
 
-        public static NumberBaseDictionary DefaultDictionary { get; } = Base63Dictionary;
+        public static readonly NumberBaseDictionary RFC4648Base32ExHexDictionary = new(
+            _dictionary: "0123456789ABCDEFGHIJKLMNOPQRSTUV".ToCharArray(),
+            formatting: false);
+
+        public static readonly NumberBaseDictionary RFC4648Base64Dictionary = new(
+            _dictionary: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".ToCharArray(),
+            formatting: false);
+
+        public static readonly NumberBaseDictionary RFC4648Base64UrlEncodeDictionary = new(
+             _dictionary: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_".ToCharArray(),
+             formatting: false);
+        public static NumberBaseDictionary DefaultDictionary { get; } = RFC4648Base64Dictionary;
 
         public char[] Dictionary { get; }
         public bool AllowsFormatting { get; }
@@ -25,6 +36,11 @@ namespace DevToys.Models
         {
             Dictionary = _dictionary;
             AllowsFormatting = formatting;
+        }
+
+        public static implicit operator NumberBaseDictionary(char[] dict)
+        {
+            return new NumberBaseDictionary(dict, dict.All(c => char.IsLower(c)));
         }
 
         public char this[int index]

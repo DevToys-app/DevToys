@@ -6,6 +6,7 @@
         Binary,
         Decimal,
         Hexdecimal,
+        RFC4648Standard,
         Custom
     }
 }
