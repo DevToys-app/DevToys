@@ -179,4 +179,13 @@
   <data name="SearchKeywords" xml:space="preserve">
     <value>Binary Octal Decimal Hexadecimal</value>
   </data>
+  <data name="AdvancedModeLabel" xml:space="preserve">
+    <value>Advanced mode</value>
+  </data>
+  <data name="InputDictionaryLabel" xml:space="preserve">
+    <value>Input dictionary</value>
+  </data>
+  <data name="OutputDictionaryLabel" xml:space="preserve">
+    <value>Output dictionary</value>
+  </data>
 </root>
