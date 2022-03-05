@@ -1721,6 +1721,21 @@ namespace DevToys
         /// Gets the resource SearchKeywords.
         /// </summary>
         public string SearchKeywords => _resources.GetString("SearchKeywords");
+
+        /// <summary>
+        /// Gets the resource AdvancedModeLabel.
+        /// </summary>
+        public string AdvancedModeLabel => _resources.GetString("AdvancedModeLabel");
+
+        /// <summary>
+        /// Gets the resource InputDictionaryLabel.
+        /// </summary>
+        public string InputDictionaryLabel => _resources.GetString("InputDictionaryLabel");
+
+        /// <summary>
+        /// Gets the resource OutputDictionaryLabel.
+        /// </summary>
+        public string OutputDictionaryLabel => _resources.GetString("OutputDictionaryLabel");
     }
 
     public class PngJpgCompressorStrings : ObservableObject
