@@ -221,10 +221,7 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
                 {
                     OutputValue = resultValue;
 
-                    if (isInfoBarOpen)
-                    {
-                        Messenger.Send(new ChangeInfoBarStatusMessage(infoBarMessage));
-                    }
+                    Messenger.Send(new ChangeInfoBarStatusMessage(isInfoBarOpen, infoBarMessage));
 
                     if (!_toolSuccessfullyWorked)
                     {

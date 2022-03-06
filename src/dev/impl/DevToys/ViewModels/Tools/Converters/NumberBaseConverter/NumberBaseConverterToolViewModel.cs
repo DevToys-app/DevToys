@@ -94,7 +94,7 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
         public void Receive(ChangeInfoBarStatusMessage message)
         {
             InfoBarMessage = message.Message;
-            IsInfoBarOpen = true;
+            IsInfoBarOpen = message.IsOpen;
         }
     }
 }
