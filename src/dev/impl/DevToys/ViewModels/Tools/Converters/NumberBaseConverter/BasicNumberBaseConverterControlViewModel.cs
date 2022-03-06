@@ -262,10 +262,7 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
                     FillPropertyValues(ref _decimalValue, decimalValue, nameof(DecimalValue), formatAll || NumberBaseFormat.Decimal != InputBaseNumber);
                     FillPropertyValues(ref _hexadecimalValue, hexaDecimalValue, nameof(HexaDecimalValue), formatAll || NumberBaseFormat.Hexadecimal != InputBaseNumber);
 
-                    if (isInfoBarOpen)
-                    {
-                        Messenger.Send(new ChangeInfoBarStatusMessage(infoBarMessage));
-                    }
+                    Messenger.Send(new ChangeInfoBarStatusMessage(isInfoBarOpen, infoBarMessage));
 
                     if (!_toolSuccessfullyWorked)
                     {
