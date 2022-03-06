@@ -47,21 +47,22 @@ namespace DevToys.Views.Tools.NumberBaseConverter
                 DataContext = ViewModel;
             }
 
-            if (!string.IsNullOrWhiteSpace(parameters.ClipBoardContent))
-            {
-                string clipBoardContent = NumberBaseFormatter.RemoveFormatting(parameters.ClipBoardContent).ToString();
+            // TODO: This feature would be nice to find a way to keep it
+            //if (!string.IsNullOrWhiteSpace(parameters.ClipBoardContent))
+            //{
+            //    string clipBoardContent = NumberBaseFormatter.RemoveFormatting(parameters.ClipBoardContent).ToString();
 
-                if (NumberBaseHelper.IsValidBinary(clipBoardContent!))
-                {
-                    ViewModel.InputBaseNumber = NumberBaseFormat.Binary;
-                }
-                else if (NumberBaseHelper.IsValidHexadecimal(clipBoardContent!))
-                {
-                    ViewModel.InputBaseNumber = NumberBaseFormat.Hexadecimal;
-                }
+            //    if (NumberBaseHelper.IsValidBinary(clipBoardContent!))
+            //    {
+            //        ViewModel.InputBaseNumber = NumberBaseFormat.Binary;
+            //    }
+            //    else if (NumberBaseHelper.IsValidHexadecimal(clipBoardContent!))
+            //    {
+            //        ViewModel.InputBaseNumber = NumberBaseFormat.Hexadecimal;
+            //    }
 
-                ViewModel.InputValue = parameters.ClipBoardContent;
-            }
+            //    ViewModel.InputValue = parameters.ClipBoardContent;
+            //}
 
             base.OnNavigatedTo(e);
         }
