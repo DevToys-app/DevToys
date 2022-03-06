@@ -164,28 +164,29 @@ namespace DevToys.Tests.Providers.Tools
         }
 
         [DataTestMethod]
-        [DataRow(16, 54, "G")]
-        [DataRow(8652, 60, "2OC")]
-        [DataRow(36, 9, "40")]
-        [DataRow(65, 32, "21")]
+        [DataRow(16, 54, "Q")]
+        [DataRow(8652, 60, "CYM")]
+        [DataRow(68551, 62, "Rzp")]
+        [DataRow(65, 32, "CB")]
         public void FormatCustomBase(long input, int @base, string expectedResult)
         {
-            Assert.AreEqual(NumberBaseFormatter.LongToBase(input, NumberBaseFormatBuilder.BuildFormat((builder) =>
+            Assert.AreEqual(expectedResult, NumberBaseFormatter.LongToBase(input, NumberBaseFormatBuilder.BuildFormat((builder) =>
             {
                 builder.BaseNumber = @base;
-            }), true), expectedResult);
+            }), true));
         }
 
         [DataTestMethod]
-        [DataRow("2OC", 60, 8652)]
-        [DataRow("21", 32, 65)]
+        [DataRow("CYM", 60, 8652)]
+        [DataRow("CB", 32, 65)]
+        [DataRow("Rzp", 62, 68551)]
+        
         public void CustomBaseToDecimal(string input, int fromBase, long expectedResult)
         {
-            Assert.AreEqual(NumberBaseFormatter.StringToBase(input, NumberBaseFormatBuilder.BuildFormat((builder) =>
+            Assert.AreEqual(expectedResult, NumberBaseFormatter.StringToBase(input, NumberBaseFormatBuilder.BuildFormat((builder) =>
             {
                 builder.BaseNumber = fromBase;
-            })), expectedResult);
+            })));
         }
-
     }
 }
