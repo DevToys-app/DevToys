@@ -170,16 +170,16 @@ namespace DevToys.Api.Tools
 
         private class SelectMenuItemProgrammaticallyResult : IDisposable
         {
-            private readonly ToolProviderViewItem _ToolProviderViewItem;
+            private readonly ToolProviderViewItem _toolProviderViewItem;
 
             public SelectMenuItemProgrammaticallyResult(ToolProviderViewItem ToolProviderViewItem)
             {
-                _ToolProviderViewItem = ToolProviderViewItem;
+                _toolProviderViewItem = ToolProviderViewItem;
             }
 
             public void Dispose()
             {
-                _ToolProviderViewItem._isBeingProgrammaticallySelected = false;
+                _toolProviderViewItem._isBeingProgrammaticallySelected = false;
             }
         }
     }
