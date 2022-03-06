@@ -105,7 +105,7 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
                 if (InputNumberFormat.Value is Radix.Custom)
                 {
                     SetProperty(ref _inputCustomDictionary, value);
-                    InputNumberFormat = PrepareCustomBase(InputNumberFormat, _inputCustomDictionary);
+                    InputNumberFormat = BuildCustomBase(InputNumberFormat, _inputCustomDictionary);
                 }
             }
         }
@@ -118,7 +118,7 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
                 if (OutputNumberFormat.Value is Radix.Custom)
                 {
                     SetProperty(ref _outputCustomDictionary, value);
-                    OutputNumberFormat = PrepareCustomBase(OutputNumberFormat, _outputCustomDictionary);
+                    OutputNumberFormat = BuildCustomBase(OutputNumberFormat, _outputCustomDictionary);
                 }
             }
         }
@@ -234,12 +234,16 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
             _conversionInProgress = false;
         }
 
-        private NumberBaseFormat PrepareCustomBase(NumberBaseFormat format, string? inputDict)
+        private NumberBaseFormat BuildCustomBase(NumberBaseFormat format, string? inputDict)
         {
             if (inputDict is not null)
             {
                 char[] dict = inputDict.ToCharArray();
-                return new(format, dict.Length, dict);
+                return NumberBaseFormatBuilder.BuildFormat(builder =>
+                {
+                    builder.BaseNumber = dict.Length;
+                    builder.Dictionary = dict;
+                });
             }
             return format;
         }
