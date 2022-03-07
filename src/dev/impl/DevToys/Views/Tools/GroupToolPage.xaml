@@ -26,6 +26,8 @@
             Tools="{x:Bind ViewModel.ToolProviders, Mode=OneWay}"
             ToolClickCommand="{x:Bind ViewModel.NavigateToToolCommand}"
             OpenToolInNewWindowClickCommand="{x:Bind ViewModel.OpenToolInNewWindowClickCommand}"
-            PinToolToStartClickCommand="{x:Bind ViewModel.PinToolToStartClickCommand}"/>
+            PinToolToStartClickCommand="{x:Bind ViewModel.PinToolToStartClickCommand}"
+            AddToFavoritesCommand="{x:Bind ViewModel.AddToFavoritesCommand}"
+            RemoveFromFavoritesCommand="{x:Bind ViewModel.RemoveFromFavoritesCommand}"/>
     </Grid>
 </Page>

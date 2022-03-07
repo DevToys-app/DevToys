@@ -217,7 +217,7 @@
                             Invoked="SearchBoxKeyboardAccelerator_Invoked"/>
                     </AutoSuggestBox.KeyboardAccelerators>
                     <AutoSuggestBox.ItemTemplate>
-                        <DataTemplate x:DataType="tools:MatchedToolProvider">
+                        <DataTemplate x:DataType="tools:ToolProviderViewItem">
                             <RichTextBlock
                                 HorizontalAlignment="Stretch"
                                 IsTextSelectionEnabled="False"
@@ -236,7 +236,7 @@
             <muxc:NavigationView.MenuItemTemplateSelector>
                 <ui:MainMenuNavigationViewMenuItemSelector>
                     <ui:MainMenuNavigationViewMenuItemSelector.ToolProvider>
-                        <DataTemplate x:DataType="tools:MatchedToolProvider">
+                        <DataTemplate x:DataType="tools:ToolProviderViewItem">
                             <muxc:NavigationViewItem
                                 Icon="{x:Bind Icon.Result, Mode=OneWay}"
                                 AutomationProperties.Name="{x:Bind ToolProvider.AccessibleName}"
@@ -250,6 +250,28 @@
                                             CommandParameter="{x:Bind Metadata}">
                                             <MenuFlyoutItem.Icon>
                                                 <FontIcon Glyph="&#xF8B5;" />
+                                            </MenuFlyoutItem.Icon>
+                                        </MenuFlyoutItem>
+                                        <MenuFlyoutItem
+                                            x:Name="AddToFavoritesButton"
+                                            x:Load="{x:Bind IsFavorite, Mode=OneWay, Converter={StaticResource InvertedBooleanConverter}}"
+                                            Visibility="{x:Bind Metadata.NotFavorable, Mode=OneTime, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
+                                            Text="{Binding Instance.MainPage.AddToFavorites, Source={StaticResource LanguageManager}}"
+                                            Command="{Binding AddToFavoritesCommand}"
+                                            CommandParameter="{x:Bind}">
+                                            <MenuFlyoutItem.Icon>
+                                                <FontIcon Glyph="&#xF70F;" />
+                                            </MenuFlyoutItem.Icon>
+                                        </MenuFlyoutItem>
+                                        <MenuFlyoutItem
+                                            x:Name="RemoveFromFavoritesButton"
+                                            x:Load="{x:Bind IsFavorite, Mode=OneWay}"
+                                            Visibility="{x:Bind Metadata.NotFavorable, Mode=OneTime, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
+                                            Text="{Binding Instance.MainPage.RemoveFromFavorites, Source={StaticResource LanguageManager}}"
+                                            Command="{Binding RemoveFromFavoritesCommand}"
+                                            CommandParameter="{x:Bind}">
+                                            <MenuFlyoutItem.Icon>
+                                                <FontIcon Glyph="&#xF71A;" />
                                             </MenuFlyoutItem.Icon>
                                         </MenuFlyoutItem>
                                         <MenuFlyoutItem
@@ -273,7 +295,7 @@
                                             HorizontalAlignment="Stretch"
                                             TextWrapping="NoWrap"
                                             TextTrimming="CharacterEllipsis"
-                                            Text="{x:Bind ToolProvider.MenuDisplayName}"/>
+                                            Text="{x:Bind MenuDisplayName}"/>
                                         <muxc:ImageIcon
                                             x:Name="NavigationViewItemRecommendedIcon"
                                             x:Load="{x:Bind IsRecommended, Mode=OneWay}"

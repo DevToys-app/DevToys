@@ -13,6 +13,7 @@ namespace DevToys.ViewModels.Tools
     [ProtocolName("text")]
     [Order(4)]
     [NotSearchable]
+    [NotFavorable]
     [NoCompactOverlaySupport]
     internal sealed class TextGroupToolProvider : GroupToolProviderBase
     {

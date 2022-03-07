@@ -82,7 +82,7 @@ namespace DevToys.Core
             });
         }
 
-        public async Task<bool> PinToolToStart(MatchedToolProvider toolProvider)
+        public async Task<bool> PinToolToStart(ToolProviderViewItem toolProvider)
         {
             try
             {
@@ -168,7 +168,7 @@ namespace DevToys.Core
             return uriToLaunch;
         }
 
-        private async Task<TileIconSizeDefinition?> GenerateCustomTileIconAsync(TileIconSizeDefinition tileIconSizeDefinition, MatchedToolProvider toolProvider)
+        private async Task<TileIconSizeDefinition?> GenerateCustomTileIconAsync(TileIconSizeDefinition tileIconSizeDefinition, ToolProviderViewItem toolProvider)
         {
             try
             {
