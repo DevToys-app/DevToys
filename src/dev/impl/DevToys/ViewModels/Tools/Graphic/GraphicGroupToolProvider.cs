@@ -13,6 +13,7 @@ namespace DevToys.ViewModels.Tools
     [ProtocolName("graphic")]
     [Order(5)]
     [NotSearchable]
+    [NotFavorable]
     [NoCompactOverlaySupport]
     internal sealed class GraphicGroupToolProvider : GroupToolProviderBase
     {
