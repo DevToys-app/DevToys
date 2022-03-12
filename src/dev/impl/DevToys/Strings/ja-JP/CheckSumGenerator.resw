@@ -157,9 +157,9 @@
     <value>Checksum</value>
   </data>
   <data name="HashesMatch" xml:space="preserve">
-    <value>The hashes are the same.</value>
+    <value>一致しています</value>
   </data>
   <data name="HashesMismatch" xml:space="preserve">
-    <value>The hashes are different.</value>
+    <value>不一致です</value>
   </data>
 </root>
