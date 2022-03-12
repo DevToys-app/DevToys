@@ -124,7 +124,7 @@
     <value>色覚異常シミュレーション</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>画像またはスクリーンショットの色覚異常シミュレーターです</value>
+    <value>画像またはスクリーンショットの色覚異常シミュレーター</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>色覚異常シミュレーター</value>
@@ -139,7 +139,7 @@
     <value>(D) 2 型 2 色覚</value>
   </data>
   <data name="OriginalPicture" xml:space="preserve">
-    <value>オリジナル</value>
+    <value>(C) オリジナル</value>
   </data>
   <data name="ProtanopiaSimulation" xml:space="preserve">
     <value>(P) 1 型 2 色覚</value>

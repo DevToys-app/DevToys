@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddToFavorites" xml:space="preserve">
-    <value>Add to favorites</value>
+    <value>お気に入りに追加</value>
   </data>
   <data name="EnterCompactOverlayTooltip" xml:space="preserve">
     <value>常に手前に表示 (Ctrl+Up)</value>
@@ -158,7 +158,7 @@
     <value>「スタート」にピン留めする操作ができませんでした。詳しくはログをご確認ください。</value>
   </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
-    <value>Remove from favorites</value>
+    <value>お気に入りの解除</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>ツールを検索 ...</value>
