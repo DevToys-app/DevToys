@@ -34,6 +34,7 @@
     <Compile Include="Helpers\ColorBlindnessSimulatorHelper.cs" />
     <Compile Include="Helpers\HashingHelper.cs" />
     <Compile Include="Helpers\NumberBaseHelper.cs" />
+    <Compile Include="Helpers\StringManipulationHelper.cs" />
     <Compile Include="Helpers\XmlHelper.cs" />
     <Compile Include="Helpers\SqlFormatter\Core\Formatter.cs" />
     <Compile Include="Helpers\SqlFormatter\Core\Indentation.cs" />
@@ -113,6 +114,8 @@
     <Compile Include="ViewModels\Tools\Formatters\FormattersGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\GroupToolViewModelBase.cs" />
     <Compile Include="ViewModels\Tools\SearchResult\SearchResultToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Text\StringEscapeUnescape\StringEscapeUnescapeToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Text\StringEscapeUnescape\StringEscapeUnescapeToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Text\TextGroupToolProvider.cs" />
     <Compile Include="Views\Tools\AllTools\AllToolsToolPage.xaml.cs">
       <DependentUpon>AllToolsToolPage.xaml</DependentUpon>
@@ -494,6 +497,9 @@
     <Compile Include="Views\Tools\Settings\SettingsToolPage.xaml.cs">
       <DependentUpon>SettingsToolPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Tools\Text\StringEscapeUnescape\StringEscapeUnescapeToolPage.xaml.cs">
+      <DependentUpon>StringEscapeUnescapeToolPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Tools\Text\StringUtilities\StringUtilitiesToolPage.xaml.cs">
       <DependentUpon>StringUtilitiesToolPage.xaml</DependentUpon>
     </Compile>
@@ -655,6 +661,10 @@
     <Page Include="Views\Tools\Settings\SettingsToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\Text\StringEscapeUnescape\StringEscapeUnescapeToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Tools\Text\StringUtilities\StringUtilitiesToolPage.xaml">
       <SubType>Designer</SubType>
