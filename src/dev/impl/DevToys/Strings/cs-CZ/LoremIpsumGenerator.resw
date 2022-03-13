@@ -148,7 +148,7 @@
     <value>Věty</value>
   </data>
   <data name="StartWithLoremTitle" xml:space="preserve">
-    <value>Start with 'Lorem ipsum dolor sit amet...'</value>
+    <value>Začněte s 'Lorem ipsum dolor sit amet...'</value>
   </data>
   <data name="TypeDescription" xml:space="preserve">
     <value>Generovat slova, věty nebo odstavce</value>
@@ -160,6 +160,6 @@
     <value>Slova</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value />
+    <value>Výplň pseudolatina</value>
   </data>
 </root>
