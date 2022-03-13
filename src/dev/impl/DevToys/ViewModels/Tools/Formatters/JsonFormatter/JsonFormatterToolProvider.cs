@@ -3,9 +3,9 @@
 using System.Composition;
 using DevToys.Shared.Api.Core;
 using DevToys.Api.Tools;
-using DevToys.Helpers;
 using DevToys.Core.Threading;
 using Windows.UI.Xaml.Controls;
+using DevToys.Helpers.JsonYaml;
 
 namespace DevToys.ViewModels.Tools.JsonFormatter
 {

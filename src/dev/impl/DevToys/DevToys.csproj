@@ -24,6 +24,7 @@
     <Compile Include="Api\Core\OOP\IAppService.cs" />
     <Compile Include="Api\Tools\MenuPlacement.cs" />
     <Compile Include="Api\Tools\NoCompactOverlaySupportAttribute.cs" />
+    <Compile Include="Api\Tools\NotFavorableAttribute.cs" />
     <Compile Include="Api\Tools\NotSearchableAttribute.cs" />
     <Compile Include="Api\Tools\ParentAttribute.cs" />
     <Compile Include="Core\OOP\AppService.cs" />
@@ -56,9 +57,12 @@
     <Compile Include="Helpers\SqlFormatter\SqlFormatterHelper.cs" />
     <Compile Include="Helpers\SqlFormatter\SqlFormatterOptions.cs" />
     <Compile Include="Helpers\SqlFormatter\SqlLanguage.cs" />
+    <Compile Include="Messages\RemoveFromFavoritesMessage.cs" />
+    <Compile Include="Messages\AddToFavoritesMessage.cs" />
     <Compile Include="Messages\PinToolToStartMessage.cs" />
     <Compile Include="Messages\OpenToolInNewWindowMessage.cs" />
     <Compile Include="Messages\ChangeSelectedMenuItemMessage.cs" />
+    <Compile Include="Models\HashComparisonResult.cs" />
     <Compile Include="Models\HashingAlgorithm.cs" />
     <Compile Include="Models\HashingAlgorithmDisplayPair.cs" />
     <Compile Include="Models\HashingProgress.cs" />
@@ -81,8 +85,8 @@
     <Compile Include="ViewModels\Tools\Converters\ConvertersGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolProvider.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolViewModel.cs" />
-    <Compile Include="ViewModels\Tools\Converters\JsonYaml\DecimalJsonConverter.cs" />
-    <Compile Include="ViewModels\Tools\Converters\JsonYaml\DecimalYamlTypeResolver.cs" />
+    <Compile Include="Helpers\JsonYaml\Core\DecimalJsonConverter.cs" />
+    <Compile Include="Helpers\JsonYaml\Core\DecimalYamlTypeResolver.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\EncodersDecodersGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Formatters\XmlFormatter\XmlFormatterToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Formatters\XmlFormatter\XmlFormatterToolViewModel.cs" />
@@ -357,7 +361,7 @@
     <Compile Include="Api\Tools\IToolProvider.cs" />
     <Compile Include="Api\Tools\IToolProviderFactory.cs" />
     <Compile Include="Api\Tools\IToolViewModel.cs" />
-    <Compile Include="Api\Tools\MatchedToolProvider.cs" />
+    <Compile Include="Api\Tools\ToolProviderViewItem.cs" />
     <Compile Include="Api\Tools\MatchSpan.cs" />
     <Compile Include="Api\Tools\NameAttribute.cs" />
     <Compile Include="Api\Tools\NotScrollableAttribute.cs" />
@@ -393,8 +397,8 @@
       <DependentUpon>Notification.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Converters\NullToVisibilityConverter.cs" />
-    <Compile Include="Helpers\JsonHelper.cs" />
-    <Compile Include="Helpers\YamlHelper.cs" />
+    <Compile Include="Helpers\JsonYaml\JsonHelper.cs" />
+    <Compile Include="Helpers\JsonYaml\YamlHelper.cs" />
     <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\NumberBaseConverterToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\NumberBaseConverterToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Generators\GuidGenerator\GuidGeneratorToolProvider.cs" />

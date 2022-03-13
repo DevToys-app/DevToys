@@ -15,7 +15,6 @@ using DevToys.Views.Tools.LoremIpsumGenerator;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using NLipsum.Core;
 using System.Linq;
-using Microsoft.Toolkit.Mvvm.Input;
 
 namespace DevToys.ViewModels.Tools.LoremIpsumGenerator
 {

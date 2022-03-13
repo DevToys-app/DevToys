@@ -11,7 +11,7 @@ namespace DevToys.ViewModels.Tools
     {
         public Type View { get; } = typeof(GroupToolPage);
 
-        public GroupToolViewModel(IEnumerable<IToolProvider>? toolProviders)
+        public GroupToolViewModel(IEnumerable<ToolProviderViewItem>? toolProviders)
             : base()
         {
             ToolProviders = toolProviders;

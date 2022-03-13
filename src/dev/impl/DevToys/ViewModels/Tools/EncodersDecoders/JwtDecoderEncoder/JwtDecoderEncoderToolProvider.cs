@@ -39,7 +39,7 @@ namespace DevToys.ViewModels.Tools.JwtDecoderEncoder
 
         public bool CanBeTreatedByTool(string data)
         {
-            return JwtHelper.IsValid(data);
+            return JwtHelper.IsValid(data?.Trim());
         }
 
         public IToolViewModel CreateTool()

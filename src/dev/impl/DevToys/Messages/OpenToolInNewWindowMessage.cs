@@ -7,11 +7,11 @@ namespace DevToys.Messages
 {
     public sealed class OpenToolInNewWindowMessage
     {
-        internal IToolProvider ToolProvider { get; }
+        internal ToolProviderMetadata ToolProviderMetadata { get; }
 
-        public OpenToolInNewWindowMessage(IToolProvider toolProvider)
+        public OpenToolInNewWindowMessage(ToolProviderMetadata metadata)
         {
-            ToolProvider = Arguments.NotNull(toolProvider, nameof(toolProvider));
+            ToolProviderMetadata = Arguments.NotNull(metadata, nameof(metadata));
         }
     }
 }

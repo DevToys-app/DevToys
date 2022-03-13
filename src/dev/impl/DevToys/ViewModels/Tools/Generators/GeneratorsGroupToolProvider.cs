@@ -13,6 +13,7 @@ namespace DevToys.ViewModels.Tools
     [ProtocolName("generators")]
     [Order(3)]
     [NotSearchable]
+    [NotFavorable]
     [NoCompactOverlaySupport]
     internal sealed class GeneratorsGroupToolProvider : GroupToolProviderBase
     {

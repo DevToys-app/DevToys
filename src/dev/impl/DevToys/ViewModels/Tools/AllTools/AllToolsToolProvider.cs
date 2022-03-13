@@ -15,6 +15,7 @@ namespace DevToys.ViewModels.AllTools
     [Order(0)]
     [MenuPlacement(MenuPlacement.Header)]
     [NotSearchable]
+    [NotFavorable]
     [NoCompactOverlaySupport]
     internal sealed class AllToolsToolProvider : ToolProviderBase, IToolProvider
     {

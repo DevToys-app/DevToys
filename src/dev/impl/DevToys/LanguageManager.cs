@@ -412,6 +412,16 @@ namespace DevToys
         /// Gets the resource SearchKeywords.
         /// </summary>
         public string SearchKeywords => _resources.GetString("SearchKeywords");
+
+        /// <summary>
+        /// Gets the resource HashesMatch.
+        /// </summary>
+        public string HashesMatch => _resources.GetString("HashesMatch");
+
+        /// <summary>
+        /// Gets the resource HashesMismatch.
+        /// </summary>
+        public string HashesMismatch => _resources.GetString("HashesMismatch");
     }
 
     public class ColorBlindnessSimulatorStrings : ObservableObject
@@ -1436,6 +1446,11 @@ namespace DevToys
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("MainPage");
 
         /// <summary>
+        /// Gets the resource AddToFavorites.
+        /// </summary>
+        public string AddToFavorites => _resources.GetString("AddToFavorites");
+
+        /// <summary>
         /// Gets the resource EnterCompactOverlayTooltip.
         /// </summary>
         public string EnterCompactOverlayTooltip => _resources.GetString("EnterCompactOverlayTooltip");
@@ -1502,6 +1517,11 @@ namespace DevToys
         /// Gets the resource PinToolToStartProblem.
         /// </summary>
         public string PinToolToStartProblem => _resources.GetString("PinToolToStartProblem");
+
+        /// <summary>
+        /// Gets the resource RemoveFromFavorites.
+        /// </summary>
+        public string RemoveFromFavorites => _resources.GetString("RemoveFromFavorites");
 
         /// <summary>
         /// Gets the resource Search.

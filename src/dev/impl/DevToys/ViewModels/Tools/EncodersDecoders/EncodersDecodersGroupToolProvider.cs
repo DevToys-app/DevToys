@@ -13,6 +13,7 @@ namespace DevToys.ViewModels.Tools
     [ProtocolName("encodersdecoders")]
     [Order(1)]
     [NotSearchable]
+    [NotFavorable]
     [NoCompactOverlaySupport]
     internal sealed class EncodersDecodersGroupToolProvider : GroupToolProviderBase
     {

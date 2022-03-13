@@ -156,4 +156,10 @@
   <data name="SearchKeywords" xml:space="preserve">
     <value>Checksum</value>
   </data>
+  <data name="HashesMatch" xml:space="preserve">
+    <value>一致しています</value>
+  </data>
+  <data name="HashesMismatch" xml:space="preserve">
+    <value>不一致です</value>
+  </data>
 </root>
