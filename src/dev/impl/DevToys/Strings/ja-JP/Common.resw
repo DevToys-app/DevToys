@@ -180,6 +180,9 @@
   <data name="Redo" xml:space="preserve">
     <value>やり直し</value>
   </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
   <data name="SelectAll" xml:space="preserve">
     <value>すべて選択</value>
   </data>

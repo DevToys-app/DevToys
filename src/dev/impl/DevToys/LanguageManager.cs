@@ -613,6 +613,11 @@ namespace DevToys
         public string Redo => _resources.GetString("Redo");
 
         /// <summary>
+        /// Gets the resource Refresh.
+        /// </summary>
+        public string Refresh => _resources.GetString("Refresh");
+
+        /// <summary>
         /// Gets the resource SelectAll.
         /// </summary>
         public string SelectAll => _resources.GetString("SelectAll");

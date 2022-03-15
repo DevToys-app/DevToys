@@ -15,6 +15,7 @@ using DevToys.Views.Tools.LoremIpsumGenerator;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using NLipsum.Core;
 using System.Linq;
+using Microsoft.Toolkit.Mvvm.Input;
 
 namespace DevToys.ViewModels.Tools.LoremIpsumGenerator
 {
@@ -116,8 +117,19 @@ namespace DevToys.ViewModels.Tools.LoremIpsumGenerator
             _settingsProvider = settingsProvider;
             _marketingService = marketingService;
 
+            RefreshCommand = new RelayCommand(ExecuteRefreshCommand);
+
             QueueGeneration();
         }
+
+        #region RefreshCommand
+        internal IRelayCommand RefreshCommand { get; }
+
+        private void ExecuteRefreshCommand()
+        {
+            QueueGeneration();
+        }
+        #endregion
 
         private void QueueGeneration()
         {

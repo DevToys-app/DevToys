@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
 using DevToys.Core;
 using DevToys.Core.Threading;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -360,6 +361,11 @@ namespace DevToys.UI.Controls
 
             if (IsReadOnly)
             {
+                if (RefreshCommand is not null)
+                {
+                    GetRefreshButton().Visibility = Visibility.Visible;
+                }
+
                 if (PasteButton is not null)
                 {
                     GetPasteButton().Visibility = Visibility.Collapsed;
@@ -452,6 +458,24 @@ namespace DevToys.UI.Controls
         {
             return (RichEditBox)(RichEditBox ?? FindName(nameof(RichEditBox)));
         }
+        private Button GetRefreshButton()
+        {
+            return (Button)(RefreshButton ?? FindName(nameof(RefreshButton)));
+        }
+
+        #region Refresh command (optional)
+        public ICommand? RefreshCommand { get; set; }
+
+
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (RefreshCommand is not null && RefreshCommand.CanExecute(e))
+            {
+                RefreshCommand.Execute(e);
+            }
+        }
+
+        #endregion Refresh button click handler delegate
 
         private void CopyTextBoxSelectionToClipboard()
         {
