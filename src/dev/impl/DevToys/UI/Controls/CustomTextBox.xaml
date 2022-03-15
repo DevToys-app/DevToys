@@ -50,6 +50,18 @@
             Margin="0,0,0,8"
             AutomationProperties.LabeledBy="{Binding ElementName=HeaderTextBlock}">
             <Button
+                x:Name="RefreshButton"
+                x:DeferLoadStrategy="Lazy"
+                TabIndex="2"
+                Visibility="Collapsed"
+                AutomationProperties.Name="{Binding Instance.Common.Refresh, Mode=OneTime, Source={StaticResource LanguageManager}}"
+                Click="RefreshButton_Click">
+              <StackPanel Orientation="Horizontal" Spacing="4">
+                <FontIcon Glyph="&#xF13D;" />
+                <TextBlock VerticalAlignment="Center" Text="{Binding Instance.Common.Refresh, Mode=OneTime, Source={StaticResource LanguageManager}}" />
+              </StackPanel>
+            </Button>
+            <Button
                 x:Name="PasteButton"
                 x:DeferLoadStrategy="Lazy"
                 Visibility="Collapsed"
