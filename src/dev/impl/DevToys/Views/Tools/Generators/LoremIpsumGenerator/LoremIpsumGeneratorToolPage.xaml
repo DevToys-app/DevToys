@@ -71,11 +71,12 @@
             x:Name="OutputTextBox"
             Grid.Row="1"
             TabIndex="3"
+            IsReadOnly="True"
             Header="{x:Bind ViewModel.Strings.Output}"
             MinHeight="150"
             AcceptsReturn="True"
-            IsReadOnly="True"
             CanClearWhenReadOnly="True"
+            RefreshCommand="{x:Bind ViewModel.RefreshCommand}"
             Text="{x:Bind ViewModel.Output, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></controls:CustomTextBox>
     </Grid>
 </Page>
