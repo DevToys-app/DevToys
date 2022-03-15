@@ -177,6 +177,9 @@
   <data name="Redo" xml:space="preserve">
     <value>Opakovat</value>
   </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
   <data name="SelectAll" xml:space="preserve">
     <value>Vybrat vše</value>
   </data>
