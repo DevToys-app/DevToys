@@ -199,7 +199,7 @@
     <value>ファイルを開けませんでした</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>ファイル開けませんでした。詳細はログを参照してください : '{0}'</value>
+    <value>ファイルを開けませんでした。詳細はログを参照してください : '{0}'</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>元に戻す</value>
