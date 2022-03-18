@@ -46,6 +46,7 @@ Many tools are available.
   - Lorem Ipsum
   - Checksum
 - Text
+  - Escape / Unescape
   - Inspector & Case Converter
   - Regex Tester
   - Text Comparer
