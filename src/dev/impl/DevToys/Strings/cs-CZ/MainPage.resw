@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddToFavorites" xml:space="preserve">
-    <value>Add to favorites</value>
+    <value>Přidat k oblíbeným</value>
   </data>
   <data name="EnterCompactOverlayTooltip" xml:space="preserve">
     <value>Vždy navrchu (Ctrl+Up)</value>
@@ -155,10 +155,10 @@
     <value>Připnout nástroj na Start</value>
   </data>
   <data name="PinToolToStartProblem" xml:space="preserve">
-    <value>Unable to pin the tool to start. For more details, please check the log.</value>
+    <value>Nebylo možné připnout nástroj na Start. Více podrobností naleznete v protokolu.</value>
   </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
-    <value>Remove from favorites</value>
+    <value>Odebrat z oblíbených</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Hledat nástroje...</value>

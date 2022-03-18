@@ -160,7 +160,7 @@
     <value>Komprimování nebo dekomprimování textových řetězců</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>GZip Komprimace / Dekomprimace</value>
+    <value>Komprimace / Dekomprimace GZip</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value />
