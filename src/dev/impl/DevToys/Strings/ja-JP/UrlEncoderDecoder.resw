@@ -138,12 +138,6 @@
   <data name="MenuDisplayName" xml:space="preserve">
     <value>URL</value>
   </data>
-  <data name="EncodingDescription" xml:space="preserve">
-    <value>使用する文字コードを選択してください</value>
-  </data>
-  <data name="EncodingTitle" xml:space="preserve">
-    <value>エンコード</value>
-  </data>
   <data name="InputTitle" xml:space="preserve">
     <value>入力</value>
   </data>
