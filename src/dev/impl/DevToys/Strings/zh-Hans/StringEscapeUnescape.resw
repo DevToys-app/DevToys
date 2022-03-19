@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>文本转义工具</value>
+    <value>文本转义和反转义工具</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>转义 / 反转义</value>
