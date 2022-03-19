@@ -139,7 +139,11 @@ namespace DevToys.UI.Controls
 
         private bool CanExecuteCutCommand()
         {
-            return RichEditBox != null && RichEditBox.TextDocument.Selection.Length != 0 && IsEnabled && RichEditBox.TextDocument.CanCopy();
+            return RichEditBox != null
+                   && RichEditBox.TextDocument.Selection.Length != 0
+                   && IsEnabled
+                   && RichEditBox.TextDocument.CanCopy()
+                   && IsReadOnly == false;
         }
 
         private void ExecuteCutCommand()
