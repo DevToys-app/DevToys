@@ -653,6 +653,7 @@ namespace DevToys.UI.Controls
         private void TextBox_CuttingToClipboard(TextBox sender, TextControlCuttingToClipboardEventArgs args)
         {
             CopyTextBoxSelectionToClipboard();
+            sender.SelectedText = string.Empty;
             args.Handled = true;
         }
 
@@ -670,6 +671,7 @@ namespace DevToys.UI.Controls
         private void RichEditBox_CuttingToClipboard(RichEditBox sender, TextControlCuttingToClipboardEventArgs args)
         {
             CopyRichEditBoxSelectionToClipboard();
+            sender.TextDocument.Selection.Text = string.Empty;
             args.Handled = true;
         }
 
