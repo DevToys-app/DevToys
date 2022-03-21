@@ -31,7 +31,7 @@ namespace DevToys.Views.Tools.Converters.NumberBaseConverter
                 nameof(ViewModel),
                 typeof(BasicNumberBaseConverterControlViewModel),
                 typeof(BasicNumberBaseConverterControl),
-                new PropertyMetadata(new BasicNumberBaseConverterControlViewModel()));
+                new PropertyMetadata(default(BasicNumberBaseConverterControlViewModel)));
 
         /// <summary>
         /// Gets the page's view model.

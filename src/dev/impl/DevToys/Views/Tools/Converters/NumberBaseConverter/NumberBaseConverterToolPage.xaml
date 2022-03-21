@@ -35,7 +35,7 @@
             <controls:ExpandableSettingControl
                 Title="{x:Bind ViewModel.Strings.AdvancedModeLabel}">
                 <controls:ExpandableSettingControl.Icon>
-                    <FontIcon Glyph="&#xF7B2;" />
+                    <FontIcon Glyph="&#xF1EE;" />
                 </controls:ExpandableSettingControl.Icon>
                 <ToggleSwitch
                     Style="{StaticResource RightAlignedToggleSwitchStyle}"
@@ -48,36 +48,7 @@
             Severity="Warning" 
             Message="{x:Bind ViewModel.InfoBarMessage, Mode=OneWay}" />
 
-        <Grid Visibility="{x:Bind ViewModel.AdvancedMode, Mode=OneWay, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
-            <nbc:BasicNumberBaseConverterControl/>
-        </Grid>
-        <Grid Visibility="{x:Bind ViewModel.AdvancedMode, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <nbc:AdvancedNumberBaseConverterControl/>
-        </Grid>
-
-        <!--<controls:CustomTextBox
-            Header="{x:Bind ViewModel.Strings.HexadecimalLabel}"
-            Text="{x:Bind ViewModel.HexaDecimalValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            LostFocus="{x:Bind ViewModel.InputFocusChanged}"
-            Tag="Hexadecimal"/>
-
-        <controls:CustomTextBox
-            Header="{x:Bind ViewModel.Strings.DecimalLabel}"
-            AcceptsReturn="False"
-            Text="{x:Bind ViewModel.DecimalValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            LostFocus="{x:Bind ViewModel.InputFocusChanged}"
-            Tag="Decimal"/>
-
-        <controls:CustomTextBox
-            Header="{x:Bind ViewModel.Strings.OctalLabel}"
-            Text="{x:Bind ViewModel.OctalValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            LostFocus="{x:Bind ViewModel.InputFocusChanged}"
-            Tag="Octal"/>
-
-        <controls:CustomTextBox
-            Header="{x:Bind ViewModel.Strings.BinaryLabel}"
-            Text="{x:Bind ViewModel.BinaryValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            LostFocus="{x:Bind ViewModel.InputFocusChanged}"
-            Tag="Binary"/>-->
+        <nbc:BasicNumberBaseConverterControl ViewModel="{x:Bind ViewModel.BasicViewModel, Mode=OneWay}" Visibility="{x:Bind ViewModel.AdvancedMode, Mode=OneWay, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
+        <nbc:AdvancedNumberBaseConverterControl ViewModel="{x:Bind ViewModel.AdvancedViewModel, Mode=OneWay}" Visibility="{x:Bind ViewModel.AdvancedMode, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
     </StackPanel>
 </Page>

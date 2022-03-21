@@ -14,6 +14,9 @@ using DevToys.Messages;
 using DevToys.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Messaging;
+using DevToys.Api.Core.Settings;
+using DevToys.Api.Core;
+using DevToys.ViewModels.Tools.Converters.NumberBaseConverter.Exceptions;
 
 namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
 {
@@ -35,8 +38,13 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
         private bool _useInputCustomDictionary;
         private bool _useOutputCustomDictionary;
 
+        private readonly IMarketingService _marketingService;
+
         private NumberBaseFormat _inputDictionary = NumberBaseFormat.RFC4648_Base16;
         private NumberBaseFormat _outputDictionary = NumberBaseFormat.RFC4648_Base64;
+
+        private NumberBaseFormat _inputCustomFormat = NumberBaseFormat.DefaultCustom;
+        private NumberBaseFormat _outputCustomFormat = NumberBaseFormat.DefaultCustom;
 
         /// <summary>
         /// Gets or sets the input text.
@@ -62,7 +70,8 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
                 if (InputNumberFormat != value)
                 {
                     UseInputCustomDictionary = value.Value is Radix.Custom;
-                    _inputDictionary = value;
+                    var newFormat = value == NumberBaseFormat.DefaultCustom ? InputCustomFormat : value;
+                    _inputDictionary = newFormat;
                     QueueFormatting();
                 }
             }
@@ -91,22 +100,32 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
                 if (OutputNumberFormat != value)
                 {
                     UseOutputCustomDictionary = value.Value is Radix.Custom;
-                    _outputDictionary = value;
+                    var newFormat = value == NumberBaseFormat.DefaultCustom ? OutputCustomFormat : value;
+                    _outputDictionary = newFormat;
                     QueueFormatting();
                 }
             }
         }
 
-        internal string? InputCustomDictionary
+        private NumberBaseFormat InputCustomFormat
+        {
+            get => _inputCustomFormat;
+            set => _inputCustomFormat = value;
+        }
+
+        private NumberBaseFormat OutputCustomFormat
+        {
+            get => _outputCustomFormat;
+            set => _outputCustomFormat = value;
+        }
+
+        public string? InputCustomDictionary
         {
             get => _inputCustomDictionary;
             set
             {
-                if (InputNumberFormat.Value is Radix.Custom)
-                {
-                    SetProperty(ref _inputCustomDictionary, value);
-                    InputNumberFormat = BuildCustomBase(InputNumberFormat, _inputCustomDictionary);
-                }
+                SetProperty(ref _inputCustomDictionary, value);
+                InputNumberFormat = InputCustomFormat = BuildCustomBase(InputNumberFormat, _inputCustomDictionary);
             }
         }
 
@@ -115,11 +134,8 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
             get => _outputCustomDictionary;
             set
             {
-                if (OutputNumberFormat.Value is Radix.Custom)
-                {
-                    SetProperty(ref _outputCustomDictionary, value);
-                    OutputNumberFormat = BuildCustomBase(OutputNumberFormat, _outputCustomDictionary);
-                }
+                SetProperty(ref _outputCustomDictionary, value);
+                OutputNumberFormat = OutputCustomFormat = BuildCustomBase(OutputNumberFormat, _outputCustomDictionary);
             }
         }
 
@@ -164,11 +180,13 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
             NumberBaseFormat.RFC4648_Base32_ExtendedHex,
             NumberBaseFormat.RFC4648_Base64,
             NumberBaseFormat.RFC4648_Base64UrlEncode,
-            new NumberBaseFormat("Custom base", Radix.Custom, 16, 2, ' ')
+            NumberBaseFormat.DefaultCustom
         };
 
-        public AdvancedNumberBaseConverterControlViewModel()
+        [ImportingConstructor]
+        public AdvancedNumberBaseConverterControlViewModel(IMarketingService marketingService)
         {
+            _marketingService = marketingService;
             IsActive = true;
         }
 
@@ -226,7 +244,7 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
                     if (!_toolSuccessfullyWorked)
                     {
                         _toolSuccessfullyWorked = true;
-                        //_marketingService.NotifyToolSuccessfullyWorked();
+                        _marketingService.NotifyToolSuccessfullyWorked();
                     }
                 }).ForgetSafely();
             }
@@ -236,14 +254,28 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
 
         private NumberBaseFormat BuildCustomBase(NumberBaseFormat format, string? inputDict)
         {
-            if (inputDict is not null)
+            try
             {
-                char[] dict = inputDict.ToCharArray();
-                return NumberBaseFormatBuilder.BuildFormat(builder =>
+                if (inputDict is not null)
                 {
-                    builder.BaseNumber = dict.Length;
-                    builder.Dictionary = dict;
-                });
+                    return NumberBaseFormatBuilder.BuildFormat(builder =>
+                    {
+                        builder.BaseNumber = inputDict.Length;
+                        builder.Dictionary = inputDict;
+                    });
+                }
+            }
+            catch(InvalidBaseNumberException)
+            {
+                Messenger.Send(new ChangeInfoBarStatusMessage(true, Strings.BaseNumberError));
+            }
+            catch(InvalidDictionarySizeException)
+            {
+                Messenger.Send(new ChangeInfoBarStatusMessage(true, Strings.DictionarySizeError));
+            }
+            catch(InvalidDictionaryBaseNumberPairException)
+            {
+                Messenger.Send(new ChangeInfoBarStatusMessage(true, Strings.IncompatibleBaseDictionaryError));
             }
             return format;
         }

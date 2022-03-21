@@ -37,7 +37,6 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
 
         private readonly Queue<string> _convertQueue = new();
         private readonly ISettingsProvider _settingsProvider;
-        private readonly IMarketingService _marketingService;
 
         private string? _infoBarMessage;
         private bool _isInfoBarOpen;
@@ -46,6 +45,8 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
         internal NumberBaseConverterStrings Strings => LanguageManager.Instance.NumberBaseConverter;
 
         public Type View { get; } = typeof(NumberBaseConverterToolPage);
+        public AdvancedNumberBaseConverterControlViewModel AdvancedViewModel { get; private set; }
+        public BasicNumberBaseConverterControlViewModel BasicViewModel { get; private set; }
 
         internal bool AdvancedMode
         {
@@ -78,16 +79,17 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
                     _settingsProvider.SetSetting(Formatted, value);
                     OnPropertyChanged();
                     Messenger.Send(new ChangeNumberFormattingMessage(value));
-                    //QueueFormatting(true);
                 }
             }
         }
 
         [ImportingConstructor]
-        public NumberBaseConverterToolViewModel(ISettingsProvider settingsProvider, IMarketingService marketingService)
+        public NumberBaseConverterToolViewModel(ISettingsProvider settingsProvider, AdvancedNumberBaseConverterControlViewModel advnacedViewModel, 
+            BasicNumberBaseConverterControlViewModel basicViewModel)
         {
             _settingsProvider = settingsProvider;
-            _marketingService = marketingService;
+            AdvancedViewModel = advnacedViewModel;
+            BasicViewModel = basicViewModel;
             IsActive = true;
         }
 

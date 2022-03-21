@@ -45,6 +45,8 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
         private bool _conversionInProgress;
         private bool _toolSuccessfullyWorked;
 
+        private readonly IMarketingService _marketingService;
+
         public Type View { get; } = typeof(BasicNumberBaseConverterControlViewModel);
         internal NumberBaseConverterStrings Strings => LanguageManager.Instance.NumberBaseConverter;
 
@@ -166,9 +168,11 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
             }
         }
 
-        public BasicNumberBaseConverterControlViewModel()
+        [ImportingConstructor]
+        public BasicNumberBaseConverterControlViewModel(IMarketingService marketingService)
         {
             IsActive = true;
+            _marketingService = marketingService;
             InputFocusChanged = ControlFocusChanged;
         }
 
@@ -267,7 +271,7 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
                     if (!_toolSuccessfullyWorked)
                     {
                         _toolSuccessfullyWorked = true;
-                        //_marketingService.NotifyToolSuccessfullyWorked();
+                        _marketingService.NotifyToolSuccessfullyWorked();
                     }
                 }).ForgetSafely();
             }
