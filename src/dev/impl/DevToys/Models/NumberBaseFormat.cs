@@ -80,6 +80,14 @@ namespace DevToys.Models
             groupSeparator: ' ',
             dictionary: NumberBaseDictionary.RFC4648Base64UrlEncodeDictionary);
 
+        public static readonly NumberBaseFormat DefaultCustom = new(
+            displayName: "Custom format",
+            value: Radix.Custom,
+            baseNumber: 16,
+            groupSize: 4,
+            groupSeparator: ' ',
+            dictionary: NumberBaseDictionary.Base16Dictionary);
+
         public string DisplayName { get; }
 
         public Radix Value { get; }

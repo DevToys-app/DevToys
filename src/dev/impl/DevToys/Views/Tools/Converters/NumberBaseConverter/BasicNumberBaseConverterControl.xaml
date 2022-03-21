@@ -14,7 +14,7 @@
         <DevToys:LanguageManager x:Key="LanguageManager"/>
     </UserControl.Resources>
     
-    <StackPanel>
+    <StackPanel Spacing="12">
         <controls:CustomTextBox
             Header="{x:Bind ViewModel.Strings.HexadecimalLabel}"
             Text="{x:Bind ViewModel.HexaDecimalValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"

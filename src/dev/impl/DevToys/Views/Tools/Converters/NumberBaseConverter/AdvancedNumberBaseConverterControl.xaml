@@ -16,19 +16,13 @@
     </UserControl.Resources>
     
     <StackPanel Margin="0,0,0,16" Spacing="12">
-        <StackPanel.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
-            </TransitionCollection>
-        </StackPanel.ChildrenTransitions>
-
         <StackPanel Spacing="4" >
             <controls:ExpandableSettingControl
                 x:Name="InputDictionaryValue"
                 Grid.Row="2"
                 Title="{x:Bind ViewModel.Strings.InputDictionaryLabel}">
                 <controls:ExpandableSettingControl.Icon>
-                    <FontIcon />
+                    <FontIcon Glyph="&#x0065;"/>
                 </controls:ExpandableSettingControl.Icon>
                 <ComboBox
                     SelectedItem="{x:Bind ViewModel.InputNumberFormat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -40,7 +34,7 @@
                      Text="{x:Bind ViewModel.InputCustomDictionary, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             
             <controls:CustomTextBox
-                Header="{x:Bind ViewModel.Strings.DecimalLabel}"
+                Header="{x:Bind ViewModel.Strings.Input}"
                 AcceptsReturn="False"
                 Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
@@ -51,7 +45,7 @@
                 Grid.Row="2"
                 Title="{x:Bind ViewModel.Strings.OutputDictionaryLabel}">
                 <controls:ExpandableSettingControl.Icon>
-                    <FontIcon />
+                    <FontIcon Glyph="&#x0064;"/>
                 </controls:ExpandableSettingControl.Icon>
                 <ComboBox
                     SelectedItem="{x:Bind ViewModel.OutputNumberFormat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -63,7 +57,7 @@
                      Text="{x:Bind ViewModel.OutputCustomDictionary, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
             <controls:CustomTextBox
-                Header="{x:Bind ViewModel.Strings.DecimalLabel}"
+                Header="{x:Bind ViewModel.Strings.Output}"
                 AcceptsReturn="False"
                 Text="{x:Bind ViewModel.OutputValue, Mode=OneWay}"
                 IsReadOnly="True"/>

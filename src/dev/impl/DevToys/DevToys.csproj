@@ -89,7 +89,10 @@
     <Compile Include="ViewModels\Tools\Converters\ConvertersGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\AdvancedNumberBaseConverterControlViewModel.cs" />
     <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\BasicNumberBaseConverterControlViewModel.cs" />
-    <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\NumberBaseFormatFactory.cs" />
+    <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\Exceptions\InvalidBaseNumberException.cs" />
+    <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\Exceptions\InvalidDictionaryBaseNumberPairException.cs" />
+    <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\Exceptions\InvalidDictionarySizeException.cs" />
+    <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\NumberBaseFormatBuilder.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolProvider.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolViewModel.cs" />
     <Compile Include="Helpers\JsonYaml\Core\DecimalJsonConverter.cs" />

@@ -1,5 +1,7 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Collections.Generic;
+using System.Composition;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -24,7 +26,7 @@ namespace DevToys.Views.Tools.Converters.NumberBaseConverter
             nameof(ViewModel),
             typeof(AdvancedNumberBaseConverterControlViewModel),
             typeof(AdvancedNumberBaseConverterControl),
-            new PropertyMetadata(new AdvancedNumberBaseConverterControlViewModel()));
+            new PropertyMetadata(default(AdvancedNumberBaseConverterControlViewModel)));
 
         /// <summary>
         /// Gets the page's view model.
@@ -35,9 +37,10 @@ namespace DevToys.Views.Tools.Converters.NumberBaseConverter
             set => SetValue(ViewModelProperty, value);
         }
 
+        [ImportingConstructor]
         public AdvancedNumberBaseConverterControl()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }
