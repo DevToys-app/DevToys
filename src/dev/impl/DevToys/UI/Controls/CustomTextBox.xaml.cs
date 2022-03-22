@@ -140,10 +140,10 @@ namespace DevToys.UI.Controls
         private bool CanExecuteCutCommand()
         {
             return RichEditBox != null
+                   && !IsReadOnly
                    && RichEditBox.TextDocument.Selection.Length != 0
                    && IsEnabled
-                   && RichEditBox.TextDocument.CanCopy()
-                   && IsReadOnly == false;
+                   && RichEditBox.TextDocument.CanCopy();
         }
 
         private void ExecuteCutCommand()
@@ -207,7 +207,7 @@ namespace DevToys.UI.Controls
 
         private bool CanExecuteDeleteCommand()
         {
-            return RichEditBox != null && RichEditBox.TextDocument.Selection.Length != 0 && IsEnabled && !IsReadOnly;
+            return RichEditBox != null && !IsReadOnly && RichEditBox.TextDocument.Selection.Length != 0 && IsEnabled;
         }
 
         private void ExecuteDeleteCommand()
