@@ -20,52 +20,6 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
         /// <param name="value">Current value</param>
         /// <param name="baseNumber">Current base number <see cref="NumberBaseFormat"/></param>
         /// <returns>Value converted to <see cref="NumberBaseFormat.Decimal"/></returns>
-        //public static long? StringToBase(string value, NumberBaseFormat baseNumber)
-        //{
-        //    if (string.IsNullOrWhiteSpace(value))
-        //    {
-        //        return null;
-        //    }
-
-        //    int index = 0;
-
-        //    Span<char> spanValue = value!.ToCharArray();
-        //    int length = RemoveFormatting(spanValue);
-
-        //    // Check for a sign
-        //    int sign = 1;
-        //    if (spanValue[index] == '-')
-        //    {
-        //        if (baseNumber != NumberBaseFormat.Decimal)
-        //        {
-        //            throw new ArgumentException($"Base {baseNumber} can't have a negative number");
-        //        }
-
-        //        sign = -1;
-        //        index++;
-        //    }
-        //    else if (spanValue[index] == '+')
-        //    {
-        //        index++;
-        //    }
-
-        //    long result = GetLong(baseNumber, spanValue, index, length);
-
-        //    if (baseNumber == NumberBaseFormat.Decimal)
-        //    {
-        //        result *= sign;
-        //    }
-
-        //    return result;
-        //}
-
-        /// <summary>
-        /// Based on <see cref="System.ParseNumbers"/>
-        /// https://github.com/dotnet/runtime/blob/main/src/libraries/System.Private.CoreLib/src/System/ParseNumbers.cs
-        /// </summary>
-        /// <param name="value">Current value</param>
-        /// <param name="baseNumber">Current base number <see cref="NumberBaseFormat"/></param>
-        /// <returns>Value converted to <see cref="NumberBaseFormat.Decimal"/></returns>
         public static long? StringToBase(string value, NumberBaseFormat baseNumber)
         {
             if (string.IsNullOrWhiteSpace(value))
