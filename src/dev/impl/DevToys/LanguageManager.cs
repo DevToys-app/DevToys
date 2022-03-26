@@ -1732,6 +1732,41 @@ namespace DevToys
         /// Gets the resource SearchKeywords.
         /// </summary>
         public string SearchKeywords => _resources.GetString("SearchKeywords");
+
+        /// <summary>
+        /// Gets the resource AdvancedModeLabel.
+        /// </summary>
+        public string AdvancedModeLabel => _resources.GetString("AdvancedModeLabel");
+
+        /// <summary>
+        /// Gets the resource InputDictionaryLabel.
+        /// </summary>
+        public string InputDictionaryLabel => _resources.GetString("InputDictionaryLabel");
+
+        /// <summary>
+        /// Gets the resource OutputDictionaryLabel.
+        /// </summary>
+        public string OutputDictionaryLabel => _resources.GetString("OutputDictionaryLabel");
+
+        /// <summary>
+        /// Gets the resource Output.
+        /// </summary>
+        public string Output => _resources.GetString("Output");
+
+        /// <summary>
+        /// Gets the resource BaseNumberError.
+        /// </summary>
+        public string BaseNumberError => _resources.GetString("BaseNumberError");
+
+        /// <summary>
+        /// Gets the resource DictionarySizeError.
+        /// </summary>
+        public string DictionarySizeError => _resources.GetString("DictionarySizeError");
+
+        /// <summary>
+        /// Gets the resource IncompatibleBaseDictionaryError.
+        /// </summary>
+        public string IncompatibleBaseDictionaryError => _resources.GetString("IncompatibleBaseDictionaryError");
     }
 
     public class PngJpgCompressorStrings : ObservableObject
