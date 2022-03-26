@@ -139,7 +139,11 @@ namespace DevToys.UI.Controls
 
         private bool CanExecuteCutCommand()
         {
-            return RichEditBox != null && RichEditBox.TextDocument.Selection.Length != 0 && IsEnabled && RichEditBox.TextDocument.CanCopy();
+            return IsEnabled
+                   && !IsReadOnly
+                   && RichEditBox != null
+                   && RichEditBox.TextDocument.Selection.Length != 0
+                   && RichEditBox.TextDocument.CanCopy();
         }
 
         private void ExecuteCutCommand()
@@ -203,7 +207,10 @@ namespace DevToys.UI.Controls
 
         private bool CanExecuteDeleteCommand()
         {
-            return RichEditBox != null && RichEditBox.TextDocument.Selection.Length != 0 && IsEnabled && !IsReadOnly;
+            return  IsEnabled
+                    && !IsReadOnly
+                    && RichEditBox != null
+                    && RichEditBox.TextDocument.Selection.Length != 0;
         }
 
         private void ExecuteDeleteCommand()
@@ -649,6 +656,7 @@ namespace DevToys.UI.Controls
         private void TextBox_CuttingToClipboard(TextBox sender, TextControlCuttingToClipboardEventArgs args)
         {
             CopyTextBoxSelectionToClipboard();
+            sender.SelectedText = string.Empty;
             args.Handled = true;
         }
 
@@ -666,6 +674,7 @@ namespace DevToys.UI.Controls
         private void RichEditBox_CuttingToClipboard(RichEditBox sender, TextControlCuttingToClipboardEventArgs args)
         {
             CopyRichEditBoxSelectionToClipboard();
+            sender.TextDocument.Selection.Text = string.Empty;
             args.Handled = true;
         }
 
