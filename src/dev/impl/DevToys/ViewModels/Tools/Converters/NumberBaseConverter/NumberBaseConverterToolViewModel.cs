@@ -11,28 +11,21 @@ using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
 using DevToys.Core;
 using DevToys.Core.Threading;
+using DevToys.Messages;
 using DevToys.Models;
 using DevToys.Shared.Core.Threading;
 using DevToys.UI.Controls;
 using DevToys.ViewModels.Tools.Converters.NumberBaseConverter;
 using DevToys.Views.Tools.NumberBaseConverter;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Messaging;
 using Windows.UI.Xaml;
 
 namespace DevToys.ViewModels.Tools.NumberBaseConverter
 {
     [Export(typeof(NumberBaseConverterToolViewModel))]
-    public sealed class NumberBaseConverterToolViewModel : ObservableRecipient, IToolViewModel
+    public sealed class NumberBaseConverterToolViewModel : ObservableRecipient, IToolViewModel, IRecipient<ChangeInfoBarStatusMessage>
     {
-        /// <summary>
-        /// Which format is the input number.
-        /// </summary>
-        private static readonly SettingDefinition<Radix> BaseNumber
-            = new(
-                name: $"{nameof(NumberBaseConverterToolViewModel)}.{nameof(BaseNumber)}",
-                isRoaming: true,
-                defaultValue: Radix.Decimal);
-
         /// <summary>
         /// Whether the value should be formatted or not.
         /// </summary>
@@ -44,138 +37,37 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
 
         private readonly Queue<string> _convertQueue = new();
         private readonly ISettingsProvider _settingsProvider;
-        private readonly IMarketingService _marketingService;
 
-        private string? _inputValue;
-        private string? _octalValue;
-        private string? _binaryValue;
-        private string? _decimalValue;
-        private string? _hexadecimalValue;
         private string? _infoBarMessage;
         private bool _isInfoBarOpen;
-        private bool _conversionInProgress;
-        private bool _toolSuccessfullyWorked;
+        private bool _advancedMode;
 
         internal NumberBaseConverterStrings Strings => LanguageManager.Instance.NumberBaseConverter;
 
         public Type View { get; } = typeof(NumberBaseConverterToolPage);
+        public AdvancedNumberBaseConverterControlViewModel AdvancedViewModel { get; private set; }
+        public BasicNumberBaseConverterControlViewModel BasicViewModel { get; private set; }
 
-        /// <summary>
-        /// Gets or sets the input text.
-        /// </summary>
-        internal string? InputValue
+        internal bool AdvancedMode
         {
-            get => _inputValue;
+            get => _advancedMode;
             set
             {
-                _inputValue = value;
-                QueueFormatting();
-            }
-        }
-
-        internal string? BinaryValue
-        {
-            get => _binaryValue;
-            set
-            {
-                if (value == _binaryValue)
-                {
-                    return;
-                }
-
-                SetProperty(ref _binaryValue, value);
-                InputBaseNumber = NumberBaseFormat.Binary;
-                InputValue = NumberBaseFormatter.RemoveFormatting(BinaryValue).ToString();
-            }
-        }
-
-        internal string? OctalValue
-        {
-            get => _octalValue;
-            set
-            {
-                if (value == _octalValue)
-                {
-                    return;
-                }
-
-                SetProperty(ref _octalValue, value);
-                InputBaseNumber = NumberBaseFormat.Octal;
-                InputValue = NumberBaseFormatter.RemoveFormatting(OctalValue).ToString();
-            }
-        }
-
-        internal string? DecimalValue
-        {
-            get => _decimalValue;
-            set
-            {
-                if (value == _decimalValue)
-                {
-                    return;
-                }
-
-                SetProperty(ref _decimalValue, value);
-                InputBaseNumber = NumberBaseFormat.Decimal;
-                InputValue = NumberBaseFormatter.RemoveFormatting(DecimalValue).ToString();
-            }
-        }
-
-        internal string? HexaDecimalValue
-        {
-            get => _hexadecimalValue;
-            set
-            {
-                if (value == _hexadecimalValue)
-                {
-                    return;
-                }
-
-                SetProperty(ref _hexadecimalValue, value);
-                InputBaseNumber = NumberBaseFormat.Hexadecimal;
-                InputValue = NumberBaseFormatter.RemoveFormatting(HexaDecimalValue).ToString();
+                SetProperty(ref _advancedMode, value);
             }
         }
 
         internal bool IsInfoBarOpen
         {
             get => _isInfoBarOpen;
-            private set => SetProperty(ref _isInfoBarOpen, value);
+            set => SetProperty(ref _isInfoBarOpen, value);
         }
 
         internal string? InfoBarMessage
         {
             get => _infoBarMessage;
-            private set => SetProperty(ref _infoBarMessage, value);
+            set => SetProperty(ref _infoBarMessage, value);
         }
-
-        internal NumberBaseFormat InputBaseNumber
-        {
-            get
-            {
-                Radix settingsValue = _settingsProvider.GetSetting(BaseNumber);
-                NumberBaseFormat? baseNumberFormat = BaseNumbers.FirstOrDefault(x => x.Value == settingsValue);
-                return baseNumberFormat ?? NumberBaseFormat.Decimal;
-            }
-            set
-            {
-                if (InputBaseNumber != value)
-                {
-                    _settingsProvider.SetSetting(BaseNumber, value.Value);
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Get a list of supported BaseNumbers
-        /// </summary>
-        internal IReadOnlyList<NumberBaseFormat> BaseNumbers = new ObservableCollection<NumberBaseFormat> {
-            NumberBaseFormat.Octal,
-            NumberBaseFormat.Binary,
-            NumberBaseFormat.Decimal,
-            NumberBaseFormat.Hexadecimal,
-        };
 
         internal bool IsFormatted
         {
@@ -186,129 +78,25 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
                 {
                     _settingsProvider.SetSetting(Formatted, value);
                     OnPropertyChanged();
-                    QueueFormatting(true);
+                    Messenger.Send(new ChangeNumberFormattingMessage(value));
                 }
             }
         }
 
         [ImportingConstructor]
-        public NumberBaseConverterToolViewModel(ISettingsProvider settingsProvider, IMarketingService marketingService)
+        public NumberBaseConverterToolViewModel(ISettingsProvider settingsProvider, AdvancedNumberBaseConverterControlViewModel advnacedViewModel, 
+            BasicNumberBaseConverterControlViewModel basicViewModel)
         {
             _settingsProvider = settingsProvider;
-            _marketingService = marketingService;
-            InputFocusChanged = ControlFocusChanged;
+            AdvancedViewModel = advnacedViewModel;
+            BasicViewModel = basicViewModel;
+            IsActive = true;
         }
 
-        internal RoutedEventHandler InputFocusChanged { get; }
-        private void ControlFocusChanged(object source, RoutedEventArgs args)
+        public void Receive(ChangeInfoBarStatusMessage message)
         {
-            if (!IsFormatted)
-            {
-                return;
-            }
-
-            var input = (CustomTextBox)source;
-
-            if (input.Text.Length == 0)
-            {
-                return;
-            }
-
-            switch (input.Tag)
-            {
-                case "Binary" when InputBaseNumber == NumberBaseFormat.Binary:
-                    input.Text = NumberBaseFormatter.FormatNumber(input.Text, InputBaseNumber);
-                    break;
-                case "Octal" when InputBaseNumber == NumberBaseFormat.Octal:
-                    input.Text = NumberBaseFormatter.FormatNumber(input.Text, InputBaseNumber);
-                    break;
-                case "Decimal" when InputBaseNumber == NumberBaseFormat.Decimal:
-                    input.Text = NumberBaseFormatter.FormatNumber(input.Text, InputBaseNumber);
-                    break;
-                case "Hexadecimal" when InputBaseNumber == NumberBaseFormat.Hexadecimal:
-                    input.Text = NumberBaseFormatter.FormatNumber(input.Text, InputBaseNumber);
-                    break;
-            }
-        }
-
-        private void QueueFormatting(bool formatAll = false)
-        {
-            _convertQueue.Enqueue(InputValue ?? string.Empty);
-            TreatQueueAsync(formatAll).Forget();
-        }
-
-        private async Task TreatQueueAsync(bool formatAll)
-        {
-            if (_conversionInProgress)
-            {
-                return;
-            }
-
-            _conversionInProgress = true;
-
-            await TaskScheduler.Default;
-
-            while (_convertQueue.TryDequeue(out string value))
-            {
-                string octalValue = string.Empty;
-                string binaryValue = string.Empty;
-                string decimalValue = string.Empty;
-                string hexaDecimalValue = string.Empty;
-                string infoBarMessage = string.Empty;
-                bool isInfoBarOpen = false;
-                try
-                {
-                    long? baseValue = NumberBaseFormatter.StringToBase(value, InputBaseNumber);
-                    if (baseValue != null)
-                    {
-                        octalValue = NumberBaseFormatter.LongToBase(baseValue.Value, NumberBaseFormat.Octal, IsFormatted);
-                        binaryValue = NumberBaseFormatter.LongToBase(baseValue.Value, NumberBaseFormat.Binary, IsFormatted);
-                        decimalValue = NumberBaseFormatter.LongToBase(baseValue.Value, NumberBaseFormat.Decimal, IsFormatted);
-                        hexaDecimalValue = NumberBaseFormatter.LongToBase(baseValue.Value, NumberBaseFormat.Hexadecimal, IsFormatted);
-                    }
-                }
-                catch (OverflowException exception)
-                {
-                    isInfoBarOpen = true;
-                    infoBarMessage = exception.Message;
-                }
-                catch (InvalidOperationException exception)
-                {
-                    isInfoBarOpen = true;
-                    infoBarMessage = exception.Message;
-                }
-                catch (Exception ex)
-                {
-                    Logger.LogFault("NumberBaseConverter", ex, $"Input base number: {InputBaseNumber}");
-                }
-
-                ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, () =>
-                {
-                    FillPropertyValues(ref _binaryValue, binaryValue, nameof(BinaryValue), formatAll || NumberBaseFormat.Binary != InputBaseNumber);
-                    FillPropertyValues(ref _octalValue, octalValue, nameof(OctalValue), formatAll || NumberBaseFormat.Octal != InputBaseNumber);
-                    FillPropertyValues(ref _decimalValue, decimalValue, nameof(DecimalValue), formatAll || NumberBaseFormat.Decimal != InputBaseNumber);
-                    FillPropertyValues(ref _hexadecimalValue, hexaDecimalValue, nameof(HexaDecimalValue), formatAll || NumberBaseFormat.Hexadecimal != InputBaseNumber);
-
-                    InfoBarMessage = infoBarMessage;
-                    IsInfoBarOpen = isInfoBarOpen;
-
-                    if (!_toolSuccessfullyWorked)
-                    {
-                        _toolSuccessfullyWorked = true;
-                        _marketingService.NotifyToolSuccessfullyWorked();
-                    }
-                }).ForgetSafely();
-            }
-
-            _conversionInProgress = false;
-        }
-
-        private void FillPropertyValues(ref string? property, string? value, string viewModelName, bool format)
-        {
-            if (format)
-            {
-                SetProperty(ref property, value, viewModelName);
-            }
+            InfoBarMessage = message.Message;
+            IsInfoBarOpen = message.IsOpen;
         }
     }
 }
