@@ -10,7 +10,7 @@ namespace DevToys.Tests.Helpers
         [DataTestMethod]
         [DataRow(null, true)]
         [DataRow("\"foo\"", true)]
-        [DataRow("123", true)]
+        [DataRow("123", false)]
         [DataRow("", false)]
         [DataRow(" ", false)]
         [DataRow("   {  }  ", true)]
