@@ -52,6 +52,11 @@ namespace DevToys.ViewModels.Tools.Timestamp
             get => _utcDateTime.Year;
             set
             {
+                if (value < 1) // empty = -2147483648
+                {
+                    return;
+                }
+                ResetUtcLeapYear(value);
                 _utcDateTime = new DateTime(value, UtcMonth, UtcDay, UtcHour, UtcMinute, UtcSecond, DateTimeKind.Utc);
                 ResetLocalDateTime();
                 ResetTimestamp();
@@ -63,6 +68,11 @@ namespace DevToys.ViewModels.Tools.Timestamp
             get => _utcDateTime.Month;
             set
             {
+                if (value < 1) // empty = -2147483648
+                {
+                    return;
+                }
+                ResetUtcLeapYear(UtcYear);
                 _utcDateTime = new DateTime(UtcYear, value, UtcDay, UtcHour, UtcMinute, UtcSecond, DateTimeKind.Utc);
                 ResetLocalDateTime();
                 ResetTimestamp();
@@ -74,6 +84,17 @@ namespace DevToys.ViewModels.Tools.Timestamp
             get => _utcDateTime.Day;
             set
             {
+                if (value < 1) // empty = -2147483648
+                {
+                    return;
+                }
+                if (UtcMonth == 2 && value > 28)
+                {
+                    if (value != 29 || !DateTime.IsLeapYear(UtcYear))
+                    {
+                        return;
+                    }
+                }
                 _utcDateTime = new DateTime(UtcYear, UtcMonth, value, UtcHour, UtcMinute, UtcSecond, DateTimeKind.Utc);
                 ResetLocalDateTime();
                 ResetTimestamp();
@@ -85,6 +106,10 @@ namespace DevToys.ViewModels.Tools.Timestamp
             get => _utcDateTime.Hour;
             set
             {
+                if (value < 0) // empty = -2147483648
+                {
+                    return;
+                }
                 _utcDateTime = new DateTime(UtcYear, UtcMonth, UtcDay, value, UtcMinute, UtcSecond, DateTimeKind.Utc);
                 ResetLocalDateTime();
                 ResetTimestamp();
@@ -96,6 +121,10 @@ namespace DevToys.ViewModels.Tools.Timestamp
             get => _utcDateTime.Minute;
             set
             {
+                if (value < 0) // empty = -2147483648
+                {
+                    return;
+                }
                 _utcDateTime = new DateTime(UtcYear, UtcMonth, UtcDay, UtcHour, value, UtcSecond, DateTimeKind.Utc);
                 ResetLocalDateTime();
                 ResetTimestamp();
@@ -107,6 +136,10 @@ namespace DevToys.ViewModels.Tools.Timestamp
             get => _utcDateTime.Second;
             set
             {
+                if (value < 0) // empty = -2147483648
+                {
+                    return;
+                }
                 _utcDateTime = new DateTime(UtcYear, UtcMonth, UtcDay, UtcHour, UtcMinute, value, DateTimeKind.Utc);
                 ResetLocalDateTime();
                 ResetTimestamp();
@@ -118,6 +151,11 @@ namespace DevToys.ViewModels.Tools.Timestamp
             get => _localDateTime.Value.Year;
             set
             {
+                if (value < 1) // empty = -2147483648
+                {
+                    return;
+                }
+                ResetLocalLeapYear(value);
                 var localDateTime = new DateTime(value, LocalMonth, LocalDay, LocalHour, LocalMinute, LocalSecond, DateTimeKind.Local);
                 _timestamp = new DateTimeOffset(localDateTime.ToUniversalTime()).ToUnixTimeSeconds();
                 ResetUtcDateTime();
@@ -131,6 +169,11 @@ namespace DevToys.ViewModels.Tools.Timestamp
             get => _localDateTime.Value.Month;
             set
             {
+                if (value < 1) // empty = -2147483648
+                {
+                    return;
+                }
+                ResetLocalLeapYear(LocalYear);
                 var localDateTime = new DateTime(LocalYear, value, LocalDay, LocalHour, LocalMinute, LocalSecond, DateTimeKind.Local);
                 _timestamp = new DateTimeOffset(localDateTime.ToUniversalTime()).ToUnixTimeSeconds();
                 ResetUtcDateTime();
@@ -144,6 +187,17 @@ namespace DevToys.ViewModels.Tools.Timestamp
             get => _localDateTime.Value.Day;
             set
             {
+                if (value < 1) // empty = -2147483648
+                {
+                    return;
+                }
+                if (LocalMonth == 2 && value > 28)
+                {
+                    if (value != 29 || !DateTime.IsLeapYear(LocalYear))
+                    {
+                        return;
+                    }
+                }
                 var localDateTime = new DateTime(LocalYear, LocalMonth, value, LocalHour, LocalMinute, LocalSecond, DateTimeKind.Local);
                 _timestamp = new DateTimeOffset(localDateTime.ToUniversalTime()).ToUnixTimeSeconds();
                 ResetUtcDateTime();
@@ -157,6 +211,10 @@ namespace DevToys.ViewModels.Tools.Timestamp
             get => _localDateTime.Value.Hour;
             set
             {
+                if (value < 0) // empty = -2147483648
+                {
+                    return;
+                }
                 var localDateTime = new DateTime(LocalYear, LocalMonth, LocalDay, value, LocalMinute, LocalSecond, DateTimeKind.Local);
                 _timestamp = new DateTimeOffset(localDateTime.ToUniversalTime()).ToUnixTimeSeconds();
                 ResetUtcDateTime();
@@ -170,6 +228,10 @@ namespace DevToys.ViewModels.Tools.Timestamp
             get => _localDateTime.Value.Minute;
             set
             {
+                if (value < 0) // empty = -2147483648
+                {
+                    return;
+                }
                 var localDateTime = new DateTime(LocalYear, LocalMonth, LocalDay, LocalHour, value, LocalSecond, DateTimeKind.Local);
                 _timestamp = new DateTimeOffset(localDateTime.ToUniversalTime()).ToUnixTimeSeconds();
                 ResetUtcDateTime();
@@ -183,6 +245,10 @@ namespace DevToys.ViewModels.Tools.Timestamp
             get => _localDateTime.Value.Second;
             set
             {
+                if (value < 0) // empty = -2147483648
+                {
+                    return;
+                }
                 var localDateTime = new DateTime(LocalYear, LocalMonth, LocalDay, LocalHour, LocalMinute, value, DateTimeKind.Local);
                 _timestamp = new DateTimeOffset(localDateTime.ToUniversalTime()).ToUnixTimeSeconds();
                 ResetUtcDateTime();
@@ -290,5 +356,21 @@ namespace DevToys.ViewModels.Tools.Timestamp
             _timestamp = new DateTimeOffset(_utcDateTime).ToUnixTimeSeconds();
             OnPropertyChanged(nameof(Timestamp));
         }
+
+        private void ResetUtcLeapYear(int setValue) {
+            if (UtcDay > 28 && UtcMonth == 2 && !DateTime.IsLeapYear(setValue))
+            {
+                UtcDay = 28;
+            }
+        }
+
+        private void ResetLocalLeapYear(int setValue)
+        {
+            if (LocalDay > 28 && LocalMonth == 2 && !DateTime.IsLeapYear(setValue))
+            {
+                LocalDay = 28;
+            }
+        }
+
     }
 }

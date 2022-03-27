@@ -100,7 +100,7 @@
                     SpinButtonPlacementMode="Compact"
                     SmallChange="1"
                     LargeChange="10"
-                    Minimum="0"
+                    Minimum="1"
                     Maximum="9999"
                     AutomationProperties.LabeledBy="{Binding ElementName=UtcYearHeaderTextBlock}"/>
             </StackPanel>
@@ -221,7 +221,7 @@
                     SpinButtonPlacementMode="Compact"
                     SmallChange="1"
                     LargeChange="10"
-                    Minimum="0"
+                    Minimum="1"
                     Maximum="9999"
                     AutomationProperties.LabeledBy="{Binding ElementName=YearHeaderTextBlock}"/>
             </StackPanel>
