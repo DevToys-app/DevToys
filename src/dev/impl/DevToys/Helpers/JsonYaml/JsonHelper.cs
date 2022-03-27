@@ -27,6 +27,11 @@ namespace DevToys.Helpers.JsonYaml
                 return true;
             }
 
+            if (long.TryParse(input, out _))
+            {
+                return false;
+            }
+
             try
             {
                 var jtoken = JToken.Parse(input);

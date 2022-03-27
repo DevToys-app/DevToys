@@ -53,14 +53,14 @@ namespace DevToys.Views.Tools.NumberBaseConverter
 
                 if (NumberBaseHelper.IsValidBinary(clipBoardContent!))
                 {
-                    ViewModel.BasicViewModel.InputBaseNumber = NumberBaseFormat.Binary;
+                    ViewModel.AdvancedMode = false;
+                    ViewModel.BasicViewModel.BinaryValue = parameters.ClipBoardContent;
                 }
                 else if (NumberBaseHelper.IsValidHexadecimal(clipBoardContent!))
                 {
-                    ViewModel.BasicViewModel.InputBaseNumber = NumberBaseFormat.Hexadecimal;
+                    ViewModel.AdvancedMode = false;
+                    ViewModel.BasicViewModel.HexaDecimalValue = parameters.ClipBoardContent;
                 }
-
-                ViewModel.BasicViewModel.InputValue = parameters.ClipBoardContent;
             }
 
             base.OnNavigatedTo(e);

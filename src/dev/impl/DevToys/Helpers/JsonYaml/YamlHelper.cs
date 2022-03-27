@@ -25,6 +25,11 @@ namespace DevToys.Helpers.JsonYaml
 
             input = input!.Trim();
 
+            if (long.TryParse(input, out _))
+            {
+                return false;
+            }
+
             try
             {
                 object? result = new DeserializerBuilder().Build().Deserialize<object>(input);
