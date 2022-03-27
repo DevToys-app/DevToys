@@ -1,9 +1,11 @@
 ﻿🎉 New Features
-  • You can mark a tool as favorite!
+  • Text Escape / Unescape!
+  • Unix Timestamp Converter!
+  • Number Base Converter now has an Advanced mode!
 👏 Improvements
-  • Updated Japanese, Italian, Simplified Chinese
-  • Lorem Ipsum Generator can now be forced to start a text by "Lorem Ipsum"
+  • Updated Japanese, Czech, Traditional Chinese, Simplified Chinese
+  • Added Portuguese-Brazil translation
+  • Added a refresh buttong to Lorem Ipsum Generator
+  • Base64 Decoder now supports unpadded Base64 value
 🐛 Bug Fixes
-  • Various issues in Checksum generation
-  • Incorrect Base64 hash
-  • Various issues in JSON <> YAML converter
+  • Cut command in input field was not working correctly

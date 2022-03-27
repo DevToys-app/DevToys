@@ -14,6 +14,9 @@
   <a style="text-decoration:none" href="https://github.com/veler/DevToys/releases" target="_blank">
     <img src="https://img.shields.io/github/release/veler/devtoys.svg?label=Latest%20version" alt="Latest version" />
   </a>
+  <a style="text-decoration:none" href="https://community.chocolatey.org/packages/devtoys" target="_blank">
+  <img src="https://img.shields.io/chocolatey/v/devtoys?include_prereleases" alt="Chocolatey Version (including pre-releases)">
+  </a>
   <a style="text-decoration:none" href="https://www.microsoft.com/store/apps/9PGCV4V3BK4W" target="_blank">
     <img src="https://img.shields.io/badge/Microsoft%20Store-Download-brightgreen" alt="Store link" />
   </a>
@@ -29,6 +32,7 @@ DevToys helps in daily tasks like formatting JSON, comparing text, testing RegEx
 Many tools are available.
 - Converters
   - JSON <> YAML
+  - Timestamp
   - Number Base
 - Encoders / Decoders
   - HTML
@@ -121,11 +125,13 @@ Here is the list of tool name you can use:
 - `imageconverter` - Image Converter
 - `markdown` - Markdown Preview
 - `regex` - Regular Expression Tester
+- `time` - Unix Timestamp Converter
 - `baseconverter` - Number Base Converter
 - `string` - String Utilities
 - `url` - URL Encoder/Decoder
 - `html` - HTML Encoder/Decoder
 - `diff` - Text Comparer
+- `escape` - Text Escape / Unescape
 - `settings` - Settings
 
 ## Contribute
