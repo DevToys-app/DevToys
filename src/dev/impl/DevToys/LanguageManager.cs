@@ -49,6 +49,7 @@ namespace DevToys
         private readonly StringEscapeUnescapeStrings _stringescapeunescape = new StringEscapeUnescapeStrings();
         private readonly StringUtilitiesStrings _stringutilities = new StringUtilitiesStrings();
         private readonly TextDiffStrings _textdiff = new TextDiffStrings();
+        private readonly TimestampStrings _timestamp = new TimestampStrings();
         private readonly ToolGroupsStrings _toolgroups = new ToolGroupsStrings();
         private readonly UrlEncoderDecoderStrings _urlencoderdecoder = new UrlEncoderDecoderStrings();
         private readonly XmlFormatterStrings _xmlformatter = new XmlFormatterStrings();
@@ -187,6 +188,11 @@ namespace DevToys
         /// Gets the <see cref="TextDiffStrings"/>.
         /// </summary>
         public TextDiffStrings TextDiff => _textdiff;
+
+        /// <summary>
+        /// Gets the <see cref="TimestampStrings"/>.
+        /// </summary>
+        public TimestampStrings Timestamp => _timestamp;
 
         /// <summary>
         /// Gets the <see cref="ToolGroupsStrings"/>.
@@ -2608,6 +2614,86 @@ namespace DevToys
         /// Gets the resource SearchKeywords.
         /// </summary>
         public string SearchKeywords => _resources.GetString("SearchKeywords");
+    }
+
+    public class TimestampStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("Timestamp");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
+        /// Gets the resource DayTitle.
+        /// </summary>
+        public string DayTitle => _resources.GetString("DayTitle");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource HourTitle.
+        /// </summary>
+        public string HourTitle => _resources.GetString("HourTitle");
+
+        /// <summary>
+        /// Gets the resource InvalidValue.
+        /// </summary>
+        public string InvalidValue => _resources.GetString("InvalidValue");
+
+        /// <summary>
+        /// Gets the resource LocalDateTime.
+        /// </summary>
+        public string LocalDateTime => _resources.GetString("LocalDateTime");
+
+        /// <summary>
+        /// Gets the resource MenuDisplayName.
+        /// </summary>
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
+
+        /// <summary>
+        /// Gets the resource MinutesTitle.
+        /// </summary>
+        public string MinutesTitle => _resources.GetString("MinutesTitle");
+
+        /// <summary>
+        /// Gets the resource MonthTitle.
+        /// </summary>
+        public string MonthTitle => _resources.GetString("MonthTitle");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+
+        /// <summary>
+        /// Gets the resource SearchKeywords.
+        /// </summary>
+        public string SearchKeywords => _resources.GetString("SearchKeywords");
+
+        /// <summary>
+        /// Gets the resource SecondsTitle.
+        /// </summary>
+        public string SecondsTitle => _resources.GetString("SecondsTitle");
+
+        /// <summary>
+        /// Gets the resource TimestampTitle.
+        /// </summary>
+        public string TimestampTitle => _resources.GetString("TimestampTitle");
+
+        /// <summary>
+        /// Gets the resource UTCDateTime.
+        /// </summary>
+        public string UTCDateTime => _resources.GetString("UTCDateTime");
+
+        /// <summary>
+        /// Gets the resource YearTitle.
+        /// </summary>
+        public string YearTitle => _resources.GetString("YearTitle");
     }
 
     public class ToolGroupsStrings : ObservableObject
