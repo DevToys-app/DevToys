@@ -93,6 +93,8 @@
     <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\Exceptions\InvalidDictionaryBaseNumberPairException.cs" />
     <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\Exceptions\InvalidDictionarySizeException.cs" />
     <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\NumberBaseFormatBuilder.cs" />
+    <Compile Include="ViewModels\Tools\Converters\Timestamp\TimestampToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Converters\Timestamp\TimestampToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolProvider.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolViewModel.cs" />
     <Compile Include="Helpers\JsonYaml\Core\DecimalJsonConverter.cs" />
@@ -134,6 +136,9 @@
     </Compile>
     <Compile Include="Views\Tools\Converters\NumberBaseConverter\BasicNumberBaseConverterControl.xaml.cs">
       <DependentUpon>BasicNumberBaseConverterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Converters\Timestamp\TimestampToolPage.xaml.cs">
+      <DependentUpon>TimestampToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolPage.xaml.cs">
       <DependentUpon>GZipEncoderDecoderToolPage.xaml</DependentUpon>
@@ -598,6 +603,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Tools\Converters\NumberBaseConverter\BasicNumberBaseConverterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tools\Converters\Timestamp\TimestampToolPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
