@@ -28,6 +28,7 @@
     <Compile Include="Api\Tools\NotSearchableAttribute.cs" />
     <Compile Include="Api\Tools\ParentAttribute.cs" />
     <Compile Include="Core\OOP\AppService.cs" />
+    <Compile Include="Core\QueueWorkerViewModelBase.cs" />
     <Compile Include="Core\Threading\AsyncLazy.cs" />
     <Compile Include="Helpers\StorageFileHelper.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />

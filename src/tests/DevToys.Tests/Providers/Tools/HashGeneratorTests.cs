@@ -23,7 +23,7 @@ namespace DevToys.Tests.Providers.Tools
                 viewModel.Input = input;
             });
 
-            await Task.Delay(100);
+            await viewModel.ComputationTask;
 
             Assert.AreEqual(expectedResult, viewModel.SHA512);
         }
@@ -43,7 +43,7 @@ namespace DevToys.Tests.Providers.Tools
                 viewModel.Input = input;
             });
 
-            await Task.Delay(100);
+            await viewModel.ComputationTask;
 
             Assert.AreEqual(expectedResult, viewModel.SHA512);
         }

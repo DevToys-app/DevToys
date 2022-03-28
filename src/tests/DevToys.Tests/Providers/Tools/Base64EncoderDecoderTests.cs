@@ -44,7 +44,7 @@ namespace DevToys.Tests.Providers.Tools
                 viewModel.InputValue = input;
             });
 
-            await Task.Delay(100);
+            await viewModel.ComputationTask;
 
             Assert.AreEqual(expectedResult, viewModel.OutputValue);
         }
@@ -65,7 +65,7 @@ namespace DevToys.Tests.Providers.Tools
                 viewModel.InputValue = input;
             });
 
-            await Task.Delay(100);
+            await viewModel.ComputationTask;
 
             Assert.AreEqual(expectedResult, viewModel.OutputValue);
         }
