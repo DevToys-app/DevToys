@@ -118,43 +118,43 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>XML Formatter tool</value>
+    <value>Ferramenta de Formatação XML</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Configuração</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>XML</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
-    <value>4 spaces</value>
+    <value>4 espaços</value>
   </data>
   <data name="Indentation" xml:space="preserve">
-    <value>Indentation</value>
+    <value>Indentação</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>Entrada</value>
   </data>
   <data name="Minified" xml:space="preserve">
-    <value>Minified</value>
+    <value>Minificado</value>
   </data>
   <data name="OneTab" xml:space="preserve">
-    <value>1 tab</value>
+    <value>1 separador</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>Resultado</value>
   </data>
   <data name="TwoSpaces" xml:space="preserve">
-    <value>2 spaces</value>
+    <value>2 espaços</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Indent or minify XML data</value>
+    <value>Indenta ou minifica dados XML</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>XML Formatter</value>
+    <value>Formatador XML</value>
   </data>
   <data name="NewLineOnAttributesName" xml:space="preserve">
-    <value>Put attributes on new line</value>
+    <value>Colocar atributos numa nova linha</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value />
