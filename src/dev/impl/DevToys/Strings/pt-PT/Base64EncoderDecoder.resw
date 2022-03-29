@@ -151,7 +151,7 @@
     <value>Entrada</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Saída</value>
+    <value>Resultado</value>
   </data>
   <data name="Utf8" xml:space="preserve">
     <value>UTF-8</value>
