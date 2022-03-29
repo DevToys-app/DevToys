@@ -148,7 +148,7 @@
     <value>2 espaços</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Indentar ou minificar dados JSON</value>
+    <value>Indenta ou minifica dados JSON</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Formatador JSON</value>
