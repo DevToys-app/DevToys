@@ -56,7 +56,12 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 {
                     return;
                 }
-                ResetUtcLeapYear(value);
+
+                if (UtcDay > DateTime.DaysInMonth(value, UtcMonth))
+                {
+                    return;
+                }
+
                 _utcDateTime = new DateTime(value, UtcMonth, UtcDay, UtcHour, UtcMinute, UtcSecond, DateTimeKind.Utc);
                 ResetLocalDateTime();
                 ResetTimestamp();
@@ -72,7 +77,12 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 {
                     return;
                 }
-                ResetUtcLeapYear(UtcYear);
+
+                if (UtcDay > DateTime.DaysInMonth(UtcYear, value))
+                {
+                    return;
+                }
+
                 _utcDateTime = new DateTime(UtcYear, value, UtcDay, UtcHour, UtcMinute, UtcSecond, DateTimeKind.Utc);
                 ResetLocalDateTime();
                 ResetTimestamp();
@@ -88,13 +98,12 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 {
                     return;
                 }
-                if (UtcMonth == 2 && value > 28)
+
+                if (value > DateTime.DaysInMonth(UtcYear, UtcMonth))
                 {
-                    if (value != 29 || !DateTime.IsLeapYear(UtcYear))
-                    {
-                        return;
-                    }
+                    return;
                 }
+
                 _utcDateTime = new DateTime(UtcYear, UtcMonth, value, UtcHour, UtcMinute, UtcSecond, DateTimeKind.Utc);
                 ResetLocalDateTime();
                 ResetTimestamp();
@@ -155,7 +164,12 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 {
                     return;
                 }
-                ResetLocalLeapYear(value);
+
+                if (LocalDay > DateTime.DaysInMonth(value, LocalMonth))
+                {
+                    return;
+                }
+
                 var localDateTime = new DateTime(value, LocalMonth, LocalDay, LocalHour, LocalMinute, LocalSecond, DateTimeKind.Local);
                 _timestamp = new DateTimeOffset(localDateTime.ToUniversalTime()).ToUnixTimeSeconds();
                 ResetUtcDateTime();
@@ -173,7 +187,12 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 {
                     return;
                 }
-                ResetLocalLeapYear(LocalYear);
+
+                if (LocalDay > DateTime.DaysInMonth(LocalYear, value))
+                {
+                    return;
+                }
+
                 var localDateTime = new DateTime(LocalYear, value, LocalDay, LocalHour, LocalMinute, LocalSecond, DateTimeKind.Local);
                 _timestamp = new DateTimeOffset(localDateTime.ToUniversalTime()).ToUnixTimeSeconds();
                 ResetUtcDateTime();
@@ -191,13 +210,12 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 {
                     return;
                 }
-                if (LocalMonth == 2 && value > 28)
+
+                if (value > DateTime.DaysInMonth(LocalYear, LocalMonth))
                 {
-                    if (value != 29 || !DateTime.IsLeapYear(LocalYear))
-                    {
-                        return;
-                    }
+                    return;
                 }
+
                 var localDateTime = new DateTime(LocalYear, LocalMonth, value, LocalHour, LocalMinute, LocalSecond, DateTimeKind.Local);
                 _timestamp = new DateTimeOffset(localDateTime.ToUniversalTime()).ToUnixTimeSeconds();
                 ResetUtcDateTime();
@@ -355,21 +373,6 @@ namespace DevToys.ViewModels.Tools.Timestamp
         {
             _timestamp = new DateTimeOffset(_utcDateTime).ToUnixTimeSeconds();
             OnPropertyChanged(nameof(Timestamp));
-        }
-
-        private void ResetUtcLeapYear(int setValue) {
-            if (UtcDay > 28 && UtcMonth == 2 && !DateTime.IsLeapYear(setValue))
-            {
-                UtcDay = 28;
-            }
-        }
-
-        private void ResetLocalLeapYear(int setValue)
-        {
-            if (LocalDay > 28 && LocalMonth == 2 && !DateTime.IsLeapYear(setValue))
-            {
-                LocalDay = 28;
-            }
         }
 
     }
