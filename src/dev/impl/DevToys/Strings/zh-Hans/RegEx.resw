@@ -184,6 +184,6 @@
     <value>正则表达式（Regex）测试工具</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value />
+    <value>Regular expression</value>
   </data>
 </root>
