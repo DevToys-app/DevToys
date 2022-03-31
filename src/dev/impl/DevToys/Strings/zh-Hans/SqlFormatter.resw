@@ -184,6 +184,6 @@
     <value>Transact-SQL</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value />
+    <value>Db2 MariaDB MySQL N1QL PL/SQL PostgreSQL Amazon Redshift Spark SQL Standard SQL Transact-SQL</value>
   </data>
 </root>
