@@ -148,7 +148,7 @@
     <value>Unix 时间戳转换工具</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value />
+    <value>Time Date Timezone Epoch</value>
     <comment>替代搜索关键字。启用搜索不包含在Description、MenuDisplayName和SearchDisplayName中的单词。</comment>
   </data>
   <data name="SecondsTitle" xml:space="preserve">
