@@ -177,7 +177,7 @@
     <value>进制转换工具</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value />
+    <value>Binary Octal Decimal Hexadecimal</value>
   </data>
   <data name="AdvancedModeLabel" xml:space="preserve">
     <value>高级模式</value>
