@@ -1,11 +1,7 @@
 ﻿🎉 New Features
-  • Text Escape / Unescape!
-  • Unix Timestamp Converter!
-  • Number Base Converter now has an Advanced mode!
+  • Nothing new in this update, sorry
 👏 Improvements
-  • Updated Japanese, Czech, Traditional Chinese, Simplified Chinese
-  • Added Portuguese-Brazil translation
-  • Added a refresh buttong to Lorem Ipsum Generator
-  • Base64 Decoder now supports unpadded Base64 value
+  • Updated Japanese, Portuguese, Traditional Chinese, Simplified Chinese
+  • Improved performances on Arm64 devices
 🐛 Bug Fixes
-  • Cut command in input field was not working correctly
+  • Timestamp Converter was crashing when entering invalid dates
