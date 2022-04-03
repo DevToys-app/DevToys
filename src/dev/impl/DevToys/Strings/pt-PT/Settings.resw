@@ -121,7 +121,7 @@
     <value>Acerca de</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>Tema da aplicação</value>
+    <value>Tema da Aplicação</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
     <value>Selecione o tema da aplicação a exibir</value>
@@ -169,10 +169,10 @@
     <value>Claro</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>Números de linha</value>
+    <value>Números da linha</value>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>Exibir números de linha no editor de texto</value>
+    <value>Exibir números da linha no editor de texto</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
     <value>Abrir registos</value>
@@ -220,7 +220,7 @@
     <value>Versão {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Embrulhar palavra</value>
+    <value>Moldar palavra</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Personalizar DevToys aspeto &amp; sensação</value>
@@ -229,6 +229,6 @@
     <value>Definições</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Configurations Options Settings</value>
+    <value>Opções de Configurações</value>
   </data>
 </root>

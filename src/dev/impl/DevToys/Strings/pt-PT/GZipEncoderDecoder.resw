@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>GZip ferramenta Codificadora e Descodificadora</value>
+    <value>Ferramenta Codificadora e Descodificadora GZip</value>
   </data>
   <data name="Ascii" xml:space="preserve">
     <value>ASCII</value>
@@ -136,13 +136,13 @@
     <value>Comprimir</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Comprimir/Descomprimir</value>
+    <value>Comprimir/Descomprimir GZip</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>GZip</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
-    <value>Comprimir ou descomprimir strings com GZip</value>
+    <value>Seleciona se a entrada deve ser comprimida ou descomprimida</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
     <value>Codificação</value>
@@ -160,7 +160,7 @@
     <value>Comprimir ou descomprimir strings</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>GZip Comprimir/Descomprimir</value>
+    <value>Comprimir / Descomprimir GZip</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value />

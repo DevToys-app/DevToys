@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Ferramenta geradora de Checksum</value>
+    <value>Ferramenta Geradora de Checksum</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancelar</value>
@@ -133,7 +133,7 @@
     <value>Selecione o algoritmo de hash que deseja utilisar</value>
   </data>
   <data name="HashingAlgorithmTitle" xml:space="preserve">
-    <value>Algoritmo de hash</value>
+    <value>Algoritmo de Hash</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>Entrada</value>
@@ -145,10 +145,10 @@
     <value>Resultado</value>
   </data>
   <data name="OutputComparer" xml:space="preserve">
-    <value>Comparador de resultado</value>
+    <value>Comparador de Resultado</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Checksum Generator</value>
+    <value>Gerador de Checksum</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
     <value>Maiúsculas</value>
@@ -157,9 +157,9 @@
     <value />
   </data>
   <data name="HashesMatch" xml:space="preserve">
-    <value>The hashes are the same.</value>
+    <value>Os hashes são iguais.</value>
   </data>
   <data name="HashesMismatch" xml:space="preserve">
-    <value>The hashes are different.</value>
+    <value>Os hashes são diferentes.</value>
   </data>
 </root>
