@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Ferramenta de teste de expressão regular</value>
+    <value>Ferramenta de Teste de Expressão Regular</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Configuração</value>
@@ -145,7 +145,7 @@
     <value>Especifica a correspondência não sensível a maiúsculas e minúsculas.</value>
   </data>
   <data name="IgnoreWhitespace" xml:space="preserve">
-    <value>Ignorar o espaço dos brancos</value>
+    <value>Ignorar espaço branco</value>
   </data>
   <data name="IgnoreWhitespaceDescription" xml:space="preserve">
     <value>Elimina o espaço branco não escalonado do padrão e permite comentários marcados com #. Contudo, este valor não afeta ou elimina espaço branco em classes de carateres, quantificadores numéricos, ou tokens que marcam o início de elementos individuais de linguagem de expressão regular.</value>
@@ -184,6 +184,6 @@
     <value>Testador de Expressões Regulares</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Regular expression</value>
+    <value>Expressão regular</value>
   </data>
 </root>

@@ -133,31 +133,31 @@
     <value>Eliminar</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
-    <value>Browse files</value>
+    <value>Procurar ficheiros</value>
   </data>
   <data name="FileSelectorBrowseFolders" xml:space="preserve">
-    <value>Browse folders</value>
+    <value>Procurar pastas</value>
   </data>
   <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>Drag &amp; drop any file here</value>
+    <value>Arraste &amp; largue qualquer ficheiro aqui</value>
   </data>
   <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
-    <value>Drag &amp; drop any files here</value>
+    <value>Arraste &amp; largue quaisquer ficheiros aqui</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
-    <value>Drag &amp; drop a {0} file here</value>
+    <value>Arraste &amp; largue um ficheiro {0} aqui</value>
     <comment>{0} is a single file extension like "PNG"</comment>
   </data>
   <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
-    <value>Drag &amp; drop any {0} files here</value>
+    <value>Arraste &amp; largue quaisquer ficheiros {0} aqui</value>
     <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
-    <value>Only {0} file(s) can be used.</value>
+    <value>Apenas ficheiros {0} pode ser utilizado.</value>
     <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorOr" xml:space="preserve">
-    <value>or</value>
+    <value>ou</value>
   </data>
   <data name="Gigabytes" xml:space="preserve">
     <value>GB</value>
@@ -181,7 +181,7 @@
     <value>Refazer</value>
   </data>
   <data name="Refresh" xml:space="preserve">
-    <value>Refresh</value>
+    <value>Atualizar</value>
   </data>
   <data name="SelectAll" xml:space="preserve">
     <value>Selecionar tudo</value>

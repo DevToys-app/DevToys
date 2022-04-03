@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Ferramenta de conversão de imagem</value>
+    <value>Ferramenta de Conversão de Imagem</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancelar</value>
@@ -127,16 +127,16 @@
     <value>Configuração</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Apagar</value>
+    <value>Eliminar</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
-    <value>Apagar tudo</value>
+    <value>Eliminar tudo</value>
   </data>
   <data name="DetailsTitle" xml:space="preserve">
     <value>Detalhes</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Conversor de imagem</value>
+    <value>Conversor de Imagem</value>
   </data>
   <data name="FileSizeDisplay" xml:space="preserve">
     <value>{0:0.##} {1}</value>
@@ -146,7 +146,7 @@
     <value>OK</value>
   </data>
   <data name="SaveAll" xml:space="preserve">
-    <value>Guardar todos</value>
+    <value>Guardar tudo</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Guardar como</value>
@@ -158,7 +158,7 @@
     <value>Conversor de imagem sem perdas</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Conversor de imagem</value>
+    <value>Conversor de Imagem</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
     <value>Conversão</value>
