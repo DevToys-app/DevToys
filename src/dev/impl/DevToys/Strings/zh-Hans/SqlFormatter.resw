@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>SQL 格式化工具</value>
+    <value>结构化查询语言（SQL）格式化工具</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>配置</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>SQL</value>
+    <value>结构化查询语言（SQL）</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
     <value>4 个空格</value>
@@ -148,7 +148,7 @@
     <value>缩进 SQL 查询指令</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>SQL 格式化工具</value>
+    <value>结构化查询语言（SQL）格式化工具</value>
   </data>
   <data name="SqlLanguage" xml:space="preserve">
     <value>语言</value>
