@@ -61,8 +61,10 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 {
                     return;
                 }
-
-                _utcDateTime = new DateTime(value, UtcMonth, UtcDay, UtcHour, UtcMinute, UtcSecond, DateTimeKind.Utc);
+                if (!UpdateUtcDateTime(value, UtcMonth, UtcDay, UtcHour, UtcMinute, UtcSecond))
+                {
+                    return;
+                }
                 ResetLocalDateTime();
                 ResetTimestamp();
             }
@@ -83,7 +85,10 @@ namespace DevToys.ViewModels.Tools.Timestamp
                     return;
                 }
 
-                _utcDateTime = new DateTime(UtcYear, value, UtcDay, UtcHour, UtcMinute, UtcSecond, DateTimeKind.Utc);
+                if (!UpdateUtcDateTime(UtcYear, value, UtcDay, UtcHour, UtcMinute, UtcSecond))
+                {
+                    return;
+                }
                 ResetLocalDateTime();
                 ResetTimestamp();
             }
@@ -103,8 +108,10 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 {
                     return;
                 }
-
-                _utcDateTime = new DateTime(UtcYear, UtcMonth, value, UtcHour, UtcMinute, UtcSecond, DateTimeKind.Utc);
+                if (!UpdateUtcDateTime(UtcYear, UtcMonth, value, UtcHour, UtcMinute, UtcSecond))
+                {
+                    return;
+                }
                 ResetLocalDateTime();
                 ResetTimestamp();
             }
@@ -119,7 +126,10 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 {
                     return;
                 }
-                _utcDateTime = new DateTime(UtcYear, UtcMonth, UtcDay, value, UtcMinute, UtcSecond, DateTimeKind.Utc);
+                if(!UpdateUtcDateTime(UtcYear, UtcMonth, UtcDay, value, UtcMinute, UtcSecond))
+                {
+                    return;
+                }
                 ResetLocalDateTime();
                 ResetTimestamp();
             }
@@ -134,7 +144,10 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 {
                     return;
                 }
-                _utcDateTime = new DateTime(UtcYear, UtcMonth, UtcDay, UtcHour, value, UtcSecond, DateTimeKind.Utc);
+                if (!UpdateUtcDateTime(UtcYear, UtcMonth, UtcDay, UtcHour, value, UtcSecond))
+                {
+                    return;
+                }
                 ResetLocalDateTime();
                 ResetTimestamp();
             }
@@ -149,7 +162,10 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 {
                     return;
                 }
-                _utcDateTime = new DateTime(UtcYear, UtcMonth, UtcDay, UtcHour, UtcMinute, value, DateTimeKind.Utc);
+                if (!UpdateUtcDateTime(UtcYear, UtcMonth, UtcDay, UtcHour, UtcMinute, value))
+                {
+                    return;
+                }
                 ResetLocalDateTime();
                 ResetTimestamp();
             }
@@ -169,9 +185,10 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 {
                     return;
                 }
-
-                var localDateTime = new DateTime(value, LocalMonth, LocalDay, LocalHour, LocalMinute, LocalSecond, DateTimeKind.Local);
-                _timestamp = new DateTimeOffset(localDateTime.ToUniversalTime()).ToUnixTimeSeconds();
+                if (!UpdateLocalDateTime(value, LocalMonth, LocalDay, LocalHour, LocalMinute, LocalSecond))
+                {
+                    return;
+                }
                 ResetUtcDateTime();
                 ResetLocalDateTime();
                 ResetTimestamp();
@@ -192,9 +209,10 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 {
                     return;
                 }
-
-                var localDateTime = new DateTime(LocalYear, value, LocalDay, LocalHour, LocalMinute, LocalSecond, DateTimeKind.Local);
-                _timestamp = new DateTimeOffset(localDateTime.ToUniversalTime()).ToUnixTimeSeconds();
+                if (!UpdateLocalDateTime(LocalYear, value, LocalDay, LocalHour, LocalMinute, LocalSecond))
+                {
+                    return;
+                }
                 ResetUtcDateTime();
                 ResetLocalDateTime();
                 ResetTimestamp();
@@ -215,9 +233,10 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 {
                     return;
                 }
-
-                var localDateTime = new DateTime(LocalYear, LocalMonth, value, LocalHour, LocalMinute, LocalSecond, DateTimeKind.Local);
-                _timestamp = new DateTimeOffset(localDateTime.ToUniversalTime()).ToUnixTimeSeconds();
+                if (!UpdateLocalDateTime(LocalYear, LocalMonth, value, LocalHour, LocalMinute, LocalSecond))
+                {
+                    return;
+                }
                 ResetUtcDateTime();
                 ResetLocalDateTime();
                 ResetTimestamp();
@@ -233,8 +252,10 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 {
                     return;
                 }
-                var localDateTime = new DateTime(LocalYear, LocalMonth, LocalDay, value, LocalMinute, LocalSecond, DateTimeKind.Local);
-                _timestamp = new DateTimeOffset(localDateTime.ToUniversalTime()).ToUnixTimeSeconds();
+                if (!UpdateLocalDateTime(LocalYear, LocalMonth, LocalDay, value, LocalMinute, LocalSecond))
+                {
+                    return;
+                }
                 ResetUtcDateTime();
                 ResetLocalDateTime();
                 ResetTimestamp();
@@ -250,8 +271,10 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 {
                     return;
                 }
-                var localDateTime = new DateTime(LocalYear, LocalMonth, LocalDay, LocalHour, value, LocalSecond, DateTimeKind.Local);
-                _timestamp = new DateTimeOffset(localDateTime.ToUniversalTime()).ToUnixTimeSeconds();
+                if (!UpdateLocalDateTime(LocalYear, LocalMonth, LocalDay, LocalHour, value, LocalSecond))
+                {
+                    return;
+                }
                 ResetUtcDateTime();
                 ResetLocalDateTime();
                 ResetTimestamp();
@@ -267,8 +290,10 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 {
                     return;
                 }
-                var localDateTime = new DateTime(LocalYear, LocalMonth, LocalDay, LocalHour, LocalMinute, value, DateTimeKind.Local);
-                _timestamp = new DateTimeOffset(localDateTime.ToUniversalTime()).ToUnixTimeSeconds();
+                if(!UpdateLocalDateTime(LocalYear, LocalMonth, LocalDay, LocalHour, LocalMinute, value))
+                {
+                    return;
+                }
                 ResetUtcDateTime();
                 ResetLocalDateTime();
                 ResetTimestamp();
@@ -375,5 +400,58 @@ namespace DevToys.ViewModels.Tools.Timestamp
             OnPropertyChanged(nameof(Timestamp));
         }
 
+        private bool UpdateUtcDateTime(int UtcYear, int UtcMonth, int UtcDay, int UtcHour, int UtcMinute, int UtcSecond)
+        {
+            try
+            {
+                var utcDateTime = new DateTime(UtcYear, UtcMonth, UtcDay, UtcHour, UtcMinute, UtcSecond, DateTimeKind.Utc);
+                long timestamp = new DateTimeOffset(utcDateTime).ToUnixTimeSeconds();
+                // TODO: UTC 9999/12/31 23:59:59 + LocalTime(+0030...) -> invalid LocalTime
+                // TODO: UTC 0001/01/01 00:00:00 + LocalTime(-0030...) -> invalid LocalTime
+                /*
+                if (timestamp is < (-62135596800) or > 253402300799)
+                {
+                    IsInputInvalid = true;
+                    return false;
+                }
+                 */
+                DateTime localDateTime = utcDateTime.ToLocalTime();
+                _utcDateTime = utcDateTime;
+                IsInputInvalid = false;
+            }
+            catch
+            {
+                IsInputInvalid = true;
+                return false;
+            }
+            return true;
+        }
+ 
+        private bool UpdateLocalDateTime(int LocalYear, int LocalMonth, int LocalDay, int LocalHour, int LocalMinute, int LocalSecond)
+        {
+            try
+            {
+                var localDateTime = new DateTime(LocalYear, LocalMonth, LocalDay, LocalHour, LocalMinute, LocalSecond, DateTimeKind.Local);
+                long timestamp = new DateTimeOffset(localDateTime.ToUniversalTime()).ToUnixTimeSeconds();
+                // TODO: UTC 9999/12/31 23:59:59 + LocalTime(+0030...) -> invalid LocalTime
+                // TODO: UTC 0001/01/01 00:00:00 + LocalTime(-0030...) -> invalid LocalTime
+                /*
+                if (timestamp is < (-62135596800) or > 253402300799)
+                {
+                    IsInputInvalid = true;
+                    return false;
+                }
+                 */
+                DateTime utcDateTime = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(timestamp);
+                _timestamp = timestamp;
+                IsInputInvalid = false;
+            }
+            catch
+            {
+                IsInputInvalid = true;
+                return false;
+            }
+            return true;
+        }
     }
 }
