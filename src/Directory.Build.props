@@ -26,7 +26,7 @@
         <Nuget_MicrosoftToolkitUwpUIBehaviors>7.0.2</Nuget_MicrosoftToolkitUwpUIBehaviors>
         <Nuget_MicrosoftToolkitUwpUIControls>7.0.2</Nuget_MicrosoftToolkitUwpUIControls>
         <Nuget_MicrosoftTypeScriptMSBuild>4.4.2</Nuget_MicrosoftTypeScriptMSBuild>
-        <NuGet_MicrosoftUIXaml>2.6.2</NuGet_MicrosoftUIXaml>
+        <NuGet_MicrosoftUIXaml>2.7.1</NuGet_MicrosoftUIXaml>
         <NuGet_MicrosoftWindowsCsWinRT>1.3.5</NuGet_MicrosoftWindowsCsWinRT>
         <NuGet_MSTestTestAdapter>2.2.8</NuGet_MSTestTestAdapter>
         <NuGet_MSTestTestFramework>2.2.8</NuGet_MSTestTestFramework>

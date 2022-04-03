@@ -105,7 +105,7 @@ jobs:
   displayName: 'Store Release Build'
   timeoutInMinutes: 120
   variables:
-    buildPlatform: 'x86|x64'
+    buildPlatform: 'x86|x64|arm64'
   steps:
 
   - task: PowerShell@2
