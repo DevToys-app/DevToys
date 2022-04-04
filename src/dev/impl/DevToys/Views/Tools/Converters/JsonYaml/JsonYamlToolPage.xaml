@@ -48,13 +48,13 @@
                     <ComboBox
                         ItemsSource="{x:Bind ViewModel.Languages}"
                         DisplayMemberPath="DisplayName"
-                        SelectedValue="{x:Bind ViewModel.InputValueLanguage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        SelectedItem="{x:Bind ViewModel.InputValueLanguage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     </ComboBox>
                     <FontIcon Glyph="&#xF18D;"/>
                     <ComboBox
                         ItemsSource="{x:Bind ViewModel.Languages}"
                         DisplayMemberPath="DisplayName"
-                        SelectedValue="{x:Bind ViewModel.OutputValueLanguage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        SelectedItem="{x:Bind ViewModel.OutputValueLanguage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     </ComboBox>
                 </StackPanel>
             </controls:ExpandableSettingControl>
