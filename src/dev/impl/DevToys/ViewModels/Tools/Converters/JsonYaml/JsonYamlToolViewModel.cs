@@ -2,28 +2,22 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Composition;
-using System.Dynamic;
-using System.IO;
-using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
 using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
-using DevToys.Core;
 using DevToys.Core.Threading;
+using DevToys.Models;
 using DevToys.Shared.Core.Threading;
-using DevToys.Helpers;
 using DevToys.Views.Tools.JsonYaml;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Newtonsoft.Json;
 using YamlDotNet.Core;
-using YamlDotNet.Serialization;
-using DevToys.Models;
-using System.Collections.ObjectModel;
-using System.Linq;
 using DevToys.ViewModels.Tools.JsonYaml.Services.Abstractions;
-using DevToys.ViewModels.Tools.Converters.JsonYaml.Services;
+using DevToys.Core;
 
 namespace DevToys.ViewModels.Tools.JsonYaml
 {
@@ -219,7 +213,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml
                 {
                     OutputValue = result;
 
-                    if (success && !_toolSuccessfullyWorked)
+                    if (!string.IsNullOrWhiteSpace(result) && !_toolSuccessfullyWorked)
                     {
                         _toolSuccessfullyWorked = true;
                         _marketingService.NotifyToolSuccessfullyWorked();

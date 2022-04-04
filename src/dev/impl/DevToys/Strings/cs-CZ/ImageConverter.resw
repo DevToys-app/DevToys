@@ -136,7 +136,7 @@
     <value>Detaily</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Převodník Obrázků</value>
+    <value>Převodník obrázků</value>
   </data>
   <data name="FileSizeDisplay" xml:space="preserve">
     <value>{0:0.##} {1}</value>
@@ -158,7 +158,7 @@
     <value>Bezztrátová konverze obrázků</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Převodník Obrázků</value>
+    <value>Převodník obrázků</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
     <value>Konverze</value>
@@ -189,5 +189,8 @@
   </data>
   <data name="ErrorMessage" xml:space="preserve">
     <value>Došlo k neočekávané chybě, konverze možná nebyla provedena.</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>BMP GIF HEIF JPG XR PNG TIFF Image</value>
   </data>
 </root>

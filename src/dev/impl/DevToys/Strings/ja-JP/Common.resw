@@ -121,7 +121,7 @@
     <value>バイト</value>
   </data>
   <data name="Clear" xml:space="preserve">
-    <value>Clear</value>
+    <value>クリア</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>コピー</value>
@@ -133,31 +133,31 @@
     <value>削除</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
-    <value>Browse files</value>
+    <value>ファイルを開く</value>
   </data>
   <data name="FileSelectorBrowseFolders" xml:space="preserve">
-    <value>Browse folders</value>
+    <value>フォルダーを開く</value>
   </data>
   <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>Drag &amp; drop any file here</value>
+    <value>ここにファイルをドラッグ アンド ドロップ</value>
   </data>
   <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
-    <value>Drag &amp; drop any files here</value>
+    <value>ここにファイルをドラッグ アンド ドロップ</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
-    <value>Drag &amp; drop a {0} file here</value>
+    <value>ここに {0} ファイルをドラッグ アンド ドロップ</value>
     <comment>{0} is a single file extension like "PNG"</comment>
   </data>
   <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
-    <value>Drag &amp; drop any {0} files here</value>
+    <value>ここに {0} ファイルをドラッグ アンド ドロップ</value>
     <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
-    <value>Only {0} file(s) can be used.</value>
+    <value>{0} が利用できます。</value>
     <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorOr" xml:space="preserve">
-    <value>or</value>
+    <value>または</value>
   </data>
   <data name="Gigabytes" xml:space="preserve">
     <value>GB</value>
@@ -172,7 +172,7 @@
     <value>OK</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
-    <value>ファイルの読み込み</value>
+    <value>ファイルを開く</value>
   </data>
   <data name="Paste" xml:space="preserve">
     <value>貼り付け</value>
@@ -180,8 +180,11 @@
   <data name="Redo" xml:space="preserve">
     <value>やり直し</value>
   </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>更新</value>
+  </data>
   <data name="SelectAll" xml:space="preserve">
-    <value>すべてを選択</value>
+    <value>すべて選択</value>
   </data>
   <data name="Terabytes" xml:space="preserve">
     <value>TB</value>
@@ -193,10 +196,10 @@
     <value>On</value>
   </data>
   <data name="UnableOpenFile" xml:space="preserve">
-    <value>ファイル読み込めません</value>
+    <value>ファイルを開けませんでした</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>ファイル読み込めません '{0}'. 詳細はログを参照してください</value>
+    <value>ファイルを開けませんでした。詳細はログを参照してください : '{0}'</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>元に戻す</value>

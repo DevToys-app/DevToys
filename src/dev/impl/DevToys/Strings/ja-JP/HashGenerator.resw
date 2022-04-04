@@ -142,7 +142,7 @@
     <value>SHA512</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
-    <value>大文字</value>
+    <value>大文字を使用する</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>テキストデータから MD5、SHA1、SHA256、SHA512 のハッシュを計算します</value>
@@ -158,5 +158,8 @@
   </data>
   <data name="OutputTypeTitle" xml:space="preserve">
     <value>出力タイプ</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Hash</value>
   </data>
 </root>

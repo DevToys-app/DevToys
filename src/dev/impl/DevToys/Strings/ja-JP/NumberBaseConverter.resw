@@ -121,13 +121,13 @@
     <value>基数変換ツール</value>
   </data>
   <data name="BinaryLabel" xml:space="preserve">
-    <value>2進数</value>
+    <value>2 進数</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
     <value>構成</value>
   </data>
   <data name="DecimalLabel" xml:space="preserve">
-    <value>10進数</value>
+    <value>10 進数</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>基数</value>
@@ -136,38 +136,38 @@
     <value>数字のフォーマット</value>
   </data>
   <data name="HexadecimalLabel" xml:space="preserve">
-    <value>16進数</value>
+    <value>16 進数</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>入力</value>
   </data>
   <data name="InputTypeBinary" xml:space="preserve">
-    <value>2進数</value>
+    <value>2 進数</value>
   </data>
   <data name="InputTypeDecimal" xml:space="preserve">
-    <value>10進数</value>
+    <value>10 進数</value>
   </data>
   <data name="InputTypeDescription" xml:space="preserve">
     <value>使用する入力タイプを選択してください</value>
   </data>
   <data name="InputTypeHexadecimal" xml:space="preserve">
-    <value>16進数</value>
+    <value>16 進数</value>
   </data>
   <data name="InputTypeOctal" xml:space="preserve">
-    <value>8進数</value>
+    <value>8 進数</value>
   </data>
   <data name="InputTypeTitle" xml:space="preserve">
     <value>入力タイプ</value>
   </data>
   <data name="OctalLabel" xml:space="preserve">
-    <value>8進数</value>
+    <value>8 進数</value>
   </data>
   <data name="ValueInvalid" xml:space="preserve">
-    <value>入力された値が不正です {0}</value>
+    <value>使用できない文字が含まれています : {0}</value>
     <comment>The parameter is the Base Number Type (Decimal, Octal, ...)</comment>
   </data>
   <data name="ValueOverflow" xml:space="preserve">
-    <value>現在の値 ({0}) は最大値を超えているため、変換できません</value>
+    <value>変換できる範囲を超えています。 ({0})</value>
     <comment>The parameter is the Max value of a long</comment>
   </data>
   <data name="Description" xml:space="preserve">
@@ -175,5 +175,29 @@
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>基数変換ツール</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Binary Octal Decimal Hexadecimal</value>
+  </data>
+  <data name="AdvancedModeLabel" xml:space="preserve">
+    <value>高度な基数変換</value>
+  </data>
+  <data name="InputDictionaryLabel" xml:space="preserve">
+    <value>入力に使用する辞書</value>
+  </data>
+  <data name="OutputDictionaryLabel" xml:space="preserve">
+    <value>出力に使用する辞書</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>出力</value>
+  </data>
+  <data name="BaseNumberError" xml:space="preserve">
+    <value>基数は 2 以上でなければなりません。</value>
+  </data>
+  <data name="DictionarySizeError" xml:space="preserve">
+    <value>辞書の文字数は 2 文字以上必要です。</value>
+  </data>
+  <data name="IncompatibleBaseDictionaryError" xml:space="preserve">
+    <value>辞書の文字数は基数よりも多くなければなりません。</value>
   </data>
 </root>

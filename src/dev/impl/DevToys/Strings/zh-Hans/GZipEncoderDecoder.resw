@@ -130,7 +130,7 @@
     <value>解压</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>选择应对输入的内容压缩还是解压</value>
+    <value>选择应对输入的内容进行压缩还是解压</value>
   </data>
   <data name="ConversionCompress" xml:space="preserve">
     <value>压缩</value>
@@ -139,7 +139,7 @@
     <value>GZip 压缩 / 解压</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>GZip 编码 / 解码工具</value>
+    <value>GZip</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
     <value>使用 GZip 压缩或解压字符串</value>
@@ -161,5 +161,8 @@
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>GZip 编码 / 解码工具</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value />
   </data>
 </root>

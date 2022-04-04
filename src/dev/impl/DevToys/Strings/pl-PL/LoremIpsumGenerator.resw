@@ -147,6 +147,9 @@
   <data name="SentencesType" xml:space="preserve">
     <value>Zdania</value>
   </data>
+  <data name="StartWithLoremTitle" xml:space="preserve">
+    <value>Start with 'Lorem ipsum dolor sit amet...'</value>
+  </data>
   <data name="TypeDescription" xml:space="preserve">
     <value>Generuj słowa, zdania lub akapity Lorem Ipsum</value>
   </data>
@@ -155,5 +158,8 @@
   </data>
   <data name="WordsType" xml:space="preserve">
     <value>Słowa</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value />
   </data>
 </root>

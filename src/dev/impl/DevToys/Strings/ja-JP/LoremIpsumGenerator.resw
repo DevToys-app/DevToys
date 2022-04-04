@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Lorem Ipsum （ダミーテキスト）生成ツール</value>
+    <value>Lorem Ipsum (ダミーテキスト) 生成ツール</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>構成</value>
@@ -133,7 +133,7 @@
     <value>長さ</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Lorem Ipsum （ダミーテキスト）</value>
+    <value>Lorem Ipsum (ダミーテキスト)</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>出力</value>
@@ -142,10 +142,13 @@
     <value>段落</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Lorem Ipsum （ダミーテキスト）生成ツール</value>
+    <value>Lorem Ipsum (ダミーテキスト) 生成ツール</value>
   </data>
   <data name="SentencesType" xml:space="preserve">
     <value>文</value>
+  </data>
+  <data name="StartWithLoremTitle" xml:space="preserve">
+    <value>'Lorem ipsum dolor sit amet ' から始める</value>
   </data>
   <data name="TypeDescription" xml:space="preserve">
     <value>ダミーテキストの単語、文、または段落を生成します</value>
@@ -155,5 +158,8 @@
   </data>
   <data name="WordsType" xml:space="preserve">
     <value>単語</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value />
   </data>
 </root>

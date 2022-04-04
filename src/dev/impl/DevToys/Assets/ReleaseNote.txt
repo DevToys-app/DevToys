@@ -1,10 +1,7 @@
 ﻿🎉 New Features
-  • Color Blindness Simulator!
-  • Lorem Ipsum Generator!
+  • Nothing new in this update, sorry
 👏 Improvements
-  • Added Indonesian translation
-  • Added Spanish (Spain & Argentine) translation
-  • Added German translation
-  • Minor UI update in encoders / decoders
+  • Updated Japanese, Portuguese, Traditional Chinese, Simplified Chinese
+  • Improved performances on Arm64 devices
 🐛 Bug Fixes
-  • N/A
+  • Timestamp Converter was crashing when entering invalid dates

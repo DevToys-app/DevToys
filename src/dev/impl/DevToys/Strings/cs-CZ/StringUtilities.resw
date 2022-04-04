@@ -211,9 +211,12 @@
     <value>Analýza a převod velikosti písmen textu</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Převodník &amp; inspektor velikosti písmen</value>
+    <value>Velikost písmen</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Převodník a inspektor velikosti písmen textu</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>String</value>
   </data>
 </root>

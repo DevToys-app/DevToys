@@ -53,6 +53,7 @@
     value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
+
     mimetype: application/x-microsoft.net.object.bytearray.base64
     value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
@@ -117,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Ferramenta geradora de Lorem Ipsum</value>
+    <value>Ferramenta Geradora de Lorem Ipsum</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Configuração</value>
@@ -135,7 +136,7 @@
     <value>Lorem Ipsum</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Saída</value>
+    <value>Resultado</value>
   </data>
   <data name="ParagraphsType" xml:space="preserve">
     <value>Parágrafos</value>
@@ -146,6 +147,9 @@
   <data name="SentencesType" xml:space="preserve">
     <value>Sentenças</value>
   </data>
+  <data name="StartWithLoremTitle" xml:space="preserve">
+    <value>Começar com 'Lorem ipsum dolor sit amet...'.</value>
+  </data>
   <data name="TypeDescription" xml:space="preserve">
     <value>Gera palavras, sentenças ou parágrafos de Lorem Ipsum</value>
   </data>
@@ -154,5 +158,8 @@
   </data>
   <data name="WordsType" xml:space="preserve">
     <value>Palavras</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value />
   </data>
 </root>

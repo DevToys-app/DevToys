@@ -23,9 +23,9 @@ namespace DevToys.Helpers.SqlFormatter.Core
         /// </summary>
         /// <param name="tokens">Array of all tokens</param>
         /// <param name="index">Current token position</param>
-        internal void BeginIfPossible(IReadOnlyList<Token> tokens, int index)
+        internal void BeginIfPossible(IReadOnlyList<Token> tokens, int index, ReadOnlySpan<char> valueSpan)
         {
-            if (_level == 0 && IsInlineBlock(tokens, index))
+            if (_level == 0 && IsInlineBlock(tokens, index, valueSpan))
             {
                 _level = 1;
             }
@@ -59,7 +59,7 @@ namespace DevToys.Helpers.SqlFormatter.Core
         /// Check if this should be an inline parentheses block.
         /// Examples are "NOW()", "COUNT(*)", "int(10)", key(`somecolumn`), DECIMAL(7,2)
         /// </summary>
-        private bool IsInlineBlock(IReadOnlyList<Token> tokens, int index)
+        private bool IsInlineBlock(IReadOnlyList<Token> tokens, int index, ReadOnlySpan<char> valueSpan)
         {
             int length = 0;
             int level = 0;
@@ -67,7 +67,7 @@ namespace DevToys.Helpers.SqlFormatter.Core
             for (int i = index; i < tokens.Count; i++)
             {
                 Token token = tokens[i];
-                length += token.Value.Length;
+                length += token.Length;
 
                 // Overran max length
                 if (length > InlineMaxLength)
@@ -88,7 +88,7 @@ namespace DevToys.Helpers.SqlFormatter.Core
                     }
                 }
 
-                if (IsForbiddenToken(token))
+                if (IsForbiddenToken(token, valueSpan))
                 {
                     return false;
                 }
@@ -99,14 +99,14 @@ namespace DevToys.Helpers.SqlFormatter.Core
         /// <summary>
         /// Reserved words that cause newlines, comments and semicolons are not allowed inside inline parentheses block
         /// </summary>
-        private bool IsForbiddenToken(Token token)
+        private bool IsForbiddenToken(Token token, ReadOnlySpan<char> valueSpan)
         {
             return
                 token.Type == TokenType.ReservedTopLevel
                 || token.Type == TokenType.ReservedNewLine
                 // || token.Type == TokenType.LineComment
                 || token.Type == TokenType.BlockComment
-                || string.Equals(token.Value, ";", StringComparison.Ordinal);
+                || (token.Length == 1 && valueSpan[0] == ';');
         }
     }
 }

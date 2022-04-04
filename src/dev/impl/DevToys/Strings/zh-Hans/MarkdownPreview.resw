@@ -127,7 +127,7 @@
     <value>深色</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Markdown 预览工具</value>
+    <value>Markdown 预览</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>Markdown 文本输入</value>
@@ -149,5 +149,8 @@
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Markdown 预览工具</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>MD</value>
   </data>
 </root>

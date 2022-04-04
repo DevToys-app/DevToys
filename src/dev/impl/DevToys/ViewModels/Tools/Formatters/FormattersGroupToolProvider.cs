@@ -13,6 +13,7 @@ namespace DevToys.ViewModels.Tools
     [ProtocolName("formatters")]
     [Order(2)]
     [NotSearchable]
+    [NotFavorable]
     [NoCompactOverlaySupport]
     internal sealed class FormattersGroupToolProvider : GroupToolProviderBase
     {

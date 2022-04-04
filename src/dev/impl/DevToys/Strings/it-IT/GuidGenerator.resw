@@ -130,10 +130,10 @@
     <value>Genera</value>
   </data>
   <data name="GenerateButton" xml:space="preserve">
-    <value>Genera UUID(s)</value>
+    <value>Genera UUID</value>
   </data>
   <data name="Guids" xml:space="preserve">
-    <value>UUID(s)</value>
+    <value>UUID</value>
   </data>
   <data name="Hyphens" xml:space="preserve">
     <value>Trattini</value>
@@ -164,5 +164,8 @@
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Generatore di UUID</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>GUID</value>
   </data>
 </root>

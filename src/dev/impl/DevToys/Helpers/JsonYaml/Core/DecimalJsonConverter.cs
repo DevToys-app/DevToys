@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace DevToys.ViewModels.Tools.Converters.JsonYaml
+namespace DevToys.Helpers.JsonYaml.Core
 {
     internal class DecimalJsonConverter : JsonConverter<decimal>
     {

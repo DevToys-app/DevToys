@@ -160,6 +160,9 @@
     <value>JSON &lt;&gt; YAML</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>PřevodníkJSON &lt;&gt; YAML</value>
+    <value>Převodník JSON &lt;&gt; YAML</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value />
   </data>
 </root>

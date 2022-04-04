@@ -148,7 +148,7 @@
     <value>转换</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>字符串实用工具</value>
+    <value>字符串处理</value>
   </data>
   <data name="InverseCase" xml:space="preserve">
     <value>反式交替大小写转换（InVeRsE CaSe）</value>
@@ -215,5 +215,8 @@
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>字符串实用工具</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Text String</value>
   </data>
 </root>

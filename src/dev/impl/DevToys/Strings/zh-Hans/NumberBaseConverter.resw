@@ -130,7 +130,7 @@
     <value>十进制</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>进制转换工具</value>
+    <value>进制转换</value>
   </data>
   <data name="Format" xml:space="preserve">
     <value>数字格式化</value>
@@ -148,7 +148,7 @@
     <value>十进制</value>
   </data>
   <data name="InputTypeDescription" xml:space="preserve">
-    <value>选择您想使用的数字进制来进行输入</value>
+    <value>选择您输入的数字的进制类型</value>
   </data>
   <data name="InputTypeHexadecimal" xml:space="preserve">
     <value>十六进制</value>
@@ -175,5 +175,29 @@
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>进制转换工具</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Binary Octal Decimal Hexadecimal</value>
+  </data>
+  <data name="AdvancedModeLabel" xml:space="preserve">
+    <value>高级模式</value>
+  </data>
+  <data name="InputDictionaryLabel" xml:space="preserve">
+    <value>输入字典</value>
+  </data>
+  <data name="OutputDictionaryLabel" xml:space="preserve">
+    <value>输入字典</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>输出</value>
+  </data>
+  <data name="BaseNumberError" xml:space="preserve">
+    <value>基数应该大于1。</value>
+  </data>
+  <data name="DictionarySizeError" xml:space="preserve">
+    <value>字典的大小应该大于1。</value>
+  </data>
+  <data name="IncompatibleBaseDictionaryError" xml:space="preserve">
+    <value>字典大小不能小于基数。</value>
   </data>
 </root>

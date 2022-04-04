@@ -29,6 +29,8 @@ namespace DevToys.ViewModels.Tools.MarkdownPreview
 
         public string AccessibleName => LanguageManager.Instance.MarkdownPreview.AccessibleName;
 
+        public string? SearchKeywords => LanguageManager.Instance.MarkdownPreview.SearchKeywords;
+
         public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("MarkdownPreview.svg");
 
         [ImportingConstructor]

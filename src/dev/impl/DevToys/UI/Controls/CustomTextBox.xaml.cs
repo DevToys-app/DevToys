@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
 using DevToys.Core;
 using DevToys.Core.Threading;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -130,8 +131,6 @@ namespace DevToys.UI.Controls
             SelectAllCommand = new RelayCommand(ExecuteSelectAllCommand, CanExecuteSelectAllCommand);
 
             DataContext = this;
-
-            UpdateUI();
         }
 
         #region CutCommand
@@ -140,13 +139,24 @@ namespace DevToys.UI.Controls
 
         private bool CanExecuteCutCommand()
         {
-            return RichEditBox != null && RichEditBox.TextDocument.Selection.Length != 0 && IsEnabled && RichEditBox.TextDocument.CanCopy();
+            return IsEnabled
+                   && !IsReadOnly
+                   && RichEditBox != null
+                   && RichEditBox.TextDocument.Selection.Length != 0
+                   && RichEditBox.TextDocument.CanCopy();
         }
 
         private void ExecuteCutCommand()
         {
-            RichEditBox.TextDocument.Selection.Cut();
-            Clipboard.Flush();
+            try
+            {
+                RichEditBox.TextDocument.Selection.Cut();
+                Clipboard.Flush();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogFault("Failed to cut from custom text box", ex);
+            }
         }
 
         #endregion
@@ -162,8 +172,15 @@ namespace DevToys.UI.Controls
 
         private void ExecuteCopyCommand()
         {
-            RichEditBox.TextDocument.Selection.Copy();
-            Clipboard.Flush();
+            try
+            {
+                RichEditBox.TextDocument.Selection.Copy();
+                Clipboard.Flush();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogFault("Failed to copy from custom text box", ex);
+            }
         }
 
         #endregion
@@ -190,7 +207,10 @@ namespace DevToys.UI.Controls
 
         private bool CanExecuteDeleteCommand()
         {
-            return RichEditBox != null && RichEditBox.TextDocument.Selection.Length != 0 && IsEnabled && !IsReadOnly;
+            return  IsEnabled
+                    && !IsReadOnly
+                    && RichEditBox != null
+                    && RichEditBox.TextDocument.Selection.Length != 0;
         }
 
         private void ExecuteDeleteCommand()
@@ -348,6 +368,11 @@ namespace DevToys.UI.Controls
 
             if (IsReadOnly)
             {
+                if (RefreshCommand is not null)
+                {
+                    GetRefreshButton().Visibility = Visibility.Visible;
+                }
+
                 if (PasteButton is not null)
                 {
                     GetPasteButton().Visibility = Visibility.Collapsed;
@@ -440,22 +465,54 @@ namespace DevToys.UI.Controls
         {
             return (RichEditBox)(RichEditBox ?? FindName(nameof(RichEditBox)));
         }
+        private Button GetRefreshButton()
+        {
+            return (Button)(RefreshButton ?? FindName(nameof(RefreshButton)));
+        }
+
+        #region Refresh command (optional)
+        public ICommand? RefreshCommand { get; set; }
+
+
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (RefreshCommand is not null && RefreshCommand.CanExecute(e))
+            {
+                RefreshCommand.Execute(e);
+            }
+        }
+
+        #endregion Refresh button click handler delegate
 
         private void CopyTextBoxSelectionToClipboard()
         {
-            var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
-            dataPackage.SetText(TextBox.SelectedText);
-            Clipboard.SetContentWithOptions(dataPackage, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
-            Clipboard.Flush(); // This method allows the content to remain available after the application shuts down.
+            try
+            {
+                var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
+                dataPackage.SetText(TextBox.SelectedText);
+                Clipboard.SetContentWithOptions(dataPackage, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
+                Clipboard.Flush(); // This method allows the content to remain available after the application shuts down.
+            }
+            catch (Exception ex)
+            {
+                Logger.LogFault("Failed to copy from custom text box", ex);
+            }
         }
 
         private void CopyRichEditBoxSelectionToClipboard()
         {
-            RichEditBox.Document.Selection.GetText(TextGetOptions.UseCrlf, out string? text);
-            var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
-            dataPackage.SetText(text);
-            Clipboard.SetContentWithOptions(dataPackage, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
-            Clipboard.Flush(); // This method allows the content to remain available after the application shuts down.
+            try
+            {
+                RichEditBox.Document.Selection.GetText(TextGetOptions.UseCrlf, out string? text);
+                var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
+                dataPackage.SetText(text);
+                Clipboard.SetContentWithOptions(dataPackage, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
+                Clipboard.Flush(); // This method allows the content to remain available after the application shuts down.
+            }
+            catch (Exception ex)
+            {
+                Logger.LogFault("Failed to copy from custom text box", ex);
+            }
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
@@ -599,6 +656,7 @@ namespace DevToys.UI.Controls
         private void TextBox_CuttingToClipboard(TextBox sender, TextControlCuttingToClipboardEventArgs args)
         {
             CopyTextBoxSelectionToClipboard();
+            sender.SelectedText = string.Empty;
             args.Handled = true;
         }
 
@@ -616,6 +674,7 @@ namespace DevToys.UI.Controls
         private void RichEditBox_CuttingToClipboard(RichEditBox sender, TextControlCuttingToClipboardEventArgs args)
         {
             CopyRichEditBoxSelectionToClipboard();
+            sender.TextDocument.Selection.Text = string.Empty;
             args.Handled = true;
         }
 

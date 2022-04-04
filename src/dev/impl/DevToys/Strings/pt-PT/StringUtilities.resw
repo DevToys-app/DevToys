@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Ferramenta de utilidades de texto</value>
+    <value>Ferramenta de Utilidades de Texto</value>
   </data>
   <data name="AlternatingCase" xml:space="preserve">
     <value>aLtErNaTiNg cAsE</value>
@@ -148,7 +148,7 @@
     <value>Converter</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Inspetor e Conversor de Casos</value>
+    <value>Inspetor &amp; Conversor de Casos</value>
   </data>
   <data name="InverseCase" xml:space="preserve">
     <value>InVeRsE CaSe</value>
@@ -215,5 +215,8 @@
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Conversor e Inspetor de Casos de Texto</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>String</value>
   </data>
 </root>

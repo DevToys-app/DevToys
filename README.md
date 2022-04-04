@@ -14,6 +14,9 @@
   <a style="text-decoration:none" href="https://github.com/veler/DevToys/releases" target="_blank">
     <img src="https://img.shields.io/github/release/veler/devtoys.svg?label=Latest%20version" alt="Latest version" />
   </a>
+  <a style="text-decoration:none" href="https://community.chocolatey.org/packages/devtoys" target="_blank">
+  <img src="https://img.shields.io/chocolatey/v/devtoys?include_prereleases" alt="Chocolatey Version (including pre-releases)">
+  </a>
   <a style="text-decoration:none" href="https://www.microsoft.com/store/apps/9PGCV4V3BK4W" target="_blank">
     <img src="https://img.shields.io/badge/Microsoft%20Store-Download-brightgreen" alt="Store link" />
   </a>
@@ -29,11 +32,13 @@ DevToys helps in daily tasks like formatting JSON, comparing text, testing RegEx
 Many tools are available.
 - Converters
   - JSON <> YAML
+  - Timestamp
   - Number Base
 - Encoders / Decoders
   - HTML
   - URL
   - Base64
+  - GZip
   - JWT Decoder
 - Formatters
   - JSON
@@ -43,8 +48,9 @@ Many tools are available.
   - Hash (MD5, SHA1, SHA256, SHA512)
   - UUID 1 and 4
   - Lorem Ipsum
-  - Check Sum
+  - Checksum
 - Text
+  - Escape / Unescape
   - Inspector & Case Converter
   - Regex Tester
   - Text Comparer
@@ -66,21 +72,28 @@ Many tools are available.
 ### Microsoft Store
 - Search for DevToys in the Microsoft Store App or click [here](https://www.microsoft.com/store/apps/9PGCV4V3BK4W)
 
+### Manual
+
+- Download and extract the latest [release](https://github.com/veler/DevToys/releases).
+- Double click the *.msixbundle file.
+- Install.
+
 ### WinGet
 - Open a PowerShell command prompt.
 - Type `winget search DevToys` to search and see details about DevToys.
 - Type `winget install DevToys` to install the app.
 
-### Manual
+__Note:__ a Microsoft Store account is required for WinGet. We're trying to workaround it. See here https://github.com/microsoft/winget-pkgs/pull/43996
 
-- Download and extract the latest [release](https://github.com/veler/DevToys/releases).
-- Install the certificate in `Trusted Root`.
-- Double click the *.msixbundle file.
+### Chocolatey
+- Make sure you already have [Chocolatey](https://chocolatey.org/) installed on your computer.
+- Open a PowerShell command prompt.
+- Type `choco install devtoys` or visit the [chocolatey community package](https://community.chocolatey.org/packages/devtoys/).
 
 ## App Permission
 
 DevToys works entirely offline, meaning that none of the data used by the app goes on internet. However, the app requires some other permissions in order to work correctly.
-1. `Uses all system resources` - This permission is required for some tools like `PNG / JPEG Compressor` or (upcoming) `On-screen color picker / measurer`, which use a 3rd part Open-Source Win32 process like [Efficient-Compression-Tool](https://github.com/fhanau/Efficient-Compression-Tool).
+1. `Uses all system resources` - This permission is required for some tools like `PNG / JPEG Compressor` or (upcoming) `On-screen color picker / measurer`, which use a 3rd party Open-Source Win32 process like [Efficient-Compression-Tool](https://github.com/fhanau/Efficient-Compression-Tool).
 All the code requiring this permission can be found [here](https://github.com/veler/DevToys/tree/main/src/dev/impl/DevToys.OutOfProcService).
 
 ## How to run DevToys
@@ -97,12 +110,14 @@ For example, `start devtoys:?tool=jsonyaml` will open DevToys and start on the `
 
 Here is the list of tool name you can use:
 - `base64` - Base64 Encoder/Decoder
+- `gzip` - GZip Encoder/Decoder
 - `hash` - Hash Generator
 - `uuid` - UUID Generator
 - `loremipsum` - Lorem Ipsum Generator
 - `checksum` - Checksum File
 - `jsonformat` Json Formatter
 - `sqlformat` - SQL Formatter
+- `xmlformat` - XML Formatter
 - `jsonyaml` - Json <> Yaml
 - `jwt` - JWT Decoder
 - `colorblind` - Color Blindness Simulator
@@ -110,11 +125,13 @@ Here is the list of tool name you can use:
 - `imageconverter` - Image Converter
 - `markdown` - Markdown Preview
 - `regex` - Regular Expression Tester
+- `time` - Unix Timestamp Converter
 - `baseconverter` - Number Base Converter
 - `string` - String Utilities
 - `url` - URL Encoder/Decoder
 - `html` - HTML Encoder/Decoder
 - `diff` - Text Comparer
+- `escape` - Text Escape / Unescape
 - `settings` - Settings
 
 ## Contribute

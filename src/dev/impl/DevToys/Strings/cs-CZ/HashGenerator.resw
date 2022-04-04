@@ -148,7 +148,7 @@
     <value>Hash</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Hash Generátor</value>
+    <value>Generátor Hash</value>
   </data>
   <data name="OutputBase64" xml:space="preserve">
     <value>Base64</value>
@@ -158,5 +158,8 @@
   </data>
   <data name="OutputTypeTitle" xml:space="preserve">
     <value>Typ výstupu</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value />
   </data>
 </root>

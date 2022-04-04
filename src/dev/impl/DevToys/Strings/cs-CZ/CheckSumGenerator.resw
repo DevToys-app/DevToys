@@ -130,7 +130,7 @@
     <value>Generování Hashe s Kontrolním součtem souboru</value>
   </data>
   <data name="HashingAlgorithmDescription" xml:space="preserve">
-    <value>Zvolte hashovací algoritmus který chcete použít</value>
+    <value>Zvolte hashovací algoritmus, který chcete použít</value>
   </data>
   <data name="HashingAlgorithmTitle" xml:space="preserve">
     <value>Hashovací Algoritmus</value>
@@ -148,9 +148,18 @@
     <value>Porovnání s výstupem</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Checksum Generator</value>
+    <value>Generátor kontrolního součtu</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
     <value>Velká písmena</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Checksum Generator</value>
+  </data>
+  <data name="HashesMatch" xml:space="preserve">
+    <value>Hashe jsou stené.</value>
+  </data>
+  <data name="HashesMismatch" xml:space="preserve">
+    <value>Hashe se neshodují.</value>
   </data>
 </root>

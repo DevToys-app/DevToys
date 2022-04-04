@@ -26,6 +26,8 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
         public string AccessibleName => LanguageManager.Instance.ImageConverter.AccessibleName;
 
+        public string? SearchKeywords => LanguageManager.Instance.ImageConverter.SearchKeywords;
+
         public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF48D");
 
         [ImportingConstructor]

@@ -121,7 +121,7 @@
     <value>色盲模拟工具</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>色盲模拟工具</value>
+    <value>色盲模拟</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>在一张图片或屏幕截图上模拟色盲视觉效果</value>
@@ -146,5 +146,8 @@
   </data>
   <data name="TritanopiaSimulation" xml:space="preserve">
     <value>蓝色盲模拟</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Color Blindness</value>
   </data>
 </root>

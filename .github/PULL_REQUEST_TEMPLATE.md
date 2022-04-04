@@ -8,6 +8,7 @@ Please check the type of change your PR introduces:
 
 - [ ] Bugfix
 - [ ] Feature
+- [ ] UI change (please include screenshot!)
 - [ ] Code style update (formatting, renaming)
 - [ ] Refactoring (no functional changes, no api changes)
 - [ ] Build related changes

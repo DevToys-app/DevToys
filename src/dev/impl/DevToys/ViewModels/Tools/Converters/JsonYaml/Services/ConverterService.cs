@@ -39,9 +39,9 @@ namespace DevToys.ViewModels.Tools.JsonYaml.Services
         public Dictionary<GeneratorLanguages, ITextConverterAggregator> Initialize()
         {
             var temp = new Dictionary<GeneratorLanguages, ITextConverterAggregator>();
-            foreach (var type in Assembly.GetExecutingAssembly().DefinedTypes.Where(t => t.GetCustomAttribute<ServiceTypeAttribute>() is not null && t.GetInterface(nameof(ITextConverterAggregator)) is not null))
+            foreach (TypeInfo? type in Assembly.GetExecutingAssembly().DefinedTypes.Where(t => t.GetCustomAttribute<ServiceTypeAttribute>() is not null && t.GetInterface(nameof(ITextConverterAggregator)) is not null))
             {
-                var serviceAttribute = type.GetCustomAttribute<ServiceTypeAttribute>();
+                ServiceTypeAttribute? serviceAttribute = type.GetCustomAttribute<ServiceTypeAttribute>();
                 if (Activator.CreateInstance(type) is not ITextConverterAggregator service)
                 {
                     // TODO: Should throw an exception or ignore type?

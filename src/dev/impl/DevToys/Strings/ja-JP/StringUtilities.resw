@@ -124,7 +124,7 @@
     <value>aLtErNaTiNg cAsE</value>
   </data>
   <data name="Bytes" xml:space="preserve">
-    <value>バイト数:</value>
+    <value>バイト数 : </value>
   </data>
   <data name="CamelCase" xml:space="preserve">
     <value>camelCase</value>
@@ -133,13 +133,13 @@
     <value>文字の分布</value>
   </data>
   <data name="Characters" xml:space="preserve">
-    <value>文字数:</value>
+    <value>文字数 : </value>
   </data>
   <data name="CobolCase" xml:space="preserve">
     <value>COBOL-CASE</value>
   </data>
   <data name="Column" xml:space="preserve">
-    <value>カラム:</value>
+    <value>カラム : </value>
   </data>
   <data name="ConstantCase" xml:space="preserve">
     <value>CONSTANT_CASE</value>
@@ -157,10 +157,10 @@
     <value>kebab-case</value>
   </data>
   <data name="Line" xml:space="preserve">
-    <value>行:</value>
+    <value>行 : </value>
   </data>
   <data name="Lines" xml:space="preserve">
-    <value>行数:</value>
+    <value>行数 : </value>
   </data>
   <data name="LowerCase" xml:space="preserve">
     <value>lower case</value>
@@ -169,13 +169,13 @@
     <value>オリジナル テキスト</value>
   </data>
   <data name="Paragraphs" xml:space="preserve">
-    <value>段落数:</value>
+    <value>段落数 : </value>
   </data>
   <data name="PascalCase" xml:space="preserve">
     <value>PascalCase</value>
   </data>
   <data name="Position" xml:space="preserve">
-    <value>位置:</value>
+    <value>先頭から : </value>
   </data>
   <data name="Selection" xml:space="preserve">
     <value>選択中の位置</value>
@@ -184,7 +184,7 @@
     <value>Sentence case</value>
   </data>
   <data name="Sentences" xml:space="preserve">
-    <value>文数:</value>
+    <value>文数 : </value>
   </data>
   <data name="SnakeCase" xml:space="preserve">
     <value>snake_case</value>
@@ -208,12 +208,15 @@
     <value>単語の分布</value>
   </data>
   <data name="Words" xml:space="preserve">
-    <value>単語数:</value>
+    <value>単語数 : </value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>テキストを分析し、大文字小文字を変換します</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>文字列の検査と変換</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Text String</value>
   </data>
 </root>

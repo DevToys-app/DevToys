@@ -14,6 +14,8 @@ using DevToys.Shared.Core.Threading;
 using DevToys.Views.Tools.LoremIpsumGenerator;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using NLipsum.Core;
+using System.Linq;
+using Microsoft.Toolkit.Mvvm.Input;
 
 namespace DevToys.ViewModels.Tools.LoremIpsumGenerator
 {
@@ -32,6 +34,17 @@ namespace DevToys.ViewModels.Tools.LoremIpsumGenerator
                 isRoaming: true,
                 defaultValue: 1);
 
+        /// <summary>
+        /// Whether the generated text should start with Lorem ipsum dolor sit amet
+        /// </summary>
+        private static readonly SettingDefinition<bool> StartWithLoremIpsum
+            = new(
+                name: $"{nameof(LoremIpsumGeneratorToolViewModel)}.{nameof(StartWithLoremIpsum)}",
+                isRoaming: true,
+                defaultValue: false);
+
+        private const string LoremIpsumStartText = "Lorem ipsum dolor sit amet";
+
         private const string ParagraphsType = "Paragraphs";
         private const string SentencesType = "Sentences";
         private const string WordsType = "Words";
@@ -40,7 +53,7 @@ namespace DevToys.ViewModels.Tools.LoremIpsumGenerator
 
         private readonly IMarketingService _marketingService;
         private readonly ISettingsProvider _settingsProvider;
-        private readonly Queue<(string Type, int Length)> _generationQueue = new();
+        private readonly Queue<(string Type, int Length, bool StartWithLoremIpsum)> _generationQueue = new();
 
         private string _output = string.Empty;
         private bool _generationInProgress;
@@ -78,6 +91,20 @@ namespace DevToys.ViewModels.Tools.LoremIpsumGenerator
             }
         }
 
+        internal bool StartWithLorem
+        {
+            get => _settingsProvider.GetSetting(StartWithLoremIpsum);
+            set
+            {
+                if (_settingsProvider.GetSetting(StartWithLoremIpsum) != value)
+                {
+                    _settingsProvider.SetSetting(StartWithLoremIpsum, value);
+                    OnPropertyChanged();
+                    QueueGeneration();
+                }
+            }
+        }
+
         internal string Output
         {
             get => _output;
@@ -90,12 +117,23 @@ namespace DevToys.ViewModels.Tools.LoremIpsumGenerator
             _settingsProvider = settingsProvider;
             _marketingService = marketingService;
 
+            RefreshCommand = new RelayCommand(ExecuteRefreshCommand);
+
             QueueGeneration();
         }
 
+        #region RefreshCommand
+        internal IRelayCommand RefreshCommand { get; }
+
+        private void ExecuteRefreshCommand()
+        {
+            QueueGeneration();
+        }
+        #endregion
+
         private void QueueGeneration()
         {
-            _generationQueue.Enqueue((LoremIpsumType, LoremIpsumLength));
+            _generationQueue.Enqueue((LoremIpsumType, LoremIpsumLength, StartWithLorem));
             TreatQueueAsync().Forget();
         }
 
@@ -110,9 +148,9 @@ namespace DevToys.ViewModels.Tools.LoremIpsumGenerator
 
             await TaskScheduler.Default;
 
-            while (_generationQueue.TryDequeue(out (string Type, int Length) options))
+            while (_generationQueue.TryDequeue(out (string Type, int Length, bool StartWithLoremIpsum) options))
             {
-                string output = GenerateLipsum(options.Type, options.Length);
+                string output = GenerateLipsum(options.Type, options.Length, options.StartWithLoremIpsum);
 
                 ThreadHelper.RunOnUIThreadAsync(() =>
                 {
@@ -129,7 +167,7 @@ namespace DevToys.ViewModels.Tools.LoremIpsumGenerator
             _generationInProgress = false;
         }
 
-        private string GenerateLipsum(string type, int length)
+        private string GenerateLipsum(string type, int length, bool startWithLoremIpsum)
         {
             if (length <= 0)
             {
@@ -137,21 +175,37 @@ namespace DevToys.ViewModels.Tools.LoremIpsumGenerator
             }
 
             var generator = new LipsumGenerator();
+            string startWords = startWithLoremIpsum ? LoremIpsumStartText : string.Empty;
 
             switch (type)
             {
                 case WordsType:
                     string[] words = generator.GenerateWords(length);
                     words[0] = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(words[0]);
-                    return string.Join(' ', words);
+                    return ApplyStartWords(startWords, string.Join(' ', words));
                 case SentencesType:
-                    return string.Join(' ', generator.GenerateSentences(length, Sentence.Medium));
+                    return ApplyStartWords(startWords, string.Join(' ', generator.GenerateSentences(length, Sentence.Medium)));
                 case ParagraphsType:
-                    return string.Join($"{Environment.NewLine}{Environment.NewLine}",
-                        generator.GenerateParagraphs(length, Paragraph.Medium));
+                    return ApplyStartWords(startWords, string.Join($"{Environment.NewLine}{Environment.NewLine}",
+                        generator.GenerateParagraphs(length, Paragraph.Medium)));
                 default:
                     return string.Empty;
             }
+        }
+
+        private string ApplyStartWords(string startText, string originalText)
+        {
+            if (string.IsNullOrWhiteSpace(startText))
+            {
+                return originalText;
+            }
+
+            char space = ' ';
+            string[] startTokens = (startText ?? "").Split(space, StringSplitOptions.RemoveEmptyEntries);
+            string[] endTokens = (originalText ?? "").Split(space, StringSplitOptions.RemoveEmptyEntries);
+            int wordsNeeded = Math.Min(startTokens.Length, endTokens.Length);
+
+            return string.Join(space, startTokens.Take(wordsNeeded).Concat(endTokens.Skip(wordsNeeded)));
         }
     }
 }

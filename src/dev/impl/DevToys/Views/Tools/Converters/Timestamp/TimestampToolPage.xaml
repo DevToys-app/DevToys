@@ -1,0 +1,320 @@
+﻿<Page
+    x:Class="DevToys.Views.Tools.Timestamp.TimestampToolPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:local="using:DevToys.Views.Tools.Timestamp"
+    mc:Ignorable="d"
+    d:DesignHeight="400"
+    d:DesignWidth="600">
+    <StackPanel Margin="0,0,0,16" Spacing="12">
+        <StackPanel.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
+            </TransitionCollection>
+        </StackPanel.ChildrenTransitions>
+
+        <StackPanel Margin="0,12,0,0">
+
+            <muxc:InfoBar
+                Severity="Warning"
+                Message="{x:Bind ViewModel.Strings.InvalidValue}"
+                IsOpen="{x:Bind ViewModel.IsInputInvalid, Mode=OneWay}"
+                IsClosable="False"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                    x:Name="TimestampHeaderTextBlock"
+                    Text="{x:Bind ViewModel.Strings.TimestampTitle}"
+                    Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                    Style="{StaticResource SubTitleTextBlock}"
+                    TextWrapping="NoWrap"
+                    TextTrimming="CharacterEllipsis"
+                    VerticalAlignment="Bottom"/>
+                <StackPanel
+                    Grid.Column="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Spacing="8"
+                    Margin="0,0,0,8"
+                    AutomationProperties.LabeledBy="{Binding ElementName=TimestampHeaderTextBlock}">
+                    <Button
+                        TabIndex="1"
+                        Command="{x:Bind ViewModel.PasteCommand}"
+                        AutomationProperties.Name="{Binding Instance.Common.Paste, Mode=OneTime, Source={StaticResource LanguageManager}}">
+                        <StackPanel Orientation="Horizontal" Spacing="4">
+                            <FontIcon Glyph="&#xF2D5;"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Instance.Common.Paste, Mode=OneTime, Source={StaticResource LanguageManager}}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button
+                        TabIndex="2"
+                        Command="{x:Bind ViewModel.CopyCommand}"
+                        AutomationProperties.Name="{Binding Instance.Common.Copy, Mode=OneTime, Source={StaticResource LanguageManager}}">
+                        <StackPanel Orientation="Horizontal" Spacing="4">
+                            <FontIcon Glyph="&#xF32B;"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Instance.Common.Copy, Mode=OneTime, Source={StaticResource LanguageManager}}"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+            <muxc:NumberBox
+                Value="{x:Bind ViewModel.Timestamp, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                SpinButtonPlacementMode="Compact"
+                SmallChange="1"
+                LargeChange="10"
+                Minimum="{x:Bind local:TimestampToolPage.MinimumTimestamp}"
+                Maximum="{x:Bind local:TimestampToolPage.MaximumTimestamp}"
+                TabIndex="0"
+                AutomationProperties.LabeledBy="{Binding ElementName=TimestampHeaderTextBlock}"/>
+        </StackPanel>
+
+        <TextBlock x:Name="UtcDateTime" Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.UTCDateTime}" />
+        <Grid ColumnSpacing="8" AutomationProperties.LabeledBy="{Binding ElementName=UtcDateTime}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+                <TextBlock
+                    x:Name="UtcYearHeaderTextBlock"
+                    Text="{x:Bind ViewModel.Strings.YearTitle}"
+                    Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                    Style="{StaticResource SubTitleTextBlock}"
+                    TextWrapping="NoWrap"
+                    TextTrimming="CharacterEllipsis"
+                    VerticalAlignment="Bottom"/>
+                <muxc:NumberBox
+                    Value="{x:Bind ViewModel.UtcYear, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    SpinButtonPlacementMode="Compact"
+                    SmallChange="1"
+                    LargeChange="10"
+                    Minimum="1"
+                    Maximum="9999"
+                    AutomationProperties.LabeledBy="{Binding ElementName=UtcYearHeaderTextBlock}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1">
+                <TextBlock
+                    x:Name="UtcMonthHeaderTextBlock"
+                    Text="{x:Bind ViewModel.Strings.MonthTitle}"
+                    Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                    Style="{StaticResource SubTitleTextBlock}"
+                    TextWrapping="NoWrap"
+                    TextTrimming="CharacterEllipsis"
+                    VerticalAlignment="Bottom"/>
+                <muxc:NumberBox
+                    Value="{x:Bind ViewModel.UtcMonth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    SpinButtonPlacementMode="Compact"
+                    SmallChange="1"
+                    Minimum="1"
+                    Maximum="12"
+                    AutomationProperties.LabeledBy="{Binding ElementName=UtcMonthHeaderTextBlock}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2">
+                <TextBlock
+                    x:Name="UtcDayHeaderTextBlock"
+                    Text="{x:Bind ViewModel.Strings.DayTitle}"
+                    Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                    Style="{StaticResource SubTitleTextBlock}"
+                    TextWrapping="NoWrap"
+                    TextTrimming="CharacterEllipsis"
+                    VerticalAlignment="Bottom"/>
+                <muxc:NumberBox
+                    Value="{x:Bind ViewModel.UtcDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    SpinButtonPlacementMode="Compact"
+                    SmallChange="1"
+                    Minimum="1"
+                    Maximum="31"
+                    AutomationProperties.LabeledBy="{Binding ElementName=UtcDayHeaderTextBlock}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="3">
+                <TextBlock
+                    x:Name="UtcHourHeaderTextBlock"
+                    Text="{x:Bind ViewModel.Strings.HourTitle}"
+                    Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                    Style="{StaticResource SubTitleTextBlock}"
+                    TextWrapping="NoWrap"
+                    TextTrimming="CharacterEllipsis"
+                    VerticalAlignment="Bottom"/>
+                <muxc:NumberBox
+                    Value="{x:Bind ViewModel.UtcHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    SpinButtonPlacementMode="Compact"
+                    SmallChange="1"
+                    Minimum="0"
+                    Maximum="23"
+                    AutomationProperties.LabeledBy="{Binding ElementName=UtcHourHeaderTextBlock}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="4">
+                <TextBlock
+                    x:Name="UtcMinuteHeaderTextBlock"
+                    Text="{x:Bind ViewModel.Strings.MinutesTitle}"
+                    Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                    Style="{StaticResource SubTitleTextBlock}"
+                    TextWrapping="NoWrap"
+                    TextTrimming="CharacterEllipsis"
+                    VerticalAlignment="Bottom"/>
+                <muxc:NumberBox
+                    Value="{x:Bind ViewModel.UtcMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    SpinButtonPlacementMode="Compact"
+                    SmallChange="1"
+                    Minimum="0"
+                    Maximum="59"
+                    AutomationProperties.LabeledBy="{Binding ElementName=UtcMinuteHeaderTextBlock}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="5">
+                <TextBlock
+                    x:Name="UtcSecondHeaderTextBlock"
+                    Text="{x:Bind ViewModel.Strings.SecondsTitle}"
+                    Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                    Style="{StaticResource SubTitleTextBlock}"
+                    TextWrapping="NoWrap"
+                    TextTrimming="CharacterEllipsis"
+                    VerticalAlignment="Bottom"/>
+                <muxc:NumberBox
+                    Value="{x:Bind ViewModel.UtcSecond, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    SpinButtonPlacementMode="Compact"
+                    SmallChange="1"
+                    Minimum="0"
+                    Maximum="59"
+                    AutomationProperties.LabeledBy="{Binding ElementName=UtcSecondHeaderTextBlock}"/>
+            </StackPanel>
+        </Grid>
+
+        <TextBlock x:Name="LocalDateTime" Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.LocalDateTime}" />
+        <Grid ColumnSpacing="8" AutomationProperties.LabeledBy="{Binding ElementName=LocalDateTime}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+                <TextBlock
+                    x:Name="YearHeaderTextBlock"
+                    Text="{x:Bind ViewModel.Strings.YearTitle}"
+                    Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                    Style="{StaticResource SubTitleTextBlock}"
+                    TextWrapping="NoWrap"
+                    TextTrimming="CharacterEllipsis"
+                    VerticalAlignment="Bottom"/>
+                <muxc:NumberBox
+                    Value="{x:Bind ViewModel.LocalYear, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    SpinButtonPlacementMode="Compact"
+                    SmallChange="1"
+                    LargeChange="10"
+                    Minimum="1"
+                    Maximum="9999"
+                    AutomationProperties.LabeledBy="{Binding ElementName=YearHeaderTextBlock}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1">
+                <TextBlock
+                    x:Name="MonthHeaderTextBlock"
+                    Text="{x:Bind ViewModel.Strings.MonthTitle}"
+                    Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                    Style="{StaticResource SubTitleTextBlock}"
+                    TextWrapping="NoWrap"
+                    TextTrimming="CharacterEllipsis"
+                    VerticalAlignment="Bottom"/>
+                <muxc:NumberBox
+                    Value="{x:Bind ViewModel.LocalMonth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    SpinButtonPlacementMode="Compact"
+                    SmallChange="1"
+                    Minimum="1"
+                    Maximum="12"
+                    AutomationProperties.LabeledBy="{Binding ElementName=MonthHeaderTextBlock}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2">
+                <TextBlock
+                    x:Name="DayHeaderTextBlock"
+                    Text="{x:Bind ViewModel.Strings.DayTitle}"
+                    Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                    Style="{StaticResource SubTitleTextBlock}"
+                    TextWrapping="NoWrap"
+                    TextTrimming="CharacterEllipsis"
+                    VerticalAlignment="Bottom"/>
+                <muxc:NumberBox
+                    Value="{x:Bind ViewModel.LocalDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    SpinButtonPlacementMode="Compact"
+                    SmallChange="1"
+                    Minimum="1"
+                    Maximum="31"
+                    AutomationProperties.LabeledBy="{Binding ElementName=DayHeaderTextBlock}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="3">
+                <TextBlock
+                    x:Name="HourHeaderTextBlock"
+                    Text="{x:Bind ViewModel.Strings.HourTitle}"
+                    Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                    Style="{StaticResource SubTitleTextBlock}"
+                    TextWrapping="NoWrap"
+                    TextTrimming="CharacterEllipsis"
+                    VerticalAlignment="Bottom"/>
+                <muxc:NumberBox
+                    Value="{x:Bind ViewModel.LocalHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    SpinButtonPlacementMode="Compact"
+                    SmallChange="1"
+                    Minimum="0"
+                    Maximum="23"
+                    AutomationProperties.LabeledBy="{Binding ElementName=HourHeaderTextBlock}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="4">
+                <TextBlock
+                    x:Name="MinuteHeaderTextBlock"
+                    Text="{x:Bind ViewModel.Strings.MinutesTitle}"
+                    Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                    Style="{StaticResource SubTitleTextBlock}"
+                    TextWrapping="NoWrap"
+                    TextTrimming="CharacterEllipsis"
+                    VerticalAlignment="Bottom"/>
+                <muxc:NumberBox
+                    Value="{x:Bind ViewModel.LocalMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    SpinButtonPlacementMode="Compact"
+                    SmallChange="1"
+                    Minimum="0"
+                    Maximum="59"
+                    AutomationProperties.LabeledBy="{Binding ElementName=MinuteHeaderTextBlock}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="5">
+                <TextBlock
+                    x:Name="SecondHeaderTextBlock"
+                    Text="{x:Bind ViewModel.Strings.SecondsTitle}"
+                    Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                    Style="{StaticResource SubTitleTextBlock}"
+                    TextWrapping="NoWrap"
+                    TextTrimming="CharacterEllipsis"
+                    VerticalAlignment="Bottom"/>
+                <muxc:NumberBox
+                    Value="{x:Bind ViewModel.LocalSecond, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    SpinButtonPlacementMode="Compact"
+                    SmallChange="1"
+                    Minimum="0"
+                    Maximum="59"
+                    AutomationProperties.LabeledBy="{Binding ElementName=SecondHeaderTextBlock}"/>
+            </StackPanel>
+        </Grid>
+    </StackPanel>
+</Page>

@@ -13,6 +13,7 @@
     <Page.Resources>
         <converters:BooleanToVisibilityConverter x:Name="BooleanToVisibilityConverter"/>
         <converters:InvertedBooleanConverter x:Name="InvertedBooleanConverter"/>
+        <converters:NullToBooleanConverter x:Name="NullToVisible" IsInverted="True"/>
     </Page.Resources>
 
     <StackPanel Margin="0,0,0,16" Spacing="12">
@@ -80,8 +81,14 @@
 
         <controls:CustomTextBox
             Header="{x:Bind ViewModel.Strings.OutputComparer}"
-            Height="50"
             AcceptsReturn="True"
             Text="{x:Bind ViewModel.OutputComparer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+        <muxc:InfoBar Severity="{Binding Severity, Mode=OneWay}"
+                      Message="{Binding Message, Mode=OneWay}"
+                      IsOpen="{Binding Mode=OneWay, Converter={StaticResource NullToVisible}}"
+                      DataContext="{x:Bind ViewModel.HashComparisonResult, Mode=OneWay}"
+                      IsClosable="False">
+        </muxc:InfoBar>
     </StackPanel>
 </Page>

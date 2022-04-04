@@ -38,12 +38,17 @@ namespace DevToys
         {
             if (string.IsNullOrEmpty(identifier))
             {
-                identifier = Windows.System.UserProfile.GlobalizationPreferences.Languages[0];
+                Culture = new CultureInfo(Windows.System.UserProfile.GlobalizationPreferences.Languages[0]);
+                DisplayName = new SettingsStrings().DefaultLanguage;
+                InternalName = "default";
+            }
+            else
+            {
+                Culture = new CultureInfo(identifier!);
+                DisplayName = Culture.NativeName;
+                InternalName = Culture.Name;
             }
 
-            Culture = new CultureInfo(identifier!);
-            DisplayName = Culture.NativeName;
-            InternalName = Culture.Name;
             Identifier = Culture.Name;
         }
     }

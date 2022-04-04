@@ -147,6 +147,9 @@
   <data name="SentencesType" xml:space="preserve">
     <value>句子</value>
   </data>
+  <data name="StartWithLoremTitle" xml:space="preserve">
+    <value>以 'Lorem ipsum dolor sit amet...' 起頭</value>
+  </data>
   <data name="TypeDescription" xml:space="preserve">
     <value>產生假文單字、句子、或段落</value>
   </data>
@@ -155,5 +158,8 @@
   </data>
   <data name="WordsType" xml:space="preserve">
     <value>單字</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Lorem Ipsum</value>
   </data>
 </root>

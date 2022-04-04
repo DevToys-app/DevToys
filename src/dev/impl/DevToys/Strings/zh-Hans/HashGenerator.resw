@@ -124,7 +124,7 @@
     <value>配置</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>哈希散列（Hash）生成工具</value>
+    <value>哈希散列（Hash）</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>输入</value>
@@ -154,9 +154,12 @@
     <value>Base64</value>
   </data>
   <data name="OutputHex" xml:space="preserve">
-    <value>Hex</value>
+    <value>十六进制</value>
   </data>
   <data name="OutputTypeTitle" xml:space="preserve">
-    <value>輸出類型</value>
+    <value>输出类型</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value />
   </data>
 </root>

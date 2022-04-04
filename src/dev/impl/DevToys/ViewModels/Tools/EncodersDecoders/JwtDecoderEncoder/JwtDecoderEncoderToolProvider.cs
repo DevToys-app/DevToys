@@ -27,6 +27,8 @@ namespace DevToys.ViewModels.Tools.JwtDecoderEncoder
 
         public string AccessibleName => LanguageManager.Instance.JwtDecoderEncoder.AccessibleName;
 
+        public string? SearchKeywords => LanguageManager.Instance.JwtDecoderEncoder.SearchKeywords;
+
         public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("JWT.svg");
 
         [ImportingConstructor]
@@ -37,7 +39,7 @@ namespace DevToys.ViewModels.Tools.JwtDecoderEncoder
 
         public bool CanBeTreatedByTool(string data)
         {
-            return JwtHelper.IsValid(data);
+            return JwtHelper.IsValid(data?.Trim());
         }
 
         public IToolViewModel CreateTool()

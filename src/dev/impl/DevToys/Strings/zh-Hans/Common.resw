@@ -133,31 +133,31 @@
     <value>删除</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
-    <value>Browse files</value>
+    <value>浏览文件</value>
   </data>
   <data name="FileSelectorBrowseFolders" xml:space="preserve">
-    <value>Browse folders</value>
+    <value>浏览文件夹</value>
   </data>
   <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>Drag &amp; drop any file here</value>
+    <value>拖拽任意一个文件到框内</value>
   </data>
   <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
-    <value>Drag &amp; drop any files here</value>
+    <value>拖拽任意一个或多个文件到框内</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
-    <value>Drag &amp; drop a {0} file here</value>
-    <comment>{0} is a single file extension like "PNG"</comment>
+    <value>拖拽一个 {0} 文件到框内</value>
+    <comment>{0} 是单个文件拓展名，比如 "PNG"</comment>
   </data>
   <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
-    <value>Drag &amp; drop any {0} files here</value>
-    <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
+    <value>拖拽 {0} 文件到框内</value>
+    <comment>{0} 是一组拓展名列表，比如 "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
-    <value>Only {0} file(s) can be used.</value>
-    <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
+    <value>只能使用 {0} 文件。</value>
+    <comment>{0} 是一组拓展名列表，比如 "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorOr" xml:space="preserve">
-    <value>or</value>
+    <value>或者</value>
   </data>
   <data name="Gigabytes" xml:space="preserve">
     <value>GB</value>
@@ -180,6 +180,9 @@
   <data name="Redo" xml:space="preserve">
     <value>恢复</value>
   </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>刷新</value>
+  </data>
   <data name="SelectAll" xml:space="preserve">
     <value>选择全部</value>
   </data>
@@ -193,10 +196,10 @@
     <value>打开</value>
   </data>
   <data name="UnableOpenFile" xml:space="preserve">
-    <value>抱歉，不能打开这个文件</value>
+    <value>抱歉，无法打开这个文件</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>抱歉，不能加载文件 '{0}' 的具体内容。欲了解更多详情，请查看日志文件记录。</value>
+    <value>抱歉，无法加载文件 '{0}' 的具体内容。欲了解更多详情，请查看日志文件记录。</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>撤销</value>

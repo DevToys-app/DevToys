@@ -3,9 +3,9 @@
 using System.Composition;
 using DevToys.Shared.Api.Core;
 using DevToys.Api.Tools;
-using DevToys.Helpers;
 using DevToys.Core.Threading;
 using Windows.UI.Xaml.Controls;
+using DevToys.Helpers.JsonYaml;
 
 namespace DevToys.ViewModels.Tools.JsonFormatter
 {
@@ -26,6 +26,8 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
         public string? Description => LanguageManager.Instance.JsonFormatter.Description;
 
         public string AccessibleName => LanguageManager.Instance.JsonFormatter.AccessibleName;
+
+        public string? SearchKeywords => LanguageManager.Instance.JsonFormatter.SearchKeywords;
 
         public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("JsonFormatter.svg");
 

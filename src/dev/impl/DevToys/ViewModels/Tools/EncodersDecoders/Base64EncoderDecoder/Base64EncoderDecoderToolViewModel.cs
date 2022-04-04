@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Composition;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DevToys.Api.Core;
@@ -12,12 +13,11 @@ using DevToys.Core;
 using DevToys.Core.Threading;
 using DevToys.Shared.Core.Threading;
 using DevToys.Views.Tools.Base64EncoderDecoder;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
 {
     [Export(typeof(Base64EncoderDecoderToolViewModel))]
-    public class Base64EncoderDecoderToolViewModel : ObservableRecipient, IToolViewModel
+    public class Base64EncoderDecoderToolViewModel : QueueWorkerViewModelBase<string>, IToolViewModel
     {
         /// <summary>
         /// Whether the tool should encode or decode Base64.
@@ -45,7 +45,6 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
 
         private string? _inputValue;
         private string? _outputValue;
-        private bool _conversionInProgress;
         private bool _setPropertyInProgress;
         private bool _toolSuccessfullyWorked;
 
@@ -126,46 +125,31 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
 
         private void QueueConversionCalculation()
         {
-            _conversionQueue.Enqueue(InputValue ?? string.Empty);
-            TreatQueueAsync().Forget();
+            EnqueueComputation(InputValue ?? string.Empty);
         }
 
-        private async Task TreatQueueAsync()
+        protected override async Task TreatComputationQueueAsync(string value)
         {
-            if (_conversionInProgress)
+            string conversionResult;
+            if (IsEncodeMode)
             {
-                return;
+                conversionResult = await EncodeBase64DataAsync(value).ConfigureAwait(false);
+            }
+            else
+            {
+                conversionResult = await DecodeBase64DataAsync(value).ConfigureAwait(false);
             }
 
-            _conversionInProgress = true;
-
-            await TaskScheduler.Default;
-
-            while (_conversionQueue.TryDequeue(out string? text))
+            await ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, () =>
             {
-                string conversionResult;
-                if (IsEncodeMode)
+                OutputValue = conversionResult;
+
+                if (!_toolSuccessfullyWorked)
                 {
-                    conversionResult = await EncodeBase64DataAsync(text).ConfigureAwait(false);
+                    _toolSuccessfullyWorked = true;
+                    _marketingService.NotifyToolSuccessfullyWorked();
                 }
-                else
-                {
-                    conversionResult = await DecodeBase64DataAsync(text).ConfigureAwait(false);
-                }
-
-                ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, () =>
-                {
-                    OutputValue = conversionResult;
-
-                    if (!_toolSuccessfullyWorked)
-                    {
-                        _toolSuccessfullyWorked = true;
-                        _marketingService.NotifyToolSuccessfullyWorked();
-                    }
-                }).ForgetSafely();
-            }
-
-            _conversionInProgress = false;
+            });
         }
 
         private async Task<string> EncodeBase64DataAsync(string? data)
@@ -200,6 +184,13 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
                 return string.Empty;
             }
 
+            int remainder = data!.Length % 4;
+            if (remainder > 0)
+            {
+                int padding = 4 - remainder;
+                data = data.PadRight(data.Length + padding, '=');
+            }
+
             await TaskScheduler.Default;
             string? decoded = string.Empty;
 
@@ -207,7 +198,16 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
             {
                 byte[]? decodedData = Convert.FromBase64String(data);
                 Encoding encoder = GetEncoder();
-                decoded = encoder.GetString(decodedData);
+                if (encoder is UTF8Encoding && decodedData != null)
+                {
+                    byte[] preamble = encoder.GetPreamble();
+                    if (decodedData.Take(preamble.Length).SequenceEqual(preamble))
+                    {
+                        // need to keep it this way to have the dom char
+                        decoded += Encoding.Unicode.GetString(preamble, 0, 1);
+                    }
+                }
+                decoded += encoder.GetString(decodedData);
             }
             catch (FormatException)
             {
@@ -226,7 +226,7 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
         {
             if (string.Equals(EncodingMode, DefaultEncoding, StringComparison.Ordinal))
             {
-                return Encoding.UTF8;
+                return new UTF8Encoding(true);
             }
             return Encoding.ASCII;
         }

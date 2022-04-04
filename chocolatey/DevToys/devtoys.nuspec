@@ -1,0 +1,39 @@
+<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>devtoys</id>
+    <version>1.0.5.0</version>
+    <packageSourceUrl>https://github.com/veler/DevToys/tree/main/chocolatey/DevToys</packageSourceUrl>
+    <owners>Rafael Lopez</owners>
+    <title>DevToys</title>
+    <authors>Etienne BAUDOUX</authors>
+    <projectUrl>https://devtoys.app/</projectUrl>
+    <iconUrl>https://devtoys.app/img/hero-logo.png</iconUrl>
+    <licenseUrl>https://github.com/veler/DevToys/blob/main/LICENSE.md</licenseUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <projectSourceUrl>https://github.com/veler/DevToys.git</projectSourceUrl>
+    <docsUrl>https://github.com/veler/DevToys/blob/main/README.md</docsUrl>
+    <mailingListUrl>https://github.com/veler/DevToys/discussions</mailingListUrl>
+    <bugTrackerUrl>https://github.com/veler/DevToys/issues</bugTrackerUrl>
+    <wikiUrl>https://devtoys.app/</wikiUrl>
+    <tags>devtoys</tags>
+    <summary>A Swiss Army knife for developers.</summary>
+    <description>DevToys helps in daily tasks like formatting JSON, comparing text, testing RegExp. No need to use many untruthful websites to do simple tasks with your data. With Smart Detection, DevToys is able to detect the best tool that can treat the data you copied in the clipboard of your Windows. Compact overlay lets you keep the app in small and on top of other windows. Multiple instances of the app can be used at once.</description>
+    <releaseNotes>
+🎉 New Features
+  • Text Escape / Unescape!
+  • Unix Timestamp Converter!
+  • Number Base Converter now has an Advanced mode!
+👏 Improvements
+  • Updated Japanese, Czech, Traditional Chinese, Simplified Chinese
+  • Added Portuguese-Brazil translation
+  • Added a refresh buttong to Lorem Ipsum Generator
+  • Base64 Decoder now supports unpadded Base64 value
+🐛 Bug Fixes
+  • Cut command in input field was not working correctly
+    </releaseNotes>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>

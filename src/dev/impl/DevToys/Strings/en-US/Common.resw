@@ -180,6 +180,9 @@
   <data name="Redo" xml:space="preserve">
     <value>Redo</value>
   </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
   <data name="SelectAll" xml:space="preserve">
     <value>Select all</value>
   </data>

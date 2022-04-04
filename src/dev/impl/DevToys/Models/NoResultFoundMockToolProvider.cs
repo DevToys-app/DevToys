@@ -18,6 +18,8 @@ namespace DevToys.Models
 
         public string AccessibleName => LanguageManager.Instance.MainPage.SearchNoResultsFound;
 
+        public string? SearchKeywords => LanguageManager.Instance.MainPage.SearchNoResultsFound;
+
         public TaskCompletionNotifier<IconElement> IconSource => null!;
 
         public event PropertyChangedEventHandler? PropertyChanged;

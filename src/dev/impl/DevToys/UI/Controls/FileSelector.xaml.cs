@@ -247,13 +247,16 @@ namespace DevToys.UI.Controls
 
             folderPicker.FileTypeFilter.Add("*");
 
-            StorageFolder folder = await folderPicker.PickSingleFolderAsync();
+            StorageFolder? folder = await folderPicker.PickSingleFolderAsync();
 
-            foreach (StorageFile file in await folder.GetFilesAsync())
+            if (folder is not null)
             {
-                if (_allowedFileExtensions.Any(ext => string.Equals(ext, "*", StringComparison.Ordinal) || string.Equals(ext, file.FileType, StringComparison.OrdinalIgnoreCase)))
+                foreach (StorageFile file in await folder.GetFilesAsync())
                 {
-                    files.Add(file);
+                    if (_allowedFileExtensions.Any(ext => string.Equals(ext, "*", StringComparison.Ordinal) || string.Equals(ext, file.FileType, StringComparison.OrdinalIgnoreCase)))
+                    {
+                        files.Add(file);
+                    }
                 }
             }
 

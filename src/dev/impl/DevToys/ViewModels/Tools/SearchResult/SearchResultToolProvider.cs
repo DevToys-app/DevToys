@@ -10,11 +10,11 @@ namespace DevToys.ViewModels.Tools
 {
     internal sealed class SearchResultToolProvider : IToolProvider
     {
-        internal static MatchedToolProvider CreateResult(
+        internal static ToolProviderViewItem CreateResult(
             string searchQuery,
-            IEnumerable<MatchedToolProvider> searchResults)
+            IEnumerable<ToolProviderViewItem> searchResults)
         {
-            return new MatchedToolProvider(
+            return new ToolProviderViewItem(
                 new ToolProviderMetadata
                 {
                     Name = "SearchResult",
@@ -22,15 +22,16 @@ namespace DevToys.ViewModels.Tools
                 },
                 new SearchResultToolProvider(
                     searchQuery,
-                    searchResults));
+                    searchResults),
+                isFavorite: false);
         }
 
         private readonly string _searchQuery;
-        private readonly IEnumerable<MatchedToolProvider> _searchResults;
+        private readonly IEnumerable<ToolProviderViewItem> _searchResults;
 
         private SearchResultToolProvider(
             string searchQuery,
-            IEnumerable<MatchedToolProvider> searchResults)
+            IEnumerable<ToolProviderViewItem> searchResults)
         {
             _searchQuery = searchQuery;
             _searchResults = searchResults;
@@ -46,6 +47,8 @@ namespace DevToys.ViewModels.Tools
 
         public string? Description => null;
 
+        public string? SearchKeywords => GetTitle();
+
         public bool CanBeTreatedByTool(string data)
         {
             return false;
@@ -53,7 +56,7 @@ namespace DevToys.ViewModels.Tools
 
         public IToolViewModel CreateTool()
         {
-            return new GroupToolViewModel(_searchResults.Select(item => item.ToolProvider));
+            return new GroupToolViewModel(_searchResults);
         }
 
         private string GetTitle()
@@ -64,6 +67,53 @@ namespace DevToys.ViewModels.Tools
             }
 
             return LanguageManager.Instance.SearchResult.NoResultsFound;
+        }
+
+        public bool Equals(SearchResultToolProvider other)
+        {
+            if (other is null)
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return string.Equals(other.SearchDisplayName, SearchDisplayName, System.StringComparison.Ordinal)
+                && string.Equals(other._searchQuery, _searchQuery, System.StringComparison.Ordinal)
+                && other._searchResults.SequenceEqual(_searchResults);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is null)
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj is SearchResultToolProvider searchResultToolProvider)
+            {
+                return Equals(searchResultToolProvider);
+            }
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int result = SearchDisplayName?.GetHashCode() ?? 1;
+                result = (result * 397) ^ _searchQuery.GetHashCode();
+                return result;
+            }
         }
     }
 }

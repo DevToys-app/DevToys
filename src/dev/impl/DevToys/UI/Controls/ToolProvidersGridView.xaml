@@ -4,10 +4,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:tools="using:DevToys.Api.Tools" xmlns:i="using:Microsoft.Xaml.Interactivity" xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:tools="using:DevToys.Api.Tools"
+    xmlns:converters="using:DevToys.UI.Converters"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
+    <UserControl.Resources>
+        <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
+    </UserControl.Resources>
 
     <GridView
         SelectionMode="None"
@@ -21,7 +27,7 @@
             </Style>
         </GridView.ItemContainerStyle>
         <GridView.ItemTemplate>
-            <DataTemplate x:DataType="tools:IToolProvider">
+            <DataTemplate x:DataType="tools:ToolProviderViewItem">
                 <Grid
                     Width="175"
                     Height="318"
@@ -63,14 +69,14 @@
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 Foreground="{ThemeResource GridViewItemForeground}"
-                                Content="{x:Bind IconSource.Result, Mode=OneWay}"/>
+                                Content="{x:Bind ToolProvider.IconSource.Result, Mode=OneWay}"/>
                         </Viewbox>
                     </Border>
                     <TextBlock
                         Grid.Row="1"
                         Style="{StaticResource BodyStrongTextBlockStyle}"
                         Foreground="{ThemeResource GridViewItemForeground}"
-                        Text="{x:Bind SearchDisplayName}"
+                        Text="{x:Bind ToolProvider.SearchDisplayName}"
                         TextWrapping="Wrap"
                         TextTrimming="CharacterEllipsis" />
                     <TextBlock
@@ -78,7 +84,7 @@
                         Style="{StaticResource CaptionTextBlockStyle}"
                         Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                         Margin="0,2,8,0"
-                        Text="{x:Bind Description}"
+                        Text="{x:Bind ToolProvider.Description}"
                         TextWrapping="Wrap"
                         TextTrimming="CharacterEllipsis"/>
                     <StackPanel
@@ -100,6 +106,35 @@
                             Click="OpenInNewWindowButton_Click">
                             <FontIcon FontFamily="{StaticResource FluentSystemIcons}" FontSize="16" Glyph="&#xF8B5;"/>
                         </Button>
+                        <StackPanel
+                            x:Name="FavoriteStackPanel"
+                            x:Load="{x:Bind Metadata.NotFavorable, Mode=OneWay, Converter={StaticResource InvertedBooleanConverter}}"
+                            Orientation="Horizontal">
+                            <Button
+                                x:Name="AddToFavoritesButton"
+                                x:Load="{x:Bind IsFavorite, Mode=OneWay, Converter={StaticResource InvertedBooleanConverter}}"
+                                Style="{StaticResource CommandBarFlyoutEllipsisButtonStyle}"
+                                Height="32"
+                                Width="32"
+                                Padding="4"
+                                AutomationProperties.Name="{Binding Instance.MainPage.AddToFavorites, Source={StaticResource LanguageManager}}"
+                                ToolTipService.ToolTip="{Binding Instance.MainPage.AddToFavorites, Source={StaticResource LanguageManager}}"
+                                Click="AddToFavoritesButton_Click">
+                                <FontIcon FontFamily="{StaticResource FluentSystemIcons}" FontSize="16" Glyph="&#xF70F;"/>
+                            </Button>
+                            <Button
+                                x:Name="RemoveFromFavoritesButton"
+                                x:Load="{x:Bind IsFavorite, Mode=OneWay}"
+                                Style="{StaticResource CommandBarFlyoutEllipsisButtonStyle}"
+                                Height="32"
+                                Width="32"
+                                Padding="4"
+                                AutomationProperties.Name="{Binding Instance.MainPage.RemoveFromFavorites, Source={StaticResource LanguageManager}}"
+                                ToolTipService.ToolTip="{Binding Instance.MainPage.RemoveFromFavorites, Source={StaticResource LanguageManager}}"
+                                Click="RemoveFromFavoritesButton_Click">
+                                <FontIcon FontFamily="{StaticResource FluentSystemIcons}" FontSize="16" Glyph="&#xF71A;"/>
+                            </Button>
+                        </StackPanel>
                         <Button
                             Style="{StaticResource CommandBarFlyoutEllipsisButtonStyle}"
                             Height="32"

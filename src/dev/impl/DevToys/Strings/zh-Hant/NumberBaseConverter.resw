@@ -176,4 +176,28 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>數值進制轉換器</value>
   </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Binary Octal Decimal Hexadecimal</value>
+  </data>
+    <data name="AdvancedModeLabel" xml:space="preserve">
+    <value>進階模式</value>
+  </data>
+  <data name="InputDictionaryLabel" xml:space="preserve">
+    <value>輸入字典</value>
+  </data>
+  <data name="OutputDictionaryLabel" xml:space="preserve">
+    <value>輸出字典</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>輸出</value>
+  </data>
+  <data name="BaseNumberError" xml:space="preserve">
+    <value>底數應大於 1。</value>
+  </data>
+  <data name="DictionarySizeError" xml:space="preserve">
+    <value>字典大小應大於 1。</value>
+  </data>
+  <data name="IncompatibleBaseDictionaryError" xml:space="preserve">
+    <value>字典大小不得小於底數。</value>
+  </data>
 </root>

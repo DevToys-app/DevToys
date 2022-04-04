@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using DevToys.Shared.Core;
 
@@ -10,11 +11,11 @@ namespace DevToys.Helpers.SqlFormatter.Core
 {
     internal abstract class Formatter
     {
-        private static readonly Regex SpacesEndRegex = new Regex(@"[ \t]+$", RegexOptions.Compiled);
-        private static readonly Regex WhitespacesRegex = new Regex(@"\s+$", RegexOptions.Compiled);
-        private static readonly Regex CommentWhitespacesRegex = new Regex(@"\n[ \t]*", RegexOptions.Compiled);
+        private static readonly Regex WhitespacesRegex = new Regex(@"\s+$", RegexOptions.Compiled, RegexFactory.DefaultMatchTimeout);
+        private static readonly Regex CommentWhitespacesRegex = new Regex(@"\n[ \t]*", RegexOptions.Compiled, RegexFactory.DefaultMatchTimeout);
 
         private readonly InlineBlock _inlineBlock = new();
+        private readonly StringBuilder _queryBuilder = new();
 
         private Indentation? _indentation = null;
         private SqlFormatterOptions _options;
@@ -41,8 +42,8 @@ namespace DevToys.Helpers.SqlFormatter.Core
             _params = new Params(options.PlaceholderParameters);
 
             _tokens = GetTokenizer().Tokenize(query);
-            string? formattedQuery = GetFormattedQueryFromTokens();
-            return formattedQuery.Trim();
+            SetFormattedQueryFromTokens(query.AsSpan());
+            return _queryBuilder.ToString().Trim();
         }
 
         /// <summary>
@@ -53,7 +54,7 @@ namespace DevToys.Helpers.SqlFormatter.Core
         /// <summary>
         /// Reprocess and modify a token based on parsed context.
         /// </summary>
-        protected virtual Token TokenOverride(Token token)
+        protected virtual Token TokenOverride(Token token, ReadOnlySpan<char> querySpan)
         {
             // subclasses can override this to modify tokens during formatting
             return token;
@@ -61,12 +62,7 @@ namespace DevToys.Helpers.SqlFormatter.Core
 
         protected Token? TokenLookBehind(int n = 1)
         {
-            if (_tokens is null || _tokens!.Count <= _index - n || _index - n < 0)
-            {
-                return null;
-            }
-
-            return _tokens![_index - n];
+            return _tokens?.ElementAtOrDefault(_index - n);
         }
 
         protected Token? TokenLookAhead(int n = 1)
@@ -78,127 +74,135 @@ namespace DevToys.Helpers.SqlFormatter.Core
             return _tokens![_index + n];
         }
 
-        private string GetFormattedQueryFromTokens()
+        private void SetFormattedQueryFromTokens(ReadOnlySpan<char> querySpan)
         {
-            string formattedQuery = string.Empty;
+            _queryBuilder.Clear();
 
             Assumes.NotNull(_tokens, nameof(_tokens));
             for (int i = 0; i < _tokens!.Count; i++)
             {
                 _index = i;
 
-                Token token = TokenOverride(_tokens[i]);
-                if (token.Type == TokenType.LineComment)
+                Token token = TokenOverride(_tokens[i], querySpan);
+                switch (token.Type)
                 {
-                    formattedQuery = FormatLineComment(token, formattedQuery);
-                }
-                else if (token.Type == TokenType.BlockComment)
-                {
-                    formattedQuery = FormatBlockComment(token, formattedQuery);
-                }
-                else if (token.Type == TokenType.ReservedTopLevel)
-                {
-                    formattedQuery = FormatTopLevelReservedWord(token, formattedQuery);
-                    _previousReservedToken = token;
-                }
-                else if (token.Type == TokenType.ReservedTopLevelNoIndent)
-                {
-                    formattedQuery = FormatTopLevelReservedWordNoIndent(token, formattedQuery);
-                    _previousReservedToken = token;
-                }
-                else if (token.Type == TokenType.ReservedNewLine)
-                {
-                    formattedQuery = FormatNewlineReservedWord(token, formattedQuery);
-                    _previousReservedToken = token;
-                }
-                else if (token.Type == TokenType.Reserved)
-                {
-                    formattedQuery = FormatWithSpaces(token, formattedQuery);
-                    _previousReservedToken = token;
-                }
-                else if (token.Type == TokenType.OpenParen)
-                {
-                    formattedQuery = FormatOpeningParentheses(token, formattedQuery);
-                }
-                else if (token.Type == TokenType.CloseParen)
-                {
-                    formattedQuery = FormatClosingParentheses(token, formattedQuery);
-                }
-                else if (token.Type == TokenType.PlaceHolder)
-                {
-                    formattedQuery = FormatPlaceholder(token, formattedQuery);
-                }
-                else if (string.Equals(token.Value, ",", System.StringComparison.Ordinal))
-                {
-                    formattedQuery = FormatComma(token, formattedQuery);
-                }
-                else if (string.Equals(token.Value, ":", System.StringComparison.Ordinal))
-                {
-                    formattedQuery = FormatWithSpaceAfter(token, formattedQuery);
-                }
-                else if (string.Equals(token.Value, ".", System.StringComparison.Ordinal))
-                {
-                    formattedQuery = FormatWithoutSpaces(token, formattedQuery);
-                }
-                else if (string.Equals(token.Value, ";", System.StringComparison.Ordinal))
-                {
-                    formattedQuery = FormatQuerySeparator(token, formattedQuery);
-                }
-                else
-                {
-                    formattedQuery = FormatWithSpaces(token, formattedQuery);
+                    case TokenType.LineComment:
+                        FormatLineComment(token, querySpan);
+                        break;
+                    case TokenType.BlockComment:
+                        FormatBlockComment(token, querySpan);
+                        break;
+                    case TokenType.ReservedTopLevel:
+                        FormatTopLevelReservedWord(token, querySpan);
+                        _previousReservedToken = token;
+                        break;
+                    case TokenType.ReservedTopLevelNoIndent:
+                        FormatTopLvoidReservedWordNoIndent(token, querySpan);
+                        _previousReservedToken = token;
+                        break;
+                    case TokenType.ReservedNewLine:
+                        FormatNewlineReservedWord(token, querySpan);
+                        _previousReservedToken = token;
+                        break;
+                    case TokenType.Reserved:
+                        FormatWithSpaces(token, querySpan);
+                        _previousReservedToken = token;
+                        break;
+                    case TokenType.OpenParen:
+                        FormatOpeningParentheses(token, querySpan);
+                        break;
+                    case TokenType.CloseParen:
+                        FormatClosingParentheses(token, querySpan);
+                        break;
+                    case TokenType.PlaceHolder:
+                        FormatPlaceholder(token, querySpan);
+                        break;
+                    default:
+                        switch (token.Length)
+                        {
+                            case 1 when querySpan[token.Index] == ',':
+                                FormatComma(token, querySpan);
+                                break;
+                            case 1 when querySpan[token.Index] == ':':
+                                FormatWithSpaceAfter(token, querySpan);
+                                break;
+                            case 1 when querySpan[token.Index] == '.':
+                                FormatWithoutSpaces(token, querySpan);
+                                break;
+                            case 1 when querySpan[token.Index] == ';':
+                                FormatQuerySeparator(token, querySpan);
+                                break;
+                            default:
+                                FormatWithSpaces(token, querySpan);
+                                break;
+                        }
+                        break;
                 }
             }
-
-            return formattedQuery;
         }
 
-        private string FormatLineComment(Token token, string query)
+        private void FormatLineComment(Token token, ReadOnlySpan<char> querySpan)
         {
-            return AddNewLine(query + Show(token));
+            _queryBuilder.Append(Show(querySpan.Slice(token), token.Type));
+            AddNewLine();
         }
 
-        private string FormatBlockComment(Token token, string query)
+        private void FormatBlockComment(Token token, ReadOnlySpan<char> querySpan)
         {
-            return AddNewLine(AddNewLine(query) + IndentComment(token.Value));
+            AddNewLine();
+            _queryBuilder.Append(IndentComment(querySpan.Slice(token)));
+            AddNewLine();
         }
 
-        private string IndentComment(string comment)
-        {
-            Assumes.NotNull(_indentation, nameof(_indentation));
-            return CommentWhitespacesRegex.Replace(comment, "\n" + _indentation!.GetIndent() + " ");
-        }
-
-        private string FormatTopLevelReservedWordNoIndent(Token token, string query)
+        private string IndentComment(ReadOnlySpan<char> comment)
         {
             Assumes.NotNull(_indentation, nameof(_indentation));
-            _indentation!.DecreaseTopLevel();
-
-            query = AddNewLine(query) + EqualizeWhitespace(Show(token));
-            return AddNewLine(query);
+            return CommentWhitespacesRegex.Replace(comment.ToString(), $"\n{_indentation!.GetIndent()} ");
         }
 
-        private string FormatTopLevelReservedWord(Token token, string query)
+        private void FormatTopLvoidReservedWordNoIndent(Token token, ReadOnlySpan<char> querySpan)
         {
             Assumes.NotNull(_indentation, nameof(_indentation));
             _indentation!.DecreaseTopLevel();
 
-            query = AddNewLine(query);
+            AddNewLine();
+
+            _queryBuilder.Append(EqualizeWhitespace(Show(querySpan.Slice(token), token.Type)));
+
+            AddNewLine();
+        }
+
+        private void FormatTopLevelReservedWord(Token token, ReadOnlySpan<char> querySpan)
+        {
+            Assumes.NotNull(_indentation, nameof(_indentation));
+            _indentation!.DecreaseTopLevel();
+
+            AddNewLine();
 
             _indentation.IncreaseTopLevel();
 
-            query += EqualizeWhitespace(Show(token));
-            return AddNewLine(query);
+            _queryBuilder.Append(EqualizeWhitespace(Show(querySpan.Slice(token), token.Type)));
+
+            AddNewLine();
         }
 
-        private string FormatNewlineReservedWord(Token token, string query)
+        private void FormatNewlineReservedWord(Token token, ReadOnlySpan<char> querySpan)
         {
-            if (TokenHelper.IsAnd(token) && TokenHelper.isBetween(TokenLookBehind(2)))
+            if (token.IsAnd(querySpan.Slice(token)))
             {
-                return FormatWithSpaces(token, query);
-            }
+                Token? t = TokenLookBehind(2);
 
-            return AddNewLine(query) + EqualizeWhitespace(Show(token)) + " ";
+                if (t != null && t.Value.IsBetween(querySpan.Slice(t.Value)))
+                {
+                    FormatWithSpaces(token, querySpan);
+                    return;
+                }
+            }
+            AddNewLine();
+
+            _queryBuilder.Append(EqualizeWhitespace(Show(querySpan.Slice(token), token.Type)));
+
+            _queryBuilder.Append(' ');
         }
 
         /// <summary>
@@ -212,136 +216,158 @@ namespace DevToys.Helpers.SqlFormatter.Core
         /// <summary>
         /// Opening parentheses increase the block indent level and start a new line
         /// </summary>
-        private string FormatOpeningParentheses(Token token, string query)
+        private void FormatOpeningParentheses(Token token, ReadOnlySpan<char> querySpan)
         {
             // Take out the preceding space unless there was whitespace there in the original query
             // or another opening parens or line comment
-            if (token.WhitespaceBefore?.Length == 0)
+            if (token.PrecedingWitespaceLength == 0)
             {
-                TokenType? type = TokenLookBehind()?.Type;
-                if (type.HasValue && type != TokenType.OpenParen && type != TokenType.LineComment && type != TokenType.Operator)
+                Token? behindToken = TokenLookBehind();
+
+                if (behindToken is not { Type: TokenType.OpenParen or TokenType.LineComment or TokenType.Operator })
                 {
-                    query = TrimSpacesEnd(query);
+                    _queryBuilder.TrimSpaceEnd();
                 }
             }
-
-            query += Show(token);
+            _queryBuilder.Append(Show(querySpan.Slice(token), token.Type));
 
             Assumes.NotNull(_tokens, nameof(token));
-            _inlineBlock.BeginIfPossible(_tokens!, _index);
+            _inlineBlock.BeginIfPossible(_tokens!, _index, querySpan.Slice(token));
 
             if (!_inlineBlock.IsActive())
             {
                 Assumes.NotNull(_indentation, nameof(_indentation));
                 _indentation!.IncreaseBlockLevel();
-                query = AddNewLine(query);
+                AddNewLine();
             }
-
-            return query;
         }
 
         /// <summary>
         /// Closing parentheses decrease the block indent level
         /// </summary>
-        private string FormatClosingParentheses(Token token, string query)
+        private void FormatClosingParentheses(Token token, ReadOnlySpan<char> querySpan)
         {
             Assumes.NotNull(_indentation, nameof(_indentation));
             if (_inlineBlock.IsActive())
             {
                 _inlineBlock.End();
-                return FormatWithSpaceAfter(token, query);
+                FormatWithSpaceAfter(token, querySpan);
             }
             else
             {
                 _indentation!.DecreaseBlockLevel();
-                return FormatWithSpaces(token, AddNewLine(query));
+                AddNewLine();
+                FormatWithSpaces(token, querySpan);
             }
         }
 
-        private string FormatPlaceholder(Token token, string query)
+        private void FormatPlaceholder(Token token, ReadOnlySpan<char> querySpan)
         {
             Assumes.NotNull(_params, nameof(_params));
-            return query + _params!.Get(token) + ' ';
+
+            string? value = null;
+            ReadOnlySpan<char> valueSpan = querySpan.Slice(token);
+            if (valueSpan.Length != 0)
+            {
+                // assumme the length of all placeholder is 1, since only char array is accepted 
+                value = _params!.Get(valueSpan.Slice(0, 1).ToString());
+            }
+
+            _queryBuilder.Append(value ?? querySpan.Slice(token).ToString());
+
+            _queryBuilder.Append(' ');
         }
 
         /// <summary>
         /// Commas start a new line (unless within inline parentheses or SQL "LIMIT" clause)
         /// </summary>
-        private string FormatComma(Token token, string query)
+        private void FormatComma(Token token, ReadOnlySpan<char> querySpan)
         {
-            query = FormatWithSpaceAfter(token, query);
+            FormatWithSpaceAfter(token, querySpan);
 
             if (_inlineBlock.IsActive())
             {
-                return query;
+                return;
             }
-            else if (TokenHelper.isLimit(_previousReservedToken))
+            else if (_previousReservedToken is not null
+                && _previousReservedToken.Value.IsLimit(querySpan.Slice(_previousReservedToken.Value)))
             {
-                return query;
+                return;
             }
-            else
-            {
-                return AddNewLine(query);
-            }
+
+            AddNewLine();
+
         }
 
-        private string FormatWithSpaceAfter(Token token, string query)
+        private void FormatWithSpaceAfter(Token token, ReadOnlySpan<char> querySpan)
         {
-            return TrimSpacesEnd(query) + Show(token) + " ";
+            _queryBuilder.TrimSpaceEnd();
+            _queryBuilder.Append(Show(querySpan.Slice(token), token.Type));
+            _queryBuilder.Append(' ');
         }
 
-        private string FormatWithoutSpaces(Token token, string query)
+        private void FormatWithoutSpaces(Token token, ReadOnlySpan<char> querySpan)
         {
-            return TrimSpacesEnd(query) + Show(token);
+            _queryBuilder.TrimSpaceEnd();
+            _queryBuilder.Append(Show(querySpan.Slice(token), token.Type));
         }
 
-        private string FormatWithSpaces(Token token, string query)
+        private void FormatWithSpaces(Token token, ReadOnlySpan<char> querySpan)
         {
-            return query + Show(token) + " ";
+            _queryBuilder.Append(Show(querySpan.Slice(token), token.Type));
+            _queryBuilder.Append(' ');
         }
 
-        private string FormatQuerySeparator(Token token, string query)
+        private void FormatQuerySeparator(Token token, ReadOnlySpan<char> querySpan)
         {
             Assumes.NotNull(_indentation, nameof(_indentation));
             _indentation!.ResetIndentation();
-            return TrimSpacesEnd(query) + Show(token) + string.Concat(Enumerable.Repeat("\r\n", _options.LinesBetweenQueries));
+
+            _queryBuilder.TrimSpaceEnd();
+            _queryBuilder.Append(Show(querySpan.Slice(token), token.Type));
+
+            int times = _options.LinesBetweenQueries;
+
+            while (times != 0)
+            {
+                _queryBuilder.AppendLine();
+                times--;
+            }
         }
 
         /// <summary>
         /// Converts token to string (uppercasing it if needed)
         /// </summary>
-        private string Show(Token token)
+        private string Show(ReadOnlySpan<char> value, TokenType tokenType)
         {
             if (_options.Uppercase
-                && (token.Type == TokenType.Reserved
-                || token.Type == TokenType.ReservedTopLevel
-                || token.Type == TokenType.ReservedTopLevelNoIndent
-                || token.Type == TokenType.ReservedNewLine
-                || token.Type == TokenType.OpenParen
-                || token.Type == TokenType.CloseParen))
+                && (tokenType == TokenType.Reserved
+                || tokenType == TokenType.ReservedTopLevel
+                || tokenType == TokenType.ReservedTopLevelNoIndent
+                || tokenType == TokenType.ReservedNewLine
+                || tokenType == TokenType.OpenParen
+                || tokenType == TokenType.CloseParen))
             {
-                return token.Value.ToUpperInvariant();
+                return value.ToString().ToUpper();
             }
             else
             {
-                return token.Value;
+                return value.ToString();
             }
         }
 
-        private string AddNewLine(string query)
+        private void AddNewLine()
         {
             Assumes.NotNull(_indentation, nameof(_indentation));
-            query = TrimSpacesEnd(query);
-            if (!query.EndsWith('\n'))
-            {
-                query += Environment.NewLine;
-            }
-            return query + _indentation!.GetIndent();
-        }
 
-        private string TrimSpacesEnd(string input)
-        {
-            return SpacesEndRegex.Replace(input, string.Empty);
+            _queryBuilder.TrimSpaceEnd();
+
+            if (_queryBuilder.Length != 0 && _queryBuilder[_queryBuilder.Length - 1] != '\n')
+            {
+                _queryBuilder.AppendLine();
+            }
+
+            _queryBuilder.Append(_indentation!.GetIndent());
         }
     }
 }

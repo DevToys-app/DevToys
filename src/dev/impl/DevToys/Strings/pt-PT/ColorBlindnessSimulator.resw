@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Ferramenta de Simulação de Cegueira por Cor</value>
+    <value>Ferramenta Simuladora de Cegueira por Cor</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Simulador de Cegueira por Cor</value>
@@ -136,15 +136,18 @@
     <value>Cancelar</value>
   </data>
   <data name="DeuteranopiaSimulation" xml:space="preserve">
-    <value>Simulação de Deuteranopia</value>
+    <value>Simulação de deuteranopia</value>
   </data>
   <data name="OriginalPicture" xml:space="preserve">
     <value>Original</value>
   </data>
   <data name="ProtanopiaSimulation" xml:space="preserve">
-    <value>Simulação da Protanopia</value>
+    <value>Simulação da protanopia</value>
   </data>
   <data name="TritanopiaSimulation" xml:space="preserve">
-    <value>Simulação da Tritanopia</value>
+    <value>Simulação da tritanopia</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value />
   </data>
 </root>

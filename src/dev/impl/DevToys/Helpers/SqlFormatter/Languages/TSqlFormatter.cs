@@ -263,8 +263,8 @@ namespace DevToys.Helpers.SqlFormatter.Languages
                     stringTypes: new[] { "\"\"", "N''", "''", "[]" },
                     openParens: new[] { "(", "CASE" },
                     closeParens: new[] { ")", "END" },
-                    indexedPlaceholderTypes: Array.Empty<string>(),
-                    namedPlaceholderTypes: new[] { "@" },
+                    indexedPlaceholderTypes: Array.Empty<char>(),
+                    namedPlaceholderTypes: new[] { '@' },
                     lineCommentTypes: new[] { "--" },
                     specialWordChars: new[] { "#", "@" },
                     operators: new[]

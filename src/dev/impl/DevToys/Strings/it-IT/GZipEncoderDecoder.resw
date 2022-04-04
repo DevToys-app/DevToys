@@ -136,7 +136,7 @@
     <value>Comprimi</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Comprimi/Decomprimi GZip</value>
+    <value>Modalità di compressione</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>GZip</value>
@@ -160,6 +160,9 @@
     <value>Comprimi o decomprimi stringhe</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Comprimi / Decomprimi GZip</value>
+    <value>Compressore / Decompressore GZip</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value />
   </data>
 </root>

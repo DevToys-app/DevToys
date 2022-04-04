@@ -26,6 +26,8 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
 
         public string AccessibleName => LanguageManager.Instance.ColorBlindnessSimulator.AccessibleName;
 
+        public string? SearchKeywords => LanguageManager.Instance.ColorBlindnessSimulator.SearchKeywords;
+
         public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("ColorBlindnessSimulator.svg");
 
         [ImportingConstructor]

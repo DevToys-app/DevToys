@@ -15,6 +15,7 @@ namespace DevToys.ViewModels.AllTools
     [Order(0)]
     [MenuPlacement(MenuPlacement.Header)]
     [NotSearchable]
+    [NotFavorable]
     [NoCompactOverlaySupport]
     internal sealed class AllToolsToolProvider : ToolProviderBase, IToolProvider
     {
@@ -27,6 +28,8 @@ namespace DevToys.ViewModels.AllTools
         public string? Description { get; } = null;
 
         public string AccessibleName => LanguageManager.Instance.AllTools.AccessibleName;
+
+        public string? SearchKeywords => MenuDisplayName;
 
         public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF480");
 
