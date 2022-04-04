@@ -15,9 +15,21 @@ using YamlDotNet.Serialization;
 namespace DevToys.ViewModels.Tools.JsonYaml.Services.Converters
 {
     [ServiceType(GeneratorLanguages.Yaml)]
-    class YamlConverterService : IConverterService
+    class YamlConverterService : ITextConverterAggregator
     {
+        public GeneratorLanguageDisplayPair GeneratorDisplay { get; } = GeneratorLanguageDisplayPair.Yaml;
         int Indent { get; set; } = 2;
+                
+        public void SetSerializerIndentation(Indentation indent)
+        {
+            Indent = indent switch
+            {
+                Indentation.TwoSpaces => 2,
+                Indentation.FourSpaces => 4,
+                _ => Indent
+            };
+        }
+        
         public object Read(string input)
         {
             using var stringReader = new StringReader(input);
@@ -25,23 +37,6 @@ namespace DevToys.ViewModels.Tools.JsonYaml.Services.Converters
                 .WithNodeTypeResolver(new DecimalYamlTypeResolver())
                 .Build();
             return deserializer.Deserialize(stringReader);
-        }
-
-        public void SetDeserializerConfigurations(ConverterConfiguration key, object value)
-        {
-            // pass
-        }
-
-        public void SetSerializerConfigurations(ConverterConfiguration key, object value)
-        {
-            switch (key)
-            {
-                case ConverterConfiguration.Indentation:
-                    ConfigureIndentation((Indentation)value);
-                    break;
-                default:
-                    throw new UnknownConfigurationException("Unrecognized configuration parameter");
-            }
         }
 
         public string Write(object input)
@@ -52,16 +47,6 @@ namespace DevToys.ViewModels.Tools.JsonYaml.Services.Converters
                     EmitterSettings.Default.WithBestIndent(Indent).WithIndentedSequences());
 
             return serializer.Serialize(input) ?? string.Empty;
-        }
-
-        private void ConfigureIndentation(Indentation indent)
-        {
-            Indent = indent switch
-            {
-                Indentation.TwoSpaces => 2,
-                Indentation.FourSpaces => 4,
-                _ => Indent
-            };
         }
     }
 }

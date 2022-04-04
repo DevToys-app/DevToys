@@ -11,16 +11,16 @@ using DevToys.ViewModels.Tools.JsonYaml.Services.Abstractions;
 
 namespace DevToys.ViewModels.Tools.JsonYaml.Services
 {
-    [Export(typeof(IConverterContainer<GeneratorLanguages>))]
+    [Export(typeof(ITextFormatterContainer<GeneratorLanguages>))]
     [Shared]
-    public class ConverterService : IConverterContainer<GeneratorLanguages>
+    public class ConverterService : ITextFormatterContainer<GeneratorLanguages>
     {
-        private readonly Lazy<Dictionary<GeneratorLanguages, IConverterService>> _lazyServices;
-        public Dictionary<GeneratorLanguages, IConverterService> Services => _lazyServices.Value;
+        private readonly Lazy<Dictionary<GeneratorLanguages, ITextConverterAggregator>> _lazyServices;
+        public Dictionary<GeneratorLanguages, ITextConverterAggregator> Services => _lazyServices.Value;
 
         public ConverterService()
         {
-            _lazyServices = new Lazy<Dictionary<GeneratorLanguages, IConverterService>>(Initialize);
+            _lazyServices = new Lazy<Dictionary<GeneratorLanguages, ITextConverterAggregator>>(Initialize);
         }
 
         public bool TryConvert(string input, out string output, GeneratorLanguages inputLang, GeneratorLanguages outputLang)
@@ -36,13 +36,13 @@ namespace DevToys.ViewModels.Tools.JsonYaml.Services
             return true;
         }
 
-        public Dictionary<GeneratorLanguages, IConverterService> Initialize()
+        public Dictionary<GeneratorLanguages, ITextConverterAggregator> Initialize()
         {
-            var temp = new Dictionary<GeneratorLanguages, IConverterService>();
-            foreach (var type in Assembly.GetExecutingAssembly().DefinedTypes.Where(t => t.GetCustomAttribute<ServiceTypeAttribute>() is not null && t.GetInterface(nameof(IConverterService)) is not null))
+            var temp = new Dictionary<GeneratorLanguages, ITextConverterAggregator>();
+            foreach (var type in Assembly.GetExecutingAssembly().DefinedTypes.Where(t => t.GetCustomAttribute<ServiceTypeAttribute>() is not null && t.GetInterface(nameof(ITextConverterAggregator)) is not null))
             {
                 var serviceAttribute = type.GetCustomAttribute<ServiceTypeAttribute>();
-                if (Activator.CreateInstance(type) is not IConverterService service)
+                if (Activator.CreateInstance(type) is not ITextConverterAggregator service)
                 {
                     // TODO: Should throw an exception or ignore type?
                     continue;
@@ -52,12 +52,17 @@ namespace DevToys.ViewModels.Tools.JsonYaml.Services
             return temp;
         }
 
-        public void ConfigureService(GeneratorLanguages service, Action<IConverterService> configuration)
+        public void ConfigureService(GeneratorLanguages service, Action<ITextFormatter> configuration)
         {
-            if(Services.TryGetValue(service, out IConverterService serv))
+            if(Services.TryGetValue(service, out ITextConverterAggregator serv))
             {
                 configuration(serv);
             }
+        }
+
+        public IEnumerable<GeneratorLanguageDisplayPair> GetGenerators()
+        {
+            return Services.Select(v => v.Value.GeneratorDisplay);
         }
     }
 }

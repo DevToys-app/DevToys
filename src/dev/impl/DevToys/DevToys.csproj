@@ -81,12 +81,14 @@
     <Compile Include="ViewModels\Tools\AllTools\AllToolsToolProvider.cs" />
     <Compile Include="ViewModels\Tools\AllTools\AllToolsToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Converters\ConvertersGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Converters\JsonYaml\Services\Abstractions\ITextConverterAggregator.cs" />
+    <Compile Include="ViewModels\Tools\Converters\JsonYaml\Services\Abstractions\ITextFormatter.cs" />
     <Compile Include="ViewModels\Tools\Converters\JsonYaml\Services\ConverterConfiguration.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolProvider.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Converters\JsonYaml\DecimalJsonConverter.cs" />
     <Compile Include="ViewModels\Tools\Converters\JsonYaml\DecimalYamlTypeResolver.cs" />
-    <Compile Include="ViewModels\Tools\Converters\JsonYaml\Services\Abstractions\IConverterContainer.cs" />
+    <Compile Include="ViewModels\Tools\Converters\JsonYaml\Services\Abstractions\ITextFormatterContainer.cs" />
     <Compile Include="ViewModels\Tools\Converters\JsonYaml\Services\Abstractions\IConverterService.cs" />
     <Compile Include="ViewModels\Tools\Converters\JsonYaml\Services\Abstractions\ServiceTypeAttribute.cs" />
     <Compile Include="ViewModels\Tools\Converters\JsonYaml\Services\ConverterService.cs" />

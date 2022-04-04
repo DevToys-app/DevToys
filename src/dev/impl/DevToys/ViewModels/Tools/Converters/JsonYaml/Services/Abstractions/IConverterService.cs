@@ -7,12 +7,27 @@ using DevToys.ViewModels.Tools.Converters.JsonYaml.Services;
 
 namespace DevToys.ViewModels.Tools.JsonYaml.Services.Abstractions
 {
-    public interface IConverterService
+    /// <summary>
+    /// Provides a service to convert from/to a <typeparamref name="T"/> object using a custom format
+    /// </summary>
+    /// <typeparam name="T">Type of the object to work with</typeparam>
+    public interface IConverterService<T, M> where M : class
     {
-        object Read(string input);
-        string Write(object _object);
-
-        void SetDeserializerConfigurations(ConverterConfiguration key, object value);
-        void SetSerializerConfigurations(ConverterConfiguration key, object value);
+        /// <summary>
+        /// Custom metadata for the converter
+        /// </summary>
+        M GeneratorDisplay { get; }
+        /// <summary>
+        /// Converts a <typeparamref name="T"/> object into a standard representation using a custom format
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns>A standard representation language object deserialized using a custom format</returns>
+        object Read(T input);
+        /// <summary>
+        /// Converts from a standard representation object into a <typeparamref name="T"/> object using a custom format
+        /// </summary>
+        /// <param name="_object">A standard representation object to be serialized</param>
+        /// <returns>A representation of <paramref name="_object"/> into a <typeparamref name="T"/> using a custom format</returns>
+        T Write(object _object);
     }
 }

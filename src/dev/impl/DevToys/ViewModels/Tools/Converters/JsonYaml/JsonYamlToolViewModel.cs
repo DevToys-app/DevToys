@@ -68,21 +68,12 @@ namespace DevToys.ViewModels.Tools.JsonYaml
         };
 
         /// <summary>
-        /// Get a list of supported languages
+        /// Get a dictionary of supported languages
         /// </summary>
-        internal IReadOnlyList<GeneratorLanguageDisplayPair> Languages = new ObservableCollection<GeneratorLanguageDisplayPair>
-        {
-            GeneratorLanguageDisplayPair.Json,
-            GeneratorLanguageDisplayPair.Yaml,
-        };
+        internal readonly IReadOnlyList<GeneratorLanguageDisplayPair> Languages;
 
         private readonly IMarketingService _marketingService;
         private readonly Queue<string> _conversionQueue = new();
-
-        private readonly JsonSerializerSettings _defaultJsonSerializerSettings = new()
-        {
-            FloatParseHandling = FloatParseHandling.Decimal
-        };
 
         private bool _toolSuccessfullyWorked;
         private bool _conversionInProgress;
@@ -109,7 +100,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml
                 if (IndentationMode != value)
                 {
                     SettingsProvider.SetSetting(Indentation, value.Value);
-                    Converters.ConfigureService(OutputValueLanguage.Value, (service) => service.SetSerializerConfigurations(ConverterConfiguration.Indentation, IndentationMode.Value));
+                    Converters.ConfigureService(OutputValueLanguage.Value, (service) => service.SetSerializerIndentation(IndentationMode.Value));
                     OnPropertyChanged();
                     QueueConversion();
                 }
@@ -136,8 +127,12 @@ namespace DevToys.ViewModels.Tools.JsonYaml
         {
             get
             {
+                if(Languages is null)
+                {
+                    return GeneratorLanguageDisplayPair.Json;
+                }
                 GeneratorLanguages settingsValue = SettingsProvider.GetSetting(InputLanguage);
-                GeneratorLanguageDisplayPair? language = Languages.FirstOrDefault(x => x.Value == settingsValue);
+                GeneratorLanguageDisplayPair language = Languages.FirstOrDefault(v => settingsValue == v.Value);
                 return language ?? GeneratorLanguageDisplayPair.Json;
             }
             set
@@ -167,8 +162,12 @@ namespace DevToys.ViewModels.Tools.JsonYaml
         {
             get
             {
+                if (Languages is null)
+                {
+                    return GeneratorLanguageDisplayPair.Yaml;
+                }
                 GeneratorLanguages settingsValue = SettingsProvider.GetSetting(OutputLanguage);
-                GeneratorLanguageDisplayPair? language = Languages.FirstOrDefault(x => x.Value == settingsValue);
+                GeneratorLanguageDisplayPair language = Languages.FirstOrDefault(v => settingsValue == v.Value);
                 return language ?? GeneratorLanguageDisplayPair.Yaml;
             }
             set
@@ -176,7 +175,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml
                 if (OutputValueLanguage != value)
                 {
                     SettingsProvider.SetSetting(OutputLanguage, value.Value);
-                    Converters.ConfigureService(value.Value, (service) => service.SetSerializerConfigurations(ConverterConfiguration.Indentation, IndentationMode.Value));
+                    Converters.ConfigureService(value.Value, (service) => service.SetSerializerIndentation(IndentationMode.Value));
                     OnPropertyChanged();
                     QueueConversion();
                 }
@@ -184,15 +183,16 @@ namespace DevToys.ViewModels.Tools.JsonYaml
         }
 
         internal ISettingsProvider SettingsProvider { get; }
-        private readonly IConverterContainer<GeneratorLanguages> Converters;
+        private readonly ITextFormatterContainer<GeneratorLanguages> Converters;
 
         [ImportingConstructor]
-        public JsonYamlToolViewModel(ISettingsProvider settingsProvider, IMarketingService marketingService, IConverterContainer<GeneratorLanguages> converterService)
+        public JsonYamlToolViewModel(ISettingsProvider settingsProvider, IMarketingService marketingService, ITextFormatterContainer<GeneratorLanguages> converterService)
         {
             SettingsProvider = settingsProvider;
             _marketingService = marketingService;
             Converters = converterService;
-            Converters.ConfigureService(OutputValueLanguage.Value, (service) => service.SetSerializerConfigurations(ConverterConfiguration.Indentation, IndentationMode.Value));
+            Converters.ConfigureService(OutputValueLanguage.Value, (service) => service.SetSerializerIndentation(IndentationMode.Value));
+            Languages = new ObservableCollection<GeneratorLanguageDisplayPair>(Converters.GetGenerators());
         }
 
         private void QueueConversion()

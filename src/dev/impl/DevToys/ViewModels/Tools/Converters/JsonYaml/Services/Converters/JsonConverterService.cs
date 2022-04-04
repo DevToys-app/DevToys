@@ -15,9 +15,10 @@ using DevToys.ViewModels.Tools.Converters.JsonYaml;
 namespace DevToys.ViewModels.Tools.JsonYaml.Services.Converters
 {
     [ServiceType(GeneratorLanguages.Json)]
-    class JsonConverterService : IConverterService
+    class JsonConverterService : ITextConverterAggregator
     {
         Formatting IndentFormat { get; set; }
+        public GeneratorLanguageDisplayPair GeneratorDisplay { get; } = GeneratorLanguageDisplayPair.Json;
         char IndentChar { get; set; }
         int Indentation { get; set; }
         JsonSerializerSettings DeserializerCfg { get; set; } = new()
@@ -25,50 +26,9 @@ namespace DevToys.ViewModels.Tools.JsonYaml.Services.Converters
             FloatParseHandling = FloatParseHandling.Decimal
         };
 
-        public object Read(string input)
+        public void SetSerializerIndentation(Indentation indentation)
         {
-            return JsonConvert.DeserializeObject<ExpandoObject>(input, DeserializerCfg);
-        }
-
-        public void SetDeserializerConfigurations(ConverterConfiguration key, object value)
-        {
-            // pass
-        }
-
-        public void SetSerializerConfigurations(ConverterConfiguration key, object value)
-        {
-            switch (key)
-            {
-                case ConverterConfiguration.Indentation:
-                    ConfigureIndentation((Indentation)value);
-                    break;
-                default:
-                    throw new UnknownConfigurationException("Unrecognized configuration parameter");
-            }
-        }
-
-        public string Write(object _object)
-        {
-            var stringBuilder = new StringBuilder();
-            using var stringWriter = new StringWriter(stringBuilder);
-            using var jsonTextWriter = new JsonTextWriter(stringWriter);
-
-            jsonTextWriter.Formatting = IndentFormat;
-            jsonTextWriter.IndentChar = IndentChar;
-            jsonTextWriter.Indentation = Indentation;
-
-            var jsonSerializer = JsonSerializer.CreateDefault(new JsonSerializerSettings()
-            {
-                Converters = { new DecimalJsonConverter() }
-            });
-            jsonSerializer.Serialize(jsonTextWriter, _object);
-
-            return stringBuilder.ToString();
-        }
-
-        private void ConfigureIndentation(Indentation indent)
-        {
-            switch (indent)
+            switch (indentation)
             {
                 case Models.Indentation.TwoSpaces:
                     IndentFormat = Formatting.Indented;
@@ -91,6 +51,30 @@ namespace DevToys.ViewModels.Tools.JsonYaml.Services.Converters
                 default:
                     throw new NotSupportedException();
             }
+        }
+
+        public object Read(string input)
+        {
+            return JsonConvert.DeserializeObject<ExpandoObject>(input, DeserializerCfg);
+        }
+
+        public string Write(object _object)
+        {
+            var stringBuilder = new StringBuilder();
+            using var stringWriter = new StringWriter(stringBuilder);
+            using var jsonTextWriter = new JsonTextWriter(stringWriter);
+
+            jsonTextWriter.Formatting = IndentFormat;
+            jsonTextWriter.IndentChar = IndentChar;
+            jsonTextWriter.Indentation = Indentation;
+
+            var jsonSerializer = JsonSerializer.CreateDefault(new JsonSerializerSettings()
+            {
+                Converters = { new DecimalJsonConverter() }
+            });
+            jsonSerializer.Serialize(jsonTextWriter, _object);
+
+            return stringBuilder.ToString();
         }
     }
 }
