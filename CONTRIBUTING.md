@@ -1,8 +1,8 @@
 # How to Contribute:
 
 You can contribute to DevToys app by:
-- Report issues and bugs [here](https://github.com/veler/DevToys/issues/new?template=bug_report.md)
-- Submit feature requests [here](https://github.com/veler/DevToys/issues/new?template=feature_request.md)
+- Report issues and bugs [here](https://github.com/veler/DevToys/issues/new?template=bug_report.md).
+- Submit feature requests [here](https://github.com/veler/DevToys/issues/new?template=feature_request.md).
 - Creating a pull request.
 - Internationalization and localization:
     * See instructions below.
