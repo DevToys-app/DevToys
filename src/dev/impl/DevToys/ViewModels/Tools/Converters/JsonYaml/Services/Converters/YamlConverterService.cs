@@ -17,7 +17,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml.Services.Converters
     {
         public GeneratorLanguageDisplayPair GeneratorDisplay { get; } = GeneratorLanguageDisplayPair.Yaml;
         int Indent { get; set; } = 2;
-                
+
         public void SetSerializerIndentation(Indentation indent)
         {
             Indent = indent switch
@@ -27,7 +27,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml.Services.Converters
                 _ => Indent
             };
         }
-        
+
         public object Read(string input)
         {
             using var stringReader = new StringReader(input);

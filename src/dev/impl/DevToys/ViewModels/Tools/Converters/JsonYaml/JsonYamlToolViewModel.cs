@@ -121,7 +121,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml
         {
             get
             {
-                if(Languages is null)
+                if (Languages is null)
                 {
                     return GeneratorLanguageDisplayPair.Json;
                 }

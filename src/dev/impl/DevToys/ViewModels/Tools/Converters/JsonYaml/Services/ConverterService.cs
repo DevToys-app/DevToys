@@ -25,7 +25,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml.Services
 
         public bool TryConvert(string input, out string output, GeneratorLanguages inputLang, GeneratorLanguages outputLang)
         {
-            if(!(Services.ContainsKey(inputLang) && Services.ContainsKey(outputLang)) ||
+            if (!(Services.ContainsKey(inputLang) && Services.ContainsKey(outputLang)) ||
                 string.IsNullOrWhiteSpace(input))
             {
                 output = string.Empty;
@@ -54,7 +54,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml.Services
 
         public void ConfigureService(GeneratorLanguages service, Action<ITextFormatter> configuration)
         {
-            if(Services.TryGetValue(service, out ITextConverterAggregator serv))
+            if (Services.TryGetValue(service, out ITextConverterAggregator serv))
             {
                 configuration(serv);
             }
