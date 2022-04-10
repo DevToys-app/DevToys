@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Ferramenta geradora de Lorem Ipsum</value>
+    <value>Ferramenta Geradora de Lorem Ipsum</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Configuração</value>
@@ -136,7 +136,7 @@
     <value>Lorem Ipsum</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Saída</value>
+    <value>Resultado</value>
   </data>
   <data name="ParagraphsType" xml:space="preserve">
     <value>Parágrafos</value>
@@ -148,7 +148,7 @@
     <value>Sentenças</value>
   </data>
   <data name="StartWithLoremTitle" xml:space="preserve">
-    <value>Start with 'Lorem ipsum dolor sit amet...'</value>
+    <value>Começar com 'Lorem ipsum dolor sit amet...'.</value>
   </data>
   <data name="TypeDescription" xml:space="preserve">
     <value>Gera palavras, sentenças ou parágrafos de Lorem Ipsum</value>

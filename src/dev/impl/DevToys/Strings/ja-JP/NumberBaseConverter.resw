@@ -179,25 +179,25 @@
   <data name="SearchKeywords" xml:space="preserve">
     <value>Binary Octal Decimal Hexadecimal</value>
   </data>
-    <data name="AdvancedModeLabel" xml:space="preserve">
-    <value>Advanced mode</value>
+  <data name="AdvancedModeLabel" xml:space="preserve">
+    <value>高度な基数変換</value>
   </data>
   <data name="InputDictionaryLabel" xml:space="preserve">
-    <value>Input dictionary</value>
+    <value>入力に使用する辞書</value>
   </data>
   <data name="OutputDictionaryLabel" xml:space="preserve">
-    <value>Output dictionary</value>
+    <value>出力に使用する辞書</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>出力</value>
   </data>
   <data name="BaseNumberError" xml:space="preserve">
-    <value>Base number should be greater than 1.</value>
+    <value>基数は 2 以上でなければなりません。</value>
   </data>
   <data name="DictionarySizeError" xml:space="preserve">
-    <value>Dictionary size should be greater than 1.</value>
+    <value>辞書の文字数は 2 文字以上必要です。</value>
   </data>
   <data name="IncompatibleBaseDictionaryError" xml:space="preserve">
-    <value>Dictionary size could not be smaller than the base number.</value>
+    <value>辞書の文字数は基数よりも多くなければなりません。</value>
   </data>
 </root>
