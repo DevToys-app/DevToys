@@ -55,7 +55,7 @@
                 </VisualState>
                 <VisualState x:Name="NavigationViewMinimal">
                     <VisualState.Setters>
-                        <Setter Target="ScrollViewerContent.Margin" Value="12,12,12,0"/>
+                        <Setter Target="ScrollViewerContent.Margin" Value="12,48,12,0"/>
                         <Setter Target="ContentFrame.Padding" Value="0,12,0,0"/>
                     </VisualState.Setters>
                 </VisualState>
