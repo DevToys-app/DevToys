@@ -142,7 +142,7 @@
     <value>테마</value>
   </data>
   <data name="ThemeDescription" xml:space="preserve">
-    <value>마크다운을 미리볼 때에 대한 테마를 선택합니다.</value>
+    <value>마크다운 미리보기 테마를 선택합니다.</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Github 방식으로 마크다운 문서를 미리볼 수 있습니다.</value>
