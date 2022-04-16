@@ -26,7 +26,7 @@ namespace DevToys.Helpers
 
             if (stream.Length == 0)
             {
-                return Array.Empty<byte>();
+                return hashAlgorithm.ComputeHash(Array.Empty<byte>());
             }
 
             int bytesRead = 0;
@@ -47,7 +47,7 @@ namespace DevToys.Helpers
                 cancellationToken.ThrowIfCancellationRequested();
             }
 
-            return hashAlgorithm.Hash ?? Array.Empty<byte>();
+            return hashAlgorithm.Hash ?? hashAlgorithm.ComputeHash(Array.Empty<byte>());
         }
 
         internal static int ComputeHashIterations(Stream stream, int bufferSize = 1024 * 1024)
