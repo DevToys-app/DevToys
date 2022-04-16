@@ -42,7 +42,7 @@ namespace DevToys.Tests.Helpers
         }
 
         [DataTestMethod]
-        [DataRow("", "")]
+        [DataRow("", "D41D8CD98F00B204E9800998ECF8427E")]
         [DataRow(" ", "7215EE9C7D9DC229D2921A40E899EC5F")]
         [DataRow("Hello World", "B10A8DB164E0754105B7A99BE72E3FE5")]
         [DataRow("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam cursus nec metus vel sagittis. Donec auctor nulla tortor. Praesent pretium, nunc vel porttitor tempor, metus eros pharetra orci, vitae lobortis ligula massa eu libero. Maecenas faucibus dolor ante, non ullamcorper urna blandit nec. Maecenas at pulvinar neque, a fermentum sapien. Curabitur mattis massa leo, a hendrerit lectus condimentum eget. Etiam nec scelerisque tellus. Quisque ligula erat, porttitor quis mi id, vehicula feugiat est.", "02868AD2F0787EF5323B221DBD14BAB2")]
@@ -72,7 +72,7 @@ namespace DevToys.Tests.Helpers
         }
 
         [DataTestMethod]
-        [DataRow("", "")]
+        [DataRow("", "DA39A3EE5E6B4B0D3255BFEF95601890AFD80709")]
         [DataRow(" ", "B858CB282617FB0956D960215C8E84D1CCF909C6")]
         [DataRow("Hello World", "0A4D55A8D778E5022FAB701977C5D840BBC486D0")]
         [DataRow("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam cursus nec metus vel sagittis. Donec auctor nulla tortor. Praesent pretium, nunc vel porttitor tempor, metus eros pharetra orci, vitae lobortis ligula massa eu libero. Maecenas faucibus dolor ante, non ullamcorper urna blandit nec. Maecenas at pulvinar neque, a fermentum sapien. Curabitur mattis massa leo, a hendrerit lectus condimentum eget. Etiam nec scelerisque tellus. Quisque ligula erat, porttitor quis mi id, vehicula feugiat est.", "DBFE62B3C0817383AC870AACC61DD016BC599689")]
@@ -102,7 +102,7 @@ namespace DevToys.Tests.Helpers
         }
 
         [DataTestMethod]
-        [DataRow("", "")]
+        [DataRow("", "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855")]
         [DataRow(" ", "36A9E7F1C95B82FFB99743E0C5C4CE95D83C9A430AAC59F84EF3CBFAB6145068")]
         [DataRow("Hello World", "A591A6D40BF420404A011733CFB7B190D62C65BF0BCDA32B57B277D9AD9F146E")]
         [DataRow("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam cursus nec metus vel sagittis. Donec auctor nulla tortor. Praesent pretium, nunc vel porttitor tempor, metus eros pharetra orci, vitae lobortis ligula massa eu libero. Maecenas faucibus dolor ante, non ullamcorper urna blandit nec. Maecenas at pulvinar neque, a fermentum sapien. Curabitur mattis massa leo, a hendrerit lectus condimentum eget. Etiam nec scelerisque tellus. Quisque ligula erat, porttitor quis mi id, vehicula feugiat est.", "FD5800A6B0C7EE959AFE2CC011DFD9E9A48E9E4FB80828412F7AFC77A3A97782")]
@@ -132,7 +132,7 @@ namespace DevToys.Tests.Helpers
         }
 
         [DataTestMethod]
-        [DataRow("", "")]
+        [DataRow("", "38B060A751AC96384CD9327EB1B1E36A21FDB71114BE07434C0CC7BF63F6E1DA274EDEBFE76F65FBD51AD2F14898B95B")]
         [DataRow(" ", "588016EB10045DD85834D67D187D6B97858F38C58C690320C4A64E0C2F92EEBD9F1BD74DE256E8268815905159449566")]
         [DataRow("Hello World", "99514329186B2F6AE4A1329E7EE6C610A729636335174AC6B740F9028396FCC803D0E93863A7C3D90F86BEEE782F4F3F")]
         [DataRow("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam cursus nec metus vel sagittis. Donec auctor nulla tortor. Praesent pretium, nunc vel porttitor tempor, metus eros pharetra orci, vitae lobortis ligula massa eu libero. Maecenas faucibus dolor ante, non ullamcorper urna blandit nec. Maecenas at pulvinar neque, a fermentum sapien. Curabitur mattis massa leo, a hendrerit lectus condimentum eget. Etiam nec scelerisque tellus. Quisque ligula erat, porttitor quis mi id, vehicula feugiat est.", "D775DFC327D966FE31F96B82A618A3F41CBB5FD9A05106CCD60F433D8079B8EA67546E6BA0501E29A6C9D6355A11A00C")]
@@ -162,7 +162,7 @@ namespace DevToys.Tests.Helpers
         }
 
         [DataTestMethod]
-        [DataRow("", "")]
+        [DataRow("", "CF83E1357EEFB8BDF1542850D66D8007D620E4050B5715DC83F4A921D36CE9CE47D0D13C5D85F2B0FF8318D2877EEC2F63B931BD47417A81A538327AF927DA3E")]
         [DataRow(" ", "F90DDD77E400DFE6A3FCF479B00B1EE29E7015C5BB8CD70F5F15B4886CC339275FF553FC8A053F8DDC7324F45168CFFAF81F8C3AC93996F6536EEF38E5E40768")]
         [DataRow("Hello World", "2C74FD17EDAFD80E8447B0D46741EE243B7EB74DD2149A0AB1B9246FB30382F27E853D8585719E0E67CBDA0DAA8F51671064615D645AE27ACB15BFB1447F459B")]
         [DataRow("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam cursus nec metus vel sagittis. Donec auctor nulla tortor. Praesent pretium, nunc vel porttitor tempor, metus eros pharetra orci, vitae lobortis ligula massa eu libero. Maecenas faucibus dolor ante, non ullamcorper urna blandit nec. Maecenas at pulvinar neque, a fermentum sapien. Curabitur mattis massa leo, a hendrerit lectus condimentum eget. Etiam nec scelerisque tellus. Quisque ligula erat, porttitor quis mi id, vehicula feugiat est.", "9BE8DB4FE9A776337D500BAA2E99A23C41CDEA2E0D0F445EB72DC8C6BEFAADF9FB5FA4C14BA81E93716F24C004477F08ABF684B3E50F0365C63AE602136E56B5")]
