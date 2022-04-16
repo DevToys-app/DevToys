@@ -130,7 +130,7 @@
     <value>디코드</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>사용할 변환 작업 선택합니다.</value>
+    <value>사용할 변환 방법을 선택합니다.</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
     <value>인코드</value>
@@ -142,7 +142,7 @@
     <value>Base 64</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
-    <value>사용할 변환 작업을 선택합니다.</value>
+    <value>사용할 인코딩을 선택합니다.</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
     <value>인코딩</value>
