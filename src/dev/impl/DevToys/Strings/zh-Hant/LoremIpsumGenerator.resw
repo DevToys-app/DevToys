@@ -148,7 +148,7 @@
     <value>句子</value>
   </data>
   <data name="StartWithLoremTitle" xml:space="preserve">
-    <value>Start with 'Lorem ipsum dolor sit amet...'</value>
+    <value>以 'Lorem ipsum dolor sit amet...' 起頭</value>
   </data>
   <data name="TypeDescription" xml:space="preserve">
     <value>產生假文單字、句子、或段落</value>

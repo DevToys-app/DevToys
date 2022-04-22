@@ -184,6 +184,6 @@
     <value>Regex 測試工具</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Regular expression</value>
+    <value>正則表示式 正則表達式</value>
   </data>
 </root>

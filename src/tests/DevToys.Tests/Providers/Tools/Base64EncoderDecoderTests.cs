@@ -22,8 +22,8 @@ namespace DevToys.Tests.Providers.Tools
         {
             await ThreadHelper.RunOnUIThreadAsync(() =>
             {
-                System.Collections.Generic.IEnumerable<MatchedToolProvider> result = ExportProvider.Import<IToolProviderFactory>().GetAllTools();
-                MatchedToolProvider base64Tool = result.First(item => item.Metadata.ProtocolName == "base64");
+                System.Collections.Generic.IEnumerable<ToolProviderViewItem> result = ExportProvider.Import<IToolProviderFactory>().GetAllTools();
+                ToolProviderViewItem base64Tool = result.First(item => item.Metadata.ProtocolName == "base64");
 
                 Assert.AreEqual(expectedResult, base64Tool.ToolProvider.CanBeTreatedByTool(input));
             });
@@ -44,7 +44,7 @@ namespace DevToys.Tests.Providers.Tools
                 viewModel.InputValue = input;
             });
 
-            await Task.Delay(100);
+            await viewModel.ComputationTask;
 
             Assert.AreEqual(expectedResult, viewModel.OutputValue);
         }
@@ -54,6 +54,7 @@ namespace DevToys.Tests.Providers.Tools
         [DataRow("", "")]
         [DataRow(" ", "")]
         [DataRow("SGVsbG8gVGhlcmU=", "Hello There")]
+        [DataRow("SGVsbG8gVGhlcmU", "Hello There")]
         public async Task DecodeAsync(string input, string expectedResult)
         {
             Base64EncoderDecoderToolViewModel viewModel = ExportProvider.Import<Base64EncoderDecoderToolViewModel>();
@@ -64,7 +65,7 @@ namespace DevToys.Tests.Providers.Tools
                 viewModel.InputValue = input;
             });
 
-            await Task.Delay(100);
+            await viewModel.ComputationTask;
 
             Assert.AreEqual(expectedResult, viewModel.OutputValue);
         }

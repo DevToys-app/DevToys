@@ -157,9 +157,9 @@
     <value />
   </data>
   <data name="HashesMatch" xml:space="preserve">
-    <value>The hashes are the same.</value>
+    <value>雜湊相同。</value>
   </data>
   <data name="HashesMismatch" xml:space="preserve">
-    <value>The hashes are different.</value>
+    <value>雜湊相異。</value>
   </data>
 </root>

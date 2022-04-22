@@ -14,6 +14,9 @@
   <a style="text-decoration:none" href="https://github.com/veler/DevToys/releases" target="_blank">
     <img src="https://img.shields.io/github/release/veler/devtoys.svg?label=Latest%20version" alt="Latest version" />
   </a>
+  <a style="text-decoration:none" href="https://community.chocolatey.org/packages/devtoys" target="_blank">
+  <img src="https://img.shields.io/chocolatey/v/devtoys?include_prereleases" alt="Chocolatey Version (including pre-releases)">
+  </a>
   <a style="text-decoration:none" href="https://www.microsoft.com/store/apps/9PGCV4V3BK4W" target="_blank">
     <img src="https://img.shields.io/badge/Microsoft%20Store-Download-brightgreen" alt="Store link" />
   </a>
@@ -29,6 +32,7 @@ DevToys helps in daily tasks like formatting JSON, comparing text, testing RegEx
 Many tools are available.
 - Converters
   - JSON <> YAML
+  - Timestamp
   - Number Base
 - Encoders / Decoders
   - HTML
@@ -46,6 +50,7 @@ Many tools are available.
   - Lorem Ipsum
   - Checksum
 - Text
+  - Escape / Unescape
   - Inspector & Case Converter
   - Regex Tester
   - Text Comparer
@@ -88,7 +93,7 @@ __Note:__ a Microsoft Store account is required for WinGet. We're trying to work
 ## App Permission
 
 DevToys works entirely offline, meaning that none of the data used by the app goes on internet. However, the app requires some other permissions in order to work correctly.
-1. `Uses all system resources` - This permission is required for some tools like `PNG / JPEG Compressor` or (upcoming) `On-screen color picker / measurer`, which use a 3rd part Open-Source Win32 process like [Efficient-Compression-Tool](https://github.com/fhanau/Efficient-Compression-Tool).
+1. `Uses all system resources` - This permission is required for some tools like `PNG / JPEG Compressor` or (upcoming) `On-screen color picker / measurer`, which use a 3rd party Open-Source Win32 process like [Efficient-Compression-Tool](https://github.com/fhanau/Efficient-Compression-Tool).
 All the code requiring this permission can be found [here](https://github.com/veler/DevToys/tree/main/src/dev/impl/DevToys.OutOfProcService).
 
 ## How to run DevToys
@@ -120,11 +125,13 @@ Here is the list of tool name you can use:
 - `imageconverter` - Image Converter
 - `markdown` - Markdown Preview
 - `regex` - Regular Expression Tester
+- `time` - Unix Timestamp Converter
 - `baseconverter` - Number Base Converter
 - `string` - String Utilities
 - `url` - URL Encoder/Decoder
 - `html` - HTML Encoder/Decoder
 - `diff` - Text Comparer
+- `escape` - Text Escape / Unescape
 - `settings` - Settings
 
 ## Contribute

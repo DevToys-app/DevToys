@@ -78,7 +78,7 @@ Let's look at these in more detail.";
 
             viewModel.Text = Text;
 
-            await Task.Delay(100);
+            await viewModel.ComputationTask;
 
             Assert.AreEqual(1666, viewModel.Characters);
             Assert.AreEqual(288, viewModel.Words);

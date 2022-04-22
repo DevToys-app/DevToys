@@ -180,6 +180,9 @@
   <data name="Redo" xml:space="preserve">
     <value>やり直し</value>
   </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>更新</value>
+  </data>
   <data name="SelectAll" xml:space="preserve">
     <value>すべて選択</value>
   </data>
@@ -193,10 +196,10 @@
     <value>On</value>
   </data>
   <data name="UnableOpenFile" xml:space="preserve">
-    <value>ファイル読み込めません</value>
+    <value>ファイルを開けませんでした</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>ファイル読み込めません '{0}'. 詳細はログを参照してください</value>
+    <value>ファイルを開けませんでした。詳細はログを参照してください : '{0}'</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>元に戻す</value>

@@ -139,7 +139,7 @@
     <value>폴더 선택</value>
   </data>
   <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>여기에 파일을 드래그 하세요.</value>
+    <value>여기에 파일을 드래그 하세요</value>
   </data>
   <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
     <value>여기에 파일들을 드래그 하세요</value>
@@ -149,7 +149,7 @@
     <comment>{0} is a single file extension like "PNG"</comment>
   </data>
   <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
-    <value>여기에 {0} 파일들을 드래그 하세요.</value>
+    <value>여기에 {0} 파일들을 드래그 하세요</value>
     <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
@@ -180,6 +180,9 @@
   <data name="Redo" xml:space="preserve">
     <value>수행 재개</value>
   </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>새로고침</value>
+  </data>
   <data name="SelectAll" xml:space="preserve">
     <value>모두 선택</value>
   </data>
@@ -193,7 +196,7 @@
     <value>켜기</value>
   </data>
   <data name="UnableOpenFile" xml:space="preserve">
-    <value>파일을 열기 실패</value>
+    <value>파일을 열 수 없습니다</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
     <value>'{0}' 파일을 열 수 없습니다. 로그를 확인하여 자세한 원인을 확인할 수 있습니다.</value>

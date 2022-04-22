@@ -127,7 +127,7 @@
     <value>デコード</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>使いたい変換モードを選択してください</value>
+    <value>使用する変換モードを選択してください</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
     <value>エンコード</value>
@@ -137,12 +137,6 @@
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>HTML</value>
-  </data>
-  <data name="EncodingDescription" xml:space="preserve">
-    <value>使いたい文字コードを選択してください</value>
-  </data>
-  <data name="EncodingTitle" xml:space="preserve">
-    <value>文字コード</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
     <value>入力</value>

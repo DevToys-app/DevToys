@@ -180,6 +180,9 @@
   <data name="Redo" xml:space="preserve">
     <value>恢复</value>
   </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>刷新</value>
+  </data>
   <data name="SelectAll" xml:space="preserve">
     <value>选择全部</value>
   </data>

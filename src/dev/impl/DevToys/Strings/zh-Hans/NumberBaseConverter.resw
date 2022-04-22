@@ -179,4 +179,25 @@
   <data name="SearchKeywords" xml:space="preserve">
     <value>Binary Octal Decimal Hexadecimal</value>
   </data>
+  <data name="AdvancedModeLabel" xml:space="preserve">
+    <value>高级模式</value>
+  </data>
+  <data name="InputDictionaryLabel" xml:space="preserve">
+    <value>输入字典</value>
+  </data>
+  <data name="OutputDictionaryLabel" xml:space="preserve">
+    <value>输入字典</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>输出</value>
+  </data>
+  <data name="BaseNumberError" xml:space="preserve">
+    <value>基数应该大于1。</value>
+  </data>
+  <data name="DictionarySizeError" xml:space="preserve">
+    <value>字典的大小应该大于1。</value>
+  </data>
+  <data name="IncompatibleBaseDictionaryError" xml:space="preserve">
+    <value>字典大小不能小于基数。</value>
+  </data>
 </root>

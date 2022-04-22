@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddToFavorites" xml:space="preserve">
+    <value>Add to favorites</value>
+  </data>
   <data name="EnterCompactOverlayTooltip" xml:space="preserve">
     <value>Mantener encima (Ctrl+Up)</value>
   </data>
@@ -153,6 +156,9 @@
   </data>
   <data name="PinToolToStartProblem" xml:space="preserve">
     <value>No se ha podido agregar a la herramienta al menú de Inicio. Para mas información, consulte el log.</value>
+  </data>
+  <data name="RemoveFromFavorites" xml:space="preserve">
+    <value>Remove from favorites</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Escriba para buscar herramientas...</value>

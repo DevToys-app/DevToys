@@ -148,7 +148,7 @@
     <value>文</value>
   </data>
   <data name="StartWithLoremTitle" xml:space="preserve">
-    <value>Start with 'Lorem ipsum dolor sit amet...'</value>
+    <value>'Lorem ipsum dolor sit amet ' から始める</value>
   </data>
   <data name="TypeDescription" xml:space="preserve">
     <value>ダミーテキストの単語、文、または段落を生成します</value>

@@ -1,13 +1,7 @@
 ﻿🎉 New Features
-  • You can now install DevToys with Chocolatey!
+  • Nothing new in this update, sorry
 👏 Improvements
-  • Added Korean translation
-  • Updated Japanese, Italian, Indonesian, Traditional Chinese
-  • Search bar now support alternative keywords
-  • SQL Formater is faster an use less memory
-  • Minor UI update in JWT Decoder
-  • Number Base Converter UX updated
+  • Updated Japanese, Portuguese, Traditional Chinese, Simplified Chinese
+  • Improved performances on Arm64 devices
 🐛 Bug Fixes
-  • Crash with text fields and folder selector
-  • Crash with decimals in JSON <> YAML
-  • Bugs impacting RegEx Tester, Base64 Encoder / Decoder, JSON Formatter, XML Formatter, JSON <> YAML, Number Base Converter
+  • Timestamp Converter was crashing when entering invalid dates

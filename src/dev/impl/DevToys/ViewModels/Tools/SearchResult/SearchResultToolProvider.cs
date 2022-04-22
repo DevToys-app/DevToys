@@ -10,11 +10,11 @@ namespace DevToys.ViewModels.Tools
 {
     internal sealed class SearchResultToolProvider : IToolProvider
     {
-        internal static MatchedToolProvider CreateResult(
+        internal static ToolProviderViewItem CreateResult(
             string searchQuery,
-            IEnumerable<MatchedToolProvider> searchResults)
+            IEnumerable<ToolProviderViewItem> searchResults)
         {
-            return new MatchedToolProvider(
+            return new ToolProviderViewItem(
                 new ToolProviderMetadata
                 {
                     Name = "SearchResult",
@@ -22,15 +22,16 @@ namespace DevToys.ViewModels.Tools
                 },
                 new SearchResultToolProvider(
                     searchQuery,
-                    searchResults));
+                    searchResults),
+                isFavorite: false);
         }
 
         private readonly string _searchQuery;
-        private readonly IEnumerable<MatchedToolProvider> _searchResults;
+        private readonly IEnumerable<ToolProviderViewItem> _searchResults;
 
         private SearchResultToolProvider(
             string searchQuery,
-            IEnumerable<MatchedToolProvider> searchResults)
+            IEnumerable<ToolProviderViewItem> searchResults)
         {
             _searchQuery = searchQuery;
             _searchResults = searchResults;
@@ -55,7 +56,7 @@ namespace DevToys.ViewModels.Tools
 
         public IToolViewModel CreateTool()
         {
-            return new GroupToolViewModel(_searchResults.Select(item => item.ToolProvider));
+            return new GroupToolViewModel(_searchResults);
         }
 
         private string GetTitle()

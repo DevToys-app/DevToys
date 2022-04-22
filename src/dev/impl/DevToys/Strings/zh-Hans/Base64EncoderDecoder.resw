@@ -164,6 +164,6 @@
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>RFC 4648</value>
-    <comment>Alternative search keywords. Enables searching for words that are not included in Description, MenuDisplayName, and SearchDisplayName.</comment>
+    <comment>替代搜索关键字。启用搜索不包含在Description、MenuDisplayName和SearchDisplayName中的单词。</comment>
   </data>
 </root>

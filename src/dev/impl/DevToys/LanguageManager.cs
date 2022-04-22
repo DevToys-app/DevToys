@@ -46,8 +46,10 @@ namespace DevToys
         private readonly SearchResultStrings _searchresult = new SearchResultStrings();
         private readonly SettingsStrings _settings = new SettingsStrings();
         private readonly SqlFormatterStrings _sqlformatter = new SqlFormatterStrings();
+        private readonly StringEscapeUnescapeStrings _stringescapeunescape = new StringEscapeUnescapeStrings();
         private readonly StringUtilitiesStrings _stringutilities = new StringUtilitiesStrings();
         private readonly TextDiffStrings _textdiff = new TextDiffStrings();
+        private readonly TimestampStrings _timestamp = new TimestampStrings();
         private readonly ToolGroupsStrings _toolgroups = new ToolGroupsStrings();
         private readonly UrlEncoderDecoderStrings _urlencoderdecoder = new UrlEncoderDecoderStrings();
         private readonly XmlFormatterStrings _xmlformatter = new XmlFormatterStrings();
@@ -173,6 +175,11 @@ namespace DevToys
         public SqlFormatterStrings SqlFormatter => _sqlformatter;
 
         /// <summary>
+        /// Gets the <see cref="StringEscapeUnescapeStrings"/>.
+        /// </summary>
+        public StringEscapeUnescapeStrings StringEscapeUnescape => _stringescapeunescape;
+
+        /// <summary>
         /// Gets the <see cref="StringUtilitiesStrings"/>.
         /// </summary>
         public StringUtilitiesStrings StringUtilities => _stringutilities;
@@ -181,6 +188,11 @@ namespace DevToys
         /// Gets the <see cref="TextDiffStrings"/>.
         /// </summary>
         public TextDiffStrings TextDiff => _textdiff;
+
+        /// <summary>
+        /// Gets the <see cref="TimestampStrings"/>.
+        /// </summary>
+        public TimestampStrings Timestamp => _timestamp;
 
         /// <summary>
         /// Gets the <see cref="ToolGroupsStrings"/>.
@@ -613,6 +625,11 @@ namespace DevToys
         public string Redo => _resources.GetString("Redo");
 
         /// <summary>
+        /// Gets the resource Refresh.
+        /// </summary>
+        public string Refresh => _resources.GetString("Refresh");
+
+        /// <summary>
         /// Gets the resource SelectAll.
         /// </summary>
         public string SelectAll => _resources.GetString("SelectAll");
@@ -949,16 +966,6 @@ namespace DevToys
         /// Gets the resource MenuDisplayName.
         /// </summary>
         public string MenuDisplayName => _resources.GetString("MenuDisplayName");
-
-        /// <summary>
-        /// Gets the resource EncodingDescription.
-        /// </summary>
-        public string EncodingDescription => _resources.GetString("EncodingDescription");
-
-        /// <summary>
-        /// Gets the resource EncodingTitle.
-        /// </summary>
-        public string EncodingTitle => _resources.GetString("EncodingTitle");
 
         /// <summary>
         /// Gets the resource InputTitle.
@@ -1441,6 +1448,11 @@ namespace DevToys
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("MainPage");
 
         /// <summary>
+        /// Gets the resource AddToFavorites.
+        /// </summary>
+        public string AddToFavorites => _resources.GetString("AddToFavorites");
+
+        /// <summary>
         /// Gets the resource EnterCompactOverlayTooltip.
         /// </summary>
         public string EnterCompactOverlayTooltip => _resources.GetString("EnterCompactOverlayTooltip");
@@ -1507,6 +1519,11 @@ namespace DevToys
         /// Gets the resource PinToolToStartProblem.
         /// </summary>
         public string PinToolToStartProblem => _resources.GetString("PinToolToStartProblem");
+
+        /// <summary>
+        /// Gets the resource RemoveFromFavorites.
+        /// </summary>
+        public string RemoveFromFavorites => _resources.GetString("RemoveFromFavorites");
 
         /// <summary>
         /// Gets the resource Search.
@@ -1721,6 +1738,41 @@ namespace DevToys
         /// Gets the resource SearchKeywords.
         /// </summary>
         public string SearchKeywords => _resources.GetString("SearchKeywords");
+
+        /// <summary>
+        /// Gets the resource AdvancedModeLabel.
+        /// </summary>
+        public string AdvancedModeLabel => _resources.GetString("AdvancedModeLabel");
+
+        /// <summary>
+        /// Gets the resource InputDictionaryLabel.
+        /// </summary>
+        public string InputDictionaryLabel => _resources.GetString("InputDictionaryLabel");
+
+        /// <summary>
+        /// Gets the resource OutputDictionaryLabel.
+        /// </summary>
+        public string OutputDictionaryLabel => _resources.GetString("OutputDictionaryLabel");
+
+        /// <summary>
+        /// Gets the resource Output.
+        /// </summary>
+        public string Output => _resources.GetString("Output");
+
+        /// <summary>
+        /// Gets the resource BaseNumberError.
+        /// </summary>
+        public string BaseNumberError => _resources.GetString("BaseNumberError");
+
+        /// <summary>
+        /// Gets the resource DictionarySizeError.
+        /// </summary>
+        public string DictionarySizeError => _resources.GetString("DictionarySizeError");
+
+        /// <summary>
+        /// Gets the resource IncompatibleBaseDictionaryError.
+        /// </summary>
+        public string IncompatibleBaseDictionaryError => _resources.GetString("IncompatibleBaseDictionaryError");
     }
 
     public class PngJpgCompressorStrings : ObservableObject
@@ -2269,6 +2321,71 @@ namespace DevToys
         public string SearchKeywords => _resources.GetString("SearchKeywords");
     }
 
+    public class StringEscapeUnescapeStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("StringEscapeUnescape");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
+        /// Gets the resource MenuDisplayName.
+        /// </summary>
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
+
+        /// <summary>
+        /// Gets the resource OutputTitle.
+        /// </summary>
+        public string OutputTitle => _resources.GetString("OutputTitle");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+
+        /// <summary>
+        /// Gets the resource SearchKeywords.
+        /// </summary>
+        public string SearchKeywords => _resources.GetString("SearchKeywords");
+
+        /// <summary>
+        /// Gets the resource ConfigurationTitle.
+        /// </summary>
+        public string ConfigurationTitle => _resources.GetString("ConfigurationTitle");
+
+        /// <summary>
+        /// Gets the resource ConversionDecode.
+        /// </summary>
+        public string ConversionDecode => _resources.GetString("ConversionDecode");
+
+        /// <summary>
+        /// Gets the resource ConversionDescription.
+        /// </summary>
+        public string ConversionDescription => _resources.GetString("ConversionDescription");
+
+        /// <summary>
+        /// Gets the resource ConversionEncode.
+        /// </summary>
+        public string ConversionEncode => _resources.GetString("ConversionEncode");
+
+        /// <summary>
+        /// Gets the resource ConversionTitle.
+        /// </summary>
+        public string ConversionTitle => _resources.GetString("ConversionTitle");
+
+        /// <summary>
+        /// Gets the resource InputTitle.
+        /// </summary>
+        public string InputTitle => _resources.GetString("InputTitle");
+    }
+
     public class StringUtilitiesStrings : ObservableObject
     {
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("StringUtilities");
@@ -2499,6 +2616,86 @@ namespace DevToys
         public string SearchKeywords => _resources.GetString("SearchKeywords");
     }
 
+    public class TimestampStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("Timestamp");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
+        /// Gets the resource DayTitle.
+        /// </summary>
+        public string DayTitle => _resources.GetString("DayTitle");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource HourTitle.
+        /// </summary>
+        public string HourTitle => _resources.GetString("HourTitle");
+
+        /// <summary>
+        /// Gets the resource InvalidValue.
+        /// </summary>
+        public string InvalidValue => _resources.GetString("InvalidValue");
+
+        /// <summary>
+        /// Gets the resource LocalDateTime.
+        /// </summary>
+        public string LocalDateTime => _resources.GetString("LocalDateTime");
+
+        /// <summary>
+        /// Gets the resource MenuDisplayName.
+        /// </summary>
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
+
+        /// <summary>
+        /// Gets the resource MinutesTitle.
+        /// </summary>
+        public string MinutesTitle => _resources.GetString("MinutesTitle");
+
+        /// <summary>
+        /// Gets the resource MonthTitle.
+        /// </summary>
+        public string MonthTitle => _resources.GetString("MonthTitle");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+
+        /// <summary>
+        /// Gets the resource SearchKeywords.
+        /// </summary>
+        public string SearchKeywords => _resources.GetString("SearchKeywords");
+
+        /// <summary>
+        /// Gets the resource SecondsTitle.
+        /// </summary>
+        public string SecondsTitle => _resources.GetString("SecondsTitle");
+
+        /// <summary>
+        /// Gets the resource TimestampTitle.
+        /// </summary>
+        public string TimestampTitle => _resources.GetString("TimestampTitle");
+
+        /// <summary>
+        /// Gets the resource UTCDateTime.
+        /// </summary>
+        public string UTCDateTime => _resources.GetString("UTCDateTime");
+
+        /// <summary>
+        /// Gets the resource YearTitle.
+        /// </summary>
+        public string YearTitle => _resources.GetString("YearTitle");
+    }
+
     public class ToolGroupsStrings : ObservableObject
     {
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("ToolGroups");
@@ -2602,16 +2799,6 @@ namespace DevToys
         /// Gets the resource MenuDisplayName.
         /// </summary>
         public string MenuDisplayName => _resources.GetString("MenuDisplayName");
-
-        /// <summary>
-        /// Gets the resource EncodingDescription.
-        /// </summary>
-        public string EncodingDescription => _resources.GetString("EncodingDescription");
-
-        /// <summary>
-        /// Gets the resource EncodingTitle.
-        /// </summary>
-        public string EncodingTitle => _resources.GetString("EncodingTitle");
 
         /// <summary>
         /// Gets the resource InputTitle.

@@ -24,15 +24,18 @@
     <Compile Include="Api\Core\OOP\IAppService.cs" />
     <Compile Include="Api\Tools\MenuPlacement.cs" />
     <Compile Include="Api\Tools\NoCompactOverlaySupportAttribute.cs" />
+    <Compile Include="Api\Tools\NotFavorableAttribute.cs" />
     <Compile Include="Api\Tools\NotSearchableAttribute.cs" />
     <Compile Include="Api\Tools\ParentAttribute.cs" />
     <Compile Include="Core\OOP\AppService.cs" />
+    <Compile Include="Core\QueueWorkerViewModelBase.cs" />
     <Compile Include="Core\Threading\AsyncLazy.cs" />
     <Compile Include="Helpers\StorageFileHelper.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\ColorBlindnessSimulatorHelper.cs" />
     <Compile Include="Helpers\HashingHelper.cs" />
     <Compile Include="Helpers\NumberBaseHelper.cs" />
+    <Compile Include="Helpers\StringManipulationHelper.cs" />
     <Compile Include="Helpers\XmlHelper.cs" />
     <Compile Include="Helpers\SqlFormatter\Core\Formatter.cs" />
     <Compile Include="Helpers\SqlFormatter\Core\Indentation.cs" />
@@ -56,6 +59,10 @@
     <Compile Include="Helpers\SqlFormatter\SqlFormatterHelper.cs" />
     <Compile Include="Helpers\SqlFormatter\SqlFormatterOptions.cs" />
     <Compile Include="Helpers\SqlFormatter\SqlLanguage.cs" />
+    <Compile Include="Messages\ChangeInfoBarStatusMessage.cs" />
+    <Compile Include="Messages\ChangeNumberFormattingMessage.cs" />
+    <Compile Include="Messages\RemoveFromFavoritesMessage.cs" />
+    <Compile Include="Messages\AddToFavoritesMessage.cs" />
     <Compile Include="Messages\PinToolToStartMessage.cs" />
     <Compile Include="Messages\OpenToolInNewWindowMessage.cs" />
     <Compile Include="Messages\ChangeSelectedMenuItemMessage.cs" />
@@ -63,6 +70,7 @@
     <Compile Include="Models\HashingAlgorithm.cs" />
     <Compile Include="Models\HashingAlgorithmDisplayPair.cs" />
     <Compile Include="Models\HashingProgress.cs" />
+    <Compile Include="Models\NumberBaseDictionary.cs" />
     <Compile Include="Models\SqlLanguageDisplayPair.cs" />
     <Compile Include="Models\NoResultFoundMockToolProvider.cs" />
     <Compile Include="Models\Radix.cs" />
@@ -80,10 +88,18 @@
     <Compile Include="ViewModels\Tools\AllTools\AllToolsToolProvider.cs" />
     <Compile Include="ViewModels\Tools\AllTools\AllToolsToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Converters\ConvertersGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\AdvancedNumberBaseConverterControlViewModel.cs" />
+    <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\BasicNumberBaseConverterControlViewModel.cs" />
+    <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\Exceptions\InvalidBaseNumberException.cs" />
+    <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\Exceptions\InvalidDictionaryBaseNumberPairException.cs" />
+    <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\Exceptions\InvalidDictionarySizeException.cs" />
+    <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\NumberBaseFormatBuilder.cs" />
+    <Compile Include="ViewModels\Tools\Converters\Timestamp\TimestampToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Converters\Timestamp\TimestampToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolProvider.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolViewModel.cs" />
-    <Compile Include="ViewModels\Tools\Converters\JsonYaml\DecimalJsonConverter.cs" />
-    <Compile Include="ViewModels\Tools\Converters\JsonYaml\DecimalYamlTypeResolver.cs" />
+    <Compile Include="Helpers\JsonYaml\Core\DecimalJsonConverter.cs" />
+    <Compile Include="Helpers\JsonYaml\Core\DecimalYamlTypeResolver.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\EncodersDecodersGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Formatters\XmlFormatter\XmlFormatterToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Formatters\XmlFormatter\XmlFormatterToolViewModel.cs" />
@@ -110,9 +126,20 @@
     <Compile Include="ViewModels\Tools\Formatters\FormattersGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\GroupToolViewModelBase.cs" />
     <Compile Include="ViewModels\Tools\SearchResult\SearchResultToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Text\StringEscapeUnescape\StringEscapeUnescapeToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Text\StringEscapeUnescape\StringEscapeUnescapeToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Text\TextGroupToolProvider.cs" />
     <Compile Include="Views\Tools\AllTools\AllToolsToolPage.xaml.cs">
       <DependentUpon>AllToolsToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Converters\NumberBaseConverter\AdvancedNumberBaseConverterControl.xaml.cs">
+      <DependentUpon>AdvancedNumberBaseConverterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Converters\NumberBaseConverter\BasicNumberBaseConverterControl.xaml.cs">
+      <DependentUpon>BasicNumberBaseConverterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Converters\Timestamp\TimestampToolPage.xaml.cs">
+      <DependentUpon>TimestampToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolPage.xaml.cs">
       <DependentUpon>GZipEncoderDecoderToolPage.xaml</DependentUpon>
@@ -358,7 +385,7 @@
     <Compile Include="Api\Tools\IToolProvider.cs" />
     <Compile Include="Api\Tools\IToolProviderFactory.cs" />
     <Compile Include="Api\Tools\IToolViewModel.cs" />
-    <Compile Include="Api\Tools\MatchedToolProvider.cs" />
+    <Compile Include="Api\Tools\ToolProviderViewItem.cs" />
     <Compile Include="Api\Tools\MatchSpan.cs" />
     <Compile Include="Api\Tools\NameAttribute.cs" />
     <Compile Include="Api\Tools\NotScrollableAttribute.cs" />
@@ -394,8 +421,8 @@
       <DependentUpon>Notification.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Converters\NullToVisibilityConverter.cs" />
-    <Compile Include="Helpers\JsonHelper.cs" />
-    <Compile Include="Helpers\YamlHelper.cs" />
+    <Compile Include="Helpers\JsonYaml\JsonHelper.cs" />
+    <Compile Include="Helpers\JsonYaml\YamlHelper.cs" />
     <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\NumberBaseConverterToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\NumberBaseConverterToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Generators\GuidGenerator\GuidGeneratorToolProvider.cs" />
@@ -491,6 +518,9 @@
     <Compile Include="Views\Tools\Settings\SettingsToolPage.xaml.cs">
       <DependentUpon>SettingsToolPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Tools\Text\StringEscapeUnescape\StringEscapeUnescapeToolPage.xaml.cs">
+      <DependentUpon>StringEscapeUnescapeToolPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Tools\Text\StringUtilities\StringUtilitiesToolPage.xaml.cs">
       <DependentUpon>StringUtilitiesToolPage.xaml</DependentUpon>
     </Compile>
@@ -566,6 +596,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Tools\AllTools\AllToolsToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tools\Converters\NumberBaseConverter\AdvancedNumberBaseConverterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tools\Converters\NumberBaseConverter\BasicNumberBaseConverterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tools\Converters\Timestamp\TimestampToolPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -652,6 +694,10 @@
     <Page Include="Views\Tools\Settings\SettingsToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\Text\StringEscapeUnescape\StringEscapeUnescapeToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Tools\Text\StringUtilities\StringUtilitiesToolPage.xaml">
       <SubType>Designer</SubType>

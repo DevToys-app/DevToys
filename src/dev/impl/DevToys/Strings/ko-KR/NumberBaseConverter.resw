@@ -179,4 +179,25 @@
   <data name="SearchKeywords" xml:space="preserve">
     <value>Binary Octal Decimal Hexadecimal</value>
   </data>
+  <data name="AdvancedModeLabel" xml:space="preserve">
+    <value>고급 모드</value>
+  </data>
+  <data name="InputDictionaryLabel" xml:space="preserve">
+    <value>딕셔너리 입력</value>
+  </data>
+  <data name="OutputDictionaryLabel" xml:space="preserve">
+    <value>딕셔너리 출력</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>출력 내용</value>
+  </data>
+  <data name="BaseNumberError" xml:space="preserve">
+    <value>기수는 1보다 커야 합니다.</value>
+  </data>
+  <data name="DictionarySizeError" xml:space="preserve">
+    <value>딕셔너리 크기는 1보다 커야 합니다.</value>
+  </data>
+  <data name="IncompatibleBaseDictionaryError" xml:space="preserve">
+    <value>딕셔너리 크기는 기수보다 작을 수 없습니다.</value>
+  </data>
 </root>

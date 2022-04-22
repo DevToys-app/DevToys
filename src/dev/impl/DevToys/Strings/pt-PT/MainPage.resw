@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddToFavorites" xml:space="preserve">
+    <value>Adicionar aos favoritos</value>
+  </data>
   <data name="EnterCompactOverlayTooltip" xml:space="preserve">
     <value>Manter em cima (Ctrl+Up)</value>
   </data>
@@ -127,16 +130,16 @@
     <value>avalie-nos agora...</value>
   </data>
   <data name="NotificationRateAppMessage" xml:space="preserve">
-    <value>A gostar de DevToys? Por favor, considere avaliar-nos!</value>
+    <value>Está a gostar de DevToys? Por favor, considere avaliar-nos!</value>
   </data>
   <data name="NotificationRateAppTitle" xml:space="preserve">
-    <value>Um... olá! 😅</value>
+    <value>Hm... olá! 😅</value>
   </data>
   <data name="NotificationReleaseNoteActionableActionText" xml:space="preserve">
     <value>leia mais...</value>
   </data>
   <data name="NotificationReleaseNoteTitle" xml:space="preserve">
-    <value>Acabámos de ser atualizados! O que há de novo em {0}? 🚀</value>
+    <value>Acabámos de atualizar! O que há de novo na {0}? 🚀</value>
     <comment>{0} is the current app version</comment>
   </data>
   <data name="NotificationUpdateAvailableActionableActionText" xml:space="preserve">
@@ -149,7 +152,13 @@
     <value>Abrir numa nova janela</value>
   </data>
   <data name="PinToolToStart" xml:space="preserve">
-    <value>Afixar ferramenta no Iniciar</value>
+    <value>Afixar ferramenta no Início</value>
+  </data>
+  <data name="PinToolToStartProblem" xml:space="preserve">
+    <value>Incapaz de afixar a ferramenta no início. Para mais detalhes, por favor, verifique o registo.</value>
+  </data>
+  <data name="RemoveFromFavorites" xml:space="preserve">
+    <value>Remover dos favoritos</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Digite para pesquisar ferramentas...</value>

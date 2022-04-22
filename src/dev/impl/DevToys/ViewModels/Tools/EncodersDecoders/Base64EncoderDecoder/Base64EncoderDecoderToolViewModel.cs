@@ -13,12 +13,11 @@ using DevToys.Core;
 using DevToys.Core.Threading;
 using DevToys.Shared.Core.Threading;
 using DevToys.Views.Tools.Base64EncoderDecoder;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
 {
     [Export(typeof(Base64EncoderDecoderToolViewModel))]
-    public class Base64EncoderDecoderToolViewModel : ObservableRecipient, IToolViewModel
+    public class Base64EncoderDecoderToolViewModel : QueueWorkerViewModelBase<string>, IToolViewModel
     {
         /// <summary>
         /// Whether the tool should encode or decode Base64.
@@ -46,7 +45,6 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
 
         private string? _inputValue;
         private string? _outputValue;
-        private bool _conversionInProgress;
         private bool _setPropertyInProgress;
         private bool _toolSuccessfullyWorked;
 
@@ -127,46 +125,31 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
 
         private void QueueConversionCalculation()
         {
-            _conversionQueue.Enqueue(InputValue ?? string.Empty);
-            TreatQueueAsync().Forget();
+            EnqueueComputation(InputValue ?? string.Empty);
         }
 
-        private async Task TreatQueueAsync()
+        protected override async Task TreatComputationQueueAsync(string value)
         {
-            if (_conversionInProgress)
+            string conversionResult;
+            if (IsEncodeMode)
             {
-                return;
+                conversionResult = await EncodeBase64DataAsync(value).ConfigureAwait(false);
+            }
+            else
+            {
+                conversionResult = await DecodeBase64DataAsync(value).ConfigureAwait(false);
             }
 
-            _conversionInProgress = true;
-
-            await TaskScheduler.Default;
-
-            while (_conversionQueue.TryDequeue(out string? text))
+            await ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, () =>
             {
-                string conversionResult;
-                if (IsEncodeMode)
+                OutputValue = conversionResult;
+
+                if (!_toolSuccessfullyWorked)
                 {
-                    conversionResult = await EncodeBase64DataAsync(text).ConfigureAwait(false);
+                    _toolSuccessfullyWorked = true;
+                    _marketingService.NotifyToolSuccessfullyWorked();
                 }
-                else
-                {
-                    conversionResult = await DecodeBase64DataAsync(text).ConfigureAwait(false);
-                }
-
-                ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, () =>
-                {
-                    OutputValue = conversionResult;
-
-                    if (!_toolSuccessfullyWorked)
-                    {
-                        _toolSuccessfullyWorked = true;
-                        _marketingService.NotifyToolSuccessfullyWorked();
-                    }
-                }).ForgetSafely();
-            }
-
-            _conversionInProgress = false;
+            });
         }
 
         private async Task<string> EncodeBase64DataAsync(string? data)
@@ -199,6 +182,13 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
             if (string.IsNullOrWhiteSpace(data))
             {
                 return string.Empty;
+            }
+
+            int remainder = data!.Length % 4;
+            if (remainder > 0)
+            {
+                int padding = 4 - remainder;
+                data = data.PadRight(data.Length + padding, '=');
             }
 
             await TaskScheduler.Default;

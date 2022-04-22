@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Nástroj pro Generování UUID</value>
+    <value>Nástroj pro Generování Univerzálního Unikátního Identifikátoru</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Konfigurace</value>
@@ -157,15 +157,15 @@
     <value>Verze UUID</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generování UUID verze 1 a 4</value>
+    <value>Generování Univerzálního Unikátního Identifikátoru verze 1 a 4</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>UUID</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>UUID Generátor</value>
+    <value>Generátor UUID</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>GUID</value>
+    <value />
   </data>
 </root>

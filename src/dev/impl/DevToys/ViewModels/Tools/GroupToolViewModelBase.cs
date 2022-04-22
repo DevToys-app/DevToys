@@ -12,15 +12,29 @@ namespace DevToys.ViewModels.Tools
 {
     public abstract class GroupToolViewModelBase : ObservableRecipient
     {
-        public IEnumerable<IToolProvider>? ToolProviders { get; protected set; }
+        public IEnumerable<ToolProviderViewItem>? ToolProviders { get; protected set; }
 
-        public bool IsToolProvidersEmpty => !ToolProviders?.GetEnumerator().MoveNext() ?? true;
+        public bool IsToolProvidersEmpty
+        {
+            get
+            {
+                if (ToolProviders == null)
+                {
+                    return true;
+                }
+
+                using IEnumerator<ToolProviderViewItem>? enumerator = ToolProviders.GetEnumerator();
+                return !enumerator.MoveNext();
+            }
+        }
 
         public GroupToolViewModelBase()
         {
             NavigateToToolCommand = new RelayCommand<IToolProvider>(ExecuteNavigateToToolCommand);
-            OpenToolInNewWindowClickCommand = new RelayCommand<IToolProvider>(ExecuteOpenToolInNewWindowClickCommand);
-            PinToolToStartClickCommand = new RelayCommand<IToolProvider>(ExecutePinToolToStartClickCommand);
+            OpenToolInNewWindowClickCommand = new RelayCommand<ToolProviderMetadata>(ExecuteOpenToolInNewWindowClickCommand);
+            PinToolToStartClickCommand = new RelayCommand<ToolProviderMetadata>(ExecutePinToolToStartClickCommand);
+            AddToFavoritesCommand = new RelayCommand<ToolProviderViewItem>(ExecuteAddToFavoritesCommand);
+            RemoveFromFavoritesCommand = new RelayCommand<ToolProviderViewItem>(ExecuteRemoveFromFavoritesCommand);
 
             // Activate the view model's messenger.
             IsActive = true;
@@ -40,9 +54,9 @@ namespace DevToys.ViewModels.Tools
 
         #region OpenToolInNewWindowClickCommand
 
-        public IRelayCommand<IToolProvider> OpenToolInNewWindowClickCommand { get; }
+        public IRelayCommand<ToolProviderMetadata> OpenToolInNewWindowClickCommand { get; }
 
-        private void ExecuteOpenToolInNewWindowClickCommand(IToolProvider? metadata)
+        private void ExecuteOpenToolInNewWindowClickCommand(ToolProviderMetadata? metadata)
         {
             Arguments.NotNull(metadata, nameof(metadata));
             Messenger.Send(new OpenToolInNewWindowMessage(metadata!));
@@ -52,12 +66,36 @@ namespace DevToys.ViewModels.Tools
 
         #region PinToolToStartClickCommand
 
-        public IRelayCommand<IToolProvider> PinToolToStartClickCommand { get; }
+        public IRelayCommand<ToolProviderMetadata> PinToolToStartClickCommand { get; }
 
-        private void ExecutePinToolToStartClickCommand(IToolProvider? metadata)
+        private void ExecutePinToolToStartClickCommand(ToolProviderMetadata? metadata)
         {
             Arguments.NotNull(metadata, nameof(metadata));
             Messenger.Send(new PinToolToStartMessage(metadata!));
+        }
+
+        #endregion
+
+        #region AddToFavoritesCommand
+
+        public IRelayCommand<ToolProviderViewItem> AddToFavoritesCommand { get; }
+
+        private void ExecuteAddToFavoritesCommand(ToolProviderViewItem? tool)
+        {
+            Arguments.NotNull(tool, nameof(tool));
+            Messenger.Send(new AddToFavoritesMessage(tool!));
+        }
+
+        #endregion
+
+        #region RemoveFromFavoritesCommand
+
+        public IRelayCommand<ToolProviderViewItem> RemoveFromFavoritesCommand { get; }
+
+        private void ExecuteRemoveFromFavoritesCommand(ToolProviderViewItem? tool)
+        {
+            Arguments.NotNull(tool, nameof(tool));
+            Messenger.Send(new RemoveFromFavoritesMessage(tool!));
         }
 
         #endregion
