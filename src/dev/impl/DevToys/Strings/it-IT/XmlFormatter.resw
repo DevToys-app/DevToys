@@ -154,7 +154,7 @@
     <value>Formattatore XML</value>
   </data>
   <data name="NewLineOnAttributesName" xml:space="preserve">
-    <value>Metti gli attributi su una nuova riga</value>
+    <value>Disponi gli attributi su una nuova riga</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value />
