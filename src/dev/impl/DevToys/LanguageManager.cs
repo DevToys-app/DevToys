@@ -54,6 +54,7 @@ namespace DevToys
         private readonly ToolGroupsStrings _toolgroups = new ToolGroupsStrings();
         private readonly UrlEncoderDecoderStrings _urlencoderdecoder = new UrlEncoderDecoderStrings();
         private readonly XmlFormatterStrings _xmlformatter = new XmlFormatterStrings();
+        private readonly XmlValidatorStrings _xmlvalidator = new XmlValidatorStrings();
 
         /// <summary>
         /// Gets an instance of <see cref="LanguageManager"/>.
@@ -214,6 +215,11 @@ namespace DevToys
         /// Gets the <see cref="XmlFormatterStrings"/>.
         /// </summary>
         public XmlFormatterStrings XmlFormatter => _xmlformatter;
+
+        /// <summary>
+        /// Gets the <see cref="XmlValidatorStrings"/>.
+        /// </summary>
+        public XmlValidatorStrings XmlValidator => _xmlvalidator;
 
         /// <summary>
         /// Gets the list of available languages in the app.
@@ -2965,5 +2971,70 @@ namespace DevToys
         /// Gets the resource SearchKeywords.
         /// </summary>
         public string SearchKeywords => _resources.GetString("SearchKeywords");
+    }
+
+    public class XmlValidatorStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("XmlValidator");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
+        /// Gets the resource Configuration.
+        /// </summary>
+        public string Configuration => _resources.GetString("Configuration");
+
+        /// <summary>
+        /// Gets the resource Difference.
+        /// </summary>
+        public string Difference => _resources.GetString("Difference");
+
+        /// <summary>
+        /// Gets the resource MenuDisplayName.
+        /// </summary>
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
+
+        /// <summary>
+        /// Gets the resource XsdScheme.
+        /// </summary>
+        public string XsdScheme => _resources.GetString("XsdScheme");
+
+        /// <summary>
+        /// Gets the resource XmlData.
+        /// </summary>
+        public string XmlData => _resources.GetString("XmlData");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+
+        /// <summary>
+        /// Gets the resource SearchKeywords.
+        /// </summary>
+        public string SearchKeywords => _resources.GetString("SearchKeywords");
+
+        /// <summary>
+        /// Gets the resource Validate.
+        /// </summary>
+        public string Validate => _resources.GetString("Validate");
+
+        /// <summary>
+        /// Gets the resource ValidationImpossibleMsg.
+        /// </summary>
+        public string ValidationImpossibleMsg => _resources.GetString("ValidationImpossibleMsg");
+
+        /// <summary>
+        /// Gets the resource XmlIsValidMessage.
+        /// </summary>
+        public string XmlIsValidMessage => _resources.GetString("XmlIsValidMessage");
     }
 }
