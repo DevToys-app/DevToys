@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddToFavorites" xml:space="preserve">
-    <value>Add to favorites</value>
+    <value>Aggiungi ai preferiti</value>
   </data>
   <data name="EnterCompactOverlayTooltip" xml:space="preserve">
     <value>Entra in modalità Compact Overlay (Ctrl+↑)</value>
@@ -158,7 +158,7 @@
     <value>Impossibile aggiungere a Start. Per maggiori dettagli, controlla il file di log.</value>
   </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
-    <value>Remove from favorites</value>
+    <value>Rimuovi dai preferiti</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Cerca strumenti</value>
