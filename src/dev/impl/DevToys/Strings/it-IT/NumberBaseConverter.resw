@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Strumento conversione della base numerica</value>
+    <value>Strumento conversione base numerica</value>
   </data>
   <data name="BinaryLabel" xml:space="preserve">
     <value>Binario</value>
@@ -133,7 +133,7 @@
     <value>Base numerica</value>
   </data>
   <data name="Format" xml:space="preserve">
-    <value>Formatta numero</value>
+    <value>Formattazione numero</value>
   </data>
   <data name="HexadecimalLabel" xml:space="preserve">
     <value>Esadecimale</value>
@@ -177,10 +177,10 @@
     <value>Convertitore di base numerica</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Binary Octal Decimal Hexadecimal</value>
+    <value>Binario Ottale Decimale Esadecimale</value>
   </data>
     <data name="AdvancedModeLabel" xml:space="preserve">
-    <value>Advanced mode</value>
+    <value>Modalità avanzata</value>
   </data>
   <data name="InputDictionaryLabel" xml:space="preserve">
     <value>Input dictionary</value>
@@ -192,12 +192,12 @@
     <value>Output</value>
   </data>
   <data name="BaseNumberError" xml:space="preserve">
-    <value>Base number should be greater than 1.</value>
+    <value>La base numerica deve essere maggiore di 1.</value>
   </data>
   <data name="DictionarySizeError" xml:space="preserve">
-    <value>Dictionary size should be greater than 1.</value>
+    <value>La dimensione del dizionario deve essere maggiore di 1.</value>
   </data>
   <data name="IncompatibleBaseDictionaryError" xml:space="preserve">
-    <value>Dictionary size could not be smaller than the base number.</value>
+    <value>La dimensione del dizionario non può essere menore del numero di base.</value>
   </data>
 </root>
