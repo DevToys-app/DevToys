@@ -2626,6 +2626,21 @@ namespace DevToys
         public string AccessibleName => _resources.GetString("AccessibleName");
 
         /// <summary>
+        /// Gets the resource CurrentDateTimeTitle.
+        /// </summary>
+        public string CurrentDateTimeTitle => _resources.GetString("CurrentDateTimeTitle");
+
+        /// <summary>
+        /// Gets the resource CurrentTimeZone.
+        /// </summary>
+        public string CurrentTimeZone => _resources.GetString("CurrentTimeZone");
+
+        /// <summary>
+        /// Gets the resource DaylightSavingTime.
+        /// </summary>
+        public string DaylightSavingTime => _resources.GetString("DaylightSavingTime");
+
+        /// <summary>
         /// Gets the resource DayTitle.
         /// </summary>
         public string DayTitle => _resources.GetString("DayTitle");
@@ -2634,6 +2649,16 @@ namespace DevToys
         /// Gets the resource Description.
         /// </summary>
         public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource DisabledDaylightSavingTime.
+        /// </summary>
+        public string DisabledDaylightSavingTime => _resources.GetString("DisabledDaylightSavingTime");
+
+        /// <summary>
+        /// Gets the resource DSTAmbiguousTime.
+        /// </summary>
+        public string DSTAmbiguousTime => _resources.GetString("DSTAmbiguousTime");
 
         /// <summary>
         /// Gets the resource HourTitle.
@@ -2679,6 +2704,11 @@ namespace DevToys
         /// Gets the resource SecondsTitle.
         /// </summary>
         public string SecondsTitle => _resources.GetString("SecondsTitle");
+
+        /// <summary>
+        /// Gets the resource SupportsDaylightSavingTime.
+        /// </summary>
+        public string SupportsDaylightSavingTime => _resources.GetString("SupportsDaylightSavingTime");
 
         /// <summary>
         /// Gets the resource TimestampTitle.
