@@ -1,6 +1,8 @@
 ﻿#nullable enable
 
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Composition;
 using DevToys.Api.Tools;
 using DevToys.Views.Tools.Timestamp;
@@ -14,9 +16,25 @@ namespace DevToys.ViewModels.Tools.Timestamp
     public sealed class TimestampToolViewModel : ObservableRecipient, IToolViewModel
     {
         private bool _isInputInvalid;
-        private double _timestamp;
-        private DateTime _utcDateTime;
-        private Lazy<DateTime> _localDateTime = null!;
+        private readonly long _minimumUtcTimestamp = -62135596800;
+        private readonly long _maximumUtcTimestamp = 253402300799;
+
+        internal List<string> TimeZoneDisplayNameCollection = new();
+        private readonly Dictionary<string, string> _timeZoneCollection = new();
+        private readonly ReadOnlyCollection<TimeZoneInfo> _systemTimeZone = TimeZoneInfo.GetSystemTimeZones();
+        private TimeZoneInfo _currentTimeZone = TimeZoneInfo.Utc;
+        private string _currentTimeZoneDisplayName = TimeZoneInfo.Utc.DisplayName;
+        private double _currentTimestamp;
+        private DateTimeOffset _currentUtcDateTime;
+        private DateTimeOffset _currentDateTime;
+        private long _minimumCurrentTimestamp = -62135596800;
+        private long _maximumCurrentTimestamp = 253402300799;
+
+        private bool _isSupportsDST;
+        private bool _isDisabledDST;
+        private bool _isDaylightSavingTime;
+        private bool _isDSTAmbiguousTime;
+
 
         public Type View => typeof(TimestampToolPage);
 
@@ -28,275 +46,304 @@ namespace DevToys.ViewModels.Tools.Timestamp
             set => SetProperty(ref _isInputInvalid, value);
         }
 
-        internal double Timestamp
+        internal bool IsSupportsDST
         {
-            get => _timestamp;
+            get => _isSupportsDST;
+            set => SetProperty(ref _isSupportsDST, value);
+        }
+
+        internal bool IsDisabledDST
+        {
+            get => _isDisabledDST;
+            set => SetProperty(ref _isDisabledDST, value);
+        }
+
+        internal bool IsDaylightSavingTime
+        {
+            get => _isDaylightSavingTime;
+            set => SetProperty(ref _isDaylightSavingTime, value);
+        }
+
+        internal bool IsDSTAmbiguousTime
+        {
+            get => _isDSTAmbiguousTime;
+            set => SetProperty(ref _isDSTAmbiguousTime, value);
+        }
+
+        private void DSTInfo()
+        {
+            IsDSTAmbiguousTime = false;
+            IsDaylightSavingTime = false;
+            IsSupportsDST = false;
+            IsDisabledDST = false;
+            if (_currentTimeZone.IsAmbiguousTime(_currentDateTime))
+            {
+                IsDSTAmbiguousTime = true;
+            }
+            else if (_currentTimeZone.IsDaylightSavingTime(_currentDateTime))
+            {
+                IsDaylightSavingTime = true;
+            }
+            else if (_currentTimeZone.SupportsDaylightSavingTime)
+            {
+                IsSupportsDST = true;
+            }
+            else
+            {
+                IsDisabledDST = true;
+            }
+
+        }
+
+        private void SetTimeZoneList()
+        {
+            foreach (TimeZoneInfo zone in _systemTimeZone)
+            {
+                _timeZoneCollection.Add(zone.DisplayName, zone.Id);
+                TimeZoneDisplayNameCollection.Add(zone.DisplayName);
+            }
+            //TimeZoneCollection.Reverse();
+
+        }
+
+        internal string CurrentTimeZoneDisplayName
+        {
+            get => _currentTimeZoneDisplayName;
             set
             {
-                if (double.IsNaN(value))
+                if (_timeZoneCollection.ContainsKey(value))
                 {
-                    _timestamp = 0;
-                }
-                else
-                {
-                    _timestamp = value;
+                    _currentTimeZoneDisplayName = value;
+                    _currentTimeZone = TimeZoneInfo.FindSystemTimeZoneById(_timeZoneCollection[value]);
+                    if (_currentTimeZone.BaseUtcOffset.TotalSeconds > 0)
+                    {
+                        // UTC+
+                        _minimumCurrentTimestamp = _minimumUtcTimestamp;
+                        _maximumCurrentTimestamp = _maximumUtcTimestamp - (long)_currentTimeZone.BaseUtcOffset.TotalSeconds;
+                    }
+                    else
+                    {
+                        // UTC-
+                        _minimumCurrentTimestamp = _minimumUtcTimestamp - (long)_currentTimeZone.BaseUtcOffset.TotalSeconds;
+                        _maximumCurrentTimestamp = _maximumUtcTimestamp;
+                    }
+                    UpdateCurrentTimestamp(_currentTimestamp);
                 }
 
-                ResetUtcDateTime();
-                ResetLocalDateTime();
             }
         }
 
-        internal int UtcYear
+        internal double CurrentTimestamp
         {
-            get => _utcDateTime.Year;
+            get => _currentTimestamp;
+            set
+            {
+                IsInputInvalid = false;
+                if (_currentTimestamp == value)
+                {
+                    return;
+                }
+                UpdateCurrentTimestamp(value);
+            }
+        }
+
+        internal int CurrentYear
+        {
+            get => _currentDateTime.Year;
             set
             {
                 if (value < 1) // empty = -2147483648
                 {
                     return;
                 }
-
-                if (UtcDay > DateTime.DaysInMonth(value, UtcMonth))
+                /*
+                if (CurrentDay > DateTime.DaysInMonth(value, CurrentMonth))
                 {
                     return;
                 }
-                if (!UpdateUtcDateTime(value, UtcMonth, UtcDay, UtcHour, UtcMinute, UtcSecond))
+                 */
+                try
                 {
+                    if (IsValidDateTime(value, CurrentMonth, CurrentDay, CurrentHour, CurrentMinute, CurrentSecond))
+                    {
+                        _currentUtcDateTime = _currentUtcDateTime.AddYears(value - _currentDateTime.Year);
+                    }
+                    else
+                    {
+                        IsInputInvalid = true;
+                        return;
+                    }
+                }
+                catch
+                {
+                    IsInputInvalid = true;
                     return;
                 }
-                ResetLocalDateTime();
-                ResetTimestamp();
+                CurrentTimestamp = _currentUtcDateTime.ToUnixTimeSeconds();
             }
         }
 
-        internal int UtcMonth
+        internal int CurrentMonth
         {
-            get => _utcDateTime.Month;
-            set
-            {
-                if (value < 1) // empty = -2147483648
-                {
-                    return;
-                }
-
-                if (UtcDay > DateTime.DaysInMonth(UtcYear, value))
-                {
-                    return;
-                }
-
-                if (!UpdateUtcDateTime(UtcYear, value, UtcDay, UtcHour, UtcMinute, UtcSecond))
-                {
-                    return;
-                }
-                ResetLocalDateTime();
-                ResetTimestamp();
-            }
-        }
-
-        internal int UtcDay
-        {
-            get => _utcDateTime.Day;
-            set
-            {
-                if (value < 1) // empty = -2147483648
-                {
-                    return;
-                }
-
-                if (value > DateTime.DaysInMonth(UtcYear, UtcMonth))
-                {
-                    return;
-                }
-                if (!UpdateUtcDateTime(UtcYear, UtcMonth, value, UtcHour, UtcMinute, UtcSecond))
-                {
-                    return;
-                }
-                ResetLocalDateTime();
-                ResetTimestamp();
-            }
-        }
-
-        internal int UtcHour
-        {
-            get => _utcDateTime.Hour;
+            get => _currentDateTime.Month;
             set
             {
                 if (value < 0) // empty = -2147483648
                 {
                     return;
                 }
-                if(!UpdateUtcDateTime(UtcYear, UtcMonth, UtcDay, value, UtcMinute, UtcSecond))
+                /*
+                if (CurrentDay > DateTime.DaysInMonth(CurrentYear, value))
                 {
                     return;
                 }
-                ResetLocalDateTime();
-                ResetTimestamp();
+                 */
+                try
+                {
+                    if (IsValidDateTime(CurrentYear, value, CurrentDay, CurrentHour, CurrentMinute, CurrentSecond))
+                    {
+                        _currentUtcDateTime = _currentUtcDateTime.AddMonths(value - _currentDateTime.Month);
+                    }
+                    else
+                    {
+                        IsInputInvalid = true;
+                        return;
+                    }
+                }
+                catch
+                {
+                    ResetCurrentDateTime();
+                    IsInputInvalid = true;
+                    return;
+
+                }
+                CurrentTimestamp = _currentUtcDateTime.ToUnixTimeSeconds();
             }
         }
 
-        internal int UtcMinute
+        internal int CurrentDay
         {
-            get => _utcDateTime.Minute;
+            get => _currentDateTime.Day;
             set
             {
                 if (value < 0) // empty = -2147483648
                 {
                     return;
                 }
-                if (!UpdateUtcDateTime(UtcYear, UtcMonth, UtcDay, UtcHour, value, UtcSecond))
+                /*
+                if (value > DateTime.DaysInMonth(CurrentYear, CurrentMonth))
                 {
                     return;
                 }
-                ResetLocalDateTime();
-                ResetTimestamp();
+                 */
+                try
+                {
+                    if (IsValidDateTime(CurrentYear, CurrentMonth, value, CurrentHour, CurrentMinute, CurrentSecond))
+                    {
+                        _currentUtcDateTime = _currentUtcDateTime.AddDays(value - _currentDateTime.Day);
+                    }
+                    else
+                    {
+                        IsInputInvalid = true;
+                        return;
+                    }
+                }
+                catch
+                {
+                    IsInputInvalid = true;
+                    return;
+                }
+                CurrentTimestamp = _currentUtcDateTime.ToUnixTimeSeconds();
             }
         }
 
-        internal int UtcSecond
+        internal int CurrentHour
         {
-            get => _utcDateTime.Second;
+            get => _currentDateTime.Hour;
             set
             {
-                if (value < 0) // empty = -2147483648
+                if (value < -1) // empty = -2147483648
                 {
                     return;
                 }
-                if (!UpdateUtcDateTime(UtcYear, UtcMonth, UtcDay, UtcHour, UtcMinute, value))
+                try
                 {
+                    if (IsValidDateTime(CurrentYear, CurrentMonth, CurrentDay, value, CurrentMinute, CurrentSecond))
+                    {
+                        _currentUtcDateTime = _currentUtcDateTime.AddHours(value - _currentDateTime.Hour);
+                    }
+                    else
+                    {
+                        IsInputInvalid = true;
+                        return;
+                    }
+                }
+                catch
+                {
+                    IsInputInvalid = true;
                     return;
                 }
-                ResetLocalDateTime();
-                ResetTimestamp();
+                CurrentTimestamp = _currentUtcDateTime.ToUnixTimeSeconds();
             }
         }
 
-        internal int LocalYear
+        internal int CurrentMinute
         {
-            get => _localDateTime.Value.Year;
+            get => _currentDateTime.Minute;
             set
             {
-                if (value < 1) // empty = -2147483648
+                if (value < -1) // empty = -2147483648
                 {
                     return;
                 }
-
-                if (LocalDay > DateTime.DaysInMonth(value, LocalMonth))
+                try
                 {
+                    if (IsValidDateTime(CurrentYear, CurrentMonth, CurrentDay, CurrentHour, value, CurrentSecond))
+                    {
+                        _currentUtcDateTime = _currentUtcDateTime.AddMinutes(value - _currentDateTime.Minute);
+                    }
+                    else
+                    {
+                        IsInputInvalid = true;
+                        return;
+                    }
+                }
+                catch
+                {
+                    IsInputInvalid = true;
                     return;
                 }
-                if (!UpdateLocalDateTime(value, LocalMonth, LocalDay, LocalHour, LocalMinute, LocalSecond))
-                {
-                    return;
-                }
-                ResetUtcDateTime();
-                ResetLocalDateTime();
-                ResetTimestamp();
+                CurrentTimestamp = _currentUtcDateTime.ToUnixTimeSeconds();
             }
         }
 
-        internal int LocalMonth
+        internal int CurrentSecond
         {
-            get => _localDateTime.Value.Month;
+            get => _currentDateTime.Second;
             set
             {
-                if (value < 1) // empty = -2147483648
+                if (value < -1) // empty = -2147483648
                 {
                     return;
                 }
-
-                if (LocalDay > DateTime.DaysInMonth(LocalYear, value))
+                try
                 {
+                    if (IsValidDateTime(CurrentYear, CurrentMonth, CurrentDay, CurrentHour, CurrentMinute, value))
+                    {
+                        _currentUtcDateTime = _currentUtcDateTime.AddSeconds(value - _currentDateTime.Second);
+                    }
+                    else
+                    {
+                        IsInputInvalid = true;
+                        return;
+                    }
+                }
+                catch
+                {
+                    IsInputInvalid = true;
                     return;
                 }
-                if (!UpdateLocalDateTime(LocalYear, value, LocalDay, LocalHour, LocalMinute, LocalSecond))
-                {
-                    return;
-                }
-                ResetUtcDateTime();
-                ResetLocalDateTime();
-                ResetTimestamp();
-            }
-        }
-
-        internal int LocalDay
-        {
-            get => _localDateTime.Value.Day;
-            set
-            {
-                if (value < 1) // empty = -2147483648
-                {
-                    return;
-                }
-
-                if (value > DateTime.DaysInMonth(LocalYear, LocalMonth))
-                {
-                    return;
-                }
-                if (!UpdateLocalDateTime(LocalYear, LocalMonth, value, LocalHour, LocalMinute, LocalSecond))
-                {
-                    return;
-                }
-                ResetUtcDateTime();
-                ResetLocalDateTime();
-                ResetTimestamp();
-            }
-        }
-
-        internal int LocalHour
-        {
-            get => _localDateTime.Value.Hour;
-            set
-            {
-                if (value < 0) // empty = -2147483648
-                {
-                    return;
-                }
-                if (!UpdateLocalDateTime(LocalYear, LocalMonth, LocalDay, value, LocalMinute, LocalSecond))
-                {
-                    return;
-                }
-                ResetUtcDateTime();
-                ResetLocalDateTime();
-                ResetTimestamp();
-            }
-        }
-
-        internal int LocalMinute
-        {
-            get => _localDateTime.Value.Minute;
-            set
-            {
-                if (value < 0) // empty = -2147483648
-                {
-                    return;
-                }
-                if (!UpdateLocalDateTime(LocalYear, LocalMonth, LocalDay, LocalHour, value, LocalSecond))
-                {
-                    return;
-                }
-                ResetUtcDateTime();
-                ResetLocalDateTime();
-                ResetTimestamp();
-            }
-        }
-
-        internal int LocalSecond
-        {
-            get => _localDateTime.Value.Second;
-            set
-            {
-                if (value < 0) // empty = -2147483648
-                {
-                    return;
-                }
-                if(!UpdateLocalDateTime(LocalYear, LocalMonth, LocalDay, LocalHour, LocalMinute, value))
-                {
-                    return;
-                }
-                ResetUtcDateTime();
-                ResetLocalDateTime();
-                ResetTimestamp();
+                CurrentTimestamp = _currentUtcDateTime.ToUnixTimeSeconds();
             }
         }
 
@@ -304,9 +351,11 @@ namespace DevToys.ViewModels.Tools.Timestamp
         {
             PasteCommand = new RelayCommand(ExecutePasteCommand);
             CopyCommand = new RelayCommand(ExecuteCopyCommand);
+            SetTimeZoneList();
 
             // Set to the current epoch time.
-            Timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            CurrentTimestamp = DateTimeOffset.Now.ToUnixTimeSeconds();
+            CurrentTimeZoneDisplayName = TimeZoneInfo.Local.DisplayName;
         }
 
         #region PasteCommand
@@ -327,7 +376,7 @@ namespace DevToys.ViewModels.Tools.Timestamp
 
                 if (long.TryParse(text, out long value))
                 {
-                    Timestamp = value;
+                    CurrentTimestamp = value;
                 }
             }
             catch (Exception ex)
@@ -350,7 +399,7 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 {
                     RequestedOperation = DataPackageOperation.Copy
                 };
-                data.SetText(Timestamp.ToString());
+                data.SetText(CurrentTimestamp.ToString());
 
                 Clipboard.SetContentWithOptions(data, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
                 Clipboard.Flush(); // This method allows the content to remain available after the application shuts down.
@@ -363,95 +412,124 @@ namespace DevToys.ViewModels.Tools.Timestamp
 
         #endregion
 
-        private void ResetUtcDateTime()
+        private DateTimeOffset TimestampToUtcDateTime(double value)
         {
-            try
+            return DateTimeOffset.FromUnixTimeSeconds((long)value).UtcDateTime;
+        }
+
+        private void UpdateCurrentTimestamp(double value)
+        {
+            if (double.IsNaN(value))
             {
-                _utcDateTime = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds((long)Timestamp);
-                IsInputInvalid = false;
+                value = 0;
             }
-            catch
+            if (IsValidTimestamp((long)value))
+            {
+                _currentTimestamp = value;
+                _currentUtcDateTime = TimestampToUtcDateTime(value);
+                _currentDateTime = TimeZoneInfo.ConvertTime(TimestampToUtcDateTime(value), _currentTimeZone);
+                DSTInfo();
+                ResetCurrentTimestamp();
+                ResetCurrentDateTime();
+            }
+            else
             {
                 IsInputInvalid = true;
             }
-
-            OnPropertyChanged(nameof(UtcYear));
-            OnPropertyChanged(nameof(UtcMonth));
-            OnPropertyChanged(nameof(UtcDay));
-            OnPropertyChanged(nameof(UtcHour));
-            OnPropertyChanged(nameof(UtcMinute));
-            OnPropertyChanged(nameof(UtcSecond));
         }
 
-        private void ResetLocalDateTime()
+        private bool IsValidTimestamp(long value)
         {
-            _localDateTime = new Lazy<DateTime>(() => _utcDateTime.ToLocalTime());
-            OnPropertyChanged(nameof(LocalYear));
-            OnPropertyChanged(nameof(LocalMonth));
-            OnPropertyChanged(nameof(LocalDay));
-            OnPropertyChanged(nameof(LocalHour));
-            OnPropertyChanged(nameof(LocalMinute));
-            OnPropertyChanged(nameof(LocalSecond));
-        }
-
-        private void ResetTimestamp()
-        {
-            _timestamp = new DateTimeOffset(_utcDateTime).ToUnixTimeSeconds();
-            OnPropertyChanged(nameof(Timestamp));
-        }
-
-        private bool UpdateUtcDateTime(int UtcYear, int UtcMonth, int UtcDay, int UtcHour, int UtcMinute, int UtcSecond)
-        {
-            try
+            if (value < _minimumCurrentTimestamp || value > _maximumCurrentTimestamp)
             {
-                var utcDateTime = new DateTime(UtcYear, UtcMonth, UtcDay, UtcHour, UtcMinute, UtcSecond, DateTimeKind.Utc);
-                long timestamp = new DateTimeOffset(utcDateTime).ToUnixTimeSeconds();
-                // TODO: UTC 9999/12/31 23:59:59 + LocalTime(+0030...) -> invalid LocalTime
-                // TODO: UTC 0001/01/01 00:00:00 + LocalTime(-0030...) -> invalid LocalTime
-                /*
-                if (timestamp is < (-62135596800) or > 253402300799)
-                {
-                    IsInputInvalid = true;
-                    return false;
-                }
-                 */
-                DateTime localDateTime = utcDateTime.ToLocalTime();
-                _utcDateTime = utcDateTime;
-                IsInputInvalid = false;
-            }
-            catch
-            {
-                IsInputInvalid = true;
                 return false;
+            }
+            // TODO:
+            //return TimeZoneInfo.ConvertTime(TimestampToUtcDateTime(value), _currentTimeZone).ToUnixTimeSeconds() == value;
+            return true;
+        }
+
+        private bool IsValidDateTime(int Year, int Month, int Day, int Hour, int Minute, int Second)
+        {
+            if (Year is < 1 or > 9999)
+            {
+                return false;
+            }
+            TimeSpan offset = _currentTimeZone.BaseUtcOffset;
+            DateTimeOffset calcDateTime = new(1970, 1, 1, 0, 0, 0, offset);
+            try
+            {
+                calcDateTime = calcDateTime.AddMonths(Month - 1);
+                calcDateTime = calcDateTime.AddDays(Day - 1);
+                calcDateTime = calcDateTime.AddHours(Hour);
+                calcDateTime = calcDateTime.AddMinutes(Minute);
+                calcDateTime = calcDateTime.AddSeconds(Second);
+            }
+            catch
+            {
+                return false;
+            }
+
+            if (Year + calcDateTime.Year - 1970 is > 1 and < 9999)
+            {
+                return true;
+            }
+
+            if (offset.TotalSeconds >= 0)
+            {
+                //UTC+
+                //example +01:00 Valid -> 0001/01/01 01:00:00 - 9999/12/31 23:59:59
+                if (Year == 1)
+                {
+                    if (calcDateTime.UtcDateTime.Year < 1970)
+                    {
+                        return false;
+                    }
+                }
+                else //Year == 9999
+                {
+                    if (calcDateTime.Year > 1970)
+                    {
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                //UTC-
+                //example -01:00 Valid -> 0001/01/01 00:00:00 - 9999/12/31 22:59:59
+                if (Year == 1)
+                {
+                    if (calcDateTime.Year < 1970)
+                    {
+                        return false;
+                    }
+                }
+                else //Year == 9999
+                {
+                    if (calcDateTime.UtcDateTime.Year > 1970)
+                    {
+                        return false;
+                    }
+                }
             }
             return true;
         }
- 
-        private bool UpdateLocalDateTime(int LocalYear, int LocalMonth, int LocalDay, int LocalHour, int LocalMinute, int LocalSecond)
+
+        private void ResetCurrentDateTime()
         {
-            try
-            {
-                var localDateTime = new DateTime(LocalYear, LocalMonth, LocalDay, LocalHour, LocalMinute, LocalSecond, DateTimeKind.Local);
-                long timestamp = new DateTimeOffset(localDateTime.ToUniversalTime()).ToUnixTimeSeconds();
-                // TODO: UTC 9999/12/31 23:59:59 + LocalTime(+0030...) -> invalid LocalTime
-                // TODO: UTC 0001/01/01 00:00:00 + LocalTime(-0030...) -> invalid LocalTime
-                /*
-                if (timestamp is < (-62135596800) or > 253402300799)
-                {
-                    IsInputInvalid = true;
-                    return false;
-                }
-                 */
-                DateTime utcDateTime = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(timestamp);
-                _timestamp = timestamp;
-                IsInputInvalid = false;
-            }
-            catch
-            {
-                IsInputInvalid = true;
-                return false;
-            }
-            return true;
+            OnPropertyChanged(nameof(CurrentYear));
+            OnPropertyChanged(nameof(CurrentMonth));
+            OnPropertyChanged(nameof(CurrentDay));
+            OnPropertyChanged(nameof(CurrentHour));
+            OnPropertyChanged(nameof(CurrentMinute));
+            OnPropertyChanged(nameof(CurrentSecond));
         }
+
+        private void ResetCurrentTimestamp()
+        {
+            OnPropertyChanged(nameof(CurrentTimestamp));
+        }
+
     }
 }
