@@ -65,18 +65,9 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel
+                    Margin="0,12,0,0"
                     Grid.Column="0">
-                    <TextBlock
-                        x:Name="CurrentTimestampHeaderTextBlock"
-                        Text="{x:Bind ViewModel.Strings.TimestampTitle}"
-                        Margin="{ThemeResource TextBoxTopHeaderMargin}"
-                        Style="{StaticResource SubTitleTextBlock}"
-                        TextWrapping="NoWrap"
-                        TextTrimming="CharacterEllipsis"
-                        VerticalAlignment="Bottom" />
-
-                    <Grid
-                        ColumnSpacing="4">
+                    <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition
                                 Width="*" />
@@ -84,26 +75,22 @@
                                 Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <StackPanel
-                            Grid.Column="0">
-                            <muxc:NumberBox
-                                Value="{x:Bind ViewModel.CurrentTimestamp, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                SpinButtonPlacementMode="Compact"
-                                SmallChange="1"
-                                LargeChange="10"
-                                Minimum="{x:Bind local:TimestampToolPage.MinimumTimestamp}"
-                                Maximum="{x:Bind local:TimestampToolPage.MaximumTimestamp}"
-                                TabIndex="0"
-                                AutomationProperties.LabeledBy="{Binding ElementName=CurrentTimestampHeaderTextBlock}" />
-                        </StackPanel>
-
+                        <TextBlock
+                            x:Name="CurrentTimestampHeaderTextBlock"
+                            Text="{x:Bind ViewModel.Strings.TimestampTitle}"
+                            Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                            Style="{StaticResource SubTitleTextBlock}"
+                            TextWrapping="NoWrap"
+                            TextTrimming="CharacterEllipsis"
+                            VerticalAlignment="Bottom" />
                         <StackPanel
                             Grid.Column="1"
                             Orientation="Horizontal"
                             HorizontalAlignment="Right"
-                            Spacing="4"
+                            Spacing="8"
                             Margin="0,0,0,8"
-                            AutomationProperties.LabeledBy="{Binding ElementName=CurrentDateTimeHeaderTextBlock}">
+                            AutomationProperties.LabeledBy="{Binding ElementName=CurrentTimestampHeaderTextBlock}">
+                            <!--Button   -->
                             <Button
                                 TabIndex="1"
                                 Command="{x:Bind ViewModel.PasteCommand}"
@@ -113,11 +100,10 @@
                                     Spacing="4">
                                     <FontIcon
                                         Glyph="&#xF2D5;" />
-                                </StackPanel>
-                                <ToolTipService.ToolTip>
                                     <TextBlock
+                                        VerticalAlignment="Center"
                                         Text="{Binding Instance.Common.Paste, Mode=OneTime, Source={StaticResource LanguageManager}}" />
-                                </ToolTipService.ToolTip>
+                                </StackPanel>
                             </Button>
                             <Button
                                 TabIndex="2"
@@ -128,31 +114,99 @@
                                     Spacing="4">
                                     <FontIcon
                                         Glyph="&#xF32B;" />
-                                </StackPanel>
-                                <ToolTipService.ToolTip>
                                     <TextBlock
+                                        VerticalAlignment="Center"
                                         Text="{Binding Instance.Common.Copy, Mode=OneTime, Source={StaticResource LanguageManager}}" />
-                                </ToolTipService.ToolTip>
+                                </StackPanel>
                             </Button>
+                            <!--Button / -->
                         </StackPanel>
                     </Grid>
+                    <StackPanel>
+                        <muxc:NumberBox
+                            Value="{x:Bind ViewModel.CurrentTimestamp, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            SpinButtonPlacementMode="Compact"
+                            SmallChange="1"
+                            LargeChange="10"
+                            Minimum="{x:Bind local:TimestampToolPage.MinimumTimestamp}"
+                            Maximum="{x:Bind local:TimestampToolPage.MaximumTimestamp}"
+                            TabIndex="0"
+                            AutomationProperties.LabeledBy="{Binding ElementName=CurrentTimestampHeaderTextBlock}" />
+                    </StackPanel>
+                    <StackPanel
+                        Margin="0,12,0,0">
+                        <TextBlock
+                            x:Name="CurrentTimeZonePickerHeaderTextBlock"
+                            Text="{x:Bind ViewModel.Strings.CurrentTimeZone}"
+                            Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                            Style="{StaticResource SubTitleTextBlock}"
+                            TextWrapping="NoWrap"
+                            TextTrimming="CharacterEllipsis"
+                            VerticalAlignment="Bottom" />
+                        <ComboBox
+                            HorizontalAlignment="Stretch"
+                            AutomationProperties.LabeledBy="{Binding ElementName=CurrentTimeZonePickerHeaderTextBlock}"
+                            SelectedItem="{x:Bind ViewModel.CurrentTimeZoneDisplayName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            ItemsSource="{x:Bind ViewModel.TimeZoneDisplayNameCollection}" />
+
+                    </StackPanel>
                 </StackPanel>
 
                 <StackPanel
-                    Grid.Column="1">
+                    Grid.Column="1"
+                    Spacing="4">
+                    <!-- datetime info   -->
                     <TextBlock
-                        x:Name="CurrentTimeZonePickerHeaderTextBlock"
-                        Text="{x:Bind ViewModel.Strings.CurrentTimeZone}"
-                        Margin="{ThemeResource TextBoxTopHeaderMargin}"
                         Style="{StaticResource SubTitleTextBlock}"
-                        TextWrapping="NoWrap"
-                        TextTrimming="CharacterEllipsis"
-                        VerticalAlignment="Bottom" />
-                    <ComboBox
-                        HorizontalAlignment="Stretch"
-                        AutomationProperties.LabeledBy="{Binding ElementName=CurrentTimeZonePickerHeaderTextBlock}"
-                        SelectedItem="{x:Bind ViewModel.CurrentTimeZoneDisplayName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                        ItemsSource="{x:Bind ViewModel.TimeZoneDisplayNameCollection}" />
+                        Text="Timezone info" />
+                    <Grid
+                        ColumnSpacing="12"
+                        RowSpacing="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="Auto" />
+                            <ColumnDefinition
+                                Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Text="{x:Bind ViewModel.DSTInfoText, Mode=OneWay}" />
+
+                        <TextBlock
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Text="Local PC" />
+                        <TextBlock
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Text="{x:Bind ViewModel.DSTInfoLocalDateTime, Mode=OneWay}" />
+                        <TextBlock
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Text="Utc" />
+                        <TextBlock
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Text="{x:Bind ViewModel.DSTInfoUtcDateTime, Mode=OneWay}" />
+                        <TextBlock
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Text="UtcTicks" />
+                        <TextBlock
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            Text="{x:Bind ViewModel.DSTInfoUtcTicks, Mode=OneWay}" />
+                    </Grid>
+                    <!-- datetime info / -->
+
                 </StackPanel>
             </Grid>
         </StackPanel>

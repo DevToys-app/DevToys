@@ -35,6 +35,11 @@ namespace DevToys.ViewModels.Tools.Timestamp
         private bool _isDaylightSavingTime;
         private bool _isDSTAmbiguousTime;
 
+        private string _dstInfoText = "";
+        private string _dstInfoLocalDateTime = "";
+        private string _dstInfoUtcDateTime = "";
+        private string _dstInfoUtcTicks = "";
+
 
         public Type View => typeof(TimestampToolPage);
 
@@ -70,6 +75,29 @@ namespace DevToys.ViewModels.Tools.Timestamp
             set => SetProperty(ref _isDSTAmbiguousTime, value);
         }
 
+        internal string DSTInfoText
+        {
+            get => _dstInfoText;
+            set => SetProperty(ref _dstInfoText, value);
+        }
+        internal string DSTInfoLocalDateTime
+        {
+            get => _dstInfoLocalDateTime;
+            set => SetProperty(ref _dstInfoLocalDateTime, value);
+        }
+
+        internal string DSTInfoUtcDateTime
+        {
+            get => _dstInfoUtcDateTime;
+            set => SetProperty(ref _dstInfoUtcDateTime, value);
+        }
+
+        internal string DSTInfoUtcTicks
+        {
+            get => _dstInfoUtcTicks;
+            set => SetProperty(ref _dstInfoUtcTicks, value);
+        }
+
         private void DSTInfo()
         {
             IsDSTAmbiguousTime = false;
@@ -79,20 +107,26 @@ namespace DevToys.ViewModels.Tools.Timestamp
             if (_currentTimeZone.IsAmbiguousTime(_currentDateTime))
             {
                 IsDSTAmbiguousTime = true;
+                DSTInfoText = Strings.DSTAmbiguousTime;
             }
             else if (_currentTimeZone.IsDaylightSavingTime(_currentDateTime))
             {
                 IsDaylightSavingTime = true;
+                DSTInfoText = Strings.DaylightSavingTime;
             }
             else if (_currentTimeZone.SupportsDaylightSavingTime)
             {
                 IsSupportsDST = true;
+                DSTInfoText = Strings.SupportsDaylightSavingTime;
             }
             else
             {
                 IsDisabledDST = true;
+                DSTInfoText = Strings.DisabledDaylightSavingTime;
             }
-
+            DSTInfoLocalDateTime = _currentDateTime.LocalDateTime.ToString();
+            DSTInfoUtcDateTime = _currentDateTime.UtcDateTime.ToString();
+            DSTInfoUtcTicks = _currentDateTime.UtcTicks.ToString();
         }
 
         private void SetTimeZoneList()
