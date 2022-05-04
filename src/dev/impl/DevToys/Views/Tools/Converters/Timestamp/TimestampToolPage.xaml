@@ -34,27 +34,6 @@
                 Style="{StaticResource SubTitleTextBlock}"
                 Text="{x:Bind ViewModel.Strings.CurrentDateTimeTitle}" />
 
-            <muxc:InfoBar
-                Severity="Warning"
-                Message="{x:Bind ViewModel.Strings.DSTAmbiguousTime}"
-                IsOpen="{x:Bind ViewModel.IsDSTAmbiguousTime, Mode=OneWay}"
-                IsClosable="False" />
-            <muxc:InfoBar
-                Severity="Informational"
-                Message="{x:Bind ViewModel.Strings.DaylightSavingTime}"
-                IsOpen="{x:Bind ViewModel.IsDaylightSavingTime, Mode=OneWay}"
-                IsClosable="False" />
-            <muxc:InfoBar
-                Severity="Informational"
-                Message="{x:Bind ViewModel.Strings.SupportsDaylightSavingTime}"
-                IsOpen="{x:Bind ViewModel.IsSupportsDST, Mode=OneWay}"
-                IsClosable="False" />
-            <muxc:InfoBar
-                Severity="Informational"
-                Message="{x:Bind ViewModel.Strings.DisabledDaylightSavingTime}"
-                IsOpen="{x:Bind ViewModel.IsDisabledDST, Mode=OneWay}"
-                IsClosable="False" />
-
             <Grid
                 ColumnSpacing="8">
                 <Grid.ColumnDefinitions>
@@ -67,7 +46,25 @@
                 <StackPanel
                     Margin="0,12,0,0"
                     Grid.Column="0">
-                    <Grid>
+
+                    <StackPanel>
+                        <TextBlock
+                            x:Name="CurrentTimeZonePickerHeaderTextBlock"
+                            Text="{x:Bind ViewModel.Strings.CurrentTimeZone}"
+                            Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                            Style="{StaticResource SubTitleTextBlock}"
+                            TextWrapping="NoWrap"
+                            TextTrimming="CharacterEllipsis"
+                            VerticalAlignment="Bottom" />
+                        <ComboBox
+                            HorizontalAlignment="Stretch"
+                            AutomationProperties.LabeledBy="{Binding ElementName=CurrentTimeZonePickerHeaderTextBlock}"
+                            SelectedItem="{x:Bind ViewModel.CurrentTimeZoneDisplayName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            ItemsSource="{x:Bind ViewModel.TimeZoneDisplayNameCollection}" />
+
+                    </StackPanel>
+                    <Grid
+                        Margin="0,12,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition
                                 Width="*" />
@@ -130,25 +127,7 @@
                             LargeChange="10"
                             Minimum="{x:Bind local:TimestampToolPage.MinimumTimestamp}"
                             Maximum="{x:Bind local:TimestampToolPage.MaximumTimestamp}"
-                            TabIndex="0"
                             AutomationProperties.LabeledBy="{Binding ElementName=CurrentTimestampHeaderTextBlock}" />
-                    </StackPanel>
-                    <StackPanel
-                        Margin="0,12,0,0">
-                        <TextBlock
-                            x:Name="CurrentTimeZonePickerHeaderTextBlock"
-                            Text="{x:Bind ViewModel.Strings.CurrentTimeZone}"
-                            Margin="{ThemeResource TextBoxTopHeaderMargin}"
-                            Style="{StaticResource SubTitleTextBlock}"
-                            TextWrapping="NoWrap"
-                            TextTrimming="CharacterEllipsis"
-                            VerticalAlignment="Bottom" />
-                        <ComboBox
-                            HorizontalAlignment="Stretch"
-                            AutomationProperties.LabeledBy="{Binding ElementName=CurrentTimeZonePickerHeaderTextBlock}"
-                            SelectedItem="{x:Bind ViewModel.CurrentTimeZoneDisplayName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            ItemsSource="{x:Bind ViewModel.TimeZoneDisplayNameCollection}" />
-
                     </StackPanel>
                 </StackPanel>
 
@@ -158,7 +137,7 @@
                     <!-- datetime info   -->
                     <TextBlock
                         Style="{StaticResource SubTitleTextBlock}"
-                        Text="Timezone info" />
+                        Text="Current DateTime info" />
                     <Grid
                         ColumnSpacing="12"
                         RowSpacing="4">
@@ -173,6 +152,7 @@
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
                         <TextBlock
                             Grid.Row="0"
@@ -183,27 +163,39 @@
                         <TextBlock
                             Grid.Row="1"
                             Grid.Column="0"
-                            Text="Local PC" />
+                            Text="Offset" />
                         <TextBlock
                             Grid.Row="1"
                             Grid.Column="1"
-                            Text="{x:Bind ViewModel.DSTInfoLocalDateTime, Mode=OneWay}" />
+                            Text="{x:Bind ViewModel.DSTInfoOffset, Mode=OneWay}"
+                            IsTextSelectionEnabled="True" />
                         <TextBlock
                             Grid.Row="2"
+                            Grid.Column="0"
+                            Text="Local PC" />
+                        <TextBlock
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Text="{x:Bind ViewModel.DSTInfoLocalDateTime, Mode=OneWay}"
+                            IsTextSelectionEnabled="True" />
+                        <TextBlock
+                            Grid.Row="3"
                             Grid.Column="0"
                             Text="Utc" />
                         <TextBlock
-                            Grid.Row="2"
-                            Grid.Column="1"
-                            Text="{x:Bind ViewModel.DSTInfoUtcDateTime, Mode=OneWay}" />
-                        <TextBlock
                             Grid.Row="3"
+                            Grid.Column="1"
+                            Text="{x:Bind ViewModel.DSTInfoUtcDateTime, Mode=OneWay}"
+                            IsTextSelectionEnabled="True" />
+                        <TextBlock
+                            Grid.Row="4"
                             Grid.Column="0"
                             Text="UtcTicks" />
                         <TextBlock
-                            Grid.Row="3"
+                            Grid.Row="4"
                             Grid.Column="1"
-                            Text="{x:Bind ViewModel.DSTInfoUtcTicks, Mode=OneWay}" />
+                            Text="{x:Bind ViewModel.DSTInfoUtcTicks, Mode=OneWay}"
+                            IsTextSelectionEnabled="True" />
                     </Grid>
                     <!-- datetime info / -->
 

@@ -30,12 +30,8 @@ namespace DevToys.ViewModels.Tools.Timestamp
         private long _minimumCurrentTimestamp = -62135596800;
         private long _maximumCurrentTimestamp = 253402300799;
 
-        private bool _isSupportsDST;
-        private bool _isDisabledDST;
-        private bool _isDaylightSavingTime;
-        private bool _isDSTAmbiguousTime;
-
         private string _dstInfoText = "";
+        private string _dstInfoOffset = "";
         private string _dstInfoLocalDateTime = "";
         private string _dstInfoUtcDateTime = "";
         private string _dstInfoUtcTicks = "";
@@ -51,30 +47,6 @@ namespace DevToys.ViewModels.Tools.Timestamp
             set => SetProperty(ref _isInputInvalid, value);
         }
 
-        internal bool IsSupportsDST
-        {
-            get => _isSupportsDST;
-            set => SetProperty(ref _isSupportsDST, value);
-        }
-
-        internal bool IsDisabledDST
-        {
-            get => _isDisabledDST;
-            set => SetProperty(ref _isDisabledDST, value);
-        }
-
-        internal bool IsDaylightSavingTime
-        {
-            get => _isDaylightSavingTime;
-            set => SetProperty(ref _isDaylightSavingTime, value);
-        }
-
-        internal bool IsDSTAmbiguousTime
-        {
-            get => _isDSTAmbiguousTime;
-            set => SetProperty(ref _isDSTAmbiguousTime, value);
-        }
-
         internal string DSTInfoText
         {
             get => _dstInfoText;
@@ -84,6 +56,12 @@ namespace DevToys.ViewModels.Tools.Timestamp
         {
             get => _dstInfoLocalDateTime;
             set => SetProperty(ref _dstInfoLocalDateTime, value);
+        }
+
+        internal string DSTInfoOffset
+        {
+            get => _dstInfoOffset;
+            set => SetProperty(ref _dstInfoOffset, value);
         }
 
         internal string DSTInfoUtcDateTime
@@ -100,30 +78,23 @@ namespace DevToys.ViewModels.Tools.Timestamp
 
         private void DSTInfo()
         {
-            IsDSTAmbiguousTime = false;
-            IsDaylightSavingTime = false;
-            IsSupportsDST = false;
-            IsDisabledDST = false;
             if (_currentTimeZone.IsAmbiguousTime(_currentDateTime))
             {
-                IsDSTAmbiguousTime = true;
                 DSTInfoText = Strings.DSTAmbiguousTime;
             }
             else if (_currentTimeZone.IsDaylightSavingTime(_currentDateTime))
             {
-                IsDaylightSavingTime = true;
                 DSTInfoText = Strings.DaylightSavingTime;
             }
             else if (_currentTimeZone.SupportsDaylightSavingTime)
             {
-                IsSupportsDST = true;
                 DSTInfoText = Strings.SupportsDaylightSavingTime;
             }
             else
             {
-                IsDisabledDST = true;
                 DSTInfoText = Strings.DisabledDaylightSavingTime;
             }
+            DSTInfoOffset = _currentDateTime.ToString("zzz");
             DSTInfoLocalDateTime = _currentDateTime.LocalDateTime.ToString();
             DSTInfoUtcDateTime = _currentDateTime.UtcDateTime.ToString();
             DSTInfoUtcTicks = _currentDateTime.UtcTicks.ToString();
