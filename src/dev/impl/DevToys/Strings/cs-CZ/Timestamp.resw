@@ -120,11 +120,26 @@
   <data name="AccessibleName" xml:space="preserve">
     <value>Timestamp converter tool</value>
   </data>
+  <data name="CurrentDateTimeTitle" xml:space="preserve">
+    <value>Current Date and Time</value>
+  </data>
+  <data name="CurrentTimeZone" xml:space="preserve">
+    <value>Time zone</value>
+  </data>
+  <data name="DaylightSavingTime" xml:space="preserve">
+    <value>Daylight saving time.</value>
+  </data>
   <data name="DayTitle" xml:space="preserve">
     <value>Day</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Convert timestamp to human-readable date and vice versa</value>
+  </data>
+  <data name="DisabledDaylightSavingTime" xml:space="preserve">
+    <value>There is no daylight saving time.</value>
+  </data>
+  <data name="DSTAmbiguousTime" xml:space="preserve">
+    <value>DST Ambiguous time.</value>
   </data>
   <data name="HourTitle" xml:space="preserve">
     <value>Hour (24 hour)</value>
@@ -153,6 +168,9 @@
   </data>
   <data name="SecondsTitle" xml:space="preserve">
     <value>Seconds</value>
+  </data>
+  <data name="SupportsDaylightSavingTime" xml:space="preserve">
+    <value>There is daylight saving time.</value>
   </data>
   <data name="TimestampTitle" xml:space="preserve">
     <value>Timestamp</value>
