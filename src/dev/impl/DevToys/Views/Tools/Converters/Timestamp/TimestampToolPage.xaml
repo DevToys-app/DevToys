@@ -137,7 +137,8 @@
                     <!-- datetime info   -->
                     <TextBlock
                         Style="{StaticResource SubTitleTextBlock}"
-                        Text="Current DateTime info" />
+                        Text="Current DateTime info"
+                        Opacity="0" />
                     <Grid
                         ColumnSpacing="12"
                         RowSpacing="4">
@@ -172,7 +173,7 @@
                         <TextBlock
                             Grid.Row="2"
                             Grid.Column="0"
-                            Text="Local PC" />
+                            Text="{x:Bind ViewModel.Strings.LocalDateTime}" />
                         <TextBlock
                             Grid.Row="2"
                             Grid.Column="1"
@@ -181,7 +182,7 @@
                         <TextBlock
                             Grid.Row="3"
                             Grid.Column="0"
-                            Text="Utc" />
+                            Text="{x:Bind ViewModel.Strings.UTCDateTime}" />
                         <TextBlock
                             Grid.Row="3"
                             Grid.Column="1"
