@@ -168,6 +168,9 @@
   <data name="Megabytes" xml:space="preserve">
     <value>MB</value>
   </data>
+  <data name="Now" xml:space="preserve">
+    <value>지금</value>
+  </data>
   <data name="Ok" xml:space="preserve">
     <value>확인</value>
   </data>

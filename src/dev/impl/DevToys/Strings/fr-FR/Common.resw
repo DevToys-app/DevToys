@@ -168,6 +168,9 @@
   <data name="Megabytes" xml:space="preserve">
     <value>MO</value>
   </data>
+  <data name="Now" xml:space="preserve">
+    <value>À présent</value>
+  </data>
   <data name="OpenFile" xml:space="preserve">
     <value>Ouvrir un fichier</value>
   </data>
