@@ -605,6 +605,11 @@ namespace DevToys
         public string Megabytes => _resources.GetString("Megabytes");
 
         /// <summary>
+        /// Gets the resource Now.
+        /// </summary>
+        public string Now => _resources.GetString("Now");
+
+        /// <summary>
         /// Gets the resource Ok.
         /// </summary>
         public string Ok => _resources.GetString("Ok");
