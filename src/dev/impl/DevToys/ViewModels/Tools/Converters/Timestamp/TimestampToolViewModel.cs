@@ -304,6 +304,7 @@ namespace DevToys.ViewModels.Tools.Timestamp
         {
             PasteCommand = new RelayCommand(ExecutePasteCommand);
             CopyCommand = new RelayCommand(ExecuteCopyCommand);
+            NowCommand = new RelayCommand(ExecuteNowCommand);
 
             // Set to the current epoch time.
             Timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
@@ -359,6 +360,18 @@ namespace DevToys.ViewModels.Tools.Timestamp
             {
                 Core.Logger.LogFault("Failed to copy from numeric box", ex);
             }
+        }
+
+        #endregion
+
+        #region NowCommand
+        internal IRelayCommand NowCommand { get; }
+
+        private void ExecuteNowCommand()
+        {
+            Timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            ResetUtcDateTime();
+            ResetLocalDateTime();
         }
 
         #endregion
