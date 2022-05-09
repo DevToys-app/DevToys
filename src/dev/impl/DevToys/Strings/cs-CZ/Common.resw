@@ -169,7 +169,7 @@
     <value>MB</value>
   </data>
   <data name="Now" xml:space="preserve">
-    <value>Nyní</value>
+    <value>Now</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
     <value>Načíst soubor</value>

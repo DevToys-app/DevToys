@@ -169,7 +169,7 @@
     <value>MO</value>
   </data>
   <data name="Now" xml:space="preserve">
-    <value>À présent</value>
+    <value>Now</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
     <value>Ouvrir un fichier</value>
