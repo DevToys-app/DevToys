@@ -2,9 +2,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Composition;
 using DevToys.Api.Tools;
+using DevToys.Helpers;
 using DevToys.Views.Tools.Timestamp;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -16,14 +16,11 @@ namespace DevToys.ViewModels.Tools.Timestamp
     public sealed class TimestampToolViewModel : ObservableRecipient, IToolViewModel
     {
         private bool _isInputInvalid;
-        private readonly long _minimumUtcTimestamp = -62135596800;
-        private readonly long _maximumUtcTimestamp = 253402300799;
 
-        internal List<string> TimeZoneDisplayNameCollection = new();
-        private readonly Dictionary<string, string> _timeZoneCollection = new();
-        private readonly ReadOnlyCollection<TimeZoneInfo> _systemTimeZone = TimeZoneInfo.GetSystemTimeZones();
+        internal List<string> TimeZoneDisplayNameCollection = TimestampToolHelper.ZoneInfo.DisplayNames;
+        private readonly Dictionary<string, string> _timeZoneCollection = TimestampToolHelper.ZoneInfo.TimeZones;
         private TimeZoneInfo _currentTimeZone = TimeZoneInfo.Utc;
-        private string _currentTimeZoneDisplayName = TimeZoneInfo.Utc.DisplayName;
+        private string _currentTimeZoneDisplayName = TimestampToolHelper.ZoneInfo.UtcDisplayName;
         private double _currentTimestamp;
         private DateTimeOffset _currentUtcDateTime;
         private DateTimeOffset _currentDateTime;
@@ -35,7 +32,6 @@ namespace DevToys.ViewModels.Tools.Timestamp
         private string _dstInfoLocalDateTime = "";
         private string _dstInfoUtcDateTime = "";
         private string _dstInfoUtcTicks = "";
-
 
         public Type View => typeof(TimestampToolPage);
 
@@ -52,6 +48,7 @@ namespace DevToys.ViewModels.Tools.Timestamp
             get => _dstInfoText;
             set => SetProperty(ref _dstInfoText, value);
         }
+
         internal string DSTInfoLocalDateTime
         {
             get => _dstInfoLocalDateTime;
@@ -100,17 +97,6 @@ namespace DevToys.ViewModels.Tools.Timestamp
             DSTInfoUtcTicks = _currentDateTime.UtcTicks.ToString();
         }
 
-        private void SetTimeZoneList()
-        {
-            foreach (TimeZoneInfo zone in _systemTimeZone)
-            {
-                _timeZoneCollection.Add(zone.DisplayName, zone.Id);
-                TimeZoneDisplayNameCollection.Add(zone.DisplayName);
-            }
-            //TimeZoneCollection.Reverse();
-
-        }
-
         internal string CurrentTimeZoneDisplayName
         {
             get => _currentTimeZoneDisplayName;
@@ -120,21 +106,12 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 {
                     _currentTimeZoneDisplayName = value;
                     _currentTimeZone = TimeZoneInfo.FindSystemTimeZoneById(_timeZoneCollection[value]);
-                    if (_currentTimeZone.BaseUtcOffset.TotalSeconds > 0)
-                    {
-                        // UTC+
-                        _minimumCurrentTimestamp = _minimumUtcTimestamp;
-                        _maximumCurrentTimestamp = _maximumUtcTimestamp - (long)_currentTimeZone.BaseUtcOffset.TotalSeconds;
-                    }
-                    else
-                    {
-                        // UTC-
-                        _minimumCurrentTimestamp = _minimumUtcTimestamp - (long)_currentTimeZone.BaseUtcOffset.TotalSeconds;
-                        _maximumCurrentTimestamp = _maximumUtcTimestamp;
-                    }
+                    _minimumCurrentTimestamp = TimestampToolHelper.TimeZone.SafeMinValue(_currentTimeZone)
+                                                                           .ToUnixTimeSeconds();
+                    _maximumCurrentTimestamp = TimestampToolHelper.TimeZone.SafeMaxValue(_currentTimeZone)
+                                                                           .ToUnixTimeSeconds();
                     UpdateCurrentTimestamp(_currentTimestamp);
                 }
-
             }
         }
 
@@ -144,10 +121,6 @@ namespace DevToys.ViewModels.Tools.Timestamp
             set
             {
                 IsInputInvalid = false;
-                if (_currentTimestamp == value)
-                {
-                    return;
-                }
                 UpdateCurrentTimestamp(value);
             }
         }
@@ -161,30 +134,12 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 {
                     return;
                 }
-                /*
-                if (CurrentDay > DateTime.DaysInMonth(value, CurrentMonth))
-                {
-                    return;
-                }
-                 */
-                try
-                {
-                    if (IsValidDateTime(value, CurrentMonth, CurrentDay, CurrentHour, CurrentMinute, CurrentSecond))
-                    {
-                        _currentUtcDateTime = _currentUtcDateTime.AddYears(value - _currentDateTime.Year);
-                    }
-                    else
-                    {
-                        IsInputInvalid = true;
-                        return;
-                    }
-                }
-                catch
+                if (!IsValidDateTime(value, CurrentMonth, CurrentDay, CurrentHour, CurrentMinute, CurrentSecond))
                 {
                     IsInputInvalid = true;
                     return;
                 }
-                CurrentTimestamp = _currentUtcDateTime.ToUnixTimeSeconds();
+                CurrentTimestamp = _currentUtcDateTime.AddYears(value - _currentDateTime.Year).ToUnixTimeSeconds();
             }
         }
 
@@ -197,32 +152,12 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 {
                     return;
                 }
-                /*
-                if (CurrentDay > DateTime.DaysInMonth(CurrentYear, value))
+                if (!IsValidDateTime(CurrentYear, value, CurrentDay, CurrentHour, CurrentMinute, CurrentSecond))
                 {
-                    return;
-                }
-                 */
-                try
-                {
-                    if (IsValidDateTime(CurrentYear, value, CurrentDay, CurrentHour, CurrentMinute, CurrentSecond))
-                    {
-                        _currentUtcDateTime = _currentUtcDateTime.AddMonths(value - _currentDateTime.Month);
-                    }
-                    else
-                    {
-                        IsInputInvalid = true;
-                        return;
-                    }
-                }
-                catch
-                {
-                    ResetCurrentDateTime();
                     IsInputInvalid = true;
                     return;
-
                 }
-                CurrentTimestamp = _currentUtcDateTime.ToUnixTimeSeconds();
+                CurrentTimestamp = _currentUtcDateTime.AddMonths(value - _currentDateTime.Month).ToUnixTimeSeconds();
             }
         }
 
@@ -235,30 +170,12 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 {
                     return;
                 }
-                /*
-                if (value > DateTime.DaysInMonth(CurrentYear, CurrentMonth))
-                {
-                    return;
-                }
-                 */
-                try
-                {
-                    if (IsValidDateTime(CurrentYear, CurrentMonth, value, CurrentHour, CurrentMinute, CurrentSecond))
-                    {
-                        _currentUtcDateTime = _currentUtcDateTime.AddDays(value - _currentDateTime.Day);
-                    }
-                    else
-                    {
-                        IsInputInvalid = true;
-                        return;
-                    }
-                }
-                catch
+                if (!IsValidDateTime(CurrentYear, CurrentMonth, value, CurrentHour, CurrentMinute, CurrentSecond))
                 {
                     IsInputInvalid = true;
                     return;
                 }
-                CurrentTimestamp = _currentUtcDateTime.ToUnixTimeSeconds();
+                CurrentTimestamp = _currentUtcDateTime.AddDays(value - _currentDateTime.Day).ToUnixTimeSeconds();
             }
         }
 
@@ -271,24 +188,12 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 {
                     return;
                 }
-                try
-                {
-                    if (IsValidDateTime(CurrentYear, CurrentMonth, CurrentDay, value, CurrentMinute, CurrentSecond))
-                    {
-                        _currentUtcDateTime = _currentUtcDateTime.AddHours(value - _currentDateTime.Hour);
-                    }
-                    else
-                    {
-                        IsInputInvalid = true;
-                        return;
-                    }
-                }
-                catch
+                if (!IsValidDateTime(CurrentYear, CurrentMonth, CurrentDay, value, CurrentMinute, CurrentSecond))
                 {
                     IsInputInvalid = true;
                     return;
                 }
-                CurrentTimestamp = _currentUtcDateTime.ToUnixTimeSeconds();
+                CurrentTimestamp = _currentUtcDateTime.AddHours(value - _currentDateTime.Hour).ToUnixTimeSeconds();
             }
         }
 
@@ -301,24 +206,12 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 {
                     return;
                 }
-                try
-                {
-                    if (IsValidDateTime(CurrentYear, CurrentMonth, CurrentDay, CurrentHour, value, CurrentSecond))
-                    {
-                        _currentUtcDateTime = _currentUtcDateTime.AddMinutes(value - _currentDateTime.Minute);
-                    }
-                    else
-                    {
-                        IsInputInvalid = true;
-                        return;
-                    }
-                }
-                catch
+                if (!IsValidDateTime(CurrentYear, CurrentMonth, CurrentDay, CurrentHour, value, CurrentSecond))
                 {
                     IsInputInvalid = true;
                     return;
                 }
-                CurrentTimestamp = _currentUtcDateTime.ToUnixTimeSeconds();
+                CurrentTimestamp = _currentUtcDateTime.AddMinutes(value - _currentDateTime.Minute).ToUnixTimeSeconds();
             }
         }
 
@@ -331,24 +224,12 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 {
                     return;
                 }
-                try
-                {
-                    if (IsValidDateTime(CurrentYear, CurrentMonth, CurrentDay, CurrentHour, CurrentMinute, value))
-                    {
-                        _currentUtcDateTime = _currentUtcDateTime.AddSeconds(value - _currentDateTime.Second);
-                    }
-                    else
-                    {
-                        IsInputInvalid = true;
-                        return;
-                    }
-                }
-                catch
+                if (!IsValidDateTime(CurrentYear, CurrentMonth, CurrentDay, CurrentHour, CurrentMinute, value))
                 {
                     IsInputInvalid = true;
                     return;
                 }
-                CurrentTimestamp = _currentUtcDateTime.ToUnixTimeSeconds();
+                CurrentTimestamp = _currentUtcDateTime.AddSeconds(value - _currentDateTime.Second).ToUnixTimeSeconds();
             }
         }
 
@@ -356,11 +237,10 @@ namespace DevToys.ViewModels.Tools.Timestamp
         {
             PasteCommand = new RelayCommand(ExecutePasteCommand);
             CopyCommand = new RelayCommand(ExecuteCopyCommand);
-            SetTimeZoneList();
 
             // Set to the current epoch time.
             CurrentTimestamp = DateTimeOffset.Now.ToUnixTimeSeconds();
-            CurrentTimeZoneDisplayName = TimeZoneInfo.Local.DisplayName;
+            CurrentTimeZoneDisplayName = TimestampToolHelper.ZoneInfo.LocalDisplayName;
         }
 
         #region PasteCommand
@@ -428,19 +308,25 @@ namespace DevToys.ViewModels.Tools.Timestamp
             {
                 value = 0;
             }
-            if (IsValidTimestamp((long)value))
-            {
-                _currentTimestamp = value;
-                _currentUtcDateTime = TimestampToUtcDateTime(value);
-                _currentDateTime = TimeZoneInfo.ConvertTime(TimestampToUtcDateTime(value), _currentTimeZone);
-                DSTInfo();
-                ResetCurrentTimestamp();
-                ResetCurrentDateTime();
-            }
-            else
+            if (!IsValidTimestamp((long)value))
             {
                 IsInputInvalid = true;
+                if (value < 0)
+                {
+                    value = _minimumCurrentTimestamp;
+                }
+                else
+                {
+                    value = _maximumCurrentTimestamp;
+                }
+
             }
+            _currentTimestamp = value;
+            _currentUtcDateTime = TimestampToUtcDateTime(value);
+            _currentDateTime = TimeZoneInfo.ConvertTime(_currentUtcDateTime, _currentTimeZone);
+            DSTInfo();
+            ResetCurrentTimestamp();
+            ResetCurrentDateTime();
         }
 
         private bool IsValidTimestamp(long value)
@@ -449,8 +335,6 @@ namespace DevToys.ViewModels.Tools.Timestamp
             {
                 return false;
             }
-            // TODO:
-            //return TimeZoneInfo.ConvertTime(TimestampToUtcDateTime(value), _currentTimeZone).ToUnixTimeSeconds() == value;
             return true;
         }
 
@@ -460,23 +344,27 @@ namespace DevToys.ViewModels.Tools.Timestamp
             {
                 return false;
             }
-            TimeSpan offset = _currentTimeZone.BaseUtcOffset;
-            DateTimeOffset calcDateTime = new(1970, 1, 1, 0, 0, 0, offset);
+
+            DateTimeOffset calcDateTime = TimeZoneInfo.ConvertTime(_currentDateTime, TimeZoneInfo.Utc);
+            calcDateTime = calcDateTime.AddYears(1970 - calcDateTime.Year);
             try
             {
-                calcDateTime = calcDateTime.AddMonths(Month - 1);
-                calcDateTime = calcDateTime.AddDays(Day - 1);
-                calcDateTime = calcDateTime.AddHours(Hour);
-                calcDateTime = calcDateTime.AddMinutes(Minute);
-                calcDateTime = calcDateTime.AddSeconds(Second);
+                calcDateTime = calcDateTime.AddMonths(Month - _currentDateTime.Month);
+                calcDateTime = calcDateTime.AddDays(Day - _currentDateTime.Day);
+                calcDateTime = calcDateTime.AddHours(Hour - _currentDateTime.Hour);
+                calcDateTime = calcDateTime.AddMinutes(Minute - _currentDateTime.Minute);
+                calcDateTime = calcDateTime.AddSeconds(Second - _currentDateTime.Second);
             }
             catch
             {
                 return false;
             }
+            calcDateTime = TimeZoneInfo.ConvertTime(calcDateTime, _currentTimeZone);
+            TimeSpan offset = calcDateTime.Offset;
 
             if (Year + calcDateTime.Year - 1970 is > 1 and < 9999)
             {
+                // 0002 ... 9998
                 return true;
             }
 
