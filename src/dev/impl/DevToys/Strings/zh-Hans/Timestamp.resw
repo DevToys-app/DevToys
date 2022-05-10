@@ -159,6 +159,9 @@
   <data name="MonthTitle" xml:space="preserve">
     <value>月</value>
   </data>
+  <data name="OffsetTitle" xml:space="preserve">
+    <value>Offset</value>
+  </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Unix 时间戳转换工具</value>
   </data>
@@ -177,6 +180,9 @@
   </data>
   <data name="UTCDateTime" xml:space="preserve">
     <value>世界标准时间（UTC）</value>
+  </data>
+  <data name="UtcTicksTitle" xml:space="preserve">
+    <value>UtcTicks</value>
   </data>
   <data name="YearTitle" xml:space="preserve">
     <value>年</value>

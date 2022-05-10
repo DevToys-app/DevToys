@@ -2691,6 +2691,11 @@ namespace DevToys
         public string MonthTitle => _resources.GetString("MonthTitle");
 
         /// <summary>
+        /// Gets the resource OffsetTitle.
+        /// </summary>
+        public string OffsetTitle => _resources.GetString("OffsetTitle");
+
+        /// <summary>
         /// Gets the resource SearchDisplayName.
         /// </summary>
         public string SearchDisplayName => _resources.GetString("SearchDisplayName");
@@ -2719,6 +2724,11 @@ namespace DevToys
         /// Gets the resource UTCDateTime.
         /// </summary>
         public string UTCDateTime => _resources.GetString("UTCDateTime");
+
+        /// <summary>
+        /// Gets the resource UtcTicksTitle.
+        /// </summary>
+        public string UtcTicksTitle => _resources.GetString("UtcTicksTitle");
 
         /// <summary>
         /// Gets the resource YearTitle.

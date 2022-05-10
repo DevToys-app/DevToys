@@ -87,9 +87,10 @@
                             Spacing="8"
                             Margin="0,0,0,8"
                             AutomationProperties.LabeledBy="{Binding ElementName=CurrentTimestampHeaderTextBlock}">
-                            <!--Button   -->
+                            <!-- Button   -->
+                            <!-- Now Button -->
                             <Button
-                                TabIndex="1"
+                                TabIndex="2"
                                 Command="{x:Bind ViewModel.PasteCommand}"
                                 AutomationProperties.Name="{Binding Instance.Common.Paste, Mode=OneTime, Source={StaticResource LanguageManager}}">
                                 <StackPanel
@@ -103,7 +104,7 @@
                                 </StackPanel>
                             </Button>
                             <Button
-                                TabIndex="2"
+                                TabIndex="3"
                                 Command="{x:Bind ViewModel.CopyCommand}"
                                 AutomationProperties.Name="{Binding Instance.Common.Copy, Mode=OneTime, Source={StaticResource LanguageManager}}">
                                 <StackPanel
@@ -116,7 +117,7 @@
                                         Text="{Binding Instance.Common.Copy, Mode=OneTime, Source={StaticResource LanguageManager}}" />
                                 </StackPanel>
                             </Button>
-                            <!--Button / -->
+                            <!-- Button / -->
                         </StackPanel>
                     </Grid>
                     <StackPanel>
@@ -164,7 +165,7 @@
                         <TextBlock
                             Grid.Row="1"
                             Grid.Column="0"
-                            Text="Offset" />
+                            Text="{x:Bind ViewModel.Strings.OffsetTitle}" />
                         <TextBlock
                             Grid.Row="1"
                             Grid.Column="1"
@@ -191,7 +192,7 @@
                         <TextBlock
                             Grid.Row="4"
                             Grid.Column="0"
-                            Text="UtcTicks" />
+                            Text="{x:Bind ViewModel.Strings.UtcTicksTitle}" />
                         <TextBlock
                             Grid.Row="4"
                             Grid.Column="1"

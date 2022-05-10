@@ -159,6 +159,9 @@
   <data name="MonthTitle" xml:space="preserve">
     <value>Mês</value>
   </data>
+  <data name="OffsetTitle" xml:space="preserve">
+    <value>Offset</value>
+  </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Conversor Carimbo Temporal Unix</value>
   </data>
@@ -177,6 +180,9 @@
   </data>
   <data name="UTCDateTime" xml:space="preserve">
     <value>Data e Hora UTC</value>
+  </data>
+  <data name="UtcTicksTitle" xml:space="preserve">
+    <value>UtcTicks</value>
   </data>
   <data name="YearTitle" xml:space="preserve">
     <value>Ano</value>
