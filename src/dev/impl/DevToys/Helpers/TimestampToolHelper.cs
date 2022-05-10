@@ -35,6 +35,8 @@ namespace DevToys.Helpers
                 if (!Regex.IsMatch(_systemTimeZone[0].DisplayName, @"^\(UTC.*\).+$"))
                 {
                     // version < .Net6
+                    // This implementation is due to the effect that projects
+                    // for using external tools require .net6 or earlier libraries.
                     foreach (TimeZoneInfo zone in _systemTimeZone)
                     {
                         string displayName = $"(UTC{zone.BaseUtcOffset.Hours:+00;-00;}:{zone.BaseUtcOffset.Minutes:00;00;}) " + zone.DisplayName;
@@ -80,12 +82,6 @@ namespace DevToys.Helpers
                 {
                     minValue = minValue.Subtract(t1.Offset);
                 }
-                /*
-                else
-                {
-                    minValue = minValue.Add(t1.Offset);
-                }
-                 */
                 return TimeZoneInfo.ConvertTime(minValue, timezone);
             }
 
@@ -103,12 +99,6 @@ namespace DevToys.Helpers
                 {
                     maxValue = maxValue.Subtract(t1.Offset);
                 }
-                /*
-                else
-                {
-                    maxValue = maxValue.Add(t1.Offset);
-                }
-                 */
                 return TimeZoneInfo.ConvertTime(maxValue, timezone);
             }
 
