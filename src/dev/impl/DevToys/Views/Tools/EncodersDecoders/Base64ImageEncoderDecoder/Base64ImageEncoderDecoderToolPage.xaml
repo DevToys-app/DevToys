@@ -1,0 +1,74 @@
+﻿<Page
+    x:Class="DevToys.Views.Tools.Base64ImageEncoderDecoder.Base64ImageEncoderDecoderToolPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:DevToys.UI.Controls"
+    xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d"
+    NavigationCacheMode="Disabled">
+
+    <Grid x:Name="RootGrid" RowSpacing="12" Margin="0,0,0,16">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="100"/>
+            <ColumnDefinition Width="16"/>
+            <ColumnDefinition MinWidth="100"/>
+        </Grid.ColumnDefinitions>
+
+        <controls:CustomTextBox
+            Grid.Column="0"
+            MinHeight="150"
+            AcceptsReturn="True"
+            IsRichTextEdit="True"
+            Header="{x:Bind ViewModel.Strings.Base64InputTitle}"
+            Text="{x:Bind ViewModel.Base64Data, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <toolkit:GridSplitter
+            Grid.Column="1"
+            Width="16"
+            Margin="0,42,0,0"
+            ResizeBehavior="BasedOnAlignment"
+            ResizeDirection="Auto">
+            <toolkit:GridSplitter.Element>
+                <FontIcon
+                    Glyph="&#xFD55;"
+                    FontSize="13"/>
+            </toolkit:GridSplitter.Element>
+        </toolkit:GridSplitter>
+
+        <RelativePanel
+            Grid.Column="2">
+            <TextBlock
+                x:Name="ImageInputHeader"
+                Text="{x:Bind ViewModel.Strings.ImageInputTitle}"
+                Margin="0,12,0,0"
+                Style="{StaticResource SubTitleTextBlock}"
+                TextWrapping="Wrap">
+            </TextBlock>
+            <controls:FileSelector
+                x:Name="ImageFilePicker"
+                Margin="0,12,0,0"
+                AllowedFileExtensions="png;jpg;jpeg;bmp;gif;ico;webp;svg"
+                AllowMultipleFileSelection="False"
+                AllowPasteImage="True"
+                FilesSelectedCommand="{x:Bind ViewModel.FilesSelectedCommand}"
+                RelativePanel.Below="ImageInputHeader"
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True"/>
+            <controls:ImagePreview
+                Margin="0,12,0,0"
+                Source="{x:Bind ViewModel.ImageFile, Mode=OneWay}"
+                RelativePanel.Below="ImageFilePicker"
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True"
+                RelativePanel.AlignBottomWithPanel="True"/>
+        </RelativePanel>
+    </Grid>
+</Page>

@@ -129,9 +129,6 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Simulador de Daltonismo</value>
   </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Guardar como</value>
-  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancelar</value>
   </data>

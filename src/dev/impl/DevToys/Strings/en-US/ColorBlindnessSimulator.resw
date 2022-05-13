@@ -129,9 +129,6 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Color Blindness Simulator</value>
   </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Save as</value>
-  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -149,5 +146,8 @@
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value />
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>View</value>
   </data>
 </root>

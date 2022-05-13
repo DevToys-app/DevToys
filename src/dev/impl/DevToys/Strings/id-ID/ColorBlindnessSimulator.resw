@@ -129,9 +129,6 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Simulasi Buta Warna</value>
   </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Simpan sebagai</value>
-  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Batal</value>
   </data>

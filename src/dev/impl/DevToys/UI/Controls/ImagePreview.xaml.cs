@@ -3,6 +3,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
+using DevToys.Core.Threading;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 using Windows.Storage.Pickers;
@@ -10,25 +12,13 @@ using Windows.Storage.Streams;
 using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace DevToys.Views.Tools.ColorBlindnessSimulator
+namespace DevToys.UI.Controls
 {
     public sealed partial class ImagePreview : UserControl
     {
-        public static readonly DependencyProperty StringsProperty
-          = DependencyProperty.Register(
-              nameof(Strings),
-              typeof(ColorBlindnessSimulatorStrings),
-              typeof(ImagePreview),
-              new PropertyMetadata(LanguageManager.Instance.ColorBlindnessSimulator));
-
-        public ColorBlindnessSimulatorStrings Strings
-        {
-            get => (ColorBlindnessSimulatorStrings)GetValue(StringsProperty);
-            private set => SetValue(StringsProperty, value);
-        }
-
         public static readonly DependencyProperty HeaderProperty
           = DependencyProperty.Register(
               nameof(Header),
@@ -45,26 +35,26 @@ namespace DevToys.Views.Tools.ColorBlindnessSimulator
         public static readonly DependencyProperty SourceProperty
           = DependencyProperty.Register(
               nameof(Source),
-              typeof(Uri),
+              typeof(StorageFile),
               typeof(ImagePreview),
               new PropertyMetadata(null, OnSourcePropertyChangedCalled));
 
-        public Uri? Source
+        public StorageFile? Source
         {
-            get => (Uri?)GetValue(SourceProperty);
+            get => (StorageFile?)GetValue(SourceProperty);
             set => SetValue(SourceProperty, value);
         }
 
         public static readonly DependencyProperty ImageSourceProperty
           = DependencyProperty.Register(
               nameof(ImageSource),
-              typeof(BitmapSource),
+              typeof(ImageSource),
               typeof(ImagePreview),
               new PropertyMetadata(null));
 
-        public BitmapSource? ImageSource
+        public ImageSource? ImageSource
         {
-            get => (BitmapSource?)GetValue(ImageSourceProperty);
+            get => (ImageSource?)GetValue(ImageSourceProperty);
             private set => SetValue(ImageSourceProperty, value);
         }
 
@@ -93,7 +83,7 @@ namespace DevToys.Views.Tools.ColorBlindnessSimulator
 
         private async void ViewButton_Click(object sender, RoutedEventArgs e)
         {
-            await Launcher.LaunchFileAsync(await StorageFile.GetFileFromPathAsync(Source!.OriginalString));
+            await Launcher.LaunchFileAsync(Source);
         }
 
         private async void CopyButton_Click(object sender, RoutedEventArgs e)
@@ -101,7 +91,7 @@ namespace DevToys.Views.Tools.ColorBlindnessSimulator
             try
             {
                 var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
-                dataPackage.SetBitmap(RandomAccessStreamReference.CreateFromFile(await StorageFile.GetFileFromPathAsync(Source!.OriginalString)));
+                dataPackage.SetBitmap(RandomAccessStreamReference.CreateFromFile(Source));
 
                 Clipboard.SetContentWithOptions(dataPackage, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
                 Clipboard.Flush(); // This method allows the content to remain available after the application shuts down.
@@ -114,7 +104,7 @@ namespace DevToys.Views.Tools.ColorBlindnessSimulator
 
         private async void SaveAsButton_Click(object sender, RoutedEventArgs e)
         {
-            string? fileExtension = Path.GetExtension(Source!.OriginalString);
+            string? fileExtension = Path.GetExtension(Source!.Path);
 
             var savePicker = new FileSavePicker
             {
@@ -127,7 +117,7 @@ namespace DevToys.Views.Tools.ColorBlindnessSimulator
             StorageFile? newFile = await savePicker.PickSaveFileAsync();
             if (newFile is not null)
             {
-                StorageFile tempCompressedFile = await StorageFile.GetFileFromPathAsync(Source!.OriginalString);
+                StorageFile tempCompressedFile = Source;
                 await tempCompressedFile.CopyAndReplaceAsync(newFile);
             }
         }
@@ -135,7 +125,33 @@ namespace DevToys.Views.Tools.ColorBlindnessSimulator
         private static void OnSourcePropertyChangedCalled(DependencyObject sender, DependencyPropertyChangedEventArgs eventArgs)
         {
             var imagePreview = ((ImagePreview)sender);
-            imagePreview.ImageSource = new BitmapImage(imagePreview.Source);
+            if (imagePreview.Source is null)
+            {
+                imagePreview.ImageSource = null;
+            }
+            else
+            {
+                ThreadHelper.RunOnUIThreadAsync(async () =>
+                {
+                    using (IRandomAccessStream fileStream = await imagePreview.Source.OpenAsync(FileAccessMode.Read))
+                    {
+                        if (imagePreview.Source.FileType.ToLowerInvariant() == ".svg")
+                        {
+                            var svgImage = new SvgImageSource();
+                            imagePreview.ImageSource = svgImage;
+                            svgImage.RasterizePixelHeight = imagePreview.ActualHeight * 2;
+                            svgImage.RasterizePixelWidth = imagePreview.ActualWidth * 2;
+                            _ = svgImage.SetSourceAsync(fileStream);
+                        }
+                        else
+                        {
+                            var bitmapImage = new BitmapImage();
+                            imagePreview.ImageSource = bitmapImage;
+                            _ = bitmapImage.SetSourceAsync(fileStream);
+                        }
+                    }
+                });
+            }
         }
     }
 }

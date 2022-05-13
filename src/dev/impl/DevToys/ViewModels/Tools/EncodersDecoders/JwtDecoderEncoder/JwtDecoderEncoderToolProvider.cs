@@ -13,7 +13,7 @@ namespace DevToys.ViewModels.Tools.JwtDecoderEncoder
     [Name("Jwt Decoder / Encoder")]
     [Parent(EncodersDecodersGroupToolProvider.InternalName)]
     [ProtocolName("jwt")]
-    [Order(1)]
+    [Order(3)]
     [NotScrollable]
     internal sealed class JwtDecoderEncoderToolProvider : ToolProviderBase, IToolProvider
     {
