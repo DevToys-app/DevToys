@@ -27,6 +27,7 @@
             MinHeight="150"
             AcceptsReturn="True"
             IsRichTextEdit="True"
+            CanCopyWhenNotReadOnly="True"
             Header="{x:Bind ViewModel.Strings.Base64InputTitle}"
             Text="{x:Bind ViewModel.Base64Data, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
