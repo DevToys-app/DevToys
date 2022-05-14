@@ -29,7 +29,7 @@ namespace DevToys.Helpers.SqlFormatter.Core
         /// </summary>
         internal string Format(string query)
         {
-            return Format(query, new SqlFormatterOptions(indentationSize: 2, uppercase: false));
+            return Format(query, new SqlFormatterOptions(indentation: Models.Indentation.TwoSpaces, uppercase: false));
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace DevToys.Helpers.SqlFormatter.Core
         internal string Format(string query, SqlFormatterOptions options)
         {
             _options = options;
-            _indentation = new Indentation(options.IndentationSize);
+            _indentation = new Indentation(options.Indentation);
             _params = new Params(options.PlaceholderParameters);
 
             _tokens = GetTokenizer().Tokenize(query);
@@ -97,7 +97,7 @@ namespace DevToys.Helpers.SqlFormatter.Core
                         _previousReservedToken = token;
                         break;
                     case TokenType.ReservedTopLevelNoIndent:
-                        FormatTopLvoidReservedWordNoIndent(token, querySpan);
+                        FormatTopLevelReservedWordNoIndent(token, querySpan);
                         _previousReservedToken = token;
                         break;
                     case TokenType.ReservedNewLine:
@@ -160,7 +160,7 @@ namespace DevToys.Helpers.SqlFormatter.Core
             return CommentWhitespacesRegex.Replace(comment.ToString(), $"\n{_indentation!.GetIndent()} ");
         }
 
-        private void FormatTopLvoidReservedWordNoIndent(Token token, ReadOnlySpan<char> querySpan)
+        private void FormatTopLevelReservedWordNoIndent(Token token, ReadOnlySpan<char> querySpan)
         {
             Assumes.NotNull(_indentation, nameof(_indentation));
             _indentation!.DecreaseTopLevel();

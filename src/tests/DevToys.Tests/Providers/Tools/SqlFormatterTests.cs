@@ -1247,7 +1247,7 @@ SELECT count(*)
 FROM
     Table1;";
 
-            string output = formatter.Format(input, new SqlFormatterOptions(indentationSize: 4, uppercase: false));
+            string output = formatter.Format(input, new SqlFormatterOptions(indentation: Models.Indentation.FourSpaces, uppercase: false));
             Assert.AreEqual(expectedResult, output);
 
             // supports linesBetweenQueries option
@@ -1264,7 +1264,7 @@ SELECT
 FROM
   bar;";
 
-            output = formatter.Format(input, new SqlFormatterOptions(indentationSize: 2, uppercase: false, linesBetweenQueries: 2));
+            output = formatter.Format(input, new SqlFormatterOptions(indentation: Models.Indentation.TwoSpaces, uppercase: false, linesBetweenQueries: 2));
             Assert.AreEqual(expectedResult, output);
 
             // supports uppercase option
@@ -1280,7 +1280,20 @@ WHERE
   cola > 1
   AND colb = 3";
 
-            output = formatter.Format(input, new SqlFormatterOptions(indentationSize: 2, uppercase: true));
+            output = formatter.Format(input, new SqlFormatterOptions(indentation: Models.Indentation.TwoSpaces, uppercase: true));
+            Assert.AreEqual(expectedResult, output);
+
+            // supports indent option one tab
+            input = @"SELECT count(*),Column1 FROM Table1;";
+
+            expectedResult =
+string.Format(@"SELECT
+{0}count(*),
+{1}Column1
+FROM
+{2}Table1;", "\t", "\t", "\t");
+
+            output = formatter.Format(input, new SqlFormatterOptions(indentation: Models.Indentation.OneTab, uppercase: false));
             Assert.AreEqual(expectedResult, output);
         }
 
@@ -1376,7 +1389,7 @@ FROM
   WHEN 'three' THEN 3
   ELSE 4
 END;";
-            string output = formatter.Format(input, new SqlFormatterOptions(indentationSize: 2, uppercase: true));
+            string output = formatter.Format(input, new SqlFormatterOptions(indentation: Models.Indentation.TwoSpaces, uppercase: true));
             Assert.AreEqual(expectedResult, output);
         }
 
