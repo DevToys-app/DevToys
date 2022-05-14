@@ -29,7 +29,7 @@ namespace DevToys.Helpers.SqlFormatter.Core
         /// </summary>
         internal string Format(string query)
         {
-            return Format(query, new SqlFormatterOptions(indentationSize: 2, uppercase: false));
+            return Format(query, new SqlFormatterOptions(indentation: Models.Indentation.TwoSpaces, uppercase: false));
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace DevToys.Helpers.SqlFormatter.Core
         internal string Format(string query, SqlFormatterOptions options)
         {
             _options = options;
-            _indentation = new Indentation(options.IndentationSize);
+            _indentation = new Indentation(options.Indentation);
             _params = new Params(options.PlaceholderParameters);
 
             _tokens = GetTokenizer().Tokenize(query);
