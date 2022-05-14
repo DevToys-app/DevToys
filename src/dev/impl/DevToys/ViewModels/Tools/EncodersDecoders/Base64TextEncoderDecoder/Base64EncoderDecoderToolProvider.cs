@@ -4,9 +4,9 @@ using System;
 using System.Composition;
 using System.Text;
 using System.Text.RegularExpressions;
-using DevToys.Shared.Api.Core;
 using DevToys.Api.Tools;
 using DevToys.Core.Threading;
+using DevToys.Shared.Api.Core;
 using Windows.UI.Xaml.Controls;
 
 namespace DevToys.ViewModels.Tools.Base64EncoderDecoder

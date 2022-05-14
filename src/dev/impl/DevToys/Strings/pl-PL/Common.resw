@@ -183,6 +183,9 @@
   <data name="Refresh" xml:space="preserve">
     <value>Refresh</value>
   </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>Zapisz jako</value>
+  </data>
   <data name="SelectAll" xml:space="preserve">
     <value>Zaznacz wszystko</value>
   </data>
@@ -203,5 +206,9 @@
   </data>
   <data name="Undo" xml:space="preserve">
     <value>Cofnij</value>
+  </data>
+  <data name="ViewImage" xml:space="preserve">
+    <value>View</value>
+    <comment>In the context of "view / display an image".</comment>
   </data>
 </root>

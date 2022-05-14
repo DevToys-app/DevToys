@@ -186,6 +186,9 @@
   <data name="Refresh" xml:space="preserve">
     <value>刷新</value>
   </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>另存为</value>
+  </data>
   <data name="SelectAll" xml:space="preserve">
     <value>选择全部</value>
   </data>
@@ -206,5 +209,9 @@
   </data>
   <data name="Undo" xml:space="preserve">
     <value>撤销</value>
+  </data>
+  <data name="ViewImage" xml:space="preserve">
+    <value>View</value>
+    <comment>In the context of "view / display an image".</comment>
   </data>
 </root>

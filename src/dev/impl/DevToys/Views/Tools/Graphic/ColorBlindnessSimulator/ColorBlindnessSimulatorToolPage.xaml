@@ -6,7 +6,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:DevToys.UI.Controls"
     xmlns:converters="using:DevToys.UI.Converters"
-    xmlns:local="using:DevToys.Views.Tools.ColorBlindnessSimulator"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
     NavigationCacheMode="Required">
@@ -46,25 +45,25 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <local:ImagePreview
+            <controls:ImagePreview
                 Grid.Row="0"
                 Grid.Column="0"
                 Header="{x:Bind ViewModel.Strings.OriginalPicture}"
                 Source="{x:Bind ViewModel.OriginalOutput, Mode=OneWay}"/>
 
-            <local:ImagePreview
+            <controls:ImagePreview
                 Grid.Row="0"
                 Grid.Column="1"
                 Header="{x:Bind ViewModel.Strings.ProtanopiaSimulation}"
                 Source="{x:Bind ViewModel.ProtanopiaOutput, Mode=OneWay}"/>
 
-            <local:ImagePreview
+            <controls:ImagePreview
                 Grid.Row="1"
                 Grid.Column="0"
                 Header="{x:Bind ViewModel.Strings.TritanopiaSimulation}"
                 Source="{x:Bind ViewModel.TritanopiaOutput, Mode=OneWay}"/>
 
-            <local:ImagePreview
+            <controls:ImagePreview
                 Grid.Row="1"
                 Grid.Column="1"
                 Header="{x:Bind ViewModel.Strings.DeuteranopiaSimulation}"
