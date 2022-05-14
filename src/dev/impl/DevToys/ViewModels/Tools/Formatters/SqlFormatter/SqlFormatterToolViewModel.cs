@@ -100,7 +100,8 @@ namespace DevToys.ViewModels.Tools.SqlFormatter
         /// </summary>
         internal IReadOnlyList<IndentationDisplayPair> Indentations = new ObservableCollection<IndentationDisplayPair> {
             Models.IndentationDisplayPair.TwoSpaces,
-            Models.IndentationDisplayPair.FourSpaces
+            Models.IndentationDisplayPair.FourSpaces,
+            Models.IndentationDisplayPair.OneTab
         };
 
         /// <summary>
@@ -170,6 +171,7 @@ namespace DevToys.ViewModels.Tools.SqlFormatter
                 {
                     Models.Indentation.TwoSpaces => 2,
                     Models.Indentation.FourSpaces => 4,
+                    Models.Indentation.OneTab => 1,
                     _ => throw new NotSupportedException(),
                 };
 
@@ -178,7 +180,7 @@ namespace DevToys.ViewModels.Tools.SqlFormatter
                         text,
                         SqlLanguageMode.Value,
                         new SqlFormatterOptions(
-                            indentationSize,
+                            IndentationMode.Value,
                             uppercase: true,
                             linesBetweenQueries: 2));
 

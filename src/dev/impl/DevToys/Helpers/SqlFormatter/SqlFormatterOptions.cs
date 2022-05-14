@@ -6,7 +6,7 @@ namespace DevToys.Helpers.SqlFormatter
 {
     internal struct SqlFormatterOptions
     {
-        public int IndentationSize { get; }
+        public Models.Indentation Indentation { get; }
 
         public bool Uppercase { get; }
 
@@ -15,12 +15,12 @@ namespace DevToys.Helpers.SqlFormatter
         public IReadOnlyDictionary<string, string>? PlaceholderParameters { get; }
 
         public SqlFormatterOptions(
-            int indentationSize,
+            Models.Indentation indentation,
             bool uppercase,
             int linesBetweenQueries = 1,
             IReadOnlyDictionary<string, string>? placeholderParameters = null)
         {
-            IndentationSize = indentationSize;
+            Indentation = indentation;
             Uppercase = uppercase;
             LinesBetweenQueries = linesBetweenQueries;
             PlaceholderParameters = placeholderParameters;
