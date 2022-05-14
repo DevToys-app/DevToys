@@ -13,6 +13,42 @@
     <StackPanel
         Margin="0,0,0,16"
         Spacing="12">
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger
+                            MinWindowWidth="600" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter
+                            Target="Timezoneinfo.Visibility"
+                            Value="Visible" />
+                        <Setter
+                            Target="CompactTimezoneinfo.Visibility"
+                            Value="Collapsed" />
+
+                        <Setter
+                            Target="CurrentDateGridBlock.Grid.ColumnSpan"
+                            Value="1" />
+
+                        <Setter
+                            Target="CurrentTimeGridBlock.Grid.Row"
+                            Value="0" />
+                        <Setter
+                            Target="CurrentTimeGridBlock.Grid.Column"
+                            Value="1" />
+                        <Setter
+                            Target="CurrentTimeGridBlock.Grid.ColumnSpan"
+                            Value="1" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+
         <StackPanel.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition
@@ -55,8 +91,10 @@
         </StackPanel>
         <!-- timezone / -->
 
-        <!-- datetime info   -->
-        <StackPanel>
+        <!-- Timezone info   -->
+        <StackPanel
+            x:Name="Timezoneinfo"
+            Visibility="Collapsed">
             <UserControl>
                 <UserControl.Resources>
                     <Style
@@ -149,10 +187,11 @@
                 </Grid>
             </UserControl>
         </StackPanel>
-        <!-- datetime info / -->
+        <!-- Timezone info / -->
 
         <!-- unixtime   -->
-        <StackPanel>
+        <StackPanel
+            Visibility="Visible">
             <Grid
                 Margin="0,0,0,0">
                 <Grid.ColumnDefinitions>
@@ -225,138 +264,269 @@
         <!-- unixtime / -->
 
         <Grid
-            ColumnSpacing="8"
-            AutomationProperties.LabeledBy="{Binding ElementName=UtcDateTime}">
+            ColumnSpacing="8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition
                     Width="*" />
                 <ColumnDefinition
                     Width="*" />
-                <ColumnDefinition
-                    Width="*" />
-                <ColumnDefinition
-                    Width="*" />
-                <ColumnDefinition
-                    Width="*" />
-                <ColumnDefinition
-                    Width="*" />
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
 
-            <StackPanel
-                Grid.Column="0">
-                <TextBlock
-                    x:Name="CurrentYearHeaderTextBlock"
-                    Text="{x:Bind ViewModel.Strings.YearTitle}"
-                    Margin="{ThemeResource TextBoxTopHeaderMargin}"
-                    Style="{StaticResource SubTitleTextBlock}"
-                    TextWrapping="NoWrap"
-                    TextTrimming="CharacterEllipsis"
-                    VerticalAlignment="Bottom" />
-                <muxc:NumberBox
-                    Value="{x:Bind ViewModel.CurrentYear, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    SpinButtonPlacementMode="Compact"
-                    SmallChange="1"
-                    LargeChange="10"
-                    Minimum="1"
-                    Maximum="9999"
-                    AutomationProperties.LabeledBy="{Binding ElementName=CurrentYearHeaderTextBlock}" />
-            </StackPanel>
+            <!-- date -->
+            <Grid
+                x:Name="CurrentDateGridBlock"
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                ColumnSpacing="8"
+                Margin="0,12,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="*" />
+                    <ColumnDefinition
+                        Width="*" />
+                    <ColumnDefinition
+                        Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <StackPanel
-                Grid.Column="1">
-                <TextBlock
-                    x:Name="CurrentMonthHeaderTextBlock"
-                    Text="{x:Bind ViewModel.Strings.MonthTitle}"
-                    Margin="{ThemeResource TextBoxTopHeaderMargin}"
-                    Style="{StaticResource SubTitleTextBlock}"
-                    TextWrapping="NoWrap"
-                    TextTrimming="CharacterEllipsis"
-                    VerticalAlignment="Bottom" />
-                <muxc:NumberBox
-                    Value="{x:Bind ViewModel.CurrentMonth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    SpinButtonPlacementMode="Compact"
-                    SmallChange="1"
-                    Minimum="0"
-                    Maximum="13"
-                    AutomationProperties.LabeledBy="{Binding ElementName=CurrentMonthHeaderTextBlock}" />
-            </StackPanel>
+                <StackPanel
+                    Grid.Column="0">
+                    <TextBlock
+                        x:Name="CurrentYearHeaderTextBlock"
+                        Text="{x:Bind ViewModel.Strings.YearTitle}"
+                        Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                        Style="{StaticResource SubTitleTextBlock}"
+                        TextWrapping="NoWrap"
+                        TextTrimming="CharacterEllipsis"
+                        VerticalAlignment="Bottom" />
+                    <muxc:NumberBox
+                        Value="{x:Bind ViewModel.CurrentYear, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        SpinButtonPlacementMode="Compact"
+                        SmallChange="1"
+                        LargeChange="10"
+                        Minimum="1"
+                        Maximum="9999"
+                        AutomationProperties.LabeledBy="{Binding ElementName=CurrentYearHeaderTextBlock}" />
+                </StackPanel>
 
-            <StackPanel
-                Grid.Column="2">
-                <TextBlock
-                    x:Name="CurrentDayHeaderTextBlock"
-                    Text="{x:Bind ViewModel.Strings.DayTitle}"
-                    Margin="{ThemeResource TextBoxTopHeaderMargin}"
-                    Style="{StaticResource SubTitleTextBlock}"
-                    TextWrapping="NoWrap"
-                    TextTrimming="CharacterEllipsis"
-                    VerticalAlignment="Bottom" />
-                <muxc:NumberBox
-                    Value="{x:Bind ViewModel.CurrentDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    SpinButtonPlacementMode="Compact"
-                    SmallChange="1"
-                    Minimum="0"
-                    Maximum="32"
-                    AutomationProperties.LabeledBy="{Binding ElementName=CurrentDayHeaderTextBlock}" />
-            </StackPanel>
+                <StackPanel
+                    Grid.Column="1">
+                    <TextBlock
+                        x:Name="CurrentMonthHeaderTextBlock"
+                        Text="{x:Bind ViewModel.Strings.MonthTitle}"
+                        Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                        Style="{StaticResource SubTitleTextBlock}"
+                        TextWrapping="NoWrap"
+                        TextTrimming="CharacterEllipsis"
+                        VerticalAlignment="Bottom" />
+                    <muxc:NumberBox
+                        Value="{x:Bind ViewModel.CurrentMonth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        SpinButtonPlacementMode="Compact"
+                        SmallChange="1"
+                        Minimum="0"
+                        Maximum="13"
+                        AutomationProperties.LabeledBy="{Binding ElementName=CurrentMonthHeaderTextBlock}" />
+                </StackPanel>
 
-            <StackPanel
-                Grid.Column="3">
-                <TextBlock
-                    x:Name="CurrentHourHeaderTextBlock"
-                    Text="{x:Bind ViewModel.Strings.HourTitle}"
-                    Margin="{ThemeResource TextBoxTopHeaderMargin}"
-                    Style="{StaticResource SubTitleTextBlock}"
-                    TextWrapping="NoWrap"
-                    TextTrimming="CharacterEllipsis"
-                    VerticalAlignment="Bottom" />
-                <muxc:NumberBox
-                    Value="{x:Bind ViewModel.CurrentHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    SpinButtonPlacementMode="Compact"
-                    SmallChange="1"
-                    Minimum="-1"
-                    Maximum="24"
-                    AutomationProperties.LabeledBy="{Binding ElementName=CurrentHourHeaderTextBlock}" />
-            </StackPanel>
+                <StackPanel
+                    Grid.Column="2">
+                    <TextBlock
+                        x:Name="CurrentDayHeaderTextBlock"
+                        Text="{x:Bind ViewModel.Strings.DayTitle}"
+                        Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                        Style="{StaticResource SubTitleTextBlock}"
+                        TextWrapping="NoWrap"
+                        TextTrimming="CharacterEllipsis"
+                        VerticalAlignment="Bottom" />
+                    <muxc:NumberBox
+                        Value="{x:Bind ViewModel.CurrentDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        SpinButtonPlacementMode="Compact"
+                        SmallChange="1"
+                        Minimum="0"
+                        Maximum="32"
+                        AutomationProperties.LabeledBy="{Binding ElementName=CurrentDayHeaderTextBlock}" />
+                </StackPanel>
 
-            <StackPanel
-                Grid.Column="4">
-                <TextBlock
-                    x:Name="CurrentMinuteHeaderTextBlock"
-                    Text="{x:Bind ViewModel.Strings.MinutesTitle}"
-                    Margin="{ThemeResource TextBoxTopHeaderMargin}"
-                    Style="{StaticResource SubTitleTextBlock}"
-                    TextWrapping="NoWrap"
-                    TextTrimming="CharacterEllipsis"
-                    VerticalAlignment="Bottom" />
-                <muxc:NumberBox
-                    Value="{x:Bind ViewModel.CurrentMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    SpinButtonPlacementMode="Compact"
-                    SmallChange="1"
-                    Minimum="-1"
-                    Maximum="60"
-                    AutomationProperties.LabeledBy="{Binding ElementName=CurrentMinuteHeaderTextBlock}" />
-            </StackPanel>
+            </Grid>
+            <!-- time -->
+            <Grid
+                x:Name="CurrentTimeGridBlock"
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                ColumnSpacing="8"
+                Margin="0,12,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="*" />
+                    <ColumnDefinition
+                        Width="*" />
+                    <ColumnDefinition
+                        Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <StackPanel
-                Grid.Column="5">
-                <TextBlock
-                    x:Name="CurrentSecondHeaderTextBlock"
-                    Text="{x:Bind ViewModel.Strings.SecondsTitle}"
-                    Margin="{ThemeResource TextBoxTopHeaderMargin}"
-                    Style="{StaticResource SubTitleTextBlock}"
-                    TextWrapping="NoWrap"
-                    TextTrimming="CharacterEllipsis"
-                    VerticalAlignment="Bottom" />
-                <muxc:NumberBox
-                    Value="{x:Bind ViewModel.CurrentSecond, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    SpinButtonPlacementMode="Compact"
-                    SmallChange="1"
-                    Minimum="-1"
-                    Maximum="60"
-                    AutomationProperties.LabeledBy="{Binding ElementName=CurrentSecondHeaderTextBlock}" />
-            </StackPanel>
+                <StackPanel
+                    Grid.Column="0">
+                    <TextBlock
+                        x:Name="CurrentHourHeaderTextBlock"
+                        Text="{x:Bind ViewModel.Strings.HourTitle}"
+                        Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                        Style="{StaticResource SubTitleTextBlock}"
+                        TextWrapping="NoWrap"
+                        TextTrimming="CharacterEllipsis"
+                        VerticalAlignment="Bottom" />
+                    <muxc:NumberBox
+                        Value="{x:Bind ViewModel.CurrentHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        SpinButtonPlacementMode="Compact"
+                        SmallChange="1"
+                        Minimum="-1"
+                        Maximum="24"
+                        AutomationProperties.LabeledBy="{Binding ElementName=CurrentHourHeaderTextBlock}" />
+                </StackPanel>
+
+                <StackPanel
+                    Grid.Column="1">
+                    <TextBlock
+                        x:Name="CurrentMinuteHeaderTextBlock"
+                        Text="{x:Bind ViewModel.Strings.MinutesTitle}"
+                        Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                        Style="{StaticResource SubTitleTextBlock}"
+                        TextWrapping="NoWrap"
+                        TextTrimming="CharacterEllipsis"
+                        VerticalAlignment="Bottom" />
+                    <muxc:NumberBox
+                        Value="{x:Bind ViewModel.CurrentMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        SpinButtonPlacementMode="Compact"
+                        SmallChange="1"
+                        Minimum="-1"
+                        Maximum="60"
+                        AutomationProperties.LabeledBy="{Binding ElementName=CurrentMinuteHeaderTextBlock}" />
+                </StackPanel>
+
+                <StackPanel
+                    Grid.Column="2">
+                    <TextBlock
+                        x:Name="CurrentSecondHeaderTextBlock"
+                        Text="{x:Bind ViewModel.Strings.SecondsTitle}"
+                        Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                        Style="{StaticResource SubTitleTextBlock}"
+                        TextWrapping="NoWrap"
+                        TextTrimming="CharacterEllipsis"
+                        VerticalAlignment="Bottom" />
+                    <muxc:NumberBox
+                        Value="{x:Bind ViewModel.CurrentSecond, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        SpinButtonPlacementMode="Compact"
+                        SmallChange="1"
+                        Minimum="-1"
+                        Maximum="60"
+                        AutomationProperties.LabeledBy="{Binding ElementName=CurrentSecondHeaderTextBlock}" />
+                </StackPanel>
+
+            </Grid>
+
         </Grid>
+
+        <!-- Timezone info2   -->
+        <StackPanel
+            x:Name="CompactTimezoneinfo">
+            <UserControl>
+                <UserControl.Resources>
+                    <Style
+                        x:Key="CardStyle"
+                        TargetType="Grid">
+                        <Setter
+                            Property="BorderBrush"
+                            Value="{ThemeResource ExpanderHeaderBorderBrush}" />
+                        <Setter
+                            Property="BorderThickness"
+                            Value="{ThemeResource ExpanderHeaderBorderThickness}" />
+                        <Setter
+                            Property="HorizontalAlignment"
+                            Value="Stretch" />
+                        <Setter
+                            Property="MinHeight"
+                            Value="{StaticResource ExpanderMinHeight}" />
+                        <Setter
+                            Property="Padding"
+                            Value="{StaticResource ExpanderContentPadding}" />
+                        <Setter
+                            Property="CornerRadius"
+                            Value="{ThemeResource ControlCornerRadius}" />
+                        <Setter
+                            Property="Background"
+                            Value="{ThemeResource ExpanderHeaderBackground}" />
+                    </Style>
+                </UserControl.Resources>
+                <Grid
+                    Style="{StaticResource CardStyle}"
+                    ColumnSpacing="12"
+                    RowSpacing="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition
+                            Width="*" />
+                        <ColumnDefinition
+                            Width="Auto" />
+                        <ColumnDefinition
+                            Width="*" />
+                        <ColumnDefinition
+                            Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="4"
+                        Text="{x:Bind ViewModel.DSTInfoText, Mode=OneWay}" />
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Text="{x:Bind ViewModel.Strings.OffsetTitle}" />
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Text="{x:Bind ViewModel.DSTInfoOffset, Mode=OneWay}"
+                        IsTextSelectionEnabled="True" />
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Text="{x:Bind ViewModel.Strings.UtcTicksTitle}" />
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="3"
+                        Text="{x:Bind ViewModel.DSTInfoUtcTicks, Mode=OneWay}"
+                        IsTextSelectionEnabled="True" />
+                    <TextBlock
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Text="{x:Bind ViewModel.Strings.LocalDateTime}" />
+                    <TextBlock
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Text="{x:Bind ViewModel.DSTInfoLocalDateTime, Mode=OneWay}"
+                        IsTextSelectionEnabled="True" />
+                    <TextBlock
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        Text="{x:Bind ViewModel.Strings.UTCDateTime}" />
+                    <TextBlock
+                        Grid.Row="2"
+                        Grid.Column="3"
+                        Text="{x:Bind ViewModel.DSTInfoUtcDateTime, Mode=OneWay}"
+                        IsTextSelectionEnabled="True" />
+                </Grid>
+            </UserControl>
+        </StackPanel>
+        <!-- Timezone info2 / -->
+
 
     </StackPanel>
 </Page>
