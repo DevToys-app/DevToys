@@ -202,7 +202,7 @@
     <value>Incapaz de abrir este ficheiro</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>Incapaz de carregar o ficheiro '{0}'. Para mais detalhes, por favor, verifique o registo.</value>
+    <value>Unable to load the file '{0}'. Only textual files can be opened. For more details, please check the log.</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>Desfazer</value>

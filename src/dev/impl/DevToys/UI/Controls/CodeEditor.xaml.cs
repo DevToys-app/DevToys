@@ -484,6 +484,15 @@ namespace DevToys.UI.Controls
             };
 
             filePicker.FileTypeFilter.Add("*");
+            filePicker.FileTypeFilter.Add(".txt");
+            filePicker.FileTypeFilter.Add(".js");
+            filePicker.FileTypeFilter.Add(".ts");
+            filePicker.FileTypeFilter.Add(".cs");
+            filePicker.FileTypeFilter.Add(".java");
+            filePicker.FileTypeFilter.Add(".xml");
+            filePicker.FileTypeFilter.Add(".json");
+            filePicker.FileTypeFilter.Add(".md");
+            filePicker.FileTypeFilter.Add(".sql");
 
             StorageFile file = await filePicker.PickSingleFileAsync();
             if (file is not null)

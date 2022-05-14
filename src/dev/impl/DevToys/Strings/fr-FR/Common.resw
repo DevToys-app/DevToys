@@ -199,7 +199,7 @@
     <value>Impossible d’ouvrir ce fichier</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>Impossible de charger le fichier '{0}'. Pour plus de détails, veuillez consulter les logs.</value>
+    <value>Unable to load the file '{0}'. Only textual files can be opened. For more details, please check the log.</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>Annuler</value>
