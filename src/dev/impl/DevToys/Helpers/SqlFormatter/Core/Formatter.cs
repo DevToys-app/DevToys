@@ -97,7 +97,7 @@ namespace DevToys.Helpers.SqlFormatter.Core
                         _previousReservedToken = token;
                         break;
                     case TokenType.ReservedTopLevelNoIndent:
-                        FormatTopLvoidReservedWordNoIndent(token, querySpan);
+                        FormatTopLevelReservedWordNoIndent(token, querySpan);
                         _previousReservedToken = token;
                         break;
                     case TokenType.ReservedNewLine:
@@ -160,7 +160,7 @@ namespace DevToys.Helpers.SqlFormatter.Core
             return CommentWhitespacesRegex.Replace(comment.ToString(), $"\n{_indentation!.GetIndent()} ");
         }
 
-        private void FormatTopLvoidReservedWordNoIndent(Token token, ReadOnlySpan<char> querySpan)
+        private void FormatTopLevelReservedWordNoIndent(Token token, ReadOnlySpan<char> querySpan)
         {
             Assumes.NotNull(_indentation, nameof(_indentation));
             _indentation!.DecreaseTopLevel();
