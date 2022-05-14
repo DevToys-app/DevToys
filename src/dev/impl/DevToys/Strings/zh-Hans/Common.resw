@@ -202,7 +202,7 @@
     <value>抱歉，无法打开这个文件</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>抱歉，无法加载文件 '{0}' 的具体内容。欲了解更多详情，请查看日志文件记录。</value>
+    <value>Unable to load the file '{0}'. Only textual files can be opened. For more details, please check the log.</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>撤销</value>
