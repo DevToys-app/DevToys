@@ -132,15 +132,38 @@
                     </StackPanel>
                 </StackPanel>
 
-                <StackPanel
-                    Grid.Column="1"
-                    Spacing="4">
-                    <!-- datetime info   -->
-                    <TextBlock
-                        Style="{StaticResource SubTitleTextBlock}"
-                        Text="Current DateTime info"
-                        Opacity="0" />
+                <!-- datetime info   -->
+                <UserControl
+                    Grid.Column="1">
+                    <UserControl.Resources>
+                        <Style
+                            x:Key="CardStyle"
+                            TargetType="Grid">
+                            <Setter
+                                Property="BorderBrush"
+                                Value="{ThemeResource ExpanderHeaderBorderBrush}" />
+                            <Setter
+                                Property="BorderThickness"
+                                Value="{ThemeResource ExpanderHeaderBorderThickness}" />
+                            <Setter
+                                Property="HorizontalAlignment"
+                                Value="Stretch" />
+                            <Setter
+                                Property="MinHeight"
+                                Value="{StaticResource ExpanderMinHeight}" />
+                            <Setter
+                                Property="Padding"
+                                Value="{StaticResource ExpanderContentPadding}" />
+                            <Setter
+                                Property="CornerRadius"
+                                Value="{ThemeResource ControlCornerRadius}" />
+                            <Setter
+                                Property="Background"
+                                Value="{ThemeResource ExpanderHeaderBackground}" />
+                        </Style>
+                    </UserControl.Resources>
                     <Grid
+                        Style="{StaticResource CardStyle}"
                         ColumnSpacing="12"
                         RowSpacing="4">
                         <Grid.ColumnDefinitions>
@@ -199,9 +222,9 @@
                             Text="{x:Bind ViewModel.DSTInfoUtcTicks, Mode=OneWay}"
                             IsTextSelectionEnabled="True" />
                     </Grid>
-                    <!-- datetime info / -->
+                </UserControl>
+                <!-- datetime info / -->
 
-                </StackPanel>
             </Grid>
         </StackPanel>
 
