@@ -96,6 +96,8 @@
     <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\NumberBaseFormatBuilder.cs" />
     <Compile Include="ViewModels\Tools\Converters\Timestamp\TimestampToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Converters\Timestamp\TimestampToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\Base64ImageEncoderDecoder\Base64ImageEncoderDecoderToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\Base64ImageEncoderDecoder\Base64ImageEncoderDecoderToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolProvider.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolViewModel.cs" />
     <Compile Include="Helpers\JsonYaml\Core\DecimalJsonConverter.cs" />
@@ -141,6 +143,9 @@
     <Compile Include="Views\Tools\Converters\Timestamp\TimestampToolPage.xaml.cs">
       <DependentUpon>TimestampToolPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Tools\EncodersDecoders\Base64ImageEncoderDecoder\Base64ImageEncoderDecoderToolPage.xaml.cs">
+      <DependentUpon>Base64ImageEncoderDecoderToolPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolPage.xaml.cs">
       <DependentUpon>GZipEncoderDecoderToolPage.xaml</DependentUpon>
     </Compile>
@@ -156,7 +161,7 @@
     <Compile Include="Views\Tools\Graphic\ColorBlindnessSimulator\ColorBlindnessSimulatorToolPage.xaml.cs">
       <DependentUpon>ColorBlindnessSimulatorToolPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tools\Graphic\ColorBlindnessSimulator\ImagePreview.xaml.cs">
+    <Compile Include="UI\Controls\ImagePreview.xaml.cs">
       <DependentUpon>ImagePreview.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\GroupToolPage.xaml.cs">
@@ -305,6 +310,7 @@
     <Content Include="Assets\GitHubMarkdownCss\github-markdown-light.css" />
     <Content Include="Assets\GitHubMarkdownCss\github-markdown.css" />
     <Content Include="Assets\GitHubMarkdownCss\index.html" />
+    <Content Include="Assets\Icons\Base64Image.svg" />
     <Content Include="Assets\Icons\ColorBlindnessSimulator.svg" />
     <Content Include="Assets\Icons\EncodersDecoders.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -473,8 +479,8 @@
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\Tools\Settings\SettingsToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Settings\SettingsToolViewModel.cs" />
-    <Compile Include="ViewModels\Tools\EncodersDecoders\Base64EncoderDecoder\Base64EncoderDecoderToolProvider.cs" />
-    <Compile Include="ViewModels\Tools\EncodersDecoders\Base64EncoderDecoder\Base64EncoderDecoderToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\Base64TextEncoderDecoder\Base64EncoderDecoderToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\Base64TextEncoderDecoder\Base64EncoderDecoderToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Generators\HashGenerator\HashGeneratorToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Generators\HashGenerator\HashGeneratorToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Formatters\JsonFormatter\JsonFormatterToolProvider.cs" />
@@ -488,7 +494,7 @@
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tools\EncodersDecoders\Base64EncoderDecoder\Base64EncoderDecoderToolPage.xaml.cs">
+    <Compile Include="Views\Tools\EncodersDecoders\Base64TextEncoderDecoder\Base64EncoderDecoderToolPage.xaml.cs">
       <DependentUpon>Base64EncoderDecoderToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\Converters\NumberBaseConverter\NumberBaseConverterToolPage.xaml.cs">
@@ -611,11 +617,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Tools\EncodersDecoders\Base64ImageEncoderDecoder\Base64ImageEncoderDecoderToolPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Tools\EncodersDecoders\Base64EncoderDecoder\Base64EncoderDecoderToolPage.xaml">
+    <Page Include="Views\Tools\EncodersDecoders\Base64TextEncoderDecoder\Base64EncoderDecoderToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -635,7 +645,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Tools\Graphic\ColorBlindnessSimulator\ImagePreview.xaml">
+    <Page Include="UI\Controls\ImagePreview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

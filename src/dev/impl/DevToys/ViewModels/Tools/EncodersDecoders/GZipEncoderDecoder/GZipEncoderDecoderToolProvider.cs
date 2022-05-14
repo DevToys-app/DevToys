@@ -12,7 +12,7 @@ namespace DevToys.ViewModels.Tools.GZipEncoderDecoder
     [Name("GZip Compress/Decompress")]
     [Parent(EncodersDecodersGroupToolProvider.InternalName)]
     [ProtocolName("gzip")]
-    [Order(1)]
+    [Order(3)]
     internal sealed class GZipEncoderDecoderToolProvider : ToolProviderBase, IToolProvider
     {
         public string MenuDisplayName => LanguageManager.Instance.GZipEncoderDecoder.MenuDisplayName;

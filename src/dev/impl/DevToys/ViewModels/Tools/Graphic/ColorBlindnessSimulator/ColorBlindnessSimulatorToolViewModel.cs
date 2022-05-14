@@ -38,10 +38,10 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
         private int _protanopiaProgress;
         private int _tritanopiaProgress;
         private int _deuteranopiaProgress;
-        private Uri? _originalOutput;
-        private Uri? _protanopiaOutput;
-        private Uri? _tritanopiaOutput;
-        private Uri? _deuteranopiaOutput;
+        private StorageFile? _originalOutput;
+        private StorageFile? _protanopiaOutput;
+        private StorageFile? _tritanopiaOutput;
+        private StorageFile? _deuteranopiaOutput;
 
         public Type View { get; } = typeof(ColorBlindnessSimulatorToolPage);
 
@@ -65,25 +65,25 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
             set => SetProperty(ref _progress, value);
         }
 
-        internal Uri? OriginalOutput
+        internal StorageFile? OriginalOutput
         {
             get => _originalOutput;
             set => SetProperty(ref _originalOutput, value);
         }
 
-        internal Uri? ProtanopiaOutput
+        internal StorageFile? ProtanopiaOutput
         {
             get => _protanopiaOutput;
             set => SetProperty(ref _protanopiaOutput, value);
         }
 
-        internal Uri? TritanopiaOutput
+        internal StorageFile? TritanopiaOutput
         {
             get => _tritanopiaOutput;
             set => SetProperty(ref _tritanopiaOutput, value);
         }
 
-        internal Uri? DeuteranopiaOutput
+        internal StorageFile? DeuteranopiaOutput
         {
             get => _deuteranopiaOutput;
             set => SetProperty(ref _deuteranopiaOutput, value);
@@ -182,7 +182,7 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
             string randomFileName = Guid.NewGuid().ToString();
 
             var workTasks
-                = new List<Task<Uri>>
+                = new List<Task<StorageFile>>
                 {
                         Task.Run(async () =>
                         {
@@ -271,7 +271,7 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
             }
         }
 
-        private async Task<Uri> SaveImageToFileAsync(byte[] bgraPixels, uint width, uint height, string imageName, string disabilityName)
+        private async Task<StorageFile> SaveImageToFileAsync(byte[] bgraPixels, uint width, uint height, string imageName, string disabilityName)
         {
             await TaskScheduler.Default;
             StorageFolder localCacheFolder = ApplicationData.Current.LocalCacheFolder;
@@ -295,7 +295,7 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
                 await encoder.FlushAsync();
             }
 
-            return new Uri(storageFile.Path);
+            return storageFile;
         }
 
         private void ClearTempFiles()

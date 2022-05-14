@@ -186,6 +186,9 @@
   <data name="Refresh" xml:space="preserve">
     <value>새로고침</value>
   </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>다른 이름으로 저장</value>
+  </data>
   <data name="SelectAll" xml:space="preserve">
     <value>모두 선택</value>
   </data>
@@ -206,5 +209,9 @@
   </data>
   <data name="Undo" xml:space="preserve">
     <value>되돌리기</value>
+  </data>
+  <data name="ViewImage" xml:space="preserve">
+    <value>View</value>
+    <comment>In the context of "view / display an image".</comment>
   </data>
 </root>
