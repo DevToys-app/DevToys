@@ -168,6 +168,9 @@
   <data name="Megabytes" xml:space="preserve">
     <value>MB</value>
   </data>
+  <data name="Now" xml:space="preserve">
+    <value>Now</value>
+  </data>
   <data name="OpenFile" xml:space="preserve">
     <value>Wczyaj plik</value>
   </data>

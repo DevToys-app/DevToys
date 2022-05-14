@@ -217,7 +217,14 @@
                     Spacing="8"
                     Margin="0,0,0,8"
                     AutomationProperties.LabeledBy="{Binding ElementName=CurrentTimestampHeaderTextBlock}">
-                    <!-- Now Button -->
+                    <Button
+                        TabIndex="1"
+                        Command="{x:Bind ViewModel.NowCommand}"
+                        AutomationProperties.Name="{Binding Instance.Common.Now, Mode=OneTime, Source={StaticResource LanguageManager}}">
+                        <StackPanel Orientation="Horizontal" Spacing="4">
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Instance.Common.Now, Mode=OneTime, Source={StaticResource LanguageManager}}"/>
+                        </StackPanel>
+                    </Button>
                     <Button
                         TabIndex="2"
                         Command="{x:Bind ViewModel.PasteCommand}"

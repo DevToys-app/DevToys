@@ -237,6 +237,7 @@ namespace DevToys.ViewModels.Tools.Timestamp
         {
             PasteCommand = new RelayCommand(ExecutePasteCommand);
             CopyCommand = new RelayCommand(ExecuteCopyCommand);
+            NowCommand = new RelayCommand(ExecuteNowCommand);
 
             // Set to the current epoch time.
             CurrentTimestamp = DateTimeOffset.Now.ToUnixTimeSeconds();
@@ -298,6 +299,13 @@ namespace DevToys.ViewModels.Tools.Timestamp
         #endregion
 
         #region NowCommand
+        internal IRelayCommand NowCommand { get; }
+
+        private void ExecuteNowCommand()
+        {
+            CurrentTimestamp = DateTimeOffset.Now.ToUnixTimeSeconds();
+        }
+
         #endregion
 
         private DateTimeOffset TimestampToUtcDateTime(double value)
