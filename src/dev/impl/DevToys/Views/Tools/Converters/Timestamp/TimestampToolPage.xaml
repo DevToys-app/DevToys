@@ -48,7 +48,7 @@
                         TabIndex="1"
                         Command="{x:Bind ViewModel.NowCommand}"
                         AutomationProperties.Name="{Binding Instance.Common.Now, Mode=OneTime, Source={StaticResource LanguageManager}}">
-                        <StackPanel Orientation="Horizontal" Spacing="4">
+                        <StackPanel Orientation="Horizontal" Spacing="4" Height="21">
                             <TextBlock VerticalAlignment="Center" Text="{Binding Instance.Common.Now, Mode=OneTime, Source={StaticResource LanguageManager}}"/>
                         </StackPanel>
                     </Button>
