@@ -92,8 +92,8 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 DSTInfoText = Strings.DisabledDaylightSavingTime;
             }
             DSTInfoOffset = _currentDateTime.ToString("zzz");
-            DSTInfoLocalDateTime = _currentDateTime.LocalDateTime.ToString();
-            DSTInfoUtcDateTime = _currentDateTime.UtcDateTime.ToString();
+            DSTInfoLocalDateTime = _currentDateTime.LocalDateTime.ToString("yyyy/MM/dd HH:mm:ss");
+            DSTInfoUtcDateTime = _currentDateTime.UtcDateTime.ToString("yyyy/MM/dd HH:mm:ss");
             DSTInfoUtcTicks = _currentDateTime.UtcTicks.ToString();
         }
 
