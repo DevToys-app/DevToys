@@ -297,6 +297,9 @@ namespace DevToys.ViewModels.Tools.Timestamp
 
         #endregion
 
+        #region NowCommand
+        #endregion
+
         private DateTimeOffset TimestampToUtcDateTime(double value)
         {
             return DateTimeOffset.FromUnixTimeSeconds((long)value).UtcDateTime;
