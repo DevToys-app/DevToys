@@ -19,17 +19,10 @@
                 <VisualState>
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger
-                            MinWindowWidth="600" />
+                            MinWindowWidth="640" />
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
-                        <Setter
-                            Target="Timezoneinfo.Visibility"
-                            Value="Visible" />
-                        <Setter
-                            Target="CompactTimezoneinfo.Visibility"
-                            Value="Collapsed" />
-
                         <Setter
                             Target="CurrentDateGridBlock.Grid.ColumnSpan"
                             Value="1" />
@@ -93,8 +86,7 @@
 
         <!-- Timezone info   -->
         <StackPanel
-            x:Name="Timezoneinfo"
-            Visibility="Collapsed">
+            x:Name="Timezoneinfo">
             <UserControl>
                 <UserControl.Resources>
                     <Style
@@ -436,104 +428,6 @@
             </Grid>
 
         </Grid>
-
-        <!-- Timezone info2   -->
-        <StackPanel
-            x:Name="CompactTimezoneinfo">
-            <UserControl>
-                <UserControl.Resources>
-                    <Style
-                        x:Key="CardStyle"
-                        TargetType="Grid">
-                        <Setter
-                            Property="BorderBrush"
-                            Value="{ThemeResource ExpanderHeaderBorderBrush}" />
-                        <Setter
-                            Property="BorderThickness"
-                            Value="{ThemeResource ExpanderHeaderBorderThickness}" />
-                        <Setter
-                            Property="HorizontalAlignment"
-                            Value="Stretch" />
-                        <Setter
-                            Property="MinHeight"
-                            Value="{StaticResource ExpanderMinHeight}" />
-                        <Setter
-                            Property="Padding"
-                            Value="{StaticResource ExpanderContentPadding}" />
-                        <Setter
-                            Property="CornerRadius"
-                            Value="{ThemeResource ControlCornerRadius}" />
-                        <Setter
-                            Property="Background"
-                            Value="{ThemeResource ExpanderHeaderBackground}" />
-                    </Style>
-                </UserControl.Resources>
-                <Grid
-                    Style="{StaticResource CardStyle}"
-                    ColumnSpacing="12"
-                    RowSpacing="4">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition
-                            Width="*" />
-                        <ColumnDefinition
-                            Width="Auto" />
-                        <ColumnDefinition
-                            Width="*" />
-                        <ColumnDefinition
-                            Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <TextBlock
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="4"
-                        Text="{x:Bind ViewModel.DSTInfoText, Mode=OneWay}" />
-                    <TextBlock
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        Text="{x:Bind ViewModel.Strings.OffsetTitle}" />
-                    <TextBlock
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        Text="{x:Bind ViewModel.DSTInfoOffset, Mode=OneWay}"
-                        IsTextSelectionEnabled="True" />
-                    <TextBlock
-                        Grid.Row="1"
-                        Grid.Column="2"
-                        Text="{x:Bind ViewModel.Strings.UtcTicksTitle}" />
-                    <TextBlock
-                        Grid.Row="1"
-                        Grid.Column="3"
-                        Text="{x:Bind ViewModel.DSTInfoUtcTicks, Mode=OneWay}"
-                        IsTextSelectionEnabled="True" />
-                    <TextBlock
-                        Grid.Row="2"
-                        Grid.Column="0"
-                        Text="{x:Bind ViewModel.Strings.LocalDateTime}" />
-                    <TextBlock
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        Text="{x:Bind ViewModel.DSTInfoLocalDateTime, Mode=OneWay}"
-                        IsTextSelectionEnabled="True" />
-                    <TextBlock
-                        Grid.Row="2"
-                        Grid.Column="2"
-                        Text="{x:Bind ViewModel.Strings.UTCDateTime}" />
-                    <TextBlock
-                        Grid.Row="2"
-                        Grid.Column="3"
-                        Text="{x:Bind ViewModel.DSTInfoUtcDateTime, Mode=OneWay}"
-                        IsTextSelectionEnabled="True" />
-                </Grid>
-            </UserControl>
-        </StackPanel>
-        <!-- Timezone info2 / -->
-
 
     </StackPanel>
 </Page>
