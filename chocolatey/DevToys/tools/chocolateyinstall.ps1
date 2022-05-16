@@ -1,7 +1,7 @@
 ﻿$ErrorActionPreference = 'Stop';
 $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$url64      = 'https://github.com/veler/DevToys/releases/download/v1.0.6.0/64360VelerSoftware.DevToys_1.0.6.0_neutral___j80j2txgjg9dj.Msixbundle'
-$checksum64 = 'ecc62711e24b6c527b71e738e1f94dd41ca2894b33057f0a95b72bbeb74dd41f'
+$url64      = 'https://github.com/veler/DevToys/releases/download/v1.0.7.0/64360VelerSoftware.DevToys_1.0.7.0_neutral_._j80j2txgjg9dj.msixbundle'
+$checksum64 = '0d83d79cfac958990d554938dd49d8094429d8b6af7cafc9d02f497911a90262'
 $WindowsVersion  = [Environment]::OSVersion.Version;
 $InstallDir = Split-Path $MyInvocation.MyCommand.Definition;
 $AppxPackageName = "64360VelerSoftware.DevToys"
