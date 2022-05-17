@@ -37,36 +37,64 @@ namespace DevToys.ViewModels.Tools.Timestamp
 
         internal TimestampStrings Strings => LanguageManager.Instance.Timestamp;
 
+        /// <summary>
+        /// Gets or sets true if the DateTimeOffset structure may exceed the settable range.
+        /// </summary>
         internal bool IsInputInvalid
         {
             get => _isInputInvalid;
             set => SetProperty(ref _isInputInvalid, value);
         }
 
+        /// <summary>
+        /// Daylight saving time display in DSTInfo block.
+        /// Gets or sets text that displays whether it is 
+        /// daylight saving time support, in daylight saving time, or ambiguous time 
+        /// for a given time zone.
+        /// </summary>
         internal string DSTInfoText
         {
             get => _dstInfoText;
             set => SetProperty(ref _dstInfoText, value);
         }
 
+        /// <summary>
+        /// Local date and time value in DSTInfo block.
+        /// Get or set the date and time converted to the time zone on the PC.
+        /// (e.g. "2026/05/13 09:12:34")
+        /// </summary>
         internal string DSTInfoLocalDateTime
         {
             get => _dstInfoLocalDateTime;
             set => SetProperty(ref _dstInfoLocalDateTime, value);
         }
 
+        /// <summary>
+        /// Time zone offset value for DSTInfo block.
+        /// Gets or sets the offset value that changes with the date and time in the specified time zone.
+        /// (e.g. "+09:00" )
+        /// </summary>
         internal string DSTInfoOffset
         {
             get => _dstInfoOffset;
             set => SetProperty(ref _dstInfoOffset, value);
         }
 
+        /// <summary>
+        /// UTC date and time value in DSTInfo block.
+        /// Gets or sets the string of the specified date and time converted to UTC(+00:00).
+        /// (e.g. "2026/05/13 01:23:45")
+        /// </summary>
         internal string DSTInfoUtcDateTime
         {
             get => _dstInfoUtcDateTime;
             set => SetProperty(ref _dstInfoUtcDateTime, value);
         }
 
+        /// <summary>
+        /// UTCTicks value in DSTInfo block.
+        /// Gets or sets the string of the specified date and time converted to UTCTicks.
+        /// </summary>
         internal string DSTInfoUtcTicks
         {
             get => _dstInfoUtcTicks;
@@ -97,6 +125,11 @@ namespace DevToys.ViewModels.Tools.Timestamp
             DSTInfoUtcTicks = _currentDateTime.UtcTicks.ToString();
         }
 
+        /// <summary>
+        /// Gets or sets the time zone name.
+        /// This value is essentially the value of TimeZoneInfo.(zone).DisplayName,
+        /// which is used to reverse lookup the time zone ID supported by the OS(e.g. TimeZoneInfo.Utc.Id).
+        /// </summary>
         internal string CurrentTimeZoneDisplayName
         {
             get => _currentTimeZoneDisplayName;
@@ -115,6 +148,10 @@ namespace DevToys.ViewModels.Tools.Timestamp
             }
         }
 
+        /// <summary>
+        /// Gets or sets the Unix time.
+        /// -62135596800 to 253402300799 integer value.
+        /// </summary>
         internal double CurrentTimestamp
         {
             get => _currentTimestamp;
@@ -125,6 +162,9 @@ namespace DevToys.ViewModels.Tools.Timestamp
             }
         }
 
+        /// <summary>
+        /// Gets or sets the year value.
+        /// </summary>
         internal int CurrentYear
         {
             get => _currentDateTime.Year;
@@ -143,6 +183,9 @@ namespace DevToys.ViewModels.Tools.Timestamp
             }
         }
 
+        /// <summary>
+        /// Gets or sets the month value.
+        /// </summary>
         internal int CurrentMonth
         {
             get => _currentDateTime.Month;
@@ -161,6 +204,9 @@ namespace DevToys.ViewModels.Tools.Timestamp
             }
         }
 
+        /// <summary>
+        /// Gets or sets the day value.
+        /// </summary>
         internal int CurrentDay
         {
             get => _currentDateTime.Day;
@@ -179,6 +225,9 @@ namespace DevToys.ViewModels.Tools.Timestamp
             }
         }
 
+        /// <summary>
+        /// Gets or sets the hour value.
+        /// </summary>
         internal int CurrentHour
         {
             get => _currentDateTime.Hour;
@@ -197,6 +246,9 @@ namespace DevToys.ViewModels.Tools.Timestamp
             }
         }
 
+        /// <summary>
+        /// Gets or sets the minute value.
+        /// </summary>
         internal int CurrentMinute
         {
             get => _currentDateTime.Minute;
@@ -215,6 +267,9 @@ namespace DevToys.ViewModels.Tools.Timestamp
             }
         }
 
+        /// <summary>
+        /// Gets or sets the second value.
+        /// </summary>
         internal int CurrentSecond
         {
             get => _currentDateTime.Second;
