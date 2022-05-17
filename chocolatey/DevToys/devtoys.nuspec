@@ -21,12 +21,15 @@
     <description>DevToys helps in daily tasks like formatting JSON, comparing text, testing RegExp. No need to use many untruthful websites to do simple tasks with your data. With Smart Detection, DevToys is able to detect the best tool that can treat the data you copied in the clipboard of your Windows. Compact overlay lets you keep the app in small and on top of other windows. Multiple instances of the app can be used at once.</description>
     <releaseNotes>
 🎉 New Features
-  • Nothing new in this update, sorry
+  • Base64 Image Encoder/Decoder tool!
 👏 Improvements
-  • Updated Japanese, Portuguese, Traditional Chinese, Simplified Chinese
-  • Improved performances on Arm64 devices
+  • Updated Korean and Italian translation
+  • Tab indentation support in SQL Formatter
+  • Added a Now button in Timestamp converter
+  • Checksum and Hash Generators now support empty files
 🐛 Bug Fixes
-  • Timestamp Converter was crashing when entering invalid dates
+  • Fixed a spacing issue with the title bar
+  • Fixed the theme of the code editor
     </releaseNotes>
   </metadata>
   <files>
