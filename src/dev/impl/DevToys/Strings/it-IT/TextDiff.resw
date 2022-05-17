@@ -145,6 +145,6 @@
     <value>Comparatore di testo</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Text Diff comparer</value>
+    <value>Comparatore differenze di testo</value>
   </data>
 </root>

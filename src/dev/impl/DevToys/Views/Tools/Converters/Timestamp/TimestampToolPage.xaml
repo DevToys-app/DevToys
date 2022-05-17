@@ -46,6 +46,14 @@
                     AutomationProperties.LabeledBy="{Binding ElementName=TimestampHeaderTextBlock}">
                     <Button
                         TabIndex="1"
+                        Command="{x:Bind ViewModel.NowCommand}"
+                        AutomationProperties.Name="{Binding Instance.Common.Now, Mode=OneTime, Source={StaticResource LanguageManager}}">
+                        <StackPanel Orientation="Horizontal" Spacing="4" Height="21">
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Instance.Common.Now, Mode=OneTime, Source={StaticResource LanguageManager}}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button
+                        TabIndex="2"
                         Command="{x:Bind ViewModel.PasteCommand}"
                         AutomationProperties.Name="{Binding Instance.Common.Paste, Mode=OneTime, Source={StaticResource LanguageManager}}">
                         <StackPanel Orientation="Horizontal" Spacing="4">
@@ -54,7 +62,7 @@
                         </StackPanel>
                     </Button>
                     <Button
-                        TabIndex="2"
+                        TabIndex="3"
                         Command="{x:Bind ViewModel.CopyCommand}"
                         AutomationProperties.Name="{Binding Instance.Common.Copy, Mode=OneTime, Source={StaticResource LanguageManager}}">
                         <StackPanel Orientation="Horizontal" Spacing="4">

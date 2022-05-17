@@ -129,9 +129,6 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Symulator Ślepoty Barw</value>
   </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Zapisz jako</value>
-  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Anuluj</value>
   </data>

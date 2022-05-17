@@ -157,9 +157,9 @@
     <value>Checksum</value>
   </data>
   <data name="HashesMatch" xml:space="preserve">
-    <value>The hashes are the same.</value>
+    <value>해시가 서로 일치합니다.</value>
   </data>
   <data name="HashesMismatch" xml:space="preserve">
-    <value>The hashes are different.</value>
+    <value>해시가 서로 일치하지 않습니다.</value>
   </data>
 </root>

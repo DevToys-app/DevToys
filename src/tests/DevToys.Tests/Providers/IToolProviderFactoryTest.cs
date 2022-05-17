@@ -13,7 +13,7 @@ namespace DevToys.Tests.Providers
         [DataRow(null, 0)]
         [DataRow("", 0)]
         [DataRow(" ", 0)]
-        [DataRow("e", 5)]
+        [DataRow("e", 6)]
         [DataRow("encoder", 1)]
         [DataRow("ENCODER", 1)]
         [DataRow("ENCODER ", 1)]
@@ -39,9 +39,9 @@ namespace DevToys.Tests.Providers
         [DataRow(null, 0)]
         [DataRow("", 0)]
         [DataRow(" ", 0)]
-        [DataRow("RFC 4648", 1)]
-        [DataRow("RFC4648", 1)]
-        [DataRow(" RFC 4648 base64 ", 1)]
+        [DataRow("RFC 4648", 2)]
+        [DataRow("RFC4648", 2)]
+        [DataRow(" RFC 4648 base64 ", 2)]
         public async Task SearchToolsKeyword(string searchquery, int expectedMatchCount)
         {
             await ThreadHelper.RunOnUIThreadAsync(async () =>

@@ -26,6 +26,7 @@ namespace DevToys
 
         private readonly AllToolsStrings _alltools = new AllToolsStrings();
         private readonly Base64EncoderDecoderStrings _base64encoderdecoder = new Base64EncoderDecoderStrings();
+        private readonly Base64ImageEncoderDecoderStrings _base64imageencoderdecoder = new Base64ImageEncoderDecoderStrings();
         private readonly CheckSumGeneratorStrings _checksumgenerator = new CheckSumGeneratorStrings();
         private readonly ColorBlindnessSimulatorStrings _colorblindnesssimulator = new ColorBlindnessSimulatorStrings();
         private readonly CommonStrings _common = new CommonStrings();
@@ -73,6 +74,11 @@ namespace DevToys
         /// Gets the <see cref="Base64EncoderDecoderStrings"/>.
         /// </summary>
         public Base64EncoderDecoderStrings Base64EncoderDecoder => _base64encoderdecoder;
+
+        /// <summary>
+        /// Gets the <see cref="Base64ImageEncoderDecoderStrings"/>.
+        /// </summary>
+        public Base64ImageEncoderDecoderStrings Base64ImageEncoderDecoder => _base64imageencoderdecoder;
 
         /// <summary>
         /// Gets the <see cref="CheckSumGeneratorStrings"/>.
@@ -356,6 +362,91 @@ namespace DevToys
         public string SearchKeywords => _resources.GetString("SearchKeywords");
     }
 
+    public class Base64ImageEncoderDecoderStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("Base64ImageEncoderDecoder");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
+        /// Gets the resource Ascii.
+        /// </summary>
+        public string Ascii => _resources.GetString("Ascii");
+
+        /// <summary>
+        /// Gets the resource ConfigurationTitle.
+        /// </summary>
+        public string ConfigurationTitle => _resources.GetString("ConfigurationTitle");
+
+        /// <summary>
+        /// Gets the resource ConversionDecode.
+        /// </summary>
+        public string ConversionDecode => _resources.GetString("ConversionDecode");
+
+        /// <summary>
+        /// Gets the resource ConversionDescription.
+        /// </summary>
+        public string ConversionDescription => _resources.GetString("ConversionDescription");
+
+        /// <summary>
+        /// Gets the resource ConversionEncode.
+        /// </summary>
+        public string ConversionEncode => _resources.GetString("ConversionEncode");
+
+        /// <summary>
+        /// Gets the resource ConversionTitle.
+        /// </summary>
+        public string ConversionTitle => _resources.GetString("ConversionTitle");
+
+        /// <summary>
+        /// Gets the resource MenuDisplayName.
+        /// </summary>
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
+
+        /// <summary>
+        /// Gets the resource EncodingDescription.
+        /// </summary>
+        public string EncodingDescription => _resources.GetString("EncodingDescription");
+
+        /// <summary>
+        /// Gets the resource EncodingTitle.
+        /// </summary>
+        public string EncodingTitle => _resources.GetString("EncodingTitle");
+
+        /// <summary>
+        /// Gets the resource Base64InputTitle.
+        /// </summary>
+        public string Base64InputTitle => _resources.GetString("Base64InputTitle");
+
+        /// <summary>
+        /// Gets the resource ImageInputTitle.
+        /// </summary>
+        public string ImageInputTitle => _resources.GetString("ImageInputTitle");
+
+        /// <summary>
+        /// Gets the resource Utf8.
+        /// </summary>
+        public string Utf8 => _resources.GetString("Utf8");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+
+        /// <summary>
+        /// Gets the resource SearchKeywords.
+        /// </summary>
+        public string SearchKeywords => _resources.GetString("SearchKeywords");
+    }
+
     public class CheckSumGeneratorStrings : ObservableObject
     {
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("CheckSumGenerator");
@@ -461,11 +552,6 @@ namespace DevToys
         public string SearchDisplayName => _resources.GetString("SearchDisplayName");
 
         /// <summary>
-        /// Gets the resource SaveAs.
-        /// </summary>
-        public string SaveAs => _resources.GetString("SaveAs");
-
-        /// <summary>
         /// Gets the resource Cancel.
         /// </summary>
         public string Cancel => _resources.GetString("Cancel");
@@ -494,6 +580,11 @@ namespace DevToys
         /// Gets the resource SearchKeywords.
         /// </summary>
         public string SearchKeywords => _resources.GetString("SearchKeywords");
+
+        /// <summary>
+        /// Gets the resource View.
+        /// </summary>
+        public string View => _resources.GetString("View");
     }
 
     public class CommonStrings : ObservableObject
@@ -605,6 +696,11 @@ namespace DevToys
         public string Megabytes => _resources.GetString("Megabytes");
 
         /// <summary>
+        /// Gets the resource Now.
+        /// </summary>
+        public string Now => _resources.GetString("Now");
+
+        /// <summary>
         /// Gets the resource Ok.
         /// </summary>
         public string Ok => _resources.GetString("Ok");
@@ -628,6 +724,11 @@ namespace DevToys
         /// Gets the resource Refresh.
         /// </summary>
         public string Refresh => _resources.GetString("Refresh");
+
+        /// <summary>
+        /// Gets the resource SaveAs.
+        /// </summary>
+        public string SaveAs => _resources.GetString("SaveAs");
 
         /// <summary>
         /// Gets the resource SelectAll.
@@ -671,6 +772,11 @@ namespace DevToys
         /// Gets the resource Undo.
         /// </summary>
         public string Undo => _resources.GetString("Undo");
+
+        /// <summary>
+        /// Gets the resource ViewImage.
+        /// </summary>
+        public string ViewImage => _resources.GetString("ViewImage");
     }
 
     public class GuidGeneratorStrings : ObservableObject

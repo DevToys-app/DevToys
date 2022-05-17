@@ -1,7 +1,10 @@
 ﻿🎉 New Features
-  • Nothing new in this update, sorry
+  • Base64 Image Encoder/Decoder tool!
 👏 Improvements
-  • Updated Japanese, Portuguese, Traditional Chinese, Simplified Chinese
-  • Improved performances on Arm64 devices
+  • Updated Korean and Italian translation
+  • Tab indentation support in SQL Formatter
+  • Added a Now button in Timestamp converter
+  • Checksum and Hash Generators now support empty files
 🐛 Bug Fixes
-  • Timestamp Converter was crashing when entering invalid dates
+  • Fixed a spacing issue with the title bar
+  • Fixed the theme of the code editor

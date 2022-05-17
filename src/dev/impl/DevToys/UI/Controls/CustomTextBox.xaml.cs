@@ -63,6 +63,19 @@ namespace DevToys.UI.Controls
             set => SetValue(IsReadOnlyProperty, value);
         }
 
+        public static readonly DependencyProperty CanCopyWhenNotReadOnlyProperty
+            = DependencyProperty.Register(
+                nameof(CanCopyWhenNotReadOnly),
+                typeof(bool),
+                typeof(CustomTextBox),
+                new PropertyMetadata(false, OnIsReadOnlyPropertyChangedCalled));
+
+        public bool CanCopyWhenNotReadOnly
+        {
+            get => (bool)GetValue(CanCopyWhenNotReadOnlyProperty);
+            set => SetValue(CanCopyWhenNotReadOnlyProperty, value);
+        }
+
         public static readonly DependencyProperty AcceptsReturnProperty
             = DependencyProperty.Register(
                 nameof(AcceptsReturn),
@@ -412,16 +425,30 @@ namespace DevToys.UI.Controls
                 {
                     GetOpenFileButton().Visibility = Visibility.Visible;
                     GetClearButton().Visibility = Visibility.Visible;
+                    if (CanCopyWhenNotReadOnly)
+                    {
+                        GetCopyButton().Visibility = Visibility.Visible;
+                    }
+                }
+                else
+                {
+                    if (CanCopyWhenNotReadOnly)
+                    {
+                        GetInlinedCopyButton().Visibility = Visibility.Visible;
+                    }
                 }
 
-                if (InlinedCopyButton is not null)
+                if (!CanCopyWhenNotReadOnly)
                 {
-                    GetInlinedCopyButton().Visibility = Visibility.Collapsed;
-                }
+                    if (InlinedCopyButton is not null)
+                    {
+                        GetInlinedCopyButton().Visibility = Visibility.Collapsed;
+                    }
 
-                if (CopyButton is not null)
-                {
-                    GetCopyButton().Visibility = Visibility.Collapsed;
+                    if (CopyButton is not null)
+                    {
+                        GetCopyButton().Visibility = Visibility.Collapsed;
+                    }
                 }
             }
         }
@@ -589,6 +616,15 @@ namespace DevToys.UI.Controls
             };
 
             filePicker.FileTypeFilter.Add("*");
+            filePicker.FileTypeFilter.Add(".txt");
+            filePicker.FileTypeFilter.Add(".js");
+            filePicker.FileTypeFilter.Add(".ts");
+            filePicker.FileTypeFilter.Add(".cs");
+            filePicker.FileTypeFilter.Add(".java");
+            filePicker.FileTypeFilter.Add(".xml");
+            filePicker.FileTypeFilter.Add(".json");
+            filePicker.FileTypeFilter.Add(".md");
+            filePicker.FileTypeFilter.Add(".sql");
 
             StorageFile file = await filePicker.PickSingleFileAsync();
             if (file is not null)

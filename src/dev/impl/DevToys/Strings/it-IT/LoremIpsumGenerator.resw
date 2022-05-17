@@ -148,7 +148,7 @@
     <value>Frasi</value>
   </data>
   <data name="StartWithLoremTitle" xml:space="preserve">
-    <value>Start with 'Lorem ipsum dolor sit amet...'</value>
+    <value>Inizia con 'Lorem ipsum dolor sit amet...'</value>
   </data>
   <data name="TypeDescription" xml:space="preserve">
     <value>Genera placeholder Lorem Ipsum</value>

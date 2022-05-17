@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using System;
 using System.Collections.Generic;
 
 namespace DevToys.Helpers.SqlFormatter.Core
@@ -23,11 +24,11 @@ namespace DevToys.Helpers.SqlFormatter.Core
         }
 
         private readonly Stack<IndentationType> _indentationTypes = new();
-        private readonly int _indentationSize;
+        private readonly Models.Indentation _indentation;
 
-        public Indentation(int indentationSize)
+        public Indentation(Models.Indentation indentation)
         {
-            _indentationSize = indentationSize;
+            _indentation = indentation;
         }
 
         /// <summary>
@@ -35,7 +36,13 @@ namespace DevToys.Helpers.SqlFormatter.Core
         /// </summary>
         internal string GetIndent()
         {
-            return new string(' ', _indentationSize * _indentationTypes.Count);
+            return _indentation switch
+            {
+                Models.Indentation.TwoSpaces => new string(' ', 2 * _indentationTypes.Count),
+                Models.Indentation.FourSpaces => new string(' ', 4 * _indentationTypes.Count),
+                Models.Indentation.OneTab => new string('\t', 1 * _indentationTypes.Count),
+                _ => throw new NotSupportedException(),
+            };
         }
 
         /// <summary>

@@ -152,7 +152,7 @@
     <value>다른 이름으로 저장</value>
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
-    <value>상세 보기</value>
+    <value>자세히 보기</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>무손실 이미지 변환기</value>

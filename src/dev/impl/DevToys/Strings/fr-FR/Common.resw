@@ -168,6 +168,9 @@
   <data name="Megabytes" xml:space="preserve">
     <value>MO</value>
   </data>
+  <data name="Now" xml:space="preserve">
+    <value>Now</value>
+  </data>
   <data name="OpenFile" xml:space="preserve">
     <value>Ouvrir un fichier</value>
   </data>
@@ -179,6 +182,9 @@
   </data>
   <data name="Refresh" xml:space="preserve">
     <value>Refresh</value>
+  </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>Enregistrer-sous</value>
   </data>
   <data name="SelectAll" xml:space="preserve">
     <value>Sélectionner tout</value>
@@ -196,9 +202,13 @@
     <value>Impossible d’ouvrir ce fichier</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>Impossible de charger le fichier '{0}'. Pour plus de détails, veuillez consulter les logs.</value>
+    <value>Unable to load the file '{0}'. Only textual files can be opened. For more details, please check the log.</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>Annuler</value>
+  </data>
+  <data name="ViewImage" xml:space="preserve">
+    <value>View</value>
+    <comment>In the context of "view / display an image".</comment>
   </data>
 </root>
