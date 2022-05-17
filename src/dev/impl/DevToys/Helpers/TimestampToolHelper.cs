@@ -4,11 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using DevToys.Core;
-using DevToys.Models;
 
 namespace DevToys.Helpers
 {
