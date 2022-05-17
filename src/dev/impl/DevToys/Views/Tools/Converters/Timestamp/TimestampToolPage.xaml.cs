@@ -54,10 +54,9 @@ namespace DevToys.Views.Tools.Timestamp
                 {
                     ViewModel.CurrentTimestamp = timestamp;
                 }
-                else if (DateTime.TryParse(parameters.ClipBoardContent, out DateTime localDateTime))
+                else if (DateTimeOffset.TryParse(parameters.ClipBoardContent, out DateTimeOffset clipboardDateTime))
                 {
-                    // TODO:
-                    ViewModel.CurrentTimestamp = new DateTimeOffset(localDateTime.ToUniversalTime()).ToUnixTimeSeconds();
+                    ViewModel.CurrentTimestamp = clipboardDateTime.ToUnixTimeSeconds();
                 }
             }
 
