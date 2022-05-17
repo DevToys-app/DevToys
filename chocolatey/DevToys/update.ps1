@@ -21,4 +21,4 @@ function global:au_SearchReplace {
     }
 }
 
-update -ChecksumFor 64 #-Force
+update -ChecksumFor 64 -Force
