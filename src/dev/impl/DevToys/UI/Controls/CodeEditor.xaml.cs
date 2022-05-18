@@ -85,6 +85,19 @@ namespace DevToys.UI.Controls
             set => SetValue(IsReadOnlyProperty, value);
         }
 
+        public static readonly DependencyProperty CanCopyWhenNotReadOnlyProperty
+            = DependencyProperty.Register(
+                nameof(CanCopyWhenNotReadOnly),
+                typeof(bool),
+                typeof(CodeEditor),
+                new PropertyMetadata(false, OnIsReadOnlyPropertyChangedCalled));
+
+        public bool CanCopyWhenNotReadOnly
+        {
+            get => (bool)GetValue(CanCopyWhenNotReadOnlyProperty);
+            set => SetValue(CanCopyWhenNotReadOnlyProperty, value);
+        }
+
         public static DependencyProperty CodeLanguageProperty { get; }
             = DependencyProperty.Register(
                 nameof(CodeLanguage),
@@ -406,7 +419,11 @@ namespace DevToys.UI.Controls
             }
             else
             {
-                if (CopyButton is not null)
+                if (CanCopyWhenNotReadOnly)
+                {
+                    GetCopyButton().Visibility = Visibility.Visible;
+                }
+                else if (CopyButton is not null)
                 {
                     CopyButton.Visibility = Visibility.Collapsed;
                 }
@@ -414,6 +431,7 @@ namespace DevToys.UI.Controls
                 GetPasteButton().Visibility = Visibility.Visible;
                 GetOpenFileButton().Visibility = Visibility.Visible;
                 GetClearButton().Visibility = Visibility.Visible;
+                GetPasteButton().Visibility = Visibility.Visible;
             }
 
             if (IsDiffViewMode)

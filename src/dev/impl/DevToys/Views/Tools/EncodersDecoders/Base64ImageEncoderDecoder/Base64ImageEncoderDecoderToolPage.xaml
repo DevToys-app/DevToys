@@ -8,7 +8,7 @@
     xmlns:ex="using:DevToys.UI.Extensions"
     xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
-    NavigationCacheMode="Disabled">
+    NavigationCacheMode="Required">
 
     <Grid x:Name="RootGrid" RowSpacing="12" Margin="0,0,0,16">
         <VisualStateManager.VisualStateGroups>
@@ -61,17 +61,17 @@
             <RowDefinition MinHeight="100"/>
         </Grid.RowDefinitions>
 
-        <controls:CustomTextBox
+        <controls:CodeEditor
             x:Name="Base64TextEditor"
             Grid.Column="0"
             Grid.Row="0"
             Grid.RowSpan="3"
             MinHeight="150"
-            AcceptsReturn="True"
-            IsRichTextEdit="True"
             CanCopyWhenNotReadOnly="True"
             Header="{x:Bind ViewModel.Strings.Base64InputTitle}"
-            Text="{x:Bind ViewModel.Base64Data, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            SettingsProvider="{x:Bind ViewModel.MockSettingsProvider}"
+            Text="{x:Bind ViewModel.Base64Data, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            CodeLanguage="text"/>
 
         <toolkit:GridSplitter
             x:Name="VerticalGridSplitter"
