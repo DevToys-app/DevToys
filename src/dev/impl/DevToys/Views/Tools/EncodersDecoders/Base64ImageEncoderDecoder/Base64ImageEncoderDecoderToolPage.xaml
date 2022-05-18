@@ -5,11 +5,45 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:DevToys.UI.Controls"
+    xmlns:ex="using:DevToys.UI.Extensions"
     xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
     NavigationCacheMode="Disabled">
 
     <Grid x:Name="RootGrid" RowSpacing="12" Margin="0,0,0,16">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <ex:IsCompactOverlayModeTrigger TargetElement="{x:Bind}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="VerticalGridSplitter.Visibility" Value="Collapsed"/>
+                        <Setter Target="HorizontalGridSplitter.Visibility" Value="Visible"/>
+                        <Setter Target="Base64TextEditor.(Grid.Row)" Value="0" />
+                        <Setter Target="Base64TextEditor.(Grid.RowSpan)" Value="1" />
+                        <Setter Target="Base64TextEditor.(Grid.Column)" Value="0" />
+                        <Setter Target="Base64TextEditor.(Grid.ColumnSpan)" Value="3" />
+                        <Setter Target="ImageRelativePanel.(Grid.Row)" Value="2" />
+                        <Setter Target="ImageRelativePanel.(Grid.RowSpan)" Value="1" />
+                        <Setter Target="ImageRelativePanel.(Grid.Column)" Value="0" />
+                        <Setter Target="ImageRelativePanel.(Grid.ColumnSpan)" Value="3" />
+                        <Setter Target="ImageInputHeader.Margin" Value="0,-12,0,0"/>
+                        <Setter Target="ImageFilePicker.(RelativePanel.AlignTopWithPanel)" Value="True" />
+                        <Setter Target="ImageFilePicker.(RelativePanel.AlignBottomWithPanel)" Value="True" />
+                        <Setter Target="ImageFilePicker.(RelativePanel.AlignRightWithPanel)" Value="False" />
+                        <Setter Target="ImageFilePicker.MaxWidth" Value="235" />
+                        <Setter Target="ImagePreview.Margin" Value="12,12,0,0" />
+                        <Setter Target="ImagePreview.(RelativePanel.Below)" Value="" />
+                        <Setter Target="ImagePreview.(RelativePanel.RightOf)" Value="ImageFilePicker" />
+                        <Setter Target="ImagePreview.(RelativePanel.AlignLeftWithPanel)" Value="False" />
+                        <Setter Target="ImagePreview.(RelativePanel.AlignTopWithPanel)" Value="True" />
+                        <Setter Target="ImagePreview.(RelativePanel.AlignBottomWithPanel)" Value="True" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
         <Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
@@ -21,9 +55,17 @@
             <ColumnDefinition Width="16"/>
             <ColumnDefinition MinWidth="100"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="100"/>
+            <RowDefinition Height="16"/>
+            <RowDefinition MinHeight="100"/>
+        </Grid.RowDefinitions>
 
         <controls:CustomTextBox
+            x:Name="Base64TextEditor"
             Grid.Column="0"
+            Grid.Row="0"
+            Grid.RowSpan="3"
             MinHeight="150"
             AcceptsReturn="True"
             IsRichTextEdit="True"
@@ -32,11 +74,14 @@
             Text="{x:Bind ViewModel.Base64Data, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <toolkit:GridSplitter
+            x:Name="VerticalGridSplitter"
             Grid.Column="1"
+            Grid.Row="0"
+            Grid.RowSpan="3"
             Width="16"
             Margin="0,42,0,0"
             ResizeBehavior="BasedOnAlignment"
-            ResizeDirection="Auto">
+            ResizeDirection="Columns">
             <toolkit:GridSplitter.Element>
                 <FontIcon
                     Glyph="&#xFD55;"
@@ -44,8 +89,27 @@
             </toolkit:GridSplitter.Element>
         </toolkit:GridSplitter>
 
+        <toolkit:GridSplitter
+            x:Name="HorizontalGridSplitter"
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            Height="16"
+            ResizeBehavior="BasedOnAlignment"
+            ResizeDirection="Rows"
+            Visibility="Collapsed">
+            <toolkit:GridSplitter.Element>
+                <FontIcon
+                    Glyph="&#xFD52;"
+                    FontSize="13"/>
+            </toolkit:GridSplitter.Element>
+        </toolkit:GridSplitter>
+
         <RelativePanel
-            Grid.Column="2">
+            x:Name="ImageRelativePanel"
+            Grid.Column="2"
+            Grid.Row="0"
+            Grid.RowSpan="3">
             <TextBlock
                 x:Name="ImageInputHeader"
                 Text="{x:Bind ViewModel.Strings.ImageInputTitle}"
@@ -64,6 +128,7 @@
                 RelativePanel.AlignLeftWithPanel="True"
                 RelativePanel.AlignRightWithPanel="True"/>
             <controls:ImagePreview
+                x:Name="ImagePreview"
                 Margin="0,12,0,0"
                 Source="{x:Bind ViewModel.ImageFile, Mode=OneWay}"
                 RelativePanel.Below="ImageFilePicker"
