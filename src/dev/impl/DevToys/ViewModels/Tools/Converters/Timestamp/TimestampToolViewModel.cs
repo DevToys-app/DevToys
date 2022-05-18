@@ -17,8 +17,8 @@ namespace DevToys.ViewModels.Tools.Timestamp
     {
         private bool _isInputInvalid;
 
-        internal List<string> TimeZoneDisplayNameCollection = TimestampToolHelper.ZoneInfo.DisplayNames;
-        private readonly Dictionary<string, string> _timeZoneCollection = TimestampToolHelper.ZoneInfo.TimeZones;
+        internal IReadOnlyList<string> TimeZoneDisplayNameCollection = TimestampToolHelper.ZoneInfo.DisplayNames;
+        private readonly IReadOnlyDictionary<string, string> _timeZoneCollection = TimestampToolHelper.ZoneInfo.TimeZones;
         private TimeZoneInfo _currentTimeZone = TimeZoneInfo.Utc;
         private string _currentTimeZoneDisplayName = TimestampToolHelper.ZoneInfo.UtcDisplayName;
         private double _currentTimestamp;
@@ -135,10 +135,10 @@ namespace DevToys.ViewModels.Tools.Timestamp
             get => _currentTimeZoneDisplayName;
             set
             {
-                if (_timeZoneCollection.ContainsKey(value))
+                if (_timeZoneCollection.TryGetValue(value, out string timeZoneID))
                 {
                     _currentTimeZoneDisplayName = value;
-                    _currentTimeZone = TimeZoneInfo.FindSystemTimeZoneById(_timeZoneCollection[value]);
+                    _currentTimeZone = TimeZoneInfo.FindSystemTimeZoneById(timeZoneID);
                     _minimumCurrentTimestamp = TimestampToolHelper.TimeZone.SafeMinValue(_currentTimeZone)
                                                                            .ToUnixTimeSeconds();
                     _maximumCurrentTimestamp = TimestampToolHelper.TimeZone.SafeMaxValue(_currentTimeZone)

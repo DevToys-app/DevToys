@@ -14,21 +14,21 @@ namespace DevToys.Helpers
         {
             private static string _utcDisplayName = "";
             private static string _localDisplayName = "";
-            private static readonly ReadOnlyCollection<TimeZoneInfo> _systemTimeZone = TimeZoneInfo.GetSystemTimeZones();
-            private static readonly Dictionary<string, string> _timeZoneCollection = InitTimeZoneCollection();
+            private static readonly IReadOnlyCollection<TimeZoneInfo> _systemTimeZone = TimeZoneInfo.GetSystemTimeZones();
+            private static readonly IReadOnlyDictionary<string, string> _timeZoneCollection = InitTimeZoneCollection();
 
             internal static string UtcDisplayName => _utcDisplayName;
 
             internal static string LocalDisplayName => _localDisplayName;
 
-            internal static List<string> DisplayNames => _timeZoneCollection.Keys.ToList();
+            internal static IReadOnlyList<string> DisplayNames => _timeZoneCollection.Keys.ToList();
 
-            internal static Dictionary<string, string> TimeZones => _timeZoneCollection;
+            internal static IReadOnlyDictionary<string, string> TimeZones => _timeZoneCollection;
 
-            private static Dictionary<string, string> InitTimeZoneCollection()
+            private static IReadOnlyDictionary<string, string> InitTimeZoneCollection()
             {
                 Dictionary<string, string> timeZoneCollection = new();
-                if (!Regex.IsMatch(_systemTimeZone[0].DisplayName, @"^\(UTC.*\).+$"))
+                if (!Regex.IsMatch(_systemTimeZone.ElementAt(0).DisplayName, @"^\(UTC.*\).+$"))
                 {
                     // version < .Net6
                     // This implementation is due to the effect that projects
