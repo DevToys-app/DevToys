@@ -5,11 +5,36 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:DevToys.UI.Controls"
+    xmlns:ex="using:DevToys.UI.Extensions"
     xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
     NavigationCacheMode="Required">
+    <Page.Resources>
+        <Style x:Key="CardStyle" TargetType="Grid">
+            <Setter Property="BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrush}" />
+            <Setter Property="BorderThickness" Value="{ThemeResource ExpanderHeaderBorderThickness}" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="MinHeight" Value="{StaticResource ExpanderMinHeight}" />
+            <Setter Property="Padding" Value="{StaticResource ExpanderContentPadding}" />
+            <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}"/>
+            <Setter Property="Background" Value="{ThemeResource ExpanderHeaderBackground}"/>
+        </Style>
+    </Page.Resources>
 
     <Grid Margin="0,0,0,16" RowSpacing="12" ColumnSpacing="12">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <ex:IsCompactOverlayModeTrigger TargetElement="{x:Bind}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="StatisticsGrid.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
         <Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
@@ -60,75 +85,81 @@
             </toolkit:WrapPanel>
         </StackPanel>
 
-        <StackPanel
+        <Grid
+            x:Name="StatisticsGrid"
+            Style="{StaticResource CardStyle}"
             Grid.Row="1"
             Grid.Column="1"
-            Spacing="4"
-            Width="200">
-            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Selection}" />
-            <Grid ColumnSpacing="12" RowSpacing="4">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Line}"/>
-                <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Bind ViewModel.Line, Mode=OneWay}"/>
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Column}"/>
-                <TextBlock Grid.Row="1" Grid.Column="1" Text="{x:Bind ViewModel.Column, Mode=OneWay}"/>
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Position}"/>
-                <TextBlock Grid.Row="2" Grid.Column="1" Text="{x:Bind ViewModel.SelectionStart, Mode=OneWay}"/>
-            </Grid>
+            Margin="0,42,0,0">
+            <StackPanel
+                Margin="0,-12,0,0"
+                Spacing="4"
+                Width="200">
+                <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Selection}" />
+                <Grid ColumnSpacing="12" RowSpacing="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Line}"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Bind ViewModel.Line, Mode=OneWay}"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Column}"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{x:Bind ViewModel.Column, Mode=OneWay}"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Position}"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{x:Bind ViewModel.SelectionStart, Mode=OneWay}"/>
+                </Grid>
 
-            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Statistics}" />
-            <Grid ColumnSpacing="12" RowSpacing="4">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Characters}"/>
-                <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Bind ViewModel.Characters, Mode=OneWay}"/>
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Words}"/>
-                <TextBlock Grid.Row="1" Grid.Column="1" Text="{x:Bind ViewModel.Words, Mode=OneWay}"/>
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Lines}"/>
-                <TextBlock Grid.Row="2" Grid.Column="1" Text="{x:Bind ViewModel.Lines, Mode=OneWay}"/>
-                <TextBlock Grid.Row="3" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Sentences}"/>
-                <TextBlock Grid.Row="3" Grid.Column="1" Text="{x:Bind ViewModel.Sentences, Mode=OneWay}"/>
-                <TextBlock Grid.Row="4" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Paragraphs}"/>
-                <TextBlock Grid.Row="4" Grid.Column="1" Text="{x:Bind ViewModel.Paragraphs, Mode=OneWay}"/>
-                <TextBlock Grid.Row="5" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Bytes}"/>
-                <TextBlock Grid.Row="5" Grid.Column="1" Text="{x:Bind ViewModel.Bytes, Mode=OneWay}"/>
-            </Grid>
+                <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Statistics}" />
+                <Grid ColumnSpacing="12" RowSpacing="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Characters}"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Bind ViewModel.Characters, Mode=OneWay}"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Words}"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{x:Bind ViewModel.Words, Mode=OneWay}"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Lines}"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{x:Bind ViewModel.Lines, Mode=OneWay}"/>
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Sentences}"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Text="{x:Bind ViewModel.Sentences, Mode=OneWay}"/>
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Paragraphs}"/>
+                    <TextBlock Grid.Row="4" Grid.Column="1" Text="{x:Bind ViewModel.Paragraphs, Mode=OneWay}"/>
+                    <TextBlock Grid.Row="5" Grid.Column="0" Text="{x:Bind ViewModel.Strings.Bytes}"/>
+                    <TextBlock Grid.Row="5" Grid.Column="1" Text="{x:Bind ViewModel.Bytes, Mode=OneWay}"/>
+                </Grid>
 
-            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.WordDistribution}" />
-            <TextBox
-                MaxHeight="200"
-                IsReadOnly="True"
-                AcceptsReturn="True"
-                ScrollViewer.VerticalScrollBarVisibility="Auto"
-                ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                Text="{x:Bind ViewModel.WordDistribution, Mode=OneWay}"/>
+                <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.WordDistribution}" />
+                <TextBox
+                    MaxHeight="200"
+                    IsReadOnly="True"
+                    AcceptsReturn="True"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto"
+                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                    Text="{x:Bind ViewModel.WordDistribution, Mode=OneWay}"/>
 
-            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.CharacterDistribution}" />
-            <TextBox
-                MaxHeight="200"
-                IsReadOnly="True"
-                AcceptsReturn="True"
-                ScrollViewer.VerticalScrollBarVisibility="Auto"
-                ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                Text="{x:Bind ViewModel.CharacterDistribution, Mode=OneWay}"/>
-        </StackPanel>
+                <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.CharacterDistribution}" />
+                <TextBox
+                    MaxHeight="200"
+                    IsReadOnly="True"
+                    AcceptsReturn="True"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto"
+                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                    Text="{x:Bind ViewModel.CharacterDistribution, Mode=OneWay}"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>
