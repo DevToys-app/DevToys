@@ -118,52 +118,52 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Base64 Image Encoder and Decoder tool</value>
+    <value>Base64 图像编码/解码工具</value>
   </data>
   <data name="Ascii" xml:space="preserve">
     <value>ASCII</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>Configuration</value>
+    <value>配置</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
-    <value>Decode</value>
+    <value>解码</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Select which conversion mode you want to use</value>
+    <value>选择您想使用的转换模式</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
-    <value>Encode</value>
+    <value>编码</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Conversion</value>
+    <value>转换</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Base64 Image</value>
+    <value>Base64 图像</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
-    <value>Select which encoding do you want to use</value>
+    <value>选择您想使用的字符编码</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
-    <value>Encoding</value>
+    <value>编码</value>
   </data>
   <data name="Base64InputTitle" xml:space="preserve">
     <value>Base64</value>
   </data>
   <data name="ImageInputTitle" xml:space="preserve">
-    <value>Image</value>
+    <value>图像</value>
   </data>
   <data name="Utf8" xml:space="preserve">
     <value>UTF-8</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Encode and decode Base64 image data</value>
+    <value>编码和解码 Base64 图像数据</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Base64 Image Encoder / Decoder</value>
+    <value>Base64 图像编码/解码工具</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>RFC 4648</value>
-    <comment>Alternative search keywords. Enables searching for words that are not included in Description, MenuDisplayName, and SearchDisplayName.</comment>
+    <comment>替代搜索关键字。启用搜索不包含在Description、MenuDisplayName和SearchDisplayName中的单词。</comment>
   </data>
 </root>

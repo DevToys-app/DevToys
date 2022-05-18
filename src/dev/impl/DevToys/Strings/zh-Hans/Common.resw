@@ -169,7 +169,7 @@
     <value>MB</value>
   </data>
   <data name="Now" xml:space="preserve">
-    <value>Now</value>
+    <value>当前时间</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>确定</value>
@@ -205,13 +205,13 @@
     <value>抱歉，无法打开这个文件</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>Unable to load the file '{0}'. Only textual files can be opened. For more details, please check the log.</value>
+    <value>无法加载文件'{0}'。只能打开文本文件。详情请查看日志。</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>撤销</value>
   </data>
   <data name="ViewImage" xml:space="preserve">
-    <value>View</value>
-    <comment>In the context of "view / display an image".</comment>
+    <value>查看</value>
+    <comment>“查看/显示图像”的内容。</comment>
   </data>
 </root>
