@@ -86,7 +86,7 @@
             <Button
                 x:Name="CopyButton"
                 x:DeferLoadStrategy="Lazy"
-                TabIndex="2"
+                TabIndex="{x:Bind IsReadOnly, Mode=OneWay, Converter={StaticResource ReadOnlyToClearButtonTabIndexConverter}}"
                 Visibility="Collapsed"
                 AutomationProperties.Name="{Binding Instance.Common.Copy, Mode=OneTime, Source={StaticResource LanguageManager}}"
                 Click="CopyButton_Click">
