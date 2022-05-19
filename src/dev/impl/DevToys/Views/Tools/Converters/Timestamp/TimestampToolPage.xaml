@@ -10,6 +10,34 @@
     d:DesignHeight="400"
     d:DesignWidth="600">
 
+    <Page.Resources>
+        <Style
+            x:Key="CardStyle"
+            TargetType="Grid">
+            <Setter
+                Property="BorderBrush"
+                Value="{ThemeResource ExpanderHeaderBorderBrush}" />
+            <Setter
+                Property="BorderThickness"
+                Value="{ThemeResource ExpanderHeaderBorderThickness}" />
+            <Setter
+                Property="HorizontalAlignment"
+                Value="Stretch" />
+            <Setter
+                Property="MinHeight"
+                Value="{StaticResource ExpanderMinHeight}" />
+            <Setter
+                Property="Padding"
+                Value="{StaticResource ExpanderContentPadding}" />
+            <Setter
+                Property="CornerRadius"
+                Value="{ThemeResource ControlCornerRadius}" />
+            <Setter
+                Property="Background"
+                Value="{ThemeResource ExpanderHeaderBackground}" />
+        </Style>
+    </Page.Resources>
+    
     <StackPanel
         Margin="0,0,0,16"
         Spacing="12">
@@ -87,97 +115,68 @@
         <!-- Timezone info   -->
         <StackPanel
             x:Name="Timezoneinfo">
-            <UserControl>
-                <UserControl.Resources>
-                    <Style
-                        x:Key="CardStyle"
-                        TargetType="Grid">
-                        <Setter
-                            Property="BorderBrush"
-                            Value="{ThemeResource ExpanderHeaderBorderBrush}" />
-                        <Setter
-                            Property="BorderThickness"
-                            Value="{ThemeResource ExpanderHeaderBorderThickness}" />
-                        <Setter
-                            Property="HorizontalAlignment"
-                            Value="Stretch" />
-                        <Setter
-                            Property="MinHeight"
-                            Value="{StaticResource ExpanderMinHeight}" />
-                        <Setter
-                            Property="Padding"
-                            Value="{StaticResource ExpanderContentPadding}" />
-                        <Setter
-                            Property="CornerRadius"
-                            Value="{ThemeResource ControlCornerRadius}" />
-                        <Setter
-                            Property="Background"
-                            Value="{ThemeResource ExpanderHeaderBackground}" />
-                    </Style>
-                </UserControl.Resources>
-                <Grid
-                    Style="{StaticResource CardStyle}"
-                    ColumnSpacing="12"
-                    RowSpacing="4">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition
-                            Width="*" />
-                        <ColumnDefinition
-                            Width="Auto" />
-                        <ColumnDefinition
-                            Width="*" />
-                        <ColumnDefinition
-                            Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <TextBlock
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="4"
-                        Text="{x:Bind ViewModel.DSTInfoText, Mode=OneWay}" />
-                    <TextBlock
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        Text="{x:Bind ViewModel.Strings.OffsetTitle}" />
-                    <TextBlock
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        Text="{x:Bind ViewModel.DSTInfoOffset, Mode=OneWay}"
-                        IsTextSelectionEnabled="True" />
-                    <TextBlock
-                        Grid.Row="1"
-                        Grid.Column="2"
-                        Text="{x:Bind ViewModel.Strings.UtcTicksTitle}" />
-                    <TextBlock
-                        Grid.Row="1"
-                        Grid.Column="3"
-                        Text="{x:Bind ViewModel.DSTInfoUtcTicks, Mode=OneWay}"
-                        IsTextSelectionEnabled="True" />
-                    <TextBlock
-                        Grid.Row="2"
-                        Grid.Column="0"
-                        Text="{x:Bind ViewModel.Strings.LocalDateTime}" />
-                    <TextBlock
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        Text="{x:Bind ViewModel.DSTInfoLocalDateTime, Mode=OneWay}"
-                        IsTextSelectionEnabled="True" />
-                    <TextBlock
-                        Grid.Row="2"
-                        Grid.Column="2"
-                        Text="{x:Bind ViewModel.Strings.UTCDateTime}" />
-                    <TextBlock
-                        Grid.Row="2"
-                        Grid.Column="3"
-                        Text="{x:Bind ViewModel.DSTInfoUtcDateTime, Mode=OneWay}"
-                        IsTextSelectionEnabled="True" />
-                </Grid>
-            </UserControl>
+            <Grid
+                Style="{StaticResource CardStyle}"
+                ColumnSpacing="12"
+                RowSpacing="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="*" />
+                    <ColumnDefinition
+                        Width="Auto" />
+                    <ColumnDefinition
+                        Width="*" />
+                    <ColumnDefinition
+                        Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="4"
+                    Text="{x:Bind ViewModel.DSTInfoText, Mode=OneWay}" />
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Text="{x:Bind ViewModel.Strings.OffsetTitle}" />
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Text="{x:Bind ViewModel.DSTInfoOffset, Mode=OneWay}"
+                    IsTextSelectionEnabled="True" />
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Text="{x:Bind ViewModel.Strings.UtcTicksTitle}" />
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    Text="{x:Bind ViewModel.DSTInfoUtcTicks, Mode=OneWay}"
+                    IsTextSelectionEnabled="True" />
+                <TextBlock
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Text="{x:Bind ViewModel.Strings.LocalDateTime}" />
+                <TextBlock
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Text="{x:Bind ViewModel.DSTInfoLocalDateTime, Mode=OneWay}"
+                    IsTextSelectionEnabled="True" />
+                <TextBlock
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Text="{x:Bind ViewModel.Strings.UTCDateTime}" />
+                <TextBlock
+                    Grid.Row="2"
+                    Grid.Column="3"
+                    Text="{x:Bind ViewModel.DSTInfoUtcDateTime, Mode=OneWay}"
+                    IsTextSelectionEnabled="True" />
+            </Grid>
         </StackPanel>
         <!-- Timezone info / -->
 
