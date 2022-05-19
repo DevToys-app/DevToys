@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <Package
-        xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
-        xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-        xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
-        xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
-        xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4"
-        xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-        IgnorableNamespaces="uap uap4 uap5 mp rescap desktop desktop4">
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:uap4="http://schemas.microsoft.com/appx/manifest/uap/windows10/4"
+  xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
+  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
+  xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  IgnorableNamespaces="uap uap4 uap5 mp rescap desktop desktop4">
 
     <!-- Please DO NOT commit changes on the version number below unless you're about to release a new version of the app on the Store. -->
     <Identity
