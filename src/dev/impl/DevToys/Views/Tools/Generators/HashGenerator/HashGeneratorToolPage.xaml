@@ -42,6 +42,17 @@
                     <ComboBoxItem Tag="Base64" Content="{x:Bind ViewModel.Strings.OutputBase64}"/>
                 </ComboBox>
             </controls:ExpandableSettingControl>
+            <controls:ExpandableSettingControl
+                Title="HMAC Mode">
+                <controls:ExpandableSettingControl.Icon>
+                    <FontIcon Glyph="&#xF084;" />
+                </controls:ExpandableSettingControl.Icon>
+                <ToggleSwitch
+                    x:Name="IsUsingHmacToggleSwitch"
+                    Style="{StaticResource RightAlignedToggleSwitchStyle}"
+                    Toggled="IsUsingHmacToggleSwitch_Toggled"
+                    IsOn="{x:Bind ViewModel.IsHmacMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </controls:ExpandableSettingControl>
         </StackPanel>
 
         <controls:CustomTextBox
@@ -49,6 +60,13 @@
             Height="150"
             AcceptsReturn="True"
             Text="{x:Bind ViewModel.Input, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <controls:CustomTextBox x:Name="SecretKeyInput"
+            Header="Secret Key (HMAC only)"
+            Height="150"
+            AcceptsReturn="True"
+            Visibility="Collapsed"
+            Text="{x:Bind ViewModel.SecretKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <controls:CustomTextBox
             Header="{x:Bind ViewModel.Strings.MD5}"
