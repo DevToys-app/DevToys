@@ -57,6 +57,7 @@
             Header="{x:Bind ViewModel.Strings.String}"
             AcceptsReturn="True"
             IsRichTextEdit="False"
+            CanCopyWhenNotReadOnly="True"
             Text="{x:Bind ViewModel.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             SelectionStart="{x:Bind ViewModel.SelectionStart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 

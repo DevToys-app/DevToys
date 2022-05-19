@@ -98,6 +98,7 @@
     <Compile Include="ViewModels\Tools\Converters\Timestamp\TimestampToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\Base64ImageEncoderDecoder\Base64ImageEncoderDecoderToolProvider.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\Base64ImageEncoderDecoder\Base64ImageEncoderDecoderToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\Base64ImageEncoderDecoder\MockSettingsProvider.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolProvider.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolViewModel.cs" />
     <Compile Include="Helpers\JsonYaml\Core\DecimalJsonConverter.cs" />
