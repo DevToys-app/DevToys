@@ -314,6 +314,7 @@ namespace DevToys.UI.Controls
                 _codeEditorCore = new CodeEditorCore();
                 _codeEditorCore.EditorLoading += CodeEditorCore_Loading;
                 _codeEditorCore.InternalException += CodeEditorCore_InternalException;
+                _codeEditorCore.TabIndex = 0;
 
                 _codeEditorCore.SetBinding(
                     CodeEditorCore.CodeLanguageProperty,

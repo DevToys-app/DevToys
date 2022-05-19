@@ -17,6 +17,7 @@
         <converters:NullToVisibilityConverter x:Key="InvertedNullToVisibilityConverter" IsInverted="True"/>
         <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
         <converters:BooleanToTextWrappingConverter x:Key="BooleanToTextWrappingConverter" TextWrappingOnTrue="Wrap" TextWrappingOnFalse="NoWrap"/>
+        <converters:BooleanToIntegerConverter x:Key="ReadOnlyToClearButtonTabIndexConverter" ValueOnTrue="3" ValueOnFalse="0"/>
     </UserControl.Resources>
 
     <Grid>
@@ -49,23 +50,10 @@
             Margin="0,0,0,8"
             AutomationProperties.LabeledBy="{x:Bind HeaderTextBlock}">
             <Button
-                x:Name="CopyButton"
-                x:DeferLoadStrategy="Lazy"
-                TabIndex="2"
-                Visibility="Collapsed"
-                AutomationProperties.Name="{Binding Instance.Common.Copy, Mode=OneTime, Source={StaticResource LanguageManager}}"
-                Click="CopyButton_Click">
-                <StackPanel Orientation="Horizontal" Spacing="4">
-                    <FontIcon Glyph="&#xF32B;"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Binding Instance.Common.Copy, Mode=OneTime, Source={StaticResource LanguageManager}}"/>
-                </StackPanel>
-            </Button>
-            <Button
                 x:Name="PasteButton"
                 x:DeferLoadStrategy="Lazy"
                 Visibility="Collapsed"
                 TabIndex="0"
-                Margin="8,0,0,0"
                 AutomationProperties.Name="{Binding Instance.Common.Paste, Mode=OneTime, Source={StaticResource LanguageManager}}"
                 Click="PasteButton_Click">
                 <StackPanel Orientation="Horizontal" Spacing="4">
@@ -85,10 +73,23 @@
                 <FontIcon Glyph="&#xF378;"/>
             </Button>
             <Button
+                x:Name="CopyButton"
+                x:DeferLoadStrategy="Lazy"
+                TabIndex="{x:Bind IsReadOnly, Mode=OneWay, Converter={StaticResource ReadOnlyToClearButtonTabIndexConverter}}"
+                Margin="8,0,0,0"
+                Visibility="Collapsed"
+                AutomationProperties.Name="{Binding Instance.Common.Copy, Mode=OneTime, Source={StaticResource LanguageManager}}"
+                Click="CopyButton_Click">
+                <StackPanel Orientation="Horizontal" Spacing="4">
+                    <FontIcon Glyph="&#xF32B;"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Instance.Common.Copy, Mode=OneTime, Source={StaticResource LanguageManager}}"/>
+                </StackPanel>
+            </Button>
+            <Button
                 x:Name="ClearButton"
                 x:DeferLoadStrategy="Lazy"
                 Visibility="Collapsed"
-                TabIndex="0"
+                TabIndex="{x:Bind IsReadOnly, Mode=OneWay, Converter={StaticResource ReadOnlyToClearButtonTabIndexConverter}}"
                 Margin="8,0,0,0"
                 ToolTipService.ToolTip="{Binding Instance.Common.Clear, Mode=OneTime, Source={StaticResource LanguageManager}}"
                 AutomationProperties.Name="{Binding Instance.Common.Clear, Mode=OneTime, Source={StaticResource LanguageManager}}"
