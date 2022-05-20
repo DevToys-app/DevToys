@@ -52,11 +52,11 @@ namespace DevToys.Views.Tools.Timestamp
             {
                 if (long.TryParse(parameters.ClipBoardContent, out long timestamp))
                 {
-                    ViewModel.CurrentTimestamp = timestamp;
+                    ViewModel.Timestamp = timestamp;
                 }
                 else if (DateTimeOffset.TryParse(parameters.ClipBoardContent, out DateTimeOffset clipboardDateTime))
                 {
-                    ViewModel.CurrentTimestamp = clipboardDateTime.ToUnixTimeSeconds();
+                    ViewModel.Timestamp = clipboardDateTime.ToUnixTimeSeconds();
                 }
             }
 

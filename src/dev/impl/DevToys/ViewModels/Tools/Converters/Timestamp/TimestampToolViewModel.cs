@@ -21,13 +21,13 @@ namespace DevToys.ViewModels.Tools.Timestamp
         private readonly IReadOnlyDictionary<string, string> _timeZoneCollection = TimestampToolHelper.ZoneInfo.TimeZones;
         private TimeZoneInfo _currentTimeZone = TimeZoneInfo.Utc;
         private string _currentTimeZoneDisplayName = TimestampToolHelper.ZoneInfo.UtcDisplayName;
-        private double _currentTimestamp;
-        private DateTimeOffset _currentUtcDateTime;
-        private DateTimeOffset _currentDateTime;
-        private long _minimumCurrentTimestamp = -62135596800;
-        private long _maximumCurrentTimestamp = 253402300799;
+        private double _timestamp;
+        private DateTimeOffset _utcDateTime;
+        private DateTimeOffset _zoneOffsetDateTime;
+        private long _minimumZoneOffsetTimestamp = -62135596800;
+        private long _maximumZoneOffsetTimestamp = 253402300799;
 
-        private string _dstInfoText = "";
+        private string _dstInfoDSTMessage = "";
         private string _dstInfoOffset = "";
         private string _dstInfoLocalDateTime = "";
         private string _dstInfoUtcDateTime = "";
@@ -52,10 +52,10 @@ namespace DevToys.ViewModels.Tools.Timestamp
         /// daylight saving time support, in daylight saving time, or ambiguous time 
         /// for a given time zone.
         /// </summary>
-        internal string DSTInfoText
+        internal string DSTInfoMessage
         {
-            get => _dstInfoText;
-            set => SetProperty(ref _dstInfoText, value);
+            get => _dstInfoDSTMessage;
+            set => SetProperty(ref _dstInfoDSTMessage, value);
         }
 
         /// <summary>
@@ -72,9 +72,9 @@ namespace DevToys.ViewModels.Tools.Timestamp
         /// <summary>
         /// Time zone offset value for DSTInfo block.
         /// Gets or sets the offset value that changes with the date and time in the specified time zone.
-        /// (e.g. "+09:00" )
+        /// (e.g. "+09:00")
         /// </summary>
-        internal string DSTInfoOffset
+        internal string DSTInfoOffsetValue
         {
             get => _dstInfoOffset;
             set => SetProperty(ref _dstInfoOffset, value);
@@ -103,32 +103,32 @@ namespace DevToys.ViewModels.Tools.Timestamp
 
         private void DSTInfo()
         {
-            if (_currentTimeZone.IsAmbiguousTime(_currentDateTime))
+            if (_currentTimeZone.IsAmbiguousTime(_zoneOffsetDateTime))
             {
-                DSTInfoText = Strings.DSTAmbiguousTime;
+                DSTInfoMessage = Strings.DSTAmbiguousTime;
             }
-            else if (_currentTimeZone.IsDaylightSavingTime(_currentDateTime))
+            else if (_currentTimeZone.IsDaylightSavingTime(_zoneOffsetDateTime))
             {
-                DSTInfoText = Strings.DaylightSavingTime;
+                DSTInfoMessage = Strings.DaylightSavingTime;
             }
             else if (_currentTimeZone.SupportsDaylightSavingTime)
             {
-                DSTInfoText = Strings.SupportsDaylightSavingTime;
+                DSTInfoMessage = Strings.SupportsDaylightSavingTime;
             }
             else
             {
-                DSTInfoText = Strings.DisabledDaylightSavingTime;
+                DSTInfoMessage = Strings.DisabledDaylightSavingTime;
             }
-            DSTInfoOffset = _currentDateTime.ToString("zzz");
-            DSTInfoLocalDateTime = _currentDateTime.LocalDateTime.ToString("yyyy/MM/dd HH:mm:ss");
-            DSTInfoUtcDateTime = _currentDateTime.UtcDateTime.ToString("yyyy/MM/dd HH:mm:ss");
-            DSTInfoUtcTicks = _currentDateTime.UtcTicks.ToString();
+            DSTInfoOffsetValue = _zoneOffsetDateTime.ToString("zzz");
+            DSTInfoLocalDateTime = _zoneOffsetDateTime.LocalDateTime.ToString("yyyy/MM/dd HH:mm:ss");
+            DSTInfoUtcDateTime = _zoneOffsetDateTime.UtcDateTime.ToString("yyyy/MM/dd HH:mm:ss");
+            DSTInfoUtcTicks = _zoneOffsetDateTime.UtcTicks.ToString();
         }
 
         /// <summary>
         /// Gets or sets the time zone name.
-        /// This value is essentially the value of TimeZoneInfo.(zone).DisplayName,
-        /// which is used to reverse lookup the time zone ID supported by the OS(e.g. TimeZoneInfo.Utc.Id).
+        /// This value is essentially the value of TimeZoneInfo.(zone).DisplayName (e.g. "(UTC) Coordinated Universal Time"),
+        /// which is used to reverse lookup the time zone ID supported by the OS(e.g. TimeZoneInfo.Utc.Id -> "UTC").
         /// </summary>
         internal string CurrentTimeZoneDisplayName
         {
@@ -139,152 +139,152 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 {
                     _currentTimeZoneDisplayName = value;
                     _currentTimeZone = TimeZoneInfo.FindSystemTimeZoneById(timeZoneID);
-                    _minimumCurrentTimestamp = TimestampToolHelper.TimeZone.SafeMinValue(_currentTimeZone)
+                    _minimumZoneOffsetTimestamp = TimestampToolHelper.TimeZone.SafeMinValue(_currentTimeZone)
                                                                            .ToUnixTimeSeconds();
-                    _maximumCurrentTimestamp = TimestampToolHelper.TimeZone.SafeMaxValue(_currentTimeZone)
+                    _maximumZoneOffsetTimestamp = TimestampToolHelper.TimeZone.SafeMaxValue(_currentTimeZone)
                                                                            .ToUnixTimeSeconds();
-                    UpdateCurrentTimestamp(_currentTimestamp);
+                    UpdateZoneOffsetTimestamp(_timestamp);
                 }
             }
         }
 
         /// <summary>
         /// Gets or sets the Unix time.
-        /// -62135596800 to 253402300799 integer value.
+        /// -62135596800 (0001-01-01T00:00:00Z) to 253402300799 (9999-12-31T23:59:59Z) integer value.
         /// </summary>
-        internal double CurrentTimestamp
+        internal double Timestamp
         {
-            get => _currentTimestamp;
+            get => _timestamp;
             set
             {
                 IsInputInvalid = false;
-                UpdateCurrentTimestamp(value);
+                UpdateZoneOffsetTimestamp(value);
             }
         }
 
         /// <summary>
         /// Gets or sets the year value.
         /// </summary>
-        internal int CurrentYear
+        internal int ZoneOffsetYear
         {
-            get => _currentDateTime.Year;
+            get => _zoneOffsetDateTime.Year;
             set
             {
                 if (value < 1) // empty = -2147483648
                 {
                     return;
                 }
-                if (!IsValidDateTime(value, CurrentMonth, CurrentDay, CurrentHour, CurrentMinute, CurrentSecond))
+                if (!IsValidDateTime(value, ZoneOffsetMonth, ZoneOffsetDay, ZoneOffsetHour, ZoneOffsetMinute, ZoneOffsetSecond))
                 {
                     IsInputInvalid = true;
                     return;
                 }
-                CurrentTimestamp = _currentUtcDateTime.AddYears(value - _currentDateTime.Year).ToUnixTimeSeconds();
+                Timestamp = _utcDateTime.AddYears(value - _zoneOffsetDateTime.Year).ToUnixTimeSeconds();
             }
         }
 
         /// <summary>
         /// Gets or sets the month value.
         /// </summary>
-        internal int CurrentMonth
+        internal int ZoneOffsetMonth
         {
-            get => _currentDateTime.Month;
+            get => _zoneOffsetDateTime.Month;
             set
             {
                 if (value < 0) // empty = -2147483648
                 {
                     return;
                 }
-                if (!IsValidDateTime(CurrentYear, value, CurrentDay, CurrentHour, CurrentMinute, CurrentSecond))
+                if (!IsValidDateTime(ZoneOffsetYear, value, ZoneOffsetDay, ZoneOffsetHour, ZoneOffsetMinute, ZoneOffsetSecond))
                 {
                     IsInputInvalid = true;
                     return;
                 }
-                CurrentTimestamp = _currentUtcDateTime.AddMonths(value - _currentDateTime.Month).ToUnixTimeSeconds();
+                Timestamp = _utcDateTime.AddMonths(value - _zoneOffsetDateTime.Month).ToUnixTimeSeconds();
             }
         }
 
         /// <summary>
         /// Gets or sets the day value.
         /// </summary>
-        internal int CurrentDay
+        internal int ZoneOffsetDay
         {
-            get => _currentDateTime.Day;
+            get => _zoneOffsetDateTime.Day;
             set
             {
                 if (value < 0) // empty = -2147483648
                 {
                     return;
                 }
-                if (!IsValidDateTime(CurrentYear, CurrentMonth, value, CurrentHour, CurrentMinute, CurrentSecond))
+                if (!IsValidDateTime(ZoneOffsetYear, ZoneOffsetMonth, value, ZoneOffsetHour, ZoneOffsetMinute, ZoneOffsetSecond))
                 {
                     IsInputInvalid = true;
                     return;
                 }
-                CurrentTimestamp = _currentUtcDateTime.AddDays(value - _currentDateTime.Day).ToUnixTimeSeconds();
+                Timestamp = _utcDateTime.AddDays(value - _zoneOffsetDateTime.Day).ToUnixTimeSeconds();
             }
         }
 
         /// <summary>
         /// Gets or sets the hour value.
         /// </summary>
-        internal int CurrentHour
+        internal int ZoneOffsetHour
         {
-            get => _currentDateTime.Hour;
+            get => _zoneOffsetDateTime.Hour;
             set
             {
                 if (value < -1) // empty = -2147483648
                 {
                     return;
                 }
-                if (!IsValidDateTime(CurrentYear, CurrentMonth, CurrentDay, value, CurrentMinute, CurrentSecond))
+                if (!IsValidDateTime(ZoneOffsetYear, ZoneOffsetMonth, ZoneOffsetDay, value, ZoneOffsetMinute, ZoneOffsetSecond))
                 {
                     IsInputInvalid = true;
                     return;
                 }
-                CurrentTimestamp = _currentUtcDateTime.AddHours(value - _currentDateTime.Hour).ToUnixTimeSeconds();
+                Timestamp = _utcDateTime.AddHours(value - _zoneOffsetDateTime.Hour).ToUnixTimeSeconds();
             }
         }
 
         /// <summary>
         /// Gets or sets the minute value.
         /// </summary>
-        internal int CurrentMinute
+        internal int ZoneOffsetMinute
         {
-            get => _currentDateTime.Minute;
+            get => _zoneOffsetDateTime.Minute;
             set
             {
                 if (value < -1) // empty = -2147483648
                 {
                     return;
                 }
-                if (!IsValidDateTime(CurrentYear, CurrentMonth, CurrentDay, CurrentHour, value, CurrentSecond))
+                if (!IsValidDateTime(ZoneOffsetYear, ZoneOffsetMonth, ZoneOffsetDay, ZoneOffsetHour, value, ZoneOffsetSecond))
                 {
                     IsInputInvalid = true;
                     return;
                 }
-                CurrentTimestamp = _currentUtcDateTime.AddMinutes(value - _currentDateTime.Minute).ToUnixTimeSeconds();
+                Timestamp = _utcDateTime.AddMinutes(value - _zoneOffsetDateTime.Minute).ToUnixTimeSeconds();
             }
         }
 
         /// <summary>
         /// Gets or sets the second value.
         /// </summary>
-        internal int CurrentSecond
+        internal int ZoneOffsetSecond
         {
-            get => _currentDateTime.Second;
+            get => _zoneOffsetDateTime.Second;
             set
             {
                 if (value < -1) // empty = -2147483648
                 {
                     return;
                 }
-                if (!IsValidDateTime(CurrentYear, CurrentMonth, CurrentDay, CurrentHour, CurrentMinute, value))
+                if (!IsValidDateTime(ZoneOffsetYear, ZoneOffsetMonth, ZoneOffsetDay, ZoneOffsetHour, ZoneOffsetMinute, value))
                 {
                     IsInputInvalid = true;
                     return;
                 }
-                CurrentTimestamp = _currentUtcDateTime.AddSeconds(value - _currentDateTime.Second).ToUnixTimeSeconds();
+                Timestamp = _utcDateTime.AddSeconds(value - _zoneOffsetDateTime.Second).ToUnixTimeSeconds();
             }
         }
 
@@ -295,7 +295,7 @@ namespace DevToys.ViewModels.Tools.Timestamp
             NowCommand = new RelayCommand(ExecuteNowCommand);
 
             // Set to the current epoch time.
-            CurrentTimestamp = DateTimeOffset.Now.ToUnixTimeSeconds();
+            Timestamp = DateTimeOffset.Now.ToUnixTimeSeconds();
             CurrentTimeZoneDisplayName = TimestampToolHelper.ZoneInfo.LocalDisplayName;
         }
 
@@ -317,7 +317,7 @@ namespace DevToys.ViewModels.Tools.Timestamp
 
                 if (long.TryParse(text, out long value))
                 {
-                    CurrentTimestamp = value;
+                    Timestamp = value;
                 }
             }
             catch (Exception ex)
@@ -340,7 +340,7 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 {
                     RequestedOperation = DataPackageOperation.Copy
                 };
-                data.SetText(CurrentTimestamp.ToString());
+                data.SetText(Timestamp.ToString());
 
                 Clipboard.SetContentWithOptions(data, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
                 Clipboard.Flush(); // This method allows the content to remain available after the application shuts down.
@@ -358,7 +358,7 @@ namespace DevToys.ViewModels.Tools.Timestamp
 
         private void ExecuteNowCommand()
         {
-            CurrentTimestamp = DateTimeOffset.Now.ToUnixTimeSeconds();
+            Timestamp = DateTimeOffset.Now.ToUnixTimeSeconds();
         }
 
         #endregion
@@ -368,7 +368,7 @@ namespace DevToys.ViewModels.Tools.Timestamp
             return DateTimeOffset.FromUnixTimeSeconds((long)value).UtcDateTime;
         }
 
-        private void UpdateCurrentTimestamp(double value)
+        private void UpdateZoneOffsetTimestamp(double value)
         {
             if (double.IsNaN(value))
             {
@@ -379,25 +379,25 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 IsInputInvalid = true;
                 if (value < 0)
                 {
-                    value = _minimumCurrentTimestamp;
+                    value = _minimumZoneOffsetTimestamp;
                 }
                 else
                 {
-                    value = _maximumCurrentTimestamp;
+                    value = _maximumZoneOffsetTimestamp;
                 }
 
             }
-            _currentTimestamp = value;
-            _currentUtcDateTime = TimestampToUtcDateTime(value);
-            _currentDateTime = TimeZoneInfo.ConvertTime(_currentUtcDateTime, _currentTimeZone);
+            _timestamp = value;
+            _utcDateTime = TimestampToUtcDateTime(value);
+            _zoneOffsetDateTime = TimeZoneInfo.ConvertTime(_utcDateTime, _currentTimeZone);
             DSTInfo();
-            ResetCurrentTimestamp();
-            ResetCurrentDateTime();
+            ResetZoneOffsetTimestamp();
+            ResetZoneOffsetDateTime();
         }
 
         private bool IsValidTimestamp(long value)
         {
-            if (value < _minimumCurrentTimestamp || value > _maximumCurrentTimestamp)
+            if (value < _minimumZoneOffsetTimestamp || value > _maximumZoneOffsetTimestamp)
             {
                 return false;
             }
@@ -411,15 +411,15 @@ namespace DevToys.ViewModels.Tools.Timestamp
                 return false;
             }
 
-            DateTimeOffset calcDateTime = TimeZoneInfo.ConvertTime(_currentDateTime, TimeZoneInfo.Utc);
+            DateTimeOffset calcDateTime = TimeZoneInfo.ConvertTime(_zoneOffsetDateTime, TimeZoneInfo.Utc);
             calcDateTime = calcDateTime.AddYears(1970 - calcDateTime.Year);
             try
             {
-                calcDateTime = calcDateTime.AddMonths(Month - _currentDateTime.Month);
-                calcDateTime = calcDateTime.AddDays(Day - _currentDateTime.Day);
-                calcDateTime = calcDateTime.AddHours(Hour - _currentDateTime.Hour);
-                calcDateTime = calcDateTime.AddMinutes(Minute - _currentDateTime.Minute);
-                calcDateTime = calcDateTime.AddSeconds(Second - _currentDateTime.Second);
+                calcDateTime = calcDateTime.AddMonths(Month - _zoneOffsetDateTime.Month);
+                calcDateTime = calcDateTime.AddDays(Day - _zoneOffsetDateTime.Day);
+                calcDateTime = calcDateTime.AddHours(Hour - _zoneOffsetDateTime.Hour);
+                calcDateTime = calcDateTime.AddMinutes(Minute - _zoneOffsetDateTime.Minute);
+                calcDateTime = calcDateTime.AddSeconds(Second - _zoneOffsetDateTime.Second);
             }
             catch
             {
@@ -475,19 +475,19 @@ namespace DevToys.ViewModels.Tools.Timestamp
             return true;
         }
 
-        private void ResetCurrentDateTime()
+        private void ResetZoneOffsetDateTime()
         {
-            OnPropertyChanged(nameof(CurrentYear));
-            OnPropertyChanged(nameof(CurrentMonth));
-            OnPropertyChanged(nameof(CurrentDay));
-            OnPropertyChanged(nameof(CurrentHour));
-            OnPropertyChanged(nameof(CurrentMinute));
-            OnPropertyChanged(nameof(CurrentSecond));
+            OnPropertyChanged(nameof(ZoneOffsetYear));
+            OnPropertyChanged(nameof(ZoneOffsetMonth));
+            OnPropertyChanged(nameof(ZoneOffsetDay));
+            OnPropertyChanged(nameof(ZoneOffsetHour));
+            OnPropertyChanged(nameof(ZoneOffsetMinute));
+            OnPropertyChanged(nameof(ZoneOffsetSecond));
         }
 
-        private void ResetCurrentTimestamp()
+        private void ResetZoneOffsetTimestamp()
         {
-            OnPropertyChanged(nameof(CurrentTimestamp));
+            OnPropertyChanged(nameof(Timestamp));
         }
 
     }

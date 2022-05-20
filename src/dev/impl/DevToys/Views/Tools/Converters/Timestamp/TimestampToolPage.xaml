@@ -139,7 +139,7 @@
                     Grid.Row="0"
                     Grid.Column="0"
                     Grid.ColumnSpan="4"
-                    Text="{x:Bind ViewModel.DSTInfoText, Mode=OneWay}" />
+                    Text="{x:Bind ViewModel.DSTInfoMessage, Mode=OneWay}" />
                 <TextBlock
                     Grid.Row="1"
                     Grid.Column="0"
@@ -147,7 +147,7 @@
                 <TextBlock
                     Grid.Row="1"
                     Grid.Column="1"
-                    Text="{x:Bind ViewModel.DSTInfoOffset, Mode=OneWay}"
+                    Text="{x:Bind ViewModel.DSTInfoOffsetValue, Mode=OneWay}"
                     IsTextSelectionEnabled="True" />
                 <TextBlock
                     Grid.Row="1"
@@ -249,7 +249,7 @@
             </Grid>
             <StackPanel>
                 <muxc:NumberBox
-                    Value="{x:Bind ViewModel.CurrentTimestamp, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Value="{x:Bind ViewModel.Timestamp, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     SpinButtonPlacementMode="Compact"
                     SmallChange="1"
                     LargeChange="10"
@@ -302,7 +302,7 @@
                         TextTrimming="CharacterEllipsis"
                         VerticalAlignment="Bottom" />
                     <muxc:NumberBox
-                        Value="{x:Bind ViewModel.CurrentYear, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Value="{x:Bind ViewModel.ZoneOffsetYear, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         SpinButtonPlacementMode="Compact"
                         SmallChange="1"
                         LargeChange="10"
@@ -322,7 +322,7 @@
                         TextTrimming="CharacterEllipsis"
                         VerticalAlignment="Bottom" />
                     <muxc:NumberBox
-                        Value="{x:Bind ViewModel.CurrentMonth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Value="{x:Bind ViewModel.ZoneOffsetMonth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         SpinButtonPlacementMode="Compact"
                         SmallChange="1"
                         Minimum="0"
@@ -341,7 +341,7 @@
                         TextTrimming="CharacterEllipsis"
                         VerticalAlignment="Bottom" />
                     <muxc:NumberBox
-                        Value="{x:Bind ViewModel.CurrentDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Value="{x:Bind ViewModel.ZoneOffsetDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         SpinButtonPlacementMode="Compact"
                         SmallChange="1"
                         Minimum="0"
@@ -378,7 +378,7 @@
                         TextTrimming="CharacterEllipsis"
                         VerticalAlignment="Bottom" />
                     <muxc:NumberBox
-                        Value="{x:Bind ViewModel.CurrentHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Value="{x:Bind ViewModel.ZoneOffsetHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         SpinButtonPlacementMode="Compact"
                         SmallChange="1"
                         Minimum="-1"
@@ -397,7 +397,7 @@
                         TextTrimming="CharacterEllipsis"
                         VerticalAlignment="Bottom" />
                     <muxc:NumberBox
-                        Value="{x:Bind ViewModel.CurrentMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Value="{x:Bind ViewModel.ZoneOffsetMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         SpinButtonPlacementMode="Compact"
                         SmallChange="1"
                         Minimum="-1"
@@ -416,7 +416,7 @@
                         TextTrimming="CharacterEllipsis"
                         VerticalAlignment="Bottom" />
                     <muxc:NumberBox
-                        Value="{x:Bind ViewModel.CurrentSecond, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Value="{x:Bind ViewModel.ZoneOffsetSecond, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         SpinButtonPlacementMode="Compact"
                         SmallChange="1"
                         Minimum="-1"
