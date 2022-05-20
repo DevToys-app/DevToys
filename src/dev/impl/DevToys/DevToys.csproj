@@ -110,6 +110,8 @@
     <Compile Include="ViewModels\Tools\Formatters\SqlFormatter\SqlFormatterToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Generators\CheckSumGenerator\CheckSumGeneratorToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Generators\CheckSumGenerator\CheckSumGeneratorToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\Generators\CRONGenerator\CRONGeneratorToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Generators\CRONGenerator\CRONGeneratorToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Generators\GeneratorsGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolViewModel.cs" />
