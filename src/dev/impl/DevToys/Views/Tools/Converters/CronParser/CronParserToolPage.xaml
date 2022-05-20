@@ -1,0 +1,60 @@
+﻿<Page
+    x:Class="DevToys.Views.Tools.CronParser.CronParserToolPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:local="using:DevToys.Views.Tools.CronParser"
+    xmlns:controls="using:DevToys.UI.Controls"
+    xmlns:ex="using:DevToys.UI.Extensions"
+    mc:Ignorable="d"
+    d:DesignHeight="400"
+    d:DesignWidth="600">
+    
+    <Grid x:Name="RootGrid" RowSpacing="12" Margin="0,0,0,16">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <ex:IsCompactOverlayModeTrigger TargetElement="{x:Bind}" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Spacing="4" Grid.Row="0" >
+            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.ConfigurationTitle}" />
+        </StackPanel>
+
+        <controls:CustomTextBox
+            Grid.Row="1"
+            MinHeight="150"
+            AcceptsReturn="True"
+            IsRichTextEdit="True"
+            Header="{x:Bind ViewModel.Strings.InputTitle}"
+            Text="{x:Bind ViewModel.UserCronExpression, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <controls:CustomTextBox
+            Grid.Row="2"
+            MinHeight="150"
+            IsReadOnly="True"
+            AcceptsReturn="True"
+            IsRichTextEdit="True"
+            Header="{x:Bind ViewModel.Strings.OutputTitle}"
+            Text="{x:Bind ViewModel.OutputValue, Mode=OneWay}"/>
+
+    </Grid>
+</Page>

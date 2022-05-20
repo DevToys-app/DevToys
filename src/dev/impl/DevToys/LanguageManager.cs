@@ -30,6 +30,8 @@ namespace DevToys
         private readonly CheckSumGeneratorStrings _checksumgenerator = new CheckSumGeneratorStrings();
         private readonly ColorBlindnessSimulatorStrings _colorblindnesssimulator = new ColorBlindnessSimulatorStrings();
         private readonly CommonStrings _common = new CommonStrings();
+        private readonly CRONStrings _cron = new CRONStrings();
+        private readonly CRONParserStrings _cronparser = new CRONParserStrings();
         private readonly GuidGeneratorStrings _guidgenerator = new GuidGeneratorStrings();
         private readonly GZipEncoderDecoderStrings _gzipencoderdecoder = new GZipEncoderDecoderStrings();
         private readonly HashGeneratorStrings _hashgenerator = new HashGeneratorStrings();
@@ -94,6 +96,16 @@ namespace DevToys
         /// Gets the <see cref="CommonStrings"/>.
         /// </summary>
         public CommonStrings Common => _common;
+
+        /// <summary>
+        /// Gets the <see cref="CRONStrings"/>.
+        /// </summary>
+        public CRONStrings CRON => _cron;
+
+        /// <summary>
+        /// Gets the <see cref="CRONParserStrings"/>.
+        /// </summary>
+        public CRONParserStrings CRONParser => _cronparser;
 
         /// <summary>
         /// Gets the <see cref="GuidGeneratorStrings"/>.
@@ -777,6 +789,176 @@ namespace DevToys
         /// Gets the resource ViewImage.
         /// </summary>
         public string ViewImage => _resources.GetString("ViewImage");
+    }
+
+    public class CRONStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("CRON");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
+        /// Gets the resource Configuration.
+        /// </summary>
+        public string Configuration => _resources.GetString("Configuration");
+
+        /// <summary>
+        /// Gets the resource ConversionDescription.
+        /// </summary>
+        public string ConversionDescription => _resources.GetString("ConversionDescription");
+
+        /// <summary>
+        /// Gets the resource ConversionTitle.
+        /// </summary>
+        public string ConversionTitle => _resources.GetString("ConversionTitle");
+
+        /// <summary>
+        /// Gets the resource MenuDisplayName.
+        /// </summary>
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
+
+        /// <summary>
+        /// Gets the resource FourSpaces.
+        /// </summary>
+        public string FourSpaces => _resources.GetString("FourSpaces");
+
+        /// <summary>
+        /// Gets the resource Indentation.
+        /// </summary>
+        public string Indentation => _resources.GetString("Indentation");
+
+        /// <summary>
+        /// Gets the resource Input.
+        /// </summary>
+        public string Input => _resources.GetString("Input");
+
+        /// <summary>
+        /// Gets the resource InvalidYaml.
+        /// </summary>
+        public string InvalidYaml => _resources.GetString("InvalidYaml");
+
+        /// <summary>
+        /// Gets the resource JsonToYaml.
+        /// </summary>
+        public string JsonToYaml => _resources.GetString("JsonToYaml");
+
+        /// <summary>
+        /// Gets the resource Output.
+        /// </summary>
+        public string Output => _resources.GetString("Output");
+
+        /// <summary>
+        /// Gets the resource TwoSpaces.
+        /// </summary>
+        public string TwoSpaces => _resources.GetString("TwoSpaces");
+
+        /// <summary>
+        /// Gets the resource YamlToJson.
+        /// </summary>
+        public string YamlToJson => _resources.GetString("YamlToJson");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+
+        /// <summary>
+        /// Gets the resource SearchKeywords.
+        /// </summary>
+        public string SearchKeywords => _resources.GetString("SearchKeywords");
+    }
+
+    public class CRONParserStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("CRONParser");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
+        /// Gets the resource Configuration.
+        /// </summary>
+        public string Configuration => _resources.GetString("Configuration");
+
+        /// <summary>
+        /// Gets the resource ConversionDescription.
+        /// </summary>
+        public string ConversionDescription => _resources.GetString("ConversionDescription");
+
+        /// <summary>
+        /// Gets the resource ConversionTitle.
+        /// </summary>
+        public string ConversionTitle => _resources.GetString("ConversionTitle");
+
+        /// <summary>
+        /// Gets the resource MenuDisplayName.
+        /// </summary>
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
+
+        /// <summary>
+        /// Gets the resource FourSpaces.
+        /// </summary>
+        public string FourSpaces => _resources.GetString("FourSpaces");
+
+        /// <summary>
+        /// Gets the resource Indentation.
+        /// </summary>
+        public string Indentation => _resources.GetString("Indentation");
+
+        /// <summary>
+        /// Gets the resource Input.
+        /// </summary>
+        public string Input => _resources.GetString("Input");
+
+        /// <summary>
+        /// Gets the resource InvalidYaml.
+        /// </summary>
+        public string InvalidYaml => _resources.GetString("InvalidYaml");
+
+        /// <summary>
+        /// Gets the resource JsonToYaml.
+        /// </summary>
+        public string JsonToYaml => _resources.GetString("JsonToYaml");
+
+        /// <summary>
+        /// Gets the resource Output.
+        /// </summary>
+        public string Output => _resources.GetString("Output");
+
+        /// <summary>
+        /// Gets the resource TwoSpaces.
+        /// </summary>
+        public string TwoSpaces => _resources.GetString("TwoSpaces");
+
+        /// <summary>
+        /// Gets the resource YamlToJson.
+        /// </summary>
+        public string YamlToJson => _resources.GetString("YamlToJson");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+
+        /// <summary>
+        /// Gets the resource SearchKeywords.
+        /// </summary>
+        public string SearchKeywords => _resources.GetString("SearchKeywords");
     }
 
     public class GuidGeneratorStrings : ObservableObject
