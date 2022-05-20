@@ -120,9 +120,6 @@
   <data name="AccessibleName" xml:space="preserve">
     <value>타임스탬프 변환기</value>
   </data>
-  <data name="CurrentDateTimeTitle" xml:space="preserve">
-    <value>Current Date and Time</value>
-  </data>
   <data name="CurrentTimeZone" xml:space="preserve">
     <value>Time zone</value>
   </data>

@@ -85,12 +85,6 @@
                 Message="{x:Bind ViewModel.Strings.InvalidValue}"
                 IsOpen="{x:Bind ViewModel.IsInputInvalid, Mode=OneWay}"
                 IsClosable="False" />
-
-            <TextBlock
-                x:Name="CurrentDateTimeHeaderTextBlock"
-                Style="{StaticResource SubTitleTextBlock}"
-                Text="{x:Bind ViewModel.Strings.CurrentDateTimeTitle}" />
-
         </StackPanel>
 
         <!-- timezone   -->

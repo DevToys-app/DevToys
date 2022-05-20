@@ -120,9 +120,6 @@
   <data name="AccessibleName" xml:space="preserve">
     <value>Unix タイムスタンプ変換ツール</value>
   </data>
-  <data name="CurrentDateTimeTitle" xml:space="preserve">
-    <value>タイムゾーン指定と日時</value>
-  </data>
   <data name="CurrentTimeZone" xml:space="preserve">
     <value>タイムゾーン</value>
   </data>
