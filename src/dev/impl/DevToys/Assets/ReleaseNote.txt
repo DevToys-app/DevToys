@@ -1,10 +1,8 @@
 ﻿🎉 New Features
-  • Base64 Image Encoder/Decoder tool!
+  • Timestamp Converter now supports timezone!
 👏 Improvements
-  • Updated Korean and Italian translation
-  • Tab indentation support in SQL Formatter
-  • Added a Now button in Timestamp converter
-  • Checksum and Hash Generators now support empty files
+  • Updated Simplified Chinese translation
+  • Improved the layout of many tools in Picture-in-Picture mode
 🐛 Bug Fixes
-  • Fixed a spacing issue with the title bar
-  • Fixed the theme of the code editor
+  • Performance issue in Base64 Image Encoder / Decoder
+  • Potential crashes in Base64 Image Encoder / Decoder
