@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>CRON parsing tool</value>
+    <value>Cron parsing tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Configuration</value>
@@ -127,13 +127,13 @@
     <value>Choose whatever Cron expression includes seconds in its definition</value>
   </data>
   <data name="UseSecondsTitle" xml:space="preserve">
-    <value>Include seconds</value>
+    <value>Cron Mode</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>CRON Parser</value>
+    <value>Cron expression parser</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Parse Cron expression</value>
+    <value>Parse Cron expression to get scheduled dates</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Cron expression parser</value>
@@ -142,25 +142,28 @@
     <value>Cron</value>
   </data>
   <data name="CronErrorMessage" xml:space="preserve">
-    <value>Invalid Cron expression</value>
+    <value>Cron expression is not valid</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
     <value>Cron expression to parse</value>
   </data>
   <data name="OutputDateTimeDescription" xml:space="preserve">
-    <value>Select output datetime format</value>
+    <value>Choose scheduled dates output format</value>
   </data>
   <data name="OutputDateTimeTitle" xml:space="preserve">
     <value>Output format</value>
   </data>
+  <data name="OutputFormatErrorMessage" xml:space="preserve">
+    <value>Output datetime format is not valid</value>
+  </data>
   <data name="OutputLimitDescription" xml:space="preserve">
-    <value>Choose how many upcoming occurences should be generated</value>
+    <value>How many next scheduled dates needs to be generated</value>
   </data>
   <data name="OutputLimitTitle" xml:space="preserve">
-    <value>Output limit</value>
+    <value>Next scheduled dates</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Upcoming occurencies</value>
+    <value>Next scheduled dates</value>
   </data>
   <data name="SecondsExcludedMode" xml:space="preserve">
     <value>Standard mode (5 - segment Cron)</value>

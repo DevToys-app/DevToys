@@ -10,6 +10,8 @@ using Microsoft.Toolkit.Mvvm.Input;
 using Windows.ApplicationModel.DataTransfer;
 using System.Collections.Generic;
 using DevToys.Api.Core.Settings;
+using DevToys.Shared.Core;
+using System.Globalization;
 
 namespace DevToys.ViewModels.Tools.CronParser
 {
@@ -19,8 +21,8 @@ namespace DevToys.ViewModels.Tools.CronParser
         private readonly ISettingsProvider _settingsProvider;
 
         private bool _isInputInvalid;
+        private bool _isOutputFormatInvalid;
         private string _cronExpression;
-        private string _errorMessage;
         private bool _setPropertyInProgress;
         private string? _outputValue;
 
@@ -30,7 +32,7 @@ namespace DevToys.ViewModels.Tools.CronParser
         private const string DefaultOutputLimit = "5";
 
         /// <summary>
-        /// Whether the tool should encode or decode Base64.
+        /// Whether the tool should include seconds in cron definition
         /// </summary>
         private static readonly SettingDefinition<bool> IncludeSeconds
             = new(
@@ -39,7 +41,7 @@ namespace DevToys.ViewModels.Tools.CronParser
                 defaultValue: true);
 
         /// <summary>
-        /// Whether the tool should encode or decode Base64.
+        /// Whether datetime format tool should use for output
         /// </summary>
         private static readonly SettingDefinition<string> OutputDateTime
             = new(
@@ -48,7 +50,7 @@ namespace DevToys.ViewModels.Tools.CronParser
                 defaultValue: DefaultTimestampFormat);
 
         /// <summary>
-        /// Whether the tool should encode/decode in Unicode or ASCII.
+        /// How many lines of next occurencies the tool should generate
         /// </summary>
         private static readonly SettingDefinition<string> OutputLimit
             = new(
@@ -66,6 +68,15 @@ namespace DevToys.ViewModels.Tools.CronParser
             set => SetProperty(ref _isInputInvalid, value);
         }
 
+        internal bool IsOutputFormatInvalid
+        {
+            get => _isOutputFormatInvalid;
+            set => SetProperty(ref _isOutputFormatInvalid, value);
+        }
+
+        /// <summary>
+        /// Gets or sets Cron expression
+        /// </summary>
         internal string UserCronExpression
         {
             get => _cronExpression;
@@ -132,6 +143,9 @@ namespace DevToys.ViewModels.Tools.CronParser
             }
         }
 
+        /// <summary>
+        /// Gets or sets the output format
+        /// </summary>
         internal string OutputDateTimeFormat
         {
             get => _settingsProvider.GetSetting(OutputDateTime);
@@ -160,19 +174,29 @@ namespace DevToys.ViewModels.Tools.CronParser
         }
 
         private void ParseCronExpression()
-        {
-            IList<string> dateTimeOffsets = new List<string>();
-
+        {            
             IsInputInvalid = false;
+            IsOutputFormatInvalid = false;
+
+            if (!ValidateDateTimeFormat(OutputDateTimeFormat))
+            {
+                IsOutputFormatInvalid = true;
+
+                return;
+            }
+
+            IList<string> output = new List<string>();
 
             try
             {
                 if (string.IsNullOrEmpty(UserCronExpression))
-                {
+                {                    
                     return;
                 }
 
                 var expression = CronExpression.Parse(UserCronExpression, IncludeSecondsMode ? CronFormat.IncludeSeconds : CronFormat.Standard);
+
+                Assumes.NotNull(expression, nameof(expression));
 
                 DateTimeOffset? nextOccurence = expression.GetNextOccurrence(DateTimeOffset.Now, TimeZoneInfo.Local, true);
 
@@ -181,7 +205,7 @@ namespace DevToys.ViewModels.Tools.CronParser
                     return;
                 }
 
-                dateTimeOffsets.Add(nextOccurence.Value.ToString(DefaultTimestampFormat));
+                output.Add(nextOccurence.Value.ToString(OutputDateTimeFormat));
 
                 for (int i = 0; i <= int.Parse(OutputLimitMode); i++)
                 {
@@ -189,17 +213,31 @@ namespace DevToys.ViewModels.Tools.CronParser
 
                     if (nextOccurence == null)
                     {
-                        return;
+                        break;
                     }
 
-                    dateTimeOffsets.Add(nextOccurence.Value.ToString(DefaultTimestampFormat));
+                    output.Add(nextOccurence.Value.ToString(OutputDateTimeFormat));
                 }
 
-                OutputValue = String.Join(Environment.NewLine, dateTimeOffsets);
+                OutputValue = string.Join(Environment.NewLine, output);
             }
             catch (CronFormatException)
             {
                 IsInputInvalid = true;
+            }
+        }
+
+        private bool ValidateDateTimeFormat(string dateFormat)
+        {
+            try
+            {
+                string s = DateTime.Now.ToString(dateFormat, CultureInfo.InvariantCulture);
+                DateTime.Parse(s, CultureInfo.InvariantCulture);
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
 
@@ -211,10 +249,10 @@ namespace DevToys.ViewModels.Tools.CronParser
             PasteCommand = new RelayCommand(ExecutePasteCommand);
             CopyCommand = new RelayCommand(ExecuteCopyCommand);
 
-            _errorMessage = String.Empty;
-            _cronExpression = String.Empty;
+            _cronExpression = string.Empty;
 
             IsInputInvalid = false;
+            IsOutputFormatInvalid = false;
             
             if (IncludeSecondsMode)
             {
@@ -247,7 +285,7 @@ namespace DevToys.ViewModels.Tools.CronParser
             }
             catch (Exception ex)
             {
-                Core.Logger.LogFault("Failed to paste in numeric box", ex);
+                Core.Logger.LogFault("Failed to paste in box", ex);
             }
         }
 
@@ -272,7 +310,7 @@ namespace DevToys.ViewModels.Tools.CronParser
             }
             catch (Exception ex)
             {
-                Core.Logger.LogFault("Failed to copy from numeric box", ex);
+                Core.Logger.LogFault("Failed to copy from box", ex);
             }
         }
 

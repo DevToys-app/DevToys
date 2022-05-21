@@ -16,6 +16,12 @@
                 IsOpen="{x:Bind ViewModel.IsInputInvalid, Mode=OneWay}"
                 IsClosable="False"/>
 
+        <muxc:InfoBar
+                Severity="Warning"
+                Message="{x:Bind ViewModel.Strings.OutputFormatErrorMessage}"
+                IsOpen="{x:Bind ViewModel.IsOutputFormatInvalid, Mode=OneWay}"
+                IsClosable="False"/>
+
         <Grid x:Name="RootGrid" RowSpacing="12" Margin="0,0,0,16">
             <Grid.ChildrenTransitions>
             <TransitionCollection>
@@ -49,7 +55,7 @@
                 Title="{x:Bind ViewModel.Strings.OutputLimitTitle}"
                 Description="{x:Bind ViewModel.Strings.OutputLimitDescription}">
                 <controls:ExpandableSettingControl.Icon>
-                    <FontIcon Glyph="&#xF7E4;" />
+                        <FontIcon Glyph="&#xf7ed;" />
                 </controls:ExpandableSettingControl.Icon>
                 <ComboBox
                     SelectedValuePath="Tag"

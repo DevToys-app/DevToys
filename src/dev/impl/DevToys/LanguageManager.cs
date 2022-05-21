@@ -850,6 +850,11 @@ namespace DevToys
         public string OutputDateTimeTitle => _resources.GetString("OutputDateTimeTitle");
 
         /// <summary>
+        /// Gets the resource OutputFormatErrorMessage.
+        /// </summary>
+        public string OutputFormatErrorMessage => _resources.GetString("OutputFormatErrorMessage");
+
+        /// <summary>
         /// Gets the resource OutputLimitDescription.
         /// </summary>
         public string OutputLimitDescription => _resources.GetString("OutputLimitDescription");

@@ -1,4 +1,6 @@
-﻿using DevToys.Api.Core.Navigation;
+﻿#nullable enable
+
+using DevToys.Api.Core.Navigation;
 using DevToys.Shared.Core;
 using DevToys.ViewModels.Tools.CronParser;
 using Windows.UI.Xaml;
