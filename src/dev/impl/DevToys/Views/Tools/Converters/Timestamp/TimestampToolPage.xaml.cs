@@ -48,6 +48,7 @@ namespace DevToys.Views.Tools.Timestamp
                 DataContext = ViewModel;
             }
 
+            // Smart detection
             if (!string.IsNullOrWhiteSpace(parameters.ClipBoardContent))
             {
                 if (long.TryParse(parameters.ClipBoardContent, out long timestamp))

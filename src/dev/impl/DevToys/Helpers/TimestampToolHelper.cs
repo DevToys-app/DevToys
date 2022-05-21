@@ -31,8 +31,10 @@ namespace DevToys.Helpers
                 if (!Regex.IsMatch(_systemTimeZone.ElementAt(0).DisplayName, @"^\(UTC.*\).+$"))
                 {
                     // version < .Net6
-                    // This implementation is due to the effect that projects
-                    // for using external tools require .net6 or earlier libraries.
+                    // This implementation mitigates the changes in the strings
+                    // that are obtained when optimized in release builds,
+                    // as the target of external tools is .net6 or earlier.
+                    // zone.DisplayName : "(UTC+09:00) 大阪、札幌、東京"( >= .net6) or "東京 (標準時)"( < .net6)
                     foreach (TimeZoneInfo zone in _systemTimeZone)
                     {
                         string displayName = $"(UTC{zone.BaseUtcOffset.Hours:+00;-00;}:{zone.BaseUtcOffset.Minutes:00;00;}) " + zone.DisplayName;
