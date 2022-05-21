@@ -90,7 +90,7 @@ namespace DevToys.UI.Controls
                 nameof(CanCopyWhenNotReadOnly),
                 typeof(bool),
                 typeof(CodeEditor),
-                new PropertyMetadata(false, OnIsReadOnlyPropertyChangedCalled));
+                new PropertyMetadata(false, (d, e) => { ((CodeEditor)d).UpdateUI(); }));
 
         public bool CanCopyWhenNotReadOnly
         {
