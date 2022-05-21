@@ -1,7 +1,4 @@
-﻿#nullable enable
-
-using System;
-using DevToys.Api.Core.Navigation;
+﻿using DevToys.Api.Core.Navigation;
 using DevToys.Shared.Core;
 using DevToys.ViewModels.Tools.CronParser;
 using Windows.UI.Xaml;
@@ -43,18 +40,6 @@ namespace DevToys.Views.Tools.CronParser
                 Assumes.NotNull(parameters.ViewModel, nameof(parameters.ViewModel));
                 ViewModel = (CronParserToolViewModel)parameters.ViewModel!;
                 DataContext = ViewModel;
-            }
-
-            if (!string.IsNullOrWhiteSpace(parameters.ClipBoardContent))
-            {
-                if (long.TryParse(parameters.ClipBoardContent, out long timestamp))
-                {
-                    //ViewModel.CronExpression = timestamp;
-                }
-                else if (DateTime.TryParse(parameters.ClipBoardContent, out DateTime localDateTime))
-                {
-                    //ViewModel.CronExpression = new DateTimeOffset(localDateTime.ToUniversalTime()).ToUnixTimeSeconds();
-                }
             }
 
             base.OnNavigatedTo(e);

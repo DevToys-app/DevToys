@@ -30,7 +30,6 @@ namespace DevToys
         private readonly CheckSumGeneratorStrings _checksumgenerator = new CheckSumGeneratorStrings();
         private readonly ColorBlindnessSimulatorStrings _colorblindnesssimulator = new ColorBlindnessSimulatorStrings();
         private readonly CommonStrings _common = new CommonStrings();
-        private readonly CRONStrings _cron = new CRONStrings();
         private readonly CRONParserStrings _cronparser = new CRONParserStrings();
         private readonly GuidGeneratorStrings _guidgenerator = new GuidGeneratorStrings();
         private readonly GZipEncoderDecoderStrings _gzipencoderdecoder = new GZipEncoderDecoderStrings();
@@ -96,11 +95,6 @@ namespace DevToys
         /// Gets the <see cref="CommonStrings"/>.
         /// </summary>
         public CommonStrings Common => _common;
-
-        /// <summary>
-        /// Gets the <see cref="CRONStrings"/>.
-        /// </summary>
-        public CRONStrings CRON => _cron;
 
         /// <summary>
         /// Gets the <see cref="CRONParserStrings"/>.
@@ -791,91 +785,6 @@ namespace DevToys
         public string ViewImage => _resources.GetString("ViewImage");
     }
 
-    public class CRONStrings : ObservableObject
-    {
-        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("CRON");
-
-        /// <summary>
-        /// Gets the resource AccessibleName.
-        /// </summary>
-        public string AccessibleName => _resources.GetString("AccessibleName");
-
-        /// <summary>
-        /// Gets the resource Configuration.
-        /// </summary>
-        public string Configuration => _resources.GetString("Configuration");
-
-        /// <summary>
-        /// Gets the resource ConversionDescription.
-        /// </summary>
-        public string ConversionDescription => _resources.GetString("ConversionDescription");
-
-        /// <summary>
-        /// Gets the resource ConversionTitle.
-        /// </summary>
-        public string ConversionTitle => _resources.GetString("ConversionTitle");
-
-        /// <summary>
-        /// Gets the resource MenuDisplayName.
-        /// </summary>
-        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
-
-        /// <summary>
-        /// Gets the resource FourSpaces.
-        /// </summary>
-        public string FourSpaces => _resources.GetString("FourSpaces");
-
-        /// <summary>
-        /// Gets the resource Indentation.
-        /// </summary>
-        public string Indentation => _resources.GetString("Indentation");
-
-        /// <summary>
-        /// Gets the resource Input.
-        /// </summary>
-        public string Input => _resources.GetString("Input");
-
-        /// <summary>
-        /// Gets the resource InvalidYaml.
-        /// </summary>
-        public string InvalidYaml => _resources.GetString("InvalidYaml");
-
-        /// <summary>
-        /// Gets the resource JsonToYaml.
-        /// </summary>
-        public string JsonToYaml => _resources.GetString("JsonToYaml");
-
-        /// <summary>
-        /// Gets the resource Output.
-        /// </summary>
-        public string Output => _resources.GetString("Output");
-
-        /// <summary>
-        /// Gets the resource TwoSpaces.
-        /// </summary>
-        public string TwoSpaces => _resources.GetString("TwoSpaces");
-
-        /// <summary>
-        /// Gets the resource YamlToJson.
-        /// </summary>
-        public string YamlToJson => _resources.GetString("YamlToJson");
-
-        /// <summary>
-        /// Gets the resource Description.
-        /// </summary>
-        public string Description => _resources.GetString("Description");
-
-        /// <summary>
-        /// Gets the resource SearchDisplayName.
-        /// </summary>
-        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
-
-        /// <summary>
-        /// Gets the resource SearchKeywords.
-        /// </summary>
-        public string SearchKeywords => _resources.GetString("SearchKeywords");
-    }
-
     public class CRONParserStrings : ObservableObject
     {
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("CRONParser");
@@ -891,59 +800,19 @@ namespace DevToys
         public string Configuration => _resources.GetString("Configuration");
 
         /// <summary>
-        /// Gets the resource ConversionDescription.
+        /// Gets the resource UseSecondsDescription.
         /// </summary>
-        public string ConversionDescription => _resources.GetString("ConversionDescription");
+        public string UseSecondsDescription => _resources.GetString("UseSecondsDescription");
 
         /// <summary>
-        /// Gets the resource ConversionTitle.
+        /// Gets the resource UseSecondsTitle.
         /// </summary>
-        public string ConversionTitle => _resources.GetString("ConversionTitle");
+        public string UseSecondsTitle => _resources.GetString("UseSecondsTitle");
 
         /// <summary>
         /// Gets the resource MenuDisplayName.
         /// </summary>
         public string MenuDisplayName => _resources.GetString("MenuDisplayName");
-
-        /// <summary>
-        /// Gets the resource FourSpaces.
-        /// </summary>
-        public string FourSpaces => _resources.GetString("FourSpaces");
-
-        /// <summary>
-        /// Gets the resource Indentation.
-        /// </summary>
-        public string Indentation => _resources.GetString("Indentation");
-
-        /// <summary>
-        /// Gets the resource Input.
-        /// </summary>
-        public string Input => _resources.GetString("Input");
-
-        /// <summary>
-        /// Gets the resource InvalidYaml.
-        /// </summary>
-        public string InvalidYaml => _resources.GetString("InvalidYaml");
-
-        /// <summary>
-        /// Gets the resource JsonToYaml.
-        /// </summary>
-        public string JsonToYaml => _resources.GetString("JsonToYaml");
-
-        /// <summary>
-        /// Gets the resource Output.
-        /// </summary>
-        public string Output => _resources.GetString("Output");
-
-        /// <summary>
-        /// Gets the resource TwoSpaces.
-        /// </summary>
-        public string TwoSpaces => _resources.GetString("TwoSpaces");
-
-        /// <summary>
-        /// Gets the resource YamlToJson.
-        /// </summary>
-        public string YamlToJson => _resources.GetString("YamlToJson");
 
         /// <summary>
         /// Gets the resource Description.
@@ -959,6 +828,51 @@ namespace DevToys
         /// Gets the resource SearchKeywords.
         /// </summary>
         public string SearchKeywords => _resources.GetString("SearchKeywords");
+
+        /// <summary>
+        /// Gets the resource CronErrorMessage.
+        /// </summary>
+        public string CronErrorMessage => _resources.GetString("CronErrorMessage");
+
+        /// <summary>
+        /// Gets the resource InputTitle.
+        /// </summary>
+        public string InputTitle => _resources.GetString("InputTitle");
+
+        /// <summary>
+        /// Gets the resource OutputDateTimeDescription.
+        /// </summary>
+        public string OutputDateTimeDescription => _resources.GetString("OutputDateTimeDescription");
+
+        /// <summary>
+        /// Gets the resource OutputDateTimeTitle.
+        /// </summary>
+        public string OutputDateTimeTitle => _resources.GetString("OutputDateTimeTitle");
+
+        /// <summary>
+        /// Gets the resource OutputLimitDescription.
+        /// </summary>
+        public string OutputLimitDescription => _resources.GetString("OutputLimitDescription");
+
+        /// <summary>
+        /// Gets the resource OutputLimitTitle.
+        /// </summary>
+        public string OutputLimitTitle => _resources.GetString("OutputLimitTitle");
+
+        /// <summary>
+        /// Gets the resource OutputTitle.
+        /// </summary>
+        public string OutputTitle => _resources.GetString("OutputTitle");
+
+        /// <summary>
+        /// Gets the resource SecondsExcludedMode.
+        /// </summary>
+        public string SecondsExcludedMode => _resources.GetString("SecondsExcludedMode");
+
+        /// <summary>
+        /// Gets the resource SecondsIncludedMode.
+        /// </summary>
+        public string SecondsIncludedMode => _resources.GetString("SecondsIncludedMode");
     }
 
     public class GuidGeneratorStrings : ObservableObject

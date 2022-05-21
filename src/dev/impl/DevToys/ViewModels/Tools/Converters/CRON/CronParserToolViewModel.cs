@@ -9,18 +9,56 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Windows.ApplicationModel.DataTransfer;
 using System.Collections.Generic;
+using DevToys.Api.Core.Settings;
 
 namespace DevToys.ViewModels.Tools.CronParser
 {
     [Export(typeof(CronParserToolViewModel))]
     public sealed class CronParserToolViewModel : ObservableRecipient, IToolViewModel
     {
+        private readonly ISettingsProvider _settingsProvider;
+
         private bool _isInputInvalid;
-        private string _cronExpression;        
+        private string _cronExpression;
+        private string _errorMessage;
+        private bool _setPropertyInProgress;
+        private string? _outputValue;
+
+        private const string DefaultCronWithSeconds = "* * * * * *";
+        private const string DefaultCronWithoutSeconds = "* * * * *";
+        private const string DefaultTimestampFormat = "yyyy-MM-dd ddd HH:mm:ss";
+        private const string DefaultOutputLimit = "5";
+
+        /// <summary>
+        /// Whether the tool should encode or decode Base64.
+        /// </summary>
+        private static readonly SettingDefinition<bool> IncludeSeconds
+            = new(
+                name: $"{nameof(CronParserToolViewModel)}.{nameof(IncludeSeconds)}",
+                isRoaming: true,
+                defaultValue: true);
+
+        /// <summary>
+        /// Whether the tool should encode or decode Base64.
+        /// </summary>
+        private static readonly SettingDefinition<string> OutputDateTime
+            = new(
+                name: $"{nameof(CronParserToolViewModel)}.{nameof(OutputDateTime)}",
+                isRoaming: true,
+                defaultValue: DefaultTimestampFormat);
+
+        /// <summary>
+        /// Whether the tool should encode/decode in Unicode or ASCII.
+        /// </summary>
+        private static readonly SettingDefinition<string> OutputLimit
+            = new(
+                name: $"{nameof(CronParserToolViewModel)}.{nameof(OutputLimit)}",
+                isRoaming: true,
+                defaultValue: DefaultOutputLimit);
 
         public Type View => typeof(CronParserToolPage);
 
-        internal Base64EncoderDecoderStrings Strings => LanguageManager.Instance.Base64EncoderDecoder;
+        internal CRONParserStrings Strings => LanguageManager.Instance.CRONParser;
 
         internal bool IsInputInvalid
         {
@@ -35,64 +73,157 @@ namespace DevToys.ViewModels.Tools.CronParser
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    _cronExpression = string.Empty;
+                    SetProperty(ref _cronExpression, string.Empty);
                 }
                 else
                 {
-                    _cronExpression = value;
+                    SetProperty(ref _cronExpression, value);
                 }
 
                 ParseCronExpression();
             }
+        }     
+
+        /// <summary>
+        /// Gets or sets whatever Cron should include settings
+        /// </summary>
+        internal bool IncludeSecondsMode
+        {
+            get => _settingsProvider.GetSetting(IncludeSeconds);
+            set
+            {
+                if (!_setPropertyInProgress)
+                {
+                    _setPropertyInProgress = true;
+                    
+                    if (_settingsProvider.GetSetting(IncludeSeconds) != value)
+                    {
+                        _settingsProvider.SetSetting(IncludeSeconds, value);
+                        OnPropertyChanged();
+                        ParseCronExpression();
+                    }
+                    
+                    _setPropertyInProgress = false;
+                }
+            }
         }
 
-        internal string OutputValue
+        /// <summary>
+        /// Gets or sets number of output lines.
+        /// </summary>
+        internal string OutputLimitMode
         {
-            get;
-            set;
+            get => _settingsProvider.GetSetting(OutputLimit);
+            set
+            {
+                if (!_setPropertyInProgress)
+                {
+                    _setPropertyInProgress = true;
+
+                    if (_settingsProvider.GetSetting(OutputLimit) != value)
+                    {
+                        _settingsProvider.SetSetting(OutputLimit, value);
+                        OnPropertyChanged();
+                        ParseCronExpression();
+                    }
+
+                    _setPropertyInProgress = false;
+                }
+            }
+        }
+
+        internal string OutputDateTimeFormat
+        {
+            get => _settingsProvider.GetSetting(OutputDateTime);
+            set
+            {
+                if (!_setPropertyInProgress)
+                {
+                    _setPropertyInProgress = true;
+
+                    if (_settingsProvider.GetSetting(OutputDateTime) != value)
+                    {
+                        _settingsProvider.SetSetting(OutputDateTime, value);
+                        OnPropertyChanged();
+                        ParseCronExpression();
+                    }
+
+                    _setPropertyInProgress = false;
+                }
+            }
+        }
+
+        internal string? OutputValue
+        {
+            get => _outputValue;
+            private set => SetProperty(ref _outputValue, value);
         }
 
         private void ParseCronExpression()
         {
-            IList<DateTimeOffset> dateTimeOffsets = new List<DateTimeOffset>();
+            IList<string> dateTimeOffsets = new List<string>();
 
-            var expression = CronExpression.Parse(UserCronExpression);
+            IsInputInvalid = false;
 
-            DateTimeOffset? nextOccurence = expression.GetNextOccurrence(DateTimeOffset.Now, TimeZoneInfo.Local, true);
-
-            if (nextOccurence == null)
+            try
             {
-                return;
-            }
+                if (string.IsNullOrEmpty(UserCronExpression))
+                {
+                    return;
+                }
 
-            dateTimeOffsets.Add(nextOccurence.Value);
+                var expression = CronExpression.Parse(UserCronExpression, IncludeSecondsMode ? CronFormat.IncludeSeconds : CronFormat.Standard);
 
-            for (int i = 0; i < 5; i++)
-            {
-                nextOccurence = expression.GetNextOccurrence(nextOccurence.Value, TimeZoneInfo.Local, true);
+                DateTimeOffset? nextOccurence = expression.GetNextOccurrence(DateTimeOffset.Now, TimeZoneInfo.Local, true);
 
                 if (nextOccurence == null)
                 {
                     return;
                 }
 
-                dateTimeOffsets.Add(nextOccurence.Value);
+                dateTimeOffsets.Add(nextOccurence.Value.ToString(DefaultTimestampFormat));
 
-                i++;
+                for (int i = 0; i <= int.Parse(OutputLimitMode); i++)
+                {
+                    nextOccurence = expression.GetNextOccurrence(nextOccurence.Value, TimeZoneInfo.Local, false);
+
+                    if (nextOccurence == null)
+                    {
+                        return;
+                    }
+
+                    dateTimeOffsets.Add(nextOccurence.Value.ToString(DefaultTimestampFormat));
+                }
+
+                OutputValue = String.Join(Environment.NewLine, dateTimeOffsets);
             }
-
-            IEnumerable<DateTimeOffset>? occurences = expression.GetOccurrences(DateTimeOffset.Now, DateTimeOffset.Now.AddDays(1), TimeZoneInfo.Local, true, true);
-
-            OutputValue = String.Join(Environment.NewLine, dateTimeOffsets);
+            catch (CronFormatException)
+            {
+                IsInputInvalid = true;
+            }
         }
 
-        public CronParserToolViewModel()
+        [ImportingConstructor]
+        public CronParserToolViewModel(ISettingsProvider settingsProvider)
         {
+            _settingsProvider = settingsProvider;
+
             PasteCommand = new RelayCommand(ExecutePasteCommand);
             CopyCommand = new RelayCommand(ExecuteCopyCommand);
 
-            // Set to the current epoch time.
-            UserCronExpression = "* * * * *";
+            _errorMessage = String.Empty;
+            _cronExpression = String.Empty;
+
+            IsInputInvalid = false;
+            
+            if (IncludeSecondsMode)
+            {
+                UserCronExpression = DefaultCronWithSeconds;
+            }
+            else
+            {
+                UserCronExpression = DefaultCronWithoutSeconds;
+            }
         }
 
         #region PasteCommand
@@ -137,7 +268,7 @@ namespace DevToys.ViewModels.Tools.CronParser
                 data.SetText(UserCronExpression);
 
                 Clipboard.SetContentWithOptions(data, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
-                Clipboard.Flush(); // This method allows the content to remain available after the application shuts down.
+                Clipboard.Flush();
             }
             catch (Exception ex)
             {

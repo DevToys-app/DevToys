@@ -21,13 +21,13 @@ namespace DevToys.ViewModels.Tools.Converters.CronParser
 
         public string MenuDisplayName => LanguageManager.Instance.CRONParser.MenuDisplayName;
 
-        public string? SearchDisplayName => LanguageManager.Instance.Timestamp.SearchDisplayName;
+        public string? SearchDisplayName => LanguageManager.Instance.CRONParser.SearchDisplayName;
 
-        public string? Description => LanguageManager.Instance.Timestamp.Description;
+        public string? Description => LanguageManager.Instance.CRONParser.Description;
 
-        public string AccessibleName => LanguageManager.Instance.Timestamp.AccessibleName;
+        public string AccessibleName => LanguageManager.Instance.CRONParser.AccessibleName;
 
-        public string? SearchKeywords => LanguageManager.Instance.Timestamp.SearchKeywords;
+        public string? SearchKeywords => LanguageManager.Instance.CRONParser.SearchKeywords;
 
         public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF823");
 

@@ -5,25 +5,19 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-    xmlns:local="using:DevToys.Views.Tools.CronParser"
     xmlns:controls="using:DevToys.UI.Controls"
-    xmlns:ex="using:DevToys.UI.Extensions"
     mc:Ignorable="d"
     d:DesignHeight="400"
     d:DesignWidth="600">
-    
-    <Grid x:Name="RootGrid" RowSpacing="12" Margin="0,0,0,16">
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState>
-                    <VisualState.StateTriggers>
-                        <ex:IsCompactOverlayModeTrigger TargetElement="{x:Bind}" />
-                    </VisualState.StateTriggers>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
+    <StackPanel Margin="0,12,0,0">
+        <muxc:InfoBar
+                Severity="Warning"
+                Message="{x:Bind ViewModel.Strings.CronErrorMessage}"
+                IsOpen="{x:Bind ViewModel.IsInputInvalid, Mode=OneWay}"
+                IsClosable="False"/>
 
-        <Grid.ChildrenTransitions>
+        <Grid x:Name="RootGrid" RowSpacing="12" Margin="0,0,0,16">
+            <Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
             </TransitionCollection>
@@ -36,8 +30,48 @@
         </Grid.RowDefinitions>
 
         <StackPanel Spacing="4" Grid.Row="0" >
-            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.ConfigurationTitle}" />
-        </StackPanel>
+            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Configuration}" />
+            <controls:ExpandableSettingControl
+                Grid.Row="1"
+                Title="{x:Bind ViewModel.Strings.UseSecondsTitle}"
+                Description="{x:Bind ViewModel.Strings.UseSecondsDescription}">
+                <controls:ExpandableSettingControl.Icon>
+                    <FontIcon Glyph="&#xF18D;" />
+                </controls:ExpandableSettingControl.Icon>
+                <ToggleSwitch 
+                    Style="{StaticResource RightAlignedToggleSwitchStyle}"
+                    OnContent="{x:Bind ViewModel.Strings.SecondsIncludedMode}" OffContent="{x:Bind ViewModel.Strings.SecondsExcludedMode}"
+                    IsOn="{x:Bind ViewModel.IncludeSecondsMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </controls:ExpandableSettingControl>
+            <controls:ExpandableSettingControl
+                x:Name="EncodingSetting"
+                Grid.Row="2"
+                Title="{x:Bind ViewModel.Strings.OutputLimitTitle}"
+                Description="{x:Bind ViewModel.Strings.OutputLimitDescription}">
+                <controls:ExpandableSettingControl.Icon>
+                    <FontIcon Glyph="&#xF7E4;" />
+                </controls:ExpandableSettingControl.Icon>
+                <ComboBox
+                    SelectedValuePath="Tag"
+                    SelectedValue="{x:Bind ViewModel.OutputLimitMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBoxItem Tag="5" Content="5" />
+                    <ComboBoxItem Tag="10" Content="10" />
+                    <ComboBoxItem Tag="25" Content="25" />
+                    <ComboBoxItem Tag="50" Content="50" />
+                    <ComboBoxItem Tag="100" Content="100" />
+                </ComboBox>
+            </controls:ExpandableSettingControl>
+                <controls:ExpandableSettingControl
+                x:Name="OutputDateTimeSetting"
+                Grid.Row="3"
+                Title="{x:Bind ViewModel.Strings.OutputDateTimeTitle}"
+                Description="{x:Bind ViewModel.Strings.OutputDateTimeDescription}">
+                    <controls:ExpandableSettingControl.Icon>
+                        <FontIcon Glyph="&#xF7E4;" />
+                    </controls:ExpandableSettingControl.Icon>
+                    <TextBox Text="{x:Bind ViewModel.OutputDateTimeFormat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                </controls:ExpandableSettingControl>
+            </StackPanel>
 
         <controls:CustomTextBox
             Grid.Row="1"
@@ -47,14 +81,14 @@
             Header="{x:Bind ViewModel.Strings.InputTitle}"
             Text="{x:Bind ViewModel.UserCronExpression, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <controls:CustomTextBox
+            <controls:CustomTextBox
             Grid.Row="2"
-            MinHeight="150"
-            IsReadOnly="True"
+            MinHeight="250"
+            IsReadOnly="True"            
             AcceptsReturn="True"
-            IsRichTextEdit="True"
+            IsRichTextEdit="True"            
             Header="{x:Bind ViewModel.Strings.OutputTitle}"
             Text="{x:Bind ViewModel.OutputValue, Mode=OneWay}"/>
-
-    </Grid>
+        </Grid>
+    </StackPanel>
 </Page>

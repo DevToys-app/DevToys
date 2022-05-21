@@ -633,8 +633,6 @@
     <PRIResource Include="Strings\en-US\CheckSumGenerator.resw" />
     <PRIResource Include="Strings\en-US\ColorBlindnessSimulator.resw" />
     <PRIResource Include="Strings\en-US\Common.resw" />
-    <PRIResource Include="Strings\en-US\CRON.resw" />
-    <PRIResource Include="Strings\en-US\CRONParser.resw" />
     <PRIResource Include="Strings\en-US\GuidGenerator.resw" />
     <PRIResource Include="Strings\en-US\GZipEncoderDecoder.resw" />
     <PRIResource Include="Strings\en-US\HashGenerator.resw" />
