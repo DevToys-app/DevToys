@@ -129,9 +129,6 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>色盲模擬器</value>
   </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>另存為</value>
-  </data>
   <data name="Cancel" xml:space="preserve">
     <value>取消</value>
   </data>

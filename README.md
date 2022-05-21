@@ -37,7 +37,7 @@ Many tools are available.
 - Encoders / Decoders
   - HTML
   - URL
-  - Base64
+  - Base64 Text & Image
   - GZip
   - JWT Decoder
 - Formatters
@@ -109,7 +109,8 @@ A cool thing about DevToys is that you can start it in command line! For this, s
 For example, `start devtoys:?tool=jsonyaml` will open DevToys and start on the `Json <> Yaml` tool.
 
 Here is the list of tool name you can use:
-- `base64` - Base64 Encoder/Decoder
+- `base64` - Base64 Text Encoder/Decoder
+- `base64img` - Base64 Image Encoder/Decoder
 - `gzip` - GZip Encoder/Decoder
 - `hash` - Hash Generator
 - `uuid` - UUID Generator

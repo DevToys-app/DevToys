@@ -129,9 +129,6 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>색각 이상 모방 도구</value>
   </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>다른 이름으로 저장</value>
-  </data>
   <data name="Cancel" xml:space="preserve">
     <value>취소</value>
   </data>

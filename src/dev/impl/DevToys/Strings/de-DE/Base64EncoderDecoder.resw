@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Base 64 Kodierungs- und Dekodierungswerkzeug</value>
+    <value>Base64 Text Encoder and Decoder tool</value>
   </data>
   <data name="Ascii" xml:space="preserve">
     <value>ASCII</value>
@@ -139,7 +139,7 @@
     <value>Konvertierung</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Base 64</value>
+    <value>Base64 Text</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
     <value>Wähle aus welche Zeichenkodierung verwendet werden soll</value>
@@ -157,10 +157,10 @@
     <value>UTF-8</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Kodiere und Dekodiere Base64 Daten</value>
+    <value>Encode and decode Base64 text data</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Base 64 Kodierer / Dekodierer</value>
+    <value>Base64 Text Encoder / Decoder</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>RFC 4648</value>

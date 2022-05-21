@@ -129,9 +129,6 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Színvakság Szimulátor</value>
   </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Mentés másként</value>
-  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Mégse</value>
   </data>

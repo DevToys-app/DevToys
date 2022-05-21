@@ -85,6 +85,19 @@ namespace DevToys.UI.Controls
             set => SetValue(IsReadOnlyProperty, value);
         }
 
+        public static readonly DependencyProperty CanCopyWhenNotReadOnlyProperty
+            = DependencyProperty.Register(
+                nameof(CanCopyWhenNotReadOnly),
+                typeof(bool),
+                typeof(CodeEditor),
+                new PropertyMetadata(false, OnIsReadOnlyPropertyChangedCalled));
+
+        public bool CanCopyWhenNotReadOnly
+        {
+            get => (bool)GetValue(CanCopyWhenNotReadOnlyProperty);
+            set => SetValue(CanCopyWhenNotReadOnlyProperty, value);
+        }
+
         public static DependencyProperty CodeLanguageProperty { get; }
             = DependencyProperty.Register(
                 nameof(CodeLanguage),
@@ -301,6 +314,7 @@ namespace DevToys.UI.Controls
                 _codeEditorCore = new CodeEditorCore();
                 _codeEditorCore.EditorLoading += CodeEditorCore_Loading;
                 _codeEditorCore.InternalException += CodeEditorCore_InternalException;
+                _codeEditorCore.TabIndex = 0;
 
                 _codeEditorCore.SetBinding(
                     CodeEditorCore.CodeLanguageProperty,
@@ -406,7 +420,11 @@ namespace DevToys.UI.Controls
             }
             else
             {
-                if (CopyButton is not null)
+                if (CanCopyWhenNotReadOnly)
+                {
+                    GetCopyButton().Visibility = Visibility.Visible;
+                }
+                else if (CopyButton is not null)
                 {
                     CopyButton.Visibility = Visibility.Collapsed;
                 }
@@ -414,6 +432,7 @@ namespace DevToys.UI.Controls
                 GetPasteButton().Visibility = Visibility.Visible;
                 GetOpenFileButton().Visibility = Visibility.Visible;
                 GetClearButton().Visibility = Visibility.Visible;
+                GetPasteButton().Visibility = Visibility.Visible;
             }
 
             if (IsDiffViewMode)
@@ -484,6 +503,15 @@ namespace DevToys.UI.Controls
             };
 
             filePicker.FileTypeFilter.Add("*");
+            filePicker.FileTypeFilter.Add(".txt");
+            filePicker.FileTypeFilter.Add(".js");
+            filePicker.FileTypeFilter.Add(".ts");
+            filePicker.FileTypeFilter.Add(".cs");
+            filePicker.FileTypeFilter.Add(".java");
+            filePicker.FileTypeFilter.Add(".xml");
+            filePicker.FileTypeFilter.Add(".json");
+            filePicker.FileTypeFilter.Add(".md");
+            filePicker.FileTypeFilter.Add(".sql");
 
             StorageFile file = await filePicker.PickSingleFileAsync();
             if (file is not null)

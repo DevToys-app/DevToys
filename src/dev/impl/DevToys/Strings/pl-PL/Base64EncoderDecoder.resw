@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Narzedzie Enkodujące i Dekodujące Base 64</value>
+    <value>Base64 Text Encoder and Decoder tool</value>
   </data>
   <data name="Ascii" xml:space="preserve">
     <value>ASCII</value>
@@ -139,7 +139,7 @@
     <value>Konwersja</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Kodowanie Base 64</value>
+    <value>Base64 Text</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
     <value>Wybierz kodowanie, którego chcesz użyć</value>
@@ -159,5 +159,11 @@
   <data name="SearchKeywords" xml:space="preserve">
     <value>RFC 4648</value>
     <comment>Alternative search keywords. Enables searching for words that are not included in Description, MenuDisplayName, and SearchDisplayName.</comment>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Encode and decode Base64 text data</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Base64 Text Encoder / Decoder</value>
   </data>
 </root>

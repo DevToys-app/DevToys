@@ -186,6 +186,9 @@
   <data name="Refresh" xml:space="preserve">
     <value>Refresh</value>
   </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>Mentés másként</value>
+  </data>
   <data name="SelectAll" xml:space="preserve">
     <value>Minden kijelölése</value>
   </data>
@@ -202,9 +205,13 @@
     <value>Nem lehet ezt a fájlt megnyitni</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>Nem lehet a '{0}' fájlt megnyitni. További információkért, ellenőrizd a log fájlokat.</value>
+    <value>Unable to load the file '{0}'. Only textual files can be opened. For more details, please check the log.</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>Újra</value>
+  </data>
+  <data name="ViewImage" xml:space="preserve">
+    <value>View</value>
+    <comment>In the context of "view / display an image".</comment>
   </data>
 </root>

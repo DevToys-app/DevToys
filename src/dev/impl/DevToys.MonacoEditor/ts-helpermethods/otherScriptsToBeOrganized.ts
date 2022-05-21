@@ -6,7 +6,7 @@ declare var editor: monaco.editor.IStandaloneCodeEditor;
 declare var model: monaco.editor.ITextModel;
 declare var contexts: { [index: string]: monaco.editor.IContextKey<any> };//{};
 declare var decorations: string[];
-declare var modifingSelection:boolean; // Supress updates to selection when making edits.
+declare var modifingSelection: boolean; // Supress updates to selection when making edits.
 
 var registerHoverProvider = function (languageId: string) {
     return monaco.languages.registerHoverProvider(languageId, {
@@ -125,11 +125,17 @@ var updateLanguage = function (language) {
 };
 
 var changeTheme = function (theme: string, highcontrast) {
+    var commandPaletteCssStyle = getCssRule(".monaco-quick-open-widget");
+
     var newTheme = 'vs';
+    commandPaletteCssStyle.style.setProperty("background-color", "#F3F3F3", "important");
+
     if (highcontrast == "True" || highcontrast == "true") {
         newTheme = 'hc-black';
+        commandPaletteCssStyle.style.setProperty("background-color", "#FF000000", "important");
     } else if (theme == "Dark") {
         newTheme = 'vs-dark';
+        commandPaletteCssStyle.style.setProperty("background-color", "#252526", "important");
     }
 
     monaco.editor.setTheme(newTheme);
@@ -152,6 +158,7 @@ var setTheme = function (accentColor: string) {
             'editor.inactiveSelectionBackground': '#00000000',
             'editor.selectionForeground': '#FFFFFF',
             'editor.selectionBackground': accentColor,
+            'editorWidget.background': '#252526'
         }
     });
     monaco.editor.defineTheme('vs', {
@@ -168,6 +175,7 @@ var setTheme = function (accentColor: string) {
             'editor.inactiveSelectionBackground': '#00000000',
             'editor.selectionForeground': '#000000',
             'editor.selectionBackground': accentColor,
+            'editorWidget.background': '#F3F3F3'
         }
     });
 }
@@ -183,3 +191,14 @@ var keyDown = function (event) {
         return false;
     }
 };
+
+var getCssRule = function (styleName): CSSStyleRule {
+    for (var i = 0; i < document.styleSheets[0].cssRules.length; i++) {
+        var rule = document.styleSheets[0].cssRules[i] as CSSStyleRule;
+        if (rule.selectorText == styleName) {
+            return rule;
+        }
+    }
+
+    throw new Error("Unable to find the style named " + styleName);
+}

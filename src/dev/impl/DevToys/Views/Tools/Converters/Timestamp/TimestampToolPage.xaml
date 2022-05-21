@@ -208,7 +208,8 @@
                         AutomationProperties.Name="{Binding Instance.Common.Now, Mode=OneTime, Source={StaticResource LanguageManager}}">
                         <StackPanel
                             Orientation="Horizontal"
-                            Spacing="4">
+                            Spacing="4"
+                            Height="21">
                             <TextBlock
                                 VerticalAlignment="Center"
                                 Text="{Binding Instance.Common.Now, Mode=OneTime, Source={StaticResource LanguageManager}}" />

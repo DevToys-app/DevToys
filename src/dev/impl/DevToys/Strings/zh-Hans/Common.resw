@@ -169,7 +169,7 @@
     <value>MB</value>
   </data>
   <data name="Now" xml:space="preserve">
-    <value>Now</value>
+    <value>当前时间</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>确定</value>
@@ -185,6 +185,9 @@
   </data>
   <data name="Refresh" xml:space="preserve">
     <value>刷新</value>
+  </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>另存为</value>
   </data>
   <data name="SelectAll" xml:space="preserve">
     <value>选择全部</value>
@@ -202,9 +205,13 @@
     <value>抱歉，无法打开这个文件</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>抱歉，无法加载文件 '{0}' 的具体内容。欲了解更多详情，请查看日志文件记录。</value>
+    <value>无法加载文件'{0}'。只能打开文本文件。详情请查看日志。</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>撤销</value>
+  </data>
+  <data name="ViewImage" xml:space="preserve">
+    <value>查看</value>
+    <comment>“查看/显示图像”的内容。</comment>
   </data>
 </root>

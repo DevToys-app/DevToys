@@ -186,6 +186,9 @@
   <data name="Refresh" xml:space="preserve">
     <value>Refresh</value>
   </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>Simpan sebagai</value>
+  </data>
   <data name="SelectAll" xml:space="preserve">
     <value>Pilih semua</value>
   </data>
@@ -202,9 +205,13 @@
     <value>Tidak dapat membuka file</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>Tidak dapat membuka file '{0}'. Untuk detail, silahkan cek log</value>
+    <value>Unable to load the file '{0}'. Only textual files can be opened. For more details, please check the log.</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>Undo</value>
+  </data>
+  <data name="ViewImage" xml:space="preserve">
+    <value>View</value>
+    <comment>In the context of "view / display an image".</comment>
   </data>
 </root>

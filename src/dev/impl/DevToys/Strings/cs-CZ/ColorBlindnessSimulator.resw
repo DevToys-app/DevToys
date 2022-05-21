@@ -129,9 +129,6 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Simulátor barvosleposti</value>
   </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Uložit jako</value>
-  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Zrušit</value>
   </data>
