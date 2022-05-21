@@ -2732,6 +2732,16 @@ namespace DevToys
         public string AccessibleName => _resources.GetString("AccessibleName");
 
         /// <summary>
+        /// Gets the resource TimeZoneTitle.
+        /// </summary>
+        public string TimeZoneTitle => _resources.GetString("TimeZoneTitle");
+
+        /// <summary>
+        /// Gets the resource DaylightSavingTime.
+        /// </summary>
+        public string DaylightSavingTime => _resources.GetString("DaylightSavingTime");
+
+        /// <summary>
         /// Gets the resource DayTitle.
         /// </summary>
         public string DayTitle => _resources.GetString("DayTitle");
@@ -2740,6 +2750,16 @@ namespace DevToys
         /// Gets the resource Description.
         /// </summary>
         public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource DisabledDaylightSavingTime.
+        /// </summary>
+        public string DisabledDaylightSavingTime => _resources.GetString("DisabledDaylightSavingTime");
+
+        /// <summary>
+        /// Gets the resource DSTAmbiguousTime.
+        /// </summary>
+        public string DSTAmbiguousTime => _resources.GetString("DSTAmbiguousTime");
 
         /// <summary>
         /// Gets the resource HourTitle.
@@ -2772,6 +2792,11 @@ namespace DevToys
         public string MonthTitle => _resources.GetString("MonthTitle");
 
         /// <summary>
+        /// Gets the resource OffsetTitle.
+        /// </summary>
+        public string OffsetTitle => _resources.GetString("OffsetTitle");
+
+        /// <summary>
         /// Gets the resource SearchDisplayName.
         /// </summary>
         public string SearchDisplayName => _resources.GetString("SearchDisplayName");
@@ -2787,6 +2812,11 @@ namespace DevToys
         public string SecondsTitle => _resources.GetString("SecondsTitle");
 
         /// <summary>
+        /// Gets the resource SupportsDaylightSavingTime.
+        /// </summary>
+        public string SupportsDaylightSavingTime => _resources.GetString("SupportsDaylightSavingTime");
+
+        /// <summary>
         /// Gets the resource TimestampTitle.
         /// </summary>
         public string TimestampTitle => _resources.GetString("TimestampTitle");
@@ -2795,6 +2825,11 @@ namespace DevToys
         /// Gets the resource UTCDateTime.
         /// </summary>
         public string UTCDateTime => _resources.GetString("UTCDateTime");
+
+        /// <summary>
+        /// Gets the resource UtcTicksTitle.
+        /// </summary>
+        public string UtcTicksTitle => _resources.GetString("UtcTicksTitle");
 
         /// <summary>
         /// Gets the resource YearTitle.
