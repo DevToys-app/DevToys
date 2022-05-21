@@ -120,11 +120,23 @@
   <data name="AccessibleName" xml:space="preserve">
     <value>타임스탬프 변환기</value>
   </data>
+  <data name="TimeZoneTitle" xml:space="preserve">
+    <value>Time zone</value>
+  </data>
+  <data name="DaylightSavingTime" xml:space="preserve">
+    <value>Daylight saving time.</value>
+  </data>
   <data name="DayTitle" xml:space="preserve">
     <value>일</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>타임스탬프를 읽기 쉬운 날짜로 변환하거나 반대로 변환합니다.</value>
+  </data>
+  <data name="DisabledDaylightSavingTime" xml:space="preserve">
+    <value>There is no daylight saving time.</value>
+  </data>
+  <data name="DSTAmbiguousTime" xml:space="preserve">
+    <value>DST Ambiguous time.</value>
   </data>
   <data name="HourTitle" xml:space="preserve">
     <value>시 (24 시간제)</value>
@@ -144,6 +156,9 @@
   <data name="MonthTitle" xml:space="preserve">
     <value>월</value>
   </data>
+  <data name="OffsetTitle" xml:space="preserve">
+    <value>Offset</value>
+  </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Unix 타임스탬프 변환기</value>
   </data>
@@ -154,11 +169,17 @@
   <data name="SecondsTitle" xml:space="preserve">
     <value>초</value>
   </data>
+  <data name="SupportsDaylightSavingTime" xml:space="preserve">
+    <value>There is daylight saving time.</value>
+  </data>
   <data name="TimestampTitle" xml:space="preserve">
     <value>타임스탬프</value>
   </data>
   <data name="UTCDateTime" xml:space="preserve">
     <value>UTC 날짜 및 시간</value>
+  </data>
+  <data name="UtcTicksTitle" xml:space="preserve">
+    <value>UtcTicks</value>
   </data>
   <data name="YearTitle" xml:space="preserve">
     <value>년</value>
