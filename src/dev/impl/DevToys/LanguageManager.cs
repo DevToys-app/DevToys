@@ -2631,9 +2631,9 @@ namespace DevToys
         public string AccessibleName => _resources.GetString("AccessibleName");
 
         /// <summary>
-        /// Gets the resource CurrentTimeZone.
+        /// Gets the resource TimeZoneTitle.
         /// </summary>
-        public string CurrentTimeZone => _resources.GetString("CurrentTimeZone");
+        public string TimeZoneTitle => _resources.GetString("TimeZoneTitle");
 
         /// <summary>
         /// Gets the resource DaylightSavingTime.

@@ -37,7 +37,7 @@
                 Value="{ThemeResource ExpanderHeaderBackground}" />
         </Style>
     </Page.Resources>
-    
+
     <StackPanel
         Margin="0,0,0,16"
         Spacing="12">
@@ -52,17 +52,17 @@
 
                     <VisualState.Setters>
                         <Setter
-                            Target="CurrentDateGridBlock.Grid.ColumnSpan"
+                            Target="ZoneOffsetDateGridBlock.Grid.ColumnSpan"
                             Value="1" />
 
                         <Setter
-                            Target="CurrentTimeGridBlock.Grid.Row"
+                            Target="ZoneOffsetTimeGridBlock.Grid.Row"
                             Value="0" />
                         <Setter
-                            Target="CurrentTimeGridBlock.Grid.Column"
+                            Target="ZoneOffsetTimeGridBlock.Grid.Column"
                             Value="1" />
                         <Setter
-                            Target="CurrentTimeGridBlock.Grid.ColumnSpan"
+                            Target="ZoneOffsetTimeGridBlock.Grid.ColumnSpan"
                             Value="1" />
                     </VisualState.Setters>
                 </VisualState>
@@ -91,7 +91,7 @@
         <StackPanel>
             <TextBlock
                 x:Name="CurrentTimeZonePickerHeaderTextBlock"
-                Text="{x:Bind ViewModel.Strings.CurrentTimeZone}"
+                Text="{x:Bind ViewModel.Strings.TimeZoneTitle}"
                 Margin="{ThemeResource TextBoxTopHeaderMargin}"
                 Style="{StaticResource SubTitleTextBlock}"
                 TextWrapping="NoWrap"
@@ -187,7 +187,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                    x:Name="CurrentTimestampHeaderTextBlock"
+                    x:Name="TimestampHeaderTextBlock"
                     Text="{x:Bind ViewModel.Strings.TimestampTitle}"
                     Margin="{ThemeResource TextBoxTopHeaderMargin}"
                     Style="{StaticResource SubTitleTextBlock}"
@@ -201,13 +201,17 @@
                     HorizontalAlignment="Right"
                     Spacing="8"
                     Margin="0,0,0,8"
-                    AutomationProperties.LabeledBy="{Binding ElementName=CurrentTimestampHeaderTextBlock}">
+                    AutomationProperties.LabeledBy="{Binding ElementName=TimestampHeaderTextBlock}">
                     <Button
                         TabIndex="1"
                         Command="{x:Bind ViewModel.NowCommand}"
                         AutomationProperties.Name="{Binding Instance.Common.Now, Mode=OneTime, Source={StaticResource LanguageManager}}">
-                        <StackPanel Orientation="Horizontal" Spacing="4">
-                            <TextBlock VerticalAlignment="Center" Text="{Binding Instance.Common.Now, Mode=OneTime, Source={StaticResource LanguageManager}}"/>
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Spacing="4">
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Text="{Binding Instance.Common.Now, Mode=OneTime, Source={StaticResource LanguageManager}}" />
                         </StackPanel>
                     </Button>
                     <Button
@@ -249,7 +253,7 @@
                     LargeChange="10"
                     Minimum="{x:Bind local:TimestampToolPage.MinimumTimestamp}"
                     Maximum="{x:Bind local:TimestampToolPage.MaximumTimestamp}"
-                    AutomationProperties.LabeledBy="{Binding ElementName=CurrentTimestampHeaderTextBlock}" />
+                    AutomationProperties.LabeledBy="{Binding ElementName=TimestampHeaderTextBlock}" />
             </StackPanel>
 
         </StackPanel>
@@ -270,7 +274,7 @@
 
             <!-- date -->
             <Grid
-                x:Name="CurrentDateGridBlock"
+                x:Name="ZoneOffsetDateGridBlock"
                 Grid.Row="0"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
@@ -288,7 +292,7 @@
                 <StackPanel
                     Grid.Column="0">
                     <TextBlock
-                        x:Name="CurrentYearHeaderTextBlock"
+                        x:Name="ZoneOffsetYearHeaderTextBlock"
                         Text="{x:Bind ViewModel.Strings.YearTitle}"
                         Margin="{ThemeResource TextBoxTopHeaderMargin}"
                         Style="{StaticResource SubTitleTextBlock}"
@@ -302,13 +306,13 @@
                         LargeChange="10"
                         Minimum="1"
                         Maximum="9999"
-                        AutomationProperties.LabeledBy="{Binding ElementName=CurrentYearHeaderTextBlock}" />
+                        AutomationProperties.LabeledBy="{Binding ElementName=ZoneOffsetYearHeaderTextBlock}" />
                 </StackPanel>
 
                 <StackPanel
                     Grid.Column="1">
                     <TextBlock
-                        x:Name="CurrentMonthHeaderTextBlock"
+                        x:Name="ZoneOffsetMonthHeaderTextBlock"
                         Text="{x:Bind ViewModel.Strings.MonthTitle}"
                         Margin="{ThemeResource TextBoxTopHeaderMargin}"
                         Style="{StaticResource SubTitleTextBlock}"
@@ -321,13 +325,13 @@
                         SmallChange="1"
                         Minimum="0"
                         Maximum="13"
-                        AutomationProperties.LabeledBy="{Binding ElementName=CurrentMonthHeaderTextBlock}" />
+                        AutomationProperties.LabeledBy="{Binding ElementName=ZoneOffsetMonthHeaderTextBlock}" />
                 </StackPanel>
 
                 <StackPanel
                     Grid.Column="2">
                     <TextBlock
-                        x:Name="CurrentDayHeaderTextBlock"
+                        x:Name="ZoneOffsetDayHeaderTextBlock"
                         Text="{x:Bind ViewModel.Strings.DayTitle}"
                         Margin="{ThemeResource TextBoxTopHeaderMargin}"
                         Style="{StaticResource SubTitleTextBlock}"
@@ -340,13 +344,13 @@
                         SmallChange="1"
                         Minimum="0"
                         Maximum="32"
-                        AutomationProperties.LabeledBy="{Binding ElementName=CurrentDayHeaderTextBlock}" />
+                        AutomationProperties.LabeledBy="{Binding ElementName=ZoneOffsetDayHeaderTextBlock}" />
                 </StackPanel>
 
             </Grid>
             <!-- time -->
             <Grid
-                x:Name="CurrentTimeGridBlock"
+                x:Name="ZoneOffsetTimeGridBlock"
                 Grid.Row="1"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
@@ -364,7 +368,7 @@
                 <StackPanel
                     Grid.Column="0">
                     <TextBlock
-                        x:Name="CurrentHourHeaderTextBlock"
+                        x:Name="ZoneOffsetHourHeaderTextBlock"
                         Text="{x:Bind ViewModel.Strings.HourTitle}"
                         Margin="{ThemeResource TextBoxTopHeaderMargin}"
                         Style="{StaticResource SubTitleTextBlock}"
@@ -377,13 +381,13 @@
                         SmallChange="1"
                         Minimum="-1"
                         Maximum="24"
-                        AutomationProperties.LabeledBy="{Binding ElementName=CurrentHourHeaderTextBlock}" />
+                        AutomationProperties.LabeledBy="{Binding ElementName=ZoneOffsetHourHeaderTextBlock}" />
                 </StackPanel>
 
                 <StackPanel
                     Grid.Column="1">
                     <TextBlock
-                        x:Name="CurrentMinuteHeaderTextBlock"
+                        x:Name="ZoneOffsetMinuteHeaderTextBlock"
                         Text="{x:Bind ViewModel.Strings.MinutesTitle}"
                         Margin="{ThemeResource TextBoxTopHeaderMargin}"
                         Style="{StaticResource SubTitleTextBlock}"
@@ -396,13 +400,13 @@
                         SmallChange="1"
                         Minimum="-1"
                         Maximum="60"
-                        AutomationProperties.LabeledBy="{Binding ElementName=CurrentMinuteHeaderTextBlock}" />
+                        AutomationProperties.LabeledBy="{Binding ElementName=ZoneOffsetMinuteHeaderTextBlock}" />
                 </StackPanel>
 
                 <StackPanel
                     Grid.Column="2">
                     <TextBlock
-                        x:Name="CurrentSecondHeaderTextBlock"
+                        x:Name="ZoneOffsetSecondHeaderTextBlock"
                         Text="{x:Bind ViewModel.Strings.SecondsTitle}"
                         Margin="{ThemeResource TextBoxTopHeaderMargin}"
                         Style="{StaticResource SubTitleTextBlock}"
@@ -415,7 +419,7 @@
                         SmallChange="1"
                         Minimum="-1"
                         Maximum="60"
-                        AutomationProperties.LabeledBy="{Binding ElementName=CurrentSecondHeaderTextBlock}" />
+                        AutomationProperties.LabeledBy="{Binding ElementName=ZoneOffsetSecondHeaderTextBlock}" />
                 </StackPanel>
 
             </Grid>

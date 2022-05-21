@@ -120,7 +120,7 @@
   <data name="AccessibleName" xml:space="preserve">
     <value>Ferramenta de Conversão do Carimbo Temporal</value>
   </data>
-  <data name="CurrentTimeZone" xml:space="preserve">
+  <data name="TimeZoneTitle" xml:space="preserve">
     <value>Time zone</value>
   </data>
   <data name="DaylightSavingTime" xml:space="preserve">
