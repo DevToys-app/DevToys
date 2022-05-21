@@ -38,7 +38,8 @@ namespace DevToys.ViewModels.Tools.HashGenerator
                 defaultValue: DefaultOutputType);
 
         private readonly IMarketingService _marketingService;
-        private readonly ISettingsProvider _settingsProvider;
+
+        internal ISettingsProvider SettingsProvider;
 
         private bool _toolSuccessfullyWorked;
         private string? _input;
@@ -56,12 +57,12 @@ namespace DevToys.ViewModels.Tools.HashGenerator
 
         internal bool IsUppercase
         {
-            get => _settingsProvider.GetSetting(Uppercase);
+            get => SettingsProvider.GetSetting(Uppercase);
             set
             {
-                if (_settingsProvider.GetSetting(Uppercase) != value)
+                if (SettingsProvider.GetSetting(Uppercase) != value)
                 {
-                    _settingsProvider.SetSetting(Uppercase, value);
+                    SettingsProvider.SetSetting(Uppercase, value);
                     OnPropertyChanged();
                     QueueHashCalculation();
                 }
@@ -70,12 +71,12 @@ namespace DevToys.ViewModels.Tools.HashGenerator
 
         internal string OutputType
         {
-            get => _settingsProvider.GetSetting(OutType);
+            get => SettingsProvider.GetSetting(OutType);
             set
             {
-                if (_settingsProvider.GetSetting(OutType) != value)
+                if (SettingsProvider.GetSetting(OutType) != value)
                 {
-                    _settingsProvider.SetSetting(OutType, value);
+                    SettingsProvider.SetSetting(OutType, value);
                     OnPropertyChanged();
                     QueueHashCalculation();
                 }
@@ -119,7 +120,7 @@ namespace DevToys.ViewModels.Tools.HashGenerator
         [ImportingConstructor]
         public HashGeneratorToolViewModel(ISettingsProvider settingsProvider, IMarketingService marketingService)
         {
-            _settingsProvider = settingsProvider;
+            SettingsProvider = settingsProvider;
             _marketingService = marketingService;
         }
 
