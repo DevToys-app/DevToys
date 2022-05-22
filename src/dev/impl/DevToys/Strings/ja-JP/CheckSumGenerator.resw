@@ -118,48 +118,48 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Checksum Generator tool</value>
+    <value>チェックサム値の生成と比較</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>キャンセル</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>構成</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generate a hash with Checksum based on a file</value>
+    <value>ファイルのチェックサム値を生成し比較します</value>
   </data>
   <data name="HashingAlgorithmDescription" xml:space="preserve">
-    <value>Select which hashing algorithm you want to use</value>
+    <value>値の生成に使用するハッシュアルゴリズムを選択できます</value>
   </data>
   <data name="HashingAlgorithmTitle" xml:space="preserve">
-    <value>Hashing Algorithm</value>
+    <value>ハッシュアルゴリズム</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>入力</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Checksum</value>
+    <value>チェックサム</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>出力</value>
   </data>
   <data name="OutputComparer" xml:space="preserve">
-    <value>Output Comparer</value>
+    <value>比較</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Checksum Generator</value>
+    <value>チェックサム生成</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
-    <value>Uppercase</value>
+    <value>大文字を使用する</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
   </data>
   <data name="HashesMatch" xml:space="preserve">
-    <value>The hashes are the same.</value>
+    <value>一致しています</value>
   </data>
   <data name="HashesMismatch" xml:space="preserve">
-    <value>The hashes are different.</value>
+    <value>不一致です</value>
   </data>
 </root>
