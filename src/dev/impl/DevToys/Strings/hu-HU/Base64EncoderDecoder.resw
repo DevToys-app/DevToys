@@ -124,34 +124,34 @@
     <value>ASCII</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Konfiguráció</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
-    <value>Decode</value>
+    <value>Dekódolás</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Select which conversion mode you want to use</value>
+    <value>Válaszd ki a kívánt konverzió módot</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
-    <value>Encode</value>
+    <value>Kódolás</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Conversion</value>
+    <value>Konverzió</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Base64 Text</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
-    <value>Select which encoding do you want to use</value>
+    <value>Válaszd ki a kívánt kódolót</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
-    <value>Encoding</value>
+    <value>Kódolás</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>Input</value>
+    <value>Bemenet</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Output</value>
+    <value>Kimenet</value>
   </data>
   <data name="Utf8" xml:space="preserve">
     <value>UTF-8</value>
