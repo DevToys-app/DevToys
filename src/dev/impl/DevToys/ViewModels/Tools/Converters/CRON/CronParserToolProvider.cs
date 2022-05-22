@@ -14,7 +14,7 @@ namespace DevToys.ViewModels.Tools.Converters.CronParser
     [Name("CronParser")]
     [Parent(ConvertersGroupToolProvider.InternalName)]
     [ProtocolName("cronparser")]
-    [Order(0)]
+    [Order(4)]
     internal sealed class CronParserToolProvider : ToolProviderBase, IToolProvider
     {
         private readonly IMefProvider _mefProvider;
@@ -38,23 +38,7 @@ namespace DevToys.ViewModels.Tools.Converters.CronParser
         }
 
         public bool CanBeTreatedByTool(string data)
-        {
-            if (long.TryParse(data, out long potentialTimestamp))
-            {
-                try
-                {
-                    new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(potentialTimestamp);
-                    return true;
-                }
-                catch
-                {
-                }
-            }
-            else if (DateTime.TryParse(data, out DateTime potentialDateTime))
-            {
-                return true;
-            }
-
+        {            
             return false;
         }
 

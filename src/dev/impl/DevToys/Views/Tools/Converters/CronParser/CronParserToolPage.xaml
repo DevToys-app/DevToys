@@ -24,49 +24,49 @@
 
         <Grid x:Name="RootGrid" RowSpacing="12" Margin="0,0,0,16">
             <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
+                </TransitionCollection>
+            </Grid.ChildrenTransitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <StackPanel Spacing="4" Grid.Row="0" >
-            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Configuration}" />
-            <controls:ExpandableSettingControl
+            <StackPanel Spacing="4" Grid.Row="0" >
+                <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Configuration}" />
+                <controls:ExpandableSettingControl
                 Grid.Row="1"
                 Title="{x:Bind ViewModel.Strings.UseSecondsTitle}"
                 Description="{x:Bind ViewModel.Strings.UseSecondsDescription}">
-                <controls:ExpandableSettingControl.Icon>
-                    <FontIcon Glyph="&#xF18D;" />
-                </controls:ExpandableSettingControl.Icon>
-                <ToggleSwitch 
+                    <controls:ExpandableSettingControl.Icon>
+                        <FontIcon Glyph="&#xF18D;" />
+                    </controls:ExpandableSettingControl.Icon>
+                    <ToggleSwitch 
                     Style="{StaticResource RightAlignedToggleSwitchStyle}"
                     OnContent="{x:Bind ViewModel.Strings.SecondsIncludedMode}" OffContent="{x:Bind ViewModel.Strings.SecondsExcludedMode}"
                     IsOn="{x:Bind ViewModel.IncludeSecondsMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            </controls:ExpandableSettingControl>
-            <controls:ExpandableSettingControl
+                </controls:ExpandableSettingControl>
+                <controls:ExpandableSettingControl
                 x:Name="EncodingSetting"
                 Grid.Row="2"
                 Title="{x:Bind ViewModel.Strings.OutputLimitTitle}"
                 Description="{x:Bind ViewModel.Strings.OutputLimitDescription}">
-                <controls:ExpandableSettingControl.Icon>
+                    <controls:ExpandableSettingControl.Icon>
                         <FontIcon Glyph="&#xf7ed;" />
-                </controls:ExpandableSettingControl.Icon>
-                <ComboBox
+                    </controls:ExpandableSettingControl.Icon>
+                    <ComboBox
                     SelectedValuePath="Tag"
                     SelectedValue="{x:Bind ViewModel.OutputLimitMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                    <ComboBoxItem Tag="5" Content="5" />
-                    <ComboBoxItem Tag="10" Content="10" />
-                    <ComboBoxItem Tag="25" Content="25" />
-                    <ComboBoxItem Tag="50" Content="50" />
-                    <ComboBoxItem Tag="100" Content="100" />
-                </ComboBox>
-            </controls:ExpandableSettingControl>
+                        <ComboBoxItem Tag="5" Content="5" />
+                        <ComboBoxItem Tag="10" Content="10" />
+                        <ComboBoxItem Tag="25" Content="25" />
+                        <ComboBoxItem Tag="50" Content="50" />
+                        <ComboBoxItem Tag="100" Content="100" />
+                    </ComboBox>
+                </controls:ExpandableSettingControl>
                 <controls:ExpandableSettingControl
                 x:Name="OutputDateTimeSetting"
                 Grid.Row="3"
@@ -75,17 +75,15 @@
                     <controls:ExpandableSettingControl.Icon>
                         <FontIcon Glyph="&#xF7E4;" />
                     </controls:ExpandableSettingControl.Icon>
-                    <TextBox Text="{x:Bind ViewModel.OutputDateTimeFormat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    <TextBox MinWidth="150" Text="{x:Bind ViewModel.OutputDateTimeFormat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                 </controls:ExpandableSettingControl>
             </StackPanel>
 
-        <controls:CustomTextBox
-            Grid.Row="1"
-            MinHeight="150"
-            AcceptsReturn="True"
-            IsRichTextEdit="True"
+            <controls:CustomTextBox
+                Grid.Row="1"
             Header="{x:Bind ViewModel.Strings.InputTitle}"
-            Text="{x:Bind ViewModel.UserCronExpression, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            Text="{x:Bind ViewModel.UserCronExpression, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"            
+            Tag="UserCronExpression"/>
 
             <controls:CustomTextBox
             Grid.Row="2"
