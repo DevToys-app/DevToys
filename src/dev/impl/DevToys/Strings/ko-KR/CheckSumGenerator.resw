@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -118,48 +118,48 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>체크섬 생성 도구</value>
+    <value>Checksum Generator tool</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>취소</value>
+    <value>Cancel</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>설정</value>
+    <value>Configuration</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>파일 내용을 통한 해시 값을 생성합니다.</value>
+    <value>Generate a hash with Checksum based on a file</value>
   </data>
   <data name="HashingAlgorithmDescription" xml:space="preserve">
-    <value>사용할 해시 알고리즘을 선택하세요.</value>
+    <value>Select which hashing algorithm you want to use</value>
   </data>
   <data name="HashingAlgorithmTitle" xml:space="preserve">
-    <value>해싱 알고리즘</value>
+    <value>Hashing Algorithm</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>입력 내용</value>
+    <value>Input</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>체크섬</value>
-  </data>
-  <data name="Output" xml:space="preserve">
-    <value>출력 내용</value>
-  </data>
-  <data name="OutputComparer" xml:space="preserve">
-    <value>출력 비교</value>
-  </data>
-  <data name="SearchDisplayName" xml:space="preserve">
-    <value>체크섬 생성기</value>
-  </data>
-  <data name="Uppercase" xml:space="preserve">
-    <value>대문자 사용</value>
-  </data>
-  <data name="SearchKeywords" xml:space="preserve">
     <value>Checksum</value>
   </data>
+  <data name="Output" xml:space="preserve">
+    <value>Output</value>
+  </data>
+  <data name="OutputComparer" xml:space="preserve">
+    <value>Output Comparer</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Checksum Generator</value>
+  </data>
+  <data name="Uppercase" xml:space="preserve">
+    <value>Uppercase</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value></value>
+  </data>
   <data name="HashesMatch" xml:space="preserve">
-    <value>해시가 서로 일치합니다.</value>
+    <value>The hashes are the same.</value>
   </data>
   <data name="HashesMismatch" xml:space="preserve">
-    <value>해시가 서로 일치하지 않습니다.</value>
+    <value>The hashes are different.</value>
   </data>
 </root>
