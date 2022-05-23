@@ -154,7 +154,7 @@
     <value>大文字を使用する</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value>Checksum</value>
   </data>
   <data name="HashesMatch" xml:space="preserve">
     <value>一致しています</value>

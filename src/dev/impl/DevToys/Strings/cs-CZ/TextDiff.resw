@@ -145,6 +145,6 @@
     <value>Porovnávač textu</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value>Diff comparer</value>
   </data>
 </root>
