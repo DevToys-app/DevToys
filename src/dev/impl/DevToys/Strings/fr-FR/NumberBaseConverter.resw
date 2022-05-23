@@ -177,27 +177,27 @@
     <value>Convertisseur de base de nombres</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Binary Octal Decimal Hexadecimal</value>
+    <value>Hexadécimal décimal octale binaire Binary Octal Decimal Hexadecimal</value>
   </data>
   <data name="AdvancedModeLabel" xml:space="preserve">
-    <value>Advanced mode</value>
+    <value>Mode avancé</value>
   </data>
   <data name="InputDictionaryLabel" xml:space="preserve">
-    <value>Input dictionary</value>
+    <value>Dictionnaire d'entré</value>
   </data>
   <data name="OutputDictionaryLabel" xml:space="preserve">
-    <value>Output dictionary</value>
+    <value>Dictionnaire de sortie</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>Sortie</value>
   </data>
   <data name="BaseNumberError" xml:space="preserve">
-    <value>Base number should be greater than 1.</value>
+    <value>Le numéro de base doit être supérieur à 1.</value>
   </data>
   <data name="DictionarySizeError" xml:space="preserve">
-    <value>Dictionary size should be greater than 1.</value>
+    <value>La taille du dictionnaire doit être supérieure à 1.</value>
   </data>
   <data name="IncompatibleBaseDictionaryError" xml:space="preserve">
-    <value>Dictionary size could not be smaller than the base number.</value>
+    <value>La taille du dictionnaire ne peut pas être inférieure au numéro de base.</value>
   </data>
 </root>
