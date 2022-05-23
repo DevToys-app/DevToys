@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Bytes" xml:space="preserve">
-    <value>Bytes</value>
+    <value>Octets</value>
   </data>
   <data name="Clear" xml:space="preserve">
     <value>Effacer</value>
@@ -133,31 +133,31 @@
     <value>Supprimer</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
-    <value>Browse files</value>
+    <value>Parcourir les fichiers</value>
   </data>
   <data name="FileSelectorBrowseFolders" xml:space="preserve">
-    <value>Browse folders</value>
+    <value>Parcourir les dossiers</value>
   </data>
   <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>Drag &amp; drop any file here</value>
+    <value>Glissez et déposez n'importe quel fichier ici</value>
   </data>
   <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
-    <value>Drag &amp; drop any files here</value>
+    <value>Glissez et déposez un ou des fichiers ici</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
-    <value>Drag &amp; drop a {0} file here</value>
+    <value>Glisser-déposer un fichier {0} ici</value>
     <comment>{0} is a single file extension like "PNG"</comment>
   </data>
   <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
-    <value>Drag &amp; drop any {0} files here</value>
+    <value>Glisser-déposer un ou des fichiers {0} ici</value>
     <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
-    <value>Only {0} file(s) can be used.</value>
+    <value>Seuls {0} fichier(s) peuvent être utilisés.</value>
     <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorOr" xml:space="preserve">
-    <value>or</value>
+    <value>ou</value>
   </data>
   <data name="Gigabytes" xml:space="preserve">
     <value>GO</value>
@@ -169,10 +169,10 @@
     <value>MO</value>
   </data>
   <data name="Now" xml:space="preserve">
-    <value>Now</value>
+    <value>Maintenant</value>
   </data>
   <data name="Ok" xml:space="preserve">
-    <value>OK</value>
+    <value>Ok</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
     <value>Ouvrir un fichier</value>
@@ -184,7 +184,7 @@
     <value>Rétablir</value>
   </data>
   <data name="Refresh" xml:space="preserve">
-    <value>Refresh</value>
+    <value>Rafraîchir</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Enregistrer-sous</value>
@@ -205,13 +205,13 @@
     <value>Impossible d’ouvrir ce fichier</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>Unable to load the file '{0}'. Only textual files can be opened. For more details, please check the log.</value>
+    <value>Impossible d'ouvrir le fichier '{0}'. Seuls les fichiers textuels peuvent être ouverts. Pour plus de détails, veuillez consulter les logs.</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>Annuler</value>
   </data>
   <data name="ViewImage" xml:space="preserve">
-    <value>View</value>
+    <value>Visualiser</value>
     <comment>In the context of "view / display an image".</comment>
   </data>
 </root>
