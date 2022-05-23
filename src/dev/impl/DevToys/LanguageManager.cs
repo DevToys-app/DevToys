@@ -372,49 +372,9 @@ namespace DevToys
         public string AccessibleName => _resources.GetString("AccessibleName");
 
         /// <summary>
-        /// Gets the resource Ascii.
-        /// </summary>
-        public string Ascii => _resources.GetString("Ascii");
-
-        /// <summary>
-        /// Gets the resource ConfigurationTitle.
-        /// </summary>
-        public string ConfigurationTitle => _resources.GetString("ConfigurationTitle");
-
-        /// <summary>
-        /// Gets the resource ConversionDecode.
-        /// </summary>
-        public string ConversionDecode => _resources.GetString("ConversionDecode");
-
-        /// <summary>
-        /// Gets the resource ConversionDescription.
-        /// </summary>
-        public string ConversionDescription => _resources.GetString("ConversionDescription");
-
-        /// <summary>
-        /// Gets the resource ConversionEncode.
-        /// </summary>
-        public string ConversionEncode => _resources.GetString("ConversionEncode");
-
-        /// <summary>
-        /// Gets the resource ConversionTitle.
-        /// </summary>
-        public string ConversionTitle => _resources.GetString("ConversionTitle");
-
-        /// <summary>
         /// Gets the resource MenuDisplayName.
         /// </summary>
         public string MenuDisplayName => _resources.GetString("MenuDisplayName");
-
-        /// <summary>
-        /// Gets the resource EncodingDescription.
-        /// </summary>
-        public string EncodingDescription => _resources.GetString("EncodingDescription");
-
-        /// <summary>
-        /// Gets the resource EncodingTitle.
-        /// </summary>
-        public string EncodingTitle => _resources.GetString("EncodingTitle");
 
         /// <summary>
         /// Gets the resource Base64InputTitle.
@@ -425,11 +385,6 @@ namespace DevToys
         /// Gets the resource ImageInputTitle.
         /// </summary>
         public string ImageInputTitle => _resources.GetString("ImageInputTitle");
-
-        /// <summary>
-        /// Gets the resource Utf8.
-        /// </summary>
-        public string Utf8 => _resources.GetString("Utf8");
 
         /// <summary>
         /// Gets the resource Description.
@@ -580,11 +535,6 @@ namespace DevToys
         /// Gets the resource SearchKeywords.
         /// </summary>
         public string SearchKeywords => _resources.GetString("SearchKeywords");
-
-        /// <summary>
-        /// Gets the resource View.
-        /// </summary>
-        public string View => _resources.GetString("View");
     }
 
     public class CommonStrings : ObservableObject
