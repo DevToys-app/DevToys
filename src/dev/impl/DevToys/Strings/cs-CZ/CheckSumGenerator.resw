@@ -154,7 +154,7 @@
     <value>Velká písmena</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value>Checksum Generator</value>
   </data>
   <data name="HashesMatch" xml:space="preserve">
     <value>Hashe jsou stené.</value>
