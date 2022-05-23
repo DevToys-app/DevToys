@@ -120,29 +120,8 @@
   <data name="AccessibleName" xml:space="preserve">
     <value>JWT デコーダー</value>
   </data>
-  <data name="Configuration" xml:space="preserve">
-    <value>構成</value>
-  </data>
-  <data name="ConversionDescription" xml:space="preserve">
-    <value>実行したい操作を選択してください</value>
-  </data>
-  <data name="ConversionTitle" xml:space="preserve">
-    <value>操作</value>
-  </data>
-  <data name="Decode" xml:space="preserve">
-    <value>デコード</value>
-  </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>JWT デコーダー</value>
-  </data>
-  <data name="Encode" xml:space="preserve">
-    <value>エンコード</value>
-  </data>
-  <data name="EncodingDescription" xml:space="preserve">
-    <value>使用する文字コードを選択します</value>
-  </data>
-  <data name="EncodingTitle" xml:space="preserve">
-    <value>文字コード</value>
   </data>
   <data name="HeaderLabel" xml:space="preserve">
     <value>ヘッダー</value>
@@ -152,9 +131,6 @@
   </data>
   <data name="PayloadLabel" xml:space="preserve">
     <value>ペイロード</value>
-  </data>
-  <data name="SecurityLabel" xml:space="preserve">
-    <value>セキュリティ</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>JWT ヘッダー、ペイロード、署名をデコードします</value>

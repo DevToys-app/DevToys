@@ -120,29 +120,8 @@
   <data name="AccessibleName" xml:space="preserve">
     <value>JWT 디코딩 도구</value>
   </data>
-  <data name="Configuration" xml:space="preserve">
-    <value>설정</value>
-  </data>
-  <data name="ConversionDescription" xml:space="preserve">
-    <value>사용할 작업을 선택합니다.</value>
-  </data>
-  <data name="ConversionTitle" xml:space="preserve">
-    <value>작업</value>
-  </data>
-  <data name="Decode" xml:space="preserve">
-    <value>디코드</value>
-  </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>JWT 디코딩</value>
-  </data>
-  <data name="Encode" xml:space="preserve">
-    <value>인코드</value>
-  </data>
-  <data name="EncodingDescription" xml:space="preserve">
-    <value>사용할 인코딩 알고리즘을 선택합니다.</value>
-  </data>
-  <data name="EncodingTitle" xml:space="preserve">
-    <value>인코딩</value>
   </data>
   <data name="HeaderLabel" xml:space="preserve">
     <value>헤더</value>
@@ -152,9 +131,6 @@
   </data>
   <data name="PayloadLabel" xml:space="preserve">
     <value>JWT 내용</value>
-  </data>
-  <data name="SecurityLabel" xml:space="preserve">
-    <value>JWT 서명</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>JWT 헤더, 내용과 서명을 디코드 합니다.</value>

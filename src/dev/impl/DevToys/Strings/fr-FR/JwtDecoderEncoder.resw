@@ -120,29 +120,8 @@
   <data name="AccessibleName" xml:space="preserve">
     <value>Décodeur JWT</value>
   </data>
-  <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
-  </data>
-  <data name="ConversionDescription" xml:space="preserve">
-    <value>Sélectionnez l'action que vous souhaitez utiliser</value>
-  </data>
-  <data name="ConversionTitle" xml:space="preserve">
-    <value>Action</value>
-  </data>
-  <data name="Decode" xml:space="preserve">
-    <value>Décoder</value>
-  </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Décodeur JWT</value>
-  </data>
-  <data name="Encode" xml:space="preserve">
-    <value>Encoder</value>
-  </data>
-  <data name="EncodingDescription" xml:space="preserve">
-    <value>Sélectionnez l'algorithme d'encodage que vous souhaitez utiliser.</value>
-  </data>
-  <data name="EncodingTitle" xml:space="preserve">
-    <value>Encodage</value>
   </data>
   <data name="HeaderLabel" xml:space="preserve">
     <value>En-tête</value>
@@ -152,9 +131,6 @@
   </data>
   <data name="PayloadLabel" xml:space="preserve">
     <value>Charge utile</value>
-  </data>
-  <data name="SecurityLabel" xml:space="preserve">
-    <value>Sécurité</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Décoder un en-tête, une charge utile et une signature JWT</value>
