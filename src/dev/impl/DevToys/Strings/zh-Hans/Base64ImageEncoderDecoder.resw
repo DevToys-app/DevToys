@@ -120,41 +120,14 @@
   <data name="AccessibleName" xml:space="preserve">
     <value>Base64 图像编码/解码工具</value>
   </data>
-  <data name="Ascii" xml:space="preserve">
-    <value>ASCII</value>
-  </data>
-  <data name="ConfigurationTitle" xml:space="preserve">
-    <value>配置</value>
-  </data>
-  <data name="ConversionDecode" xml:space="preserve">
-    <value>解码</value>
-  </data>
-  <data name="ConversionDescription" xml:space="preserve">
-    <value>选择您想使用的转换模式</value>
-  </data>
-  <data name="ConversionEncode" xml:space="preserve">
-    <value>编码</value>
-  </data>
-  <data name="ConversionTitle" xml:space="preserve">
-    <value>转换</value>
-  </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Base64 图像</value>
-  </data>
-  <data name="EncodingDescription" xml:space="preserve">
-    <value>选择您想使用的字符编码</value>
-  </data>
-  <data name="EncodingTitle" xml:space="preserve">
-    <value>编码</value>
   </data>
   <data name="Base64InputTitle" xml:space="preserve">
     <value>Base64</value>
   </data>
   <data name="ImageInputTitle" xml:space="preserve">
     <value>图像</value>
-  </data>
-  <data name="Utf8" xml:space="preserve">
-    <value>UTF-8</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>编码和解码 Base64 图像数据</value>
