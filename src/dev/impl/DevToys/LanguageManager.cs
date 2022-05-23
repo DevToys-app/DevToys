@@ -1344,44 +1344,9 @@ namespace DevToys
         public string AccessibleName => _resources.GetString("AccessibleName");
 
         /// <summary>
-        /// Gets the resource Configuration.
-        /// </summary>
-        public string Configuration => _resources.GetString("Configuration");
-
-        /// <summary>
-        /// Gets the resource ConversionDescription.
-        /// </summary>
-        public string ConversionDescription => _resources.GetString("ConversionDescription");
-
-        /// <summary>
-        /// Gets the resource ConversionTitle.
-        /// </summary>
-        public string ConversionTitle => _resources.GetString("ConversionTitle");
-
-        /// <summary>
-        /// Gets the resource Decode.
-        /// </summary>
-        public string Decode => _resources.GetString("Decode");
-
-        /// <summary>
         /// Gets the resource MenuDisplayName.
         /// </summary>
         public string MenuDisplayName => _resources.GetString("MenuDisplayName");
-
-        /// <summary>
-        /// Gets the resource Encode.
-        /// </summary>
-        public string Encode => _resources.GetString("Encode");
-
-        /// <summary>
-        /// Gets the resource EncodingDescription.
-        /// </summary>
-        public string EncodingDescription => _resources.GetString("EncodingDescription");
-
-        /// <summary>
-        /// Gets the resource EncodingTitle.
-        /// </summary>
-        public string EncodingTitle => _resources.GetString("EncodingTitle");
 
         /// <summary>
         /// Gets the resource HeaderLabel.
@@ -1397,11 +1362,6 @@ namespace DevToys
         /// Gets the resource PayloadLabel.
         /// </summary>
         public string PayloadLabel => _resources.GetString("PayloadLabel");
-
-        /// <summary>
-        /// Gets the resource SecurityLabel.
-        /// </summary>
-        public string SecurityLabel => _resources.GetString("SecurityLabel");
 
         /// <summary>
         /// Gets the resource Description.
