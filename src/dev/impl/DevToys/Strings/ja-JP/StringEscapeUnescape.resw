@@ -133,7 +133,7 @@
     <value>テキストのエスケープと解除</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value>Text Escape Unescape</value>
     <comment>Alternative search keywords. Enables searching for words that are not included in Description, MenuDisplayName, and SearchDisplayName.</comment>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
