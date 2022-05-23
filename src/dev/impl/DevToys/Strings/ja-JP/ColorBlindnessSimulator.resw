@@ -147,7 +147,4 @@
   <data name="SearchKeywords" xml:space="preserve">
     <value>Color Blindness</value>
   </data>
-  <data name="View" xml:space="preserve">
-    <value>View</value>
-  </data>
 </root>

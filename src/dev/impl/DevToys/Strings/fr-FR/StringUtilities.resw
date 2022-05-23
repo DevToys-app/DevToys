@@ -124,7 +124,7 @@
     <value>aLtErNaTiNg cAsE</value>
   </data>
   <data name="Bytes" xml:space="preserve">
-    <value>Bytes:</value>
+    <value>Octets:</value>
   </data>
   <data name="CamelCase" xml:space="preserve">
     <value>camelCase</value>
@@ -217,6 +217,6 @@
     <value>Inspecteur et Convertisseur de Casse de texte</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>String</value>
+    <value>Chaîne de caractères Texte</value>
   </data>
 </root>
