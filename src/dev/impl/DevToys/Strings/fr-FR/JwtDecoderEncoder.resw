@@ -130,7 +130,7 @@
     <value>Action</value>
   </data>
   <data name="Decode" xml:space="preserve">
-    <value>Decoder</value>
+    <value>Décoder</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Décodeur JWT</value>
