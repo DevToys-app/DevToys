@@ -139,7 +139,7 @@
     <value>Conversion</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Base64 Text</value>
+    <value>Texte Base64</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
     <value>Sélectionner l'encodage désiré</value>
@@ -157,10 +157,10 @@
     <value>UTF-8</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Encode and decode Base64 text data</value>
+    <value>Encoder et décoder du texte Base64</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Base64 Text Encoder / Decoder</value>
+    <value>Encodeur et Décodeur de texte Base64</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>RFC 4648</value>
