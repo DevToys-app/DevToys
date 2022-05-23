@@ -120,29 +120,8 @@
   <data name="AccessibleName" xml:space="preserve">
     <value>Decodificador de JWT</value>
   </data>
-  <data name="Configuration" xml:space="preserve">
-    <value>Configuración</value>
-  </data>
-  <data name="ConversionDescription" xml:space="preserve">
-    <value>Seleccioná la acción que querés usar</value>
-  </data>
-  <data name="ConversionTitle" xml:space="preserve">
-    <value>Acción</value>
-  </data>
-  <data name="Decode" xml:space="preserve">
-    <value>Decoficar</value>
-  </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Decodificador de JWT</value>
-  </data>
-  <data name="Encode" xml:space="preserve">
-    <value>Codificar</value>
-  </data>
-  <data name="EncodingDescription" xml:space="preserve">
-    <value>Seleccioná que algoritmo de codificación querés usar</value>
-  </data>
-  <data name="EncodingTitle" xml:space="preserve">
-    <value>Codificación</value>
   </data>
   <data name="HeaderLabel" xml:space="preserve">
     <value>Encabezado</value>
@@ -152,9 +131,6 @@
   </data>
   <data name="PayloadLabel" xml:space="preserve">
     <value>Contenido</value>
-  </data>
-  <data name="SecurityLabel" xml:space="preserve">
-    <value>Seguridad</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Decodificá el encabezado, contenido y firma de un JWT</value>
