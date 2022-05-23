@@ -121,7 +121,7 @@
     <value>Encodeur et Décodeur d'image en Base64</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Base64 Image</value>
+    <value>Image Base64</value>
   </data>
   <data name="Base64InputTitle" xml:space="preserve">
     <value>Base64</value>
@@ -130,10 +130,10 @@
     <value>Image</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Encode and decode Base64 image data</value>
+    <value>Encode et décode une image en Base64</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Base64 Image Encoder / Decoder</value>
+    <value>Encodeur et Décodeur d'image en Base64</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>RFC 4648</value>
