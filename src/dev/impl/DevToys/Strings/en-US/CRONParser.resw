@@ -124,13 +124,13 @@
     <value>Configuration</value>
   </data>
   <data name="UseSecondsDescription" xml:space="preserve">
-    <value>Choose whatever Cron expression includes seconds in its definition</value>
+    <value>Choose whatever Cron expression should includes seconds in its definition</value>
   </data>
   <data name="UseSecondsTitle" xml:space="preserve">
     <value>Cron Mode</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Cron expression parser</value>
+    <value>Cron parser</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Parse Cron expression to get scheduled dates</value>
@@ -148,16 +148,16 @@
     <value>Cron expression to parse</value>
   </data>
   <data name="OutputDateTimeDescription" xml:space="preserve">
-    <value>Choose scheduled dates output format</value>
+    <value>Date time fomat of upcoming dates</value>
   </data>
   <data name="OutputDateTimeTitle" xml:space="preserve">
     <value>Output format</value>
   </data>
   <data name="OutputFormatErrorMessage" xml:space="preserve">
-    <value>Output datetime format is not valid</value>
+    <value>Output date time format is not valid</value>
   </data>
   <data name="OutputLimitDescription" xml:space="preserve">
-    <value>How many next scheduled dates needs to be generated</value>
+    <value>How many scheduled dates needs to be generated</value>
   </data>
   <data name="OutputLimitTitle" xml:space="preserve">
     <value>Next scheduled dates</value>

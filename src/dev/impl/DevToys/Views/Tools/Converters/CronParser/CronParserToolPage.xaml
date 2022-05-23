@@ -81,18 +81,18 @@
 
             <controls:CustomTextBox
                 Grid.Row="1"
-            Header="{x:Bind ViewModel.Strings.InputTitle}"
-            Text="{x:Bind ViewModel.UserCronExpression, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"            
-            Tag="UserCronExpression"/>
+                Header="{x:Bind ViewModel.Strings.InputTitle}"
+                Text="{x:Bind ViewModel.UserCronExpression, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"            
+                Tag="UserCronExpression"/>
 
             <controls:CustomTextBox
-            Grid.Row="2"
-            MinHeight="250"
-            IsReadOnly="True"            
-            AcceptsReturn="True"
-            IsRichTextEdit="True"            
-            Header="{x:Bind ViewModel.Strings.OutputTitle}"
-            Text="{x:Bind ViewModel.OutputValue, Mode=OneWay}"/>
+                Grid.Row="2"
+                MinHeight="250"
+                IsReadOnly="True"            
+                AcceptsReturn="True"
+                IsRichTextEdit="False"            
+                Header="{x:Bind ViewModel.Strings.OutputTitle}"
+                Text="{x:Bind ViewModel.OutputValue, Mode=OneWay}"/>
         </Grid>
     </StackPanel>
 </Page>

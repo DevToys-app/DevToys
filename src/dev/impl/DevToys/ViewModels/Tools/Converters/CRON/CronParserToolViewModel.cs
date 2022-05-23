@@ -185,7 +185,7 @@ namespace DevToys.ViewModels.Tools.CronParser
                 return;
             }
 
-            IList<string> output = new List<string>();
+            var output = new List<string>();
 
             try
             {

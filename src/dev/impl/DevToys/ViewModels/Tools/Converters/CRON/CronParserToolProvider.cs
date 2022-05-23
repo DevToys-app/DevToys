@@ -29,7 +29,7 @@ namespace DevToys.ViewModels.Tools.Converters.CronParser
 
         public string? SearchKeywords => LanguageManager.Instance.CRONParser.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF823");
+        public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("Cron.svg");
 
         [ImportingConstructor]
         public CronParserToolProvider(IMefProvider mefProvider)
