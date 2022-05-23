@@ -154,10 +154,10 @@
     <value>Base64</value>
   </data>
   <data name="OutputHex" xml:space="preserve">
-    <value>Hex</value>
+    <value>Hexadécimal</value>
   </data>
   <data name="OutputTypeTitle" xml:space="preserve">
-    <value>Le type de sortie</value>
+    <value>Type de sortie</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>

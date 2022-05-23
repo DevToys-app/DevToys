@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddToFavorites" xml:space="preserve">
-    <value>Add to favorites</value>
+    <value>Ajouter aux favoris</value>
   </data>
   <data name="EnterCompactOverlayTooltip" xml:space="preserve">
     <value>Garder au premier plan (Ctrl+Up)</value>
@@ -158,7 +158,7 @@
     <value>Impossible d'épingler l'outil à l'écran de démarrage. Pour plus de détails, veuillez consulter les logs.</value>
   </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
-    <value>Remove from favorites</value>
+    <value>Retirer des favoris</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Taper pour recherche un outil...</value>

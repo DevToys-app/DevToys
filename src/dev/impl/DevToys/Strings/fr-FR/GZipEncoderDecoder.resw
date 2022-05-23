@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>GZip Encoder and Decoder tool</value>
+    <value>Encodeur et Décodeur de GZip</value>
   </data>
   <data name="Ascii" xml:space="preserve">
     <value>ASCII</value>
@@ -127,37 +127,37 @@
     <value>Configuration</value>
   </data>
   <data name="ConversionDecompress" xml:space="preserve">
-    <value>Decompress</value>
+    <value>Décompresser</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Select compress or decompress</value>
+    <value>Sélectionner si l'entrée doit être compressée ou décompressée</value>
   </data>
   <data name="ConversionCompress" xml:space="preserve">
-    <value>Compress</value>
+    <value>Compresser</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Compress/Decompress</value>
+    <value>Compression / Décompression GZip</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>GZip</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
-    <value>Compress or decompress strings with GZip</value>
+    <value>Sélectionner si l'entrée doit être compressée ou décompressée</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
-    <value>Encoding</value>
+    <value>Encodage</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>Input</value>
+    <value>Entrée</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Output</value>
+    <value>Sortie</value>
   </data>
   <data name="Utf8" xml:space="preserve">
     <value>UTF-8</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Compress or decompress strings</value>
+    <value>Compresser ou décompresser les chaînes de caractères</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>GZip Compress/Decompress</value>
