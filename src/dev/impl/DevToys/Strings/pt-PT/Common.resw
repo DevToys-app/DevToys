@@ -169,7 +169,7 @@
     <value>MB</value>
   </data>
   <data name="Now" xml:space="preserve">
-    <value>Now</value>
+    <value>Agora</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
@@ -205,13 +205,13 @@
     <value>Incapaz de abrir este ficheiro</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>Unable to load the file '{0}'. Only textual files can be opened. For more details, please check the log.</value>
+    <value>Não foi possível carregar o ficheiro '{0}'. Apenas ficheiros de texto podem ser abertos. Para mais detalhes, por favor verifique o registo.</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>Desfazer</value>
   </data>
   <data name="ViewImage" xml:space="preserve">
-    <value>View</value>
+    <value>Ver</value>
     <comment>In the context of "view / display an image".</comment>
   </data>
 </root>
