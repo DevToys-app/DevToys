@@ -130,13 +130,13 @@
     <value>JWT 토큰</value>
   </data>
   <data name="PayloadLabel" xml:space="preserve">
-    <value>JWT 내용</value>
+    <value>적재 내용</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>JWT 헤더, 내용과 서명을 디코드 합니다.</value>
+    <value>JWT 헤더, 내용및 서명 디코드</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>JWT 디코딩</value>
+    <value>JWT 디코더</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
