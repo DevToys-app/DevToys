@@ -120,29 +120,8 @@
   <data name="AccessibleName" xml:space="preserve">
     <value>Alat JWT Decoder</value>
   </data>
-  <data name="Configuration" xml:space="preserve">
-    <value>Konfigurasi</value>
-  </data>
-  <data name="ConversionDescription" xml:space="preserve">
-    <value>Pilih tindakan yang anda inginkan</value>
-  </data>
-  <data name="ConversionTitle" xml:space="preserve">
-    <value>Tindakan</value>
-  </data>
-  <data name="Decode" xml:space="preserve">
-    <value>Decode</value>
-  </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Decoder JWT</value>
-  </data>
-  <data name="Encode" xml:space="preserve">
-    <value>Encode</value>
-  </data>
-  <data name="EncodingDescription" xml:space="preserve">
-    <value>Pilih algoritma encoding yang anda inginkan</value>
-  </data>
-  <data name="EncodingTitle" xml:space="preserve">
-    <value>Encoding</value>
   </data>
   <data name="HeaderLabel" xml:space="preserve">
     <value>Tajuk</value>
@@ -152,9 +131,6 @@
   </data>
   <data name="PayloadLabel" xml:space="preserve">
     <value>Payload</value>
-  </data>
-  <data name="SecurityLabel" xml:space="preserve">
-    <value>Security</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Decode tajuk JWT, muat dan tanda tangan</value>

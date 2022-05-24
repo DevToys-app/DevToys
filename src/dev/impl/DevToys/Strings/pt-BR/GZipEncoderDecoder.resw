@@ -136,7 +136,7 @@
     <value>Compactar</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Compactar/Descompactar GZip</value>
+    <value>GZip Compress / Decompress</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>GZip</value>

@@ -120,29 +120,8 @@
   <data name="AccessibleName" xml:space="preserve">
     <value>JWT Dekódoló eszköz</value>
   </data>
-  <data name="Configuration" xml:space="preserve">
-    <value>Konfiguráció</value>
-  </data>
-  <data name="ConversionDescription" xml:space="preserve">
-    <value>Válaszd ki a kívánt akciót</value>
-  </data>
-  <data name="ConversionTitle" xml:space="preserve">
-    <value>Akció</value>
-  </data>
-  <data name="Decode" xml:space="preserve">
-    <value>Dekódolás</value>
-  </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>JWT Dekódolás</value>
-  </data>
-  <data name="Encode" xml:space="preserve">
-    <value>Kódolás</value>
-  </data>
-  <data name="EncodingDescription" xml:space="preserve">
-    <value>Válaszd ki a kívánt kódoló algoritmust</value>
-  </data>
-  <data name="EncodingTitle" xml:space="preserve">
-    <value>Kódolás</value>
   </data>
   <data name="HeaderLabel" xml:space="preserve">
     <value>Fejléc</value>
@@ -152,9 +131,6 @@
   </data>
   <data name="PayloadLabel" xml:space="preserve">
     <value>Adat</value>
-  </data>
-  <data name="SecurityLabel" xml:space="preserve">
-    <value>Biztonság</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>JWT fejléc, adat és aláírás dekódolása</value>

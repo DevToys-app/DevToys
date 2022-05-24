@@ -120,29 +120,8 @@
   <data name="AccessibleName" xml:space="preserve">
     <value>JWT Dekodierungswerkzeug</value>
   </data>
-  <data name="Configuration" xml:space="preserve">
-    <value>Konfiguration</value>
-  </data>
-  <data name="ConversionDescription" xml:space="preserve">
-    <value>Wähle welche Action verwendet werden soll</value>
-  </data>
-  <data name="ConversionTitle" xml:space="preserve">
-    <value>Action</value>
-  </data>
-  <data name="Decode" xml:space="preserve">
-    <value>Dekodieren</value>
-  </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>JWT Dekodierer</value>
-  </data>
-  <data name="Encode" xml:space="preserve">
-    <value>Kodieren</value>
-  </data>
-  <data name="EncodingDescription" xml:space="preserve">
-    <value>Wähle welcher Kodierungsalgorithmus verwendet werden soll</value>
-  </data>
-  <data name="EncodingTitle" xml:space="preserve">
-    <value>Kodierung</value>
   </data>
   <data name="HeaderLabel" xml:space="preserve">
     <value>Header</value>
@@ -152,9 +131,6 @@
   </data>
   <data name="PayloadLabel" xml:space="preserve">
     <value>Payload</value>
-  </data>
-  <data name="SecurityLabel" xml:space="preserve">
-    <value>Security</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Dekodiere einen JWT header, payload und signature</value>
