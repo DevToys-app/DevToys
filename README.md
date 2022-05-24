@@ -33,6 +33,7 @@
 DevToys helps in daily tasks like formatting JSON, comparing text, testing RegExp. No need to use many untruthful websites to do simple tasks with your data. With Smart Detection, DevToys is able to detect the best tool that can treat the data you copied in the clipboard of your Windows. Compact overlay lets you keep the app in small and on top of other windows. Multiple instances of the app can be used at once.
 
 Many tools are available.
+
 - Converters
   - JSON <> YAML
   - Timestamp
@@ -67,12 +68,18 @@ Many tools are available.
 
 ![DevToys](/assets/screenshots/1.png)
 
+## Rate on Microsoft Store as of 5/23/2022
+
+![Microsoft Store rate](/assets/ms-store-rate.png)
+
 ## How to install (as an end-user)
 
 ### Prerequisite
+
 - You need Windows 10 build 1903+ or later.
 
 ### Microsoft Store
+
 - Search for DevToys in the Microsoft Store App or click [here](https://www.microsoft.com/store/apps/9PGCV4V3BK4W)
 
 ### Manual
@@ -82,6 +89,7 @@ Many tools are available.
 - Install.
 
 ### WinGet
+
 - Open a PowerShell command prompt.
 - Type `winget search DevToys` to search and see details about DevToys.
 - Type `winget install DevToys` to install the app.
@@ -89,6 +97,7 @@ Many tools are available.
 __Note:__ a Microsoft Store account is required for WinGet. We're trying to workaround it. See here https://github.com/microsoft/winget-pkgs/pull/43996
 
 ### Chocolatey
+
 - Make sure you already have [Chocolatey](https://chocolatey.org/) installed on your computer.
 - Open a PowerShell command prompt.
 - Type `choco install devtoys` or visit the [chocolatey community package](https://community.chocolatey.org/packages/devtoys/).
@@ -96,12 +105,14 @@ __Note:__ a Microsoft Store account is required for WinGet. We're trying to work
 ## App Permission
 
 DevToys works entirely offline, meaning that none of the data used by the app goes on internet. However, the app requires some other permissions in order to work correctly.
+
 1. `Uses all system resources` - This permission is required for some tools like `PNG / JPEG Compressor` or (upcoming) `On-screen color picker / measurer`, which use a 3rd party Open-Source Win32 process like [Efficient-Compression-Tool](https://github.com/fhanau/Efficient-Compression-Tool).
-All the code requiring this permission can be found [here](https://github.com/veler/DevToys/tree/main/src/dev/impl/DevToys.OutOfProcService).
+   All the code requiring this permission can be found [here](https://github.com/veler/DevToys/tree/main/src/dev/impl/DevToys.OutOfProcService).
 
 ## How to run DevToys
 
 ### Using Start Menu
+
 Open Windows start menu, type `DevToys` and press `[Enter]`.
 
 ### Using PowerShell
@@ -112,6 +123,7 @@ A cool thing about DevToys is that you can start it in command line! For this, s
 For example, `start devtoys:?tool=jsonyaml` will open DevToys and start on the `Json <> Yaml` tool.
 
 Here is the list of tool name you can use:
+
 - `base64` - Base64 Text Encoder/Decoder
 - `base64img` - Base64 Image Encoder/Decoder
 - `gzip` - GZip Encoder/Decoder
@@ -139,9 +151,11 @@ Here is the list of tool name you can use:
 - `settings` - Settings
 
 ## Contribute
+
 See [CONTRIBUTING](CONTRIBUTING.md)
 
 ## Privacy Policy
+
 See [PRIVACY POLICY](PRIVACY-POLICY.md)
 
 ## Third-Party Softwares
@@ -159,9 +173,11 @@ DevToys is using a license that permits redistribution of the app as trialware o
 ## Special Thanks
 
 ### Code contributors
+
 <a href="https://github.com/veler/devtoys/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=veler/devtoys" />
 </a>
 
 ### Designers
+
 [Jakub](https://github.com/AlurDesign)
