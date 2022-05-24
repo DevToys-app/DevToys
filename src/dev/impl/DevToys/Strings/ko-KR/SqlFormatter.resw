@@ -121,7 +121,7 @@
     <value>SQL 형식 정렬 도구</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>설정</value>
+    <value>구성</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>SQL</value>
@@ -139,7 +139,7 @@
     <value>하나의 탭문자</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>출력 내용</value>
+    <value>출력</value>
   </data>
   <data name="TwoSpaces" xml:space="preserve">
     <value>공백 2자</value>
