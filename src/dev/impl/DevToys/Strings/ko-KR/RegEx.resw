@@ -121,13 +121,13 @@
     <value>정규식 시험 도구</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>설정</value>
+    <value>구성</value>
   </data>
   <data name="CultureInvariant" xml:space="preserve">
-    <value>문화 중립</value>
+    <value>문화 불변</value>
   </data>
   <data name="CultureInvariantDescription" xml:space="preserve">
-    <value>다른 국가의 언어가 발견되어도 무시합니다.</value>
+    <value>언어의 문화적 차이를 무시하도록 지정합니다.</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>정규식 시험</value>
@@ -136,13 +136,13 @@
     <value>ECMA 스크립트</value>
   </data>
   <data name="EcmaScriptDescription" xml:space="preserve">
-    <value>정규식을 ECMA 스크립트 방식으로 동작합니다. 이 형식은 문화 중립, 대소문자 무시, 여러줄 옵션을 선택할 수 있습니다.</value>
+    <value>식에 대해 ECMA스크립트 호환 동작을 사용합니다. 이 값은 문화 불변, 대소문자 무시및 여러줄 옵션과 함께만 사용할 수 있습니다.</value>
   </data>
   <data name="IgnoreCase" xml:space="preserve">
     <value>대소문자 무시</value>
   </data>
   <data name="IgnoreCaseDescription" xml:space="preserve">
-    <value>문자열을 찾을 때 대소문자를 여부를 신경쓰지 않습니다.</value>
+    <value>대소문자를 구분하지 않는 일치를 지정합니다.</value>
   </data>
   <data name="IgnoreWhitespace" xml:space="preserve">
     <value>공백 무시</value>
