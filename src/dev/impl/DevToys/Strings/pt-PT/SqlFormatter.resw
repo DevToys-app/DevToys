@@ -181,7 +181,7 @@
     <value>Standard SQL</value>
   </data>
   <data name="SqlLanguageTsql" xml:space="preserve">
-    <value>Standard SQL</value>
+    <value>Transact-SQL</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>Db2 MariaDB MySQL N1QL PL/SQL PostgreSQL Amazon Redshift Spark SQL Standard SQL Transact-SQL</value>
