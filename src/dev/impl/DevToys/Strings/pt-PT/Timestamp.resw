@@ -121,10 +121,10 @@
     <value>Ferramenta de Conversão do Carimbo Temporal</value>
   </data>
   <data name="TimeZoneTitle" xml:space="preserve">
-    <value>Time zone</value>
+    <value>Fuso horário</value>
   </data>
   <data name="DaylightSavingTime" xml:space="preserve">
-    <value>Daylight saving time.</value>
+    <value>Horário de verão.</value>
   </data>
   <data name="DayTitle" xml:space="preserve">
     <value>Dia</value>
@@ -133,10 +133,10 @@
     <value>Converte o carimbo temporal em data legível pelo ser humano e vice-versa</value>
   </data>
   <data name="DisabledDaylightSavingTime" xml:space="preserve">
-    <value>There is no daylight saving time.</value>
+    <value>Não há horário de verão.</value>
   </data>
   <data name="DSTAmbiguousTime" xml:space="preserve">
-    <value>DST Ambiguous time.</value>
+    <value>Hora ambígua DST.</value>
   </data>
   <data name="HourTitle" xml:space="preserve">
     <value>Hora (24 horas)</value>
@@ -157,7 +157,7 @@
     <value>Mês</value>
   </data>
   <data name="OffsetTitle" xml:space="preserve">
-    <value>Offset</value>
+    <value>Compensação</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Conversor Carimbo Temporal Unix</value>
@@ -170,7 +170,7 @@
     <value>Segundos</value>
   </data>
   <data name="SupportsDaylightSavingTime" xml:space="preserve">
-    <value>There is daylight saving time.</value>
+    <value>Há horário de verão.</value>
   </data>
   <data name="TimestampTitle" xml:space="preserve">
     <value>Carimbo Temporal</value>
