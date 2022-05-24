@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>URL 인코딩 및 디코딩 도구</value>
+    <value>URL 인코더 및 디코더 도구</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>설정</value>
+    <value>구성</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
     <value>디코드</value>
@@ -139,10 +139,10 @@
     <value>URL</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>입력 내용</value>
+    <value>입력</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>출력 내용</value>
+    <value>출력</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>가용 문자들을 모두 URL 엔티티로 인코딩하거나 디코딩합니다.</value>
