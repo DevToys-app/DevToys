@@ -120,29 +120,8 @@
   <data name="AccessibleName" xml:space="preserve">
     <value>JWT 解碼工具</value>
   </data>
-  <data name="Configuration" xml:space="preserve">
-    <value>設定</value>
-  </data>
-  <data name="ConversionDescription" xml:space="preserve">
-    <value>選取您想使用的操作</value>
-  </data>
-  <data name="ConversionTitle" xml:space="preserve">
-    <value>操作</value>
-  </data>
-  <data name="Decode" xml:space="preserve">
-    <value>解碼</value>
-  </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>JWT 解碼器</value>
-  </data>
-  <data name="Encode" xml:space="preserve">
-    <value>編碼</value>
-  </data>
-  <data name="EncodingDescription" xml:space="preserve">
-    <value>選擇您想使用的編碼演算法</value>
-  </data>
-  <data name="EncodingTitle" xml:space="preserve">
-    <value>編碼</value>
   </data>
   <data name="HeaderLabel" xml:space="preserve">
     <value>標頭</value>
@@ -152,9 +131,6 @@
   </data>
   <data name="PayloadLabel" xml:space="preserve">
     <value>裝載</value>
-  </data>
-  <data name="SecurityLabel" xml:space="preserve">
-    <value>安全性</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>解碼 JWT 標頭、裝載及簽名</value>

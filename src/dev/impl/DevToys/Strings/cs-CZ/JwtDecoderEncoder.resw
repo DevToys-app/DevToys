@@ -120,29 +120,8 @@
   <data name="AccessibleName" xml:space="preserve">
     <value>Nástroj pro dekódování JWT</value>
   </data>
-  <data name="Configuration" xml:space="preserve">
-    <value>Konfigurace</value>
-  </data>
-  <data name="ConversionDescription" xml:space="preserve">
-    <value>Zvolte akci, kterou chcete použít</value>
-  </data>
-  <data name="ConversionTitle" xml:space="preserve">
-    <value>Akce</value>
-  </data>
-  <data name="Decode" xml:space="preserve">
-    <value>Dekódovat</value>
-  </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Dekodér JWT</value>
-  </data>
-  <data name="Encode" xml:space="preserve">
-    <value>Zakódovat</value>
-  </data>
-  <data name="EncodingDescription" xml:space="preserve">
-    <value>Zvolte algoritmus kódování, který chcete použít</value>
-  </data>
-  <data name="EncodingTitle" xml:space="preserve">
-    <value>Kódování</value>
   </data>
   <data name="HeaderLabel" xml:space="preserve">
     <value>Záhlaví</value>
@@ -152,9 +131,6 @@
   </data>
   <data name="PayloadLabel" xml:space="preserve">
     <value>Obsah</value>
-  </data>
-  <data name="SecurityLabel" xml:space="preserve">
-    <value>Zabezpečení</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Dekódování hlavičky, obsahu a podpisu JWT</value>
