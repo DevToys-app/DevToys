@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Hash Generator tool</value>
+    <value>Інструмент генерації Hash</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Налаштування</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Hash</value>
+    <value>Хеш</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>Ввід</value>
@@ -145,19 +145,19 @@
     <value>Верхній регістр</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Calculate MD5, SHA1, SHA256 and SHA512 hash from text data</value>
+    <value>Генерація MD5, SHA1, SHA256 та SHA512 хешів з тексту</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Hash Generator</value>
+    <value>Генератор хешів</value>
   </data>
   <data name="OutputBase64" xml:space="preserve">
     <value>Base64</value>
   </data>
   <data name="OutputHex" xml:space="preserve">
-    <value>Hex</value>
+    <value>Шістнадцятковий</value>
   </data>
   <data name="OutputTypeTitle" xml:space="preserve">
-    <value>Output Type</value>
+    <value>Тип результату</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
