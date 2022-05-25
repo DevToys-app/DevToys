@@ -121,28 +121,28 @@
     <value>SQL Formatter tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Konfiguracja</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>SQL</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
-    <value>4 spaces</value>
+    <value>4 spacje</value>
   </data>
   <data name="Indentation" xml:space="preserve">
-    <value>Indentation</value>
+    <value>Indentacja</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>Wejście</value>
   </data>
   <data name="OneTab" xml:space="preserve">
-    <value>1 tab</value>
+    <value>1 tabulator</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>Wyjście</value>
   </data>
   <data name="TwoSpaces" xml:space="preserve">
-    <value>2 spaces</value>
+    <value>2 spacje</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Indent SQL queries</value>
@@ -151,7 +151,7 @@
     <value>SQL Formatter</value>
   </data>
   <data name="SqlLanguage" xml:space="preserve">
-    <value>Language</value>
+    <value>Język</value>
   </data>
   <data name="SqlLanguageDb2" xml:space="preserve">
     <value>Db2</value>
