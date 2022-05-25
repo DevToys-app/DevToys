@@ -118,31 +118,31 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Text comparer tool</value>
+    <value>Інструмент порівняння тексту</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Налаштування</value>
   </data>
   <data name="Difference" xml:space="preserve">
-    <value>Difference</value>
+    <value>Різниця</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Text Diff</value>
+    <value>Різниця текстів</value>
   </data>
   <data name="InlineDifference" xml:space="preserve">
-    <value>Inline mode</value>
+    <value>Лінійний режим</value>
   </data>
   <data name="LeftText" xml:space="preserve">
-    <value>Old text</value>
+    <value>Старий текст</value>
   </data>
   <data name="RightText" xml:space="preserve">
-    <value>New text</value>
+    <value>Новий текст</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Compare two texts</value>
+    <value>Порівняти два тексти</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Text Comparer</value>
+    <value>Порівняння Текстів</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
