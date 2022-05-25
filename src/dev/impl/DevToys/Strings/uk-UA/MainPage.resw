@@ -121,50 +121,50 @@
     <value>Додати до вибраного</value>
   </data>
   <data name="EnterCompactOverlayTooltip" xml:space="preserve">
-    <value>Keep on top (Ctrl+Up)</value>
+    <value>Залишити зверху (Ctrl+Up)</value>
   </data>
   <data name="ExitCompactOverlayTooltip" xml:space="preserve">
-    <value>Back to full view (Ctrl+Down)</value>
+    <value>Повернутися до повного вигляду (Ctrl+Down)</value>
   </data>
   <data name="NotificationRateAppActionableActionText" xml:space="preserve">
-    <value>rate us now...</value>
+    <value>оцінити нас...</value>
   </data>
   <data name="NotificationRateAppMessage" xml:space="preserve">
     <value>Подобається DevToys? Будь ласка, оцініть нас!</value>
   </data>
   <data name="NotificationRateAppTitle" xml:space="preserve">
-    <value>Um... hi! 😅</value>
+    <value>Умм... привіт! 😅</value>
   </data>
   <data name="NotificationReleaseNoteActionableActionText" xml:space="preserve">
-    <value>read more...</value>
+    <value>детальніше...</value>
   </data>
   <data name="NotificationReleaseNoteTitle" xml:space="preserve">
-    <value>We just updated! What's new in {0}? 🚀</value>
+    <value>Ми щойно оновилися! Що нового у {0}? 🚀</value>
     <comment>{0} is the current app version</comment>
   </data>
   <data name="NotificationUpdateAvailableActionableActionText" xml:space="preserve">
-    <value>update now...</value>
+    <value>оновити зараз...</value>
   </data>
   <data name="NotificationUpdateAvailableTitle" xml:space="preserve">
-    <value>Оновлення доступне! 🚀</value>
+    <value>Доступне оновлення 🚀</value>
   </data>
   <data name="OpenInNewWindow" xml:space="preserve">
     <value>Відкрити у новому вікні</value>
   </data>
   <data name="PinToolToStart" xml:space="preserve">
-    <value>Pin tool to Start</value>
+    <value>Закріпити у Пуск</value>
   </data>
   <data name="PinToolToStartProblem" xml:space="preserve">
-    <value>Unable to pin the tool to start. For more details, please check the log.</value>
+    <value>Не вдалося закріпити інструмент в Пуск. Перевірте деталі в журналі.</value>
   </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
     <value>Видалити з вибраного</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Type to search for tools...</value>
+    <value>Пошук інструментів...</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
-    <value>No results found</value>
+    <value>Нікого не знайдено</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
