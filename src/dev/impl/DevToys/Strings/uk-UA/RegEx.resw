@@ -124,10 +124,10 @@
     <value>Налаштування</value>
   </data>
   <data name="CultureInvariant" xml:space="preserve">
-    <value>Culture Invariant</value>
+    <value>Інваріант культури</value>
   </data>
   <data name="CultureInvariantDescription" xml:space="preserve">
-    <value>Specifies that cultural differences in language is ignored.</value>
+    <value>Визначає чи культурні відмінності в мові ігноруються.</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Тестування регулярних виразів</value>
@@ -136,25 +136,25 @@
     <value>ECMA Script</value>
   </data>
   <data name="EcmaScriptDescription" xml:space="preserve">
-    <value>Enables ECMAScript-compliant behavior for the expression. This value can be used only in conjunction with the Culture Invariant, Ignore Case and Multiline options.</value>
+    <value>Вмикає ECMAScript-сумісну поведінку для виразів. Це значення можна використовувати лише разом з Інваріантом Культури, Нехтуванням Регістру та Багаторядковою опцією.</value>
   </data>
   <data name="IgnoreCase" xml:space="preserve">
     <value>Нехтувати регістром тексту</value>
   </data>
   <data name="IgnoreCaseDescription" xml:space="preserve">
-    <value>Specifies case-insensitive matching.</value>
+    <value>Визначає режим співпадінь без врахування регістру.</value>
   </data>
   <data name="IgnoreWhitespace" xml:space="preserve">
     <value>Ігнорувати пробіли</value>
   </data>
   <data name="IgnoreWhitespaceDescription" xml:space="preserve">
-    <value>Eliminates unescaped white space from the pattern and enables comments marked with #. However, this value does not affect or eliminate white space in character classes, numeric quantifiers, or tokens that mark the beginning of individual regular expression language elements.</value>
+    <value>Усуває неекранований пробіл із патерну та вмикає коментарі, позначені як #. Однак це значення не впливає і не усуває пробіли в класах символів, числових кванторах або маркерах, які позначають початок окремих елементів мови регулярних виразів.</value>
   </data>
   <data name="Multiline" xml:space="preserve">
     <value>Багаторядковий</value>
   </data>
   <data name="MultilineDescription" xml:space="preserve">
-    <value>Changes the meaning of ^ and $ so they match at the beginning and end, respectively, of any line, and not just the beginning and end of the entire string.</value>
+    <value>Змінює значення ^ і $, щоб вони збігалися на початку і в кінці, відповідно, будь-якого рядка, а не тільки на початку і в кінці всього рядка.</value>
   </data>
   <data name="Options" xml:space="preserve">
     <value>Параметри</value>
@@ -172,7 +172,7 @@
     <value>Режим одного рядка</value>
   </data>
   <data name="SinglelineDescription" xml:space="preserve">
-    <value>Changes the meaning of the dot (.) so it matches every character (instead of every character except \n).</value>
+    <value>Змінює значення крапки (.), щоб вона відповідала кожному символу (замість кожного символу, окрім \n).</value>
   </data>
   <data name="Text" xml:space="preserve">
     <value>Текст</value>
