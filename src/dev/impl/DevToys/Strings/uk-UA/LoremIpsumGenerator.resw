@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Lorem Ipsum Generator tool</value>
+    <value>Генератор Lorem Ipsum</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Налаштування</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generate Lorem Ipsum placeholder text</value>
+    <value>Генерація Lorem Ipsum текстів</value>
   </data>
   <data name="LengthDescription" xml:space="preserve">
-    <value>Number of words, sentences or paragraphs to generate</value>
+    <value>Кількість слів, речень або абзаців для генерування</value>
   </data>
   <data name="LengthTitle" xml:space="preserve">
     <value>Довжина</value>
@@ -139,25 +139,25 @@
     <value>Результат</value>
   </data>
   <data name="ParagraphsType" xml:space="preserve">
-    <value>Paragraphs</value>
+    <value>Абзаців</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Lorem Ipsum Generator</value>
+    <value>Генератор Lorem Ipsum</value>
   </data>
   <data name="SentencesType" xml:space="preserve">
-    <value>Sentences</value>
+    <value>Речень</value>
   </data>
   <data name="StartWithLoremTitle" xml:space="preserve">
-    <value>Start with 'Lorem ipsum dolor sit amet...'</value>
+    <value>Початок тексту з 'Lorem ipsum dolor sit amet...'</value>
   </data>
   <data name="TypeDescription" xml:space="preserve">
-    <value>Generate words, sentences or paragraphs of Lorem Ipsum</value>
+    <value>Створювання слів, речень чи абзаців з Lorem Ipsum</value>
   </data>
   <data name="TypeTitle" xml:space="preserve">
-    <value>Type</value>
+    <value>Тип</value>
   </data>
   <data name="WordsType" xml:space="preserve">
-    <value>Слова</value>
+    <value>Слів</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
