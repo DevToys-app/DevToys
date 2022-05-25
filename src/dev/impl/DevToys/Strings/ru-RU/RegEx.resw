@@ -184,6 +184,6 @@
     <value>Проверка регулярных выражений</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Regular expression</value>
+    <value>Регулярное выражение</value>
   </data>
 </root>
