@@ -118,86 +118,86 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Number Base Converter tool</value>
+    <value>Перетворення системи числення</value>
   </data>
   <data name="BinaryLabel" xml:space="preserve">
-    <value>Binary</value>
+    <value>Двійковий</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
     <value>Налаштування</value>
   </data>
   <data name="DecimalLabel" xml:space="preserve">
-    <value>Decimal</value>
+    <value>Десятковий</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Number Base</value>
+    <value>Системи числення</value>
   </data>
   <data name="Format" xml:space="preserve">
-    <value>Format number</value>
+    <value>Форматування</value>
   </data>
   <data name="HexadecimalLabel" xml:space="preserve">
-    <value>Hexadecimal</value>
+    <value>Шістнадцятковий</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>Ввід</value>
   </data>
   <data name="InputTypeBinary" xml:space="preserve">
-    <value>Binary</value>
+    <value>Двійковий</value>
   </data>
   <data name="InputTypeDecimal" xml:space="preserve">
-    <value>Decimal</value>
+    <value>Десятковий</value>
   </data>
   <data name="InputTypeDescription" xml:space="preserve">
-    <value>Select which input type you want to use</value>
+    <value>Виберіть тип вводу, який ви хочете використовувати</value>
   </data>
   <data name="InputTypeHexadecimal" xml:space="preserve">
-    <value>Hexadecimal</value>
+    <value>Шістнадцятковий</value>
   </data>
   <data name="InputTypeOctal" xml:space="preserve">
-    <value>Octal</value>
+    <value>Вісімковий</value>
   </data>
   <data name="InputTypeTitle" xml:space="preserve">
-    <value>Input type</value>
+    <value>Тип вводу</value>
   </data>
   <data name="OctalLabel" xml:space="preserve">
-    <value>Octal</value>
+    <value>Вісімковий</value>
   </data>
   <data name="ValueInvalid" xml:space="preserve">
-    <value>The current value isn't a valid {0}</value>
+    <value>Неправильне значення {0}</value>
     <comment>The parameter is the Base Number Type (Decimal, Octal, ...)</comment>
   </data>
   <data name="ValueOverflow" xml:space="preserve">
-    <value>The current value cannot be converted as it exceeds the maximum value ({0})</value>
+    <value>Не можна конвертувати значення, бо воно перевищує максимально - допустиме значення ({0})</value>
     <comment>The parameter is the Max value of a long</comment>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Convert numbers from one base to another</value>
+    <value>Конвертування системи числення</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Number Base Converter</value>
+    <value>Конвертер систем числення</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Binary Octal Decimal Hexadecimal</value>
+    <value>Бінарний Вісімковий Десятковий Шістнадцятковий</value>
   </data>
   <data name="AdvancedModeLabel" xml:space="preserve">
-    <value>Advanced mode</value>
+    <value>Розширений режим</value>
   </data>
   <data name="InputDictionaryLabel" xml:space="preserve">
-    <value>Input dictionary</value>
+    <value>Вхідний словник</value>
   </data>
   <data name="OutputDictionaryLabel" xml:space="preserve">
-    <value>Output dictionary</value>
+    <value>Вихідний словник</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Результат</value>
   </data>
   <data name="BaseNumberError" xml:space="preserve">
-    <value>Base number should be greater than 1.</value>
+    <value>Базове число має бути більшим за 1.</value>
   </data>
   <data name="DictionarySizeError" xml:space="preserve">
-    <value>Dictionary size should be greater than 1.</value>
+    <value>Розмір словника повинен бути більше ніж 1.</value>
   </data>
   <data name="IncompatibleBaseDictionaryError" xml:space="preserve">
-    <value>Dictionary size could not be smaller than the base number.</value>
+    <value>Розмір словника не може бути меншим ніж базове число.</value>
   </data>
 </root>
