@@ -184,6 +184,6 @@
     <value>정규식 시험</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Regular expression</value>
+    <value>정규식</value>
   </data>
 </root>
