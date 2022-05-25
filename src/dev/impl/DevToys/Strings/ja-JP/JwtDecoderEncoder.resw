@@ -139,6 +139,6 @@
     <value>JWT デコーダー</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value>Checksum</value>
   </data>
 </root>
