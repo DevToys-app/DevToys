@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>GZip Encoder and Decoder tool</value>
+    <value>GZip енкодер та декодер</value>
   </data>
   <data name="Ascii" xml:space="preserve">
     <value>ASCII</value>
@@ -127,22 +127,22 @@
     <value>Налаштування</value>
   </data>
   <data name="ConversionDecompress" xml:space="preserve">
-    <value>Decompress</value>
+    <value>Розпаковути</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Select whether the input should be compressed or decompressed</value>
+    <value>Виберіть дію, стискання чи розпаковування</value>
   </data>
   <data name="ConversionCompress" xml:space="preserve">
-    <value>Compress</value>
+    <value>Стиснути</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>GZip Compress / Decompress</value>
+    <value>GZip стискання / розпакування</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>GZip</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
-    <value>Select whether the input should be compressed or decompressed</value>
+    <value>Виберіть дію, стискання чи розпаковування</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
     <value>Кодування</value>
@@ -157,10 +157,10 @@
     <value>UTF-8</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Compress or decompress strings</value>
+    <value>Стискання та розпаковування тексту</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>GZip Compress / Decompress</value>
+    <value>GZip стискання / розпакування</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
