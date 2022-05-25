@@ -124,7 +124,7 @@
     <value>aLtErNaTiNg cAsE</value>
   </data>
   <data name="Bytes" xml:space="preserve">
-    <value>Bytes:</value>
+    <value>바이트:</value>
   </data>
   <data name="CamelCase" xml:space="preserve">
     <value>camelCase</value>
