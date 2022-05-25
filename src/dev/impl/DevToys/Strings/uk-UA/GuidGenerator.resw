@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>UUID Generator tool</value>
+    <value>Генератор UUID</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Налаштування</value>
@@ -127,22 +127,22 @@
     <value>UUID</value>
   </data>
   <data name="Generate" xml:space="preserve">
-    <value>Generate</value>
+    <value>Генерувати</value>
   </data>
   <data name="GenerateButton" xml:space="preserve">
-    <value>Generate UUID(s)</value>
+    <value>Генерувати UUID(и)</value>
   </data>
   <data name="Guids" xml:space="preserve">
-    <value>UUID(s)</value>
+    <value>UUID(и)</value>
   </data>
   <data name="Hyphens" xml:space="preserve">
-    <value>Hyphens</value>
+    <value>Дефіс</value>
   </data>
   <data name="MultiplySymbol" xml:space="preserve">
     <value>x</value>
   </data>
   <data name="NumberOfGuidsToGenerate_AutomationProperties_Name" xml:space="preserve">
-    <value>Number of UUID to generate</value>
+    <value>Кількість UUID для генерації</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
     <value>Верхній регістр</value>
@@ -154,16 +154,16 @@
     <value>1</value>
   </data>
   <data name="VersionDescription" xml:space="preserve">
-    <value>Choose the version of UUID to generate</value>
+    <value>Виберіть версію UUID для генерації</value>
   </data>
   <data name="VersionTitle" xml:space="preserve">
-    <value>UUID version</value>
+    <value>Версія UUID</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generate UUIDs version 1 and 4</value>
+    <value>Генерувати UUID версії 1 та 4</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>UUID Generator</value>
+    <value>Генератор UUID</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>GUID</value>
