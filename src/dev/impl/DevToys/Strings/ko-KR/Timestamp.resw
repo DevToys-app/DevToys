@@ -136,7 +136,7 @@
     <value>일광 절약 시간 없음</value>
   </data>
   <data name="DSTAmbiguousTime" xml:space="preserve">
-    <value>DST Ambiguous time.</value>
+    <value>DST 시간이 애매합니다.</value>
   </data>
   <data name="HourTitle" xml:space="preserve">
     <value>시 (24 시간제)</value>
@@ -163,7 +163,7 @@
     <value>Unix 타임스탬프 변환기</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Time Date Timezone Epoch</value>
+    <value>시간 날짜 시간대</value>
     <comment>Alternative search keywords. Enables searching for words that are not included in Description, MenuDisplayName, and SearchDisplayName.</comment>
   </data>
   <data name="SecondsTitle" xml:space="preserve">
