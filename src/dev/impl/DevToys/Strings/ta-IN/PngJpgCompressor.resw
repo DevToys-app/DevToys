@@ -127,7 +127,7 @@
     <value>Configuration</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>நீக்கு</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
     <value>Delete all</value>
@@ -143,13 +143,13 @@
     <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
   </data>
   <data name="OK" xml:space="preserve">
-    <value>OK</value>
+    <value>சரி</value>
   </data>
   <data name="SaveAll" xml:space="preserve">
     <value>Save all</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>Save as</value>
+    <value>இவ்வாறு சேமி</value>
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
     <value>See details</value>
