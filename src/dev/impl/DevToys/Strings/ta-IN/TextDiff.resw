@@ -133,10 +133,10 @@
     <value>Inline mode</value>
   </data>
   <data name="LeftText" xml:space="preserve">
-    <value>Old text</value>
+    <value>புழைய உரை</value>
   </data>
   <data name="RightText" xml:space="preserve">
-    <value>New text</value>
+    <value>புதிய உரை</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Compare two texts</value>
