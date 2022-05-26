@@ -127,25 +127,25 @@
     <value>JSON</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
-    <value>4 spaces</value>
+    <value>4 இடைவெளிகள்</value>
   </data>
   <data name="Indentation" xml:space="preserve">
     <value>Indentation</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>உள்ளீடு</value>
   </data>
   <data name="Minified" xml:space="preserve">
     <value>Minified</value>
   </data>
   <data name="OneTab" xml:space="preserve">
-    <value>1 tab</value>
+    <value>1 டேப்</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>வெளியீடு</value>
   </data>
   <data name="TwoSpaces" xml:space="preserve">
-    <value>2 spaces</value>
+    <value>2 இடைவெளிகள்</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Indent or minify JSON data</value>
