@@ -121,13 +121,13 @@
     <value>Timestamp converter tool</value>
   </data>
   <data name="TimeZoneTitle" xml:space="preserve">
-    <value>Time zone</value>
+    <value>நேர மண்டலம்</value>
   </data>
   <data name="DaylightSavingTime" xml:space="preserve">
     <value>Daylight saving time.</value>
   </data>
   <data name="DayTitle" xml:space="preserve">
-    <value>Day</value>
+    <value>நாள்</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Convert timestamp to human-readable date and vice versa</value>
@@ -139,7 +139,7 @@
     <value>DST Ambiguous time.</value>
   </data>
   <data name="HourTitle" xml:space="preserve">
-    <value>Hour (24 hour)</value>
+    <value>மணிநேரம் (24 மணி)</value>
   </data>
   <data name="InvalidValue" xml:space="preserve">
     <value>Invalid value</value>
@@ -151,10 +151,10 @@
     <value>Timestamp</value>
   </data>
   <data name="MinutesTitle" xml:space="preserve">
-    <value>Minutes</value>
+    <value>நிமிடங்கள்</value>
   </data>
   <data name="MonthTitle" xml:space="preserve">
-    <value>Month</value>
+    <value>மாதம்</value>
   </data>
   <data name="OffsetTitle" xml:space="preserve">
     <value>Offset</value>
@@ -167,7 +167,7 @@
     <comment>Alternative search keywords. Enables searching for words that are not included in Description, MenuDisplayName, and SearchDisplayName.</comment>
   </data>
   <data name="SecondsTitle" xml:space="preserve">
-    <value>Seconds</value>
+    <value>நொடிகள்</value>
   </data>
   <data name="SupportsDaylightSavingTime" xml:space="preserve">
     <value>There is daylight saving time.</value>
@@ -176,12 +176,12 @@
     <value>Timestamp</value>
   </data>
   <data name="UTCDateTime" xml:space="preserve">
-    <value>UTC Date and Time</value>
+    <value>UTC தேதியும் நேரமும்</value>
   </data>
   <data name="UtcTicksTitle" xml:space="preserve">
     <value>UtcTicks</value>
   </data>
   <data name="YearTitle" xml:space="preserve">
-    <value>Year</value>
+    <value>ஆண்டு</value>
   </data>
 </root>
