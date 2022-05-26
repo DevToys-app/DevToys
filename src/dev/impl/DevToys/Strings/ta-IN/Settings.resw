@@ -118,37 +118,37 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>About</value>
+    <value>பற்றி</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>App Theme</value>
+    <value>பயன்பாட்டுக் கருப்பொருள்</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>Select which app theme to display</value>
+    <value>எந்தப் பயன்பாட்டுக் கருப்பொருளைக் காட்ட வேண்டும் என்பதைத் தேர்ந்தெடுக்கவும்</value>
   </data>
   <data name="AppTitle" xml:space="preserve">
     <value>DevToys</value>
   </data>
   <data name="Behaviors" xml:space="preserve">
-    <value>Behaviors</value>
+    <value>நடத்தைகள்</value>
   </data>
   <data name="Close" xml:space="preserve">
-    <value>Close</value>
+    <value>மூடு</value>
   </data>
   <data name="Copy" xml:space="preserve">
-    <value>Copy</value>
+    <value>நகலெடு</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Dark</value>
+    <value>இருள்</value>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>Same as Microsoft Windows</value>
+    <value>Microsoft Windows போலவே</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Settings</value>
+    <value>அமைப்புகள்</value>
   </data>
   <data name="Font" xml:space="preserve">
-    <value>Font</value>
+    <value>எழுத்துரு</value>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
     <value>Highlight current line</value>
@@ -157,37 +157,37 @@
     <value>Change the background color of the current line so it's more visible</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>மொழி</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
     <value>The app needs to be restarted when selecting another language</value>
   </data>
   <data name="License" xml:space="preserve">
-    <value>License</value>
+    <value>உரிமம்</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Light</value>
+    <value>வெளிச்சம்</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>Line numbers</value>
+    <value>வரி எண்கள்</value>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>Display line numbers in the text editor</value>
+    <value>உரை தொகுப்பியில் வரி எண்களைக் காட்டு</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
     <value>Open logs</value>
   </data>
   <data name="PrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
+    <value>தனியுரிமைக் கொள்கை</value>
   </data>
   <data name="RateAndReview" xml:space="preserve">
-    <value>Rate and review on Microsoft Store</value>
+    <value>Microsoft Store இல் தரமதிப்பிடு மற்றும் மதிப்பாய்வு செய்க</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>Render white space</value>
+    <value>வெள்ளை இடைவெளியைக் காட்டு</value>
   </data>
   <data name="ReportProblem" xml:space="preserve">
-    <value>Report a problem</value>
+    <value>சிக்கலைப் புகாரளி</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
     <value>Smart detection</value>
@@ -202,31 +202,31 @@
     <value>Automatically paste the clipboard content when selecting a recommended tool</value>
   </data>
   <data name="SourceCode" xml:space="preserve">
-    <value>Source code</value>
+    <value>மூலக் குறியீடு</value>
   </data>
   <data name="TextEditor" xml:space="preserve">
-    <value>Text editor</value>
+    <value>உரை தொகுப்பி</value>
   </data>
   <data name="ThirdPartyNotices" xml:space="preserve">
-    <value>Third party licenses</value>
+    <value>மூன்றாம் தரப்பு உரிமங்கள்</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>Useful links</value>
+    <value>பயனுள்ள இணைப்புகள்</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
-    <value>Use system settings</value>
+    <value>முறைமை அமைப்புகளைப் பயன்படுத்து</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>பதிப்பு {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
     <value>Wrap word</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Customize DevToys look &amp; feel</value>
+    <value>DevToys இன் தோற்றம் &amp; உணர்வைத் தனிப்படுத்து</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Settings</value>
+    <value>அமைப்புகள்</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>Configurations Options</value>
