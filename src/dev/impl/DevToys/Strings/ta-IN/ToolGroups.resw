@@ -148,9 +148,9 @@
     <value>Graphic</value>
   </data>
   <data name="TextAccessibleName" xml:space="preserve">
-    <value>Text</value>
+    <value>உரை</value>
   </data>
   <data name="TextDisplayName" xml:space="preserve">
-    <value>Text</value>
+    <value>உரை</value>
   </data>
 </root>
