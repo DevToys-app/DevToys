@@ -121,7 +121,7 @@
     <value>Checksum Generator tool</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>இரத்து</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Configuration</value>
@@ -136,13 +136,13 @@
     <value>Hashing Algorithm</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>உள்ளீடு</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Checksum</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>வெளியீடு</value>
   </data>
   <data name="OutputComparer" xml:space="preserve">
     <value>Output Comparer</value>
