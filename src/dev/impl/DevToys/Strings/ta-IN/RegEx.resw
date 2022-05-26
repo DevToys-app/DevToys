@@ -145,7 +145,7 @@
     <value>Specifies case-insensitive matching.</value>
   </data>
   <data name="IgnoreWhitespace" xml:space="preserve">
-    <value>Ignore Whitespace</value>
+    <value>வெள்ளை இடைவெளியைப் புறக்கணி</value>
   </data>
   <data name="IgnoreWhitespaceDescription" xml:space="preserve">
     <value>Eliminates unescaped white space from the pattern and enables comments marked with #. However, this value does not affect or eliminate white space in character classes, numeric quantifiers, or tokens that mark the beginning of individual regular expression language elements.</value>
