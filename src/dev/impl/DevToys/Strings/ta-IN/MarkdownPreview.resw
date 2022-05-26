@@ -124,7 +124,7 @@
     <value>Configuration</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Dark</value>
+    <value>இருள்</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Markdown Preview</value>
@@ -133,13 +133,13 @@
     <value>Markdown</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Light</value>
+    <value>வெளிச்சம்</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Preview</value>
+    <value>முன்னோட்டம்</value>
   </data>
   <data name="Theme" xml:space="preserve">
-    <value>Theme</value>
+    <value>கருப்பொருள்</value>
   </data>
   <data name="ThemeDescription" xml:space="preserve">
     <value>Select which theme to use to preview the Markdown</value>
