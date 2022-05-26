@@ -130,13 +130,13 @@
     <value>Color Blindness Simulator</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>இரத்து</value>
   </data>
   <data name="DeuteranopiaSimulation" xml:space="preserve">
     <value>Deuteranopia simulation</value>
   </data>
   <data name="OriginalPicture" xml:space="preserve">
-    <value>Original</value>
+    <value>அசல்</value>
   </data>
   <data name="ProtanopiaSimulation" xml:space="preserve">
     <value>Protanopia simulation</value>
