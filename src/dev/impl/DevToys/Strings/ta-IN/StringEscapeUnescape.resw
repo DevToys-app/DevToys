@@ -124,7 +124,7 @@
     <value>Escape / Unescape</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Output</value>
+    <value>வெளியீடு</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Escapes or unescapes a string, removing characters that could prevent parsing.</value>
@@ -152,6 +152,6 @@
     <value>Conversion</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>Input</value>
+    <value>உள்ளீடு</value>
   </data>
 </root>
