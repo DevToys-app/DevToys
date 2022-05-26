@@ -142,13 +142,13 @@
     <value>மணிநேரம் (24 மணி)</value>
   </data>
   <data name="InvalidValue" xml:space="preserve">
-    <value>Invalid value</value>
+    <value>செல்லத மதிப்பு</value>
   </data>
   <data name="LocalDateTime" xml:space="preserve">
-    <value>Local Date and Time</value>
+    <value>உள்ளூர் தேதியும் நேரமும்</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Timestamp</value>
+    <value>நேரமுத்திரை</value>
   </data>
   <data name="MinutesTitle" xml:space="preserve">
     <value>நிமிடங்கள்</value>
@@ -173,7 +173,7 @@
     <value>There is daylight saving time.</value>
   </data>
   <data name="TimestampTitle" xml:space="preserve">
-    <value>Timestamp</value>
+    <value>நேரமுத்திரை</value>
   </data>
   <data name="UTCDateTime" xml:space="preserve">
     <value>UTC தேதியும் நேரமும்</value>
