@@ -133,7 +133,7 @@
     <value>Delete all</value>
   </data>
   <data name="DetailsTitle" xml:space="preserve">
-    <value>Details</value>
+    <value>விவரங்கள்</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Image Converter</value>
@@ -146,13 +146,13 @@
     <value>சரி</value>
   </data>
   <data name="SaveAll" xml:space="preserve">
-    <value>Save all</value>
+    <value>அனைத்தையும் சேமி</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
     <value>இவ்வாறு சேமி</value>
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
-    <value>See details</value>
+    <value>விவரங்களைக் காண்க</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Lossless image converter</value>
