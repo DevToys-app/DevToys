@@ -130,22 +130,22 @@
     <value>Number of words, sentences or paragraphs to generate</value>
   </data>
   <data name="LengthTitle" xml:space="preserve">
-    <value>Length</value>
+    <value>நீளம்</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Lorem Ipsum</value>
+    <value>லோரம் இப்சம்</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>வெளியீடு</value>
   </data>
   <data name="ParagraphsType" xml:space="preserve">
-    <value>Paragraphs</value>
+    <value>பத்திகள்</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Lorem Ipsum Generator</value>
+    <value>லோரம் இப்சம் உருவாக்கி</value>
   </data>
   <data name="SentencesType" xml:space="preserve">
-    <value>Sentences</value>
+    <value>வாக்கியங்கள்</value>
   </data>
   <data name="StartWithLoremTitle" xml:space="preserve">
     <value>Start with 'Lorem ipsum dolor sit amet...'</value>
@@ -154,10 +154,10 @@
     <value>Generate words, sentences or paragraphs of Lorem Ipsum</value>
   </data>
   <data name="TypeTitle" xml:space="preserve">
-    <value>Type</value>
+    <value>வகை</value>
   </data>
   <data name="WordsType" xml:space="preserve">
-    <value>Words</value>
+    <value>சொற்கள்</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
