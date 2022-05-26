@@ -136,13 +136,13 @@
     <value>Conversion</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>URL</value>
+    <value>உரலி</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>Input</value>
+    <value>உள்ளீடு</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Output</value>
+    <value>வெளியீடு</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Encode or decode all the applicable characters to their corresponding URL entities</value>
