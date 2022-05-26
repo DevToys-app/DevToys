@@ -211,7 +211,7 @@
     <value>செயல்தவிர்</value>
   </data>
   <data name="ViewImage" xml:space="preserve">
-    <value>View</value>
+    <value>காண்க</value>
     <comment>In the context of "view / display an image".</comment>
   </data>
 </root>
