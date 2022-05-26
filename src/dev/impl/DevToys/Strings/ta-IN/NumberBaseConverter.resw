@@ -133,13 +133,13 @@
     <value>Number Base</value>
   </data>
   <data name="Format" xml:space="preserve">
-    <value>Format number</value>
+    <value>எண்ணை வடிவமை</value>
   </data>
   <data name="HexadecimalLabel" xml:space="preserve">
     <value>Hexadecimal</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>உள்ளீடு</value>
   </data>
   <data name="InputTypeBinary" xml:space="preserve">
     <value>Binary</value>
@@ -180,7 +180,7 @@
     <value>Binary Octal Decimal Hexadecimal</value>
   </data>
   <data name="AdvancedModeLabel" xml:space="preserve">
-    <value>Advanced mode</value>
+    <value>மேம்பட்டப் பயன்முறை</value>
   </data>
   <data name="InputDictionaryLabel" xml:space="preserve">
     <value>Input dictionary</value>
@@ -189,7 +189,7 @@
     <value>Output dictionary</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>வெளியீடு</value>
   </data>
   <data name="BaseNumberError" xml:space="preserve">
     <value>Base number should be greater than 1.</value>
