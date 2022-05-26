@@ -148,10 +148,10 @@
     <value>Encoding</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>Input</value>
+    <value>உள்ளீடு</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Output</value>
+    <value>வெளியீடு</value>
   </data>
   <data name="Utf8" xml:space="preserve">
     <value>UTF-8</value>
