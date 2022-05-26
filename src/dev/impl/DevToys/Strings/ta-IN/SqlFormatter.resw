@@ -151,7 +151,7 @@
     <value>SQL Formatter</value>
   </data>
   <data name="SqlLanguage" xml:space="preserve">
-    <value>Language</value>
+    <value>மொழி</value>
   </data>
   <data name="SqlLanguageDb2" xml:space="preserve">
     <value>Db2</value>
