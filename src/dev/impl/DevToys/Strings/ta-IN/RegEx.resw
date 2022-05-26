@@ -133,7 +133,7 @@
     <value>Regex Tester</value>
   </data>
   <data name="EcmaScript" xml:space="preserve">
-    <value>ECMA Script</value>
+    <value>ECMA அரிச்சுவடி</value>
   </data>
   <data name="EcmaScriptDescription" xml:space="preserve">
     <value>Enables ECMAScript-compliant behavior for the expression. This value can be used only in conjunction with the Culture Invariant, Ignore Case and Multiline options.</value>
@@ -157,7 +157,7 @@
     <value>Changes the meaning of ^ and $ so they match at the beginning and end, respectively, of any line, and not just the beginning and end of the entire string.</value>
   </data>
   <data name="Options" xml:space="preserve">
-    <value>Options</value>
+    <value>விருப்பங்கள்</value>
   </data>
   <data name="RegularExpression" xml:space="preserve">
     <value>Regular expression</value>
@@ -175,7 +175,7 @@
     <value>Changes the meaning of the dot (.) so it matches every character (instead of every character except \n).</value>
   </data>
   <data name="Text" xml:space="preserve">
-    <value>Text</value>
+    <value>உரை</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Validate and test regular expressions</value>
