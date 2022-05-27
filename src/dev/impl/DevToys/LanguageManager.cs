@@ -646,11 +646,6 @@ namespace DevToys
         public string Megabytes => _resources.GetString("Megabytes");
 
         /// <summary>
-        /// Gets the resource Now.
-        /// </summary>
-        public string Now => _resources.GetString("Now");
-
-        /// <summary>
         /// Gets the resource Ok.
         /// </summary>
         public string Ok => _resources.GetString("Ok");
@@ -2745,6 +2740,11 @@ namespace DevToys
         /// Gets the resource YearTitle.
         /// </summary>
         public string YearTitle => _resources.GetString("YearTitle");
+
+        /// <summary>
+        /// Gets the resource Now.
+        /// </summary>
+        public string Now => _resources.GetString("Now");
     }
 
     public class ToolGroupsStrings : ObservableObject
