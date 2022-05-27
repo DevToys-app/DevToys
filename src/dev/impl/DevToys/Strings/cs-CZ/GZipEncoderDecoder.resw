@@ -136,7 +136,7 @@
     <value>Komprimovat</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>GZip Compress / Decompress</value>
+    <value>Komprimace / Dekomprimace GZip</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>GZip</value>
@@ -163,6 +163,6 @@
     <value>Komprimace / Dekomprimace GZip</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value>Checksum Generator</value>
   </data>
 </root>
