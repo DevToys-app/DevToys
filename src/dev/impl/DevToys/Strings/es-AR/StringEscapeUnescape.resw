@@ -124,7 +124,7 @@
     <value>Escape / Unescape</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Output</value>
+    <value>Salida</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Escapes or unescapes a string, removing characters that could prevent parsing.</value>
@@ -137,21 +137,21 @@
     <comment>Alternative search keywords. Enables searching for words that are not included in Description, MenuDisplayName, and SearchDisplayName.</comment>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Configuración</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
     <value>Unescape</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Select which conversion mode you want to use</value>
+    <value>Selecciona el modo de conversión que querés usar</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
     <value>Escape</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Conversion</value>
+    <value>Conversión</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>Input</value>
+    <value>Entrada</value>
   </data>
 </root>
