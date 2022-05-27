@@ -124,7 +124,7 @@
     <value>이스케이프 / 이스케이프 해제</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>출력 내용</value>
+    <value>출력</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>문자열을 이스케이프 하거나 해제해 파싱을 방해할 수 있는 문자를 제거합니다.</value>
@@ -152,6 +152,6 @@
     <value>변환</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>입력 내용</value>
+    <value>입력</value>
   </data>
 </root>
