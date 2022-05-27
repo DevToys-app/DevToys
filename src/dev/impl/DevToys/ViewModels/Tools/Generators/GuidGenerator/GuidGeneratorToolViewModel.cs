@@ -69,7 +69,7 @@ namespace DevToys.ViewModels.Tools.GuidGenerator
         internal const string VersionOne = "One";
 
         private readonly IMarketingService _marketingService;
-        private readonly ISettingsProvider _settingsProvider;
+        internal ISettingsProvider SettingsProvider { get; }
 
         private string _output = string.Empty;
         private bool _toolSuccessfullyWorked;
@@ -80,12 +80,12 @@ namespace DevToys.ViewModels.Tools.GuidGenerator
 
         internal bool IsUppercase
         {
-            get => _settingsProvider.GetSetting(Uppercase);
+            get => SettingsProvider.GetSetting(Uppercase);
             set
             {
-                if (_settingsProvider.GetSetting(Uppercase) != value)
+                if (SettingsProvider.GetSetting(Uppercase) != value)
                 {
-                    _settingsProvider.SetSetting(Uppercase, value);
+                    SettingsProvider.SetSetting(Uppercase, value);
                     OnPropertyChanged();
                 }
             }
@@ -93,12 +93,12 @@ namespace DevToys.ViewModels.Tools.GuidGenerator
 
         internal bool IncludeHyphens
         {
-            get => _settingsProvider.GetSetting(Hyphens);
+            get => SettingsProvider.GetSetting(Hyphens);
             set
             {
-                if (_settingsProvider.GetSetting(Hyphens) != value)
+                if (SettingsProvider.GetSetting(Hyphens) != value)
                 {
-                    _settingsProvider.SetSetting(Hyphens, value);
+                    SettingsProvider.SetSetting(Hyphens, value);
                     OnPropertyChanged();
                 }
             }
@@ -106,12 +106,12 @@ namespace DevToys.ViewModels.Tools.GuidGenerator
 
         internal string UuidVersion
         {
-            get => _settingsProvider.GetSetting(Version);
+            get => SettingsProvider.GetSetting(Version);
             set
             {
-                if (_settingsProvider.GetSetting(Version) != value)
+                if (SettingsProvider.GetSetting(Version) != value)
                 {
-                    _settingsProvider.SetSetting(Version, value);
+                    SettingsProvider.SetSetting(Version, value);
                     OnPropertyChanged();
                 }
             }
@@ -119,12 +119,12 @@ namespace DevToys.ViewModels.Tools.GuidGenerator
 
         internal int NumberOfGuidsToGenerate
         {
-            get => _settingsProvider.GetSetting(GuidsToGenerate);
+            get => SettingsProvider.GetSetting(GuidsToGenerate);
             set
             {
-                if (_settingsProvider.GetSetting(GuidsToGenerate) != value)
+                if (SettingsProvider.GetSetting(GuidsToGenerate) != value)
                 {
-                    _settingsProvider.SetSetting(GuidsToGenerate, value);
+                    SettingsProvider.SetSetting(GuidsToGenerate, value);
                     OnPropertyChanged();
                 }
             }
@@ -141,7 +141,7 @@ namespace DevToys.ViewModels.Tools.GuidGenerator
         [ImportingConstructor]
         public GuidGeneratorToolViewModel(ISettingsProvider settingsProvider, IMarketingService marketingService)
         {
-            _settingsProvider = settingsProvider;
+            SettingsProvider = settingsProvider;
             _marketingService = marketingService;
 
             GenerateCommand = new RelayCommand(ExecuteGenerateCommand);

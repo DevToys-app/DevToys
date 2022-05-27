@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
+using DevToys.Api.Core.Settings;
 using DevToys.Core;
+using DevToys.Core.Settings;
 using DevToys.Core.Threading;
 using Microsoft.Toolkit.Mvvm.Input;
 using Windows.ApplicationModel.DataTransfer;
@@ -126,6 +128,28 @@ namespace DevToys.UI.Controls
         {
             get => (int)GetValue(SelectionStartProperty);
             set => SetValue(SelectionStartProperty, value);
+        }
+
+        public static readonly DependencyProperty SettingsProviderProperty
+            = DependencyProperty.Register(
+                nameof(SettingsProvider),
+                typeof(ISettingsProvider),
+                typeof(CustomTextBox),
+                new PropertyMetadata(
+                    null,
+                    (d, e) =>
+                    {
+                        if (e.NewValue is ISettingsProvider settingsProvider)
+                        {
+                            var textBox = (CustomTextBox)d;
+                            settingsProvider.SettingChanged += textBox.SettingsProvider_SettingChanged;
+                        }
+                    }));
+
+        public ISettingsProvider? SettingsProvider
+        {
+            get => (ISettingsProvider?)GetValue(SettingsProviderProperty);
+            set => SetValue(SettingsProviderProperty, value);
         }
 
         public CustomTextBox()
@@ -785,6 +809,28 @@ namespace DevToys.UI.Controls
                     customTextBox.IsReadOnly = isReadOnly;
                     customTextBox._isTextPendingUpdate = false;
                 }
+            }
+        }
+
+        private void SettingsProvider_SettingChanged(object sender, SettingChangedEventArgs e)
+        {
+            if (e.SettingName.Contains("TextEditor"))
+            {
+                ApplySettings();
+            }
+        }
+
+        private void TextBox_Loading(FrameworkElement sender, object args)
+        {
+            ApplySettings();
+        }
+
+        private void ApplySettings()
+        {
+            ISettingsProvider? settingsProvider = SettingsProvider;
+            if (settingsProvider is not null)
+            {
+                TextBox.FontFamily = new FontFamily(settingsProvider.GetSetting(PredefinedSettings.TextEditorFont));
             }
         }
     }
