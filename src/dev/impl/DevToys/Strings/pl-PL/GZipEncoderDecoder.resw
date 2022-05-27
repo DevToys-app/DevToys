@@ -124,7 +124,7 @@
     <value>ASCII</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Konfiguracja</value>
   </data>
   <data name="ConversionDecompress" xml:space="preserve">
     <value>Decompress</value>
@@ -136,7 +136,7 @@
     <value>Compress</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>GZip Compress / Decompress</value>
+    <value>GZip Compress/Decompress</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>GZip</value>
@@ -145,13 +145,13 @@
     <value>Compress or decompress strings with GZip</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
-    <value>Encoding</value>
+    <value>Kodowanie</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>Input</value>
+    <value>Wejście</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Output</value>
+    <value>Wyjście</value>
   </data>
   <data name="Utf8" xml:space="preserve">
     <value>UTF-8</value>
