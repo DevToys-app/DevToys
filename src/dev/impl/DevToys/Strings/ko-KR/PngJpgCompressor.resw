@@ -124,7 +124,7 @@
     <value>취소</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>설정</value>
+    <value>구성</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>삭제</value>
