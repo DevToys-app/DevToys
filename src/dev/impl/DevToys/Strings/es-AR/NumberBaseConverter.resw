@@ -189,7 +189,7 @@
     <value>Output dictionary</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>Salida</value>
   </data>
   <data name="BaseNumberError" xml:space="preserve">
     <value>Base number should be greater than 1.</value>

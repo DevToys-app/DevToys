@@ -121,31 +121,31 @@
     <value>XML Formatter tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Konfiguráció</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>XML</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
-    <value>4 spaces</value>
+    <value>4 szóköz</value>
   </data>
   <data name="Indentation" xml:space="preserve">
-    <value>Indentation</value>
+    <value>Indentálás</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>Bemenet</value>
   </data>
   <data name="Minified" xml:space="preserve">
-    <value>Minified</value>
+    <value>Kicsinyített</value>
   </data>
   <data name="OneTab" xml:space="preserve">
     <value>1 tab</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>Kimenet</value>
   </data>
   <data name="TwoSpaces" xml:space="preserve">
-    <value>2 spaces</value>
+    <value>2 szóköz</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Indent or minify XML data</value>

@@ -217,6 +217,6 @@
     <value>Převodník a inspektor velikosti písmen textu</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>String</value>
+    <value>Řetězec (String)</value>
   </data>
 </root>

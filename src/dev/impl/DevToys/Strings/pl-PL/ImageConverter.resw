@@ -124,10 +124,10 @@
     <value>Cancel</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Konfiguracja</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Usuń</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
     <value>Delete all</value>
@@ -149,7 +149,7 @@
     <value>Save all</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>Save as</value>
+    <value>Zapisz jako</value>
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
     <value>See details</value>
@@ -161,7 +161,7 @@
     <value>Image Converter</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Conversion</value>
+    <value>Konwersja</value>
   </data>
   <data name="ConvertedFormatDescription" xml:space="preserve">
     <value>Select the converted file format</value>

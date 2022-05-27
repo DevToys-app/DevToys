@@ -118,25 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>JWT 디코딩 도구</value>
+    <value>JWT 디코더 도구</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>JWT 디코딩</value>
+    <value>JWT 디코더</value>
   </data>
   <data name="HeaderLabel" xml:space="preserve">
-    <value>헤더</value>
+    <value>머리말</value>
   </data>
   <data name="JwtTokenLabel" xml:space="preserve">
     <value>JWT 토큰</value>
   </data>
   <data name="PayloadLabel" xml:space="preserve">
-    <value>JWT 내용</value>
+    <value>적재 내용</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>JWT 헤더, 내용과 서명을 디코드 합니다.</value>
+    <value>JWT 헤더, 내용및 서명 디코드</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>JWT 디코딩</value>
+    <value>JWT 디코더</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>

@@ -136,7 +136,7 @@
     <value>壓縮</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>GZip Compress / Decompress</value>
+    <value>GZip 編碼 / 解碼</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>GZip</value>

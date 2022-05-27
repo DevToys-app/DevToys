@@ -163,7 +163,7 @@
     <value>Linhas:</value>
   </data>
   <data name="LowerCase" xml:space="preserve">
-    <value>minúsculas</value>
+    <value>lower case</value>
   </data>
   <data name="OriginalCase" xml:space="preserve">
     <value>Texto original</value>
@@ -202,7 +202,7 @@
     <value>Train-Case</value>
   </data>
   <data name="UpperCase" xml:space="preserve">
-    <value>MAIÚSCULAS</value>
+    <value>UPPER CASE</value>
   </data>
   <data name="WordDistribution" xml:space="preserve">
     <value>Distribuição de palavras</value>
@@ -217,6 +217,6 @@
     <value>Conversor e Inspetor de Casos de Texto</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>String</value>
+    <value>Texto</value>
   </data>
 </root>

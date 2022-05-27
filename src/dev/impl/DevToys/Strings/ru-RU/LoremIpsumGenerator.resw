@@ -121,7 +121,7 @@
     <value>Lorem Ipsum Generator tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Установки</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Generate Lorem Ipsum placeholder text</value>
@@ -136,7 +136,7 @@
     <value>Lorem Ipsum</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>Вывод</value>
   </data>
   <data name="ParagraphsType" xml:space="preserve">
     <value>Paragraphs</value>

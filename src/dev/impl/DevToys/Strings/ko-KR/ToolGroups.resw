@@ -124,33 +124,33 @@
     <value>변환 도구</value>
   </data>
   <data name="EncodersDecodersAccessibleName" xml:space="preserve">
-    <value>인코딩 및 디코딩 도구</value>
+    <value>인코딩 및 디코딩</value>
   </data>
   <data name="EncodersDecodersDisplayName" xml:space="preserve">
-    <value>인코딩 / 디코딩 도구</value>
+    <value>인코딩 / 디코딩</value>
   </data>
   <data name="FormattersAccessibleName" xml:space="preserve">
-    <value>형식 정렬 도구</value>
+    <value>형식 정렬</value>
   </data>
   <data name="FormattersDisplayName" xml:space="preserve">
-    <value>형식 정렬 도구</value>
+    <value>형식 정렬</value>
   </data>
   <data name="GeneratorsAccessibleName" xml:space="preserve">
-    <value>생성 도구</value>
+    <value>생성</value>
   </data>
   <data name="GeneratorsDisplayName" xml:space="preserve">
-    <value>생성 도구</value>
+    <value>생성</value>
   </data>
   <data name="GraphicAccessibleName" xml:space="preserve">
-    <value>그래픽 도구</value>
+    <value>그래픽</value>
   </data>
   <data name="GraphicDisplayName" xml:space="preserve">
-    <value>그래픽 도구</value>
+    <value>그래픽</value>
   </data>
   <data name="TextAccessibleName" xml:space="preserve">
-    <value>텍스트 도구</value>
+    <value>텍스트</value>
   </data>
   <data name="TextDisplayName" xml:space="preserve">
-    <value>텍스트 도구</value>
+    <value>텍스트</value>
   </data>
 </root>

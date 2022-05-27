@@ -124,7 +124,7 @@
     <value>Cancel</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Konfiguracja</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Generate a hash with Checksum based on a file</value>
@@ -136,13 +136,13 @@
     <value>Hashing Algorithm</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>Wejście</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Checksum</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>Wyjście</value>
   </data>
   <data name="OutputComparer" xml:space="preserve">
     <value>Output Comparer</value>
