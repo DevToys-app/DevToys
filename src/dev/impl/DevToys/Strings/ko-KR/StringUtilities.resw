@@ -124,7 +124,7 @@
     <value>aLtErNaTiNg cAsE</value>
   </data>
   <data name="Bytes" xml:space="preserve">
-    <value>Bytes:</value>
+    <value>바이트:</value>
   </data>
   <data name="CamelCase" xml:space="preserve">
     <value>camelCase</value>
@@ -202,10 +202,10 @@
     <value>Train-Case</value>
   </data>
   <data name="UpperCase" xml:space="preserve">
-    <value>모두 대문자</value>
+    <value>대문자</value>
   </data>
   <data name="WordDistribution" xml:space="preserve">
-    <value>단어 배포 결과</value>
+    <value>단어 분포</value>
   </data>
   <data name="Words" xml:space="preserve">
     <value>단어:</value>
@@ -217,6 +217,6 @@
     <value>텍스트 대소문자 변환 및 분석</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Text String</value>
+    <value>문자열</value>
   </data>
 </root>
