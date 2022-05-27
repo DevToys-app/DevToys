@@ -53,21 +53,25 @@
         <controls:CustomTextBox
             Header="{x:Bind ViewModel.Strings.MD5}"
             IsReadOnly="True"
+            SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
             Text="{x:Bind ViewModel.MD5, Mode=OneWay}"/>
 
         <controls:CustomTextBox
             Header="{x:Bind ViewModel.Strings.SHA1}"
             IsReadOnly="True"
+            SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
             Text="{x:Bind ViewModel.SHA1, Mode=OneWay}"/>
 
         <controls:CustomTextBox
             Header="{x:Bind ViewModel.Strings.SHA256}"
             IsReadOnly="True"
+            SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
             Text="{x:Bind ViewModel.SHA256, Mode=OneWay}"/>
 
         <controls:CustomTextBox
             Header="{x:Bind ViewModel.Strings.SHA512}"
             IsReadOnly="True"
+            SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
             Text="{x:Bind ViewModel.SHA512, Mode=OneWay}"/>
     </StackPanel>
 </Page>
