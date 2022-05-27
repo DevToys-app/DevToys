@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>이 프로그램은</value>
+    <value>제품 정보</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
     <value>앱 테마</value>

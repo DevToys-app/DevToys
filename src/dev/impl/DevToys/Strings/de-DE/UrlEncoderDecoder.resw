@@ -127,22 +127,22 @@
     <value>Dekodieren</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Select which conversion mode you want to use</value>
+    <value>Wähle aus welcher Konvertierungsmodus verwendet werden soll</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
     <value>Kodieren</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Conversion</value>
+    <value>Konvertierung</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>URL</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>Input</value>
+    <value>Eingabe</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Output</value>
+    <value>Ausgabe</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Encode or decode all the applicable characters to their corresponding URL entities</value>

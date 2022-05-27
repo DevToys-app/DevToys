@@ -139,7 +139,7 @@
     <value>Conversione</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Base64 Text</value>
+    <value>Testo in Base64</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
     <value>Seleziona la modalità di codifica che vuoi usare</value>

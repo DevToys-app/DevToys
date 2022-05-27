@@ -121,13 +121,13 @@
     <value>로렌 입숨 생성 도구</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>설정</value>
+    <value>구성</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>로렌 입숨 방식의 무의미한 문구를 생성합니다.</value>
   </data>
   <data name="LengthDescription" xml:space="preserve">
-    <value>단어, 문장 및 문단 개수를 선택 후 생성합니다.</value>
+    <value>생성할 단어, 문장 또는 단락 수</value>
   </data>
   <data name="LengthTitle" xml:space="preserve">
     <value>길이</value>
@@ -136,25 +136,25 @@
     <value>로렌 입숨</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>출력 내용</value>
+    <value>출력</value>
   </data>
   <data name="ParagraphsType" xml:space="preserve">
     <value>문단</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>로렌 입숨 생성기</value>
+    <value>로렘 입숨 생성기</value>
   </data>
   <data name="SentencesType" xml:space="preserve">
     <value>문장</value>
   </data>
   <data name="StartWithLoremTitle" xml:space="preserve">
-    <value>'Lorem ipsum dolor sit amet...' 문구 사용</value>
+    <value>'Lorem Ipsum Dolor Sit Amet ...'로 시작</value>
   </data>
   <data name="TypeDescription" xml:space="preserve">
-    <value>로렌 입숨 내용을 생성할 단어, 문장 및 문단 개수를 선택 후 생성합니다.</value>
+    <value>로렘 입숨의 단어, 문장 또는 단락 생성</value>
   </data>
   <data name="TypeTitle" xml:space="preserve">
-    <value>단위</value>
+    <value>유형</value>
   </data>
   <data name="WordsType" xml:space="preserve">
     <value>단어</value>
