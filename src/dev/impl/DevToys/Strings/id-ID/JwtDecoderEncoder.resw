@@ -133,7 +133,7 @@
     <value>Decode</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Decoder JWT</value>
+    <value>JWT Decoder</value>
   </data>
   <data name="Encode" xml:space="preserve">
     <value>Encode</value>
@@ -154,13 +154,13 @@
     <value>Payload</value>
   </data>
   <data name="SecurityLabel" xml:space="preserve">
-    <value>Security</value>
+    <value>Keamanan</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Decode tajuk JWT, muat dan tanda tangan</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Decoder JWT</value>
+    <value>JWT Decoder</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value />

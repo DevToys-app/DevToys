@@ -154,7 +154,7 @@
     <value>2 spasi</value>
   </data>
   <data name="YamlToJson" xml:space="preserve">
-    <value>Yaml to Json</value>
+    <value>Yaml ke Json</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Konversi data JSON ke YAML dan sebaliknya</value>

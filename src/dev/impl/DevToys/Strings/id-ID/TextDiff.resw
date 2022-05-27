@@ -145,6 +145,6 @@
     <value>Pembanding Teks</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Text Diff comparer</value>
+    <value>Perbedaan Teks Pembanding</value>
   </data>
 </root>

@@ -142,7 +142,7 @@
     <value>Tema</value>
   </data>
   <data name="ThemeDescription" xml:space="preserve">
-    <value>Select which theme to use to preview the Markdown</value>
+    <value>Pilih tema yang akan digunakan untuk menampilkan Markdown</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Tampilkan dokumen Markdown dengan hasil seperti Github</value>
