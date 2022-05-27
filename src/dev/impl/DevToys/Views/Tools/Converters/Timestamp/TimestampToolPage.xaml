@@ -205,14 +205,14 @@
                     <Button
                         TabIndex="1"
                         Command="{x:Bind ViewModel.NowCommand}"
-                        AutomationProperties.Name="{Binding Instance.Common.Now, Mode=OneTime, Source={StaticResource LanguageManager}}">
+                        AutomationProperties.Name="{x:Bind ViewModel.Strings.Now}">
                         <StackPanel
                             Orientation="Horizontal"
                             Spacing="4"
                             Height="21">
                             <TextBlock
                                 VerticalAlignment="Center"
-                                Text="{Binding Instance.Common.Now, Mode=OneTime, Source={StaticResource LanguageManager}}" />
+                                Text="{x:Bind ViewModel.Strings.Now}" />
                         </StackPanel>
                     </Button>
                     <Button
