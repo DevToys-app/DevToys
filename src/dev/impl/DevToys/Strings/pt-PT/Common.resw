@@ -168,9 +168,6 @@
   <data name="Megabytes" xml:space="preserve">
     <value>MB</value>
   </data>
-  <data name="Now" xml:space="preserve">
-    <value>Agora</value>
-  </data>
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
   </data>
