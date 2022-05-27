@@ -184,6 +184,6 @@
     <value>Regex Tester</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Regular expression</value>
+    <value>Regulärer Ausdruck</value>
   </data>
 </root>
