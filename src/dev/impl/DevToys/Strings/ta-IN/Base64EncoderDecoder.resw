@@ -139,7 +139,7 @@
     <value>Conversion</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Base64 Text</value>
+    <value>Base64 உரை</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
     <value>Select which encoding do you want to use</value>
