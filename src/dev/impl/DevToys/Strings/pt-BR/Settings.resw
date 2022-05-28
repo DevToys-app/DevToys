@@ -231,4 +231,7 @@
   <data name="SearchKeywords" xml:space="preserve">
     <value>Opções de configurações</value>
   </data>
+  <data name="HelpTranslating" xml:space="preserve">
+    <value>Help us translating DevToys!</value>
+  </data>
 </root>

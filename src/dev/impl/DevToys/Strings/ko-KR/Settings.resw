@@ -231,4 +231,7 @@
   <data name="SearchKeywords" xml:space="preserve">
     <value>Configurations Options Settings</value>
   </data>
+  <data name="HelpTranslating" xml:space="preserve">
+    <value>DevToys 번역을 도와주세요!</value>
+  </data>
 </root>
