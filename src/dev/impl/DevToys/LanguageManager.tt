@@ -192,6 +192,6 @@ namespace DevToys
     }
 <#
         }
-	}
+    }
 #>
 }

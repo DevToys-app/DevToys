@@ -2210,6 +2210,11 @@ namespace DevToys
         /// Gets the resource SearchKeywords.
         /// </summary>
         public string SearchKeywords => _resources.GetString("SearchKeywords");
+
+        /// <summary>
+        /// Gets the resource HelpTranslating.
+        /// </summary>
+        public string HelpTranslating => _resources.GetString("HelpTranslating");
     }
 
     public class SqlFormatterStrings : ObservableObject
