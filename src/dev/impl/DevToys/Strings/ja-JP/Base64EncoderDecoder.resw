@@ -130,7 +130,7 @@
     <value>デコード</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>使いたい変換モードを選択してください</value>
+    <value>使用する変換モードを選択してください</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
     <value>エンコード</value>
