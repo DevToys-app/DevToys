@@ -127,13 +127,13 @@
     <value>Configuración</value>
   </data>
   <data name="ConversionDecompress" xml:space="preserve">
-    <value>Decompress</value>
+    <value>Descomprimir</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
     <value>Select compress or decompress</value>
   </data>
   <data name="ConversionCompress" xml:space="preserve">
-    <value>Compress</value>
+    <value>Comprimir</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
     <value>GZip Compress/Decompress</value>
