@@ -96,12 +96,12 @@ namespace DevToys.ViewModels.Tools.HashGenerator
 
         internal bool IsHmacMode
         {
-            get => _settingsProvider.GetSetting(IsHMAC);
+            get => SettingsProvider.GetSetting(IsHMAC);
             set
             {
-                if(_settingsProvider.GetSetting(IsHMAC) != value)
+                if(SettingsProvider.GetSetting(IsHMAC) != value)
                 {
-                    _settingsProvider.SetSetting(IsHMAC, value);
+                    SettingsProvider.SetSetting(IsHMAC, value);
                     OnPropertyChanged();
                     QueueHashCalculation();
                 }
