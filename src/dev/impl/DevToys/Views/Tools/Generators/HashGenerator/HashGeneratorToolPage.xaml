@@ -45,7 +45,7 @@
             <controls:ExpandableSettingControl
                 Title="HMAC Mode">
                 <controls:ExpandableSettingControl.Icon>
-                    <FontIcon Glyph="&#xF084;" />
+                    <FontIcon Glyph="&#62734;" />
                 </controls:ExpandableSettingControl.Icon>
                 <ToggleSwitch
                     x:Name="IsUsingHmacToggleSwitch"
