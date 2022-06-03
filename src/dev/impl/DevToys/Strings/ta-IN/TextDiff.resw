@@ -124,7 +124,7 @@
     <value>Configuration</value>
   </data>
   <data name="Difference" xml:space="preserve">
-    <value>Difference</value>
+    <value>வேறுபாடு</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Text Diff</value>
