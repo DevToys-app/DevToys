@@ -12,8 +12,8 @@ namespace DevToys.Views.Tools.Timestamp
 {
     public sealed partial class TimestampToolPage : Page
     {
-        public readonly static double MinimumTimestamp = (double)long.MinValue;
-        public readonly static double MaximumTimestamp = (double)long.MaxValue;
+        public static readonly double MinimumTimestamp = -62135596800;
+        public static readonly double MaximumTimestamp = 253402300799;
 
         public static readonly DependencyProperty ViewModelProperty
             = DependencyProperty.Register(
@@ -48,15 +48,16 @@ namespace DevToys.Views.Tools.Timestamp
                 DataContext = ViewModel;
             }
 
+            // Smart detection
             if (!string.IsNullOrWhiteSpace(parameters.ClipBoardContent))
             {
                 if (long.TryParse(parameters.ClipBoardContent, out long timestamp))
                 {
                     ViewModel.Timestamp = timestamp;
                 }
-                else if (DateTime.TryParse(parameters.ClipBoardContent, out DateTime localDateTime))
+                else if (DateTimeOffset.TryParse(parameters.ClipBoardContent, out DateTimeOffset clipboardDateTime))
                 {
-                    ViewModel.Timestamp = new DateTimeOffset(localDateTime.ToUniversalTime()).ToUnixTimeSeconds();
+                    ViewModel.Timestamp = clipboardDateTime.ToUnixTimeSeconds();
                 }
             }
 

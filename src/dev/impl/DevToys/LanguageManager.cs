@@ -372,49 +372,9 @@ namespace DevToys
         public string AccessibleName => _resources.GetString("AccessibleName");
 
         /// <summary>
-        /// Gets the resource Ascii.
-        /// </summary>
-        public string Ascii => _resources.GetString("Ascii");
-
-        /// <summary>
-        /// Gets the resource ConfigurationTitle.
-        /// </summary>
-        public string ConfigurationTitle => _resources.GetString("ConfigurationTitle");
-
-        /// <summary>
-        /// Gets the resource ConversionDecode.
-        /// </summary>
-        public string ConversionDecode => _resources.GetString("ConversionDecode");
-
-        /// <summary>
-        /// Gets the resource ConversionDescription.
-        /// </summary>
-        public string ConversionDescription => _resources.GetString("ConversionDescription");
-
-        /// <summary>
-        /// Gets the resource ConversionEncode.
-        /// </summary>
-        public string ConversionEncode => _resources.GetString("ConversionEncode");
-
-        /// <summary>
-        /// Gets the resource ConversionTitle.
-        /// </summary>
-        public string ConversionTitle => _resources.GetString("ConversionTitle");
-
-        /// <summary>
         /// Gets the resource MenuDisplayName.
         /// </summary>
         public string MenuDisplayName => _resources.GetString("MenuDisplayName");
-
-        /// <summary>
-        /// Gets the resource EncodingDescription.
-        /// </summary>
-        public string EncodingDescription => _resources.GetString("EncodingDescription");
-
-        /// <summary>
-        /// Gets the resource EncodingTitle.
-        /// </summary>
-        public string EncodingTitle => _resources.GetString("EncodingTitle");
 
         /// <summary>
         /// Gets the resource Base64InputTitle.
@@ -425,11 +385,6 @@ namespace DevToys
         /// Gets the resource ImageInputTitle.
         /// </summary>
         public string ImageInputTitle => _resources.GetString("ImageInputTitle");
-
-        /// <summary>
-        /// Gets the resource Utf8.
-        /// </summary>
-        public string Utf8 => _resources.GetString("Utf8");
 
         /// <summary>
         /// Gets the resource Description.
@@ -580,11 +535,6 @@ namespace DevToys
         /// Gets the resource SearchKeywords.
         /// </summary>
         public string SearchKeywords => _resources.GetString("SearchKeywords");
-
-        /// <summary>
-        /// Gets the resource View.
-        /// </summary>
-        public string View => _resources.GetString("View");
     }
 
     public class CommonStrings : ObservableObject
@@ -694,11 +644,6 @@ namespace DevToys
         /// Gets the resource Megabytes.
         /// </summary>
         public string Megabytes => _resources.GetString("Megabytes");
-
-        /// <summary>
-        /// Gets the resource Now.
-        /// </summary>
-        public string Now => _resources.GetString("Now");
 
         /// <summary>
         /// Gets the resource Ok.
@@ -1394,44 +1339,9 @@ namespace DevToys
         public string AccessibleName => _resources.GetString("AccessibleName");
 
         /// <summary>
-        /// Gets the resource Configuration.
-        /// </summary>
-        public string Configuration => _resources.GetString("Configuration");
-
-        /// <summary>
-        /// Gets the resource ConversionDescription.
-        /// </summary>
-        public string ConversionDescription => _resources.GetString("ConversionDescription");
-
-        /// <summary>
-        /// Gets the resource ConversionTitle.
-        /// </summary>
-        public string ConversionTitle => _resources.GetString("ConversionTitle");
-
-        /// <summary>
-        /// Gets the resource Decode.
-        /// </summary>
-        public string Decode => _resources.GetString("Decode");
-
-        /// <summary>
         /// Gets the resource MenuDisplayName.
         /// </summary>
         public string MenuDisplayName => _resources.GetString("MenuDisplayName");
-
-        /// <summary>
-        /// Gets the resource Encode.
-        /// </summary>
-        public string Encode => _resources.GetString("Encode");
-
-        /// <summary>
-        /// Gets the resource EncodingDescription.
-        /// </summary>
-        public string EncodingDescription => _resources.GetString("EncodingDescription");
-
-        /// <summary>
-        /// Gets the resource EncodingTitle.
-        /// </summary>
-        public string EncodingTitle => _resources.GetString("EncodingTitle");
 
         /// <summary>
         /// Gets the resource HeaderLabel.
@@ -1447,11 +1357,6 @@ namespace DevToys
         /// Gets the resource PayloadLabel.
         /// </summary>
         public string PayloadLabel => _resources.GetString("PayloadLabel");
-
-        /// <summary>
-        /// Gets the resource SecurityLabel.
-        /// </summary>
-        public string SecurityLabel => _resources.GetString("SecurityLabel");
 
         /// <summary>
         /// Gets the resource Description.
@@ -2305,6 +2210,11 @@ namespace DevToys
         /// Gets the resource SearchKeywords.
         /// </summary>
         public string SearchKeywords => _resources.GetString("SearchKeywords");
+
+        /// <summary>
+        /// Gets the resource HelpTranslating.
+        /// </summary>
+        public string HelpTranslating => _resources.GetString("HelpTranslating");
     }
 
     public class SqlFormatterStrings : ObservableObject
@@ -2732,6 +2642,16 @@ namespace DevToys
         public string AccessibleName => _resources.GetString("AccessibleName");
 
         /// <summary>
+        /// Gets the resource TimeZoneTitle.
+        /// </summary>
+        public string TimeZoneTitle => _resources.GetString("TimeZoneTitle");
+
+        /// <summary>
+        /// Gets the resource DaylightSavingTime.
+        /// </summary>
+        public string DaylightSavingTime => _resources.GetString("DaylightSavingTime");
+
+        /// <summary>
         /// Gets the resource DayTitle.
         /// </summary>
         public string DayTitle => _resources.GetString("DayTitle");
@@ -2740,6 +2660,16 @@ namespace DevToys
         /// Gets the resource Description.
         /// </summary>
         public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource DisabledDaylightSavingTime.
+        /// </summary>
+        public string DisabledDaylightSavingTime => _resources.GetString("DisabledDaylightSavingTime");
+
+        /// <summary>
+        /// Gets the resource DSTAmbiguousTime.
+        /// </summary>
+        public string DSTAmbiguousTime => _resources.GetString("DSTAmbiguousTime");
 
         /// <summary>
         /// Gets the resource HourTitle.
@@ -2772,6 +2702,11 @@ namespace DevToys
         public string MonthTitle => _resources.GetString("MonthTitle");
 
         /// <summary>
+        /// Gets the resource OffsetTitle.
+        /// </summary>
+        public string OffsetTitle => _resources.GetString("OffsetTitle");
+
+        /// <summary>
         /// Gets the resource SearchDisplayName.
         /// </summary>
         public string SearchDisplayName => _resources.GetString("SearchDisplayName");
@@ -2787,6 +2722,11 @@ namespace DevToys
         public string SecondsTitle => _resources.GetString("SecondsTitle");
 
         /// <summary>
+        /// Gets the resource SupportsDaylightSavingTime.
+        /// </summary>
+        public string SupportsDaylightSavingTime => _resources.GetString("SupportsDaylightSavingTime");
+
+        /// <summary>
         /// Gets the resource TimestampTitle.
         /// </summary>
         public string TimestampTitle => _resources.GetString("TimestampTitle");
@@ -2797,9 +2737,19 @@ namespace DevToys
         public string UTCDateTime => _resources.GetString("UTCDateTime");
 
         /// <summary>
+        /// Gets the resource UtcTicksTitle.
+        /// </summary>
+        public string UtcTicksTitle => _resources.GetString("UtcTicksTitle");
+
+        /// <summary>
         /// Gets the resource YearTitle.
         /// </summary>
         public string YearTitle => _resources.GetString("YearTitle");
+
+        /// <summary>
+        /// Gets the resource Now.
+        /// </summary>
+        public string Now => _resources.GetString("Now");
     }
 
     public class ToolGroupsStrings : ObservableObject
