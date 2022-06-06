@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Công cụ Mã hóa và Giải mã chuỗi Base64</value>
+    <value>Công cụ Mã hóa và Giải mã văn bản Base64</value>
   </data>
   <data name="Ascii" xml:space="preserve">
     <value>ASCII</value>
@@ -133,13 +133,13 @@
     <value>Chọn chế độ chuyển đổi bạn muốn sử dụng</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
-    <value>Encode</value>
+    <value>Mã hóa</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Conversion</value>
+    <value>Chuyển đổi</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Base64 Text</value>
+    <value>Văn bản Base64</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
     <value>Select which encoding do you want to use</value>
@@ -148,10 +148,10 @@
     <value>Encoding</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>Input</value>
+    <value>Đầu vào</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Output</value>
+    <value>Đầu ra</value>
   </data>
   <data name="Utf8" xml:space="preserve">
     <value>UTF-8</value>
