@@ -121,10 +121,10 @@
     <value>JSON to YAML and YAML to JSON converter tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Cấu hình</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Select which conversion mode you want to use</value>
+    <value>Chọn chế độ chuyển đổi bạn muốn sử dụng</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
     <value>Conversion</value>
