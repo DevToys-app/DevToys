@@ -145,7 +145,7 @@
     <value>Number of UUID to generate</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
-    <value>Uppercase</value>
+    <value>Chữ in hoa</value>
   </data>
   <data name="UuidVersionFour" xml:space="preserve">
     <value>4 (GUID)</value>
@@ -154,10 +154,10 @@
     <value>1</value>
   </data>
   <data name="VersionDescription" xml:space="preserve">
-    <value>Choose the version of UUID to generate</value>
+    <value>Chọn phiên bản UUID để sinh ra</value>
   </data>
   <data name="VersionTitle" xml:space="preserve">
-    <value>UUID version</value>
+    <value>Phiên bản UUID</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Generate UUIDs version 1 and 4</value>
