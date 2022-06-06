@@ -133,7 +133,7 @@
     <value>Indentation</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>Đầu vào</value>
   </data>
   <data name="Minified" xml:space="preserve">
     <value>Minified</value>
@@ -142,7 +142,7 @@
     <value>1 tab</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>Đầu ra</value>
   </data>
   <data name="TwoSpaces" xml:space="preserve">
     <value>2 spaces</value>
