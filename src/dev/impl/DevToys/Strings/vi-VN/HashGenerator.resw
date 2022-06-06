@@ -127,7 +127,7 @@
     <value>Hash</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>Đầu vào</value>
   </data>
   <data name="MD5" xml:space="preserve">
     <value>MD5</value>
@@ -142,7 +142,7 @@
     <value>SHA512</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
-    <value>Uppercase</value>
+    <value>Chữ in hoa</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Calculate MD5, SHA1, SHA256 and SHA512 hash from text data</value>
@@ -163,7 +163,7 @@
     <value></value>
   </data>
   <data name="HmacMode" xml:space="preserve">
-    <value>HMAC Mode</value>
+    <value>Chế độ HMAC</value>
   </data>
   <data name="SecretKey" xml:space="preserve">
     <value>Secret Key</value>
