@@ -130,7 +130,7 @@
     <value>4 dấu cách</value>
   </data>
   <data name="Indentation" xml:space="preserve">
-    <value>Indentation</value>
+    <value>Thụt lề</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>Đầu vào</value>
@@ -145,7 +145,7 @@
     <value>2 dấu cách</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Indent SQL queries</value>
+    <value>Thụt lùi các câu truy vấn SQL</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Định dạng SQL</value>
