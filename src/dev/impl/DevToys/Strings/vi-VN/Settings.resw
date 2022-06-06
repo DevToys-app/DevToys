@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>About</value>
+    <value>Giới thiệu</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
     <value>App Theme</value>
@@ -130,25 +130,25 @@
     <value>DevToys</value>
   </data>
   <data name="Behaviors" xml:space="preserve">
-    <value>Behaviors</value>
+    <value>Hành vi</value>
   </data>
   <data name="Close" xml:space="preserve">
-    <value>Close</value>
+    <value>Đóng</value>
   </data>
   <data name="Copy" xml:space="preserve">
-    <value>Copy</value>
+    <value>Sao chép</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Dark</value>
+    <value>Tối</value>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>Same as Microsoft Windows</value>
+    <value>Giống như Microsoft Windows</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Settings</value>
+    <value>Cài đặt</value>
   </data>
   <data name="Font" xml:space="preserve">
-    <value>Font</value>
+    <value>Phông chữ</value>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
     <value>Highlight current line</value>
@@ -157,16 +157,16 @@
     <value>Change the background color of the current line so it's more visible</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>Ngôn ngữ</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
     <value>The app needs to be restarted when selecting another language</value>
   </data>
   <data name="License" xml:space="preserve">
-    <value>License</value>
+    <value>Giấy phép</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Light</value>
+    <value>Sáng</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
     <value>Line numbers</value>
@@ -178,16 +178,16 @@
     <value>Open logs</value>
   </data>
   <data name="PrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
+    <value>Chính sách bảo mật</value>
   </data>
   <data name="RateAndReview" xml:space="preserve">
-    <value>Rate and review on Microsoft Store</value>
+    <value>Đánh giá trên Microsoft Store</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
     <value>Render white space</value>
   </data>
   <data name="ReportProblem" xml:space="preserve">
-    <value>Report a problem</value>
+    <value>Báo cáo sự cố</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
     <value>Smart detection</value>
@@ -211,13 +211,13 @@
     <value>Third party licenses</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>Useful links</value>
+    <value>Liên kết hữu ích</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
-    <value>Use system settings</value>
+    <value>Dùng cài đặt hệ thống</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>Phiên bản {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
     <value>Wrap word</value>
@@ -226,12 +226,12 @@
     <value>Customize DevToys look &amp; feel</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Settings</value>
+    <value>Cài đặt</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>Configurations Options</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translating DevToys!</value>
+    <value>Giúp chúng tôi dịch DevToys!</value>
   </data>
 </root>
