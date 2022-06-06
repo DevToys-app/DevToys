@@ -127,7 +127,7 @@
     <value>Encoders and decoders</value>
   </data>
   <data name="EncodersDecodersDisplayName" xml:space="preserve">
-    <value>Encoders / Decoders</value>
+    <value>Bộ Mã hóa / Giải mã</value>
   </data>
   <data name="FormattersAccessibleName" xml:space="preserve">
     <value>Formatters</value>
@@ -142,10 +142,10 @@
     <value>Generators</value>
   </data>
   <data name="GraphicAccessibleName" xml:space="preserve">
-    <value>Graphic</value>
+    <value>Đồ họa</value>
   </data>
   <data name="GraphicDisplayName" xml:space="preserve">
-    <value>Graphic</value>
+    <value>Đồ họa</value>
   </data>
   <data name="TextAccessibleName" xml:space="preserve">
     <value>Văn bản</value>
