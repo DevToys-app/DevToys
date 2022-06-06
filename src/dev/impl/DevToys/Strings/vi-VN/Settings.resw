@@ -121,7 +121,7 @@
     <value>Giới thiệu</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>App Theme</value>
+    <value>Chủ đề ứng dụng</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
     <value>Select which app theme to display</value>
@@ -184,7 +184,7 @@
     <value>Đánh giá trên Microsoft Store</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>Render white space</value>
+    <value>Hiển thị dấu cách</value>
   </data>
   <data name="ReportProblem" xml:space="preserve">
     <value>Báo cáo sự cố</value>
@@ -202,13 +202,13 @@
     <value>Automatically paste the clipboard content when selecting a recommended tool</value>
   </data>
   <data name="SourceCode" xml:space="preserve">
-    <value>Source code</value>
+    <value>Mã nguồn</value>
   </data>
   <data name="TextEditor" xml:space="preserve">
-    <value>Text editor</value>
+    <value>Trình soạn thảo</value>
   </data>
   <data name="ThirdPartyNotices" xml:space="preserve">
-    <value>Third party licenses</value>
+    <value>Giấy phép bên thứ ba</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
     <value>Liên kết hữu ích</value>
@@ -220,10 +220,10 @@
     <value>Phiên bản {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Wrap word</value>
+    <value>Xuống dòng tự động</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Customize DevToys look &amp; feel</value>
+    <value>Tùy chỉnh giao diện DevToys</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Cài đặt</value>
