@@ -124,7 +124,7 @@
     <value>Cấu hình</value>
   </data>
   <data name="Difference" xml:space="preserve">
-    <value>Difference</value>
+    <value>Khác biệt</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Text Diff</value>
@@ -133,13 +133,13 @@
     <value>Inline mode</value>
   </data>
   <data name="LeftText" xml:space="preserve">
-    <value>Old text</value>
+    <value>Văn bản cũ</value>
   </data>
   <data name="RightText" xml:space="preserve">
-    <value>New text</value>
+    <value>Văn bản mới</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Compare two texts</value>
+    <value>So sánh hai văn bản</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Text Comparer</value>
