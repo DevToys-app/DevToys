@@ -146,7 +146,7 @@
     <value>OK</value>
   </data>
   <data name="SaveAll" xml:space="preserve">
-    <value>Save all</value>
+    <value>Lưu tất cả</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Lưu dưới dạng</value>
@@ -188,7 +188,7 @@
     <value>TIFF</value>
   </data>
   <data name="ErrorMessage" xml:space="preserve">
-    <value>An unexpected error has occurred, the conversion may not have been performed.</value>
+    <value>Một lỗi ngoài dự tính đã xảy ra, việc chuyển đổi có thể đã không được thực hiện.</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>BMP GIF HEIF JPG XR PNG TIFF</value>
