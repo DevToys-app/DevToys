@@ -133,7 +133,7 @@
     <value>Number Base</value>
   </data>
   <data name="Format" xml:space="preserve">
-    <value>Format number</value>
+    <value>Định dạng số</value>
   </data>
   <data name="HexadecimalLabel" xml:space="preserve">
     <value>Hexadecimal</value>
@@ -157,17 +157,17 @@
     <value>Octal</value>
   </data>
   <data name="InputTypeTitle" xml:space="preserve">
-    <value>Input type</value>
+    <value>Loại đầu vào</value>
   </data>
   <data name="OctalLabel" xml:space="preserve">
     <value>Octal</value>
   </data>
   <data name="ValueInvalid" xml:space="preserve">
-    <value>The current value isn't a valid {0}</value>
+    <value>Giá trị hiện tại không hợp lệ cho {0}</value>
     <comment>The parameter is the Base Number Type (Decimal, Octal, ...)</comment>
   </data>
   <data name="ValueOverflow" xml:space="preserve">
-    <value>The current value cannot be converted as it exceeds the maximum value ({0})</value>
+    <value>Không thể chuyển đổi giá trị hiện tại vì nó vượt quá giá trị tối đa ({0})</value>
     <comment>The parameter is the Max value of a long</comment>
   </data>
   <data name="Description" xml:space="preserve">
