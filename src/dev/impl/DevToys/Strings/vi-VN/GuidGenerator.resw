@@ -133,16 +133,16 @@
     <value>Generate UUID(s)</value>
   </data>
   <data name="Guids" xml:space="preserve">
-    <value>UUID(s)</value>
+    <value>(Các) UUID</value>
   </data>
   <data name="Hyphens" xml:space="preserve">
-    <value>Hyphens</value>
+    <value>Dấu gạch ngang</value>
   </data>
   <data name="MultiplySymbol" xml:space="preserve">
     <value>x</value>
   </data>
   <data name="NumberOfGuidsToGenerate_AutomationProperties_Name" xml:space="preserve">
-    <value>Number of UUID to generate</value>
+    <value>Số lượng UUID sẽ tạo ra</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
     <value>Chữ in hoa</value>
