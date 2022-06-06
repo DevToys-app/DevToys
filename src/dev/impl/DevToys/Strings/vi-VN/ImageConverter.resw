@@ -121,19 +121,19 @@
     <value>Image Converter tool</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Hủy bỏ</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Cấu hình</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Xóa bỏ</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
-    <value>Delete all</value>
+    <value>Xóa tất cả</value>
   </data>
   <data name="DetailsTitle" xml:space="preserve">
-    <value>Details</value>
+    <value>Chi tiết</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Image Converter</value>
@@ -149,10 +149,10 @@
     <value>Save all</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>Save as</value>
+    <value>Lưu dưới dạng</value>
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
-    <value>See details</value>
+    <value>Xem chi tiết</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Lossless image converter</value>
@@ -161,10 +161,10 @@
     <value>Image Converter</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Conversion</value>
+    <value>Chuyển đổi</value>
   </data>
   <data name="ConvertedFormatDescription" xml:space="preserve">
-    <value>Select the converted file format</value>
+    <value>Chọn định dạng tệp để chuyển đổi</value>
   </data>
   <data name="JPEG" xml:space="preserve">
     <value>JPEG</value>
