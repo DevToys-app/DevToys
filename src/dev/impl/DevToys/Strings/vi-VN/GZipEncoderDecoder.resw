@@ -130,7 +130,7 @@
     <value>Giải nén</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Select whether the input should be compressed or decompressed</value>
+    <value>Chọn xem đầu vào nên được nén hay giải nén</value>
   </data>
   <data name="ConversionCompress" xml:space="preserve">
     <value>Nén</value>
@@ -142,7 +142,7 @@
     <value>GZip</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
-    <value>Select whether the input should be compressed or decompressed</value>
+    <value>Chọn xem đầu vào nên được nén hay giải nén</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
     <value>Encoding</value>
@@ -157,7 +157,7 @@
     <value>UTF-8</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Compress or decompress strings</value>
+    <value>Nén hoặc giải nén các chuỗi</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Nén / Giải nén GZip</value>
