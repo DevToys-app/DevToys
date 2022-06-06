@@ -151,16 +151,16 @@
     <value>Phông chữ</value>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
-    <value>Highlight current line</value>
+    <value>Đánh dấu dòng hiện tại</value>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>Change the background color of the current line so it's more visible</value>
+    <value>Thay đổi màu nền của dòng hiện tại để dễ nhìn hơn</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Ngôn ngữ</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>The app needs to be restarted when selecting another language</value>
+    <value>Ứng dụng cần được khởi động lại khi chọn ngôn ngữ khác</value>
   </data>
   <data name="License" xml:space="preserve">
     <value>Giấy phép</value>
@@ -169,10 +169,10 @@
     <value>Sáng</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>Line numbers</value>
+    <value>Số thứ tự dòng</value>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>Display line numbers in the text editor</value>
+    <value>Hiển thị số thứ tự dòng trong trình soạn thảo</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
     <value>Open logs</value>
@@ -190,16 +190,16 @@
     <value>Báo cáo sự cố</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
-    <value>Smart detection</value>
+    <value>Phát hiện Tự động</value>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Automatically detect the best tool based on the clipboard content</value>
+    <value>Tự động phát hiện công cụ phù hợp nhất dựa vào nội dung bộ nhớ đệm</value>
   </data>
   <data name="SmartDetectionHowTo" xml:space="preserve">
-    <value>How to use Smart Detection</value>
+    <value>Cách dùng Phát hiện Tự động</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automatically paste the clipboard content when selecting a recommended tool</value>
+    <value>Tự động dán nội dung bộ nhớ đệm khi chọn một công cụ được khuyến nghị</value>
   </data>
   <data name="SourceCode" xml:space="preserve">
     <value>Mã nguồn</value>
