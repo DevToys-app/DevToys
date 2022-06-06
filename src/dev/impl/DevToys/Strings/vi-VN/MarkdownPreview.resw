@@ -124,7 +124,7 @@
     <value>Cấu hình</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Dark</value>
+    <value>Tối</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Markdown Preview</value>
@@ -133,7 +133,7 @@
     <value>Markdown</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Light</value>
+    <value>Sáng</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Preview</value>
