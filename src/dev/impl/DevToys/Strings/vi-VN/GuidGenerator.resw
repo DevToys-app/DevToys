@@ -121,7 +121,7 @@
     <value>UUID Generator tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Cấu hình</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>UUID</value>
