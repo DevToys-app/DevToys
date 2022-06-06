@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>PNG and JPEG compressor tool</value>
+    <value>Công cụ nén PNG và JPEG</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Hủy bỏ</value>
