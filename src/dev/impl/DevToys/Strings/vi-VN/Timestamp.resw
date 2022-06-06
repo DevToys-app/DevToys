@@ -124,7 +124,7 @@
     <value>Múi giờ</value>
   </data>
   <data name="DaylightSavingTime" xml:space="preserve">
-    <value>Daylight saving time.</value>
+    <value>Giờ tiết kiệm ánh sáng ban ngày.</value>
   </data>
   <data name="DayTitle" xml:space="preserve">
     <value>Ngày</value>
@@ -133,7 +133,7 @@
     <value>Convert timestamp to human-readable date and vice versa</value>
   </data>
   <data name="DisabledDaylightSavingTime" xml:space="preserve">
-    <value>There is no daylight saving time.</value>
+    <value>Không có giờ tiết kiệm ánh sáng ban ngày.</value>
   </data>
   <data name="DSTAmbiguousTime" xml:space="preserve">
     <value>DST Ambiguous time.</value>
@@ -157,7 +157,7 @@
     <value>Tháng</value>
   </data>
   <data name="OffsetTitle" xml:space="preserve">
-    <value>Offset</value>
+    <value>Chênh lệch</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Unix Timestamp Converter</value>
@@ -176,7 +176,7 @@
     <value>Timestamp</value>
   </data>
   <data name="UTCDateTime" xml:space="preserve">
-    <value>UTC Date and Time</value>
+    <value>Ngày và Giờ gốc UTC</value>
   </data>
   <data name="UtcTicksTitle" xml:space="preserve">
     <value>UtcTicks</value>
