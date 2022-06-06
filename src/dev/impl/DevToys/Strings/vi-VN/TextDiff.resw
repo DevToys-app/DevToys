@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Text comparer tool</value>
+    <value>Công cụ so sánh văn bản</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Cấu hình</value>
@@ -142,7 +142,7 @@
     <value>So sánh hai văn bản</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Text Comparer</value>
+    <value>So sánh Văn bản</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
