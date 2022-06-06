@@ -162,4 +162,10 @@
   <data name="SearchKeywords" xml:space="preserve">
     <value>Checksum Generator</value>
   </data>
+  <data name="HmacMode" xml:space="preserve">
+    <value>HMAC Mode</value>
+  </data>
+  <data name="SecretKey" xml:space="preserve">
+    <value>Secret Key</value>
+  </data>
 </root>
