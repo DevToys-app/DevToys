@@ -136,10 +136,10 @@
     <value>Um... hi! 😅</value>
   </data>
   <data name="NotificationReleaseNoteActionableActionText" xml:space="preserve">
-    <value>read more...</value>
+    <value>xem thêm...</value>
   </data>
   <data name="NotificationReleaseNoteTitle" xml:space="preserve">
-    <value>We just updated! What's new in {0}? 🚀</value>
+    <value>Chúng tôi mới cập nhật! Có gì mới trong {0}? 🚀</value>
     <comment>{0} is the current app version</comment>
   </data>
   <data name="NotificationUpdateAvailableActionableActionText" xml:space="preserve">
@@ -161,10 +161,10 @@
     <value>Remove from favorites</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Type to search for tools...</value>
+    <value>Gõ để tìm kiếm công cụ...</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
-    <value>No results found</value>
+    <value>Không tìm thấy kết quả nào</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
