@@ -152,10 +152,10 @@
     <value>Mở trong cửa sổ mới</value>
   </data>
   <data name="PinToolToStart" xml:space="preserve">
-    <value>Pin tool to Start</value>
+    <value>Đính công cụ lên Start</value>
   </data>
   <data name="PinToolToStartProblem" xml:space="preserve">
-    <value>Unable to pin the tool to start. For more details, please check the log.</value>
+    <value>Không thể đính công cụ lên Start. Để biết thêm chi tiết, vui lòng kiểm tra lịch sử log.</value>
   </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
     <value>Xóa khỏi mục yêu thích</value>
