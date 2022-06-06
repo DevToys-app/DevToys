@@ -180,7 +180,7 @@
     <value>Binary Octal Decimal Hexadecimal</value>
   </data>
   <data name="AdvancedModeLabel" xml:space="preserve">
-    <value>Advanced mode</value>
+    <value>Chế độ nâng cao</value>
   </data>
   <data name="InputDictionaryLabel" xml:space="preserve">
     <value>Input dictionary</value>
