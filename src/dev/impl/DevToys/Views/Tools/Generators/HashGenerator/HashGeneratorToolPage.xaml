@@ -43,7 +43,7 @@
                 </ComboBox>
             </controls:ExpandableSettingControl>
             <controls:ExpandableSettingControl
-                Title="HMAC Mode">
+                Title="{x:Bind ViewModel.Strings.HmacMode}">
                 <controls:ExpandableSettingControl.Icon>
                     <FontIcon Glyph="&#62734;" />
                 </controls:ExpandableSettingControl.Icon>
@@ -62,7 +62,7 @@
             Text="{x:Bind ViewModel.Input, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <controls:CustomTextBox x:Name="SecretKeyInput"
-            Header="Secret Key (HMAC only)"
+            Header="{x:Bind ViewModel.Strings.SecretKey}"
             Height="150"
             AcceptsReturn="True"
             Visibility="Collapsed"
