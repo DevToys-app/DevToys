@@ -172,7 +172,7 @@
     <value>OK</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
-    <value>Chọn một file</value>
+    <value>Chọn một tệp</value>
   </data>
   <data name="Paste" xml:space="preserve">
     <value>Dán</value>
