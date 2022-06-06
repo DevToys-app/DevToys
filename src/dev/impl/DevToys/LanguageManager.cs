@@ -977,6 +977,16 @@ namespace DevToys
         /// Gets the resource SearchKeywords.
         /// </summary>
         public string SearchKeywords => _resources.GetString("SearchKeywords");
+
+        /// <summary>
+        /// Gets the resource HmacMode.
+        /// </summary>
+        public string HmacMode => _resources.GetString("HmacMode");
+
+        /// <summary>
+        /// Gets the resource SecretKey.
+        /// </summary>
+        public string SecretKey => _resources.GetString("SecretKey");
     }
 
     public class HtmlEncoderDecoderStrings : ObservableObject
