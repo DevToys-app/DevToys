@@ -163,7 +163,7 @@
     <value>Dòng:</value>
   </data>
   <data name="LowerCase" xml:space="preserve">
-    <value>lower case</value>
+    <value>chữ thường</value>
   </data>
   <data name="OriginalCase" xml:space="preserve">
     <value>Văn bản gốc</value>
@@ -202,7 +202,7 @@
     <value>Train-Case</value>
   </data>
   <data name="UpperCase" xml:space="preserve">
-    <value>UPPER CASE</value>
+    <value>CHỮ HOA</value>
   </data>
   <data name="WordDistribution" xml:space="preserve">
     <value>Phân bố từ</value>
@@ -211,7 +211,7 @@
     <value>Từ:</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Analyze text and convert it to a different case</value>
+    <value>Phân tích văn bản và chuyển đổi nó tới một loại chữ hoa/thường khác</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Text Case Converter and Inspector</value>
