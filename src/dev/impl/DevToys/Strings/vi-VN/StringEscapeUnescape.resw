@@ -124,7 +124,7 @@
     <value>Escape / Unescape</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Output</value>
+    <value>Đầu ra</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Escapes or unescapes a string, removing characters that could prevent parsing.</value>
@@ -149,9 +149,9 @@
     <value>Escape</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Conversion</value>
+    <value>Chuyển đổi</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>Input</value>
+    <value>Đầu vào</value>
   </data>
 </root>
