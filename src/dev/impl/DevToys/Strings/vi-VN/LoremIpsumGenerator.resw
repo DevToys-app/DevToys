@@ -121,7 +121,7 @@
     <value>Lorem Ipsum Generator tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Cấu hình</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Generate Lorem Ipsum placeholder text</value>
