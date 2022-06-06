@@ -157,13 +157,13 @@
     <value>Changes the meaning of ^ and $ so they match at the beginning and end, respectively, of any line, and not just the beginning and end of the entire string.</value>
   </data>
   <data name="Options" xml:space="preserve">
-    <value>Options</value>
+    <value>Tùy chọn</value>
   </data>
   <data name="RegularExpression" xml:space="preserve">
     <value>Regular expression</value>
   </data>
   <data name="RightToLeft" xml:space="preserve">
-    <value>Right To Left</value>
+    <value>Phải Sang Trái</value>
   </data>
   <data name="RightToLeftDescription" xml:space="preserve">
     <value>Specifies that the search will be from right to left instead of from left to right.</value>
@@ -175,7 +175,7 @@
     <value>Changes the meaning of the dot (.) so it matches every character (instead of every character except \n).</value>
   </data>
   <data name="Text" xml:space="preserve">
-    <value>Text</value>
+    <value>Văn bản</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Validate and test regular expressions</value>
