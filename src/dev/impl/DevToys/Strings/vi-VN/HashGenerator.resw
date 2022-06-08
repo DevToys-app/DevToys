@@ -121,13 +121,13 @@
     <value>Hash Generator tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Cấu hình</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Hash</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>Đầu vào</value>
   </data>
   <data name="MD5" xml:space="preserve">
     <value>MD5</value>
@@ -142,10 +142,10 @@
     <value>SHA512</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
-    <value>Uppercase</value>
+    <value>Chữ in hoa</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Calculate MD5, SHA1, SHA256 and SHA512 hash from text data</value>
+    <value>Tính toán hàm băm MD5, SHA1, SHA256 và SHA512 từ dữ liệu văn bản</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Hash Generator</value>
@@ -157,9 +157,15 @@
     <value>Hex</value>
   </data>
   <data name="OutputTypeTitle" xml:space="preserve">
-    <value>Output Type</value>
+    <value>Loại đầu ra</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
+  </data>
+  <data name="HmacMode" xml:space="preserve">
+    <value>Chế độ HMAC</value>
+  </data>
+  <data name="SecretKey" xml:space="preserve">
+    <value>Secret Key</value>
   </data>
 </root>

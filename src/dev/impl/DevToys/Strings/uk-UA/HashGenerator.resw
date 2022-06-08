@@ -162,4 +162,10 @@
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
   </data>
+  <data name="HmacMode" xml:space="preserve">
+    <value>Режим HMAC</value>
+  </data>
+  <data name="SecretKey" xml:space="preserve">
+    <value>Секретний ключ</value>
+  </data>
 </root>

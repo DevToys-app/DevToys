@@ -118,28 +118,28 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Markdown preview tool</value>
+    <value>Công cụ xem trước Markdown</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Cấu hình</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Dark</value>
+    <value>Tối</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Markdown Preview</value>
+    <value>Xem trước Markdown</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>Markdown</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Light</value>
+    <value>Sáng</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Preview</value>
+    <value>Xem trước</value>
   </data>
   <data name="Theme" xml:space="preserve">
-    <value>Theme</value>
+    <value>Chủ đề</value>
   </data>
   <data name="ThemeDescription" xml:space="preserve">
     <value>Select which theme to use to preview the Markdown</value>
@@ -148,7 +148,7 @@
     <value>Preview a Markdown document with a GitHub-like render</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Markdown Preview</value>
+    <value>Xem trước Markdown</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>MD</value>
