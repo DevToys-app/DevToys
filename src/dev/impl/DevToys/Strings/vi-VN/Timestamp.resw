@@ -121,43 +121,43 @@
     <value>Timestamp converter tool</value>
   </data>
   <data name="TimeZoneTitle" xml:space="preserve">
-    <value>Time zone</value>
+    <value>Múi giờ</value>
   </data>
   <data name="DaylightSavingTime" xml:space="preserve">
-    <value>Daylight saving time.</value>
+    <value>Giờ tiết kiệm ánh sáng ban ngày.</value>
   </data>
   <data name="DayTitle" xml:space="preserve">
-    <value>Day</value>
+    <value>Ngày</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Convert timestamp to human-readable date and vice versa</value>
   </data>
   <data name="DisabledDaylightSavingTime" xml:space="preserve">
-    <value>There is no daylight saving time.</value>
+    <value>Không có giờ tiết kiệm ánh sáng ban ngày.</value>
   </data>
   <data name="DSTAmbiguousTime" xml:space="preserve">
     <value>DST Ambiguous time.</value>
   </data>
   <data name="HourTitle" xml:space="preserve">
-    <value>Hour (24 hour)</value>
+    <value>Giờ (24 giờ)</value>
   </data>
   <data name="InvalidValue" xml:space="preserve">
-    <value>Invalid value</value>
+    <value>Giá trị không hợp lệ</value>
   </data>
   <data name="LocalDateTime" xml:space="preserve">
-    <value>Local Date and Time</value>
+    <value>Ngày và Giờ địa phương</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Timestamp</value>
   </data>
   <data name="MinutesTitle" xml:space="preserve">
-    <value>Minutes</value>
+    <value>Phút</value>
   </data>
   <data name="MonthTitle" xml:space="preserve">
-    <value>Month</value>
+    <value>Tháng</value>
   </data>
   <data name="OffsetTitle" xml:space="preserve">
-    <value>Offset</value>
+    <value>Chênh lệch</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Unix Timestamp Converter</value>
@@ -167,7 +167,7 @@
     <comment>Alternative search keywords. Enables searching for words that are not included in Description, MenuDisplayName, and SearchDisplayName.</comment>
   </data>
   <data name="SecondsTitle" xml:space="preserve">
-    <value>Seconds</value>
+    <value>Giây</value>
   </data>
   <data name="SupportsDaylightSavingTime" xml:space="preserve">
     <value>There is daylight saving time.</value>
@@ -176,15 +176,15 @@
     <value>Timestamp</value>
   </data>
   <data name="UTCDateTime" xml:space="preserve">
-    <value>UTC Date and Time</value>
+    <value>Ngày và Giờ gốc UTC</value>
   </data>
   <data name="UtcTicksTitle" xml:space="preserve">
     <value>UtcTicks</value>
   </data>
   <data name="YearTitle" xml:space="preserve">
-    <value>Year</value>
+    <value>Năm</value>
   </data>
   <data name="Now" xml:space="preserve">
-    <value>Now</value>
+    <value>Bây giờ</value>
   </data>
 </root>

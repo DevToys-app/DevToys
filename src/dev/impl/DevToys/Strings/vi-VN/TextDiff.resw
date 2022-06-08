@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Text comparer tool</value>
+    <value>Công cụ so sánh văn bản</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Cấu hình</value>
   </data>
   <data name="Difference" xml:space="preserve">
-    <value>Difference</value>
+    <value>Khác biệt</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Text Diff</value>
@@ -133,16 +133,16 @@
     <value>Inline mode</value>
   </data>
   <data name="LeftText" xml:space="preserve">
-    <value>Old text</value>
+    <value>Văn bản cũ</value>
   </data>
   <data name="RightText" xml:space="preserve">
-    <value>New text</value>
+    <value>Văn bản mới</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Compare two texts</value>
+    <value>So sánh hai văn bản</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Text Comparer</value>
+    <value>So sánh Văn bản</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>

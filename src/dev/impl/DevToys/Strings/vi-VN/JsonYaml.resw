@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>JSON to YAML and YAML to JSON converter tool</value>
+    <value>Công cụ chuyển đổi JSON sang YAML và YAML sang JSON</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Cấu hình</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Select which conversion mode you want to use</value>
+    <value>Chọn chế độ chuyển đổi bạn muốn sử dụng</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Conversion</value>
+    <value>Chuyển đổi</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>JSON &lt;&gt; YAML</value>
@@ -136,31 +136,31 @@
     <value>4 spaces</value>
   </data>
   <data name="Indentation" xml:space="preserve">
-    <value>Indentation</value>
+    <value>Thụt lề</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>Đầu vào</value>
   </data>
   <data name="InvalidYaml" xml:space="preserve">
-    <value>The entered YAML is invalid.</value>
+    <value>Đoạn YAML nhập vào không hợp lệ.</value>
   </data>
   <data name="JsonToYaml" xml:space="preserve">
-    <value>JSON to YAML</value>
+    <value>JSON sang YAML</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>Đầu ra</value>
   </data>
   <data name="TwoSpaces" xml:space="preserve">
     <value>2 spaces</value>
   </data>
   <data name="YamlToJson" xml:space="preserve">
-    <value>YAML to JSON</value>
+    <value>YAML sang JSON</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Convert JSON data to YAML and vice versa</value>
+    <value>Chuyển đổi dữ liệu JSON sang YAML và ngược lại</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>JSON &lt;&gt; YAML Converter</value>
+    <value>Bộ chuyển đổi JSON &lt;&gt; YAML</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>

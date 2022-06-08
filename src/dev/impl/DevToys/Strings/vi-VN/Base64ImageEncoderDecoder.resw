@@ -121,13 +121,13 @@
     <value>Base64 Image Encoder and Decoder tool</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Base64 Image</value>
+    <value>Hình ảnh Base64</value>
   </data>
   <data name="Base64InputTitle" xml:space="preserve">
     <value>Base64</value>
   </data>
   <data name="ImageInputTitle" xml:space="preserve">
-    <value>Image</value>
+    <value>Hình ảnh</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Encode and decode Base64 image data</value>
