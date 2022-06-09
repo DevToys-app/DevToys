@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Timestamp converter tool</value>
+    <value>Công cụ chuyển đổi mốc thời gian</value>
   </data>
   <data name="TimeZoneTitle" xml:space="preserve">
     <value>Múi giờ</value>
@@ -130,7 +130,7 @@
     <value>Ngày</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Convert timestamp to human-readable date and vice versa</value>
+    <value>Chuyển đổi mốc thời gian sang dạng đọc được bởi con người và ngược lại</value>
   </data>
   <data name="DisabledDaylightSavingTime" xml:space="preserve">
     <value>Không có giờ tiết kiệm ánh sáng ban ngày.</value>
@@ -148,7 +148,7 @@
     <value>Ngày và Giờ địa phương</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Timestamp</value>
+    <value>Mốc thời gian</value>
   </data>
   <data name="MinutesTitle" xml:space="preserve">
     <value>Phút</value>
@@ -160,7 +160,7 @@
     <value>Chênh lệch</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Unix Timestamp Converter</value>
+    <value>Chuyển đổi Mốc thời gian Unix</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>Time Date Timezone Epoch</value>
@@ -173,7 +173,7 @@
     <value>There is daylight saving time.</value>
   </data>
   <data name="TimestampTitle" xml:space="preserve">
-    <value>Timestamp</value>
+    <value>Mốc thời gian</value>
   </data>
   <data name="UTCDateTime" xml:space="preserve">
     <value>Ngày và Giờ gốc UTC</value>
