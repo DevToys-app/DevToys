@@ -166,7 +166,7 @@
     <value>Phải Sang Trái</value>
   </data>
   <data name="RightToLeftDescription" xml:space="preserve">
-    <value>Specifies that the search will be from right to left instead of from left to right.</value>
+    <value>Cho biết việc tìm kiếm sẽ được thực hiện từ phải qua trái thay vì từ trái qua phải.</value>
   </data>
   <data name="Singleline" xml:space="preserve">
     <value>Singleline</value>
@@ -178,7 +178,7 @@
     <value>Văn bản</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Validate and test regular expressions</value>
+    <value>Xác thực và kiểm tra các biểu thức chính quy</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Kiểm tra Biểu thức Chính quy</value>
