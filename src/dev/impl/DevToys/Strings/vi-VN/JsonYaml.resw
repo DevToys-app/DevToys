@@ -160,7 +160,7 @@
     <value>Chuyển đổi dữ liệu JSON sang YAML và ngược lại</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Bộ chuyển đổi JSON &lt;&gt; YAML</value>
+    <value>Chuyển đổi JSON &lt;&gt; YAML</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
