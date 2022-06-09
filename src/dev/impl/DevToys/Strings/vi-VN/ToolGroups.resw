@@ -130,10 +130,10 @@
     <value>Bộ Mã hóa / Giải mã</value>
   </data>
   <data name="FormattersAccessibleName" xml:space="preserve">
-    <value>Formatters</value>
+    <value>Bộ định dạng</value>
   </data>
   <data name="FormattersDisplayName" xml:space="preserve">
-    <value>Formatters</value>
+    <value>Bộ định dạng</value>
   </data>
   <data name="GeneratorsAccessibleName" xml:space="preserve">
     <value>Generators</value>
