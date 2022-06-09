@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ConvertersAccessibleName" xml:space="preserve">
-    <value>Converters</value>
+    <value>Chuyển đổi</value>
   </data>
   <data name="ConvertersDisplayName" xml:space="preserve">
-    <value>Converters</value>
+    <value>Chuyển đổi</value>
   </data>
   <data name="EncodersDecodersAccessibleName" xml:space="preserve">
     <value>Encoders and decoders</value>
