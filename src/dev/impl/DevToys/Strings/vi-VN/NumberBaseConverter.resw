@@ -118,52 +118,52 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Number Base Converter tool</value>
+    <value>Công cụ Chuyển đổi Hệ cơ số</value>
   </data>
   <data name="BinaryLabel" xml:space="preserve">
-    <value>Binary</value>
+    <value>Nhị phân</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
     <value>Cấu hình</value>
   </data>
   <data name="DecimalLabel" xml:space="preserve">
-    <value>Decimal</value>
+    <value>Thập phân</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Number Base</value>
+    <value>Hệ cơ số</value>
   </data>
   <data name="Format" xml:space="preserve">
     <value>Định dạng số</value>
   </data>
   <data name="HexadecimalLabel" xml:space="preserve">
-    <value>Hexadecimal</value>
+    <value>Thập lục phân</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>Đầu vào</value>
   </data>
   <data name="InputTypeBinary" xml:space="preserve">
-    <value>Binary</value>
+    <value>Nhị phân</value>
   </data>
   <data name="InputTypeDecimal" xml:space="preserve">
-    <value>Decimal</value>
+    <value>Số thập phân - Cơ số 10</value>
   </data>
   <data name="InputTypeDescription" xml:space="preserve">
-    <value>Select which input type you want to use</value>
+    <value>Chọn chế độ đầu vào bạn muốn sử dụng</value>
   </data>
   <data name="InputTypeHexadecimal" xml:space="preserve">
-    <value>Hexadecimal</value>
+    <value>Thập lục phân</value>
   </data>
   <data name="InputTypeOctal" xml:space="preserve">
-    <value>Octal</value>
+    <value>Bát phân</value>
   </data>
   <data name="InputTypeTitle" xml:space="preserve">
     <value>Loại đầu vào</value>
   </data>
   <data name="OctalLabel" xml:space="preserve">
-    <value>Octal</value>
+    <value>Bát phân</value>
   </data>
   <data name="ValueInvalid" xml:space="preserve">
-    <value>Giá trị hiện tại không hợp lệ cho {0}</value>
+    <value>Giá trị hiện tại không phải là {0} hợp lệ</value>
     <comment>The parameter is the Base Number Type (Decimal, Octal, ...)</comment>
   </data>
   <data name="ValueOverflow" xml:space="preserve">
@@ -171,33 +171,33 @@
     <comment>The parameter is the Max value of a long</comment>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Convert numbers from one base to another</value>
+    <value>Chuyển đổi qua lại hệ cơ số của các số</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Number Base Converter</value>
+    <value>Chuyển đổi Hệ cơ số</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Binary Octal Decimal Hexadecimal</value>
+    <value>Binary Octal Decimal Hexadecimal Nhị phân Bát phân Thập phân Thập lục phân</value>
   </data>
   <data name="AdvancedModeLabel" xml:space="preserve">
     <value>Chế độ nâng cao</value>
   </data>
   <data name="InputDictionaryLabel" xml:space="preserve">
-    <value>Input dictionary</value>
+    <value>Từ điển chứa tất cả ký tự đầu vào</value>
   </data>
   <data name="OutputDictionaryLabel" xml:space="preserve">
-    <value>Output dictionary</value>
+    <value>Từ điển chứa tất cả ký tự đầu ra</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Đầu ra</value>
   </data>
   <data name="BaseNumberError" xml:space="preserve">
-    <value>Base number should be greater than 1.</value>
+    <value>Hệ cơ số cần lớn hơn 1.</value>
   </data>
   <data name="DictionarySizeError" xml:space="preserve">
-    <value>Dictionary size should be greater than 1.</value>
+    <value>Kích thước từ điển cần lớn hơn 1.</value>
   </data>
   <data name="IncompatibleBaseDictionaryError" xml:space="preserve">
-    <value>Dictionary size could not be smaller than the base number.</value>
+    <value>Kích thước từ điển không thể nhỏ hơn hệ cơ số.</value>
   </data>
 </root>
