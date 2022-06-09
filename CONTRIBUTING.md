@@ -21,6 +21,20 @@ You can contribute to DevToys app by:
 
 # Internationalization and localization
 
+There are two possibilities offered:
+
+## Use Crowdin (preferred)
+
+* Go on [DevToy's Crowdin project](https://crowdin.com/project/devtoys). Crowdin is a localization management platform that helps individuals to translate a project without having to be familiar with its repository.
+* Log in or create an account. Join the DevToys project.
+* Select the language of your choice in the list of existing supported language and let yourself guided by the website to translate the app.
+* If you want to add a new language, please create a new discussion on Crowdin's website or on GitHub. We will be happy to add your language to the list.
+* When your translation is done, it will be synchronized with our GitHub repository within 1 hour and create a pull request.
+
+## Change yourself the translations in repository
+
+This approach is more complex but has the advantage that it allows you to test your changes on your local machine.
+
 * After following `How to Build and Run DevToys from source`, close Visual Studio, if any instance is running.
 * In File Explorer, copy the folder `dev/impl/DevToys/Strings/en-US` and rename the copied folder with the language indication of your choice. For example, "fr-FR" for French (France).
 * Open `src/DevToys.sln` with Visual Studio.

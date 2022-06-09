@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -120,11 +120,23 @@
   <data name="AccessibleName" xml:space="preserve">
     <value>타임스탬프 변환기</value>
   </data>
+  <data name="TimeZoneTitle" xml:space="preserve">
+    <value>시간대</value>
+  </data>
+  <data name="DaylightSavingTime" xml:space="preserve">
+    <value>일광 절약 시간</value>
+  </data>
   <data name="DayTitle" xml:space="preserve">
     <value>일</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>타임스탬프를 읽기 쉬운 날짜로 변환하거나 반대로 변환합니다.</value>
+  </data>
+  <data name="DisabledDaylightSavingTime" xml:space="preserve">
+    <value>일광 절약 시간 없음</value>
+  </data>
+  <data name="DSTAmbiguousTime" xml:space="preserve">
+    <value>DST 시간이 애매합니다.</value>
   </data>
   <data name="HourTitle" xml:space="preserve">
     <value>시 (24 시간제)</value>
@@ -144,15 +156,21 @@
   <data name="MonthTitle" xml:space="preserve">
     <value>월</value>
   </data>
+  <data name="OffsetTitle" xml:space="preserve">
+    <value>오프셋</value>
+  </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Unix 타임스탬프 변환기</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Time Date Timezone Epoch</value>
+    <value>시간 날짜 시간대</value>
     <comment>Alternative search keywords. Enables searching for words that are not included in Description, MenuDisplayName, and SearchDisplayName.</comment>
   </data>
   <data name="SecondsTitle" xml:space="preserve">
     <value>초</value>
+  </data>
+  <data name="SupportsDaylightSavingTime" xml:space="preserve">
+    <value>일광 절약 시간 적용됨</value>
   </data>
   <data name="TimestampTitle" xml:space="preserve">
     <value>타임스탬프</value>
@@ -160,7 +178,13 @@
   <data name="UTCDateTime" xml:space="preserve">
     <value>UTC 날짜 및 시간</value>
   </data>
+  <data name="UtcTicksTitle" xml:space="preserve">
+    <value>UtcTicks</value>
+  </data>
   <data name="YearTitle" xml:space="preserve">
     <value>년</value>
+  </data>
+  <data name="Now" xml:space="preserve">
+    <value>지금</value>
   </data>
 </root>

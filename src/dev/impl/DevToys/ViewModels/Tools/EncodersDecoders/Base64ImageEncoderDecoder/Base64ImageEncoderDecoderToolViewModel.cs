@@ -5,9 +5,7 @@ using System.Collections.Generic;
 using System.Composition;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using DevToys.Api.Core;
@@ -19,11 +17,8 @@ using DevToys.Shared.Core.Threading;
 using DevToys.Views.Tools.Base64ImageEncoderDecoder;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
-using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.Streams;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
 
 namespace DevToys.ViewModels.Tools.Base64ImageEncoderDecoder
 {
@@ -44,7 +39,6 @@ namespace DevToys.ViewModels.Tools.Base64ImageEncoderDecoder
         private readonly object _lockObject = new();
         private readonly List<string> _tempFileNames = new();
         private readonly IMarketingService _marketingService;
-        private readonly ISettingsProvider _settingsProvider;
 
         private CancellationTokenSource? _cancellationTokenSource;
         private string? _base64Data;
@@ -54,6 +48,8 @@ namespace DevToys.ViewModels.Tools.Base64ImageEncoderDecoder
         public Type View { get; } = typeof(Base64ImageEncoderDecoderToolPage);
 
         internal Base64ImageEncoderDecoderStrings Strings => LanguageManager.Instance.Base64ImageEncoderDecoder;
+
+        internal MockSettingsProvider MockSettingsProvider { get; }
 
         internal string? Base64Data
         {
@@ -88,7 +84,7 @@ namespace DevToys.ViewModels.Tools.Base64ImageEncoderDecoder
         [ImportingConstructor]
         public Base64ImageEncoderDecoderToolViewModel(ISettingsProvider settingsProvider, IMarketingService marketingService)
         {
-            _settingsProvider = settingsProvider;
+            MockSettingsProvider = new MockSettingsProvider(settingsProvider);
             _marketingService = marketingService;
 
             FilesSelectedCommand = new RelayCommand<StorageFile[]>(ExecuteFilesSelectedCommand);

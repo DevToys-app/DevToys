@@ -16,7 +16,8 @@
     xmlns:viewmanagement="using:Windows.UI.ViewManagement"
     mc:Ignorable="d"
     NavigationCacheMode="Enabled"
-    muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
+    muxc:BackdropMaterial.ApplyToRootOrPageBackground="True"
+    FlowDirection="{Binding Instance.FlowDirection, Source={StaticResource LanguageManager}}">
     <Page.Resources>
         <converters:DoubleToGridLengthConverter x:Key="DoubleToGridLengthConverter"/>
         <converters:BooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" IsInverted="True"/>
@@ -38,7 +39,8 @@
                         <Setter Target="NonCompactOverlayButton.Visibility" Value="Visible" />
                         <Setter Target="NavigationView.AlwaysShowHeader" Value="False" />
                         <Setter Target="NavigationView.IsPaneVisible" Value="False" />
-                        <Setter Target="ScrollViewerContent.Margin" Value="12,36,12,0"/>
+                        <Setter Target="ScrollViewerContent.Margin" Value="12,0,12,0"/>
+                        <Setter Target="ContentRootScrollViewer.Margin" Value="0,36,0,0"/>
                         <Setter Target="ContentFrame.Padding" Value="0,0,0,0"/>
                         <Setter Target="HeaderTextBlock.Visibility" Value="Collapsed" />
                         <Setter Target="AppTitleLeftBorder.Width" Value="16" />
@@ -55,7 +57,8 @@
                 </VisualState>
                 <VisualState x:Name="NavigationViewMinimal">
                     <VisualState.Setters>
-                        <Setter Target="ScrollViewerContent.Margin" Value="12,48,12,0"/>
+                        <Setter Target="ContentRootScrollViewer.Margin" Value="0,48,0,0"/>
+                        <Setter Target="ScrollViewerContent.Margin" Value="12,0,12,0"/>
                         <Setter Target="ContentFrame.Padding" Value="0,12,0,0"/>
                     </VisualState.Setters>
                 </VisualState>
@@ -317,6 +320,7 @@
             </muxc:NavigationView.MenuItemTemplateSelector>
 
             <ScrollViewer
+                x:Name="ContentRootScrollViewer"
                 HorizontalScrollMode="Disabled"
                 VerticalScrollMode="{x:Bind ViewModel.SelectedMenuItem.Metadata.NotScrollable, Mode=OneWay, Converter={StaticResource BooleanToScrollModeConverter}}">
                 <Grid

@@ -86,7 +86,7 @@
             <Button
                 x:Name="CopyButton"
                 x:DeferLoadStrategy="Lazy"
-                TabIndex="2"
+                TabIndex="{x:Bind IsReadOnly, Mode=OneWay, Converter={StaticResource ReadOnlyToClearButtonTabIndexConverter}}"
                 Visibility="Collapsed"
                 AutomationProperties.Name="{Binding Instance.Common.Copy, Mode=OneTime, Source={StaticResource LanguageManager}}"
                 Click="CopyButton_Click">
@@ -134,7 +134,7 @@
                 SelectionChanged="TextBox_SelectionChanged"
                 CopyingToClipboard="TextBox_CopyingToClipboard"
                 CuttingToClipboard="TextBox_CuttingToClipboard"
-                AutomationProperties.LabeledBy="{Binding ElementName=HeaderTextBlock}"/>
+                AutomationProperties.LabeledBy="{Binding ElementName=HeaderTextBlock}" Loading="TextBox_Loading" />
             <RichEditBox
                 x:Name="RichEditBox"
                 x:Load="{x:Bind IsRichTextEdit}"

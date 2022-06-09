@@ -36,6 +36,7 @@
     <Compile Include="Helpers\HashingHelper.cs" />
     <Compile Include="Helpers\NumberBaseHelper.cs" />
     <Compile Include="Helpers\StringManipulationHelper.cs" />
+    <Compile Include="Helpers\TimestampToolHelper.cs" />
     <Compile Include="Helpers\XmlHelper.cs" />
     <Compile Include="Helpers\SqlFormatter\Core\Formatter.cs" />
     <Compile Include="Helpers\SqlFormatter\Core\Indentation.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="ViewModels\Tools\Converters\Timestamp\TimestampToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\Base64ImageEncoderDecoder\Base64ImageEncoderDecoderToolProvider.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\Base64ImageEncoderDecoder\Base64ImageEncoderDecoderToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\Base64ImageEncoderDecoder\MockSettingsProvider.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolProvider.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolViewModel.cs" />
     <Compile Include="Helpers\JsonYaml\Core\DecimalJsonConverter.cs" />
