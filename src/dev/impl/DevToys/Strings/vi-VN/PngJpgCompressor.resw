@@ -155,7 +155,7 @@
     <value>Xem chi tiết</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Lossless PNG and JPEG optimizer</value>
+    <value>Tối ưu PNG và JPEG không mất mát dữ liệu</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Bộ nén PNG / JPEG</value>
