@@ -154,7 +154,7 @@
     <value>Định dạng XML</value>
   </data>
   <data name="NewLineOnAttributesName" xml:space="preserve">
-    <value>Put attributes on new line</value>
+    <value>Cho các thuộc tính attribute ở dòng mới</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
