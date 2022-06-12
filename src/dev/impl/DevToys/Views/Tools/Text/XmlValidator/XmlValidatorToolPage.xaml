@@ -39,7 +39,6 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition x:Name="InputGridRow" MinHeight="200"/>
             <RowDefinition x:Name="HorizontalGridSplitterRow" Height="16"/>
-            <RowDefinition x:Name="ValidationBtnRow" Height="Auto" MinHeight="70"/>
             <RowDefinition x:Name="ValidationResultRow" Height="Auto" MinHeight="70"/>
         </Grid.RowDefinitions>
 
@@ -77,27 +76,8 @@
                 SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
                 Text="{x:Bind ViewModel.XmlData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
-
-        <Grid Grid.Row="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            
-            <Button
-                Margin="10"
-                MinHeight="48"
-                Grid.Column="1"
-                AutomationProperties.Name="{Binding Instance.XmlValidator.Validate, Mode=OneTime, Source={StaticResource LanguageManager}}"
-                Click="ValidateButton_Click">
-                <StackPanel Orientation="Horizontal" Spacing="4">
-                    <FontIcon Glyph="&#xF2D5;"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Binding Instance.XmlValidator.Validate, Mode=OneTime, Source={StaticResource LanguageManager}}"/>
-                </StackPanel>
-            </Button>
-        </Grid>
         
-        <Grid Grid.Row="4" MaxHeight="300" Visibility="Collapsed" x:Name="ValidationResult">
+        <Grid Grid.Row="3" MaxHeight="300" Visibility="Collapsed" x:Name="ValidationResult">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.1*"/>
                 <ColumnDefinition Width="0.2*"/>

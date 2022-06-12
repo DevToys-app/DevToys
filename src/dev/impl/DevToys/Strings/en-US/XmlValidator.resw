@@ -144,9 +144,6 @@
   <data name="SearchKeywords" xml:space="preserve">
     <value />
   </data>
-  <data name="Validate" xml:space="preserve">
-    <value>Validate</value>
-  </data>
   <data name="ValidationImpossibleMsg" xml:space="preserve">
     <value>XML and XSD content must be set in order to perform a validation.</value>
   </data>
