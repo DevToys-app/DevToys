@@ -7,8 +7,14 @@
     xmlns:controls="using:DevToys.UI.Controls"
     xmlns:ex="using:DevToys.UI.Extensions"
     xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:converters="using:DevToys.UI.Converters"
     mc:Ignorable="d"
     NavigationCacheMode="Required">
+    
+    <Page.Resources>
+        <converters:NullToBooleanConverter x:Name="NullToVisible" IsInverted="True"/>
+    </Page.Resources>
 
     <Grid Margin="0,0,0,16">
         <VisualStateManager.VisualStateGroups>
@@ -36,13 +42,11 @@
         </Grid.ChildrenTransitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition x:Name="InputGridRow" MinHeight="200"/>
-            <RowDefinition x:Name="HorizontalGridSplitterRow" Height="16"/>
-            <RowDefinition x:Name="ValidationResultRow" Height="Auto" MinHeight="70"/>
+            <RowDefinition Height="Auto" MinHeight="70"/>
         </Grid.RowDefinitions>
 
-        <Grid x:Name="InputGrid" Grid.Row="1">
+        <Grid Row="0" x:Name="InputGrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition MinWidth="150"/>
                 <ColumnDefinition Width="16"/>
@@ -54,7 +58,8 @@
                 MinHeight="200"
                 Header="{x:Bind ViewModel.Strings.XsdScheme}"
                 SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
-                Text="{x:Bind ViewModel.XsdSchema, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{x:Bind ViewModel.XsdSchema, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                CodeLanguage="xml"/>
 
             <toolkit:GridSplitter
                 Grid.Column="1"
@@ -74,27 +79,17 @@
                 MinHeight="200"
                 Header="{x:Bind ViewModel.Strings.XmlData}"
                 SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
-                Text="{x:Bind ViewModel.XmlData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{x:Bind ViewModel.XmlData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                CodeLanguage="xml"/>
         </Grid>
         
-        <Grid Grid.Row="3" MaxHeight="300" Visibility="Collapsed" x:Name="ValidationResult">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.1*"/>
-                <ColumnDefinition Width="0.2*"/>
-                <ColumnDefinition Width="0.5*"/>
-                <ColumnDefinition Width="0.2*"/>
-            </Grid.ColumnDefinitions>
-            
-            <Image x:Name="ResultIcon" Grid.Column="1" Width="200" Height="200" />
-            <TextBox
-                ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                ScrollViewer.VerticalScrollBarVisibility="Auto"
-                Grid.Column="2"
-                x:Name="ValidationMessages"
-                TextWrapping="NoWrap"
-                AcceptsReturn="True"
-                IsReadOnly="True"
-            />
-        </Grid>
+        <muxc:InfoBar 
+            Grid.Row="1"
+            Margin="0 20 0 0"
+            Severity="{Binding Severity}"
+            Message="{Binding Message, Mode=OneWay}"
+            IsOpen="{Binding Mode=OneWay, Converter={StaticResource NullToVisible}}"
+            DataContext="{x:Bind ViewModel.ValidationResult, Mode=OneWay}"
+            IsClosable="False"/>
     </Grid>
 </Page>

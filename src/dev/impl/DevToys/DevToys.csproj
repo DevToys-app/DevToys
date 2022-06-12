@@ -71,6 +71,7 @@
     <Compile Include="Models\HashingAlgorithm.cs" />
     <Compile Include="Models\HashingAlgorithmDisplayPair.cs" />
     <Compile Include="Models\HashingProgress.cs" />
+    <Compile Include="Models\InfoBarData.cs" />
     <Compile Include="Models\NumberBaseDictionary.cs" />
     <Compile Include="Models\SqlLanguageDisplayPair.cs" />
     <Compile Include="Models\NoResultFoundMockToolProvider.cs" />
