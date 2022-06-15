@@ -121,10 +121,10 @@
     <value>Giới thiệu</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>Chủ đề ứng dụng</value>
+    <value>Chủ đề Ứng dụng</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>Select which app theme to display</value>
+    <value>Chọn chủ đề ứng dụng để hiển thị</value>
   </data>
   <data name="AppTitle" xml:space="preserve">
     <value>DevToys</value>

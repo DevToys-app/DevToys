@@ -202,7 +202,7 @@
     <value>Không thể mở tệp này</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>Unable to load the file '{0}'. Only textual files can be opened. For more details, please check the log.</value>
+    <value>Không thể mở tệp '{0}'. Chỉ các tệp văn bản mới dùng được. Để biết thêm, vui lòng kiểm tra lịch sử hệ thống chứa trong log.</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>Hoàn tác</value>

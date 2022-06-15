@@ -124,10 +124,10 @@
     <value>Cấu hình</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generate Lorem Ipsum placeholder text</value>
+    <value>Tạo ra văn bản giả Lorem Ipsum</value>
   </data>
   <data name="LengthDescription" xml:space="preserve">
-    <value>Number of words, sentences or paragraphs to generate</value>
+    <value>Số lượng từ, câu hoặc đoạn văn sẽ tạo ra</value>
   </data>
   <data name="LengthTitle" xml:space="preserve">
     <value>Độ dài</value>

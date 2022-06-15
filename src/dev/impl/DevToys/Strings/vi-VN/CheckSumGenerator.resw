@@ -139,7 +139,7 @@
     <value>Đầu vào</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Checksum</value>
+    <value>Mã Checksum</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Đầu ra</value>
