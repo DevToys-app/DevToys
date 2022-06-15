@@ -166,6 +166,6 @@
     <value>Chế độ HMAC</value>
   </data>
   <data name="SecretKey" xml:space="preserve">
-    <value>Secret Key</value>
+    <value>Khóa bí mật - Secret Key</value>
   </data>
 </root>

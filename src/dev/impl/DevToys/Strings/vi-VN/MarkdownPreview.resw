@@ -142,10 +142,10 @@
     <value>Chủ đề</value>
   </data>
   <data name="ThemeDescription" xml:space="preserve">
-    <value>Select which theme to use to preview the Markdown</value>
+    <value>Chọn chủ đề dùng để xem trước văn bản Markdown</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Preview a Markdown document with a GitHub-like render</value>
+    <value>Xem trước một tài liệu Markdown sử dụng bộ thông dịch giống GitHub</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Xem trước Markdown</value>

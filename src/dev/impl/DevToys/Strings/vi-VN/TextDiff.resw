@@ -127,10 +127,10 @@
     <value>Khác biệt</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Text Diff</value>
+    <value>Tìm Khác biệt Văn bản</value>
   </data>
   <data name="InlineDifference" xml:space="preserve">
-    <value>Inline mode</value>
+    <value>Chế độ hiển thị gộp - Inline mode</value>
   </data>
   <data name="LeftText" xml:space="preserve">
     <value>Văn bản cũ</value>
