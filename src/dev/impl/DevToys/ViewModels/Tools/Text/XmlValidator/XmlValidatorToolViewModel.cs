@@ -17,11 +17,12 @@ namespace DevToys.ViewModels.Tools.XmlValidator
     [Export(typeof(XmlValidatorToolViewModel))]
     public class XmlValidatorToolViewModel : ObservableRecipient, IToolViewModel
     {
+        private readonly XmlValidatorStrings _localizedStrings;
+        
         private string? _xsdSchemaData;
         private string? _xmlData;
         private XmlParsingResult? _parsedXml;
         private XsdParsingResult? _parsedXsdScheme;
-        private readonly XmlValidatorStrings _localizedStrings;
         private InfoBarData? _validationResult;
 
         internal ISettingsProvider SettingsProvider { get; }
