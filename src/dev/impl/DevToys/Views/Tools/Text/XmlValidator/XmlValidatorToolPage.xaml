@@ -16,7 +16,7 @@
         <converters:NullToBooleanConverter x:Name="NullToVisible" IsInverted="True"/>
     </Page.Resources>
 
-    <Grid Margin="0,0,0,16">
+    <Grid Margin="0,0,0,16" RowSpacing="12">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState>
@@ -24,12 +24,17 @@
                         <ex:IsCompactOverlayModeTrigger TargetElement="{x:Bind}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="OutputGridSplitter.Visibility" Value="Collapsed"/>
-                        <Setter Target="InputGrid.Visibility" Value="Collapsed" />
-                        <Setter Target="InputGridRow.MinHeight" Value="0" />
-                        <Setter Target="HorizontalGridSplitterRow.Height" Value="0" />
-                        <Setter Target="ValidationBtnRow.Height" Value="180"/>
-                        <Setter Target="ValidationResultRow.Height" Value="180"/>
+                        <Setter Target="SettingsStackPanel.Visibility" Value="Collapsed"/>
+                        <Setter Target="VerticalGridSplitter.Visibility" Value="Collapsed"/>
+                        <Setter Target="HorizontalGridSplitter.Visibility" Value="Visible"/>
+                        <Setter Target="XsdEditor.(Grid.Row)" Value="0" />
+                        <Setter Target="XsdEditor.(Grid.RowSpan)" Value="1" />
+                        <Setter Target="XsdEditor.(Grid.Column)" Value="0" />
+                        <Setter Target="XsdEditor.(Grid.ColumnSpan)" Value="3" />
+                        <Setter Target="XmlEditor.(Grid.Row)" Value="2" />
+                        <Setter Target="XmlEditor.(Grid.RowSpan)" Value="1" />
+                        <Setter Target="XmlEditor.(Grid.Column)" Value="0" />
+                        <Setter Target="XmlEditor.(Grid.ColumnSpan)" Value="3" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -42,31 +47,41 @@
         </Grid.ChildrenTransitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition x:Name="InputGridRow" MinHeight="200"/>
-            <RowDefinition Height="Auto" MinHeight="70"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Grid Row="0" x:Name="InputGrid">
+        <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition MinWidth="150"/>
+                <ColumnDefinition MinWidth="100"/>
                 <ColumnDefinition Width="16"/>
-                <ColumnDefinition MinWidth="150"/>
+                <ColumnDefinition MinWidth="100"/>
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition MinHeight="100"/>
+                <RowDefinition Height="16"/>
+                <RowDefinition MinHeight="100"/>
+            </Grid.RowDefinitions>
 
             <controls:CodeEditor
+                x:Name="XsdEditor"
                 Grid.Column="0"
-                MinHeight="200"
+                Grid.Row="0"
+                Grid.RowSpan="3"
                 Header="{x:Bind ViewModel.Strings.XsdScheme}"
                 SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
                 Text="{x:Bind ViewModel.XsdSchema, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 CodeLanguage="xml"/>
 
             <toolkit:GridSplitter
+                x:Name="VerticalGridSplitter"
                 Grid.Column="1"
+                Grid.Row="0"
+                Grid.RowSpan="3"
                 Width="16"
                 Margin="0,42,0,0"
                 ResizeBehavior="BasedOnAlignment"
-                ResizeDirection="Auto">
+                ResizeDirection="Columns">
                 <toolkit:GridSplitter.Element>
                     <FontIcon
                         Glyph="&#xFD55;"
@@ -74,9 +89,27 @@
                 </toolkit:GridSplitter.Element>
             </toolkit:GridSplitter>
 
+            <toolkit:GridSplitter
+                x:Name="HorizontalGridSplitter"
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Height="16"
+                ResizeBehavior="BasedOnAlignment"
+                ResizeDirection="Rows"
+                Visibility="Collapsed">
+                    <toolkit:GridSplitter.Element>
+                        <FontIcon
+                        Glyph="&#xFD52;"
+                        FontSize="13"/>
+                    </toolkit:GridSplitter.Element>
+            </toolkit:GridSplitter>
+
             <controls:CodeEditor
+                x:Name="XmlEditor"
                 Grid.Column="2"
-                MinHeight="200"
+                Grid.Row="0"
+                Grid.RowSpan="3"
                 Header="{x:Bind ViewModel.Strings.XmlData}"
                 SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
                 Text="{x:Bind ViewModel.XmlData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
