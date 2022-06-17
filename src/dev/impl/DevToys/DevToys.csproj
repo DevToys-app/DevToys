@@ -325,8 +325,6 @@
     <Content Include="Assets\GitHubMarkdownCss\github-markdown.css" />
     <Content Include="Assets\GitHubMarkdownCss\index.html" />
     <Content Include="Assets\Icons\Base64Image.svg" />
-    <Content Include="Assets\Icons\ExclamationMark.svg"/>
-    <Content Include="Assets\Icons\CheckMark.svg"/>
     <Content Include="Assets\Icons\ColorBlindnessSimulator.svg" />
     <Content Include="Assets\Icons\XmlValidator.svg"/>
     <Content Include="Assets\Icons\EncodersDecoders.svg">
