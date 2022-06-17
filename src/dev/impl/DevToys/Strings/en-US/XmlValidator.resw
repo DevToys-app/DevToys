@@ -120,12 +120,6 @@
   <data name="AccessibleName" xml:space="preserve">
     <value>Xml Validator tool</value>
   </data>
-  <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
-  </data>
-  <data name="Difference" xml:space="preserve">
-    <value>Difference</value>
-  </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>XML Validator</value>
   </data>
@@ -142,7 +136,7 @@
     <value>XML Validator</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value />
+    <value>xml, validator</value>
   </data>
   <data name="ValidationImpossibleMsg" xml:space="preserve">
     <value>XML and XSD content must be set in order to perform a validation.</value>

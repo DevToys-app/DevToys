@@ -2983,16 +2983,6 @@ namespace DevToys
         public string AccessibleName => _resources.GetString("AccessibleName");
 
         /// <summary>
-        /// Gets the resource Configuration.
-        /// </summary>
-        public string Configuration => _resources.GetString("Configuration");
-
-        /// <summary>
-        /// Gets the resource Difference.
-        /// </summary>
-        public string Difference => _resources.GetString("Difference");
-
-        /// <summary>
         /// Gets the resource MenuDisplayName.
         /// </summary>
         public string MenuDisplayName => _resources.GetString("MenuDisplayName");
