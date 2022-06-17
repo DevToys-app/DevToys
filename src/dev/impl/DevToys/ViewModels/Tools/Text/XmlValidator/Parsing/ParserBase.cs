@@ -4,7 +4,7 @@ using System.Xml.Schema;
 
 namespace DevToys.ViewModels.Tools.XmlValidator.Parsing
 {
-    public abstract class ParserBase<TResult>
+    internal abstract class ParserBase<TResult>
     {
         protected readonly string Source;
         private readonly List<string> _validationWarnings;
@@ -21,9 +21,9 @@ namespace DevToys.ViewModels.Tools.XmlValidator.Parsing
             _validationErrors = new List<string>();
         }
 
-        public abstract TResult Parse(string content);
+        internal abstract TResult Parse(string content);
 
-        protected void ValidationErrorCallBack(object sender, ValidationEventArgs e)
+        internal void ValidationErrorCallBack(object sender, ValidationEventArgs e)
         {
             string information =
                 FormatErrorMessage(Source, e.Exception.LineNumber, e.Exception.LinePosition, e.Message);
@@ -40,7 +40,7 @@ namespace DevToys.ViewModels.Tools.XmlValidator.Parsing
             }
         }
 
-        protected static string FormatErrorMessage(string source, int lineNumber, int linePosition, string message)
+        internal static string FormatErrorMessage(string source, int lineNumber, int linePosition, string message)
         {
             string information =
                 $"[Source: {source}, line: {lineNumber}, position: {linePosition}]: {message}";

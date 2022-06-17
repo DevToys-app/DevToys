@@ -2,8 +2,8 @@
 
 namespace DevToys.ViewModels.Tools.XmlValidator.Parsing
 {
-    public record XmlParsingResult : ParsingResultBase
+    internal record XmlParsingResult : ParsingResultBase
     {
-        public XDocument? XmlDocument { get; set; }
+        internal XDocument? XmlDocument { get; set; }
     }
 }

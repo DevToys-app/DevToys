@@ -4,16 +4,16 @@ using System.Xml.Schema;
 
 namespace DevToys.ViewModels.Tools.XmlValidator.Parsing
 {
-    public class XmlParser : ParserBase<XmlParsingResult>
+    internal class XmlParser : ParserBase<XmlParsingResult>
     {
         private readonly XmlSchemaSet _xsdSchema;
 
-        public XmlParser(string source, XmlSchemaSet xsdSchema) : base(source)
+        internal XmlParser(string source, XmlSchemaSet xsdSchema) : base(source)
         {
             _xsdSchema = xsdSchema;
         }
 
-        public override XmlParsingResult Parse(string content)
+        internal override XmlParsingResult Parse(string content)
         {
             XDocument xmlFile = new();
             try

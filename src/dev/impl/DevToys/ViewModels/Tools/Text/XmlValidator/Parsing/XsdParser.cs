@@ -4,13 +4,13 @@ using System.Xml.Schema;
 
 namespace DevToys.ViewModels.Tools.XmlValidator.Parsing
 {
-    public class XsdParser : ParserBase<XsdParsingResult>
+    internal class XsdParser : ParserBase<XsdParsingResult>
     {
         public XsdParser(string source) : base(source)
         {
         }
 
-        public override XsdParsingResult Parse(string xsdContent)
+        internal override XsdParsingResult Parse(string xsdContent)
         {
             XmlSchema xmlSchema;
             try

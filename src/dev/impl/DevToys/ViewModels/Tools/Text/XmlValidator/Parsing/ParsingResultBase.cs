@@ -1,8 +1,8 @@
 ﻿namespace DevToys.ViewModels.Tools.XmlValidator.Parsing
 {
-    public record ParsingResultBase
+    internal record ParsingResultBase
     {
-        public bool IsValid { get; set; }
-        public string? ErrorMessage { get; set; }
+        internal bool IsValid { get; set; }
+        internal string? ErrorMessage { get; set; }
     }
 }
