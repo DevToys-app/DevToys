@@ -1,4 +1,6 @@
-﻿using System.Composition;
+﻿# nullable enable
+
+using System.Composition;
 using Windows.UI.Xaml.Controls;
 using DevToys.Api.Tools;
 using DevToys.Core.Threading;
@@ -25,10 +27,6 @@ namespace DevToys.ViewModels.Tools.XmlValidator
         public string AccessibleName => LanguageManager.Instance.XmlValidator.AccessibleName;
 
         public string? SearchKeywords => LanguageManager.Instance.XmlValidator.SearchKeywords;
-
-        public string? XmlData => LanguageManager.Instance.XmlValidator.XmlData;
-
-        public string? XsdScheme => LanguageManager.Instance.XmlValidator.XsdScheme;
 
         public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("XmlValidator.svg");
 

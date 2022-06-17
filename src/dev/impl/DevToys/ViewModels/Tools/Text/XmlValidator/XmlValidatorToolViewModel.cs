@@ -1,4 +1,6 @@
-﻿using System;
+﻿# nullable enable
+
+using System;
 using System.Composition;
 using System.Xml.Schema;
 using DevToys.Api.Core.Settings;
