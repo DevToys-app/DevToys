@@ -63,6 +63,8 @@ namespace DevToys.ViewModels.Tools.XmlValidator
         {
             SettingsProvider = settingsProvider;
             _localizedStrings = new XmlValidatorStrings();
+            
+            DisplayValidationInfoBar();
         }
 
         private void ProcessNewXmlData()
@@ -70,7 +72,7 @@ namespace DevToys.ViewModels.Tools.XmlValidator
             if (string.IsNullOrWhiteSpace(_xmlData))
             {
                 _parsedXml = null;
-                DisplayValidationResult();
+                DisplayValidationInfoBar();
                 return;
             }
             
@@ -78,7 +80,7 @@ namespace DevToys.ViewModels.Tools.XmlValidator
             XmlParser xmlParser = new("XML data", schemaSet);
             _parsedXml = xmlParser.Parse(_xmlData ?? String.Empty);
             
-            DisplayValidationResult();
+            DisplayValidationInfoBar();
         }
 
         private void ProcessNewXsdData()
@@ -86,17 +88,17 @@ namespace DevToys.ViewModels.Tools.XmlValidator
             if (string.IsNullOrWhiteSpace(_xsdSchemaData))
             {
                 _parsedXsdScheme = null;
-                DisplayValidationResult();
+                DisplayValidationInfoBar();
                 return;
             }
             
             XsdParser xsdParser = new("XSD data");
             _parsedXsdScheme = xsdParser.Parse(_xsdSchemaData ?? string.Empty);
             
-            DisplayValidationResult();
+            DisplayValidationInfoBar();
         }
 
-        private void DisplayValidationResult()
+        private void DisplayValidationInfoBar()
         {
             if (_parsedXsdScheme is null || _parsedXml is null)
             {
