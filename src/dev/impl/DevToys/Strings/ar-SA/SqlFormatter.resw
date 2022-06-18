@@ -121,7 +121,7 @@
     <value>SQL Formatter tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>الإعدادات</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>SQL</value>
@@ -133,13 +133,13 @@
     <value>Indentation</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>ادخال</value>
   </data>
   <data name="OneTab" xml:space="preserve">
     <value>1 tab</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>ناتج</value>
   </data>
   <data name="TwoSpaces" xml:space="preserve">
     <value>2 spaces</value>
