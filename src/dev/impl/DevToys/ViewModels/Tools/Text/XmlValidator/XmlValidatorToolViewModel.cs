@@ -45,7 +45,7 @@ namespace DevToys.ViewModels.Tools.XmlValidator
             set
             {
                 ThreadHelper.ThrowIfNotOnUIThread();
-                SetProperty(ref _xmlData, value, broadcast: true);
+                SetProperty(ref _xmlData, value);
                 ProcessNewXmlData();
             }
         }
@@ -109,11 +109,12 @@ namespace DevToys.ViewModels.Tools.XmlValidator
             
             InfoBarSeverity infoBarSeverity;
             string message = _parsedXml.ErrorMessage + Environment.NewLine + _parsedXsdScheme.ErrorMessage;
+            message = message.Trim();
             
             bool wasValidationPerformedWithoutErrors = string.IsNullOrEmpty(_parsedXml.ErrorMessage) &&
                                                        string.IsNullOrEmpty(_parsedXml.ErrorMessage);
             
-            if (!_parsedXml.IsValid || !_parsedXml.IsValid)
+            if (!_parsedXsdScheme.IsValid || !_parsedXml.IsValid)
             {
                 infoBarSeverity = InfoBarSeverity.Error;
             }
