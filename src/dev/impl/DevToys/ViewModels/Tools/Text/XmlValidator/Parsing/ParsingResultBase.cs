@@ -1,4 +1,6 @@
-﻿namespace DevToys.ViewModels.Tools.XmlValidator.Parsing
+﻿#nullable enable
+
+namespace DevToys.ViewModels.Tools.XmlValidator.Parsing
 {
     internal record ParsingResultBase
     {

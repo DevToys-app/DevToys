@@ -1,4 +1,6 @@
-﻿using System.Xml.Linq;
+﻿#nullable enable
+
+using System.Xml.Linq;
 
 namespace DevToys.ViewModels.Tools.XmlValidator.Parsing
 {
