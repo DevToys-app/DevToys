@@ -71,6 +71,7 @@
     <Compile Include="Models\HashingAlgorithm.cs" />
     <Compile Include="Models\HashingAlgorithmDisplayPair.cs" />
     <Compile Include="Models\HashingProgress.cs" />
+    <Compile Include="Models\InfoBarData.cs" />
     <Compile Include="Models\NumberBaseDictionary.cs" />
     <Compile Include="Models\SqlLanguageDisplayPair.cs" />
     <Compile Include="Models\NoResultFoundMockToolProvider.cs" />
@@ -133,6 +134,14 @@
     <Compile Include="ViewModels\Tools\Text\StringEscapeUnescape\StringEscapeUnescapeToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Text\StringEscapeUnescape\StringEscapeUnescapeToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Text\TextGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\ParserBase.cs"/>
+    <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\ParsingResultBase.cs"/>
+    <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\XmlParser.cs"/>
+    <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\XmlParsingResult.cs"/>
+    <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\XsdParser.cs"/>
+    <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\XsdParsingResult.cs"/>
+    <Compile Include="ViewModels\Tools\Text\XmlValidator\XmlValidatorToolProvider.cs"/>
+    <Compile Include="ViewModels\Tools\Text\XmlValidator\XmlValidatorToolViewModel.cs"/>
     <Compile Include="Views\Tools\AllTools\AllToolsToolPage.xaml.cs">
       <DependentUpon>AllToolsToolPage.xaml</DependentUpon>
     </Compile>
@@ -186,6 +195,9 @@
     </Compile>
     <Compile Include="Views\Tools\EncodersDecoders\URLEncoderDecoder\UrlEncoderDecoderToolPage.xaml.cs">
       <DependentUpon>UrlEncoderDecoderToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Text\XmlValidator\XmlValidatorToolPage.xaml.cs">
+      <DependentUpon>TextDiffToolPage.xaml</DependentUpon>
     </Compile>
     <Content Include="..\..\DevToys.Startup\Assets\Logo-Prev\SplashScreen.scale-100.png">
       <Link>Assets\Logo\SplashScreen.scale-100.png</Link>
@@ -314,6 +326,7 @@
     <Content Include="Assets\GitHubMarkdownCss\index.html" />
     <Content Include="Assets\Icons\Base64Image.svg" />
     <Content Include="Assets\Icons\ColorBlindnessSimulator.svg" />
+    <Content Include="Assets\Icons\XmlValidator.svg"/>
     <Content Include="Assets\Icons\EncodersDecoders.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -562,7 +575,11 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <PRIResource Include="Strings\*\*.resw" />
+    <Page Include="Views\Tools\Text\XmlValidator\XmlValidatorToolPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <PRIResource Include="Strings\*\*.resw"/>
     <Page Include="Themes\Custom.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -761,7 +778,6 @@
       <Name>Windows Desktop Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

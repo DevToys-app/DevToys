@@ -57,6 +57,8 @@
     <Compile Include="Providers\Tools\Base64EncoderDecoderTests.cs" />
     <Compile Include="Providers\Tools\SqlFormatterTests.cs" />
     <Compile Include="Providers\Tools\StringUtilitiesTests.cs" />
+    <Compile Include="Providers\Tools\TestDataProvider.cs" />
+    <Compile Include="Providers\Tools\XmlValidatorTests.cs" />
     <Compile Include="UI\ConvertersTests.cs" />
     <Compile Include="UnitTestApp.xaml.cs">
       <DependentUpon>UnitTestApp.xaml</DependentUpon>
@@ -83,6 +85,10 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <EmbeddedResource Include="Providers\TestData\InvalidXml.xml" />
+    <EmbeddedResource Include="Providers\TestData\InvalidXsd.xml" />
+    <EmbeddedResource Include="Providers\TestData\ValidXml.xml" />
+    <EmbeddedResource Include="Providers\TestData\ValidXsd.xml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="$(NuGet_MicrosoftNETCoreUniversalWindowsPlatform)" />
@@ -102,7 +108,6 @@
       <Name>DevToys.Shared</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
