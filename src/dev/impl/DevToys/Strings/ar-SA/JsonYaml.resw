@@ -121,13 +121,13 @@
     <value>JSON to YAML and YAML to JSON converter tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>الإعدادات</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Select which conversion mode you want to use</value>
+    <value>حدد وضع التحويل الذي تريد استخدامه</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Conversion</value>
+    <value>التحويل</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>JSON &lt;&gt; YAML</value>
@@ -139,7 +139,7 @@
     <value>Indentation</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>ادخال</value>
   </data>
   <data name="InvalidYaml" xml:space="preserve">
     <value>The entered YAML is invalid.</value>
@@ -148,7 +148,7 @@
     <value>JSON to YAML</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>ناتج</value>
   </data>
   <data name="TwoSpaces" xml:space="preserve">
     <value>2 spaces</value>

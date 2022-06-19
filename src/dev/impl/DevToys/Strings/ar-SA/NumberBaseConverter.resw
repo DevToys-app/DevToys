@@ -124,7 +124,7 @@
     <value>Binary</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>Configuration</value>
+    <value>الإعدادات</value>
   </data>
   <data name="DecimalLabel" xml:space="preserve">
     <value>Decimal</value>
@@ -139,7 +139,7 @@
     <value>Hexadecimal</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>ادخال</value>
   </data>
   <data name="InputTypeBinary" xml:space="preserve">
     <value>Binary</value>
@@ -189,7 +189,7 @@
     <value>Output dictionary</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>ناتج</value>
   </data>
   <data name="BaseNumberError" xml:space="preserve">
     <value>Base number should be greater than 1.</value>
