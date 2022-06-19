@@ -31,7 +31,7 @@ namespace DevToys.ViewModels.Tools.XmlValidator
 
         public string AccessibleName => LanguageManager.Instance.XmlValidator.AccessibleName;
 
-        public string? SearchKeywords => LanguageManager.Instance.XmlValidator.SearchKeywords;
+        public string? SearchKeywords => string.Empty;
 
         public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("XmlValidator.svg");
 

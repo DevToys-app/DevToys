@@ -3008,11 +3008,6 @@ namespace DevToys
         public string SearchDisplayName => _resources.GetString("SearchDisplayName");
 
         /// <summary>
-        /// Gets the resource SearchKeywords.
-        /// </summary>
-        public string SearchKeywords => _resources.GetString("SearchKeywords");
-
-        /// <summary>
         /// Gets the resource ValidationImpossibleMsg.
         /// </summary>
         public string ValidationImpossibleMsg => _resources.GetString("ValidationImpossibleMsg");

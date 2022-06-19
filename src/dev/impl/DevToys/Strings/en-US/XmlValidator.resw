@@ -135,9 +135,6 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>XML Validator</value>
   </data>
-  <data name="SearchKeywords" xml:space="preserve">
-    <value>xml, validator</value>
-  </data>
   <data name="ValidationImpossibleMsg" xml:space="preserve">
     <value>XML and XSD content must be set in order to perform a validation.</value>
   </data>
