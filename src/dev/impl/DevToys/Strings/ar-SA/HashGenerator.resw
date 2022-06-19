@@ -121,13 +121,13 @@
     <value>Hash Generator tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>الإعدادات</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Hash</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>ادخال</value>
   </data>
   <data name="MD5" xml:space="preserve">
     <value>MD5</value>
@@ -142,7 +142,7 @@
     <value>SHA512</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
-    <value>Uppercase</value>
+    <value>أحرف كبيرة</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Calculate MD5, SHA1, SHA256 and SHA512 hash from text data</value>
