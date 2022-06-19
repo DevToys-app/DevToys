@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿#nullable enable
+
+using System.IO;
 using System.Xml;
 using System.Xml.Schema;
 
