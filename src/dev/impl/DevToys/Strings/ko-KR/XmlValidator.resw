@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Xml Validator tool</value>
+    <value>Xml 검증 도구</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>XML Validator</value>
+    <value>Xml 검증</value>
   </data>
   <data name="XsdScheme" xml:space="preserve">
     <value>XSD</value>
@@ -130,15 +130,15 @@
     <value>XML</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Validate XML data via an XSD scheme.</value>
+    <value>XSD 체계를 통해 XML 데이터를 검증합니다.</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>XML Validator</value>
+    <value>Xml 검증</value>
   </data>
   <data name="ValidationImpossibleMsg" xml:space="preserve">
-    <value>XML and XSD content must be set in order to perform a validation.</value>
+    <value>유효성 검사를 수행하려면 XML 및 XSD 콘텐츠를 설정해야 합니다.</value>
   </data>
   <data name="XmlIsValidMessage" xml:space="preserve">
-      <value>XML is compliant to the defined XSD scheme.</value>
+      <value>XML은 정의된 XSD 체계를 준수합니다.</value>
   </data>
 </root>
