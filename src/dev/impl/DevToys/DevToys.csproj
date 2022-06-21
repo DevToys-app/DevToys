@@ -197,7 +197,7 @@
       <DependentUpon>UrlEncoderDecoderToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\Text\XmlValidator\XmlValidatorToolPage.xaml.cs">
-      <DependentUpon>TextDiffToolPage.xaml</DependentUpon>
+      <DependentUpon>XmlValidatorToolPage.xaml</DependentUpon>
     </Compile>
     <Content Include="..\..\DevToys.Startup\Assets\Logo-Prev\SplashScreen.scale-100.png">
       <Link>Assets\Logo\SplashScreen.scale-100.png</Link>
