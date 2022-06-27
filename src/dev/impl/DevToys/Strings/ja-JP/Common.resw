@@ -193,10 +193,10 @@
     <value>TB</value>
   </data>
   <data name="ToggleSwitchOff" xml:space="preserve">
-    <value>Off</value>
+    <value>オフ</value>
   </data>
   <data name="ToggleSwitchOn" xml:space="preserve">
-    <value>On</value>
+    <value>オン</value>
   </data>
   <data name="UnableOpenFile" xml:space="preserve">
     <value>ファイルを開けませんでした</value>
