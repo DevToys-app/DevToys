@@ -121,7 +121,7 @@
     <value>アプリについて</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>配色テーマ</value>
+    <value>App theme</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
     <value>アプリで使用するテーマを選択します</value>
