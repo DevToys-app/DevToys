@@ -121,10 +121,10 @@
     <value>アプリについて</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>App theme</value>
+    <value>アプリのテーマ</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>アプリで使用するテーマを選択します</value>
+    <value>表示するアプリ テーマを選択します</value>
   </data>
   <data name="AppTitle" xml:space="preserve">
     <value>DevToys</value>
@@ -214,7 +214,7 @@
     <value>便利なリンク</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
-    <value>システム設定に従う</value>
+    <value>システム設定を使用する</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Version {0}</value>
