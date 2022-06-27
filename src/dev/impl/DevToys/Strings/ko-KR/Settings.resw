@@ -121,7 +121,7 @@
     <value>제품 정보</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>App theme</value>
+    <value>앱 테마</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
     <value>표시할 앱 테마를 선택합니다.</value>
