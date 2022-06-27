@@ -121,7 +121,7 @@
     <value>À propos de</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>Thème</value>
+    <value>App theme</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
     <value>Sélectionner le thème à afficher dans l'application</value>
