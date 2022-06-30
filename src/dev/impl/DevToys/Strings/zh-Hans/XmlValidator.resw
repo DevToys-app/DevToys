@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Xml Validator tool</value>
+    <value>XML 校验工具</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>XML Validator</value>
+    <value>XML 校验器</value>
   </data>
   <data name="XsdScheme" xml:space="preserve">
     <value>XSD</value>
@@ -130,15 +130,15 @@
     <value>可扩展标记语言（XML）</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Validate XML data via an XSD scheme.</value>
+    <value>通过 XSD 约束校验 XML 数据。</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>XML Validator</value>
+    <value>XML 校验器</value>
   </data>
   <data name="ValidationImpossibleMsg" xml:space="preserve">
-    <value>XML and XSD content must be set in order to perform a validation.</value>
+    <value>必须设置 XML 和 XSD 内容才能进行校验。</value>
   </data>
   <data name="XmlIsValidMessage" xml:space="preserve">
-      <value>XML is compliant to the defined XSD scheme.</value>
+      <value>XML 符合已定义的 XSD 约束。</value>
   </data>
 </root>
