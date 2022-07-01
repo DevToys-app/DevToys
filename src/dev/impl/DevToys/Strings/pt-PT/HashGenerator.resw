@@ -166,6 +166,6 @@
     <value>HMAC Mode</value>
   </data>
   <data name="SecretKey" xml:space="preserve">
-    <value>Secret Key</value>
+    <value>Chave secreta</value>
   </data>
 </root>
