@@ -163,7 +163,7 @@
     <value></value>
   </data>
   <data name="HmacMode" xml:space="preserve">
-    <value>HMAC Mode</value>
+    <value>Modo HMAC</value>
   </data>
   <data name="SecretKey" xml:space="preserve">
     <value>Chave secreta</value>
