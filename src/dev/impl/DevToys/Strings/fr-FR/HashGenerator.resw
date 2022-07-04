@@ -163,9 +163,9 @@
     <value></value>
   </data>
   <data name="HmacMode" xml:space="preserve">
-    <value>HMAC Mode</value>
+    <value>Mode HMAC</value>
   </data>
   <data name="SecretKey" xml:space="preserve">
-    <value>Secret Key</value>
+    <value>Clé secrète</value>
   </data>
 </root>

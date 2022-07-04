@@ -121,7 +121,7 @@
     <value>பற்றி</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>பயன்பாட்டுக் கருப்பொருள்</value>
+    <value>App theme</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
     <value>எந்தப் பயன்பாட்டுக் கருப்பொருளைக் காட்ட வேண்டும் என்பதைத் தேர்ந்தெடுக்கவும்</value>

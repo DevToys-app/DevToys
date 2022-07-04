@@ -121,7 +121,7 @@
     <value>Info App</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>Tema Aplikasi</value>
+    <value>App theme</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
     <value>Pilih tema aplikasi mana yang ingin digunakan</value>

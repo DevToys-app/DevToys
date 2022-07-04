@@ -127,7 +127,7 @@
     <value>Konfiguracja</value>
   </data>
   <data name="ConversionDecompress" xml:space="preserve">
-    <value>Decompress</value>
+    <value>Rozpakuj</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
     <value>Select compress or decompress</value>
@@ -157,7 +157,7 @@
     <value>UTF-8</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Compress or decompress strings</value>
+    <value>Kompresuj lub dekompresuj tekst</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>GZip Compress/Decompress</value>

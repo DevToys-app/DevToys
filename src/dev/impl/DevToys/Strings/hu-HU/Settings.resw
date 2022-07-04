@@ -121,7 +121,7 @@
     <value>Rólunk</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>App Téma</value>
+    <value>App theme</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
     <value>Válaszd ki a megjelenítendő témát</value>

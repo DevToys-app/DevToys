@@ -121,7 +121,7 @@
     <value>Acerca de</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>Tema da Aplicação</value>
+    <value>Tema da aplicação</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
     <value>Selecione o tema da aplicação a exibir</value>
@@ -232,6 +232,6 @@
     <value>Opções de Configurações</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translating DevToys!</value>
+    <value>Ajude-nos a traduzir o DevToys!</value>
   </data>
 </root>
