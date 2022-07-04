@@ -121,7 +121,7 @@
     <value>Про програму</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>Тема</value>
+    <value>App theme</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
     <value>Виберіть тему оформлення</value>

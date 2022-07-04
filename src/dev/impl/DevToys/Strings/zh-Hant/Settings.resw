@@ -121,7 +121,7 @@
     <value>關於</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>應用程式主題</value>
+    <value>App theme</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
     <value>選取要顯示的應用程式主題</value>
