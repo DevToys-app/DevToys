@@ -1,14 +1,12 @@
 ﻿#nullable enable
 
-using System;
 using System.Composition;
 using DevToys.Api.Tools;
 using DevToys.Core.Threading;
 using DevToys.Shared.Api.Core;
-using DevToys.ViewModels.Tools.CronParser;
 using Windows.UI.Xaml.Controls;
 
-namespace DevToys.ViewModels.Tools.Converters.CronParser
+namespace DevToys.ViewModels.Tools.CronParser
 {
     [Export(typeof(IToolProvider))]
     [Name("CronParser")]
@@ -38,7 +36,7 @@ namespace DevToys.ViewModels.Tools.Converters.CronParser
         }
 
         public bool CanBeTreatedByTool(string data)
-        {            
+        {
             return false;
         }
 

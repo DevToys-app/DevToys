@@ -10,7 +10,7 @@ using Windows.UI.Xaml.Navigation;
 namespace DevToys.Views.Tools.CronParser
 {
     public sealed partial class CronParserToolPage : Page
-    {        
+    {
         public static readonly DependencyProperty ViewModelProperty
             = DependencyProperty.Register(
                 nameof(ViewModel),

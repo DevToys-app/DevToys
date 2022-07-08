@@ -1,17 +1,17 @@
 ﻿#nullable enable
 
 using System;
-using Cronos;
+using System.Collections.Generic;
 using System.Composition;
+using System.Globalization;
+using Cronos;
+using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
+using DevToys.Shared.Core;
 using DevToys.Views.Tools.CronParser;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Windows.ApplicationModel.DataTransfer;
-using System.Collections.Generic;
-using DevToys.Api.Core.Settings;
-using DevToys.Shared.Core;
-using System.Globalization;
 
 namespace DevToys.ViewModels.Tools.CronParser
 {
@@ -82,15 +82,7 @@ namespace DevToys.ViewModels.Tools.CronParser
             get => _cronExpression;
             set
             {
-                if (string.IsNullOrEmpty(value))
-                {
-                    SetProperty(ref _cronExpression, string.Empty);
-                }
-                else
-                {
-                    SetProperty(ref _cronExpression, value);
-                }
-
+                SetProperty(ref _cronExpression, value);
                 ParseCronExpression();
             }
         }
@@ -173,6 +165,27 @@ namespace DevToys.ViewModels.Tools.CronParser
             private set => SetProperty(ref _outputValue, value);
         }
 
+
+        [ImportingConstructor]
+        public CronParserToolViewModel(ISettingsProvider settingsProvider)
+        {
+            _settingsProvider = settingsProvider;
+
+            _cronExpression = string.Empty;
+
+            IsInputInvalid = false;
+            IsOutputFormatInvalid = false;
+
+            if (IncludeSecondsMode)
+            {
+                UserCronExpression = DefaultCronWithSeconds;
+            }
+            else
+            {
+                UserCronExpression = DefaultCronWithoutSeconds;
+            }
+        }
+
         private void ParseCronExpression()
         {
             IsInputInvalid = false;
@@ -240,80 +253,5 @@ namespace DevToys.ViewModels.Tools.CronParser
                 return false;
             }
         }
-
-        [ImportingConstructor]
-        public CronParserToolViewModel(ISettingsProvider settingsProvider)
-        {
-            _settingsProvider = settingsProvider;
-
-            PasteCommand = new RelayCommand(ExecutePasteCommand);
-            CopyCommand = new RelayCommand(ExecuteCopyCommand);
-
-            _cronExpression = string.Empty;
-
-            IsInputInvalid = false;
-            IsOutputFormatInvalid = false;
-
-            if (IncludeSecondsMode)
-            {
-                UserCronExpression = DefaultCronWithSeconds;
-            }
-            else
-            {
-                UserCronExpression = DefaultCronWithoutSeconds;
-            }
-        }
-
-        #region PasteCommand
-
-        internal IRelayCommand PasteCommand { get; }
-
-        private async void ExecutePasteCommand()
-        {
-            try
-            {
-                DataPackageView? dataPackageView = Clipboard.GetContent();
-                if (!dataPackageView.Contains(StandardDataFormats.Text))
-                {
-                    return;
-                }
-
-                string text = await dataPackageView.GetTextAsync();
-
-                UserCronExpression = text;
-
-            }
-            catch (Exception ex)
-            {
-                Core.Logger.LogFault("Failed to paste in box", ex);
-            }
-        }
-
-        #endregion
-
-        #region CopyCommand
-
-        internal IRelayCommand CopyCommand { get; }
-
-        private void ExecuteCopyCommand()
-        {
-            try
-            {
-                var data = new DataPackage
-                {
-                    RequestedOperation = DataPackageOperation.Copy
-                };
-                data.SetText(UserCronExpression);
-
-                Clipboard.SetContentWithOptions(data, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
-                Clipboard.Flush();
-            }
-            catch (Exception ex)
-            {
-                Core.Logger.LogFault("Failed to copy from box", ex);
-            }
-        }
-
-        #endregion               
     }
 }
