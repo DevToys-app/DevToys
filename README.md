@@ -38,6 +38,7 @@ Many tools are available.
   - JSON <> YAML
   - Timestamp
   - Number Base
+  - Cron Parser
 - Encoders / Decoders
   - HTML
   - URL
@@ -58,6 +59,7 @@ Many tools are available.
   - Inspector & Case Converter
   - Regex Tester
   - Text Comparer
+  - XML Validator
   - Markdown Preview
 - Graphic
   - Color Blindness Simulator
@@ -131,6 +133,7 @@ Here is the list of tool name you can use:
 - `uuid` - UUID Generator
 - `loremipsum` - Lorem Ipsum Generator
 - `checksum` - Checksum File
+- `cronparser` - Cron Parser
 - `jsonformat` Json Formatter
 - `sqlformat` - SQL Formatter
 - `xmlformat` - XML Formatter
@@ -147,6 +150,7 @@ Here is the list of tool name you can use:
 - `url` - URL Encoder/Decoder
 - `html` - HTML Encoder/Decoder
 - `diff` - Text Comparer
+- `xmlvalidator` - XML Validator
 - `escape` - Text Escape / Unescape
 - `settings` - Settings
 
