@@ -66,6 +66,13 @@ namespace DevToys.Tests.Helpers
         }
 
         [DataTestMethod]
+        [DataRow("{ \"Date\": \"2012-04-21T18:25:43-05:00\" }", "{\"Date\":\"2012-04-21T18:25:43-05:00\"}")]
+        public void FormatDoesNotAlterateDateTimes(string input, string expectedResult)
+        {
+            Assert.AreEqual(expectedResult, JsonHelper.Format(input, Indentation.Minified));
+        }
+
+        [DataTestMethod]
         [DataRow(null, "")]
         [DataRow("", "")]
         [DataRow(" ", "")]
