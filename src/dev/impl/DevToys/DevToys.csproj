@@ -90,6 +90,8 @@
     <Compile Include="ViewModels\Tools\AllTools\AllToolsToolProvider.cs" />
     <Compile Include="ViewModels\Tools\AllTools\AllToolsToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Converters\ConvertersGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Converters\CronParser\CronParserToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Converters\CronParser\CronParserToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\AdvancedNumberBaseConverterControlViewModel.cs" />
     <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\BasicNumberBaseConverterControlViewModel.cs" />
     <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\Exceptions\InvalidBaseNumberException.cs" />
@@ -134,16 +136,19 @@
     <Compile Include="ViewModels\Tools\Text\StringEscapeUnescape\StringEscapeUnescapeToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Text\StringEscapeUnescape\StringEscapeUnescapeToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Text\TextGroupToolProvider.cs" />
-    <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\ParserBase.cs"/>
-    <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\ParsingResultBase.cs"/>
-    <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\XmlParser.cs"/>
-    <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\XmlParsingResult.cs"/>
-    <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\XsdParser.cs"/>
-    <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\XsdParsingResult.cs"/>
-    <Compile Include="ViewModels\Tools\Text\XmlValidator\XmlValidatorToolProvider.cs"/>
-    <Compile Include="ViewModels\Tools\Text\XmlValidator\XmlValidatorToolViewModel.cs"/>
+    <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\ParserBase.cs" />
+    <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\ParsingResultBase.cs" />
+    <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\XmlParser.cs" />
+    <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\XmlParsingResult.cs" />
+    <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\XsdParser.cs" />
+    <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\XsdParsingResult.cs" />
+    <Compile Include="ViewModels\Tools\Text\XmlValidator\XmlValidatorToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Text\XmlValidator\XmlValidatorToolViewModel.cs" />
     <Compile Include="Views\Tools\AllTools\AllToolsToolPage.xaml.cs">
       <DependentUpon>AllToolsToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Converters\CronParser\CronParserToolPage.xaml.cs">
+      <DependentUpon>CronParserToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\Converters\NumberBaseConverter\AdvancedNumberBaseConverterControl.xaml.cs">
       <DependentUpon>AdvancedNumberBaseConverterControl.xaml</DependentUpon>
@@ -326,7 +331,10 @@
     <Content Include="Assets\GitHubMarkdownCss\index.html" />
     <Content Include="Assets\Icons\Base64Image.svg" />
     <Content Include="Assets\Icons\ColorBlindnessSimulator.svg" />
-    <Content Include="Assets\Icons\XmlValidator.svg"/>
+    <Content Include="Assets\Icons\Cron.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\XmlValidator.svg" />
     <Content Include="Assets\Icons\EncodersDecoders.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -579,7 +587,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <PRIResource Include="Strings\*\*.resw"/>
+    <PRIResource Include="Strings\*\*.resw" />
     <Page Include="Themes\Custom.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -623,6 +631,10 @@
     <Page Include="Views\Tools\AllTools\AllToolsToolPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tools\Converters\CronParser\CronParserToolPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Tools\Converters\NumberBaseConverter\AdvancedNumberBaseConverterControl.xaml">
       <SubType>Designer</SubType>
@@ -746,6 +758,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Cronos" Version="$(Nuget_Cronos)" />
     <PackageReference Include="GitInfo" Version="$(Nuget_GitInfo)" />
     <PackageReference Include="Markdig" Version="$(Nuget_Markdig)" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="$(NuGet_MicrosoftNETCoreUniversalWindowsPlatform)" />

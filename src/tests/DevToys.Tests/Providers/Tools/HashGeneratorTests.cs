@@ -19,6 +19,7 @@ namespace DevToys.Tests.Providers.Tools
 
             await ThreadHelper.RunOnUIThreadAsync(() =>
             {
+                viewModel.IsHmacMode = false;
                 viewModel.IsUppercase = false;
                 viewModel.Input = input;
             });
@@ -39,6 +40,7 @@ namespace DevToys.Tests.Providers.Tools
 
             await ThreadHelper.RunOnUIThreadAsync(() =>
             {
+                viewModel.IsHmacMode = false;
                 viewModel.IsUppercase = true;
                 viewModel.Input = input;
             });
