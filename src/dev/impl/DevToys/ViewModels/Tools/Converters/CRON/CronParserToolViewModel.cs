@@ -93,7 +93,7 @@ namespace DevToys.ViewModels.Tools.CronParser
 
                 ParseCronExpression();
             }
-        }     
+        }
 
         /// <summary>
         /// Gets or sets whatever Cron should include settings
@@ -106,14 +106,14 @@ namespace DevToys.ViewModels.Tools.CronParser
                 if (!_setPropertyInProgress)
                 {
                     _setPropertyInProgress = true;
-                    
+
                     if (_settingsProvider.GetSetting(IncludeSeconds) != value)
                     {
                         _settingsProvider.SetSetting(IncludeSeconds, value);
                         OnPropertyChanged();
                         ParseCronExpression();
                     }
-                    
+
                     _setPropertyInProgress = false;
                 }
             }
@@ -174,7 +174,7 @@ namespace DevToys.ViewModels.Tools.CronParser
         }
 
         private void ParseCronExpression()
-        {            
+        {
             IsInputInvalid = false;
             IsOutputFormatInvalid = false;
 
@@ -190,7 +190,7 @@ namespace DevToys.ViewModels.Tools.CronParser
             try
             {
                 if (string.IsNullOrEmpty(UserCronExpression))
-                {                    
+                {
                     return;
                 }
 
@@ -253,7 +253,7 @@ namespace DevToys.ViewModels.Tools.CronParser
 
             IsInputInvalid = false;
             IsOutputFormatInvalid = false;
-            
+
             if (IncludeSecondsMode)
             {
                 UserCronExpression = DefaultCronWithSeconds;
@@ -281,7 +281,7 @@ namespace DevToys.ViewModels.Tools.CronParser
                 string text = await dataPackageView.GetTextAsync();
 
                 UserCronExpression = text;
-                
+
             }
             catch (Exception ex)
             {
