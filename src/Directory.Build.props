@@ -17,6 +17,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
+        <Nuget_Cronos>0.7.1</Nuget_Cronos>
         <NuGet_DotNet>6.0.0</NuGet_DotNet>
         <Nuget_GitInfo>2.2.0</Nuget_GitInfo>
         <Nuget_Markdig>0.26.0</Nuget_Markdig>
