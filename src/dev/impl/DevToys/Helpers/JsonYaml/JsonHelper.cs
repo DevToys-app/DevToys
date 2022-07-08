@@ -61,40 +61,57 @@ namespace DevToys.Helpers.JsonYaml
 
             try
             {
-                var jtoken = JToken.Parse(input);
-                if (jtoken is not null)
+                var jsonLoadSettings = new JsonLoadSettings()
                 {
-                    var stringBuilder = new StringBuilder();
-                    using (var stringWriter = new StringWriter(stringBuilder))
-                    using (var jsonTextWriter = new JsonTextWriter(stringWriter))
-                    {
-                        switch (indentationMode)
-                        {
-                            case Indentation.TwoSpaces:
-                                jsonTextWriter.Formatting = Formatting.Indented;
-                                jsonTextWriter.IndentChar = ' ';
-                                jsonTextWriter.Indentation = 2;
-                                break;
-                            case Indentation.FourSpaces:
-                                jsonTextWriter.Formatting = Formatting.Indented;
-                                jsonTextWriter.IndentChar = ' ';
-                                jsonTextWriter.Indentation = 4;
-                                break;
-                            case Indentation.OneTab:
-                                jsonTextWriter.Formatting = Formatting.Indented;
-                                jsonTextWriter.IndentChar = '\t';
-                                jsonTextWriter.Indentation = 1;
-                                break;
-                            case Indentation.Minified:
-                                jsonTextWriter.Formatting = Formatting.None;
-                                break;
-                            default:
-                                throw new NotSupportedException();
-                        }
-                        jtoken.WriteTo(jsonTextWriter);
-                    }
+                    CommentHandling = CommentHandling.Ignore,
+                    DuplicatePropertyNameHandling = DuplicatePropertyNameHandling.Ignore,
+                    LineInfoHandling = LineInfoHandling.Load
+                };
 
-                    return stringBuilder.ToString();
+                using (var jsonReader = new JsonTextReader(new StringReader(input)))
+                {
+                    jsonReader.DateParseHandling = DateParseHandling.None;
+                    jsonReader.DateTimeZoneHandling = DateTimeZoneHandling.RoundtripKind;
+
+                    var jtoken = JToken.ReadFrom(jsonReader, jsonLoadSettings);
+                    if (jtoken is not null)
+                    {
+                        var stringBuilder = new StringBuilder();
+                        using (var stringWriter = new StringWriter(stringBuilder))
+                        using (var jsonTextWriter = new JsonTextWriter(stringWriter))
+                        {
+                            switch (indentationMode)
+                            {
+                                case Indentation.TwoSpaces:
+                                    jsonTextWriter.Formatting = Formatting.Indented;
+                                    jsonTextWriter.IndentChar = ' ';
+                                    jsonTextWriter.Indentation = 2;
+                                    break;
+                                case Indentation.FourSpaces:
+                                    jsonTextWriter.Formatting = Formatting.Indented;
+                                    jsonTextWriter.IndentChar = ' ';
+                                    jsonTextWriter.Indentation = 4;
+                                    break;
+                                case Indentation.OneTab:
+                                    jsonTextWriter.Formatting = Formatting.Indented;
+                                    jsonTextWriter.IndentChar = '\t';
+                                    jsonTextWriter.Indentation = 1;
+                                    break;
+                                case Indentation.Minified:
+                                    jsonTextWriter.Formatting = Formatting.None;
+                                    break;
+                                default:
+                                    throw new NotSupportedException();
+                            }
+
+                            jsonTextWriter.DateFormatHandling = DateFormatHandling.IsoDateFormat;
+                            jsonTextWriter.DateTimeZoneHandling = DateTimeZoneHandling.RoundtripKind;
+
+                            jtoken.WriteTo(jsonTextWriter);
+                        }
+
+                        return stringBuilder.ToString();
+                    }
                 }
 
                 return string.Empty;

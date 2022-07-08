@@ -30,6 +30,7 @@ namespace DevToys
         private readonly CheckSumGeneratorStrings _checksumgenerator = new CheckSumGeneratorStrings();
         private readonly ColorBlindnessSimulatorStrings _colorblindnesssimulator = new ColorBlindnessSimulatorStrings();
         private readonly CommonStrings _common = new CommonStrings();
+        private readonly CRONParserStrings _cronparser = new CRONParserStrings();
         private readonly GuidGeneratorStrings _guidgenerator = new GuidGeneratorStrings();
         private readonly GZipEncoderDecoderStrings _gzipencoderdecoder = new GZipEncoderDecoderStrings();
         private readonly HashGeneratorStrings _hashgenerator = new HashGeneratorStrings();
@@ -95,6 +96,11 @@ namespace DevToys
         /// Gets the <see cref="CommonStrings"/>.
         /// </summary>
         public CommonStrings Common => _common;
+
+        /// <summary>
+        /// Gets the <see cref="CRONParserStrings"/>.
+        /// </summary>
+        public CRONParserStrings CRONParser => _cronparser;
 
         /// <summary>
         /// Gets the <see cref="GuidGeneratorStrings"/>.
@@ -728,6 +734,101 @@ namespace DevToys
         /// Gets the resource ViewImage.
         /// </summary>
         public string ViewImage => _resources.GetString("ViewImage");
+    }
+
+    public class CRONParserStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("CRONParser");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
+        /// Gets the resource Configuration.
+        /// </summary>
+        public string Configuration => _resources.GetString("Configuration");
+
+        /// <summary>
+        /// Gets the resource UseSecondsDescription.
+        /// </summary>
+        public string UseSecondsDescription => _resources.GetString("UseSecondsDescription");
+
+        /// <summary>
+        /// Gets the resource UseSecondsTitle.
+        /// </summary>
+        public string UseSecondsTitle => _resources.GetString("UseSecondsTitle");
+
+        /// <summary>
+        /// Gets the resource MenuDisplayName.
+        /// </summary>
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+
+        /// <summary>
+        /// Gets the resource SearchKeywords.
+        /// </summary>
+        public string SearchKeywords => _resources.GetString("SearchKeywords");
+
+        /// <summary>
+        /// Gets the resource CronErrorMessage.
+        /// </summary>
+        public string CronErrorMessage => _resources.GetString("CronErrorMessage");
+
+        /// <summary>
+        /// Gets the resource InputTitle.
+        /// </summary>
+        public string InputTitle => _resources.GetString("InputTitle");
+
+        /// <summary>
+        /// Gets the resource OutputDateTimeDescription.
+        /// </summary>
+        public string OutputDateTimeDescription => _resources.GetString("OutputDateTimeDescription");
+
+        /// <summary>
+        /// Gets the resource OutputDateTimeTitle.
+        /// </summary>
+        public string OutputDateTimeTitle => _resources.GetString("OutputDateTimeTitle");
+
+        /// <summary>
+        /// Gets the resource OutputFormatErrorMessage.
+        /// </summary>
+        public string OutputFormatErrorMessage => _resources.GetString("OutputFormatErrorMessage");
+
+        /// <summary>
+        /// Gets the resource OutputLimitDescription.
+        /// </summary>
+        public string OutputLimitDescription => _resources.GetString("OutputLimitDescription");
+
+        /// <summary>
+        /// Gets the resource OutputLimitTitle.
+        /// </summary>
+        public string OutputLimitTitle => _resources.GetString("OutputLimitTitle");
+
+        /// <summary>
+        /// Gets the resource OutputTitle.
+        /// </summary>
+        public string OutputTitle => _resources.GetString("OutputTitle");
+
+        /// <summary>
+        /// Gets the resource SecondsExcludedMode.
+        /// </summary>
+        public string SecondsExcludedMode => _resources.GetString("SecondsExcludedMode");
+
+        /// <summary>
+        /// Gets the resource SecondsIncludedMode.
+        /// </summary>
+        public string SecondsIncludedMode => _resources.GetString("SecondsIncludedMode");
     }
 
     public class GuidGeneratorStrings : ObservableObject
