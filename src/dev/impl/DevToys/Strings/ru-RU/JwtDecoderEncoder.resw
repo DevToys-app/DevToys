@@ -121,7 +121,7 @@
     <value>Инструмент декодирования JWT</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>JWT</value>
+    <value>JWT Декодер</value>
   </data>
   <data name="HeaderLabel" xml:space="preserve">
     <value>Заголовок</value>
