@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -124,7 +124,7 @@
     <value>2진수</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>설정</value>
+    <value>구성</value>
   </data>
   <data name="DecimalLabel" xml:space="preserve">
     <value>10진수</value>
@@ -139,22 +139,22 @@
     <value>16진수</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>입력할 수</value>
+    <value>입력</value>
   </data>
   <data name="InputTypeBinary" xml:space="preserve">
-    <value>2진수 입력</value>
+    <value>2진수</value>
   </data>
   <data name="InputTypeDecimal" xml:space="preserve">
-    <value>10진수 입력</value>
+    <value>10진수</value>
   </data>
   <data name="InputTypeDescription" xml:space="preserve">
-    <value>사용할 형식을 선택하세요.</value>
+    <value>사용할 입력 유형 선택</value>
   </data>
   <data name="InputTypeHexadecimal" xml:space="preserve">
-    <value>16진수 입력</value>
+    <value>16진수</value>
   </data>
   <data name="InputTypeOctal" xml:space="preserve">
-    <value>8진수 입력</value>
+    <value>8진수</value>
   </data>
   <data name="InputTypeTitle" xml:space="preserve">
     <value>입력 형식</value>
@@ -163,15 +163,15 @@
     <value>8진수</value>
   </data>
   <data name="ValueInvalid" xml:space="preserve">
-    <value>{0} 수치 값이 올바르지 않습니다.</value>
+    <value>현재 값이 올바른 {0}이(가) 아닙니다</value>
     <comment>The parameter is the Base Number Type (Decimal, Octal, ...)</comment>
   </data>
   <data name="ValueOverflow" xml:space="preserve">
-    <value>해당 수치가 너무 커서 변환할 수 없습니다. ({0})</value>
+    <value>현재 값이 최대값({0})을 초과하여 변환할 수 없습니다</value>
     <comment>The parameter is the Max value of a long</comment>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>입력한 수치 값을 다른 진수로 변환합니다.</value>
+    <value>숫자를 한 기반에서 다른 기반으로 변환</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>진수 변환 도구</value>
@@ -183,21 +183,21 @@
     <value>고급 모드</value>
   </data>
   <data name="InputDictionaryLabel" xml:space="preserve">
-    <value>딕셔너리 입력</value>
+    <value>입력 사전</value>
   </data>
   <data name="OutputDictionaryLabel" xml:space="preserve">
-    <value>딕셔너리 출력</value>
+    <value>출력 사전</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>출력 내용</value>
+    <value>출력</value>
   </data>
   <data name="BaseNumberError" xml:space="preserve">
     <value>기수는 1보다 커야 합니다.</value>
   </data>
   <data name="DictionarySizeError" xml:space="preserve">
-    <value>딕셔너리 크기는 1보다 커야 합니다.</value>
+    <value>사전 크기는 1보다 커야 합니다.</value>
   </data>
   <data name="IncompatibleBaseDictionaryError" xml:space="preserve">
-    <value>딕셔너리 크기는 기수보다 작을 수 없습니다.</value>
+    <value>사전 크기는 기수보다 작을 수 없습니다.</value>
   </data>
 </root>

@@ -42,6 +42,17 @@
                     <ComboBoxItem Tag="Base64" Content="{x:Bind ViewModel.Strings.OutputBase64}"/>
                 </ComboBox>
             </controls:ExpandableSettingControl>
+            <controls:ExpandableSettingControl
+                Title="{x:Bind ViewModel.Strings.HmacMode}">
+                <controls:ExpandableSettingControl.Icon>
+                    <FontIcon Glyph="&#62734;" />
+                </controls:ExpandableSettingControl.Icon>
+                <ToggleSwitch
+                    x:Name="IsUsingHmacToggleSwitch"
+                    Style="{StaticResource RightAlignedToggleSwitchStyle}"
+                    Toggled="IsUsingHmacToggleSwitch_Toggled"
+                    IsOn="{x:Bind ViewModel.IsHmacMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </controls:ExpandableSettingControl>
         </StackPanel>
 
         <controls:CustomTextBox
@@ -50,24 +61,35 @@
             AcceptsReturn="True"
             Text="{x:Bind ViewModel.Input, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
+        <controls:CustomTextBox x:Name="SecretKeyInput"
+            Header="{x:Bind ViewModel.Strings.SecretKey}"
+            Height="150"
+            AcceptsReturn="True"
+            Visibility="Collapsed"
+            Text="{x:Bind ViewModel.SecretKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
         <controls:CustomTextBox
             Header="{x:Bind ViewModel.Strings.MD5}"
             IsReadOnly="True"
+            SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
             Text="{x:Bind ViewModel.MD5, Mode=OneWay}"/>
 
         <controls:CustomTextBox
             Header="{x:Bind ViewModel.Strings.SHA1}"
             IsReadOnly="True"
+            SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
             Text="{x:Bind ViewModel.SHA1, Mode=OneWay}"/>
 
         <controls:CustomTextBox
             Header="{x:Bind ViewModel.Strings.SHA256}"
             IsReadOnly="True"
+            SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
             Text="{x:Bind ViewModel.SHA256, Mode=OneWay}"/>
 
         <controls:CustomTextBox
             Header="{x:Bind ViewModel.Strings.SHA512}"
             IsReadOnly="True"
+            SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
             Text="{x:Bind ViewModel.SHA512, Mode=OneWay}"/>
     </StackPanel>
 </Page>
