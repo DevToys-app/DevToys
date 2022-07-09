@@ -157,6 +157,6 @@
     <value>Checksum</value>
   </data>
   <data name="SortProperties" xml:space="preserve">
-    <value>Sort JSON properties alphabetically</value>
+    <value>アルファベット昇順でキーをソート</value>
   </data>
 </root>
