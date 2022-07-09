@@ -143,6 +143,7 @@ namespace DevToys.Helpers.JsonYaml
 
                 IDeserializer deserializer = new DeserializerBuilder()
                     .WithNodeTypeResolver(new DecimalYamlTypeResolver())
+                    .WithNodeTypeResolver(new BooleanYamlTypeResolver())
                     .Build();
 
                 object? yamlObject = deserializer.Deserialize(stringReader);
