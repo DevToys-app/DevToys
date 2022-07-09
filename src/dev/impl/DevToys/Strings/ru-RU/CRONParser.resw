@@ -118,51 +118,57 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>JSON と YAML を相互に変換するツールです</value>
+    <value>Cron parsing tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>構成</value>
+    <value>Установки</value>
   </data>
-  <data name="ConversionDescription" xml:space="preserve">
-    <value>使いたい変換モードを選択してください</value>
+  <data name="UseSecondsDescription" xml:space="preserve">
+    <value>Choose whatever Cron expression should includes seconds in its definition</value>
   </data>
-  <data name="ConversionTitle" xml:space="preserve">
-    <value>変換</value>
+  <data name="UseSecondsTitle" xml:space="preserve">
+    <value>Cron Mode</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>JSON &lt;&gt; YAML</value>
-  </data>
-  <data name="FourSpaces" xml:space="preserve">
-    <value>4 スペース</value>
-  </data>
-  <data name="Indentation" xml:space="preserve">
-    <value>インデント</value>
-  </data>
-  <data name="Input" xml:space="preserve">
-    <value>入力</value>
-  </data>
-  <data name="InvalidYaml" xml:space="preserve">
-    <value>入力した YAML が不正な形式です</value>
-  </data>
-  <data name="JsonToYaml" xml:space="preserve">
-    <value>JSON から YAML</value>
-  </data>
-  <data name="Output" xml:space="preserve">
-    <value>出力</value>
-  </data>
-  <data name="TwoSpaces" xml:space="preserve">
-    <value>2 スペース</value>
-  </data>
-  <data name="YamlToJson" xml:space="preserve">
-    <value>YAML から JSON</value>
+    <value>Cron parser</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>JSON データを YAML （またはその逆）に変換します</value>
+    <value>Parse Cron expression to get scheduled dates</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>JSON &lt;&gt; YAML 変換ツール</value>
+    <value>Cron expression parser</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Checksum</value>
+    <value>Cron</value>
+  </data>
+  <data name="CronErrorMessage" xml:space="preserve">
+    <value>Cron expression is not valid</value>
+  </data>
+  <data name="InputTitle" xml:space="preserve">
+    <value>Cron expression to parse</value>
+  </data>
+  <data name="OutputDateTimeDescription" xml:space="preserve">
+    <value>Date time fomat of upcoming dates</value>
+  </data>
+  <data name="OutputDateTimeTitle" xml:space="preserve">
+    <value>Output format</value>
+  </data>
+  <data name="OutputFormatErrorMessage" xml:space="preserve">
+    <value>Output date time format is not valid</value>
+  </data>
+  <data name="OutputLimitDescription" xml:space="preserve">
+    <value>How many scheduled dates needs to be generated</value>
+  </data>
+  <data name="OutputLimitTitle" xml:space="preserve">
+    <value>Next scheduled dates</value>
+  </data>
+  <data name="OutputTitle" xml:space="preserve">
+    <value>Next scheduled dates</value>
+  </data>
+  <data name="SecondsExcludedMode" xml:space="preserve">
+    <value>Standard mode (5 - segment Cron)</value>
+  </data>
+  <data name="SecondsIncludedMode" xml:space="preserve">
+    <value>Seconds included (6 - segment Cron)</value>
   </data>
 </root>

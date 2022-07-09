@@ -118,28 +118,28 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Checksum Generator tool</value>
+    <value>Генератор контрольных сумм</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Установки</value>
+    <value>Настройки</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Generate a hash with Checksum based on a file</value>
   </data>
   <data name="HashingAlgorithmDescription" xml:space="preserve">
-    <value>Select which hashing algorithm you want to use</value>
+    <value>Выберите желаемый алгоритм кодирования</value>
   </data>
   <data name="HashingAlgorithmTitle" xml:space="preserve">
-    <value>Hashing Algorithm</value>
+    <value>Алгоритм хеширования</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>Ввод</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Checksum</value>
+    <value>Контрольная сумма</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Вывод</value>
@@ -148,18 +148,18 @@
     <value>Output Comparer</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Checksum Generator</value>
+    <value>Генератор контрольных сумм</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
-    <value>Uppercase</value>
+    <value>Верхний регистр</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
   </data>
   <data name="HashesMatch" xml:space="preserve">
-    <value>The hashes are the same.</value>
+    <value>Хэши совпадают.</value>
   </data>
   <data name="HashesMismatch" xml:space="preserve">
-    <value>The hashes are different.</value>
+    <value>Хэши разные.</value>
   </data>
 </root>
