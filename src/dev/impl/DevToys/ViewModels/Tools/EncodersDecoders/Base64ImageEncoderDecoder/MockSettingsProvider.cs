@@ -16,6 +16,12 @@ namespace DevToys.ViewModels.Tools.Base64ImageEncoderDecoder
         public MockSettingsProvider(ISettingsProvider realSettingsProvider)
         {
             _realSettingsProvider = realSettingsProvider;
+            _realSettingsProvider.SettingChanged += realSettingsProvider_SettingChanged;
+        }
+
+        private void realSettingsProvider_SettingChanged(object sender, SettingChangedEventArgs e)
+        {
+            SettingChanged?.Invoke(this, e);
         }
 
         public T GetSetting<T>(SettingDefinition<T> settingDefinition)

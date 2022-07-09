@@ -126,6 +126,14 @@
             </controls:ExpandableSettingControl.Icon>
             <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" IsOn="{x:Bind ViewModel.TextEditorRenderWhitespace, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         </controls:ExpandableSettingControl>
+        <controls:ExpandableSettingControl
+            Title="{x:Bind ViewModel.Strings.PasteClearsText}"
+            Description="{x:Bind ViewModel.Strings.PasteClearsTextDescription}">
+            <controls:ExpandableSettingControl.Icon>
+                <FontIcon Glyph="&#xF2D5;" />
+            </controls:ExpandableSettingControl.Icon>
+            <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" IsOn="{x:Bind ViewModel.TextEditorPasteClearsText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </controls:ExpandableSettingControl>
 
         <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.About}" />
 
