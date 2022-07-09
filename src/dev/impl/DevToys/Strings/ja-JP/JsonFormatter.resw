@@ -154,6 +154,9 @@
     <value>JSON フォーマッター</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value />
+    <value></value>
+  </data>
+  <data name="SortProperties" xml:space="preserve">
+    <value>アルファベット昇順でキーをソート</value>
   </data>
 </root>

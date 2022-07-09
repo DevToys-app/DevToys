@@ -121,7 +121,7 @@
     <value>À propos de</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>App theme</value>
+    <value>Thème de l'application</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
     <value>Sélectionner le thème à afficher dans l'application</value>
@@ -233,5 +233,11 @@
   </data>
   <data name="HelpTranslating" xml:space="preserve">
     <value>Aidez-nous en traduisant DevToys !</value>
+  </data>
+  <data name="PasteClearsText" xml:space="preserve">
+    <value>Remplacer le texte lors du collage</value>
+  </data>
+  <data name="PasteClearsTextDescription" xml:space="preserve">
+    <value>Lors d'un clic sur le bouton Coller, effacer le texte de l'éditeur avant de coller le contenu du presse-papiers.</value>
   </data>
 </root>
