@@ -234,4 +234,10 @@
   <data name="HelpTranslating" xml:space="preserve">
     <value>Допоможіть нам з перекладами DevToys!</value>
   </data>
+  <data name="PasteClearsText" xml:space="preserve">
+    <value>Replace text when pasting</value>
+  </data>
+  <data name="PasteClearsTextDescription" xml:space="preserve">
+    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
+  </data>
 </root>
