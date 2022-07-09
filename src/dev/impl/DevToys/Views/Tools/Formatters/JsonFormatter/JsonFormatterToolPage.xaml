@@ -64,6 +64,15 @@
                     SelectedValue="{x:Bind ViewModel.IndentationMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 </ComboBox>
             </controls:ExpandableSettingControl>
+            <controls:ExpandableSettingControl
+                Title="{x:Bind ViewModel.Strings.SortProperties}">
+                <controls:ExpandableSettingControl.Icon>
+                    <FontIcon Glyph="&#xF802;" />
+                </controls:ExpandableSettingControl.Icon>
+                <ToggleSwitch 
+                    Style="{StaticResource RightAlignedToggleSwitchStyle}"
+                    IsOn="{x:Bind ViewModel.IsSortProperties, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </controls:ExpandableSettingControl>
         </StackPanel>
 
         <Grid Grid.Row="1">

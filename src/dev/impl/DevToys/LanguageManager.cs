@@ -1359,6 +1359,11 @@ namespace DevToys
         /// Gets the resource SearchKeywords.
         /// </summary>
         public string SearchKeywords => _resources.GetString("SearchKeywords");
+
+        /// <summary>
+        /// Gets the resource SortProperties.
+        /// </summary>
+        public string SortProperties => _resources.GetString("SortProperties");
     }
 
     public class JsonYamlStrings : ObservableObject
