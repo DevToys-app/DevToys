@@ -118,51 +118,57 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>JSON と YAML を相互に変換するツールです</value>
+    <value>Cron 구문 분석 도구</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>構成</value>
+    <value>구성</value>
   </data>
-  <data name="ConversionDescription" xml:space="preserve">
-    <value>使いたい変換モードを選択してください</value>
+  <data name="UseSecondsDescription" xml:space="preserve">
+    <value>Cron 표현식이 정의에 몇 초를 포함해야 하는 항목 선택</value>
   </data>
-  <data name="ConversionTitle" xml:space="preserve">
-    <value>変換</value>
+  <data name="UseSecondsTitle" xml:space="preserve">
+    <value>Cron 모드</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>JSON &lt;&gt; YAML</value>
-  </data>
-  <data name="FourSpaces" xml:space="preserve">
-    <value>4 スペース</value>
-  </data>
-  <data name="Indentation" xml:space="preserve">
-    <value>インデント</value>
-  </data>
-  <data name="Input" xml:space="preserve">
-    <value>入力</value>
-  </data>
-  <data name="InvalidYaml" xml:space="preserve">
-    <value>入力した YAML が不正な形式です</value>
-  </data>
-  <data name="JsonToYaml" xml:space="preserve">
-    <value>JSON から YAML</value>
-  </data>
-  <data name="Output" xml:space="preserve">
-    <value>出力</value>
-  </data>
-  <data name="TwoSpaces" xml:space="preserve">
-    <value>2 スペース</value>
-  </data>
-  <data name="YamlToJson" xml:space="preserve">
-    <value>YAML から JSON</value>
+    <value>Cron 파서</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>JSON データを YAML （またはその逆）に変換します</value>
+    <value>Cron 식을 구문 분석하여 예약된 날짜를 가져오기</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>JSON &lt;&gt; YAML 変換ツール</value>
+    <value>Cron 표현식 파서</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Checksum</value>
+    <value>Cron</value>
+  </data>
+  <data name="CronErrorMessage" xml:space="preserve">
+    <value>Cron 표현식이 잘못되었습니다</value>
+  </data>
+  <data name="InputTitle" xml:space="preserve">
+    <value>구문 분석할 Cron 표현식</value>
+  </data>
+  <data name="OutputDateTimeDescription" xml:space="preserve">
+    <value>다음 날짜의 날짜 시간 형식</value>
+  </data>
+  <data name="OutputDateTimeTitle" xml:space="preserve">
+    <value>출력 형식</value>
+  </data>
+  <data name="OutputFormatErrorMessage" xml:space="preserve">
+    <value>출력 날짜 시간 형식이 잘못되었습니다</value>
+  </data>
+  <data name="OutputLimitDescription" xml:space="preserve">
+    <value>생성해야 하는 예약된 날짜 수</value>
+  </data>
+  <data name="OutputLimitTitle" xml:space="preserve">
+    <value>다음 예약 날짜</value>
+  </data>
+  <data name="OutputTitle" xml:space="preserve">
+    <value>다음 예약 날짜</value>
+  </data>
+  <data name="SecondsExcludedMode" xml:space="preserve">
+    <value>표준 모드 (5 세그먼트 Cron)</value>
+  </data>
+  <data name="SecondsIncludedMode" xml:space="preserve">
+    <value>포함된 시간 (6 - 세그먼트 Cron)</value>
   </data>
 </root>
