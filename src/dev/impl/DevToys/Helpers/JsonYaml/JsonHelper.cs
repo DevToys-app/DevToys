@@ -2,6 +2,7 @@
 
 using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 using DevToys.Core;
 using DevToys.Helpers.JsonYaml.Core;
@@ -52,7 +53,7 @@ namespace DevToys.Helpers.JsonYaml
         /// <summary>
         /// Format a string to the specified JSON format.
         /// </summary>
-        internal static string Format(string? input, Indentation indentationMode)
+        internal static string Format(string? input, Indentation indentationMode, bool sortProperties)
         {
             if (input == null || !IsValid(input))
             {
@@ -68,53 +69,55 @@ namespace DevToys.Helpers.JsonYaml
                     LineInfoHandling = LineInfoHandling.Load
                 };
 
+                JObject jObject;
                 using (var jsonReader = new JsonTextReader(new StringReader(input)))
                 {
                     jsonReader.DateParseHandling = DateParseHandling.None;
                     jsonReader.DateTimeZoneHandling = DateTimeZoneHandling.RoundtripKind;
 
-                    var jtoken = JToken.ReadFrom(jsonReader, jsonLoadSettings);
-                    if (jtoken is not null)
-                    {
-                        var stringBuilder = new StringBuilder();
-                        using (var stringWriter = new StringWriter(stringBuilder))
-                        using (var jsonTextWriter = new JsonTextWriter(stringWriter))
-                        {
-                            switch (indentationMode)
-                            {
-                                case Indentation.TwoSpaces:
-                                    jsonTextWriter.Formatting = Formatting.Indented;
-                                    jsonTextWriter.IndentChar = ' ';
-                                    jsonTextWriter.Indentation = 2;
-                                    break;
-                                case Indentation.FourSpaces:
-                                    jsonTextWriter.Formatting = Formatting.Indented;
-                                    jsonTextWriter.IndentChar = ' ';
-                                    jsonTextWriter.Indentation = 4;
-                                    break;
-                                case Indentation.OneTab:
-                                    jsonTextWriter.Formatting = Formatting.Indented;
-                                    jsonTextWriter.IndentChar = '\t';
-                                    jsonTextWriter.Indentation = 1;
-                                    break;
-                                case Indentation.Minified:
-                                    jsonTextWriter.Formatting = Formatting.None;
-                                    break;
-                                default:
-                                    throw new NotSupportedException();
-                            }
-
-                            jsonTextWriter.DateFormatHandling = DateFormatHandling.IsoDateFormat;
-                            jsonTextWriter.DateTimeZoneHandling = DateTimeZoneHandling.RoundtripKind;
-
-                            jtoken.WriteTo(jsonTextWriter);
-                        }
-
-                        return stringBuilder.ToString();
-                    }
+                    jObject = JObject.Load(jsonReader, jsonLoadSettings);
                 }
 
-                return string.Empty;
+                if (sortProperties)
+                {
+                    SortJsonPropertiesAlphabetically(jObject);
+                }
+
+                var stringBuilder = new StringBuilder();
+                using (var stringWriter = new StringWriter(stringBuilder))
+                using (var jsonTextWriter = new JsonTextWriter(stringWriter))
+                {
+                    switch (indentationMode)
+                    {
+                        case Indentation.TwoSpaces:
+                            jsonTextWriter.Formatting = Formatting.Indented;
+                            jsonTextWriter.IndentChar = ' ';
+                            jsonTextWriter.Indentation = 2;
+                            break;
+                        case Indentation.FourSpaces:
+                            jsonTextWriter.Formatting = Formatting.Indented;
+                            jsonTextWriter.IndentChar = ' ';
+                            jsonTextWriter.Indentation = 4;
+                            break;
+                        case Indentation.OneTab:
+                            jsonTextWriter.Formatting = Formatting.Indented;
+                            jsonTextWriter.IndentChar = '\t';
+                            jsonTextWriter.Indentation = 1;
+                            break;
+                        case Indentation.Minified:
+                            jsonTextWriter.Formatting = Formatting.None;
+                            break;
+                        default:
+                            throw new NotSupportedException();
+                    }
+
+                    jsonTextWriter.DateFormatHandling = DateFormatHandling.IsoDateFormat;
+                    jsonTextWriter.DateTimeZoneHandling = DateTimeZoneHandling.RoundtripKind;
+
+                    jObject.WriteTo(jsonTextWriter);
+                }
+
+                return stringBuilder.ToString();
             }
             catch (JsonReaderException ex)
             {
@@ -191,6 +194,24 @@ namespace DevToys.Helpers.JsonYaml
             {
                 Logger.LogFault("Yaml to Json Converter", ex);
                 return string.Empty;
+            }
+        }
+
+        private static void SortJsonPropertiesAlphabetically(JObject jObject)
+        {
+            var properties = jObject.Properties().ToList();
+            foreach (JProperty? property in properties)
+            {
+                property.Remove();
+            }
+
+            foreach (JProperty? property in properties.OrderBy(p => p.Name))
+            {
+                jObject.Add(property);
+                if (property.Value is JObject obj)
+                {
+                    SortJsonPropertiesAlphabetically(obj);
+                }
             }
         }
     }
