@@ -69,7 +69,6 @@
                 Grid.Row="0"
                 Grid.RowSpan="3"
                 Header="{x:Bind ViewModel.Strings.XsdScheme}"
-                SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
                 Text="{x:Bind ViewModel.XsdSchema, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 CodeLanguage="xml"/>
 
@@ -111,7 +110,6 @@
                 Grid.Row="0"
                 Grid.RowSpan="3"
                 Header="{x:Bind ViewModel.Strings.XmlData}"
-                SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
                 Text="{x:Bind ViewModel.XmlData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 CodeLanguage="xml"/>
         </Grid>

@@ -101,7 +101,6 @@
         <controls:CustomTextBox
             Grid.Row="1"
             Header="{x:Bind ViewModel.Strings.RegularExpression}"
-            SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
             Text="{x:Bind ViewModel.RegularExpression, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <controls:CustomTextBox
@@ -111,7 +110,6 @@
             AcceptsReturn="True"
             IsRichTextEdit="True"
             MinHeight="150"
-            SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
             Text="{x:Bind ViewModel.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </Page>

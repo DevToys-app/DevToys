@@ -2337,6 +2337,16 @@ namespace DevToys
         /// Gets the resource HelpTranslating.
         /// </summary>
         public string HelpTranslating => _resources.GetString("HelpTranslating");
+
+        /// <summary>
+        /// Gets the resource PasteClearsText.
+        /// </summary>
+        public string PasteClearsText => _resources.GetString("PasteClearsText");
+
+        /// <summary>
+        /// Gets the resource PasteClearsTextDescription.
+        /// </summary>
+        public string PasteClearsTextDescription => _resources.GetString("PasteClearsTextDescription");
     }
 
     public class SqlFormatterStrings : ObservableObject
