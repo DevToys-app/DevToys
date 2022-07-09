@@ -139,10 +139,14 @@ namespace DevToys.UI.Controls
                     null,
                     (d, e) =>
                     {
-                        if (e.NewValue is ISettingsProvider settingsProvider)
+                        var textBox = (CustomTextBox)d;
+                        if (e.OldValue is ISettingsProvider settingsProvider)
                         {
-                            var textBox = (CustomTextBox)d;
-                            settingsProvider.SettingChanged += textBox.SettingsProvider_SettingChanged;
+                            settingsProvider.SettingChanged -= textBox.SettingsProvider_SettingChanged;
+                        }
+                        if (e.NewValue is ISettingsProvider settingsProvider2)
+                        {
+                            settingsProvider2.SettingChanged += textBox.SettingsProvider_SettingChanged;
                         }
                     }));
 
@@ -154,6 +158,8 @@ namespace DevToys.UI.Controls
 
         public CustomTextBox()
         {
+            SettingsProvider = Shared.Core.MefComposer.Provider.Import<ISettingsProvider>();
+
             InitializeComponent();
 
             Loaded += OnLoaded;
@@ -244,7 +250,7 @@ namespace DevToys.UI.Controls
 
         private bool CanExecuteDeleteCommand()
         {
-            return  IsEnabled
+            return IsEnabled
                     && !IsReadOnly
                     && RichEditBox != null
                     && RichEditBox.TextDocument.Selection.Length != 0;
@@ -569,6 +575,7 @@ namespace DevToys.UI.Controls
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             UpdateUI();
+            ApplySettings();
         }
 
         private void OnActualThemeChanged(FrameworkElement sender, object args)
@@ -597,6 +604,13 @@ namespace DevToys.UI.Controls
                     string? text = await dataPackageView.GetTextAsync();
 
                     richEditBox.TextDocument.BeginUndoGroup();
+
+                    if (SettingsProvider != null
+                        && SettingsProvider.GetSetting(PredefinedSettings.TextEditorPasteClearsText))
+                    {
+                        richEditBox.TextDocument.SetText(TextSetOptions.None, string.Empty);
+                    }
+
                     richEditBox.TextDocument.Selection.SetText(TextSetOptions.None, text);
                     richEditBox.TextDocument.Selection.StartPosition = richEditBox.TextDocument.Selection.EndPosition;
                     richEditBox.TextDocument.EndUndoGroup();
@@ -608,6 +622,11 @@ namespace DevToys.UI.Controls
             }
             else
             {
+                if (SettingsProvider != null
+                    && SettingsProvider.GetSetting(PredefinedSettings.TextEditorPasteClearsText))
+                {
+                    TextBox.Text = string.Empty;
+                }
                 TextBox.PasteFromClipboard();
             }
         }
@@ -820,17 +839,20 @@ namespace DevToys.UI.Controls
             }
         }
 
-        private void TextBox_Loading(FrameworkElement sender, object args)
-        {
-            ApplySettings();
-        }
-
         private void ApplySettings()
         {
             ISettingsProvider? settingsProvider = SettingsProvider;
             if (settingsProvider is not null)
             {
-                TextBox.FontFamily = new FontFamily(settingsProvider.GetSetting(PredefinedSettings.TextEditorFont));
+                if (TextBox is not null)
+                {
+                    TextBox.FontFamily = new FontFamily(settingsProvider.GetSetting(PredefinedSettings.TextEditorFont));
+                }
+
+                if (RichEditBox is not null)
+                {
+                    RichEditBox.FontFamily = new FontFamily(settingsProvider.GetSetting(PredefinedSettings.TextEditorFont));
+                }
             }
         }
     }

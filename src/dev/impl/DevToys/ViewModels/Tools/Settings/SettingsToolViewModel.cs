@@ -92,6 +92,12 @@ namespace DevToys.ViewModels.Settings
             set => _settingsProvider.SetSetting(PredefinedSettings.TextEditorRenderWhitespace, value);
         }
 
+        internal bool TextEditorPasteClearsText
+        {
+            get => _settingsProvider.GetSetting(PredefinedSettings.TextEditorPasteClearsText);
+            set => _settingsProvider.SetSetting(PredefinedSettings.TextEditorPasteClearsText, value);
+        }
+
         /// <summary>
         /// Gets the version of the application.
         /// </summary>

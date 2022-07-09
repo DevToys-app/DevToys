@@ -84,7 +84,6 @@
                 Grid.Row="0"
                 Grid.RowSpan="3"
                 Header="{x:Bind ViewModel.Strings.Input}"
-                SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
                 Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 CodeLanguage="json"/>
 
@@ -126,7 +125,6 @@
                 Grid.Row="0"
                 Grid.RowSpan="3"
                 Header="{x:Bind ViewModel.Strings.Output}"
-                SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
                 Text="{x:Bind ViewModel.OutputValue, Mode=OneWay}"
                 CodeLanguage="json"
                 IsReadOnly="True"/>

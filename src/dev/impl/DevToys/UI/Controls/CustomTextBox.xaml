@@ -134,7 +134,7 @@
                 SelectionChanged="TextBox_SelectionChanged"
                 CopyingToClipboard="TextBox_CopyingToClipboard"
                 CuttingToClipboard="TextBox_CuttingToClipboard"
-                AutomationProperties.LabeledBy="{Binding ElementName=HeaderTextBlock}" Loading="TextBox_Loading" />
+                AutomationProperties.LabeledBy="{Binding ElementName=HeaderTextBlock}"/>
             <RichEditBox
                 x:Name="RichEditBox"
                 x:Load="{x:Bind IsRichTextEdit}"

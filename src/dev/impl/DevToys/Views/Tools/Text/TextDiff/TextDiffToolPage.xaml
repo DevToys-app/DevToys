@@ -70,7 +70,6 @@
                 Grid.Column="0"
                 MinHeight="200"
                 Header="{x:Bind ViewModel.Strings.LeftText}"
-                SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
                 Text="{x:Bind ViewModel.OldText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
             <toolkit:GridSplitter
@@ -92,7 +91,6 @@
                 Grid.Column="2"
                 MinHeight="200"
                 Header="{x:Bind ViewModel.Strings.RightText}"
-                SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
                 Text="{x:Bind ViewModel.NewText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
 
@@ -114,7 +112,6 @@
             MinHeight="200"
             Grid.Row="3"
             Header="{x:Bind ViewModel.Strings.Difference}"
-            SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
             IsReadOnly="True"
             IsDiffViewMode="True"
             InlineDiffViewMode="{x:Bind ViewModel.InlineMode, Mode=OneWay}"
