@@ -234,4 +234,10 @@
   <data name="HelpTranslating" xml:space="preserve">
     <value>DevToysの翻訳にご協力ください！</value>
   </data>
+  <data name="PasteClearsText" xml:space="preserve">
+    <value>置換貼り付け</value>
+  </data>
+  <data name="PasteClearsTextDescription" xml:space="preserve">
+    <value>クリップボードの内容を貼り付ける前に、入力欄を空にして内容を置き換えます</value>
+  </data>
 </root>
