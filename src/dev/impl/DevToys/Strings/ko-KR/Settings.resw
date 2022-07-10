@@ -235,9 +235,9 @@
     <value>DevToys 번역을 도와주세요!</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>붙여넣을 때 텍스트 바꾸기</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
+    <value>붙여넣기 단추를 누를 때 기존 텍스트 편집기 내용에 추가하는 대신 붙여넣기 전에 텍스트를 지웁니다.</value>
   </data>
 </root>

@@ -121,7 +121,7 @@
     <value>О приложении</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>App theme</value>
+    <value>Тема приложения</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
     <value>Выберите тему приложения для отображения</value>
@@ -232,12 +232,12 @@
     <value>Configurations Options Settings</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translating DevToys!</value>
+    <value>Помочь с переводом DevToys!</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Заменить текст при вставке</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
+    <value>При нажатии на кнопку Вставить, очистите текст перед вставкой вместо добавления в существующее содержимое текстового редактора.</value>
   </data>
 </root>
