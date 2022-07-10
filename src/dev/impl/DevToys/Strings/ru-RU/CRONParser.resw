@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Cron parsing tool</value>
+    <value>Инструмент Cron парсер</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Установки</value>
@@ -127,10 +127,10 @@
     <value>Choose whatever Cron expression should includes seconds in its definition</value>
   </data>
   <data name="UseSecondsTitle" xml:space="preserve">
-    <value>Cron Mode</value>
+    <value>Режим Cron</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Cron parser</value>
+    <value>Cron парсер</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Parse Cron expression to get scheduled dates</value>
@@ -151,7 +151,7 @@
     <value>Date time fomat of upcoming dates</value>
   </data>
   <data name="OutputDateTimeTitle" xml:space="preserve">
-    <value>Output format</value>
+    <value>Формат вывода</value>
   </data>
   <data name="OutputFormatErrorMessage" xml:space="preserve">
     <value>Output date time format is not valid</value>
@@ -166,7 +166,7 @@
     <value>Next scheduled dates</value>
   </data>
   <data name="SecondsExcludedMode" xml:space="preserve">
-    <value>Standard mode (5 - segment Cron)</value>
+    <value>Стандартный режим (5ти сегментный Cron)</value>
   </data>
   <data name="SecondsIncludedMode" xml:space="preserve">
     <value>Seconds included (6 - segment Cron)</value>
