@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>XML Formatter tool</value>
+    <value>Инструмент форматирования XML</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Установки</value>
@@ -148,13 +148,13 @@
     <value>2 пробела</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Indent or minify XML data</value>
+    <value>Идентифицировать или достать данные из XML</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>XML Formatter</value>
+    <value>Форматировщик XML </value>
   </data>
   <data name="NewLineOnAttributesName" xml:space="preserve">
-    <value>Put attributes on new line</value>
+    <value>Разместить атрибуты на новой строке</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
