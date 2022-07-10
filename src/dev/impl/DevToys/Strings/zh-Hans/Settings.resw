@@ -235,9 +235,9 @@
     <value>帮助我们翻译 DevToys！</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>粘贴时替换文本</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
+    <value>点击粘贴按钮时，在粘贴之前清除文本，而不是添加到现有文本编辑器内容之后。</value>
   </data>
 </root>
