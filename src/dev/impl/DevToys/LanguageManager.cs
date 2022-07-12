@@ -29,6 +29,7 @@ namespace DevToys
         private readonly Base64ImageEncoderDecoderStrings _base64imageencoderdecoder = new Base64ImageEncoderDecoderStrings();
         private readonly CheckSumGeneratorStrings _checksumgenerator = new CheckSumGeneratorStrings();
         private readonly ColorBlindnessSimulatorStrings _colorblindnesssimulator = new ColorBlindnessSimulatorStrings();
+        private readonly ColorPickerStrings _colorpicker = new ColorPickerStrings();
         private readonly CommonStrings _common = new CommonStrings();
         private readonly CRONParserStrings _cronparser = new CRONParserStrings();
         private readonly GuidGeneratorStrings _guidgenerator = new GuidGeneratorStrings();
@@ -91,6 +92,11 @@ namespace DevToys
         /// Gets the <see cref="ColorBlindnessSimulatorStrings"/>.
         /// </summary>
         public ColorBlindnessSimulatorStrings ColorBlindnessSimulator => _colorblindnesssimulator;
+
+        /// <summary>
+        /// Gets the <see cref="ColorPickerStrings"/>.
+        /// </summary>
+        public ColorPickerStrings ColorPicker => _colorpicker;
 
         /// <summary>
         /// Gets the <see cref="CommonStrings"/>.
@@ -547,6 +553,76 @@ namespace DevToys
         /// Gets the resource SearchKeywords.
         /// </summary>
         public string SearchKeywords => _resources.GetString("SearchKeywords");
+    }
+
+    public class ColorPickerStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("ColorPicker");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
+        /// Gets the resource MenuDisplayName.
+        /// </summary>
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+
+        /// <summary>
+        /// Gets the resource SearchKeywords.
+        /// </summary>
+        public string SearchKeywords => _resources.GetString("SearchKeywords");
+
+        /// <summary>
+        /// Gets the resource BlackText.
+        /// </summary>
+        public string BlackText => _resources.GetString("BlackText");
+
+        /// <summary>
+        /// Gets the resource ColorPicker.
+        /// </summary>
+        public string ColorPicker => _resources.GetString("ColorPicker");
+
+        /// <summary>
+        /// Gets the resource Configuration.
+        /// </summary>
+        public string Configuration => _resources.GetString("Configuration");
+
+        /// <summary>
+        /// Gets the resource Mode.
+        /// </summary>
+        public string Mode => _resources.GetString("Mode");
+
+        /// <summary>
+        /// Gets the resource ModeHSL.
+        /// </summary>
+        public string ModeHSL => _resources.GetString("ModeHSL");
+
+        /// <summary>
+        /// Gets the resource ModeHSV.
+        /// </summary>
+        public string ModeHSV => _resources.GetString("ModeHSV");
+
+        /// <summary>
+        /// Gets the resource SelectedColor.
+        /// </summary>
+        public string SelectedColor => _resources.GetString("SelectedColor");
+
+        /// <summary>
+        /// Gets the resource WhiteText.
+        /// </summary>
+        public string WhiteText => _resources.GetString("WhiteText");
     }
 
     public class CommonStrings : ObservableObject
