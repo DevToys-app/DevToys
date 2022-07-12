@@ -27,7 +27,7 @@ namespace DevToys.ViewModels.Tools.CronParser
 
         public string? SearchKeywords => LanguageManager.Instance.CRONParser.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("Cron.svg");
+        public string IconGlyph => "\u0104";
 
         [ImportingConstructor]
         public CronParserToolProvider(IMefProvider mefProvider)

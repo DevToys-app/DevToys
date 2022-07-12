@@ -29,7 +29,7 @@ namespace DevToys.ViewModels.Tools.JwtDecoderEncoder
 
         public string? SearchKeywords => LanguageManager.Instance.JwtDecoderEncoder.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("JWT.svg");
+        public string IconGlyph => "\u0110";
 
         [ImportingConstructor]
         public JwtDecoderEncoderToolProvider(IMefProvider mefProvider)

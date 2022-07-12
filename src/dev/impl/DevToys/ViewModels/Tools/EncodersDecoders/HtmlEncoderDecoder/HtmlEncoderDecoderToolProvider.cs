@@ -25,7 +25,7 @@ namespace DevToys.ViewModels.Tools.HtmlEncoderDecoder
 
         public string? SearchKeywords => LanguageManager.Instance.HtmlEncoderDecoder.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("HtmlEncoder.svg");
+        public string IconGlyph => "\u0107";
 
         private readonly IMefProvider _mefProvider;
 

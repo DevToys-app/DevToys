@@ -29,7 +29,7 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
 
         public string? SearchKeywords => LanguageManager.Instance.JsonFormatter.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("JsonFormatter.svg");
+        public string IconGlyph => "\u0108";
 
         [ImportingConstructor]
         public JsonFormatterToolProvider(IMefProvider mefProvider)

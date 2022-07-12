@@ -26,7 +26,7 @@ namespace DevToys.ViewModels.Tools.Base64ImageEncoderDecoder
 
         public string? SearchKeywords => LanguageManager.Instance.Base64ImageEncoderDecoder.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("Base64Image.svg");
+        public string IconGlyph => "\u0102";
 
         private readonly IMefProvider _mefProvider;
 

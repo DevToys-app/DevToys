@@ -28,7 +28,7 @@ namespace DevToys.ViewModels.Tools.LoremIpsumGenerator
 
         public string? SearchKeywords => LanguageManager.Instance.LoremIpsumGenerator.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("LoremIpsum.svg");
+        public string IconGlyph => "\u0111";
 
         [ImportingConstructor]
         public LoremIpsumGeneratorToolProvider(IMefProvider mefProvider)

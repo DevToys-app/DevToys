@@ -28,7 +28,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
 
         public string? SearchKeywords => LanguageManager.Instance.CheckSumGenerator.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF56F");
+        public string IconGlyph => "\u0124";
 
         [ImportingConstructor]
         public CheckSumGeneratorToolProvider(IMefProvider mefProvider)

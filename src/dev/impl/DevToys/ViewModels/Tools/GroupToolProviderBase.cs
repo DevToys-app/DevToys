@@ -22,7 +22,7 @@ namespace DevToys.ViewModels.Tools
 
         public virtual string? SearchKeywords { get; }
 
-        public abstract TaskCompletionNotifier<IconElement> IconSource { get; }
+        public abstract string IconGlyph { get; }
 
         public GroupToolProviderBase(IMefProvider mefProvider)
         {

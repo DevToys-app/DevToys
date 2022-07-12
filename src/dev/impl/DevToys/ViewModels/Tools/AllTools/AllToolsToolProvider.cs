@@ -31,7 +31,7 @@ namespace DevToys.ViewModels.AllTools
 
         public string? SearchKeywords => MenuDisplayName;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF480");
+        public string IconGlyph => "\u0117";
 
         [ImportingConstructor]
         public AllToolsToolProvider(IMefProvider mefProvider)

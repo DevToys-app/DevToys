@@ -241,10 +241,15 @@
                     <ui:MainMenuNavigationViewMenuItemSelector.ToolProvider>
                         <DataTemplate x:DataType="tools:ToolProviderViewItem">
                             <muxc:NavigationViewItem
-                                Icon="{x:Bind Icon.Result, Mode=OneWay}"
                                 AutomationProperties.Name="{x:Bind ToolProvider.AccessibleName}"
                                 MenuItemsSource="{x:Bind ChildrenTools, Mode=OneWay}"
                                 IsExpanded="{x:Bind MenuItemShouldBeExpanded, Mode=OneWay}">
+                                <muxc:NavigationViewItem.Icon>
+                                    <FontIcon
+                                        FontSize="16"
+                                        FontFamily="{StaticResource DevToysToolsIcons}"
+                                        Glyph="{x:Bind IconGlyph}"/>
+                                </muxc:NavigationViewItem.Icon>
                                 <muxc:NavigationViewItem.ContextFlyout>
                                     <MenuFlyout>
                                         <MenuFlyoutItem
@@ -326,6 +331,11 @@
                 <Grid
                     Name="ScrollViewerContent"
                     Margin="56,48,56,0">
+                    <Grid.Resources>
+                        <Style TargetType="FontIcon">
+                            <Setter Property="FontFamily" Value="{StaticResource FluentSystemIcons}"/>
+                        </Style>
+                    </Grid.Resources>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
@@ -338,7 +348,8 @@
                     <Frame
                         Grid.Row="1"
                         Name="ContentFrame"
-                        Padding="0,12,0,24"/>
+                        Padding="0,12,0,24">
+                    </Frame>
                 </Grid>
             </ScrollViewer>
         </muxc:NavigationView>

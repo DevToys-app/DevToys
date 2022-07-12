@@ -28,7 +28,7 @@ namespace DevToys.ViewModels.Tools.RegEx
 
         public string? SearchKeywords => LanguageManager.Instance.RegEx.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("RegexTester.svg");
+        public string IconGlyph => "\u0113";
 
         [ImportingConstructor]
         public RegExToolProvider(IMefProvider mefProvider)

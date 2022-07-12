@@ -28,7 +28,7 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
 
         public string? SearchKeywords => LanguageManager.Instance.Base64EncoderDecoder.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\u0100");
+        public string IconGlyph => "\u0100";
 
         private readonly IMefProvider _mefProvider;
 

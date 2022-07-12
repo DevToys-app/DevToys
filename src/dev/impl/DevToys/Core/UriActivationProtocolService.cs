@@ -225,7 +225,17 @@ namespace DevToys.Core
                         Stretch = Stretch.UniformToFill
                     };
 
-                    IconElement toolIcon = await toolProvider.Icon.Task!.ConfigureAwait(true);
+                    IconElement toolIcon
+                        = await ThreadHelper.RunOnUIThreadAsync(
+                            ThreadPriority.Low,
+                            () =>
+                            {
+                                return Task.FromResult(new FontIcon
+                                {
+                                    Glyph = Arguments.NotNullOrWhiteSpace(toolProvider.IconGlyph, nameof(toolProvider.IconGlyph))
+                                });
+                            });
+
                     Assumes.NotNull(toolIcon, nameof(toolIcon));
 
                     toolIcon.Height = tileIconSizeDefinition.Size / tileIconSizeDefinition.ToolIconRatio;

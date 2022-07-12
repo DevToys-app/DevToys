@@ -30,7 +30,7 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
 
         public string? SearchKeywords => LanguageManager.Instance.NumberBaseConverter.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uFE2C");
+        public string IconGlyph => "\u0118";
 
         [ImportingConstructor]
         public NumberBaseConverterToolProvider(IMefProvider mefProvider)

@@ -29,7 +29,7 @@ namespace DevToys.ViewModels.Tools.HashGenerator
 
         public string? SearchKeywords => LanguageManager.Instance.HashGenerator.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF409");
+        public string IconGlyph => "\u0125";
 
         [ImportingConstructor]
         public HashGeneratorToolProvider(IMefProvider mefProvider)

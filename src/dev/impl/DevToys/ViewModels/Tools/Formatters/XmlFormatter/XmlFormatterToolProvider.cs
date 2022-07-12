@@ -29,7 +29,7 @@ namespace DevToys.ViewModels.Tools.Formatters.XmlFormatter
 
         public string? SearchKeywords => LanguageManager.Instance.XmlFormatter.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uf2ef");
+        public string IconGlyph => "\u0122";
 
         [ImportingConstructor]
         public XmlFormatterToolProvider(IMefProvider mefProvider)

@@ -29,7 +29,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml
 
         public string? SearchKeywords => LanguageManager.Instance.JsonYaml.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("JsonYaml.svg");
+        public string IconGlyph => "\u0109";
 
         [ImportingConstructor]
         public JsonYamlToolProvider(IMefProvider mefProvider)

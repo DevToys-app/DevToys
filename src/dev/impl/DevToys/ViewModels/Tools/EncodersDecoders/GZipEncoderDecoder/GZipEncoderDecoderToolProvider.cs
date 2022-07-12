@@ -25,7 +25,7 @@ namespace DevToys.ViewModels.Tools.GZipEncoderDecoder
 
         public string? SearchKeywords => LanguageManager.Instance.GZipEncoderDecoder.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF435");
+        public string IconGlyph => "\u0120";
 
         private readonly IMefProvider _mefProvider;
 

@@ -31,7 +31,7 @@ namespace DevToys.ViewModels.Tools.MarkdownPreview
 
         public string? SearchKeywords => LanguageManager.Instance.MarkdownPreview.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("MarkdownPreview.svg");
+        public string IconGlyph => "\u0112";
 
         [ImportingConstructor]
         public MarkdownPreviewToolProvider(IMefProvider mefProvider)

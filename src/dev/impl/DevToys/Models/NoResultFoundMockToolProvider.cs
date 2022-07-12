@@ -20,7 +20,7 @@ namespace DevToys.Models
 
         public string? SearchKeywords => LanguageManager.Instance.MainPage.SearchNoResultsFound;
 
-        public TaskCompletionNotifier<IconElement> IconSource => null!;
+        public string IconGlyph => null!;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 

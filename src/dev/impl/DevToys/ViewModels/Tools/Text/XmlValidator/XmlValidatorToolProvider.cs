@@ -33,7 +33,7 @@ namespace DevToys.ViewModels.Tools.XmlValidator
 
         public string? SearchKeywords => string.Empty;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("XmlValidator.svg");
+        public string IconGlyph => "\u0116";
 
         [ImportingConstructor]
         public XmlValidatorToolProvider(IMefProvider mefProvider)

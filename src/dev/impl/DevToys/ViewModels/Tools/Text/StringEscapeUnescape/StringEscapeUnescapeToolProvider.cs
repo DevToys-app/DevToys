@@ -28,7 +28,7 @@ namespace DevToys.ViewModels.Tools.StringEscapeUnescape
 
         public string? SearchKeywords => LanguageManager.Instance.StringEscapeUnescape.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF7DF");
+        public string IconGlyph => "\u0130";
 
         [ImportingConstructor]
         public StringEscapeUnescapeToolProvider(IMefProvider mefProvider)

@@ -36,7 +36,7 @@
     </Style>
 
     <Style TargetType="FontIcon">
-        <Setter Property="FontFamily" Value="{StaticResource DevToysToolsIcons}"/>
+        <Setter Property="FontFamily" Value="{StaticResource FluentSystemIcons}"/>
         <Setter Property="HighContrastAdjustment" Value="None"/>
     </Style>
 
