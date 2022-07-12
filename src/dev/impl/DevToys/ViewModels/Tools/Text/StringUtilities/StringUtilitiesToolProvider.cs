@@ -14,7 +14,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
     [ProtocolName("string")]
     [Order(0)]
     [NotScrollable]
-    internal sealed class StringUtilitiesToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class StringUtilitiesToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 

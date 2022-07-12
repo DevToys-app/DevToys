@@ -15,7 +15,7 @@ namespace DevToys.ViewModels.Tools.Converters.Timestamp
     [Parent(ConvertersGroupToolProvider.InternalName)]
     [ProtocolName("time")]
     [Order(0)]
-    internal sealed class TimestampToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class TimestampToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 

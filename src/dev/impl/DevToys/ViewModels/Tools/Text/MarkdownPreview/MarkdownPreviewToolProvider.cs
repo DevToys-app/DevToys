@@ -15,7 +15,7 @@ namespace DevToys.ViewModels.Tools.MarkdownPreview
     [ProtocolName("markdown")]
     [Order(4)]
     [NotScrollable]
-    internal sealed class MarkdownPreviewToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class MarkdownPreviewToolProvider : IToolProvider
     {
         private static readonly Regex MarkdownLinkDetection = new(@"\[[^]]+\]\(https?:\/\/\S+\)", RegexOptions.Compiled);
 

@@ -14,7 +14,7 @@ namespace DevToys.ViewModels.Tools.LoremIpsumGenerator
     [ProtocolName("loremipsum")]
     [Order(2)]
     [CompactOverlaySize(width: 400, height: 500)]
-    internal sealed class LoremIpsumGeneratorToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class LoremIpsumGeneratorToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 

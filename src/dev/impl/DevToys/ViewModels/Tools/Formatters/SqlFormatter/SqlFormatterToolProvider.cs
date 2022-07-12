@@ -14,7 +14,7 @@ namespace DevToys.ViewModels.Tools.SqlFormatter
     [ProtocolName("sqlformat")]
     [Order(0)]
     [NotScrollable]
-    internal sealed class SqlFormatterToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class SqlFormatterToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 

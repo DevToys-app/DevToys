@@ -13,7 +13,7 @@ namespace DevToys.ViewModels.Tools.GZipEncoderDecoder
     [Parent(EncodersDecodersGroupToolProvider.InternalName)]
     [ProtocolName("gzip")]
     [Order(3)]
-    internal sealed class GZipEncoderDecoderToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class GZipEncoderDecoderToolProvider : IToolProvider
     {
         public string MenuDisplayName => LanguageManager.Instance.GZipEncoderDecoder.MenuDisplayName;
 

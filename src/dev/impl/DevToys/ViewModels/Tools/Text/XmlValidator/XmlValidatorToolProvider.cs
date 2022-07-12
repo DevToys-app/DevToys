@@ -19,7 +19,7 @@ namespace DevToys.ViewModels.Tools.XmlValidator
     [ProtocolName("xmlvalidator")]
     [Order(1)]
     [NotScrollable]
-    internal sealed class XmlValidatorToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class XmlValidatorToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 

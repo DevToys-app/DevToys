@@ -17,7 +17,7 @@ namespace DevToys.ViewModels.AllTools
     [NotSearchable]
     [NotFavorable]
     [NoCompactOverlaySupport]
-    internal sealed class AllToolsToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class AllToolsToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 

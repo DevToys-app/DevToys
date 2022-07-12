@@ -15,7 +15,7 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
     [ProtocolName("jsonformat")]
     [Order(0)]
     [NotScrollable]
-    internal sealed class JsonFormatterToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class JsonFormatterToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 

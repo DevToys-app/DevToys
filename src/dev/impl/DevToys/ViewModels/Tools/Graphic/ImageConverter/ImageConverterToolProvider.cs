@@ -14,7 +14,7 @@ namespace DevToys.ViewModels.Tools.ImageConverter
     [ProtocolName("imageconverter")]
     [Order(1)]
     [NotScrollable]
-    internal sealed class ImageConverterToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class ImageConverterToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 

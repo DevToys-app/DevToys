@@ -15,7 +15,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml
     [ProtocolName("jsonyaml")]
     [Order(0)]
     [NotScrollable]
-    internal sealed class JsonYamlToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class JsonYamlToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 

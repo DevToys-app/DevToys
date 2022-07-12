@@ -14,7 +14,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
     [ProtocolName("checksum")]
     [Order(3)]
     [CompactOverlaySize(width: 400, height: 500)]
-    internal sealed class CheckSumGeneratorToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class CheckSumGeneratorToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 

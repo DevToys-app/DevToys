@@ -232,6 +232,7 @@ namespace DevToys.Core
                             {
                                 return Task.FromResult(new FontIcon
                                 {
+                                    FontFamily = (FontFamily)Application.Current.Resources["DevToysToolsIcons"],
                                     Glyph = Arguments.NotNullOrWhiteSpace(toolProvider.IconGlyph, nameof(toolProvider.IconGlyph))
                                 });
                             });

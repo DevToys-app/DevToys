@@ -15,7 +15,7 @@ namespace DevToys.ViewModels.Tools.HashGenerator
     [ProtocolName("hash")]
     [Order(0)]
     [CompactOverlaySize(width: 400, height: 500)]
-    internal sealed class HashGeneratorToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class HashGeneratorToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 

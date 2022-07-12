@@ -14,7 +14,7 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
     [ProtocolName("colorblind")]
     [Order(0)]
     [NotScrollable]
-    internal class ColorBlindnessSimulatorToolProvider : ToolProviderBase, IToolProvider
+    internal class ColorBlindnessSimulatorToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 

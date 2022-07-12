@@ -8,7 +8,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace DevToys.ViewModels.Tools
 {
-    internal abstract class GroupToolProviderBase : ToolProviderBase, IToolProvider
+    internal abstract class GroupToolProviderBase : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 

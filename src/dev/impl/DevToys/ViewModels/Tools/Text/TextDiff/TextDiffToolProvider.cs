@@ -14,7 +14,7 @@ namespace DevToys.ViewModels.Tools.TextDiff
     [ProtocolName("diff")]
     [Order(1)]
     [NotScrollable]
-    internal sealed class TextDiffToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class TextDiffToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 

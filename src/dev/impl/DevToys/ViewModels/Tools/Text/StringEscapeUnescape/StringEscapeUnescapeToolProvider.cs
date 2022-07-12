@@ -14,7 +14,7 @@ namespace DevToys.ViewModels.Tools.StringEscapeUnescape
     [Parent(TextGroupToolProvider.InternalName)]
     [ProtocolName("escape")]
     [Order(0)]
-    internal sealed class StringEscapeUnescapeToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class StringEscapeUnescapeToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 

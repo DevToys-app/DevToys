@@ -15,7 +15,7 @@ namespace DevToys.ViewModels.Tools.JwtDecoderEncoder
     [ProtocolName("jwt")]
     [Order(3)]
     [NotScrollable]
-    internal sealed class JwtDecoderEncoderToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class JwtDecoderEncoderToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 

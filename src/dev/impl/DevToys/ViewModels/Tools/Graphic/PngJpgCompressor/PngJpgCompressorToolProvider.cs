@@ -13,7 +13,7 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
     [Parent(GraphicGroupToolProvider.InternalName)]
     [ProtocolName("imgcomp")]
     [Order(0)]
-    internal sealed class PngJpgCompressorToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class PngJpgCompressorToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 

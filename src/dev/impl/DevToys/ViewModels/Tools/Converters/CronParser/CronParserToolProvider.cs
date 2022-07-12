@@ -13,7 +13,7 @@ namespace DevToys.ViewModels.Tools.CronParser
     [Parent(ConvertersGroupToolProvider.InternalName)]
     [ProtocolName("cronparser")]
     [Order(4)]
-    internal sealed class CronParserToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class CronParserToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 

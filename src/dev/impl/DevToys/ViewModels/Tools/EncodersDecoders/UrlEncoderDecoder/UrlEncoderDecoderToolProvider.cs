@@ -13,7 +13,7 @@ namespace DevToys.ViewModels.Tools.UrlEncoderDecoder
     [Parent(EncodersDecodersGroupToolProvider.InternalName)]
     [ProtocolName("url")]
     [Order(0)]
-    internal sealed class UrlEncoderDecoderToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class UrlEncoderDecoderToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 

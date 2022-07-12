@@ -13,7 +13,7 @@ namespace DevToys.ViewModels.Tools.HtmlEncoderDecoder
     [Parent(EncodersDecodersGroupToolProvider.InternalName)]
     [ProtocolName("html")]
     [Order(0)]
-    internal sealed class HtmlEncoderDecoderToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class HtmlEncoderDecoderToolProvider : IToolProvider
     {
         public string MenuDisplayName => LanguageManager.Instance.HtmlEncoderDecoder.MenuDisplayName;
 

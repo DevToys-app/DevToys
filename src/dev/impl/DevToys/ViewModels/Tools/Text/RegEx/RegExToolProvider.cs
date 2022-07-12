@@ -14,7 +14,7 @@ namespace DevToys.ViewModels.Tools.RegEx
     [ProtocolName("regex")]
     [Order(1)]
     [NotScrollable]
-    internal sealed class RegExToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class RegExToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 

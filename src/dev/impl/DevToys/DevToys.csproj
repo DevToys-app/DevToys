@@ -422,7 +422,6 @@
     <Compile Include="ViewModels\Tools\Text\MarkdownPreview\MarkdownPreviewToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Text\StringUtilities\StringUtilitiesToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Text\StringUtilities\StringUtilitiesToolViewModel.cs" />
-    <Compile Include="ViewModels\Tools\ToolProviderBase.cs" />
     <Compile Include="Core\UriActivationProtocolService.cs" />
     <Compile Include="LanguageDefinition.cs" />
     <Compile Include="LanguageManager.cs">

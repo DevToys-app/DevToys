@@ -15,7 +15,7 @@ namespace DevToys.ViewModels.Tools.Formatters.XmlFormatter
     [ProtocolName("xmlformat")]
     [Order(0)]
     [NotScrollable]
-    internal sealed class XmlFormatterToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class XmlFormatterToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 

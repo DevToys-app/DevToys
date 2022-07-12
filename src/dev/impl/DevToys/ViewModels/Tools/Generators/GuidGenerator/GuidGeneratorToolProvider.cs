@@ -14,7 +14,7 @@ namespace DevToys.ViewModels.Tools.GuidGenerator
     [ProtocolName("uuid")]
     [Order(1)]
     [CompactOverlaySize(width: 400, height: 500)]
-    internal sealed class GuidGeneratorToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class GuidGeneratorToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 

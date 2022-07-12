@@ -14,7 +14,7 @@ namespace DevToys.ViewModels.Tools.Base64ImageEncoderDecoder
     [Parent(EncodersDecodersGroupToolProvider.InternalName)]
     [ProtocolName("base64img")]
     [Order(2)]
-    internal sealed class Base64ImageEncoderDecoderToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class Base64ImageEncoderDecoderToolProvider : IToolProvider
     {
         public string MenuDisplayName => LanguageManager.Instance.Base64ImageEncoderDecoder.MenuDisplayName;
 
