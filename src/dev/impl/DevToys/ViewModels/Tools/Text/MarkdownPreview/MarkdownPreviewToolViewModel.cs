@@ -18,6 +18,10 @@ using Microsoft.Toolkit.Mvvm.Messaging;
 using Windows.Storage;
 using Windows.UI.Xaml;
 using DevToys.Shared.Core;
+using Microsoft.Toolkit.Mvvm.Input;
+using Windows.ApplicationModel.DataTransfer;
+using DevToys.Core;
+using Clipboard = Windows.ApplicationModel.DataTransfer.Clipboard;
 
 namespace DevToys.ViewModels.Tools.MarkdownPreview
 {
@@ -88,6 +92,8 @@ namespace DevToys.ViewModels.Tools.MarkdownPreview
             _themeListener = themeListener;
             SettingsProvider = settingsProvider;
 
+            CopyHtmlCommand = new RelayCommand(ExecuteCopyHtmlCommand);
+
             // Activate the view model's messenger.
             IsActive = true;
 
@@ -153,5 +159,39 @@ namespace DevToys.ViewModels.Tools.MarkdownPreview
 
             return htmlDocument;
         }
+
+        #region CopyHtmlCommand
+
+        internal IRelayCommand CopyHtmlCommand { get; }
+
+        private void ExecuteCopyHtmlCommand()
+        {
+            if (InputValue == null)
+            {
+                return;
+            }
+
+            try
+            {
+                MarkdownPipeline pipeline = new MarkdownPipelineBuilder().UseEmojiAndSmiley().UseSmartyPants().UseAdvancedExtensions().Build();
+                string? htmlBody = Markdown.ToHtml(InputValue, pipeline);
+
+                var data = new DataPackage
+                {
+                    RequestedOperation = DataPackageOperation.Copy
+                };
+                
+                data.SetText(htmlBody ?? string.Empty);
+
+                Clipboard.SetContentWithOptions(data, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
+                Clipboard.Flush();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogFault("Failed to copy from webview", ex);
+            }
+        }
+
+        #endregion
     }
 }

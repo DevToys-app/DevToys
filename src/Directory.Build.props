@@ -17,6 +17,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
+        <Nuget_Cronos>0.7.1</Nuget_Cronos>
         <NuGet_DotNet>6.0.0</NuGet_DotNet>
         <Nuget_GitInfo>2.2.0</Nuget_GitInfo>
         <Nuget_Markdig>0.26.0</Nuget_Markdig>
@@ -26,10 +27,10 @@
         <Nuget_MicrosoftToolkitUwpUIBehaviors>7.0.2</Nuget_MicrosoftToolkitUwpUIBehaviors>
         <Nuget_MicrosoftToolkitUwpUIControls>7.0.2</Nuget_MicrosoftToolkitUwpUIControls>
         <Nuget_MicrosoftTypeScriptMSBuild>4.4.2</Nuget_MicrosoftTypeScriptMSBuild>
-        <NuGet_MicrosoftUIXaml>2.6.2</NuGet_MicrosoftUIXaml>
+        <NuGet_MicrosoftUIXaml>2.7.1</NuGet_MicrosoftUIXaml>
         <NuGet_MicrosoftWindowsCsWinRT>1.3.5</NuGet_MicrosoftWindowsCsWinRT>
-        <NuGet_MSTestTestAdapter>2.1.1</NuGet_MSTestTestAdapter>
-        <NuGet_MSTestTestFramework>2.1.1</NuGet_MSTestTestFramework>
+        <NuGet_MSTestTestAdapter>2.2.8</NuGet_MSTestTestAdapter>
+        <NuGet_MSTestTestFramework>2.2.8</NuGet_MSTestTestFramework>
         <NuGet_NewtonsoftJson>12.0.3</NuGet_NewtonsoftJson>
         <Nuget_ObservableVector>2.1.0</Nuget_ObservableVector>
         <NuGet_Win2D>1.26.0</NuGet_Win2D>

@@ -5,9 +5,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:DevToys.UI.Controls" xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:converters="using:DevToys.UI.Converters"
+    xmlns:nbc="using:DevToys.Views.Tools.Converters.NumberBaseConverter"
     mc:Ignorable="d"
     NavigationCacheMode="Required">
-
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <converters:BooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" IsInverted="True"/>
+    </UserControl.Resources>
+    
     <StackPanel Margin="0,0,0,16" Spacing="12">
         <StackPanel.ChildrenTransitions>
             <TransitionCollection>
@@ -27,48 +33,22 @@
                     IsOn="{x:Bind ViewModel.IsFormatted, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </controls:ExpandableSettingControl>
             <controls:ExpandableSettingControl
-                Grid.Row="1"
-                Title="{x:Bind ViewModel.Strings.InputTypeTitle}"
-                Description="{x:Bind ViewModel.Strings.InputTypeDescription}">
+                Title="{x:Bind ViewModel.Strings.AdvancedModeLabel}">
                 <controls:ExpandableSettingControl.Icon>
-                    <FontIcon Glyph="&#xF18D;" />
+                    <FontIcon Glyph="&#xF1EE;" />
                 </controls:ExpandableSettingControl.Icon>
-                <ComboBox
-                    ItemsSource="{x:Bind ViewModel.BaseNumbers}"
-                    DisplayMemberPath="DisplayName"
-                    SelectedValue="{x:Bind ViewModel.InputBaseNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                </ComboBox>
+                <ToggleSwitch
+                    Style="{StaticResource RightAlignedToggleSwitchStyle}"
+                    IsOn="{x:Bind ViewModel.AdvancedMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </controls:ExpandableSettingControl>
         </StackPanel>
-
-        <controls:CustomTextBox
-            Header="{x:Bind ViewModel.Strings.Input}"
-            AcceptsReturn="False"
-            Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <muxc:InfoBar 
             IsOpen="{x:Bind ViewModel.IsInfoBarOpen, Mode=OneWay}" 
             Severity="Warning" 
             Message="{x:Bind ViewModel.InfoBarMessage, Mode=OneWay}" />
-        
-        <controls:CustomTextBox
-            Header="{x:Bind ViewModel.Strings.HexadecimalLabel}"
-            IsReadOnly="True"
-            Text="{x:Bind ViewModel.HexaDecimalValue, Mode=OneWay}"/>
 
-        <controls:CustomTextBox
-            Header="{x:Bind ViewModel.Strings.DecimalLabel}"
-            IsReadOnly="True"
-            Text="{x:Bind ViewModel.DecimalValue, Mode=OneWay}"/>
-
-        <controls:CustomTextBox
-            Header="{x:Bind ViewModel.Strings.OctalLabel}"
-            IsReadOnly="True"
-            Text="{x:Bind ViewModel.OctalValue, Mode=OneWay}"/>
-
-        <controls:CustomTextBox
-            Header="{x:Bind ViewModel.Strings.BinaryLabel}"
-            IsReadOnly="True"
-            Text="{x:Bind ViewModel.BinaryValue, Mode=OneWay}"/>
+        <nbc:BasicNumberBaseConverterControl ViewModel="{x:Bind ViewModel.BasicViewModel, Mode=OneWay}" Visibility="{x:Bind ViewModel.AdvancedMode, Mode=OneWay, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
+        <nbc:AdvancedNumberBaseConverterControl ViewModel="{x:Bind ViewModel.AdvancedViewModel, Mode=OneWay}" Visibility="{x:Bind ViewModel.AdvancedMode, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
     </StackPanel>
 </Page>

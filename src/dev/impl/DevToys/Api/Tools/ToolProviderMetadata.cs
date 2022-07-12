@@ -67,6 +67,12 @@ namespace DevToys.Api.Tools
         public bool NotSearchable { get; set; }
 
         /// <summary>
+        /// Gets or sets whether the tool can be added to the favorites.
+        /// </summary>
+        [DefaultValue(false)]
+        public bool NotFavorable { get; set; }
+
+        /// <summary>
         /// Gets or sets whether the tool can supports Compact Overlay mode.
         /// </summary>
         [DefaultValue(false)]

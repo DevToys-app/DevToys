@@ -150,4 +150,22 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Hash Generator</value>
   </data>
+  <data name="OutputBase64" xml:space="preserve">
+    <value>Base64</value>
+  </data>
+  <data name="OutputHex" xml:space="preserve">
+    <value>Hex</value>
+  </data>
+  <data name="OutputTypeTitle" xml:space="preserve">
+    <value>Output Type</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HmacMode" xml:space="preserve">
+    <value>HMAC Mode</value>
+  </data>
+  <data name="SecretKey" xml:space="preserve">
+    <value>Secret Key</value>
+  </data>
 </root>

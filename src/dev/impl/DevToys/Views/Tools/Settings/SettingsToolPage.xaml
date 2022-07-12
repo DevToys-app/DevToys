@@ -26,12 +26,15 @@
             <controls:ExpandableSettingControl.Icon>
                 <FontIcon Glyph="&#xF4F3;" />
             </controls:ExpandableSettingControl.Icon>
-            <ComboBox
-                DisplayMemberPath="DisplayName"
-                SelectedValuePath="InternalName"
-                ItemsSource="{x:Bind ViewModel.AvailableLanguages}"
-                SelectedValue="{x:Bind ViewModel.Language, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-            </ComboBox>
+            <StackPanel Orientation="Horizontal">
+                <HyperlinkButton Content="{x:Bind ViewModel.Strings.HelpTranslating}" NavigateUri="https://crowdin.com/project/devtoys" />
+                <ComboBox
+                    DisplayMemberPath="DisplayName"
+                    SelectedValuePath="InternalName"
+                    ItemsSource="{x:Bind ViewModel.AvailableLanguages}"
+                    SelectedValue="{x:Bind ViewModel.Language, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                </ComboBox>
+            </StackPanel>
         </controls:ExpandableSettingControl>
         <controls:ExpandableSettingControl
             Title="{x:Bind ViewModel.Strings.AppTheme}"
@@ -122,6 +125,14 @@
                 <FontIcon Glyph="&#xF6F8;" />
             </controls:ExpandableSettingControl.Icon>
             <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" IsOn="{x:Bind ViewModel.TextEditorRenderWhitespace, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </controls:ExpandableSettingControl>
+        <controls:ExpandableSettingControl
+            Title="{x:Bind ViewModel.Strings.PasteClearsText}"
+            Description="{x:Bind ViewModel.Strings.PasteClearsTextDescription}">
+            <controls:ExpandableSettingControl.Icon>
+                <FontIcon Glyph="&#xF2D5;" />
+            </controls:ExpandableSettingControl.Icon>
+            <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" IsOn="{x:Bind ViewModel.TextEditorPasteClearsText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         </controls:ExpandableSettingControl>
 
         <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.About}" />

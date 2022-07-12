@@ -1,11 +1,13 @@
 ﻿#nullable enable
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using DevToys.Models;
 
-namespace DevToys.Core.Formatter
+namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
 {
     internal static class NumberBaseFormatter
     {
@@ -70,7 +72,7 @@ namespace DevToys.Core.Formatter
             Span<char> buffer = stackalloc char[67]; // Longest possible string length for an integer in binary notation with prefix
 
             // If the number is negative, make it positive and remember the sign.
-            long ul;
+            ulong ul;
             bool isNegative = false;
             if (number < 0)
             {
@@ -78,32 +80,30 @@ namespace DevToys.Core.Formatter
 
                 // For base 10, write out -num, but other bases write out the
                 // 2's complement bit pattern
-                ul = (10 == baseNumber.BaseNumber) ? -number : number;
+                ul = baseNumber == NumberBaseFormat.Decimal ? (ulong)-number : (ulong)number;
             }
             else
             {
-                ul = number;
+                ul = (ulong)number;
             }
 
             // Special case the 0.
             int index;
             if (0 == ul)
             {
-                buffer[0] = '0';
+                buffer[0] = baseNumber.Dictionary[0];
                 index = 1;
             }
             else
             {
                 index = 0;
-                for (int i = 0; i < buffer.Length; i++) // for loop instead of do{...}while(l!=0) to help JIT eliminate span bounds checks
+                for (int i = 0; i < buffer.Length; i++)
                 {
-                    long div = ul / baseNumber.BaseNumber; // TODO https://github.com/dotnet/runtime/issues/5213
-                    int charVal = (int)(ul - (div * baseNumber.BaseNumber));
+                    ulong div = ul / (ulong)baseNumber.BaseNumber;
+                    int charVal = (int)(ul % (ulong)baseNumber.BaseNumber);
                     ul = div;
 
-                    buffer[i] = (charVal < 10) ?
-                        (char)(charVal + '0') :
-                        (char)(charVal + 'a' - 10);
+                    buffer[i] = baseNumber.Dictionary[charVal];
 
                     if (ul == 0)
                     {
@@ -122,7 +122,29 @@ namespace DevToys.Core.Formatter
                 }
             }
 
+            return FormatNumber(buffer, baseNumber, isFormatted, index);
+        }
+
+        /// <summary>
+        /// Format <paramref name="number"/> based on <paramref name="baseNumber"/> format definition 
+        /// </summary>
+        /// <param name="number">String representation of the number</param>
+        /// <param name="baseNumber">Current base number <see cref="NumberBaseFormat"/></param>
+        /// <returns>Formatted number based on <paramref name="baseNumber"/> format definition</returns>
+        public static string FormatNumber(string number, NumberBaseFormat baseNumber)
+        {
+            char[] charArray = RemoveFormatting(number).ToCharArray();
+            Array.Reverse(charArray);
+            return FormatNumber(charArray, baseNumber, true, charArray.Length);
+        }
+
+        private static string FormatNumber(ReadOnlySpan<char> buffer, NumberBaseFormat baseNumber, bool isFormatted, int index)
+        {
             var builder = new StringBuilder();
+            if (buffer[index - 1] == '-')
+            {
+                builder.Append(buffer[--index]);
+            }
 
             for (int builderIndex = --index; builderIndex >= 0; builderIndex--)
             {
@@ -143,7 +165,11 @@ namespace DevToys.Core.Formatter
                 }
             }
 
-            return builder.ToString().ToUpperInvariant();
+            if (baseNumber.Dictionary.AllowsFormatting)
+            {
+                return builder.ToString().ToUpperInvariant();
+            }
+            return builder.ToString();
         }
 
         /// <summary>
@@ -191,19 +217,21 @@ namespace DevToys.Core.Formatter
         private static long GetLong(NumberBaseFormat baseNumber, ReadOnlySpan<char> spanValue, int index, int length)
         {
             ulong result = 0;
-            ulong maxVal = 0x7FFFFFFFFFFFFFFF / 10;
-
+            ulong maxVal;
+            if (baseNumber == NumberBaseFormat.Decimal)
+            {
+                maxVal = 0x7FFFFFFFFFFFFFFF / 10;
+            }
+            else
+            {
+                maxVal = 0xffffffffffffffff / (ulong)baseNumber.BaseNumber;
+            }
             // Read all of the digits and convert to a number
             while (index < length)
             {
-                if (!IsValidChar(spanValue[index], baseNumber))
+                if (!IsValidChar(spanValue[index], baseNumber, out int current))
                 {
                     throw new InvalidOperationException(string.Format(Strings.ValueInvalid, baseNumber.DisplayName));
-                }
-
-                if (!IsDigit(spanValue[index], baseNumber.BaseNumber, out int current))
-                {
-                    break;
                 }
 
                 if (baseNumber == NumberBaseFormat.Decimal)
@@ -222,14 +250,14 @@ namespace DevToys.Core.Formatter
                     // Check for overflows - this is sufficient & correct.
                     if (result > maxVal)
                     {
-                        throw new OverflowException($"Unable to parse the current value exceded max value ({long.MaxValue})");
+                        throw new OverflowException(string.Format(Strings.ValueOverflow, long.MaxValue));
                     }
 
                     ulong temp = result * (ulong)baseNumber.BaseNumber + (ulong)current;
 
                     if (temp < result) // this means overflow as well
                     {
-                        throw new OverflowException($"Unable to parse the current value exceded max value ({long.MaxValue})");
+                        throw new OverflowException(string.Format(Strings.ValueOverflow, long.MaxValue));
                     }
 
                     result = temp;
@@ -244,26 +272,27 @@ namespace DevToys.Core.Formatter
             return (long)result;
         }
 
-        private static bool IsValidChar(char c, NumberBaseFormat baseNumber)
+        private static bool IsValidChar(char c, NumberBaseFormat baseNumber, out int result)
         {
-            switch (baseNumber.Value)
+            for (result = 0; result < baseNumber.BaseNumber; result++)
             {
-                case Radix.Binary:
-                    if (c is '0' or '1')
+                if (baseNumber.Dictionary.AllowsFormatting)
+                {
+                    if (char.ToLowerInvariant(baseNumber.Dictionary[result]) == char.ToLowerInvariant(c))
                     {
                         return true;
                     }
-                    return false;
-                case Radix.Decimal:
-                case Radix.Octal:
-                    return char.IsNumber(c);
-                case Radix.Hexdecimal:
-                    return (char.IsNumber(c) ||
-                        (c >= 'a' && c <= 'f') ||
-                        (c >= 'A' && c <= 'F'));
-                default:
-                    return true;
+                }
+                else
+                {
+                    if (baseNumber.Dictionary[result] == c)
+                    {
+                        return true;
+                    }
+                }
             }
+            result = -1;
+            return false;
         }
 
         private static bool IsDigit(char c, int radix, out int result)

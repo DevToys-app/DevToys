@@ -22,14 +22,11 @@ namespace DevToys.ViewModels.Tools.HtmlEncoderDecoder
         /// <summary>
         /// Whether the tool should encode or decode Html.
         /// </summary>
-        private static readonly SettingDefinition<string> Conversion
+        private static readonly SettingDefinition<bool> EncodeMode
             = new(
-                name: $"{nameof(HtmlEncoderDecoderToolViewModel)}.{nameof(Conversion)}",
+                name: $"{nameof(HtmlEncoderDecoderToolViewModel)}.{nameof(EncodeMode)}",
                 isRoaming: true,
-                defaultValue: DefaultConversion);
-
-        private const string DefaultConversion = "Encode";
-        internal const string DecodeConversion = "Decode";
+                defaultValue: true);
 
         private readonly IMarketingService _marketingService;
         private readonly ISettingsProvider _settingsProvider;
@@ -71,20 +68,20 @@ namespace DevToys.ViewModels.Tools.HtmlEncoderDecoder
         /// <summary>
         /// Gets or sets the conversion mode.
         /// </summary>
-        internal string ConversionMode
+        internal bool IsEncodeMode
         {
-            get => _settingsProvider.GetSetting(Conversion);
+            get => _settingsProvider.GetSetting(EncodeMode);
             set
             {
                 if (!_setPropertyInProgress)
                 {
                     _setPropertyInProgress = true;
                     ThreadHelper.ThrowIfNotOnUIThread();
-                    if (!string.Equals(_settingsProvider.GetSetting(Conversion), value, StringComparison.Ordinal))
+                    if (_settingsProvider.GetSetting(EncodeMode) != value)
                     {
-                        _settingsProvider.SetSetting(Conversion, value);
+                        _settingsProvider.SetSetting(EncodeMode, value);
                         OnPropertyChanged();
-                    }
+                    }                 
                     InputValue = OutputValue;
                     _setPropertyInProgress = false;
                 }
@@ -118,7 +115,7 @@ namespace DevToys.ViewModels.Tools.HtmlEncoderDecoder
             while (_conversionQueue.TryDequeue(out string? text))
             {
                 string conversionResult;
-                if (string.Equals(ConversionMode, DefaultConversion, StringComparison.Ordinal))
+                if (IsEncodeMode)
                 {
                     conversionResult = await EncodeHtmlDataAsync(text).ConfigureAwait(false);
                 }

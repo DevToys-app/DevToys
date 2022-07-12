@@ -1,7 +1,6 @@
 ﻿#nullable enable
 
 using System.Globalization;
-using DevToys.Core.Formatter;
 
 namespace DevToys.Helpers
 {
@@ -17,13 +16,7 @@ namespace DevToys.Helpers
                 return false;
             }
 
-            long.TryParse(input, NumberStyles.HexNumber, null, out long output);
-            if (output is not 0)
-            {
-                return true;
-            }
-
-            return false;
+            return long.TryParse(input, NumberStyles.HexNumber, null, out _);
         }
 
         /// <summary>

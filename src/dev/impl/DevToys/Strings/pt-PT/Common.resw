@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -132,6 +132,33 @@
   <data name="Delete" xml:space="preserve">
     <value>Eliminar</value>
   </data>
+  <data name="FileSelectorBrowseFiles" xml:space="preserve">
+    <value>Procurar ficheiros</value>
+  </data>
+  <data name="FileSelectorBrowseFolders" xml:space="preserve">
+    <value>Procurar pastas</value>
+  </data>
+  <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
+    <value>Arraste &amp; largue qualquer ficheiro aqui</value>
+  </data>
+  <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
+    <value>Arraste &amp; largue quaisquer ficheiros aqui</value>
+  </data>
+  <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
+    <value>Arraste &amp; largue um ficheiro {0} aqui</value>
+    <comment>{0} is a single file extension like "PNG"</comment>
+  </data>
+  <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
+    <value>Arraste &amp; largue quaisquer ficheiros {0} aqui</value>
+    <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
+  </data>
+  <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
+    <value>Apenas ficheiros {0} pode ser utilizado.</value>
+    <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
+  </data>
+  <data name="FileSelectorOr" xml:space="preserve">
+    <value>ou</value>
+  </data>
   <data name="Gigabytes" xml:space="preserve">
     <value>GB</value>
   </data>
@@ -153,6 +180,12 @@
   <data name="Redo" xml:space="preserve">
     <value>Refazer</value>
   </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Atualizar</value>
+  </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>Guardar como</value>
+  </data>
   <data name="SelectAll" xml:space="preserve">
     <value>Selecionar tudo</value>
   </data>
@@ -169,9 +202,13 @@
     <value>Incapaz de abrir este ficheiro</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>Incapaz de carregar o ficheiro '{0}'. Para mais detalhes, por favor, verifique o registo.</value>
+    <value>Não foi possível carregar o ficheiro '{0}'. Apenas ficheiros de texto podem ser abertos. Para mais detalhes, por favor verifique o registo.</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>Desfazer</value>
+  </data>
+  <data name="ViewImage" xml:space="preserve">
+    <value>Ver</value>
+    <comment>In the context of "view / display an image".</comment>
   </data>
 </root>

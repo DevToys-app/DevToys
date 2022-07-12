@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<bookstore xmlns="http://www.contoso.com/books">
+    <book genre="autobiography" publicationdate="1981-03-22" ISBN="1-861003-11-0">
+        <title>The Autobiography of Benjamin Franklin</title>
+        <author>
+            <first-name>Benjamin</first-name>
+            <last-name>Franklin</last-name>
+        </author>
+        <price>8.99</price>
+    </book>
+
+    I am an invalid XML file!!!!!!!!!!!
+
+    <book genre="novel" publicationdate="1967-11-17" ISBN="0-201-63361-2"/>/
+    <book genre="philosophy" publicationdate="1991-02-15" ISBN="1-861001-57-6">
+        <title>The Gorgias</title>
+        <author>
+            <name>Plato</name>
+        </author>
+        <price>9.99</price>
+    </book>
+</bookstore>

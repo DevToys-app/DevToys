@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -118,25 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Regular expression tester tool</value>
+    <value>Narzędzie Testujące Wyrażenia Regularne</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Konfiguracja</value>
   </data>
   <data name="CultureInvariant" xml:space="preserve">
-    <value>Kultura niezmienna</value>
+    <value>Niezmienność kulturowa</value>
   </data>
   <data name="CultureInvariantDescription" xml:space="preserve">
     <value>Określa, że różnice kulturowe w języku są ignorowane.</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Tester Regex</value>
+    <value>Tester RegEx</value>
   </data>
   <data name="EcmaScript" xml:space="preserve">
-    <value>Skrypt ECMA</value>
+    <value>ECMASkript</value>
   </data>
   <data name="EcmaScriptDescription" xml:space="preserve">
-    <value>Włącza zachowanie zgodne z ECMAScript dla wyrażenia. Tej wartości można używać tylko w połączeniu z opcją Kultura niezmienna, Ignoruj wielkość liter i Wielowierszowy.</value>
+    <value>Włącza zachowanie zgodne z ECMAScript dla wyrażenia. Tej wartości można używać tylko w połączeniu z opcją Niezmienność kulturowa, Ignoruj wielkość liter i Wielowierszowy.</value>
   </data>
   <data name="IgnoreCase" xml:space="preserve">
     <value>Ignoruj wielkość liter</value>
@@ -145,13 +145,13 @@
     <value>Określa dopasowanie bez rozróżniania wielkości liter.</value>
   </data>
   <data name="IgnoreWhitespace" xml:space="preserve">
-    <value>Ignoruj odstępy</value>
+    <value>Ignoruj białe znaki</value>
   </data>
   <data name="IgnoreWhitespaceDescription" xml:space="preserve">
-    <value>Eliminuje nieuniknione odstępy ze wzorca i umożliwia komentarze oznaczone #. Jednak ta opcja nie wpływa ani nie eliminuje odstępu w klasach znaków, kwantyfikatorach liczbowych ani tokenach, które oznaczają początek poszczególnych elementów języka Regex.</value>
+    <value>Eliminuje nieuniknione białe znaki (spacje, entery itp.) ze wzorca i umożliwia komentarze oznaczone #. Jednak ta opcja nie wpływa ani nie eliminuje białych znaków w klasach znaków, kwantyfikatorach liczbowych ani tokenach, które oznaczają początek poszczególnych elementów wyrażenia regularnego.</value>
   </data>
   <data name="Multiline" xml:space="preserve">
-    <value>Wielowierszowy</value>
+    <value>Wiele wierszy</value>
   </data>
   <data name="MultilineDescription" xml:space="preserve">
     <value>Zmienia znaczenie ^ i $ tak, aby pasowały odpowiednio na początku i końcu dowolnego wiersza, a nie tylko na początku i końcu całego ciągu.</value>
@@ -169,7 +169,7 @@
     <value>Określa, że wyszukiwanie będzie odbywać się od prawej do lewej zamiast od lewej do prawej.</value>
   </data>
   <data name="Singleline" xml:space="preserve">
-    <value>Pojedyncza linia</value>
+    <value>Jeden wiersz</value>
   </data>
   <data name="SinglelineDescription" xml:space="preserve">
     <value>Zmienia znaczenie kropki (.), aby pasowała do każdego znaku (zamiast każdego znaku z wyjątkiem \n).</value>
@@ -178,9 +178,12 @@
     <value>Tekst</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Validate and test regular expressions</value>
+    <value>Sprawdź i przetestuj wyrażenie regularne</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Regex Tester</value>
+    <value>Tester RegEx</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Wyrażenie regularne</value>
   </data>
 </root>

@@ -148,7 +148,7 @@
     <value>Decimal</value>
   </data>
   <data name="InputTypeDescription" xml:space="preserve">
-    <value>Select which Input type you want to use</value>
+    <value>Select which input type you want to use</value>
   </data>
   <data name="InputTypeHexadecimal" xml:space="preserve">
     <value>Hexadecimal</value>
@@ -167,7 +167,7 @@
     <comment>The parameter is the Base Number Type (Decimal, Octal, ...)</comment>
   </data>
   <data name="ValueOverflow" xml:space="preserve">
-    <value>Unable to parse the current value exceed max value {0}</value>
+    <value>The current value cannot be converted as it exceeds the maximum value ({0})</value>
     <comment>The parameter is the Max value of a long</comment>
   </data>
   <data name="Description" xml:space="preserve">
@@ -175,5 +175,29 @@
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Number Base Converter</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Binary Octal Decimal Hexadecimal</value>
+  </data>
+  <data name="AdvancedModeLabel" xml:space="preserve">
+    <value>Advanced mode</value>
+  </data>
+  <data name="InputDictionaryLabel" xml:space="preserve">
+    <value>Input dictionary</value>
+  </data>
+  <data name="OutputDictionaryLabel" xml:space="preserve">
+    <value>Output dictionary</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>Output</value>
+  </data>
+  <data name="BaseNumberError" xml:space="preserve">
+    <value>Base number should be greater than 1.</value>
+  </data>
+  <data name="DictionarySizeError" xml:space="preserve">
+    <value>Dictionary size should be greater than 1.</value>
+  </data>
+  <data name="IncompatibleBaseDictionaryError" xml:space="preserve">
+    <value>Dictionary size could not be smaller than the base number.</value>
   </data>
 </root>

@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 using DevToys.Api.Core.OOP;
 using DevToys.Core;
 using DevToys.Core.Threading;
+using DevToys.Helpers;
 using DevToys.Shared.AppServiceMessages.PngJpgCompressor;
 using DevToys.Shared.Core;
 using DevToys.Shared.Core.Threading;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Windows.Storage;
-using Windows.Storage.FileProperties;
 using Windows.Storage.Pickers;
 using Windows.UI.Xaml.Controls;
 
@@ -22,15 +22,6 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
 {
     internal sealed class ImageCompressionWorkItem : ObservableRecipient, IDisposable
     {
-        private static readonly string[] SizesStrings
-            = {
-                LanguageManager.Instance.Common.Bytes,
-                LanguageManager.Instance.Common.Kilobytes,
-                LanguageManager.Instance.Common.Megabytes,
-                LanguageManager.Instance.Common.Gigabytes,
-                LanguageManager.Instance.Common.Terabytes
-            };
-
         private readonly CancellationTokenSource _cancellationTokenSource = new();
         private int _progressionPercentage;
         private string _originalFileSize = string.Empty;
@@ -235,6 +226,15 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
 
         #endregion
 
+        private async Task ComputePropertiesAsync(StorageFile file)
+        {
+            await TaskScheduler.Default;
+
+            var storageFileSize = (await file.GetBasicPropertiesAsync()).Size;
+            var originalFileSize = StorageFileHelper.HumanizeFileSize(storageFileSize, Strings.FileSizeDisplay);
+            await ThreadHelper.RunOnUIThreadAsync(() => OriginalFileSize = originalFileSize);
+        }
+
         private async Task ConvertAsync(IAppService appService)
         {
             await TaskScheduler.Default;
@@ -261,7 +261,7 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
                     {
                         IsDone = true;
                         CompressionRatio = result.PercentageSaved.ToString("P");
-                        NewFileSize = HumanizeFileSize(result.NewFileSize);
+                        NewFileSize = StorageFileHelper.HumanizeFileSize(result.NewFileSize, Strings.FileSizeDisplay);
                     }
                     else
                     {
@@ -282,31 +282,6 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
                     DeleteCommand.Execute(null);
                 });
             }
-        }
-
-        private async Task ComputePropertiesAsync(StorageFile file)
-        {
-            BasicProperties fileProperties = await file.GetBasicPropertiesAsync();
-
-            string fileSize = HumanizeFileSize(fileProperties.Size);
-
-            await ThreadHelper.RunOnUIThreadAsync(() =>
-            {
-                OriginalFileSize = fileSize;
-            });
-        }
-
-        private string HumanizeFileSize(double fileSize)
-        {
-            int order = 0;
-            while (fileSize >= 1024 && order < SizesStrings.Length - 1)
-            {
-                order++;
-                fileSize /= 1024;
-            }
-
-            string fileSizeString = string.Format(Strings.FileSizeDisplay, fileSize, SizesStrings[order]);
-            return fileSizeString;
         }
     }
 }

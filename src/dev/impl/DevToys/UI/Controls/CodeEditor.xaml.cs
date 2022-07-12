@@ -7,6 +7,7 @@ using DevToys.Core.Settings;
 using DevToys.Core.Threading;
 using DevToys.MonacoEditor.CodeEditorControl;
 using DevToys.MonacoEditor.Monaco.Editor;
+using DevToys.Shared.Core;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 using Windows.Storage.Pickers;
@@ -33,10 +34,14 @@ namespace DevToys.UI.Controls
                     null,
                     (d, e) =>
                     {
-                        if (e.NewValue is ISettingsProvider settingsProvider)
+                        var codeEditor = (CodeEditor)d;
+                        if (e.OldValue is ISettingsProvider settingsProvider)
                         {
-                            var codeEditor = (CodeEditor)d;
-                            settingsProvider.SettingChanged += codeEditor.SettingsProvider_SettingChanged;
+                            settingsProvider.SettingChanged -= codeEditor.SettingsProvider_SettingChanged;
+                        }
+                        if (e.NewValue is ISettingsProvider settingsProvider2)
+                        {
+                            settingsProvider2.SettingChanged += codeEditor.SettingsProvider_SettingChanged;
                         }
                     }));
 
@@ -83,6 +88,19 @@ namespace DevToys.UI.Controls
         {
             get => (bool)GetValue(IsReadOnlyProperty);
             set => SetValue(IsReadOnlyProperty, value);
+        }
+
+        public static readonly DependencyProperty CanCopyWhenNotReadOnlyProperty
+            = DependencyProperty.Register(
+                nameof(CanCopyWhenNotReadOnly),
+                typeof(bool),
+                typeof(CodeEditor),
+                new PropertyMetadata(false, (d, e) => { ((CodeEditor)d).UpdateUI(); }));
+
+        public bool CanCopyWhenNotReadOnly
+        {
+            get => (bool)GetValue(CanCopyWhenNotReadOnlyProperty);
+            set => SetValue(CanCopyWhenNotReadOnlyProperty, value);
         }
 
         public static DependencyProperty CodeLanguageProperty { get; }
@@ -173,6 +191,8 @@ namespace DevToys.UI.Controls
 
         public CodeEditor()
         {
+            SettingsProvider = MefComposer.Provider.Import<ISettingsProvider>();
+
             InitializeComponent();
 
             _codeEditorCore = ReloadCodeEditorCore();
@@ -301,6 +321,7 @@ namespace DevToys.UI.Controls
                 _codeEditorCore = new CodeEditorCore();
                 _codeEditorCore.EditorLoading += CodeEditorCore_Loading;
                 _codeEditorCore.InternalException += CodeEditorCore_InternalException;
+                _codeEditorCore.TabIndex = 0;
 
                 _codeEditorCore.SetBinding(
                     CodeEditorCore.CodeLanguageProperty,
@@ -406,7 +427,11 @@ namespace DevToys.UI.Controls
             }
             else
             {
-                if (CopyButton is not null)
+                if (CanCopyWhenNotReadOnly)
+                {
+                    GetCopyButton().Visibility = Visibility.Visible;
+                }
+                else if (CopyButton is not null)
                 {
                     CopyButton.Visibility = Visibility.Collapsed;
                 }
@@ -414,6 +439,7 @@ namespace DevToys.UI.Controls
                 GetPasteButton().Visibility = Visibility.Visible;
                 GetOpenFileButton().Visibility = Visibility.Visible;
                 GetClearButton().Visibility = Visibility.Visible;
+                GetPasteButton().Visibility = Visibility.Visible;
             }
 
             if (IsDiffViewMode)
@@ -446,6 +472,12 @@ namespace DevToys.UI.Controls
 
                 lock (_lockObject)
                 {
+                    if (SettingsProvider != null
+                        && SettingsProvider.GetSetting(PredefinedSettings.TextEditorPasteClearsText))
+                    {
+                        _codeEditorCore.Text = string.Empty;
+                    }
+
                     _codeEditorCore.SelectedText = text;
                     _codeEditorCore.Focus(FocusState.Programmatic);
                 }
@@ -484,6 +516,15 @@ namespace DevToys.UI.Controls
             };
 
             filePicker.FileTypeFilter.Add("*");
+            filePicker.FileTypeFilter.Add(".txt");
+            filePicker.FileTypeFilter.Add(".js");
+            filePicker.FileTypeFilter.Add(".ts");
+            filePicker.FileTypeFilter.Add(".cs");
+            filePicker.FileTypeFilter.Add(".java");
+            filePicker.FileTypeFilter.Add(".xml");
+            filePicker.FileTypeFilter.Add(".json");
+            filePicker.FileTypeFilter.Add(".md");
+            filePicker.FileTypeFilter.Add(".sql");
 
             StorageFile file = await filePicker.PickSingleFileAsync();
             if (file is not null)

@@ -130,7 +130,7 @@
     <value>Conversion</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Json &lt;&gt; Yaml</value>
+    <value>JSON &lt;&gt; YAML</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
     <value>4 spaces</value>
@@ -145,7 +145,7 @@
     <value>The entered YAML is invalid.</value>
   </data>
   <data name="JsonToYaml" xml:space="preserve">
-    <value>Json to Yaml</value>
+    <value>JSON to YAML</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Output</value>
@@ -154,12 +154,15 @@
     <value>2 spaces</value>
   </data>
   <data name="YamlToJson" xml:space="preserve">
-    <value>Yaml to Json</value>
+    <value>YAML to JSON</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Convert Json data to Yaml and vice versa</value>
+    <value>Convert JSON data to YAML and vice versa</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Json &lt;&gt; Yaml Converter</value>
+    <value>JSON &lt;&gt; YAML Converter</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value />
   </data>
 </root>

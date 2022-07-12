@@ -2,10 +2,10 @@
 
 using System.Composition;
 using DevToys.Api.Tools;
-using DevToys.Core.Formatter;
 using DevToys.Core.Threading;
 using DevToys.Helpers;
 using DevToys.Shared.Api.Core;
+using DevToys.ViewModels.Tools.Converters.NumberBaseConverter;
 using Windows.UI.Xaml.Controls;
 
 namespace DevToys.ViewModels.Tools.NumberBaseConverter
@@ -27,6 +27,8 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
         public string? Description => LanguageManager.Instance.NumberBaseConverter.Description;
 
         public string AccessibleName => LanguageManager.Instance.NumberBaseConverter.AccessibleName;
+
+        public string? SearchKeywords => LanguageManager.Instance.NumberBaseConverter.SearchKeywords;
 
         public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uFE2C");
 

@@ -24,19 +24,64 @@
     <Compile Include="Api\Core\OOP\IAppService.cs" />
     <Compile Include="Api\Tools\MenuPlacement.cs" />
     <Compile Include="Api\Tools\NoCompactOverlaySupportAttribute.cs" />
+    <Compile Include="Api\Tools\NotFavorableAttribute.cs" />
     <Compile Include="Api\Tools\NotSearchableAttribute.cs" />
     <Compile Include="Api\Tools\ParentAttribute.cs" />
     <Compile Include="Core\OOP\AppService.cs" />
+    <Compile Include="Core\QueueWorkerViewModelBase.cs" />
     <Compile Include="Core\Threading\AsyncLazy.cs" />
+    <Compile Include="Helpers\JsonYaml\Core\BooleanYamlTypeResolver.cs" />
+    <Compile Include="Helpers\StorageFileHelper.cs" />
+    <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\ColorBlindnessSimulatorHelper.cs" />
+    <Compile Include="Helpers\HashingHelper.cs" />
     <Compile Include="Helpers\NumberBaseHelper.cs" />
+    <Compile Include="Helpers\StringManipulationHelper.cs" />
+    <Compile Include="Helpers\TimestampToolHelper.cs" />
+    <Compile Include="Helpers\XmlHelper.cs" />
+    <Compile Include="Helpers\SqlFormatter\Core\Formatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Core\Indentation.cs" />
+    <Compile Include="Helpers\SqlFormatter\Core\InlineBlock.cs" />
+    <Compile Include="Helpers\SqlFormatter\Core\Params.cs" />
+    <Compile Include="Helpers\SqlFormatter\Core\RegexFactory.cs" />
+    <Compile Include="Helpers\SqlFormatter\Core\Token.cs" />
+    <Compile Include="Helpers\SqlFormatter\Core\Tokenizer.cs" />
+    <Compile Include="Helpers\SqlFormatter\Core\TokenType.cs" />
+    <Compile Include="Helpers\SqlFormatter\Core\TokenHelper.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\Db2Formatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\MariaDbFormatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\MySqlFormatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\N1qlFormatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\PlSqlFormatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\PostgreSqlFormatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\RedshiftFormatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\SparkSqlFormatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\TSqlFormatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\Languages\StandardSqlFormatter.cs" />
+    <Compile Include="Helpers\SqlFormatter\SqlFormatterHelper.cs" />
+    <Compile Include="Helpers\SqlFormatter\SqlFormatterOptions.cs" />
+    <Compile Include="Helpers\SqlFormatter\SqlLanguage.cs" />
+    <Compile Include="Messages\ChangeInfoBarStatusMessage.cs" />
+    <Compile Include="Messages\ChangeNumberFormattingMessage.cs" />
+    <Compile Include="Messages\RemoveFromFavoritesMessage.cs" />
+    <Compile Include="Messages\AddToFavoritesMessage.cs" />
     <Compile Include="Messages\PinToolToStartMessage.cs" />
     <Compile Include="Messages\OpenToolInNewWindowMessage.cs" />
     <Compile Include="Messages\ChangeSelectedMenuItemMessage.cs" />
+    <Compile Include="Models\HashComparisonResult.cs" />
+    <Compile Include="Models\HashingAlgorithm.cs" />
+    <Compile Include="Models\HashingAlgorithmDisplayPair.cs" />
+    <Compile Include="Models\HashingProgress.cs" />
+    <Compile Include="Models\InfoBarData.cs" />
+    <Compile Include="Models\NumberBaseDictionary.cs" />
+    <Compile Include="Models\SqlLanguageDisplayPair.cs" />
     <Compile Include="Models\NoResultFoundMockToolProvider.cs" />
     <Compile Include="Models\Radix.cs" />
     <Compile Include="Models\NumberBaseFormat.cs" />
     <Compile Include="Models\TileIconSizeDefinition.cs" />
+    <Compile Include="UI\Controls\FileSelector.xaml.cs">
+      <DependentUpon>FileSelector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Controls\ToolProvidersGridView.xaml.cs">
       <DependentUpon>ToolProvidersGridView.xaml</DependentUpon>
     </Compile>
@@ -46,13 +91,39 @@
     <Compile Include="ViewModels\Tools\AllTools\AllToolsToolProvider.cs" />
     <Compile Include="ViewModels\Tools\AllTools\AllToolsToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Converters\ConvertersGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Converters\CronParser\CronParserToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Converters\CronParser\CronParserToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\AdvancedNumberBaseConverterControlViewModel.cs" />
+    <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\BasicNumberBaseConverterControlViewModel.cs" />
+    <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\Exceptions\InvalidBaseNumberException.cs" />
+    <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\Exceptions\InvalidDictionaryBaseNumberPairException.cs" />
+    <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\Exceptions\InvalidDictionarySizeException.cs" />
+    <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\NumberBaseFormatBuilder.cs" />
+    <Compile Include="ViewModels\Tools\Converters\Timestamp\TimestampToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Converters\Timestamp\TimestampToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\Base64ImageEncoderDecoder\Base64ImageEncoderDecoderToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\Base64ImageEncoderDecoder\Base64ImageEncoderDecoderToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\Base64ImageEncoderDecoder\MockSettingsProvider.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolViewModel.cs" />
+    <Compile Include="Helpers\JsonYaml\Core\DecimalJsonConverter.cs" />
+    <Compile Include="Helpers\JsonYaml\Core\DecimalYamlTypeResolver.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\EncodersDecodersGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Formatters\XmlFormatter\XmlFormatterToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Formatters\XmlFormatter\XmlFormatterToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\Formatters\SqlFormatter\SqlFormatterToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Formatters\SqlFormatter\SqlFormatterToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\Generators\CheckSumGenerator\CheckSumGeneratorToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Generators\CheckSumGenerator\CheckSumGeneratorToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Generators\GeneratorsGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Graphic\ColorBlindnessSimulator\ColorBlindnessSimulatorToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Graphic\ColorBlindnessSimulator\ColorBlindnessSimulatorToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Graphic\GraphicGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Graphic\ImageConverter\ImageConversionWorkItem.cs" />
+    <Compile Include="ViewModels\Tools\Graphic\ImageConverter\ImageConverterToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Graphic\ImageConverter\ImageConverterToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\GroupToolProviderBase.cs" />
     <Compile Include="ViewModels\Tools\GroupToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\HtmlEncoderDecoder\HtmlEncoderDecoderToolProvider.cs" />
@@ -63,14 +134,51 @@
     <Compile Include="ViewModels\Tools\Formatters\FormattersGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\GroupToolViewModelBase.cs" />
     <Compile Include="ViewModels\Tools\SearchResult\SearchResultToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Text\StringEscapeUnescape\StringEscapeUnescapeToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Text\StringEscapeUnescape\StringEscapeUnescapeToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Text\TextGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\ParserBase.cs" />
+    <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\ParsingResultBase.cs" />
+    <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\XmlParser.cs" />
+    <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\XmlParsingResult.cs" />
+    <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\XsdParser.cs" />
+    <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\XsdParsingResult.cs" />
+    <Compile Include="ViewModels\Tools\Text\XmlValidator\XmlValidatorToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Text\XmlValidator\XmlValidatorToolViewModel.cs" />
     <Compile Include="Views\Tools\AllTools\AllToolsToolPage.xaml.cs">
       <DependentUpon>AllToolsToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Converters\CronParser\CronParserToolPage.xaml.cs">
+      <DependentUpon>CronParserToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Converters\NumberBaseConverter\AdvancedNumberBaseConverterControl.xaml.cs">
+      <DependentUpon>AdvancedNumberBaseConverterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Converters\NumberBaseConverter\BasicNumberBaseConverterControl.xaml.cs">
+      <DependentUpon>BasicNumberBaseConverterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Converters\Timestamp\TimestampToolPage.xaml.cs">
+      <DependentUpon>TimestampToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\EncodersDecoders\Base64ImageEncoderDecoder\Base64ImageEncoderDecoderToolPage.xaml.cs">
+      <DependentUpon>Base64ImageEncoderDecoderToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolPage.xaml.cs">
+      <DependentUpon>GZipEncoderDecoderToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Formatters\XmlFormatter\XmlFormatterToolPage.xaml.cs">
+      <DependentUpon>XmlFormatterToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Formatters\SqlFormatter\SqlFormatterToolPage.xaml.cs">
+      <DependentUpon>SqlFormatterToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Generators\CheckSumGenerator\CheckSumGeneratorToolPage.xaml.cs">
+      <DependentUpon>CheckSumGeneratorToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\Graphic\ColorBlindnessSimulator\ColorBlindnessSimulatorToolPage.xaml.cs">
       <DependentUpon>ColorBlindnessSimulatorToolPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tools\Graphic\ColorBlindnessSimulator\ImagePreview.xaml.cs">
+    <Compile Include="UI\Controls\ImagePreview.xaml.cs">
       <DependentUpon>ImagePreview.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\GroupToolPage.xaml.cs">
@@ -82,6 +190,9 @@
     <Compile Include="Views\Tools\EncodersDecoders\HtmlEncoderDecoder\HtmlEncoderDecoderToolPage.xaml.cs">
       <DependentUpon>HtmlEncoderDecoderToolPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Tools\Graphic\ImageConverter\ImageConverterToolPage.xaml.cs">
+      <DependentUpon>ImageConverterToolPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolPage.xaml.cs">
       <DependentUpon>LoremIpsumGeneratorToolPage.xaml</DependentUpon>
     </Compile>
@@ -90,6 +201,9 @@
     </Compile>
     <Compile Include="Views\Tools\EncodersDecoders\URLEncoderDecoder\UrlEncoderDecoderToolPage.xaml.cs">
       <DependentUpon>UrlEncoderDecoderToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Text\XmlValidator\XmlValidatorToolPage.xaml.cs">
+      <DependentUpon>XmlValidatorToolPage.xaml</DependentUpon>
     </Compile>
     <Content Include="..\..\DevToys.Startup\Assets\Logo-Prev\SplashScreen.scale-100.png">
       <Link>Assets\Logo\SplashScreen.scale-100.png</Link>
@@ -216,7 +330,12 @@
     <Content Include="Assets\GitHubMarkdownCss\github-markdown-light.css" />
     <Content Include="Assets\GitHubMarkdownCss\github-markdown.css" />
     <Content Include="Assets\GitHubMarkdownCss\index.html" />
+    <Content Include="Assets\Icons\Base64Image.svg" />
     <Content Include="Assets\Icons\ColorBlindnessSimulator.svg" />
+    <Content Include="Assets\Icons\Cron.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\XmlValidator.svg" />
     <Content Include="Assets\Icons\EncodersDecoders.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -250,6 +369,7 @@
     <Content Include="Assets\Icons\Base64.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Icons\SqlFormatter.svg" />
     <Content Include="Assets\Icons\TextDiff.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -295,7 +415,7 @@
     <Compile Include="Api\Tools\IToolProvider.cs" />
     <Compile Include="Api\Tools\IToolProviderFactory.cs" />
     <Compile Include="Api\Tools\IToolViewModel.cs" />
-    <Compile Include="Api\Tools\MatchedToolProvider.cs" />
+    <Compile Include="Api\Tools\ToolProviderViewItem.cs" />
     <Compile Include="Api\Tools\MatchSpan.cs" />
     <Compile Include="Api\Tools\NameAttribute.cs" />
     <Compile Include="Api\Tools\NotScrollableAttribute.cs" />
@@ -331,8 +451,8 @@
       <DependentUpon>Notification.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Converters\NullToVisibilityConverter.cs" />
-    <Compile Include="Helpers\JsonHelper.cs" />
-    <Compile Include="Helpers\YamlHelper.cs" />
+    <Compile Include="Helpers\JsonYaml\JsonHelper.cs" />
+    <Compile Include="Helpers\JsonYaml\YamlHelper.cs" />
     <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\NumberBaseConverterToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Converters\NumberBaseConverter\NumberBaseConverterToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Generators\GuidGenerator\GuidGeneratorToolProvider.cs" />
@@ -383,8 +503,8 @@
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\Tools\Settings\SettingsToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Settings\SettingsToolViewModel.cs" />
-    <Compile Include="ViewModels\Tools\EncodersDecoders\Base64EncoderDecoder\Base64EncoderDecoderToolProvider.cs" />
-    <Compile Include="ViewModels\Tools\EncodersDecoders\Base64EncoderDecoder\Base64EncoderDecoderToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\Base64TextEncoderDecoder\Base64EncoderDecoderToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\Base64TextEncoderDecoder\Base64EncoderDecoderToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Generators\HashGenerator\HashGeneratorToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Generators\HashGenerator\HashGeneratorToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Formatters\JsonFormatter\JsonFormatterToolProvider.cs" />
@@ -398,7 +518,7 @@
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tools\EncodersDecoders\Base64EncoderDecoder\Base64EncoderDecoderToolPage.xaml.cs">
+    <Compile Include="Views\Tools\EncodersDecoders\Base64TextEncoderDecoder\Base64EncoderDecoderToolPage.xaml.cs">
       <DependentUpon>Base64EncoderDecoderToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\Converters\NumberBaseConverter\NumberBaseConverterToolPage.xaml.cs">
@@ -427,6 +547,9 @@
     </Compile>
     <Compile Include="Views\Tools\Settings\SettingsToolPage.xaml.cs">
       <DependentUpon>SettingsToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Text\StringEscapeUnescape\StringEscapeUnescapeToolPage.xaml.cs">
+      <DependentUpon>StringEscapeUnescapeToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\Text\StringUtilities\StringUtilitiesToolPage.xaml.cs">
       <DependentUpon>StringUtilitiesToolPage.xaml</DependentUpon>
@@ -464,6 +587,10 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Page Include="Views\Tools\Text\XmlValidator\XmlValidatorToolPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <PRIResource Include="Strings\*\*.resw" />
     <Page Include="Themes\Custom.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -474,6 +601,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\Controls\CodeEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Controls\FileSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -505,7 +636,43 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Tools\EncodersDecoders\Base64EncoderDecoder\Base64EncoderDecoderToolPage.xaml">
+    <Page Include="Views\Tools\Converters\CronParser\CronParserToolPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\Converters\NumberBaseConverter\AdvancedNumberBaseConverterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tools\Converters\NumberBaseConverter\BasicNumberBaseConverterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tools\Converters\Timestamp\TimestampToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tools\EncodersDecoders\Base64ImageEncoderDecoder\Base64ImageEncoderDecoderToolPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\EncodersDecoders\Base64TextEncoderDecoder\Base64EncoderDecoderToolPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\Formatters\XmlFormatter\XmlFormatterToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tools\Generators\CheckSumGenerator\CheckSumGeneratorToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tools\Formatters\SqlFormatter\SqlFormatterToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -513,7 +680,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Tools\Graphic\ColorBlindnessSimulator\ImagePreview.xaml">
+    <Page Include="UI\Controls\ImagePreview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -528,6 +695,10 @@
     <Page Include="Views\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tools\Graphic\ImageConverter\ImageConverterToolPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Tools\Converters\NumberBaseConverter\NumberBaseConverterToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -569,6 +740,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Tools\Text\StringEscapeUnescape\StringEscapeUnescapeToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Tools\Text\StringUtilities\StringUtilitiesToolPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -587,6 +762,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Cronos" Version="$(Nuget_Cronos)" />
     <PackageReference Include="GitInfo" Version="$(Nuget_GitInfo)" />
     <PackageReference Include="Markdig" Version="$(Nuget_Markdig)" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="$(NuGet_MicrosoftNETCoreUniversalWindowsPlatform)" />
@@ -619,7 +795,6 @@
       <Name>Windows Desktop Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

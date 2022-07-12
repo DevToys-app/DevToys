@@ -1,9 +1,8 @@
 ﻿🎉 New Features
-  • N/A
+  • Timestamp Converter now supports timezone!
 👏 Improvements
-  • Added Portuguese translation
-  • Updated Czech translation
-  • Renamed Simplified Chinese translation
-  • Minor UI update
+  • Updated Simplified Chinese translation
+  • Improved the layout of many tools in Picture-in-Picture mode
 🐛 Bug Fixes
-  • N/A
+  • Performance issue in Base64 Image Encoder / Decoder
+  • Potential crashes in Base64 Image Encoder / Decoder

@@ -138,12 +138,6 @@
   <data name="MenuDisplayName" xml:space="preserve">
     <value>HTML</value>
   </data>
-  <data name="EncodingDescription" xml:space="preserve">
-    <value>Select which encoding do you want to use</value>
-  </data>
-  <data name="EncodingTitle" xml:space="preserve">
-    <value>Encoding</value>
-  </data>
   <data name="InputTitle" xml:space="preserve">
     <value>Input</value>
   </data>
@@ -155,5 +149,8 @@
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>HTML Encoder / Decoder</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value />
   </data>
 </root>

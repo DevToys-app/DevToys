@@ -24,8 +24,34 @@
                     <FontIcon Glyph="&#xF7B2;" />
                 </controls:ExpandableSettingControl.Icon>
                 <ToggleSwitch
+                    x:Name="IsUppercaseToggleSwitch"
                     Style="{StaticResource RightAlignedToggleSwitchStyle}"
                     IsOn="{x:Bind ViewModel.IsUppercase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </controls:ExpandableSettingControl>
+            <controls:ExpandableSettingControl
+                TabIndex="0"
+                Title="{x:Bind ViewModel.Strings.OutputTypeTitle}">
+                <controls:ExpandableSettingControl.Icon>
+                    <FontIcon Glyph="&#xF587;" />
+                </controls:ExpandableSettingControl.Icon>
+                <ComboBox
+                    SelectedValuePath="Tag"
+                    SelectedValue="{x:Bind ViewModel.OutputType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    SelectionChanged="OutputType_SelectionChanged">
+                    <ComboBoxItem Tag="Hex" Content="{x:Bind ViewModel.Strings.OutputHex}" />
+                    <ComboBoxItem Tag="Base64" Content="{x:Bind ViewModel.Strings.OutputBase64}"/>
+                </ComboBox>
+            </controls:ExpandableSettingControl>
+            <controls:ExpandableSettingControl
+                Title="{x:Bind ViewModel.Strings.HmacMode}">
+                <controls:ExpandableSettingControl.Icon>
+                    <FontIcon Glyph="&#62734;" />
+                </controls:ExpandableSettingControl.Icon>
+                <ToggleSwitch
+                    x:Name="IsUsingHmacToggleSwitch"
+                    Style="{StaticResource RightAlignedToggleSwitchStyle}"
+                    Toggled="IsUsingHmacToggleSwitch_Toggled"
+                    IsOn="{x:Bind ViewModel.IsHmacMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </controls:ExpandableSettingControl>
         </StackPanel>
 
@@ -34,6 +60,13 @@
             Height="150"
             AcceptsReturn="True"
             Text="{x:Bind ViewModel.Input, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <controls:CustomTextBox x:Name="SecretKeyInput"
+            Header="{x:Bind ViewModel.Strings.SecretKey}"
+            Height="150"
+            AcceptsReturn="True"
+            Visibility="Collapsed"
+            Text="{x:Bind ViewModel.SecretKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <controls:CustomTextBox
             Header="{x:Bind ViewModel.Strings.MD5}"

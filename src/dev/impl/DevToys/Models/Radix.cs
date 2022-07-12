@@ -5,6 +5,8 @@
         Octal,
         Binary,
         Decimal,
-        Hexdecimal
+        Hexdecimal,
+        RFC4648Standard,
+        Custom
     }
 }

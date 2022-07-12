@@ -16,7 +16,8 @@
     xmlns:viewmanagement="using:Windows.UI.ViewManagement"
     mc:Ignorable="d"
     NavigationCacheMode="Enabled"
-    muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
+    muxc:BackdropMaterial.ApplyToRootOrPageBackground="True"
+    FlowDirection="{Binding Instance.FlowDirection, Source={StaticResource LanguageManager}}">
     <Page.Resources>
         <converters:DoubleToGridLengthConverter x:Key="DoubleToGridLengthConverter"/>
         <converters:BooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" IsInverted="True"/>
@@ -39,6 +40,7 @@
                         <Setter Target="NavigationView.AlwaysShowHeader" Value="False" />
                         <Setter Target="NavigationView.IsPaneVisible" Value="False" />
                         <Setter Target="ScrollViewerContent.Margin" Value="12,0,12,0"/>
+                        <Setter Target="ContentRootScrollViewer.Margin" Value="0,36,0,0"/>
                         <Setter Target="ContentFrame.Padding" Value="0,0,0,0"/>
                         <Setter Target="HeaderTextBlock.Visibility" Value="Collapsed" />
                         <Setter Target="AppTitleLeftBorder.Width" Value="16" />
@@ -55,7 +57,8 @@
                 </VisualState>
                 <VisualState x:Name="NavigationViewMinimal">
                     <VisualState.Setters>
-                        <Setter Target="ScrollViewerContent.Margin" Value="12,12,12,0"/>
+                        <Setter Target="ContentRootScrollViewer.Margin" Value="0,48,0,0"/>
+                        <Setter Target="ScrollViewerContent.Margin" Value="12,0,12,0"/>
                         <Setter Target="ContentFrame.Padding" Value="0,12,0,0"/>
                     </VisualState.Setters>
                 </VisualState>
@@ -217,7 +220,7 @@
                             Invoked="SearchBoxKeyboardAccelerator_Invoked"/>
                     </AutoSuggestBox.KeyboardAccelerators>
                     <AutoSuggestBox.ItemTemplate>
-                        <DataTemplate x:DataType="tools:MatchedToolProvider">
+                        <DataTemplate x:DataType="tools:ToolProviderViewItem">
                             <RichTextBlock
                                 HorizontalAlignment="Stretch"
                                 IsTextSelectionEnabled="False"
@@ -236,7 +239,7 @@
             <muxc:NavigationView.MenuItemTemplateSelector>
                 <ui:MainMenuNavigationViewMenuItemSelector>
                     <ui:MainMenuNavigationViewMenuItemSelector.ToolProvider>
-                        <DataTemplate x:DataType="tools:MatchedToolProvider">
+                        <DataTemplate x:DataType="tools:ToolProviderViewItem">
                             <muxc:NavigationViewItem
                                 Icon="{x:Bind Icon.Result, Mode=OneWay}"
                                 AutomationProperties.Name="{x:Bind ToolProvider.AccessibleName}"
@@ -250,6 +253,28 @@
                                             CommandParameter="{x:Bind Metadata}">
                                             <MenuFlyoutItem.Icon>
                                                 <FontIcon Glyph="&#xF8B5;" />
+                                            </MenuFlyoutItem.Icon>
+                                        </MenuFlyoutItem>
+                                        <MenuFlyoutItem
+                                            x:Name="AddToFavoritesButton"
+                                            x:Load="{x:Bind IsFavorite, Mode=OneWay, Converter={StaticResource InvertedBooleanConverter}}"
+                                            Visibility="{x:Bind Metadata.NotFavorable, Mode=OneTime, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
+                                            Text="{Binding Instance.MainPage.AddToFavorites, Source={StaticResource LanguageManager}}"
+                                            Command="{Binding AddToFavoritesCommand}"
+                                            CommandParameter="{x:Bind}">
+                                            <MenuFlyoutItem.Icon>
+                                                <FontIcon Glyph="&#xF70F;" />
+                                            </MenuFlyoutItem.Icon>
+                                        </MenuFlyoutItem>
+                                        <MenuFlyoutItem
+                                            x:Name="RemoveFromFavoritesButton"
+                                            x:Load="{x:Bind IsFavorite, Mode=OneWay}"
+                                            Visibility="{x:Bind Metadata.NotFavorable, Mode=OneTime, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
+                                            Text="{Binding Instance.MainPage.RemoveFromFavorites, Source={StaticResource LanguageManager}}"
+                                            Command="{Binding RemoveFromFavoritesCommand}"
+                                            CommandParameter="{x:Bind}">
+                                            <MenuFlyoutItem.Icon>
+                                                <FontIcon Glyph="&#xF71A;" />
                                             </MenuFlyoutItem.Icon>
                                         </MenuFlyoutItem>
                                         <MenuFlyoutItem
@@ -273,7 +298,7 @@
                                             HorizontalAlignment="Stretch"
                                             TextWrapping="NoWrap"
                                             TextTrimming="CharacterEllipsis"
-                                            Text="{x:Bind ToolProvider.MenuDisplayName}"/>
+                                            Text="{x:Bind MenuDisplayName}"/>
                                         <muxc:ImageIcon
                                             x:Name="NavigationViewItemRecommendedIcon"
                                             x:Load="{x:Bind IsRecommended, Mode=OneWay}"
@@ -295,6 +320,7 @@
             </muxc:NavigationView.MenuItemTemplateSelector>
 
             <ScrollViewer
+                x:Name="ContentRootScrollViewer"
                 HorizontalScrollMode="Disabled"
                 VerticalScrollMode="{x:Bind ViewModel.SelectedMenuItem.Metadata.NotScrollable, Mode=OneWay, Converter={StaticResource BooleanToScrollModeConverter}}">
                 <Grid

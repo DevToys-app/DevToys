@@ -4,11 +4,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:DevToys.UI.Controls"
     xmlns:converters="using:DevToys.UI.Converters"
     xmlns:local="using:DevToys.ViewModels.Tools.PngJpgCompressor"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:i="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d"
     NavigationCacheMode="Required">
     <Page.Resources>
@@ -27,79 +26,17 @@
     </Page.Resources>
 
     <StackPanel Margin="0,0,0,16" Spacing="12">
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState x:Name="SelectFilesPointerHover">
-                    <VisualState.StateTriggers>
-                        <StateTrigger IsActive="{x:Bind ViewModel.IsSelectFilesAreaHighlithed, Mode=OneWay}"/>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="SelectFilesRectangle.Stroke" Value="{ThemeResource TextControlHeaderForeground}" />
-                        <Setter Target="SelectFilesRectangle.Fill" Value="{ThemeResource ButtonBackgroundPointerOver}" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-
         <StackPanel.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
             </TransitionCollection>
         </StackPanel.ChildrenTransitions>
 
-        <Grid
+        <controls:FileSelector
             Margin="0,12,0,0"
-            AllowDrop="True"
-            Background="Transparent"
-            CornerRadius="4">
-            <i:Interaction.Behaviors>
-                <core:EventTriggerBehavior EventName="DragOver">
-                    <core:InvokeCommandAction
-                        Command="{x:Bind ViewModel.SelectFilesAreaDragOverCommand}"/>
-                </core:EventTriggerBehavior>
-                <core:EventTriggerBehavior EventName="DragLeave">
-                    <core:InvokeCommandAction
-                        Command="{x:Bind ViewModel.SelectFilesAreaDragLeaveCommand}"/>
-                </core:EventTriggerBehavior>
-                <core:EventTriggerBehavior EventName="Drop">
-                    <core:InvokeCommandAction
-                        Command="{x:Bind ViewModel.SelectFilesAreaDragDropCommand}"/>
-                </core:EventTriggerBehavior>
-            </i:Interaction.Behaviors>
-            <Rectangle
-                x:Name="SelectFilesRectangle"
-                Stroke="{ThemeResource TextControlHeaderForegroundDisabled}"
-                StrokeDashArray="4 4"
-                StrokeThickness="2"
-                Fill="Transparent">
-            </Rectangle>
-            <StackPanel
-                Spacing="8"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Margin="24">
-                <TextBlock
-                    Text="{x:Bind ViewModel.Strings.SelectFilesInstruction1}"
-                    TextTrimming="CharacterEllipsis"
-                    TextWrapping="WrapWholeWords"
-                    HorizontalAlignment="Center"/>
-                <TextBlock
-                    Text="{x:Bind ViewModel.Strings.SelectFilesInstruction2}"
-                    HorizontalAlignment="Center"/>
-                <Button
-                    Style="{StaticResource AccentButtonStyle}"
-                    Content="{x:Bind ViewModel.Strings.SelectFilesInstruction3}"
-                    HorizontalAlignment="Center"
-                    MinWidth="100"
-                    Command="{x:Bind ViewModel.SelectFilesBrowseCommand}"/>
-                <TextBlock
-                    Text="{x:Bind ViewModel.Strings.InvalidSelectedFiles}"
-                    HorizontalAlignment="Center"
-                    FontSize="11"
-                    Foreground="Red"
-                    Visibility="{x:Bind ViewModel.HasInvalidFilesSelected, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            </StackPanel>
-        </Grid>
+            AllowedFileExtensions="png;jpg;jpeg"
+            AllowMultipleFileSelection="True"
+            FilesSelectedCommand="{x:Bind ViewModel.FilesSelectedCommand}"/>
 
         <StackPanel
             Orientation="Horizontal"

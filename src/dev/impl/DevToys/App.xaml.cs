@@ -196,7 +196,7 @@ namespace DevToys
         private async Task<Frame> EnsureWindowIsInitializedAsync()
         {
             var applicationView = ApplicationView.GetForCurrentView();
-            applicationView.SetPreferredMinSize(new Windows.Foundation.Size(300, 200));
+            applicationView.SetPreferredMinSize(new Windows.Foundation.Size(500, 500));
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active

@@ -1,10 +1,10 @@
 ﻿#nullable enable
 
 using DevToys.Api.Core.Navigation;
-using DevToys.Core.Formatter;
 using DevToys.Helpers;
 using DevToys.Models;
 using DevToys.Shared.Core;
+using DevToys.ViewModels.Tools.Converters.NumberBaseConverter;
 using DevToys.ViewModels.Tools.NumberBaseConverter;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -53,14 +53,14 @@ namespace DevToys.Views.Tools.NumberBaseConverter
 
                 if (NumberBaseHelper.IsValidBinary(clipBoardContent!))
                 {
-                    ViewModel.InputBaseNumber = NumberBaseFormat.Binary;
+                    ViewModel.AdvancedMode = false;
+                    ViewModel.BasicViewModel.BinaryValue = parameters.ClipBoardContent;
                 }
                 else if (NumberBaseHelper.IsValidHexadecimal(clipBoardContent!))
                 {
-                    ViewModel.InputBaseNumber = NumberBaseFormat.Hexadecimal;
+                    ViewModel.AdvancedMode = false;
+                    ViewModel.BasicViewModel.HexaDecimalValue = parameters.ClipBoardContent;
                 }
-
-                ViewModel.InputValue = parameters.ClipBoardContent;
             }
 
             base.OnNavigatedTo(e);

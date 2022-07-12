@@ -3,7 +3,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
+using DevToys.Api.Core.Settings;
 using DevToys.Core;
+using DevToys.Core.Settings;
 using DevToys.Core.Threading;
 using Microsoft.Toolkit.Mvvm.Input;
 using Windows.ApplicationModel.DataTransfer;
@@ -62,6 +65,19 @@ namespace DevToys.UI.Controls
             set => SetValue(IsReadOnlyProperty, value);
         }
 
+        public static readonly DependencyProperty CanCopyWhenNotReadOnlyProperty
+            = DependencyProperty.Register(
+                nameof(CanCopyWhenNotReadOnly),
+                typeof(bool),
+                typeof(CustomTextBox),
+                new PropertyMetadata(false, OnIsReadOnlyPropertyChangedCalled));
+
+        public bool CanCopyWhenNotReadOnly
+        {
+            get => (bool)GetValue(CanCopyWhenNotReadOnlyProperty);
+            set => SetValue(CanCopyWhenNotReadOnlyProperty, value);
+        }
+
         public static readonly DependencyProperty AcceptsReturnProperty
             = DependencyProperty.Register(
                 nameof(AcceptsReturn),
@@ -114,8 +130,36 @@ namespace DevToys.UI.Controls
             set => SetValue(SelectionStartProperty, value);
         }
 
+        public static readonly DependencyProperty SettingsProviderProperty
+            = DependencyProperty.Register(
+                nameof(SettingsProvider),
+                typeof(ISettingsProvider),
+                typeof(CustomTextBox),
+                new PropertyMetadata(
+                    null,
+                    (d, e) =>
+                    {
+                        var textBox = (CustomTextBox)d;
+                        if (e.OldValue is ISettingsProvider settingsProvider)
+                        {
+                            settingsProvider.SettingChanged -= textBox.SettingsProvider_SettingChanged;
+                        }
+                        if (e.NewValue is ISettingsProvider settingsProvider2)
+                        {
+                            settingsProvider2.SettingChanged += textBox.SettingsProvider_SettingChanged;
+                        }
+                    }));
+
+        public ISettingsProvider? SettingsProvider
+        {
+            get => (ISettingsProvider?)GetValue(SettingsProviderProperty);
+            set => SetValue(SettingsProviderProperty, value);
+        }
+
         public CustomTextBox()
         {
+            SettingsProvider = Shared.Core.MefComposer.Provider.Import<ISettingsProvider>();
+
             InitializeComponent();
 
             Loaded += OnLoaded;
@@ -130,8 +174,6 @@ namespace DevToys.UI.Controls
             SelectAllCommand = new RelayCommand(ExecuteSelectAllCommand, CanExecuteSelectAllCommand);
 
             DataContext = this;
-
-            UpdateUI();
         }
 
         #region CutCommand
@@ -140,13 +182,24 @@ namespace DevToys.UI.Controls
 
         private bool CanExecuteCutCommand()
         {
-            return RichEditBox != null && RichEditBox.TextDocument.Selection.Length != 0 && IsEnabled && RichEditBox.TextDocument.CanCopy();
+            return IsEnabled
+                   && !IsReadOnly
+                   && RichEditBox != null
+                   && RichEditBox.TextDocument.Selection.Length != 0
+                   && RichEditBox.TextDocument.CanCopy();
         }
 
         private void ExecuteCutCommand()
         {
-            RichEditBox.TextDocument.Selection.Cut();
-            Clipboard.Flush();
+            try
+            {
+                RichEditBox.TextDocument.Selection.Cut();
+                Clipboard.Flush();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogFault("Failed to cut from custom text box", ex);
+            }
         }
 
         #endregion
@@ -162,8 +215,15 @@ namespace DevToys.UI.Controls
 
         private void ExecuteCopyCommand()
         {
-            RichEditBox.TextDocument.Selection.Copy();
-            Clipboard.Flush();
+            try
+            {
+                RichEditBox.TextDocument.Selection.Copy();
+                Clipboard.Flush();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogFault("Failed to copy from custom text box", ex);
+            }
         }
 
         #endregion
@@ -190,7 +250,10 @@ namespace DevToys.UI.Controls
 
         private bool CanExecuteDeleteCommand()
         {
-            return RichEditBox != null && RichEditBox.TextDocument.Selection.Length != 0 && IsEnabled && !IsReadOnly;
+            return IsEnabled
+                    && !IsReadOnly
+                    && RichEditBox != null
+                    && RichEditBox.TextDocument.Selection.Length != 0;
         }
 
         private void ExecuteDeleteCommand()
@@ -348,6 +411,11 @@ namespace DevToys.UI.Controls
 
             if (IsReadOnly)
             {
+                if (RefreshCommand is not null)
+                {
+                    GetRefreshButton().Visibility = Visibility.Visible;
+                }
+
                 if (PasteButton is not null)
                 {
                     GetPasteButton().Visibility = Visibility.Collapsed;
@@ -387,16 +455,30 @@ namespace DevToys.UI.Controls
                 {
                     GetOpenFileButton().Visibility = Visibility.Visible;
                     GetClearButton().Visibility = Visibility.Visible;
+                    if (CanCopyWhenNotReadOnly)
+                    {
+                        GetCopyButton().Visibility = Visibility.Visible;
+                    }
+                }
+                else
+                {
+                    if (CanCopyWhenNotReadOnly)
+                    {
+                        GetInlinedCopyButton().Visibility = Visibility.Visible;
+                    }
                 }
 
-                if (InlinedCopyButton is not null)
+                if (!CanCopyWhenNotReadOnly)
                 {
-                    GetInlinedCopyButton().Visibility = Visibility.Collapsed;
-                }
+                    if (InlinedCopyButton is not null)
+                    {
+                        GetInlinedCopyButton().Visibility = Visibility.Collapsed;
+                    }
 
-                if (CopyButton is not null)
-                {
-                    GetCopyButton().Visibility = Visibility.Collapsed;
+                    if (CopyButton is not null)
+                    {
+                        GetCopyButton().Visibility = Visibility.Collapsed;
+                    }
                 }
             }
         }
@@ -440,27 +522,60 @@ namespace DevToys.UI.Controls
         {
             return (RichEditBox)(RichEditBox ?? FindName(nameof(RichEditBox)));
         }
+        private Button GetRefreshButton()
+        {
+            return (Button)(RefreshButton ?? FindName(nameof(RefreshButton)));
+        }
+
+        #region Refresh command (optional)
+        public ICommand? RefreshCommand { get; set; }
+
+
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (RefreshCommand is not null && RefreshCommand.CanExecute(e))
+            {
+                RefreshCommand.Execute(e);
+            }
+        }
+
+        #endregion Refresh button click handler delegate
 
         private void CopyTextBoxSelectionToClipboard()
         {
-            var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
-            dataPackage.SetText(TextBox.SelectedText);
-            Clipboard.SetContentWithOptions(dataPackage, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
-            Clipboard.Flush(); // This method allows the content to remain available after the application shuts down.
+            try
+            {
+                var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
+                dataPackage.SetText(TextBox.SelectedText);
+                Clipboard.SetContentWithOptions(dataPackage, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
+                Clipboard.Flush(); // This method allows the content to remain available after the application shuts down.
+            }
+            catch (Exception ex)
+            {
+                Logger.LogFault("Failed to copy from custom text box", ex);
+            }
         }
 
         private void CopyRichEditBoxSelectionToClipboard()
         {
-            RichEditBox.Document.Selection.GetText(TextGetOptions.UseCrlf, out string? text);
-            var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
-            dataPackage.SetText(text);
-            Clipboard.SetContentWithOptions(dataPackage, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
-            Clipboard.Flush(); // This method allows the content to remain available after the application shuts down.
+            try
+            {
+                RichEditBox.Document.Selection.GetText(TextGetOptions.UseCrlf, out string? text);
+                var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
+                dataPackage.SetText(text);
+                Clipboard.SetContentWithOptions(dataPackage, new ClipboardContentOptions() { IsAllowedInHistory = true, IsRoamable = true });
+                Clipboard.Flush(); // This method allows the content to remain available after the application shuts down.
+            }
+            catch (Exception ex)
+            {
+                Logger.LogFault("Failed to copy from custom text box", ex);
+            }
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             UpdateUI();
+            ApplySettings();
         }
 
         private void OnActualThemeChanged(FrameworkElement sender, object args)
@@ -489,6 +604,13 @@ namespace DevToys.UI.Controls
                     string? text = await dataPackageView.GetTextAsync();
 
                     richEditBox.TextDocument.BeginUndoGroup();
+
+                    if (SettingsProvider != null
+                        && SettingsProvider.GetSetting(PredefinedSettings.TextEditorPasteClearsText))
+                    {
+                        richEditBox.TextDocument.SetText(TextSetOptions.None, string.Empty);
+                    }
+
                     richEditBox.TextDocument.Selection.SetText(TextSetOptions.None, text);
                     richEditBox.TextDocument.Selection.StartPosition = richEditBox.TextDocument.Selection.EndPosition;
                     richEditBox.TextDocument.EndUndoGroup();
@@ -500,6 +622,11 @@ namespace DevToys.UI.Controls
             }
             else
             {
+                if (SettingsProvider != null
+                    && SettingsProvider.GetSetting(PredefinedSettings.TextEditorPasteClearsText))
+                {
+                    TextBox.Text = string.Empty;
+                }
                 TextBox.PasteFromClipboard();
             }
         }
@@ -532,6 +659,15 @@ namespace DevToys.UI.Controls
             };
 
             filePicker.FileTypeFilter.Add("*");
+            filePicker.FileTypeFilter.Add(".txt");
+            filePicker.FileTypeFilter.Add(".js");
+            filePicker.FileTypeFilter.Add(".ts");
+            filePicker.FileTypeFilter.Add(".cs");
+            filePicker.FileTypeFilter.Add(".java");
+            filePicker.FileTypeFilter.Add(".xml");
+            filePicker.FileTypeFilter.Add(".json");
+            filePicker.FileTypeFilter.Add(".md");
+            filePicker.FileTypeFilter.Add(".sql");
 
             StorageFile file = await filePicker.PickSingleFileAsync();
             if (file is not null)
@@ -599,6 +735,7 @@ namespace DevToys.UI.Controls
         private void TextBox_CuttingToClipboard(TextBox sender, TextControlCuttingToClipboardEventArgs args)
         {
             CopyTextBoxSelectionToClipboard();
+            sender.SelectedText = string.Empty;
             args.Handled = true;
         }
 
@@ -616,6 +753,7 @@ namespace DevToys.UI.Controls
         private void RichEditBox_CuttingToClipboard(RichEditBox sender, TextControlCuttingToClipboardEventArgs args)
         {
             CopyRichEditBoxSelectionToClipboard();
+            sender.TextDocument.Selection.Text = string.Empty;
             args.Handled = true;
         }
 
@@ -689,6 +827,31 @@ namespace DevToys.UI.Controls
                     customTextBox.SetHighlights(customTextBox._highlightedSpans);
                     customTextBox.IsReadOnly = isReadOnly;
                     customTextBox._isTextPendingUpdate = false;
+                }
+            }
+        }
+
+        private void SettingsProvider_SettingChanged(object sender, SettingChangedEventArgs e)
+        {
+            if (e.SettingName.Contains("TextEditor"))
+            {
+                ApplySettings();
+            }
+        }
+
+        private void ApplySettings()
+        {
+            ISettingsProvider? settingsProvider = SettingsProvider;
+            if (settingsProvider is not null)
+            {
+                if (TextBox is not null)
+                {
+                    TextBox.FontFamily = new FontFamily(settingsProvider.GetSetting(PredefinedSettings.TextEditorFont));
+                }
+
+                if (RichEditBox is not null)
+                {
+                    RichEditBox.FontFamily = new FontFamily(settingsProvider.GetSetting(PredefinedSettings.TextEditorFont));
                 }
             }
         }

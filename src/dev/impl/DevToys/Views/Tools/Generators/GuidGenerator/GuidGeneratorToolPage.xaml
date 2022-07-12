@@ -98,7 +98,8 @@
                     SmallChange="1"
                     LargeChange="10"
                     Minimum="1"
-                    AutomationProperties.Name="{x:Bind ViewModel.Strings.NumberOfGuidsToGenerate_AutomationProperties_Name}"/>
+                    Maximum="10000"
+                    AutomationProperties.Name="{x:Bind ViewModel.Strings.NumberOfGuidsToGenerate_AutomationProperties_Name}" />
             </StackPanel>
         </StackPanel>
 

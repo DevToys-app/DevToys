@@ -16,7 +16,7 @@ namespace DevToys.UI
 
         protected override DataTemplate SelectTemplateCore(object item)
         {
-            if (item is MatchedToolProvider)
+            if (item is ToolProviderViewItem)
             {
                 return ToolProvider;
             }

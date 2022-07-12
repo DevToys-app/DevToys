@@ -5,8 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:DevToys.UI.Controls"
+    xmlns:converters="using:DevToys.UI.Converters"
     mc:Ignorable="d"
     NavigationCacheMode="Required">
+    <Page.Resources>
+        <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
+    </Page.Resources>
 
     <Grid x:Name="RootGrid" RowSpacing="12" Margin="0,0,0,16">
         <Grid.ChildrenTransitions>
@@ -16,10 +20,14 @@
         </Grid.ChildrenTransitions>
 
         <controls:ToolProvidersGridView
+            x:Name="ToolProvidersGridView"
+            x:Load="{x:Bind ViewModel.IsToolProvidersEmpty, Converter={StaticResource InvertedBooleanConverter}}"
             TabIndex="0"
             Tools="{x:Bind ViewModel.ToolProviders, Mode=OneWay}"
             ToolClickCommand="{x:Bind ViewModel.NavigateToToolCommand}"
             OpenToolInNewWindowClickCommand="{x:Bind ViewModel.OpenToolInNewWindowClickCommand}"
-            PinToolToStartClickCommand="{x:Bind ViewModel.PinToolToStartClickCommand}"/>
+            PinToolToStartClickCommand="{x:Bind ViewModel.PinToolToStartClickCommand}"
+            AddToFavoritesCommand="{x:Bind ViewModel.AddToFavoritesCommand}"
+            RemoveFromFavoritesCommand="{x:Bind ViewModel.RemoveFromFavoritesCommand}"/>
     </Grid>
 </Page>

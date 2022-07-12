@@ -46,5 +46,35 @@ namespace DevToys.Views.Tools.HashGenerator
 
             base.OnNavigatedTo(e);
         }
+
+        private void OutputType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if ((sender as ComboBox)?.SelectedValue as string == "Base64")
+            {
+                IsUppercaseToggleSwitch.IsEnabled = false;
+            }
+            else
+            {
+                IsUppercaseToggleSwitch.IsEnabled = true;
+            }
+        }
+
+        private void IsUsingHmacToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            var toggleSwitch = (ToggleSwitch)sender;
+            if(toggleSwitch != null) 
+            {
+                ViewModel.IsHmacMode = toggleSwitch.IsOn;
+                if (toggleSwitch.IsOn)
+                {
+                    SecretKeyInput.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    SecretKeyInput.Visibility = Visibility.Collapsed;
+                    SecretKeyInput.Text = "";
+                }
+            }
+        }
     }
 }

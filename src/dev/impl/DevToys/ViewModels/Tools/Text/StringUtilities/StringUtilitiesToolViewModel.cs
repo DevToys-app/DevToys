@@ -9,16 +9,16 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using DevToys.Api.Core;
 using DevToys.Api.Tools;
+using DevToys.Core;
 using DevToys.Core.Threading;
 using DevToys.Shared.Core.Threading;
 using DevToys.Views.Tools.StringUtilities;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 
 namespace DevToys.ViewModels.Tools.StringUtilities
 {
     [Export(typeof(StringUtilitiesToolViewModel))]
-    public sealed class StringUtilitiesToolViewModel : ObservableRecipient, IToolViewModel
+    public sealed class StringUtilitiesToolViewModel : QueueWorkerViewModelBase<string>, IToolViewModel
     {
         private static readonly object _lockObject = new();
 
@@ -667,7 +667,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
 
         private void QueueTextStatisticCalculation()
         {
-            CalculateTextStatisticsAsync(Text).Forget();
+            EnqueueComputation(Text ?? string.Empty);
         }
 
         private void QueueSelectionStatisticCalculation()
@@ -682,7 +682,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
             CalculateSelectionStatisticsAsync(Text!, SelectionStart).Forget();
         }
 
-        private async Task CalculateTextStatisticsAsync(string? text)
+        protected override async Task TreatComputationQueueAsync(string text)
         {
             await TaskScheduler.Default;
 

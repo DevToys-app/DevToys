@@ -9,10 +9,10 @@ using DevToys.Api.Core;
 using DevToys.Api.Tools;
 using DevToys.Core.Threading;
 using DevToys.Shared.Core.Threading;
-using DevToys.Helpers;
 using DevToys.Models;
 using DevToys.Views.Tools.JwtDecoderEncoder;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
+using DevToys.Helpers.JsonYaml;
 
 namespace DevToys.ViewModels.Tools.JwtDecoderEncoder
 {
@@ -40,7 +40,7 @@ namespace DevToys.ViewModels.Tools.JwtDecoderEncoder
             get => _jwtToken;
             set
             {
-                SetProperty(ref _jwtToken, value);
+                SetProperty(ref _jwtToken, value?.Trim());
                 QueueConversion();
             }
         }
@@ -118,8 +118,8 @@ namespace DevToys.ViewModels.Tools.JwtDecoderEncoder
             {
                 var handler = new JwtSecurityTokenHandler();
                 JwtSecurityToken jwtSecurityToken = handler.ReadJwtToken(input);
-                header = JsonHelper.Format(jwtSecurityToken.Header.SerializeToJson(), Indentation.TwoSpaces);
-                payload = JsonHelper.Format(jwtSecurityToken.Payload.SerializeToJson(), Indentation.TwoSpaces);
+                header = JsonHelper.Format(jwtSecurityToken.Header.SerializeToJson(), Indentation.TwoSpaces, sortProperties: false);
+                payload = JsonHelper.Format(jwtSecurityToken.Payload.SerializeToJson(), Indentation.TwoSpaces, sortProperties: false);
             }
             catch (Exception ex)
             {

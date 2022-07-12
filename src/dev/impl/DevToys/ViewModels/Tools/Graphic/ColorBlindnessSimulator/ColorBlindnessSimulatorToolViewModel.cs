@@ -3,10 +3,11 @@
 using System;
 using System.Collections.Generic;
 using System.Composition;
+using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using DevToys.Api.Core;
 using DevToys.Api.Tools;
 using DevToys.Core;
 using DevToys.Core.Threading;
@@ -16,53 +17,35 @@ using DevToys.Shared.Core.Threading;
 using DevToys.Views.Tools.ColorBlindnessSimulator;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
-using Windows.ApplicationModel.DataTransfer;
 using Windows.Graphics.Imaging;
 using Windows.Storage;
-using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
-using Windows.UI.Xaml;
 
 namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
 {
     [Export(typeof(ColorBlindnessSimulatorToolViewModel))]
     public sealed class ColorBlindnessSimulatorToolViewModel : ObservableRecipient, IToolViewModel, IDisposable
     {
-        private static readonly string[] SupportedFileExtensions = new[] { ".png", ".jpg", ".jpeg", ".bmp" };
-
         private readonly object _lockObject = new();
         private readonly List<string> _tempFileNames = new();
+        private readonly IMarketingService _marketingService;
 
         private CancellationTokenSource? _cancellationTokenSource;
         private DateTime _timeSinceLastprogressUpdate;
-        private bool _isSelectFilesAreaHighlithed;
-        private bool _hasInvalidFilesSelected;
         private bool _isResultGridVisible;
         private bool _isProgressGridVisible;
         private int _progress;
         private int _protanopiaProgress;
         private int _tritanopiaProgress;
         private int _deuteranopiaProgress;
-        private Uri? _originalOutput;
-        private Uri? _protanopiaOutput;
-        private Uri? _tritanopiaOutput;
-        private Uri? _deuteranopiaOutput;
+        private StorageFile? _originalOutput;
+        private StorageFile? _protanopiaOutput;
+        private StorageFile? _tritanopiaOutput;
+        private StorageFile? _deuteranopiaOutput;
 
         public Type View { get; } = typeof(ColorBlindnessSimulatorToolPage);
 
         internal ColorBlindnessSimulatorStrings Strings => LanguageManager.Instance.ColorBlindnessSimulator;
-
-        internal bool IsSelectFilesAreaHighlithed
-        {
-            get => _isSelectFilesAreaHighlithed;
-            set => SetProperty(ref _isSelectFilesAreaHighlithed, value);
-        }
-
-        internal bool HasInvalidFilesSelected
-        {
-            get => _hasInvalidFilesSelected;
-            set => SetProperty(ref _hasInvalidFilesSelected, value);
-        }
 
         internal bool IsResultGridVisible
         {
@@ -82,38 +65,36 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
             set => SetProperty(ref _progress, value);
         }
 
-        internal Uri? OriginalOutput
+        internal StorageFile? OriginalOutput
         {
             get => _originalOutput;
             set => SetProperty(ref _originalOutput, value);
         }
 
-        internal Uri? ProtanopiaOutput
+        internal StorageFile? ProtanopiaOutput
         {
             get => _protanopiaOutput;
             set => SetProperty(ref _protanopiaOutput, value);
         }
 
-        internal Uri? TritanopiaOutput
+        internal StorageFile? TritanopiaOutput
         {
             get => _tritanopiaOutput;
             set => SetProperty(ref _tritanopiaOutput, value);
         }
 
-        internal Uri? DeuteranopiaOutput
+        internal StorageFile? DeuteranopiaOutput
         {
             get => _deuteranopiaOutput;
             set => SetProperty(ref _deuteranopiaOutput, value);
         }
 
         [ImportingConstructor]
-        public ColorBlindnessSimulatorToolViewModel()
+        public ColorBlindnessSimulatorToolViewModel(IMarketingService marketingService)
         {
-            SelectFilesAreaDragOverCommand = new RelayCommand<DragEventArgs>(ExecuteSelectFilesAreaDragOverCommand);
-            SelectFilesAreaDragLeaveCommand = new RelayCommand<DragEventArgs>(ExecuteSelectFilesAreaDragLeaveCommand);
-            SelectFilesAreaDragDropCommand = new AsyncRelayCommand<DragEventArgs>(ExecuteSelectFilesAreaDragDropCommandAsync);
-            SelectFilesBrowseCommand = new AsyncRelayCommand(ExecuteSelectFilesBrowseCommandAsync);
-            SelectFilesPasteCommand = new AsyncRelayCommand(ExecuteSelectFilesPasteCommandAsync);
+            _marketingService = marketingService;
+
+            FilesSelectedCommand = new RelayCommand<StorageFile[]>(ExecuteFilesSelectedCommand);
             CancelCommand = new RelayCommand(ExecuteCancelCommand);
         }
 
@@ -136,144 +117,17 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
             }
         }
 
-        #region SelectFilesAreaDragOverCommand
+        #region FilesSelectedCommand
 
-        public IRelayCommand<DragEventArgs> SelectFilesAreaDragOverCommand { get; }
+        public IRelayCommand<StorageFile[]> FilesSelectedCommand { get; }
 
-        private void ExecuteSelectFilesAreaDragOverCommand(DragEventArgs? parameters)
+        private void ExecuteFilesSelectedCommand(StorageFile[]? files)
         {
-            Arguments.NotNull(parameters, nameof(parameters));
-            if (parameters!.DataView.Contains(StandardDataFormats.StorageItems))
+            if (files is not null)
             {
-                parameters.AcceptedOperation = DataPackageOperation.Copy;
-                parameters.Handled = false;
+                Debug.Assert(files.Length == 1);
+                QueueNewSimulation(files[0]);
             }
-
-            IsSelectFilesAreaHighlithed = true;
-            HasInvalidFilesSelected = false;
-        }
-
-        #endregion
-
-        #region SelectFilesAreaDragLeaveCommand
-
-        public IRelayCommand<DragEventArgs> SelectFilesAreaDragLeaveCommand { get; }
-
-        private void ExecuteSelectFilesAreaDragLeaveCommand(DragEventArgs? parameters)
-        {
-            IsSelectFilesAreaHighlithed = false;
-            HasInvalidFilesSelected = false;
-        }
-
-        #endregion
-
-        #region SelectFilesAreaDragDropCommand
-
-        public IAsyncRelayCommand<DragEventArgs> SelectFilesAreaDragDropCommand { get; }
-
-        private async Task ExecuteSelectFilesAreaDragDropCommandAsync(DragEventArgs? parameters)
-        {
-            Arguments.NotNull(parameters, nameof(parameters));
-
-            await ThreadHelper.RunOnUIThreadAsync(async () =>
-            {
-                IsSelectFilesAreaHighlithed = false;
-                if (!parameters!.DataView.Contains(StandardDataFormats.StorageItems))
-                {
-                    return;
-                }
-
-                IReadOnlyList<IStorageItem>? storageItems = await parameters.DataView.GetStorageItemsAsync();
-                if (storageItems is null || storageItems.Count != 1)
-                {
-                    return;
-                }
-
-                IStorageItem storageItem = storageItems[0];
-                if (storageItem is StorageFile file)
-                {
-                    string fileExtension = Path.GetExtension(file.Name);
-
-                    if (SupportedFileExtensions.Any(ext => string.Equals(ext, fileExtension, StringComparison.OrdinalIgnoreCase)))
-                    {
-                        QueueNewSimulation(file, addFileToListOfTempFilesToDelete: false);
-                    }
-                    else
-                    {
-                        HasInvalidFilesSelected = true;
-                    }
-                }
-                else
-                {
-                    HasInvalidFilesSelected = true;
-                }
-            }).ConfigureAwait(false);
-        }
-
-        #endregion
-
-        #region SelectFilesBrowseCommand
-
-        public IAsyncRelayCommand SelectFilesBrowseCommand { get; }
-
-        private async Task ExecuteSelectFilesBrowseCommandAsync()
-        {
-            await ThreadHelper.RunOnUIThreadAsync(async () =>
-            {
-                HasInvalidFilesSelected = false;
-
-                var filePicker = new FileOpenPicker
-                {
-                    ViewMode = PickerViewMode.List,
-                    SuggestedStartLocation = PickerLocationId.ComputerFolder
-                };
-
-                for (int i = 0; i < SupportedFileExtensions.Length; i++)
-                {
-                    filePicker.FileTypeFilter.Add(SupportedFileExtensions[i]);
-                }
-
-                StorageFile file = await filePicker.PickSingleFileAsync();
-                if (file != null)
-                {
-                    QueueNewSimulation(file, addFileToListOfTempFilesToDelete: false);
-                }
-            });
-        }
-
-        #endregion
-
-        #region SelectFilesPasteCommand
-
-        public IAsyncRelayCommand SelectFilesPasteCommand { get; }
-
-        private async Task ExecuteSelectFilesPasteCommandAsync()
-        {
-            await ThreadHelper.RunOnUIThreadAsync(async () =>
-            {
-                HasInvalidFilesSelected = false;
-
-                DataPackageView? dataPackageView = Windows.ApplicationModel.DataTransfer.Clipboard.GetContent();
-                if (dataPackageView is not null && dataPackageView.Contains(StandardDataFormats.Bitmap))
-                {
-                    IRandomAccessStreamReference? imageReceived = await dataPackageView.GetBitmapAsync();
-                    if (imageReceived is not null)
-                    {
-                        using (IRandomAccessStreamWithContentType imageStream = await imageReceived.OpenReadAsync())
-                        {
-                            StorageFolder localCacheFolder = ApplicationData.Current.LocalCacheFolder;
-                            StorageFile storageFile = await localCacheFolder.CreateFileAsync($"{Guid.NewGuid()}.jpeg", CreationCollisionOption.ReplaceExisting);
-
-                            using (IRandomAccessStream? stream = await storageFile.OpenAsync(FileAccessMode.ReadWrite))
-                            {
-                                await imageStream.AsStreamForRead().CopyToAsync(stream.AsStreamForWrite());
-                            }
-
-                            QueueNewSimulation(storageFile, addFileToListOfTempFilesToDelete: true);
-                        }
-                    }
-                }
-            });
         }
 
         #endregion
@@ -303,7 +157,7 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
 
         #endregion
 
-        private void QueueNewSimulation(StorageFile file, bool addFileToListOfTempFilesToDelete)
+        private void QueueNewSimulation(StorageFile file)
         {
             lock (_lockObject)
             {
@@ -311,11 +165,6 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
 
                 ExecuteCancelCommand();
                 IsProgressGridVisible = true;
-
-                if (addFileToListOfTempFilesToDelete)
-                {
-                    _tempFileNames.Add(file.Path);
-                }
 
                 Assumes.NotNull(_cancellationTokenSource, nameof(_cancellationTokenSource));
                 SimulateColorBlindnessAsync(file, _cancellationTokenSource!.Token).Forget();
@@ -333,7 +182,7 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
             string randomFileName = Guid.NewGuid().ToString();
 
             var workTasks
-                = new List<Task<Uri>>
+                = new List<Task<StorageFile>>
                 {
                         Task.Run(async () =>
                         {
@@ -390,6 +239,8 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
 
                 IsProgressGridVisible = false;
                 IsResultGridVisible = true;
+
+                _marketingService.NotifyToolSuccessfullyWorked();
             });
         }
 
@@ -420,7 +271,7 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
             }
         }
 
-        private async Task<Uri> SaveImageToFileAsync(byte[] bgraPixels, uint width, uint height, string imageName, string disabilityName)
+        private async Task<StorageFile> SaveImageToFileAsync(byte[] bgraPixels, uint width, uint height, string imageName, string disabilityName)
         {
             await TaskScheduler.Default;
             StorageFolder localCacheFolder = ApplicationData.Current.LocalCacheFolder;
@@ -444,7 +295,7 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
                 await encoder.FlushAsync();
             }
 
-            return new Uri(storageFile.Path);
+            return storageFile;
         }
 
         private void ClearTempFiles()

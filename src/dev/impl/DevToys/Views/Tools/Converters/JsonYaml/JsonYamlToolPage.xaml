@@ -18,7 +18,17 @@
                         <ex:IsCompactOverlayModeTrigger TargetElement="{x:Bind}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="ConfigurationStackPanel.Visibility" Value="Collapsed" />
+                        <Setter Target="IndentationSetting.Visibility" Value="Collapsed"/>
+                        <Setter Target="VerticalGridSplitter.Visibility" Value="Collapsed"/>
+                        <Setter Target="HorizontalGridSplitter.Visibility" Value="Visible"/>
+                        <Setter Target="InputCodeEditor.(Grid.Row)" Value="0" />
+                        <Setter Target="InputCodeEditor.(Grid.RowSpan)" Value="1" />
+                        <Setter Target="InputCodeEditor.(Grid.Column)" Value="0" />
+                        <Setter Target="InputCodeEditor.(Grid.ColumnSpan)" Value="3" />
+                        <Setter Target="OutputCodeEditor.(Grid.Row)" Value="2" />
+                        <Setter Target="OutputCodeEditor.(Grid.RowSpan)" Value="1" />
+                        <Setter Target="OutputCodeEditor.(Grid.Column)" Value="0" />
+                        <Setter Target="OutputCodeEditor.(Grid.ColumnSpan)" Value="3" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -35,7 +45,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel x:Name="ConfigurationStackPanel" Grid.Row="0" Spacing="4" >
+        <StackPanel
+            Grid.Row="0"
+            Spacing="4">
             <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Configuration}" />
 
             <controls:ExpandableSettingControl
@@ -53,15 +65,15 @@
             </controls:ExpandableSettingControl>
 
             <controls:ExpandableSettingControl
+                x:Name="IndentationSetting"
                 Title="{x:Bind ViewModel.Strings.Indentation}">
                 <controls:ExpandableSettingControl.Icon>
                     <FontIcon Glyph="&#xF6F8;" />
                 </controls:ExpandableSettingControl.Icon>
                 <ComboBox
-                    SelectedValuePath="Tag"
+                    ItemsSource="{x:Bind ViewModel.Indentations}"
+                    DisplayMemberPath="DisplayName"
                     SelectedValue="{x:Bind ViewModel.IndentationMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                    <ComboBoxItem Tag="TwoSpaces" Content="{x:Bind ViewModel.Strings.TwoSpaces}"/>
-                    <ComboBoxItem Tag="FourSpaces" Content="{x:Bind ViewModel.Strings.FourSpaces}"/>
                 </ComboBox>
             </controls:ExpandableSettingControl>
         </StackPanel>
@@ -72,20 +84,30 @@
                 <ColumnDefinition Width="16"/>
                 <ColumnDefinition MinWidth="100"/>
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition MinHeight="100"/>
+                <RowDefinition Height="16"/>
+                <RowDefinition MinHeight="100"/>
+            </Grid.RowDefinitions>
 
             <controls:CodeEditor
+                x:Name="InputCodeEditor"
                 Grid.Column="0"
+                Grid.Row="0"
+                Grid.RowSpan="3"
                 Header="{x:Bind ViewModel.Strings.Input}"
-                SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
                 Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 CodeLanguage="{x:Bind ViewModel.InputValueLanguage, Mode=OneWay}"/>
 
             <toolkit:GridSplitter
+                x:Name="VerticalGridSplitter"
                 Grid.Column="1"
+                Grid.Row="0"
+                Grid.RowSpan="3"
                 Width="16"
                 Margin="0,42,0,0"
                 ResizeBehavior="BasedOnAlignment"
-                ResizeDirection="Auto">
+                ResizeDirection="Columns">
                 <toolkit:GridSplitter.Element>
                     <FontIcon
                         Glyph="&#xFD55;"
@@ -93,11 +115,29 @@
                 </toolkit:GridSplitter.Element>
             </toolkit:GridSplitter>
 
+            <toolkit:GridSplitter
+                x:Name="HorizontalGridSplitter"
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Height="16"
+                ResizeBehavior="BasedOnAlignment"
+                ResizeDirection="Rows"
+                Visibility="Collapsed">
+                <toolkit:GridSplitter.Element>
+                    <FontIcon
+                        Glyph="&#xFD52;"
+                        FontSize="13"/>
+                </toolkit:GridSplitter.Element>
+            </toolkit:GridSplitter>
+
             <controls:CodeEditor
+                x:Name="OutputCodeEditor"
                 Grid.Column="2"
+                Grid.Row="0"
+                Grid.RowSpan="3"
                 IsReadOnly="True"
                 Header="{x:Bind ViewModel.Strings.Output}"
-                SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
                 Text="{x:Bind ViewModel.OutputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 CodeLanguage="{x:Bind ViewModel.OutputValueLanguage, Mode=OneWay}"/>
         </Grid>

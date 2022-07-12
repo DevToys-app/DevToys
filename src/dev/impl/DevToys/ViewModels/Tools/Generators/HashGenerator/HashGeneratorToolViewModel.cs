@@ -11,7 +11,6 @@ using DevToys.Core;
 using DevToys.Core.Threading;
 using DevToys.Shared.Core.Threading;
 using DevToys.Views.Tools.HashGenerator;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.Core;
 using Windows.Storage.Streams;
@@ -19,7 +18,7 @@ using Windows.Storage.Streams;
 namespace DevToys.ViewModels.Tools.HashGenerator
 {
     [Export(typeof(HashGeneratorToolViewModel))]
-    public sealed class HashGeneratorToolViewModel : ObservableRecipient, IToolViewModel
+    public sealed class HashGeneratorToolViewModel : QueueWorkerViewModelBase<Tuple<string,string>>, IToolViewModel
     {
         /// <summary>
         /// Whether the generated hash should be uppercase or lowercase.
@@ -30,17 +29,38 @@ namespace DevToys.ViewModels.Tools.HashGenerator
                 isRoaming: true,
                 defaultValue: false);
 
+        /// <summary>
+        /// Whether the tool should operate and return HMAC string
+        /// </summary>
+        private static readonly SettingDefinition<bool> IsHMAC
+             = new(
+                name: $"{nameof(HashGeneratorToolViewModel)}.{nameof(IsHMAC)}",
+                isRoaming: true,
+                defaultValue: false);
+
+        /// <summary>
+        /// The Output Code to generate.
+        /// </summary>
+        private static readonly SettingDefinition<string> OutType
+            = new(
+                name: $"{nameof(HashGeneratorToolViewModel)}.{nameof(OutType)}",
+                isRoaming: true,
+                defaultValue: DefaultOutputType);
+
         private readonly IMarketingService _marketingService;
-        private readonly ISettingsProvider _settingsProvider;
-        private readonly Queue<string> _hashCalculationQueue = new();
+
+        internal ISettingsProvider SettingsProvider;
 
         private bool _toolSuccessfullyWorked;
-        private bool _calculationInProgress;
         private string? _input;
+        private string? _secretKey;
         private string? _md5;
         private string? _sha1;
         private string? _sha256;
         private string? _sha512;
+        private const string HexOutput = "Hex";
+        private const string Base64Output = "Base64";
+        private const string DefaultOutputType = HexOutput;
 
         public Type View { get; } = typeof(HashGeneratorToolPage);
 
@@ -48,12 +68,40 @@ namespace DevToys.ViewModels.Tools.HashGenerator
 
         internal bool IsUppercase
         {
-            get => _settingsProvider.GetSetting(Uppercase);
+            get => SettingsProvider.GetSetting(Uppercase);
             set
             {
-                if (_settingsProvider.GetSetting(Uppercase) != value)
+                if (SettingsProvider.GetSetting(Uppercase) != value)
                 {
-                    _settingsProvider.SetSetting(Uppercase, value);
+                    SettingsProvider.SetSetting(Uppercase, value);
+                    OnPropertyChanged();
+                    QueueHashCalculation();
+                }
+            }
+        }
+
+        internal string OutputType
+        {
+            get => SettingsProvider.GetSetting(OutType);
+            set
+            {
+                if (SettingsProvider.GetSetting(OutType) != value)
+                {
+                    SettingsProvider.SetSetting(OutType, value);
+                    OnPropertyChanged();
+                    QueueHashCalculation();
+                }
+            }
+        }
+
+        internal bool IsHmacMode
+        {
+            get => SettingsProvider.GetSetting(IsHMAC);
+            set
+            {
+                if(SettingsProvider.GetSetting(IsHMAC) != value)
+                {
+                    SettingsProvider.SetSetting(IsHMAC, value);
                     OnPropertyChanged();
                     QueueHashCalculation();
                 }
@@ -66,6 +114,16 @@ namespace DevToys.ViewModels.Tools.HashGenerator
             set
             {
                 SetProperty(ref _input, value);
+                QueueHashCalculation();
+            }
+        }
+
+        internal string? SecretKey
+        {
+            get => _secretKey;
+            set
+            {
+                SetProperty(ref _secretKey, value);
                 QueueHashCalculation();
             }
         }
@@ -97,57 +155,42 @@ namespace DevToys.ViewModels.Tools.HashGenerator
         [ImportingConstructor]
         public HashGeneratorToolViewModel(ISettingsProvider settingsProvider, IMarketingService marketingService)
         {
-            _settingsProvider = settingsProvider;
+            SettingsProvider = settingsProvider;
             _marketingService = marketingService;
         }
 
         private void QueueHashCalculation()
         {
-            _hashCalculationQueue.Enqueue(Input ?? string.Empty);
-            TreatQueueAsync().Forget();
+            EnqueueComputation(new Tuple<string, string>(Input ?? string.Empty, SecretKey ?? string.Empty));
         }
 
-        private async Task TreatQueueAsync()
+        protected override async Task TreatComputationQueueAsync(Tuple<string, string> inputSecretKeyPair)
         {
-            if (_calculationInProgress)
+            Task<string> md5CalculationTask = CalculateHashAsync(HashAlgorithmNames.Md5, inputSecretKeyPair.Item1, inputSecretKeyPair.Item2);
+            Task<string> sha1CalculationTask = CalculateHashAsync(HashAlgorithmNames.Sha1, inputSecretKeyPair.Item1, inputSecretKeyPair.Item2);
+            Task<string> sha256CalculationTask = CalculateHashAsync(HashAlgorithmNames.Sha256, inputSecretKeyPair.Item1, inputSecretKeyPair.Item2);
+            Task<string> sha512CalculationTask = CalculateHashAsync(HashAlgorithmNames.Sha512, inputSecretKeyPair.Item1, inputSecretKeyPair.Item2);
+
+            await Task.WhenAll(md5CalculationTask).ConfigureAwait(false);
+
+            await ThreadHelper.RunOnUIThreadAsync(() =>
             {
-                return;
-            }
+                MD5 = md5CalculationTask.Result;
+                SHA1 = sha1CalculationTask.Result;
+                SHA256 = sha256CalculationTask.Result;
+                SHA512 = sha512CalculationTask.Result;
 
-            _calculationInProgress = true;
-
-            await TaskScheduler.Default;
-
-            while (_hashCalculationQueue.TryDequeue(out string? text))
-            {
-                Task<string> md5CalculationTask = CalculateHashAsync(HashAlgorithmNames.Md5, text);
-                Task<string> sha1CalculationTask = CalculateHashAsync(HashAlgorithmNames.Sha1, text);
-                Task<string> sha256CalculationTask = CalculateHashAsync(HashAlgorithmNames.Sha256, text);
-                Task<string> sha512CalculationTask = CalculateHashAsync(HashAlgorithmNames.Sha512, text);
-
-                await Task.WhenAll(md5CalculationTask).ConfigureAwait(false);
-
-                ThreadHelper.RunOnUIThreadAsync(() =>
+                if (!_toolSuccessfullyWorked)
                 {
-                    MD5 = md5CalculationTask.Result;
-                    SHA1 = sha1CalculationTask.Result;
-                    SHA256 = sha256CalculationTask.Result;
-                    SHA512 = sha512CalculationTask.Result;
-
-                    if (!_toolSuccessfullyWorked)
-                    {
-                        _toolSuccessfullyWorked = true;
-                        _marketingService.NotifyToolSuccessfullyWorked();
-                    }
-                }).ForgetSafely();
-            }
-
-            _calculationInProgress = false;
+                    _toolSuccessfullyWorked = true;
+                    _marketingService.NotifyToolSuccessfullyWorked();
+                }
+            });
         }
 
-        private async Task<string> CalculateHashAsync(string alrogithmName, string text)
+        private async Task<string> CalculateHashAsync(string algorithmName, string text, string secretKey)
         {
-            if (string.IsNullOrEmpty(text))
+            if (string.IsNullOrEmpty(text) || (IsHmacMode && secretKey.Length == 0))
             {
                 return string.Empty;
             }
@@ -156,27 +199,62 @@ namespace DevToys.ViewModels.Tools.HashGenerator
 
             try
             {
-                var algorithmProvider = HashAlgorithmProvider.OpenAlgorithm(alrogithmName);
-
-                IBuffer buffer = CryptographicBuffer.ConvertStringToBinary(text, BinaryStringEncoding.Utf8);
-                buffer = algorithmProvider.HashData(buffer);
-
-                string? hash = CryptographicBuffer.EncodeToHexString(buffer);
-
-                if (IsUppercase)
+                string? hash = "";
+                IBuffer? buffer = null;
+                if (IsHmacMode)
                 {
-                    return hash.ToUpperInvariant();
+                    var macAlgorithmProvider = MacAlgorithmProvider.OpenAlgorithm(GetHmacAlgorithmName(algorithmName));
+                    IBuffer textBuffer = CryptographicBuffer.ConvertStringToBinary(text, BinaryStringEncoding.Utf8);
+                    IBuffer secretKeyBuffer = CryptographicBuffer.ConvertStringToBinary(secretKey, BinaryStringEncoding.Utf8);
+                    CryptographicKey hmacKey = macAlgorithmProvider.CreateKey(secretKeyBuffer);
+                    buffer = CryptographicEngine.Sign(hmacKey, textBuffer);
                 }
                 else
                 {
-                    return hash.ToLowerInvariant();
+                    var algorithmProvider = HashAlgorithmProvider.OpenAlgorithm(algorithmName);
+                    buffer = CryptographicBuffer.ConvertStringToBinary(text, BinaryStringEncoding.Utf8);
+                    buffer = algorithmProvider.HashData(buffer);
+                }         
+
+                if (string.Equals(OutputType, HexOutput))
+                {
+                    hash = IsUppercase
+                        ? CryptographicBuffer.EncodeToHexString(buffer).ToUpperInvariant()
+                        : CryptographicBuffer.EncodeToHexString(buffer).ToLowerInvariant();
                 }
+                else if (string.Equals(OutputType, Base64Output))
+                {
+                    hash = CryptographicBuffer.EncodeToBase64String(buffer);
+                }
+                return hash;
             }
             catch (Exception ex)
             {
-                Logger.LogFault("Hash Generator", ex, $"Alrogithm name: {alrogithmName}");
+                Logger.LogFault("Hash Generator", ex, $"Alrogithm name: {algorithmName}");
                 return ex.Message;
             }
+        }
+
+        private string GetHmacAlgorithmName(string algorithmName)
+        {
+            if (algorithmName == HashAlgorithmNames.Md5)
+            {
+                return MacAlgorithmNames.HmacMd5;
+            }
+            else if (algorithmName == HashAlgorithmNames.Sha1)
+            {
+                return MacAlgorithmNames.HmacSha1;
+            }
+            else if (algorithmName == HashAlgorithmNames.Sha256)
+            {
+                return MacAlgorithmNames.HmacSha256;
+            }
+            else if (algorithmName == HashAlgorithmNames.Sha512)
+            {
+                return MacAlgorithmNames.HmacSha512;
+            }
+
+            throw new Exception("Unsupported algorithm: " + algorithmName);
         }
     }
 }

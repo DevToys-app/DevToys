@@ -19,11 +19,12 @@ namespace DevToys.Tests.Providers.Tools
 
             await ThreadHelper.RunOnUIThreadAsync(() =>
             {
+                viewModel.IsHmacMode = false;
                 viewModel.IsUppercase = false;
                 viewModel.Input = input;
             });
 
-            await Task.Delay(100);
+            await viewModel.ComputationTask;
 
             Assert.AreEqual(expectedResult, viewModel.SHA512);
         }
@@ -39,11 +40,56 @@ namespace DevToys.Tests.Providers.Tools
 
             await ThreadHelper.RunOnUIThreadAsync(() =>
             {
+                viewModel.IsHmacMode = false;
                 viewModel.IsUppercase = true;
                 viewModel.Input = input;
             });
 
-            await Task.Delay(100);
+            await viewModel.ComputationTask;
+
+            Assert.AreEqual(expectedResult, viewModel.SHA512);
+        }
+
+        [DataTestMethod]
+        [DataRow(null, "", "")]
+        [DataRow("", "", "")]
+        [DataRow(" ", " ", "0b8a72163b925bbb61ffa98e90339e57f0ed5c8956665af83691aebbdebb87e7eb6090a877b62fdcfca2e29768159d0066e7ef875a87d6a8b2ff9d286a98ff56")]
+        [DataRow("Hello There", "World", "43bb6d1170cbf1be61ebf85a434ea1acb4caced09b8f0d40125b21804c524a4be66ba0af02617076505973edf819563e4d8eb68a5c2c4dc5d1a0a661bcce5d44")]
+        public async Task LowercaseHmacModeHashingAsync(string input, string secretKey, string expectedResult)
+        {
+            HashGeneratorToolViewModel viewModel = ExportProvider.Import<HashGeneratorToolViewModel>();
+
+            await ThreadHelper.RunOnUIThreadAsync(() =>
+            {
+                viewModel.IsUppercase = false;
+                viewModel.Input = input;
+                viewModel.IsHmacMode = true;
+                viewModel.SecretKey = secretKey;
+            });
+
+            await viewModel.ComputationTask;
+
+            Assert.AreEqual(expectedResult, viewModel.SHA512);
+        }
+
+        [DataTestMethod]
+        [DataRow(null, "", "")]
+        [DataRow("", "", "")]
+        [DataRow(" ", " ", "0B8A72163B925BBB61FFA98E90339E57F0ED5C8956665AF83691AEBBDEBB87E7EB6090A877B62FDCFCA2E29768159D0066E7EF875A87D6A8B2FF9D286A98FF56")]
+        [DataRow("Hello There", "World", "43BB6D1170CBF1BE61EBF85A434EA1ACB4CACED09B8F0D40125B21804C524A4BE66BA0AF02617076505973EDF819563E4D8EB68A5C2C4DC5D1A0A661BCCE5D44")]
+        public async Task UppercaseHmacModeHashingAsync(string input, string secretKey, string expectedResult)
+        {
+            HashGeneratorToolViewModel viewModel = ExportProvider.Import<HashGeneratorToolViewModel>();
+
+            await ThreadHelper.RunOnUIThreadAsync(() =>
+            {
+                viewModel.IsUppercase = true;
+                viewModel.Input = input;
+                viewModel.IsHmacMode = true;
+                viewModel.SecretKey = secretKey;
+            });
+
+            await viewModel.ComputationTask;
 
             Assert.AreEqual(expectedResult, viewModel.SHA512);
         }

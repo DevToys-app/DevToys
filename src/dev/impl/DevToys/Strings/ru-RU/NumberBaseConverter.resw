@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -164,16 +164,40 @@
   </data>
   <data name="ValueInvalid" xml:space="preserve">
     <value>Значение не является допустимым {0}</value>
-    <comment>Параметр - тип базового числа (Десятичное, Восьмеричное, ...)</comment>
+    <comment>The parameter is the Base Number Type (Decimal, Octal, ...)</comment>
   </data>
   <data name="ValueOverflow" xml:space="preserve">
     <value>Невозможно обработать текущее значение вследствие превышения максимума {0}</value>
-    <comment>Параметр является значением максимальной длины</comment>
+    <comment>The parameter is the Max value of a long</comment>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Конвертирование числа из одной системы счисления в другую</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Конвертирование системы счисления</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Binary Octal Decimal Hexadecimal</value>
+  </data>
+  <data name="AdvancedModeLabel" xml:space="preserve">
+    <value>Advanced mode</value>
+  </data>
+  <data name="InputDictionaryLabel" xml:space="preserve">
+    <value>Input dictionary</value>
+  </data>
+  <data name="OutputDictionaryLabel" xml:space="preserve">
+    <value>Output dictionary</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>Вывод</value>
+  </data>
+  <data name="BaseNumberError" xml:space="preserve">
+    <value>Base number should be greater than 1.</value>
+  </data>
+  <data name="DictionarySizeError" xml:space="preserve">
+    <value>Dictionary size should be greater than 1.</value>
+  </data>
+  <data name="IncompatibleBaseDictionaryError" xml:space="preserve">
+    <value>Dictionary size could not be smaller than the base number.</value>
   </data>
 </root>
