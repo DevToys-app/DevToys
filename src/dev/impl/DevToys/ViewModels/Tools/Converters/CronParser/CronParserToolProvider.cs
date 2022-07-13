@@ -13,7 +13,7 @@ namespace DevToys.ViewModels.Tools.CronParser
     [Parent(ConvertersGroupToolProvider.InternalName)]
     [ProtocolName("cronparser")]
     [Order(4)]
-    internal sealed class CronParserToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class CronParserToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 
@@ -27,7 +27,7 @@ namespace DevToys.ViewModels.Tools.CronParser
 
         public string? SearchKeywords => LanguageManager.Instance.CRONParser.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("Cron.svg");
+        public string IconGlyph => "\u0104";
 
         [ImportingConstructor]
         public CronParserToolProvider(IMefProvider mefProvider)

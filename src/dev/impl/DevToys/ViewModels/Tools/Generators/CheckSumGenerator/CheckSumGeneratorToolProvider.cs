@@ -14,7 +14,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
     [ProtocolName("checksum")]
     [Order(3)]
     [CompactOverlaySize(width: 400, height: 500)]
-    internal sealed class CheckSumGeneratorToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class CheckSumGeneratorToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 
@@ -28,7 +28,7 @@ namespace DevToys.ViewModels.Tools.CheckSumGenerator
 
         public string? SearchKeywords => LanguageManager.Instance.CheckSumGenerator.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF56F");
+        public string IconGlyph => "\u0124";
 
         [ImportingConstructor]
         public CheckSumGeneratorToolProvider(IMefProvider mefProvider)

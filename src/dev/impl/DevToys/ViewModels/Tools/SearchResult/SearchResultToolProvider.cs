@@ -43,7 +43,7 @@ namespace DevToys.ViewModels.Tools
 
         public string AccessibleName => GetTitle();
 
-        public TaskCompletionNotifier<IconElement> IconSource => null!;
+        public string IconGlyph => null!;
 
         public string? Description => null;
 

@@ -14,7 +14,7 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
     [ProtocolName("colorblind")]
     [Order(0)]
     [NotScrollable]
-    internal class ColorBlindnessSimulatorToolProvider : ToolProviderBase, IToolProvider
+    internal class ColorBlindnessSimulatorToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 
@@ -28,7 +28,7 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
 
         public string? SearchKeywords => LanguageManager.Instance.ColorBlindnessSimulator.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("ColorBlindnessSimulator.svg");
+        public string IconGlyph => "\u0101";
 
         [ImportingConstructor]
         public ColorBlindnessSimulatorToolProvider(IMefProvider mefProvider)

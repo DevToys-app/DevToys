@@ -2,9 +2,7 @@
 
 using System.Composition;
 using DevToys.Api.Tools;
-using DevToys.Core.Threading;
 using DevToys.Shared.Api.Core;
-using Windows.UI.Xaml.Controls;
 
 namespace DevToys.ViewModels.Tools.Graphic.ColorPicker
 {
@@ -13,7 +11,7 @@ namespace DevToys.ViewModels.Tools.Graphic.ColorPicker
     [Parent(GraphicGroupToolProvider.InternalName)]
     [ProtocolName("color")]
     [Order(0)]
-    internal class ColorPickerToolProvider : ToolProviderBase, IToolProvider
+    internal class ColorPickerToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 
@@ -27,7 +25,7 @@ namespace DevToys.ViewModels.Tools.Graphic.ColorPicker
 
         public string? SearchKeywords => LanguageManager.Instance.ColorPicker.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF2F5");
+        public string IconGlyph => "\u0134";
 
         [ImportingConstructor]
         public ColorPickerToolProvider(IMefProvider mefProvider)

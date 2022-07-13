@@ -23,7 +23,7 @@ namespace DevToys.ViewModels.Tools
 
         public override string AccessibleName => LanguageManager.Instance.ToolGroups.GeneratorsAccessibleName;
 
-        public override TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uFEE2");
+        public override string IconGlyph => "\u0126";
 
         [ImportingConstructor]
         public GeneratorsGroupToolProvider(IMefProvider mefProvider)

@@ -13,7 +13,7 @@ namespace DevToys.ViewModels.Tools.HtmlEncoderDecoder
     [Parent(EncodersDecodersGroupToolProvider.InternalName)]
     [ProtocolName("html")]
     [Order(0)]
-    internal sealed class HtmlEncoderDecoderToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class HtmlEncoderDecoderToolProvider : IToolProvider
     {
         public string MenuDisplayName => LanguageManager.Instance.HtmlEncoderDecoder.MenuDisplayName;
 
@@ -25,7 +25,7 @@ namespace DevToys.ViewModels.Tools.HtmlEncoderDecoder
 
         public string? SearchKeywords => LanguageManager.Instance.HtmlEncoderDecoder.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("HtmlEncoder.svg");
+        public string IconGlyph => "\u0107";
 
         private readonly IMefProvider _mefProvider;
 

@@ -14,7 +14,7 @@ namespace DevToys.ViewModels.Tools.SqlFormatter
     [ProtocolName("sqlformat")]
     [Order(0)]
     [NotScrollable]
-    internal sealed class SqlFormatterToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class SqlFormatterToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 
@@ -28,7 +28,7 @@ namespace DevToys.ViewModels.Tools.SqlFormatter
 
         public string? SearchKeywords => LanguageManager.Instance.SqlFormatter.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("SqlFormatter.svg");
+        public string IconGlyph => "\u0114";
 
         [ImportingConstructor]
         public SqlFormatterToolProvider(IMefProvider mefProvider)
