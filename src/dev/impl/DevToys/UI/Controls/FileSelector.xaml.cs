@@ -278,19 +278,17 @@ namespace DevToys.UI.Controls
                     IRandomAccessStreamReference? imageReceived = await dataPackageView.GetBitmapAsync();
                     if (imageReceived is not null)
                     {
-                        using (IRandomAccessStreamWithContentType imageStream = await imageReceived.OpenReadAsync())
+                        using IRandomAccessStreamWithContentType imageStream = await imageReceived.OpenReadAsync();
+                        StorageFolder localCacheFolder = ApplicationData.Current.LocalCacheFolder;
+                        StorageFile storageFile = await localCacheFolder.CreateFileAsync($"{Guid.NewGuid()}.jpeg", CreationCollisionOption.ReplaceExisting);
+
+                        using (IRandomAccessStream? stream = await storageFile.OpenAsync(FileAccessMode.ReadWrite))
                         {
-                            StorageFolder localCacheFolder = ApplicationData.Current.LocalCacheFolder;
-                            StorageFile storageFile = await localCacheFolder.CreateFileAsync($"{Guid.NewGuid()}.jpeg", CreationCollisionOption.ReplaceExisting);
-
-                            using (IRandomAccessStream? stream = await storageFile.OpenAsync(FileAccessMode.ReadWrite))
-                            {
-                                await imageStream.AsStreamForRead().CopyToAsync(stream.AsStreamForWrite());
-                            }
-
-                            _cachedFilesToDeleteOnShutdown.Add(storageFile);
-                            FilesSelectedCommand?.Execute(new[] { storageFile });
+                            await imageStream.AsStreamForRead().CopyToAsync(stream.AsStreamForWrite());
                         }
+
+                        _cachedFilesToDeleteOnShutdown.Add(storageFile);
+                        FilesSelectedCommand?.Execute(new[] { storageFile });
                     }
                 }
                 else if (dataPackageView.Contains(StandardDataFormats.StorageItems))

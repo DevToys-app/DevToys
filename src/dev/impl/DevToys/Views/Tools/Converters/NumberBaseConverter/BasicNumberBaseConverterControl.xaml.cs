@@ -44,7 +44,7 @@ namespace DevToys.Views.Tools.Converters.NumberBaseConverter
 
         public BasicNumberBaseConverterControl()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }
