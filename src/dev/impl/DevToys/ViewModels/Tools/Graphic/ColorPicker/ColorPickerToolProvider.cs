@@ -27,7 +27,7 @@ namespace DevToys.ViewModels.Tools.Graphic.ColorPicker
 
         public string? SearchKeywords => LanguageManager.Instance.ColorPicker.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF2F5");
+        public string IconGlyph => "\u0134";
 
         [ImportingConstructor]
         public ColorPickerToolProvider(IMefProvider mefProvider)
