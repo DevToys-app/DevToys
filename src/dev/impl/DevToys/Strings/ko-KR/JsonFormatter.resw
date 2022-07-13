@@ -157,6 +157,6 @@
     <value></value>
   </data>
   <data name="SortProperties" xml:space="preserve">
-    <value>Sort JSON properties alphabetically</value>
+    <value>JSON 속성 알파벳 순으로 정렬</value>
   </data>
 </root>
