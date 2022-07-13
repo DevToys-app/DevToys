@@ -133,31 +133,31 @@
     <value>Удалить</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
-    <value>Browse files</value>
+    <value>Обзор файлов</value>
   </data>
   <data name="FileSelectorBrowseFolders" xml:space="preserve">
-    <value>Browse folders</value>
+    <value>Обзор папок</value>
   </data>
   <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>Drag &amp; drop any file here</value>
+    <value>Перетащи сюда любые файлы</value>
   </data>
   <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
-    <value>Drag &amp; drop any files here</value>
+    <value>Перетащи сюда любые файлы</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
-    <value>Drag &amp; drop a {0} file here</value>
+    <value>Перетащи {0} файл сюда</value>
     <comment>{0} is a single file extension like "PNG"</comment>
   </data>
   <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
-    <value>Drag &amp; drop any {0} files here</value>
+    <value>Перетащи {0} файлы сюда</value>
     <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
-    <value>Only {0} file(s) can be used.</value>
+    <value>Могут быть использованы только {0} файлы.</value>
     <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorOr" xml:space="preserve">
-    <value>or</value>
+    <value>или</value>
   </data>
   <data name="Gigabytes" xml:space="preserve">
     <value>ГБ</value>
@@ -181,10 +181,10 @@
     <value>Вернуть</value>
   </data>
   <data name="Refresh" xml:space="preserve">
-    <value>Refresh</value>
+    <value>Обновить</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>Save as</value>
+    <value>Сохранить как</value>
   </data>
   <data name="SelectAll" xml:space="preserve">
     <value>Выбрать все</value>
@@ -202,13 +202,13 @@
     <value>Невозможно открыть файл</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>Unable to load the file '{0}'. Only textual files can be opened. For more details, please check the log.</value>
+    <value>Не удалось загрузить '{0}' файл. Могут быть открыты только текстовые файлы. Более детальная информация содержится в логах.</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>Отменить</value>
   </data>
   <data name="ViewImage" xml:space="preserve">
-    <value>View</value>
+    <value>Обзор</value>
     <comment>In the context of "view / display an image".</comment>
   </data>
 </root>

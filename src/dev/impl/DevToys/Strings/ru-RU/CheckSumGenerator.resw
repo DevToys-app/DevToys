@@ -121,13 +121,13 @@
     <value>Генератор контрольных сумм</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Отменить</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Настройки</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generate a hash with Checksum based on a file</value>
+    <value>Генерирует хэш контрольной суммы в файл</value>
   </data>
   <data name="HashingAlgorithmDescription" xml:space="preserve">
     <value>Выберите желаемый алгоритм кодирования</value>
@@ -145,7 +145,7 @@
     <value>Вывод</value>
   </data>
   <data name="OutputComparer" xml:space="preserve">
-    <value>Output Comparer</value>
+    <value>Выходной компаратор</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Генератор контрольных сумм</value>
