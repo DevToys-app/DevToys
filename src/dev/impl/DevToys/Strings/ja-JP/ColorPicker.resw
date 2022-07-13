@@ -130,7 +130,7 @@
     <value>カラーピッカー</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Checksum</value>
+    <value></value>
   </data>
   <data name="BlackText" xml:space="preserve">
     <value>サンプルテキスト(黒)</value>
