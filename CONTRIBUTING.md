@@ -63,6 +63,11 @@ You can find the attributes [here](https://github.com/veler/DevToys/tree/main/sr
 * [OrderAttribute](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/Api/Tools/OrderAttribute.cs)
 * [ProtocolNameAttribute](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/Api/Tools/ProtocolNameAttribute.cs)
 
+## Iconography
+
+Icons in the UI of a tool or in the main UI of DevToys uses [Fluent System Icons](https://github.com/microsoft/fluentui-system-icons).
+For the icons of the tools, a custom font is used. See [documentation](https://github.com/veler/DevToys/blob/main/assets/font/README.md) here for modifying it (or ask us for help!).
+
 ## Sample
 
 A good tool to take an example on is `Json <> Yaml` converter.

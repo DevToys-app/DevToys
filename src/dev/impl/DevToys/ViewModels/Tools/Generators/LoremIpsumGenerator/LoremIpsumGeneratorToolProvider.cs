@@ -14,7 +14,7 @@ namespace DevToys.ViewModels.Tools.LoremIpsumGenerator
     [ProtocolName("loremipsum")]
     [Order(2)]
     [CompactOverlaySize(width: 400, height: 500)]
-    internal sealed class LoremIpsumGeneratorToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class LoremIpsumGeneratorToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 
@@ -28,7 +28,7 @@ namespace DevToys.ViewModels.Tools.LoremIpsumGenerator
 
         public string? SearchKeywords => LanguageManager.Instance.LoremIpsumGenerator.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("LoremIpsum.svg");
+        public string IconGlyph => "\u0111";
 
         [ImportingConstructor]
         public LoremIpsumGeneratorToolProvider(IMefProvider mefProvider)

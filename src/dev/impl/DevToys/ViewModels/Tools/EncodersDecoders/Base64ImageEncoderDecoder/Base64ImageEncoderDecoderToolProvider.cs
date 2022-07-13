@@ -14,7 +14,7 @@ namespace DevToys.ViewModels.Tools.Base64ImageEncoderDecoder
     [Parent(EncodersDecodersGroupToolProvider.InternalName)]
     [ProtocolName("base64img")]
     [Order(2)]
-    internal sealed class Base64ImageEncoderDecoderToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class Base64ImageEncoderDecoderToolProvider : IToolProvider
     {
         public string MenuDisplayName => LanguageManager.Instance.Base64ImageEncoderDecoder.MenuDisplayName;
 
@@ -26,7 +26,7 @@ namespace DevToys.ViewModels.Tools.Base64ImageEncoderDecoder
 
         public string? SearchKeywords => LanguageManager.Instance.Base64ImageEncoderDecoder.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("Base64Image.svg");
+        public string IconGlyph => "\u0102";
 
         private readonly IMefProvider _mefProvider;
 

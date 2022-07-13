@@ -33,21 +33,7 @@ namespace DevToys.ViewModels.Settings
 
         public string? SearchKeywords => LanguageManager.Instance.Settings.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource
-            => new(() =>
-                ThreadHelper.RunOnUIThreadAsync(() =>
-                {
-                    return Task.FromResult<IconElement>(
-                        new AnimatedIcon
-                        {
-                            Source = new AnimatedSettingsVisualSource(),
-                            FallbackIconSource = new Microsoft.UI.Xaml.Controls.FontIconSource
-                            {
-                                FontFamily = (FontFamily)Application.Current.Resources["FluentSystemIcons"],
-                                Glyph = "\uF6A9"
-                            }
-                        });
-                }));
+        public string IconGlyph => "\u0133";
 
         [ImportingConstructor]
         public SettingsToolProvider(IMefProvider mefProvider)

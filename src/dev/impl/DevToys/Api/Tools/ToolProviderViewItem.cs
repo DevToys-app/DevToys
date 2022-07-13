@@ -97,7 +97,7 @@ namespace DevToys.Api.Tools
             => _isBeingProgrammaticallySelected
             || ChildrenTools.Any(item => item.IsRecommended || item.MenuItemShouldBeExpanded);
 
-        internal TaskCompletionNotifier<IconElement> Icon => ToolProvider.IconSource;
+        internal string IconGlyph => ToolProvider.IconGlyph;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 

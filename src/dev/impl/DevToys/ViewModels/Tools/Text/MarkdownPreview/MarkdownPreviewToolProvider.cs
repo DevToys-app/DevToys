@@ -15,7 +15,7 @@ namespace DevToys.ViewModels.Tools.MarkdownPreview
     [ProtocolName("markdown")]
     [Order(4)]
     [NotScrollable]
-    internal sealed class MarkdownPreviewToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class MarkdownPreviewToolProvider : IToolProvider
     {
         private static readonly Regex MarkdownLinkDetection = new(@"\[[^]]+\]\(https?:\/\/\S+\)", RegexOptions.Compiled);
 
@@ -31,7 +31,7 @@ namespace DevToys.ViewModels.Tools.MarkdownPreview
 
         public string? SearchKeywords => LanguageManager.Instance.MarkdownPreview.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("MarkdownPreview.svg");
+        public string IconGlyph => "\u0112";
 
         [ImportingConstructor]
         public MarkdownPreviewToolProvider(IMefProvider mefProvider)

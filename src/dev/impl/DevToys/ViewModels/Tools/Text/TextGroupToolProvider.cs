@@ -23,7 +23,7 @@ namespace DevToys.ViewModels.Tools
 
         public override string AccessibleName => LanguageManager.Instance.ToolGroups.TextDisplayName;
 
-        public override TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF7E4");
+        public override string IconGlyph => "\u0132";
 
         [ImportingConstructor]
         public TextGroupToolProvider(IMefProvider mefProvider)
