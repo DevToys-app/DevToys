@@ -68,6 +68,7 @@
     <Compile Include="Messages\PinToolToStartMessage.cs" />
     <Compile Include="Messages\OpenToolInNewWindowMessage.cs" />
     <Compile Include="Messages\ChangeSelectedMenuItemMessage.cs" />
+    <Compile Include="Models\ColorPickerModeDisplayPair.cs" />
     <Compile Include="Models\HashComparisonResult.cs" />
     <Compile Include="Models\HashingAlgorithm.cs" />
     <Compile Include="Models\HashingAlgorithmDisplayPair.cs" />
@@ -87,6 +88,7 @@
     </Compile>
     <Compile Include="UI\Converters\BooleanToDoubleConverter.cs" />
     <Compile Include="UI\Converters\BooleanToIntegerConverter.cs" />
+    <Compile Include="UI\Converters\ColorToBrushConverter.cs" />
     <Compile Include="UI\MainMenuNavigationViewMenuItemSelector.cs" />
     <Compile Include="ViewModels\Tools\AllTools\AllToolsToolProvider.cs" />
     <Compile Include="ViewModels\Tools\AllTools\AllToolsToolViewModel.cs" />
@@ -120,6 +122,8 @@
     <Compile Include="ViewModels\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Graphic\ColorBlindnessSimulator\ColorBlindnessSimulatorToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Graphic\ColorBlindnessSimulator\ColorBlindnessSimulatorToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\Graphic\ColorPicker\ColorPickerToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Graphic\ColorPicker\ColorPickerToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Graphic\GraphicGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Graphic\ImageConverter\ImageConversionWorkItem.cs" />
     <Compile Include="ViewModels\Tools\Graphic\ImageConverter\ImageConverterToolProvider.cs" />
@@ -180,6 +184,9 @@
     </Compile>
     <Compile Include="UI\Controls\ImagePreview.xaml.cs">
       <DependentUpon>ImagePreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Graphic\ColorPicker\ColorPickerToolPage.xaml.cs">
+      <DependentUpon>ColorPickerToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\GroupToolPage.xaml.cs">
       <DependentUpon>GroupToolPage.xaml</DependentUpon>
@@ -584,6 +591,10 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Page Include="Views\Tools\Graphic\ColorPicker\ColorPickerToolPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Tools\Text\XmlValidator\XmlValidatorToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -792,6 +803,7 @@
       <Name>Windows Desktop Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
