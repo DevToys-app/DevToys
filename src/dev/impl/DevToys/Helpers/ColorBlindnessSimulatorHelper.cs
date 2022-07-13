@@ -35,7 +35,7 @@ namespace DevToys.Helpers
         private const float Severity = 1f;
 
         private static readonly Brettel1997Parameters ProtanopiaParameters
-            = new Brettel1997Parameters
+            = new()
             {
                 RgbCvdFromRgb1 = new[] { 0.14980f, 1.19548f, -0.34528f, 0.10764f, 0.84864f, 0.04372f, 0.00384f, -0.00540f, 1.00156f },
                 RgbCvdFromRgb2 = new[] { 0.14570f, 1.16172f, -0.30742f, 0.10816f, 0.85291f, 0.03892f, 0.00386f, -0.00524f, 1.00139f },
@@ -43,7 +43,7 @@ namespace DevToys.Helpers
             };
 
         private static readonly Brettel1997Parameters TritanopiaParameters
-            = new Brettel1997Parameters
+            = new()
             {
                 RgbCvdFromRgb1 = new[] { 1.01277f, 0.13548f, -0.14826f, -0.01243f, 0.86812f, 0.14431f, 0.07589f, 0.80500f, 0.11911f },
                 RgbCvdFromRgb2 = new[] { 0.93678f, 0.18979f, -0.12657f, 0.06154f, 0.81526f, 0.12320f, -0.37562f, 1.12767f, 0.24796f },
@@ -51,7 +51,7 @@ namespace DevToys.Helpers
             };
 
         private static readonly Brettel1997Parameters DeuteranopiaParameters
-            = new Brettel1997Parameters
+            = new()
             {
                 RgbCvdFromRgb1 = new[] { 0.36477f, 0.86381f, -0.22858f, 0.26294f, 0.64245f, 0.09462f, -0.02006f, 0.02728f, 0.99278f },
                 RgbCvdFromRgb2 = new[] { 0.37298f, 0.88166f, -0.25464f, 0.25954f, 0.63506f, 0.10540f, -0.01980f, 0.02784f, 0.99196f },

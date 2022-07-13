@@ -64,24 +64,27 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
         public IAsyncRelayCommand SaveCommand { get; }
 
-        private async Task ExecuteSaveCommandAsync(ImageConverterToolViewModel viewModel)
+        private async Task ExecuteSaveCommandAsync(ImageConverterToolViewModel? viewModel)
         {
-            string? fileExtension = ImageHelper.GetExtension(viewModel.ConvertedFormat);
-
-            var savePicker = new FileSavePicker
+            if (viewModel is not null)
             {
-                SuggestedStartLocation = PickerLocationId.ComputerFolder
-            };
+                string? fileExtension = ImageHelper.GetExtension(viewModel.ConvertedFormat);
 
-            savePicker.FileTypeChoices.Add(
-                fileExtension.Replace(".", string.Empty).ToUpperInvariant(),
-                new List<string>() { fileExtension!.ToLowerInvariant() });
+                var savePicker = new FileSavePicker
+                {
+                    SuggestedStartLocation = PickerLocationId.ComputerFolder
+                };
 
-            StorageFile? newFile = await savePicker.PickSaveFileAsync();
+                savePicker.FileTypeChoices.Add(
+                    fileExtension.Replace(".", string.Empty).ToUpperInvariant(),
+                    new List<string>() { fileExtension!.ToLowerInvariant() });
 
-            if (newFile is not null)
-            {
-                await Process(viewModel, newFile);
+                StorageFile? newFile = await savePicker.PickSaveFileAsync();
+
+                if (newFile is not null)
+                {
+                    await Process(viewModel, newFile);
+                }
             }
         }
 
@@ -94,11 +97,9 @@ namespace DevToys.ViewModels.Tools.ImageConverter
                 BitmapEncoder encoder = await ImageHelper.GetEncoderAsync(viewModel.ConvertedFormat, outputStream);
                 try
                 {
-                    using (SoftwareBitmap bitmap = await DecodeImageAsync())
-                    {
-                        encoder.SetSoftwareBitmap(bitmap);
-                        await encoder.FlushAsync();
-                    }
+                    using SoftwareBitmap bitmap = await DecodeImageAsync();
+                    encoder.SetSoftwareBitmap(bitmap);
+                    await encoder.FlushAsync();
                 }
                 catch (FileNotFoundException)
                 {
@@ -111,19 +112,17 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
         private async Task<SoftwareBitmap> DecodeImageAsync()
         {
-            using (IRandomAccessStream stream = await File.OpenAsync(FileAccessMode.Read))
-            {
-                BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
-                return await decoder.GetSoftwareBitmapAsync();
-            }
+            using IRandomAccessStream stream = await File.OpenAsync(FileAccessMode.Read);
+            BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
+            return await decoder.GetSoftwareBitmapAsync();
         }
 
         private async Task ComputePropertiesAsync(StorageFile file)
         {
             await TaskScheduler.Default;
 
-            var storageFileSize = (await file.GetBasicPropertiesAsync()).Size;
-            var fileSize = StorageFileHelper.HumanizeFileSize(storageFileSize, Strings.FileSizeDisplay);
+            ulong storageFileSize = (await file.GetBasicPropertiesAsync()).Size;
+            string? fileSize = StorageFileHelper.HumanizeFileSize(storageFileSize, Strings.FileSizeDisplay);
             await ThreadHelper.RunOnUIThreadAsync(() => FileSize = fileSize);
         }
     }

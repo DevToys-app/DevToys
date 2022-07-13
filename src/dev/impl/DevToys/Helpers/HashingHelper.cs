@@ -29,9 +29,10 @@ namespace DevToys.Helpers
                 return hashAlgorithm.ComputeHash(Array.Empty<byte>());
             }
 
-            int bytesRead = 0;
             long totalBytesRead = 0;
 
+
+            int bytesRead;
             while ((bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length, cancellationToken)) != 0)
             {
                 hashAlgorithm.TransformBlock(buffer, 0, bytesRead, buffer, 0);

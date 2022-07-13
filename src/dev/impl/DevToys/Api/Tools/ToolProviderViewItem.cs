@@ -103,8 +103,10 @@ namespace DevToys.Api.Tools
 
         internal static ToolProviderViewItem CreateToolProviderViewItemWithLongMenuDisplayName(ToolProviderViewItem item)
         {
-            var newItem = new ToolProviderViewItem(item.Metadata, item.ToolProvider, item.IsFavorite);
-            newItem.MenuDisplayName = item.ToolProvider.SearchDisplayName ?? item.ToolProvider.MenuDisplayName;
+            var newItem = new ToolProviderViewItem(item.Metadata, item.ToolProvider, item.IsFavorite)
+            {
+                MenuDisplayName = item.ToolProvider.SearchDisplayName ?? item.ToolProvider.MenuDisplayName
+            };
             return newItem;
         }
 

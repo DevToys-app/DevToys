@@ -86,7 +86,7 @@ namespace DevToys.UI.Controls
             await Launcher.LaunchFileAsync(Source);
         }
 
-        private async void CopyButton_Click(object sender, RoutedEventArgs e)
+        private void CopyButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -133,22 +133,20 @@ namespace DevToys.UI.Controls
             {
                 ThreadHelper.RunOnUIThreadAsync(async () =>
                 {
-                    using (IRandomAccessStream fileStream = await imagePreview.Source.OpenAsync(FileAccessMode.Read))
+                    using IRandomAccessStream fileStream = await imagePreview.Source.OpenAsync(FileAccessMode.Read);
+                    if (imagePreview.Source.FileType.ToLowerInvariant() == ".svg")
                     {
-                        if (imagePreview.Source.FileType.ToLowerInvariant() == ".svg")
-                        {
-                            var svgImage = new SvgImageSource();
-                            imagePreview.ImageSource = svgImage;
-                            svgImage.RasterizePixelHeight = imagePreview.ActualHeight * 2;
-                            svgImage.RasterizePixelWidth = imagePreview.ActualWidth * 2;
-                            _ = svgImage.SetSourceAsync(fileStream);
-                        }
-                        else
-                        {
-                            var bitmapImage = new BitmapImage();
-                            imagePreview.ImageSource = bitmapImage;
-                            _ = bitmapImage.SetSourceAsync(fileStream);
-                        }
+                        var svgImage = new SvgImageSource();
+                        imagePreview.ImageSource = svgImage;
+                        svgImage.RasterizePixelHeight = imagePreview.ActualHeight * 2;
+                        svgImage.RasterizePixelWidth = imagePreview.ActualWidth * 2;
+                        _ = svgImage.SetSourceAsync(fileStream);
+                    }
+                    else
+                    {
+                        var bitmapImage = new BitmapImage();
+                        imagePreview.ImageSource = bitmapImage;
+                        _ = bitmapImage.SetSourceAsync(fileStream);
                     }
                 });
             }

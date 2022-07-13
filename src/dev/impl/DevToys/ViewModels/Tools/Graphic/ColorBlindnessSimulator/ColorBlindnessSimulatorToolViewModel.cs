@@ -247,28 +247,26 @@ namespace DevToys.ViewModels.Tools.ColorBlindnessSimulator
         private async Task<(byte[] bgra8SourcePixels, uint width, uint height)> GetBgra8PixelsFromFileAsync(StorageFile file)
         {
             await TaskScheduler.Default;
-            using (IRandomAccessStream fileStream = await file.OpenAsync(FileAccessMode.Read))
+            using IRandomAccessStream fileStream = await file.OpenAsync(FileAccessMode.Read);
+            BitmapDecoder decoder = await BitmapDecoder.CreateAsync(fileStream);
+
+            var transform = new BitmapTransform()
             {
-                BitmapDecoder decoder = await BitmapDecoder.CreateAsync(fileStream);
+                ScaledWidth = Convert.ToUInt32(decoder.PixelWidth),
+                ScaledHeight = Convert.ToUInt32(decoder.PixelHeight)
+            };
 
-                var transform = new BitmapTransform()
-                {
-                    ScaledWidth = Convert.ToUInt32(decoder.PixelWidth),
-                    ScaledHeight = Convert.ToUInt32(decoder.PixelHeight)
-                };
+            PixelDataProvider pixelData
+                = await decoder.GetPixelDataAsync(
+                    BitmapPixelFormat.Bgra8, // WriteableBitmap uses BGRA format 
+                    BitmapAlphaMode.Ignore,
+                    transform,
+                    ExifOrientationMode.IgnoreExifOrientation, // This sample ignores Exif orientation 
+                    ColorManagementMode.DoNotColorManage
+                );
 
-                PixelDataProvider pixelData
-                    = await decoder.GetPixelDataAsync(
-                        BitmapPixelFormat.Bgra8, // WriteableBitmap uses BGRA format 
-                        BitmapAlphaMode.Ignore,
-                        transform,
-                        ExifOrientationMode.IgnoreExifOrientation, // This sample ignores Exif orientation 
-                        ColorManagementMode.DoNotColorManage
-                    );
-
-                // An array containing the decoded image data, which could be modified before being displayed 
-                return (pixelData.DetachPixelData(), decoder.PixelWidth, decoder.PixelHeight);
-            }
+            // An array containing the decoded image data, which could be modified before being displayed 
+            return (pixelData.DetachPixelData(), decoder.PixelWidth, decoder.PixelHeight);
         }
 
         private async Task<StorageFile> SaveImageToFileAsync(byte[] bgraPixels, uint width, uint height, string imageName, string disabilityName)

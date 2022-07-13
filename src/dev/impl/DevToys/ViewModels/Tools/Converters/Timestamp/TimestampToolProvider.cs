@@ -50,7 +50,7 @@ namespace DevToys.ViewModels.Tools.Converters.Timestamp
                 {
                 }
             }
-            else if (DateTime.TryParse(data, out DateTime potentialDateTime))
+            else if (DateTime.TryParse(data, out _))
             {
                 return true;
             }
