@@ -1,0 +1,100 @@
+﻿<Page
+    x:Class="DevToys.Views.Tools.ColorPicker.ColorPickerToolPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:DevToys.UI.Controls"
+    xmlns:converters="using:DevToys.UI.Converters"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls" xmlns:ex="using:DevToys.UI.Extensions"
+    mc:Ignorable="d"
+    NavigationCacheMode="Required">
+    <Page.Resources>
+        <converters:ColorToBrushConverter x:Key="ColorToBrushConverter"/>
+    </Page.Resources>
+
+    <Grid Margin="0,0,0,16" RowSpacing="12">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <ex:IsCompactOverlayModeTrigger TargetElement="{x:Bind}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="SettingsStackPanel.Visibility" Value="Collapsed"/>
+                        <Setter Target="ColorPicker.Orientation" Value="Vertical"/>
+                        <Setter Target="ColorPicker.HorizontalAlignment" Value="Center"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel
+            x:Name="SettingsStackPanel"
+            Grid.Row="0"
+            Spacing="4">
+            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Configuration}" />
+
+            <controls:ExpandableSettingControl
+                Title="{x:Bind ViewModel.Strings.Mode}">
+                <controls:ExpandableSettingControl.Icon>
+                    <FontIcon Glyph="&#xF2F5;" />
+                </controls:ExpandableSettingControl.Icon>
+                <ComboBox
+                    ItemsSource="{x:Bind ViewModel.ColorPickerModes}"
+                    DisplayMemberPath="DisplayName"
+                    SelectedItem="{x:Bind ViewModel.ColorPickerMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                </ComboBox>
+            </controls:ExpandableSettingControl>
+        </StackPanel>
+
+        <StackPanel
+            Grid.Row="1"
+            Spacing="4">
+            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.SelectedColor}" />
+
+            <StackPanel
+                Spacing="12"
+                Padding="0,12,0,12"
+                Orientation="Vertical"
+                CornerRadius="{ThemeResource ControlCornerRadius}"
+                Background="{x:Bind ViewModel.SelectedColor, Mode=OneWay, Converter={StaticResource ColorToBrushConverter}}">
+                <TextBlock
+                    Foreground="Black"
+                    HorizontalAlignment="Center"
+                    Text="{x:Bind ViewModel.Strings.BlackText}"/>
+                <TextBlock
+                    Foreground="White"
+                    HorizontalAlignment="Center"
+                    Text="{x:Bind ViewModel.Strings.WhiteText}"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel
+            Grid.Row="2"
+            Spacing="4">
+            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.ColorPicker}" />
+
+            <muxc:ColorPicker
+                x:Name="ColorPicker"
+                Color="{x:Bind ViewModel.SelectedColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                ColorSpectrumShape="Box"
+                ColorSpectrumComponents="{x:Bind ViewModel.ColorPickerMode.Value, Mode=OneWay}"
+                IsAlphaEnabled="True"
+                IsColorPreviewVisible="False"
+                Orientation="Horizontal"/>
+        </StackPanel>
+    </Grid>
+</Page>
