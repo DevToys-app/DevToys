@@ -22,7 +22,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1642371451
-ModificationTime: 1657607733
+ModificationTime: 1657684840
 PfmFamily: 17
 TTFWeight: 400
 TTFWidth: 5
@@ -55,7 +55,7 @@ WinInfo: 0 38 14
 BeginPrivate: 0
 EndPrivate
 TeXData: 1 0 0 346030 173015 115343 0 1048576 115343 783286 444596 497025 792723 393216 433062 380633 303038 157286 324010 404750 52429 2506097 1059062 262144
-BeginChars: 290 34
+BeginChars: 291 35
 
 StartChar: Base64EncoderDecoder
 Encoding: 256 256 0
@@ -127,6 +127,7 @@ SplineSet
  262 486 277 524 304 554 c 2
  393 655 l 1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: ColorBlindnessSimulator
@@ -215,6 +216,7 @@ SplineSet
  759 657 761 667 767 673 c 0
  773 679 781 682 789 682 c 0
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: Base64ImageEncoderDecoder
@@ -305,6 +307,7 @@ SplineSet
  734 164 738 162 742 162 c 2
  867 162 l 2
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: Converters
@@ -389,6 +392,7 @@ SplineSet
  130 783 l 2
  130 847 184 900 248 900 c 2
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: CronParser
@@ -423,6 +427,7 @@ SplineSet
  480 481 472 497 472 514 c 2
  472 739 l 2
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: EncodersDecoders
@@ -545,6 +550,7 @@ SplineSet
  206 335 l 2
  206 363 183 387 155 387 c 0
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: UuidGenerator
@@ -645,6 +651,7 @@ SplineSet
  687 421 668 424 647 424 c 2
  601 424 l 1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: HtmlEncoderDecoder
@@ -687,6 +694,7 @@ SplineSet
  635 351 l 1
  648 494 l 1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: JsonFormatter
@@ -796,6 +804,7 @@ SplineSet
  820 205 808 199 793 196 c 0
  778 193 761 192 743 192 c 1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: JsonYaml
@@ -893,6 +902,7 @@ SplineSet
  369 351 360 353 353 360 c 0
  346 367 342 374 342 383 c 0
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: JwtDecoder
@@ -962,6 +972,7 @@ SplineSet
  593 433 l 1
  672 418 l 1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: LoremIpsumGenerator
@@ -993,6 +1004,7 @@ SplineSet
  800 667 l 1
  800 116 l 1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: MarkdownPreview
@@ -1056,6 +1068,7 @@ SplineSet
  681 607 l 2
  681 629 700 648 722 648 c 0
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: RegexTester
@@ -1176,6 +1189,7 @@ SplineSet
  901 406 908 460 908 515 c 0
  908 517 908 519 908 521 c 2
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: SqlFormatter
@@ -1281,6 +1295,7 @@ SplineSet
  159 403 158 416 158 431 c 2
  158 595 l 2
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: TextDiff
@@ -1432,6 +1447,7 @@ SplineSet
  485 78 483 82 483 88 c 2
  483 116 l 2
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: XMLValidator
@@ -1552,6 +1568,7 @@ SplineSet
  243 562 l 1
  244 562 l 1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: AllTools
@@ -1615,6 +1632,7 @@ SplineSet
  895 601 890 608 884 614 c 2
  541 922 l 2
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: NumberBaseConverter
@@ -1710,6 +1728,7 @@ SplineSet
  418 738 423 745 431 750 c 0
  439 755 447 756 455 755 c 0
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: Timestamp
@@ -1850,6 +1869,7 @@ SplineSet
  478 167 481 174 488 181 c 0
  495 188 502 192 512 192 c 0
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: GZipEncoderDecoder
@@ -1948,6 +1968,7 @@ SplineSet
  125 880 154 894 189 896 c 2
  345 896 l 2
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: UrlEncoderDecoder
@@ -2011,6 +2032,7 @@ SplineSet
  263 517 270 521 277 522 c 2
  735 525 l 2
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: XmlFormatter
@@ -2062,6 +2084,7 @@ SplineSet
  682 891 688 887 691 880 c 0
  694 873 694 864 691 857 c 2
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: Formatters
@@ -2121,6 +2144,7 @@ SplineSet
  302 799 299 805 299 812 c 2
  299 814 l 2
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: ChecksumGenerator
@@ -2201,6 +2225,7 @@ SplineSet
  469 914 500 883 524 844 c 0
  548 805 560 761 560 715 c 0
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: HashGenerator
@@ -2356,6 +2381,7 @@ SplineSet
  508 571 521 569 534 568 c 0
  568 562 595 548 618 527 c 0
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: Generators
@@ -2457,6 +2483,7 @@ SplineSet
  371 618 373 626 380 634 c 0
  387 642 394 645 403 645 c 0
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: ImageConverter
@@ -2554,6 +2581,7 @@ SplineSet
  60 874 69 901 91 923 c 0
  113 945 138 954 169 954 c 2
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: PngJpgCompressor
@@ -2618,6 +2646,7 @@ SplineSet
  694 647 697 655 697 663 c 2
  697 666 l 2
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: GraphicTools
@@ -2686,6 +2715,7 @@ SplineSet
  454 685 434 673 409 673 c 0
  408 673 406 673 405 673 c 0
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: StringEscapeUnescape
@@ -2755,6 +2785,7 @@ SplineSet
  618 682 l 1
  532 682 l 1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: StringUtilities
@@ -2798,6 +2829,7 @@ SplineSet
  107 782 103 793 103 804 c 2
  103 924 l 2
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: TextTools
@@ -2859,6 +2891,7 @@ SplineSet
  234 962 l 2
  238 974 249 981 262 981 c 0
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: Settings
@@ -2982,6 +3015,124 @@ SplineSet
  477 602 455 593 439 576 c 0
  423 559 415 537 415 512 c 0
 EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: ColorPicker
+Encoding: 290 308 34
+Width: 1024
+Flags: H
+LayerCount: 2
+Fore
+SplineSet
+319 803 m 4
+ 295 788 270 765 244 734 c 4
+ 218 703 198 670 181 635 c 4
+ 165 601 157 570 157 543 c 4
+ 157 513 166 491 185 475 c 4
+ 205 458 222 450 236 450 c 4
+ 237 450 239 450 240 450 c 4
+ 247 450 257 453 269 460 c 6
+ 275 466 l 5
+ 293 476 308 483 321 487 c 4
+ 333 491 345 493 358 493 c 4
+ 373 493 389 490 405 485 c 4
+ 422 481 435 472 445 458 c 4
+ 454 448 460 435 464 419 c 4
+ 468 403 471 388 472 374 c 6
+ 474 328 l 6
+ 477 292 484 264 495 245 c 4
+ 510 218 538 199 576 186 c 4
+ 593 180 610 177 627 177 c 4
+ 663 177 698 190 731 216 c 4
+ 754 234 773 257 790 283 c 4
+ 807 309 819 337 828 366 c 4
+ 842 410 850 453 850 494 c 4
+ 850 539 842 582 825 624 c 4
+ 793 704 735 765 652 808 c 4
+ 597 836 542 851 488 851 c 4
+ 486 851 483 851 481 851 c 4
+ 424 850 370 834 319 803 c 4
+673 851 m 4
+ 768 802 833 733 869 642 c 4
+ 888 594 897 544 897 493 c 4
+ 897 447 889 400 874 351 c 4
+ 864 318 849 286 829 256 c 4
+ 809 226 787 200 761 180 c 4
+ 732 157 701 142 669 134 c 4
+ 655 131 642 130 628 130 c 4
+ 605 130 582 134 560 142 c 4
+ 510 159 475 185 455 222 c 4
+ 440 248 430 282 426 324 c 6
+ 424 370 l 6
+ 423 385 421 397 418 406 c 4
+ 415 415 413 422 409 428 c 4
+ 405 434 399 438 390 441 c 4
+ 380 444 370 444 361 444 c 4
+ 352 444 344 444 336 441 c 4
+ 327 438 316 433 302 425 c 6
+ 292 420 l 6
+ 272 408 255 402 238 402 c 4
+ 236 402 235 402 233 402 c 4
+ 210 402 183 415 154 439 c 4
+ 125 463 110 497 110 540 c 4
+ 110 542 110 544 110 546 c 4
+ 110 579 120 616 139 657 c 4
+ 157 694 180 730 209 764 c 4
+ 238 798 266 825 294 843 c 4
+ 351 877 413 896 478 898 c 4
+ 482 898 484 898 488 898 c 4
+ 550 898 611 882 673 851 c 4
+652 324 m 4
+ 652 314 649 305 642 298 c 4
+ 635 291 627 287 617 287 c 4
+ 607 287 599 291 592 298 c 4
+ 585 305 581 314 581 324 c 4
+ 581 334 585 343 592 350 c 4
+ 599 357 607 360 617 360 c 4
+ 627 360 635 357 642 350 c 4
+ 649 343 652 334 652 324 c 4
+713 383 m 6
+ 712 383 l 6
+ 703 383 695 387 688 394 c 4
+ 681 401 677 410 677 420 c 4
+ 677 430 681 438 688 445 c 4
+ 695 452 703 456 713 456 c 4
+ 723 456 730 452 737 445 c 4
+ 744 438 748 430 748 420 c 4
+ 748 410 744 401 737 394 c 4
+ 730 387 722 383 713 383 c 6
+748 563 m 4
+ 748 553 744 544 737 537 c 4
+ 730 530 723 527 713 527 c 4
+ 703 527 695 530 688 537 c 4
+ 681 544 677 553 677 563 c 4
+ 677 573 681 582 688 589 c 4
+ 695 596 703 600 713 600 c 4
+ 723 600 730 596 737 589 c 4
+ 744 582 748 573 748 563 c 4
+629 636 m 5
+ 629 634 l 5
+ 619 635 610 640 603 646 c 4
+ 596 652 593 661 593 671 c 4
+ 593 681 596 689 603 696 c 4
+ 610 703 619 707 629 707 c 4
+ 639 707 648 703 655 696 c 4
+ 662 689 666 681 666 671 c 4
+ 666 661 662 652 655 646 c 4
+ 648 640 639 636 629 636 c 5
+486 684 m 5
+ 486 682 l 5
+ 476 682 467 686 460 693 c 4
+ 453 700 449 708 449 718 c 4
+ 449 728 453 737 460 744 c 4
+ 467 751 476 755 486 755 c 4
+ 496 755 504 751 511 744 c 4
+ 518 737 522 728 522 718 c 4
+ 522 708 518 700 511 694 c 4
+ 504 688 496 684 486 684 c 5
+EndSplineSet
+Validated: 1
 EndChar
 EndChars
 EndSplineFont
