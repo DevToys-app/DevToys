@@ -34,7 +34,7 @@ namespace DevToys.ViewModels.Settings
         public string? SearchKeywords => LanguageManager.Instance.Settings.SearchKeywords;
 
         public TaskCompletionNotifier<IconElement> IconSource
-            => new TaskCompletionNotifier<IconElement>(() =>
+            => new(() =>
                 ThreadHelper.RunOnUIThreadAsync(() =>
                 {
                     return Task.FromResult<IconElement>(

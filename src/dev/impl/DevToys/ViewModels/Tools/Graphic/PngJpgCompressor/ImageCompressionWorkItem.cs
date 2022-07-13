@@ -230,8 +230,8 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
         {
             await TaskScheduler.Default;
 
-            var storageFileSize = (await file.GetBasicPropertiesAsync()).Size;
-            var originalFileSize = StorageFileHelper.HumanizeFileSize(storageFileSize, Strings.FileSizeDisplay);
+            ulong storageFileSize = (await file.GetBasicPropertiesAsync()).Size;
+            string? originalFileSize = StorageFileHelper.HumanizeFileSize(storageFileSize, Strings.FileSizeDisplay);
             await ThreadHelper.RunOnUIThreadAsync(() => OriginalFileSize = originalFileSize);
         }
 

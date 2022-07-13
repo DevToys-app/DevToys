@@ -70,7 +70,7 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
                 if (InputNumberFormat != value)
                 {
                     UseInputCustomDictionary = value.Value is Radix.Custom;
-                    var newFormat = value == NumberBaseFormat.DefaultCustom ? InputCustomFormat : value;
+                    NumberBaseFormat? newFormat = value == NumberBaseFormat.DefaultCustom ? InputCustomFormat : value;
                     _inputDictionary = newFormat;
                     QueueFormatting();
                 }
@@ -100,7 +100,7 @@ namespace DevToys.ViewModels.Tools.Converters.NumberBaseConverter
                 if (OutputNumberFormat != value)
                 {
                     UseOutputCustomDictionary = value.Value is Radix.Custom;
-                    var newFormat = value == NumberBaseFormat.DefaultCustom ? OutputCustomFormat : value;
+                    NumberBaseFormat? newFormat = value == NumberBaseFormat.DefaultCustom ? OutputCustomFormat : value;
                     _outputDictionary = newFormat;
                     QueueFormatting();
                 }

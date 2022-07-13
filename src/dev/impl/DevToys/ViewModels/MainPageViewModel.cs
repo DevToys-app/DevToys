@@ -53,7 +53,7 @@ namespace DevToys.ViewModels
         private readonly IWindowManager _windowManager;
         private readonly DisposableSempahore _sempahore = new();
         private readonly Task _menuInitializationTask;
-        private readonly NavigationViewItemSeparator _headerSeparatorControl = new NavigationViewItemSeparator();
+        private readonly NavigationViewItemSeparator _headerSeparatorControl = new();
 
         private ToolProviderViewItem? _selectedItem;
         private NavigationViewDisplayMode _navigationViewDisplayMode;

@@ -1596,8 +1596,7 @@ MODIFY
                 ? new Regex(string.Join("|", without), RegexOptions.Compiled)
                 : new Regex(@"^whateve_!%&$");
 
-            Func<string, bool> isSupportedJoin
-                = (string join) => !unsupportedJoinRegex.Match(join).Success;
+            bool isSupportedJoin(string join) => !unsupportedJoinRegex.Match(join).Success;
 
             string[] joins = new[] { "CROSS JOIN", "NATURAL JOIN" };
             foreach (string join in joins)
