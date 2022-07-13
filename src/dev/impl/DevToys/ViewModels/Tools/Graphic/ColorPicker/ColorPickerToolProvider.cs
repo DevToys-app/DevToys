@@ -13,7 +13,7 @@ namespace DevToys.ViewModels.Tools.Graphic.ColorPicker
     [Parent(GraphicGroupToolProvider.InternalName)]
     [ProtocolName("color")]
     [Order(0)]
-    internal class ColorPickerToolProvider : ToolProviderBase, IToolProvider
+    internal class ColorPickerToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 
