@@ -154,13 +154,13 @@
     <value>1</value>
   </data>
   <data name="VersionDescription" xml:space="preserve">
-    <value>Scegli la versione di UUID da generare</value>
+    <value>Scegli la versione dell'UUID da generare</value>
   </data>
   <data name="VersionTitle" xml:space="preserve">
-    <value>Versione UUID</value>
+    <value>Versione dell'UUID</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Genera UUID versione 1 e 4</value>
+    <value>Genera UUID versioni 1 e 4</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Generatore di UUID</value>
