@@ -124,7 +124,7 @@
     <value>Color Picker</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Pick up a color</value>
+    <value>Pick a color</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Color Picker</value>
