@@ -154,18 +154,18 @@
     <value>Base64</value>
   </data>
   <data name="OutputHex" xml:space="preserve">
-    <value>Hex</value>
+    <value>十六進制</value>
   </data>
   <data name="OutputTypeTitle" xml:space="preserve">
-    <value>Output Type</value>
+    <value>輸出類型</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
   </data>
   <data name="HmacMode" xml:space="preserve">
-    <value>HMAC Mode</value>
+    <value>HMAC 模式</value>
   </data>
   <data name="SecretKey" xml:space="preserve">
-    <value>Secret Key</value>
+    <value>密鑰</value>
   </data>
 </root>

@@ -118,57 +118,57 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Cron parsing tool</value>
+    <value>Cron 剖析工具</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>設定</value>
   </data>
   <data name="UseSecondsDescription" xml:space="preserve">
-    <value>Choose whatever Cron expression should includes seconds in its definition</value>
+    <value>選擇 Cron 表達式是否要在定義中包含秒</value>
   </data>
   <data name="UseSecondsTitle" xml:space="preserve">
-    <value>Cron Mode</value>
+    <value>Cron 模式</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Cron parser</value>
+    <value>Cron 剖析器</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Parse Cron expression to get scheduled dates</value>
+    <value>剖析 Cron 表達式以取得排程日期</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Cron expression parser</value>
+    <value>Cron 表達式剖析器</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>Cron</value>
   </data>
   <data name="CronErrorMessage" xml:space="preserve">
-    <value>Cron expression is not valid</value>
+    <value>Cron 表達式無效</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>Cron expression to parse</value>
+    <value>要剖析的 Cron 表達式</value>
   </data>
   <data name="OutputDateTimeDescription" xml:space="preserve">
-    <value>Date time fomat of upcoming dates</value>
+    <value>預定日期的格式</value>
   </data>
   <data name="OutputDateTimeTitle" xml:space="preserve">
-    <value>Output format</value>
+    <value>輸出格式</value>
   </data>
   <data name="OutputFormatErrorMessage" xml:space="preserve">
-    <value>Output date time format is not valid</value>
+    <value>輸出的日期時間格式無效</value>
   </data>
   <data name="OutputLimitDescription" xml:space="preserve">
-    <value>How many scheduled dates needs to be generated</value>
+    <value>要產生的排程日期數量</value>
   </data>
   <data name="OutputLimitTitle" xml:space="preserve">
-    <value>Next scheduled dates</value>
+    <value>下次排程日期</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Next scheduled dates</value>
+    <value>下次排程日期</value>
   </data>
   <data name="SecondsExcludedMode" xml:space="preserve">
-    <value>Standard mode (5 - segment Cron)</value>
+    <value>標準模式 (5 - 區段 Cron)</value>
   </data>
   <data name="SecondsIncludedMode" xml:space="preserve">
-    <value>Seconds included (6 - segment Cron)</value>
+    <value>包含秒 (6 - 區段 Cron)</value>
   </data>
 </root>
