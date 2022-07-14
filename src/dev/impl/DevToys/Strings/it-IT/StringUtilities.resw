@@ -151,7 +151,7 @@
     <value>Ispettore e Convertitore di casi</value>
   </data>
   <data name="InverseCase" xml:space="preserve">
-    <value>InVeRsE CaSe</value>
+    <value>InVeRsE Case</value>
   </data>
   <data name="KebabCase" xml:space="preserve">
     <value>kebab-case</value>
@@ -163,7 +163,7 @@
     <value>Linee:</value>
   </data>
   <data name="LowerCase" xml:space="preserve">
-    <value>lower case</value>
+    <value>minuscolo</value>
   </data>
   <data name="OriginalCase" xml:space="preserve">
     <value>Testo originale</value>
@@ -181,7 +181,7 @@
     <value>Selezione</value>
   </data>
   <data name="SentenceCase" xml:space="preserve">
-    <value>Sentence case</value>
+    <value>Frase</value>
   </data>
   <data name="Sentences" xml:space="preserve">
     <value>Frasi:</value>

@@ -181,22 +181,22 @@
     <value>Redo</value>
   </data>
   <data name="Refresh" xml:space="preserve">
-    <value>Refresh</value>
+    <value>تحديث</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Save as</value>
   </data>
   <data name="SelectAll" xml:space="preserve">
-    <value>Select all</value>
+    <value>اختر الكل</value>
   </data>
   <data name="Terabytes" xml:space="preserve">
     <value>TB</value>
   </data>
   <data name="ToggleSwitchOff" xml:space="preserve">
-    <value>Off</value>
+    <value>غلق</value>
   </data>
   <data name="ToggleSwitchOn" xml:space="preserve">
-    <value>On</value>
+    <value>فتح</value>
   </data>
   <data name="UnableOpenFile" xml:space="preserve">
     <value>Unable to open this file</value>
@@ -205,7 +205,7 @@
     <value>Unable to load the file '{0}'. Only textual files can be opened. For more details, please check the log.</value>
   </data>
   <data name="Undo" xml:space="preserve">
-    <value>Undo</value>
+    <value>الغاء التحميل</value>
   </data>
   <data name="ViewImage" xml:space="preserve">
     <value>View</value>
