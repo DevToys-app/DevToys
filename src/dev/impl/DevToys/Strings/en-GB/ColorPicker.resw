@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Color Picker tool</value>
+    <value>Colour Picker tool</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Color Picker</value>
+    <value>Colour Picker</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Pick up a color</value>
+    <value>Pick up a Colour</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Color Picker</value>
+    <value>Colour Picker</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
@@ -136,7 +136,7 @@
     <value>Black text</value>
   </data>
   <data name="ColorPicker" xml:space="preserve">
-    <value>Color picker</value>
+    <value>Colour picker</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Configuration</value>
@@ -151,7 +151,7 @@
     <value>HSV</value>
   </data>
   <data name="SelectedColor" xml:space="preserve">
-    <value>Selected color</value>
+    <value>Selected colour</value>
   </data>
   <data name="WhiteText" xml:space="preserve">
     <value>White text</value>
