@@ -181,7 +181,7 @@
     <value>取消復原</value>
   </data>
   <data name="Refresh" xml:space="preserve">
-    <value>Refresh</value>
+    <value>重新載入</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
     <value>另存為</value>
@@ -202,13 +202,13 @@
     <value>無法開啟此檔案</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>Unable to load the file '{0}'. Only textual files can be opened. For more details, please check the log.</value>
+    <value>無法載入此檔案 '{0}'。僅可開啟文字檔，若要了解詳情，請查閱記錄檔。</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>復原</value>
   </data>
   <data name="ViewImage" xml:space="preserve">
-    <value>View</value>
+    <value>檢視</value>
     <comment>In the context of "view / display an image".</comment>
   </data>
 </root>

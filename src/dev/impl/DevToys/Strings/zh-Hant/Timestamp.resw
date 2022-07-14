@@ -121,10 +121,10 @@
     <value>時間戳轉換工具</value>
   </data>
   <data name="TimeZoneTitle" xml:space="preserve">
-    <value>Time zone</value>
+    <value>時區</value>
   </data>
   <data name="DaylightSavingTime" xml:space="preserve">
-    <value>Daylight saving time.</value>
+    <value>夏令時間。</value>
   </data>
   <data name="DayTitle" xml:space="preserve">
     <value>日</value>
@@ -133,10 +133,10 @@
     <value>在時間戳和易讀格式間轉換</value>
   </data>
   <data name="DisabledDaylightSavingTime" xml:space="preserve">
-    <value>There is no daylight saving time.</value>
+    <value>無夏令時間。</value>
   </data>
   <data name="DSTAmbiguousTime" xml:space="preserve">
-    <value>DST Ambiguous time.</value>
+    <value>DST 模糊時間。</value>
   </data>
   <data name="HourTitle" xml:space="preserve">
     <value>時 (24 小時制)</value>
@@ -157,7 +157,7 @@
     <value>月</value>
   </data>
   <data name="OffsetTitle" xml:space="preserve">
-    <value>Offset</value>
+    <value>偏移</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Unix 時間戳轉換工具</value>
@@ -170,7 +170,7 @@
     <value>秒</value>
   </data>
   <data name="SupportsDaylightSavingTime" xml:space="preserve">
-    <value>There is daylight saving time.</value>
+    <value>有夏令時間。</value>
   </data>
   <data name="TimestampTitle" xml:space="preserve">
     <value>時間戳</value>
@@ -185,6 +185,6 @@
     <value>年</value>
   </data>
   <data name="Now" xml:space="preserve">
-    <value>Now</value>
+    <value>現在時間</value>
   </data>
 </root>
