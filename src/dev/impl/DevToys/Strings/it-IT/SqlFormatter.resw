@@ -145,7 +145,7 @@
     <value>2 spazi</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Indent SQL queries</value>
+    <value>Indenta query SQL</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Formattatore SQL</value>

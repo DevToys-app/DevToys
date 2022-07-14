@@ -133,7 +133,7 @@
     <value>Delete all</value>
   </data>
   <data name="DetailsTitle" xml:space="preserve">
-    <value>Details</value>
+    <value>تفاصيل</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>PNG / JPEG Compressor</value>

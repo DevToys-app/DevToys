@@ -117,40 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ConvertersAccessibleName" xml:space="preserve">
-    <value>Converters</value>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>Farbauswahl-Werkzeug</value>
   </data>
-  <data name="ConvertersDisplayName" xml:space="preserve">
-    <value>Converters</value>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>Farbauswahl</value>
   </data>
-  <data name="EncodersDecodersAccessibleName" xml:space="preserve">
-    <value>Encoders and decoders</value>
+  <data name="Description" xml:space="preserve">
+    <value>Wählen Sie eine Farbe</value>
   </data>
-  <data name="EncodersDecodersDisplayName" xml:space="preserve">
-    <value>Encoders / Decoders</value>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Farbauswahl</value>
   </data>
-  <data name="FormattersAccessibleName" xml:space="preserve">
-    <value>Formatters</value>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value></value>
   </data>
-  <data name="FormattersDisplayName" xml:space="preserve">
-    <value>Formatters</value>
+  <data name="BlackText" xml:space="preserve">
+    <value>Schwarzer Text</value>
   </data>
-  <data name="GeneratorsAccessibleName" xml:space="preserve">
-    <value>Generators</value>
+  <data name="ColorPicker" xml:space="preserve">
+    <value>Farbauswahl</value>
   </data>
-  <data name="GeneratorsDisplayName" xml:space="preserve">
-    <value>Generators</value>
+  <data name="Configuration" xml:space="preserve">
+    <value>Konfiguration</value>
   </data>
-  <data name="GraphicAccessibleName" xml:space="preserve">
-    <value>Graphic</value>
+  <data name="Mode" xml:space="preserve">
+    <value>Modus</value>
   </data>
-  <data name="GraphicDisplayName" xml:space="preserve">
-    <value>Graphic</value>
+  <data name="ModeHSL" xml:space="preserve">
+    <value>HSL</value>
   </data>
-  <data name="TextAccessibleName" xml:space="preserve">
-    <value>النص</value>
+  <data name="ModeHSV" xml:space="preserve">
+    <value>HSV</value>
   </data>
-  <data name="TextDisplayName" xml:space="preserve">
-    <value>النص</value>
+  <data name="SelectedColor" xml:space="preserve">
+    <value>Ausgewählte Farbe</value>
+  </data>
+  <data name="WhiteText" xml:space="preserve">
+    <value>Weißer Text</value>
   </data>
 </root>
