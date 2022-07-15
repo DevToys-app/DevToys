@@ -124,10 +124,10 @@
     <value>Задані параметри</value>
   </data>
   <data name="UseSecondsDescription" xml:space="preserve">
-    <value>Оберіть будь-який вираз Cron, котрий обов'язково містить у собі визначені секунди</value>
+    <value>Будь-який обраний вираз Cron, має містити у собі визначені секунди</value>
   </data>
   <data name="UseSecondsTitle" xml:space="preserve">
-    <value>Режими у Cron</value>
+    <value>Режими Cron</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Аналізатор Cron</value>
@@ -157,7 +157,7 @@
     <value>Не дійсний формат виводу дати і часу</value>
   </data>
   <data name="OutputLimitDescription" xml:space="preserve">
-    <value>Необхідна кількість формування запланованих дат</value>
+    <value>Необхідна кількість запланованих дат для формування</value>
   </data>
   <data name="OutputLimitTitle" xml:space="preserve">
     <value>Наступних запланованих дат</value>
