@@ -157,6 +157,6 @@
     <value></value>
   </data>
   <data name="SortProperties" xml:space="preserve">
-    <value>Sort JSON properties alphabetically</value>
+    <value>Впорядкувати властивості JSON за алфавітом</value>
   </data>
 </root>

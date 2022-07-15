@@ -121,7 +121,7 @@
     <value>Про програму</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>App theme</value>
+    <value>Тема застосунку</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
     <value>Виберіть тему оформлення</value>
@@ -235,9 +235,9 @@
     <value>Допоможіть нам з перекладами DevToys!</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Замінити текст при вставленні</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
+    <value>До натискання клавіші Вставити очистіть текст перед вставленням замість того, щоб додавати до наявного вмісту текстового редактора.</value>
   </data>
 </root>
