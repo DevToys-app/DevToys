@@ -124,7 +124,7 @@
     <value>Cancel</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Konfigürasyon</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
@@ -161,7 +161,7 @@
     <value>Image Converter</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Conversion</value>
+    <value>Dönüştürme</value>
   </data>
   <data name="ConvertedFormatDescription" xml:space="preserve">
     <value>Select the converted file format</value>
