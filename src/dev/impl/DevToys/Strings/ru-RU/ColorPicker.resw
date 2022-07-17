@@ -154,16 +154,16 @@
     <value>Background color</value>
   </data>
   <data name="ContrastRatio" xml:space="preserve">
-    <value>Contrast ratio</value>
+    <value>Контраст</value>
   </data>
   <data name="Fail" xml:space="preserve">
-    <value>Fail</value>
+    <value>Не удалось</value>
   </data>
   <data name="LargeText" xml:space="preserve">
     <value>Крупный текст</value>
   </data>
   <data name="Pass" xml:space="preserve">
-    <value>Pass</value>
+    <value>Готово</value>
   </data>
   <data name="SampleText" xml:space="preserve">
     <value>Sit kasd feugait takimata in eirmod sadipscing sanctus consectetuer voluptua dolor dolor dolore rebum.</value>
