@@ -4,97 +4,351 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:DevToys="using:DevToys"
     xmlns:controls="using:DevToys.UI.Controls"
     xmlns:converters="using:DevToys.UI.Converters"
-    xmlns:muxc="using:Microsoft.UI.Xaml.Controls" xmlns:ex="using:DevToys.UI.Extensions"
+    xmlns:ex="using:DevToys.UI.Extensions"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
     NavigationCacheMode="Required">
     <Page.Resources>
         <converters:ColorToBrushConverter x:Key="ColorToBrushConverter"/>
+        <converters:BooleanToBrushConverter
+            x:Key="ContrastRatioBooleanToBrushConverter"
+            ValueOnTrue="#10893E"
+            ValueOnFalse="#E81123"/>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <converters:BooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" IsInverted="True"/>
     </Page.Resources>
 
-    <Grid Margin="0,0,0,16" RowSpacing="12">
+    <Border>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <ex:ControlSizeTrigger MinWidth="1100" TargetElement="{x:Bind}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ColorPicker.Orientation" Value="Horizontal"/>
+                        <Setter Target="ColorPicker2.Orientation" Value="Horizontal"/>
+                        <Setter Target="ColorPickerStackPanel.(Grid.ColumnSpan)" Value="1"/>
+                        <Setter Target="ColorPicker2StackPanel.(Grid.Row)" Value="3" />
+                        <Setter Target="ColorPicker2StackPanel.(Grid.Column)" Value="1" />
+                        <Setter Target="ColorPicker2StackPanel.(Grid.ColumnSpan)" Value="1"/>
+                        <Setter Target="SelectedColorGrid.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="ContrastRatioGrid.(Grid.Row)" Value="1" />
+                        <Setter Target="ContrastRatioGrid.(Grid.Column)" Value="1" />
+                        <Setter Target="ContrastRatioGrid.(Grid.ColumnSpan)" Value="1" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <ex:ControlSizeTrigger MinWidth="512" TargetElement="{x:Bind}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ColorPickerStackPanel.(Grid.ColumnSpan)" Value="1"/>
+                        <Setter Target="ColorPicker2StackPanel.(Grid.Row)" Value="3" />
+                        <Setter Target="ColorPicker2StackPanel.(Grid.Column)" Value="1" />
+                        <Setter Target="ColorPicker2StackPanel.(Grid.ColumnSpan)" Value="1"/>
+                    </VisualState.Setters>
+                </VisualState>
                 <VisualState>
                     <VisualState.StateTriggers>
                         <ex:IsCompactOverlayModeTrigger TargetElement="{x:Bind}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="SettingsStackPanel.Visibility" Value="Collapsed"/>
-                        <Setter Target="ColorPicker.Orientation" Value="Vertical"/>
-                        <Setter Target="ColorPicker.HorizontalAlignment" Value="Center"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
+        <Grid
+            Margin="0,0,0,16"
+            RowSpacing="12"
+            ColumnSpacing="12">
 
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
+            <Grid.ChildrenTransitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
+                </TransitionCollection>
+            </Grid.ChildrenTransitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-
-        <StackPanel
-            x:Name="SettingsStackPanel"
-            Grid.Row="0"
-            Spacing="4">
-            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Configuration}" />
-
-            <controls:ExpandableSettingControl
-                Title="{x:Bind ViewModel.Strings.Mode}">
-                <controls:ExpandableSettingControl.Icon>
-                    <FontIcon Glyph="&#xF2F5;" />
-                </controls:ExpandableSettingControl.Icon>
-                <ComboBox
-                    ItemsSource="{x:Bind ViewModel.ColorPickerModes}"
-                    DisplayMemberPath="DisplayName"
-                    SelectedItem="{x:Bind ViewModel.ColorPickerMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                </ComboBox>
-            </controls:ExpandableSettingControl>
-        </StackPanel>
-
-        <StackPanel
-            Grid.Row="1"
-            Spacing="4">
-            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.SelectedColor}" />
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
             <StackPanel
-                Spacing="12"
-                Padding="0,12,0,12"
-                Orientation="Vertical"
-                CornerRadius="{ThemeResource ControlCornerRadius}"
-                Background="{x:Bind ViewModel.SelectedColor, Mode=OneWay, Converter={StaticResource ColorToBrushConverter}}">
-                <TextBlock
-                    Foreground="Black"
-                    HorizontalAlignment="Center"
-                    Text="{x:Bind ViewModel.Strings.BlackText}"/>
-                <TextBlock
-                    Foreground="White"
-                    HorizontalAlignment="Center"
-                    Text="{x:Bind ViewModel.Strings.WhiteText}"/>
+                x:Name="SettingsStackPanel"
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                Spacing="4">
+                <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Configuration}" />
+
+                <controls:ExpandableSettingControl
+                    Title="{x:Bind ViewModel.Strings.Mode}">
+                    <controls:ExpandableSettingControl.Icon>
+                        <FontIcon Glyph="&#xF2F5;" />
+                    </controls:ExpandableSettingControl.Icon>
+                    <ComboBox
+                        ItemsSource="{x:Bind ViewModel.ColorPickerModes}"
+                        DisplayMemberPath="DisplayName"
+                        SelectedItem="{x:Bind ViewModel.ColorPickerMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    </ComboBox>
+                </controls:ExpandableSettingControl>
             </StackPanel>
-        </StackPanel>
 
-        <StackPanel
-            Grid.Row="2"
-            Spacing="4">
-            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.ColorPicker}" />
+            <Grid
+                x:Name="SelectedColorGrid"
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                RowSpacing="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Grid.Row="0"
+                    Style="{StaticResource SubTitleTextBlock}"
+                    Text="{x:Bind ViewModel.Strings.SelectedColor}"
+                    VerticalAlignment="Top" />
 
-            <muxc:ColorPicker
-                x:Name="ColorPicker"
-                Color="{x:Bind ViewModel.SelectedColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                ColorSpectrumShape="Box"
-                ColorSpectrumComponents="{x:Bind ViewModel.ColorPickerMode.Value, Mode=OneWay}"
-                IsAlphaEnabled="True"
-                IsColorPreviewVisible="False"
-                Orientation="Horizontal"/>
-        </StackPanel>
-    </Grid>
+                <StackPanel
+                    Grid.Row="1"
+                    Spacing="12"
+                    Padding="12"
+                    CornerRadius="{ThemeResource ControlCornerRadius}"
+                    Background="{x:Bind ViewModel.BackgroundColor, Mode=OneWay, Converter={StaticResource ColorToBrushConverter}}">
+                    <TextBlock
+                        Style="{StaticResource TitleTextBlockStyle}"
+                        Foreground="{x:Bind ViewModel.TextColor, Mode=OneWay, Converter={StaticResource ColorToBrushConverter}}"
+                        HorizontalAlignment="Center"
+                        FontSize="18"
+                        Text="{x:Bind ViewModel.Strings.SampleTextTitle}"/>
+                    <TextBlock
+                        Style="{StaticResource BodyTextBlockStyle}"
+                        FontSize="14"
+                        Foreground="{x:Bind ViewModel.TextColor, Mode=OneWay, Converter={StaticResource ColorToBrushConverter}}"
+                        HorizontalAlignment="Center"
+                        Text="{x:Bind ViewModel.Strings.SampleText}"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid
+                x:Name="ContrastRatioGrid"
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                Grid.Column="0"
+                ColumnSpacing="8"
+                RowSpacing="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                    Grid.Row="0"
+                    Grid.ColumnSpan="4"
+                    Style="{StaticResource SubTitleTextBlock}"
+                    Text="{x:Bind ViewModel.Strings.ContrastRatio}"
+                    VerticalAlignment="Top"/>
+                <Border
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    CornerRadius="{ThemeResource ControlCornerRadius}"
+                    Background="{x:Bind ViewModel.WcagAaLevelLargeText, Mode=OneWay, Converter={StaticResource ContrastRatioBooleanToBrushConverter}}">
+                    <Border.BackgroundTransition>
+                        <BrushTransition />
+                    </Border.BackgroundTransition>
+                    <StackPanel
+                        Orientation="Vertical"
+                        Padding="12"
+                        VerticalAlignment="Center">
+                        <TextBlock
+                            Text="{x:Bind ViewModel.Strings.LargeText}"
+                            HorizontalAlignment="Center"
+                            Foreground="White"/>
+                        <TextBlock
+                            Margin="0,4,0,0"
+                            Text="{x:Bind ViewModel.Strings.WCAG_AA}"
+                            Style="{StaticResource SubtitleTextBlockStyle}"
+                            HorizontalAlignment="Center"
+                            Foreground="White"/>
+                        <TextBlock
+                            Margin="0,4,0,0"
+                            Text="{x:Bind ViewModel.Strings.Pass}"
+                            Visibility="{x:Bind ViewModel.WcagAaLevelLargeText, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            HorizontalAlignment="Center"
+                            Foreground="White"/>
+                        <TextBlock
+                            Margin="0,4,0,0"
+                            Text="{x:Bind ViewModel.Strings.Fail}"
+                            Visibility="{x:Bind ViewModel.WcagAaLevelLargeText, Mode=OneWay, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
+                            HorizontalAlignment="Center"
+                            Foreground="White"/>
+                    </StackPanel>
+                </Border>
+                <Border
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    CornerRadius="{ThemeResource ControlCornerRadius}"
+                    Background="{x:Bind ViewModel.WcagAaLevelSmallText, Mode=OneWay, Converter={StaticResource ContrastRatioBooleanToBrushConverter}}">
+                    <Border.BackgroundTransition>
+                        <BrushTransition />
+                    </Border.BackgroundTransition>
+                    <StackPanel
+                        Orientation="Vertical"
+                        Padding="12"
+                        VerticalAlignment="Center">
+                        <TextBlock
+                            Text="{x:Bind ViewModel.Strings.SmallText}"
+                            HorizontalAlignment="Center"
+                            Foreground="White"/>
+                        <TextBlock
+                            Margin="0,4,0,0"
+                            Text="{x:Bind ViewModel.Strings.WCAG_AA}"
+                            Style="{StaticResource SubtitleTextBlockStyle}"
+                            HorizontalAlignment="Center"
+                            Foreground="White"/>
+                        <TextBlock
+                            Margin="0,4,0,0"
+                            Text="{x:Bind ViewModel.Strings.Pass}"
+                            Visibility="{x:Bind ViewModel.WcagAaLevelSmallText, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            HorizontalAlignment="Center"
+                            Foreground="White"/>
+                        <TextBlock
+                            Margin="0,4,0,0"
+                            Text="{x:Bind ViewModel.Strings.Fail}"
+                            Visibility="{x:Bind ViewModel.WcagAaLevelSmallText, Mode=OneWay, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
+                            HorizontalAlignment="Center"
+                            Foreground="White"/>
+                    </StackPanel>
+                </Border>
+                <Border
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    CornerRadius="{ThemeResource ControlCornerRadius}"
+                    Background="{x:Bind ViewModel.WcagAaaLevelLargeText, Mode=OneWay, Converter={StaticResource ContrastRatioBooleanToBrushConverter}}">
+                    <Border.BackgroundTransition>
+                        <BrushTransition />
+                    </Border.BackgroundTransition>
+                    <StackPanel
+                        Orientation="Vertical"
+                        Padding="12"
+                        VerticalAlignment="Center">
+                        <TextBlock
+                            Text="{x:Bind ViewModel.Strings.LargeText}"
+                            HorizontalAlignment="Center"
+                            Foreground="White"/>
+                        <TextBlock
+                            Margin="0,4,0,0"
+                            Text="{x:Bind ViewModel.Strings.WCAG_AAA}"
+                            Style="{StaticResource SubtitleTextBlockStyle}"
+                            HorizontalAlignment="Center"
+                            Foreground="White"/>
+                        <TextBlock
+                            Margin="0,4,0,0"
+                            Text="{x:Bind ViewModel.Strings.Pass}"
+                            Visibility="{x:Bind ViewModel.WcagAaaLevelLargeText, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            HorizontalAlignment="Center"
+                            Foreground="White"/>
+                        <TextBlock
+                            Margin="0,4,0,0"
+                            Text="{x:Bind ViewModel.Strings.Fail}"
+                            Visibility="{x:Bind ViewModel.WcagAaaLevelLargeText, Mode=OneWay, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
+                            HorizontalAlignment="Center"
+                            Foreground="White"/>
+                    </StackPanel>
+                </Border>
+                <Border
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    CornerRadius="{ThemeResource ControlCornerRadius}"
+                    Background="{x:Bind ViewModel.WcagAaaLevelSmallText, Mode=OneWay, Converter={StaticResource ContrastRatioBooleanToBrushConverter}}">
+                    <Border.BackgroundTransition>
+                        <BrushTransition />
+                    </Border.BackgroundTransition>
+                    <StackPanel
+                        Orientation="Vertical"
+                        Padding="12"
+                        VerticalAlignment="Center">
+                        <TextBlock
+                            Text="{x:Bind ViewModel.Strings.SmallText}"
+                            HorizontalAlignment="Center"
+                            Foreground="White"/>
+                        <TextBlock
+                            Margin="0,4,0,0"
+                            Text="{x:Bind ViewModel.Strings.WCAG_AAA}"
+                            Style="{StaticResource SubtitleTextBlockStyle}"
+                            HorizontalAlignment="Center"
+                            Foreground="White"/>
+                        <TextBlock
+                            Margin="0,4,0,0"
+                            Text="{x:Bind ViewModel.Strings.Pass}"
+                            Visibility="{x:Bind ViewModel.WcagAaaLevelSmallText, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            HorizontalAlignment="Center"
+                            Foreground="White"/>
+                        <TextBlock
+                            Margin="0,4,0,0"
+                            Text="{x:Bind ViewModel.Strings.Fail}"
+                            Visibility="{x:Bind ViewModel.WcagAaaLevelSmallText, Mode=OneWay, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
+                            HorizontalAlignment="Center"
+                            Foreground="White"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <StackPanel
+                x:Name="ColorPickerStackPanel"
+                Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Spacing="4"
+                Margin="0,0,0,12">
+                <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.TextColor}" />
+
+                <muxc:ColorPicker
+                    x:Name="ColorPicker"
+                    Color="{x:Bind ViewModel.TextColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    ColorSpectrumShape="Box"
+                    ColorSpectrumComponents="{x:Bind ViewModel.ColorPickerMode.Value, Mode=OneWay}"
+                    IsAlphaEnabled="True"
+                    IsColorPreviewVisible="False"
+                    Orientation="Vertical"
+                    HorizontalAlignment="Left"/>
+            </StackPanel>
+
+            <StackPanel
+                x:Name="ColorPicker2StackPanel"
+                Grid.Row="4"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Spacing="4">
+                <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.BackgroundColor}" />
+
+                <muxc:ColorPicker
+                    x:Name="ColorPicker2"
+                    Color="{x:Bind ViewModel.BackgroundColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    ColorSpectrumShape="Box"
+                    ColorSpectrumComponents="{x:Bind ViewModel.ColorPickerMode.Value, Mode=OneWay}"
+                    IsAlphaEnabled="True"
+                    IsColorPreviewVisible="False"
+                    Orientation="Vertical"
+                    HorizontalAlignment="Left"/>
+            </StackPanel>
+        </Grid>
+    </Border>
 </Page>

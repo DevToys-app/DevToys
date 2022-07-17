@@ -86,9 +86,12 @@
     <Compile Include="UI\Controls\ToolProvidersGridView.xaml.cs">
       <DependentUpon>ToolProvidersGridView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Converters\BooleanToBrushConverter.cs" />
     <Compile Include="UI\Converters\BooleanToDoubleConverter.cs" />
     <Compile Include="UI\Converters\BooleanToIntegerConverter.cs" />
+    <Compile Include="UI\Converters\BooleanToStringConverter.cs" />
     <Compile Include="UI\Converters\ColorToBrushConverter.cs" />
+    <Compile Include="UI\Extensions\ControlSizeTrigger.cs" />
     <Compile Include="UI\MainMenuNavigationViewMenuItemSelector.cs" />
     <Compile Include="ViewModels\Tools\AllTools\AllToolsToolProvider.cs" />
     <Compile Include="ViewModels\Tools\AllTools\AllToolsToolViewModel.cs" />
