@@ -121,13 +121,13 @@
     <value>Hash Generator tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Konfigürasyon</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Hash</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>Girdi</value>
   </data>
   <data name="MD5" xml:space="preserve">
     <value>MD5</value>
