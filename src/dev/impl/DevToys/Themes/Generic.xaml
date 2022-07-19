@@ -8,14 +8,14 @@
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Light">
             <SolidColorBrush x:Key="TextEditorForeground" Color="Black"/>
-
+            
             <!-- REVIEW: If Navigation View Content Grid Border Brush has transparency, it makes WebView being unclickable (can't get focus),
             which breaks Monaco Editor. The line below change the border brush to use a solid one (without transparency). -->
             <StaticResource x:Key="NavigationViewContentGridBorderBrush" ResourceKey="CardStrokeColorDefaultSolidBrush" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="Dark">
             <SolidColorBrush x:Key="TextEditorForeground" Color="#F0F0F0"/>
-
+            
             <!-- REVIEW: If Navigation View Content Grid Border Brush has transparency, it makes WebView being unclickable (can't get focus),
             which breaks Monaco Editor. The line below change the border brush to use a solid one (without transparency). -->
             <StaticResource x:Key="NavigationViewContentGridBorderBrush" ResourceKey="CardStrokeColorDefaultSolidBrush" />
@@ -43,7 +43,7 @@
     <Style TargetType="TextBlock">
         <Setter Property="HighContrastAdjustment" Value="None"/>
     </Style>
-    
+
     <Style TargetType="ToggleSwitch">
         <Setter Property="OnContent" Value="{Binding Instance.Common.ToggleSwitchOn, Mode=OneTime, Source={StaticResource LanguageManager}}"/>
         <Setter Property="OffContent" Value="{Binding Instance.Common.ToggleSwitchOff, Mode=OneTime, Source={StaticResource LanguageManager}}"/>

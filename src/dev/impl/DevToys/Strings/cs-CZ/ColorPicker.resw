@@ -118,25 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Color Picker tool</value>
+    <value>Color Picker and contrast ratio tool</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Color Picker</value>
+    <value>Color Picker &amp; Contrast</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Pick up a color</value>
+    <value>Pick up a color or two and validate the contrast ratio</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Color Picker</value>
+    <value>Color Picker &amp; Contrast</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Checksum Generator</value>
+    <value>RGB WCAG</value>
   </data>
-  <data name="BlackText" xml:space="preserve">
-    <value>Black text</value>
-  </data>
-  <data name="ColorPicker" xml:space="preserve">
-    <value>Color picker</value>
+  <data name="TextColor" xml:space="preserve">
+    <value>Text color</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Konfigurace</value>
@@ -153,7 +150,36 @@
   <data name="SelectedColor" xml:space="preserve">
     <value>Selected color</value>
   </data>
-  <data name="WhiteText" xml:space="preserve">
-    <value>White text</value>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>Background color</value>
+  </data>
+  <data name="ContrastRatio" xml:space="preserve">
+    <value>Contrast ratio</value>
+  </data>
+  <data name="Fail" xml:space="preserve">
+    <value>Fail</value>
+  </data>
+  <data name="LargeText" xml:space="preserve">
+    <value>Large text</value>
+  </data>
+  <data name="Pass" xml:space="preserve">
+    <value>Pass</value>
+  </data>
+  <data name="SampleText" xml:space="preserve">
+    <value>Sit kasd feugait takimata in eirmod sadipscing sanctus consectetuer voluptua dolor dolor dolore rebum.</value>
+    <comment>"Lorem ipsum" text used a sample text for comparing the background color over the text color.</comment>
+  </data>
+  <data name="SampleTextTitle" xml:space="preserve">
+    <value>Lorem ipsum dolor</value>
+    <comment>"Lorem ipsum" text used a sample text for comparing the background color over the text color.</comment>
+  </data>
+  <data name="SmallText" xml:space="preserve">
+    <value>Small text</value>
+  </data>
+  <data name="WCAG_AA" xml:space="preserve">
+    <value>WCAG AA</value>
+  </data>
+  <data name="WCAG_AAA" xml:space="preserve">
+    <value>WCAG AAA</value>
   </data>
 </root>

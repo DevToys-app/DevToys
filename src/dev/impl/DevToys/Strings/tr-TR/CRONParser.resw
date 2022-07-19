@@ -121,7 +121,7 @@
     <value>Cron parsing tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Konfigürasyon</value>
   </data>
   <data name="UseSecondsDescription" xml:space="preserve">
     <value>Choose whatever Cron expression should includes seconds in its definition</value>
