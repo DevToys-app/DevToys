@@ -1,8 +1,11 @@
 ﻿🎉 New Features
-  • Timestamp Converter now supports timezone!
+  • CRON Parser!
+  • XML Validator!
+  • Color Picker & Contrast!
 👏 Improvements
-  • Updated Simplified Chinese translation
-  • Improved the layout of many tools in Picture-in-Picture mode
+  • Added and updated many translations
+  • New option in JSON Formatter, Hash Generator and Settings
+  • Consistent font everywhere
+  • Start-up performance
 🐛 Bug Fixes
-  • Performance issue in Base64 Image Encoder / Decoder
-  • Potential crashes in Base64 Image Encoder / Decoder
+  • Inconsistencies in YAML to JSON Converter and JSON Formatter
