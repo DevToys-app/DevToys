@@ -235,9 +235,9 @@
     <value>Ajude-nos a traduzir o DevToys!</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Substituir texto ao colar</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
+    <value>Ao clicar no botão Colar, limpe o texto antes de colar em vez de adicionar o conteúdo existente ao editor de texto.</value>
   </data>
 </root>
