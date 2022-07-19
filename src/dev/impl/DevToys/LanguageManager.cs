@@ -585,14 +585,9 @@ namespace DevToys
         public string SearchKeywords => _resources.GetString("SearchKeywords");
 
         /// <summary>
-        /// Gets the resource BlackText.
+        /// Gets the resource TextColor.
         /// </summary>
-        public string BlackText => _resources.GetString("BlackText");
-
-        /// <summary>
-        /// Gets the resource ColorPicker.
-        /// </summary>
-        public string ColorPicker => _resources.GetString("ColorPicker");
+        public string TextColor => _resources.GetString("TextColor");
 
         /// <summary>
         /// Gets the resource Configuration.
@@ -620,9 +615,54 @@ namespace DevToys
         public string SelectedColor => _resources.GetString("SelectedColor");
 
         /// <summary>
-        /// Gets the resource WhiteText.
+        /// Gets the resource BackgroundColor.
         /// </summary>
-        public string WhiteText => _resources.GetString("WhiteText");
+        public string BackgroundColor => _resources.GetString("BackgroundColor");
+
+        /// <summary>
+        /// Gets the resource ContrastRatio.
+        /// </summary>
+        public string ContrastRatio => _resources.GetString("ContrastRatio");
+
+        /// <summary>
+        /// Gets the resource Fail.
+        /// </summary>
+        public string Fail => _resources.GetString("Fail");
+
+        /// <summary>
+        /// Gets the resource LargeText.
+        /// </summary>
+        public string LargeText => _resources.GetString("LargeText");
+
+        /// <summary>
+        /// Gets the resource Pass.
+        /// </summary>
+        public string Pass => _resources.GetString("Pass");
+
+        /// <summary>
+        /// Gets the resource SampleText.
+        /// </summary>
+        public string SampleText => _resources.GetString("SampleText");
+
+        /// <summary>
+        /// Gets the resource SampleTextTitle.
+        /// </summary>
+        public string SampleTextTitle => _resources.GetString("SampleTextTitle");
+
+        /// <summary>
+        /// Gets the resource SmallText.
+        /// </summary>
+        public string SmallText => _resources.GetString("SmallText");
+
+        /// <summary>
+        /// Gets the resource WCAG_AA.
+        /// </summary>
+        public string WCAG_AA => _resources.GetString("WCAG_AA");
+
+        /// <summary>
+        /// Gets the resource WCAG_AAA.
+        /// </summary>
+        public string WCAG_AAA => _resources.GetString("WCAG_AAA");
     }
 
     public class CommonStrings : ObservableObject
