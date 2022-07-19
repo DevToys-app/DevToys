@@ -118,28 +118,28 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Color Picker and contrast ratio tool</value>
+    <value>Seleção de cor e proporção do contraste</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Color Picker &amp; Contrast</value>
+    <value>Seleção de cor e contraste</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Pick up a color or two and validate the contrast ratio</value>
+    <value>Escolher uma ou duas cores e validar a relação do contraste</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Color Picker &amp; Contrast</value>
+    <value>Seleção de cor e contraste</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>RGB WCAG</value>
   </data>
   <data name="TextColor" xml:space="preserve">
-    <value>Text color</value>
+    <value>Cor do texto</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Configuração</value>
   </data>
   <data name="Mode" xml:space="preserve">
-    <value>Mode</value>
+    <value>Modo</value>
   </data>
   <data name="ModeHSL" xml:space="preserve">
     <value>HSL</value>
@@ -148,22 +148,22 @@
     <value>HSV</value>
   </data>
   <data name="SelectedColor" xml:space="preserve">
-    <value>Selected color</value>
+    <value>Cor selecionada</value>
   </data>
   <data name="BackgroundColor" xml:space="preserve">
-    <value>Background color</value>
+    <value>Cor de fundo</value>
   </data>
   <data name="ContrastRatio" xml:space="preserve">
-    <value>Contrast ratio</value>
+    <value>Taxa de contraste</value>
   </data>
   <data name="Fail" xml:space="preserve">
-    <value>Fail</value>
+    <value>Falha</value>
   </data>
   <data name="LargeText" xml:space="preserve">
-    <value>Large text</value>
+    <value>Texto grande</value>
   </data>
   <data name="Pass" xml:space="preserve">
-    <value>Pass</value>
+    <value>Passou</value>
   </data>
   <data name="SampleText" xml:space="preserve">
     <value>Sit kasd feugait takimata in eirmod sadipscing sanctus consectetuer voluptua dolor dolor dolore rebum.</value>
@@ -174,12 +174,12 @@
     <comment>"Lorem ipsum" text used a sample text for comparing the background color over the text color.</comment>
   </data>
   <data name="SmallText" xml:space="preserve">
-    <value>Small text</value>
+    <value>Texto pequeno</value>
   </data>
   <data name="WCAG_AA" xml:space="preserve">
     <value>WCAG AA</value>
   </data>
   <data name="WCAG_AAA" xml:space="preserve">
-    <value>WCAG AAA</value>
+    <value>WCAG AA</value>
   </data>
 </root>
