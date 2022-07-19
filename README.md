@@ -63,6 +63,7 @@ Many tools are available.
   - Markdown Preview
 - Graphic
   - Color Blindness Simulator
+  - Color Picker & Contrast
   - PNG / JPEG Compressor
   - Image Converter
 
@@ -140,6 +141,7 @@ Here is the list of tool name you can use:
 - `jsonyaml` - Json <> Yaml
 - `jwt` - JWT Decoder
 - `colorblind` - Color Blindness Simulator
+- `color` - Color Picker & Contrast
 - `imgcomp` - PNG/JPEG compressor
 - `imageconverter` - Image Converter
 - `markdown` - Markdown Preview
