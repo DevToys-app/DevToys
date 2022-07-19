@@ -232,12 +232,12 @@
     <value>配置 設定 選項</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>幫助我們翻譯 DevToys！</value>
+    <value>Help us translating DevToys!</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>貼上時取代文字</value>
+    <value>Replace text when pasting</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>點擊貼上按鈕時，先清除文字，而非直接貼在現有的文字後面。</value>
+    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
   </data>
 </root>
