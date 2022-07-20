@@ -139,7 +139,7 @@
     <value>Bindestriche</value>
   </data>
   <data name="MultiplySymbol" xml:space="preserve">
-    <value>x</value>
+    <value>х</value>
   </data>
   <data name="NumberOfGuidsToGenerate_AutomationProperties_Name" xml:space="preserve">
     <value>Zu generierende Anzahl an UUID(s)</value>
