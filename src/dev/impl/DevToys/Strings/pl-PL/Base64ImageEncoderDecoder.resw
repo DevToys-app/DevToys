@@ -127,7 +127,7 @@
     <value>Base64</value>
   </data>
   <data name="ImageInputTitle" xml:space="preserve">
-    <value>Image</value>
+    <value>Obraz</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Encode and decode Base64 image data</value>
