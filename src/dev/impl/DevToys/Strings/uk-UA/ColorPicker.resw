@@ -124,7 +124,7 @@
     <value>Вибір кольору і контраст</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Pick up a color or two and validate the contrast ratio</value>
+    <value>Обрати колір або два для перевірки співвідношення контрастності</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Вибір кольору і контраст</value>
