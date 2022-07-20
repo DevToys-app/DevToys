@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>UUID Generator tool</value>
+    <value>UUID Oluşturma aracı</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Konfigürasyon</value>
@@ -127,25 +127,25 @@
     <value>UUID</value>
   </data>
   <data name="Generate" xml:space="preserve">
-    <value>Generate</value>
+    <value>Oluştur</value>
   </data>
   <data name="GenerateButton" xml:space="preserve">
-    <value>Generate UUID(s)</value>
+    <value>UUID(ler) oluştur</value>
   </data>
   <data name="Guids" xml:space="preserve">
-    <value>UUID(s)</value>
+    <value>UUID(ler)</value>
   </data>
   <data name="Hyphens" xml:space="preserve">
-    <value>Hyphens</value>
+    <value>Tireler</value>
   </data>
   <data name="MultiplySymbol" xml:space="preserve">
     <value>x</value>
   </data>
   <data name="NumberOfGuidsToGenerate_AutomationProperties_Name" xml:space="preserve">
-    <value>Number of UUID to generate</value>
+    <value>Oluşturulacak UUID sayısı</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
-    <value>Uppercase</value>
+    <value>Büyük harf</value>
   </data>
   <data name="UuidVersionFour" xml:space="preserve">
     <value>4 (GUID)</value>
