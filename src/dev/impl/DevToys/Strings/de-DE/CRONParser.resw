@@ -124,51 +124,51 @@
     <value>Konfiguration</value>
   </data>
   <data name="UseSecondsDescription" xml:space="preserve">
-    <value>Choose whatever Cron expression should includes seconds in its definition</value>
+    <value>Wähle ob der Cron-Ausdruck Sekunden in der Definition enthalten soll</value>
   </data>
   <data name="UseSecondsTitle" xml:space="preserve">
-    <value>Cron Mode</value>
+    <value>Cron Modus</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Cron parser</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Parse Cron expression to get scheduled dates</value>
+    <value>Parse Cron Ausdruck, um geplante Daten zu erhalten</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Cron expression parser</value>
+    <value>Cron-Ausdruck Parser</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>Cron</value>
   </data>
   <data name="CronErrorMessage" xml:space="preserve">
-    <value>Cron expression is not valid</value>
+    <value>Cron-Ausdruck ungültig</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>Cron expression to parse</value>
+    <value>Cron-Ausdruck zum Parsen</value>
   </data>
   <data name="OutputDateTimeDescription" xml:space="preserve">
-    <value>Date time fomat of upcoming dates</value>
+    <value>Datumsformat derkommenden Daten</value>
   </data>
   <data name="OutputDateTimeTitle" xml:space="preserve">
-    <value>Output format</value>
+    <value>Ausgabeformat</value>
   </data>
   <data name="OutputFormatErrorMessage" xml:space="preserve">
-    <value>Output date time format is not valid</value>
+    <value>Datumzeit Format der Ausgabe ungültig</value>
   </data>
   <data name="OutputLimitDescription" xml:space="preserve">
-    <value>How many scheduled dates needs to be generated</value>
+    <value>Wieviele geplante Daten generiert werden sollen</value>
   </data>
   <data name="OutputLimitTitle" xml:space="preserve">
-    <value>Next scheduled dates</value>
+    <value>Nächste geplante Daten</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Next scheduled dates</value>
+    <value>Nächste geplante Daten</value>
   </data>
   <data name="SecondsExcludedMode" xml:space="preserve">
-    <value>Standard mode (5 - segment Cron)</value>
+    <value>Standardmodus (5-Segment Cron)</value>
   </data>
   <data name="SecondsIncludedMode" xml:space="preserve">
-    <value>Seconds included (6 - segment Cron)</value>
+    <value>Sekunden enthalten (6 - Segment Cron)</value>
   </data>
 </root>
