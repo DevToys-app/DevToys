@@ -118,46 +118,46 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Bytes" xml:space="preserve">
-    <value>Bytes</value>
+    <value>Bayt</value>
   </data>
   <data name="Clear" xml:space="preserve">
-    <value>Clear</value>
+    <value>Temizle</value>
   </data>
   <data name="Copy" xml:space="preserve">
-    <value>Copy</value>
+    <value>Kopyala</value>
   </data>
   <data name="Cut" xml:space="preserve">
-    <value>Cut</value>
+    <value>Kes</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Sil</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
-    <value>Browse files</value>
+    <value>Dosyalara gözat</value>
   </data>
   <data name="FileSelectorBrowseFolders" xml:space="preserve">
-    <value>Browse folders</value>
+    <value>Klasörlere göz at</value>
   </data>
   <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>Drag &amp; drop any file here</value>
+    <value>Herhangi bir dosyayı buraya sürükleyip bırakın</value>
   </data>
   <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
-    <value>Drag &amp; drop any files here</value>
+    <value>Herhangi dosyaları buraya sürükleyip bırakın</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
-    <value>Drag &amp; drop a {0} file here</value>
+    <value>Buraya bir {0} dosyası sürükleyip bırakın</value>
     <comment>{0} is a single file extension like "PNG"</comment>
   </data>
   <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
-    <value>Drag &amp; drop any {0} files here</value>
+    <value>Buraya {0} dosyaları sürükleyip bırakın</value>
     <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
-    <value>Only {0} file(s) can be used.</value>
+    <value>Yalnızca {0} dosyaları kullanılabilir.</value>
     <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorOr" xml:space="preserve">
-    <value>or</value>
+    <value>ya da</value>
   </data>
   <data name="Gigabytes" xml:space="preserve">
     <value>GB</value>
@@ -169,46 +169,46 @@
     <value>MB</value>
   </data>
   <data name="Ok" xml:space="preserve">
-    <value>OK</value>
+    <value>Tamam</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
-    <value>Load a file</value>
+    <value>Dosyadan yükle</value>
   </data>
   <data name="Paste" xml:space="preserve">
-    <value>Paste</value>
+    <value>Yapıştır</value>
   </data>
   <data name="Redo" xml:space="preserve">
-    <value>Redo</value>
+    <value>Yinele</value>
   </data>
   <data name="Refresh" xml:space="preserve">
-    <value>Refresh</value>
+    <value>Yenile</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>Save as</value>
+    <value>Farklı kaydet</value>
   </data>
   <data name="SelectAll" xml:space="preserve">
-    <value>Select all</value>
+    <value>Tümünü seç</value>
   </data>
   <data name="Terabytes" xml:space="preserve">
     <value>TB</value>
   </data>
   <data name="ToggleSwitchOff" xml:space="preserve">
-    <value>Off</value>
+    <value>Kapalı</value>
   </data>
   <data name="ToggleSwitchOn" xml:space="preserve">
-    <value>On</value>
+    <value>Açık</value>
   </data>
   <data name="UnableOpenFile" xml:space="preserve">
-    <value>Unable to open this file</value>
+    <value>Dosya açılamadı</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>Unable to load the file '{0}'. Only textual files can be opened. For more details, please check the log.</value>
+    <value>'{0}' dosyası açılamadı. Yalnızca metin dosyaları açılabilir. Daha fazla ayrıntı için lütfen günlüğe bakın.</value>
   </data>
   <data name="Undo" xml:space="preserve">
-    <value>Undo</value>
+    <value>Geri al</value>
   </data>
   <data name="ViewImage" xml:space="preserve">
-    <value>View</value>
+    <value>Görüntüle</value>
     <comment>In the context of "view / display an image".</comment>
   </data>
 </root>
