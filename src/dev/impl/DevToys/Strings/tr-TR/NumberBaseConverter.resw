@@ -118,40 +118,40 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Number Base Converter tool</value>
+    <value>Sayı Tabanı Dönüştürme aracı</value>
   </data>
   <data name="BinaryLabel" xml:space="preserve">
-    <value>Binary</value>
+    <value>İkili</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
     <value>Konfigürasyon</value>
   </data>
   <data name="DecimalLabel" xml:space="preserve">
-    <value>Decimal</value>
+    <value>Onluk</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Number Base</value>
+    <value>Sayı Tabanı</value>
   </data>
   <data name="Format" xml:space="preserve">
-    <value>Format number</value>
+    <value>Sayıyı biçimlendir</value>
   </data>
   <data name="HexadecimalLabel" xml:space="preserve">
-    <value>Hexadecimal</value>
+    <value>Onaltılık</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>Girdi</value>
   </data>
   <data name="InputTypeBinary" xml:space="preserve">
-    <value>Binary</value>
+    <value>İkili</value>
   </data>
   <data name="InputTypeDecimal" xml:space="preserve">
-    <value>Decimal</value>
+    <value>Onluk</value>
   </data>
   <data name="InputTypeDescription" xml:space="preserve">
     <value>Select which input type you want to use</value>
   </data>
   <data name="InputTypeHexadecimal" xml:space="preserve">
-    <value>Hexadecimal</value>
+    <value>Onaltılık</value>
   </data>
   <data name="InputTypeOctal" xml:space="preserve">
     <value>Octal</value>
