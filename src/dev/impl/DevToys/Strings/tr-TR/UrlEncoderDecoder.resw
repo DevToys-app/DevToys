@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>URL Encoder and Decoder tool</value>
+    <value>URL Kodlama ve Çözümleme aracı</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
     <value>Konfigürasyon</value>
