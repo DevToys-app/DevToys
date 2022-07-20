@@ -121,7 +121,7 @@
     <value>String Utilities Werkzeug</value>
   </data>
   <data name="AlternatingCase" xml:space="preserve">
-    <value>aLtErNaTiNg cAsE</value>
+    <value>aLtErNiErEnD</value>
   </data>
   <data name="Bytes" xml:space="preserve">
     <value>Bytes:</value>
@@ -142,7 +142,7 @@
     <value>Spalte:</value>
   </data>
   <data name="ConstantCase" xml:space="preserve">
-    <value>CONSTANT_CASE</value>
+    <value>KAPITÄLCHEN</value>
   </data>
   <data name="Convert" xml:space="preserve">
     <value>Konvertieren</value>
@@ -151,7 +151,7 @@
     <value>Inspektor &amp; Case Konvertierer</value>
   </data>
   <data name="InverseCase" xml:space="preserve">
-    <value>InVeRsE CaSe</value>
+    <value>InVerTiErT</value>
   </data>
   <data name="KebabCase" xml:space="preserve">
     <value>kebab-case</value>
@@ -163,7 +163,7 @@
     <value>Zeilen:</value>
   </data>
   <data name="LowerCase" xml:space="preserve">
-    <value>lower case</value>
+    <value>Kleinbuchstaben</value>
   </data>
   <data name="OriginalCase" xml:space="preserve">
     <value>Originaler Text</value>
@@ -181,7 +181,7 @@
     <value>Auswahl</value>
   </data>
   <data name="SentenceCase" xml:space="preserve">
-    <value>Sentence case</value>
+    <value>Satzfall</value>
   </data>
   <data name="Sentences" xml:space="preserve">
     <value>Sätze:</value>
@@ -193,16 +193,16 @@
     <value>Statistik</value>
   </data>
   <data name="String" xml:space="preserve">
-    <value>String</value>
+    <value>Text</value>
   </data>
   <data name="TitleCase" xml:space="preserve">
-    <value>Title Case</value>
+    <value>Wortanfänge groß</value>
   </data>
   <data name="TrainCase" xml:space="preserve">
     <value>Train-Case</value>
   </data>
   <data name="UpperCase" xml:space="preserve">
-    <value>UPPER CASE</value>
+    <value>Großbuchstaben</value>
   </data>
   <data name="WordDistribution" xml:space="preserve">
     <value>Wortverteilung</value>
@@ -217,6 +217,6 @@
     <value>Text Case Konvertierer und Inspektor</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>String</value>
+    <value>Text</value>
   </data>
 </root>
