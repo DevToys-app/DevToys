@@ -118,22 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Regular expression tester tool</value>
+    <value>Düzenli ifade (Regex) test aracı</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Konfigürasyon</value>
   </data>
   <data name="CultureInvariant" xml:space="preserve">
-    <value>Culture Invariant</value>
+    <value>Kültürden Bağımsız</value>
   </data>
   <data name="CultureInvariantDescription" xml:space="preserve">
-    <value>Specifies that cultural differences in language is ignored.</value>
+    <value>Dildeki kültürel değişimlerin yoksayıldığını belirtir.</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Regex Tester</value>
+    <value>Regex Test Edici</value>
   </data>
   <data name="EcmaScript" xml:space="preserve">
-    <value>ECMA Script</value>
+    <value>ECMA Betiği</value>
   </data>
   <data name="EcmaScriptDescription" xml:space="preserve">
     <value>Enables ECMAScript-compliant behavior for the expression. This value can be used only in conjunction with the Culture Invariant, Ignore Case and Multiline options.</value>
@@ -181,7 +181,7 @@
     <value>Validate and test regular expressions</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Regex Tester</value>
+    <value>Regex Test Edici</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>Regular expression</value>
