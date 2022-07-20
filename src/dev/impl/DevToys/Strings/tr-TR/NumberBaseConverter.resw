@@ -124,7 +124,7 @@
     <value>İkili</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>Konfigürasyon</value>
+    <value>Yapılandırma</value>
   </data>
   <data name="DecimalLabel" xml:space="preserve">
     <value>Onluk</value>
@@ -148,56 +148,56 @@
     <value>Onluk</value>
   </data>
   <data name="InputTypeDescription" xml:space="preserve">
-    <value>Select which input type you want to use</value>
+    <value>Kullanacağınız girdi türünü seçin</value>
   </data>
   <data name="InputTypeHexadecimal" xml:space="preserve">
     <value>Onaltılık</value>
   </data>
   <data name="InputTypeOctal" xml:space="preserve">
-    <value>Octal</value>
+    <value>Sekizli</value>
   </data>
   <data name="InputTypeTitle" xml:space="preserve">
-    <value>Input type</value>
+    <value>Girdi türü</value>
   </data>
   <data name="OctalLabel" xml:space="preserve">
-    <value>Octal</value>
+    <value>Sekizli</value>
   </data>
   <data name="ValueInvalid" xml:space="preserve">
-    <value>The current value isn't a valid {0}</value>
+    <value>Şu anki değer geçerli bir {0} değil</value>
     <comment>The parameter is the Base Number Type (Decimal, Octal, ...)</comment>
   </data>
   <data name="ValueOverflow" xml:space="preserve">
-    <value>The current value cannot be converted as it exceeds the maximum value ({0})</value>
+    <value>Şu anki değer dönüştürülemiyor çünkü azami değeri aşıyor ({0})</value>
     <comment>The parameter is the Max value of a long</comment>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Convert numbers from one base to another</value>
+    <value>Sayıları bir tabandan diğerine dönüştür</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Number Base Converter</value>
+    <value>Sayı Tabanı Dönüştürücüsü</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Binary Octal Decimal Hexadecimal</value>
+    <value>İkili Sekizli Onluk Onaltılık</value>
   </data>
   <data name="AdvancedModeLabel" xml:space="preserve">
-    <value>Advanced mode</value>
+    <value>Gelişmiş mod</value>
   </data>
   <data name="InputDictionaryLabel" xml:space="preserve">
-    <value>Input dictionary</value>
+    <value>Girdi sözlüğü</value>
   </data>
   <data name="OutputDictionaryLabel" xml:space="preserve">
-    <value>Output dictionary</value>
+    <value>Çıktı sözlüğü</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Çıktı</value>
   </data>
   <data name="BaseNumberError" xml:space="preserve">
-    <value>Base number should be greater than 1.</value>
+    <value>Taban sayısı 1'den büyük olmalı.</value>
   </data>
   <data name="DictionarySizeError" xml:space="preserve">
-    <value>Dictionary size should be greater than 1.</value>
+    <value>Sözlük boyutu 1'den büyük olmalı.</value>
   </data>
   <data name="IncompatibleBaseDictionaryError" xml:space="preserve">
-    <value>Dictionary size could not be smaller than the base number.</value>
+    <value>Sözlük boyutu, taban sayısından küçük olamaz.</value>
   </data>
 </root>
