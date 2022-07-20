@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Timestamp converter tool</value>
+    <value>Zaman damgası dönüştürme aracı</value>
   </data>
   <data name="TimeZoneTitle" xml:space="preserve">
-    <value>Time zone</value>
+    <value>Saat dilimi</value>
   </data>
   <data name="DaylightSavingTime" xml:space="preserve">
-    <value>Daylight saving time.</value>
+    <value>Günışığından yararlanma saati.</value>
   </data>
   <data name="DayTitle" xml:space="preserve">
-    <value>Day</value>
+    <value>Gün</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Convert timestamp to human-readable date and vice versa</value>
+    <value>Zaman damgasını insan tarafından okunabilir duruma getir, ve tam tersi</value>
   </data>
   <data name="DisabledDaylightSavingTime" xml:space="preserve">
     <value>Gün ışığından yararlanma saati yok.</value>
@@ -163,7 +163,7 @@
     <value>Unix Zaman Damgası Dönüştürücü</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Time Date Timezone Epoch</value>
+    <value>Saat Tarih Saatdilimi Devir</value>
     <comment>Alternative search keywords. Enables searching for words that are not included in Description, MenuDisplayName, and SearchDisplayName.</comment>
   </data>
   <data name="SecondsTitle" xml:space="preserve">
