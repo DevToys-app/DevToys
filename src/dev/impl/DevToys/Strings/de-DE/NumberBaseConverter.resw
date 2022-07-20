@@ -177,27 +177,27 @@
     <value>Zahlensystem Konvertierer</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Binary Octal Decimal Hexadecimal</value>
+    <value>Binär Oktal Dezimal Hexadezimal</value>
   </data>
   <data name="AdvancedModeLabel" xml:space="preserve">
-    <value>Advanced mode</value>
+    <value>Erweiterter Modus</value>
   </data>
   <data name="InputDictionaryLabel" xml:space="preserve">
-    <value>Input dictionary</value>
+    <value>Eingabewörterbuch</value>
   </data>
   <data name="OutputDictionaryLabel" xml:space="preserve">
-    <value>Output dictionary</value>
+    <value>Ausgabewörterbuch</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Ausgabe</value>
   </data>
   <data name="BaseNumberError" xml:space="preserve">
-    <value>Base number should be greater than 1.</value>
+    <value>Basisnummer sollte größer als 1 sein.</value>
   </data>
   <data name="DictionarySizeError" xml:space="preserve">
-    <value>Dictionary size should be greater than 1.</value>
+    <value>Wörterbuchgröße sollte größer als 1 sein.</value>
   </data>
   <data name="IncompatibleBaseDictionaryError" xml:space="preserve">
-    <value>Dictionary size could not be smaller than the base number.</value>
+    <value>Wörterbuchgröße kann nicht kleiner als die Basiszahl sein.</value>
   </data>
 </root>
