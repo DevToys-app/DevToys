@@ -133,10 +133,10 @@
     <value>Usuń</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
-    <value>Browse files</value>
+    <value>Przeglądaj pliki</value>
   </data>
   <data name="FileSelectorBrowseFolders" xml:space="preserve">
-    <value>Browse folders</value>
+    <value>Przeglądaj foldery</value>
   </data>
   <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
     <value>Drag &amp; drop any file here</value>
