@@ -121,13 +121,13 @@
     <value>PNG and JPEG compressor tool</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>İptal</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Konfigürasyon</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Sil</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
     <value>Delete all</value>
@@ -143,22 +143,22 @@
     <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
   </data>
   <data name="OK" xml:space="preserve">
-    <value>OK</value>
+    <value>Tamam</value>
   </data>
   <data name="SaveAll" xml:space="preserve">
-    <value>Save all</value>
+    <value>Tümünü kaydet</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>Save as</value>
+    <value>Farklı kaydet</value>
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
-    <value>See details</value>
+    <value>Ayrıntıları gör</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Lossless PNG and JPEG optimizer</value>
+    <value>Kayıpsız PNG ve JPEG optimize edici</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>PNG / JPEG Compressor</value>
+    <value>PNG / JPEG Sıkıştırıcı</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>JPG</value>
