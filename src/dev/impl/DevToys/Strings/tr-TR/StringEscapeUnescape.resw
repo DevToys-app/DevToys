@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Text Escape and Unescape tool</value>
+    <value>Metin İçin Kaçış Karakteri Ekleme / Çıkarma aracı</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Escape / Unescape</value>
+    <value>Kaçış Karakteri Ekle / Çıkar</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
     <value>Çıktı</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Escapes or unescapes a string, removing characters that could prevent parsing.</value>
+    <value>Bir dizeye kaçış karakteri ekler veya dizeden çıkarır, işlemeyi önleyecek karakterleri ortadan kaldırır.</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Text Escape / Unescape</value>
+    <value>Metin İçin Kaçış Karakteri Ekle / Çıkar</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
