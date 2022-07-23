@@ -133,7 +133,7 @@
     <value>Kodowanie i dekodowanie danych obrazów Base64</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Base64 Image Encoder / Decoder</value>
+    <value>Kodowanie / Dekodowanie obrazów Base64</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>RFC 4648</value>
