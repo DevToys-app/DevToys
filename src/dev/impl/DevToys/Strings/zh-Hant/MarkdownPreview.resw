@@ -130,7 +130,7 @@
     <value>Markdown 預覽</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Markdown</value>
+    <value>Markdown 文本输入</value>
   </data>
   <data name="Light" xml:space="preserve">
     <value>亮色</value>
