@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Checksum Generator tool</value>
+    <value>Narzędzie generowania sum kontrolnych</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Anuluj</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Konfiguracja</value>
@@ -133,13 +133,13 @@
     <value>Select which hashing algorithm you want to use</value>
   </data>
   <data name="HashingAlgorithmTitle" xml:space="preserve">
-    <value>Hashing Algorithm</value>
+    <value>Funkcja skrótu</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>Wejście</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Checksum</value>
+    <value>Suma kontrolna</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Wyjście</value>
@@ -157,9 +157,9 @@
     <value></value>
   </data>
   <data name="HashesMatch" xml:space="preserve">
-    <value>The hashes are the same.</value>
+    <value>Hashe są identyczne.</value>
   </data>
   <data name="HashesMismatch" xml:space="preserve">
-    <value>The hashes are different.</value>
+    <value>Hashe są różne.</value>
   </data>
 </root>

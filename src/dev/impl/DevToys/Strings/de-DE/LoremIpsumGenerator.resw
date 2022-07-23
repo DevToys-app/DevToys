@@ -148,7 +148,7 @@
     <value>Sätze</value>
   </data>
   <data name="StartWithLoremTitle" xml:space="preserve">
-    <value>Start with 'Lorem ipsum dolor sit amet...'</value>
+    <value>Beginne mit 'Lorem ipsum dolor sit amet...'</value>
   </data>
   <data name="TypeDescription" xml:space="preserve">
     <value>Generiere Wörter, Sätze oder Absätze mit Lorem Ipsum Text</value>

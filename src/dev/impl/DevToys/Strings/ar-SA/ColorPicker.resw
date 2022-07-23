@@ -133,7 +133,7 @@
     <value>RGB WCAG</value>
   </data>
   <data name="TextColor" xml:space="preserve">
-    <value>Text color</value>
+    <value>لون النص</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>الإعدادات</value>
@@ -151,16 +151,16 @@
     <value>اللون المحدد</value>
   </data>
   <data name="BackgroundColor" xml:space="preserve">
-    <value>Background color</value>
+    <value>لون الخلفية</value>
   </data>
   <data name="ContrastRatio" xml:space="preserve">
     <value>Contrast ratio</value>
   </data>
   <data name="Fail" xml:space="preserve">
-    <value>Fail</value>
+    <value>فشل</value>
   </data>
   <data name="LargeText" xml:space="preserve">
-    <value>Large text</value>
+    <value>نص كبير</value>
   </data>
   <data name="Pass" xml:space="preserve">
     <value>Pass</value>

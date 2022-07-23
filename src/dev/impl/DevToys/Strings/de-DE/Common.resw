@@ -145,15 +145,15 @@
     <value>Dateien hier ablegen</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
-    <value>Drag &amp; drop a {0} file here</value>
+    <value>{0}-Datei hier ablegen</value>
     <comment>{0} is a single file extension like "PNG"</comment>
   </data>
   <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
-    <value>Drag &amp; drop any {0} files here</value>
+    <value>{0}-Dateien hier ablegen</value>
     <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
-    <value>Only {0} file(s) can be used.</value>
+    <value>Nur {0} Datei(en) können verwendet werden.</value>
     <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorOr" xml:space="preserve">
@@ -202,7 +202,7 @@
     <value>Nicht möglich diese Datei zu öffnen</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>Unable to load the file '{0}'. Only textual files can be opened. For more details, please check the log.</value>
+    <value>Datei '{0}' kann nicht geladen werden. Es können nur Textdateien geöffnet werden. Für weitere Details bitte das Log überprüfen.</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>Rückgängig</value>

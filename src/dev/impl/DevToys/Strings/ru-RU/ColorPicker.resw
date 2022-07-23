@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Color Picker and contrast ratio tool</value>
+    <value>Инструмент выбора цвета и контрастности</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Color Picker &amp; Contrast</value>
@@ -151,7 +151,7 @@
     <value>Выбранный цвет</value>
   </data>
   <data name="BackgroundColor" xml:space="preserve">
-    <value>Background color</value>
+    <value>Цвет фона</value>
   </data>
   <data name="ContrastRatio" xml:space="preserve">
     <value>Контраст</value>

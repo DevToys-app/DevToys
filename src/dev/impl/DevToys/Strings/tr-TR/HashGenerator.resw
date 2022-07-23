@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Hash Generator tool</value>
+    <value>Hash Oluşturma Aracı</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Konfigürasyon</value>
+    <value>Yapılandırma</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Hash</value>
@@ -142,30 +142,30 @@
     <value>SHA512</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
-    <value>Uppercase</value>
+    <value>Büyük harf</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Calculate MD5, SHA1, SHA256 and SHA512 hash from text data</value>
+    <value>Metin verisinden MD5, SHA1, SHA256 ve SHA512 hash'lerini hesapla</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Hash Generator</value>
+    <value>Hash Oluşturucu</value>
   </data>
   <data name="OutputBase64" xml:space="preserve">
     <value>Base64</value>
   </data>
   <data name="OutputHex" xml:space="preserve">
-    <value>Hex</value>
+    <value>Onaltılık</value>
   </data>
   <data name="OutputTypeTitle" xml:space="preserve">
-    <value>Output Type</value>
+    <value>Çıktı Türü</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
   </data>
   <data name="HmacMode" xml:space="preserve">
-    <value>HMAC Mode</value>
+    <value>HMAC Modu</value>
   </data>
   <data name="SecretKey" xml:space="preserve">
-    <value>Secret Key</value>
+    <value>Gizli Anahtar</value>
   </data>
 </root>

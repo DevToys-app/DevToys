@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Base64 Metin Kodlayıcı ve Kod Çözücü aracı</value>
+    <value>Base64 Metin Kodlama ve Çözümleme aracı</value>
   </data>
   <data name="Ascii" xml:space="preserve">
     <value>ASCII</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>Konfigürasyon</value>
+    <value>Yapılandırma</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
     <value>Çöz</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Kullanacağınız dönüştürme yöntemini seçiniz</value>
+    <value>Kullanacağınız dönüştürme yöntemini seçin</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
     <value>Kodla</value>
@@ -142,7 +142,7 @@
     <value>Base64 Metin</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
-    <value>Kullanacağınız dönüştürme yöntemini seçiniz</value>
+    <value>Kullanacağınız kodlama yöntemini seçin</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
     <value>Kodlama</value>
@@ -157,10 +157,10 @@
     <value>UTF-8</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Base64 metin verisini kodla ve kodunu çöz</value>
+    <value>Base64 metin verisini kodla ve çözümle</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Base64 Metin Kodlayıcı / Kod Çözücü</value>
+    <value>Base64 Metin Kodlayıcı / Çözümleyici</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>RFC 4648</value>
