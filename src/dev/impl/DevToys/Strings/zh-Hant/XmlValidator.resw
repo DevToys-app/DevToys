@@ -127,7 +127,7 @@
     <value>XSD</value>
   </data>
   <data name="XmlData" xml:space="preserve">
-    <value>XML</value>
+    <value>可擴展標記語言（XML）</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>使用 XSD 配置驗證 XML 資料。</value>
