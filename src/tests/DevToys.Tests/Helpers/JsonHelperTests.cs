@@ -73,7 +73,9 @@ namespace DevToys.Tests.Helpers
         }
 
         [DataTestMethod]
-        [DataRow("{\"Email\":\"john@mail.com\",\"Website\":\"http://samplewebsite.com\",\"Name\":\"John Smith\",\"Phone\":\"(50)345872\"}", "{\"Email\":\"john@mail.com\",\"Name\":\"John Smith\",\"Phone\":\"(50)345872\",\"Website\":\"http://samplewebsite.com\"}")]
+        [DataRow(
+            "{\"a\": \"asdf\", \"c\" : 545, \"b\": 33, \"array\": [{\"a\": \"asdf\", \"c\" : 545, \"b\": 33, \"array\": []}]}",
+            "{\"a\":\"asdf\",\"array\":[{\"a\":\"asdf\",\"array\":[],\"b\":33,\"c\":545}],\"b\":33,\"c\":545}")]
         public void FormatSortPropertiesAlphabetically(string input, string expectedResult)
         {
             Assert.AreEqual(expectedResult, JsonHelper.Format(input, Indentation.Minified, sortProperties: true));

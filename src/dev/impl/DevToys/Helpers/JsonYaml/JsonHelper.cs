@@ -213,6 +213,16 @@ namespace DevToys.Helpers.JsonYaml
                 {
                     SortJsonPropertiesAlphabetically(obj);
                 }
+                else if (property.Value is JArray array)
+                {
+                    foreach (JToken? arrayItem in array)
+                    {
+                        if (arrayItem is JObject arrayObj)
+                        {
+                            SortJsonPropertiesAlphabetically(arrayObj);
+                        }
+                    }
+                }
             }
         }
     }
