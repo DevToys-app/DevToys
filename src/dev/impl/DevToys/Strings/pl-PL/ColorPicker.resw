@@ -163,7 +163,7 @@
     <value>Duży tekst</value>
   </data>
   <data name="Pass" xml:space="preserve">
-    <value>Przejdź</value>
+    <value>Zaliczony</value>
   </data>
   <data name="SampleText" xml:space="preserve">
     <value>Sit kasd feugait takimata in eirmod sadipscing sanctus consectetuer voluptua dolor dolor dolore rebum.</value>
@@ -174,12 +174,12 @@
     <comment>"Lorem ipsum" text used a sample text for comparing the background color over the text color.</comment>
   </data>
   <data name="SmallText" xml:space="preserve">
-    <value>Small text</value>
+    <value>Mały tekst</value>
   </data>
   <data name="WCAG_AA" xml:space="preserve">
     <value>WCAG AA</value>
   </data>
   <data name="WCAG_AAA" xml:space="preserve">
-    <value>WCAG AAA</value>
+    <value>WCAG AA</value>
   </data>
 </root>
