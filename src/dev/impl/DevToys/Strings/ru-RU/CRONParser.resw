@@ -154,21 +154,21 @@
     <value>Формат вывода</value>
   </data>
   <data name="OutputFormatErrorMessage" xml:space="preserve">
-    <value>Output date time format is not valid</value>
+    <value>Некорректный формат даты вывода</value>
   </data>
   <data name="OutputLimitDescription" xml:space="preserve">
-    <value>How many scheduled dates needs to be generated</value>
+    <value>Сколько запланированных дат нужно сгенерировать</value>
   </data>
   <data name="OutputLimitTitle" xml:space="preserve">
     <value>Next scheduled dates</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Next scheduled dates</value>
+    <value>Следующие запланированные даты</value>
   </data>
   <data name="SecondsExcludedMode" xml:space="preserve">
     <value>Стандартный режим (5ти сегментный Cron)</value>
   </data>
   <data name="SecondsIncludedMode" xml:space="preserve">
-    <value>Seconds included (6 - segment Cron)</value>
+    <value>Секунды включены (6 - сегмент)</value>
   </data>
 </root>
