@@ -121,13 +121,13 @@
     <value>Text Escape and Unescape tool</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Escape / Unescape</value>
+    <value>Экранирование / Дезэкранирование</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
     <value>Вывод</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Escapes or unescapes a string, removing characters that could prevent parsing.</value>
+    <value>Экранирование или дезэкранирование строки, удаление символов которые могут помешать парсингу.</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Text Escape / Unescape</value>
@@ -140,13 +140,13 @@
     <value>Установки</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
-    <value>Unescape</value>
+    <value>Дезэкранировать</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
     <value>Выберите режим преобразования</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
-    <value>Escape</value>
+    <value>Экранировать</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
     <value>Преобразование</value>
