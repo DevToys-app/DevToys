@@ -121,13 +121,13 @@
     <value>Инструмент выбора цвета и контрастности</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Color Picker &amp; Contrast</value>
+    <value>Подбор цвета и контраста</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Pick up a color or two and validate the contrast ratio</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Color Picker &amp; Contrast</value>
+    <value>Подбор цвета и контраста</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>RGB WCAG</value>
