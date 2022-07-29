@@ -133,7 +133,7 @@
     <value>Generar UUID(s)</value>
   </data>
   <data name="Guids" xml:space="preserve">
-    <value>UUID(s)</value>
+    <value>UUID (s)</value>
   </data>
   <data name="Hyphens" xml:space="preserve">
     <value>Guiones</value>
