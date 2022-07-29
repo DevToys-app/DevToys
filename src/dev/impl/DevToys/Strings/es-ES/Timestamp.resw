@@ -176,15 +176,15 @@
     <value>Marca de tiempo</value>
   </data>
   <data name="UTCDateTime" xml:space="preserve">
-    <value>UTC Date and Time</value>
+    <value>Fecha y Hora en huso de Hora Coordinada Universal-UTC-</value>
   </data>
   <data name="UtcTicksTitle" xml:space="preserve">
     <value>UtcTicks</value>
   </data>
   <data name="YearTitle" xml:space="preserve">
-    <value>Year</value>
+    <value>Año</value>
   </data>
   <data name="Now" xml:space="preserve">
-    <value>Now</value>
+    <value>Ahora</value>
   </data>
 </root>
