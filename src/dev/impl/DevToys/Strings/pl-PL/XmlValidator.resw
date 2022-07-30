@@ -130,15 +130,15 @@
     <value>XML</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Validate XML data via an XSD scheme.</value>
+    <value>Zatwierdź dane XML za pomocą schematu XSD.</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>XML Validator</value>
   </data>
   <data name="ValidationImpossibleMsg" xml:space="preserve">
-    <value>XML and XSD content must be set in order to perform a validation.</value>
+    <value>Zawartość XML i XSD musi być ustawiona w celu przeprowadzenia walidacji.</value>
   </data>
   <data name="XmlIsValidMessage" xml:space="preserve">
-      <value>XML is compliant to the defined XSD scheme.</value>
+      <value>XML jest zgodny z określonym schematem XSD.</value>
   </data>
 </root>

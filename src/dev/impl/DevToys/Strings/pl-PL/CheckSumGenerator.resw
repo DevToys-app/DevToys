@@ -127,10 +127,10 @@
     <value>Konfiguracja</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generate a hash with Checksum based on a file</value>
+    <value>Wygeneruj skrót z sumą kontrolną na podstawie pliku</value>
   </data>
   <data name="HashingAlgorithmDescription" xml:space="preserve">
-    <value>Select which hashing algorithm you want to use</value>
+    <value>Wybierz algorytm enkodowania, którego chcesz użyć</value>
   </data>
   <data name="HashingAlgorithmTitle" xml:space="preserve">
     <value>Funkcja skrótu</value>
@@ -145,13 +145,13 @@
     <value>Wyjście</value>
   </data>
   <data name="OutputComparer" xml:space="preserve">
-    <value>Output Comparer</value>
+    <value>Porównywarka danych wyjściowych</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Checksum Generator</value>
+    <value>Narzędzie generowania sum kontrolnych</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
-    <value>Uppercase</value>
+    <value>Wielka litera</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>

@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Text Escape and Unescape tool</value>
+    <value>Herramienta de Escapar y No escapar caracteres</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Escape / Unescape</value>
+    <value>Escapar / No escapar</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
     <value>Resultado</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Escapes or unescapes a string, removing characters that could prevent parsing.</value>
+    <value>Escapar o no escapar una cadena de caracteres, eliminando caracteres que podrían omitir el análisis.</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Text Escape / Unescape</value>
+    <value>Escapar / No escapar caracteres</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
@@ -140,13 +140,13 @@
     <value>Configuración</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
-    <value>Unescape</value>
+    <value>No escapar</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
     <value>Selecciona el modo de conversión que deseas utilizar</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
-    <value>Escape</value>
+    <value>Escapar</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
     <value>Conversión</value>
