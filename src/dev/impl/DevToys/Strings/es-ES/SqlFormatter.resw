@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>SQL Formatter tool</value>
+    <value>Herramienta de Formatear SQL</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Configuración</value>
@@ -136,7 +136,7 @@
     <value>Entrada</value>
   </data>
   <data name="OneTab" xml:space="preserve">
-    <value>1 tab</value>
+    <value>1 tabulación</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Resultado</value>
@@ -145,10 +145,10 @@
     <value>2 espacios</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Indent SQL queries</value>
+    <value>Sangrar las consultas SQL</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>SQL Formatter</value>
+    <value>Formateador SQL</value>
   </data>
   <data name="SqlLanguage" xml:space="preserve">
     <value>Lenguaje</value>
@@ -172,18 +172,18 @@
     <value>PostgreSQL</value>
   </data>
   <data name="SqlLanguageRedShift" xml:space="preserve">
-    <value>Amazon Redshift</value>
+    <value>Redshift de Amazon</value>
   </data>
   <data name="SqlLanguageSpark" xml:space="preserve">
-    <value>Spark SQL</value>
+    <value>SQL Spark</value>
   </data>
   <data name="SqlLanguageSql" xml:space="preserve">
-    <value>Standard SQL</value>
+    <value>SQL Estándar</value>
   </data>
   <data name="SqlLanguageTsql" xml:space="preserve">
     <value>Transact-SQL</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Db2 MariaDB MySQL N1QL PL/SQL PostgreSQL Amazon Redshift Spark SQL Standard SQL Transact-SQL</value>
+    <value>Db2 MariaDB MySQL N1QL PL/SQL PostgreSQL Redshift de Amazon Spark SQL SQL Estándar Transact-SQL</value>
   </data>
 </root>

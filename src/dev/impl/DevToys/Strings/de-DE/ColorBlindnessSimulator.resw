@@ -121,13 +121,13 @@
     <value>Farbenblindheit-Simulationswerkzeug</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Farbenblindheits Simulator</value>
+    <value>Farbenblindheitssimulator</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Simuliere Farbenblindheit auf einem Bild oder Screenshot</value>
+    <value>Farbenblindheit auf einem Bild oder Screenshot simulieren</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Farbenblindheits Simulator</value>
+    <value>Farbenblindheitssimulator</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Abbrechen</value>

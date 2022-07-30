@@ -127,7 +127,7 @@
     <value>Bytes:</value>
   </data>
   <data name="CamelCase" xml:space="preserve">
-    <value>camelCase</value>
+    <value>capitalizaciónCamello</value>
   </data>
   <data name="CharacterDistribution" xml:space="preserve">
     <value>Distribución de Caracteres</value>
@@ -136,13 +136,13 @@
     <value>Caracteres:</value>
   </data>
   <data name="CobolCase" xml:space="preserve">
-    <value>COBOL-CASE</value>
+    <value>COBOL-CAPITALIZACION</value>
   </data>
   <data name="Column" xml:space="preserve">
     <value>Columnas:</value>
   </data>
   <data name="ConstantCase" xml:space="preserve">
-    <value>CONSTANT_CASE</value>
+    <value>CAPITALIZACION_CONSTANTES</value>
   </data>
   <data name="Convert" xml:space="preserve">
     <value>Convertir</value>
@@ -154,7 +154,7 @@
     <value>InVeRtIr MaYúScUlAs Y mInÚsCuLaS</value>
   </data>
   <data name="KebabCase" xml:space="preserve">
-    <value>kebab-case</value>
+    <value>capitalización-kebab</value>
   </data>
   <data name="Line" xml:space="preserve">
     <value>Línea:</value>
@@ -172,7 +172,7 @@
     <value>Párrafos:</value>
   </data>
   <data name="PascalCase" xml:space="preserve">
-    <value>PascalCase</value>
+    <value>CapitalizaciónPascal</value>
   </data>
   <data name="Position" xml:space="preserve">
     <value>Posición:</value>
@@ -181,25 +181,25 @@
     <value>Selección</value>
   </data>
   <data name="SentenceCase" xml:space="preserve">
-    <value>Sentence case</value>
+    <value>Capitalización frase</value>
   </data>
   <data name="Sentences" xml:space="preserve">
     <value>Oraciones:</value>
   </data>
   <data name="SnakeCase" xml:space="preserve">
-    <value>snake_case</value>
+    <value>capitalización_serpiente</value>
   </data>
   <data name="Statistics" xml:space="preserve">
     <value>Estadísticas</value>
   </data>
   <data name="String" xml:space="preserve">
-    <value>String</value>
+    <value>Cadena de texto</value>
   </data>
   <data name="TitleCase" xml:space="preserve">
-    <value>Title Case</value>
+    <value>Capitalización Título</value>
   </data>
   <data name="TrainCase" xml:space="preserve">
-    <value>Train-Case</value>
+    <value>Capitalización-Tren</value>
   </data>
   <data name="UpperCase" xml:space="preserve">
     <value>MAYÚSCULA</value>
@@ -217,6 +217,6 @@
     <value>Inspector y Conversor de Texto</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>String</value>
+    <value>Cadena de texto</value>
   </data>
 </root>

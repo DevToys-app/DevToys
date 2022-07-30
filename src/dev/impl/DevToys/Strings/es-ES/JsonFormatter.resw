@@ -139,7 +139,7 @@
     <value>Minificado</value>
   </data>
   <data name="OneTab" xml:space="preserve">
-    <value>1 tab</value>
+    <value>1 tabulación</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Resultado</value>
@@ -157,6 +157,6 @@
     <value></value>
   </data>
   <data name="SortProperties" xml:space="preserve">
-    <value>Sort JSON properties alphabetically</value>
+    <value>Ordenar propiedades JSON alfabéticamente</value>
   </data>
 </root>
