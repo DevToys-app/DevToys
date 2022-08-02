@@ -3248,5 +3248,10 @@ namespace DevToys
         /// Gets the resource XmlIsValidMessage.
         /// </summary>
         public string XmlIsValidMessage => _resources.GetString("XmlIsValidMessage");
+
+        /// <summary>
+        /// Gets the resource SearchKeywords.
+        /// </summary>
+        public string SearchKeywords => _resources.GetString("SearchKeywords");
     }
 }
