@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Composition;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using DevToys.Api.Core;
@@ -196,6 +197,16 @@ namespace DevToys.ViewModels.Tools.RegEx
             }
         }
 
+        internal IList<Match> Matches
+        {
+            get => _matches ?? Array.Empty<Match>();
+            set
+            {
+                SetProperty(ref _matches, value);
+            }
+        }
+        private IList<Match>? _matches;
+
         internal ICustomTextBox? MatchTextBox { private get; set; }
 
         [ImportingConstructor]
@@ -235,14 +246,13 @@ namespace DevToys.ViewModels.Tools.RegEx
             while (_regExMatchingQueue.TryDequeue(out (string pattern, string text) data))
             {
                 var spans = new List<HighlightSpan>();
-
+                MatchCollection? matches = null;
                 try
                 {
                     string? pattern = data.pattern.Trim('/');
 
                     var regex = new Regex(data.pattern, GetOptions());
-                    MatchCollection matches = regex.Matches(data.text);
-
+                    matches = regex.Matches(data.text);
                     foreach (Match match in matches)
                     {
                         int lineCount = CountLines(data.text, match.Index);
@@ -261,11 +271,13 @@ namespace DevToys.ViewModels.Tools.RegEx
                     // TODO: indicate the user that the regex is wrong.
                 }
 
+
                 ThreadHelper.RunOnUIThreadAsync(
                     ThreadPriority.Low,
                     () =>
                     {
                         MatchTextBox?.SetHighlights(spans);
+                        Matches = matches?.ToList();
 
                         if (spans.Count > 0 && !_toolSuccessfullyWorked)
                         {
