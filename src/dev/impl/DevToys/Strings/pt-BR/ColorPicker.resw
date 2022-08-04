@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Ferramenta de seleção de cores e taxa de contraste</value>
+    <value>Ferramenta de seleção de cores e relação de contraste</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Seletor de cores e contraste</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Pick up a color or two and validate the contrast ratio</value>
+    <value>Selecione uma ou duas cores para validação da relação de contraste</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Seletor de cores e contraste</value>
@@ -151,13 +151,13 @@
     <value>Cor selecionada</value>
   </data>
   <data name="BackgroundColor" xml:space="preserve">
-    <value>Cor do plano de fundo</value>
+    <value>Cor de fundo</value>
   </data>
   <data name="ContrastRatio" xml:space="preserve">
-    <value>Taxa de contraste</value>
+    <value>Relação de contraste</value>
   </data>
   <data name="Fail" xml:space="preserve">
-    <value>Reprovado</value>
+    <value>Falhou</value>
   </data>
   <data name="LargeText" xml:space="preserve">
     <value>Texto grande</value>
