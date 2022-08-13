@@ -133,7 +133,7 @@
     <value>Encode and decode Base64 image data</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Base64 Image Encoder / Decoder</value>
+    <value>Base64 Picture Encoder / Decoder</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>RFC 4648</value>
