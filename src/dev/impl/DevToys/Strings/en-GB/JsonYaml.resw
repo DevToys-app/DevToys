@@ -136,13 +136,13 @@
     <value>4 spaces</value>
   </data>
   <data name="Indentation" xml:space="preserve">
-    <value>Indentation</value>
+    <value>Indent(s)</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>Input</value>
   </data>
   <data name="InvalidYaml" xml:space="preserve">
-    <value>The entered YAML is invalid.</value>
+    <value>The entered YAML is not valid.</value>
   </data>
   <data name="JsonToYaml" xml:space="preserve">
     <value>JSON to YAML</value>
@@ -163,6 +163,6 @@
     <value>JSON &lt;&gt; YAML Converter</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value>[empty string]</value>
   </data>
 </root>
