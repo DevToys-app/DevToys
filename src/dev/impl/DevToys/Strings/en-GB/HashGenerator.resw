@@ -142,7 +142,7 @@
     <value>SHA512</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
-    <value>Uppercase</value>
+    <value>Upper case</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Calculate MD5, SHA1, SHA256 and SHA512 hash from text data</value>
@@ -160,7 +160,7 @@
     <value>Output Type</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value>[empty string]</value>
   </data>
   <data name="HmacMode" xml:space="preserve">
     <value>HMAC Mode</value>
