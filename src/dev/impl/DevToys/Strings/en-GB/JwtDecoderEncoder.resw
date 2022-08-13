@@ -139,6 +139,6 @@
     <value>JWT Decoder</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value>[empty string]</value>
   </data>
 </root>
