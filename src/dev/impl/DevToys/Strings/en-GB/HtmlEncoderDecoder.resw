@@ -151,6 +151,6 @@
     <value>HTML Encoder / Decoder</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>[empty string]</value>
+    <value></value>
   </data>
 </root>
