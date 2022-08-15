@@ -207,6 +207,28 @@ namespace DevToys.ViewModels.Tools.RegEx
         }
         private IList<Match>? _matches;
 
+        private string? _inputValue;
+        internal string? InputValue
+        {
+            get => _inputValue;
+            set
+            {
+                SetProperty(ref _inputValue, value);
+                QueueRegExMatch();
+            }
+        }
+
+        private string? _outputValue;
+        internal string? OutputValue
+        {
+            get => _outputValue;
+            set
+            {
+                SetProperty(ref _outputValue, value);
+                QueueRegExMatch();
+            }
+        }
+
         internal ICustomTextBox? MatchTextBox { private get; set; }
 
         [ImportingConstructor]
@@ -247,11 +269,12 @@ namespace DevToys.ViewModels.Tools.RegEx
             {
                 var spans = new List<HighlightSpan>();
                 MatchCollection? matches = null;
+                Regex? regex = null;
                 try
                 {
                     string? pattern = data.pattern.Trim('/');
 
-                    var regex = new Regex(data.pattern, GetOptions());
+                    regex = new Regex(data.pattern, GetOptions());
                     matches = regex.Matches(data.text);
                     foreach (Match match in matches)
                     {
@@ -278,6 +301,10 @@ namespace DevToys.ViewModels.Tools.RegEx
                     {
                         MatchTextBox?.SetHighlights(spans);
                         Matches = matches?.ToList();
+                        if (InputValue != null)
+                        {
+                            OutputValue = regex?.Replace(data.text, InputValue);
+                        }
 
                         if (spans.Count > 0 && !_toolSuccessfullyWorked)
                         {

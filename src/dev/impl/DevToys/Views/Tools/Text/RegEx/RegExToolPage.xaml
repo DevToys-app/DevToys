@@ -30,6 +30,7 @@
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="5" />
+            <RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
 
@@ -120,7 +121,7 @@
 			Background="Black" />
 		<toolkit:DataGrid
 			x:Name="MatchDetails"
-			Grid.Row="4"
+			Grid.Row="5"
 			AutoGenerateColumns="False"
 			BorderThickness="1"
 			CellStyle="{StaticResource GridStyle}"
@@ -176,5 +177,56 @@
 				</toolkit:DataGridTemplateColumn>
 			</toolkit:DataGrid.Columns>
 		</toolkit:DataGrid>
-	</Grid>
+        <StackPanel Grid.Row="4" Spacing="4">
+            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="Replacement" />
+
+            <controls:ExpandableSettingControl Title="Replacement Pattern">
+                <controls:ExpandableSettingControl.Icon>
+                    <FontIcon Glyph="&#xF18D;" />
+                </controls:ExpandableSettingControl.Icon>
+                <controls:ExpandableSettingControl.ExpandableContent>
+
+
+
+
+
+                        <Grid x:Name="RootGrid" RowSpacing="12" Margin="0,0,0,16">
+                            <Grid.ChildrenTransitions>
+                                <TransitionCollection>
+                                    <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
+                                </TransitionCollection>
+                            </Grid.ChildrenTransitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+
+                            <controls:CustomTextBox
+            Grid.Row="0"
+            MinHeight="150"
+            AcceptsReturn="True"
+            Header="{x:Bind ViewModel.Strings.InputTitle}"
+            Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <controls:CustomTextBox
+            Grid.Row="1"
+            MinHeight="150"
+            IsReadOnly="True"
+            AcceptsReturn="True"
+            Header="{x:Bind ViewModel.Strings.OutputTitle}"
+            Text="{x:Bind ViewModel.OutputValue, Mode=OneWay}"/>
+
+                        </Grid>
+
+
+
+
+
+                </controls:ExpandableSettingControl.ExpandableContent>
+            </controls:ExpandableSettingControl>
+        </StackPanel>
+
+    </Grid>
 </Page>
