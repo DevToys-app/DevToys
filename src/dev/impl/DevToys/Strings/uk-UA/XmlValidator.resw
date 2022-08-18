@@ -139,6 +139,9 @@
     <value>Вміст XML та XSD має відповідати вимогам для виконання перевірки.</value>
   </data>
   <data name="XmlIsValidMessage" xml:space="preserve">
-      <value>XML є сумісним з визначеною схемою XSD.</value>
+    <value>XML є сумісним з визначеною схемою XSD.</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>XML XSD Validate</value>
   </data>
 </root>
