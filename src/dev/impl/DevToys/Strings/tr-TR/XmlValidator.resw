@@ -139,6 +139,9 @@
     <value>Doğrulama gerçekleştirmek için XML ve XSD içeriği ayarlanmış olmalıdır.</value>
   </data>
   <data name="XmlIsValidMessage" xml:space="preserve">
-      <value>XML, belirlenen XSD şemasına uyumludur.</value>
+    <value>XML, belirlenen XSD şemasına uyumludur.</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>XML XSD Validate</value>
   </data>
 </root>
