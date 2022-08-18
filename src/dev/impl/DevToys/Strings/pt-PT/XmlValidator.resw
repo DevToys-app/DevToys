@@ -142,6 +142,6 @@
     <value>O XML é compatível com o esquema XSD definido.</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>XML XSD Validate</value>
+    <value>Validar XML XSD</value>
   </data>
 </root>
