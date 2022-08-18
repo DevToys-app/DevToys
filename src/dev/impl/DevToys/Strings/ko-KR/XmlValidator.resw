@@ -142,6 +142,6 @@
     <value>XML은 정의된 XSD 체계를 준수합니다.</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>XML XSD Validate</value>
+    <value>XML XSD 유효성 검사</value>
   </data>
 </root>
