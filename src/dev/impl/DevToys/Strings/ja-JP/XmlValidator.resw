@@ -139,6 +139,9 @@
     <value>検証を行うには、XSD および XML の内容を入力する必要があります。</value>
   </data>
   <data name="XmlIsValidMessage" xml:space="preserve">
-      <value>XML は、定義された XSD スキームに準拠しています。</value>
+    <value>XML は、定義された XSD スキームに準拠しています。</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>XML XSD Validate</value>
   </data>
 </root>

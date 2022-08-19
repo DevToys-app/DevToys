@@ -139,6 +139,9 @@
     <value>Le XML et XSD doit être défini pour effectuer une validation.</value>
   </data>
   <data name="XmlIsValidMessage" xml:space="preserve">
-      <value>Le XML est conforme au schéma XSD défini.</value>
+    <value>Le XML est conforme au schéma XSD défini.</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>XML XSD Validate</value>
   </data>
 </root>

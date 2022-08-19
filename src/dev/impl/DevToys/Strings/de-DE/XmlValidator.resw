@@ -139,6 +139,9 @@
     <value>XML und XSD Inhalte müssen gesetzt sein, um eine Validierung durchzuführen.</value>
   </data>
   <data name="XmlIsValidMessage" xml:space="preserve">
-      <value>XML entspricht dem definierten XSD-Schema.</value>
+    <value>XML entspricht dem definierten XSD-Schema.</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>XML XSD Validate</value>
   </data>
 </root>
