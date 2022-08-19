@@ -139,6 +139,9 @@
     <value>유효성 검사를 수행하려면 XML 및 XSD 콘텐츠를 설정해야 합니다.</value>
   </data>
   <data name="XmlIsValidMessage" xml:space="preserve">
-      <value>XML은 정의된 XSD 체계를 준수합니다.</value>
+    <value>XML은 정의된 XSD 체계를 준수합니다.</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>XML XSD 유효성 검사</value>
   </data>
 </root>

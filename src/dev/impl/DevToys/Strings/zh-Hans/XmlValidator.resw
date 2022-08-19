@@ -139,6 +139,9 @@
     <value>必须设置 XML 和 XSD 内容才能进行校验。</value>
   </data>
   <data name="XmlIsValidMessage" xml:space="preserve">
-      <value>XML 符合已定义的 XSD 约束。</value>
+    <value>XML 符合已定义的 XSD 约束。</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>XML XSD Validate</value>
   </data>
 </root>
