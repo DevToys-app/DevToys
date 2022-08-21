@@ -30,6 +30,7 @@
     <Compile Include="Core\OOP\AppService.cs" />
     <Compile Include="Core\QueueWorkerViewModelBase.cs" />
     <Compile Include="Core\Threading\AsyncLazy.cs" />
+    <Compile Include="Helpers\Base64Helper.cs" />
     <Compile Include="Helpers\JsonYaml\Core\BooleanYamlTypeResolver.cs" />
     <Compile Include="Helpers\StorageFileHelper.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
@@ -74,12 +75,15 @@
     <Compile Include="Models\HashingAlgorithmDisplayPair.cs" />
     <Compile Include="Models\HashingProgress.cs" />
     <Compile Include="Models\InfoBarData.cs" />
+    <Compile Include="Models\JwtAlgorithm.cs" />
+    <Compile Include="Models\JwtAlgorithmDisplayPair.cs" />
     <Compile Include="Models\NumberBaseDictionary.cs" />
     <Compile Include="Models\SqlLanguageDisplayPair.cs" />
     <Compile Include="Models\NoResultFoundMockToolProvider.cs" />
     <Compile Include="Models\Radix.cs" />
     <Compile Include="Models\NumberBaseFormat.cs" />
     <Compile Include="Models\TileIconSizeDefinition.cs" />
+    <Compile Include="Models\ValidationBase.cs" />
     <Compile Include="UI\Controls\FileSelector.xaml.cs">
       <DependentUpon>FileSelector.xaml</DependentUpon>
     </Compile>
@@ -114,6 +118,14 @@
     <Compile Include="Helpers\JsonYaml\Core\DecimalJsonConverter.cs" />
     <Compile Include="Helpers\JsonYaml\Core\DecimalYamlTypeResolver.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\EncodersDecodersGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtDecoderControlViewModel.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtDecoderEncoderSettings.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtDecoderEncoderViewModel.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtEncoderControlViewModel.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtJobAddedMessage.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtPayloadConverter.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtToolJobItem.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtToolSwitchedMessage.cs" />
     <Compile Include="ViewModels\Tools\Formatters\XmlFormatter\XmlFormatterToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Formatters\XmlFormatter\XmlFormatterToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Formatters\SqlFormatter\SqlFormatterToolProvider.cs" />
@@ -172,6 +184,12 @@
     </Compile>
     <Compile Include="Views\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolPage.xaml.cs">
       <DependentUpon>GZipEncoderDecoderToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\EncodersDecoders\JwtDecoderEncoder\JwtDecoderControl.xaml.cs">
+      <DependentUpon>JwtDecoderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\EncodersDecoders\JwtDecoderEncoder\JwtEncoderControl.xaml.cs">
+      <DependentUpon>JwtEncoderControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\Formatters\XmlFormatter\XmlFormatterToolPage.xaml.cs">
       <DependentUpon>XmlFormatterToolPage.xaml</DependentUpon>
@@ -553,6 +571,14 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Page Include="Views\Tools\EncodersDecoders\JwtDecoderEncoder\JwtDecoderControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\EncodersDecoders\JwtDecoderEncoder\JwtEncoderControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Tools\Graphic\ColorPicker\ColorPickerToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -742,6 +768,7 @@
     <PackageReference Include="Microsoft.UI.Xaml" Version="$(NuGet_MicrosoftUIXaml)" />
     <PackageReference Include="Newtonsoft.Json" Version="$(NuGet_NewtonsoftJson)" />
     <PackageReference Include="NLipsum" Version="$(NuGet_NLipsum)" />
+    <PackageReference Include="BouncyCastle.NetCore" Version="$(NuGet_BouncyCastleNetCore)" />
     <PackageReference Include="System.Composition" Version="$(NuGet_DotNet)" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="$(NuGet_IdentityModelTokenJwt)" />
     <PackageReference Include="YamlDotNet" Version="$(NuGet_YamlDotNet)" />

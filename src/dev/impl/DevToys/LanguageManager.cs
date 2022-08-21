@@ -1577,14 +1577,14 @@ namespace DevToys
         public string AccessibleName => _resources.GetString("AccessibleName");
 
         /// <summary>
-        /// Gets the resource MenuDisplayName.
+        /// Gets the resource DisplayName.
         /// </summary>
-        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
+        public string DisplayName => _resources.GetString("DisplayName");
 
         /// <summary>
-        /// Gets the resource HeaderLabel.
+        /// Gets the resource JwtHeaderLabel.
         /// </summary>
-        public string HeaderLabel => _resources.GetString("HeaderLabel");
+        public string JwtHeaderLabel => _resources.GetString("JwtHeaderLabel");
 
         /// <summary>
         /// Gets the resource JwtTokenLabel.
@@ -1592,9 +1592,9 @@ namespace DevToys
         public string JwtTokenLabel => _resources.GetString("JwtTokenLabel");
 
         /// <summary>
-        /// Gets the resource PayloadLabel.
+        /// Gets the resource JwtPayloadLabel.
         /// </summary>
-        public string PayloadLabel => _resources.GetString("PayloadLabel");
+        public string JwtPayloadLabel => _resources.GetString("JwtPayloadLabel");
 
         /// <summary>
         /// Gets the resource Description.
@@ -1602,14 +1602,199 @@ namespace DevToys
         public string Description => _resources.GetString("Description");
 
         /// <summary>
-        /// Gets the resource SearchDisplayName.
-        /// </summary>
-        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
-
-        /// <summary>
         /// Gets the resource SearchKeywords.
         /// </summary>
         public string SearchKeywords => _resources.GetString("SearchKeywords");
+
+        /// <summary>
+        /// Gets the resource Algorithm.
+        /// </summary>
+        public string Algorithm => _resources.GetString("Algorithm");
+
+        /// <summary>
+        /// Gets the resource DecodeSwitchModeLabel.
+        /// </summary>
+        public string DecodeSwitchModeLabel => _resources.GetString("DecodeSwitchModeLabel");
+
+        /// <summary>
+        /// Gets the resource DecodeValidateTokenLabel.
+        /// </summary>
+        public string DecodeValidateTokenLabel => _resources.GetString("DecodeValidateTokenLabel");
+
+        /// <summary>
+        /// Gets the resource DecodeValidateTokenNoLabel.
+        /// </summary>
+        public string DecodeValidateTokenNoLabel => _resources.GetString("DecodeValidateTokenNoLabel");
+
+        /// <summary>
+        /// Gets the resource DecodeValidateTokenYesLabel.
+        /// </summary>
+        public string DecodeValidateTokenYesLabel => _resources.GetString("DecodeValidateTokenYesLabel");
+
+        /// <summary>
+        /// Gets the resource EncodeExpirationTitle.
+        /// </summary>
+        public string EncodeExpirationTitle => _resources.GetString("EncodeExpirationTitle");
+
+        /// <summary>
+        /// Gets the resource EncodeExpirationMonthLabel.
+        /// </summary>
+        public string EncodeExpirationMonthLabel => _resources.GetString("EncodeExpirationMonthLabel");
+
+        /// <summary>
+        /// Gets the resource EncodeExpirationYearLabel.
+        /// </summary>
+        public string EncodeExpirationYearLabel => _resources.GetString("EncodeExpirationYearLabel");
+
+        /// <summary>
+        /// Gets the resource EncodeHashingTitle.
+        /// </summary>
+        public string EncodeHashingTitle => _resources.GetString("EncodeHashingTitle");
+
+        /// <summary>
+        /// Gets the resource EncodeSettingsTitle.
+        /// </summary>
+        public string EncodeSettingsTitle => _resources.GetString("EncodeSettingsTitle");
+
+        /// <summary>
+        /// Gets the resource EncodeSwitchModeLabel.
+        /// </summary>
+        public string EncodeSwitchModeLabel => _resources.GetString("EncodeSwitchModeLabel");
+
+        /// <summary>
+        /// Gets the resource SettingsSwitchModeLabel.
+        /// </summary>
+        public string SettingsSwitchModeLabel => _resources.GetString("SettingsSwitchModeLabel");
+
+        /// <summary>
+        /// Gets the resource SettingsTitle.
+        /// </summary>
+        public string SettingsTitle => _resources.GetString("SettingsTitle");
+
+        /// <summary>
+        /// Gets the resource EncodeDefaultTimeTitle.
+        /// </summary>
+        public string EncodeDefaultTimeTitle => _resources.GetString("EncodeDefaultTimeTitle");
+
+        /// <summary>
+        /// Gets the resource EncodeExpirationDaysLabel.
+        /// </summary>
+        public string EncodeExpirationDaysLabel => _resources.GetString("EncodeExpirationDaysLabel");
+
+        /// <summary>
+        /// Gets the resource EncodeExpirationHoursLabel.
+        /// </summary>
+        public string EncodeExpirationHoursLabel => _resources.GetString("EncodeExpirationHoursLabel");
+
+        /// <summary>
+        /// Gets the resource EncodeExpirationMinutesLabel.
+        /// </summary>
+        public string EncodeExpirationMinutesLabel => _resources.GetString("EncodeExpirationMinutesLabel");
+
+        /// <summary>
+        /// Gets the resource PrivateKeyLabel.
+        /// </summary>
+        public string PrivateKeyLabel => _resources.GetString("PrivateKeyLabel");
+
+        /// <summary>
+        /// Gets the resource SignatureLabel.
+        /// </summary>
+        public string SignatureLabel => _resources.GetString("SignatureLabel");
+
+        /// <summary>
+        /// Gets the resource JwtIsValidMessage.
+        /// </summary>
+        public string JwtIsValidMessage => _resources.GetString("JwtIsValidMessage");
+
+        /// <summary>
+        /// Gets the resource InvalidPublicKeyError.
+        /// </summary>
+        public string InvalidPublicKeyError => _resources.GetString("InvalidPublicKeyError");
+
+        /// <summary>
+        /// Gets the resource JwtInValidMessage.
+        /// </summary>
+        public string JwtInValidMessage => _resources.GetString("JwtInValidMessage");
+
+        /// <summary>
+        /// Gets the resource DecodeValidateActorLabel.
+        /// </summary>
+        public string DecodeValidateActorLabel => _resources.GetString("DecodeValidateActorLabel");
+
+        /// <summary>
+        /// Gets the resource DecodeValidateAudienceLabel.
+        /// </summary>
+        public string DecodeValidateAudienceLabel => _resources.GetString("DecodeValidateAudienceLabel");
+
+        /// <summary>
+        /// Gets the resource DecodeValidateIssuerLabel.
+        /// </summary>
+        public string DecodeValidateIssuerLabel => _resources.GetString("DecodeValidateIssuerLabel");
+
+        /// <summary>
+        /// Gets the resource DecodeValidateLifetimeLabel.
+        /// </summary>
+        public string DecodeValidateLifetimeLabel => _resources.GetString("DecodeValidateLifetimeLabel");
+
+        /// <summary>
+        /// Gets the resource ValidAudiencesLabel.
+        /// </summary>
+        public string ValidAudiencesLabel => _resources.GetString("ValidAudiencesLabel");
+
+        /// <summary>
+        /// Gets the resource ValidIssuersLabel.
+        /// </summary>
+        public string ValidIssuersLabel => _resources.GetString("ValidIssuersLabel");
+
+        /// <summary>
+        /// Gets the resource DecodeValidationSettingsDescription.
+        /// </summary>
+        public string DecodeValidationSettingsDescription => _resources.GetString("DecodeValidationSettingsDescription");
+
+        /// <summary>
+        /// Gets the resource DecodeValidationSettingsTitle.
+        /// </summary>
+        public string DecodeValidationSettingsTitle => _resources.GetString("DecodeValidationSettingsTitle");
+
+        /// <summary>
+        /// Gets the resource ValidAudiencesError.
+        /// </summary>
+        public string ValidAudiencesError => _resources.GetString("ValidAudiencesError");
+
+        /// <summary>
+        /// Gets the resource ValidIssuersError.
+        /// </summary>
+        public string ValidIssuersError => _resources.GetString("ValidIssuersError");
+
+        /// <summary>
+        /// Gets the resource PublicKeyIsPrivateKeyError.
+        /// </summary>
+        public string PublicKeyIsPrivateKeyError => _resources.GetString("PublicKeyIsPrivateKeyError");
+
+        /// <summary>
+        /// Gets the resource EncodeAudienceLabel.
+        /// </summary>
+        public string EncodeAudienceLabel => _resources.GetString("EncodeAudienceLabel");
+
+        /// <summary>
+        /// Gets the resource EncodeIssuerLabel.
+        /// </summary>
+        public string EncodeIssuerLabel => _resources.GetString("EncodeIssuerLabel");
+
+        /// <summary>
+        /// Gets the resource EncodeSettingsDescription.
+        /// </summary>
+        public string EncodeSettingsDescription => _resources.GetString("EncodeSettingsDescription");
+
+        /// <summary>
+        /// Gets the resource InvalidPrivateKeyError.
+        /// </summary>
+        public string InvalidPrivateKeyError => _resources.GetString("InvalidPrivateKeyError");
+
+        /// <summary>
+        /// Gets the resource PublicKeyLabel.
+        /// </summary>
+        public string PublicKeyLabel => _resources.GetString("PublicKeyLabel");
     }
 
     public class LoremIpsumGeneratorStrings : ObservableObject
