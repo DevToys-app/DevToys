@@ -142,6 +142,6 @@
     <value>XML 符合已定义的 XSD 约束。</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>XML XSD Validate</value>
+    <value>XML XSD 校验</value>
   </data>
 </root>
