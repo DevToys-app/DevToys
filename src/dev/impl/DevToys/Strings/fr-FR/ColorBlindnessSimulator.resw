@@ -145,6 +145,6 @@
     <value>Simulation de tritanopie</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value>[chaîne de caractères vide]</value>
   </data>
 </root>
