@@ -154,7 +154,7 @@
     <value>Majuscule</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value>[chaîne de caractères vide]</value>
   </data>
   <data name="HashesMatch" xml:space="preserve">
     <value>Les hashs sont les mêmes.</value>
