@@ -1577,9 +1577,14 @@ namespace DevToys
         public string AccessibleName => _resources.GetString("AccessibleName");
 
         /// <summary>
-        /// Gets the resource DisplayName.
+        /// Gets the resource MenuDisplayName.
         /// </summary>
-        public string DisplayName => _resources.GetString("DisplayName");
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
 
         /// <summary>
         /// Gets the resource JwtHeaderLabel.
@@ -1790,6 +1795,11 @@ namespace DevToys
         /// Gets the resource InvalidPrivateKeyError.
         /// </summary>
         public string InvalidPrivateKeyError => _resources.GetString("InvalidPrivateKeyError");
+
+        /// <summary>
+        /// Gets the resource InvalidSignatureError.
+        /// </summary>
+        public string InvalidSignatureError => _resources.GetString("InvalidSignatureError");
 
         /// <summary>
         /// Gets the resource PublicKeyLabel.

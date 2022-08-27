@@ -19,9 +19,9 @@ namespace DevToys.ViewModels.Tools.JwtDecoderEncoder
     {
         private readonly IMefProvider _mefProvider;
 
-        public string MenuDisplayName => LanguageManager.Instance.JwtDecoderEncoder.DisplayName;
+        public string MenuDisplayName => LanguageManager.Instance.JwtDecoderEncoder.MenuDisplayName;
 
-        public string? SearchDisplayName => LanguageManager.Instance.JwtDecoderEncoder.DisplayName;
+        public string? SearchDisplayName => LanguageManager.Instance.JwtDecoderEncoder.SearchDisplayName;
 
         public string? Description => LanguageManager.Instance.JwtDecoderEncoder.Description;
 

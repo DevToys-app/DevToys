@@ -1,4 +1,6 @@
-﻿using DevToys.Api.Core.Settings;
+﻿#nullable enable
+
+using DevToys.Api.Core.Settings;
 using DevToys.Models;
 
 namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
@@ -98,11 +100,29 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         /// <summary>
         /// Define if the token has a default time
         /// </summary>
+        public static readonly SettingDefinition<string?> ValidAudiences
+            = new(
+                name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(ValidAudiences)}",
+                isRoaming: true,
+                defaultValue: string.Empty);
+
+        /// <summary>
+        /// Define if the token has a default time
+        /// </summary>
         public static readonly SettingDefinition<bool> HasIssuer
             = new(
                 name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(HasIssuer)}",
                 isRoaming: true,
                 defaultValue: false);
+
+        /// <summary>
+        /// Define if the token has a default time
+        /// </summary>
+        public static readonly SettingDefinition<string?> ValidIssuers
+            = new(
+                name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(ValidIssuers)}",
+                isRoaming: true,
+                defaultValue: string.Empty);
 
         /// <summary>
         /// Define if the token expiration year
@@ -157,5 +177,32 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                 name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(JwtAlgorithm)}",
                 isRoaming: true,
                 defaultValue: Models.JwtAlgorithm.HS256);
+
+        /// <summary>
+        /// Define if the token expiration minutes
+        /// </summary>
+        public static readonly SettingDefinition<string?> PublicKey
+            = new(
+                name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(PublicKey)}",
+                isRoaming: true,
+                defaultValue: string.Empty);
+
+        /// <summary>
+        /// Define if the token expiration minutes
+        /// </summary>
+        public static readonly SettingDefinition<string?> PrivateKey
+            = new(
+                name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(PrivateKey)}",
+                isRoaming: true,
+                defaultValue: string.Empty);
+
+        /// <summary>
+        /// Define if the token expiration minutes
+        /// </summary>
+        public static readonly SettingDefinition<string?> Signature
+            = new(
+                name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(Signature)}",
+                isRoaming: true,
+                defaultValue: string.Empty);
     }
 }

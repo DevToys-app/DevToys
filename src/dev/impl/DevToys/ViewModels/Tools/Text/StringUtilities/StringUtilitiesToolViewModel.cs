@@ -18,7 +18,7 @@ using Microsoft.Toolkit.Mvvm.Input;
 namespace DevToys.ViewModels.Tools.StringUtilities
 {
     [Export(typeof(StringUtilitiesToolViewModel))]
-    public sealed class StringUtilitiesToolViewModel : QueueWorkerViewModelBase<string>, IToolViewModel
+    public sealed class StringUtilitiesToolViewModel : QueueWorkerViewModelBaseAsync<string>, IToolViewModel
     {
         private static readonly object _lockObject = new();
 

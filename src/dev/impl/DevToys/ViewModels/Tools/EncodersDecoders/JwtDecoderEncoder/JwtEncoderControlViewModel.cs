@@ -3,17 +3,15 @@
 using System;
 using System.Collections.Generic;
 using System.Composition;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text.Json;
-using System.Threading.Tasks;
+using System.Linq;
 using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
 using DevToys.Core.Threading;
 using DevToys.Models;
+using DevToys.Models.JwtDecoderEncoder;
 using DevToys.Shared.Core.Threading;
 using DevToys.Views.Tools.EncodersDecoders.JwtDecoderEncoder;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.Toolkit.Mvvm.Messaging;
 
 namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
@@ -22,16 +20,9 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
     public sealed class JwtEncoderControlViewModel : JwtDecoderEncoderViewModel, IToolViewModel, IRecipient<JwtJobAddedMessage>
     {
         private string? _token;
-        private bool _hasExpiration;
-        private bool _hasDefaultTime;
-        private bool _hasAudience;
-        private bool _hasIssuer;
         private bool _hasError;
-        private int _expireYear = 0;
-        private int _expireMonth = 0;
-        private int _expireDay = 0;
-        private int _expireHour = 0;
-        private int _expireMinute = 0;
+
+        private readonly JwtEncoder _encoder;
 
         internal override string? Token
         {
@@ -50,12 +41,9 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
             get => SettingsProvider.GetSetting(JwtDecoderEncoderSettings.HasExpiration);
             set
             {
-                if (_hasExpiration != value)
-                {
-                    SettingsProvider.SetSetting(JwtDecoderEncoderSettings.HasExpiration, value);
-                    SetProperty(ref _hasExpiration, value);
-                    QueueNewTokenJob();
-                }
+                SettingsProvider.SetSetting(JwtDecoderEncoderSettings.HasExpiration, value);
+                OnPropertyChanged();
+                QueueNewTokenJob();
             }
         }
 
@@ -64,12 +52,9 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
             get => SettingsProvider.GetSetting(JwtDecoderEncoderSettings.HasAudience);
             set
             {
-                if (_hasAudience != value)
-                {
-                    SettingsProvider.SetSetting(JwtDecoderEncoderSettings.HasAudience, value);
-                    SetProperty(ref _hasAudience, value);
-                    QueueNewTokenJob();
-                }
+                SettingsProvider.SetSetting(JwtDecoderEncoderSettings.HasAudience, value);
+                OnPropertyChanged();
+                QueueNewTokenJob();
             }
         }
 
@@ -78,12 +63,9 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
             get => SettingsProvider.GetSetting(JwtDecoderEncoderSettings.HasIssuer);
             set
             {
-                if (_hasIssuer != value)
-                {
-                    SettingsProvider.SetSetting(JwtDecoderEncoderSettings.HasIssuer, value);
-                    SetProperty(ref _hasIssuer, value);
-                    QueueNewTokenJob();
-                }
+                SettingsProvider.SetSetting(JwtDecoderEncoderSettings.HasIssuer, value);
+                OnPropertyChanged();
+                QueueNewTokenJob();
             }
         }
 
@@ -92,12 +74,9 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
             get => SettingsProvider.GetSetting(JwtDecoderEncoderSettings.HasDefaultTime);
             set
             {
-                if (_hasDefaultTime != value)
-                {
-                    SettingsProvider.SetSetting(JwtDecoderEncoderSettings.HasDefaultTime, value);
-                    SetProperty(ref _hasDefaultTime, value);
-                    QueueNewTokenJob();
-                }
+                SettingsProvider.SetSetting(JwtDecoderEncoderSettings.HasDefaultTime, value);
+                OnPropertyChanged();
+                QueueNewTokenJob();
             }
         }
 
@@ -119,12 +98,9 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                 {
                     return;
                 }
-                if (_expireYear != value)
-                {
-                    SettingsProvider.SetSetting(JwtDecoderEncoderSettings.ExpireYear, value);
-                    SetProperty(ref _expireYear, value);
-                    QueueNewTokenJob();
-                }
+                SettingsProvider.SetSetting(JwtDecoderEncoderSettings.ExpireYear, value);
+                OnPropertyChanged();
+                QueueNewTokenJob();
             }
         }
 
@@ -137,12 +113,9 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                 {
                     return;
                 }
-                if (_expireMonth != value)
-                {
-                    SettingsProvider.SetSetting(JwtDecoderEncoderSettings.ExpireMonth, value);
-                    SetProperty(ref _expireMonth, value);
-                    QueueNewTokenJob();
-                }
+                SettingsProvider.SetSetting(JwtDecoderEncoderSettings.ExpireMonth, value);
+                OnPropertyChanged();
+                QueueNewTokenJob();
             }
         }
 
@@ -155,12 +128,9 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                 {
                     return;
                 }
-                if (_expireDay != value)
-                {
-                    SettingsProvider.SetSetting(JwtDecoderEncoderSettings.ExpireDay, value);
-                    SetProperty(ref _expireDay, value);
-                    QueueNewTokenJob();
-                }
+                SettingsProvider.SetSetting(JwtDecoderEncoderSettings.ExpireDay, value);
+                OnPropertyChanged();
+                QueueNewTokenJob();
             }
 
         }
@@ -174,12 +144,9 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                 {
                     return;
                 }
-                if (_expireHour != value)
-                {
-                    SettingsProvider.SetSetting(JwtDecoderEncoderSettings.ExpireHour, value);
-                    SetProperty(ref _expireHour, value);
-                    QueueNewTokenJob();
-                }
+                SettingsProvider.SetSetting(JwtDecoderEncoderSettings.ExpireHour, value);
+                OnPropertyChanged();
+                QueueNewTokenJob();
             }
         }
 
@@ -192,12 +159,9 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                 {
                     return;
                 }
-                if (_expireMinute != value)
-                {
-                    SettingsProvider.SetSetting(JwtDecoderEncoderSettings.ExpireMinute, value);
-                    SetProperty(ref _expireMinute, value);
-                    QueueNewTokenJob();
-                }
+                SettingsProvider.SetSetting(JwtDecoderEncoderSettings.ExpireMinute, value);
+                OnPropertyChanged();
+                QueueNewTokenJob();
             }
         }
 
@@ -206,105 +170,76 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         [ImportingConstructor]
         public JwtEncoderControlViewModel(
            ISettingsProvider settingsProvider,
-           IMarketingService marketingService)
+           IMarketingService marketingService,
+           JwtEncoder encoder)
            : base(settingsProvider, marketingService)
         {
             IsActive = true;
+            _encoder = encoder;
         }
 
         public void Receive(JwtJobAddedMessage message)
         {
-            TreatQueueAsync().Forget();
-        }
-
-        private async Task TreatQueueAsync()
-        {
-            if (WorkInProgress)
+            if (string.IsNullOrWhiteSpace(Payload))
             {
                 return;
             }
 
-            WorkInProgress = true;
-
-            await TaskScheduler.Default;
-
-            while (JobQueue.TryDequeue(out _))
+            EncoderParameters encoderParameters = new()
             {
-                GenerateToken(out string? tokenString, AlgorithmMode.Value);
-                ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, () =>
-                {
-                    Token = tokenString;
+                HasAudience = HasAudience,
+                HasExpiration = HasExpiration,
+                HasIssuer = HasIssuer,
+                HasDefaultTime = HasDefaultTime
+            };
 
-                    if (!ToolSuccessfullyWorked)
-                    {
-                        ToolSuccessfullyWorked = true;
-                        MarketingService.NotifyToolSuccessfullyWorked();
-                    }
-                }).ForgetSafely();
+            TokenParameters tokenParameters = new()
+            {
+                TokenAlgorithm = AlgorithmMode.Value,
+                Payload = Payload,
+                ExpirationYear = ExpireYear,
+                ExpirationMonth = ExpireMonth,
+                ExpirationDay = ExpireDay,
+                ExpirationHour = ExpireHour,
+                ExpirationMinute = ExpireMinute
+            };
+
+            if (!string.IsNullOrEmpty(ValidIssuers))
+            {
+                tokenParameters.ValidIssuers = ValidIssuers!.Split(',').ToHashSet();
             }
 
-            WorkInProgress = false;
-        }
-
-        private void GenerateToken(out string tokenString, JwtAlgorithm algorithmMode)
-        {
-            if (string.IsNullOrWhiteSpace(Header) || string.IsNullOrWhiteSpace(Payload))
+            if (!string.IsNullOrEmpty(ValidAudiences))
             {
-                tokenString = string.Empty;
-                return;
+                tokenParameters.ValidAudiences = ValidAudiences!.Split(',').ToHashSet();
             }
 
-            try
+            if (AlgorithmMode.Value is JwtAlgorithm.HS256 ||
+                AlgorithmMode.Value is JwtAlgorithm.HS384 ||
+                AlgorithmMode.Value is JwtAlgorithm.HS512)
             {
-                var serializeOptions = new JsonSerializerOptions();
-                serializeOptions.Converters.Add(new JwtPayloadConverter());
-                Dictionary<string, object>? payload = JsonSerializer.Deserialize<Dictionary<string, object>>(Payload!, serializeOptions);
-                SigningCredentials? signingCredentials = GetSigningCredentials(algorithmMode);
-
-                var tokenDescriptor = new SecurityTokenDescriptor
-                {
-                    Claims = payload,
-                    SigningCredentials = signingCredentials,
-                    Expires = null
-                };
-
-                if (HasExpiration)
-                {
-                    DateTime expirationDate = DateTime.UtcNow
-                        .AddYears(ExpireYear)
-                        .AddMonths(ExpireMonth)
-                        .AddDays(ExpireDay)
-                        .AddHours(ExpireHour)
-                        .AddMinutes(ExpireMinute);
-                    tokenDescriptor.Expires = expirationDate;
-                }
-
-                if (HasAudience)
-                {
-                    tokenDescriptor.Audience = ValidAudiences;
-                }
-
-                if (HasIssuer)
-                {
-                    tokenDescriptor.Issuer = ValidIssuers;
-                    tokenDescriptor.IssuedAt = DateTime.UtcNow;
-                }
-
-                var handler = new JwtSecurityTokenHandler();
-                if (!HasDefaultTime)
-                {
-                    handler.SetDefaultTimesOnTokenCreation = false;
-                }
-
-                SecurityToken? token = handler.CreateToken(tokenDescriptor);
-                tokenString = handler.WriteToken(token);
+                tokenParameters.Signature = Signature;
             }
-            catch (Exception exception)
+            else
             {
-                JwtValidation.IsValid = false;
-                JwtValidation.ErrorMessage = exception.Message;
-                tokenString = string.Empty;
+                tokenParameters.PrivateKey = PrivateKey;
             }
+
+            TokenResult? result = _encoder.GenerateToken(encoderParameters, tokenParameters, TokenErrorCallBack);
+
+            ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, () =>
+            {
+                if (result is not null)
+                {
+                    Token = result.Token;
+                }
+                HasError = JwtValidation.IsValid!;
+                if (ToolSuccessfullyWorked)
+                {
+                    ToolSuccessfullyWorked = true;
+                    MarketingService.NotifyToolSuccessfullyWorked();
+                }
+            }).ForgetSafely();
         }
     }
 }

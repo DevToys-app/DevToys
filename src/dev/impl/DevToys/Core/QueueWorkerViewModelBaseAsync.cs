@@ -1,18 +1,20 @@
 ﻿#nullable enable
 
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using DevToys.Shared.Core.Threading;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace DevToys.Core
 {
-    public abstract class QueueWorkerViewModelBase<T> : ObservableRecipient
+    public abstract class QueueWorkerViewModelBaseAsync<T> : ObservableRecipient where T : class
     {
         private readonly object _lock = new();
         private readonly Queue<T> _computationQueue = new();
 
         private bool _computationInProgress;
 
-        internal bool ComputationTask { get; private set; }
+        internal Task ComputationTask { get; private set; } = Task.CompletedTask;
 
         protected void EnqueueComputation(T value)
         {
@@ -23,29 +25,30 @@ namespace DevToys.Core
                 if (!_computationInProgress)
                 {
                     _computationInProgress = true;
-                    ComputationTask = TreatComputationQueue();
+                    ComputationTask = TreatComputationQueueAsync();
                 }
             }
         }
 
-        protected abstract void TreatComputationQueue(T value);
+        protected abstract Task TreatComputationQueueAsync(T value);
 
-        private bool TreatComputationQueue()
+        private async Task TreatComputationQueueAsync()
         {
+            await TaskScheduler.Default;
+
             while (_computationQueue.TryDequeue(out T value))
             {
-                TreatComputationQueue(value);
+                await TreatComputationQueueAsync(value).ConfigureAwait(false);
 
                 lock (_lock)
                 {
                     if (_computationQueue.Count == 0)
                     {
                         _computationInProgress = false;
-                        return true;
                     }
                 }
             }
-            return true;
         }
     }
+
 }

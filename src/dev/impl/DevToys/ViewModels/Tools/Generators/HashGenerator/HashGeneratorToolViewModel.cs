@@ -18,7 +18,7 @@ using Windows.Storage.Streams;
 namespace DevToys.ViewModels.Tools.HashGenerator
 {
     [Export(typeof(HashGeneratorToolViewModel))]
-    public sealed class HashGeneratorToolViewModel : QueueWorkerViewModelBase<Tuple<string,string>>, IToolViewModel
+    public sealed class HashGeneratorToolViewModel : QueueWorkerViewModelBaseAsync<Tuple<string,string>>, IToolViewModel
     {
         /// <summary>
         /// Whether the generated hash should be uppercase or lowercase.

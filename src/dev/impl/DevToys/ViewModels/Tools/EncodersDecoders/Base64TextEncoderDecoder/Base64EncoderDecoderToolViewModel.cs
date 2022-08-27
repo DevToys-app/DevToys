@@ -17,7 +17,7 @@ using DevToys.Views.Tools.Base64EncoderDecoder;
 namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
 {
     [Export(typeof(Base64EncoderDecoderToolViewModel))]
-    public class Base64EncoderDecoderToolViewModel : QueueWorkerViewModelBase<string>, IToolViewModel
+    public class Base64EncoderDecoderToolViewModel : QueueWorkerViewModelBaseAsync<string>, IToolViewModel
     {
         /// <summary>
         /// Whether the tool should encode or decode Base64.

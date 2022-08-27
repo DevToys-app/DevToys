@@ -3,42 +3,38 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Composition;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
+using DevToys.Core;
 using DevToys.Helpers;
 using DevToys.Helpers.JsonYaml;
 using DevToys.Models;
+using DevToys.Models.JwtDecoderEncoder;
 using DevToys.UI.Controls;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Microsoft.UI.Xaml.Controls;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Math;
 using Windows.UI.Xaml;
-using YamlDotNet.Core.Tokens;
 using PemReader = Org.BouncyCastle.OpenSsl.PemReader;
 
 namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
 {
-    public class JwtDecoderEncoderViewModel : ObservableRecipient
+    [Export(typeof(JwtDecoderEncoderViewModel))]
+    public class JwtDecoderEncoderViewModel : QueueWorkerViewModelBase<bool>
     {
         private string? _token;
         private string? _header;
         private string? _payload;
-        private string? _signature;
-        private string? _publicKey;
-        private string? _privateKey;
-        private string? _validIssuers;
-        private string? _validAudiences;
-        private JwtAlgorithmDisplayPair _algorithmSelected;
-        private bool _showValidation;
         private bool _requireSignature;
+        private JwtAlgorithmDisplayPair _algorithmSelected;
         private InfoBarData? _validationResult;
         private const string PublicKeyStart = "-----BEGIN PUBLIC KEY-----";
         private const string PublicKeyEnd = "-----END PUBLIC KEY-----";
@@ -47,11 +43,12 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
 
         protected bool WorkInProgress;
         protected bool ToolSuccessfullyWorked;
-        protected ValidationBase JwtValidation = new();
         protected JwtToolJobItem CurrentJobItem = new();
         protected readonly Queue<bool> JobQueue = new();
         protected readonly ISettingsProvider SettingsProvider;
         protected readonly IMarketingService MarketingService;
+
+        internal ValidationBase JwtValidation = new();
 
         internal JwtDecoderEncoderStrings LocalizedStrings => LanguageManager.Instance.JwtDecoderEncoder;
 
@@ -96,68 +93,114 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
             }
         }
 
-        internal string? ValidIssuers
+        internal bool ValidateSignature
         {
-            get => _validIssuers;
+            get => SettingsProvider.GetSetting(JwtDecoderEncoderSettings.ValidateSignature);
             set
             {
-                if (_validIssuers != value)
-                {
-                    SetProperty(ref _validIssuers, value);
-                    QueueNewTokenJob();
-                }
+                SettingsProvider.SetSetting(JwtDecoderEncoderSettings.ValidateSignature, value);
+                OnPropertyChanged();
+                ShowValidation = value;
+                QueueNewTokenJob();
+            }
+        }
+
+        internal bool ValidateIssuer
+        {
+            get => SettingsProvider.GetSetting(JwtDecoderEncoderSettings.ValidateIssuer);
+            set
+            {
+                SettingsProvider.SetSetting(JwtDecoderEncoderSettings.ValidateIssuer, value);
+                OnPropertyChanged();
+                QueueNewTokenJob();
+            }
+        }
+
+        internal bool ValidateActor
+        {
+            get => SettingsProvider.GetSetting(JwtDecoderEncoderSettings.ValidateActor);
+            set
+            {
+                SettingsProvider.SetSetting(JwtDecoderEncoderSettings.ValidateActor, value);
+                OnPropertyChanged();
+                QueueNewTokenJob();
+            }
+        }
+
+        internal bool ValidateAudience
+        {
+            get => SettingsProvider.GetSetting(JwtDecoderEncoderSettings.ValidateAudience);
+            set
+            {
+                SettingsProvider.SetSetting(JwtDecoderEncoderSettings.ValidateAudience, value);
+                OnPropertyChanged();
+                QueueNewTokenJob();
+            }
+        }
+
+        internal bool ValidateLifetime
+        {
+            get => SettingsProvider.GetSetting(JwtDecoderEncoderSettings.ValidateLifetime);
+            set
+            {
+                SettingsProvider.SetSetting(JwtDecoderEncoderSettings.ValidateLifetime, value);
+                OnPropertyChanged();
+                QueueNewTokenJob();
+            }
+        }
+
+        internal string? ValidIssuers
+        {
+            get => SettingsProvider.GetSetting(JwtDecoderEncoderSettings.ValidIssuers);
+            set
+            {
+                SettingsProvider.SetSetting(JwtDecoderEncoderSettings.ValidIssuers, value);
+                OnPropertyChanged();
+                QueueNewTokenJob();
             }
         }
 
         internal string? ValidAudiences
         {
-            get => _validAudiences;
+            get => SettingsProvider.GetSetting(JwtDecoderEncoderSettings.ValidAudiences);
             set
             {
-                if (_validAudiences != value)
-                {
-                    SetProperty(ref _validAudiences, value);
-                    QueueNewTokenJob();
-                }
+                SettingsProvider.SetSetting(JwtDecoderEncoderSettings.ValidAudiences, value);
+                OnPropertyChanged();
+                QueueNewTokenJob();
             }
         }
 
         internal string? PublicKey
         {
-            get => _publicKey;
+            get => SettingsProvider.GetSetting(JwtDecoderEncoderSettings.PublicKey);
             set
             {
-                if (_publicKey != value)
-                {
-                    SetProperty(ref _publicKey, value);
-                    QueueNewTokenJob();
-                }
+                SettingsProvider.SetSetting(JwtDecoderEncoderSettings.PublicKey, value);
+                OnPropertyChanged();
+                QueueNewTokenJob();
             }
         }
 
         internal string? PrivateKey
         {
-            get => _privateKey;
+            get => SettingsProvider.GetSetting(JwtDecoderEncoderSettings.PrivateKey);
             set
             {
-                if (_privateKey != value)
-                {
-                    SetProperty(ref _privateKey, value);
-                    QueueNewTokenJob();
-                }
+                SettingsProvider.SetSetting(JwtDecoderEncoderSettings.PrivateKey, value);
+                OnPropertyChanged();
+                QueueNewTokenJob();
             }
         }
 
         internal string? Signature
         {
-            get => _signature;
+            get => SettingsProvider.GetSetting(JwtDecoderEncoderSettings.Signature);
             set
             {
-                if (_signature != value)
-                {
-                    SetProperty(ref _signature, value);
-                    QueueNewTokenJob();
-                }
+                SettingsProvider.SetSetting(JwtDecoderEncoderSettings.Signature, value);
+                OnPropertyChanged();
+                QueueNewTokenJob();
             }
         }
 
@@ -166,12 +209,9 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
             get => SettingsProvider.GetSetting(JwtDecoderEncoderSettings.ShowValidation);
             set
             {
-                if (_showValidation != value)
-                {
-                    SettingsProvider.SetSetting(JwtDecoderEncoderSettings.ShowValidation, value);
-                    SetProperty(ref _showValidation, value);
-                    QueueNewTokenJob();
-                }
+                SettingsProvider.SetSetting(JwtDecoderEncoderSettings.ShowValidation, value);
+                OnPropertyChanged();
+                QueueNewTokenJob();
             }
         }
 
@@ -235,8 +275,12 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
 
         internal void QueueNewTokenJob()
         {
-            JobQueue.Enqueue(true);
-            Messenger.Send(new JwtJobAddedMessage());
+            JwtValidation = new ValidationBase
+            {
+                IsValid = true
+            };
+            var newJob = new JwtJobAddedMessage();
+            Messenger.Send(newJob);
         }
 
         protected void DisplayValidationInfoBar()
@@ -593,5 +637,17 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                 RequireSignature = false;
             }
         }
+
+        protected override void TreatComputationQueue(bool value)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected void TokenErrorCallBack(TokenResultErrorEventArgs e)
+        {
+            JwtValidation.IsValid = false;
+            JwtValidation.ErrorMessage = e.Message;
+        }
+            //=> _validationResult = new InfoBarData(e.Severity, e.Message);
     }
 }

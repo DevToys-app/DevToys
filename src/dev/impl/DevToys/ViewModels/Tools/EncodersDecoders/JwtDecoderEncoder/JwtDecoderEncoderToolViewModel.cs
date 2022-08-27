@@ -15,18 +15,13 @@ namespace DevToys.ViewModels.Tools.JwtDecoderEncoder
     {
         private readonly ISettingsProvider _settingsProvider;
 
-        private bool _jwtToolMode;
-
         internal bool JwtToolMode
         {
             get => _settingsProvider.GetSetting(JwtDecoderEncoderSettings.JWtToolMode);
             set
             {
-                if (_jwtToolMode != value)
-                {
-                    _settingsProvider.SetSetting(JwtDecoderEncoderSettings.JWtToolMode, value);
-                    SetProperty(ref _jwtToolMode, value);
-                }
+                _settingsProvider.SetSetting(JwtDecoderEncoderSettings.JWtToolMode, value);
+                OnPropertyChanged();
             }
         }
 

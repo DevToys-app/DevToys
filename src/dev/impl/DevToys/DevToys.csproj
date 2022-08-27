@@ -28,6 +28,7 @@
     <Compile Include="Api\Tools\NotSearchableAttribute.cs" />
     <Compile Include="Api\Tools\ParentAttribute.cs" />
     <Compile Include="Core\OOP\AppService.cs" />
+    <Compile Include="Core\QueueWorkerViewModelBaseAsync.cs" />
     <Compile Include="Core\QueueWorkerViewModelBase.cs" />
     <Compile Include="Core\Threading\AsyncLazy.cs" />
     <Compile Include="Helpers\Base64Helper.cs" />
@@ -77,6 +78,11 @@
     <Compile Include="Models\InfoBarData.cs" />
     <Compile Include="Models\JwtAlgorithm.cs" />
     <Compile Include="Models\JwtAlgorithmDisplayPair.cs" />
+    <Compile Include="Models\JwtDecoderEncoder\DecoderParameters.cs" />
+    <Compile Include="Models\JwtDecoderEncoder\EncoderParameters.cs" />
+    <Compile Include="Models\JwtDecoderEncoder\TokenParameters.cs" />
+    <Compile Include="Models\JwtDecoderEncoder\TokenResult.cs" />
+    <Compile Include="Models\JwtDecoderEncoder\TokenResultErrorEventArgs.cs" />
     <Compile Include="Models\NumberBaseDictionary.cs" />
     <Compile Include="Models\SqlLanguageDisplayPair.cs" />
     <Compile Include="Models\NoResultFoundMockToolProvider.cs" />
@@ -118,6 +124,8 @@
     <Compile Include="Helpers\JsonYaml\Core\DecimalJsonConverter.cs" />
     <Compile Include="Helpers\JsonYaml\Core\DecimalYamlTypeResolver.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\EncodersDecodersGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtEncoder.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtDecoder.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtDecoderControlViewModel.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtDecoderEncoderSettings.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtDecoderEncoderViewModel.cs" />
@@ -125,7 +133,6 @@
     <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtJobAddedMessage.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtPayloadConverter.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtToolJobItem.cs" />
-    <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtToolSwitchedMessage.cs" />
     <Compile Include="ViewModels\Tools\Formatters\XmlFormatter\XmlFormatterToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Formatters\XmlFormatter\XmlFormatterToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Formatters\SqlFormatter\SqlFormatterToolProvider.cs" />
