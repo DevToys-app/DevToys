@@ -31,7 +31,7 @@ namespace DevToys.UI.Controls
                 nameof(Header),
                 typeof(object),
                 typeof(CustomTextBox),
-                new PropertyMetadata(null));
+                new PropertyMetadata(null, OnHeaderPropertyChangedCalled));
 
         public string? Header
         {
@@ -807,6 +807,11 @@ namespace DevToys.UI.Controls
         }
 
         private static void OnIsRichTextEditPropertyChangedCalled(DependencyObject sender, DependencyPropertyChangedEventArgs eventArgs)
+        {
+            ((CustomTextBox)sender).UpdateUI();
+        }
+
+        private static void OnHeaderPropertyChangedCalled(DependencyObject sender, DependencyPropertyChangedEventArgs eventArgs)
         {
             ((CustomTextBox)sender).UpdateUI();
         }
