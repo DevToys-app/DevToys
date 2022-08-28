@@ -25,7 +25,6 @@ namespace DevToys.Views.Tools.EncodersDecoders.JwtDecoderEncoder
             set => SetValue(ViewModelProperty, value);
         }
 
-        [ImportingConstructor]
         public JwtEncoderControl()
         {
             InitializeComponent();

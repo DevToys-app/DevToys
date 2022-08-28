@@ -158,8 +158,8 @@
             ResizeDirection="Columns">
             <toolkit:GridSplitter.Element>
                 <FontIcon
-                Glyph="&#xFD52;"
-                FontSize="13"/>
+                    Glyph="&#xFD55;"
+                    FontSize="13"/>
             </toolkit:GridSplitter.Element>
         </toolkit:GridSplitter>
         <controls:CodeEditor

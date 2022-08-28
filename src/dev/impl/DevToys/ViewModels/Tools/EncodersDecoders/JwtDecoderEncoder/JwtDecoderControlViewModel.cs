@@ -16,7 +16,7 @@ using Microsoft.Toolkit.Mvvm.Messaging;
 namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
 {
     [Export(typeof(JwtDecoderControlViewModel))]
-    public sealed class JwtDecoderControlViewModel : JwtDecoderEncoderViewModel, IToolViewModel, IRecipient<JwtJobAddedMessage>
+    public sealed class JwtDecoderControlViewModel : JwtDecoderEncoderViewModelBase, IToolViewModel, IRecipient<JwtJobAddedMessage>
     {
         private readonly JwtDecoder _decoder;
 

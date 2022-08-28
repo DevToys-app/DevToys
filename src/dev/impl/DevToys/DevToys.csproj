@@ -29,7 +29,6 @@
     <Compile Include="Api\Tools\ParentAttribute.cs" />
     <Compile Include="Core\OOP\AppService.cs" />
     <Compile Include="Core\QueueWorkerViewModelBaseAsync.cs" />
-    <Compile Include="Core\QueueWorkerViewModelBase.cs" />
     <Compile Include="Core\Threading\AsyncLazy.cs" />
     <Compile Include="Helpers\Base64Helper.cs" />
     <Compile Include="Helpers\JsonYaml\Core\BooleanYamlTypeResolver.cs" />
@@ -128,11 +127,10 @@
     <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtDecoder.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtDecoderControlViewModel.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtDecoderEncoderSettings.cs" />
-    <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtDecoderEncoderViewModel.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtDecoderEncoderViewModelBase.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtEncoderControlViewModel.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtJobAddedMessage.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtPayloadConverter.cs" />
-    <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtToolJobItem.cs" />
     <Compile Include="ViewModels\Tools\Formatters\XmlFormatter\XmlFormatterToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Formatters\XmlFormatter\XmlFormatterToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Formatters\SqlFormatter\SqlFormatterToolProvider.cs" />

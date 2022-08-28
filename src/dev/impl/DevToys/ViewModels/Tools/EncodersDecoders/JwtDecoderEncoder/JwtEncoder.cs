@@ -11,6 +11,7 @@ using System.Text.Json;
 using DevToys.Helpers;
 using DevToys.Models;
 using DevToys.Models.JwtDecoderEncoder;
+using DevToys.Shared.Core;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.UI.Xaml.Controls;
 using Org.BouncyCastle.Crypto;
@@ -26,7 +27,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
     {
         private const string PrivateKeyStart = "-----BEGIN PRIVATE KEY-----";
         private const string PrivateKeyEnd = "-----END PRIVATE KEY-----";
-        private Action<TokenResultErrorEventArgs>? _encodingErrorCallBack;
+        private Action<TokenResultErrorEventArgs> _encodingErrorCallBack;
         private JwtDecoderEncoderStrings _localizedStrings => LanguageManager.Instance.JwtDecoderEncoder;
 
         public TokenResult? GenerateToken(
@@ -34,27 +35,10 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                 TokenParameters tokenParameters,
                 Action<TokenResultErrorEventArgs> encodingErrorCallBack)
         {
-            if (encodeParameters is null)
-            {
-                throw new ArgumentNullException(nameof(encodeParameters));
-            }
-
-            if (tokenParameters is null)
-            {
-                throw new ArgumentNullException(nameof(tokenParameters));
-            }
-
-            if (encodingErrorCallBack is null)
-            {
-                throw new ArgumentNullException(nameof(encodingErrorCallBack));
-            }
-
-            if (string.IsNullOrWhiteSpace(tokenParameters.Payload))
-            {
-                throw new ArgumentNullException(nameof(tokenParameters.Payload));
-            }
-
-            _encodingErrorCallBack = encodingErrorCallBack;
+            Arguments.NotNull(encodeParameters, nameof(encodeParameters));
+            Arguments.NotNull(tokenParameters, nameof(tokenParameters));
+            _encodingErrorCallBack = Arguments.NotNull(encodingErrorCallBack, nameof(encodingErrorCallBack));
+            Arguments.NotNullOrWhiteSpace(tokenParameters.Payload, nameof(tokenParameters.Payload));
 
             var tokenResult = new TokenResult();
 
@@ -224,11 +208,11 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                 throw new InvalidOperationException(_localizedStrings.InvalidPrivateKeyError);
             }
             var privateKeyStringBuilder = new StringBuilder(tokenParameters.PrivateKey!.Trim());
-            if (!tokenParameters.PrivateKey!.StartsWith(PrivateKeyStart))
+            if (!tokenParameters.PrivateKey!.StartsWith(PrivateKeyStart, StringComparison.OrdinalIgnoreCase))
             {
                 privateKeyStringBuilder.Insert(0, PrivateKeyStart);
             }
-            if (!tokenParameters.PrivateKey.EndsWith(PrivateKeyEnd))
+            if (!tokenParameters.PrivateKey.EndsWith(PrivateKeyEnd, StringComparison.OrdinalIgnoreCase))
             {
                 privateKeyStringBuilder.Append(PrivateKeyEnd);
             }

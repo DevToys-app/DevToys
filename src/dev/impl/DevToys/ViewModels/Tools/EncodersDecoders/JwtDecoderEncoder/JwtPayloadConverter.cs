@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Text.Json;
@@ -81,14 +83,16 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                     var result = new ExpandoObject();
                     while (reader.Read() && reader.TokenType != JsonTokenType.EndObject)
                     {
-                        JsonTokenType tokenType = reader.TokenType;
                         string? propertyName = null;
                         if (reader.TokenType is JsonTokenType.PropertyName)
                         {
                             propertyName = reader.GetString();
                         }
                         reader.Read();
-                        result.TryAdd(propertyName, GetValue(ref reader));
+                        if (!string.IsNullOrEmpty(propertyName))
+                        {
+                            result.TryAdd(propertyName, GetValue(ref reader));
+                        }
                     }
                     return result;
                 default:

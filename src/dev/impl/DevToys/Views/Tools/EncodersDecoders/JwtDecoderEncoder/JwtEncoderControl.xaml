@@ -73,143 +73,148 @@
                         <controls:ExpandableSettingControl
                             Title="{x:Bind ViewModel.LocalizedStrings.EncodeIssuerLabel}">
                             <controls:ExpandableSettingControl.Icon>
-                                <FontIcon Glyph="&#xF283;" />
+                                <FontIcon Glyph="&#xF4DA;" />
+                            </controls:ExpandableSettingControl.Icon>
+                            <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" IsOn="{x:Bind ViewModel.HasIssuer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <controls:ExpandableSettingControl.ExpandableContent>
+                                <StackPanel Padding="12" Spacing="4" Margin="42,0,42,0" HorizontalAlignment="Stretch">
+                                    <controls:CustomTextBox 
+                                        Margin="0,4,0,4"
+                                        Header="{x:Bind ViewModel.LocalizedStrings.ValidIssuersLabel}"
+                                        Text="{x:Bind ViewModel.ValidIssuers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        LostFocus="{x:Bind ViewModel.InputFocusChanged}" />
+                                </StackPanel>
+                            </controls:ExpandableSettingControl.ExpandableContent>
+                        </controls:ExpandableSettingControl>
+                        <controls:ExpandableSettingControl
+                            Title="{x:Bind ViewModel.LocalizedStrings.EncodeAudienceLabel}">
+                            <controls:ExpandableSettingControl.Icon>
+                                <FontIcon Glyph="&#xF4DA;" />
                             </controls:ExpandableSettingControl.Icon>
                             <ToggleSwitch 
                                 Style="{StaticResource RightAlignedToggleSwitchStyle}" 
-                                IsOn="{x:Bind ViewModel.HasIssuer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        </controls:ExpandableSettingControl>
-                        <controls:CustomTextBox 
-                            Margin="0,4,0,4"
-                            Header="{x:Bind ViewModel.LocalizedStrings.ValidIssuersLabel}"
-                            Text="{x:Bind ViewModel.ValidIssuers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            LostFocus="{x:Bind ViewModel.InputFocusChanged}"
-                            Visibility="{x:Bind ViewModel.HasIssuer, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                        <controls:ExpandableSettingControl 
-                            Title="{x:Bind ViewModel.LocalizedStrings.EncodeAudienceLabel}">
-                            <controls:ExpandableSettingControl.Icon>
-                                <FontIcon Glyph="&#xF283;" />
-                            </controls:ExpandableSettingControl.Icon>
-                            <ToggleSwitch
-                                Style="{StaticResource RightAlignedToggleSwitchStyle}" 
                                 IsOn="{x:Bind ViewModel.HasAudience, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <controls:ExpandableSettingControl.ExpandableContent>
+                                <StackPanel Padding="12" Spacing="4" Margin="42,0,42,0" HorizontalAlignment="Stretch">
+                                    <controls:CustomTextBox 
+                                        Margin="0,4,0,4"
+                                        Header="{x:Bind ViewModel.LocalizedStrings.ValidAudiencesLabel}"
+                                        Text="{x:Bind ViewModel.ValidAudiences, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        LostFocus="{x:Bind ViewModel.InputFocusChanged}" />
+                                </StackPanel>
+                            </controls:ExpandableSettingControl.ExpandableContent>
                         </controls:ExpandableSettingControl>
-                        <controls:CustomTextBox 
-                            Margin="0,4,0,4"
-                            Header="{x:Bind ViewModel.LocalizedStrings.ValidAudiencesLabel}"
-                            Text="{x:Bind ViewModel.ValidAudiences, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            LostFocus="{x:Bind ViewModel.InputFocusChanged}"
-                            Visibility="{x:Bind ViewModel.HasAudience, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
                         <controls:ExpandableSettingControl
                             Title="{x:Bind ViewModel.LocalizedStrings.EncodeExpirationTitle}">
                             <controls:ExpandableSettingControl.Icon>
-                                <FontIcon Glyph="&#xF827;" />
+                                <FontIcon Glyph="&#xF4DA;" />
                             </controls:ExpandableSettingControl.Icon>
                             <ToggleSwitch 
                                 Style="{StaticResource RightAlignedToggleSwitchStyle}" 
                                 IsOn="{x:Bind ViewModel.HasExpiration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <controls:ExpandableSettingControl.ExpandableContent>
+                                <Grid 
+                                        ColumnSpacing="8"
+                                        AutomationProperties.LabeledBy="{Binding ElementName=ExpireDateTime}"
+                                        Style="{StaticResource GridSettingBlockStyle}"
+                                        Background="{ThemeResource ExpanderHeaderBackground}"
+                                        CornerRadius="{x:Bind CornerRadius}" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0">
+                                        <TextBlock 
+                                                x:Name="ExpireYearHeaderTextBlock" 
+                                                Text="{x:Bind ViewModel.LocalizedStrings.EncodeExpirationYearLabel}"
+                                                Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                                                Style="{StaticResource SubTitleTextBlock}"
+                                                TextWrapping="NoWrap"
+                                                TextTrimming="CharacterEllipsis"
+                                                VerticalAlignment="Bottom"/>
+                                        <muxc:NumberBox
+                                                Value="{x:Bind ViewModel.ExpireYear, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                SpinButtonPlacementMode="Compact"
+                                                SmallChange="1"
+                                                LargeChange="10"
+                                                Minimum="1"
+                                                Maximum="9999"
+                                                AutomationProperties.LabeledBy="{Binding ElementName=ExpireYearHeaderTextBlock}"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1">
+                                        <TextBlock
+                                                x:Name="ExpireMonthHeaderTextBlock"
+                                                Text="{x:Bind ViewModel.LocalizedStrings.EncodeExpirationMonthLabel}"
+                                                Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                                                Style="{StaticResource SubTitleTextBlock}"
+                                                TextWrapping="NoWrap"
+                                                TextTrimming="CharacterEllipsis"
+                                                VerticalAlignment="Bottom"/>
+                                        <muxc:NumberBox
+                                                Value="{x:Bind ViewModel.ExpireMonth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                SpinButtonPlacementMode="Compact"
+                                                SmallChange="1"
+                                                Minimum="1"
+                                                Maximum="12"
+                                                AutomationProperties.LabeledBy="{Binding ElementName=ExpireMonthHeaderTextBlock}"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="2">
+                                        <TextBlock
+                                                x:Name="ExpireDayHeaderTextBlock"
+                                                Text="{x:Bind ViewModel.LocalizedStrings.EncodeExpirationDaysLabel}"
+                                                Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                                                Style="{StaticResource SubTitleTextBlock}"
+                                                TextWrapping="NoWrap"
+                                                TextTrimming="CharacterEllipsis"
+                                                VerticalAlignment="Bottom"/>
+                                        <muxc:NumberBox
+                                                Value="{x:Bind ViewModel.ExpireDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                SpinButtonPlacementMode="Compact"
+                                                SmallChange="1"
+                                                Minimum="1"
+                                                Maximum="31"
+                                                AutomationProperties.LabeledBy="{Binding ElementName=ExpireDayHeaderTextBlock}"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="3">
+                                        <TextBlock
+                                                x:Name="ExpireHourHeaderTextBlock"
+                                                Text="{x:Bind ViewModel.LocalizedStrings.EncodeExpirationHoursLabel}"
+                                                Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                                                Style="{StaticResource SubTitleTextBlock}"
+                                                TextWrapping="NoWrap"
+                                                TextTrimming="CharacterEllipsis"
+                                                VerticalAlignment="Bottom"/>
+                                        <muxc:NumberBox
+                                                Value="{x:Bind ViewModel.ExpireHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                SpinButtonPlacementMode="Compact"
+                                                SmallChange="1"
+                                                Minimum="0"
+                                                Maximum="23"
+                                                AutomationProperties.LabeledBy="{Binding ElementName=ExpireHourHeaderTextBlock}"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="4">
+                                        <TextBlock
+                                                x:Name="ExpireMinuteHeaderTextBlock"
+                                                Text="{x:Bind ViewModel.LocalizedStrings.EncodeExpirationMinutesLabel}"
+                                                Margin="{ThemeResource TextBoxTopHeaderMargin}"
+                                                Style="{StaticResource SubTitleTextBlock}"
+                                                TextWrapping="NoWrap"
+                                                TextTrimming="CharacterEllipsis"
+                                                VerticalAlignment="Bottom"/>
+                                        <muxc:NumberBox
+                                                Value="{x:Bind ViewModel.ExpireMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                SpinButtonPlacementMode="Compact"
+                                                SmallChange="1"
+                                                Minimum="0"
+                                                Maximum="59"
+                                                AutomationProperties.LabeledBy="{Binding ElementName=ExpireMinuteHeaderTextBlock}"/>
+                                    </StackPanel>
+                                </Grid>
+                            </controls:ExpandableSettingControl.ExpandableContent>
                         </controls:ExpandableSettingControl>
-                        <Grid 
-                            ColumnSpacing="8"
-                            AutomationProperties.LabeledBy="{Binding ElementName=ExpireDateTime}"
-                            Style="{StaticResource GridSettingBlockStyle}"
-                            Background="{ThemeResource ExpanderHeaderBackground}"
-                            CornerRadius="{x:Bind CornerRadius}"
-                            Visibility="{x:Bind ViewModel.HasExpiration, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Grid.Column="0">
-                                <TextBlock 
-                                    x:Name="ExpireYearHeaderTextBlock" 
-                                    Text="{x:Bind ViewModel.LocalizedStrings.EncodeExpirationYearLabel}"
-                                    Margin="{ThemeResource TextBoxTopHeaderMargin}"
-                                    Style="{StaticResource SubTitleTextBlock}"
-                                    TextWrapping="NoWrap"
-                                    TextTrimming="CharacterEllipsis"
-                                    VerticalAlignment="Bottom"/>
-                                <muxc:NumberBox
-                                    Value="{x:Bind ViewModel.ExpireYear, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    SpinButtonPlacementMode="Compact"
-                                    SmallChange="1"
-                                    LargeChange="10"
-                                    Minimum="1"
-                                    Maximum="9999"
-                                    AutomationProperties.LabeledBy="{Binding ElementName=ExpireYearHeaderTextBlock}"/>
-                            </StackPanel>
-                            <StackPanel Grid.Column="1">
-                                <TextBlock
-                                    x:Name="ExpireMonthHeaderTextBlock"
-                                    Text="{x:Bind ViewModel.LocalizedStrings.EncodeExpirationMonthLabel}"
-                                    Margin="{ThemeResource TextBoxTopHeaderMargin}"
-                                    Style="{StaticResource SubTitleTextBlock}"
-                                    TextWrapping="NoWrap"
-                                    TextTrimming="CharacterEllipsis"
-                                    VerticalAlignment="Bottom"/>
-                                <muxc:NumberBox
-                                    Value="{x:Bind ViewModel.ExpireMonth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    SpinButtonPlacementMode="Compact"
-                                    SmallChange="1"
-                                    Minimum="1"
-                                    Maximum="12"
-                                    AutomationProperties.LabeledBy="{Binding ElementName=ExpireMonthHeaderTextBlock}"/>
-                            </StackPanel>
-                            <StackPanel Grid.Column="2">
-                                <TextBlock
-                                    x:Name="ExpireDayHeaderTextBlock"
-                                    Text="{x:Bind ViewModel.LocalizedStrings.EncodeExpirationDaysLabel}"
-                                    Margin="{ThemeResource TextBoxTopHeaderMargin}"
-                                    Style="{StaticResource SubTitleTextBlock}"
-                                    TextWrapping="NoWrap"
-                                    TextTrimming="CharacterEllipsis"
-                                    VerticalAlignment="Bottom"/>
-                                <muxc:NumberBox
-                                    Value="{x:Bind ViewModel.ExpireDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    SpinButtonPlacementMode="Compact"
-                                    SmallChange="1"
-                                    Minimum="1"
-                                    Maximum="31"
-                                    AutomationProperties.LabeledBy="{Binding ElementName=ExpireDayHeaderTextBlock}"/>
-                            </StackPanel>
-                            <StackPanel Grid.Column="3">
-                                <TextBlock
-                                    x:Name="ExpireHourHeaderTextBlock"
-                                    Text="{x:Bind ViewModel.LocalizedStrings.EncodeExpirationHoursLabel}"
-                                    Margin="{ThemeResource TextBoxTopHeaderMargin}"
-                                    Style="{StaticResource SubTitleTextBlock}"
-                                    TextWrapping="NoWrap"
-                                    TextTrimming="CharacterEllipsis"
-                                    VerticalAlignment="Bottom"/>
-                                <muxc:NumberBox
-                                    Value="{x:Bind ViewModel.ExpireHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    SpinButtonPlacementMode="Compact"
-                                    SmallChange="1"
-                                    Minimum="0"
-                                    Maximum="23"
-                                    AutomationProperties.LabeledBy="{Binding ElementName=ExpireHourHeaderTextBlock}"/>
-                            </StackPanel>
-                            <StackPanel Grid.Column="4">
-                                <TextBlock
-                                    x:Name="ExpireMinuteHeaderTextBlock"
-                                    Text="{x:Bind ViewModel.LocalizedStrings.EncodeExpirationMinutesLabel}"
-                                    Margin="{ThemeResource TextBoxTopHeaderMargin}"
-                                    Style="{StaticResource SubTitleTextBlock}"
-                                    TextWrapping="NoWrap"
-                                    TextTrimming="CharacterEllipsis"
-                                    VerticalAlignment="Bottom"/>
-                                <muxc:NumberBox
-                                    Value="{x:Bind ViewModel.ExpireMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    SpinButtonPlacementMode="Compact"
-                                    SmallChange="1"
-                                    Minimum="0"
-                                    Maximum="59"
-                                    AutomationProperties.LabeledBy="{Binding ElementName=ExpireMinuteHeaderTextBlock}"/>
-                            </StackPanel>
-                        </Grid>
                         <controls:ExpandableSettingControl
                             Title="{x:Bind ViewModel.LocalizedStrings.EncodeDefaultTimeTitle}">
                             <controls:ExpandableSettingControl.Icon>
@@ -258,7 +263,9 @@
             ResizeBehavior="BasedOnAlignment"
             ResizeDirection="Columns">
             <toolkit:GridSplitter.Element>
-                <FontIcon Glyph="&#xFD52;" FontSize="13"/>
+                <FontIcon
+                    Glyph="&#xFD55;"
+                    FontSize="13"/>
             </toolkit:GridSplitter.Element>
         </toolkit:GridSplitter>
         <controls:CodeEditor
