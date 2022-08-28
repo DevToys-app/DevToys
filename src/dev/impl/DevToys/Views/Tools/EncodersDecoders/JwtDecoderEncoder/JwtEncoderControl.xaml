@@ -77,7 +77,7 @@
                             </controls:ExpandableSettingControl.Icon>
                             <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" IsOn="{x:Bind ViewModel.HasIssuer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             <controls:ExpandableSettingControl.ExpandableContent>
-                                <StackPanel Padding="12" Spacing="4" Margin="42,0,42,0" HorizontalAlignment="Stretch">
+                                <StackPanel Padding="12" Spacing="4" HorizontalAlignment="Stretch">
                                     <controls:CustomTextBox 
                                         Margin="0,4,0,4"
                                         Header="{x:Bind ViewModel.LocalizedStrings.ValidIssuersLabel}"
@@ -95,7 +95,7 @@
                                 Style="{StaticResource RightAlignedToggleSwitchStyle}" 
                                 IsOn="{x:Bind ViewModel.HasAudience, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             <controls:ExpandableSettingControl.ExpandableContent>
-                                <StackPanel Padding="12" Spacing="4" Margin="42,0,42,0" HorizontalAlignment="Stretch">
+                                <StackPanel Padding="12" Spacing="4" HorizontalAlignment="Stretch">
                                     <controls:CustomTextBox 
                                         Margin="0,4,0,4"
                                         Header="{x:Bind ViewModel.LocalizedStrings.ValidAudiencesLabel}"
@@ -114,11 +114,10 @@
                                 IsOn="{x:Bind ViewModel.HasExpiration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             <controls:ExpandableSettingControl.ExpandableContent>
                                 <Grid 
-                                        ColumnSpacing="8"
-                                        AutomationProperties.LabeledBy="{Binding ElementName=ExpireDateTime}"
-                                        Style="{StaticResource GridSettingBlockStyle}"
-                                        Background="{ThemeResource ExpanderHeaderBackground}"
-                                        CornerRadius="{x:Bind CornerRadius}" >
+                                    Padding="12"
+                                    ColumnSpacing="8"
+                                    AutomationProperties.LabeledBy="{Binding ElementName=ExpireDateTime}"
+                                    CornerRadius="{x:Bind CornerRadius}" >
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
