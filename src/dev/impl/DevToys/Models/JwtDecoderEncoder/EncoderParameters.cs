@@ -4,7 +4,7 @@ using DevToys;
 
 namespace DevToys.Models.JwtDecoderEncoder
 {
-    public class EncoderParameters
+    public record EncoderParameters
     {
         public bool HasExpiration { get; set; }
 

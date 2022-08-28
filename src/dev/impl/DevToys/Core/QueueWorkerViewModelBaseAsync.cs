@@ -7,7 +7,7 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace DevToys.Core
 {
-    public abstract class QueueWorkerViewModelBaseAsync<T> : ObservableRecipient where T : class
+    public abstract class QueueWorkerViewModelBase<T> : ObservableRecipient where T : class
     {
         private readonly object _lock = new();
         private readonly Queue<T> _computationQueue = new();

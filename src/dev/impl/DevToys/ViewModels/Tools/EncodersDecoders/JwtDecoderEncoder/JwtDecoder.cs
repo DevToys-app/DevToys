@@ -11,6 +11,7 @@ using DevToys.Helpers;
 using DevToys.Helpers.JsonYaml;
 using DevToys.Models;
 using DevToys.Models.JwtDecoderEncoder;
+using DevToys.Shared.Core;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.UI.Xaml.Controls;
@@ -26,7 +27,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
     {
         private const string PublicKeyStart = "-----BEGIN PUBLIC KEY-----";
         private const string PublicKeyEnd = "-----END PUBLIC KEY-----";
-        private Action<TokenResultErrorEventArgs>? _decodingErrorCallBack;
+        private Action<TokenResultErrorEventArgs> _decodingErrorCallBack;
         private JwtDecoderEncoderStrings _localizedStrings => LanguageManager.Instance.JwtDecoderEncoder;
 
         public TokenResult? DecodeToken(
@@ -34,27 +35,10 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                 TokenParameters tokenParameters,
                 Action<TokenResultErrorEventArgs> decodingErrorCallBack)
         {
-            if (decodeParameters is null)
-            {
-                throw new ArgumentNullException(nameof(decodeParameters));
-            }
-
-            if (tokenParameters is null)
-            {
-                throw new ArgumentNullException(nameof(tokenParameters));
-            }
-
-            if (decodingErrorCallBack is null)
-            {
-                throw new ArgumentNullException(nameof(decodingErrorCallBack));
-            }
-
-            if (string.IsNullOrWhiteSpace(tokenParameters.Token))
-            {
-                throw new ArgumentNullException(nameof(tokenParameters.Token));
-            }
-
-            _decodingErrorCallBack = decodingErrorCallBack;
+            Arguments.NotNull(decodeParameters, nameof(decodeParameters));
+            Arguments.NotNull(tokenParameters, nameof(tokenParameters));
+            _decodingErrorCallBack = Arguments.NotNull(decodingErrorCallBack, nameof(decodingErrorCallBack));
+            Arguments.NotNullOrWhiteSpace(tokenParameters.Token, nameof(tokenParameters.Token));
 
             var tokenResult = new TokenResult();
 
@@ -69,7 +53,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
 
                 if (decodeParameters.ValidateSignature)
                 {
-                    var signatureValid = ValidateTokenSignature(handler, decodeParameters, tokenParameters, tokenResult);
+                    bool signatureValid = ValidateTokenSignature(handler, decodeParameters, tokenParameters, tokenResult);
                     if (!signatureValid)
                     {
                         return null;
@@ -105,7 +89,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
 
             if (decodeParameters.ValidateIssuer)
             {
-                if (!tokenParameters.ValidIssuers.Any())
+                if (tokenParameters.ValidIssuers.Count == 0)
                 {
                     RaiseError(_localizedStrings.ValidIssuersError);
                     return false;
@@ -115,7 +99,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
 
             if (decodeParameters.ValidateAudience)
             {
-                if (!tokenParameters.ValidAudiences.Any())
+                if (tokenParameters.ValidAudiences.Count == 0)
                 {
                     RaiseError(_localizedStrings.ValidAudiencesError);
                     return false;
@@ -260,11 +244,11 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                 return null;
             }
             var publicKeyStringBuilder = new StringBuilder(tokenParameters.PublicKey!.Trim());
-            if (!tokenParameters.PublicKey!.StartsWith(PublicKeyStart))
+            if (!tokenParameters.PublicKey!.StartsWith(PublicKeyStart, StringComparison.OrdinalIgnoreCase))
             {
                 publicKeyStringBuilder.Insert(0, PublicKeyStart);
             }
-            if (!tokenParameters.PublicKey.EndsWith(PublicKeyEnd))
+            if (!tokenParameters.PublicKey.EndsWith(PublicKeyEnd, StringComparison.OrdinalIgnoreCase))
             {
                 publicKeyStringBuilder.Append(PublicKeyEnd);
             }

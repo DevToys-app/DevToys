@@ -12,7 +12,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         /// </summary>
         public static readonly SettingDefinition<bool> ShowValidation
             = new(
-                name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(ShowValidation)}",
+                name: $"{nameof(JwtDecoderEncoderViewModelBase)}.{nameof(ShowValidation)}",
                 isRoaming: true,
                 defaultValue: false);
 
@@ -21,7 +21,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         /// </summary>
         public static readonly SettingDefinition<bool> ValidateSignature
             = new(
-                name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(ValidateSignature)}",
+                name: $"{nameof(JwtDecoderEncoderViewModelBase)}.{nameof(ValidateSignature)}",
                 isRoaming: true,
                 defaultValue: false);
 
@@ -30,7 +30,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         /// </summary>
         public static readonly SettingDefinition<bool> ValidateIssuer
             = new(
-                name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(ValidateIssuer)}",
+                name: $"{nameof(JwtDecoderEncoderViewModelBase)}.{nameof(ValidateIssuer)}",
                 isRoaming: true,
                 defaultValue: false);
 
@@ -39,7 +39,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         /// </summary>
         public static readonly SettingDefinition<bool> ValidateActor
             = new(
-                name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(ValidateActor)}",
+                name: $"{nameof(JwtDecoderEncoderViewModelBase)}.{nameof(ValidateActor)}",
                 isRoaming: true,
                 defaultValue: false);
 
@@ -48,7 +48,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         /// </summary>
         public static readonly SettingDefinition<bool> ValidateAudience
             = new(
-                name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(ValidateAudience)}",
+                name: $"{nameof(JwtDecoderEncoderViewModelBase)}.{nameof(ValidateAudience)}",
                 isRoaming: true,
                 defaultValue: false);
 
@@ -57,7 +57,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         /// </summary>
         public static readonly SettingDefinition<bool> ValidateLifetime
             = new(
-                name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(ValidateLifetime)}",
+                name: $"{nameof(JwtDecoderEncoderViewModelBase)}.{nameof(ValidateLifetime)}",
                 isRoaming: true,
                 defaultValue: false);
 
@@ -66,7 +66,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         /// </summary>
         public static readonly SettingDefinition<bool> JWtToolMode
             = new(
-                name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(JWtToolMode)}",
+                name: $"{nameof(JwtDecoderEncoderViewModelBase)}.{nameof(JWtToolMode)}",
                 isRoaming: true,
                 defaultValue: false);
 
@@ -75,7 +75,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         /// </summary>
         public static readonly SettingDefinition<bool> HasExpiration
             = new(
-                name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(HasExpiration)}",
+                name: $"{nameof(JwtDecoderEncoderViewModelBase)}.{nameof(HasExpiration)}",
                 isRoaming: true,
                 defaultValue: false);
 
@@ -84,7 +84,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         /// </summary>
         public static readonly SettingDefinition<bool> HasDefaultTime
             = new(
-                name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(HasDefaultTime)}",
+                name: $"{nameof(JwtDecoderEncoderViewModelBase)}.{nameof(HasDefaultTime)}",
                 isRoaming: true,
                 defaultValue: false);
 
@@ -93,7 +93,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         /// </summary>
         public static readonly SettingDefinition<bool> HasAudience
             = new(
-                name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(HasAudience)}",
+                name: $"{nameof(JwtDecoderEncoderViewModelBase)}.{nameof(HasAudience)}",
                 isRoaming: true,
                 defaultValue: false);
 
@@ -102,7 +102,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         /// </summary>
         public static readonly SettingDefinition<string?> ValidAudiences
             = new(
-                name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(ValidAudiences)}",
+                name: $"{nameof(JwtDecoderEncoderViewModelBase)}.{nameof(ValidAudiences)}",
                 isRoaming: true,
                 defaultValue: string.Empty);
 
@@ -111,7 +111,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         /// </summary>
         public static readonly SettingDefinition<bool> HasIssuer
             = new(
-                name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(HasIssuer)}",
+                name: $"{nameof(JwtDecoderEncoderViewModelBase)}.{nameof(HasIssuer)}",
                 isRoaming: true,
                 defaultValue: false);
 
@@ -120,7 +120,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         /// </summary>
         public static readonly SettingDefinition<string?> ValidIssuers
             = new(
-                name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(ValidIssuers)}",
+                name: $"{nameof(JwtDecoderEncoderViewModelBase)}.{nameof(ValidIssuers)}",
                 isRoaming: true,
                 defaultValue: string.Empty);
 
@@ -129,7 +129,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         /// </summary>
         public static readonly SettingDefinition<int> ExpireYear
             = new(
-                name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(ExpireYear)}",
+                name: $"{nameof(JwtDecoderEncoderViewModelBase)}.{nameof(ExpireYear)}",
                 isRoaming: true,
                 defaultValue: 0);
 
@@ -138,7 +138,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         /// </summary>
         public static readonly SettingDefinition<int> ExpireMonth
             = new(
-                name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(ExpireMonth)}",
+                name: $"{nameof(JwtDecoderEncoderViewModelBase)}.{nameof(ExpireMonth)}",
                 isRoaming: true,
                 defaultValue: 0);
 
@@ -147,7 +147,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         /// </summary>
         public static readonly SettingDefinition<int> ExpireDay
             = new(
-                name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(ExpireDay)}",
+                name: $"{nameof(JwtDecoderEncoderViewModelBase)}.{nameof(ExpireDay)}",
                 isRoaming: true,
                 defaultValue: 0);
 
@@ -156,7 +156,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         /// </summary>
         public static readonly SettingDefinition<int> ExpireHour
             = new(
-                name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(ExpireHour)}",
+                name: $"{nameof(JwtDecoderEncoderViewModelBase)}.{nameof(ExpireHour)}",
                 isRoaming: true,
                 defaultValue: 0);
 
@@ -165,7 +165,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         /// </summary>
         public static readonly SettingDefinition<int> ExpireMinute
             = new(
-                name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(ExpireMinute)}",
+                name: $"{nameof(JwtDecoderEncoderViewModelBase)}.{nameof(ExpireMinute)}",
                 isRoaming: true,
                 defaultValue: 0);
 
@@ -174,7 +174,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         /// </summary>
         public static readonly SettingDefinition<JwtAlgorithm> JwtAlgorithm
             = new(
-                name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(JwtAlgorithm)}",
+                name: $"{nameof(JwtDecoderEncoderViewModelBase)}.{nameof(JwtAlgorithm)}",
                 isRoaming: true,
                 defaultValue: Models.JwtAlgorithm.HS256);
 
@@ -183,7 +183,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         /// </summary>
         public static readonly SettingDefinition<string?> PublicKey
             = new(
-                name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(PublicKey)}",
+                name: $"{nameof(JwtDecoderEncoderViewModelBase)}.{nameof(PublicKey)}",
                 isRoaming: true,
                 defaultValue: string.Empty);
 
@@ -192,7 +192,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         /// </summary>
         public static readonly SettingDefinition<string?> PrivateKey
             = new(
-                name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(PrivateKey)}",
+                name: $"{nameof(JwtDecoderEncoderViewModelBase)}.{nameof(PrivateKey)}",
                 isRoaming: true,
                 defaultValue: string.Empty);
 
@@ -201,7 +201,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         /// </summary>
         public static readonly SettingDefinition<string?> Signature
             = new(
-                name: $"{nameof(JwtDecoderEncoderViewModel)}.{nameof(Signature)}",
+                name: $"{nameof(JwtDecoderEncoderViewModelBase)}.{nameof(Signature)}",
                 isRoaming: true,
                 defaultValue: string.Empty);
     }

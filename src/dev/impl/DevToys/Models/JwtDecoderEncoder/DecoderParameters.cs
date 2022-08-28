@@ -4,7 +4,7 @@ using DevToys;
 
 namespace DevToys.Models.JwtDecoderEncoder
 {
-    public class DecoderParameters
+    public record DecoderParameters
     {
         public bool ValidateSignature { get; set; }
 

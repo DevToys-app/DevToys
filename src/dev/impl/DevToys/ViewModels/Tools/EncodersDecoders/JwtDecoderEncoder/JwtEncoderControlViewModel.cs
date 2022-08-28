@@ -17,7 +17,7 @@ using Microsoft.Toolkit.Mvvm.Messaging;
 namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
 {
     [Export(typeof(JwtEncoderControlViewModel))]
-    public sealed class JwtEncoderControlViewModel : JwtDecoderEncoderViewModel, IToolViewModel, IRecipient<JwtJobAddedMessage>
+    public sealed class JwtEncoderControlViewModel : JwtDecoderEncoderViewModelBase, IToolViewModel, IRecipient<JwtJobAddedMessage>
     {
         private string? _token;
         private bool _hasError;
@@ -94,10 +94,6 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
             get => SettingsProvider.GetSetting(JwtDecoderEncoderSettings.ExpireYear);
             set
             {
-                if (value < 1)
-                {
-                    return;
-                }
                 SettingsProvider.SetSetting(JwtDecoderEncoderSettings.ExpireYear, value);
                 OnPropertyChanged();
                 QueueNewTokenJob();
@@ -109,10 +105,6 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
             get => SettingsProvider.GetSetting(JwtDecoderEncoderSettings.ExpireMonth);
             set
             {
-                if (value < 1)
-                {
-                    return;
-                }
                 SettingsProvider.SetSetting(JwtDecoderEncoderSettings.ExpireMonth, value);
                 OnPropertyChanged();
                 QueueNewTokenJob();
@@ -124,10 +116,6 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
             get => SettingsProvider.GetSetting(JwtDecoderEncoderSettings.ExpireDay);
             set
             {
-                if (value < 1)
-                {
-                    return;
-                }
                 SettingsProvider.SetSetting(JwtDecoderEncoderSettings.ExpireDay, value);
                 OnPropertyChanged();
                 QueueNewTokenJob();
@@ -140,10 +128,6 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
             get => SettingsProvider.GetSetting(JwtDecoderEncoderSettings.ExpireHour);
             set
             {
-                if (value < 1)
-                {
-                    return;
-                }
                 SettingsProvider.SetSetting(JwtDecoderEncoderSettings.ExpireHour, value);
                 OnPropertyChanged();
                 QueueNewTokenJob();
@@ -155,10 +139,6 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
             get => SettingsProvider.GetSetting(JwtDecoderEncoderSettings.ExpireMinute);
             set
             {
-                if (value < 1)
-                {
-                    return;
-                }
                 SettingsProvider.SetSetting(JwtDecoderEncoderSettings.ExpireMinute, value);
                 OnPropertyChanged();
                 QueueNewTokenJob();
