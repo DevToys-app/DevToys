@@ -197,6 +197,16 @@ namespace DevToys.ViewModels.Tools.RegEx
             }
         }
 
+        internal string? ErrorMsg
+        {
+            get => _errorMsg;
+            set
+            {
+                SetProperty(ref _errorMsg, value);
+            }
+        }
+        private string _errorMsg;
+
         internal IList<Match> Matches
         {
             get => _matches ?? Array.Empty<Match>();
@@ -206,6 +216,16 @@ namespace DevToys.ViewModels.Tools.RegEx
             }
         }
         private IList<Match>? _matches;
+
+        internal IList<MatchDetails2[]> MatchGroups
+        {
+            get => _matchGroups ?? Array.Empty<MatchDetails2[]>();
+            set
+            {
+                SetProperty(ref _matchGroups, value);
+            }
+        }
+        private IList<MatchDetails2[]> _matchGroups;
 
         private string? _inputValue;
         internal string? InputValue
@@ -258,58 +278,83 @@ namespace DevToys.ViewModels.Tools.RegEx
             await ThreadHelper.RunOnUIThreadAsync(() =>
             {
                 ElementTheme currentTheme = ((Frame)Window.Current.Content).ActualTheme;
-                string? highlighterBackgroundResourceName = currentTheme == ElementTheme.Light ? "SystemAccentColorLight2" : "SystemAccentColorDark1";
+                string? highlighterBackgroundResourceName = currentTheme == ElementTheme.Light
+                    ? "SystemAccentColorLight2"
+                    : "SystemAccentColorDark1";
                 highlighterForegroundColor = currentTheme == ElementTheme.Light ? Colors.Black : Colors.White;
                 highlighterBackgroundColor = (Color)Application.Current.Resources[highlighterBackgroundResourceName];
             });
 
             await TaskScheduler.Default;
-
+            string errorMsg = "";
             while (_regExMatchingQueue.TryDequeue(out (string pattern, string text) data))
             {
                 var spans = new List<HighlightSpan>();
                 MatchCollection? matches = null;
                 Regex? regex = null;
-                try
+                if (data.pattern != null)
                 {
-                    string? pattern = data.pattern.Trim('/');
-
-                    regex = new Regex(data.pattern, GetOptions());
-                    matches = regex.Matches(data.text);
-                    foreach (Match match in matches)
+                    try
                     {
-                        int lineCount = CountLines(data.text, match.Index);
-                        spans.Add(
-                            new HighlightSpan()
-                            {
-                                StartIndex = match.Index - lineCount,
-                                Length = match.Length,
-                                BackgroundColor = highlighterBackgroundColor,
-                                ForegroundColor = highlighterForegroundColor
-                            });
+                        string? pattern = data.pattern.Trim('/');
+                        regex = new Regex(data.pattern, GetOptions());
+                        matches = regex.Matches(data.text);
+                        foreach (Match match in matches)
+                        {
+                            int lineCount = CountLines(data.text, match.Index);
+                            spans.Add(
+                                new HighlightSpan()
+                                {
+                                    StartIndex = match.Index - lineCount,
+                                    Length = match.Length,
+                                    BackgroundColor = highlighterBackgroundColor,
+                                    ForegroundColor = highlighterForegroundColor
+                                });
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        errorMsg = ex.Message;
+                        // TODO: indicate the user that the regex is wrong.
                     }
                 }
-                catch
-                {
-                    // TODO: indicate the user that the regex is wrong.
-                }
-
 
                 ThreadHelper.RunOnUIThreadAsync(
                     ThreadPriority.Low,
                     () =>
                     {
-                        MatchTextBox?.SetHighlights(spans);
-                        Matches = matches?.ToList();
-                        if (InputValue != null)
+                        ErrorMsg = errorMsg;
+                        if (matches != null)
                         {
-                            OutputValue = regex?.Replace(data.text, InputValue);
-                        }
+                            MatchTextBox?.SetHighlights(spans);
+                            Matches = matches?.ToList();
+                            MatchGroups = matches.Cast<Match>().Select((c, inx) => c.Groups.Cast<Group>()
+                                .OrderBy(g => g.Index)
+                                .Select(mm => new MatchDetails2
+                                {
+                                    Title = (mm.Name == "0" ? $"Match {inx + 1}:" : $"Group \"{mm.Name}\""),
+                                    Range = $"{mm.Index}-{mm.Index + mm.Length}",
+                                    Value = mm.Value
+                                }).ToArray()).ToList();
 
-                        if (spans.Count > 0 && !_toolSuccessfullyWorked)
+                            if (InputValue != null)
+                            {
+                                OutputValue = regex?.Replace(data.text, InputValue);
+                            }
+
+                            if (spans.Count > 0 && !_toolSuccessfullyWorked)
+                            {
+                                _toolSuccessfullyWorked = true;
+                                _marketingService.NotifyToolSuccessfullyWorked();
+                            }
+                        }
+                        else
                         {
-                            _toolSuccessfullyWorked = true;
-                            _marketingService.NotifyToolSuccessfullyWorked();
+                            Matches = Array.Empty<Match>();
+                            MatchGroups = Array.Empty<MatchDetails2[]>();
+                            MatchTextBox?.SetHighlights(null);
+
+
                         }
                     }).ForgetSafely();
             }
@@ -354,6 +399,8 @@ namespace DevToys.ViewModels.Tools.RegEx
 
         private int CountLines(string input, int maxLength)
         {
+            if (string.IsNullOrEmpty(input))
+                return 0;
             int lines = 0;
             int i = 0;
             while (i > -1 && i < maxLength)
@@ -368,5 +415,12 @@ namespace DevToys.ViewModels.Tools.RegEx
 
             return lines;
         }
+    }
+
+    public record MatchDetails2
+    {
+        public string Title { get; set; }
+        public string Range { get; set; }
+        public string Value { get; set; }
     }
 }

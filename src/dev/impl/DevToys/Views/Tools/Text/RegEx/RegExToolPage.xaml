@@ -3,17 +3,20 @@
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:controls="using:DevToys.UI.Controls"
+	xmlns:controls1="using:Microsoft.UI.Xaml.Controls"
 	xmlns:converters="using:DevToys.UI.Converters"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:interop="using:Windows.UI.Xaml.Interop"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:regEx="using:DevToys.ViewModels.Tools.RegEx"
 	xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
 	NavigationCacheMode="Required"
 	mc:Ignorable="d">
 	<Page.Resources>
 		<converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
 		<Style x:Key="GridStyle" TargetType="toolkit:DataGridCell">
-			<Setter Property="HorizontalAlignment" Value="Center" />
+			<Setter Property="HorizontalAlignment" Value="Stretch" />
+			<Setter Property="HorizontalContentAlignment" Value="Left" />
 			<Setter Property="VerticalAlignment" Value="Top" />
 		</Style>
 	</Page.Resources>
@@ -30,7 +33,8 @@
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="5" />
-            <RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
 
@@ -119,114 +123,73 @@
 			HorizontalAlignment="Stretch"
 			VerticalAlignment="Center"
 			Background="Black" />
-		<toolkit:DataGrid
-			x:Name="MatchDetails"
-			Grid.Row="5"
-			AutoGenerateColumns="False"
-			BorderThickness="1"
-			CellStyle="{StaticResource GridStyle}"
-            HorizontalContentAlignment="Stretch"
-			GridLinesVisibility="All"
-			IsReadOnly="True"
-			ItemsSource="{x:Bind Mode=TwoWay, Path=ViewModel.Matches, UpdateSourceTrigger=PropertyChanged}">
-			<toolkit:DataGrid.Columns>
-				<toolkit:DataGridTextColumn Binding="{Binding Index}" Header="Index" />
-				<toolkit:DataGridTextColumn Binding="{Binding Length}" Header="Length" />
-				<toolkit:DataGridTextColumn Binding="{Binding Value}" Header="Value" />
-				<toolkit:DataGridTextColumn Binding="{Binding Name}" Header="Name" />
-				<toolkit:DataGridCheckBoxColumn Binding="{Binding Success}" Header="Success" />
-				<toolkit:DataGridTemplateColumn
-					Width="SizeToCells"
-					Header="Groups"
-					IsReadOnly="True">
-					<toolkit:DataGridTemplateColumn.CellTemplate>
-						<DataTemplate>
-							<toolkit:DataGrid
-								AutoGenerateColumns="False"
-								BorderBrush="Blue"
-								BorderThickness="1"
-								CellStyle="{StaticResource GridStyle}"
-								GridLinesVisibility="All"
-                                HorizontalContentAlignment="Stretch"
-								ItemsSource="{Binding Groups}">
-								<toolkit:DataGrid.Columns>
-									<toolkit:DataGridTemplateColumn
-										Width="SizeToCells"
-										Header="Captures"
-										IsReadOnly="True">
-										<toolkit:DataGridTemplateColumn.CellTemplate>
-											<DataTemplate>
-												<toolkit:DataGrid
-													BorderBrush="Coral"
-													BorderThickness="1"
-													CellStyle="{StaticResource GridStyle}"
-													GridLinesVisibility="All"
-                                                    HorizontalContentAlignment="Stretch"
-													ItemsSource="{Binding Captures}" />
-											</DataTemplate>
-										</toolkit:DataGridTemplateColumn.CellTemplate>
-									</toolkit:DataGridTemplateColumn>
-									<toolkit:DataGridTextColumn Binding="{Binding Index}" Header="Index" />
-									<toolkit:DataGridTextColumn Binding="{Binding Length}" Header="Length" />
-									<toolkit:DataGridTextColumn Binding="{Binding Value}" Header="Value" />
-									<toolkit:DataGridTextColumn Binding="{Binding Name}" Header="Name" />
-								</toolkit:DataGrid.Columns>
-							</toolkit:DataGrid>
-						</DataTemplate>
-					</toolkit:DataGridTemplateColumn.CellTemplate>
-				</toolkit:DataGridTemplateColumn>
-			</toolkit:DataGrid.Columns>
-		</toolkit:DataGrid>
-        <StackPanel Grid.Row="4" Spacing="4">
-            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="Replacement" />
 
-            <controls:ExpandableSettingControl Title="Replacement Pattern">
-                <controls:ExpandableSettingControl.Icon>
-                    <FontIcon Glyph="&#xF18D;" />
-                </controls:ExpandableSettingControl.Icon>
-                <controls:ExpandableSettingControl.ExpandableContent>
+		<StackPanel Grid.Row="4" Spacing="4">
+			<TextBlock Style="{StaticResource SubTitleTextBlock}" Text="Replacement" />
+
+			<controls:ExpandableSettingControl Title="Replacement Pattern">
+				<controls:ExpandableSettingControl.Icon>
+					<FontIcon Glyph="&#xF18D;" />
+				</controls:ExpandableSettingControl.Icon>
+				<controls:ExpandableSettingControl.ExpandableContent>
+					<Grid
+						x:Name="RootGrid"
+						Margin="0,0,0,16"
+						RowSpacing="12">
+						<Grid.ChildrenTransitions>
+							<TransitionCollection>
+								<EntranceThemeTransition FromVerticalOffset="50" IsStaggeringEnabled="True" />
+							</TransitionCollection>
+						</Grid.ChildrenTransitions>
+
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="*" />
+						</Grid.RowDefinitions>
 
 
+						<controls:CustomTextBox
+							Grid.Row="0"
+							MinHeight="150"
+							AcceptsReturn="True"
+							Header="{x:Bind ViewModel.Strings.InputTitle}"
+							Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
+						<controls:CustomTextBox
+							Grid.Row="1"
+							MinHeight="150"
+							AcceptsReturn="True"
+							Header="{x:Bind ViewModel.Strings.OutputTitle}"
+							IsReadOnly="True"
+							Text="{x:Bind ViewModel.OutputValue, Mode=OneWay}" />
 
+					</Grid>
+				</controls:ExpandableSettingControl.ExpandableContent>
+			</controls:ExpandableSettingControl>
+		</StackPanel>
 
-                        <Grid x:Name="RootGrid" RowSpacing="12" Margin="0,0,0,16">
-                            <Grid.ChildrenTransitions>
-                                <TransitionCollection>
-                                    <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
-                                </TransitionCollection>
-                            </Grid.ChildrenTransitions>
+		<controls1:ItemsRepeater Grid.Row="5" ItemsSource="{x:Bind ViewModel.MatchGroups, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+			<DataTemplate x:DataType="regEx:MatchDetails2[]">
+				<toolkit:DataGrid
+					x:Name="MatchDetails"
+					Grid.Row="5"
+					AutoGenerateColumns="False"
+					BorderThickness="1"
+					CellStyle="{StaticResource GridStyle}"
+					GridLinesVisibility="All"
+					HeadersVisibility="None"
+					IsReadOnly="True"
+					ItemsSource="{x:Bind Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+					<toolkit:DataGrid.Columns>
+						<toolkit:DataGridTextColumn MinWidth="200" Binding="{Binding Title}" />
+						<toolkit:DataGridTextColumn MinWidth="70" Binding="{Binding Range}" />
+						<toolkit:DataGridTextColumn Width="*" Binding="{Binding Value}" />
+					</toolkit:DataGrid.Columns>
+				</toolkit:DataGrid>
+			</DataTemplate>
+		</controls1:ItemsRepeater>
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
+		<TextBlock Grid.Row="6" Text="{x:Bind Path=ViewModel.ErrorMsg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-
-                            <controls:CustomTextBox
-            Grid.Row="0"
-            MinHeight="150"
-            AcceptsReturn="True"
-            Header="{x:Bind ViewModel.Strings.InputTitle}"
-            Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                            <controls:CustomTextBox
-            Grid.Row="1"
-            MinHeight="150"
-            IsReadOnly="True"
-            AcceptsReturn="True"
-            Header="{x:Bind ViewModel.Strings.OutputTitle}"
-            Text="{x:Bind ViewModel.OutputValue, Mode=OneWay}"/>
-
-                        </Grid>
-
-
-
-
-
-                </controls:ExpandableSettingControl.ExpandableContent>
-            </controls:ExpandableSettingControl>
-        </StackPanel>
-
-    </Grid>
+	</Grid>
 </Page>

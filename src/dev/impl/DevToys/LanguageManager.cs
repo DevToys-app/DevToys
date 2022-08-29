@@ -2222,10 +2222,12 @@ namespace DevToys
         /// Gets the resource SearchKeywords.
         /// </summary>
         public string SearchKeywords => _resources.GetString("SearchKeywords");
+
         /// <summary>
         /// Gets the resource InputTitle.
         /// </summary>
         public string InputTitle => _resources.GetString("InputTitle");
+
         /// <summary>
         /// Gets the resource OutputTitle.
         /// </summary>
