@@ -1582,11 +1582,6 @@ namespace DevToys
         public string MenuDisplayName => _resources.GetString("MenuDisplayName");
 
         /// <summary>
-        /// Gets the resource SearchDisplayName.
-        /// </summary>
-        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
-
-        /// <summary>
         /// Gets the resource JwtHeaderLabel.
         /// </summary>
         public string JwtHeaderLabel => _resources.GetString("JwtHeaderLabel");
@@ -1797,14 +1792,19 @@ namespace DevToys
         public string InvalidPrivateKeyError => _resources.GetString("InvalidPrivateKeyError");
 
         /// <summary>
-        /// Gets the resource InvalidSignatureError.
-        /// </summary>
-        public string InvalidSignatureError => _resources.GetString("InvalidSignatureError");
-
-        /// <summary>
         /// Gets the resource PublicKeyLabel.
         /// </summary>
         public string PublicKeyLabel => _resources.GetString("PublicKeyLabel");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+
+        /// <summary>
+        /// Gets the resource InvalidSignatureError.
+        /// </summary>
+        public string InvalidSignatureError => _resources.GetString("InvalidSignatureError");
     }
 
     public class LoremIpsumGeneratorStrings : ObservableObject
