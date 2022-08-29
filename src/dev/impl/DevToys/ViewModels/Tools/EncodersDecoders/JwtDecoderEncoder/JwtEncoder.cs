@@ -27,7 +27,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
     {
         private const string PrivateKeyStart = "-----BEGIN PRIVATE KEY-----";
         private const string PrivateKeyEnd = "-----END PRIVATE KEY-----";
-        private Action<TokenResultErrorEventArgs> _encodingErrorCallBack;
+        private Action<TokenResultErrorEventArgs>? _encodingErrorCallBack;
         private JwtDecoderEncoderStrings _localizedStrings => LanguageManager.Instance.JwtDecoderEncoder;
 
         public TokenResult? GenerateToken(
@@ -63,7 +63,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
 
                 if (encodeParameters.HasExpiration)
                 {
-                    DateTime expirationDate = DateTime.Now
+                    DateTime expirationDate = DateTime.UtcNow
                         .AddYears(tokenParameters.ExpirationYear)
                         .AddMonths(tokenParameters.ExpirationMonth)
                         .AddDays(tokenParameters.ExpirationDay)
@@ -80,7 +80,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                 if (encodeParameters.HasIssuer)
                 {
                     tokenDescriptor.Issuer = string.Join(',', tokenParameters.ValidIssuers);
-                    tokenDescriptor.IssuedAt = DateTime.Now;
+                    tokenDescriptor.IssuedAt = DateTime.UtcNow;
                 }
 
                 var handler = new JwtSecurityTokenHandler
@@ -91,7 +91,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                 if (encodeParameters.HasDefaultTime)
                 {
                     handler.SetDefaultTimesOnTokenCreation = true;
-                    tokenDescriptor.Expires = DateTime.Now.AddHours(1);
+                    tokenDescriptor.Expires = DateTime.UtcNow.AddHours(1);
                 }
 
                 SecurityToken? token = handler.CreateToken(tokenDescriptor);

@@ -27,7 +27,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
     {
         private const string PublicKeyStart = "-----BEGIN PUBLIC KEY-----";
         private const string PublicKeyEnd = "-----END PUBLIC KEY-----";
-        private Action<TokenResultErrorEventArgs> _decodingErrorCallBack;
+        private Action<TokenResultErrorEventArgs>? _decodingErrorCallBack;
         private JwtDecoderEncoderStrings _localizedStrings => LanguageManager.Instance.JwtDecoderEncoder;
 
         public TokenResult? DecodeToken(
