@@ -130,7 +130,7 @@
     <value>நீக்கு</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
-    <value>Delete all</value>
+    <value>அனைத்தையும் நீக்கு</value>
   </data>
   <data name="DetailsTitle" xml:space="preserve">
     <value>விவரங்கள்</value>

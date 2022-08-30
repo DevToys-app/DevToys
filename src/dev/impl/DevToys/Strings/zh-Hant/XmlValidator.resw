@@ -139,6 +139,9 @@
     <value>必須設定 XML 和 XSD 內容以進行驗證。</value>
   </data>
   <data name="XmlIsValidMessage" xml:space="preserve">
-      <value>XML 符合定義的 XSD 配置。</value>
+    <value>XML 符合定義的 XSD 配置。</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>XML XSD Validate</value>
   </data>
 </root>

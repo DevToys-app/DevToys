@@ -139,6 +139,9 @@
     <value>Содержимое XML и XSD должно быть установлено для выполнения проверки.</value>
   </data>
   <data name="XmlIsValidMessage" xml:space="preserve">
-      <value>XML соответствует установленной схеме XSD.</value>
+    <value>XML соответствует установленной схеме XSD.</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Проверка схем XML</value>
   </data>
 </root>

@@ -666,8 +666,9 @@ namespace DevToys.ViewModels
 
             using (await _sempahore.WaitAsync(CancellationToken.None).ConfigureAwait(false))
             {
-                if (newRecommendedTools.Length == 1
-                    && IsToolDisplayedInMenu(ToolsMenuItems.OfType<ToolProviderViewItem>(), newRecommendedTools[0]))
+                ToolProviderViewItem? toolProvider = GetRecommendedToolProvider(newRecommendedTools);
+                if (toolProvider != null
+                    && IsToolDisplayedInMenu(ToolsMenuItems.OfType<ToolProviderViewItem>(), toolProvider))
                 {
                     // One unique tool is recommended.
                     // The recommended tool is displayed in the top menu.
@@ -679,11 +680,26 @@ namespace DevToys.ViewModels
                         {
                             if (!IsInCompactOverlayMode && _allowSelectAutomaticallyRecommendedTool)
                             {
-                                SetSelectedMenuItem(newRecommendedTools[0], _clipboardContent);
+                                SetSelectedMenuItem(toolProvider, _clipboardContent);
                             }
                         });
                 }
             }
+        }
+
+        private ToolProviderViewItem? GetRecommendedToolProvider(ToolProviderViewItem[] items)
+        {
+            ToolProviderViewItem favoriteItem = items.FirstOrDefault(i => i.IsFavorite);
+            if (favoriteItem != null)
+            {
+                return favoriteItem;
+            }
+            else if (items.Length == 1)
+            {
+                return items[0];
+            }
+
+            return null;
         }
 
         private bool IsToolDisplayedInMenu(IEnumerable<ToolProviderViewItem> tools, ToolProviderViewItem ToolProviderViewItem)
