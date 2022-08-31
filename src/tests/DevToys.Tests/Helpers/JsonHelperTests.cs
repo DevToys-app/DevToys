@@ -14,6 +14,7 @@ namespace DevToys.Tests.Helpers
         [DataRow("", false)]
         [DataRow(" ", false)]
         [DataRow("   {  }  ", true)]
+        [DataRow("   [  ]  ", true)]
         [DataRow("   { \"foo\": 123 }  ", true)]
         [DataRow("   bar { \"foo\": 123 }  ", false)]
         public void IsValid(string input, bool expectedResult)
@@ -26,6 +27,7 @@ namespace DevToys.Tests.Helpers
         [DataRow("", "")]
         [DataRow(" ", "")]
         [DataRow("   {  }  ", "{}")]
+        [DataRow("   [  ]  ", "[]")]
         [DataRow("   { \"foo\": 123 }  ", "{\r\n  \"foo\": 123\r\n}")]
         public void FormatTwoSpaces(string input, string expectedResult)
         {
@@ -37,6 +39,7 @@ namespace DevToys.Tests.Helpers
         [DataRow("", "")]
         [DataRow(" ", "")]
         [DataRow("   {  }  ", "{}")]
+        [DataRow("   [  ]  ", "[]")]
         [DataRow("   { \"foo\": 123 }  ", "{\r\n    \"foo\": 123\r\n}")]
         public void FormatFourSpaces(string input, string expectedResult)
         {
@@ -48,6 +51,7 @@ namespace DevToys.Tests.Helpers
         [DataRow("", "")]
         [DataRow(" ", "")]
         [DataRow("   {  }  ", "{}")]
+        [DataRow("   [  ]  ", "[]")]
         [DataRow("   { \"foo\": 123 }  ", "{\r\n\t\"foo\": 123\r\n}")]
         public void FormatOneTab(string input, string expectedResult)
         {
@@ -59,6 +63,7 @@ namespace DevToys.Tests.Helpers
         [DataRow("", "")]
         [DataRow(" ", "")]
         [DataRow("   {  }  ", "{}")]
+        [DataRow("   [  ]  ", "[]")]
         [DataRow("   { \"foo\": 123 }  ", "{\"foo\":123}")]
         public void FormatMinified(string input, string expectedResult)
         {

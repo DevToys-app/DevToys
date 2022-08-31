@@ -69,18 +69,25 @@ namespace DevToys.Helpers.JsonYaml
                     LineInfoHandling = LineInfoHandling.Load
                 };
 
-                JObject jObject;
+                JToken jToken;
                 using (var jsonReader = new JsonTextReader(new StringReader(input)))
                 {
                     jsonReader.DateParseHandling = DateParseHandling.None;
                     jsonReader.DateTimeZoneHandling = DateTimeZoneHandling.RoundtripKind;
 
-                    jObject = JObject.Load(jsonReader, jsonLoadSettings);
+                    jToken = JToken.Load(jsonReader, jsonLoadSettings);
                 }
 
                 if (sortProperties)
                 {
-                    SortJsonPropertiesAlphabetically(jObject);
+                    if (jToken is JObject obj)
+                    {
+                        SortJsonPropertiesAlphabetically(obj);
+                    }
+                    else if (jToken is JArray array)
+                    {
+                        SortJsonPropertiesAlphabetically(array);
+                    }
                 }
 
                 var stringBuilder = new StringBuilder();
@@ -114,7 +121,7 @@ namespace DevToys.Helpers.JsonYaml
                     jsonTextWriter.DateFormatHandling = DateFormatHandling.IsoDateFormat;
                     jsonTextWriter.DateTimeZoneHandling = DateTimeZoneHandling.RoundtripKind;
 
-                    jObject.WriteTo(jsonTextWriter);
+                    jToken.WriteTo(jsonTextWriter);
                 }
 
                 return stringBuilder.ToString();
@@ -215,13 +222,22 @@ namespace DevToys.Helpers.JsonYaml
                 }
                 else if (property.Value is JArray array)
                 {
-                    foreach (JToken? arrayItem in array)
-                    {
-                        if (arrayItem is JObject arrayObj)
-                        {
-                            SortJsonPropertiesAlphabetically(arrayObj);
-                        }
-                    }
+                    SortJsonPropertiesAlphabetically(array);
+                }
+            }
+        }
+
+        private static void SortJsonPropertiesAlphabetically(JArray jArray)
+        {
+            foreach (JToken? arrayItem in jArray)
+            {
+                if (arrayItem is JObject arrayObj)
+                {
+                    SortJsonPropertiesAlphabetically(arrayObj);
+                }
+                else if (arrayItem is JArray array)
+                {
+                    SortJsonPropertiesAlphabetically(array);
                 }
             }
         }

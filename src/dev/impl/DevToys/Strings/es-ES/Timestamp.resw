@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Herramienta convertidora de Marcas de Tiempo</value>
+    <value>Herramienta convertidora de marcas de tiempo</value>
   </data>
   <data name="TimeZoneTitle" xml:space="preserve">
     <value>Huso horario</value>
@@ -179,7 +179,7 @@
     <value>Fecha y Hora en huso de Hora Coordinada Universal-UTC-</value>
   </data>
   <data name="UtcTicksTitle" xml:space="preserve">
-    <value>UtcTicks</value>
+    <value>Franja UTC</value>
   </data>
   <data name="YearTitle" xml:space="preserve">
     <value>Año</value>
