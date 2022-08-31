@@ -207,6 +207,7 @@ namespace DevToys.ViewModels.Tools.RegEx
         }
         private string _errorMsg;
 
+        /*
         internal IList<Match> Matches
         {
             get => _matches ?? Array.Empty<Match>();
@@ -216,7 +217,7 @@ namespace DevToys.ViewModels.Tools.RegEx
             }
         }
         private IList<Match>? _matches;
-
+*/
         internal IList<MatchDetails2[]> MatchGroups
         {
             get => _matchGroups ?? Array.Empty<MatchDetails2[]>();
@@ -292,7 +293,7 @@ namespace DevToys.ViewModels.Tools.RegEx
                 var spans = new List<HighlightSpan>();
                 MatchCollection? matches = null;
                 Regex? regex = null;
-                if (data.pattern != null)
+                if (!String.IsNullOrWhiteSpace(data.pattern))
                 {
                     try
                     {
@@ -327,7 +328,7 @@ namespace DevToys.ViewModels.Tools.RegEx
                         if (matches != null)
                         {
                             MatchTextBox?.SetHighlights(spans);
-                            Matches = matches?.ToList();
+//                            Matches = matches.ToList();
                             MatchGroups = matches.Cast<Match>().Select((c, inx) => c.Groups.Cast<Group>()
                                 .OrderBy(g => g.Index)
                                 .Select(mm => new MatchDetails2
@@ -350,11 +351,9 @@ namespace DevToys.ViewModels.Tools.RegEx
                         }
                         else
                         {
-                            Matches = Array.Empty<Match>();
+//                            Matches = Array.Empty<Match>();
                             MatchGroups = Array.Empty<MatchDetails2[]>();
                             MatchTextBox?.SetHighlights(null);
-
-
                         }
                     }).ForgetSafely();
             }

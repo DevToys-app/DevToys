@@ -32,8 +32,10 @@
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
+<!--             
 			<RowDefinition Height="5" />
 			<RowDefinition Height="Auto" />
+            -->
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
@@ -117,6 +119,7 @@
 			Header="{x:Bind Path=ViewModel.Strings.Text}"
 			IsRichTextEdit="True"
 			Text="{x:Bind Mode=TwoWay, Path=ViewModel.Text, UpdateSourceTrigger=PropertyChanged}" />
+        <!--
 		<toolkit:GridSplitter
 			Grid.Row="3"
 			Height="5"
@@ -167,8 +170,8 @@
 				</controls:ExpandableSettingControl.ExpandableContent>
 			</controls:ExpandableSettingControl>
 		</StackPanel>
-
-		<controls1:ItemsRepeater Grid.Row="5" ItemsSource="{x:Bind ViewModel.MatchGroups, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+-->
+		<controls1:ItemsRepeater Grid.Row="3" ItemsSource="{x:Bind ViewModel.MatchGroups, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 			<DataTemplate x:DataType="regEx:MatchDetails2[]">
 				<toolkit:DataGrid
 					x:Name="MatchDetails"
@@ -189,7 +192,7 @@
 			</DataTemplate>
 		</controls1:ItemsRepeater>
 
-		<TextBlock Grid.Row="6" Text="{x:Bind Path=ViewModel.ErrorMsg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+		<TextBlock Grid.Row="4" Text="{x:Bind Path=ViewModel.ErrorMsg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
 	</Grid>
 </Page>
