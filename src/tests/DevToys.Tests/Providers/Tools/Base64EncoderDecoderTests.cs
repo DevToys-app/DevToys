@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using DevToys.Api.Tools;
 using DevToys.Core.Threading;
+using DevToys.Models;
 using DevToys.ViewModels.Tools.Base64EncoderDecoder;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -30,17 +31,28 @@ namespace DevToys.Tests.Providers.Tools
         }
 
         [DataTestMethod]
-        [DataRow(null, "")]
-        [DataRow("", "")]
-        [DataRow(" ", "")]
-        [DataRow("Hello There", "SGVsbG8gVGhlcmU=")]
-        public async Task EncoderAsync(string input, string expectedResult)
+        [DataRow(null, "", NewlineSeparator.CRLF)]
+        [DataRow(null, "", NewlineSeparator.LF)]
+        [DataRow("", "", NewlineSeparator.CRLF)]
+        [DataRow("", "", NewlineSeparator.LF)]
+        [DataRow(" ", "", NewlineSeparator.CRLF)]
+        [DataRow(" ", "", NewlineSeparator.LF)]
+        [DataRow("Hello There", "SGVsbG8gVGhlcmU=", NewlineSeparator.CRLF)]
+        [DataRow("Hello There", "SGVsbG8gVGhlcmU=", NewlineSeparator.LF)]
+        [DataRow("Hello\r\nThere", "SGVsbG8NClRoZXJl", NewlineSeparator.CRLF)]
+        [DataRow("Hello\r\nThere", "SGVsbG8KVGhlcmU=", NewlineSeparator.LF)]
+        [DataRow("Hello\rThere", "SGVsbG8NClRoZXJl", NewlineSeparator.CRLF)]
+        [DataRow("Hello\rThere", "SGVsbG8KVGhlcmU=", NewlineSeparator.LF)]
+        [DataRow("Hello\nThere", "SGVsbG8NClRoZXJl", NewlineSeparator.CRLF)]
+        [DataRow("Hello\nThere", "SGVsbG8KVGhlcmU=", NewlineSeparator.LF)]
+        public async Task EncoderAsync(string input, string expectedResult, NewlineSeparator newlineSeparator)
         {
             Base64EncoderDecoderToolViewModel viewModel = ExportProvider.Import<Base64EncoderDecoderToolViewModel>();
 
             await ThreadHelper.RunOnUIThreadAsync(() =>
             {
                 viewModel.IsEncodeMode = true;
+                viewModel.NewlineSeparatorMode = NewlineSeparatorDisplayPair.Values.Single(v => v.Value == newlineSeparator);
                 viewModel.InputValue = input;
             });
 

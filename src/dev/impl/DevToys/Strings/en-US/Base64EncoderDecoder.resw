@@ -166,4 +166,16 @@
     <value>RFC 4648</value>
     <comment>Alternative search keywords. Enables searching for words that are not included in Description, MenuDisplayName, and SearchDisplayName.</comment>
   </data>
+  <data name="CarriageReturnLineFeed" xml:space="preserve">
+    <value>CRLF (Windows)</value>
+  </data>
+  <data name="LineFeed" xml:space="preserve">
+    <value>LF (Unix)</value>
+  </data>
+  <data name="NewlineSeparatorDescription" xml:space="preserve">
+    <value>Select how newlines should be encoded</value>
+  </data>
+  <data name="NewlineSeparatorTitle" xml:space="preserve">
+    <value>Newline separator</value>
+  </data>
 </root>

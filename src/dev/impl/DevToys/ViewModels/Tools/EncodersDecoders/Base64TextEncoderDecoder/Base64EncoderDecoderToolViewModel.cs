@@ -2,15 +2,19 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Composition;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
 using DevToys.Core;
 using DevToys.Core.Threading;
+using DevToys.Models;
 using DevToys.Shared.Core.Threading;
 using DevToys.Views.Tools.Base64EncoderDecoder;
 
@@ -36,6 +40,20 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
                 name: $"{nameof(Base64EncoderDecoderToolViewModel)}.{nameof(Encoder)}",
                 isRoaming: true,
                 defaultValue: DefaultEncoding);
+
+
+        private static readonly NewlineSeparatorDisplayPair DefaultNewlineSeparator = 
+            NewlineSeparatorDisplayPair.Values.SingleOrDefault(v => Environment.NewLine.Equals(v.EscapeSequence)) ?? NewlineSeparatorDisplayPair.LF;
+        
+        /// <summary>
+        /// Whether the tool should encode using CRLF (Windows) or LF (Unix) for newlines.
+        /// Defaults to the current platforms default newline separator.
+        /// </summary>
+        private static readonly SettingDefinition<NewlineSeparator> NewlineSeparator
+            = new(
+                name: $"{nameof(Base64EncoderDecoderToolViewModel)}.{nameof(NewlineSeparator)}",
+                isRoaming: true,
+                defaultValue: DefaultNewlineSeparator.Value);
 
         private const string DefaultEncoding = "UTF-8";
 
@@ -116,6 +134,33 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
             }
         }
 
+        /// <summary>
+        /// Gets or sets the desired newline separator.
+        /// </summary>
+        internal NewlineSeparatorDisplayPair NewlineSeparatorMode
+        {
+            get
+            {
+                NewlineSeparator settingsValue = _settingsProvider.GetSetting(NewlineSeparator);
+                NewlineSeparatorDisplayPair? newlineSeparator = NewlineSeparators.FirstOrDefault(x => x.Value == settingsValue);
+                return newlineSeparator ?? DefaultNewlineSeparator;
+            }
+            set
+            {
+                if (NewlineSeparatorMode != value)
+                {
+                    _settingsProvider.SetSetting(NewlineSeparator, value.Value);
+                    OnPropertyChanged();
+                    QueueConversionCalculation();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get a list of supported newline separators
+        /// </summary>
+        internal IReadOnlyList<NewlineSeparatorDisplayPair> NewlineSeparators = new ObservableCollection<NewlineSeparatorDisplayPair>(NewlineSeparatorDisplayPair.Values);
+
         [ImportingConstructor]
         public Base64EncoderDecoderToolViewModel(ISettingsProvider settingsProvider, IMarketingService marketingService)
         {
@@ -164,6 +209,8 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
             string? encoded;
             try
             {
+                data = ReplaceNewlinesWithSelectedNewlines(data);
+
                 Encoding encoder = GetEncoder();
                 byte[]? dataBytes = encoder.GetBytes(data);
                 encoded = Convert.ToBase64String(dataBytes);
@@ -175,6 +222,16 @@ namespace DevToys.ViewModels.Tools.Base64EncoderDecoder
             }
 
             return encoded;
+        }
+
+        private string ReplaceNewlinesWithSelectedNewlines(string? data)
+        {
+            if (string.IsNullOrWhiteSpace(data))
+            {
+                return string.Empty;
+            }
+
+            return Regex.Replace(data, @"\r\n?|\n", NewlineSeparatorMode.EscapeSequence);
         }
 
         private async Task<string> DecodeBase64DataAsync(string? data)

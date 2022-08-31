@@ -378,6 +378,26 @@ namespace DevToys
         /// Gets the resource SearchKeywords.
         /// </summary>
         public string SearchKeywords => _resources.GetString("SearchKeywords");
+
+        /// <summary>
+        /// Gets the resource CarriageReturnLineFeed.
+        /// </summary>
+        public string CarriageReturnLineFeed => _resources.GetString("CarriageReturnLineFeed");
+
+        /// <summary>
+        /// Gets the resource LineFeed.
+        /// </summary>
+        public string LineFeed => _resources.GetString("LineFeed");
+
+        /// <summary>
+        /// Gets the resource NewlineSeparatorDescription.
+        /// </summary>
+        public string NewlineSeparatorDescription => _resources.GetString("NewlineSeparatorDescription");
+
+        /// <summary>
+        /// Gets the resource NewlineSeparatorTitle.
+        /// </summary>
+        public string NewlineSeparatorTitle => _resources.GetString("NewlineSeparatorTitle");
     }
 
     public class Base64ImageEncoderDecoderStrings : ObservableObject

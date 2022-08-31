@@ -68,6 +68,8 @@
     <Compile Include="Messages\PinToolToStartMessage.cs" />
     <Compile Include="Messages\OpenToolInNewWindowMessage.cs" />
     <Compile Include="Messages\ChangeSelectedMenuItemMessage.cs" />
+    <Compile Include="Models\NewlineSeparator.cs" />
+    <Compile Include="Models\NewlineSeparatorDisplayPair.cs" />
     <Compile Include="Models\ColorPickerModeDisplayPair.cs" />
     <Compile Include="Models\HashComparisonResult.cs" />
     <Compile Include="Models\HashingAlgorithm.cs" />
