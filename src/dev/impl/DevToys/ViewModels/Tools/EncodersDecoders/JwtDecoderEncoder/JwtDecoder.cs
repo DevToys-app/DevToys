@@ -69,6 +69,9 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
             return tokenResult;
         }
 
+        /// <summary>
+        /// Validate the token using the Signing Credentials 
+        /// </summary>
         private bool ValidateTokenSignature(
             JwtSecurityTokenHandler handler,
             DecoderParameters decodeParameters,
@@ -87,6 +90,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                 ValidateAudience = decodeParameters.ValidateAudience
             };
 
+            /// check if the token issuers are part of the user provided issuers
             if (decodeParameters.ValidateIssuer)
             {
                 if (tokenParameters.ValidIssuers.Count == 0)
@@ -97,6 +101,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                 validationParameters.ValidIssuers = tokenParameters.ValidIssuers;
             }
 
+            /// check if the token audience are part of the user provided audiences
             if (decodeParameters.ValidateAudience)
             {
                 if (tokenParameters.ValidAudiences.Count == 0)
@@ -121,6 +126,9 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
             return false;
         }
 
+        /// <summary>
+        /// Get the Signing Credentials depending on the token Algorithm
+        /// </summary>
         private SigningCredentials GetValidationCredentials(
             TokenParameters tokenParameters)
         {
@@ -142,6 +150,10 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
             return signingCredentials;
         }
 
+        /// <summary>
+        /// Generate a Symetric Security Key using the token signature (base 64 or not)
+        /// </summary>
+        /// <param name="tokenParameters">Token parameters with the token signature</param>
         private SymmetricSecurityKey? GetHmacShaValidationKey(TokenParameters tokenParameters)
         {
             if (string.IsNullOrWhiteSpace(tokenParameters.Signature))
@@ -167,6 +179,10 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
             return new SymmetricSecurityKey(byteKey);
         }
 
+        /// <summary>
+        /// Generate a RSA Security Key using the token signing public key
+        /// </summary>
+        /// <param name="tokenParameters">Token parameters with the token signing public key</param>
         private RsaSecurityKey? GetRsaShaValidationKey(TokenParameters tokenParameters)
         {
             try
@@ -199,6 +215,10 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
             }
         }
 
+        /// <summary>
+        /// Generate a ECDsa Security Key using the token signing public key
+        /// </summary>
+        /// <param name="tokenParameters">Token parameters with the token signing public key</param>
         private ECDsaSecurityKey? GetECDsaValidationKey(TokenParameters tokenParameters)
         {
             try
@@ -236,6 +256,10 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
             }
         }
 
+        /// <summary>
+        /// Generate the Asymetric Security Key using the token signing public key
+        /// </summary>
+        /// <param name="tokenParameters">Token parameters with the token signing public key</param>
         private AsymmetricKeyParameter? GetPublicAsymmetricKeyParameter(TokenParameters tokenParameters)
         {
             if (string.IsNullOrWhiteSpace(tokenParameters.PublicKey))

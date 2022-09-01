@@ -59,7 +59,6 @@
                 <controls:ExpandableSettingControl.ExpandableContent>
                     <StackPanel Padding="6" Spacing="4" HorizontalAlignment="Stretch">
                         <controls:ExpandableSettingControl
-                            Margin="0,0,0,4"
                             Title="{x:Bind ViewModel.LocalizedStrings.EncodeHashingTitle}">
                             <controls:ExpandableSettingControl.Icon>
                                 <FontIcon Glyph="&#xF9FF;" />
@@ -79,7 +78,6 @@
                             <controls:ExpandableSettingControl.ExpandableContent>
                                 <StackPanel Padding="12" Spacing="4" HorizontalAlignment="Stretch">
                                     <controls:CustomTextBox 
-                                        Margin="0,4,0,4"
                                         Header="{x:Bind ViewModel.LocalizedStrings.ValidIssuersLabel}"
                                         Text="{x:Bind ViewModel.ValidIssuers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                         LostFocus="{x:Bind ViewModel.InputFocusChanged}" />
@@ -97,7 +95,6 @@
                             <controls:ExpandableSettingControl.ExpandableContent>
                                 <StackPanel Padding="12" Spacing="4" HorizontalAlignment="Stretch">
                                     <controls:CustomTextBox 
-                                        Margin="0,4,0,4"
                                         Header="{x:Bind ViewModel.LocalizedStrings.ValidAudiencesLabel}"
                                         Text="{x:Bind ViewModel.ValidAudiences, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                         LostFocus="{x:Bind ViewModel.InputFocusChanged}" />

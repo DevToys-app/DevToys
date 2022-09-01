@@ -7,7 +7,6 @@ using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Helpers.JsonYaml;
 using DevToys.Models;
-using DevToys.Models.JwtDecoderEncoder;
 using DevToys.UI.Controls;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Messaging;
@@ -308,12 +307,6 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
             {
                 RequireSignature = false;
             }
-        }
-
-        protected void TokenErrorCallBack(TokenResultErrorEventArgs e)
-        {
-            JwtValidation.IsValid = false;
-            JwtValidation.ErrorMessage = e.Message;
         }
     }
 }

@@ -221,5 +221,16 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                 }
             }).ForgetSafely();
         }
+
+        private void TokenErrorCallBack(TokenResultErrorEventArgs e)
+        {
+            JwtValidation.IsValid = false;
+            JwtValidation.ErrorMessage = e.Message;
+            ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, () =>
+            {
+                Token = string.Empty;
+                DisplayValidationInfoBar();
+            }).ForgetSafely();
+        }
     }
 }

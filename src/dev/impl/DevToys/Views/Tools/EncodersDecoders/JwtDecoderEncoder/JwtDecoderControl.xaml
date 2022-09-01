@@ -80,12 +80,15 @@
                             <ToggleSwitch 
                                 Style="{StaticResource RightAlignedToggleSwitchStyle}" 
                                 IsOn="{x:Bind ViewModel.ValidateIssuer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <controls:ExpandableSettingControl.ExpandableContent>
+                                <StackPanel Padding="12" Spacing="4" HorizontalAlignment="Stretch">
+                                    <controls:CustomTextBox 
+                                        Header="{x:Bind ViewModel.LocalizedStrings.ValidIssuersLabel}"
+                                        Text="{x:Bind ViewModel.ValidIssuers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        LostFocus="{x:Bind ViewModel.InputFocusChanged}" />
+                                </StackPanel>
+                            </controls:ExpandableSettingControl.ExpandableContent>
                         </controls:ExpandableSettingControl>
-                        <controls:CustomTextBox 
-                            Header="{x:Bind ViewModel.LocalizedStrings.ValidIssuersLabel}"
-                            Text="{x:Bind ViewModel.ValidIssuers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            LostFocus="{x:Bind ViewModel.InputFocusChanged}"
-                            Visibility="{x:Bind ViewModel.ValidateIssuer, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
                         <controls:ExpandableSettingControl 
                             Title="{x:Bind ViewModel.LocalizedStrings.DecodeValidateAudienceLabel}">
                             <controls:ExpandableSettingControl.Icon>
@@ -94,12 +97,15 @@
                             <ToggleSwitch
                                 Style="{StaticResource RightAlignedToggleSwitchStyle}" 
                                 IsOn="{x:Bind ViewModel.ValidateAudience, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <controls:ExpandableSettingControl.ExpandableContent>
+                                <StackPanel Padding="12" Spacing="4" HorizontalAlignment="Stretch">
+                                    <controls:CustomTextBox 
+                                        Header="{x:Bind ViewModel.LocalizedStrings.ValidAudiencesLabel}"
+                                        Text="{x:Bind ViewModel.ValidAudiences, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        LostFocus="{x:Bind ViewModel.InputFocusChanged}" />
+                                </StackPanel>
+                            </controls:ExpandableSettingControl.ExpandableContent>                            
                         </controls:ExpandableSettingControl>
-                        <controls:CustomTextBox 
-                            Header="{x:Bind ViewModel.LocalizedStrings.ValidAudiencesLabel}"
-                            Text="{x:Bind ViewModel.ValidAudiences, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            LostFocus="{x:Bind ViewModel.InputFocusChanged}"
-                            Visibility="{x:Bind ViewModel.ValidateAudience, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
                         <controls:ExpandableSettingControl
                             Title="{x:Bind ViewModel.LocalizedStrings.DecodeValidateLifetimeLabel}">
                             <controls:ExpandableSettingControl.Icon>
@@ -124,7 +130,6 @@
         </StackPanel>
         <muxc:InfoBar 
             Grid.Row="1"
-            Margin="0 20 0 0"
             Grid.Column="0"
             Grid.ColumnSpan="3"
             Severity="{Binding Severity}"
@@ -179,7 +184,6 @@
             RowSpacing="0"
             Visibility="{x:Bind ViewModel.ShowValidation, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
             <controls:CustomTextBox
-                Margin="0,12,0,9"
                 Header="{x:Bind ViewModel.LocalizedStrings.SignatureLabel}"
                 Grid.Row="0"
                 MinHeight="150"
@@ -187,7 +191,6 @@
                 Text="{x:Bind ViewModel.Signature, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Visibility="{x:Bind ViewModel.RequireSignature, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
             <controls:CustomTextBox
-                Margin="0,12,0,9"
                 Header="{x:Bind ViewModel.LocalizedStrings.PublicKeyLabel}"
                 Grid.Row="0"
                 MinHeight="150"

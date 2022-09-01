@@ -50,5 +50,4 @@ namespace DevToys.Core
             }
         }
     }
-
 }
