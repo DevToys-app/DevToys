@@ -124,13 +124,13 @@
     <value>கட்டமைப்பு</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
-    <value>Decode</value>
+    <value>மறைகுறியாக்கு</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
     <value>எந்த மாற்று முறையைப் பயன்படுத்த விரும்புகிறீர்கள் என்பதைத் தேர்ந்தெடுக்கவும்</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
-    <value>Encode</value>
+    <value>குறியாக்கு</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
     <value>மாற்றம்</value>
