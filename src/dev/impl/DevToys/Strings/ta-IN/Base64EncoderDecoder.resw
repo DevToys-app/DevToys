@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Base64 Text Encoder and Decoder tool</value>
+    <value>Base64 குறியாக்கம் மற்றும் மறைகுறியாக்கம் கருவி</value>
   </data>
   <data name="Ascii" xml:space="preserve">
     <value>ASCII</value>
@@ -127,13 +127,13 @@
     <value>கட்டமைப்பு</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
-    <value>Decode</value>
+    <value>மறைகுறியாக்கு</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
     <value>எந்த மாற்று முறையைப் பயன்படுத்த விரும்புகிறீர்கள் என்பதைத் தேர்ந்தெடுக்கவும்</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
-    <value>Encode</value>
+    <value>குறியாக்கு</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
     <value>மாற்றம்</value>
@@ -142,10 +142,10 @@
     <value>Base64 உரை</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
-    <value>Select which encoding do you want to use</value>
+    <value>எந்தக் குறியாக்கத்தைப் பயன்படுத்த விரும்புகிறீர்கள் என்பதைத் தேர்ந்தெடுக்கவும்</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
-    <value>Encoding</value>
+    <value>குறியாக்கம்</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
     <value>உள்ளீடு</value>
@@ -157,10 +157,10 @@
     <value>UTF-8</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Encode and decode Base64 text data</value>
+    <value>Base64 தரவைக் குறியாக்கம் மற்றும் மறைகுறியாக்கம் செய்</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Base64 Text Encoder / Decoder</value>
+    <value>Base64 குறியாக்கம் மற்றும் மறைகுறியாக்கம் கருவி</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>RFC 4648</value>
