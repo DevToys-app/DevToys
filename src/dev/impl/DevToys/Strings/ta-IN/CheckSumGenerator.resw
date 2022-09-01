@@ -124,7 +124,7 @@
     <value>இரத்து</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>கட்டமைப்பு</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Generate a hash with Checksum based on a file</value>
