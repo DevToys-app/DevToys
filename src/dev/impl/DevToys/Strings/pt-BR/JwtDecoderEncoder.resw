@@ -190,19 +190,19 @@
     <value>Expire in minute(s)</value>
   </data>
   <data name="PrivateKeyLabel" xml:space="preserve">
-    <value>Private Key</value>
+    <value>Chave privada</value>
   </data>
   <data name="SignatureLabel" xml:space="preserve">
-    <value>Signature</value>
+    <value>Assinatura</value>
   </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>Signature Verified</value>
+    <value>Assinatura verificada</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
-    <value>Invalid Public Key</value>
+    <value>Chave pública invalida</value>
   </data>
   <data name="JwtInValidMessage" xml:space="preserve">
-    <value>Invalid Signature</value>
+    <value>Assinatura inválida</value>
   </data>
   <data name="DecodeValidateActorLabel" xml:space="preserve">
     <value>Validate actor</value>
@@ -256,6 +256,6 @@
     <value>JWT Encoder / Decoder</value>
   </data>
   <data name="InvalidSignatureError" xml:space="preserve">
-    <value>Invalid Signature</value>
+    <value>Assinatura inválida</value>
   </data>
 </root>
