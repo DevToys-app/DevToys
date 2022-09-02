@@ -46,7 +46,8 @@ namespace DevToys.Views.Tools.JwtDecoderEncoder
 
             if (!string.IsNullOrWhiteSpace(parameters.ClipBoardContent))
             {
-                ViewModel.JwtToken = parameters.ClipBoardContent;
+                ViewModel.DecoderViewModel.Token = parameters.ClipBoardContent;
+                ViewModel.JwtToolMode = false;
             }
 
             base.OnNavigatedTo(e);

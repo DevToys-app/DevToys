@@ -1,25 +1,27 @@
-THIRD-PARTY SOFTWARE NOTICES AND INFORMATION
+# THIRD-PARTY SOFTWARE NOTICES AND INFORMATION
 
 This project incorporates components from the projects listed below. The original copyright notices and the licenses under which Etienne Baudoux received such components are set forth below. Etienne Baudoux reserves all rights not expressly granted herein, whether by implication, estoppel or otherwise.
 
-1. Newtonsoft.Json (https://github.com/JamesNK/Newtonsoft.Json)
-2. GitInfo (https://github.com/devlooped/GitInfo)
-3. Windows Community Toolkit (https://github.com/CommunityToolkit/WindowsCommunityToolkit)
-4. YamlDotNet (https://github.com/aaubry/YamlDotNet)
-5. Fluent UI System Icons (https://github.com/microsoft/fluentui-system-icons)
-6. Monaco Editor (https://github.com/Microsoft/monaco-editor)
-7. Monaco Editor UWP (https://github.com/hawkerm/monaco-editor-uwp)
-8. Observable Vector (https://github.com/jamesqo/observable-vector)
-9. Azure Active Directory IdentityModel Extensions for .NET (https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet)
-10. Markdig (https://github.com/xoofx/markdig)
-11. github-markdown-css (https://github.com/sindresorhus/github-markdown-css)
-12. Efficient Compression Tool (https://github.com/fhanau/Efficient-Compression-Tool)
-13. NLipsum (https://github.com/alexcpendleton/NLipsum)
-14. SQL Formatter (https://github.com/zeroturnaround/sql-formatter)
-15. Cronos (https://github.com/HangfireIO/Cronos)
+1. [Newtonsoft.Json](#newtonsoftjson) (<https://github.com/JamesNK/Newtonsoft.Json>)
+2. [GitInfo](#gitinfo) (<https://github.com/devlooped/GitInfo>)
+3. [Windows Community Toolkit](#windows-community-toolkit) (<https://github.com/CommunityToolkit/WindowsCommunityToolkit>)
+4. [YamlDotNet](#yamldotnet) (<https://github.com/aaubry/YamlDotNet>)
+5. [Fluent UI System Icons](#fluent-ui-system-icons) (<https://github.com/microsoft/fluentui-system-icons>)
+6. [Monaco Editor](#monaco-editor) (<https://github.com/Microsoft/monaco-editor>)
+7. [Monaco Editor UWP](#monaco-editor-uwp) (<https://github.com/hawkerm/monaco-editor-uwp>)
+8. [Observable Vector](#observable-vector) (<https://github.com/jamesqo/observable-vector>)
+9. [Azure Active Directory IdentityModel Extensions for .NET](#azure-active-directory-identitymodel-extensions-for-net) (<https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet>)
+10. [Markdig](#markdig) (<https://github.com/xoofx/markdig>)
+11. [github-markdown-css](#github-markdown-css) (<https://github.com/sindresorhus/github-markdown-css>)
+12. [Efficient Compression Tool](#efficient-compression-tool) (<https://github.com/fhanau/Efficient-Compression-Tool>)
+13. [NLipsum](#nlipsum) (<https://github.com/alexcpendleton/NLipsum>)
+14. [SQL Formatter](#sql-formatter) (<https://github.com/zeroturnaround/sql-formatter>)
+15. [Cronos](#cronos) (<https://github.com/HangfireIO/Cronos>)
+16. [BouncyCastle](#bouncy-castle) (<https://www.bouncycastle.org/>)
 
-Newtonsoft.Json NOTICES AND INFORMATION BEGIN HERE
+Newtonsoft.Json
 =========================================
+
 The MIT License (MIT)
 
 Copyright (c) 2007 James Newton-King
@@ -41,8 +43,9 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-GitInfo NOTICES AND INFORMATION BEGIN HERE
+GitInfo
 =========================================
+
 The MIT License (MIT)
 
 Copyright (c) Daniel Cazzulino and Contributors
@@ -65,15 +68,14 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-Windows Community Toolkit NOTICES AND INFORMATION BEGIN HERE
+Windows Community Toolkit
 =========================================
-# Windows Community Toolkit
 
 Copyright © .NET Foundation and Contributors
 
 All rights reserved.
 
-## MIT License (MIT)
+# MIT License (MIT)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -81,8 +83,9 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-YamlDotNet NOTICES AND INFORMATION BEGIN HERE
+YamlDotNet
 =========================================
+
 Copyright (c) 2008, 2009, 2010, 2011, 2012, 2013, 2014 Antoine Aubry and contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -103,8 +106,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-Fluent UI System Icons NOTICES AND INFORMATION BEGIN HERE
+Fluent UI System Icons
 =========================================
+
 MIT License
 
 Copyright (c) 2020 Microsoft Corporation
@@ -127,8 +131,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-Monaco Editor NOTICES AND INFORMATION BEGIN HERE
+Monaco Editor
 =========================================
+
 The MIT License (MIT)
 
 Copyright (c) 2016 - present Microsoft Corporation
@@ -139,8 +144,9 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-Monaco Editor UWP NOTICES AND INFORMATION BEGIN HERE
+Monaco Editor UWP
 =========================================
+
 Copyright 2017 Michael A. Hawker
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -149,8 +155,9 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-Observable Vector NOTICES AND INFORMATION BEGIN HERE
+Observable Vector
 =========================================
+
 The MIT License (MIT)
 
 Copyright (c) 2016 James Ko
@@ -173,8 +180,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-Azure Active Directory IdentityModel Extensions for .NET NOTICES AND INFORMATION BEGIN HERE
+Azure Active Directory IdentityModel Extensions for .NET
 =========================================
+
 The MIT License (MIT)
 
 Copyright (c) Microsoft Corporation
@@ -197,37 +205,39 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-Markdig NOTICES AND INFORMATION BEGIN HERE
+Markdig
 =========================================
+
 Copyright (c) 2018-2019, Alexandre Mutel
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification
 , are permitted provided that the following conditions are met:
 
-1. Redistributions of source code must retain the above copyright notice, this 
+1. Redistributions of source code must retain the above copyright notice, this
    list of conditions and the following disclaimer.
 
-2. Redistributions in binary form must reproduce the above copyright notice, 
-   this list of conditions and the following disclaimer in the documentation 
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
    and/or other materials provided with the distribution.
 
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
 DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL 
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR 
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-github-markdown-css NOTICES AND INFORMATION BEGIN HERE
+github-markdown-css
 =========================================
+
 MIT License
 
-Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
+Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (<<https://sindresorhus.com>)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -235,8 +245,9 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-Efficient Compression Tool NOTICES AND INFORMATION BEGIN HERE
+Efficient Compression Tool
 =========================================
+
                               Apache License
                         Version 2.0, January 2004
                      http://www.apache.org/licenses/
@@ -439,8 +450,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-NLipsum NOTICES AND INFORMATION BEGIN HERE
+NLipsum
 =========================================
+
 The MIT License (MIT)
 
 Copyright (c) 2015 Alex Pendleton
@@ -462,8 +474,9 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-SQL Formatter NOTICES AND INFORMATION BEGIN HERE
+SQL Formatter
 =========================================
+
 The MIT License (MIT)
 
 Copyright (c) 2016-2020 ZeroTurnaround LLC
@@ -487,8 +500,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-Cronos NOTICES AND INFORMATION BEGIN HERE
+Cronos
 =========================================
+
 The MIT License (MIT)
 
 Copyright (c) 2017 Hangfire OÜ
@@ -510,3 +524,19 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+Bouncy Castle
+=========================================
+
+Please note this should be read in the same way as the [MIT license](<<http://opensource.org/licenses/MIT>).
+
+Please also note this licensing model is made possible through funding from [donations](<<https://www.bouncycastle.org/donate>) and the sale of [support contracts](<<https://www.cryptoworkshop.com/support_faq.html>).
+
+LICENSE
+Copyright (c) 2000 - 2021 The Legion of the Bouncy Castle Inc. (<<https://www.bouncycastle.org>)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

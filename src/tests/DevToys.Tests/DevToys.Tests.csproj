@@ -44,6 +44,8 @@
     <SDKReference Include="TestPlatform.Universal, Version=$(UnitTestPlatformVersion)" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\JwtHelperTests.cs" />
+    <Compile Include="Helpers\Base64HelperTests.cs" />
     <Compile Include="Helpers\XmlHelperTests.cs" />
     <Compile Include="Providers\Tools\BaseNumberFormatterTests.cs" />
     <Compile Include="Core\Threading\AsyncLazyTests.cs" />
@@ -55,9 +57,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\Tools\HashGeneratorTests.cs" />
     <Compile Include="Providers\Tools\Base64EncoderDecoderTests.cs" />
+    <Compile Include="Providers\Tools\JwtDecoderEncoderTests.cs" />
+    <Compile Include="Providers\Tools\JwtEncoderTests.cs" />
     <Compile Include="Providers\Tools\SqlFormatterTests.cs" />
     <Compile Include="Providers\Tools\StringUtilitiesTests.cs" />
     <Compile Include="Providers\Tools\TestDataProvider.cs" />
+    <Compile Include="Providers\Tools\JwtDecoderTests.cs" />
     <Compile Include="Providers\Tools\XmlValidatorTests.cs" />
     <Compile Include="UI\ConvertersTests.cs" />
     <Compile Include="UnitTestApp.xaml.cs">
@@ -85,6 +90,21 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <EmbeddedResource Include="Providers\TestData\Jwt\ES\BasicToken.txt" />
+    <EmbeddedResource Include="Providers\TestData\Jwt\ES\ComplexToken.txt" />
+    <EmbeddedResource Include="Providers\TestData\Jwt\ES\PrivateKey.txt" />
+    <EmbeddedResource Include="Providers\TestData\Jwt\ES\PublicKey.txt" />
+    <EmbeddedResource Include="Providers\TestData\Jwt\HS\BasicToken.txt" />
+    <EmbeddedResource Include="Providers\TestData\Jwt\HS\ComplexToken.txt" />
+    <EmbeddedResource Include="Providers\TestData\Jwt\HS\Signature.txt" />
+    <EmbeddedResource Include="Providers\TestData\Jwt\PS\BasicToken.txt" />
+    <EmbeddedResource Include="Providers\TestData\Jwt\PS\ComplexToken.txt" />
+    <EmbeddedResource Include="Providers\TestData\Jwt\PS\PrivateKey.txt" />
+    <EmbeddedResource Include="Providers\TestData\Jwt\PS\PublicKey.txt" />
+    <EmbeddedResource Include="Providers\TestData\Jwt\RS\BasicToken.txt" />
+    <EmbeddedResource Include="Providers\TestData\Jwt\RS\ComplexToken.txt" />
+    <EmbeddedResource Include="Providers\TestData\Jwt\RS\PrivateKey.txt" />
+    <EmbeddedResource Include="Providers\TestData\Jwt\RS\PublicKey.txt" />
     <EmbeddedResource Include="Providers\TestData\InvalidXml.xml" />
     <EmbeddedResource Include="Providers\TestData\InvalidXsd.xml" />
     <EmbeddedResource Include="Providers\TestData\ValidXml.xml" />
@@ -107,6 +127,15 @@
       <Project>{ccbcaefe-b245-413a-9c37-a21ce99eecb9}</Project>
       <Name>DevToys.Shared</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Providers\TestData\Jwt\BasicPayload.json" />
+    <EmbeddedResource Include="Providers\TestData\Jwt\ComplexPayload.json" />
+    <EmbeddedResource Include="Providers\TestData\Jwt\ES\Header.json" />
+    <EmbeddedResource Include="Providers\TestData\Jwt\HS\Header.json" />
+    <EmbeddedResource Include="Providers\TestData\Jwt\PS\Header.json" />
+    <EmbeddedResource Include="Providers\TestData\Jwt\RS\Header.json" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
