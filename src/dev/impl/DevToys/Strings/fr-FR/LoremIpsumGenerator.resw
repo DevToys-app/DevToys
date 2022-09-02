@@ -160,6 +160,6 @@
     <value>Mots</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>[chaîne de caractères vide]</value>
+    <value></value>
   </data>
 </root>
