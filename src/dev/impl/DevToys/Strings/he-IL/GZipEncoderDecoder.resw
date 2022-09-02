@@ -124,7 +124,7 @@
     <value>ASCII</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>Configuration</value>
+    <value>כיוון הגדרות</value>
   </data>
   <data name="ConversionDecompress" xml:space="preserve">
     <value>Decompress</value>
@@ -148,10 +148,10 @@
     <value>Encoding</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>Input</value>
+    <value>קלט</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Output</value>
+    <value>פלט</value>
   </data>
   <data name="Utf8" xml:space="preserve">
     <value>UTF-8</value>
