@@ -37,5 +37,6 @@
         <NuGet_YamlDotNet>11.2.1</NuGet_YamlDotNet>
         <NuGet_IdentityModelTokenJwt>6.13.1</NuGet_IdentityModelTokenJwt>
         <NuGet_NLipsum>1.1.0</NuGet_NLipsum>
+        <NuGet_BouncyCastleNetCore>1.9.0</NuGet_BouncyCastleNetCore>
     </PropertyGroup>
 </Project>
