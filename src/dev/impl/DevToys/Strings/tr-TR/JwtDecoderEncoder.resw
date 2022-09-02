@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>JWT Encoder / Decoder tool</value>
+    <value>JWT Kodlama ve Çözümleme aracı</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>JWT</value>
   </data>
   <data name="JwtHeaderLabel" xml:space="preserve">
-    <value>Header</value>
+    <value>Başlık</value>
   </data>
   <data name="JwtTokenLabel" xml:space="preserve">
-    <value>Token</value>
+    <value>Belirteç</value>
   </data>
   <data name="JwtPayloadLabel" xml:space="preserve">
-    <value>Payload</value>
+    <value>Yük</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>JWT başlığını, yükünü ve imzasını çözümle</value>
@@ -139,7 +139,7 @@
     <value></value>
   </data>
   <data name="Algorithm" xml:space="preserve">
-    <value>Algorithm</value>
+    <value>Algoritma</value>
   </data>
   <data name="DecodeSwitchModeLabel" xml:space="preserve">
     <value>Çöz</value>
@@ -148,7 +148,7 @@
     <value>Validate Token</value>
   </data>
   <data name="DecodeValidateTokenNoLabel" xml:space="preserve">
-    <value>No</value>
+    <value>Hayır</value>
   </data>
   <data name="DecodeValidateTokenYesLabel" xml:space="preserve">
     <value>Yes</value>
@@ -172,7 +172,7 @@
     <value>Kodla</value>
   </data>
   <data name="SettingsSwitchModeLabel" xml:space="preserve">
-    <value>Encode / Decode</value>
+    <value>Kodlayıcı / Çözümleyici</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>Yapılandırma</value>
@@ -190,13 +190,13 @@
     <value>Expire in minute(s)</value>
   </data>
   <data name="PrivateKeyLabel" xml:space="preserve">
-    <value>Private Key</value>
+    <value>Özel Anahtar</value>
   </data>
   <data name="SignatureLabel" xml:space="preserve">
-    <value>Signature</value>
+    <value>İmza</value>
   </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>Signature Verified</value>
+    <value>İmza Doğrulandı</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
     <value>Invalid Public Key</value>
@@ -235,7 +235,7 @@
     <value>Valid issuers are empty</value>
   </data>
   <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
-    <value>The public key provided is a private key</value>
+    <value>Sağlanan genel anahtar özel bir anahtardır</value>
   </data>
   <data name="EncodeAudienceLabel" xml:space="preserve">
     <value>Token has audience</value>
@@ -250,12 +250,12 @@
     <value>Invalid Private Key</value>
   </data>
   <data name="PublicKeyLabel" xml:space="preserve">
-    <value>Public Key</value>
+    <value>Genel Anahtar</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>JWT Encoder / Decoder</value>
+    <value>JWT Kodlayıcı / Çözümleyici</value>
   </data>
   <data name="InvalidSignatureError" xml:space="preserve">
-    <value>Invalid Signature</value>
+    <value>Geçersiz İmza</value>
   </data>
 </root>
