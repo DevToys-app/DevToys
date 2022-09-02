@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>JWT Encoder / Decoder tool</value>
+    <value>JWT エンコーダー / デコーダー</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>JWT</value>
   </data>
   <data name="JwtHeaderLabel" xml:space="preserve">
-    <value>Header</value>
+    <value>ヘッダー</value>
   </data>
   <data name="JwtTokenLabel" xml:space="preserve">
-    <value>Token</value>
+    <value>トークン</value>
   </data>
   <data name="JwtPayloadLabel" xml:space="preserve">
-    <value>Payload</value>
+    <value>ペイロード</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>JWT ヘッダー、ペイロード、署名をデコードします</value>
@@ -139,31 +139,31 @@
     <value></value>
   </data>
   <data name="Algorithm" xml:space="preserve">
-    <value>Algorithm</value>
+    <value>アルゴリズム</value>
   </data>
   <data name="DecodeSwitchModeLabel" xml:space="preserve">
     <value>デコード</value>
   </data>
   <data name="DecodeValidateTokenLabel" xml:space="preserve">
-    <value>Validate Token</value>
+    <value>トークンを検証する</value>
   </data>
   <data name="DecodeValidateTokenNoLabel" xml:space="preserve">
-    <value>No</value>
+    <value>オフ</value>
   </data>
   <data name="DecodeValidateTokenYesLabel" xml:space="preserve">
-    <value>Yes</value>
+    <value>オン</value>
   </data>
   <data name="EncodeExpirationTitle" xml:space="preserve">
-    <value>Token has expirations</value>
+    <value>トークンの有効期限</value>
   </data>
   <data name="EncodeExpirationMonthLabel" xml:space="preserve">
-    <value>Expire in month(s)</value>
+    <value>月</value>
   </data>
   <data name="EncodeExpirationYearLabel" xml:space="preserve">
-    <value>Expire in year(s)</value>
+    <value>年</value>
   </data>
   <data name="EncodeHashingTitle" xml:space="preserve">
-    <value>Token hashing algorithm</value>
+    <value>署名のアルゴリズム</value>
   </data>
   <data name="EncodeSettingsTitle" xml:space="preserve">
     <value>設定</value>
@@ -172,7 +172,7 @@
     <value>エンコード</value>
   </data>
   <data name="SettingsSwitchModeLabel" xml:space="preserve">
-    <value>Encode / Decode</value>
+    <value>モード</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>構成</value>
@@ -181,19 +181,19 @@
     <value>Token has default time</value>
   </data>
   <data name="EncodeExpirationDaysLabel" xml:space="preserve">
-    <value>Expire in day(s)</value>
+    <value>日</value>
   </data>
   <data name="EncodeExpirationHoursLabel" xml:space="preserve">
-    <value>Expire in hour(s)</value>
+    <value>時間</value>
   </data>
   <data name="EncodeExpirationMinutesLabel" xml:space="preserve">
-    <value>Expire in minute(s)</value>
+    <value>分</value>
   </data>
   <data name="PrivateKeyLabel" xml:space="preserve">
     <value>Private Key</value>
   </data>
   <data name="SignatureLabel" xml:space="preserve">
-    <value>Signature</value>
+    <value>シグネチャ</value>
   </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
     <value>Signature Verified</value>
