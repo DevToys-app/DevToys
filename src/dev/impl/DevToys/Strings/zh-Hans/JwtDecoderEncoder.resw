@@ -139,7 +139,7 @@
     <value></value>
   </data>
   <data name="Algorithm" xml:space="preserve">
-    <value>Algorithm</value>
+    <value>算法</value>
   </data>
   <data name="DecodeSwitchModeLabel" xml:space="preserve">
     <value>解码</value>
@@ -148,19 +148,19 @@
     <value>Validate Token</value>
   </data>
   <data name="DecodeValidateTokenNoLabel" xml:space="preserve">
-    <value>No</value>
+    <value>否</value>
   </data>
   <data name="DecodeValidateTokenYesLabel" xml:space="preserve">
-    <value>Yes</value>
+    <value>是</value>
   </data>
   <data name="EncodeExpirationTitle" xml:space="preserve">
     <value>Token has expirations</value>
   </data>
   <data name="EncodeExpirationMonthLabel" xml:space="preserve">
-    <value>Expire in month(s)</value>
+    <value>过期时间(月)</value>
   </data>
   <data name="EncodeExpirationYearLabel" xml:space="preserve">
-    <value>Expire in year(s)</value>
+    <value>过期时间(年)</value>
   </data>
   <data name="EncodeHashingTitle" xml:space="preserve">
     <value>Token hashing algorithm</value>
@@ -181,7 +181,7 @@
     <value>Token has default time</value>
   </data>
   <data name="EncodeExpirationDaysLabel" xml:space="preserve">
-    <value>过期时间(秒)</value>
+    <value>过期时间(日)</value>
   </data>
   <data name="EncodeExpirationHoursLabel" xml:space="preserve">
     <value>过期时间(时)</value>
