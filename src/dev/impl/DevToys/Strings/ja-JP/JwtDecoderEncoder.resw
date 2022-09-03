@@ -145,7 +145,7 @@
     <value>デコード</value>
   </data>
   <data name="DecodeValidateTokenLabel" xml:space="preserve">
-    <value>トークンを検証する</value>
+    <value>トークンの検証</value>
   </data>
   <data name="DecodeValidateTokenNoLabel" xml:space="preserve">
     <value>オフ</value>
