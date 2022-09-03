@@ -193,7 +193,7 @@
     <value>Private Key</value>
   </data>
   <data name="SignatureLabel" xml:space="preserve">
-    <value>シグネチャ</value>
+    <value>署名</value>
   </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
     <value>Signature Verified</value>
