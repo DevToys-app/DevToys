@@ -127,7 +127,7 @@
     <value>Header</value>
   </data>
   <data name="JwtTokenLabel" xml:space="preserve">
-    <value>Token</value>
+    <value>令牌</value>
   </data>
   <data name="JwtPayloadLabel" xml:space="preserve">
     <value>Payload</value>
@@ -145,7 +145,7 @@
     <value>解码</value>
   </data>
   <data name="DecodeValidateTokenLabel" xml:space="preserve">
-    <value>Validate Token</value>
+    <value>验证令牌</value>
   </data>
   <data name="DecodeValidateTokenNoLabel" xml:space="preserve">
     <value>否</value>
@@ -154,7 +154,7 @@
     <value>是</value>
   </data>
   <data name="EncodeExpirationTitle" xml:space="preserve">
-    <value>Token has expirations</value>
+    <value>访问令牌有到期日期</value>
   </data>
   <data name="EncodeExpirationMonthLabel" xml:space="preserve">
     <value>过期时间(月)</value>
@@ -223,10 +223,10 @@
     <value>Valid issuers</value>
   </data>
   <data name="DecodeValidationSettingsDescription" xml:space="preserve">
-    <value>Select which token paramters to validate</value>
+    <value>选择要验证的令牌参数</value>
   </data>
   <data name="DecodeValidationSettingsTitle" xml:space="preserve">
-    <value>Token validation settings</value>
+    <value>令牌验证设置</value>
   </data>
   <data name="ValidAudiencesError" xml:space="preserve">
     <value>Valid audiences are empty</value>
@@ -235,7 +235,7 @@
     <value>Valid issuers are empty</value>
   </data>
   <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
-    <value>The public key provided is a private key</value>
+    <value>所提供的公钥是私钥</value>
   </data>
   <data name="EncodeAudienceLabel" xml:space="preserve">
     <value>Token has audience</value>
@@ -244,7 +244,7 @@
     <value>Token has issuer</value>
   </data>
   <data name="EncodeSettingsDescription" xml:space="preserve">
-    <value>Select token parameters</value>
+    <value>选择令牌参数</value>
   </data>
   <data name="InvalidPrivateKeyError" xml:space="preserve">
     <value>私钥无效</value>
