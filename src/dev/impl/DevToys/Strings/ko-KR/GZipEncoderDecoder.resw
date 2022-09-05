@@ -163,6 +163,6 @@
     <value>GZip 압축 / 압축 해제</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value>[빈 문자열]</value>
   </data>
 </root>
