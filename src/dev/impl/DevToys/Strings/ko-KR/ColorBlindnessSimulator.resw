@@ -145,6 +145,6 @@
     <value>청색약 모방 결과</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value>[빈 문자열]</value>
   </data>
 </root>
