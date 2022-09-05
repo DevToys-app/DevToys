@@ -223,7 +223,7 @@
     <value>Emissores válidos</value>
   </data>
   <data name="DecodeValidationSettingsDescription" xml:space="preserve">
-    <value>Selecione os parâmetros do identificador para validar</value>
+    <value>Select which token parameters to validate</value>
   </data>
   <data name="DecodeValidationSettingsTitle" xml:space="preserve">
     <value>Configurações de validação do identificador</value>
