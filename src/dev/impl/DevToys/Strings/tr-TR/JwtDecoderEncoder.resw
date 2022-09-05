@@ -145,7 +145,7 @@
     <value>Çöz</value>
   </data>
   <data name="DecodeValidateTokenLabel" xml:space="preserve">
-    <value>Validate Token</value>
+    <value>Erişim Anahtarını Doğrula</value>
   </data>
   <data name="DecodeValidateTokenNoLabel" xml:space="preserve">
     <value>Hayır</value>
@@ -157,10 +157,10 @@
     <value>Token has expirations</value>
   </data>
   <data name="EncodeExpirationMonthLabel" xml:space="preserve">
-    <value>Expire in month(s)</value>
+    <value>Ay(lar) içinde sona erme</value>
   </data>
   <data name="EncodeExpirationYearLabel" xml:space="preserve">
-    <value>Expire in year(s)</value>
+    <value>Yıl(lar) içinde sona erme</value>
   </data>
   <data name="EncodeHashingTitle" xml:space="preserve">
     <value>Token hashing algorithm</value>
@@ -181,13 +181,13 @@
     <value>Token has default time</value>
   </data>
   <data name="EncodeExpirationDaysLabel" xml:space="preserve">
-    <value>Expire in day(s)</value>
+    <value>Gün(ler) içinde sona erme</value>
   </data>
   <data name="EncodeExpirationHoursLabel" xml:space="preserve">
-    <value>Expire in hour(s)</value>
+    <value>Saat(ler) içinde sona erme</value>
   </data>
   <data name="EncodeExpirationMinutesLabel" xml:space="preserve">
-    <value>Expire in minute(s)</value>
+    <value>Dakika(lar) içinde sona erme</value>
   </data>
   <data name="PrivateKeyLabel" xml:space="preserve">
     <value>Özel Anahtar</value>
@@ -199,10 +199,10 @@
     <value>İmza Doğrulandı</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
-    <value>Invalid Public Key</value>
+    <value>Geçersiz Ortak Anahtar</value>
   </data>
   <data name="JwtInValidMessage" xml:space="preserve">
-    <value>Invalid Signature</value>
+    <value>Geçersiz İmza</value>
   </data>
   <data name="DecodeValidateActorLabel" xml:space="preserve">
     <value>Validate actor</value>
@@ -247,7 +247,7 @@
     <value>Select token parameters</value>
   </data>
   <data name="InvalidPrivateKeyError" xml:space="preserve">
-    <value>Invalid Private Key</value>
+    <value>Geçersiz Özel Anahtar</value>
   </data>
   <data name="PublicKeyLabel" xml:space="preserve">
     <value>Genel Anahtar</value>
