@@ -223,7 +223,7 @@
     <value>Valid issuers</value>
   </data>
   <data name="DecodeValidationSettingsDescription" xml:space="preserve">
-    <value>选择要验证的令牌参数</value>
+    <value>Select which token parameters to validate</value>
   </data>
   <data name="DecodeValidationSettingsTitle" xml:space="preserve">
     <value>令牌验证设置</value>
