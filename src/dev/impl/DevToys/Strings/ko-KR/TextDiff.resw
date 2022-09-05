@@ -145,6 +145,6 @@
     <value>텍스트 비교</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value>[빈 문자열]</value>
   </data>
 </root>
