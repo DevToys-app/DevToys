@@ -136,7 +136,7 @@
     <value>JWT 헤더, 내용및 서명 디코드</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value>[빈 문자열]</value>
   </data>
   <data name="Algorithm" xml:space="preserve">
     <value>Algorithm</value>
