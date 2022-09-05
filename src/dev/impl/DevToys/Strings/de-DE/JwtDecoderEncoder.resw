@@ -223,7 +223,7 @@
     <value>Ersteller überprüfen</value>
   </data>
   <data name="DecodeValidationSettingsDescription" xml:space="preserve">
-    <value>Wählen Sie die zu überprüfenden Token-Parameter</value>
+    <value>Select which token parameters to validate</value>
   </data>
   <data name="DecodeValidationSettingsTitle" xml:space="preserve">
     <value>Token-Überprüfungseinstellungen</value>
