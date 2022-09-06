@@ -223,7 +223,7 @@
     <value>Valid issuers</value>
   </data>
   <data name="DecodeValidationSettingsDescription" xml:space="preserve">
-    <value>Select which token parameters to validate</value>
+    <value>Hangi belirteç parametrelerinin doğrulanacağını seçin</value>
   </data>
   <data name="DecodeValidationSettingsTitle" xml:space="preserve">
     <value>Token validation settings</value>
