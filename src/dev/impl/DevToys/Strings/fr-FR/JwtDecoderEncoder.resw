@@ -157,10 +157,10 @@
     <value>Le jeton a une date d'expiration</value>
   </data>
   <data name="EncodeExpirationMonthLabel" xml:space="preserve">
-    <value>Expire in month(s)</value>
+    <value>Expire en mois(s)</value>
   </data>
   <data name="EncodeExpirationYearLabel" xml:space="preserve">
-    <value>Expire in year(s)</value>
+    <value>Expire en année(s)</value>
   </data>
   <data name="EncodeHashingTitle" xml:space="preserve">
     <value>Algorithme de hachage du jeton</value>
@@ -181,13 +181,13 @@
     <value>Le jeton a une heure par défaut</value>
   </data>
   <data name="EncodeExpirationDaysLabel" xml:space="preserve">
-    <value>Expire in day(s)</value>
+    <value>Expire dans le(s) jour(s)</value>
   </data>
   <data name="EncodeExpirationHoursLabel" xml:space="preserve">
-    <value>Expire in hour(s)</value>
+    <value>Expire en heure(s)</value>
   </data>
   <data name="EncodeExpirationMinutesLabel" xml:space="preserve">
-    <value>Expire in minute(s)</value>
+    <value>Expire en minute(s)</value>
   </data>
   <data name="PrivateKeyLabel" xml:space="preserve">
     <value>Clé privée</value>
@@ -223,19 +223,19 @@
     <value>Emetteurs valides</value>
   </data>
   <data name="DecodeValidationSettingsDescription" xml:space="preserve">
-    <value>Select which token parameters to validate</value>
+    <value>Sélectionnez les paramètres de jeton à valider</value>
   </data>
   <data name="DecodeValidationSettingsTitle" xml:space="preserve">
     <value>Paramètres de validation du jeton</value>
   </data>
   <data name="ValidAudiencesError" xml:space="preserve">
-    <value>Valid audiences are empty</value>
+    <value>Les audiences valides sont vides</value>
   </data>
   <data name="ValidIssuersError" xml:space="preserve">
-    <value>Valid issuers are empty</value>
+    <value>Les émetteurs valides sont vides</value>
   </data>
   <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
-    <value>The public key provided is a private key</value>
+    <value>La clé publique fournie est une clé privée</value>
   </data>
   <data name="EncodeAudienceLabel" xml:space="preserve">
     <value>Le jeton a une audience</value>
@@ -244,7 +244,7 @@
     <value>Le jeton a un émetteur</value>
   </data>
   <data name="EncodeSettingsDescription" xml:space="preserve">
-    <value>Select token parameters</value>
+    <value>Sélectionnez les paramètres de jeton</value>
   </data>
   <data name="InvalidPrivateKeyError" xml:space="preserve">
     <value>Clé privée invalide</value>
