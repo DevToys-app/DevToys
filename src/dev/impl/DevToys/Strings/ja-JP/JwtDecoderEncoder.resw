@@ -178,7 +178,7 @@
     <value>構成</value>
   </data>
   <data name="EncodeDefaultTimeTitle" xml:space="preserve">
-    <value>Token has default time</value>
+    <value>トークンにはデフォルトの時間があります</value>
   </data>
   <data name="EncodeExpirationDaysLabel" xml:space="preserve">
     <value>日</value>
@@ -190,22 +190,22 @@
     <value>分</value>
   </data>
   <data name="PrivateKeyLabel" xml:space="preserve">
-    <value>Private Key</value>
+    <value>秘密鍵</value>
   </data>
   <data name="SignatureLabel" xml:space="preserve">
     <value>署名</value>
   </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>Signature Verified</value>
+    <value>署名が認証されました</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
-    <value>Invalid Public Key</value>
+    <value>無効な公開鍵です</value>
   </data>
   <data name="JwtInValidMessage" xml:space="preserve">
-    <value>Invalid Signature</value>
+    <value>無効な署名です。</value>
   </data>
   <data name="DecodeValidateActorLabel" xml:space="preserve">
-    <value>Validate actor</value>
+    <value>アクターを検証します</value>
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
     <value>Validate audience</value>
@@ -256,6 +256,6 @@
     <value>JWT Encoder / Decoder</value>
   </data>
   <data name="InvalidSignatureError" xml:space="preserve">
-    <value>Invalid Signature</value>
+    <value>無効な署名です。</value>
   </data>
 </root>
