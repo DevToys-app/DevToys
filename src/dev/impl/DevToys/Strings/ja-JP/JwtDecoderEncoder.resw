@@ -205,55 +205,55 @@
     <value>無効な署名です。</value>
   </data>
   <data name="DecodeValidateActorLabel" xml:space="preserve">
-    <value>アクターを検証します</value>
+    <value>アクターを検証する</value>
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
-    <value>Validate audience</value>
+    <value>オーディエンスを検証する</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
-    <value>Validate issuer</value>
+    <value>発行者を検証する</value>
   </data>
   <data name="DecodeValidateLifetimeLabel" xml:space="preserve">
-    <value>Validate lifetime</value>
+    <value>有効時間の設定</value>
   </data>
   <data name="ValidAudiencesLabel" xml:space="preserve">
-    <value>Valid audiences</value>
+    <value>オーディエンスを検証する</value>
   </data>
   <data name="ValidIssuersLabel" xml:space="preserve">
-    <value>Valid issuers</value>
+    <value>発行者を検証する</value>
   </data>
   <data name="DecodeValidationSettingsDescription" xml:space="preserve">
-    <value>Select which token parameters to validate</value>
+    <value>検証するトークンパラメーターを選択してください</value>
   </data>
   <data name="DecodeValidationSettingsTitle" xml:space="preserve">
-    <value>Token validation settings</value>
+    <value>トークン検証の設定</value>
   </data>
   <data name="ValidAudiencesError" xml:space="preserve">
-    <value>Valid audiences are empty</value>
+    <value>有効なオーディエンスが空です</value>
   </data>
   <data name="ValidIssuersError" xml:space="preserve">
-    <value>Valid issuers are empty</value>
+    <value>有効な発行者が空です</value>
   </data>
   <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
-    <value>The public key provided is a private key</value>
+    <value>指定された公開鍵は秘密鍵です</value>
   </data>
   <data name="EncodeAudienceLabel" xml:space="preserve">
-    <value>Token has audience</value>
+    <value>トークンにはオーディエンスがあります</value>
   </data>
   <data name="EncodeIssuerLabel" xml:space="preserve">
-    <value>Token has issuer</value>
+    <value>トークンには発行者がいます。</value>
   </data>
   <data name="EncodeSettingsDescription" xml:space="preserve">
-    <value>Select token parameters</value>
+    <value>トークンパラメータを選択</value>
   </data>
   <data name="InvalidPrivateKeyError" xml:space="preserve">
-    <value>Invalid Private Key</value>
+    <value>秘密鍵が無効です</value>
   </data>
   <data name="PublicKeyLabel" xml:space="preserve">
-    <value>Public Key</value>
+    <value>公開鍵</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>JWT Encoder / Decoder</value>
+    <value>JWT エンコーダー / デコーダー</value>
   </data>
   <data name="InvalidSignatureError" xml:space="preserve">
     <value>無効な署名です。</value>
