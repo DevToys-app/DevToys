@@ -121,13 +121,13 @@
     <value>JSON to YAML and YAML to JSON converter tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Configurație</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Select which conversion mode you want to use</value>
+    <value>Selectați ce mod de conversie doriți să utilizați</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Conversion</value>
+    <value>Conversie</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>JSON &lt;&gt; YAML</value>
