@@ -154,7 +154,7 @@
     <value>Yes</value>
   </data>
   <data name="EncodeExpirationTitle" xml:space="preserve">
-    <value>Token has expirations</value>
+    <value>Jetonda tükenme noktası var</value>
   </data>
   <data name="EncodeExpirationMonthLabel" xml:space="preserve">
     <value>Ay(lar) içinde sona erme</value>
@@ -163,7 +163,7 @@
     <value>Yıl(lar) içinde sona erme</value>
   </data>
   <data name="EncodeHashingTitle" xml:space="preserve">
-    <value>Token hashing algorithm</value>
+    <value>Jeton hash'leme algoritması</value>
   </data>
   <data name="EncodeSettingsTitle" xml:space="preserve">
     <value>Ayarlar</value>
@@ -178,7 +178,7 @@
     <value>Yapılandırma</value>
   </data>
   <data name="EncodeDefaultTimeTitle" xml:space="preserve">
-    <value>Token has default time</value>
+    <value>Jetonda varsayılan zaman var</value>
   </data>
   <data name="EncodeExpirationDaysLabel" xml:space="preserve">
     <value>Gün(ler) içinde sona erme</value>
@@ -205,46 +205,46 @@
     <value>Geçersiz İmza</value>
   </data>
   <data name="DecodeValidateActorLabel" xml:space="preserve">
-    <value>Validate actor</value>
+    <value>Aktörü doğrula</value>
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
-    <value>Validate audience</value>
+    <value>Seyirciyi doğrula</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
-    <value>Validate issuer</value>
+    <value>Sağlayıcıyı doğrula</value>
   </data>
   <data name="DecodeValidateLifetimeLabel" xml:space="preserve">
-    <value>Validate lifetime</value>
+    <value>Varlık süresini doğrula</value>
   </data>
   <data name="ValidAudiencesLabel" xml:space="preserve">
-    <value>Valid audiences</value>
+    <value>Geçerli seyirciler</value>
   </data>
   <data name="ValidIssuersLabel" xml:space="preserve">
-    <value>Valid issuers</value>
+    <value>Geçerli sağlayıcılar</value>
   </data>
   <data name="DecodeValidationSettingsDescription" xml:space="preserve">
     <value>Hangi belirteç parametrelerinin doğrulanacağını seçin</value>
   </data>
   <data name="DecodeValidationSettingsTitle" xml:space="preserve">
-    <value>Token validation settings</value>
+    <value>Jeton doğrulama ayarları</value>
   </data>
   <data name="ValidAudiencesError" xml:space="preserve">
-    <value>Valid audiences are empty</value>
+    <value>Geçerli seyirciler boş</value>
   </data>
   <data name="ValidIssuersError" xml:space="preserve">
-    <value>Valid issuers are empty</value>
+    <value>Geçerli sağlayıcılar boş</value>
   </data>
   <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
     <value>Sağlanan genel anahtar özel bir anahtardır</value>
   </data>
   <data name="EncodeAudienceLabel" xml:space="preserve">
-    <value>Token has audience</value>
+    <value>Jetonda seyirci var</value>
   </data>
   <data name="EncodeIssuerLabel" xml:space="preserve">
-    <value>Token has issuer</value>
+    <value>Jetonda sağlayıcı var</value>
   </data>
   <data name="EncodeSettingsDescription" xml:space="preserve">
-    <value>Select token parameters</value>
+    <value>Jeton parametrelerini seçin</value>
   </data>
   <data name="InvalidPrivateKeyError" xml:space="preserve">
     <value>Geçersiz Özel Anahtar</value>
