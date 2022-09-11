@@ -12,12 +12,15 @@ namespace DevToys.ViewModels.Tools.XmlValidator.Parsing
         {
         }
 
-        internal override XsdParsingResult Parse(string xsdContent)
+        protected override XsdParsingResult ParsingOperation(string xsdContent)
         {
             XmlSchema xmlSchema;
+            string? targetNamespace;
             try
             {
-                xmlSchema = XmlSchema.Read(new XmlTextReader(new StringReader(xsdContent)), ValidationErrorCallBack);
+                StringReader reader = new(xsdContent);
+                xmlSchema = XmlSchema.Read(reader, ValidationErrorCallBack);
+                targetNamespace = string.Equals(xmlSchema.TargetNamespace, string.Empty) ? null : xmlSchema.TargetNamespace;
             }
             catch (XmlException ex)
             {
@@ -36,7 +39,8 @@ namespace DevToys.ViewModels.Tools.XmlValidator.Parsing
             XmlSchemaSet schema = new();
             schema.Add(xmlSchema);
             schema.Compile();
-            return new XsdParsingResult {IsValid = true, SchemaSet = schema};
+
+            return new XsdParsingResult {IsValid = true, SchemaSet = schema, TargetNamespace = targetNamespace};
         }
 
         private static XsdParsingResult GetInvalidParsingResult(string source, int lineNumber, int linePosition,
