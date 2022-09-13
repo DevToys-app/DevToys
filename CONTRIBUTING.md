@@ -31,7 +31,7 @@ There are two possibilities offered:
 * If you want to add a new language, please create a new discussion on Crowdin's website or on GitHub. We will be happy to add your language to the list.
 * When your translation is done, it will be synchronized with our GitHub repository within 1 hour and create a pull request.
 
-## Change yourself the translations in repository
+## Change the translations in the repository yourself 
 
 This approach is more complex but has the advantage that it allows you to test your changes on your local machine.
 
