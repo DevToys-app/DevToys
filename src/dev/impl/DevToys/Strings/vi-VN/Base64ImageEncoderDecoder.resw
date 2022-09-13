@@ -130,7 +130,7 @@
     <value>Hình ảnh</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Encode and decode Base64 image data</value>
+    <value>Mã hóa và Giải mã dữ liệu Base64 trong hình ảnh</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Công cụ Mã hóa / Giải mã hình ảnh Base64</value>
