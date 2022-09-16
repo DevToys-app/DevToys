@@ -124,7 +124,7 @@
     <value>JWT</value>
   </data>
   <data name="JwtHeaderLabel" xml:space="preserve">
-    <value>Header</value>
+    <value>Заголовок</value>
   </data>
   <data name="JwtTokenLabel" xml:space="preserve">
     <value>Token</value>
@@ -139,7 +139,7 @@
     <value></value>
   </data>
   <data name="Algorithm" xml:space="preserve">
-    <value>Algorithm</value>
+    <value>Алгоритм</value>
   </data>
   <data name="DecodeSwitchModeLabel" xml:space="preserve">
     <value>Декодувати</value>
@@ -148,10 +148,10 @@
     <value>Validate Token</value>
   </data>
   <data name="DecodeValidateTokenNoLabel" xml:space="preserve">
-    <value>No</value>
+    <value>Ні</value>
   </data>
   <data name="DecodeValidateTokenYesLabel" xml:space="preserve">
-    <value>Yes</value>
+    <value>Так</value>
   </data>
   <data name="EncodeExpirationTitle" xml:space="preserve">
     <value>Token has expirations</value>
@@ -190,7 +190,7 @@
     <value>Expire in minute(s)</value>
   </data>
   <data name="PrivateKeyLabel" xml:space="preserve">
-    <value>Private Key</value>
+    <value>Приватний ключ</value>
   </data>
   <data name="SignatureLabel" xml:space="preserve">
     <value>Signature</value>
@@ -250,7 +250,7 @@
     <value>Invalid Private Key</value>
   </data>
   <data name="PublicKeyLabel" xml:space="preserve">
-    <value>Public Key</value>
+    <value>Публічний ключ</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>JWT Encoder / Decoder</value>
