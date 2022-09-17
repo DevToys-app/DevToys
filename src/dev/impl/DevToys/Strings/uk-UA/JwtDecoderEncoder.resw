@@ -145,7 +145,7 @@
     <value>Декодувати</value>
   </data>
   <data name="DecodeValidateTokenLabel" xml:space="preserve">
-    <value>Validate Token</value>
+    <value>Перевірити токен</value>
   </data>
   <data name="DecodeValidateTokenNoLabel" xml:space="preserve">
     <value>Ні</value>
@@ -184,7 +184,7 @@
     <value>Expire in day(s)</value>
   </data>
   <data name="EncodeExpirationHoursLabel" xml:space="preserve">
-    <value>Expire in hour(s)</value>
+    <value>Закінчується через годин(у)</value>
   </data>
   <data name="EncodeExpirationMinutesLabel" xml:space="preserve">
     <value>Expire in minute(s)</value>
@@ -253,7 +253,7 @@
     <value>Публічний ключ</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>JWT Encoder / Decoder</value>
+    <value>Кодування та декодування JWT</value>
   </data>
   <data name="InvalidSignatureError" xml:space="preserve">
     <value>Підпис недійсний</value>
