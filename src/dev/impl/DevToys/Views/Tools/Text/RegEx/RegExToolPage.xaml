@@ -139,7 +139,7 @@
                 Style="{StaticResource CardStyle}">
                 <ListView ItemsSource="{x:Bind ViewModel.MatchGroups, Mode=OneWay}">
                     <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="regEx:MatchDetails2">
+                        <DataTemplate x:DataType="regEx:MatchDetails">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" MinWidth="200"/>
