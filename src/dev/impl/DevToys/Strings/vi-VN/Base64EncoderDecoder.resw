@@ -142,10 +142,10 @@
     <value>Văn bản Base64</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
-    <value>Select which encoding do you want to use</value>
+    <value>Chọn bảng mã bạn muốn sử dụng</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
-    <value>Encoding</value>
+    <value>Bảng mã</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
     <value>Đầu vào</value>
@@ -157,10 +157,10 @@
     <value>UTF-8</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Encode and decode Base64 text data</value>
+    <value>Mã hóa và giải mã Base64</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Base64 Text Encoder / Decoder</value>
+    <value>Công cụ Mã hóa và Giải mã văn bản Base64</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>RFC 4648</value>

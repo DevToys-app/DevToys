@@ -151,6 +151,6 @@
     <value>HTML 인코더/디코더</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value>[빈 문자열]</value>
   </data>
 </root>

@@ -121,7 +121,7 @@
     <value>Regular expression tester tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>כיוון הגדרות</value>
   </data>
   <data name="CultureInvariant" xml:space="preserve">
     <value>Culture Invariant</value>
@@ -130,7 +130,7 @@
     <value>Specifies that cultural differences in language is ignored.</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Regex Tester</value>
+    <value>בוחן ביטוי רגולרי</value>
   </data>
   <data name="EcmaScript" xml:space="preserve">
     <value>ECMA Script</value>
@@ -139,7 +139,7 @@
     <value>Enables ECMAScript-compliant behavior for the expression. This value can be used only in conjunction with the Culture Invariant, Ignore Case and Multiline options.</value>
   </data>
   <data name="IgnoreCase" xml:space="preserve">
-    <value>Ignore Case</value>
+    <value>התעלם מאותיות גדולות וקטנות</value>
   </data>
   <data name="IgnoreCaseDescription" xml:space="preserve">
     <value>Specifies case-insensitive matching.</value>
@@ -157,13 +157,13 @@
     <value>Changes the meaning of ^ and $ so they match at the beginning and end, respectively, of any line, and not just the beginning and end of the entire string.</value>
   </data>
   <data name="Options" xml:space="preserve">
-    <value>Options</value>
+    <value>הגדרות</value>
   </data>
   <data name="RegularExpression" xml:space="preserve">
-    <value>Regular expression</value>
+    <value>ביטוי רגולרי</value>
   </data>
   <data name="RightToLeft" xml:space="preserve">
-    <value>Right To Left</value>
+    <value>מימין לשמאל</value>
   </data>
   <data name="RightToLeftDescription" xml:space="preserve">
     <value>Specifies that the search will be from right to left instead of from left to right.</value>
@@ -172,18 +172,18 @@
     <value>Singleline</value>
   </data>
   <data name="SinglelineDescription" xml:space="preserve">
-    <value>Changes the meaning of the dot (.) so it matches every character (instead of every character except \n).</value>
+    <value>משנה את משמעות הנקודה (.) כך שהיא תתאים לכל תו (במקום כל תו מלבד \n).</value>
   </data>
   <data name="Text" xml:space="preserve">
-    <value>Text</value>
+    <value>טקסט</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Validate and test regular expressions</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Regex Tester</value>
+    <value>בוחן ביטוי רגולרי</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Regular expression</value>
+    <value>ביטוי רגולרי</value>
   </data>
 </root>

@@ -124,7 +124,7 @@
     <value>ASCII</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>Configuration</value>
+    <value>கட்டமைப்பு</value>
   </data>
   <data name="ConversionDecompress" xml:space="preserve">
     <value>Decompress</value>
@@ -145,7 +145,7 @@
     <value>Select whether the input should be compressed or decompressed</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
-    <value>Encoding</value>
+    <value>குறியாக்கம்</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
     <value>உள்ளீடு</value>

@@ -127,10 +127,10 @@
     <value>Cấu hình</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generate a hash with Checksum based on a file</value>
+    <value>Tạo mã băm với Checksum từ tệp</value>
   </data>
   <data name="HashingAlgorithmDescription" xml:space="preserve">
-    <value>Select which hashing algorithm you want to use</value>
+    <value>Chọn thuật toán băm bạn muốn sử dụng</value>
   </data>
   <data name="HashingAlgorithmTitle" xml:space="preserve">
     <value>Thuật toán Hàm băm</value>
@@ -148,7 +148,7 @@
     <value>Đầu ra để tham chiếu</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Checksum Generator</value>
+    <value>Công cụ sinh mã Checksum</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
     <value>Chữ in hoa</value>
@@ -157,9 +157,9 @@
     <value></value>
   </data>
   <data name="HashesMatch" xml:space="preserve">
-    <value>The hashes are the same.</value>
+    <value>Hai mã băm giống nhau.</value>
   </data>
   <data name="HashesMismatch" xml:space="preserve">
-    <value>The hashes are different.</value>
+    <value>Hai mã băm khác nhau.</value>
   </data>
 </root>

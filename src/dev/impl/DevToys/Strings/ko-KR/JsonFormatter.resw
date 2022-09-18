@@ -154,7 +154,7 @@
     <value>JSON 형식 정렬 도구</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value>[빈 문자열]</value>
   </data>
   <data name="SortProperties" xml:space="preserve">
     <value>JSON 속성 알파벳 순으로 정렬</value>
