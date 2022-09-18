@@ -2427,6 +2427,21 @@ namespace DevToys
         /// Gets the resource OutputTitle.
         /// </summary>
         public string OutputTitle => _resources.GetString("OutputTitle");
+
+        /// <summary>
+        /// Gets the resource Group.
+        /// </summary>
+        public string Group => _resources.GetString("Group");
+
+        /// <summary>
+        /// Gets the resource Match.
+        /// </summary>
+        public string Match => _resources.GetString("Match");
+
+        /// <summary>
+        /// Gets the resource Matches.
+        /// </summary>
+        public string Matches => _resources.GetString("Matches");
     }
 
     public class SearchResultStrings : ObservableObject

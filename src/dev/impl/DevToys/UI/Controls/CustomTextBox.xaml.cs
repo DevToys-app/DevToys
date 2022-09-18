@@ -317,7 +317,7 @@ namespace DevToys.UI.Controls
 
         public void SetHighlights(IEnumerable<HighlightSpan>? spans)
         {
-            _highlightedSpans = spans;
+            _highlightedSpans = spans ?? Array.Empty<HighlightSpan>();
 
             if (!IsRichTextEdit)
             {
