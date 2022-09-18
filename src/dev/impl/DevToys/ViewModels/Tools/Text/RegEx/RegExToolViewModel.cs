@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
+using DevToys.Core.Collections;
 using DevToys.Core.Threading;
 using DevToys.Shared.Core.Threading;
 using DevToys.UI.Controls;
@@ -197,6 +198,7 @@ namespace DevToys.ViewModels.Tools.RegEx
             }
         }
 
+        private string? _errorMsg;
         internal string? ErrorMsg
         {
             get => _errorMsg;
@@ -205,28 +207,8 @@ namespace DevToys.ViewModels.Tools.RegEx
                 SetProperty(ref _errorMsg, value);
             }
         }
-        private string _errorMsg;
 
-        /*
-        internal IList<Match> Matches
-        {
-            get => _matches ?? Array.Empty<Match>();
-            set
-            {
-                SetProperty(ref _matches, value);
-            }
-        }
-        private IList<Match>? _matches;
-*/
-        internal IList<MatchDetails2[]> MatchGroups
-        {
-            get => _matchGroups ?? Array.Empty<MatchDetails2[]>();
-            set
-            {
-                SetProperty(ref _matchGroups, value);
-            }
-        }
-        private IList<MatchDetails2[]> _matchGroups;
+        internal ExtendedObservableCollection<MatchDetails2> MatchGroups { get; } = new();
 
         private string? _inputValue;
         internal string? InputValue
@@ -328,15 +310,21 @@ namespace DevToys.ViewModels.Tools.RegEx
                         if (matches != null)
                         {
                             MatchTextBox?.SetHighlights(spans);
-//                            Matches = matches.ToList();
-                            MatchGroups = matches.Cast<Match>().Select((c, inx) => c.Groups.Cast<Group>()
-                                .OrderBy(g => g.Index)
-                                .Select(mm => new MatchDetails2
-                                {
-                                    Title = (mm.Name == "0" ? $"Match {inx + 1}:" : $"Group \"{mm.Name}\""),
-                                    Range = $"{mm.Index}-{mm.Index + mm.Length}",
-                                    Value = mm.Value
-                                }).ToArray()).ToList();
+
+                            IEnumerable<MatchDetails2> matchesGroups
+                                = matches
+                                .Cast<Match>()
+                                .SelectMany(
+                                    (c, inx) => c.Groups
+                                        .Cast<Group>()
+                                        .OrderBy(g => g.Index)
+                                        .Select(mm => new MatchDetails2
+                                        {
+                                            Title = (mm.Name == "0" ? $"Match {inx + 1}:" : $"    Group \"{mm.Name}\""),
+                                            Range = $"{mm.Index}-{mm.Index + mm.Length}",
+                                            Value = mm.Value
+                                        }));
+                            MatchGroups.Update(matchesGroups);
 
                             if (InputValue != null)
                             {
@@ -351,8 +339,7 @@ namespace DevToys.ViewModels.Tools.RegEx
                         }
                         else
                         {
-//                            Matches = Array.Empty<Match>();
-                            MatchGroups = Array.Empty<MatchDetails2[]>();
+                            MatchGroups.Clear();
                             MatchTextBox?.SetHighlights(null);
                         }
                     }).ForgetSafely();
@@ -399,7 +386,10 @@ namespace DevToys.ViewModels.Tools.RegEx
         private int CountLines(string input, int maxLength)
         {
             if (string.IsNullOrEmpty(input))
+            {
                 return 0;
+            }
+
             int lines = 0;
             int i = 0;
             while (i > -1 && i < maxLength)
