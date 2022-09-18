@@ -132,7 +132,7 @@
             Text="{x:Bind Mode=TwoWay, Path=ViewModel.Text, UpdateSourceTrigger=PropertyChanged}" />
 
         <StackPanel Grid.Row="4" Spacing="4">
-            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="Matches" />
+            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind Path=ViewModel.Strings.Matches}" />
 
             <Grid
                 Grid.Row="4"

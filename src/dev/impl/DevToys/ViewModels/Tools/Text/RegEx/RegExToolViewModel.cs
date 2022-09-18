@@ -208,7 +208,7 @@ namespace DevToys.ViewModels.Tools.RegEx
             }
         }
 
-        internal ExtendedObservableCollection<MatchDetails2> MatchGroups { get; } = new();
+        internal ExtendedObservableCollection<MatchDetails> MatchGroups { get; } = new();
 
         private string? _inputValue;
         internal string? InputValue
@@ -311,16 +311,16 @@ namespace DevToys.ViewModels.Tools.RegEx
                         {
                             MatchTextBox?.SetHighlights(spans);
 
-                            IEnumerable<MatchDetails2> matchesGroups
+                            IEnumerable<MatchDetails> matchesGroups
                                 = matches
                                 .Cast<Match>()
                                 .SelectMany(
                                     (c, inx) => c.Groups
                                         .Cast<Group>()
                                         .OrderBy(g => g.Index)
-                                        .Select(mm => new MatchDetails2
+                                        .Select(mm => new MatchDetails
                                         {
-                                            Title = (mm.Name == "0" ? $"Match {inx + 1}:" : $"    Group \"{mm.Name}\""),
+                                            Title = (mm.Name == "0" ? $"{Strings.Match} {inx + 1}:" : $"    {Strings.Group} \"{mm.Name}\""),
                                             Range = $"{mm.Index}-{mm.Index + mm.Length}",
                                             Value = mm.Value
                                         }));
@@ -406,10 +406,12 @@ namespace DevToys.ViewModels.Tools.RegEx
         }
     }
 
-    public record MatchDetails2
+    public record MatchDetails
     {
-        public string Title { get; set; }
-        public string Range { get; set; }
-        public string Value { get; set; }
+        public string Title { get; set; } = string.Empty;
+
+        public string Range { get; set; } = string.Empty;
+
+        public string Value { get; set; } = string.Empty;
     }
 }
