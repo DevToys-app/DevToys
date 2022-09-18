@@ -142,6 +142,6 @@
     <value>XML є сумісним з визначеною схемою XSD.</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>XML XSD Validate</value>
+    <value>Перевірити XML XSD</value>
   </data>
 </root>

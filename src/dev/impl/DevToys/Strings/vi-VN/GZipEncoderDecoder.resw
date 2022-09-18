@@ -145,7 +145,7 @@
     <value>Chọn xem đầu vào nên được nén hay giải nén</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
-    <value>Encoding</value>
+    <value>Bảng mã</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
     <value>Đầu vào</value>

@@ -142,6 +142,6 @@
     <value>Le XML est conforme au schéma XSD défini.</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>XML XSD Validate</value>
+    <value>Valider XML XSD</value>
   </data>
 </root>

@@ -136,7 +136,7 @@
     <value>Base64 Image Encoder / Decoder</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>RFC 4648</value>
+    <value>RCF 4648</value>
     <comment>Alternative search keywords. Enables searching for words that are not included in Description, MenuDisplayName, and SearchDisplayName.</comment>
   </data>
 </root>

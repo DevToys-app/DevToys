@@ -118,27 +118,144 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>JWT 解码工具</value>
+    <value>JWT 编码器 / 解码器</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>JWT</value>
   </data>
-  <data name="HeaderLabel" xml:space="preserve">
-    <value>头部（Header）</value>
+  <data name="JwtHeaderLabel" xml:space="preserve">
+    <value>Header</value>
   </data>
   <data name="JwtTokenLabel" xml:space="preserve">
-    <value>JWT 令牌（Token）</value>
+    <value>令牌</value>
   </data>
-  <data name="PayloadLabel" xml:space="preserve">
-    <value>负载（Payload）</value>
+  <data name="JwtPayloadLabel" xml:space="preserve">
+    <value>Payload</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>解码 JWT 报头、有效数据和签名</value>
   </data>
-  <data name="SearchDisplayName" xml:space="preserve">
-    <value>JWT 解码工具</value>
-  </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
+  </data>
+  <data name="Algorithm" xml:space="preserve">
+    <value>算法</value>
+  </data>
+  <data name="DecodeSwitchModeLabel" xml:space="preserve">
+    <value>解码</value>
+  </data>
+  <data name="DecodeValidateTokenLabel" xml:space="preserve">
+    <value>验证令牌</value>
+  </data>
+  <data name="DecodeValidateTokenNoLabel" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="DecodeValidateTokenYesLabel" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="EncodeExpirationTitle" xml:space="preserve">
+    <value>访问令牌有到期日期</value>
+  </data>
+  <data name="EncodeExpirationMonthLabel" xml:space="preserve">
+    <value>过期时间(月)</value>
+  </data>
+  <data name="EncodeExpirationYearLabel" xml:space="preserve">
+    <value>过期时间(年)</value>
+  </data>
+  <data name="EncodeHashingTitle" xml:space="preserve">
+    <value>Token hashing algorithm</value>
+  </data>
+  <data name="EncodeSettingsTitle" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="EncodeSwitchModeLabel" xml:space="preserve">
+    <value>编码</value>
+  </data>
+  <data name="SettingsSwitchModeLabel" xml:space="preserve">
+    <value>编码 / 解码</value>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>配置</value>
+  </data>
+  <data name="EncodeDefaultTimeTitle" xml:space="preserve">
+    <value>Token has default time</value>
+  </data>
+  <data name="EncodeExpirationDaysLabel" xml:space="preserve">
+    <value>过期时间(日)</value>
+  </data>
+  <data name="EncodeExpirationHoursLabel" xml:space="preserve">
+    <value>过期时间(时)</value>
+  </data>
+  <data name="EncodeExpirationMinutesLabel" xml:space="preserve">
+    <value>过期时间(分)</value>
+  </data>
+  <data name="PrivateKeyLabel" xml:space="preserve">
+    <value>私钥</value>
+  </data>
+  <data name="SignatureLabel" xml:space="preserve">
+    <value>签名</value>
+  </data>
+  <data name="JwtIsValidMessage" xml:space="preserve">
+    <value>已验证签名</value>
+  </data>
+  <data name="InvalidPublicKeyError" xml:space="preserve">
+    <value>公钥无效</value>
+  </data>
+  <data name="JwtInValidMessage" xml:space="preserve">
+    <value>签名无效</value>
+  </data>
+  <data name="DecodeValidateActorLabel" xml:space="preserve">
+    <value>Validate actor</value>
+  </data>
+  <data name="DecodeValidateAudienceLabel" xml:space="preserve">
+    <value>Validate audience</value>
+  </data>
+  <data name="DecodeValidateIssuerLabel" xml:space="preserve">
+    <value>Validate issuer</value>
+  </data>
+  <data name="DecodeValidateLifetimeLabel" xml:space="preserve">
+    <value>Validate lifetime</value>
+  </data>
+  <data name="ValidAudiencesLabel" xml:space="preserve">
+    <value>Valid audiences</value>
+  </data>
+  <data name="ValidIssuersLabel" xml:space="preserve">
+    <value>Valid issuers</value>
+  </data>
+  <data name="DecodeValidationSettingsDescription" xml:space="preserve">
+    <value>Select which token parameters to validate</value>
+  </data>
+  <data name="DecodeValidationSettingsTitle" xml:space="preserve">
+    <value>令牌验证设置</value>
+  </data>
+  <data name="ValidAudiencesError" xml:space="preserve">
+    <value>Valid audiences are empty</value>
+  </data>
+  <data name="ValidIssuersError" xml:space="preserve">
+    <value>Valid issuers are empty</value>
+  </data>
+  <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
+    <value>所提供的公钥是私钥</value>
+  </data>
+  <data name="EncodeAudienceLabel" xml:space="preserve">
+    <value>Token has audience</value>
+  </data>
+  <data name="EncodeIssuerLabel" xml:space="preserve">
+    <value>Token has issuer</value>
+  </data>
+  <data name="EncodeSettingsDescription" xml:space="preserve">
+    <value>选择令牌参数</value>
+  </data>
+  <data name="InvalidPrivateKeyError" xml:space="preserve">
+    <value>私钥无效</value>
+  </data>
+  <data name="PublicKeyLabel" xml:space="preserve">
+    <value>公钥</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>JWT 编码器 / 解码器</value>
+  </data>
+  <data name="InvalidSignatureError" xml:space="preserve">
+    <value>无效签名</value>
   </data>
 </root>

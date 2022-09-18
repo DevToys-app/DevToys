@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>String utilities tool</value>
+    <value>כלי עזר למחרוזות</value>
   </data>
   <data name="AlternatingCase" xml:space="preserve">
     <value>aLtErNaTiNg cAsE</value>
   </data>
   <data name="Bytes" xml:space="preserve">
-    <value>Bytes:</value>
+    <value>בייטים:</value>
   </data>
   <data name="CamelCase" xml:space="preserve">
     <value>camelCase</value>
@@ -133,19 +133,19 @@
     <value>Character distribution</value>
   </data>
   <data name="Characters" xml:space="preserve">
-    <value>Characters:</value>
+    <value>תווים:</value>
   </data>
   <data name="CobolCase" xml:space="preserve">
     <value>COBOL-CASE</value>
   </data>
   <data name="Column" xml:space="preserve">
-    <value>Column:</value>
+    <value>עמודה:</value>
   </data>
   <data name="ConstantCase" xml:space="preserve">
     <value>CONSTANT_CASE</value>
   </data>
   <data name="Convert" xml:space="preserve">
-    <value>Convert</value>
+    <value>המר</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Inspector &amp; Case Converter</value>
@@ -157,16 +157,16 @@
     <value>kebab-case</value>
   </data>
   <data name="Line" xml:space="preserve">
-    <value>Line:</value>
+    <value>שורה:</value>
   </data>
   <data name="Lines" xml:space="preserve">
-    <value>Lines:</value>
+    <value>שורות:</value>
   </data>
   <data name="LowerCase" xml:space="preserve">
     <value>lower case</value>
   </data>
   <data name="OriginalCase" xml:space="preserve">
-    <value>Original text</value>
+    <value>טקסט מקורי</value>
   </data>
   <data name="Paragraphs" xml:space="preserve">
     <value>Paragraphs:</value>
@@ -190,10 +190,10 @@
     <value>snake_case</value>
   </data>
   <data name="Statistics" xml:space="preserve">
-    <value>Statistics</value>
+    <value>סטטיסטיקה</value>
   </data>
   <data name="String" xml:space="preserve">
-    <value>String</value>
+    <value>מחרוזת</value>
   </data>
   <data name="TitleCase" xml:space="preserve">
     <value>Title Case</value>
@@ -208,7 +208,7 @@
     <value>Word distribution</value>
   </data>
   <data name="Words" xml:space="preserve">
-    <value>Words:</value>
+    <value>מילים:</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Analyze text and convert it to a different case</value>
@@ -217,6 +217,6 @@
     <value>Text Case Converter and Inspector</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>String</value>
+    <value>מחרוזת</value>
   </data>
 </root>
