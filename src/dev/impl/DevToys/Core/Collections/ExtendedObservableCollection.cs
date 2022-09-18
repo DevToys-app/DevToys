@@ -48,7 +48,7 @@ namespace DevToys.Core.Collections
             foreach (T? item in newItems)
             {
                 int indexOfItemInOldMenu = IndexOf(item);
-                if (indexOfItemInOldMenu > -1)
+                if (indexOfItemInOldMenu > -1 && insertionIndex < Count)
                 {
                     if (indexOfItemInOldMenu != insertionIndex)
                     {

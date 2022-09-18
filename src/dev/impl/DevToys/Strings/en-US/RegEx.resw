@@ -186,4 +186,10 @@
   <data name="SearchKeywords" xml:space="preserve">
     <value>Regular expression</value>
   </data>
+  <data name="InputTitle" xml:space="preserve">
+    <value>Input</value>
+  </data>
+  <data name="OutputTitle" xml:space="preserve">
+    <value>Output</value>
+  </data>
 </root>
