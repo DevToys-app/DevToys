@@ -24,7 +24,7 @@ namespace DevToys.ViewModels.Tools.Generators.PasswordGenerator
 
         public string? SearchKeywords => LanguageManager.Instance.GuidGenerator.SearchKeywords;
 
-        public string IconGlyph => "\u0106";
+        public string IconGlyph => "\u0100";
 
         [ImportingConstructor]
         public PasswordGeneratorToolProvider(IMefProvider mefProvider)

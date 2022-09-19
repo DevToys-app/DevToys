@@ -51,10 +51,5 @@ namespace DevToys.Views.Tools.PasswordGenerator
 
             base.OnNavigatedTo(e);
         }
-
-        private void ExpandableSettingControl_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

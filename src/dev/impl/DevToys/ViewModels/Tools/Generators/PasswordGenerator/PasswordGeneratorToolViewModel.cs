@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Composition;
+using System.Linq;
 using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
@@ -192,10 +193,10 @@ namespace DevToys.ViewModels.Tools.Generators.PasswordGenerator
         private void ExecuteGenerateCommand()
         {
             string[] randomChars = new[] {
-                UppercaseLetters,
-                LowercaseLetters,
-                Digits,
-                NonAlphanumerics
+                string.Empty,
+                string.Empty,
+                string.Empty,
+                string.Empty
             };
             
             var rand = new CryptoRandom();
@@ -203,23 +204,29 @@ namespace DevToys.ViewModels.Tools.Generators.PasswordGenerator
 
             if (HasUppercase)
             {
+                randomChars[0] = UppercaseLetters;
                 chars.Insert(rand.Next(0, chars.Count), randomChars[0][rand.Next(0, randomChars[0].Length)]);
             }
 
             if (HasLowercase)
             {
+                randomChars[1] = LowercaseLetters;
                 chars.Insert(rand.Next(0, chars.Count), randomChars[1][rand.Next(0, randomChars[1].Length)]);
             }
 
             if (HasNumbers)
             {
+                randomChars[2] = Digits;
                 chars.Insert(rand.Next(0, chars.Count), randomChars[2][rand.Next(0, randomChars[2].Length)]);
             }
 
             if (HasSpecialCharacters)
             {
+                randomChars[3] = NonAlphanumerics;
                 chars.Insert(rand.Next(0, chars.Count), randomChars[3][rand.Next(0, randomChars[3].Length)]);
             }
+
+            randomChars = randomChars.Where(r => r.Length > 0).ToArray();
 
             for (int i = chars.Count; i < LengthOfPasswordToGenerate; i++)
             {
