@@ -186,4 +186,19 @@
   <data name="SearchKeywords" xml:space="preserve">
     <value>正則表示式 正則表達式</value>
   </data>
+  <data name="InputTitle" xml:space="preserve">
+    <value>輸入</value>
+  </data>
+  <data name="OutputTitle" xml:space="preserve">
+    <value>輸出</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="Match" xml:space="preserve">
+    <value>Match</value>
+  </data>
+  <data name="Matches" xml:space="preserve">
+    <value>Matches</value>
+  </data>
 </root>

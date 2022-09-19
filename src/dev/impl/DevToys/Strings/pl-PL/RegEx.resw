@@ -186,4 +186,19 @@
   <data name="SearchKeywords" xml:space="preserve">
     <value>Wyrażenie regularne</value>
   </data>
+  <data name="InputTitle" xml:space="preserve">
+    <value>Wejście</value>
+  </data>
+  <data name="OutputTitle" xml:space="preserve">
+    <value>Wyjście</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="Match" xml:space="preserve">
+    <value>Match</value>
+  </data>
+  <data name="Matches" xml:space="preserve">
+    <value>Matches</value>
+  </data>
 </root>

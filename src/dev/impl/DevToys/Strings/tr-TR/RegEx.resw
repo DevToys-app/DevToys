@@ -186,4 +186,19 @@
   <data name="SearchKeywords" xml:space="preserve">
     <value>Düzenli ifade (regex)</value>
   </data>
+  <data name="InputTitle" xml:space="preserve">
+    <value>Girdi</value>
+  </data>
+  <data name="OutputTitle" xml:space="preserve">
+    <value>Çıktı</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Grup</value>
+  </data>
+  <data name="Match" xml:space="preserve">
+    <value>Eşleşme</value>
+  </data>
+  <data name="Matches" xml:space="preserve">
+    <value>Eşleşmeler</value>
+  </data>
 </root>
