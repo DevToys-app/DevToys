@@ -1,8 +1,10 @@
 ﻿#nullable enable
 
+using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
+using DevToys.Helpers;
 
 namespace DevToys.ViewModels.Tools.XmlValidator.Parsing
 {
@@ -15,7 +17,7 @@ namespace DevToys.ViewModels.Tools.XmlValidator.Parsing
             _xsdSchema = xsdSchema;
         }
 
-        internal override XmlParsingResult Parse(string content)
+        protected override XmlParsingResult ParsingOperation(string content)
         {
             XDocument xmlFile = new();
             try

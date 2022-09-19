@@ -3473,5 +3473,20 @@ namespace DevToys
         /// Gets the resource SearchKeywords.
         /// </summary>
         public string SearchKeywords => _resources.GetString("SearchKeywords");
+
+        /// <summary>
+        /// Gets the resource XmlNamespacesInconsistentMsg.
+        /// </summary>
+        public string XmlNamespacesInconsistentMsg => _resources.GetString("XmlNamespacesInconsistentMsg");
+
+        /// <summary>
+        /// Gets the resource XsdNamespacesInconsistentMsg.
+        /// </summary>
+        public string XsdNamespacesInconsistentMsg => _resources.GetString("XsdNamespacesInconsistentMsg");
+        
+        /// <summary>
+        /// Gets the resource TargetNamespaceNotDefinedInXml.
+        /// </summary>
+        public string TargetNamespaceNotDefinedInXml => _resources.GetString("TargetNamespaceNotDefinedInXml");
     }
 }

@@ -1,7 +1,9 @@
 ﻿#nullable enable
 
 using System;
+using System.Collections.Generic;
 using System.Composition;
+using System.Linq;
 using System.Xml.Schema;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
@@ -18,11 +20,11 @@ namespace DevToys.ViewModels.Tools.XmlValidator
     public class XmlValidatorToolViewModel : ObservableRecipient, IToolViewModel
     {
         private readonly XmlValidatorStrings _localizedStrings;
-        
+
         private string? _xsdSchemaData;
         private string? _xmlData;
-        private XmlParsingResult? _parsedXml;
-        private XsdParsingResult? _parsedXsdScheme;
+        private XmlParsingResult? _xmlParsingResult;
+        private XsdParsingResult? _xsdSchemeParsingResult;
         private InfoBarData? _validationResult;
 
         internal ISettingsProvider SettingsProvider { get; }
@@ -38,7 +40,7 @@ namespace DevToys.ViewModels.Tools.XmlValidator
                 ProcessNewXsdData();
             }
         }
-        
+
         internal string? XmlData
         {
             get => _xmlData;
@@ -55,15 +57,15 @@ namespace DevToys.ViewModels.Tools.XmlValidator
             get => _validationResult;
             private set => SetProperty(ref _validationResult, value);
         }
-        
+
         public Type View { get; } = typeof(XmlValidatorToolPage);
-        
+
         [ImportingConstructor]
         public XmlValidatorToolViewModel(ISettingsProvider settingsProvider)
         {
             SettingsProvider = settingsProvider;
             _localizedStrings = new XmlValidatorStrings();
-            
+
             DisplayValidationInfoBar();
         }
 
@@ -71,15 +73,15 @@ namespace DevToys.ViewModels.Tools.XmlValidator
         {
             if (string.IsNullOrWhiteSpace(_xmlData))
             {
-                _parsedXml = null;
+                _xmlParsingResult = null;
                 DisplayValidationInfoBar();
                 return;
             }
-            
-            XmlSchemaSet schemaSet = _parsedXsdScheme?.SchemaSet ?? new XmlSchemaSet();
+
+            XmlSchemaSet schemaSet = _xsdSchemeParsingResult?.SchemaSet ?? new XmlSchemaSet();
             XmlParser xmlParser = new("XML data", schemaSet);
-            _parsedXml = xmlParser.Parse(_xmlData ?? String.Empty);
-            
+            _xmlParsingResult = xmlParser.Parse(_xmlData ?? String.Empty);
+
             DisplayValidationInfoBar();
         }
 
@@ -87,48 +89,133 @@ namespace DevToys.ViewModels.Tools.XmlValidator
         {
             if (string.IsNullOrWhiteSpace(_xsdSchemaData))
             {
-                _parsedXsdScheme = null;
+                _xsdSchemeParsingResult = null;
                 DisplayValidationInfoBar();
                 return;
             }
-            
+
             XsdParser xsdParser = new("XSD data");
-            _parsedXsdScheme = xsdParser.Parse(_xsdSchemaData ?? string.Empty);
-            
+            _xsdSchemeParsingResult = xsdParser.Parse(_xsdSchemaData ?? string.Empty);
+
             DisplayValidationInfoBar();
         }
 
         private void DisplayValidationInfoBar()
         {
-            if (_parsedXsdScheme is null || _parsedXml is null)
+            if (_xsdSchemeParsingResult is null || _xmlParsingResult is null)
             {
                 string validationImpossibleMsg = _localizedStrings.ValidationImpossibleMsg;
                 ValidationResult = new InfoBarData(InfoBarSeverity.Informational, validationImpossibleMsg);
                 return;
             }
+
+            bool wasValidationPerformedWithoutErrors = string.IsNullOrEmpty(_xmlParsingResult.ErrorMessage) &&
+                                                       string.IsNullOrEmpty(_xmlParsingResult.ErrorMessage);
+
+            List<string> namespaceErrors = new();
+            bool areAllNamespacesDefinedInXsd = DetectMissingNamespacesInXsd(_xsdSchemeParsingResult, _xmlParsingResult, out string? nsMissingInXsdErrorMessage);
+            if (!areAllNamespacesDefinedInXsd)
+            {
+                namespaceErrors.Add(nsMissingInXsdErrorMessage!);
+            }
+
+            bool areAllNamespacesDefinedInXml = DetectMissingNamespacesInXml(_xsdSchemeParsingResult, _xmlParsingResult, out string? nsMissingInXmlErrorMessage);
+            if (!areAllNamespacesDefinedInXml)
+            {
+                namespaceErrors.Add(nsMissingInXmlErrorMessage!);
+            }
             
             InfoBarSeverity infoBarSeverity;
-            string message = _parsedXml.ErrorMessage + Environment.NewLine + _parsedXsdScheme.ErrorMessage;
-            message = message.Trim();
-            
-            bool wasValidationPerformedWithoutErrors = string.IsNullOrEmpty(_parsedXml.ErrorMessage) &&
-                                                       string.IsNullOrEmpty(_parsedXml.ErrorMessage);
-            
-            if (!_parsedXsdScheme.IsValid || !_parsedXml.IsValid)
+            string message = String.Empty;
+            if (!_xsdSchemeParsingResult.IsValid || !_xmlParsingResult.IsValid)
             {
                 infoBarSeverity = InfoBarSeverity.Error;
             }
-            else if (wasValidationPerformedWithoutErrors is not true)
+            else if (!wasValidationPerformedWithoutErrors)
             {
                 infoBarSeverity = InfoBarSeverity.Warning;
+                message = _xmlParsingResult.ErrorMessage + Environment.NewLine + _xsdSchemeParsingResult.ErrorMessage;
+            }
+            else if (!areAllNamespacesDefinedInXsd || !areAllNamespacesDefinedInXml)
+            {
+                infoBarSeverity = InfoBarSeverity.Warning;
+                message = string.Join(Environment.NewLine, namespaceErrors);
             }
             else
             {
-                infoBarSeverity= InfoBarSeverity.Success;
+                infoBarSeverity = InfoBarSeverity.Success;
                 message = _localizedStrings.XmlIsValidMessage;
             }
 
             ValidationResult = new InfoBarData(infoBarSeverity, message);
+        }
+
+        private bool DetectMissingNamespacesInXsd(XsdParsingResult xsdParsingResult, XmlParsingResult xmlParsingResult, out string? errorMessage)
+        {
+            errorMessage = null;
+            
+            IEnumerable<XmlNamespace> namespacesMissingInXsd = NamespaceHelper.GetMissingNamespacesInXsd(xsdParsingResult, xmlParsingResult);
+            bool areAllNamespacesDefinedInXsd = !namespacesMissingInXsd.Any();
+            if (!areAllNamespacesDefinedInXsd)
+            {
+                string missingNamespacesFormatted = FormatNamespaces(namespacesMissingInXsd);
+                errorMessage =
+                    string.Format(_localizedStrings.XsdNamespacesInconsistentMsg, missingNamespacesFormatted);
+            }
+
+            bool isTargetNamespaceReferenceMissingInXml = NamespaceHelper.DetectMissingTargetNamespaceInXml(xsdParsingResult, xmlParsingResult, out string? missingTargetNamespace);
+            if (isTargetNamespaceReferenceMissingInXml)
+            {
+                string formattedErrorMsg = string.Format(_localizedStrings.TargetNamespaceNotDefinedInXml, missingTargetNamespace);
+
+                if (errorMessage is null)
+                {
+                    errorMessage = formattedErrorMsg;
+                }
+                else
+                {
+                    errorMessage += Environment.NewLine + formattedErrorMsg;
+                }
+            }
+
+            return areAllNamespacesDefinedInXsd && !isTargetNamespaceReferenceMissingInXml;
+        }
+
+        private bool DetectMissingNamespacesInXml(XsdParsingResult xsdParsingResult, XmlParsingResult xmlParsingResult,
+            out string? errorMessage)
+        {
+            List<XmlNamespace> namespacesMissingInXml = NamespaceHelper.GetMissingNamespacesInXml(xsdParsingResult, xmlParsingResult).ToList();
+            bool areAllNamespacesDefinedInXml = !namespacesMissingInXml.Any(); 
+            if (!areAllNamespacesDefinedInXml)
+            {
+                string missingNamespacesFormatted = FormatNamespaces(namespacesMissingInXml);
+                errorMessage = string.Format(_localizedStrings.XmlNamespacesInconsistentMsg, missingNamespacesFormatted);
+                return false;
+            }
+
+            errorMessage = null;
+            return true;
+        }
+        
+        private static string FormatNamespaces(IEnumerable<XmlNamespace> namespaces)
+        {
+            List<string> missingNamespaces = new();
+            foreach(XmlNamespace ns in namespaces)
+            {
+                string formattedPrefix = string.Empty;
+                if (string.Equals(ns.Prefix, string.Empty))
+                {
+                    formattedPrefix = "xmlns";
+                }
+                else
+                {
+                    formattedPrefix = $"xmlns:{ns.Prefix}";
+                }
+                
+                missingNamespaces.Add(formattedPrefix + $"=\"{ns.Uri}\"");
+            }
+                
+            return string.Join(", ", missingNamespaces);
         }
     }
 }
