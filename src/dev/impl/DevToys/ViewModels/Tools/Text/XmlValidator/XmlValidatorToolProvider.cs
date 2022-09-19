@@ -6,9 +6,7 @@ using System.IO;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
-using Windows.UI.Xaml.Controls;
 using DevToys.Api.Tools;
-using DevToys.Core.Threading;
 using DevToys.Shared.Api.Core;
 
 namespace DevToys.ViewModels.Tools.XmlValidator

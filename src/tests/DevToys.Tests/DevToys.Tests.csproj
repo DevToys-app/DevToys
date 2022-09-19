@@ -63,7 +63,9 @@
     <Compile Include="Providers\Tools\StringUtilitiesTests.cs" />
     <Compile Include="Providers\Tools\TestDataProvider.cs" />
     <Compile Include="Providers\Tools\JwtDecoderTests.cs" />
-    <Compile Include="Providers\Tools\XmlValidatorTests.cs" />
+    <Compile Include="Providers\Tools\XmlValidator\NamespaceHelperTests.cs" />
+    <Compile Include="Providers\Tools\XmlValidator\XmlParsingTests.cs" />
+    <Compile Include="Providers\Tools\XmlValidator\XsdParsingTests.cs" />
     <Compile Include="UI\ConvertersTests.cs" />
     <Compile Include="UnitTestApp.xaml.cs">
       <DependentUpon>UnitTestApp.xaml</DependentUpon>
@@ -105,10 +107,15 @@
     <EmbeddedResource Include="Providers\TestData\Jwt\RS\ComplexToken.txt" />
     <EmbeddedResource Include="Providers\TestData\Jwt\RS\PrivateKey.txt" />
     <EmbeddedResource Include="Providers\TestData\Jwt\RS\PublicKey.txt" />
-    <EmbeddedResource Include="Providers\TestData\InvalidXml.xml" />
-    <EmbeddedResource Include="Providers\TestData\InvalidXsd.xml" />
-    <EmbeddedResource Include="Providers\TestData\ValidXml.xml" />
-    <EmbeddedResource Include="Providers\TestData\ValidXsd.xml" />
+    <EmbeddedResource Include="Providers\TestData\Xml\InvalidXml.xml" />
+    <EmbeddedResource Include="Providers\TestData\Xml\InvalidXsd.xml" />
+    <EmbeddedResource Include="Providers\TestData\Xml\ValidXml.xml" />
+    <EmbeddedResource Include="Providers\TestData\Xml\ValidXmlWithNamespace.xml" />
+    <EmbeddedResource Include="Providers\TestData\Xml\ValidXmlWithoutNamespace.xml" />
+    <EmbeddedResource Include="Providers\TestData\Xml\ValidXsd.xml" />
+    <EmbeddedResource Include="Providers\TestData\Xml\ValidXsdWithNamespace.xml" />
+    <EmbeddedResource Include="Providers\TestData\Xml\ValidXsdWithoutNamespace.xml" />
+    <EmbeddedResource Include="Providers\TestData\Xml\ValidXsdOnlyWithTargetNamespace.xml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="$(NuGet_MicrosoftNETCoreUniversalWindowsPlatform)" />
@@ -128,7 +135,6 @@
       <Name>DevToys.Shared</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Providers\TestData\Jwt\BasicPayload.json" />
     <EmbeddedResource Include="Providers\TestData\Jwt\ComplexPayload.json" />
