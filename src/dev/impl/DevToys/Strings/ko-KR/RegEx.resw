@@ -187,18 +187,18 @@
     <value>정규식</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>입력 내용</value>
+    <value>입력</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>출력 내용</value>
+    <value>출력</value>
   </data>
   <data name="Group" xml:space="preserve">
-    <value>Group</value>
+    <value>그룹</value>
   </data>
   <data name="Match" xml:space="preserve">
-    <value>Match</value>
+    <value>일치</value>
   </data>
   <data name="Matches" xml:space="preserve">
-    <value>Matches</value>
+    <value>일치</value>
   </data>
 </root>
