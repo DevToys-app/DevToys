@@ -145,7 +145,7 @@
     <value>XML XSD Validate</value>
   </data>
   <data name="XmlNamespacesInconsistentMsg" xml:space="preserve">
-    <value>Validation result will always be 'valid' since the XML does not define these namespace(s) defined in the XSD: {0}</value>
+    <value>תוצאת האימות תהיה תמיד 'תקינה' מכיוון שה-XML אינו מגדיר את מרחבי השמות המוגדרים ב-XSD:‮ {0}‭</value>
   </data>
   <data name="XsdNamespacesInconsistentMsg" xml:space="preserve">
     <value>Validation result will always be 'valid' since the XSD does not define these namespace(s) defined in the XML: {0}</value>
