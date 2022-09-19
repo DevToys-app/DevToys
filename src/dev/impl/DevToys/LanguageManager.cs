@@ -44,7 +44,7 @@ namespace DevToys
         private readonly MainPageStrings _mainpage = new MainPageStrings();
         private readonly MarkdownPreviewStrings _markdownpreview = new MarkdownPreviewStrings();
         private readonly NumberBaseConverterStrings _numberbaseconverter = new NumberBaseConverterStrings();
-        private readonly PasswordGeneratorStrings _passwordGenerator = new PasswordGeneratorStrings();
+        private readonly PasswordGeneratorStrings _passwordgenerator = new PasswordGeneratorStrings();
         private readonly PngJpgCompressorStrings _pngjpgcompressor = new PngJpgCompressorStrings();
         private readonly RegExStrings _regex = new RegExStrings();
         private readonly SearchResultStrings _searchresult = new SearchResultStrings();
@@ -170,9 +170,9 @@ namespace DevToys
         public NumberBaseConverterStrings NumberBaseConverter => _numberbaseconverter;
 
         /// <summary>
-        /// Gets the <see cref="PasswordGeneratorStrings"/>
+        /// Gets the <see cref="PasswordGeneratorStrings"/>.
         /// </summary>
-        public PasswordGeneratorStrings PasswordGenerator => _passwordGenerator;
+        public PasswordGeneratorStrings PasswordGenerator => _passwordgenerator;
 
         /// <summary>
         /// Gets the <see cref="PngJpgCompressorStrings"/>.
@@ -2240,14 +2240,9 @@ namespace DevToys
         public string Configuration => _resources.GetString("Configuration");
 
         /// <summary>
-        /// Gets the resource Description.
+        /// Gets the resource MenuDisplayName.
         /// </summary>
-        public string Description => _resources.GetString("Description");
-
-        /// <summary>
-        /// Gets the resource Digits.
-        /// </summary>
-        public string Digits => _resources.GetString("Digits");
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
 
         /// <summary>
         /// Gets the resource Generate.
@@ -2260,19 +2255,9 @@ namespace DevToys
         public string GenerateButton => _resources.GetString("GenerateButton");
 
         /// <summary>
-        /// Gets the resource Lowercase.
+        /// Gets the resource Passwords.
         /// </summary>
-        public string Lowercase => _resources.GetString("Lowercase");
-
-        /// <summary>
-        /// Gets the resource MenuDisplayName.
-        /// </summary>
-        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
-
-        /// <summary>
-        /// Gets the resource Length.
-        /// </summary>
-        public string Length => _resources.GetString("Length");
+        public string Passwords => _resources.GetString("Passwords");
 
         /// <summary>
         /// Gets the resource MultiplySymbol.
@@ -2285,9 +2270,34 @@ namespace DevToys
         public string NumberOfPasswordsToGenerate_AutomationProperties_Name => _resources.GetString("NumberOfPasswordsToGenerate_AutomationProperties_Name");
 
         /// <summary>
-        /// Gets the resource Passwords.
+        /// Gets the resource Uppercase.
         /// </summary>
-        public string Passwords => _resources.GetString("Passwords");
+        public string Uppercase => _resources.GetString("Uppercase");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource Digits.
+        /// </summary>
+        public string Digits => _resources.GetString("Digits");
+
+        /// <summary>
+        /// Gets the resource Lowercase.
+        /// </summary>
+        public string Lowercase => _resources.GetString("Lowercase");
+
+        /// <summary>
+        /// Gets the resource SpecialCharacters.
+        /// </summary>
+        public string SpecialCharacters => _resources.GetString("SpecialCharacters");
+
+        /// <summary>
+        /// Gets the resource Length.
+        /// </summary>
+        public string Length => _resources.GetString("Length");
 
         /// <summary>
         /// Gets the resource SearchDisplayName.
@@ -2298,16 +2308,6 @@ namespace DevToys
         /// Gets the resource SearchKeywords.
         /// </summary>
         public string SearchKeywords => _resources.GetString("SearchKeywords");
-
-        /// <summary>
-        /// Gets the resource SpecialCharacters.
-        /// </summary>
-        public string SpecialCharacters => _resources.GetString("SpecialCharacters");
-
-        /// <summary>
-        /// Gets the resource Uppercase.
-        /// </summary>
-        public string Uppercase => _resources.GetString("Uppercase");
     }
 
     public class PngJpgCompressorStrings : ObservableObject
