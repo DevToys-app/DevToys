@@ -8,6 +8,7 @@ using DevToys.Api.Core.Settings;
 using DevToys.Core;
 using DevToys.Core.Settings;
 using DevToys.Core.Threading;
+using DevToys.MonacoEditor.Monaco;
 using Microsoft.Toolkit.Mvvm.Input;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
@@ -16,6 +17,7 @@ using Windows.UI;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Documents;
 using Windows.UI.Xaml.Media;
 using Clipboard = Windows.ApplicationModel.DataTransfer.Clipboard;
 
@@ -315,10 +317,7 @@ namespace DevToys.UI.Controls
 
         public void SetHighlights(IEnumerable<HighlightSpan>? spans)
         {
-            IEnumerable<HighlightSpan>? highlightsToRemove = _highlightedSpans?.Except(spans ?? Array.Empty<HighlightSpan>());
-            IEnumerable<HighlightSpan>? highlightsToAdd = spans?.Except(_highlightedSpans ?? Array.Empty<HighlightSpan>());
-
-            _highlightedSpans = spans;
+            _highlightedSpans = spans ?? Array.Empty<HighlightSpan>();
 
             if (!IsRichTextEdit)
             {
@@ -328,30 +327,48 @@ namespace DevToys.UI.Controls
             RichEditBox? richEditBox = GetRichEditBox();
             richEditBox.TextDocument.BatchDisplayUpdates();
 
-            if (highlightsToRemove is not null)
+            if (spans is not null && spans.Any())
             {
-                foreach (HighlightSpan span in highlightsToRemove)
+                HighlightSpan[] spansArray = spans.ToArray();
+                int clearFormattingStartIndex = 0;
+                for (int i = 0; i < spansArray.Length; i++)
                 {
-                    ITextRange range
-                         = richEditBox.TextDocument.GetRange(
-                             span.StartIndex,
-                             span.StartIndex + span.Length);
-                    range.CharacterFormat.BackgroundColor = Colors.Transparent;
-                    range.CharacterFormat.ForegroundColor = ActualTheme == ElementTheme.Dark ? Colors.White : Colors.Black;
-                }
-            }
-
-            if (highlightsToAdd is not null)
-            {
-                foreach (HighlightSpan span in highlightsToAdd)
-                {
+                    HighlightSpan span = spansArray[i];
                     ITextRange range
                          = richEditBox.TextDocument.GetRange(
                              span.StartIndex,
                              span.StartIndex + span.Length);
                     range.CharacterFormat.BackgroundColor = span.BackgroundColor;
                     range.CharacterFormat.ForegroundColor = span.ForegroundColor;
+
+                    if (span.StartIndex - clearFormattingStartIndex > 0)
+                    {
+                        range
+                            = richEditBox.TextDocument.GetRange(
+                                clearFormattingStartIndex,
+                                span.StartIndex);
+                        range.CharacterFormat.BackgroundColor = Colors.Transparent;
+                        range.CharacterFormat.ForegroundColor = ActualTheme == ElementTheme.Dark ? Colors.White : Colors.Black;
+                    }
+
+                    clearFormattingStartIndex = span.StartIndex + span.Length;
                 }
+
+                if (Text.Length - clearFormattingStartIndex > 0)
+                {
+                    ITextRange range
+                        = richEditBox.TextDocument.GetRange(
+                            clearFormattingStartIndex,
+                            Text.Length);
+                    range.CharacterFormat.BackgroundColor = Colors.Transparent;
+                    range.CharacterFormat.ForegroundColor = ActualTheme == ElementTheme.Dark ? Colors.White : Colors.Black;
+                }
+            }
+            else
+            {
+                ITextRange range = richEditBox.TextDocument.GetRange(0, Text.Length);
+                range.CharacterFormat.BackgroundColor = Colors.Transparent;
+                range.CharacterFormat.ForegroundColor = ActualTheme == ElementTheme.Dark ? Colors.White : Colors.Black;
             }
 
             richEditBox.TextDocument.ApplyDisplayUpdates();

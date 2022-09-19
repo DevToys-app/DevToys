@@ -154,7 +154,7 @@
     <value>대문자</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value>[빈 문자열]</value>
   </data>
   <data name="HashesMatch" xml:space="preserve">
     <value>해시가 동일합니다.</value>

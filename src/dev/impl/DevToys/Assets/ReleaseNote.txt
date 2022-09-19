@@ -1,11 +1,10 @@
 ﻿🎉 New Features
-  • CRON Parser!
-  • XML Validator!
-  • Color Picker & Contrast!
+  • JWT Decoder can now also Encode!
 👏 Improvements
-  • Added and updated many translations
-  • New option in JSON Formatter, Hash Generator and Settings
-  • Consistent font everywhere
-  • Start-up performance
+  • Regex Tester shows matching groups
+  • Better handling of brackets in SQL Formatter
+  • Smart Detection now prioritize favorite tools
 🐛 Bug Fixes
-  • Inconsistencies in YAML to JSON Converter and JSON Formatter
+  • JSON Formatter wasn't sorting arrays
+  • JSON Formatter was failing to parse an empty array
+  • Wrong highlighting in Regex Tester

@@ -142,6 +142,6 @@
     <value>XML, belirlenen XSD şemasına uyumludur.</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>XML XSD Validate</value>
+    <value>XML XSD Doğrula</value>
   </data>
 </root>

@@ -3,11 +3,13 @@
 using System;
 using System.Collections.Generic;
 using System.Composition;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
+using DevToys.Core.Collections;
 using DevToys.Core.Threading;
 using DevToys.Shared.Core.Threading;
 using DevToys.UI.Controls;
@@ -196,6 +198,40 @@ namespace DevToys.ViewModels.Tools.RegEx
             }
         }
 
+        private string? _errorMsg;
+        internal string? ErrorMsg
+        {
+            get => _errorMsg;
+            set
+            {
+                SetProperty(ref _errorMsg, value);
+            }
+        }
+
+        internal ExtendedObservableCollection<MatchDetails> MatchGroups { get; } = new();
+
+        private string? _inputValue;
+        internal string? InputValue
+        {
+            get => _inputValue;
+            set
+            {
+                SetProperty(ref _inputValue, value);
+                QueueRegExMatch();
+            }
+        }
+
+        private string? _outputValue;
+        internal string? OutputValue
+        {
+            get => _outputValue;
+            set
+            {
+                SetProperty(ref _outputValue, value);
+                QueueRegExMatch();
+            }
+        }
+
         internal ICustomTextBox? MatchTextBox { private get; set; }
 
         [ImportingConstructor]
@@ -225,52 +261,86 @@ namespace DevToys.ViewModels.Tools.RegEx
             await ThreadHelper.RunOnUIThreadAsync(() =>
             {
                 ElementTheme currentTheme = ((Frame)Window.Current.Content).ActualTheme;
-                string? highlighterBackgroundResourceName = currentTheme == ElementTheme.Light ? "SystemAccentColorLight2" : "SystemAccentColorDark1";
+                string? highlighterBackgroundResourceName = currentTheme == ElementTheme.Light
+                    ? "SystemAccentColorLight2"
+                    : "SystemAccentColorDark1";
                 highlighterForegroundColor = currentTheme == ElementTheme.Light ? Colors.Black : Colors.White;
                 highlighterBackgroundColor = (Color)Application.Current.Resources[highlighterBackgroundResourceName];
             });
 
             await TaskScheduler.Default;
-
+            string errorMsg = "";
             while (_regExMatchingQueue.TryDequeue(out (string pattern, string text) data))
             {
                 var spans = new List<HighlightSpan>();
-
-                try
+                MatchCollection? matches = null;
+                Regex? regex = null;
+                if (!String.IsNullOrWhiteSpace(data.pattern))
                 {
-                    string? pattern = data.pattern.Trim('/');
-
-                    var regex = new Regex(data.pattern, GetOptions());
-                    MatchCollection matches = regex.Matches(data.text);
-
-                    foreach (Match match in matches)
+                    try
                     {
-                        int lineCount = CountLines(data.text, match.Index);
-                        spans.Add(
-                            new HighlightSpan()
-                            {
-                                StartIndex = match.Index - lineCount,
-                                Length = match.Length,
-                                BackgroundColor = highlighterBackgroundColor,
-                                ForegroundColor = highlighterForegroundColor
-                            });
+                        string? pattern = data.pattern.Trim('/');
+                        regex = new Regex(data.pattern, GetOptions());
+                        matches = regex.Matches(data.text);
+                        foreach (Match match in matches)
+                        {
+                            int lineCount = CountLines(data.text, match.Index);
+                            spans.Add(
+                                new HighlightSpan()
+                                {
+                                    StartIndex = match.Index - lineCount,
+                                    Length = match.Length,
+                                    BackgroundColor = highlighterBackgroundColor,
+                                    ForegroundColor = highlighterForegroundColor
+                                });
+                        }
                     }
-                }
-                catch
-                {
-                    // TODO: indicate the user that the regex is wrong.
+                    catch (Exception ex)
+                    {
+                        errorMsg = ex.Message;
+                        // TODO: indicate the user that the regex is wrong.
+                    }
                 }
 
                 ThreadHelper.RunOnUIThreadAsync(
                     ThreadPriority.Low,
                     () =>
                     {
-                        MatchTextBox?.SetHighlights(spans);
-
-                        if (spans.Count > 0 && !_toolSuccessfullyWorked)
+                        ErrorMsg = errorMsg;
+                        if (matches != null)
                         {
-                            _toolSuccessfullyWorked = true;
-                            _marketingService.NotifyToolSuccessfullyWorked();
+                            MatchTextBox?.SetHighlights(spans);
+
+                            IEnumerable<MatchDetails> matchesGroups
+                                = matches
+                                .Cast<Match>()
+                                .SelectMany(
+                                    (c, inx) => c.Groups
+                                        .Cast<Group>()
+                                        .OrderBy(g => g.Index)
+                                        .Select(mm => new MatchDetails
+                                        {
+                                            Title = (mm.Name == "0" ? $"{Strings.Match} {inx + 1}:" : $"    {Strings.Group} \"{mm.Name}\""),
+                                            Range = $"{mm.Index}-{mm.Index + mm.Length}",
+                                            Value = mm.Value
+                                        }));
+                            MatchGroups.Update(matchesGroups);
+
+                            if (InputValue != null)
+                            {
+                                OutputValue = regex?.Replace(data.text, InputValue);
+                            }
+
+                            if (spans.Count > 0 && !_toolSuccessfullyWorked)
+                            {
+                                _toolSuccessfullyWorked = true;
+                                _marketingService.NotifyToolSuccessfullyWorked();
+                            }
+                        }
+                        else
+                        {
+                            MatchGroups.Clear();
+                            MatchTextBox?.SetHighlights(null);
                         }
                     }).ForgetSafely();
             }
@@ -315,6 +385,11 @@ namespace DevToys.ViewModels.Tools.RegEx
 
         private int CountLines(string input, int maxLength)
         {
+            if (string.IsNullOrEmpty(input))
+            {
+                return 0;
+            }
+
             int lines = 0;
             int i = 0;
             while (i > -1 && i < maxLength)
@@ -329,5 +404,14 @@ namespace DevToys.ViewModels.Tools.RegEx
 
             return lines;
         }
+    }
+
+    public record MatchDetails
+    {
+        public string Title { get; set; } = string.Empty;
+
+        public string Range { get; set; } = string.Empty;
+
+        public string Value { get; set; } = string.Empty;
     }
 }
