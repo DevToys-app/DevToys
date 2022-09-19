@@ -1,10 +1,8 @@
 ﻿#nullable enable
 
 using System.Composition;
-using DevToys.Shared.Api.Core;
 using DevToys.Api.Tools;
-using DevToys.Core.Threading;
-using Windows.UI.Xaml.Controls;
+using DevToys.Shared.Api.Core;
 
 namespace DevToys.ViewModels.Tools.GuidGenerator
 {

@@ -2290,6 +2290,16 @@ namespace DevToys
         public string Passwords => _resources.GetString("Passwords");
 
         /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+
+        /// <summary>
+        /// Gets the resource SearchKeywords.
+        /// </summary>
+        public string SearchKeywords => _resources.GetString("SearchKeywords");
+
+        /// <summary>
         /// Gets the resource SpecialCharacters.
         /// </summary>
         public string SpecialCharacters => _resources.GetString("SpecialCharacters");

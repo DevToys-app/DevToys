@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Composition;
 using System.Linq;
+using System.Text;
 using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
@@ -192,50 +193,55 @@ namespace DevToys.ViewModels.Tools.Generators.PasswordGenerator
 
         private void ExecuteGenerateCommand()
         {
-            string[] randomChars = new[] {
-                string.Empty,
-                string.Empty,
-                string.Empty,
-                string.Empty
-            };
+            var sb = new StringBuilder();
+            for (int i = 0; i < NumberOfPasswordsToGenerate; i++)
+            {
+                string[] randomChars = new[] {
+                    string.Empty,
+                    string.Empty,
+                    string.Empty,
+                    string.Empty
+                };
             
-            var rand = new CryptoRandom();
-            var chars = new List<char>();
+                var rand = new CryptoRandom();
+                var chars = new List<char>();
 
-            if (HasUppercase)
-            {
-                randomChars[0] = UppercaseLetters;
-                chars.Insert(rand.Next(0, chars.Count), randomChars[0][rand.Next(0, randomChars[0].Length)]);
+                if (HasUppercase)
+                {
+                    randomChars[0] = UppercaseLetters;
+                    chars.Insert(rand.Next(0, chars.Count), randomChars[0][rand.Next(0, randomChars[0].Length)]);
+                }
+
+                if (HasLowercase)
+                {
+                    randomChars[1] = LowercaseLetters;
+                    chars.Insert(rand.Next(0, chars.Count), randomChars[1][rand.Next(0, randomChars[1].Length)]);
+                }
+
+                if (HasNumbers)
+                {
+                    randomChars[2] = Digits;
+                    chars.Insert(rand.Next(0, chars.Count), randomChars[2][rand.Next(0, randomChars[2].Length)]);
+                }
+
+                if (HasSpecialCharacters)
+                {
+                    randomChars[3] = NonAlphanumerics;
+                    chars.Insert(rand.Next(0, chars.Count), randomChars[3][rand.Next(0, randomChars[3].Length)]);
+                }
+
+                randomChars = randomChars.Where(r => r.Length > 0).ToArray();
+                for (int j = chars.Count; j < LengthOfPasswordToGenerate; j++)
+                {
+                    string rcs = randomChars[rand.Next(0, randomChars.Length)];
+                    chars.Insert(rand.Next(0, chars.Count),
+                        rcs[rand.Next(0, rcs.Length)]);
+                }
+
+                sb.AppendLine(new string(chars.ToArray()));
             }
 
-            if (HasLowercase)
-            {
-                randomChars[1] = LowercaseLetters;
-                chars.Insert(rand.Next(0, chars.Count), randomChars[1][rand.Next(0, randomChars[1].Length)]);
-            }
-
-            if (HasNumbers)
-            {
-                randomChars[2] = Digits;
-                chars.Insert(rand.Next(0, chars.Count), randomChars[2][rand.Next(0, randomChars[2].Length)]);
-            }
-
-            if (HasSpecialCharacters)
-            {
-                randomChars[3] = NonAlphanumerics;
-                chars.Insert(rand.Next(0, chars.Count), randomChars[3][rand.Next(0, randomChars[3].Length)]);
-            }
-
-            randomChars = randomChars.Where(r => r.Length > 0).ToArray();
-
-            for (int i = chars.Count; i < LengthOfPasswordToGenerate; i++)
-            {
-                string rcs = randomChars[rand.Next(0, randomChars.Length)];
-                chars.Insert(rand.Next(0, chars.Count),
-                    rcs[rand.Next(0, rcs.Length)]);
-            }
-
-            Output = new string(chars.ToArray());
+            Output = sb.ToString();
             OutputTextBox?.ScrollToBottom();
         }
 

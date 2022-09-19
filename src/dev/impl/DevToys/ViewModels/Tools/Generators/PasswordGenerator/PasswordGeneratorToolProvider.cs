@@ -14,15 +14,15 @@ namespace DevToys.ViewModels.Tools.Generators.PasswordGenerator
     {
         private readonly IMefProvider _mefProvider;
 
-        public string MenuDisplayName => LanguageManager.Instance.GuidGenerator.MenuDisplayName;
+        public string MenuDisplayName => LanguageManager.Instance.PasswordGenerator.MenuDisplayName;
 
-        public string? SearchDisplayName => LanguageManager.Instance.GuidGenerator.SearchDisplayName;
+        public string? SearchDisplayName => LanguageManager.Instance.PasswordGenerator.SearchDisplayName;
 
-        public string? Description => LanguageManager.Instance.GuidGenerator.Description;
+        public string? Description => LanguageManager.Instance.PasswordGenerator.Description;
 
-        public string AccessibleName => LanguageManager.Instance.GuidGenerator.AccessibleName;
+        public string AccessibleName => LanguageManager.Instance.PasswordGenerator.AccessibleName;
 
-        public string? SearchKeywords => LanguageManager.Instance.GuidGenerator.SearchKeywords;
+        public string? SearchKeywords => LanguageManager.Instance.PasswordGenerator.SearchKeywords;
 
         public string IconGlyph => "\u0100";
 
