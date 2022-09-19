@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using DevToys.ViewModels.Tools.XmlValidator;
 using DevToys.ViewModels.Tools.XmlValidator.Parsing;
@@ -22,12 +23,12 @@ namespace DevToys.Tests.Providers.Tools
             XmlParsingResult xmlParsingResult = xmlParser.Parse(xmlDataString);
 
             // Act
-            List<XmlNamespace> nsMissingInXml = NamespaceHelper.GetMissingNamespacesInXml(xsdParsingResult, xmlParsingResult);
-            List<XmlNamespace> nsMissingInXsd = NamespaceHelper.GetMissingNamespacesInXsd(xsdParsingResult, xmlParsingResult);
+            IEnumerable<XmlNamespace> nsMissingInXml = NamespaceHelper.GetMissingNamespacesInXml(xsdParsingResult, xmlParsingResult);
+            IEnumerable<XmlNamespace> nsMissingInXsd = NamespaceHelper.GetMissingNamespacesInXsd(xsdParsingResult, xmlParsingResult);
 
             // Assert
-            Assert.IsTrue(nsMissingInXml.Count == 0);
-            Assert.IsTrue(nsMissingInXsd.Count == 0);
+            Assert.IsFalse(nsMissingInXml.Any());
+            Assert.IsFalse(nsMissingInXsd.Any());
         }
 
         [TestMethod]
@@ -43,12 +44,12 @@ namespace DevToys.Tests.Providers.Tools
             XmlParsingResult xmlParsingResult = xmlParser.Parse(xmlDataString);
 
             // Act
-            List<XmlNamespace> nsMissingInXml = NamespaceHelper.GetMissingNamespacesInXml(xsdParsingResult, xmlParsingResult);
-            List<XmlNamespace> nsMissingInXsd = NamespaceHelper.GetMissingNamespacesInXsd(xsdParsingResult, xmlParsingResult);
+            IEnumerable<XmlNamespace> nsMissingInXml = NamespaceHelper.GetMissingNamespacesInXml(xsdParsingResult, xmlParsingResult);
+            IEnumerable<XmlNamespace> nsMissingInXsd = NamespaceHelper.GetMissingNamespacesInXsd(xsdParsingResult, xmlParsingResult);
 
             // Assert
-            Assert.IsTrue(nsMissingInXml.Count == 0);
-            Assert.IsTrue(nsMissingInXsd.Count == 0);
+            Assert.IsFalse(nsMissingInXml.Any());
+            Assert.IsFalse(nsMissingInXsd.Any());
         }
 
         [TestMethod]
@@ -64,12 +65,12 @@ namespace DevToys.Tests.Providers.Tools
             XmlParsingResult xmlParsingResult = xmlParser.Parse(xmlDataString);
 
             // Act
-            List<XmlNamespace> nsMissingInXml = NamespaceHelper.GetMissingNamespacesInXml(xsdParsingResult, xmlParsingResult);
-            List<XmlNamespace> nsMissingInXsd = NamespaceHelper.GetMissingNamespacesInXsd(xsdParsingResult, xmlParsingResult);
+            IEnumerable<XmlNamespace> nsMissingInXml = NamespaceHelper.GetMissingNamespacesInXml(xsdParsingResult, xmlParsingResult);
+            IEnumerable<XmlNamespace> nsMissingInXsd = NamespaceHelper.GetMissingNamespacesInXsd(xsdParsingResult, xmlParsingResult);
 
             // Assert
-            Assert.IsTrue(nsMissingInXml.Count == 1);
-            Assert.IsTrue(nsMissingInXsd.Count == 0);
+            Assert.IsTrue(nsMissingInXml.Count() == 1);
+            Assert.IsTrue(nsMissingInXsd.Any() == false);
             Assert.IsTrue(xmlParsingResult.IsValid);
         }
         
@@ -86,12 +87,12 @@ namespace DevToys.Tests.Providers.Tools
             XmlParsingResult xmlParsingResult = xmlParser.Parse(xmlDataString);
 
             // Act
-            List<XmlNamespace> nsMissingInXml = NamespaceHelper.GetMissingNamespacesInXml(xsdParsingResult, xmlParsingResult);
-            List<XmlNamespace> nsMissingInXsd = NamespaceHelper.GetMissingNamespacesInXsd(xsdParsingResult, xmlParsingResult);
+            IEnumerable<XmlNamespace> nsMissingInXml = NamespaceHelper.GetMissingNamespacesInXml(xsdParsingResult, xmlParsingResult);
+            IEnumerable<XmlNamespace> nsMissingInXsd = NamespaceHelper.GetMissingNamespacesInXsd(xsdParsingResult, xmlParsingResult);
 
             // Assert
-            Assert.IsTrue(nsMissingInXml.Count == 0);
-            Assert.IsTrue(nsMissingInXsd.Count == 1);
+            Assert.IsTrue(nsMissingInXml.Any() == false);
+            Assert.IsTrue(nsMissingInXsd.Count() == 1);
             Assert.IsTrue(xmlParsingResult.IsValid);
         }
 

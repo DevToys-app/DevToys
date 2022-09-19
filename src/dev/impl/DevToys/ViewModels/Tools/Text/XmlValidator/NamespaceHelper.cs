@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DevToys.ViewModels.Tools.XmlValidator.Parsing;
@@ -13,7 +14,7 @@ namespace DevToys.ViewModels.Tools.XmlValidator
         /// <param name="xsdParsingResult">XSD parsing result</param>
         /// <param name="xmlParsingResult">XML parsing result</param>
         /// <returns>The missing namespaces.</returns>
-        public static List<XmlNamespace> GetMissingNamespacesInXsd(XsdParsingResult xsdParsingResult, XmlParsingResult xmlParsingResult)
+        public static IEnumerable<XmlNamespace> GetMissingNamespacesInXsd(XsdParsingResult xsdParsingResult, XmlParsingResult xmlParsingResult)
         {
             IEnumerable<XmlNamespace> clearedXdsNamespaces = GetNamespacesFromXsd(xsdParsingResult);
             IEnumerable<XmlNamespace> xmlNamespaces = xmlParsingResult.Namespaces;
@@ -21,10 +22,10 @@ namespace DevToys.ViewModels.Tools.XmlValidator
             // filter targetNamespace
             if (xsdParsingResult.TargetNamespace is not null)
             {
-                xmlNamespaces = xmlNamespaces.Where(xns => !string.Equals(xns.Uri, xsdParsingResult.TargetNamespace, StringComparison.InvariantCultureIgnoreCase)).ToList();
+                xmlNamespaces = xmlNamespaces.Where(xns => !string.Equals(xns.Uri, xsdParsingResult.TargetNamespace, StringComparison.InvariantCultureIgnoreCase));
             }
 
-            return xmlNamespaces.Where(ns => clearedXdsNamespaces.Contains(ns) == false).ToList();
+            return xmlNamespaces.Where(ns => clearedXdsNamespaces.Contains(ns) == false);
         }
         
         /// <summary>
@@ -33,12 +34,12 @@ namespace DevToys.ViewModels.Tools.XmlValidator
         /// <param name="xsdParsingResult">XSD parsing result</param>
         /// <param name="xmlParsingResult">XML parsing result</param>
         /// <returns>The missing namespaces</returns>
-        public static List<XmlNamespace> GetMissingNamespacesInXml(XsdParsingResult xsdParsingResult, XmlParsingResult xmlParsingResult)
+        public static IEnumerable<XmlNamespace> GetMissingNamespacesInXml(XsdParsingResult xsdParsingResult, XmlParsingResult xmlParsingResult)
         {
             IEnumerable<XmlNamespace> clearedXdsNamespaces = GetNamespacesFromXsd(xsdParsingResult);
             IEnumerable<XmlNamespace> xmlNamespaces = xmlParsingResult.Namespaces;
 
-            return clearedXdsNamespaces.Where(ns => xmlNamespaces.Contains(ns) == false).ToList();
+            return clearedXdsNamespaces.Where(ns => xmlNamespaces.Contains(ns) == false);
         }
 
         public static bool DetectMissingTargetNamespaceInXml(XsdParsingResult xsdParsingResult, XmlParsingResult xmlParsingResult, out string? missingTargetNamespaceUri)
@@ -59,7 +60,7 @@ namespace DevToys.ViewModels.Tools.XmlValidator
             static bool IsDefaultXsdNamespace(XmlNamespace xmlNamespace) => xmlNamespace.Prefix.StartsWith("xs", StringComparison.InvariantCultureIgnoreCase);
 
             // return namespaces without default XSD namespace (xmlns:xs="http://www.w3.org/2001/XMLSchema")
-            return xsdParsingResult.Namespaces.Where(xns => !IsDefaultXsdNamespace(xns)).ToList();
+            return xsdParsingResult.Namespaces.Where(xns => !IsDefaultXsdNamespace(xns));
         }
     }
 }

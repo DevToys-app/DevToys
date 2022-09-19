@@ -18,7 +18,7 @@ namespace DevToys.ViewModels.Tools.XmlValidator.Parsing
             string? targetNamespace;
             try
             {
-                StringReader reader = new(xsdContent);
+                using StringReader reader = new(xsdContent);
                 xmlSchema = XmlSchema.Read(reader, ValidationErrorCallBack);
                 targetNamespace = string.Equals(xmlSchema.TargetNamespace, string.Empty) ? null : xmlSchema.TargetNamespace;
             }

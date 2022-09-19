@@ -154,7 +154,7 @@ namespace DevToys.ViewModels.Tools.XmlValidator
         {
             errorMessage = null;
             
-            List<XmlNamespace> namespacesMissingInXsd = NamespaceHelper.GetMissingNamespacesInXsd(xsdParsingResult, xmlParsingResult);
+            IEnumerable<XmlNamespace> namespacesMissingInXsd = NamespaceHelper.GetMissingNamespacesInXsd(xsdParsingResult, xmlParsingResult);
             bool areAllNamespacesDefinedInXsd = !namespacesMissingInXsd.Any();
             if (!areAllNamespacesDefinedInXsd)
             {
@@ -184,7 +184,7 @@ namespace DevToys.ViewModels.Tools.XmlValidator
         private bool DetectMissingNamespacesInXml(XsdParsingResult xsdParsingResult, XmlParsingResult xmlParsingResult,
             out string? errorMessage)
         {
-            List<XmlNamespace> namespacesMissingInXml = NamespaceHelper.GetMissingNamespacesInXml(xsdParsingResult, xmlParsingResult);
+            List<XmlNamespace> namespacesMissingInXml = NamespaceHelper.GetMissingNamespacesInXml(xsdParsingResult, xmlParsingResult).ToList();
             bool areAllNamespacesDefinedInXml = !namespacesMissingInXml.Any(); 
             if (!areAllNamespacesDefinedInXml)
             {
