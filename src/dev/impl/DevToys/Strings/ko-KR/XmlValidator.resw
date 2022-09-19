@@ -145,12 +145,12 @@
     <value>XML XSD 유효성 검사</value>
   </data>
   <data name="XmlNamespacesInconsistentMsg" xml:space="preserve">
-    <value>Validation result will always be 'valid' since the XML does not define these namespace(s) defined in the XSD: {0}</value>
+    <value>XML은 XSD에 정의된 이러한 이름 공간을 정의하지 않으므로 유효성 검사 결과는 항상 '유효'입니다. {0}</value>
   </data>
   <data name="XsdNamespacesInconsistentMsg" xml:space="preserve">
-    <value>Validation result will always be 'valid' since the XSD does not define these namespace(s) defined in the XML: {0}</value>
+    <value>XSD는 XML에 정의된 이러한 이름 공간을를 정의하지 않으므로 유효성 검사 결과는 항상 '유효'입니다. {0}</value>
   </data>
   <data name="TargetNamespaceNotDefinedInXml" xml:space="preserve">
-    <value>Validation result will potentially always be 'valid' since the XML does not reference the following "targetNamespace" defined in the XSD: {0}</value>
+    <value>XML이 XSD에 정의된 "targetNamespace"를 참조하지 않으므로 유효성 검사 결과는 항상 '유효'될 수 있습니다. {0}</value>
   </data>
 </root>
