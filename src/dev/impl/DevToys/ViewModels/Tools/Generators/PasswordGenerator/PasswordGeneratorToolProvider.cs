@@ -1,4 +1,6 @@
-﻿using System.Composition;
+﻿#nullable enable
+
+using System.Composition;
 using DevToys.Api.Tools;
 using DevToys.Shared.Api.Core;
 
@@ -16,13 +18,13 @@ namespace DevToys.ViewModels.Tools.Generators.PasswordGenerator
 
         public string MenuDisplayName => LanguageManager.Instance.PasswordGenerator.MenuDisplayName;
 
-        public string? SearchDisplayName => LanguageManager.Instance.PasswordGenerator.SearchDisplayName;
+        public string SearchDisplayName => LanguageManager.Instance.PasswordGenerator.SearchDisplayName;
 
-        public string? Description => LanguageManager.Instance.PasswordGenerator.Description;
+        public string Description => LanguageManager.Instance.PasswordGenerator.Description;
 
         public string AccessibleName => LanguageManager.Instance.PasswordGenerator.AccessibleName;
 
-        public string? SearchKeywords => LanguageManager.Instance.PasswordGenerator.SearchKeywords;
+        public string SearchKeywords => LanguageManager.Instance.PasswordGenerator.SearchKeywords;
 
         public string IconGlyph => "\u0100";
 

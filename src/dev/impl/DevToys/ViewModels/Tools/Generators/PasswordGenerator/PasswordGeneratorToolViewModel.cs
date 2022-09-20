@@ -1,9 +1,10 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 using System.Collections.Generic;
 using System.Composition;
 using System.Linq;
 using System.Text;
-using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
 using DevToys.Helpers;
@@ -71,8 +72,7 @@ namespace DevToys.ViewModels.Tools.Generators.PasswordGenerator
                 name: $"{nameof(GuidGeneratorToolViewModel)}.{nameof(PasswordsToGenerate)}",
                 isRoaming: true,
                 defaultValue: 1);
-
-        private readonly IMarketingService _marketingService;
+        
         internal ISettingsProvider SettingsProvider { get; }
         internal ICustomTextBox? OutputTextBox { private get; set; }
 
@@ -179,11 +179,9 @@ namespace DevToys.ViewModels.Tools.Generators.PasswordGenerator
         }
 
         [ImportingConstructor]
-        public PasswordGeneratorToolViewModel(ISettingsProvider settingsProvider, IMarketingService marketingService)
+        public PasswordGeneratorToolViewModel(ISettingsProvider settingsProvider)
         {
             SettingsProvider = settingsProvider;
-            _marketingService = marketingService;
-
             GenerateCommand = new RelayCommand(ExecuteGenerateCommand);
         }
 

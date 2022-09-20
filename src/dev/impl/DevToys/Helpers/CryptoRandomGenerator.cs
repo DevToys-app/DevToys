@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 using System.Security.Cryptography;
 
 namespace DevToys.Helpers
@@ -8,7 +10,7 @@ namespace DevToys.Helpers
     /// Taken from IdentityModel (ref.: https://github.com/IdentityModel/IdentityModel/ )
     /// Taken from PasswordGenerator (ref.: https://github.com/Darkseal/PasswordGenerator/blob/master/CryptoRandom.cs )
     /// </summary>
-    public class CryptoRandom : Random
+    internal sealed class CryptoRandom : Random
     {
         private static readonly RandomNumberGenerator Rng = RandomNumberGenerator.Create();
         private readonly byte[] _uint32Buffer = new byte[4];
@@ -55,17 +57,13 @@ namespace DevToys.Helpers
         {
             byte[] bytes = CreateRandomKey(length);
 
-            switch (format)
+            return format switch
             {
-                case OutputFormat.Base64Url:
-                    return Base64Url.Encode(bytes);
-                case OutputFormat.Base64:
-                    return Convert.ToBase64String(bytes);
-                case OutputFormat.Hex:
-                    return BitConverter.ToString(bytes).Replace("-", "");
-                default:
-                    throw new ArgumentException("Invalid output format", nameof(format));
-            }
+                OutputFormat.Base64Url => Base64Url.Encode(bytes),
+                OutputFormat.Base64 => Convert.ToBase64String(bytes),
+                OutputFormat.Hex => BitConverter.ToString(bytes).Replace("-", ""),
+                _ => throw new ArgumentException("Invalid output format", nameof(format))
+            };
         }
 
         /// <summary>
