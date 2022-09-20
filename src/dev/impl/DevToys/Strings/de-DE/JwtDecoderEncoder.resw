@@ -124,13 +124,13 @@
     <value>JWT</value>
   </data>
   <data name="JwtHeaderLabel" xml:space="preserve">
-    <value>Überschrift</value>
+    <value>Header</value>
   </data>
   <data name="JwtTokenLabel" xml:space="preserve">
     <value>Token</value>
   </data>
   <data name="JwtPayloadLabel" xml:space="preserve">
-    <value>Belastung</value>
+    <value>Payload</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Dekodiere einen JWT header, payload und signature</value>
