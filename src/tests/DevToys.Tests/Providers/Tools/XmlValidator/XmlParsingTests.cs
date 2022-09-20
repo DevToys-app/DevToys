@@ -1,67 +1,21 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Xml.Linq;
-using System.Xml.Schema;
+using DevToys.ViewModels.Tools.XmlValidator;
 using DevToys.ViewModels.Tools.XmlValidator.Parsing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DevToys.Tests.Providers.Tools
 {
     [TestClass]
-    public class XmlValidatorTests
+    public class XmlParsingTests
     {
-        [TestMethod]
-        public void Parse_EmptyXsdFile_Fails()
-        {
-            // Arrange 
-            string xsdSchemaString = string.Empty;
-            XsdParser parser = new XsdParser(xsdSchemaString);
-
-            // Act
-            XsdParsingResult result = parser.Parse(xsdSchemaString);
-
-            // Assert
-            Assert.IsFalse(result.IsValid);
-            Assert.IsFalse(string.IsNullOrEmpty(result.ErrorMessage));
-            Assert.AreEqual(null, result.SchemaSet);
-        }
-
-        [TestMethod]
-        public async Task Parse_InvalidXsdSchema_Fails()
-        {
-            // Arrange 
-            string xsdSchemaString = await TestDataProvider.GetFileContent("InvalidXsd.xml");
-            XsdParser parser = new XsdParser(xsdSchemaString);
-
-            // Act
-            XsdParsingResult result = parser.Parse(xsdSchemaString);
-
-            // Assert
-            Assert.IsFalse(result.IsValid);
-            Assert.IsFalse(string.IsNullOrEmpty(result.ErrorMessage));
-            Assert.AreEqual(null, result.SchemaSet);
-        }
-
-        [TestMethod]
-        public async Task Parse_ValidXsdSchema_Succeeds()
-        {
-            // Arrange 
-            string xsdSchemaString = await TestDataProvider.GetFileContent("ValidXsd.xml");
-            XsdParser parser = new XsdParser(xsdSchemaString);
-
-            // Act
-            XsdParsingResult result = parser.Parse(xsdSchemaString);
-
-            // Assert
-            Assert.IsTrue(result.IsValid);
-            Assert.IsTrue(string.IsNullOrEmpty(result.ErrorMessage));
-            Assert.IsInstanceOfType(result.SchemaSet, typeof(XmlSchemaSet));
-        }
-
         [TestMethod]
         public async Task Parse_EmptyXmlFile_Fails()
         {
             // Arrange
-            string xsdSchemaString = await TestDataProvider.GetFileContent("ValidXsd.xml");
+            string xsdSchemaString = await TestDataProvider.GetFileContent("Xml.ValidXsd.xml");
             XsdParser xsdParser = new XsdParser(xsdSchemaString);
             XsdParsingResult xsdParsingResult = xsdParser.Parse(xsdSchemaString);
 
@@ -81,11 +35,11 @@ namespace DevToys.Tests.Providers.Tools
         public async Task Parse_InvalidXmlFile_Fails()
         {
             // Arrange
-            string xsdSchemaString = await TestDataProvider.GetFileContent("ValidXsd.xml");
+            string xsdSchemaString = await TestDataProvider.GetFileContent("Xml.ValidXsd.xml");
             XsdParser xsdParser = new XsdParser(xsdSchemaString);
             XsdParsingResult xsdParsingResult = xsdParser.Parse(xsdSchemaString);
 
-            string xmlDataString = await TestDataProvider.GetFileContent("InvalidXml.xml");
+            string xmlDataString = await TestDataProvider.GetFileContent("Xml.InvalidXml.xml");
             XmlParser xmlParser = new XmlParser(xmlDataString, xsdParsingResult.SchemaSet);
 
             // Act
@@ -102,11 +56,11 @@ namespace DevToys.Tests.Providers.Tools
         public async Task Parse_ValidXmlSchema_Succeeds()
         {
             // Arrange
-            string xsdSchemaString = await TestDataProvider.GetFileContent("ValidXsd.xml");
+            string xsdSchemaString = await TestDataProvider.GetFileContent("Xml.ValidXsd.xml");
             XsdParser xsdParser = new XsdParser(xsdSchemaString);
             XsdParsingResult xsdParsingResult = xsdParser.Parse(xsdSchemaString);
 
-            string xmlDataString = await TestDataProvider.GetFileContent("ValidXml.xml");
+            string xmlDataString = await TestDataProvider.GetFileContent("Xml.ValidXml.xml");
             XmlParser xmlParser = new XmlParser(xmlDataString, xsdParsingResult.SchemaSet);
 
             // Act
@@ -116,6 +70,33 @@ namespace DevToys.Tests.Providers.Tools
             Assert.IsTrue(result.IsValid);
             Assert.IsTrue(string.IsNullOrEmpty(result.ErrorMessage));
             Assert.IsInstanceOfType(result.XmlDocument, typeof(XDocument));
+        }
+        
+        [TestMethod]
+        public async Task Parse_ValidXmlSchema_SucceedsAndExtractsNamespacesCorrectly()
+        {
+            // Arrange
+            string xsdSchemaString = await TestDataProvider.GetFileContent("Xml.ValidXsd.xml");
+            XsdParser xsdParser = new XsdParser(xsdSchemaString);
+            XsdParsingResult xsdParsingResult = xsdParser.Parse(xsdSchemaString);
+
+            string xmlDataString = await TestDataProvider.GetFileContent("Xml.ValidXml.xml");
+            XmlParser xmlParser = new XmlParser(xmlDataString, xsdParsingResult.SchemaSet);
+
+            // Act
+            XmlParsingResult result = xmlParser.Parse(xmlDataString);
+
+            // Assert
+            Assert.IsTrue(result.IsValid);
+
+            IEnumerable<XmlNamespace> extractedNamespace = result.Namespaces;
+            Assert.IsTrue(extractedNamespace.Count() == 1);
+            
+            (string namespacePrefix, string namespacePath) = extractedNamespace.First();
+            (string expectedNamespacePrefix, string expectedNamespacePath) = ("", @"http://www.contoso.com/books");
+
+            Assert.IsTrue(string.Equals(namespacePrefix, expectedNamespacePrefix));
+            Assert.IsTrue(string.Equals(namespacePath, expectedNamespacePath));
         }
     }
 }
