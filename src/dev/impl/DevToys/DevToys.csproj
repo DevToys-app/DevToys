@@ -164,12 +164,14 @@
     <Compile Include="ViewModels\Tools\Text\StringEscapeUnescape\StringEscapeUnescapeToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Text\StringEscapeUnescape\StringEscapeUnescapeToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Text\TextGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Text\XmlValidator\NamespaceHelper.cs" />
     <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\ParserBase.cs" />
     <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\ParsingResultBase.cs" />
     <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\XmlParser.cs" />
     <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\XmlParsingResult.cs" />
     <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\XsdParser.cs" />
     <Compile Include="ViewModels\Tools\Text\XmlValidator\Parsing\XsdParsingResult.cs" />
+    <Compile Include="ViewModels\Tools\Text\XmlValidator\XmlNamespace.cs" />
     <Compile Include="ViewModels\Tools\Text\XmlValidator\XmlValidatorToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Text\XmlValidator\XmlValidatorToolViewModel.cs" />
     <Compile Include="Views\Tools\AllTools\AllToolsToolPage.xaml.cs">
