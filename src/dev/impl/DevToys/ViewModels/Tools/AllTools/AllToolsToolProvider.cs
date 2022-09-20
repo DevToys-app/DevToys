@@ -2,10 +2,7 @@
 
 using System.Composition;
 using DevToys.Api.Tools;
-using DevToys.Core.Threading;
 using DevToys.Shared.Api.Core;
-using DevToys.ViewModels.Tools;
-using Windows.UI.Xaml.Controls;
 
 namespace DevToys.ViewModels.AllTools
 {

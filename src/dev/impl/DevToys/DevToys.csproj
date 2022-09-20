@@ -584,7 +584,6 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <PRIResource Include="Strings\en-US\PasswordGenerator.resw" />
     <Page Include="Views\Tools\EncodersDecoders\JwtDecoderEncoder\JwtDecoderControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
