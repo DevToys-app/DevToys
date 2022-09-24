@@ -180,6 +180,8 @@ DevToys is using a license that permits redistribution of the app as trialware o
 
 ### Code contributors
 
+![Alt](https://repobeats.axiom.co/api/embed/31f4c9d2d532ef010e6171dc501f976c1481d799.svg "Repobeats analytics image")
+
 <a href="https://github.com/veler/devtoys/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=veler/devtoys" />
 </a>
