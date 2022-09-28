@@ -118,22 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Color Blindness Simulator tool</value>
+    <value>Kleurenblindheid simulatie tool</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Color Blindness Simulator</value>
+    <value>Kleurenblindheid Simulator</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Simulate color blindness on a picture or screenshot</value>
+    <value>Simuleer kleurenblindheid op een foto of schermafbeelding</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Color Blindness Simulator</value>
+    <value>Kleurenblindheid Simulator</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Annuleren</value>
   </data>
   <data name="DeuteranopiaSimulation" xml:space="preserve">
-    <value>Deuteranopia simulation</value>
+    <value>Deuteranopie simulatie</value>
   </data>
   <data name="OriginalPicture" xml:space="preserve">
     <value>Origineel</value>
