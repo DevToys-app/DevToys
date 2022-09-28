@@ -121,43 +121,43 @@
     <value>Bytes</value>
   </data>
   <data name="Clear" xml:space="preserve">
-    <value>Clear</value>
+    <value>Wissen</value>
   </data>
   <data name="Copy" xml:space="preserve">
-    <value>Copy</value>
+    <value>Kopiëren</value>
   </data>
   <data name="Cut" xml:space="preserve">
-    <value>Cut</value>
+    <value>Knippen</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Verwijderen</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
-    <value>Browse files</value>
+    <value>Door bestanden bladeren</value>
   </data>
   <data name="FileSelectorBrowseFolders" xml:space="preserve">
-    <value>Browse folders</value>
+    <value>Bladeren in map</value>
   </data>
   <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>Drag &amp; drop any file here</value>
+    <value>Sleep uw bestand hier naartoe</value>
   </data>
   <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
-    <value>Drag &amp; drop any files here</value>
+    <value>Sleep en plaats je bestanden hier naartoe</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
-    <value>Drag &amp; drop a {0} file here</value>
+    <value>Sleep en plaats een {0} bestand hierheen</value>
     <comment>{0} is a single file extension like "PNG"</comment>
   </data>
   <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
-    <value>Drag &amp; drop any {0} files here</value>
+    <value>Sleep &amp; zet alle {0} bestanden hier neer</value>
     <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
-    <value>Only {0} file(s) can be used.</value>
+    <value>Slechts {0} bestand(en) kunnen worden gebruikt.</value>
     <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorOr" xml:space="preserve">
-    <value>or</value>
+    <value>of</value>
   </data>
   <data name="Gigabytes" xml:space="preserve">
     <value>GB</value>
