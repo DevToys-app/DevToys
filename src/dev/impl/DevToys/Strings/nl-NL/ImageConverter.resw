@@ -149,7 +149,7 @@
     <value>Save all</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>Save as</value>
+    <value>Opslaan als</value>
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
     <value>See details</value>
