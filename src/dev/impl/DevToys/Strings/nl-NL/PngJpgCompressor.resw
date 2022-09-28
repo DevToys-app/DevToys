@@ -130,7 +130,7 @@
     <value>Verwijderen</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
-    <value>Delete all</value>
+    <value>Alles verwijderen</value>
   </data>
   <data name="DetailsTitle" xml:space="preserve">
     <value>Details</value>
@@ -146,13 +146,13 @@
     <value>OK</value>
   </data>
   <data name="SaveAll" xml:space="preserve">
-    <value>Save all</value>
+    <value>Alles opslaan</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Opslaan als</value>
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
-    <value>See details</value>
+    <value>Bekijk details</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Lossless PNG and JPEG optimizer</value>
