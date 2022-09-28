@@ -127,7 +127,7 @@
     <value>Instellingen</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Verwijderen</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
     <value>Delete all</value>
