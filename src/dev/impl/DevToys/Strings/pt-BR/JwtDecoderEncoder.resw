@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>JWT Encoder / Decoder tool</value>
+    <value>Ferramenta codificadora e descodificadora JWT</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>JWT</value>
   </data>
   <data name="JwtHeaderLabel" xml:space="preserve">
-    <value>Header</value>
+    <value>Cabeçalho</value>
   </data>
   <data name="JwtTokenLabel" xml:space="preserve">
     <value>Token</value>
@@ -247,10 +247,10 @@
     <value>Select token parameters</value>
   </data>
   <data name="InvalidPrivateKeyError" xml:space="preserve">
-    <value>Invalid Private Key</value>
+    <value>Chave Privada Inválida</value>
   </data>
   <data name="PublicKeyLabel" xml:space="preserve">
-    <value>Public Key</value>
+    <value>Chave Pública</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>JWT Encoder / Decoder</value>
