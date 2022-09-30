@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Ferramenta testadore de expressão regular</value>
+    <value>Ferramenta para teste de expressão regular</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Configuração</value>
@@ -193,12 +193,12 @@
     <value>Saída</value>
   </data>
   <data name="Group" xml:space="preserve">
-    <value>Group</value>
+    <value>Grupo</value>
   </data>
   <data name="Match" xml:space="preserve">
-    <value>Match</value>
+    <value>Correspondência</value>
   </data>
   <data name="Matches" xml:space="preserve">
-    <value>Matches</value>
+    <value>Correspondências</value>
   </data>
 </root>
