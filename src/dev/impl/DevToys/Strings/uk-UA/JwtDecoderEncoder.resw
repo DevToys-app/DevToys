@@ -154,16 +154,16 @@
     <value>Так</value>
   </data>
   <data name="EncodeExpirationTitle" xml:space="preserve">
-    <value>Token has expirations</value>
+    <value>Токен має термін дії</value>
   </data>
   <data name="EncodeExpirationMonthLabel" xml:space="preserve">
-    <value>Expire in month(s)</value>
+    <value>Закінчується через місяців</value>
   </data>
   <data name="EncodeExpirationYearLabel" xml:space="preserve">
-    <value>Expire in year(s)</value>
+    <value>Закінчується через рік(и)</value>
   </data>
   <data name="EncodeHashingTitle" xml:space="preserve">
-    <value>Token hashing algorithm</value>
+    <value>Алгоритм хешування токена</value>
   </data>
   <data name="EncodeSettingsTitle" xml:space="preserve">
     <value>Налаштування</value>
@@ -241,10 +241,10 @@
     <value>Token has audience</value>
   </data>
   <data name="EncodeIssuerLabel" xml:space="preserve">
-    <value>Token has issuer</value>
+    <value>Маркер має емітента</value>
   </data>
   <data name="EncodeSettingsDescription" xml:space="preserve">
-    <value>Select token parameters</value>
+    <value>Вибрати параметри токена</value>
   </data>
   <data name="InvalidPrivateKeyError" xml:space="preserve">
     <value>Недійсний приватний ключ</value>
