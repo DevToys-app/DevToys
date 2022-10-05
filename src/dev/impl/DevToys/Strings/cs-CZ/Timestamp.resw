@@ -121,13 +121,13 @@
     <value>Timestamp converter tool</value>
   </data>
   <data name="TimeZoneTitle" xml:space="preserve">
-    <value>Time zone</value>
+    <value>Časové pásmo</value>
   </data>
   <data name="DaylightSavingTime" xml:space="preserve">
-    <value>Daylight saving time.</value>
+    <value>Letní čas.</value>
   </data>
   <data name="DayTitle" xml:space="preserve">
-    <value>Day</value>
+    <value>Den</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Convert timestamp to human-readable date and vice versa</value>
