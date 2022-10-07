@@ -151,7 +151,7 @@
     <value>Date time fomat of upcoming dates</value>
   </data>
   <data name="OutputDateTimeTitle" xml:space="preserve">
-    <value>Output format</value>
+    <value>Výstupní formát</value>
   </data>
   <data name="OutputFormatErrorMessage" xml:space="preserve">
     <value>Output date time format is not valid</value>

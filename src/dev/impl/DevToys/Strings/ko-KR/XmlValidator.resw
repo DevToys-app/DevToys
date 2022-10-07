@@ -144,4 +144,13 @@
   <data name="SearchKeywords" xml:space="preserve">
     <value>XML XSD 유효성 검사</value>
   </data>
+  <data name="XmlNamespacesInconsistentMsg" xml:space="preserve">
+    <value>XML은 XSD에 정의된 이러한 이름 공간을 정의하지 않으므로 유효성 검사 결과는 항상 '유효'입니다. {0}</value>
+  </data>
+  <data name="XsdNamespacesInconsistentMsg" xml:space="preserve">
+    <value>XSD는 XML에 정의된 이러한 이름 공간을를 정의하지 않으므로 유효성 검사 결과는 항상 '유효'입니다. {0}</value>
+  </data>
+  <data name="TargetNamespaceNotDefinedInXml" xml:space="preserve">
+    <value>XML이 XSD에 정의된 "targetNamespace"를 참조하지 않으므로 유효성 검사 결과는 항상 '유효'될 수 있습니다. {0}</value>
+  </data>
 </root>

@@ -144,4 +144,13 @@
   <data name="SearchKeywords" xml:space="preserve">
     <value>XML XSD Validate</value>
   </data>
+  <data name="XmlNamespacesInconsistentMsg" xml:space="preserve">
+    <value>XSD スキームで定義されている名前空間 {0} は XML で定義されていないため、検証結果は常に「準拠」となります。</value>
+  </data>
+  <data name="XsdNamespacesInconsistentMsg" xml:space="preserve">
+    <value>XML で定義されている名前空間 {0} は XSD スキームで定義されていないため、検証結果は常に「準拠」となります。</value>
+  </data>
+  <data name="TargetNamespaceNotDefinedInXml" xml:space="preserve">
+    <value>XSD スキームで定義されている targetNamespace:{0} は XML で参照されていないため、検証結果が常に「準拠」となる可能性があります。</value>
+  </data>
 </root>

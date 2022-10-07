@@ -144,4 +144,13 @@
   <data name="SearchKeywords" xml:space="preserve">
     <value>XML XSD Doğrula</value>
   </data>
+  <data name="XmlNamespacesInconsistentMsg" xml:space="preserve">
+    <value>Doğrulama sonucu her zaman 'geçerli' olacaktır, çünkü XML, XSD'de tanımlanan bu ad alanlarını tanımlamaz: {0}</value>
+  </data>
+  <data name="XsdNamespacesInconsistentMsg" xml:space="preserve">
+    <value>XSD, XML'de tanımlanan bu ad alanlarını tanımlamadığından doğrulama sonucu her zaman 'geçerli' olacaktır: {0}</value>
+  </data>
+  <data name="TargetNamespaceNotDefinedInXml" xml:space="preserve">
+    <value>Doğrulama sonucu, XML, XSD'de tanımlanan aşağıdaki "targetNamespace"e başvurmadığından, potansiyel olarak her zaman 'geçerli' olacaktır: {0}</value>
+  </data>
 </root>
