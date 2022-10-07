@@ -144,4 +144,13 @@
   <data name="SearchKeywords" xml:space="preserve">
     <value>XML XSD 校验</value>
   </data>
+  <data name="XmlNamespacesInconsistentMsg" xml:space="preserve">
+    <value>校验结果将永远为“有效”，因为 XML 中没有定义 XSD 中已定义的命名空间：{0}</value>
+  </data>
+  <data name="XsdNamespacesInconsistentMsg" xml:space="preserve">
+    <value>校验结果将永远为“有效”，因为 XSD 中没有定义 XML 中已定义的命名空间：{0}</value>
+  </data>
+  <data name="TargetNamespaceNotDefinedInXml" xml:space="preserve">
+    <value>校验结果将可能永远为“有效”，因为 XML 没有引用 XSD 中已定义的下列“targetNamespace”：{0}</value>
+  </data>
 </root>

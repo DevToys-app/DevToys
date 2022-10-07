@@ -193,12 +193,12 @@
     <value>Sortie</value>
   </data>
   <data name="Group" xml:space="preserve">
-    <value>Group</value>
+    <value>Groupe</value>
   </data>
   <data name="Match" xml:space="preserve">
-    <value>Match</value>
+    <value>Correspondance</value>
   </data>
   <data name="Matches" xml:space="preserve">
-    <value>Matches</value>
+    <value>Correspondances</value>
   </data>
 </root>

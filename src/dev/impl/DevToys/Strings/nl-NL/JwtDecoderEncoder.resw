@@ -133,79 +133,79 @@
     <value>Payload</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Decode a JWT header, payload and signature</value>
+    <value>Decodeer een JWT header, payload en signature</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
   </data>
   <data name="Algorithm" xml:space="preserve">
-    <value>Algorithm</value>
+    <value>Algoritme</value>
   </data>
   <data name="DecodeSwitchModeLabel" xml:space="preserve">
     <value>Decoderen</value>
   </data>
   <data name="DecodeValidateTokenLabel" xml:space="preserve">
-    <value>Validate Token</value>
+    <value>Token Valideren</value>
   </data>
   <data name="DecodeValidateTokenNoLabel" xml:space="preserve">
-    <value>No</value>
+    <value>Nee</value>
   </data>
   <data name="DecodeValidateTokenYesLabel" xml:space="preserve">
-    <value>Yes</value>
+    <value>Ja</value>
   </data>
   <data name="EncodeExpirationTitle" xml:space="preserve">
-    <value>Token has expirations</value>
+    <value>Token heeft een vervaldatum</value>
   </data>
   <data name="EncodeExpirationMonthLabel" xml:space="preserve">
-    <value>Expire in month(s)</value>
+    <value>Vervalt in maand(en)</value>
   </data>
   <data name="EncodeExpirationYearLabel" xml:space="preserve">
-    <value>Expire in year(s)</value>
+    <value>Vervalt in jaar(en)</value>
   </data>
   <data name="EncodeHashingTitle" xml:space="preserve">
-    <value>Token hashing algorithm</value>
+    <value>Token hashing-algoritme</value>
   </data>
   <data name="EncodeSettingsTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>Instellingen</value>
   </data>
   <data name="EncodeSwitchModeLabel" xml:space="preserve">
     <value>Coderen</value>
   </data>
   <data name="SettingsSwitchModeLabel" xml:space="preserve">
-    <value>Encode / Decode</value>
+    <value>Coderen / Decoderen</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>Instellingen</value>
   </data>
   <data name="EncodeDefaultTimeTitle" xml:space="preserve">
-    <value>Token has default time</value>
+    <value>Token heeft een standaardtijd</value>
   </data>
   <data name="EncodeExpirationDaysLabel" xml:space="preserve">
-    <value>Expire in day(s)</value>
+    <value>Verloopt in dag(en)</value>
   </data>
   <data name="EncodeExpirationHoursLabel" xml:space="preserve">
-    <value>Expire in hour(s)</value>
+    <value>Verloopt in ur(en)</value>
   </data>
   <data name="EncodeExpirationMinutesLabel" xml:space="preserve">
-    <value>Expire in minute(s)</value>
+    <value>Verloopt in minuut(en)</value>
   </data>
   <data name="PrivateKeyLabel" xml:space="preserve">
     <value>Private Key</value>
   </data>
   <data name="SignatureLabel" xml:space="preserve">
-    <value>Signature</value>
+    <value>Handtekening</value>
   </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>Signature Verified</value>
+    <value>Handtekening geverifiëerd</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
-    <value>Invalid Public Key</value>
+    <value>Ongeldige Public Key</value>
   </data>
   <data name="JwtInValidMessage" xml:space="preserve">
-    <value>Invalid Signature</value>
+    <value>Ongeldige handtekening</value>
   </data>
   <data name="DecodeValidateActorLabel" xml:space="preserve">
-    <value>Validate actor</value>
+    <value>Valideer actor</value>
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
     <value>Validate audience</value>
@@ -256,6 +256,6 @@
     <value>JWT Encoder / Decoder</value>
   </data>
   <data name="InvalidSignatureError" xml:space="preserve">
-    <value>Invalid Signature</value>
+    <value>Ongeldige handtekening</value>
   </data>
 </root>
