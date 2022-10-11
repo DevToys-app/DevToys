@@ -117,98 +117,73 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Bytes" xml:space="preserve">
-    <value>Bytes</value>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>SQL Formatter tool</value>
   </data>
-  <data name="Clear" xml:space="preserve">
-    <value>Limpiar</value>
+  <data name="Configuration" xml:space="preserve">
+    <value>Configuration</value>
   </data>
-  <data name="Copy" xml:space="preserve">
-    <value>Copiar</value>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>SQL</value>
   </data>
-  <data name="Cut" xml:space="preserve">
-    <value>Cortar</value>
+  <data name="FourSpaces" xml:space="preserve">
+    <value>4 spaces</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Eliminar</value>
+  <data name="Indentation" xml:space="preserve">
+    <value>Indentation</value>
   </data>
-  <data name="FileSelectorBrowseFiles" xml:space="preserve">
-    <value>Examinar archivos</value>
+  <data name="Input" xml:space="preserve">
+    <value>Input</value>
   </data>
-  <data name="FileSelectorBrowseFolders" xml:space="preserve">
-    <value>Examinar carpetas</value>
+  <data name="OneTab" xml:space="preserve">
+    <value>1 tab</value>
   </data>
-  <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>Arrastre y Suelte un archivo aquí</value>
+  <data name="Output" xml:space="preserve">
+    <value>Output</value>
   </data>
-  <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
-    <value>Arrastre y Suelte algunos archivos aquí</value>
+  <data name="TwoSpaces" xml:space="preserve">
+    <value>2 spaces</value>
   </data>
-  <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
-    <value>Arrastre y Suelte un archivo {0} aquí</value>
-    <comment>{0} is a single file extension like "PNG"</comment>
+  <data name="Description" xml:space="preserve">
+    <value>Indent SQL queries</value>
   </data>
-  <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
-    <value>Arrastre y Suelte algunos archivos {0} aquí</value>
-    <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>SQL Formatter</value>
   </data>
-  <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
-    <value>Sólo se pueden utilizar {0} archivo(s).</value>
-    <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
+  <data name="SqlLanguage" xml:space="preserve">
+    <value>Language</value>
   </data>
-  <data name="FileSelectorOr" xml:space="preserve">
-    <value>o</value>
+  <data name="SqlLanguageDb2" xml:space="preserve">
+    <value>Db2</value>
   </data>
-  <data name="Gigabytes" xml:space="preserve">
-    <value>GB</value>
+  <data name="SqlLanguageMariaDb" xml:space="preserve">
+    <value>MariaDB</value>
   </data>
-  <data name="Kilobytes" xml:space="preserve">
-    <value>KB</value>
+  <data name="SqlLanguageMySql" xml:space="preserve">
+    <value>MySQL</value>
   </data>
-  <data name="Megabytes" xml:space="preserve">
-    <value>MB</value>
+  <data name="SqlLanguageN1ql" xml:space="preserve">
+    <value>N1QL</value>
   </data>
-  <data name="Ok" xml:space="preserve">
-    <value>Aceptar</value>
+  <data name="SqlLanguagePlSql" xml:space="preserve">
+    <value>PL/SQL</value>
   </data>
-  <data name="OpenFile" xml:space="preserve">
-    <value>Subir un archivo</value>
+  <data name="SqlLanguagePostgreSql" xml:space="preserve">
+    <value>PostgreSQL</value>
   </data>
-  <data name="Paste" xml:space="preserve">
-    <value>Pegar</value>
+  <data name="SqlLanguageRedShift" xml:space="preserve">
+    <value>Amazon Redshift</value>
   </data>
-  <data name="Redo" xml:space="preserve">
-    <value>Rehacer</value>
+  <data name="SqlLanguageSpark" xml:space="preserve">
+    <value>Spark SQL</value>
   </data>
-  <data name="Refresh" xml:space="preserve">
-    <value>Recargar</value>
+  <data name="SqlLanguageSql" xml:space="preserve">
+    <value>Standard SQL</value>
   </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Guardar como</value>
+  <data name="SqlLanguageTsql" xml:space="preserve">
+    <value>Transact-SQL</value>
   </data>
-  <data name="SelectAll" xml:space="preserve">
-    <value>Seleccionar todo</value>
-  </data>
-  <data name="Terabytes" xml:space="preserve">
-    <value>TB</value>
-  </data>
-  <data name="ToggleSwitchOff" xml:space="preserve">
-    <value>Apagado</value>
-  </data>
-  <data name="ToggleSwitchOn" xml:space="preserve">
-    <value>Encendido</value>
-  </data>
-  <data name="UnableOpenFile" xml:space="preserve">
-    <value>No se puede abrir este archivo</value>
-  </data>
-  <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>No se ha podido cargar el archivo '{0}'. Solo se pueden abrir archivos de texto. Para más detalles, consulte el registro.</value>
-  </data>
-  <data name="Undo" xml:space="preserve">
-    <value>Deshacer</value>
-  </data>
-  <data name="ViewImage" xml:space="preserve">
-    <value>Vista</value>
-    <comment>In the context of "view / display an image".</comment>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Db2 MariaDB MySQL N1QL PL/SQL PostgreSQL Amazon Redshift Spark SQL Standard SQL Transact-SQL</value>
   </data>
 </root>

@@ -117,98 +117,69 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Bytes" xml:space="preserve">
-    <value>Bytes</value>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>Color Picker and contrast ratio tool</value>
   </data>
-  <data name="Clear" xml:space="preserve">
-    <value>Limpiar</value>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>Color Picker &amp; Contrast</value>
   </data>
-  <data name="Copy" xml:space="preserve">
-    <value>Copiar</value>
+  <data name="Description" xml:space="preserve">
+    <value>Pick up a color or two and validate the contrast ratio</value>
   </data>
-  <data name="Cut" xml:space="preserve">
-    <value>Cortar</value>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Color Picker &amp; Contrast</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Eliminar</value>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>RGB WCAG</value>
   </data>
-  <data name="FileSelectorBrowseFiles" xml:space="preserve">
-    <value>Examinar archivos</value>
+  <data name="TextColor" xml:space="preserve">
+    <value>Text color</value>
   </data>
-  <data name="FileSelectorBrowseFolders" xml:space="preserve">
-    <value>Examinar carpetas</value>
+  <data name="Configuration" xml:space="preserve">
+    <value>Configuration</value>
   </data>
-  <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>Arrastre y Suelte un archivo aquí</value>
+  <data name="Mode" xml:space="preserve">
+    <value>Mode</value>
   </data>
-  <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
-    <value>Arrastre y Suelte algunos archivos aquí</value>
+  <data name="ModeHSL" xml:space="preserve">
+    <value>HSL</value>
   </data>
-  <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
-    <value>Arrastre y Suelte un archivo {0} aquí</value>
-    <comment>{0} is a single file extension like "PNG"</comment>
+  <data name="ModeHSV" xml:space="preserve">
+    <value>HSV</value>
   </data>
-  <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
-    <value>Arrastre y Suelte algunos archivos {0} aquí</value>
-    <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
+  <data name="SelectedColor" xml:space="preserve">
+    <value>Selected color</value>
   </data>
-  <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
-    <value>Sólo se pueden utilizar {0} archivo(s).</value>
-    <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>Background color</value>
   </data>
-  <data name="FileSelectorOr" xml:space="preserve">
-    <value>o</value>
+  <data name="ContrastRatio" xml:space="preserve">
+    <value>Contrast ratio</value>
   </data>
-  <data name="Gigabytes" xml:space="preserve">
-    <value>GB</value>
+  <data name="Fail" xml:space="preserve">
+    <value>Fail</value>
   </data>
-  <data name="Kilobytes" xml:space="preserve">
-    <value>KB</value>
+  <data name="LargeText" xml:space="preserve">
+    <value>Large text</value>
   </data>
-  <data name="Megabytes" xml:space="preserve">
-    <value>MB</value>
+  <data name="Pass" xml:space="preserve">
+    <value>Pass</value>
   </data>
-  <data name="Ok" xml:space="preserve">
-    <value>Aceptar</value>
+  <data name="SampleText" xml:space="preserve">
+    <value>Sit kasd feugait takimata in eirmod sadipscing sanctus consectetuer voluptua dolor dolor dolore rebum.</value>
+    <comment>"Lorem ipsum" text used a sample text for comparing the background color over the text color.</comment>
   </data>
-  <data name="OpenFile" xml:space="preserve">
-    <value>Subir un archivo</value>
+  <data name="SampleTextTitle" xml:space="preserve">
+    <value>Lorem ipsum dolor</value>
+    <comment>"Lorem ipsum" text used a sample text for comparing the background color over the text color.</comment>
   </data>
-  <data name="Paste" xml:space="preserve">
-    <value>Pegar</value>
+  <data name="SmallText" xml:space="preserve">
+    <value>Small text</value>
   </data>
-  <data name="Redo" xml:space="preserve">
-    <value>Rehacer</value>
+  <data name="WCAG_AA" xml:space="preserve">
+    <value>WCAG AA</value>
   </data>
-  <data name="Refresh" xml:space="preserve">
-    <value>Recargar</value>
-  </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Guardar como</value>
-  </data>
-  <data name="SelectAll" xml:space="preserve">
-    <value>Seleccionar todo</value>
-  </data>
-  <data name="Terabytes" xml:space="preserve">
-    <value>TB</value>
-  </data>
-  <data name="ToggleSwitchOff" xml:space="preserve">
-    <value>Apagado</value>
-  </data>
-  <data name="ToggleSwitchOn" xml:space="preserve">
-    <value>Encendido</value>
-  </data>
-  <data name="UnableOpenFile" xml:space="preserve">
-    <value>No se puede abrir este archivo</value>
-  </data>
-  <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>No se ha podido cargar el archivo '{0}'. Solo se pueden abrir archivos de texto. Para más detalles, consulte el registro.</value>
-  </data>
-  <data name="Undo" xml:space="preserve">
-    <value>Deshacer</value>
-  </data>
-  <data name="ViewImage" xml:space="preserve">
-    <value>Vista</value>
-    <comment>In the context of "view / display an image".</comment>
+  <data name="WCAG_AAA" xml:space="preserve">
+    <value>WCAG AAA</value>
   </data>
 </root>

@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
+  <!--
+    Microsoft ResX Schema
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -117,98 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Bytes" xml:space="preserve">
-    <value>Bytes</value>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>Lorem Ipsum Generator tool</value>
   </data>
-  <data name="Clear" xml:space="preserve">
-    <value>Limpiar</value>
+  <data name="Configuration" xml:space="preserve">
+    <value>Configuration</value>
   </data>
-  <data name="Copy" xml:space="preserve">
-    <value>Copiar</value>
+  <data name="Description" xml:space="preserve">
+    <value>Generate Lorem Ipsum placeholder text</value>
   </data>
-  <data name="Cut" xml:space="preserve">
-    <value>Cortar</value>
+  <data name="LengthDescription" xml:space="preserve">
+    <value>Number of words, sentences or paragraphs to generate</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Eliminar</value>
+  <data name="LengthTitle" xml:space="preserve">
+    <value>Length</value>
   </data>
-  <data name="FileSelectorBrowseFiles" xml:space="preserve">
-    <value>Examinar archivos</value>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>Lorem Ipsum</value>
   </data>
-  <data name="FileSelectorBrowseFolders" xml:space="preserve">
-    <value>Examinar carpetas</value>
+  <data name="Output" xml:space="preserve">
+    <value>Output</value>
   </data>
-  <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>Arrastre y Suelte un archivo aquí</value>
+  <data name="ParagraphsType" xml:space="preserve">
+    <value>Paragraphs</value>
   </data>
-  <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
-    <value>Arrastre y Suelte algunos archivos aquí</value>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Lorem Ipsum Generator</value>
   </data>
-  <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
-    <value>Arrastre y Suelte un archivo {0} aquí</value>
-    <comment>{0} is a single file extension like "PNG"</comment>
+  <data name="SentencesType" xml:space="preserve">
+    <value>Sentences</value>
   </data>
-  <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
-    <value>Arrastre y Suelte algunos archivos {0} aquí</value>
-    <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
+  <data name="StartWithLoremTitle" xml:space="preserve">
+    <value>Start with 'Lorem ipsum dolor sit amet...'</value>
   </data>
-  <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
-    <value>Sólo se pueden utilizar {0} archivo(s).</value>
-    <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
+  <data name="TypeDescription" xml:space="preserve">
+    <value>Generate words, sentences or paragraphs of Lorem Ipsum</value>
   </data>
-  <data name="FileSelectorOr" xml:space="preserve">
-    <value>o</value>
+  <data name="TypeTitle" xml:space="preserve">
+    <value>Type</value>
   </data>
-  <data name="Gigabytes" xml:space="preserve">
-    <value>GB</value>
+  <data name="WordsType" xml:space="preserve">
+    <value>Words</value>
   </data>
-  <data name="Kilobytes" xml:space="preserve">
-    <value>KB</value>
-  </data>
-  <data name="Megabytes" xml:space="preserve">
-    <value>MB</value>
-  </data>
-  <data name="Ok" xml:space="preserve">
-    <value>Aceptar</value>
-  </data>
-  <data name="OpenFile" xml:space="preserve">
-    <value>Subir un archivo</value>
-  </data>
-  <data name="Paste" xml:space="preserve">
-    <value>Pegar</value>
-  </data>
-  <data name="Redo" xml:space="preserve">
-    <value>Rehacer</value>
-  </data>
-  <data name="Refresh" xml:space="preserve">
-    <value>Recargar</value>
-  </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Guardar como</value>
-  </data>
-  <data name="SelectAll" xml:space="preserve">
-    <value>Seleccionar todo</value>
-  </data>
-  <data name="Terabytes" xml:space="preserve">
-    <value>TB</value>
-  </data>
-  <data name="ToggleSwitchOff" xml:space="preserve">
-    <value>Apagado</value>
-  </data>
-  <data name="ToggleSwitchOn" xml:space="preserve">
-    <value>Encendido</value>
-  </data>
-  <data name="UnableOpenFile" xml:space="preserve">
-    <value>No se puede abrir este archivo</value>
-  </data>
-  <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>No se ha podido cargar el archivo '{0}'. Solo se pueden abrir archivos de texto. Para más detalles, consulte el registro.</value>
-  </data>
-  <data name="Undo" xml:space="preserve">
-    <value>Deshacer</value>
-  </data>
-  <data name="ViewImage" xml:space="preserve">
-    <value>Vista</value>
-    <comment>In the context of "view / display an image".</comment>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value></value>
   </data>
 </root>
