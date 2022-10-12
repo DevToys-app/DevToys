@@ -124,16 +124,16 @@
     <value>JWT</value>
   </data>
   <data name="JwtHeaderLabel" xml:space="preserve">
-    <value>Header</value>
+    <value>头部</value>
   </data>
   <data name="JwtTokenLabel" xml:space="preserve">
     <value>令牌</value>
   </data>
   <data name="JwtPayloadLabel" xml:space="preserve">
-    <value>Payload</value>
+    <value>有效载荷</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>解码 JWT 报头、有效数据和签名</value>
+    <value>解码 JWT 头部、有效载荷和签名</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
@@ -163,7 +163,7 @@
     <value>过期时间(年)</value>
   </data>
   <data name="EncodeHashingTitle" xml:space="preserve">
-    <value>Token hashing algorithm</value>
+    <value>令牌散列算法</value>
   </data>
   <data name="EncodeSettingsTitle" xml:space="preserve">
     <value>设置</value>
@@ -178,7 +178,7 @@
     <value>配置</value>
   </data>
   <data name="EncodeDefaultTimeTitle" xml:space="preserve">
-    <value>Token has default time</value>
+    <value>令牌具有默认时间</value>
   </data>
   <data name="EncodeExpirationDaysLabel" xml:space="preserve">
     <value>过期时间(日)</value>
@@ -205,43 +205,43 @@
     <value>签名无效</value>
   </data>
   <data name="DecodeValidateActorLabel" xml:space="preserve">
-    <value>Validate actor</value>
+    <value>验证执行者</value>
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
-    <value>Validate audience</value>
+    <value>验证接收者</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
-    <value>Validate issuer</value>
+    <value>验证签发者</value>
   </data>
   <data name="DecodeValidateLifetimeLabel" xml:space="preserve">
-    <value>Validate lifetime</value>
+    <value>验证生存时间</value>
   </data>
   <data name="ValidAudiencesLabel" xml:space="preserve">
-    <value>Valid audiences</value>
+    <value>有效的接收者</value>
   </data>
   <data name="ValidIssuersLabel" xml:space="preserve">
-    <value>Valid issuers</value>
+    <value>有效的签发者</value>
   </data>
   <data name="DecodeValidationSettingsDescription" xml:space="preserve">
-    <value>Select which token parameters to validate</value>
+    <value>选择要验证的令牌参数</value>
   </data>
   <data name="DecodeValidationSettingsTitle" xml:space="preserve">
     <value>令牌验证设置</value>
   </data>
   <data name="ValidAudiencesError" xml:space="preserve">
-    <value>Valid audiences are empty</value>
+    <value>有效的接收者为空</value>
   </data>
   <data name="ValidIssuersError" xml:space="preserve">
-    <value>Valid issuers are empty</value>
+    <value>有效的签发者为空</value>
   </data>
   <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
     <value>所提供的公钥是私钥</value>
   </data>
   <data name="EncodeAudienceLabel" xml:space="preserve">
-    <value>Token has audience</value>
+    <value>令牌具有接收者</value>
   </data>
   <data name="EncodeIssuerLabel" xml:space="preserve">
-    <value>Token has issuer</value>
+    <value>令牌具有签发者</value>
   </data>
   <data name="EncodeSettingsDescription" xml:space="preserve">
     <value>选择令牌参数</value>

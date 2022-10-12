@@ -193,12 +193,12 @@
     <value>输出</value>
   </data>
   <data name="Group" xml:space="preserve">
-    <value>Group</value>
+    <value>组</value>
   </data>
   <data name="Match" xml:space="preserve">
-    <value>Match</value>
+    <value>匹配</value>
   </data>
   <data name="Matches" xml:space="preserve">
-    <value>Matches</value>
+    <value>匹配</value>
   </data>
 </root>

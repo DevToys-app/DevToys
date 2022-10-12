@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Color Picker and contrast ratio tool</value>
+    <value>أداة منتقي الألوان ونسبة التباين</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Color Picker &amp; Contrast</value>
+    <value>منتقي الألوان والتباين</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Pick up a color or two and validate the contrast ratio</value>
+    <value>اختر لون أو اثنين و تحقق من نسبة التباين</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Color Picker &amp; Contrast</value>
+    <value>منتقي الألوان والتباين</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>RGB WCAG</value>
@@ -154,7 +154,7 @@
     <value>لون الخلفية</value>
   </data>
   <data name="ContrastRatio" xml:space="preserve">
-    <value>Contrast ratio</value>
+    <value>نسبة التباين</value>
   </data>
   <data name="Fail" xml:space="preserve">
     <value>فشل</value>
@@ -163,18 +163,18 @@
     <value>نص كبير</value>
   </data>
   <data name="Pass" xml:space="preserve">
-    <value>Pass</value>
+    <value>متوافق</value>
   </data>
   <data name="SampleText" xml:space="preserve">
-    <value>Sit kasd feugait takimata in eirmod sadipscing sanctus consectetuer voluptua dolor dolor dolore rebum.</value>
+    <value>كونسيكتيتور أدايبا يسكينج أليايت,سيت دو أيوسمود تيمبور أنكايديديونتيوت لابوري ات دولار ماجنا أليكيوا </value>
     <comment>"Lorem ipsum" text used a sample text for comparing the background color over the text color.</comment>
   </data>
   <data name="SampleTextTitle" xml:space="preserve">
-    <value>Lorem ipsum dolor</value>
+    <value>لوريم ايبسوم دولار</value>
     <comment>"Lorem ipsum" text used a sample text for comparing the background color over the text color.</comment>
   </data>
   <data name="SmallText" xml:space="preserve">
-    <value>Small text</value>
+    <value>نص صغير</value>
   </data>
   <data name="WCAG_AA" xml:space="preserve">
     <value>WCAG AA</value>

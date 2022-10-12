@@ -144,4 +144,14 @@
   <data name="SearchKeywords" xml:space="preserve">
     <value>Valider XML XSD</value>
   </data>
+  <data name="XmlNamespacesInconsistentMsg" xml:space="preserve">
+    <value>Le résultat de la validation sera toujours 'valide' puisque le XML ne définit pas ces espace(s) de nom(s) définis dans le XSD :
+{0}</value>
+  </data>
+  <data name="XsdNamespacesInconsistentMsg" xml:space="preserve">
+    <value>Le résultat de la validation sera toujours 'valide' car le XSD ne définit pas ces espaces de noms définis dans le XML : {0}</value>
+  </data>
+  <data name="TargetNamespaceNotDefinedInXml" xml:space="preserve">
+    <value>Le résultat de la validation sera potentiellement toujours 'valide' car le XML ne fait pas référence à 'targetNamespace' défini dans le XSD: {0}</value>
+  </data>
 </root>

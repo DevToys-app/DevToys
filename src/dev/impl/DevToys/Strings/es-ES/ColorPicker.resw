@@ -124,7 +124,7 @@
     <value>Selector de Color y Contraste</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Pick up a color or two and validate the contrast ratio</value>
+    <value>Elige un color o dos y valida la relación de contraste</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Selector de Color y Contraste</value>

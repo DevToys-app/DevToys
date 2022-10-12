@@ -193,12 +193,12 @@
     <value>出力</value>
   </data>
   <data name="Group" xml:space="preserve">
-    <value>Group</value>
+    <value>グループ</value>
   </data>
   <data name="Match" xml:space="preserve">
-    <value>Match</value>
+    <value>マッチ</value>
   </data>
   <data name="Matches" xml:space="preserve">
-    <value>Matches</value>
+    <value>マッチングの結果</value>
   </data>
 </root>
