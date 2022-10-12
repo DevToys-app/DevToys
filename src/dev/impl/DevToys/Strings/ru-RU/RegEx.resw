@@ -193,12 +193,12 @@
     <value>Вывод</value>
   </data>
   <data name="Group" xml:space="preserve">
-    <value>Group</value>
+    <value>Группа</value>
   </data>
   <data name="Match" xml:space="preserve">
-    <value>Match</value>
+    <value>Совпадение</value>
   </data>
   <data name="Matches" xml:space="preserve">
-    <value>Matches</value>
+    <value>Совпадения</value>
   </data>
 </root>
