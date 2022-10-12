@@ -145,28 +145,28 @@
     <value>قم بسحب وإسقاط أي ملفات هنا</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
-    <value>Drag &amp; drop a {0} file here</value>
+    <value>اسحب وأسقطِ المِلَفّ {0} هنا</value>
     <comment>{0} is a single file extension like "PNG"</comment>
   </data>
   <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
-    <value>Drag &amp; drop any {0} files here</value>
+    <value>اسحب وأسقط أي ملفات {0} هنا</value>
     <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
-    <value>Only {0} file(s) can be used.</value>
+    <value>يمكن استخدام مِلف (ملفات) فقط{0}.</value>
     <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorOr" xml:space="preserve">
-    <value>or</value>
+    <value>أو</value>
   </data>
   <data name="Gigabytes" xml:space="preserve">
-    <value>GB</value>
+    <value>ج.بايت</value>
   </data>
   <data name="Kilobytes" xml:space="preserve">
-    <value>KB</value>
+    <value>ك.بايت</value>
   </data>
   <data name="Megabytes" xml:space="preserve">
-    <value>MB</value>
+    <value>م.بايت</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>حسناً</value>
@@ -184,13 +184,13 @@
     <value>تحديث</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>Save as</value>
+    <value>حفظ كـ</value>
   </data>
   <data name="SelectAll" xml:space="preserve">
     <value>اختر الكل</value>
   </data>
   <data name="Terabytes" xml:space="preserve">
-    <value>TB</value>
+    <value>‮ت.بايت</value>
   </data>
   <data name="ToggleSwitchOff" xml:space="preserve">
     <value>غلق</value>
@@ -199,16 +199,16 @@
     <value>فتح</value>
   </data>
   <data name="UnableOpenFile" xml:space="preserve">
-    <value>Unable to open this file</value>
+    <value>تَعذرَ فتحُ هذا المِلّف</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>Unable to load the file '{0}'. Only textual files can be opened. For more details, please check the log.</value>
+    <value>تَعذرَ تَحميلُ هذا المِلّف '{0}'. يُمكن فتح ملفاتٍ نصية فقط. للمزيد من التفاصيل، يرجى التحقق من السجل.</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>الغاء التحميل</value>
   </data>
   <data name="ViewImage" xml:space="preserve">
-    <value>View</value>
+    <value>عرض</value>
     <comment>In the context of "view / display an image".</comment>
   </data>
 </root>

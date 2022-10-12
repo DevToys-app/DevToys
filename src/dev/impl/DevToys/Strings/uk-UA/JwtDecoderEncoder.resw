@@ -154,16 +154,16 @@
     <value>Так</value>
   </data>
   <data name="EncodeExpirationTitle" xml:space="preserve">
-    <value>Token has expirations</value>
+    <value>Токен має термін дії</value>
   </data>
   <data name="EncodeExpirationMonthLabel" xml:space="preserve">
-    <value>Expire in month(s)</value>
+    <value>Закінчується через місяців</value>
   </data>
   <data name="EncodeExpirationYearLabel" xml:space="preserve">
-    <value>Expire in year(s)</value>
+    <value>Закінчується через рік(и)</value>
   </data>
   <data name="EncodeHashingTitle" xml:space="preserve">
-    <value>Token hashing algorithm</value>
+    <value>Алгоритм хешування токена</value>
   </data>
   <data name="EncodeSettingsTitle" xml:space="preserve">
     <value>Налаштування</value>
@@ -181,13 +181,13 @@
     <value>Токен має типовий час</value>
   </data>
   <data name="EncodeExpirationDaysLabel" xml:space="preserve">
-    <value>Expire in day(s)</value>
+    <value>Закінчується через день(и)</value>
   </data>
   <data name="EncodeExpirationHoursLabel" xml:space="preserve">
     <value>Закінчується через годин(у)</value>
   </data>
   <data name="EncodeExpirationMinutesLabel" xml:space="preserve">
-    <value>Expire in minute(s)</value>
+    <value>Закінчується через хвилину(и)</value>
   </data>
   <data name="PrivateKeyLabel" xml:space="preserve">
     <value>Приватний ключ</value>
@@ -199,52 +199,52 @@
     <value>Підпис підтверджено</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
-    <value>Invalid Public Key</value>
+    <value>Недійсний відкритий ключ</value>
   </data>
   <data name="JwtInValidMessage" xml:space="preserve">
-    <value>Invalid Signature</value>
+    <value>Підпис недійсний</value>
   </data>
   <data name="DecodeValidateActorLabel" xml:space="preserve">
-    <value>Validate actor</value>
+    <value>Перевірте актора</value>
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
-    <value>Validate audience</value>
+    <value>Підтвердити аудиторію</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
-    <value>Validate issuer</value>
+    <value>Перевірити емітента</value>
   </data>
   <data name="DecodeValidateLifetimeLabel" xml:space="preserve">
     <value>Перевірити термін дії</value>
   </data>
   <data name="ValidAudiencesLabel" xml:space="preserve">
-    <value>Valid audiences</value>
+    <value>Підтвердити аудиторію</value>
   </data>
   <data name="ValidIssuersLabel" xml:space="preserve">
-    <value>Valid issuers</value>
+    <value>Перевірити емітента</value>
   </data>
   <data name="DecodeValidationSettingsDescription" xml:space="preserve">
-    <value>Select which token parameters to validate</value>
+    <value>Виберіть параметри токена для перевірки</value>
   </data>
   <data name="DecodeValidationSettingsTitle" xml:space="preserve">
-    <value>Token validation settings</value>
+    <value>Налаштування перевірки токена</value>
   </data>
   <data name="ValidAudiencesError" xml:space="preserve">
-    <value>Valid audiences are empty</value>
+    <value>Дійсні емітенти порожні</value>
   </data>
   <data name="ValidIssuersError" xml:space="preserve">
-    <value>Valid issuers are empty</value>
+    <value>Дійсні емітенти порожні</value>
   </data>
   <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
-    <value>The public key provided is a private key</value>
+    <value>Наданий відкритий ключ є приватним ключем</value>
   </data>
   <data name="EncodeAudienceLabel" xml:space="preserve">
-    <value>Token has audience</value>
+    <value>Token має аудиторію</value>
   </data>
   <data name="EncodeIssuerLabel" xml:space="preserve">
-    <value>Token has issuer</value>
+    <value>Маркер має емітента</value>
   </data>
   <data name="EncodeSettingsDescription" xml:space="preserve">
-    <value>Select token parameters</value>
+    <value>Вибрати параметри токена</value>
   </data>
   <data name="InvalidPrivateKeyError" xml:space="preserve">
     <value>Недійсний приватний ключ</value>

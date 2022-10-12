@@ -130,7 +130,7 @@
     <value>حذف</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
-    <value>Delete all</value>
+    <value>حذف الكل</value>
   </data>
   <data name="DetailsTitle" xml:space="preserve">
     <value>تفاصيل</value>
@@ -146,13 +146,13 @@
     <value>حسناً</value>
   </data>
   <data name="SaveAll" xml:space="preserve">
-    <value>Save all</value>
+    <value>حفظ الكل</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>Save as</value>
+    <value>حفظ كـ</value>
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
-    <value>See details</value>
+    <value>عرض التفاصيل</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Lossless PNG and JPEG optimizer</value>

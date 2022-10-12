@@ -124,7 +124,7 @@
     <value>JWT</value>
   </data>
   <data name="JwtHeaderLabel" xml:space="preserve">
-    <value>Header</value>
+    <value>Hlavička</value>
   </data>
   <data name="JwtTokenLabel" xml:space="preserve">
     <value>Token</value>
@@ -139,7 +139,7 @@
     <value>Checksum Generator</value>
   </data>
   <data name="Algorithm" xml:space="preserve">
-    <value>Algorithm</value>
+    <value>Algoritmus</value>
   </data>
   <data name="DecodeSwitchModeLabel" xml:space="preserve">
     <value>Dekódovat</value>
@@ -148,10 +148,10 @@
     <value>Validate Token</value>
   </data>
   <data name="DecodeValidateTokenNoLabel" xml:space="preserve">
-    <value>No</value>
+    <value>Ne</value>
   </data>
   <data name="DecodeValidateTokenYesLabel" xml:space="preserve">
-    <value>Yes</value>
+    <value>Ano</value>
   </data>
   <data name="EncodeExpirationTitle" xml:space="preserve">
     <value>Token has expirations</value>
@@ -190,13 +190,13 @@
     <value>Expire in minute(s)</value>
   </data>
   <data name="PrivateKeyLabel" xml:space="preserve">
-    <value>Private Key</value>
+    <value>Privátní klíč</value>
   </data>
   <data name="SignatureLabel" xml:space="preserve">
-    <value>Signature</value>
+    <value>Podpis</value>
   </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>Signature Verified</value>
+    <value>Podpis ověřen</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
     <value>Invalid Public Key</value>
@@ -226,7 +226,7 @@
     <value>Select which token parameters to validate</value>
   </data>
   <data name="DecodeValidationSettingsTitle" xml:space="preserve">
-    <value>Token validation settings</value>
+    <value>Nastavení ověření tokenu</value>
   </data>
   <data name="ValidAudiencesError" xml:space="preserve">
     <value>Valid audiences are empty</value>
@@ -247,15 +247,15 @@
     <value>Select token parameters</value>
   </data>
   <data name="InvalidPrivateKeyError" xml:space="preserve">
-    <value>Invalid Private Key</value>
+    <value>Neplatný privátní klíč</value>
   </data>
   <data name="PublicKeyLabel" xml:space="preserve">
-    <value>Public Key</value>
+    <value>Veřejný klíč</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>JWT Encoder / Decoder</value>
   </data>
   <data name="InvalidSignatureError" xml:space="preserve">
-    <value>Invalid Signature</value>
+    <value>Neplatný podpis</value>
   </data>
 </root>

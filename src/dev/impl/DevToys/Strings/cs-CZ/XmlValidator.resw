@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Xml Validator tool</value>
+    <value>Nástroj na validaci XML</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>XML Validator</value>
+    <value>Validátor XML</value>
   </data>
   <data name="XsdScheme" xml:space="preserve">
     <value>XSD</value>
@@ -130,18 +130,27 @@
     <value>XML</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Validate XML data via an XSD scheme.</value>
+    <value>Ověřit data XML pomocí schématu XSD.</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>XML Validator</value>
+    <value>Validátor XML</value>
   </data>
   <data name="ValidationImpossibleMsg" xml:space="preserve">
-    <value>XML and XSD content must be set in order to perform a validation.</value>
+    <value>Obsah XML a XSD musí být nastaven, aby bylo možné provést ověření.</value>
   </data>
   <data name="XmlIsValidMessage" xml:space="preserve">
     <value>XML is compliant to the defined XSD scheme.</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>XML XSD Validate</value>
+  </data>
+  <data name="XmlNamespacesInconsistentMsg" xml:space="preserve">
+    <value>Výsledek oveření bude vždy "platný", protože XML nedefinuje tyto jmenné prostory definované v XSD: {0}</value>
+  </data>
+  <data name="XsdNamespacesInconsistentMsg" xml:space="preserve">
+    <value>Výsledek oveření bude vždy "platný", protože XSD nedefinuje tyto jmenné prostory definované v XML: {0}</value>
+  </data>
+  <data name="TargetNamespaceNotDefinedInXml" xml:space="preserve">
+    <value>Výsledek oveření bude potencionálně vždy "platný", protože XML neodkazuje na následující "cílový jmenný prostor" definovaný v XSD: {0}</value>
   </data>
 </root>
