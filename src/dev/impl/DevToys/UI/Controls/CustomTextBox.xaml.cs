@@ -366,9 +366,12 @@ namespace DevToys.UI.Controls
             }
             else
             {
-                ITextRange range = richEditBox.TextDocument.GetRange(0, Text.Length);
-                range.CharacterFormat.BackgroundColor = Colors.Transparent;
-                range.CharacterFormat.ForegroundColor = ActualTheme == ElementTheme.Dark ? Colors.White : Colors.Black;
+                if (!IsReadOnly)
+                {
+                    ITextRange range = richEditBox.TextDocument.GetRange(0, Text.Length);
+                    range.CharacterFormat.BackgroundColor = Colors.Transparent;
+                    range.CharacterFormat.ForegroundColor = ActualTheme == ElementTheme.Dark ? Colors.White : Colors.Black;
+                }
             }
 
             richEditBox.TextDocument.ApplyDisplayUpdates();
