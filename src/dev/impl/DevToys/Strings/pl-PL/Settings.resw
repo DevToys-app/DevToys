@@ -169,13 +169,13 @@
     <value>Jasny</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>Numery linii</value>
+    <value>Liczba linii</value>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>Wyświetl numery linii w edytorze tekstu</value>
+    <value>Wyświetl ilość linii w edytorze tekstu</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Otwórz dziennik</value>
+    <value>Otwórz dziennik zdarzeń</value>
   </data>
   <data name="PrivacyPolicy" xml:space="preserve">
     <value>Polityka prywatności</value>
