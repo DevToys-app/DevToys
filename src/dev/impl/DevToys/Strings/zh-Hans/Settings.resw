@@ -238,6 +238,6 @@
     <value>粘贴时替换文本</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>点击粘贴按钮时，在粘贴之前清除文本，而不是添加到现有文本编辑器内容之后。</value>
+    <value>点击粘贴按钮时，在粘贴之前清除文本，而不是添加到文本编辑器现有内容之后。</value>
   </data>
 </root>
