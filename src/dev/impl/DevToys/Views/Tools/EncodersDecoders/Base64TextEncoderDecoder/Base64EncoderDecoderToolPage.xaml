@@ -77,7 +77,6 @@
             MinHeight="150"
             IsReadOnly="True"
             AcceptsReturn="True"
-            IsRichTextEdit="True"
             Header="{x:Bind ViewModel.Strings.OutputTitle}"
             Text="{x:Bind ViewModel.OutputValue, Mode=OneWay}"/>
 

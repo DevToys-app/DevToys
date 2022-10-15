@@ -319,7 +319,7 @@ namespace DevToys.UI.Controls
         {
             _highlightedSpans = spans ?? Array.Empty<HighlightSpan>();
 
-            if (!IsRichTextEdit)
+            if (!IsRichTextEdit || IsReadOnly)
             {
                 return;
             }
@@ -366,12 +366,9 @@ namespace DevToys.UI.Controls
             }
             else
             {
-                if (!IsReadOnly)
-                {
-                    ITextRange range = richEditBox.TextDocument.GetRange(0, Text.Length);
-                    range.CharacterFormat.BackgroundColor = Colors.Transparent;
-                    range.CharacterFormat.ForegroundColor = ActualTheme == ElementTheme.Dark ? Colors.White : Colors.Black;
-                }
+                ITextRange range = richEditBox.TextDocument.GetRange(0, Text.Length);
+                range.CharacterFormat.BackgroundColor = Colors.Transparent;
+                range.CharacterFormat.ForegroundColor = ActualTheme == ElementTheme.Dark ? Colors.White : Colors.Black;
             }
 
             richEditBox.TextDocument.ApplyDisplayUpdates();
