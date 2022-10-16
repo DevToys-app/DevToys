@@ -154,13 +154,13 @@
     <value>是</value>
   </data>
   <data name="EncodeExpirationTitle" xml:space="preserve">
-    <value>令牌已經過期</value>
+    <value>令牌設有到期時間</value>
   </data>
   <data name="EncodeExpirationMonthLabel" xml:space="preserve">
-    <value>將於幾個月內過期</value>
+    <value>過期時間(月)</value>
   </data>
   <data name="EncodeExpirationYearLabel" xml:space="preserve">
-    <value>將於幾年內過期</value>
+    <value>過期時間(年)</value>
   </data>
   <data name="EncodeHashingTitle" xml:space="preserve">
     <value>令牌雜湊演算法</value>
@@ -181,13 +181,13 @@
     <value>令牌設有預設時間</value>
   </data>
   <data name="EncodeExpirationDaysLabel" xml:space="preserve">
-    <value>將於幾天內過期</value>
+    <value>過期時間(日)</value>
   </data>
   <data name="EncodeExpirationHoursLabel" xml:space="preserve">
-    <value>將於幾小時內過期</value>
+    <value>過期時間(小時)</value>
   </data>
   <data name="EncodeExpirationMinutesLabel" xml:space="preserve">
-    <value>將於幾分鐘內過期</value>
+    <value>過期時間(分鐘)</value>
   </data>
   <data name="PrivateKeyLabel" xml:space="preserve">
     <value>私鑰</value>
@@ -205,22 +205,22 @@
     <value>簽章無效</value>
   </data>
   <data name="DecodeValidateActorLabel" xml:space="preserve">
-    <value>Validate actor</value>
+    <value>驗證執行者</value>
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
-    <value>Validate audience</value>
+    <value>驗證接收方</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
-    <value>驗證簽署者</value>
+    <value>驗證簽發者</value>
   </data>
   <data name="DecodeValidateLifetimeLabel" xml:space="preserve">
     <value>驗證時效</value>
   </data>
   <data name="ValidAudiencesLabel" xml:space="preserve">
-    <value>Valid audiences</value>
+    <value>有效的接收方</value>
   </data>
   <data name="ValidIssuersLabel" xml:space="preserve">
-    <value>有效的簽署者</value>
+    <value>有效的簽發者</value>
   </data>
   <data name="DecodeValidationSettingsDescription" xml:space="preserve">
     <value>選擇一個令牌參數來驗證</value>
@@ -229,19 +229,19 @@
     <value>令牌驗證設定</value>
   </data>
   <data name="ValidAudiencesError" xml:space="preserve">
-    <value>Valid audiences are empty</value>
+    <value>有效的接收方為空</value>
   </data>
   <data name="ValidIssuersError" xml:space="preserve">
-    <value>有效的簽署者為空</value>
+    <value>有效的簽發者為空</value>
   </data>
   <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
     <value>提供的公鑰實際上為私鑰</value>
   </data>
   <data name="EncodeAudienceLabel" xml:space="preserve">
-    <value>Token has audience</value>
+    <value>令牌具有接收方</value>
   </data>
   <data name="EncodeIssuerLabel" xml:space="preserve">
-    <value>令牌具有簽署者</value>
+    <value>令牌具有簽發者</value>
   </data>
   <data name="EncodeSettingsDescription" xml:space="preserve">
     <value>選擇令牌參數</value>
