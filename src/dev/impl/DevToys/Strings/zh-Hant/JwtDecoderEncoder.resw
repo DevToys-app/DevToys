@@ -124,13 +124,13 @@
     <value>JWT</value>
   </data>
   <data name="JwtHeaderLabel" xml:space="preserve">
-    <value>Header</value>
+    <value>標頭</value>
   </data>
   <data name="JwtTokenLabel" xml:space="preserve">
-    <value>Token</value>
+    <value>令牌</value>
   </data>
   <data name="JwtPayloadLabel" xml:space="preserve">
-    <value>Payload</value>
+    <value>載荷</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>解碼 JWT 標頭、裝載及簽名</value>
@@ -139,31 +139,31 @@
     <value></value>
   </data>
   <data name="Algorithm" xml:space="preserve">
-    <value>Algorithm</value>
+    <value>演算法</value>
   </data>
   <data name="DecodeSwitchModeLabel" xml:space="preserve">
     <value>解碼</value>
   </data>
   <data name="DecodeValidateTokenLabel" xml:space="preserve">
-    <value>Validate Token</value>
+    <value>驗證令牌</value>
   </data>
   <data name="DecodeValidateTokenNoLabel" xml:space="preserve">
-    <value>No</value>
+    <value>否</value>
   </data>
   <data name="DecodeValidateTokenYesLabel" xml:space="preserve">
-    <value>Yes</value>
+    <value>是</value>
   </data>
   <data name="EncodeExpirationTitle" xml:space="preserve">
-    <value>Token has expirations</value>
+    <value>令牌已經過期</value>
   </data>
   <data name="EncodeExpirationMonthLabel" xml:space="preserve">
-    <value>Expire in month(s)</value>
+    <value>將於幾個月內過期</value>
   </data>
   <data name="EncodeExpirationYearLabel" xml:space="preserve">
-    <value>Expire in year(s)</value>
+    <value>將於幾年內過期</value>
   </data>
   <data name="EncodeHashingTitle" xml:space="preserve">
-    <value>Token hashing algorithm</value>
+    <value>令牌雜湊演算法</value>
   </data>
   <data name="EncodeSettingsTitle" xml:space="preserve">
     <value>設定</value>
@@ -172,37 +172,37 @@
     <value>編碼</value>
   </data>
   <data name="SettingsSwitchModeLabel" xml:space="preserve">
-    <value>Encode / Decode</value>
+    <value>編碼/解碼</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>設定</value>
   </data>
   <data name="EncodeDefaultTimeTitle" xml:space="preserve">
-    <value>Token has default time</value>
+    <value>令牌設有預設時間</value>
   </data>
   <data name="EncodeExpirationDaysLabel" xml:space="preserve">
-    <value>Expire in day(s)</value>
+    <value>將於幾天內過期</value>
   </data>
   <data name="EncodeExpirationHoursLabel" xml:space="preserve">
-    <value>Expire in hour(s)</value>
+    <value>將於幾小時內過期</value>
   </data>
   <data name="EncodeExpirationMinutesLabel" xml:space="preserve">
-    <value>Expire in minute(s)</value>
+    <value>將於幾分鐘內過期</value>
   </data>
   <data name="PrivateKeyLabel" xml:space="preserve">
-    <value>Private Key</value>
+    <value>私鑰</value>
   </data>
   <data name="SignatureLabel" xml:space="preserve">
-    <value>Signature</value>
+    <value>簽章</value>
   </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>Signature Verified</value>
+    <value>簽章已被驗證</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
-    <value>Invalid Public Key</value>
+    <value>無效的公鑰</value>
   </data>
   <data name="JwtInValidMessage" xml:space="preserve">
-    <value>Invalid Signature</value>
+    <value>簽章無效</value>
   </data>
   <data name="DecodeValidateActorLabel" xml:space="preserve">
     <value>Validate actor</value>
@@ -211,46 +211,46 @@
     <value>Validate audience</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
-    <value>Validate issuer</value>
+    <value>驗證簽署者</value>
   </data>
   <data name="DecodeValidateLifetimeLabel" xml:space="preserve">
-    <value>Validate lifetime</value>
+    <value>驗證時效</value>
   </data>
   <data name="ValidAudiencesLabel" xml:space="preserve">
     <value>Valid audiences</value>
   </data>
   <data name="ValidIssuersLabel" xml:space="preserve">
-    <value>Valid issuers</value>
+    <value>有效的簽署者</value>
   </data>
   <data name="DecodeValidationSettingsDescription" xml:space="preserve">
-    <value>Select which token parameters to validate</value>
+    <value>選擇一個令牌參數來驗證</value>
   </data>
   <data name="DecodeValidationSettingsTitle" xml:space="preserve">
-    <value>Token validation settings</value>
+    <value>令牌驗證設定</value>
   </data>
   <data name="ValidAudiencesError" xml:space="preserve">
     <value>Valid audiences are empty</value>
   </data>
   <data name="ValidIssuersError" xml:space="preserve">
-    <value>Valid issuers are empty</value>
+    <value>有效的簽署者為空</value>
   </data>
   <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
-    <value>The public key provided is a private key</value>
+    <value>提供的公鑰實際上為私鑰</value>
   </data>
   <data name="EncodeAudienceLabel" xml:space="preserve">
     <value>Token has audience</value>
   </data>
   <data name="EncodeIssuerLabel" xml:space="preserve">
-    <value>Token has issuer</value>
+    <value>令牌具有簽署者</value>
   </data>
   <data name="EncodeSettingsDescription" xml:space="preserve">
-    <value>Select token parameters</value>
+    <value>選擇令牌參數</value>
   </data>
   <data name="InvalidPrivateKeyError" xml:space="preserve">
-    <value>Invalid Private Key</value>
+    <value>無效的私鑰</value>
   </data>
   <data name="PublicKeyLabel" xml:space="preserve">
-    <value>Public Key</value>
+    <value>公鑰</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>JWT 編碼 / 解碼工具</value>
