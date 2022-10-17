@@ -118,43 +118,43 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>JWT Encoder / Decoder tool</value>
+    <value>JWT-koodaus / -dekoodaustyökalu</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>JWT</value>
   </data>
   <data name="JwtHeaderLabel" xml:space="preserve">
-    <value>Header</value>
+    <value>Otsikko</value>
   </data>
   <data name="JwtTokenLabel" xml:space="preserve">
     <value>Token</value>
   </data>
   <data name="JwtPayloadLabel" xml:space="preserve">
-    <value>Payload</value>
+    <value>Tiedot</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Decode a JWT header, payload and signature</value>
+    <value>Dekoodaa JWT-otsikko, tiedot ja allekirjoitus</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
   </data>
   <data name="Algorithm" xml:space="preserve">
-    <value>Algorithm</value>
+    <value>Algoritmi</value>
   </data>
   <data name="DecodeSwitchModeLabel" xml:space="preserve">
     <value>Dekoodaa</value>
   </data>
   <data name="DecodeValidateTokenLabel" xml:space="preserve">
-    <value>Validate Token</value>
+    <value>Validoi token</value>
   </data>
   <data name="DecodeValidateTokenNoLabel" xml:space="preserve">
-    <value>No</value>
+    <value>Ei</value>
   </data>
   <data name="DecodeValidateTokenYesLabel" xml:space="preserve">
-    <value>Yes</value>
+    <value>Kyllä</value>
   </data>
   <data name="EncodeExpirationTitle" xml:space="preserve">
-    <value>Token has expirations</value>
+    <value>Tokenilla on voimassaoloaika</value>
   </data>
   <data name="EncodeExpirationMonthLabel" xml:space="preserve">
     <value>Expire in month(s)</value>
@@ -163,7 +163,7 @@
     <value>Expire in year(s)</value>
   </data>
   <data name="EncodeHashingTitle" xml:space="preserve">
-    <value>Token hashing algorithm</value>
+    <value>Token-hajautusarvoalgoritmi</value>
   </data>
   <data name="EncodeSettingsTitle" xml:space="preserve">
     <value>Settings</value>
@@ -178,7 +178,7 @@
     <value>Kokoonpano</value>
   </data>
   <data name="EncodeDefaultTimeTitle" xml:space="preserve">
-    <value>Token has default time</value>
+    <value>Tokenilla on oletusaika</value>
   </data>
   <data name="EncodeExpirationDaysLabel" xml:space="preserve">
     <value>Expire in day(s)</value>
@@ -223,10 +223,10 @@
     <value>Valid issuers</value>
   </data>
   <data name="DecodeValidationSettingsDescription" xml:space="preserve">
-    <value>Select which token parameters to validate</value>
+    <value>Valitse validoitavat token-parametrit</value>
   </data>
   <data name="DecodeValidationSettingsTitle" xml:space="preserve">
-    <value>Token validation settings</value>
+    <value>Tokenin validointiasetukset</value>
   </data>
   <data name="ValidAudiencesError" xml:space="preserve">
     <value>Valid audiences are empty</value>
