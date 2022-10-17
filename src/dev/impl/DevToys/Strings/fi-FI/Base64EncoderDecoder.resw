@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Base64-tekstienkooderi- ja -dekooderityökalu</value>
+    <value>Base64-tekstikooderi- ja -dekooderityökalu</value>
   </data>
   <data name="Ascii" xml:space="preserve">
     <value>ASCII</value>
@@ -151,16 +151,16 @@
     <value>Syöte</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Tulos</value>
+    <value>Tuloste</value>
   </data>
   <data name="Utf8" xml:space="preserve">
     <value>UTF-8</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Encode and decode Base64 text data</value>
+    <value>Koodaa ja dekoodaa Base64-tekstidataa</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Base64 Text Encoder / Decoder</value>
+    <value>Base64-tekstikooderi / dekooderi</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>RFC 4648</value>
