@@ -121,19 +121,19 @@
     <value>PNG and JPEG compressor tool</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Peruuta</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Kokoonpano</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Poista</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
-    <value>Delete all</value>
+    <value>Poista kaikki</value>
   </data>
   <data name="DetailsTitle" xml:space="preserve">
-    <value>Details</value>
+    <value>Tiedot</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>PNG / JPEG Compressor</value>
@@ -146,13 +146,13 @@
     <value>OK</value>
   </data>
   <data name="SaveAll" xml:space="preserve">
-    <value>Save all</value>
+    <value>Tallenna kaikki</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>Save as</value>
+    <value>Tallenna nimellä</value>
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
-    <value>See details</value>
+    <value>Näytä lisätietoja</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Lossless PNG and JPEG optimizer</value>
