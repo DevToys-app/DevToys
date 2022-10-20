@@ -124,10 +124,10 @@
     <value>Cấu hình</value>
   </data>
   <data name="CultureInvariant" xml:space="preserve">
-    <value>Culture Invariant</value>
+    <value>Văn hóa</value>
   </data>
   <data name="CultureInvariantDescription" xml:space="preserve">
-    <value>Specifies that cultural differences in language is ignored.</value>
+    <value>Chỉ định rằng sự khác biệt văn hóa trong ngôn ngữ bị bỏ qua.</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Kiểm tra Biểu thức Chính quy</value>
@@ -136,31 +136,31 @@
     <value>ECMA Script</value>
   </data>
   <data name="EcmaScriptDescription" xml:space="preserve">
-    <value>Enables ECMAScript-compliant behavior for the expression. This value can be used only in conjunction with the Culture Invariant, Ignore Case and Multiline options.</value>
+    <value>Bật hành vi tuân thủ ECMAScript cho biểu thức. Giá trị này chỉ có thể được sử dụng cùng với các tùy chọn văn hóa, bỏ qua trường hợp và đa dòng.</value>
   </data>
   <data name="IgnoreCase" xml:space="preserve">
-    <value>Ignore Case</value>
+    <value>Bỏ qua trường hợp</value>
   </data>
   <data name="IgnoreCaseDescription" xml:space="preserve">
-    <value>Specifies case-insensitive matching.</value>
+    <value>Chỉ định so sánh không phân biệt chữ hoa, chữ thường.</value>
   </data>
   <data name="IgnoreWhitespace" xml:space="preserve">
-    <value>Ignore Whitespace</value>
+    <value>Bỏ qua khoảng trắng</value>
   </data>
   <data name="IgnoreWhitespaceDescription" xml:space="preserve">
-    <value>Eliminates unescaped white space from the pattern and enables comments marked with #. However, this value does not affect or eliminate white space in character classes, numeric quantifiers, or tokens that mark the beginning of individual regular expression language elements.</value>
+    <value>Loại bỏ khoảng trắng không thoát khỏi mẫu và bật các nhận xét được đánh dấu bằng #. Tuy nhiên, giá trị này không ảnh hưởng hoặc loại bỏ khoảng trắng trong các lớp ký tự, bộ định lượng số hoặc mã thông báo đánh dấu sự bắt đầu của các phần tử ngôn ngữ biểu thức chính quy riêng lẻ.</value>
   </data>
   <data name="Multiline" xml:space="preserve">
-    <value>Multiline</value>
+    <value>Đa dòng</value>
   </data>
   <data name="MultilineDescription" xml:space="preserve">
-    <value>Changes the meaning of ^ and $ so they match at the beginning and end, respectively, of any line, and not just the beginning and end of the entire string.</value>
+    <value>Thay đổi ý nghĩa của ^ và $ để chúng khớp với phần đầu và cuối tương ứng của bất kì dòng nào, chứ không chỉ là phần đầu và phần cuối của toàn bộ chuỗi.</value>
   </data>
   <data name="Options" xml:space="preserve">
     <value>Tùy chọn</value>
   </data>
   <data name="RegularExpression" xml:space="preserve">
-    <value>Regular expression</value>
+    <value>Biểu thức chính quy</value>
   </data>
   <data name="RightToLeft" xml:space="preserve">
     <value>Phải Sang Trái</value>
@@ -169,10 +169,10 @@
     <value>Cho biết việc tìm kiếm sẽ được thực hiện từ phải qua trái thay vì từ trái qua phải.</value>
   </data>
   <data name="Singleline" xml:space="preserve">
-    <value>Singleline</value>
+    <value>Dòng đơn</value>
   </data>
   <data name="SinglelineDescription" xml:space="preserve">
-    <value>Changes the meaning of the dot (.) so it matches every character (instead of every character except \n).</value>
+    <value>Thay đổi ý nghĩa của dấu chấm (.) để nó khớp với mọi kí tự (thay vì cho mọi kí tự trừ \n).</value>
   </data>
   <data name="Text" xml:space="preserve">
     <value>Văn bản</value>
@@ -193,12 +193,12 @@
     <value>Đầu ra</value>
   </data>
   <data name="Group" xml:space="preserve">
-    <value>Group</value>
+    <value>Nhóm</value>
   </data>
   <data name="Match" xml:space="preserve">
-    <value>Match</value>
+    <value>Phù hợp</value>
   </data>
   <data name="Matches" xml:space="preserve">
-    <value>Matches</value>
+    <value>Trùng khớp</value>
   </data>
 </root>
