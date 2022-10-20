@@ -118,52 +118,52 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>JWT Encoder / Decoder tool</value>
+    <value>Công cụ mã hóa / giải mã JWT</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>JWT</value>
   </data>
   <data name="JwtHeaderLabel" xml:space="preserve">
-    <value>Header</value>
+    <value>Tiêu đề</value>
   </data>
   <data name="JwtTokenLabel" xml:space="preserve">
-    <value>Token</value>
+    <value>Mã thông báo</value>
   </data>
   <data name="JwtPayloadLabel" xml:space="preserve">
-    <value>Payload</value>
+    <value>Tải trọng</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Decode a JWT header, payload and signature</value>
+    <value>Giải mã một tiêu đề JWT, tải trọng và chữ kí</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
   </data>
   <data name="Algorithm" xml:space="preserve">
-    <value>Algorithm</value>
+    <value>Thuật toán</value>
   </data>
   <data name="DecodeSwitchModeLabel" xml:space="preserve">
     <value>Giải mã</value>
   </data>
   <data name="DecodeValidateTokenLabel" xml:space="preserve">
-    <value>Validate Token</value>
+    <value>Xác thực mã thông báo</value>
   </data>
   <data name="DecodeValidateTokenNoLabel" xml:space="preserve">
-    <value>No</value>
+    <value>Không</value>
   </data>
   <data name="DecodeValidateTokenYesLabel" xml:space="preserve">
-    <value>Yes</value>
+    <value>Có</value>
   </data>
   <data name="EncodeExpirationTitle" xml:space="preserve">
-    <value>Token has expirations</value>
+    <value>Mã thông báo đã hết hạn</value>
   </data>
   <data name="EncodeExpirationMonthLabel" xml:space="preserve">
-    <value>Expire in month(s)</value>
+    <value>Hết hạn sau (các) tháng</value>
   </data>
   <data name="EncodeExpirationYearLabel" xml:space="preserve">
-    <value>Expire in year(s)</value>
+    <value>Hết hạn sau (các) năm</value>
   </data>
   <data name="EncodeHashingTitle" xml:space="preserve">
-    <value>Token hashing algorithm</value>
+    <value>Thuật toán băm mã thông báo</value>
   </data>
   <data name="EncodeSettingsTitle" xml:space="preserve">
     <value>Cài đặt</value>
@@ -172,90 +172,90 @@
     <value>Mã hóa</value>
   </data>
   <data name="SettingsSwitchModeLabel" xml:space="preserve">
-    <value>Encode / Decode</value>
+    <value>Mã hóa / Giải mã</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>Cấu hình</value>
   </data>
   <data name="EncodeDefaultTimeTitle" xml:space="preserve">
-    <value>Token has default time</value>
+    <value>Mã thông báo có thời gian mặc định</value>
   </data>
   <data name="EncodeExpirationDaysLabel" xml:space="preserve">
-    <value>Expire in day(s)</value>
+    <value>Hết hạn sau (các) ngày</value>
   </data>
   <data name="EncodeExpirationHoursLabel" xml:space="preserve">
-    <value>Expire in hour(s)</value>
+    <value>Hết hạn sau (các) giờ</value>
   </data>
   <data name="EncodeExpirationMinutesLabel" xml:space="preserve">
-    <value>Expire in minute(s)</value>
+    <value>Hết hạn sau (các) phút</value>
   </data>
   <data name="PrivateKeyLabel" xml:space="preserve">
-    <value>Private Key</value>
+    <value>Khóa riêng</value>
   </data>
   <data name="SignatureLabel" xml:space="preserve">
-    <value>Signature</value>
+    <value>Chữ kí</value>
   </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>Signature Verified</value>
+    <value>Đã xác minh chữ kí</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
-    <value>Invalid Public Key</value>
+    <value>Khóa công khai không hợp lệ</value>
   </data>
   <data name="JwtInValidMessage" xml:space="preserve">
-    <value>Invalid Signature</value>
+    <value>Chữ kí không hợp lệ</value>
   </data>
   <data name="DecodeValidateActorLabel" xml:space="preserve">
-    <value>Validate actor</value>
+    <value>Xác thực diễn viên</value>
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
-    <value>Validate audience</value>
+    <value>Xác thực đối tượng</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
-    <value>Validate issuer</value>
+    <value>Xác thực người phát hành</value>
   </data>
   <data name="DecodeValidateLifetimeLabel" xml:space="preserve">
-    <value>Validate lifetime</value>
+    <value>Xác thực thời gian tồn tại</value>
   </data>
   <data name="ValidAudiencesLabel" xml:space="preserve">
-    <value>Valid audiences</value>
+    <value>Đối tượng hợp lệ</value>
   </data>
   <data name="ValidIssuersLabel" xml:space="preserve">
-    <value>Valid issuers</value>
+    <value>Người phát hành hợp lệ</value>
   </data>
   <data name="DecodeValidationSettingsDescription" xml:space="preserve">
-    <value>Select which token parameters to validate</value>
+    <value>Chọn các tham số mã thông báo để xác thực</value>
   </data>
   <data name="DecodeValidationSettingsTitle" xml:space="preserve">
-    <value>Token validation settings</value>
+    <value>Cài đặt xác thực mã thông báo</value>
   </data>
   <data name="ValidAudiencesError" xml:space="preserve">
-    <value>Valid audiences are empty</value>
+    <value>Các đối tượng hợp lệ rỗng</value>
   </data>
   <data name="ValidIssuersError" xml:space="preserve">
-    <value>Valid issuers are empty</value>
+    <value>Các nhà phát hành hợp lệ rỗng</value>
   </data>
   <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
-    <value>The public key provided is a private key</value>
+    <value>Khóa công khai được cung cấp là một khóa riêng</value>
   </data>
   <data name="EncodeAudienceLabel" xml:space="preserve">
-    <value>Token has audience</value>
+    <value>Mã thông báo có đối tượng</value>
   </data>
   <data name="EncodeIssuerLabel" xml:space="preserve">
-    <value>Token has issuer</value>
+    <value>Mã thông báo có người phát hành</value>
   </data>
   <data name="EncodeSettingsDescription" xml:space="preserve">
-    <value>Select token parameters</value>
+    <value>Chọn tham số mã thông báo</value>
   </data>
   <data name="InvalidPrivateKeyError" xml:space="preserve">
-    <value>Invalid Private Key</value>
+    <value>Khóa riêng không hợp lệ</value>
   </data>
   <data name="PublicKeyLabel" xml:space="preserve">
-    <value>Public Key</value>
+    <value>Khóa công khai</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>JWT Encoder / Decoder</value>
+    <value>Mã hóa / giải mã JWT</value>
   </data>
   <data name="InvalidSignatureError" xml:space="preserve">
-    <value>Invalid Signature</value>
+    <value>Chữ kí không hợp lệ</value>
   </data>
 </root>
