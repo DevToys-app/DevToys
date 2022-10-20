@@ -232,7 +232,7 @@
     <value>Các đối tượng hợp lệ rỗng</value>
   </data>
   <data name="ValidIssuersError" xml:space="preserve">
-    <value>Các nhà phát hành hợp lệ rỗng</value>
+    <value>Người phát hành hợp lệ rỗng</value>
   </data>
   <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
     <value>Khóa công khai được cung cấp là một khóa riêng</value>
