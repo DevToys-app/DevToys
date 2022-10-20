@@ -121,7 +121,7 @@
     <value>Giới thiệu</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>App theme</value>
+    <value>Chủ đề ứng dụng</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
     <value>Chọn chủ đề ứng dụng để hiển thị</value>
@@ -175,7 +175,7 @@
     <value>Hiển thị số thứ tự dòng trong trình soạn thảo</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Open logs</value>
+    <value>Mở nhật kí</value>
   </data>
   <data name="PrivacyPolicy" xml:space="preserve">
     <value>Chính sách bảo mật</value>
@@ -229,13 +229,13 @@
     <value>Cài đặt</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Configurations Options</value>
+    <value>Các tùy chọn cấu hình</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
     <value>Giúp chúng tôi dịch DevToys!</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Thay thế văn bản khi dán</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
     <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
