@@ -121,7 +121,8 @@
     <value>UUID Generator tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>कुंजी: कॉन्फ़िगरेशनशीर्षक
+कॉन्फ़िगरेशनशीर्षक</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>UUID</value>
@@ -145,7 +146,8 @@
     <value>Number of UUID to generate</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
-    <value>Uppercase</value>
+    <value>कुंजी: अपरकेस
+अपरकेस</value>
   </data>
   <data name="UuidVersionFour" xml:space="preserve">
     <value>4 (GUID)</value>
