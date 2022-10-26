@@ -121,13 +121,15 @@
     <value>Hash Generator tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>कुंजी: कॉन्फ़िगरेशनशीर्षक
+कॉन्फ़िगरेशनशीर्षक</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Hash</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>कुंजी: इनपुट शीर्षक
+इनपुट शीर्षक</value>
   </data>
   <data name="MD5" xml:space="preserve">
     <value>MD5</value>
@@ -142,7 +144,7 @@
     <value>SHA512</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
-    <value>Uppercase</value>
+    <value>अपरकेस</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Calculate MD5, SHA1, SHA256 and SHA512 hash from text data</value>
@@ -151,7 +153,8 @@
     <value>Hash Generator</value>
   </data>
   <data name="OutputBase64" xml:space="preserve">
-    <value>Base64</value>
+    <value>कुंजी: बेस 64 इनपुट शीर्षक
+बेस 64 इनपुट शीर्षक</value>
   </data>
   <data name="OutputHex" xml:space="preserve">
     <value>Hex</value>
@@ -160,7 +163,11 @@
     <value>Output Type</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value>कुंजी: खोज कीवर्ड
+मुख्य शब्द खोजे
+वैकल्पिक खोज कीवर्ड। उन शब्दों की खोज को सक्षम करता है जो विवरण, मेनूडिस्प्लेनाम और सर्चडिस्प्लेनाम में शामिल नहीं हैं।
+यदि कोई कीवर्ड जोड़ने के लिए नहीं हैं तो कृपया इस अनुवाद को खाली छोड़ दें।
+फ़ाइल: CheckSumGenerator. resw</value>
   </data>
   <data name="HmacMode" xml:space="preserve">
     <value>HMAC Mode</value>
