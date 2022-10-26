@@ -136,13 +136,18 @@
     <value>Decode a JWT header, payload and signature</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value>कुंजी: खोज कीवर्ड
+मुख्य शब्द खोजे
+वैकल्पिक खोज कीवर्ड। उन शब्दों की खोज को सक्षम करता है जो विवरण, मेनूडिस्प्लेनाम और सर्चडिस्प्लेनाम में शामिल नहीं हैं।
+यदि कोई कीवर्ड जोड़ने के लिए नहीं हैं तो कृपया इस अनुवाद को खाली छोड़ दें।
+फ़ाइल: CheckSumGenerator. resw</value>
   </data>
   <data name="Algorithm" xml:space="preserve">
     <value>Algorithm</value>
   </data>
   <data name="DecodeSwitchModeLabel" xml:space="preserve">
-    <value>Decode</value>
+    <value>कुंजी: रूपांतरणडिकोड
+रूपांतरणडिकोड</value>
   </data>
   <data name="DecodeValidateTokenLabel" xml:space="preserve">
     <value>Validate Token</value>
@@ -169,13 +174,15 @@
     <value>Settings</value>
   </data>
   <data name="EncodeSwitchModeLabel" xml:space="preserve">
-    <value>Encode</value>
+    <value>कुंजी: रूपांतरणएनकोड
+रूपांतरणएनकोड</value>
   </data>
   <data name="SettingsSwitchModeLabel" xml:space="preserve">
     <value>Encode / Decode</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>Configuration</value>
+    <value>कुंजी: कॉन्फ़िगरेशनशीर्षक
+कॉन्फ़िगरेशनशीर्षक</value>
   </data>
   <data name="EncodeDefaultTimeTitle" xml:space="preserve">
     <value>Token has default time</value>
