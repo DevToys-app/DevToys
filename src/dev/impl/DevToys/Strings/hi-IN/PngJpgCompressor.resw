@@ -121,10 +121,13 @@
     <value>PNG and JPEG compressor tool</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>कुंजी: रद्द करें
+रद्द करना
+फ़ाइल: CheckSumGenerator. resw</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>कुंजी: कॉन्फ़िगरेशनशीर्षक
+कॉन्फ़िगरेशनशीर्षक</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
