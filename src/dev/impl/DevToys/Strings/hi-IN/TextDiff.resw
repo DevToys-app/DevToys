@@ -121,7 +121,8 @@
     <value>Text comparer tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>कुंजी: कॉन्फ़िगरेशनशीर्षक
+कॉन्फ़िगरेशनशीर्षक</value>
   </data>
   <data name="Difference" xml:space="preserve">
     <value>Difference</value>
@@ -145,6 +146,10 @@
     <value>Text Comparer</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value>कुंजी: खोज कीवर्ड
+मुख्य शब्द खोजे
+वैकल्पिक खोज कीवर्ड। उन शब्दों की खोज को सक्षम करता है जो विवरण, मेनूडिस्प्लेनाम और सर्चडिस्प्लेनाम में शामिल नहीं हैं।
+यदि कोई कीवर्ड जोड़ने के लिए नहीं हैं तो कृपया इस अनुवाद को खाली छोड़ दें।
+फ़ाइल: CheckSumGenerator. resw</value>
   </data>
 </root>
