@@ -121,28 +121,35 @@
     <value>SQL Formatter tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>कुंजी: कॉन्फ़िगरेशनशीर्षक
+कॉन्फ़िगरेशनशीर्षक</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>SQL</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
-    <value>4 spaces</value>
+    <value>कुंजी: फोरस्पेस
+फोरस्पेस</value>
   </data>
   <data name="Indentation" xml:space="preserve">
-    <value>Indentation</value>
+    <value>कुंजी: इंडेंटेशन
+इंडेंटेशन</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>कुंजी: इनपुट शीर्षक
+इनपुट शीर्षक</value>
   </data>
   <data name="OneTab" xml:space="preserve">
-    <value>1 tab</value>
+    <value>कुंजी: वनटैब
+वनटैब</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>कुंजी: आउटपुट शीर्षक
+आउटपुट शीर्षक</value>
   </data>
   <data name="TwoSpaces" xml:space="preserve">
-    <value>2 spaces</value>
+    <value>कुंजी: दो स्थान
+दो स्थान</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Indent SQL queries</value>
