@@ -136,7 +136,8 @@
     <value>Text color</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>कुंजी: कॉन्फ़िगरेशनशीर्षक
+कॉन्फ़िगरेशनशीर्षक</value>
   </data>
   <data name="Mode" xml:space="preserve">
     <value>Mode</value>
