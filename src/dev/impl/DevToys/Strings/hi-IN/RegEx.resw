@@ -121,7 +121,8 @@
     <value>Regular expression tester tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>कुंजी: कॉन्फ़िगरेशनशीर्षक
+कॉन्फ़िगरेशनशीर्षक</value>
   </data>
   <data name="CultureInvariant" xml:space="preserve">
     <value>Culture Invariant</value>
@@ -187,10 +188,12 @@
     <value>Regular expression</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>Input</value>
+    <value>कुंजी: इनपुट शीर्षक
+इनपुट शीर्षक</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Output</value>
+    <value>कुंजी: आउटपुट शीर्षक
+आउटपुट शीर्षक</value>
   </data>
   <data name="Group" xml:space="preserve">
     <value>Group</value>
