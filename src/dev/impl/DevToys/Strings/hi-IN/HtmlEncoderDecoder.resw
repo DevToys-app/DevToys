@@ -121,28 +121,35 @@
     <value>HTML Encoder and Decoder tool</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>Configuration</value>
+    <value>कुंजी: कॉन्फ़िगरेशनशीर्षक
+कॉन्फ़िगरेशनशीर्षक</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
-    <value>Decode</value>
+    <value>कुंजी: रूपांतरणडिकोड
+रूपांतरणडिकोड</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Select which conversion mode you want to use</value>
+    <value>कुंजी: रूपांतरण विवरण
+रूपांतरण विवरण</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
-    <value>Encode</value>
+    <value>कुंजी: रूपांतरणएनकोड
+रूपांतरणएनकोड</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Conversion</value>
+    <value>कुंजी: रूपांतरण शीर्षक
+रूपांतरण शीर्षक</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>HTML</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>Input</value>
+    <value>कुंजी: इनपुट शीर्षक
+इनपुट शीर्षक</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Output</value>
+    <value>कुंजी: आउटपुट शीर्षक
+आउटपुट शीर्षक</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Encode or decode all the applicable characters to their corresponding HTML entities</value>
@@ -151,6 +158,10 @@
     <value>HTML Encoder / Decoder</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value>कुंजी: खोज कीवर्ड
+मुख्य शब्द खोजे
+वैकल्पिक खोज कीवर्ड। उन शब्दों की खोज को सक्षम करता है जो विवरण, मेनूडिस्प्लेनाम और सर्चडिस्प्लेनाम में शामिल नहीं हैं।
+यदि कोई कीवर्ड जोड़ने के लिए नहीं हैं तो कृपया इस अनुवाद को खाली छोड़ दें।
+फ़ाइल: CheckSumGenerator. resw</value>
   </data>
 </root>
