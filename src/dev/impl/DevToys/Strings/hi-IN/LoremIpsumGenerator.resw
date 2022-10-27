@@ -121,8 +121,7 @@
     <value>Lorem Ipsum Generator tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>कुंजी: कॉन्फ़िगरेशनशीर्षक
-कॉन्फ़िगरेशनशीर्षक</value>
+    <value>कॉन्फ़िगरेशनशीर्षक</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Generate Lorem Ipsum placeholder text</value>
@@ -137,8 +136,7 @@
     <value>Lorem Ipsum</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>कुंजी: आउटपुट शीर्षक
-आउटपुट शीर्षक</value>
+    <value>आउटपुट शीर्षक</value>
   </data>
   <data name="ParagraphsType" xml:space="preserve">
     <value>Paragraphs</value>
