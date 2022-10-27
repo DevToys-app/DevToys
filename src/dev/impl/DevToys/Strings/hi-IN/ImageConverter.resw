@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Image Converter tool</value>
+    <value>छवि परिवर्तक उपकरण</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>रद्द</value>
@@ -130,13 +130,13 @@
     <value>मिटाना</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
-    <value>Delete all</value>
+    <value>सभी हटा दो</value>
   </data>
   <data name="DetailsTitle" xml:space="preserve">
-    <value>Details</value>
+    <value>विवरण</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Image Converter</value>
+    <value>छवि परिवर्तक</value>
   </data>
   <data name="FileSizeDisplay" xml:space="preserve">
     <value>{0:0.##} {1}</value>
@@ -146,37 +146,37 @@
     <value>ठीक</value>
   </data>
   <data name="SaveAll" xml:space="preserve">
-    <value>Save all</value>
+    <value>सभी को सुरक्षित करें</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
     <value>रक्षित करें</value>
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
-    <value>See details</value>
+    <value>विस्तृत जानकारी देखें</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Lossless image converter</value>
+    <value>दोषरहित छवि कनवर्टर</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Image Converter</value>
+    <value>छवि परिवर्तक</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
     <value>रूपांतरण शीर्षक</value>
   </data>
   <data name="ConvertedFormatDescription" xml:space="preserve">
-    <value>Select the converted file format</value>
+    <value>परिवर्तित फ़ाइल स्वरूप का चयन करें</value>
   </data>
   <data name="JPEG" xml:space="preserve">
-    <value>JPEG</value>
+    <value>जेपीईजी</value>
   </data>
   <data name="PNG" xml:space="preserve">
-    <value>PNG</value>
+    <value>पीएनजी</value>
   </data>
   <data name="BMP" xml:space="preserve">
-    <value>BMP</value>
+    <value>बीएमपी</value>
   </data>
   <data name="GIF" xml:space="preserve">
-    <value>GIF</value>
+    <value>जीआईएफ</value>
   </data>
   <data name="HEIF" xml:space="preserve">
     <value>हैफ़</value>
