@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>HTML Encoder and Decoder tool</value>
+    <value>एचटीएमएल एनकोडर और डिकोडर टूल</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
     <value>कॉन्फ़िगरेशनशीर्षक</value>
@@ -136,7 +136,7 @@
     <value>रूपांतरण शीर्षक</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>HTML</value>
+    <value>एचटीएमएल</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
     <value>इनपुट शीर्षक</value>
@@ -145,10 +145,10 @@
     <value>आउटपुट शीर्षक</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Encode or decode all the applicable characters to their corresponding HTML entities</value>
+    <value>सभी लागू वर्णों को उनके संगत एचटीएमएल निकायों में एन्कोड या डिकोड करें</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>HTML Encoder / Decoder</value>
+    <value>एचटीएमएल एनकोडर / डिकोडर</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>कुंजी: खोज कीवर्ड
