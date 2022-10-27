@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Text Escape and Unescape tool</value>
+    <value>टेक्स्ट एस्केप और अनस्केप टूल</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Escape / Unescape</value>
+    <value>एस्केप / अनस्केप</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
     <value>आउटपुट शीर्षक</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Escapes or unescapes a string, removing characters that could prevent parsing.</value>
+    <value>एक स्ट्रिंग से बच निकलता है या अनस्केप करता है, ऐसे वर्णों को हटाता है जो पार्सिंग को रोक सकते हैं।</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Text Escape / Unescape</value>
+    <value>टेक्स्ट एस्केप / अनस्केप</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>कुंजी: खोज कीवर्ड
@@ -144,13 +144,13 @@
     <value>कॉन्फ़िगरेशनशीर्षक</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
-    <value>Unescape</value>
+    <value>अनस्केप</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
     <value>रूपांतरण विवरण</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
-    <value>Escape</value>
+    <value>एस्केप</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
     <value>रूपांतरण शीर्षक</value>
