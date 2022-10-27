@@ -146,8 +146,7 @@
     <value>Algorithm</value>
   </data>
   <data name="DecodeSwitchModeLabel" xml:space="preserve">
-    <value>कुंजी: रूपांतरणडिकोड
-रूपांतरणडिकोड</value>
+    <value>रूपांतरणडिकोड</value>
   </data>
   <data name="DecodeValidateTokenLabel" xml:space="preserve">
     <value>Validate Token</value>
@@ -174,15 +173,13 @@
     <value>Settings</value>
   </data>
   <data name="EncodeSwitchModeLabel" xml:space="preserve">
-    <value>कुंजी: रूपांतरणएनकोड
-रूपांतरणएनकोड</value>
+    <value>रूपांतरणएनकोड</value>
   </data>
   <data name="SettingsSwitchModeLabel" xml:space="preserve">
     <value>Encode / Decode</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>कुंजी: कॉन्फ़िगरेशनशीर्षक
-कॉन्फ़िगरेशनशीर्षक</value>
+    <value>कॉन्फ़िगरेशनशीर्षक</value>
   </data>
   <data name="EncodeDefaultTimeTitle" xml:space="preserve">
     <value>Token has default time</value>
