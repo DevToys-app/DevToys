@@ -121,35 +121,28 @@
     <value>HTML Encoder and Decoder tool</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>कुंजी: कॉन्फ़िगरेशनशीर्षक
-कॉन्फ़िगरेशनशीर्षक</value>
+    <value>कॉन्फ़िगरेशनशीर्षक</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
-    <value>कुंजी: रूपांतरणडिकोड
-रूपांतरणडिकोड</value>
+    <value>रूपांतरण डिकोड</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>कुंजी: रूपांतरण विवरण
-रूपांतरण विवरण</value>
+    <value>रूपांतरण विवरण</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
-    <value>कुंजी: रूपांतरणएनकोड
-रूपांतरणएनकोड</value>
+    <value>रूपांतरणएनकोड</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>कुंजी: रूपांतरण शीर्षक
-रूपांतरण शीर्षक</value>
+    <value>रूपांतरण शीर्षक</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>HTML</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>कुंजी: इनपुट शीर्षक
-इनपुट शीर्षक</value>
+    <value>इनपुट शीर्षक</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>कुंजी: आउटपुट शीर्षक
-आउटपुट शीर्षक</value>
+    <value>आउटपुट शीर्षक</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Encode or decode all the applicable characters to their corresponding HTML entities</value>
