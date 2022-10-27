@@ -118,22 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>कुंजी: सुलभ नाम
-सुलभ नाम
-फ़ाइल: CheckSumGenerator.</value>
+    <value>चेकसम जेनरेटर टूल</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>कुंजी: रद्द करें
-रद्द करना
-फ़ाइल: CheckSumGenerator. resw</value>
+    <value>रद्द करना</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>कुंजी: कॉन्फ़िगरेशनशीर्षक
-कॉन्फ़िगरेशनशीर्षक</value>
+    <value>कॉन्फ़िगरेशन</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>कुंजी: विवरण
-विवरण</value>
+    <value>फ़ाइल के आधार पर चेकसम के साथ हैश उत्पन्न करें</value>
   </data>
   <data name="HashingAlgorithmDescription" xml:space="preserve">
     <value>कुंजी: हैशिंग एल्गोरिथम विवरण
@@ -144,8 +138,7 @@
 हैशिंग एल्गोरिथम शीर्षक</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>कुंजी: इनपुट शीर्षक
-इनपुट शीर्षक</value>
+    <value>इनपुट</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>कुंजी: मेनू प्रदर्शन नाम
