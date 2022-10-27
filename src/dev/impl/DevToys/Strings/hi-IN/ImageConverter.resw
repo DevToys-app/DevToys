@@ -121,16 +121,13 @@
     <value>Image Converter tool</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>कुंजी: रद्द करें
-रद्द करना
-फ़ाइल: CheckSumGenerator. resw</value>
+    <value>रद्द</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>कुंजी: कॉन्फ़िगरेशनशीर्षक
-कॉन्फ़िगरेशनशीर्षक</value>
+    <value>कॉन्फ़िगरेशनशीर्षक</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>मिटाना</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
     <value>Delete all</value>
@@ -164,8 +161,7 @@
     <value>Image Converter</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>कुंजी: रूपांतरण शीर्षक
-रूपांतरण शीर्षक</value>
+    <value>रूपांतरण शीर्षक</value>
   </data>
   <data name="ConvertedFormatDescription" xml:space="preserve">
     <value>Select the converted file format</value>
@@ -183,26 +179,18 @@
     <value>GIF</value>
   </data>
   <data name="HEIF" xml:space="preserve">
-    <value>कुंजी: हैफ़
-हैफ़</value>
+    <value>हैफ़</value>
   </data>
   <data name="JPEGXR" xml:space="preserve">
-    <value>कुंजी: जेपीईजीएक्सआर
-जेपीईजीएक्सआर</value>
+    <value>जेपीईजीएक्सआर</value>
   </data>
   <data name="TIFF" xml:space="preserve">
-    <value>कुंजी: टिफ
-टिफ</value>
+    <value>टिफ</value>
   </data>
   <data name="ErrorMessage" xml:space="preserve">
-    <value>कुंजी: त्रुटि संदेश
-त्रुटि संदेश
-फ़ाइल: ImageConverter. resw</value>
+    <value>त्रुटि संदेश</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>कुंजी: मुख्य शब्द खोजे
-मुख्य शब्द खोजे
-वैकल्पिक खोज कीवर्ड। उन शब्दों की खोज को सक्षम करता है जो विवरण, मेनूडिस्प्लेनाम और सर्चडिस्प्लेनाम में शामिल नहीं हैं।
-यदि कोई कीवर्ड जोड़ने के लिए नहीं हैं तो कृपया इस अनुवाद को खाली छोड़ दें।</value>
+    <value>मुख्य शब्द खोजे</value>
   </data>
 </root>
