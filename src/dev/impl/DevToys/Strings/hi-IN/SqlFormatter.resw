@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>SQL Formatter tool</value>
+    <value>SQL फ़ॉर्मेटर टूल</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>कॉन्फ़िगरेशनशीर्षक</value>
@@ -145,19 +145,19 @@
     <value>दो स्थान</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Indent SQL queries</value>
+    <value>इंडेंट SQL क्वेरी</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>SQL Formatter</value>
+    <value>SQL फ़ॉर्मेटर</value>
   </data>
   <data name="SqlLanguage" xml:space="preserve">
     <value>भाषा</value>
   </data>
   <data name="SqlLanguageDb2" xml:space="preserve">
-    <value>Db2</value>
+    <value>डीबी 2</value>
   </data>
   <data name="SqlLanguageMariaDb" xml:space="preserve">
-    <value>MariaDB</value>
+    <value>मारियाडीबी</value>
   </data>
   <data name="SqlLanguageMySql" xml:space="preserve">
     <value>MySQL</value>
@@ -169,19 +169,19 @@
     <value>PL/SQL</value>
   </data>
   <data name="SqlLanguagePostgreSql" xml:space="preserve">
-    <value>PostgreSQL</value>
+    <value>पोस्टग्रेएसक्यूएल</value>
   </data>
   <data name="SqlLanguageRedShift" xml:space="preserve">
-    <value>Amazon Redshift</value>
+    <value>अमेज़न रेडशिफ्ट</value>
   </data>
   <data name="SqlLanguageSpark" xml:space="preserve">
-    <value>Spark SQL</value>
+    <value>स्पार्क SQL</value>
   </data>
   <data name="SqlLanguageSql" xml:space="preserve">
-    <value>Standard SQL</value>
+    <value>मानक SQL</value>
   </data>
   <data name="SqlLanguageTsql" xml:space="preserve">
-    <value>Transact-SQL</value>
+    <value>कारोबार- SQL</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>Db2 MariaDB MySQL N1QL PL/SQL PostgreSQL Amazon Redshift Spark SQL Standard SQL Transact-SQL</value>
