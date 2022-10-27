@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>JSON to YAML and YAML to JSON converter tool</value>
+    <value>जेसन से यमलो और यमलो से जेसन कन्वर्टर टूल</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>कॉन्फ़िगरेशनशीर्षक</value>
@@ -130,7 +130,7 @@
     <value>रूपांतरण शीर्षक</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>JSON &lt;&gt; YAML</value>
+    <value>जेसन &lt;&gt; यमलो</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
     <value>फोरस्पेस</value>
@@ -142,10 +142,10 @@
     <value>इनपुट शीर्षक</value>
   </data>
   <data name="InvalidYaml" xml:space="preserve">
-    <value>The entered YAML is invalid.</value>
+    <value>दर्ज किया गया यमलो अमान्य है।</value>
   </data>
   <data name="JsonToYaml" xml:space="preserve">
-    <value>JSON to YAML</value>
+    <value>जसन से यमलो</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>आउटपुट शीर्षक</value>
@@ -154,13 +154,13 @@
     <value>दो स्थान</value>
   </data>
   <data name="YamlToJson" xml:space="preserve">
-    <value>YAML to JSON</value>
+    <value>जसन डेटा को यमल में बदलें और इसके विपरीत</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Convert JSON data to YAML and vice versa</value>
+    <value>जसन डेटा को यमल में बदलें और इसके विपरीत</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>JSON &lt;&gt; YAML Converter</value>
+    <value>जेसन &lt;&gt; यमलो कनवर्टर</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>कुंजी: खोज कीवर्ड
