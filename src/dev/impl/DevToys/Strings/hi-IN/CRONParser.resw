@@ -169,6 +169,6 @@
     <value>Standard mode (5 - segment Cron)</value>
   </data>
   <data name="SecondsIncludedMode" xml:space="preserve">
-    <value>Seconds included (6 - segment Cron)</value>
+    <value>सेकंड शामिल (6 - खंड क्रॉन)</value>
   </data>
 </root>
