@@ -123,28 +123,28 @@
 फ़ाइल: Common. resw</value>
   </data>
   <data name="Clear" xml:space="preserve">
-    <value>Clear</value>
+    <value>साफ़</value>
   </data>
   <data name="Copy" xml:space="preserve">
-    <value>Copy</value>
+    <value>प्रतिलिपि</value>
   </data>
   <data name="Cut" xml:space="preserve">
-    <value>Cut</value>
+    <value>कट गया</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>मिटाना</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
-    <value>Browse files</value>
+    <value>फ़ाइल चयनकर्ता ब्राउज़ फ़ाइलें</value>
   </data>
   <data name="FileSelectorBrowseFolders" xml:space="preserve">
-    <value>Browse folders</value>
+    <value>फ़ाइल चयनकर्ता ब्राउज़ फ़ोल्डर</value>
   </data>
   <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>Drag &amp; drop any file here</value>
+    <value>फ़ाइल चयनकर्ता ड्रैग ड्रॉप करें</value>
   </data>
   <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
-    <value>Drag &amp; drop any files here</value>
+    <value>फ़ाइल चयनकर्ता ड्रैग ड्रॉप करें</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
     <value>Drag &amp; drop a {0} file here</value>
