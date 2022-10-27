@@ -185,16 +185,16 @@
     <value>टोकन का डिफ़ॉल्ट समय होता है</value>
   </data>
   <data name="EncodeExpirationDaysLabel" xml:space="preserve">
-    <value>Expire in day(s)</value>
+    <value>दिन (एस) में समाप्त</value>
   </data>
   <data name="EncodeExpirationHoursLabel" xml:space="preserve">
-    <value>Expire in hour(s)</value>
+    <value>घंटे (एस) में समाप्त</value>
   </data>
   <data name="EncodeExpirationMinutesLabel" xml:space="preserve">
-    <value>Expire in minute(s)</value>
+    <value>मिनटों (एस) में समाप्त</value>
   </data>
   <data name="PrivateKeyLabel" xml:space="preserve">
-    <value>Private Key</value>
+    <value>निजी चाबी</value>
   </data>
   <data name="SignatureLabel" xml:space="preserve">
     <value>Signature</value>
