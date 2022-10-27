@@ -118,48 +118,46 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Hash Generator tool</value>
+    <value>हैश जेनरेटर टूल</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>कुंजी: कॉन्फ़िगरेशनशीर्षक
-कॉन्फ़िगरेशनशीर्षक</value>
+    <value>कॉन्फ़िगरेशन</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Hash</value>
+    <value>हैश</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>कुंजी: इनपुट शीर्षक
-इनपुट शीर्षक</value>
+    <value>इनपुट</value>
   </data>
   <data name="MD5" xml:space="preserve">
-    <value>MD5</value>
+    <value>एमडी5</value>
   </data>
   <data name="SHA1" xml:space="preserve">
-    <value>SHA1</value>
+    <value>एसएचए1</value>
   </data>
   <data name="SHA256" xml:space="preserve">
-    <value>SHA256</value>
+    <value>एसएचए256</value>
   </data>
   <data name="SHA512" xml:space="preserve">
-    <value>SHA512</value>
+    <value>एसएचए512</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
     <value>अपरकेस</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Calculate MD5, SHA1, SHA256 and SHA512 hash from text data</value>
+    <value>टेक्स्ट डेटा से एमडी5, एसएचए1, एसएचए256 और एसएचए512 हैश की गणना करें</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Hash Generator</value>
+    <value>हैश जेनरेटर</value>
   </data>
   <data name="OutputBase64" xml:space="preserve">
     <value>बेस64आउटपुटशीर्षक</value>
   </data>
   <data name="OutputHex" xml:space="preserve">
-    <value>Hex</value>
+    <value>हेक्स</value>
   </data>
   <data name="OutputTypeTitle" xml:space="preserve">
-    <value>Output Type</value>
+    <value>उत्पादन का प्रकार</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>कुंजी: खोज कीवर्ड
@@ -169,9 +167,9 @@
 फ़ाइल: CheckSumGenerator. resw</value>
   </data>
   <data name="HmacMode" xml:space="preserve">
-    <value>HMAC Mode</value>
+    <value>एचएमएसी मोड</value>
   </data>
   <data name="SecretKey" xml:space="preserve">
-    <value>Secret Key</value>
+    <value>गुप्त कुंजी</value>
   </data>
 </root>
