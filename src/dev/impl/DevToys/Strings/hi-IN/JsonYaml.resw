@@ -121,31 +121,25 @@
     <value>JSON to YAML and YAML to JSON converter tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>कुंजी: कॉन्फ़िगरेशनशीर्षक
-कॉन्फ़िगरेशनशीर्षक</value>
+    <value>कॉन्फ़िगरेशनशीर्षक</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>कुंजी: रूपांतरण विवरण
-रूपांतरण विवरण</value>
+    <value>रूपांतरण विवरण</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>कुंजी: रूपांतरण शीर्षक
-रूपांतरण शीर्षक</value>
+    <value>रूपांतरण शीर्षक</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>JSON &lt;&gt; YAML</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
-    <value>कुंजी: फोरस्पेस
-फोरस्पेस</value>
+    <value>फोरस्पेस</value>
   </data>
   <data name="Indentation" xml:space="preserve">
-    <value>कुंजी: इंडेंटेशन
-इंडेंटेशन</value>
+    <value>इंडेंटेशन</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>कुंजी: इनपुट शीर्षक
-इनपुट शीर्षक</value>
+    <value>इनपुट शीर्षक</value>
   </data>
   <data name="InvalidYaml" xml:space="preserve">
     <value>The entered YAML is invalid.</value>
@@ -154,12 +148,10 @@
     <value>JSON to YAML</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>कुंजी: आउटपुट शीर्षक
-आउटपुट शीर्षक</value>
+    <value>आउटपुट शीर्षक</value>
   </data>
   <data name="TwoSpaces" xml:space="preserve">
-    <value>कुंजी: दो स्थान
-दो स्थान</value>
+    <value>दो स्थान</value>
   </data>
   <data name="YamlToJson" xml:space="preserve">
     <value>YAML to JSON</value>
