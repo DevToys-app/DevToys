@@ -118,39 +118,39 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Markdown preview tool</value>
+    <value>मार्कडाउन पूर्वावलोकन टूल</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>कॉन्फ़िगरेशनशीर्षक</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Dark</value>
+    <value>अँधेरा</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Markdown Preview</value>
+    <value>मार्कडाउन पूर्वावलोकन</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Markdown</value>
+    <value>मार्कडाउन</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Light</value>
+    <value>रोशनी</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Preview</value>
+    <value>पूर्वावलोकन</value>
   </data>
   <data name="Theme" xml:space="preserve">
-    <value>Theme</value>
+    <value>विषय</value>
   </data>
   <data name="ThemeDescription" xml:space="preserve">
-    <value>Select which theme to use to preview the Markdown</value>
+    <value>मार्कडाउन का पूर्वावलोकन करने के लिए किस विषय का उपयोग करना है इसका चयन करें</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Preview a Markdown document with a GitHub-like render</value>
+    <value>गिटहब जैसे रेंडर के साथ मार्कडाउन दस्तावेज़ का पूर्वावलोकन करें</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Markdown Preview</value>
+    <value>मार्कडाउन पूर्वावलोकन</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>MD</value>
+    <value>मड</value>
   </data>
 </root>
