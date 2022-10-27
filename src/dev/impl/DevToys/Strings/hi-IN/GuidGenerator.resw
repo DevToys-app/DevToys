@@ -121,8 +121,7 @@
     <value>यूयूआईडी जेनरेटर टूल</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>कुंजी: कॉन्फ़िगरेशनशीर्षक
-कॉन्फ़िगरेशनशीर्षक</value>
+    <value>कॉन्फ़िगरेशन</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>यूयूआईडी</value>
@@ -162,12 +161,12 @@
     <value>यूयूआईडी संस्करण</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generate UUIDs version 1 and 4</value>
+    <value>यूयूआईडी संस्करण 1 और 4 उत्पन्न करें</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>UUID Generator</value>
+    <value>यूयूआईडी जेनरेटर</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>GUID</value>
+    <value>गाइड</value>
   </data>
 </root>
