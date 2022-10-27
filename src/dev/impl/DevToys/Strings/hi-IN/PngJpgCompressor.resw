@@ -143,13 +143,13 @@
     <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
   </data>
   <data name="OK" xml:space="preserve">
-    <value>OK</value>
+    <value>ठीक</value>
   </data>
   <data name="SaveAll" xml:space="preserve">
     <value>Save all</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>Save as</value>
+    <value>रक्षित करें</value>
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
     <value>See details</value>
