@@ -161,6 +161,6 @@
 फ़ाइल: CheckSumGenerator. resw</value>
   </data>
   <data name="SortProperties" xml:space="preserve">
-    <value>Sort JSON properties alphabetically</value>
+    <value>जेसन गुणों को वर्णानुक्रम में क्रमबद्ध करें</value>
   </data>
 </root>
