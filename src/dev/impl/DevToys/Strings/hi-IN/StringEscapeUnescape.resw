@@ -124,8 +124,7 @@
     <value>Escape / Unescape</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>कुंजी: आउटपुट शीर्षक
-आउटपुट शीर्षक</value>
+    <value>आउटपुट शीर्षक</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Escapes or unescapes a string, removing characters that could prevent parsing.</value>
@@ -142,25 +141,21 @@
     <comment>Alternative search keywords. Enables searching for words that are not included in Description, MenuDisplayName, and SearchDisplayName.</comment>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>कुंजी: कॉन्फ़िगरेशनशीर्षक
-कॉन्फ़िगरेशनशीर्षक</value>
+    <value>कॉन्फ़िगरेशनशीर्षक</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
     <value>Unescape</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>कुंजी: रूपांतरण विवरण
-रूपांतरण विवरण</value>
+    <value>रूपांतरण विवरण</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
     <value>Escape</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>कुंजी: रूपांतरण शीर्षक
-रूपांतरण शीर्षक</value>
+    <value>रूपांतरण शीर्षक</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>कुंजी: इनपुट शीर्षक
-इनपुट शीर्षक</value>
+    <value>इनपुट शीर्षक</value>
   </data>
 </root>
