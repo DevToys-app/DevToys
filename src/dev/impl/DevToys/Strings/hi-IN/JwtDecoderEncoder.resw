@@ -197,69 +197,69 @@
     <value>निजी चाबी</value>
   </data>
   <data name="SignatureLabel" xml:space="preserve">
-    <value>Signature</value>
+    <value>हस्ताक्षर</value>
   </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>Signature Verified</value>
+    <value>हस्ताक्षर सत्यापित</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
-    <value>Invalid Public Key</value>
+    <value>अमान्य सार्वजनिक कुंजी</value>
   </data>
   <data name="JwtInValidMessage" xml:space="preserve">
-    <value>Invalid Signature</value>
+    <value>अमान्य हस्ताक्षर</value>
   </data>
   <data name="DecodeValidateActorLabel" xml:space="preserve">
-    <value>Validate actor</value>
+    <value>अभिनेता को मान्य करें</value>
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
-    <value>Validate audience</value>
+    <value>दर्शकों की पुष्टि करें</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
-    <value>Validate issuer</value>
+    <value>जारीकर्ता को मान्य करें</value>
   </data>
   <data name="DecodeValidateLifetimeLabel" xml:space="preserve">
-    <value>Validate lifetime</value>
+    <value>जीवनकाल मान्य करें</value>
   </data>
   <data name="ValidAudiencesLabel" xml:space="preserve">
-    <value>Valid audiences</value>
+    <value>मान्य दर्शक</value>
   </data>
   <data name="ValidIssuersLabel" xml:space="preserve">
-    <value>Valid issuers</value>
+    <value>वैध जारीकर्ता</value>
   </data>
   <data name="DecodeValidationSettingsDescription" xml:space="preserve">
-    <value>Select which token parameters to validate</value>
+    <value>सत्यापित करने के लिए कौन से टोकन पैरामीटर चुनें</value>
   </data>
   <data name="DecodeValidationSettingsTitle" xml:space="preserve">
-    <value>Token validation settings</value>
+    <value>टोकन सत्यापन सेटिंग्स</value>
   </data>
   <data name="ValidAudiencesError" xml:space="preserve">
-    <value>Valid audiences are empty</value>
+    <value>मान्य ऑडियंस खाली हैं</value>
   </data>
   <data name="ValidIssuersError" xml:space="preserve">
-    <value>Valid issuers are empty</value>
+    <value>वैध जारीकर्ता खाली हैं</value>
   </data>
   <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
-    <value>The public key provided is a private key</value>
+    <value>प्रदान की गई सार्वजनिक कुंजी एक निजी कुंजी है</value>
   </data>
   <data name="EncodeAudienceLabel" xml:space="preserve">
-    <value>Token has audience</value>
+    <value>टोकन में दर्शक हैं</value>
   </data>
   <data name="EncodeIssuerLabel" xml:space="preserve">
-    <value>Token has issuer</value>
+    <value>टोकन जारीकर्ता है</value>
   </data>
   <data name="EncodeSettingsDescription" xml:space="preserve">
-    <value>Select token parameters</value>
+    <value>टोकन पैरामीटर चुनें</value>
   </data>
   <data name="InvalidPrivateKeyError" xml:space="preserve">
-    <value>Invalid Private Key</value>
+    <value>अमान्य निजी कुंजी</value>
   </data>
   <data name="PublicKeyLabel" xml:space="preserve">
-    <value>Public Key</value>
+    <value>सार्वजनिक कुंजी</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>JWT Encoder / Decoder</value>
+    <value>जेडब्ल्यूटी एनकोडर / डिकोडर</value>
   </data>
   <data name="InvalidSignatureError" xml:space="preserve">
-    <value>Invalid Signature</value>
+    <value>अमान्य हस्ताक्षर</value>
   </data>
 </root>
