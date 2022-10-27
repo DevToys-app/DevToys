@@ -153,8 +153,7 @@
     <value>Hash Generator</value>
   </data>
   <data name="OutputBase64" xml:space="preserve">
-    <value>कुंजी: बेस 64 इनपुट शीर्षक
-बेस 64 इनपुट शीर्षक</value>
+    <value>बेस64आउटपुटशीर्षक</value>
   </data>
   <data name="OutputHex" xml:space="preserve">
     <value>Hex</value>
