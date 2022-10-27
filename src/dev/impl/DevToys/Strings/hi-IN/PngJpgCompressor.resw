@@ -130,10 +130,10 @@
     <value>मिटाना</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
-    <value>Delete all</value>
+    <value>सभी हटा दो</value>
   </data>
   <data name="DetailsTitle" xml:space="preserve">
-    <value>Details</value>
+    <value>विवरण</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>PNG / JPEG Compressor</value>
@@ -146,13 +146,13 @@
     <value>ठीक</value>
   </data>
   <data name="SaveAll" xml:space="preserve">
-    <value>Save all</value>
+    <value>सभी को सुरक्षित करें</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
     <value>रक्षित करें</value>
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
-    <value>See details</value>
+    <value>विस्तृत जानकारी देखें</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Lossless PNG and JPEG optimizer</value>
