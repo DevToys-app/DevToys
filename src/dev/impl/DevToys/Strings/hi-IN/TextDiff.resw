@@ -121,8 +121,7 @@
     <value>Text comparer tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>कुंजी: कॉन्फ़िगरेशनशीर्षक
-कॉन्फ़िगरेशनशीर्षक</value>
+    <value>कॉन्फ़िगरेशनशीर्षक</value>
   </data>
   <data name="Difference" xml:space="preserve">
     <value>Difference</value>
