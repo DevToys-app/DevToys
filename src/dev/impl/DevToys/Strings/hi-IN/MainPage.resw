@@ -155,21 +155,21 @@
     <value>प्रारंभ करने के लिए पिन टूल</value>
   </data>
   <data name="PinToolToStartProblem" xml:space="preserve">
-    <value>Unable to pin the tool to start. For more details, please check the log.</value>
+    <value>प्रारंभ करने के लिए उपकरण को पिन करने में असमर्थ। अधिक जानकारी के लिए, कृपया लॉग की जाँच करें।</value>
   </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
-    <value>Remove from favorites</value>
+    <value>पसंदीदा से निकालें</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Type to search for tools...</value>
+    <value>टूल खोजने के लिए टाइप करें...</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
-    <value>No results found</value>
+    <value>कोई परिणाम नहीं मिला</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>DevToys</value>
+    <value>देव्तोयस</value>
   </data>
   <data name="WindowTitleWithToolName" xml:space="preserve">
-    <value>DevToys - {0}</value>
+    <value>देव्तोयस - {0}</value>
   </data>
 </root>
