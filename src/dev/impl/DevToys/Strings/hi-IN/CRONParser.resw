@@ -118,55 +118,55 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Cron parsing tool</value>
+    <value>क्रोन पार्सिंग टूल</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>कॉन्फ़िगरेशनशीर्षक</value>
   </data>
   <data name="UseSecondsDescription" xml:space="preserve">
-    <value>Choose whatever Cron expression should includes seconds in its definition</value>
+    <value>वह चुनें जो क्रॉन एक्सप्रेशन में उसकी परिभाषा में सेकंड शामिल होना चाहिए</value>
   </data>
   <data name="UseSecondsTitle" xml:space="preserve">
-    <value>Cron Mode</value>
+    <value>क्रोन मोड</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Cron parser</value>
+    <value>क्रोन पार्सर</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Parse Cron expression to get scheduled dates</value>
+    <value>पार्स क्रॉन अभिव्यक्ति अनुसूचित तिथियां पाने के लिए</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Cron expression parser</value>
+    <value>क्रॉन एक्सप्रेशन पार्सर</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Cron</value>
+    <value>क्रॉन</value>
   </data>
   <data name="CronErrorMessage" xml:space="preserve">
-    <value>Cron expression is not valid</value>
+    <value>क्रॉन एक्सप्रेशन मान्य नहीं है</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>Cron expression to parse</value>
+    <value>पार्स करने के लिए क्रॉन अभिव्यक्ति</value>
   </data>
   <data name="OutputDateTimeDescription" xml:space="preserve">
-    <value>Date time fomat of upcoming dates</value>
+    <value>आगामी तिथियों का दिनांक समय प्रारूप</value>
   </data>
   <data name="OutputDateTimeTitle" xml:space="preserve">
-    <value>Output format</value>
+    <value>आउटपुट स्वरूप</value>
   </data>
   <data name="OutputFormatErrorMessage" xml:space="preserve">
-    <value>Output date time format is not valid</value>
+    <value>आउटपुट दिनांक समय प्रारूप मान्य नहीं है</value>
   </data>
   <data name="OutputLimitDescription" xml:space="preserve">
-    <value>How many scheduled dates needs to be generated</value>
+    <value>कितनी निर्धारित तिथियां उत्पन्न करने की आवश्यकता है</value>
   </data>
   <data name="OutputLimitTitle" xml:space="preserve">
-    <value>Next scheduled dates</value>
+    <value>अगली निर्धारित तिथियां</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Next scheduled dates</value>
+    <value>अगली निर्धारित तिथियां</value>
   </data>
   <data name="SecondsExcludedMode" xml:space="preserve">
-    <value>Standard mode (5 - segment Cron)</value>
+    <value>मानक मोड (5 - खंड क्रॉन)</value>
   </data>
   <data name="SecondsIncludedMode" xml:space="preserve">
     <value>सेकंड शामिल (6 - खंड क्रॉन)</value>
