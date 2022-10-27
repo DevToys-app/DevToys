@@ -155,34 +155,34 @@
     <value>No</value>
   </data>
   <data name="DecodeValidateTokenYesLabel" xml:space="preserve">
-    <value>Yes</value>
+    <value>हाँ</value>
   </data>
   <data name="EncodeExpirationTitle" xml:space="preserve">
-    <value>Token has expirations</value>
+    <value>टोकन की समय सीमा समाप्त होती है</value>
   </data>
   <data name="EncodeExpirationMonthLabel" xml:space="preserve">
-    <value>Expire in month(s)</value>
+    <value>महीने(एस) में समाप्त</value>
   </data>
   <data name="EncodeExpirationYearLabel" xml:space="preserve">
-    <value>Expire in year(s)</value>
+    <value>वर्ष(एस) में समाप्त</value>
   </data>
   <data name="EncodeHashingTitle" xml:space="preserve">
-    <value>Token hashing algorithm</value>
+    <value>टोकन हैशिंग एल्गोरिदम</value>
   </data>
   <data name="EncodeSettingsTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>समायोजन</value>
   </data>
   <data name="EncodeSwitchModeLabel" xml:space="preserve">
     <value>रूपांतरणएनकोड</value>
   </data>
   <data name="SettingsSwitchModeLabel" xml:space="preserve">
-    <value>Encode / Decode</value>
+    <value>एन्कोड / व्याख्या करना</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>कॉन्फ़िगरेशनशीर्षक</value>
   </data>
   <data name="EncodeDefaultTimeTitle" xml:space="preserve">
-    <value>Token has default time</value>
+    <value>टोकन का डिफ़ॉल्ट समय होता है</value>
   </data>
   <data name="EncodeExpirationDaysLabel" xml:space="preserve">
     <value>Expire in day(s)</value>
