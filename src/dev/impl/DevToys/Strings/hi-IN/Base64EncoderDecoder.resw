@@ -118,71 +118,52 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>कुंजी: सुलभ नाम
-सुलभ नाम
-फ़ाइल: Base64EncoderDecoder. resw</value>
+    <value>बेस 64 टेक्स्ट एनकोडर और डिकोडर टूल</value>
   </data>
   <data name="Ascii" xml:space="preserve">
-    <value>कुंजी: आस्की
-आस्की</value>
+    <value>आस्की</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>कुंजी: कॉन्फ़िगरेशनशीर्षक
-कॉन्फ़िगरेशनशीर्षक</value>
+    <value>कॉन्फ़िगरेशन</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
-    <value>कुंजी: रूपांतरणडिकोड
-रूपांतरणडिकोड</value>
+    <value>डिकोड</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>कुंजी: रूपांतरण विवरण
-रूपांतरण विवरण</value>
+    <value>चुनें कि आप किस रूपांतरण मोड का उपयोग करना चाहते हैं</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
-    <value>कुंजी: रूपांतरणएनकोड
-रूपांतरणएनकोड</value>
+    <value>एन्कोड</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>कुंजी: रूपांतरण शीर्षक
-रूपांतरण शीर्षक</value>
+    <value>रूपांतरण</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>कुंजी: मेनू प्रदर्शन नाम
-मेनू प्रदर्शन नाम</value>
+    <value>बेस 64 टेक्स्ट</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
-    <value>कुंजी: एन्कोडिंग विवरण
-एन्कोडिंग विवरण</value>
+    <value>चुनें कि आप किस एन्कोडिंग का उपयोग करना चाहते हैं</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
-    <value>कुंजी: एन्कोडिंगशीर्षक
-एन्कोडिंगशीर्षक</value>
+    <value>एन्कोडिंग</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>कुंजी: इनपुट शीर्षक
-इनपुट शीर्षक</value>
+    <value>इनपुट</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>कुंजी: आउटपुट शीर्षक
-आउटपुट शीर्षक</value>
+    <value>आउटपुट</value>
   </data>
   <data name="Utf8" xml:space="preserve">
-    <value>कुंजी: यूटीएफ8
-यूटीएफ8</value>
+    <value>यूटीएफ8</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>कुंजी: विवरण
-विवरण</value>
+    <value>बेस 64 टेक्स्ट डेटा को एनकोड और डीकोड करें</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>कुंजी: खोज डिस्प्ले नाम
-खोज डिस्प्ले नाम</value>
+    <value>बेस 64 टेक्स्ट एनकोडर / डिकोडर</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>कुंजी: मुख्य शब्द खोजे
-मुख्य शब्द खोजे
-वैकल्पिक खोज कीवर्ड। उन शब्दों की खोज को सक्षम करता है जो विवरण, मेनूडिस्प्लेनाम और सर्चडिस्प्लेनाम में शामिल नहीं हैं।
-यदि कोई कीवर्ड जोड़ने के लिए नहीं हैं तो कृपया इस अनुवाद को खाली छोड़ दें।</value>
+    <value>आरएफसी 4648</value>
     <comment>Alternative search keywords. Enables searching for words that are not included in Description, MenuDisplayName, and SearchDisplayName.</comment>
   </data>
 </root>
