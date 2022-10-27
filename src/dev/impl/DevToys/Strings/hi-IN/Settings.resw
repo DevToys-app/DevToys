@@ -187,19 +187,19 @@
     <value>सफेद स्थान प्रस्तुत करें</value>
   </data>
   <data name="ReportProblem" xml:space="preserve">
-    <value>Report a problem</value>
+    <value>समस्या रिपोर्ट करें</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
-    <value>Smart detection</value>
+    <value>स्मार्ट डिटेक्शन</value>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Automatically detect the best tool based on the clipboard content</value>
+    <value>क्लिपबोर्ड सामग्री के आधार पर स्वचालित रूप से सर्वश्रेष्ठ टूल का पता लगाएं</value>
   </data>
   <data name="SmartDetectionHowTo" xml:space="preserve">
-    <value>How to use Smart Detection</value>
+    <value>स्मार्ट डिटेक्शन का उपयोग कैसे करें</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automatically paste the clipboard content when selecting a recommended tool</value>
+    <value>अनुशंसित टूल का चयन करते समय क्लिपबोर्ड सामग्री को स्वचालित रूप से पेस्ट करें</value>
   </data>
   <data name="SourceCode" xml:space="preserve">
     <value>सोर्स कोड</value>
