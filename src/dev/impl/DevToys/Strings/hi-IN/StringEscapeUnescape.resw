@@ -118,40 +118,44 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Text Escape and Unescape tool</value>
+    <value>टेक्स्ट एस्केप और अनस्केप टूल</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Escape / Unescape</value>
+    <value>एस्केप / अनस्केप</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Output</value>
+    <value>आउटपुट शीर्षक</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Escapes or unescapes a string, removing characters that could prevent parsing.</value>
+    <value>एक स्ट्रिंग से बच निकलता है या अनस्केप करता है, ऐसे वर्णों को हटाता है जो पार्सिंग को रोक सकते हैं।</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Text Escape / Unescape</value>
+    <value>टेक्स्ट एस्केप / अनस्केप</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value>कुंजी: खोज कीवर्ड
+मुख्य शब्द खोजे
+वैकल्पिक खोज कीवर्ड। उन शब्दों की खोज को सक्षम करता है जो विवरण, मेनूडिस्प्लेनाम और सर्चडिस्प्लेनाम में शामिल नहीं हैं।
+यदि कोई कीवर्ड जोड़ने के लिए नहीं हैं तो कृपया इस अनुवाद को खाली छोड़ दें।
+फ़ाइल: CheckSumGenerator. resw</value>
     <comment>Alternative search keywords. Enables searching for words that are not included in Description, MenuDisplayName, and SearchDisplayName.</comment>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>Configuration</value>
+    <value>कॉन्फ़िगरेशनशीर्षक</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
-    <value>Unescape</value>
+    <value>अनस्केप</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Select which conversion mode you want to use</value>
+    <value>रूपांतरण विवरण</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
-    <value>Escape</value>
+    <value>एस्केप</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Conversion</value>
+    <value>रूपांतरण शीर्षक</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>Input</value>
+    <value>इनपुट शीर्षक</value>
   </data>
 </root>

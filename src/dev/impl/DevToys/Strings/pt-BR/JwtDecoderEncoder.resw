@@ -130,7 +130,7 @@
     <value>Token</value>
   </data>
   <data name="JwtPayloadLabel" xml:space="preserve">
-    <value>Payload</value>
+    <value>Conteúdo</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Descodificar o cabeçalho JWT, payload and assinatura</value>
@@ -154,16 +154,16 @@
     <value>Sim</value>
   </data>
   <data name="EncodeExpirationTitle" xml:space="preserve">
-    <value>Token has expirations</value>
+    <value>O token expirou</value>
   </data>
   <data name="EncodeExpirationMonthLabel" xml:space="preserve">
-    <value>Expire in month(s)</value>
+    <value>Expira em mês(s)</value>
   </data>
   <data name="EncodeExpirationYearLabel" xml:space="preserve">
-    <value>Expire in year(s)</value>
+    <value>Expira em ano(s)</value>
   </data>
   <data name="EncodeHashingTitle" xml:space="preserve">
-    <value>Token hashing algorithm</value>
+    <value>Algoritmo de hashing de token</value>
   </data>
   <data name="EncodeSettingsTitle" xml:space="preserve">
     <value>Configurações</value>
@@ -172,22 +172,22 @@
     <value>Codificar</value>
   </data>
   <data name="SettingsSwitchModeLabel" xml:space="preserve">
-    <value>Encode / Decode</value>
+    <value>Codificar / Decodificar</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>Configuração</value>
   </data>
   <data name="EncodeDefaultTimeTitle" xml:space="preserve">
-    <value>Token has default time</value>
+    <value>O token tem o tempo padrão</value>
   </data>
   <data name="EncodeExpirationDaysLabel" xml:space="preserve">
-    <value>Expire in day(s)</value>
+    <value>(Expira em {0} dia(s))</value>
   </data>
   <data name="EncodeExpirationHoursLabel" xml:space="preserve">
-    <value>Expire in hour(s)</value>
+    <value>Expirará em %1 horas</value>
   </data>
   <data name="EncodeExpirationMinutesLabel" xml:space="preserve">
-    <value>Expire in minute(s)</value>
+    <value>Expira em minuto(s)</value>
   </data>
   <data name="PrivateKeyLabel" xml:space="preserve">
     <value>Chave privada</value>

@@ -127,10 +127,10 @@
     <value>UUID</value>
   </data>
   <data name="Generate" xml:space="preserve">
-    <value>Generate</value>
+    <value>Tạo ra</value>
   </data>
   <data name="GenerateButton" xml:space="preserve">
-    <value>Generate UUID(s)</value>
+    <value>Tạo UUID(s)</value>
   </data>
   <data name="Guids" xml:space="preserve">
     <value>(Các) UUID</value>
@@ -160,10 +160,10 @@
     <value>Phiên bản UUID</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generate UUIDs version 1 and 4</value>
+    <value>Tạo UUIDs phiên bản 1 và 4</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>UUID Generator</value>
+    <value>Trình tạo UUID</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>GUID</value>

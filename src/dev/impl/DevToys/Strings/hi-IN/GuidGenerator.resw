@@ -118,54 +118,55 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>UUID Generator tool</value>
+    <value>यूयूआईडी जेनरेटर टूल</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>कॉन्फ़िगरेशन</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>UUID</value>
+    <value>यूयूआईडी</value>
   </data>
   <data name="Generate" xml:space="preserve">
-    <value>Generate</value>
+    <value>बनाना</value>
   </data>
   <data name="GenerateButton" xml:space="preserve">
-    <value>Generate UUID(s)</value>
+    <value>यूयूआईडी(ओं) जनरेट करें</value>
   </data>
   <data name="Guids" xml:space="preserve">
-    <value>UUID(s)</value>
+    <value>यूयूआईडी(ओं)</value>
   </data>
   <data name="Hyphens" xml:space="preserve">
-    <value>Hyphens</value>
+    <value>हाइफ़न</value>
   </data>
   <data name="MultiplySymbol" xml:space="preserve">
-    <value>x</value>
+    <value>गुणन चिह्न</value>
   </data>
   <data name="NumberOfGuidsToGenerate_AutomationProperties_Name" xml:space="preserve">
-    <value>Number of UUID to generate</value>
+    <value>उत्पन्न करने के लिए यूयूआईडी की संख्या</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
-    <value>Uppercase</value>
+    <value>कुंजी: अपरकेस
+अपरकेस</value>
   </data>
   <data name="UuidVersionFour" xml:space="preserve">
-    <value>4 (GUID)</value>
+    <value>4 (गाइड)</value>
   </data>
   <data name="UuidVersionOne" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="VersionDescription" xml:space="preserve">
-    <value>Choose the version of UUID to generate</value>
+    <value>उत्पन्न करने के लिए यूयूआईडी का संस्करण चुनें</value>
   </data>
   <data name="VersionTitle" xml:space="preserve">
-    <value>UUID version</value>
+    <value>यूयूआईडी संस्करण</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generate UUIDs version 1 and 4</value>
+    <value>यूयूआईडी संस्करण 1 और 4 उत्पन्न करें</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>UUID Generator</value>
+    <value>यूयूआईडी जेनरेटर</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>GUID</value>
+    <value>गाइड</value>
   </data>
 </root>
