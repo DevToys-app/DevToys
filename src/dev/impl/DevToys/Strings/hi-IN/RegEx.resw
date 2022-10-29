@@ -118,87 +118,87 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Regular expression tester tool</value>
+    <value>रेगुलर एक्सप्रेशन टेस्टर टूल</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>कॉन्फ़िगरेशनशीर्षक</value>
   </data>
   <data name="CultureInvariant" xml:space="preserve">
-    <value>Culture Invariant</value>
+    <value>संस्कृति अपरिवर्तनीय</value>
   </data>
   <data name="CultureInvariantDescription" xml:space="preserve">
-    <value>Specifies that cultural differences in language is ignored.</value>
+    <value>निर्दिष्ट करता है कि भाषा में सांस्कृतिक अंतरों की उपेक्षा की जाती है।</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Regex Tester</value>
+    <value>रेगेक्स परीक्षक</value>
   </data>
   <data name="EcmaScript" xml:space="preserve">
-    <value>ECMA Script</value>
+    <value>एकमा स्क्रिप्ट</value>
   </data>
   <data name="EcmaScriptDescription" xml:space="preserve">
-    <value>Enables ECMAScript-compliant behavior for the expression. This value can be used only in conjunction with the Culture Invariant, Ignore Case and Multiline options.</value>
+    <value>व्यंजक के लिए एकमस्क्रीप्ट-संगत व्यवहार को सक्षम करता है। इस मान का उपयोग केवल कल्चर इनवेरिएंट, इग्नोर केस और मल्टीलाइन विकल्पों के संयोजन में किया जा सकता है।</value>
   </data>
   <data name="IgnoreCase" xml:space="preserve">
-    <value>Ignore Case</value>
+    <value>मामले की अनदेखी करें</value>
   </data>
   <data name="IgnoreCaseDescription" xml:space="preserve">
-    <value>Specifies case-insensitive matching.</value>
+    <value>केस-असंवेदनशील मिलान निर्दिष्ट करता है।</value>
   </data>
   <data name="IgnoreWhitespace" xml:space="preserve">
-    <value>Ignore Whitespace</value>
+    <value>व्हाइटस्पेस पर ध्यान न दें</value>
   </data>
   <data name="IgnoreWhitespaceDescription" xml:space="preserve">
-    <value>Eliminates unescaped white space from the pattern and enables comments marked with #. However, this value does not affect or eliminate white space in character classes, numeric quantifiers, or tokens that mark the beginning of individual regular expression language elements.</value>
+    <value>पैटर्न से अनचाहे सफेद स्थान को हटा देता है और # के साथ चिह्नित टिप्पणियों को सक्षम करता है। हालांकि, यह मान कैरेक्टर क्लासेस, न्यूमेरिक क्वांटिफायर, या टोकन में सफेद स्थान को प्रभावित या समाप्त नहीं करता है जो व्यक्तिगत नियमित अभिव्यक्ति भाषा तत्वों की शुरुआत को चिह्नित करता है।</value>
   </data>
   <data name="Multiline" xml:space="preserve">
-    <value>Multiline</value>
+    <value>बहुपंक्ति</value>
   </data>
   <data name="MultilineDescription" xml:space="preserve">
-    <value>Changes the meaning of ^ and $ so they match at the beginning and end, respectively, of any line, and not just the beginning and end of the entire string.</value>
+    <value>^ और $ का अर्थ बदल देता है ताकि वे किसी भी पंक्ति के क्रमशः शुरुआत और अंत में मेल खा सकें, न कि केवल पूरे स्ट्रिंग की शुरुआत और अंत।</value>
   </data>
   <data name="Options" xml:space="preserve">
-    <value>Options</value>
+    <value>विकल्प</value>
   </data>
   <data name="RegularExpression" xml:space="preserve">
-    <value>Regular expression</value>
+    <value>नियमित अभिव्यक्ति</value>
   </data>
   <data name="RightToLeft" xml:space="preserve">
-    <value>Right To Left</value>
+    <value>दाएं से बाएं</value>
   </data>
   <data name="RightToLeftDescription" xml:space="preserve">
-    <value>Specifies that the search will be from right to left instead of from left to right.</value>
+    <value>निर्दिष्ट करता है कि खोज बाएं से दाएं के बजाय दाएं से बाएं होगी।</value>
   </data>
   <data name="Singleline" xml:space="preserve">
-    <value>Singleline</value>
+    <value>एक लाइन</value>
   </data>
   <data name="SinglelineDescription" xml:space="preserve">
-    <value>Changes the meaning of the dot (.) so it matches every character (instead of every character except \n).</value>
+    <value>डॉट (।) का अर्थ बदलता है, इसलिए यह प्रत्येक वर्ण से मेल खाता है (प्रत्येक वर्ण के बजाय \n को छोड़कर)।</value>
   </data>
   <data name="Text" xml:space="preserve">
-    <value>Text</value>
+    <value>मूलपाठ</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Validate and test regular expressions</value>
+    <value>नियमित अभिव्यक्तियों की पुष्टि और परीक्षण करें</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Regex Tester</value>
+    <value>रेगेक्स परीक्षक</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Regular expression</value>
+    <value>नियमित अभिव्यक्ति</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>Input</value>
+    <value>इनपुट शीर्षक</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Output</value>
+    <value>आउटपुट शीर्षक</value>
   </data>
   <data name="Group" xml:space="preserve">
-    <value>Group</value>
+    <value>समूह</value>
   </data>
   <data name="Match" xml:space="preserve">
-    <value>Match</value>
+    <value>मिलान</value>
   </data>
   <data name="Matches" xml:space="preserve">
-    <value>Matches</value>
+    <value>माचिस</value>
   </data>
 </root>

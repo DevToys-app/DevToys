@@ -183,7 +183,7 @@
     <value>Mode avancé</value>
   </data>
   <data name="InputDictionaryLabel" xml:space="preserve">
-    <value>Dictionnaire d'entré</value>
+    <value>Dictionnaire d'entrée</value>
   </data>
   <data name="OutputDictionaryLabel" xml:space="preserve">
     <value>Dictionnaire de sortie</value>

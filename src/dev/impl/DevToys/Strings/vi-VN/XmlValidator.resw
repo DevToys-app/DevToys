@@ -148,9 +148,9 @@
     <value>Validation result will always be 'valid' since the XML does not define these namespace(s) defined in the XSD: {0}</value>
   </data>
   <data name="XsdNamespacesInconsistentMsg" xml:space="preserve">
-    <value>Validation result will always be 'valid' since the XSD does not define these namespace(s) defined in the XML: {0}</value>
+    <value>Kết quả xác thực có khả năng sẽ luôn là "hợp lệ" vì XML không tham chiếu đến "targetNamespace" sau được xác định trong XSD: {0}</value>
   </data>
   <data name="TargetNamespaceNotDefinedInXml" xml:space="preserve">
-    <value>Validation result will potentially always be 'valid' since the XML does not reference the following "targetNamespace" defined in the XSD: {0}</value>
+    <value>Kết quả xác thực có khả năng sẽ luôn là "hợp lệ" vì XML không tham chiếu đến "targetNamespace" sau được xác định trong XSD: {0}</value>
   </data>
 </root>
