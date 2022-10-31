@@ -154,21 +154,21 @@
     <value>تنسيق الخرج</value>
   </data>
   <data name="OutputFormatErrorMessage" xml:space="preserve">
-    <value>Output date time format is not valid</value>
+    <value>تنسيق الوقت والتاريخ المدخل غير صالح</value>
   </data>
   <data name="OutputLimitDescription" xml:space="preserve">
-    <value>How many scheduled dates needs to be generated</value>
+    <value>كم عدد التواريخ المجدولة التي تودّ إنشاؤها</value>
   </data>
   <data name="OutputLimitTitle" xml:space="preserve">
-    <value>Next scheduled dates</value>
+    <value>التواريخ المجدولة القادمة</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Next scheduled dates</value>
+    <value>التواريخ المجدولة القادمة</value>
   </data>
   <data name="SecondsExcludedMode" xml:space="preserve">
-    <value>Standard mode (5 - segment Cron)</value>
+    <value>الوضع القياسي (5 قطع)</value>
   </data>
   <data name="SecondsIncludedMode" xml:space="preserve">
-    <value>Seconds included (6 - segment Cron)</value>
+    <value>يتضمن الثواني ( 6 قطع)</value>
   </data>
 </root>
