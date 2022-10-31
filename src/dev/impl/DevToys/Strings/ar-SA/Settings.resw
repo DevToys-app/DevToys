@@ -139,7 +139,7 @@
     <value>نسخ</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Dark</value>
+    <value>داكن</value>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
     <value>Same as Microsoft Windows</value>
@@ -166,7 +166,7 @@
     <value>License</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Light</value>
+    <value>مضيء</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
     <value>Line numbers</value>
