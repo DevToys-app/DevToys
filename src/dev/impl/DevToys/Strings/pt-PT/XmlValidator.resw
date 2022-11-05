@@ -151,6 +151,6 @@
     <value>O resultado da validação será sempre 'válido', pois o XSD não define este(s) namespace(s) definido no XML: {0}</value>
   </data>
   <data name="TargetNamespaceNotDefinedInXml" xml:space="preserve">
-    <value>Validation result will potentially always be 'valid' since the XML does not reference the following "targetNamespace" defined in the XSD: {0}</value>
+    <value>O resultado da validação potencialmente sempre será 'válido', uma vez que o XML não faz referência ao seguinte "targetNamespace" definido no XSD: {0}</value>
   </data>
 </root>
