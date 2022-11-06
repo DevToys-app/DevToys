@@ -121,44 +121,44 @@
     <value>Image Converter tool</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>ᱵᱟᱹᱰᱨᱟᱹ</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>ᱵᱷᱤᱛᱤᱨ ᱛᱮᱭᱟᱨ</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>ᱢᱮᱴᱟᱣ</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
-    <value>Delete all</value>
+    <value>ᱡᱷᱚᱛᱚ ᱢᱮᱴᱟᱣ ᱢᱮ</value>
   </data>
   <data name="DetailsTitle" xml:space="preserve">
-    <value>Details</value>
+    <value>ᱵᱤᱵᱨᱚᱬ</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Image Converter</value>
+    <value>ᱪᱤᱛᱟᱹᱨ ᱵᱚᱫᱚᱞᱤᱭᱟᱹ</value>
   </data>
   <data name="FileSizeDisplay" xml:space="preserve">
     <value>{0:0.##} {1}</value>
     <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
   </data>
   <data name="OK" xml:space="preserve">
-    <value>OK</value>
+    <value>ᱴᱷᱤᱠ</value>
   </data>
   <data name="SaveAll" xml:space="preserve">
-    <value>Save all</value>
+    <value>ᱡᱷᱚᱛᱚ ᱥᱟᱧᱪᱟᱣ ᱢᱮ</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>Save as</value>
+    <value>ᱞᱮᱠᱷᱟ ᱥᱟᱧᱪᱟᱣ ᱢᱮ</value>
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
-    <value>See details</value>
+    <value>ᱰᱷᱮᱨ ᱵᱤᱵᱨᱚᱬᱠᱚ ᱧᱮᱞ ᱢᱮ</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Lossless image converter</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Image Converter</value>
+    <value>ᱪᱤᱛᱟᱹᱨ ᱵᱚᱫᱚᱞᱤᱭᱟᱹ</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
     <value>ᱩᱪᱟᱹᱲ</value>
