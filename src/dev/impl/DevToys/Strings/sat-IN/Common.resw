@@ -121,16 +121,16 @@
     <value>Bytes</value>
   </data>
   <data name="Clear" xml:space="preserve">
-    <value>Clear</value>
+    <value>ᱯᱷᱟᱨᱪᱟ</value>
   </data>
   <data name="Copy" xml:space="preserve">
-    <value>Copy</value>
+    <value>ᱱᱚᱠᱚᱞ</value>
   </data>
   <data name="Cut" xml:space="preserve">
-    <value>Cut</value>
+    <value>ᱠᱟᱴᱟᱣ</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>ᱢᱮᱴᱟᱣ</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
     <value>Browse files</value>
@@ -169,34 +169,34 @@
     <value>MB</value>
   </data>
   <data name="Ok" xml:space="preserve">
-    <value>OK</value>
+    <value>ᱴᱷᱤᱠ</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
-    <value>Load a file</value>
+    <value>ᱢᱤᱫᱴᱟᱹᱝ ᱨᱮᱫ ᱞᱟᱫᱮ ᱢᱮ</value>
   </data>
   <data name="Paste" xml:space="preserve">
-    <value>Paste</value>
+    <value>ᱞᱟᱴᱷᱟ</value>
   </data>
   <data name="Redo" xml:space="preserve">
-    <value>Redo</value>
+    <value>ᱛᱟᱭᱚᱢ</value>
   </data>
   <data name="Refresh" xml:space="preserve">
-    <value>Refresh</value>
+    <value>ᱱᱟᱶᱟ ᱟᱹᱨᱩ</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>Save as</value>
+    <value>ᱞᱮᱠᱷᱟ ᱥᱟᱧᱪᱟᱣ ᱢᱮ</value>
   </data>
   <data name="SelectAll" xml:space="preserve">
-    <value>Select all</value>
+    <value>ᱡᱷᱚᱛᱚ ᱵᱟᱪᱷᱟᱣ ᱢᱮ</value>
   </data>
   <data name="Terabytes" xml:space="preserve">
     <value>TB</value>
   </data>
   <data name="ToggleSwitchOff" xml:space="preserve">
-    <value>Off</value>
+    <value>ᱵᱚᱱᱫ</value>
   </data>
   <data name="ToggleSwitchOn" xml:space="preserve">
-    <value>On</value>
+    <value>ᱮᱢ ᱪᱷᱚ</value>
   </data>
   <data name="UnableOpenFile" xml:space="preserve">
     <value>Unable to open this file</value>
