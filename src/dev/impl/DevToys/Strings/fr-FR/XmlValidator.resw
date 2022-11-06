@@ -130,13 +130,13 @@
     <value>XML</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Valider du XML via un schéma XSD.</value>
+    <value>Valider les données XML via un schéma XSD.</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Validateur XML</value>
   </data>
   <data name="ValidationImpossibleMsg" xml:space="preserve">
-    <value>Le XML et XSD doit être défini pour effectuer une validation.</value>
+    <value>Les contenus XML et XSD doivent être définis pour effectuer une validation.</value>
   </data>
   <data name="XmlIsValidMessage" xml:space="preserve">
     <value>Le XML est conforme au schéma XSD défini.</value>
@@ -149,7 +149,7 @@
 {0}</value>
   </data>
   <data name="XsdNamespacesInconsistentMsg" xml:space="preserve">
-    <value>Le résultat de la validation sera toujours 'valide' car le XSD ne définit pas ces espaces de noms définis dans le XML : {0}</value>
+    <value>Le résultat de la validation sera toujours 'valide' car le XSD ne définit pas ces espace(s) de nom(s) définis dans le XML : {0}</value>
   </data>
   <data name="TargetNamespaceNotDefinedInXml" xml:space="preserve">
     <value>Le résultat de la validation sera potentiellement toujours 'valide' car le XML ne fait pas référence à 'targetNamespace' défini dans le XSD: {0}</value>
