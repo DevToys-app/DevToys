@@ -154,16 +154,16 @@
     <value>1</value>
   </data>
   <data name="VersionDescription" xml:space="preserve">
-    <value>Choose the version of UUID to generate</value>
+    <value>ᱛᱮᱭᱟᱨ ᱪᱷᱚ ᱞᱟᱹᱜᱤᱫ UUID ᱟᱜ ᱦᱟᱹᱞᱤᱭᱟᱹᱠ ᱵᱟᱪᱷᱟᱣ ᱢᱮ</value>
   </data>
   <data name="VersionTitle" xml:space="preserve">
-    <value>UUID version</value>
+    <value>UUID ᱦᱟᱹᱞᱤᱭᱟᱹᱠ</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generate UUIDs version 1 and 4</value>
+    <value>UUIDs ᱦᱟᱹᱞᱤᱭᱟᱹᱠ 1 ᱟᱨ 4 ᱛᱮᱭᱟᱨ ᱢᱮ</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>UUID Generator</value>
+    <value>UUID ᱛᱮᱭᱟᱨᱤᱭᱟᱹ</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>GUID</value>
