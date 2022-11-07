@@ -205,10 +205,10 @@
     <value>Unable to load the file '{0}'. Only textual files can be opened. For more details, please check the log.</value>
   </data>
   <data name="Undo" xml:space="preserve">
-    <value>Undo</value>
+    <value>ᱯᱟᱪᱷᱞᱟᱹ</value>
   </data>
   <data name="ViewImage" xml:space="preserve">
-    <value>View</value>
+    <value>ᱧᱮᱞ</value>
     <comment>In the context of "view / display an image".</comment>
   </data>
 </root>
