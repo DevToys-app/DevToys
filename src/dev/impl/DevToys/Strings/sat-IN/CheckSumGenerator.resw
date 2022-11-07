@@ -151,15 +151,15 @@
     <value>Checksum Generator</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
-    <value>Uppercase</value>
+    <value>ᱢᱟᱨᱟᱝᱪᱤᱠᱤ</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
   </data>
   <data name="HashesMatch" xml:space="preserve">
-    <value>The hashes are the same.</value>
+    <value>ᱦᱮᱥ ᱠᱚᱫᱚ ᱤᱱᱟᱹ ᱜᱮ ᱢᱮᱱᱟᱜᱼᱟ ᱾</value>
   </data>
   <data name="HashesMismatch" xml:space="preserve">
-    <value>The hashes are different.</value>
+    <value>ᱦᱮᱥ ᱠᱚᱫᱚ ᱮᱴᱟᱜ ᱜᱮ ᱢᱮᱱᱟᱜᱼᱟ ᱾</value>
   </data>
 </root>
