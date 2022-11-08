@@ -202,7 +202,7 @@
     <value>ᱱᱚᱶᱟ ᱨᱮᱫ ᱡᱷᱤᱡᱽ ᱵᱟᱭ ᱜᱟᱱᱚᱜ ᱠᱟᱱᱟ</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>Unable to load the file '{0}'. Only textual files can be opened. For more details, please check the log.</value>
+    <value>'{0}' ᱨᱮᱫ ᱞᱟᱫᱮ ᱵᱟᱝ ᱜᱟᱱ ᱞᱟᱱᱟ ᱾ ᱠᱷᱟᱹᱞᱤ ᱚᱞ ᱨᱮᱫ ᱜᱮ ᱠᱷᱩᱞᱟᱹ ᱜᱟᱱᱚᱜᱼᱟ ᱾ ᱡᱟᱹᱥᱛᱤ ᱵᱟᱲᱟᱭ ᱞᱟᱹᱜᱤᱫ, ᱫᱟᱭᱟᱠᱟᱛᱮ ᱞᱚᱜᱽ ᱧᱮᱞ ᱢᱮ ᱾</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>ᱯᱟᱪᱷᱞᱟᱹ</value>
