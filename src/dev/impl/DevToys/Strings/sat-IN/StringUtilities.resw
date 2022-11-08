@@ -178,13 +178,13 @@
     <value>Position:</value>
   </data>
   <data name="Selection" xml:space="preserve">
-    <value>Selection</value>
+    <value>ᱵᱟᱪᱷᱟᱣ</value>
   </data>
   <data name="SentenceCase" xml:space="preserve">
     <value>Sentence case</value>
   </data>
   <data name="Sentences" xml:space="preserve">
-    <value>Sentences:</value>
+    <value>ᱟᱹᱭᱟᱹᱛ ᱠᱚ</value>
   </data>
   <data name="SnakeCase" xml:space="preserve">
     <value>snake_case</value>
@@ -202,13 +202,13 @@
     <value>Train-Case</value>
   </data>
   <data name="UpperCase" xml:space="preserve">
-    <value>UPPER CASE</value>
+    <value>ᱢᱟᱨᱟᱝ ᱪᱤᱠᱤ</value>
   </data>
   <data name="WordDistribution" xml:space="preserve">
     <value>Word distribution</value>
   </data>
   <data name="Words" xml:space="preserve">
-    <value>Words:</value>
+    <value>ᱟᱹᱲᱟᱹ :</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Analyze text and convert it to a different case</value>
