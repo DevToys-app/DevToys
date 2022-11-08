@@ -127,7 +127,7 @@
     <value>Daylight saving time.</value>
   </data>
   <data name="DayTitle" xml:space="preserve">
-    <value>Day</value>
+    <value>ᱫᱤᱱ</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Convert timestamp to human-readable date and vice versa</value>
@@ -148,16 +148,16 @@
     <value>Local Date and Time</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Timestamp</value>
+    <value>ᱚᱠᱛᱚ ᱪᱷᱟᱯᱟ</value>
   </data>
   <data name="MinutesTitle" xml:space="preserve">
-    <value>Minutes</value>
+    <value>ᱴᱤᱯᱤᱡ</value>
   </data>
   <data name="MonthTitle" xml:space="preserve">
-    <value>Month</value>
+    <value>ᱪᱟᱸᱫᱚ</value>
   </data>
   <data name="OffsetTitle" xml:space="preserve">
-    <value>Offset</value>
+    <value>ᱚᱯᱷᱥᱮᱴ</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Unix Timestamp Converter</value>
@@ -167,24 +167,24 @@
     <comment>Alternative search keywords. Enables searching for words that are not included in Description, MenuDisplayName, and SearchDisplayName.</comment>
   </data>
   <data name="SecondsTitle" xml:space="preserve">
-    <value>Seconds</value>
+    <value>ᱴᱤᱡ</value>
   </data>
   <data name="SupportsDaylightSavingTime" xml:space="preserve">
     <value>There is daylight saving time.</value>
   </data>
   <data name="TimestampTitle" xml:space="preserve">
-    <value>Timestamp</value>
+    <value>ᱚᱠᱛᱚ ᱪᱷᱟᱯᱟ</value>
   </data>
   <data name="UTCDateTime" xml:space="preserve">
-    <value>UTC Date and Time</value>
+    <value>UTC ᱢᱟᱦᱟᱸ ᱟᱨ ᱚᱠᱛᱚ</value>
   </data>
   <data name="UtcTicksTitle" xml:space="preserve">
     <value>UtcTicks</value>
   </data>
   <data name="YearTitle" xml:space="preserve">
-    <value>Year</value>
+    <value>ᱥᱮᱨᱢᱟ</value>
   </data>
   <data name="Now" xml:space="preserve">
-    <value>Now</value>
+    <value>ᱱᱤᱛᱚᱜ</value>
   </data>
 </root>
