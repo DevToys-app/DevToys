@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Checksum Generator tool</value>
+    <value>ᱪᱮᱠᱥᱚᱢ ᱛᱮᱭᱟᱨᱤᱭᱟᱹ ᱦᱟᱹᱛᱤᱭᱟᱨ</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>ᱵᱟᱹᱰᱨᱟᱹ</value>
@@ -127,28 +127,28 @@
     <value>ᱵᱷᱤᱛᱤᱨ ᱛᱮᱭᱟᱨ</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generate a hash with Checksum based on a file</value>
+    <value>ᱢᱤᱫᱴᱟᱹᱝ ᱨᱮᱫ ᱤᱫᱤᱭᱟᱛᱮ ᱦᱮᱥ ᱥᱟᱶᱛᱮ ᱪᱮᱠᱥᱚᱢ ᱛᱮᱭᱟᱨ ᱢᱮ</value>
   </data>
   <data name="HashingAlgorithmDescription" xml:space="preserve">
-    <value>Select which hashing algorithm you want to use</value>
+    <value>ᱚᱠᱟ ᱯᱮᱥᱤᱝ ᱮᱢ ᱵᱮᱵᱷᱟᱨ ᱥᱮᱱᱟᱮᱫ ᱢᱮᱭᱟ ᱚᱱᱟ ᱵᱟᱪᱷᱟᱣ ᱢᱮ</value>
   </data>
   <data name="HashingAlgorithmTitle" xml:space="preserve">
-    <value>Hashing Algorithm</value>
+    <value>ᱦᱮᱥᱤᱝ ᱮᱞᱜᱚᱨᱤᱫᱤᱢ</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>ᱟᱫᱮᱨ</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Checksum</value>
+    <value>ᱪᱮᱠᱥᱚᱢ</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>ᱵᱟᱦᱨᱮ ᱛᱟᱞᱟ</value>
   </data>
   <data name="OutputComparer" xml:space="preserve">
-    <value>Output Comparer</value>
+    <value>ᱵᱟᱦᱨᱮ ᱛᱩᱞᱱᱟᱹᱤᱭᱟᱹ</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Checksum Generator</value>
+    <value>ᱪᱮᱠᱥᱚᱢ ᱛᱮᱭᱟᱨᱤᱭᱟᱹ</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
     <value>ᱢᱟᱨᱟᱝᱪᱤᱠᱤ</value>
