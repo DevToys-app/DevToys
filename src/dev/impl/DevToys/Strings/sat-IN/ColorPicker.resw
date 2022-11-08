@@ -148,19 +148,19 @@
     <value>HSV</value>
   </data>
   <data name="SelectedColor" xml:space="preserve">
-    <value>Selected color</value>
+    <value>ᱵᱟᱪᱷᱟᱣ ᱠᱚᱱ ᱨᱚᱝ</value>
   </data>
   <data name="BackgroundColor" xml:space="preserve">
-    <value>Background color</value>
+    <value>ᱛᱟᱭᱚᱢ ᱥᱮᱫᱟᱜ ᱨᱚᱝ</value>
   </data>
   <data name="ContrastRatio" xml:space="preserve">
     <value>Contrast ratio</value>
   </data>
   <data name="Fail" xml:space="preserve">
-    <value>Fail</value>
+    <value>ᱰᱤᱜᱟᱹᱣ</value>
   </data>
   <data name="LargeText" xml:space="preserve">
-    <value>Large text</value>
+    <value>ᱢᱟᱨᱟᱝ ᱚᱞ</value>
   </data>
   <data name="Pass" xml:space="preserve">
     <value>Pass</value>
