@@ -175,7 +175,7 @@
     <value>Changes the meaning of the dot (.) so it matches every character (instead of every character except \n).</value>
   </data>
   <data name="Text" xml:space="preserve">
-    <value>Text</value>
+    <value>ᱚᱞ</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Validate and test regular expressions</value>
