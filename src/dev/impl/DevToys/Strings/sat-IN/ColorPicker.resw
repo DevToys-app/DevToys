@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Color Picker and contrast ratio tool</value>
+    <value>ᱨᱚᱝ ᱵᱟᱪᱷᱟᱣᱤᱭᱟᱹ ᱟᱨ ᱠᱚᱱᱴᱨᱟᱥᱴ ᱨᱮᱥᱤᱭᱚ ᱦᱟᱹᱛᱤᱭᱟᱨ</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Color Picker &amp; Contrast</value>
+    <value>ᱨᱚᱝ ᱵᱟᱪᱷᱟᱣᱤᱭᱟᱹ ᱟᱨ ᱠᱚᱱᱴᱨᱟᱥᱴ</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Pick up a color or two and validate the contrast ratio</value>
+    <value>ᱢᱤᱫᱴᱟᱹᱝ ᱨᱚᱝ ᱵᱟᱪᱷᱟᱣ ᱢᱮ ᱟᱨ ᱠᱚᱱᱴᱨᱟᱥᱴ ᱨᱮᱥᱤᱭᱚ ᱣᱮᱞᱤᱰᱮᱴ ᱢᱮ</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Color Picker &amp; Contrast</value>
+    <value>ᱨᱚᱝ ᱵᱟᱪᱷᱟᱣᱤᱭᱟᱹ ᱟᱨ ᱠᱚᱱᱴᱨᱟᱥᱴ</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>RGB WCAG</value>
@@ -154,7 +154,7 @@
     <value>ᱛᱟᱭᱚᱢ ᱥᱮᱫᱟᱜ ᱨᱚᱝ</value>
   </data>
   <data name="ContrastRatio" xml:space="preserve">
-    <value>Contrast ratio</value>
+    <value>ᱠᱚᱱᱴᱨᱟᱥᱴ ᱨᱮᱥᱤᱭᱚ</value>
   </data>
   <data name="Fail" xml:space="preserve">
     <value>ᱰᱤᱜᱟᱹᱣ</value>
