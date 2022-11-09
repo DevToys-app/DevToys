@@ -124,7 +124,7 @@
     <value>ᱵᱷᱤᱛᱤᱨ ᱛᱮᱭᱟᱨ</value>
   </data>
   <data name="UseSecondsDescription" xml:space="preserve">
-    <value>Choose whatever Cron expression should includes seconds in its definition</value>
+    <value>ᱵᱟᱪᱷᱟᱣ ᱢᱮ ᱡᱟᱦᱟᱸ ᱠᱨᱚᱱ ᱮᱠᱥᱯᱨᱮᱥᱚᱱ ᱟᱡᱟᱜ ᱰᱮᱯᱷᱤᱱᱮᱥᱚᱱ ᱨᱮ ᱴᱤᱡ ᱮ ᱥᱮᱞᱮᱫᱟᱭ</value>
   </data>
   <data name="UseSecondsTitle" xml:space="preserve">
     <value>ᱠᱨᱚᱱ ᱢᱳᱰ</value>
@@ -133,7 +133,7 @@
     <value>ᱠᱨᱚᱱ ᱯᱟᱨᱥᱟᱨ</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Parse Cron expression to get scheduled dates</value>
+    <value>ᱥᱮᱰᱭᱩᱞ ᱢᱟᱸᱦᱟᱸ ᱧᱟᱢ ᱞᱟᱹᱜᱤᱫ ᱠᱨᱚᱱ ᱮᱠᱥᱯᱨᱮᱥᱚᱱ ᱯᱟᱨᱥ ᱢᱮ</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>ᱠᱨᱚᱱ ᱮᱠᱥᱯᱨᱮᱥᱚᱱ ᱯᱟᱨᱥᱟᱨ</value>
@@ -142,10 +142,10 @@
     <value>ᱠᱨᱚᱱ</value>
   </data>
   <data name="CronErrorMessage" xml:space="preserve">
-    <value>Cron expression is not valid</value>
+    <value>ᱠᱨᱚᱱ ᱮᱠᱥᱯᱨᱮᱥᱚᱱ ᱫᱚ ᱵᱟᱝ ᱴᱷᱤᱠ ᱟ</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>Cron expression to parse</value>
+    <value>ᱯᱟᱨᱥ ᱞᱟᱹᱜᱤᱫ ᱠᱨᱚᱱ ᱮᱠᱥᱯᱨᱮᱥᱚᱱ</value>
   </data>
   <data name="OutputDateTimeDescription" xml:space="preserve">
     <value>Date time fomat of upcoming dates</value>
