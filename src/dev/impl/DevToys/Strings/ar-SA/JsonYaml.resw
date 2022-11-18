@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>JSON to YAML and YAML to JSON converter tool</value>
+    <value>أداة تحويل JSON إلى YAML و YAML إلى JSON</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>الإعدادات</value>
@@ -133,34 +133,34 @@
     <value>JSON &lt;&gt; YAML</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
-    <value>4 spaces</value>
+    <value>4 مسافات</value>
   </data>
   <data name="Indentation" xml:space="preserve">
-    <value>Indentation</value>
+    <value>المسافة البادئة</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>ادخال</value>
   </data>
   <data name="InvalidYaml" xml:space="preserve">
-    <value>The entered YAML is invalid.</value>
+    <value>YAML الذي تم إدخاله غير صالح.</value>
   </data>
   <data name="JsonToYaml" xml:space="preserve">
-    <value>JSON to YAML</value>
+    <value>JSON الى YAML</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>ناتج</value>
   </data>
   <data name="TwoSpaces" xml:space="preserve">
-    <value>2 spaces</value>
+    <value>مسافتين</value>
   </data>
   <data name="YamlToJson" xml:space="preserve">
-    <value>YAML to JSON</value>
+    <value>YAML إلى JSON</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Convert JSON data to YAML and vice versa</value>
+    <value>تحويل بيانات JSON إلى YAML والعكس بالعكس</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>JSON &lt;&gt; YAML Converter</value>
+    <value>محول JSON &lt;&gt; YAML</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
