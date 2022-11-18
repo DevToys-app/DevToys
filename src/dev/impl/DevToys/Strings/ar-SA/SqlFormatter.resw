@@ -127,22 +127,22 @@
     <value>SQL</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
-    <value>4 spaces</value>
+    <value>4 مسافات</value>
   </data>
   <data name="Indentation" xml:space="preserve">
-    <value>Indentation</value>
+    <value>المسافة البادئة</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>ادخال</value>
   </data>
   <data name="OneTab" xml:space="preserve">
-    <value>1 tab</value>
+    <value>حرف Tab واحد</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>ناتج</value>
   </data>
   <data name="TwoSpaces" xml:space="preserve">
-    <value>2 spaces</value>
+    <value>مسافتين</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Indent SQL queries</value>
