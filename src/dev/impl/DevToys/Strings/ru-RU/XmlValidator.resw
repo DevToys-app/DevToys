@@ -145,10 +145,10 @@
     <value>Проверка схем XML</value>
   </data>
   <data name="XmlNamespacesInconsistentMsg" xml:space="preserve">
-    <value>Validation result will always be 'valid' since the XML does not define these namespace(s) defined in the XSD: {0}</value>
+    <value>Результат проверки всегда будет «valid», так как XML не определяет это пространство имен, определенное в XSD: {0}</value>
   </data>
   <data name="XsdNamespacesInconsistentMsg" xml:space="preserve">
-    <value>Validation result will always be 'valid' since the XSD does not define these namespace(s) defined in the XML: {0}</value>
+    <value>Результат проверки всегда будет 'valid', поскольку XSD не определяет данное пространство имен, определенное в XML {0}</value>
   </data>
   <data name="TargetNamespaceNotDefinedInXml" xml:space="preserve">
     <value>Результат проверки всегда потенциально будет 'valid', поскольку XML не ссылается на "targetNamespace", определенное в XSD: {0}</value>
