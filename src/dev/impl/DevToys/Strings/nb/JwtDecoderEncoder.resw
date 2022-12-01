@@ -142,7 +142,7 @@
     <value>Algorithm</value>
   </data>
   <data name="DecodeSwitchModeLabel" xml:space="preserve">
-    <value>Decode</value>
+    <value>Dekode</value>
   </data>
   <data name="DecodeValidateTokenLabel" xml:space="preserve">
     <value>Validate Token</value>
@@ -169,13 +169,13 @@
     <value>Settings</value>
   </data>
   <data name="EncodeSwitchModeLabel" xml:space="preserve">
-    <value>Encode</value>
+    <value>Kode</value>
   </data>
   <data name="SettingsSwitchModeLabel" xml:space="preserve">
     <value>Encode / Decode</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Konfigurasjon</value>
   </data>
   <data name="EncodeDefaultTimeTitle" xml:space="preserve">
     <value>Token has default time</value>
