@@ -118,48 +118,48 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Generator av kontrollsum</value>
+    <value>Kontrollsumgenerator</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Avbrutt</value>
+    <value>Avbryt</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Konfigurerer</value>
+    <value>Konfigurasjon</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generer en hash med Checksum basert på en fil</value>
+    <value>Generere en hash med sjekksum basert på en fil</value>
   </data>
   <data name="HashingAlgorithmDescription" xml:space="preserve">
-    <value>Velg hvilken algoritme du ønsker å bruke i ashing</value>
+    <value>Velg hvilken algoritme du ønsker å bruke til hashing</value>
   </data>
   <data name="HashingAlgorithmTitle" xml:space="preserve">
     <value>Hashing algoritme</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>Inndata</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Kontrolltegninger</value>
+    <value>Sjekksum</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Utdata</value>
   </data>
   <data name="OutputComparer" xml:space="preserve">
-    <value>Output Comparer</value>
+    <value>Utdatasammenligning</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Generator av kontrollsum</value>
+    <value>Sjekksumgenerator</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
-    <value>Stor bokstav</value>
+    <value>Store bokstaver</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
   </data>
   <data name="HashesMatch" xml:space="preserve">
-    <value>De hashene er de samme.</value>
+    <value>Hashene er identisk.</value>
   </data>
   <data name="HashesMismatch" xml:space="preserve">
-    <value>Passordene du oppgav er forskjellige.</value>
+    <value>Hashene er ulike.</value>
   </data>
 </root>
