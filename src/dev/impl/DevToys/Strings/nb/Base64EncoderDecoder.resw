@@ -157,10 +157,10 @@
     <value>UTF-8</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Encode and decode Base64 text data</value>
+    <value>Kode og dekode Base64 tekstdata</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Base64 Text Encoder / Decoder</value>
+    <value>Base64 tekstkoder / dekoder</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>RFC 4648</value>
