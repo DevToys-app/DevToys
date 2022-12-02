@@ -118,73 +118,73 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Timestamp converter tool</value>
+    <value>Verktøy for tidsstempel konvertering</value>
   </data>
   <data name="TimeZoneTitle" xml:space="preserve">
-    <value>Time zone</value>
+    <value>Tidssone</value>
   </data>
   <data name="DaylightSavingTime" xml:space="preserve">
-    <value>Daylight saving time.</value>
+    <value>Sommertid.</value>
   </data>
   <data name="DayTitle" xml:space="preserve">
-    <value>Day</value>
+    <value>Dag</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Convert timestamp to human-readable date and vice versa</value>
+    <value>Konverter tidsstempel til en lesbar dato og omvendt</value>
   </data>
   <data name="DisabledDaylightSavingTime" xml:space="preserve">
-    <value>There is no daylight saving time.</value>
+    <value>Det er ingen sommertid.</value>
   </data>
   <data name="DSTAmbiguousTime" xml:space="preserve">
     <value>DST Ambiguous time.</value>
   </data>
   <data name="HourTitle" xml:space="preserve">
-    <value>Hour (24 hour)</value>
+    <value>Time (24 timer)</value>
   </data>
   <data name="InvalidValue" xml:space="preserve">
-    <value>Invalid value</value>
+    <value>Ugyldig verdi</value>
   </data>
   <data name="LocalDateTime" xml:space="preserve">
-    <value>Local Date and Time</value>
+    <value>Lokal dato og klokkeslett</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Timestamp</value>
+    <value>Tidsstempel</value>
   </data>
   <data name="MinutesTitle" xml:space="preserve">
-    <value>Minutes</value>
+    <value>Minutter</value>
   </data>
   <data name="MonthTitle" xml:space="preserve">
-    <value>Month</value>
+    <value>Måned</value>
   </data>
   <data name="OffsetTitle" xml:space="preserve">
-    <value>Offset</value>
+    <value>Tidsforskyvning</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Unix Timestamp Converter</value>
+    <value>Unix Tidsstempel Konvertering</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Time Date Timezone Epoch</value>
+    <value>Tid Dato Tidssone Epoke</value>
     <comment>Alternative search keywords. Enables searching for words that are not included in Description, MenuDisplayName, and SearchDisplayName.</comment>
   </data>
   <data name="SecondsTitle" xml:space="preserve">
-    <value>Seconds</value>
+    <value>Sekunder</value>
   </data>
   <data name="SupportsDaylightSavingTime" xml:space="preserve">
-    <value>There is daylight saving time.</value>
+    <value>Det er sommertid.</value>
   </data>
   <data name="TimestampTitle" xml:space="preserve">
-    <value>Timestamp</value>
+    <value>Tidsstempel</value>
   </data>
   <data name="UTCDateTime" xml:space="preserve">
-    <value>UTC Date and Time</value>
+    <value>UTC Dato og Tid</value>
   </data>
   <data name="UtcTicksTitle" xml:space="preserve">
     <value>UtcTicks</value>
   </data>
   <data name="YearTitle" xml:space="preserve">
-    <value>Year</value>
+    <value>År</value>
   </data>
   <data name="Now" xml:space="preserve">
-    <value>Now</value>
+    <value>Nå</value>
   </data>
 </root>
