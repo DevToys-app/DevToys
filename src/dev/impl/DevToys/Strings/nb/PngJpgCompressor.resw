@@ -121,13 +121,13 @@
     <value>PNG and JPEG compressor tool</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Avbrutt</value>
+    <value>Avbryt</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Konfigurasjon</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Slett</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
     <value>Delete all</value>
@@ -149,7 +149,7 @@
     <value>Save all</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>Save as</value>
+    <value>Lagre som</value>
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
     <value>See details</value>
