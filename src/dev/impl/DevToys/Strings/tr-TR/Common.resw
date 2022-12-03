@@ -139,17 +139,17 @@
     <value>Klasörlere göz at</value>
   </data>
   <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>Herhangi bir dosyayı buraya sürükleyip bırakın</value>
+    <value>Herhangi bir dosyayı buraya sürükleyip buraya bırakın</value>
   </data>
   <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
-    <value>Herhangi dosyaları buraya sürükleyip bırakın</value>
+    <value>Herhangi bir dosyayı buraya sürükleyip bırakın</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
     <value>Buraya bir {0} dosyası sürükleyip bırakın</value>
     <comment>{0} is a single file extension like "PNG"</comment>
   </data>
   <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
-    <value>Buraya {0} dosyaları sürükleyip bırakın</value>
+    <value>Buraya {0} dosyalarını sürükleyip bırakın</value>
     <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
@@ -172,7 +172,7 @@
     <value>Tamam</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
-    <value>Dosyadan yükle</value>
+    <value>Dosya yükle</value>
   </data>
   <data name="Paste" xml:space="preserve">
     <value>Yapıştır</value>
@@ -202,7 +202,7 @@
     <value>Dosya açılamadı</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>'{0}' dosyası açılamadı. Yalnızca metin dosyaları açılabilir. Daha fazla ayrıntı için lütfen günlüğe bakın.</value>
+    <value>'{0}' dosyası açılamadı. Yalnızca metin dosyaları açılabilir. Daha fazla ayrıntı için lütfen kayıtlara bakın.</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>Geri al</value>
