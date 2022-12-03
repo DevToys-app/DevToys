@@ -124,7 +124,7 @@
     <value>İptal</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Yapılandırma</value>
+    <value>Konfigürasyon</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Sil</value>
@@ -164,7 +164,7 @@
     <value>Dönüştürme</value>
   </data>
   <data name="ConvertedFormatDescription" xml:space="preserve">
-    <value>Dönüştürülen dosyanın biçimini seçin</value>
+    <value>Dönüştürülecek dosya uzantısını seçin</value>
   </data>
   <data name="JPEG" xml:space="preserve">
     <value>JPEG</value>
@@ -188,7 +188,7 @@
     <value>TIFF</value>
   </data>
   <data name="ErrorMessage" xml:space="preserve">
-    <value>Beklenmeyen bir hata meydana geldi, dönüştürme işi yerine getirilememiş olabilir.</value>
+    <value>Beklenmeyen bir hata meydana geldi, dönüştürme olmamış olabilir.</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>BMP GIF HEIF JPG XR PNG TIFF</value>
