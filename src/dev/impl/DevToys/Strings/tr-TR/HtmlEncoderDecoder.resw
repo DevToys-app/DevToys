@@ -121,7 +121,7 @@
     <value>HTML Kodlama ve Çözümleme aracı</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>Yapılandırma</value>
+    <value>Konfigürasyon</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
     <value>Çöz</value>
@@ -145,7 +145,7 @@
     <value>Çıktı</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Uygulanabilir tüm karakterleri karşılık gelen HTML varlıklarına kodla veya onları çözümle</value>
+    <value>Uygulanabilir tüm karakterleri karşılık gelen HTML karşılıklarıyla kodla veya çözümle</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>HTML Kodlayıcı / Çözümleyici</value>
