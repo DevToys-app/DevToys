@@ -157,10 +157,10 @@
     <value>UTF-8</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Compress or decompress strings</value>
+    <value>ضغط أو فك ضغط النصوص</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>GZip Compress / Decompress</value>
+    <value>ضغط/فك ضغط Gzip</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
