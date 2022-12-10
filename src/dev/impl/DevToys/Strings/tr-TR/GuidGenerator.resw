@@ -121,7 +121,7 @@
     <value>UUID Oluşturma aracı</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Yapılandırma</value>
+    <value>Konfigürasyon</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>UUID</value>
@@ -130,7 +130,7 @@
     <value>Oluştur</value>
   </data>
   <data name="GenerateButton" xml:space="preserve">
-    <value>UUID(ler) oluştur</value>
+    <value>UUID oluştur</value>
   </data>
   <data name="Guids" xml:space="preserve">
     <value>UUID(ler)</value>

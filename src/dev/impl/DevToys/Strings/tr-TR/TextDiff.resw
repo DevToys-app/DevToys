@@ -121,7 +121,7 @@
     <value>Metin karşılaştırma aracı</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Yapılandırma</value>
+    <value>Konfigürasyon</value>
   </data>
   <data name="Difference" xml:space="preserve">
     <value>Fark</value>

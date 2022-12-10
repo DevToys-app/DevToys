@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Checksum Oluşturma aracı</value>
+    <value>Sağlama Toplamı (Checksum) Oluşturma aracı</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>İptal</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Yapılandırma</value>
+    <value>Konfigürasyon</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Dosya temelli Checksum ile hash oluştur</value>

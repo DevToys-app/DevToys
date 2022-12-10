@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>UUID Generator tool</value>
+    <value>أداة توليد UUID</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>الإعدادات</value>
@@ -127,43 +127,43 @@
     <value>UUID</value>
   </data>
   <data name="Generate" xml:space="preserve">
-    <value>Generate</value>
+    <value>توليد</value>
   </data>
   <data name="GenerateButton" xml:space="preserve">
-    <value>Generate UUID(s)</value>
+    <value>توليد UUID</value>
   </data>
   <data name="Guids" xml:space="preserve">
-    <value>UUID(s)</value>
+    <value>الـ UUID المولدة</value>
   </data>
   <data name="Hyphens" xml:space="preserve">
-    <value>Hyphens</value>
+    <value>الفواصل</value>
   </data>
   <data name="MultiplySymbol" xml:space="preserve">
     <value>x</value>
   </data>
   <data name="NumberOfGuidsToGenerate_AutomationProperties_Name" xml:space="preserve">
-    <value>Number of UUID to generate</value>
+    <value>عدد الـ UUID المراد توليدها</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
     <value>أحرف كبيرة</value>
   </data>
   <data name="UuidVersionFour" xml:space="preserve">
-    <value>4 (GUID)</value>
+    <value>الإصدار 4 (GUID)</value>
   </data>
   <data name="UuidVersionOne" xml:space="preserve">
-    <value>1</value>
+    <value>الإصدار 1</value>
   </data>
   <data name="VersionDescription" xml:space="preserve">
-    <value>Choose the version of UUID to generate</value>
+    <value>اختر إصدار الـ UUID المراد توليده</value>
   </data>
   <data name="VersionTitle" xml:space="preserve">
-    <value>UUID version</value>
+    <value>إصدار الـUUID</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generate UUIDs version 1 and 4</value>
+    <value>لتوليد UUID الإصدار 1 أو 4</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>UUID Generator</value>
+    <value>أداة توليد UUID</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>GUID</value>

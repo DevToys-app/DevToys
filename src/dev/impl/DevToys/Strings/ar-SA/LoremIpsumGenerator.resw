@@ -124,10 +124,10 @@
     <value>الإعدادات</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generate Lorem Ipsum placeholder text</value>
+    <value>قم بإنشاء نص Lorem Ipsum عشوائي</value>
   </data>
   <data name="LengthDescription" xml:space="preserve">
-    <value>Number of words, sentences or paragraphs to generate</value>
+    <value>عدد الكلمات أو الجمل أو الفقرات المراد إنشاؤها</value>
   </data>
   <data name="LengthTitle" xml:space="preserve">
     <value>الطول</value>
@@ -148,7 +148,7 @@
     <value>جمل</value>
   </data>
   <data name="StartWithLoremTitle" xml:space="preserve">
-    <value>Start with 'Lorem ipsum dolor sit amet...'</value>
+    <value>ابدأ بـ'Lorem ipsum dolor sit amet...'</value>
   </data>
   <data name="TypeDescription" xml:space="preserve">
     <value>توليد كلمات أو جمل أو فقرات لوريم إيبسوم</value>

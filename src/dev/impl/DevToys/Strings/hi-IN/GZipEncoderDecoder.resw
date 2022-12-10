@@ -121,12 +121,10 @@
     <value>GZip एनकोडर और डिकोडर टूल</value>
   </data>
   <data name="Ascii" xml:space="preserve">
-    <value>कुंजी: आस्की
-आस्की</value>
+    <value>आस्की</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>कुंजी: कॉन्फ़िगरेशनशीर्षक
-कॉन्फ़िगरेशनशीर्षक</value>
+    <value>कॉन्फ़िगरेशन</value>
   </data>
   <data name="ConversionDecompress" xml:space="preserve">
     <value>दबाव हटाना</value>
@@ -147,20 +145,16 @@
     <value>चुनें कि क्या इनपुट को संपीड़ित या विघटित किया जाना चाहिए</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
-    <value>कुंजी: एन्कोडिंगशीर्षक
-एन्कोडिंगशीर्षक</value>
+    <value>एन्कोडिंग</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>कुंजी: इनपुट शीर्षक
-इनपुट शीर्षक</value>
+    <value>इनपुट</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>कुंजी: आउटपुट शीर्षक
-आउटपुट शीर्षक</value>
+    <value>आउटपुट</value>
   </data>
   <data name="Utf8" xml:space="preserve">
-    <value>कुंजी: यूटीएफ8
-यूटीएफ8</value>
+    <value>यूटीएफ8</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>स्ट्रिंग्स को कंप्रेस या डीकंप्रेस करें</value>

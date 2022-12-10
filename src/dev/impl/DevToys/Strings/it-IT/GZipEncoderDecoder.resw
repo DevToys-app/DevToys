@@ -139,7 +139,7 @@
     <value>Compressore / Decompressore GZip</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>GZip</value>
+    <value>Gzip</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
     <value>Seleziona se l'input deve essere compresso o decompresso</value>

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>PNG and JPEG compressor tool</value>
+    <value>أداة ضغط PNG و JPEG</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>إلغاء</value>
@@ -136,7 +136,7 @@
     <value>تفاصيل</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>PNG / JPEG Compressor</value>
+    <value>ضغط PNG / JPEG</value>
   </data>
   <data name="FileSizeDisplay" xml:space="preserve">
     <value>{0:0.##} {1}</value>
@@ -155,10 +155,10 @@
     <value>عرض التفاصيل</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Lossless PNG and JPEG optimizer</value>
+    <value>تحسين PNG و JPEG بدون خسارة</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>PNG / JPEG Compressor</value>
+    <value>ضغط PNG / JPEG</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>JPG</value>
