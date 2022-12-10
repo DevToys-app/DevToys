@@ -124,7 +124,7 @@
     <value>İptal</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Yapılandırma</value>
+    <value>Konfigürasyon</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Sil</value>
