@@ -121,7 +121,7 @@
     <value>SQL Biçimlendirme aracı</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Yapılandırma</value>
+    <value>Konfigürasyon</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>SQL</value>
