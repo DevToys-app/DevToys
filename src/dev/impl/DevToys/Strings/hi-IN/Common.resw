@@ -195,10 +195,10 @@
     <value>टीबी</value>
   </data>
   <data name="ToggleSwitchOff" xml:space="preserve">
-    <value>टॉगल स्विच ऑफ</value>
+    <value>बन्द</value>
   </data>
   <data name="ToggleSwitchOn" xml:space="preserve">
-    <value>टॉगल स्विच ऑन</value>
+    <value>चालू</value>
   </data>
   <data name="UnableOpenFile" xml:space="preserve">
     <value>फ़ाइल खोलने में असमर्थ</value>

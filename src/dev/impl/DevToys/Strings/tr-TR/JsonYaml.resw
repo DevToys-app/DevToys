@@ -121,7 +121,7 @@
     <value>JSON'dan YAML'e ve YAML'den JSON'a dönüştürme aracı</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Yapılandırma</value>
+    <value>Konfigürasyon</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
     <value>Kullanacağınız dönüştürme yöntemini seçin</value>

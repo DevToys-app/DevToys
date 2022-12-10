@@ -121,7 +121,7 @@
     <value>Düzenli ifade (Regex) test aracı</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Yapılandırma</value>
+    <value>Konfigürasyon</value>
   </data>
   <data name="CultureInvariant" xml:space="preserve">
     <value>Kültürden Bağımsız</value>

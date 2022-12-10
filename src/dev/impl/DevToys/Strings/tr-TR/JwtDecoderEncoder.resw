@@ -175,7 +175,7 @@
     <value>Kodlayıcı / Çözümleyici</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>Yapılandırma</value>
+    <value>Konfigürasyon</value>
   </data>
   <data name="EncodeDefaultTimeTitle" xml:space="preserve">
     <value>Jetonda varsayılan zaman var</value>

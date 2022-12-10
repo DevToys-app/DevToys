@@ -133,16 +133,16 @@
     <value>İptal</value>
   </data>
   <data name="DeuteranopiaSimulation" xml:space="preserve">
-    <value>Döteranopi (yeşil körlüğü) simülasyonu</value>
+    <value>Döteranopi (yeşil renk körlüğü) simülasyonu</value>
   </data>
   <data name="OriginalPicture" xml:space="preserve">
     <value>Orijinal</value>
   </data>
   <data name="ProtanopiaSimulation" xml:space="preserve">
-    <value>Pronatopi (kırmızı körlüğü) simülasyonu</value>
+    <value>Pronatopi (kırmızı renk körlüğü) simülasyonu</value>
   </data>
   <data name="TritanopiaSimulation" xml:space="preserve">
-    <value>Tritanopi (sarı-mavi körlüğü) simülasyonu</value>
+    <value>Tritanopi (sarı-mavi renk körlüğü) simülasyonu</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>

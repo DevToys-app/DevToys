@@ -142,7 +142,7 @@
     <value>Syöte</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Tulos</value>
+    <value>Tuloste</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Encode or decode all the applicable characters to their corresponding URL entities</value>

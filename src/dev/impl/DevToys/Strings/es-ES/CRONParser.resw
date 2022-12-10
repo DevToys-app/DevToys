@@ -148,7 +148,7 @@
     <value>Expresión de Cron para analizar</value>
   </data>
   <data name="OutputDateTimeDescription" xml:space="preserve">
-    <value>Date time fomat of upcoming dates</value>
+    <value>El próximo formato de fecha</value>
   </data>
   <data name="OutputDateTimeTitle" xml:space="preserve">
     <value>Formato de salida</value>
@@ -166,9 +166,9 @@
     <value>Próximas fechas programadas</value>
   </data>
   <data name="SecondsExcludedMode" xml:space="preserve">
-    <value>Standard mode (5 - segment Cron)</value>
+    <value>Modo estándar (5 - segmento Cron)</value>
   </data>
   <data name="SecondsIncludedMode" xml:space="preserve">
-    <value>Seconds included (6 - segment Cron)</value>
+    <value>Segundos incluidos (6 - segmento Cron)</value>
   </data>
 </root>

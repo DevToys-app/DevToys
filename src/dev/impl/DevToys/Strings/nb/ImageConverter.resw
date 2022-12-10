@@ -121,13 +121,13 @@
     <value>Image Converter tool</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Avbrutt</value>
+    <value>Avbryt</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Konfigurasjon</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Slett</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
     <value>Delete all</value>
@@ -149,7 +149,7 @@
     <value>Save all</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>Save as</value>
+    <value>Lagre som</value>
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
     <value>See details</value>
@@ -161,7 +161,7 @@
     <value>Image Converter</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Conversion</value>
+    <value>Konvertering</value>
   </data>
   <data name="ConvertedFormatDescription" xml:space="preserve">
     <value>Select the converted file format</value>

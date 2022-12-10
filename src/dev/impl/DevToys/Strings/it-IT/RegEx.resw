@@ -193,12 +193,12 @@
     <value>Output</value>
   </data>
   <data name="Group" xml:space="preserve">
-    <value>Group</value>
+    <value>Gruppo</value>
   </data>
   <data name="Match" xml:space="preserve">
-    <value>Match</value>
+    <value>Abbina</value>
   </data>
   <data name="Matches" xml:space="preserve">
-    <value>Matches</value>
+    <value>Abbinamenti</value>
   </data>
 </root>

@@ -142,15 +142,15 @@
     <value>XML es compatible con el esquema XSD definido.</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>XML XSD Validate</value>
+    <value>Validación de XML XSD</value>
   </data>
   <data name="XmlNamespacesInconsistentMsg" xml:space="preserve">
-    <value>Validation result will always be 'valid' since the XML does not define these namespace(s) defined in the XSD: {0}</value>
+    <value>El resultado de la validación siempre deberá ser válido, puesto que XML no define este espacio(s) de nombre en el XSD: {0}</value>
   </data>
   <data name="XsdNamespacesInconsistentMsg" xml:space="preserve">
-    <value>Validation result will always be 'valid' since the XSD does not define these namespace(s) defined in the XML: {0}</value>
+    <value>El resultado de la validación siempre deberá ser válido, puesto que XSD no define este espacio(s) de nombre en XML: {0}</value>
   </data>
   <data name="TargetNamespaceNotDefinedInXml" xml:space="preserve">
-    <value>Validation result will potentially always be 'valid' since the XML does not reference the following "targetNamespace" defined in the XSD: {0}</value>
+    <value>La validación deberá ser estrictamente válida, puesto que el XML no hace sigue la referencia "targetNamespace" definida en el XDS: {0}</value>
   </data>
 </root>

@@ -139,7 +139,7 @@
     <value>पूर्वावलोकन</value>
   </data>
   <data name="Theme" xml:space="preserve">
-    <value>विषय</value>
+    <value>थीम</value>
   </data>
   <data name="ThemeDescription" xml:space="preserve">
     <value>मार्कडाउन का पूर्वावलोकन करने के लिए किस विषय का उपयोग करना है इसका चयन करें</value>

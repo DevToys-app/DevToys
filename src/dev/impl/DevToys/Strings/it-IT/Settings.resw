@@ -121,7 +121,7 @@
     <value>Informazioni</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>App theme</value>
+    <value>Tema dell'app</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
     <value>Seleziona il tema dell'app</value>
@@ -148,7 +148,7 @@
     <value>Impostazioni</value>
   </data>
   <data name="Font" xml:space="preserve">
-    <value>Font</value>
+    <value>Il tipo di carattere</value>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
     <value>Evidenzia riga corrente</value>
@@ -232,12 +232,12 @@
     <value>Configurations Options Settings</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translating DevToys!</value>
+    <value>Aiutaci a tradurre DevToys!</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Sostituisci testo quando si incolla</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
+    <value>Quando fai clic sul pulsante Incolla, cancella il testo prima d'incollarlo anziché aggiungerlo al contenuto esistente.</value>
   </data>
 </root>

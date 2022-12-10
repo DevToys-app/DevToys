@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>SQL Formatter tool</value>
+    <value>SQL-muotoilutyökalu</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Kokoonpano</value>
@@ -145,10 +145,10 @@
     <value>2 välilyöntiä</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Indent SQL queries</value>
+    <value>Sisennä SQL-kyselyt</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>SQL Formatter</value>
+    <value>SQL-muotoilija</value>
   </data>
   <data name="SqlLanguage" xml:space="preserve">
     <value>Kieli</value>
@@ -178,7 +178,7 @@
     <value>Spark SQL</value>
   </data>
   <data name="SqlLanguageSql" xml:space="preserve">
-    <value>Standard SQL</value>
+    <value>Vakio-SQL</value>
   </data>
   <data name="SqlLanguageTsql" xml:space="preserve">
     <value>Transact-SQL</value>
