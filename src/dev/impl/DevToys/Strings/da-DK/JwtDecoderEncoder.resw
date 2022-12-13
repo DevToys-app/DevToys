@@ -175,7 +175,7 @@
     <value>Encode / Decode</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Indstillinger</value>
   </data>
   <data name="EncodeDefaultTimeTitle" xml:space="preserve">
     <value>Token has default time</value>
