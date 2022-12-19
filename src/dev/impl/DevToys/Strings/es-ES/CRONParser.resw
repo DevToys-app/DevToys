@@ -148,7 +148,7 @@
     <value>Expresión de Cron para analizar</value>
   </data>
   <data name="OutputDateTimeDescription" xml:space="preserve">
-    <value>El próximo formato de fecha</value>
+    <value>Fecha del fomento de fecha para las próximas fechas</value>
   </data>
   <data name="OutputDateTimeTitle" xml:space="preserve">
     <value>Formato de salida</value>
