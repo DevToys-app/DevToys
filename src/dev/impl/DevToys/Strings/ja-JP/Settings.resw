@@ -220,7 +220,7 @@
     <value>Version {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>ワード ラップ</value>
+    <value>文字列を端で折り返す</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>DevToys の見た目や使い勝手をカスタマイズしよう</value>
