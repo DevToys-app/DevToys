@@ -148,9 +148,9 @@
     <value>Das Validierungsergebnis wird immer 'gültig' sein, da das XML keine Namensräume definiert, die in XSD definiert sind: {0}</value>
   </data>
   <data name="XsdNamespacesInconsistentMsg" xml:space="preserve">
-    <value>Das Validierungsergebnis wird immer 'gültig' sein, da das XSD keine Namensräume definiert, die in SML definiert sind: {0}</value>
+    <value>Das Validierungsergebnis wird immer 'gültig' sein, da das XSD keine Namensräume definiert, die in XML definiert sind: {0}</value>
   </data>
   <data name="TargetNamespaceNotDefinedInXml" xml:space="preserve">
-    <value>Das Validierungsergebnis wird möglicherweise immer 'gültig' sein, da das XML den folgenden "Zielnamensraum" nicht referenziert, der in XSD definiert sind: {0}</value>
+    <value>Das Validierungsergebnis wird möglicherweise immer 'gültig' sein, da das XML den folgenden "Zielnamensraum" nicht referenziert, der in XSD definiert ist: {0}</value>
   </data>
 </root>
