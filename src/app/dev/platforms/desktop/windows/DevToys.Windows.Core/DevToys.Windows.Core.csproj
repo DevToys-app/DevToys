@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <ProjectGuid>{97AA45F4-41E2-4FDA-B5B7-F4579DF2C7EE}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevToys.Windows.Core</RootNamespace>
+    <AssemblyName>DevToys.Windows.Core</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>$(Windows10SDKVersion)</TargetPlatformVersion>
+    <TargetPlatformMinVersion>$(Windows10MinSDKVersion)</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
+    <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+    <!-- Disable Central Package Management -->
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Platform)' == 'x86'">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Platform)' == 'x64'">
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Platform)' == 'arm64'">
+    <PlatformTarget>arm64</PlatformTarget>
+    <DefineConstants>$(DefineConstants);ARM</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Explicitely set Version because Central Package Management isn't supported by UWP projects -->
+    <PackageReference Include="CommunityToolkit.Common" Version="$(CommunityToolkitVersion)" />
+    <PackageReference Include="CommunityToolkit.Diagnostics" Version="$(CommunityToolkitVersion)" />
+    <PackageReference Include="System.ComponentModel.Composition" Version="$(DotNetVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="$(DotNetVersion)" />
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="$(MicrosoftNETCoreUniversalWindowsPlatformVersion)" />
+    <PackageReference Include="PolySharp" Version="$(PolySharpVersion)">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\DevToys.Api\DevToys.Api.csproj">
+      <Project>{89a4d88f-5ac0-436a-8ec5-8e98728ca89e}</Project>
+      <Name>DevToys.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\DevToys.Core\DevToys.Core.csproj">
+      <Project>{a730fa8a-3713-4f7a-915d-79098ca12df0}</Project>
+      <Name>DevToys.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\DevToys.Tools\DevToys.Tools.csproj">
+      <Project>{b6d48157-5257-4b60-b065-3b231b610a54}</Project>
+      <Name>DevToys.Tools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\DevToys.UI.Framework\DevToys.UI.Framework.csproj">
+      <Project>{723a3d71-2425-49ee-b669-1a0df3a8b486}</Project>
+      <Name>DevToys.UI.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\DevToys.UI\DevToys.UI.csproj">
+      <Project>{104f1e4b-e0d3-4d87-9da0-3fe82fe2573a}</Project>
+      <Name>DevToys.UI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="..\..\..\..\DevToys.UI.EntryPoint\DevToys.UI.EntryPoint.projitems" Label="Shared" />
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

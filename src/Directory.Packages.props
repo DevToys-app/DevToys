@@ -1,0 +1,54 @@
+<Project>
+  <PropertyGroup>
+    <!--
+      Central Package Management isn't supported by UWP project type. We keep the version of some packages in variables below so we can reuse
+      them in UWP projects explicitely so we keep consistent package version number across the repository.
+    -->
+    <CommunityToolkitVersion>8.0.0</CommunityToolkitVersion>
+    <DotNetVersion>6.0.0</DotNetVersion>
+    <MicrosoftNETCoreUniversalWindowsPlatformVersion>6.2.14</MicrosoftNETCoreUniversalWindowsPlatformVersion>
+    <MicrosoftWindowsSDKBuildToolsVersion>10.0.22621.1</MicrosoftWindowsSDKBuildToolsVersion>
+    <PolySharpVersion>1.8.1</PolySharpVersion>
+    <UnoVersion>4.6.19</UnoVersion>
+    <UnoWasmBootstrapVersion>8.0.0-dev.65</UnoWasmBootstrapVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="CommunityToolkit.Common" Version="$(CommunityToolkitVersion)" />
+    <PackageVersion Include="CommunityToolkit.Diagnostics" Version="$(CommunityToolkitVersion)" />
+    <PackageVersion Include="CommunityToolkit.Mvvm" Version="$(CommunityToolkitVersion)" />
+    <PackageVersion Include="coverlet.collector" Version="3.1.2" />
+    <PackageVersion Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageVersion Include="Microsoft.Extensions.Logging" Version="$(DotNetVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="$(DotNetVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Configuration" Version="$(DotNetVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="$(DotNetVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="$(DotNetVersion)" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+    <PackageVersion Include="Microsoft.TypeScript.MSBuild" Version="4.9.4" />
+    <PackageVersion Include="Microsoft.UI.Xaml" Version="2.8.1"/>
+    <PackageVersion Include="Microsoft.Windows.Compatibility" Version="$(DotNetVersion)" />
+    <PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="$(MicrosoftWindowsSDKBuildToolsVersion)" />
+    <PackageVersion Include="Moq" Version="4.18.2" />
+    <PackageVersion Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageVersion Include="Nito.AsyncEx" Version="5.1.2"/>
+    <PackageVersion Include="Nuke.Common" Version="6.2.1" />
+    <PackageVersion Include="PolySharp" Version="$(PolySharpVersion)" />
+    <PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.22272.1"/>
+    <PackageVersion Include="System.ComponentModel.Composition" Version="$(DotNetVersion)" />
+    <PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
+    <PackageVersion Include="Uno.Core.Extensions.Logging" Version="4.0.1" />
+    <PackageVersion Include="Uno.Core.Extensions.Logging.Singleton" Version="4.0.1" />
+    <PackageVersion Include="Uno.Extensions.Logging.WebAssembly.Console" Version="1.4.0" />
+    <PackageVersion Include="Uno.UI" Version="$(UnoVersion)" />
+    <PackageVersion Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="$(UnoVersion)" />
+    <PackageVersion Include="Uno.Wasm.Bootstrap" Version="$(UnoWasmBootstrapVersion)" />
+    <PackageVersion Include="Uno.Wasm.Bootstrap.DevServer" Version="$(UnoWasmBootstrapVersion)" />
+    <PackageVersion Include="Uno.WinUI" Version="$(UnoVersion)" />
+    <PackageVersion Include="Uno.WinUI.Lottie" Version="$(UnoVersion)" />
+    <PackageVersion Include="Uno.WinUI.RemoteControl" Version="$(UnoVersion)" />
+    <PackageVersion Include="Uno.WinUI.Runtime.WebAssembly" Version="$(UnoVersion)" />
+    <PackageVersion Include="Uno.WinUI.WebAssembly" Version="$(UnoVersion)" />
+    <PackageVersion Include="xunit" Version="2.4.2" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.4.5" />
+  </ItemGroup>
+</Project>

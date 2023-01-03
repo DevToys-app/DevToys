@@ -1,42 +1,42 @@
 <Project>
-    <PropertyGroup>
-        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-        <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+  <Import Project="Environment.props" />
 
-        <Windows10SDKVersion>10.0.19041.0</Windows10SDKVersion>
-        <Windows10MinSDKVersion>10.0.19041.0</Windows10MinSDKVersion>
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>16.0</MinimumVisualStudioVersion>
 
-        <!-- Defines the bin and obj folder paths -->
-        <RepoRoot>$([System.IO.Path]::GetDirectoryName($([MSBuild]::GetPathOfFileAbove('.gitignore', '$(MSBuildThisFileDirectory)'))))\</RepoRoot>
-        <BaseOutputPath>$(RepoRoot)bin\$(Configuration)\$(Platform)\</BaseOutputPath>
-        <OutputPath>$(BaseOutputPath)$(MSBuildProjectName)\</OutputPath>
-        <BaseIntermediateOutputPath>$(RepoRoot)obj\$(Platform)\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
-        <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
-        <GeneratedFilesDir>$(BaseIntermediateOutputPath)Generated Files\</GeneratedFilesDir>
-        <PackagesConfigRestorePath>$(RepoRoot)packages\</PackagesConfigRestorePath>
-    </PropertyGroup>
+    <Windows10SDKVersion>10.0.22000.0</Windows10SDKVersion>
+    <Windows10MinSDKVersionTrimmed>10.0.18362</Windows10MinSDKVersionTrimmed>
+    <Windows10MinSDKVersion>$(Windows10MinSDKVersionTrimmed).0</Windows10MinSDKVersion>
 
-    <PropertyGroup>
-        <Nuget_Cronos>0.7.1</Nuget_Cronos>
-        <NuGet_DotNet>6.0.0</NuGet_DotNet>
-        <Nuget_GitInfo>2.2.0</Nuget_GitInfo>
-        <Nuget_Markdig>0.26.0</Nuget_Markdig>
-        <NuGet_MicrosoftNETCoreUniversalWindowsPlatform>6.2.12</NuGet_MicrosoftNETCoreUniversalWindowsPlatform>
-        <NuGet_MicrosoftToolkitMvvm>7.0.2</NuGet_MicrosoftToolkitMvvm>
-        <Nuget_MicrosoftToolkitUwpUI>7.0.2</Nuget_MicrosoftToolkitUwpUI>
-        <Nuget_MicrosoftToolkitUwpUIBehaviors>7.0.2</Nuget_MicrosoftToolkitUwpUIBehaviors>
-        <Nuget_MicrosoftToolkitUwpUIControls>7.0.2</Nuget_MicrosoftToolkitUwpUIControls>
-        <Nuget_MicrosoftTypeScriptMSBuild>4.4.2</Nuget_MicrosoftTypeScriptMSBuild>
-        <NuGet_MicrosoftUIXaml>2.7.1</NuGet_MicrosoftUIXaml>
-        <NuGet_MicrosoftWindowsCsWinRT>1.3.5</NuGet_MicrosoftWindowsCsWinRT>
-        <NuGet_MSTestTestAdapter>2.2.8</NuGet_MSTestTestAdapter>
-        <NuGet_MSTestTestFramework>2.2.8</NuGet_MSTestTestFramework>
-        <NuGet_NewtonsoftJson>12.0.3</NuGet_NewtonsoftJson>
-        <Nuget_ObservableVector>2.1.0</Nuget_ObservableVector>
-        <NuGet_Win2D>1.26.0</NuGet_Win2D>
-        <NuGet_YamlDotNet>11.2.1</NuGet_YamlDotNet>
-        <NuGet_IdentityModelTokenJwt>6.13.1</NuGet_IdentityModelTokenJwt>
-        <NuGet_NLipsum>1.1.0</NuGet_NLipsum>
-        <NuGet_BouncyCastleNetCore>1.9.0</NuGet_BouncyCastleNetCore>
-    </PropertyGroup>
+    <!-- Can't support 2.1 because UWP is dead and doesn't support it -->
+    <NetStandard>netstandard2.0</NetStandard>
+
+    <NetCore>net6.0</NetCore>
+    <NetCoreWindows>$(NetCore)-windows$(Windows10MinSDKVersionTrimmed)</NetCoreWindows>
+
+    <UAP>uap$(Windows10MinSDKVersionTrimmed)</UAP>
+
+    <!-- Define default build configuration -->
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+
+    <!-- Defines the bin and obj folder paths -->
+    <RepoRoot>$([System.IO.Path]::GetDirectoryName($([MSBuild]::GetPathOfFileAbove('.gitignore', '$(MSBuildThisFileDirectory)'))))\</RepoRoot>
+    <BaseOutputPath>$(RepoRoot)bin\$(Configuration)\$(Platform)\</BaseOutputPath>
+    <OutputPath>$(BaseOutputPath)$(MSBuildProjectName)\</OutputPath>
+    <BaseIntermediateOutputPath>$(RepoRoot)obj\$(Platform)\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\$(Configuration)</IntermediateOutputPath>
+    <GeneratedFilesDir>$(BaseIntermediateOutputPath)Generated Files\</GeneratedFilesDir>
+    <PackagesConfigRestorePath>$(RepoRoot)packages\</PackagesConfigRestorePath>
+
+    <!-- Enable Central Package Management -->
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <EnablePackageVersionOverride>false</EnablePackageVersionOverride>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '16.0' ">
+    <VisualStudioVersion>16.0</VisualStudioVersion>
+  </PropertyGroup>
+
 </Project>

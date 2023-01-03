@@ -9,15 +9,52 @@ You can contribute to DevToys app by:
 
 # How to Build and Run DevToys from source:
 
-* Make sure your machine is running on Windows 10 1903+.
-* Make sure you have Visual Studio 2019 16.10+ or Visual Studio 2022 17.0+ installed.
-* In Visual Studio Installer, install the required components by importing the [vs2022.vsconfig](vs2022.vsconfig) or [vs2019.vsconfig](vs2019.vsconfig) file.
-* Run `init.ps1` in a PowerShell command prompt to restore all the dependencies.
-* Open `src/DevToys.sln` with Visual Studio and set Solution Platform to x64*.
-* Once opened, set `src/dev/DevToys.Startup/DevToys.Startup.wapproj` as startup project.
-* Now you should be able to build and run DevToys on your machine. If it fails, try to close the solution and reopen it again.
+## On Windows
 
-**If x64 doesn't work, use the architecture of your system*
+### Prerequisites
+1. Make sure your machine is running on Windows 10 1903 (19h1) or later.
+1. Install [Visual Studio 2022 17.3 or later](https://visualstudio.microsoft.com/vs/) installed with the following Workloads, or import the [vs2022.vsconfig](vs2022.vsconfig) file.
+    * ASP.NET and web development
+    * .NET Multi-Platform App UI development
+    * .NET desktop development
+    * Universal Windows Platform development
+
+### Finalize your environment
+1. Clone this repository.
+1. Open a PowerShell command prompt in the root folder of this repository.
+1. Run `init.ps1` to restore all the dependencies.
+1. Open `src/DevToys.sln` with Visual Studio.
+1. Once opened, set `app/dev/platforms/DevToys.Wasm` or `app/dev/platforms/DevToys.Windows` or `app/dev/platforms/DevToys.CLI` as startup project.
+1. Now you should be able to build and run DevToys on your machine. If it fails, try to close the solution and reopen it again.
+
+## On macOS and Linux
+
+### Prerequisites
+1. [**Visual Studio Code**](https://code.visualstudio.com/)
+1. **.NET SDK**
+    * [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/6.0) (**version 6.0 (SDK 6.0.100)** or later)
+    > Use `dotnet --version` from the terminal to get the version installed.
+1. The [Uno Platform Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=unoplatform.vscode) Extension
+
+### Finalize your environment
+1. Clone this repository.
+1. Open a Terminal
+1. Install the Uno Platform tool by running the following command from the command prompt:
+    ```
+    dotnet tool install -g uno.check
+    ```
+1. Run the tool from the command prompt with the following command:
+    ```
+    uno-check
+    ```
+    If the above command fails, use the following:
+    ```
+    ~/.dotnet/tools/uno-check
+    ```
+1. Follow the instructions indicated by the tool
+1. Run `init.sh` to restore all the dependencies.
+
+// TODO explain how to debug
 
 # Internationalization and localization
 
@@ -45,23 +82,11 @@ This approach is more complex but has the advantage that it allows you to test y
 
 ## Main architecture
 
-DevToys is using [MEF](https://docs.microsoft.com/en-us/dotnet/framework/mef/) as a dependency injection framework.
-Every tool available (i.e Base64 Encoder/Decoder, JSON Formatter, Settings...) are dynamically discovered and instantiated through MEF. A tool is divided in 3 components:
-1. [IToolProvider](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/Api/Tools/IToolProvider.cs) and its metadata, which represents the tool as displayed in the main menu in the app. `IToolProvider` should be MEF exported.
-2. [IToolViewModel](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/Api/Tools/IToolViewModel.cs), which is a ViewModel as described by the [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) pattern in UWP. It doesn't have to be MEF exported but may be required depending on what the tool needs to work.
-3. A `Page` that represents the view of the tool.
+// TODO
 
-The tool provider is instantiated when the app starts. The view and view models are instantiated when the user selects the tool in the main menu.
+## Develop a tool
 
-## IToolProvider metadata
-
-Several attributes can be used when implementing an `IToolProvider`. They can be used in customize the behavior of the tool in DevToys without needing to implement a special logic for it.
-You can find the attributes [here](https://github.com/veler/DevToys/tree/main/src/dev/impl/DevToys/Api/Tools). Here is a non-exhaustive list of attribute to use:
-* [CompactOverlaySizeAttribute](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/Api/Tools/CompactOverlaySizeAttribute.cs)
-* [NameAttribute](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/Api/Tools/NameAttribute.cs)
-* [NotScrollableAttribute](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/Api/Tools/NotScrollableAttribute.cs)
-* [OrderAttribute](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/Api/Tools/OrderAttribute.cs)
-* [ProtocolNameAttribute](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/Api/Tools/ProtocolNameAttribute.cs)
+// TODO
 
 ## Iconography
 
@@ -70,10 +95,7 @@ For the icons of the tools, a custom font is used. See [documentation](https://g
 
 ## Sample
 
-A good tool to take an example on is `Json <> Yaml` converter.
-* [The tool provider](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/ViewModels/Tools/Converters/JsonYaml/JsonYamlToolProvider.cs)
-* [The view model](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/ViewModels/Tools/Converters/JsonYaml/JsonYamlToolViewModel.cs)
-* [The view](https://github.com/veler/DevToys/tree/main/src/dev/impl/DevToys/Views/Tools/Converters/JsonYaml)
+// TODO
 
 ## Things to keep in mind
 

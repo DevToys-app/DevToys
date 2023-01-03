@@ -3,6 +3,10 @@
 ###############################################################################
 * text=auto
 
+# These files are checked out using LF locally
+*.sh eol=lf
+*.txt eol=lf
+
 ###############################################################################
 # Set default behavior for command prompt diff.
 #
