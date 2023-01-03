@@ -11,6 +11,7 @@
     <PolySharpVersion>1.8.1</PolySharpVersion>
     <UnoVersion>4.6.19</UnoVersion>
     <UnoWasmBootstrapVersion>8.0.0-dev.65</UnoWasmBootstrapVersion>
+    <WebView2Version>1.0.1264.42</WebView2Version>
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="CommunityToolkit.Common" Version="$(CommunityToolkitVersion)" />
@@ -25,21 +26,21 @@
     <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
     <PackageVersion Include="Microsoft.TypeScript.MSBuild" Version="4.9.4" />
-    <PackageVersion Include="Microsoft.UI.Xaml" Version="2.8.1"/>
+    <PackageVersion Include="Microsoft.UI.Xaml" Version="2.8.1" />
+    <PackageVersion Include="Microsoft.Web.WebView2" Version="$(WebView2Version)" />
     <PackageVersion Include="Microsoft.Windows.Compatibility" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="$(MicrosoftWindowsSDKBuildToolsVersion)" />
     <PackageVersion Include="Moq" Version="4.18.2" />
     <PackageVersion Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageVersion Include="Nito.AsyncEx" Version="5.1.2"/>
+    <PackageVersion Include="Nito.AsyncEx" Version="5.1.2" />
     <PackageVersion Include="Nuke.Common" Version="6.2.1" />
     <PackageVersion Include="PolySharp" Version="$(PolySharpVersion)" />
-    <PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.22272.1"/>
+    <PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
     <PackageVersion Include="System.ComponentModel.Composition" Version="$(DotNetVersion)" />
     <PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
     <PackageVersion Include="Uno.Core.Extensions.Logging" Version="4.0.1" />
     <PackageVersion Include="Uno.Core.Extensions.Logging.Singleton" Version="4.0.1" />
     <PackageVersion Include="Uno.Extensions.Logging.WebAssembly.Console" Version="1.4.0" />
-    <PackageVersion Include="Uno.UI" Version="$(UnoVersion)" />
     <PackageVersion Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="$(UnoVersion)" />
     <PackageVersion Include="Uno.Wasm.Bootstrap" Version="$(UnoWasmBootstrapVersion)" />
     <PackageVersion Include="Uno.Wasm.Bootstrap.DevServer" Version="$(UnoWasmBootstrapVersion)" />

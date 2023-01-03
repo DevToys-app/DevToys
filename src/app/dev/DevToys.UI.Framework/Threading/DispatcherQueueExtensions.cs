@@ -1,4 +1,6 @@
 ﻿#if WINDOWS_UWP
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
 using DispatcherQueue = Windows.UI.Core.CoreDispatcher;
 using DispatcherQueuePriority = Windows.UI.Core.CoreDispatcherPriority;
 #else
@@ -9,6 +11,10 @@ namespace DevToys.UI.Framework.Threading;
 
 public static class DispatcherQueueExtensions
 {
+#if WINDOWS_UWP
+    public static readonly DispatcherQueue DispatcherQueue = CoreApplication.MainView.CoreWindow.Dispatcher;
+#endif
+
     public static void ThrowIfNotOnUIThread(this DispatcherQueue dispatcherQueue)
     {
         if (!dispatcherQueue.HasThreadAccess)

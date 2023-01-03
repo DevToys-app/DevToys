@@ -1,0 +1,119 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras/3.0.44">
+  <!--
+    Adding project references to this project requires some manual adjustments.
+    Please see https://github.com/unoplatform/uno/issues/3909 for more details.
+  -->
+  <PropertyGroup>
+    <TargetFrameworks>$(UAP);$(NetCore)</TargetFrameworks>
+    <!-- Ensures the .xr.xml files are generated in a proper layout folder -->
+    <GenerateLibraryLayout>true</GenerateLibraryLayout>
+
+    <IsUWP>false</IsUWP>
+    <IsWasm>false</IsWasm>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == '$(UAP)'">
+    <IsUWP>true</IsUWP>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == '$(NetCore)'">
+    <IsWasm>true</IsWasm>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(IsWasm)' == 'true'">
+    <DefineConstants>$(DefineConstants);__WASM__</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(IsUWP)' == 'true'">
+    <DefineConstants>$(DefineConstants);WINDOWS_UWP</DefineConstants>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>$(Windows10SDKVersion)</TargetPlatformVersion>
+    <TargetPlatformMinVersion>$(Windows10MinSDKVersion)</TargetPlatformMinVersion>
+    <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
+    <Platforms>AnyCPU;x86;x64;arm64</Platforms>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(IsUWP)' == 'true' And '$(Configuration)' == 'Release'">
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(IsUWP)' == 'true' And '$(Platform)' == 'AnyCPU'">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="Nito.AsyncEx" />
+    <PackageReference Include="Microsoft.Extensions.Logging" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Configuration" />
+    <PackageReference Include="Uno.Core.Extensions.Logging" />
+    <PackageReference Include="Uno.Core.Extensions.Logging.Singleton" />
+    <PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(IsUWP)' == 'true'">
+    <PackageReference Include="Microsoft.UI.Xaml" />
+    <PackageReference Include="Microsoft.Web.WebView2" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(IsWasm)' == 'true'">
+    <PackageReference Include="Microsoft.Windows.Compatibility" />
+    <PackageReference Include="Uno.Extensions.Logging.WebAssembly.Console" />
+    <PackageReference Include="Uno.WinUI" />
+    <PackageReference Include="Uno.WinUI.Lottie" />
+    <PackageReference Include="Uno.WinUI.Runtime.WebAssembly" />
+    <PackageReference Include="Uno.WinUI.RemoteControl" Condition="'$(Configuration)'=='Debug'" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ts-helpermethods\ts-helpermethods-Wasm\tsconfig.json" />
+    <None Remove="ts-helpermethods\ts-helpermethods-Windows\tsconfig.json" />
+    <None Remove="WasmScripts\uno-monaco-helpers.js" />
+    <None Remove="monaco-editor\**\*.*" />
+    <TypeScriptCompile Remove="monaco-editor\**\*.*" />
+    <Content Include="monaco-editor\*.*" />
+    <Content Include="monaco-editor\min\**\*.*" />
+    <Content Include="ts-helpermethods\**\*.js">
+      <DependentUpon>%(Filename).ts</DependentUpon>
+    </Content>
+
+    <UpToDateCheckInput Include="**\*.xaml" />
+    <Page Include="**\*.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(IsWindows)' == 'true'">
+    <Content Include="CodeEditor\CodeEditor.Windows.html" />
+
+    <None Remove="ts-helpermethods\ts-helpermethods-Wasm\**\*.js" />
+    <Content Remove="ts-helpermethods\ts-helpermethods-Wasm\**\*.js" />
+    <TypeScriptCompile Remove="ts-helpermethods\ts-helpermethods-Wasm\**\*.*" />
+    <Content Include="ts-helpermethods\ts-helpermethods-Windows\tsconfig.json" />
+    <None Include="ts-helpermethods\ts-helpermethods-Wasm\tsconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(IsWasm)' == 'true'">
+    <Content Include="Assets\**" />
+    <Compile Update="**\*.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+
+    <None Remove="ts-helpermethods\**\*.js" />
+    <Content Remove="ts-helpermethods\**\*.js" />
+    <TypeScriptCompile Remove="ts-helpermethods\ts-helpermethods-Windows\**\*.js" />
+    <Content Include="ts-helpermethods\ts-helpermethods-Wasm\tsconfig.json" />
+    <None Include="ts-helpermethods\ts-helpermethods-Windows\tsconfig.json" />
+    <EmbeddedResource Include="WasmScripts\uno-monaco-helpers.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DevToys.Core\DevToys.Core.csproj" />
+    <ProjectReference Include="..\DevToys.UI.Framework\DevToys.UI.Framework.csproj" />
+  </ItemGroup>
+
+</Project>

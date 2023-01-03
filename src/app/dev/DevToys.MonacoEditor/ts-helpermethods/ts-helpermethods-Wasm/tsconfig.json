@@ -1,0 +1,17 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "emitBOM": false,
+    "target": "ES2015",
+    "lib": [ "ES2015", "DOM" ],
+    "sourceMap": false,
+    "outFile": "..\\..\\WasmScripts\\uno-monaco-helpers.js"
+  },
+  "include": [
+    ".\\",
+    "..\\..\\ts-helpermethods"
+  ],
+  "exclude": [
+    "..\\..\\ts-helpermethods\\ts-helpermethods-Windows"
+  ]
+}

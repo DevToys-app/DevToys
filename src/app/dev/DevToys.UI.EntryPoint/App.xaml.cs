@@ -63,7 +63,7 @@ public sealed partial class App : Application
 #if WINDOWS_UWP
         LaunchActivatedEventArgs uwpArgs = args;
 #else
-        var uwpArgs = args.UWPLaunchActivatedEventArgs;
+        Windows.ApplicationModel.Activation.LaunchActivatedEventArgs uwpArgs = args.UWPLaunchActivatedEventArgs;
 #endif
 
         // Do not repeat app initialization when the Window already has content,
