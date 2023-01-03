@@ -155,7 +155,10 @@ var setTheme = function (editorContext: EditorContext, accentColor: string) {
     // Define themes
     // https://microsoft.github.io/monaco-editor/playground.html#customizing-the-appearence-exposed-colors
 
-    accentColor = accentColor.replace('\"', '');
+    // remove quotes.
+    accentColor = accentColor.replace(/"/g, '');
+
+    editorContext.Debug.log(accentColor);
 
     monaco.editor.defineTheme('devtoys-dark', {
         base: 'vs-dark',
@@ -165,9 +168,10 @@ var setTheme = function (editorContext: EditorContext, accentColor: string) {
             'foreground': '#FFFFFF',
             'editor.foreground': '#FFFFFF',
             'editor.background': '#00000000',
-            'editor.lineHighlightBackground': '#FFFFFF19',
+            'editor.lineHighlightBackground': '#FFFFFF00',
+            'editor.lineHighlightBorder': '#FFFFFF19',
             'editorLineNumber.foreground': '#EEEEEE99',
-            'editorLineNumber.activeForeground': '#EEEEEE99',
+            'editorLineNumber.activeForeground': '#EEEEEEFF',
             'editor.inactiveSelectionBackground': '#00000000',
             'editor.selectionForeground': '#FFFFFF',
             'editor.selectionBackground': accentColor,
@@ -182,9 +186,10 @@ var setTheme = function (editorContext: EditorContext, accentColor: string) {
             'foreground': '#000000',
             'editor.foreground': '#000000',
             'editor.background': '#FFFFFF00',
-            'editor.lineHighlightBackground': '#00000019',
+            'editor.lineHighlightBackground': '#00000000',
+            'editor.lineHighlightBorder': '#00000019',
             'editorLineNumber.foreground': '#00000099',
-            'editorLineNumber.activeForeground': '#00000099',
+            'editorLineNumber.activeForeground': '#000000FF',
             'editor.inactiveSelectionBackground': '#00000000',
             'editor.selectionForeground': '#000000',
             'editor.selectionBackground': accentColor,
