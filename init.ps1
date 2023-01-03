@@ -1,7 +1,7 @@
-param (
-    [Parameter(Mandatory = $false)]
-    [Boolean]$VsPreview=$true
-)
+function ExecSafe([scriptblock] $cmd) {
+    & $cmd
+    if ($LASTEXITCODE) { exit $LASTEXITCODE }
+}
 
 Function Get-MsBuildPath($useVsPreview) {
     if (-not (Test-Path "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"))
@@ -31,39 +31,37 @@ Function Get-MsBuildPath($useVsPreview) {
     return $path
 }
 
-Function Restore-PackagesUnder($searchRoot) {
-    # Restore VS solution dependencies
-    Get-ChildItem $searchRoot -rec |? { $_.FullName.EndsWith('.sln') } |% {
-        Write-Host "Restoring packages for $($_.FullName)..." -ForegroundColor $HeaderColor
-        & "$toolsPath\Restore-NuGetPackages.ps1" -Path $_.FullName -Verbosity $nugetVerbosity -MSBuildPath $MSBuildPath
+Set-StrictMode -Version 2.0; $ErrorActionPreference = "Stop"; $ConfirmPreference = "None"; trap { Write-Error $_ -ErrorAction Continue; exit 1 }
+$PSScriptRoot = Split-Path $MyInvocation.MyCommand.Path -Parent
+
+# Install .Net
+ExecSafe { & $PSScriptRoot\tools\Install-DotNet.ps1 -RootFolder $PSScriptRoot }
+
+# Restore NuGet solution dependencies
+Write-Host "Restoring all dependencies"
+Get-ChildItem $PSScriptRoot\src\ -rec |? { $_.FullName.EndsWith('.sln') } |% {
+    $SolutionPath = $_.FullName;
+    Write-Host "Restoring packages for $($SolutionPath)..."
+    ExecSafe { & $env:DOTNET_EXE restore -v:quiet $SolutionPath  }
+
+    # If we run on Windows
+    if ([System.Boolean](Get-CimInstance -ClassName Win32_OperatingSystem -ErrorAction SilentlyContinue)) {
+        $MSBuildPath = Get-MsBuildPath true
+        ExecSafe { & "$MSBuildPath" $SolutionPath /t:restore /p:Configuration=Release /p:platform=x86 /v:Quiet }
+        ExecSafe { & "$MSBuildPath" $SolutionPath /t:restore /p:Configuration=Release /p:platform=x64 /v:Quiet }
+        ExecSafe { & "$MSBuildPath" $SolutionPath /t:restore /p:Configuration=Release /p:platform=arm64 /v:Quiet }
+        ExecSafe { & "$MSBuildPath" $SolutionPath /t:restore /p:Configuration=Debug /p:platform=x86 /v:Quiet }
+        ExecSafe { & "$MSBuildPath" $SolutionPath /t:restore /p:Configuration=Debug /p:platform=x64 /v:Quiet }
+        ExecSafe { & "$MSBuildPath" $SolutionPath /t:restore /p:Configuration=Debug /p:platform=arm64 /v:Quiet }
     }
 }
 
-Function Restore-MonacoEditor() {
-    # Restore Monaco Editor
-    Write-Host "Restoring Monaco Editor..." -ForegroundColor $HeaderColor
-    & "$toolsPath\Restore-MonacoEditor.ps1"
-}
+Write-Host "Done."
+Write-Output "---------------------------------------"
 
-Push-Location $PSScriptRoot
-try {
-    $EnvVarsSet = $false
-    $HeaderColor = 'Green'
-    $toolsPath = "$PSScriptRoot\tools"
-    $nugetVerbosity = 'minimal'
-    $MSBuildPath = Get-MsBuildPath $VsPreview
-    if ($VerbosePreference -eq 'continue') { $nugetVerbosity = 'Detailed' }
+# Restore Monaco Editor
+Write-Host "Restoring Monaco Editor"
+ExecSafe { & $PSScriptRoot\tools\Restore-MonacoEditor.ps1 -RootFolder $PSScriptRoot }
 
-    Restore-PackagesUnder "$PSScriptRoot\src"
-
-    Restore-MonacoEditor
-
-    Write-Host "Successfully restored all dependencies" -ForegroundColor Yellow
-}
-catch {
-    Write-Error $error[0]
-    exit $lastexitcode
-}
-finally {
-    Pop-Location
-}
+Write-Host "Done."
+Write-Output "---------------------------------------"

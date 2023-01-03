@@ -1,0 +1,153 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Build Schema",
+  "$ref": "#/definitions/build",
+  "definitions": {
+    "build": {
+      "type": "object",
+      "properties": {
+        "Configuration": {
+          "type": "string",
+          "description": "Configuration to build - Default is 'Debug' (local) or 'Release' (server)",
+          "enum": [
+            "Debug",
+            "Release"
+          ]
+        },
+        "Continue": {
+          "type": "boolean",
+          "description": "Indicates to continue a previously failed build attempt"
+        },
+        "Help": {
+          "type": "boolean",
+          "description": "Shows the help text for this build assembly"
+        },
+        "Host": {
+          "type": "string",
+          "description": "Host for execution. Default is 'automatic'",
+          "enum": [
+            "AppVeyor",
+            "AzurePipelines",
+            "Bamboo",
+            "Bitbucket",
+            "Bitrise",
+            "GitHubActions",
+            "GitLab",
+            "Jenkins",
+            "Rider",
+            "SpaceAutomation",
+            "TeamCity",
+            "Terminal",
+            "TravisCI",
+            "VisualStudio",
+            "VSCode"
+          ]
+        },
+        "IncrementalBuild": {
+          "type": "boolean",
+          "description": "Do an incremental build"
+        },
+        "NoLogo": {
+          "type": "boolean",
+          "description": "Disables displaying the NUKE logo"
+        },
+        "Partition": {
+          "type": "string",
+          "description": "Partition to use on CI"
+        },
+        "Plan": {
+          "type": "boolean",
+          "description": "Shows the execution plan (HTML)"
+        },
+        "PlatformTargets": {
+          "type": "array",
+          "description": "The target platform",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Linux",
+              "MacOS",
+              "Wasm",
+              "Windows"
+            ]
+          }
+        },
+        "Profile": {
+          "type": "array",
+          "description": "Defines the profiles to load",
+          "items": {
+            "type": "string"
+          }
+        },
+        "PublishReadyToRun": {
+          "type": "boolean",
+          "description": "https://bit.ly/3RSEo7w"
+        },
+        "PublishSelfContained": {
+          "type": "boolean",
+          "description": "https://bit.ly/2OEU0KO - Enabled by default"
+        },
+        "PublishSingleFile": {
+          "type": "boolean",
+          "description": "https://bit.ly/3xvq7FA"
+        },
+        "PublishTrimmed": {
+          "type": "boolean",
+          "description": "https://bit.ly/3RKZkNH"
+        },
+        "Root": {
+          "type": "string",
+          "description": "Root directory during build execution"
+        },
+        "RunTests": {
+          "type": "boolean",
+          "description": "Runs unit tests"
+        },
+        "Skip": {
+          "type": "array",
+          "description": "List of targets to be skipped. Empty list skips all dependencies",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Clean",
+              "Compile",
+              "Publish",
+              "Restore",
+              "SetVersion",
+              "UnitTests"
+            ]
+          }
+        },
+        "Solution": {
+          "type": "string",
+          "description": "Path to a solution file that is automatically loaded"
+        },
+        "Target": {
+          "type": "array",
+          "description": "List of targets to be invoked. Default is '{default_target}'",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Clean",
+              "Compile",
+              "Publish",
+              "Restore",
+              "SetVersion",
+              "UnitTests"
+            ]
+          }
+        },
+        "Verbosity": {
+          "type": "string",
+          "description": "Logging verbosity during build execution. Default is 'Normal'",
+          "enum": [
+            "Minimal",
+            "Normal",
+            "Quiet",
+            "Verbose"
+          ]
+        }
+      }
+    }
+  }
+}

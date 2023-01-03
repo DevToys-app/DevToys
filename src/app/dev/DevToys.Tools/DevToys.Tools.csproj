@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>$(NetStandard)</TargetFrameworks>
+
+    <!-- See https://learn.microsoft.com/en-us/dotnet/core/project-sdk/msbuild-props#enabledynamicloading -->
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DevToys.Api\DevToys.Api.csproj">
+      <!-- This tells MSBuild to not copy DevToys.Api.dll to the output -->
+      <Private>false</Private>
+      <!-- This setting has the same effect as <Private>false</Private> but works on package references -->
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </ProjectReference>
+
+    <!--
+    <PackageReference Include="DevToys.Api" Version="2.0.0">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    -->
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Sample\Sample.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Sample.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Sample\Sample.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Sample.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>
