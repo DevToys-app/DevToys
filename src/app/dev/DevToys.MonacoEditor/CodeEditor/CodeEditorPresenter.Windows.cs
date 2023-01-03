@@ -65,11 +65,10 @@ public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresen
 
         Content = _webView;
 
-        _webView.Visibility = Visibility.Collapsed;
-        //_webView.DefaultBackgroundColor = Colors.Transparent;
+        this.Visibility = Visibility.Collapsed;
+        _webView.AllowFocusOnInteraction = true;
+        _webView.IsFocusEngagementEnabled = true;
         _webView.CoreWebView2Initialized += WebView_CoreWebView2Initialized;
-        _webView.GotFocus += WebView_GotFocus;
-        _webView.LostFocus += WebView_LostFocus;
 
         ILogger logger = this.Log();
         _debugLogger = logger.IsEnabled(LogLevel.Debug) ? logger : null;
@@ -139,7 +138,7 @@ public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresen
             _errorLogger?.Error($"{nameof(LaunchAsync)} failed", e);
         }
 
-        _webView.Visibility = Visibility.Visible;
+        this.Visibility = Visibility.Visible;
 
         void OnDOMContentLoaded(CoreWebView2 sender, CoreWebView2DOMContentLoadedEventArgs args)
         {
@@ -393,16 +392,6 @@ public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresen
         _webView.CoreWebView2.NavigationStarting += (wv, args) => NavigationStarting?.Invoke(this, args);
         _webView.CoreWebView2.DOMContentLoaded += (wv, args) => DOMContentLoaded?.Invoke(this, args);
         _webView.CoreWebView2.NavigationCompleted += (wv, args) => NavigationCompleted?.Invoke(this, args);
-    }
-
-    private void WebView_LostFocus(object sender, RoutedEventArgs e)
-    {
-        LostFocus?.Invoke(this, e);
-    }
-
-    private void WebView_GotFocus(object sender, RoutedEventArgs e)
-    {
-        GotFocus?.Invoke(this, e);
     }
 }
 
