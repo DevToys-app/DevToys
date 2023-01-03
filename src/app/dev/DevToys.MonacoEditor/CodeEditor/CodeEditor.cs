@@ -52,6 +52,7 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
     private readonly long _themeToken;
 
     private ICodeEditorPresenter? _view;
+    private int _focusCount;
     private bool _initialized;
     private ModelHelper? _model;
 
@@ -501,8 +502,6 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
             _view.NavigationCompleted -= WebView_NavigationCompleted;
             _view.NewWindowRequested -= WebView_NewWindowRequested;
             _view.DotNetObjectInjectionRequested -= WebView_DotNetObjectInjectionRequested;
-            _view.GotFocus -= WebView_GotFocus;
-            _view.LostFocus -= WebView_LostFocus;
             Debug.WriteLine("Setting initialized - false");
             _initialized = false;
         }
@@ -517,8 +516,6 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
             _view.NavigationCompleted += WebView_NavigationCompleted;
             _view.NewWindowRequested += WebView_NewWindowRequested;
             _view.DotNetObjectInjectionRequested += WebView_DotNetObjectInjectionRequested;
-            _view.GotFocus += WebView_GotFocus;
-            _view.LostFocus += WebView_LostFocus;
 
             _view.LaunchAsync().Forget();
 
@@ -664,24 +661,22 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
         OpenLinkRequested?.Invoke(this, args);
     }
 
-    private void WebView_GotFocus(ICodeEditorPresenter sender, RoutedEventArgs args)
-    {
-        OnMonacoEditorGotFocus();
-    }
-
-    private void WebView_LostFocus(ICodeEditorPresenter sender, RoutedEventArgs args)
-    {
-        OnMonacoEditorLostFocus();
-    }
-
     private void OnMonacoEditorGotFocus()
     {
-        VisualStateManager.GoToState(this, FocusedState, false);
+        _focusCount++;
+        if (_focusCount > 0)
+        {
+            VisualStateManager.GoToState(this, FocusedState, false);
+        }
     }
 
     private void OnMonacoEditorLostFocus()
     {
-        VisualStateManager.GoToState(this, NormalState, false);
+        _focusCount = Math.Max(0, _focusCount - 1);
+        if (_focusCount == 0)
+        {
+            VisualStateManager.GoToState(this, NormalState, false);
+        }
     }
 
     private void OnMonacoEditorLoaded()
@@ -709,9 +704,6 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
         // We're done loading Monaco Editor.
         IsEditorLoaded = true;
         EditorLoaded?.Invoke(this, new RoutedEventArgs());
-
-        // Give the focus if necessary.
-        GiveFocusToInnerEditor();
     }
 
     private void GiveFocusToInnerEditor()

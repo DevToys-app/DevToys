@@ -11,7 +11,7 @@
     <PolySharpVersion>1.8.1</PolySharpVersion>
     <UnoVersion>4.6.19</UnoVersion>
     <UnoWasmBootstrapVersion>8.0.0-dev.65</UnoWasmBootstrapVersion>
-    <WebView2Version>1.0.1264.42</WebView2Version>
+    <WebView2Version>1.0.1462.37</WebView2Version>
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="CommunityToolkit.Common" Version="$(CommunityToolkitVersion)" />

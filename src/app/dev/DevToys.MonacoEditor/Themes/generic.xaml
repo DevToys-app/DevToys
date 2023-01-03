@@ -54,15 +54,13 @@
                             BorderBrush="{ThemeResource TextControlBorderBrush}"
                             CornerRadius="4"
                             HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"
-                            IsHitTestVisible="False">
+                            VerticalAlignment="Stretch">
                             <Grid>
-                                <Button Content="Hello world"/>
                                 <monaco:CodeEditorPresenter
-                                x:Name="View"
-                                Margin="{TemplateBinding Padding}"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch"/>
+                                    x:Name="View"
+                                    Margin="{TemplateBinding Padding}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"/>
                             </Grid>
                         </Border>
                         <muxc:ProgressRing
