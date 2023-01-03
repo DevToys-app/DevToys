@@ -1,0 +1,14 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "target": "ES2015",
+    "sourceMap": false
+  },
+  "include": [
+    ".\\",
+    "..\\..\\ts-helpermethods"
+  ],
+  "exclude": [
+    "..\\..\\ts-helpermethods\\ts-helpermethods-Wasm"
+  ]
+}

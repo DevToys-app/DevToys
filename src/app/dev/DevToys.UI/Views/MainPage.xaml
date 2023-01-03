@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:monaco="using:DevToys.MonacoEditor"
     mc:Ignorable="d"
     Background="Transparent">
 
@@ -19,14 +20,14 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <!--<monaco:CodeEditor x:Name="Editor"
+        <monaco:CodeEditor x:Name="Editor"
                            Grid.Row="0"
-                           Grid.Column="0"/>-->
+                           Grid.Column="0"/>
 
-        <!--<monaco:CodeEditor x:Name="Editor2"
+        <monaco:CodeEditor x:Name="Editor2"
                            Grid.Row="0"
                            Grid.Column="1"
                            ReadOnly="True"
-                           IsDiffViewMode="True"/>-->
+                           IsDiffViewMode="True"/>
     </Grid>
 </Page>

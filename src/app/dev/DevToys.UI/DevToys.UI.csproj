@@ -77,7 +77,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!--<ProjectReference Include="..\DevToys.MonacoEditor\DevToys.MonacoEditor.csproj" />-->
+    <ProjectReference Include="..\DevToys.MonacoEditor\DevToys.MonacoEditor.csproj" />
     <ProjectReference Include="..\DevToys.UI.Framework\DevToys.UI.Framework.csproj" />
   </ItemGroup>
 </Project>

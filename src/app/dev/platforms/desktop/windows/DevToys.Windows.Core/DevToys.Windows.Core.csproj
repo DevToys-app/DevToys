@@ -61,6 +61,7 @@
     <PackageReference Include="CommunityToolkit.Common" Version="$(CommunityToolkitVersion)" />
     <PackageReference Include="CommunityToolkit.Diagnostics" Version="$(CommunityToolkitVersion)" />
     <PackageReference Include="System.ComponentModel.Composition" Version="$(DotNetVersion)" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="$(WebView2Version)" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="$(DotNetVersion)" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="$(MicrosoftNETCoreUniversalWindowsPlatformVersion)" />
     <PackageReference Include="PolySharp" Version="$(PolySharpVersion)">
@@ -76,6 +77,10 @@
     <ProjectReference Include="..\..\..\..\DevToys.Core\DevToys.Core.csproj">
       <Project>{a730fa8a-3713-4f7a-915d-79098ca12df0}</Project>
       <Name>DevToys.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\DevToys.MonacoEditor\DevToys.MonacoEditor.csproj">
+      <Project>{cdd8b469-aca6-4a7d-91a0-66adb0563ae8}</Project>
+      <Name>DevToys.MonacoEditor</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\DevToys.Tools\DevToys.Tools.csproj">
       <Project>{b6d48157-5257-4b60-b065-3b231b610a54}</Project>
