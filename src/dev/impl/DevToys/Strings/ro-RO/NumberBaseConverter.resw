@@ -121,7 +121,7 @@
     <value>Number Base Converter tool</value>
   </data>
   <data name="BinaryLabel" xml:space="preserve">
-    <value>Binary</value>
+    <value>Binar</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
     <value>Configurație</value>
@@ -142,7 +142,7 @@
     <value>Input</value>
   </data>
   <data name="InputTypeBinary" xml:space="preserve">
-    <value>Binary</value>
+    <value>Binar</value>
   </data>
   <data name="InputTypeDecimal" xml:space="preserve">
     <value>Decimal</value>
@@ -180,7 +180,7 @@
     <value>Binary Octal Decimal Hexadecimal</value>
   </data>
   <data name="AdvancedModeLabel" xml:space="preserve">
-    <value>Advanced mode</value>
+    <value>Mod Avansat</value>
   </data>
   <data name="InputDictionaryLabel" xml:space="preserve">
     <value>Input dictionary</value>
