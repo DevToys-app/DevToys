@@ -127,10 +127,10 @@
     <value>Configurație</value>
   </data>
   <data name="DecimalLabel" xml:space="preserve">
-    <value>Decimal</value>
+    <value>Zecimal</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Number Base</value>
+    <value>Număr Bază</value>
   </data>
   <data name="Format" xml:space="preserve">
     <value>Format number</value>
@@ -145,10 +145,10 @@
     <value>Binar</value>
   </data>
   <data name="InputTypeDecimal" xml:space="preserve">
-    <value>Decimal</value>
+    <value>Zecimal</value>
   </data>
   <data name="InputTypeDescription" xml:space="preserve">
-    <value>Select which input type you want to use</value>
+    <value>Selectați tipul datelor de intrare pe care doriți să îl utilizați</value>
   </data>
   <data name="InputTypeHexadecimal" xml:space="preserve">
     <value>Hexadecimal</value>
@@ -157,13 +157,13 @@
     <value>Octal</value>
   </data>
   <data name="InputTypeTitle" xml:space="preserve">
-    <value>Input type</value>
+    <value>Tipul input-ului</value>
   </data>
   <data name="OctalLabel" xml:space="preserve">
     <value>Octal</value>
   </data>
   <data name="ValueInvalid" xml:space="preserve">
-    <value>The current value isn't a valid {0}</value>
+    <value>Valoarea curentă nu este validă {0}</value>
     <comment>The parameter is the Base Number Type (Decimal, Octal, ...)</comment>
   </data>
   <data name="ValueOverflow" xml:space="preserve">
@@ -177,7 +177,7 @@
     <value>Number Base Converter</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Binary Octal Decimal Hexadecimal</value>
+    <value>Binar Octal Zecimal Hexazecimal</value>
   </data>
   <data name="AdvancedModeLabel" xml:space="preserve">
     <value>Mod Avansat</value>
