@@ -127,10 +127,10 @@
     <value>SQL</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
-    <value>4 spaces</value>
+    <value>4 spaţii</value>
   </data>
   <data name="Indentation" xml:space="preserve">
-    <value>Indentation</value>
+    <value>Indentare</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>Input</value>
@@ -142,7 +142,7 @@
     <value>Output</value>
   </data>
   <data name="TwoSpaces" xml:space="preserve">
-    <value>2 spaces</value>
+    <value>2 spații</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Indent SQL queries</value>
