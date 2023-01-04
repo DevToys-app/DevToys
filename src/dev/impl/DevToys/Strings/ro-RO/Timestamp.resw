@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Timestamp converter tool</value>
+    <value>Convertizor pentru marcaj de timp</value>
   </data>
   <data name="TimeZoneTitle" xml:space="preserve">
-    <value>Time zone</value>
+    <value>Fus orar</value>
   </data>
   <data name="DaylightSavingTime" xml:space="preserve">
-    <value>Daylight saving time.</value>
+    <value>Ora de vară.</value>
   </data>
   <data name="DayTitle" xml:space="preserve">
     <value>Zi</value>
@@ -145,10 +145,10 @@
     <value>Valoarea nu este validă</value>
   </data>
   <data name="LocalDateTime" xml:space="preserve">
-    <value>Local Date and Time</value>
+    <value>Data și ora locală</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Timestamp</value>
+    <value>Marcaj de timp</value>
   </data>
   <data name="MinutesTitle" xml:space="preserve">
     <value>Minute</value>
@@ -170,7 +170,7 @@
     <value>Secunde</value>
   </data>
   <data name="SupportsDaylightSavingTime" xml:space="preserve">
-    <value>There is daylight saving time.</value>
+    <value>Este ora de vară.</value>
   </data>
   <data name="TimestampTitle" xml:space="preserve">
     <value>Marcaj de timp</value>
