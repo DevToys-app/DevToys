@@ -143,13 +143,13 @@
     <comment>{0} is the current app version</comment>
   </data>
   <data name="NotificationUpdateAvailableActionableActionText" xml:space="preserve">
-    <value>update now...</value>
+    <value>actualizează acum...</value>
   </data>
   <data name="NotificationUpdateAvailableTitle" xml:space="preserve">
-    <value>An update is available! 🚀</value>
+    <value>O actualizare este disponibilă! 🚀</value>
   </data>
   <data name="OpenInNewWindow" xml:space="preserve">
-    <value>Open in a new window</value>
+    <value>Deschide într-o fereastră nouă</value>
   </data>
   <data name="PinToolToStart" xml:space="preserve">
     <value>Pin tool to Start</value>
