@@ -149,13 +149,13 @@
     <value>Save all</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>Save as</value>
+    <value>Salvează ca</value>
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
     <value>See details</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Lossless image converter</value>
+    <value>Convertor imagine fără pierderi</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Image Converter</value>
