@@ -124,7 +124,7 @@
     <value>Configurație</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Dark</value>
+    <value>Închis la culoare</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Markdown Preview</value>
@@ -133,13 +133,13 @@
     <value>Markdown</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Light</value>
+    <value>Deschisa la culoare</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Preview</value>
+    <value>Previzualizare</value>
   </data>
   <data name="Theme" xml:space="preserve">
-    <value>Theme</value>
+    <value>Temă</value>
   </data>
   <data name="ThemeDescription" xml:space="preserve">
     <value>Select which theme to use to preview the Markdown</value>
