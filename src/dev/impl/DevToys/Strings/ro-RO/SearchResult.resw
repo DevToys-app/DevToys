@@ -121,6 +121,6 @@
     <value>Search results for "{0}"</value>
   </data>
   <data name="NoResultsFound" xml:space="preserve">
-    <value>No results found</value>
+    <value>Nu a fost găsit niciun rezultat</value>
   </data>
 </root>
