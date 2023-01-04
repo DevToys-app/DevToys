@@ -124,7 +124,7 @@
     <value>JWT</value>
   </data>
   <data name="JwtHeaderLabel" xml:space="preserve">
-    <value>Header</value>
+    <value>Antet</value>
   </data>
   <data name="JwtTokenLabel" xml:space="preserve">
     <value>Token</value>
