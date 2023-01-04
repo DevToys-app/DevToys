@@ -127,13 +127,13 @@
     <value>Configurație</value>
   </data>
   <data name="ConversionDecompress" xml:space="preserve">
-    <value>Decompress</value>
+    <value>Extragere</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Select whether the input should be compressed or decompressed</value>
+    <value>Selectați dacă datele de intrare trebuie comprimate sau decomprimate</value>
   </data>
   <data name="ConversionCompress" xml:space="preserve">
-    <value>Compress</value>
+    <value>Compresare</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
     <value>GZip Compress / Decompress</value>
@@ -142,7 +142,7 @@
     <value>GZip</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
-    <value>Select whether the input should be compressed or decompressed</value>
+    <value>Selectați dacă datele de intrare trebuie comprimate sau decomprimate</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
     <value>Codificare</value>
@@ -163,6 +163,6 @@
     <value>GZip Compress / Decompress</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
 </root>
