@@ -148,7 +148,7 @@
     <value>Propoziții</value>
   </data>
   <data name="StartWithLoremTitle" xml:space="preserve">
-    <value>Start with 'Lorem ipsum dolor sit amet...'</value>
+    <value>Incepe cu 'Lorem ipsum dolor sit amet...'</value>
   </data>
   <data name="TypeDescription" xml:space="preserve">
     <value>Generate words, sentences or paragraphs of Lorem Ipsum</value>
