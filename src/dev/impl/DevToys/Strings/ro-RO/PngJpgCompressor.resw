@@ -130,13 +130,13 @@
     <value>Delete</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
-    <value>Delete all</value>
+    <value>Şterge tot</value>
   </data>
   <data name="DetailsTitle" xml:space="preserve">
-    <value>Details</value>
+    <value>Detalii</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>PNG / JPEG Compressor</value>
+    <value>Compresor PNG / JPEG</value>
   </data>
   <data name="FileSizeDisplay" xml:space="preserve">
     <value>{0:0.##} {1}</value>
@@ -149,7 +149,7 @@
     <value>Save all</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>Save as</value>
+    <value>Salvează ca</value>
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
     <value>See details</value>
@@ -158,7 +158,7 @@
     <value>Lossless PNG and JPEG optimizer</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>PNG / JPEG Compressor</value>
+    <value>Compresor PNG / JPEG</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>JPG</value>
