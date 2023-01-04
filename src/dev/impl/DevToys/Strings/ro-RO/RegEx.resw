@@ -124,67 +124,67 @@
     <value>Configurație</value>
   </data>
   <data name="CultureInvariant" xml:space="preserve">
-    <value>Culture Invariant</value>
+    <value>Ignora Diferențele Culturale in Limba</value>
   </data>
   <data name="CultureInvariantDescription" xml:space="preserve">
-    <value>Specifies that cultural differences in language is ignored.</value>
+    <value>Diferențele culturale în limbă sunt ignorate.</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Regex Tester</value>
+    <value>Tester de Regex</value>
   </data>
   <data name="EcmaScript" xml:space="preserve">
-    <value>ECMA Script</value>
+    <value>Script ECMA</value>
   </data>
   <data name="EcmaScriptDescription" xml:space="preserve">
-    <value>Enables ECMAScript-compliant behavior for the expression. This value can be used only in conjunction with the Culture Invariant, Ignore Case and Multiline options.</value>
+    <value>Permite comportamentul conform cu ECMAScript-pentru expresie. Această valoare poate fi folosită numai împreună cu Ignora Diferențele Culturale in Limba, Cazurile Ignorate și Opțiuni Multiline.</value>
   </data>
   <data name="IgnoreCase" xml:space="preserve">
-    <value>Ignore Case</value>
+    <value>Cazuri Ignorate</value>
   </data>
   <data name="IgnoreCaseDescription" xml:space="preserve">
-    <value>Specifies case-insensitive matching.</value>
+    <value>Specifică potrivirea de la caz la caz.</value>
   </data>
   <data name="IgnoreWhitespace" xml:space="preserve">
-    <value>Ignore Whitespace</value>
+    <value>Ignoră Spațiile</value>
   </data>
   <data name="IgnoreWhitespaceDescription" xml:space="preserve">
-    <value>Eliminates unescaped white space from the pattern and enables comments marked with #. However, this value does not affect or eliminate white space in character classes, numeric quantifiers, or tokens that mark the beginning of individual regular expression language elements.</value>
+    <value>Elimină spațiul alb scăpat din model și permite comentariile marcate cu #. Cu toate acestea, această setare nu afectează sau elimină spațiul alb în clasele de caractere, cifrele numerice, sau jetoane care marchează începutul elementelor de limbă individuale de expresie regulată.</value>
   </data>
   <data name="Multiline" xml:space="preserve">
     <value>Multiline</value>
   </data>
   <data name="MultilineDescription" xml:space="preserve">
-    <value>Changes the meaning of ^ and $ so they match at the beginning and end, respectively, of any line, and not just the beginning and end of the entire string.</value>
+    <value>Schimbă semnificația ^ și $ astfel încât să se potrivească la început și, respectiv, la sfârșit de orice linie, și nu doar începutul și sfârșitul întregului șir.</value>
   </data>
   <data name="Options" xml:space="preserve">
-    <value>Options</value>
+    <value>Opțiuni</value>
   </data>
   <data name="RegularExpression" xml:space="preserve">
-    <value>Regular expression</value>
+    <value>Expresie logică</value>
   </data>
   <data name="RightToLeft" xml:space="preserve">
-    <value>Right To Left</value>
+    <value>De la dreapta la stânga</value>
   </data>
   <data name="RightToLeftDescription" xml:space="preserve">
-    <value>Specifies that the search will be from right to left instead of from left to right.</value>
+    <value>Căutarea va fi de la dreapta la stânga în loc de stânga la dreapta.</value>
   </data>
   <data name="Singleline" xml:space="preserve">
     <value>Singleline</value>
   </data>
   <data name="SinglelineDescription" xml:space="preserve">
-    <value>Changes the meaning of the dot (.) so it matches every character (instead of every character except \n).</value>
+    <value>Modifică sensul punctului (.) astfel încât acesta se potrivește cu fiecare caracter (în loc de fiecare caracter cu excepția \n).</value>
   </data>
   <data name="Text" xml:space="preserve">
     <value>Text</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Validate and test regular expressions</value>
+    <value>Validează și testează expresii regulate</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Regex Tester</value>
+    <value>Tester de Regex</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Regular expression</value>
+    <value>Expresie logică</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
     <value>Input</value>
@@ -193,12 +193,12 @@
     <value>Output</value>
   </data>
   <data name="Group" xml:space="preserve">
-    <value>Group</value>
+    <value>Grup</value>
   </data>
   <data name="Match" xml:space="preserve">
-    <value>Match</value>
+    <value>Rezultat</value>
   </data>
   <data name="Matches" xml:space="preserve">
-    <value>Matches</value>
+    <value>Rezultate</value>
   </data>
 </root>
