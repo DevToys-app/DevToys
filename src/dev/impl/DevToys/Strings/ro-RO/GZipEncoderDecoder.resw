@@ -136,7 +136,7 @@
     <value>Compresare</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>GZip Compress / Decompress</value>
+    <value>GZip Compresare / Dezarhivare</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>GZip</value>
@@ -157,10 +157,10 @@
     <value>UTF-8</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Compress or decompress strings</value>
+    <value>Compresează sau decompresează șiruri</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>GZip Compress / Decompress</value>
+    <value>GZip Compresare / Dezarhivare</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value/>
