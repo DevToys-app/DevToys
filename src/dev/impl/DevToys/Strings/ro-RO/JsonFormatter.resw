@@ -136,7 +136,7 @@
     <value>Input</value>
   </data>
   <data name="Minified" xml:space="preserve">
-    <value>Minified</value>
+    <value>Minimizat</value>
   </data>
   <data name="OneTab" xml:space="preserve">
     <value>1 tab</value>
@@ -157,6 +157,6 @@
     <value/>
   </data>
   <data name="SortProperties" xml:space="preserve">
-    <value>Sort JSON properties alphabetically</value>
+    <value>Sortează proprietățile JSON în ordine alfabetică</value>
   </data>
 </root>
