@@ -130,7 +130,7 @@
     <value>DevToys</value>
   </data>
   <data name="Behaviors" xml:space="preserve">
-    <value>Behaviors</value>
+    <value>Comportament</value>
   </data>
   <data name="Close" xml:space="preserve">
     <value>Închide</value>
@@ -199,7 +199,7 @@
     <value>Cum se utilizează Detectarea inteligentă</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automatically paste the clipboard content when selecting a recommended tool</value>
+    <value>Inserează automat conținutul clipboard-ului când selectați un instrument recomandat</value>
   </data>
   <data name="SourceCode" xml:space="preserve">
     <value>Cod sursă</value>
