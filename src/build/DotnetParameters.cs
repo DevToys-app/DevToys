@@ -8,21 +8,16 @@ internal sealed record DotnetParameters
 
     internal readonly string TargetFramework;
 
-    internal readonly bool PublishTrimmed;
+    internal readonly bool Portable;
 
-    internal readonly bool SelfContained;
+    internal readonly string OutputPath;
 
-    public DotnetParameters(
-        AbsolutePath projectOrSolutionPath,
-        string runtimeIdentifier,
-        string targetFramework,
-        bool publishTrimmed,
-        bool selfContained)
+    public DotnetParameters(AbsolutePath projectOrSolutionPath, string runtimeIdentifier, string targetFramework, bool portable)
     {
         ProjectOrSolutionPath = projectOrSolutionPath;
         RuntimeIdentifier = runtimeIdentifier;
         TargetFramework = targetFramework;
-        PublishTrimmed = publishTrimmed;
-        SelfContained = selfContained;
+        Portable = portable;
+        OutputPath = $"{ProjectOrSolutionPath.Name}-{TargetFramework}-{RuntimeIdentifier}{(portable ? "-portable" : string.Empty)}";
     }
 }

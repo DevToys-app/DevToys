@@ -42,7 +42,7 @@
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
     <AppxBundlePlatforms>x86|x64|arm64</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
-    <AppxPackageDir>..\..\..\..\..\..\..\bin\AppPackages\</AppxPackageDir>
+    <AppxPackageDir>..\..\..\..\..\..\..\publish\MSIX\</AppxPackageDir>
     <AppxBundle>Always</AppxBundle>
     <EntryPointProjectUniqueName>..\DevToys.Windows.Core\DevToys.Windows.Core.csproj</EntryPointProjectUniqueName>
     <UapAppxPackageBuildMode>StoreAndSideload</UapAppxPackageBuildMode>
