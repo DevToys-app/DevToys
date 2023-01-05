@@ -3,7 +3,7 @@ using System.IO;
 using Nuke.Common.IO;
 using Serilog;
 
-internal static class AppVersion
+internal static class AppVersionTask
 {
     internal static void SetAppVersion(AbsolutePath rootDirectory)
     {

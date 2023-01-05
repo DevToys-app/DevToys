@@ -8,7 +8,7 @@
       "properties": {
         "Configuration": {
           "type": "string",
-          "description": "Configuration to build - Default is 'Debug' (local) or 'Release' (server)",
+          "description": "Configuration to build - Default is 'Release'",
           "enum": [
             "Debug",
             "Release"
@@ -43,10 +43,6 @@
             "VSCode"
           ]
         },
-        "IncrementalBuild": {
-          "type": "boolean",
-          "description": "Do an incremental build"
-        },
         "NoLogo": {
           "type": "boolean",
           "description": "Disables displaying the NUKE logo"
@@ -65,10 +61,10 @@
           "items": {
             "type": "string",
             "enum": [
-              "Linux",
+              "CLI",
               "MacOS",
               "Wasm",
-              "Windows"
+              "WindowsUwp"
             ]
           }
         },
@@ -78,22 +74,6 @@
           "items": {
             "type": "string"
           }
-        },
-        "PublishReadyToRun": {
-          "type": "boolean",
-          "description": "https://bit.ly/3RSEo7w"
-        },
-        "PublishSelfContained": {
-          "type": "boolean",
-          "description": "https://bit.ly/2OEU0KO - Enabled by default"
-        },
-        "PublishSingleFile": {
-          "type": "boolean",
-          "description": "https://bit.ly/3xvq7FA"
-        },
-        "PublishTrimmed": {
-          "type": "boolean",
-          "description": "https://bit.ly/3RKZkNH"
         },
         "Root": {
           "type": "string",
@@ -110,7 +90,7 @@
             "type": "string",
             "enum": [
               "Clean",
-              "Compile",
+              "PreliminaryCheck",
               "Publish",
               "Restore",
               "SetVersion",
@@ -129,7 +109,7 @@
             "type": "string",
             "enum": [
               "Clean",
-              "Compile",
+              "PreliminaryCheck",
               "Publish",
               "Restore",
               "SetVersion",

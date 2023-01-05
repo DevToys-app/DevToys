@@ -1,7 +1,7 @@
 ﻿enum PlatformTarget
 {
-    Windows,
+    WindowsUwp,
     MacOS,
-    Linux,
+    CLI,
     Wasm
 }
