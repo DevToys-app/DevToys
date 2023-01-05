@@ -142,7 +142,7 @@
     <value>Coloană:</value>
   </data>
   <data name="ConstantCase" xml:space="preserve">
-    <value>CONSTANT_CASE</value>
+    <value>CAZ_CONSTANT</value>
   </data>
   <data name="Convert" xml:space="preserve">
     <value>Transformă</value>
