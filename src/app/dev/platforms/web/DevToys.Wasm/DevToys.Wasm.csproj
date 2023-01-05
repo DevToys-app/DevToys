@@ -1,0 +1,65 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>$(NetCore)</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <NoWarn>NU1701</NoWarn>
+    <WasmPWAManifestFile>manifest.json</WasmPWAManifestFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <MonoRuntimeDebuggerEnabled>true</MonoRuntimeDebuggerEnabled>
+    <DefineConstants>$(DefineConstants);TRACE;DEBUG</DefineConstants>
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <!--
+    IL Linking is disabled in Debug configuration.
+    When building in Release, see https://platform.uno/docs/articles/features/using-il-linker-webassembly.html
+    -->
+    <WasmShellILLinkerEnabled>false</WasmShellILLinkerEnabled>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Assets\SplashScreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <UpToDateCheckInput Include="..\..\..\DevToys.UI\**\*.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="WasmCSS\Fonts.css" />
+    <EmbeddedResource Include="WasmScripts\AppManifest.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <LinkerDescriptor Include="LinkerConfig.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <!--
+    This item group is required by the project template because of the
+    new SDK-Style project, otherwise some files are not added automatically.
+
+    You can safely remove this ItemGroup completely.
+    -->
+    <None Include="Program.cs" />
+    <None Include="LinkerConfig.xml" />
+    <None Include="wwwroot\web.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging" />
+    <PackageReference Include="Microsoft.Windows.Compatibility" />
+    <PackageReference Include="Uno.Extensions.Logging.WebAssembly.Console" />
+    <PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" />
+    <PackageReference Include="Uno.Wasm.Bootstrap" />
+    <PackageReference Include="Uno.Wasm.Bootstrap.DevServer" />
+    <PackageReference Include="Uno.WinUI.Lottie" />
+    <PackageReference Include="Uno.WinUI.WebAssembly" />
+    <PackageReference Include="Uno.WinUI.RemoteControl" Condition="'$(Configuration)'=='Debug'" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\DevToys.Api\DevToys.Api.csproj" />
+    <ProjectReference Include="..\..\..\DevToys.Core\DevToys.Core.csproj" />
+    <ProjectReference Include="..\..\..\DevToys.MonacoEditor\DevToys.MonacoEditor.csproj" />
+    <ProjectReference Include="..\..\..\DevToys.UI.Framework\DevToys.UI.Framework.csproj" />
+    <ProjectReference Include="..\..\..\DevToys.UI\DevToys.UI.csproj" />
+  </ItemGroup>
+  <Import Project="..\..\..\DevToys.UI.EntryPoint\DevToys.UI.EntryPoint.projitems" Label="Shared" Condition="Exists('..\..\..\DevToys.UI.EntryPoint\DevToys.UI.EntryPoint.projitems')" />
+</Project>
