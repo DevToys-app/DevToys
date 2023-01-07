@@ -696,6 +696,8 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
             .Forget();
 
         // Update options.
+        Options.SmoothScrolling = true;
+        Options.Minimap = new EditorMinimapOptions() { Enabled = false };
         Options.ReadOnly = ReadOnly;
         Options.Language = CodeLanguage;
         DiffOptions.OriginalEditable = !ReadOnly;

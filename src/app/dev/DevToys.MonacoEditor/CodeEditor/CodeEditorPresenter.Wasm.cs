@@ -118,7 +118,7 @@ public sealed partial class CodeEditorPresenter : Control, ICodeEditorPresenter,
                 return Task.CompletedTask;
             }
 
-            string? native = method.Invoke(obj.Handle, new object[] { }) as string;
+            string? native = method.Invoke(obj.Handle, Array.Empty<object>()) as string;
             _debugLogger?.Debug($"{nameof(InjectDotNetObjectToWebPageAsync)}: Native handle {native} - {name}");
 
             string injectorScript

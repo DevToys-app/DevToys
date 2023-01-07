@@ -50,6 +50,7 @@ internal sealed class SampleCommandLineTool : ICommandLineTool
 [TargetPlatform(Platform.Windows)] // Optional. Not putting any attribute means every platforms are supported.
 [TargetPlatform(Platform.Linux)]
 [TargetPlatform(Platform.MacOS)]
+[TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool : IGuiTool
 {
     public UIElement View => throw new NotImplementedException();

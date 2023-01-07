@@ -29,5 +29,14 @@
                            Grid.Column="1"
                            ReadOnly="True"
                            IsDiffViewMode="True"/>
+        <ToggleSwitch
+            Grid.Row="1"
+            Grid.Column="0"
+            Header="Test"/>
+        <ToggleSwitch
+            Grid.Row="1"
+            Grid.Column="1"
+            Header="Test"
+            Style="{StaticResource RightAlignedToggleSwitchStyle}"/>
     </Grid>
 </Page>
