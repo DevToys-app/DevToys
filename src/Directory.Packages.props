@@ -5,11 +5,11 @@
       them in UWP projects explicitely so we keep consistent package version number across the repository.
     -->
     <CommunityToolkitVersion>8.0.0</CommunityToolkitVersion>
-    <DotNetVersion>6.0.0</DotNetVersion>
+    <DotNetVersion>7.0.0</DotNetVersion>
     <MicrosoftNETCoreUniversalWindowsPlatformVersion>6.2.14</MicrosoftNETCoreUniversalWindowsPlatformVersion>
     <MicrosoftWindowsSDKBuildToolsVersion>10.0.22621.1</MicrosoftWindowsSDKBuildToolsVersion>
     <PolySharpVersion>1.8.1</PolySharpVersion>
-    <UnoVersion>4.6.19</UnoVersion>
+    <UnoVersion>4.6.39</UnoVersion>
     <UnoWasmBootstrapVersion>8.0.0-dev.65</UnoWasmBootstrapVersion>
     <WebView2Version>1.0.1462.37</WebView2Version>
   </PropertyGroup>
