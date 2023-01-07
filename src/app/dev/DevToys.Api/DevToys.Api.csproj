@@ -9,5 +9,6 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
     <PackageReference Include="System.ComponentModel.Composition" />
     <PackageReference Include="System.Threading.Tasks.Extensions" />
+    <PackageReference Include="ThisAssembly" />
   </ItemGroup>
 </Project>

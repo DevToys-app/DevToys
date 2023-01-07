@@ -68,6 +68,7 @@
     <UpToDateCheckInput Include="**\*.xaml" />
     <Page Include="**\*.xaml" />
     <Content Include="Assets\**" />
+    <PRIResource Include="**\*.resw" />
     <Compile Update="**\*.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>

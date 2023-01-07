@@ -10,6 +10,7 @@
     <PackageReference Include="CommunityToolkit.Diagnostics" />
     <PackageReference Include="System.CommandLine" />
     <PackageReference Include="System.ComponentModel.Composition" />
+    <PackageReference Include="ThisAssembly" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" />
   </ItemGroup>
 

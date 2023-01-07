@@ -10,5 +10,6 @@
     <PackageReference Include="CommunityToolkit.Diagnostics" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
     <PackageReference Include="System.ComponentModel.Composition" />
+    <PackageReference Include="ThisAssembly" />
   </ItemGroup>
 </Project>

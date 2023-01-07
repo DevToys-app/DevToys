@@ -1,4 +1,5 @@
 ﻿#if WINDOWS_UWP
+#nullable enable
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using DispatcherQueue = Windows.UI.Core.CoreDispatcher;
