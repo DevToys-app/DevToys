@@ -5,6 +5,7 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <NoWarn>NU1701</NoWarn>
     <WasmPWAManifestFile>manifest.json</WasmPWAManifestFile>
+    <DefineConstants>__WASM__</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">

@@ -57,10 +57,12 @@ public sealed partial class App : Application
 #if NET6_0_OR_GREATER && WINDOWS && !HAS_UNO
         _window = new Window();
         _window.Activate();
-#else
+#elif __MAC__
         // Important! Keep the full name `Microsoft.UI.Xaml.Window.Current` otherwise the Mac app won't build.
         // See https://blog.mzikmund.com/2020/04/resolving-uno-platform-uiwindow-does-not-contain-a-definition-for-current-issue/
         _window = Microsoft.UI.Xaml.Window.Current;
+#else
+        _window = Window.Current;
 #endif
 
 #if WINDOWS_UWP
