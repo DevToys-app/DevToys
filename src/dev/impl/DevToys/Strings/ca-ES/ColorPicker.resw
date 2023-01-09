@@ -133,7 +133,7 @@
     <value>RGB WCAG</value>
   </data>
   <data name="TextColor" xml:space="preserve">
-    <value>Text color</value>
+    <value>Color del text</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Configuració</value>
@@ -148,22 +148,22 @@
     <value>HSV</value>
   </data>
   <data name="SelectedColor" xml:space="preserve">
-    <value>Selected color</value>
+    <value>Color seleccionat</value>
   </data>
   <data name="BackgroundColor" xml:space="preserve">
-    <value>Background color</value>
+    <value>Color de fons</value>
   </data>
   <data name="ContrastRatio" xml:space="preserve">
-    <value>Contrast ratio</value>
+    <value>Ràtio de contrast</value>
   </data>
   <data name="Fail" xml:space="preserve">
     <value>Fail</value>
   </data>
   <data name="LargeText" xml:space="preserve">
-    <value>Large text</value>
+    <value>Text de mida gran</value>
   </data>
   <data name="Pass" xml:space="preserve">
-    <value>Pass</value>
+    <value>Correcte</value>
   </data>
   <data name="SampleText" xml:space="preserve">
     <value>Sit kasd feugait takimata in eirmod sadipscing sanctus consectetuer voluptua dolor dolor dolore rebum.</value>
