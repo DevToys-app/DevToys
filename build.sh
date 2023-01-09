@@ -3,7 +3,7 @@
 set -eo pipefail
 SCRIPT_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
 
-# Install .Net
+# Install .NET
 . "./tools/Install-DotNet.sh" $SCRIPT_DIR
 
 # Build the build project.

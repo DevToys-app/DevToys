@@ -1,4 +1,5 @@
 {
   "$schema": "./build.schema.json",
-  "Solution": "src/DevToys.sln"
+  "WindowsSolution": "src/DevToys-Windows.sln",
+  "MacSolution": "src/DevToys-MacOS.sln"
 }

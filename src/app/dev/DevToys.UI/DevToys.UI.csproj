@@ -1,10 +1,12 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras/3.0.44">
+﻿<Project Sdk="MSBuild.Sdk.Extras">
   <!--
     Adding project references to this project requires some manual adjustments.
     Please see https://github.com/unoplatform/uno/issues/3909 for more details.
   -->
   <PropertyGroup>
-    <TargetFrameworks>$(UAP);$(NetCore)</TargetFrameworks>
+    <TargetFrameworks>$(NetCore)</TargetFrameworks>
+    <TargetFrameworks Condition="$(IsMac)">$(TargetFrameworks);$(NetMacCatalyst)</TargetFrameworks>
+    <TargetFrameworks Condition="$(IsWindows)">$(TargetFrameworks);$(UAP)</TargetFrameworks>
     <!-- Ensures the .xr.xml files are generated in a proper layout folder -->
     <GenerateLibraryLayout>true</GenerateLibraryLayout>
 
@@ -17,12 +19,21 @@
     <IsUWP>true</IsUWP>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(TargetFramework)' == '$(NetMacCatalyst)'">
+    <IsMacCatalyst>true</IsMacCatalyst>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(TargetFramework)' == '$(NetCore)'">
     <IsWasm>true</IsWasm>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(IsWasm)' == 'true'">
     <DefineConstants>$(DefineConstants);__WASM__</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(IsMacCatalyst)' == 'true'">
+    <DefineConstants>$(DefineConstants);__MAC__</DefineConstants>
+    <SupportedOSPlatformVersion>14.0</SupportedOSPlatformVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(IsUWP)' == 'true'">
@@ -55,18 +66,21 @@
     <PackageReference Include="Microsoft.UI.Xaml" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(IsWasm)' == 'true'">
+  <ItemGroup Condition="'$(IsWasm)' == 'true' OR '$(IsMacCatalyst)' =='true'">
     <PackageReference Include="Microsoft.Windows.Compatibility" />
-    <PackageReference Include="Uno.Extensions.Logging.WebAssembly.Console" />
     <PackageReference Include="Uno.WinUI" />
     <PackageReference Include="Uno.WinUI.Lottie" />
-    <PackageReference Include="Uno.WinUI.Runtime.WebAssembly" />
     <PackageReference Include="Uno.WinUI.RemoteControl" Condition="'$(Configuration)'=='Debug'" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(IsWasm)' == 'true'">
+    <PackageReference Include="Uno.Extensions.Logging.WebAssembly.Console" />
+    <PackageReference Include="Uno.WinUI.Runtime.WebAssembly" />
   </ItemGroup>
 
   <ItemGroup>
     <UpToDateCheckInput Include="**\*.xaml" />
-    <Page Include="**\*.xaml" >
+    <Page Include="**\*.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

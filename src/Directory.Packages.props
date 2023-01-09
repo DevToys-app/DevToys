@@ -9,7 +9,6 @@
     <MicrosoftNETCoreUniversalWindowsPlatformVersion>6.2.14</MicrosoftNETCoreUniversalWindowsPlatformVersion>
     <MicrosoftWindowsSDKBuildToolsVersion>10.0.22621.1</MicrosoftWindowsSDKBuildToolsVersion>
     <PolySharpVersion>1.8.1</PolySharpVersion>
-    <ThisAssemblyVersion>1.1.1</ThisAssemblyVersion>
     <UnoVersion>4.6.39</UnoVersion>
     <UnoWasmBootstrapVersion>8.0.0-dev.65</UnoWasmBootstrapVersion>
     <WebView2Version>1.0.1462.37</WebView2Version>
@@ -39,9 +38,10 @@
     <PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
     <PackageVersion Include="System.ComponentModel.Composition" Version="$(DotNetVersion)" />
     <PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
-    <PackageVersion Include="ThisAssembly" Version="$(ThisAssemblyVersion)"/>
+    <PackageVersion Include="System.Runtime.InteropServices.WindowsRuntime" Version="4.3.0" />
     <PackageVersion Include="Uno.Core.Extensions.Logging" Version="4.0.1" />
     <PackageVersion Include="Uno.Core.Extensions.Logging.Singleton" Version="4.0.1" />
+    <PackageVersion Include="Uno.Extensions.Logging.OSLog" Version="1.4.0" />
     <PackageVersion Include="Uno.Extensions.Logging.WebAssembly.Console" Version="1.4.0" />
     <PackageVersion Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="$(UnoVersion)" />
     <PackageVersion Include="Uno.Wasm.Bootstrap" Version="$(UnoWasmBootstrapVersion)" />

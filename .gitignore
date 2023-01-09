@@ -417,6 +417,7 @@ $RECYCLE.BIN/
 *.js
 *.js.map
 package-lock.json
+!AppManifest.js
 
 # Nuke Build
 .nuke/temp/

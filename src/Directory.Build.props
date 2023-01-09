@@ -14,12 +14,14 @@
     <NetCore>net6.0</NetCore>
     <NetCoreWindows>$(NetCore)-windows$(Windows10MinSDKVersionTrimmed)</NetCoreWindows>
 
+    <NetMacCatalyst>$(NetCore)-maccatalyst</NetMacCatalyst>
     <UAP>uap$(Windows10MinSDKVersionTrimmed)</UAP>
 
     <!-- Define default build configuration -->
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <UseAppHost Condition="$(IsMac)">False</UseAppHost>
 
     <!-- Defines the bin and obj folder paths -->
     <RepoRoot>$([System.IO.Path]::GetDirectoryName($([MSBuild]::GetPathOfFileAbove('.gitignore', '$(MSBuildThisFileDirectory)'))))\</RepoRoot>

@@ -1,0 +1,41 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "build-wasm",
+        "command": "dotnet",
+        "type": "process",
+        "args": [
+          "build",
+          "${workspaceFolder}/src/app/dev/platforms/web/DevToys.Wasm/DevToys.Wasm.csproj",
+          "/property:GenerateFullPaths=true",
+          "/consoleloggerparameters:NoSummary"
+        ],
+        "problemMatcher": "$msCompile"
+      },
+      {
+        "label": "build-macos",
+        "command": "dotnet",
+        "type": "process",
+        "args": [
+          "build",
+          "${workspaceFolder}/src/app/dev/platforms/desktop/macos/DevToys.MacOS/DevToys.MacOS.csproj",
+          "/property:GenerateFullPaths=true",
+          "/consoleloggerparameters:NoSummary"
+        ],
+        "problemMatcher": "$msCompile"
+      },
+      {
+        "label": "build-cli",
+        "command": "dotnet",
+        "type": "process",
+        "args": [
+          "build",
+          "${workspaceFolder}/src/app/dev/platforms/desktop/DevToys.CLI/DevToys.CLI.csproj",
+          "/property:GenerateFullPaths=true",
+          "/consoleloggerparameters:NoSummary"
+        ],
+        "problemMatcher": "$msCompile"
+      }
+    ]
+  }

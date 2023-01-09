@@ -94,7 +94,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="ThisAssembly" Version="$(ThisAssemblyVersion)" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\DevToys.Api\DevToys.Api.csproj">

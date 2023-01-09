@@ -42,7 +42,10 @@ class Build : NukeBuild
     readonly bool RunTests;
 
     [Solution]
-    readonly Solution Solution;
+    readonly Solution WindowsSolution;
+
+    [Solution]
+    readonly Solution MacSolution;
 
     Target PreliminaryCheck => _ => _
         .Before(Clean)
@@ -58,6 +61,11 @@ class Build : NukeBuild
                 Assert.Fail("To build Windows UWP app, you need to run on Windows 10 or later.");
             }
 
+            if (PlatformTargets.Contains(PlatformTarget.MacOS) && !OperatingSystem.IsMacOS())
+            {
+                Assert.Fail("To build macOS app, you need to run on macOS Ventura 13.1 or later.");
+            }
+
             Log.Information("Preliminary checks are successful.");
         });
 
@@ -67,7 +75,7 @@ class Build : NukeBuild
         {
             if (!Debugger.IsAttached)
             {
-                RootDirectory.GlobDirectories("bin", "obj", "publish").ForEach(DeleteDirectory);
+                RootDirectory.GlobDirectories("bin", "obj", "publish").ForEach(EnsureCleanDirectory);
             }
         });
 
@@ -139,6 +147,47 @@ class Build : NukeBuild
                     });
             }
 
+            if (PlatformTargets.Contains(PlatformTarget.MacOS))
+            {
+                Project project = MacSolution.GetProject("DevToys.MacOS");
+                var configs = new List<DotnetParameters>();
+                foreach (string targetFramework in project.GetTargetFrameworks())
+                {
+                    configs.Add(new DotnetParameters(project.Path, "maccatalyst-arm64", targetFramework, portable: true));
+                    configs.Add(new DotnetParameters(project.Path, "maccatalyst-x64", targetFramework, portable: true));
+                }
+
+                foreach (DotnetParameters dotnetParameters in configs)
+                {
+                    Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + "-" + dotnetParameters.TargetFramework + "-" + dotnetParameters.RuntimeIdentifier}...");
+                    DotNetBuild(s => s
+                        .SetProjectFile(dotnetParameters.ProjectOrSolutionPath)
+                        .SetConfiguration(Configuration)
+                        .SetFramework(dotnetParameters.TargetFramework)
+                        .SetRuntime(dotnetParameters.RuntimeIdentifier)
+                        .SetSelfContained(dotnetParameters.Portable)
+                        .SetPublishSingleFile(true)
+                        .SetPublishReadyToRun(true)
+                        .SetPublishTrimmed(true) /* Required for MacCatalyst*/
+                        .SetVerbosity(DotNetVerbosity.Quiet)
+                        .SetProcessArgumentConfigurator(_ => _.Add("/p:CreatePackage=True")) /* Will create an installable .pkg */
+                        .SetNoRestore(true)); /* workaround for https://github.com/xamarin/xamarin-macios/issues/15664#issuecomment-1233123515 */
+                    DotNetPublish(s => s
+                        .SetProject(dotnetParameters.ProjectOrSolutionPath)
+                        .SetConfiguration(Configuration)
+                        .SetFramework(dotnetParameters.TargetFramework)
+                        .SetRuntime(dotnetParameters.RuntimeIdentifier)
+                        .SetSelfContained(dotnetParameters.Portable)
+                        .SetPublishSingleFile(true)
+                        .SetPublishReadyToRun(true)
+                        .SetPublishTrimmed(true) /* Required for MacCatalyst*/
+                        .SetVerbosity(DotNetVerbosity.Quiet)
+                        .SetProcessArgumentConfigurator(_ => _.Add("/p:CreatePackage=True")) /* Will create an installable .pkg */
+                        .SetNoRestore(true) /* workaround for https://github.com/xamarin/xamarin-macios/issues/15664#issuecomment-1233123515 */
+                        .SetOutput(RootDirectory / "publish" / dotnetParameters.OutputPath));
+                }
+            }
+
             if (PlatformTargets.Contains(PlatformTarget.CLI))
             {
                 foreach (DotnetParameters dotnetParameters in GetDotnetParametersForCliApp())
@@ -162,10 +211,11 @@ class Build : NukeBuild
     IEnumerable<DotnetParameters> GetDotnetParametersForCliApp()
     {
         string publishProject = "DevToys.CLI";
-        Project project = Solution.GetProject(publishProject);
+        Project project;
 
         if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
         {
+            project = MacSolution.GetProject(publishProject);
             foreach (string targetFramework in project.GetTargetFrameworks())
             {
                 // TODO: I believe that on macOS, PublishTrimmed may be mandatory?
@@ -178,6 +228,7 @@ class Build : NukeBuild
         }
         else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
+            project = WindowsSolution.GetProject(publishProject);
             foreach (string targetFramework in project.GetTargetFrameworks())
             {
                 yield return new DotnetParameters(project.Path, "win10-x64", targetFramework, portable: false);

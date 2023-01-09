@@ -2,8 +2,8 @@
   "compileOnSave": true,
   "compilerOptions": {
     "emitBOM": false,
-    "target": "ES2015",
-    "lib": [ "ES2015", "DOM" ],
+    "target": "es2018",
+    "lib": [ "es2018", "DOM" ],
     "sourceMap": false,
     "outFile": "..\\..\\WasmScripts\\uno-monaco-helpers.js"
   },

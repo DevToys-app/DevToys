@@ -1,0 +1,60 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>$(NetMacCatalyst)</TargetFrameworks>
+    <!-- <SingleProject>true</SingleProject> -->
+    <OutputType>Exe</OutputType>    <!-- Debugger workaround https://github.com/dotnet/maui-samples/blob/8aa6b8780b12e97b157514c3bdc54bb4a13001cd/HelloMacCatalyst/HelloMacCatalyst.csproj#L7 -->    <!-- <MtouchExtraArgs Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">$(MtouchExtraArgs) -setenv:MONO_THREADS_SUSPEND=preemptive</MtouchExtraArgs> -->    <!-- Required for C# Hot Reload, except for macOS which uses CoreCLR (not Mono) -->    <!-- Disabled because of https://github.com/dotnet/runtime/issues/68808 -->    <!--<UseInterpreter Condition="'$(Configuration)' == 'Debug' and '$(TargetFramework)' != 'net6.0-maccatalyst' and '$(TargetFramework)' != 'net6.0-macos'">True</UseInterpreter>-->
+    <IsUnoHead>true</IsUnoHead>
+    <SupportedOSPlatformVersion>14.0</SupportedOSPlatformVersion>
+    <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers>
+    <ApplicationId>com.etiennebaudoux.devtoys</ApplicationId>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <CreatePackage>false</CreatePackage>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <CreatePackage>false</CreatePackage>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Uno.WinUI" />
+    <PackageReference Include="Uno.WinUI.RemoteControl" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" />
+    <PackageReference Include="Uno.WinUI.Lottie" />
+    <PackageReference Include="Uno.Extensions.Logging.OSLog" />
+  </ItemGroup>
+  <PropertyGroup>
+    <!-- Configure the GC -->
+    <MtouchExtraArgs>$(MtouchExtraArgs) --setenv=MONO_GC_PARAMS=soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep,concurrent-sweep</MtouchExtraArgs>
+    <!-- Required for unknown crash as of .NET 6 Mobile Preview 13 -->
+    <MtouchExtraArgs>$(MtouchExtraArgs) --registrar:static</MtouchExtraArgs>
+    <!-- https://github.com/xamarin/xamarin-macios/issues/14812 -->
+    <MtouchExtraArgs>$(MtouchExtraArgs) --marshal-objectivec-exceptions:disable</MtouchExtraArgs>
+    <!-- Full globalization is required for Uno -->
+    <InvariantGlobalization>false</InvariantGlobalization>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\DevToys.Api\DevToys.Api.csproj" />
+    <ProjectReference Include="..\..\..\..\DevToys.Core\DevToys.Core.csproj" />
+    <ProjectReference Include="..\..\..\..\DevToys.MonacoEditor\DevToys.MonacoEditor.csproj" />
+    <ProjectReference Include="..\..\..\..\DevToys.UI.Framework\DevToys.UI.Framework.csproj" />
+    <ProjectReference Include="..\..\..\..\DevToys.UI\DevToys.UI.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Update="MacOS\Assets.xcassets\AppIcon.appiconset\AppIcon-512%402x.png">
+      <Link>MacOS\Assets.xcassets\AppIcon.appiconset\AppIcon-512%402x.png</Link>
+    </ImageAsset>
+    <ImageAsset Update="MacOS\Assets.xcassets\AppIcon.appiconset\AppIcon-32%402x.png">
+      <Link>MacOS\Assets.xcassets\AppIcon.appiconset\AppIcon-32%402x.png</Link>
+    </ImageAsset>
+    <ImageAsset Update="MacOS\Assets.xcassets\AppIcon.appiconset\AppIcon-16%402x.png">
+      <Link>MacOS\Assets.xcassets\AppIcon.appiconset\AppIcon-16%402x.png</Link>
+    </ImageAsset>
+    <ImageAsset Update="MacOS\Assets.xcassets\AppIcon.appiconset\AppIcon-256%402x.png">
+      <Link>MacOS\Assets.xcassets\AppIcon.appiconset\AppIcon-256%402x.png</Link>
+    </ImageAsset>
+    <ImageAsset Update="MacOS\Assets.xcassets\AppIcon.appiconset\AppIcon-128%402x.png">
+      <Link>MacOS\Assets.xcassets\AppIcon.appiconset\AppIcon-128%402x.png</Link>
+    </ImageAsset>
+  </ItemGroup>
+  <Import Project="..\..\..\..\DevToys.UI.EntryPoint\DevToys.UI.EntryPoint.projitems" Label="Shared" Condition="Exists('..\..\..\..\DevToys.UI.EntryPoint\DevToys.UI.EntryPoint.projitems')" />
+</Project>

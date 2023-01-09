@@ -6,8 +6,12 @@ set -eo pipefail
 SCRIPT_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
 SCRIPT_DIR="${SCRIPT_DIR}/"
 
-# Install .Net
+# Install .NET
 . "./tools/Install-DotNet.sh" "$SCRIPT_DIR"
+
+# Install .NET workloads
+echo "Install .NET workloads"
+dotnet workload install maccatalyst
 
 # Restore NuGet solution dependencies
 echo "Restoring all dependencies"
