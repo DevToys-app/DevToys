@@ -10,9 +10,11 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <CreatePackage>false</CreatePackage>
+    <DefineConstants>DEBUG;TRACE;__MAC__</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <CreatePackage>false</CreatePackage>
+    <DefineConstants>TRACE;__MAC__</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Uno.WinUI" />
