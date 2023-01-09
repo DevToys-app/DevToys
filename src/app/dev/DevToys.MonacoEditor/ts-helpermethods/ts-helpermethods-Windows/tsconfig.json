@@ -1,7 +1,7 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "target": "ES2015",
+    "target": "es2018",
     "sourceMap": false
   },
   "include": [

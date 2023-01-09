@@ -43,6 +43,10 @@
             "VSCode"
           ]
         },
+        "MacSolution": {
+          "type": "string",
+          "description": "Path to a solution file that is automatically loaded"
+        },
         "NoLogo": {
           "type": "boolean",
           "description": "Disables displaying the NUKE logo"
@@ -98,10 +102,6 @@
             ]
           }
         },
-        "Solution": {
-          "type": "string",
-          "description": "Path to a solution file that is automatically loaded"
-        },
         "Target": {
           "type": "array",
           "description": "List of targets to be invoked. Default is '{default_target}'",
@@ -126,6 +126,10 @@
             "Quiet",
             "Verbose"
           ]
+        },
+        "WindowsSolution": {
+          "type": "string",
+          "description": "Path to a solution file that is automatically loaded"
         }
       }
     }

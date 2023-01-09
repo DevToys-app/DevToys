@@ -121,7 +121,7 @@ public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresen
 
         await tcs.Task;
 
-        // Request to inject .Net web object into the web page.
+        // Request to inject .NET web object into the web page.
         Guard.IsNotNull(DotNetObjectInjectionRequested);
         await DotNetObjectInjectionRequested.Invoke(this, EventArgs.Empty);
 

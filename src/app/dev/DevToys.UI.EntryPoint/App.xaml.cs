@@ -58,7 +58,9 @@ public sealed partial class App : Application
         _window = new Window();
         _window.Activate();
 #else
-        _window = Window.Current;
+        // Important! Keep the full name `Microsoft.UI.Xaml.Window.Current` otherwise the Mac app won't build.
+        // See https://blog.mzikmund.com/2020/04/resolving-uno-platform-uiwindow-does-not-contain-a-definition-for-current-issue/
+        _window = Microsoft.UI.Xaml.Window.Current;
 #endif
 
 #if WINDOWS_UWP
@@ -144,7 +146,7 @@ public sealed partial class App : Application
         {
 #if __WASM__
             builder.AddProvider(new global::Uno.Extensions.Logging.WebAssembly.WebAssemblyConsoleLoggerProvider());
-#elif __IOS__
+#elif __MACCATALYST__
             builder.AddProvider(new global::Uno.Extensions.Logging.OSLogLoggerProvider());
 #elif NETFX_CORE
             builder.AddDebug();

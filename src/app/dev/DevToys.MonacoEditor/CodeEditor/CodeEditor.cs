@@ -25,7 +25,7 @@ using Microsoft.UI.Xaml.Controls;
 namespace DevToys.MonacoEditor;
 
 /// <summary>
-/// .Net wrapper for the Monaco CodeEditor
+/// .NET wrapper for the Monaco CodeEditor
 /// https://microsoft.github.io/monaco-editor/
 /// </summary>
 [TemplatePart(Name = "View", Type = typeof(ICodeEditorPresenter))]

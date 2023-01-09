@@ -9,7 +9,7 @@ You can contribute to DevToys app by:
 
 # How to Build and Run DevToys from source:
 
-## On Windows
+## From Windows
 
 ### Prerequisites
 1. Make sure your machine is running on Windows 10 1903 (19h1) or later.
@@ -22,19 +22,29 @@ You can contribute to DevToys app by:
 ### Finalize your environment
 1. Clone this repository.
 1. Open a PowerShell command prompt in the root folder of this repository.
-1. Run `init.ps1` to restore all the dependencies.
-1. Open `src/DevToys.sln` with Visual Studio.
-1. Once opened, set `app/dev/platforms/DevToys.Wasm` or `app/dev/platforms/DevToys.Windows` or `app/dev/platforms/DevToys.CLI` as startup project.
-1. Now you should be able to build and run DevToys on your machine. If it fails, try to close the solution and reopen it again.
+1. Install Nuke.Build command line tooling with the following command from the command prompt:
+    ```
+    dotnet tool install Nuke.GlobalTool --global
+    ```
+1. Restore all the dependencies with the following command:
+    ```
+    .\init.ps1
+    ```
 
-## On macOS and Linux
+### Build, Run & Debug
+1. Open `src/DevToys-Windows.sln` with Visual Studio.
+1. In Visual Studio, set `app/dev/platforms/web/DevToys.Wasm` or `app/dev/platforms/desktop/windows/DevToys.Windows` or `app/dev/platforms/desktop/DevToys.CLI` as startup project.
+1. Now you should be able to build and run DevToys on your machine by pressing `F5`.
+
+## From macOS
 
 ### Prerequisites
-1. [**Visual Studio Code**](https://code.visualstudio.com/)
+1. Make sure your machine is running on macOS Ventura 13.1 or later.
+1. [**Visual Studio Code**](https://code.visualstudio.com/) or [**Visual Studio for Mac**](https://visualstudio.microsoft.com/vs/mac/) or [**JetBrains Rider**](https://www.jetbrains.com/rider/)
 1. **.NET SDK**
-    * [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/6.0) (**version 6.0 (SDK 6.0.100)** or later)
+    * [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/6.0) (**version 6.0 (SDK 6.0.403)** or later)
     > Use `dotnet --version` from the terminal to get the version installed.
-1. The [Uno Platform Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=unoplatform.vscode) Extension
+1. [Node.js](https://nodejs.org/).
 
 ### Finalize your environment
 1. Clone this repository.
@@ -51,10 +61,28 @@ You can contribute to DevToys app by:
     ```
     ~/.dotnet/tools/uno-check
     ```
-1. Follow the instructions indicated by the tool
-1. Run `init.sh` to restore all the dependencies.
+1. Follow the instructions indicated by the tool.
+1. Install Nuke.Build command line tooling with the following command from the command prompt:
+    ```
+    dotnet tool install Nuke.GlobalTool --global
+    ```
+1. Restore all the dependencies with the following command:
+    ```
+    sh init.sh
+    ```
 
-// TODO explain how to debug
+### Build, Run & Debug
+#### If you are using Visual Studio for Mac or JetBains Rider:
+1. Open `src/DevToys-MacOS.sln` with Visual Studio for Mac or JetBrains Rider.
+1. Set `app/dev/platforms/web/DevToys.Wasm` or `app/dev/platforms/desktop/macos/DevToys.MacOS` or `app/dev/platforms/desktop/DevToys.CLI` as startup project.
+1. Now you should be able to build and run DevToys on your machine.
+
+#### If you are using Visual Studio Code:
+1. Open the repository in Visual Studio Code to edit the code.
+1. In a Terminal prompt, run the following command to build and run DevToys for Mac:
+    ```
+    sudo dotnet run --project src/app/dev/platforms/desktop/macos/DevToys.MacOS/DevToys.MacOS.csproj --framework net6.0-maccatalyst
+    ```
 
 # Internationalization and localization
 

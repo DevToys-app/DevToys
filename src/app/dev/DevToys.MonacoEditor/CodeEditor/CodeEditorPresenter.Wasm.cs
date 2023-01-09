@@ -83,7 +83,7 @@ public sealed partial class CodeEditorPresenter : Control, ICodeEditorPresenter,
                 DispatcherQueuePriority.Low,
                 () => DOMContentLoaded?.Invoke(this, new CoreWebView2DOMContentLoadedEventArgs()));
 
-        // Request to inject .Net web object into the web page.
+        // Request to inject .NET web object into the web page.
         Guard.IsNotNull(DotNetObjectInjectionRequested);
         await DotNetObjectInjectionRequested.Invoke(this, EventArgs.Empty);
 

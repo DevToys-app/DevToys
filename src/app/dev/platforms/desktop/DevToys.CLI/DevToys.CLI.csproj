@@ -3,6 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>$(NetCore)</TargetFramework>
+    <UseAppHost>True</UseAppHost>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,7 +11,6 @@
     <PackageReference Include="CommunityToolkit.Diagnostics" />
     <PackageReference Include="System.CommandLine" />
     <PackageReference Include="System.ComponentModel.Composition" />
-    <PackageReference Include="ThisAssembly" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" />
   </ItemGroup>
 

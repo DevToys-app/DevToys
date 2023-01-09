@@ -5,6 +5,7 @@ using Nuke.Common.IO;
 using Nuke.Common.Tooling;
 using Nuke.Common.Tools.PowerShell;
 using Serilog;
+using Output = Nuke.Common.Tooling.Output;
 
 internal static class RestoreTask
 {
@@ -35,7 +36,7 @@ internal static class RestoreTask
 
     private static Task RestoreUnixAsync(AbsolutePath rootDirectory)
     {
-        return Bash(rootDirectory / "ini.sh");
+        return Bash(rootDirectory / "init.sh");
     }
 
     public static Task<int> Bash(string cmd)
@@ -46,8 +47,8 @@ internal static class RestoreTask
         {
             StartInfo = new ProcessStartInfo
             {
-                FileName = "bash",
-                Arguments = $"-c \"{escapedArgs}\"",
+                FileName = "/bin/bash",
+                Arguments = $"-c \"sudo sh {escapedArgs}\"",
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
                 UseShellExecute = false,
