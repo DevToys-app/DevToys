@@ -1,6 +1,5 @@
 ﻿using DevToys.MonacoEditor.Monaco.Languages;
 using Newtonsoft.Json;
-using Windows.Foundation;
 
 namespace DevToys.MonacoEditor.Monaco;
 

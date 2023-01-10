@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Windows.Foundation;
 using Windows.Foundation.Metadata;
 
 namespace DevToys.MonacoEditor.Monaco.Editor;

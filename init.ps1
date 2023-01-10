@@ -39,7 +39,7 @@ ExecSafe { & $PSScriptRoot\tools\Install-DotNet.ps1 -RootFolder $PSScriptRoot }
 
 # Restore NuGet solution dependencies
 Write-Host "Restoring all dependencies"
-Get-ChildItem $PSScriptRoot\src\ -rec |? { $_.FullName.EndsWith('.sln') } |% {
+Get-ChildItem $PSScriptRoot\src\ -rec |? { $_.FullName.EndsWith('DevToys-Windows.sln') } |% {
     $SolutionPath = $_.FullName;
     Write-Host "Restoring packages for $($SolutionPath)..."
     ExecSafe { & $env:DOTNET_EXE restore -v:quiet $SolutionPath  }

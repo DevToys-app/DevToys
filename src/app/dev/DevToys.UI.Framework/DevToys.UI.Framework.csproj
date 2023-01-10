@@ -15,41 +15,57 @@
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)' == '$(UAP)'">
-    <IsUWP>true</IsUWP>
-  </PropertyGroup>
+  <Choose>
+    <When Condition="'$(TargetFramework)' == '$(NetMacCatalyst)'">
+      <PropertyGroup>
+        <IsMacCatalyst>true</IsMacCatalyst>
+        <DefineConstants>$(DefineConstants);__MAC__</DefineConstants>
+        <SupportedOSPlatformVersion>14.0</SupportedOSPlatformVersion>
+      </PropertyGroup>
+      <ItemGroup>
+        <PackageReference Include="Microsoft.Windows.Compatibility" />
+        <PackageReference Include="Uno.WinUI" />
+        <PackageReference Include="Uno.WinUI.Lottie" />
+        <PackageReference Include="Uno.WinUI.RemoteControl" Condition="'$(Configuration)'=='Debug'" />
+      </ItemGroup>
+    </When>
 
-  <PropertyGroup Condition="'$(TargetFramework)' == '$(NetMacCatalyst)'">
-    <IsMacCatalyst>true</IsMacCatalyst>
-  </PropertyGroup>
+    <When Condition="'$(TargetFramework)' == '$(NetCore)'">
+      <PropertyGroup>
+        <IsWasm>true</IsWasm>
+        <DefineConstants>$(DefineConstants);__WASM__</DefineConstants>
+      </PropertyGroup>
+      <ItemGroup>
+        <PackageReference Include="Microsoft.Windows.Compatibility" />
+        <PackageReference Include="Uno.WinUI" />
+        <PackageReference Include="Uno.WinUI.Lottie" />
+        <PackageReference Include="Uno.WinUI.RemoteControl" Condition="'$(Configuration)'=='Debug'" />
+        <PackageReference Include="Uno.Extensions.Logging.WebAssembly.Console" />
+        <PackageReference Include="Uno.WinUI.Runtime.WebAssembly" />
+      </ItemGroup>
+    </When>
 
-  <PropertyGroup Condition="'$(TargetFramework)' == '$(NetCore)'">
-    <IsWasm>true</IsWasm>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(IsWasm)' == 'true'">
-    <DefineConstants>$(DefineConstants);__WASM__</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(IsMacCatalyst)' == 'true'">
-    <DefineConstants>$(DefineConstants);__MAC__</DefineConstants>
-    <SupportedOSPlatformVersion>14.0</SupportedOSPlatformVersion>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(IsUWP)' == 'true'">
-    <DefineConstants>$(DefineConstants);WINDOWS_UWP</DefineConstants>
-    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>$(Windows10SDKVersion)</TargetPlatformVersion>
-    <TargetPlatformMinVersion>$(Windows10MinSDKVersion)</TargetPlatformMinVersion>
-    <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
-    <Platforms>AnyCPU;x86;x64;arm64</Platforms>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(IsUWP)' == 'true' And '$(Configuration)' == 'Release'">
-    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(IsUWP)' == 'true' And '$(Platform)' == 'AnyCPU'">
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
+    <When Condition="'$(TargetFramework)' == '$(UAP)'">
+      <PropertyGroup>
+        <IsUWP>true</IsUWP>
+        <DefineConstants>$(DefineConstants);WINDOWS_UWP</DefineConstants>
+        <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+        <TargetPlatformVersion>$(Windows10SDKVersion)</TargetPlatformVersion>
+        <TargetPlatformMinVersion>$(Windows10MinSDKVersion)</TargetPlatformMinVersion>
+        <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
+        <Platforms>AnyCPU;x86;x64;arm64</Platforms>
+      </PropertyGroup>
+      <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+        <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+      </PropertyGroup>
+      <PropertyGroup Condition="'$(Platform)' == 'AnyCPU'">
+        <PlatformTarget>x86</PlatformTarget>
+      </PropertyGroup>
+      <ItemGroup>
+        <PackageReference Include="Microsoft.UI.Xaml" />
+      </ItemGroup>
+    </When>
+  </Choose>
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Common" />
@@ -62,27 +78,14 @@
     <PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(IsUWP)' == 'true'">
-    <PackageReference Include="Microsoft.UI.Xaml" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(IsWasm)' == 'true' OR '$(IsMacCatalyst)' =='true'">
-    <PackageReference Include="Microsoft.Windows.Compatibility" />
-    <PackageReference Include="Uno.WinUI" />
-    <PackageReference Include="Uno.WinUI.Lottie" />
-    <PackageReference Include="Uno.WinUI.RemoteControl" Condition="'$(Configuration)'=='Debug'" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(IsWasm)' == 'true'">
-    <PackageReference Include="Uno.Extensions.Logging.WebAssembly.Console" />
-    <PackageReference Include="Uno.WinUI.Runtime.WebAssembly" />
-  </ItemGroup>
-
   <ItemGroup>
     <UpToDateCheckInput Include="**\*.xaml" />
-    <Page Include="**\*.xaml" />
-    <Content Include="Assets\**" />
+    <Page Include="**\*.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <PRIResource Include="**\*.resw" />
+    <Content Include="Assets\**" />
     <Compile Update="**\*.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>

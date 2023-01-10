@@ -1,5 +1,4 @@
 ﻿using DevToys.MonacoEditor.Monaco.Editor;
-using Windows.Foundation;
 
 namespace DevToys.MonacoEditor.Monaco.Languages;
 
