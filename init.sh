@@ -6,12 +6,16 @@ set -eo pipefail
 SCRIPT_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
 SCRIPT_DIR="${SCRIPT_DIR}/"
 
+# Required to build macOS app. See https://stackoverflow.com/questions/55320965/resource-fork-finder-information-or-similar-detritus-not-allowed-error-when
+xattr -cr ./src/
+
 # Install .NET
 . "./tools/Install-DotNet.sh" "$SCRIPT_DIR"
 
 # Install .NET workloads
 echo "Installing .NET workloads"
 sudo dotnet workload install maccatalyst
+sudo dotnet workload install macos
 
 # Restore NuGet solution dependencies
 echo "Restoring all dependencies"
