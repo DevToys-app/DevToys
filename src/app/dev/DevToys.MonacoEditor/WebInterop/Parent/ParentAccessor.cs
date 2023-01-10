@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Newtonsoft.Json;
-using Windows.Foundation;
 using Windows.Foundation.Metadata;
 
 namespace DevToys.MonacoEditor.WebInterop.Parent;

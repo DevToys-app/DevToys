@@ -19,7 +19,7 @@ sudo dotnet workload install macos
 
 # Restore NuGet solution dependencies
 echo "Restoring all dependencies"
-SOLUTIONS=$(find ./src/ -iname "*.sln" -print)
+SOLUTIONS=$(find ./src/ -iname "*DevToys-MacOS.sln" -print)
 for SOLUTION_FILE in $SOLUTIONS
 do
     echo "Restoring packages for $SOLUTION_FILE..."

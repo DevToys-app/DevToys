@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
-using Microsoft.Build.Evaluation;
 using Nuke.Common;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
@@ -153,8 +152,6 @@ class Build : NukeBuild
                 var configs = new List<DotnetParameters>();
                 foreach (string targetFramework in project.GetTargetFrameworks())
                 {
-                    // configs.Add(new DotnetParameters(project.Path, "osx-x64", targetFramework, portable: true));
-                    // configs.Add(new DotnetParameters(project.Path, "osx-arm64", targetFramework, portable: true));
                     configs.Add(new DotnetParameters(project.Path, "maccatalyst-arm64", targetFramework, portable: true));
                     configs.Add(new DotnetParameters(project.Path, "maccatalyst-x64", targetFramework, portable: true));
                 }
@@ -162,32 +159,16 @@ class Build : NukeBuild
                 foreach (DotnetParameters dotnetParameters in configs)
                 {
                     Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + "-" + dotnetParameters.TargetFramework + "-" + dotnetParameters.RuntimeIdentifier}...");
-                     DotNetBuild(s => s
-                         .SetProjectFile(dotnetParameters.ProjectOrSolutionPath)
-                         .SetConfiguration(Configuration)
-                         //.SetFramework(dotnetParameters.TargetFramework)
-                         //.SetRuntime(dotnetParameters.RuntimeIdentifier)
-                         //.SetSelfContained(dotnetParameters.Portable)
-                         .SetPublishSingleFile(false) // Not supported by MacCatalyst as it would require UseAppHost to be true, which isn't supported on Mac
-                         .SetPublishReadyToRun(false)
-                         .SetPublishTrimmed(true) /* Required for MacCatalyst*/
-                         .SetVerbosity(DotNetVerbosity.Quiet)
-                         .SetNoRestore(true) /* workaround for https://github.com/xamarin/xamarin-macios/issues/15664#issuecomment-1233123515 */
-                         .SetProcessArgumentConfigurator(_ => _.Add("/p:CreatePackage=True")) /* Will create an installable .pkg */
-                         .SetOutputDirectory(RootDirectory / "publish" / dotnetParameters.OutputPath));
-                     // DotNetPublish(s => s
-                     //     .SetProject(dotnetParameters.ProjectOrSolutionPath)
-                     //     .SetConfiguration(Configuration)
-                     //     .SetFramework(dotnetParameters.TargetFramework)
-                     //     //.SetRuntime(dotnetParameters.RuntimeIdentifier)
-                     //     //.SetSelfContained(dotnetParameters.Portable)
-                     //     .SetPublishSingleFile(false) // Not supported by MacCatalyst as it would require UseAppHost to be true, which isn't supported on Mac
-                     //     .SetPublishReadyToRun(false)
-                     //     .SetPublishTrimmed(true) /* Required for MacCatalyst*/
-                     //     .SetVerbosity(DotNetVerbosity.Quiet)
-                     //     .SetProcessArgumentConfigurator(_ => _.Add("/p:CreatePackage=True")) /* Will create an installable .pkg */
-                     //     .SetNoRestore(true) /* workaround for https://github.com/xamarin/xamarin-macios/issues/15664#issuecomment-1233123515 */
-                     //     .SetOutput(RootDirectory / "publish" / dotnetParameters.OutputPath));
+                    DotNetBuild(s => s
+                        .SetProjectFile(dotnetParameters.ProjectOrSolutionPath)
+                        .SetConfiguration(Configuration)
+                        .SetPublishSingleFile(false) // Not supported by MacCatalyst as it would require UseAppHost to be true, which isn't supported on Mac
+                        .SetPublishReadyToRun(false)
+                        .SetPublishTrimmed(true) /* Required for MacCatalyst*/
+                        .SetVerbosity(DotNetVerbosity.Quiet)
+                        .SetNoRestore(true) /* workaround for https://github.com/xamarin/xamarin-macios/issues/15664#issuecomment-1233123515 */
+                        .SetProcessArgumentConfigurator(_ => _.Add("/p:CreatePackage=True")) /* Will create an installable .pkg */
+                        .SetOutputDirectory(RootDirectory / "publish" / dotnetParameters.OutputPath));
                 }
             }
 

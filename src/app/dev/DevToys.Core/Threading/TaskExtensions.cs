@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace DevToys.Core.Threading;
+﻿namespace DevToys.Core.Threading;
 
 /// <summary>
 /// Provides a set of helper method to play around with threads.
