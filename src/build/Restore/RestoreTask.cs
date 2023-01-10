@@ -25,12 +25,12 @@ internal static class RestoreTask
     {
         System.Collections.Generic.IReadOnlyCollection<Output> results
             = PowerShellTasks
-            .PowerShell(_ => _
-                .SetFile(rootDirectory / "init.ps1")
-                .SetProcessLogOutput(true)
-                .SetProcessWorkingDirectory(rootDirectory)
-                .SetNoLogo(true)
-                .SetNoProfile(true));
+                .PowerShell(_ => _
+                    .SetFile(rootDirectory / "init.ps1")
+                    .SetProcessLogOutput(true)
+                    .SetProcessWorkingDirectory(rootDirectory)
+                    .SetNoLogo(true)
+                    .SetNoProfile(true));
         return Task.CompletedTask;
     }
 
@@ -39,7 +39,7 @@ internal static class RestoreTask
         return Bash(rootDirectory / "init.sh");
     }
 
-    public static Task<int> Bash(string cmd)
+    private static async Task<int> Bash(string cmd)
     {
         var source = new TaskCompletionSource<int>();
         string escapedArgs = cmd.Replace("\"", "\\\"");
@@ -48,9 +48,7 @@ internal static class RestoreTask
             StartInfo = new ProcessStartInfo
             {
                 FileName = "/bin/bash",
-                Arguments = $"-c \"sudo sh {escapedArgs}\"",
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
+                Arguments = $"-c \"sh {escapedArgs}\"",
                 UseShellExecute = false,
                 CreateNoWindow = true
             },
@@ -58,8 +56,6 @@ internal static class RestoreTask
         };
         process.Exited += (sender, args) =>
         {
-            Log.Warning(process.StandardError.ReadToEnd());
-            Log.Information(process.StandardOutput.ReadToEnd());
             if (process.ExitCode == 0)
             {
                 source.SetResult(0);
@@ -75,6 +71,7 @@ internal static class RestoreTask
         try
         {
             process.Start();
+            await process.WaitForExitAsync();
         }
         catch (Exception e)
         {
@@ -82,6 +79,6 @@ internal static class RestoreTask
             source.SetException(e);
         }
 
-        return source.Task;
+        return await source.Task;
     }
 }

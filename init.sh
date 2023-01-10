@@ -10,8 +10,8 @@ SCRIPT_DIR="${SCRIPT_DIR}/"
 . "./tools/Install-DotNet.sh" "$SCRIPT_DIR"
 
 # Install .NET workloads
-echo "Install .NET workloads"
-dotnet workload install maccatalyst
+echo "Installing .NET workloads"
+sudo dotnet workload install maccatalyst
 
 # Restore NuGet solution dependencies
 echo "Restoring all dependencies"
