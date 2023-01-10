@@ -153,6 +153,8 @@ class Build : NukeBuild
                 var configs = new List<DotnetParameters>();
                 foreach (string targetFramework in project.GetTargetFrameworks())
                 {
+                    // configs.Add(new DotnetParameters(project.Path, "osx-x64", targetFramework, portable: true));
+                    // configs.Add(new DotnetParameters(project.Path, "osx-arm64", targetFramework, portable: true));
                     configs.Add(new DotnetParameters(project.Path, "maccatalyst-arm64", targetFramework, portable: true));
                     configs.Add(new DotnetParameters(project.Path, "maccatalyst-x64", targetFramework, portable: true));
                 }
