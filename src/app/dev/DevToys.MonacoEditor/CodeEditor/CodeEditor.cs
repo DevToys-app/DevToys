@@ -517,9 +517,9 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
             _view.NewWindowRequested += WebView_NewWindowRequested;
             _view.DotNetObjectInjectionRequested += WebView_DotNetObjectInjectionRequested;
 
-            _view.LaunchAsync().Forget();
-
             base.OnApplyTemplate();
+
+            _view.LaunchAsync().Forget();
         }
     }
 

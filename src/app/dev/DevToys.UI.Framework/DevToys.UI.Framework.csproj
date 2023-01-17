@@ -20,7 +20,7 @@
       <PropertyGroup>
         <IsMacCatalyst>true</IsMacCatalyst>
         <DefineConstants>$(DefineConstants);__MAC__</DefineConstants>
-        <SupportedOSPlatformVersion>14.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion>16.0</SupportedOSPlatformVersion>
       </PropertyGroup>
       <ItemGroup>
         <PackageReference Include="Microsoft.Windows.Compatibility" />

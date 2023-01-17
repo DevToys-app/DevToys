@@ -54,7 +54,7 @@
       <PropertyGroup>
         <IsMacCatalyst>true</IsMacCatalyst>
         <DefineConstants>$(DefineConstants);__MAC__</DefineConstants>
-        <SupportedOSPlatformVersion>14.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion>16.0</SupportedOSPlatformVersion>
       </PropertyGroup>
       <ItemGroup>
         <PackageReference Include="Microsoft.Windows.Compatibility" />
@@ -74,6 +74,8 @@
         <Content Include="ts-helpermethods\ts-helpermethods-Wasm\tsconfig.json" />
         <None Include="ts-helpermethods\ts-helpermethods-Windows\tsconfig.json" />
         <EmbeddedResource Include="WasmScripts\uno-monaco-helpers.js" />
+        <Content Include="highlightjs\highlight.min.js" />
+        <Content Include="highlightjs\styles\**" />
       </ItemGroup>
     </When>
 

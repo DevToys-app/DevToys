@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Background="Transparent">
 
-    <Grid Background="Red" x:Name="RootGrid">
+    <Grid x:Name="RootGrid" Margin="64">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -38,5 +38,8 @@
             Grid.Column="1"
             Header="Test"
             Style="{StaticResource RightAlignedToggleSwitchStyle}"/>
+        <TextBox
+            Grid.Row="2"
+            Grid.Column="0"/>
     </Grid>
 </Page>
