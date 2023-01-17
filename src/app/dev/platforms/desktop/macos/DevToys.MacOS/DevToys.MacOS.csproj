@@ -6,17 +6,17 @@
     <SingleProject>true</SingleProject>
     <OutputType>Exe</OutputType>
     <!-- Debugger workaround https://github.com/dotnet/maui-samples/blob/8aa6b8780b12e97b157514c3bdc54bb4a13001cd/HelloMacCatalyst/HelloMacCatalyst.csproj#L7 -->
-    <!-- <MtouchExtraArgs Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">$(MtouchExtraArgs) -setenv:MONO_THREADS_SUSPEND=preemptive</MtouchExtraArgs> -->
+    <!-- <MtouchExtraArgs Condition="'$(TargetFramework)' == '$(NetMacCatalyst)">$(MtouchExtraArgs) -setenv:MONO_THREADS_SUSPEND=preemptive</MtouchExtraArgs>-->
     <!-- Required for C# Hot Reload, except for macOS which uses CoreCLR (not Mono) -->
     <UseInterpreter Condition="'$(Configuration)' == 'Debug' and '$(TargetFramework)' != '$(NetMacCatalyst)' and '$(TargetFramework)' != 'net6.0-macos'">True</UseInterpreter>
     <IsUnoHead>true</IsUnoHead>
-    <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == '$(NetMacCatalyst)'">14.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == '$(NetMacCatalyst)'">16.0</SupportedOSPlatformVersion>
     <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-macos'">10.14</SupportedOSPlatformVersion>
     <ApplicationId>com.etiennebaudoux.devtoys</ApplicationId>
   </PropertyGroup>
   <PropertyGroup Condition="'$(RuntimeIdentifier)'==''">
     <!-- Default values for command line builds -->
-    <RuntimeIdentifier Condition="'$(TargetFramework)' == '$(NetMacCatalyst)'">maccatalyst-x64</RuntimeIdentifier>
+    <RuntimeIdentifier Condition="'$(TargetFramework)' == '$(NetMacCatalyst)'">maccatalyst-arm64</RuntimeIdentifier>
     <RuntimeIdentifier Condition="'$(TargetFramework)' == 'net6.0-macos'">osx-x64</RuntimeIdentifier>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
