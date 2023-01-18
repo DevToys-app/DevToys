@@ -1,11 +1,5 @@
 ﻿using Newtonsoft.Json;
 
-#if !NETSTANDARD2_0
-using System.Runtime.InteropServices.WindowsRuntime;
-#else
-using ReadOnlyArrayAttribute = Monaco.Helpers.Stubs.ReadOnlyArrayAttribute;
-#endif
-
 namespace DevToys.MonacoEditor.Monaco.Editor;
 
 /// <summary>
@@ -53,5 +47,5 @@ public interface IActionDescriptor
     [JsonProperty("precondition", NullValueHandling = NullValueHandling.Ignore)]
     string Precondition { get; }
 
-    void Run(CodeEditor editor, [ReadOnlyArray] object[] args);
+    void Run(CodeEditor editor, object[] args);
 }
