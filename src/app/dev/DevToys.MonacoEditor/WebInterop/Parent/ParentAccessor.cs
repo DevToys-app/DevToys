@@ -3,7 +3,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Newtonsoft.Json;
 using Windows.Foundation.Metadata;
 
-namespace DevToys.MonacoEditor.WebInterop.Parent;
+namespace DevToys.MonacoEditor.WebInterop;
 
 /// <summary>
 /// Class to help in accessing .NET values from JavaScript.

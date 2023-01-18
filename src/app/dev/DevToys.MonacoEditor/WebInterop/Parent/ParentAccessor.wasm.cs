@@ -5,7 +5,7 @@ using Uno.Extensions.Specialized;
 using Uno.Foundation;
 using Uno.Foundation.Interop;
 
-namespace DevToys.MonacoEditor.WebInterop.Parent;
+namespace DevToys.MonacoEditor.WebInterop;
 
 internal partial class ParentAccessor : IJSObject
 {

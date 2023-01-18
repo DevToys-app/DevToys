@@ -1,4 +1,4 @@
-﻿namespace DevToys.MonacoEditor.WebInterop.Parent;
+﻿namespace DevToys.MonacoEditor.WebInterop;
 
 //// TODO: Find better approach than this.
 /// <summary>

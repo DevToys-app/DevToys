@@ -24,11 +24,11 @@
                            Grid.Row="0"
                            Grid.Column="0"/>
 
-        <monaco:CodeEditor x:Name="Editor2"
+        <!--<monaco:CodeEditor x:Name="Editor2"
                            Grid.Row="0"
                            Grid.Column="1"
                            ReadOnly="True"
-                           IsDiffViewMode="True"/>
+                           IsDiffViewMode="True"/>-->
         <ToggleSwitch
             Grid.Row="1"
             Grid.Column="0"

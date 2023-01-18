@@ -17,6 +17,7 @@ internal sealed partial class DebugLogger
 
     public void Log(string message)
     {
-        _debugLogger?.LogDebug(message);
+        Console.WriteLine(message);
+        _debugLogger?.LogInformation(message);
     }
 }
