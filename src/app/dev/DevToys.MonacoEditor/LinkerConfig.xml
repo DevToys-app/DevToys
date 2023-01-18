@@ -1,0 +1,30 @@
+﻿<linker>
+    <assembly fullname="Uno.UI" />
+    <assembly fullname="Microsoft.Extensions.Options" />
+
+    <assembly fullname="DevToys.MonacoEditor">
+        <type fullname="DevToys.MonacoEditor.WebInterop.DebugLogger">
+            <method signature="System.Void log(System.String)" />
+        </type>
+        <type fullname="DevToys.MonacoEditor.WebInterop.ParentAccessor">
+            <method signature="System.Object getValue(System.String)" />
+            <method signature="System.Void setValue(System.String,System.String)" />
+            <method signature="System.Void setValueWithType(System.String,System.String,System.String)" />
+            <method signature="System.Void getJsonValue(System.String,System.String)" />
+            <method signature="System.Boolean callAction(System.String)" />
+            <method signature="System.Boolean callActionWithParameters(System.String,System.String,System.String)" />
+            <method signature="System.Void callActionWithParameters(System.String,System.String,System.String,System.String)" />
+            <method signature="System.Void close()" />
+        </type>
+        <type fullname="DevToys.MonacoEditor.WebInterop.ThemeListener">
+            <method signature="System.Void getAccentColorHtmlHex(System.String)" />
+            <method signature="System.Void getCurrentThemeName(System.String)" />
+            <method signature="System.Void getIsHighContrast(System.String)" />
+        </type>
+    </assembly>
+
+    <assembly fullname="System.Core">
+        <!-- This is required by JSon.NET and any expression.Compile caller -->
+        <type fullname="System.Linq.Expressions*" />
+    </assembly>
+</linker>
