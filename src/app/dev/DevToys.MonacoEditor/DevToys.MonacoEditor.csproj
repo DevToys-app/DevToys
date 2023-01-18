@@ -12,6 +12,7 @@
 
     <IsUWP>false</IsUWP>
     <IsWasm>false</IsWasm>
+    <IsMacCatalyst>false</IsMacCatalyst>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>
 
@@ -103,6 +104,7 @@
         <Content Include="ts-helpermethods\ts-helpermethods-Wasm\tsconfig.json" />
         <None Include="ts-helpermethods\ts-helpermethods-Windows\tsconfig.json" />
         <EmbeddedResource Include="WasmScripts\uno-monaco-helpers.js" />
+        <None Include="highlightjs\**" />
       </ItemGroup>
     </When>
 
@@ -132,6 +134,7 @@
         <TypeScriptCompile Remove="ts-helpermethods\ts-helpermethods-Wasm\**\*.*" />
         <Content Include="ts-helpermethods\ts-helpermethods-Windows\tsconfig.json" />
         <None Include="ts-helpermethods\ts-helpermethods-Wasm\tsconfig.json" />
+        <None Include="highlightjs\**" />
       </ItemGroup>
     </When>
   </Choose>

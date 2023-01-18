@@ -1,12 +1,11 @@
 ﻿#if __WASM__
 
-using DevToys.MonacoEditor.WebInterop.Parent;
 using Newtonsoft.Json;
 using Uno;
 using Uno.Foundation;
 using Uno.Foundation.Interop;
 
-namespace DevToys.MonacoEditor.WebInterop.Theme;
+namespace DevToys.MonacoEditor.WebInterop;
 
 internal partial class ThemeListener : IJSObject
 {

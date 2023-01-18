@@ -42,7 +42,7 @@ You can contribute to DevToys app by:
 1. Make sure your machine is running on macOS Ventura 13.1 or later.
 1. [**Visual Studio Code**](https://code.visualstudio.com/) or [**Visual Studio for Mac**](https://visualstudio.microsoft.com/vs/mac/) or [**JetBrains Rider**](https://www.jetbrains.com/rider/)
 1. **.NET SDK**
-    * [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/6.0) (**version 6.0 (SDK 6.0.403)** or later)
+    * [.NET 7.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/7.0) (**version 7.0 (SDK 7.0.101)** or later)
     > Use `dotnet --version` from the terminal to get the version installed.
 1. [Node.js](https://nodejs.org/).
 
@@ -81,7 +81,7 @@ You can contribute to DevToys app by:
 1. Open the repository in Visual Studio Code to edit the code.
 1. In a Terminal prompt, run the following command to build and run DevToys for Mac:
     ```
-    sudo dotnet run --project src/app/dev/platforms/desktop/macos/DevToys.MacOS/DevToys.MacOS.csproj --framework net6.0-maccatalyst
+    sudo dotnet run --project src/app/dev/platforms/desktop/macos/DevToys.MacOS/DevToys.MacOS.csproj --framework net7.0-maccatalyst
     ```
 
 # Internationalization and localization

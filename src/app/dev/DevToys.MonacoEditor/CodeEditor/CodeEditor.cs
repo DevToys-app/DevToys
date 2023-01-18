@@ -5,8 +5,6 @@ using DevToys.MonacoEditor.Extensions;
 using DevToys.MonacoEditor.Monaco;
 using DevToys.MonacoEditor.Monaco.Editor;
 using DevToys.MonacoEditor.WebInterop;
-using DevToys.MonacoEditor.WebInterop.Parent;
-using DevToys.MonacoEditor.WebInterop.Theme;
 using DevToys.UI.Framework.Threading;
 using Microsoft.Web.WebView2.Core;
 using Windows.Foundation;

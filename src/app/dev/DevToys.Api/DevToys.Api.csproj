@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>$(NetStandard)</TargetFrameworks>
+    <TargetFrameworks>$(NetStandard);$(NetCore)</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>

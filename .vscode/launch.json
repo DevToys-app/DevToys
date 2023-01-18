@@ -32,12 +32,12 @@
         "request": "launch",
         "preLaunchTask": "build-macos",
         // If you have changed target frameworks, make sure to update the program path.
-        "program": "${workspaceFolder}/bin/Debug/AnyCPU/DevToys.MacOS/net6.0-maccatalyst/maccatalyst-x64/DevToys.MacOS.app",
+        "program": "${workspaceFolder}/bin/Debug/AnyCPU/DevToys.MacOS/net7.0-maccatalyst/maccatalyst-x64/DevToys.MacOS.app",
         "args": [],
         "env": {
           "DOTNET_MODIFIABLE_ASSEMBLIES": "debug"
         },
-        "cwd": "${workspaceFolder}/bin/Debug/AnyCPU/DevToys.MacOS/net6.0-maccatalyst/maccatalyst-x64/DevToys.MacOS.app",
+        "cwd": "${workspaceFolder}/bin/Debug/AnyCPU/DevToys.MacOS/net7.0-maccatalyst/maccatalyst-x64/DevToys.MacOS.app",
         // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
         "console": "internalConsole",
         "stopAtEntry": false

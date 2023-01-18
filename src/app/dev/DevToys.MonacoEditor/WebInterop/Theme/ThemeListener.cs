@@ -13,7 +13,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
 #endif
 
-namespace DevToys.MonacoEditor.WebInterop.Theme;
+namespace DevToys.MonacoEditor.WebInterop;
 
 internal delegate void ThemeChangedEvent(ThemeListener sender);
 

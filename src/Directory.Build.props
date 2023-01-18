@@ -11,10 +11,11 @@
     <!-- Can't support 2.1 because UWP is dead and doesn't support it -->
     <NetStandard>netstandard2.0</NetStandard>
 
-    <NetCore>net6.0</NetCore>
+    <NetCore>net7.0</NetCore>
     <NetCoreWindows>$(NetCore)-windows$(Windows10MinSDKVersionTrimmed)</NetCoreWindows>
 
     <NetMacCatalyst>$(NetCore)-maccatalyst</NetMacCatalyst>
+    <NetMacOS>$(NetCore)-macos</NetMacOS>
     <UAP>uap$(Windows10MinSDKVersionTrimmed)</UAP>
 
     <!-- Define default build configuration -->

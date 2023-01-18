@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>$(NetStandard)</TargetFrameworks>
+    <TargetFrameworks>$(NetStandard);$(NetCore)</TargetFrameworks>
 
     <!-- See https://learn.microsoft.com/en-us/dotnet/core/project-sdk/msbuild-props#enabledynamicloading -->
     <EnableDynamicLoading>true</EnableDynamicLoading>
