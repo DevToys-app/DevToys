@@ -105,6 +105,9 @@
         <None Include="ts-helpermethods\ts-helpermethods-Windows\tsconfig.json" />
         <EmbeddedResource Include="WasmScripts\uno-monaco-helpers.js" />
         <None Include="highlightjs\**" />
+        <EmbeddedResource Include="LinkerConfig.xml">
+          <LogicalName>$(AssemblyName).xml</LogicalName>
+        </EmbeddedResource>
       </ItemGroup>
     </When>
 
