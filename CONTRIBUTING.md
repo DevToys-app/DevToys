@@ -40,28 +40,20 @@ You can contribute to DevToys app by:
 
 ### Prerequisites
 1. Make sure your machine is running on macOS Ventura 13.1 or later.
+1. Install [**Xcode 14.2**](https://developer.apple.com/xcode/) or later. Run it at least once and allow it to install the built-in macOS and iOS tooling.
 1. [**Visual Studio Code**](https://code.visualstudio.com/) or [**Visual Studio for Mac**](https://visualstudio.microsoft.com/vs/mac/) or [**JetBrains Rider**](https://www.jetbrains.com/rider/)
-1. **.NET SDK**
+1. **.NET SDK**. This is required to build the app itself.
     * [.NET 7.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/7.0) (**version 7.0 (SDK 7.0.101)** or later)
     > Use `dotnet --version` from the terminal to get the version installed.
-1. [Node.js](https://nodejs.org/).
+1. [Node.js](https://nodejs.org/). This is required to build Monaco Editor.
+2. If you're using an [Mac computer with Apple silicon processor](https://support.apple.com/en-us/HT211814), install [Rosetta 2](https://developer.apple.com/documentation/apple-silicon/about-the-rosetta-translation-environment) using the following command in a Terminal:
+    ```
+    softwareupdate --install-rosetta
+    ```
 
 ### Finalize your environment
 1. Clone this repository.
 1. Open a Terminal
-1. Install the Uno Platform tool by running the following command from the command prompt:
-    ```
-    dotnet tool install -g uno.check
-    ```
-1. Run the tool from the command prompt with the following command:
-    ```
-    uno-check
-    ```
-    If the above command fails, use the following:
-    ```
-    ~/.dotnet/tools/uno-check
-    ```
-1. Follow the instructions indicated by the tool.
 1. Install Nuke.Build command line tooling with the following command from the command prompt:
     ```
     dotnet tool install Nuke.GlobalTool --global
@@ -79,10 +71,8 @@ You can contribute to DevToys app by:
 
 #### If you are using Visual Studio Code:
 1. Open the repository in Visual Studio Code to edit the code.
-1. In a Terminal prompt, run the following command to build and run DevToys for Mac:
-    ```
-    sudo dotnet run --project src/app/dev/platforms/desktop/macos/DevToys.MacOS/DevToys.MacOS.csproj --framework net7.0-maccatalyst
-    ```
+2. Install the `C#` extension.
+1. In `Run and Debug`, select `Debug (macOS dektop app)` and press Start.
 
 # Internationalization and localization
 
