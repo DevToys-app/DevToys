@@ -1,12 +1,10 @@
 ﻿#if __WASM__
 
 using System.Reflection;
-using System.Xml.Linq;
-using DevToys.Core.Threading;
+using DevToys.Api;
 using DevToys.UI.Framework.Threading;
 using Microsoft.Extensions.Logging;
 using Microsoft.UI;
-using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
@@ -75,13 +73,12 @@ public sealed partial class CodeEditorPresenter : Control, ICodeEditorPresenter,
 
     public async Task LaunchAsync()
     {
-        await DispatcherQueue.RunOnUIThreadAsync(
-            DispatcherQueuePriority.Low,
-            () => NavigationStarting?.Invoke(this, new CoreWebView2NavigationStartingEventArgs()));
+        await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(CancellationToken.None);
 
-        await DispatcherQueue.RunOnUIThreadAsync(
-                DispatcherQueuePriority.Low,
-                () => DOMContentLoaded?.Invoke(this, new CoreWebView2DOMContentLoadedEventArgs()));
+        _informationLogger?.Info($"{nameof(LaunchAsync)}: Startup");
+
+        NavigationStarting?.Invoke(this, new CoreWebView2NavigationStartingEventArgs());
+        DOMContentLoaded?.Invoke(this, new CoreWebView2DOMContentLoadedEventArgs());
 
         // Request to inject .NET web object into the web page.
         Guard.IsNotNull(DotNetObjectInjectionRequested);
@@ -101,13 +98,13 @@ public sealed partial class CodeEditorPresenter : Control, ICodeEditorPresenter,
             _errorLogger?.Error($"{nameof(LaunchAsync)} failed", e);
         }
 
-        await DispatcherQueue.RunOnUIThreadAsync(
-                    DispatcherQueuePriority.Low,
-                    () => NavigationCompleted?.Invoke(this, new CoreWebView2NavigationCompletedEventArgs()));
+        NavigationCompleted?.Invoke(this, new CoreWebView2NavigationCompletedEventArgs());
     }
 
-    public Task InjectDotNetObjectToWebPageAsync<T>(string name, T pObject)
+    public async Task InjectDotNetObjectToWebPageAsync<T>(string name, T pObject)
     {
+        await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(CancellationToken.None);
+
         _debugLogger?.Debug($"{nameof(InjectDotNetObjectToWebPageAsync)}: Trying to inject .NET object in web page - {name}");
         if (pObject is IJSObject obj)
         {
@@ -115,7 +112,7 @@ public sealed partial class CodeEditorPresenter : Control, ICodeEditorPresenter,
             if (method is null)
             {
                 _errorLogger?.Error($"{nameof(InjectDotNetObjectToWebPageAsync)}: GetNativeInstance method doesn't exist.");
-                return Task.CompletedTask;
+                return;
             }
 
             string? native = method.Invoke(obj.Handle, Array.Empty<object>()) as string;
@@ -144,12 +141,12 @@ public sealed partial class CodeEditorPresenter : Control, ICodeEditorPresenter,
             _errorLogger?.Error($"{nameof(InjectDotNetObjectToWebPageAsync)}: '{name}' is not a JSObject");
             throw new InvalidOperationException($"{nameof(InjectDotNetObjectToWebPageAsync)}: '{name}' is not a JSObject");
         }
-
-        return Task.CompletedTask;
     }
 
-    public Task<string> InvokeScriptAsync(string script)
+    public async Task<string> InvokeScriptAsync(string script)
     {
+        await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(CancellationToken.None);
+
         script = $@"
             (function() {{
                 try {{
@@ -179,13 +176,13 @@ public sealed partial class CodeEditorPresenter : Control, ICodeEditorPresenter,
 
             _debugLogger?.Debug($"Invoke Script result: {result}");
 
-            return Task.FromResult(result);
+            return result;
         }
         catch (Exception e)
         {
             _errorLogger?.Error("Invoke Script failed", e);
 
-            return Task.FromResult(string.Empty);
+            return string.Empty;
         }
     }
 }

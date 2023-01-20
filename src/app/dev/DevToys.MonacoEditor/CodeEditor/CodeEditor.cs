@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
-using DevToys.Core.Threading;
+using DevToys.Api;
 using DevToys.MonacoEditor.Extensions;
 using DevToys.MonacoEditor.Monaco;
 using DevToys.MonacoEditor.Monaco.Editor;
@@ -52,6 +52,7 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
     private ICodeEditorPresenter? _view;
     private int _focusCount;
     private bool _initialized;
+    private bool _refrainFromUpdatingOptionsInternally;
     private ModelHelper? _model;
 
     public CodeEditor()
@@ -572,7 +573,10 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
             }
         }
 
-        InvokeScriptAsync("updateOptions", options).Forget();
+        if (!_refrainFromUpdatingOptionsInternally)
+        {
+            InvokeScriptAsync("updateOptions", options).Forget();
+        }
     }
 
     private void DiffOptions_PropertyChanged(object? sender, PropertyChangedEventArgs e)
@@ -590,14 +594,16 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
             }
         }
 
-        InvokeScriptAsync("updateDiffOptions", options).Forget();
+        if (!_refrainFromUpdatingOptionsInternally)
+        {
+            InvokeScriptAsync("updateDiffOptions", options).Forget();
+        }
     }
 
     private void ActualTheme_PropertyChanged(DependencyObject obj, DependencyProperty property)
     {
         ElementTheme theme = ActualTheme;
-        string themeName = string.Empty;
-
+        string themeName;
         if (theme == ElementTheme.Default)
         {
             themeName = _themeListener.CurrentThemeName;
@@ -607,22 +613,16 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
             themeName = theme.ToString();
         }
 
-        UIAccess.RunOnUIThreadAsync(async () =>
-        {
-            await InvokeScriptAsync("setTheme", args: new string[] { _themeListener!.AccentColorHtmlHex });
-            await InvokeScriptAsync("changeTheme", new string[] { themeName, _themeListener.IsHighContrast.ToString() });
-        }).Forget();
+        InvokeScriptAsync("setTheme", args: new string[] { _themeListener!.AccentColorHtmlHex }).Forget();
+        InvokeScriptAsync("changeTheme", new string[] { themeName, _themeListener.IsHighContrast.ToString() }).Forget();
     }
 
     private void ThemeListener_ThemeChanged(ThemeListener sender)
     {
         if (RequestedTheme == ElementTheme.Default)
         {
-            UIAccess.RunOnUIThreadAsync(async () =>
-            {
-                await InvokeScriptAsync("setTheme", args: new string[] { sender.AccentColorHtmlHex });
-                await InvokeScriptAsync("changeTheme", args: new string[] { sender.CurrentTheme.ToString(), sender.IsHighContrast.ToString() });
-            }).Forget();
+            InvokeScriptAsync("setTheme", args: new string[] { sender.AccentColorHtmlHex }).Forget();
+            InvokeScriptAsync("changeTheme", args: new string[] { sender.CurrentTheme.ToString(), sender.IsHighContrast.ToString() }).Forget();
         }
     }
 
@@ -694,12 +694,24 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
             .Forget();
 
         // Update options.
+        _refrainFromUpdatingOptionsInternally = true;
+
         Options.SmoothScrolling = true;
         Options.Minimap = new EditorMinimapOptions() { Enabled = false };
         Options.ReadOnly = ReadOnly;
         Options.Language = CodeLanguage;
         DiffOptions.OriginalEditable = !ReadOnly;
         DiffOptions.ReadOnly = ReadOnly;
+
+        _refrainFromUpdatingOptionsInternally = false;
+        if (IsDiffViewMode)
+        {
+            InvokeScriptAsync("updateDiffOptions", DiffOptions).Forget();
+        }
+        else
+        {
+            InvokeScriptAsync("updateOptions", Options).Forget();
+        }
 
         // We're done loading Monaco Editor.
         IsEditorLoaded = true;

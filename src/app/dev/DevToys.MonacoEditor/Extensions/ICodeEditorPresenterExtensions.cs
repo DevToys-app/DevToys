@@ -37,30 +37,13 @@ internal static class ICodeEditorPresenterExtensions
         string fullscript = start +
             "\n} catch (err) { return JSON.stringify({ wv_internal_error: true, message: err.message, description: err.description, number: err.number, stack: err.stack }); }";
 
-        if (view.DispatcherQueue.HasThreadAccess)
+        try
         {
-            try
-            {
-                return await RunScriptHelperAsync<T>(view, fullscript);
-            }
-            catch (Exception e)
-            {
-                throw new JavaScriptExecutionException(member, file, line, script, e);
-            }
+            return await RunScriptHelperAsync<T>(view, fullscript);
         }
-        else
+        catch (Exception e)
         {
-            return await view.DispatcherQueue.RunOnUIThreadAsync(async () =>
-            {
-                try
-                {
-                    return await RunScriptHelperAsync<T>(view, fullscript);
-                }
-                catch (Exception e)
-                {
-                    throw new JavaScriptExecutionException(member, file, line, script, e);
-                }
-            });
+            throw new JavaScriptExecutionException(member, file, line, script, e);
         }
     }
 

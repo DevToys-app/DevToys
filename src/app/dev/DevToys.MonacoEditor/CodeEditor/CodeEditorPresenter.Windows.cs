@@ -11,7 +11,6 @@ using Uno.Extensions;
 using Uno.Logging;
 using Windows.Foundation;
 using Windows.Storage;
-using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -372,7 +371,13 @@ public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresen
 
         try
         {
-            string result = await _webView.ExecuteScriptAsync(script);
+            string result
+                = await DispatcherQueue.RunOnUIThreadAsync(
+                    CoreDispatcherPriority.High,
+                    async () =>
+                    {
+                        return await _webView.ExecuteScriptAsync(script);
+                    });
 
             _debugLogger?.Debug($"Invoke Script result: {result}");
 
@@ -382,7 +387,7 @@ public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresen
         {
             _errorLogger?.Error("Invoke Script failed", e);
 
-            return string.Empty;
+            throw;
         }
     }
 
