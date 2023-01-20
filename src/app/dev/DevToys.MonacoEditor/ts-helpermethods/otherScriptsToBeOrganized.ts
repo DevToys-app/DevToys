@@ -158,8 +158,6 @@ var setTheme = function (editorContext: EditorContext, accentColor: string) {
     // remove quotes.
     accentColor = accentColor.replace(/"/g, '');
 
-    editorContext.Debug.log(accentColor);
-
     monaco.editor.defineTheme('devtoys-dark', {
         base: 'vs-dark',
         inherit: true,

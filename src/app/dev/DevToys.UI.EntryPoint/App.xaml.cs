@@ -144,7 +144,7 @@ public sealed partial class App : Application
         //
         // For more performance documentation: https://platform.uno/docs/articles/Uno-UI-Performance.html
 
-        ILoggerFactory factory = LoggerFactory.Create(builder =>
+        ILoggerFactory factory = LoggerFactory.Create((ILoggingBuilder builder) =>
         {
 #if __WASM__
             builder.AddProvider(new global::Uno.Extensions.Logging.WebAssembly.WebAssemblyConsoleLoggerProvider());
