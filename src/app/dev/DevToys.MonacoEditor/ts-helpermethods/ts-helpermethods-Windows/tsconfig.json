@@ -1,8 +1,10 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "target": "es2015",
-    "sourceMap": false
+    "target": "es2015", // Warning: Monaco editor breaks when using something else than es2015
+    "lib": [ "es2015", "DOM" ], // Warning: Monaco editor breaks when using something else than es2015
+    "sourceMap": true,
+    "outFile": "..\\..\\WasmScripts\\UWP\\uno-monaco-helpers.g.js"
   },
   "include": [
     ".\\",

@@ -33,7 +33,8 @@
   <ItemGroup>
     <None Remove="ts-helpermethods\ts-helpermethods-Wasm\tsconfig.json" />
     <None Remove="ts-helpermethods\ts-helpermethods-Windows\tsconfig.json" />
-    <None Remove="WasmScripts\uno-monaco-helpers.js" />
+    <None Remove="WasmScripts\WASM\uno-monaco-helpers.g.js" />
+    <None Remove="WasmScripts\UWP\uno-monaco-helpers.g.js" />
     <None Remove="monaco-editor\**\*.*" />
     <TypeScriptCompile Remove="monaco-editor\**\*.*" />
     <Content Include="monaco-editor\*.*" />
@@ -72,11 +73,15 @@
         <None Remove="ts-helpermethods\**\*.js" />
         <Content Remove="ts-helpermethods\**\*.js" />
         <TypeScriptCompile Remove="ts-helpermethods\ts-helpermethods-Windows\**\*.js" />
-        <Content Include="ts-helpermethods\ts-helpermethods-Wasm\tsconfig.json" />
-        <None Include="ts-helpermethods\ts-helpermethods-Windows\tsconfig.json" />
-        <EmbeddedResource Include="WasmScripts\uno-monaco-helpers.js" />
+        <Content Include="ts-helpermethods\ts-helpermethods-Wasm\tsconfig.json">
+          <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </Content>
+        <ConfigFiles Include="ts-helpermethods\ts-helpermethods-Wasm\tsconfig.json" />
         <Content Include="highlightjs\highlight.min.js" />
         <Content Include="highlightjs\styles\**" />
+      </ItemGroup>
+      <ItemGroup>
+        <EmbeddedResource Include="WasmScripts\WASM\uno-monaco-helpers.g.js" />
       </ItemGroup>
     </When>
 
@@ -101,13 +106,17 @@
         <None Remove="ts-helpermethods\**\*.js" />
         <Content Remove="ts-helpermethods\**\*.js" />
         <TypeScriptCompile Remove="ts-helpermethods\ts-helpermethods-Windows\**\*.js" />
-        <Content Include="ts-helpermethods\ts-helpermethods-Wasm\tsconfig.json" />
-        <None Include="ts-helpermethods\ts-helpermethods-Windows\tsconfig.json" />
-        <EmbeddedResource Include="WasmScripts\uno-monaco-helpers.js" />
+        <Content Include="ts-helpermethods\ts-helpermethods-Wasm\tsconfig.json">
+          <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </Content>
+        <ConfigFiles Include="ts-helpermethods\ts-helpermethods-Wasm\tsconfig.json" />
         <None Include="highlightjs\**" />
         <EmbeddedResource Include="LinkerConfig.xml">
           <LogicalName>$(AssemblyName).xml</LogicalName>
         </EmbeddedResource>
+      </ItemGroup>
+      <ItemGroup>
+        <EmbeddedResource Include="WasmScripts\WASM\uno-monaco-helpers.g.js" />
       </ItemGroup>
     </When>
 
@@ -135,15 +144,19 @@
         <None Remove="ts-helpermethods\ts-helpermethods-Wasm\**\*.js" />
         <Content Remove="ts-helpermethods\ts-helpermethods-Wasm\**\*.js" />
         <TypeScriptCompile Remove="ts-helpermethods\ts-helpermethods-Wasm\**\*.*" />
-        <Content Include="ts-helpermethods\ts-helpermethods-Windows\tsconfig.json" />
-        <None Include="ts-helpermethods\ts-helpermethods-Wasm\tsconfig.json" />
+        <Content Include="ts-helpermethods\ts-helpermethods-Windows\tsconfig.json">
+          <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </Content>
+        <ConfigFiles Include="ts-helpermethods\ts-helpermethods-Windows\tsconfig.json" />
         <None Include="highlightjs\**" />
+      </ItemGroup>
+      <ItemGroup>
+        <EmbeddedResource Include="WasmScripts\UWP\uno-monaco-helpers.g.js" />
       </ItemGroup>
     </When>
   </Choose>
 
   <ItemGroup>
-    <ProjectReference Include="..\DevToys.Api\DevToys.Api.csproj" />
     <ProjectReference Include="..\DevToys.Core\DevToys.Core.csproj" />
     <ProjectReference Include="..\DevToys.UI.Framework\DevToys.UI.Framework.csproj" />
   </ItemGroup>
