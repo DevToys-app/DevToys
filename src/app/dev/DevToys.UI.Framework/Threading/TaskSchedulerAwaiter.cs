@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace DevToys.Api;
+namespace DevToys.UI.Framework.Threading;
 
 /// <summary>
 /// An awaiter returned from <see cref="GetAwaiter(TaskScheduler)"/>.
@@ -88,7 +88,7 @@ public readonly struct TaskSchedulerAwaiter : ICriticalNotifyCompletion
         }
         else
         {
-            Task.Factory.StartNew(continuation, CancellationToken.None, TaskCreationOptions.None, _scheduler).Forget();
+            Task.Factory.StartNew(continuation, CancellationToken.None, TaskCreationOptions.None, _scheduler);
         }
     }
 
@@ -105,7 +105,7 @@ public readonly struct TaskSchedulerAwaiter : ICriticalNotifyCompletion
         }
         else
         {
-            Task.Factory.StartNew(continuation, CancellationToken.None, TaskCreationOptions.None, _scheduler).Forget();
+            Task.Factory.StartNew(continuation, CancellationToken.None, TaskCreationOptions.None, _scheduler);
         }
     }
 
