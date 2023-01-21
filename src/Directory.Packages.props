@@ -4,12 +4,12 @@
       Central Package Management isn't supported by UWP project type. We keep the version of some packages in variables below so we can reuse
       them in UWP projects explicitely so we keep consistent package version number across the repository.
     -->
-    <CommunityToolkitVersion>8.0.0</CommunityToolkitVersion>
+    <CommunityToolkitVersion>8.1.0</CommunityToolkitVersion>
     <DotNetVersion>7.0.0</DotNetVersion>
     <MicrosoftNETCoreUniversalWindowsPlatformVersion>6.2.14</MicrosoftNETCoreUniversalWindowsPlatformVersion>
     <MicrosoftWindowsSDKBuildToolsVersion>10.0.22621.1</MicrosoftWindowsSDKBuildToolsVersion>
-    <PolySharpVersion>1.8.1</PolySharpVersion>
-    <UnoVersion>4.6.39</UnoVersion>
+    <PolySharpVersion>1.11.0</PolySharpVersion>
+    <UnoVersion>4.6.41</UnoVersion>
     <UnoWasmBootstrapVersion>8.0.0-dev.65</UnoWasmBootstrapVersion>
     <WebView2Version>1.0.1462.37</WebView2Version>
   </PropertyGroup>

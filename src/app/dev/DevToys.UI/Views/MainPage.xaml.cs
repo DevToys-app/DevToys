@@ -13,6 +13,11 @@ namespace DevToys.UI.Views;
 /// </summary>
 public sealed partial class MainPage : Page
 {
+    private const string CompactOverlayStateName = "CompactOverlay";
+    private const string NavigationViewExpandedStateName = "NavigationViewExpanded";
+    private const string NavigationViewCompactStateName = "NavigationViewCompact";
+    private const string NavigationViewMinimalStateName = "NavigationViewMinimal";
+
     public MainPage()
     {
         this.InitializeComponent();

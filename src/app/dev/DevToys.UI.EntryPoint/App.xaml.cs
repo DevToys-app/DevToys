@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Core;
 
 #if WINDOWS_UWP
 #nullable enable
@@ -93,6 +94,11 @@ public sealed partial class App : Application
         if (uwpArgs.PrelaunchActivated == false)
 #endif
         {
+#if WINDOWS_UWP
+            // On Windows 10 version 1607 or later, this code signals that this app wants to participate in prelaunch
+            CoreApplication.EnablePrelaunch(true);
+#endif
+
             if (rootFrame.Content == null)
             {
                 // When the navigation stack isn't restored navigate to the first page,
