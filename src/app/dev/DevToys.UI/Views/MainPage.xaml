@@ -5,10 +5,19 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:monaco="using:DevToys.MonacoEditor"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:wasm="http://uno.ui/wasm"
+    xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:not_win="http://uno.ui/not_win"
     mc:Ignorable="d"
-    Background="Transparent">
+    NavigationCacheMode="Enabled"
+    muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
 
-    <Grid x:Name="RootGrid" Margin="64">
+    <Grid Background="Transparent">
+        <Grid.BackgroundTransition>
+            <BrushTransition />
+        </Grid.BackgroundTransition>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
