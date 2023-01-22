@@ -68,14 +68,6 @@
                     </uap:Protocol>
                 </uap:Extension>
 
-                <uap:Extension Category="windows.fileOpenPicker">
-                    <uap:FileOpenPicker>
-                        <uap:SupportedFileTypes>
-                            <uap:SupportsAnyFileType/>
-                        </uap:SupportedFileTypes>
-                    </uap:FileOpenPicker>
-                </uap:Extension>
-
                 <desktop:Extension Category="windows.fullTrustProcess" Executable="DevToys.OutOfProcService\DevToys.OutOfProcService.exe" />
 
             </Extensions>
