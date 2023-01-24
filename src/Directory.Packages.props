@@ -1,11 +1,12 @@
 <Project>
   <PropertyGroup>
     <!--
-      Central Package Management isn't supported by UWP project type. We keep the version of some packages in variables below so we can reuse
+      Central Package Management isn't supported by UWP and Razor Sdk project type. We keep the version of some packages in variables below so we can reuse
       them in UWP projects explicitely so we keep consistent package version number across the repository.
     -->
     <CommunityToolkitVersion>8.1.0</CommunityToolkitVersion>
     <DotNetVersion>7.0.0</DotNetVersion>
+    <MicrosoftFastComponentsFluentUIVersion>2.0.1</MicrosoftFastComponentsFluentUIVersion>
     <MicrosoftNETCoreUniversalWindowsPlatformVersion>6.2.14</MicrosoftNETCoreUniversalWindowsPlatformVersion>
     <MicrosoftWindowsSDKBuildToolsVersion>10.0.22621.1</MicrosoftWindowsSDKBuildToolsVersion>
     <PolySharpVersion>1.11.0</PolySharpVersion>
@@ -24,6 +25,7 @@
     <PackageVersion Include="Microsoft.Extensions.Logging.Configuration" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="$(DotNetVersion)" />
+    <PackageVersion Include="Microsoft.Fast.Components.FluentUI" Version="$(MicrosoftFastComponentsFluentUIVersion)" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
     <PackageVersion Include="Microsoft.TypeScript.MSBuild" Version="4.9.4" />
     <PackageVersion Include="Microsoft.UI.Xaml" Version="2.8.1" />

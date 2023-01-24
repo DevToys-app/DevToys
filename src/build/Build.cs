@@ -148,27 +148,34 @@ class Build : NukeBuild
 
             if (PlatformTargets.Contains(PlatformTarget.MacOS))
             {
-                Project project = MacSolution.GetProject("DevToys.MacOS");
-                var configs = new List<DotnetParameters>();
-                foreach (string targetFramework in project.GetTargetFrameworks())
-                {
-                    configs.Add(new DotnetParameters(project.Path, "maccatalyst-arm64", targetFramework, portable: true));
-                    configs.Add(new DotnetParameters(project.Path, "maccatalyst-x64", targetFramework, portable: true));
-                }
+                Project[] projects = {
+                    MacSolution.GetProject("DevToys.MacOS"),
+                    MacSolution.GetProject("DevToys.MauiBlazor")
+                };
 
-                foreach (DotnetParameters dotnetParameters in configs)
+                foreach (Project project in projects)
                 {
-                    Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + "-" + dotnetParameters.TargetFramework + "-" + dotnetParameters.RuntimeIdentifier}...");
-                    DotNetBuild(s => s
-                        .SetProjectFile(dotnetParameters.ProjectOrSolutionPath)
-                        .SetConfiguration(Configuration)
-                        .SetPublishSingleFile(false) // Not supported by MacCatalyst as it would require UseAppHost to be true, which isn't supported on Mac
-                        .SetPublishReadyToRun(false)
-                        .SetPublishTrimmed(true) /* Required for MacCatalyst*/
-                        .SetVerbosity(DotNetVerbosity.Quiet)
-                        .SetNoRestore(true) /* workaround for https://github.com/xamarin/xamarin-macios/issues/15664#issuecomment-1233123515 */
-                        .SetProcessArgumentConfigurator(_ => _.Add("/p:CreatePackage=True")) /* Will create an installable .pkg */
-                        .SetOutputDirectory(RootDirectory / "publish" / dotnetParameters.OutputPath));
+                    var configs = new List<DotnetParameters>();
+                    foreach (string targetFramework in project.GetTargetFrameworks())
+                    {
+                        configs.Add(new DotnetParameters(project.Path, "maccatalyst-arm64", targetFramework, portable: true));
+                        configs.Add(new DotnetParameters(project.Path, "maccatalyst-x64", targetFramework, portable: true));
+                    }
+
+                    foreach (DotnetParameters dotnetParameters in configs)
+                    {
+                        Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + "-" + dotnetParameters.TargetFramework + "-" + dotnetParameters.RuntimeIdentifier}...");
+                        DotNetBuild(s => s
+                            .SetProjectFile(dotnetParameters.ProjectOrSolutionPath)
+                            .SetConfiguration(Configuration)
+                            .SetPublishSingleFile(false) // Not supported by MacCatalyst as it would require UseAppHost to be true, which isn't supported on Mac
+                            .SetPublishReadyToRun(false)
+                            .SetPublishTrimmed(true) /* Required for MacCatalyst*/
+                            .SetVerbosity(DotNetVerbosity.Quiet)
+                            .SetNoRestore(true) /* workaround for https://github.com/xamarin/xamarin-macios/issues/15664#issuecomment-1233123515 */
+                            .SetProcessArgumentConfigurator(_ =>_.Add("/p:CreatePackage=True")) /* Will create an installable .pkg */
+                            .SetOutputDirectory(RootDirectory / "publish" / dotnetParameters.OutputPath));
+                    }
                 }
             }
 
