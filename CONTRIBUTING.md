@@ -43,7 +43,7 @@ You can contribute to DevToys app by:
 1. Install [**Xcode 14.2**](https://developer.apple.com/xcode/) or later. Run it at least once and allow it to install the built-in macOS and iOS tooling.
 1. [**Visual Studio Code**](https://code.visualstudio.com/) or [**Visual Studio for Mac**](https://visualstudio.microsoft.com/vs/mac/) or [**JetBrains Rider**](https://www.jetbrains.com/rider/)
 1. **.NET SDK**. This is required to build the app itself.
-    * [.NET 7.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/7.0) (**version 7.0 (SDK 7.0.101)** or later)
+    * [.NET 7.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/7.0) (**version 7.0 (SDK 7.0.101)** or later). If you're on a [Mac computer with Apple silicon processor](https://support.apple.com/en-us/HT211814), you need to install the Arm64 version of the SDK.
     > Use `dotnet --version` from the terminal to get the version installed.
 1. [Node.js](https://nodejs.org/). This is required to build Monaco Editor.
 2. If you're using an [Mac computer with Apple silicon processor](https://support.apple.com/en-us/HT211814), install [Rosetta 2](https://developer.apple.com/documentation/apple-silicon/about-the-rosetta-translation-environment) using the following command in a Terminal:

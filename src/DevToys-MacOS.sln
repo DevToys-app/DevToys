@@ -63,6 +63,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToys.Wasm", "app\dev\pla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevToys.MacOS", "app\dev\platforms\desktop\macos\DevToys.MacOS\DevToys.MacOS.csproj", "{E3E689D3-FC5E-48B4-961E-DD5C0DB62DAF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevToys.MauiBlazor", "app\dev\platforms\desktop\DevToys.MauiBlazor\DevToys.MauiBlazor.csproj", "{77A35152-832A-47FA-B7B8-2B0E113E8B29}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|AnyCPU = Debug|AnyCPU
@@ -113,6 +115,10 @@ Global
 		{723A3D71-2425-49EE-B669-1A0DF3A8B486}.Debug|AnyCPU.Build.0 = Debug|Any CPU
 		{723A3D71-2425-49EE-B669-1A0DF3A8B486}.Release|AnyCPU.ActiveCfg = Release|Any CPU
 		{723A3D71-2425-49EE-B669-1A0DF3A8B486}.Release|AnyCPU.Build.0 = Release|Any CPU
+		{77A35152-832A-47FA-B7B8-2B0E113E8B29}.Debug|AnyCPU.ActiveCfg = Debug|Any CPU
+		{77A35152-832A-47FA-B7B8-2B0E113E8B29}.Debug|AnyCPU.Build.0 = Debug|Any CPU
+		{77A35152-832A-47FA-B7B8-2B0E113E8B29}.Release|AnyCPU.ActiveCfg = Release|Any CPU
+		{77A35152-832A-47FA-B7B8-2B0E113E8B29}.Release|AnyCPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,6 +143,7 @@ Global
 		{CDD8B469-ACA6-4A7D-91A0-66ADB0563AE8} = {B20E4027-0777-4A75-A848-609594E9A6B0}
 		{9E59352A-836D-47DE-AB02-F404A8345242} = {04F9E03E-B519-49C5-BC6A-2131ED9BADC0}
 		{E3E689D3-FC5E-48B4-961E-DD5C0DB62DAF} = {8B003389-15D4-4466-A40E-50FC0D603BF6}
+		{77A35152-832A-47FA-B7B8-2B0E113E8B29} = {22EE9386-CEFA-47D8-97B2-09A63EDF7F2E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C2C953F5-F97F-4198-B15C-4947A886050F}

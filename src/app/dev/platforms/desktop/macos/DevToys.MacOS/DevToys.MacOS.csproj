@@ -10,9 +10,8 @@
     <!-- Required for C# Hot Reload, except for macOS which uses CoreCLR (not Mono) -->
     <UseInterpreter Condition="'$(Configuration)' == 'Debug' and '$(TargetFramework)' != '$(NetMacCatalyst)' and '$(TargetFramework)' != '$(NetMacOS)'">True</UseInterpreter>
     <IsUnoHead>true</IsUnoHead>
-    <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == '$(NetMacCatalyst)'">16.0</SupportedOSPlatformVersion>
-    <SupportedOSPlatformVersion Condition="'$(TargetFramework)' == '$(NetMacOS)'">10.14</SupportedOSPlatformVersion>
     <ApplicationId>com.etiennebaudoux.devtoys</ApplicationId>
+    <ApplicationIdGuid>856CF642-FDC7-42BE-A1D5-5D7F0FC09091</ApplicationIdGuid>
   </PropertyGroup>
   <PropertyGroup Condition="'$(RuntimeIdentifier)'==''">
     <!-- Default values for command line builds -->

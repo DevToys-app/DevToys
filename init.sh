@@ -15,7 +15,6 @@ xattr -cr ./src/
 # Install .NET workloads
 echo "Installing .NET workloads"
 sudo dotnet workload install maccatalyst
-sudo dotnet workload install macos
 
 # Restore NuGet solution dependencies
 echo "Restoring all dependencies"

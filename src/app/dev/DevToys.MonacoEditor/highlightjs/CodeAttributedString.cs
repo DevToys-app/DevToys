@@ -1,6 +1,5 @@
 #if __MAC__
 
-using DevToys.Core.Threading;
 using DevToys.UI.Framework.Threading;
 using Microsoft.UI.Dispatching;
 
@@ -37,7 +36,7 @@ internal sealed class CodeAttributedString : NSTextStorage
         set
         {
             _language = value.ToLower();
-            HighlightAsync(new NSRange(0, _stringStorage.Length)).Forget();
+            _ = HighlightAsync(new NSRange(0, _stringStorage.Length));
         }
     }
 
@@ -110,11 +109,7 @@ internal sealed class CodeAttributedString : NSTextStorage
             if ((EditedMask & NSTextStorageEditActions.Characters) == NSTextStorageEditActions.Characters)
             {
                 NSRange rangeToHighlight = MutableString.GetParagraphRange(EditedRange);
-                HighlightAsync(rangeToHighlight)
-                    .ForgetSafely(ex =>
-                    {
-                        Debug.WriteLine("Issue in highlight: " + ex.Message);
-                    });
+                _ = HighlightAsync(rangeToHighlight);
             }
         }
     }
