@@ -68,7 +68,7 @@
               "CLI",
               "MacOS",
               "Wasm",
-              "WindowsUwp"
+              "Windows"
             ]
           }
         },

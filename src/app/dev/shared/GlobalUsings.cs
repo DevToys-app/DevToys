@@ -12,5 +12,5 @@ global using ExportAttribute = global::System.ComponentModel.Composition.ExportA
 #if __MAC__
 [assembly: System.Runtime.Versioning.SupportedOSPlatform("ios14.0")] // MacCatalyst is a superset of iOS, therefore it's also supported.
 #elif __WINDOWS__
-[assembly: System.Runtime.Versioning.SupportedOSPlatform("windows10.0.18362.0")]
+[assembly: System.Runtime.Versioning.SupportedOSPlatform("windows10.0.19041.0")]
 #endif
