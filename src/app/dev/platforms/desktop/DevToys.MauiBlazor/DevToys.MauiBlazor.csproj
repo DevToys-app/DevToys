@@ -1,75 +1,85 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
-    <PropertyGroup>
-        <TargetFrameworks Condition="$(IsWindows)">$(TargetFrameworks);$(NetCoreWindows)</TargetFrameworks>
-        <TargetFrameworks Condition="$(IsMac)">$(TargetFrameworks);$(NetMacCatalyst)</TargetFrameworks>
-        <OutputType>Exe</OutputType>
-        <RootNamespace>DevToys.MauiBlazor</RootNamespace>
-        <UseMaui>true</UseMaui>
-        <SingleProject>true</SingleProject>
-        <EnableDefaultCssItems>false</EnableDefaultCssItems>
+  <PropertyGroup>
+    <TargetFrameworks Condition="$(IsWindows)">$(NetCoreWindows)</TargetFrameworks>
+    <TargetFrameworks Condition="$(IsMac)">$(NetMacCatalyst)</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>DevToys.MauiBlazor</RootNamespace>
+    <UseMaui>true</UseMaui>
+    <SingleProject>true</SingleProject>
+    <EnableDefaultCssItems>false</EnableDefaultCssItems>
 
-        <!-- Display name -->
-        <ApplicationTitle>DevToys</ApplicationTitle>
+    <!-- Display name -->
+    <ApplicationTitle>DevToys</ApplicationTitle>
 
-        <!-- App Identifier -->
-        <ApplicationId>com.etiennebaudoux.devtoys</ApplicationId>
-        <ApplicationIdGuid>856CF642-FDC7-42BE-A1D5-5D7F0FC09091</ApplicationIdGuid>
+    <!-- App Identifier -->
+    <ApplicationId>com.etiennebaudoux.devtoys</ApplicationId>
+    <ApplicationIdGuid>856CF642-FDC7-42BE-A1D5-5D7F0FC09091</ApplicationIdGuid>
 
-        <!-- Versions -->
-        <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-        <ApplicationVersion>1</ApplicationVersion>
+    <!-- Versions -->
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <ApplicationVersion>1</ApplicationVersion>
 
-        <!-- Disable Central Package Management -->
-        <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
-    </PropertyGroup>
+    <!-- Disable Central Package Management -->
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+  </PropertyGroup>
 
-    <Choose>
-        <When Condition="'$(TargetFramework)' == '$(NetMacCatalyst)'">
-          <PropertyGroup>
-            <DefineConstants>$(DefineConstants);__MAC__</DefineConstants>
-          </PropertyGroup>
-          <PropertyGroup Condition="'$(RuntimeIdentifier)'==''">
-            <!-- Default values for command line builds -->
-            <RuntimeIdentifier Condition="'$(TargetFramework)' == '$(NetMacCatalyst)'">maccatalyst-arm64</RuntimeIdentifier>
-            <RuntimeIdentifier Condition="'$(TargetFramework)' == '$(NetMacOS)'">osx-x64</RuntimeIdentifier>
-          </PropertyGroup>
-        </When>
+  <Choose>
+    <When Condition="'$(TargetFramework)' == '$(NetMacCatalyst)'">
+      <PropertyGroup>
+        <DefineConstants>$(DefineConstants);__MAC__</DefineConstants>
+        <RuntimeIdentifiers>maccatalyst-arm64;maccatalyst-x64</RuntimeIdentifiers>
+      </PropertyGroup>
+      <PropertyGroup Condition="'$(RuntimeIdentifier)'==''">
+        <!-- Default values for command line builds -->
+        <RuntimeIdentifier>maccatalyst-arm64</RuntimeIdentifier>
+      </PropertyGroup>
+    </When>
 
-        <When Condition="'$(TargetFramework)' == '$(NetCoreWindows)'">
-          <PropertyGroup>
-            <DefineConstants>$(DefineConstants);__WINDOWS__</DefineConstants>
-            <TargetPlatformMinVersion>$(Windows10MinSDKVersion)</TargetPlatformMinVersion>
-          </PropertyGroup>
-        </When>
-    </Choose>
+    <When Condition="'$(TargetFramework)' == '$(NetCoreWindows)'">
+      <PropertyGroup>
+        <DefineConstants>$(DefineConstants);__WINDOWS__</DefineConstants>
+        <TargetPlatformMinVersion>$(Windows10MinSDKVersion)</TargetPlatformMinVersion>
+        <SupportedOSPlatformVersion>$(Windows10MinSDKVersion)</SupportedOSPlatformVersion>
+        <Platforms>x86;x64;arm64</Platforms>
+        <RuntimeIdentifiers>win10-arm64;win10-x64;win10-x86</RuntimeIdentifiers>
+        <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+        <AppxPackage>false</AppxPackage>
+        <WindowsPackageType>None</WindowsPackageType>
+      </PropertyGroup>
+    </When>
+  </Choose>
 
-    <ItemGroup>
-        <!-- App Icon -->
-        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+  <PropertyGroup Condition="'$(RuntimeIdentifierOverride)' != ''">
+    <RuntimeIdentifier>$(RuntimeIdentifierOverride)</RuntimeIdentifier>
+  </PropertyGroup>
 
-        <!-- Splash Screen -->
-        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+  <ItemGroup>
+    <!-- App Icon -->
+    <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
-        <!-- Images -->
-        <MauiImage Include="Resources\Images\*" />
-        <MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+    <!-- Splash Screen -->
+    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
 
-        <!-- Custom Fonts -->
-        <MauiFont Include="Resources\Fonts\*" />
+    <!-- Images -->
+    <MauiImage Include="Resources\Images\*" />
+    <MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
 
-        <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
-        <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
-    </ItemGroup>
+    <!-- Custom Fonts -->
+    <MauiFont Include="Resources\Fonts\*" />
 
-    <ItemGroup>
-        <ProjectReference Include="..\..\..\DevToys.Api\DevToys.Api.csproj" />
-        <ProjectReference Include="..\..\..\DevToys.Core\DevToys.Core.csproj" />
-    </ItemGroup>
+    <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+    <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="$(DotNetVersion)"/>
-        <PackageReference Include="Microsoft.Fast.Components.FluentUI" Version="$(MicrosoftFastComponentsFluentUIVersion)"/>
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\DevToys.Api\DevToys.Api.csproj" />
+    <ProjectReference Include="..\..\..\DevToys.Core\DevToys.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="$(DotNetVersion)" />
+    <PackageReference Include="Microsoft.Fast.Components.FluentUI" Version="$(MicrosoftFastComponentsFluentUIVersion)" />
+  </ItemGroup>
 
 </Project>

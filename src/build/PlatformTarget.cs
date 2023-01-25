@@ -1,6 +1,6 @@
 ﻿enum PlatformTarget
 {
-    WindowsUwp,
+    Windows,
     MacOS,
     CLI,
     Wasm

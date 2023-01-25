@@ -55,7 +55,7 @@ class Build : NukeBuild
                 Assert.Fail("Parameter `--platform-targets` is missing. Please check `build.sh --help`.");
             }
 
-            if (PlatformTargets.Contains(PlatformTarget.WindowsUwp) && !OperatingSystem.IsWindowsVersionAtLeast(10, 0, 0, 0))
+            if (PlatformTargets.Contains(PlatformTarget.Windows) && !OperatingSystem.IsWindowsVersionAtLeast(10, 0, 0, 0))
             {
                 Assert.Fail("To build Windows UWP app, you need to run on Windows 10 or later.");
             }
@@ -120,30 +120,63 @@ class Build : NukeBuild
         .DependsOn(Restore)
         .Executes(() =>
         {
-            if (PlatformTargets.Contains(PlatformTarget.WindowsUwp))
+            if (PlatformTargets.Contains(PlatformTarget.Windows))
             {
-                RootDirectory
-                    .GlobFiles("**/*.wapproj")
-                    .ForEach(f =>
+                //RootDirectory
+                //    .GlobFiles("**/*.wapproj")
+                //    .ForEach(f =>
+                //    {
+                //        Log.Information($"Building {f}...");
+                //        MSBuild(s => s
+                //            .SetTargetPath(f)
+                //            .SetConfiguration(Configuration)
+                //            .SetTargets("Build")
+                //            .AddProperty("AppxBundlePlatforms", "x86|x64|arm64")
+                //            .AddProperty("AppxPackageDir", RootDirectory / "publish" / "MSIX")
+                //            .AddProperty("AppxPackageSigningEnabled", false)
+                //            .AddProperty("AppxSymbolPackageEnabled", true)
+                //            .AddProperty("AppxBundle", "Always")
+                //            .AddProperty("UapAppxPackageBuildMode", "StoreUpload")
+                //            .SetProcessArgumentConfigurator(_ => _.Add($"/bl:\"{RootDirectory / "bin" / "msbuild.binlog"}\""))
+                //            .SetVerbosity(MSBuildVerbosity.Quiet)
+                //            .SetMaxCpuCount(1)
+                //            .EnableRestore()
+                //            // This is dummy but necessary otherwise MSBuild tries to use Any CPU, which doesn't work for UWP.
+                //            .SetTargetPlatform(MSBuildTargetPlatform.x86));
+                //    });
+
+                Project[] projects = {
+                    MacSolution.GetProject("DevToys.MauiBlazor")
+                };
+
+                foreach (Project project in projects)
+                {
+                    var configs = new List<DotnetParameters>();
+                    foreach (string targetFramework in project.GetTargetFrameworks())
                     {
-                        Log.Information($"Building {f}...");
-                        MSBuild(s => s
-                            .SetTargetPath(f)
+                        configs.Add(new DotnetParameters(project.Path, "win10-arm64", targetFramework, portable: true));
+                        configs.Add(new DotnetParameters(project.Path, "win10-x64", targetFramework, portable: true));
+                        configs.Add(new DotnetParameters(project.Path, "win10-x86", targetFramework, portable: true));
+                    }
+
+                    foreach (DotnetParameters dotnetParameters in configs)
+                    {
+                        Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + "-" + dotnetParameters.TargetFramework + "-" + dotnetParameters.RuntimeIdentifier}...");
+                        DotNetPublish(s => s
+                            .SetProject(dotnetParameters.ProjectOrSolutionPath)
                             .SetConfiguration(Configuration)
-                            .SetTargets("Build")
-                            .AddProperty("AppxBundlePlatforms", "x86|x64|arm64")
-                            .AddProperty("AppxPackageDir", RootDirectory / "publish" / "MSIX")
-                            .AddProperty("AppxPackageSigningEnabled", false)
-                            .AddProperty("AppxSymbolPackageEnabled", true)
-                            .AddProperty("AppxBundle", "Always")
-                            .AddProperty("UapAppxPackageBuildMode", "StoreUpload")
-                            .SetProcessArgumentConfigurator(_ => _.Add($"/bl:\"{RootDirectory / "bin" / "msbuild.binlog"}\""))
-                            .SetVerbosity(MSBuildVerbosity.Quiet)
-                            .SetMaxCpuCount(1)
-                            .EnableRestore()
-                            // This is dummy but necessary otherwise MSBuild tries to use Any CPU, which doesn't work for UWP.
-                            .SetTargetPlatform(MSBuildTargetPlatform.x86));
-                    });
+                            .SetFramework(dotnetParameters.TargetFramework)
+                            .SetRuntime(dotnetParameters.RuntimeIdentifier)
+                            .SetSelfContained(true)
+                            .SetPublishSingleFile(false)
+                            .SetPublishReadyToRun(false)
+                            .SetPublishTrimmed(false)
+                            .SetVerbosity(DotNetVerbosity.Quiet)
+                            .SetProcessArgumentConfigurator(_ => _
+                                .Add("/p:RuntimeIdentifierOverride=" + dotnetParameters.RuntimeIdentifier))
+                            .SetOutput(RootDirectory / "publish" / dotnetParameters.OutputPath));
+                    }
+                }
             }
 
             if (PlatformTargets.Contains(PlatformTarget.MacOS))
@@ -173,7 +206,9 @@ class Build : NukeBuild
                             .SetPublishTrimmed(true) /* Required for MacCatalyst*/
                             .SetVerbosity(DotNetVerbosity.Quiet)
                             .SetNoRestore(true) /* workaround for https://github.com/xamarin/xamarin-macios/issues/15664#issuecomment-1233123515 */
-                            .SetProcessArgumentConfigurator(_ =>_.Add("/p:CreatePackage=True")) /* Will create an installable .pkg */
+                            .SetProcessArgumentConfigurator(_ => _
+                                .Add("/p:RuntimeIdentifierOverride=" + dotnetParameters.RuntimeIdentifier)
+                                .Add("/p:CreatePackage=True")) /* Will create an installable .pkg */
                             .SetOutputDirectory(RootDirectory / "publish" / dotnetParameters.OutputPath));
                     }
                 }
