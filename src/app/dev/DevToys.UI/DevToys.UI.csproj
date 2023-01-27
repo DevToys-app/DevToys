@@ -6,7 +6,7 @@
   <PropertyGroup>
     <TargetFrameworks>$(NetCore)</TargetFrameworks>
     <TargetFrameworks Condition="$(IsMac)">$(TargetFrameworks);$(NetMacCatalyst)</TargetFrameworks>
-    <TargetFrameworks Condition="$(IsWindows)">$(TargetFrameworks);$(UAP)</TargetFrameworks>
+    <TargetFrameworks Condition="$(IsWindows)">$(TargetFrameworks);$(UAP);$(NetCoreWindows)</TargetFrameworks>
     <!-- Ensures the .xr.xml files are generated in a proper layout folder -->
     <GenerateLibraryLayout>true</GenerateLibraryLayout>
 
@@ -41,6 +41,28 @@
         <PackageReference Include="Uno.WinUI.RemoteControl" Condition="'$(Configuration)'=='Debug'" />
         <PackageReference Include="Uno.Extensions.Logging.WebAssembly.Console" />
         <PackageReference Include="Uno.WinUI.Runtime.WebAssembly" />
+      </ItemGroup>
+    </When>
+
+    <When Condition="'$(TargetFramework)' == '$(NetCoreWindows)'">
+      <PropertyGroup>
+        <IsUWP>true</IsUWP>
+        <DefineConstants>$(DefineConstants);__WINDOWS__</DefineConstants>
+        <TargetPlatformMinVersion>$(Windows10MinSDKVersion)</TargetPlatformMinVersion>
+        <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+        <EnableDefaultPageItems>false</EnableDefaultPageItems>
+      </PropertyGroup>
+      <PropertyGroup Condition="'$(Platform)' == 'AnyCPU'">
+        <PlatformTarget>x86</PlatformTarget>
+      </PropertyGroup>
+      <PropertyGroup Condition="'$(Configuration)'=='Release'">
+        <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
+        <GenerateLibraryLayout>true</GenerateLibraryLayout>
+        <EnableDefaultPriItems>false</EnableDefaultPriItems>
+      </PropertyGroup>
+      <ItemGroup>
+        <PackageReference Include="Microsoft.WindowsAppSDK" />
+        <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
       </ItemGroup>
     </When>
 

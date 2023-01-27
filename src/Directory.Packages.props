@@ -32,6 +32,7 @@
     <PackageVersion Include="Microsoft.Web.WebView2" Version="$(WebView2Version)" />
     <PackageVersion Include="Microsoft.Windows.Compatibility" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="$(MicrosoftWindowsSDKBuildToolsVersion)" />
+    <PackageVersion Include="Microsoft.WindowsAppSDK" Version="1.2.230118.102" />
     <PackageVersion Include="Moq" Version="4.18.2" />
     <PackageVersion Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageVersion Include="Nito.AsyncEx" Version="5.1.2" />

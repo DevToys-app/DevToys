@@ -45,10 +45,10 @@ internal sealed class CSharpUpdater
     private static bool UpdateLineWithRule(ref string line, CSharpVersionUpdateRule rule)
     {
         bool updated = false;
-        Group g = GetVersionString(line, rule.AttributeName);
+        Group? g = GetVersionString(line, rule.AttributeName);
         if (g != null)
         {
-            if (VersionString.TryParse(g.Value, out VersionString v) && v is not null)
+            if (VersionString.TryParse(g.Value, out VersionString? v) && v is not null)
             {
                 string newVersion = rule.Update(v);
                 line = string.Concat(line.AsSpan(0, g.Index), newVersion, line.AsSpan(g.Index + g.Length));
@@ -59,7 +59,7 @@ internal sealed class CSharpUpdater
         return updated;
     }
 
-    private static Group GetVersionString(string input, string attributeName)
+    private static Group? GetVersionString(string input, string attributeName)
     {
         int commentIndex = input.IndexOf("//");
         if (commentIndex != -1)

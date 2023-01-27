@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    //"DevToys.Wasdk (Package)": {
+    //  "commandName": "MsixPackage"
+    //},
+    "DevToys.Wasdk (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
