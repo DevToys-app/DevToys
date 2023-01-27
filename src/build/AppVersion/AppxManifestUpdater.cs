@@ -21,10 +21,10 @@ internal sealed class AppxManifestUpdater
 
     public string UpdateTextWithRule(string text)
     {
-        Tuple<string, int, int> g = GetVersionString(text);
+        Tuple<string, int, int>? g = GetVersionString(text);
         if (g != null)
         {
-            if (VersionString.TryParse(g.Item1, out VersionString v) && v is not null)
+            if (VersionString.TryParse(g.Item1, out VersionString? v) && v is not null)
             {
                 string newVersion = new VersionUpdateRule(_versionRule).Update(v);
                 return string.Concat(text.AsSpan(0, g.Item2), newVersion, text.AsSpan(g.Item2 + g.Item3));
@@ -34,7 +34,7 @@ internal sealed class AppxManifestUpdater
         return text;
     }
 
-    public static Tuple<string, int, int> GetVersionString(string input)
+    public static Tuple<string, int, int>? GetVersionString(string input)
     {
         string identityTagStart = "<Identity";
         string identityTagEnd = ">";

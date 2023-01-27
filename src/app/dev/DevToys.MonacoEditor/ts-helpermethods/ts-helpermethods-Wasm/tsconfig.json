@@ -11,6 +11,6 @@
     "..\\..\\ts-helpermethods"
   ],
   "exclude": [
-    "..\\..\\ts-helpermethods\\ts-helpermethods-Windows"
+    "..\\..\\ts-helpermethods\\ts-helpermethods-UWP"
   ]
 }

@@ -34,7 +34,7 @@ internal sealed class VersionString
         return match.Success;
     }
 
-    public static bool TryParse(string input, out VersionString version)
+    public static bool TryParse(string input, out VersionString? version)
     {
         var temp = new VersionString();
         version = null;
@@ -45,10 +45,13 @@ internal sealed class VersionString
         return version != null;
     }
 
-    public string Major { get; set; }
-    public string Minor { get; set; }
-    public string Build { get; set; }
-    public string Revision { get; set; }
+    public string Major { get; set; } = string.Empty;
+
+    public string Minor { get; set; } = string.Empty;
+
+    public string Build { get; set; } = string.Empty;
+
+    public string Revision { get; set; } = string.Empty;
 
     public override string ToString()
     {

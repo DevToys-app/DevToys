@@ -35,16 +35,16 @@ class Build : NukeBuild
     readonly Configuration Configuration = Configuration.Release;
 
     [Parameter("The target platform")]
-    readonly PlatformTarget[] PlatformTargets;
+    readonly PlatformTarget[]? PlatformTargets;
 
     [Parameter("Runs unit tests")]
     readonly bool RunTests;
 
     [Solution]
-    readonly Solution WindowsSolution;
+    readonly Solution? WindowsSolution;
 
     [Solution]
-    readonly Solution MacSolution;
+    readonly Solution? MacSolution;
 
     Target PreliminaryCheck => _ => _
         .Before(Clean)
@@ -53,16 +53,19 @@ class Build : NukeBuild
             if (PlatformTargets == null || PlatformTargets.Length == 0)
             {
                 Assert.Fail("Parameter `--platform-targets` is missing. Please check `build.sh --help`.");
+                return;
             }
 
             if (PlatformTargets.Contains(PlatformTarget.Windows) && !OperatingSystem.IsWindowsVersionAtLeast(10, 0, 0, 0))
             {
                 Assert.Fail("To build Windows UWP app, you need to run on Windows 10 or later.");
+                return;
             }
 
             if (PlatformTargets.Contains(PlatformTarget.MacOS) && !OperatingSystem.IsMacOS())
             {
                 Assert.Fail("To build macOS app, you need to run on macOS Ventura 13.1 or later.");
+                return;
             }
 
             Log.Information("Preliminary checks are successful.");
@@ -120,82 +123,83 @@ class Build : NukeBuild
         .DependsOn(Restore)
         .Executes(() =>
         {
-            if (PlatformTargets.Contains(PlatformTarget.Windows))
+            if (PlatformTargets!.Contains(PlatformTarget.Windows))
             {
-                //RootDirectory
-                //    .GlobFiles("**/*.wapproj")
-                //    .ForEach(f =>
-                //    {
-                //        Log.Information($"Building {f}...");
-                //        MSBuild(s => s
-                //            .SetTargetPath(f)
-                //            .SetConfiguration(Configuration)
-                //            .SetTargets("Build")
-                //            .AddProperty("AppxBundlePlatforms", "x86|x64|arm64")
-                //            .AddProperty("AppxPackageDir", RootDirectory / "publish" / "MSIX")
-                //            .AddProperty("AppxPackageSigningEnabled", false)
-                //            .AddProperty("AppxSymbolPackageEnabled", true)
-                //            .AddProperty("AppxBundle", "Always")
-                //            .AddProperty("UapAppxPackageBuildMode", "StoreUpload")
-                //            .SetProcessArgumentConfigurator(_ => _.Add($"/bl:\"{RootDirectory / "bin" / "msbuild.binlog"}\""))
-                //            .SetVerbosity(MSBuildVerbosity.Quiet)
-                //            .SetMaxCpuCount(1)
-                //            .EnableRestore()
-                //            // This is dummy but necessary otherwise MSBuild tries to use Any CPU, which doesn't work for UWP.
-                //            .SetTargetPlatform(MSBuildTargetPlatform.x86));
-                //    });
-
-                Project[] projects = {
-                    MacSolution.GetProject("DevToys.MauiBlazor")
-                };
-
-                foreach (Project project in projects)
-                {
-                    var configs = new List<DotnetParameters>();
-                    foreach (string targetFramework in project.GetTargetFrameworks())
+                // DevToys UWP
+                RootDirectory
+                    .GlobFiles("**/*.wapproj")
+                    .ForEach(f =>
                     {
-                        configs.Add(new DotnetParameters(project.Path, "win10-arm64", targetFramework, portable: true));
-                        configs.Add(new DotnetParameters(project.Path, "win10-x64", targetFramework, portable: true));
-                        configs.Add(new DotnetParameters(project.Path, "win10-x86", targetFramework, portable: true));
-                    }
-
-                    foreach (DotnetParameters dotnetParameters in configs)
-                    {
-                        Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + "-" + dotnetParameters.TargetFramework + "-" + dotnetParameters.RuntimeIdentifier}...");
-                        DotNetPublish(s => s
-                            .SetProject(dotnetParameters.ProjectOrSolutionPath)
+                        Log.Information($"Building {f}...");
+                        MSBuild(s => s
+                            .SetTargetPath(f)
                             .SetConfiguration(Configuration)
-                            .SetFramework(dotnetParameters.TargetFramework)
-                            .SetRuntime(dotnetParameters.RuntimeIdentifier)
-                            .SetSelfContained(true)
-                            .SetPublishSingleFile(false)
-                            .SetPublishReadyToRun(false)
-                            .SetPublishTrimmed(false)
-                            .SetVerbosity(DotNetVerbosity.Quiet)
-                            .SetProcessArgumentConfigurator(_ => _
-                                .Add("/p:RuntimeIdentifierOverride=" + dotnetParameters.RuntimeIdentifier))
-                            .SetOutput(RootDirectory / "publish" / dotnetParameters.OutputPath));
-                    }
+                            .SetTargets("Build")
+                            .AddProperty("AppxBundlePlatforms", "x86|x64|arm64")
+                            .AddProperty("AppxPackageDir", RootDirectory / "publish" / "MSIX")
+                            .AddProperty("AppxPackageSigningEnabled", false)
+                            .AddProperty("AppxSymbolPackageEnabled", true)
+                            .AddProperty("AppxBundle", "Always")
+                            .AddProperty("UapAppxPackageBuildMode", "StoreUpload")
+                            .SetProcessArgumentConfigurator(_ => _.Add($"/bl:\"{RootDirectory / "bin" / "msbuild.binlog"}\""))
+                            .SetVerbosity(MSBuildVerbosity.Quiet)
+                            .SetMaxCpuCount(1)
+                            .EnableRestore()
+                            // This is dummy but necessary otherwise MSBuild tries to use Any CPU, which doesn't work for UWP.
+                            .SetTargetPlatform(MSBuildTargetPlatform.x86));
+                    });
+
+                // DevToys MAUI Blazor
+                foreach (DotnetParameters dotnetParameters in GetDotnetParametersForMauiBlazorApp())
+                {
+                    Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + "-" + dotnetParameters.TargetFramework + "-" + dotnetParameters.RuntimeIdentifier}...");
+                    DotNetPublish(s => s
+                        .SetProject(dotnetParameters.ProjectOrSolutionPath)
+                        .SetConfiguration(Configuration)
+                        .SetFramework(dotnetParameters.TargetFramework)
+                        .SetRuntime(dotnetParameters.RuntimeIdentifier)
+                        .SetSelfContained(true)
+                        .SetPublishSingleFile(false)
+                        .SetPublishReadyToRun(false)
+                        .SetPublishTrimmed(false) // TODO?
+                        .SetVerbosity(DotNetVerbosity.Quiet)
+                        .SetProcessArgumentConfigurator(_ => _
+                            .Add("/p:RuntimeIdentifierOverride=" + dotnetParameters.RuntimeIdentifier))
+                        .SetOutput(RootDirectory / "publish" / dotnetParameters.OutputPath));
+                }
+
+                // DevToys WASDK
+                foreach (DotnetParameters dotnetParameters in GetDotnetParametersForWasdkApp())
+                {
+                    Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + "-" + dotnetParameters.TargetFramework + "-" + dotnetParameters.RuntimeIdentifier}...");
+                    DotNetPublish(s => s
+                        .SetProject(dotnetParameters.ProjectOrSolutionPath)
+                        .SetConfiguration(Configuration)
+                        .SetFramework(dotnetParameters.TargetFramework)
+                        .SetRuntime(dotnetParameters.RuntimeIdentifier)
+                        .SetPlatform(dotnetParameters.Platform)
+                        .SetSelfContained(true)
+                        .SetPublishSingleFile(false)
+                        .SetPublishReadyToRun(false)
+                        .SetPublishTrimmed(false) // TODO?
+                        .SetVerbosity(DotNetVerbosity.Quiet)
+                        .SetProcessArgumentConfigurator(_ => _
+                            .Add("/p:RuntimeIdentifierOverride=" + dotnetParameters.RuntimeIdentifier))
+                        .SetOutput(RootDirectory / "publish" / dotnetParameters.OutputPath));
                 }
             }
 
-            if (PlatformTargets.Contains(PlatformTarget.MacOS))
+            if (PlatformTargets!.Contains(PlatformTarget.MacOS))
             {
+                // DevToys Uno Mac Catalyst and MAUI Blazor
                 Project[] projects = {
-                    MacSolution.GetProject("DevToys.MacOS"),
+                    MacSolution!.GetProject("DevToys.MacOS"),
                     MacSolution.GetProject("DevToys.MauiBlazor")
                 };
 
                 foreach (Project project in projects)
                 {
-                    var configs = new List<DotnetParameters>();
-                    foreach (string targetFramework in project.GetTargetFrameworks())
-                    {
-                        configs.Add(new DotnetParameters(project.Path, "maccatalyst-arm64", targetFramework, portable: true));
-                        configs.Add(new DotnetParameters(project.Path, "maccatalyst-x64", targetFramework, portable: true));
-                    }
-
-                    foreach (DotnetParameters dotnetParameters in configs)
+                    foreach (DotnetParameters dotnetParameters in GetDotnetParametersForMauiBlazorApp())
                     {
                         Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + "-" + dotnetParameters.TargetFramework + "-" + dotnetParameters.RuntimeIdentifier}...");
                         DotNetBuild(s => s
@@ -214,8 +218,9 @@ class Build : NukeBuild
                 }
             }
 
-            if (PlatformTargets.Contains(PlatformTarget.CLI))
+            if (PlatformTargets!.Contains(PlatformTarget.CLI))
             {
+                // DevToys CLI
                 foreach (DotnetParameters dotnetParameters in GetDotnetParametersForCliApp())
                 {
                     Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + "-" + dotnetParameters.TargetFramework + "-" + dotnetParameters.RuntimeIdentifier}...");
@@ -241,7 +246,7 @@ class Build : NukeBuild
 
         if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
         {
-            project = MacSolution.GetProject(publishProject);
+            project = MacSolution!.GetProject(publishProject);
             foreach (string targetFramework in project.GetTargetFrameworks())
             {
                 yield return new DotnetParameters(project.Path, "osx-x64", targetFramework, portable: false);
@@ -253,7 +258,7 @@ class Build : NukeBuild
         }
         else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
-            project = WindowsSolution.GetProject(publishProject);
+            project = WindowsSolution!.GetProject(publishProject);
             foreach (string targetFramework in project.GetTargetFrameworks())
             {
                 yield return new DotnetParameters(project.Path, "win10-x64", targetFramework, portable: false);
@@ -269,6 +274,57 @@ class Build : NukeBuild
         else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
         {
             // TODO
+        }
+    }
+
+    IEnumerable<DotnetParameters> GetDotnetParametersForWasdkApp()
+    {
+        string publishProject = "DevToys.Wasdk";
+        Project project;
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            project = WindowsSolution!.GetProject(publishProject);
+            foreach (string targetFramework in project.GetTargetFrameworks())
+            {
+                yield return new DotnetParameters(project.Path, "win10-arm64", targetFramework, portable: true, platform: "arm64");
+                yield return new DotnetParameters(project.Path, "win10-x64", targetFramework, portable: true, platform: "x64");
+                yield return new DotnetParameters(project.Path, "win10-x86", targetFramework, portable: true, platform: "x86");
+            }
+        }
+        else
+        {
+            throw new NotSupportedException();
+        }
+    }
+
+    IEnumerable<DotnetParameters> GetDotnetParametersForMauiBlazorApp()
+    {
+        string publishProject = "DevToys.MauiBlazor";
+        Project project;
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+        {
+            project = MacSolution!.GetProject(publishProject);
+            foreach (string targetFramework in project.GetTargetFrameworks())
+            {
+                yield return new DotnetParameters(project.Path, "maccatalyst-arm64", targetFramework, portable: true);
+                yield return new DotnetParameters(project.Path, "maccatalyst-x64", targetFramework, portable: true);
+            }
+        }
+        else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            project = WindowsSolution!.GetProject(publishProject);
+            foreach (string targetFramework in project.GetTargetFrameworks())
+            {
+                yield return new DotnetParameters(project.Path, "win10-arm64", targetFramework, portable: true);
+                yield return new DotnetParameters(project.Path, "win10-x64", targetFramework, portable: true);
+                yield return new DotnetParameters(project.Path, "win10-x86", targetFramework, portable: true);
+            }
+        }
+        else
+        {
+            throw new NotSupportedException();
         }
     }
 #pragma warning restore IDE1006 // Naming Styles

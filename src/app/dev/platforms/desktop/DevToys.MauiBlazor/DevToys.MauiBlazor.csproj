@@ -41,6 +41,8 @@
         <DefineConstants>$(DefineConstants);__WINDOWS__</DefineConstants>
         <TargetPlatformMinVersion>$(Windows10MinSDKVersion)</TargetPlatformMinVersion>
         <SupportedOSPlatformVersion>$(Windows10MinSDKVersion)</SupportedOSPlatformVersion>
+      </PropertyGroup>
+      <PropertyGroup Condition="'$(Configuration)'=='Release'">
         <Platforms>x86;x64;arm64</Platforms>
         <RuntimeIdentifiers>win10-arm64;win10-x64;win10-x86</RuntimeIdentifiers>
         <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>

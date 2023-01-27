@@ -6,13 +6,14 @@
   <PropertyGroup>
     <TargetFrameworks>$(NetCore)</TargetFrameworks>
     <TargetFrameworks Condition="$(IsMac)">$(TargetFrameworks);$(NetMacCatalyst)</TargetFrameworks>
-    <TargetFrameworks Condition="$(IsWindows)">$(UAP);$(TargetFrameworks)</TargetFrameworks>
+    <TargetFrameworks Condition="$(IsWindows)">$(UAP);$(NetCoreWindows);$(TargetFrameworks)</TargetFrameworks>
     <!-- Ensures the .xr.xml files are generated in a proper layout folder -->
     <GenerateLibraryLayout>true</GenerateLibraryLayout>
 
     <IsUWP>false</IsUWP>
     <IsWasm>false</IsWasm>
     <IsMacCatalyst>false</IsMacCatalyst>
+    <IsWasdk>false</IsWasdk>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>
 
@@ -32,7 +33,7 @@
 
   <ItemGroup>
     <None Remove="ts-helpermethods\ts-helpermethods-Wasm\tsconfig.json" />
-    <None Remove="ts-helpermethods\ts-helpermethods-Windows\tsconfig.json" />
+    <None Remove="ts-helpermethods\ts-helpermethods-UWP\tsconfig.json" />
     <None Remove="WasmScripts\WASM\uno-monaco-helpers.g.js" />
     <None Remove="WasmScripts\UWP\uno-monaco-helpers.g.js" />
     <None Remove="monaco-editor\**\*.*" />
@@ -71,7 +72,7 @@
         </Compile>
         <None Remove="ts-helpermethods\**\*.js" />
         <Content Remove="ts-helpermethods\**\*.js" />
-        <TypeScriptCompile Remove="ts-helpermethods\ts-helpermethods-Windows\**\*.js" />
+        <TypeScriptCompile Remove="ts-helpermethods\ts-helpermethods-UWP\**\*.js" />
         <Content Include="ts-helpermethods\ts-helpermethods-Wasm\tsconfig.json">
           <CopyToOutputDirectory>Never</CopyToOutputDirectory>
         </Content>
@@ -104,7 +105,7 @@
         </Compile>
         <None Remove="ts-helpermethods\**\*.js" />
         <Content Remove="ts-helpermethods\**\*.js" />
-        <TypeScriptCompile Remove="ts-helpermethods\ts-helpermethods-Windows\**\*.js" />
+        <TypeScriptCompile Remove="ts-helpermethods\ts-helpermethods-UWP\**\*.js" />
         <Content Include="ts-helpermethods\ts-helpermethods-Wasm\tsconfig.json">
           <CopyToOutputDirectory>Never</CopyToOutputDirectory>
         </Content>
@@ -116,6 +117,58 @@
       </ItemGroup>
       <ItemGroup>
         <EmbeddedResource Include="WasmScripts\WASM\uno-monaco-helpers.g.js" />
+      </ItemGroup>
+    </When>
+
+    <When Condition="'$(TargetFramework)' == '$(NetCoreWindows)'">
+      <PropertyGroup>
+        <IsWasdk>true</IsWasdk>
+        <DefineConstants>$(DefineConstants);__WINDOWS__</DefineConstants>
+        <TargetPlatformMinVersion>$(Windows10MinSDKVersion)</TargetPlatformMinVersion>
+        <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+        <EnableDefaultPageItems>false</EnableDefaultPageItems>
+      </PropertyGroup>
+      <PropertyGroup Condition="'$(Platform)' == 'AnyCPU'">
+        <PlatformTarget>x86</PlatformTarget>
+      </PropertyGroup>
+      <PropertyGroup Condition="'$(Configuration)'=='Release'">
+        <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
+        <GenerateLibraryLayout>true</GenerateLibraryLayout>
+        <EnableDefaultPriItems>false</EnableDefaultPriItems>
+      </PropertyGroup>
+      <ItemGroup>
+        <PackageReference Include="Microsoft.WindowsAppSDK" />
+        <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
+      </ItemGroup>
+      <ItemGroup>
+        <Content Include="CodeEditor\CodeEditor.Windows.html">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="ts-helpermethods\ts-helpermethods-Wasm\**\*.js" />
+        <Content Remove="ts-helpermethods\ts-helpermethods-Wasm\**\*.js" />
+        <TypeScriptCompile Remove="ts-helpermethods\ts-helpermethods-Wasm\**\*.*" />
+        <Content Include="ts-helpermethods\ts-helpermethods-UWP\tsconfig.json">
+          <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </Content>
+        <ConfigFiles Include="ts-helpermethods\ts-helpermethods-UWP\tsconfig.json" />
+        <None Include="highlightjs\**" />
+      </ItemGroup>
+      <ItemGroup>
+        <Content Include="WasmScripts\UWP\uno-monaco-helpers.g.js">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Assets\**">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="monaco-editor\*.*">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="monaco-editor\min\**\*.*">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="ts-helpermethods\**\*.js">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
       </ItemGroup>
     </When>
 
@@ -143,14 +196,11 @@
         <None Remove="ts-helpermethods\ts-helpermethods-Wasm\**\*.js" />
         <Content Remove="ts-helpermethods\ts-helpermethods-Wasm\**\*.js" />
         <TypeScriptCompile Remove="ts-helpermethods\ts-helpermethods-Wasm\**\*.*" />
-        <Content Include="ts-helpermethods\ts-helpermethods-Windows\tsconfig.json">
+        <Content Include="ts-helpermethods\ts-helpermethods-UWP\tsconfig.json">
           <CopyToOutputDirectory>Never</CopyToOutputDirectory>
         </Content>
-        <ConfigFiles Include="ts-helpermethods\ts-helpermethods-Windows\tsconfig.json" />
+        <ConfigFiles Include="ts-helpermethods\ts-helpermethods-UWP\tsconfig.json" />
         <None Include="highlightjs\**" />
-      </ItemGroup>
-      <ItemGroup>
-        <EmbeddedResource Include="WasmScripts\UWP\uno-monaco-helpers.g.js" />
       </ItemGroup>
     </When>
   </Choose>

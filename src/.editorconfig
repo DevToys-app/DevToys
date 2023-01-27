@@ -3,6 +3,12 @@
 # top-most EditorConfig file
 root = true
 
+# Spell checker
+spelling_languages = en-US
+spelling_checkable_types = strings,identifiers,comments
+spelling_error_severity = information
+spelling_exclusion_path = spellcheckerexclusion.dic
+
 # Use CRLF for end of line
 [*]
 end_of_line = crlf

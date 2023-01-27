@@ -7,7 +7,7 @@
   IgnorableNamespaces="uap mp rescap">
 
     <!-- Please DO NOT commit changes on the version number below unless you're about to release a new version of the app on the Store. -->
-    <Identity Name="DevToysPreview"
+    <Identity Name="DevToysMauiBlazor"
       Publisher="CN=ebaud"
       Version="0.0.0.0" />
 
