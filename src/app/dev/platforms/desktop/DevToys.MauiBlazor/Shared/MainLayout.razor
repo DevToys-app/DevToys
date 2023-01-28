@@ -2,15 +2,27 @@
 
 <div class="page">
     <div class="sidebar">
-        <NavMenu/>
+        <nav>
+            <div>
+                <NavLink href="" Match="NavLinkMatch.All">
+                    Home
+                </NavLink>
+            </div>
+            <div>
+                <NavLink href="counter">
+                    Counter
+                </NavLink>
+            </div>
+            <div>
+                <NavLink href="fetchdata">
+                    Fetch data
+                </NavLink>
+            </div>
+        </nav>
     </div>
 
     <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>
-
-        <article class="content px-4">
+        <article>
             @Body
         </article>
     </main>
