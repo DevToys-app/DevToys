@@ -25,12 +25,12 @@ public sealed class StandaloneEditorConstructionOptions : IStandaloneEditorConst
         return default;
     }
 
-    private bool SetPropertyValue<T>(T newValue, [CallerMemberName] string? propertyName = null)
+    private bool SetPropertyValue<T>(T? newValue, [CallerMemberName] string? propertyName = null)
     {
         if (propertyName == null)
             throw new ArgumentNullException(nameof(propertyName));
 
-        if (EqualityComparer<T>.Default.Equals(newValue, GetPropertyValue<T>(propertyName)))
+        if (EqualityComparer<T?>.Default.Equals(newValue, GetPropertyValue<T>(propertyName)))
             return false;
 
         _propertyBackingDictionary[propertyName] = newValue;

@@ -74,11 +74,11 @@ internal sealed partial class ParentAccessor : IDisposable
     public Task<string> CallEvent(string name, string[] parameters)
     {
         Debug.WriteLine($"Event {name}");
-        if (_events.ContainsKey(name))
+        if (_events.TryGetValue(name, out Func<string[], Task<string>>? @event))
         {
             Debug.WriteLine($"Parameters: {parameters != null} - {parameters?.Length.ToString() ?? "N/A"}");
             parameters ??= Array.Empty<string>();
-            return _events[name].Invoke(parameters);
+            return @event.Invoke(parameters);
         }
 
         return Task.FromResult(string.Empty);
@@ -100,9 +100,9 @@ internal sealed partial class ParentAccessor : IDisposable
     /// <returns>True if method was found in registration.</returns>
     public bool CallAction(string name)
     {
-        if (_actions.ContainsKey(name))
+        if (_actions.TryGetValue(name, out Action? @event))
         {
-            _actions[name]?.Invoke();
+            @event.Invoke();
             return true;
         }
 
@@ -117,9 +117,9 @@ internal sealed partial class ParentAccessor : IDisposable
     /// <returns>True if method was found in registration.</returns>
     public bool CallActionWithParameters(string name, string[] parameters)
     {
-        if (_actionParameters.ContainsKey(name))
+        if (_actionParameters.TryGetValue(name, out Action<string[]>? @event))
         {
-            _actionParameters[name]?.Invoke(parameters);
+            @event.Invoke(parameters);
             return true;
         }
 

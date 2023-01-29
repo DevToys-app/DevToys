@@ -15,7 +15,7 @@ public sealed class MefComposer : IDisposable
 
     public IMefProvider Provider { get; }
 
-    public ExportProvider ExportProvider { get; private set; }
+    public CompositionContainer ExportProvider { get; private set; }
 
     public MefComposer(Assembly[]? assemblies = null, params object[] customExports)
     {
@@ -34,10 +34,7 @@ public sealed class MefComposer : IDisposable
 
     public void Dispose()
     {
-        if (ExportProvider is not null)
-        {
-            ((CompositionContainer)ExportProvider).Dispose();
-        }
+        ExportProvider?.Dispose();
 
         _isExportProviderDisposed = true;
     }
@@ -49,7 +46,7 @@ public sealed class MefComposer : IDisposable
         InitializeMef();
     }
 
-    private ExportProvider InitializeMef()
+    private CompositionContainer InitializeMef()
     {
         if (!_isExportProviderDisposed)
         {

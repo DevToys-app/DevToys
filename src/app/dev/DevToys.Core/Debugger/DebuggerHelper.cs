@@ -1,19 +1,21 @@
-namespace DevToys.Core.Debugger;
+﻿namespace DevToys.Core.Debugger;
 
 public static class DebuggerHelper
 {
     public static async Task<bool> WaitForDebuggerAsync(TimeSpan? limit = null)
     {
-        #if DEBUG
+#if DEBUG
         limit ??= TimeSpan.FromSeconds(60);
         var source = new CancellationTokenSource(limit.Value);
-        
+
         Console.WriteLine($"◉ Waiting {limit.Value.TotalSeconds} secs for debugger (PID: {Process.GetCurrentProcess().Id})...");
 
         try
         {
-            await Task.Run(async () => {
-                while (!System.Diagnostics.Debugger.IsAttached) {
+            await Task.Run(async () =>
+            {
+                while (!System.Diagnostics.Debugger.IsAttached)
+                {
                     await Task.Delay(TimeSpan.FromMilliseconds(100), source.Token);
                 }
             }, source.Token);
@@ -23,13 +25,13 @@ public static class DebuggerHelper
             // it's ok
         }
 
-        Console.WriteLine(System.Diagnostics.Debugger.IsAttached 
-            ? "✔ Debugger attached" 
+        Console.WriteLine(System.Diagnostics.Debugger.IsAttached
+            ? "✔ Debugger attached"
             : "✕ Continuing without debugger");
 
         return System.Diagnostics.Debugger.IsAttached;
-        #else
+#else
         return await Task.FromResult(false);
-        #endif
+#endif
     }
 }

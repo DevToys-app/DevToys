@@ -6,7 +6,7 @@ namespace DevToys.Core.Mef;
 [Export(typeof(IMefProvider))]
 internal sealed class MefProvider : IMefProvider
 {
-    internal ExportProvider? ExportProvider { get; set; }
+    internal CompositionContainer? ExportProvider { get; set; }
 
     public TExport Import<TExport>()
     {
@@ -16,5 +16,10 @@ internal sealed class MefProvider : IMefProvider
     public IEnumerable<Lazy<TExport, TMetadataView>> ImportMany<TExport, TMetadataView>()
     {
         return ExportProvider!.GetExports<TExport, TMetadataView>();
+    }
+
+    public void SatisfyImports(object @object)
+    {
+        ExportProvider!.SatisfyImportsOnce(@object);
     }
 }

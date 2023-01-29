@@ -29,7 +29,7 @@ namespace DevToys.MonacoEditor;
 /// </summary>
 public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresenter
 {
-    private static readonly List<TypedEventHandler<WebView2, CoreWebView2WebMessageReceivedEventArgs>> Handlers = new();
+    private static readonly List<TypedEventHandler<WebView2, CoreWebView2WebMessageReceivedEventArgs>> handlers = new();
 
     private enum PropertyAction
     {
@@ -361,7 +361,7 @@ public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresen
             }
         }
 
-        Handlers.Add(Handler);
+        handlers.Add(Handler);
         _webView.WebMessageReceived += Handler;
     }
 

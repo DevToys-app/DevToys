@@ -128,8 +128,10 @@ public sealed partial class App : Application
     /// </summary>
     /// <param name="sender">The source of the suspend request.</param>
     /// <param name="e">Details about the suspend request.</param>
+#if __WINDOWS__
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
+#endif
     private void OnSuspending(object sender, SuspendingEventArgs e)
     {
         SuspendingDeferral deferral = e.SuspendingOperation.GetDeferral();
