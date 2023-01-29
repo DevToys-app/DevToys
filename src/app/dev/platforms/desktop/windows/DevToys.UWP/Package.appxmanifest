@@ -39,8 +39,8 @@
     <Application Id="App"
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
-      <uap:VisualElements DisplayName="DevToys.Windows"
-        Description="DevToys.Windows"
+      <uap:VisualElements DisplayName="DevToys.UWP"
+        Description="DevToys.UWP"
         BackgroundColor="transparent"
         Square150x150Logo="Images\Square150x150Logo.png"
         Square44x44Logo="Images\Square44x44Logo.png">
