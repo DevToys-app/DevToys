@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Base64-Bild Encoder- und Decoder-Werkzeug</value>
+    <value>Base64-Bild Kodier- und Dekodier-Werkzeug</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Base64-Bild</value>
@@ -133,7 +133,7 @@
     <value>Base64-Bild-Daten kodieren und dekodieren</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Base64-Bild Encoder / Decoder</value>
+    <value>Base64-Bild Kodierer / Dekodierer</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>RFC 4648</value>

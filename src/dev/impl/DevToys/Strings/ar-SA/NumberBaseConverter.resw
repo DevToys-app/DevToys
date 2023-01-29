@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Number Base Converter tool</value>
+    <value>أداة تحويل الأرقام</value>
   </data>
   <data name="BinaryLabel" xml:space="preserve">
-    <value>Binary</value>
+    <value>ثنائي</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
     <value>الإعدادات</value>
   </data>
   <data name="DecimalLabel" xml:space="preserve">
-    <value>Decimal</value>
+    <value>عشري</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Number Base</value>
@@ -142,10 +142,10 @@
     <value>ادخال</value>
   </data>
   <data name="InputTypeBinary" xml:space="preserve">
-    <value>Binary</value>
+    <value>ثنائي</value>
   </data>
   <data name="InputTypeDecimal" xml:space="preserve">
-    <value>Decimal</value>
+    <value>عشري</value>
   </data>
   <data name="InputTypeDescription" xml:space="preserve">
     <value>Select which input type you want to use</value>
@@ -186,18 +186,18 @@
     <value>Input dictionary</value>
   </data>
   <data name="OutputDictionaryLabel" xml:space="preserve">
-    <value>Output dictionary</value>
+    <value>قاموس النتائج</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>ناتج</value>
   </data>
   <data name="BaseNumberError" xml:space="preserve">
-    <value>Base number should be greater than 1.</value>
+    <value>ينبغي أن يكون الرَّقَم الأساسي أكبر من 1.</value>
   </data>
   <data name="DictionarySizeError" xml:space="preserve">
-    <value>Dictionary size should be greater than 1.</value>
+    <value>حجم القاموس يجب أن يكون أكبر من 1.</value>
   </data>
   <data name="IncompatibleBaseDictionaryError" xml:space="preserve">
-    <value>Dictionary size could not be smaller than the base number.</value>
+    <value>لا يمكن أن يكون حجم القاموس أصغر من الرقم الأساسي.</value>
   </data>
 </root>

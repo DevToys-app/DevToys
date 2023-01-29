@@ -121,19 +121,19 @@
     <value>Base64 Image Encoder and Decoder tool</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Base64 Image</value>
+    <value>Imagine Base64</value>
   </data>
   <data name="Base64InputTitle" xml:space="preserve">
-    <value>Base64</value>
+    <value>Bază64</value>
   </data>
   <data name="ImageInputTitle" xml:space="preserve">
-    <value>Image</value>
+    <value>Imagine</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Encode and decode Base64 image data</value>
+    <value>Codare și decodeaze datele imaginii Baza64</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Base64 Image Encoder / Decoder</value>
+    <value>Codificator / Decodificator text Baza64</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>RCF 4648</value>
