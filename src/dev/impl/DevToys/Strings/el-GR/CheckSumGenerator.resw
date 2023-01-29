@@ -124,7 +124,7 @@
     <value>Cancel</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Διαμόρφωση</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Generate a hash with Checksum based on a file</value>
@@ -154,7 +154,7 @@
     <value>Uppercase</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="HashesMatch" xml:space="preserve">
     <value>The hashes are the same.</value>
