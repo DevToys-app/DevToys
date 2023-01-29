@@ -33,7 +33,7 @@ You can contribute to DevToys app by:
 
 ### Build, Run & Debug
 1. Open `src/DevToys-Windows.sln` with Visual Studio.
-1. In Visual Studio, set `app/dev/platforms/web/DevToys.Wasm` or `app/dev/platforms/desktop/windows/DevToys.Windows` or `app/dev/platforms/desktop/DevToys.CLI` as startup project.
+1. In Visual Studio, set `app/dev/platforms/web/DevToys.Wasm` or `app/dev/platforms/desktop/windows/DevToys.UWP` or `app/dev/platforms/desktop/windows/DevToys.Wasdk` or `app/dev/platforms/desktop/DevToys.CLI` as startup project.
 1. Now you should be able to build and run DevToys on your machine by pressing `F5`.
 
 ## From macOS

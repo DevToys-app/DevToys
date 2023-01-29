@@ -39,9 +39,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "windows", "windows", "{AFE3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{04F9E03E-B519-49C5-BC6A-2131ED9BADC0}"
 EndProject
-Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "DevToys.Windows", "app\dev\platforms\desktop\windows\DevToys.Windows\DevToys.Windows.wapproj", "{34D966D5-5756-4192-B4AB-44AD6FF07CC5}"
+Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "DevToys.UWP", "app\dev\platforms\desktop\windows\DevToys.UWP\DevToys.UWP.wapproj", "{34D966D5-5756-4192-B4AB-44AD6FF07CC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevToys.Windows.Core", "app\dev\platforms\desktop\windows\DevToys.Windows.Core\DevToys.Windows.Core.csproj", "{97AA45F4-41E2-4FDA-B5B7-F4579DF2C7EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevToys.UWP.Core", "app\dev\platforms\desktop\windows\DevToys.UWP.Core\DevToys.UWP.Core.csproj", "{97AA45F4-41E2-4FDA-B5B7-F4579DF2C7EE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToys.CLI", "app\dev\platforms\desktop\DevToys.CLI\DevToys.CLI.csproj", "{8C72D38A-658D-4C9D-B0AD-2DA975BE7826}"
 EndProject

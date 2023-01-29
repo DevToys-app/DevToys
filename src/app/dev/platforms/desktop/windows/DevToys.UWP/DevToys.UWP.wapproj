@@ -44,17 +44,17 @@
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <AppxPackageDir>..\..\..\..\..\..\..\publish\MSIX\</AppxPackageDir>
     <AppxBundle>Always</AppxBundle>
-    <EntryPointProjectUniqueName>..\DevToys.Windows.Core\DevToys.Windows.Core.csproj</EntryPointProjectUniqueName>
     <UapAppxPackageBuildMode>StoreAndSideload</UapAppxPackageBuildMode>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <EntryPointProjectUniqueName>..\DevToys.UWP.Core\DevToys.UWP.Core.csproj</EntryPointProjectUniqueName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <!-- Workaround to https://github.com/microsoft/microsoft-ui-xaml/issues/6195 -->
     <AppxUseHardlinksIfPossible>false</AppxUseHardlinksIfPossible>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DevToys.Windows.Core\DevToys.Windows.Core.csproj" />
+    <ProjectReference Include="..\DevToys.UWP.Core\DevToys.UWP.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DevToys.Windows_TemporaryKey.pfx" />
