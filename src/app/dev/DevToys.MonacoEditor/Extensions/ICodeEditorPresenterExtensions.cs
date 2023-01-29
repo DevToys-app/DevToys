@@ -76,7 +76,7 @@ internal static class ICodeEditorPresenterExtensions
         return default;
     }
 
-    private static readonly JsonSerializerSettings _settings = new()
+    private static readonly JsonSerializerSettings settings = new()
     {
         NullValueHandling = NullValueHandling.Ignore,
         ContractResolver = new CamelCasePropertyNamesContractResolver()
@@ -149,7 +149,7 @@ internal static class ICodeEditorPresenterExtensions
                             else
                             {
                                 // TODO: Need JSON.parse?
-                                return JsonConvert.SerializeObject(item, _settings);
+                                return JsonConvert.SerializeObject(item, settings);
                             }
                         })
                     .ToArray();
@@ -168,7 +168,7 @@ internal static class ICodeEditorPresenterExtensions
         catch (Exception ex)
         {
             Debug.WriteLine($"Error {ex.Message} {ex.StackTrace} {ex.InnerException?.Message})");
-            return default(T);
+            return default;
         }
     }
 }

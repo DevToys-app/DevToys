@@ -1,11 +1,14 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Fast.Components.FluentUI.Infrastructure;
 using Microsoft.Fast.Components.FluentUI;
+using DevToys.Core.Mef;
 
 namespace DevToys.MauiBlazor;
 
 public static class MauiProgram
 {
+    private static readonly MefComposer mefComposer = new();
+
     public static MauiApp CreateMauiApp()
     {
         MauiAppBuilder builder = MauiApp.CreateBuilder();
@@ -25,6 +28,8 @@ public static class MauiProgram
         builder.Services.AddBlazorWebViewDeveloperTools();
         builder.Logging.AddDebug();
 #endif
+
+        builder.Services.AddSingleton(provider => mefComposer.Provider);
 
         return builder.Build();
     }

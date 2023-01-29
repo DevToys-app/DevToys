@@ -8,7 +8,7 @@ namespace DevToys.MonacoEditor.Monaco.Helpers;
 /// </summary>
 internal sealed class CssStyleBroker : IDisposable
 {
-    private static uint Id = 0;
+    private static uint id = 0;
 
     // Track styles registered to this particular editor.
     private static readonly Dictionary<uint, WeakReference<ICssStyle>> registry = new();
@@ -39,7 +39,7 @@ internal sealed class CssStyleBroker : IDisposable
     /// <returns></returns>
     public static uint Register(ICssStyle style)
     {
-        uint id = Id++;
+        uint id = CssStyleBroker.id++;
         registry.Add(id, new WeakReference<ICssStyle>(style));
         return id;
     }
