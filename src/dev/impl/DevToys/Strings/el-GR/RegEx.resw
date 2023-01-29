@@ -118,87 +118,87 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Regular expression tester tool</value>
+    <value>Εργαλείο ελέγχου κανονικής έκφρασης</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Διαμόρφωση</value>
   </data>
   <data name="CultureInvariant" xml:space="preserve">
-    <value>Culture Invariant</value>
+    <value>Καλλιέργεια Απαρτάλων</value>
   </data>
   <data name="CultureInvariantDescription" xml:space="preserve">
-    <value>Specifies that cultural differences in language is ignored.</value>
+    <value>Καθορίζει ότι οι πολιτιστικές διαφορές στη γλώσσα αγνοούνται.</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Regex Tester</value>
+    <value>Έλεγχος Regex</value>
   </data>
   <data name="EcmaScript" xml:space="preserve">
     <value>ECMA Script</value>
   </data>
   <data name="EcmaScriptDescription" xml:space="preserve">
-    <value>Enables ECMAScript-compliant behavior for the expression. This value can be used only in conjunction with the Culture Invariant, Ignore Case and Multiline options.</value>
+    <value>Ενεργοποιεί την συμβατή με ECMAScript συμπεριφορά για την έκφραση. Αυτή η τιμή μπορεί να χρησιμοποιηθεί μόνο σε συνδυασμό με τις επιλογές Culture Invariant, Ignore Case και Multiline.</value>
   </data>
   <data name="IgnoreCase" xml:space="preserve">
-    <value>Ignore Case</value>
+    <value>Παράβλεψη κεφαλαίων</value>
   </data>
   <data name="IgnoreCaseDescription" xml:space="preserve">
-    <value>Specifies case-insensitive matching.</value>
+    <value>Καθορίζει το ταίριασμα με διάκριση πεζών-κεφαλαίων.</value>
   </data>
   <data name="IgnoreWhitespace" xml:space="preserve">
-    <value>Ignore Whitespace</value>
+    <value>Παράβλεψη Κενών</value>
   </data>
   <data name="IgnoreWhitespaceDescription" xml:space="preserve">
-    <value>Eliminates unescaped white space from the pattern and enables comments marked with #. However, this value does not affect or eliminate white space in character classes, numeric quantifiers, or tokens that mark the beginning of individual regular expression language elements.</value>
+    <value>Καταργεί κενά από το μοτίβο και επιτρέπει σχόλια που επισημαίνονται με #. Ωστόσο, αυτή η τιμή δεν επηρεάζει την εξάλειψη του κενού διαστήματος σε κατηγορίες χαρακτήρων, αριθμητικούς ποσοτικούς δείκτες ή διακριτικά που σηματοδοτούν την αρχή μεμονωμένων στοιχείων γλώσσας κανονικής έκφρασης.</value>
   </data>
   <data name="Multiline" xml:space="preserve">
-    <value>Multiline</value>
+    <value>Πολυγραμμή</value>
   </data>
   <data name="MultilineDescription" xml:space="preserve">
-    <value>Changes the meaning of ^ and $ so they match at the beginning and end, respectively, of any line, and not just the beginning and end of the entire string.</value>
+    <value>Αλλάζει την έννοια του ^ και $ έτσι ταιριάζουν στην αρχή και το τέλος, αντίστοιχα, από οποιαδήποτε γραμμή, και όχι μόνο την αρχή και το τέλος ολόκληρου του νήματος.</value>
   </data>
   <data name="Options" xml:space="preserve">
-    <value>Options</value>
+    <value>Επιλογές</value>
   </data>
   <data name="RegularExpression" xml:space="preserve">
-    <value>Regular expression</value>
+    <value>Κανονική έκφραση</value>
   </data>
   <data name="RightToLeft" xml:space="preserve">
-    <value>Right To Left</value>
+    <value>Από δεξιά προς αριστερά</value>
   </data>
   <data name="RightToLeftDescription" xml:space="preserve">
-    <value>Specifies that the search will be from right to left instead of from left to right.</value>
+    <value>Καθορίζει ότι η αναζήτηση θα είναι από τα δεξιά προς τα αριστερά αντί από αριστερά προς τα δεξιά.</value>
   </data>
   <data name="Singleline" xml:space="preserve">
-    <value>Singleline</value>
+    <value>Μονόγραμμο</value>
   </data>
   <data name="SinglelineDescription" xml:space="preserve">
-    <value>Changes the meaning of the dot (.) so it matches every character (instead of every character except \n).</value>
+    <value>Αλλάζει το νόημα της τελείας (.) έτσι ώστε να ταιριάζει με κάθε χαρακτήρα (αντί για κάθε χαρακτήρα εκτός από \n).</value>
   </data>
   <data name="Text" xml:space="preserve">
-    <value>Text</value>
+    <value>Κείμενο</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Validate and test regular expressions</value>
+    <value>Επικύρωση και δοκιμή κανονικών εκφράσεων</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Regex Tester</value>
+    <value>Έλεγχος Regex</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Regular expression</value>
+    <value>Κανονική έκφραση</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>Input</value>
+    <value>Εισαγωγή</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Output</value>
+    <value>Εξαγωγή</value>
   </data>
   <data name="Group" xml:space="preserve">
-    <value>Group</value>
+    <value>Ομάδα</value>
   </data>
   <data name="Match" xml:space="preserve">
-    <value>Match</value>
+    <value>Αντιστοίχιση</value>
   </data>
   <data name="Matches" xml:space="preserve">
-    <value>Matches</value>
+    <value>Αντιστοιχίσεις</value>
   </data>
 </root>
