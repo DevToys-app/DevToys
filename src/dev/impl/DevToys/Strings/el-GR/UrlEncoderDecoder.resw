@@ -121,19 +121,19 @@
     <value>URL Encoder and Decoder tool</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Διαμόρφωση</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
-    <value>Decode</value>
+    <value>Αποκωδικοποιητής</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Select which conversion mode you want to use</value>
+    <value>Επιλέξτε τη λειτουργία μετατροπής που θέλετε να χρησιμοποιήσετε</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
-    <value>Encode</value>
+    <value>Κωδικοποιητής</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Conversion</value>
+    <value>Μετατροπή</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>URL</value>
@@ -151,6 +151,6 @@
     <value>URL Encoder / Decoder</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
 </root>
