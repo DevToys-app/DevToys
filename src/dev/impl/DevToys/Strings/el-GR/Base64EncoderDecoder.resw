@@ -130,10 +130,10 @@
     <value>Αποκωδικοποιητής</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Επιλέξτε τη λειτουργία μετατροπής που θέλετε να χρησιμοποιήσετε</value>
+    <value>Επιλέξτε ποια λειτουργία μετατροπής θα χρησιμοποιήσετε</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
-    <value>Κωδικοποιητής</value>
+    <value>Κωδικοποίηση</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
     <value>Μετατροπή</value>
@@ -142,25 +142,25 @@
     <value>Κείμενο Base64</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
-    <value>Select which encoding do you want to use</value>
+    <value>Επιλέξτε την κωδικοποίηση που θέλετε να χρησιμοποιήσετε</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
-    <value>Encoding</value>
+    <value>Κωδικοποίηση</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>Input</value>
+    <value>Εισαγωγή</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Output</value>
+    <value>Εξαγωγή</value>
   </data>
   <data name="Utf8" xml:space="preserve">
     <value>UTF-8</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Encode and decode Base64 text data</value>
+    <value>Κωδικοποίηση και αποκωδικοποίηση δεδομένων κειμένου base64</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Base64 Text Encoder / Decoder</value>
+    <value>Κωδικοποιητής και αποκωδικοποιητής κειμένου Base64</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>RFC 4648</value>
