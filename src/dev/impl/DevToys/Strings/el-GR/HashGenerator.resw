@@ -121,7 +121,7 @@
     <value>Hash Generator tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Διαμόρφωση</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Hash</value>
@@ -160,7 +160,7 @@
     <value>Output Type</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="HmacMode" xml:space="preserve">
     <value>HMAC Mode</value>
