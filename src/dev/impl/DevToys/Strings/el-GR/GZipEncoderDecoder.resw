@@ -124,7 +124,7 @@
     <value>ASCII</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Διαμόρφωση</value>
   </data>
   <data name="ConversionDecompress" xml:space="preserve">
     <value>Decompress</value>
@@ -163,6 +163,6 @@
     <value>GZip Compress / Decompress</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
 </root>
