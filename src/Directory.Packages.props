@@ -13,6 +13,7 @@
     <UnoVersion>4.6.41</UnoVersion>
     <UnoWasmBootstrapVersion>8.0.0-dev.65</UnoWasmBootstrapVersion>
     <WebView2Version>1.0.1462.37</WebView2Version>
+    <MicrosoftTypeScriptMSBuildVersion>4.9.4</MicrosoftTypeScriptMSBuildVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="CommunityToolkit.Common" Version="$(CommunityToolkitVersion)" />
@@ -27,7 +28,7 @@
     <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.Fast.Components.FluentUI" Version="$(MicrosoftFastComponentsFluentUIVersion)" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
-    <PackageVersion Include="Microsoft.TypeScript.MSBuild" Version="4.9.4" />
+    <PackageVersion Include="Microsoft.TypeScript.MSBuild" Version="$(MicrosoftTypeScriptMSBuildVersion)" />
     <PackageVersion Include="Microsoft.UI.Xaml" Version="2.8.1" />
     <PackageVersion Include="Microsoft.Web.WebView2" Version="$(WebView2Version)" />
     <PackageVersion Include="Microsoft.Windows.Compatibility" Version="$(DotNetVersion)" />

@@ -1,0 +1,24 @@
+﻿@inherits FluentComponentBase
+
+<div>
+    <CascadingValue Value="this" IsFixed=true Name="NavigationView">
+        <FluentTreeView Class="@ClassValue"
+                        Style="@StyleValue"
+                        id="@Id">
+            @*
+            <FluentButton Appearance="Appearance.Lightweight"
+            Class="navmenu-main-button"
+            @onclick="OnHamburgerButtonClickAsync"
+            title="@Title">
+            <FluentIcon Name="@(FluentIcons.Navigation)" Size="IconSize.Size20" Slot="start" />
+            </FluentButton>*@
+            <FluentSearch Placeholder="Type to search for tools..." Style="margin-left: 22px; margin-right: 22px" />
+            <NavigationViewItem Text="All tools" Icon="@(FluentIcons.Home)" />
+            <FluentDivider />
+            @MenuItemsSource
+            <div style="position: absolute; bottom: 0px; width:@Width;">
+                @FooterMenuItemsSource
+            </div>
+        </FluentTreeView>
+    </CascadingValue>
+</div>

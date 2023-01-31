@@ -1,0 +1,25 @@
+﻿@namespace DevToys.MauiBlazor.Components
+
+@inherits FluentComponentBase
+<FluentTreeItem @ref="@_treeItem"
+                Id="@Id"
+                Class="@ClassValue"
+                Style="@StyleValue"
+                Expanded="@IsExpanded"
+                tabindex="-1"
+                Text="@Text"
+                Selected="@IsSelected"
+                @onclick="@OnClickHandlerAsync">
+    @if (HasIcon)
+    {
+        <FluentIcon Name="@Icon" Size="@IconSize.Size20" Slot="start" />
+    }
+    else
+    {
+        <div style="width:20px;" slot="start" />
+    }
+
+    @ChildContent
+
+
+</FluentTreeItem>
