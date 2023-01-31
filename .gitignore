@@ -431,6 +431,9 @@ src/app/dev/DevToys.MonacoEditor/monaco-editor
 # Highlight.js dependency https://highlightjs.org/
 !highlight.min.js
 
+# MAUI Blazor web components.
+!web-components.min.js
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

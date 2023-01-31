@@ -1,0 +1,48 @@
+﻿.navmenu {
+    background-color: var(--neutral-layer-1);
+}
+
+::deep .navmenu-main-button {
+    width: 20px;
+    color: var(--neutral-fill-strong-active);
+}
+
+    ::deep .navmenu-main-button::part(start) {
+        margin-inline-end: 0px;
+    }
+
+/*From main layout component*/
+.main-layout-navmenu {
+    height: 100%;
+    max-height: 100%;
+    border-right: 1px solid var(--neutral-stroke-divider-rest);
+    overflow-y: auto;
+}
+
+::deep .navmenu-group::part(start) {
+    margin-inline-end: 5px;
+}
+
+::deep .navmenu-group:not([aria-expanded])::part(start) {
+    margin-inline-start: -25px;
+    width: 24px;
+}
+
+::deep .navmenu-link::part(start) {
+    margin-inline-start: -25px;
+}
+
+::deep .navmenu-link-nogroup::part(start) {
+    margin-inline-start: -10px;
+}
+
+/* Item Collasped */
+::deep fluent-tree-item.navmenu-group:not([aria-expanded]) svg[state="expanded"],
+::deep fluent-tree-item.navmenu-group[aria-expanded="false"] svg[state="expanded"] {
+    display: none;
+}
+
+/* Item Expanded */
+::deep fluent-tree-item.navmenu-group[aria-expanded="true"] svg[state="collapsed"] {
+    display: none;
+}

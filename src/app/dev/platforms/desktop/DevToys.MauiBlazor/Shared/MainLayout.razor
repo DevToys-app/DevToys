@@ -1,24 +1,27 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
-        <nav>
-            <div>
-                <NavLink href="" Match="NavLinkMatch.All">
-                    Home
-                </NavLink>
-            </div>
-            <div>
-                <NavLink href="counter">
-                    Counter
-                </NavLink>
-            </div>
-            <div>
-                <NavLink href="fetchdata">
-                    Fetch data
-                </NavLink>
-            </div>
-        </nav>
+<StackPanel Orientation="Orientation.Horizontal" Width="100%">
+    <div>
+        <NavigationView Width="320">
+            <MenuItemsSource>
+                <NavigationViewItem Text="Never" Icon="@(FluentIcons.LeafOne)" />
+                <NavigationViewItem Text="Gonna" Icon="@(FluentIcons.LeafOne)" />
+                <NavigationViewItem Text="Give" Icon="@(FluentIcons.LeafOne)">
+                    <NavigationViewItem Text="You" Icon="@(FluentIcons.LeafOne)" />
+                    <NavigationViewItem Text="Up" Icon="@(FluentIcons.LeafTwo)" />
+                </NavigationViewItem>
+                <NavigationViewItem Text="Never" Icon="@(FluentIcons.LeafOne)">
+                    <NavigationViewItem Text="Gonna" Icon="@(FluentIcons.LeafOne)" />
+                    <NavigationViewItem Text="Let" Icon="@(FluentIcons.LeafOne)" />
+                </NavigationViewItem>
+                <NavigationViewItem Text="You" Icon="@(FluentIcons.LeafOne)">
+                    <NavigationViewItem Text="Down" Icon="@(FluentIcons.LeafTwo)" />
+                </NavigationViewItem>
+            </MenuItemsSource>
+            <FooterMenuItemsSource>
+                <NavigationViewItem Text="Settings" Icon="@(FluentIcons.Settings)" />
+            </FooterMenuItemsSource>
+        </NavigationView>
     </div>
 
     <main>
@@ -26,4 +29,4 @@
             @Body
         </article>
     </main>
-</div>
+</StackPanel>
