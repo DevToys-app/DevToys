@@ -1,5 +1,6 @@
 <Project>
   <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+  <Import Project="$(RepoRoot)\tools\ReswPlus.0.1.5-alpha\ReswPlus.props" />
 
   <PropertyGroup>
     <!-- Define .NET and C# configuration -->
@@ -23,5 +24,9 @@
     <Compile Include="$(RepoRoot)\src\app\dev\shared\GlobalUsings.cs" Link="Properties\GlobalUsings.cs" />
     <Compile Include="$(RepoRoot)\src\app\dev\shared\SharedAssemblyInfo.cs" Link="Properties\SharedAssemblyInfo.cs" />
     <Compile Include="$(RepoRoot)\src\app\dev\shared\SharedAssemblyVersion.cs" Link="Properties\SharedAssemblyVersion.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Analyzer Include="$(RepoRoot)\tools\ReswPlus.0.1.5-alpha\ReswPlusSourceGenerator.dll" />
   </ItemGroup>
 </Project>

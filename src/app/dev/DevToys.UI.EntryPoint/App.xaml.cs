@@ -1,4 +1,5 @@
-﻿using DevToys.UI.Views;
+﻿using DevToys.UI;
+using DevToys.UI.Views;
 using Microsoft.Extensions.Logging;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -33,6 +34,10 @@ public sealed partial class App : Application
     public App()
     {
         InitializeLogging();
+
+        // Set the language of the app for startup. By default, it's the same than Windows, or english.
+        // The language defined by the user will be applied later, once MEF is loaded, but before the UI shows up.
+        LanguageManager.Instance.SetCurrentCulture(LanguageManager.Instance.AvailableLanguages[0]);
 
         this.InitializeComponent();
 
