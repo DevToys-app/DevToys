@@ -86,6 +86,7 @@
     <!-- Explicitely set Version because Central Package Management isn't supported by UWP projects -->
     <PackageReference Include="CommunityToolkit.Common" Version="$(CommunityToolkitVersion)" />
     <PackageReference Include="CommunityToolkit.Diagnostics" Version="$(CommunityToolkitVersion)" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="$(CommunityToolkitVersion)" />
     <PackageReference Include="System.ComponentModel.Composition" Version="$(DotNetVersion)" />
     <PackageReference Include="Microsoft.Web.WebView2" Version="$(WebView2Version)" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="$(DotNetVersion)" />

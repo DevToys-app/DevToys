@@ -1,7 +1,7 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:ext="using:DevToys.UI.Framework.MarkupExtensions">
+    xmlns:str="using:DevToys.UI.Framework.Strings">
 
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Light">
@@ -47,8 +47,8 @@
     </Style>
 
     <Style TargetType="ToggleSwitch">
-        <Setter Property="OnContent" Value="{ext:StringResource Key=ToggleSwitchOn}"/>
-        <Setter Property="OffContent" Value="{ext:StringResource Key=ToggleSwitchOff}"/>
+        <Setter Property="OnContent" Value="{str:StringsExtension Key=ToggleSwitchOn}"/>
+        <Setter Property="OffContent" Value="{str:StringsExtension Key=ToggleSwitchOff}"/>
     </Style>
 
     <!-- From https://github.com/morning4coffe-dev/storylines -->
@@ -64,8 +64,8 @@
         <Setter Property="MinWidth" Value="0" />
         <Setter Property="FocusVisualMargin" Value="-7,-3,-7,-3" />
         <Setter Property="CornerRadius" Value="{StaticResource ControlCornerRadius}" />
-        <Setter Property="OnContent" Value="{ext:StringResource Key=ToggleSwitchOn}"/>
-        <Setter Property="OffContent" Value="{ext:StringResource Key=ToggleSwitchOff}"/>
+        <Setter Property="OnContent" Value="{str:StringsExtension Key=ToggleSwitchOn}"/>
+        <Setter Property="OffContent" Value="{str:StringsExtension Key=ToggleSwitchOff}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleSwitch">
