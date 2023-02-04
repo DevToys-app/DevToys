@@ -1,10 +1,11 @@
 {
   "profiles": {
-    //"DevToys.Wasdk (Package)": {
-    //  "commandName": "MsixPackage"
-    //},
-    "DevToys.Wasdk (Unpackaged)": {
-      "commandName": "Project"
-    }
+    "DevToys.Wasdk (Package)": {
+      "commandName": "MsixPackage"
+    },
+    // If you want to run an Unpackaged build from your IDE, make sure to also set Unpackage to True in the CSPROJ.
+    //"DevToys.Wasdk (Unpackaged)": {
+    //  "commandName": "Project"
+    //}
   }
 }

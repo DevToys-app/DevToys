@@ -1,9 +1,4 @@
-﻿#if WINDOWS_UWP
-using Microsoft.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls;
-#else
-using Microsoft.UI.Xaml.Controls;
-#endif
+﻿using Microsoft.UI.Xaml.Controls;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -22,10 +17,5 @@ public sealed partial class MainPage : Page
     public MainPage()
     {
         this.InitializeComponent();
-
-#if WINDOWS_UWP
-        // Enable Mica effect.
-        BackdropMaterial.SetApplyToRootOrPageBackground(this, true);
-#endif
     }
 }

@@ -28,7 +28,7 @@
   <Choose>
     <When Condition="'$(TargetFramework)' == '$(NetMacCatalyst)'">
       <PropertyGroup>
-        <DefineConstants>$(DefineConstants);__MAC__</DefineConstants>
+        <DefineConstants>$(DefineConstants);__MACCATALYST__</DefineConstants>
         <RuntimeIdentifiers>maccatalyst-arm64;maccatalyst-x64</RuntimeIdentifiers>
       </PropertyGroup>
       <PropertyGroup Condition="'$(RuntimeIdentifier)'==''">

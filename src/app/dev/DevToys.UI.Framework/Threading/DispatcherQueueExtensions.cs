@@ -1,21 +1,9 @@
-﻿#if WINDOWS_UWP
-#nullable enable
-using Windows.ApplicationModel.Core;
-using Windows.UI.Core;
-using DispatcherQueue = Windows.UI.Core.CoreDispatcher;
-using DispatcherQueuePriority = Windows.UI.Core.CoreDispatcherPriority;
-#else
-using Microsoft.UI.Dispatching;
-#endif
+﻿using Microsoft.UI.Dispatching;
 
 namespace DevToys.UI.Framework.Threading;
 
 public static class DispatcherQueueExtensions
 {
-#if WINDOWS_UWP
-    public static readonly DispatcherQueue DispatcherQueue = CoreApplication.MainView.CoreWindow.Dispatcher;
-#endif
-
     public static void ThrowIfNotOnUIThread(this DispatcherQueue dispatcherQueue)
     {
         if (!dispatcherQueue.HasThreadAccess)
@@ -52,11 +40,7 @@ public static class DispatcherQueueExtensions
         else
         {
             var tcs = new TaskCompletionSource<int>(0);
-#if WINDOWS_UWP
-            _ = dispatcherQueue.RunAsync(
-#else
             dispatcherQueue.TryEnqueue(
-#endif
                 priority,
                 () =>
                 {
@@ -96,11 +80,7 @@ public static class DispatcherQueueExtensions
         else
         {
             var tcs = new TaskCompletionSource<T>();
-#if WINDOWS_UWP
-            _ = dispatcherQueue.RunAsync(
-#else
             dispatcherQueue.TryEnqueue(
-#endif
                 priority,
                 () =>
                 {
@@ -141,11 +121,7 @@ public static class DispatcherQueueExtensions
         else
         {
             var tcs = new TaskCompletionSource<int>(0);
-#if WINDOWS_UWP
-            _ = dispatcherQueue.RunAsync(
-#else
             dispatcherQueue.TryEnqueue(
-#endif
                 priority,
                 async () =>
                 {
@@ -185,11 +161,7 @@ public static class DispatcherQueueExtensions
         {
             T result = default!;
             var tcs = new TaskCompletionSource<int>(0);
-#if WINDOWS_UWP
-            _ = dispatcherQueue.RunAsync(
-#else
             dispatcherQueue.TryEnqueue(
-#endif
                 priority,
                 async () =>
                 {

@@ -1,14 +1,8 @@
 ﻿using DevToys.UI.Framework.Threading;
 using Microsoft.Web.WebView2.Core;
 using Windows.Foundation;
-
-#if WINDOWS_UWP
-using Windows.UI.Xaml;
-using DispatcherQueue = Windows.UI.Core.CoreDispatcher;
-#else
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
-#endif
 
 namespace DevToys.MonacoEditor;
 

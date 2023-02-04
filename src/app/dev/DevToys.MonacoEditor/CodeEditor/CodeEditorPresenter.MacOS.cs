@@ -1,4 +1,4 @@
-﻿#if __MAC__
+﻿#if __MACCATALYST__
 
 //using DevToys.HighlightRBindingLibrary;
 using System.Reflection;

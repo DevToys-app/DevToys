@@ -62,5 +62,6 @@
     <ProjectReference Include="..\..\..\DevToys.UI.Framework\DevToys.UI.Framework.csproj" />
     <ProjectReference Include="..\..\..\DevToys.UI\DevToys.UI.csproj" />
   </ItemGroup>
-  <Import Project="..\..\..\DevToys.UI.EntryPoint\DevToys.UI.EntryPoint.projitems" Label="Shared" Condition="Exists('..\..\..\DevToys.UI.EntryPoint\DevToys.UI.EntryPoint.projitems')" />
+
+  <Import Project="$(RepoRoot)\src\app\dev\shared\App.props" />
 </Project>

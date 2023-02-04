@@ -2,16 +2,9 @@
 using Windows.UI.ViewManagement;
 using Newtonsoft.Json;
 using Windows.UI;
-
-#if WINDOWS_UWP
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
-using DispatcherQueue = Windows.UI.Core.CoreDispatcher;
-#else
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
-#endif
 
 namespace DevToys.MonacoEditor.WebInterop;
 

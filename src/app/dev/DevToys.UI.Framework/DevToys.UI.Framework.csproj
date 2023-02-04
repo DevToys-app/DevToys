@@ -6,7 +6,7 @@
   <PropertyGroup>
     <TargetFrameworks>$(NetCore)</TargetFrameworks>
     <TargetFrameworks Condition="$(IsMac)">$(TargetFrameworks);$(NetMacCatalyst)</TargetFrameworks>
-    <TargetFrameworks Condition="$(IsWindows)">$(TargetFrameworks);$(UAP);$(NetCoreWindows)</TargetFrameworks>
+    <TargetFrameworks Condition="$(IsWindows)">$(TargetFrameworks);$(NetCoreWindows)</TargetFrameworks>
     <!-- Ensures the .xr.xml files are generated in a proper layout folder -->
     <GenerateLibraryLayout>true</GenerateLibraryLayout>
 
@@ -19,7 +19,7 @@
     <When Condition="'$(TargetFramework)' == '$(NetMacCatalyst)'">
       <PropertyGroup>
         <IsMacCatalyst>true</IsMacCatalyst>
-        <DefineConstants>$(DefineConstants);__MAC__</DefineConstants>
+        <DefineConstants>$(DefineConstants);__MACCATALYST__</DefineConstants>
       </PropertyGroup>
       <ItemGroup>
         <PackageReference Include="Microsoft.Windows.Compatibility" />
@@ -63,27 +63,6 @@
       <ItemGroup>
         <PackageReference Include="Microsoft.WindowsAppSDK" />
         <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
-      </ItemGroup>
-    </When>
-
-    <When Condition="'$(TargetFramework)' == '$(UAP)'">
-      <PropertyGroup>
-        <IsUWP>true</IsUWP>
-        <DefineConstants>$(DefineConstants);WINDOWS_UWP</DefineConstants>
-        <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-        <TargetPlatformVersion>$(Windows10SDKVersion)</TargetPlatformVersion>
-        <TargetPlatformMinVersion>$(Windows10MinSDKVersion)</TargetPlatformMinVersion>
-        <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
-        <Platforms>AnyCPU;x86;x64;arm64</Platforms>
-      </PropertyGroup>
-      <PropertyGroup Condition="'$(Configuration)' == 'Release'">
-        <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
-      </PropertyGroup>
-      <PropertyGroup Condition="'$(Platform)' == 'AnyCPU'">
-        <PlatformTarget>x86</PlatformTarget>
-      </PropertyGroup>
-      <ItemGroup>
-        <PackageReference Include="Microsoft.UI.Xaml" />
       </ItemGroup>
     </When>
   </Choose>

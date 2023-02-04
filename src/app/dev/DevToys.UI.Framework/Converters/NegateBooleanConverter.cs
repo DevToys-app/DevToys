@@ -1,9 +1,4 @@
-﻿#if WINDOWS_UWP
-#nullable enable
-using Windows.UI.Xaml.Data;
-#else
-using Microsoft.UI.Xaml.Data;
-#endif
+﻿using Microsoft.UI.Xaml.Data;
 
 namespace DevToys.UI.Framework.Converters;
 

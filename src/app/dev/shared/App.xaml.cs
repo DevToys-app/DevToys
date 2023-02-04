@@ -4,19 +4,10 @@ using Microsoft.Extensions.Logging;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Core;
-
-#if WINDOWS_UWP
-#nullable enable
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
-using LaunchActivatedEventArgs = Windows.ApplicationModel.Activation.LaunchActivatedEventArgs;
-#else
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
-#endif
 
 namespace DevToys;
 
@@ -34,10 +25,6 @@ public sealed partial class App : Application
     public App()
     {
         InitializeLogging();
-
-        // Set the language of the app for startup. By default, it's the same than Windows, or english.
-        // The language defined by the user will be applied later, once MEF is loaded, but before the UI shows up.
-        LanguageManager.Instance.SetCurrentCulture(LanguageManager.Instance.AvailableLanguages[0]);
 
         this.InitializeComponent();
 
@@ -59,11 +46,14 @@ public sealed partial class App : Application
             // this.DebugSettings.EnableFrameRateCounter = true;
         }
 #endif
+        // Set the language of the app for startup. By default, it's the same than Windows, or english.
+        // The language defined by the user will be applied later, once MEF is loaded, but before the UI shows up.
+        LanguageManager.Instance.SetCurrentCulture(LanguageManager.Instance.AvailableLanguages[0]);
 
 #if NET6_0_OR_GREATER && WINDOWS && !HAS_UNO
         _window = new Window();
         _window.Activate();
-#elif __MAC__
+#elif __MACCATALYST__
         // Important! Keep the full name `Microsoft.UI.Xaml.Window.Current` otherwise the Mac app won't build.
         // See https://blog.mzikmund.com/2020/04/resolving-uno-platform-uiwindow-does-not-contain-a-definition-for-current-issue/
         _window = Microsoft.UI.Xaml.Window.Current;
@@ -71,11 +61,7 @@ public sealed partial class App : Application
         _window = Window.Current;
 #endif
 
-#if WINDOWS_UWP
-        LaunchActivatedEventArgs uwpArgs = args;
-#else
         Windows.ApplicationModel.Activation.LaunchActivatedEventArgs uwpArgs = args.UWPLaunchActivatedEventArgs;
-#endif
 
         // Do not repeat app initialization when the Window already has content,
         // just ensure that the window is active
@@ -95,15 +81,15 @@ public sealed partial class App : Application
             _window.Content = rootFrame;
         }
 
+#if __WINDOWS__
+        // On Windows 10 version 1607 or later, this code signals that this app wants to participate in prelaunch
+        CoreApplication.EnablePrelaunch(true);
+#endif
+
 #if !(NET6_0_OR_GREATER && WINDOWS)
         if (uwpArgs.PrelaunchActivated == false)
 #endif
         {
-#if WINDOWS_UWP
-            // On Windows 10 version 1607 or later, this code signals that this app wants to participate in prelaunch
-            CoreApplication.EnablePrelaunch(true);
-#endif
-
             if (rootFrame.Content == null)
             {
                 // When the navigation stack isn't restored navigate to the first page,

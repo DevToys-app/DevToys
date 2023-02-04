@@ -1,4 +1,4 @@
-#if __MAC__
+#if __MACCATALYST__
 
 using DevToys.UI.Framework.Threading;
 using Microsoft.UI.Dispatching;
