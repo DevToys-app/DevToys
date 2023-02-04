@@ -71,9 +71,6 @@
         <Compile Update="**\*.xaml.cs">
           <DependentUpon>%(Filename)</DependentUpon>
         </Compile>
-        <None Remove="ts-helpermethods\**\*.js" />
-        <Content Remove="ts-helpermethods\**\*.js" />
-        <TypeScriptCompile Remove="ts-helpermethods\ts-helpermethods-UWP\**\*.js" />
         <Content Include="ts-helpermethods\ts-helpermethods-Wasm\tsconfig.json">
           <CopyToOutputDirectory>Never</CopyToOutputDirectory>
         </Content>
@@ -112,9 +109,6 @@
         <Content Include="CodeEditor\CodeEditor.Windows.html">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
-        <None Remove="ts-helpermethods\ts-helpermethods-Wasm\**\*.js" />
-        <Content Remove="ts-helpermethods\ts-helpermethods-Wasm\**\*.js" />
-        <TypeScriptCompile Remove="ts-helpermethods\ts-helpermethods-Wasm\**\*.*" />
         <Content Include="ts-helpermethods\ts-helpermethods-UWP\tsconfig.json">
           <CopyToOutputDirectory>Never</CopyToOutputDirectory>
         </Content>
@@ -157,9 +151,6 @@
         <Compile Update="**\*.xaml.cs">
           <DependentUpon>%(Filename)</DependentUpon>
         </Compile>
-        <None Remove="ts-helpermethods\**\*.js" />
-        <Content Remove="ts-helpermethods\**\*.js" />
-        <TypeScriptCompile Remove="ts-helpermethods\ts-helpermethods-UWP\**\*.js" />
         <Content Include="ts-helpermethods\ts-helpermethods-Wasm\tsconfig.json">
           <CopyToOutputDirectory>Never</CopyToOutputDirectory>
         </Content>
