@@ -125,34 +125,10 @@ class Build : NukeBuild
         {
             if (PlatformTargets!.Contains(PlatformTarget.Windows))
             {
-                // DevToys UWP
-                RootDirectory
-                    .GlobFiles("**/*.wapproj")
-                    .ForEach(f =>
-                    {
-                        Log.Information($"Building {f}...");
-                        MSBuild(s => s
-                            .SetTargetPath(f)
-                            .SetConfiguration(Configuration)
-                            .SetTargets("Build")
-                            .AddProperty("AppxBundlePlatforms", "x86|x64|arm64")
-                            .AddProperty("AppxPackageDir", RootDirectory / "publish" / "MSIX")
-                            .AddProperty("AppxPackageSigningEnabled", false)
-                            .AddProperty("AppxSymbolPackageEnabled", true)
-                            .AddProperty("AppxBundle", "Always")
-                            .AddProperty("UapAppxPackageBuildMode", "StoreUpload")
-                            .SetProcessArgumentConfigurator(_ => _.Add($"/bl:\"{RootDirectory / "bin" / "msbuild.binlog"}\""))
-                            .SetVerbosity(MSBuildVerbosity.Quiet)
-                            .SetMaxCpuCount(1)
-                            .EnableRestore()
-                            // This is dummy but necessary otherwise MSBuild tries to use Any CPU, which doesn't work for UWP.
-                            .SetTargetPlatform(MSBuildTargetPlatform.x86));
-                    });
-
                 // DevToys MAUI Blazor
                 foreach (DotnetParameters dotnetParameters in GetDotnetParametersForMauiBlazorApp())
                 {
-                    Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + "-" + dotnetParameters.TargetFramework + "-" + dotnetParameters.RuntimeIdentifier}...");
+                    Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + " - " + dotnetParameters.TargetFramework + " - " + dotnetParameters.RuntimeIdentifier} ...");
                     DotNetPublish(s => s
                         .SetProject(dotnetParameters.ProjectOrSolutionPath)
                         .SetConfiguration(Configuration)
@@ -171,7 +147,7 @@ class Build : NukeBuild
                 // DevToys WASDK
                 foreach (DotnetParameters dotnetParameters in GetDotnetParametersForWasdkApp())
                 {
-                    Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + "-" + dotnetParameters.TargetFramework + "-" + dotnetParameters.RuntimeIdentifier}...");
+                    Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + " - " + dotnetParameters.TargetFramework + " - " + dotnetParameters.RuntimeIdentifier + (dotnetParameters.Portable ? "-Portable" : string.Empty)} ...");
                     DotNetPublish(s => s
                         .SetProject(dotnetParameters.ProjectOrSolutionPath)
                         .SetConfiguration(Configuration)
@@ -184,7 +160,8 @@ class Build : NukeBuild
                         .SetPublishTrimmed(false) // TODO?
                         .SetVerbosity(DotNetVerbosity.Quiet)
                         .SetProcessArgumentConfigurator(_ => _
-                            .Add("/p:RuntimeIdentifierOverride=" + dotnetParameters.RuntimeIdentifier))
+                            .Add("/p:RuntimeIdentifierOverride=" + dotnetParameters.RuntimeIdentifier)
+                            .Add("/p:Unpackaged=" + dotnetParameters.Portable))
                         .SetOutput(RootDirectory / "publish" / dotnetParameters.OutputPath));
                 }
             }
@@ -201,7 +178,7 @@ class Build : NukeBuild
                 {
                     foreach (DotnetParameters dotnetParameters in GetDotnetParametersForMauiBlazorApp())
                     {
-                        Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + "-" + dotnetParameters.TargetFramework + "-" + dotnetParameters.RuntimeIdentifier}...");
+                        Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + " - " + dotnetParameters.TargetFramework + " - " + dotnetParameters.RuntimeIdentifier} ...");
                         DotNetBuild(s => s
                             .SetProjectFile(dotnetParameters.ProjectOrSolutionPath)
                             .SetConfiguration(Configuration)
@@ -223,7 +200,7 @@ class Build : NukeBuild
                 // DevToys CLI
                 foreach (DotnetParameters dotnetParameters in GetDotnetParametersForCliApp())
                 {
-                    Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + "-" + dotnetParameters.TargetFramework + "-" + dotnetParameters.RuntimeIdentifier}...");
+                    Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + " - " + dotnetParameters.TargetFramework + " - " + dotnetParameters.RuntimeIdentifier} ...");
                     DotNetPublish(s => s
                         .SetProject(dotnetParameters.ProjectOrSolutionPath)
                         .SetConfiguration(Configuration)
@@ -287,6 +264,10 @@ class Build : NukeBuild
             project = WindowsSolution!.GetProject(publishProject);
             foreach (string targetFramework in project.GetTargetFrameworks())
             {
+                yield return new DotnetParameters(project.Path, "win10-arm64", targetFramework, portable: false, platform: "arm64");
+                yield return new DotnetParameters(project.Path, "win10-x64", targetFramework, portable: false, platform: "x64");
+                yield return new DotnetParameters(project.Path, "win10-x86", targetFramework, portable: false, platform: "x86");
+
                 yield return new DotnetParameters(project.Path, "win10-arm64", targetFramework, portable: true, platform: "arm64");
                 yield return new DotnetParameters(project.Path, "win10-x64", targetFramework, portable: true, platform: "x64");
                 yield return new DotnetParameters(project.Path, "win10-x86", targetFramework, portable: true, platform: "x86");

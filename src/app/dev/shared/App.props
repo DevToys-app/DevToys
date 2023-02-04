@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)App.xaml" />
+    <ApplicationDefinition
+      Include="$(MSBuildThisFileDirectory)App.xaml"
+      SubType="Designer"
+      XamlRuntime="WinUI"
+      Generator="MSBuild:Compile"
+      Link="App.xaml" />
+    <Compile
+      Include="$(MSBuildThisFileDirectory)App.xaml.cs"
+      XamlRuntime="WinUI"
+      DependentUpon="App.xaml"
+      Link="App.xaml.cs" />
+  </ItemGroup>
+</Project>

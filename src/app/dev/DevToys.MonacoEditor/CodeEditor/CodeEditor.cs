@@ -9,16 +9,9 @@ using DevToys.UI.Framework.Threading;
 using Microsoft.Web.WebView2.Core;
 using Windows.Foundation;
 using Range = DevToys.MonacoEditor.Monaco.Range;
-
-#if WINDOWS_UWP
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using DispatcherQueue = Windows.UI.Core.CoreDispatcher;
-#else
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-#endif
 
 namespace DevToys.MonacoEditor;
 
@@ -39,11 +32,7 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
     internal const string FocusedState = "Focused";
     internal const string DisabledState = "Disabled";
 
-#if WINDOWS_UWP
-    private DispatcherQueue UIAccess => DispatcherQueueExtensions.DispatcherQueue;
-#else
     private DispatcherQueue UIAccess => this.DispatcherQueue;
-#endif
 
     private readonly DebugLogger _debugLogger = new();
     private readonly ThemeListener _themeListener;

@@ -6,7 +6,7 @@
   <PropertyGroup>
     <TargetFrameworks>$(NetCore)</TargetFrameworks>
     <TargetFrameworks Condition="$(IsMac)">$(TargetFrameworks);$(NetMacCatalyst)</TargetFrameworks>
-    <TargetFrameworks Condition="$(IsWindows)">$(UAP);$(NetCoreWindows);$(TargetFrameworks)</TargetFrameworks>
+    <TargetFrameworks Condition="$(IsWindows)">$(TargetFrameworks);$(NetCoreWindows)</TargetFrameworks>
     <!-- Ensures the .xr.xml files are generated in a proper layout folder -->
     <GenerateLibraryLayout>true</GenerateLibraryLayout>
 
@@ -53,38 +53,6 @@
   </ItemGroup>
 
   <Choose>
-    <When Condition="'$(TargetFramework)' == '$(NetMacCatalyst)'">
-      <PropertyGroup>
-        <IsMacCatalyst>true</IsMacCatalyst>
-        <DefineConstants>$(DefineConstants);__MAC__</DefineConstants>
-      </PropertyGroup>
-      <ItemGroup>
-        <PackageReference Include="Microsoft.Windows.Compatibility" />
-        <PackageReference Include="Uno.WinUI" />
-        <PackageReference Include="Uno.WinUI.Lottie" />
-        <PackageReference Include="Uno.WinUI.RemoteControl" Condition="'$(Configuration)'=='Debug'" />
-        <PackageReference Include="System.Runtime.InteropServices.WindowsRuntime" />
-      </ItemGroup>
-      <ItemGroup>
-        <Content Include="Assets\**" />
-        <Compile Update="**\*.xaml.cs">
-          <DependentUpon>%(Filename)</DependentUpon>
-        </Compile>
-        <None Remove="ts-helpermethods\**\*.js" />
-        <Content Remove="ts-helpermethods\**\*.js" />
-        <TypeScriptCompile Remove="ts-helpermethods\ts-helpermethods-UWP\**\*.js" />
-        <Content Include="ts-helpermethods\ts-helpermethods-Wasm\tsconfig.json">
-          <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-        </Content>
-        <ConfigFiles Include="ts-helpermethods\ts-helpermethods-Wasm\tsconfig.json" />
-        <Content Include="highlightjs\highlight.min.js" />
-        <Content Include="highlightjs\styles\**" />
-      </ItemGroup>
-      <ItemGroup>
-        <EmbeddedResource Include="WasmScripts\WASM\uno-monaco-helpers.g.js" />
-      </ItemGroup>
-    </When>
-
     <When Condition="'$(TargetFramework)' == '$(NetCore)'">
       <PropertyGroup>
         <IsWasm>true</IsWasm>
@@ -172,35 +140,35 @@
       </ItemGroup>
     </When>
 
-    <When Condition="'$(TargetFramework)' == '$(UAP)'">
+    <When Condition="'$(TargetFramework)' == '$(NetMacCatalyst)'">
       <PropertyGroup>
-        <IsUWP>true</IsUWP>
-        <DefineConstants>$(DefineConstants);WINDOWS_UWP</DefineConstants>
-        <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-        <TargetPlatformVersion>$(Windows10SDKVersion)</TargetPlatformVersion>
-        <TargetPlatformMinVersion>$(Windows10MinSDKVersion)</TargetPlatformMinVersion>
-        <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
-        <Platforms>AnyCPU;x86;x64;arm64</Platforms>
-      </PropertyGroup>
-      <PropertyGroup Condition="'$(Configuration)' == 'Release'">
-        <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
-      </PropertyGroup>
-      <PropertyGroup Condition="'$(Platform)' == 'AnyCPU'">
-        <PlatformTarget>x86</PlatformTarget>
+        <IsMacCatalyst>true</IsMacCatalyst>
+        <DefineConstants>$(DefineConstants);__MACCATALYST__</DefineConstants>
       </PropertyGroup>
       <ItemGroup>
-        <PackageReference Include="Microsoft.UI.Xaml" />
+        <PackageReference Include="Microsoft.Windows.Compatibility" />
+        <PackageReference Include="Uno.WinUI" />
+        <PackageReference Include="Uno.WinUI.Lottie" />
+        <PackageReference Include="Uno.WinUI.RemoteControl" Condition="'$(Configuration)'=='Debug'" />
+        <PackageReference Include="System.Runtime.InteropServices.WindowsRuntime" />
       </ItemGroup>
       <ItemGroup>
-        <Content Include="CodeEditor\CodeEditor.Windows.html" />
-        <None Remove="ts-helpermethods\ts-helpermethods-Wasm\**\*.js" />
-        <Content Remove="ts-helpermethods\ts-helpermethods-Wasm\**\*.js" />
-        <TypeScriptCompile Remove="ts-helpermethods\ts-helpermethods-Wasm\**\*.*" />
-        <Content Include="ts-helpermethods\ts-helpermethods-UWP\tsconfig.json">
+        <Content Include="Assets\**" />
+        <Compile Update="**\*.xaml.cs">
+          <DependentUpon>%(Filename)</DependentUpon>
+        </Compile>
+        <None Remove="ts-helpermethods\**\*.js" />
+        <Content Remove="ts-helpermethods\**\*.js" />
+        <TypeScriptCompile Remove="ts-helpermethods\ts-helpermethods-UWP\**\*.js" />
+        <Content Include="ts-helpermethods\ts-helpermethods-Wasm\tsconfig.json">
           <CopyToOutputDirectory>Never</CopyToOutputDirectory>
         </Content>
-        <ConfigFiles Include="ts-helpermethods\ts-helpermethods-UWP\tsconfig.json" />
-        <None Include="highlightjs\**" />
+        <ConfigFiles Include="ts-helpermethods\ts-helpermethods-Wasm\tsconfig.json" />
+        <Content Include="highlightjs\highlight.min.js" />
+        <Content Include="highlightjs\styles\**" />
+      </ItemGroup>
+      <ItemGroup>
+        <EmbeddedResource Include="WasmScripts\WASM\uno-monaco-helpers.g.js" />
       </ItemGroup>
     </When>
   </Choose>

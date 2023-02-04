@@ -1,4 +1,4 @@
-﻿#if WINDOWS_UWP || __WINDOWS__
+﻿#if __WINDOWS__
 
 using System.Reflection;
 using System.Text;
@@ -10,17 +10,8 @@ using Newtonsoft.Json;
 using Uno.Extensions;
 using Uno.Logging;
 using Windows.Foundation;
-
-#if WINDOWS_UWP
-using Windows.Storage;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using DispatcherQueue = Windows.UI.Core.CoreDispatcher;
-using DispatcherQueuePriority = Windows.UI.Core.CoreDispatcherPriority;
-#elif __WINDOWS__
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
-#endif
 
 namespace DevToys.MonacoEditor;
 
@@ -72,9 +63,6 @@ public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresen
 
         this.Visibility = Visibility.Collapsed;
         _webView.AllowFocusOnInteraction = true;
-#if WINDOWS_UWP
-        _webView.IsFocusEngagementEnabled = true;
-#endif
         _webView.CoreWebView2Initialized += WebView_CoreWebView2Initialized;
 
         ILogger logger = this.Log();
@@ -82,11 +70,6 @@ public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresen
         _informationLogger = logger.IsEnabled(LogLevel.Information) ? logger : null;
         _errorLogger = logger.IsEnabled(LogLevel.Error) ? logger : null;
     }
-
-#if WINDOWS_UWP
-    /// <inheritdoc />
-    public DispatcherQueue DispatcherQueue => DispatcherQueueExtensions.DispatcherQueue;
-#endif
 
     /// <inheritdoc />
     public event TypedEventHandler<ICodeEditorPresenter, CoreWebView2NewWindowRequestedEventArgs>? NewWindowRequested;
@@ -113,19 +96,12 @@ public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresen
     {
         await _webView.EnsureCoreWebView2Async();
 
-#if WINDOWS_UWP
-        StorageFile storageFile
-            = await StorageFile.GetFileFromApplicationUriAsync(
-                new Uri("ms-appx:///DevToys.MonacoEditor/CodeEditor/CodeEditor.Windows.html"));
-        string path = storageFile.Path;
-#elif __WINDOWS__
         string path = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location)!, "DevToys.MonacoEditor", "CodeEditor", "CodeEditor.Windows.html");
         if (!File.Exists(path))
         {
             path = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location)!, "CodeEditor", "CodeEditor.Windows.html");
             Debug.Assert(File.Exists(path));
         }
-#endif
 
         string rootDirectory = Directory.GetParent(path)!.Parent!.FullName;
 

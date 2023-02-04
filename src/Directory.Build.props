@@ -15,7 +15,6 @@
     <NetCoreWindows>$(NetCore)-windows$(Windows10MinSDKVersionTrimmed)</NetCoreWindows>
     <NetMacCatalyst>$(NetCore)-maccatalyst</NetMacCatalyst>
     <NetMacOS>$(NetCore)-macos</NetMacOS>
-    <UAP>uap$(Windows10MinSDKVersionTrimmed)</UAP>
 
     <!-- Define default build configuration -->
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>

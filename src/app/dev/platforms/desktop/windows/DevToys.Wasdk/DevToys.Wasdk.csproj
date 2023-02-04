@@ -2,7 +2,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>$(NetCoreWindows)</TargetFramework>
-    <TargetPlatformMinVersion>$(Windows10MinSDKVersion)</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <RootNamespace>DevToys.Wasdk</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <UseWinUI>true</UseWinUI>
@@ -10,11 +10,33 @@
     <DefineConstants>$(DefineConstants);__WINDOWS__</DefineConstants>
     <Platforms>x86;x64;arm64</Platforms>
     <RuntimeIdentifiers>win10-arm64;win10-x64;win10-x86</RuntimeIdentifiers>
+    <PublishProfile>win10-$(Platform).pubxml</PublishProfile>
     <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
     <WinUISDKReferences>false</WinUISDKReferences>
-    <WindowsPackageType>None</WindowsPackageType>
     <SelfContained>true</SelfContained>
+    <AppxPackage>true</AppxPackage>
+
+    <!-- Uncomment this line temporarily if you want to debug the Unpackaged build. -->
+    <!-- <Unpackaged>true</Unpackaged> -->
+  </PropertyGroup>
+
+  <!-- Only for Unpackaged deployment -->
+  <PropertyGroup Condition="'$(Unpackaged)' == 'true'">
+    <WindowsPackageType>None</WindowsPackageType>
     <AppxPackage>false</AppxPackage>
+  </PropertyGroup>
+
+  <!-- Only for Packaged deployment -->
+  <PropertyGroup Condition="'$(Unpackaged)' != 'true'">
+    <GenerateAppxPackageOnBuild>true</GenerateAppxPackageOnBuild>
+    <PublishAppxPackage>True</PublishAppxPackage>
+    <AppxBundlePlatforms>x86|x64|arm64</AppxBundlePlatforms>
+    <UapAppxPackageBuildMode>SideloadOnly</UapAppxPackageBuildMode>
+    <AppxBundle>Always</AppxBundle>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxPackageDir>$(RepoRoot)publish\AppPackages\$(Platform)</AppxPackageDir>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(RuntimeIdentifierOverride)' != ''">
@@ -66,5 +88,5 @@
     <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
   </PropertyGroup>
 
-  <Import Project="..\..\..\..\DevToys.UI.EntryPoint\DevToys.UI.EntryPoint.projitems" Label="Shared" />
+  <Import Project="$(RepoRoot)\src\app\dev\shared\App.props" />
 </Project>

@@ -1,11 +1,9 @@
 ﻿using System.Globalization;
 using Windows.Globalization;
-
-#if WINDOWS_UWP
-using Windows.UI.Xaml;
-#else
 using Microsoft.UI.Xaml;
-#endif
+using System.Resources;
+using DevToys.UI.Strings;
+using Windows.ApplicationModel.Resources;
 
 namespace DevToys.UI;
 
@@ -34,11 +32,27 @@ public sealed class LanguageManager
         {
             new LanguageDefinition() // default language
         };
+
+#if HAS_UNO
         IReadOnlyList<string> supportedLanguageIdentifiers = ApplicationLanguages.ManifestLanguages;
         for (int i = 0; i < supportedLanguageIdentifiers.Count; i++)
         {
-            AvailableLanguages.Add(new LanguageDefinition(supportedLanguageIdentifiers[i]));
+            AvailableLanguages.Add(
+                new LanguageDefinition(
+                    supportedLanguageIdentifiers[i]));
         }
+#else
+        IReadOnlyList<Windows.ApplicationModel.Resources.Core.ResourceCandidate> candidates
+            = Windows.ApplicationModel.Resources.Core.ResourceManager.Current
+                .MainResourceMap[$"DevToys.UI/{nameof(Languages)}/{nameof(Languages.DefaultLanguage)}"]
+                .Candidates;
+        for (int i = 0; i < candidates.Count; i++)
+        {
+            AvailableLanguages.Add(
+                new LanguageDefinition(
+                    candidates[i].GetQualifierValue("Language")));
+        }
+#endif
     }
 
     /// <summary>
@@ -48,7 +62,9 @@ public sealed class LanguageManager
     {
         CultureInfo.DefaultThreadCurrentCulture = language.Culture;
         CultureInfo.DefaultThreadCurrentUICulture = language.Culture;
+#if HAS_UNO
         ApplicationLanguages.PrimaryLanguageOverride = language.Identifier;
+#endif
 
         if (language.Culture.TextInfo.IsRightToLeft)
         {

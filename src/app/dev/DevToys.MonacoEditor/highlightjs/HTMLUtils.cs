@@ -1,4 +1,4 @@
-﻿#if __MAC__
+﻿#if __MACCATALYST__
 
 namespace DevToys.MonacoEditor.HighlightJs;
 

@@ -20,11 +20,11 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <CreatePackage>false</CreatePackage>
-    <DefineConstants>DEBUG;TRACE;__MAC__</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;__MACCATALYST__</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <CreatePackage>false</CreatePackage>
-    <DefineConstants>TRACE;__MAC__</DefineConstants>
+    <DefineConstants>TRACE;__MACCATALYST__</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Uno.WinUI"/>
@@ -62,5 +62,6 @@
     <ProjectReference Include="..\..\..\..\DevToys.UI.Framework\DevToys.UI.Framework.csproj"/>
     <ProjectReference Include="..\..\..\..\DevToys.UI\DevToys.UI.csproj"/>
   </ItemGroup>
-  <Import Project="..\..\..\..\DevToys.UI.EntryPoint\DevToys.UI.EntryPoint.projitems" Label="Shared" Condition="Exists('..\..\..\..\DevToys.UI.EntryPoint\DevToys.UI.EntryPoint.projitems')"/>
+
+  <Import Project="$(RepoRoot)\src\app\dev\shared\App.props" />
 </Project>
