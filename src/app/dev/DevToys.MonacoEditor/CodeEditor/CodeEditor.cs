@@ -48,8 +48,6 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
     {
         DefaultStyleKey = typeof(CodeEditor);
 
-        UIAccess.ThrowIfNotOnUIThread();
-
         ParentAccessor = new ParentAccessor(this);
         ParentAccessor.AddAssemblyForTypeLookup(typeof(Range).GetTypeInfo().Assembly);
         ParentAccessor.RegisterAction("Loaded", OnMonacoEditorLoaded);
