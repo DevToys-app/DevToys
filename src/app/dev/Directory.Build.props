@@ -4,7 +4,7 @@
 
   <PropertyGroup>
     <!-- Define .NET and C# configuration -->
-    <LangVersion>10.0</LangVersion>
+    <LangVersion>11.0</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>

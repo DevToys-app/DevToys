@@ -89,4 +89,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="..\..\..\DevToys.MonacoEditor\monaco-editor\*" LinkBase="wwwroot\lib\monaco-editor\%(RecursiveDir)/%(Filename)%(Extension)" />
+    <Content Include="..\..\..\DevToys.MonacoEditor\monaco-editor\min\**\*" Link="wwwroot\lib\monaco-editor\min\%(RecursiveDir)/%(Filename)%(Extension)" />
+  </ItemGroup>
+
 </Project>

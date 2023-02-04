@@ -9,7 +9,6 @@
     <MicrosoftFastComponentsFluentUIVersion>2.0.1</MicrosoftFastComponentsFluentUIVersion>
     <MicrosoftNETCoreUniversalWindowsPlatformVersion>6.2.14</MicrosoftNETCoreUniversalWindowsPlatformVersion>
     <MicrosoftWindowsSDKBuildToolsVersion>10.0.22621.1</MicrosoftWindowsSDKBuildToolsVersion>
-    <PolySharpVersion>1.11.0</PolySharpVersion>
     <UnoVersion>4.7.30</UnoVersion>
     <UnoWasmBootstrapVersion>8.0.0-dev.65</UnoWasmBootstrapVersion>
     <WebView2Version>1.0.1462.37</WebView2Version>
@@ -37,7 +36,6 @@
     <PackageVersion Include="Moq" Version="4.18.2" />
     <PackageVersion Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageVersion Include="Nuke.Common" Version="6.2.1" />
-    <PackageVersion Include="PolySharp" Version="$(PolySharpVersion)" />
     <PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
     <PackageVersion Include="System.ComponentModel.Composition" Version="$(DotNetVersion)" />
     <PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.5.4" />

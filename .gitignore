@@ -432,7 +432,8 @@ src/app/dev/DevToys.MonacoEditor/monaco-editor
 !highlight.min.js
 
 # MAUI Blazor web components.
-!web-components.min.js
+!**/DevToys.MauiBlazor/wwwroot/js/*.js
+!**/DevToys.MauiBlazor/Components/*.js
 
 # Build results
 [Dd]ebug/
