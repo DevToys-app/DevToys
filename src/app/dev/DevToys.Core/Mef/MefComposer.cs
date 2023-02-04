@@ -68,17 +68,17 @@ public sealed class MefComposer : IDisposable
 
         // Dynamically load assemblies coming from the Plugin repository folder and
         // try to discover MEF extensions in them.
-        //foreach (string pluginFolder in GetPotentialPluginFolders())
-        //{
-        //    try
-        //    {
-        //        catalog.Catalogs.Add(new RecursiveDirectoryCatalog(pluginFolder));
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // TODO: Log this. We maybe failed to load a plugin.
-        //    }
-        //}
+        foreach (string pluginFolder in GetPotentialPluginFolders())
+        {
+            try
+            {
+                catalog.Catalogs.Add(new RecursiveDirectoryCatalog(pluginFolder));
+            }
+            catch (Exception ex)
+            {
+                // TODO: Log this. We maybe failed to load a plugin.
+            }
+        }
 
         // Compose MEF.
         var container = new CompositionContainer(catalog);
@@ -99,11 +99,11 @@ public sealed class MefComposer : IDisposable
         return ExportProvider;
     }
 
-    //private static IEnumerable<string> GetPotentialPluginFolders()
-    //{
-    //    // TODO: Maybe plugins should be placed in the app's LocalStorage instead?
-    //    string appFolder = Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location)!;
-    //    string pluginFolder = Path.Combine(appFolder, "Plugins");
-    //    return Directory.EnumerateDirectories(pluginFolder, "*", SearchOption.TopDirectoryOnly);
-    //}
+    private static IEnumerable<string> GetPotentialPluginFolders()
+    {
+        // TODO: Maybe plugins should be placed in the app's LocalStorage instead?
+        string appFolder = Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location)!;
+        string pluginFolder = Path.Combine(appFolder, "Plugins");
+        return Directory.EnumerateDirectories(pluginFolder, "*", SearchOption.TopDirectoryOnly);
+    }
 }
