@@ -26,6 +26,9 @@
     <UpToDateCheckInput Include="..\..\..\DevToys.UI\**\*.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\desktop\windows\DevToys.Wasdk\Core\Settings\SettingsStorage.cs" Link="Core\Settings\SettingsStorage.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="WasmCSS\Fonts.css" />
     <EmbeddedResource Include="WasmScripts\AppManifest.js" />
   </ItemGroup>

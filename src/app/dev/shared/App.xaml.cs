@@ -1,13 +1,20 @@
-﻿using DevToys.UI;
+﻿using DevToys.Api;
+using DevToys.Api.Core.Threading;
+using DevToys.Core.Mef;
+using DevToys.Core.Settings;
+using DevToys.UI;
 using DevToys.UI.Views;
 using Microsoft.Extensions.Logging;
-using Windows.ApplicationModel;
-using Windows.ApplicationModel.Activation;
-using Windows.ApplicationModel.Core;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
+using Uno.Extensions;
+using Uno.Logging;
+using Windows.ApplicationModel;
+using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Core;
 using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
+using UnhandledExceptionEventArgs = Microsoft.UI.Xaml.UnhandledExceptionEventArgs;
 
 namespace DevToys;
 
@@ -16,6 +23,12 @@ namespace DevToys;
 /// </summary>
 public sealed partial class App : Application
 {
+    // Always keep an instance of MefComposer alive so GC doesn't purge it.
+    private readonly Task<MefComposer> _mefComposer;
+
+    private readonly Task<IMefProvider> _mefProvider;
+    private readonly AsyncLazy<ISettingsProvider> _settingsProvider;
+
     private Window? _window;
 
     /// <summary>
@@ -26,11 +39,20 @@ public sealed partial class App : Application
     {
         InitializeLogging();
 
+        this.UnhandledException += OnUnhandledException;
+
         this.InitializeComponent();
 
 #if HAS_UNO || NETFX_CORE
         this.Suspending += OnSuspending;
 #endif
+
+        _mefComposer = Task.Run(() => new MefComposer());
+        _mefProvider = Task.Run(async () =>
+        {
+            return (await _mefComposer).Provider;
+        });
+        _settingsProvider = new AsyncLazy<ISettingsProvider>(async () => (await _mefProvider).Import<ISettingsProvider>());
     }
 
     /// <summary>
@@ -38,7 +60,7 @@ public sealed partial class App : Application
     /// will be used such as when the application is launched to open a specific file.
     /// </summary>
     /// <param name="args">Details about the launch request and process.</param>
-    protected override void OnLaunched(LaunchActivatedEventArgs args)
+    protected override async void OnLaunched(LaunchActivatedEventArgs args)
     {
 #if DEBUG
         if (Debugger.IsAttached)
@@ -46,9 +68,13 @@ public sealed partial class App : Application
             // this.DebugSettings.EnableFrameRateCounter = true;
         }
 #endif
-        // Set the language of the app for startup. By default, it's the same than Windows, or english.
-        // The language defined by the user will be applied later, once MEF is loaded, but before the UI shows up.
-        LanguageManager.Instance.SetCurrentCulture(LanguageManager.Instance.AvailableLanguages[0]);
+
+        // Set the user-defined language.
+        string? languageIdentifier = (await _settingsProvider.GetValueAsync()).GetSetting(PredefinedSettings.Language);
+        LanguageDefinition languageDefinition
+            = LanguageManager.Instance.AvailableLanguages.FirstOrDefault(l => string.Equals(l.InternalName, languageIdentifier))
+            ?? LanguageManager.Instance.AvailableLanguages[0];
+        LanguageManager.Instance.SetCurrentCulture(languageDefinition);
 
 #if NET6_0_OR_GREATER && WINDOWS && !HAS_UNO
         _window = new Window();
@@ -128,6 +154,19 @@ public sealed partial class App : Application
         SuspendingDeferral deferral = e.SuspendingOperation.GetDeferral();
         //TODO: Save application state and stop any background activity
         deferral.Complete();
+    }
+
+    private void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+    {
+        ILogger logger = this.Log();
+        if (logger.IsEnabled(LogLevel.Error))
+        {
+            logger.Error($"Unhandled exception !!!", e.Exception);
+        }
+
+        // TODO:
+        // Maybe we need to dispose all tools in case if they have on-going work so they have a chance to finish correctly?
+        // Also, use IMarketingService to NotifyAppEncounteredAProblemAsync ?
     }
 
     /// <summary>

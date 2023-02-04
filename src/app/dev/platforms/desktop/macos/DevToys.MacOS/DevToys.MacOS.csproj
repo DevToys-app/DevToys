@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>$(NetMacCatalyst)</TargetFrameworks>
     <!-- Disabled because of https://github.com/xamarin/xamarin-macios/issues/16401-->
@@ -26,6 +26,9 @@
     <CreatePackage>false</CreatePackage>
     <DefineConstants>TRACE;__MACCATALYST__</DefineConstants>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\desktop\windows\DevToys.Wasdk\Core\Settings\SettingsStorage.cs" Link="Core\Settings\SettingsStorage.cs" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Uno.WinUI"/>
     <PackageReference Include="Uno.WinUI.RemoteControl" Condition="'$(Configuration)'=='Debug'"/>
