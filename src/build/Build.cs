@@ -58,7 +58,7 @@ class Build : NukeBuild
 
             if (PlatformTargets.Contains(PlatformTarget.Windows) && !OperatingSystem.IsWindowsVersionAtLeast(10, 0, 0, 0))
             {
-                Assert.Fail("To build Windows UWP app, you need to run on Windows 10 or later.");
+                Assert.Fail("To build Windows WASDK app, you need to run on Windows 10 or later.");
                 return;
             }
 

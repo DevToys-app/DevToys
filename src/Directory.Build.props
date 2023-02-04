@@ -8,9 +8,6 @@
     <Windows10MinSDKVersionTrimmed>10.0.19041</Windows10MinSDKVersionTrimmed>
     <Windows10MinSDKVersion>$(Windows10MinSDKVersionTrimmed).0</Windows10MinSDKVersion>
 
-    <!-- Can't support 2.1 because UWP is dead and doesn't support it -->
-    <NetStandard>netstandard2.0</NetStandard>
-
     <NetCore>net7.0</NetCore>
     <NetCoreWindows>$(NetCore)-windows$(Windows10MinSDKVersionTrimmed)</NetCoreWindows>
     <NetMacCatalyst>$(NetCore)-maccatalyst</NetMacCatalyst>

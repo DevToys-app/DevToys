@@ -10,7 +10,6 @@
     <!-- Ensures the .xr.xml files are generated in a proper layout folder -->
     <GenerateLibraryLayout>true</GenerateLibraryLayout>
 
-    <IsUWP>false</IsUWP>
     <IsWasm>false</IsWasm>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>
@@ -46,7 +45,6 @@
 
     <When Condition="'$(TargetFramework)' == '$(NetCoreWindows)'">
       <PropertyGroup>
-        <IsUWP>true</IsUWP>
         <DefineConstants>$(DefineConstants);__WINDOWS__</DefineConstants>
         <TargetPlatformMinVersion>$(Windows10MinSDKVersion)</TargetPlatformMinVersion>
         <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>

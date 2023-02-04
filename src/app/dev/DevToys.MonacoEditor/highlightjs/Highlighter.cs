@@ -1,8 +1,8 @@
 ﻿#if __MACCATALYST__
 
+using DevToys.Api.Core.Threading;
 using JavaScriptCore;
 using Windows.Storage;
-using Nito.AsyncEx;
 
 namespace DevToys.MonacoEditor.HighlightJs;
 

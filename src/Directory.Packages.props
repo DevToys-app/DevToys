@@ -1,8 +1,8 @@
 <Project>
   <PropertyGroup>
     <!--
-      Central Package Management isn't supported by UWP and Razor Sdk project type. We keep the version of some packages in variables below so we can reuse
-      them in UWP projects explicitely so we keep consistent package version number across the repository.
+      Central Package Management isn't supported by Razor Sdk project type. We keep the version of some packages in variables below so we can reuse
+      them in projects explicitely so we keep consistent package version number across the repository.
     -->
     <CommunityToolkitVersion>8.1.0</CommunityToolkitVersion>
     <DotNetVersion>7.0.0</DotNetVersion>
@@ -36,7 +36,6 @@
     <PackageVersion Include="Microsoft.WindowsAppSDK" Version="1.2.230118.102" />
     <PackageVersion Include="Moq" Version="4.18.2" />
     <PackageVersion Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageVersion Include="Nito.AsyncEx" Version="5.1.2" />
     <PackageVersion Include="Nuke.Common" Version="6.2.1" />
     <PackageVersion Include="PolySharp" Version="$(PolySharpVersion)" />
     <PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />

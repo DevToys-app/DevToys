@@ -7,11 +7,6 @@
 public readonly struct SettingDefinition<T> : IEquatable<SettingDefinition<T>>
 {
     /// <summary>
-    /// Gets whether the setting can be synchronized with the user's Microsoft account.
-    /// </summary>
-    public bool IsRoaming { get; }
-
-    /// <summary>
     /// Gets the name of the setting.
     /// </summary>
     public string Name { get; }
@@ -37,7 +32,6 @@ public readonly struct SettingDefinition<T> : IEquatable<SettingDefinition<T>>
             throw new ArgumentOutOfRangeException(nameof(name));
         }
 
-        IsRoaming = isRoaming;
         Name = name;
         DefaultValue = defaultValue;
     }
@@ -54,16 +48,14 @@ public readonly struct SettingDefinition<T> : IEquatable<SettingDefinition<T>>
 
     public bool Equals(SettingDefinition<T> other)
     {
-        return other.IsRoaming == IsRoaming
-            && string.Equals(other.Name, Name, StringComparison.Ordinal)
+        return string.Equals(other.Name, Name, StringComparison.Ordinal)
             && other.DefaultValue is not null
             && other.DefaultValue.Equals(DefaultValue);
     }
 
     public override int GetHashCode()
     {
-        return (IsRoaming.GetHashCode() ^ 137)
-             * (Name.GetHashCode() ^ 47)
+        return (Name.GetHashCode() ^ 47)
              * (DefaultValue is null ? 13 : DefaultValue.GetHashCode() ^ 73);
     }
 

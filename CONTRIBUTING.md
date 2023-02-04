@@ -33,7 +33,7 @@ You can contribute to DevToys app by:
 
 ### Build, Run & Debug
 1. Open `src/DevToys-Windows.sln` with Visual Studio.
-1. In Visual Studio, set `app/dev/platforms/web/DevToys.Wasm` or `app/dev/platforms/desktop/windows/DevToys.UWP` or `app/dev/platforms/desktop/windows/DevToys.Wasdk` or `app/dev/platforms/desktop/DevToys.CLI` as startup project.
+1. In Visual Studio, set `app/dev/platforms/web/DevToys.Wasm` or `app/dev/platforms/desktop/windows/DevToys.Wasdk` or `app/dev/platforms/desktop/DevToys.CLI` as startup project.
 1. Now you should be able to build and run DevToys on your machine by pressing `F5`.
 
 ## From macOS
@@ -117,7 +117,7 @@ For the icons of the tools, a custom font is used. See [documentation](https://g
 
 ## Things to keep in mind
 
-We try to avoid at maximum any UWP capability/permission like `internet`, `camera`, `location`...etc. The reason why is that this app is designed to be a tool that we can **trust** when pasting sensitive data inside.
+We try to avoid at maximum any Microsoft Store app capability/permission like `internet`, `camera`, `location`...etc. The reason why is that this app is designed to be a tool that we can **trust** when pasting sensitive data inside.
 Therefore, when making changes to DevToys, please try at maximum to avoid any capability requirement.
 
 ## Code Style
