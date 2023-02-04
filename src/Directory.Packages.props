@@ -10,7 +10,7 @@
     <MicrosoftNETCoreUniversalWindowsPlatformVersion>6.2.14</MicrosoftNETCoreUniversalWindowsPlatformVersion>
     <MicrosoftWindowsSDKBuildToolsVersion>10.0.22621.1</MicrosoftWindowsSDKBuildToolsVersion>
     <PolySharpVersion>1.11.0</PolySharpVersion>
-    <UnoVersion>4.6.41</UnoVersion>
+    <UnoVersion>4.7.30</UnoVersion>
     <UnoWasmBootstrapVersion>8.0.0-dev.65</UnoWasmBootstrapVersion>
     <WebView2Version>1.0.1462.37</WebView2Version>
     <MicrosoftTypeScriptMSBuildVersion>4.9.4</MicrosoftTypeScriptMSBuildVersion>
