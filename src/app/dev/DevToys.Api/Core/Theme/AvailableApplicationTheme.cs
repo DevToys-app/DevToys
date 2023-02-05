@@ -1,9 +1,9 @@
-﻿namespace DevToys.Core;
+﻿namespace DevToys.Api.Core.Theme;
 
 /// <summary>
 /// Specifies a UI theme that should be used for individual UIElement parts of an app UI.
 /// </summary>
-public enum AppTheme
+public enum AvailableApplicationTheme
 {
     /// <summary>
     /// Use the Application.RequestedTheme value for the element. This is the default.

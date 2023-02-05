@@ -78,6 +78,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DevToys.Api\DevToys.Api.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <UpToDateCheckInput Include="**\*.xaml" />
     <Page Include="**\*.xaml">
       <SubType>Designer</SubType>

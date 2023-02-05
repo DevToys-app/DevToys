@@ -27,7 +27,7 @@
     <DefineConstants>TRACE;__MACCATALYST__</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\desktop\windows\DevToys.Wasdk\Core\Settings\SettingsStorage.cs" Link="Core\Settings\SettingsStorage.cs" />
+    <Compile Include="..\..\..\desktop\windows\DevToys.Wasdk\Core\**\*" Link="Core\%(RecursiveDir)/%(Filename)%(Extension)" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Uno.WinUI"/>

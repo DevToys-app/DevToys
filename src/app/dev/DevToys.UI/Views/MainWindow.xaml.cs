@@ -1,4 +1,5 @@
-﻿using DevToys.UI.Framework.Controls;
+﻿using DevToys.Api.Core.Theme;
+using DevToys.UI.Framework.Controls;
 
 namespace DevToys.UI.Views;
 
@@ -12,8 +13,8 @@ public sealed partial class MainWindow : BackdropPage
     private const string NavigationViewCompactStateName = "NavigationViewCompact";
     private const string NavigationViewMinimalStateName = "NavigationViewMinimal";
 
-    public MainWindow(BackdropWindow backdropWindow)
-        : base(backdropWindow)
+    public MainWindow(BackdropWindow backdropWindow, IThemeListener themeListener)
+        : base(backdropWindow, themeListener)
     {
         this.InitializeComponent();
         this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
