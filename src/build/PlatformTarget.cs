@@ -1,7 +1,7 @@
 ﻿enum PlatformTarget
 {
     Windows,
-    MacOS,
+    MacCatalyst,
     CLI,
     Wasm
 }

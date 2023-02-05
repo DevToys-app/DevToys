@@ -3,15 +3,13 @@ using DevToys.Api.Core.Threading;
 using DevToys.Core.Mef;
 using DevToys.Core.Settings;
 using DevToys.UI;
+using DevToys.UI.Framework.Controls;
 using DevToys.UI.Views;
 using Microsoft.Extensions.Logging;
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Navigation;
 using Uno.Extensions;
 using Uno.Logging;
 using Windows.ApplicationModel;
-using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Core;
 using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
 using UnhandledExceptionEventArgs = Microsoft.UI.Xaml.UnhandledExceptionEventArgs;
@@ -29,7 +27,7 @@ public sealed partial class App : Application
     private readonly Task<IMefProvider> _mefProvider;
     private readonly AsyncLazy<ISettingsProvider> _settingsProvider;
 
-    private Window? _window;
+    private MainWindow? _mainWindow;
 
     /// <summary>
     /// Initializes the singleton application object.  This is the first line of authored code
@@ -76,66 +74,31 @@ public sealed partial class App : Application
             ?? LanguageManager.Instance.AvailableLanguages[0];
         LanguageManager.Instance.SetCurrentCulture(languageDefinition);
 
-#if NET6_0_OR_GREATER && WINDOWS && !HAS_UNO
-        _window = new Window();
-        _window.Activate();
-#elif __MACCATALYST__
-        // Important! Keep the full name `Microsoft.UI.Xaml.Window.Current` otherwise the Mac app won't build.
-        // See https://blog.mzikmund.com/2020/04/resolving-uno-platform-uiwindow-does-not-contain-a-definition-for-current-issue/
-        _window = Microsoft.UI.Xaml.Window.Current;
-#else
-        _window = Window.Current;
-#endif
-
-        Windows.ApplicationModel.Activation.LaunchActivatedEventArgs uwpArgs = args.UWPLaunchActivatedEventArgs;
-
-        // Do not repeat app initialization when the Window already has content,
-        // just ensure that the window is active
-        if (_window.Content is not Frame rootFrame)
-        {
-            // Create a Frame to act as the navigation context and navigate to the first page
-            rootFrame = new Frame();
-
-            rootFrame.NavigationFailed += OnNavigationFailed;
-
-            if (uwpArgs.PreviousExecutionState == ApplicationExecutionState.Terminated)
-            {
-                // TODO: Load state from previously suspended application
-            }
-
-            // Place the frame in the current Window
-            _window.Content = rootFrame;
-        }
-
 #if __WINDOWS__
         // On Windows 10 version 1607 or later, this code signals that this app wants to participate in prelaunch
         CoreApplication.EnablePrelaunch(true);
 #endif
 
+#if __WINDOWS__
+        _mainWindow = new MainWindow(new BackdropWindow());
+        _mainWindow.Show();
+#elif __MACCATALYST__
+        // Important! Keep the full name `Microsoft.UI.Xaml.Window.Current` otherwise the Mac app won't build.
+        // See https://blog.mzikmund.com/2020/04/resolving-uno-platform-uiwindow-does-not-contain-a-definition-for-current-issue/
+        _mainWindow = new MainWindow(new BackdropWindow(Microsoft.UI.Xaml.Window.Current));
+#else
+        _mainWindow = new MainWindow(new BackdropWindow(Window.Current));
+#endif
+
+        Windows.ApplicationModel.Activation.LaunchActivatedEventArgs uwpArgs = args.UWPLaunchActivatedEventArgs;
+
 #if !(NET6_0_OR_GREATER && WINDOWS)
         if (uwpArgs.PrelaunchActivated == false)
 #endif
         {
-            if (rootFrame.Content == null)
-            {
-                // When the navigation stack isn't restored navigate to the first page,
-                // configuring the new page by passing required information as a navigation
-                // parameter
-                rootFrame.Navigate(typeof(MainPage), args.Arguments);
-            }
             // Ensure the current window is active
-            _window.Activate();
+            _mainWindow.Activate();
         }
-    }
-
-    /// <summary>
-    /// Invoked when Navigation to a certain page fails
-    /// </summary>
-    /// <param name="sender">The Frame which failed navigation</param>
-    /// <param name="e">Details about the navigation failure</param>
-    private void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
-    {
-        throw new InvalidOperationException($"Failed to load {e.SourcePageType.FullName}: {e.Exception}");
     }
 
     /// <summary>

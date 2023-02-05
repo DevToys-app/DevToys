@@ -110,7 +110,7 @@ internal class Program
             Platform currentPlatform;
             if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
-                currentPlatform = Platform.MacOS;
+                currentPlatform = Platform.MacCatalyst;
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
