@@ -6,11 +6,13 @@ using Microsoft.UI.Composition.SystemBackdrops;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
+using Windows.Foundation;
 using Windows.Graphics;
+using Windows.Win32.Graphics.Gdi;
+using Windows.Win32.UI.HiDpi;
+using Windows.Win32.UI.Shell.Common;
 using WinRT;
 using WinRT.Interop;
-using Windows.Win32.Graphics.Gdi;
-using Windows.Win32.UI.Shell.Common;
 using static Windows.Win32.PInvoke;
 
 namespace DevToys.UI.Framework.Controls;
@@ -53,8 +55,14 @@ public sealed partial class BackdropWindow : Window
     {
         DispatcherQueue.ThrowIfNotOnUIThread();
 
+        if (Content is FrameworkElement frameworkElement)
+        {
+            frameworkElement.Loaded += Window_Loaded;
+        }
+
         SetStartupWindowLocation();
         SetBackdrop();
+        ExtendTitleBar();
 
         AppWindow.Closing += Window_Closing;
         base.Activate();
@@ -101,6 +109,37 @@ public sealed partial class BackdropWindow : Window
             default:
                 throw new NotSupportedException();
         }
+    }
+
+    private void ExtendTitleBar()
+    {
+        // Check to see if customization is supported.
+        // Currently only supported on Windows 11.
+        if (AppWindowTitleBar.IsCustomizationSupported())
+        {
+            AppWindowTitleBar titleBar = AppWindow.TitleBar;
+            titleBar.ExtendsContentIntoTitleBar = true;
+
+            // Set active window colors
+            titleBar.ButtonBackgroundColor = Colors.Transparent;
+
+            // Set inactive window colors
+            titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+        }
+        else
+        {
+            // Title bar customization using these APIs is currently
+            // supported only on Windows 11. In other cases, hide
+            // the custom title bar element.
+
+            // Show alternative UI for any functionality in
+            // the title bar, such as search.
+        }
+    }
+
+    private void DraggableArea_SizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        SetDragRegionForCustomTitleBar();
     }
 
     private void SetBackdrop()
@@ -168,6 +207,66 @@ public sealed partial class BackdropWindow : Window
         }
     }
 
+    private void SetDragRegionForCustomTitleBar()
+    {
+        // Check to see if customization is supported.
+        // Currently only supported on Windows 11.
+        if (AppWindowTitleBar.IsCustomizationSupported()
+            && AppWindow.TitleBar.ExtendsContentIntoTitleBar)
+        {
+            var defaultPoint = new Point(0, 0);
+            double scaleAdjustment = GetScaleAdjustment();
+
+            var dragRectsList = new List<RectInt32>();
+
+            for (int i = 0; i < _draggableAreas.Count; i++)
+            {
+                FrameworkElement draggableArea = _draggableAreas[i];
+                Point draggableAreaLocationInWindow
+                     = draggableArea
+                         .TransformToVisual(this.Content)
+                         .TransformPoint(defaultPoint);
+
+                RectInt32 dragRectangle;
+                dragRectangle.X = (int)(draggableAreaLocationInWindow.X * scaleAdjustment);
+                dragRectangle.Y = (int)(draggableAreaLocationInWindow.Y * scaleAdjustment);
+                dragRectangle.Height = (int)(draggableArea.ActualHeight * scaleAdjustment);
+                dragRectangle.Width = (int)(draggableArea.ActualWidth * scaleAdjustment);
+                dragRectsList.Add(dragRectangle);
+            }
+
+            AppWindow.TitleBar.SetDragRectangles(dragRectsList.ToArray());
+        }
+    }
+
+    private double GetScaleAdjustment()
+    {
+        IntPtr hWnd = GetWindowHandle();
+        WindowId wndId = Win32Interop.GetWindowIdFromWindow(hWnd);
+        var displayArea = DisplayArea.GetFromWindowId(wndId, DisplayAreaFallback.Primary);
+        IntPtr hMonitor = Win32Interop.GetMonitorFromDisplayId(displayArea.DisplayId);
+
+        // Get DPI.
+        int result = GetDpiForMonitor(new HMONITOR(hMonitor), MONITOR_DPI_TYPE.MDT_DEFAULT, out uint dpiX, out uint _);
+        if (result != 0)
+        {
+            throw new Exception("Could not get DPI for monitor.");
+        }
+
+        uint scaleFactorPercent = (uint)(((long)dpiX * 100 + (96 >> 1)) / 96);
+        return scaleFactorPercent / 100.0;
+    }
+
+    private void Window_Loaded(object sender, RoutedEventArgs e)
+    {
+        for (int i = 0; i < _draggableAreas.Count; i++)
+        {
+            _draggableAreas[i].SizeChanged += DraggableArea_SizeChanged;
+        }
+
+        SetDragRegionForCustomTitleBar();
+    }
+
     private void Window_Activated(object sender, WindowActivatedEventArgs args)
     {
         if (_configurationSource is not null)
@@ -200,6 +299,11 @@ public sealed partial class BackdropWindow : Window
         Activated -= Window_Activated;
 
         _configurationSource = null;
+
+        if (Content is FrameworkElement frameworkElement)
+        {
+            frameworkElement.Loaded -= Window_Loaded;
+        }
     }
 
     private class WindowsSystemDispatcherQueueHelper
