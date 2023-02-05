@@ -3,7 +3,7 @@
 public enum Platform
 {
     Windows,
-    MacOS,
+    MacCatalyst,
     Linux,
     WASM
 }

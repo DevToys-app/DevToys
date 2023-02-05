@@ -31,6 +31,7 @@
     <PackageVersion Include="Microsoft.UI.Xaml" Version="2.8.1" />
     <PackageVersion Include="Microsoft.Web.WebView2" Version="$(WebView2Version)" />
     <PackageVersion Include="Microsoft.Windows.Compatibility" Version="$(DotNetVersion)" />
+    <PackageVersion Include="Microsoft.Windows.CsWin32" Version="0.2.188-beta" />
     <PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="$(MicrosoftWindowsSDKBuildToolsVersion)" />
     <PackageVersion Include="Microsoft.WindowsAppSDK" Version="1.2.230118.102" />
     <PackageVersion Include="Moq" Version="4.18.2" />

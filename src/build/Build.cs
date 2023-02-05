@@ -62,7 +62,7 @@ class Build : NukeBuild
                 return;
             }
 
-            if (PlatformTargets.Contains(PlatformTarget.MacOS) && !OperatingSystem.IsMacOS())
+            if (PlatformTargets.Contains(PlatformTarget.MacCatalyst) && !OperatingSystem.IsMacOS())
             {
                 Assert.Fail("To build macOS app, you need to run on macOS Ventura 13.1 or later.");
                 return;
@@ -166,7 +166,7 @@ class Build : NukeBuild
                 }
             }
 
-            if (PlatformTargets!.Contains(PlatformTarget.MacOS))
+            if (PlatformTargets!.Contains(PlatformTarget.MacCatalyst))
             {
                 // DevToys Uno Mac Catalyst and MAUI Blazor
                 Project[] projects = {

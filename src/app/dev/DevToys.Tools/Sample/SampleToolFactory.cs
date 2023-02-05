@@ -13,7 +13,7 @@ namespace DevToys.Tools.Sample;
     ResourceManagerBaseName = "DevToys.Tools.Sample.Sample")]
 [TargetPlatform(Platform.Windows)] // Optional. Not putting any attribute means every platforms are supported.
 [TargetPlatform(Platform.Linux)]
-[TargetPlatform(Platform.MacOS)]
+[TargetPlatform(Platform.MacCatalyst)]
 internal sealed class SampleCommandLineTool : ICommandLineTool
 {
     [CommandLineOption(
@@ -49,7 +49,7 @@ internal sealed class SampleCommandLineTool : ICommandLineTool
     SearchKeywordsResourceName = nameof(Sample.CommandDescription))]
 [TargetPlatform(Platform.Windows)] // Optional. Not putting any attribute means every platforms are supported.
 [TargetPlatform(Platform.Linux)]
-[TargetPlatform(Platform.MacOS)]
+[TargetPlatform(Platform.MacCatalyst)]
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool : IGuiTool
 {
