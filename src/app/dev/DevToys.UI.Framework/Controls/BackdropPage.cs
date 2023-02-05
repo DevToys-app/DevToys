@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml;
+﻿using DevToys.Api.Core.Theme;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Windows.Foundation;
 #if HAS_UNO
@@ -10,6 +11,37 @@ namespace DevToys.UI.Framework.Controls;
 
 public abstract class BackdropPage : Page
 {
+    private readonly IThemeListener _themeListener;
+
+    protected BackdropPage(BackdropWindow window, IThemeListener themeListener)
+    {
+        Guard.IsNotNull(themeListener);
+        Guard.IsNotNull(window);
+
+        _themeListener = themeListener;
+        _themeListener.ThemeChanged += ThemeListener_ThemeChanged;
+
+        Window = window;
+#if HAS_UNO
+        Window.Window.Content = this;
+        Window.Window.Activated += Window_Activated;
+        Window.Window.VisibilityChanged += Window_VisibilityChanged;
+        Window.Window.Closed += Window_Closed;
+#else
+        Window.Content = this;
+        Window.Activated += Window_Activated;
+        Window.VisibilityChanged += Window_VisibilityChanged;
+        Window.Closed += Window_Closed;
+#endif
+        Window.Closing += Window_Closing;
+        Window.Shown += Window_Shown;
+    }
+
+    private void ThemeListener_ThemeChanged(object? sender, EventArgs e)
+    {
+        this.RequestedTheme = _themeListener.ActualAppTheme == Api.Core.Theme.ApplicationTheme.Dark ? ElementTheme.Dark : ElementTheme.Light;
+    }
+
     internal BackdropWindow Window { get; }
 
     /// <summary>
@@ -40,25 +72,6 @@ public abstract class BackdropPage : Page
     /// Raised when the window got activated.
     /// </summary>
     public event TypedEventHandler<BackdropWindow, WindowActivatedEventArgs>? Activated;
-
-    protected BackdropPage(BackdropWindow window)
-    {
-        Guard.IsNotNull(window);
-        Window = window;
-#if HAS_UNO
-        Window.Window.Content = this;
-        Window.Window.Activated += Window_Activated;
-        Window.Window.VisibilityChanged += Window_VisibilityChanged;
-        Window.Window.Closed += Window_Closed;
-#else
-        Window.Content = this;
-        Window.Activated += Window_Activated;
-        Window.VisibilityChanged += Window_VisibilityChanged;
-        Window.Closed += Window_Closed;
-#endif
-        Window.Closing += Window_Closing;
-        Window.Shown += Window_Shown;
-    }
 
     /// <summary>
     /// Changes the size of the window.
@@ -107,6 +120,7 @@ public abstract class BackdropPage : Page
 #endif
         Window.Closing -= Window_Closing;
         Window.Shown -= Window_Shown;
+        _themeListener.ThemeChanged -= ThemeListener_ThemeChanged;
     }
 
 #if HAS_UNO

@@ -1,4 +1,5 @@
 ﻿using DevToys.Api;
+using DevToys.Api.Core.Theme;
 
 namespace DevToys.Core.Settings;
 
@@ -16,9 +17,9 @@ public static class PredefinedSettings
     /// <summary>
     /// The color theme of the application.
     /// </summary>
-    public static readonly SettingDefinition<AppTheme> Theme
+    public static readonly SettingDefinition<AvailableApplicationTheme> Theme
         = new(
             name: nameof(Theme),
             isRoaming: false,
-            defaultValue: AppTheme.Default);
+            defaultValue: AvailableApplicationTheme.Default);
 }

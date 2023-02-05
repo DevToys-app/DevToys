@@ -1,4 +1,5 @@
 ﻿using DevToys.Api;
+using DevToys.Api.Core.Theme;
 using DevToys.Api.Core.Threading;
 using DevToys.Core.Mef;
 using DevToys.Core.Settings;
@@ -26,8 +27,7 @@ public sealed partial class App : Application
 
     private readonly Task<IMefProvider> _mefProvider;
     private readonly AsyncLazy<ISettingsProvider> _settingsProvider;
-
-    private MainWindow? _mainWindow;
+    private readonly AsyncLazy<IThemeListener> _themeListener;
 
     /// <summary>
     /// Initializes the singleton application object.  This is the first line of authored code
@@ -45,13 +45,23 @@ public sealed partial class App : Application
         this.Suspending += OnSuspending;
 #endif
 
-        _mefComposer = Task.Run(() => new MefComposer());
-        _mefProvider = Task.Run(async () =>
-        {
-            return (await _mefComposer).Provider;
-        });
+        _mefComposer
+            = Task.Run(
+                () => new MefComposer(
+                    new[]
+                    {
+                        typeof(MainWindow).Assembly
+                    }));
+
+        _mefProvider
+            = Task.Run(
+                async () => (await _mefComposer).Provider);
+
         _settingsProvider = new AsyncLazy<ISettingsProvider>(async () => (await _mefProvider).Import<ISettingsProvider>());
+        _themeListener = new AsyncLazy<IThemeListener>(async () => (await _mefProvider).Import<IThemeListener>());
     }
+
+    internal MainWindow? MainWindow { get; private set; }
 
     /// <summary>
     /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -74,21 +84,29 @@ public sealed partial class App : Application
             ?? LanguageManager.Instance.AvailableLanguages[0];
         LanguageManager.Instance.SetCurrentCulture(languageDefinition);
 
+        IThemeListener themeListener = await _themeListener.GetValueAsync();
+
 #if __WINDOWS__
         // On Windows 10 version 1607 or later, this code signals that this app wants to participate in prelaunch
         CoreApplication.EnablePrelaunch(true);
 #endif
 
 #if __WINDOWS__
-        _mainWindow = new MainWindow(new BackdropWindow());
-        _mainWindow.Show();
+        MainWindow = new MainWindow(new BackdropWindow(), themeListener);
 #elif __MACCATALYST__
         // Important! Keep the full name `Microsoft.UI.Xaml.Window.Current` otherwise the Mac app won't build.
         // See https://blog.mzikmund.com/2020/04/resolving-uno-platform-uiwindow-does-not-contain-a-definition-for-current-issue/
-        _mainWindow = new MainWindow(new BackdropWindow(Microsoft.UI.Xaml.Window.Current));
+        _mainWindow = new MainWindow(new BackdropWindow(Microsoft.UI.Xaml.Window.Current), themeListener);
 #else
-        _mainWindow = new MainWindow(new BackdropWindow(Window.Current));
+        MainWindow = new MainWindow(new BackdropWindow(Window.Current), themeListener);
 #endif
+
+        // Apply the app color theme.
+        themeListener.ApplyDesiredColorTheme();
+
+        MainWindow.Activated += MainWindow_Activated;
+
+        MainWindow.Show();
 
         Windows.ApplicationModel.Activation.LaunchActivatedEventArgs uwpArgs = args.UWPLaunchActivatedEventArgs;
 
@@ -97,8 +115,13 @@ public sealed partial class App : Application
 #endif
         {
             // Ensure the current window is active
-            _mainWindow.Activate();
+            MainWindow.Activate();
         }
+    }
+
+    private async void MainWindow_Activated(BackdropWindow sender, WindowActivatedEventArgs args)
+    {
+        (await _themeListener.GetValueAsync()).UpdateThemeIfNeeded();
     }
 
     /// <summary>
