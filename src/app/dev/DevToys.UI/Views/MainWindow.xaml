@@ -5,49 +5,27 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:DevToys.UI.Framework.Controls"
-    xmlns:monaco="using:DevToys.MonacoEditor"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:wasm="http://uno.ui/wasm"
+    xmlns:macos="http://uno.ui/macos"
+    xmlns:ios="http://uno.ui/ios"
     xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:not_win="http://uno.ui/not_win"
-    mc:Ignorable="d wasm not_win">
+    mc:Ignorable="d wasm not_win macos ios">
 
-    <Grid Background="Transparent">
-        <Grid.BackgroundTransition>
-            <BrushTransition />
-        </Grid.BackgroundTransition>
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+    <Grid not_win:Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <monaco:CodeEditor x:Name="Editor"
-                           Grid.Row="0"
-                           Grid.Column="0"/>
 
-        <!--<monaco:CodeEditor x:Name="Editor2"
-                           Grid.Row="0"
-                           Grid.Column="1"
-                           ReadOnly="True"
-                           IsDiffViewMode="True"/>-->
-        <ToggleSwitch
-            Grid.Row="1"
-            Grid.Column="0"
-            Header="Test"/>
-        <ToggleSwitch
-            Grid.Row="1"
-            Grid.Column="1"
-            Header="Test"
-            Style="{StaticResource RightAlignedToggleSwitchStyle}"/>
-        <TextBox
-            Grid.Row="2"
-            Grid.Column="0"/>
+        <Grid x:Name="AppTitleBar" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Hello world" Grid.Column="0"/>
+            <Grid x:Name="DraggableArea" Grid.Column="1" controls:BackdropWindow.IsWindowDraggableArea="True"/>
+        </Grid>
     </Grid>
 </controls:BackdropPage>
