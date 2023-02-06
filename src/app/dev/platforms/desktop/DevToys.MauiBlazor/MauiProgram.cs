@@ -1,13 +1,16 @@
-﻿using Microsoft.Extensions.Logging;
-using Microsoft.Fast.Components.FluentUI.Infrastructure;
-using Microsoft.Fast.Components.FluentUI;
+﻿using DevToys.Api;
 using DevToys.Core.Mef;
+using DevToys.Core.Settings;
+using DevToys.MauiBlazor.Core.Languages;
+using Microsoft.Extensions.Logging;
+using Microsoft.Fast.Components.FluentUI;
+using Microsoft.Fast.Components.FluentUI.Infrastructure;
 
 namespace DevToys.MauiBlazor;
 
 public static class MauiProgram
 {
-    private static readonly MefComposer mefComposer = new();
+    internal static readonly MefComposer MefComposer = new();
 
     public static MauiApp CreateMauiApp()
     {
@@ -29,7 +32,14 @@ public static class MauiProgram
         builder.Logging.AddDebug();
 #endif
 
-        builder.Services.AddSingleton(provider => mefComposer.Provider);
+        builder.Services.AddSingleton(provider => MefComposer.Provider);
+
+        // Set the user-defined language.
+        string? languageIdentifier = MefComposer.Provider.Import<ISettingsProvider>().GetSetting(PredefinedSettings.Language);
+        LanguageDefinition languageDefinition
+            = LanguageManager.Instance.AvailableLanguages.FirstOrDefault(l => string.Equals(l.InternalName, languageIdentifier))
+            ?? LanguageManager.Instance.AvailableLanguages[0];
+        LanguageManager.Instance.SetCurrentCulture(languageDefinition);
 
         return builder.Build();
     }

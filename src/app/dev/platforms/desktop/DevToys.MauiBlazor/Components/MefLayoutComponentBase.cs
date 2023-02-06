@@ -1,10 +1,9 @@
 ﻿using DevToys.Api;
 using Microsoft.AspNetCore.Components;
-using Microsoft.Fast.Components.FluentUI;
 
 namespace DevToys.MauiBlazor.Components;
 
-internal abstract class MefComponentBase : FluentComponentBase
+public abstract class MefLayoutComponentBase : LayoutComponentBase
 {
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     [Inject]

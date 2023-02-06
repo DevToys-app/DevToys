@@ -1,4 +1,6 @@
-﻿html, body {
+﻿@import '/_content/Microsoft.Fast.Components.FluentUI/css/reboot.css'; 
+
+html, body {
     font-family: -apple-system, /* San Francisco in Safari (on Mac OS X and iOS); Neue Helvetica and Lucida Grande on older versions of Mac OS X. */
     system-ui, /* Default UI font on a given platform. */
     BlinkMacSystemFont, /* Equivalent of -apple-system, for Chrome on Mac OS X. */

@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace DevToys.UI;
+namespace DevToys.MauiBlazor.Core.Languages;
 
 /// <summary>
 /// Represents un language supported by the app.
@@ -36,11 +36,7 @@ public class LanguageDefinition
     {
         if (string.IsNullOrEmpty(identifier))
         {
-#if HAS_UNO_WASM
             Culture = CultureInfo.CurrentUICulture;
-#else
-            Culture = new CultureInfo(Windows.System.UserProfile.GlobalizationPreferences.Languages[0]);
-#endif
             DisplayName = Localization.Strings.Settings.Settings.DefaultLanguage;
             InternalName = "default";
         }

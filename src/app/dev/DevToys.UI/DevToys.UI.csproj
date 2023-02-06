@@ -85,13 +85,13 @@
     </Page>
     <PRIResource Include="**\*.resw" />
     <Content Include="Assets\**" />
-    <None Remove="Strings\ja-JP\Languages.resw" />
     <Compile Update="**\*.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DevToys.Localization\DevToys.Localization.csproj" />
     <ProjectReference Include="..\DevToys.MonacoEditor\DevToys.MonacoEditor.csproj" />
     <ProjectReference Include="..\DevToys.UI.Framework\DevToys.UI.Framework.csproj" />
   </ItemGroup>

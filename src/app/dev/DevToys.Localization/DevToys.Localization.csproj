@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>$(NetCore)</TargetFrameworks>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Common" />
+    <PackageReference Include="CommunityToolkit.Diagnostics" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="System.ComponentModel.Composition" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference
+      Include="..\..\..\generators\ResxHelperGenerator\ResxHelperGenerator.csproj"
+      OutputItemType="Analyzer"
+      ReferenceOutputAssembly="false" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Strings\Settings\Settings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Strings\Settings\Settings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

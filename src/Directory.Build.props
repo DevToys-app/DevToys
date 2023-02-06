@@ -31,6 +31,9 @@
     <!-- Enable Central Package Management -->
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <EnablePackageVersionOverride>false</EnablePackageVersionOverride>
+
+    <!-- Keep generated code in `obj` folder -->
+    <EmitCompilerGeneratedFiles>True</EmitCompilerGeneratedFiles>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '16.0' ">

@@ -433,7 +433,7 @@ src/app/dev/DevToys.MonacoEditor/monaco-editor
 
 # MAUI Blazor web components.
 !**/DevToys.MauiBlazor/wwwroot/js/*.js
-!**/DevToys.MauiBlazor/Components/*.js
+!**/DevToys.MauiBlazor/Components/MonacoEditor.razor.js
 
 # Build results
 [Dd]ebug/
