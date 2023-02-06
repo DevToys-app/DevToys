@@ -14,7 +14,7 @@ internal sealed class SettingsStorage : ISettingsStorage
     {
         if (Preferences.Default.ContainsKey(settingName))
         {
-            value = Preferences.Default.Get<object?>(settingName, default);
+            value = Preferences.Default.Get<string?>(settingName, default);
             return true;
         }
 
@@ -24,6 +24,7 @@ internal sealed class SettingsStorage : ISettingsStorage
 
     public void WriteSetting(string settingName, object? value)
     {
-        Preferences.Default.Set(settingName, value);
+        string? valueString = value?.ToString();
+        Preferences.Default.Set(settingName, valueString);
     }
 }

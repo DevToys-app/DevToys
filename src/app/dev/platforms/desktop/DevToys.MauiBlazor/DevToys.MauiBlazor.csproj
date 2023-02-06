@@ -73,11 +73,17 @@
 
     <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
     <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+    
+    <!-- TypeScript -->
+    <ConfigFiles Include="tsconfig.json" />
+    <TypeScriptCompile Remove="**\*.ts" />
+    <None Include="**\*.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\DevToys.Api\DevToys.Api.csproj" />
     <ProjectReference Include="..\..\..\DevToys.Core\DevToys.Core.csproj" />
+    <ProjectReference Include="..\..\..\DevToys.Localization\DevToys.Localization.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -92,6 +98,7 @@
   <ItemGroup>
     <Content Include="..\..\..\DevToys.MonacoEditor\monaco-editor\*" LinkBase="wwwroot\lib\monaco-editor\%(RecursiveDir)/%(Filename)%(Extension)" />
     <Content Include="..\..\..\DevToys.MonacoEditor\monaco-editor\min\**\*" Link="wwwroot\lib\monaco-editor\min\%(RecursiveDir)/%(Filename)%(Extension)" />
+    <TypeScriptCompile Remove="wwwroot\lib\monaco-editor\**\*.*" />
   </ItemGroup>
 
 </Project>

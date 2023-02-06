@@ -1,8 +1,6 @@
 ﻿using System.Globalization;
-using Windows.Globalization;
-using Microsoft.UI.Xaml;
 
-namespace DevToys.UI;
+namespace DevToys.MauiBlazor.Core.Languages;
 
 public sealed class LanguageManager
 {
@@ -30,7 +28,7 @@ public sealed class LanguageManager
             new LanguageDefinition() // default language
         };
 
-        IReadOnlyList<string> supportedLanguageIdentifiers = Localization.CultureHelper.ApplicationCultures;
+        IReadOnlyList<string> supportedLanguageIdentifiers = DevToys.Localization.CultureHelper.ApplicationCultures;
         for (int i = 0; i < supportedLanguageIdentifiers.Count; i++)
         {
             AvailableLanguages.Add(
@@ -46,9 +44,6 @@ public sealed class LanguageManager
     {
         CultureInfo.DefaultThreadCurrentCulture = language.Culture;
         CultureInfo.DefaultThreadCurrentUICulture = language.Culture;
-#if HAS_UNO
-        ApplicationLanguages.PrimaryLanguageOverride = language.Identifier;
-#endif
 
         if (language.Culture.TextInfo.IsRightToLeft)
         {

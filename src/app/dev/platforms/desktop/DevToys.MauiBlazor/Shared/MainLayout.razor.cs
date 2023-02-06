@@ -1,18 +1,54 @@
 ﻿using DevToys.Api;
+using DevToys.Api.Core.Theme;
+using DevToys.MauiBlazor.Components;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Fast.Components.FluentUI;
+using Microsoft.Fast.Components.FluentUI.DesignTokens;
 
 namespace DevToys.MauiBlazor.Shared;
 
-public partial class MainLayout : LayoutComponentBase
+public partial class MainLayout : MefLayoutComponentBase
 {
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-    [Inject]
-    protected IMefProvider MefProvider { get; set; }
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    [Import]
+    private IThemeListener ThemeListener { get; set; } = default!;
 
-    protected override void OnInitialized()
+    [Inject]
+    private GlobalState GlobalState { get; set; } = default!;
+
+    private float _baseLayerLuminanceValue;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        MefProvider.SatisfyImports(this);
-        base.OnInitialized();
+        if (firstRender)
+        {
+            ThemeListener.ThemeChanged += ThemeListener_ThemeChanged;
+
+            ApplyTheme();
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    private void ThemeListener_ThemeChanged(object? sender, EventArgs e)
+    {
+        ApplyTheme();
+    }
+
+    private void ApplyTheme()
+    {
+        StandardLuminance theme;
+        if (ThemeListener.ActualAppTheme == ApplicationTheme.Dark)
+        {
+            theme = StandardLuminance.DarkMode;
+        }
+        else
+        {
+            theme = StandardLuminance.LightMode;
+        }
+
+        _baseLayerLuminanceValue = theme.GetLuminanceValue();
+        GlobalState.SetLuminance(theme);
+
+        StateHasChanged();
     }
 }
