@@ -1,24 +1,40 @@
 ﻿@inherits FluentComponentBase
 
-<div>
-    <CascadingValue Value="this" IsFixed=true Name="NavigationView">
-        <FluentTreeView Class="@ClassValue"
-                        Style="@StyleValue"
-                        id="@Id">
-            @*
-            <FluentButton Appearance="Appearance.Lightweight"
-            Class="navmenu-main-button"
-            @onclick="OnHamburgerButtonClickAsync"
-            title="@Title">
-            <FluentIcon Name="@(FluentIcons.Navigation)" Size="IconSize.Size20" Slot="start" />
-            </FluentButton>*@
-            <FluentSearch Placeholder="Type to search for tools..." Style="margin-left: 22px; margin-right: 22px" />
-            <NavigationViewItem Text="All tools" Icon="@(FluentIcons.Home)" />
-            <FluentDivider />
-            @MenuItemsSource
-            <div style="position: absolute; bottom: 0px; width:@Width;">
-                @FooterMenuItemsSource
-            </div>
-        </FluentTreeView>
-    </CascadingValue>
-</div>
+<CascadingValue Value="this" IsFixed=false Name="NavigationView">
+    <Grid>
+        <RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </RowDefinitions>
+        <ColumnDefinitions>
+            <ColumnDefinition Width="320" />
+            <ColumnDefinition Width="*" />
+        </ColumnDefinitions>
+        <Content>
+            @* Search Bar *@
+            <GridElement Row="1" Column="1" HorizontalAlignment="@Alignment.Stretch" VerticalAlignment="@Alignment.Start">
+                <FluentSearch Placeholder="Type to search for tools..." Style="margin-left: 22px; margin-right: 22px" />
+            </GridElement>
+
+            @* Top Menu *@
+            <GridElement Row="2" Column="1" HorizontalAlignment="@Alignment.Stretch" VerticalAlignment="@Alignment.Start">
+                <StackPanel Orientation="@Orientation.Vertical">
+                    @MenuItemsSource
+                </StackPanel>
+            </GridElement>
+
+            @* Bottom Menu *@
+            <GridElement Row="3" Column="1" HorizontalAlignment="@Alignment.Stretch" VerticalAlignment="@Alignment.End">
+                <StackPanel Orientation="@Orientation.Vertical">
+                    @FooterMenuItemsSource
+                </StackPanel>
+            </GridElement>
+
+            @* Content of the Navigation View *@
+            <GridElement Row="1" RowSpan="3" Column="2" HorizontalAlignment="@Alignment.Stretch" VerticalAlignment="@Alignment.Stretch">
+                @Content
+            </GridElement>
+        </Content>
+    </Grid>
+</CascadingValue>

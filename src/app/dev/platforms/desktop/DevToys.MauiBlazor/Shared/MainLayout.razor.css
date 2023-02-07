@@ -4,9 +4,11 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-color: var(--neutral-layer-4);
+    background-color: var(--neutral-layer-3);
 }
 
 main {
     width: 100%;
+    background-color: var(--neutral-layer-2);
+    border-top-left-radius: 8px 8px;
 }

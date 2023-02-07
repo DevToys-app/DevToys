@@ -1,0 +1,27 @@
+﻿@namespace DevToys.MauiBlazor.Components
+
+@code {
+
+    [CascadingParameter]
+    private Grid Parent { get; set; }
+
+    [Parameter]
+    public string Height { get; set; } = "*";
+
+    [Parameter]
+    public string MinHeight { get; set; } = null;
+
+    [Parameter]
+    public string MaxHeight { get; set; } = null;
+
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+        {
+            throw new ArgumentException("Parent not defined. Make sure your component is in a grid element");
+        }
+
+        Parent.AddRow(Height, MinHeight, MaxHeight);
+        base.OnInitialized();
+    }
+}
