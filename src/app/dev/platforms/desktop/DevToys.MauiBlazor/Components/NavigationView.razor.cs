@@ -25,10 +25,16 @@ public partial class NavigationView : FluentComponentBase
     public RenderFragment? FooterMenuItemsSource { get; set; }
 
     /// <summary>
+    /// Gets or sets the content of the navigation view.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? Content { get; set; }
+
+    /// <summary>
     /// Gets or sets the selected item.
     /// </summary>
     [Parameter]
-    public NavigationViewItem? SelectedItem { get; set; }
+    public FluentTreeItem? SelectedTreeItem { get; set; }
 
     /// <summary>
     /// Gets or sets a reasonably unique ID 

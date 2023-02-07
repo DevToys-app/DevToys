@@ -2,35 +2,19 @@
 
 <FluentDesignSystemProvider BaseLayerLuminance=@_baseLayerLuminanceValue>
     <div id="container">
-        <StackPanel Orientation="Orientation.Horizontal" Width="100%">
-            <div>
-                <NavigationView Width="320">
-                    <MenuItemsSource>
-                        <NavigationViewItem Text="Never" Icon="@(FluentIcons.LeafOne)" />
-                        <NavigationViewItem Text="Gonna" Icon="@(FluentIcons.LeafOne)" />
-                        <NavigationViewItem Text="Give" Icon="@(FluentIcons.LeafOne)">
-                            <NavigationViewItem Text="You" Icon="@(FluentIcons.LeafOne)" />
-                            <NavigationViewItem Text="Up" Icon="@(FluentIcons.LeafTwo)" />
-                        </NavigationViewItem>
-                        <NavigationViewItem Text="Never" Icon="@(FluentIcons.LeafOne)">
-                            <NavigationViewItem Text="Gonna" Icon="@(FluentIcons.LeafOne)" />
-                            <NavigationViewItem Text="Let" Icon="@(FluentIcons.LeafOne)" />
-                        </NavigationViewItem>
-                        <NavigationViewItem Text="You" Icon="@(FluentIcons.LeafOne)">
-                            <NavigationViewItem Text="Down" Icon="@(FluentIcons.LeafTwo)" />
-                        </NavigationViewItem>
-                    </MenuItemsSource>
-                    <FooterMenuItemsSource>
-                        <NavigationViewItem Text="Settings" Icon="@(FluentIcons.Settings)" />
-                    </FooterMenuItemsSource>
-                </NavigationView>
-            </div>
-
-            <main>
-                <article>
+        <NavigationView>
+            <MenuItemsSource>
+                <FluentButton Appearance="Appearance.Stealth">Hello</FluentButton>
+                <FluentButton Appearance="Appearance.Stealth">There</FluentButton>
+            </MenuItemsSource>
+            <FooterMenuItemsSource>
+                <FluentButton Appearance="Appearance.Stealth">Bottom</FluentButton>
+            </FooterMenuItemsSource>
+            <Content>
+                <main>
                     @Body
-                </article>
-            </main>
-        </StackPanel>
+                </main>
+            </Content>
+        </NavigationView>
     </div>
 </FluentDesignSystemProvider>
