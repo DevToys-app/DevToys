@@ -60,7 +60,7 @@ internal sealed class Highlighter
         var window = JSValue.CreateObject(_jsContext);
         _jsContext[new NSString("window")] = window;
 
-        string highlightJsScript = await HighlightJsScript.Task;
+        string highlightJsScript = await HighlightJsScript.GetValueAsync();
 
         JSValue? value = _jsContext.EvaluateScript(highlightJsScript);
         if (value is not null && value.ToBool())
@@ -77,7 +77,7 @@ internal sealed class Highlighter
     /// <returns>true if it was possible to set the given theme, false otherwise</returns>
     private async Task SetThemeAsync()
     {
-        string contentsOfFile = await VisualStudioTheme.Task;
+        string contentsOfFile = await VisualStudioTheme.GetValueAsync();
 
         _theme = new Theme(contentsOfFile);
     }

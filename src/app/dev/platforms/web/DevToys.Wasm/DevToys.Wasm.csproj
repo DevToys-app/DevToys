@@ -6,6 +6,7 @@
     <NoWarn>NU1701</NoWarn>
     <WasmPWAManifestFile>manifest.json</WasmPWAManifestFile>
     <DefineConstants>__WASM__</DefineConstants>
+    <BaseIntermediateOutputPath>..\..\..\..\..\..\obj\AnyCPU\DevToys.Wasm</BaseIntermediateOutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
@@ -66,5 +67,13 @@
     <ProjectReference Include="..\..\..\DevToys.UI\DevToys.UI.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="..\..\desktop\windows\DevToys.Wasdk\Core\Settings\SettingsStorage.cs">
+      <Link>Core\Settings\\SettingsStorage.cs</Link>
+    </Compile>
+    <Compile Update="..\..\desktop\windows\DevToys.Wasdk\Core\Theme\ThemeListener.cs">
+      <Link>Core\Theme\\ThemeListener.cs</Link>
+    </Compile>
+  </ItemGroup>
   <Import Project="$(RepoRoot)\src\app\dev\shared\App.props" />
 </Project>
