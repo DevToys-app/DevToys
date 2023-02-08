@@ -96,7 +96,7 @@ public sealed partial class App : Application
 #elif __MACCATALYST__
         // Important! Keep the full name `Microsoft.UI.Xaml.Window.Current` otherwise the Mac app won't build.
         // See https://blog.mzikmund.com/2020/04/resolving-uno-platform-uiwindow-does-not-contain-a-definition-for-current-issue/
-        _mainWindow = new MainWindow(new BackdropWindow(Microsoft.UI.Xaml.Window.Current), themeListener);
+        MainWindow = new MainWindow(new BackdropWindow(Microsoft.UI.Xaml.Window.Current), themeListener);
 #else
         MainWindow = new MainWindow(new BackdropWindow(Window.Current), themeListener);
 #endif

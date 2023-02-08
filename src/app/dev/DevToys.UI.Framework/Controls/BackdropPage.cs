@@ -9,7 +9,7 @@ using WindowActivatedEventArgs = Microsoft.UI.Xaml.WindowActivatedEventArgs;
 
 namespace DevToys.UI.Framework.Controls;
 
-public abstract class BackdropPage : Page
+public abstract partial class BackdropPage : Page
 {
     private readonly IThemeListener _themeListener;
 

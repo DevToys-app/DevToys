@@ -13,7 +13,7 @@
     xmlns:not_win="http://uno.ui/not_win"
     mc:Ignorable="d wasm not_win macos ios">
 
-    <Grid not_win:Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid not_win:Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" ios:Margin="0,38,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="32"/>
             <RowDefinition Height="*"/>
@@ -27,5 +27,6 @@
             <Button Content="Hello world" Grid.Column="0"/>
             <Grid x:Name="DraggableArea" Grid.Column="1" controls:BackdropWindow.IsWindowDraggableArea="True"/>
         </Grid>
+        <Button Content="Hello world" Grid.Column="0"/>
     </Grid>
 </controls:BackdropPage>

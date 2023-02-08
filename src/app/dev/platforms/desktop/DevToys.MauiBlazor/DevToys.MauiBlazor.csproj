@@ -29,9 +29,9 @@
     <When Condition="'$(TargetFramework)' == '$(NetMacCatalyst)'">
       <PropertyGroup>
         <DefineConstants>$(DefineConstants);__MACCATALYST__</DefineConstants>
-        <RuntimeIdentifiers>maccatalyst-arm64;maccatalyst-x64</RuntimeIdentifiers>
+        <RuntimeIdentifiers>maccatalyst-arm64</RuntimeIdentifiers>
       </PropertyGroup>
-      <PropertyGroup Condition="'$(RuntimeIdentifier)'==''">
+      <PropertyGroup Condition="'$(RuntimeIdentifier)'=='' AND '$(Configuration)'=='Release'">
         <!-- Default values for command line builds -->
         <RuntimeIdentifier>maccatalyst-arm64</RuntimeIdentifier>
       </PropertyGroup>
@@ -76,8 +76,15 @@
     
     <!-- TypeScript -->
     <ConfigFiles Include="tsconfig.json" />
+    <Content Update="tsconfig.json" PublishFolderType="None" />
     <TypeScriptCompile Remove="**\*.ts" />
     <None Include="**\*.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\..\..\DevToys.MonacoEditor\monaco-editor\*" LinkBase="wwwroot\lib\monaco-editor\%(RecursiveDir)/%(Filename)%(Extension)" />
+    <Content Include="..\..\..\DevToys.MonacoEditor\monaco-editor\min\**\*" Link="wwwroot\lib\monaco-editor\min\%(RecursiveDir)/%(Filename)%(Extension)" />
+    <TypeScriptCompile Remove="wwwroot\lib\monaco-editor\**\*.*" />
   </ItemGroup>
 
   <ItemGroup>
@@ -93,12 +100,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="..\..\..\DevToys.MonacoEditor\monaco-editor\*" LinkBase="wwwroot\lib\monaco-editor\%(RecursiveDir)/%(Filename)%(Extension)" />
-    <Content Include="..\..\..\DevToys.MonacoEditor\monaco-editor\min\**\*" Link="wwwroot\lib\monaco-editor\min\%(RecursiveDir)/%(Filename)%(Extension)" />
-    <TypeScriptCompile Remove="wwwroot\lib\monaco-editor\**\*.*" />
   </ItemGroup>
 
 </Project>
