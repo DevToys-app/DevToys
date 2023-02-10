@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:DevToys.UI.Framework.Controls"
+    xmlns:strings="using:DevToys.Localization.Strings.MainWindow"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:wasm="http://uno.ui/wasm"
     xmlns:macos="http://uno.ui/macos"
@@ -12,21 +13,82 @@
     xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:not_win="http://uno.ui/not_win"
     mc:Ignorable="d wasm not_win macos ios">
+    <Page.Resources>
+        <!--This top margin is the height of the custom TitleBar-->
+        <Thickness x:Key="NavigationViewContentMargin">0,46,0,0</Thickness>
+        <Thickness x:Key="NavigationViewContentGridBorderThickness">1,1,0,0</Thickness>
+        <CornerRadius x:Key="NavigationViewContentGridCornerRadius">8,0,0,0</CornerRadius>
+    </Page.Resources>
 
     <Grid not_win:Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" ios:Margin="0,38,0,0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="32"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <Grid.BackgroundTransition>
+            <BrushTransition />
+        </Grid.BackgroundTransition>
 
-        <Grid x:Name="AppTitleBar" Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Button Content="Hello world" Grid.Column="0"/>
-            <Grid x:Name="DraggableArea" Grid.Column="1" controls:BackdropWindow.IsWindowDraggableArea="True"/>
-        </Grid>
-        <Button Content="Hello world" Grid.Column="0"/>
+        <!-- Draggable area of the title bar. -->
+        <!--<Grid x:Name="DraggableArea" Grid.Column="1" controls:BackdropWindow.IsWindowDraggableArea="True"/>-->
+
+        <!-- Navigation view -->
+        <NavigationView
+            IsTitleBarAutoPaddingEnabled="False"
+            IsSettingsVisible="False"
+            IsBackButtonVisible="Visible"
+            IsBackEnabled="False"
+            CompactModeThresholdWidth="640"
+            ExpandedModeThresholdWidth="1008"
+            IsTabStop="False"
+            AlwaysShowHeader="True"
+            IsPaneToggleButtonVisible="True">
+
+            <NavigationView.AutoSuggestBox>
+                <AutoSuggestBox
+                    Name="SearchBox"
+                    MinWidth="200"
+                    TabIndex="0"
+                    KeyboardAcceleratorPlacementMode="Hidden"
+                    QueryIcon="Find"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    PlaceholderText="{x:Bind strings:MainWindow.Search}">
+                    <!-- TODO -->
+                    <!--<i:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="TextChanged">
+                            <core:InvokeCommandAction Command="{x:Bind ViewModel.SearchBoxTextChangedCommand}"/>
+                        </core:EventTriggerBehavior>
+                        <core:EventTriggerBehavior EventName="QuerySubmitted">
+                            <core:InvokeCommandAction Command="{x:Bind ViewModel.SearchBoxQuerySubmittedCommand}"/>
+                        </core:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>-->
+                    <AutoSuggestBox.KeyboardAccelerators>
+                        <KeyboardAccelerator
+                            Key="F"
+                            Modifiers="Control"
+                            Invoked="SearchBoxKeyboardAccelerator_Invoked"/>
+                    </AutoSuggestBox.KeyboardAccelerators>
+                    <!-- TODO -->
+                    <!--<AutoSuggestBox.ItemTemplate>
+                        <DataTemplate x:DataType="tools:ToolProviderViewItem">
+                            <RichTextBlock
+                                HorizontalAlignment="Stretch"
+                                IsTextSelectionEnabled="False"
+                                TextWrapping="NoWrap"
+                                TextTrimming="CharacterEllipsis"
+                                ex:HighlighterExtension.Highlighters="{x:Bind MatchedSpans, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                <Paragraph>
+                                    <Run Text="{x:Bind ToolProvider.SearchDisplayName}"/>
+                                </Paragraph>
+                            </RichTextBlock>
+                        </DataTemplate>
+                    </AutoSuggestBox.ItemTemplate>-->
+                </AutoSuggestBox>
+            </NavigationView.AutoSuggestBox>
+
+            <NavigationView.MenuItems>
+                <NavigationViewItem
+                    x:Name="NewControlsItem"
+                    Content="Home"
+                    Icon="Home" />
+            </NavigationView.MenuItems>
+        </NavigationView>
     </Grid>
 </controls:BackdropPage>

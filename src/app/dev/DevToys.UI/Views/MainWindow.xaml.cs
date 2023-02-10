@@ -1,5 +1,7 @@
 ﻿using DevToys.Api.Core.Theme;
 using DevToys.UI.Framework.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Input;
 
 namespace DevToys.UI.Views;
 
@@ -16,8 +18,13 @@ public sealed partial class MainWindow : BackdropPage
     public MainWindow(BackdropWindow backdropWindow, IThemeListener themeListener)
         : base(backdropWindow, themeListener)
     {
-        this.InitializeComponent();
-        this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-        this.Resize(1200, 800);
+        InitializeComponent();
+        WindowStartupLocation = WindowStartupLocation.CenterScreen;
+        Resize(1200, 800);
+    }
+
+    private void SearchBoxKeyboardAccelerator_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        SearchBox.Focus(FocusState.Keyboard);
     }
 }
