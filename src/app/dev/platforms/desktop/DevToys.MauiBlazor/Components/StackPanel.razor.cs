@@ -103,13 +103,13 @@ public partial class StackPanel : FluentComponentBase
     /// Gets or sets the gap between horizontally stacked components (in pixels).
     /// </summary>
     [Parameter]
-    public int? HorizontalGap { get; set; } = 10;
+    public int? HorizontalGap { get; set; } = 4;
 
     /// <summary>
     /// Gets or sets the gap between vertically stacked components (in pixels).
     /// </summary>
     [Parameter]
-    public int? VerticalGap { get; set; } = 10;
+    public int? VerticalGap { get; set; } = 4;
 
     /// <summary>
     /// Gets or sets the content to be rendered inside the component.
