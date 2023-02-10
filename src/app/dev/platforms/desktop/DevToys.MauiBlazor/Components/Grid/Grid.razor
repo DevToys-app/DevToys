@@ -1,10 +1,12 @@
 ﻿@namespace DevToys.MauiBlazor.Components
 
+@inherits FluentComponentBase
+
 <CascadingValue Value="this">
     @ColumnDefinitions
     @RowDefinitions
 
-    <div style="@_wrapper.Css @_wrapper.RowGap(RowGap) @_wrapper.ColumnGap(ColumnGap)">
+    <div style="@_wrapper.Css @_wrapper.RowGap(RowGap) @_wrapper.ColumnGap(ColumnGap) @Style">
         @Content
     </div>
 </CascadingValue>
