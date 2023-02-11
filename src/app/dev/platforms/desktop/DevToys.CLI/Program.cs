@@ -44,7 +44,7 @@ internal class Program
 
         // Initialize MEF.
         var mefComposer
-            = new MefComposer(new[] { typeof(Program).Assembly, Assembly.Load("DevToys.Tools") });
+            = new MefComposer(new[] { typeof(Program).Assembly });
 
         // Get all the command line tools.
         IEnumerable<Lazy<ICommandLineTool, CommandLineToolMetadata>> commandLineTools

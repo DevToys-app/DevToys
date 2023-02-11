@@ -21,8 +21,8 @@
 ///         [TargetPlatform(Platform.WASM)]               // Optional
 ///         [Parent("Encoders / Decoders")]               // Optional
 ///         [Order(Before = "Base64 Image Decoder")]      // Optional
-///         [NonSearchable]                               // Optional
-///         [NonFavorable]                                // Optional
+///         [NotSearchable]                               // Optional
+///         [NotFavorable]                                // Optional
 ///         [NoCompactOverlaySupport]                     // Optional
 ///         [MenuPlacement(MenuPlacement.Footer)]         // Optional
 ///         [CompactOverlaySize(height: 200, width: 250)] // Optional

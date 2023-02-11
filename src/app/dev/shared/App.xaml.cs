@@ -84,6 +84,7 @@ public sealed partial class App : Application
             ?? LanguageManager.Instance.AvailableLanguages[0];
         LanguageManager.Instance.SetCurrentCulture(languageDefinition);
 
+        IMefProvider mefProvider = await _mefProvider;
         IThemeListener themeListener = await _themeListener.GetValueAsync();
 
 #if __WINDOWS__
@@ -92,13 +93,13 @@ public sealed partial class App : Application
 #endif
 
 #if __WINDOWS__
-        MainWindow = new MainWindow(new BackdropWindow(), themeListener);
+        MainWindow = new MainWindow(new BackdropWindow(), themeListener, mefProvider);
 #elif __MACCATALYST__
         // Important! Keep the full name `Microsoft.UI.Xaml.Window.Current` otherwise the Mac app won't build.
         // See https://blog.mzikmund.com/2020/04/resolving-uno-platform-uiwindow-does-not-contain-a-definition-for-current-issue/
-        MainWindow = new MainWindow(new BackdropWindow(Microsoft.UI.Xaml.Window.Current), themeListener);
+        MainWindow = new MainWindow(new BackdropWindow(Microsoft.UI.Xaml.Window.Current), themeListener, mefProvider);
 #else
-        MainWindow = new MainWindow(new BackdropWindow(Window.Current), themeListener);
+        MainWindow = new MainWindow(new BackdropWindow(Window.Current), themeListener, mefProvider);
 #endif
 
         // Apply the app color theme.

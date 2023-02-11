@@ -2,6 +2,7 @@
 
 namespace DevToys.CLI;
 
+[DebuggerDisplay($"InternalComponentName = {{{nameof(InternalComponentName)}}}")]
 internal sealed class CommandLineToolMetadata
 {
     public string InternalComponentName { get; }

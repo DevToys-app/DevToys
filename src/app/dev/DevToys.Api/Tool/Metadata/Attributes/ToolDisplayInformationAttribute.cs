@@ -14,6 +14,7 @@ public sealed class ToolDisplayInformationAttribute : Attribute
     private string _accessibleNameResourceName = string.Empty;
     private string _searchkeywordsResourceName = string.Empty;
     private string _iconGlyph = string.Empty;
+    private string _iconFontName = string.Empty;
 
     /// <summary>
     /// Gets or sets the name of the resource manager's base name to use when looking for resource string
@@ -118,11 +119,11 @@ public sealed class ToolDisplayInformationAttribute : Attribute
     /// </summary>
     public string IconFontName
     {
-        get => _iconGlyph;
+        get => _iconFontName;
         set
         {
             Guard.IsNotNullOrWhiteSpace(value);
-            _iconGlyph = value;
+            _iconFontName = value;
         }
     }
 }

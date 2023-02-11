@@ -25,6 +25,7 @@
         <PackageReference Include="Uno.WinUI" />
         <PackageReference Include="Uno.WinUI.Lottie" />
         <PackageReference Include="Uno.WinUI.RemoteControl" Condition="'$(Configuration)'=='Debug'" />
+        <PackageReference Include="Uno.Microsoft.Xaml.Behaviors.WinUI.Managed" />
       </ItemGroup>
     </When>
 
@@ -40,6 +41,7 @@
         <PackageReference Include="Uno.WinUI.RemoteControl" Condition="'$(Configuration)'=='Debug'" />
         <PackageReference Include="Uno.Extensions.Logging.WebAssembly.Console" />
         <PackageReference Include="Uno.WinUI.Runtime.WebAssembly" />
+        <PackageReference Include="Uno.Microsoft.Xaml.Behaviors.WinUI.Managed" />
       </ItemGroup>
     </When>
 
@@ -62,6 +64,7 @@
         <PackageReference Include="Microsoft.WindowsAppSDK" />
         <PackageReference Include="Microsoft.Windows.CsWin32" />
         <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
+        <PackageReference Include="Uno.Microsoft.Xaml.Behaviors.WinUI.Managed" />
       </ItemGroup>
     </When>
   </Choose>

@@ -1,5 +1,7 @@
-﻿using DevToys.Api.Core.Theme;
+﻿using DevToys.Api;
+using DevToys.Api.Core.Theme;
 using DevToys.UI.Framework.Controls;
+using DevToys.UI.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Input;
 
@@ -15,12 +17,30 @@ public sealed partial class MainWindow : BackdropPage
     private const string NavigationViewCompactStateName = "NavigationViewCompact";
     private const string NavigationViewMinimalStateName = "NavigationViewMinimal";
 
-    public MainWindow(BackdropWindow backdropWindow, IThemeListener themeListener)
+    public MainWindow(BackdropWindow backdropWindow, IThemeListener themeListener, IMefProvider mefProvider)
         : base(backdropWindow, themeListener)
     {
         InitializeComponent();
         WindowStartupLocation = WindowStartupLocation.CenterScreen;
         Resize(1200, 800);
+
+        ViewModel = mefProvider.Import<MainWindowViewModel>();
+    }
+
+    public static readonly DependencyProperty ViewModelProperty =
+        DependencyProperty.Register(
+            nameof(ViewModel),
+            typeof(MainWindowViewModel),
+            typeof(MainWindow),
+            new PropertyMetadata(null));
+
+    /// <summary>
+    /// Gets the page's view model.
+    /// </summary>
+    internal MainWindowViewModel ViewModel
+    {
+        get => (MainWindowViewModel)GetValue(ViewModelProperty);
+        set => SetValue(ViewModelProperty, value);
     }
 
     private void SearchBoxKeyboardAccelerator_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)

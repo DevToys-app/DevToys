@@ -3,6 +3,7 @@
 /// <summary>
 /// A base class for all UI elements.
 /// </summary>
+[DebuggerDisplay($"Id = {{{nameof(Id)}}}, IsVisible = {{{nameof(IsVisible)}}}, IsEnabled = {{{nameof(IsEnabled)}}}")]
 public abstract class UIElement : UIBase
 {
     private bool _isVisible;

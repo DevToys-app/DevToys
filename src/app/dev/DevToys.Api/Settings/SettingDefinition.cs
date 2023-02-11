@@ -4,6 +4,7 @@
 /// Represents the definition of a setting in the application.
 /// </summary>
 /// <typeparam name="T">The type of value of the setting</typeparam>
+[DebuggerDisplay($"Name = {{{nameof(Name)}}}")]
 public readonly struct SettingDefinition<T> : IEquatable<SettingDefinition<T>>
 {
     /// <summary>

@@ -96,10 +96,10 @@ public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresen
     {
         await _webView.EnsureCoreWebView2Async();
 
-        string path = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location)!, "DevToys.MonacoEditor", "CodeEditor", "CodeEditor.Windows.html");
+        string path = Path.Combine(AppContext.BaseDirectory, "DevToys.MonacoEditor", "CodeEditor", "CodeEditor.Windows.html");
         if (!File.Exists(path))
         {
-            path = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location)!, "CodeEditor", "CodeEditor.Windows.html");
+            path = Path.Combine(AppContext.BaseDirectory, "CodeEditor", "CodeEditor.Windows.html");
             Debug.Assert(File.Exists(path));
         }
 

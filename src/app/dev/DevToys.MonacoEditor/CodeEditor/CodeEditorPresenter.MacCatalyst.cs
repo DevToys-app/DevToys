@@ -3,7 +3,6 @@
 //using DevToys.HighlightRBindingLibrary;
 using System.Reflection;
 using Windows.Foundation;
-using DevToys.Core.Debugger;
 using DevToys.MonacoEditor.HighlightJs;
 using DevToys.UI.Framework.Threading;
 using Microsoft.UI.Xaml;

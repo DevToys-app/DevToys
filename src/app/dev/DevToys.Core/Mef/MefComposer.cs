@@ -56,9 +56,9 @@ public sealed class MefComposer : IDisposable
         var assemblies
             = new HashSet<Assembly>(_assemblies)
             {
-                Assembly.GetEntryAssembly()!,
-                typeof(IMefProvider).Assembly,
-                typeof(MefComposer).Assembly,
+                Assembly.GetEntryAssembly()!,  // .exe
+                typeof(IMefProvider).Assembly, // DevToys.API
+                typeof(MefComposer).Assembly,  // DevToys.Core
             };
 
         // Discover MEF extensions coming from known assemblies.
@@ -104,21 +104,13 @@ public sealed class MefComposer : IDisposable
     private static IEnumerable<string> GetPotentialPluginFolders()
     {
         // TODO: Maybe plugins should be placed in the app's LocalStorage instead?
-        var entryAssembly = Assembly.GetEntryAssembly();
-        if (entryAssembly is not null)
+        string appFolder = AppContext.BaseDirectory;
+        if (!string.IsNullOrEmpty(appFolder))
         {
-            string assemblyLocation = entryAssembly.Location;
-            if (!string.IsNullOrEmpty(assemblyLocation))
+            string pluginFolder = Path.Combine(appFolder!, "Plugins");
+            if (Directory.Exists(pluginFolder))
             {
-                string? appFolder = Path.GetDirectoryName(assemblyLocation!);
-                if (!string.IsNullOrEmpty(appFolder))
-                {
-                    string pluginFolder = Path.Combine(appFolder!, "Plugins");
-                    if (Directory.Exists(pluginFolder))
-                    {
-                        return Directory.EnumerateDirectories(pluginFolder, "*", SearchOption.TopDirectoryOnly);
-                    }
-                }
+                return Directory.EnumerateDirectories(pluginFolder, "*", SearchOption.TopDirectoryOnly);
             }
         }
 

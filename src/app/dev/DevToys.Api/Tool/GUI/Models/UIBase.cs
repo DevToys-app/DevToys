@@ -3,6 +3,7 @@
 /// <summary>
 /// The base for all UI components.
 /// </summary>
+[DebuggerDisplay($"Id = {{{nameof(Id)}}}")]
 public abstract class UIBase
 {
     /// <summary>

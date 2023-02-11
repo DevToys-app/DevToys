@@ -37,6 +37,7 @@
     <PackageVersion Include="Microsoft.Windows.CsWin32" Version="0.2.188-beta" />
     <PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="$(MicrosoftWindowsSDKBuildToolsVersion)" />
     <PackageVersion Include="Microsoft.WindowsAppSDK" Version="1.2.230118.102" />
+    <PackageVersion Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9"/>
     <PackageVersion Include="Moq" Version="4.18.2" />
     <PackageVersion Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageVersion Include="Nuke.Common" Version="6.2.1" />
@@ -48,6 +49,7 @@
     <PackageVersion Include="Uno.Core.Extensions.Logging.Singleton" Version="4.0.1" />
     <PackageVersion Include="Uno.Extensions.Logging.OSLog" Version="1.4.0" />
     <PackageVersion Include="Uno.Extensions.Logging.WebAssembly.Console" Version="1.4.0" />
+    <PackageVersion Include="Uno.Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.3.0" />
     <PackageVersion Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="$(UnoVersion)" />
     <PackageVersion Include="Uno.Wasm.Bootstrap" Version="$(UnoWasmBootstrapVersion)" />
     <PackageVersion Include="Uno.Wasm.Bootstrap.DevServer" Version="$(UnoWasmBootstrapVersion)" />
