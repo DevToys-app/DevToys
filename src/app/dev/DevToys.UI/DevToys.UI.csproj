@@ -25,6 +25,7 @@
         <PackageReference Include="Uno.WinUI" />
         <PackageReference Include="Uno.WinUI.Lottie" />
         <PackageReference Include="Uno.WinUI.RemoteControl" Condition="'$(Configuration)'=='Debug'" />
+        <PackageReference Include="Uno.Microsoft.Xaml.Behaviors.WinUI.Managed" />
       </ItemGroup>
     </When>
 
@@ -40,6 +41,7 @@
         <PackageReference Include="Uno.WinUI.RemoteControl" Condition="'$(Configuration)'=='Debug'" />
         <PackageReference Include="Uno.Extensions.Logging.WebAssembly.Console" />
         <PackageReference Include="Uno.WinUI.Runtime.WebAssembly" />
+        <PackageReference Include="Uno.Microsoft.Xaml.Behaviors.WinUI.Managed" />
       </ItemGroup>
     </When>
 
@@ -61,6 +63,7 @@
       <ItemGroup>
         <PackageReference Include="Microsoft.WindowsAppSDK" />
         <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
+        <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" />
       </ItemGroup>
     </When>
   </Choose>
@@ -91,6 +94,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DevToys.Core\DevToys.Core.csproj" />
     <ProjectReference Include="..\DevToys.Localization\DevToys.Localization.csproj" />
     <ProjectReference Include="..\DevToys.MonacoEditor\DevToys.MonacoEditor.csproj" />
     <ProjectReference Include="..\DevToys.UI.Framework\DevToys.UI.Framework.csproj" />

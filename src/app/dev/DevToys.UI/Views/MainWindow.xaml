@@ -6,6 +6,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:DevToys.UI.Framework.Controls"
     xmlns:strings="using:DevToys.Localization.Strings.MainWindow"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:ix="using:Microsoft.Xaml.Interactions.Core"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:wasm="http://uno.ui/wasm"
     xmlns:macos="http://uno.ui/macos"
@@ -52,12 +54,12 @@
                     PlaceholderText="{x:Bind strings:MainWindow.Search}">
                     <!-- TODO -->
                     <!--<i:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="TextChanged">
-                            <core:InvokeCommandAction Command="{x:Bind ViewModel.SearchBoxTextChangedCommand}"/>
-                        </core:EventTriggerBehavior>
-                        <core:EventTriggerBehavior EventName="QuerySubmitted">
-                            <core:InvokeCommandAction Command="{x:Bind ViewModel.SearchBoxQuerySubmittedCommand}"/>
-                        </core:EventTriggerBehavior>
+                        <ic:EventTriggerBehavior EventName="TextChanged">
+                            <ic:InvokeCommandAction Command="{x:Bind ViewModel.SearchBoxTextChangedCommand}"/>
+                        </ic:EventTriggerBehavior>
+                        <ic:EventTriggerBehavior EventName="QuerySubmitted">
+                            <ic:InvokeCommandAction Command="{x:Bind ViewModel.SearchBoxQuerySubmittedCommand}"/>
+                        </ic:EventTriggerBehavior>
                     </i:Interaction.Behaviors>-->
                     <AutoSuggestBox.KeyboardAccelerators>
                         <KeyboardAccelerator

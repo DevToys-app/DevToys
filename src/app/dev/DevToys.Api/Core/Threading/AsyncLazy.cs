@@ -1,6 +1,7 @@
 ﻿namespace DevToys.Api.Core.Threading;
 
-public class AsyncLazy<T>
+[DebuggerDisplay($"IsValueCreated = {{{nameof(IsValueCreated)}}}")]
+public class AsyncLazy<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>
 {
     private static Func<Task<T>> FromFuncT(Func<T> valueFunc)
     {

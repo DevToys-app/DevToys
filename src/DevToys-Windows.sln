@@ -34,12 +34,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "desktops", "desktops", "{22EE9386-CEFA-47D8-97B2-09A63EDF7F2E}"
+	ProjectSection(SolutionItems) = preProject
+		app\dev\platforms\desktop\Directory.Build.targets = app\dev\platforms\desktop\Directory.Build.targets
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "windows", "windows", "{AFE37797-0A43-4838-8C1E-4D2D1446499C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{04F9E03E-B519-49C5-BC6A-2131ED9BADC0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToys.CLI", "app\dev\platforms\desktop\DevToys.CLI\DevToys.CLI.csproj", "{8C72D38A-658D-4C9D-B0AD-2DA975BE7826}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B6D48157-5257-4B60-B065-3B231B610A54} = {B6D48157-5257-4B60-B065-3B231B610A54}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{745FD4CA-84CC-45D8-A3E2-814A0B9C16C4}"
 EndProject
@@ -58,16 +64,25 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToys.MonacoEditor", "app\dev\DevToys.MonacoEditor\DevToys.MonacoEditor.csproj", "{CDD8B469-ACA6-4A7D-91A0-66ADB0563AE8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToys.Wasm", "app\dev\platforms\web\DevToys.Wasm\DevToys.Wasm.csproj", "{9E59352A-836D-47DE-AB02-F404A8345242}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B6D48157-5257-4B60-B065-3B231B610A54} = {B6D48157-5257-4B60-B065-3B231B610A54}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToys.MauiBlazor", "app\dev\platforms\desktop\DevToys.MauiBlazor\DevToys.MauiBlazor.csproj", "{64B8DB6D-3168-48DE-95BD-BBE7BAB3A262}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B6D48157-5257-4B60-B065-3B231B610A54} = {B6D48157-5257-4B60-B065-3B231B610A54}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToys.Wasdk", "app\dev\platforms\desktop\windows\DevToys.Wasdk\DevToys.Wasdk.csproj", "{804DBC7B-FBF4-4B2E-AAE9-D74C32985D3F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B6D48157-5257-4B60-B065-3B231B610A54} = {B6D48157-5257-4B60-B065-3B231B610A54}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevToys.Localization", "app\dev\DevToys.Localization\DevToys.Localization.csproj", "{12A1461D-3357-4007-BE15-9622E9513D09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToys.Localization", "app\dev\DevToys.Localization\DevToys.Localization.csproj", "{12A1461D-3357-4007-BE15-9622E9513D09}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "generators", "generators", "{FA3821C4-74BB-4927-ABCC-0D0A12E097A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResxHelperGenerator", "generators\ResxHelperGenerator\ResxHelperGenerator.csproj", "{DB6B033B-584E-43CF-AC96-4F6548C96ECA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResxHelperGenerator", "generators\ResxHelperGenerator\ResxHelperGenerator.csproj", "{DB6B033B-584E-43CF-AC96-4F6548C96ECA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

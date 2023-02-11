@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -17,7 +17,5 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\DevToys.Api\DevToys.Api.csproj" />
     <ProjectReference Include="..\..\..\DevToys.Core\DevToys.Core.csproj" />
-    <ProjectReference Include="..\..\..\DevToys.Tools\DevToys.Tools.csproj" />
   </ItemGroup>
-
 </Project>

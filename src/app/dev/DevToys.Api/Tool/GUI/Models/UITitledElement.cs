@@ -3,6 +3,7 @@
 /// <summary>
 /// A base class for all UI elements that can have a title / header on top of the element.
 /// </summary>
+[DebuggerDisplay($"Id = {{{nameof(Id)}}}, Title = {{{nameof(Title)}}}")]
 public abstract class UITitledElement : UIElement
 {
     private string? _title;

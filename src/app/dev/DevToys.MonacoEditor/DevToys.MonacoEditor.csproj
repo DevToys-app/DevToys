@@ -163,7 +163,6 @@
   </Choose>
 
   <ItemGroup>
-    <ProjectReference Include="..\DevToys.Core\DevToys.Core.csproj" />
     <ProjectReference Include="..\DevToys.UI.Framework\DevToys.UI.Framework.csproj" />
   </ItemGroup>
 
