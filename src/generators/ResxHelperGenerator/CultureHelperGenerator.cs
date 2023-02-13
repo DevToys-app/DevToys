@@ -31,7 +31,7 @@ public class CultureHelperGenerator : ISourceGenerator
 
         if (InitialCheckUp(context, out string projectRootPath, out string projectRootNamespace))
         {
-            string[] cultures = DetectAllCutlures(projectRootPath);
+            string[] cultures = DetectAllCutlures(context);
 
             if (!context.CancellationToken.IsCancellationRequested)
             {
@@ -79,14 +79,14 @@ public class CultureHelperGenerator : ISourceGenerator
         return true;
     }
 
-    private string[] DetectAllCutlures(string projectRootPath)
+    private string[] DetectAllCutlures(GeneratorExecutionContext context)
     {
         var cultures = new HashSet<string>() { "en-US" };
 
-        string[] resxFiles = Directory.GetFiles(projectRootPath, "*.resx", SearchOption.AllDirectories);
-        for (int i = 0; i < resxFiles.Length; i++)
+        var resxFiles = context.AdditionalFiles.Where(f => Path.GetExtension(f.Path).ToLower() == ".resx").ToList();
+        for (int i = 0; i < resxFiles.Count; i++)
         {
-            string filePath = resxFiles[i].Trim();
+            string filePath = resxFiles[i].Path.Trim();
             string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(filePath);
             string cultureName = fileNameWithoutExtension.Split(new[] { '.' }, System.StringSplitOptions.RemoveEmptyEntries).Last();
             if (cultureName.Length == 2 || (cultureName.Length == 5 && cultureName.Contains("-")))

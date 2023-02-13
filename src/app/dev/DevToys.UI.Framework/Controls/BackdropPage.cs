@@ -69,6 +69,11 @@ public abstract partial class BackdropPage : Page
     public event TypedEventHandler<BackdropWindow, EventArgs>? Closing;
 
     /// <summary>
+    /// Raised when the window is closing.
+    /// </summary>
+    public event TypedEventHandler<BackdropWindow, EventArgs>? Closed;
+
+    /// <summary>
     /// Raised when the window got activated.
     /// </summary>
     public event TypedEventHandler<BackdropWindow, WindowActivatedEventArgs>? Activated;
@@ -121,6 +126,8 @@ public abstract partial class BackdropPage : Page
         Window.Closing -= Window_Closing;
         Window.Shown -= Window_Shown;
         _themeListener.ThemeChanged -= ThemeListener_ThemeChanged;
+
+        Closed?.Invoke(Window, EventArgs.Empty);
     }
 
 #if HAS_UNO

@@ -1,11 +1,13 @@
 ﻿using System.CommandLine;
 using System.CommandLine.Invocation;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using DevToys.Api;
+using DevToys.CLI.Core.FileStorage;
+using DevToys.Core.Logging;
 using DevToys.Core.Mef;
 using Microsoft.Extensions.Logging;
+using Uno.Extensions;
 
 namespace DevToys.CLI;
 
@@ -21,9 +23,19 @@ internal class Program
                 builder
                     .AddFilter("Microsoft", LogLevel.Warning)
                     .AddFilter("System", LogLevel.Warning)
-                    .AddFilter("DevToys", LogLevel.Debug)
+                    .AddFile(new FileStorage()) // To save logs on local hard drive.
                     .AddDebug();
+
+                // Exclude logs below this level
+#if DEBUG
+                builder.SetMinimumLevel(LogLevel.Trace);
+#else
+                builder.SetMinimumLevel(LogLevel.Information);
+#endif
             });
+
+        global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory = loggerFactory;
+        loggerFactory.Log().LogInformation("App is starting...");
     }
 
     private static void Main(string[] args)
@@ -35,6 +47,7 @@ internal class Program
 
         MainAsync(args).GetAwaiter().GetResult();
 
+        loggerFactory.Log().LogInformation("App is shutting down...");
         loggerFactory.Dispose();
     }
 
@@ -96,7 +109,11 @@ internal class Program
 
             // Invoke the command line tool.
             ILogger logger = loggerFactory.CreateLogger(commandLineTool.Value.GetType());
+            logger.LogInformation($"Invoking '{command.CommandDefinition.Name}' command...");
+
             int exitCode = await commandLineTool.Value.InvokeAsync(logger, context.GetCancellationToken());
+            logger.LogInformation($"Exit code: {exitCode}");
+
             context.ExitCode = exitCode;
         });
 

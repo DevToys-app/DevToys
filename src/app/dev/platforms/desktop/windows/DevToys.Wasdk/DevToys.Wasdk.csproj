@@ -28,6 +28,7 @@
 
   <!-- Only for Packaged deployment -->
   <PropertyGroup Condition="'$(Unpackaged)' != 'true'">
+    <DefineConstants>$(DefineConstants);MSIX_PACKAGED</DefineConstants>
     <GenerateAppxPackageOnBuild>true</GenerateAppxPackageOnBuild>
     <PublishAppxPackage>True</PublishAppxPackage>
     <AppxBundlePlatforms>x86|x64|arm64</AppxBundlePlatforms>

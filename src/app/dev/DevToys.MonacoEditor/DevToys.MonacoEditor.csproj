@@ -74,9 +74,6 @@
         </Content>
         <ConfigFiles Include="ts-helpermethods\ts-helpermethods-Wasm\tsconfig.json" />
         <None Include="highlightjs\**" />
-        <EmbeddedResource Include="LinkerConfig.xml">
-          <LogicalName>$(AssemblyName).xml</LogicalName>
-        </EmbeddedResource>
       </ItemGroup>
       <ItemGroup>
         <EmbeddedResource Include="WasmScripts\WASM\uno-monaco-helpers.g.js" />

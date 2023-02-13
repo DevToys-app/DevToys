@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.Composition.Hosting;
 using System.Reflection;
 using DevToys.Api;
+using Microsoft.Extensions.Logging;
+using Uno.Extensions;
 
 namespace DevToys.Core.Mef;
 
@@ -9,6 +11,7 @@ namespace DevToys.Core.Mef;
 /// </summary>
 public sealed class MefComposer : IDisposable
 {
+    private readonly ILogger _logger;
     private readonly Assembly[] _assemblies;
     private readonly object[] _customExports;
     private bool _isExportProviderDisposed = true;
@@ -23,6 +26,8 @@ public sealed class MefComposer : IDisposable
         {
             throw new InvalidOperationException("Mef composer already initialized.");
         }
+
+        _logger = this.Log();
 
         _assemblies = assemblies ?? Array.Empty<Assembly>();
         _customExports = customExports ?? Array.Empty<object>();
@@ -72,13 +77,14 @@ public sealed class MefComposer : IDisposable
         // try to discover MEF extensions in them.
         foreach (string pluginFolder in GetPotentialPluginFolders())
         {
+            _logger.LogInformation($"Discovering plugin in '{pluginFolder}'...");
             try
             {
                 catalog.Catalogs.Add(new RecursiveDirectoryCatalog(pluginFolder));
             }
-            catch
+            catch (Exception ex)
             {
-                // TODO: Log this. We maybe failed to load a plugin.
+                _logger.LogError(ex, $"Unable to load plugin in '{pluginFolder}'...");
             }
         }
 
@@ -93,6 +99,7 @@ public sealed class MefComposer : IDisposable
         }
 
         container.Compose(batch);
+        _logger.LogInformation($"MEF composed.");
 
         ExportProvider = container;
 

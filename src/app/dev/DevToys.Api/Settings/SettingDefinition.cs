@@ -23,14 +23,22 @@ public readonly struct SettingDefinition<T> : IEquatable<SettingDefinition<T>>
     /// <param name="name">The name of the setting. Should be unique.</param>
     /// <param name="isRoaming">Defines whether the setting can be synchronized with the user's Microsoft account.</param>
     /// <param name="defaultValue">The default value of the setting.</param>
-    public SettingDefinition(string name, bool isRoaming, T defaultValue)
+    public SettingDefinition(string name, T defaultValue)
     {
-        if (string.IsNullOrEmpty(name) || name.Length > 255)
+        Guard.IsNotNullOrWhiteSpace(name);
+
+        if (name.Length > 255)
         {
             // For both LocalSettings and RoamingSettings on Windows, the name of each setting
             // can be 255 characters in length at most.
             // see https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdata.localsettings?view=winrt-22000#remarks
-            throw new ArgumentOutOfRangeException(nameof(name));
+            ThrowHelper.ThrowArgumentOutOfRangeException(nameof(name), "Setting name is limited to 255 characters.");
+        }
+        else if (name.Contains("="))
+        {
+            // For portable apps, settings are stored in a .ini file where the format is "setting_name=value".
+            // Therefore, the setting name shouldn't contain "=".
+            ThrowHelper.ThrowArgumentException(nameof(name), "Setting name cannot contain '='.");
         }
 
         Name = name;

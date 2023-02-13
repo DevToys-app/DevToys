@@ -11,7 +11,6 @@ public static class PredefinedSettings
     public static readonly SettingDefinition<string> Language
         = new(
             name: nameof(Language),
-            isRoaming: false,
             defaultValue: "default");
 
     /// <summary>
@@ -20,6 +19,5 @@ public static class PredefinedSettings
     public static readonly SettingDefinition<AvailableApplicationTheme> Theme
         = new(
             name: nameof(Theme),
-            isRoaming: false,
             defaultValue: AvailableApplicationTheme.Default);
 }
