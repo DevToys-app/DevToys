@@ -9,7 +9,7 @@ public partial class App : Application
         InitializeComponent();
 
         // Apply the app color theme.
-        MauiProgram.MefComposer.Provider.Import<IThemeListener>().ApplyDesiredColorTheme();
+        MauiProgram.MefComposer.Value.Provider.Import<IThemeListener>().ApplyDesiredColorTheme();
 
         MainPage = new MainPage();
     }

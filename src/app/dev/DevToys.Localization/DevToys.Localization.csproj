@@ -10,9 +10,6 @@
     <PackageReference Include="System.ComponentModel.Composition" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\generators\ResxHelperGenerator\ResxHelperGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Update="Strings\MainWindow\MainWindow.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -34,5 +31,10 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-
+  <ItemGroup>
+    <AdditionalFiles Include="**\*.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="$(RepoRoot)src\generators\ResxHelperGenerator\bin\netstandard2.0\ResxHelperGenerator.dll" />
+  </ItemGroup>
 </Project>

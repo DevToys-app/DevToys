@@ -1,9 +1,10 @@
-﻿using DevToys.Api.Core;
-using DevToys.Api;
+﻿#if !MSIX_PACKAGED && !__WASM__
 using System.Collections.Concurrent;
+using DevToys.Api;
+using DevToys.Api.Core;
 using DevToys.Core.Settings;
 
-namespace DevToys.CLI.Core.Settings;
+namespace DevToys.Wasdk.Core.Settings;
 
 [Export(typeof(ISettingsStorage))]
 internal sealed class SettingsStorage : ISettingsStorage
@@ -92,3 +93,4 @@ internal sealed class SettingsStorage : ISettingsStorage
         });
     }
 }
+#endif

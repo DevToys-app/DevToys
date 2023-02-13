@@ -14,13 +14,24 @@
 
     <!-- https://github.com/dotnet/project-system/blob/main/docs/build-acceleration.md -->
     <AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
+
+    <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+
+    <NoWarm>$(NoWarm);IL2007;IL2091;IL2077;IL2055;IL2075</NoWarm>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <Optimize>true</Optimize>
+
+    <!-- Trimming settings -->
+    <!-- https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trimming-options?source=recommendations&pivots=dotnet-7-0 -->
+    <TrimMode>partial</TrimMode>
   </PropertyGroup>
 
   <ItemGroup>
+    <TrimmerRootDescriptor Include="$(RepoRoot)\src\app\dev\shared\LinkerConfig.xml" Link="Properties\$(MSBuildProjectName).xml">
+      <LogicalName>$(MSBuildProjectName).xml</LogicalName>
+    </TrimmerRootDescriptor>
     <Compile Include="$(RepoRoot)\src\app\dev\shared\GlobalUsings.cs" Link="Properties\GlobalUsings.cs" />
     <Compile Include="$(RepoRoot)\src\app\dev\shared\SharedAssemblyInfo.cs" Link="Properties\SharedAssemblyInfo.cs" />
     <Compile Include="$(RepoRoot)\src\app\dev\shared\SharedAssemblyVersion.cs" Link="Properties\SharedAssemblyVersion.cs" />

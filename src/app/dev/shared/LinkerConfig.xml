@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  This file specifies which parts of the BCL or the app must not be
+  trimmed by the IL Linker even if they aren't referenced by user code.
+-->
+<linker>
+    <assembly fullname="mscorlib">
+        <!--
+            Preserve the methods in WasmRuntime because its methods are called by 
+            JavaScript client-side code to implement timers.
+            Fixes: https://github.com/dotnet/blazor/issues/239
+        -->
+        <type fullname="System.Threading.WasmRuntime" />
+    </assembly>
+    <assembly fullname="System.Core">
+        <!--
+            System.Linq.Expressions* is required by Json.NET and any 
+            expression.Compile caller. The assembly isn't stripped.
+        -->
+        <type fullname="System.Linq.Expressions*" />
+    </assembly>
+    <assembly fullname="Uno.UI" />
+    <assembly fullname="Microsoft.Extensions.Options" />
+    <assembly fullname="DevToys.API" />
+    <assembly fullname="DevToys.Core" />
+    <assembly fullname="DevToys.CLI" />
+    <assembly fullname="DevToys.Localization" />
+    <assembly fullname="DevToys.MauiBlazor" />
+    <assembly fullname="DevToys.MonacoEditor" />
+    <assembly fullname="DevToys.UI" />
+    <assembly fullname="DevToys.Wasdk" />
+    <assembly fullname="DevToys.Wasm" />
+    <assembly fullname="DevToys.Tools" />
+</linker>

@@ -1,0 +1,8 @@
+<Project>
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+
+  <!-- Include DevToys.Tools and other plugins to the output -->
+  <ItemGroup>
+    <Content Include="$(RepoRoot)bin\$(Configuration)\Plugins\**\*" Link="Plugins\%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+</Project>

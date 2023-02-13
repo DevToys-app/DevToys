@@ -100,11 +100,48 @@ class Build : NukeBuild
             SetAppVersion(RootDirectory);
         });
 
+    Target BuildGenerators => _ => _
+        .DependentFor(Publish)
+        .After(Restore)
+        .After(SetVersion)
+        .Executes(() =>
+        {
+            Log.Information($"Building generators ...");
+            RootDirectory
+                .GlobFiles("**/generators/*.csproj")
+                .ForEach(f =>
+                    DotNetBuild(s => s
+                        .SetProjectFile(f)
+                        .SetConfiguration(Configuration)
+                        .SetSelfContained(true)
+                        .SetPublishTrimmed(false)
+                        .SetVerbosity(DotNetVerbosity.Quiet)));
+        });
+
+    Target BuildPlugins => _ => _
+        .DependentFor(Publish)
+        .After(Restore)
+        .After(SetVersion)
+        .After(BuildGenerators)
+        .Executes(() =>
+        {
+            Log.Information($"Building plugins ...");
+            Project project = WindowsSolution!.GetProject("DevToys.Tools");
+            DotNetBuild(s => s
+                .SetProjectFile(project)
+                .SetConfiguration(Configuration)
+                .SetSelfContained(false)
+                .SetPublishTrimmed(false)
+                .SetVerbosity(DotNetVerbosity.Quiet));
+        });
+
 #pragma warning disable IDE0051 // Remove unused private members
     Target UnitTests => _ => _
         .DependentFor(Publish)
         .After(Restore)
         .After(SetVersion)
+        .After(BuildGenerators)
+        .After(BuildPlugins)
         .OnlyWhenDynamic(() => RunTests)
         .Executes(() =>
         {
@@ -121,6 +158,8 @@ class Build : NukeBuild
     Target Publish => _ => _
         .DependsOn(SetVersion)
         .DependsOn(Restore)
+        .DependsOn(BuildGenerators)
+        .DependsOn(BuildPlugins)
         .Executes(() =>
         {
             if (PlatformTargets!.Contains(PlatformTarget.Windows))
@@ -140,7 +179,8 @@ class Build : NukeBuild
                         .SetPublishTrimmed(false) // TODO?
                         .SetVerbosity(DotNetVerbosity.Quiet)
                         .SetProcessArgumentConfigurator(_ => _
-                            .Add("/p:RuntimeIdentifierOverride=" + dotnetParameters.RuntimeIdentifier))
+                            .Add("/p:RuntimeIdentifierOverride=" + dotnetParameters.RuntimeIdentifier)
+                            .Add($"/bl:\"{RootDirectory / "publish" / dotnetParameters.OutputPath}.binlog\""))
                         .SetOutput(RootDirectory / "publish" / dotnetParameters.OutputPath));
                 }
 
@@ -161,7 +201,8 @@ class Build : NukeBuild
                         .SetVerbosity(DotNetVerbosity.Quiet)
                         .SetProcessArgumentConfigurator(_ => _
                             .Add("/p:RuntimeIdentifierOverride=" + dotnetParameters.RuntimeIdentifier)
-                            .Add("/p:Unpackaged=" + dotnetParameters.Portable))
+                            .Add("/p:Unpackaged=" + dotnetParameters.Portable)
+                            .Add($"/bl:\"{RootDirectory / "publish" / dotnetParameters.OutputPath}.binlog\""))
                         .SetOutput(RootDirectory / "publish" / dotnetParameters.OutputPath));
                 }
             }
@@ -189,7 +230,8 @@ class Build : NukeBuild
                             .SetNoRestore(true) /* workaround for https://github.com/xamarin/xamarin-macios/issues/15664#issuecomment-1233123515 */
                             .SetProcessArgumentConfigurator(_ => _
                                 .Add("/p:RuntimeIdentifierOverride=" + dotnetParameters.RuntimeIdentifier)
-                                .Add("/p:CreatePackage=True")) /* Will create an installable .pkg */
+                                .Add("/p:CreatePackage=True") /* Will create an installable .pkg */
+                                .Add($"/bl:\"{RootDirectory / "publish" / dotnetParameters.OutputPath}.binlog\""))
                             .SetOutputDirectory(RootDirectory / "publish" / dotnetParameters.OutputPath));
                     }
                 }
@@ -209,8 +251,11 @@ class Build : NukeBuild
                         .SetSelfContained(dotnetParameters.Portable)
                         .SetPublishSingleFile(true)
                         .SetPublishReadyToRun(true)
-                        .SetPublishTrimmed(dotnetParameters.Portable)
+                        .SetPublishTrimmed(false)
+                        //.SetPublishTrimmed(dotnetParameters.Portable) // TODO?
                         .SetVerbosity(DotNetVerbosity.Quiet)
+                        .SetProcessArgumentConfigurator(_ => _
+                            .Add($"/bl:\"{RootDirectory / "publish" / dotnetParameters.OutputPath}.binlog\""))
                         .SetOutput(RootDirectory / "publish" / dotnetParameters.OutputPath));
                 }
             }

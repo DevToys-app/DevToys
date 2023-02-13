@@ -2,6 +2,7 @@
 using System.ComponentModel.Composition.Primitives;
 using System.Globalization;
 using System.IO;
+using System.Reflection;
 
 namespace DevToys.Core.Mef;
 
@@ -49,11 +50,11 @@ internal sealed class RecursiveDirectoryCatalog : ComposablePartCatalog, INotify
 
     private void Initialize(string path, string searchPattern)
     {
-        IEnumerable<DirectoryCatalog> directoryCatalogs
-            = GetFoldersRecursive(path)
-            .Select(dir => new DirectoryCatalog(dir, searchPattern));
+        IEnumerable<string> files
+            = Directory.EnumerateFiles(path, searchPattern, SearchOption.AllDirectories);
 
         _aggregateCatalog = new AggregateCatalog();
+
         _aggregateCatalog.Changed += (o, e) =>
         {
             Changed?.Invoke(o, e);
@@ -64,9 +65,25 @@ internal sealed class RecursiveDirectoryCatalog : ComposablePartCatalog, INotify
             Changing?.Invoke(o, e);
         };
 
-        foreach (DirectoryCatalog catalog in directoryCatalogs)
+        foreach (string file in files)
         {
-            _aggregateCatalog.Catalogs.Add(catalog);
+            try
+            {
+                var asmCat = new AssemblyCatalog(file);
+
+                // Force MEF to load the plugin and figure out if there are any exports
+                // good assemblies will not throw the RTLE exception and can be added to the catalog
+                if (asmCat.Parts.ToList().Count > 0)
+                {
+                    _aggregateCatalog.Catalogs.Add(asmCat);
+                }
+            }
+            catch (ReflectionTypeLoadException)
+            {
+            }
+            catch (BadImageFormatException)
+            {
+            }
         }
     }
 

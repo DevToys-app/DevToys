@@ -1,4 +1,5 @@
-﻿using DevToys.Core.Settings;
+﻿#if MSIX_PACKAGED || __WASM__
+using DevToys.Core.Settings;
 using Windows.Storage;
 
 namespace DevToys.Wasdk.Core.Settings;
@@ -30,3 +31,4 @@ internal sealed class SettingsStorage : ISettingsStorage
         _localSettings.Values[settingName] = value;
     }
 }
+#endif

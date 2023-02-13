@@ -8,8 +8,8 @@
     <DotNetVersion>7.0.0</DotNetVersion>
     <MicrosoftFastComponentsFluentUIVersion>2.0.1</MicrosoftFastComponentsFluentUIVersion>
     <MicrosoftNETCoreUniversalWindowsPlatformVersion>6.2.14</MicrosoftNETCoreUniversalWindowsPlatformVersion>
-    <MicrosoftWindowsSDKBuildToolsVersion>10.0.22621.1</MicrosoftWindowsSDKBuildToolsVersion>
-    <UnoVersion>4.7.30</UnoVersion>
+    <MicrosoftWindowsSDKBuildToolsVersion>10.0.22621.755</MicrosoftWindowsSDKBuildToolsVersion>
+    <UnoVersion>4.7.37</UnoVersion>
     <UnoWasmBootstrapVersion>8.0.0-dev.65</UnoWasmBootstrapVersion>
     <WebView2Version>1.0.1462.37</WebView2Version>
     <MicrosoftTypeScriptMSBuildVersion>4.9.4</MicrosoftTypeScriptMSBuildVersion>
