@@ -4,6 +4,7 @@ using DevToys.Core.Mef;
 using DevToys.Core.Settings;
 using DevToys.MauiBlazor.Core.FileStorage;
 using DevToys.MauiBlazor.Core.Languages;
+using DevToys.Tools;
 using Microsoft.Extensions.Logging;
 using Microsoft.Fast.Components.FluentUI;
 using Microsoft.Fast.Components.FluentUI.Infrastructure;
@@ -13,7 +14,11 @@ namespace DevToys.MauiBlazor;
 
 public static class MauiProgram
 {
-    internal static readonly Lazy<MefComposer> MefComposer = new(() => new MefComposer());
+    internal static readonly Lazy<MefComposer> MefComposer
+        = new(() => new MefComposer(
+            new[] {
+                typeof(Dummy).Assembly
+            }));
 
     public static MauiApp CreateMauiApp()
     {

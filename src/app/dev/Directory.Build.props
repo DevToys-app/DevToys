@@ -23,9 +23,11 @@
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <Optimize>true</Optimize>
 
-    <!-- Trimming settings -->
+    <!-- AOT & Trim settings -->
+    <!-- https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/ -->
     <!-- https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trimming-options?source=recommendations&pivots=dotnet-7-0 -->
     <TrimMode>partial</TrimMode>
+    <StripSymbols>true</StripSymbols>
   </PropertyGroup>
 
   <ItemGroup>

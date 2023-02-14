@@ -3,5 +3,6 @@
     Windows,
     MacCatalyst,
     CLI,
-    Wasm
+    Wasm,
+    Linux // TODO: https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/#prerequisites
 }

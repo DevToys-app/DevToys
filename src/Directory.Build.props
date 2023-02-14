@@ -5,7 +5,7 @@
     <MinimumVisualStudioVersion>16.0</MinimumVisualStudioVersion>
 
     <Windows10SDKVersion>10.0.22000.0</Windows10SDKVersion>
-    <Windows10MinSDKVersionTrimmed>10.0.19041</Windows10MinSDKVersionTrimmed>
+    <Windows10MinSDKVersionTrimmed>10.0.22621</Windows10MinSDKVersionTrimmed>
     <Windows10MinSDKVersion>$(Windows10MinSDKVersionTrimmed).0</Windows10MinSDKVersion>
 
     <NetCore>net7.0</NetCore>

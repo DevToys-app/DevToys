@@ -4,6 +4,7 @@ using DevToys.Api.Core.Theme;
 using DevToys.Core.Logging;
 using DevToys.Core.Mef;
 using DevToys.Core.Settings;
+using DevToys.Tools;
 using DevToys.UI;
 using DevToys.UI.Framework.Controls;
 using DevToys.UI.Views;
@@ -56,6 +57,7 @@ public sealed partial class App : Application
             = new MefComposer(
                 new[]
                 {
+                    typeof(Dummy).Assembly,
                     typeof(MainWindow).Assembly
                 });
 

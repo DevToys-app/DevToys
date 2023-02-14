@@ -6,6 +6,7 @@ using DevToys.Api;
 using DevToys.CLI.Core.FileStorage;
 using DevToys.Core.Logging;
 using DevToys.Core.Mef;
+using DevToys.Tools;
 using Microsoft.Extensions.Logging;
 using Uno.Extensions;
 
@@ -57,7 +58,12 @@ internal class Program
 
         // Initialize MEF.
         var mefComposer
-            = new MefComposer(new[] { typeof(Program).Assembly });
+            = new MefComposer(
+                new[]
+                {
+                    typeof(Dummy).Assembly,
+                    typeof(Program).Assembly
+                });
 
         // Get all the command line tools.
         IEnumerable<Lazy<ICommandLineTool, CommandLineToolMetadata>> commandLineTools

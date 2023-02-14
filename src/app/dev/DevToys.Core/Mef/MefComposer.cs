@@ -73,21 +73,6 @@ public sealed class MefComposer : IDisposable
             catalog.Catalogs.Add(new AssemblyCatalog(assembly));
         }
 
-        // Dynamically load assemblies coming from the Plugin repository folder and
-        // try to discover MEF extensions in them.
-        foreach (string pluginFolder in GetPotentialPluginFolders())
-        {
-            _logger.LogInformation($"Discovering plugin in '{pluginFolder}'...");
-            try
-            {
-                catalog.Catalogs.Add(new RecursiveDirectoryCatalog(pluginFolder));
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Unable to load plugin in '{pluginFolder}'...");
-            }
-        }
-
         // Compose MEF.
         var container = new CompositionContainer(catalog);
         var batch = new CompositionBatch();
@@ -106,21 +91,5 @@ public sealed class MefComposer : IDisposable
         _isExportProviderDisposed = false;
 
         return ExportProvider;
-    }
-
-    private static IEnumerable<string> GetPotentialPluginFolders()
-    {
-        // TODO: Maybe plugins should be placed in the app's LocalStorage instead?
-        string appFolder = AppContext.BaseDirectory;
-        if (!string.IsNullOrEmpty(appFolder))
-        {
-            string pluginFolder = Path.Combine(appFolder!, "Plugins");
-            if (Directory.Exists(pluginFolder))
-            {
-                return Directory.EnumerateDirectories(pluginFolder, "*", SearchOption.TopDirectoryOnly);
-            }
-        }
-
-        return Array.Empty<string>();
     }
 }
