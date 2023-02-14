@@ -79,10 +79,6 @@
         <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
         <PackageReference Include="Uno.Microsoft.Xaml.Behaviors.WinUI.Managed" />
       </ItemGroup>
-      <ItemGroup>
-        <NativeLibrary Include="CoreMessaging.lib" />
-        <DirectPInvoke Include="CoreMessaging" />
-      </ItemGroup>
     </When>
   </Choose>
 
