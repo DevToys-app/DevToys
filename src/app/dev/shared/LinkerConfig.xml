@@ -19,6 +19,7 @@
         -->
         <type fullname="System.Linq.Expressions*" />
     </assembly>
+    <assembly fullname="System.Private.CoreLib" />
     <assembly fullname="Uno.UI" />
     <assembly fullname="Microsoft.Extensions.Options" />
     <assembly fullname="DevToys.API" />

@@ -316,7 +316,7 @@ public sealed partial class BackdropWindow : Window
             internal int _apartmentType;
         }
 
-        [DllImport("CoreMessaging.dll")]
+        [DllImport("CoreMessaging.dll", ExactSpelling = true)]
         private static extern int CreateDispatcherQueueController([In] DispatcherQueueOptions options, [In, Out, MarshalAs(UnmanagedType.IUnknown)] ref object dispatcherQueueController);
 
         private object? _dispatcherQueueController = null;

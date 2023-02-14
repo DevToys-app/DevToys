@@ -32,17 +32,4 @@
       <LastGenOutput>Sample.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-
-  <Target Name="CopyPluginAfterBuild" AfterTargets="Build">
-    <ItemGroup>
-      <PluginOutput Include="$(OutputPath)\**\*" />
-    </ItemGroup>
-    <Copy
-      SourceFiles="@(PluginOutput)"
-      DestinationFolder="$(RepoRoot)bin\$(Configuration)\Plugins\DevToys.Tools"
-      SkipUnchangedFiles="false"
-      OverwriteReadOnlyFiles="true"
-      Retries="10"
-      RetryDelayMilliseconds="1000" />
-  </Target>
 </Project>

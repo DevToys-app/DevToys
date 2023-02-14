@@ -14,6 +14,19 @@
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>
 
+  <ItemGroup>
+    <UpToDateCheckInput Include="**\*.xaml"/>
+    <Page Include="**\*.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <PRIResource Include="**\*.resw" />
+    <Content Include="Assets\**" />
+    <Compile Update="**\*.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
   <Choose>
     <When Condition="'$(TargetFramework)' == '$(NetMacCatalyst)'">
       <PropertyGroup>
@@ -66,6 +79,10 @@
         <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
         <PackageReference Include="Uno.Microsoft.Xaml.Behaviors.WinUI.Managed" />
       </ItemGroup>
+      <ItemGroup>
+        <NativeLibrary Include="CoreMessaging.lib" />
+        <DirectPInvoke Include="CoreMessaging" />
+      </ItemGroup>
     </When>
   </Choose>
 
@@ -82,19 +99,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DevToys.Api\DevToys.Api.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Include="**\*.xaml" />
-    <Page Include="**\*.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <PRIResource Include="**\*.resw" />
-    <Content Include="Assets\**" />
-    <Compile Update="**\*.xaml.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
-    </Compile>
   </ItemGroup>
 
 </Project>

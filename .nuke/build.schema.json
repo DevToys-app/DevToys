@@ -66,6 +66,7 @@
             "type": "string",
             "enum": [
               "CLI",
+              "Linux",
               "MacCatalyst",
               "Wasm",
               "Windows"
@@ -94,7 +95,6 @@
             "type": "string",
             "enum": [
               "BuildGenerators",
-              "BuildPlugins",
               "Clean",
               "PreliminaryCheck",
               "Publish",
@@ -111,7 +111,6 @@
             "type": "string",
             "enum": [
               "BuildGenerators",
-              "BuildPlugins",
               "Clean",
               "PreliminaryCheck",
               "Publish",
