@@ -209,31 +209,42 @@ class Build : NukeBuild
 
             if (PlatformTargets!.Contains(PlatformTarget.MacCatalyst))
             {
-                // DevToys Uno Mac Catalyst and MAUI Blazor
-                Project[] projects = {
-                    MacSolution!.GetProject("DevToys.MacOS"),
-                    MacSolution.GetProject("DevToys.MauiBlazor")
-                };
-
-                foreach (Project project in projects)
+                // DevToys Uno Mac Catalyst
+                foreach (DotnetParameters dotnetParameters in GetDotnetParametersForMacOSApp())
                 {
-                    foreach (DotnetParameters dotnetParameters in GetDotnetParametersForMauiBlazorApp())
-                    {
-                        Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + " - " + dotnetParameters.TargetFramework + " - " + dotnetParameters.RuntimeIdentifier} ...");
-                        DotNetBuild(s => s
-                            .SetProjectFile(dotnetParameters.ProjectOrSolutionPath)
-                            .SetConfiguration(Configuration)
-                            .SetPublishSingleFile(false) // Not supported by MacCatalyst as it would require UseAppHost to be true, which isn't supported on Mac
-                            .SetPublishReadyToRun(false)
-                            .SetPublishTrimmed(true) /* Required for MacCatalyst*/
-                            .SetVerbosity(DotNetVerbosity.Quiet)
-                            .SetNoRestore(true) /* workaround for https://github.com/xamarin/xamarin-macios/issues/15664#issuecomment-1233123515 */
-                            .SetProcessArgumentConfigurator(_ => _
-                                .Add("/p:RuntimeIdentifierOverride=" + dotnetParameters.RuntimeIdentifier)
-                                .Add("/p:CreatePackage=True") /* Will create an installable .pkg */
-                                .Add($"/bl:\"{RootDirectory / "publish" / dotnetParameters.OutputPath}.binlog\""))
-                            .SetOutputDirectory(RootDirectory / "publish" / dotnetParameters.OutputPath));
-                    }
+                    Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + " - " + dotnetParameters.TargetFramework + " - " + dotnetParameters.RuntimeIdentifier} ...");
+                    DotNetBuild(s => s
+                        .SetProjectFile(dotnetParameters.ProjectOrSolutionPath)
+                        .SetConfiguration(Configuration)
+                        .SetPublishSingleFile(false) // Not supported by MacCatalyst as it would require UseAppHost to be true, which isn't supported on Mac
+                        .SetPublishReadyToRun(false)
+                        .SetPublishTrimmed(true) /* Required True for MacCatalyst ? */
+                        .SetVerbosity(DotNetVerbosity.Quiet)
+                        .SetNoRestore(true) /* workaround for https://github.com/xamarin/xamarin-macios/issues/15664#issuecomment-1233123515 */
+                        .SetProcessArgumentConfigurator(_ => _
+                            .Add("/p:RuntimeIdentifierOverride=" + dotnetParameters.RuntimeIdentifier)
+                            .Add("/p:CreatePackage=True") /* Will create an installable .pkg */
+                            .Add($"/bl:\"{RootDirectory / "publish" / dotnetParameters.OutputPath}.binlog\""))
+                        .SetOutputDirectory(RootDirectory / "publish" / dotnetParameters.OutputPath));
+                }
+                
+                // DevToys MAUI Blazor
+                foreach (DotnetParameters dotnetParameters in GetDotnetParametersForMauiBlazorApp())
+                {
+                    Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + " - " + dotnetParameters.TargetFramework + " - " + dotnetParameters.RuntimeIdentifier} ...");
+                    DotNetBuild(s => s
+                        .SetProjectFile(dotnetParameters.ProjectOrSolutionPath)
+                        .SetConfiguration(Configuration)
+                        .SetPublishSingleFile(false) // Not supported by MacCatalyst as it would require UseAppHost to be true, which isn't supported on Mac
+                        .SetPublishReadyToRun(false)
+                        .SetPublishTrimmed(true) /* Required True for MacCatalyst ? */
+                        .SetVerbosity(DotNetVerbosity.Quiet)
+                        .SetNoRestore(true) /* workaround for https://github.com/xamarin/xamarin-macios/issues/15664#issuecomment-1233123515 */
+                        .SetProcessArgumentConfigurator(_ => _
+                            .Add("/p:RuntimeIdentifierOverride=" + dotnetParameters.RuntimeIdentifier)
+                            .Add("/p:CreatePackage=True") /* Will create an installable .pkg */
+                            .Add($"/bl:\"{RootDirectory / "publish" / dotnetParameters.OutputPath}.binlog\""))
+                        .SetOutputDirectory(RootDirectory / "publish" / dotnetParameters.OutputPath));
                 }
             }
 
@@ -327,6 +338,36 @@ class Build : NukeBuild
     IEnumerable<DotnetParameters> GetDotnetParametersForMauiBlazorApp()
     {
         string publishProject = "DevToys.MauiBlazor";
+        Project project;
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+        {
+            project = MacSolution!.GetProject(publishProject);
+            foreach (string targetFramework in project.GetTargetFrameworks())
+            {
+                yield return new DotnetParameters(project.Path, "maccatalyst-arm64", targetFramework, portable: true);
+                yield return new DotnetParameters(project.Path, "maccatalyst-x64", targetFramework, portable: true);
+            }
+        }
+        else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            project = WindowsSolution!.GetProject(publishProject);
+            foreach (string targetFramework in project.GetTargetFrameworks())
+            {
+                yield return new DotnetParameters(project.Path, "win10-arm64", targetFramework, portable: true);
+                yield return new DotnetParameters(project.Path, "win10-x64", targetFramework, portable: true);
+                yield return new DotnetParameters(project.Path, "win10-x86", targetFramework, portable: true);
+            }
+        }
+        else
+        {
+            throw new NotSupportedException();
+        }
+    }
+
+    IEnumerable<DotnetParameters> GetDotnetParametersForMacOSApp()
+    {
+        string publishProject = "DevToys.MacOS";
         Project project;
 
         if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
