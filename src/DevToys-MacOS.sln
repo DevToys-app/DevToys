@@ -20,6 +20,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{9771D1F8-D331-4B26-8E96-6024893009F4}"
 	ProjectSection(SolutionItems) = preProject
 		app\dev\shared\GlobalUsings.cs = app\dev\shared\GlobalUsings.cs
+		app\dev\shared\LinkerConfig.xml = app\dev\shared\LinkerConfig.xml
 		app\dev\shared\SharedAssemblyInfo.cs = app\dev\shared\SharedAssemblyInfo.cs
 		app\dev\shared\SharedAssemblyVersion.cs = app\dev\shared\SharedAssemblyVersion.cs
 	EndProjectSection
@@ -34,12 +35,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "desktops", "desktops", "{22EE9386-CEFA-47D8-97B2-09A63EDF7F2E}"
+	ProjectSection(SolutionItems) = preProject
+		app\dev\platforms\desktop\Directory.Build.props = app\dev\platforms\desktop\Directory.Build.props
+		app\dev\platforms\desktop\Directory.Build.targets = app\dev\platforms\desktop\Directory.Build.targets
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "macos", "macos", "{8B003389-15D4-4466-A40E-50FC0D603BF6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{04F9E03E-B519-49C5-BC6A-2131ED9BADC0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToys.CLI", "app\dev\platforms\desktop\DevToys.CLI\DevToys.CLI.csproj", "{8C72D38A-658D-4C9D-B0AD-2DA975BE7826}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B6D48157-5257-4B60-B065-3B231B610A54} = {B6D48157-5257-4B60-B065-3B231B610A54}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{745FD4CA-84CC-45D8-A3E2-814A0B9C16C4}"
 EndProject
@@ -60,14 +68,23 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToys.Wasm", "app\dev\platforms\web\DevToys.Wasm\DevToys.Wasm.csproj", "{9E59352A-836D-47DE-AB02-F404A8345242}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToys.MacOS", "app\dev\platforms\desktop\macos\DevToys.MacOS\DevToys.MacOS.csproj", "{E3E689D3-FC5E-48B4-961E-DD5C0DB62DAF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B6D48157-5257-4B60-B065-3B231B610A54} = {B6D48157-5257-4B60-B065-3B231B610A54}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToys.MauiBlazor", "app\dev\platforms\desktop\DevToys.MauiBlazor\DevToys.MauiBlazor.csproj", "{77A35152-832A-47FA-B7B8-2B0E113E8B29}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B6D48157-5257-4B60-B065-3B231B610A54} = {B6D48157-5257-4B60-B065-3B231B610A54}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "generators", "generators", "{1713A47C-7BCA-4240-8CD6-7A047E377801}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResxHelperGenerator", "generators\ResxHelperGenerator\ResxHelperGenerator.csproj", "{F404CCE2-597A-485A-B70A-C119E5CC12ED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevToys.Localization", "app\dev\DevToys.Localization\DevToys.Localization.csproj", "{A3ABEA5E-48FB-45D5-98D4-042D3DEA53E7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F404CCE2-597A-485A-B70A-C119E5CC12ED} = {F404CCE2-597A-485A-B70A-C119E5CC12ED}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
