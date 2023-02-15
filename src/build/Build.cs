@@ -175,7 +175,7 @@ class Build : NukeBuild
                         .SetRuntime(dotnetParameters.RuntimeIdentifier)
                         .SetPlatform(dotnetParameters.Platform)
                         .SetSelfContained(true)
-                        .SetPublishSingleFile(true)
+                        .SetPublishSingleFile(false)
                         .SetPublishReadyToRun(true)
                         // TODO: Enable trimming. There are some things we will need to workaround to enable it.
                         //       Trimming makes that we can't do COM invokes like User32.dll using DllImport.

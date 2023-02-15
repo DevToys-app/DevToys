@@ -1,5 +1,4 @@
-﻿using System.IO;
-using DevToys.Api;
+﻿using DevToys.Api;
 using DevToys.Api.Core.Theme;
 using DevToys.Core.Logging;
 using DevToys.Core.Mef;
@@ -43,9 +42,11 @@ public sealed partial class App : Application
     {
         this.InitializeComponent();
 
+        DateTime startTime = DateTime.Now;
         _loggerFactory = InitializeLogging();
         _logger = this.Log();
-        _logger.LogInformation("App is starting...");
+        LogLoggerInitialization((DateTime.Now - startTime).TotalMilliseconds);
+        LogAppStarting();
 
         this.UnhandledException += OnUnhandledException;
 
@@ -128,7 +129,7 @@ public sealed partial class App : Application
 
     private void MainWindow_Closed(BackdropWindow sender, EventArgs args)
     {
-        _logger.LogInformation("App is shutting down...");
+        LogAppShuttingDown();
         _loggerFactory.Dispose();
 
         Guard.IsNotNull(MainWindow);
@@ -161,11 +162,7 @@ public sealed partial class App : Application
 
     private void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
     {
-        if (_logger.IsEnabled(LogLevel.Error))
-        {
-            _logger.Error($"Unhandled exception !!!", e.Exception);
-        }
-
+        LogUnhandledException(e.Exception);
         _loggerFactory.Dispose();
 
         // TODO:
@@ -253,6 +250,19 @@ public sealed partial class App : Application
 #if HAS_UNO
         global::Uno.UI.Adapter.Microsoft.Extensions.Logging.LoggingAdapter.Initialize();
 #endif
+
         return factory;
     }
+
+    [LoggerMessage(0, LogLevel.Information, "App is starting...")]
+    partial void LogAppStarting();
+
+    [LoggerMessage(1, LogLevel.Information, "App is shutting down...")]
+    partial void LogAppShuttingDown();
+
+    [LoggerMessage(2, LogLevel.Error, "Unhandled exception !!!    (╯°□°）╯︵ ┻━┻")]
+    partial void LogUnhandledException(Exception exception);
+
+    [LoggerMessage(3, LogLevel.Information, "Logger initialized in {duration} ms")]
+    partial void LogLoggerInitialization(double duration);
 }

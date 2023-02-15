@@ -9,7 +9,7 @@ namespace DevToys.Core.Mef;
 /// <summary>
 /// Provides a set of methods to initialize and manage MEF.
 /// </summary>
-public sealed class MefComposer : IDisposable
+public sealed partial class MefComposer : IDisposable
 {
     private readonly ILogger _logger;
     private readonly Assembly[] _assemblies;
@@ -58,6 +58,7 @@ public sealed class MefComposer : IDisposable
             return ExportProvider;
         }
 
+        DateTime startTime = DateTime.Now;
         var assemblies
             = new HashSet<Assembly>(_assemblies)
             {
@@ -84,7 +85,7 @@ public sealed class MefComposer : IDisposable
         }
 
         container.Compose(batch);
-        _logger.LogInformation($"MEF composed.");
+        LogMefComposition((DateTime.Now - startTime).TotalMilliseconds);
 
         ExportProvider = container;
 
@@ -92,4 +93,7 @@ public sealed class MefComposer : IDisposable
 
         return ExportProvider;
     }
+
+    [LoggerMessage(0, LogLevel.Information, "MEF composed in {duration} ms")]
+    partial void LogMefComposition(double duration);
 }

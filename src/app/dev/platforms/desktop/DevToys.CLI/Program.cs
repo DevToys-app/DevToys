@@ -8,27 +8,28 @@ using DevToys.Core.Logging;
 using DevToys.Core.Mef;
 using DevToys.Tools;
 using Microsoft.Extensions.Logging;
-using Uno.Extensions;
 
 namespace DevToys.CLI;
 
-internal class Program
+internal partial class Program
 {
     private static readonly ILoggerFactory loggerFactory;
+    private static readonly ILogger logger;
 
     static Program()
     {
+        DateTime startTime = DateTime.Now;
         loggerFactory
             = LoggerFactory.Create(builder =>
             {
                 builder
                     .AddFilter("Microsoft", LogLevel.Warning)
                     .AddFilter("System", LogLevel.Warning)
-                    .AddFile(new FileStorage()) // To save logs on local hard drive.
-                    .AddDebug();
+                    .AddFile(new FileStorage()); // To save logs on local hard drive.
 
                 // Exclude logs below this level
 #if DEBUG
+                builder.AddDebug();
                 builder.SetMinimumLevel(LogLevel.Trace);
 #else
                 builder.SetMinimumLevel(LogLevel.Information);
@@ -36,7 +37,10 @@ internal class Program
             });
 
         global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory = loggerFactory;
-        loggerFactory.Log().LogInformation("App is starting...");
+
+        logger = new Logger<Program>(loggerFactory);
+        LogLoggerInitialization(logger, (DateTime.Now - startTime).TotalMilliseconds);
+        LogAppStarting(logger);
     }
 
     private static void Main(string[] args)
@@ -48,7 +52,7 @@ internal class Program
 
         MainAsync(args).GetAwaiter().GetResult();
 
-        loggerFactory.Log().LogInformation("App is shutting down...");
+        LogAppShuttingDown(logger);
         loggerFactory.Dispose();
     }
 
@@ -114,11 +118,11 @@ internal class Program
             }
 
             // Invoke the command line tool.
-            ILogger logger = loggerFactory.CreateLogger(commandLineTool.Value.GetType());
-            logger.LogInformation($"Invoking '{command.CommandDefinition.Name}' command...");
+            ILogger logger = loggerFactory.CreateLogger(commandLineTool.Value.GetType().FullName!);
+            LogInvokingCommand(logger, command.CommandDefinition.Name);
 
             int exitCode = await commandLineTool.Value.InvokeAsync(logger, context.GetCancellationToken());
-            logger.LogInformation($"Exit code: {exitCode}");
+            LogExitCode(logger, exitCode);
 
             context.ExitCode = exitCode;
         });
@@ -156,4 +160,19 @@ internal class Program
 
         return true;
     }
+
+    [LoggerMessage(0, LogLevel.Information, "Logger initialized in {duration} ms")]
+    static partial void LogLoggerInitialization(ILogger logger, double duration);
+
+    [LoggerMessage(1, LogLevel.Information, "App is starting...")]
+    static partial void LogAppStarting(ILogger logger);
+
+    [LoggerMessage(2, LogLevel.Information, "App is shutting down...")]
+    static partial void LogAppShuttingDown(ILogger logger);
+
+    [LoggerMessage(3, LogLevel.Information, "Invoking '{CommandName}' command...")]
+    static partial void LogInvokingCommand(ILogger logger, string commandName);
+
+    [LoggerMessage(4, LogLevel.Information, "Exit code: {ExitCode}")]
+    static partial void LogExitCode(ILogger logger, int exitCode);
 }
