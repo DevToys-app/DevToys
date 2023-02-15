@@ -77,7 +77,7 @@
         <PackageReference Include="Microsoft.WindowsAppSDK" />
         <PackageReference Include="Microsoft.Windows.CsWin32" />
         <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
-        <PackageReference Include="Uno.Microsoft.Xaml.Behaviors.WinUI.Managed" />
+        <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" />
       </ItemGroup>
     </When>
   </Choose>

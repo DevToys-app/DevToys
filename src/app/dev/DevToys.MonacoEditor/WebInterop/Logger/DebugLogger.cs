@@ -7,17 +7,18 @@ namespace DevToys.MonacoEditor.WebInterop;
 [AllowForWeb]
 internal sealed partial class DebugLogger
 {
-    private readonly ILogger? _debugLogger;
+    private readonly ILogger? _logger;
 
     public DebugLogger()
     {
-        ILogger logger = this.Log();
-        _debugLogger = logger.IsEnabled(LogLevel.Debug) ? logger : null;
+        _logger = this.Log();
     }
 
     public void Log(string message)
     {
-        Console.WriteLine(message);
-        _debugLogger?.LogInformation(message);
+        LogMessage(message);
     }
+
+    [LoggerMessage(0, LogLevel.Information, "{message}")]
+    partial void LogMessage(string message);
 }

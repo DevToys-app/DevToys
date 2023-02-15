@@ -12,6 +12,7 @@ using Uno.Logging;
 using Windows.Foundation;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
+using System.Runtime.CompilerServices;
 
 namespace DevToys.MonacoEditor;
 
@@ -48,14 +49,14 @@ public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresen
         public string Value { get; set; }
     }
 
-    private readonly ILogger? _debugLogger;
-    private readonly ILogger? _informationLogger;
-    private readonly ILogger? _errorLogger;
+    private readonly ILogger? _logger;
 
     private readonly WebView2 _webView = new();
 
     public CodeEditorPresenter()
     {
+        _logger = this.Log();
+
         // make the WebView2 transparent.
         Environment.SetEnvironmentVariable("WEBVIEW2_DEFAULT_BACKGROUND_COLOR", "00FFFFFF");
 
@@ -64,11 +65,6 @@ public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresen
         this.Visibility = Visibility.Collapsed;
         _webView.AllowFocusOnInteraction = true;
         _webView.CoreWebView2Initialized += WebView_CoreWebView2Initialized;
-
-        ILogger logger = this.Log();
-        _debugLogger = logger.IsEnabled(LogLevel.Debug) ? logger : null;
-        _informationLogger = logger.IsEnabled(LogLevel.Information) ? logger : null;
-        _errorLogger = logger.IsEnabled(LogLevel.Error) ? logger : null;
     }
 
     /// <inheritdoc />
@@ -122,15 +118,15 @@ public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresen
 
         try
         {
-            _informationLogger?.Info($"{nameof(LaunchAsync)}: Creating Monaco Editor");
+            LogCreatingMonacoEditor();
 
             await _webView.ExecuteScriptAsync("createMonacoEditor(\"https://devtoys.local/\", document.getElementById('container'));");
 
-            _informationLogger?.Info($"{nameof(LaunchAsync)}: Monaco Editor created successfully");
+            LogMonacoEditorCreated();
         }
         catch (Exception e)
         {
-            _errorLogger?.Error($"{nameof(LaunchAsync)} failed", e);
+            LogMonacoEditorFailedToBeCreated(e);
         }
 
         this.Visibility = Visibility.Visible;
@@ -144,7 +140,7 @@ public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresen
 
     public async Task InjectDotNetObjectToWebPageAsync<T>(string name, T pObject)
     {
-        _debugLogger?.Debug($"{nameof(InjectDotNetObjectToWebPageAsync)}: Trying to inject .NET object in web page - {name}");
+        LogInjectingDotNetObject(name);
 
         var sb = new StringBuilder();
         sb.AppendLine($"EditorContext.getEditorForElement(document.getElementById('container')).{name} = {{");
@@ -224,11 +220,11 @@ public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresen
         try
         {
             await _webView.ExecuteScriptAsync($"{sb}").AsTask();
-            _debugLogger?.Debug($"{nameof(InjectDotNetObjectToWebPageAsync)}: '{name}' injected successfully.");
+            LogDotNetObjectInjected(name);
         }
         catch (Exception ex)
         {
-            _errorLogger?.Error($"{nameof(InjectDotNetObjectToWebPageAsync)} failed - {name}", ex);
+            LogDotNetObjectInjectionFailed(name, ex);
         }
 
         async void Handler(WebView2 _, CoreWebView2WebMessageReceivedEventArgs e)
@@ -295,7 +291,7 @@ public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresen
                 }
                 catch (Exception ex)
                 {
-                    _errorLogger?.Error($"{nameof(InjectDotNetObjectToWebPageAsync)}-CALLBACK: Exception in {name}.{method.Name}: {ex.Message}");
+                    LogDotNetObjectInjectionCallbackMethodFailed(name, method.Name, ex);
                     string json = JsonConvert.SerializeObject(ex, new JsonSerializerSettings() { Error = (_, e) => e.ErrorContext.Handled = true });
                     await _webView.ExecuteScriptAsync($@"EditorContext.getEditorForElement(document.getElementById('container')).{name}._callbacks.get({methodMessage.Id}).reject(JSON.parse({json})); EditorContext.getEditorForElement(document.getElementById('container')).{name}._callbacks.delete({methodMessage.Id});");
                 }
@@ -330,7 +326,7 @@ public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresen
                 }
                 catch (Exception ex)
                 {
-                    _errorLogger?.Error($"{nameof(InjectDotNetObjectToWebPageAsync)}-CALLBACK: Exception in {name}.{property.Name}: {ex.Message}");
+                    LogDotNetObjectInjectionCallbackPropertyFailed(name, property.Name, ex);
                     string json = JsonConvert.SerializeObject(ex, new JsonSerializerSettings() { Error = (_, e) => e.ErrorContext.Handled = true });
                     await _webView.ExecuteScriptAsync($@"EditorContext.getEditorForElement(document.getElementById('container')).{name}._callbacks.get({propertyMessage.Id}).reject(JSON.parse({json})); EditorContext.getEditorForElement(document.getElementById('container')).{name}._callbacks.delete({propertyMessage.Id});");
                 }
@@ -363,7 +359,7 @@ public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresen
                     }}
                 }})();";
 
-        _debugLogger?.Debug($"Invoke Script: {script}");
+        LogInvokingJavaScript(script);
 
         try
         {
@@ -375,13 +371,13 @@ public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresen
                         return await _webView.ExecuteScriptAsync(script);
                     });
 
-            _debugLogger?.Debug($"Invoke Script result: {result}");
+            LogInvokedJavaScriptSuccessfully(result);
 
             return result;
         }
         catch (Exception e)
         {
-            _errorLogger?.Error("Invoke Script failed", e);
+            LogFailedToInvokeJavaScript(e);
 
             throw;
         }
@@ -394,6 +390,39 @@ public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresen
         _webView.CoreWebView2.DOMContentLoaded += (wv, args) => DOMContentLoaded?.Invoke(this, args);
         _webView.CoreWebView2.NavigationCompleted += (wv, args) => NavigationCompleted?.Invoke(this, args);
     }
+
+    [LoggerMessage(0, LogLevel.Information, "{caller}: Creating Monaco Editor...")]
+    partial void LogCreatingMonacoEditor([CallerMemberName] string? caller = null);
+
+    [LoggerMessage(1, LogLevel.Information, "{caller}: Monaco Editor has been created successfully.")]
+    partial void LogMonacoEditorCreated([CallerMemberName] string? caller = null);
+
+    [LoggerMessage(2, LogLevel.Error, "{caller}: Failed to create the Monaco Editor.")]
+    partial void LogMonacoEditorFailedToBeCreated(Exception exception, [CallerMemberName] string? caller = null);
+
+    [LoggerMessage(3, LogLevel.Debug, "{caller}: Trying to inject .NET object '{name}' in web page...")]
+    partial void LogInjectingDotNetObject(string name, [CallerMemberName] string? caller = null);
+
+    [LoggerMessage(4, LogLevel.Debug, "{caller}: .NET object '{name}' injected successfully.")]
+    partial void LogDotNetObjectInjected(string name, [CallerMemberName] string? caller = null);
+
+    [LoggerMessage(5, LogLevel.Error, "{caller}: Failed to inject .NET object '{name}'.")]
+    partial void LogDotNetObjectInjectionFailed(string name, Exception exception, [CallerMemberName] string? caller = null);
+
+    [LoggerMessage(6, LogLevel.Error, "{caller}-CALLBACK: Exception in {name}.{methodName}.")]
+    partial void LogDotNetObjectInjectionCallbackMethodFailed(string name, string methodName, Exception exception, [CallerMemberName] string? caller = null);
+
+    [LoggerMessage(7, LogLevel.Error, "{caller}-CALLBACK: Exception in {name}.{propertyName}.")]
+    partial void LogDotNetObjectInjectionCallbackPropertyFailed(string name, string propertyName, Exception exception, [CallerMemberName] string? caller = null);
+
+    [LoggerMessage(8, LogLevel.Debug, "{caller}: Invoking JavaScript: {script}")]
+    partial void LogInvokingJavaScript(string script, [CallerMemberName] string? caller = null);
+
+    [LoggerMessage(9, LogLevel.Debug, "{caller}: JavaScript invoked successfully: {result}")]
+    partial void LogInvokedJavaScriptSuccessfully(string result, [CallerMemberName] string? caller = null);
+
+    [LoggerMessage(10, LogLevel.Error, "{caller}: Failed to invoke JavaScript.")]
+    partial void LogFailedToInvokeJavaScript(Exception exception, [CallerMemberName] string? caller = null);
 }
 
 #endif
