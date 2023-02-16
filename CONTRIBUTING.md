@@ -74,6 +74,14 @@ You can contribute to DevToys app by:
 2. Install the `C#` extension.
 1. In `Run and Debug`, select `Debug (macOS dektop app)` and press Start.
 
+#### Special note for `DevToys.MauiBlazor`
+In order to access the Safari developer tools with macOS to debug the HTML/CSS/JS of the Maui Blazor app, follow the following instructions:
+1. Open desktop Safari.
+2. Select the Safari > Preferences > Advanced > Show Develop menu in the menu bar checkbox.
+3. Run the `DevToys.MauiBlazor` app in macOS.
+4. Return to Safari. Select Develop > {REMOTE INSPECTION TARGET} > 0.0.0.0, where the {REMOTE INSPECTION TARGET} placeholder is either the devices's plain name (for example, MacBook Pro) or the device's serial number (for example XMVM7VFF10). If multiple entries for 0.0.0.0 are present, select the entry that highlights the BlazorWebView. The BlazorWebView is highlighted in blue in macOS when the correct 0.0.0.0 entry is selected.
+5. The Web Inspector window appears for the BlazorWebView.
+
 # Internationalization and localization
 
 There are two possibilities offered:
