@@ -76,7 +76,7 @@ class Build : NukeBuild
         {
             if (!Debugger.IsAttached)
             {
-                RootDirectory.GlobDirectories("bin", "obj", "publish").ForEach(EnsureCleanDirectory);
+                RootDirectory.GlobDirectories("bin", "obj", "packages", "publish").ForEach(EnsureCleanDirectory);
             }
         });
 
@@ -222,7 +222,7 @@ class Build : NukeBuild
                         .SetProjectFile(dotnetParameters.ProjectOrSolutionPath)
                         .SetConfiguration(Configuration)
                         .SetPublishSingleFile(false) // Not supported by MacCatalyst as it would require UseAppHost to be true, which isn't supported on Mac
-                        .SetPublishReadyToRun(true)
+                        .SetPublishReadyToRun(false)
                         .SetPublishTrimmed(true) /* Required True for MacCatalyst ? */
                         .SetVerbosity(DotNetVerbosity.Quiet)
                         .SetNoRestore(true) /* workaround for https://github.com/xamarin/xamarin-macios/issues/15664#issuecomment-1233123515 */

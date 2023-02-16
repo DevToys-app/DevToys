@@ -42,17 +42,17 @@ Write-Host "Restoring all dependencies"
 Get-ChildItem $PSScriptRoot\src\ -rec |? { $_.FullName.EndsWith('DevToys-Windows.sln') } |% {
     $SolutionPath = $_.FullName;
     Write-Host "Restoring packages for $($SolutionPath)..."
-    ExecSafe { & $env:DOTNET_EXE restore -v:quiet $SolutionPath  }
+    ExecSafe { & $env:DOTNET_EXE restore -p:PublishReadyToRun=true -v:quiet $SolutionPath  }
 
     # If we run on Windows
     if ([System.Boolean](Get-CimInstance -ClassName Win32_OperatingSystem -ErrorAction SilentlyContinue)) {
         $MSBuildPath = Get-MsBuildPath true
-        ExecSafe { & "$MSBuildPath" $SolutionPath /t:restore /p:Configuration=Release /p:platform=x86 /v:Quiet }
-        ExecSafe { & "$MSBuildPath" $SolutionPath /t:restore /p:Configuration=Release /p:platform=x64 /v:Quiet }
-        ExecSafe { & "$MSBuildPath" $SolutionPath /t:restore /p:Configuration=Release /p:platform=arm64 /v:Quiet }
-        ExecSafe { & "$MSBuildPath" $SolutionPath /t:restore /p:Configuration=Debug /p:platform=x86 /v:Quiet }
-        ExecSafe { & "$MSBuildPath" $SolutionPath /t:restore /p:Configuration=Debug /p:platform=x64 /v:Quiet }
-        ExecSafe { & "$MSBuildPath" $SolutionPath /t:restore /p:Configuration=Debug /p:platform=arm64 /v:Quiet }
+        ExecSafe { & "$MSBuildPath" $SolutionPath /t:restore /p:PublishReadyToRun=true /p:Configuration=Release /p:platform=x86 /v:Quiet }
+        ExecSafe { & "$MSBuildPath" $SolutionPath /t:restore /p:PublishReadyToRun=true /p:Configuration=Release /p:platform=x64 /v:Quiet }
+        ExecSafe { & "$MSBuildPath" $SolutionPath /t:restore /p:PublishReadyToRun=true /p:Configuration=Release /p:platform=arm64 /v:Quiet }
+        ExecSafe { & "$MSBuildPath" $SolutionPath /t:restore /p:PublishReadyToRun=true /p:Configuration=Debug /p:platform=x86 /v:Quiet }
+        ExecSafe { & "$MSBuildPath" $SolutionPath /t:restore /p:PublishReadyToRun=true /p:Configuration=Debug /p:platform=x64 /v:Quiet }
+        ExecSafe { & "$MSBuildPath" $SolutionPath /t:restore /p:PublishReadyToRun=true /p:Configuration=Debug /p:platform=arm64 /v:Quiet }
     }
 }
 
