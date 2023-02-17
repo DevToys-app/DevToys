@@ -22,11 +22,11 @@ public class FileBasedStaticAssetService : IStaticAssetService
 
         HttpRequestMessage message = CreateMessage(assetUrl);
 
-        if (useCache)
-        {
-            // Get the result from the cache
-            result = await _cacheStorageAccessor.GetAsync(message);
-        }
+        // if (useCache)
+        // {
+        //     // Get the result from the cache
+        //     result = await _cacheStorageAccessor.GetAsync(message);
+        // }
 
         if (string.IsNullOrEmpty(result))
         {
@@ -35,17 +35,17 @@ public class FileBasedStaticAssetService : IStaticAssetService
 
             if (!string.IsNullOrEmpty(result))
             {
-                if (useCache)
-                {
-                    // If successful, create the response and store in the cache (when used)
-                    HttpResponseMessage response = new()
-                    {
-                        StatusCode = HttpStatusCode.OK,
-                        Content = new StringContent(result)
-                    };
+                //if (useCache)
+                //{
+                //    // If successful, create the response and store in the cache (when used)
+                //    HttpResponseMessage response = new()
+                //    {
+                //        StatusCode = HttpStatusCode.OK,
+                //        Content = new StringContent(result)
+                //    };
 
-                    await _cacheStorageAccessor.PutAsync(message, response);
-                }
+                //    await _cacheStorageAccessor.PutAsync(message, response);
+                //}
             }
         }
 
