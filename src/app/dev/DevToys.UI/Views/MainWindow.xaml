@@ -1,25 +1,30 @@
 ﻿<controls:BackdropPage
     x:Class="DevToys.UI.Views.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:DevToys.UI.Framework.Controls"
-    xmlns:strings="using:DevToys.Localization.Strings.MainWindow"
-    xmlns:i="using:Microsoft.Xaml.Interactivity"
-    xmlns:ix="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-    xmlns:wasm="http://uno.ui/wasm"
-    xmlns:macos="http://uno.ui/macos"
-    xmlns:ios="http://uno.ui/ios"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ios="http://uno.ui/ios"
+    xmlns:macos="http://uno.ui/macos"
     xmlns:not_win="http://uno.ui/not_win"
+    xmlns:wasm="http://uno.ui/wasm"
+    xmlns:tools="using:DevToys.Core.Tools.ViewItems"
+    xmlns:dts="using:DevToys.UI.DataTemplateSelectors"
+    xmlns:strings="using:DevToys.Localization.Strings.MainWindow"
+    xmlns:controls="using:DevToys.UI.Framework.Controls"
+    xmlns:converters="using:DevToys.UI.Framework.Converters"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:ix="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d wasm not_win macos ios">
     <Page.Resources>
         <!--This top margin is the height of the custom TitleBar-->
         <Thickness x:Key="NavigationViewContentMargin">0,46,0,0</Thickness>
         <Thickness x:Key="NavigationViewContentGridBorderThickness">1,1,0,0</Thickness>
         <CornerRadius x:Key="NavigationViewContentGridCornerRadius">8,0,0,0</CornerRadius>
+
+        <converters:StringToStaticResourceConverter x:Key="StringToStaticResourceConverter"/>
     </Page.Resources>
 
     <Grid not_win:Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" ios:Margin="0,38,0,0">
@@ -40,7 +45,9 @@
             ExpandedModeThresholdWidth="1008"
             IsTabStop="False"
             AlwaysShowHeader="True"
-            IsPaneToggleButtonVisible="True">
+            IsPaneToggleButtonVisible="True"
+            MenuItemsSource="{x:Bind ViewModel.HeaderAndBodyToolViewItems}"
+            FooterMenuItemsSource="{x:Bind ViewModel.FooterToolViewItems}">
 
             <NavigationView.AutoSuggestBox>
                 <AutoSuggestBox
@@ -85,12 +92,119 @@
                 </AutoSuggestBox>
             </NavigationView.AutoSuggestBox>
 
-            <NavigationView.MenuItems>
-                <NavigationViewItem
-                    x:Name="NewControlsItem"
-                    Content="Home"
-                    Icon="Home" />
-            </NavigationView.MenuItems>
+            <NavigationView.MenuItemTemplateSelector>
+                <dts:MainMenuNavigationViewMenuItemSelector>
+                    <dts:MainMenuNavigationViewMenuItemSelector.GroupViewItem>
+                        <DataTemplate x:DataType="tools:GroupViewItem">
+                            <NavigationViewItem
+                                AutomationProperties.Name="{x:Bind AccessibleName}"
+                                MenuItemsSource="{x:Bind Children}">
+                                <NavigationViewItem.Icon>
+                                    <FontIcon
+                                        FontSize="16"
+                                        FontFamily="{x:Bind IconFontName, Converter={StaticResource StringToStaticResourceConverter}}"
+                                        Glyph="{x:Bind IconGlyph}"/>
+                                </NavigationViewItem.Icon>
+                                <NavigationViewItem.Content>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock
+                                            Grid.Column="0"
+                                            HorizontalAlignment="Stretch"
+                                            TextWrapping="NoWrap"
+                                            TextTrimming="CharacterEllipsis"
+                                            Text="{x:Bind DisplayTitle}"/>
+                                    </Grid>
+                                </NavigationViewItem.Content>
+                            </NavigationViewItem>
+                        </DataTemplate>
+                    </dts:MainMenuNavigationViewMenuItemSelector.GroupViewItem>
+                    <dts:MainMenuNavigationViewMenuItemSelector.GuiToolViewItem>
+                        <DataTemplate x:DataType="tools:GuiToolViewItem">
+                            <NavigationViewItem
+                                AutomationProperties.Name="{x:Bind ToolInstance.AccessibleName}">
+                                <NavigationViewItem.Icon>
+                                    <FontIcon
+                                        FontSize="16"
+                                        FontFamily="{x:Bind ToolInstance.IconFontName, Converter={StaticResource StringToStaticResourceConverter}}"
+                                        Glyph="{x:Bind ToolInstance.IconGlyph}"/>
+                                </NavigationViewItem.Icon>
+                                <!--<NavigationViewItem.ContextFlyout>
+                                    <MenuFlyout>
+                                        <MenuFlyoutItem
+                                            Text="{Binding Instance.MainPage.OpenInNewWindow, Source={StaticResource LanguageManager}}"
+                                            Command="{Binding OpenToolInNewWindowCommand}"
+                                            CommandParameter="{x:Bind Metadata}">
+                                            <MenuFlyoutItem.Icon>
+                                                <FontIcon Glyph="&#xF8B5;" />
+                                            </MenuFlyoutItem.Icon>
+                                        </MenuFlyoutItem>
+                                        <MenuFlyoutItem
+                                            x:Name="AddToFavoritesButton"
+                                            x:Load="{x:Bind IsFavorite, Mode=OneWay, Converter={StaticResource InvertedBooleanConverter}}"
+                                            Visibility="{x:Bind Metadata.NotFavorable, Mode=OneTime, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
+                                            Text="{Binding Instance.MainPage.AddToFavorites, Source={StaticResource LanguageManager}}"
+                                            Command="{Binding AddToFavoritesCommand}"
+                                            CommandParameter="{x:Bind}">
+                                            <MenuFlyoutItem.Icon>
+                                                <FontIcon Glyph="&#xF70F;" />
+                                            </MenuFlyoutItem.Icon>
+                                        </MenuFlyoutItem>
+                                        <MenuFlyoutItem
+                                            x:Name="RemoveFromFavoritesButton"
+                                            x:Load="{x:Bind IsFavorite, Mode=OneWay}"
+                                            Visibility="{x:Bind Metadata.NotFavorable, Mode=OneTime, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
+                                            Text="{Binding Instance.MainPage.RemoveFromFavorites, Source={StaticResource LanguageManager}}"
+                                            Command="{Binding RemoveFromFavoritesCommand}"
+                                            CommandParameter="{x:Bind}">
+                                            <MenuFlyoutItem.Icon>
+                                                <FontIcon Glyph="&#xF71A;" />
+                                            </MenuFlyoutItem.Icon>
+                                        </MenuFlyoutItem>
+                                        <MenuFlyoutItem
+                                            Text="{Binding Instance.MainPage.PinToolToStart, Source={StaticResource LanguageManager}}"
+                                            Command="{Binding PinToolToStartCommand}"
+                                            CommandParameter="{x:Bind Metadata}">
+                                            <MenuFlyoutItem.Icon>
+                                                <FontIcon Glyph="&#xF601;" />
+                                            </MenuFlyoutItem.Icon>
+                                        </MenuFlyoutItem>
+                                    </MenuFlyout>
+                                </NavigationViewItem.ContextFlyout>-->
+                                <NavigationViewItem.Content>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock
+                                            Grid.Column="0"
+                                            HorizontalAlignment="Stretch"
+                                            TextWrapping="NoWrap"
+                                            TextTrimming="CharacterEllipsis"
+                                            Text="{x:Bind MenuDisplayTitle}"/>
+                                        <ImageIcon
+                                            x:Name="NavigationViewItemRecommendedIcon"
+                                            x:Load="{x:Bind IsRecommended, Mode=OneWay}"
+                                            Grid.Column="1"
+                                            Source="/Assets/Icons/Idea.svg"
+                                            Height="16"
+                                            Width="16"/>
+                                    </Grid>
+                                </NavigationViewItem.Content>
+                            </NavigationViewItem>
+                        </DataTemplate>
+                    </dts:MainMenuNavigationViewMenuItemSelector.GuiToolViewItem>
+                    <dts:MainMenuNavigationViewMenuItemSelector.Separator>
+                        <DataTemplate>
+                            <NavigationViewItemSeparator/>
+                        </DataTemplate>
+                    </dts:MainMenuNavigationViewMenuItemSelector.Separator>
+                </dts:MainMenuNavigationViewMenuItemSelector>
+            </NavigationView.MenuItemTemplateSelector>
         </NavigationView>
     </Grid>
 </controls:BackdropPage>
