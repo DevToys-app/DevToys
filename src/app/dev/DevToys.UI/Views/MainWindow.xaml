@@ -132,9 +132,10 @@
                                         FontFamily="{x:Bind ToolInstance.IconFontName, Converter={StaticResource StringToStaticResourceConverter}}"
                                         Glyph="{x:Bind ToolInstance.IconGlyph}"/>
                                 </NavigationViewItem.Icon>
-                                <!--<NavigationViewItem.ContextFlyout>
+                                <NavigationViewItem.ContextFlyout>
                                     <MenuFlyout>
-                                        <MenuFlyoutItem
+                                        <!-- TODO -->
+                                        <!--<MenuFlyoutItem
                                             Text="{Binding Instance.MainPage.OpenInNewWindow, Source={StaticResource LanguageManager}}"
                                             Command="{Binding OpenToolInNewWindowCommand}"
                                             CommandParameter="{x:Bind Metadata}">
@@ -143,37 +144,15 @@
                                             </MenuFlyoutItem.Icon>
                                         </MenuFlyoutItem>
                                         <MenuFlyoutItem
-                                            x:Name="AddToFavoritesButton"
-                                            x:Load="{x:Bind IsFavorite, Mode=OneWay, Converter={StaticResource InvertedBooleanConverter}}"
-                                            Visibility="{x:Bind Metadata.NotFavorable, Mode=OneTime, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
-                                            Text="{Binding Instance.MainPage.AddToFavorites, Source={StaticResource LanguageManager}}"
-                                            Command="{Binding AddToFavoritesCommand}"
-                                            CommandParameter="{x:Bind}">
-                                            <MenuFlyoutItem.Icon>
-                                                <FontIcon Glyph="&#xF70F;" />
-                                            </MenuFlyoutItem.Icon>
-                                        </MenuFlyoutItem>
-                                        <MenuFlyoutItem
-                                            x:Name="RemoveFromFavoritesButton"
-                                            x:Load="{x:Bind IsFavorite, Mode=OneWay}"
-                                            Visibility="{x:Bind Metadata.NotFavorable, Mode=OneTime, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
-                                            Text="{Binding Instance.MainPage.RemoveFromFavorites, Source={StaticResource LanguageManager}}"
-                                            Command="{Binding RemoveFromFavoritesCommand}"
-                                            CommandParameter="{x:Bind}">
-                                            <MenuFlyoutItem.Icon>
-                                                <FontIcon Glyph="&#xF71A;" />
-                                            </MenuFlyoutItem.Icon>
-                                        </MenuFlyoutItem>
-                                        <MenuFlyoutItem
                                             Text="{Binding Instance.MainPage.PinToolToStart, Source={StaticResource LanguageManager}}"
                                             Command="{Binding PinToolToStartCommand}"
-                                            CommandParameter="{x:Bind Metadata}">
+                                            CommandParameter="{x:Bind ToolInstance}">
                                             <MenuFlyoutItem.Icon>
                                                 <FontIcon Glyph="&#xF601;" />
                                             </MenuFlyoutItem.Icon>
-                                        </MenuFlyoutItem>
+                                        </MenuFlyoutItem>-->
                                     </MenuFlyout>
-                                </NavigationViewItem.ContextFlyout>-->
+                                </NavigationViewItem.ContextFlyout>
                                 <NavigationViewItem.Content>
                                     <Grid>
                                         <Grid.ColumnDefinitions>

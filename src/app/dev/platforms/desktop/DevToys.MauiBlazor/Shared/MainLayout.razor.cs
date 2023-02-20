@@ -1,9 +1,11 @@
 ﻿using DevToys.Api;
 using DevToys.Api.Core.Theme;
+using DevToys.Core;
 using DevToys.MauiBlazor.Components;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Fast.Components.FluentUI;
 using Microsoft.Fast.Components.FluentUI.DesignTokens;
+using Platform = DevToys.Api.Platform;
 
 namespace DevToys.MauiBlazor.Shared;
 

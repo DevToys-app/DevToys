@@ -14,6 +14,7 @@ namespace DevToys.Tools.Sample;
 [TargetPlatform(Platform.Windows)] // Optional. Not putting any attribute means every platforms are supported.
 [TargetPlatform(Platform.Linux)]
 [TargetPlatform(Platform.MacCatalyst)]
+[TargetPlatform(Platform.WASM)]
 internal sealed class SampleCommandLineTool : ICommandLineTool
 {
     [CommandLineOption(
@@ -40,7 +41,7 @@ internal sealed class SampleCommandLineTool : ICommandLineTool
 [Author("John Doe")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
-    IconGlyph = "\u0108",
+    IconGlyph = "\uE670",
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
     ResourceManagerBaseName = "DevToys.Tools.Sample.Sample",
@@ -66,7 +67,7 @@ internal sealed class EncodersDecodersGroup : GuiToolGroup
     internal EncodersDecodersGroup()
     {
         IconFontName = "FluentSystemIcons";
-        IconGlyph = "\u0108";
+        IconGlyph = "\uE670";
         DisplayTitle = Sample.CommandDescription;
         AccessibleName = Sample.CommandDescription;
     }

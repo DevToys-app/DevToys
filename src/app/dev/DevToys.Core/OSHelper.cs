@@ -22,6 +22,10 @@ public static class OSHelper
             {
                 currentPlatform = Platform.Linux;
             }
+            else if (OperatingSystem.IsBrowser())
+            {
+                currentPlatform = Platform.WASM;
+            }
             else
             {
                 ThrowHelper.ThrowPlatformNotSupportedException();
