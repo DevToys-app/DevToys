@@ -1,10 +1,10 @@
 ﻿using DevToys.Api;
 using DevToys.Api.Tool.Metadata.Attributes;
 
-namespace DevToys.Core.Tools;
+namespace DevToys.Core.Tools.Metadata;
 
 [DebuggerDisplay($"InternalComponentName = {{{nameof(InternalComponentName)}}}")]
-public sealed class GuiToolMetadata
+public sealed class GuiToolMetadata : IOrderableMetadata
 {
     public string InternalComponentName { get; }
 
@@ -14,11 +14,13 @@ public sealed class GuiToolMetadata
 
     public string IconGlyph { get; }
 
+    public string ResourceManagerAssemblyIdentifier { get; }
+
     public string ResourceManagerBaseName { get; }
 
-    public string MenuDisplayTitleResourceName { get; }
+    public string ShortDisplayTitleResourceName { get; }
 
-    public string SearchDisplayTitleResourceName { get; }
+    public string LongDisplayTitleResourceName { get; }
 
     public string DescriptionResourceName { get; }
 
@@ -26,11 +28,11 @@ public sealed class GuiToolMetadata
 
     public string SearchKeywordsResourceName { get; }
 
-    public string ParentTool { get; }
+    public string GroupName { get; }
 
-    public string Before { get; }
+    public IReadOnlyList<string> Before { get; }
 
-    public string After { get; }
+    public IReadOnlyList<string> After { get; }
 
     public bool NotSearchable { get; }
 
@@ -52,15 +54,16 @@ public sealed class GuiToolMetadata
         Author = metadata.GetValueOrDefault(nameof(AuthorAttribute.Author)) as string ?? string.Empty;
         IconFontName = metadata.GetValueOrDefault(nameof(ToolDisplayInformationAttribute.IconFontName)) as string ?? string.Empty;
         IconGlyph = metadata.GetValueOrDefault(nameof(ToolDisplayInformationAttribute.IconGlyph)) as string ?? string.Empty;
+        ResourceManagerAssemblyIdentifier = metadata.GetValueOrDefault(nameof(ToolDisplayInformationAttribute.ResourceManagerAssemblyIdentifier)) as string ?? string.Empty;
         ResourceManagerBaseName = metadata.GetValueOrDefault(nameof(ToolDisplayInformationAttribute.ResourceManagerBaseName)) as string ?? string.Empty;
-        MenuDisplayTitleResourceName = metadata.GetValueOrDefault(nameof(ToolDisplayInformationAttribute.MenuDisplayTitleResourceName)) as string ?? string.Empty;
-        SearchDisplayTitleResourceName = metadata.GetValueOrDefault(nameof(ToolDisplayInformationAttribute.SearchDisplayTitleResourceName)) as string ?? string.Empty;
+        ShortDisplayTitleResourceName = metadata.GetValueOrDefault(nameof(ToolDisplayInformationAttribute.ShortDisplayTitleResourceName)) as string ?? string.Empty;
+        LongDisplayTitleResourceName = metadata.GetValueOrDefault(nameof(ToolDisplayInformationAttribute.LongDisplayTitleResourceName)) as string ?? string.Empty;
         DescriptionResourceName = metadata.GetValueOrDefault(nameof(ToolDisplayInformationAttribute.DescriptionResourceName)) as string ?? string.Empty;
         AccessibleNameResourceName = metadata.GetValueOrDefault(nameof(ToolDisplayInformationAttribute.AccessibleNameResourceName)) as string ?? string.Empty;
         SearchKeywordsResourceName = metadata.GetValueOrDefault(nameof(ToolDisplayInformationAttribute.SearchKeywordsResourceName)) as string ?? string.Empty;
-        ParentTool = metadata.GetValueOrDefault(nameof(ParentAttribute.Parent)) as string ?? string.Empty;
-        Before = metadata.GetValueOrDefault(nameof(OrderAttribute.Before)) as string ?? string.Empty;
-        After = metadata.GetValueOrDefault(nameof(OrderAttribute.After)) as string ?? string.Empty;
+        GroupName = metadata.GetValueOrDefault(nameof(ToolDisplayInformationAttribute.GroupName)) as string ?? string.Empty;
+        Before = metadata.GetValueOrDefault(nameof(OrderAttribute.Before)) as IReadOnlyList<string> ?? Array.Empty<string>();
+        After = metadata.GetValueOrDefault(nameof(OrderAttribute.After)) as IReadOnlyList<string> ?? Array.Empty<string>();
         NotSearchable = metadata.GetValueOrDefault(nameof(NotSearchableAttribute.NotSearchable)) as bool? ?? false;
         NotFavorable = metadata.GetValueOrDefault(nameof(NotFavorableAttribute.NotFavorable)) as bool? ?? false;
         NoCompactOverlaySupport = metadata.GetValueOrDefault(nameof(NoCompactOverlaySupportAttribute.NoCompactOverlaySupport)) as bool? ?? false;
@@ -72,7 +75,48 @@ public sealed class GuiToolMetadata
         Guard.IsNotNullOrWhiteSpace(Author);
         Guard.IsNotNullOrWhiteSpace(IconFontName);
         Guard.IsNotNullOrWhiteSpace(IconGlyph);
-        Guard.IsNotNullOrWhiteSpace(ResourceManagerBaseName);
-        Guard.IsNotNullOrWhiteSpace(MenuDisplayTitleResourceName);
+        Guard.IsNotNullOrWhiteSpace(GroupName);
+        Guard.IsNotNullOrWhiteSpace(ShortDisplayTitleResourceName);
+
+        if (!string.IsNullOrEmpty(ShortDisplayTitleResourceName)
+            || !string.IsNullOrEmpty(LongDisplayTitleResourceName)
+            || !string.IsNullOrEmpty(DescriptionResourceName)
+            || !string.IsNullOrEmpty(AccessibleNameResourceName)
+            || !string.IsNullOrEmpty(SearchKeywordsResourceName))
+        {
+            if (string.IsNullOrEmpty(ResourceManagerAssemblyIdentifier)
+                || string.IsNullOrEmpty(ResourceManagerBaseName))
+            {
+                ThrowHelper.ThrowInvalidDataException($"The tool '{InternalComponentName}' has references to one or multiple resource name(s) but does not provide a '{nameof(ToolDisplayInformationAttribute.ResourceManagerAssemblyIdentifier)}' or '{nameof(ToolDisplayInformationAttribute.ResourceManagerBaseName)}'.");
+            }
+        }
+
+        if (Before.Count > 0)
+        {
+            var before = new List<string>();
+            for (int i = 0; i < Before.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(Before[i]))
+                {
+                    before.Add(Before[i]);
+                }
+            }
+
+            Before = before;
+        }
+
+        if (After.Count > 0)
+        {
+            var after = new List<string>();
+            for (int i = 0; i < After.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(After[i]))
+                {
+                    after.Add(After[i]);
+                }
+            }
+
+            After = after;
+        }
     }
 }

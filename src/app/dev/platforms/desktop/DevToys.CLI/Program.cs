@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using DevToys.Api;
 using DevToys.CLI.Core.FileStorage;
+using DevToys.Core;
 using DevToys.Core.Logging;
 using DevToys.Core.Mef;
 using DevToys.Tools;
@@ -58,45 +59,52 @@ internal partial class Program
 
     private static async Task MainAsync(string[] args)
     {
-        var rootCommand = new RootCommand("DevToys");
-
-        // Initialize MEF.
-        var mefComposer
-            = new MefComposer(
-                new[]
-                {
-                    typeof(Dummy).Assembly,
-                    typeof(Program).Assembly
-                });
-
-        // Get all the command line tools.
-        IEnumerable<Lazy<ICommandLineTool, CommandLineToolMetadata>> commandLineTools
-            = mefComposer.Provider.ImportMany<ICommandLineTool, CommandLineToolMetadata>();
-
-        var commands = new List<CommandToICommandLineToolMap>();
-
-        // For each tool, try to create a System.CommandLine.Command and register it.
-        foreach (Lazy<ICommandLineTool, CommandLineToolMetadata> commandLineTool in commandLineTools)
+        try
         {
-            CommandToICommandLineToolMap? command = CreateCommandForTool(commandLineTool);
+            var rootCommand = new RootCommand("DevToys");
 
-            if (command is not null)
+            // Initialize MEF.
+            var mefComposer
+                = new MefComposer(
+                    new[]
+                    {
+                    typeof(DevToysToolsResourceManagerAssemblyIdentifier).Assembly,
+                    typeof(Program).Assembly
+                    });
+
+            // Get all the command line tools.
+            IEnumerable<Lazy<ICommandLineTool, CommandLineToolMetadata>> commandLineTools
+                = mefComposer.Provider.ImportMany<ICommandLineTool, CommandLineToolMetadata>();
+
+            var commands = new List<CommandToICommandLineToolMap>();
+
+            // For each tool, try to create a System.CommandLine.Command and register it.
+            foreach (Lazy<ICommandLineTool, CommandLineToolMetadata> commandLineTool in commandLineTools)
             {
-                commands.Add(command);
-                rootCommand.AddCommand(command.CommandDefinition);
-            }
-        }
+                CommandToICommandLineToolMap? command = CreateCommandForTool(commandLineTool);
 
-        // Parse the command prompt arguments and run the appropriate command, if possible.
-        int exitCode = await rootCommand.InvokeAsync(args);
-        Environment.ExitCode = exitCode;
+                if (command is not null)
+                {
+                    commands.Add(command);
+                    rootCommand.AddCommand(command.CommandDefinition);
+                }
+            }
+
+            // Parse the command prompt arguments and run the appropriate command, if possible.
+            int exitCode = await rootCommand.InvokeAsync(args);
+            Environment.ExitCode = exitCode;
+        }
+        catch (Exception ex)
+        {
+            LogUnhandledException(logger, ex);
+        }
     }
 
     private static CommandToICommandLineToolMap? CreateCommandForTool(Lazy<ICommandLineTool, CommandLineToolMetadata> commandLineTool)
     {
         // Make sure the tool is supported by the current OS. If no platform is precised by the tool,
         // it means it's supported by every OS.
-        if (!IsOsSupported(commandLineTool.Metadata))
+        if (!OSHelper.IsOsSupported(commandLineTool.Metadata.TargetPlatforms))
         {
             Debug.WriteLine($"Ignoring '{commandLineTool.Metadata.InternalComponentName}' tool as it isn't supported by the current OS.");
             return null;
@@ -130,37 +138,6 @@ internal partial class Program
         return command;
     }
 
-    private static bool IsOsSupported(CommandLineToolMetadata metadata)
-    {
-        if (metadata.TargetPlatforms.Count > 0)
-        {
-            Platform currentPlatform;
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-            {
-                currentPlatform = Platform.MacCatalyst;
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                currentPlatform = Platform.Windows;
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.FreeBSD))
-            {
-                currentPlatform = Platform.Linux;
-            }
-            else
-            {
-                throw new NotSupportedException();
-            }
-
-            if (!metadata.TargetPlatforms.Contains(currentPlatform))
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
     [LoggerMessage(0, LogLevel.Information, "Logger initialized in {duration} ms")]
     static partial void LogLoggerInitialization(ILogger logger, double duration);
 
@@ -175,4 +152,7 @@ internal partial class Program
 
     [LoggerMessage(4, LogLevel.Information, "Exit code: {ExitCode}")]
     static partial void LogExitCode(ILogger logger, int exitCode);
+
+    [LoggerMessage(5, LogLevel.Critical, "Unhandled exception !!!    (╯°□°）╯︵ ┻━┻")]
+    static partial void LogUnhandledException(ILogger logger, Exception exception);
 }

@@ -58,7 +58,7 @@ public sealed partial class App : Application
             = new MefComposer(
                 new[]
                 {
-                    typeof(Dummy).Assembly,
+                    typeof(DevToysToolsResourceManagerAssemblyIdentifier).Assembly,
                     typeof(MainWindow).Assembly
                 });
 
@@ -260,7 +260,7 @@ public sealed partial class App : Application
     [LoggerMessage(1, LogLevel.Information, "App is shutting down...")]
     partial void LogAppShuttingDown();
 
-    [LoggerMessage(2, LogLevel.Error, "Unhandled exception !!!    (╯°□°）╯︵ ┻━┻")]
+    [LoggerMessage(2, LogLevel.Critical, "Unhandled exception !!!    (╯°□°）╯︵ ┻━┻")]
     partial void LogUnhandledException(Exception exception);
 
     [LoggerMessage(3, LogLevel.Information, "Logger initialized in {duration} ms")]

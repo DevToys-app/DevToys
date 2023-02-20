@@ -3,6 +3,5 @@
 public enum MenuPlacement
 {
     Body,
-    Header,
     Footer
 }

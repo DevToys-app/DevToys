@@ -20,6 +20,22 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\dev\DevToys.Api\DevToys.Api.csproj" />
+    <ProjectReference Include="..\..\dev\DevToys.Core\DevToys.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Mocks\Tools\MockToolResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MockToolResource.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Mocks\Tools\MockToolResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MockToolResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
