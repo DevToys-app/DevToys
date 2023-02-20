@@ -263,7 +263,7 @@ public sealed partial class GuiToolProvider
     {
         // "All tools" menu item.
         yield return new GroupViewItem(
-            iconFontName: "FluentSystemIcons-Regular",
+            iconFontName: "FluentSystemIcons",
             iconGlyph: "\uF480",
             displayTitle: MainMenu.AllToolsDisplayTitle,
             accessibleName: MainMenu.AllToolsAccessibleName);
@@ -403,7 +403,7 @@ public sealed partial class GuiToolProvider
         Guard.IsNull(_favoriteToolsGroupViewItem);
         _favoriteToolsGroupViewItem
             = new GroupViewItem(
-                iconFontName: "FluentSystemIcons-Regular",
+                iconFontName: "FluentSystemIcons",
                 iconGlyph: "\uF70F",
                 displayTitle: MainMenu.FavoriteToolsDisplayTitle,
                 accessibleName: MainMenu.FavoriteToolsAccessibleName,

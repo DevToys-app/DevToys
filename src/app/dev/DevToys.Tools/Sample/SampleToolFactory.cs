@@ -39,7 +39,7 @@ internal sealed class SampleCommandLineTool : ICommandLineTool
 [Name("Sample tool")]
 [Author("John Doe")]
 [ToolDisplayInformation(
-    IconFontName = "Fluent System-Regular",
+    IconFontName = "FluentSystemIcons",
     IconGlyph = "\u0108",
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
@@ -65,7 +65,7 @@ internal sealed class EncodersDecodersGroup : GuiToolGroup
     [ImportingConstructor]
     internal EncodersDecodersGroup()
     {
-        IconFontName = "Fluent System-Regular";
+        IconFontName = "FluentSystemIcons";
         IconGlyph = "\u0108";
         DisplayTitle = Sample.CommandDescription;
         AccessibleName = Sample.CommandDescription;

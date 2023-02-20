@@ -13,7 +13,7 @@
 ///         [Name("Base64 Encoder / Decoder")]
 ///         [Author("John Doe")]
 ///         [ToolDisplayInformation(
-///             IconFontName = "Fluent System-Regular",
+///             IconFontName = "FluentSystemIcons",
 ///             IconGlyph = "\u0108",
 ///             GroupName = "Encoders / Decoders",                                                  // <seealso cref="GuiToolGroup"/>
 ///             ResourceManagerAssemblyIdentifier = nameof(MyResourceManagerAssemblyIdentifier),    // <seealso cref="IResourceManagerAssemblyIdentifier"/>

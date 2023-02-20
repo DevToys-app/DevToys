@@ -9,7 +9,7 @@ internal sealed class MockGuiToolGroup : GuiToolGroup
     [ImportingConstructor]
     internal MockGuiToolGroup()
     {
-        IconFontName = "Fluent System-Regular";
+        IconFontName = "FluentSystemIcons";
         IconGlyph = "\u0108";
         DisplayTitle = "Group title";
         AccessibleName = "Group title";

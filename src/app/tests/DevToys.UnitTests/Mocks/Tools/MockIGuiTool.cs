@@ -7,7 +7,7 @@ namespace DevToys.UnitTests.Mocks.Tools;
 [Order(After = "MockTool")]
 [Author("John Doe")]
 [ToolDisplayInformation(
-    IconFontName = "Fluent System-Regular",
+    IconFontName = "FluentSystemIcons",
     IconGlyph = "\u0108",
     GroupName = "MockGroup",
     ResourceManagerAssemblyIdentifier = nameof(MockResourceManagerAssemblyIdentifier),
@@ -26,7 +26,7 @@ internal sealed class MockIGuiTool2 : IGuiTool
 [Name("MockTool")]
 [Author("John Doe")]
 [ToolDisplayInformation(
-    IconFontName = "Fluent System-Regular",
+    IconFontName = "FluentSystemIcons",
     IconGlyph = "\u0108",
     GroupName = "MockGroup",
     ResourceManagerAssemblyIdentifier = nameof(MockResourceManagerAssemblyIdentifier),

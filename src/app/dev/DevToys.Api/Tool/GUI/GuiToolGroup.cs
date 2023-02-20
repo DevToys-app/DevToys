@@ -13,7 +13,7 @@
 ///             [ImportingConstructor]
 ///             internal MyGroup()
 ///             {
-///                 IconFontName = "Fluent System-Regular";
+///                 IconFontName = "FluentSystemIcons";
 ///                 IconGlyph = "\u0108";
 ///                 DisplayTitle = Sample.CommandDescription;
 ///                 AccessibleName = Sample.CommandDescription;
