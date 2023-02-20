@@ -20,4 +20,28 @@ public static class PredefinedSettings
         = new(
             name: nameof(Theme),
             defaultValue: AvailableApplicationTheme.Default);
+
+    /// <summary>
+    /// The internal name of the tool the most recently used.
+    /// </summary>
+    public static readonly SettingDefinition<string> RecentTool1
+        = new(
+            name: nameof(RecentTool1),
+            defaultValue: string.Empty);
+
+    /// <summary>
+    /// The internal name of the tool the second most recently used.
+    /// </summary>
+    public static readonly SettingDefinition<string> RecentTool2
+        = new(
+            name: nameof(RecentTool2),
+            defaultValue: string.Empty);
+
+    /// <summary>
+    /// The internal name of the tool the third most recently used.
+    /// </summary>
+    public static readonly SettingDefinition<string> RecentTool3
+        = new(
+            name: nameof(RecentTool3),
+            defaultValue: string.Empty);
 }

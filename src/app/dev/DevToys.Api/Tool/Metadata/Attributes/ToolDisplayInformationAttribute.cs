@@ -7,18 +7,49 @@
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
 public sealed class ToolDisplayInformationAttribute : Attribute
 {
+    private string _resourceManagerAssemblyIdentifier = string.Empty;
     private string _resourceManagerBaseName = string.Empty;
-    private string _menuDisplayTitleResourceName = string.Empty;
-    private string _searchDisplayTitleResourceName = string.Empty;
+    private string _shortDisplayTitleResourceName = string.Empty;
+    private string _longDisplayTitleResourceName = string.Empty;
     private string _descriptionResourceName = string.Empty;
     private string _accessibleNameResourceName = string.Empty;
     private string _searchkeywordsResourceName = string.Empty;
     private string _iconGlyph = string.Empty;
     private string _iconFontName = string.Empty;
+    private string _groupName = string.Empty;
+
+    /// <summary>
+    /// Indicates the group in which the tool should appear.
+    /// The name should corresponds to an existing <see cref="NameAttribute.InternalComponentName"/> value from an exported
+    /// <see cref="GuiToolGroup"/>.
+    /// </summary>
+    public string GroupName
+    {
+        get => _groupName;
+        set
+        {
+            Guard.IsNotNullOrEmpty(value);
+            _groupName = value;
+        }
+    }
+
+    /// <summary>
+    /// Gets or sets the name of the <see cref="IResourceManagerAssemblyIdentifier"/> that contains the type indicated by
+    /// <see cref="ResourceManagerBaseName"/>.
+    /// </summary>
+    public string ResourceManagerAssemblyIdentifier
+    {
+        get => _resourceManagerAssemblyIdentifier;
+        set
+        {
+            Guard.IsNotNullOrEmpty(value);
+            _resourceManagerAssemblyIdentifier = value;
+        }
+    }
 
     /// <summary>
     /// Gets or sets the name of the resource manager's base name to use when looking for resource string
-    /// for <see cref="MenuDisplayTitleResourceName"/>, <see cref="SearchDisplayTitleResourceName"/>,
+    /// for <see cref="ShortDisplayTitleResourceName"/>, <see cref="LongDisplayTitleResourceName"/>,
     /// <see cref="DescriptionResourceName"/>, <see cref="AccessibleNameResourceName"/> and <see cref="SearchKeywordsResourceName"/>.
     /// </summary>
     public string ResourceManagerBaseName
@@ -32,33 +63,33 @@ public sealed class ToolDisplayInformationAttribute : Attribute
     }
 
     /// <summary>
-    /// Gets or sets the title of the tool in the main menu of the app, for example "JSON".
+    /// Gets or sets the short title of the tool in the main menu of the app, for example "JSON".
     /// </summary>
-    public string MenuDisplayTitleResourceName
+    public string ShortDisplayTitleResourceName
     {
-        get => _menuDisplayTitleResourceName;
+        get => _shortDisplayTitleResourceName;
         set
         {
             Guard.IsNotNullOrWhiteSpace(value);
-            _menuDisplayTitleResourceName = value;
+            _shortDisplayTitleResourceName = value;
         }
     }
 
     /// <summary>
-    /// Gets or sets the title of the tool that will be displayed in the search bar. Sometimes
-    /// it is needed to have a different one than the name showed in the menu to increase
-    /// result accuracy. For example, while <see cref="MenuDisplayTitleResourceName"/> could be "JSON"
-    /// for a tool that is under the Formatter category, <see cref="SearchDisplayTitleResourceName"/>
+    /// Gets or sets the long title of the tool that will be displayed in the search bar or at the top of the current tool.
+    /// Sometimes it is needed to have a different one than the name showed in the menu to increase
+    /// result accuracy. For example, while <see cref="ShortDisplayTitleResourceName"/> could be "JSON"
+    /// for a tool that is under the Formatter category, <see cref="LongDisplayTitleResourceName"/>
     /// could be "JSON Formatter", which can be helpful to differentiate from other similar
     /// tools like "JSON Converter".
     /// </summary>
-    public string SearchDisplayTitleResourceName
+    public string LongDisplayTitleResourceName
     {
-        get => _searchDisplayTitleResourceName;
+        get => _longDisplayTitleResourceName;
         set
         {
             Guard.IsNotNullOrWhiteSpace(value);
-            _searchDisplayTitleResourceName = value;
+            _longDisplayTitleResourceName = value;
         }
     }
 

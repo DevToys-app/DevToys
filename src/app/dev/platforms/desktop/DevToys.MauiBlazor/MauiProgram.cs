@@ -12,13 +12,15 @@ using Uno.Extensions;
 
 namespace DevToys.MauiBlazor;
 
-public static class MauiProgram
+public static partial class MauiProgram
 {
     internal static readonly Lazy<MefComposer> MefComposer
         = new(() => new MefComposer(
             new[] {
-                typeof(Dummy).Assembly
+                typeof(DevToysToolsResourceManagerAssemblyIdentifier).Assembly
             }));
+
+    private static MauiApp? app;
 
     public static MauiApp CreateMauiApp()
     {
@@ -48,6 +50,9 @@ public static class MauiProgram
 
         MauiApp app = builder.Build();
 
+        MauiProgram.app = app;
+        GlobalExceptionHandler.UnhandledException += GlobalExceptionHandler_UnhandledException;
+
         ILoggerFactory loggerFactory = app.Services.GetRequiredService<ILoggerFactory>();
         global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory = loggerFactory;
 
@@ -62,4 +67,13 @@ public static class MauiProgram
 
         return app;
     }
+
+    private static void GlobalExceptionHandler_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+    {
+        Guard.IsNotNull(app);
+        LogUnhandledException(app.Log(), (Exception)e.ExceptionObject);
+    }
+
+    [LoggerMessage(5, LogLevel.Critical, "Unhandled exception !!!    (╯°□°）╯︵ ┻━┻")]
+    static partial void LogUnhandledException(ILogger logger, Exception exception);
 }

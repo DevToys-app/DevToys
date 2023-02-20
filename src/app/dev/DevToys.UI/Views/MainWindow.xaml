@@ -28,7 +28,7 @@
         </Grid.BackgroundTransition>
 
         <!-- Draggable area of the title bar. -->
-        <!--<Grid x:Name="DraggableArea" Grid.Column="1" controls:BackdropWindow.IsWindowDraggableArea="True"/>-->
+        <Grid x:Name="DraggableArea" Height="32" VerticalAlignment="Top" controls:BackdropWindow.IsWindowDraggableArea="True"/>
 
         <!-- Navigation view -->
         <NavigationView

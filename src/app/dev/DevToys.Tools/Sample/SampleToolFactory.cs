@@ -9,8 +9,8 @@ namespace DevToys.Tools.Sample;
 [CommandName(
     Name = "base64",
     Alias = "b64",
-    DescriptionResourceName = nameof(Sample.CommandDescription),
-    ResourceManagerBaseName = "DevToys.Tools.Sample.Sample")]
+    ResourceManagerBaseName = "DevToys.Tools.Sample.Sample",
+    DescriptionResourceName = nameof(Sample.CommandDescription))]
 [TargetPlatform(Platform.Windows)] // Optional. Not putting any attribute means every platforms are supported.
 [TargetPlatform(Platform.Linux)]
 [TargetPlatform(Platform.MacCatalyst)]
@@ -41,9 +41,11 @@ internal sealed class SampleCommandLineTool : ICommandLineTool
 [ToolDisplayInformation(
     IconFontName = "Fluent System-Regular",
     IconGlyph = "\u0108",
+    GroupName = "Encoders / Decoders",
+    ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
     ResourceManagerBaseName = "DevToys.Tools.Sample.Sample",
-    MenuDisplayTitleResourceName = nameof(Sample.CommandDescription),
-    SearchDisplayTitleResourceName = nameof(Sample.CommandDescription),
+    ShortDisplayTitleResourceName = nameof(Sample.CommandDescription),
+    LongDisplayTitleResourceName = nameof(Sample.CommandDescription),
     DescriptionResourceName = nameof(Sample.CommandDescription),
     AccessibleNameResourceName = nameof(Sample.CommandDescription),
     SearchKeywordsResourceName = nameof(Sample.CommandDescription))]
@@ -54,4 +56,18 @@ internal sealed class SampleCommandLineTool : ICommandLineTool
 internal sealed class SampleGuiTool : IGuiTool
 {
     public UIElement View => throw new NotImplementedException();
+}
+
+[Export(typeof(GuiToolGroup))]
+[Name("Encoders / Decoders")]
+internal sealed class EncodersDecodersGroup : GuiToolGroup
+{
+    [ImportingConstructor]
+    internal EncodersDecodersGroup()
+    {
+        IconFontName = "Fluent System-Regular";
+        IconGlyph = "\u0108";
+        DisplayTitle = Sample.CommandDescription;
+        AccessibleName = Sample.CommandDescription;
+    }
 }

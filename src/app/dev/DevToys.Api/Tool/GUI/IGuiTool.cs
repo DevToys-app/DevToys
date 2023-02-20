@@ -1,32 +1,43 @@
 ﻿namespace DevToys.Api;
 
 /// <summary>
-/// Represents the factory for tool with a GUI.
+/// Represents the declaration of a tool with a GUI.
 /// </summary>
+/// <remarks>
+/// The project containing the <see cref="System.Resources.ResourceManager"/> with all the strings for the tool should contain an implementation
+/// of <see cref="IResourceManagerAssemblyIdentifier"/> as shown in the example.
+/// </remarks>
 /// <example>
 ///     <code>
 ///         [Export(typeof(IGuiTool))]
-///         [Name("Base64 Encode / Decoder")]
+///         [Name("Base64 Encoder / Decoder")]
 ///         [Author("John Doe")]
 ///         [ToolDisplayInformation(
 ///             IconFontName = "Fluent System-Regular",
 ///             IconGlyph = "\u0108",
+///             GroupName = "Encoders / Decoders",                                                  // <seealso cref="GuiToolGroup"/>
+///             ResourceManagerAssemblyIdentifier = nameof(MyResourceManagerAssemblyIdentifier),    // <seealso cref="IResourceManagerAssemblyIdentifier"/>
 ///             ResourceManagerBaseName = "MyProject.Strings",
-///             MenuDisplayTitleResourceName = nameof(Strings.MenuDisplayTitle),
-///             SearchDisplayTitleResourceName = nameof(Strings.SearchDisplayTitle),
-///             DescriptionResourceName = nameof(Strings.Description),
-///             AccessibleNameResourceName = nameof(Strings.AccessibleName),
-///             SearchKeywordsResourceName = nameof(Strings.SearchKeywords))]
-///         [TargetPlatform(Platform.Windows)]            // Optional
-///         [TargetPlatform(Platform.WASM)]               // Optional
-///         [Parent("Encoders / Decoders")]               // Optional
-///         [Order(Before = "Base64 Image Decoder")]      // Optional
-///         [NotSearchable]                               // Optional
-///         [NotFavorable]                                // Optional
-///         [NoCompactOverlaySupport]                     // Optional
-///         [MenuPlacement(MenuPlacement.Footer)]         // Optional
-///         [CompactOverlaySize(height: 200, width: 250)] // Optional
+///             ShortDisplayTitleResourceName = nameof(MyProject.Strings.ShortDisplayTitle),
+///             LongDisplayTitleResourceName = nameof(MyProject.Strings.LongDisplayTitle),          // Optional
+///             DescriptionResourceName = nameof(MyProject.Strings.Description),                    // Optional
+///             AccessibleNameResourceName = nameof(MyProject.Strings.AccessibleName),              // Optional
+///             SearchKeywordsResourceName = nameof(MyProject.Strings.SearchKeywords))]             // Optional
+///         [TargetPlatform(Platform.Windows)]                                                      // Optional
+///         [TargetPlatform(Platform.WASM)]                                                         // Optional
+///         [Order(Before = "Base64 Image Decoder")]                                                // Optional
+///         [MenuPlacement(MenuPlacement.Footer)]                                                   // Optional
+///         [NotSearchable]                                                                         // Optional
+///         [NotFavorable]                                                                          // Optional
+///         [NoCompactOverlaySupport]                                                               // Optional
+///         [CompactOverlaySize(height: 200, width: 250)]                                           // Optional
 ///         internal sealed class Base64GuiTool : IGuiTool
+///         {
+///         }
+///
+///         [Export(typeof(IResourceManagerAssemblyIdentifier))]
+///         [Name(nameof(MyResourceManagerAssemblyIdentifier))]
+///         public sealed class MyResourceManagerAssemblyIdentifier : IResourceManagerAssemblyIdentifier
 ///         {
 ///         }
 ///     </code>

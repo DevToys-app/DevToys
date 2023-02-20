@@ -38,7 +38,6 @@ internal sealed class SettingsProvider : ISettingsProvider
             }
         }
 
-        SetSetting(settingDefinition, settingDefinition.DefaultValue);
         return settingDefinition.DefaultValue;
     }
 
