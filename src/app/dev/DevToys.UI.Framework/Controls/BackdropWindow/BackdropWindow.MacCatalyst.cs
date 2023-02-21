@@ -9,6 +9,7 @@ public sealed partial class BackdropWindow
     {
         Guard.IsNotNull(window);
         Window = window;
+        IsCompactOverlayModeSupported = false;
     }
 
     internal Window Window { get; }
@@ -51,6 +52,17 @@ public sealed partial class BackdropWindow
         //     default:
         //         throw new NotSupportedException();
         // }
+    }
+
+    public partial bool IsInCompactOverlayMode()
+    {
+        // throw new NotImplementedException(); // TODO.
+    }
+
+    public partial void TryToggleCompactOverlayMode()
+    {
+        // throw new NotImplementedException(); // TODO.
+        // CompactOverlayModeChanged?.Invoke(this, EventArgs.Empty);
     }
 }
 #endif
