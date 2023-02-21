@@ -34,15 +34,14 @@
                 <VisualState x:Name="CompactOverlay">
                     <VisualState.Setters>
                         <!-- TODO -->
-                        <!--<Setter Target="CompactOverlayButton.Visibility" Value="Collapsed" />
-                        <Setter Target="NonCompactOverlayButton.Visibility" Value="Visible" />
-                        <Setter Target="ScrollViewerContent.Margin" Value="12,0,12,0"/>
-                        <Setter Target="ContentRootScrollViewer.Margin" Value="0,36,0,0"/>
-                        <Setter Target="ContentFrame.Padding" Value="0,0,0,0"/>
+                        <!--
                         <Setter Target="HeaderTextBlock.Visibility" Value="Collapsed" />
                         <Setter Target="AppTitleLeftBorder.Width" Value="16" />-->
                         <Setter Target="NavigationView.AlwaysShowHeader" Value="False" />
                         <Setter Target="NavigationView.IsPaneVisible" Value="False" />
+                        <Setter Target="ContentRootScrollViewer.Margin" Value="0,36,0,0"/>
+                        <Setter Target="ScrollViewerContent.Margin" Value="12,0,12,0"/>
+                        <Setter Target="ContentFrame.Padding" Value="0,0,0,0"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="NavigationViewExpanded">
@@ -51,14 +50,14 @@
                 </VisualState>
                 <VisualState x:Name="NavigationViewCompact">
                     <VisualState.Setters>
-                        <!--<Setter Target="ScrollViewerContent.Margin" Value="24,48,24,0"/>-->
+                        <Setter Target="ScrollViewerContent.Margin" Value="24,48,24,0"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="NavigationViewMinimal">
                     <VisualState.Setters>
-                        <!--<Setter Target="ContentRootScrollViewer.Margin" Value="0,48,0,0"/>
+                        <Setter Target="ContentRootScrollViewer.Margin" Value="0,48,0,0"/>
                         <Setter Target="ScrollViewerContent.Margin" Value="12,0,12,0"/>
-                        <Setter Target="ContentFrame.Padding" Value="0,12,0,0"/>-->
+                        <Setter Target="ContentFrame.Padding" Value="0,12,0,0"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -124,6 +123,7 @@
             IsPaneToggleButtonVisible="True"
             MenuItemsSource="{x:Bind ViewModel.HeaderAndBodyToolViewItems}"
             FooterMenuItemsSource="{x:Bind ViewModel.FooterToolViewItems}"
+            SelectedItem="{x:Bind ViewModel.SelectedMenuItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             DisplayModeChanged="NavigationView_DisplayModeChanged"
             PaneClosing="NavigationView_PaneClosing"
             PaneOpening="NavigationView_PaneOpening"
@@ -264,6 +264,34 @@
                     </dts:MainMenuNavigationViewMenuItemSelector.Separator>
                 </dts:MainMenuNavigationViewMenuItemSelector>
             </NavigationView.MenuItemTemplateSelector>
+
+            <ScrollViewer
+                x:Name="ContentRootScrollViewer"
+                HorizontalScrollMode="Disabled">
+                <Grid
+                    Name="ScrollViewerContent"
+                    Margin="56,48,56,0">
+                    <Grid.Resources>
+                        <Style TargetType="FontIcon">
+                            <Setter Property="FontFamily" Value="{StaticResource FluentSystemIcons}"/>
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock
+                        Name="HeaderTextBlock"
+                        Grid.Row="0"
+                        Text="{x:Bind ViewModel.HeaderText, Mode=OneWay}"
+                        FontSize="24"/>
+                    <Frame
+                        Grid.Row="1"
+                        Name="ContentFrame"
+                        Padding="0,12,0,24">
+                    </Frame>
+                </Grid>
+            </ScrollViewer>
         </NavigationView>
     </Grid>
 </controls:BackdropPage>
