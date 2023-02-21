@@ -35,14 +35,16 @@ public abstract partial class BackdropPage : Page
 #endif
         Window.Closing += Window_Closing;
         Window.Shown += Window_Shown;
-    }
 
-    private void ThemeListener_ThemeChanged(object? sender, EventArgs e)
-    {
-        this.RequestedTheme = _themeListener.ActualAppTheme == Api.Core.Theme.ApplicationTheme.Dark ? ElementTheme.Dark : ElementTheme.Light;
+        Window.CompactOverlayModeChanged += Window_CompactOverlayModeChanged;
     }
 
     internal BackdropWindow Window { get; }
+
+    /// <summary>
+    /// Gets whether the Compact Overlay (picture in picture) mode is supported by the operating system.
+    /// </summary>
+    public bool IsCompactOverlayModeSupported => Window.IsCompactOverlayModeSupported;
 
     /// <summary>
     /// Gets or sets the position of the window when first shown.
@@ -79,6 +81,11 @@ public abstract partial class BackdropPage : Page
     public event TypedEventHandler<BackdropWindow, WindowActivatedEventArgs>? Activated;
 
     /// <summary>
+    /// Raised when the window enters or exits the Compact Overlay mode.
+    /// </summary>
+    public event TypedEventHandler<BackdropWindow, EventArgs>? CompactOverlayModeChanged;
+
+    /// <summary>
     /// Changes the size of the window.
     /// </summary>
     public void Resize(int width, int height)
@@ -107,6 +114,18 @@ public abstract partial class BackdropPage : Page
         Window.Activate();
 #endif
     }
+
+    /// <summary>
+    /// Gets whether the window is currently in compact overlay mode.
+    /// </summary>
+    public bool IsInCompactOverlayMode()
+        => Window.IsInCompactOverlayMode();
+
+    /// <summary>
+    /// Tries to enter or exit compact overlay mode.
+    /// </summary>
+    public void TryToggleCompactOverlayMode()
+        => Window.TryToggleCompactOverlayMode();
 
 #if HAS_UNO
     private void Window_Closed(object sender, CoreWindowEventArgs args)
@@ -152,5 +171,15 @@ public abstract partial class BackdropPage : Page
     private void Window_Activated(object sender, Microsoft.UI.Xaml.WindowActivatedEventArgs args)
     {
         Activated?.Invoke(Window, args);
+    }
+
+    private void Window_CompactOverlayModeChanged(BackdropWindow sender, EventArgs args)
+    {
+        CompactOverlayModeChanged?.Invoke(Window, args);
+    }
+
+    private void ThemeListener_ThemeChanged(object? sender, EventArgs e)
+    {
+        this.RequestedTheme = _themeListener.ActualAppTheme == Api.Core.Theme.ApplicationTheme.Dark ? ElementTheme.Dark : ElementTheme.Light;
     }
 }

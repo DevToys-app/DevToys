@@ -29,6 +29,7 @@ public sealed partial class BackdropWindow : Window
         _wsdqHelper.EnsureWindowsSystemDispatcherQueueController();
 
         AppWindow = GetAppWindow();
+        IsCompactOverlayModeSupported = true;
     }
 
     internal AppWindow AppWindow { get; }
@@ -68,6 +69,26 @@ public sealed partial class BackdropWindow : Window
         base.Activate();
 
         Shown?.Invoke(this, EventArgs.Empty);
+    }
+
+    public partial bool IsInCompactOverlayMode()
+    {
+        return AppWindow.Presenter.Kind == AppWindowPresenterKind.CompactOverlay;
+    }
+
+    public partial void TryToggleCompactOverlayMode()
+    {
+        if (IsInCompactOverlayMode())
+        {
+            AppWindow.SetPresenter(AppWindowPresenterKind.Default);
+        }
+        else
+        {
+            var compactOverlayPresenter = CompactOverlayPresenter.Create();
+            AppWindow.SetPresenter(compactOverlayPresenter);
+        }
+
+        CompactOverlayModeChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private AppWindow GetAppWindow()

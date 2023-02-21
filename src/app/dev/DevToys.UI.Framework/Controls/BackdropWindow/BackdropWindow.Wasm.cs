@@ -9,6 +9,7 @@ public sealed partial class BackdropWindow
     {
         Guard.IsNotNull(window);
         Window = window;
+        IsCompactOverlayModeSupported = false;
     }
 
     internal Window Window { get; }
@@ -27,6 +28,16 @@ public sealed partial class BackdropWindow
     {
         Window.Activate();
         Shown?.Invoke(this, EventArgs.Empty);
+    }
+
+    public partial bool IsInCompactOverlayMode()
+    {
+        return false;
+    }
+
+    public partial void TryToggleCompactOverlayMode()
+    {
+        // Has no effect in WASM.
     }
 }
 #endif

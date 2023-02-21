@@ -15,7 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <UpToDateCheckInput Include="**\*.xaml"/>
+    <UpToDateCheckInput Include="**\*.xaml" />
     <Page Include="**\*.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

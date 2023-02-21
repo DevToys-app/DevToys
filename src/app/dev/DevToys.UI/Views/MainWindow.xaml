@@ -25,29 +25,109 @@
         <CornerRadius x:Key="NavigationViewContentGridCornerRadius">8,0,0,0</CornerRadius>
 
         <converters:StringToStaticResourceConverter x:Key="StringToStaticResourceConverter"/>
+        <converters:BooleanToPathConverters x:Key="BooleanToCompactModeIconPath" PathIfFalse="{StaticResource EnterCompactOverlayPathIconData}" PathIfTrue="{StaticResource ExitCompactOverlayPathIconData}"/>
     </Page.Resources>
 
     <Grid not_win:Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" ios:Margin="0,38,0,0">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="CompactOverlay">
+                    <VisualState.Setters>
+                        <!-- TODO -->
+                        <!--<Setter Target="CompactOverlayButton.Visibility" Value="Collapsed" />
+                        <Setter Target="NonCompactOverlayButton.Visibility" Value="Visible" />
+                        <Setter Target="ScrollViewerContent.Margin" Value="12,0,12,0"/>
+                        <Setter Target="ContentRootScrollViewer.Margin" Value="0,36,0,0"/>
+                        <Setter Target="ContentFrame.Padding" Value="0,0,0,0"/>
+                        <Setter Target="HeaderTextBlock.Visibility" Value="Collapsed" />
+                        <Setter Target="AppTitleLeftBorder.Width" Value="16" />-->
+                        <Setter Target="NavigationView.AlwaysShowHeader" Value="False" />
+                        <Setter Target="NavigationView.IsPaneVisible" Value="False" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NavigationViewExpanded">
+                    <VisualState.Setters>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NavigationViewCompact">
+                    <VisualState.Setters>
+                        <!--<Setter Target="ScrollViewerContent.Margin" Value="24,48,24,0"/>-->
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NavigationViewMinimal">
+                    <VisualState.Setters>
+                        <!--<Setter Target="ContentRootScrollViewer.Margin" Value="0,48,0,0"/>
+                        <Setter Target="ScrollViewerContent.Margin" Value="12,0,12,0"/>
+                        <Setter Target="ContentFrame.Padding" Value="0,12,0,0"/>-->
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
         <Grid.BackgroundTransition>
             <BrushTransition />
         </Grid.BackgroundTransition>
 
-        <!-- Draggable area of the title bar. -->
-        <Grid x:Name="DraggableArea" Height="32" VerticalAlignment="Top" controls:BackdropWindow.IsWindowDraggableArea="True"/>
+        <!-- App title bar, including Draggable area of the title bar and buttons. -->
+        <Grid
+            x:Name="AppTitleBar"
+            Margin="44,0,140,0"
+            Height="32"
+            VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid
+                x:Name="DraggableArea"
+                Grid.Column="0"
+                controls:BackdropWindow.IsWindowDraggableArea="True"/>
+            <Grid
+                x:Name="RightAlignTitleBarInteractionArea"
+                Grid.Column="1"
+                Padding="2">
+                <Button
+                    Style="{StaticResource CommandBarFlyoutEllipsisButtonStyle}"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Width="46"
+                    Height="30"
+                    Padding="0"
+                    Visibility="{x:Bind IsCompactOverlayModeSupported, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    ToolTipService.ToolTip="{x:Bind strings:MainWindow.ToggleCompactOverlayTooltip}"
+                    AutomationProperties.Name="{x:Bind strings:MainWindow.ToggleCompactOverlayTooltip}"
+                    Click="CompactOverlayModeButton_Click">
+                    <Button.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="Up" Modifiers="Control"/>
+                    </Button.KeyboardAccelerators>
+                    <Viewbox
+                        Height="15"
+                        Width="15">
+                        <PathIcon
+                            Data="{x:Bind IsInCompactOverlay, Mode=OneWay, Converter={StaticResource BooleanToCompactModeIconPath}}"/>
+                    </Viewbox>
+                </Button>
+            </Grid>
+        </Grid>
 
         <!-- Navigation view -->
         <NavigationView
+            x:Name="NavigationView"
             IsTitleBarAutoPaddingEnabled="False"
             IsSettingsVisible="False"
             IsBackButtonVisible="Visible"
-            IsBackEnabled="False"
+            IsBackEnabled="True"
             CompactModeThresholdWidth="640"
             ExpandedModeThresholdWidth="1008"
             IsTabStop="False"
             AlwaysShowHeader="True"
             IsPaneToggleButtonVisible="True"
             MenuItemsSource="{x:Bind ViewModel.HeaderAndBodyToolViewItems}"
-            FooterMenuItemsSource="{x:Bind ViewModel.FooterToolViewItems}">
+            FooterMenuItemsSource="{x:Bind ViewModel.FooterToolViewItems}"
+            DisplayModeChanged="NavigationView_DisplayModeChanged"
+            PaneClosing="NavigationView_PaneClosing"
+            PaneOpening="NavigationView_PaneOpening"
+            Loaded="NavigationView_Loaded">
 
             <NavigationView.AutoSuggestBox>
                 <AutoSuggestBox

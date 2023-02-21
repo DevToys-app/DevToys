@@ -58,6 +58,11 @@ public sealed partial class BackdropWindow
     public WindowStartupLocation WindowStartupLocation { get; set; }
 
     /// <summary>
+    /// Gets whether the Compact Overlay (picture in picture) mode is supported by the operating system.
+    /// </summary>
+    public bool IsCompactOverlayModeSupported { get; }
+
+    /// <summary>
     /// Raised when the window opened.
     /// </summary>
     public event TypedEventHandler<BackdropWindow, EventArgs>? Shown;
@@ -66,6 +71,11 @@ public sealed partial class BackdropWindow
     /// Raised when the window is closing.
     /// </summary>
     public event TypedEventHandler<BackdropWindow, EventArgs>? Closing;
+
+    /// <summary>
+    /// Raised when the window enters or exits the Compact Overlay mode.
+    /// </summary>
+    public event TypedEventHandler<BackdropWindow, EventArgs>? CompactOverlayModeChanged;
 
     /// <summary>
     /// Changes the size of the window.
@@ -81,4 +91,14 @@ public sealed partial class BackdropWindow
     /// Opens a window and returns without waiting for the newly opened window to close.
     /// </summary>
     public partial void Show();
+
+    /// <summary>
+    /// Gets whether the window is currently in compact overlay mode.
+    /// </summary>
+    public partial bool IsInCompactOverlayMode();
+
+    /// <summary>
+    /// Tries to enter or exit compact overlay mode.
+    /// </summary>
+    public partial void TryToggleCompactOverlayMode();
 }

@@ -68,5 +68,14 @@ namespace DevToys.Localization.Strings.MainWindow {
                 return ResourceManager.GetString("Search", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle keep the window on top (Ctrl+Up).
+        /// </summary>
+        public static string ToggleCompactOverlayTooltip {
+            get {
+                return ResourceManager.GetString("ToggleCompactOverlayTooltip", resourceCulture);
+            }
+        }
     }
 }
