@@ -5,9 +5,9 @@ using Microsoft.UI.Xaml.Media;
 namespace DevToys.UI.Framework.Converters;
 
 /// <summary>
-/// Convert a <see cref="bool"/> to a <see cref="string"/> value.
+/// Convert a <see cref="bool"/> to a <see cref="Geometry"/> value.
 /// </summary>
-public sealed class BooleanToPathConverters : IValueConverter
+public sealed class BooleanToPathConverter : IValueConverter
 {
     /// <summary>
     /// Gets or sets the <see cref="string"/> when the input is true.

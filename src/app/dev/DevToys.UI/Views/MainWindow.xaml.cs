@@ -1,5 +1,6 @@
 ﻿using DevToys.Api;
 using DevToys.Api.Core.Theme;
+using DevToys.Core.Tools.ViewItems;
 using DevToys.UI.Framework.Controls;
 using DevToys.UI.ViewModels;
 using Microsoft.UI.Xaml;
@@ -30,7 +31,7 @@ public sealed partial class MainWindow : BackdropPage
         Resize(1200, 800);
 
         // Workaround for a bug where opening the window in compact display mode will misalign the content layout.
-        NavigationView.PaneDisplayMode = NavigationViewPaneDisplayMode.Left;
+        MenuNavigationView.PaneDisplayMode = NavigationViewPaneDisplayMode.Left;
 
         Loaded += MainWindow_Loaded;
         SizeChanged += MainWindow_SizeChanged;
@@ -80,7 +81,23 @@ public sealed partial class MainWindow : BackdropPage
         UpdateVisualState();
 
         // Workaround for a bug where opening the window in compact display mode will misalign the content layout.
-        NavigationView.PaneDisplayMode = NavigationViewPaneDisplayMode.Auto;
+        MenuNavigationView.PaneDisplayMode = NavigationViewPaneDisplayMode.Auto;
+
+
+        // Binding "IsExpanded" to IsExpandedByDefault in the XAML doesn't work on UI load, likely because the item has no children yet when the UI is composed.
+        // So we manually expand the items that should be expanded on load.
+        foreach (var item in ViewModel.HeaderAndBodyToolViewItems.Where(item => item is GroupViewItem groupViewItem && groupViewItem.IsExpandedByDefault))
+        {
+            var menuItem = MenuNavigationView.ContainerFromMenuItem(item) as NavigationViewItem;
+            if (menuItem is not null)
+            {
+                menuItem.IsExpanded = true;
+            }
+        }
+
+        // Explicitly select the first item in the menu.
+        Guard.IsNotEmpty((IReadOnlyList<INotifyPropertyChanged>)ViewModel.HeaderAndBodyToolViewItems);
+        ViewModel.SelectedMenuItem = ViewModel.HeaderAndBodyToolViewItems[0];
     }
 
     private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -98,25 +115,25 @@ public sealed partial class MainWindow : BackdropPage
         SearchBox.Focus(FocusState.Keyboard);
     }
 
-    private void NavigationView_DisplayModeChanged(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args)
+    private void MenuNavigationView_DisplayModeChanged(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args)
     {
-        _navigationViewDisplayMode = NavigationView.DisplayMode;
+        _navigationViewDisplayMode = MenuNavigationView.DisplayMode;
         UpdateVisualState();
     }
 
-    private void NavigationView_PaneClosing(NavigationView sender, NavigationViewPaneClosingEventArgs args)
+    private void MenuNavigationView_PaneClosing(NavigationView sender, NavigationViewPaneClosingEventArgs args)
     {
         _navigationViewDisplayMode = NavigationViewDisplayMode.Compact;
         UpdateVisualState();
     }
 
-    private void NavigationView_PaneOpening(NavigationView sender, object args)
+    private void MenuNavigationView_PaneOpening(NavigationView sender, object args)
     {
         _navigationViewDisplayMode = NavigationViewDisplayMode.Expanded;
         UpdateVisualState();
     }
 
-    private void NavigationView_Loaded(object sender, RoutedEventArgs e)
+    private void MenuNavigationView_Loaded(object sender, RoutedEventArgs e)
     {
         UpdateVisualState();
     }

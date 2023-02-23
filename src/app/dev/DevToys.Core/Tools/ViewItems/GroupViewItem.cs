@@ -27,7 +27,8 @@ public sealed class GroupViewItem : ObservableObject
         string iconGlyph,
         string displayTitle,
         string accessibleName,
-        ObservableCollection<GuiToolViewItem>? children = null)
+        ObservableCollection<GuiToolViewItem>? children = null,
+        bool isExpandedByDefault = false)
     {
         Guard.IsNotNullOrWhiteSpace(iconFontName);
         Guard.IsNotNullOrWhiteSpace(iconGlyph);
@@ -37,6 +38,7 @@ public sealed class GroupViewItem : ObservableObject
         IconFontName = iconFontName;
         IconGlyph = iconGlyph;
         Children = children;
+        IsExpandedByDefault = isExpandedByDefault;
     }
 
     /// <summary>
@@ -63,4 +65,9 @@ public sealed class GroupViewItem : ObservableObject
     /// Gets all the children items of this group.
     /// </summary>
     public ObservableCollection<GuiToolViewItem>? Children { get; }
+
+    /// <summary>
+    /// Gets whether the group should be expanded by default.
+    /// </summary>
+    public bool IsExpandedByDefault { get; }
 }
