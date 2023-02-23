@@ -114,7 +114,7 @@ public sealed partial class GuiToolProvider
     /// </summary>
     public void SetToolIsFavorite(GuiToolInstance guiToolInstance, bool isFavorite)
     {
-        SettingDefinition<bool> isFavoriteSettingDefinition = CreateIsToolFavoriteSettingDefinition(guiToolInstance.InternalComponentName);
+        SettingDefinition<bool> isFavoriteSettingDefinition = CreateIsToolFavoriteSettingDefinition(guiToolInstance);
         _settingsProvider.SetSetting(isFavoriteSettingDefinition, isFavorite);
 
         // Update the list in the menu.
@@ -138,7 +138,7 @@ public sealed partial class GuiToolProvider
                     _favoriteToolsGroupViewItem.Children!.Insert(0, newFavoriteToolViewItem);
                 }
 
-                // If the "Favorites" menu item isn't present in the meny, add it after the Recent tools (if any).
+                // If the "Favorites" menu item isn't present in the menu, add it after the Recent tools (if any).
                 if (!_headerAndBodyToolViewItems.Contains(_favoriteToolsGroupViewItem))
                 {
                     int separatorIndex = -1;
@@ -170,6 +170,50 @@ public sealed partial class GuiToolProvider
                     if (_favoriteToolsGroupViewItem.Children.Count == 0)
                     {
                         _headerAndBodyToolViewItems.Remove(_favoriteToolsGroupViewItem);
+                    }
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Gets whether the given tool is favorite or not.
+    /// </summary>
+    public bool GetToolIsFavorite(GuiToolInstance guiToolInstance)
+    {
+        Guard.IsNotNull(guiToolInstance);
+        SettingDefinition<bool> isFavoriteSettingDefinition = CreateIsToolFavoriteSettingDefinition(guiToolInstance);
+        return _settingsProvider.GetSetting(isFavoriteSettingDefinition);
+    }
+
+    /// <summary>
+    /// Gets all the <see cref="GuiToolViewItem"/> the given <paramref name="guiToolInstance"/> appears in.
+    /// </summary>
+    public IEnumerable<GuiToolViewItem> GetViewItemFromTool(GuiToolInstance guiToolInstance)
+    {
+        for (int i = 0; i < FooterToolViewItems.Count; i++)
+        {
+            if (FooterToolViewItems[i].ToolInstance == guiToolInstance)
+            {
+                yield return FooterToolViewItems[i];
+            }
+        }
+
+        for (int i = 0; i < HeaderAndBodyToolViewItems.Count; i++)
+        {
+            INotifyPropertyChanged item = HeaderAndBodyToolViewItems[i];
+            if (item is GuiToolViewItem guiToolViewItem && guiToolViewItem.ToolInstance == guiToolInstance)
+            {
+                yield return guiToolViewItem;
+            }
+            else if (item is GroupViewItem groupViewItem && groupViewItem.Children is not null)
+            {
+                for (int j = 0; j < groupViewItem.Children.Count; j++)
+                {
+                    INotifyPropertyChanged subItem = groupViewItem.Children[j];
+                    if (subItem is GuiToolViewItem subGuiToolViewItem && subGuiToolViewItem.ToolInstance == guiToolInstance)
+                    {
+                        yield return subGuiToolViewItem;
                     }
                 }
             }
@@ -264,7 +308,7 @@ public sealed partial class GuiToolProvider
         // "All tools" menu item.
         yield return new GroupViewItem(
             iconFontName: "FluentSystemIcons",
-            iconGlyph: "\uF480",
+            iconGlyph: "\uE70F",
             displayTitle: MainMenu.AllToolsDisplayTitle,
             accessibleName: MainMenu.AllToolsAccessibleName);
 
@@ -325,8 +369,7 @@ public sealed partial class GuiToolProvider
         for (int i = 0; i < AllTools.Count; i++)
         {
             GuiToolInstance tool = AllTools[i];
-            SettingDefinition<bool> isFavoriteSettingDefinition = CreateIsToolFavoriteSettingDefinition(tool.InternalComponentName);
-            bool isFavorite = _settingsProvider.GetSetting(isFavoriteSettingDefinition);
+            bool isFavorite = GetToolIsFavorite(tool);
             if (isFavorite)
             {
                 favoriteTools.Add(new GuiToolViewItem(tool));
@@ -404,16 +447,17 @@ public sealed partial class GuiToolProvider
         _favoriteToolsGroupViewItem
             = new GroupViewItem(
                 iconFontName: "FluentSystemIcons",
-                iconGlyph: "\uF70F",
+                iconGlyph: "\uF70E",
                 displayTitle: MainMenu.FavoriteToolsDisplayTitle,
                 accessibleName: MainMenu.FavoriteToolsAccessibleName,
-                children: new(favoriteTools));
+                children: new(favoriteTools),
+                isExpandedByDefault: true);
         return _favoriteToolsGroupViewItem;
     }
 
-    private static SettingDefinition<bool> CreateIsToolFavoriteSettingDefinition(string name)
+    private static SettingDefinition<bool> CreateIsToolFavoriteSettingDefinition(GuiToolInstance guiToolInstance)
     {
-        return new SettingDefinition<bool>($"{name}_IsFavorite", defaultValue: false);
+        return new SettingDefinition<bool>($"{guiToolInstance.InternalComponentName}_IsFavorite", defaultValue: false);
     }
 
     [LoggerMessage(0, LogLevel.Information, "Set '{toolName}' as the most recently used tool.")]

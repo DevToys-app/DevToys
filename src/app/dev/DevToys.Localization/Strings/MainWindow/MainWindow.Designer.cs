@@ -61,6 +61,33 @@ namespace DevToys.Localization.Strings.MainWindow {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add to favorites.
+        /// </summary>
+        public static string AddToFavorites {
+            get {
+                return ResourceManager.GetString("AddToFavorites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pin to Start.
+        /// </summary>
+        public static string PinToStart {
+            get {
+                return ResourceManager.GetString("PinToStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove from favorites.
+        /// </summary>
+        public static string RemoveFromFavorites {
+            get {
+                return ResourceManager.GetString("RemoveFromFavorites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Type to search for tools....
         /// </summary>
         public static string Search {
