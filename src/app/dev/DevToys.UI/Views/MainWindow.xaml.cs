@@ -17,7 +17,7 @@ namespace DevToys.UI.Views;
 /// </summary>
 public sealed partial class MainWindow : BackdropPage
 {
-    private const string CompactOverlayStateName = "CompactOverlay";
+    internal const string CompactOverlayStateName = "CompactOverlay";
     private const string NavigationViewExpandedStateName = "NavigationViewExpanded";
     private const string NavigationViewCompactStateName = "NavigationViewCompact";
     private const string NavigationViewMinimalStateName = "NavigationViewMinimal";
@@ -34,7 +34,7 @@ public sealed partial class MainWindow : BackdropPage
 
         InitializeComponent();
         WindowStartupLocation = WindowStartupLocation.CenterScreen;
-        Resize(1200, 800);
+        Resize(1250, 800);
 
         // Workaround for a bug where opening the window in compact display mode will misalign the content layout.
         MenuNavigationView.PaneDisplayMode = NavigationViewPaneDisplayMode.Left;
@@ -144,20 +144,22 @@ public sealed partial class MainWindow : BackdropPage
             {
                 ContentFrame.Navigate(
                     typeof(ToolGroupPage),
-                    new NavigationParameters<string>(_mefProvider, groupViewItem.InternalName),
+                    new NavigationParameters<GroupViewItem>(_mefProvider, groupViewItem),
                     new EntranceNavigationTransitionInfo());
             }
             else if (ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem)
             {
                 ContentFrame.Navigate(
                     typeof(ToolPage),
-                    new NavigationParameters<GuiToolInstance>(_mefProvider, guiToolViewItem.ToolInstance),
+                    new NavigationParameters<GuiToolViewItem>(_mefProvider, guiToolViewItem),
                     new EntranceNavigationTransitionInfo());
             }
             else
             {
                 ThrowHelper.ThrowNotSupportedException();
             }
+
+            UpdateVisualState();
         }
     }
 
@@ -176,6 +178,7 @@ public sealed partial class MainWindow : BackdropPage
         if (IsInCompactOverlayMode())
         {
             VisualStateManager.GoToState(this, CompactOverlayStateName, useTransitions: true);
+            SetContentFrameVisualState(CompactOverlayStateName);
         }
         else
 #endif
@@ -184,16 +187,28 @@ public sealed partial class MainWindow : BackdropPage
             {
                 case NavigationViewDisplayMode.Minimal:
                     VisualStateManager.GoToState(this, NavigationViewMinimalStateName, useTransitions: true);
+                    SetContentFrameVisualState(NavigationViewMinimalStateName);
                     break;
 
                 case NavigationViewDisplayMode.Compact:
                     VisualStateManager.GoToState(this, NavigationViewCompactStateName, useTransitions: true);
+                    SetContentFrameVisualState(NavigationViewCompactStateName);
                     break;
 
                 case NavigationViewDisplayMode.Expanded:
                     VisualStateManager.GoToState(this, NavigationViewExpandedStateName, useTransitions: true);
+                    SetContentFrameVisualState(NavigationViewExpandedStateName);
                     break;
             }
+        }
+    }
+
+    private void SetContentFrameVisualState(string visualStateName)
+    {
+        Guard.IsNotNullOrWhiteSpace(visualStateName);
+        if (ContentFrame.Content is IVisualStateListener visualStateListener)
+        {
+            visualStateListener.SetVisualState(visualStateName);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using DevToys.UI.Models;
+﻿using DevToys.Core.Tools.ViewItems;
+using DevToys.UI.Framework.Controls;
+using DevToys.UI.Models;
 using DevToys.UI.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -9,9 +11,9 @@ namespace DevToys.UI.Views;
 /// <summary>
 /// Page displaying a group of tools.
 /// </summary>
-public sealed partial class ToolGroupPage : Page
+public sealed partial class ToolGroupPage : Page, IVisualStateListener
 {
-    private const int GridViewItemMaxWidth = 430;
+    private const int GridViewItemMinWidth = 330;
 
     public ToolGroupPage()
     {
@@ -23,15 +25,22 @@ public sealed partial class ToolGroupPage : Page
     /// </summary>
     internal ToolGroupPageViewModel ViewModel => (ToolGroupPageViewModel)DataContext;
 
+    public void SetVisualState(string visualStateName)
+    {
+        Guard.IsNotNullOrWhiteSpace(visualStateName);
+        Guard.IsNotEqualTo(visualStateName, MainWindow.CompactOverlayStateName);
+        VisualStateManager.GoToState(this, visualStateName, useTransitions: true);
+    }
+
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);
 
-        Guard.IsOfType(e.Parameter, typeof(NavigationParameters<string>));
-        var parameter = (NavigationParameters<string>)e.Parameter;
+        Guard.IsOfType(e.Parameter, typeof(NavigationParameters<GroupViewItem>));
+        var parameter = (NavigationParameters<GroupViewItem>)e.Parameter;
 
         DataContext = parameter.MefProvider.Import<ToolGroupPageViewModel>();
-        ViewModel.Load(groupName: parameter.Parameter);
+        ViewModel.Load(parameter.Parameter);
     }
 
     private void GridView_SizeChanged(object sender, SizeChangedEventArgs args)
@@ -39,7 +48,12 @@ public sealed partial class ToolGroupPage : Page
         var gridViewItemMargin = (Thickness)this.Resources["GridViewItemMargin"];
 
         // Calculating the number of columns based on the width of the page
-        double columns = Math.Ceiling(ActualWidth / (GridViewItemMaxWidth + gridViewItemMargin.Left + gridViewItemMargin.Right));
-        ((ItemsWrapGrid)GridView.ItemsPanelRoot).ItemWidth = args.NewSize.Width / columns;
+        double gridViewItemHorizontalSpace = args.NewSize.Width - GridView.Padding.Left - GridView.Padding.Right;
+        double adjustedGridViewItemMaxWidth = GridViewItemMinWidth + gridViewItemMargin.Left + gridViewItemMargin.Right;
+        double columns = Math.Floor(gridViewItemHorizontalSpace / adjustedGridViewItemMaxWidth);
+
+        // Calculating the new width of the grid view item.
+        double newItemWidth = Math.Max(GridViewItemMinWidth, gridViewItemHorizontalSpace / Math.Max(1, columns));
+        ((ItemsWrapGrid)GridView.ItemsPanelRoot).ItemWidth = newItemWidth;
     }
 }
