@@ -11,9 +11,11 @@ namespace DevToys.Core.Tools.ViewItems;
 public sealed class GroupViewItem : ObservableObject
 {
     internal GroupViewItem(
+        string internalName,
         GuiToolGroup groupInfo,
         ObservableCollection<GuiToolViewItem>? children = null)
         : this(
+              internalName,
               groupInfo.IconFontName,
               groupInfo.IconGlyph,
               groupInfo.DisplayTitle,
@@ -23,6 +25,7 @@ public sealed class GroupViewItem : ObservableObject
     }
 
     internal GroupViewItem(
+        string internalName,
         string iconFontName,
         string iconGlyph,
         string displayTitle,
@@ -30,9 +33,11 @@ public sealed class GroupViewItem : ObservableObject
         ObservableCollection<GuiToolViewItem>? children = null,
         bool isExpandedByDefault = false)
     {
+        Guard.IsNotNullOrWhiteSpace(internalName);
         Guard.IsNotNullOrWhiteSpace(iconFontName);
         Guard.IsNotNullOrWhiteSpace(iconGlyph);
         Guard.IsNotNullOrWhiteSpace(displayTitle);
+        InternalName = internalName;
         DisplayTitle = displayTitle;
         AccessibleName = accessibleName ?? string.Empty;
         IconFontName = iconFontName;
@@ -40,6 +45,11 @@ public sealed class GroupViewItem : ObservableObject
         Children = children;
         IsExpandedByDefault = isExpandedByDefault;
     }
+
+    /// <summary>
+    /// Gets the internal name of the group.
+    /// </summary>
+    public string InternalName { get; }
 
     /// <summary>
     /// Gets the long title to display in the menu.

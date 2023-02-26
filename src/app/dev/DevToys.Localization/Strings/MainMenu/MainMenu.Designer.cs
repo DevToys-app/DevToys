@@ -95,5 +95,14 @@ namespace DevToys.Localization.Strings.MainMenu {
                 return ResourceManager.GetString("FavoriteToolsDisplayTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recents.
+        /// </summary>
+        public static string RecentToolsDisplayTitle {
+            get {
+                return ResourceManager.GetString("RecentToolsDisplayTitle", resourceCulture);
+            }
+        }
     }
 }

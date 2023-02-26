@@ -129,4 +129,7 @@
   <data name="FavoriteToolsDisplayTitle" xml:space="preserve">
     <value>Favorites</value>
   </data>
+  <data name="RecentToolsDisplayTitle" xml:space="preserve">
+    <value>Recents</value>
+  </data>
 </root>

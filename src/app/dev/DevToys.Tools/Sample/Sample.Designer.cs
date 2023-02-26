@@ -61,11 +61,20 @@ namespace DevToys.Tools.Sample {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A dummy description.
+        ///   Looks up a localized string similar to Base64 Image Encoder / Decoder.
         /// </summary>
         internal static string CommandDescription {
             get {
                 return ResourceManager.GetString("CommandDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encode or decode all the applicable characters to their corresponding HTML entities.
+        /// </summary>
+        internal static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
             }
         }
         
@@ -75,6 +84,15 @@ namespace DevToys.Tools.Sample {
         internal static string FileOptionDescription {
             get {
                 return ResourceManager.GetString("FileOptionDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HTML Encoder / Decoder.
+        /// </summary>
+        internal static string LongTitle {
+            get {
+                return ResourceManager.GetString("LongTitle", resourceCulture);
             }
         }
         

@@ -5,11 +5,13 @@
       them in projects explicitely so we keep consistent package version number across the repository.
     -->
     <CommunityToolkitVersion>8.1.0</CommunityToolkitVersion>
+    <CommunityToolkitWinUINuGetVersion>7.1.2</CommunityToolkitWinUINuGetVersion>
     <DotNetVersion>7.0.0</DotNetVersion>
     <MicrosoftFastComponentsFluentUIVersion>2.0.1</MicrosoftFastComponentsFluentUIVersion>
     <MicrosoftNETCoreUniversalWindowsPlatformVersion>6.2.14</MicrosoftNETCoreUniversalWindowsPlatformVersion>
     <MicrosoftWindowsSDKBuildToolsVersion>10.0.22621.755</MicrosoftWindowsSDKBuildToolsVersion>
     <UnoVersion>4.7.37</UnoVersion>
+    <UnoCommunityToolkitWinUINuGetVersion>7.1.100</UnoCommunityToolkitWinUINuGetVersion>
     <UnoWasmBootstrapVersion>8.0.0-dev.65</UnoWasmBootstrapVersion>
     <WebView2Version>1.0.1462.37</WebView2Version>
     <MicrosoftTypeScriptMSBuildVersion>4.9.4</MicrosoftTypeScriptMSBuildVersion>
@@ -19,6 +21,8 @@
     <PackageVersion Include="CommunityToolkit.Common" Version="$(CommunityToolkitVersion)" />
     <PackageVersion Include="CommunityToolkit.Diagnostics" Version="$(CommunityToolkitVersion)" />
     <PackageVersion Include="CommunityToolkit.Mvvm" Version="$(CommunityToolkitVersion)" />
+    <PackageVersion Include="CommunityToolkit.WinUI.UI" Version="$(CommunityToolkitWinUINuGetVersion)" />
+    <PackageVersion Include="CommunityToolkit.WinUI.UI.Animations" Version="$(CommunityToolkitWinUINuGetVersion)" />
     <PackageVersion Include="coverlet.collector" Version="3.1.2" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.4.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" />
@@ -45,6 +49,8 @@
     <PackageVersion Include="System.ComponentModel.Composition" Version="$(DotNetVersion)" />
     <PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
     <PackageVersion Include="System.Runtime.InteropServices.WindowsRuntime" Version="4.3.0" />
+    <PackageVersion Include="Uno.CommunityToolkit.WinUI.UI" Version="$(UnoCommunityToolkitWinUINuGetVersion)" />
+    <PackageVersion Include="Uno.CommunityToolkit.WinUI.UI.Animations" Version="$(UnoCommunityToolkitWinUINuGetVersion)" />
     <PackageVersion Include="Uno.Core.Extensions.Logging" Version="4.0.1" />
     <PackageVersion Include="Uno.Core.Extensions.Logging.Singleton" Version="4.0.1" />
     <PackageVersion Include="Uno.Extensions.Logging.OSLog" Version="1.4.0" />

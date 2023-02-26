@@ -110,6 +110,31 @@ public sealed partial class GuiToolProvider
     }
 
     /// <summary>
+    /// Gets the list of most recently used tools.
+    /// </summary>
+    public IEnumerable<GuiToolInstance> GetMostRecentUsedTools()
+    {
+        GuiToolInstance? recentTool1 = GetToolFromInternalName(_settingsProvider.GetSetting(PredefinedSettings.RecentTool1));
+        GuiToolInstance? recentTool2 = GetToolFromInternalName(_settingsProvider.GetSetting(PredefinedSettings.RecentTool2));
+        GuiToolInstance? recentTool3 = GetToolFromInternalName(_settingsProvider.GetSetting(PredefinedSettings.RecentTool3));
+
+        if (recentTool1 is not null)
+        {
+            yield return recentTool1;
+        }
+
+        if (recentTool2 is not null)
+        {
+            yield return recentTool2;
+        }
+
+        if (recentTool3 is not null)
+        {
+            yield return recentTool3;
+        }
+    }
+
+    /// <summary>
     /// Sets whether the given tool is marked as favorite or not.
     /// </summary>
     public void SetToolIsFavorite(GuiToolInstance guiToolInstance, bool isFavorite)
@@ -307,6 +332,7 @@ public sealed partial class GuiToolProvider
     {
         // "All tools" menu item.
         yield return new GroupViewItem(
+            ReservedGuiToolGroupNames.AllTools,
             iconFontName: "FluentSystemIcons",
             iconGlyph: "\uE70F",
             displayTitle: MainMenu.AllToolsDisplayTitle,
@@ -337,26 +363,16 @@ public sealed partial class GuiToolProvider
 
     private IEnumerable<INotifyPropertyChanged> BuildRecentToolViewItems()
     {
-        GuiToolInstance? recentTool1 = GetToolFromInternalName(_settingsProvider.GetSetting(PredefinedSettings.RecentTool1));
-        GuiToolInstance? recentTool2 = GetToolFromInternalName(_settingsProvider.GetSetting(PredefinedSettings.RecentTool2));
-        GuiToolInstance? recentTool3 = GetToolFromInternalName(_settingsProvider.GetSetting(PredefinedSettings.RecentTool3));
-        if (recentTool1 is not null || recentTool2 is not null || recentTool3 is not null)
+        bool anyRecentTool = false;
+
+        foreach (GuiToolInstance recentTool in GetMostRecentUsedTools())
         {
-            if (recentTool1 is not null)
-            {
-                yield return new GuiToolViewItem(recentTool1);
-            }
+            anyRecentTool = true;
+            yield return new GuiToolViewItem(recentTool);
+        }
 
-            if (recentTool2 is not null)
-            {
-                yield return new GuiToolViewItem(recentTool2);
-            }
-
-            if (recentTool3 is not null)
-            {
-                yield return new GuiToolViewItem(recentTool3);
-            }
-
+        if (anyRecentTool)
+        {
             // Separator.
             _separatorAfterRecentTools = new SeparatorViewItem();
             yield return _separatorAfterRecentTools;
@@ -404,7 +420,7 @@ public sealed partial class GuiToolProvider
             // Create a group view presentation, if needed.
             if (!groups.TryGetValue(tool.GroupName, out Lazy<GroupViewItem, GuiToolGroupMetadata>? groupViewItem))
             {
-                groupViewItem = new(() => new GroupViewItem(toolGroup.Value, new ObservableCollection<GuiToolViewItem>()), toolGroup.Metadata);
+                groupViewItem = new(() => new GroupViewItem(toolGroup.Metadata.InternalComponentName, toolGroup.Value, new ObservableCollection<GuiToolViewItem>()), toolGroup.Metadata);
                 groups[tool.GroupName] = groupViewItem;
             }
 
@@ -446,6 +462,7 @@ public sealed partial class GuiToolProvider
         Guard.IsNull(_favoriteToolsGroupViewItem);
         _favoriteToolsGroupViewItem
             = new GroupViewItem(
+                ReservedGuiToolGroupNames.FavoriteTools,
                 iconFontName: "FluentSystemIcons",
                 iconGlyph: "\uF70E",
                 displayTitle: MainMenu.FavoriteToolsDisplayTitle,

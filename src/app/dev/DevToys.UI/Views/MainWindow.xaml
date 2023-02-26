@@ -94,6 +94,7 @@
                     Height="30"
                     Padding="0"
                     Visibility="{x:Bind IsCompactOverlayModeSupported, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    IsEnabled="{x:Bind ViewModel.IsSelectedMenuItemATool, Mode=OneWay}"
                     ToolTipService.ToolTip="{x:Bind strings:MainWindow.ToggleCompactOverlayTooltip}"
                     AutomationProperties.Name="{x:Bind strings:MainWindow.ToggleCompactOverlayTooltip}"
                     Click="CompactOverlayModeButton_Click">
@@ -220,7 +221,7 @@
                                             Command="{Binding OpenToolInNewWindowCommand}"
                                             CommandParameter="{x:Bind Metadata}">
                                             <MenuFlyoutItem.Icon>
-                                                <FontIcon Glyph="&#xF8B5;" />
+                                                <FontIcon Glyph="&#xEE7A;" />
                                             </MenuFlyoutItem.Icon>
                                         </MenuFlyoutItem>
                                         <MenuFlyoutItem

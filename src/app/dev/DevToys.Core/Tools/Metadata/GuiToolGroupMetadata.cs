@@ -18,6 +18,16 @@ public sealed class GuiToolGroupMetadata : IOrderableMetadata
         After = metadata.GetValueOrDefault(nameof(OrderAttribute.After)) as IReadOnlyList<string> ?? Array.Empty<string>();
         Guard.IsNotNullOrWhiteSpace(InternalComponentName);
 
+        if (string.Equals(ReservedGuiToolGroupNames.AllTools, InternalComponentName, StringComparison.OrdinalIgnoreCase))
+        {
+            ThrowHelper.ThrowInvalidDataException($"The tool group name '{ReservedGuiToolGroupNames.AllTools}' is reserved.");
+        }
+
+        if (string.Equals(ReservedGuiToolGroupNames.FavoriteTools, InternalComponentName, StringComparison.OrdinalIgnoreCase))
+        {
+            ThrowHelper.ThrowInvalidDataException($"The tool group name '{ReservedGuiToolGroupNames.FavoriteTools}' is reserved.");
+        }
+
         if (Before.Count > 0)
         {
             var before = new List<string>();
