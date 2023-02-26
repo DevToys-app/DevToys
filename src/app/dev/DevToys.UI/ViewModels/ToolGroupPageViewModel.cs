@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.Metadata;
+using DevToys.Core.Tools.ViewItems;
 using DevToys.Localization.Strings.MainMenu;
 using Microsoft.UI.Xaml.Controls;
 
@@ -20,22 +21,31 @@ internal sealed partial class ToolGroupPageViewModel : ObservableRecipient
     [ObservableProperty]
     private ObservableGroupedCollection<string, GuiToolInstance>? _tools = null;
 
-    internal void Load(string groupName)
-    {
-        Guard.IsNotNullOrWhiteSpace(groupName);
+    [ObservableProperty]
+    private string _headerText = string.Empty;
 
-        if (string.Equals(groupName, ReservedGuiToolGroupNames.AllTools, StringComparison.OrdinalIgnoreCase))
+    [ObservableProperty]
+    private bool _displayFooter;
+
+    internal void Load(GroupViewItem groupViewItem)
+    {
+        Guard.IsNotNull(groupViewItem);
+
+        if (string.Equals(groupViewItem.InternalName, ReservedGuiToolGroupNames.AllTools, StringComparison.OrdinalIgnoreCase))
         {
             Tools = LoadAllTools();
+            DisplayFooter = true;
         }
-        else if (string.Equals(groupName, ReservedGuiToolGroupNames.FavoriteTools, StringComparison.OrdinalIgnoreCase))
+        else if (string.Equals(groupViewItem.InternalName, ReservedGuiToolGroupNames.FavoriteTools, StringComparison.OrdinalIgnoreCase))
         {
             Tools = LoadFavoriteTools();
         }
         else
         {
-            Tools = LoadToolsGroup(groupName);
+            Tools = LoadToolsGroup(groupViewItem.InternalName);
         }
+
+        HeaderText = groupViewItem.DisplayTitle;
     }
 
     [RelayCommand]

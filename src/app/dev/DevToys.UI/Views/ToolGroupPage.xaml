@@ -2,6 +2,7 @@
     x:Class="DevToys.UI.Views.ToolGroupPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:local="using:DevToys.UI.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -9,153 +10,238 @@
     xmlns:ix="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:tools="using:DevToys.Core.Tools"
+    xmlns:strings="using:DevToys.Localization.Strings.MainWindow"
     mc:Ignorable="d">
     <Page.Resources>
-        <Thickness x:Key="GridViewItemMargin">12,12,0,0</Thickness>
+        <Thickness x:Key="GridViewItemMargin">0,12,12,0</Thickness>
+
+        <Style TargetType="GridViewHeaderItem">
+            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+            <Setter Property="FontSize" Value="{ThemeResource GridViewHeaderItemThemeFontSize}" />
+            <Setter Property="Background" Value="{ThemeResource GridViewHeaderItemBackground}" />
+            <Setter Property="Margin" Value="0,0,0,4" />
+            <Setter Property="Padding" Value="0,8,12,0" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Top" />
+            <Setter Property="MinHeight" Value="{ThemeResource GridViewHeaderItemMinHeight}" />
+            <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="GridViewHeaderItem">
+                        <StackPanel Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+                            <ContentPresenter x:Name="ContentPresenter"
+                                Margin="{TemplateBinding Padding}"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                ContentTransitions="{TemplateBinding ContentTransitions}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            <Rectangle Stroke="{ThemeResource GridViewHeaderItemDividerStroke}"
+                                StrokeThickness="0.5"
+                                Height="1"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Stretch"
+                                Margin="0,8,12,0" />
+                        </StackPanel>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
 
-    <GridView
-        x:Name="GridView"
-        TabIndex="0"
-        Padding="-12,0,0,0"
-        SelectionMode="None"
-        IsSwipeEnabled="False"
-        IsItemClickEnabled="True"
-        ItemsSource="{x:Bind ToolGroups.View, Mode=OneWay}"
-        SizeChanged="GridView_SizeChanged">
-        <i:Interaction.Behaviors>
-            <ix:EventTriggerBehavior EventName="ItemClick">
-                <ix:InvokeCommandAction Command="{x:Bind ViewModel.ToolSelectedCommand}"/>
-            </ix:EventTriggerBehavior>
-        </i:Interaction.Behaviors>
-        <CollectionViewSource
-            x:Name="ToolGroups"
-            Source="{x:Bind ViewModel.Tools, Mode=OneWay}"
-            IsSourceGrouped="True"/>
-        <GridView.ItemsPanel>
-            <ItemsPanelTemplate>
-                <ItemsWrapGrid
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Stretch">
-                    <ItemsWrapGrid.ChildrenTransitions>
-                        <TransitionCollection>
-                            <EntranceThemeTransition IsStaggeringEnabled="False" FromVerticalOffset="150"/>
-                        </TransitionCollection>
-                    </ItemsWrapGrid.ChildrenTransitions>
-                </ItemsWrapGrid>
-            </ItemsPanelTemplate>
-        </GridView.ItemsPanel>
-        <GridView.ItemContainerStyle>
-            <Style TargetType="GridViewItem" BasedOn="{StaticResource DefaultGridViewItemStyle}">
-                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                <Setter Property="VerticalContentAlignment" Value="Stretch"/>
-                <Setter Property="Margin" Value="{StaticResource GridViewItemMargin}" />
-            </Style>
-        </GridView.ItemContainerStyle>
-        <GridView.GroupStyle>
-            <GroupStyle>
-                <GroupStyle.HeaderTemplate>
-                    <DataTemplate x:DataType="collections:IReadOnlyObservableGroup">
-                        <TextBlock
-                            Style="{ThemeResource SubtitleTextBlockStyle}"
-                            FontWeight="Normal"
-                            Text="{x:Bind Key}"/>
-                    </DataTemplate>
-                </GroupStyle.HeaderTemplate>
-            </GroupStyle>
-        </GridView.GroupStyle>
-        <GridView.ItemTemplate>
-            <DataTemplate x:DataType="tools:GuiToolInstance">
+    <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="NavigationViewExpanded">
+                    <VisualState.Setters>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NavigationViewCompact">
+                    <VisualState.Setters>
+                        <Setter Target="GridView.Padding" Value="16,32,16,32"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NavigationViewMinimal">
+                    <VisualState.Setters>
+                        <Setter Target="GridView.Padding" Value="24,32,24,32"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <GridView
+            x:Name="GridView"
+            TabIndex="0"
+            Padding="56,32,56,56"
+            SelectionMode="None"
+            IsSwipeEnabled="False"
+            IsItemClickEnabled="True"
+            ItemsSource="{x:Bind ToolGroups.View, Mode=OneWay}"
+            SizeChanged="GridView_SizeChanged">
+            <i:Interaction.Behaviors>
+                <ix:EventTriggerBehavior EventName="ItemClick">
+                    <ix:InvokeCommandAction Command="{x:Bind ViewModel.ToolSelectedCommand}"/>
+                </ix:EventTriggerBehavior>
+            </i:Interaction.Behaviors>
+            <CollectionViewSource
+                x:Name="ToolGroups"
+                Source="{x:Bind ViewModel.Tools, Mode=OneWay}"
+                IsSourceGrouped="True"/>
+            <GridView.Header>
                 <Grid
-                    Height="134"
-                    MaxHeight="134"
-                    Padding="16"
-                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                    BorderThickness="1"
-                    CornerRadius="{StaticResource ControlCornerRadius}">
+                    x:Name="ToolHeader"
+                    Margin="0,0,0,5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Border
+                    <TextBlock
                         Grid.Column="0"
-                        Grid.RowSpan="2"
-                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                        CornerRadius="{StaticResource ControlCornerRadius}"
-                        Height="100"
-                        Width="100"
-                        Padding="12">
-                        <FontIcon
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontSize="64"
-                            Foreground="{ThemeResource GridViewItemForeground}"
-                            FontFamily="{x:Bind IconFontName, Converter={StaticResource StringToStaticResourceConverter}}"
-                            Glyph="{x:Bind IconGlyph}"/>
-                    </Border>
-                    <TextBlock
-                        Grid.Column="1"
-                        Grid.Row="0"
-                        VerticalAlignment="Top"
-                        Style="{StaticResource BodyStrongTextBlockStyle}"
-                        Margin="16,0,0,0"
-                        MaxHeight="75"
-                        Foreground="{ThemeResource GridViewItemForeground}"
-                        Text="{x:Bind LongDisplayTitle}"
-                        TextWrapping="Wrap"
-                        TextTrimming="CharacterEllipsis" />
-                    <TextBlock
-                        Grid.Column="1"
-                        Grid.ColumnSpan="2"
-                        Grid.Row="1"
-                        Style="{StaticResource CaptionTextBlockStyle}"
-                        Margin="16,2,8,0"
-                        Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                        Text="{x:Bind Description}"
-                        TextWrapping="Wrap"
-                        TextTrimming="CharacterEllipsis"/>
-                    <StackPanel
-                        Grid.Column="2"
-                        Grid.Row="0"
-                        Margin="4,0,0,0"
-                        VerticalAlignment="Top"
+                        VerticalAlignment="Center"
+                        Text="{x:Bind ViewModel.HeaderText, Mode=OneWay}"
+                        TextTrimming="CharacterEllipsis"
+                        FontSize="24"/>
+                    <win:Border
+                        Grid.Column="1">
+                        <win:CommandBar
+                            IsOpen="False"
+                            DefaultLabelPosition="Right">
+                            <win:AppBarButton
+                                Label="{x:Bind strings:MainWindow.PinToStart}">
+                                <win:AppBarButton.Icon>
+                                    <win:FontIcon Glyph="&#xF602;"/>
+                                </win:AppBarButton.Icon>
+                            </win:AppBarButton>
+                        </win:CommandBar>
+                    </win:Border>
+                </Grid>
+            </GridView.Header>
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid
                         Orientation="Horizontal"
-                        Spacing="4">
-                        <Button
-                            Height="24"
-                            Width="24"
-                            Padding="0">
+                        HorizontalAlignment="Stretch">
+                        <ItemsWrapGrid.ChildrenTransitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition IsStaggeringEnabled="False" FromVerticalOffset="150"/>
+                            </TransitionCollection>
+                        </ItemsWrapGrid.ChildrenTransitions>
+                    </ItemsWrapGrid>
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+            <GridView.ItemContainerStyle>
+                <Style TargetType="GridViewItem" BasedOn="{StaticResource DefaultGridViewItemStyle}">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                    <Setter Property="Margin" Value="{StaticResource GridViewItemMargin}" />
+                </Style>
+            </GridView.ItemContainerStyle>
+            <GridView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate x:DataType="collections:IReadOnlyObservableGroup">
+                            <TextBlock
+                                Style="{ThemeResource SubtitleTextBlockStyle}"
+                                FontWeight="Normal"
+                                Text="{x:Bind Key}"/>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </GridView.GroupStyle>
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="tools:GuiToolInstance">
+                    <Grid
+                        Height="134"
+                        MaxHeight="134"
+                        Padding="16"
+                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1"
+                        CornerRadius="{StaticResource ControlCornerRadius}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Border
+                            Grid.Column="0"
+                            Grid.RowSpan="2"
+                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                            CornerRadius="{StaticResource ControlCornerRadius}"
+                            Height="100"
+                            Width="100"
+                            Padding="12">
                             <FontIcon
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
-                                FontFamily="{StaticResource FluentSystemIcons}"
-                                FontSize="16"
-                                Glyph="&#xEE7A;"/>
-                        </Button>
-                    </StackPanel>
-                    <!--<StackPanel
-                        x:Name="ToolBar"
-                        Grid.Row="3"
-                        Opacity="0"
-                        Orientation="Horizontal"
-                        HorizontalAlignment="Center">
+                                FontSize="64"
+                                Foreground="{ThemeResource GridViewItemForeground}"
+                                FontFamily="{x:Bind IconFontName, Converter={StaticResource StringToStaticResourceConverter}}"
+                                Glyph="{x:Bind IconGlyph}"/>
+                        </Border>
+                        <TextBlock
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            VerticalAlignment="Top"
+                            Style="{StaticResource BodyStrongTextBlockStyle}"
+                            Margin="16,0,0,0"
+                            MaxHeight="75"
+                            Foreground="{ThemeResource GridViewItemForeground}"
+                            Text="{x:Bind LongDisplayTitle}"
+                            TextWrapping="Wrap"
+                            TextTrimming="CharacterEllipsis" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Grid.ColumnSpan="2"
+                            Grid.Row="1"
+                            Style="{StaticResource CaptionTextBlockStyle}"
+                            Margin="16,2,8,0"
+                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                            Text="{x:Bind Description}"
+                            TextWrapping="Wrap"
+                            TextTrimming="CharacterEllipsis"/>
+                        <StackPanel
+                            Grid.Column="2"
+                            Grid.Row="0"
+                            Margin="4,0,0,0"
+                            VerticalAlignment="Top"
+                            Orientation="Horizontal"
+                            Spacing="4">
+                            <Button
+                                Height="24"
+                                Width="24"
+                                Padding="0">
+                                <FontIcon
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontFamily="{StaticResource FluentSystemIcons}"
+                                    FontSize="16"
+                                    Glyph="&#xEE7A;"/>
+                            </Button>
+                        </StackPanel>
+                        <!--<StackPanel
+                            x:Name="ToolBar"
+                            Grid.Row="3"
+                            Opacity="0"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center">
                         <StackPanel.OpacityTransition>
                             <ScalarTransition />
                         </StackPanel.OpacityTransition>
-                        --><!--<Button
-                            Style="{StaticResource CommandBarFlyoutEllipsisButtonStyle}"
-                            Height="32"
-                            Width="32"
-                            Padding="4"
-                            AutomationProperties.Name="{Binding Instance.MainPage.OpenInNewWindow, Source={StaticResource LanguageManager}}"
-                            ToolTipService.ToolTip="{Binding Instance.MainPage.OpenInNewWindow, Source={StaticResource LanguageManager}}"
-                            Click="OpenInNewWindowButton_Click">
+                        -->
+                        <!--<Button
+                                Style="{StaticResource CommandBarFlyoutEllipsisButtonStyle}"
+                                Height="32"
+                                Width="32"
+                                Padding="4"
+                                AutomationProperties.Name="{Binding Instance.MainPage.OpenInNewWindow, Source={StaticResource LanguageManager}}"
+                                ToolTipService.ToolTip="{Binding Instance.MainPage.OpenInNewWindow, Source={StaticResource LanguageManager}}"
+                                Click="OpenInNewWindowButton_Click">
                             <FontIcon FontFamily="{StaticResource FluentSystemIcons}" FontSize="16" Glyph="&#xF8B5;"/>
                         </Button>
                         <Button
@@ -167,27 +253,30 @@
                             ToolTipService.ToolTip="{Binding Instance.MainPage.PinToolToStart, Source={StaticResource LanguageManager}}"
                             Click="PinToolToStartCommandButton_Click">
                             <FontIcon FontFamily="{StaticResource FluentSystemIcons}" FontSize="16" Glyph="&#xF601;"/>
-                        </Button>--><!--
+                        </Button>-->
+                        <!--
                     </StackPanel>-->
-                </Grid>
-            </DataTemplate>
-        </GridView.ItemTemplate>
-        <!--<GridView.Footer>
-            <Border
-                MaxWidth="{Binding ElementName=GridView, Path=ItemsPanelRoot.ActualWidth, Mode=OneWay}"
-                Padding="8,8,8,0">
-                <InfoBar
-                    Severity="Informational"
-                    IsClosable="False"
-                    IsOpen="True"
-                    IsIconVisible="True"
-                    Title="{helpers:ResourceString Dictionary=AppListPage, Name=AppMissingIndication}"
-                    Message="{helpers:ResourceString Dictionary=AppListPage, Name=CanVote}">
-                    <InfoBar.ActionButton>
-                        <HyperlinkButton Content="{helpers:ResourceString Dictionary=AppListPage, Name=VoteNow}" NavigateUri="https://www.example.com" />
-                    </InfoBar.ActionButton>
-                </InfoBar>
-            </Border>
-        </GridView.Footer>-->
-    </GridView>
+                    </Grid>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+            <GridView.Footer>
+                <Border
+                    x:Name="Footer"
+                    x:Load="{x:Bind ViewModel.DisplayFooter}"
+                    Padding="0,12,12,0">
+                    <InfoBar
+                        Severity="Informational"
+                        IsClosable="False"
+                        IsOpen="True"
+                        IsIconVisible="True"
+                        Title="Not finding what you're looking for?"
+                        Message="Suggest your ideas!">
+                        <InfoBar.ActionButton>
+                            <HyperlinkButton Content="Open a feature request on GitHub" NavigateUri="https://www.example.com" />
+                        </InfoBar.ActionButton>
+                    </InfoBar>
+                </Border>
+            </GridView.Footer>
+        </GridView>
+    </Grid>
 </Page>

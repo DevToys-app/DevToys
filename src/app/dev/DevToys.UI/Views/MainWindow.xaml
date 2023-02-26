@@ -25,8 +25,6 @@
         <CornerRadius x:Key="NavigationViewContentGridCornerRadius">8,0,0,0</CornerRadius>
 
         <converters:BooleanToPathConverter x:Key="BooleanToCompactModeIconPath" PathIfFalse="{StaticResource EnterCompactOverlayPathIconData}" PathIfTrue="{StaticResource ExitCompactOverlayPathIconData}"/>
-        <converters:BooleanToStringConverter x:Key="BooleanToFavoriteText" StringIfTrue="{x:Bind strings:MainWindow.RemoveFromFavorites}" StringIfFalse="{x:Bind strings:MainWindow.AddToFavorites}"/>
-        <converters:BooleanToStringConverter x:Key="BooleanToFavoriteIconGlyph" StringIfTrue="&#xF71A;" StringIfFalse="&#xF70F;"/>
     </Page.Resources>
 
     <Grid not_win:Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" ios:Margin="0,38,0,0">
@@ -35,14 +33,8 @@
                 <VisualState x:Name="CompactOverlay">
                     <VisualState.Setters>
                         <!-- TODO -->
-                        <!--
-                        <Setter Target="AppTitleLeftBorder.Width" Value="16" />-->
-                        <Setter Target="ToolHeader.Visibility" Value="Collapsed" />
-                        <Setter Target="NavigationView.AlwaysShowHeader" Value="False" />
-                        <Setter Target="NavigationView.IsPaneVisible" Value="False" />
-                        <Setter Target="ContentRootScrollViewer.Margin" Value="0,36,0,0"/>
-                        <Setter Target="ScrollViewerContent.Margin" Value="12,0,12,0"/>
-                        <Setter Target="ContentFrame.Padding" Value="0,0,0,0"/>
+                        <Setter Target="MenuNavigationView.AlwaysShowHeader" Value="False" />
+                        <Setter Target="MenuNavigationView.IsPaneVisible" Value="False" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="NavigationViewExpanded">
@@ -51,14 +43,10 @@
                 </VisualState>
                 <VisualState x:Name="NavigationViewCompact">
                     <VisualState.Setters>
-                        <Setter Target="ScrollViewerContent.Margin" Value="24,32,24,0"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="NavigationViewMinimal">
                     <VisualState.Setters>
-                        <Setter Target="ContentRootScrollViewer.Margin" Value="0,32,0,0"/>
-                        <Setter Target="ScrollViewerContent.Margin" Value="12,0,12,0"/>
-                        <Setter Target="ContentFrame.Padding" Value="0,12,0,0"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -266,61 +254,10 @@
                 </dts:MainMenuNavigationViewMenuItemSelector>
             </NavigationView.MenuItemTemplateSelector>
 
-            <ScrollViewer
-                x:Name="ContentRootScrollViewer"
-                HorizontalScrollMode="Disabled">
-                <Grid
-                    Name="ScrollViewerContent"
-                    Margin="56,32,24,0">
-                    <Grid.Resources>
-                        <Style TargetType="FontIcon">
-                            <Setter Property="FontFamily" Value="{StaticResource FluentSystemIcons}"/>
-                        </Style>
-                    </Grid.Resources>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid x:Name="ToolHeader">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock
-                            Grid.Column="0"
-                            VerticalAlignment="Center"
-                            Text="{x:Bind ViewModel.HeaderText, Mode=OneWay}"
-                            TextTrimming="CharacterEllipsis"
-                            FontSize="24"/>
-                        <Border
-                            Grid.Column="1">
-                            <CommandBar
-                                IsOpen="False"
-                                DefaultLabelPosition="Right">
-                                <AppBarButton
-                                    Command="{x:Bind ViewModel.ToggleSelectedMenuItemFavoriteCommand}"
-                                    Visibility="{x:Bind ViewModel.IsSelectedMenuItemSupportFavorite, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                    Label="{x:Bind ViewModel.IsSelectedMenuItemAFavoriteTool, Mode=OneWay, Converter={StaticResource BooleanToFavoriteText}}">
-                                    <AppBarButton.Icon>
-                                        <FontIcon Glyph="{x:Bind ViewModel.IsSelectedMenuItemAFavoriteTool, Mode=OneWay, Converter={StaticResource BooleanToFavoriteIconGlyph}}"/>
-                                    </AppBarButton.Icon>
-                                </AppBarButton>
-                                <win:AppBarButton
-                                    Label="{x:Bind strings:MainWindow.PinToStart}">
-                                    <AppBarButton.Icon>
-                                        <FontIcon Glyph="&#xF602;"/>
-                                    </AppBarButton.Icon>
-                                </win:AppBarButton>
-                            </CommandBar>
-                        </Border>
-                    </Grid>
-                    <Frame
-                        Grid.Row="1"
-                        Name="ContentFrame"
-                        Padding="0,12,0,24">
-                    </Frame>
-                </Grid>
-            </ScrollViewer>
+            <Frame
+                Grid.Row="1"
+                Name="ContentFrame">
+            </Frame>
         </NavigationView>
     </Grid>
 </controls:BackdropPage>
