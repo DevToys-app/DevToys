@@ -1,18 +1,19 @@
 ﻿using DevToys.Api;
 using DevToys.Api.Core.Theme;
+using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
 using DevToys.UI.Framework.Controls;
+using DevToys.UI.Models;
 using DevToys.UI.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Navigation;
-using Windows.UI.ViewManagement;
+using Microsoft.UI.Xaml.Media.Animation;
 
 namespace DevToys.UI.Views;
 
 /// <summary>
-/// An empty page that can be used on its own or navigated to within a Frame.
+/// Main UI of the app
 /// </summary>
 public sealed partial class MainWindow : BackdropPage
 {
@@ -21,11 +22,16 @@ public sealed partial class MainWindow : BackdropPage
     private const string NavigationViewCompactStateName = "NavigationViewCompact";
     private const string NavigationViewMinimalStateName = "NavigationViewMinimal";
 
+    private readonly IMefProvider _mefProvider;
+
     private NavigationViewDisplayMode _navigationViewDisplayMode;
 
     public MainWindow(BackdropWindow backdropWindow, IThemeListener themeListener, IMefProvider mefProvider)
         : base(backdropWindow, themeListener)
     {
+        Guard.IsNotNull(mefProvider);
+        _mefProvider = mefProvider;
+
         InitializeComponent();
         WindowStartupLocation = WindowStartupLocation.CenterScreen;
         Resize(1200, 800);
@@ -37,24 +43,14 @@ public sealed partial class MainWindow : BackdropPage
         SizeChanged += MainWindow_SizeChanged;
         CompactOverlayModeChanged += MainWindow_CompactOverlayModeChanged;
 
-        ViewModel = mefProvider.Import<MainWindowViewModel>();
+        DataContext = mefProvider.Import<MainWindowViewModel>();
+        ViewModel.SelectedMenuItemChanged += ViewModel_SelectedMenuItemChanged;
     }
-
-    public static readonly DependencyProperty ViewModelProperty =
-        DependencyProperty.Register(
-            nameof(ViewModel),
-            typeof(MainWindowViewModel),
-            typeof(MainWindow),
-            new PropertyMetadata(null));
 
     /// <summary>
     /// Gets the page's view model.
     /// </summary>
-    internal MainWindowViewModel ViewModel
-    {
-        get => (MainWindowViewModel)GetValue(ViewModelProperty);
-        set => SetValue(ViewModelProperty, value);
-    }
+    internal MainWindowViewModel ViewModel => (MainWindowViewModel)DataContext;
 
     public static readonly DependencyProperty IsInCompactOverlayProperty =
         DependencyProperty.Register(
@@ -83,15 +79,17 @@ public sealed partial class MainWindow : BackdropPage
         // Workaround for a bug where opening the window in compact display mode will misalign the content layout.
         MenuNavigationView.PaneDisplayMode = NavigationViewPaneDisplayMode.Auto;
 
-
         // Binding "IsExpanded" to IsExpandedByDefault in the XAML doesn't work on UI load, likely because the item has no children yet when the UI is composed.
         // So we manually expand the items that should be expanded on load.
-        foreach (var item in ViewModel.HeaderAndBodyToolViewItems.Where(item => item is GroupViewItem groupViewItem && groupViewItem.IsExpandedByDefault))
+        foreach (INotifyPropertyChanged? item in ViewModel.HeaderAndBodyToolViewItems)
         {
-            var menuItem = MenuNavigationView.ContainerFromMenuItem(item) as NavigationViewItem;
-            if (menuItem is not null)
+            if (item is GroupViewItem groupViewItem && groupViewItem.IsExpandedByDefault)
             {
-                menuItem.IsExpanded = true;
+                var menuItem = MenuNavigationView.ContainerFromMenuItem(item) as NavigationViewItem;
+                if (menuItem is not null)
+                {
+                    menuItem.IsExpanded = true;
+                }
             }
         }
 
@@ -136,6 +134,31 @@ public sealed partial class MainWindow : BackdropPage
     private void MenuNavigationView_Loaded(object sender, RoutedEventArgs e)
     {
         UpdateVisualState();
+    }
+
+    private void ViewModel_SelectedMenuItemChanged(object? sender, EventArgs e)
+    {
+        if (ViewModel.SelectedMenuItem is not null)
+        {
+            if (ViewModel.SelectedMenuItem is GroupViewItem groupViewItem)
+            {
+                ContentFrame.Navigate(
+                    typeof(ToolGroupPage),
+                    new NavigationParameters<string>(_mefProvider, groupViewItem.InternalName),
+                    new EntranceNavigationTransitionInfo());
+            }
+            else if (ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem)
+            {
+                ContentFrame.Navigate(
+                    typeof(ToolPage),
+                    new NavigationParameters<GuiToolInstance>(_mefProvider, guiToolViewItem.ToolInstance),
+                    new EntranceNavigationTransitionInfo());
+            }
+            else
+            {
+                ThrowHelper.ThrowNotSupportedException();
+            }
+        }
     }
 
     private void CompactOverlayModeButton_Click(object sender, RoutedEventArgs e)

@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DevToys.Core.Tools;
@@ -7,7 +6,7 @@ using DevToys.Core.Tools.ViewItems;
 
 namespace DevToys.UI.ViewModels;
 
-[Export(typeof(MainWindowViewModel))]
+[Export]
 internal sealed partial class MainWindowViewModel : ObservableRecipient
 {
     private readonly GuiToolProvider _guiToolProvider;
@@ -19,6 +18,11 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
     {
         _guiToolProvider = guiToolProvider;
     }
+
+    /// <summary>
+    /// Raised when the <see cref="SelectedMenuItem"/> property changed.
+    /// </summary>
+    internal event EventHandler<EventArgs>? SelectedMenuItemChanged;
 
     /// <summary>
     /// Gets a hierarchical list containing all the tools available, ordered, to display in the top and body menu.
@@ -52,9 +56,12 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
             {
                 SetProperty(ref _selectedMenuItem, value);
             }
+
             OnPropertyChanged(nameof(HeaderText));
             OnPropertyChanged(nameof(IsSelectedMenuItemSupportFavorite));
             OnPropertyChanged(nameof(IsSelectedMenuItemAFavoriteTool));
+            OnPropertyChanged(nameof(IsSelectedMenuItemATool));
+            SelectedMenuItemChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 
@@ -87,6 +94,11 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
     /// Indicates whether the <see cref="SelectedMenuItem"/> is a favorite tool or not.
     /// </summary>
     internal bool IsSelectedMenuItemAFavoriteTool => SelectedMenuItem is GuiToolViewItem guiToolViewItem && _guiToolProvider.GetToolIsFavorite(guiToolViewItem.ToolInstance);
+
+    /// <summary>
+    /// Indicates whether the <see cref="SelectedMenuItem"/> is a tool or not.
+    /// </summary>
+    internal bool IsSelectedMenuItemATool => SelectedMenuItem is GuiToolViewItem;
 
     /// <summary>
     /// Toggles the favorite status of the <see cref="SelectedMenuItem"/>.
