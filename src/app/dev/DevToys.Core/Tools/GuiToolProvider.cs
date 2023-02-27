@@ -593,28 +593,49 @@ public sealed partial class GuiToolProvider
             return;
         }
 
-        string[] stringToTestAgainstSplitted = stringToTestAgainst.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
-        for (int i = 0; i < stringToTestAgainstSplitted.Length; i++)
+        int i = 0;
+        while (i < stringToTestAgainst.Length && i > -1)
         {
-            string token = stringToTestAgainstSplitted[i];
-            // Exact match.
-            if (string.Equals(searchQuery, token, StringComparison.CurrentCultureIgnoreCase))
+            int matchIndex = stringToTestAgainst.IndexOf(searchQuery, i, StringComparison.OrdinalIgnoreCase);
+            if (matchIndex > -1)
             {
-                weight += 100;
-            }
-            // Prefix match
-            else if (token.StartsWith(searchQuery, StringComparison.CurrentCultureIgnoreCase))
-            {
-                weight += 25;
-            }
-            // Fuzzy match
-            else
-            {
-                int fuzzyWeight = Fuzz.WeightedRatio(searchQuery, stringToTestAgainstSplitted[i], PreprocessMode.Full);
-                if (fuzzyWeight >= 75)
+                matches.Add(new MatchSpan(matchIndex, searchQuery.Length));
+                i = matchIndex + searchQuery.Length;
+
+                if (matchIndex > 0 && char.IsLetterOrDigit(stringToTestAgainst[matchIndex - 1]))
                 {
+                    // Substring match
+                    weight += 15;
+                }
+                else if ((i < stringToTestAgainst.Length && char.IsWhiteSpace(stringToTestAgainst[i])) || i == stringToTestAgainst.Length)
+                {
+                    // Exact match
+                    weight += 100;
+                }
+                else
+                {
+                    // Prefix match
+                    weight += 35;
+                }
+
+                if (matchIndex == 0)
+                {
+                    // It's the first word of the string! Bonus!
                     weight += 10;
                 }
+            }
+
+            i++;
+        }
+
+        string[] stringToTestAgainstSplitted = stringToTestAgainst.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+        for (i = 0; i < stringToTestAgainstSplitted.Length; i++)
+        {
+            // Fuzzy match
+            int fuzzyWeight = Fuzz.WeightedRatio(searchQuery, stringToTestAgainstSplitted[i], PreprocessMode.Full);
+            if (fuzzyWeight >= 75)
+            {
+                weight += 5;
             }
         }
     }
