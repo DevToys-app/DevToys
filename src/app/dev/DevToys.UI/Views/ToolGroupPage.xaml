@@ -208,7 +208,7 @@
                         <StackPanel
                             Grid.Column="2"
                             Grid.Row="0"
-                            Margin="4,0,0,0"
+                            Margin="16,0,0,0"
                             VerticalAlignment="Top"
                             Orientation="Horizontal"
                             Spacing="4">

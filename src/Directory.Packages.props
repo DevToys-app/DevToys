@@ -24,6 +24,7 @@
     <PackageVersion Include="CommunityToolkit.WinUI.UI" Version="$(CommunityToolkitWinUINuGetVersion)" />
     <PackageVersion Include="CommunityToolkit.WinUI.UI.Animations" Version="$(CommunityToolkitWinUINuGetVersion)" />
     <PackageVersion Include="coverlet.collector" Version="3.1.2" />
+    <PackageVersion Include="FuzzySharp" Version="2.0.2" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.4.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" />
     <PackageVersion Include="Microsoft.CSharp" Version="4.7.0" />
