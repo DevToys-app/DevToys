@@ -14,6 +14,11 @@ public sealed partial class GuiToolInstance
     private readonly Lazy<IGuiTool, GuiToolMetadata> _guiToolDefinition;
     private readonly Lazy<IGuiTool> _instance;
     private readonly Lazy<ResourceManager?> _resourceManager;
+    private readonly Lazy<string> _shortDisplayTitle;
+    private readonly Lazy<string> _longDisplayTitle;
+    private readonly Lazy<string> _descriptionDisplayTitle;
+    private readonly Lazy<string> _accessibleNameDisplayTitle;
+    private readonly Lazy<string> _searchKeywordsDisplayTitle;
 
     internal GuiToolInstance(Lazy<IGuiTool, GuiToolMetadata> guiToolDefinition, Assembly? resourceManagerAssembly)
     {
@@ -21,12 +26,19 @@ public sealed partial class GuiToolInstance
         _guiToolDefinition = guiToolDefinition;
         _resourceManager = new(() => GetResourceManager(resourceManagerAssembly));
 
+        _shortDisplayTitle = new(() => GetDisplayString(_guiToolDefinition.Metadata.ShortDisplayTitleResourceName));
+        _longDisplayTitle = new(() => GetDisplayString(_guiToolDefinition.Metadata.LongDisplayTitleResourceName));
+        _descriptionDisplayTitle = new(() => GetDisplayString(_guiToolDefinition.Metadata.DescriptionResourceName));
+        _accessibleNameDisplayTitle = new(() => GetDisplayString(_guiToolDefinition.Metadata.AccessibleNameResourceName));
+        _searchKeywordsDisplayTitle = new(() => GetDisplayString(_guiToolDefinition.Metadata.SearchKeywordsResourceName));
+
         _instance = new(() =>
         {
             IGuiTool instance = _guiToolDefinition.Value;
             LogInstanceCreated(_guiToolDefinition.Metadata.InternalComponentName);
             return instance;
         });
+
         LogInitialized(_guiToolDefinition.Metadata.InternalComponentName);
     }
 
@@ -38,15 +50,15 @@ public sealed partial class GuiToolInstance
 
     public string IconGlyph => _guiToolDefinition.Metadata.IconGlyph;
 
-    public string ShortDisplayTitle => GetDisplayString(_guiToolDefinition.Metadata.ShortDisplayTitleResourceName);
+    public string ShortDisplayTitle => _shortDisplayTitle.Value;
 
-    public string LongDisplayTitle => GetDisplayString(_guiToolDefinition.Metadata.LongDisplayTitleResourceName);
+    public string LongDisplayTitle => _longDisplayTitle.Value;
 
-    public string Description => GetDisplayString(_guiToolDefinition.Metadata.DescriptionResourceName);
+    public string Description => _descriptionDisplayTitle.Value;
 
-    public string AccessibleName => GetDisplayString(_guiToolDefinition.Metadata.AccessibleNameResourceName);
+    public string AccessibleName => _accessibleNameDisplayTitle.Value;
 
-    public string SearchKeywords => GetDisplayString(_guiToolDefinition.Metadata.SearchKeywordsResourceName);
+    public string SearchKeywords => _searchKeywordsDisplayTitle.Value;
 
     public bool NotSearchable => _guiToolDefinition.Metadata.NotSearchable;
 

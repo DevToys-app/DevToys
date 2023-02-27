@@ -1,8 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using DevToys.Api.Core;
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
+using FuzzySharp;
+using Microsoft.UI.Xaml.Controls;
 
 namespace DevToys.UI.ViewModels;
 
@@ -99,6 +102,46 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
     /// Indicates whether the <see cref="SelectedMenuItem"/> is a tool or not.
     /// </summary>
     internal bool IsSelectedMenuItemATool => SelectedMenuItem is GuiToolViewItem;
+
+    // Can't use CommunityToolkit.MVVM due to https://github.com/dotnet/roslyn/issues/57239#issuecomment-1437895948
+    /// <summary>
+    /// Gets or sets the search query typed by the user.
+    /// </summary>
+    internal string SearchQuery { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets or sets the list of search results from the <see cref="SearchQuery"/>.
+    /// </summary>
+    [ObservableProperty]
+    private ObservableCollection<GuiToolViewItem> _searchResults = new();
+
+    [RelayCommand]
+    private void SearchBoxTextChanged(AutoSuggestBoxTextChangedEventArgs parameters)
+    {
+        // Since selecting an item will also change the text,
+        // only listen to changes caused by user entering text.
+        if (parameters.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+        {
+            _guiToolProvider.SearchTools(SearchQuery, SearchResults);
+        }
+    }
+
+    [RelayCommand]
+    private void SearchBoxQuerySubmitted(AutoSuggestBoxQuerySubmittedEventArgs parameters)
+    {
+        var selectedApp = parameters.ChosenSuggestion as GuiToolViewItem;
+        if (selectedApp is null && SearchResults.Count > 0)
+        {
+            selectedApp = SearchResults[0];
+        }
+
+        if (selectedApp is null || selectedApp == GuiToolProvider.NoResultFoundItem)
+        {
+            return;
+        }
+
+        // TODO: Navigate to the tool.
+    }
 
     /// <summary>
     /// Toggles the favorite status of the <see cref="SelectedMenuItem"/>.

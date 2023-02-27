@@ -97,6 +97,15 @@ namespace DevToys.Localization.Strings.MainWindow {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No results found.
+        /// </summary>
+        public static string SearchNoResultsFound {
+            get {
+                return ResourceManager.GetString("SearchNoResultsFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Toggle keep the window on top (Ctrl+Up).
         /// </summary>
         public static string ToggleCompactOverlayTooltip {

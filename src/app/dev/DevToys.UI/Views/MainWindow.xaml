@@ -17,6 +17,7 @@
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:ix="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:ex="using:DevToys.UI.Framework.Extensions"
     mc:Ignorable="d wasm not_win macos ios">
     <Page.Resources>
         <!--This top margin is the height of the custom TitleBar-->
@@ -24,7 +25,14 @@
         <Thickness x:Key="NavigationViewContentGridBorderThickness">1,1,0,0</Thickness>
         <CornerRadius x:Key="NavigationViewContentGridCornerRadius">8,0,0,0</CornerRadius>
 
-        <converters:BooleanToPathConverter x:Key="BooleanToCompactModeIconPath" PathIfFalse="{StaticResource EnterCompactOverlayPathIconData}" PathIfTrue="{StaticResource ExitCompactOverlayPathIconData}"/>
+        <converters:BooleanToPathConverter
+            x:Key="BooleanToCompactModeIconPath"
+            PathIfFalse="{StaticResource EnterCompactOverlayPathIconData}"
+            PathIfTrue="{StaticResource ExitCompactOverlayPathIconData}"/>
+        <converters:NullToVisibilityConverter
+            x:Key="CollapsedWhenNullConverter"
+            VisibilityIfNull="Collapsed"
+            VisibilityIfNotNull="Visible"/>
     </Page.Resources>
 
     <Grid not_win:Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" ios:Margin="0,38,0,0">
@@ -128,37 +136,53 @@
                     QueryIcon="Find"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"
-                    PlaceholderText="{x:Bind strings:MainWindow.Search}">
-                    <!-- TODO -->
-                    <!--<i:Interaction.Behaviors>
-                        <ic:EventTriggerBehavior EventName="TextChanged">
-                            <ic:InvokeCommandAction Command="{x:Bind ViewModel.SearchBoxTextChangedCommand}"/>
-                        </ic:EventTriggerBehavior>
-                        <ic:EventTriggerBehavior EventName="QuerySubmitted">
-                            <ic:InvokeCommandAction Command="{x:Bind ViewModel.SearchBoxQuerySubmittedCommand}"/>
-                        </ic:EventTriggerBehavior>
-                    </i:Interaction.Behaviors>-->
+                    PlaceholderText="{x:Bind strings:MainWindow.Search}"
+                    UpdateTextOnSelect="False"
+                    ItemsSource="{x:Bind ViewModel.SearchResults, Mode=OneWay}"
+                    Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <i:Interaction.Behaviors>
+                        <ix:EventTriggerBehavior EventName="TextChanged">
+                            <ix:InvokeCommandAction Command="{x:Bind ViewModel.SearchBoxTextChangedCommand}"/>
+                        </ix:EventTriggerBehavior>
+                        <ix:EventTriggerBehavior EventName="QuerySubmitted">
+                            <ix:InvokeCommandAction Command="{x:Bind ViewModel.SearchBoxQuerySubmittedCommand}"/>
+                        </ix:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
                     <AutoSuggestBox.KeyboardAccelerators>
                         <KeyboardAccelerator
                             Key="F"
                             Modifiers="Control"
                             Invoked="SearchBoxKeyboardAccelerator_Invoked"/>
                     </AutoSuggestBox.KeyboardAccelerators>
-                    <!-- TODO -->
-                    <!--<AutoSuggestBox.ItemTemplate>
-                        <DataTemplate x:DataType="tools:ToolProviderViewItem">
-                            <RichTextBlock
-                                HorizontalAlignment="Stretch"
-                                IsTextSelectionEnabled="False"
-                                TextWrapping="NoWrap"
-                                TextTrimming="CharacterEllipsis"
-                                ex:HighlighterExtension.Highlighters="{x:Bind MatchedSpans, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                <Paragraph>
-                                    <Run Text="{x:Bind ToolProvider.SearchDisplayName}"/>
-                                </Paragraph>
-                            </RichTextBlock>
+                    <AutoSuggestBox.ItemTemplate>
+                        <DataTemplate x:DataType="tools:GuiToolViewItem">
+                            <Grid
+                                Height="64">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <FontIcon
+                                    Grid.Column="0"
+                                    Visibility="{x:Bind ToolInstance.IconGlyph, Converter={StaticResource CollapsedWhenNullConverter}}"
+                                    FontFamily="{x:Bind ToolInstance.IconFontName, Converter={StaticResource StringToStaticResourceConverter}}"
+                                    Glyph="{x:Bind ToolInstance.IconGlyph}"/>
+                                <RichTextBlock
+                                    Grid.Column="1"
+                                    Margin="12,0,0,0"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Stretch"
+                                    IsTextSelectionEnabled="False"
+                                    TextWrapping="NoWrap"
+                                    TextTrimming="CharacterEllipsis"
+                                    ex:HighlighterExtension.Highlighters="{x:Bind MatchedSpans, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                    <Paragraph>
+                                        <Run Text="{x:Bind MenuDisplayTitle}"/>
+                                    </Paragraph>
+                                </RichTextBlock>
+                            </Grid>
                         </DataTemplate>
-                    </AutoSuggestBox.ItemTemplate>-->
+                    </AutoSuggestBox.ItemTemplate>
                 </AutoSuggestBox>
             </NavigationView.AutoSuggestBox>
 

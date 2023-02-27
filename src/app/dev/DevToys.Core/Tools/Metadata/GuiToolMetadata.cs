@@ -1,52 +1,38 @@
 ﻿using DevToys.Api;
 using DevToys.Api.Tool.Metadata.Attributes;
+using DevToys.Localization;
+using DevToys.Localization.Strings.MainWindow;
 
 namespace DevToys.Core.Tools.Metadata;
 
 [DebuggerDisplay($"InternalComponentName = {{{nameof(InternalComponentName)}}}")]
 public sealed class GuiToolMetadata : IOrderableMetadata
 {
-    public string InternalComponentName { get; }
-
-    public string Author { get; }
-
-    public string IconFontName { get; }
-
-    public string IconGlyph { get; }
-
-    public string ResourceManagerAssemblyIdentifier { get; }
-
-    public string ResourceManagerBaseName { get; }
-
-    public string ShortDisplayTitleResourceName { get; }
-
-    public string LongDisplayTitleResourceName { get; }
-
-    public string DescriptionResourceName { get; }
-
-    public string AccessibleNameResourceName { get; }
-
-    public string SearchKeywordsResourceName { get; }
-
-    public string GroupName { get; }
-
-    public IReadOnlyList<string> Before { get; }
-
-    public IReadOnlyList<string> After { get; }
-
-    public bool NotSearchable { get; }
-
-    public bool NotFavorable { get; }
-
-    public bool NoCompactOverlaySupport { get; }
-
-    public MenuPlacement? MenuPlacement { get; }
-
-    public int? CompactOverlayHeight { get; }
-
-    public int? CompactOverlayWidth { get; }
-
-    public IReadOnlyList<Platform> TargetPlatforms { get; }
+    internal static GuiToolMetadata Create(
+        string internalComponentName,
+        string author,
+        string iconFontName,
+        string iconGlyph,
+        string groupName,
+        string shortDisplayTitleResourceName,
+        string longDisplayTitleResourceName,
+        string resourceManagerAssemblyIdentifier,
+        string resourceManagerBaseName)
+    {
+        return new GuiToolMetadata(
+            new Dictionary<string, object>
+            {
+                { nameof(NameAttribute.InternalComponentName), "NoSearchResult" },
+                { nameof(AuthorAttribute.Author), "DevToys" },
+                { nameof(ToolDisplayInformationAttribute.IconFontName), "FluentSystemIcons" },
+                { nameof(ToolDisplayInformationAttribute.IconGlyph), "\uF3E9" },
+                { nameof(ToolDisplayInformationAttribute.GroupName), "N/A" },
+                { nameof(ToolDisplayInformationAttribute.ShortDisplayTitleResourceName), "N/A" },
+                { nameof(ToolDisplayInformationAttribute.LongDisplayTitleResourceName), nameof(MainWindow.SearchNoResultsFound) },
+                { nameof(ToolDisplayInformationAttribute.ResourceManagerAssemblyIdentifier), nameof(DevToysLocalizationResourceManagerAssemblyIdentifier) },
+                { nameof(ToolDisplayInformationAttribute.ResourceManagerBaseName), "DevToys.Localization.Strings.MainWindow.MainWindow" }
+            });
+    }
 
     public GuiToolMetadata(IDictionary<string, object> metadata)
     {
@@ -119,4 +105,46 @@ public sealed class GuiToolMetadata : IOrderableMetadata
             After = after;
         }
     }
+
+    public string InternalComponentName { get; }
+
+    public string Author { get; }
+
+    public string IconFontName { get; }
+
+    public string IconGlyph { get; }
+
+    public string ResourceManagerAssemblyIdentifier { get; }
+
+    public string ResourceManagerBaseName { get; }
+
+    public string ShortDisplayTitleResourceName { get; }
+
+    public string LongDisplayTitleResourceName { get; }
+
+    public string DescriptionResourceName { get; }
+
+    public string AccessibleNameResourceName { get; }
+
+    public string SearchKeywordsResourceName { get; }
+
+    public string GroupName { get; }
+
+    public IReadOnlyList<string> Before { get; }
+
+    public IReadOnlyList<string> After { get; }
+
+    public bool NotSearchable { get; }
+
+    public bool NotFavorable { get; }
+
+    public bool NoCompactOverlaySupport { get; }
+
+    public MenuPlacement? MenuPlacement { get; }
+
+    public int? CompactOverlayHeight { get; }
+
+    public int? CompactOverlayWidth { get; }
+
+    public IReadOnlyList<Platform> TargetPlatforms { get; }
 }

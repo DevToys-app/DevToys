@@ -1,10 +1,15 @@
 ﻿using System.Collections.ObjectModel;
 using System.Reflection;
 using DevToys.Api;
+using DevToys.Api.Core;
 using DevToys.Core.Settings;
 using DevToys.Core.Tools.Metadata;
 using DevToys.Core.Tools.ViewItems;
+using DevToys.Localization;
 using DevToys.Localization.Strings.MainMenu;
+using DevToys.Localization.Strings.MainWindow;
+using FuzzySharp;
+using FuzzySharp.PreProcess;
 using Microsoft.Extensions.Logging;
 using Uno.Extensions;
 
@@ -16,6 +21,23 @@ namespace DevToys.Core.Tools;
 [Export(typeof(GuiToolProvider))]
 public sealed partial class GuiToolProvider
 {
+    public static readonly GuiToolViewItem NoResultFoundItem
+        = new(
+            new GuiToolInstance(
+                new Lazy<IGuiTool, GuiToolMetadata>(
+                    GuiToolMetadata.Create(
+                        internalComponentName: "NoSearchResults",
+                        author: "N/A",
+                        iconFontName: "FluentSystemIcons",
+                        iconGlyph: "\uF3E9",
+                        groupName: "N/A",
+                        shortDisplayTitleResourceName: "N/A",
+                        longDisplayTitleResourceName: nameof(MainWindow.SearchNoResultsFound),
+                        resourceManagerAssemblyIdentifier: nameof(DevToysLocalizationResourceManagerAssemblyIdentifier),
+                        resourceManagerBaseName: "DevToys.Localization.Strings.MainWindow.MainWindow")),
+                typeof(DevToysLocalizationResourceManagerAssemblyIdentifier).Assembly),
+            showLongDisplayTitle: true);
+
     private readonly ILogger _logger;
     private readonly IEnumerable<Lazy<IResourceManagerAssemblyIdentifier, ResourceManagerAssemblyIdentifierMetadata>> _resourceManagerAssemblyIdentifiers;
     private readonly IEnumerable<Lazy<GuiToolGroup, GuiToolGroupMetadata>> _guiToolGroups;
@@ -242,6 +264,62 @@ public sealed partial class GuiToolProvider
                     }
                 }
             }
+        }
+    }
+
+    /// <summary>
+    /// Search the given <paramref name="searchQuery"/> in the list of known tools and update the given <paramref name="searchResultListToUpdate"/>
+    /// to reflect the result.
+    /// </summary>
+    public void SearchTools(string searchQuery, ObservableCollection<GuiToolViewItem> searchResultListToUpdate)
+    {
+        if (string.IsNullOrEmpty(searchQuery))
+        {
+            searchResultListToUpdate.Clear();
+            return;
+        }
+
+        string[] searchQueries = searchQuery.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+
+        var weightedToolList = new List<(double weight, GuiToolViewItem tool)>();
+        for (int i = 0; i < AllTools.Count; i++)
+        {
+            GuiToolInstance tool = AllTools[i];
+
+            if (!tool.NotSearchable                                     // do not search tools marked as non-searchable
+                && !string.IsNullOrWhiteSpace(tool.LongDisplayTitle))   // do not search tools without long display name.
+            {
+                SearchTool(searchQueries, tool, out MatchSpan[] matchedSpans, out double weight);
+
+                weightedToolList.Add(
+                    new(
+                        weight,
+                        new GuiToolViewItem(
+                            tool,
+                            showLongDisplayTitle: true,
+                            matchedSpans)));
+            }
+        }
+
+        searchResultListToUpdate.Clear();
+
+        if (weightedToolList.Count > 0)
+        {
+            var descOrderedWeightedToolList = weightedToolList.OrderByDescending(i => i.weight).ToList();
+            int thirdQuarterItemIndex = Math.Min((int)(0.25 * descOrderedWeightedToolList.Count), descOrderedWeightedToolList.Count - 1);
+            double thirdQuarterWeight = descOrderedWeightedToolList[thirdQuarterItemIndex].weight;
+
+            searchResultListToUpdate
+                .AddRange(
+                    descOrderedWeightedToolList
+                        .Take(5)
+                        .TakeWhile(i => i.weight >= thirdQuarterWeight)
+                        .Select(i => i.tool));
+        }
+
+        if (searchResultListToUpdate.Count == 0)
+        {
+            searchResultListToUpdate.Add(NoResultFoundItem);
         }
     }
 
@@ -475,6 +553,71 @@ public sealed partial class GuiToolProvider
     private static SettingDefinition<bool> CreateIsToolFavoriteSettingDefinition(GuiToolInstance guiToolInstance)
     {
         return new SettingDefinition<bool>($"{guiToolInstance.InternalComponentName}_IsFavorite", defaultValue: false);
+    }
+
+    private static void SearchTool(string[] searchQueries, GuiToolInstance tool, out MatchSpan[] matchedSpans, out double weight)
+    {
+        var matches = new List<MatchSpan>();
+        weight = 0;
+        foreach (string? query in searchQueries)
+        {
+            WeightMatch(query, tool.LongDisplayTitle, out double weight1, out IReadOnlyList<MatchSpan> spans);
+            WeightMatch(query, tool.SearchKeywords, out double weight2, out _);
+            WeightMatch(query, tool.Description, out double weight3, out _);
+            weight = weight + weight1 + weight2 + weight3;
+            matches.AddRange(spans);
+        }
+
+        matchedSpans = matches.Distinct().ToArray();
+    }
+
+    private static void WeightMatch(
+        string searchQuery,
+        string stringToTestAgainst,
+        out double weight,
+        out IReadOnlyList<MatchSpan> matchSpans)
+    {
+        var matches = new List<MatchSpan>();
+        matchSpans = matches;
+        weight = 0;
+
+        if (string.IsNullOrWhiteSpace(stringToTestAgainst))
+        {
+            return;
+        }
+
+        // Fuzzy search.
+        int i;
+        string[] stringToTestAgainstSplitted = stringToTestAgainst.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+        for (i = 0; i < stringToTestAgainstSplitted.Length; i++)
+        {
+            weight += Fuzz.WeightedRatio(searchQuery, stringToTestAgainstSplitted[i], PreprocessMode.Full);
+        }
+
+        if (weight > 0)
+        {
+            // Search substrings.
+            i = 0;
+            while (i < stringToTestAgainst?.Length && i > -1)
+            {
+                int matchIndex = stringToTestAgainst.IndexOf(searchQuery, i, StringComparison.OrdinalIgnoreCase);
+                if (matchIndex > -1)
+                {
+                    if (matchIndex == 0)
+                    {
+                        // if it's a prefix, add an extra 25%.
+                        weight *= 1.25;
+                    }
+
+                    matches.Add(new MatchSpan(matchIndex, searchQuery.Length));
+                    i = matchIndex + searchQuery.Length;
+                    weight *= 1.25; // add 25%.
+
+                }
+
+                i++;
+            }
+        }
     }
 
     [LoggerMessage(0, LogLevel.Information, "Set '{toolName}' as the most recently used tool.")]

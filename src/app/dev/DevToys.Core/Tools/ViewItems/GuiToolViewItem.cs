@@ -11,10 +11,11 @@ public sealed partial class GuiToolViewItem : ObservableObject
 {
     private readonly bool _showLongDisplayTitle;
 
-    public GuiToolViewItem(GuiToolInstance instance, bool showLongDisplayTitle = true)
+    public GuiToolViewItem(GuiToolInstance instance, bool showLongDisplayTitle = true, MatchSpan[]? matchSpans = null)
     {
         Guard.IsNotNull(instance);
         ToolInstance = instance;
+        MatchedSpans = matchSpans;
         _showLongDisplayTitle = showLongDisplayTitle;
     }
 
