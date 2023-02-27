@@ -291,13 +291,16 @@ public sealed partial class GuiToolProvider
             {
                 SearchTool(searchQueries, tool, out MatchSpan[] matchedSpans, out double weight);
 
-                weightedToolList.Add(
-                    new(
-                        weight,
-                        new GuiToolViewItem(
-                            tool,
-                            showLongDisplayTitle: true,
-                            matchedSpans)));
+                if (weight > 0)
+                {
+                    weightedToolList.Add(
+                        new(
+                            weight,
+                            new GuiToolViewItem(
+                                tool,
+                                showLongDisplayTitle: true,
+                                matchedSpans)));
+                }
             }
         }
 
@@ -561,10 +564,14 @@ public sealed partial class GuiToolProvider
         weight = 0;
         foreach (string? query in searchQueries)
         {
-            WeightMatch(query, tool.LongDisplayTitle, out double weight1, out IReadOnlyList<MatchSpan> spans);
-            WeightMatch(query, tool.SearchKeywords, out double weight2, out _);
-            WeightMatch(query, tool.Description, out double weight3, out _);
-            weight = weight + weight1 + weight2 + weight3;
+            WeightMatch(query, tool.LongDisplayTitle, out double titleWeight, out IReadOnlyList<MatchSpan> spans);
+            WeightMatch(query, tool.SearchKeywords, out double searchKeywordsWeight, out _);
+            WeightMatch(query, tool.Description, out double descriptionWeight, out _);
+
+            searchKeywordsWeight *= 0.75; // reduce the importance of this weight by 25%.
+            descriptionWeight *= 0.15; // reduce the importance of this weight by 85%.
+
+            weight = weight + titleWeight + searchKeywordsWeight + descriptionWeight;
             matches.AddRange(spans);
         }
 
@@ -586,36 +593,28 @@ public sealed partial class GuiToolProvider
             return;
         }
 
-        // Fuzzy search.
-        int i;
         string[] stringToTestAgainstSplitted = stringToTestAgainst.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
-        for (i = 0; i < stringToTestAgainstSplitted.Length; i++)
+        for (int i = 0; i < stringToTestAgainstSplitted.Length; i++)
         {
-            weight += Fuzz.WeightedRatio(searchQuery, stringToTestAgainstSplitted[i], PreprocessMode.Full);
-        }
-
-        if (weight > 0)
-        {
-            // Search substrings.
-            i = 0;
-            while (i < stringToTestAgainst?.Length && i > -1)
+            string token = stringToTestAgainstSplitted[i];
+            // Exact match.
+            if (string.Equals(searchQuery, token, StringComparison.CurrentCultureIgnoreCase))
             {
-                int matchIndex = stringToTestAgainst.IndexOf(searchQuery, i, StringComparison.OrdinalIgnoreCase);
-                if (matchIndex > -1)
+                weight += 100;
+            }
+            // Prefix match
+            else if (token.StartsWith(searchQuery, StringComparison.CurrentCultureIgnoreCase))
+            {
+                weight += 25;
+            }
+            // Fuzzy match
+            else
+            {
+                int fuzzyWeight = Fuzz.WeightedRatio(searchQuery, stringToTestAgainstSplitted[i], PreprocessMode.Full);
+                if (fuzzyWeight >= 75)
                 {
-                    if (matchIndex == 0)
-                    {
-                        // if it's a prefix, add an extra 25%.
-                        weight *= 1.25;
-                    }
-
-                    matches.Add(new MatchSpan(matchIndex, searchQuery.Length));
-                    i = matchIndex + searchQuery.Length;
-                    weight *= 1.25; // add 25%.
-
+                    weight += 10;
                 }
-
-                i++;
             }
         }
     }
