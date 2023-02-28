@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
+using DevToys.Localization.Strings.MainWindow;
 
 namespace DevToys.UI.ViewModels;
 
@@ -46,5 +47,15 @@ internal sealed partial class ToolPageViewModel : ObservableRecipient
         Guard.IsNotNull(_guiToolViewItem);
         _guiToolProvider.SetToolIsFavorite(_guiToolViewItem.ToolInstance, !_guiToolProvider.GetToolIsFavorite(_guiToolViewItem.ToolInstance));
         OnPropertyChanged(nameof(IsSelectedMenuItemAFavoriteTool));
+    }
+
+    internal string GetFavoriteButtonText(bool isSelectedMenuItemAFavoriteTool)
+    {
+        if (isSelectedMenuItemAFavoriteTool)
+        {
+            return MainWindow.RemoveFromFavorites;
+        }
+
+        return MainWindow.AddToFavorites;
     }
 }

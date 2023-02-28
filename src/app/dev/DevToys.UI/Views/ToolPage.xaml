@@ -14,25 +14,49 @@
     xmlns:strings="using:DevToys.Localization.Strings.MainWindow"
     mc:Ignorable="d">
     <Page.Resources>
-        <converters:BooleanToStringConverter x:Key="BooleanToFavoriteText" StringIfTrue="{x:Bind strings:MainWindow.RemoveFromFavorites}" StringIfFalse="{x:Bind strings:MainWindow.AddToFavorites}"/>
         <converters:BooleanToStringConverter x:Key="BooleanToFavoriteIconGlyph" StringIfTrue="&#xF71A;" StringIfFalse="&#xF70F;"/>
     </Page.Resources>
-    
-    <Grid>
-        <Grid
-            x:Name="ToolHeader"
-            Margin="0,0,0,5">
+
+    <ScrollViewer
+        x:Name="RootScrollViewer"
+        Padding="56,32,56,56">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="NavigationViewExpanded">
+                    <VisualState.Setters>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NavigationViewCompact">
+                    <VisualState.Setters>
+                        <Setter Target="RootScrollViewer.Padding" Value="16,32,16,32"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NavigationViewMinimal">
+                    <VisualState.Setters>
+                        <Setter Target="RootScrollViewer.Padding" Value="24,32,24,32"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <TextBlock
+                Grid.Row="0"
                 Grid.Column="0"
                 VerticalAlignment="Center"
                 Text="{x:Bind ViewModel.HeaderText, Mode=OneWay}"
                 TextTrimming="CharacterEllipsis"
                 FontSize="24"/>
             <Border
+                Grid.Row="0"
                 Grid.Column="1">
                 <CommandBar
                     IsOpen="False"
@@ -40,7 +64,7 @@
                     <AppBarButton
                         Command="{x:Bind ViewModel.ToggleSelectedMenuItemFavoriteCommand}"
                         Visibility="{x:Bind ViewModel.IsSelectedMenuItemSupportFavorite, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        Label="{x:Bind ViewModel.IsSelectedMenuItemAFavoriteTool, Mode=OneWay, Converter={StaticResource BooleanToFavoriteText}}">
+                        Label="{x:Bind ViewModel.GetFavoriteButtonText(ViewModel.IsSelectedMenuItemAFavoriteTool), Mode=OneWay}">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{x:Bind ViewModel.IsSelectedMenuItemAFavoriteTool, Mode=OneWay, Converter={StaticResource BooleanToFavoriteIconGlyph}}"/>
                         </AppBarButton.Icon>
@@ -54,5 +78,5 @@
                 </CommandBar>
             </Border>
         </Grid>
-    </Grid>
+    </ScrollViewer>
 </Page>
