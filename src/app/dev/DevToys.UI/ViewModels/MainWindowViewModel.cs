@@ -1,10 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using DevToys.Api.Core;
+using CommunityToolkit.Mvvm.Messaging;
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
-using FuzzySharp;
+using DevToys.UI.Models;
 using Microsoft.UI.Xaml.Controls;
 
 namespace DevToys.UI.ViewModels;
@@ -20,6 +20,7 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
     public MainWindowViewModel(GuiToolProvider guiToolProvider)
     {
         _guiToolProvider = guiToolProvider;
+        Messenger.Register<MainWindowViewModel, ChangeSelectedMenuItemMessage>(this, OnChangeSelectedMenuItemMessageReceived);
     }
 
     /// <summary>
@@ -129,18 +130,19 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
     [RelayCommand]
     private void SearchBoxQuerySubmitted(AutoSuggestBoxQuerySubmittedEventArgs parameters)
     {
-        var selectedApp = parameters.ChosenSuggestion as GuiToolViewItem;
-        if (selectedApp is null && SearchResults.Count > 0)
+        var selectedSearchResultItem = parameters.ChosenSuggestion as GuiToolViewItem;
+        if (selectedSearchResultItem is null && SearchResults.Count > 0)
         {
-            selectedApp = SearchResults[0];
+            selectedSearchResultItem = SearchResults[0];
         }
 
-        if (selectedApp is null || selectedApp == GuiToolProvider.NoResultFoundItem)
+        if (selectedSearchResultItem is null || selectedSearchResultItem == GuiToolProvider.NoResultFoundItem)
         {
             return;
         }
 
-        // TODO: Navigate to the tool.
+        // Select the actual menu item in the navigation view. This will trigger the navigation.
+        SelectedMenuItem = GetBestMenuItemToSelect(selectedSearchResultItem);
     }
 
     /// <summary>
@@ -156,14 +158,24 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
         }
     }
 
-    private INotifyPropertyChanged GetBestMenuItemToSelect(INotifyPropertyChanged currentSelectedMenuItem)
+    private INotifyPropertyChanged GetBestMenuItemToSelect(object currentSelectedMenuItem)
     {
         Guard.IsNotEmpty((IReadOnlyList<INotifyPropertyChanged>)HeaderAndBodyToolViewItems);
         Guard.IsNotNull(currentSelectedMenuItem);
 
+        GuiToolInstance? guiToolInstance = null;
         if (currentSelectedMenuItem is GuiToolViewItem guiToolViewItem)
         {
-            GuiToolViewItem? itemToSelect = _guiToolProvider.GetViewItemFromTool(guiToolViewItem.ToolInstance).FirstOrDefault();
+            guiToolInstance = guiToolViewItem.ToolInstance;
+        }
+        else if (currentSelectedMenuItem is GuiToolInstance instance)
+        {
+            guiToolInstance = instance;
+        }
+
+        if (guiToolInstance is not null)
+        {
+            GuiToolViewItem? itemToSelect = _guiToolProvider.GetViewItemFromTool(guiToolInstance).FirstOrDefault();
             if (itemToSelect is not null)
             {
                 return itemToSelect;
@@ -171,5 +183,11 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
         }
 
         return HeaderAndBodyToolViewItems[0];
+    }
+
+    private void OnChangeSelectedMenuItemMessageReceived(MainWindowViewModel vm, ChangeSelectedMenuItemMessage message)
+    {
+        // Select the actual menu item in the navigation view. This will trigger the navigation.
+        SelectedMenuItem = GetBestMenuItemToSelect(message.Value);
     }
 }
