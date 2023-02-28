@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
 using DevToys.Api;
 
 namespace DevToys.Core.Tools.ViewItems;
@@ -10,6 +11,9 @@ namespace DevToys.Core.Tools.ViewItems;
 [DebuggerDisplay($"DisplayTitle = {{{nameof(DisplayTitle)}}}")]
 public sealed class GroupViewItem : ObservableObject
 {
+    private TaskCompletionSource? _tcs;
+    private bool _childItemJustGotSelected;
+
     internal GroupViewItem(
         string internalName,
         GuiToolGroup groupInfo,
@@ -31,7 +35,7 @@ public sealed class GroupViewItem : ObservableObject
         string displayTitle,
         string accessibleName,
         ObservableCollection<GuiToolViewItem>? children = null,
-        bool isExpandedByDefault = false)
+        bool menuItemShouldBeExpandedByDefault = false)
     {
         Guard.IsNotNullOrWhiteSpace(internalName);
         Guard.IsNotNullOrWhiteSpace(iconFontName);
@@ -43,7 +47,12 @@ public sealed class GroupViewItem : ObservableObject
         IconFontName = iconFontName;
         IconGlyph = iconGlyph;
         Children = children;
-        IsExpandedByDefault = isExpandedByDefault;
+        MenuItemShouldBeExpandedByDefault = menuItemShouldBeExpandedByDefault;
+
+        if (children is not null)
+        {
+            children.CollectionChanged += Children_CollectionChanged;
+        }
     }
 
     /// <summary>
@@ -79,5 +88,75 @@ public sealed class GroupViewItem : ObservableObject
     /// <summary>
     /// Gets whether the group should be expanded by default.
     /// </summary>
-    public bool IsExpandedByDefault { get; }
+    public bool MenuItemShouldBeExpandedByDefault { get; }
+
+    /// <summary>
+    /// Gets whether the group should be expanded.
+    /// </summary>
+    public bool MenuItemShouldBeExpanded
+    {
+        get
+        {
+            if (Children is not null)
+            {
+                if (Children.Any(item => item.IsRecommended))
+                {
+                    return true;
+                }
+            }
+
+            if (_childItemJustGotSelected)
+            {
+                Task.Delay(1000)
+                    .ContinueWith(_ =>
+                    {
+                        _childItemJustGotSelected = false;
+                    });
+                return true;
+            }
+
+            return false;
+        }
+    }
+
+    private void Children_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+    {
+        if (e.OldItems is not null)
+        {
+            foreach (object? item in e.OldItems)
+            {
+                if (item is GuiToolViewItem guiToolViewItem)
+                {
+                    guiToolViewItem.PropertyChanged -= Child_PropertyChanged;
+                    guiToolViewItem.GotSelected -= Child_GotSelected;
+                }
+            }
+        }
+
+        if (e.NewItems is not null)
+        {
+            foreach (object? item in e.NewItems)
+            {
+                if (item is GuiToolViewItem guiToolViewItem)
+                {
+                    guiToolViewItem.PropertyChanged += Child_PropertyChanged;
+                    guiToolViewItem.GotSelected += Child_GotSelected;
+                }
+            }
+        }
+    }
+
+    private void Child_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(GuiToolViewItem.IsRecommended))
+        {
+            OnPropertyChanged(nameof(MenuItemShouldBeExpanded));
+        }
+    }
+
+    private void Child_GotSelected(object? sender, EventArgs e)
+    {
+        _childItemJustGotSelected = true;
+        OnPropertyChanged(nameof(MenuItemShouldBeExpanded));
+    }
 }

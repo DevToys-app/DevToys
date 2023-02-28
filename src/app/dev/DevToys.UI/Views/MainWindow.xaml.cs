@@ -1,6 +1,5 @@
 ﻿using DevToys.Api;
 using DevToys.Api.Core.Theme;
-using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
 using DevToys.UI.Framework.Controls;
 using DevToys.UI.Models;
@@ -22,6 +21,8 @@ public sealed partial class MainWindow : BackdropPage
     private const string NavigationViewCompactStateName = "NavigationViewCompact";
     private const string NavigationViewMinimalStateName = "NavigationViewMinimal";
 
+    private static MainWindow? MainWindowInstance;
+
     private readonly IMefProvider _mefProvider;
 
     private NavigationViewDisplayMode _navigationViewDisplayMode;
@@ -31,6 +32,8 @@ public sealed partial class MainWindow : BackdropPage
     {
         Guard.IsNotNull(mefProvider);
         _mefProvider = mefProvider;
+
+        MainWindowInstance = this;
 
         InitializeComponent();
         WindowStartupLocation = WindowStartupLocation.CenterScreen;
@@ -83,7 +86,7 @@ public sealed partial class MainWindow : BackdropPage
         // So we manually expand the items that should be expanded on load.
         foreach (INotifyPropertyChanged? item in ViewModel.HeaderAndBodyToolViewItems)
         {
-            if (item is GroupViewItem groupViewItem && groupViewItem.IsExpandedByDefault)
+            if (item is GroupViewItem groupViewItem && groupViewItem.MenuItemShouldBeExpandedByDefault)
             {
                 var menuItem = MenuNavigationView.ContainerFromMenuItem(item) as NavigationViewItem;
                 if (menuItem is not null)
@@ -210,5 +213,11 @@ public sealed partial class MainWindow : BackdropPage
         {
             visualStateListener.SetVisualState(visualStateName);
         }
+    }
+
+    private static bool UpdateMenuItemShouldBeExpanded(bool menuItemShouldBeExpanded)
+    {
+        Guard.IsNotNull(MainWindowInstance);
+        return menuItemShouldBeExpanded && MainWindowInstance._navigationViewDisplayMode == NavigationViewDisplayMode.Expanded;
     }
 }
