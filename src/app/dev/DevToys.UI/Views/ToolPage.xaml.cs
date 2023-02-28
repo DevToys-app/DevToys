@@ -1,6 +1,10 @@
-﻿using DevToys.UI.Framework.Controls;
+﻿using DevToys.Core.Tools.ViewItems;
+using DevToys.UI.Framework.Controls;
+using DevToys.UI.Models;
+using DevToys.UI.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Navigation;
 
 namespace DevToys.UI.Views;
 
@@ -12,6 +16,22 @@ public sealed partial class ToolPage : Page, IVisualStateListener
     public ToolPage()
     {
         this.InitializeComponent();
+    }
+
+    /// <summary>
+    /// Gets the page's view model.
+    /// </summary>
+    internal ToolPageViewModel ViewModel => (ToolPageViewModel)DataContext;
+
+    protected override void OnNavigatedTo(NavigationEventArgs e)
+    {
+        base.OnNavigatedTo(e);
+
+        Guard.IsOfType(e.Parameter, typeof(NavigationParameters<GuiToolViewItem>));
+        var parameter = (NavigationParameters<GuiToolViewItem>)e.Parameter;
+
+        DataContext = parameter.MefProvider.Import<ToolPageViewModel>();
+        ViewModel.Load(parameter.Parameter);
     }
 
     public void SetVisualState(string visualStateName)

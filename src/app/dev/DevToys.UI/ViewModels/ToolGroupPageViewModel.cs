@@ -1,10 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.Collections;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.Metadata;
 using DevToys.Core.Tools.ViewItems;
 using DevToys.Localization.Strings.MainMenu;
+using DevToys.UI.Models;
 using Microsoft.UI.Xaml.Controls;
 
 namespace DevToys.UI.ViewModels;
@@ -49,16 +51,11 @@ internal sealed partial class ToolGroupPageViewModel : ObservableRecipient
     }
 
     [RelayCommand]
-    private static void ToolSelected(ItemClickEventArgs args)
+    private void ToolSelected(ItemClickEventArgs args)
     {
         if (args.ClickedItem is not null && args.ClickedItem is GuiToolInstance tool)
         {
-            //WeakReferenceMessenger.Default.Send(
-            //    new TrainingWindowNavigateToPageMessage(
-            //        typeof(AppDetailPageViewModel),
-            //        app.Model,
-            //        NavigationTransition.Entrance,
-            //        referenceConnectedAnimationObject: app));
+            Messenger.Send(new ChangeSelectedMenuItemMessage(tool));
         }
     }
 
