@@ -7,12 +7,17 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:collections="using:CommunityToolkit.Mvvm.Collections"
+    xmlns:converters="using:DevToys.UI.Framework.Converters"
     xmlns:ix="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:tools="using:DevToys.Core.Tools"
     xmlns:strings="using:DevToys.Localization.Strings.MainWindow"
     mc:Ignorable="d">
-
+    <Page.Resources>
+        <converters:BooleanToStringConverter x:Key="BooleanToFavoriteText" StringIfTrue="{x:Bind strings:MainWindow.RemoveFromFavorites}" StringIfFalse="{x:Bind strings:MainWindow.AddToFavorites}"/>
+        <converters:BooleanToStringConverter x:Key="BooleanToFavoriteIconGlyph" StringIfTrue="&#xF71A;" StringIfFalse="&#xF70F;"/>
+    </Page.Resources>
+    
     <Grid>
         <Grid
             x:Name="ToolHeader"
@@ -27,19 +32,27 @@
                 Text="{x:Bind ViewModel.HeaderText, Mode=OneWay}"
                 TextTrimming="CharacterEllipsis"
                 FontSize="24"/>
-            <win:Border
+            <Border
                 Grid.Column="1">
-                <win:CommandBar
+                <CommandBar
                     IsOpen="False"
                     DefaultLabelPosition="Right">
+                    <AppBarButton
+                        Command="{x:Bind ViewModel.ToggleSelectedMenuItemFavoriteCommand}"
+                        Visibility="{x:Bind ViewModel.IsSelectedMenuItemSupportFavorite, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Label="{x:Bind ViewModel.IsSelectedMenuItemAFavoriteTool, Mode=OneWay, Converter={StaticResource BooleanToFavoriteText}}">
+                        <AppBarButton.Icon>
+                            <FontIcon Glyph="{x:Bind ViewModel.IsSelectedMenuItemAFavoriteTool, Mode=OneWay, Converter={StaticResource BooleanToFavoriteIconGlyph}}"/>
+                        </AppBarButton.Icon>
+                    </AppBarButton>
                     <win:AppBarButton
                         Label="{x:Bind strings:MainWindow.PinToStart}">
                         <win:AppBarButton.Icon>
                             <win:FontIcon Glyph="&#xF602;"/>
                         </win:AppBarButton.Icon>
                     </win:AppBarButton>
-                </win:CommandBar>
-            </win:Border>
+                </CommandBar>
+            </Border>
         </Grid>
     </Grid>
 </Page>

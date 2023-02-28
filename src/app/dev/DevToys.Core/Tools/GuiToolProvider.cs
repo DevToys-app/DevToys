@@ -549,7 +549,7 @@ public sealed partial class GuiToolProvider
                 displayTitle: MainMenu.FavoriteToolsDisplayTitle,
                 accessibleName: MainMenu.FavoriteToolsAccessibleName,
                 children: new(favoriteTools),
-                isExpandedByDefault: true);
+                menuItemShouldBeExpandedByDefault: true);
         return _favoriteToolsGroupViewItem;
     }
 

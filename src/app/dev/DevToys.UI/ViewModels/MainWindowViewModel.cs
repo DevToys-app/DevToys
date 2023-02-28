@@ -61,43 +61,15 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
                 SetProperty(ref _selectedMenuItem, value);
             }
 
-            OnPropertyChanged(nameof(HeaderText));
-            OnPropertyChanged(nameof(IsSelectedMenuItemSupportFavorite));
-            OnPropertyChanged(nameof(IsSelectedMenuItemAFavoriteTool));
             OnPropertyChanged(nameof(IsSelectedMenuItemATool));
             SelectedMenuItemChanged?.Invoke(this, EventArgs.Empty);
+
+            if (value is GuiToolViewItem guiToolViewItem)
+            {
+                guiToolViewItem.RaiseGotSelected();
+            }
         }
     }
-
-    /// <summary>
-    /// Gets the text to show in the header of the app according to the <see cref="SelectedMenuItem"/>.
-    /// </summary>
-    internal string? HeaderText
-    {
-        get
-        {
-            if (SelectedMenuItem is GuiToolViewItem guiToolViewItem)
-            {
-                return guiToolViewItem.ToolInstance.LongDisplayTitle;
-            }
-            else if (SelectedMenuItem is GroupViewItem groupViewItem)
-            {
-                return groupViewItem.DisplayTitle;
-            }
-
-            return string.Empty;
-        }
-    }
-
-    /// <summary>
-    /// Indicates whether the <see cref="SelectedMenuItem"/> can be added or removed from favorites.
-    /// </summary>
-    internal bool IsSelectedMenuItemSupportFavorite => SelectedMenuItem is GuiToolViewItem guiToolViewItem && !guiToolViewItem.ToolInstance.NotFavorable;
-
-    /// <summary>
-    /// Indicates whether the <see cref="SelectedMenuItem"/> is a favorite tool or not.
-    /// </summary>
-    internal bool IsSelectedMenuItemAFavoriteTool => SelectedMenuItem is GuiToolViewItem guiToolViewItem && _guiToolProvider.GetToolIsFavorite(guiToolViewItem.ToolInstance);
 
     /// <summary>
     /// Indicates whether the <see cref="SelectedMenuItem"/> is a tool or not.
@@ -143,19 +115,6 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
 
         // Select the actual menu item in the navigation view. This will trigger the navigation.
         SelectedMenuItem = GetBestMenuItemToSelect(selectedSearchResultItem);
-    }
-
-    /// <summary>
-    /// Toggles the favorite status of the <see cref="SelectedMenuItem"/>.
-    /// </summary>
-    [RelayCommand]
-    private void ToggleSelectedMenuItemFavorite()
-    {
-        if (SelectedMenuItem is GuiToolViewItem guiToolViewItem)
-        {
-            _guiToolProvider.SetToolIsFavorite(guiToolViewItem.ToolInstance, !_guiToolProvider.GetToolIsFavorite(guiToolViewItem.ToolInstance));
-            OnPropertyChanged(nameof(IsSelectedMenuItemAFavoriteTool));
-        }
     }
 
     private INotifyPropertyChanged GetBestMenuItemToSelect(object currentSelectedMenuItem)

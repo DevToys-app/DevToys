@@ -20,6 +20,11 @@ public sealed partial class GuiToolViewItem : ObservableObject
     }
 
     /// <summary>
+    /// Raised when the tool got selected in the menu.
+    /// </summary>
+    public event EventHandler? GotSelected;
+
+    /// <summary>
     /// Gets or sets the list of spans that matched a search.
     /// </summary>
     [ObservableProperty]
@@ -47,5 +52,10 @@ public sealed partial class GuiToolViewItem : ObservableObject
 
             return ToolInstance.LongDisplayTitle;
         }
+    }
+
+    public void RaiseGotSelected()
+    {
+        GotSelected?.Invoke(this, EventArgs.Empty);
     }
 }

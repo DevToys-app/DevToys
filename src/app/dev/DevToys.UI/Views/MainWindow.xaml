@@ -9,6 +9,7 @@
     xmlns:macos="http://uno.ui/macos"
     xmlns:not_win="http://uno.ui/not_win"
     xmlns:wasm="http://uno.ui/wasm"
+    xmlns:local="using:DevToys.UI.Views"
     xmlns:tools="using:DevToys.Core.Tools.ViewItems"
     xmlns:dts="using:DevToys.UI.DataTemplateSelectors"
     xmlns:strings="using:DevToys.Localization.Strings.MainWindow"
@@ -193,7 +194,7 @@
                             <NavigationViewItem
                                 AutomationProperties.Name="{x:Bind AccessibleName}"
                                 MenuItemsSource="{x:Bind Children}"
-                                IsExpanded="{x:Bind IsExpandedByDefault, Mode=OneWay}">
+                                IsExpanded="{x:Bind local:MainWindow.UpdateMenuItemShouldBeExpanded(MenuItemShouldBeExpanded), Mode=OneWay}">
                                 <NavigationViewItem.Icon>
                                     <FontIcon
                                         FontFamily="{x:Bind IconFontName, Converter={StaticResource StringToStaticResourceConverter}}"
