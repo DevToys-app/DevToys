@@ -33,7 +33,7 @@ public sealed partial class GuiToolProvider
                         shortDisplayTitleResourceName: "N/A",
                         longDisplayTitleResourceName: nameof(MainMenu.SearchNoResultsFound),
                         resourceManagerAssemblyIdentifier: nameof(DevToysLocalizationResourceManagerAssemblyIdentifier),
-                        resourceManagerBaseName: "DevToys.Localization.Strings.MainWindow.MainWindow")),
+                        resourceManagerBaseName: "DevToys.Localization.Strings.MainMenu.MainMenu")),
                 typeof(DevToysLocalizationResourceManagerAssemblyIdentifier).Assembly),
             showLongDisplayTitle: true);
 
