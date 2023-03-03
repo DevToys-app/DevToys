@@ -118,48 +118,48 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Checksum Generator tool</value>
+    <value>Генератор чексума</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Откажи</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Конфигурација</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generate a hash with Checksum based on a file</value>
+    <value>Генерисање хеша са чексумом на основу фајла</value>
   </data>
   <data name="HashingAlgorithmDescription" xml:space="preserve">
-    <value>Select which hashing algorithm you want to use</value>
+    <value>Одаберите који алгоритам хеширања желите да користите</value>
   </data>
   <data name="HashingAlgorithmTitle" xml:space="preserve">
-    <value>Hashing Algorithm</value>
+    <value>Алгоритам хеширања</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>Улаз</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Checksum</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>Излаз</value>
   </data>
   <data name="OutputComparer" xml:space="preserve">
-    <value>Output Comparer</value>
+    <value>Поређење излаза</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Checksum Generator</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
-    <value>Uppercase</value>
+    <value>Велика слова</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value/>
   </data>
   <data name="HashesMatch" xml:space="preserve">
-    <value>The hashes are the same.</value>
+    <value>Хешеви се подударају.</value>
   </data>
   <data name="HashesMismatch" xml:space="preserve">
-    <value>The hashes are different.</value>
+    <value>Хешеви се разликују.</value>
   </data>
 </root>
