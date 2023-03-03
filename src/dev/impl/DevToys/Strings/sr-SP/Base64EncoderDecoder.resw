@@ -127,40 +127,40 @@
     <value>Конфигурација</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
-    <value>Decode</value>
+    <value>Дешифровање</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Select which conversion mode you want to use</value>
+    <value>Одаберите који метод конверзије желите да користите</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
-    <value>Encode</value>
+    <value>Шифровање</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Conversion</value>
+    <value>Конверзија</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Base64 Text</value>
+    <value>Base64 текст</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
-    <value>Select which encoding do you want to use</value>
+    <value>Одаберите који метод шифровања желите да користите</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
-    <value>Encoding</value>
+    <value>Шифровање</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>Input</value>
+    <value>Улаз</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Output</value>
+    <value>Излаз</value>
   </data>
   <data name="Utf8" xml:space="preserve">
     <value>UTF-8</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Encode and decode Base64 text data</value>
+    <value>Шифровање и дешифровање Base64 текстуалних података</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Base64 Text Encoder / Decoder</value>
+    <value>Кодер и декодер Base64 текста</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>RFC 4648</value>
