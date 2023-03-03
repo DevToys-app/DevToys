@@ -145,13 +145,13 @@
     <value>Select whether the input should be compressed or decompressed</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
-    <value>Encoding</value>
+    <value>Шифровање</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>Input</value>
+    <value>Улаз</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Output</value>
+    <value>Излаз</value>
   </data>
   <data name="Utf8" xml:space="preserve">
     <value>UTF-8</value>
