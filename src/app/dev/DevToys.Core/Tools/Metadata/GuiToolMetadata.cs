@@ -1,7 +1,7 @@
 ﻿using DevToys.Api;
 using DevToys.Api.Tool.Metadata.Attributes;
 using DevToys.Localization;
-using DevToys.Localization.Strings.MainWindow;
+using DevToys.Localization.Strings.MainMenu;
 
 namespace DevToys.Core.Tools.Metadata;
 
@@ -28,7 +28,7 @@ public sealed class GuiToolMetadata : IOrderableMetadata
                 { nameof(ToolDisplayInformationAttribute.IconGlyph), "\uF3E9" },
                 { nameof(ToolDisplayInformationAttribute.GroupName), "N/A" },
                 { nameof(ToolDisplayInformationAttribute.ShortDisplayTitleResourceName), "N/A" },
-                { nameof(ToolDisplayInformationAttribute.LongDisplayTitleResourceName), nameof(MainWindow.SearchNoResultsFound) },
+                { nameof(ToolDisplayInformationAttribute.LongDisplayTitleResourceName), nameof(MainMenu.SearchNoResultsFound) },
                 { nameof(ToolDisplayInformationAttribute.ResourceManagerAssemblyIdentifier), nameof(DevToysLocalizationResourceManagerAssemblyIdentifier) },
                 { nameof(ToolDisplayInformationAttribute.ResourceManagerBaseName), "DevToys.Localization.Strings.MainWindow.MainWindow" }
             });

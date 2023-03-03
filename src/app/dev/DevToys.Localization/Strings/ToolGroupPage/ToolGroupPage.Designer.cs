@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DevToys.Localization.Strings.MainWindow {
+namespace DevToys.Localization.Strings.ToolGroupPage {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace DevToys.Localization.Strings.MainWindow {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class MainWindow {
+    public class ToolGroupPage {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MainWindow() {
+        internal ToolGroupPage() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DevToys.Localization.Strings.MainWindow {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Localization.Strings.MainWindow.MainWindow", typeof(MainWindow).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Localization.Strings.ToolGroupPage.ToolGroupPage", typeof(ToolGroupPage).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,56 +61,29 @@ namespace DevToys.Localization.Strings.MainWindow {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add to favorites.
+        ///   Looks up a localized string similar to Not finding what you&apos;re looking for?.
         /// </summary>
-        public static string AddToFavorites {
+        public static string NotFindingTool {
             get {
-                return ResourceManager.GetString("AddToFavorites", resourceCulture);
+                return ResourceManager.GetString("NotFindingTool", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pin to Start.
+        ///   Looks up a localized string similar to Open a feature request on GitHub.
         /// </summary>
-        public static string PinToStart {
+        public static string NotFindingToolOpenFeatureRequest {
             get {
-                return ResourceManager.GetString("PinToStart", resourceCulture);
+                return ResourceManager.GetString("NotFindingToolOpenFeatureRequest", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove from favorites.
+        ///   Looks up a localized string similar to Suggest your ideas!.
         /// </summary>
-        public static string RemoveFromFavorites {
+        public static string NotFindingToolSuggestIdea {
             get {
-                return ResourceManager.GetString("RemoveFromFavorites", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Type to search for tools....
-        /// </summary>
-        public static string Search {
-            get {
-                return ResourceManager.GetString("Search", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No results found.
-        /// </summary>
-        public static string SearchNoResultsFound {
-            get {
-                return ResourceManager.GetString("SearchNoResultsFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Toggle keep the window on top (Ctrl+Up).
-        /// </summary>
-        public static string ToggleCompactOverlayTooltip {
-            get {
-                return ResourceManager.GetString("ToggleCompactOverlayTooltip", resourceCulture);
+                return ResourceManager.GetString("NotFindingToolSuggestIdea", resourceCulture);
             }
         }
     }

@@ -12,7 +12,8 @@
     xmlns:local="using:DevToys.UI.Views"
     xmlns:tools="using:DevToys.Core.Tools.ViewItems"
     xmlns:dts="using:DevToys.UI.DataTemplateSelectors"
-    xmlns:strings="using:DevToys.Localization.Strings.MainWindow"
+    xmlns:mainmenustrings="using:DevToys.Localization.Strings.MainMenu"
+    xmlns:toolpagestrings="using:DevToys.Localization.Strings.ToolPage"
     xmlns:controls="using:DevToys.UI.Framework.Controls"
     xmlns:converters="using:DevToys.UI.Framework.Converters"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
@@ -92,8 +93,8 @@
                     Padding="0"
                     Visibility="{x:Bind IsCompactOverlayModeSupported, Converter={StaticResource BooleanToVisibilityConverter}}"
                     IsEnabled="{x:Bind ViewModel.IsSelectedMenuItemATool, Mode=OneWay}"
-                    ToolTipService.ToolTip="{x:Bind strings:MainWindow.ToggleCompactOverlayTooltip}"
-                    AutomationProperties.Name="{x:Bind strings:MainWindow.ToggleCompactOverlayTooltip}"
+                    ToolTipService.ToolTip="{x:Bind toolpagestrings:ToolPage.ToggleCompactOverlayTooltip}"
+                    AutomationProperties.Name="{x:Bind toolpagestrings:ToolPage.ToggleCompactOverlayTooltip}"
                     Click="CompactOverlayModeButton_Click">
                     <Button.KeyboardAccelerators>
                         <KeyboardAccelerator Key="Up" Modifiers="Control"/>
@@ -137,7 +138,7 @@
                     QueryIcon="Find"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"
-                    PlaceholderText="{x:Bind strings:MainWindow.Search}"
+                    PlaceholderText="{x:Bind mainmenustrings:MainMenu.Search}"
                     UpdateTextOnSelect="False"
                     ItemsSource="{x:Bind ViewModel.SearchResults, Mode=OneWay}"
                     Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">

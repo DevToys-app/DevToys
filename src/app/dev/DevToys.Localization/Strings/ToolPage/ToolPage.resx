@@ -126,12 +126,6 @@
   <data name="RemoveFromFavorites" xml:space="preserve">
     <value>Remove from favorites</value>
   </data>
-  <data name="Search" xml:space="preserve">
-    <value>Type to search for tools...</value>
-  </data>
-  <data name="SearchNoResultsFound" xml:space="preserve">
-    <value>No results found</value>
-  </data>
   <data name="ToggleCompactOverlayTooltip" xml:space="preserve">
     <value>Toggle keep the window on top (Ctrl+Up)</value>
   </data>

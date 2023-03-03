@@ -2,7 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
-using DevToys.Localization.Strings.MainWindow;
+using DevToys.Localization.Strings.ToolPage;
 
 namespace DevToys.UI.ViewModels;
 
@@ -53,9 +53,9 @@ internal sealed partial class ToolPageViewModel : ObservableRecipient
     {
         if (isSelectedMenuItemAFavoriteTool)
         {
-            return MainWindow.RemoveFromFavorites;
+            return ToolPage.RemoveFromFavorites;
         }
 
-        return MainWindow.AddToFavorites;
+        return ToolPage.AddToFavorites;
     }
 }

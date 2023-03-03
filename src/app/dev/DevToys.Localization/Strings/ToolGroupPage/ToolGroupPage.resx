@@ -117,25 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AllToolsAccessibleName" xml:space="preserve">
-    <value>All tools</value>
+  <data name="NotFindingTool" xml:space="preserve">
+    <value>Not finding what you're looking for?</value>
   </data>
-  <data name="AllToolsDisplayTitle" xml:space="preserve">
-    <value>All tools</value>
+  <data name="NotFindingToolOpenFeatureRequest" xml:space="preserve">
+    <value>Open a feature request on GitHub</value>
   </data>
-  <data name="FavoriteToolsAccessibleName" xml:space="preserve">
-    <value>Favorite tools</value>
-  </data>
-  <data name="FavoriteToolsDisplayTitle" xml:space="preserve">
-    <value>Favorites</value>
-  </data>
-  <data name="RecentToolsDisplayTitle" xml:space="preserve">
-    <value>Recents</value>
-  </data>
-  <data name="Search" xml:space="preserve">
-    <value>Type to search for tools...</value>
-  </data>
-  <data name="SearchNoResultsFound" xml:space="preserve">
-    <value>No results found</value>
+  <data name="NotFindingToolSuggestIdea" xml:space="preserve">
+    <value>Suggest your ideas!</value>
   </data>
 </root>

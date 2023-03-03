@@ -11,7 +11,7 @@
     xmlns:ix="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:tools="using:DevToys.Core.Tools"
-    xmlns:strings="using:DevToys.Localization.Strings.MainWindow"
+    xmlns:strings="using:DevToys.Localization.Strings.ToolPage"
     mc:Ignorable="d">
     <Page.Resources>
         <converters:BooleanToStringConverter x:Key="BooleanToFavoriteIconGlyph" StringIfTrue="&#xF71A;" StringIfFalse="&#xF70F;"/>
@@ -70,7 +70,7 @@
                         </AppBarButton.Icon>
                     </AppBarButton>
                     <win:AppBarButton
-                        Label="{x:Bind strings:MainWindow.PinToStart}">
+                        Label="{x:Bind strings:ToolPage.PinToStart}">
                         <win:AppBarButton.Icon>
                             <win:FontIcon Glyph="&#xF602;"/>
                         </win:AppBarButton.Icon>

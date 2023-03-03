@@ -10,7 +10,8 @@
     xmlns:ix="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:tools="using:DevToys.Core.Tools"
-    xmlns:strings="using:DevToys.Localization.Strings.MainWindow"
+    xmlns:toolstrings="using:DevToys.Localization.Strings.ToolPage"
+    xmlns:strings="using:DevToys.Localization.Strings.ToolGroupPage"
     mc:Ignorable="d">
     <Page.Resources>
         <Thickness x:Key="GridViewItemMargin">0,12,12,0</Thickness>
@@ -108,7 +109,7 @@
                             IsOpen="False"
                             DefaultLabelPosition="Right">
                             <win:AppBarButton
-                                Label="{x:Bind strings:MainWindow.PinToStart}">
+                                Label="{x:Bind toolstrings:ToolPage.PinToStart}">
                                 <win:AppBarButton.Icon>
                                     <win:FontIcon Glyph="&#xF602;"/>
                                 </win:AppBarButton.Icon>
@@ -224,38 +225,6 @@
                                     Glyph="&#xEE7A;"/>
                             </Button>
                         </StackPanel>
-                        <!--<StackPanel
-                            x:Name="ToolBar"
-                            Grid.Row="3"
-                            Opacity="0"
-                            Orientation="Horizontal"
-                            HorizontalAlignment="Center">
-                        <StackPanel.OpacityTransition>
-                            <ScalarTransition />
-                        </StackPanel.OpacityTransition>
-                        -->
-                        <!--<Button
-                                Style="{StaticResource CommandBarFlyoutEllipsisButtonStyle}"
-                                Height="32"
-                                Width="32"
-                                Padding="4"
-                                AutomationProperties.Name="{Binding Instance.MainPage.OpenInNewWindow, Source={StaticResource LanguageManager}}"
-                                ToolTipService.ToolTip="{Binding Instance.MainPage.OpenInNewWindow, Source={StaticResource LanguageManager}}"
-                                Click="OpenInNewWindowButton_Click">
-                            <FontIcon FontFamily="{StaticResource FluentSystemIcons}" FontSize="16" Glyph="&#xF8B5;"/>
-                        </Button>
-                        <Button
-                            Style="{StaticResource CommandBarFlyoutEllipsisButtonStyle}"
-                            Height="32"
-                            Width="32"
-                            Padding="4"
-                            AutomationProperties.Name="{Binding Instance.MainPage.PinToolToStart, Source={StaticResource LanguageManager}}"
-                            ToolTipService.ToolTip="{Binding Instance.MainPage.PinToolToStart, Source={StaticResource LanguageManager}}"
-                            Click="PinToolToStartCommandButton_Click">
-                            <FontIcon FontFamily="{StaticResource FluentSystemIcons}" FontSize="16" Glyph="&#xF601;"/>
-                        </Button>-->
-                        <!--
-                    </StackPanel>-->
                     </Grid>
                 </DataTemplate>
             </GridView.ItemTemplate>
@@ -269,10 +238,10 @@
                         IsClosable="False"
                         IsOpen="True"
                         IsIconVisible="True"
-                        Title="Not finding what you're looking for?"
-                        Message="Suggest your ideas!">
+                        Title="{x:Bind strings:ToolGroupPage.NotFindingTool}"
+                        Message="{x:Bind strings:ToolGroupPage.NotFindingToolSuggestIdea}">
                         <InfoBar.ActionButton>
-                            <HyperlinkButton Content="Open a feature request on GitHub" NavigateUri="https://www.example.com" />
+                            <HyperlinkButton Content="{x:Bind strings:ToolGroupPage.NotFindingToolOpenFeatureRequest}" NavigateUri="https://www.example.com" />
                         </InfoBar.ActionButton>
                     </InfoBar>
                 </Border>
