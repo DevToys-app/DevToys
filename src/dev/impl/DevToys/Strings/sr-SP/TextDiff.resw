@@ -121,7 +121,7 @@
     <value>Text comparer tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Конфигурација</value>
   </data>
   <data name="Difference" xml:space="preserve">
     <value>Difference</value>
@@ -145,6 +145,6 @@
     <value>Text Comparer</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
 </root>
