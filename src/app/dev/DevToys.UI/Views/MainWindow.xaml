@@ -40,13 +40,6 @@
     <Grid not_win:Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" ios:Margin="0,38,0,0">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
-                <VisualState x:Name="CompactOverlay">
-                    <VisualState.Setters>
-                        <!-- TODO -->
-                        <Setter Target="MenuNavigationView.AlwaysShowHeader" Value="False" />
-                        <Setter Target="MenuNavigationView.IsPaneVisible" Value="False" />
-                    </VisualState.Setters>
-                </VisualState>
                 <VisualState x:Name="NavigationViewExpanded">
                     <VisualState.Setters>
                     </VisualState.Setters>
@@ -57,6 +50,14 @@
                 </VisualState>
                 <VisualState x:Name="NavigationViewMinimal">
                     <VisualState.Setters>
+                        <Setter Target="AppTitleBar.Margin" Value="90,0,140,0"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="CompactOverlay">
+                    <VisualState.Setters>
+                        <Setter Target="AppTitleBar.Margin" Value="0,0,44,0"/>
+                        <Setter Target="MenuNavigationView.AlwaysShowHeader" Value="False" />
+                        <Setter Target="MenuNavigationView.IsPaneVisible" Value="False" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -71,7 +72,8 @@
             x:Name="AppTitleBar"
             Margin="44,0,140,0"
             Height="32"
-            VerticalAlignment="Top">
+            VerticalAlignment="Top"
+            Canvas.ZIndex="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>

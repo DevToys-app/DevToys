@@ -29,11 +29,20 @@
                 <VisualState x:Name="NavigationViewCompact">
                     <VisualState.Setters>
                         <Setter Target="RootScrollViewer.Padding" Value="16,32,16,32"/>
+                        <Setter Target="CommandBar.DefaultLabelPosition" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="NavigationViewMinimal">
                     <VisualState.Setters>
-                        <Setter Target="RootScrollViewer.Padding" Value="24,32,24,32"/>
+                        <Setter Target="RootScrollViewer.Padding" Value="16,36,16,36"/>
+                        <Setter Target="CommandBar.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="CompactOverlay">
+                    <VisualState.Setters>
+                        <Setter Target="RootScrollViewer.Padding" Value="8,36,8,8"/>
+                        <Setter Target="CommandBar.Visibility" Value="Collapsed"/>
+                        <Setter Target="TitleTextBlock.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -49,6 +58,7 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <TextBlock
+                x:Name="TitleTextBlock"
                 Grid.Row="0"
                 Grid.Column="0"
                 VerticalAlignment="Center"
@@ -59,6 +69,7 @@
                 Grid.Row="0"
                 Grid.Column="1">
                 <CommandBar
+                    x:Name="CommandBar"
                     IsOpen="False"
                     DefaultLabelPosition="Right">
                     <AppBarButton
