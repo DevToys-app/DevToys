@@ -121,7 +121,7 @@
     <value>URL Encoder and Decoder tool</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Конфигурација</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
     <value>Decode</value>
@@ -151,6 +151,6 @@
     <value>URL Encoder / Decoder</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
 </root>
