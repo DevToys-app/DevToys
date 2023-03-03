@@ -142,7 +142,7 @@
     <value>Algorithm</value>
   </data>
   <data name="DecodeSwitchModeLabel" xml:space="preserve">
-    <value>Decode</value>
+    <value>Дешифровање</value>
   </data>
   <data name="DecodeValidateTokenLabel" xml:space="preserve">
     <value>Validate Token</value>
@@ -169,7 +169,7 @@
     <value>Settings</value>
   </data>
   <data name="EncodeSwitchModeLabel" xml:space="preserve">
-    <value>Encode</value>
+    <value>Шифровање</value>
   </data>
   <data name="SettingsSwitchModeLabel" xml:space="preserve">
     <value>Encode / Decode</value>
