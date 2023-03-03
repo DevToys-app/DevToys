@@ -15,22 +15,23 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>MainMenu.resx</DependentUpon>
     </Compile>
-    <Compile Update="Strings\MainWindow\MainWindow.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>MainWindow.resx</DependentUpon>
-    </Compile>
     <Compile Update="Strings\Settings\Settings.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.resx</DependentUpon>
     </Compile>
+    <Compile Update="Strings\ToolGroupPage\ToolGroupPage.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ToolGroupPage.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Strings\ToolPage\ToolPage.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ToolPage.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Strings\MainWindow\MainWindow.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>MainWindow.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Update="Strings\Settings\Settings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -48,5 +49,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DevToys.Api\DevToys.Api.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Update="Strings\ToolGroupPage\ToolGroupPage.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ToolGroupPage.Designer.cs</LastGenOutput>
+    </AdditionalFiles>
   </ItemGroup>
 </Project>

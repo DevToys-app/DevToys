@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DevToys.Localization.Strings.MainMenu {
+namespace DevToys.Localization.Strings.ToolPage {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace DevToys.Localization.Strings.MainMenu {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class MainMenu {
+    public class ToolPage {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MainMenu() {
+        internal ToolPage() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DevToys.Localization.Strings.MainMenu {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Localization.Strings.MainMenu.MainMenu", typeof(MainMenu).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Localization.Strings.ToolPage.ToolPage", typeof(ToolPage).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,65 +61,38 @@ namespace DevToys.Localization.Strings.MainMenu {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All tools.
+        ///   Looks up a localized string similar to Add to favorites.
         /// </summary>
-        public static string AllToolsAccessibleName {
+        public static string AddToFavorites {
             get {
-                return ResourceManager.GetString("AllToolsAccessibleName", resourceCulture);
+                return ResourceManager.GetString("AddToFavorites", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All tools.
+        ///   Looks up a localized string similar to Pin to Start.
         /// </summary>
-        public static string AllToolsDisplayTitle {
+        public static string PinToStart {
             get {
-                return ResourceManager.GetString("AllToolsDisplayTitle", resourceCulture);
+                return ResourceManager.GetString("PinToStart", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Favorite tools.
+        ///   Looks up a localized string similar to Remove from favorites.
         /// </summary>
-        public static string FavoriteToolsAccessibleName {
+        public static string RemoveFromFavorites {
             get {
-                return ResourceManager.GetString("FavoriteToolsAccessibleName", resourceCulture);
+                return ResourceManager.GetString("RemoveFromFavorites", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Favorites.
+        ///   Looks up a localized string similar to Toggle keep the window on top (Ctrl+Up).
         /// </summary>
-        public static string FavoriteToolsDisplayTitle {
+        public static string ToggleCompactOverlayTooltip {
             get {
-                return ResourceManager.GetString("FavoriteToolsDisplayTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Recents.
-        /// </summary>
-        public static string RecentToolsDisplayTitle {
-            get {
-                return ResourceManager.GetString("RecentToolsDisplayTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Type to search for tools....
-        /// </summary>
-        public static string Search {
-            get {
-                return ResourceManager.GetString("Search", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No results found.
-        /// </summary>
-        public static string SearchNoResultsFound {
-            get {
-                return ResourceManager.GetString("SearchNoResultsFound", resourceCulture);
+                return ResourceManager.GetString("ToggleCompactOverlayTooltip", resourceCulture);
             }
         }
     }

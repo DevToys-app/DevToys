@@ -7,7 +7,6 @@ using DevToys.Core.Tools.Metadata;
 using DevToys.Core.Tools.ViewItems;
 using DevToys.Localization;
 using DevToys.Localization.Strings.MainMenu;
-using DevToys.Localization.Strings.MainWindow;
 using FuzzySharp;
 using FuzzySharp.PreProcess;
 using Microsoft.Extensions.Logging;
@@ -32,7 +31,7 @@ public sealed partial class GuiToolProvider
                         iconGlyph: "\uF3E9",
                         groupName: "N/A",
                         shortDisplayTitleResourceName: "N/A",
-                        longDisplayTitleResourceName: nameof(MainWindow.SearchNoResultsFound),
+                        longDisplayTitleResourceName: nameof(MainMenu.SearchNoResultsFound),
                         resourceManagerAssemblyIdentifier: nameof(DevToysLocalizationResourceManagerAssemblyIdentifier),
                         resourceManagerBaseName: "DevToys.Localization.Strings.MainWindow.MainWindow")),
                 typeof(DevToysLocalizationResourceManagerAssemblyIdentifier).Assembly),
