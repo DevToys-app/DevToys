@@ -35,7 +35,15 @@ internal sealed partial class ToolPageViewModel : ObservableRecipient
         Guard.IsNotNull(guiToolViewItem);
 
         _guiToolViewItem = guiToolViewItem;
-        HeaderText = guiToolViewItem.ToolInstance.LongDisplayTitle;
+
+        if (string.IsNullOrWhiteSpace(guiToolViewItem.ToolInstance.LongDisplayTitle))
+        {
+            HeaderText = guiToolViewItem.ToolInstance.ShortDisplayTitle;
+        }
+        else
+        {
+            HeaderText = guiToolViewItem.ToolInstance.LongDisplayTitle;
+        }
     }
 
     /// <summary>

@@ -22,15 +22,15 @@ public sealed class GuiToolMetadata : IOrderableMetadata
         return new GuiToolMetadata(
             new Dictionary<string, object>
             {
-                { nameof(NameAttribute.InternalComponentName), "NoSearchResult" },
-                { nameof(AuthorAttribute.Author), "DevToys" },
-                { nameof(ToolDisplayInformationAttribute.IconFontName), "FluentSystemIcons" },
-                { nameof(ToolDisplayInformationAttribute.IconGlyph), "\uF3E9" },
-                { nameof(ToolDisplayInformationAttribute.GroupName), "N/A" },
-                { nameof(ToolDisplayInformationAttribute.ShortDisplayTitleResourceName), "N/A" },
-                { nameof(ToolDisplayInformationAttribute.LongDisplayTitleResourceName), nameof(MainMenu.SearchNoResultsFound) },
-                { nameof(ToolDisplayInformationAttribute.ResourceManagerAssemblyIdentifier), nameof(DevToysLocalizationResourceManagerAssemblyIdentifier) },
-                { nameof(ToolDisplayInformationAttribute.ResourceManagerBaseName), "DevToys.Localization.Strings.MainWindow.MainWindow" }
+                { nameof(NameAttribute.InternalComponentName), internalComponentName },
+                { nameof(AuthorAttribute.Author), author },
+                { nameof(ToolDisplayInformationAttribute.IconFontName), iconFontName },
+                { nameof(ToolDisplayInformationAttribute.IconGlyph), iconGlyph },
+                { nameof(ToolDisplayInformationAttribute.GroupName),groupName },
+                { nameof(ToolDisplayInformationAttribute.ShortDisplayTitleResourceName), shortDisplayTitleResourceName },
+                { nameof(ToolDisplayInformationAttribute.LongDisplayTitleResourceName), longDisplayTitleResourceName },
+                { nameof(ToolDisplayInformationAttribute.ResourceManagerAssemblyIdentifier), resourceManagerAssemblyIdentifier },
+                { nameof(ToolDisplayInformationAttribute.ResourceManagerBaseName), resourceManagerBaseName }
             });
     }
 
@@ -61,8 +61,11 @@ public sealed class GuiToolMetadata : IOrderableMetadata
         Guard.IsNotNullOrWhiteSpace(Author);
         Guard.IsNotNullOrWhiteSpace(IconFontName);
         Guard.IsNotNullOrWhiteSpace(IconGlyph);
-        Guard.IsNotNullOrWhiteSpace(GroupName);
         Guard.IsNotNullOrWhiteSpace(ShortDisplayTitleResourceName);
+        if (MenuPlacement != Api.MenuPlacement.Footer)
+        {
+            Guard.IsNotNullOrWhiteSpace(GroupName);
+        }
 
         if (!string.IsNullOrEmpty(ShortDisplayTitleResourceName)
             || !string.IsNullOrEmpty(LongDisplayTitleResourceName)
