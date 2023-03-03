@@ -121,7 +121,7 @@
     <value>JSON to YAML and YAML to JSON converter tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Конфигурација</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
     <value>Select which conversion mode you want to use</value>
@@ -163,6 +163,6 @@
     <value>JSON &lt;&gt; YAML Converter</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
 </root>
