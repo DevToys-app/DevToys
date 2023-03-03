@@ -1,5 +1,6 @@
 ﻿using DevToys.Api;
 using DevToys.Api.Core.Theme;
+using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
 using DevToys.UI.Framework.Controls;
 using DevToys.UI.Models;
@@ -26,6 +27,7 @@ public sealed partial class MainWindow : BackdropPage
     private readonly IMefProvider _mefProvider;
 
     private NavigationViewDisplayMode _navigationViewDisplayMode;
+    private GuiToolInstance? _currentDisplayedTool;
 
     public MainWindow(BackdropWindow backdropWindow, IThemeListener themeListener, IMefProvider mefProvider)
         : base(backdropWindow, themeListener)
@@ -145,6 +147,7 @@ public sealed partial class MainWindow : BackdropPage
         {
             if (ViewModel.SelectedMenuItem is GroupViewItem groupViewItem)
             {
+                _currentDisplayedTool = null;
                 ContentFrame.Navigate(
                     typeof(ToolGroupPage),
                     new NavigationParameters<GroupViewItem>(_mefProvider, groupViewItem),
@@ -152,10 +155,15 @@ public sealed partial class MainWindow : BackdropPage
             }
             else if (ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem)
             {
-                ContentFrame.Navigate(
-                    typeof(ToolPage),
-                    new NavigationParameters<GuiToolViewItem>(_mefProvider, guiToolViewItem),
-                    new EntranceNavigationTransitionInfo());
+                // Don't navigate if we already navigated to this tool.
+                if (guiToolViewItem.ToolInstance != _currentDisplayedTool)
+                {
+                    _currentDisplayedTool = guiToolViewItem.ToolInstance;
+                    ContentFrame.Navigate(
+                        typeof(ToolPage),
+                        new NavigationParameters<GuiToolViewItem>(_mefProvider, guiToolViewItem),
+                        new EntranceNavigationTransitionInfo());
+                }
             }
             else
             {
@@ -163,6 +171,10 @@ public sealed partial class MainWindow : BackdropPage
             }
 
             UpdateVisualState();
+        }
+        else
+        {
+            _currentDisplayedTool = null;
         }
     }
 
