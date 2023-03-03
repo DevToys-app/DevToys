@@ -61,11 +61,13 @@
                 <VisualState x:Name="NavigationViewCompact">
                     <VisualState.Setters>
                         <Setter Target="GridView.Padding" Value="16,32,16,32"/>
+                        <win:Setter Target="CommandBar.DefaultLabelPosition" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="NavigationViewMinimal">
                     <VisualState.Setters>
-                        <Setter Target="GridView.Padding" Value="24,32,24,32"/>
+                        <Setter Target="GridView.Padding" Value="16,36,16,36"/>
+                        <Setter Target="CommandBar.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -106,6 +108,7 @@
                     <win:Border
                         Grid.Column="1">
                         <win:CommandBar
+                            x:Name="CommandBar"
                             IsOpen="False"
                             DefaultLabelPosition="Right">
                             <win:AppBarButton
