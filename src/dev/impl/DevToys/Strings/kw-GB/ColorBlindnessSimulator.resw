@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Toul Deheveli Liwdhallder</value>
+    <value>Toul Deheveli Liwdhellni</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Dehevelyer Liwdhallder</value>
+    <value>Dehevelyer Liwdhellni</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Deheveli liwdhallder yn skeusen po skrinden</value>
+    <value>Deheveli liwdhellni yn skeusen po skrinden</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Dehevelyer Liwdhallder</value>
+    <value>Dehevelyer Liwdhellni</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Hedhi</value>
