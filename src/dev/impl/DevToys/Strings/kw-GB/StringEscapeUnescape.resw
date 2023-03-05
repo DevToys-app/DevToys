@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Text Escape and Unescape tool</value>
+    <value>Toul Diank hag Andhiank Tekst</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Escape / Unescape</value>
+    <value>Diank / Andhiank</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
     <value>Eghworrans</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Escapes or unescapes a string, removing characters that could prevent parsing.</value>
+    <value>Diank po andhiank neusen, ha dilea displetynnow a allsa lettya parthhe.</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Text Escape / Unescape</value>
+    <value>Diank / Andhiank Tekst</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value/>
@@ -140,13 +140,13 @@
     <value>Kefurvyans</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
-    <value>Unescape</value>
+    <value>Andhiank</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
     <value>Dewis an modh kedreylyans a vynn'ta usya</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
-    <value>Escape</value>
+    <value>Diank</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
     <value>Kedreylyans</value>
