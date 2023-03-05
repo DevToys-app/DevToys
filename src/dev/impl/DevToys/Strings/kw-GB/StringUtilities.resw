@@ -118,105 +118,105 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>String utilities tool</value>
+    <value>Toul lesow neusen</value>
   </data>
   <data name="AlternatingCase" xml:space="preserve">
-    <value>aLtErNaTiNg cAsE</value>
+    <value>rEnK cHaNjYuS</value>
   </data>
   <data name="Bytes" xml:space="preserve">
-    <value>Bytes:</value>
+    <value>Ethogow</value>
   </data>
   <data name="CamelCase" xml:space="preserve">
-    <value>camelCase</value>
+    <value>renkKowrvargh</value>
   </data>
   <data name="CharacterDistribution" xml:space="preserve">
-    <value>Character distribution</value>
+    <value>Lesrannans displetynnow</value>
   </data>
   <data name="Characters" xml:space="preserve">
-    <value>Characters:</value>
+    <value>Displetynnow:</value>
   </data>
   <data name="CobolCase" xml:space="preserve">
-    <value>COBOL-CASE</value>
+    <value>RENK-COBOL</value>
   </data>
   <data name="Column" xml:space="preserve">
-    <value>Column:</value>
+    <value>Koloven:</value>
   </data>
   <data name="ConstantCase" xml:space="preserve">
-    <value>CONSTANT_CASE</value>
+    <value>RENK_DIVAREN</value>
   </data>
   <data name="Convert" xml:space="preserve">
-    <value>Convert</value>
+    <value>Kedreylya</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Inspector &amp; Case Converter</value>
+    <value>Arhwithrer &amp; Kedreylyer Renk</value>
   </data>
   <data name="InverseCase" xml:space="preserve">
-    <value>InVeRsE CaSe</value>
+    <value>ReNk WaR-gAmM</value>
   </data>
   <data name="KebabCase" xml:space="preserve">
-    <value>kebab-case</value>
+    <value>renk-doner</value>
   </data>
   <data name="Line" xml:space="preserve">
-    <value>Line:</value>
+    <value>Linen:</value>
   </data>
   <data name="Lines" xml:space="preserve">
-    <value>Lines:</value>
+    <value>Linennow:</value>
   </data>
   <data name="LowerCase" xml:space="preserve">
-    <value>lower case</value>
+    <value>renk isel</value>
   </data>
   <data name="OriginalCase" xml:space="preserve">
-    <value>Original text</value>
+    <value>Tekst derowel</value>
   </data>
   <data name="Paragraphs" xml:space="preserve">
-    <value>Paragraphs:</value>
+    <value>Rannskrifow:</value>
   </data>
   <data name="PascalCase" xml:space="preserve">
-    <value>PascalCase</value>
+    <value>RenkPascal</value>
   </data>
   <data name="Position" xml:space="preserve">
-    <value>Position:</value>
+    <value>Le:</value>
   </data>
   <data name="Selection" xml:space="preserve">
-    <value>Selection</value>
+    <value>Dewisyans</value>
   </data>
   <data name="SentenceCase" xml:space="preserve">
-    <value>Sentence case</value>
+    <value>Renk lavar</value>
   </data>
   <data name="Sentences" xml:space="preserve">
-    <value>Sentences:</value>
+    <value>Lavarow:</value>
   </data>
   <data name="SnakeCase" xml:space="preserve">
-    <value>snake_case</value>
+    <value>renk_nader</value>
   </data>
   <data name="Statistics" xml:space="preserve">
-    <value>Statistics</value>
+    <value>Statystygyon</value>
   </data>
   <data name="String" xml:space="preserve">
-    <value>String</value>
+    <value>Neusen</value>
   </data>
   <data name="TitleCase" xml:space="preserve">
-    <value>Title Case</value>
+    <value>Renk Titel</value>
   </data>
   <data name="TrainCase" xml:space="preserve">
-    <value>Train-Case</value>
+    <value>Renk-Tren</value>
   </data>
   <data name="UpperCase" xml:space="preserve">
-    <value>UPPER CASE</value>
+    <value>RENK UGHEL</value>
   </data>
   <data name="WordDistribution" xml:space="preserve">
-    <value>Word distribution</value>
+    <value>Lesrannans geryow</value>
   </data>
   <data name="Words" xml:space="preserve">
-    <value>Words:</value>
+    <value>Geryow:</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Analyze text and convert it to a different case</value>
+    <value>Dielvenna ha kedreylya tekst dhe renk aral</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Text Case Converter and Inspector</value>
+    <value>Arhwithrer ha Kedreylyer Renk Tekst</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>String</value>
+    <value>Neusen</value>
   </data>
 </root>
