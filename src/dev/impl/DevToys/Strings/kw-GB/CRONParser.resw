@@ -118,57 +118,57 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Cron parsing tool</value>
+    <value>Toul parthhe cron</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Kefurvyans</value>
   </data>
   <data name="UseSecondsDescription" xml:space="preserve">
-    <value>Choose whatever Cron expression should includes seconds in its definition</value>
+    <value>Dewis an venegen Cron may tal yssynsi eylennow yn hy styryans</value>
   </data>
   <data name="UseSecondsTitle" xml:space="preserve">
-    <value>Cron Mode</value>
+    <value>Modh Cron</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Cron parser</value>
+    <value>Partheer Cron</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Parse Cron expression to get scheduled dates</value>
+    <value>Parthhe menegen Cron dhe gavos dedhyasow lostys</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Cron expression parser</value>
+    <value>Partheer menegen Cron</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>Cron</value>
   </data>
   <data name="CronErrorMessage" xml:space="preserve">
-    <value>Cron expression is not valid</value>
+    <value>Nyns yw dilys menegen Cron</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>Cron expression to parse</value>
+    <value>Menegen Cron dhe barthhe</value>
   </data>
   <data name="OutputDateTimeDescription" xml:space="preserve">
-    <value>Date time fomat of upcoming dates</value>
+    <value>Furvas dedhyas-termyn a dhedhyasow ow tos</value>
   </data>
   <data name="OutputDateTimeTitle" xml:space="preserve">
-    <value>Output format</value>
+    <value>Furvas eghworrans</value>
   </data>
   <data name="OutputFormatErrorMessage" xml:space="preserve">
-    <value>Output date time format is not valid</value>
+    <value>Nyns yw dilys furvas dedhyas-termyn eghworrans</value>
   </data>
   <data name="OutputLimitDescription" xml:space="preserve">
-    <value>How many scheduled dates needs to be generated</value>
+    <value>Pes dedhyas lostys yw res gwruthyl</value>
   </data>
   <data name="OutputLimitTitle" xml:space="preserve">
-    <value>Next scheduled dates</value>
+    <value>Nessa dedhyasow lostys</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Next scheduled dates</value>
+    <value>Nessa dedhyasow lostys</value>
   </data>
   <data name="SecondsExcludedMode" xml:space="preserve">
-    <value>Standard mode (5 - segment Cron)</value>
+    <value>Modh savonek (Cron 5 - rann)</value>
   </data>
   <data name="SecondsIncludedMode" xml:space="preserve">
-    <value>Seconds included (6 - segment Cron)</value>
+    <value>Eylennow yssynsys (Cron 6 - rann)</value>
   </data>
 </root>
