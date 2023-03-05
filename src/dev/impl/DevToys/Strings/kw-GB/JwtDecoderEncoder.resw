@@ -136,13 +136,13 @@
     <value>Decode a JWT header, payload and signature</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="Algorithm" xml:space="preserve">
     <value>Algorithm</value>
   </data>
   <data name="DecodeSwitchModeLabel" xml:space="preserve">
-    <value>Decode</value>
+    <value>Diskodya</value>
   </data>
   <data name="DecodeValidateTokenLabel" xml:space="preserve">
     <value>Validate Token</value>
@@ -169,13 +169,13 @@
     <value>Settings</value>
   </data>
   <data name="EncodeSwitchModeLabel" xml:space="preserve">
-    <value>Encode</value>
+    <value>Argodya</value>
   </data>
   <data name="SettingsSwitchModeLabel" xml:space="preserve">
     <value>Encode / Decode</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Kefurvyans</value>
   </data>
   <data name="EncodeDefaultTimeTitle" xml:space="preserve">
     <value>Token has default time</value>
