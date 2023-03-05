@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Hash Generator tool</value>
+    <value>Toul Gwruthyl Bool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Kefurvyans</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Hash</value>
+    <value>Bolriv</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>Ynworrans</value>
@@ -145,10 +145,10 @@
     <value>Renk ughel</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Calculate MD5, SHA1, SHA256 and SHA512 hash from text data</value>
+    <value>Amontya bolriv MD5, SHA1, SHA256 ha SHA512 a-dhia dheur tekst</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Hash Generator</value>
+    <value>Gwrier Bolriv</value>
   </data>
   <data name="OutputBase64" xml:space="preserve">
     <value>Sel64</value>
@@ -157,15 +157,15 @@
     <value>Hex</value>
   </data>
   <data name="OutputTypeTitle" xml:space="preserve">
-    <value>Output Type</value>
+    <value>Eghen Eghworrans</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value/>
   </data>
   <data name="HmacMode" xml:space="preserve">
-    <value>HMAC Mode</value>
+    <value>Modh HMAC</value>
   </data>
   <data name="SecretKey" xml:space="preserve">
-    <value>Secret Key</value>
+    <value>Alhwedhen Gel</value>
   </data>
 </root>
