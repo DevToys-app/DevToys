@@ -130,10 +130,10 @@
     <value>Dilea</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
-    <value>Delete all</value>
+    <value>Dilea oll</value>
   </data>
   <data name="DetailsTitle" xml:space="preserve">
-    <value>Details</value>
+    <value>Manylyon</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>PNG / JPEG Compressor</value>
@@ -146,13 +146,13 @@
     <value>Da lowr</value>
   </data>
   <data name="SaveAll" xml:space="preserve">
-    <value>Save all</value>
+    <value>Gwitha oll</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Gwitha avel</value>
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
-    <value>See details</value>
+    <value>Gweles manylyon</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Lossless PNG and JPEG optimizer</value>
