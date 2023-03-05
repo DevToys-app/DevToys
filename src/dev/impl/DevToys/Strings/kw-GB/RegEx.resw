@@ -118,73 +118,73 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Regular expression tester tool</value>
+    <value>Toul previ menegennow reyth</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Kefurvyans</value>
   </data>
   <data name="CultureInvariant" xml:space="preserve">
-    <value>Culture Invariant</value>
+    <value>Dijanj Dres Gonisogeth</value>
   </data>
   <data name="CultureInvariantDescription" xml:space="preserve">
-    <value>Specifies that cultural differences in language is ignored.</value>
+    <value>Y klerha bos disynsys dyffransethow gonisogethel y'n yeth.</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Regex Tester</value>
+    <value>Prevyer Regex</value>
   </data>
   <data name="EcmaScript" xml:space="preserve">
     <value>ECMA Script</value>
   </data>
   <data name="EcmaScriptDescription" xml:space="preserve">
-    <value>Enables ECMAScript-compliant behavior for the expression. This value can be used only in conjunction with the Culture Invariant, Ignore Case and Multiline options.</value>
+    <value>Gweythresa omdhegyans a dhesedh orth ECMAScript rag an venegen. Ny yll an riv ma bos usys saw war-barth hag an dewisyow Dijanj Dres Gonisogeth, Disynsi Renk, ha Lieslinen.</value>
   </data>
   <data name="IgnoreCase" xml:space="preserve">
-    <value>Ignore Case</value>
+    <value>Disynsi Renk</value>
   </data>
   <data name="IgnoreCaseDescription" xml:space="preserve">
-    <value>Specifies case-insensitive matching.</value>
+    <value>Y klerha parheans renkandhesedhus.</value>
   </data>
   <data name="IgnoreWhitespace" xml:space="preserve">
-    <value>Ignore Whitespace</value>
+    <value>Disynsi Gwynnspas</value>
   </data>
   <data name="IgnoreWhitespaceDescription" xml:space="preserve">
-    <value>Eliminates unescaped white space from the pattern and enables comments marked with #. However, this value does not affect or eliminate white space in character classes, numeric quantifiers, or tokens that mark the beginning of individual regular expression language elements.</value>
+    <value>Kartha gwynnspas na veu nammverkys a'n patron ha gweythresa kampollow merkys gans #. Byttegyns ny effeyth po dilea an riv ma gwynnspas yn rummow displetynnow, mynsheansow niverow, po tokynnow a verk dalleth elvennow yeth anheran yn menegennow reyth.</value>
   </data>
   <data name="Multiline" xml:space="preserve">
-    <value>Multiline</value>
+    <value>Lieslinen</value>
   </data>
   <data name="MultilineDescription" xml:space="preserve">
-    <value>Changes the meaning of ^ and $ so they match at the beginning and end, respectively, of any line, and not just the beginning and end of the entire string.</value>
+    <value>Chanjya styr ^ ha $ mayth omedhesedhons orth dalleth ha diwedh (a-gettep) py linen bynag, a-der dalleth ha diwedh an neusen dhien.</value>
   </data>
   <data name="Options" xml:space="preserve">
-    <value>Options</value>
+    <value>Dewisyow</value>
   </data>
   <data name="RegularExpression" xml:space="preserve">
-    <value>Regular expression</value>
+    <value>Menegen reyth</value>
   </data>
   <data name="RightToLeft" xml:space="preserve">
-    <value>Right To Left</value>
+    <value>Dyghow Dhe Gledh</value>
   </data>
   <data name="RightToLeftDescription" xml:space="preserve">
-    <value>Specifies that the search will be from right to left instead of from left to right.</value>
+    <value>Klerhe bos pub hwilas ow mos a-dhyghow dhe-gledh a-der a-gledh dhe-dhyghow.</value>
   </data>
   <data name="Singleline" xml:space="preserve">
-    <value>Singleline</value>
+    <value>Unnlinen</value>
   </data>
   <data name="SinglelineDescription" xml:space="preserve">
-    <value>Changes the meaning of the dot (.) so it matches every character (instead of every character except \n).</value>
+    <value>Chanjya styr an poynt (.) mayth omdesedh orth pub displetyn (a-der pub-displetyn marnas \n).</value>
   </data>
   <data name="Text" xml:space="preserve">
-    <value>Text</value>
+    <value>Tekst</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Validate and test regular expressions</value>
+    <value>Dilysa ha previ menegennow reyth</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Regex Tester</value>
+    <value>Prevyer Regex</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Regular expression</value>
+    <value>Menegen reyth</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
     <value>Ynworrans</value>
@@ -193,12 +193,12 @@
     <value>Eghworrans</value>
   </data>
   <data name="Group" xml:space="preserve">
-    <value>Group</value>
+    <value>Bagas</value>
   </data>
   <data name="Match" xml:space="preserve">
-    <value>Match</value>
+    <value>Omdhesedha</value>
   </data>
   <data name="Matches" xml:space="preserve">
-    <value>Matches</value>
+    <value>Omdhesedhansow</value>
   </data>
 </root>
