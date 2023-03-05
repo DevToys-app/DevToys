@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Messaging;
 using DevToys.Api;
 
 namespace DevToys.Core.Tools.ViewItems;
@@ -11,20 +10,18 @@ namespace DevToys.Core.Tools.ViewItems;
 [DebuggerDisplay($"DisplayTitle = {{{nameof(DisplayTitle)}}}")]
 public sealed class GroupViewItem : ObservableObject
 {
-    private TaskCompletionSource? _tcs;
     private bool _childItemJustGotSelected;
 
     internal GroupViewItem(
         string internalName,
-        GuiToolGroup groupInfo,
-        ObservableCollection<GuiToolViewItem>? children = null)
+        GuiToolGroup groupInfo)
         : this(
               internalName,
               groupInfo.IconFontName,
               groupInfo.IconGlyph,
               groupInfo.DisplayTitle,
               groupInfo.AccessibleName,
-              children)
+              new())
     {
     }
 
@@ -52,6 +49,14 @@ public sealed class GroupViewItem : ObservableObject
         if (children is not null)
         {
             children.CollectionChanged += Children_CollectionChanged;
+            foreach (object? item in children)
+            {
+                if (item is GuiToolViewItem guiToolViewItem)
+                {
+                    guiToolViewItem.PropertyChanged += Child_PropertyChanged;
+                    guiToolViewItem.GotSelected += Child_GotSelected;
+                }
+            }
         }
     }
 

@@ -500,7 +500,7 @@ public sealed partial class GuiToolProvider
             // Create a group view presentation, if needed.
             if (!groups.TryGetValue(tool.GroupName, out Lazy<GroupViewItem, GuiToolGroupMetadata>? groupViewItem))
             {
-                groupViewItem = new(() => new GroupViewItem(toolGroup.Metadata.InternalComponentName, toolGroup.Value, new ObservableCollection<GuiToolViewItem>()), toolGroup.Metadata);
+                groupViewItem = new(() => new GroupViewItem(toolGroup.Metadata.InternalComponentName, toolGroup.Value), toolGroup.Metadata);
                 groups[tool.GroupName] = groupViewItem;
             }
 
