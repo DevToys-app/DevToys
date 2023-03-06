@@ -154,13 +154,13 @@
     <value>Yes</value>
   </data>
   <data name="EncodeExpirationTitle" xml:space="preserve">
-    <value>Token has expirations</value>
+    <value>Токен има рок употребе</value>
   </data>
   <data name="EncodeExpirationMonthLabel" xml:space="preserve">
-    <value>Expire in month(s)</value>
+    <value>Истиче за месец дана или више</value>
   </data>
   <data name="EncodeExpirationYearLabel" xml:space="preserve">
-    <value>Expire in year(s)</value>
+    <value>Истиче за годину дана или више</value>
   </data>
   <data name="EncodeHashingTitle" xml:space="preserve">
     <value>Token hashing algorithm</value>
