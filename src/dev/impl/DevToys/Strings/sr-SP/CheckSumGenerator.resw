@@ -139,7 +139,7 @@
     <value>Улаз</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Checksum</value>
+    <value>Чексума</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Излаз</value>
@@ -148,7 +148,7 @@
     <value>Поређење излаза</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Checksum Generator</value>
+    <value>Генератор чексума</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
     <value>Велика слова</value>
