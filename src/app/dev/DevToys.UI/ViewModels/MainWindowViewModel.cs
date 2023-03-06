@@ -13,8 +13,10 @@ namespace DevToys.UI.ViewModels;
 internal sealed partial class MainWindowViewModel : ObservableRecipient
 {
     private readonly GuiToolProvider _guiToolProvider;
+    private readonly Stack<INotifyPropertyChanged> _navigationHistory = new();
 
     private INotifyPropertyChanged? _selectedMenuItem;
+    private bool _isGoingBack;
 
     [ImportingConstructor]
     public MainWindowViewModel(GuiToolProvider guiToolProvider)
@@ -48,6 +50,13 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
         get => _selectedMenuItem;
         set
         {
+            // Save the previous selected item.
+            if (!_isGoingBack && _selectedMenuItem is not null && value is not null && _selectedMenuItem != value)
+            {
+                _navigationHistory.Push(_selectedMenuItem);
+                OnPropertyChanged(nameof(CanGoBack));
+            }
+
             if (value is null && _selectedMenuItem is not null)
             {
                 // Somehow, the NavigationView end up with no selected item. An example of scenario where it can happen is when
@@ -72,9 +81,30 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
     }
 
     /// <summary>
-    /// Indicates whether the <see cref="SelectedMenuItem"/> is a tool or not.
+    /// Gets whether the <see cref="SelectedMenuItem"/> is a tool or not.
     /// </summary>
     internal bool IsSelectedMenuItemATool => SelectedMenuItem is GuiToolViewItem;
+
+    /// <summary>
+    /// Gets whether the user can navigate back to the previous <see cref="SelectedMenuItem"/>.
+    /// </summary>
+    internal bool CanGoBack => _navigationHistory.Count > 0;
+
+    /// <summary>
+    /// Navigates back to the previous <see cref="SelectedMenuItem"/>.
+    /// </summary>
+    internal void GoBack()
+    {
+        Guard.IsTrue(CanGoBack);
+
+        _isGoingBack = true;
+        INotifyPropertyChanged previousItem = _navigationHistory.Pop();
+        OnPropertyChanged(nameof(CanGoBack));
+
+        SelectedMenuItem = GetBestMenuItemToSelect(previousItem);
+
+        _isGoingBack = false;
+    }
 
     // Can't use CommunityToolkit.MVVM due to https://github.com/dotnet/roslyn/issues/57239#issuecomment-1437895948
     /// <summary>
@@ -121,6 +151,11 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
     {
         Guard.IsNotEmpty((IReadOnlyList<INotifyPropertyChanged>)HeaderAndBodyToolViewItems);
         Guard.IsNotNull(currentSelectedMenuItem);
+
+        if (currentSelectedMenuItem is GroupViewItem groupViewItem)
+        {
+            return groupViewItem;
+        }
 
         GuiToolInstance? guiToolInstance = null;
         if (currentSelectedMenuItem is GuiToolViewItem guiToolViewItem)
