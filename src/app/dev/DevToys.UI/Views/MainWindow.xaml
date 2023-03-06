@@ -117,7 +117,7 @@
             IsTitleBarAutoPaddingEnabled="False"
             IsSettingsVisible="False"
             IsBackButtonVisible="Visible"
-            IsBackEnabled="True"
+            IsBackEnabled="{x:Bind ViewModel.CanGoBack, Mode=OneWay}"
             CompactModeThresholdWidth="640"
             ExpandedModeThresholdWidth="1008"
             IsTabStop="False"
@@ -129,7 +129,8 @@
             DisplayModeChanged="MenuNavigationView_DisplayModeChanged"
             PaneClosing="MenuNavigationView_PaneClosing"
             PaneOpening="MenuNavigationView_PaneOpening"
-            Loaded="MenuNavigationView_Loaded">
+            Loaded="MenuNavigationView_Loaded"
+            BackRequested="MenuNavigationView_BackRequested">
 
             <NavigationView.AutoSuggestBox>
                 <AutoSuggestBox

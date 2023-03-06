@@ -1,4 +1,5 @@
-﻿using DevToys.Api;
+﻿using System.Security.Cryptography;
+using DevToys.Api;
 using DevToys.Api.Core.Theme;
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
@@ -139,6 +140,11 @@ public sealed partial class MainWindow : BackdropPage
     private void MenuNavigationView_Loaded(object sender, RoutedEventArgs e)
     {
         UpdateVisualState();
+    }
+
+    private void MenuNavigationView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+    {
+        ViewModel.GoBack();
     }
 
     private void ViewModel_SelectedMenuItemChanged(object? sender, EventArgs e)
