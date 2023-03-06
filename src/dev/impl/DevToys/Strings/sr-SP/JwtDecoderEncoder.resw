@@ -163,46 +163,46 @@
     <value>Истиче за годину дана или више</value>
   </data>
   <data name="EncodeHashingTitle" xml:space="preserve">
-    <value>Token hashing algorithm</value>
+    <value>Алгоритам хеширања токена</value>
   </data>
   <data name="EncodeSettingsTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>Подешавања</value>
   </data>
   <data name="EncodeSwitchModeLabel" xml:space="preserve">
     <value>Шифровање</value>
   </data>
   <data name="SettingsSwitchModeLabel" xml:space="preserve">
-    <value>Encode / Decode</value>
+    <value>Кодирај / Декодирај</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>Конфигурација</value>
   </data>
   <data name="EncodeDefaultTimeTitle" xml:space="preserve">
-    <value>Token has default time</value>
+    <value>Токен има подразумевано време</value>
   </data>
   <data name="EncodeExpirationDaysLabel" xml:space="preserve">
-    <value>Expire in day(s)</value>
+    <value>Истиче за један или више дана</value>
   </data>
   <data name="EncodeExpirationHoursLabel" xml:space="preserve">
-    <value>Expire in hour(s)</value>
+    <value>Истиче за један сат или више сати</value>
   </data>
   <data name="EncodeExpirationMinutesLabel" xml:space="preserve">
-    <value>Expire in minute(s)</value>
+    <value>Истиче за минут до неколико минута</value>
   </data>
   <data name="PrivateKeyLabel" xml:space="preserve">
-    <value>Private Key</value>
+    <value>Приватни кључ</value>
   </data>
   <data name="SignatureLabel" xml:space="preserve">
-    <value>Signature</value>
+    <value>Потпис</value>
   </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>Signature Verified</value>
+    <value>Потпис оверен</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
-    <value>Invalid Public Key</value>
+    <value>Неисправан јавни кључ</value>
   </data>
   <data name="JwtInValidMessage" xml:space="preserve">
-    <value>Invalid Signature</value>
+    <value>Неисправан потпис</value>
   </data>
   <data name="DecodeValidateActorLabel" xml:space="preserve">
     <value>Validate actor</value>
@@ -223,10 +223,10 @@
     <value>Valid issuers</value>
   </data>
   <data name="DecodeValidationSettingsDescription" xml:space="preserve">
-    <value>Select which token parameters to validate</value>
+    <value>Изаберите које параметре токена да верификујете</value>
   </data>
   <data name="DecodeValidationSettingsTitle" xml:space="preserve">
-    <value>Token validation settings</value>
+    <value>Подешавања верификације токена</value>
   </data>
   <data name="ValidAudiencesError" xml:space="preserve">
     <value>Valid audiences are empty</value>
@@ -235,7 +235,7 @@
     <value>Valid issuers are empty</value>
   </data>
   <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
-    <value>The public key provided is a private key</value>
+    <value>Кључ који је дат као јавни је заправо приватни кључ</value>
   </data>
   <data name="EncodeAudienceLabel" xml:space="preserve">
     <value>Token has audience</value>
@@ -244,18 +244,18 @@
     <value>Token has issuer</value>
   </data>
   <data name="EncodeSettingsDescription" xml:space="preserve">
-    <value>Select token parameters</value>
+    <value>Одаберите параметре токена</value>
   </data>
   <data name="InvalidPrivateKeyError" xml:space="preserve">
-    <value>Invalid Private Key</value>
+    <value>Неисправан приватни кључ</value>
   </data>
   <data name="PublicKeyLabel" xml:space="preserve">
-    <value>Public Key</value>
+    <value>Јавни кључ</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>JWT Encoder / Decoder</value>
+    <value>JWT кодер / декодер</value>
   </data>
   <data name="InvalidSignatureError" xml:space="preserve">
-    <value>Invalid Signature</value>
+    <value>Неисправан потпис</value>
   </data>
 </root>
