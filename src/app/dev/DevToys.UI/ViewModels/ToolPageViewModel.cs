@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using DevToys.Api;
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
 using DevToys.Localization.Strings.ToolPage;
@@ -29,6 +30,11 @@ internal sealed partial class ToolPageViewModel : ObservableRecipient
     /// Indicates whether the <see cref="SelectedMenuItem"/> is a favorite tool or not.
     /// </summary>
     internal bool IsSelectedMenuItemAFavoriteTool => _guiToolViewItem is not null && _guiToolProvider.GetToolIsFavorite(_guiToolViewItem.ToolInstance);
+
+    /// <summary>
+    /// Gets the UI of the tool.
+    /// </summary>
+    internal IUIElement ToolView => _guiToolViewItem?.ToolInstance.View ?? throw new InvalidOperationException();
 
     internal void Load(GuiToolViewItem guiToolViewItem)
     {

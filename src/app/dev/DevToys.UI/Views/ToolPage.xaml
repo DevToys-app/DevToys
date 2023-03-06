@@ -12,6 +12,7 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:tools="using:DevToys.Core.Tools"
     xmlns:strings="using:DevToys.Localization.Strings.ToolPage"
+    xmlns:guiTool="using:DevToys.UI.Framework.Controls.GuiTool"
     mc:Ignorable="d">
     <Page.Resources>
         <converters:BooleanToStringConverter x:Key="BooleanToFavoriteIconGlyph" StringIfTrue="&#xF71A;" StringIfFalse="&#xF70F;"/>
@@ -88,6 +89,14 @@
                     </win:AppBarButton>
                 </CommandBar>
             </Border>
+
+            <guiTool:UIElementPresenter
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                UIElement="{x:Bind ViewModel.ToolView}"/>
         </Grid>
     </ScrollViewer>
 </Page>

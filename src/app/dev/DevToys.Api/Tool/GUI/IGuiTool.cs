@@ -47,5 +47,5 @@ public interface IGuiTool
     /// <summary>
     /// Gets the view for the tool.
     /// </summary>
-    UIElement View { get; }
+    IUIElement View { get; }
 }
