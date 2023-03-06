@@ -13,6 +13,7 @@ public sealed partial class GuiToolInstance
     private readonly ILogger _logger;
     private readonly Lazy<IGuiTool, GuiToolMetadata> _guiToolDefinition;
     private readonly Lazy<IGuiTool> _instance;
+    private readonly Lazy<IUIElement> _view;
     private readonly Lazy<ResourceManager?> _resourceManager;
     private readonly Lazy<string> _shortDisplayTitle;
     private readonly Lazy<string> _longDisplayTitle;
@@ -38,6 +39,8 @@ public sealed partial class GuiToolInstance
             LogInstanceCreated(_guiToolDefinition.Metadata.InternalComponentName);
             return instance;
         });
+
+        _view = new(() => _instance.Value.View); // TODO: Try Catch and log?
 
         LogInitialized(_guiToolDefinition.Metadata.InternalComponentName);
     }
@@ -73,10 +76,10 @@ public sealed partial class GuiToolInstance
     public string GroupName => _guiToolDefinition.Metadata.GroupName;
 
     /// <summary>
-    /// Gets the instance of the tool.
-    /// Calling this property be expensive the first time as it will create the instance.
+    /// Gets the view of the tool.
+    /// Calling this property is expensive the first time as it will create the instance of the tool and the instance of the view.
     /// </summary>
-    public IGuiTool ToolInstance => _instance.Value;
+    public IUIElement View => _view.Value;
 
     private ResourceManager? GetResourceManager(Assembly? resourceManagerAssembly)
     {

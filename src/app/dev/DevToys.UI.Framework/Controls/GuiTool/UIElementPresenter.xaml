@@ -1,0 +1,46 @@
+﻿<Control
+    x:Class="DevToys.UI.Framework.Controls.GuiTool.UIElementPresenter"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DevToys.UI.Framework.Controls.GuiTool"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    AllowFocusOnInteraction="False"
+    AllowFocusWhenDisabled="False"
+    TabFocusNavigation="Local"
+    TabNavigation="Local">
+    <Control.Resources>
+        <local:UIElementTemplateSelector x:Key="UIElementTemplateSelector">
+
+            <!-- UIButton -->
+            <local:UIElementTemplateSelector.UIButtonTemplate>
+                <DataTemplate>
+                    <local:UIButtonPresenter/>
+                </DataTemplate>
+            </local:UIElementTemplateSelector.UIButtonTemplate>
+
+            <!-- UIStack -->
+            <local:UIElementTemplateSelector.UIStackTemplate>
+                <DataTemplate>
+                    <local:UIStackPresenter/>
+                </DataTemplate>
+            </local:UIElementTemplateSelector.UIStackTemplate>
+
+        </local:UIElementTemplateSelector>
+    </Control.Resources>
+
+    <Control.Template>
+        <ControlTemplate TargetType="local:UIElementPresenter">
+            <ContentControl
+                ContentTemplateSelector="{StaticResource UIElementTemplateSelector}"
+                Content="{x:Bind UIElement}"
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch"
+                AllowFocusOnInteraction="False"
+                AllowFocusWhenDisabled="False"
+                TabFocusNavigation="Local"
+                TabNavigation="Local"/>
+        </ControlTemplate>
+    </Control.Template>
+</Control>
