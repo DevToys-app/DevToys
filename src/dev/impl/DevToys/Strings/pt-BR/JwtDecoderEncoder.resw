@@ -205,7 +205,7 @@
     <value>Assinatura inválida</value>
   </data>
   <data name="DecodeValidateActorLabel" xml:space="preserve">
-    <value>Validate actor</value>
+    <value>Validar ator</value>
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
     <value>Validate audience</value>
@@ -220,16 +220,16 @@
     <value>Valid audiences</value>
   </data>
   <data name="ValidIssuersLabel" xml:space="preserve">
-    <value>Valid issuers</value>
+    <value>Emissores válidos</value>
   </data>
   <data name="DecodeValidationSettingsDescription" xml:space="preserve">
-    <value>Select which token parameters to validate</value>
+    <value>Selecione quais parâmetros de token devem ser validados</value>
   </data>
   <data name="DecodeValidationSettingsTitle" xml:space="preserve">
     <value>Configurações de validação de token</value>
   </data>
   <data name="ValidAudiencesError" xml:space="preserve">
-    <value>Valid audiences are empty</value>
+    <value>Audiências válidas estão vazias</value>
   </data>
   <data name="ValidIssuersError" xml:space="preserve">
     <value>Valid issuers are empty</value>
