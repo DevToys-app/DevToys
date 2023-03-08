@@ -56,7 +56,7 @@ internal sealed class SampleCommandLineTool : ICommandLineTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool : IGuiTool
 {
-    public IUIElement View => throw new NotImplementedException();
+    public IUIElement View => null!;
 }
 
 [Export(typeof(IGuiTool))]
@@ -79,7 +79,7 @@ internal sealed class SampleGuiTool : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool2 : IGuiTool
 {
-    public IUIElement View => throw new NotImplementedException();
+    public IUIElement View => null!;
 }
 
 [Export(typeof(IGuiTool))]
@@ -102,7 +102,7 @@ internal sealed class SampleGuiTool2 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool3 : IGuiTool
 {
-    public IUIElement View => throw new NotImplementedException();
+    public IUIElement View => null!;
 }
 
 [Export(typeof(IGuiTool))]
@@ -125,7 +125,7 @@ internal sealed class SampleGuiTool3 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool4 : IGuiTool
 {
-    public IUIElement View => throw new NotImplementedException();
+    public IUIElement View => null!;
 }
 
 [Export(typeof(IGuiTool))]
@@ -148,7 +148,7 @@ internal sealed class SampleGuiTool4 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool5 : IGuiTool
 {
-    public IUIElement View => throw new NotImplementedException();
+    public IUIElement View => null!;
 }
 
 [Export(typeof(IGuiTool))]
@@ -171,7 +171,7 @@ internal sealed class SampleGuiTool5 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool6 : IGuiTool
 {
-    public IUIElement View => throw new NotImplementedException();
+    public IUIElement View => null!;
 }
 
 [Export(typeof(IGuiTool))]
@@ -194,7 +194,7 @@ internal sealed class SampleGuiTool6 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool7 : IGuiTool
 {
-    public IUIElement View => throw new NotImplementedException();
+    public IUIElement View => null!;
 }
 
 [Export(typeof(IGuiTool))]
@@ -217,7 +217,7 @@ internal sealed class SampleGuiTool7 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool8 : IGuiTool
 {
-    public IUIElement View => throw new NotImplementedException();
+    public IUIElement View => null!;
 }
 
 [Export(typeof(IGuiTool))]
@@ -240,7 +240,7 @@ internal sealed class SampleGuiTool8 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool9 : IGuiTool
 {
-    public IUIElement View => throw new NotImplementedException();
+    public IUIElement View => null!;
 }
 
 [Export(typeof(IGuiTool))]
@@ -263,7 +263,7 @@ internal sealed class SampleGuiTool9 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool10 : IGuiTool
 {
-    public IUIElement View => throw new NotImplementedException();
+    public IUIElement View => null!;
 }
 
 [Export(typeof(IGuiTool))]
@@ -286,7 +286,7 @@ internal sealed class SampleGuiTool10 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool11 : IGuiTool
 {
-    public IUIElement View => throw new NotImplementedException();
+    public IUIElement View => null!;
 }
 
 [Export(typeof(IGuiTool))]
@@ -309,7 +309,7 @@ internal sealed class SampleGuiTool11 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool12 : IGuiTool
 {
-    public IUIElement View => throw new NotImplementedException();
+    public IUIElement View => null!;
 }
 
 [Export(typeof(IGuiTool))]
@@ -332,7 +332,7 @@ internal sealed class SampleGuiTool12 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool13 : IGuiTool
 {
-    public IUIElement View => throw new NotImplementedException();
+    public IUIElement View => null!;
 }
 
 [Export(typeof(IGuiTool))]
@@ -355,7 +355,7 @@ internal sealed class SampleGuiTool13 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool14 : IGuiTool
 {
-    public IUIElement View => throw new NotImplementedException();
+    public IUIElement View => null!;
 }
 
 [Export(typeof(IGuiTool))]
@@ -378,7 +378,7 @@ internal sealed class SampleGuiTool14 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool15 : IGuiTool
 {
-    public IUIElement View => throw new NotImplementedException();
+    public IUIElement View => null!;
 }
 
 [Export(typeof(IGuiTool))]
@@ -401,7 +401,7 @@ internal sealed class SampleGuiTool15 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool16 : IGuiTool
 {
-    public IUIElement View => throw new NotImplementedException();
+    public IUIElement View => null!;
 }
 
 [Export(typeof(IGuiTool))]
@@ -424,7 +424,7 @@ internal sealed class SampleGuiTool16 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool17 : IGuiTool
 {
-    public IUIElement View => throw new NotImplementedException();
+    public IUIElement View => null!;
 }
 
 [Export(typeof(GuiToolGroup))]

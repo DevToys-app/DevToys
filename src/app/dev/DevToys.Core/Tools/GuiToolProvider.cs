@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Reflection;
+using System.Xml.Linq;
 using DevToys.Api;
 using DevToys.Api.Core;
 using DevToys.Core.Settings;
@@ -123,9 +124,27 @@ public sealed partial class GuiToolProvider
     public void SetMostRecentUsedTool(GuiToolInstance guiToolInstance)
     {
         Guard.IsNotNull(guiToolInstance);
-        _settingsProvider.SetSetting(PredefinedSettings.RecentTool3, _settingsProvider.GetSetting(PredefinedSettings.RecentTool2));
-        _settingsProvider.SetSetting(PredefinedSettings.RecentTool2, _settingsProvider.GetSetting(PredefinedSettings.RecentTool1));
-        _settingsProvider.SetSetting(PredefinedSettings.RecentTool1, guiToolInstance.InternalComponentName);
+
+        string recentTool1 = _settingsProvider.GetSetting(PredefinedSettings.RecentTool1);
+        string recentTool2 = _settingsProvider.GetSetting(PredefinedSettings.RecentTool2);
+
+        if (string.Equals(guiToolInstance.InternalComponentName, recentTool1, StringComparison.Ordinal))
+        {
+            // The tool is already the most recently used one.
+        }
+        else if (string.Equals(guiToolInstance.InternalComponentName, recentTool2, StringComparison.Ordinal))
+        {
+            // Move second most recent to the most recent.
+            _settingsProvider.SetSetting(PredefinedSettings.RecentTool2, recentTool1);
+            _settingsProvider.SetSetting(PredefinedSettings.RecentTool1, guiToolInstance.InternalComponentName);
+        }
+        else
+        {
+            // Shift first and second most recent to the second and third items. Add the given item as the most recent one.
+            _settingsProvider.SetSetting(PredefinedSettings.RecentTool3, recentTool2);
+            _settingsProvider.SetSetting(PredefinedSettings.RecentTool2, recentTool1);
+            _settingsProvider.SetSetting(PredefinedSettings.RecentTool1, guiToolInstance.InternalComponentName);
+        }
 
         LogSetMostRecentUsedTool(guiToolInstance.InternalComponentName);
     }
@@ -336,7 +355,7 @@ public sealed partial class GuiToolProvider
         var bodyToolInstances = new List<GuiToolInstance>();
 
         // Order all the tools.
-        guiTools = ExtensionOrderer.Order(guiTools);
+        guiTools = ExtensionOrderer.Order(guiTools.OrderBy(tool => tool.Metadata.MenuPlacement));
 
         foreach (Lazy<IGuiTool, GuiToolMetadata> guiToolDefinition in guiTools)
         {

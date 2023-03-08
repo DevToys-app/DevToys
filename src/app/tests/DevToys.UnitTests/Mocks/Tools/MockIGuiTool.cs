@@ -19,7 +19,7 @@ namespace DevToys.UnitTests.Mocks.Tools;
     SearchKeywordsResourceName = nameof(MockToolResource.Title))]
 internal sealed class MockIGuiTool2 : IGuiTool
 {
-    public IUIElement View => throw new NotImplementedException();
+    public IUIElement View => null!;
 }
 
 [Export(typeof(IGuiTool))]
@@ -38,5 +38,5 @@ internal sealed class MockIGuiTool2 : IGuiTool
     SearchKeywordsResourceName = nameof(MockToolResource.Title))]
 internal sealed class MockIGuiTool : IGuiTool
 {
-    public IUIElement View => throw new NotImplementedException();
+    public IUIElement View => null!;
 }

@@ -285,7 +285,8 @@
 
             <Frame
                 Grid.Row="1"
-                Name="ContentFrame">
+                Name="ContentFrame"
+                IsNavigationStackEnabled="False">
             </Frame>
         </NavigationView>
     </Grid>
