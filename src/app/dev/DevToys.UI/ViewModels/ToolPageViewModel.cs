@@ -34,22 +34,18 @@ internal sealed partial class ToolPageViewModel : ObservableRecipient
     /// <summary>
     /// Gets the UI of the tool.
     /// </summary>
-    internal IUIElement ToolView => _guiToolViewItem?.ToolInstance.View ?? throw new InvalidOperationException();
+    internal IUIElement? ToolView => _guiToolViewItem?.ToolInstance.View;
 
     internal void Load(GuiToolViewItem guiToolViewItem)
     {
         Guard.IsNotNull(guiToolViewItem);
 
+        // Add the tool to most recent ones.
+        _guiToolProvider.SetMostRecentUsedTool(guiToolViewItem.ToolInstance);
+
         _guiToolViewItem = guiToolViewItem;
 
-        if (string.IsNullOrWhiteSpace(guiToolViewItem.ToolInstance.LongDisplayTitle))
-        {
-            HeaderText = guiToolViewItem.ToolInstance.ShortDisplayTitle;
-        }
-        else
-        {
-            HeaderText = guiToolViewItem.ToolInstance.LongDisplayTitle;
-        }
+        HeaderText = guiToolViewItem.ToolInstance.LongOrShortDisplayTitle;
     }
 
     /// <summary>

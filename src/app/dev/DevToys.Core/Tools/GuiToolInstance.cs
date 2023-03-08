@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using System.Resources;
+using CommunityToolkit.Mvvm.ComponentModel;
 using DevToys.Api;
 using DevToys.Core.Tools.Metadata;
 using Microsoft.Extensions.Logging;
@@ -8,7 +9,7 @@ using Uno.Extensions;
 namespace DevToys.Core.Tools;
 
 [DebuggerDisplay($"InternalComponentName = {{{nameof(InternalComponentName)}}}")]
-public sealed partial class GuiToolInstance
+public sealed partial class GuiToolInstance : ObservableObject
 {
     private readonly ILogger _logger;
     private readonly Lazy<IGuiTool, GuiToolMetadata> _guiToolDefinition;
@@ -57,6 +58,8 @@ public sealed partial class GuiToolInstance
 
     public string LongDisplayTitle => _longDisplayTitle.Value;
 
+    public string LongOrShortDisplayTitle => string.IsNullOrWhiteSpace(_longDisplayTitle.Value) ? ShortDisplayTitle : _longDisplayTitle.Value;
+
     public string Description => _descriptionDisplayTitle.Value;
 
     public string AccessibleName => _accessibleNameDisplayTitle.Value;
@@ -74,6 +77,8 @@ public sealed partial class GuiToolInstance
     public int? CompactOverlayWidth => _guiToolDefinition.Metadata.CompactOverlayWidth;
 
     public string GroupName => _guiToolDefinition.Metadata.GroupName;
+
+    public bool IsFooterTool => _guiToolDefinition.Metadata.MenuPlacement == MenuPlacement.Footer;
 
     /// <summary>
     /// Gets the view of the tool.
