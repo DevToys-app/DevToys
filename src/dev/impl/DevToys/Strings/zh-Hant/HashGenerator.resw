@@ -160,12 +160,12 @@
     <value>輸出類型</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="HmacMode" xml:space="preserve">
     <value>HMAC 模式</value>
   </data>
   <data name="SecretKey" xml:space="preserve">
-    <value>密鑰</value>
+    <value>祕密金鑰</value>
   </data>
 </root>
