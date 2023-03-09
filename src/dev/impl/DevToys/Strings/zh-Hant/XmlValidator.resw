@@ -142,7 +142,7 @@
     <value>XML 符合定義的 XSD 配置。</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>XML XSD 的驗證</value>
+    <value>XML XSD 驗證</value>
   </data>
   <data name="XmlNamespacesInconsistentMsg" xml:space="preserve">
     <value>驗證結果將永遠為“有效”，因為 XML 中沒有定義 XSD 中已定義的命名空間：{0}</value>
