@@ -229,7 +229,7 @@
     <value>設定</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>配置 設定 選項</value>
+    <value>組態 設定 選項</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
     <value>幫助我們翻譯 DevToys！</value>
