@@ -95,6 +95,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DevToys.Core\DevToys.Core.csproj" />
+    <ProjectReference Include="..\DevToys.Business\DevToys.Business.csproj" />
     <ProjectReference Include="..\DevToys.Localization\DevToys.Localization.csproj" />
     <ProjectReference Include="..\DevToys.MonacoEditor\DevToys.MonacoEditor.csproj" />
     <ProjectReference Include="..\DevToys.UI.Framework\DevToys.UI.Framework.csproj" />

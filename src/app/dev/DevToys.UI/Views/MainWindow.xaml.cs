@@ -1,11 +1,10 @@
-﻿using System.Security.Cryptography;
-using DevToys.Api;
+﻿using DevToys.Api;
 using DevToys.Api.Core.Theme;
+using DevToys.Business.Models;
+using DevToys.Business.ViewModels;
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
 using DevToys.UI.Framework.Controls;
-using DevToys.UI.Models;
-using DevToys.UI.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
@@ -114,11 +113,6 @@ public sealed partial class MainWindow : BackdropPage
         IsInCompactOverlay = IsInCompactOverlayMode();
     }
 
-    private void SearchBoxKeyboardAccelerator_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
-    {
-        SearchBox.Focus(FocusState.Keyboard);
-    }
-
     private void MenuNavigationView_DisplayModeChanged(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args)
     {
         _navigationViewDisplayMode = MenuNavigationView.DisplayMode;
@@ -145,6 +139,21 @@ public sealed partial class MainWindow : BackdropPage
     private void MenuNavigationView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
     {
         ViewModel.GoBack();
+    }
+
+    private void SearchBoxText_Changed(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+    {
+        ViewModel.SearchBoxTextChangedCommand.Execute((SearchBoxTextChangedReason)args.Reason);
+    }
+
+    private void SearchBoxText_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+    {
+        ViewModel.SearchBoxQuerySubmittedCommand.Execute(args.ChosenSuggestion);
+    }
+
+    private void SearchBoxKeyboardAccelerator_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        SearchBox.Focus(FocusState.Keyboard);
     }
 
     private void ViewModel_SelectedMenuItemChanged(object? sender, EventArgs e)

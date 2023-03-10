@@ -1,4 +1,5 @@
 ﻿using DevToys.Api;
+using DevToys.Business.ViewModels;
 using DevToys.Core.Logging;
 using DevToys.Core.Mef;
 using DevToys.Core.Settings;
@@ -17,7 +18,8 @@ public static partial class MauiProgram
     internal static readonly Lazy<MefComposer> MefComposer
         = new(() => new MefComposer(
             new[] {
-                typeof(DevToysToolsResourceManagerAssemblyIdentifier).Assembly
+                typeof(DevToysToolsResourceManagerAssemblyIdentifier).Assembly,
+                typeof(MainWindowViewModel).Assembly
             }));
 
     private static MauiApp? app;

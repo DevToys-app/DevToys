@@ -5,7 +5,7 @@ using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
 using DevToys.Localization.Strings.ToolPage;
 
-namespace DevToys.UI.ViewModels;
+namespace DevToys.Business.ViewModels;
 
 [Export]
 [PartCreationPolicy(CreationPolicy.NonShared)]

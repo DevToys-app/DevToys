@@ -6,10 +6,9 @@ using DevToys.Core.Tools;
 using DevToys.Core.Tools.Metadata;
 using DevToys.Core.Tools.ViewItems;
 using DevToys.Localization.Strings.MainMenu;
-using DevToys.UI.Models;
-using Microsoft.UI.Xaml.Controls;
+using DevToys.Business.Models;
 
-namespace DevToys.UI.ViewModels;
+namespace DevToys.Business.ViewModels;
 
 [Export]
 [PartCreationPolicy(CreationPolicy.NonShared)]
@@ -51,9 +50,9 @@ internal sealed partial class ToolGroupPageViewModel : ObservableRecipient
     }
 
     [RelayCommand]
-    private void ToolSelected(ItemClickEventArgs args)
+    private void ToolSelected(object? selectedItem)
     {
-        if (args.ClickedItem is not null && args.ClickedItem is GuiToolInstance tool)
+        if (selectedItem is GuiToolInstance tool)
         {
             Messenger.Send(new ChangeSelectedMenuItemMessage(tool));
         }

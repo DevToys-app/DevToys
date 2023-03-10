@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Messaging.Messages;
 
-namespace DevToys.UI.Models;
+namespace DevToys.Business.Models;
 
 internal sealed class ChangeSelectedMenuItemMessage : ValueChangedMessage<object>
 {

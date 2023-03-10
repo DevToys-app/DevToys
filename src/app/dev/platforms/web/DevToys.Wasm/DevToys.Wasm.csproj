@@ -61,6 +61,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\DevToys.Api\DevToys.Api.csproj" />
     <ProjectReference Include="..\..\..\DevToys.Core\DevToys.Core.csproj" />
+    <ProjectReference Include="..\..\..\DevToys.Business\DevToys.Business.csproj" />
     <ProjectReference Include="..\..\..\DevToys.MonacoEditor\DevToys.MonacoEditor.csproj" />
     <ProjectReference Include="..\..\..\DevToys.Tools\DevToys.Tools.csproj" />
     <ProjectReference Include="..\..\..\DevToys.UI.Framework\DevToys.UI.Framework.csproj" />
