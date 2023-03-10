@@ -1,5 +1,5 @@
 ﻿using DevToys.Api;
 
-namespace DevToys.UI.Models;
+namespace DevToys.Business.Models;
 
 internal record NavigationParameters<T>(IMefProvider MefProvider, T Parameter);

@@ -1,5 +1,6 @@
 ﻿using DevToys.Api;
 using DevToys.Api.Core.Theme;
+using DevToys.Business.ViewModels;
 using DevToys.Core.Logging;
 using DevToys.Core.Mef;
 using DevToys.Core.Settings;
@@ -59,7 +60,8 @@ public sealed partial class App : Application
                 new[]
                 {
                     typeof(DevToysToolsResourceManagerAssemblyIdentifier).Assembly,
-                    typeof(MainWindow).Assembly
+                    typeof(MainWindow).Assembly,
+                    typeof(MainWindowViewModel).Assembly
                 });
 
         _mefProvider = _mefComposer.Provider;

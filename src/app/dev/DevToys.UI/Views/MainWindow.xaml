@@ -144,15 +144,9 @@
                     PlaceholderText="{x:Bind mainmenustrings:MainMenu.Search}"
                     UpdateTextOnSelect="False"
                     ItemsSource="{x:Bind ViewModel.SearchResults, Mode=OneWay}"
-                    Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                    <i:Interaction.Behaviors>
-                        <ix:EventTriggerBehavior EventName="TextChanged">
-                            <ix:InvokeCommandAction Command="{x:Bind ViewModel.SearchBoxTextChangedCommand}"/>
-                        </ix:EventTriggerBehavior>
-                        <ix:EventTriggerBehavior EventName="QuerySubmitted">
-                            <ix:InvokeCommandAction Command="{x:Bind ViewModel.SearchBoxQuerySubmittedCommand}"/>
-                        </ix:EventTriggerBehavior>
-                    </i:Interaction.Behaviors>
+                    Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    TextChanged="SearchBoxText_Changed"
+                    QuerySubmitted="SearchBoxText_QuerySubmitted">
                     <AutoSuggestBox.KeyboardAccelerators>
                         <KeyboardAccelerator
                             Key="F"

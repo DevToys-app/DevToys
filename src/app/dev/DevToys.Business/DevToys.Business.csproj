@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>$(NetCore)</TargetFrameworks>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DevToys.Api\DevToys.Api.csproj" />
+    <ProjectReference Include="..\DevToys.Core\DevToys.Core.csproj" />
+    <ProjectReference Include="..\DevToys.Localization\DevToys.Localization.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Common" />
+    <PackageReference Include="CommunityToolkit.Diagnostics" />
+    <PackageReference Include="CommunityToolkit.Mvvm" />
+    <PackageReference Include="FuzzySharp" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="System.ComponentModel.Composition" />
+    <PackageReference Include="Uno.Core.Extensions.Logging" />
+    <PackageReference Include="Uno.Core.Extensions.Logging.Singleton" />
+  </ItemGroup>
+</Project>

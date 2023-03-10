@@ -1,7 +1,7 @@
-﻿using DevToys.Core.Tools.ViewItems;
+﻿using DevToys.Business.Models;
+using DevToys.Business.ViewModels;
+using DevToys.Core.Tools.ViewItems;
 using DevToys.UI.Framework.Controls;
-using DevToys.UI.Models;
-using DevToys.UI.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
@@ -41,6 +41,11 @@ public sealed partial class ToolGroupPage : Page, IVisualStateListener
 
         DataContext = parameter.MefProvider.Import<ToolGroupPageViewModel>();
         ViewModel.Load(parameter.Parameter);
+    }
+
+    private void GridView_ItemClick(object sender, ItemClickEventArgs e)
+    {
+        ViewModel.ToolSelectedCommand.Execute(e.ClickedItem);
     }
 
     private void GridView_SizeChanged(object sender, SizeChangedEventArgs args)

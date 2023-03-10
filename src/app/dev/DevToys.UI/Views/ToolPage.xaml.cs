@@ -1,7 +1,7 @@
-﻿using DevToys.Core.Tools.ViewItems;
+﻿using DevToys.Business.Models;
+using DevToys.Business.ViewModels;
+using DevToys.Core.Tools.ViewItems;
 using DevToys.UI.Framework.Controls;
-using DevToys.UI.Models;
-using DevToys.UI.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;

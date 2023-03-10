@@ -47,12 +47,8 @@
             IsSwipeEnabled="False"
             IsItemClickEnabled="True"
             ItemsSource="{x:Bind ToolGroups.View, Mode=OneWay}"
-            SizeChanged="GridView_SizeChanged">
-            <i:Interaction.Behaviors>
-                <ix:EventTriggerBehavior EventName="ItemClick">
-                    <ix:InvokeCommandAction Command="{x:Bind ViewModel.ToolSelectedCommand}"/>
-                </ix:EventTriggerBehavior>
-            </i:Interaction.Behaviors>
+            SizeChanged="GridView_SizeChanged"
+            ItemClick="GridView_ItemClick">
             <CollectionViewSource
                 x:Name="ToolGroups"
                 Source="{x:Bind ViewModel.Tools, Mode=OneWay}"

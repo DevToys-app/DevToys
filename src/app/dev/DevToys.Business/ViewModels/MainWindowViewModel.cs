@@ -4,10 +4,9 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
-using DevToys.UI.Models;
-using Microsoft.UI.Xaml.Controls;
+using DevToys.Business.Models;
 
-namespace DevToys.UI.ViewModels;
+namespace DevToys.Business.ViewModels;
 
 [Export]
 internal sealed partial class MainWindowViewModel : ObservableRecipient
@@ -118,21 +117,29 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
     [ObservableProperty]
     private ObservableCollection<GuiToolViewItem> _searchResults = new();
 
+    /// <summary>
+    /// Command invoked when the search box's text changed.
+    /// </summary>
+    /// <param name="reason">The reason for which the text has changed.</param>
     [RelayCommand]
-    private void SearchBoxTextChanged(AutoSuggestBoxTextChangedEventArgs parameters)
+    private void SearchBoxTextChanged(SearchBoxTextChangedReason reason)
     {
         // Since selecting an item will also change the text,
         // only listen to changes caused by user entering text.
-        if (parameters.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+        if (reason == SearchBoxTextChangedReason.UserInput)
         {
             _guiToolProvider.SearchTools(SearchQuery, SearchResults);
         }
     }
 
+    /// <summary>
+    /// Command invoked when the user press Enter in the search box or explicitly select an item in the search result list.
+    /// </summary>
+    /// <param name="chosenSuggestion">Equals to the selected item in the search result list, or null if nothing is selected by the user and or if there's no result at all.</param>
     [RelayCommand]
-    private void SearchBoxQuerySubmitted(AutoSuggestBoxQuerySubmittedEventArgs parameters)
+    private void SearchBoxQuerySubmitted(object? chosenSuggestion)
     {
-        var selectedSearchResultItem = parameters.ChosenSuggestion as GuiToolViewItem;
+        var selectedSearchResultItem = chosenSuggestion as GuiToolViewItem;
         if (selectedSearchResultItem is null && SearchResults.Count > 0)
         {
             selectedSearchResultItem = SearchResults[0];
