@@ -6,10 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    AllowFocusOnInteraction="False"
-    AllowFocusWhenDisabled="False"
-    TabFocusNavigation="Local"
-    TabNavigation="Local">
+    IsTabStop="False">
     <Control.Resources>
         <local:UIElementTemplateSelector x:Key="UIElementTemplateSelector">
 
@@ -27,6 +24,27 @@
                 </DataTemplate>
             </local:UIElementTemplateSelector.UIStackTemplate>
 
+            <!-- UIIcon -->
+            <local:UIElementTemplateSelector.UIIconTemplate>
+                <DataTemplate>
+                    <local:UIIconPresenter/>
+                </DataTemplate>
+            </local:UIElementTemplateSelector.UIIconTemplate>
+
+            <!-- UISetting -->
+            <local:UIElementTemplateSelector.UISettingTemplate>
+                <DataTemplate>
+                    <local:UISettingPresenter/>
+                </DataTemplate>
+            </local:UIElementTemplateSelector.UISettingTemplate>
+
+            <!-- UISettingGroup -->
+            <local:UIElementTemplateSelector.UISettingGroupTemplate>
+                <DataTemplate>
+                    <local:UISettingGroupPresenter/>
+                </DataTemplate>
+            </local:UIElementTemplateSelector.UISettingGroupTemplate>
+
         </local:UIElementTemplateSelector>
     </Control.Resources>
 
@@ -34,13 +52,10 @@
         <ControlTemplate TargetType="local:UIElementPresenter">
             <ContentControl
                 ContentTemplateSelector="{StaticResource UIElementTemplateSelector}"
-                Content="{x:Bind UIElement}"
+                Content="{x:Bind UIElement, Mode=OneWay}"
                 HorizontalContentAlignment="Stretch"
                 VerticalContentAlignment="Stretch"
-                AllowFocusOnInteraction="False"
-                AllowFocusWhenDisabled="False"
-                TabFocusNavigation="Local"
-                TabNavigation="Local"/>
+                IsTabStop="False"/>
         </ControlTemplate>
     </Control.Template>
 </Control>

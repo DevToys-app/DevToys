@@ -19,19 +19,20 @@ public sealed partial class UIButtonPresenter : Button
     {
         UIButton.IsEnabledChanged += UIButton_IsEnabledChanged;
         UIButton.IsVisibleChanged += UIButton_IsVisibleChanged;
-        UIButton.DisplayTextChanged += UIButton_DisplayTextChanged;
+        UIButton.TextChanged += UIButton_TextChanged;
 
         IsEnabled = UIButton.IsEnabled;
         Visibility = UIButton.IsVisible ? Microsoft.UI.Xaml.Visibility.Visible : Microsoft.UI.Xaml.Visibility.Collapsed;
-        Content = UIButton.DisplayText;
+        Content = UIButton.Text;
     }
 
     private void UIButtonPresenter_Unloaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
         UIButton.IsEnabledChanged -= UIButton_IsEnabledChanged;
         UIButton.IsVisibleChanged -= UIButton_IsVisibleChanged;
-        UIButton.DisplayTextChanged -= UIButton_DisplayTextChanged;
+        UIButton.TextChanged -= UIButton_TextChanged;
         Loaded -= UIButtonPresenter_Loaded;
+        Unloaded -= UIButtonPresenter_Unloaded;
     }
 
     private void UIButton_IsEnabledChanged(object? sender, EventArgs e)
@@ -44,9 +45,9 @@ public sealed partial class UIButtonPresenter : Button
         Visibility = UIButton.IsVisible ? Microsoft.UI.Xaml.Visibility.Visible : Microsoft.UI.Xaml.Visibility.Collapsed;
     }
 
-    private void UIButton_DisplayTextChanged(object? sender, EventArgs e)
+    private void UIButton_TextChanged(object? sender, EventArgs e)
     {
-        Content = UIButton.DisplayText;
+        Content = UIButton.Text;
     }
 
     private void OnButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)

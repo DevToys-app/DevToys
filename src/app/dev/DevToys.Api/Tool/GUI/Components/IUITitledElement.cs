@@ -8,15 +8,15 @@ public interface IUITitledElement : IUIElement
     /// <summary>
     /// Gets a title to display for this element.
     /// </summary>
-    string? DisplayTitle { get; }
+    string? Title { get; }
 
     /// <summary>
-    /// Raised when <see cref="DisplayTitle"/> is changed.
+    /// Raised when <see cref="Title"/> is changed.
     /// </summary>
-    event EventHandler? DisplayTitleChanged;
+    event EventHandler? TitleChanged;
 }
 
-[DebuggerDisplay($"Id = {{{nameof(Id)}}}, Title = {{{nameof(DisplayTitle)}}}")]
+[DebuggerDisplay($"Id = {{{nameof(Id)}}}, Title = {{{nameof(Title)}}}")]
 internal abstract class UITitledElement : UIElement, IUITitledElement
 {
     private string? _title;
@@ -26,17 +26,17 @@ internal abstract class UITitledElement : UIElement, IUITitledElement
     {
     }
 
-    public string? DisplayTitle
+    public string? Title
     {
         get => _title;
         internal set
         {
             _title = value;
-            DisplayTitleChanged?.Invoke(this, EventArgs.Empty);
+            TitleChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 
-    public event EventHandler? DisplayTitleChanged;
+    public event EventHandler? TitleChanged;
 }
 
 public static partial class GUI
@@ -48,7 +48,7 @@ public static partial class GUI
     {
         if (element is UITitledElement strongElement)
         {
-            strongElement.DisplayTitle = title;
+            strongElement.Title = title;
         }
         return element;
     }

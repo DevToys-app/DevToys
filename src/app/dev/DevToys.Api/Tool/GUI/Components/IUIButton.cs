@@ -8,7 +8,7 @@ public interface IUIButton : IUIElement
     /// <summary>
     /// Gets the text to display in the button.
     /// </summary>
-    string? DisplayText { get; }
+    string? Text { get; }
 
     /// <summary>
     /// Gets the action to run when the user clicks the button.
@@ -16,13 +16,13 @@ public interface IUIButton : IUIElement
     Func<ValueTask>? OnClickAction { get; }
 
     /// <summary>
-    /// Raised when <see cref="DisplayTextChanged"/> is changed.
+    /// Raised when <see cref="Text"/> is changed.
     /// </summary>
-    public event EventHandler? DisplayTextChanged;
+    public event EventHandler? TextChanged;
 }
 
-[DebuggerDisplay($"Id = {{{nameof(Id)}}}, Text = {{{nameof(DisplayText)}}}")]
-internal class UIButton : UIElement, IUIButton
+[DebuggerDisplay($"Id = {{{nameof(Id)}}}, Text = {{{nameof(Text)}}}")]
+internal sealed class UIButton : UIElement, IUIButton
 {
     private string? _text;
 
@@ -31,19 +31,19 @@ internal class UIButton : UIElement, IUIButton
     {
     }
 
-    public string? DisplayText
+    public string? Text
     {
         get => _text;
         internal set
         {
             _text = value;
-            DisplayTextChanged?.Invoke(this, EventArgs.Empty);
+            TextChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 
     public Func<ValueTask>? OnClickAction { get; internal set; }
 
-    public event EventHandler? DisplayTextChanged;
+    public event EventHandler? TextChanged;
 }
 
 public static partial class GUI
@@ -66,11 +66,11 @@ public static partial class GUI
     }
 
     /// <summary>
-    /// Sets the <see cref="IUIButton.DisplayText"/> of the button.
+    /// Sets the <see cref="IUIButton.Text"/> of the button.
     /// </summary>
     public static IUIButton Text(this IUIButton element, string? text)
     {
-        ((UIButton)element).DisplayText = text;
+        ((UIButton)element).Text = text;
         return element;
     }
 
