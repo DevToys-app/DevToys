@@ -18,6 +18,11 @@ public sealed partial class UISettingPresenter : UserControl
 
     internal IUISetting UISetting => (IUISetting)DataContext;
 
+    internal void ClearBackground()
+    {
+        NonExpanderGrid.Background = null;
+    }
+
     private void UISettingPresenter_Loaded(object sender, RoutedEventArgs e)
     {
         UISetting.IsEnabledChanged += UISetting_IsEnabledChanged;
