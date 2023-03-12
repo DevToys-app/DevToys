@@ -22,6 +22,8 @@
     </Page>
     <PRIResource Include="**\*.resw" />
     <Content Include="Assets\**" />
+    <None Remove="Controls\GuiTool\UISwitchPresenter.xaml" />
+    <UpToDateCheckInput Remove="Controls\GuiTool\UISwitchPresenter.xaml" />
     <Compile Update="**\*.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
@@ -95,6 +97,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DevToys.Api\DevToys.Api.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Controls\GuiTool\UISwitchPresenter.xaml.cs">
+      <DependentUpon>UISwitchPresenter.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>

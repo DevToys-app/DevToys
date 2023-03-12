@@ -93,6 +93,38 @@ public static partial class GUI
     }
 
     /// <summary>
+    /// Sets a <see cref="IUISwitch"/> to <see cref="IUISettingGroup.InteractiveElement"/> and automatically associate the
+    /// given <paramref name="settingDefinition"/> to the switch state.
+    /// </summary>
+    /// <param name="settingsProvider">The settings provider used for handling the given <paramref name="settingDefinition"/>.</param>
+    /// <param name="settingDefinition">The definition of the setting to associate to this <see cref="IUISettingGroup"/>.</param>
+    /// <param name="onToggled">(optional) A method to invoke when the setting value changed.</param>
+    public static IUISettingGroup Handle(this IUISettingGroup element, ISettingsProvider settingsProvider, SettingDefinition<bool> settingDefinition, Func<bool, ValueTask>? onToggled = null)
+    {
+        var settingElement = (UISetting)element;
+
+        IUISwitch toggleSwitch = Switch();
+        if (settingsProvider.GetSetting(settingDefinition))
+        {
+            toggleSwitch.On();
+        }
+        else
+        {
+            toggleSwitch.Off();
+        }
+
+        toggleSwitch.OnToggle((bool state) =>
+        {
+            settingsProvider.SetSetting(settingDefinition, state);
+            onToggled?.Invoke(state);
+            return ValueTask.CompletedTask;
+        });
+
+        settingElement.InteractiveElement(toggleSwitch);
+        return element;
+    }
+
+    /// <summary>
     /// Set the children to be displayed in the group.
     /// </summary>
     public static IUISettingGroup WithChildren(this IUISettingGroup element, params IUIElement[] children)

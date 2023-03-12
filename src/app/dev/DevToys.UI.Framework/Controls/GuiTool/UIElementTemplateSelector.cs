@@ -34,6 +34,11 @@ internal sealed class UIElementTemplateSelector : DataTemplateSelector
     /// </summary>
     public DataTemplate UISettingGroupTemplate { get; set; } = null!;
 
+    /// <summary>
+    /// The data template used to display a <see cref="IUISwitch"/>.
+    /// </summary>
+    public DataTemplate UISwitchTemplate { get; set; } = null!;
+
     protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
     {
         if (item is null)
@@ -48,6 +53,7 @@ internal sealed class UIElementTemplateSelector : DataTemplateSelector
             IUIIcon => UIIconTemplate,
             IUISettingGroup => UISettingGroupTemplate,
             IUISetting => UISettingTemplate,
+            IUISwitch => UISwitchTemplate,
 
             _ => throw new NotSupportedException($"Gui Tool component of type '{item.GetType().FullName}' isn't supported.")
         };

@@ -1,6 +1,4 @@
-﻿using DevToys.Api;
-
-namespace DevToys.Tools.Settings;
+﻿namespace DevToys.Tools.Settings;
 
 [Export(typeof(IGuiTool))]
 [Name("Settings")]
@@ -19,6 +17,16 @@ namespace DevToys.Tools.Settings;
 [NoCompactOverlaySupport]
 internal sealed class SettingsGuiTool : IGuiTool
 {
+#pragma warning disable IDE0044 // Add readonly modifier
+    [Import]
+    private ISettingsProvider _settingsProvider = null!;
+#pragma warning restore IDE0044 // Add readonly modifier
+
+    /// <summary>
+    /// Dummy setting
+    /// </summary>
+    public static readonly SettingDefinition<bool> DummySetting = new(name: nameof(DummySetting), defaultValue: true);
+
     private readonly IUIButton _topLeftButton;
 
     private int _clickCount;
@@ -45,23 +53,22 @@ internal sealed class SettingsGuiTool : IGuiTool
                     Setting()
                         .Title("Title")
                         .Description("Description")
-                        .InteractiveElement(
-                            Button().Text("My option")),
+                        .Handle(_settingsProvider, DummySetting, OnDummySettingChangedAsync),
                     Setting()
                         .Title("Title")
                         .Description("Description")
                         .InteractiveElement(
-                            Button().Text("My option")),
+                            Switch()),
                     Setting()
                         .Title("Title")
                         .Description("Description")
                         .InteractiveElement(
-                            Button().Text("My option")),
+                            Switch()),
                     Setting()
                         .Title("Title")
                         .Description("Description")
                         .InteractiveElement(
-                            Button().Text("My option"))),
+                            Switch())),
             Stack()
                 .Horizontal()
                 .WithChildren(
@@ -75,6 +82,13 @@ internal sealed class SettingsGuiTool : IGuiTool
                     Button().Text("Bottom Left button"),
                     Button().Text("Bottom Center button").OnClick(OnBottomCenterButtonClickAsync),
                     Button().Text("Bottom Right button")));
+
+    private ValueTask OnDummySettingChangedAsync(bool state)
+    {
+        _clickCount++;
+        _topLeftButton.Text($"Clicked {_clickCount} time !");
+        return ValueTask.CompletedTask;
+    }
 
     private ValueTask OnMyButtonClickAsync()
     {

@@ -10,4 +10,19 @@
     <PackageReference Include="System.ComponentModel.Composition" />
     <PackageReference Include="System.Threading.Tasks.Extensions" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Strings\ApiText\ApiText.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ApiText.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Strings\ApiText\ApiText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ApiText.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>
