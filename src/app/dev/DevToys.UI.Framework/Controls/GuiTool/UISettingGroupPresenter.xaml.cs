@@ -103,7 +103,6 @@ public sealed partial class UISettingGroupPresenter : Expander
         ContentStackPanel.Children.Clear();
         if (UISettingGroup.Children is not null)
         {
-            bool allChildrenAreUISetting = true;
             for (int i = 0; i < UISettingGroup.Children.Length; i++)
             {
                 IUIElement element = UISettingGroup.Children[i];
@@ -135,7 +134,7 @@ public sealed partial class UISettingGroupPresenter : Expander
             }
 
             // Adjust the spacing inside of the group.
-            if (allChildrenAreUISetting)
+            if (UISettingGroup.ChildrenAreAllSettings)
             {
                 ContentStackPanel.Spacing = 0;
                 ContentStackPanel.Padding = default;
