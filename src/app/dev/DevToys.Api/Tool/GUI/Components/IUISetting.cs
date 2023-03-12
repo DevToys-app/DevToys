@@ -128,4 +128,36 @@ public static partial class GUI
         ((UISetting)element).InteractiveElement = uiElement;
         return element;
     }
+
+    /// <summary>
+    /// Sets a <see cref="IUISwitch"/> to <see cref="IUISetting.InteractiveElement"/> and automatically associate the
+    /// given <paramref name="settingDefinition"/> to the switch state.
+    /// </summary>
+    /// <param name="settingsProvider">The settings provider used for handling the given <paramref name="settingDefinition"/>.</param>
+    /// <param name="settingDefinition">The definition of the setting to associate to this <see cref="IUISetting"/>.</param>
+    /// <param name="onToggled">(optional) A method to invoke when the setting value changed.</param>
+    public static IUISetting Handle(this IUISetting element, ISettingsProvider settingsProvider, SettingDefinition<bool> settingDefinition, Func<bool, ValueTask>? onToggled = null)
+    {
+        var settingElement = (UISetting)element;
+
+        IUISwitch toggleSwitch = Switch();
+        if (settingsProvider.GetSetting(settingDefinition))
+        {
+            toggleSwitch.On();
+        }
+        else
+        {
+            toggleSwitch.Off();
+        }
+
+        toggleSwitch.OnToggle((bool state) =>
+        {
+            settingsProvider.SetSetting(settingDefinition, state);
+            onToggled?.Invoke(state);
+            return ValueTask.CompletedTask;
+        });
+
+        settingElement.InteractiveElement(toggleSwitch);
+        return element;
+    }
 }

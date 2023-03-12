@@ -45,6 +45,13 @@
                 </DataTemplate>
             </local:UIElementTemplateSelector.UISettingGroupTemplate>
 
+            <!-- UISwitch -->
+            <local:UIElementTemplateSelector.UISwitchTemplate>
+                <DataTemplate>
+                    <local:UISwitchPresenter/>
+                </DataTemplate>
+            </local:UIElementTemplateSelector.UISwitchTemplate>
+
         </local:UIElementTemplateSelector>
     </Control.Resources>
 
