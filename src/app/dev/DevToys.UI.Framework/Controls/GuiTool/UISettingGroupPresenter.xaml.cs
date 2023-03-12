@@ -124,6 +124,7 @@ public sealed partial class UISettingGroupPresenter : Expander
                             DataContext = element,
                             CornerRadius = cornerRadius
                         };
+                    settingPresenter.ClearBackground();
 
                     ContentStackPanel.Children.Add(settingPresenter);
                 }
