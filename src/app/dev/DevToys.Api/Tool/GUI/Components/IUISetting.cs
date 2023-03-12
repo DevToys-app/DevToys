@@ -1,4 +1,6 @@
-﻿namespace DevToys.Api;
+﻿using System;
+
+namespace DevToys.Api;
 
 /// <summary>
 /// A component that represents a setting, with a title, description, icon and <see cref="IUIElement"/> for the option value.
@@ -153,11 +155,57 @@ public static partial class GUI
         toggleSwitch.OnToggle((bool state) =>
         {
             settingsProvider.SetSetting(settingDefinition, state);
-            onToggled?.Invoke(state);
+            if (onToggled is not null)
+            {
+                return onToggled.Invoke(state);
+            }
             return ValueTask.CompletedTask;
         });
 
         settingElement.InteractiveElement(toggleSwitch);
+        return element;
+    }
+
+    /// <summary>
+    /// Sets a <see cref="IUIDropDownList"/> to <see cref="IUISetting.InteractiveElement"/> and automatically associate the
+    /// given <paramref name="settingDefinition"/> to the switch state.
+    /// </summary>
+    /// <param name="settingsProvider">The settings provider used for handling the given <paramref name="settingDefinition"/>.</param>
+    /// <param name="settingDefinition">The definition of the setting to associate to this <see cref="IUISetting"/>.</param>
+    /// <param name="onOptionSelected">(optional) A method to invoke when the setting value changed.</param>
+    /// <param name="dropDownListItems">(optional) A list of items to be displayed in the drop down list. <see cref="IUIDropDownListItem.Value"/> should be of type <typeparamref name="T"/>.</param>
+    public static IUISetting Handle<T>(this IUISetting element, ISettingsProvider settingsProvider, SettingDefinition<T> settingDefinition, Func<T, ValueTask>? onOptionSelected, params IUIDropDownListItem[] dropDownListItems) where T : struct, IConvertible
+    {
+        if (!typeof(T).IsEnum)
+        {
+            ThrowHelper.ThrowArgumentException($"{nameof(T)} must be an enumerated type.");
+        }
+
+        var settingElement = (UISetting)element;
+
+        IUIDropDownList dropDownList
+            = DropDownList()
+                .WithItems(dropDownListItems);
+
+        T currentSettingValue = settingsProvider.GetSetting(settingDefinition);
+
+        dropDownList.Select(dropDownList.Items?.FirstOrDefault(i => i.Value is T e && e.ToInt32(null) == currentSettingValue.ToInt32(null)));
+
+        dropDownList.OnItemSelected((IUIDropDownListItem? item) =>
+        {
+            Guard.IsNotNull(item);
+            Guard.IsNotNull(item.Value);
+            Guard.IsOfType<T>(item.Value);
+
+            settingsProvider.SetSetting(settingDefinition, (T)item.Value);
+            if (onOptionSelected is not null)
+            {
+                return onOptionSelected.Invoke((T)item.Value);
+            }
+            return ValueTask.CompletedTask;
+        });
+
+        settingElement.InteractiveElement(dropDownList);
         return element;
     }
 }
