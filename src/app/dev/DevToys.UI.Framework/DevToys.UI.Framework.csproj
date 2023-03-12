@@ -22,10 +22,6 @@
     </Page>
     <PRIResource Include="**\*.resw" />
     <Content Include="Assets\**" />
-    <None Remove="Controls\GuiTool\UIButtonPresenter.xaml" />
-    <None Remove="Controls\GuiTool\UIStackPresenter.xaml" />
-    <UpToDateCheckInput Remove="Controls\GuiTool\UIButtonPresenter.xaml" />
-    <UpToDateCheckInput Remove="Controls\GuiTool\UIStackPresenter.xaml" />
     <Compile Update="**\*.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
@@ -99,12 +95,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DevToys.Api\DevToys.Api.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Controls\GuiTool\UIStackPresenter.xaml.cs">
-      <DependentUpon>UIStackPresenter.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
 
 </Project>

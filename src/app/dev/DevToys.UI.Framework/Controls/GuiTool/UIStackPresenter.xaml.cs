@@ -17,9 +17,9 @@ public sealed partial class UIStackPresenter : ContentControl
 
     private void UIStackPresenter_Loaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-        UIStack.IsEnabledChanged += UIButton_IsEnabledChanged;
-        UIStack.IsVisibleChanged += UIButton_IsVisibleChanged;
-        UIStack.OrientationChanged += UIButton_OrientationChanged;
+        UIStack.IsEnabledChanged += UIStack_IsEnabledChanged;
+        UIStack.IsVisibleChanged += UIStack_IsVisibleChanged;
+        UIStack.OrientationChanged += UIStack_OrientationChanged;
         UIStack.ChildrenChanged += UIStack_ChildrenChanged;
 
         IsEnabled = UIStack.IsEnabled;
@@ -30,23 +30,25 @@ public sealed partial class UIStackPresenter : ContentControl
 
     private void UIStackPresenter_Unloaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-        UIStack.IsEnabledChanged -= UIButton_IsEnabledChanged;
-        UIStack.IsVisibleChanged -= UIButton_IsVisibleChanged;
-        UIStack.OrientationChanged -= UIButton_OrientationChanged;
+        UIStack.IsEnabledChanged -= UIStack_IsEnabledChanged;
+        UIStack.IsVisibleChanged -= UIStack_IsVisibleChanged;
+        UIStack.OrientationChanged -= UIStack_OrientationChanged;
+        UIStack.ChildrenChanged -= UIStack_ChildrenChanged;
         Loaded -= UIStackPresenter_Loaded;
+        Unloaded -= UIStackPresenter_Unloaded;
     }
 
-    private void UIButton_IsEnabledChanged(object? sender, EventArgs e)
+    private void UIStack_IsEnabledChanged(object? sender, EventArgs e)
     {
         IsEnabled = UIStack.IsEnabled;
     }
 
-    private void UIButton_IsVisibleChanged(object? sender, EventArgs e)
+    private void UIStack_IsVisibleChanged(object? sender, EventArgs e)
     {
         Visibility = UIStack.IsVisible ? Microsoft.UI.Xaml.Visibility.Visible : Microsoft.UI.Xaml.Visibility.Collapsed;
     }
 
-    private void UIButton_OrientationChanged(object? sender, EventArgs e)
+    private void UIStack_OrientationChanged(object? sender, EventArgs e)
     {
         StackPanel.Orientation = UIStack.Orientation == UIOrientation.Horizontal ? Orientation.Horizontal : Orientation.Vertical;
     }

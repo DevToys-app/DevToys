@@ -1,4 +1,6 @@
-﻿namespace DevToys.Tools.Settings;
+﻿using DevToys.Api;
+
+namespace DevToys.Tools.Settings;
 
 [Export(typeof(IGuiTool))]
 [Name("Settings")]
@@ -33,19 +35,46 @@ internal sealed class SettingsGuiTool : IGuiTool
         => Stack()
         .Vertical()
         .WithChildren(
+            SettingGroup()
+                .Icon("FluentSystemIcons", "\uF6A9")
+                .Title("Title")
+                .Description("Description")
+                .InteractiveElement(
+                    Button().Text("My option"))
+                .WithSettings(
+                    Setting()
+                        .Title("Title")
+                        .Description("Description")
+                        .InteractiveElement(
+                            Button().Text("My option")),
+                    Setting()
+                        .Title("Title")
+                        .Description("Description")
+                        .InteractiveElement(
+                            Button().Text("My option")),
+                    Setting()
+                        .Title("Title")
+                        .Description("Description")
+                        .InteractiveElement(
+                            Button().Text("My option")),
+                    Setting()
+                        .Title("Title")
+                        .Description("Description")
+                        .InteractiveElement(
+                            Button().Text("My option"))),
             Stack()
-            .Horizontal()
-            .WithChildren(
-                _topLeftButton,
-                Button().Text("Top Center button"),
-                Button().Text("Top Right button")),
+                .Horizontal()
+                .WithChildren(
+                    _topLeftButton,
+                    Button().Text("Top Center button"),
+                    Button().Text("Top Right button")),
             Stack()
-            .Horizontal()
-            .Disable()
-            .WithChildren(
-                Button().Text("Bottom Left button"),
-                Button().Text("Bottom Center button").OnClick(OnBottomCenterButtonClickAsync),
-                Button().Text("Bottom Right button")));
+                .Horizontal()
+                .Disable()
+                .WithChildren(
+                    Button().Text("Bottom Left button"),
+                    Button().Text("Bottom Center button").OnClick(OnBottomCenterButtonClickAsync),
+                    Button().Text("Bottom Right button")));
 
     private ValueTask OnMyButtonClickAsync()
     {
@@ -59,8 +88,3 @@ internal sealed class SettingsGuiTool : IGuiTool
         return ValueTask.CompletedTask;
     }
 }
-
-
-
-
-

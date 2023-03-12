@@ -28,7 +28,7 @@ public interface IUIStack : IUIElement
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Orientation = {{{nameof(Orientation)}}}")]
-internal class UIStack : UIElement, IUIStack
+internal sealed class UIStack : UIElement, IUIStack
 {
     private UIOrientation _orientation;
     private IUIElement[]? _children;
