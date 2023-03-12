@@ -12,7 +12,8 @@
     xmlns:tools="using:DevToys.Core.Tools"
     xmlns:toolstrings="using:DevToys.Localization.Strings.ToolPage"
     xmlns:strings="using:DevToys.Localization.Strings.ToolGroupPage"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    NavigationCacheMode="Disabled">
     <Page.Resources>
         <Thickness x:Key="GridViewItemMargin">0,12,12,0</Thickness>
     </Page.Resources>

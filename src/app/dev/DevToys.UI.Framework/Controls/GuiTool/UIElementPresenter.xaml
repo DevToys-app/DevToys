@@ -52,6 +52,13 @@
                 </DataTemplate>
             </local:UIElementTemplateSelector.UISwitchTemplate>
 
+            <!-- UIDropDownList -->
+            <local:UIElementTemplateSelector.UIDropDownListTemplate>
+                <DataTemplate>
+                    <local:UIDropDownListPresenter/>
+                </DataTemplate>
+            </local:UIElementTemplateSelector.UIDropDownListTemplate>
+
         </local:UIElementTemplateSelector>
     </Control.Resources>
 

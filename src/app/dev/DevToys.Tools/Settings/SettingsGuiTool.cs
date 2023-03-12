@@ -1,4 +1,6 @@
-﻿namespace DevToys.Tools.Settings;
+﻿using DevToys.Api.Core.Theme;
+
+namespace DevToys.Tools.Settings;
 
 [Export(typeof(IGuiTool))]
 [Name("Settings")]
@@ -25,7 +27,14 @@ internal sealed class SettingsGuiTool : IGuiTool
     /// <summary>
     /// Dummy setting
     /// </summary>
-    public static readonly SettingDefinition<bool> DummySetting = new(name: nameof(DummySetting), defaultValue: true);
+    public static readonly SettingDefinition<bool> DummySetting
+        = new(name: nameof(DummySetting), defaultValue: true);
+
+    /// <summary>
+    /// Dummy setting
+    /// </summary>
+    public static readonly SettingDefinition<AvailableApplicationTheme> DummySetting2
+        = new(name: nameof(DummySetting2), defaultValue: AvailableApplicationTheme.Default);
 
     private readonly IUIButton _topLeftButton;
 
@@ -47,8 +56,13 @@ internal sealed class SettingsGuiTool : IGuiTool
                 .Icon("FluentSystemIcons", "\uF6A9")
                 .Title("Title")
                 .Description("Description")
-                .InteractiveElement(
-                    Button().Text("My option"))
+                .Handle(
+                    _settingsProvider,
+                    DummySetting2,
+                    OnDummySetting2ChangedAsync,
+                    Item("Use system settings", AvailableApplicationTheme.Default),
+                    Item("Light", AvailableApplicationTheme.Light),
+                    Item("Dark", AvailableApplicationTheme.Dark))
                 .WithSettings(
                     Setting()
                         .Title("Title")
@@ -87,6 +101,16 @@ internal sealed class SettingsGuiTool : IGuiTool
     {
         _clickCount++;
         _topLeftButton.Text($"Clicked {_clickCount} time !");
+        return ValueTask.CompletedTask;
+    }
+
+    private ValueTask OnDropDownListSelectionChangeAsync(IUIDropDownListItem? selection)
+    {
+        return ValueTask.CompletedTask;
+    }
+
+    private ValueTask OnDummySetting2ChangedAsync(AvailableApplicationTheme theme)
+    {
         return ValueTask.CompletedTask;
     }
 

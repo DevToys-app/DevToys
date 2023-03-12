@@ -39,6 +39,11 @@ internal sealed class UIElementTemplateSelector : DataTemplateSelector
     /// </summary>
     public DataTemplate UISwitchTemplate { get; set; } = null!;
 
+    /// <summary>
+    /// The data template used to display a <see cref="IUIDropDownList"/>.
+    /// </summary>
+    public DataTemplate UIDropDownListTemplate { get; set; } = null!;
+
     protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
     {
         if (item is null)
@@ -54,6 +59,7 @@ internal sealed class UIElementTemplateSelector : DataTemplateSelector
             IUISettingGroup => UISettingGroupTemplate,
             IUISetting => UISettingTemplate,
             IUISwitch => UISwitchTemplate,
+            IUIDropDownList => UIDropDownListTemplate,
 
             _ => throw new NotSupportedException($"Gui Tool component of type '{item.GetType().FullName}' isn't supported.")
         };

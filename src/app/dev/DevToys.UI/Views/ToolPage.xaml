@@ -13,7 +13,8 @@
     xmlns:tools="using:DevToys.Core.Tools"
     xmlns:strings="using:DevToys.Localization.Strings.ToolPage"
     xmlns:guiTool="using:DevToys.UI.Framework.Controls.GuiTool"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    NavigationCacheMode="Disabled">
     <Page.Resources>
         <converters:BooleanToStringConverter x:Key="BooleanToFavoriteIconGlyph" StringIfTrue="&#xF71A;" StringIfFalse="&#xF70F;"/>
     </Page.Resources>
@@ -63,7 +64,7 @@
                 Grid.Row="0"
                 Grid.Column="0"
                 VerticalAlignment="Center"
-                Text="{x:Bind ViewModel.HeaderText, Mode=OneWay}"
+                Text="{x:Bind ViewModel.HeaderText}"
                 TextTrimming="CharacterEllipsis"
                 FontSize="24"/>
             <Border
