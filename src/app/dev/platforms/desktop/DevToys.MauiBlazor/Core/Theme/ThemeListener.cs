@@ -32,11 +32,13 @@ internal sealed class ThemeListener : IThemeListener
 
     public AvailableApplicationTheme CurrentSystemTheme { get; private set; }
 
-    public AvailableApplicationTheme CurrentAppTheme => _settingsProvider.GetSetting(PredefinedSettings.Theme);
+    public AvailableApplicationTheme CurrentAppTheme => _settingsProvider.GetSetting(DevToys.Core.Settings.PredefinedSettings.Theme);
 
     public ApplicationTheme ActualAppTheme { get; private set; }
 
     public bool IsHighContrast { get; private set; }
+
+    public bool IsCompactMode => _settingsProvider.GetSetting(DevToys.Api.PredefinedSettings.CompactMode);
 
     public event EventHandler? ThemeChanged;
 
@@ -81,10 +83,14 @@ internal sealed class ThemeListener : IThemeListener
 
     private void SettingsProvider_SettingChanged(object? sender, SettingChangedEventArgs e)
     {
-        if (string.Equals(PredefinedSettings.Theme.Name, e.SettingName, StringComparison.Ordinal))
+        if (string.Equals(DevToys.Core.Settings.PredefinedSettings.Theme.Name, e.SettingName, StringComparison.Ordinal))
         {
             ApplyDesiredColorTheme();
             ThemeChanged?.Invoke(this, EventArgs.Empty);
+        }
+        else if (string.Equals(DevToys.Api.PredefinedSettings.CompactMode.Name, e.SettingName, StringComparison.Ordinal))
+        {
+            // TODO: Apply the mode.
         }
     }
 
