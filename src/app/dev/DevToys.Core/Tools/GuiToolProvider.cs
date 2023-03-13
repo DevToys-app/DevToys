@@ -1,9 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Reflection;
-using System.Xml.Linq;
 using DevToys.Api;
 using DevToys.Api.Core;
-using DevToys.Core.Settings;
 using DevToys.Core.Tools.Metadata;
 using DevToys.Core.Tools.ViewItems;
 using DevToys.Localization;
@@ -12,6 +10,7 @@ using FuzzySharp;
 using FuzzySharp.PreProcess;
 using Microsoft.Extensions.Logging;
 using Uno.Extensions;
+using PredefinedSettings = DevToys.Core.Settings.PredefinedSettings;
 
 namespace DevToys.Core.Tools;
 

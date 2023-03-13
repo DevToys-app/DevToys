@@ -190,6 +190,7 @@
                     <dts:MainMenuNavigationViewMenuItemSelector.GroupViewItem>
                         <DataTemplate x:DataType="tools:GroupViewItem">
                             <NavigationViewItem
+                                MinHeight="{ThemeResource NavigationViewItemOnLeftMinHeight}"
                                 AutomationProperties.Name="{x:Bind AccessibleName}"
                                 MenuItemsSource="{x:Bind Children}"
                                 IsExpanded="{x:Bind local:MainWindow.UpdateMenuItemShouldBeExpanded(MenuItemShouldBeExpanded), Mode=OneWay}">
@@ -218,6 +219,7 @@
                     <dts:MainMenuNavigationViewMenuItemSelector.GuiToolViewItem>
                         <DataTemplate x:DataType="tools:GuiToolViewItem">
                             <NavigationViewItem
+                                MinHeight="{ThemeResource NavigationViewItemOnLeftMinHeight}"
                                 AutomationProperties.Name="{x:Bind ToolInstance.AccessibleName}">
                                 <NavigationViewItem.Icon>
                                     <FontIcon

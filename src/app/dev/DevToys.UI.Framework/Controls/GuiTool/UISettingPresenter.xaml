@@ -16,7 +16,7 @@
             <Setter Property="BorderThickness" Value="{ThemeResource ExpanderHeaderBorderThickness}" />
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Setter Property="MinHeight" Value="{StaticResource ExpanderMinHeight}" />
-            <Setter Property="Padding" Value="{StaticResource ExpanderContentPadding}" />
+            <Setter Property="Padding" Value="{ThemeResource UISettingPresenterContentPadding}" />
         </Style>
     </UserControl.Resources>
 

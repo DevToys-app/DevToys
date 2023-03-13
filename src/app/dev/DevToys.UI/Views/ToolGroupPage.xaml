@@ -43,7 +43,7 @@
         <GridView
             x:Name="GridView"
             TabIndex="0"
-            Padding="56,32,56,56"
+            Padding="{ThemeResource PageDefaultPadding}"
             SelectionMode="None"
             IsSwipeEnabled="False"
             IsItemClickEnabled="True"

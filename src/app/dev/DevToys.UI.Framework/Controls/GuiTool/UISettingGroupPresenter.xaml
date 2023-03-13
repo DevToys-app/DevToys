@@ -15,7 +15,7 @@
     <Expander.Header>
         <local:UISettingHeaderControl
             x:Name="UISettingHeaderControl"
-            Margin="0,16"/>
+            Margin="{ThemeResource UISettingGroupPresenterContentMargin}"/>
     </Expander.Header>
 
     <StackPanel

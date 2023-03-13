@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="ms-appx:///DevToys.UI.Framework/Themes/Generic.xaml"/>
                 <!-- Add resource dictionaries here -->
             </ResourceDictionary.MergedDictionaries>
+            
             <!-- Add resources here -->
         </ResourceDictionary>
     </Application.Resources>

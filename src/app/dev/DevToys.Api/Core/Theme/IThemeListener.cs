@@ -21,9 +21,14 @@ public interface IThemeListener
     ApplicationTheme ActualAppTheme { get; }
 
     /// <summary>
-    /// Gets or sets a value indicating whether the current theme is high contrast.
+    /// Gets a value indicating whether the current theme is high contrast.
     /// </summary>
     bool IsHighContrast { get; }
+
+    /// <summary>
+    /// Gets a value indicating whether the UI should be in compact mode.
+    /// </summary>
+    bool IsCompactMode { get; }
 
     /// <summary>
     /// Raised when the theme has changed.

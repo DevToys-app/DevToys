@@ -21,7 +21,7 @@
 
     <ScrollViewer
         x:Name="RootScrollViewer"
-        Padding="56,32,56,56">
+        Padding="{ThemeResource PageDefaultPadding}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="NavigationViewExpanded">

@@ -65,9 +65,8 @@ internal sealed class SettingsGuiTool : IGuiTool
                     Item("Dark", AvailableApplicationTheme.Dark))
                 .WithSettings(
                     Setting()
-                        .Title("Title")
-                        .Description("Description")
-                        .Handle(_settingsProvider, DummySetting, OnDummySettingChangedAsync),
+                        .Title("Compact mode")
+                        .Handle(_settingsProvider, PredefinedSettings.CompactMode),
                     Setting()
                         .Title("Title")
                         .Description("Description")
@@ -99,8 +98,6 @@ internal sealed class SettingsGuiTool : IGuiTool
 
     private ValueTask OnDummySettingChangedAsync(bool state)
     {
-        _clickCount++;
-        _topLeftButton.Text($"Clicked {_clickCount} time !");
         return ValueTask.CompletedTask;
     }
 
