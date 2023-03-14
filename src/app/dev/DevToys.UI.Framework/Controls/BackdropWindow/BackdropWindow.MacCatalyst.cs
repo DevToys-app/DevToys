@@ -57,6 +57,7 @@ public sealed partial class BackdropWindow
     public partial bool IsInCompactOverlayMode()
     {
         // throw new NotImplementedException(); // TODO.
+        return false;
     }
 
     public partial void TryToggleCompactOverlayMode()

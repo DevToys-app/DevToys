@@ -10,21 +10,21 @@ public static class OSHelper
         if (targetPlatforms.Count > 0)
         {
             Platform currentPlatform;
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            if (OperatingSystem.IsBrowser())
+            {
+                currentPlatform = Platform.WASM;
+            }
+            else if (OperatingSystem.IsMacOS() || OperatingSystem.IsMacCatalyst())
             {
                 currentPlatform = Platform.MacCatalyst;
             }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            else if (OperatingSystem.IsWindows())
             {
                 currentPlatform = Platform.Windows;
             }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.FreeBSD))
+            else if (OperatingSystem.IsLinux() || OperatingSystem.IsFreeBSD())
             {
                 currentPlatform = Platform.Linux;
-            }
-            else if (OperatingSystem.IsBrowser())
-            {
-                currentPlatform = Platform.WASM;
             }
             else
             {
