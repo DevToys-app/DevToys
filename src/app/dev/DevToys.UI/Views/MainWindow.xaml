@@ -64,7 +64,7 @@
         </VisualStateManager.VisualStateGroups>
 
         <Grid.BackgroundTransition>
-            <BrushTransition />
+            <win:BrushTransition />
         </Grid.BackgroundTransition>
 
         <!-- App title bar, including Draggable area of the title bar and buttons. -->
