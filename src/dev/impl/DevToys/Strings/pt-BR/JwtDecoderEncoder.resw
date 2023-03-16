@@ -208,13 +208,13 @@
     <value>Validar ator</value>
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
-    <value>Validate audience</value>
+    <value>Validar público</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
-    <value>Validate issuer</value>
+    <value>Validar emissor</value>
   </data>
   <data name="DecodeValidateLifetimeLabel" xml:space="preserve">
-    <value>Validate lifetime</value>
+    <value>Validar tempo de vida</value>
   </data>
   <data name="ValidAudiencesLabel" xml:space="preserve">
     <value>Valid audiences</value>
