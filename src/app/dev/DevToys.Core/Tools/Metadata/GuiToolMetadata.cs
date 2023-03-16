@@ -1,7 +1,5 @@
 ﻿using DevToys.Api;
 using DevToys.Api.Tool.Metadata.Attributes;
-using DevToys.Localization;
-using DevToys.Localization.Strings.MainMenu;
 
 namespace DevToys.Core.Tools.Metadata;
 

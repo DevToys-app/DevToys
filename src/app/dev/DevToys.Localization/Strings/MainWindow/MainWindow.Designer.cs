@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DevToys.Localization.Strings.MainMenu {
+namespace DevToys.Localization.Strings.MainWindow {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace DevToys.Localization.Strings.MainMenu {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class MainMenu {
+    public class MainWindow {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MainMenu() {
+        internal MainWindow() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DevToys.Localization.Strings.MainMenu {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Localization.Strings.MainMenu.MainMenu", typeof(MainMenu).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Localization.Strings.MainWindow.MainWindow", typeof(MainWindow).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -120,6 +120,24 @@ namespace DevToys.Localization.Strings.MainMenu {
         public static string SearchNoResultsFound {
             get {
                 return ResourceManager.GetString("SearchNoResultsFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DevToys.
+        /// </summary>
+        public static string WindowTitle {
+            get {
+                return ResourceManager.GetString("WindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DevToys - {0}.
+        /// </summary>
+        public static string WindowTitleWithToolName {
+            get {
+                return ResourceManager.GetString("WindowTitleWithToolName", resourceCulture);
             }
         }
     }

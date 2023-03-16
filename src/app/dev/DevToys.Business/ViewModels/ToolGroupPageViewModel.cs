@@ -5,7 +5,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.Metadata;
 using DevToys.Core.Tools.ViewItems;
-using DevToys.Localization.Strings.MainMenu;
+using DevToys.Localization.Strings.MainWindow;
 using DevToys.Business.Models;
 
 namespace DevToys.Business.ViewModels;
@@ -64,7 +64,7 @@ internal sealed partial class ToolGroupPageViewModel : ObservableRecipient
 
         // Recent tools group.
         ObservableGroup<string, GuiToolInstance> recentToolsGroup
-            = new(MainMenu.RecentToolsDisplayTitle, _guiToolProvider.GetMostRecentUsedTools());
+            = new(MainWindow.RecentToolsDisplayTitle, _guiToolProvider.GetMostRecentUsedTools());
         if (recentToolsGroup.Count > 0)
         {
             results.Add(recentToolsGroup);
@@ -96,7 +96,7 @@ internal sealed partial class ToolGroupPageViewModel : ObservableRecipient
             }
             else
             {
-                title = MainMenu.FavoriteToolsDisplayTitle;
+                title = MainWindow.FavoriteToolsDisplayTitle;
             }
 
             results.Add(new(title, favoriteToolsGroup));
@@ -111,7 +111,7 @@ internal sealed partial class ToolGroupPageViewModel : ObservableRecipient
             }
             else
             {
-                title = MainMenu.AllToolsDisplayTitle;
+                title = MainWindow.AllToolsDisplayTitle;
             }
             results.Add(new(title, everyOtherToolsGroup));
         }

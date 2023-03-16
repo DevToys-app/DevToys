@@ -191,15 +191,24 @@ public sealed partial class MainWindow : BackdropPage
         {
             _currentDisplayedTool = null;
         }
+
+        ViewModel.UpdateWindowTitle(IsInCompactOverlayMode());
     }
 
     private void CompactOverlayModeButton_Click(object sender, RoutedEventArgs e)
     {
+        // TODO: Switch the UI to compact mode (smaller controls) automatically when in compact overlay mode, and restore it to whatever it was
+        // when leaving the mode.
+
         TryToggleCompactOverlayMode();
-        if (IsInCompactOverlayMode())
+
+        bool isInCompactOverlayMode = IsInCompactOverlayMode();
+        if (isInCompactOverlayMode)
         {
             Resize(400, 450);
         }
+
+        ViewModel.UpdateWindowTitle(isInCompactOverlayMode);
     }
 
     private void UpdateVisualState()
