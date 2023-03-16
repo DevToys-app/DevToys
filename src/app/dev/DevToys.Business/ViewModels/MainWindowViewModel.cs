@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
 using DevToys.Business.Models;
+using DevToys.Localization.Strings.MainWindow;
 
 namespace DevToys.Business.ViewModels;
 
@@ -89,6 +90,24 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
     /// </summary>
     internal bool CanGoBack => _navigationHistory.Count > 0;
 
+    // Can't use CommunityToolkit.MVVM due to https://github.com/dotnet/roslyn/issues/57239#issuecomment-1437895948
+    /// <summary>
+    /// Gets or sets the search query typed by the user.
+    /// </summary>
+    internal string SearchQuery { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets or sets the list of search results from the <see cref="SearchQuery"/>.
+    /// </summary>
+    [ObservableProperty]
+    private ObservableCollection<GuiToolViewItem> _searchResults = new();
+
+    /// <summary>
+    /// Gets or sets the list of search results from the <see cref="SearchQuery"/>.
+    /// </summary>
+    [ObservableProperty]
+    private string _windowTitle = string.Empty;
+
     /// <summary>
     /// Navigates back to the previous <see cref="SelectedMenuItem"/>.
     /// </summary>
@@ -105,17 +124,35 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
         _isGoingBack = false;
     }
 
-    // Can't use CommunityToolkit.MVVM due to https://github.com/dotnet/roslyn/issues/57239#issuecomment-1437895948
     /// <summary>
-    /// Gets or sets the search query typed by the user.
+    /// Updates <see cref="WindowTitle"/> accordingly to the compact mode state.
     /// </summary>
-    internal string SearchQuery { get; set; } = string.Empty;
-
-    /// <summary>
-    /// Gets or sets the list of search results from the <see cref="SearchQuery"/>.
-    /// </summary>
-    [ObservableProperty]
-    private ObservableCollection<GuiToolViewItem> _searchResults = new();
+    internal void UpdateWindowTitle(bool isInCompactOverlayMode)
+    {
+        if (isInCompactOverlayMode)
+        {
+            if (SelectedMenuItem is GuiToolViewItem guiToolViewItem)
+            {
+                WindowTitle = string.Format(MainWindow.WindowTitleWithToolName, guiToolViewItem.ToolInstance.LongOrShortDisplayTitle);
+            }
+            else if (SelectedMenuItem is GuiToolInstance instance)
+            {
+                WindowTitle = string.Format(MainWindow.WindowTitleWithToolName, instance.LongOrShortDisplayTitle);
+            }
+            else if (SelectedMenuItem is GroupViewItem group)
+            {
+                WindowTitle = string.Format(MainWindow.WindowTitleWithToolName, group.DisplayTitle);
+            }
+            else
+            {
+                WindowTitle = MainWindow.WindowTitle;
+            }
+        }
+        else
+        {
+            WindowTitle = MainWindow.WindowTitle;
+        }
+    }
 
     /// <summary>
     /// Command invoked when the search box's text changed.

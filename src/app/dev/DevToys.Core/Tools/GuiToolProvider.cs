@@ -5,7 +5,7 @@ using DevToys.Api.Core;
 using DevToys.Core.Tools.Metadata;
 using DevToys.Core.Tools.ViewItems;
 using DevToys.Localization;
-using DevToys.Localization.Strings.MainMenu;
+using DevToys.Localization.Strings.MainWindow;
 using FuzzySharp;
 using FuzzySharp.PreProcess;
 using Microsoft.Extensions.Logging;
@@ -31,7 +31,7 @@ public sealed partial class GuiToolProvider
                         iconGlyph: "\uF3E9",
                         groupName: "N/A",
                         shortDisplayTitleResourceName: "N/A",
-                        longDisplayTitleResourceName: nameof(MainMenu.SearchNoResultsFound),
+                        longDisplayTitleResourceName: nameof(MainWindow.SearchNoResultsFound),
                         resourceManagerAssemblyIdentifier: nameof(DevToysLocalizationResourceManagerAssemblyIdentifier),
                         resourceManagerBaseName: "DevToys.Localization.Strings.MainMenu.MainMenu")),
                 typeof(DevToysLocalizationResourceManagerAssemblyIdentifier).Assembly),
@@ -433,8 +433,8 @@ public sealed partial class GuiToolProvider
             ReservedGuiToolGroupNames.AllTools,
             iconFontName: "FluentSystemIcons",
             iconGlyph: "\uE70F",
-            displayTitle: MainMenu.AllToolsDisplayTitle,
-            accessibleName: MainMenu.AllToolsAccessibleName);
+            displayTitle: MainWindow.AllToolsDisplayTitle,
+            accessibleName: MainWindow.AllToolsAccessibleName);
 
         // Separator.
         _separatorAfterAllToolsItem = new SeparatorViewItem();
@@ -563,8 +563,8 @@ public sealed partial class GuiToolProvider
                 ReservedGuiToolGroupNames.FavoriteTools,
                 iconFontName: "FluentSystemIcons",
                 iconGlyph: "\uF70E",
-                displayTitle: MainMenu.FavoriteToolsDisplayTitle,
-                accessibleName: MainMenu.FavoriteToolsAccessibleName,
+                displayTitle: MainWindow.FavoriteToolsDisplayTitle,
+                accessibleName: MainWindow.FavoriteToolsAccessibleName,
                 children: new(favoriteTools),
                 menuItemShouldBeExpandedByDefault: true);
         return _favoriteToolsGroupViewItem;

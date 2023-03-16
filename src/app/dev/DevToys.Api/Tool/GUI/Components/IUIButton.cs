@@ -66,6 +66,16 @@ public static partial class GUI
     }
 
     /// <summary>
+    /// Create component that represents a button, which reacts when clicking on it.
+    /// </summary>
+    /// <param name="id">An optional unique identifier for this UI element.</param>
+    /// <param name="text">The text to display in the button.</param>
+    public static IUIButton Button(string? id, string text)
+    {
+        return new UIButton(id).Text(text);
+    }
+
+    /// <summary>
     /// Sets the <see cref="IUIButton.Text"/> of the button.
     /// </summary>
     public static IUIButton Text(this IUIButton element, string? text)

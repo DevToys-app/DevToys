@@ -138,4 +138,11 @@
   <data name="SearchNoResultsFound" xml:space="preserve">
     <value>No results found</value>
   </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>DevToys</value>
+  </data>
+  <data name="WindowTitleWithToolName" xml:space="preserve">
+    <value>DevToys - {0}</value>
+    <comment>{0} is a tool name.</comment>
+  </data>
 </root>

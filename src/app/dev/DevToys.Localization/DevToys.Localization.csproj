@@ -10,10 +10,10 @@
     <PackageReference Include="System.ComponentModel.Composition" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Strings\MainMenu\MainMenu.Designer.cs">
+    <Compile Update="Strings\MainWindow\MainWindow.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>MainMenu.resx</DependentUpon>
+      <DependentUpon>MainWindow.resx</DependentUpon>
     </Compile>
     <Compile Update="Strings\Settings\Settings.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -36,9 +36,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Strings\MainMenu\MainMenu.resx">
+    <EmbeddedResource Update="Strings\MainWindow\MainWindow.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>MainMenu.Designer.cs</LastGenOutput>
+      <LastGenOutput>MainWindow.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +51,10 @@
     <ProjectReference Include="..\DevToys.Api\DevToys.Api.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <AdditionalFiles Update="Strings\MainWindow\MainWindow.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MainWindow.Designer.cs</LastGenOutput>
+    </AdditionalFiles>
     <AdditionalFiles Update="Strings\ToolGroupPage\ToolGroupPage.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ToolGroupPage.Designer.cs</LastGenOutput>

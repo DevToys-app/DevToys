@@ -12,7 +12,7 @@
     xmlns:local="using:DevToys.UI.Views"
     xmlns:tools="using:DevToys.Core.Tools.ViewItems"
     xmlns:dts="using:DevToys.UI.DataTemplateSelectors"
-    xmlns:mainmenustrings="using:DevToys.Localization.Strings.MainMenu"
+    xmlns:mainwindowstrings="using:DevToys.Localization.Strings.MainWindow"
     xmlns:toolpagestrings="using:DevToys.Localization.Strings.ToolPage"
     xmlns:controls="using:DevToys.UI.Framework.Controls"
     xmlns:converters="using:DevToys.UI.Framework.Converters"
@@ -55,7 +55,9 @@
                 </VisualState>
                 <VisualState x:Name="CompactOverlay">
                     <VisualState.Setters>
+                        <Setter Target="AppTitleBar.Height" Value="36"/>
                         <Setter Target="AppTitleBar.Margin" Value="0,0,44,0"/>
+                        <Setter Target="AppTitleContainer.Margin" Value="10,0,0,0"/>
                         <Setter Target="MenuNavigationView.AlwaysShowHeader" Value="False" />
                         <Setter Target="MenuNavigationView.IsPaneVisible" Value="False" />
                     </VisualState.Setters>
@@ -71,7 +73,7 @@
         <Grid
             x:Name="AppTitleBar"
             Margin="44,0,140,0"
-            Height="32"
+            Height="42"
             VerticalAlignment="Top"
             Canvas.ZIndex="1">
             <Grid.ColumnDefinitions>
@@ -81,7 +83,25 @@
             <Grid
                 x:Name="DraggableArea"
                 Grid.Column="0"
-                controls:BackdropWindow.IsWindowDraggableArea="True"/>
+                controls:BackdropWindow.IsWindowDraggableArea="True">
+                <StackPanel
+                    x:Name="AppTitleContainer"
+                    HorizontalAlignment="Left"
+                    Margin="4,4,0,0"
+                    Orientation="Horizontal">
+                    <Image
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Source="ms-appx:///DevToys.UI/Assets/Logo/Square44x44Logo.altform-lightunplated_targetsize-16.png"
+                        Width="16"
+                        Height="16"/>
+                    <TextBlock
+                        Text="{x:Bind ViewModel.WindowTitle, Mode=OneWay}"
+                        VerticalAlignment="Center"
+                        Margin="12,0,0,0"
+                        Style="{StaticResource CaptionTextBlockStyle}" />
+                </StackPanel>
+            </Grid>
             <Grid
                 x:Name="RightAlignTitleBarInteractionArea"
                 Grid.Column="1"
@@ -141,7 +161,7 @@
                     QueryIcon="Find"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"
-                    PlaceholderText="{x:Bind mainmenustrings:MainMenu.Search}"
+                    PlaceholderText="{x:Bind mainwindowstrings:MainWindow.Search}"
                     UpdateTextOnSelect="False"
                     ItemsSource="{x:Bind ViewModel.SearchResults, Mode=OneWay}"
                     Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
