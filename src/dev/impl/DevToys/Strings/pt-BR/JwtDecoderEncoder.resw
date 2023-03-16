@@ -217,7 +217,7 @@
     <value>Validar tempo de vida</value>
   </data>
   <data name="ValidAudiencesLabel" xml:space="preserve">
-    <value>Valid audiences</value>
+    <value>Validar público</value>
   </data>
   <data name="ValidIssuersLabel" xml:space="preserve">
     <value>Emissores válidos</value>
