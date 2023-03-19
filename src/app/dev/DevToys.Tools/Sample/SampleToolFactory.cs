@@ -5,7 +5,6 @@ namespace DevToys.Tools.Sample;
 
 [Export(typeof(ICommandLineTool))]
 [Name("Sample tool")]
-[Author("John Doe")]
 [CommandName(
     Name = "base64",
     Alias = "b64",
@@ -38,7 +37,6 @@ internal sealed class SampleCommandLineTool : ICommandLineTool
 
 [Export(typeof(IGuiTool))]
 [Name("Sample tool")]
-[Author("John Doe")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
     IconGlyph = "\uE670",
@@ -57,11 +55,12 @@ internal sealed class SampleCommandLineTool : ICommandLineTool
 internal sealed class SampleGuiTool : IGuiTool
 {
     public IUIElement View => null!;
+
+    public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
 
 [Export(typeof(IGuiTool))]
 [Name("Sample tool2")]
-[Author("John Doe")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
     IconGlyph = "\uE670",
@@ -80,11 +79,12 @@ internal sealed class SampleGuiTool : IGuiTool
 internal sealed class SampleGuiTool2 : IGuiTool
 {
     public IUIElement View => null!;
+
+    public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
 
 [Export(typeof(IGuiTool))]
 [Name("Sample tool3")]
-[Author("John Doe")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
     IconGlyph = "\uE670",
@@ -103,11 +103,12 @@ internal sealed class SampleGuiTool2 : IGuiTool
 internal sealed class SampleGuiTool3 : IGuiTool
 {
     public IUIElement View => null!;
+
+    public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
 
 [Export(typeof(IGuiTool))]
 [Name("Sample tool4")]
-[Author("John Doe")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
     IconGlyph = "\uE670",
@@ -126,11 +127,12 @@ internal sealed class SampleGuiTool3 : IGuiTool
 internal sealed class SampleGuiTool4 : IGuiTool
 {
     public IUIElement View => null!;
+
+    public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
 
 [Export(typeof(IGuiTool))]
 [Name("Sample tool5")]
-[Author("John Doe")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
     IconGlyph = "\uE670",
@@ -149,11 +151,12 @@ internal sealed class SampleGuiTool4 : IGuiTool
 internal sealed class SampleGuiTool5 : IGuiTool
 {
     public IUIElement View => null!;
+
+    public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
 
 [Export(typeof(IGuiTool))]
 [Name("Sample tool6")]
-[Author("John Doe")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
     IconGlyph = "\uE670",
@@ -172,11 +175,12 @@ internal sealed class SampleGuiTool5 : IGuiTool
 internal sealed class SampleGuiTool6 : IGuiTool
 {
     public IUIElement View => null!;
+
+    public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
 
 [Export(typeof(IGuiTool))]
 [Name("Sample tool7")]
-[Author("John Doe")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
     IconGlyph = "\uE670",
@@ -195,11 +199,12 @@ internal sealed class SampleGuiTool6 : IGuiTool
 internal sealed class SampleGuiTool7 : IGuiTool
 {
     public IUIElement View => null!;
+
+    public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
 
 [Export(typeof(IGuiTool))]
 [Name("Sample tool8")]
-[Author("John Doe")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
     IconGlyph = "\uE670",
@@ -218,11 +223,12 @@ internal sealed class SampleGuiTool7 : IGuiTool
 internal sealed class SampleGuiTool8 : IGuiTool
 {
     public IUIElement View => null!;
+
+    public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
 
 [Export(typeof(IGuiTool))]
 [Name("Sample tool9")]
-[Author("John Doe")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
     IconGlyph = "\uE670",
@@ -241,11 +247,12 @@ internal sealed class SampleGuiTool8 : IGuiTool
 internal sealed class SampleGuiTool9 : IGuiTool
 {
     public IUIElement View => null!;
+
+    public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
 
 [Export(typeof(IGuiTool))]
 [Name("Sample tool10")]
-[Author("John Doe")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
     IconGlyph = "\uE670",
@@ -264,11 +271,12 @@ internal sealed class SampleGuiTool9 : IGuiTool
 internal sealed class SampleGuiTool10 : IGuiTool
 {
     public IUIElement View => null!;
+
+    public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
 
 [Export(typeof(IGuiTool))]
 [Name("Sample tool11")]
-[Author("John Doe")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
     IconGlyph = "\uE670",
@@ -287,11 +295,12 @@ internal sealed class SampleGuiTool10 : IGuiTool
 internal sealed class SampleGuiTool11 : IGuiTool
 {
     public IUIElement View => null!;
+
+    public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
 
 [Export(typeof(IGuiTool))]
 [Name("Sample tool12")]
-[Author("John Doe")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
     IconGlyph = "\uE670",
@@ -310,11 +319,12 @@ internal sealed class SampleGuiTool11 : IGuiTool
 internal sealed class SampleGuiTool12 : IGuiTool
 {
     public IUIElement View => null!;
+
+    public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
 
 [Export(typeof(IGuiTool))]
 [Name("Sample tool13")]
-[Author("John Doe")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
     IconGlyph = "\uE670",
@@ -333,11 +343,12 @@ internal sealed class SampleGuiTool12 : IGuiTool
 internal sealed class SampleGuiTool13 : IGuiTool
 {
     public IUIElement View => null!;
+
+    public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
 
 [Export(typeof(IGuiTool))]
 [Name("Sample tool14")]
-[Author("John Doe")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
     IconGlyph = "\uE670",
@@ -356,11 +367,12 @@ internal sealed class SampleGuiTool13 : IGuiTool
 internal sealed class SampleGuiTool14 : IGuiTool
 {
     public IUIElement View => null!;
+
+    public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
 
 [Export(typeof(IGuiTool))]
 [Name("Sample tool15")]
-[Author("John Doe")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
     IconGlyph = "\uE670",
@@ -379,11 +391,12 @@ internal sealed class SampleGuiTool14 : IGuiTool
 internal sealed class SampleGuiTool15 : IGuiTool
 {
     public IUIElement View => null!;
+
+    public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
 
 [Export(typeof(IGuiTool))]
 [Name("Sample tool16")]
-[Author("John Doe")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
     IconGlyph = "\uE670",
@@ -402,11 +415,12 @@ internal sealed class SampleGuiTool15 : IGuiTool
 internal sealed class SampleGuiTool16 : IGuiTool
 {
     public IUIElement View => null!;
+
+    public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
 
 [Export(typeof(IGuiTool))]
 [Name("Sample tool17")]
-[Author("John Doe")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
     IconGlyph = "\uE670",
@@ -425,6 +439,8 @@ internal sealed class SampleGuiTool16 : IGuiTool
 internal sealed class SampleGuiTool17 : IGuiTool
 {
     public IUIElement View => null!;
+
+    public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
 
 [Export(typeof(GuiToolGroup))]

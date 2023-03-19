@@ -268,12 +268,14 @@ internal static class HtmlUtils
     /// <summary>
     /// Decode the HTML character entity to the corresponding Unicode character, return `nil` for invalid input.
     /// </summary>
+    /// <remarks>
     /// <example>
     /// decode("&#64;")    --> "@"
     /// decode("&#x20ac;") --> "€"
     /// decode("&lt;")     --> "<"
     /// decode("&foo;")    --> null
     /// </example>
+    /// </remarks>
     internal static char? Decode(string entity)
     {
         if (entity.StartsWith("&#x", StringComparison.OrdinalIgnoreCase))

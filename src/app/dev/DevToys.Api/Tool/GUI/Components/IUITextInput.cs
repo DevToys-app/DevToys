@@ -11,6 +11,11 @@ public interface IUITextInput : IUITitledElement
     bool IsReadOnly { get; }
 
     /// <summary>
+    /// Gets whether the `Copy` button should be displayed on top of the editor, even when it is not read-only.
+    /// </summary>
+    bool CanCopyWhenEditable { get; }
+
+    /// <summary>
     /// Gets the text displayed or typed by the user.
     /// </summary>
     bool Text { get; }
