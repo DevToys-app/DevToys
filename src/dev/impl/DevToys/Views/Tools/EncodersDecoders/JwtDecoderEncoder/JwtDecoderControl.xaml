@@ -40,7 +40,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto" MinHeight="100"/>
-            <RowDefinition Height="Auto" MinHeight="300"/>
+            <RowDefinition Height="*" MinHeight="300"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel
