@@ -48,8 +48,6 @@ public sealed partial class GuiToolInstance : ObservableObject
 
     public string InternalComponentName => _guiToolDefinition.Metadata.InternalComponentName;
 
-    public string Author => _guiToolDefinition.Metadata.Author;
-
     public string IconFontName => _guiToolDefinition.Metadata.IconFontName;
 
     public string IconGlyph => _guiToolDefinition.Metadata.IconGlyph;

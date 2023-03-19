@@ -26,7 +26,6 @@ public sealed partial class GuiToolProvider
                 new Lazy<IGuiTool, GuiToolMetadata>(
                     GuiToolMetadata.Create(
                         internalComponentName: "NoSearchResults",
-                        author: "N/A",
                         iconFontName: "FluentSystemIcons",
                         iconGlyph: "\uF3E9",
                         groupName: "N/A",

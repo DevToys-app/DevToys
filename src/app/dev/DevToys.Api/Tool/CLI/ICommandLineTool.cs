@@ -5,11 +5,11 @@ namespace DevToys.Api;
 /// <summary>
 /// Represents the factory for command line tool.
 /// </summary>
+/// <remarks>
 /// <example>
 ///     <code>
 ///         [Export(typeof(ICommandLineTool))]
 ///         [Name("Base64 Encode / Decoder")]
-///         [Author("John Doe")]
 ///         [CommandName(
 ///             Name = "base64",
 ///             Alias = "b64",
@@ -33,6 +33,7 @@ namespace DevToys.Api;
 ///         }
 ///     </code>
 /// </example>
+/// </remarks>
 public interface ICommandLineTool
 {
     /// <summary>

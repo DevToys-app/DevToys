@@ -3,6 +3,7 @@
 /// <summary>
 /// Represents the factory for command line tool.
 /// </summary>
+/// <remarks>
 /// <example>
 ///     <code>
 ///         [Export(typeof(IResourceManagerAssemblyIdentifier))]
@@ -12,6 +13,7 @@
 ///         }
 ///     </code>
 /// </example>
+/// </remarks>
 public interface IResourceManagerAssemblyIdentifier
 {
 }

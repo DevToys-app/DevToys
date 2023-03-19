@@ -4,7 +4,6 @@ namespace DevToys.Tools.Settings;
 
 [Export(typeof(IGuiTool))]
 [Name("Settings")]
-[Author("Etienne Baudoux")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
     IconGlyph = "\uF6A9",
@@ -95,6 +94,10 @@ internal sealed class SettingsGuiTool : IGuiTool
                     Button().Text("Bottom Left button"),
                     Button().Text("Bottom Center button").OnClick(OnBottomCenterButtonClickAsync),
                     Button().Text("Bottom Right button")));
+
+    public void OnDataReceived(string dataTypeName, object? parsedData)
+    {
+    }
 
     private ValueTask OnDummySettingChangedAsync(bool state)
     {

@@ -5,7 +5,6 @@ namespace DevToys.UnitTests.Mocks.Tools;
 [Export(typeof(IGuiTool))]
 [Name("MockTool2")]
 [Order(After = "MockTool")]
-[Author("John Doe")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
     IconGlyph = "\u0108",
@@ -20,11 +19,12 @@ namespace DevToys.UnitTests.Mocks.Tools;
 internal sealed class MockIGuiTool2 : IGuiTool
 {
     public IUIElement View => null!;
+
+    public void OnDataReceived(string dataTypeName, object parsedData) { }
 }
 
 [Export(typeof(IGuiTool))]
 [Name("MockTool")]
-[Author("John Doe")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
     IconGlyph = "\u0108",
@@ -39,4 +39,6 @@ internal sealed class MockIGuiTool2 : IGuiTool
 internal sealed class MockIGuiTool : IGuiTool
 {
     public IUIElement View => null!;
+
+    public void OnDataReceived(string dataTypeName, object parsedData) { }
 }

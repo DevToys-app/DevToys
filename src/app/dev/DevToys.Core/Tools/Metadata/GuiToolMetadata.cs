@@ -1,5 +1,4 @@
 ﻿using DevToys.Api;
-using DevToys.Api.Tool.Metadata.Attributes;
 
 namespace DevToys.Core.Tools.Metadata;
 
@@ -8,7 +7,6 @@ public sealed class GuiToolMetadata : IOrderableMetadata
 {
     internal static GuiToolMetadata Create(
         string internalComponentName,
-        string author,
         string iconFontName,
         string iconGlyph,
         string groupName,
@@ -21,7 +19,6 @@ public sealed class GuiToolMetadata : IOrderableMetadata
             new Dictionary<string, object>
             {
                 { nameof(NameAttribute.InternalComponentName), internalComponentName },
-                { nameof(AuthorAttribute.Author), author },
                 { nameof(ToolDisplayInformationAttribute.IconFontName), iconFontName },
                 { nameof(ToolDisplayInformationAttribute.IconGlyph), iconGlyph },
                 { nameof(ToolDisplayInformationAttribute.GroupName),groupName },
@@ -35,7 +32,6 @@ public sealed class GuiToolMetadata : IOrderableMetadata
     public GuiToolMetadata(IDictionary<string, object> metadata)
     {
         InternalComponentName = metadata.GetValueOrDefault(nameof(NameAttribute.InternalComponentName)) as string ?? string.Empty;
-        Author = metadata.GetValueOrDefault(nameof(AuthorAttribute.Author)) as string ?? string.Empty;
         IconFontName = metadata.GetValueOrDefault(nameof(ToolDisplayInformationAttribute.IconFontName)) as string ?? string.Empty;
         IconGlyph = metadata.GetValueOrDefault(nameof(ToolDisplayInformationAttribute.IconGlyph)) as string ?? string.Empty;
         ResourceManagerAssemblyIdentifier = metadata.GetValueOrDefault(nameof(ToolDisplayInformationAttribute.ResourceManagerAssemblyIdentifier)) as string ?? string.Empty;
@@ -55,8 +51,8 @@ public sealed class GuiToolMetadata : IOrderableMetadata
         CompactOverlayHeight = metadata.GetValueOrDefault(nameof(CompactOverlaySizeAttribute.CompactOverlayHeight)) as int?;
         CompactOverlayWidth = metadata.GetValueOrDefault(nameof(CompactOverlaySizeAttribute.CompactOverlayWidth)) as int?;
         TargetPlatforms = metadata.GetValueOrDefault(nameof(TargetPlatformAttribute.TargetPlatform)) as IReadOnlyList<Platform> ?? Array.Empty<Platform>();
+        AcceptedDataTypeNames = metadata.GetValueOrDefault(nameof(AcceptedDataTypeNameAttribute.DataTypeName)) as IReadOnlyList<string> ?? Array.Empty<string>();
         Guard.IsNotNullOrWhiteSpace(InternalComponentName);
-        Guard.IsNotNullOrWhiteSpace(Author);
         Guard.IsNotNullOrWhiteSpace(IconFontName);
         Guard.IsNotNullOrWhiteSpace(IconGlyph);
         Guard.IsNotNullOrWhiteSpace(ShortDisplayTitleResourceName);
@@ -109,8 +105,6 @@ public sealed class GuiToolMetadata : IOrderableMetadata
 
     public string InternalComponentName { get; }
 
-    public string Author { get; }
-
     public string IconFontName { get; }
 
     public string IconGlyph { get; }
@@ -148,4 +142,6 @@ public sealed class GuiToolMetadata : IOrderableMetadata
     public int? CompactOverlayWidth { get; }
 
     public IReadOnlyList<Platform> TargetPlatforms { get; }
+
+    public IReadOnlyList<string> AcceptedDataTypeNames { get; }
 }

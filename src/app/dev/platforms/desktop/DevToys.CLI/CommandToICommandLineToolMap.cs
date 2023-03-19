@@ -68,6 +68,6 @@ internal sealed class CommandToICommandLineToolMap
             ? resourceManager.GetString(metadata.DescriptionResourceName)
             : string.Empty;
 
-        return $"{commandDescription} [author: {metadata.Author}]";
+        return commandDescription;
     }
 }

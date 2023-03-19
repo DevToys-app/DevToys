@@ -1,4 +1,4 @@
-﻿namespace DevToys.Api.Tool.Metadata.Attributes;
+﻿namespace DevToys.Api;
 
 /// <summary>
 /// Indicates the size that the window should take in Compact Overlay mode when this <see cref="IGuiTool"/> is active.

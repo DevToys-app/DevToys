@@ -4,14 +4,14 @@
 /// Represents the declaration of a tool with a GUI.
 /// </summary>
 /// <remarks>
+/// <para>
 /// The project containing the <see cref="System.Resources.ResourceManager"/> with all the strings for the tool should contain an implementation
 /// of <see cref="IResourceManagerAssemblyIdentifier"/> as shown in the example.
-/// </remarks>
+/// </para>
 /// <example>
 ///     <code>
 ///         [Export(typeof(IGuiTool))]
 ///         [Name("Base64 Encoder / Decoder")]
-///         [Author("John Doe")]
 ///         [ToolDisplayInformation(
 ///             IconFontName = "FluentSystemIcons",
 ///             IconGlyph = "\u0108",
@@ -42,10 +42,20 @@
 ///         }
 ///     </code>
 /// </example>
+/// </remarks>
 public interface IGuiTool
 {
     /// <summary>
     /// Gets the view for the tool.
     /// </summary>
     IUIElement View { get; }
+
+    /// <summary>
+    /// Invoked when the app detected a data compatible with the tool and that the user navigates to this tool in question.
+    /// The expected behavior of this method is to pass the <paramref name="parsedData"/> to the <see cref="IUIElement"/>
+    /// that fits the given data.
+    /// </summary>
+    /// <param name="dataTypeName">The data type name, as defined by <see cref="AcceptedDataTypeNameAttribute"/>.<param>
+    /// <param name="parsedData">The data returned by the corresponding <see cref="IDataTypeDetector"/>.</param>
+    void OnDataReceived(string dataTypeName, object? parsedData);
 }

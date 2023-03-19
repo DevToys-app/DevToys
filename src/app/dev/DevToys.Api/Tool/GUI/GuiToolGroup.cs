@@ -3,6 +3,7 @@
 /// <summary>
 /// Represents a group or category in the main menu of the app.
 /// </summary>
+/// <remarks>
 /// <example>
 ///     <code>
 ///         [Export(typeof(GuiToolGroup))]
@@ -21,6 +22,7 @@
 ///         }
 ///     </code>
 /// </example>
+/// </remarks>
 public class GuiToolGroup
 {
     /// <summary>
