@@ -1,6 +1,6 @@
-name: Feature Request
-description: Suggest an idea for a new feature or tool in DevToys
-labels: feature, untriaged
+name: Enhancement Request
+description: Suggest an idea to improve an existing feature or tool in DevToys
+labels: enhancement, untriaged
 body:
   - type: markdown
     attributes:
@@ -9,13 +9,8 @@ body:
 
   - type: textarea
     attributes:
-      label: What feature or new tool do you think should be added to DevToys?
-    validations:
-      required: true
-
-  - type: textarea
-    attributes:
-      label: Why do you think this is needed?
+      label: What improvement do you think would an existing feature or tool in DevToys?
+      description: Please include your use case.
     validations:
       required: true
 
@@ -23,6 +18,8 @@ body:
     attributes:
       label: Solution/Idea
       description: Describe your solution/idea. If possible, provide mock-up or example of how your idea could look like.
+    validations:
+      required: true
 
   - type: textarea
     attributes:

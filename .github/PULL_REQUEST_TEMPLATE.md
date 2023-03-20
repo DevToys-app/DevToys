@@ -7,7 +7,7 @@
 Please check the type of change your PR introduces:
 
 - [ ] Bugfix
-- [ ] Feature
+- [ ] New feature or enhancement
 - [ ] UI change (please include screenshot!)
 - [ ] Code style update (formatting, renaming)
 - [ ] Refactoring (no functional changes, no api changes)
@@ -36,8 +36,14 @@ Issue Number: N/A
 
 ## Quality check
 
-Before creating this PR, have you:
+Before creating this PR:
 
-- [ ] Followed the code style guideline as described in [CONTRIBUTING.md](https://github.com/veler/DevToys/blob/main/CONTRIBUTING.md)
-- [ ] Verified that the change work in Release build configuration
-- [ ] Checked all unit tests pass
+- [ ] Did you follow the code style guideline as described in [CONTRIBUTING.md](https://github.com/veler/DevToys/blob/main/CONTRIBUTING.md)
+- [ ] Did you build the app and test your changes?
+- [ ] Did you check for accessibility? On Windows, you can use Accessibility Insights for this.
+- [ ] Did you verify that the change work in Release build configuration
+- [ ] Did you verify that all unit tests pass
+- [ ] If necessary and if possible, did you verify your changes on:
+   - [ ] Windows
+   - [ ] macOS (DevToys 2.0)
+   - [ ] Linux (DevToys 2.0)
