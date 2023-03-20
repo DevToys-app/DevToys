@@ -1,30 +1,76 @@
 name: Bug Report
-description: Create a bug report to help improve DevToys
-labels: [bug]
+description: Report a bug encountered while using DevToys
+labels: bug, untriaged
 body:
-  - type: textarea
+  - type: markdown
     attributes:
-      label: Description
+      value: |
+        If you encounter this problem too, leave a thumbs up 👍
+
+  - type: textarea
+    id: current-behavior
+    attributes:
+      label: Current behavior
       description: A clear and concise description of what the bug is.
     validations:
       required: true
+
   - type: textarea
+    id: how-to-reproduce
     attributes:
-      label: Steps To Reproduce
+      label: How to reproduce it (as minimally and precisely as possible)
       description: Steps to reproduce the behavior.
       placeholder: |
+        Please provide a **MINIMAL REPRO PROJECT** and the **STEPS TO REPRODUCE**
         1. Go to '....'
         2. Click on '....'
         3. Scroll down to '....'
         4. See the error
     validations:
       required: false
+
   - type: textarea
+    id: expected-behavior
     attributes:
       label: Expected behavior
       description: A clear and concise description of what you expected to happen.
     validations:
       required: true
+
+  - type: textarea
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots here to help explain your problem
+
+  - type: textarea
+    id: workaround
+    attributes:
+      label: Workaround
+      description: Please provide steps to workaround this problem if possible
+
+  - type: dropdown
+    id: platforms
+    attributes:
+      label: Affected platforms
+      multiple: true
+      description: Select all the platforms on which you encountered this issue. It's OK if you couldn't try every platform yourself.
+      options:        
+        - Linux (DevToys 2.0)
+        - macOS (DevToys 2.0)
+        - Windows
+
+  - type: dropdown
+    id: app-kind
+    attributes:
+      label: Affected DevToys kind
+      multiple: true
+      description: Select all the platforms on which you encountered this issue.
+      options:        
+        - DevToys (app with GUI)
+        - DevToys CLI (DevToys 2.0)
+    validations:
+      required: true
+
   - type: input
     id: devtoys-version
     attributes:
@@ -33,6 +79,7 @@ body:
       placeholder: "e.g. Version: 1.0.0.0 | X64; OS Version: 10.0.22000.282"
     validations:
       required: true
+
   - type: textarea
     attributes:
       label: Relevant Assets/Logs
@@ -44,5 +91,3 @@ body:
         To upload the log, access it from Settings -> About -> Open log location; Or
         - Copy the `logs.txt` file from `%localappdata%\Packages\64360VelerSoftware.DevToys_j80j2txgjg9dj\LocalCache`
         - Drag and drop them into this text area.
-    validations:
-      required: true
