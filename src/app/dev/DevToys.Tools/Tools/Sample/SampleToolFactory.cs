@@ -1,14 +1,13 @@
-﻿using DevToys.Api;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 
-namespace DevToys.Tools.Sample;
+namespace DevToys.Tools.Tools.Sample;
 
 [Export(typeof(ICommandLineTool))]
 [Name("Sample tool")]
 [CommandName(
     Name = "base64",
     Alias = "b64",
-    ResourceManagerBaseName = "DevToys.Tools.Sample.Sample",
+    ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
     DescriptionResourceName = nameof(Sample.CommandDescription))]
 [TargetPlatform(Platform.Windows)] // Optional. Not putting any attribute means every platforms are supported.
 [TargetPlatform(Platform.Linux)]
@@ -42,12 +41,13 @@ internal sealed class SampleCommandLineTool : ICommandLineTool
     IconGlyph = "\uE670",
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
-    ResourceManagerBaseName = "DevToys.Tools.Sample.Sample",
+    ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
     ShortDisplayTitleResourceName = nameof(Sample.CommandDescription),
     LongDisplayTitleResourceName = nameof(Sample.LongTitle),
     DescriptionResourceName = nameof(Sample.Description),
     AccessibleNameResourceName = nameof(Sample.CommandDescription),
     SearchKeywordsResourceName = nameof(Sample.CommandDescription))]
+[AcceptedDataTypeName(PredefinedCommonDataTypeNames.Json)]
 [TargetPlatform(Platform.Windows)] // Optional. Not putting any attribute means every platforms are supported.
 [TargetPlatform(Platform.Linux)]
 [TargetPlatform(Platform.MacCatalyst)]
@@ -66,7 +66,7 @@ internal sealed class SampleGuiTool : IGuiTool
     IconGlyph = "\uE670",
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
-    ResourceManagerBaseName = "DevToys.Tools.Sample.Sample",
+    ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
     ShortDisplayTitleResourceName = nameof(Sample.CommandDescription),
     LongDisplayTitleResourceName = nameof(Sample.CommandDescription),
     DescriptionResourceName = nameof(Sample.CommandDescription),
@@ -90,7 +90,7 @@ internal sealed class SampleGuiTool2 : IGuiTool
     IconGlyph = "\uE670",
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
-    ResourceManagerBaseName = "DevToys.Tools.Sample.Sample",
+    ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
     ShortDisplayTitleResourceName = nameof(Sample.CommandDescription),
     LongDisplayTitleResourceName = nameof(Sample.CommandDescription),
     DescriptionResourceName = nameof(Sample.CommandDescription),
@@ -114,7 +114,7 @@ internal sealed class SampleGuiTool3 : IGuiTool
     IconGlyph = "\uE670",
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
-    ResourceManagerBaseName = "DevToys.Tools.Sample.Sample",
+    ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
     ShortDisplayTitleResourceName = nameof(Sample.CommandDescription),
     LongDisplayTitleResourceName = nameof(Sample.CommandDescription),
     DescriptionResourceName = nameof(Sample.CommandDescription),
@@ -138,7 +138,7 @@ internal sealed class SampleGuiTool4 : IGuiTool
     IconGlyph = "\uE670",
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
-    ResourceManagerBaseName = "DevToys.Tools.Sample.Sample",
+    ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
     ShortDisplayTitleResourceName = nameof(Sample.CommandDescription),
     LongDisplayTitleResourceName = nameof(Sample.CommandDescription),
     DescriptionResourceName = nameof(Sample.CommandDescription),
@@ -162,7 +162,7 @@ internal sealed class SampleGuiTool5 : IGuiTool
     IconGlyph = "\uE670",
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
-    ResourceManagerBaseName = "DevToys.Tools.Sample.Sample",
+    ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
     ShortDisplayTitleResourceName = nameof(Sample.CommandDescription),
     LongDisplayTitleResourceName = nameof(Sample.CommandDescription),
     DescriptionResourceName = nameof(Sample.CommandDescription),
@@ -186,7 +186,7 @@ internal sealed class SampleGuiTool6 : IGuiTool
     IconGlyph = "\uE670",
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
-    ResourceManagerBaseName = "DevToys.Tools.Sample.Sample",
+    ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
     ShortDisplayTitleResourceName = nameof(Sample.CommandDescription),
     LongDisplayTitleResourceName = nameof(Sample.CommandDescription),
     DescriptionResourceName = nameof(Sample.CommandDescription),
@@ -210,7 +210,7 @@ internal sealed class SampleGuiTool7 : IGuiTool
     IconGlyph = "\uE670",
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
-    ResourceManagerBaseName = "DevToys.Tools.Sample.Sample",
+    ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
     ShortDisplayTitleResourceName = nameof(Sample.CommandDescription),
     LongDisplayTitleResourceName = nameof(Sample.CommandDescription),
     DescriptionResourceName = nameof(Sample.CommandDescription),
@@ -234,7 +234,7 @@ internal sealed class SampleGuiTool8 : IGuiTool
     IconGlyph = "\uE670",
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
-    ResourceManagerBaseName = "DevToys.Tools.Sample.Sample",
+    ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
     ShortDisplayTitleResourceName = nameof(Sample.CommandDescription),
     LongDisplayTitleResourceName = nameof(Sample.CommandDescription),
     DescriptionResourceName = nameof(Sample.CommandDescription),
@@ -258,7 +258,7 @@ internal sealed class SampleGuiTool9 : IGuiTool
     IconGlyph = "\uE670",
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
-    ResourceManagerBaseName = "DevToys.Tools.Sample.Sample",
+    ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
     ShortDisplayTitleResourceName = nameof(Sample.CommandDescription),
     LongDisplayTitleResourceName = nameof(Sample.CommandDescription),
     DescriptionResourceName = nameof(Sample.CommandDescription),
@@ -282,7 +282,7 @@ internal sealed class SampleGuiTool10 : IGuiTool
     IconGlyph = "\uE670",
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
-    ResourceManagerBaseName = "DevToys.Tools.Sample.Sample",
+    ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
     ShortDisplayTitleResourceName = nameof(Sample.CommandDescription),
     LongDisplayTitleResourceName = nameof(Sample.CommandDescription),
     DescriptionResourceName = nameof(Sample.CommandDescription),
@@ -306,7 +306,7 @@ internal sealed class SampleGuiTool11 : IGuiTool
     IconGlyph = "\uE670",
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
-    ResourceManagerBaseName = "DevToys.Tools.Sample.Sample",
+    ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
     ShortDisplayTitleResourceName = nameof(Sample.CommandDescription),
     LongDisplayTitleResourceName = nameof(Sample.CommandDescription),
     DescriptionResourceName = nameof(Sample.CommandDescription),
@@ -330,7 +330,7 @@ internal sealed class SampleGuiTool12 : IGuiTool
     IconGlyph = "\uE670",
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
-    ResourceManagerBaseName = "DevToys.Tools.Sample.Sample",
+    ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
     ShortDisplayTitleResourceName = nameof(Sample.CommandDescription),
     LongDisplayTitleResourceName = nameof(Sample.CommandDescription),
     DescriptionResourceName = nameof(Sample.CommandDescription),
@@ -354,7 +354,7 @@ internal sealed class SampleGuiTool13 : IGuiTool
     IconGlyph = "\uE670",
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
-    ResourceManagerBaseName = "DevToys.Tools.Sample.Sample",
+    ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
     ShortDisplayTitleResourceName = nameof(Sample.CommandDescription),
     LongDisplayTitleResourceName = nameof(Sample.CommandDescription),
     DescriptionResourceName = nameof(Sample.CommandDescription),
@@ -378,7 +378,7 @@ internal sealed class SampleGuiTool14 : IGuiTool
     IconGlyph = "\uE670",
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
-    ResourceManagerBaseName = "DevToys.Tools.Sample.Sample",
+    ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
     ShortDisplayTitleResourceName = nameof(Sample.CommandDescription),
     LongDisplayTitleResourceName = nameof(Sample.CommandDescription),
     DescriptionResourceName = nameof(Sample.CommandDescription),
@@ -402,7 +402,7 @@ internal sealed class SampleGuiTool15 : IGuiTool
     IconGlyph = "\uE670",
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
-    ResourceManagerBaseName = "DevToys.Tools.Sample.Sample",
+    ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
     ShortDisplayTitleResourceName = nameof(Sample.CommandDescription),
     LongDisplayTitleResourceName = nameof(Sample.CommandDescription),
     DescriptionResourceName = nameof(Sample.CommandDescription),
@@ -426,7 +426,7 @@ internal sealed class SampleGuiTool16 : IGuiTool
     IconGlyph = "\uE670",
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
-    ResourceManagerBaseName = "DevToys.Tools.Sample.Sample",
+    ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
     ShortDisplayTitleResourceName = nameof(Sample.CommandDescription),
     LongDisplayTitleResourceName = nameof(Sample.CommandDescription),
     DescriptionResourceName = nameof(Sample.CommandDescription),

@@ -7,7 +7,7 @@
 /// <example>
 ///     <code>
 ///         [Export(typeof(IDataTypeDetector))]
-///         [DataTypeName("jwt-header", baseName: "json")] // jwt-header type inheriting from json type.
+///         [DataTypeName("jwt-header", baseName: "json" /* optional */)] // jwt-header type inheriting from json type.
 ///         [TargetPlatform(Platform.Windows)] // Optional
 ///         [TargetPlatform(Platform.WASM)] // Optional
 ///         internal sealed class JwtDetector : IDataTypeDetector
@@ -31,11 +31,13 @@ public interface IDataTypeDetector
     /// passed to <see cref="IGuiTool.OnDataReceived(string, object?)"/>.
     /// </para>
     /// </remarks>
-    /// <param name="data">The data to analyze, often coming from the OS's clipboard.</param>
+    /// <param name="rawData">The data to analyze, often coming from the OS's clipboard.</param>
+    /// <param name="resultFromBaseDetector">The result coming from the <see cref="IDataTypeDetector"/> corresponding to the given <see cref="DataTypeNameAttribute.DataTypeBaseName"/>.
+    /// Since, the <see cref="DataTypeNameAttribute.DataTypeBaseName"/> is optional, this parameter can be null.</param>
     /// <returns>
     /// Returns a <see cref="DataDetectionResult"/> that indicates whether the data could be analyzed / parsed / read
     /// correctly, along with the parsed data, if any change has been made to it during parsing (for example, string to
     /// integer conversion).
     /// </returns>
-    ValueTask<DataDetectionResult> TryDetectDataAsync(object data);
+    ValueTask<DataDetectionResult> TryDetectDataAsync(object rawData, DataDetectionResult? resultFromBaseDetector);
 }

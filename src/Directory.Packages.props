@@ -46,6 +46,7 @@
     <PackageVersion Include="Moq" Version="4.18.2" />
     <PackageVersion Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageVersion Include="Nuke.Common" Version="6.2.1" />
+    <PackageVersion Include="SixLabors.ImageSharp" Version="3.0.0"/>
     <PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
     <PackageVersion Include="System.ComponentModel.Composition" Version="$(DotNetVersion)" />
     <PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.5.4" />

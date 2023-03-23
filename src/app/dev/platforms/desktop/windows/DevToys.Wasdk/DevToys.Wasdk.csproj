@@ -60,6 +60,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" />
     <PackageReference Include="Microsoft.WindowsAppSDK" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
+    <PackageReference Include="SixLabors.ImageSharp" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 

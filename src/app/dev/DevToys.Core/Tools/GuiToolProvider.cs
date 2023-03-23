@@ -273,11 +273,36 @@ public sealed partial class GuiToolProvider
             {
                 for (int j = 0; j < groupViewItem.Children.Count; j++)
                 {
-                    INotifyPropertyChanged subItem = groupViewItem.Children[j];
-                    if (subItem is GuiToolViewItem subGuiToolViewItem && subGuiToolViewItem.ToolInstance == guiToolInstance)
+                    GuiToolViewItem subGuiToolViewItem = groupViewItem.Children[j];
+                    if (subGuiToolViewItem.ToolInstance == guiToolInstance)
                     {
                         yield return subGuiToolViewItem;
                     }
+                }
+            }
+        }
+    }
+
+    public void ForEachToolViewItem(Action<GuiToolViewItem> action)
+    {
+        for (int i = 0; i < FooterToolViewItems.Count; i++)
+        {
+            action(FooterToolViewItems[i]);
+        }
+
+        for (int i = 0; i < HeaderAndBodyToolViewItems.Count; i++)
+        {
+            INotifyPropertyChanged item = HeaderAndBodyToolViewItems[i];
+            if (item is GuiToolViewItem guiToolViewItem)
+            {
+                action(guiToolViewItem);
+            }
+            else if (item is GroupViewItem groupViewItem && groupViewItem.Children is not null)
+            {
+                for (int j = 0; j < groupViewItem.Children.Count; j++)
+                {
+                    GuiToolViewItem subGuiToolViewItem = groupViewItem.Children[j];
+                    action(subGuiToolViewItem);
                 }
             }
         }

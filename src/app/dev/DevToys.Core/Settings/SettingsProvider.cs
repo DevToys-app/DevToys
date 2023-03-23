@@ -1,18 +1,22 @@
 ﻿using System.Collections;
 using System.Globalization;
 using DevToys.Api;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Uno.Extensions;
 
 namespace DevToys.Core.Settings;
 
 [Export(typeof(ISettingsProvider))]
-internal sealed class SettingsProvider : ISettingsProvider
+internal sealed partial class SettingsProvider : ISettingsProvider
 {
+    private readonly ILogger _logger;
     private readonly ISettingsStorage _settingsStorage;
 
     [ImportingConstructor]
     public SettingsProvider(ISettingsStorage settingsStorage)
     {
+        _logger = this.Log();
         _settingsStorage = settingsStorage;
     }
 
@@ -55,6 +59,8 @@ internal sealed class SettingsProvider : ISettingsProvider
 
         _settingsStorage.WriteSetting(settingDefinition.Name, valueToSave);
 
+        LogSetSetting(settingDefinition.Name, valueToSave?.ToString() ?? "{null}");
+
         SettingChanged?.Invoke(this, new SettingChangedEventArgs(settingDefinition.Name, value));
     }
 
@@ -64,4 +70,7 @@ internal sealed class SettingsProvider : ISettingsProvider
 
         SettingChanged?.Invoke(this, new SettingChangedEventArgs(settingDefinition.Name, settingDefinition.DefaultValue));
     }
+
+    [LoggerMessage(1, LogLevel.Information, "Setting '{settingName}' changed to '{newValue}'")]
+    partial void LogSetSetting(string settingName, string newValue);
 }

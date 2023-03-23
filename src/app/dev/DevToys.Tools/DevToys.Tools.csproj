@@ -20,25 +20,30 @@
     -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Sample\Sample.Designer.cs">
+    <Compile Update="Tools\Sample\Sample.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Sample.resx</DependentUpon>
     </Compile>
-    <Compile Update="Settings\Settings.Designer.cs">
+    <Compile Update="Tools\Settings\Settings.Designer.cs">
       <DependentUpon>Settings.resx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Sample\Sample.resx">
+    <EmbeddedResource Update="Tools\Sample\Sample.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Sample.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Settings\Settings.resx">
+    <EmbeddedResource Update="Tools\Settings\Settings.resx">
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Uno.Core.Extensions.Logging.Singleton" />
+    <PackageReference Include="Newtonsoft.Json" />
   </ItemGroup>
 </Project>

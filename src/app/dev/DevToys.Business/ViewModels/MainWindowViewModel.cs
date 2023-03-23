@@ -2,26 +2,44 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using DevToys.Api;
+using DevToys.Api.Core;
+using DevToys.Business.Models;
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
-using DevToys.Business.Models;
 using DevToys.Localization.Strings.MainWindow;
+using Microsoft.Extensions.Logging;
+using Uno.Extensions;
 
 namespace DevToys.Business.ViewModels;
 
 [Export]
 internal sealed partial class MainWindowViewModel : ObservableRecipient
 {
+    private readonly ILogger _logger;
     private readonly GuiToolProvider _guiToolProvider;
+    private readonly SmartDetectionService _smartDetectionService;
+    private readonly IClipboard _clipboard;
+    private readonly ISettingsProvider _settingsProvider;
     private readonly Stack<INotifyPropertyChanged> _navigationHistory = new();
 
+    private IReadOnlyList<SmartDetectedTool>? _oldSmartDetectedTools;
+    private object? _oldRawClipboardData;
     private INotifyPropertyChanged? _selectedMenuItem;
     private bool _isGoingBack;
 
     [ImportingConstructor]
-    public MainWindowViewModel(GuiToolProvider guiToolProvider)
+    public MainWindowViewModel(
+        GuiToolProvider guiToolProvider,
+        SmartDetectionService smartDetectionService,
+        IClipboard clipboard,
+        ISettingsProvider settingsProvider)
     {
+        _logger = this.Log();
         _guiToolProvider = guiToolProvider;
+        _smartDetectionService = smartDetectionService;
+        _clipboard = clipboard;
+        _settingsProvider = settingsProvider;
         Messenger.Register<MainWindowViewModel, ChangeSelectedMenuItemMessage>(this, OnChangeSelectedMenuItemMessageReceived);
     }
 
@@ -155,6 +173,71 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
     }
 
     /// <summary>
+    /// Get the data from the clipboard and try to detect tools that can accept the clipboard data as an input.
+    /// </summary>
+    internal async Task RunSmartDetectionAsync(bool isInCompactOverlayMode)
+    {
+        if (isInCompactOverlayMode || !_settingsProvider.GetSetting(DevToys.Core.Settings.PredefinedSettings.SmartDetection))
+        {
+            return;
+        }
+
+        Guard.IsNotEmpty((IReadOnlyList<INotifyPropertyChanged>)HeaderAndBodyToolViewItems);
+
+        try
+        {
+            // Retrieve clipboard content.
+            object? rawClipboardData = await _clipboard.GetClipboardDataAsync();
+
+            // If the clipboard content has changed since the last time
+            if (!object.Equals(_oldRawClipboardData, rawClipboardData))
+            {
+                // Reset recommended tools.
+                _guiToolProvider.ForEachToolViewItem(toolViewItem => toolViewItem.IsRecommended = false);
+
+                // Detect tools to recommend.
+                IReadOnlyList<SmartDetectedTool> detectedTools
+                    = await _smartDetectionService.DetectAsync(rawClipboardData, strict: true)
+                        .ConfigureAwait(true);
+
+                GuiToolViewItem? firstToolViewItem = null;
+
+                // For each recommended tool, set IsRecommended.
+                for (int i = 0; i < detectedTools.Count; i++)
+                {
+                    SmartDetectedTool detectedTool = detectedTools[i];
+                    IEnumerable<GuiToolViewItem> toolViewItems = _guiToolProvider.GetViewItemFromTool(detectedTool.ToolInstance);
+                    GuiToolViewItem? toolViewItem = toolViewItems.FirstOrDefault();
+                    if (toolViewItem != null)
+                    {
+                        if (i == 0)
+                        {
+                            firstToolViewItem = toolViewItem;
+                        }
+                        toolViewItem.IsRecommended = true;
+                    }
+                }
+
+                // If one unique tool got found
+                // And that the current selected menu item is a group
+                if (detectedTools.Count == 1 && SelectedMenuItem is GroupViewItem && firstToolViewItem is not null)
+                {
+                    // Then let's navigate immeditaly to it and set the detected data as an input.
+                    SelectedMenuItem = firstToolViewItem;
+                    detectedTools[0].ToolInstance.PassSmartDetectedData(detectedTools[0].DataTypeName, detectedTools[0].ParsedData);
+                }
+
+                _oldSmartDetectedTools = detectedTools;
+                _oldRawClipboardData = rawClipboardData;
+            }
+        }
+        catch (Exception ex)
+        {
+            LogSmartDetectionFailed(ex);
+        }
+    }
+
+    /// <summary>
     /// Command invoked when the search box's text changed.
     /// </summary>
     /// <param name="reason">The reason for which the text has changed.</param>
@@ -227,5 +310,12 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
     {
         // Select the actual menu item in the navigation view. This will trigger the navigation.
         SelectedMenuItem = GetBestMenuItemToSelect(message.Value);
+        if (message.SmartDetectionInfo is not null)
+        {
+            message.SmartDetectionInfo.ToolInstance.PassSmartDetectedData(message.SmartDetectionInfo.DataTypeName, message.SmartDetectionInfo.ParsedData);
+        }
     }
+
+    [LoggerMessage(1, LogLevel.Warning, "Failed to perform smart detection.")]
+    partial void LogSmartDetectionFailed(Exception ex);
 }
