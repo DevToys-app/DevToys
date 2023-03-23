@@ -4,6 +4,7 @@ using DevToys.Business.Models;
 using DevToys.Business.ViewModels;
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
+using DevToys.Localization.Strings.MainWindow;
 using DevToys.UI.Framework.Controls;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -167,6 +168,7 @@ public sealed partial class MainWindow : BackdropPage
                     typeof(ToolGroupPage),
                     new NavigationParameters<GroupViewItem>(_mefProvider, groupViewItem),
                     new EntranceNavigationTransitionInfo());
+                SetTitle(string.Format(DevToys.Localization.Strings.MainWindow.MainWindow.WindowTitleWithToolName, groupViewItem.DisplayTitle));
             }
             else if (ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem)
             {
@@ -178,6 +180,7 @@ public sealed partial class MainWindow : BackdropPage
                         typeof(ToolPage),
                         new NavigationParameters<GuiToolViewItem>(_mefProvider, guiToolViewItem),
                         new EntranceNavigationTransitionInfo());
+                    SetTitle(string.Format(DevToys.Localization.Strings.MainWindow.MainWindow.WindowTitleWithToolName, guiToolViewItem.ToolInstance.LongOrShortDisplayTitle));
                 }
             }
             else

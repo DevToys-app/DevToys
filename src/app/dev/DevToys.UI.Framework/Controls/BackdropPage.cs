@@ -127,6 +127,12 @@ public abstract partial class BackdropPage : Page
     public void TryToggleCompactOverlayMode()
         => Window.TryToggleCompactOverlayMode();
 
+    /// <summary>
+    /// Sets the title of the window that the operating system will display (in the task bar, for example).
+    /// </summary>
+    public void SetTitle(string title)
+        => Window.SetTitle(title);
+
 #if HAS_UNO
     private void Window_Closed(object sender, CoreWindowEventArgs args)
 #else

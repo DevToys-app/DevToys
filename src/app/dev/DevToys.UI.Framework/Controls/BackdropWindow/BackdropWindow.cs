@@ -101,4 +101,9 @@ public sealed partial class BackdropWindow
     /// Tries to enter or exit compact overlay mode.
     /// </summary>
     public partial void TryToggleCompactOverlayMode();
+
+    /// <summary>
+    /// Sets the title of the window that the operating system will display (in the task bar, for example).
+    /// </summary>
+    public partial void SetTitle(string title);
 }

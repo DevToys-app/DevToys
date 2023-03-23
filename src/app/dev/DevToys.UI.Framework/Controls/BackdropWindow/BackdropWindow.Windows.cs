@@ -27,7 +27,7 @@ public sealed partial class BackdropWindow : Window
     {
         _wsdqHelper = new WindowsSystemDispatcherQueueHelper();
         _wsdqHelper.EnsureWindowsSystemDispatcherQueueController();
-
+        
         AppWindow = GetAppWindow();
         IsCompactOverlayModeSupported = true;
     }
@@ -89,6 +89,11 @@ public sealed partial class BackdropWindow : Window
         }
 
         CompactOverlayModeChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    public partial void SetTitle(string title)
+    {
+        AppWindow.Title = title;
     }
 
     private AppWindow GetAppWindow()
