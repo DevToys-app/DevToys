@@ -39,5 +39,10 @@ public sealed partial class BackdropWindow
     {
         // Has no effect in WASM.
     }
+
+    public partial void SetTitle(string title)
+    {
+        // TODO: Set the tab title in the web browser?
+    }
 }
 #endif

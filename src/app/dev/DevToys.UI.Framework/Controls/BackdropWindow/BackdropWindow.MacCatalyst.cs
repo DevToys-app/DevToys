@@ -65,5 +65,10 @@ public sealed partial class BackdropWindow
         // throw new NotImplementedException(); // TODO.
         // CompactOverlayModeChanged?.Invoke(this, EventArgs.Empty);
     }
+
+    public partial void SetTitle(string title)
+    {
+        Window.Title = title;
+    }
 }
 #endif
