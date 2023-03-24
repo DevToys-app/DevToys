@@ -133,6 +133,15 @@ namespace DevToys.Localization.Strings.MainWindow {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} - DevToys.
+        /// </summary>
+        public static string WindowTitleInSystem {
+            get {
+                return ResourceManager.GetString("WindowTitleInSystem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DevToys - {0}.
         /// </summary>
         public static string WindowTitleWithToolName {

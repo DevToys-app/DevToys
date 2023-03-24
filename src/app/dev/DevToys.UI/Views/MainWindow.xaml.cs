@@ -168,7 +168,7 @@ public sealed partial class MainWindow : BackdropPage
                     typeof(ToolGroupPage),
                     new NavigationParameters<GroupViewItem>(_mefProvider, groupViewItem),
                     new EntranceNavigationTransitionInfo());
-                SetTitle(string.Format(DevToys.Localization.Strings.MainWindow.MainWindow.WindowTitleWithToolName, groupViewItem.DisplayTitle));
+                SetTitle(string.Format(DevToys.Localization.Strings.MainWindow.MainWindow.WindowTitleInSystem, groupViewItem.DisplayTitle));
             }
             else if (ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem)
             {
@@ -180,7 +180,7 @@ public sealed partial class MainWindow : BackdropPage
                         typeof(ToolPage),
                         new NavigationParameters<GuiToolViewItem>(_mefProvider, guiToolViewItem),
                         new EntranceNavigationTransitionInfo());
-                    SetTitle(string.Format(DevToys.Localization.Strings.MainWindow.MainWindow.WindowTitleWithToolName, guiToolViewItem.ToolInstance.LongOrShortDisplayTitle));
+                    SetTitle(string.Format(DevToys.Localization.Strings.MainWindow.MainWindow.WindowTitleInSystem, guiToolViewItem.ToolInstance.LongOrShortDisplayTitle));
                 }
             }
             else

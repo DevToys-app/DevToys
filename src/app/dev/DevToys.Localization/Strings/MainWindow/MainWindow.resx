@@ -141,6 +141,10 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
   </data>
+  <data name="WindowTitleInSystem" xml:space="preserve">
+    <value>{0} - DevToys</value>
+    <comment>{0} is a tool name.</comment>
+  </data>
   <data name="WindowTitleWithToolName" xml:space="preserve">
     <value>DevToys - {0}</value>
     <comment>{0} is a tool name.</comment>
