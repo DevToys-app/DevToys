@@ -127,7 +127,7 @@
     <value>Hash</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>Masukan</value>
   </data>
   <data name="MD5" xml:space="preserve">
     <value>MD5</value>
@@ -160,7 +160,7 @@
     <value>Jenis keluaran</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="HmacMode" xml:space="preserve">
     <value>HMAC Mode</value>
