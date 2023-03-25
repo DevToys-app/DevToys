@@ -124,13 +124,13 @@
     <value>Konfigurasi</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
-    <value>Decode</value>
+    <value>Dekode</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
     <value>Pilih mode konversi yang anda inginkan</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
-    <value>Encode</value>
+    <value>Enkode</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
     <value>Konversi</value>
@@ -151,6 +151,6 @@
     <value>URL Encoder / Decoder</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
 </root>
