@@ -17,7 +17,7 @@ internal sealed partial class JsonDataTypeDetector : IDataTypeDetector
         _logger = this.Log();
     }
 
-    public ValueTask<DataDetectionResult> TryDetectDataAsync(object data, DataDetectionResult? resultFromBaseDetector)
+    public ValueTask<DataDetectionResult> TryDetectDataAsync(object data, DataDetectionResult? resultFromBaseDetector, CancellationToken cancellationToken)
     {
         if (resultFromBaseDetector is not null
             && resultFromBaseDetector.Data is string dataString

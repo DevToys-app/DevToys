@@ -186,18 +186,22 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
 
         try
         {
+            var cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(2));
+            INotifyPropertyChanged? selectedMenuBeforeSmartDetection = SelectedMenuItem;
+            Guard.IsNotNull(selectedMenuBeforeSmartDetection);
+
             // Retrieve clipboard content.
             object? rawClipboardData = await _clipboard.GetClipboardDataAsync();
 
             // If the clipboard content has changed since the last time
-            if (!object.Equals(_oldRawClipboardData, rawClipboardData))
+            if (!cancellationTokenSource.Token.IsCancellationRequested && !object.Equals(_oldRawClipboardData, rawClipboardData))
             {
                 // Reset recommended tools.
                 _guiToolProvider.ForEachToolViewItem(toolViewItem => toolViewItem.IsRecommended = false);
 
                 // Detect tools to recommend.
                 IReadOnlyList<SmartDetectedTool> detectedTools
-                    = await _smartDetectionService.DetectAsync(rawClipboardData, strict: true)
+                    = await _smartDetectionService.DetectAsync(rawClipboardData, strict: true, cancellationTokenSource.Token)
                         .ConfigureAwait(true);
 
                 GuiToolViewItem? firstToolViewItem = null;
@@ -219,8 +223,8 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
                 }
 
                 // If one unique tool got found
-                // And that the current selected menu item is a group
-                if (detectedTools.Count == 1 && SelectedMenuItem is GroupViewItem && firstToolViewItem is not null)
+                // And that the current selected menu item is a group, or that the user didn't selected another menu item since the smart detection started
+                if (detectedTools.Count == 1 && (SelectedMenuItem == selectedMenuBeforeSmartDetection || SelectedMenuItem is GroupViewItem && firstToolViewItem is not null))
                 {
                     // Then let's navigate immeditaly to it and set the detected data as an input.
                     SelectedMenuItem = firstToolViewItem;
@@ -230,6 +234,10 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
                 _oldSmartDetectedTools = detectedTools;
                 _oldRawClipboardData = rawClipboardData;
             }
+        }
+        catch (OperationCanceledException)
+        {
+            // Ignore
         }
         catch (Exception ex)
         {

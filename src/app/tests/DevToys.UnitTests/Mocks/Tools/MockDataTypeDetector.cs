@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Composition;
+using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 
@@ -8,7 +9,7 @@ namespace DevToys.UnitTests.Mocks.Tools;
 [DataTypeName("JSON", baseName: "text")]
 internal class MockJsonDataTypeDetector : IDataTypeDetector
 {
-    public ValueTask<DataDetectionResult> TryDetectDataAsync(object data, DataDetectionResult? resultFromBaseDetector)
+    public ValueTask<DataDetectionResult> TryDetectDataAsync(object data, DataDetectionResult? resultFromBaseDetector, CancellationToken cancellationToken)
     {
         if (resultFromBaseDetector is not null
             && resultFromBaseDetector.Data is string dataString
@@ -35,7 +36,7 @@ internal class MockJsonDataTypeDetector : IDataTypeDetector
 [DataTypeName("text")]
 internal class MockTextDataTypeDetector : IDataTypeDetector
 {
-    public ValueTask<DataDetectionResult> TryDetectDataAsync(object data, DataDetectionResult? resultFromBaseDetector)
+    public ValueTask<DataDetectionResult> TryDetectDataAsync(object data, DataDetectionResult? resultFromBaseDetector, CancellationToken cancellationToken)
     {
         if (data is string dataString && !string.IsNullOrEmpty(dataString))
         {

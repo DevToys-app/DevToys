@@ -39,5 +39,5 @@ public interface IDataTypeDetector
     /// correctly, along with the parsed data, if any change has been made to it during parsing (for example, string to
     /// integer conversion).
     /// </returns>
-    ValueTask<DataDetectionResult> TryDetectDataAsync(object rawData, DataDetectionResult? resultFromBaseDetector);
+    ValueTask<DataDetectionResult> TryDetectDataAsync(object rawData, DataDetectionResult? resultFromBaseDetector, CancellationToken cancellationToken);
 }

@@ -1,4 +1,5 @@
-﻿using DevToys.Api;
+﻿using System;
+using DevToys.Api;
 using DevToys.Core.Tools.Metadata;
 using Microsoft.Extensions.Logging;
 using Uno.Extensions;
@@ -41,7 +42,7 @@ public sealed partial class SmartDetectionService
     /// Assuming the following data type dependencies: JWT-Header > JSON > Text. If <paramref name="rawData"/> is a JWT-Header and that <paramref name="strict"/> is true, only tools that stricly support JWT-Header data type will be return.
     /// if <paramref name="strict"/> is false, tools that support JWT-Header and JSON data types will be return, but tools that support Text won't be returned.
     /// </returns>
-    public async Task<IReadOnlyList<SmartDetectedTool>> DetectAsync(object? rawData, bool strict)
+    public async Task<IReadOnlyList<SmartDetectedTool>> DetectAsync(object? rawData, bool strict, CancellationToken cancellationToken)
     {
         var detectedTools = new List<SmartDetectedTool>();
 
@@ -53,9 +54,11 @@ public sealed partial class SmartDetectionService
         // Make sure to be off the UI thread as this method may take many seconds to run.
         await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(CancellationToken.None);
 
-        IReadOnlyList<(DetectorNode, DataDetectionResult)> succeededDetectors = await DetectAsync(_detectorHierarchy, rawData);
+        IReadOnlyList<(DetectorNode, DataDetectionResult)> succeededDetectors = await DetectAsync(cancellationToken, _detectorHierarchy, rawData);
         for (int i = 0; i < succeededDetectors.Count; i++)
         {
+            cancellationToken.ThrowIfCancellationRequested();
+
             (DetectorNode detectorNode, DataDetectionResult dataDetectionResult) = succeededDetectors[i];
 
             // Add to the top of the list (high priority tool).
@@ -63,6 +66,7 @@ public sealed partial class SmartDetectionService
             {
                 for (int j = 0; j < toolList.Count; j++)
                 {
+                    cancellationToken.ThrowIfCancellationRequested();
                     detectedTools.Insert(0, new(toolList[j], detectorNode.Detector.Metadata.DataTypeName, dataDetectionResult.Data));
                 }
             }
@@ -74,6 +78,7 @@ public sealed partial class SmartDetectionService
                 {
                     for (int j = 0; j < toolList.Count; j++)
                     {
+                        cancellationToken.ThrowIfCancellationRequested();
                         detectedTools.Add(new(toolList[j], detectorNode.Detector.Metadata.DataTypeBaseName, dataDetectionResult.Data));
                     }
                 }
@@ -90,26 +95,32 @@ public sealed partial class SmartDetectionService
     /// <param name="rawData">The raw data to detect data types from.</param>
     /// <param name="resultFromBaseDetector">The result from the base detector, if any.</param>
     /// <returns>A list of tuples containing a detector node and its corresponding detection result.</returns>
-    private async Task<IReadOnlyList<(DetectorNode, DataDetectionResult)>> DetectAsync(IReadOnlyList<DetectorNode> detectorHierarchy, object rawData, DataDetectionResult? resultFromBaseDetector = null)
+    private async Task<IReadOnlyList<(DetectorNode, DataDetectionResult)>> DetectAsync(
+        CancellationToken cancellationToken,
+        IReadOnlyList<DetectorNode> detectorHierarchy,
+        object rawData,
+        DataDetectionResult? resultFromBaseDetector = null)
     {
         var results = new List<(DetectorNode, DataDetectionResult)>();
 
         for (int i = 0; i < detectorHierarchy.Count; i++)
         {
+            cancellationToken.ThrowIfCancellationRequested();
             DetectorNode detectorNode = detectorHierarchy[i];
 
             // Detect data types from raw data using the current detector.
-            DataDetectionResult resultFromDetector = await DetectAsync(detectorNode.Detector.Value, rawData, resultFromBaseDetector);
+            DataDetectionResult resultFromDetector = await DetectAsync(cancellationToken, detectorNode.Detector.Value, rawData, resultFromBaseDetector);
 
             // If the detection was successful
             if (resultFromDetector.Success)
             {
                 // If the current node has child detectors
-                if (detectorNode.ChildrenDetectors.Count > 0)
+                if (detectorNode.ChildrenDetectors?.Count > 0)
                 {
                     // Recursively detect data types using child detectors
                     IReadOnlyList<(DetectorNode, DataDetectionResult)> resultFromDetectors
                         = await DetectAsync(
+                            cancellationToken,
                             detectorNode.ChildrenDetectors,
                             rawData,
                             resultFromDetector);
@@ -138,13 +149,17 @@ public sealed partial class SmartDetectionService
         return results;
     }
 
-    private async ValueTask<DataDetectionResult> DetectAsync(IDataTypeDetector detector, object rawData, DataDetectionResult? resultFromBaseDetector)
+    private async ValueTask<DataDetectionResult> DetectAsync(
+        CancellationToken cancellationToken,
+        IDataTypeDetector detector,
+        object rawData,
+        DataDetectionResult? resultFromBaseDetector)
     {
         try
         {
-            return await detector.TryDetectDataAsync(rawData, resultFromBaseDetector) ?? DataDetectionResult.Unsuccessful;
+            return await detector.TryDetectDataAsync(rawData, resultFromBaseDetector, cancellationToken) ?? DataDetectionResult.Unsuccessful;
         }
-        catch (Exception ex)
+        catch (Exception ex) when (!(ex is OperationCanceledException))
         {
             LogDetectAsyncError(ex);
         }
@@ -183,6 +198,11 @@ public sealed partial class SmartDetectionService
             {
                 // If the current detector has a base data type name and its parent node exists in the dictionary,
                 // add it as a child to its parent node
+                if (parentNode.ChildrenDetectors is null)
+                {
+                    parentNode.ChildrenDetectors = new();
+                }
+
                 parentNode.ChildrenDetectors.Add(node.Value);
             }
         }
@@ -245,6 +265,6 @@ public sealed partial class SmartDetectionService
         /// <summary>
         /// Gets the list of child detectors for this node.
         /// </summary>
-        internal List<DetectorNode> ChildrenDetectors { get; } = new();
+        internal List<DetectorNode>? ChildrenDetectors { get; set;  }
     }
 }

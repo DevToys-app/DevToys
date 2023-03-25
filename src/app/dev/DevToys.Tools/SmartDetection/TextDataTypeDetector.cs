@@ -4,7 +4,7 @@
 [DataTypeName(PredefinedCommonDataTypeNames.Text)]
 internal sealed partial class TextDataTypeDetector : IDataTypeDetector
 {
-    public ValueTask<DataDetectionResult> TryDetectDataAsync(object data, DataDetectionResult? resultFromBaseDetector)
+    public ValueTask<DataDetectionResult> TryDetectDataAsync(object data, DataDetectionResult? resultFromBaseDetector, CancellationToken cancellationToken)
     {
         if (data is string dataString && !string.IsNullOrEmpty(dataString))
         {

@@ -106,6 +106,9 @@ public sealed partial class MainWindow : BackdropPage
         // Explicitly select the first item in the menu.
         Guard.IsNotEmpty((IReadOnlyList<INotifyPropertyChanged>)ViewModel.HeaderAndBodyToolViewItems);
         ViewModel.SelectedMenuItem = ViewModel.HeaderAndBodyToolViewItems[0];
+
+        // Start Smart Detection
+        ViewModel.RunSmartDetectionAsync(IsInCompactOverlay).Forget();
     }
 
     private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -120,7 +123,7 @@ public sealed partial class MainWindow : BackdropPage
 
     private void MainWindow_Activated(BackdropWindow sender, WindowActivatedEventArgs args)
     {
-        if (args.WindowActivationState == WindowActivationState.CodeActivated)
+        if (args.WindowActivationState == WindowActivationState.CodeActivated && IsLoaded)
         {
             ViewModel.RunSmartDetectionAsync(IsInCompactOverlay).Forget();
         }
