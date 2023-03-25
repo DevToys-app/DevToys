@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Base64 Text Encoder and Decoder tool</value>
+    <value>Alat Enkoder dan Dekoder Teks Berbasis64</value>
   </data>
   <data name="Ascii" xml:space="preserve">
     <value>ASCII</value>
@@ -127,13 +127,13 @@
     <value>Konfigurasi</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
-    <value>Decode</value>
+    <value>Dekode</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
     <value>Pilih berdasarkan mode konversi yang anda inginkan</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
-    <value>Encode</value>
+    <value>Enkode</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
     <value>Konversi</value>
