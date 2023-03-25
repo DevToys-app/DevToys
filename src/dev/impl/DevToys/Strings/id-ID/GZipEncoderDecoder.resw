@@ -145,7 +145,7 @@
     <value>Kompres atau dekompresi string dengan GZip</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
-    <value>Encoding</value>
+    <value>Pengkodean</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
     <value>Masukan</value>
