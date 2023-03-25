@@ -136,7 +136,7 @@
     <value>Simulasi Deuteranopia</value>
   </data>
   <data name="OriginalPicture" xml:space="preserve">
-    <value>Original</value>
+    <value>Asli</value>
   </data>
   <data name="ProtanopiaSimulation" xml:space="preserve">
     <value>Simulasi Protanopia</value>
@@ -145,6 +145,6 @@
     <value>Simulasi Tritanopia</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
 </root>
