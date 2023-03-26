@@ -28,6 +28,10 @@
   </a>
 </p>
 
+## Note
+
+`DevToys 2.0` is currently under development in branch `dev/2.0`.
+
 ## Introduction
 
 DevToys helps in daily tasks like formatting JSON, comparing text, testing RegExp. No need to use many untruthful websites to do simple tasks with your data. With Smart Detection, DevToys is able to detect the best tool that can treat the data you copied in the clipboard of your Windows. Compact overlay lets you keep the app in small and on top of other windows. Multiple instances of the app can be used at once.
