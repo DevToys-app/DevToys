@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using DevToys.Core.Tools;
 
 namespace DevToys.UnitTests.Core.Tools;
@@ -14,7 +15,7 @@ public class SmartDetectionServiceTests : MefBasedTest
     public async Task DetectToolsAsync(object rawData, bool isStrict, params string[] toolNames)
     {
         SmartDetectionService smartDetectionService = MefProvider.Import<SmartDetectionService>();
-        IReadOnlyList<SmartDetectedTool> detectedTools = await smartDetectionService.DetectAsync(rawData, isStrict);
+        IReadOnlyList<SmartDetectedTool> detectedTools = await smartDetectionService.DetectAsync(rawData, isStrict, CancellationToken.None);
 
         Assert.Equal(toolNames.Length, detectedTools.Count);
         for (int i = 0; i < toolNames.Length; i++)
