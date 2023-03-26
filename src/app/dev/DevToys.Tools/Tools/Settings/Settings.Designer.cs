@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DevToys.Tools.Sample {
+namespace DevToys.Tools.Tools.Settings {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace DevToys.Tools.Sample {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Sample {
+    internal class Settings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Sample() {
+        internal Settings() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DevToys.Tools.Sample {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Tools.Sample.Sample", typeof(Sample).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Tools.Tools.Settings.Settings", typeof(Settings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,16 +61,16 @@ namespace DevToys.Tools.Sample {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Base64 Image Encoder / Decoder.
+        ///   Looks up a localized string similar to Settings.
         /// </summary>
-        internal static string CommandDescription {
+        internal static string AccessibleName {
             get {
-                return ResourceManager.GetString("CommandDescription", resourceCulture);
+                return ResourceManager.GetString("AccessibleName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Encode or decode all the applicable characters to their corresponding HTML entities.
+        ///   Looks up a localized string similar to Customize DevToys look &amp; feel.
         /// </summary>
         internal static string Description {
             get {
@@ -79,29 +79,11 @@ namespace DevToys.Tools.Sample {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File to treat.
+        ///   Looks up a localized string similar to Settings.
         /// </summary>
-        internal static string FileOptionDescription {
+        internal static string ShortDisplayTitle {
             get {
-                return ResourceManager.GetString("FileOptionDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to HTML Encoder / Decoder.
-        /// </summary>
-        internal static string LongTitle {
-            get {
-                return ResourceManager.GetString("LongTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A dummy UTF8 option description.
-        /// </summary>
-        internal static string Utf8OptionDescription {
-            get {
-                return ResourceManager.GetString("Utf8OptionDescription", resourceCulture);
+                return ResourceManager.GetString("ShortDisplayTitle", resourceCulture);
             }
         }
     }

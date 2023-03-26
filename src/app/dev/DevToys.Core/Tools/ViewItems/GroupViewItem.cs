@@ -102,12 +102,9 @@ public sealed class GroupViewItem : ObservableObject
     {
         get
         {
-            if (Children is not null)
+            if (IsAnyChildrenRecommended())
             {
-                if (Children.Any(item => item.IsRecommended))
-                {
-                    return true;
-                }
+                return true;
             }
 
             if (_childItemJustGotSelected)
@@ -153,7 +150,7 @@ public sealed class GroupViewItem : ObservableObject
 
     private void Child_PropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
-        if (e.PropertyName == nameof(GuiToolViewItem.IsRecommended))
+        if (e.PropertyName == nameof(GuiToolViewItem.IsRecommended) && IsAnyChildrenRecommended())
         {
             OnPropertyChanged(nameof(MenuItemShouldBeExpanded));
         }
@@ -163,5 +160,18 @@ public sealed class GroupViewItem : ObservableObject
     {
         _childItemJustGotSelected = true;
         OnPropertyChanged(nameof(MenuItemShouldBeExpanded));
+    }
+
+    private bool IsAnyChildrenRecommended()
+    {
+        if (Children is not null)
+        {
+            if (Children.Any(item => item.IsRecommended))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
