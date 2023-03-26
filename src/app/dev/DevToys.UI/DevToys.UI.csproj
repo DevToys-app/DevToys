@@ -88,6 +88,7 @@
     </Page>
     <PRIResource Include="**\*.resw" />
     <Content Include="Assets\**" />
+    <None Remove="Assets\Icons\Idea.svg" />
     <None Remove="Assets\Logo\Square44x44Logo.altform-lightunplated_targetsize-16.png" />
     <Compile Update="**\*.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>

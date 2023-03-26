@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace DevToys.UI.Framework.Threading;
+namespace DevToys.Api;
 
 /// <summary>
 /// An awaiter returned from <see cref="GetAwaiter(TaskScheduler)"/>.

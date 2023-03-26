@@ -78,11 +78,21 @@ public sealed partial class GuiToolInstance : ObservableObject
 
     public bool IsFooterTool => _guiToolDefinition.Metadata.MenuPlacement == MenuPlacement.Footer;
 
+    public IReadOnlyList<string> AcceptedDataTypeNames => _guiToolDefinition.Metadata.AcceptedDataTypeNames;
+
     /// <summary>
     /// Gets the view of the tool.
     /// Calling this property is expensive the first time as it will create the instance of the tool and the instance of the view.
     /// </summary>
     public IUIElement View => _view.Value;
+
+    /// <summary>
+    /// Send data coming from Smart Detection to the tool.
+    /// </summary>
+    public void PassSmartDetectedData(string dataTypeName, object? parsedData)
+    {
+        _instance.Value.OnDataReceived(dataTypeName, parsedData);
+    }
 
     private ResourceManager? GetResourceManager(Assembly? resourceManagerAssembly)
     {

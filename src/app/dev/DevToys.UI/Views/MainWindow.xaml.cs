@@ -11,6 +11,10 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media.Animation;
 
+#if !__WINDOWS__
+using WindowActivationState = Windows.UI.Core.CoreWindowActivationState;
+#endif
+
 namespace DevToys.UI.Views;
 
 /// <summary>
@@ -48,6 +52,7 @@ public sealed partial class MainWindow : BackdropPage
         Loaded += MainWindow_Loaded;
         SizeChanged += MainWindow_SizeChanged;
         CompactOverlayModeChanged += MainWindow_CompactOverlayModeChanged;
+        Activated += MainWindow_Activated;
 
         DataContext = mefProvider.Import<MainWindowViewModel>();
         ViewModel.SelectedMenuItemChanged += ViewModel_SelectedMenuItemChanged;
@@ -102,6 +107,9 @@ public sealed partial class MainWindow : BackdropPage
         // Explicitly select the first item in the menu.
         Guard.IsNotEmpty((IReadOnlyList<INotifyPropertyChanged>)ViewModel.HeaderAndBodyToolViewItems);
         ViewModel.SelectedMenuItem = ViewModel.HeaderAndBodyToolViewItems[0];
+
+        // Start Smart Detection
+        ViewModel.RunSmartDetectionAsync(IsInCompactOverlay).Forget();
     }
 
     private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -112,6 +120,14 @@ public sealed partial class MainWindow : BackdropPage
     private void MainWindow_CompactOverlayModeChanged(BackdropWindow sender, EventArgs args)
     {
         IsInCompactOverlay = IsInCompactOverlayMode();
+    }
+
+    private void MainWindow_Activated(BackdropWindow sender, WindowActivatedEventArgs args)
+    {
+        if (args.WindowActivationState == WindowActivationState.CodeActivated && IsLoaded)
+        {
+            ViewModel.RunSmartDetectionAsync(IsInCompactOverlay).Forget();
+        }
     }
 
     private void MenuNavigationView_DisplayModeChanged(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args)

@@ -283,7 +283,7 @@
                                             x:Name="NavigationViewItemRecommendedIcon"
                                             x:Load="{x:Bind IsRecommended, Mode=OneWay}"
                                             Grid.Column="1"
-                                            Source="/Assets/Icons/Idea.svg"
+                                            Source="ms-appx:///DevToys.UI/Assets/Icons/Idea.svg"
                                             Height="16"
                                             Width="16"/>
                                     </Grid>

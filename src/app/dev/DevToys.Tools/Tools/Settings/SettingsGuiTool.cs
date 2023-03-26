@@ -1,6 +1,6 @@
 ﻿using DevToys.Api.Core.Theme;
 
-namespace DevToys.Tools.Settings;
+namespace DevToys.Tools.Tools.Settings;
 
 [Export(typeof(IGuiTool))]
 [Name("Settings")]
@@ -8,7 +8,7 @@ namespace DevToys.Tools.Settings;
     IconFontName = "FluentSystemIcons",
     IconGlyph = "\uF6A9",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
-    ResourceManagerBaseName = "DevToys.Tools.Settings.Settings",
+    ResourceManagerBaseName = "DevToys.Tools.Tools.Settings.Settings",
     ShortDisplayTitleResourceName = nameof(Settings.ShortDisplayTitle),
     DescriptionResourceName = nameof(Settings.Description),
     AccessibleNameResourceName = nameof(Settings.AccessibleName))]

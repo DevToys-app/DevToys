@@ -44,4 +44,12 @@ public static class PredefinedSettings
         = new(
             name: nameof(RecentTool3),
             defaultValue: string.Empty);
+
+    /// <summary>
+    /// Whether the application should automatically detect the best tool to use based on the clipboard content.
+    /// </summary>
+    public static readonly SettingDefinition<bool> SmartDetection
+        = new(
+            name: nameof(SmartDetection),
+            defaultValue: true);
 }

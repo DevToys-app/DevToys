@@ -1,7 +1,6 @@
 ﻿using System.Globalization;
 using System.Reflection;
 using DevToys.Core.Mef;
-using DevToys.Core.Settings;
 
 namespace DevToys.UnitTests;
 
