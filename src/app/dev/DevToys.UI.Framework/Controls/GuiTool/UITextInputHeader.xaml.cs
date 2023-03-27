@@ -1,0 +1,357 @@
+﻿using DevToys.Api;
+using DevToys.Localization.Strings.ToolPage;
+using DevToys.UI.Framework.Helpers;
+using DevToys.UI.Framework.Threading;
+using Microsoft.Extensions.Logging;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Automation;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Markup;
+using Uno.Extensions;
+using Windows.Storage;
+using Windows.Storage.Pickers;
+using Windows.Storage.Provider;
+
+namespace DevToys.UI.Framework.Controls.GuiTool;
+
+[ContentProperty(Name = nameof(InnerEditor))]
+public sealed partial class UITextInputHeader : UserControl
+{
+    private readonly ILogger _logger;
+
+    public UITextInputHeader()
+    {
+        this.InitializeComponent();
+
+        _logger = this.Log();
+
+        Loaded += UITextInputHeader_Loaded;
+        Unloaded += UITextInputHeader_Unloaded;
+    }
+
+    internal IUISinglelineTextInput UITextInput => (IUISinglelineTextInput)DataContext;
+
+    public static readonly DependencyProperty TitleProperty
+       = DependencyProperty.Register(
+           nameof(Title),
+           typeof(string),
+           typeof(UITextInputHeader),
+           new PropertyMetadata(
+               string.Empty,
+               (d, e) =>
+               {
+                   AutomationProperties.SetName(d, (string)e.NewValue);
+               }));
+
+    public string? Title
+    {
+        get => (string?)GetValue(TitleProperty);
+        set => SetValue(TitleProperty, value);
+    }
+
+    public static readonly DependencyProperty IsReadOnlyProperty
+       = DependencyProperty.Register(
+           nameof(IsReadOnly),
+           typeof(bool),
+           typeof(UITextInputHeader),
+           new PropertyMetadata(false));
+
+    public bool IsReadOnly
+    {
+        get => (bool)GetValue(IsReadOnlyProperty);
+        set => SetValue(IsReadOnlyProperty, value);
+    }
+
+    public static readonly DependencyProperty CanCopyWhenEditableProperty
+       = DependencyProperty.Register(
+           nameof(CanCopyWhenEditable),
+           typeof(bool),
+           typeof(UITextInputHeader),
+           new PropertyMetadata(false));
+
+    public bool CanCopyWhenEditable
+    {
+        get => (bool)GetValue(CanCopyWhenEditableProperty);
+        set => SetValue(CanCopyWhenEditableProperty, value);
+    }
+
+    public static readonly DependencyProperty IsReadOnlyOrCanCopyWhenEditableProperty
+       = DependencyProperty.Register(
+           nameof(IsReadOnlyOrCanCopyWhenEditable),
+           typeof(bool),
+           typeof(UITextInputHeader),
+           new PropertyMetadata(false));
+
+    public bool IsReadOnlyOrCanCopyWhenEditable
+    {
+        get => (bool)GetValue(IsReadOnlyOrCanCopyWhenEditableProperty);
+        set => SetValue(IsReadOnlyOrCanCopyWhenEditableProperty, value);
+    }
+
+    public static readonly DependencyProperty InnerEditorProperty
+        = DependencyProperty.Register(
+            nameof(InnerEditor),
+            typeof(object),
+            typeof(UITextInputHeader),
+            new PropertyMetadata(null));
+
+    public object? InnerEditor
+    {
+        get => GetValue(InnerEditorProperty);
+        set => SetValue(InnerEditorProperty, value);
+    }
+
+    private void UITextInputHeader_Loaded(object sender, RoutedEventArgs e)
+    {
+        UITextInput.TitleChanged += UITextInput_TitleChanged;
+        UITextInput.IsReadOnlyChanged += UITextInput_IsReadOnlyChanged;
+        UITextInput.CanCopyWhenEditableChanged += UITextInput_CanCopyWhenEditableChanged;
+        UITextInput.IsEnabledChanged += UITextInput_IsEnabledChanged;
+        UITextInput.IsVisibleChanged += UITextInput_IsVisibleChanged;
+        Title = UITextInput.Title;
+        IsReadOnly = UITextInput.IsReadOnly;
+        CanCopyWhenEditable = UITextInput.CanCopyWhenEditable;
+        IsEnabled = UITextInput.IsEnabled;
+        Visibility = UITextInput.IsVisible ? Visibility.Visible : Visibility.Collapsed;
+        IsReadOnlyOrCanCopyWhenEditable = IsReadOnly || CanCopyWhenEditable;
+    }
+
+    private void UITextInputHeader_Unloaded(object sender, RoutedEventArgs e)
+    {
+        UITextInput.TitleChanged -= UITextInput_TitleChanged;
+        UITextInput.IsReadOnlyChanged -= UITextInput_IsReadOnlyChanged;
+        UITextInput.CanCopyWhenEditableChanged -= UITextInput_CanCopyWhenEditableChanged;
+        UITextInput.IsEnabledChanged -= UITextInput_IsEnabledChanged;
+        UITextInput.IsVisibleChanged -= UITextInput_IsVisibleChanged;
+        Loaded -= UITextInputHeader_Loaded;
+        Unloaded -= UITextInputHeader_Unloaded;
+    }
+
+    private void UITextInput_TitleChanged(object? sender, EventArgs e)
+    {
+        Title = UITextInput.Title;
+    }
+
+    private void UITextInput_IsReadOnlyChanged(object? sender, EventArgs e)
+    {
+        IsReadOnly = UITextInput.IsReadOnly;
+        IsReadOnlyOrCanCopyWhenEditable = IsReadOnly || CanCopyWhenEditable;
+    }
+
+    private void UITextInput_CanCopyWhenEditableChanged(object? sender, EventArgs e)
+    {
+        CanCopyWhenEditable = UITextInput.CanCopyWhenEditable;
+        IsReadOnlyOrCanCopyWhenEditable = IsReadOnly || CanCopyWhenEditable;
+    }
+
+    private void UITextInput_IsEnabledChanged(object? sender, EventArgs e)
+    {
+        IsEnabled = UITextInput.IsEnabled;
+    }
+
+    private void UITextInput_IsVisibleChanged(object? sender, EventArgs e)
+    {
+        Visibility = UITextInput.IsVisible ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    private void Root_SizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        if (e.NewSize.Width == e.PreviousSize.Width)
+        {
+            return;
+        }
+
+        if (e.NewSize.Width < 500)
+        {
+            if (PasteButtonText != null)
+            {
+                PasteButtonText.Visibility = Visibility.Collapsed;
+            }
+            if (CopyButtonText != null)
+            {
+                CopyButtonText.Visibility = Visibility.Collapsed;
+            }
+        }
+        else
+        {
+            if (PasteButtonText != null)
+            {
+                PasteButtonText.Visibility = Visibility.Visible;
+            }
+            if (CopyButtonText != null)
+            {
+                CopyButtonText.Visibility = Visibility.Visible;
+            }
+        }
+    }
+
+    private void PasteButton_Click(object sender, RoutedEventArgs e)
+    {
+        this.DispatcherQueue.RunOnUIThreadAsync(async () =>
+        {
+            object? clipboardContent = await Parts.Clipboard.GetClipboardDataAsync();
+            if (clipboardContent is string clipboardString)
+            {
+                if (Parts.SettingsProvider.GetSetting(PredefinedSettings.TextEditorPasteClearsText))
+                {
+                    UITextInput.Text(clipboardString);
+                }
+                else
+                {
+                    UITextInput.Text(UITextInput.Text + clipboardString);
+                }
+            }
+        }).ForgetSafely();
+    }
+
+    private void OpenFileButton_Click(object sender, RoutedEventArgs e)
+    {
+        this.DispatcherQueue.RunOnUIThreadAsync(async () =>
+        {
+            var filePicker = new FileOpenPicker
+            {
+                ViewMode = PickerViewMode.List,
+                SuggestedStartLocation = PickerLocationId.ComputerFolder
+            };
+
+            filePicker.FileTypeFilter.Add("*");
+            filePicker.FileTypeFilter.Add(".txt");
+            filePicker.FileTypeFilter.Add(".js");
+            filePicker.FileTypeFilter.Add(".ts");
+            filePicker.FileTypeFilter.Add(".cs");
+            filePicker.FileTypeFilter.Add(".java");
+            filePicker.FileTypeFilter.Add(".xml");
+            filePicker.FileTypeFilter.Add(".xsd");
+            filePicker.FileTypeFilter.Add(".json");
+            filePicker.FileTypeFilter.Add(".md");
+            filePicker.FileTypeFilter.Add(".sql");
+            filePicker.FileTypeFilter.Add(".html");
+            filePicker.FileTypeFilter.Add(".cshtml");
+            filePicker.FileTypeFilter.Add(".razor");
+            filePicker.FileTypeFilter.Add(".css");
+
+#if __WINDOWS__
+            // Initialize the file picker with the window handle (HWND).
+            WinRT.Interop.InitializeWithWindow.Initialize(filePicker, BackdropWindow.MainWindowHandle);
+#endif
+            StorageFile file = await filePicker.PickSingleFileAsync();
+            if (file is not null)
+            {
+                try
+                {
+                    await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(CancellationToken.None);
+
+                    string? text = await FileIO.ReadTextAsync(file);
+
+                    await this.DispatcherQueue.RunOnUIThreadAsync(() =>
+                    {
+                        UITextInput.Text(text);
+                    });
+                }
+                catch (Exception ex)
+                {
+                    LogErrorOpeningFile(ex);
+
+                    await this.DispatcherQueue.RunOnUIThreadAsync(async () =>
+                    {
+                        var dialog = new ContentDialog
+                        {
+                            // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
+                            XamlRoot = this.XamlRoot,
+                            Title = ToolPage.UnableOpenFile,
+                            Content = string.Format(ToolPage.UnableOpenFileDescription, file.Name),
+                            CloseButtonText = ToolPage.Ok,
+                            DefaultButton = ContentDialogButton.Close
+                        };
+
+                        await dialog.ShowAsync();
+                    });
+
+                }
+            }
+        }).ForgetSafely();
+    }
+
+    private void ClearButton_Click(object sender, RoutedEventArgs e)
+    {
+        UITextInput.Text(string.Empty);
+    }
+
+    private void SaveAsButton_Click(object sender, RoutedEventArgs e)
+    {
+        this.DispatcherQueue.RunOnUIThreadAsync(async () =>
+        {
+            string text = UITextInput.Text; // make sure to get this value on the UI thread.
+
+            var filePicker = new FileSavePicker
+            {
+                SuggestedStartLocation = PickerLocationId.ComputerFolder
+            };
+
+            filePicker.FileTypeChoices.Add(ToolPage.AllFileType, new List<string> { "." });
+
+#if __WINDOWS__
+            // Initialize the file picker with the window handle (HWND).
+            WinRT.Interop.InitializeWithWindow.Initialize(filePicker, BackdropWindow.MainWindowHandle);
+#endif
+            StorageFile file = await filePicker.PickSaveFileAsync();
+            if (file is not null)
+            {
+                await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(CancellationToken.None);
+
+                // Prevent updates to the remote version of the file until we finish making changes and call CompleteUpdatesAsync.
+                CachedFileManager.DeferUpdates(file);
+                bool failed = false;
+
+                try
+                {
+                    await FileIO.WriteTextAsync(file, text);
+                }
+                catch (Exception ex)
+                {
+                    LogErrorSavingFile(ex);
+                    failed = true;
+                }
+                finally
+                {
+                    // Let Windows know that we're finished changing the file so the other app can update the remote version of the file.
+                    // Completing updates may require Windows to ask for user input.
+                    FileUpdateStatus status = await CachedFileManager.CompleteUpdatesAsync(file);
+                    if (status != FileUpdateStatus.Complete && status != FileUpdateStatus.CompleteAndRenamed)
+                    {
+                        failed = true;
+                    }
+                }
+
+                if (failed)
+                {
+                    await this.DispatcherQueue.RunOnUIThreadAsync(async () =>
+                    {
+                        var dialog = new ContentDialog
+                        {
+                            // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
+                            XamlRoot = this.XamlRoot,
+                            Title = ToolPage.UnableSaveFile,
+                            Content = string.Format(ToolPage.UnableSaveFileDescription, file.Name),
+                            CloseButtonText = ToolPage.Ok,
+                            DefaultButton = ContentDialogButton.Close
+                        };
+
+                        await dialog.ShowAsync();
+                    });
+                }
+            }
+        }).ForgetSafely();
+    }
+
+    private void CopyButton_Click(object sender, RoutedEventArgs e)
+    {
+        Parts.Clipboard.SetClipboardTextAsync(UITextInput.Text).ForgetSafely();
+    }
+
+    [LoggerMessage(1, LogLevel.Warning, "Unable to open a file in a text input control.")]
+    partial void LogErrorOpeningFile(Exception ex);
+
+    [LoggerMessage(2, LogLevel.Warning, "Unable to save a file from a text input control.")]
+    partial void LogErrorSavingFile(Exception ex);
+}

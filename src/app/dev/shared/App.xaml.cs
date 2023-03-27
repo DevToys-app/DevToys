@@ -1,4 +1,5 @@
 ﻿using DevToys.Api;
+using DevToys.Api.Core;
 using DevToys.Api.Core.Theme;
 using DevToys.Business.ViewModels;
 using DevToys.Core.Logging;
@@ -7,6 +8,7 @@ using DevToys.Core.Settings;
 using DevToys.Tools;
 using DevToys.UI;
 using DevToys.UI.Framework.Controls;
+using DevToys.UI.Framework.Helpers;
 using DevToys.UI.Views;
 using DevToys.Wasdk.Core.FileStorage;
 using Microsoft.Extensions.Logging;
@@ -95,6 +97,9 @@ public sealed partial class App : Application
         LanguageManager.Instance.SetCurrentCulture(languageDefinition);
 
         IThemeListener themeListener = _themeListener.Value;
+
+        Parts.SettingsProvider = _settingsProvider.Value;
+        Parts.Clipboard = _mefProvider.Import<IClipboard>();
 
 #if __WINDOWS__
         // On Windows 10 version 1607 or later, this code signals that this app wants to participate in prelaunch

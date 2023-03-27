@@ -44,6 +44,21 @@ internal sealed class UIElementTemplateSelector : DataTemplateSelector
     /// </summary>
     public DataTemplate UIDropDownListTemplate { get; set; } = null!;
 
+    /// <summary>
+    /// The data template used to display a <see cref="IUIDiffTextInput"/>.
+    /// </summary>
+    public DataTemplate UIDiffTextInputTemplate { get; set; } = null!;
+
+    /// <summary>
+    /// The data template used to display a <see cref="IUIMultilineLineTextInput"/>.
+    /// </summary>
+    public DataTemplate UIMultilineTextInputTemplate { get; set; } = null!;
+
+    /// <summary>
+    /// The data template used to display a <see cref="IUISinglelineTextInput"/>.
+    /// </summary>
+    public DataTemplate UISinglelineTextInputTemplate { get; set; } = null!;
+
     protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
     {
         if (item is null)
@@ -60,6 +75,9 @@ internal sealed class UIElementTemplateSelector : DataTemplateSelector
             IUISetting => UISettingTemplate,
             IUISwitch => UISwitchTemplate,
             IUIDropDownList => UIDropDownListTemplate,
+            IUIDiffTextInput => UIDiffTextInputTemplate,
+            IUIMultilineLineTextInput => UIMultilineTextInputTemplate,
+            IUISinglelineTextInput => UISinglelineTextInputTemplate,
 
             _ => throw new NotSupportedException($"Gui Tool component of type '{item.GetType().FullName}' isn't supported.")
         };

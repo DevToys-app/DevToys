@@ -330,7 +330,7 @@ public sealed partial class GuiToolProvider
             if (!tool.NotSearchable                                     // do not search tools marked as non-searchable
                 && !string.IsNullOrWhiteSpace(tool.LongDisplayTitle))   // do not search tools without long display name.
             {
-                SearchTool(searchQueries, tool, out MatchSpan[] matchedSpans, out double weight);
+                SearchTool(searchQueries, tool, out TextSpan[] matchedSpans, out double weight);
 
                 if (weight > 0)
                 {
@@ -599,13 +599,13 @@ public sealed partial class GuiToolProvider
         return new SettingDefinition<bool>($"{guiToolInstance.InternalComponentName}_IsFavorite", defaultValue: false);
     }
 
-    private static void SearchTool(string[] searchQueries, GuiToolInstance tool, out MatchSpan[] matchedSpans, out double weight)
+    private static void SearchTool(string[] searchQueries, GuiToolInstance tool, out TextSpan[] matchedSpans, out double weight)
     {
-        var matches = new List<MatchSpan>();
+        var matches = new List<TextSpan>();
         weight = 0;
         foreach (string? query in searchQueries)
         {
-            WeightMatch(query, tool.LongDisplayTitle, out double titleWeight, out IReadOnlyList<MatchSpan> spans);
+            WeightMatch(query, tool.LongDisplayTitle, out double titleWeight, out IReadOnlyList<TextSpan> spans);
             WeightMatch(query, tool.SearchKeywords, out double searchKeywordsWeight, out _);
             WeightMatch(query, tool.Description, out double descriptionWeight, out _);
 
@@ -623,9 +623,9 @@ public sealed partial class GuiToolProvider
         string searchQuery,
         string stringToTestAgainst,
         out double weight,
-        out IReadOnlyList<MatchSpan> matchSpans)
+        out IReadOnlyList<TextSpan> matchSpans)
     {
-        var matches = new List<MatchSpan>();
+        var matches = new List<TextSpan>();
         matchSpans = matches;
         weight = 0;
 
@@ -640,7 +640,7 @@ public sealed partial class GuiToolProvider
             int matchIndex = stringToTestAgainst.IndexOf(searchQuery, i, StringComparison.OrdinalIgnoreCase);
             if (matchIndex > -1)
             {
-                matches.Add(new MatchSpan(matchIndex, searchQuery.Length));
+                matches.Add(new TextSpan(matchIndex, searchQuery.Length));
                 i = matchIndex + searchQuery.Length;
 
                 if (matchIndex > 0 && char.IsLetterOrDigit(stringToTestAgainst[matchIndex - 1]))

@@ -19,6 +19,8 @@ namespace DevToys.UI.Framework.Controls;
 
 public sealed partial class BackdropWindow : Window
 {
+    private static bool _firstWindowCreated;
+
     private readonly WindowsSystemDispatcherQueueHelper _wsdqHelper;
     private MicaController? _micaController;
     private SystemBackdropConfiguration? _configurationSource;
@@ -27,10 +29,18 @@ public sealed partial class BackdropWindow : Window
     {
         _wsdqHelper = new WindowsSystemDispatcherQueueHelper();
         _wsdqHelper.EnsureWindowsSystemDispatcherQueueController();
-        
+
         AppWindow = GetAppWindow();
         IsCompactOverlayModeSupported = true;
+
+        if (!_firstWindowCreated)
+        {
+            _firstWindowCreated = true;
+            MainWindowHandle = GetWindowHandle();
+        }
     }
+
+    internal static IntPtr MainWindowHandle { get; private set; }
 
     internal AppWindow AppWindow { get; }
 

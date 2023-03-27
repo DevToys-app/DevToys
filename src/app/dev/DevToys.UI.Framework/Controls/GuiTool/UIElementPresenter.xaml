@@ -59,6 +59,27 @@
                 </DataTemplate>
             </local:UIElementTemplateSelector.UIDropDownListTemplate>
 
+            <!-- UIDiffTextInput -->
+            <local:UIElementTemplateSelector.UIDiffTextInputTemplate>
+                <DataTemplate>
+                    <local:UIDiffTextInputPresenter/>
+                </DataTemplate>
+            </local:UIElementTemplateSelector.UIDiffTextInputTemplate>
+
+            <!-- UIMultilineTextInput -->
+            <local:UIElementTemplateSelector.UIMultilineTextInputTemplate>
+                <DataTemplate>
+                    <local:UIMultilineTextInputPresenter/>
+                </DataTemplate>
+            </local:UIElementTemplateSelector.UIMultilineTextInputTemplate>
+
+            <!-- UISinglelineTextInput -->
+            <local:UIElementTemplateSelector.UISinglelineTextInputTemplate>
+                <DataTemplate>
+                    <local:UISinglelineTextInputPresenter/>
+                </DataTemplate>
+            </local:UIElementTemplateSelector.UISinglelineTextInputTemplate>
+
         </local:UIElementTemplateSelector>
     </Control.Resources>
 

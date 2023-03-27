@@ -145,9 +145,20 @@ internal sealed class ThemeListener : IThemeListener
             UpdateAppResource("UISettingPresenterContentPadding", new Thickness(16, 4, 16, 4));
             UpdateAppResource("UISettingGroupPresenterContentMargin", new Thickness(0, 4, 0, 4));
 
+            // UITextInputHeader
+            UpdateAppResource("UITextInputHeaderCommandMargin", new Thickness(0, 0, 0, 4));
+
             // ComboBox
             UpdateAppResource("ComboBoxMinHeight", 24);
-            UpdateAppResource("ComboBoxPadding", new Thickness(12, 1, 0, 3));
+            UpdateAppResource("ComboBoxPadding", new Thickness(8, 1, 0, 1));
+
+            // Button
+            UpdateAppResource("ButtonMinHeight", 24);
+            UpdateAppResource("ButtonPadding", new Thickness(8, 1, 8, 1));
+
+            // TextBox
+            UpdateAppResource("TextControlThemeMinHeight", 24);
+            UpdateAppResource("TextControlThemePadding", new Thickness(2, 2, 6, 2));
         }
         else
         {
@@ -161,9 +172,20 @@ internal sealed class ThemeListener : IThemeListener
             UpdateAppResource("UISettingPresenterContentPadding", new Thickness(16));
             UpdateAppResource("UISettingGroupPresenterContentMargin", new Thickness(0, 16, 0, 16));
 
+            // UITextInputHeader
+            UpdateAppResource("UITextInputHeaderCommandMargin", new Thickness(0, 0, 0, 8));
+
             // ComboBox
             UpdateAppResource("ComboBoxMinHeight", 32);
             UpdateAppResource("ComboBoxPadding", new Thickness(12, 5, 0, 7));
+
+            // Button
+            UpdateAppResource("ButtonMinHeight", 32);
+            UpdateAppResource("ButtonPadding", new Thickness(11, 5, 11, 6));
+
+            // TextBox
+            UpdateAppResource("TextControlThemeMinHeight", 32);
+            UpdateAppResource("TextControlThemePadding", new Thickness(10, 5, 6, 6));
         }
 
         // Toggle between the themes to force reload the resource styles.
