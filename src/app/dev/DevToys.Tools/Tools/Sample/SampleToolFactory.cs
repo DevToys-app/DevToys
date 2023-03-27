@@ -54,7 +54,13 @@ internal sealed class SampleCommandLineTool : ICommandLineTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool : IGuiTool
 {
-    public IUIElement View => null!;
+    public IUIElement View
+        => Stack()
+        .Vertical()
+        .WithChildren(
+            SinglelineTextInput().Title("Read-write text control"),
+            SinglelineTextInput().Title("Read-only text control").ReadOnly(),
+            SinglelineTextInput().Title("Read-write text input with copy").CanCopyWhenEditable());
 
     public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }

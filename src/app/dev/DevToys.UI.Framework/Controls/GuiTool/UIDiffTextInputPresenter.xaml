@@ -1,11 +1,12 @@
-﻿<Button
-    x:Class="DevToys.UI.Framework.Controls.GuiTool.UIButtonPresenter"
+﻿<UserControl
+    x:Class="DevToys.UI.Framework.Controls.GuiTool.UIDiffTextInputPresenter"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:DevToys.UI.Framework.Controls.GuiTool"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Style="{ThemeResource CustomButtonStyle}"
-    Click="OnButton_Click">
-</Button>
+    mc:Ignorable="d">
+    <local:UITextInputHeader>
+        <!-- TODO: Monaco Editor -->
+    </local:UITextInputHeader>
+</UserControl>

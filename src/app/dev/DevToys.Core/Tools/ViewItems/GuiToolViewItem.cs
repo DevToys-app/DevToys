@@ -11,7 +11,7 @@ public sealed partial class GuiToolViewItem : ObservableObject
 {
     private readonly bool _showLongDisplayTitle;
 
-    public GuiToolViewItem(GuiToolInstance instance, bool showLongDisplayTitle = true, MatchSpan[]? matchSpans = null)
+    public GuiToolViewItem(GuiToolInstance instance, bool showLongDisplayTitle = true, TextSpan[]? matchSpans = null)
     {
         Guard.IsNotNull(instance);
         ToolInstance = instance;
@@ -28,7 +28,7 @@ public sealed partial class GuiToolViewItem : ObservableObject
     /// Gets or sets the list of spans that matched a search.
     /// </summary>
     [ObservableProperty]
-    private MatchSpan[]? _matchedSpans;
+    private TextSpan[]? _matchedSpans;
 
     /// <summary>
     /// Gets or sets whether the tool is recommended to be used (for example, after detecting a compatible data from Smart Detection).
