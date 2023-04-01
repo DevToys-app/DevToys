@@ -8,6 +8,7 @@
     <CommunityToolkitWinUINuGetVersion>7.1.2</CommunityToolkitWinUINuGetVersion>
     <DotNetVersion>7.0.0</DotNetVersion>
     <MicrosoftFastComponentsFluentUIVersion>2.0.1</MicrosoftFastComponentsFluentUIVersion>
+    <UnoVersion>4.7.37</UnoVersion>
     <UnoCommunityToolkitWinUINuGetVersion>7.1.100</UnoCommunityToolkitWinUINuGetVersion>
     <UnoWasmBootstrapVersion>8.0.0-dev.65</UnoWasmBootstrapVersion>
     <MicrosoftTypeScriptMSBuildVersion>4.9.4</MicrosoftTypeScriptMSBuildVersion>
