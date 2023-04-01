@@ -73,7 +73,8 @@
                 <CommandBar
                     x:Name="CommandBar"
                     IsOpen="False"
-                    DefaultLabelPosition="Right">
+                    DefaultLabelPosition="Right"
+                    Margin="0,0,-8,0">
                     <AppBarButton
                         Command="{x:Bind ViewModel.ToggleSelectedMenuItemFavoriteCommand}"
                         Visibility="{x:Bind ViewModel.IsSelectedMenuItemSupportFavorite, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"

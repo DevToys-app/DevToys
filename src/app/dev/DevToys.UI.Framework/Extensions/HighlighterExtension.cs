@@ -19,9 +19,9 @@ public sealed class HighlighterExtension : MarkupExtension
     public static readonly DependencyProperty HighlightersProperty
         = DependencyProperty.RegisterAttached(
             "Highlighters",
-            typeof(MatchSpan[]),
+            typeof(TextSpan[]),
             typeof(HighlighterExtension),
-            new PropertyMetadata(Array.Empty<MatchSpan>(), OnHighlightersChanged));
+            new PropertyMetadata(Array.Empty<TextSpan>(), OnHighlightersChanged));
 
     /// <summary>
     /// Gets the value of the Highlighters attached property from the specified FrameworkElement.
@@ -50,7 +50,7 @@ public sealed class HighlighterExtension : MarkupExtension
     {
         if (d is RichTextBlock source)
         {
-            var value = e.NewValue as MatchSpan[];
+            var value = e.NewValue as TextSpan[];
             source.TextHighlighters.Clear();
 
             if (value is not null && value.Length > 0)
