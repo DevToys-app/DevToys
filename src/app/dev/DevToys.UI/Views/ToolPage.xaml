@@ -93,6 +93,7 @@
             </Border>
 
             <guiTool:UIElementPresenter
+                x:Name="RootUIElementPresenter"
                 Grid.Row="1"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"

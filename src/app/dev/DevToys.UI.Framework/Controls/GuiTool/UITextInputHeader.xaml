@@ -148,6 +148,7 @@
             </DropDownButton>
         </StackPanel>
 
+        <!-- OneWay binding mode on Content property is important so MonacoEditor can be removed from the visual tree when being reclycled -->
         <ContentControl
             Grid.Row="1"
             Grid.ColumnSpan="2"
@@ -155,6 +156,6 @@
             VerticalAlignment="Stretch"
             HorizontalContentAlignment="Stretch"
             VerticalContentAlignment="Stretch"
-            Content="{Binding InnerEditor, ElementName=Root, Mode=OneTime}"/>
+            Content="{Binding InnerEditor, ElementName=Root, Mode=OneWay}"/>
     </Grid>
 </UserControl>

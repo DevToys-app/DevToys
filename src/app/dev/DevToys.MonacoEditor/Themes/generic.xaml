@@ -5,6 +5,26 @@
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:converters="using:DevToys.UI.Framework.Converters">
 
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light">
+            <SolidColorBrush x:Key="TextControlBackground" Color="#FDFDFD"/>
+            <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="#FFFFFF"/>
+            <SolidColorBrush x:Key="TextControlBackgroundDisabled" Color="RED"/> <!-- TODO -->
+            <SolidColorBrush x:Key="TextControlBackgroundPointerOver" Color="RED"/>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+            <SolidColorBrush x:Key="TextControlBackground" Color="#343434"/>
+            <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="#202123"/>
+            <SolidColorBrush x:Key="TextControlBackgroundDisabled" Color="RED"/> <!-- TODO -->
+            <SolidColorBrush x:Key="TextControlBackgroundPointerOver" Color="#393939"/>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="HighContrast">
+            <SolidColorBrush x:Key="TextControlBackground" Color="#FFFFFF"/>
+            <SolidColorBrush x:Key="TextControlBackgroundDisabled" Color="RED"/> <!-- TODO -->
+            <SolidColorBrush x:Key="TextControlBackgroundPointerOver" Color="RED"/>
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
     <converters:NegateBooleanConverter x:Key="NegateBooleanConverter"/>
 
     <Style TargetType="monaco:CodeEditor" >

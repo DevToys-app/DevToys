@@ -108,7 +108,7 @@ public static partial class GUI
     /// <summary>
     /// Sets the list of spans to highlight in the text document.
     /// </summary>
-    public static IUIMultilineLineTextInput Hihglight(this IUIMultilineLineTextInput element, params TextSpan[] spans)
+    public static IUIMultilineLineTextInput Highlight(this IUIMultilineLineTextInput element, params TextSpan[] spans)
     {
         ((UIMultilineTextInput)element).HighlightedSpans = spans;
         return element;

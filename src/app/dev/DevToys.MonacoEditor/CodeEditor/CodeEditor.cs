@@ -4,14 +4,17 @@ using DevToys.Api;
 using DevToys.MonacoEditor.Extensions;
 using DevToys.MonacoEditor.Monaco;
 using DevToys.MonacoEditor.Monaco.Editor;
+using DevToys.MonacoEditor.Monaco.Helpers;
 using DevToys.MonacoEditor.WebInterop;
-using DevToys.UI.Framework.Threading;
-using Microsoft.Web.WebView2.Core;
-using Windows.Foundation;
-using Range = DevToys.MonacoEditor.Monaco.Range;
+using DevToys.UI.Framework.Controls;
+using DevToys.UI.Framework.Helpers;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.Web.WebView2.Core;
+using Windows.Foundation;
+using Windows.UI;
+using Range = DevToys.MonacoEditor.Monaco.Range;
 
 namespace DevToys.MonacoEditor;
 
@@ -24,7 +27,7 @@ namespace DevToys.MonacoEditor;
 [TemplateVisualState(Name = PointerOverState, GroupName = CommonStates)]
 [TemplateVisualState(Name = FocusedState, GroupName = CommonStates)]
 [TemplateVisualState(Name = DisabledState, GroupName = CommonStates)]
-public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisposable
+public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisposable, IMonacoEditor
 {
     internal const string CommonStates = "CommonStates";
     internal const string NormalState = "Normal";
@@ -32,12 +35,21 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
     internal const string FocusedState = "Focused";
     internal const string DisabledState = "Disabled";
 
-    private DispatcherQueue UIAccess => this.DispatcherQueue;
+    private static readonly IModelDecorationOptions HighlightedSpanStyle
+        = new IModelDecorationOptions()
+        {
+            ClassName = new CssLineStyle()
+            {
+                BackgroundColor = Color.FromArgb(85, 234, 92, 0) // #55EA5C00
+            }
+        };
 
+    private readonly ISettingsProvider _settingsProvider = Parts.SettingsProvider;
     private readonly DebugLogger _debugLogger = new();
-    private readonly ThemeListener _themeListener;
-    private readonly long _themeToken;
+    private readonly ThemeListener _themeListener = new();
+    private readonly CssStyleBroker _cssBroker;
 
+    private IReadOnlyList<TextSpan>? _spansToHighlight;
     private ICodeEditorPresenter? _view;
     private int _focusCount;
     private bool _initialized;
@@ -50,13 +62,14 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
 
         ParentAccessor = new ParentAccessor(this);
         ParentAccessor.AddAssemblyForTypeLookup(typeof(Range).GetTypeInfo().Assembly);
+        ParentAccessor.AddAssemblyForTypeLookup(typeof(TextSpan).GetTypeInfo().Assembly);
         ParentAccessor.RegisterAction("Loaded", OnMonacoEditorLoaded);
         ParentAccessor.RegisterAction("GotFocus", OnMonacoEditorGotFocus);
         ParentAccessor.RegisterAction("LostFocus", OnMonacoEditorLostFocus);
 
-        _themeListener = new ThemeListener(UIAccess);
         _themeListener.ThemeChanged += ThemeListener_ThemeChanged;
-        _themeToken = RegisterPropertyChangedCallback(ActualThemeProperty, ActualTheme_PropertyChanged);
+
+        _cssBroker = new CssStyleBroker(this);
 
         Options = new StandaloneEditorConstructionOptions();
         DiffOptions = new DiffEditorConstructionOptions();
@@ -66,8 +79,7 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
 
         Options.PropertyChanged += Options_PropertyChanged;
         DiffOptions.PropertyChanged += DiffOptions_PropertyChanged;
-
-        Unloaded += CodeEditor_Unloaded;
+        _settingsProvider.SettingChanged += SettingsProvider_SettingChanged;
     }
 
     public static DependencyProperty IsEditorLoadedProperty { get; }
@@ -111,10 +123,17 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
                 string.Empty,
                 async (d, e) =>
                 {
-                    if (d is CodeEditor { IsSettingValue: false } codeEditor && codeEditor._initialized)
+                    if (d is CodeEditor codeEditor && codeEditor._initialized)
                     {
-                        // link:otherScriptsToBeOrganized.ts:updateContent
-                        await codeEditor.InvokeScriptAsync("updateContent", e.NewValue.ToString() ?? string.Empty);
+                        if (!codeEditor.IsSettingValue)
+                        {
+                            // link:otherScriptsToBeOrganized.ts:updateContent
+                            await codeEditor.InvokeScriptAsync("updateContent", e.NewValue.ToString() ?? string.Empty);
+                        }
+                        else
+                        {
+                            codeEditor.TextChanged?.Invoke(d, EventArgs.Empty);
+                        }
                     }
                 }));
 
@@ -125,47 +144,6 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
     {
         get => (string)GetValue(TextProperty);
         set => SetValue(TextProperty, value);
-    }
-
-    public static DependencyProperty SelectedTextProperty { get; }
-        = DependencyProperty.Register(
-            nameof(SelectedText),
-            typeof(string),
-            typeof(CodeEditor),
-            new PropertyMetadata(
-                string.Empty,
-                async (d, e) =>
-                {
-                    if (d is CodeEditor { IsSettingValue: false } codeEditor && codeEditor._initialized)
-                    {
-                        // link:updateSelectedContent.ts:updateSelectedContent
-                        await codeEditor.InvokeScriptAsync("updateSelectedContent", e.NewValue.ToString() ?? string.Empty);
-                    }
-                }));
-
-    /// <summary>
-    /// Gets the current Primary Selected CodeEditor Text, or replace the current selection by the given text.
-    /// </summary>
-    public string SelectedText
-    {
-        get => (string)GetValue(SelectedTextProperty);
-        set => SetValue(SelectedTextProperty, value);
-    }
-
-    public static DependencyProperty SelectedRangeProperty { get; }
-        = DependencyProperty.Register(
-            nameof(SelectedRange),
-            typeof(Selection),
-            typeof(CodeEditor),
-            new PropertyMetadata(null));
-
-    /// <summary>
-    /// Gets or sets the span to select in the editor
-    /// </summary>
-    public Selection SelectedRange
-    {
-        get => (Selection)GetValue(SelectedRangeProperty);
-        internal set => SetValue(SelectedRangeProperty, value);
     }
 
     public static DependencyProperty ReadOnlyProperty { get; }
@@ -194,6 +172,38 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
                     }
                 }));
 
+    public static DependencyProperty SelectedSpanProperty { get; }
+        = DependencyProperty.Register(
+            nameof(SelectedSpan),
+            typeof(TextSpan),
+            typeof(CodeEditor),
+            new PropertyMetadata(
+                new TextSpan(0, 0),
+                async (d, e) =>
+                {
+                    if (d is CodeEditor codeEditor && codeEditor._initialized)
+                    {
+                        if (!codeEditor.IsSettingValue)
+                        {
+                            // link:updateSelection.ts:updateSelectedSpan
+                            await codeEditor.InvokeScriptAsync("updateSelectedSpan", e.NewValue ?? new TextSpan(0, 0));
+                        }
+                        else
+                        {
+                            codeEditor.SelectedSpanChanged?.Invoke(d, EventArgs.Empty);
+                        }
+                    }
+                }));
+
+    /// <summary>
+    /// Gets the current selection in the editor, or replace the current selection by the given span.
+    /// </summary>
+    public TextSpan SelectedSpan
+    {
+        get => (TextSpan)GetValue(SelectedSpanProperty);
+        set => SetValue(SelectedSpanProperty, value);
+    }
+
     /// <summary>
     /// Gets or sets whether the editor is read-only.
     /// </summary>
@@ -220,6 +230,7 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
                     if (editor.Options != null && editor._initialized)
                     {
                         editor.Options.Language = e.NewValue.ToString();
+                        editor.Options.Folding = !string.IsNullOrWhiteSpace(editor.Options.Language) && !string.Equals("text", editor.Options.Language, StringComparison.OrdinalIgnoreCase);
                     }
                 }));
 
@@ -348,6 +359,8 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
 
     public bool IsSettingValue { get; set; }
 
+    public Control UIHost => this;
+
     internal ParentAccessor ParentAccessor { get; }
 
     /// <summary>
@@ -365,6 +378,10 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
     /// </summary>
     public event TypedEventHandler<CodeEditor, CoreWebView2NewWindowRequestedEventArgs>? OpenLinkRequested;
 
+    public event EventHandler? TextChanged;
+
+    public event EventHandler? SelectedSpanChanged;
+
 #if HAS_UNO
     public new void Dispose()
 #else
@@ -372,6 +389,52 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
 #endif
     {
         ParentAccessor.Dispose();
+        _cssBroker.Dispose();
+    }
+
+    public async Task HighlightSpansAsync(IReadOnlyList<TextSpan>? spans)
+    {
+        if (!_initialized)
+        {
+            _spansToHighlight = spans;
+            return;
+        }
+
+        var newDecorationsAdjust = new List<IModelDeltaDecoration>();
+
+        if (spans is not null)
+        {
+            for (int i = 0; i < spans.Count; i++)
+            {
+                TextSpan span = spans[i];
+                if (span.StartPosition + span.Length < Text.Length)
+                {
+                    Position? startPosition = await GetModel().GetPositionAtAsync((uint)span.StartPosition);
+                    Position? endPosition = await GetModel().GetPositionAtAsync((uint)(span.StartPosition + span.Length));
+                    if (startPosition is not null && endPosition is not null)
+                    {
+                        newDecorationsAdjust.Add(
+                            new IModelDeltaDecoration(
+                                new Range(
+                                    startPosition.LineNumber,
+                                    startPosition.Column,
+                                    endPosition.LineNumber,
+                                    endPosition.Column),
+                                HighlightedSpanStyle));
+                    }
+                }
+            }
+        }
+
+        if (_cssBroker.AssociateStyles(newDecorationsAdjust))
+        {
+            // Update Styles First
+            await InvokeScriptAsync("updateStyle", _cssBroker.GetStyles());
+        }
+
+        // Send Command to Modify Decorations
+        // IMPORTANT: Need to cast to object here as we want this to be a single array object passed as a parameter, not a list of parameters to expand.
+        await InvokeScriptAsync("updateDecorations", (object)newDecorationsAdjust);
     }
 
     internal IModel GetModel()
@@ -399,7 +462,7 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
             Guard.IsNotNull(_view);
             try
             {
-                return await _view.RunScriptAsync<T>(script, member, file, line);
+                return await _view.RunScriptAsync<T>(script, serializeResult: false, member, file, line);
             }
             catch (Exception e)
             {
@@ -516,26 +579,6 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
         GiveFocusToInnerEditor();
     }
 
-    private void CodeEditor_Unloaded(object sender, RoutedEventArgs e)
-    {
-        if (_view != null)
-        {
-            _view.NavigationStarting -= WebView_NavigationStarting;
-            _view.DOMContentLoaded -= WebView_DOMContentLoaded;
-            _view.NavigationCompleted -= WebView_NavigationCompleted;
-            _view.NewWindowRequested -= WebView_NewWindowRequested;
-            _view.DotNetObjectInjectionRequested -= WebView_DotNetObjectInjectionRequested;
-        }
-
-        Options.PropertyChanged -= Options_PropertyChanged;
-        DiffOptions.PropertyChanged -= DiffOptions_PropertyChanged;
-        _themeListener.ThemeChanged -= ThemeListener_ThemeChanged;
-
-        UnregisterPropertyChangedCallback(ActualThemeProperty, _themeToken);
-
-        _initialized = false;
-    }
-
     private void Options_PropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
         if (sender is not StandaloneEditorConstructionOptions options || IsDiffViewMode || !_initialized)
@@ -587,29 +630,23 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
         }
     }
 
-    private void ActualTheme_PropertyChanged(DependencyObject obj, DependencyProperty property)
-    {
-        ElementTheme theme = ActualTheme;
-        string themeName;
-        if (theme == ElementTheme.Default)
-        {
-            themeName = _themeListener.CurrentThemeName;
-        }
-        else
-        {
-            themeName = theme.ToString();
-        }
-
-        InvokeScriptAsync("setTheme", args: new string[] { _themeListener!.AccentColorHtmlHex }).Forget();
-        InvokeScriptAsync("changeTheme", new string[] { themeName, _themeListener.IsHighContrast.ToString() }).Forget();
-    }
-
     private void ThemeListener_ThemeChanged(ThemeListener sender)
     {
-        if (RequestedTheme == ElementTheme.Default)
+        InvokeScriptAsync(
+            "setTheme",
+            args: new string[] { sender.AccentColorHtmlHex })
+            .Forget();
+        InvokeScriptAsync(
+            "changeTheme",
+            args: new object[] { sender.CurrentTheme.ToString(), sender.IsHighContrast, IsFocusEngaged })
+            .Forget();
+    }
+
+    private void SettingsProvider_SettingChanged(object? sender, SettingChangedEventArgs e)
+    {
+        if (e.SettingName.Contains("TextEditor"))
         {
-            InvokeScriptAsync("setTheme", args: new string[] { sender.AccentColorHtmlHex }).Forget();
-            InvokeScriptAsync("changeTheme", args: new string[] { sender.CurrentTheme.ToString(), sender.IsHighContrast.ToString() }).Forget();
+            ApplySettings();
         }
     }
 
@@ -651,6 +688,10 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
         _focusCount++;
         if (_focusCount > 0)
         {
+            InvokeScriptAsync(
+                "changeTheme",
+                args: new object[] { _themeListener.CurrentTheme.ToString(), _themeListener.IsHighContrast, true })
+                .Forget();
             VisualStateManager.GoToState(this, FocusedState, false);
         }
     }
@@ -660,6 +701,10 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
         _focusCount = Math.Max(0, _focusCount - 1);
         if (_focusCount == 0)
         {
+            InvokeScriptAsync(
+                "changeTheme",
+                args: new object[] { _themeListener.CurrentTheme.ToString(), _themeListener.IsHighContrast, false })
+                .Forget();
             VisualStateManager.GoToState(this, NormalState, false);
         }
     }
@@ -677,18 +722,41 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
             .Forget();
         InvokeScriptAsync(
             "changeTheme",
-            new string[] { _themeListener.CurrentTheme.ToString(), _themeListener.IsHighContrast.ToString() })
+            new object[] { _themeListener.CurrentTheme.ToString(), _themeListener.IsHighContrast, IsFocusEngaged })
             .Forget();
 
         // Update options.
         _refrainFromUpdatingOptionsInternally = true;
 
         Options.SmoothScrolling = true;
+        Options.GlyphMargin = false;
+        Options.MouseWheelZoom = false;
+        Options.OverviewRulerBorder = false;
+        Options.ScrollBeyondLastLine = false;
+        Options.FontLigatures = false;
+        Options.SnippetSuggestions = SnippetSuggestions.None;
+        Options.CodeLens = true;
+        Options.QuickSuggestions = false;
+        Options.WordBasedSuggestions = false;
         Options.Minimap = new EditorMinimapOptions() { Enabled = false };
+        Options.ShowFoldingControls = Show.Always;
         Options.ReadOnly = ReadOnly;
         Options.Language = CodeLanguage;
+        Options.Folding = !string.IsNullOrWhiteSpace(CodeLanguage) && !string.Equals("text", CodeLanguage, StringComparison.OrdinalIgnoreCase);
+        DiffOptions.SmoothScrolling = true;
+        DiffOptions.GlyphMargin = false;
+        DiffOptions.MouseWheelZoom = false;
+        DiffOptions.OverviewRulerBorder = false;
+        DiffOptions.ScrollBeyondLastLine = false;
+        DiffOptions.FontLigatures = false;
+        DiffOptions.SnippetSuggestions = SnippetSuggestions.None;
+        DiffOptions.CodeLens = true;
+        DiffOptions.QuickSuggestions = false;
+        DiffOptions.ShowFoldingControls = Show.Always;
         DiffOptions.OriginalEditable = !ReadOnly;
         DiffOptions.ReadOnly = ReadOnly;
+
+        ApplySettings();
 
         _refrainFromUpdatingOptionsInternally = false;
         if (IsDiffViewMode)
@@ -700,9 +768,30 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
             InvokeScriptAsync("updateOptions", Options).Forget();
         }
 
+        // Set text, selection, highlighted spans that may have been set but not sent to the editor yet.
+        InvokeScriptAsync("updateContent", Text ?? string.Empty).Forget();
+        InvokeScriptAsync("updateSelectedSpan", SelectedSpan).Forget();
+        HighlightSpansAsync(_spansToHighlight).Forget();
+
         // We're done loading Monaco Editor.
         IsEditorLoaded = true;
         EditorLoaded?.Invoke(this, new RoutedEventArgs());
+    }
+
+    private void ApplySettings()
+    {
+        Options.WordWrapMinified = _settingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping);
+        Options.WordWrap = _settingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping) ? WordWrap.On : WordWrap.Off;
+        Options.LineNumbers = _settingsProvider.GetSetting(PredefinedSettings.TextEditorLineNumbers) ? LineNumbersType.On : LineNumbersType.Off;
+        Options.RenderLineHighlight = _settingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine) ? RenderLineHighlight.All : RenderLineHighlight.None;
+        Options.RenderWhitespace = _settingsProvider.GetSetting(PredefinedSettings.TextEditorRenderWhitespace) ? RenderWhitespace.All : RenderWhitespace.None;
+        Options.FontFamily = _settingsProvider.GetSetting(PredefinedSettings.TextEditorFont);
+        DiffOptions.WordWrapMinified = _settingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping);
+        DiffOptions.WordWrap = _settingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping) ? WordWrap.On : WordWrap.Off;
+        DiffOptions.LineNumbers = _settingsProvider.GetSetting(PredefinedSettings.TextEditorLineNumbers) ? LineNumbersType.On : LineNumbersType.Off;
+        DiffOptions.RenderLineHighlight = _settingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine) ? RenderLineHighlight.All : RenderLineHighlight.None;
+        DiffOptions.RenderWhitespace = _settingsProvider.GetSetting(PredefinedSettings.TextEditorRenderWhitespace) ? RenderWhitespace.All : RenderWhitespace.None;
+        DiffOptions.FontFamily = _settingsProvider.GetSetting(PredefinedSettings.TextEditorFont);
     }
 
     private void GiveFocusToInnerEditor()

@@ -7,6 +7,8 @@ public sealed partial class UISinglelineTextInputPresenter : UserControl
 {
     private bool _textChangedByUser;
 
+    // TODO: Use the font defined in the app settings.
+
     public UISinglelineTextInputPresenter()
     {
         this.InitializeComponent();

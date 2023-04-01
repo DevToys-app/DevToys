@@ -59,7 +59,7 @@ const initializeMonacoEditorAsync = async (editorContext: EditorContext) => {
 
     debug.log("Changing theme");
     setTheme(editorContext, await getAccentColorHtmlHex(editorContext));
-    changeTheme(editorContext, theme, await getThemeIsHighContrast(editorContext));
+    changeTheme(editorContext, theme, await getThemeIsHighContrast(editorContext), false);
 
     // Update Monaco Size when we receive a window resize event
     debug.log("Listen for resize events on the window and resize the editor");
@@ -109,7 +109,7 @@ const initializeStandardMonacoEditorAsync = async (editorContext: EditorContext)
     model.onDidChangeContent(
         async (event) => {
             // link:CodeEditor.Text
-            await accessor.setValue("Text", stringifyForMarshalling(model.getValue()));
+            await accessor.setValue("Text", model.getValue());
         });
 
     // Listen for Selection Changes
@@ -117,11 +117,16 @@ const initializeStandardMonacoEditorAsync = async (editorContext: EditorContext)
     editor.onDidChangeCursorSelection(
         async (event) => {
             if (!editorContext.modifingSelection) {
-                // link:CodeEditor.SelectedText
-                await accessor.setValue("SelectedText", stringifyForMarshalling(model.getValueInRange(event.selection)));
+                var primarySelection = editor.getSelection();
+                var start = model.getOffsetAt(primarySelection.getStartPosition());
+                var end = model.getOffsetAt(primarySelection.getEndPosition());
 
-                // link:CodeEditor.SelectedRange of type Selection
-                await accessor.setValueWithType("SelectedRange", stringifyForMarshalling(JSON.stringify(event.selection)), "Selection");
+                var selectedSpan = new TextSpan();
+                selectedSpan.StartPosition = start;
+                selectedSpan.Length = end - start;
+
+                // link:CodeEditor.SelectedSpan of type TextSpan
+                await accessor.setValueWithType("SelectedSpan", stringifyForMarshalling(JSON.stringify(selectedSpan)), "TextSpan");
             }
         });
 

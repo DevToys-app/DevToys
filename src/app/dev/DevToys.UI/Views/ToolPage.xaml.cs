@@ -23,6 +23,12 @@ public sealed partial class ToolPage : Page, IVisualStateListener
     /// </summary>
     internal ToolPageViewModel ViewModel => (ToolPageViewModel)DataContext;
 
+    protected override void OnNavigatedFrom(NavigationEventArgs e)
+    {
+        base.OnNavigatedFrom(e);
+        RootUIElementPresenter.Detach();
+    }
+
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);

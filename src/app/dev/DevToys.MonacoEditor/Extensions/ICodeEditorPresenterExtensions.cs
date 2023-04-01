@@ -14,18 +14,19 @@ internal static class ICodeEditorPresenterExtensions
         [CallerFilePath] string? file = null,
         [CallerLineNumber] int line = 0)
     {
-        await view.RunScriptAsync<object>(script, member, file, line);
+        await view.RunScriptAsync<object>(script, serializeResult: false, member, file, line);
     }
 
     public static async Task<T?> RunScriptAsync<T>(
         this ICodeEditorPresenter view,
         string script,
+        bool serializeResult = true,
         [CallerMemberName] string? member = null,
         [CallerFilePath] string? file = null,
         [CallerLineNumber] int line = 0)
     {
         string start = "try {\n";
-        if (typeof(T) != typeof(object))
+        if (typeof(T) != typeof(object) && serializeResult)
         {
             script = script.Trim(';');
             start += "return JSON.stringify(" + script + ");";
@@ -50,14 +51,6 @@ internal static class ICodeEditorPresenterExtensions
     private static async Task<T?> RunScriptHelperAsync<T>(ICodeEditorPresenter view, string script)
     {
         string returnstring = await view.InvokeScriptAsync(script);
-
-        //if (JsonObject.TryParse(returnstring, out JsonObject result))
-        //{
-        //    if (result.ContainsKey("wv_internal_error") && result["wv_internal_error"].ValueType == JsonValueType.Boolean && result["wv_internal_error"].GetBoolean())
-        //    {
-        //        throw new JavaScriptInnerException(result["message"].GetString(), result["stack"].GetString());
-        //    }
-        //}
 
         // TODO: Need to decode the error correctly
         if (!string.IsNullOrEmpty(returnstring))
@@ -163,7 +156,7 @@ internal static class ICodeEditorPresenterExtensions
 
             Debug.WriteLine($"Script {script})");
 
-            return await RunScriptAsync<T>(view, script, member, file, line);
+            return await RunScriptAsync<T>(view, script, serialize, member, file, line);
         }
         catch (Exception ex)
         {

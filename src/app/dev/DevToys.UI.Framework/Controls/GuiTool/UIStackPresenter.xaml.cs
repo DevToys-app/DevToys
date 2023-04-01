@@ -3,7 +3,7 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace DevToys.UI.Framework.Controls.GuiTool;
 
-public sealed partial class UIStackPresenter : ContentControl
+public sealed partial class UIStackPresenter : ContentControl, IDetachable
 {
     public UIStackPresenter()
     {
@@ -14,6 +14,17 @@ public sealed partial class UIStackPresenter : ContentControl
     }
 
     internal IUIStack UIStack => (IUIStack)DataContext;
+
+    public void Detach()
+    {
+        for (int i = 0; i < StackPanel.Children.Count; i++)
+        {
+            if (StackPanel.Children[i] is IDetachable detachable)
+            {
+                detachable.Detach();
+            }
+        }
+    }
 
     private void UIStackPresenter_Loaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
@@ -60,7 +71,9 @@ public sealed partial class UIStackPresenter : ContentControl
 
     private void SetChildren()
     {
+        Detach();
         StackPanel.Children.Clear();
+
         if (UIStack.Children is not null)
         {
             for (int i = 0; i < UIStack.Children.Length; i++)

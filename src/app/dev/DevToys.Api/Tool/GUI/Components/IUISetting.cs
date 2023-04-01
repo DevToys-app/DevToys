@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DevToys.Api;
+﻿namespace DevToys.Api;
 
 /// <summary>
 /// A component that represents a setting, with a title, description, icon and <see cref="IUIElement"/> for the option value.

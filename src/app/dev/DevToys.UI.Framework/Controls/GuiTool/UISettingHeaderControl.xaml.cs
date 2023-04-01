@@ -7,7 +7,7 @@ using Microsoft.UI.Xaml.Markup;
 namespace DevToys.UI.Framework.Controls.GuiTool;
 
 [ContentProperty(Name = nameof(SettingActionableElement))]
-public sealed partial class UISettingHeaderControl : UserControl
+public sealed partial class UISettingHeaderControl : UserControl, IDetachable
 {
     public static readonly DependencyProperty SettingActionableElementProperty
        = DependencyProperty.Register(
@@ -75,6 +75,12 @@ public sealed partial class UISettingHeaderControl : UserControl
     {
         InitializeComponent();
         VisualStateManager.GoToState(this, "NormalState", false);
+    }
+
+    public void Detach()
+    {
+        SettingIconElement.Detach();
+        ActionableElement.Detach();
     }
 
     private void MainPanel_SizeChanged(object sender, SizeChangedEventArgs e)

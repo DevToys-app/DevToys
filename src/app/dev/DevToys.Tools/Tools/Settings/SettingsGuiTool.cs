@@ -67,10 +67,8 @@ internal sealed class SettingsGuiTool : IGuiTool
                         .Title("Compact mode")
                         .Handle(_settingsProvider, PredefinedSettings.CompactMode),
                     Setting()
-                        .Title("Title")
-                        .Description("Description")
-                        .InteractiveElement(
-                            Switch()),
+                        .Title("Line numbers")
+                        .Handle(_settingsProvider, PredefinedSettings.TextEditorLineNumbers),
                     Setting()
                         .Title("Title")
                         .Description("Description")
