@@ -46,7 +46,7 @@ public static class PredefinedSettings
     public static readonly SettingDefinition<string> TextEditorFont
         = new(
             name: nameof(TextEditorFont),
-            defaultValue: string.Empty); // Default value will be defined by the app depending on the operating system. // TODO
+            defaultValue: string.Empty); // Default value will be defined by the app depending on the operating system.
 
     /// <summary>
     /// Whether the text in the text editor should wrap.
