@@ -91,7 +91,8 @@ internal sealed class SettingsGuiTool : IGuiTool
                 .WithChildren(
                     Button().Text("Bottom Left button"),
                     Button().Text("Bottom Center button").OnClick(OnBottomCenterButtonClickAsync),
-                    Button().Text("Bottom Right button")));
+                    Button().Text("Bottom Right button")),
+            SinglelineTextInput());
 
     public void OnDataReceived(string dataTypeName, object? parsedData)
     {

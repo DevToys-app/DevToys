@@ -1,4 +1,5 @@
 ﻿using DevToys.Api;
+using DevToys.UI.Framework.Helpers;
 using Microsoft.UI.Xaml.Controls;
 
 namespace DevToys.UI.Framework.Controls.GuiTool;
@@ -6,8 +7,6 @@ namespace DevToys.UI.Framework.Controls.GuiTool;
 public sealed partial class UISinglelineTextInputPresenter : UserControl
 {
     private bool _textChangedByUser;
-
-    // TODO: Use the font defined in the app settings.
 
     public UISinglelineTextInputPresenter()
     {
@@ -24,12 +23,15 @@ public sealed partial class UISinglelineTextInputPresenter : UserControl
         UISinglelineTextInput.IsReadOnlyChanged += UISinglelineTextInput_IsReadOnlyChanged;
         UISinglelineTextInput.TextChanged += UISinglelineTextInput_TextChanged;
         UISinglelineTextInput.SelectionChanged += UISinglelineTextInput_SelectionChanged;
+        TextBox.FontFamily = new Microsoft.UI.Xaml.Media.FontFamily(Parts.SettingsProvider.GetSetting(PredefinedSettings.TextEditorFont));
         TextBox.IsReadOnly = UISinglelineTextInput.IsReadOnly;
         TextBox.Text = UISinglelineTextInput.Text;
         if (UISinglelineTextInput.Selection is not null)
         {
             TextBox.Select(UISinglelineTextInput.Selection.StartPosition, UISinglelineTextInput.Selection.Length);
         }
+
+        Parts.SettingsProvider.SettingChanged += SettingsProvider_SettingChanged;
     }
 
     private void UISinglelineTextInputPresenter_Unloaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
@@ -39,6 +41,8 @@ public sealed partial class UISinglelineTextInputPresenter : UserControl
         UISinglelineTextInput.SelectionChanged -= UISinglelineTextInput_SelectionChanged;
         Loaded -= UISinglelineTextInputPresenter_Loaded;
         Unloaded -= UISinglelineTextInputPresenter_Unloaded;
+
+        Parts.SettingsProvider.SettingChanged -= SettingsProvider_SettingChanged;
     }
 
     private void UISinglelineTextInput_SelectionChanged(object? sender, EventArgs e)
@@ -88,5 +92,13 @@ public sealed partial class UISinglelineTextInputPresenter : UserControl
         }
 
         UISinglelineTextInput.Select(TextBox.SelectionStart, TextBox.SelectionLength);
+    }
+
+    private void SettingsProvider_SettingChanged(object? sender, SettingChangedEventArgs e)
+    {
+        if (string.Equals(e.SettingName, PredefinedSettings.TextEditorFont.Name, StringComparison.Ordinal))
+        {
+            TextBox.FontFamily = new Microsoft.UI.Xaml.Media.FontFamily(e.NewValue as string);
+        }
     }
 }

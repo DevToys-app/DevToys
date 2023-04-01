@@ -182,10 +182,18 @@ public sealed partial class App : Application
 
     private void SetDefaultTextEditorFont()
     {
-        string? currentFontName = _settingsProvider.Value.GetSetting(Api.PredefinedSettings.TextEditorFont);
-        if (string.IsNullOrEmpty(currentFontName))
+        string? currentFontName = _settingsProvider.Value.GetSetting(Api.PredefinedSettings.TextEditorFont); // By default, the value is null.
+        string[] systemFontFamilies = _mefProvider.Import<IFontProvider>().GetFontFamilies();
+        if (!systemFontFamilies.Contains(currentFontName))
         {
-            // TODO: https://github.com/baskren/P42.Utils/blob/8e97ecdc7be8e792b63c2703a52d951800f4fb31/P42.Utils.Uno/AvailableFonts/AvailableFonts.cs
+            for (int i = 0; i < Api.PredefinedSettings.DefaultFonts.Length; i++)
+            {
+                if (systemFontFamilies.Contains(Api.PredefinedSettings.DefaultFonts[i]))
+                {
+                    _settingsProvider.Value.SetSetting(Api.PredefinedSettings.TextEditorFont, Api.PredefinedSettings.DefaultFonts[i]);
+                    return;
+                }
+            }
         }
     }
 
