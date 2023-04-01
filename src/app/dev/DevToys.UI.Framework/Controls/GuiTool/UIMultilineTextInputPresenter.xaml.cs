@@ -54,7 +54,7 @@ public sealed partial class UIMultilineTextInputPresenter : UserControl, IDetach
         if (UIMultilineLineTextInput.Selection is not null)
         {
             _monacoEditor.SelectedSpan = UIMultilineLineTextInput.Selection;
-        }
+    }
     }
 
     private void UIMultilineTextInputPresenter_Unloaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
