@@ -73,10 +73,18 @@ internal sealed partial class ParentAccessor : IDisposable
     /// <returns></returns>
     public Task<string> CallEvent(string name, string[] parameters)
     {
-        Debug.WriteLine($"Event {name}");
+        if (Debugger.IsAttached)
+        {
+            Debug.WriteLine($"Event {name}");
+        }
+
         if (_events.TryGetValue(name, out Func<string[], Task<string>>? @event))
         {
-            Debug.WriteLine($"Parameters: {parameters != null} - {parameters?.Length.ToString() ?? "N/A"}");
+            if (Debugger.IsAttached)
+            {
+                Debug.WriteLine($"Parameters: {parameters != null} - {parameters?.Length.ToString() ?? "N/A"}");
+            }
+
             parameters ??= Array.Empty<string>();
             return @event.Invoke(parameters);
         }

@@ -168,7 +168,7 @@ public sealed partial class CodeEditorPresenter : Control, ICodeEditorPresenter,
                 }}
             }})()";
 
-        _debugLogger?.Debug($"Invoke Script: {script}");
+        _debugLogger?.Debug($"Invoking script");
 
         try
         {

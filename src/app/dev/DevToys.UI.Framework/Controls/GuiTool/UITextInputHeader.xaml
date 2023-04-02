@@ -31,7 +31,13 @@
         <Style TargetType="Button" BasedOn="{StaticResource CustomButtonStyle}"/>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid
+        x:Name="MainPanel"
+        AllowDrop="True"
+        Background="Transparent"
+        DragOver="MainPanel_DragOver"
+        DragLeave="MainPanel_DragLeave"
+        Drop="MainPanel_Drop">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -63,6 +69,7 @@
             <Button
                 x:Name="PasteButton"
                 x:Load="{x:Bind IsReadOnly, Mode=OneWay, Converter={StaticResource NegateBooleanConverter}}"
+                IsEnabled="{x:Bind IsLoadingFile, Mode=OneWay, Converter={StaticResource NegateBooleanConverter}}"
                 ToolTipService.ToolTip="{str:StringsExtension Key=Paste}"
                 AutomationProperties.Name="{str:StringsExtension Key=Paste}"
                 Click="PasteButton_Click">
@@ -74,6 +81,7 @@
             <Button
                 x:Name="OpenFileButton"
                 x:Load="{x:Bind IsReadOnly, Mode=OneWay, Converter={StaticResource NegateBooleanConverter}}"
+                IsEnabled="{x:Bind IsLoadingFile, Mode=OneWay, Converter={StaticResource NegateBooleanConverter}}"
                 ToolTipService.ToolTip="{str:StringsExtension Key=OpenFile}"
                 AutomationProperties.Name="{str:StringsExtension Key=OpenFile}"
                 Click="OpenFileButton_Click">
@@ -82,6 +90,7 @@
             <Button
                 x:Name="ClearButton"
                 x:Load="{x:Bind IsReadOnly, Mode=OneWay, Converter={StaticResource NegateBooleanConverter}}"
+                IsEnabled="{x:Bind IsLoadingFile, Mode=OneWay, Converter={StaticResource NegateBooleanConverter}}"
                 ToolTipService.ToolTip="{str:StringsExtension Key=Clear}"
                 AutomationProperties.Name="{str:StringsExtension Key=Clear}"
                 Click="ClearButton_Click">
@@ -94,6 +103,7 @@
             <Button
                 x:Name="SaveAsButton"
                 x:Load="{x:Bind IsReadOnlyOrCanCopyWhenEditable, Mode=OneWay}"
+                IsEnabled="{x:Bind IsLoadingFile, Mode=OneWay, Converter={StaticResource NegateBooleanConverter}}"
                 ToolTipService.ToolTip="{str:StringsExtension Key=SaveAs}"
                 AutomationProperties.Name="{str:StringsExtension Key=SaveAs}"
                 Click="SaveAsButton_Click">
@@ -102,6 +112,7 @@
             <Button
                 x:Name="CopyButton"
                 x:Load="{x:Bind IsReadOnlyOrCanCopyWhenEditable, Mode=OneWay}"
+                IsEnabled="{x:Bind IsLoadingFile, Mode=OneWay, Converter={StaticResource NegateBooleanConverter}}"
                 ToolTipService.ToolTip="{str:StringsExtension Key=Copy}"
                 AutomationProperties.Name="{str:StringsExtension Key=Copy}"
                 Click="CopyButton_Click">
@@ -117,6 +128,7 @@
             <DropDownButton
                 x:Name="SmartDetectionDropDownButton"
                 x:Load="{x:Bind IsReadOnlyOrCanCopyWhenEditable, Mode=OneWay}"
+                IsEnabled="{x:Bind IsLoadingFile, Mode=OneWay, Converter={StaticResource NegateBooleanConverter}}"
                 Padding="{ThemeResource ButtonPadding}"
                 ToolTipService.ToolTip="{str:StringsExtension Key=SendToSmartDetection}"
                 AutomationProperties.Name="{str:StringsExtension Key=SendToSmartDetection}">
@@ -150,12 +162,34 @@
 
         <!-- OneWay binding mode on Content property is important so MonacoEditor can be removed from the visual tree when being reclycled -->
         <ContentControl
+            x:Name="EditorControl"
             Grid.Row="1"
             Grid.ColumnSpan="2"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             HorizontalContentAlignment="Stretch"
             VerticalContentAlignment="Stretch"
-            Content="{Binding InnerEditor, ElementName=Root, Mode=OneWay}"/>
+            Content="{Binding InnerEditor, ElementName=Root, Mode=OneWay}"
+            IsEnabled="{x:Bind IsLoadingFile, Mode=OneWay, Converter={StaticResource NegateBooleanConverter}}"/>
+
+        <Rectangle
+            x:Name="DragDropAreaRectangle"
+            x:Load="{x:Bind IsDraggingHover, Mode=OneWay}"
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="2"
+            Stroke="{ThemeResource TextControlHeaderForeground}"
+            StrokeDashArray="4 4"
+            StrokeThickness="2"
+            Fill="{ThemeResource ButtonBackgroundPointerOver}"/>
+
+        <ProgressBar
+            x:Name="LoadingFileProgressRing"
+            x:Load="{x:Bind IsLoadingFile, Mode=OneWay}"
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Center"
+            Margin="24,0,24,0"
+            IsIndeterminate="{x:Bind IsLoadingFile, Mode=OneWay}" />
     </Grid>
 </UserControl>

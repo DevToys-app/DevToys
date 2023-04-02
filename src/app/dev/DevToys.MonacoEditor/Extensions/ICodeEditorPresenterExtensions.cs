@@ -124,7 +124,11 @@ internal static class ICodeEditorPresenterExtensions
 
         try
         {
-            Debug.WriteLine($"Begin invoke script (serialize - {serialize})");
+            if (Debugger.IsAttached)
+            {
+                Debug.WriteLine($"Begin invoke script (serialize - {serialize})");
+            }
+
             if (serialize)
             {
                 sanitizedargs
@@ -154,13 +158,14 @@ internal static class ICodeEditorPresenterExtensions
 
             string script = method + "(editorContext, " + string.Join(", ", sanitizedargs) + ");";
 
-            Debug.WriteLine($"Script {script})");
-
             return await RunScriptAsync<T>(view, script, serialize, member, file, line);
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"Error {ex.Message} {ex.StackTrace} {ex.InnerException?.Message})");
+            if (Debugger.IsAttached)
+            {
+                Debug.WriteLine($"Error {ex.Message} {ex.StackTrace} {ex.InnerException?.Message})");
+            }
             return default;
         }
     }

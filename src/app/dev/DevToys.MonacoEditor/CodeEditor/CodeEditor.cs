@@ -8,10 +8,11 @@ using DevToys.MonacoEditor.Monaco.Helpers;
 using DevToys.MonacoEditor.WebInterop;
 using DevToys.UI.Framework.Controls;
 using DevToys.UI.Framework.Helpers;
-using Microsoft.UI.Dispatching;
+using Microsoft.Extensions.Logging;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.Web.WebView2.Core;
+using Uno.Extensions;
 using Windows.Foundation;
 using Windows.UI;
 using Range = DevToys.MonacoEditor.Monaco.Range;
@@ -44,6 +45,8 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
             }
         };
 
+    private readonly ILogger _logger;
+    private readonly DisposableSemaphore _updateTextSemaphore = new();
     private readonly ISettingsProvider _settingsProvider = Parts.SettingsProvider;
     private readonly DebugLogger _debugLogger = new();
     private readonly ThemeListener _themeListener = new();
@@ -58,6 +61,7 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
 
     public CodeEditor()
     {
+        _logger = this.Log();
         DefaultStyleKey = typeof(CodeEditor);
 
         ParentAccessor = new ParentAccessor(this);
@@ -127,8 +131,7 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
                     {
                         if (!codeEditor.IsSettingValue)
                         {
-                            // link:otherScriptsToBeOrganized.ts:updateContent
-                            await codeEditor.InvokeScriptAsync("updateContent", e.NewValue.ToString() ?? string.Empty);
+                            await codeEditor.UpdateTextAsync(e.NewValue.ToString() ?? string.Empty);
                         }
                         else
                         {
@@ -466,14 +469,16 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
             }
             catch (Exception e)
             {
+                LogInternalError(e);
                 InternalException?.Invoke(this, e);
             }
         }
         else
         {
-#if DEBUG
-            Debug.WriteLine("WARNING: Tried to call '" + script + "' before initialized.");
-#endif
+            if (Debugger.IsAttached)
+            {
+                Debug.WriteLine("WARNING: Tried to call '" + script + "' before initialized.");
+            }
         }
 
         return default;
@@ -529,14 +534,16 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
             }
             catch (Exception e)
             {
+                LogInternalError(e);
                 InternalException?.Invoke(this, e);
             }
         }
         else
         {
-#if DEBUG
-            Debug.WriteLine("WARNING: Tried to call '" + method + "' before initialized.");
-#endif
+            if (Debugger.IsAttached)
+            {
+                Debug.WriteLine("WARNING: Tried to call '" + method + "' before initialized.");
+            }
         }
 
         return default;
@@ -577,6 +584,15 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
         base.OnGotFocus(e);
 
         GiveFocusToInnerEditor();
+    }
+
+    private async Task UpdateTextAsync(string text)
+    {
+        using (_updateTextSemaphore.WaitAsync(CancellationToken.None))
+        {
+            // link:otherScriptsToBeOrganized.ts:updateContent
+            await InvokeScriptAsync("updateContent", text);
+        }
     }
 
     private void Options_PropertyChanged(object? sender, PropertyChangedEventArgs e)
@@ -804,4 +820,7 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
             SendScriptAsync("editorContext.editor.focus();").Forget();
         }
     }
+
+    [LoggerMessage(2, LogLevel.Error, "An error occured related to the Monaco Editor.")]
+    partial void LogInternalError(Exception ex);
 }

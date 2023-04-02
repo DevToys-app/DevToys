@@ -373,7 +373,7 @@ public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresen
                     }}
                 }})();";
 
-        LogInvokingJavaScript(script);
+        LogInvokingJavaScript();
 
         try
         {
@@ -429,8 +429,8 @@ public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresen
     [LoggerMessage(7, LogLevel.Error, "{caller}-CALLBACK: Exception in {name}.{propertyName}.")]
     partial void LogDotNetObjectInjectionCallbackPropertyFailed(string name, string propertyName, Exception exception, [CallerMemberName] string? caller = null);
 
-    [LoggerMessage(8, LogLevel.Debug, "{caller}: Invoking JavaScript: {script}")]
-    partial void LogInvokingJavaScript(string script, [CallerMemberName] string? caller = null);
+    [LoggerMessage(8, LogLevel.Debug, "{caller}: Invoking JavaScript...")]
+    partial void LogInvokingJavaScript([CallerMemberName] string? caller = null);
 
     [LoggerMessage(9, LogLevel.Debug, "{caller}: JavaScript invoked successfully: {result}")]
     partial void LogInvokedJavaScriptSuccessfully(string result, [CallerMemberName] string? caller = null);
