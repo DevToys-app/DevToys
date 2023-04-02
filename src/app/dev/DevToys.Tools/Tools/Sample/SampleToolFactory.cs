@@ -51,7 +51,7 @@ internal sealed class SampleCommandLineTool : ICommandLineTool
 [AcceptedDataTypeName(PredefinedCommonDataTypeNames.Json)]
 internal sealed class SampleGuiTool : IGuiTool
 {
-    private readonly IUIMultilineLineTextInput _editor = MultilineTextInput().Language("json");
+    private readonly IUIMultilineLineTextInput _editor = MultilineTextInput().Language("json").CanCopyWhenEditable();
 
     public IUIElement View
         => _editor;
@@ -85,7 +85,7 @@ internal sealed class SampleGuiTool : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool2 : IGuiTool
 {
-    private readonly IUIMultilineLineTextInput _editor = MultilineTextInput();
+    private readonly IUIMultilineLineTextInput _editor = MultilineTextInput().CanCopyWhenEditable();
 
     public IUIElement View
         => _editor;

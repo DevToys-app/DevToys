@@ -15,6 +15,7 @@ using Microsoft.Web.WebView2.Core;
 using Uno.Extensions;
 using Windows.Foundation;
 using Windows.UI;
+using static System.Net.Mime.MediaTypeNames;
 using Range = DevToys.MonacoEditor.Monaco.Range;
 
 namespace DevToys.MonacoEditor;
@@ -46,7 +47,6 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
         };
 
     private readonly ILogger _logger;
-    private readonly DisposableSemaphore _updateTextSemaphore = new();
     private readonly ISettingsProvider _settingsProvider = Parts.SettingsProvider;
     private readonly DebugLogger _debugLogger = new();
     private readonly ThemeListener _themeListener = new();
@@ -131,7 +131,8 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
                     {
                         if (!codeEditor.IsSettingValue)
                         {
-                            await codeEditor.UpdateTextAsync(e.NewValue.ToString() ?? string.Empty);
+                            // link:otherScriptsToBeOrganized.ts:updateContent
+                            await codeEditor.InvokeScriptAsync("updateContent", e.NewValue.ToString() ?? string.Empty);
                         }
                         else
                         {
@@ -584,15 +585,6 @@ public sealed partial class CodeEditor : Control, IParentAccessorAcceptor, IDisp
         base.OnGotFocus(e);
 
         GiveFocusToInnerEditor();
-    }
-
-    private async Task UpdateTextAsync(string text)
-    {
-        using (_updateTextSemaphore.WaitAsync(CancellationToken.None))
-        {
-            // link:otherScriptsToBeOrganized.ts:updateContent
-            await InvokeScriptAsync("updateContent", text);
-        }
     }
 
     private void Options_PropertyChanged(object? sender, PropertyChangedEventArgs e)

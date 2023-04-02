@@ -92,7 +92,7 @@ internal sealed class SettingsGuiTool : IGuiTool
                     Button().Text("Bottom Left button"),
                     Button().Text("Bottom Center button").OnClick(OnBottomCenterButtonClickAsync),
                     Button().Text("Bottom Right button")),
-            SinglelineTextInput());
+            SinglelineTextInput().CanCopyWhenEditable());
 
     public void OnDataReceived(string dataTypeName, object? parsedData)
     {
