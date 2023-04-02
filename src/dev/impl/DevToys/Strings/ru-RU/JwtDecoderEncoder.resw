@@ -205,7 +205,7 @@
     <value>Неверная Подпись</value>
   </data>
   <data name="DecodeValidateActorLabel" xml:space="preserve">
-    <value>Validate actor</value>
+    <value>Проверять субъект</value>
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
     <value>Проверить получателей</value>
