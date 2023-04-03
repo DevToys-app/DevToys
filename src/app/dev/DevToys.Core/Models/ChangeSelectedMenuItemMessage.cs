@@ -1,23 +1,23 @@
 ﻿using CommunityToolkit.Mvvm.Messaging.Messages;
 using DevToys.Core.Tools;
 
-namespace DevToys.Business.Models;
+namespace DevToys.Core.Models;
 
-internal sealed class ChangeSelectedMenuItemMessage : ValueChangedMessage<GuiToolInstance>
+public sealed class ChangeSelectedMenuItemMessage : ValueChangedMessage<GuiToolInstance>
 {
-    internal ChangeSelectedMenuItemMessage(GuiToolInstance tool)
+    public ChangeSelectedMenuItemMessage(GuiToolInstance tool)
         : base(tool)
     {
         Guard.IsNotNull(tool);
         SmartDetectionInfo = null;
     }
 
-    internal ChangeSelectedMenuItemMessage(SmartDetectedTool smartDetectionInfo)
+    public ChangeSelectedMenuItemMessage(SmartDetectedTool smartDetectionInfo)
         : base(smartDetectionInfo.ToolInstance)
     {
         Guard.IsNotNull(smartDetectionInfo);
         SmartDetectionInfo = smartDetectionInfo;
     }
 
-    internal SmartDetectedTool? SmartDetectionInfo { get; }
+    public SmartDetectedTool? SmartDetectionInfo { get; }
 }

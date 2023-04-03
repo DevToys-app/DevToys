@@ -61,7 +61,7 @@ namespace DevToys.Tools.Tools.Sample {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Base64 Image Encoder / Decoder.
+        ///   Looks up a localized string similar to Just A Basic Tool.
         /// </summary>
         internal static string CommandDescription {
             get {
@@ -88,7 +88,7 @@ namespace DevToys.Tools.Tools.Sample {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to HTML Encoder / Decoder.
+        ///   Looks up a localized string similar to JSON Formatter.
         /// </summary>
         internal static string LongTitle {
             get {

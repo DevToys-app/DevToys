@@ -2,11 +2,11 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using DevToys.Core.Models;
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.Metadata;
 using DevToys.Core.Tools.ViewItems;
 using DevToys.Localization.Strings.MainWindow;
-using DevToys.Business.Models;
 
 namespace DevToys.Business.ViewModels;
 

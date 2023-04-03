@@ -97,6 +97,15 @@ namespace DevToys.Localization.Strings.ToolPage {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No tool to suggest.
+        /// </summary>
+        public static string NoSmartDetectedTool {
+            get {
+                return ResourceManager.GetString("NoSmartDetectedTool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
         public static string Ok {

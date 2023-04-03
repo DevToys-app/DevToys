@@ -18,6 +18,7 @@
     <UserControl.Resources>
         <converters:NegateBooleanConverter x:Key="NegateBooleanConverter"/>
         <converters:NullToBooleanConverter x:Key="StringNullOrWhiteSpaceToFalseConverter" IsInverted="True" EnforceNonWhiteSpaceString="True"/>
+        <converters:BooleanToImageSourceConverter x:Key="IdeaIconConverter" SourceIfTrue="ms-appx:///DevToys.UI.Framework/Assets/Icons/Idea.svg" SourceIfFalse="ms-appx:///DevToys.UI.Framework/Assets/Icons/Idea-disabled.svg"/>
 
         <Style x:Name="SeparatorStyle" TargetType="Rectangle">
             <Setter Property="Margin" Value="2,0,2,0"/>
@@ -134,28 +135,12 @@
                 AutomationProperties.Name="{str:StringsExtension Key=SendToSmartDetection}">
                 <DropDownButton.Content>
                     <ImageIcon
-                        Source="ms-appx:///DevToys.UI.Framework/Assets/Icons/Idea.svg"
+                        Source="{x:Bind ToolsDetectedBySmartDetection, Mode=OneWay, Converter={StaticResource IdeaIconConverter}}"
                         Height="22"
-                        Width="22" />
+                        Width="22"/>
                 </DropDownButton.Content>
                 <DropDownButton.Flyout>
-                    <MenuFlyout Placement="Bottom">
-                        <MenuFlyoutItem Text="TODO">
-                            <MenuFlyoutItem.Icon>
-                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE725;"/>
-                            </MenuFlyoutItem.Icon>
-                        </MenuFlyoutItem>
-                        <MenuFlyoutItem Text="TODO">
-                            <MenuFlyoutItem.Icon>
-                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8CA;"/>
-                            </MenuFlyoutItem.Icon>
-                        </MenuFlyoutItem>
-                        <MenuFlyoutItem Text="TODO">
-                            <MenuFlyoutItem.Icon>
-                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8C2;"/>
-                            </MenuFlyoutItem.Icon>
-                        </MenuFlyoutItem>
-                    </MenuFlyout>
+                    <MenuFlyout x:Name="SmartDetectionMenuFlyout" Placement="Bottom"/>
                 </DropDownButton.Flyout>
             </DropDownButton>
         </StackPanel>
