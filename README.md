@@ -34,7 +34,7 @@
 
 ## Introduction
 
-DevToys helps in daily tasks like formatting JSON, comparing text, testing RegExp. No need to use many untruthful websites to do simple tasks with your data. With Smart Detection, DevToys is able to detect the best tool that can treat the data you copied in the clipboard of your Windows. Compact overlay lets you keep the app in small and on top of other windows. Multiple instances of the app can be used at once.
+DevToys helps with daily development tasks like formatting JSON, comparing text, and testing RegExp. No need to use many untrustworthy websites to do simple tasks with your data. With Smart Detection, DevToys can detect the best tool to use for the data copied to the Windows clipboard. Compact overlay lets you keep the app small and on top of other windows. Multiple instances of the app can be used at once.
 
 Many tools are available.
 
