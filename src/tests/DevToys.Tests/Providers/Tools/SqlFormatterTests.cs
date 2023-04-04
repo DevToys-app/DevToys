@@ -1045,6 +1045,22 @@ SELECT
 FROM
   tbl2;";
             AssertFormat(formatter, input, expectedResult);
+
+            // correctly formats hardcoded values in from statement
+            input =
+@"SELECT Id FROM (values(1),(2),(3), (4)) as  b  (id)";
+            expectedResult =
+@"SELECT
+  Id
+FROM
+  (
+    values
+      (1),
+      (2),
+      (3),
+      (4)
+  ) as b (id)";
+            AssertFormat(formatter, input, expectedResult);
         }
 
         /// <summary>
