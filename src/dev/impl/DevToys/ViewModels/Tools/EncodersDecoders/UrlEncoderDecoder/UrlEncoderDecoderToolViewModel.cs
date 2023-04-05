@@ -9,6 +9,7 @@ using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
 using DevToys.Core;
 using DevToys.Core.Threading;
+using DevToys.Helpers;
 using DevToys.Shared.Core.Threading;
 using DevToys.Views.Tools.UrlEncoderDecoder;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
@@ -151,7 +152,7 @@ namespace DevToys.ViewModels.Tools.UrlEncoderDecoder
             string? encoded;
             try
             {
-                encoded = Uri.EscapeDataString(data);
+                encoded = UrlHelper.UrlEncode(data!);
             }
             catch (Exception ex)
             {
