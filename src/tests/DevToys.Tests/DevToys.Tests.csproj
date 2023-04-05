@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Helpers\JwtHelperTests.cs" />
     <Compile Include="Helpers\Base64HelperTests.cs" />
+    <Compile Include="Helpers\UrlHelperTests.cs" />
     <Compile Include="Helpers\XmlHelperTests.cs" />
     <Compile Include="Providers\Tools\BaseNumberFormatterTests.cs" />
     <Compile Include="Core\Threading\AsyncLazyTests.cs" />
