@@ -44,15 +44,17 @@ internal sealed class CssStyleBroker : IDisposable
         return id;
     }
 
-    public bool AssociateStyles(IModelDeltaDecoration[] decorations)
+    public bool AssociateStyles(IReadOnlyList<IModelDeltaDecoration> decorations)
     {
         /// By construction we assume that decorations will not be null from the call in <see cref="CodeEditor.DeltaDecorationsHelperAsync"/>
         bool newStyle = isDirty[_parent]; /// Can be set in <see cref="GetStyles"/>.
 
         isDirty[_parent] = false; // Reset
 
-        foreach (IModelDeltaDecoration decoration in decorations)
+        for (int i = 0; i < decorations.Count; i++)
         {
+            IModelDeltaDecoration decoration = decorations[i];
+
             // Add (or ignore) elements to the collection.
             // If any Adds are new, we flag our boolean to return
             if (decoration.Options.ClassName != null)

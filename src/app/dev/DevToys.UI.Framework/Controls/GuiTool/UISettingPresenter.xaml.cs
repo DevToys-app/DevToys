@@ -4,7 +4,7 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace DevToys.UI.Framework.Controls.GuiTool;
 
-public sealed partial class UISettingPresenter : UserControl
+public sealed partial class UISettingPresenter : UserControl, IDetachable
 {
     public UISettingPresenter()
     {
@@ -17,6 +17,11 @@ public sealed partial class UISettingPresenter : UserControl
     }
 
     internal IUISetting UISetting => (IUISetting)DataContext;
+
+    public void Detach()
+    {
+        UISettingHeaderControl.Detach();
+    }
 
     internal void ClearBackground()
     {

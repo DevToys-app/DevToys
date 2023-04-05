@@ -13,6 +13,7 @@ using Windows.Foundation;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using System.Runtime.CompilerServices;
+using Microsoft.UI.Xaml.Media;
 
 namespace DevToys.MonacoEditor;
 
@@ -57,8 +58,9 @@ public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresen
     {
         _logger = this.Log();
 
-        // make the WebView2 transparent.
-        Environment.SetEnvironmentVariable("WEBVIEW2_DEFAULT_BACKGROUND_COLOR", "00FFFFFF");
+        // Fill the WebView2 with ControlFillColorInputActive.
+        var controlFillColorInputActive = (Windows.UI.Color)Application.Current.Resources["ControlFillColorInputActive"];
+        Environment.SetEnvironmentVariable("WEBVIEW2_DEFAULT_BACKGROUND_COLOR", $"{controlFillColorInputActive.R:X2}{controlFillColorInputActive.G:X2}{controlFillColorInputActive.B:X2}");
 
         Content = _webView;
 
@@ -91,6 +93,18 @@ public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresen
     public async Task LaunchAsync()
     {
         await _webView.EnsureCoreWebView2Async();
+
+        _webView.CoreWebView2.Settings.IsZoomControlEnabled = false;
+        _webView.CoreWebView2.Settings.IsPinchZoomEnabled = false;
+        _webView.CoreWebView2.Settings.IsSwipeNavigationEnabled = false;
+        _webView.CoreWebView2.Settings.IsStatusBarEnabled = false;
+        _webView.CoreWebView2.Settings.IsPasswordAutosaveEnabled = false;
+        _webView.CoreWebView2.Settings.IsGeneralAutofillEnabled = false;
+        _webView.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
+#if !DEBUG
+        _webView.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = false;
+        _webView.CoreWebView2.Settings.AreDevToolsEnabled = false;
+#endif
 
         string path = Path.Combine(AppContext.BaseDirectory, "DevToys.MonacoEditor", "CodeEditor", "CodeEditor.Windows.html");
         if (!File.Exists(path))
@@ -359,7 +373,7 @@ public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresen
                     }}
                 }})();";
 
-        LogInvokingJavaScript(script);
+        LogInvokingJavaScript();
 
         try
         {
@@ -415,8 +429,8 @@ public sealed partial class CodeEditorPresenter : UserControl, ICodeEditorPresen
     [LoggerMessage(7, LogLevel.Error, "{caller}-CALLBACK: Exception in {name}.{propertyName}.")]
     partial void LogDotNetObjectInjectionCallbackPropertyFailed(string name, string propertyName, Exception exception, [CallerMemberName] string? caller = null);
 
-    [LoggerMessage(8, LogLevel.Debug, "{caller}: Invoking JavaScript: {script}")]
-    partial void LogInvokingJavaScript(string script, [CallerMemberName] string? caller = null);
+    [LoggerMessage(8, LogLevel.Debug, "{caller}: Invoking JavaScript...")]
+    partial void LogInvokingJavaScript([CallerMemberName] string? caller = null);
 
     [LoggerMessage(9, LogLevel.Debug, "{caller}: JavaScript invoked successfully: {result}")]
     partial void LogInvokedJavaScriptSuccessfully(string result, [CallerMemberName] string? caller = null);

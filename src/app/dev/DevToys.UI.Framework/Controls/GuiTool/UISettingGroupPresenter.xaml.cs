@@ -5,7 +5,7 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace DevToys.UI.Framework.Controls.GuiTool;
 
-public sealed partial class UISettingGroupPresenter : Expander
+public sealed partial class UISettingGroupPresenter : Expander, IDetachable
 {
     public UISettingGroupPresenter()
     {
@@ -18,6 +18,12 @@ public sealed partial class UISettingGroupPresenter : Expander
     }
 
     internal IUISettingGroup UISettingGroup => (IUISettingGroup)DataContext;
+
+    public void Detach()
+    {
+        UISettingHeaderControl.Detach();
+        DetachContentStackPanel();
+    }
 
     private void UISettingGroupPresenter_Loaded(object sender, RoutedEventArgs e)
     {
@@ -100,6 +106,7 @@ public sealed partial class UISettingGroupPresenter : Expander
 
     private void SetChildren()
     {
+        DetachContentStackPanel();
         ContentStackPanel.Children.Clear();
         if (UISettingGroup.Children is not null)
         {
@@ -146,6 +153,17 @@ public sealed partial class UISettingGroupPresenter : Expander
                 ContentStackPanel.Spacing = 4;
                 ContentStackPanel.Padding = new Thickness(12);
                 ContentStackPanel.Margin = new Thickness(42, 0, 6, 0);
+            }
+        }
+    }
+
+    private void DetachContentStackPanel()
+    {
+        for (int i = 0; i < ContentStackPanel.Children.Count; i++)
+        {
+            if (ContentStackPanel.Children[i] is IDetachable detachable)
+            {
+                detachable.Detach();
             }
         }
     }

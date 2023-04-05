@@ -41,3 +41,8 @@ class EditorContext {
     public modifingSelection: boolean; // Supress updates to selection when making edits.
     public htmlElement: any;
 }
+
+class TextSpan {
+    public StartPosition: number;
+    public Length: number;
+}

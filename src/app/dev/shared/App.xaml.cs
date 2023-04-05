@@ -64,7 +64,8 @@ public sealed partial class App : Application
                 {
                     typeof(DevToysToolsResourceManagerAssemblyIdentifier).Assembly,
                     typeof(MainWindow).Assembly,
-                    typeof(MainWindowViewModel).Assembly
+                    typeof(MainWindowViewModel).Assembly,
+                    typeof(MonacoEditor.CodeEditor).Assembly
                 });
 
         _mefProvider = _mefComposer.Provider;
@@ -98,8 +99,9 @@ public sealed partial class App : Application
 
         IThemeListener themeListener = _themeListener.Value;
 
-        Parts.SettingsProvider = _settingsProvider.Value;
-        Parts.Clipboard = _mefProvider.Import<IClipboard>();
+        Parts.MefProvider = _mefProvider;
+
+        SetDefaultTextEditorFont();
 
 #if __WINDOWS__
         // On Windows 10 version 1607 or later, this code signals that this app wants to participate in prelaunch
@@ -176,6 +178,23 @@ public sealed partial class App : Application
         // TODO:
         // Maybe we need to dispose all tools in case if they have on-going work so they have a chance to finish correctly?
         // Also, use IMarketingService to NotifyAppEncounteredAProblemAsync ?
+    }
+
+    private void SetDefaultTextEditorFont()
+    {
+        string? currentFontName = _settingsProvider.Value.GetSetting(Api.PredefinedSettings.TextEditorFont); // By default, the value is null.
+        string[] systemFontFamilies = _mefProvider.Import<IFontProvider>().GetFontFamilies();
+        if (!systemFontFamilies.Contains(currentFontName))
+        {
+            for (int i = 0; i < Api.PredefinedSettings.DefaultFonts.Length; i++)
+            {
+                if (systemFontFamilies.Contains(Api.PredefinedSettings.DefaultFonts[i]))
+                {
+                    _settingsProvider.Value.SetSetting(Api.PredefinedSettings.TextEditorFont, Api.PredefinedSettings.DefaultFonts[i]);
+                    return;
+                }
+            }
+        }
     }
 
     /// <summary>

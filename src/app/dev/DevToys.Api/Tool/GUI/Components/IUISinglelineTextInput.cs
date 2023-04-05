@@ -142,7 +142,7 @@ public static partial class GUI
     /// <summary>
     /// Sets the text input control as read-only.
     /// </summary>
-    public static T ReadOnly<T>(this T element) where T : IUITitledElement
+    public static T ReadOnly<T>(this T element) where T : IUISinglelineTextInput
     {
         if (element is UISinglelineTextInput strongElement)
         {
@@ -154,7 +154,7 @@ public static partial class GUI
     /// <summary>
     /// Sets the text input control as editable.
     /// </summary>
-    public static T Editable<T>(this T element) where T : IUITitledElement
+    public static T Editable<T>(this T element) where T : IUISinglelineTextInput
     {
         if (element is UISinglelineTextInput strongElement)
         {
@@ -166,7 +166,7 @@ public static partial class GUI
     /// <summary>
     /// Shows the "copy" button when the editor is editable.
     /// </summary>
-    public static T CanCopyWhenEditable<T>(this T element) where T : IUITitledElement
+    public static T CanCopyWhenEditable<T>(this T element) where T : IUISinglelineTextInput
     {
         if (element is UISinglelineTextInput strongElement)
         {
@@ -178,7 +178,7 @@ public static partial class GUI
     /// <summary>
     /// Hides the "copy" button when the editor is editable.
     /// </summary>
-    public static T CannotCopyWhenEditable<T>(this T element) where T : IUITitledElement
+    public static T CannotCopyWhenEditable<T>(this T element) where T : IUISinglelineTextInput
     {
         if (element is UISinglelineTextInput strongElement)
         {
@@ -190,7 +190,7 @@ public static partial class GUI
     /// <summary>
     /// Sets the unformatted text of the control.
     /// </summary>
-    public static T Text<T>(this T element, string text) where T : IUITitledElement
+    public static T Text<T>(this T element, string text) where T : IUISinglelineTextInput
     {
         if (element is UISinglelineTextInput strongElement)
         {
@@ -202,7 +202,7 @@ public static partial class GUI
     /// <summary>
     /// Selects the given span in the text document.
     /// </summary>
-    public static T Select<T>(this T element, TextSpan span) where T : IUITitledElement
+    public static T Select<T>(this T element, TextSpan span) where T : IUISinglelineTextInput
     {
         if (element is UISinglelineTextInput strongElement)
         {
@@ -214,7 +214,7 @@ public static partial class GUI
     /// <summary>
     /// Selects the given span in the text document.
     /// </summary>
-    public static T Select<T>(this T element, int start, int length) where T : IUITitledElement
+    public static T Select<T>(this T element, int start, int length) where T : IUISinglelineTextInput
     {
         if (element is UISinglelineTextInput strongElement)
         {

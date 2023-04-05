@@ -30,6 +30,9 @@
     <Compile Include="..\..\desktop\windows\DevToys.Wasdk\Core\**\*" Link="Core\%(RecursiveDir)/%(Filename)%(Extension)" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Remove="..\..\desktop\windows\DevToys.Wasdk\Core\FontProvider\FontProvider.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="WasmCSS\Fonts.css" />
     <EmbeddedResource Include="WasmScripts\AppManifest.js" />
   </ItemGroup>
@@ -68,22 +71,5 @@
     <ProjectReference Include="..\..\..\DevToys.UI\DevToys.UI.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="..\..\desktop\windows\DevToys.Wasdk\Core\Settings\SettingsStorage.cs">
-      <Link>Core\Settings\\SettingsStorage.cs</Link>
-    </Compile>
-    <Compile Update="..\..\desktop\windows\DevToys.Wasdk\Core\Theme\ThemeListener.cs">
-      <Link>Core\Theme\\ThemeListener.cs</Link>
-    </Compile>
-    <Compile Update="..\..\desktop\windows\DevToys.Wasdk\Core\Settings\SettingsStorage.Unpackaged.cs">
-      <Link>Core\Settings\\SettingsStorage.Unpackaged.cs</Link>
-    </Compile>
-    <Compile Update="..\..\desktop\windows\DevToys.Wasdk\Core\Settings\SettingsStorage.Packaged.cs">
-      <Link>Core\Settings\\SettingsStorage.Packaged.cs</Link>
-    </Compile>
-    <Compile Update="..\..\desktop\windows\DevToys.Wasdk\Core\FileStorage\FileStorage.cs">
-      <Link>Core\FileStorage\\FileStorage.cs</Link>
-    </Compile>
-  </ItemGroup>
   <Import Project="$(RepoRoot)\src\app\dev\shared\App.props" />
 </Project>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 
 namespace DevToys.Tools.Tools.Sample;
 
@@ -48,21 +49,21 @@ internal sealed class SampleCommandLineTool : ICommandLineTool
     AccessibleNameResourceName = nameof(Sample.CommandDescription),
     SearchKeywordsResourceName = nameof(Sample.CommandDescription))]
 [AcceptedDataTypeName(PredefinedCommonDataTypeNames.Json)]
-[TargetPlatform(Platform.Windows)] // Optional. Not putting any attribute means every platforms are supported.
-[TargetPlatform(Platform.Linux)]
-[TargetPlatform(Platform.MacCatalyst)]
-[TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool : IGuiTool
 {
-    public IUIElement View
-        => Stack()
-        .Vertical()
-        .WithChildren(
-            SinglelineTextInput().Title("Read-write text control"),
-            SinglelineTextInput().Title("Read-only text control").ReadOnly(),
-            SinglelineTextInput().Title("Read-write text input with copy").CanCopyWhenEditable());
+    private readonly IUIMultilineLineTextInput _editor = MultilineTextInput().Language("json").CanCopyWhenEditable();
 
-    public void OnDataReceived(string dataTypeName, object? parsedData) { }
+    public IUIElement View
+        => _editor;
+
+    public void OnDataReceived(string dataTypeName, object? parsedData)
+    {
+        if (dataTypeName == PredefinedCommonDataTypeNames.Json && parsedData is Tuple<JToken, string> strongTypedParsedData)
+        {
+            _editor.Text(strongTypedParsedData.Item2);
+            _editor.Highlight(new TextSpan(3, 6));
+        }
+    }
 }
 
 [Export(typeof(IGuiTool))]
@@ -84,9 +85,14 @@ internal sealed class SampleGuiTool : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool2 : IGuiTool
 {
-    public IUIElement View => null!;
+    private readonly IUIMultilineLineTextInput _editor = MultilineTextInput().CanCopyWhenEditable();
 
-    public void OnDataReceived(string dataTypeName, object? parsedData) { }
+    public IUIElement View
+        => _editor;
+
+    public void OnDataReceived(string dataTypeName, object? parsedData)
+    {
+    }
 }
 
 [Export(typeof(IGuiTool))]

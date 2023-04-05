@@ -8,6 +8,7 @@ using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Markup;
 using Uno.Extensions;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Provider;
@@ -99,6 +100,32 @@ public sealed partial class UITextInputHeader : UserControl
     {
         get => GetValue(InnerEditorProperty);
         set => SetValue(InnerEditorProperty, value);
+    }
+
+    public static readonly DependencyProperty IsDraggingHoverProperty
+       = DependencyProperty.Register(
+           nameof(IsDraggingHover),
+           typeof(bool),
+           typeof(UITextInputHeader),
+           new PropertyMetadata(false));
+
+    public bool IsDraggingHover
+    {
+        get => (bool)GetValue(IsDraggingHoverProperty);
+        set => SetValue(IsDraggingHoverProperty, value);
+    }
+
+    public static readonly DependencyProperty IsLoadingFileProperty
+       = DependencyProperty.Register(
+           nameof(IsLoadingFile),
+           typeof(bool),
+           typeof(UITextInputHeader),
+           new PropertyMetadata(false));
+
+    public bool IsLoadingFile
+    {
+        get => (bool)GetValue(IsLoadingFileProperty);
+        set => SetValue(IsLoadingFileProperty, value);
     }
 
     private void UITextInputHeader_Loaded(object sender, RoutedEventArgs e)
@@ -237,37 +264,7 @@ public sealed partial class UITextInputHeader : UserControl
             StorageFile file = await filePicker.PickSingleFileAsync();
             if (file is not null)
             {
-                try
-                {
-                    await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(CancellationToken.None);
-
-                    string? text = await FileIO.ReadTextAsync(file);
-
-                    await this.DispatcherQueue.RunOnUIThreadAsync(() =>
-                    {
-                        UITextInput.Text(text);
-                    });
-                }
-                catch (Exception ex)
-                {
-                    LogErrorOpeningFile(ex);
-
-                    await this.DispatcherQueue.RunOnUIThreadAsync(async () =>
-                    {
-                        var dialog = new ContentDialog
-                        {
-                            // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
-                            XamlRoot = this.XamlRoot,
-                            Title = ToolPage.UnableOpenFile,
-                            Content = string.Format(ToolPage.UnableOpenFileDescription, file.Name),
-                            CloseButtonText = ToolPage.Ok,
-                            DefaultButton = ContentDialogButton.Close
-                        };
-
-                        await dialog.ShowAsync();
-                    });
-
-                }
+                await LoadFileAsync(file);
             }
         }).ForgetSafely();
     }
@@ -349,9 +346,100 @@ public sealed partial class UITextInputHeader : UserControl
         Parts.Clipboard.SetClipboardTextAsync(UITextInput.Text).ForgetSafely();
     }
 
-    [LoggerMessage(1, LogLevel.Warning, "Unable to open a file in a text input control.")]
+    private async void MainPanel_DragOver(object sender, DragEventArgs e)
+    {
+        DragOperationDeferral? deferral = e.GetDeferral();
+        if (e!.DataView.Contains(StandardDataFormats.StorageItems))
+        {
+            // This line may cause a hang, but we have no choice since we can't afford to make this method async
+            // since the parent caller won't be able to see what changed in DragEventArgs since it won't
+            // wait for the execution to end.
+            IReadOnlyList<IStorageItem>? storageItems = await e.DataView.GetStorageItemsAsync();
+            if (storageItems is not null && storageItems.Count == 1 && storageItems[0] is StorageFile)
+            {
+                e.AcceptedOperation = DataPackageOperation.Copy;
+                e.Handled = false;
+            }
+        }
+
+        IsDraggingHover = true;
+        deferral?.Complete();
+    }
+
+    private void MainPanel_DragLeave(object sender, DragEventArgs e)
+    {
+        IsDraggingHover = false;
+    }
+
+    private async void MainPanel_Drop(object sender, DragEventArgs e)
+    {
+        DragOperationDeferral? deferral = e.GetDeferral();
+        IsDraggingHover = false;
+        if (!e!.DataView.Contains(StandardDataFormats.StorageItems))
+        {
+            return;
+        }
+
+        IReadOnlyList<IStorageItem>? storageItems = await e.DataView.GetStorageItemsAsync();
+        if (storageItems is not null && storageItems.Count == 1 && storageItems[0] is StorageFile file)
+        {
+            LoadFileAsync(file).Forget();
+        }
+        deferral?.Complete();
+    }
+
+    private async Task LoadFileAsync(StorageFile file)
+    {
+        IsLoadingFile = true;
+
+        try
+        {
+            await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(CancellationToken.None);
+
+            LogOpeningFile(new FileInfo(file.Path).Length);
+
+            string? text = await FileIO.ReadTextAsync(file);
+
+            await this.DispatcherQueue.RunOnUIThreadAsync(() =>
+            {
+                UITextInput.Text(text);
+
+                IsLoadingFile = false;
+
+                if (EditorControl.Content is Control control)
+                {
+                    control.Focus(FocusState.Programmatic);
+                }
+            });
+        }
+        catch (Exception ex)
+        {
+            LogErrorOpeningFile(ex);
+
+            await this.DispatcherQueue.RunOnUIThreadAsync(async () =>
+            {
+                IsLoadingFile = false;
+                var dialog = new ContentDialog
+                {
+                    // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
+                    XamlRoot = this.XamlRoot,
+                    Title = ToolPage.UnableOpenFile,
+                    Content = string.Format(ToolPage.UnableOpenFileDescription, file.Name),
+                    CloseButtonText = ToolPage.Ok,
+                    DefaultButton = ContentDialogButton.Close
+                };
+
+                await dialog.ShowAsync();
+            });
+        }
+    }
+
+    [LoggerMessage(1, LogLevel.Information, "Loading a file into a text input control. The file size is {fileSize} byte(s).")]
+    partial void LogOpeningFile(long fileSize);
+
+    [LoggerMessage(2, LogLevel.Warning, "Unable to open a file in a text input control.")]
     partial void LogErrorOpeningFile(Exception ex);
 
-    [LoggerMessage(2, LogLevel.Warning, "Unable to save a file from a text input control.")]
+    [LoggerMessage(3, LogLevel.Warning, "Unable to save a file from a text input control.")]
     partial void LogErrorSavingFile(Exception ex);
 }

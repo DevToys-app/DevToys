@@ -86,6 +86,7 @@
     <Control.Template>
         <ControlTemplate TargetType="local:UIElementPresenter">
             <ContentControl
+                x:Name="RootContentControl"
                 ContentTemplateSelector="{StaticResource UIElementTemplateSelector}"
                 Content="{x:Bind UIElement, Mode=OneWay}"
                 HorizontalContentAlignment="Stretch"

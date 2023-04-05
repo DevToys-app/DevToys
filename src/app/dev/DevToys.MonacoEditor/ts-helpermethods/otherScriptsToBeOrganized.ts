@@ -97,7 +97,7 @@ const updateDecorations = function (editorContext: EditorContext, newHighlights)
     }
 };
 
-const updateStyle = function (innerStyle) {
+const updateStyle = function (editorContext: EditorContext, innerStyle) {
     var style = document.getElementById("dynamic");
     style.innerHTML = innerStyle;
 };
@@ -140,13 +140,29 @@ const updateLanguage = function (editorContext: EditorContext, language: string)
     monaco.editor.setModelLanguage(editorContext.model, language);
 };
 
-const changeTheme = function (editorContext: EditorContext, theme: string, highcontrast) {
-    let newTheme = 'devtoys';
-    if (highcontrast == "True" || highcontrast == "true") {
+var _theme = "Dark";
+var _highContrast = false;
+
+const changeTheme = function (editorContext: EditorContext, theme: string, highContrast: boolean, hasFocus: boolean) {
+    if (theme == undefined) {
+        theme = _theme;
+    }
+
+    if (highContrast == undefined) {
+        highContrast = _highContrast;
+    }
+
+    let state = hasFocus ? "active" : "inactive";
+    let newTheme = 'devtoys-' + state;
+
+    if (highContrast) {
         newTheme = 'hc-black';
     } else if (theme == "Dark") {
-        newTheme = 'devtoys-dark';
+        newTheme = 'devtoys-dark-' + state;
     }
+
+    _theme = theme;
+    _highContrast = highContrast;
 
     monaco.editor.setTheme(newTheme);
 };
@@ -158,14 +174,14 @@ var setTheme = function (editorContext: EditorContext, accentColor: string) {
     // remove quotes.
     accentColor = accentColor.replace(/"/g, '');
 
-    monaco.editor.defineTheme('devtoys-dark', {
+    monaco.editor.defineTheme('devtoys-dark-active', {
         base: 'vs-dark',
         inherit: true,
         rules: [],
         colors: {
             'foreground': '#FFFFFF',
             'editor.foreground': '#FFFFFF',
-            'editor.background': '#00000000',
+            'editor.background': '#202123',
             'editor.lineHighlightBackground': '#FFFFFF00',
             'editor.lineHighlightBorder': '#FFFFFF19',
             'editorLineNumber.foreground': '#EEEEEE99',
@@ -176,14 +192,53 @@ var setTheme = function (editorContext: EditorContext, accentColor: string) {
             'editorWidget.background': '#252526'
         }
     });
-    monaco.editor.defineTheme('devtoys', {
+
+    monaco.editor.defineTheme('devtoys-dark-inactive', {
+        base: 'vs-dark',
+        inherit: true,
+        rules: [],
+        colors: {
+            'foreground': '#FFFFFF',
+            'editor.foreground': '#FFFFFF',
+            'editor.background': '#343434',
+            'editor.lineHighlightBackground': '#FFFFFF00',
+            'editor.lineHighlightBorder': '#FFFFFF19',
+            'editorLineNumber.foreground': '#EEEEEE99',
+            'editorLineNumber.activeForeground': '#EEEEEEFF',
+            'editor.inactiveSelectionBackground': '#00000000',
+            'editor.selectionForeground': '#FFFFFF',
+            'editor.selectionBackground': accentColor,
+            'editorWidget.background': '#252526'
+        }
+    });
+
+    monaco.editor.defineTheme('devtoys-active', {
         base: 'vs',
         inherit: true,
         rules: [],
         colors: {
             'foreground': '#000000',
             'editor.foreground': '#000000',
-            'editor.background': '#FFFFFF00',
+            'editor.background': '#FFFFFF',
+            'editor.lineHighlightBackground': '#00000000',
+            'editor.lineHighlightBorder': '#00000019',
+            'editorLineNumber.foreground': '#00000099',
+            'editorLineNumber.activeForeground': '#000000FF',
+            'editor.inactiveSelectionBackground': '#00000000',
+            'editor.selectionForeground': '#000000',
+            'editor.selectionBackground': accentColor,
+            'editorWidget.background': '#F3F3F3'
+        }
+    });
+
+    monaco.editor.defineTheme('devtoys-inactive', {
+        base: 'vs',
+        inherit: true,
+        rules: [],
+        colors: {
+            'foreground': '#000000',
+            'editor.foreground': '#000000',
+            'editor.background': '#FDFDFD',
             'editor.lineHighlightBackground': '#00000000',
             'editor.lineHighlightBorder': '#00000019',
             'editorLineNumber.foreground': '#00000099',

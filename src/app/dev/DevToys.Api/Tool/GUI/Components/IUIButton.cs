@@ -49,7 +49,7 @@ internal sealed class UIButton : UIElement, IUIButton
 public static partial class GUI
 {
     /// <summary>
-    /// Create component that represents a button, which reacts when clicking on it.
+    /// Create a component that represents a button, which reacts when clicking on it.
     /// </summary>
     public static IUIButton Button()
     {
@@ -57,7 +57,7 @@ public static partial class GUI
     }
 
     /// <summary>
-    /// Create component that represents a button, which reacts when clicking on it.
+    /// Create a component that represents a button, which reacts when clicking on it.
     /// </summary>
     /// <param name="id">An optional unique identifier for this UI element.</param>
     public static IUIButton Button(string? id)
@@ -66,7 +66,7 @@ public static partial class GUI
     }
 
     /// <summary>
-    /// Create component that represents a button, which reacts when clicking on it.
+    /// Create a component that represents a button, which reacts when clicking on it.
     /// </summary>
     /// <param name="id">An optional unique identifier for this UI element.</param>
     /// <param name="text">The text to display in the button.</param>
