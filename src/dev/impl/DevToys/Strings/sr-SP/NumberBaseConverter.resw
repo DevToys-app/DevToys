@@ -124,7 +124,7 @@
     <value>Binary</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Конфигурација</value>
   </data>
   <data name="DecimalLabel" xml:space="preserve">
     <value>Decimal</value>
@@ -139,7 +139,7 @@
     <value>Hexadecimal</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>Улаз</value>
   </data>
   <data name="InputTypeBinary" xml:space="preserve">
     <value>Binary</value>
@@ -167,37 +167,37 @@
     <comment>The parameter is the Base Number Type (Decimal, Octal, ...)</comment>
   </data>
   <data name="ValueOverflow" xml:space="preserve">
-    <value>The current value cannot be converted as it exceeds the maximum value ({0})</value>
+    <value>Тренутна вредност се не може конвертовати јер превазилази максималну вредност ({0})</value>
     <comment>The parameter is the Max value of a long</comment>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Convert numbers from one base to another</value>
+    <value>Конверзија бројева из једног система у други</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Number Base Converter</value>
+    <value>Конвертор бројева</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Binary Octal Decimal Hexadecimal</value>
+    <value>Бинарни Октални Декадни Хексадекадни</value>
   </data>
   <data name="AdvancedModeLabel" xml:space="preserve">
-    <value>Advanced mode</value>
+    <value>Напредни режим</value>
   </data>
   <data name="InputDictionaryLabel" xml:space="preserve">
-    <value>Input dictionary</value>
+    <value>Речник уноса</value>
   </data>
   <data name="OutputDictionaryLabel" xml:space="preserve">
-    <value>Output dictionary</value>
+    <value>Речник излаза</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>Излаз</value>
   </data>
   <data name="BaseNumberError" xml:space="preserve">
-    <value>Base number should be greater than 1.</value>
+    <value>Основа система треба да буде већа од 1.</value>
   </data>
   <data name="DictionarySizeError" xml:space="preserve">
-    <value>Dictionary size should be greater than 1.</value>
+    <value>Величина речника треба да буде већа од 1.</value>
   </data>
   <data name="IncompatibleBaseDictionaryError" xml:space="preserve">
-    <value>Dictionary size could not be smaller than the base number.</value>
+    <value>Величина речника не може да буде мања од броја основе.</value>
   </data>
 </root>

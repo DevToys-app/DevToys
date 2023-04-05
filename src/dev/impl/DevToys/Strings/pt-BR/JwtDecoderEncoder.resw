@@ -136,7 +136,7 @@
     <value>Descodificar o cabeçalho JWT, payload and assinatura</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="Algorithm" xml:space="preserve">
     <value>Algoritmo</value>
@@ -205,37 +205,37 @@
     <value>Assinatura inválida</value>
   </data>
   <data name="DecodeValidateActorLabel" xml:space="preserve">
-    <value>Validate actor</value>
+    <value>Validar ator</value>
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
-    <value>Validate audience</value>
+    <value>Validar público</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
-    <value>Validate issuer</value>
+    <value>Validar emissor</value>
   </data>
   <data name="DecodeValidateLifetimeLabel" xml:space="preserve">
-    <value>Validate lifetime</value>
+    <value>Validar tempo de vida</value>
   </data>
   <data name="ValidAudiencesLabel" xml:space="preserve">
-    <value>Valid audiences</value>
+    <value>Validar público</value>
   </data>
   <data name="ValidIssuersLabel" xml:space="preserve">
-    <value>Valid issuers</value>
+    <value>Emissores válidos</value>
   </data>
   <data name="DecodeValidationSettingsDescription" xml:space="preserve">
-    <value>Select which token parameters to validate</value>
+    <value>Selecione quais parâmetros de token devem ser validados</value>
   </data>
   <data name="DecodeValidationSettingsTitle" xml:space="preserve">
-    <value>Token validation settings</value>
+    <value>Configurações de validação de token</value>
   </data>
   <data name="ValidAudiencesError" xml:space="preserve">
-    <value>Valid audiences are empty</value>
+    <value>Audiências válidas estão vazias</value>
   </data>
   <data name="ValidIssuersError" xml:space="preserve">
     <value>Valid issuers are empty</value>
   </data>
   <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
-    <value>The public key provided is a private key</value>
+    <value>A chave pública fornecida é uma chave privada</value>
   </data>
   <data name="EncodeAudienceLabel" xml:space="preserve">
     <value>Token has audience</value>
@@ -253,7 +253,7 @@
     <value>Chave Pública</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>JWT Encoder / Decoder</value>
+    <value>Codificador e decodificador JWT</value>
   </data>
   <data name="InvalidSignatureError" xml:space="preserve">
     <value>Assinatura inválida</value>

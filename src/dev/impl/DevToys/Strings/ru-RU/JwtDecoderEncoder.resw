@@ -136,7 +136,7 @@
     <value>Декодирование заголовка, набора полей и подписи JWT</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="Algorithm" xml:space="preserve">
     <value>Алгоритм</value>
@@ -205,22 +205,22 @@
     <value>Неверная Подпись</value>
   </data>
   <data name="DecodeValidateActorLabel" xml:space="preserve">
-    <value>Validate actor</value>
+    <value>Проверять субъект</value>
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
-    <value>Validate audience</value>
+    <value>Проверить получателей</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
-    <value>Validate issuer</value>
+    <value>Проверить эмитент</value>
   </data>
   <data name="DecodeValidateLifetimeLabel" xml:space="preserve">
-    <value>Validate lifetime</value>
+    <value>Проверить срок жизни</value>
   </data>
   <data name="ValidAudiencesLabel" xml:space="preserve">
-    <value>Valid audiences</value>
+    <value>Допустимые получатели</value>
   </data>
   <data name="ValidIssuersLabel" xml:space="preserve">
-    <value>Valid issuers</value>
+    <value>Допустимые эмитенты</value>
   </data>
   <data name="DecodeValidationSettingsDescription" xml:space="preserve">
     <value>Выберите, какие параметры токена нужно проверить</value>
@@ -229,19 +229,19 @@
     <value>Настройки проверки токена</value>
   </data>
   <data name="ValidAudiencesError" xml:space="preserve">
-    <value>Valid audiences are empty</value>
+    <value>Допустимые получатели не указаны</value>
   </data>
   <data name="ValidIssuersError" xml:space="preserve">
-    <value>Valid issuers are empty</value>
+    <value>Допустимые эмитенты не указаны</value>
   </data>
   <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
     <value>Предоставленный публичный ключ является приватным ключом</value>
   </data>
   <data name="EncodeAudienceLabel" xml:space="preserve">
-    <value>Token has audience</value>
+    <value>У токена имеются получатели</value>
   </data>
   <data name="EncodeIssuerLabel" xml:space="preserve">
-    <value>Token has issuer</value>
+    <value>У токена имеется эмитент</value>
   </data>
   <data name="EncodeSettingsDescription" xml:space="preserve">
     <value>Выберите параметры токена</value>

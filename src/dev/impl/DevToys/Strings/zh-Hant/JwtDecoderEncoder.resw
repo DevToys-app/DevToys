@@ -136,7 +136,7 @@
     <value>解碼 JWT 標頭、裝載及簽名</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="Algorithm" xml:space="preserve">
     <value>演算法</value>
@@ -190,7 +190,7 @@
     <value>過期時間(分鐘)</value>
   </data>
   <data name="PrivateKeyLabel" xml:space="preserve">
-    <value>私鑰</value>
+    <value>私密金鑰</value>
   </data>
   <data name="SignatureLabel" xml:space="preserve">
     <value>簽章</value>
@@ -199,7 +199,7 @@
     <value>簽章已被驗證</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
-    <value>無效的公鑰</value>
+    <value>無效的公開金鑰</value>
   </data>
   <data name="JwtInValidMessage" xml:space="preserve">
     <value>簽章無效</value>
@@ -235,7 +235,7 @@
     <value>有效的簽發者為空</value>
   </data>
   <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
-    <value>提供的公鑰實際上為私鑰</value>
+    <value>提供的公開金鑰實際上為私密金鑰</value>
   </data>
   <data name="EncodeAudienceLabel" xml:space="preserve">
     <value>令牌具有接收方</value>
@@ -247,10 +247,10 @@
     <value>選擇令牌參數</value>
   </data>
   <data name="InvalidPrivateKeyError" xml:space="preserve">
-    <value>無效的私鑰</value>
+    <value>無效的私密金鑰</value>
   </data>
   <data name="PublicKeyLabel" xml:space="preserve">
-    <value>公鑰</value>
+    <value>公開金鑰</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>JWT 編碼 / 解碼工具</value>
