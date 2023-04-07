@@ -167,13 +167,13 @@
     <value>(見つかりません)</value>
   </data>
   <data name="SurveyDescription" xml:space="preserve">
-    <value>We would love to hear about your experience with DevToys so we can improve it.</value>
+    <value>DevToys をより良いものにするために、是非あなたのご意見をお聞かせください。</value>
   </data>
   <data name="SurveyTitle" xml:space="preserve">
-    <value>The development of DevToys 2.0 started! 🥳</value>
+    <value>DevToys は Ver 2.0 の開発を始めました！</value>
   </data>
   <data name="SurveyYesButton" xml:space="preserve">
-    <value>open the survey...</value>
+    <value>ブラウザを開いて回答する</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
