@@ -167,13 +167,13 @@
     <value>無結果</value>
   </data>
   <data name="SurveyDescription" xml:space="preserve">
-    <value>We would love to hear about your experience with DevToys so we can improve it.</value>
+    <value>我們非常樂意聽取您的 DevToys 使用經歷，這樣我們就可以不斷完善它。</value>
   </data>
   <data name="SurveyTitle" xml:space="preserve">
-    <value>The development of DevToys 2.0 started! 🥳</value>
+    <value>DevToys 2.0 的開發已經開始！🥳</value>
   </data>
   <data name="SurveyYesButton" xml:space="preserve">
-    <value>open the survey...</value>
+    <value>開啟問卷…</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
