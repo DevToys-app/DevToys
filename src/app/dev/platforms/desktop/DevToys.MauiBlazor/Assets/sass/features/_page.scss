@@ -1,0 +1,14 @@
+﻿@use "../mixins/index" as mixins;
+@use "../configs/variables" as variables;
+
+.page {
+    grid-area: page;
+    padding: 2.5rem;
+    border-width: 1px;
+    border-style: solid;
+    border-top-left-radius: 5px;
+
+    h1 {
+        margin-top: 0;
+    }
+}

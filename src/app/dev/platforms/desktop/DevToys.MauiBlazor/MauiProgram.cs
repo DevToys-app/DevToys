@@ -9,7 +9,11 @@ using DevToys.Tools;
 using Microsoft.Extensions.Logging;
 using Microsoft.Fast.Components.FluentUI;
 using Microsoft.Fast.Components.FluentUI.Infrastructure;
+using Microsoft.Maui.LifecycleEvents;
+using Microsoft.UI;
+using Microsoft.UI.Windowing;
 using Uno.Extensions;
+using Windows.Graphics;
 using PredefinedSettings = DevToys.Core.Settings.PredefinedSettings;
 
 namespace DevToys.MauiBlazor;

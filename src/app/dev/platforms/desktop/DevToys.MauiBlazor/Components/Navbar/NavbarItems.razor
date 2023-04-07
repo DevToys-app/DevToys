@@ -1,0 +1,9 @@
+﻿@namespace DevToys.MauiBlazor.Components
+@inherits MefLayoutComponentBase
+
+<CascadingValue Value="this" IsFixed="true">
+    <ul id="@Id"
+        class="@CssClasses">
+        @ChildContent
+    </ul>
+</CascadingValue>

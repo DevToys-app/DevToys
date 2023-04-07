@@ -1,11 +1,7 @@
-﻿using DevToys.Api;
-using DevToys.Api.Core.Theme;
-using DevToys.Core;
+﻿using DevToys.Api.Core.Theme;
+using DevToys.Business.ViewModels;
 using DevToys.MauiBlazor.Components;
-using Microsoft.AspNetCore.Components;
 using Microsoft.Fast.Components.FluentUI;
-using Microsoft.Fast.Components.FluentUI.DesignTokens;
-using Platform = DevToys.Api.Platform;
 
 namespace DevToys.MauiBlazor.Shared;
 
@@ -14,10 +10,18 @@ public partial class MainLayout : MefLayoutComponentBase
     [Import]
     private IThemeListener ThemeListener { get; set; } = default!;
 
+    [Import]
+    internal MainWindowViewModel ViewModel { get; set; } = default!;
+
     [Inject]
     private GlobalState GlobalState { get; set; } = default!;
 
     private float _baseLayerLuminanceValue;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

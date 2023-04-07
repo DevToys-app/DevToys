@@ -1,0 +1,13 @@
+﻿@namespace DevToys.MauiBlazor.Components
+@inherits MefLayoutComponentBase
+
+<a id="@Id"
+   href="@Href"
+   class="@CssClasses"
+   title="@Title"
+   @ref=Element
+   @onclick=@OnClickHandler
+   @onclick:preventDefault="true"
+   @attributes="@AdditionalAttributes">
+    @ChildContent
+</a>

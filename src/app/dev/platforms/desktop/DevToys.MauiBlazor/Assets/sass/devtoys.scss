@@ -1,0 +1,122 @@
+﻿@use "configs/variables" as variables;
+@use "configs/fonts";
+@use "mixins/index" as mixins;
+
+@use "features/page";
+@use "features/form";
+@use "features/header";
+@use "features/navbar";
+@use "features/control";
+
+@use "theme/default";
+
+// need to handle dynamic font depending on user settings
+body {
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, system-ui,
+        BlinkMacSystemFont, "Segoe UI Variable", "Segoe UI",
+        Roboto, Ubuntu, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    font-feature-settings: "rclt" off;
+
+    &:before {
+        content: "small";
+        display: none;
+        visibility: hidden;
+
+        @include mixins.media-breakpoint-up(medium) {
+            content: "medium";
+        }
+
+        @include mixins.media-breakpoint-up(wide) {
+            content: "wide";
+        }
+    }
+}
+
+.container {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: variables.$header-medium-height calc(100vh - variables.$header-medium-height);
+    grid-template-areas: "header header" "sidebar page";
+    column-gap: 0;
+    row-gap: 0;
+    min-height: 100vh;
+    min-width: calc(100vw - 17px);
+
+    @include mixins.media-breakpoint-up(medium) {
+        grid-template-areas: "sidebar header" "sidebar page";
+        grid-template-columns: variables.$sidebar-medium-width 1fr;
+        column-gap: 0;
+        row-gap: variables.$grid-separator;
+    }
+
+    @include mixins.media-breakpoint-up(wide) {
+        margin: 0;
+        row-gap: 0;
+        column-gap: 0;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: variables.$header-wide-height 1.8fr;
+    }
+}
+
+.collapse {
+    &:not(.show) {
+        display: none;
+    }
+}
+
+.collapsing {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.35s ease;
+}
+
+
+.sticky-bottom {
+    position: sticky;
+    bottom: 0;
+}
+
+
+.scrollable {
+    overflow-y: overlay;
+    overflow-x: overlay;
+
+    &.vertical {
+        overflow-y: overlay;
+        overflow-x: hidden;
+    }
+
+    &.horizontal {
+        overflow-y: hidden;
+        overflow-x: overlay;
+    }
+    /* Works on Chrome, Edge, and Safari */
+    &::-webkit-scrollbar {
+        width: 3px;
+        @include mixins.transition(all variables.$transition-base);
+    }
+
+    &::-webkit-scrollbar-track {
+        border-radius: 999px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 999px;
+        border-width: 3px;
+        border-style: solid;
+    }
+
+    &:hover {
+        &::-webkit-scrollbar {
+            width: 12px;
+        }
+    }
+}

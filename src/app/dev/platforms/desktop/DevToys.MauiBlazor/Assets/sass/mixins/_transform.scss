@@ -1,0 +1,58 @@
+﻿@use '../configs/variables' as variables;
+
+// stylelint-disable property-disallowed-list
+@mixin transform($transform...) {
+    @if length($transform) > 1 {
+        @each $value in $transform {
+            @if $value == null or $value == none {
+                @warn "The keyword 'none' or 'null' must be used as a single argument.";
+            }
+        }
+    }
+
+    @if variables.$enable-transforms {
+        @if nth($transform, 1) != null {
+            -webkit-transform: $transform;
+            -ms-transform: $transform;
+            -o-transform: $transform;
+            transform: $transform;
+        }
+
+        @if variables.$enable-reduced-motion and nth($transform, 1) != null and nth($transform, 1) != none {
+            @media (prefers-reduced-motion: reduce) {
+                -webkit-transform: none;
+                -ms-transform: none;
+                -o-transform: none;
+                transform: none;
+            }
+        }
+    }
+}
+
+@mixin transform-origin($transform...) {
+    @if length($transform) > 1 {
+        @each $value in $transform {
+            @if $value == null or $value == none {
+                @warn "The keyword 'none' or 'null' must be used as a single argument.";
+            }
+        }
+    }
+
+    @if variables.$enable-transforms {
+        @if nth($transform, 1) != null {
+            -webkit-transform-origin: $transform;
+            -ms-transform-origin: $transform;
+            -o-transform-origin: $transform;
+            transform-origin: $transform;
+        }
+
+        @if variables.$enable-reduced-motion and nth($transform, 1) != null and nth($transform, 1) != none {
+            @media (prefers-reduced-motion: reduce) {
+                -webkit-transform-origin: none;
+                -ms-transform-origin: none;
+                -o-transform-origin: none;
+                transform-origin: none;
+            }
+        }
+    }
+}

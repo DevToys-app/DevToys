@@ -1,0 +1,15 @@
+﻿@namespace DevToys.MauiBlazor.Components
+@inherits MefLayoutComponentBase
+
+<CascadingValue Value="this" IsFixed="true">
+    <li id="@Id"
+        class="@CssClasses">
+        <NavbarAnchor Href="@Page" Title="@Text" Class="custom" Clicked=@HandleClickEventAsync>
+            <i class="icon-ic_fluent_home_48_regular"></i>
+            <span class="item-content">
+                @Text
+            </span>
+        </NavbarAnchor>
+        @ChildContent
+    </li>
+</CascadingValue>

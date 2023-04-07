@@ -1,0 +1,23 @@
+﻿
+
+@mixin fontSize1() {
+    font-size: .875rem;
+    font-weight: 600;
+    line-height: normal;
+    font-style: normal;
+    font-family: "Segoe UI";
+}
+
+@mixin fontSize42() {
+    font-size: 42px;
+    font-weight: 600;
+    line-height: 52px;
+    font-style: normal;
+    font-family: inherit;
+}
+
+@mixin textEllipsis() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

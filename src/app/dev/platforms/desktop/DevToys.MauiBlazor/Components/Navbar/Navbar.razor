@@ -1,0 +1,30 @@
+﻿@namespace DevToys.MauiBlazor.Components
+@inherits MefLayoutComponentBase
+
+<CascadingValue Value="this" Name="NavMenu" IsFixed="true">
+    <CascadingValue Value="Collapsed" Name="NavMenuExpanded" IsFixed="true">
+        <nav id="@Id" class="@CssClasses" role="navigation" data-collapse="@CollapsedName">
+            <div class="navbar-header-container">
+                @if (IsCollapsible)
+                {
+                    <Button Class="navbar-toggler"
+                            title="Navbar Toggler" aria-controls="navbarNav" aria-expanded="@CollapsedName" aria-label="Toggle navigation"
+                        Appearance="@ButtonAppearance.Stealth"
+                        IconOnly="true" @onclick=@OnClickAsync>
+                        <i class="icon-ic_fluent_navigation_24_regular"></i>
+                    </Button>
+                }
+            </div>
+            @if (HasSearch)
+            {
+                <FormItem>
+                    <input type="text" class="form-control" placeholder="Type to search for a tools" aria-label="Search tools" aria-describedby="basic-addon2">
+                    <div class="form-input-group-text">
+                        <i class="icon-ic_fluent_search_32_regular"></i>
+                    </div>
+                </FormItem>
+            }
+            @ChildContent
+        </nav>
+    </CascadingValue>
+</CascadingValue>

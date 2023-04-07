@@ -87,7 +87,17 @@
   <ItemGroup>
     <Content Include="..\..\..\DevToys.MonacoEditor\monaco-editor\*" LinkBase="wwwroot\lib\monaco-editor\%(RecursiveDir)/%(Filename)%(Extension)" />
     <Content Include="..\..\..\DevToys.MonacoEditor\monaco-editor\min\**\*" Link="wwwroot\lib\monaco-editor\min\%(RecursiveDir)/%(Filename)%(Extension)" />
+    <None Remove="node_modules\**" />
+    <TypeScriptCompile Remove="node_modules\**" />
     <TypeScriptCompile Remove="wwwroot\lib\monaco-editor\**\*.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\fonts\FluentSystemIcons-Regular.woff2" />
+    <None Include="wwwroot\js\breakpoint.js" />
+    <None Include="wwwroot\js\devtoys.js" />
+    <None Include="wwwroot\js\require.js" />
+    <None Include="wwwroot\js\web-components.min.js" />
   </ItemGroup>
 
   <ItemGroup>

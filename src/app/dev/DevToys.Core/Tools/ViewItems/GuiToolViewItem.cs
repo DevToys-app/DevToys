@@ -41,6 +41,8 @@ public sealed partial class GuiToolViewItem : ObservableObject
     /// </summary>
     public GuiToolInstance ToolInstance { get; }
 
+    public string InternalName => ToolInstance.InternalComponentName;
+
     public string MenuDisplayTitle
     {
         get

@@ -1,0 +1,24 @@
+﻿@import "https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap";
+
+$enable-filter: true !default;
+$enable-shadows: true !default;
+$enable-transitions: true !default;
+$enable-reduced-motion: true !default;
+
+$header-small-height: 48px;
+$header-medium-height: 48px;
+$header-wide-height: 48px;
+
+$grid-separator: 0px;
+
+$sidebar-small-width: 0px;
+$sidebar-medium-width: 48px;
+$sidebar-wide-width: 320px;
+
+$transition-base: 0.2s ease-in-out !default;
+$transition-all: all 0.2s ease-in-out !default;
+$transition-fade: opacity 0.15s linear !default;
+
+$border-radius: 7px;
+
+$grid-breakpoints: (small: 0, medium: 640px, wide: 992px);

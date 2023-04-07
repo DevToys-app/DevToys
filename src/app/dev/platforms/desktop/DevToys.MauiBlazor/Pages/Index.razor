@@ -1,30 +1,46 @@
 ﻿@page "/"
+@page "/{Name}"
 
 @using Microsoft.Fast.Components.FluentUI
+@using System.Web;
 
-Welcome to your new app.
-
-<FluentButton Style="margin:24px">Click Me</FluentButton>
+<h1>@Name - (@EncodedName)</h1>
 
 
-<MonacoEditor Language="csharp" IsDarkMode="false" />
+@functions {
 
-<p>Neutral and Neutral with Disabled</p>
-<FluentButton Appearance="Appearance.Neutral">Button</FluentButton>
-<FluentButton Appearance="Appearance.Neutral" Disabled="true">Button</FluentButton>
+    private string _name = string.Empty;
+    private string _encodedName = string.Empty;
 
-<p>Accent and Accent with Disabled</p>
-<FluentButton Appearance="Appearance.Accent">Button</FluentButton>
-<FluentButton Appearance="Appearance.Accent" Disabled="true">Button</FluentButton>
+    public string EncodedName
+    {
+        get => _encodedName; 
+        set
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                _encodedName = string.Empty;
+                return;
+            }
+            _encodedName = value;
+        }
+    }
 
-<p>Lightweight and Lightweight with Disabled</p>
-<FluentButton Appearance="Appearance.Lightweight">Button</FluentButton>
-<FluentButton Appearance="Appearance.Lightweight" Disabled="true">Button</FluentButton>
-
-<p>Outline and Ouline with Disabled</p>
-<FluentButton Appearance="Appearance.Outline">Button</FluentButton>
-<FluentButton Appearance="Appearance.Outline" Disabled="true">Button</FluentButton>
-
-<p>Stealth and Stealth with Disabled</p>
-<FluentButton Appearance="Appearance.Stealth">Button</FluentButton>
-<FluentButton Appearance="Appearance.Stealth" Disabled="true">Button</FluentButton>
+    // Define a property to contain the parameter passed from the auth page
+    [Parameter]
+    public string Name { 
+        get => _name; 
+        set
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                EncodedName = string.Empty;
+                _name = string.Empty;
+                return;
+            }
+            Guard.IsNotNullOrWhiteSpace(value);
+            EncodedName = value;
+            _name = HttpUtility.UrlDecode(value);
+        }
+    }
+}

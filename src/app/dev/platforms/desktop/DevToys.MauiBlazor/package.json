@@ -1,0 +1,41 @@
+{
+  "version": "1.0.0",
+  "name": "devtoys",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "22.0.2",
+    "@rollup/plugin-node-resolve": "14.1.0",
+    "@rollup/stream": "2.0.0",
+    "@types/gulp": "^4.0.9",
+    "@types/gulp-clean-css": "^4.3.0",
+    "@types/gulp-rename": "^2.0.1",
+    "@types/gulp-sass": "^5.0.0",
+    "@types/gulp-svg-sprite": "^1.2.32",
+    "@types/merge-stream": "^1.1.2",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-consolidate": "0.2.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "3.0.0",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "sass": "^1.49.9",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.2",
+    "vinyl-buffer": "1.0.1",
+    "vinyl-source-stream": "2.0.0"
+  },
+  "dependencies": {
+    "@types/jquery": "3.5.5",
+    "fs": "0.0.1-security",
+    "merge-stream": "^2.0.0",
+    "stylelint-scss": "^4.2.0",
+    "@popperjs/core": "^2.11.6",
+    "del": "6.1.1"
+  }
+}

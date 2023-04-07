@@ -1,0 +1,34 @@
+﻿@use '../configs/variables' as variables;
+
+// stylelint-disable property-disallowed-list
+@mixin transition($transition...) {
+    @if length($transition) == 0 {
+        $transition: variables.$transition-all;
+    }
+
+    @if length($transition) > 1 {
+        @each $value in $transition {
+            @if $value == null or $value == none {
+                @warn "The keyword 'none' or 'null' must be used as a single argument.";
+            }
+        }
+    }
+
+    @if variables.$enable-transitions {
+        @if nth($transition, 1) != null {
+            -webkit-transition: $transition;
+            -o-transition: $transition;
+            -ms-transition: $transition;
+            transition: $transition;
+        }
+
+        @if variables.$enable-reduced-motion and nth($transition, 1) != null and nth($transition, 1) != none {
+            @media (prefers-reduced-motion: reduce) {
+                -webkit-transition: none;
+                -o-transition: none;
+                -ms-transition: none;
+                transition: none;
+            }
+        }
+    }
+}

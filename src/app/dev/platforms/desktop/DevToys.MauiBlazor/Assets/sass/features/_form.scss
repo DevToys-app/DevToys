@@ -1,0 +1,85 @@
+﻿@use "../mixins/index" as mixins;
+@use "../configs/variables" as variables;
+
+input[type="text"] {
+    display: block;
+    width: 100%;
+    padding: 9px 0 9px 11px;
+    outline: none;
+    background-clip: padding-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-width: 2px;
+    border-style: inset;
+    border-radius: 4px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    max-height: 30px;
+    @include mixins.transition(variables.$transition-all);
+}
+
+.form-input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+    border-width: 1px;
+    border-style: inset;
+    border-radius: 4px;
+    border-bottom-width: 2px;
+    outline: none;
+    @include mixins.transition(variables.$transition-all);
+
+    > input[type="text"],
+    > .form-select {
+        position: relative;
+        flex: 1 1 auto;
+        width: 1%;
+        min-width: 0;
+    }
+
+    .form-input-group-text {
+        display: flex;
+        align-items: center;
+        padding: 0.375rem 0.75rem;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 16px;
+        text-align: center;
+        white-space: nowrap;
+        border-width: 0;
+        border-style: inset;
+        border-radius: 4px;
+        border-bottom-width: 2px;
+        max-height: 30px;
+    }
+}
+
+.form-input-group:not(.has-validation)
+    > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.form-input-group:not(.has-validation) > .dropdown-toggle:nth-last-child(n + 3),
+.form-input-group:not(.has-validation) > .form-floating:not(:last-child) > .form-control,
+.form-input-group:not(.has-validation) > .form-floating:not(:last-child) > .form-select,
+.form-input-group:not(.has-validation)
+    > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.form-input-group
+    > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(
+        .invalid-feedback
+    ) {
+    margin-left: -2px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}

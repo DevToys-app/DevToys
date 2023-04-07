@@ -1,23 +1,58 @@
-﻿@inherits MefLayoutComponentBase
+﻿@using DevToys.Core.Tools.ViewItems
 
-<FluentDesignSystemProvider 
-    AccentBaseColor="#0078D4"
-    NeutralBaseColor="000000"
-    BaseLayerLuminance=@_baseLayerLuminanceValue>
-    <div id="container">
-        <NavigationView>
-            <MenuItemsSource>
-                <FluentButton Appearance="Appearance.Stealth">Hello</FluentButton>
-                <FluentButton Appearance="Appearance.Stealth">There</FluentButton>
-            </MenuItemsSource>
-            <FooterMenuItemsSource>
-                <FluentButton Appearance="Appearance.Stealth">Bottom</FluentButton>
-            </FooterMenuItemsSource>
-            <Content>
-                <main>
-                    @Body
-                </main>
-            </Content>
-        </NavigationView>
-    </div>
-</FluentDesignSystemProvider>
+@using Microsoft.Fast.Components.FluentUI
+@using Microsoft.Fast.Components.FluentUI.DesignTokens
+
+@inherits MefLayoutComponentBase
+
+<header>
+</header>
+
+<Navbar Id="navbar" IsCollapsible="true" HasSearch="false" IsVertical="true">
+    <NavbarItems IsScrollable="true" IsScrollableVertical="true">
+        @foreach (var navItem in ViewModel.HeaderAndBodyToolViewItems)
+        {
+            if (navItem is GuiToolViewItem guiToolViewItem)
+            {
+                <NavbarItem Page="@guiToolViewItem.InternalName" Icon="@(FluentIcons.Home)" Text="@guiToolViewItem.MenuDisplayTitle" />
+            }
+            else if (navItem is GroupViewItem groupViewItem)
+            {
+                if (groupViewItem.Children is not null)
+                {
+                    <NavbarGroup Page="@groupViewItem.InternalName" Icon="@groupViewItem.IconGlyph" Text="@groupViewItem.DisplayTitle">
+                        @foreach (var childItem in groupViewItem.Children)
+                        {
+                            <NavbarItem Page="@childItem.InternalName" Icon="@(FluentIcons.Home)" Text="@childItem.MenuDisplayTitle" />
+                        }
+                    </NavbarGroup>
+                }
+                else
+                {
+                    <NavbarItem Page="@groupViewItem.InternalName" Icon="@(FluentIcons.Home)" Text="@groupViewItem.DisplayTitle" />
+                }
+            }
+            else
+            {
+                <li class="nav-item nav-separator"></li>
+            }
+        }
+    </NavbarItems>
+    <NavbarItems IsFixedBottom="true">
+        @foreach (var navItem in ViewModel.FooterToolViewItems)
+        {
+            if (navItem is GuiToolViewItem guiToolViewItem)
+            {
+                <NavbarItem Page="@guiToolViewItem.InternalName" Icon="@(FluentIcons.Home)" Text="@guiToolViewItem.MenuDisplayTitle" />
+            }
+            else
+            {
+                <li class="nav-item nav-separator"></li>
+            }
+        }
+    </NavbarItems>
+</Navbar>
+
+<main class="page">
+    @Body
+</main>
