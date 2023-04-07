@@ -28,6 +28,7 @@ using Microsoft.Toolkit.Mvvm.Messaging;
 using Microsoft.UI.Xaml.Controls;
 using Windows.ApplicationModel;
 using Windows.Foundation;
+using Windows.System;
 using Windows.UI.StartScreen;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -740,9 +741,19 @@ namespace DevToys.ViewModels
                     () =>
                     {
                         ThreadHelper.ThrowIfNotOnUIThread();
-                        Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/veler/DevToys/releases")).AsTask().Forget();
+                        Launcher.LaunchUriAsync(new Uri("https://github.com/veler/DevToys/releases")).AsTask().Forget();
                     },
                     await AssetsHelper.GetReleaseNoteAsync());
+
+                _notificationService.ShowInAppNotification(
+                    Strings.SurveyTitle,
+                    Strings.SurveyYesButton,
+                    () =>
+                    {
+                        ThreadHelper.ThrowIfNotOnUIThread();
+                        Launcher.LaunchUriAsync(new Uri("https://forms.office.com/r/eh27t4Z4nB")).AsTask().Forget();
+                    },
+                    Strings.SurveyDescription);
 
                 _marketingService.NotifyAppJustUpdated();
             }

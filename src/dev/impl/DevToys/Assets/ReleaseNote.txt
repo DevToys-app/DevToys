@@ -1,10 +1,8 @@
-﻿🎉 New Features
-  • JWT Decoder can now also Encode!
-👏 Improvements
-  • Regex Tester shows matching groups
-  • Better handling of brackets in SQL Formatter
-  • Smart Detection now prioritize favorite tools
+﻿👏 Improvements
+  • XML Validator can now detect inconsistent XML namespace references
+  • UI tweaks in JWT Encoder / Decoder
+  • Translations
 🐛 Bug Fixes
-  • JSON Formatter wasn't sorting arrays
-  • JSON Formatter was failing to parse an empty array
-  • Wrong highlighting in Regex Tester
+  • SQL Formatter issue with VALUES
+  • URL Encoder / Decoder was encoding new lines incorrectly
+  • DevToys won't appear as a file picker anymore

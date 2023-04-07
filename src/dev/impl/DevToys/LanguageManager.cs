@@ -1980,6 +1980,21 @@ namespace DevToys
         public string SearchNoResultsFound => _resources.GetString("SearchNoResultsFound");
 
         /// <summary>
+        /// Gets the resource SurveyDescription.
+        /// </summary>
+        public string SurveyDescription => _resources.GetString("SurveyDescription");
+
+        /// <summary>
+        /// Gets the resource SurveyTitle.
+        /// </summary>
+        public string SurveyTitle => _resources.GetString("SurveyTitle");
+
+        /// <summary>
+        /// Gets the resource SurveyYesButton.
+        /// </summary>
+        public string SurveyYesButton => _resources.GetString("SurveyYesButton");
+
+        /// <summary>
         /// Gets the resource WindowTitle.
         /// </summary>
         public string WindowTitle => _resources.GetString("WindowTitle");
@@ -3480,13 +3495,37 @@ namespace DevToys
         public string XmlNamespacesInconsistentMsg => _resources.GetString("XmlNamespacesInconsistentMsg");
 
         /// <summary>
+        /// Gets the resource XmlNamespacesInconsistentMsg with format.
+        /// </summary>
+        public string GetFormattedXmlNamespacesInconsistentMsg(string? param0)
+        {
+            return string.Format(XmlNamespacesInconsistentMsg, param0);
+        }
+
+        /// <summary>
         /// Gets the resource XsdNamespacesInconsistentMsg.
         /// </summary>
         public string XsdNamespacesInconsistentMsg => _resources.GetString("XsdNamespacesInconsistentMsg");
-        
+
+        /// <summary>
+        /// Gets the resource XsdNamespacesInconsistentMsg with format.
+        /// </summary>
+        public string GetFormattedXsdNamespacesInconsistentMsg(string? param0)
+        {
+            return string.Format(XsdNamespacesInconsistentMsg, param0);
+        }
+
         /// <summary>
         /// Gets the resource TargetNamespaceNotDefinedInXml.
         /// </summary>
         public string TargetNamespaceNotDefinedInXml => _resources.GetString("TargetNamespaceNotDefinedInXml");
+
+        /// <summary>
+        /// Gets the resource TargetNamespaceNotDefinedInXml with format.
+        /// </summary>
+        public string GetFormattedTargetNamespaceNotDefinedInXml(string? param0)
+        {
+            return string.Format(TargetNamespaceNotDefinedInXml, param0);
+        }
     }
 }
