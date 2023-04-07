@@ -167,13 +167,13 @@
     <value>결과를 찾을 수 없습니다</value>
   </data>
   <data name="SurveyDescription" xml:space="preserve">
-    <value>We would love to hear about your experience with DevToys so we can improve it.</value>
+    <value>개선할 수 있도록 DevToys에 대한 귀하의 경험을 듣고 싶습니다.</value>
   </data>
   <data name="SurveyTitle" xml:space="preserve">
-    <value>The development of DevToys 2.0 started! 🥳</value>
+    <value>DevToys 2.0의 개발이 시작되었습니다! 🥳</value>
   </data>
   <data name="SurveyYesButton" xml:space="preserve">
-    <value>open the survey...</value>
+    <value>설문조사 열기...</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
