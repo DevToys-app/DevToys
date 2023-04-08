@@ -2,18 +2,13 @@
 using DevToys.Business.ViewModels;
 using DevToys.Core.Logging;
 using DevToys.Core.Mef;
-using DevToys.Core.Settings;
 using DevToys.MauiBlazor.Core.FileStorage;
 using DevToys.MauiBlazor.Core.Languages;
 using DevToys.Tools;
 using Microsoft.Extensions.Logging;
 using Microsoft.Fast.Components.FluentUI;
 using Microsoft.Fast.Components.FluentUI.Infrastructure;
-using Microsoft.Maui.LifecycleEvents;
-using Microsoft.UI;
-using Microsoft.UI.Windowing;
 using Uno.Extensions;
-using Windows.Graphics;
 using PredefinedSettings = DevToys.Core.Settings.PredefinedSettings;
 
 namespace DevToys.MauiBlazor;

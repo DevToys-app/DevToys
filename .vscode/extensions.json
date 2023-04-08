@@ -2,5 +2,7 @@
     "recommendations": [
       "ms-dotnettools.csharp",
       "visualstudioexptteam.vscodeintellicode",
+      "ms-dotnettools.blazorwasm-companion",
+      "eamodio.gitlens"
     ]
 }

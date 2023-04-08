@@ -80,6 +80,7 @@
     <!-- TypeScript -->
     <ConfigFiles Include="tsconfig.json" />
     <Content Update="tsconfig.json" PublishFolderType="None" />
+    <Content Update="package.json" PublishFolderType="None" ExcludeFromBundleResources="true"/>
     <TypeScriptCompile Remove="**\*.ts" />
     <None Include="**\*.ts" />
   </ItemGroup>
@@ -115,7 +116,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="SixLabors.ImageSharp" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="$(SixLaborsImageSharpVersion)"/>
   </ItemGroup>
 
 </Project>
