@@ -167,7 +167,7 @@
     <value>Kein Ergebnis</value>
   </data>
   <data name="SurveyDescription" xml:space="preserve">
-    <value>Wir würden uns freuen, etwas über deine Erfahrungen mit DevToys zu erfahren, damit wir es verbessern können.</value>
+    <value>Wir würden gerne etwas über deine Erfahrungen mit DevToys erfahren, damit wir es verbessern können.</value>
   </data>
   <data name="SurveyTitle" xml:space="preserve">
     <value>Die Entwicklung von DevToys 2.0 wurde gestartet! 🥳</value>
