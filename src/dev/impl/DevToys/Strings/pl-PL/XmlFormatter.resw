@@ -151,10 +151,10 @@
     <value>Wcięcie lub zminifikowanie danych XML</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>XML Formatter</value>
+    <value>Narzędzie Formatowania XML</value>
   </data>
   <data name="NewLineOnAttributesName" xml:space="preserve">
-    <value>Put attributes on new line</value>
+    <value>Umieść atrybuty w nowej linii</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value/>
