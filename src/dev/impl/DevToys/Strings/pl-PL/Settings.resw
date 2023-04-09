@@ -142,7 +142,7 @@
     <value>Ciemny</value>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>Język Systemowy</value>
+    <value>Taki sam jak systemowy</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Ustawienia</value>
