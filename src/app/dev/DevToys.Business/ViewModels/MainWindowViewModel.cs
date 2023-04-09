@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using DevToys.Api;
 using DevToys.Api.Core;
 using DevToys.Business.Models;
+using DevToys.Core.Models;
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
 using DevToys.Localization.Strings.MainWindow;
@@ -88,10 +89,20 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
                 SetProperty(ref _selectedMenuItem, value);
             }
 
+            var guiToolViewItem = value as GuiToolViewItem;
+            if (guiToolViewItem is not null)
+            {
+                _smartDetectionService.ActiveToolInstance = guiToolViewItem.ToolInstance;
+            }
+            else
+            {
+                _smartDetectionService.ActiveToolInstance = null;
+            }
+
             OnPropertyChanged(nameof(IsSelectedMenuItemATool));
             SelectedMenuItemChanged?.Invoke(this, EventArgs.Empty);
 
-            if (value is GuiToolViewItem guiToolViewItem)
+            if (guiToolViewItem is not null)
             {
                 guiToolViewItem.RaiseGotSelected();
             }

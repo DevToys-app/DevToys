@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CommandDescription" xml:space="preserve">
-    <value>Base64 Image Encoder / Decoder</value>
+    <value>Just A Basic Tool</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Encode or decode all the applicable characters to their corresponding HTML entities</value>
@@ -127,7 +127,7 @@
     <value>File to treat</value>
   </data>
   <data name="LongTitle" xml:space="preserve">
-    <value>HTML Encoder / Decoder</value>
+    <value>JSON Formatter</value>
   </data>
   <data name="Utf8OptionDescription" xml:space="preserve">
     <value>A dummy UTF8 option description</value>

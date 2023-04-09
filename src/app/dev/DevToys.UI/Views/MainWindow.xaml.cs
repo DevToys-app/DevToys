@@ -4,7 +4,6 @@ using DevToys.Business.Models;
 using DevToys.Business.ViewModels;
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
-using DevToys.Localization.Strings.MainWindow;
 using DevToys.UI.Framework.Controls;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;

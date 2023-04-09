@@ -95,6 +95,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DevToys.Api\DevToys.Api.csproj" />
+    <ProjectReference Include="..\DevToys.Core\DevToys.Core.csproj" />
     <ProjectReference Include="..\DevToys.Localization\DevToys.Localization.csproj" />
   </ItemGroup>
 

@@ -1,5 +1,9 @@
-﻿using DevToys.Api;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using DevToys.Api;
+using DevToys.Core.Models;
+using DevToys.Core.Tools;
 using DevToys.Localization.Strings.ToolPage;
+using DevToys.UI.Framework.Converters;
 using DevToys.UI.Framework.Helpers;
 using DevToys.UI.Framework.Threading;
 using Microsoft.Extensions.Logging;
@@ -7,6 +11,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Markup;
+using Microsoft.UI.Xaml.Media;
 using Uno.Extensions;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
@@ -19,12 +24,18 @@ namespace DevToys.UI.Framework.Controls.GuiTool;
 public sealed partial class UITextInputHeader : UserControl
 {
     private readonly ILogger _logger;
+    private readonly SmartDetectionService _smartDetectionService;
+    private readonly DisposableSemaphore _disposableSemaphore = new();
+    private readonly StringToStaticResourceConverter _stringToStaticResourceConverter = new();
+
+    private CancellationTokenSource? _cancellationTokenSource;
 
     public UITextInputHeader()
     {
         this.InitializeComponent();
 
         _logger = this.Log();
+        _smartDetectionService = Parts.MefProvider.Import<SmartDetectionService>();
 
         Loaded += UITextInputHeader_Loaded;
         Unloaded += UITextInputHeader_Unloaded;
@@ -128,6 +139,19 @@ public sealed partial class UITextInputHeader : UserControl
         set => SetValue(IsLoadingFileProperty, value);
     }
 
+    public static readonly DependencyProperty ToolsDetectedBySmartDetectionProperty
+       = DependencyProperty.Register(
+           nameof(ToolsDetectedBySmartDetection),
+           typeof(bool),
+           typeof(UITextInputHeader),
+           new PropertyMetadata(false));
+
+    public bool ToolsDetectedBySmartDetection
+    {
+        get => (bool)GetValue(ToolsDetectedBySmartDetectionProperty);
+        set => SetValue(ToolsDetectedBySmartDetectionProperty, value);
+    }
+
     private void UITextInputHeader_Loaded(object sender, RoutedEventArgs e)
     {
         UITextInput.TitleChanged += UITextInput_TitleChanged;
@@ -135,12 +159,15 @@ public sealed partial class UITextInputHeader : UserControl
         UITextInput.CanCopyWhenEditableChanged += UITextInput_CanCopyWhenEditableChanged;
         UITextInput.IsEnabledChanged += UITextInput_IsEnabledChanged;
         UITextInput.IsVisibleChanged += UITextInput_IsVisibleChanged;
+        UITextInput.TextChanged += UITextInput_TextChanged;
         Title = UITextInput.Title;
         IsReadOnly = UITextInput.IsReadOnly;
         CanCopyWhenEditable = UITextInput.CanCopyWhenEditable;
         IsEnabled = UITextInput.IsEnabled;
         Visibility = UITextInput.IsVisible ? Visibility.Visible : Visibility.Collapsed;
         IsReadOnlyOrCanCopyWhenEditable = IsReadOnly || CanCopyWhenEditable;
+
+        TriggerSmartDetection();
     }
 
     private void UITextInputHeader_Unloaded(object sender, RoutedEventArgs e)
@@ -150,8 +177,14 @@ public sealed partial class UITextInputHeader : UserControl
         UITextInput.CanCopyWhenEditableChanged -= UITextInput_CanCopyWhenEditableChanged;
         UITextInput.IsEnabledChanged -= UITextInput_IsEnabledChanged;
         UITextInput.IsVisibleChanged -= UITextInput_IsVisibleChanged;
+        UITextInput.TextChanged -= UITextInput_TextChanged;
         Loaded -= UITextInputHeader_Loaded;
         Unloaded -= UITextInputHeader_Unloaded;
+
+        CancellationTokenSource? cancellationSourceToken = _cancellationTokenSource;
+        cancellationSourceToken?.Cancel();
+        cancellationSourceToken?.Dispose();
+        _disposableSemaphore.Dispose();
     }
 
     private void UITextInput_TitleChanged(object? sender, EventArgs e)
@@ -179,6 +212,11 @@ public sealed partial class UITextInputHeader : UserControl
     private void UITextInput_IsVisibleChanged(object? sender, EventArgs e)
     {
         Visibility = UITextInput.IsVisible ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    private void UITextInput_TextChanged(object? sender, EventArgs e)
+    {
+        TriggerSmartDetection();
     }
 
     private void Root_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -388,6 +426,14 @@ public sealed partial class UITextInputHeader : UserControl
         deferral?.Complete();
     }
 
+    private void SmartDetectionMenuItem_Click(object sender, RoutedEventArgs e)
+    {
+        if (e.OriginalSource is MenuFlyoutItem menuItem && menuItem.Tag is SmartDetectedTool detectedTool)
+        {
+            WeakReferenceMessenger.Default.Send(new ChangeSelectedMenuItemMessage(detectedTool));
+        }
+    }
+
     private async Task LoadFileAsync(StorageFile file)
     {
         IsLoadingFile = true;
@@ -430,6 +476,79 @@ public sealed partial class UITextInputHeader : UserControl
                 };
 
                 await dialog.ShowAsync();
+            });
+        }
+    }
+
+    private void TriggerSmartDetection()
+    {
+        if (IsLoaded)
+        {
+            CancellationTokenSource? cancellationSourceToken = _cancellationTokenSource;
+            cancellationSourceToken?.Cancel();
+            cancellationSourceToken?.Dispose();
+            Interlocked.Exchange(ref _cancellationTokenSource, new(TimeSpan.FromSeconds(5)));
+            SmartDetectToolsAsync(UITextInput.Text, _cancellationTokenSource.Token).ForgetSafely();
+        }
+    }
+
+    private async Task SmartDetectToolsAsync(string text, CancellationToken cancellationToken)
+    {
+        await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
+
+        IReadOnlyList<SmartDetectedTool> detectedTools;
+        using (await _disposableSemaphore.WaitAsync(cancellationToken))
+        {
+            // Detect tools to recommend.
+            detectedTools
+                = await _smartDetectionService.DetectAsync(text, strict: false, cancellationToken)
+                .ConfigureAwait(true);
+
+            await DispatcherQueue.RunOnUIThreadAsync(() =>
+            {
+                if (!cancellationToken.IsCancellationRequested)
+                {
+                    for (int i = 0; i < SmartDetectionMenuFlyout.Items.Count; i++)
+                    {
+                        if (SmartDetectionMenuFlyout.Items[i] is MenuFlyoutItem menuItem)
+                        {
+                            menuItem.Click -= SmartDetectionMenuItem_Click;
+                        }
+                    }
+
+                    SmartDetectionMenuFlyout.Items.Clear();
+
+                    if (detectedTools.Count > 0)
+                    {
+                        ToolsDetectedBySmartDetection = true;
+
+                        for (int i = 0; i < detectedTools.Count; i++)
+                        {
+                            SmartDetectedTool detectedTool = detectedTools[i];
+                            var menuItem = new MenuFlyoutItem
+                            {
+                                Icon = new FontIcon
+                                {
+                                    FontFamily = _stringToStaticResourceConverter.Convert(detectedTool.ToolInstance.IconFontName, typeof(FontFamily), null!, null!) as FontFamily,
+                                    Glyph = detectedTool.ToolInstance.IconGlyph
+                                },
+                                Text = detectedTool.ToolInstance.LongOrShortDisplayTitle,
+                                Tag = detectedTool
+                            };
+
+                            menuItem.Click += SmartDetectionMenuItem_Click;
+
+                            SmartDetectionMenuFlyout.Items.Add(menuItem);
+                        }
+                    }
+                    else
+                    {
+                        ToolsDetectedBySmartDetection = false;
+
+                        var noToolDetectedMenuItem = new MenuFlyoutItem { Text = ToolPage.NoSmartDetectedTool };
+                        SmartDetectionMenuFlyout.Items.Add(noToolDetectedMenuItem);
+                    }
+                }
             });
         }
     }
