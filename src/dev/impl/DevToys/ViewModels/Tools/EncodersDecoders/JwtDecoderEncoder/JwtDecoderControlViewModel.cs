@@ -38,6 +38,8 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         {
             if (string.IsNullOrWhiteSpace(Token))
             {
+                ClearPayload();
+
                 return;
             }
 
@@ -111,9 +113,14 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
             ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, () =>
             {
                 Header = string.Empty;
-                Payload = string.Empty;
+                ClearPayload();
                 DisplayValidationInfoBar();
             }).ForgetSafely();
+        }
+
+        private void ClearPayload()
+        {
+            Payload = string.Empty;
         }
     }
 }
