@@ -9,7 +9,7 @@ function global:au_GetLatest {
      $url     = 'https://github.com' + $url
      $version = $url -split '/' | select -Last 1 -Skip 1
      $version = $version -replace '[v]',''
-     return @{ Version = $version; URL64 = $url }
+     return @{ Version = '1.0.11.0'; URL64 = $url }
 }
 
 function global:au_SearchReplace {

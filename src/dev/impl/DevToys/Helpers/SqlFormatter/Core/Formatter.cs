@@ -11,8 +11,8 @@ namespace DevToys.Helpers.SqlFormatter.Core
 {
     internal abstract class Formatter
     {
-        private static readonly Regex WhitespacesRegex = new Regex(@"\s+$", RegexOptions.Compiled, RegexFactory.DefaultMatchTimeout);
-        private static readonly Regex CommentWhitespacesRegex = new Regex(@"\n[ \t]*", RegexOptions.Compiled, RegexFactory.DefaultMatchTimeout);
+        private static readonly Regex WhitespacesRegex = new(@"\s+$", RegexOptions.Compiled, RegexFactory.DefaultMatchTimeout);
+        private static readonly Regex CommentWhitespacesRegex = new(@"\n[ \t]*", RegexOptions.Compiled, RegexFactory.DefaultMatchTimeout);
 
         private readonly InlineBlock _inlineBlock = new();
         private readonly StringBuilder _queryBuilder = new();
@@ -224,7 +224,8 @@ namespace DevToys.Helpers.SqlFormatter.Core
             {
                 Token? behindToken = TokenLookBehind();
 
-                if (behindToken is not { Type: TokenType.OpenParen or TokenType.LineComment or TokenType.Operator })
+                if (behindToken is not { Type: TokenType.OpenParen or TokenType.LineComment or TokenType.Operator }
+                    && !behindToken?.IsValues(querySpan.Slice(behindToken!.Value)) == true)
                 {
                     _queryBuilder.TrimSpaceEnd();
                 }

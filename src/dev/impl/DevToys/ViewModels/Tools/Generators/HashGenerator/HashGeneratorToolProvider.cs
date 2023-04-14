@@ -15,7 +15,7 @@ namespace DevToys.ViewModels.Tools.HashGenerator
     [ProtocolName("hash")]
     [Order(0)]
     [CompactOverlaySize(width: 400, height: 500)]
-    internal sealed class HashGeneratorToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class HashGeneratorToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 
@@ -29,7 +29,7 @@ namespace DevToys.ViewModels.Tools.HashGenerator
 
         public string? SearchKeywords => LanguageManager.Instance.HashGenerator.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF409");
+        public string IconGlyph => "\u0125";
 
         [ImportingConstructor]
         public HashGeneratorToolProvider(IMefProvider mefProvider)

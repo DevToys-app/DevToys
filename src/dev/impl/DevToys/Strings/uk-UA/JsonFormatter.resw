@@ -156,4 +156,7 @@
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
   </data>
+  <data name="SortProperties" xml:space="preserve">
+    <value>Впорядкувати властивості JSON за алфавітом</value>
+  </data>
 </root>

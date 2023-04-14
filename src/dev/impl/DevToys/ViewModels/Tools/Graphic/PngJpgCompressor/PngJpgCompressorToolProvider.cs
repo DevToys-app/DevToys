@@ -13,7 +13,7 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
     [Parent(GraphicGroupToolProvider.InternalName)]
     [ProtocolName("imgcomp")]
     [Order(0)]
-    internal sealed class PngJpgCompressorToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class PngJpgCompressorToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 
@@ -27,7 +27,7 @@ namespace DevToys.ViewModels.Tools.PngJpgCompressor
 
         public string? SearchKeywords => LanguageManager.Instance.PngJpgCompressor.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF488");
+        public string IconGlyph => "\u0128";
 
         [ImportingConstructor]
         public PngJpgCompressorToolProvider(IMefProvider mefProvider)

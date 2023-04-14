@@ -124,7 +124,7 @@
     <value>Установки</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Hash</value>
+    <value>Хэш</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>Ввод</value>
@@ -163,9 +163,9 @@
     <value></value>
   </data>
   <data name="HmacMode" xml:space="preserve">
-    <value>HMAC Mode</value>
+    <value>Режим HMAC</value>
   </data>
   <data name="SecretKey" xml:space="preserve">
-    <value>Secret Key</value>
+    <value>Секретный Ключ</value>
   </data>
 </root>

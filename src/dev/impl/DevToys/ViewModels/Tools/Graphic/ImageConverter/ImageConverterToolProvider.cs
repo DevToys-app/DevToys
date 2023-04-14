@@ -14,7 +14,7 @@ namespace DevToys.ViewModels.Tools.ImageConverter
     [ProtocolName("imageconverter")]
     [Order(1)]
     [NotScrollable]
-    internal sealed class ImageConverterToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class ImageConverterToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 
@@ -28,7 +28,7 @@ namespace DevToys.ViewModels.Tools.ImageConverter
 
         public string? SearchKeywords => LanguageManager.Instance.ImageConverter.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF48D");
+        public string IconGlyph => "\u0127";
 
         [ImportingConstructor]
         public ImageConverterToolProvider(IMefProvider mefProvider)

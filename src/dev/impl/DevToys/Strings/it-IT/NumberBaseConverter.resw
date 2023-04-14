@@ -183,10 +183,10 @@
     <value>Modalità avanzata</value>
   </data>
   <data name="InputDictionaryLabel" xml:space="preserve">
-    <value>Input dictionary</value>
+    <value>Dizionario Input</value>
   </data>
   <data name="OutputDictionaryLabel" xml:space="preserve">
-    <value>Output dictionary</value>
+    <value>Dizionario Output</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Output</value>

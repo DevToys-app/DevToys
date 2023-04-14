@@ -260,7 +260,7 @@ namespace DevToys.Helpers.SqlFormatter.Languages
                     ReservedTopLevelWords,
                     ReservedNewlineWords,
                     ReservedTopLevelWordsNoIndent,
-                    stringTypes: new[] { "\"\"", "N''", "''", "[]" },
+                    stringTypes: new[] { "\"\"", "N''", "''", "``", "[]" },
                     openParens: new[] { "(", "CASE" },
                     closeParens: new[] { ")", "END" },
                     indexedPlaceholderTypes: Array.Empty<char>(),

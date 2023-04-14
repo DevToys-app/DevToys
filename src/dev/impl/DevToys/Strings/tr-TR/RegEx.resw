@@ -118,72 +118,87 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Regular expression tester tool</value>
+    <value>Düzenli ifade (Regex) test aracı</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Konfigürasyon</value>
   </data>
   <data name="CultureInvariant" xml:space="preserve">
-    <value>Culture Invariant</value>
+    <value>Kültürden Bağımsız</value>
   </data>
   <data name="CultureInvariantDescription" xml:space="preserve">
-    <value>Specifies that cultural differences in language is ignored.</value>
+    <value>Dildeki kültürel değişimlerin yoksayıldığını belirtir.</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Regex Tester</value>
+    <value>Regex Test Edici</value>
   </data>
   <data name="EcmaScript" xml:space="preserve">
-    <value>ECMA Script</value>
+    <value>ECMA Betiği</value>
   </data>
   <data name="EcmaScriptDescription" xml:space="preserve">
-    <value>Enables ECMAScript-compliant behavior for the expression. This value can be used only in conjunction with the Culture Invariant, Ignore Case and Multiline options.</value>
+    <value>İfade için ECMAScript uyumlu davranışı etkinleştirir. Bu değer, yalnızca Kültürden Bağımsız, Büyük/Küçük Harfi Yoksa ve Çoklu satır seçenekleriyle beraber kullanılabilir.</value>
   </data>
   <data name="IgnoreCase" xml:space="preserve">
-    <value>Ignore Case</value>
+    <value>Büyük/Küçük Harfi Yoksay</value>
   </data>
   <data name="IgnoreCaseDescription" xml:space="preserve">
-    <value>Specifies case-insensitive matching.</value>
+    <value>Büyük/küçük harfi umursamayan eşleştirmeyi belirtir.</value>
   </data>
   <data name="IgnoreWhitespace" xml:space="preserve">
-    <value>Ignore Whitespace</value>
+    <value>Beyaz Boşlukları Yoksay</value>
   </data>
   <data name="IgnoreWhitespaceDescription" xml:space="preserve">
-    <value>Eliminates unescaped white space from the pattern and enables comments marked with #. However, this value does not affect or eliminate white space in character classes, numeric quantifiers, or tokens that mark the beginning of individual regular expression language elements.</value>
+    <value>Kaçış karakteri olmayan beyaz boşluğu desende etkisiz hale getirir ve # ile işaretlenen yorumları etkinleştirir. Ancak, bu değer karakter sınıflarında, sayısal niceleyicilerde veya tek başına olan düzenli ifade dil elementlerinin başını belirten jetonlarda beyaz boşluğu etkilemez ya da etkisiz hale getirmez.</value>
   </data>
   <data name="Multiline" xml:space="preserve">
-    <value>Multiline</value>
+    <value>Çoklu satır</value>
   </data>
   <data name="MultilineDescription" xml:space="preserve">
-    <value>Changes the meaning of ^ and $ so they match at the beginning and end, respectively, of any line, and not just the beginning and end of the entire string.</value>
+    <value>Tüm dizenin değil herhangi bir satırın başı ve sonuyla eşleşmesi için ^ ve $ sembollerinin anlamını değiştirir.</value>
   </data>
   <data name="Options" xml:space="preserve">
-    <value>Options</value>
+    <value>Seçenekler</value>
   </data>
   <data name="RegularExpression" xml:space="preserve">
-    <value>Regular expression</value>
+    <value>Düzenli ifade (regex)</value>
   </data>
   <data name="RightToLeft" xml:space="preserve">
-    <value>Right To Left</value>
+    <value>Sağdan Sola</value>
   </data>
   <data name="RightToLeftDescription" xml:space="preserve">
-    <value>Specifies that the search will be from right to left instead of from left to right.</value>
+    <value>Aramanın soldan sağa değil de sağdan sola olacağını belirtir.</value>
   </data>
   <data name="Singleline" xml:space="preserve">
-    <value>Singleline</value>
+    <value>Tek satır</value>
   </data>
   <data name="SinglelineDescription" xml:space="preserve">
-    <value>Changes the meaning of the dot (.) so it matches every character (instead of every character except \n).</value>
+    <value>\n hariç her karakter yerine direkt bütün karakterlerle eşleşmesi için noktanın (.) anlamını değiştirir.</value>
   </data>
   <data name="Text" xml:space="preserve">
-    <value>Text</value>
+    <value>Metin</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Validate and test regular expressions</value>
+    <value>Düzenli ifadeleri doğrula ve sına</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Regex Tester</value>
+    <value>Regex Test Edici</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Regular expression</value>
+    <value>Düzenli ifade (regex)</value>
+  </data>
+  <data name="InputTitle" xml:space="preserve">
+    <value>Girdi</value>
+  </data>
+  <data name="OutputTitle" xml:space="preserve">
+    <value>Çıktı</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Grup</value>
+  </data>
+  <data name="Match" xml:space="preserve">
+    <value>Eşleşme</value>
+  </data>
+  <data name="Matches" xml:space="preserve">
+    <value>Eşleşmeler</value>
   </data>
 </root>

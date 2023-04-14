@@ -17,6 +17,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
+        <Nuget_Cronos>0.7.1</Nuget_Cronos>
         <NuGet_DotNet>6.0.0</NuGet_DotNet>
         <Nuget_GitInfo>2.2.0</Nuget_GitInfo>
         <Nuget_Markdig>0.26.0</Nuget_Markdig>
@@ -36,5 +37,6 @@
         <NuGet_YamlDotNet>11.2.1</NuGet_YamlDotNet>
         <NuGet_IdentityModelTokenJwt>6.13.1</NuGet_IdentityModelTokenJwt>
         <NuGet_NLipsum>1.1.0</NuGet_NLipsum>
+        <NuGet_BouncyCastleNetCore>1.9.0</NuGet_BouncyCastleNetCore>
     </PropertyGroup>
 </Project>

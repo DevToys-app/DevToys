@@ -133,7 +133,7 @@
     <value>텍스트 이스케이프 / 이스케이프 해제</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value>[빈 문자열]</value>
     <comment>Alternative search keywords. Enables searching for words that are not included in Description, MenuDisplayName, and SearchDisplayName.</comment>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">

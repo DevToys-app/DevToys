@@ -118,27 +118,144 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Ferramenta descodificadora de JWT</value>
+    <value>Ferramenta codificadora e descodificadora JWT</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Descodificador JWT</value>
+    <value>JWT</value>
   </data>
-  <data name="HeaderLabel" xml:space="preserve">
+  <data name="JwtHeaderLabel" xml:space="preserve">
     <value>Cabeçalho</value>
   </data>
   <data name="JwtTokenLabel" xml:space="preserve">
-    <value>Token Jwt</value>
+    <value>Token</value>
   </data>
-  <data name="PayloadLabel" xml:space="preserve">
+  <data name="JwtPayloadLabel" xml:space="preserve">
     <value>Conteúdo</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Descodificar o cabeçalho JWT, payload and assinatura</value>
   </data>
-  <data name="SearchDisplayName" xml:space="preserve">
-    <value>Descodificador JWT</value>
-  </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
+  </data>
+  <data name="Algorithm" xml:space="preserve">
+    <value>Algoritmo</value>
+  </data>
+  <data name="DecodeSwitchModeLabel" xml:space="preserve">
+    <value>Descodificar</value>
+  </data>
+  <data name="DecodeValidateTokenLabel" xml:space="preserve">
+    <value>Validar o token</value>
+  </data>
+  <data name="DecodeValidateTokenNoLabel" xml:space="preserve">
+    <value>Não</value>
+  </data>
+  <data name="DecodeValidateTokenYesLabel" xml:space="preserve">
+    <value>Sim</value>
+  </data>
+  <data name="EncodeExpirationTitle" xml:space="preserve">
+    <value>O token expirou</value>
+  </data>
+  <data name="EncodeExpirationMonthLabel" xml:space="preserve">
+    <value>Expira em mês(s)</value>
+  </data>
+  <data name="EncodeExpirationYearLabel" xml:space="preserve">
+    <value>Expira em ano(s)</value>
+  </data>
+  <data name="EncodeHashingTitle" xml:space="preserve">
+    <value>Algoritmo de hashing de token</value>
+  </data>
+  <data name="EncodeSettingsTitle" xml:space="preserve">
+    <value>Configurações</value>
+  </data>
+  <data name="EncodeSwitchModeLabel" xml:space="preserve">
+    <value>Codificar</value>
+  </data>
+  <data name="SettingsSwitchModeLabel" xml:space="preserve">
+    <value>Codificar / Decodificar</value>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Configuração</value>
+  </data>
+  <data name="EncodeDefaultTimeTitle" xml:space="preserve">
+    <value>O token tem o tempo padrão</value>
+  </data>
+  <data name="EncodeExpirationDaysLabel" xml:space="preserve">
+    <value>(Expira em {0} dia(s))</value>
+  </data>
+  <data name="EncodeExpirationHoursLabel" xml:space="preserve">
+    <value>Expirará em %1 horas</value>
+  </data>
+  <data name="EncodeExpirationMinutesLabel" xml:space="preserve">
+    <value>Expira em minuto(s)</value>
+  </data>
+  <data name="PrivateKeyLabel" xml:space="preserve">
+    <value>Chave privada</value>
+  </data>
+  <data name="SignatureLabel" xml:space="preserve">
+    <value>Assinatura</value>
+  </data>
+  <data name="JwtIsValidMessage" xml:space="preserve">
+    <value>Assinatura verificada</value>
+  </data>
+  <data name="InvalidPublicKeyError" xml:space="preserve">
+    <value>Chave pública invalida</value>
+  </data>
+  <data name="JwtInValidMessage" xml:space="preserve">
+    <value>Assinatura inválida</value>
+  </data>
+  <data name="DecodeValidateActorLabel" xml:space="preserve">
+    <value>Validar ator</value>
+  </data>
+  <data name="DecodeValidateAudienceLabel" xml:space="preserve">
+    <value>Validar público</value>
+  </data>
+  <data name="DecodeValidateIssuerLabel" xml:space="preserve">
+    <value>Validar emissor</value>
+  </data>
+  <data name="DecodeValidateLifetimeLabel" xml:space="preserve">
+    <value>Validar tempo de vida</value>
+  </data>
+  <data name="ValidAudiencesLabel" xml:space="preserve">
+    <value>Validar público</value>
+  </data>
+  <data name="ValidIssuersLabel" xml:space="preserve">
+    <value>Emissores válidos</value>
+  </data>
+  <data name="DecodeValidationSettingsDescription" xml:space="preserve">
+    <value>Selecione quais parâmetros de token devem ser validados</value>
+  </data>
+  <data name="DecodeValidationSettingsTitle" xml:space="preserve">
+    <value>Configurações de validação de token</value>
+  </data>
+  <data name="ValidAudiencesError" xml:space="preserve">
+    <value>Audiências válidas estão vazias</value>
+  </data>
+  <data name="ValidIssuersError" xml:space="preserve">
+    <value>Valid issuers are empty</value>
+  </data>
+  <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
+    <value>A chave pública fornecida é uma chave privada</value>
+  </data>
+  <data name="EncodeAudienceLabel" xml:space="preserve">
+    <value>Token has audience</value>
+  </data>
+  <data name="EncodeIssuerLabel" xml:space="preserve">
+    <value>Token has issuer</value>
+  </data>
+  <data name="EncodeSettingsDescription" xml:space="preserve">
+    <value>Select token parameters</value>
+  </data>
+  <data name="InvalidPrivateKeyError" xml:space="preserve">
+    <value>Chave Privada Inválida</value>
+  </data>
+  <data name="PublicKeyLabel" xml:space="preserve">
+    <value>Chave Pública</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Codificador e decodificador JWT</value>
+  </data>
+  <data name="InvalidSignatureError" xml:space="preserve">
+    <value>Assinatura inválida</value>
   </data>
 </root>

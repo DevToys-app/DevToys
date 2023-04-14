@@ -118,27 +118,144 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Công cụ Giải mã JWT</value>
+    <value>Công cụ mã hóa / giải mã JWT</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>JWT Decoder</value>
+    <value>JWT</value>
   </data>
-  <data name="HeaderLabel" xml:space="preserve">
-    <value>Header</value>
+  <data name="JwtHeaderLabel" xml:space="preserve">
+    <value>Tiêu đề</value>
   </data>
   <data name="JwtTokenLabel" xml:space="preserve">
-    <value>Jwt Token</value>
+    <value>Mã thông báo</value>
   </data>
-  <data name="PayloadLabel" xml:space="preserve">
-    <value>Payload</value>
+  <data name="JwtPayloadLabel" xml:space="preserve">
+    <value>Tải trọng</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Decode a JWT header, payload and signature</value>
-  </data>
-  <data name="SearchDisplayName" xml:space="preserve">
-    <value>JWT Decoder</value>
+    <value>Giải mã một tiêu đề JWT, tải trọng và chữ kí</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
+  </data>
+  <data name="Algorithm" xml:space="preserve">
+    <value>Thuật toán</value>
+  </data>
+  <data name="DecodeSwitchModeLabel" xml:space="preserve">
+    <value>Giải mã</value>
+  </data>
+  <data name="DecodeValidateTokenLabel" xml:space="preserve">
+    <value>Xác thực mã thông báo</value>
+  </data>
+  <data name="DecodeValidateTokenNoLabel" xml:space="preserve">
+    <value>Không</value>
+  </data>
+  <data name="DecodeValidateTokenYesLabel" xml:space="preserve">
+    <value>Có</value>
+  </data>
+  <data name="EncodeExpirationTitle" xml:space="preserve">
+    <value>Mã thông báo đã hết hạn</value>
+  </data>
+  <data name="EncodeExpirationMonthLabel" xml:space="preserve">
+    <value>Hết hạn sau (các) tháng</value>
+  </data>
+  <data name="EncodeExpirationYearLabel" xml:space="preserve">
+    <value>Hết hạn sau (các) năm</value>
+  </data>
+  <data name="EncodeHashingTitle" xml:space="preserve">
+    <value>Thuật toán băm mã thông báo</value>
+  </data>
+  <data name="EncodeSettingsTitle" xml:space="preserve">
+    <value>Cài đặt</value>
+  </data>
+  <data name="EncodeSwitchModeLabel" xml:space="preserve">
+    <value>Mã hóa</value>
+  </data>
+  <data name="SettingsSwitchModeLabel" xml:space="preserve">
+    <value>Mã hóa / Giải mã</value>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Cấu hình</value>
+  </data>
+  <data name="EncodeDefaultTimeTitle" xml:space="preserve">
+    <value>Mã thông báo có thời gian mặc định</value>
+  </data>
+  <data name="EncodeExpirationDaysLabel" xml:space="preserve">
+    <value>Hết hạn sau (các) ngày</value>
+  </data>
+  <data name="EncodeExpirationHoursLabel" xml:space="preserve">
+    <value>Hết hạn sau (các) giờ</value>
+  </data>
+  <data name="EncodeExpirationMinutesLabel" xml:space="preserve">
+    <value>Hết hạn sau (các) phút</value>
+  </data>
+  <data name="PrivateKeyLabel" xml:space="preserve">
+    <value>Khóa riêng</value>
+  </data>
+  <data name="SignatureLabel" xml:space="preserve">
+    <value>Chữ kí</value>
+  </data>
+  <data name="JwtIsValidMessage" xml:space="preserve">
+    <value>Đã xác minh chữ kí</value>
+  </data>
+  <data name="InvalidPublicKeyError" xml:space="preserve">
+    <value>Khóa công khai không hợp lệ</value>
+  </data>
+  <data name="JwtInValidMessage" xml:space="preserve">
+    <value>Chữ kí không hợp lệ</value>
+  </data>
+  <data name="DecodeValidateActorLabel" xml:space="preserve">
+    <value>Xác thực diễn viên</value>
+  </data>
+  <data name="DecodeValidateAudienceLabel" xml:space="preserve">
+    <value>Xác thực đối tượng</value>
+  </data>
+  <data name="DecodeValidateIssuerLabel" xml:space="preserve">
+    <value>Xác thực người phát hành</value>
+  </data>
+  <data name="DecodeValidateLifetimeLabel" xml:space="preserve">
+    <value>Xác thực thời gian tồn tại</value>
+  </data>
+  <data name="ValidAudiencesLabel" xml:space="preserve">
+    <value>Đối tượng hợp lệ</value>
+  </data>
+  <data name="ValidIssuersLabel" xml:space="preserve">
+    <value>Người phát hành hợp lệ</value>
+  </data>
+  <data name="DecodeValidationSettingsDescription" xml:space="preserve">
+    <value>Chọn các tham số mã thông báo để xác thực</value>
+  </data>
+  <data name="DecodeValidationSettingsTitle" xml:space="preserve">
+    <value>Cài đặt xác thực mã thông báo</value>
+  </data>
+  <data name="ValidAudiencesError" xml:space="preserve">
+    <value>Các đối tượng hợp lệ rỗng</value>
+  </data>
+  <data name="ValidIssuersError" xml:space="preserve">
+    <value>Người phát hành hợp lệ rỗng</value>
+  </data>
+  <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
+    <value>Khóa công khai được cung cấp là một khóa riêng</value>
+  </data>
+  <data name="EncodeAudienceLabel" xml:space="preserve">
+    <value>Mã thông báo có đối tượng</value>
+  </data>
+  <data name="EncodeIssuerLabel" xml:space="preserve">
+    <value>Mã thông báo có người phát hành</value>
+  </data>
+  <data name="EncodeSettingsDescription" xml:space="preserve">
+    <value>Chọn tham số mã thông báo</value>
+  </data>
+  <data name="InvalidPrivateKeyError" xml:space="preserve">
+    <value>Khóa riêng không hợp lệ</value>
+  </data>
+  <data name="PublicKeyLabel" xml:space="preserve">
+    <value>Khóa công khai</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Mã hóa / giải mã JWT</value>
+  </data>
+  <data name="InvalidSignatureError" xml:space="preserve">
+    <value>Chữ kí không hợp lệ</value>
   </data>
 </root>

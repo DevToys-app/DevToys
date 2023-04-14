@@ -7,6 +7,7 @@ using DevToys.Core.Settings;
 using DevToys.Core.Threading;
 using DevToys.MonacoEditor.CodeEditorControl;
 using DevToys.MonacoEditor.Monaco.Editor;
+using DevToys.Shared.Core;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 using Windows.Storage.Pickers;
@@ -33,10 +34,14 @@ namespace DevToys.UI.Controls
                     null,
                     (d, e) =>
                     {
-                        if (e.NewValue is ISettingsProvider settingsProvider)
+                        var codeEditor = (CodeEditor)d;
+                        if (e.OldValue is ISettingsProvider settingsProvider)
                         {
-                            var codeEditor = (CodeEditor)d;
-                            settingsProvider.SettingChanged += codeEditor.SettingsProvider_SettingChanged;
+                            settingsProvider.SettingChanged -= codeEditor.SettingsProvider_SettingChanged;
+                        }
+                        if (e.NewValue is ISettingsProvider settingsProvider2)
+                        {
+                            settingsProvider2.SettingChanged += codeEditor.SettingsProvider_SettingChanged;
                         }
                     }));
 
@@ -186,6 +191,8 @@ namespace DevToys.UI.Controls
 
         public CodeEditor()
         {
+            SettingsProvider = MefComposer.Provider.Import<ISettingsProvider>();
+
             InitializeComponent();
 
             _codeEditorCore = ReloadCodeEditorCore();
@@ -465,6 +472,12 @@ namespace DevToys.UI.Controls
 
                 lock (_lockObject)
                 {
+                    if (SettingsProvider != null
+                        && SettingsProvider.GetSetting(PredefinedSettings.TextEditorPasteClearsText))
+                    {
+                        _codeEditorCore.Text = string.Empty;
+                    }
+
                     _codeEditorCore.SelectedText = text;
                     _codeEditorCore.Focus(FocusState.Programmatic);
                 }

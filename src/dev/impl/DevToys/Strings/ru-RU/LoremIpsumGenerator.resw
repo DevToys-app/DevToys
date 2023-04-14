@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Lorem Ipsum Generator tool</value>
+    <value>Lorem Ipsum генератор</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Установки</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generate Lorem Ipsum placeholder text</value>
+    <value>Генератор заполнителя текста Lorem Ipsum</value>
   </data>
   <data name="LengthDescription" xml:space="preserve">
-    <value>Number of words, sentences or paragraphs to generate</value>
+    <value>Количество слов, предложений или параграфов для генерации</value>
   </data>
   <data name="LengthTitle" xml:space="preserve">
-    <value>Length</value>
+    <value>Длина</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Lorem Ipsum</value>
@@ -139,25 +139,25 @@
     <value>Вывод</value>
   </data>
   <data name="ParagraphsType" xml:space="preserve">
-    <value>Paragraphs</value>
+    <value>Параграфы</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Lorem Ipsum Generator</value>
+    <value>Lorem Ipsum генератор</value>
   </data>
   <data name="SentencesType" xml:space="preserve">
-    <value>Sentences</value>
+    <value>Предложения</value>
   </data>
   <data name="StartWithLoremTitle" xml:space="preserve">
-    <value>Start with 'Lorem ipsum dolor sit amet...'</value>
+    <value>Начать с 'Lorem ipsum dolor sit amet...'</value>
   </data>
   <data name="TypeDescription" xml:space="preserve">
-    <value>Generate words, sentences or paragraphs of Lorem Ipsum</value>
+    <value>Сгенерировать слова, предложения или параграфы Lorem Ipsum</value>
   </data>
   <data name="TypeTitle" xml:space="preserve">
-    <value>Type</value>
+    <value>Тип</value>
   </data>
   <data name="WordsType" xml:space="preserve">
-    <value>Words</value>
+    <value>Слова</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>

@@ -58,19 +58,13 @@
                         Height="100"
                         Width="100"
                         Padding="12">
-                        <Viewbox
-                            Stretch="UniformToFill"
+                        <FontIcon
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            AutomationProperties.AccessibilityView="Raw">
-                            <ContentPresenter
-                                HorizontalContentAlignment="Center"
-                                VerticalContentAlignment="Center"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Foreground="{ThemeResource GridViewItemForeground}"
-                                Content="{x:Bind ToolProvider.IconSource.Result, Mode=OneWay}"/>
-                        </Viewbox>
+                            FontSize="64"
+                            Foreground="{ThemeResource GridViewItemForeground}"
+                            FontFamily="{StaticResource DevToysToolsIcons}"
+                            Glyph="{x:Bind ToolProvider.IconGlyph}"/>
                     </Border>
                     <TextBlock
                         Grid.Row="1"

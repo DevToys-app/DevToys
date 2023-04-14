@@ -13,7 +13,7 @@ namespace DevToys.ViewModels.Tools.UrlEncoderDecoder
     [Parent(EncodersDecodersGroupToolProvider.InternalName)]
     [ProtocolName("url")]
     [Order(0)]
-    internal sealed class UrlEncoderDecoderToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class UrlEncoderDecoderToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 
@@ -27,7 +27,7 @@ namespace DevToys.ViewModels.Tools.UrlEncoderDecoder
 
         public string? SearchKeywords => LanguageManager.Instance.UrlEncoderDecoder.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF4E4");
+        public string IconGlyph => "\u0121";
 
         [ImportingConstructor]
         public UrlEncoderDecoderToolProvider(IMefProvider mefProvider)

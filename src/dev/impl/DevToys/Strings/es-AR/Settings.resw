@@ -121,7 +121,7 @@
     <value>Acerca de</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>Tema de la aplicación</value>
+    <value>App theme</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
     <value>Elegí con que tema se va a mostrar la aplicación</value>
@@ -233,5 +233,11 @@
   </data>
   <data name="HelpTranslating" xml:space="preserve">
     <value>Help us translating DevToys!</value>
+  </data>
+  <data name="PasteClearsText" xml:space="preserve">
+    <value>Replace text when pasting</value>
+  </data>
+  <data name="PasteClearsTextDescription" xml:space="preserve">
+    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
   </data>
 </root>

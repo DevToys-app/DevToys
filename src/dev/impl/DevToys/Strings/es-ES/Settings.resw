@@ -232,6 +232,12 @@
     <value>Configurations Options Settings</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translating DevToys!</value>
+    <value>¡Ayúdanos a traducir DevToys!</value>
+  </data>
+  <data name="PasteClearsText" xml:space="preserve">
+    <value>Reemplazar texto al pegar</value>
+  </data>
+  <data name="PasteClearsTextDescription" xml:space="preserve">
+    <value>Al hacer clic en el botón Pegar, borre el texto antes de pegar en lugar de añadir al contenido del editor de texto existente.</value>
   </data>
 </root>

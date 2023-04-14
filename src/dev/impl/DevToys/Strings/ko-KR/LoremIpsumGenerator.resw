@@ -160,6 +160,6 @@
     <value>단어</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value>[빈 문자열]</value>
   </data>
 </root>

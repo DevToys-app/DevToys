@@ -15,7 +15,7 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
     [ProtocolName("jsonformat")]
     [Order(0)]
     [NotScrollable]
-    internal sealed class JsonFormatterToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class JsonFormatterToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 
@@ -29,7 +29,7 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
 
         public string? SearchKeywords => LanguageManager.Instance.JsonFormatter.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("JsonFormatter.svg");
+        public string IconGlyph => "\u0108";
 
         [ImportingConstructor]
         public JsonFormatterToolProvider(IMefProvider mefProvider)

@@ -121,7 +121,7 @@
     <value>關於</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>應用程式主題</value>
+    <value>應用主題</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
     <value>選取要顯示的應用程式主題</value>
@@ -229,9 +229,15 @@
     <value>設定</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>配置 設定 選項</value>
+    <value>組態 設定 選項</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translating DevToys!</value>
+    <value>幫助我們翻譯 DevToys！</value>
+  </data>
+  <data name="PasteClearsText" xml:space="preserve">
+    <value>貼上時取代文字</value>
+  </data>
+  <data name="PasteClearsTextDescription" xml:space="preserve">
+    <value>點擊貼上按鈕時，先清除文字，而非直接貼在現有的文字後面。</value>
   </data>
 </root>

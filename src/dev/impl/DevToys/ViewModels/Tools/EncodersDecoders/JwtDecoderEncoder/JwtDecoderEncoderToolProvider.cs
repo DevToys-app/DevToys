@@ -15,7 +15,7 @@ namespace DevToys.ViewModels.Tools.JwtDecoderEncoder
     [ProtocolName("jwt")]
     [Order(3)]
     [NotScrollable]
-    internal sealed class JwtDecoderEncoderToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class JwtDecoderEncoderToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 
@@ -29,7 +29,7 @@ namespace DevToys.ViewModels.Tools.JwtDecoderEncoder
 
         public string? SearchKeywords => LanguageManager.Instance.JwtDecoderEncoder.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("JWT.svg");
+        public string IconGlyph => "\u0110";
 
         [ImportingConstructor]
         public JwtDecoderEncoderToolProvider(IMefProvider mefProvider)

@@ -28,6 +28,7 @@ using Microsoft.Toolkit.Mvvm.Messaging;
 using Microsoft.UI.Xaml.Controls;
 using Windows.ApplicationModel;
 using Windows.Foundation;
+using Windows.System;
 using Windows.UI.StartScreen;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -53,7 +54,7 @@ namespace DevToys.ViewModels
         private readonly IWindowManager _windowManager;
         private readonly DisposableSempahore _sempahore = new();
         private readonly Task _menuInitializationTask;
-        private readonly NavigationViewItemSeparator _headerSeparatorControl = new NavigationViewItemSeparator();
+        private readonly NavigationViewItemSeparator _headerSeparatorControl = new();
 
         private ToolProviderViewItem? _selectedItem;
         private NavigationViewDisplayMode _navigationViewDisplayMode;
@@ -666,8 +667,9 @@ namespace DevToys.ViewModels
 
             using (await _sempahore.WaitAsync(CancellationToken.None).ConfigureAwait(false))
             {
-                if (newRecommendedTools.Length == 1
-                    && IsToolDisplayedInMenu(ToolsMenuItems.OfType<ToolProviderViewItem>(), newRecommendedTools[0]))
+                ToolProviderViewItem? toolProvider = GetRecommendedToolProvider(newRecommendedTools);
+                if (toolProvider != null
+                    && IsToolDisplayedInMenu(ToolsMenuItems.OfType<ToolProviderViewItem>(), toolProvider))
                 {
                     // One unique tool is recommended.
                     // The recommended tool is displayed in the top menu.
@@ -679,11 +681,26 @@ namespace DevToys.ViewModels
                         {
                             if (!IsInCompactOverlayMode && _allowSelectAutomaticallyRecommendedTool)
                             {
-                                SetSelectedMenuItem(newRecommendedTools[0], _clipboardContent);
+                                SetSelectedMenuItem(toolProvider, _clipboardContent);
                             }
                         });
                 }
             }
+        }
+
+        private ToolProviderViewItem? GetRecommendedToolProvider(ToolProviderViewItem[] items)
+        {
+            ToolProviderViewItem favoriteItem = items.FirstOrDefault(i => i.IsFavorite);
+            if (favoriteItem != null)
+            {
+                return favoriteItem;
+            }
+            else if (items.Length == 1)
+            {
+                return items[0];
+            }
+
+            return null;
         }
 
         private bool IsToolDisplayedInMenu(IEnumerable<ToolProviderViewItem> tools, ToolProviderViewItem ToolProviderViewItem)
@@ -724,9 +741,19 @@ namespace DevToys.ViewModels
                     () =>
                     {
                         ThreadHelper.ThrowIfNotOnUIThread();
-                        Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/veler/DevToys/releases")).AsTask().Forget();
+                        Launcher.LaunchUriAsync(new Uri("https://github.com/veler/DevToys/releases")).AsTask().Forget();
                     },
                     await AssetsHelper.GetReleaseNoteAsync());
+
+                _notificationService.ShowInAppNotification(
+                    Strings.SurveyTitle,
+                    Strings.SurveyYesButton,
+                    () =>
+                    {
+                        ThreadHelper.ThrowIfNotOnUIThread();
+                        Launcher.LaunchUriAsync(new Uri("https://forms.office.com/r/eh27t4Z4nB")).AsTask().Forget();
+                    },
+                    Strings.SurveyDescription);
 
                 _marketingService.NotifyAppJustUpdated();
             }

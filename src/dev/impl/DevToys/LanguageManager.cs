@@ -29,7 +29,9 @@ namespace DevToys
         private readonly Base64ImageEncoderDecoderStrings _base64imageencoderdecoder = new Base64ImageEncoderDecoderStrings();
         private readonly CheckSumGeneratorStrings _checksumgenerator = new CheckSumGeneratorStrings();
         private readonly ColorBlindnessSimulatorStrings _colorblindnesssimulator = new ColorBlindnessSimulatorStrings();
+        private readonly ColorPickerStrings _colorpicker = new ColorPickerStrings();
         private readonly CommonStrings _common = new CommonStrings();
+        private readonly CRONParserStrings _cronparser = new CRONParserStrings();
         private readonly GuidGeneratorStrings _guidgenerator = new GuidGeneratorStrings();
         private readonly GZipEncoderDecoderStrings _gzipencoderdecoder = new GZipEncoderDecoderStrings();
         private readonly HashGeneratorStrings _hashgenerator = new HashGeneratorStrings();
@@ -92,9 +94,19 @@ namespace DevToys
         public ColorBlindnessSimulatorStrings ColorBlindnessSimulator => _colorblindnesssimulator;
 
         /// <summary>
+        /// Gets the <see cref="ColorPickerStrings"/>.
+        /// </summary>
+        public ColorPickerStrings ColorPicker => _colorpicker;
+
+        /// <summary>
         /// Gets the <see cref="CommonStrings"/>.
         /// </summary>
         public CommonStrings Common => _common;
+
+        /// <summary>
+        /// Gets the <see cref="CRONParserStrings"/>.
+        /// </summary>
+        public CRONParserStrings CRONParser => _cronparser;
 
         /// <summary>
         /// Gets the <see cref="GuidGeneratorStrings"/>.
@@ -543,6 +555,116 @@ namespace DevToys
         public string SearchKeywords => _resources.GetString("SearchKeywords");
     }
 
+    public class ColorPickerStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("ColorPicker");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
+        /// Gets the resource MenuDisplayName.
+        /// </summary>
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+
+        /// <summary>
+        /// Gets the resource SearchKeywords.
+        /// </summary>
+        public string SearchKeywords => _resources.GetString("SearchKeywords");
+
+        /// <summary>
+        /// Gets the resource TextColor.
+        /// </summary>
+        public string TextColor => _resources.GetString("TextColor");
+
+        /// <summary>
+        /// Gets the resource Configuration.
+        /// </summary>
+        public string Configuration => _resources.GetString("Configuration");
+
+        /// <summary>
+        /// Gets the resource Mode.
+        /// </summary>
+        public string Mode => _resources.GetString("Mode");
+
+        /// <summary>
+        /// Gets the resource ModeHSL.
+        /// </summary>
+        public string ModeHSL => _resources.GetString("ModeHSL");
+
+        /// <summary>
+        /// Gets the resource ModeHSV.
+        /// </summary>
+        public string ModeHSV => _resources.GetString("ModeHSV");
+
+        /// <summary>
+        /// Gets the resource SelectedColor.
+        /// </summary>
+        public string SelectedColor => _resources.GetString("SelectedColor");
+
+        /// <summary>
+        /// Gets the resource BackgroundColor.
+        /// </summary>
+        public string BackgroundColor => _resources.GetString("BackgroundColor");
+
+        /// <summary>
+        /// Gets the resource ContrastRatio.
+        /// </summary>
+        public string ContrastRatio => _resources.GetString("ContrastRatio");
+
+        /// <summary>
+        /// Gets the resource Fail.
+        /// </summary>
+        public string Fail => _resources.GetString("Fail");
+
+        /// <summary>
+        /// Gets the resource LargeText.
+        /// </summary>
+        public string LargeText => _resources.GetString("LargeText");
+
+        /// <summary>
+        /// Gets the resource Pass.
+        /// </summary>
+        public string Pass => _resources.GetString("Pass");
+
+        /// <summary>
+        /// Gets the resource SampleText.
+        /// </summary>
+        public string SampleText => _resources.GetString("SampleText");
+
+        /// <summary>
+        /// Gets the resource SampleTextTitle.
+        /// </summary>
+        public string SampleTextTitle => _resources.GetString("SampleTextTitle");
+
+        /// <summary>
+        /// Gets the resource SmallText.
+        /// </summary>
+        public string SmallText => _resources.GetString("SmallText");
+
+        /// <summary>
+        /// Gets the resource WCAG_AA.
+        /// </summary>
+        public string WCAG_AA => _resources.GetString("WCAG_AA");
+
+        /// <summary>
+        /// Gets the resource WCAG_AAA.
+        /// </summary>
+        public string WCAG_AAA => _resources.GetString("WCAG_AAA");
+    }
+
     public class CommonStrings : ObservableObject
     {
         private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("Common");
@@ -728,6 +850,101 @@ namespace DevToys
         /// Gets the resource ViewImage.
         /// </summary>
         public string ViewImage => _resources.GetString("ViewImage");
+    }
+
+    public class CRONParserStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("CRONParser");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
+        /// Gets the resource Configuration.
+        /// </summary>
+        public string Configuration => _resources.GetString("Configuration");
+
+        /// <summary>
+        /// Gets the resource UseSecondsDescription.
+        /// </summary>
+        public string UseSecondsDescription => _resources.GetString("UseSecondsDescription");
+
+        /// <summary>
+        /// Gets the resource UseSecondsTitle.
+        /// </summary>
+        public string UseSecondsTitle => _resources.GetString("UseSecondsTitle");
+
+        /// <summary>
+        /// Gets the resource MenuDisplayName.
+        /// </summary>
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+
+        /// <summary>
+        /// Gets the resource SearchKeywords.
+        /// </summary>
+        public string SearchKeywords => _resources.GetString("SearchKeywords");
+
+        /// <summary>
+        /// Gets the resource CronErrorMessage.
+        /// </summary>
+        public string CronErrorMessage => _resources.GetString("CronErrorMessage");
+
+        /// <summary>
+        /// Gets the resource InputTitle.
+        /// </summary>
+        public string InputTitle => _resources.GetString("InputTitle");
+
+        /// <summary>
+        /// Gets the resource OutputDateTimeDescription.
+        /// </summary>
+        public string OutputDateTimeDescription => _resources.GetString("OutputDateTimeDescription");
+
+        /// <summary>
+        /// Gets the resource OutputDateTimeTitle.
+        /// </summary>
+        public string OutputDateTimeTitle => _resources.GetString("OutputDateTimeTitle");
+
+        /// <summary>
+        /// Gets the resource OutputFormatErrorMessage.
+        /// </summary>
+        public string OutputFormatErrorMessage => _resources.GetString("OutputFormatErrorMessage");
+
+        /// <summary>
+        /// Gets the resource OutputLimitDescription.
+        /// </summary>
+        public string OutputLimitDescription => _resources.GetString("OutputLimitDescription");
+
+        /// <summary>
+        /// Gets the resource OutputLimitTitle.
+        /// </summary>
+        public string OutputLimitTitle => _resources.GetString("OutputLimitTitle");
+
+        /// <summary>
+        /// Gets the resource OutputTitle.
+        /// </summary>
+        public string OutputTitle => _resources.GetString("OutputTitle");
+
+        /// <summary>
+        /// Gets the resource SecondsExcludedMode.
+        /// </summary>
+        public string SecondsExcludedMode => _resources.GetString("SecondsExcludedMode");
+
+        /// <summary>
+        /// Gets the resource SecondsIncludedMode.
+        /// </summary>
+        public string SecondsIncludedMode => _resources.GetString("SecondsIncludedMode");
     }
 
     public class GuidGeneratorStrings : ObservableObject
@@ -1258,6 +1475,11 @@ namespace DevToys
         /// Gets the resource SearchKeywords.
         /// </summary>
         public string SearchKeywords => _resources.GetString("SearchKeywords");
+
+        /// <summary>
+        /// Gets the resource SortProperties.
+        /// </summary>
+        public string SortProperties => _resources.GetString("SortProperties");
     }
 
     public class JsonYamlStrings : ObservableObject
@@ -1360,9 +1582,9 @@ namespace DevToys
         public string MenuDisplayName => _resources.GetString("MenuDisplayName");
 
         /// <summary>
-        /// Gets the resource HeaderLabel.
+        /// Gets the resource JwtHeaderLabel.
         /// </summary>
-        public string HeaderLabel => _resources.GetString("HeaderLabel");
+        public string JwtHeaderLabel => _resources.GetString("JwtHeaderLabel");
 
         /// <summary>
         /// Gets the resource JwtTokenLabel.
@@ -1370,9 +1592,9 @@ namespace DevToys
         public string JwtTokenLabel => _resources.GetString("JwtTokenLabel");
 
         /// <summary>
-        /// Gets the resource PayloadLabel.
+        /// Gets the resource JwtPayloadLabel.
         /// </summary>
-        public string PayloadLabel => _resources.GetString("PayloadLabel");
+        public string JwtPayloadLabel => _resources.GetString("JwtPayloadLabel");
 
         /// <summary>
         /// Gets the resource Description.
@@ -1380,14 +1602,209 @@ namespace DevToys
         public string Description => _resources.GetString("Description");
 
         /// <summary>
+        /// Gets the resource SearchKeywords.
+        /// </summary>
+        public string SearchKeywords => _resources.GetString("SearchKeywords");
+
+        /// <summary>
+        /// Gets the resource Algorithm.
+        /// </summary>
+        public string Algorithm => _resources.GetString("Algorithm");
+
+        /// <summary>
+        /// Gets the resource DecodeSwitchModeLabel.
+        /// </summary>
+        public string DecodeSwitchModeLabel => _resources.GetString("DecodeSwitchModeLabel");
+
+        /// <summary>
+        /// Gets the resource DecodeValidateTokenLabel.
+        /// </summary>
+        public string DecodeValidateTokenLabel => _resources.GetString("DecodeValidateTokenLabel");
+
+        /// <summary>
+        /// Gets the resource DecodeValidateTokenNoLabel.
+        /// </summary>
+        public string DecodeValidateTokenNoLabel => _resources.GetString("DecodeValidateTokenNoLabel");
+
+        /// <summary>
+        /// Gets the resource DecodeValidateTokenYesLabel.
+        /// </summary>
+        public string DecodeValidateTokenYesLabel => _resources.GetString("DecodeValidateTokenYesLabel");
+
+        /// <summary>
+        /// Gets the resource EncodeExpirationTitle.
+        /// </summary>
+        public string EncodeExpirationTitle => _resources.GetString("EncodeExpirationTitle");
+
+        /// <summary>
+        /// Gets the resource EncodeExpirationMonthLabel.
+        /// </summary>
+        public string EncodeExpirationMonthLabel => _resources.GetString("EncodeExpirationMonthLabel");
+
+        /// <summary>
+        /// Gets the resource EncodeExpirationYearLabel.
+        /// </summary>
+        public string EncodeExpirationYearLabel => _resources.GetString("EncodeExpirationYearLabel");
+
+        /// <summary>
+        /// Gets the resource EncodeHashingTitle.
+        /// </summary>
+        public string EncodeHashingTitle => _resources.GetString("EncodeHashingTitle");
+
+        /// <summary>
+        /// Gets the resource EncodeSettingsTitle.
+        /// </summary>
+        public string EncodeSettingsTitle => _resources.GetString("EncodeSettingsTitle");
+
+        /// <summary>
+        /// Gets the resource EncodeSwitchModeLabel.
+        /// </summary>
+        public string EncodeSwitchModeLabel => _resources.GetString("EncodeSwitchModeLabel");
+
+        /// <summary>
+        /// Gets the resource SettingsSwitchModeLabel.
+        /// </summary>
+        public string SettingsSwitchModeLabel => _resources.GetString("SettingsSwitchModeLabel");
+
+        /// <summary>
+        /// Gets the resource SettingsTitle.
+        /// </summary>
+        public string SettingsTitle => _resources.GetString("SettingsTitle");
+
+        /// <summary>
+        /// Gets the resource EncodeDefaultTimeTitle.
+        /// </summary>
+        public string EncodeDefaultTimeTitle => _resources.GetString("EncodeDefaultTimeTitle");
+
+        /// <summary>
+        /// Gets the resource EncodeExpirationDaysLabel.
+        /// </summary>
+        public string EncodeExpirationDaysLabel => _resources.GetString("EncodeExpirationDaysLabel");
+
+        /// <summary>
+        /// Gets the resource EncodeExpirationHoursLabel.
+        /// </summary>
+        public string EncodeExpirationHoursLabel => _resources.GetString("EncodeExpirationHoursLabel");
+
+        /// <summary>
+        /// Gets the resource EncodeExpirationMinutesLabel.
+        /// </summary>
+        public string EncodeExpirationMinutesLabel => _resources.GetString("EncodeExpirationMinutesLabel");
+
+        /// <summary>
+        /// Gets the resource PrivateKeyLabel.
+        /// </summary>
+        public string PrivateKeyLabel => _resources.GetString("PrivateKeyLabel");
+
+        /// <summary>
+        /// Gets the resource SignatureLabel.
+        /// </summary>
+        public string SignatureLabel => _resources.GetString("SignatureLabel");
+
+        /// <summary>
+        /// Gets the resource JwtIsValidMessage.
+        /// </summary>
+        public string JwtIsValidMessage => _resources.GetString("JwtIsValidMessage");
+
+        /// <summary>
+        /// Gets the resource InvalidPublicKeyError.
+        /// </summary>
+        public string InvalidPublicKeyError => _resources.GetString("InvalidPublicKeyError");
+
+        /// <summary>
+        /// Gets the resource JwtInValidMessage.
+        /// </summary>
+        public string JwtInValidMessage => _resources.GetString("JwtInValidMessage");
+
+        /// <summary>
+        /// Gets the resource DecodeValidateActorLabel.
+        /// </summary>
+        public string DecodeValidateActorLabel => _resources.GetString("DecodeValidateActorLabel");
+
+        /// <summary>
+        /// Gets the resource DecodeValidateAudienceLabel.
+        /// </summary>
+        public string DecodeValidateAudienceLabel => _resources.GetString("DecodeValidateAudienceLabel");
+
+        /// <summary>
+        /// Gets the resource DecodeValidateIssuerLabel.
+        /// </summary>
+        public string DecodeValidateIssuerLabel => _resources.GetString("DecodeValidateIssuerLabel");
+
+        /// <summary>
+        /// Gets the resource DecodeValidateLifetimeLabel.
+        /// </summary>
+        public string DecodeValidateLifetimeLabel => _resources.GetString("DecodeValidateLifetimeLabel");
+
+        /// <summary>
+        /// Gets the resource ValidAudiencesLabel.
+        /// </summary>
+        public string ValidAudiencesLabel => _resources.GetString("ValidAudiencesLabel");
+
+        /// <summary>
+        /// Gets the resource ValidIssuersLabel.
+        /// </summary>
+        public string ValidIssuersLabel => _resources.GetString("ValidIssuersLabel");
+
+        /// <summary>
+        /// Gets the resource DecodeValidationSettingsDescription.
+        /// </summary>
+        public string DecodeValidationSettingsDescription => _resources.GetString("DecodeValidationSettingsDescription");
+
+        /// <summary>
+        /// Gets the resource DecodeValidationSettingsTitle.
+        /// </summary>
+        public string DecodeValidationSettingsTitle => _resources.GetString("DecodeValidationSettingsTitle");
+
+        /// <summary>
+        /// Gets the resource ValidAudiencesError.
+        /// </summary>
+        public string ValidAudiencesError => _resources.GetString("ValidAudiencesError");
+
+        /// <summary>
+        /// Gets the resource ValidIssuersError.
+        /// </summary>
+        public string ValidIssuersError => _resources.GetString("ValidIssuersError");
+
+        /// <summary>
+        /// Gets the resource PublicKeyIsPrivateKeyError.
+        /// </summary>
+        public string PublicKeyIsPrivateKeyError => _resources.GetString("PublicKeyIsPrivateKeyError");
+
+        /// <summary>
+        /// Gets the resource EncodeAudienceLabel.
+        /// </summary>
+        public string EncodeAudienceLabel => _resources.GetString("EncodeAudienceLabel");
+
+        /// <summary>
+        /// Gets the resource EncodeIssuerLabel.
+        /// </summary>
+        public string EncodeIssuerLabel => _resources.GetString("EncodeIssuerLabel");
+
+        /// <summary>
+        /// Gets the resource EncodeSettingsDescription.
+        /// </summary>
+        public string EncodeSettingsDescription => _resources.GetString("EncodeSettingsDescription");
+
+        /// <summary>
+        /// Gets the resource InvalidPrivateKeyError.
+        /// </summary>
+        public string InvalidPrivateKeyError => _resources.GetString("InvalidPrivateKeyError");
+
+        /// <summary>
+        /// Gets the resource PublicKeyLabel.
+        /// </summary>
+        public string PublicKeyLabel => _resources.GetString("PublicKeyLabel");
+
+        /// <summary>
         /// Gets the resource SearchDisplayName.
         /// </summary>
         public string SearchDisplayName => _resources.GetString("SearchDisplayName");
 
         /// <summary>
-        /// Gets the resource SearchKeywords.
+        /// Gets the resource InvalidSignatureError.
         /// </summary>
-        public string SearchKeywords => _resources.GetString("SearchKeywords");
+        public string InvalidSignatureError => _resources.GetString("InvalidSignatureError");
     }
 
     public class LoremIpsumGeneratorStrings : ObservableObject
@@ -1561,6 +1978,21 @@ namespace DevToys
         /// Gets the resource SearchNoResultsFound.
         /// </summary>
         public string SearchNoResultsFound => _resources.GetString("SearchNoResultsFound");
+
+        /// <summary>
+        /// Gets the resource SurveyDescription.
+        /// </summary>
+        public string SurveyDescription => _resources.GetString("SurveyDescription");
+
+        /// <summary>
+        /// Gets the resource SurveyTitle.
+        /// </summary>
+        public string SurveyTitle => _resources.GetString("SurveyTitle");
+
+        /// <summary>
+        /// Gets the resource SurveyYesButton.
+        /// </summary>
+        public string SurveyYesButton => _resources.GetString("SurveyYesButton");
 
         /// <summary>
         /// Gets the resource WindowTitle.
@@ -2000,6 +2432,31 @@ namespace DevToys
         /// Gets the resource SearchKeywords.
         /// </summary>
         public string SearchKeywords => _resources.GetString("SearchKeywords");
+
+        /// <summary>
+        /// Gets the resource InputTitle.
+        /// </summary>
+        public string InputTitle => _resources.GetString("InputTitle");
+
+        /// <summary>
+        /// Gets the resource OutputTitle.
+        /// </summary>
+        public string OutputTitle => _resources.GetString("OutputTitle");
+
+        /// <summary>
+        /// Gets the resource Group.
+        /// </summary>
+        public string Group => _resources.GetString("Group");
+
+        /// <summary>
+        /// Gets the resource Match.
+        /// </summary>
+        public string Match => _resources.GetString("Match");
+
+        /// <summary>
+        /// Gets the resource Matches.
+        /// </summary>
+        public string Matches => _resources.GetString("Matches");
     }
 
     public class SearchResultStrings : ObservableObject
@@ -2231,6 +2688,16 @@ namespace DevToys
         /// Gets the resource HelpTranslating.
         /// </summary>
         public string HelpTranslating => _resources.GetString("HelpTranslating");
+
+        /// <summary>
+        /// Gets the resource PasteClearsText.
+        /// </summary>
+        public string PasteClearsText => _resources.GetString("PasteClearsText");
+
+        /// <summary>
+        /// Gets the resource PasteClearsTextDescription.
+        /// </summary>
+        public string PasteClearsTextDescription => _resources.GetString("PasteClearsTextDescription");
     }
 
     public class SqlFormatterStrings : ObservableObject
@@ -3016,5 +3483,49 @@ namespace DevToys
         /// Gets the resource XmlIsValidMessage.
         /// </summary>
         public string XmlIsValidMessage => _resources.GetString("XmlIsValidMessage");
+
+        /// <summary>
+        /// Gets the resource SearchKeywords.
+        /// </summary>
+        public string SearchKeywords => _resources.GetString("SearchKeywords");
+
+        /// <summary>
+        /// Gets the resource XmlNamespacesInconsistentMsg.
+        /// </summary>
+        public string XmlNamespacesInconsistentMsg => _resources.GetString("XmlNamespacesInconsistentMsg");
+
+        /// <summary>
+        /// Gets the resource XmlNamespacesInconsistentMsg with format.
+        /// </summary>
+        public string GetFormattedXmlNamespacesInconsistentMsg(string? param0)
+        {
+            return string.Format(XmlNamespacesInconsistentMsg, param0);
+        }
+
+        /// <summary>
+        /// Gets the resource XsdNamespacesInconsistentMsg.
+        /// </summary>
+        public string XsdNamespacesInconsistentMsg => _resources.GetString("XsdNamespacesInconsistentMsg");
+
+        /// <summary>
+        /// Gets the resource XsdNamespacesInconsistentMsg with format.
+        /// </summary>
+        public string GetFormattedXsdNamespacesInconsistentMsg(string? param0)
+        {
+            return string.Format(XsdNamespacesInconsistentMsg, param0);
+        }
+
+        /// <summary>
+        /// Gets the resource TargetNamespaceNotDefinedInXml.
+        /// </summary>
+        public string TargetNamespaceNotDefinedInXml => _resources.GetString("TargetNamespaceNotDefinedInXml");
+
+        /// <summary>
+        /// Gets the resource TargetNamespaceNotDefinedInXml with format.
+        /// </summary>
+        public string GetFormattedTargetNamespaceNotDefinedInXml(string? param0)
+        {
+            return string.Format(TargetNamespaceNotDefinedInXml, param0);
+        }
     }
 }

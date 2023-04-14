@@ -8,7 +8,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace DevToys.ViewModels.Tools
 {
-    internal abstract class GroupToolProviderBase : ToolProviderBase, IToolProvider
+    internal abstract class GroupToolProviderBase : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 
@@ -22,7 +22,7 @@ namespace DevToys.ViewModels.Tools
 
         public virtual string? SearchKeywords { get; }
 
-        public abstract TaskCompletionNotifier<IconElement> IconSource { get; }
+        public abstract string IconGlyph { get; }
 
         public GroupToolProviderBase(IMefProvider mefProvider)
         {

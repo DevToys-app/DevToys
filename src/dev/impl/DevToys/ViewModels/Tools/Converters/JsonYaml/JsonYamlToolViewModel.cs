@@ -42,8 +42,6 @@ namespace DevToys.ViewModels.Tools.JsonYaml
 
         internal const string JsonToYaml = nameof(JsonToYaml);
         internal const string YamlToJson = nameof(YamlToJson);
-        private const string TwoSpaceIndentation = "TwoSpaces";
-        private const string FourSpaceIndentation = "FourSpaces";
 
         private readonly IMarketingService _marketingService;
         private readonly Queue<string> _conversionQueue = new();

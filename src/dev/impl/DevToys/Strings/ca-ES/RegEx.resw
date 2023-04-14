@@ -121,7 +121,7 @@
     <value>Regular expression tester tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Configuració</value>
   </data>
   <data name="CultureInvariant" xml:space="preserve">
     <value>Culture Invariant</value>
@@ -185,5 +185,20 @@
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>Regular expression</value>
+  </data>
+  <data name="InputTitle" xml:space="preserve">
+    <value>Entrada</value>
+  </data>
+  <data name="OutputTitle" xml:space="preserve">
+    <value>Sortida</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="Match" xml:space="preserve">
+    <value>Match</value>
+  </data>
+  <data name="Matches" xml:space="preserve">
+    <value>Matches</value>
   </data>
 </root>

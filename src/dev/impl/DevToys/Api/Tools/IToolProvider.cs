@@ -41,9 +41,9 @@ namespace DevToys.Api.Tools
         string? SearchKeywords { get; }
 
         /// <summary>
-        /// Gets an object type that has a width, height and image data. It can be an icon through a font, an SVG...etc.
+        /// Gets a glyph for the icon of the tool.
         /// </summary>
-        TaskCompletionNotifier<IconElement> IconSource { get; }
+        string IconGlyph { get; }
 
         /// <summary>
         /// Creates a new instance of the tool.

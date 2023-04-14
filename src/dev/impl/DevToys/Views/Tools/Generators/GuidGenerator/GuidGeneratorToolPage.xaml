@@ -112,7 +112,6 @@
             AcceptsReturn="True"
             IsReadOnly="True"
             CanClearWhenReadOnly="True"
-            SettingsProvider="{x:Bind ViewModel.SettingsProvider}"
             Text="{x:Bind ViewModel.Output, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </Page>

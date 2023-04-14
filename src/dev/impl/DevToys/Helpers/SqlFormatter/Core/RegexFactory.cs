@@ -4,15 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using DevToys.Shared.Core;
 
 namespace DevToys.Helpers.SqlFormatter.Core
 {
     internal static class RegexFactory
     {
-        internal readonly static TimeSpan DefaultMatchTimeout = TimeSpan.FromSeconds(1);
+        internal static readonly TimeSpan DefaultMatchTimeout = TimeSpan.FromSeconds(1);
         private static readonly Regex SpecialCharacterRegex = new(@"[.*+?^${}()|[\]\\]", RegexOptions.Compiled, DefaultMatchTimeout);
-        private static readonly Dictionary<string, string> Patterns = new Dictionary<string, string>()
+        private static readonly Dictionary<string, string> Patterns = new()
         {
             { "``", "((`[^`]*($|`))+)" },
             { "{}", "((\\{[^\\}]*($|\\}))+)" },

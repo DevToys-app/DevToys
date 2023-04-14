@@ -16,7 +16,7 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
     [ProtocolName("baseconverter")]
     [Order(1)]
     [CompactOverlaySize(width: 400, height: 500)]
-    internal sealed class NumberBaseConverterToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class NumberBaseConverterToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 
@@ -30,7 +30,7 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
 
         public string? SearchKeywords => LanguageManager.Instance.NumberBaseConverter.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uFE2C");
+        public string IconGlyph => "\u0118";
 
         [ImportingConstructor]
         public NumberBaseConverterToolProvider(IMefProvider mefProvider)

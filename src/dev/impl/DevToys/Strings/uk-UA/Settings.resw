@@ -121,7 +121,7 @@
     <value>Про програму</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>Тема</value>
+    <value>Тема застосунку</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
     <value>Виберіть тему оформлення</value>
@@ -233,5 +233,11 @@
   </data>
   <data name="HelpTranslating" xml:space="preserve">
     <value>Допоможіть нам з перекладами DevToys!</value>
+  </data>
+  <data name="PasteClearsText" xml:space="preserve">
+    <value>Замінити текст при вставленні</value>
+  </data>
+  <data name="PasteClearsTextDescription" xml:space="preserve">
+    <value>До натискання клавіші Вставити очистіть текст перед вставленням замість того, щоб додавати до наявного вмісту текстового редактора.</value>
   </data>
 </root>

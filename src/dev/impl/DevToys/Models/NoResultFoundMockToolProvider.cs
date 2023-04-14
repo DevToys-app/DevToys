@@ -20,9 +20,11 @@ namespace DevToys.Models
 
         public string? SearchKeywords => LanguageManager.Instance.MainPage.SearchNoResultsFound;
 
-        public TaskCompletionNotifier<IconElement> IconSource => null!;
+        public string IconGlyph => null!;
 
+#pragma warning disable 0067
         public event PropertyChangedEventHandler? PropertyChanged;
+#pragma warning restore 0067
 
         public bool CanBeTreatedByTool(string data)
         {

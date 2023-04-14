@@ -1,8 +1,8 @@
-﻿🎉 New Features
-  • Timestamp Converter now supports timezone!
-👏 Improvements
-  • Updated Simplified Chinese translation
-  • Improved the layout of many tools in Picture-in-Picture mode
+﻿👏 Improvements
+  • XML Validator can now detect inconsistent XML namespace references
+  • UI tweaks in JWT Encoder / Decoder
+  • Translations
 🐛 Bug Fixes
-  • Performance issue in Base64 Image Encoder / Decoder
-  • Potential crashes in Base64 Image Encoder / Decoder
+  • SQL Formatter issue with VALUES
+  • URL Encoder / Decoder was encoding new lines incorrectly
+  • DevToys won't appear as a file picker anymore

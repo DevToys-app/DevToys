@@ -30,6 +30,15 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
                 isRoaming: true,
                 defaultValue: Models.Indentation.TwoSpaces);
 
+        /// <summary>
+        /// Whether properties within the JSON should be sorted alphabetically or not.
+        /// </summary>
+        private static readonly SettingDefinition<bool> SortProperties
+            = new(
+                name: $"{nameof(JsonFormatterToolViewModel)}.{nameof(SortProperties)}",
+                isRoaming: true,
+                defaultValue: false);
+
         private readonly IMarketingService _marketingService;
         private readonly Queue<string> _formattingQueue = new();
 
@@ -73,6 +82,24 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
             Models.IndentationDisplayPair.OneTab,
             Models.IndentationDisplayPair.Minified,
         };
+
+
+        /// <summary>
+        /// Gets or sets the whether properties within the JSON should be sorted alphabetically or not.
+        /// </summary>
+        internal bool IsSortProperties
+        {
+            get => SettingsProvider.GetSetting(SortProperties);
+            set
+            {
+                if (IsSortProperties != value)
+                {
+                    SettingsProvider.SetSetting(SortProperties, value);
+                    OnPropertyChanged();
+                    QueueFormatting();
+                }
+            }
+        }
 
         /// <summary>
         /// Gets or sets the input text.
@@ -121,7 +148,7 @@ namespace DevToys.ViewModels.Tools.JsonFormatter
 
             while (_formattingQueue.TryDequeue(out string? text))
             {
-                string? result = JsonHelper.Format(text, IndentationMode.Value);
+                string? result = JsonHelper.Format(text, IndentationMode.Value, IsSortProperties);
                 if (result != null)
                 {
                     ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, () =>

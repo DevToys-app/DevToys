@@ -91,7 +91,7 @@ namespace DevToys.ViewModels.Tools.NumberBaseConverter
             AdvancedViewModel = advnacedViewModel;
             BasicViewModel = basicViewModel;
             IsActive = true;
-        }
+        }        
 
         public void Receive(ChangeInfoBarStatusMessage message)
         {

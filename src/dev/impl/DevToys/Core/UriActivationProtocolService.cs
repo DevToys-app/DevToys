@@ -225,7 +225,18 @@ namespace DevToys.Core
                         Stretch = Stretch.UniformToFill
                     };
 
-                    IconElement toolIcon = await toolProvider.Icon.Task!.ConfigureAwait(true);
+                    IconElement toolIcon
+                        = await ThreadHelper.RunOnUIThreadAsync(
+                            ThreadPriority.Low,
+                            () =>
+                            {
+                                return Task.FromResult(new FontIcon
+                                {
+                                    FontFamily = (FontFamily)Application.Current.Resources["DevToysToolsIcons"],
+                                    Glyph = Arguments.NotNullOrWhiteSpace(toolProvider.IconGlyph, nameof(toolProvider.IconGlyph))
+                                });
+                            });
+
                     Assumes.NotNull(toolIcon, nameof(toolIcon));
 
                     toolIcon.Height = tileIconSizeDefinition.Size / tileIconSizeDefinition.ToolIconRatio;
@@ -290,20 +301,18 @@ namespace DevToys.Core
 
                     ThreadHelper.ThrowIfNotOnUIThread();
 
-                    using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
-                    {
-                        BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
-                        encoder.SetPixelData(
-                            BitmapPixelFormat.Bgra8,
-                            BitmapAlphaMode.Straight,
-                            (uint)resultBitmap.PixelWidth,
-                            (uint)resultBitmap.PixelHeight,
-                            displayInformation.RawDpiX,
-                            displayInformation.RawDpiY,
-                            pixels);
+                    using IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite);
+                    BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
+                    encoder.SetPixelData(
+                        BitmapPixelFormat.Bgra8,
+                        BitmapAlphaMode.Straight,
+                        (uint)resultBitmap.PixelWidth,
+                        (uint)resultBitmap.PixelHeight,
+                        displayInformation.RawDpiX,
+                        displayInformation.RawDpiY,
+                        pixels);
 
-                        await encoder.FlushAsync();
-                    }
+                    await encoder.FlushAsync();
                 }
 
                 return tileIconSizeDefinition;

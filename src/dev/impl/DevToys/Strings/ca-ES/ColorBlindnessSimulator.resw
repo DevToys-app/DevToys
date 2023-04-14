@@ -118,33 +118,33 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Color Blindness Simulator tool</value>
+    <value>Eina de simulació de ceguesa de color</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Color Blindness Simulator</value>
+    <value>Simulador de ceguesa de color</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Simulate color blindness on a picture or screenshot</value>
+    <value>Simula la ceguesa de color en una imatge o captura de pantalla</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Color Blindness Simulator</value>
+    <value>Simulador de ceguesa de color</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancel·la</value>
   </data>
   <data name="DeuteranopiaSimulation" xml:space="preserve">
-    <value>Deuteranopia simulation</value>
+    <value>Simulació de deuteranopia</value>
   </data>
   <data name="OriginalPicture" xml:space="preserve">
     <value>Original</value>
   </data>
   <data name="ProtanopiaSimulation" xml:space="preserve">
-    <value>Protanopia simulation</value>
+    <value>Simulació de protanopia</value>
   </data>
   <data name="TritanopiaSimulation" xml:space="preserve">
-    <value>Tritanopia simulation</value>
+    <value>Simulació de tritanopia</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
 </root>

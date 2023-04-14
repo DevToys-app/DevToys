@@ -14,7 +14,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
     [ProtocolName("string")]
     [Order(0)]
     [NotScrollable]
-    internal sealed class StringUtilitiesToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class StringUtilitiesToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 
@@ -28,7 +28,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
 
         public string? SearchKeywords => LanguageManager.Instance.StringUtilities.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateFontIcon("\uF793");
+        public string IconGlyph => "\u0131";
 
         [ImportingConstructor]
         public StringUtilitiesToolProvider(IMefProvider mefProvider)

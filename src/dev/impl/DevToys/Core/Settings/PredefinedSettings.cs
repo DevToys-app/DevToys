@@ -122,5 +122,14 @@ namespace DevToys.Core.Settings
                 name: nameof(TextEditorRenderWhitespace),
                 isRoaming: true,
                 defaultValue: false);
+
+        /// <summary>
+        /// Whether when using the Paste command, the text in the editor should be replaced or appended.
+        /// </summary>
+        public static readonly SettingDefinition<bool> TextEditorPasteClearsText
+            = new(
+                name: nameof(TextEditorPasteClearsText),
+                isRoaming: true,
+                defaultValue: false);
     }
 }

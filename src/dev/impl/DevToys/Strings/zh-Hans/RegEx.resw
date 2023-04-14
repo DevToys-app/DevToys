@@ -186,4 +186,19 @@
   <data name="SearchKeywords" xml:space="preserve">
     <value>正则表达式（Regex）</value>
   </data>
+  <data name="InputTitle" xml:space="preserve">
+    <value>输入</value>
+  </data>
+  <data name="OutputTitle" xml:space="preserve">
+    <value>输出</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>组</value>
+  </data>
+  <data name="Match" xml:space="preserve">
+    <value>匹配</value>
+  </data>
+  <data name="Matches" xml:space="preserve">
+    <value>匹配</value>
+  </data>
 </root>

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Strumento generatore di UUID</value>
+    <value>Generatore di UUID</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Configurazione</value>
@@ -154,13 +154,13 @@
     <value>1</value>
   </data>
   <data name="VersionDescription" xml:space="preserve">
-    <value>Scegli la versione di UUID da generare</value>
+    <value>Scegli la versione dell'UUID da generare</value>
   </data>
   <data name="VersionTitle" xml:space="preserve">
-    <value>Versione UUID</value>
+    <value>Versione dell'UUID</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Genera UUID versione 1 e 4</value>
+    <value>Genera UUID versioni 1 e 4</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Generatore di UUID</value>

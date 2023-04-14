@@ -15,7 +15,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml
     [ProtocolName("jsonyaml")]
     [Order(0)]
     [NotScrollable]
-    internal sealed class JsonYamlToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class JsonYamlToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 
@@ -29,7 +29,7 @@ namespace DevToys.ViewModels.Tools.JsonYaml
 
         public string? SearchKeywords => LanguageManager.Instance.JsonYaml.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("JsonYaml.svg");
+        public string IconGlyph => "\u0109";
 
         [ImportingConstructor]
         public JsonYamlToolProvider(IMefProvider mefProvider)

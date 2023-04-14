@@ -31,7 +31,7 @@ There are two possibilities offered:
 * If you want to add a new language, please create a new discussion on Crowdin's website or on GitHub. We will be happy to add your language to the list.
 * When your translation is done, it will be synchronized with our GitHub repository within 1 hour and create a pull request.
 
-## Change yourself the translations in repository
+## Change the translations in the repository yourself 
 
 This approach is more complex but has the advantage that it allows you to test your changes on your local machine.
 
@@ -62,6 +62,11 @@ You can find the attributes [here](https://github.com/veler/DevToys/tree/main/sr
 * [NotScrollableAttribute](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/Api/Tools/NotScrollableAttribute.cs)
 * [OrderAttribute](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/Api/Tools/OrderAttribute.cs)
 * [ProtocolNameAttribute](https://github.com/veler/DevToys/blob/main/src/dev/impl/DevToys/Api/Tools/ProtocolNameAttribute.cs)
+
+## Iconography
+
+Icons in the UI of a tool or in the main UI of DevToys uses [Fluent System Icons](https://github.com/microsoft/fluentui-system-icons).
+For the icons of the tools, a custom font is used. See [documentation](https://github.com/veler/DevToys/blob/main/assets/font/README.md) here for modifying it (or ask us for help!).
 
 ## Sample
 

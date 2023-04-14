@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddToFavorites" xml:space="preserve">
-    <value>Add to favorites</value>
+    <value>Добавить в избранное</value>
   </data>
   <data name="EnterCompactOverlayTooltip" xml:space="preserve">
     <value>Поверх остальных окон (CTRL + СТРЕЛКА ВВЕРХ)</value>
@@ -155,10 +155,10 @@
     <value>Закрепить в меню «Пуск»</value>
   </data>
   <data name="PinToolToStartProblem" xml:space="preserve">
-    <value>Unable to pin the tool to start. For more details, please check the log.</value>
+    <value>Не удается закрепить инструмент, чтобы начать. Для получения более подробной информации, пожалуйста, проверьте логи.</value>
   </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
-    <value>Remove from favorites</value>
+    <value>Убрать из избранного</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Найти инструмент...</value>

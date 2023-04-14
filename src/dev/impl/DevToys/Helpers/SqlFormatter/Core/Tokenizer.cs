@@ -8,8 +8,8 @@ namespace DevToys.Helpers.SqlFormatter.Core
 {
     internal class Tokenizer
     {
-        private static readonly Regex NumberRegex = new Regex(@"^((-\s*)?[0-9]+(\.[0-9]+)?([eE]-?[0-9]+(\.[0-9]+)?)?|0x[0-9a-fA-F]+|0b[01]+)\b", RegexOptions.Compiled, RegexFactory.DefaultMatchTimeout);
-        private static readonly Regex BlockCommentRegex = new Regex(@"^(\/\*(.*?)*?(?:\*\/|$))", RegexOptions.Singleline | RegexOptions.Compiled, RegexFactory.DefaultMatchTimeout);
+        private static readonly Regex NumberRegex = new(@"^((-\s*)?[0-9]+(\.[0-9]+)?([eE]-?[0-9]+(\.[0-9]+)?)?|0x[0-9a-fA-F]+|0b[01]+)\b", RegexOptions.Compiled, RegexFactory.DefaultMatchTimeout);
+        private static readonly Regex BlockCommentRegex = new(@"^(\/\*(.*?)*?(?:\*\/|$))", RegexOptions.Singleline | RegexOptions.Compiled, RegexFactory.DefaultMatchTimeout);
 
         private readonly Regex _operatorRegex;
         private readonly Regex _lineCommentRegex;

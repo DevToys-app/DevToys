@@ -23,7 +23,7 @@ namespace DevToys.ViewModels.Tools
 
         public override string AccessibleName => LanguageManager.Instance.ToolGroups.ConvertersAccessibleName;
 
-        public override TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("Converters.svg");
+        public override string IconGlyph => "\u0103";
 
         [ImportingConstructor]
         public ConvertersGroupToolProvider(IMefProvider mefProvider)

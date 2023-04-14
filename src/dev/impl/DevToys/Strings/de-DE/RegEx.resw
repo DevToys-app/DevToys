@@ -124,7 +124,7 @@
     <value>Konfiguration</value>
   </data>
   <data name="CultureInvariant" xml:space="preserve">
-    <value>Culture Invariant</value>
+    <value>Kultur Ignorieren</value>
   </data>
   <data name="CultureInvariantDescription" xml:space="preserve">
     <value>Gibt an, dass kulturelle Unterschiede in der Sprache ignoriert werden.</value>
@@ -133,7 +133,7 @@
     <value>Regex Tester</value>
   </data>
   <data name="EcmaScript" xml:space="preserve">
-    <value>ECMA Script</value>
+    <value>ECMA Skript</value>
   </data>
   <data name="EcmaScriptDescription" xml:space="preserve">
     <value>Aktiviert ECMAScript-konformes Verhalten für den Ausdruck. Dieser Wert kann nur in Verbindung mit den Optionen Culture Invariant, Ignore Case und Multiline verwendet werden.</value>
@@ -185,5 +185,20 @@
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>Regulärer Ausdruck</value>
+  </data>
+  <data name="InputTitle" xml:space="preserve">
+    <value>Eingabe</value>
+  </data>
+  <data name="OutputTitle" xml:space="preserve">
+    <value>Ausgabe</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Gruppe</value>
+  </data>
+  <data name="Match" xml:space="preserve">
+    <value>Übereinstimmung</value>
+  </data>
+  <data name="Matches" xml:space="preserve">
+    <value>Übereinstimmungen</value>
   </data>
 </root>

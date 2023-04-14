@@ -186,4 +186,19 @@
   <data name="SearchKeywords" xml:space="preserve">
     <value>Expresiones regulares</value>
   </data>
+  <data name="InputTitle" xml:space="preserve">
+    <value>Entrada</value>
+  </data>
+  <data name="OutputTitle" xml:space="preserve">
+    <value>Resultado</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Grupo</value>
+  </data>
+  <data name="Match" xml:space="preserve">
+    <value>Coincidencia</value>
+  </data>
+  <data name="Matches" xml:space="preserve">
+    <value>Coincidencias</value>
+  </data>
 </root>

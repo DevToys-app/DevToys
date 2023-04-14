@@ -130,7 +130,7 @@
     <value>转换</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>JSON &lt;&gt; YAML</value>
+    <value>JSON ↔ YAML</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
     <value>4 个空格</value>

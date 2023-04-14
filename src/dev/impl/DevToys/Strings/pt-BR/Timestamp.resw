@@ -118,73 +118,73 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Timestamp converter tool</value>
+    <value>Ferramenta para converter timestamp</value>
   </data>
   <data name="TimeZoneTitle" xml:space="preserve">
-    <value>Time zone</value>
+    <value>Fuso horário</value>
   </data>
   <data name="DaylightSavingTime" xml:space="preserve">
-    <value>Daylight saving time.</value>
+    <value>Horário de verão.</value>
   </data>
   <data name="DayTitle" xml:space="preserve">
-    <value>Day</value>
+    <value>Dia</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Convert timestamp to human-readable date and vice versa</value>
+    <value>Converter timestamp em data legível para humanos e vice-versa</value>
   </data>
   <data name="DisabledDaylightSavingTime" xml:space="preserve">
-    <value>There is no daylight saving time.</value>
+    <value>Não há horário de verão.</value>
   </data>
   <data name="DSTAmbiguousTime" xml:space="preserve">
-    <value>DST Ambiguous time.</value>
+    <value>DST tempo ambíguo.</value>
   </data>
   <data name="HourTitle" xml:space="preserve">
-    <value>Hour (24 hour)</value>
+    <value>Hora (24 horas)</value>
   </data>
   <data name="InvalidValue" xml:space="preserve">
-    <value>Invalid value</value>
+    <value>Valor inválido</value>
   </data>
   <data name="LocalDateTime" xml:space="preserve">
-    <value>Local Date and Time</value>
+    <value>Data e Hora Local</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Timestamp</value>
   </data>
   <data name="MinutesTitle" xml:space="preserve">
-    <value>Minutes</value>
+    <value>Minutos</value>
   </data>
   <data name="MonthTitle" xml:space="preserve">
-    <value>Month</value>
+    <value>Mês</value>
   </data>
   <data name="OffsetTitle" xml:space="preserve">
-    <value>Offset</value>
+    <value>Deslocamento</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Unix Timestamp Converter</value>
+    <value>Conversor de Timestamp Unix</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Time Date Timezone Epoch</value>
+    <value>Epoch da Data Fuso Horário</value>
     <comment>Alternative search keywords. Enables searching for words that are not included in Description, MenuDisplayName, and SearchDisplayName.</comment>
   </data>
   <data name="SecondsTitle" xml:space="preserve">
-    <value>Seconds</value>
+    <value>Segundos</value>
   </data>
   <data name="SupportsDaylightSavingTime" xml:space="preserve">
-    <value>There is daylight saving time.</value>
+    <value>Não há horário de verão.</value>
   </data>
   <data name="TimestampTitle" xml:space="preserve">
     <value>Timestamp</value>
   </data>
   <data name="UTCDateTime" xml:space="preserve">
-    <value>UTC Date and Time</value>
+    <value>Data e Hora UTC</value>
   </data>
   <data name="UtcTicksTitle" xml:space="preserve">
     <value>UtcTicks</value>
   </data>
   <data name="YearTitle" xml:space="preserve">
-    <value>Year</value>
+    <value>Ano</value>
   </data>
   <data name="Now" xml:space="preserve">
-    <value>Now</value>
+    <value>Agora</value>
   </data>
 </root>

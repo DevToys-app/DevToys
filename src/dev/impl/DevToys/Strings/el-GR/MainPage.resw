@@ -118,53 +118,53 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddToFavorites" xml:space="preserve">
-    <value>Add to favorites</value>
+    <value>Προσθήκη στα αγαπημένα</value>
   </data>
   <data name="EnterCompactOverlayTooltip" xml:space="preserve">
-    <value>Keep on top (Ctrl+Up)</value>
+    <value>Κρατήστε στην κορυφή (Ctrl+Up)</value>
   </data>
   <data name="ExitCompactOverlayTooltip" xml:space="preserve">
-    <value>Back to full view (Ctrl+Down)</value>
+    <value>Πίσω στην πλήρη προβολή (Ctrl+Down)</value>
   </data>
   <data name="NotificationRateAppActionableActionText" xml:space="preserve">
-    <value>rate us now...</value>
+    <value>αξιολογήστε μας τώρα...</value>
   </data>
   <data name="NotificationRateAppMessage" xml:space="preserve">
-    <value>Enjoying DevToys? Please consider rating us!</value>
+    <value>Απολαμβάνοντας DevToys? Παρακαλούμε αξιολογήστε μας!</value>
   </data>
   <data name="NotificationRateAppTitle" xml:space="preserve">
-    <value>Um... hi! 😅</value>
+    <value>Χμ... γεια! 😅</value>
   </data>
   <data name="NotificationReleaseNoteActionableActionText" xml:space="preserve">
-    <value>read more...</value>
+    <value>διαβάστε περισσότερα...</value>
   </data>
   <data name="NotificationReleaseNoteTitle" xml:space="preserve">
-    <value>We just updated! What's new in {0}? 🚀</value>
+    <value>Υπάρχει ενημέρωση! Τι νέο υπάρχει στο {0}; 🚀</value>
     <comment>{0} is the current app version</comment>
   </data>
   <data name="NotificationUpdateAvailableActionableActionText" xml:space="preserve">
-    <value>update now...</value>
+    <value>αναβάθμιση τώρα...</value>
   </data>
   <data name="NotificationUpdateAvailableTitle" xml:space="preserve">
-    <value>An update is available! 🚀</value>
+    <value>Μια ενημέρωση είναι διαθέσιμη! 🚀</value>
   </data>
   <data name="OpenInNewWindow" xml:space="preserve">
-    <value>Open in a new window</value>
+    <value>Άνοιγμα σε νέο παράθυρο</value>
   </data>
   <data name="PinToolToStart" xml:space="preserve">
-    <value>Pin tool to Start</value>
+    <value>Καρφίτσωμα στην έναρξη</value>
   </data>
   <data name="PinToolToStartProblem" xml:space="preserve">
-    <value>Unable to pin the tool to start. For more details, please check the log.</value>
+    <value>Δεν είναι δυνατή η καρφίτσωμα του εργαλείου για εκκίνηση. Για περισσότερες λεπτομέρειες, ελέγξτε το αρχείο καταγραφής.</value>
   </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
-    <value>Remove from favorites</value>
+    <value>Αφαίρεση από τα αγαπημένα</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Type to search for tools...</value>
+    <value>Πληκτρολογήστε για αναζήτηση εργαλείων...</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
-    <value>No results found</value>
+    <value>Δε βρέθηκαν αποτελέσματα</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>

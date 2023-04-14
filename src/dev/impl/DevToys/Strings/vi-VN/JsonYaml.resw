@@ -133,7 +133,7 @@
     <value>JSON &lt;&gt; YAML</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
-    <value>4 spaces</value>
+    <value>4 khoảng trắng</value>
   </data>
   <data name="Indentation" xml:space="preserve">
     <value>Thụt lề</value>
@@ -151,7 +151,7 @@
     <value>Đầu ra</value>
   </data>
   <data name="TwoSpaces" xml:space="preserve">
-    <value>2 spaces</value>
+    <value>2 khoảng trắng</value>
   </data>
   <data name="YamlToJson" xml:space="preserve">
     <value>YAML sang JSON</value>

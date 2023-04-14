@@ -118,27 +118,144 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Décodeur JWT</value>
+    <value>Encodeur et Décodeur de JWT</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Décodeur JWT</value>
+    <value>JWT</value>
   </data>
-  <data name="HeaderLabel" xml:space="preserve">
+  <data name="JwtHeaderLabel" xml:space="preserve">
     <value>En-tête</value>
   </data>
   <data name="JwtTokenLabel" xml:space="preserve">
-    <value>Jeton JWT</value>
+    <value>Jeton</value>
   </data>
-  <data name="PayloadLabel" xml:space="preserve">
+  <data name="JwtPayloadLabel" xml:space="preserve">
     <value>Charge utile</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Décoder un en-tête, une charge utile et une signature JWT</value>
   </data>
-  <data name="SearchDisplayName" xml:space="preserve">
-    <value>Décodeur JWT</value>
-  </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
+  </data>
+  <data name="Algorithm" xml:space="preserve">
+    <value>Algorithme</value>
+  </data>
+  <data name="DecodeSwitchModeLabel" xml:space="preserve">
+    <value>Décoder</value>
+  </data>
+  <data name="DecodeValidateTokenLabel" xml:space="preserve">
+    <value>Valider le jeton</value>
+  </data>
+  <data name="DecodeValidateTokenNoLabel" xml:space="preserve">
+    <value>Non</value>
+  </data>
+  <data name="DecodeValidateTokenYesLabel" xml:space="preserve">
+    <value>Oui</value>
+  </data>
+  <data name="EncodeExpirationTitle" xml:space="preserve">
+    <value>Le jeton a une date d'expiration</value>
+  </data>
+  <data name="EncodeExpirationMonthLabel" xml:space="preserve">
+    <value>Expire en mois(s)</value>
+  </data>
+  <data name="EncodeExpirationYearLabel" xml:space="preserve">
+    <value>Expire en année(s)</value>
+  </data>
+  <data name="EncodeHashingTitle" xml:space="preserve">
+    <value>Algorithme de hachage du jeton</value>
+  </data>
+  <data name="EncodeSettingsTitle" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
+  <data name="EncodeSwitchModeLabel" xml:space="preserve">
+    <value>Encoder</value>
+  </data>
+  <data name="SettingsSwitchModeLabel" xml:space="preserve">
+    <value>Encoder / Décoder</value>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="EncodeDefaultTimeTitle" xml:space="preserve">
+    <value>Le jeton a une heure par défaut</value>
+  </data>
+  <data name="EncodeExpirationDaysLabel" xml:space="preserve">
+    <value>Expire dans le(s) jour(s)</value>
+  </data>
+  <data name="EncodeExpirationHoursLabel" xml:space="preserve">
+    <value>Expire en heure(s)</value>
+  </data>
+  <data name="EncodeExpirationMinutesLabel" xml:space="preserve">
+    <value>Expire en minute(s)</value>
+  </data>
+  <data name="PrivateKeyLabel" xml:space="preserve">
+    <value>Clé privée</value>
+  </data>
+  <data name="SignatureLabel" xml:space="preserve">
+    <value>Signature</value>
+  </data>
+  <data name="JwtIsValidMessage" xml:space="preserve">
+    <value>Signature vérifiée</value>
+  </data>
+  <data name="InvalidPublicKeyError" xml:space="preserve">
+    <value>Clé publique invalide</value>
+  </data>
+  <data name="JwtInValidMessage" xml:space="preserve">
+    <value>Signature invalide</value>
+  </data>
+  <data name="DecodeValidateActorLabel" xml:space="preserve">
+    <value>Valider l'acteur</value>
+  </data>
+  <data name="DecodeValidateAudienceLabel" xml:space="preserve">
+    <value>Valider l'audience</value>
+  </data>
+  <data name="DecodeValidateIssuerLabel" xml:space="preserve">
+    <value>Valider l'émetteur</value>
+  </data>
+  <data name="DecodeValidateLifetimeLabel" xml:space="preserve">
+    <value>Valider la durée de vie</value>
+  </data>
+  <data name="ValidAudiencesLabel" xml:space="preserve">
+    <value>Audiences valides</value>
+  </data>
+  <data name="ValidIssuersLabel" xml:space="preserve">
+    <value>Emetteurs valides</value>
+  </data>
+  <data name="DecodeValidationSettingsDescription" xml:space="preserve">
+    <value>Sélectionnez les paramètres de jeton à valider</value>
+  </data>
+  <data name="DecodeValidationSettingsTitle" xml:space="preserve">
+    <value>Paramètres de validation du jeton</value>
+  </data>
+  <data name="ValidAudiencesError" xml:space="preserve">
+    <value>Les audiences valides sont vides</value>
+  </data>
+  <data name="ValidIssuersError" xml:space="preserve">
+    <value>Les émetteurs valides sont vides</value>
+  </data>
+  <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
+    <value>La clé publique fournie est une clé privée</value>
+  </data>
+  <data name="EncodeAudienceLabel" xml:space="preserve">
+    <value>Le jeton a une audience</value>
+  </data>
+  <data name="EncodeIssuerLabel" xml:space="preserve">
+    <value>Le jeton a un émetteur</value>
+  </data>
+  <data name="EncodeSettingsDescription" xml:space="preserve">
+    <value>Sélectionnez les paramètres de jeton</value>
+  </data>
+  <data name="InvalidPrivateKeyError" xml:space="preserve">
+    <value>Clé privée invalide</value>
+  </data>
+  <data name="PublicKeyLabel" xml:space="preserve">
+    <value>Clé publique</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Encodeur / Décodeur de JWT</value>
+  </data>
+  <data name="InvalidSignatureError" xml:space="preserve">
+    <value>Signature invalide</value>
   </data>
 </root>

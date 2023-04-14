@@ -14,6 +14,7 @@ namespace DevToys.Tests.Helpers
         [DataRow("", false)]
         [DataRow(" ", false)]
         [DataRow("   {  }  ", true)]
+        [DataRow("   [  ]  ", true)]
         [DataRow("   { \"foo\": 123 }  ", true)]
         [DataRow("   bar { \"foo\": 123 }  ", false)]
         public void IsValid(string input, bool expectedResult)
@@ -26,10 +27,11 @@ namespace DevToys.Tests.Helpers
         [DataRow("", "")]
         [DataRow(" ", "")]
         [DataRow("   {  }  ", "{}")]
+        [DataRow("   [  ]  ", "[]")]
         [DataRow("   { \"foo\": 123 }  ", "{\r\n  \"foo\": 123\r\n}")]
         public void FormatTwoSpaces(string input, string expectedResult)
         {
-            Assert.AreEqual(expectedResult, JsonHelper.Format(input, Indentation.TwoSpaces));
+            Assert.AreEqual(expectedResult, JsonHelper.Format(input, Indentation.TwoSpaces, sortProperties: false));
         }
 
         [DataTestMethod]
@@ -37,10 +39,11 @@ namespace DevToys.Tests.Helpers
         [DataRow("", "")]
         [DataRow(" ", "")]
         [DataRow("   {  }  ", "{}")]
+        [DataRow("   [  ]  ", "[]")]
         [DataRow("   { \"foo\": 123 }  ", "{\r\n    \"foo\": 123\r\n}")]
         public void FormatFourSpaces(string input, string expectedResult)
         {
-            Assert.AreEqual(expectedResult, JsonHelper.Format(input, Indentation.FourSpaces));
+            Assert.AreEqual(expectedResult, JsonHelper.Format(input, Indentation.FourSpaces, sortProperties: false));
         }
 
         [DataTestMethod]
@@ -48,10 +51,11 @@ namespace DevToys.Tests.Helpers
         [DataRow("", "")]
         [DataRow(" ", "")]
         [DataRow("   {  }  ", "{}")]
+        [DataRow("   [  ]  ", "[]")]
         [DataRow("   { \"foo\": 123 }  ", "{\r\n\t\"foo\": 123\r\n}")]
         public void FormatOneTab(string input, string expectedResult)
         {
-            Assert.AreEqual(expectedResult, JsonHelper.Format(input, Indentation.OneTab));
+            Assert.AreEqual(expectedResult, JsonHelper.Format(input, Indentation.OneTab, sortProperties: false));
         }
 
         [DataTestMethod]
@@ -59,10 +63,27 @@ namespace DevToys.Tests.Helpers
         [DataRow("", "")]
         [DataRow(" ", "")]
         [DataRow("   {  }  ", "{}")]
+        [DataRow("   [  ]  ", "[]")]
         [DataRow("   { \"foo\": 123 }  ", "{\"foo\":123}")]
         public void FormatMinified(string input, string expectedResult)
         {
-            Assert.AreEqual(expectedResult, JsonHelper.Format(input, Indentation.Minified));
+            Assert.AreEqual(expectedResult, JsonHelper.Format(input, Indentation.Minified, sortProperties: false));
+        }
+
+        [DataTestMethod]
+        [DataRow("{ \"Date\": \"2012-04-21T18:25:43-05:00\" }", "{\"Date\":\"2012-04-21T18:25:43-05:00\"}")]
+        public void FormatDoesNotAlterateDateTimes(string input, string expectedResult)
+        {
+            Assert.AreEqual(expectedResult, JsonHelper.Format(input, Indentation.Minified, sortProperties: false));
+        }
+
+        [DataTestMethod]
+        [DataRow(
+            "{\"a\": \"asdf\", \"c\" : 545, \"b\": 33, \"array\": [{\"a\": \"asdf\", \"c\" : 545, \"b\": 33, \"array\": []}]}",
+            "{\"a\":\"asdf\",\"array\":[{\"a\":\"asdf\",\"array\":[],\"b\":33,\"c\":545}],\"b\":33,\"c\":545}")]
+        public void FormatSortPropertiesAlphabetically(string input, string expectedResult)
+        {
+            Assert.AreEqual(expectedResult, JsonHelper.Format(input, Indentation.Minified, sortProperties: true));
         }
 
         [DataTestMethod]

@@ -118,27 +118,144 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>JWT Decoder tool</value>
+    <value>JWT Encoder / Decoder tool</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>JWT Decoder</value>
+    <value>JWT</value>
   </data>
-  <data name="HeaderLabel" xml:space="preserve">
-    <value>Header</value>
+  <data name="JwtHeaderLabel" xml:space="preserve">
+    <value>Antet</value>
   </data>
   <data name="JwtTokenLabel" xml:space="preserve">
-    <value>Jwt Token</value>
+    <value>Token</value>
   </data>
-  <data name="PayloadLabel" xml:space="preserve">
+  <data name="JwtPayloadLabel" xml:space="preserve">
     <value>Payload</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Decode a JWT header, payload and signature</value>
   </data>
-  <data name="SearchDisplayName" xml:space="preserve">
-    <value>JWT Decoder</value>
-  </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
+  </data>
+  <data name="Algorithm" xml:space="preserve">
+    <value>Algoritm</value>
+  </data>
+  <data name="DecodeSwitchModeLabel" xml:space="preserve">
+    <value>Decodare</value>
+  </data>
+  <data name="DecodeValidateTokenLabel" xml:space="preserve">
+    <value>Validează Token</value>
+  </data>
+  <data name="DecodeValidateTokenNoLabel" xml:space="preserve">
+    <value>Nu</value>
+  </data>
+  <data name="DecodeValidateTokenYesLabel" xml:space="preserve">
+    <value>Da</value>
+  </data>
+  <data name="EncodeExpirationTitle" xml:space="preserve">
+    <value>Token-ul are data de expirare</value>
+  </data>
+  <data name="EncodeExpirationMonthLabel" xml:space="preserve">
+    <value>Expiră în luni</value>
+  </data>
+  <data name="EncodeExpirationYearLabel" xml:space="preserve">
+    <value>Expiră în an(i)</value>
+  </data>
+  <data name="EncodeHashingTitle" xml:space="preserve">
+    <value>Algoritm de hash al Token-ului</value>
+  </data>
+  <data name="EncodeSettingsTitle" xml:space="preserve">
+    <value>Setari</value>
+  </data>
+  <data name="EncodeSwitchModeLabel" xml:space="preserve">
+    <value>Codare</value>
+  </data>
+  <data name="SettingsSwitchModeLabel" xml:space="preserve">
+    <value>Codare / Decodare</value>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Configurație</value>
+  </data>
+  <data name="EncodeDefaultTimeTitle" xml:space="preserve">
+    <value>Token-ul are timpul standard</value>
+  </data>
+  <data name="EncodeExpirationDaysLabel" xml:space="preserve">
+    <value>Expiră în zi(le)</value>
+  </data>
+  <data name="EncodeExpirationHoursLabel" xml:space="preserve">
+    <value>Expiră în oră/ore</value>
+  </data>
+  <data name="EncodeExpirationMinutesLabel" xml:space="preserve">
+    <value>Expiră în minut(e)</value>
+  </data>
+  <data name="PrivateKeyLabel" xml:space="preserve">
+    <value>Cheie privată</value>
+  </data>
+  <data name="SignatureLabel" xml:space="preserve">
+    <value>Semnătură</value>
+  </data>
+  <data name="JwtIsValidMessage" xml:space="preserve">
+    <value>Semnătură verificată</value>
+  </data>
+  <data name="InvalidPublicKeyError" xml:space="preserve">
+    <value>Cheie publică invalidă</value>
+  </data>
+  <data name="JwtInValidMessage" xml:space="preserve">
+    <value>Semnătură invalidă</value>
+  </data>
+  <data name="DecodeValidateActorLabel" xml:space="preserve">
+    <value>Validează actor</value>
+  </data>
+  <data name="DecodeValidateAudienceLabel" xml:space="preserve">
+    <value>Validează audiența</value>
+  </data>
+  <data name="DecodeValidateIssuerLabel" xml:space="preserve">
+    <value>Validează emitentul</value>
+  </data>
+  <data name="DecodeValidateLifetimeLabel" xml:space="preserve">
+    <value>Validează durata vieții</value>
+  </data>
+  <data name="ValidAudiencesLabel" xml:space="preserve">
+    <value>Audiență validă</value>
+  </data>
+  <data name="ValidIssuersLabel" xml:space="preserve">
+    <value>Emitent valid</value>
+  </data>
+  <data name="DecodeValidationSettingsDescription" xml:space="preserve">
+    <value>Select which token parameters to validate</value>
+  </data>
+  <data name="DecodeValidationSettingsTitle" xml:space="preserve">
+    <value>Setările de validare token</value>
+  </data>
+  <data name="ValidAudiencesError" xml:space="preserve">
+    <value>Valid audiences are empty</value>
+  </data>
+  <data name="ValidIssuersError" xml:space="preserve">
+    <value>Valid issuers are empty</value>
+  </data>
+  <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
+    <value>Cheia publică furnizată este o cheie privată</value>
+  </data>
+  <data name="EncodeAudienceLabel" xml:space="preserve">
+    <value>Token has audience</value>
+  </data>
+  <data name="EncodeIssuerLabel" xml:space="preserve">
+    <value>Token-ul are emitent</value>
+  </data>
+  <data name="EncodeSettingsDescription" xml:space="preserve">
+    <value>Select token parameters</value>
+  </data>
+  <data name="InvalidPrivateKeyError" xml:space="preserve">
+    <value>Cheie privată invalidă</value>
+  </data>
+  <data name="PublicKeyLabel" xml:space="preserve">
+    <value>Cheie publică</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>Codare / Decodare JWT</value>
+  </data>
+  <data name="InvalidSignatureError" xml:space="preserve">
+    <value>Semnătură invalidă</value>
   </data>
 </root>

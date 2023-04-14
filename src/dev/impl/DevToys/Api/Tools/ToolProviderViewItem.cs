@@ -97,14 +97,16 @@ namespace DevToys.Api.Tools
             => _isBeingProgrammaticallySelected
             || ChildrenTools.Any(item => item.IsRecommended || item.MenuItemShouldBeExpanded);
 
-        internal TaskCompletionNotifier<IconElement> Icon => ToolProvider.IconSource;
+        internal string IconGlyph => ToolProvider.IconGlyph;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
         internal static ToolProviderViewItem CreateToolProviderViewItemWithLongMenuDisplayName(ToolProviderViewItem item)
         {
-            var newItem = new ToolProviderViewItem(item.Metadata, item.ToolProvider, item.IsFavorite);
-            newItem.MenuDisplayName = item.ToolProvider.SearchDisplayName ?? item.ToolProvider.MenuDisplayName;
+            var newItem = new ToolProviderViewItem(item.Metadata, item.ToolProvider, item.IsFavorite)
+            {
+                MenuDisplayName = item.ToolProvider.SearchDisplayName ?? item.ToolProvider.MenuDisplayName
+            };
             return newItem;
         }
 

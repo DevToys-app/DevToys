@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Text Escape and Unescape tool</value>
+    <value>Text Escape und Un-Escape Tool</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Escape / Unescape</value>
+    <value>Escape / Un-Escape</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
     <value>Ausgabe</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Escapes or unescapes a string, removing characters that could prevent parsing.</value>
+    <value>Escaped oder un-escaped Text, indem Zeichen entfernt werden, die das Parsen verhindern könnten.</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Text Escape / Unescape</value>
+    <value>Text Escape / Un-Escape</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
@@ -140,7 +140,7 @@
     <value>Konfiguration</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
-    <value>Unescape</value>
+    <value>Un-Escape</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
     <value>Wähle aus welcher Konvertierungsmodus verwendet werden soll</value>

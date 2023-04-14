@@ -133,7 +133,7 @@
     <value>Indentasi</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>Masukan</value>
   </data>
   <data name="Minified" xml:space="preserve">
     <value>Kecilkan</value>
@@ -154,6 +154,9 @@
     <value>Pemformatan JSON</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
+  </data>
+  <data name="SortProperties" xml:space="preserve">
+    <value>Sort JSON properties alphabetically</value>
   </data>
 </root>

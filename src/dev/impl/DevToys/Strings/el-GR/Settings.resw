@@ -118,120 +118,127 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>About</value>
+    <value>Σχετικά με</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>App Theme</value>
+    <value>Θέμα εφαρμογής</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>Select which app theme to display</value>
+    <value>Επιλέξτε το θέμα εφαρμογής που θα εμφανιστεί</value>
   </data>
   <data name="AppTitle" xml:space="preserve">
     <value>DevToys</value>
   </data>
   <data name="Behaviors" xml:space="preserve">
-    <value>Behaviors</value>
+    <value>Συμπεριφορές</value>
   </data>
   <data name="Close" xml:space="preserve">
-    <value>Close</value>
+    <value>Κλείσιμο</value>
   </data>
   <data name="Copy" xml:space="preserve">
-    <value>Copy</value>
+    <value>Αντιγραφή</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Dark</value>
+    <value>Σκοτεινό</value>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>Same as Microsoft Windows</value>
+    <value>Ίδιο με τα Microsoft Windows</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Settings</value>
+    <value>Ρυθμίσεις</value>
   </data>
   <data name="Font" xml:space="preserve">
-    <value>Font</value>
+    <value>Γραμματοσειρά</value>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
-    <value>Highlight current line</value>
+    <value>Επισήμανση τρέχουσας γραμμής</value>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>Change the background color of the current line so it's more visible</value>
+    <value>Αλλάξτε το χρώμα φόντου της τρέχουσας γραμμής ώστε να είναι πιο ορατό</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>Γλώσσα</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>The app needs to be restarted when selecting another language</value>
+    <value>Η εφαρμογή πρέπει να επανεκκινηθεί κατά την επιλογή μιας άλλης γλώσσας</value>
   </data>
   <data name="License" xml:space="preserve">
-    <value>License</value>
+    <value>Άδεια χρήσης</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Light</value>
+    <value>Φωτεινό</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>Line numbers</value>
+    <value>Αρίθμηση γραμμών</value>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>Display line numbers in the text editor</value>
+    <value>Εμφάνιση αριθμών γραμμών στον επεξεργαστή κειμένου</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Open logs</value>
+    <value>Άνοιγμα αρχείου καταγραφής</value>
   </data>
   <data name="PrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
+    <value>Πολιτική απορρήτου</value>
   </data>
   <data name="RateAndReview" xml:space="preserve">
-    <value>Rate and review on Microsoft Store</value>
+    <value>Αξιολόγηση στο Microsoft Store</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>Render white space</value>
+    <value>Απόδοση κενών χώρων</value>
   </data>
   <data name="ReportProblem" xml:space="preserve">
-    <value>Report a problem</value>
+    <value>Αναφορά προβλήματος</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
-    <value>Smart detection</value>
+    <value>Έξυπνη ανίχνευση</value>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Automatically detect the best tool based on the clipboard content</value>
+    <value>Αυτόματη ανίχνευση του καλύτερου εργαλείου με βάση το περιεχόμενο του πρόχειρου</value>
   </data>
   <data name="SmartDetectionHowTo" xml:space="preserve">
-    <value>How to use Smart Detection</value>
+    <value>Πώς να χρησιμοποιήσετε την έξυπνη ανίχνευση</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automatically paste the clipboard content when selecting a recommended tool</value>
+    <value>Αυτόματη επικόλληση του περιεχόμενου του πρόχειρου κατά την επιλογή ενός συνιστώμενου εργαλείου</value>
   </data>
   <data name="SourceCode" xml:space="preserve">
-    <value>Source code</value>
+    <value>Πηγαίος κώδικας</value>
   </data>
   <data name="TextEditor" xml:space="preserve">
-    <value>Text editor</value>
+    <value>Κειμενογράφος</value>
   </data>
   <data name="ThirdPartyNotices" xml:space="preserve">
-    <value>Third party licenses</value>
+    <value>Άδειες χρήσης τρίτων</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>Useful links</value>
+    <value>Χρήσιμοι Σύνδεσμοι</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
-    <value>Use system settings</value>
+    <value>Χρήση των ρυθμίσεων του συστήματος</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>Έκδοση {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Wrap word</value>
+    <value>Αναδίπλωση λέξης</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Customize DevToys look &amp; feel</value>
+    <value>Προσαρμογή εμφάνισης &amp; αίσθησης DevToys</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Settings</value>
+    <value>Ρυθμίσεις</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Configurations Options</value>
+    <value> 
+Επιλογές διαμόρφωσης</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translating DevToys!</value>
+    <value>Βοηθείστε μας να μεταφράσουμε το DevToys</value>
+  </data>
+  <data name="PasteClearsText" xml:space="preserve">
+    <value>Αντικατάσταση κειμένου κατά την επικόλληση</value>
+  </data>
+  <data name="PasteClearsTextDescription" xml:space="preserve">
+    <value>Όταν κάνετε κλικ στο κουμπί Επικόλληση, καθαρίστε το κείμενο πριν την επικόλληση αντί για προσθήκη στο υπάρχον περιεχόμενο του επεξεργαστή κειμένου.</value>
   </data>
 </root>

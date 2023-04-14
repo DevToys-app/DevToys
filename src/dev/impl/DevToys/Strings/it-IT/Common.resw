@@ -169,7 +169,7 @@
     <value>MB</value>
   </data>
   <data name="Ok" xml:space="preserve">
-    <value>OK</value>
+    <value>Ok</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
     <value>Apri file</value>
@@ -181,7 +181,7 @@
     <value>Annulla ultima modifica</value>
   </data>
   <data name="Refresh" xml:space="preserve">
-    <value>Refresh</value>
+    <value>Aggiorna</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Salva come</value>
@@ -202,13 +202,13 @@
     <value>Impossibile aprire il file</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>Unable to load the file '{0}'. Only textual files can be opened. For more details, please check the log.</value>
+    <value>Impossibile caricare il file '{0}'. Possono essere aperti solo i file testuali. Per ulteriori dettagli, controlla il registro.</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>Annulla</value>
   </data>
   <data name="ViewImage" xml:space="preserve">
-    <value>View</value>
+    <value>Visualizzazione</value>
     <comment>In the context of "view / display an image".</comment>
   </data>
 </root>

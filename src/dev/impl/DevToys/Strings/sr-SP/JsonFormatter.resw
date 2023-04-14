@@ -121,7 +121,7 @@
     <value>JSON Formatter tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Конфигурација</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>JSON</value>
@@ -133,7 +133,7 @@
     <value>Indentation</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>Улаз</value>
   </data>
   <data name="Minified" xml:space="preserve">
     <value>Minified</value>
@@ -142,7 +142,7 @@
     <value>1 tab</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>Излаз</value>
   </data>
   <data name="TwoSpaces" xml:space="preserve">
     <value>2 spaces</value>
@@ -154,6 +154,9 @@
     <value>JSON Formatter</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
+  </data>
+  <data name="SortProperties" xml:space="preserve">
+    <value>Sort JSON properties alphabetically</value>
   </data>
 </root>

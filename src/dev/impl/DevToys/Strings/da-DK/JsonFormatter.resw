@@ -121,7 +121,7 @@
     <value>JSON Formatter tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Indstillinger</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>JSON</value>
@@ -155,5 +155,8 @@
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value></value>
+  </data>
+  <data name="SortProperties" xml:space="preserve">
+    <value>Sort JSON properties alphabetically</value>
   </data>
 </root>

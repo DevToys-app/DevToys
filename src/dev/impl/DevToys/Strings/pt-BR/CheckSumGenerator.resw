@@ -139,7 +139,7 @@
     <value>Entrada</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Checksum</value>
+    <value>Soma de verificação</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Saída</value>

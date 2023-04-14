@@ -124,99 +124,99 @@
     <value>aLtErNaTiNg cAsE</value>
   </data>
   <data name="Bytes" xml:space="preserve">
-    <value>Bytes:</value>
+    <value>Octeți (bytes):</value>
   </data>
   <data name="CamelCase" xml:space="preserve">
     <value>camelCase</value>
   </data>
   <data name="CharacterDistribution" xml:space="preserve">
-    <value>Character distribution</value>
+    <value>Distribuția caracterelor</value>
   </data>
   <data name="Characters" xml:space="preserve">
-    <value>Characters:</value>
+    <value>Caractere:</value>
   </data>
   <data name="CobolCase" xml:space="preserve">
     <value>COBOL-CASE</value>
   </data>
   <data name="Column" xml:space="preserve">
-    <value>Column:</value>
+    <value>Coloană:</value>
   </data>
   <data name="ConstantCase" xml:space="preserve">
-    <value>CONSTANT_CASE</value>
+    <value>CAZ_CONSTANT</value>
   </data>
   <data name="Convert" xml:space="preserve">
-    <value>Convert</value>
+    <value>Transformă</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Inspector &amp; Case Converter</value>
   </data>
   <data name="InverseCase" xml:space="preserve">
-    <value>InVeRsE CaSe</value>
+    <value>CaZ InVeRs</value>
   </data>
   <data name="KebabCase" xml:space="preserve">
-    <value>kebab-case</value>
+    <value>caz kebab</value>
   </data>
   <data name="Line" xml:space="preserve">
-    <value>Line:</value>
+    <value>Linia:</value>
   </data>
   <data name="Lines" xml:space="preserve">
-    <value>Lines:</value>
+    <value>Linii:</value>
   </data>
   <data name="LowerCase" xml:space="preserve">
-    <value>lower case</value>
+    <value>litere mici</value>
   </data>
   <data name="OriginalCase" xml:space="preserve">
-    <value>Original text</value>
+    <value>Text original</value>
   </data>
   <data name="Paragraphs" xml:space="preserve">
-    <value>Paragraphs:</value>
+    <value>Paragrafe:</value>
   </data>
   <data name="PascalCase" xml:space="preserve">
     <value>PascalCase</value>
   </data>
   <data name="Position" xml:space="preserve">
-    <value>Position:</value>
+    <value>Poziție:</value>
   </data>
   <data name="Selection" xml:space="preserve">
-    <value>Selection</value>
+    <value>Selecție</value>
   </data>
   <data name="SentenceCase" xml:space="preserve">
-    <value>Sentence case</value>
+    <value>Caz de propoziție</value>
   </data>
   <data name="Sentences" xml:space="preserve">
-    <value>Sentences:</value>
+    <value>Propoziții:</value>
   </data>
   <data name="SnakeCase" xml:space="preserve">
     <value>snake_case</value>
   </data>
   <data name="Statistics" xml:space="preserve">
-    <value>Statistics</value>
+    <value>Statistici</value>
   </data>
   <data name="String" xml:space="preserve">
-    <value>String</value>
+    <value>Şir de caractere</value>
   </data>
   <data name="TitleCase" xml:space="preserve">
-    <value>Title Case</value>
+    <value>Litere De Titlu</value>
   </data>
   <data name="TrainCase" xml:space="preserve">
     <value>Train-Case</value>
   </data>
   <data name="UpperCase" xml:space="preserve">
-    <value>UPPER CASE</value>
+    <value>MAJUSCULE</value>
   </data>
   <data name="WordDistribution" xml:space="preserve">
-    <value>Word distribution</value>
+    <value>Distribuția cuvintelor</value>
   </data>
   <data name="Words" xml:space="preserve">
-    <value>Words:</value>
+    <value>Cuvinte:</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Analyze text and convert it to a different case</value>
+    <value>Analizează textul și convertește-l</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Text Case Converter and Inspector</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>String</value>
+    <value>Şir de caractere</value>
   </data>
 </root>

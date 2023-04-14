@@ -139,7 +139,7 @@
     <value>连字符</value>
   </data>
   <data name="MultiplySymbol" xml:space="preserve">
-    <value>x</value>
+    <value>×</value>
   </data>
   <data name="NumberOfGuidsToGenerate_AutomationProperties_Name" xml:space="preserve">
     <value>要生成的 UUID 个数</value>

@@ -133,31 +133,31 @@
     <value>Eliminar</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
-    <value>Browse files</value>
+    <value>Examinar archivos</value>
   </data>
   <data name="FileSelectorBrowseFolders" xml:space="preserve">
-    <value>Browse folders</value>
+    <value>Examinar carpetas</value>
   </data>
   <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>Drag &amp; drop any file here</value>
+    <value>Arrastre y Suelte un archivo aquí</value>
   </data>
   <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
-    <value>Drag &amp; drop any files here</value>
+    <value>Arrastre y Suelte algunos archivos aquí</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
-    <value>Drag &amp; drop a {0} file here</value>
+    <value>Arrastre y Suelte un archivo {0} aquí</value>
     <comment>{0} is a single file extension like "PNG"</comment>
   </data>
   <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
-    <value>Drag &amp; drop any {0} files here</value>
+    <value>Arrastre y Suelte algunos archivos {0} aquí</value>
     <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
-    <value>Only {0} file(s) can be used.</value>
+    <value>Sólo se pueden utilizar {0} archivo(s).</value>
     <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorOr" xml:space="preserve">
-    <value>or</value>
+    <value>o</value>
   </data>
   <data name="Gigabytes" xml:space="preserve">
     <value>GB</value>
@@ -169,7 +169,7 @@
     <value>MB</value>
   </data>
   <data name="Ok" xml:space="preserve">
-    <value>OK</value>
+    <value>Aceptar</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
     <value>Subir un archivo</value>
@@ -181,7 +181,7 @@
     <value>Rehacer</value>
   </data>
   <data name="Refresh" xml:space="preserve">
-    <value>Refresh</value>
+    <value>Recargar</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Guardar como</value>
@@ -202,13 +202,13 @@
     <value>No se puede abrir este archivo</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>Unable to load the file '{0}'. Only textual files can be opened. For more details, please check the log.</value>
+    <value>No se ha podido cargar el archivo '{0}'. Solo se pueden abrir archivos de texto. Para más detalles, consulte el registro.</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>Deshacer</value>
   </data>
   <data name="ViewImage" xml:space="preserve">
-    <value>View</value>
+    <value>Vista</value>
     <comment>In the context of "view / display an image".</comment>
   </data>
 </root>

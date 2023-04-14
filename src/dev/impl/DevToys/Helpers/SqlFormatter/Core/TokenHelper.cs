@@ -42,6 +42,11 @@ namespace DevToys.Helpers.SqlFormatter.Core
             return IsToken(token.Type, TokenType.CloseParen, tokenValueSpan, "END".AsSpan());
         }
 
+        internal static bool IsValues(this Token token, ReadOnlySpan<char> tokenValueSpan)
+        {
+            return IsToken(token.Type, TokenType.ReservedTopLevel, tokenValueSpan, "VALUES".AsSpan());
+        }
+
         private static bool IsToken(TokenType type, TokenType otherType,
             ReadOnlySpan<char> tokenValueSpan, ReadOnlySpan<char> otherSpan)
         {

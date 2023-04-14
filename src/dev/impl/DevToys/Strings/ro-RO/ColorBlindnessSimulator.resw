@@ -130,7 +130,7 @@
     <value>Color Blindness Simulator</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Anulează</value>
   </data>
   <data name="DeuteranopiaSimulation" xml:space="preserve">
     <value>Deuteranopia simulation</value>
@@ -139,12 +139,12 @@
     <value>Original</value>
   </data>
   <data name="ProtanopiaSimulation" xml:space="preserve">
-    <value>Protanopia simulation</value>
+    <value>Simulare de protanopie</value>
   </data>
   <data name="TritanopiaSimulation" xml:space="preserve">
     <value>Tritanopia simulation</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
 </root>

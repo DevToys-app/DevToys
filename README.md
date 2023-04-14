@@ -28,9 +28,13 @@
   </a>
 </p>
 
+## Note
+
+`DevToys 2.0` is currently under development in branch `dev/2.0`.
+
 ## Introduction
 
-DevToys helps in daily tasks like formatting JSON, comparing text, testing RegExp. No need to use many untruthful websites to do simple tasks with your data. With Smart Detection, DevToys is able to detect the best tool that can treat the data you copied in the clipboard of your Windows. Compact overlay lets you keep the app in small and on top of other windows. Multiple instances of the app can be used at once.
+DevToys helps with daily development tasks like formatting JSON, comparing text, and testing RegExp. No need to use many untrustworthy websites to do simple tasks with your data. With Smart Detection, DevToys can detect the best tool to use for the data copied to the Windows clipboard. Compact overlay lets you keep the app small and on top of other windows. Multiple instances of the app can be used at once.
 
 Many tools are available.
 
@@ -38,6 +42,7 @@ Many tools are available.
   - JSON <> YAML
   - Timestamp
   - Number Base
+  - Cron Parser
 - Encoders / Decoders
   - HTML
   - URL
@@ -58,9 +63,11 @@ Many tools are available.
   - Inspector & Case Converter
   - Regex Tester
   - Text Comparer
+  - XML Validator
   - Markdown Preview
 - Graphic
   - Color Blindness Simulator
+  - Color Picker & Contrast
   - PNG / JPEG Compressor
   - Image Converter
 
@@ -131,12 +138,14 @@ Here is the list of tool name you can use:
 - `uuid` - UUID Generator
 - `loremipsum` - Lorem Ipsum Generator
 - `checksum` - Checksum File
+- `cronparser` - Cron Parser
 - `jsonformat` Json Formatter
 - `sqlformat` - SQL Formatter
 - `xmlformat` - XML Formatter
 - `jsonyaml` - Json <> Yaml
 - `jwt` - JWT Decoder
 - `colorblind` - Color Blindness Simulator
+- `color` - Color Picker & Contrast
 - `imgcomp` - PNG/JPEG compressor
 - `imageconverter` - Image Converter
 - `markdown` - Markdown Preview
@@ -147,6 +156,7 @@ Here is the list of tool name you can use:
 - `url` - URL Encoder/Decoder
 - `html` - HTML Encoder/Decoder
 - `diff` - Text Comparer
+- `xmlvalidator` - XML Validator
 - `escape` - Text Escape / Unescape
 - `settings` - Settings
 
@@ -173,6 +183,8 @@ DevToys is using a license that permits redistribution of the app as trialware o
 ## Special Thanks
 
 ### Code contributors
+
+![Alt](https://repobeats.axiom.co/api/embed/31f4c9d2d532ef010e6171dc501f976c1481d799.svg "Repobeats analytics image")
 
 <a href="https://github.com/veler/devtoys/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=veler/devtoys" />

@@ -92,7 +92,7 @@
                                     Width="42"
                                     Height="42"
                                     FontSize="42"
-                                    Foreground="Green"
+                                    Foreground="#10893E"
                                     Glyph="&#xF298;">
                                     <FontIcon.OpacityTransition>
                                         <ScalarTransition/>
@@ -108,7 +108,7 @@
                                     Width="42"
                                     Height="42"
                                     FontSize="42"
-                                    Foreground="Red"
+                                    Foreground="#E81123"
                                     Glyph="&#xF36D;">
                                     <FontIcon.OpacityTransition>
                                         <ScalarTransition/>

@@ -14,7 +14,7 @@ namespace DevToys.ViewModels.Tools.RegEx
     [ProtocolName("regex")]
     [Order(1)]
     [NotScrollable]
-    internal sealed class RegExToolProvider : ToolProviderBase, IToolProvider
+    internal sealed class RegExToolProvider : IToolProvider
     {
         private readonly IMefProvider _mefProvider;
 
@@ -28,7 +28,7 @@ namespace DevToys.ViewModels.Tools.RegEx
 
         public string? SearchKeywords => LanguageManager.Instance.RegEx.SearchKeywords;
 
-        public TaskCompletionNotifier<IconElement> IconSource => CreateSvgIcon("RegexTester.svg");
+        public string IconGlyph => "\u0113";
 
         [ImportingConstructor]
         public RegExToolProvider(IMefProvider mefProvider)
