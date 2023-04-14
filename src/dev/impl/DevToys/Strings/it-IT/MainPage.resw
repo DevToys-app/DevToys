@@ -167,13 +167,13 @@
     <value>Nessun risultato trovato</value>
   </data>
   <data name="SurveyDescription" xml:space="preserve">
-    <value>We would love to hear about your experience with DevToys so we can improve it.</value>
+    <value>Ci piacerebbe conoscere la tua esperienza con DevToys in modo da poterla migliorare.</value>
   </data>
   <data name="SurveyTitle" xml:space="preserve">
-    <value>The development of DevToys 2.0 started! 🥳</value>
+    <value>Lo sviluppo di DevToys 2.0 è iniziato! 🥳</value>
   </data>
   <data name="SurveyYesButton" xml:space="preserve">
-    <value>open the survey...</value>
+    <value>apri il sondaggio...</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
