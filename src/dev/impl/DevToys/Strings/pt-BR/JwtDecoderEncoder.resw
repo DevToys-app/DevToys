@@ -238,7 +238,7 @@
     <value>A chave pública fornecida é uma chave privada</value>
   </data>
   <data name="EncodeAudienceLabel" xml:space="preserve">
-    <value>Token has audience</value>
+    <value>Token possui um Audience (aud) JWT</value>
   </data>
   <data name="EncodeIssuerLabel" xml:space="preserve">
     <value>Token possui um Issuer JWT</value>
