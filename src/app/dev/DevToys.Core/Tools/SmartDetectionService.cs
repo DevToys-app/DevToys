@@ -1,6 +1,7 @@
 ﻿using System;
 using DevToys.Api;
 using DevToys.Core.Tools.Metadata;
+using DevToys.Core.Tools.ViewItems;
 using Microsoft.Extensions.Logging;
 using Uno.Extensions;
 
@@ -12,7 +13,6 @@ public sealed partial class SmartDetectionService
     private readonly ILogger _logger;
     private readonly IReadOnlyList<DetectorNode> _detectorHierarchy;
     private readonly Dictionary<string, List<GuiToolInstance>> _dataTypeToToolInstanceMap;
-    private readonly GuiToolProvider _guiToolProvider;
 
     [ImportingConstructor]
     public SmartDetectionService(
@@ -21,7 +21,6 @@ public sealed partial class SmartDetectionService
         GuiToolProvider guiToolProvider)
     {
         _logger = this.Log();
-        _guiToolProvider = guiToolProvider;
 
         // Build a hiearchy of detectors based on their indicated base data type name.
         _detectorHierarchy = BuildDetectorNodeHierarchy(dataTypeDetectors);
@@ -29,6 +28,11 @@ public sealed partial class SmartDetectionService
         // Create a map of data types to tools.
         _dataTypeToToolInstanceMap = BuildDataTypeToToolInstanceMap(guiToolProvider);
     }
+
+    /// <summary>
+    /// Presumbly the active tool in the app.
+    /// </summary>
+    public GuiToolInstance? ActiveToolInstance { private get; set; }
 
     /// <summary>
     /// Detects the best tools that could be used with the given <paramref name="rawData"/>.
@@ -54,6 +58,8 @@ public sealed partial class SmartDetectionService
         // Make sure to be off the UI thread as this method may take many seconds to run.
         await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(CancellationToken.None);
 
+        GuiToolInstance? activeToolInstance = ActiveToolInstance;
+
         IReadOnlyList<(DetectorNode, DataDetectionResult)> succeededDetectors = await DetectAsync(cancellationToken, _detectorHierarchy, rawData);
         for (int i = 0; i < succeededDetectors.Count; i++)
         {
@@ -66,6 +72,11 @@ public sealed partial class SmartDetectionService
             {
                 for (int j = 0; j < toolList.Count; j++)
                 {
+                    if (!strict && activeToolInstance is not null && string.Equals(toolList[j].InternalComponentName, activeToolInstance.InternalComponentName, StringComparison.Ordinal))
+                    {
+                        // When not strict, ignore the tool if it's the active one.
+                        continue;
+                    }
                     cancellationToken.ThrowIfCancellationRequested();
                     detectedTools.Insert(0, new(toolList[j], detectorNode.Detector.Metadata.DataTypeName, dataDetectionResult.Data));
                 }
@@ -78,6 +89,11 @@ public sealed partial class SmartDetectionService
                 {
                     for (int j = 0; j < toolList.Count; j++)
                     {
+                        if (!strict && activeToolInstance is not null && string.Equals(toolList[j].InternalComponentName, activeToolInstance.InternalComponentName, StringComparison.Ordinal))
+                        {
+                            // When not strict, ignore the tool if it's the active one.
+                            continue;
+                        }
                         cancellationToken.ThrowIfCancellationRequested();
                         detectedTools.Add(new(toolList[j], detectorNode.Detector.Metadata.DataTypeBaseName, dataDetectionResult.Data));
                     }
@@ -265,6 +281,6 @@ public sealed partial class SmartDetectionService
         /// <summary>
         /// Gets the list of child detectors for this node.
         /// </summary>
-        internal List<DetectorNode>? ChildrenDetectors { get; set;  }
+        internal List<DetectorNode>? ChildrenDetectors { get; set; }
     }
 }

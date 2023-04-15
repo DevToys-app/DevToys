@@ -129,6 +129,9 @@
   <data name="Copy" xml:space="preserve">
     <value>Copy</value>
   </data>
+  <data name="NoSmartDetectedTool" xml:space="preserve">
+    <value>No tool to suggest</value>
+  </data>
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
   </data>
