@@ -106,6 +106,19 @@ namespace DevToys.UI.Controls
             set => SetValue(CanClearWhenReadOnlyProperty, value);
         }
 
+        public static readonly DependencyProperty CanOpenFileProperty
+            = DependencyProperty.Register(
+                nameof(CanOpenFile),
+                typeof(bool),
+                typeof(CustomTextBox),
+                new PropertyMetadata(true, OnCanOpenFilePropertyChangedCalled));
+
+        public bool CanOpenFile
+        {
+            get => (bool)GetValue(CanOpenFileProperty);
+            set => SetValue(CanOpenFileProperty, value);
+        }
+
         public static readonly DependencyProperty TextProperty
             = DependencyProperty.Register(
                 nameof(Text),
@@ -470,7 +483,7 @@ namespace DevToys.UI.Controls
                 GetPasteButton().Visibility = Visibility.Visible;
                 if (AcceptsReturn)
                 {
-                    GetOpenFileButton().Visibility = Visibility.Visible;
+                    GetOpenFileButton().Visibility = CanOpenFile ? Visibility.Visible : Visibility.Collapsed;
                     GetClearButton().Visibility = Visibility.Visible;
                     if (CanCopyWhenNotReadOnly)
                     {
@@ -819,6 +832,11 @@ namespace DevToys.UI.Controls
         }
 
         private static void OnCanClearWhenReadOnlyPropertyChangedCalled(DependencyObject sender, DependencyPropertyChangedEventArgs eventArgs)
+        {
+            ((CustomTextBox)sender).UpdateUI();
+        }
+
+        private static void OnCanOpenFilePropertyChangedCalled(DependencyObject sender, DependencyPropertyChangedEventArgs eventArgs)
         {
             ((CustomTextBox)sender).UpdateUI();
         }
