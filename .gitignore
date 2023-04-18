@@ -414,8 +414,7 @@ $RECYCLE.BIN/
 ##
 
 # TypeScript ignores
-*.js
-*.js.map
+
 package-lock.json
 !AppManifest.js
 
