@@ -124,7 +124,7 @@
     <value>設定</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>可擴展標記語言（XML）</value>
+    <value>XML</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
     <value>4 個空白</value>
@@ -157,6 +157,6 @@
     <value>將屬性置於新行</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
 </root>
