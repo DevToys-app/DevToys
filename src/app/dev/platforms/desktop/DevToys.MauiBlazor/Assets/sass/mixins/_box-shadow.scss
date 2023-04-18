@@ -1,0 +1,42 @@
+﻿@use '../configs/variables' as variables;
+
+@mixin box-shadow($shadow...) {
+    @if variables.$enable-shadows {
+        $result: ();
+
+        @each $value in $shadow {
+            @if $value != null {
+                $result: append($result, $value, "comma");
+            }
+
+            @if $value == none and length($shadow) > 1 {
+                @warn "The keyword 'none' must be used as a single argument.";
+            }
+        }
+
+        @if (length($result) > 0) {
+            box-shadow: $result;
+        }
+    }
+}
+
+
+// cards, grid item
+@mixin depth-04 {
+    @include box-shadow(0px 0.3px 0.9px var(--palette-neutral-black-10), 0px 1.6px 3.6px var(--palette-neutral-black-10));
+}
+
+// command bar, dropdown, context menu
+@mixin depth-08 {
+    @include box-shadow(0px 0.6px 1.8px var(--palette-neutral-black-10), 0px 3.2px 7.2px var(--palette-neutral-black-10));
+}
+
+// callout, hover card, tooltip
+@mixin depth-16 {
+    @include box-shadow(0px 1.2px 3.6px var(--palette-neutral-black-10), 0px 6.4px 14.4px var(--palette-neutral-black-10));
+}
+
+// panel, popup dialogs
+@mixin depth-64 {
+    @include box-shadow(0px 4.8px 14.4px var(--palette-neutral-black-20), 0px 25.6px 57.6px var(--palette-neutral-black-20));
+}

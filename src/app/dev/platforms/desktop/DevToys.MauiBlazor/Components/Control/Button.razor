@@ -1,0 +1,14 @@
+﻿@namespace DevToys.MauiBlazor.Components
+@inherits MefLayoutComponentBase
+
+<CascadingValue Value="this" IsFixed="true">
+    <button id=@Id
+            role=@Type.Code
+            type=@Type.Code
+            class="@CssClasses"
+            title=@Title
+            @ref=Element
+            @attributes="AdditionalAttributes">
+        @ChildContent
+    </button>
+</CascadingValue>

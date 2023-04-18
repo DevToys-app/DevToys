@@ -1,0 +1,9 @@
+﻿@use '../configs/variables' as variables;
+
+// stylelint-disable property-disallowed-list
+@mixin gradient($color1, $color2) {
+    background-color: $color1;
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#{$color1}, endColorstr=#{$color2});
+    background-image: -moz-linear-gradient(center top, $color1, $color2);
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($color1), to($color2));
+}

@@ -2,7 +2,6 @@
 using DevToys.Business.ViewModels;
 using DevToys.Core.Logging;
 using DevToys.Core.Mef;
-using DevToys.Core.Settings;
 using DevToys.MauiBlazor.Core.FileStorage;
 using DevToys.MauiBlazor.Core.Languages;
 using DevToys.Tools;

@@ -1,0 +1,16 @@
+﻿@namespace DevToys.MauiBlazor.Components
+@inherits MefLayoutComponentBase
+
+<CascadingValue Value="this" IsFixed="true">
+    <li id="@Id" class="@CssClasses">
+        <span class="item-link custom"
+            @onclick=@OnClickHandler
+            @onclick:preventDefault="true">
+            <i class="devtoys-icon icon-ic_fluent_home_48_regular"></i>
+            <span class="item-content">
+                @DisplayName
+            </span>
+        </span>
+        @ChildContent
+    </li>
+</CascadingValue>

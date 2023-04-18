@@ -1,111 +1,135 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
-  <PropertyGroup>
-    <TargetFrameworks Condition="$(IsWindows)">$(NetCoreWindows)</TargetFrameworks>
-    <TargetFrameworks Condition="$(IsMac)">$(NetMacCatalyst)</TargetFrameworks>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>DevToys.MauiBlazor</RootNamespace>
-    <UseMaui>true</UseMaui>
-    <SingleProject>true</SingleProject>
-    <EnableDefaultCssItems>false</EnableDefaultCssItems>
-    <TypeScriptTarget>ES6</TypeScriptTarget>
+    <PropertyGroup>
+        <TargetFrameworks Condition="$(IsWindows)">$(NetCoreWindows)</TargetFrameworks>
+        <TargetFrameworks Condition="$(IsMac)">$(NetMacCatalyst)</TargetFrameworks>
+        <OutputType>Exe</OutputType>
+        <RootNamespace>DevToys.MauiBlazor</RootNamespace>
+        <UseMaui>true</UseMaui>
+        <SingleProject>true</SingleProject>
+        <EnableDefaultCssItems>false</EnableDefaultCssItems>
+        <TypeScriptTarget>ES6</TypeScriptTarget>
 
-    <!-- Display name -->
-    <ApplicationTitle>DevToys</ApplicationTitle>
+        <!-- Display name -->
+        <ApplicationTitle>DevToys</ApplicationTitle>
 
-    <!-- App Identifier -->
-    <ApplicationId>com.etiennebaudoux.devtoys</ApplicationId>
-    <ApplicationIdGuid>856CF642-FDC7-42BE-A1D5-5D7F0FC09091</ApplicationIdGuid>
+        <!-- App Identifier -->
+        <ApplicationId>com.etiennebaudoux.devtoys</ApplicationId>
+        <ApplicationIdGuid>856CF642-FDC7-42BE-A1D5-5D7F0FC09091</ApplicationIdGuid>
 
-    <!-- Versions -->
-    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-    <ApplicationVersion>1</ApplicationVersion>
+        <!-- Versions -->
+        <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+        <ApplicationVersion>1</ApplicationVersion>
 
-    <!-- Disable Central Package Management -->
-    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
-  </PropertyGroup>
+        <!-- Disable Central Package Management -->
+        <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+    </PropertyGroup>
 
-  <Choose>
-    <When Condition="'$(TargetFramework)' == '$(NetMacCatalyst)'">
-      <PropertyGroup>
-        <DefineConstants>$(DefineConstants);__MACCATALYST__</DefineConstants>
-        <RuntimeIdentifiers>maccatalyst-arm64</RuntimeIdentifiers>
-        <UseInterpreter>true</UseInterpreter>
-        <!-- TODO: Only do this in DEBUG build. -->
-        <CodeSignEntitlements>Platforms/MacCatalyst/Entitlements.Debug.plist</CodeSignEntitlements>
-      </PropertyGroup>
-      <PropertyGroup Condition="'$(RuntimeIdentifier)'=='' AND '$(Configuration)'=='Release'">
-        <!-- Default values for command line builds -->
-        <RuntimeIdentifier>maccatalyst-arm64</RuntimeIdentifier>
-      </PropertyGroup>
-    </When>
+    <Choose>
+        <When Condition="'$(TargetFramework)' == '$(NetMacCatalyst)'">
+            <PropertyGroup>
+                <DefineConstants>$(DefineConstants);__MACCATALYST__</DefineConstants>
+                <RuntimeIdentifiers>maccatalyst-arm64</RuntimeIdentifiers>
+                <UseInterpreter>true</UseInterpreter>
+                <!-- TODO: Only do this in DEBUG build. -->
+                <CodeSignEntitlements>Platforms/MacCatalyst/Entitlements.Debug.plist</CodeSignEntitlements>
+            </PropertyGroup>
+            <PropertyGroup Condition="'$(RuntimeIdentifier)'=='' AND '$(Configuration)'=='Release'">
+                <!-- Default values for command line builds -->
+                <RuntimeIdentifier>maccatalyst-arm64</RuntimeIdentifier>
+            </PropertyGroup>
+        </When>
 
-    <When Condition="'$(TargetFramework)' == '$(NetCoreWindows)'">
-      <PropertyGroup>
-        <DefineConstants>$(DefineConstants);__WINDOWS__</DefineConstants>
-        <TargetPlatformMinVersion>$(Windows10MinSDKVersion)</TargetPlatformMinVersion>
-        <SupportedOSPlatformVersion>$(Windows10MinSDKVersion)</SupportedOSPlatformVersion>
-      </PropertyGroup>
-      <PropertyGroup Condition="'$(Configuration)'=='Release'">
-        <Platforms>x86;x64;arm64</Platforms>
-        <RuntimeIdentifiers>win10-arm64;win10-x64;win10-x86</RuntimeIdentifiers>
-        <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
-        <AppxPackage>false</AppxPackage>
-        <WindowsPackageType>None</WindowsPackageType>
-      </PropertyGroup>
-    </When>
-  </Choose>
+        <When Condition="'$(TargetFramework)' == '$(NetCoreWindows)'">
+            <PropertyGroup>
+                <DefineConstants>$(DefineConstants);__WINDOWS__</DefineConstants>
+                <TargetPlatformMinVersion>$(Windows10MinSDKVersion)</TargetPlatformMinVersion>
+                <SupportedOSPlatformVersion>$(Windows10MinSDKVersion)</SupportedOSPlatformVersion>
+            </PropertyGroup>
+            <PropertyGroup Condition="'$(Configuration)'=='Release'">
+                <Platforms>x86;x64;arm64</Platforms>
+                <RuntimeIdentifiers>win10-arm64;win10-x64;win10-x86</RuntimeIdentifiers>
+                <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+                <AppxPackage>false</AppxPackage>
+                <WindowsPackageType>None</WindowsPackageType>
+            </PropertyGroup>
+        </When>
+    </Choose>
 
-  <PropertyGroup Condition="'$(RuntimeIdentifierOverride)' != ''">
-    <RuntimeIdentifier>$(RuntimeIdentifierOverride)</RuntimeIdentifier>
-  </PropertyGroup>
+    <PropertyGroup Condition="'$(RuntimeIdentifierOverride)' != ''">
+        <RuntimeIdentifier>$(RuntimeIdentifierOverride)</RuntimeIdentifier>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <!-- App Icon -->
-    <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+    <ItemGroup>
+        <!-- App Icon -->
+        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
-    <!-- Splash Screen -->
-    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+        <!-- Splash Screen -->
+        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
 
-    <!-- Images -->
-    <MauiImage Include="Resources\Images\*" />
-    <MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+        <!-- Images -->
+        <MauiImage Include="Resources\Images\*" />
+        <MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
 
-    <!-- Custom Fonts -->
-    <MauiFont Include="Resources\Fonts\*" />
+        <!-- Custom Fonts -->
+        <MauiFont Include="Resources\Fonts\*" />
 
-    <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
-    <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
-    
-    <!-- TypeScript -->
-    <ConfigFiles Include="tsconfig.json" />
-    <Content Update="tsconfig.json" PublishFolderType="None" />
-    <TypeScriptCompile Remove="**\*.ts" />
-    <None Include="**\*.ts" />
-  </ItemGroup>
+        <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+        <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 
-  <ItemGroup>
-    <Content Include="..\..\..\DevToys.MonacoEditor\monaco-editor\*" LinkBase="wwwroot\lib\monaco-editor\%(RecursiveDir)/%(Filename)%(Extension)" />
-    <Content Include="..\..\..\DevToys.MonacoEditor\monaco-editor\min\**\*" Link="wwwroot\lib\monaco-editor\min\%(RecursiveDir)/%(Filename)%(Extension)" />
-    <TypeScriptCompile Remove="wwwroot\lib\monaco-editor\**\*.*" />
-  </ItemGroup>
+        <!-- TypeScript -->
+        <ConfigFiles Include="tsconfig.json" />
+        <Content Update="tsconfig.json" PublishFolderType="None" />
+        <Content Update="package.json" PublishFolderType="None" ExcludeFromBundleResources="true" />
+        <TypeScriptCompile Remove="**\*.ts" />
+        <None Include="**\*.ts" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\DevToys.Api\DevToys.Api.csproj" />
-    <ProjectReference Include="..\..\..\DevToys.Core\DevToys.Core.csproj" />
-    <ProjectReference Include="..\..\..\DevToys.Business\DevToys.Business.csproj" />
-    <ProjectReference Include="..\..\..\DevToys.Localization\DevToys.Localization.csproj" />
-    <ProjectReference Include="..\..\..\DevToys.Tools\DevToys.Tools.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <Content Include="..\..\..\DevToys.MonacoEditor\monaco-editor\*" LinkBase="wwwroot\lib\monaco-editor\%(RecursiveDir)/%(Filename)%(Extension)" />
+        <Content Include="..\..\..\DevToys.MonacoEditor\monaco-editor\min\**\*" Link="wwwroot\lib\monaco-editor\min\%(RecursiveDir)/%(Filename)%(Extension)" />
+        <None Remove="node_modules\**" />
+        <TypeScriptCompile Remove="node_modules\**" />
+        <TypeScriptCompile Remove="wwwroot\lib\monaco-editor\**\*.*" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="$(DotNetVersion)" />
-    <PackageReference Include="Microsoft.Fast.Components.FluentUI" Version="$(MicrosoftFastComponentsFluentUIVersion)" />
-    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="$(MicrosoftTypeScriptMSBuildVersion)">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="SixLabors.ImageSharp" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\DevToys.Api\DevToys.Api.csproj" />
+        <ProjectReference Include="..\..\..\DevToys.Core\DevToys.Core.csproj" />
+        <ProjectReference Include="..\..\..\DevToys.Business\DevToys.Business.csproj" />
+        <ProjectReference Include="..\..\..\DevToys.Localization\DevToys.Localization.csproj" />
+        <ProjectReference Include="..\..\..\DevToys.Tools\DevToys.Tools.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="$(DotNetVersion)" />
+        <PackageReference Include="Microsoft.Fast.Components.FluentUI" Version="$(MicrosoftFastComponentsFluentUIVersion)" />
+        <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="$(MicrosoftTypeScriptMSBuildVersion)">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="SixLabors.ImageSharp" Version="$(SixLaborsImageSharpVersion)" />
+    </ItemGroup>
+
+    <!-- Target ran on `dotnet restore` -->
+    <Target Name="NodeJsRestoreTarget" BeforeTargets="_GenerateRestoreProjectSpec">
+        <!-- Verify that Node.JS is installed. -->
+        <Exec Command="node --version" ContinueOnError="true">
+            <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+        </Exec>
+        <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+
+        <!-- Restore Node.JS dependencies. -->
+        <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+        <Exec WorkingDirectory="$(ProjectDir)" Command="npm install" />
+    </Target>
+
+    <!-- Target ran on `dotnet build` -->
+    <Target Name="GulpPrecompileTarget" AfterTargets="PrepareForBuild">
+        <!-- Run the Gulp tasks. -->
+        <Message Importance="high" Text="Generating CSS and JavaScript..." />
+        <Exec WorkingDirectory="$(ProjectDir)" Command="node_modules\.bin\gulp devtoysJavaScript" />
+        <Exec WorkingDirectory="$(ProjectDir)" Command="node_modules\.bin\gulp devtoysSass" />
+    </Target>
 
 </Project>

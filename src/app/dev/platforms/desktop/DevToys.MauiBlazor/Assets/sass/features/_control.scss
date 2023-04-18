@@ -1,0 +1,25 @@
+﻿@use "../mixins/index" as mixins;
+@use "../configs/variables" as variables;
+
+button {
+    padding: 7px 9px;
+    border-radius: 3px;
+    border-width: 1px;
+    border-style: solid;
+
+    @include mixins.transition(
+        color variables.$transition-base,
+        background-color variables.$transition-base,
+        border-color variables.$transition-base
+    );
+
+    &.icon {
+        font-size: 16px;
+        line-height: 16px;
+        font-style: normal;
+        font-weight: 400;
+    }
+
+    &.stealth {
+    }
+}

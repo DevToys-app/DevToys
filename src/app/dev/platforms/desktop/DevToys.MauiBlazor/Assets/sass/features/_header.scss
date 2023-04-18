@@ -1,0 +1,6 @@
+﻿@use "../mixins/index" as mixins;
+@use "../configs/variables" as variables;
+
+header {
+    grid-area: header;
+}

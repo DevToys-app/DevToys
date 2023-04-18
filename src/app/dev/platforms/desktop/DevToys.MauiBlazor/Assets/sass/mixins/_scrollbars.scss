@@ -1,0 +1,22 @@
+﻿@use '../configs/variables' as variables;
+
+@mixin scrollbars($width: 10px, $height: 10px, $foreground-color: #999, $background-color: #333) {
+    // For Chrome & Safari
+    &::-webkit-scrollbar {
+        width: $width;
+        height: $height;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $foreground-color;
+        border-radius: 10rem;
+        border: 3px solid $foreground-color;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $background-color;
+        border-radius: 10rem;
+    }
+    // Standard version (Firefox only for now)
+    scrollbar-color: $foreground-color $background-color;
+}

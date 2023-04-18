@@ -1,0 +1,21 @@
+﻿@namespace DevToys.MauiBlazor.Components
+@using DevToys.Core.Tools.ViewItems;
+@inherits NavbarItem
+
+<CascadingValue Value="this" IsFixed="true">
+    <NavbarItem Class="nav-group" Item="Item">
+        <div @onclick:stopPropagation="true" @onclick:preventDefault="true">
+            <Button Type="@ButtonType.Button" Appearance="@ButtonAppearance.Stealth" IconOnly="true"
+                    class="collapsed"
+                    @onclick=OnClickAsync
+                    aria-expanded="true">
+                <i class="icon-active icon-ic_fluent_chevron_down_48_regular"></i>
+            </Button>
+        </div>
+    </NavbarItem>
+    <li class="nav-item nav-group-child">
+        <ul aria-labelledby="collapse-list-converters" class="@GroupClass" id="collapse-list-converters">
+            @ChildContent
+        </ul>
+    </li>
+</CascadingValue>

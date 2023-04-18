@@ -1,0 +1,24 @@
+﻿@use '../configs/variables' as variables;
+
+// stylelint-disable property-disallowed-list
+@mixin placeholder ($color, $font-size) {
+    ::-webkit-input-placeholder {
+        color: $color !important;
+        font-size: $font-size !important;
+    }
+
+    :-moz-placeholder {
+        color: $color !important;
+        font-size: $font-size !important;
+    }
+
+    ::-moz-placeholder {
+        color: $color !important;
+        font-size: $font-size !important;
+    }
+
+    :-ms-input-placeholder {
+        color: $color !important;
+        font-size: $font-size !important;
+    }
+}

@@ -1,0 +1,27 @@
+﻿@use '../configs/variables' as variables;
+
+@mixin backdrop-filter($filter...) {
+    @if variables.$enable-filter {
+        $result: ();
+
+        @each $value in $filter {
+            @if $value != null {
+                $result: append($result, $value, "comma");
+            }
+
+            @if $value == none and length($filter) > 1 {
+                @warn "The keyword 'none' must be used as a single argument.";
+            }
+        }
+
+        @if (length($result) > 0) {
+            -webkit-backdrop-filter: $result;
+            backdrop-filter: $result;
+        }
+    }
+}
+
+
+@mixin mica {
+    @include backdrop-filter(blur(120px));
+}

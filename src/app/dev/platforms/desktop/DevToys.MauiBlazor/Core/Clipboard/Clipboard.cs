@@ -1,9 +1,11 @@
 ﻿using DevToys.Api;
 using Microsoft.Extensions.Logging;
 using Uno.Extensions;
+#if __WINDOWS__
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 using Windows.Storage.Streams;
+#endif
 
 namespace DevToys.MauiBlazor.Core.Clipboard;
 
