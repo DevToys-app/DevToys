@@ -2,11 +2,13 @@
 
 public class Breakpoint
 {
-    public static Breakpoint Small = new(nameof(Small).ToLowerInvariant(), nameof(Small), 0);
+    public static readonly Breakpoint Small = new(nameof(Small).ToLowerInvariant(), nameof(Small), 0);
 
-    public static Breakpoint Medium = new(nameof(Medium).ToLowerInvariant(), nameof(Medium), 1);
+    public static readonly Breakpoint Medium = new(nameof(Medium).ToLowerInvariant(), nameof(Medium), 1);
 
-    public static Breakpoint Wide = new(nameof(Wide).ToLowerInvariant(), nameof(Wide), 2);
+    public static readonly Breakpoint Wide = new(nameof(Wide).ToLowerInvariant(), nameof(Wide), 2);
+
+    public static readonly List<Breakpoint> All = new() { Small, Medium, Wide };
 
     public string Code { get; }
 
@@ -16,23 +18,24 @@ public class Breakpoint
 
     protected Breakpoint(string code, string name, int value)
     {
-        Guard.IsNotNullOrWhiteSpace(code, nameof(code));
-        Guard.IsNotNullOrWhiteSpace(name, nameof(name));
+        Guard.IsNotNullOrWhiteSpace(code);
+        Guard.IsNotNullOrWhiteSpace(name);
         Code = code;
         Name = name;
         Value = value;
     }
 
-    public static IEnumerable<Breakpoint> GetAll()
-        => new List<Breakpoint> { Small, Medium, Wide };
-
     public static Breakpoint FindByCode(string code)
     {
         Guard.IsNotNullOrWhiteSpace(code, nameof(code));
 
-        Breakpoint? found = GetAll().SingleOrDefault(breakpoint => breakpoint.Code.Equals(code, StringComparison.OrdinalIgnoreCase));
-        if (found is null)
-            return Small;
-        return found;
+        foreach (Breakpoint breakPoint in All)
+        {
+            if (breakPoint.Code.Equals(code, StringComparison.OrdinalIgnoreCase))
+            {
+                return breakPoint;
+            }
+        }
+        return Small;
     }
 }

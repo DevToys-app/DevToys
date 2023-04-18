@@ -1,11 +1,13 @@
 ﻿namespace DevToys.MauiBlazor.Core.Enums;
 public class ButtonType
 {
-    public static ButtonType Button = new(nameof(Button).ToLowerInvariant(), nameof(Button));
+    public static readonly ButtonType Button = new(nameof(Button).ToLowerInvariant(), nameof(Button));
 
-    public static ButtonType Submit = new(nameof(Submit).ToLowerInvariant(), nameof(Submit));
+    public static readonly ButtonType Submit = new(nameof(Submit).ToLowerInvariant(), nameof(Submit));
 
-    public static ButtonType Reset = new(nameof(Reset).ToLowerInvariant(), nameof(Reset));
+    public static readonly ButtonType Reset = new(nameof(Reset).ToLowerInvariant(), nameof(Reset));
+
+    public static readonly List<ButtonType> All = new() { Button, Submit, Reset };
 
     public string Code { get; }
 
@@ -13,24 +15,23 @@ public class ButtonType
 
     protected ButtonType(string code, string name)
     {
-        Guard.IsNotNullOrWhiteSpace(code, nameof(code));
-        Guard.IsNotNullOrWhiteSpace(name, nameof(name));
+        Guard.IsNotNullOrWhiteSpace(code);
+        Guard.IsNotNullOrWhiteSpace(name);
         Code = code;
         Name = name;
     }
-
-    public static IEnumerable<ButtonType> GetAll()
-        => new List<ButtonType> { Button, Submit, Reset };
 
     public static ButtonType FindByCode(string code)
     {
         Guard.IsNotNullOrWhiteSpace(code, nameof(code));
 
-        ButtonType? found = GetAll().SingleOrDefault(button => button.Code.Equals(code, StringComparison.OrdinalIgnoreCase));
-        if (found is null)
+        foreach (ButtonType buttonType in All)
         {
-            return Button;
+            if (buttonType.Code.Equals(code, StringComparison.OrdinalIgnoreCase))
+            {
+                return buttonType;
+            }
         }
-        return found;
+        return Button;
     }
 }

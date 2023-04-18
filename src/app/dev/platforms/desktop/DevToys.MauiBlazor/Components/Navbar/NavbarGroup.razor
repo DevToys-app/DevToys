@@ -1,8 +1,9 @@
 ﻿@namespace DevToys.MauiBlazor.Components
+@using DevToys.Core.Tools.ViewItems;
 @inherits NavbarItem
 
 <CascadingValue Value="this" IsFixed="true">
-    <NavbarItem Class="nav-group" Page="@Page" Icon="@(Microsoft.Fast.Components.FluentUI.FluentIcons.Home)" Text="@Text">
+    <NavbarItem Class="nav-group" Item="Item">
         <div @onclick:stopPropagation="true" @onclick:preventDefault="true">
             <Button Type="@ButtonType.Button" Appearance="@ButtonAppearance.Stealth" IconOnly="true"
                     class="collapsed"

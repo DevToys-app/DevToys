@@ -2,14 +2,15 @@
 @inherits MefLayoutComponentBase
 
 <CascadingValue Value="this" IsFixed="true">
-    <li id="@Id"
-        class="@CssClasses">
-        <NavbarAnchor Href="@Page" Title="@Text" Class="custom" Clicked=@HandleClickEventAsync>
-            <i class="icon-ic_fluent_home_48_regular"></i>
+    <li id="@Id" class="@CssClasses">
+        <span class="item-link custom"
+            @onclick=@OnClickHandler
+            @onclick:preventDefault="true">
+            <i class="devtoys-icon icon-ic_fluent_home_48_regular"></i>
             <span class="item-content">
-                @Text
+                @DisplayName
             </span>
-        </NavbarAnchor>
+        </span>
         @ChildContent
     </li>
 </CascadingValue>

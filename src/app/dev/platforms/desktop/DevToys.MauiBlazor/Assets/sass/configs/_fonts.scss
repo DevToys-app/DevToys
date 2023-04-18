@@ -3,6 +3,17 @@
     src: url("../fonts/FluentSystemIcons-Regular.woff2?b48ba7b19a15536ed3d062b9b6c8fa0e") format("woff2"), url("../fonts/FluentSystemIcons-Regular.woff?b48ba7b19a15536ed3d062b9b6c8fa0e") format("woff"), url("../fonts/FluentSystemIcons-Regular.ttf?b48ba7b19a15536ed3d062b9b6c8fa0e") format("truetype");
 }
 
+i[class^="devtoys-icon"]:before, i[class*=" devtoys-icon"]:before {
+    font-family: FluentSystemIcons-Regular !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 i[class^="icon-"]:before, i[class*=" icon-"]:before {
     font-family: FluentSystemIcons-Regular !important;
     font-style: normal;

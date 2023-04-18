@@ -32,6 +32,7 @@ public partial class MainLayout : MefLayoutComponentBase
             ApplyTheme();
         }
 
+        ViewModel.SelectedMenuItem = ViewModel.HeaderAndBodyToolViewItems[0];
         await base.OnAfterRenderAsync(firstRender);
     }
 

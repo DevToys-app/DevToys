@@ -14,22 +14,22 @@
         {
             if (navItem is GuiToolViewItem guiToolViewItem)
             {
-                <NavbarItem Page="@guiToolViewItem.InternalName" Icon="@(FluentIcons.Home)" Text="@guiToolViewItem.MenuDisplayTitle" />
+                <NavbarItem Item="navItem" Selected="navItem == ViewModel.SelectedMenuItem" />
             }
             else if (navItem is GroupViewItem groupViewItem)
             {
                 if (groupViewItem.Children is not null)
                 {
-                    <NavbarGroup Page="@groupViewItem.InternalName" Icon="@groupViewItem.IconGlyph" Text="@groupViewItem.DisplayTitle">
+                    <NavbarGroup Item="navItem" Selected="navItem == ViewModel.SelectedMenuItem">
                         @foreach (var childItem in groupViewItem.Children)
                         {
-                            <NavbarItem Page="@childItem.InternalName" Icon="@(FluentIcons.Home)" Text="@childItem.MenuDisplayTitle" />
+                            <NavbarItem Item="childItem" Selected="navItem == ViewModel.SelectedMenuItem" />
                         }
                     </NavbarGroup>
                 }
                 else
                 {
-                    <NavbarItem Page="@groupViewItem.InternalName" Icon="@(FluentIcons.Home)" Text="@groupViewItem.DisplayTitle" />
+                    <NavbarItem Item="navItem" Selected="navItem == ViewModel.SelectedMenuItem" />
                 }
             }
             else
@@ -43,7 +43,7 @@
         {
             if (navItem is GuiToolViewItem guiToolViewItem)
             {
-                <NavbarItem Page="@guiToolViewItem.InternalName" Icon="@(FluentIcons.Home)" Text="@guiToolViewItem.MenuDisplayTitle" />
+                <NavbarItem Item="navItem" Selected="navItem == ViewModel.SelectedMenuItem" />
             }
             else
             {

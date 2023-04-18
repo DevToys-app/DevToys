@@ -1,9 +1,12 @@
-﻿namespace DevToys.MauiBlazor.Components;
+﻿using Microsoft.AspNetCore.Components.Web;
+
+namespace DevToys.MauiBlazor.Components;
 
 public partial class NavbarGroup : NavbarItem
 {
     private const string DefaultActiveClass = "active";
-    private bool _selected;
+
+    private string _groupClass = string.Empty;
 
     private readonly HashSet<string> _expendedClass = new();
 
@@ -23,13 +26,25 @@ public partial class NavbarGroup : NavbarItem
             {
                 _expendedClass.Add(classValue);
             }
+
+            _groupClass = value;
         }
     }
 
     [Parameter]
     public bool IsExpended { get; set; } = false;
 
-    internal string ExpendedName => IsExpended.ToString().ToLowerInvariant();
+    internal string ExpendedName
+    {
+        get
+        {
+            if (IsExpended)
+            {
+                return Utils.True.Code;
+            }
+            return Utils.False.Code;
+        }
+    }
 
     public void RegisterChild(NavbarItem child)
     {
@@ -59,7 +74,7 @@ public partial class NavbarGroup : NavbarItem
     }
 
     // Todo Handle collapse animation
-    internal async Task OnClickHandler()
+    internal new async Task OnClickHandler(MouseEventArgs eventArgs)
     {
         Expanded = !Expanded;
         ToggleExpended();

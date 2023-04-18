@@ -45,7 +45,6 @@ public partial class NavbarAnchor : MefLayoutComponentBase, IDisposable
         {
             helper.Append("active");
         }
-        helper.Append(Classess);
         base.AppendClasses(helper);
     }
 

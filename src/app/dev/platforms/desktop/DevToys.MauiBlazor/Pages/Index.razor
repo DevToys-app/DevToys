@@ -38,7 +38,6 @@
                 _name = string.Empty;
                 return;
             }
-            Guard.IsNotNullOrWhiteSpace(value);
             EncodedName = value;
             _name = HttpUtility.UrlDecode(value);
         }

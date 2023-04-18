@@ -37,7 +37,7 @@ public partial class Button : MefLayoutComponentBase
         if (AdditionalAttributes != null && AdditionalAttributes.TryGetValue("class", out object? obj))
         {
             string classes = Convert.ToString(obj, CultureInfo.InvariantCulture) ?? string.Empty;
-            Classess = new HashSet<string>(classes.Split(' '));
+            Classes = new HashSet<string>(classes.Split(' '));
         }
 
         base.OnParametersSet();

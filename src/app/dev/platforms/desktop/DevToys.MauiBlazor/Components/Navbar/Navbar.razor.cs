@@ -1,10 +1,10 @@
-﻿using DevToys.MauiBlazor.Core.Helpers;
+﻿using DevToys.MauiBlazor.Core.Enums;
 
 namespace DevToys.MauiBlazor.Components;
 
 public partial class Navbar : MefLayoutComponentBase
 {
-    private readonly Dictionary<string, NavbarItem> items = new();
+    private readonly Dictionary<string, NavbarItem> _items = new();
 
     private DotNetObjectReference<Navbar> _objectReference = default!;
 
@@ -13,10 +13,10 @@ public partial class Navbar : MefLayoutComponentBase
     private bool HasManualCollapsed { get; set; } = false;
 
     [Inject]
-    private NavigationManager _navigationManager { get; set; } = default!;
+    private NavigationManager NavigationManager { get; set; } = default!;
 
     [Inject]
-    private IJSRuntime _jSRuntime { get; set; } = default!;
+    private IJSRuntime JSRuntime { get; set; } = default!;
 
     [Parameter]
     public bool IsCollapsible { get; set; } = false;
@@ -30,22 +30,20 @@ public partial class Navbar : MefLayoutComponentBase
     [Parameter]
     public bool Collapsed { get; set; } = false;
 
-    public string CollapsedName => Collapsed.ToString().ToLowerInvariant();
+    public string CollapsedName
+    {
+        get
+        {
+            if (Collapsed)
+            {
+                return Utils.True.Code;
+            }
+            return Utils.False.Code;
+        }
+    }
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
-
-    [Parameter]
-    public EventCallback<NavbarItem> CurrentSelectedChanged { get; set; }
-
-    [Parameter]
-    public EventCallback<NavbarItem> OnSelectedChange { get; set; }
-
-    [Parameter]
-    public EventCallback<bool> OnExpandedChange { get; set; }
-
-    [Parameter]
-    public EventCallback<bool> OnExpanded { get; set; }
 
     [JSInvokable]
     public bool ToggleResizeTracking()
@@ -91,7 +89,7 @@ public partial class Navbar : MefLayoutComponentBase
         if (firstRender)
         {
             _objectReference = DotNetObjectReference.Create(this);
-            await _jSRuntime.InvokeVoidAsync("blazorExtensions.toggleResizeTracking", _objectReference);
+            await JSRuntime.InvokeVoidAsync("blazorExtensions.toggleResizeTracking", _objectReference);
             StateHasChanged();
         }
         await base.OnAfterRenderAsync(firstRender);

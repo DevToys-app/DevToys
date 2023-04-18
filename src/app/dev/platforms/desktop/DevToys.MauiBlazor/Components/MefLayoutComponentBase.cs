@@ -6,7 +6,7 @@ namespace DevToys.MauiBlazor.Components;
 
 public abstract class MefLayoutComponentBase : LayoutComponentBase
 {
-    protected HashSet<string> Classess = new();
+    protected HashSet<string>? Classes = null;
 
     [Inject]
     protected IMefProvider MefProvider { get; set; } = default!;
@@ -41,7 +41,7 @@ public abstract class MefLayoutComponentBase : LayoutComponentBase
     {
         if (!string.IsNullOrWhiteSpace(Class))
         {
-            Classess = new HashSet<string>(Class.Split(' '));
+            Classes = new HashSet<string>(Class.Split(' '), StringComparer.InvariantCultureIgnoreCase);
         }
 
         base.OnParametersSet();
@@ -52,6 +52,9 @@ public abstract class MefLayoutComponentBase : LayoutComponentBase
 
     protected virtual void AppendClasses(ClassHelper helper)
     {
-        helper.Append(Classess);
+        if (Classes is not null)
+        {
+            helper.Append(Classes);
+        }
     }
 }

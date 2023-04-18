@@ -1,4 +1,3 @@
-@import "https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap";
 @font-face {
   font-family: "FluentSystemIcons-Regular";
   src: url("../fonts/FluentSystemIcons-Regular.woff2?b48ba7b19a15536ed3d062b9b6c8fa0e") format("woff2"), url("../fonts/FluentSystemIcons-Regular.woff?b48ba7b19a15536ed3d062b9b6c8fa0e") format("woff"), url("../fonts/FluentSystemIcons-Regular.ttf?b48ba7b19a15536ed3d062b9b6c8fa0e") format("truetype");
