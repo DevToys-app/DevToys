@@ -74,7 +74,7 @@ public partial class NavbarGroup : NavbarItem
     }
 
     // Todo Handle collapse animation
-    internal new async Task OnClickHandler(MouseEventArgs eventArgs)
+    internal new async Task OnClickAsync(MouseEventArgs eventArgs)
     {
         Expanded = !Expanded;
         ToggleExpended();

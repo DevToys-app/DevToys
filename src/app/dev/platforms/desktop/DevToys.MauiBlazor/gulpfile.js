@@ -29,6 +29,7 @@ const paths = {
 function devtoysSass() {
     return gulp.src(paths.devtoysScss)
         .pipe(sass())
+        .pipe(rename("devtoys.g.css"))
         .pipe(gulp.dest(paths.devtoysScssOut))
         .pipe(cleanCSS({ compatibility: 'ie8' }))
         .pipe(gulp.dest(paths.devtoysScssOut));
@@ -58,7 +59,7 @@ function devtoysJavascript(cb) {
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(paths.devtoysJavascriptOut))
-        .pipe(rename("devtoys.js", { extname: '.min.js' }))
+        .pipe(rename("devtoys.g.js", { extname: '.js' }))
         .pipe(gulp.dest(paths.devtoysJavascriptOut))
         .on('end', function () {
             console.log("end");

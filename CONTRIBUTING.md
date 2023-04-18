@@ -15,6 +15,7 @@ You can contribute to DevToys app by:
 1. Make sure your machine is running on Windows 10 1903 (19h1) or later.
 1. Install [Visual Studio 2022 17.3 or later](https://visualstudio.microsoft.com/vs/) installed with the following Workloads, or import the [vs2022.vsconfig](vs2022.vsconfig) file.
     * ASP.NET and web development
+    * Node.js development
     * .NET Multi-Platform App UI development
     * .NET desktop development
     * Universal Windows Platform development

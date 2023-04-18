@@ -7,7 +7,7 @@
         <div @onclick:stopPropagation="true" @onclick:preventDefault="true">
             <Button Type="@ButtonType.Button" Appearance="@ButtonAppearance.Stealth" IconOnly="true"
                     class="collapsed"
-                    @onclick=OnClickHandler
+                    @onclick=OnClickAsync
                     aria-expanded="true">
                 <i class="icon-active icon-ic_fluent_chevron_down_48_regular"></i>
             </Button>

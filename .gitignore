@@ -414,9 +414,14 @@ $RECYCLE.BIN/
 ##
 
 # TypeScript ignores
-
 package-lock.json
 !AppManifest.js
+
+# JavaScript and CSS generated files
+*.g.css
+*.g.js
+*.g.js.map
+*.js.map
 
 # Nuke Build
 .nuke/temp/
@@ -429,10 +434,6 @@ src/app/dev/DevToys.MonacoEditor/monaco-editor
 
 # Highlight.js dependency https://highlightjs.org/
 !highlight.min.js
-
-# MAUI Blazor web components.
-!**/DevToys.MauiBlazor/wwwroot/js/*.js
-!**/DevToys.MauiBlazor/Components/MonacoEditor.razor.js
 
 # Build results
 [Dd]ebug/

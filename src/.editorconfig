@@ -4,6 +4,7 @@
 root = true
 
 # Spell checker
+[*]
 spelling_languages = en-US
 spelling_checkable_types = strings,identifiers,comments
 spelling_error_severity = information

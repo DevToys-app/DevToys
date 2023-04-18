@@ -72,7 +72,7 @@ public partial class NavbarAnchor : MefLayoutComponentBase, IDisposable
         base.OnParametersSet();
     }
 
-    protected async Task OnClickHandler(MouseEventArgs eventArgs)
+    protected async Task OnClickAsync(MouseEventArgs eventArgs)
     {
         NavigationManager.NavigateTo(Href, false);
         await Clicked.InvokeAsync();
