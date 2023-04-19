@@ -1,45 +1,29 @@
 ﻿@page "/"
-@page "/{Name}"
 
-@using Microsoft.Fast.Components.FluentUI
-@using System.Web;
+@using DevToys.Core.Tools.ViewItems;
 
-<h1>@Name - (@EncodedName)</h1>
+@inherits MefLayoutComponentBase
 
+<Navbar Id="navbar"
+        IsCollapsible="true"
+        HasSearch="false"
+        IsVertical="true"
+        MenuItemsSource="@ViewModel.HeaderAndBodyToolViewItems"
+        FooterMenuItemsSource="@ViewModel.FooterToolViewItems"
+        @bind-SelectedItem="ViewModel.SelectedMenuItem">
 
-@functions {
-
-    private string _name = string.Empty;
-    private string _encodedName = string.Empty;
-
-    public string EncodedName
-    {
-        get => _encodedName; 
-        set
+    <Content>
+        @if (ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem)
         {
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                _encodedName = string.Empty;
-                return;
-            }
-            _encodedName = value;
-        }
-    }
+            <h1>You selected a TOOL: @guiToolViewItem.ToolInstance.LongOrShortDisplayTitle</h1>
+            <!-- TODO: Place here a component that takes in argument the guiToolViewItem -->
 
-    // Define a property to contain the parameter passed from the auth page
-    [Parameter]
-    public string Name { 
-        get => _name; 
-        set
-        {
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                EncodedName = string.Empty;
-                _name = string.Empty;
-                return;
-            }
-            EncodedName = value;
-            _name = HttpUtility.UrlDecode(value);
+            <Button @onclick="OnSetFavoriteAsync">Set favorite</Button>
         }
-    }
-}
+        else if (ViewModel.SelectedMenuItem is GroupViewItem groupToolViewItem)
+        {
+            <h1>You selected a GROUP: @groupToolViewItem.DisplayTitle</h1>
+            <!-- TODO: Place here a component that takes in argument the groupToolViewItem -->
+        }
+    </Content>
+</Navbar>

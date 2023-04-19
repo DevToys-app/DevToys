@@ -1,5 +1,4 @@
 ﻿using DevToys.Api.Core.Theme;
-using DevToys.Business.ViewModels;
 using DevToys.MauiBlazor.Components;
 using Microsoft.Fast.Components.FluentUI;
 
@@ -9,9 +8,6 @@ public partial class MainLayout : MefLayoutComponentBase
 {
     [Import]
     private IThemeListener ThemeListener { get; set; } = default!;
-
-    [Import]
-    internal MainWindowViewModel ViewModel { get; set; } = default!;
 
     [Inject]
     private GlobalState GlobalState { get; set; } = default!;
@@ -32,7 +28,6 @@ public partial class MainLayout : MefLayoutComponentBase
             ApplyTheme();
         }
 
-        ViewModel.SelectedMenuItem = ViewModel.HeaderAndBodyToolViewItems[0];
         await base.OnAfterRenderAsync(firstRender);
     }
 

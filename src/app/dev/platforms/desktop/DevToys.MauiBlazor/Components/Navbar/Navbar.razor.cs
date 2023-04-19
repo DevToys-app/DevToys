@@ -1,4 +1,4 @@
-﻿using DevToys.MauiBlazor.Core.Enums;
+﻿using System.Collections.ObjectModel;
 
 namespace DevToys.MauiBlazor.Components;
 
@@ -43,7 +43,19 @@ public partial class Navbar : MefLayoutComponentBase
     }
 
     [Parameter]
-    public RenderFragment? ChildContent { get; set; }
+    public RenderFragment? Content { get; set; }
+
+    [Parameter]
+    public ReadOnlyObservableCollection<INotifyPropertyChanged>? MenuItemsSource { get; set; }
+
+    [Parameter]
+    public ReadOnlyObservableCollection<INotifyPropertyChanged>? FooterMenuItemsSource { get; set; }
+
+    [Parameter]
+    public INotifyPropertyChanged? SelectedItem { get; set; }
+
+    [Parameter]
+    public EventCallback<INotifyPropertyChanged?> SelectedItemChanged { get; set; }
 
     [JSInvokable]
     public bool ToggleResizeTracking()
@@ -67,11 +79,18 @@ public partial class Navbar : MefLayoutComponentBase
         }
     }
 
-    internal async Task OnClickAsync()
+    internal async Task OnTogglePaneButtonClickAsync()
     {
         Collapsed = !Collapsed;
         HasManualCollapsed = !HasManualCollapsed;
         await InvokeAsync(StateHasChanged);
+    }
+
+    internal Task OnItemSelectedAsync(INotifyPropertyChanged item)
+    {
+        SelectedItem = item;
+        SelectedItemChanged.InvokeAsync(item);
+        return Task.CompletedTask;
     }
 
     protected override void AppendClasses(ClassHelper helper)
