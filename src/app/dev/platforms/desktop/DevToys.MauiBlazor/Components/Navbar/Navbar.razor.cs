@@ -2,7 +2,7 @@
 
 namespace DevToys.MauiBlazor.Components;
 
-public partial class Navbar : MefLayoutComponentBase
+public partial class Navbar : StyledLayoutComponentBase
 {
     private readonly Dictionary<string, NavbarItem> _items = new();
 

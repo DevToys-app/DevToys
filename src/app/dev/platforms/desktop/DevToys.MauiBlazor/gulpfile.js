@@ -7,6 +7,7 @@ const gulpSass = require('gulp-sass');
 const sass = gulpSass(dartSass);
 const del = require('del');
 
+var concat = require("gulp-concat");
 var sourcemaps = require('gulp-sourcemaps');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
@@ -20,7 +21,7 @@ var nodeResolve = require('@rollup/plugin-node-resolve');
 // Cache needs to be initialized outside of the Gulp task 
 var devtoysCache;
 const paths = {
-    devtoysScss: './Assets/sass/**/*.scss',
+    devtoysScss: ['./Assets/sass/**/*.scss', './Components/**/*.scss'],
     devtoysScssOut: './wwwroot/css',
     devtoysJavascript: './Assets/javascript',
     devtoysJavascriptOut: './wwwroot/js'
@@ -29,7 +30,7 @@ const paths = {
 function devtoysSass() {
     return gulp.src(paths.devtoysScss)
         .pipe(sass())
-        .pipe(rename("devtoys.g.css"))
+        .pipe(concat("devtoys.g.css"))
         .pipe(gulp.dest(paths.devtoysScssOut))
         .pipe(cleanCSS({ compatibility: 'ie8' }))
         .pipe(gulp.dest(paths.devtoysScssOut));

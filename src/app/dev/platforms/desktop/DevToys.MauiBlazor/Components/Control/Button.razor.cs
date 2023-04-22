@@ -2,7 +2,7 @@
 
 namespace DevToys.MauiBlazor.Components;
 
-public partial class Button : MefLayoutComponentBase
+public partial class Button : StyledLayoutComponentBase
 {
     [Parameter]
     public ButtonType Type { get; set; } = ButtonType.Button;

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components.Web;
 
 namespace DevToys.MauiBlazor.Components;
 
-public partial class NavbarItem : MefLayoutComponentBase
+public partial class NavbarItem : StyledLayoutComponentBase
 {
     private const string DefaultActiveClass = "active";
     private bool _selected;
