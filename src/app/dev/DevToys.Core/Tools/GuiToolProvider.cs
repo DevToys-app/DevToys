@@ -45,8 +45,8 @@ public sealed partial class GuiToolProvider
 
     private ObservableCollection<INotifyPropertyChanged>? _headerAndBodyToolViewItems;
     private ReadOnlyObservableCollection<INotifyPropertyChanged>? _headerAndBodyToolViewItemsReadOnly;
-    private ObservableCollection<GuiToolViewItem>? _footerToolViewItems;
-    private ReadOnlyObservableCollection<GuiToolViewItem>? _footerToolViewItemsReadOnly;
+    private ObservableCollection<INotifyPropertyChanged>? _footerToolViewItems;
+    private ReadOnlyObservableCollection<INotifyPropertyChanged>? _footerToolViewItemsReadOnly;
     private GroupViewItem? _favoriteToolsGroupViewItem;
     private SeparatorViewItem? _separatorAfterAllToolsItem;
     private SeparatorViewItem? _separatorAfterRecentTools;
@@ -100,7 +100,7 @@ public sealed partial class GuiToolProvider
     /// <summary>
     /// Gets a flat list containing all the footer tools available, ordered.
     /// </summary>
-    public ReadOnlyObservableCollection<GuiToolViewItem> FooterToolViewItems
+    public ReadOnlyObservableCollection<INotifyPropertyChanged> FooterToolViewItems
     {
         get
         {
@@ -256,9 +256,10 @@ public sealed partial class GuiToolProvider
     {
         for (int i = 0; i < FooterToolViewItems.Count; i++)
         {
-            if (FooterToolViewItems[i].ToolInstance == guiToolInstance)
+            INotifyPropertyChanged item = FooterToolViewItems[i];
+            if (item is GuiToolViewItem guiToolViewItem && guiToolViewItem.ToolInstance == guiToolInstance)
             {
-                yield return FooterToolViewItems[i];
+                yield return guiToolViewItem;
             }
         }
 
@@ -287,7 +288,11 @@ public sealed partial class GuiToolProvider
     {
         for (int i = 0; i < FooterToolViewItems.Count; i++)
         {
-            action(FooterToolViewItems[i]);
+            INotifyPropertyChanged item = FooterToolViewItems[i];
+            if (item is GuiToolViewItem guiToolViewItem)
+            {
+                action(guiToolViewItem);
+            }
         }
 
         for (int i = 0; i < HeaderAndBodyToolViewItems.Count; i++)

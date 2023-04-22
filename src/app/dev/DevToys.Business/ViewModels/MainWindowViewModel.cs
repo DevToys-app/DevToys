@@ -58,13 +58,13 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
     /// <summary>
     /// Gets a flat list containing all the footer tools available, ordered.
     /// </summary>
-    internal ReadOnlyObservableCollection<GuiToolViewItem> FooterToolViewItems => _guiToolProvider.FooterToolViewItems;
+    internal ReadOnlyObservableCollection<INotifyPropertyChanged> FooterToolViewItems => _guiToolProvider.FooterToolViewItems;
 
     // Can't use CommunityToolkit.MVVM due to https://github.com/dotnet/roslyn/issues/57239#issuecomment-1437895948
     /// <summary>
     /// Gets or sets the selected menu item in the NavitationView.
     /// </summary>
-    internal INotifyPropertyChanged? SelectedMenuItem
+    public INotifyPropertyChanged? SelectedMenuItem
     {
         get => _selectedMenuItem;
         set

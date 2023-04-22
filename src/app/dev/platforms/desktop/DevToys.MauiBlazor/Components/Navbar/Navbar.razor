@@ -1,4 +1,5 @@
 ﻿@namespace DevToys.MauiBlazor.Components
+@using DevToys.Core.Tools.ViewItems;
 @inherits MefLayoutComponentBase
 
 <CascadingValue Value="this" Name="NavMenu" IsFixed="true">
@@ -10,7 +11,7 @@
                     <Button Class="navbar-toggler"
                             title="Navbar Toggler" aria-controls="navbarNav" aria-expanded="@CollapsedName" aria-label="Toggle navigation"
                         Appearance="@ButtonAppearance.Stealth"
-                        IconOnly="true" @onclick=@OnClickAsync>
+                        IconOnly="true" @onclick=@OnTogglePaneButtonClickAsync>
                         <i class="icon-ic_fluent_navigation_24_regular"></i>
                     </Button>
                 }
@@ -24,7 +25,78 @@
                     </div>
                 </FormItem>
             }
-            @ChildContent
+
+            <ul class="nav-items scrollable vertical">
+                @if (MenuItemsSource is not null)
+                {
+                    @foreach (INotifyPropertyChanged item in MenuItemsSource)
+                    {
+                        if (item is GuiToolViewItem guiToolViewItem)
+                        {
+                            <NavbarItem Item="item"
+                                        Selected="item == SelectedItem"
+                                        OnSelected=@OnItemSelectedAsync />
+                        }
+                        else if (item is GroupViewItem groupViewItem)
+                        {
+                            if (groupViewItem.Children is not null)
+                            {
+                                <NavbarGroup Item="item"
+                                             Selected="item == SelectedItem"
+                                             OnSelected=@OnItemSelectedAsync>
+                                    @foreach (var childItem in groupViewItem.Children)
+                                    {
+                                        <NavbarItem Item="childItem"
+                                                    Selected="childItem == SelectedItem"
+                                                    OnSelected=@OnItemSelectedAsync/>
+                                    }
+                                </NavbarGroup>
+                            }
+                            else
+                            {
+                                <NavbarItem Item="item"
+                                            Selected="item == SelectedItem"
+                                            OnSelected=@OnItemSelectedAsync/>
+                            }
+                        }
+                        else if (item is SeparatorViewItem)
+                        {
+                            <li class="nav-item nav-separator"></li>
+                        }
+                        else
+                        {
+                            ThrowHelper.ThrowNotSupportedException();
+                        }
+                    }
+                }
+            </ul>
+
+            <ul class="nav-items sticky-bottom">
+                @if (FooterMenuItemsSource is not null)
+                {
+                    @foreach (var item in FooterMenuItemsSource)
+                    {
+                        if (item is GuiToolViewItem guiToolViewItem)
+                        {
+                            <NavbarItem Item="item"
+                                        Selected="item == SelectedItem"
+                                        OnSelected=@OnItemSelectedAsync/>
+                        }
+                        else if (item is SeparatorViewItem)
+                        {
+                            <li class="nav-item nav-separator"></li>
+                        }
+                        else
+                        {
+                            ThrowHelper.ThrowNotSupportedException();
+                        }
+                    }
+                }
+            </ul>
         </nav>
     </CascadingValue>
+
+    <main class="page">
+        @Content
+    </main>
 </CascadingValue>

@@ -28,6 +28,9 @@ public partial class NavbarItem : MefLayoutComponentBase
     public INotifyPropertyChanged Item { get; set; } = default!;
 
     [Parameter]
+    public EventCallback<INotifyPropertyChanged> OnSelected { get; set; }
+
+    [Parameter]
     public bool Expanded { get; set; }
 
     [Parameter]
@@ -55,7 +58,7 @@ public partial class NavbarItem : MefLayoutComponentBase
     protected override void AppendClasses(ClassHelper helper)
     {
         helper.Append("nav-item");
-        if (_selected)
+        if (Selected)
         {
             helper.Append("active");
         }
@@ -66,7 +69,7 @@ public partial class NavbarItem : MefLayoutComponentBase
     {
         if (firstRender)
         {
-            if (_selected)
+            if (Selected)
             {
                 ClassesHasChanged();
             }
@@ -95,15 +98,8 @@ public partial class NavbarItem : MefLayoutComponentBase
         base.OnParametersSet();
     }
 
-    internal async Task OnClickHandler(MouseEventArgs eventArgs)
+    internal Task OnClickAsync(MouseEventArgs eventArgs)
     {
-        //await Clicked.InvokeAsync();
-        await Task.CompletedTask;
-    }
-
-    internal async void HandleClickEventAsync(bool isSelected)
-    {
-        Selected = isSelected;
-        await Task.CompletedTask;
+        return OnSelected.InvokeAsync(Item);
     }
 }
