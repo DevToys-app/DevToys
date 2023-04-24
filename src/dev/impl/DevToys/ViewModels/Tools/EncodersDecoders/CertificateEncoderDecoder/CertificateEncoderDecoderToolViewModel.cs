@@ -30,7 +30,6 @@ namespace DevToys.ViewModels.Tools.CertificateEncoderDecoder
         private readonly IMarketingService _marketingService;
         private readonly ISettingsProvider _settingsProvider;
         private readonly Queue<(string? cert, string? password)> _conversionQueue = new();
-        private readonly List<string> _tempFileNames = new();
         private readonly ImmutableHashSet<string> _allowedFileExtensions = new HashSet<string>()
         {
             ".cer",
@@ -117,7 +116,6 @@ namespace DevToys.ViewModels.Tools.CertificateEncoderDecoder
         {
             _cancellationTokenSource?.Cancel();
             _cancellationTokenSource?.Dispose();
-            ClearTempFiles();
         }
 
         #region FilesSelectedCommand
@@ -143,11 +141,8 @@ namespace DevToys.ViewModels.Tools.CertificateEncoderDecoder
             _cancellationTokenSource = new CancellationTokenSource();
             CancellationToken cancellationToken = _cancellationTokenSource.Token;
 
-            SetCertificateDataAsync(file)
-                .ContinueWith(_ =>
-                {
-                    ConvertFromCertificateToStringAsync(file, cancellationToken).Forget();
-                });
+            CertificateFile = file;
+            ConvertFromCertificateToStringAsync(file, cancellationToken).Forget();
         }
 
         private async Task ConvertFromCertificateToStringAsync(StorageFile file, CancellationToken cancellationToken)
@@ -177,7 +172,7 @@ namespace DevToys.ViewModels.Tools.CertificateEncoderDecoder
             {
                 throw new NotSupportedException();
             }
-            
+
             await SetInputValueAsync(output);
         }
 
@@ -267,33 +262,6 @@ namespace DevToys.ViewModels.Tools.CertificateEncoderDecoder
             }
 
             return decoded;
-        }
-
-        private async Task SetCertificateDataAsync(StorageFile? file)
-        {
-            await ThreadHelper.RunOnUIThreadAsync(() =>
-            {
-                CertificateFile = file;
-            });
-        }
-
-        private void ClearTempFiles()
-        {
-            for (int i = 0; i < _tempFileNames.Count; i++)
-            {
-                string tempFile = _tempFileNames[i];
-                try
-                {
-                    if (File.Exists(tempFile))
-                    {
-                        File.Delete(tempFile);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Logger.LogFault(nameof(CertificateEncoderDecoderToolViewModel), ex, "Unable to delete a temporary file.");
-                }
-            }
         }
     }
 }

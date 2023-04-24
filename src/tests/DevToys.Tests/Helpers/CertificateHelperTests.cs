@@ -12,9 +12,18 @@ namespace DevToys.Tests.Helpers
         [DataRow(PemCertWithPrivateKey, null, true, CertDecoded)]
         [DataRow(PfxNoPassword, null, true, CertDecoded)]
         [DataRow(PfxWithPassword, "test1234", true, CertDecoded)]
-        [DataRow(PfxWithPassword, "wrong password!", true, CertificateHelper.IncorrectPassword)]
-        [DataRow(CertificateRequest, null, false, CertificateHelper.FormatNotSupported)]
-        public void DecodeCertificate(string input, string password, bool successfullyDecoded, string expectedResult)
+        public void DecodeCertificateSuccess(string input, string password, bool successfullyDecoded, string expectedResult)
+            => DecodeCertificate(input, password, successfullyDecoded, expectedResult);
+
+        [DataTestMethod]
+        public void DecodeCertificateErrors()
+        {
+            // Cannot populate these vars via DataRow because https://learn.microsoft.com/en-us/dotnet/csharp/misc/cs0182?f1url=%3FappId%3Droslyn%26k%3Dk(CS0182)
+            DecodeCertificate(PfxWithPassword, "wrong password!", true, LanguageManager.Instance.CertificateEncoderDecoder.InvalidPasswordError);
+            DecodeCertificate(CertificateRequest, null, true, LanguageManager.Instance.CertificateEncoderDecoder.UnsupportedFormatError);
+        }
+
+        private void DecodeCertificate(string input, string password, bool successfullyDecoded, string expectedResult)
         {
             // Convert date output to UTC so that tests pass on any machine with any timezone
             var notBefore = DateTime.Parse("4/17/2023 10:40:48 AM");

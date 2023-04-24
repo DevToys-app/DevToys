@@ -138,6 +138,12 @@
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Certificate Encoder / Decoder</value>
   </data>
+  <data name="InvalidPasswordError" xml:space="preserve">
+    <value>Invalid password.</value>
+  </data>
+  <data name="UnsupportedFormatError" xml:space="preserve">
+    <value>Certificate Request format not currently supported.</value>
+  </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value />
   </data>

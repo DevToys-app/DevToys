@@ -466,6 +466,16 @@ namespace DevToys
         public string SearchDisplayName => _resources.GetString("SearchDisplayName");
 
         /// <summary>
+        /// Gets the resource InvalidPasswordError.
+        /// </summary>
+        public string InvalidPasswordError => _resources.GetString("InvalidPasswordError");
+
+        /// <summary>
+        /// Gets the resource UnsupportedFormatError.
+        /// </summary>
+        public string UnsupportedFormatError => _resources.GetString("UnsupportedFormatError");
+
+        /// <summary>
         /// Gets the resource SearchKeywords.
         /// </summary>
         public string SearchKeywords => _resources.GetString("SearchKeywords");

@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
@@ -6,13 +8,11 @@ using System.Text;
 
 namespace DevToys.Helpers
 {
-#nullable enable
     internal static class CertificateHelper
     {
         private const string BeginCertificate = "BEGIN CERTIFICATE";
         private const string BeginCertificateRequest = "BEGIN CERTIFICATE REQUEST";
-        internal const string IncorrectPassword = "The specified network password is not correct";
-        internal const string FormatNotSupported = "Certificate Request format not currently supported.";
+        private const int IncorrectPassword = -2147024810;
 
         /// <summary>
         /// Returns the friendly formatted, decoded certificate details.
@@ -31,15 +31,16 @@ namespace DevToys.Helpers
                 string[] splitCert = input.Split('-', StringSplitOptions.RemoveEmptyEntries);
                 for (int i = 0; i < splitCert.Length; i++)
                 {
-                    if (splitCert[i] == BeginCertificate)
+                    if (string.Equals(splitCert[i], BeginCertificate, StringComparison.OrdinalIgnoreCase))
                     {
                         publicCert = splitCert[i + 1];
                         break;
                     }
-                    else if (splitCert[i] == BeginCertificateRequest)
+                    // If this is a valid certificate request, we should still return true with the error message
+                    else if (string.Equals(splitCert[i], BeginCertificateRequest, StringComparison.OrdinalIgnoreCase))
                     {
-                        decoded = FormatNotSupported;
-                        return false;
+                        decoded = LanguageManager.Instance.CertificateEncoderDecoder.UnsupportedFormatError;
+                        return true;
                     }
                 }
             }
@@ -52,9 +53,9 @@ namespace DevToys.Helpers
             catch (CryptographicException wce)
             {
                 // If this is a valid certificate, but an incorrect/missing password, we should still return true
-                if (wce.Message == IncorrectPassword)
+                if (wce.HResult == IncorrectPassword)
                 {
-                    decoded = wce.Message;
+                    decoded = LanguageManager.Instance.CertificateEncoderDecoder.InvalidPasswordError;
                     return true;
                 }
 
@@ -78,7 +79,7 @@ namespace DevToys.Helpers
         internal static string GetRawCertificateString(byte[] data)
         {
             string value = Encoding.UTF8.GetString(data);
-            if (value.Contains(BeginCertificate))
+            if (value.Contains(BeginCertificate, StringComparison.OrdinalIgnoreCase))
             {
                 return value;
             }
