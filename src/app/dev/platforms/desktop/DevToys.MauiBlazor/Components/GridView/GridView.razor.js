@@ -26,10 +26,11 @@ function onGridViewScroll(ev) {
         let group = groups[i];
         let header = group.querySelector(".grid-view-group-header");
         let itemsContainer = group.querySelector(".grid-view-items-container");
+        let headerMarginBottom = parseFloat(getComputedStyle(header).marginBottom);
         let headerTopPositionInGridView = header.getBoundingClientRect().top - gridViewPosition.top - gridViewPaddingTop;
         if (headerTopPositionInGridView <= 0) {
             let itemsContainerTopPositionInGridView = itemsContainer.getBoundingClientRect().top - gridViewPosition.top - gridViewPaddingTop;
-            itemsContainer.style.clipPath = `inset(${header.offsetHeight - itemsContainerTopPositionInGridView}px 0 0 0)`;
+            itemsContainer.style.clipPath = `inset(${header.offsetHeight + headerMarginBottom - itemsContainerTopPositionInGridView}px 0 0 0)`;
         }
         else {
             itemsContainer.style.clipPath = `none`;

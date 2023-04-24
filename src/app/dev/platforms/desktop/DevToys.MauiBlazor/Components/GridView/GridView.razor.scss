@@ -16,6 +16,9 @@
             top: 0;
             z-index: 10;
             background-color: transparent;
+            border-color: var(--system-reveal-base-low-color);
+            border-bottom: 1px solid;
+            margin-bottom: 8px;
         }
 
         .grid-view-items-container {
