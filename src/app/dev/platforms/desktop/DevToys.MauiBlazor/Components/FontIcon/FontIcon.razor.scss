@@ -1,0 +1,11 @@
+@use "../../Assets/sass/mixins/index" as mixins;
+@use "../../Assets/sass/configs/variables" as variables;
+
+.font-icon {
+    display: block;
+    color: var(--text-fill-color-primary);
+
+    &::before {
+        content: attr(data-glyph)
+    }
+}

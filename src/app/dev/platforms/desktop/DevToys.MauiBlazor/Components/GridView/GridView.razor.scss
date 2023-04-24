@@ -1,0 +1,33 @@
+@use "../../Assets/sass/mixins/index" as mixins;
+@use "../../Assets/sass/configs/variables" as variables;
+
+.grid-view {
+    position: relative;
+    overflow-y: auto;
+    width: 100%;
+    height: 100%;
+    flex: 1;
+
+    .grid-view-group {
+        position: relative;
+
+        .grid-view-group-header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: transparent;
+        }
+
+        .grid-view-items-container {
+            clip-path: none; /* Updated dynamically in JavaScript */
+            display: flex !important;
+            gap: 16px;
+            flex-wrap: wrap !important;
+            padding: 0;
+
+            .grid-view-item {
+                list-style-type: none;
+            }
+        }
+    }
+}

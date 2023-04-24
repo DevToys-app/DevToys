@@ -39,7 +39,7 @@ internal sealed class SampleCommandLineTool : ICommandLineTool
 [Name("Sample tool")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
-    IconGlyph = "\uE670",
+    IconGlyph = '\uE670',
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
     ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
@@ -70,7 +70,7 @@ internal sealed class SampleGuiTool : IGuiTool
 [Name("Sample tool2")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
-    IconGlyph = "\uE670",
+    IconGlyph = '\uE670',
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
     ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
@@ -99,7 +99,7 @@ internal sealed class SampleGuiTool2 : IGuiTool
 [Name("Sample tool3")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
-    IconGlyph = "\uE670",
+    IconGlyph = '\uE670',
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
     ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
@@ -123,7 +123,7 @@ internal sealed class SampleGuiTool3 : IGuiTool
 [Name("Sample tool4")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
-    IconGlyph = "\uE670",
+    IconGlyph = '\uE670',
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
     ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
@@ -147,7 +147,7 @@ internal sealed class SampleGuiTool4 : IGuiTool
 [Name("Sample tool5")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
-    IconGlyph = "\uE670",
+    IconGlyph = '\uE670',
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
     ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
@@ -171,7 +171,7 @@ internal sealed class SampleGuiTool5 : IGuiTool
 [Name("Sample tool6")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
-    IconGlyph = "\uE670",
+    IconGlyph = '\uE670',
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
     ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
@@ -195,7 +195,7 @@ internal sealed class SampleGuiTool6 : IGuiTool
 [Name("Sample tool7")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
-    IconGlyph = "\uE670",
+    IconGlyph = '\uE670',
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
     ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
@@ -219,7 +219,7 @@ internal sealed class SampleGuiTool7 : IGuiTool
 [Name("Sample tool8")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
-    IconGlyph = "\uE670",
+    IconGlyph = '\uE670',
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
     ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
@@ -243,7 +243,7 @@ internal sealed class SampleGuiTool8 : IGuiTool
 [Name("Sample tool9")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
-    IconGlyph = "\uE670",
+    IconGlyph = '\uE670',
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
     ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
@@ -267,7 +267,7 @@ internal sealed class SampleGuiTool9 : IGuiTool
 [Name("Sample tool10")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
-    IconGlyph = "\uE670",
+    IconGlyph = '\uE670',
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
     ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
@@ -291,7 +291,7 @@ internal sealed class SampleGuiTool10 : IGuiTool
 [Name("Sample tool11")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
-    IconGlyph = "\uE670",
+    IconGlyph = '\uE670',
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
     ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
@@ -315,7 +315,7 @@ internal sealed class SampleGuiTool11 : IGuiTool
 [Name("Sample tool12")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
-    IconGlyph = "\uE670",
+    IconGlyph = '\uE670',
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
     ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
@@ -339,7 +339,7 @@ internal sealed class SampleGuiTool12 : IGuiTool
 [Name("Sample tool13")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
-    IconGlyph = "\uE670",
+    IconGlyph = '\uE670',
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
     ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
@@ -363,7 +363,7 @@ internal sealed class SampleGuiTool13 : IGuiTool
 [Name("Sample tool14")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
-    IconGlyph = "\uE670",
+    IconGlyph = '\uE670',
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
     ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
@@ -387,7 +387,7 @@ internal sealed class SampleGuiTool14 : IGuiTool
 [Name("Sample tool15")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
-    IconGlyph = "\uE670",
+    IconGlyph = '\uE670',
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
     ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
@@ -411,7 +411,7 @@ internal sealed class SampleGuiTool15 : IGuiTool
 [Name("Sample tool16")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
-    IconGlyph = "\uE670",
+    IconGlyph = '\uE670',
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
     ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
@@ -435,7 +435,7 @@ internal sealed class SampleGuiTool16 : IGuiTool
 [Name("Sample tool17")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
-    IconGlyph = "\uE670",
+    IconGlyph = '\uE670',
     GroupName = "Encoders / Decoders",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
     ResourceManagerBaseName = "DevToys.Tools.Tools.Sample.Sample",
@@ -463,7 +463,7 @@ internal sealed class EncodersDecodersGroup : GuiToolGroup
     internal EncodersDecodersGroup()
     {
         IconFontName = "FluentSystemIcons";
-        IconGlyph = "\uE670";
+        IconGlyph = '\uE670';
         DisplayTitle = Sample.CommandDescription;
         AccessibleName = Sample.CommandDescription;
     }

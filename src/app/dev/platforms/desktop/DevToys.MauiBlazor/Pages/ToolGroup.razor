@@ -1,0 +1,28 @@
+﻿@inherits MefLayoutComponentBase
+
+<CascadingValue Value="this" IsFixed="true">
+    <GridView ItemsSource="@ViewModel.Tools"
+              Class="@CssClasses"
+              ItemMinWidth="330"
+              style="padding: 2.5rem;">
+        <Header>
+            @ViewModel.HeaderText
+        </Header>
+        <ItemTemplate Context="item">
+            <div class="tool-group-grid-view-item">
+                <div class="icon">
+                    <FontIcon Class="fonticon" FontFamily="@item.IconFontName" Glyph="@item.IconGlyph" />
+                </div>
+                <div class="title">@item.LongOrShortDisplayTitle</div>
+                <div class="description">@item.Description</div>
+                <div class="buttons">
+                    <Button Class="button"
+                            Appearance="@ButtonAppearance.Stealth"
+                            IconOnly="true">
+                        <FontIcon Class="fonticon" FontFamily="FluentSystemIcons" Glyph="@('\uEE7A')" />
+                    </Button>
+                </div>
+            </div>
+        </ItemTemplate>
+    </GridView>
+</CascadingValue>

@@ -461,7 +461,7 @@ public sealed partial class GuiToolProvider
         yield return new GroupViewItem(
             ReservedGuiToolGroupNames.AllTools,
             iconFontName: "FluentSystemIcons",
-            iconGlyph: "\uE70F",
+            iconGlyph: '\uE70F',
             displayTitle: MainWindow.AllToolsDisplayTitle,
             accessibleName: MainWindow.AllToolsAccessibleName);
 
@@ -591,7 +591,7 @@ public sealed partial class GuiToolProvider
             = new GroupViewItem(
                 ReservedGuiToolGroupNames.FavoriteTools,
                 iconFontName: "FluentSystemIcons",
-                iconGlyph: "\uF70E",
+                iconGlyph: '\uE70F',
                 displayTitle: MainWindow.FavoriteToolsDisplayTitle,
                 accessibleName: MainWindow.FavoriteToolsAccessibleName,
                 children: new(favoriteTools),

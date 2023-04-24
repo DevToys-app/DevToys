@@ -1,5 +1,4 @@
-﻿using DevToys.Core.Tools.ViewItems;
-using Microsoft.AspNetCore.Components.Web;
+﻿using Microsoft.AspNetCore.Components.Web;
 
 namespace DevToys.MauiBlazor.Components;
 
@@ -8,24 +7,17 @@ public partial class NavbarItem : StyledLayoutComponentBase
     private const string DefaultActiveClass = "active";
     private bool _selected;
 
-    internal string? DisplayName
-    {
-        get
-        {
-            if (Item is GuiToolViewItem guiToolViewItem)
-            {
-                return guiToolViewItem.MenuDisplayTitle;
-            }
-            if (Item is GroupViewItem groupViewItem)
-            {
-                return groupViewItem.DisplayTitle;
-            }
-            return string.Empty;
-        }
-    }
-
     [Parameter]
     public INotifyPropertyChanged Item { get; set; } = default!;
+
+    [Parameter]
+    public string Title { get; set; } = string.Empty;
+
+    [Parameter]
+    public string IconFontFamily { get; set; } = string.Empty;
+
+    [Parameter]
+    public char IconGlyph { get; set; }
 
     [Parameter]
     public EventCallback<INotifyPropertyChanged> OnSelected { get; set; }
@@ -76,26 +68,6 @@ public partial class NavbarItem : StyledLayoutComponentBase
             await InvokeAsync(StateHasChanged);
         }
         await base.OnAfterRenderAsync(firstRender);
-    }
-
-    protected override void OnParametersSet()
-    {
-        bool isSelected = false;
-        if (Item is GuiToolViewItem guiToolViewItem)
-        {
-            // handle selected item selected
-        }
-        if (Item is GroupViewItem groupViewItem)
-        {
-            // handle selected item selected
-        }
-
-        if (isSelected)
-        {
-            ClassesHasChanged();
-            StateHasChanged();
-        }
-        base.OnParametersSet();
     }
 
     internal Task OnClickAsync(MouseEventArgs eventArgs)

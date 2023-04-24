@@ -13,17 +13,19 @@
         @bind-SelectedItem="ViewModel.SelectedMenuItem">
 
     <Content>
-        @if (ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem)
+        @if (!IsTransitioning)
         {
-            <h1>You selected a TOOL: @guiToolViewItem.ToolInstance.LongOrShortDisplayTitle</h1>
-            <!-- TODO: Place here a component that takes in argument the guiToolViewItem -->
+            if (ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem)
+            {
+                <h1>You selected a TOOL: @guiToolViewItem.ToolInstance.LongOrShortDisplayTitle</h1>
+                <!-- TODO: Place here a component that takes in argument the guiToolViewItem -->
 
-            <Button @onclick="OnSetFavoriteAsync">Set favorite</Button>
-        }
-        else if (ViewModel.SelectedMenuItem is GroupViewItem groupToolViewItem)
-        {
-            <h1>You selected a GROUP: @groupToolViewItem.DisplayTitle</h1>
-            <!-- TODO: Place here a component that takes in argument the groupToolViewItem -->
+                <Button @onclick="OnSetFavoriteAsync">Set favorite</Button>
+            }
+            else if (ViewModel.SelectedMenuItem is GroupViewItem groupToolViewItem)
+            {
+                <ToolGroup GroupViewItem="@groupToolViewItem" Class="entranceThemeTransition" />
+            }
         }
     </Content>
 </Navbar>

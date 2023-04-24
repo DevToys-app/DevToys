@@ -28,7 +28,7 @@ public sealed class GroupViewItem : ObservableObject
     internal GroupViewItem(
         string internalName,
         string iconFontName,
-        string iconGlyph,
+        char iconGlyph,
         string displayTitle,
         string accessibleName,
         ObservableCollection<GuiToolViewItem>? children = null,
@@ -36,7 +36,6 @@ public sealed class GroupViewItem : ObservableObject
     {
         Guard.IsNotNullOrWhiteSpace(internalName);
         Guard.IsNotNullOrWhiteSpace(iconFontName);
-        Guard.IsNotNullOrWhiteSpace(iconGlyph);
         Guard.IsNotNullOrWhiteSpace(displayTitle);
         InternalName = internalName;
         DisplayTitle = displayTitle;
@@ -83,7 +82,7 @@ public sealed class GroupViewItem : ObservableObject
     /// <summary>
     /// Gets a glyph for the icon of the group.
     /// </summary>
-    public string IconGlyph { get; }
+    public char IconGlyph { get; }
 
     /// <summary>
     /// Gets all the children items of this group.

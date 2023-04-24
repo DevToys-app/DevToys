@@ -14,7 +14,7 @@ public sealed class ToolDisplayInformationAttribute : Attribute
     private string _descriptionResourceName = string.Empty;
     private string _accessibleNameResourceName = string.Empty;
     private string _searchkeywordsResourceName = string.Empty;
-    private string _iconGlyph = string.Empty;
+    private char _iconGlyph;
     private string _iconFontName = string.Empty;
     private string _groupName = string.Empty;
 
@@ -135,12 +135,11 @@ public sealed class ToolDisplayInformationAttribute : Attribute
     /// <summary>
     /// Gets or sets a glyph for the icon of the tool.
     /// </summary>
-    public string IconGlyph
+    public char IconGlyph
     {
         get => _iconGlyph;
         set
         {
-            Guard.IsNotNullOrWhiteSpace(value);
             _iconGlyph = value;
         }
     }

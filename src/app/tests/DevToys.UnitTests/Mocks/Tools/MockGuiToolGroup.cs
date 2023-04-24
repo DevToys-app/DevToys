@@ -10,7 +10,7 @@ internal sealed class MockGuiToolGroup : GuiToolGroup
     internal MockGuiToolGroup()
     {
         IconFontName = "FluentSystemIcons";
-        IconGlyph = "\u0108";
+        IconGlyph = '\u0108';
         DisplayTitle = "Group title";
         AccessibleName = "Group title";
     }

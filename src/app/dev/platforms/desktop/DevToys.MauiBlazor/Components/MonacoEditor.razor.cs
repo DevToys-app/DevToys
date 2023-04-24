@@ -30,12 +30,10 @@ public partial class MonacoEditor : FluentComponentBase, IAsyncDisposable
         .AddStyle(Style)
         .Build();
 
-    /// <summary />
     [Inject]
-    private IJSRuntime JS { get; set; } = default!;
+    private IJSRuntime JSRuntime { get; set; } = default!;
 
-    /// <summary />
-    private IJSObjectReference Module { get; set; } = default!;
+    private IJSObjectReference JSModule { get; set; } = default!;
 
     /// <summary>
     /// Unique identifier of this component.
@@ -93,9 +91,9 @@ public partial class MonacoEditor : FluentComponentBase, IAsyncDisposable
     /// <summary />
     protected override async Task OnParametersSetAsync()
     {
-        if (Module != null)
+        if (JSModule != null)
         {
-            await Module.InvokeVoidAsync(
+            await JSModule.InvokeVoidAsync(
                 "monacoSetOptions",
                 Id,
                 new { Value = this.Value, Theme = GetTheme(IsDarkMode), Language = this.Language, });
@@ -107,7 +105,7 @@ public partial class MonacoEditor : FluentComponentBase, IAsyncDisposable
     {
         if (firstRender)
         {
-            Module = await JS.InvokeAsync<IJSObjectReference>("import", JAVASCRIPT_FILE);
+            JSModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", JAVASCRIPT_FILE);
             _objRef = DotNetObjectReference.Create(this);
 
             var options = new
@@ -119,7 +117,7 @@ public partial class MonacoEditor : FluentComponentBase, IAsyncDisposable
                 LineNumbers = true,
                 ReadOnly = false,
             };
-            await Module.InvokeVoidAsync("monacoInitialize", Id, _objRef, options);
+            await JSModule.InvokeVoidAsync("monacoInitialize", Id, _objRef, options);
         }
 
         await base.OnAfterRenderAsync(firstRender);
@@ -145,9 +143,9 @@ public partial class MonacoEditor : FluentComponentBase, IAsyncDisposable
     /// <summary />
     async ValueTask IAsyncDisposable.DisposeAsync()
     {
-        if (Module is not null)
+        if (JSModule is not null)
         {
-            await Module.DisposeAsync();
+            await JSModule.DisposeAsync();
         }
 
         if (_objRef is not null)

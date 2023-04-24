@@ -1,0 +1,72 @@
+@use "../Assets/sass/mixins/index" as mixins;
+@use "../Assets/sass/configs/variables" as variables;
+
+.tool-group-grid-view-item {
+    height: 134px;
+    max-height: 134px;
+    padding: 16px;
+    background-color: var(--card-background-fill-color-default);
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--card-stroke-color-default);
+    border-radius: variables.$corner-radius;
+    display: grid;
+    grid-template-columns: min-content 1fr min-content;
+    grid-template-rows: min-content 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        "icon title buttons"
+        "icon description description";
+
+    .icon {
+        grid-area: icon;
+        height: 100px;
+        width: 100px;
+        padding: 12px;
+        background-color: var(--card-background-fill-color-default);
+        border-radius: variables.$corner-radius;
+
+        .fonticon {
+            margin: auto;
+            text-align: center;
+            font-size: 64px;
+        }
+    }
+
+    .title {
+        grid-area: title;
+        margin-left: 16px;
+        max-height: 75px;
+        word-wrap: break-word;
+        text-overflow: ellipsis;
+        color: var(--text-fill-color-primary);
+    }
+
+    .description {
+        grid-area: description;
+        margin-left: 16px;
+        margin-top: 2px;
+        margin-right: 8px;
+        word-wrap: break-word;
+        text-overflow: ellipsis;
+        color: var(--text-fill-color-secondary);
+    }
+
+    .buttons {
+        grid-area: buttons;
+        margin-left: 16px;
+        top: 0px;
+
+        .button {
+            height: 24px;
+            width: 24px;
+            padding: 0px;
+        }
+
+        .fonticon {
+            margin: auto;
+            text-align: center;
+            font-size: 16px;
+        }
+    }
+}
