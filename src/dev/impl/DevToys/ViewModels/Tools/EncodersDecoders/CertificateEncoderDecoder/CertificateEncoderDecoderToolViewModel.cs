@@ -28,7 +28,6 @@ namespace DevToys.ViewModels.Tools.CertificateEncoderDecoder
     public class CertificateEncoderDecoderToolViewModel : ObservableRecipient, IToolViewModel
     {
         private readonly IMarketingService _marketingService;
-        private readonly ISettingsProvider _settingsProvider;
         private readonly Queue<(string? cert, string? password)> _conversionQueue = new();
         private readonly ImmutableHashSet<string> _allowedFileExtensions = new HashSet<string>()
         {
@@ -45,7 +44,6 @@ namespace DevToys.ViewModels.Tools.CertificateEncoderDecoder
 
         private CancellationTokenSource? _cancellationTokenSource;
         private StorageFile? _certificateFile;
-        private bool _ignoreInputValueChange;
 
         public Type View { get; } = typeof(CertificateEncoderDecoderToolPage);
 
@@ -106,7 +104,6 @@ namespace DevToys.ViewModels.Tools.CertificateEncoderDecoder
         [ImportingConstructor]
         public CertificateEncoderDecoderToolViewModel(ISettingsProvider settingsProvider, IMarketingService marketingService)
         {
-            _settingsProvider = settingsProvider;
             _marketingService = marketingService;
 
             FilesSelectedCommand = new RelayCommand<StorageFile[]>(ExecuteFilesSelectedCommand);
@@ -218,9 +215,7 @@ namespace DevToys.ViewModels.Tools.CertificateEncoderDecoder
         {
             await ThreadHelper.RunOnUIThreadAsync(() =>
             {
-                _ignoreInputValueChange = true;
                 InputValue = value;
-                _ignoreInputValueChange = false;
             });
         }
 
