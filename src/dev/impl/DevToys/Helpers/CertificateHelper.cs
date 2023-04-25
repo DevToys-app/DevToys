@@ -12,7 +12,9 @@ namespace DevToys.Helpers
     {
         private const string BeginCertificate = "BEGIN CERTIFICATE";
         private const string BeginCertificateRequest = "BEGIN CERTIFICATE REQUEST";
-        private const int IncorrectPassword = -2147024810;
+        
+        // "The specified password is not correct." (ERROR_INVALID_PASSWORD)
+        private const int ERROR_INVALID_PASSWORD_HRESULT = unchecked((int)0x80070056);
 
         /// <summary>
         /// Returns the friendly formatted, decoded certificate details.
@@ -53,7 +55,7 @@ namespace DevToys.Helpers
             catch (CryptographicException wce)
             {
                 // If this is a valid certificate, but an incorrect/missing password, we should still return true
-                if (wce.HResult == IncorrectPassword)
+                if (wce.HResult == ERROR_INVALID_PASSWORD_HRESULT)
                 {
                     decoded = LanguageManager.Instance.CertificateEncoderDecoder.InvalidPasswordError;
                     return true;
