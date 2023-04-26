@@ -24,12 +24,13 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition MinHeight="100"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition MinHeight="100"/>
         </Grid.RowDefinitions>
 
         <PasswordBox
             Grid.Row="0"
+            Margin="0,15,0,0"
             Header="{x:Bind ViewModel.Strings.PasswordTitle}"
             Password="{x:Bind ViewModel.PasswordValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         
@@ -40,11 +41,8 @@
             MaxHeight="175"
             AllowedFileExtensions="{x:Bind ViewModel.AllowedFileExtensions}"
             AllowMultipleFileSelection="False"
-            AllowPasteImage="True"
-            FilesSelectedCommand="{x:Bind ViewModel.FilesSelectedCommand}"
-            RelativePanel.Below="ImageInputHeader"
-            RelativePanel.AlignLeftWithPanel="True"
-            RelativePanel.AlignRightWithPanel="True"/>
+            AllowPasteImage="False"
+            FilesSelectedCommand="{x:Bind ViewModel.FilesSelectedCommand}"/>
         
         <controls:CustomTextBox
             Grid.Row="2"
@@ -60,7 +58,7 @@
             x:Name="VerticalGridSplitter"
             Grid.Column="1"
             Grid.Row="0"
-            Grid.RowSpan="3"
+            Grid.RowSpan="4"
             Width="16"
             Margin="0,42,0,0"
             ResizeBehavior="BasedOnAlignment"

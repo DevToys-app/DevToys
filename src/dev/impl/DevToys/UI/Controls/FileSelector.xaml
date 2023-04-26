@@ -77,10 +77,16 @@
                 </StackPanel>
                 <TextBlock
                     Text="/"
+                    x:Name="PasteHyperlinkSeparator"
+                    x:Load="{x:Bind AllowPasteImage, Mode=OneWay}"
+                    Margin="0"
                     VerticalAlignment="Center"/>
                 <HyperlinkButton
                     VerticalAlignment="Center"
                     Content="{Binding Instance.Common.Paste, Mode=OneTime, Source={StaticResource LanguageManager}}"
+                    x:Name="PasteHyperlink"
+                    x:Load="{x:Bind AllowPasteImage, Mode=OneWay}"
+                    Margin="0"
                     Click="PasteHyperlinkButton_Click"/>
             </StackPanel>
             <TextBlock
