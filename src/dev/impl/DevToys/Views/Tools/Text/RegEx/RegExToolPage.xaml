@@ -48,7 +48,8 @@
         <StackPanel Grid.Row="0" Spacing="4">
             <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind Path=ViewModel.Strings.Configuration}" />
 
-            <controls:ExpandableSettingControl Title="{x:Bind Path=ViewModel.Strings.Options}">
+
+            <controls:ExpandableSettingControl Title="{x:Bind Path=ViewModel.Strings.Options}" Description="{x:Bind Path=ViewModel.SelectedOptions, Mode=OneWay}">
                 <controls:ExpandableSettingControl.Icon>
                     <FontIcon Glyph="&#xF6A9;" />
                 </controls:ExpandableSettingControl.Icon>
