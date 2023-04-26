@@ -8,6 +8,10 @@
     height: 100%;
     flex: 1;
 
+    .header {
+        margin-bottom: 30px;
+    }
+
     .grid-view-group {
         position: relative;
 
@@ -16,20 +20,31 @@
             top: 0;
             z-index: 10;
             background-color: transparent;
-            border-color: var(--system-reveal-base-low-color);
-            border-bottom: 1px solid;
-            margin-bottom: 8px;
+            border-bottom: 1px solid var(--system-reveal-base-low-color);
+            padding-bottom: 8px;
+            margin-top: 8px;
+            margin-bottom: 4px;
         }
 
         .grid-view-items-container {
             clip-path: none; /* Updated dynamically in JavaScript */
             display: flex !important;
-            gap: 16px;
+            gap: 12px;
             flex-wrap: wrap !important;
             padding: 0;
+            margin: 16px 0 0 0;
 
             .grid-view-item {
+                background-color: var(--card-background-fill-color-default);
+                border-style: solid;
+                border-width: 1px;
+                border-color: var(--card-stroke-color-default);
+                border-radius: variables.$corner-radius;
                 list-style-type: none;
+
+                .grid-view-item-hover-filter:hover {
+                    background-color: var(--subtle-fill-color-secondary);
+                }
             }
         }
     }

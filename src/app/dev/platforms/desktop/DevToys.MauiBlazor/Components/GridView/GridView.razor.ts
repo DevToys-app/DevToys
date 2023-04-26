@@ -51,7 +51,7 @@ function onGridViewScroll(ev: Event): void {
 // as much space possible while having as many columns at possible.
 function fitGridViewItemsToContainer(gridView: HTMLElement, gridViewBounds: DOMRectReadOnly, itemMinWidth: number): void {
     const newGridViewContentSize = gridViewBounds;
-    const gridViewItemHorizontalSpace = newGridViewContentSize.width;
+    const gridViewWidth = newGridViewContentSize.width;
 
     let groups = gridView.querySelectorAll(".grid-view-group");
 
@@ -59,17 +59,24 @@ function fitGridViewItemsToContainer(gridView: HTMLElement, gridViewBounds: DOMR
         // Calculating the number of columns based on the width of the page
         let firstGroupItemsContainer = groups[0].querySelector(".grid-view-items-container") as HTMLElement
         let gapBetweenItems = parseFloat(getComputedStyle(firstGroupItemsContainer).gap);
-        let adjustedGridViewItemMaxWidth = itemMinWidth + gapBetweenItems;
-        let columns = Math.floor(gridViewItemHorizontalSpace / adjustedGridViewItemMaxWidth);
+        let itemMinWidthWithGap = itemMinWidth + gapBetweenItems;
+        let columns = Math.max(1, Math.floor(gridViewWidth / itemMinWidthWithGap));
 
         // Calculating the new width of the grid view item.
-        let newItemWidth = Math.max(itemMinWidth, (gridViewItemHorizontalSpace / Math.max(1, columns)) - gapBetweenItems);
+        let newItemWidth: string;
+        if (columns == 1) {
+            newItemWidth = "100%";
+        }
+        else {
+            let gridViewWidthWithoutGaps = gridViewWidth - (gapBetweenItems * (columns - 1));
+            newItemWidth = `${Math.max(itemMinWidth, (gridViewWidthWithoutGaps / columns))}px`;;
+        }
 
         // Apply the new width to every items.
         let items = gridView.querySelectorAll(".grid-view-item");
         for (var i = 0; i < items.length; i++) {
             let item = items[i] as HTMLElement;
-            item.style.width = `${newItemWidth}px`;
+            item.style.width = newItemWidth;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using DevToys.Business.ViewModels;
+using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
 using DevToys.MauiBlazor.Components;
 
@@ -20,5 +21,11 @@ public partial class ToolGroup : MefLayoutComponentBase
         {
             ViewModel.Load(GroupViewItem);
         }
+    }
+
+    internal void OnToolSelected(object item)
+    {
+        Guard.IsOfType<GuiToolInstance>(item);
+        ViewModel.ToolSelectedCommand.Execute((GuiToolInstance)item);
     }
 }

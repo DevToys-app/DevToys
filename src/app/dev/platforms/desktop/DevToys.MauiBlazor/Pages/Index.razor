@@ -17,14 +17,16 @@
         {
             if (ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem)
             {
-                <h1>You selected a TOOL: @guiToolViewItem.ToolInstance.LongOrShortDisplayTitle</h1>
-                <!-- TODO: Place here a component that takes in argument the guiToolViewItem -->
+                <div class="entranceThemeTransition">
+                    <h1>You selected a TOOL: @guiToolViewItem.ToolInstance.LongOrShortDisplayTitle</h1>
+                    <!-- TODO: Place here a component that takes in argument the guiToolViewItem -->
 
-                <Button @onclick="OnSetFavoriteAsync">Set favorite</Button>
+                    <Button @onclick="OnSetFavoriteAsync">Set favorite</Button>
+                </div>
             }
             else if (ViewModel.SelectedMenuItem is GroupViewItem groupToolViewItem)
             {
-                <ToolGroup GroupViewItem="@groupToolViewItem" Class="entranceThemeTransition" />
+                <ToolGroup GroupViewItem="@groupToolViewItem" />
             }
         }
     </Content>

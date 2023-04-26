@@ -1,20 +1,24 @@
 ﻿@inherits MefLayoutComponentBase
 
 <CascadingValue Value="this" IsFixed="true">
-    <GridView ItemsSource="@ViewModel.Tools"
-              Class="@CssClasses"
+    <GridView Class="entranceThemeTransition"
+              ItemsSource="@ViewModel.Tools"
               ItemMinWidth="330"
-              style="padding: 2.5rem;">
+              style="padding: 2.5rem"
+              OnItemClick=@OnToolSelected>
         <Header>
-            @ViewModel.HeaderText
+            <div class="subtitle-text-block" style="font-size: 24px !important">@ViewModel.HeaderText</div>
         </Header>
+        <GroupHeaderTemplate Context="item">
+            <div class="subtitle-text-block">@item</div>
+        </GroupHeaderTemplate>
         <ItemTemplate Context="item">
             <div class="tool-group-grid-view-item">
                 <div class="icon">
                     <FontIcon Class="fonticon" FontFamily="@item.IconFontName" Glyph="@item.IconGlyph" />
                 </div>
-                <div class="title">@item.LongOrShortDisplayTitle</div>
-                <div class="description">@item.Description</div>
+                <span class="title body-strong-text-block">@item.LongOrShortDisplayTitle</span>
+                <span class="description caption-text-block">@item.Description</span>
                 <div class="buttons">
                     <Button Class="button"
                             Appearance="@ButtonAppearance.Stealth"

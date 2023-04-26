@@ -25,6 +25,9 @@ public partial class GridView<TKey, TElement> : StyledLayoutComponentBase, IAsyn
     public ILookup<TKey, TElement>? ItemsSource { get; set; }
 
     [Parameter]
+    public EventCallback<object> OnItemClick { get; set; }
+
+    [Parameter]
     public int ItemMinWidth { get; set; }
 
     protected override void AppendClasses(ClassHelper helper)
@@ -56,5 +59,10 @@ public partial class GridView<TKey, TElement> : StyledLayoutComponentBase, IAsyn
         {
             await JSModule.DisposeAsync();
         }
+    }
+
+    internal Task OnItemClickAsync(TElement item)
+    {
+        return OnItemClick.InvokeAsync(item);
     }
 }

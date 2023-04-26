@@ -5,11 +5,6 @@
     height: 134px;
     max-height: 134px;
     padding: 16px;
-    background-color: var(--card-background-fill-color-default);
-    border-style: solid;
-    border-width: 1px;
-    border-color: var(--card-stroke-color-default);
-    border-radius: variables.$corner-radius;
     display: grid;
     grid-template-columns: min-content 1fr min-content;
     grid-template-rows: min-content 1fr;
@@ -40,6 +35,10 @@
         word-wrap: break-word;
         text-overflow: ellipsis;
         color: var(--text-fill-color-primary);
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
     }
 
     .description {
@@ -47,9 +46,11 @@
         margin-left: 16px;
         margin-top: 2px;
         margin-right: 8px;
-        word-wrap: break-word;
-        text-overflow: ellipsis;
         color: var(--text-fill-color-secondary);
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
     }
 
     .buttons {

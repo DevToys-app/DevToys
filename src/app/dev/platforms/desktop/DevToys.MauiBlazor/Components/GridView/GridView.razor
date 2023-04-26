@@ -9,7 +9,10 @@
          @ref=Element
          @attributes="AdditionalAttributes">
 
-        @Header
+        @if (Header is not null)
+        {
+            <div class="header">@Header</div>
+        }
 
         @if (ItemsSource is not null)
         {
@@ -17,8 +20,8 @@
 
             foreach (IGrouping<TKey, TElement> group in ItemsSource)
             {
-                <div class="grid-view-group">
-                    <div class="grid-view-group-header">
+                <section class="grid-view-group">
+                    <header class="grid-view-group-header">
                         @if (GroupHeaderTemplate is null)
                         {
                             @group.Key?.ToString()
@@ -27,18 +30,20 @@
                         {
                             @GroupHeaderTemplate(group.Key)
                         }
-                    </div>
+                    </header>
 
                     <ul class="grid-view-items-container">
                         @foreach (TElement item in group)
                         {
                             <li class="grid-view-item"
-                                style="min-width: @ItemMinWidth">
-                                @ItemTemplate(item)
+                                style="min-width: @ItemMinWidth px">
+                                <div class="grid-view-item-hover-filter" @onclick="() => OnItemClickAsync(item)">
+                                    @ItemTemplate(item)
+                                </div>
                             </li>
                         }
                     </ul>
-                </div>
+                </section>
             }
         }
 
