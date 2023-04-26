@@ -19,10 +19,11 @@
                 </div>
                 <span class="title body-strong-text-block">@item.LongOrShortDisplayTitle</span>
                 <span class="description caption-text-block">@item.Description</span>
-                <div class="buttons">
+                <div class="buttons" @onclick:stopPropagation="true">
                     <Button Class="button"
                             Appearance="@ButtonAppearance.Stealth"
-                            IconOnly="true">
+                            IconOnly="true"
+                            @onclick="() => OnOpenInNewWindow(item)">
                         <FontIcon Class="fonticon" FontFamily="FluentSystemIcons" Glyph="@('\uEE7A')" />
                     </Button>
                 </div>

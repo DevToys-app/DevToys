@@ -2,6 +2,7 @@
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
 using DevToys.MauiBlazor.Components;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace DevToys.MauiBlazor.Pages;
 
@@ -27,5 +28,10 @@ public partial class ToolGroup : MefLayoutComponentBase
     {
         Guard.IsOfType<GuiToolInstance>(item);
         ViewModel.ToolSelectedCommand.Execute((GuiToolInstance)item);
+    }
+
+    internal void OnOpenInNewWindow(GuiToolInstance item)
+    {
+        // TODO
     }
 }
