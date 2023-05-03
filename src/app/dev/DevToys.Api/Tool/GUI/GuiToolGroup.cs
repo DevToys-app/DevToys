@@ -33,7 +33,7 @@ public class GuiToolGroup
     /// <summary>
     /// Gets or sets a glyph for the icon of the group.
     /// </summary>
-    public virtual string IconGlyph { get; protected set; } = string.Empty;
+    public virtual char IconGlyph { get; protected set; }
 
     /// <summary>
     /// Gets or sets the title to display in the menu.

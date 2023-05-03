@@ -50,7 +50,7 @@ public sealed partial class GuiToolInstance : ObservableObject
 
     public string IconFontName => _guiToolDefinition.Metadata.IconFontName;
 
-    public string IconGlyph => _guiToolDefinition.Metadata.IconGlyph;
+    public char IconGlyph => _guiToolDefinition.Metadata.IconGlyph;
 
     public string ShortDisplayTitle => _shortDisplayTitle.Value;
 

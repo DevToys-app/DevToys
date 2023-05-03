@@ -530,7 +530,7 @@ public sealed partial class UITextInputHeader : UserControl
                                 Icon = new FontIcon
                                 {
                                     FontFamily = _stringToStaticResourceConverter.Convert(detectedTool.ToolInstance.IconFontName, typeof(FontFamily), null!, null!) as FontFamily,
-                                    Glyph = detectedTool.ToolInstance.IconGlyph
+                                    Glyph = detectedTool.ToolInstance.IconGlyph.ToString()
                                 },
                                 Text = detectedTool.ToolInstance.LongOrShortDisplayTitle,
                                 Tag = detectedTool

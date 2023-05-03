@@ -13,10 +13,24 @@ public partial class Index : MefLayoutComponentBase
     [Import]
     internal GuiToolProvider GuiToolProvider { get; set; } = default!;
 
+    /// <summary>
+    /// Indicates whether we're transitioning to another selected menu item.
+    /// </summary>
+    public bool IsTransitioning { get; set; }
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
+        ViewModel.SelectedMenuItemChanged += ViewModel_SelectedMenuItemChanged;
         ViewModel.SelectedMenuItem = ViewModel.HeaderAndBodyToolViewItems[0];
+    }
+
+    private void ViewModel_SelectedMenuItemChanged(object? sender, EventArgs e)
+    {
+        // This will force the page content to clear our, disposing the current tool group or tool component before creating a new one, instead
+        // of re-using the one currently displayed.
+        IsTransitioning = true;
+        StateHasChanged();
     }
 
     internal Task OnSetFavoriteAsync()
@@ -29,5 +43,17 @@ public partial class Index : MefLayoutComponentBase
         }
 
         return Task.CompletedTask;
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (IsTransitioning)
+        {
+            // This will force the page content to re-populate.
+            IsTransitioning = false;
+            StateHasChanged();
+        }
+
+        base.OnAfterRender(firstRender);
     }
 }

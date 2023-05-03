@@ -33,7 +33,10 @@ public sealed class GuiToolMetadata : IOrderableMetadata
     {
         InternalComponentName = metadata.GetValueOrDefault(nameof(NameAttribute.InternalComponentName)) as string ?? string.Empty;
         IconFontName = metadata.GetValueOrDefault(nameof(ToolDisplayInformationAttribute.IconFontName)) as string ?? string.Empty;
-        IconGlyph = metadata.GetValueOrDefault(nameof(ToolDisplayInformationAttribute.IconGlyph)) as string ?? string.Empty;
+        if (metadata.TryGetValue(nameof(ToolDisplayInformationAttribute.IconGlyph), out object? glyph) && glyph is char glyphChar)
+        {
+            IconGlyph = glyphChar;
+        }
         ResourceManagerAssemblyIdentifier = metadata.GetValueOrDefault(nameof(ToolDisplayInformationAttribute.ResourceManagerAssemblyIdentifier)) as string ?? string.Empty;
         ResourceManagerBaseName = metadata.GetValueOrDefault(nameof(ToolDisplayInformationAttribute.ResourceManagerBaseName)) as string ?? string.Empty;
         ShortDisplayTitleResourceName = metadata.GetValueOrDefault(nameof(ToolDisplayInformationAttribute.ShortDisplayTitleResourceName)) as string ?? string.Empty;
@@ -54,7 +57,6 @@ public sealed class GuiToolMetadata : IOrderableMetadata
         AcceptedDataTypeNames = metadata.GetValueOrDefault(nameof(AcceptedDataTypeNameAttribute.DataTypeName)) as IReadOnlyList<string> ?? Array.Empty<string>();
         Guard.IsNotNullOrWhiteSpace(InternalComponentName);
         Guard.IsNotNullOrWhiteSpace(IconFontName);
-        Guard.IsNotNullOrWhiteSpace(IconGlyph);
         Guard.IsNotNullOrWhiteSpace(ShortDisplayTitleResourceName);
         if (MenuPlacement != Api.MenuPlacement.Footer)
         {
@@ -107,7 +109,7 @@ public sealed class GuiToolMetadata : IOrderableMetadata
 
     public string IconFontName { get; }
 
-    public string IconGlyph { get; }
+    public char IconGlyph { get; }
 
     public string ResourceManagerAssemblyIdentifier { get; }
 

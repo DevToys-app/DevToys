@@ -1,0 +1,38 @@
+@use "../mixins/index" as mixins;
+@use "../configs/variables" as variables;
+
+:root {
+    --font-weight-thin: 100;
+    --font-weight-extra-light: 200;
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semi-bold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extra-bold: 800;
+    --font-weight-black: 900;
+}
+
+.body-strong-text-block {
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: var(--font-weight-semi-bold);
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+}
+
+.caption-text-block {
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: var(--font-weight-normal);
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+}
+
+.subtitle-text-block {
+    font-size: 20px;
+    line-height: 26px;
+    font-weight: var(--font-weight-normal);
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+}
