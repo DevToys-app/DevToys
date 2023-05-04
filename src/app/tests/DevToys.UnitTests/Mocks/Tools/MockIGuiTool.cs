@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Composition;
+using DevToys.Api;
 
 namespace DevToys.UnitTests.Mocks.Tools;
 
@@ -39,6 +40,46 @@ internal sealed class MockIGuiTool2 : IGuiTool
     SearchKeywordsResourceName = nameof(MockToolResource.Title))]
 [AcceptedDataTypeName("JSON")]
 internal sealed class MockIGuiTool : IGuiTool
+{
+    public IUIElement View => null!;
+
+    public void OnDataReceived(string dataTypeName, object parsedData) { }
+}
+
+[Export(typeof(IGuiTool))]
+[Name("MockTool3-XMLFormatter")]
+[ToolDisplayInformation(
+    IconFontName = "FluentSystemIcons",
+    IconGlyph = '\u0108',
+    GroupName = "MockGroup",
+    ResourceManagerAssemblyIdentifier = nameof(MockResourceManagerAssemblyIdentifier),
+    ResourceManagerBaseName = "DevToys.UnitTests.Mocks.Tools.MockToolResource",
+    ShortDisplayTitleResourceName = nameof(MockToolResource.TitleXmlFormatter),
+    LongDisplayTitleResourceName = nameof(MockToolResource.TitleXmlFormatter),
+    DescriptionResourceName = nameof(MockToolResource.TitleXmlFormatter),
+    AccessibleNameResourceName = nameof(MockToolResource.TitleXmlFormatter),
+    SearchKeywordsResourceName = nameof(MockToolResource.TitleXmlFormatter))]
+internal sealed class MockIGuiTool3 : IGuiTool
+{
+    public IUIElement View => null!;
+
+    public void OnDataReceived(string dataTypeName, object parsedData) { }
+}
+
+[Export(typeof(IGuiTool))]
+[Name("MockTool4-XMLValidator")]
+[ToolDisplayInformation(
+    IconFontName = "FluentSystemIcons",
+    IconGlyph = '\u0108',
+    GroupName = "MockGroup",
+    ResourceManagerAssemblyIdentifier = nameof(MockResourceManagerAssemblyIdentifier),
+    ResourceManagerBaseName = "DevToys.UnitTests.Mocks.Tools.MockToolResource",
+    ShortDisplayTitleResourceName = nameof(MockToolResource.TitleXmlValidator),
+    LongDisplayTitleResourceName = nameof(MockToolResource.TitleXmlValidator),
+    DescriptionResourceName = nameof(MockToolResource.TitleXmlValidator),
+    AccessibleNameResourceName = nameof(MockToolResource.TitleXmlValidator),
+    SearchKeywordsResourceName = nameof(MockToolResource.TitleXmlValidator))]
+internal sealed class MockIGuiTool4 : IGuiTool
 {
     public IUIElement View => null!;
 

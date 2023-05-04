@@ -68,5 +68,23 @@ namespace DevToys.UnitTests.Mocks.Tools {
                 return ResourceManager.GetString("Title", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XML Formatter.
+        /// </summary>
+        internal static string TitleXmlFormatter {
+            get {
+                return ResourceManager.GetString("TitleXmlFormatter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XML Validator.
+        /// </summary>
+        internal static string TitleXmlValidator {
+            get {
+                return ResourceManager.GetString("TitleXmlValidator", resourceCulture);
+            }
+        }
     }
 }

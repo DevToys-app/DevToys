@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
 
@@ -40,9 +41,11 @@ public class GuiToolProviderTests : MefBasedTest
         Assert.Equal("All tools", ((GroupViewItem)menuItems[0]).DisplayTitle);
         Assert.Null(((GroupViewItem)menuItems[0]).Children);
         Assert.Equal("Group title", ((GroupViewItem)menuItems[2]).DisplayTitle);
-        Assert.Equal(2, ((GroupViewItem)menuItems[2]).Children.Count);
+        Assert.Equal(4, ((GroupViewItem)menuItems[2]).Children.Count);
         Assert.Equal("MockTool", ((GroupViewItem)menuItems[2]).Children[0].ToolInstance.InternalComponentName);
         Assert.Equal("MockTool2", ((GroupViewItem)menuItems[2]).Children[1].ToolInstance.InternalComponentName);
+        Assert.Equal("MockTool3-XMLFormatter", ((GroupViewItem)menuItems[2]).Children[2].ToolInstance.InternalComponentName);
+        Assert.Equal("MockTool4-XMLValidator", ((GroupViewItem)menuItems[2]).Children[3].ToolInstance.InternalComponentName);
     }
 
     [Fact]
@@ -98,5 +101,24 @@ public class GuiToolProviderTests : MefBasedTest
         Assert.IsType<GroupViewItem>(menuItems[0]);
         Assert.IsType<SeparatorViewItem>(menuItems[1]);
         Assert.IsType<GroupViewItem>(menuItems[2]);
+    }
+
+    [Theory]
+    [InlineData("")]
+    [InlineData("BOO", "NoSearchResults")]
+    [InlineData("XML", "MockTool3-XMLFormatter", "MockTool4-XMLValidator")]
+    [InlineData("XML Validator", "MockTool4-XMLValidator")]
+    [InlineData("XML Valid", "MockTool4-XMLValidator")]
+    public async Task ToolSearch(string searchQuery, params string[] toolNames)
+    {
+        GuiToolProvider guiToolProvider = MefProvider.Import<GuiToolProvider>();
+        var results = new ObservableCollection<GuiToolViewItem>();
+        guiToolProvider.SearchTools(searchQuery, results);
+
+        Assert.Equal(toolNames.Length, results.Count);
+        for (int i = 0; i < toolNames.Length; i++)
+        {
+            Assert.Equal(toolNames[i], results[i].ToolInstance.InternalComponentName);
+        }
     }
 }
