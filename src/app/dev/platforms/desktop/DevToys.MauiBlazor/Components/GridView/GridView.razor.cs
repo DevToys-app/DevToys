@@ -30,14 +30,6 @@ public partial class GridView<TKey, TElement> : StyledLayoutComponentBase, IAsyn
     [Parameter]
     public int ItemMinWidth { get; set; }
 
-    protected override void AppendClasses(ClassHelper helper)
-    {
-        helper.Append("grid-view");
-        helper.Append("scrollable");
-        helper.Append("vertical");
-        base.AppendClasses(helper);
-    }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)

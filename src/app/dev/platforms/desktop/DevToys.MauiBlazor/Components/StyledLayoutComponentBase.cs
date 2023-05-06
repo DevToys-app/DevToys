@@ -30,7 +30,7 @@ public abstract class StyledLayoutComponentBase : LayoutComponentBase
     {
         if (!string.IsNullOrWhiteSpace(Class))
         {
-            Classes = new HashSet<string>(Class.Split(' '), StringComparer.InvariantCultureIgnoreCase);
+            Classes = new HashSet<string>(Class.Split(' ', StringSplitOptions.RemoveEmptyEntries), StringComparer.InvariantCultureIgnoreCase);
         }
 
         base.OnParametersSet();

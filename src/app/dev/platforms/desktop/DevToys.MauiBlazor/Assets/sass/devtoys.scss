@@ -7,12 +7,18 @@
 @use "features/header";
 @use "features/navbar";
 @use "features/control";
+@use "features/scrollbars";
 @use "features/text";
 @use "features/transitions";
 
 @use "theme/default";
 
 html, body {
+    /* Default margin and padding */
+    padding: 0;
+    margin: 0;
+
+    /* Default fonts */
     font-family:
         "Segoe UI", /* Windows (Vista+) and Windows Phone. */
         -apple-system, /* San Francisco in Safari (on Mac OS X and iOS); Neue Helvetica and Lucida Grande on older versions of Mac OS X. */
@@ -21,6 +27,14 @@ html, body {
         Ubuntu, /* all versions of Ubuntu. */
         system-ui, /* Default UI font on a given platform. */
         'Helvetica Neue', Helvetica, Arial, sans-serif; /* Fallback */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    font-feature-settings: "rclt" off;
+
+    /* Default overflow behavior */
+    overflow: hidden;
 }
 
 #blazor-error-ui {
@@ -54,16 +68,6 @@ html, body {
 
 // need to handle dynamic font depending on user settings
 body {
-    padding: 0;
-    margin: 0;
-    font-family: -apple-system, system-ui,
-        BlinkMacSystemFont, "Segoe UI Variable", "Segoe UI",
-        Roboto, Ubuntu, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-    font-feature-settings: "rclt" off;
 
     &:before {
         content: "small";
@@ -104,7 +108,7 @@ body {
         row-gap: 0;
         column-gap: 0;
         grid-template-columns: auto 1fr;
-        grid-template-rows: variables.$header-wide-height 1.8fr;
+        /*grid-template-rows: variables.$header-wide-height 1.8fr;*/
     }
 }
 
@@ -124,41 +128,4 @@ body {
 .sticky-bottom {
     position: sticky;
     bottom: 0;
-}
-
-
-.scrollable {
-    overflow-y: overlay;
-    overflow-x: overlay;
-
-    &.vertical {
-        overflow-y: overlay;
-        overflow-x: hidden;
-    }
-
-    &.horizontal {
-        overflow-y: hidden;
-        overflow-x: overlay;
-    }
-    /* Works on Chrome, Edge, and Safari */
-    &::-webkit-scrollbar {
-        width: 3px;
-        @include mixins.transition(all variables.$transition-base);
-    }
-
-    &::-webkit-scrollbar-track {
-        border-radius: 999px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        border-radius: 999px;
-        border-width: 3px;
-        border-style: solid;
-    }
-
-    &:hover {
-        &::-webkit-scrollbar {
-            width: 12px;
-        }
-    }
 }
