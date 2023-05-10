@@ -27,6 +27,7 @@ namespace DevToys
         private readonly AllToolsStrings _alltools = new AllToolsStrings();
         private readonly Base64EncoderDecoderStrings _base64encoderdecoder = new Base64EncoderDecoderStrings();
         private readonly Base64ImageEncoderDecoderStrings _base64imageencoderdecoder = new Base64ImageEncoderDecoderStrings();
+        private readonly CertificateEncoderDecoderStrings _certificateencoderdecoder = new CertificateEncoderDecoderStrings();
         private readonly CheckSumGeneratorStrings _checksumgenerator = new CheckSumGeneratorStrings();
         private readonly ColorBlindnessSimulatorStrings _colorblindnesssimulator = new ColorBlindnessSimulatorStrings();
         private readonly ColorPickerStrings _colorpicker = new ColorPickerStrings();
@@ -82,6 +83,11 @@ namespace DevToys
         /// Gets the <see cref="Base64ImageEncoderDecoderStrings"/>.
         /// </summary>
         public Base64ImageEncoderDecoderStrings Base64ImageEncoderDecoder => _base64imageencoderdecoder;
+
+        /// <summary>
+        /// Gets the <see cref="CertificateEncoderDecoderStrings"/>.
+        /// </summary>
+        public CertificateEncoderDecoderStrings CertificateEncoderDecoder => _certificateencoderdecoder;
 
         /// <summary>
         /// Gets the <see cref="CheckSumGeneratorStrings"/>.
@@ -413,6 +419,61 @@ namespace DevToys
         /// Gets the resource SearchDisplayName.
         /// </summary>
         public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+
+        /// <summary>
+        /// Gets the resource SearchKeywords.
+        /// </summary>
+        public string SearchKeywords => _resources.GetString("SearchKeywords");
+    }
+
+    public class CertificateEncoderDecoderStrings : ObservableObject
+    {
+        private readonly ResourceLoader _resources = ResourceLoader.GetForViewIndependentUse("CertificateEncoderDecoder");
+
+        /// <summary>
+        /// Gets the resource AccessibleName.
+        /// </summary>
+        public string AccessibleName => _resources.GetString("AccessibleName");
+
+        /// <summary>
+        /// Gets the resource MenuDisplayName.
+        /// </summary>
+        public string MenuDisplayName => _resources.GetString("MenuDisplayName");
+
+        /// <summary>
+        /// Gets the resource PasswordTitle.
+        /// </summary>
+        public string PasswordTitle => _resources.GetString("PasswordTitle");
+
+        /// <summary>
+        /// Gets the resource InputTitle.
+        /// </summary>
+        public string InputTitle => _resources.GetString("InputTitle");
+
+        /// <summary>
+        /// Gets the resource OutputTitle.
+        /// </summary>
+        public string OutputTitle => _resources.GetString("OutputTitle");
+
+        /// <summary>
+        /// Gets the resource Description.
+        /// </summary>
+        public string Description => _resources.GetString("Description");
+
+        /// <summary>
+        /// Gets the resource SearchDisplayName.
+        /// </summary>
+        public string SearchDisplayName => _resources.GetString("SearchDisplayName");
+
+        /// <summary>
+        /// Gets the resource InvalidPasswordError.
+        /// </summary>
+        public string InvalidPasswordError => _resources.GetString("InvalidPasswordError");
+
+        /// <summary>
+        /// Gets the resource UnsupportedFormatError.
+        /// </summary>
+        public string UnsupportedFormatError => _resources.GetString("UnsupportedFormatError");
 
         /// <summary>
         /// Gets the resource SearchKeywords.
