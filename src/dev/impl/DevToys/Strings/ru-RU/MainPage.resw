@@ -166,6 +166,15 @@
   <data name="SearchNoResultsFound" xml:space="preserve">
     <value>Результаты отсутствуют</value>
   </data>
+  <data name="SurveyDescription" xml:space="preserve">
+    <value>Мы будем рады услышать о вашем опыте работы с DevToys, чтобы мы могли улучшить его.</value>
+  </data>
+  <data name="SurveyTitle" xml:space="preserve">
+    <value>Разработка DevToys 2.0 началась! 🥳</value>
+  </data>
+  <data name="SurveyYesButton" xml:space="preserve">
+    <value>открыть опрос...</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
   </data>

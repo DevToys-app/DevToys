@@ -118,49 +118,49 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>String utilities tool</value>
+    <value>Merkkijonoapuohjelmat -työkalu</value>
   </data>
   <data name="AlternatingCase" xml:space="preserve">
-    <value>aLtErNaTiNg cAsE</value>
+    <value>vAiHtElEvA kIrJaInKoKo</value>
   </data>
   <data name="Bytes" xml:space="preserve">
-    <value>Bytes:</value>
+    <value>Tavuja:</value>
   </data>
   <data name="CamelCase" xml:space="preserve">
     <value>camelCase</value>
   </data>
   <data name="CharacterDistribution" xml:space="preserve">
-    <value>Character distribution</value>
+    <value>Merkkien jakautuminen</value>
   </data>
   <data name="Characters" xml:space="preserve">
-    <value>Characters:</value>
+    <value>Merkkejä:</value>
   </data>
   <data name="CobolCase" xml:space="preserve">
     <value>COBOL-CASE</value>
   </data>
   <data name="Column" xml:space="preserve">
-    <value>Column:</value>
+    <value>Sarake:</value>
   </data>
   <data name="ConstantCase" xml:space="preserve">
     <value>CONSTANT_CASE</value>
   </data>
   <data name="Convert" xml:space="preserve">
-    <value>Convert</value>
+    <value>Muunna</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Inspector &amp; Case Converter</value>
+    <value>Tarkastaja &amp; koon muunnin</value>
   </data>
   <data name="InverseCase" xml:space="preserve">
-    <value>InVeRsE CaSe</value>
+    <value>KäÄnTeInEn KiRjAiNkOkO</value>
   </data>
   <data name="KebabCase" xml:space="preserve">
     <value>kebab-case</value>
   </data>
   <data name="Line" xml:space="preserve">
-    <value>Line:</value>
+    <value>Rivi:</value>
   </data>
   <data name="Lines" xml:space="preserve">
-    <value>Lines:</value>
+    <value>Rivejä:</value>
   </data>
   <data name="LowerCase" xml:space="preserve">
     <value>pienet kirjaimet</value>
@@ -169,7 +169,7 @@
     <value>Alkuperäinen teksti</value>
   </data>
   <data name="Paragraphs" xml:space="preserve">
-    <value>Kappaleet:</value>
+    <value>Kappaleita:</value>
   </data>
   <data name="PascalCase" xml:space="preserve">
     <value>PascalCase</value>
@@ -184,7 +184,7 @@
     <value>Lauseen kirjainkoko</value>
   </data>
   <data name="Sentences" xml:space="preserve">
-    <value>Lauseet:</value>
+    <value>Lauseita:</value>
   </data>
   <data name="SnakeCase" xml:space="preserve">
     <value>snake_case</value>
@@ -196,25 +196,25 @@
     <value>Merkkijono</value>
   </data>
   <data name="TitleCase" xml:space="preserve">
-    <value>Title Case</value>
+    <value>Otsikkotyyli</value>
   </data>
   <data name="TrainCase" xml:space="preserve">
     <value>Train-Case</value>
   </data>
   <data name="UpperCase" xml:space="preserve">
-    <value>UPPER CASE</value>
+    <value>ISOT KIRJAIMET</value>
   </data>
   <data name="WordDistribution" xml:space="preserve">
-    <value>Word distribution</value>
+    <value>Sanojen jakautuminen</value>
   </data>
   <data name="Words" xml:space="preserve">
-    <value>Words:</value>
+    <value>Sanoja:</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Analyze text and convert it to a different case</value>
+    <value>Analysoi teksti ja muunna se eri kirjainkokoon</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Text Case Converter and Inspector</value>
+    <value>Tekstin koon muunnin ja tarkastaja</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>Merkkijono</value>

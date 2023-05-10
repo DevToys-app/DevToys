@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Color Picker and contrast ratio tool</value>
+    <value>Kleurkiezer en hulpmiddel voor contrastverhouding</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Color Picker &amp; Contrast</value>
+    <value>Kleurkiezer en contrast</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Pick up a color or two and validate the contrast ratio</value>
+    <value>Kies een of twee kleuren en controleer de contrastverhouding</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Color Picker &amp; Contrast</value>
+    <value>Kleurkiezer en contrast</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>RGB WCAG</value>

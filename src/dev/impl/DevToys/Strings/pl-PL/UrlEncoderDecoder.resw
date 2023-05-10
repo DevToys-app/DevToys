@@ -145,12 +145,12 @@
     <value>Wyjście</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Enkoduj albo dekoduj wszystkie możliwe znaki do ich reprezentacji URL</value>
+    <value>Enkoduj lub dekoduj wszystkie możliwe znaki do odpowiednich im jednostek URL</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Enkoder / Dekoder URL</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
 </root>

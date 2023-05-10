@@ -232,19 +232,19 @@
     <value>Audiências válidas estão vazias</value>
   </data>
   <data name="ValidIssuersError" xml:space="preserve">
-    <value>Valid issuers are empty</value>
+    <value>Formatadores válidos estão vazios</value>
   </data>
   <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
     <value>A chave pública fornecida é uma chave privada</value>
   </data>
   <data name="EncodeAudienceLabel" xml:space="preserve">
-    <value>Token has audience</value>
+    <value>Token possui um Audience (aud) JWT</value>
   </data>
   <data name="EncodeIssuerLabel" xml:space="preserve">
-    <value>Token has issuer</value>
+    <value>Token possui um Issuer JWT</value>
   </data>
   <data name="EncodeSettingsDescription" xml:space="preserve">
-    <value>Select token parameters</value>
+    <value>Selecione os parâmetros do token</value>
   </data>
   <data name="InvalidPrivateKeyError" xml:space="preserve">
     <value>Chave Privada Inválida</value>

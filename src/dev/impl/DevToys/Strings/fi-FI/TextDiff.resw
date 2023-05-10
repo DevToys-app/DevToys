@@ -118,33 +118,33 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Text comparer tool</value>
+    <value>Tekstin vertailutyökalu</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Kokoonpano</value>
   </data>
   <data name="Difference" xml:space="preserve">
-    <value>Difference</value>
+    <value>Eroavuus</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Text Diff</value>
+    <value>Tekstin ero</value>
   </data>
   <data name="InlineDifference" xml:space="preserve">
-    <value>Inline mode</value>
+    <value>Suhteellinen-tila</value>
   </data>
   <data name="LeftText" xml:space="preserve">
-    <value>Old text</value>
+    <value>Vanha teksti</value>
   </data>
   <data name="RightText" xml:space="preserve">
-    <value>New text</value>
+    <value>Uusi teksti</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Compare two texts</value>
+    <value>Vertaa kahta tekstiä</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Text Comparer</value>
+    <value>Tekstin vertailu</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
 </root>

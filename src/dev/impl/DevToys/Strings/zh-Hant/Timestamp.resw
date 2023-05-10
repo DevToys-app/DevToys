@@ -179,7 +179,7 @@
     <value>UTC 日期及時間</value>
   </data>
   <data name="UtcTicksTitle" xml:space="preserve">
-    <value>UTC 時間戳</value>
+    <value>UTC 時間刻度</value>
   </data>
   <data name="YearTitle" xml:space="preserve">
     <value>年</value>
