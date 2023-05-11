@@ -154,7 +154,7 @@
     <value>大寫</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="HashesMatch" xml:space="preserve">
     <value>雜湊相同。</value>

@@ -154,7 +154,7 @@
     <value>Maiúsculo</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="HashesMatch" xml:space="preserve">
     <value>Os hashes correspondem.</value>

@@ -154,7 +154,7 @@
     <value>大写字母</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="HashesMatch" xml:space="preserve">
     <value>哈希值相同。</value>
