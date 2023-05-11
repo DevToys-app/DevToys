@@ -121,10 +121,10 @@
     <value>Certificate Encoder and Decoder tool</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Certificate</value>
+    <value>Certificat</value>
   </data>
   <data name="PasswordTitle" xml:space="preserve">
-    <value>Password</value>
+    <value>Mot de passe</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
     <value>Entrée</value>
@@ -139,7 +139,7 @@
     <value>Certificate Encoder / Decoder</value>
   </data>
   <data name="InvalidPasswordError" xml:space="preserve">
-    <value>Invalid password.</value>
+    <value>Mot de passe invalide.</value>
   </data>
   <data name="UnsupportedFormatError" xml:space="preserve">
     <value>Certificate Request format not currently supported.</value>
