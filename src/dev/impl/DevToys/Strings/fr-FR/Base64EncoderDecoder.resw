@@ -130,7 +130,7 @@
     <value>Décoder</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Sélectionner le mode de conversion désiré</value>
+    <value>Sélectionnez le mode de conversion que vous souhaitez utiliser</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
     <value>Encoder</value>
@@ -142,7 +142,7 @@
     <value>Texte Base64</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
-    <value>Sélectionner l'encodage désiré</value>
+    <value>Sélectionnez l'encodage que vous souhaitez utiliser</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
     <value>Encodage</value>

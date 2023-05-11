@@ -121,7 +121,7 @@
     <value>關於</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>應用主題</value>
+    <value>應用程式主題</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
     <value>選取要顯示的應用程式主題</value>
@@ -154,13 +154,13 @@
     <value>醒目顯示目前行</value>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>更改目前所在行的背景顏色</value>
+    <value>變更目前所在行的背景色彩</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>語言</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>更改語言後必須重新啟動應用程式</value>
+    <value>變更語言後必須重新啟動應用程式</value>
   </data>
   <data name="License" xml:space="preserve">
     <value>授權</value>
@@ -229,7 +229,7 @@
     <value>設定</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>配置 設定 選項</value>
+    <value>組態 設定 選項</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
     <value>幫助我們翻譯 DevToys！</value>

@@ -118,126 +118,126 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>About</value>
+    <value>Tietoja</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>App theme</value>
+    <value>Sovelluksen teema</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>Select which app theme to display</value>
+    <value>Valitse näytettävä sovellusteema</value>
   </data>
   <data name="AppTitle" xml:space="preserve">
     <value>DevToys</value>
   </data>
   <data name="Behaviors" xml:space="preserve">
-    <value>Behaviors</value>
+    <value>Käyttäytymiset</value>
   </data>
   <data name="Close" xml:space="preserve">
-    <value>Close</value>
+    <value>Sulje</value>
   </data>
   <data name="Copy" xml:space="preserve">
-    <value>Copy</value>
+    <value>Kopioi</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Dark</value>
+    <value>Tumma</value>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>Same as Microsoft Windows</value>
+    <value>Sama kuin Microsoft Windowsissa</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Settings</value>
+    <value>Asetukset</value>
   </data>
   <data name="Font" xml:space="preserve">
-    <value>Font</value>
+    <value>Fontti</value>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
-    <value>Highlight current line</value>
+    <value>Korosta nykyinen rivi</value>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>Change the background color of the current line so it's more visible</value>
+    <value>Muuta nykyisen viivan taustaväriä, jotta se näkyy paremmin</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>Kieli</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>The app needs to be restarted when selecting another language</value>
+    <value>Sovellus on käynnistettävä uudelleen, kun valitaan toinen kieli</value>
   </data>
   <data name="License" xml:space="preserve">
-    <value>License</value>
+    <value>Lisenssi</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Light</value>
+    <value>Vaalea</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>Line numbers</value>
+    <value>Rivinumerot</value>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>Display line numbers in the text editor</value>
+    <value>Näytä rivinumerot tekstieditorissa</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Open logs</value>
+    <value>Avaa lokit</value>
   </data>
   <data name="PrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
+    <value>Tietosuojakäytäntö</value>
   </data>
   <data name="RateAndReview" xml:space="preserve">
-    <value>Rate and review on Microsoft Store</value>
+    <value>Arvioi Microsoft Storessa</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>Render white space</value>
+    <value>Renderöi välilyönnit</value>
   </data>
   <data name="ReportProblem" xml:space="preserve">
-    <value>Report a problem</value>
+    <value>Ilmoita ongelmasta</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
-    <value>Smart detection</value>
+    <value>Älykäs tunnistus</value>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Automatically detect the best tool based on the clipboard content</value>
+    <value>Tunnista automaattisesti paras työkalu leikepöydän sisällön perusteella</value>
   </data>
   <data name="SmartDetectionHowTo" xml:space="preserve">
-    <value>How to use Smart Detection</value>
+    <value>Kuinka käyttää älykästä tunnistusta</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automatically paste the clipboard content when selecting a recommended tool</value>
+    <value>Liitä leikepöydän sisältö automaattisesti, kun valitaan suositeltu työkalun</value>
   </data>
   <data name="SourceCode" xml:space="preserve">
-    <value>Source code</value>
+    <value>Lähdekoodi</value>
   </data>
   <data name="TextEditor" xml:space="preserve">
-    <value>Text editor</value>
+    <value>Tekstieditori</value>
   </data>
   <data name="ThirdPartyNotices" xml:space="preserve">
-    <value>Third party licenses</value>
+    <value>Kolmannen osapuolen lisenssit</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>Useful links</value>
+    <value>Hyödyllisiä linkkejä</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
-    <value>Use system settings</value>
+    <value>Käytä järjestelmäasetuksia</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>Versio {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Wrap word</value>
+    <value>Rivitä sana</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Customize DevToys look &amp; feel</value>
+    <value>Mukauta DevToysin ulkoasua ja tuntumaa</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Settings</value>
+    <value>Asetukset</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Configurations Options</value>
+    <value>Kokoonpanoasetukset</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translating DevToys!</value>
+    <value>Auta meitä DevToysin kääntämisessä!</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Vaihda teksti liitettäessä</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
+    <value>Kun napsautat Liitä-painiketta, tyhjennä teksti ennen liittämistä sen sijaan, että lisäät sen olemassa olevaan tekstieditorin sisältöön.</value>
   </data>
 </root>

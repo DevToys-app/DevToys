@@ -118,52 +118,52 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Base64 Text Encoder and Decoder tool</value>
+    <value>बेस 64 टेक्स्ट एनकोडर और डिकोडर टूल</value>
   </data>
   <data name="Ascii" xml:space="preserve">
-    <value>ASCII</value>
+    <value>आस्की</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
-    <value>Configuration</value>
+    <value>कॉन्फ़िगरेशन</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
-    <value>Decode</value>
+    <value>डिकोड</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>Select which conversion mode you want to use</value>
+    <value>चुनें कि आप किस रूपांतरण मोड का उपयोग करना चाहते हैं</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
-    <value>Encode</value>
+    <value>एन्कोड</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
-    <value>Conversion</value>
+    <value>रूपांतरण</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Base64 Text</value>
+    <value>बेस 64 टेक्स्ट</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
-    <value>Select which encoding do you want to use</value>
+    <value>चुनें कि आप किस एन्कोडिंग का उपयोग करना चाहते हैं</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
-    <value>Encoding</value>
+    <value>एन्कोडिंग</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>Input</value>
+    <value>इनपुट</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Output</value>
+    <value>आउटपुट</value>
   </data>
   <data name="Utf8" xml:space="preserve">
-    <value>UTF-8</value>
+    <value>यूटीएफ8</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Encode and decode Base64 text data</value>
+    <value>बेस 64 टेक्स्ट डेटा को एनकोड और डीकोड करें</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Base64 Text Encoder / Decoder</value>
+    <value>बेस 64 टेक्स्ट एनकोडर / डिकोडर</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>RFC 4648</value>
+    <value>आरएफसी 4648</value>
     <comment>Alternative search keywords. Enables searching for words that are not included in Description, MenuDisplayName, and SearchDisplayName.</comment>
   </data>
 </root>

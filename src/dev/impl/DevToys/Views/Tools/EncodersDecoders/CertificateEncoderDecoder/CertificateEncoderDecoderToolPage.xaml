@@ -1,0 +1,84 @@
+﻿<Page
+    x:Class="DevToys.Views.Tools.CertificateEncoderDecoder.CertificateEncoderDecoderToolPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:DevToys.UI.Controls"
+    xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d"
+    NavigationCacheMode="Required">
+
+    <Grid x:Name="RootGrid" RowSpacing="12" Margin="0,0,0,16">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="100"/>
+            <ColumnDefinition Width="16"/>
+            <ColumnDefinition MinWidth="100"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition MinHeight="100"/>
+        </Grid.RowDefinitions>
+
+        <PasswordBox
+            Grid.Row="0"
+            Margin="0,15,0,0"
+            Header="{x:Bind ViewModel.Strings.PasswordTitle}"
+            Password="{x:Bind ViewModel.PasswordValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        
+        <controls:FileSelector
+            x:Name="ImageFilePicker"
+            Grid.Row="1"
+            Margin="0,12,0,0"
+            MaxHeight="175"
+            AllowedFileExtensions="{x:Bind ViewModel.AllowedFileExtensions}"
+            AllowMultipleFileSelection="False"
+            AllowPasteImage="False"
+            FilesSelectedCommand="{x:Bind ViewModel.FilesSelectedCommand}"/>
+        
+        <controls:CustomTextBox
+            Grid.Row="2"
+            Grid.RowSpan="2"
+            MinHeight="150"
+            AcceptsReturn="True"
+            CanCopyWhenNotReadOnly="True"
+            CanOpenFile="False"
+            Header="{x:Bind ViewModel.Strings.InputTitle}"
+            Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <toolkit:GridSplitter
+            x:Name="VerticalGridSplitter"
+            Grid.Column="1"
+            Grid.Row="0"
+            Grid.RowSpan="4"
+            Width="16"
+            Margin="0,42,0,0"
+            ResizeBehavior="BasedOnAlignment"
+            ResizeDirection="Columns">
+            <toolkit:GridSplitter.Element>
+                <FontIcon
+                    Glyph="&#xFD55;"
+                    FontSize="13"/>
+            </toolkit:GridSplitter.Element>
+        </toolkit:GridSplitter>
+
+        <controls:CustomTextBox
+            Grid.Row="0"
+            Grid.Column="2"
+            Grid.RowSpan="4"
+            MinHeight="150"
+            IsReadOnly="True"
+            AcceptsReturn="True"
+            Header="{x:Bind ViewModel.Strings.OutputTitle}"
+            Text="{x:Bind ViewModel.OutputValue, Mode=OneWay}"/>
+
+    </Grid>
+</Page>

@@ -136,13 +136,13 @@
     <value>Decode tajuk JWT, muat dan tanda tangan</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="Algorithm" xml:space="preserve">
     <value>Algorithm</value>
   </data>
   <data name="DecodeSwitchModeLabel" xml:space="preserve">
-    <value>Decode</value>
+    <value>Dekode</value>
   </data>
   <data name="DecodeValidateTokenLabel" xml:space="preserve">
     <value>Validate Token</value>
@@ -169,7 +169,7 @@
     <value>Pengaturan</value>
   </data>
   <data name="EncodeSwitchModeLabel" xml:space="preserve">
-    <value>Encode</value>
+    <value>Enkode</value>
   </data>
   <data name="SettingsSwitchModeLabel" xml:space="preserve">
     <value>Encode / Decode</value>

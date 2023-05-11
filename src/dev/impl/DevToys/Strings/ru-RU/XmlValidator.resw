@@ -121,10 +121,10 @@
     <value>Инструмент валидации Xml</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>XML Валидатор</value>
+    <value>XML Валида тор</value>
   </data>
   <data name="XsdScheme" xml:space="preserve">
-    <value>XSD</value>
+    <value>В XSD</value>
   </data>
   <data name="XmlData" xml:space="preserve">
     <value>XML</value>
@@ -133,7 +133,7 @@
     <value>Проверить XML-данные с помощью XSD схемы.</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>XML Валидатор</value>
+    <value>XML Валида тор</value>
   </data>
   <data name="ValidationImpossibleMsg" xml:space="preserve">
     <value>Содержимое XML и XSD должно быть установлено для выполнения проверки.</value>
@@ -145,12 +145,12 @@
     <value>Проверка схем XML</value>
   </data>
   <data name="XmlNamespacesInconsistentMsg" xml:space="preserve">
-    <value>Validation result will always be 'valid' since the XML does not define these namespace(s) defined in the XSD: {0}</value>
+    <value>Результат проверки всегда будет «valid», так как XML не определяет это пространство имен, определенное в XSD: {0}</value>
   </data>
   <data name="XsdNamespacesInconsistentMsg" xml:space="preserve">
-    <value>Validation result will always be 'valid' since the XSD does not define these namespace(s) defined in the XML: {0}</value>
+    <value>Результат проверки всегда будет 'valid', поскольку XSD не определяет данное пространство имен, определенное в XML {0}</value>
   </data>
   <data name="TargetNamespaceNotDefinedInXml" xml:space="preserve">
-    <value>Validation result will potentially always be 'valid' since the XML does not reference the following "targetNamespace" defined in the XSD: {0}</value>
+    <value>Результат проверки всегда потенциально будет 'valid', поскольку XML не ссылается на "targetNamespace", определенное в XSD: {0}</value>
   </data>
 </root>

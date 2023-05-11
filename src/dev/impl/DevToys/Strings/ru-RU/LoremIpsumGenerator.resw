@@ -160,6 +160,6 @@
     <value>Слова</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value>Генератор случайного текста</value>
   </data>
 </root>

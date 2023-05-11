@@ -133,10 +133,10 @@
     <value>Konwertuj czas na datę czytelną dla człowieka i na odwrót</value>
   </data>
   <data name="DisabledDaylightSavingTime" xml:space="preserve">
-    <value>There is no daylight saving time.</value>
+    <value>Nie ma czasu letniego.</value>
   </data>
   <data name="DSTAmbiguousTime" xml:space="preserve">
-    <value>DST Ambiguous time.</value>
+    <value>DST Czas dwuznaczny.</value>
   </data>
   <data name="HourTitle" xml:space="preserve">
     <value>Godzina (24 godziny)</value>
@@ -148,38 +148,38 @@
     <value>Data i czas lokalny</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Timestamp</value>
+    <value>Data/czas</value>
   </data>
   <data name="MinutesTitle" xml:space="preserve">
-    <value>Minut</value>
+    <value>Minuty</value>
   </data>
   <data name="MonthTitle" xml:space="preserve">
     <value>Miesiąc</value>
   </data>
   <data name="OffsetTitle" xml:space="preserve">
-    <value>Przesunięcie godzinowe</value>
+    <value>Przesunięcie</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Unix Timestamp Converter</value>
+    <value>Konwerter znaczników czasu systemu Unix</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Time Date Timezone Epoch</value>
+    <value>Godzina Data Strefa Czasowa Epoka</value>
     <comment>Alternative search keywords. Enables searching for words that are not included in Description, MenuDisplayName, and SearchDisplayName.</comment>
   </data>
   <data name="SecondsTitle" xml:space="preserve">
     <value>Sekundy</value>
   </data>
   <data name="SupportsDaylightSavingTime" xml:space="preserve">
-    <value>There is daylight saving time.</value>
+    <value>Jest czas letni.</value>
   </data>
   <data name="TimestampTitle" xml:space="preserve">
-    <value>Timestamp</value>
+    <value>Data/czas</value>
   </data>
   <data name="UTCDateTime" xml:space="preserve">
-    <value>UTC Date and Time</value>
+    <value>Data i czas UTC</value>
   </data>
   <data name="UtcTicksTitle" xml:space="preserve">
-    <value>UtcTicks</value>
+    <value>Tiki UTC</value>
   </data>
   <data name="YearTitle" xml:space="preserve">
     <value>Rok</value>

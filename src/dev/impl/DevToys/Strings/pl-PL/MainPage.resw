@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddToFavorites" xml:space="preserve">
-    <value>Add to favorites</value>
+    <value>Dodaj do ulubionych</value>
   </data>
   <data name="EnterCompactOverlayTooltip" xml:space="preserve">
-    <value>Trzymaj na wierzchu (Ctrl+Up)</value>
+    <value>Utrzymuj na wierzchu (Ctrl+Up)</value>
   </data>
   <data name="ExitCompactOverlayTooltip" xml:space="preserve">
-    <value>Powrót do pełnego widoku (Ctrl+Down)</value>
+    <value>Powrót do pełnego widoku (Ctrl+Strzałka w dół)</value>
   </data>
   <data name="NotificationRateAppActionableActionText" xml:space="preserve">
     <value>oceń nas...</value>
@@ -139,7 +139,7 @@
     <value>czytaj więcej...</value>
   </data>
   <data name="NotificationReleaseNoteTitle" xml:space="preserve">
-    <value>DevToys zostało zaktualizowane 🚀 Zobacz co nowego w wesji {0}</value>
+    <value>DevToys zostało zaktualizowane 🚀 Zobacz co nowego w wersji {0}</value>
     <comment>{0} is the current app version</comment>
   </data>
   <data name="NotificationUpdateAvailableActionableActionText" xml:space="preserve">
@@ -152,19 +152,28 @@
     <value>Otwórz w nowym oknie</value>
   </data>
   <data name="PinToolToStart" xml:space="preserve">
-    <value>Przypmnij narzędzie do Menu Start</value>
+    <value>Przypnij narzędzie do Menu Start</value>
   </data>
   <data name="PinToolToStartProblem" xml:space="preserve">
     <value>Nie można przypiąć narzędzia do Menu Start. Po więcej informacji sprawdź dziennik zdarzeń.</value>
   </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
-    <value>Remove from favorites</value>
+    <value>Usuń z ulubionych</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Wpisz, aby wyszukać narzędzia...</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
-    <value>Nrak wyników</value>
+    <value>Brak wyników</value>
+  </data>
+  <data name="SurveyDescription" xml:space="preserve">
+    <value>Chcielibyśmy usłyszeć o Twoich doświadczeniach z DevToys, abyśmy mogli je poprawić.</value>
+  </data>
+  <data name="SurveyTitle" xml:space="preserve">
+    <value>Zaczęliśmy rozwijać DevToys 2.0! 🥳</value>
+  </data>
+  <data name="SurveyYesButton" xml:space="preserve">
+    <value>otwórz ankietę...</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>

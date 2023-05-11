@@ -121,7 +121,7 @@
     <value>Narzędzie Manipulacji Tekstem</value>
   </data>
   <data name="AlternatingCase" xml:space="preserve">
-    <value>aLtErNaTiNg cAsE</value>
+    <value>zMiEnNa wIeLkOśĆ</value>
   </data>
   <data name="Bytes" xml:space="preserve">
     <value>Bajty:</value>
@@ -142,7 +142,7 @@
     <value>Kolumna:</value>
   </data>
   <data name="ConstantCase" xml:space="preserve">
-    <value>CONSTANT_CASE</value>
+    <value>STAŁA_WIELKOŚĆ</value>
   </data>
   <data name="Convert" xml:space="preserve">
     <value>Konwertuj</value>
@@ -151,7 +151,7 @@
     <value>Manipulator Tekstu</value>
   </data>
   <data name="InverseCase" xml:space="preserve">
-    <value>InVeRsE CaSe</value>
+    <value>OdWrÓcOnA WiElKoŚć</value>
   </data>
   <data name="KebabCase" xml:space="preserve">
     <value>kebab-case</value>
@@ -163,7 +163,7 @@
     <value>Linie:</value>
   </data>
   <data name="LowerCase" xml:space="preserve">
-    <value>lower case</value>
+    <value>małe litery</value>
   </data>
   <data name="OriginalCase" xml:space="preserve">
     <value>Oryginalny tekst:</value>
@@ -181,7 +181,7 @@
     <value>Zaznaczenie</value>
   </data>
   <data name="SentenceCase" xml:space="preserve">
-    <value>Sentence case</value>
+    <value>Jak w zdaniu</value>
   </data>
   <data name="Sentences" xml:space="preserve">
     <value>Zdania:</value>
@@ -196,13 +196,13 @@
     <value>Ciąg znaków</value>
   </data>
   <data name="TitleCase" xml:space="preserve">
-    <value>Title Case</value>
+    <value>Jak W Tytule</value>
   </data>
   <data name="TrainCase" xml:space="preserve">
     <value>Train-Case</value>
   </data>
   <data name="UpperCase" xml:space="preserve">
-    <value>UPPER CASE</value>
+    <value>DUŻE LITERY</value>
   </data>
   <data name="WordDistribution" xml:space="preserve">
     <value>Rozkład słów</value>

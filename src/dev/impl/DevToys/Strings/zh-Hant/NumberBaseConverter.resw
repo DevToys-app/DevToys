@@ -177,7 +177,7 @@
     <value>數值進制轉換器</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>二進製 八進製 十進製 十六進製</value>
+    <value>二進位 八進位 十進位 十六進位</value>
   </data>
   <data name="AdvancedModeLabel" xml:space="preserve">
     <value>進階模式</value>

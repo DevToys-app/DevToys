@@ -133,7 +133,7 @@
     <value>Ti piace DevToys? Sentiti libero di valutarci!</value>
   </data>
   <data name="NotificationRateAppTitle" xml:space="preserve">
-    <value>Um... ciao! 😅</value>
+    <value>Ehm... ciao! 😅</value>
   </data>
   <data name="NotificationReleaseNoteActionableActionText" xml:space="preserve">
     <value>Per saperne di più</value>
@@ -165,6 +165,15 @@
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
     <value>Nessun risultato trovato</value>
+  </data>
+  <data name="SurveyDescription" xml:space="preserve">
+    <value>Ci piacerebbe conoscere la tua esperienza con DevToys in modo da poterla migliorare.</value>
+  </data>
+  <data name="SurveyTitle" xml:space="preserve">
+    <value>Lo sviluppo di DevToys 2.0 è iniziato! 🥳</value>
+  </data>
+  <data name="SurveyYesButton" xml:space="preserve">
+    <value>apri il sondaggio...</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>

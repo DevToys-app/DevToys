@@ -121,10 +121,10 @@
     <value>Convertitore Unix Timestamp</value>
   </data>
   <data name="TimeZoneTitle" xml:space="preserve">
-    <value>Time zone</value>
+    <value>Fuso Orario</value>
   </data>
   <data name="DaylightSavingTime" xml:space="preserve">
-    <value>Daylight saving time.</value>
+    <value>Orario estivo.</value>
   </data>
   <data name="DayTitle" xml:space="preserve">
     <value>Giorno</value>
@@ -133,10 +133,10 @@
     <value>Converti date di tipo timestamp in date accessibili all'uomo e viceversa</value>
   </data>
   <data name="DisabledDaylightSavingTime" xml:space="preserve">
-    <value>There is no daylight saving time.</value>
+    <value>Non c'e orario estivo.</value>
   </data>
   <data name="DSTAmbiguousTime" xml:space="preserve">
-    <value>DST Ambiguous time.</value>
+    <value>Ora DST Ambigua.</value>
   </data>
   <data name="HourTitle" xml:space="preserve">
     <value>Ora (24 ore)</value>
@@ -148,7 +148,7 @@
     <value>Data e ora locali</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Timestamp</value>
+    <value>Orario</value>
   </data>
   <data name="MinutesTitle" xml:space="preserve">
     <value>Minuti</value>
@@ -157,7 +157,7 @@
     <value>Mese</value>
   </data>
   <data name="OffsetTitle" xml:space="preserve">
-    <value>Offset</value>
+    <value>Spostamento</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Convertitore Unix Timestap</value>
@@ -170,21 +170,21 @@
     <value>Secondi</value>
   </data>
   <data name="SupportsDaylightSavingTime" xml:space="preserve">
-    <value>There is daylight saving time.</value>
+    <value>C'e orario estivo.</value>
   </data>
   <data name="TimestampTitle" xml:space="preserve">
-    <value>Timestamp</value>
+    <value>Orario</value>
   </data>
   <data name="UTCDateTime" xml:space="preserve">
     <value>Data e ora UTC</value>
   </data>
   <data name="UtcTicksTitle" xml:space="preserve">
-    <value>UtcTicks</value>
+    <value>UTC Ticks</value>
   </data>
   <data name="YearTitle" xml:space="preserve">
     <value>Anno</value>
   </data>
   <data name="Now" xml:space="preserve">
-    <value>Now</value>
+    <value>Adesso</value>
   </data>
 </root>

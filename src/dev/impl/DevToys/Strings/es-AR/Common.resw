@@ -133,27 +133,27 @@
     <value>Eliminar</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
-    <value>Browse files</value>
+    <value>Examinar archivos</value>
   </data>
   <data name="FileSelectorBrowseFolders" xml:space="preserve">
     <value>Buscar carpetas</value>
   </data>
   <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>Drag &amp; drop any file here</value>
+    <value>Arrastre y suelte un archivo aquí</value>
   </data>
   <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
-    <value>Drag &amp; drop any files here</value>
+    <value>Arrastre y suelte algunos archivos aquí</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
-    <value>Drag &amp; drop a {0} file here</value>
+    <value>Arrastre y suelte un archivo {0} aquí</value>
     <comment>{0} is a single file extension like "PNG"</comment>
   </data>
   <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
-    <value>Drag &amp; drop any {0} files here</value>
+    <value>Arrastre y suelte archivos {0} aquí</value>
     <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
-    <value>Only {0} file(s) can be used.</value>
+    <value>Sólo se pueden utilizar archivo(s) {0}.</value>
     <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorOr" xml:space="preserve">
@@ -202,7 +202,7 @@
     <value>No se puede abrir este archivo</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
-    <value>Unable to load the file '{0}'. Only textual files can be opened. For more details, please check the log.</value>
+    <value>No se ha podido cargar el archivo '{0}'. Solo se pueden abrir archivos de texto. Para más detalles, consulte el registro.</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>Deshacer</value>

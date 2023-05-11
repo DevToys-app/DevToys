@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>Info App</value>
+    <value>Tentang</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>App theme</value>
+    <value>Tema aplikasi</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
     <value>Pilih tema aplikasi mana yang ingin digunakan</value>
@@ -136,7 +136,7 @@
     <value>Tutup</value>
   </data>
   <data name="Copy" xml:space="preserve">
-    <value>Copy</value>
+    <value>Salin</value>
   </data>
   <data name="Dark" xml:space="preserve">
     <value>Gelap</value>
@@ -148,7 +148,7 @@
     <value>Pengaturan</value>
   </data>
   <data name="Font" xml:space="preserve">
-    <value>Font</value>
+    <value>Fon</value>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
     <value>Sorot baris saat ini</value>
@@ -196,7 +196,7 @@
     <value>Secara otomatis mendeteksi alat terbaik berdasarkan konten clipboard</value>
   </data>
   <data name="SmartDetectionHowTo" xml:space="preserve">
-    <value>Cara menggunakan Deteksi Pintra</value>
+    <value>Cara menggunakan Deteksi Pintar</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
     <value>Tempel konten clipboard secara otomatis saat memilih alat yang direkomendasikan</value>
@@ -229,15 +229,15 @@
     <value>Pengaturan</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Configurations Options Settings</value>
+    <value>Konfigurasi Pengaturan</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translating DevToys!</value>
+    <value>Bantu kami menerjemahkan DevToys!</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Ganti teks saat menyalin</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
+    <value>Saat mengklik tombol Tempel, hapus teks sebelum ditempel alih-alih menambahkan ke konten editor teks yang ada.</value>
   </data>
 </root>

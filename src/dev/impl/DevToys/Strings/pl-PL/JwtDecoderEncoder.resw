@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Enkoder JWT / Narzędzie Dekoder</value>
+    <value>Narzędzie Enkodujące i Dekodujące JWT</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>JWT</value>
@@ -136,7 +136,7 @@
     <value>Dekoduj nagłówek JWT, jego zawartość oraz sygnaturę</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="Algorithm" xml:space="preserve">
     <value>Algorytm</value>
@@ -154,13 +154,13 @@
     <value>Tak</value>
   </data>
   <data name="EncodeExpirationTitle" xml:space="preserve">
-    <value>Token wygasa</value>
+    <value>Token ma wygasłość</value>
   </data>
   <data name="EncodeExpirationMonthLabel" xml:space="preserve">
-    <value>Wygasa w miesiącu(ach)</value>
+    <value>Wygasa za miesiąc(ce, cy)</value>
   </data>
   <data name="EncodeExpirationYearLabel" xml:space="preserve">
-    <value>Wygasa w roku</value>
+    <value>Wygasa za rok(lata, lat)</value>
   </data>
   <data name="EncodeHashingTitle" xml:space="preserve">
     <value>Algorytm haszowania tokenu</value>
@@ -169,10 +169,10 @@
     <value>Ustawienia</value>
   </data>
   <data name="EncodeSwitchModeLabel" xml:space="preserve">
-    <value>Koduj</value>
+    <value>Enkoduj</value>
   </data>
   <data name="SettingsSwitchModeLabel" xml:space="preserve">
-    <value>Koduj / Dekoduj</value>
+    <value>Enkoduj / Dekoduj</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>Konfiguracja</value>
@@ -181,13 +181,13 @@
     <value>Token ma domyślny czas</value>
   </data>
   <data name="EncodeExpirationDaysLabel" xml:space="preserve">
-    <value>Wygasa w dniu(ach)</value>
+    <value>Wygasa za dzień(dni)</value>
   </data>
   <data name="EncodeExpirationHoursLabel" xml:space="preserve">
-    <value>Wygasa za godzinach</value>
+    <value>Wygasa za godzinę(ny)</value>
   </data>
   <data name="EncodeExpirationMinutesLabel" xml:space="preserve">
-    <value>Wygasa w minutach</value>
+    <value>Wygasa za minutę(ty)</value>
   </data>
   <data name="PrivateKeyLabel" xml:space="preserve">
     <value>Klucz prywatny</value>
@@ -196,31 +196,31 @@
     <value>Podpis</value>
   </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>Podpis zweryfikowany</value>
+    <value>Podpis Zweryfikowany</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
-    <value>Nieprawidłowy klucz publiczny</value>
+    <value>Nieprawidłowy Klucz Publiczny</value>
   </data>
   <data name="JwtInValidMessage" xml:space="preserve">
-    <value>Nieprawidłowy podpis</value>
+    <value>Nieprawidłowy Podpis</value>
   </data>
   <data name="DecodeValidateActorLabel" xml:space="preserve">
-    <value>Weryfikuj aktora</value>
+    <value>Zatwierdź aktora</value>
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
-    <value>Potwierdź odbiorców</value>
+    <value>Zatwierdź odbiorców</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
-    <value>Potwierdź wystawcę</value>
+    <value>Zatwierdź emitenta</value>
   </data>
   <data name="DecodeValidateLifetimeLabel" xml:space="preserve">
-    <value>Zatwierdź czas trwania</value>
+    <value>Zatwierdź okres ważności</value>
   </data>
   <data name="ValidAudiencesLabel" xml:space="preserve">
-    <value>Potwierdź odbiorców</value>
+    <value>Zatwierdź odbiorców</value>
   </data>
   <data name="ValidIssuersLabel" xml:space="preserve">
-    <value>Potwierdź wystawcę</value>
+    <value>Zatwiedź emitentów</value>
   </data>
   <data name="DecodeValidationSettingsDescription" xml:space="preserve">
     <value>Wybierz, które parametry tokenu chcesz sprawdzić</value>
@@ -229,33 +229,33 @@
     <value>Ustawienia weryfikacji tokenu</value>
   </data>
   <data name="ValidAudiencesError" xml:space="preserve">
-    <value>Valid audiences are empty</value>
+    <value>Brak poprawnych odbiorców</value>
   </data>
   <data name="ValidIssuersError" xml:space="preserve">
-    <value>Valid issuers are empty</value>
+    <value>Brak poprawnych emitentów</value>
   </data>
   <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
-    <value>The public key provided is a private key</value>
+    <value>Podany klucz publiczny jest kluczem prywatnym</value>
   </data>
   <data name="EncodeAudienceLabel" xml:space="preserve">
-    <value>Token has audience</value>
+    <value>Token ma odbiorcę</value>
   </data>
   <data name="EncodeIssuerLabel" xml:space="preserve">
-    <value>Token has issuer</value>
+    <value>Token ma emitenta</value>
   </data>
   <data name="EncodeSettingsDescription" xml:space="preserve">
-    <value>Select token parameters</value>
+    <value>Wybierz parametry tokena</value>
   </data>
   <data name="InvalidPrivateKeyError" xml:space="preserve">
-    <value>Invalid Private Key</value>
+    <value>Nieprawidłowy Klucz Prywatny</value>
   </data>
   <data name="PublicKeyLabel" xml:space="preserve">
-    <value>Public Key</value>
+    <value>Klucz publiczny</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>JWT Encoder / Decoder</value>
+    <value>Enkoder / Dekoder JWT</value>
   </data>
   <data name="InvalidSignatureError" xml:space="preserve">
-    <value>Nieprawidłowy podpis</value>
+    <value>Nieprawidłowy Podpis</value>
   </data>
 </root>

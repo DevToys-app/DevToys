@@ -154,9 +154,9 @@
     <value>Formater JSON-a</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="SortProperties" xml:space="preserve">
-    <value>Sort JSON properties alphabetically</value>
+    <value>Sortuj właściwości JSON alfabetycznie</value>
   </data>
 </root>

@@ -121,10 +121,10 @@
     <value>O aplikacji</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>App theme</value>
+    <value>Motyw aplikacji</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>Wybierz jaki motyw wyświetlić</value>
+    <value>Wybierz jaki motyw wyświetlać w aplikacji</value>
   </data>
   <data name="AppTitle" xml:space="preserve">
     <value>DevToys</value>
@@ -142,7 +142,7 @@
     <value>Ciemny</value>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>Tak samo jak Microsoft Windows</value>
+    <value>Taki sam jak systemowy</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Ustawienia</value>
@@ -154,7 +154,7 @@
     <value>Podkreśl obecną linię</value>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>Zmień kolor tła bieżącej linii, aby była bardziej widoczna</value>
+    <value>Zmień kolor tła bieżącej linii, aby była lepiej widoczna</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Język</value>
@@ -169,13 +169,13 @@
     <value>Jasny</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>Numery linii</value>
+    <value>Liczba linii</value>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>Wyświetl numery linii w edytorze tekstu</value>
+    <value>Wyświetl ilość linii w edytorze tekstu</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Otwórz dziennik</value>
+    <value>Otwórz dziennik zdarzeń</value>
   </data>
   <data name="PrivacyPolicy" xml:space="preserve">
     <value>Polityka prywatności</value>
@@ -232,12 +232,12 @@
     <value>Configurations Options Settings</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translating DevToys!</value>
+    <value>Pomóż przetłumaczyć naszą aplikację!</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Zastąp tekst podczas wklejania</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
+    <value>Po kliknięciu przycisku "wklej", najpierw wyczyść tekst, a dopiero potem go wklej do aktualnej zawartości edytora tekstu.</value>
   </data>
 </root>

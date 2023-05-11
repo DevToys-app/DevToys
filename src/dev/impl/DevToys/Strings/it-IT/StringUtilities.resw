@@ -121,7 +121,7 @@
     <value>Strumento Ispettore e Convertitore di casi</value>
   </data>
   <data name="AlternatingCase" xml:space="preserve">
-    <value>aLtErNaTiNg cAsE</value>
+    <value>Carattere tipografico AlTeRnAnTe</value>
   </data>
   <data name="Bytes" xml:space="preserve">
     <value>Byte:</value>
@@ -187,7 +187,7 @@
     <value>Frasi:</value>
   </data>
   <data name="SnakeCase" xml:space="preserve">
-    <value>snake_case</value>
+    <value>tipo_serpente</value>
   </data>
   <data name="Statistics" xml:space="preserve">
     <value>Statistiche</value>
@@ -196,13 +196,13 @@
     <value>Testo</value>
   </data>
   <data name="TitleCase" xml:space="preserve">
-    <value>Title Case</value>
+    <value>TipoTittolo</value>
   </data>
   <data name="TrainCase" xml:space="preserve">
-    <value>Train-Case</value>
+    <value>Tipo-Treno</value>
   </data>
   <data name="UpperCase" xml:space="preserve">
-    <value>UPPER CASE</value>
+    <value>MAIUSCOLO</value>
   </data>
   <data name="WordDistribution" xml:space="preserve">
     <value>Distribuzione parole</value>

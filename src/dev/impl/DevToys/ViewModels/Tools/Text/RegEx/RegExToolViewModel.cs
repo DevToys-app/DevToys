@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Composition;
+using System.Runtime.CompilerServices;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -88,7 +89,7 @@ namespace DevToys.ViewModels.Tools.RegEx
                 if (SettingsProvider.GetSetting(IgnoreCaseSetting) != value)
                 {
                     SettingsProvider.SetSetting(IgnoreCaseSetting, value);
-                    OnPropertyChanged();
+                    OnOptionPropertyChanged();
                     QueueRegExMatch();
                 }
             }
@@ -102,7 +103,7 @@ namespace DevToys.ViewModels.Tools.RegEx
                 if (SettingsProvider.GetSetting(IgnoreWhitespaceSetting) != value)
                 {
                     SettingsProvider.SetSetting(IgnoreWhitespaceSetting, value);
-                    OnPropertyChanged();
+                    OnOptionPropertyChanged();
                     QueueRegExMatch();
                 }
             }
@@ -116,7 +117,7 @@ namespace DevToys.ViewModels.Tools.RegEx
                 if (SettingsProvider.GetSetting(CultureInvariantSetting) != value)
                 {
                     SettingsProvider.SetSetting(CultureInvariantSetting, value);
-                    OnPropertyChanged();
+                    OnOptionPropertyChanged();
                     QueueRegExMatch();
                 }
             }
@@ -130,7 +131,7 @@ namespace DevToys.ViewModels.Tools.RegEx
                 if (SettingsProvider.GetSetting(SinglelineSetting) != value)
                 {
                     SettingsProvider.SetSetting(SinglelineSetting, value);
-                    OnPropertyChanged();
+                    OnOptionPropertyChanged();
                     QueueRegExMatch();
                 }
             }
@@ -144,7 +145,7 @@ namespace DevToys.ViewModels.Tools.RegEx
                 if (SettingsProvider.GetSetting(MultilineSetting) != value)
                 {
                     SettingsProvider.SetSetting(MultilineSetting, value);
-                    OnPropertyChanged();
+                    OnOptionPropertyChanged();
                     QueueRegExMatch();
                 }
             }
@@ -158,7 +159,7 @@ namespace DevToys.ViewModels.Tools.RegEx
                 if (SettingsProvider.GetSetting(RightToLeftSetting) != value)
                 {
                     SettingsProvider.SetSetting(RightToLeftSetting, value);
-                    OnPropertyChanged();
+                    OnOptionPropertyChanged();
                     QueueRegExMatch();
                 }
             }
@@ -172,10 +173,15 @@ namespace DevToys.ViewModels.Tools.RegEx
                 if (SettingsProvider.GetSetting(EcmaScriptSetting) != value)
                 {
                     SettingsProvider.SetSetting(EcmaScriptSetting, value);
-                    OnPropertyChanged();
+                    OnOptionPropertyChanged();
                     QueueRegExMatch();
                 }
             }
+        }
+
+        internal string? SelectedOptions
+        {
+            get => string.Join(", ", GetSelectedOptionNames());
         }
 
         internal string? RegularExpression
@@ -381,6 +387,44 @@ namespace DevToys.ViewModels.Tools.RegEx
             }
 
             return options;
+        }
+
+        private IEnumerable<string> GetSelectedOptionNames()
+        {
+            if (EcmaScript)
+            {
+                yield return Strings.EcmaScript;
+            }
+            if (CultureInvariant)
+            {
+                yield return Strings.CultureInvariant;
+            }
+            if (IgnoreCase)
+            {
+                yield return Strings.IgnoreCase;
+            }
+            if (IgnoreWhitespace)
+            {
+                yield return Strings.IgnoreWhitespace;
+            }
+            if (Singleline)
+            {
+                yield return Strings.Singleline;
+            }
+            if (Multiline)
+            {
+                yield return Strings.Multiline;
+            }
+            if (RightToLeft)
+            {
+                yield return Strings.RightToLeft;
+            }
+        }
+
+        private void OnOptionPropertyChanged([CallerMemberName] string? propertyName = null)
+        {
+            OnPropertyChanged(propertyName);
+            OnPropertyChanged(nameof(SelectedOptions));
         }
 
         private int CountLines(string input, int maxLength)

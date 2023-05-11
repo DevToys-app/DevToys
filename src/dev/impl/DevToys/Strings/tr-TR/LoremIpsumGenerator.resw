@@ -121,7 +121,7 @@
     <value>Lorem Ipsum oluşturma aracı</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Yapılandırma</value>
+    <value>Konfigürasyon</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Lorem Ipsum yer tutucu metni oluştur</value>

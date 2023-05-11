@@ -124,7 +124,7 @@
     <value>設定</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>结构化查询语言（SQL）</value>
+    <value>SQL</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
     <value>4 個空白</value>

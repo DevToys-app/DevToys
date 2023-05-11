@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddToFavorites" xml:space="preserve">
-    <value>Add to favorites</value>
+    <value>Додај у „омиљене”</value>
   </data>
   <data name="EnterCompactOverlayTooltip" xml:space="preserve">
-    <value>Keep on top (Ctrl+Up)</value>
+    <value>Задржи на врху (Ctrl+горња стрелица)</value>
   </data>
   <data name="ExitCompactOverlayTooltip" xml:space="preserve">
-    <value>Back to full view (Ctrl+Down)</value>
+    <value>Назад у пун приказ (Ctrl+доња стрелица)</value>
   </data>
   <data name="NotificationRateAppActionableActionText" xml:space="preserve">
-    <value>rate us now...</value>
+    <value>сада нас оцените...</value>
   </data>
   <data name="NotificationRateAppMessage" xml:space="preserve">
     <value>Enjoying DevToys? Please consider rating us!</value>
@@ -165,6 +165,15 @@
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
     <value>No results found</value>
+  </data>
+  <data name="SurveyDescription" xml:space="preserve">
+    <value>We would love to hear about your experience with DevToys so we can improve it.</value>
+  </data>
+  <data name="SurveyTitle" xml:space="preserve">
+    <value>The development of DevToys 2.0 started! 🥳</value>
+  </data>
+  <data name="SurveyYesButton" xml:space="preserve">
+    <value>open the survey...</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>

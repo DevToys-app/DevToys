@@ -224,7 +224,8 @@ namespace DevToys.Helpers.SqlFormatter.Core
             {
                 Token? behindToken = TokenLookBehind();
 
-                if (behindToken is not { Type: TokenType.OpenParen or TokenType.LineComment or TokenType.Operator })
+                if (behindToken is not { Type: TokenType.OpenParen or TokenType.LineComment or TokenType.Operator }
+                    && !behindToken?.IsValues(querySpan.Slice(behindToken!.Value)) == true)
                 {
                     _queryBuilder.TrimSpaceEnd();
                 }

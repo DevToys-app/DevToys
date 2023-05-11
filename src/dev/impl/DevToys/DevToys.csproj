@@ -31,6 +31,7 @@
     <Compile Include="Core\QueueWorkerViewModelBaseAsync.cs" />
     <Compile Include="Core\Threading\AsyncLazy.cs" />
     <Compile Include="Helpers\Base64Helper.cs" />
+    <Compile Include="Helpers\CertificateHelper.cs" />
     <Compile Include="Helpers\CryptoRandomGenerator.cs" />
     <Compile Include="Helpers\JsonYaml\Core\BooleanYamlTypeResolver.cs" />
     <Compile Include="Helpers\StorageFileHelper.cs" />
@@ -40,6 +41,7 @@
     <Compile Include="Helpers\NumberBaseHelper.cs" />
     <Compile Include="Helpers\StringManipulationHelper.cs" />
     <Compile Include="Helpers\TimestampToolHelper.cs" />
+    <Compile Include="Helpers\UrlHelper.cs" />
     <Compile Include="Helpers\XmlHelper.cs" />
     <Compile Include="Helpers\SqlFormatter\Core\Formatter.cs" />
     <Compile Include="Helpers\SqlFormatter\Core\Indentation.cs" />
@@ -119,6 +121,8 @@
     <Compile Include="ViewModels\Tools\EncodersDecoders\Base64ImageEncoderDecoder\Base64ImageEncoderDecoderToolProvider.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\Base64ImageEncoderDecoder\Base64ImageEncoderDecoderToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\Base64ImageEncoderDecoder\MockSettingsProvider.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\CertificateEncoderDecoder\CertificateEncoderDecoderToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\CertificateEncoderDecoder\CertificateEncoderDecoderToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolProvider.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolViewModel.cs" />
     <Compile Include="Helpers\JsonYaml\Core\DecimalJsonConverter.cs" />
@@ -191,6 +195,9 @@
     </Compile>
     <Compile Include="Views\Tools\EncodersDecoders\Base64ImageEncoderDecoder\Base64ImageEncoderDecoderToolPage.xaml.cs">
       <DependentUpon>Base64ImageEncoderDecoderToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\EncodersDecoders\CertificateEncoderDecoder\CertificateEncoderDecoderToolPage.xaml.cs">
+      <DependentUpon>CertificateEncoderDecoderToolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\EncodersDecoders\GZipEncoderDecoder\GZipEncoderDecoderToolPage.xaml.cs">
       <DependentUpon>GZipEncoderDecoderToolPage.xaml</DependentUpon>
@@ -584,6 +591,10 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Page Include="Views\Tools\EncodersDecoders\CertificateEncoderDecoder\CertificateEncoderDecoderToolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Tools\EncodersDecoders\JwtDecoderEncoder\JwtDecoderControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

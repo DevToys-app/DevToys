@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Xml Validator tool</value>
+    <value>Xml Valideringsverktøy</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>XML Validator</value>
+    <value>XML Validering</value>
   </data>
   <data name="XsdScheme" xml:space="preserve">
     <value>XSD</value>
@@ -130,27 +130,27 @@
     <value>XML</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Validate XML data via an XSD scheme.</value>
+    <value>Validere XML-data med et XSD-skjema.</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>XML Validator</value>
+    <value>XML Validering</value>
   </data>
   <data name="ValidationImpossibleMsg" xml:space="preserve">
-    <value>XML and XSD content must be set in order to perform a validation.</value>
+    <value>XML og XSD innhold må settes for å kunne validere.</value>
   </data>
   <data name="XmlIsValidMessage" xml:space="preserve">
-    <value>XML is compliant to the defined XSD scheme.</value>
+    <value>XML oppfyller kravene til definert XSD-skjema.</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>XML XSD Validate</value>
+    <value>XML XSD Validering</value>
   </data>
   <data name="XmlNamespacesInconsistentMsg" xml:space="preserve">
-    <value>Validation result will always be 'valid' since the XML does not define these namespace(s) defined in the XSD: {0}</value>
+    <value>Valideringsresultatet vil alltid være 'gyldig' siden XML ikke inneholder navneområdene definert i XSD: {0}</value>
   </data>
   <data name="XsdNamespacesInconsistentMsg" xml:space="preserve">
-    <value>Validation result will always be 'valid' since the XSD does not define these namespace(s) defined in the XML: {0}</value>
+    <value>Valideringsresultatet vil alltid være 'gyldig' siden XSD ikke inneholder navneområdene definert i XML: {0}</value>
   </data>
   <data name="TargetNamespaceNotDefinedInXml" xml:space="preserve">
-    <value>Validation result will potentially always be 'valid' since the XML does not reference the following "targetNamespace" defined in the XSD: {0}</value>
+    <value>Valideringsresultatet vil potensielt alltid være 'gyldig' siden XML ikke refererer til følgende "targetNamespace" definert i XSD: {0}</value>
   </data>
 </root>

@@ -155,7 +155,7 @@
     <value>Werkzeug an Start pinnen</value>
   </data>
   <data name="PinToolToStartProblem" xml:space="preserve">
-    <value>Kann das Werkzeug nicht anpinnen. Mehr Details können den Logs entnommen werden.</value>
+    <value>Das Tool kann nicht an den Start angeheftet werden. Überprüfen Sie die Protokolldatei auf weitere Details.</value>
   </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
     <value>Aus Favoriten entfernen</value>
@@ -165,6 +165,15 @@
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
     <value>Kein Ergebnis</value>
+  </data>
+  <data name="SurveyDescription" xml:space="preserve">
+    <value>Wir würden gerne etwas über deine Erfahrungen mit DevToys erfahren, damit wir es verbessern können.</value>
+  </data>
+  <data name="SurveyTitle" xml:space="preserve">
+    <value>Die Entwicklung von DevToys 2.0 wurde gestartet! 🥳</value>
+  </data>
+  <data name="SurveyYesButton" xml:space="preserve">
+    <value>Umfrage öffnen...</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>

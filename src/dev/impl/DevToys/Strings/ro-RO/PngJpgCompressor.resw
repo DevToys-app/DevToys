@@ -121,22 +121,22 @@
     <value>PNG and JPEG compressor tool</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Anulează</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Configurație</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Șterge</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
-    <value>Delete all</value>
+    <value>Şterge tot</value>
   </data>
   <data name="DetailsTitle" xml:space="preserve">
-    <value>Details</value>
+    <value>Detalii</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>PNG / JPEG Compressor</value>
+    <value>Compresor PNG / JPEG</value>
   </data>
   <data name="FileSizeDisplay" xml:space="preserve">
     <value>{0:0.##} {1}</value>
@@ -146,19 +146,19 @@
     <value>OK</value>
   </data>
   <data name="SaveAll" xml:space="preserve">
-    <value>Save all</value>
+    <value>Salvează tot</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>Save as</value>
+    <value>Salvează ca</value>
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
-    <value>See details</value>
+    <value>Vezi detalii</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Lossless PNG and JPEG optimizer</value>
+    <value>Optimizator fără pierderi PNG și JPEG</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>PNG / JPEG Compressor</value>
+    <value>Compresor PNG / JPEG</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>JPG</value>
