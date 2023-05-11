@@ -136,7 +136,7 @@
     <value>Decodifica un'intestazione, un payload e una firma JWT</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="Algorithm" xml:space="preserve">
     <value>Algoritmo</value>
@@ -247,15 +247,15 @@
     <value>Seleziona i parametri dei token</value>
   </data>
   <data name="InvalidPrivateKeyError" xml:space="preserve">
-    <value>Public Key non valida</value>
+    <value>Chiave pubblica non valida</value>
   </data>
   <data name="PublicKeyLabel" xml:space="preserve">
-    <value>Public Key</value>
+    <value>Chiave pubblica</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>De / Codificatore JWT</value>
+    <value>Codifica / Decodifica JWT</value>
   </data>
   <data name="InvalidSignatureError" xml:space="preserve">
-    <value>Segnatura non valida</value>
+    <value>Firma non valida</value>
   </data>
 </root>
