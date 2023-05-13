@@ -1,6 +1,6 @@
 ﻿namespace DevToys.MauiBlazor.Components;
 
-public partial class FontIcon : StyledLayoutComponentBase
+public partial class FontIcon : StyledComponentBase
 {
     [Parameter]
     public char Glyph { get; set; }
@@ -8,10 +8,11 @@ public partial class FontIcon : StyledLayoutComponentBase
     [Parameter]
     public string FontFamily { get; set; } = string.Empty;
 
-    protected override void AppendClasses(ClassHelper helper)
+    protected override void OnParametersSet()
     {
-        helper.Append("font-icon");
-        helper.Append(FontFamily);
-        base.AppendClasses(helper);
+        CSS.Clear();
+        CSS.Add(FontFamily);
+
+        base.OnParametersSet();
     }
 }

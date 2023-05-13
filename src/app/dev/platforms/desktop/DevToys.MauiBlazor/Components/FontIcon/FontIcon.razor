@@ -1,9 +1,9 @@
 ﻿@namespace DevToys.MauiBlazor.Components
-@inherits StyledLayoutComponentBase
+@inherits StyledComponentBase
 
 <CascadingValue Value="this" IsFixed="true">
     <i id=@Id
-       class="@CssClasses"
+       class="font-icon @(FinalCssClasses)"
        @ref=Element
        @attributes="AdditionalAttributes"
        data-glyph='@Glyph'>

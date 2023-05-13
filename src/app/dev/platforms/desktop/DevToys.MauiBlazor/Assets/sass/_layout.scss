@@ -1,0 +1,85 @@
+@mixin flex( $direction: false, $justify: false, $align: false, $inline: false, $wrap: false, $gap: false ) {
+    // display: flex/inline-flex
+    @if $inline {
+        display: inline-flex;
+    }
+    @else {
+        display: flex;
+    }
+
+    // flex-direction
+    @if $direction != false {
+        @if $direction == row {
+            flex-direction: row;
+        }
+        @else if $direction == column {
+            flex-direction: column;
+        }
+        @else if $direction == row-reverse {
+            flex-direction: row-reverse;
+        }
+        @else if $direction == column-reverse {
+            flex-direction: column-reverse;
+        }
+    }
+
+    // justify-content
+    @if $justify != false {
+        @if $justify == normal {
+            justify-content: normal;
+        }
+        @else if $justify == center {
+            justify-content: center;
+        }
+        @else if $justify == start {
+            justify-content: flex-start;
+        }
+        @else if $justify == end {
+            justify-content: flex-end;
+        }
+        @else if $justify == between {
+            justify-content: space-between;
+        }
+        @else if $justify == around {
+            justify-content: space-around;
+        }
+        @else if $justify == evenly {
+            justify-content: space-evenly;
+        }
+    }
+
+    // align-items/align-content
+    @if $align != false {
+        @if $align == normal {
+            align-items: normal;
+        }
+        @else if $align == center {
+            align-items: center;
+        }
+        @else if $align == start {
+            align-items: flex-start;
+        }
+        @else if $align == end {
+            align-items: flex-end;
+        }
+        @else if $align == between {
+            align-content: space-between;
+        }
+        @else if $align == around {
+            align-content: space-around;
+        }
+        @else if $align == evenly {
+            align-content: space-evenly;
+        }
+    }
+
+    // flex-wrap
+    @if $wrap {
+        flex-wrap: wrap;
+    }
+
+    // gap
+    @if $gap {
+        gap: $gap;
+    }
+}

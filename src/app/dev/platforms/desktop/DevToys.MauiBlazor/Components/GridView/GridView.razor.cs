@@ -1,6 +1,6 @@
 ﻿namespace DevToys.MauiBlazor.Components;
 
-public partial class GridView<TKey, TElement> : StyledLayoutComponentBase, IAsyncDisposable
+public partial class GridView<TKey, TElement> : StyledComponentBase, IAsyncDisposable
 {
     private const string JAVASCRIPT_FILE = "./Components/GridView/GridView.razor.js";
 
@@ -30,16 +30,24 @@ public partial class GridView<TKey, TElement> : StyledLayoutComponentBase, IAsyn
     [Parameter]
     public int ItemMinWidth { get; set; }
 
+    public ScrollViewer? ScrollViewer { get; set; }
+
+    public GridView()
+    {
+        CSS.Add("grid-view");
+    }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
+            Guard.IsNotNull(ScrollViewer);
             JSModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", JAVASCRIPT_FILE);
-            await JSModule.InvokeVoidAsync("initializeStickyHeaders", Id);
+            await JSModule.InvokeVoidAsync("initializeStickyHeaders", ScrollViewer.Id);
 
             if (ItemMinWidth > 0)
             {
-                await JSModule.InvokeVoidAsync("initializeDynamicItemSize", Id, ItemMinWidth);
+                await JSModule.InvokeVoidAsync("initializeDynamicItemSize", ScrollViewer.Id, ItemMinWidth);
             }
         }
     }

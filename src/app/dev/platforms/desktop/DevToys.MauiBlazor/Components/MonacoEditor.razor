@@ -1,9 +1,6 @@
-﻿@using Microsoft.Fast.Components.FluentUI
-@using Microsoft.Fast.Components.FluentUI.DesignTokens
-
-@inherits FluentComponentBase
+﻿@inherits StyledComponentBase
 
 <div style="display: flex; align-items: center; justify-content: center;">
-    <FluentProgressRing id="@($"{Id}-loading")" Style="position: fixed;" />
+   @* <FluentProgressRing id="@($"{Id}-loading")" Style="position: fixed;" />*@
     <div id="@Id" style="@StyleValue" class="@ClassValue"></div>
 </div>

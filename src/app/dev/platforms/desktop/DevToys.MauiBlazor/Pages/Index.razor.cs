@@ -5,7 +5,7 @@ using DevToys.MauiBlazor.Components;
 
 namespace DevToys.MauiBlazor.Pages;
 
-public partial class Index : MefLayoutComponentBase
+public partial class Index : MefComponentBase
 {
     [Import]
     internal MainWindowViewModel ViewModel { get; set; } = default!;

@@ -21,7 +21,7 @@ var nodeResolve = require('@rollup/plugin-node-resolve');
 // Cache needs to be initialized outside of the Gulp task 
 var devtoysCache;
 const paths = {
-    devtoysScss: ['./Assets/sass/**/*.scss', './Components/**/*.scss', './Pages/**/*.scss'],
+    devtoysScss: ['./Assets/sass/**/*.scss', './Components/**/*.scss', './Pages/**/*.scss', './Shared/**/*.scss'],
     devtoysScssOut: './wwwroot/css',
     devtoysJavascript: './Assets/javascript',
     devtoysJavascriptOut: './wwwroot/js'

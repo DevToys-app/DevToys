@@ -1,52 +1,52 @@
 @namespace DevToys.MauiBlazor.Components
-@inherits StyledLayoutComponentBase
+@inherits StyledComponentBase
 @typeparam TKey
 @typeparam TElement
 
 <CascadingValue Value="this" IsFixed="true">
-    <div id=@Id
-         class="grid-view scrollable vertical @(CssClasses)"
-         @ref=Element
-         @attributes="AdditionalAttributes">
-
-        @if (Header is not null)
-        {
-            <div class="header">@Header</div>
-        }
-
-        @if (ItemsSource is not null)
-        {
-            Guard.IsNotNull(ItemTemplate);
-
-            foreach (IGrouping<TKey, TElement> group in ItemsSource)
+    <ScrollViewer @ref=ScrollViewer
+                  Orientation="Orientation.Vertical"
+                  Class="@(FinalCssClasses)"
+                  style="@(Style)"
+                  @attributes="AdditionalAttributes">
+            @if (Header is not null)
             {
-                <section class="grid-view-group">
-                    <header class="grid-view-group-header">
-                        @if (GroupHeaderTemplate is null)
-                        {
-                            @group.Key?.ToString()
-                        }
-                        else
-                        {
-                            @GroupHeaderTemplate(group.Key)
-                        }
-                    </header>
-
-                    <ul class="grid-view-items-container">
-                        @foreach (TElement item in group)
-                        {
-                            <li class="grid-view-item"
-                                style="min-width: @ItemMinWidth px">
-                                <div class="grid-view-item-hover-filter" @onclick="() => OnItemClickAsync(item)">
-                                    @ItemTemplate(item)
-                                </div>
-                            </li>
-                        }
-                    </ul>
-                </section>
+                <div class="header">@Header</div>
             }
-        }
 
-        @Footer
-    </div>
+            @if (ItemsSource is not null)
+            {
+                Guard.IsNotNull(ItemTemplate);
+
+                foreach (IGrouping<TKey, TElement> group in ItemsSource)
+                {
+                    <section class="grid-view-group">
+                        <header class="grid-view-group-header">
+                            @if (GroupHeaderTemplate is null)
+                            {
+                                @group.Key?.ToString()
+                            }
+                            else
+                            {
+                                @GroupHeaderTemplate(group.Key)
+                            }
+                        </header>
+
+                        <ul class="grid-view-items-container">
+                            @foreach (TElement item in group)
+                            {
+                                <li class="grid-view-item"
+                                    style="min-width: @ItemMinWidth px">
+                                    <div class="grid-view-item-hover-filter" @onclick="() => OnItemClickAsync(item)">
+                                        @ItemTemplate(item)
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </section>
+                }
+            }
+
+            @Footer
+    </ScrollViewer>
 </CascadingValue>

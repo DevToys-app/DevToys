@@ -1,117 +1,20 @@
-﻿@namespace DevToys.MauiBlazor.Components
-@using DevToys.Core.Tools.ViewItems;
-@inherits StyledLayoutComponentBase
+@namespace DevToys.MauiBlazor.Components
 
-<CascadingValue Value="this" Name="NavMenu" IsFixed="true">
-    <CascadingValue Value="Collapsed" Name="NavMenuExpanded" IsFixed="true">
-        <nav id="@Id" class="@CssClasses" role="navigation" data-collapse="@CollapsedName">
-            <div class="navbar-header-container">
-                @if (IsCollapsible)
-                {
-                    <Button Class="navbar-toggler"
-                            title="Navbar Toggler" aria-controls="navbarNav" aria-expanded="@CollapsedName" aria-label="Toggle navigation"
-                            Appearance="@ButtonAppearance.Stealth"
-                            IconOnly="true" @onclick=@OnTogglePaneButtonClickAsync>
-                        <FontIcon FontFamily="FluentSystemIcons" Glyph="@('\uf561')" />
-                    </Button>
-                }
-            </div>
-            @if (HasSearch)
-            {
-                <FormItem>
-                    <input type="text" class="form-control" placeholder="Type to search for a tools" aria-label="Search tools" aria-describedby="basic-addon2">
-                    <div class="form-input-group-text">
-                        <FontIcon FontFamily="FluentSystemIcons" Glyph="@('\uea7d')" />
-                    </div>
-                </FormItem>
-            }
+@inherits StyledComponentBase
 
-            <ul class="nav-items scrollable vertical">
-                @if (MenuItemsSource is not null)
-                {
-                    @foreach (INotifyPropertyChanged item in MenuItemsSource)
-                    {
-                        if (item is GuiToolViewItem guiToolViewItem)
-                        {
-                            <NavbarItem Item="item"
-                                        Selected="item == SelectedItem"
-                                        OnSelected=@OnItemSelectedAsync
-                                        Title="@guiToolViewItem.MenuDisplayTitle"
-                                        IconFontFamily="@guiToolViewItem.ToolInstance.IconFontName"
-                                        IconGlyph="@guiToolViewItem.ToolInstance.IconGlyph"/>
-                        }
-                        else if (item is GroupViewItem groupViewItem)
-                        {
-                            if (groupViewItem.Children is not null)
-                            {
-                                <NavbarGroup Item="item"
-                                             Selected="item == SelectedItem"
-                                             OnSelected=@OnItemSelectedAsync
-                                             Title="@groupViewItem.DisplayTitle"
-                                             IconFontFamily="@groupViewItem.IconFontName"
-                                             IconGlyph="@groupViewItem.IconGlyph">
-                                    @foreach (var childItem in groupViewItem.Children)
-                                    {
-                                        <NavbarItem Item="childItem"
-                                                    Selected="childItem == SelectedItem"
-                                                    OnSelected=@OnItemSelectedAsync
-                                                    Title="@childItem.MenuDisplayTitle"
-                                                    IconFontFamily="@childItem.ToolInstance.IconFontName"
-                                                    IconGlyph="@childItem.ToolInstance.IconGlyph" />
-                                    }
-                                </NavbarGroup>
-                            }
-                            else
-                            {
-                                <NavbarItem Item="item"
-                                            Selected="item == SelectedItem"
-                                            OnSelected=@OnItemSelectedAsync
-                                            Title="@groupViewItem.DisplayTitle"
-                                            IconFontFamily="@groupViewItem.IconFontName"
-                                            IconGlyph="@groupViewItem.IconGlyph"/>
-                            }
-                        }
-                        else if (item is SeparatorViewItem)
-                        {
-                            <li class="nav-item nav-separator"></li>
-                        }
-                        else
-                        {
-                            ThrowHelper.ThrowNotSupportedException();
-                        }
-                    }
-                }
-            </ul>
+<CascadingValue Value="this" IsFixed="true">
+    <div id=@Id
+         class="nav-bar-root @(FinalCssClasses)"
+         style="@(Style)"
+         @ref=Element
+         @attributes="AdditionalAttributes">
 
-            <ul class="nav-items sticky-bottom">
-                @if (FooterMenuItemsSource is not null)
-                {
-                    @foreach (var item in FooterMenuItemsSource)
-                    {
-                        if (item is GuiToolViewItem guiToolViewItem)
-                        {
-                            <NavbarItem Item="item"
-                                        Selected="item == SelectedItem"
-                                        OnSelected=@OnItemSelectedAsync
-                                        Title="@guiToolViewItem.MenuDisplayTitle"
-                                        IconFontFamily="@guiToolViewItem.ToolInstance.IconFontName"
-                                        IconGlyph="@guiToolViewItem.ToolInstance.IconGlyph"/>
-                        }
-                        else if (item is SeparatorViewItem)
-                        {
-                            <li class="nav-item nav-separator"></li>
-                        }
-                        else
-                        {
-                            ThrowHelper.ThrowNotSupportedException();
-                        }
-                    }
-                }
-            </ul>
+        <nav>
+
         </nav>
-    </CascadingValue>
 
-    <main class="page">
-        @Content
-    </main>
+        <main>
+            @Content
+        </main>
+    </div>
 </CascadingValue>

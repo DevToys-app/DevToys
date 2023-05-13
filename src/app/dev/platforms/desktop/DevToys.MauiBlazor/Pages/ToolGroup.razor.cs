@@ -2,11 +2,10 @@
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
 using DevToys.MauiBlazor.Components;
-using Microsoft.AspNetCore.Components.Web;
 
 namespace DevToys.MauiBlazor.Pages;
 
-public partial class ToolGroup : MefLayoutComponentBase
+public partial class ToolGroup : MefComponentBase
 {
     [Import]
     internal ToolGroupPageViewModel ViewModel { get; set; } = default!;

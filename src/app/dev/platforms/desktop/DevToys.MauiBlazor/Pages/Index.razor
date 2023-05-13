@@ -2,9 +2,9 @@
 
 @using DevToys.Core.Tools.ViewItems;
 
-@inherits MefLayoutComponentBase
+@inherits MefComponentBase
 
-<Navbar Id="navbar"
+@*<Navbar Id="navbar"
         IsCollapsible="true"
         HasSearch="false"
         IsVertical="true"
@@ -30,4 +30,30 @@
             }
         }
     </Content>
-</Navbar>
+</Navbar>*@
+
+<NavBar>
+    <Content>
+        @if (!IsTransitioning)
+        {
+            if (ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem)
+            {
+                <div class="entranceThemeTransition">
+                    <TextBlock Appearance="TextBlockAppearance.TitleLarge">@guiToolViewItem.ToolInstance.LongOrShortDisplayTitle</TextBlock>
+                    <!-- TODO: Place here a component that takes in argument the guiToolViewItem -->
+
+                    <Button IsEnabled="true" @onclick="OnSetFavoriteAsync">Set favorite</Button>
+                    <Button IsEnabled="false">Set favorite</Button>
+                    <Button IsEnabled="true" Appearance="ButtonAppearance.Accent">Set favorite</Button>
+                    <Button IsEnabled="false" Appearance="ButtonAppearance.Accent">Set favorite</Button>
+                    <Button IsEnabled="true" Appearance="ButtonAppearance.Stealth">Set favorite</Button>
+                    <Button IsEnabled="false" Appearance="ButtonAppearance.Stealth">Set favorite</Button>
+                </div>
+            }
+            else if (ViewModel.SelectedMenuItem is GroupViewItem groupToolViewItem)
+            {
+                <ToolGroup GroupViewItem="@groupToolViewItem" />
+            }
+        }
+    </Content>
+</NavBar>

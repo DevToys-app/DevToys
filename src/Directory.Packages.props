@@ -7,7 +7,6 @@
     <CommunityToolkitVersion>8.1.0</CommunityToolkitVersion>
     <CommunityToolkitWinUINuGetVersion>7.1.2</CommunityToolkitWinUINuGetVersion>
     <DotNetVersion>7.0.0</DotNetVersion>
-    <MicrosoftFastComponentsFluentUIVersion>2.0.1</MicrosoftFastComponentsFluentUIVersion>
     <UnoVersion>4.7.37</UnoVersion>
     <UnoCommunityToolkitWinUINuGetVersion>7.1.100</UnoCommunityToolkitWinUINuGetVersion>
     <UnoWasmBootstrapVersion>8.0.0-dev.65</UnoWasmBootstrapVersion>
@@ -30,7 +29,6 @@
     <PackageVersion Include="Microsoft.Extensions.Logging.Configuration" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="$(DotNetVersion)" />
-    <PackageVersion Include="Microsoft.Fast.Components.FluentUI" Version="$(MicrosoftFastComponentsFluentUIVersion)" />
     <PackageVersion Include="Microsoft.Graphics.Win2D" Version="1.0.4" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
     <PackageVersion Include="Microsoft.TypeScript.MSBuild" Version="$(MicrosoftTypeScriptMSBuildVersion)" />

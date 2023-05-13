@@ -1,11 +1,6 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.Fast.Components.FluentUI;
-using Microsoft.Fast.Components.FluentUI.Utilities;
-using Microsoft.JSInterop;
+﻿namespace DevToys.MauiBlazor.Components;
 
-namespace DevToys.MauiBlazor.Components;
-
-public partial class MonacoEditor : FluentComponentBase, IAsyncDisposable
+public partial class MonacoEditor : StyledComponentBase, IAsyncDisposable
 {
     private const string JAVASCRIPT_FILE = "./Components/MonacoEditor.razor.js";
     private const string MONACO_VS_PATH = "./lib/monaco-editor/min/vs";
@@ -19,9 +14,7 @@ public partial class MonacoEditor : FluentComponentBase, IAsyncDisposable
                             }
                             """;
 
-
-    protected string? ClassValue => new CssBuilder(Class)
-         .Build();
+    protected string? ClassValue => new CssBuilder(FinalCssClasses).Build();
 
     protected string? StyleValue => new StyleBuilder()
         .AddStyle("height", Height, () => !string.IsNullOrEmpty(Height))
@@ -34,12 +27,6 @@ public partial class MonacoEditor : FluentComponentBase, IAsyncDisposable
     private IJSRuntime JSRuntime { get; set; } = default!;
 
     private IJSObjectReference JSModule { get; set; } = default!;
-
-    /// <summary>
-    /// Unique identifier of this component.
-    /// </summary>
-    [Parameter]
-    public string Id { get; set; } = Identifier.NewId();
 
     /// <summary>
     /// Language used by the editor: csharp, javascript, ...

@@ -1,6 +1,3 @@
-@use "../Assets/sass/mixins/index" as mixins;
-@use "../Assets/sass/configs/variables" as variables;
-
 .tool-group-grid-view-item {
     height: 134px;
     max-height: 134px;
@@ -18,13 +15,14 @@
         height: 100px;
         width: 100px;
         padding: 12px;
-        background-color: var(--card-background-fill-color-default);
-        border-radius: variables.$corner-radius;
+        background-color: var(--card-background-color);
+        border-radius: var(--control-corner-radius);
 
         .fonticon {
             margin: auto;
             text-align: center;
             font-size: 64px;
+            height: 64px;
         }
     }
 
@@ -68,6 +66,7 @@
             margin: auto;
             text-align: center;
             font-size: 16px;
+            height: 16px;
         }
     }
 }

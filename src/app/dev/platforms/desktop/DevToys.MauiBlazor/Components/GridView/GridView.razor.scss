@@ -1,6 +1,3 @@
-@use "../../Assets/sass/mixins/index" as mixins;
-@use "../../Assets/sass/configs/variables" as variables;
-
 .grid-view {
     position: relative;
     width: 100%;
@@ -8,7 +5,7 @@
     flex: 1;
 
     .header {
-        margin-bottom: 30px;
+        margin-bottom: 24px;
     }
 
     .grid-view-group {
@@ -19,7 +16,7 @@
             top: 0;
             z-index: 10;
             background-color: transparent;
-            border-bottom: 1px solid var(--system-reveal-base-low-color);
+            border-bottom: 1px solid var(--grid-view-header-border-line);
             padding-bottom: 8px;
             margin-top: 8px;
             margin-bottom: 4px;
@@ -34,15 +31,16 @@
             margin: 16px 0 0 0;
 
             .grid-view-item {
-                background-color: var(--card-background-fill-color-default);
+                background-color: var(--grid-view-item-background);
                 border-style: solid;
                 border-width: 1px;
-                border-color: var(--card-stroke-color-default);
-                border-radius: variables.$corner-radius;
+                border-color: var(--grid-view-item-stroke);
+                border-radius: var(--control-corner-radius);
                 list-style-type: none;
 
                 .grid-view-item-hover-filter:hover {
-                    background-color: var(--subtle-fill-color-secondary);
+                    background-color: var(--grid-view-item-background-hover);
+                    height: 100%;
                 }
             }
         }
