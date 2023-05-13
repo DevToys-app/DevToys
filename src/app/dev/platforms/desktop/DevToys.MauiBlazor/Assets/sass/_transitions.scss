@@ -1,0 +1,17 @@
+@keyframes entrance-theme-transition-key-frames {
+    from {
+        opacity: 0;
+        transform: translateY(150px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.entrance-theme-transition {
+    animation-name: entrance-theme-transition-key-frames;
+    animation-duration: 0.15s;
+    animation-timing-function: ease-out;
+}

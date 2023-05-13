@@ -2,6 +2,14 @@
     display: block;
     color: currentColor;
 
+    /* Center the icon in its parent */
+    margin: 0;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
     &::before {
         content: attr(data-glyph)
     }

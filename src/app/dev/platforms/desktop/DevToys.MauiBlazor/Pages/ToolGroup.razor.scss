@@ -19,7 +19,6 @@
         border-radius: var(--control-corner-radius);
 
         .fonticon {
-            margin: auto;
             text-align: center;
             font-size: 64px;
             height: 64px;
@@ -63,10 +62,9 @@
         }
 
         .fonticon {
-            margin: auto;
             text-align: center;
             font-size: 16px;
-            height: 16px;
+            width: 21px;
         }
     }
 }
