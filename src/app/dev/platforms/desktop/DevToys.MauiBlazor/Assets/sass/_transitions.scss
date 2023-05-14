@@ -15,3 +15,24 @@
     animation-duration: 0.15s;
     animation-timing-function: ease-out;
 }
+
+@mixin transition($transition...) {
+    @if length($transition) == 0 {
+        $transition: all 0.2s ease-in-out !default;
+    }
+
+    @if length($transition) > 1 {
+        @each $value in $transition {
+            @if $value == null or $value == none {
+                @warn "The keyword 'none' or 'null' must be used as a single argument.";
+            }
+        }
+    }
+
+    @if nth($transition, 1) != null {
+        -webkit-transition: $transition;
+        -o-transition: $transition;
+        -ms-transition: $transition;
+        transition: $transition;
+    }
+}

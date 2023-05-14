@@ -33,6 +33,9 @@
 </Navbar>*@
 
 <NavBar>
+    <Header>
+        <TextBlock>DevToys</TextBlock>
+    </Header>
     <Content>
         @if (!IsTransitioning)
         {
@@ -42,7 +45,7 @@
                     <TextBlock Appearance="TextBlockAppearance.TitleLarge">@guiToolViewItem.ToolInstance.LongOrShortDisplayTitle</TextBlock>
                     <!-- TODO: Place here a component that takes in argument the guiToolViewItem -->
 
-                    <Button IsEnabled="true" @onclick="OnSetFavoriteAsync">Set favorite</Button>
+                    <Button IsEnabled="true" @onclick="OnSetFavorite">Set favorite</Button>
                     <Button IsEnabled="false">Set favorite</Button>
                     <Button IsEnabled="true" Appearance="ButtonAppearance.Accent">Set favorite</Button>
                     <Button IsEnabled="false" Appearance="ButtonAppearance.Accent">Set favorite</Button>

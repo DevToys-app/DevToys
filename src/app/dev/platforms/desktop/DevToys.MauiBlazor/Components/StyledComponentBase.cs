@@ -77,7 +77,7 @@ public abstract class StyledComponentBase : ComponentBase
     /// Example: f127d9edf14385adb
     /// </summary>
     /// <returns></returns>
-    private static string NewId(int length = 8)
+    protected static string NewId(int length = 8)
     {
         Guard.IsLessThanOrEqualTo(length, 16);
 

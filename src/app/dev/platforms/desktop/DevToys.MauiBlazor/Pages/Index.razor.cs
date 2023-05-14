@@ -33,7 +33,7 @@ public partial class Index : MefComponentBase
         StateHasChanged();
     }
 
-    internal Task OnSetFavoriteAsync()
+    internal void OnSetFavorite()
     {
         // WARNING: This should be done in ToolPageViewModel. Doing it here just for demo.
         if (ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem)
@@ -41,8 +41,6 @@ public partial class Index : MefComponentBase
             bool isFavorite = GuiToolProvider.GetToolIsFavorite(guiToolViewItem.ToolInstance);
             GuiToolProvider.SetToolIsFavorite(guiToolViewItem.ToolInstance, !isFavorite);
         }
-
-        return Task.CompletedTask;
     }
 
     protected override void OnAfterRender(bool firstRender)

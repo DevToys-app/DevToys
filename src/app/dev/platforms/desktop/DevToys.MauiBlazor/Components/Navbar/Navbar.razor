@@ -4,17 +4,58 @@
 
 <CascadingValue Value="this" IsFixed="true">
     <div id=@Id
-         class="nav-bar-root @(FinalCssClasses)"
+         class="nav-bar-root @(SidebarState.NavBarClassNames) @(FinalCssClasses)"
          style="@(Style)"
          @ref=Element
          @attributes="AdditionalAttributes">
 
-        <nav>
+        <div class="header">
+            <Button Appearance="ButtonAppearance.Stealth"
+                    Class="button-icon"
+                    title="Back"
+                    aria-label="Back">
+                <FontIcon Glyph="@('\uF15B')" />
+            </Button>
+            @if (SidebarState.IsHidden)
+            {
+                <Button Appearance="ButtonAppearance.Stealth"
+                        Class="button-icon"
+                        title="Toggle Navigation"
+                        aria-label="Toggle Navigation"
+                        aria-controls="@NavId"
+                        @onclick="OnToggleSidebarClick">
+                        @*aria-expanded="@CollapsedName"*@
+                    <FontIcon Glyph="@('\uF560')" />
+                </Button>
+            }
 
+            @Header
+        </div>
+
+        <nav id="@NavId" class="@(SidebarState.NavBarClassNames)">
+            <div class="sidebar-header">
+                @if (!SidebarState.IsHidden)
+                {
+                    <Button Appearance="ButtonAppearance.Stealth"
+                            Class="button-icon"
+                            title="Toggle Navigation"
+                            aria-label="Toggle Navigation"
+                            aria-controls="@NavId"
+                            @onclick="OnToggleSidebarClick">
+                            @*aria-expanded="@CollapsedName"*@
+                        <FontIcon Glyph="@('\uF560')" />
+                    </Button>
+                }
+            </div>
+            <div class="sidebar-body">body content</div>
+            <div class="sidebar-footer">footer content</div>
         </nav>
 
         <main>
             @Content
         </main>
+
+        <div class="expanded-overlay-closer @(SidebarState.IsExpandedOverlay ? "show" : string.Empty)"
+             @onclick="OnToggleSidebarClick" />
     </div>
 </CascadingValue>

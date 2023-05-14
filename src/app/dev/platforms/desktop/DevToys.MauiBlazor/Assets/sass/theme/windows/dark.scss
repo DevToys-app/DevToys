@@ -45,9 +45,7 @@
 
     /* Background */
     --background-color: rgba(32, 32, 32, 1);
-    --page-background-color: rgba(44, 44, 44, 0.96);
-    --card-background-color: rgba(255, 255, 255, 0.05);
-    --card-hover-background-color: rgba(255, 255, 255, 0.06);
+    --layer-fill-color-default: rgba(58, 58, 58, 0.3);
 
     /* Borders */
     --control-border-color-default:
@@ -60,6 +58,11 @@
         var(--control-stroke-on-accent-secondary)
         var(--control-stroke-on-accent-secondary)
         var(--control-stroke-on-accent-secondary);
+
+    /* Card */
+    --card-stroke-color-default: rgba(0, 0, 0, 0.06);
+    --card-background-color: rgba(255, 255, 255, 0.05);
+    --card-hover-background-color: rgba(255, 255, 255, 0.06);
 
     /* Button */
     --button-background: var(--control-fill-color-default);
@@ -75,6 +78,7 @@
     --button-border-pressed: var(--control-stroke-color-default);
     --button-border-disabled: var(--control-stroke-color-default);
     --button-border-thickness: 1px solid;
+
     --accent-button-background: var(--accent-default);
     --accent-button-background-pointer-over: var(--accent-secondary);
     --accent-button-background-pressed: var(--accent-tertiary);
@@ -88,6 +92,7 @@
     --accent-button-border-pressed: var(--control-fill-color-transparent);
     --accent-button-border-disabled: var(--control-fill-color-transparent);
     --accent-button-border-thickness: 1px solid;
+
     --stealth-button-background: var(--control-fill-color-transparent);
     --stealth-button-background-pointer-over: var(--control-fill-color-secondary);
     --stealth-button-background-pressed: var(--control-fill-color-tertiary);
@@ -107,6 +112,14 @@
     --grid-view-item-background: var(--card-background-color);
     --grid-view-item-background-hover: var(--card-hover-background-color);
     --grid-view-item-stroke: rgba(0, 0, 0, 0.3);
+
+    /* NavBar */
+    --navigation-view-content-background: var(--layer-fill-color-default);
+    --navigation-view-content-grid-border: var(--card-stroke-color-default);
+    --navigation-view-content-grid-border-thickness: 1px solid;
+    --navigation-view-flyout-border-color: var(--control-stroke-color-secondary);
+    --navigation-view-flyout-background-color: rgba(32, 32, 32, 0.051);
+    --navigation-view-flyout-backdrop-filter: blur(60px) saturate(125%);
 
     /* Scrollbars */
     --scrollbar-track-background-color: transparent;

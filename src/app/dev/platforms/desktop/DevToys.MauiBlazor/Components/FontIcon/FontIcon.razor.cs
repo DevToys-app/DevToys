@@ -6,7 +6,7 @@ public partial class FontIcon : StyledComponentBase
     public char Glyph { get; set; }
 
     [Parameter]
-    public string FontFamily { get; set; } = string.Empty;
+    public string FontFamily { get; set; } = "FluentSystemIcons";
 
     protected override void OnParametersSet()
     {
