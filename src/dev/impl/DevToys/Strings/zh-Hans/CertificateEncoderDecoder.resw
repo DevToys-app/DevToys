@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Certificate Encoder and Decoder tool</value>
+    <value>凭证编码与解码工具</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Certificate</value>
+    <value>凭证</value>
   </data>
   <data name="PasswordTitle" xml:space="preserve">
-    <value>Password</value>
+    <value>密码</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
     <value>输入</value>
@@ -133,16 +133,16 @@
     <value>输出</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Encode or decode a certificate</value>
+    <value>对凭证进行编码或解码</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Certificate Encoder / Decoder</value>
+    <value>凭证编码器 / 解码器</value>
   </data>
   <data name="InvalidPasswordError" xml:space="preserve">
-    <value>Invalid password.</value>
+    <value>无效的密码。</value>
   </data>
   <data name="UnsupportedFormatError" xml:space="preserve">
-    <value>Certificate Request format not currently supported.</value>
+    <value>目前尚不支持请求的凭证格式。</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value/>

@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Convertitore Unix Timestamp</value>
+    <value>Strumento di conversione Timestamp Unix</value>
   </data>
   <data name="TimeZoneTitle" xml:space="preserve">
-    <value>Fuso Orario</value>
+    <value>Fuso orario</value>
   </data>
   <data name="DaylightSavingTime" xml:space="preserve">
     <value>Orario estivo.</value>
@@ -130,7 +130,7 @@
     <value>Giorno</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Converti date di tipo timestamp in date accessibili all'uomo e viceversa</value>
+    <value>Converti timestamp in date leggibili e viceversa</value>
   </data>
   <data name="DisabledDaylightSavingTime" xml:space="preserve">
     <value>Non c'e orario estivo.</value>
@@ -148,7 +148,7 @@
     <value>Data e ora locali</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Orario</value>
+    <value>Timestamp</value>
   </data>
   <data name="MinutesTitle" xml:space="preserve">
     <value>Minuti</value>
@@ -160,10 +160,10 @@
     <value>Spostamento</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Convertitore Unix Timestap</value>
+    <value>Convertitore Timestamp Unix</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Tempo Data Fuso orario Epoca</value>
+    <value>Ora Data Fuso orario Epoca</value>
     <comment>Alternative search keywords. Enables searching for words that are not included in Description, MenuDisplayName, and SearchDisplayName.</comment>
   </data>
   <data name="SecondsTitle" xml:space="preserve">
@@ -173,7 +173,7 @@
     <value>C'e orario estivo.</value>
   </data>
   <data name="TimestampTitle" xml:space="preserve">
-    <value>Orario</value>
+    <value>Timestamp</value>
   </data>
   <data name="UTCDateTime" xml:space="preserve">
     <value>Data e ora UTC</value>

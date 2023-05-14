@@ -136,7 +136,7 @@
     <value>Decodifica un'intestazione, un payload e una firma JWT</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="Algorithm" xml:space="preserve">
     <value>Algoritmo</value>
@@ -145,16 +145,16 @@
     <value>Decodifica</value>
   </data>
   <data name="DecodeValidateTokenLabel" xml:space="preserve">
-    <value>Validate Token</value>
+    <value>Convalida Token</value>
   </data>
   <data name="DecodeValidateTokenNoLabel" xml:space="preserve">
     <value>No</value>
   </data>
   <data name="DecodeValidateTokenYesLabel" xml:space="preserve">
-    <value>Si</value>
+    <value>Sì</value>
   </data>
   <data name="EncodeExpirationTitle" xml:space="preserve">
-    <value>Token ha una data di scadenza</value>
+    <value>Il token ha una scadenza</value>
   </data>
   <data name="EncodeExpirationMonthLabel" xml:space="preserve">
     <value>Scadenza in mese/i</value>
@@ -163,7 +163,7 @@
     <value>Scadenza in anno/i</value>
   </data>
   <data name="EncodeHashingTitle" xml:space="preserve">
-    <value>Algoritmo Hashing degli Token</value>
+    <value>Algoritmo di hashing del token</value>
   </data>
   <data name="EncodeSettingsTitle" xml:space="preserve">
     <value>Impostazioni</value>
@@ -178,37 +178,37 @@
     <value>Configurazione</value>
   </data>
   <data name="EncodeDefaultTimeTitle" xml:space="preserve">
-    <value>Il Token ha tempo predefinito</value>
+    <value>Il Token ha un tempo predefinito</value>
   </data>
   <data name="EncodeExpirationDaysLabel" xml:space="preserve">
-    <value>Scadenza in giorni</value>
+    <value>Scadenza in giorno/i</value>
   </data>
   <data name="EncodeExpirationHoursLabel" xml:space="preserve">
     <value>Scadenza in ora/e</value>
   </data>
   <data name="EncodeExpirationMinutesLabel" xml:space="preserve">
-    <value>Scadenza in minuti/o</value>
+    <value>Scadenza in minuto/i</value>
   </data>
   <data name="PrivateKeyLabel" xml:space="preserve">
-    <value>Private Key</value>
+    <value>Chiave privata</value>
   </data>
   <data name="SignatureLabel" xml:space="preserve">
-    <value>Segnatura</value>
+    <value>Firma</value>
   </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>Segnatura Verificata</value>
+    <value>Firma verificata</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
-    <value>Public Key non valida</value>
+    <value>Chiave pubblica non valida</value>
   </data>
   <data name="JwtInValidMessage" xml:space="preserve">
-    <value>Segnatura non valida</value>
+    <value>Firma non valida</value>
   </data>
   <data name="DecodeValidateActorLabel" xml:space="preserve">
     <value>Convalida attore</value>
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
-    <value>Convalidare audienca</value>
+    <value>Convalida audience</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
     <value>Convalida l'emittente</value>
@@ -217,28 +217,28 @@
     <value>Convalida la durata</value>
   </data>
   <data name="ValidAudiencesLabel" xml:space="preserve">
-    <value>Audienca valida</value>
+    <value>Audience valide</value>
   </data>
   <data name="ValidIssuersLabel" xml:space="preserve">
-    <value>Emittenti Validi</value>
+    <value>Emittenti validi</value>
   </data>
   <data name="DecodeValidationSettingsDescription" xml:space="preserve">
-    <value>Seleziona quali parametri token per convalidare</value>
+    <value>Seleziona quali parametri token convalidare</value>
   </data>
   <data name="DecodeValidationSettingsTitle" xml:space="preserve">
     <value>Impostazione di validazione token</value>
   </data>
   <data name="ValidAudiencesError" xml:space="preserve">
-    <value>Audience valide sono vuote</value>
+    <value>Le audience valide sono vuote</value>
   </data>
   <data name="ValidIssuersError" xml:space="preserve">
     <value>Gli emittenti validi sono vuoti</value>
   </data>
   <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
-    <value>La Public Key fornita è una chiave privata</value>
+    <value>La chiave pubblica fornita è una chiave privata</value>
   </data>
   <data name="EncodeAudienceLabel" xml:space="preserve">
-    <value>Token ha un audienca</value>
+    <value>Token ha un'audience</value>
   </data>
   <data name="EncodeIssuerLabel" xml:space="preserve">
     <value>Token ha un emittente</value>
@@ -247,15 +247,15 @@
     <value>Seleziona i parametri dei token</value>
   </data>
   <data name="InvalidPrivateKeyError" xml:space="preserve">
-    <value>Public Key non valida</value>
+    <value>Chiave pubblica non valida</value>
   </data>
   <data name="PublicKeyLabel" xml:space="preserve">
-    <value>Public Key</value>
+    <value>Chiave pubblica</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>De / Codificatore JWT</value>
+    <value>Codifica / Decodifica JWT</value>
   </data>
   <data name="InvalidSignatureError" xml:space="preserve">
-    <value>Segnatura non valida</value>
+    <value>Firma non valida</value>
   </data>
 </root>

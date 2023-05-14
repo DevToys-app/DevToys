@@ -145,12 +145,12 @@
     <value>Output</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Codifica o decodifica tutti i caratteri applicabili alle entità URL corrispondenti</value>
+    <value>Codifica o decodifica tutti i caratteri applicabili nelle entità URL corrispondenti</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Codificatore / Decodificatore URL</value>
+    <value>Codifica / Decodifica URL</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
 </root>
