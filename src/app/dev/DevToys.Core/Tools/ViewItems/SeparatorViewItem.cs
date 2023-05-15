@@ -5,6 +5,6 @@ namespace DevToys.Core.Tools.ViewItems;
 /// <summary>
 /// Represents a separator in the main menu.
 /// </summary>
-public sealed class SeparatorViewItem : ObservableObject
+public sealed class SeparatorViewItem : ObservableObject, ISeparator
 {
 }

@@ -1,11 +1,16 @@
-﻿namespace DevToys.MauiBlazor.Components;
+﻿using System.Collections.ObjectModel;
 
-public partial class NavBar : StyledComponentBase, IAsyncDisposable
+namespace DevToys.MauiBlazor.Components;
+
+public partial class NavBar<TElement>
+    : StyledComponentBase,
+    IAsyncDisposable
+    where TElement : class
 {
     private const string JAVASCRIPT_FILE = "./Components/NavBar/NavBar.razor.js";
 
-    private DotNetObjectReference<NavBar>? _objRef;
-    private int _currentWidth;
+    private DotNetObjectReference<NavBar<TElement>>? _objRef;
+    private readonly NavBarState _sidebarState = new();
 
     [Inject]
     private IJSRuntime JSRuntime { get; set; } = default!;
@@ -13,6 +18,12 @@ public partial class NavBar : StyledComponentBase, IAsyncDisposable
     private IJSObjectReference JSModule { get; set; } = default!;
 
     public string NavId { get; } = NewId();
+
+    [Parameter]
+    public RenderFragment<TElement> NavBarItemTitleTemplate { get; set; } = default!;
+
+    [Parameter]
+    public RenderFragment<TElement> NavBarItemIconTemplate { get; set; } = default!;
 
     /// <summary>
     /// Gets or sets the minimum width at which the sidebar should get hidden.
@@ -26,6 +37,18 @@ public partial class NavBar : StyledComponentBase, IAsyncDisposable
     [Parameter]
     public int NavBarWidthSidebarCollapseThreshold { get; set; } = 1008;
 
+    [Parameter]
+    public ReadOnlyObservableCollection<TElement>? MenuItemsSource { get; set; }
+
+    [Parameter]
+    public ReadOnlyObservableCollection<TElement>? FooterMenuItemsSource { get; set; }
+
+    [Parameter]
+    public TElement? SelectedItem { get; set; }
+
+    [Parameter]
+    public EventCallback<TElement?> SelectedItemChanged { get; set; }
+
     /// <summary>
     /// Gets or sets the content to be rendered inside the component.
     /// </summary>
@@ -38,34 +61,16 @@ public partial class NavBar : StyledComponentBase, IAsyncDisposable
     [Parameter]
     public RenderFragment? Header { get; set; }
 
-    private NavBarState SidebarState { get; set; } = new();
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
             _objRef = DotNetObjectReference.Create(this);
             JSModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", JAVASCRIPT_FILE);
-            await JSModule.InvokeVoidAsync("registerResizeHandler", Id, _objRef);
+            await JSModule.InvokeVoidAsync("registerResizeHandler", Id, NavId, _objRef);
         }
 
         await base.OnAfterRenderAsync(firstRender);
-    }
-
-    [JSInvokable]
-    public void OnComponentResize(int width)
-    {
-        bool stateChanged = SidebarState.WidthUpdated(width, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
-        if (stateChanged)
-        {
-            StateHasChanged();
-        }
-    }
-
-    private void OnToggleSidebarClick()
-    {
-        SidebarState.ToggleSidebar();
-        StateHasChanged();
     }
 
     public async ValueTask DisposeAsync()
@@ -75,5 +80,33 @@ public partial class NavBar : StyledComponentBase, IAsyncDisposable
         {
             await JSModule.DisposeAsync();
         }
+    }
+
+    [JSInvokable]
+    public void OnComponentResize(int width)
+    {
+        bool stateChanged = _sidebarState.WidthUpdated(width, NavBarWidthSidebarHiddenThreshold, NavBarWidthSidebarCollapseThreshold);
+        if (stateChanged)
+        {
+            StateHasChanged();
+        }
+    }
+
+    private void OnToggleSidebarClick()
+    {
+        _sidebarState.ToggleSidebar();
+        StateHasChanged();
+    }
+
+    private void OnCloseExpandedOverlaySidebarClick()
+    {
+        _sidebarState.CloseExpandedOverlay();
+        StateHasChanged();
+    }
+
+    private Task OnItemSelectedAsync(TElement item)
+    {
+        SelectedItem = item;
+        return SelectedItemChanged.InvokeAsync(item);
     }
 }

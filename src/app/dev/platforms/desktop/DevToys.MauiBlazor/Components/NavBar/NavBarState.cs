@@ -14,6 +14,8 @@ internal sealed class NavBarState
 
     internal bool IsHidden { get; private set; }
 
+    internal bool IsCollapsed { get; private set; }
+
     internal bool WidthUpdated(int width, int hiddenThreshold, int collapsedThreshold)
     {
         bool stateChanged;
@@ -107,9 +109,19 @@ internal sealed class NavBarState
         UpdateCssToApply(useTransition);
     }
 
+    internal void CloseExpandedOverlay()
+    {
+        if ((_userPreferredState & NavBarSidebarStates.ExpandedOverlay) == NavBarSidebarStates.ExpandedOverlay)
+        {
+            _userPreferredState &= ~NavBarSidebarStates.ExpandedOverlay;
+            UpdateCssToApply(useTransition: false);
+        }
+    }
+
     private void UpdateCssToApply(bool useTransition = false)
     {
         bool userRequestExpandOverlay = (_userPreferredState & NavBarSidebarStates.ExpandedOverlay) == NavBarSidebarStates.ExpandedOverlay;
+        bool isCollapsed = !userRequestExpandOverlay;
         var cssBuilder = new CssBuilder();
 
         cssBuilder.AddClass("transition", when: useTransition);
@@ -128,6 +140,10 @@ internal sealed class NavBarState
 
             case NavBarSidebarStates.Expanded:
                 cssBuilder.AddClass("collapsed", when: _userPreferredState == NavBarSidebarStates.Collapsed);
+                if (_userPreferredState == NavBarSidebarStates.Collapsed)
+                {
+                    isCollapsed = true;
+                }
                 break;
 
             default:
@@ -138,5 +154,6 @@ internal sealed class NavBarState
         NavBarClassNames = cssBuilder.ToString();
         IsExpandedOverlay = userRequestExpandOverlay;
         IsHidden = _widthBasedState == NavBarSidebarStates.Hidden;
+        IsCollapsed = isCollapsed;
     }
 }

@@ -4,6 +4,8 @@
     margin: 0;
     padding: 0;
     user-select: none;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
     &.type- {
         &subtitle,
@@ -71,5 +73,9 @@
             font-size: var(--font-size-display);
             line-height: 92px;
         }
+    }
+
+    &.no-wrap {
+        white-space: nowrap;
     }
 }

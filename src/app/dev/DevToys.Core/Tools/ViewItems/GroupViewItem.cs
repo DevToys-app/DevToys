@@ -8,7 +8,7 @@ namespace DevToys.Core.Tools.ViewItems;
 /// Represents a group or category in the main menu.
 /// </summary>
 [DebuggerDisplay($"DisplayTitle = {{{nameof(DisplayTitle)}}}")]
-public sealed class GroupViewItem : ObservableObject
+public sealed class GroupViewItem : ObservableObject, IGroup
 {
     private bool _childItemJustGotSelected;
 
@@ -43,6 +43,7 @@ public sealed class GroupViewItem : ObservableObject
         IconFontName = iconFontName;
         IconGlyph = iconGlyph;
         Children = children;
+        ChildrenItems = Children;
         MenuItemShouldBeExpandedByDefault = menuItemShouldBeExpandedByDefault;
 
         if (children is not null)
@@ -88,6 +89,8 @@ public sealed class GroupViewItem : ObservableObject
     /// Gets all the children items of this group.
     /// </summary>
     public ObservableCollection<GuiToolViewItem>? Children { get; }
+
+    public IEnumerable<IItem>? ChildrenItems { get; set; }
 
     /// <summary>
     /// Gets whether the group should be expanded by default.

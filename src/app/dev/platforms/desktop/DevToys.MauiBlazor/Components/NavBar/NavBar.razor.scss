@@ -1,7 +1,7 @@
 @use "../../Assets/sass/devtoys" as *;
 
 $sidebar-hidden-width: 0px;
-$sidebar-collapsed-width: 48px;
+$sidebar-collapsed-width: 49px;
 $sidebar-expanded-width: 320px;
 $sidebar-expanded-overlay-zindex: 10000;
 $sidebar-top-bar-height: 48px;
@@ -41,7 +41,9 @@ $sidebar-top-bar-height: 48px;
 
     nav {
         grid-area: sidebar;
-
+        width: $sidebar-expanded-width;
+        max-width: $sidebar-expanded-width;
+        overflow: hidden;
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: auto 1fr auto;
@@ -51,15 +53,8 @@ $sidebar-top-bar-height: 48px;
             "sidebar-body"
             "sidebar-footer";
 
-        width: $sidebar-expanded-width;
-        max-width: $sidebar-expanded-width;
-
         &.transition {
-            @include transition(
-                left 0.2s ease-in-out,
-                width 0.2s ease-in-out,
-                max-width 0.2s ease-in-out,
-                box-shadow 0.2s ease-in-out );
+            @include transition( left 0.2s ease-in-out, width 0.2s ease-in-out, max-width 0.2s ease-in-out, box-shadow 0.2s ease-in-out );
         }
 
         &.hidden {
@@ -90,17 +85,24 @@ $sidebar-top-bar-height: 48px;
             backdrop-filter: var(--navigation-view-flyout-backdrop-filter);
             box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.26);
         }
-    
+
         .sidebar-header {
             grid-area: sidebar-header;
         }
 
         .sidebar-body {
             grid-area: sidebar-body;
+            height: 100%; // Will change dynamically at runtime.
         }
 
         .sidebar-footer {
             grid-area: sidebar-footer;
+            padding-bottom: 4px;
+        }
+
+        .sidebar-items {
+            margin: 0;
+            padding: 0;
         }
     }
 

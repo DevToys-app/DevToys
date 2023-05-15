@@ -4,38 +4,51 @@
 
 @inherits MefComponentBase
 
-@*<Navbar Id="navbar"
-        IsCollapsible="true"
-        HasSearch="false"
-        IsVertical="true"
-        MenuItemsSource="@ViewModel.HeaderAndBodyToolViewItems"
+<NavBar MenuItemsSource="@ViewModel.HeaderAndBodyToolViewItems"
         FooterMenuItemsSource="@ViewModel.FooterToolViewItems"
         @bind-SelectedItem="ViewModel.SelectedMenuItem">
-
-    <Content>
-        @if (!IsTransitioning)
-        {
-            if (ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem)
-            {
-                <div class="entranceThemeTransition">
-                    <h1>You selected a TOOL: @guiToolViewItem.ToolInstance.LongOrShortDisplayTitle</h1>
-                    <!-- TODO: Place here a component that takes in argument the guiToolViewItem -->
-
-                    <Button @onclick="OnSetFavoriteAsync">Set favorite</Button>
-                </div>
-            }
-            else if (ViewModel.SelectedMenuItem is GroupViewItem groupToolViewItem)
-            {
-                <ToolGroup GroupViewItem="@groupToolViewItem" />
-            }
-        }
-    </Content>
-</Navbar>*@
-
-<NavBar>
+    <!-- Header -->
     <Header>
         <TextBlock>DevToys</TextBlock>
     </Header>
+
+    <!-- Item design -->
+    <NavBarItemIconTemplate Context="item">
+        @{
+            var iconGlyph = '\0';
+            var iconFontFamily = string.Empty;
+            if (item is GuiToolViewItem guiToolViewItem)
+            {
+                iconGlyph = guiToolViewItem.ToolInstance.IconGlyph;
+                iconFontFamily = guiToolViewItem.ToolInstance.IconFontName;
+            }
+            else if (item is GroupViewItem groupViewItem)
+            {
+                iconGlyph = groupViewItem.IconGlyph;
+                iconFontFamily = groupViewItem.IconFontName;
+            }
+
+            <FontIcon FontFamily="@iconFontFamily" Glyph="@iconGlyph" />
+        }
+    </NavBarItemIconTemplate>
+
+    <NavBarItemTitleTemplate Context="item">
+        @{
+            var title = string.Empty;
+            if (item is GuiToolViewItem guiToolViewItem)
+            {
+                title = guiToolViewItem.MenuDisplayTitle;
+            }
+            else if (item is GroupViewItem groupViewItem)
+            {
+                title = groupViewItem.DisplayTitle;
+            }
+
+            <TextBlock NoWrap="true">@title</TextBlock>
+        }
+    </NavBarItemTitleTemplate>
+
+    <!-- Content of the NavBar-->
     <Content>
         @if (!IsTransitioning)
         {

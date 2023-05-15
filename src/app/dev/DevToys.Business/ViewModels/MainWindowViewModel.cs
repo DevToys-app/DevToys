@@ -53,12 +53,12 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
     /// Gets a hierarchical list containing all the tools available, ordered, to display in the top and body menu.
     /// This includes "All tools" menu item, recents and favorites.
     /// </summary>
-    internal ReadOnlyObservableCollection<INotifyPropertyChanged> HeaderAndBodyToolViewItems => _guiToolProvider.HeaderAndBodyToolViewItems;
+    internal ReadOnlyObservableCollection<INotifyPropertyChanged?> HeaderAndBodyToolViewItems => _guiToolProvider.HeaderAndBodyToolViewItems;
 
     /// <summary>
     /// Gets a flat list containing all the footer tools available, ordered.
     /// </summary>
-    internal ReadOnlyObservableCollection<INotifyPropertyChanged> FooterToolViewItems => _guiToolProvider.FooterToolViewItems;
+    internal ReadOnlyObservableCollection<INotifyPropertyChanged?> FooterToolViewItems => _guiToolProvider.FooterToolViewItems;
 
     // Can't use CommunityToolkit.MVVM due to https://github.com/dotnet/roslyn/issues/57239#issuecomment-1437895948
     /// <summary>

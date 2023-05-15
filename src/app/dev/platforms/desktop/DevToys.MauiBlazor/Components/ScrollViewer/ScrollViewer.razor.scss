@@ -5,11 +5,13 @@
     &.vertical {
         overflow-y: overlay;
         overflow-x: hidden;
+        height: 100%;
     }
 
     &.horizontal {
         overflow-y: hidden;
         overflow-x: overlay;
+        width: 100%;
     }
 
     &::-webkit-scrollbar-track {

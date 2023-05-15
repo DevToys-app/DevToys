@@ -69,7 +69,7 @@ function fitGridViewItemsToContainer(gridView: HTMLElement, gridViewBounds: DOMR
         }
         else {
             let gridViewWidthWithoutGaps = gridViewWidth - (gapBetweenItems * (columns - 1));
-            newItemWidth = `${Math.max(itemMinWidth, (gridViewWidthWithoutGaps / columns))}px`;;
+            newItemWidth = `${Math.max(itemMinWidth, (gridViewWidthWithoutGaps / columns))}px`;
         }
 
         // Apply the new width to every items.

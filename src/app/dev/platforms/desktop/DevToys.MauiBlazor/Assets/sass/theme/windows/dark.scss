@@ -43,6 +43,12 @@
     --control-stroke-on-accent-default: hsla(0, 0%, 100%, 8%);
     --control-stroke-on-accent-secondary: hsla(0, 0%, 0%, 14%);
 
+    /* Subtle Fill */
+    --subtle-fill-transparent: transparent;
+    --subtle-fill-secondary: rgba(255, 255, 255, 0.061);
+    --subtle-fill-tertiary: rgba(255, 255, 255, 0.042);
+    --subtle-fill-disabled: transparent;
+
     /* Background */
     --background-color: rgba(32, 32, 32, 1);
     --layer-fill-color-default: rgba(58, 58, 58, 0.3);
@@ -120,6 +126,18 @@
     --navigation-view-flyout-border-color: var(--control-stroke-color-secondary);
     --navigation-view-flyout-background-color: rgba(32, 32, 32, 0.051);
     --navigation-view-flyout-backdrop-filter: blur(60px) saturate(125%);
+    --navigation-view-separator-color: rgba(255, 255, 255, 0.0605);
+
+    /* List Box */
+    --list-box-item-background: var(--subtle-fill-transparent);
+    --list-box-item-background-disabled: var(--subtle-fill-transparent);
+    --list-box-item-background-pointer-over: var(--subtle-fill-secondary);
+    --list-box-item-background-selected: var(--subtle-fill-secondary);
+    --list-box-item-background-selected-disabled: var(--subtle-fill-secondary);
+    --list-box-item-background-active: var(--subtle-fill-tertiary);
+    --list-box-item-foreground: var(--text-fill-color-primary);
+    --list-box-item-foreground-active: var(--text-fill-color-secondary);
+    --list-box-item-foreground-disabled: var(--text-fill-color-disabled);
 
     /* Scrollbars */
     --scrollbar-track-background-color: transparent;

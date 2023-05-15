@@ -10,7 +10,7 @@ i[class^="FluentSystemIcons"]:before, i[class*=" FluentSystemIcons"]:before {
     font-variant: normal;
     text-transform: none;
     line-height: 1;
-    -webkit-font-smoothing: antialiased;
+    -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
