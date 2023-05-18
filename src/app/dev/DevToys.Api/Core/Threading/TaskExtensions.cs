@@ -1,6 +1,4 @@
-﻿using System.Threading;
-
-namespace DevToys.Api;
+﻿namespace DevToys.Api;
 
 /// <summary>
 /// Provides a set of helper method to play around with threads.

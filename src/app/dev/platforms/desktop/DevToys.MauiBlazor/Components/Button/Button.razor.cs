@@ -2,6 +2,9 @@
 
 public partial class Button : StyledComponentBase
 {
+    [Inject]
+    private IJSRuntime JSRuntime { get; set; } = default!;
+
     [Parameter]
     public bool IsEnabled { get; set; } = true;
 
@@ -28,14 +31,16 @@ public partial class Button : StyledComponentBase
         {
             CSS.Add("disabled");
 
-            if (AdditionalAttributes is null)
-            {
-                AdditionalAttributes = new Dictionary<string, object>();
-            }
+            AdditionalAttributes ??= new Dictionary<string, object>();
 
             AdditionalAttributes.TryAdd("disabled", true);
         }
 
         base.OnParametersSet();
+    }
+
+    internal ValueTask FocusAsync()
+    {
+        return JSRuntime.InvokeVoidAsync("devtoys.DOM.setFocus", Element);
     }
 }

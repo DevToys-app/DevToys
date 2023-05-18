@@ -62,7 +62,7 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
 
     // Can't use CommunityToolkit.MVVM due to https://github.com/dotnet/roslyn/issues/57239#issuecomment-1437895948
     /// <summary>
-    /// Gets or sets the selected menu item in the NavitationView.
+    /// Gets or sets the selected menu item in the NavigationView.
     /// </summary>
     public INotifyPropertyChanged? SelectedMenuItem
     {
@@ -237,7 +237,7 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
                 // And that the current selected menu item is a group, or that the user didn't selected another menu item since the smart detection started
                 if (detectedTools.Count == 1 && (SelectedMenuItem == selectedMenuBeforeSmartDetection || SelectedMenuItem is GroupViewItem && firstToolViewItem is not null))
                 {
-                    // Then let's navigate immeditaly to it and set the detected data as an input.
+                    // Then let's navigate immediately to it and set the detected data as an input.
                     SelectedMenuItem = firstToolViewItem;
                     detectedTools[0].ToolInstance.PassSmartDetectedData(detectedTools[0].DataTypeName, detectedTools[0].ParsedData);
                 }

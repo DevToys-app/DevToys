@@ -49,10 +49,33 @@
                             aria-label="Toggle Navigation"
                             aria-controls="@NavId"
                             aria-expanded="@_sidebarState.IsCollapsed"
-                        @onclick="OnToggleSidebarClick">
+                            @onclick="OnToggleSidebarClick">
                         <FontIcon Glyph="@('\uF560')" />
                     </Button>
                 }
+
+                @{
+                    string searchButtonStyle = $"margin: 6px 4px 8px 5px; {(_sidebarState.IsCollapsed ? string.Empty : "display: none;")}";
+                    string searchTextBoxStyle = $"margin: 6px 17px 12px 16px; {(_sidebarState.IsCollapsed ? "display: none;" : string.Empty)}";
+
+                    <Button Appearance="ButtonAppearance.Stealth"
+                            Class="button-icon"
+                            Style="@searchButtonStyle"
+                            title="Click to search"
+                            aria-label="Search"
+                            @onclick="OnSearchButtonClick">
+                        <FontIcon Glyph="@('\uF68F')" />
+                    </Button>
+                    <TextBox @ref="_searchTextBox"
+                             Type="TextBoxTypes.Search"
+                             Style="@searchTextBoxStyle"
+                             Placeholder="Type to search for tools...">
+                        <Buttons>
+                            <FontIcon Glyph="@('\uF68F')" Style="transform: unset; left: 0; height: 16px; margin-left: 4px; margin-right: 4px;" />
+                        </Buttons>
+                    </TextBox>
+                }
+
             </div>
             <div class="sidebar-body">
                 <ScrollViewer Orientation="Orientation.Vertical">

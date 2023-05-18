@@ -68,7 +68,7 @@ public readonly struct TaskSchedulerAwaiter : ICriticalNotifyCompletion
             // We special case the TaskScheduler.Default since that is semantically equivalent to being
             // on a ThreadPool thread, and there are various ways to get on those threads.
             // TaskScheduler.Current is never null.  Even if no scheduler is really active and the current
-            // thread is not a threadpool thread, TaskScheduler.Current == TaskScheduler.Default, so we have
+            // thread is not a thread pool thread, TaskScheduler.Current == TaskScheduler.Default, so we have
             // to protect against that case too.
             bool isThreadPoolThread = Thread.CurrentThread.IsThreadPoolThread;
             return (_scheduler == TaskScheduler.Default && isThreadPoolThread)

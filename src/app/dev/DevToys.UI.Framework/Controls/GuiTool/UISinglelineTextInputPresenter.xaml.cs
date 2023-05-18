@@ -16,7 +16,7 @@ public sealed partial class UISinglelineTextInputPresenter : UserControl
         Unloaded += UISinglelineTextInputPresenter_Unloaded;
     }
 
-    internal IUISinglelineTextInput UISinglelineTextInput => (IUISinglelineTextInput)DataContext;
+    internal IUISingleLineTextInput UISinglelineTextInput => (IUISingleLineTextInput)DataContext;
 
     private void UISinglelineTextInputPresenter_Loaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {

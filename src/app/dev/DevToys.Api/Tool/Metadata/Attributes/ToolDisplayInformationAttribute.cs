@@ -13,7 +13,7 @@ public sealed class ToolDisplayInformationAttribute : Attribute
     private string _longDisplayTitleResourceName = string.Empty;
     private string _descriptionResourceName = string.Empty;
     private string _accessibleNameResourceName = string.Empty;
-    private string _searchkeywordsResourceName = string.Empty;
+    private string _searchKeywordsResourceName = string.Empty;
     private char _iconGlyph;
     private string _iconFontName = string.Empty;
     private string _groupName = string.Empty;
@@ -124,11 +124,11 @@ public sealed class ToolDisplayInformationAttribute : Attribute
     /// </summary>
     public string SearchKeywordsResourceName
     {
-        get => _searchkeywordsResourceName;
+        get => _searchKeywordsResourceName;
         set
         {
             Guard.IsNotNullOrWhiteSpace(value);
-            _searchkeywordsResourceName = value;
+            _searchKeywordsResourceName = value;
         }
     }
 

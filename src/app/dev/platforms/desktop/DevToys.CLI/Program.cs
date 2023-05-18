@@ -102,7 +102,7 @@ internal partial class Program
 
     private static CommandToICommandLineToolMap? CreateCommandForTool(Lazy<ICommandLineTool, CommandLineToolMetadata> commandLineTool)
     {
-        // Make sure the tool is supported by the current OS. If no platform is precised by the tool,
+        // Make sure the tool is supported by the current OS. If no platform is precise by the tool,
         // it means it's supported by every OS.
         if (!OSHelper.IsOsSupported(commandLineTool.Metadata.TargetPlatforms))
         {

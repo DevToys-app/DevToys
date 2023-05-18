@@ -9,6 +9,7 @@ spelling_languages = en-US
 spelling_checkable_types = strings,identifiers,comments
 spelling_error_severity = information
 spelling_exclusion_path = spellcheckerexclusion.dic
+spelling_use_default_exclusion_dictionary = true
 
 # Use CRLF for end of line
 [*]

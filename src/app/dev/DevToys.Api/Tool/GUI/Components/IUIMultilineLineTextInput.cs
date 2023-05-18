@@ -9,7 +9,7 @@ namespace DevToys.Api;
 /// <remarks>
 /// This component is powered by Monaco Editor.
 /// </remarks>
-public interface IUIMultilineLineTextInput : IUISinglelineTextInput
+public interface IUIMultilineLineTextInput : IUISingleLineTextInput
 {
     /// <summary>
     /// Gets the list of spans to highlight in the text document.
@@ -33,7 +33,7 @@ public interface IUIMultilineLineTextInput : IUISinglelineTextInput
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Text = {{{nameof(Text)}}}")]
-internal class UIMultilineTextInput : UISinglelineTextInput, IUIMultilineLineTextInput
+internal class UIMultilineTextInput : UISingleLineTextInput, IUIMultilineLineTextInput
 {
     private IReadOnlyList<TextSpan>? _highlightedSpans;
     private string? _syntaxColorizationLanguageName;

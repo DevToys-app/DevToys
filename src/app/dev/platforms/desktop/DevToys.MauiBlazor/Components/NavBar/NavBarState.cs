@@ -118,6 +118,16 @@ internal sealed class NavBarState
         }
     }
 
+    internal void ForceExpand()
+    {
+        if (_userPreferredState == NavBarSidebarStates.Collapsed
+            || _widthBasedState == NavBarSidebarStates.Collapsed
+            || _widthBasedState == NavBarSidebarStates.Hidden)
+        {
+            ToggleSidebar();
+        }
+    }
+
     private void UpdateCssToApply(bool useTransition = false)
     {
         bool userRequestExpandOverlay = (_userPreferredState & NavBarSidebarStates.ExpandedOverlay) == NavBarSidebarStates.ExpandedOverlay;
@@ -140,10 +150,7 @@ internal sealed class NavBarState
 
             case NavBarSidebarStates.Expanded:
                 cssBuilder.AddClass("collapsed", when: _userPreferredState == NavBarSidebarStates.Collapsed);
-                if (_userPreferredState == NavBarSidebarStates.Collapsed)
-                {
-                    isCollapsed = true;
-                }
+                isCollapsed = _userPreferredState == NavBarSidebarStates.Collapsed;
                 break;
 
             default:

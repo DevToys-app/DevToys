@@ -4,5 +4,5 @@
  * --------------------------------------------------------------------------
  */
 
-//export { default as Collapse } from './src/collapse'
+export { default as DOM } from './dom'
 //export { default as Sidebar } from './src/sidebar'

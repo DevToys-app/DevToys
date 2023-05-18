@@ -3,7 +3,7 @@
 /// <summary>
 /// A component that can be used to display or edit unformatted text on a single line.
 /// </summary>
-public interface IUISinglelineTextInput : IUITitledElement
+public interface IUISingleLineTextInput : IUITitledElement
 {
     /// <summary>
     /// Gets whether the user can edit the text or not. Default is false.
@@ -47,14 +47,14 @@ public interface IUISinglelineTextInput : IUITitledElement
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Text = {{{nameof(Text)}}}")]
-internal class UISinglelineTextInput : UITitledElement, IUISinglelineTextInput
+internal class UISingleLineTextInput : UITitledElement, IUISingleLineTextInput
 {
     private string? _text;
     private bool _isReadOnly;
     private bool _canCopyWhenEditable;
     private TextSpan? _selection;
 
-    internal UISinglelineTextInput(string? id)
+    internal UISingleLineTextInput(string? id)
         : base(id)
     {
     }
@@ -125,26 +125,26 @@ public static partial class GUI
     /// <summary>
     /// Create a component that can be used to display or edit unformatted text on a single line.
     /// </summary>
-    public static IUISinglelineTextInput SinglelineTextInput()
+    public static IUISingleLineTextInput SingleLineTextInput()
     {
-        return SinglelineTextInput(null);
+        return SingleLineTextInput(null);
     }
 
     /// <summary>
     /// Create a component that can be used to display or edit unformatted text on a single line.
     /// </summary>
     /// <param name="id">An optional unique identifier for this UI element.</param>
-    public static IUISinglelineTextInput SinglelineTextInput(string? id)
+    public static IUISingleLineTextInput SingleLineTextInput(string? id)
     {
-        return new UISinglelineTextInput(id);
+        return new UISingleLineTextInput(id);
     }
 
     /// <summary>
     /// Sets the text input control as read-only.
     /// </summary>
-    public static T ReadOnly<T>(this T element) where T : IUISinglelineTextInput
+    public static T ReadOnly<T>(this T element) where T : IUISingleLineTextInput
     {
-        if (element is UISinglelineTextInput strongElement)
+        if (element is UISingleLineTextInput strongElement)
         {
             strongElement.IsReadOnly = true;
         }
@@ -154,9 +154,9 @@ public static partial class GUI
     /// <summary>
     /// Sets the text input control as editable.
     /// </summary>
-    public static T Editable<T>(this T element) where T : IUISinglelineTextInput
+    public static T Editable<T>(this T element) where T : IUISingleLineTextInput
     {
-        if (element is UISinglelineTextInput strongElement)
+        if (element is UISingleLineTextInput strongElement)
         {
             strongElement.IsReadOnly = false;
         }
@@ -166,9 +166,9 @@ public static partial class GUI
     /// <summary>
     /// Shows the "copy" button when the editor is editable.
     /// </summary>
-    public static T CanCopyWhenEditable<T>(this T element) where T : IUISinglelineTextInput
+    public static T CanCopyWhenEditable<T>(this T element) where T : IUISingleLineTextInput
     {
-        if (element is UISinglelineTextInput strongElement)
+        if (element is UISingleLineTextInput strongElement)
         {
             strongElement.CanCopyWhenEditable = true;
         }
@@ -178,9 +178,9 @@ public static partial class GUI
     /// <summary>
     /// Hides the "copy" button when the editor is editable.
     /// </summary>
-    public static T CannotCopyWhenEditable<T>(this T element) where T : IUISinglelineTextInput
+    public static T CannotCopyWhenEditable<T>(this T element) where T : IUISingleLineTextInput
     {
-        if (element is UISinglelineTextInput strongElement)
+        if (element is UISingleLineTextInput strongElement)
         {
             strongElement.CanCopyWhenEditable = false;
         }
@@ -190,9 +190,9 @@ public static partial class GUI
     /// <summary>
     /// Sets the unformatted text of the control.
     /// </summary>
-    public static T Text<T>(this T element, string text) where T : IUISinglelineTextInput
+    public static T Text<T>(this T element, string text) where T : IUISingleLineTextInput
     {
-        if (element is UISinglelineTextInput strongElement)
+        if (element is UISingleLineTextInput strongElement)
         {
             strongElement.Text = text;
         }
@@ -202,9 +202,9 @@ public static partial class GUI
     /// <summary>
     /// Selects the given span in the text document.
     /// </summary>
-    public static T Select<T>(this T element, TextSpan span) where T : IUISinglelineTextInput
+    public static T Select<T>(this T element, TextSpan span) where T : IUISingleLineTextInput
     {
-        if (element is UISinglelineTextInput strongElement)
+        if (element is UISingleLineTextInput strongElement)
         {
             strongElement.Selection = span;
         }
@@ -214,9 +214,9 @@ public static partial class GUI
     /// <summary>
     /// Selects the given span in the text document.
     /// </summary>
-    public static T Select<T>(this T element, int start, int length) where T : IUISinglelineTextInput
+    public static T Select<T>(this T element, int start, int length) where T : IUISingleLineTextInput
     {
-        if (element is UISinglelineTextInput strongElement)
+        if (element is UISingleLineTextInput strongElement)
         {
             strongElement.Selection = new TextSpan(start, length);
         }

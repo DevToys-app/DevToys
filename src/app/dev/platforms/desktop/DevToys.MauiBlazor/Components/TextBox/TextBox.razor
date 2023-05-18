@@ -1,0 +1,46 @@
+@namespace DevToys.MauiBlazor.Components
+@inherits StyledComponentBase
+
+<CascadingValue Value="this" IsFixed="true">
+
+    <div id=@Id
+         class="text-box-with-header @(FinalCssClasses)"
+         style="@(Style)"
+         @attributes="AdditionalAttributes">
+
+        @if (!string.IsNullOrWhiteSpace(Header))
+        {
+            <TextBlock Appearance="TextBlockAppearance.Body" Class="text-box-header">@Header</TextBlock>
+        }
+
+        <div class="text-box-container @(IsEnabled ? string.Empty : "disabled")"
+             @ref=Element>
+
+            <input @ref="_input"
+                   class="text-box @(IsEnabled ? string.Empty : "disabled")"
+                   placeholder="@Placeholder"
+                   disabled="@(!IsEnabled)"
+                   readonly="@(IsReadOnly)"
+                   required
+                   type="@(Type.ToString().ToLowerInvariant())"
+                   @bind-value="Text"
+                   @bind-value:event="oninput" />
+
+            <div class="text-box-underline" />
+            <div class="text-box-buttons">
+                @if (IsEnabled && !IsReadOnly && !string.IsNullOrEmpty(Text))
+                {
+                    <Button Appearance="ButtonAppearance.Stealth"
+                            Class="text-box-clear-button"
+                            title="Clear"
+                            aria-label="Clear"
+                            @onclick="OnClearClick">
+                        <FontIcon Glyph="@('\uF369')" />
+                    </Button>
+                }
+
+                @Buttons
+            </div>
+        </div>
+    </div>
+</CascadingValue>

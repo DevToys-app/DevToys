@@ -88,6 +88,8 @@ $sidebar-top-bar-height: 48px;
 
         .sidebar-header {
             grid-area: sidebar-header;
+            display: flex;
+            flex-direction: column;
         }
 
         .sidebar-body {

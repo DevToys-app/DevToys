@@ -1,12 +1,12 @@
 @mixin windows-dark {
-	/* Accent Colors (rgb) */
-	--accent-light-3: 154, 236, 254;
-	--accent-light-2: 98, 205, 254;
-	--accent-light-1: 0, 146, 250;
-	--accent-base: 0, 121, 214;
-	--accent-dark-1: 0, 95, 184;
-	--accent-dark-2: 0, 62, 148;
-	--accent-dark-3: 0, 24, 102;
+    /* Accent Colors (rgb) */
+    --accent-light-3: 154, 236, 254;
+    --accent-light-2: 98, 205, 254;
+    --accent-light-1: 0, 146, 250;
+    --accent-base: 0, 121, 214;
+    --accent-dark-1: 0, 95, 184;
+    --accent-dark-2: 0, 62, 148;
+    --accent-dark-3: 0, 24, 102;
     --accent-default: rgba(var(--accent-light-2));
     --accent-secondary: rgba(var(--accent-light-2), 0.9);
     --accent-tertiary: rgba(var(--accent-light-2), 0.8);
@@ -42,6 +42,7 @@
     --control-stroke-color-secondary: rgba(255, 255, 255, 0.094);
     --control-stroke-on-accent-default: hsla(0, 0%, 100%, 8%);
     --control-stroke-on-accent-secondary: hsla(0, 0%, 0%, 14%);
+    --control-strong-stroke-default: rgba(255, 255, 255, 0.544);
 
     /* Subtle Fill */
     --subtle-fill-transparent: transparent;
@@ -124,8 +125,8 @@
     --navigation-view-content-grid-border: var(--card-stroke-color-default);
     --navigation-view-content-grid-border-thickness: 1px solid;
     --navigation-view-flyout-border-color: var(--control-stroke-color-secondary);
-    --navigation-view-flyout-background-color: rgba(32, 32, 32, 0.051);
-    --navigation-view-flyout-backdrop-filter: blur(60px) saturate(125%);
+    --navigation-view-flyout-background-color: rgba(32, 32, 32, 0.4);
+    --navigation-view-flyout-backdrop-filter: blur(50px) saturate(125%);
     --navigation-view-separator-color: rgba(255, 255, 255, 0.0605);
 
     /* List Box */
@@ -138,6 +139,25 @@
     --list-box-item-foreground: var(--text-fill-color-primary);
     --list-box-item-foreground-active: var(--text-fill-color-secondary);
     --list-box-item-foreground-disabled: var(--text-fill-color-disabled);
+
+    /* Text Box */
+    --text-box-background: var(--control-fill-color-default);
+    --text-box-background-pointer-over: var(--control-fill-color-secondary);
+    --text-box-background-focused: var(--control-fill-color-input-active);
+    --text-box-background-disabled: var(--control-fill-color-disabled);
+    --text-box-border: var(--control-stroke-color-default);
+    --text-box-border-pointer-over: var(--control-stroke-color-default);
+    --text-box-border-focused: var(--control-stroke-color-default);
+    --text-box-border-disabled: var(--control-stroke-color-default);
+    --text-box-foreground: var(--text-fill-color-primary);
+    --text-box-foreground-pointer-over: var(--text-fill-color-primary);
+    --text-box-foreground-focused: var(--text-fill-color-primary);
+    --text-box-foreground-disabled: var(--text-fill-color-disabled);
+    --text-box-placeholder-foreground: var(--text-fill-color-secondary);
+    --text-box-placeholder-foreground-pointer-over: var(--text-fill-color-secondary);
+    --text-box-placeholder-foreground-focused: var(--text-fill-color-tertiary);
+    --text-box-placeholder-foreground-disabled: var(--text-fill-color-disabled);
+    --text-box-selection-highlight-color: rgb(var(--accent-base));
 
     /* Scrollbars */
     --scrollbar-track-background-color: transparent;

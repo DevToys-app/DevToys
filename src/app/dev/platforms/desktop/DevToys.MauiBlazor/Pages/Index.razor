@@ -64,6 +64,9 @@
                     <Button IsEnabled="false" Appearance="ButtonAppearance.Accent">Set favorite</Button>
                     <Button IsEnabled="true" Appearance="ButtonAppearance.Stealth">Set favorite</Button>
                     <Button IsEnabled="false" Appearance="ButtonAppearance.Stealth">Set favorite</Button>
+                    <TextBox Header="First name" Placeholder="Normal" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
+                    <TextBox Header="Middle name" Placeholder="Read only" IsReadOnly="true" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
+                    <TextBox Header="Last name" Placeholder="Disabled" IsEnabled="false" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
                 </div>
             }
             else if (ViewModel.SelectedMenuItem is GroupViewItem groupToolViewItem)

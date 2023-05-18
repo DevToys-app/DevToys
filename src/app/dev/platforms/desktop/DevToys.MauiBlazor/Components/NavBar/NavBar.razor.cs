@@ -9,8 +9,9 @@ public partial class NavBar<TElement>
 {
     private const string JAVASCRIPT_FILE = "./Components/NavBar/NavBar.razor.js";
 
-    private DotNetObjectReference<NavBar<TElement>>? _objRef;
     private readonly NavBarState _sidebarState = new();
+    private DotNetObjectReference<NavBar<TElement>>? _objRef;
+    private TextBox _searchTextBox = default!;
 
     [Inject]
     private IJSRuntime JSRuntime { get; set; } = default!;
@@ -102,6 +103,20 @@ public partial class NavBar<TElement>
     {
         _sidebarState.CloseExpandedOverlay();
         StateHasChanged();
+    }
+
+    private void OnSearchButtonClick()
+    {
+        _sidebarState.ToggleSidebar();
+        StateHasChanged();
+        Task.Delay(200)
+            .ContinueWith(t =>
+            {
+                InvokeAsync(() =>
+                {
+                    _searchTextBox.FocusAsync();
+                });
+            });
     }
 
     private Task OnItemSelectedAsync(TElement item)
