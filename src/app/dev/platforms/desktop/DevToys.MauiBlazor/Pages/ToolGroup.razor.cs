@@ -23,13 +23,13 @@ public partial class ToolGroup : MefComponentBase
         }
     }
 
-    internal void OnToolSelected(object item)
+    private void OnToolSelected(object item)
     {
         Guard.IsOfType<GuiToolInstance>(item);
         ViewModel.ToolSelectedCommand.Execute((GuiToolInstance)item);
     }
 
-    internal void OnOpenInNewWindow(GuiToolInstance item)
+    private void OnOpenInNewWindow(GuiToolInstance item)
     {
         // TODO
     }

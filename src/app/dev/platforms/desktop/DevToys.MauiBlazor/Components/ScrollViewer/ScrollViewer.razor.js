@@ -5,12 +5,12 @@ export function initializeScrollViewer(id) {
 // TODO: Handle horizontal scrollbar
 function onScrollViewerMouseMove(ev) {
     const scrollViewer = ev.target;
-    let distance = scrollViewer.offsetLeft + scrollViewer.offsetWidth - ev.pageX;
+    const distance = scrollViewer.offsetLeft + scrollViewer.offsetWidth - ev.pageX;
     if (distance < 12 && distance > -12) {
-        scrollViewer.classList.add('on-hover');
+        scrollViewer.classList.add("on-hover");
     }
     else {
-        scrollViewer.classList.remove('on-hover');
+        scrollViewer.classList.remove("on-hover");
     }
 }
 //# sourceMappingURL=ScrollViewer.razor.js.map

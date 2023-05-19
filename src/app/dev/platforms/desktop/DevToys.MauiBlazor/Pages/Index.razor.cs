@@ -33,6 +33,11 @@ public partial class Index : MefComponentBase
         StateHasChanged();
     }
 
+    private void OnSelectedItemChanged(INotifyPropertyChanged item)
+    {
+        ViewModel.SelectedMenuItem = item;
+    }
+
     internal void OnSetFavorite()
     {
         // WARNING: This should be done in ToolPageViewModel. Doing it here just for demo.

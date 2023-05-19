@@ -4,6 +4,8 @@ public partial class GridView<TKey, TElement> : StyledComponentBase, IAsyncDispo
 {
     private const string JAVASCRIPT_FILE = "./Components/GridView/GridView.razor.js";
 
+    private ScrollViewer? _scrollViewer = default!;
+
     [Inject]
     private IJSRuntime JSRuntime { get; set; } = default!;
 
@@ -30,8 +32,6 @@ public partial class GridView<TKey, TElement> : StyledComponentBase, IAsyncDispo
     [Parameter]
     public int ItemMinWidth { get; set; }
 
-    public ScrollViewer? ScrollViewer { get; set; }
-
     public GridView()
     {
         CSS.Add("grid-view");
@@ -41,13 +41,13 @@ public partial class GridView<TKey, TElement> : StyledComponentBase, IAsyncDispo
     {
         if (firstRender)
         {
-            Guard.IsNotNull(ScrollViewer);
+            Guard.IsNotNull(_scrollViewer);
             JSModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", JAVASCRIPT_FILE);
-            await JSModule.InvokeVoidAsync("initializeStickyHeaders", ScrollViewer.Id);
+            await JSModule.InvokeVoidAsync("initializeStickyHeaders", _scrollViewer.Id);
 
             if (ItemMinWidth > 0)
             {
-                await JSModule.InvokeVoidAsync("initializeDynamicItemSize", ScrollViewer.Id, ItemMinWidth);
+                await JSModule.InvokeVoidAsync("initializeDynamicItemSize", _scrollViewer.Id, ItemMinWidth);
             }
         }
     }

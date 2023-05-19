@@ -48,7 +48,7 @@ public partial class NavBar<TElement>
     public TElement? SelectedItem { get; set; }
 
     [Parameter]
-    public EventCallback<TElement?> SelectedItemChanged { get; set; }
+    public EventCallback<TElement> OnSelectedItemChanged { get; set; }
 
     /// <summary>
     /// Gets or sets the content to be rendered inside the component.
@@ -122,6 +122,6 @@ public partial class NavBar<TElement>
     private Task OnItemSelectedAsync(TElement item)
     {
         SelectedItem = item;
-        return SelectedItemChanged.InvokeAsync(item);
+        return OnSelectedItemChanged.InvokeAsync(item);
     }
 }

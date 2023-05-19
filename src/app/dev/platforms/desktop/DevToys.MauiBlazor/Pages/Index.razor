@@ -4,9 +4,11 @@
 
 @inherits MefComponentBase
 
-<NavBar MenuItemsSource="@ViewModel.HeaderAndBodyToolViewItems"
+<NavBar TElement="INotifyPropertyChanged"
+        MenuItemsSource="@ViewModel.HeaderAndBodyToolViewItems"
         FooterMenuItemsSource="@ViewModel.FooterToolViewItems"
-        @bind-SelectedItem="ViewModel.SelectedMenuItem">
+        SelectedItem="@ViewModel.SelectedMenuItem"
+        OnSelectedItemChanged="OnSelectedItemChanged">
     <!-- Header -->
     <Header>
         <TextBlock>DevToys</TextBlock>
