@@ -4,5 +4,5 @@
  * --------------------------------------------------------------------------
  */
 
-export { default as DOM } from './dom'
+export { default as DOM } from "./dom";
 //export { default as Sidebar } from './src/sidebar'

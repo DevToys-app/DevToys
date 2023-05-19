@@ -1,7 +1,7 @@
 class DOM {
     static setFocus(element) {
         element.focus();
-    };
+    }
 }
 
-export default DOM
+export default DOM;
