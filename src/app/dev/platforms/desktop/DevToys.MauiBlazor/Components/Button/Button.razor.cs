@@ -1,10 +1,7 @@
 ﻿namespace DevToys.MauiBlazor.Components;
 
-public partial class Button : StyledComponentBase
+public partial class Button : JSStyledComponentBase
 {
-    [Inject]
-    private IJSRuntime JSRuntime { get; set; } = default!;
-
     [Parameter]
     public bool IsEnabled { get; set; } = true;
 

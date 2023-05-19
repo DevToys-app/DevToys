@@ -2,23 +2,16 @@
 
 namespace DevToys.MauiBlazor.Components;
 
-public partial class NavBar<TElement>
-    : StyledComponentBase,
-    IAsyncDisposable
-    where TElement : class
+public partial class NavBar<TElement> : JSStyledComponentBase where TElement : class
 {
-    private const string JAVASCRIPT_FILE = "./Components/NavBar/NavBar.razor.js";
 
     private readonly NavBarState _sidebarState = new();
     private DotNetObjectReference<NavBar<TElement>>? _objRef;
-    private TextBox _searchTextBox = default!;
-
-    [Inject]
-    private IJSRuntime JSRuntime { get; set; } = default!;
-
-    private IJSObjectReference JSModule { get; set; } = default!;
+    private AutoSuggestBox _autoSuggestBox = default!;
 
     public string NavId { get; } = NewId();
+
+    protected override string? JavaScriptFile => "./Components/NavBar/NavBar.razor.js";
 
     [Parameter]
     public RenderFragment<TElement> NavBarItemTitleTemplate { get; set; } = default!;
@@ -50,6 +43,12 @@ public partial class NavBar<TElement>
     [Parameter]
     public EventCallback<TElement> OnSelectedItemChanged { get; set; }
 
+    [Parameter]
+    public bool CanGoBack { get; set; }
+
+    [Parameter]
+    public EventCallback OnBackButtonClicked { get; set; }
+
     /// <summary>
     /// Gets or sets the content to be rendered inside the component.
     /// </summary>
@@ -67,20 +66,16 @@ public partial class NavBar<TElement>
         if (firstRender)
         {
             _objRef = DotNetObjectReference.Create(this);
-            JSModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", JAVASCRIPT_FILE);
-            await JSModule.InvokeVoidAsync("registerResizeHandler", Id, NavId, _objRef);
+            await (await JSModule).InvokeVoidAsync("registerResizeHandler", Id, NavId, _objRef);
         }
 
         await base.OnAfterRenderAsync(firstRender);
     }
 
-    public async ValueTask DisposeAsync()
+    public override ValueTask DisposeAsync()
     {
         _objRef?.Dispose();
-        if (JSModule is not null)
-        {
-            await JSModule.DisposeAsync();
-        }
+        return base.DisposeAsync();
     }
 
     [JSInvokable]
@@ -114,7 +109,7 @@ public partial class NavBar<TElement>
             {
                 InvokeAsync(() =>
                 {
-                    _searchTextBox.FocusAsync();
+                    _autoSuggestBox.FocusAsync();
                 });
             });
     }

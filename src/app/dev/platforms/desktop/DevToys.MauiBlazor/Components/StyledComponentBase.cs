@@ -8,21 +8,43 @@ public abstract class StyledComponentBase : ComponentBase
 
     private readonly Lazy<ObservableHashSet<string>> _css;
 
+    /// <summary>
+    /// Gets a reference to the HTML element rendered by the component.
+    /// </summary>
     public ElementReference Element { get; set; }
 
+    /// <summary>
+    /// Gets the value of the <c>id</c> attribute in the DOM of this component.
+    /// </summary>
     public string Id { get; } = NewId();
 
+    /// <summary>
+    /// Gets or sets additional custom attributes that will be rendered by the component.
+    /// </summary>
+    /// <value>The attributes.</value>
     [Parameter(CaptureUnmatchedValues = true)]
     public IDictionary<string, object>? AdditionalAttributes { get; set; }
 
+    /// <summary>
+    /// Gets or sets a custom CSS class to apply to the component.
+    /// </summary>
     [Parameter]
     public string Class { get; set; } = string.Empty;
 
+    /// <summary>
+    /// Gets or sets a custom CSS style to apply to the component.
+    /// </summary>
     [Parameter]
     public string Style { get; set; } = string.Empty;
 
+    /// <summary>
+    /// Gets a list of CSS class to apply to the component.
+    /// </summary>
     protected ObservableHashSet<string> CSS => _css.Value;
 
+    /// <summary>
+    /// Gets an aggregation of <see cref="CSS"/>, <see cref="Class"/> and (optionally) <c>class</c> attribute defined in <see cref="AdditionalAttributes"/>.
+    /// </summary>
     public string FinalCssClasses { get; private set; } = string.Empty;
 
     protected StyledComponentBase()

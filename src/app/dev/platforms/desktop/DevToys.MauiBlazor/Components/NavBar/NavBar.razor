@@ -2,7 +2,7 @@
 @using DevToys.Core.Tools.ViewItems;
 @using DevToys.Core;
 
-@inherits StyledComponentBase
+@inherits JSStyledComponentBase
 @typeparam TElement
 
 <CascadingValue Value="this" IsFixed="true">
@@ -17,8 +17,10 @@
             <Button Appearance="ButtonAppearance.Stealth"
                     Class="button-icon"
                     Style="margin: 5px 0px 0px 5px;"
+                    IsEnabled="@CanGoBack"
                     title="Back"
-                    aria-label="Back">
+                    aria-label="Back"
+                    @onclick="OnBackButtonClicked">
                 <FontIcon Glyph="@('\uF15B')" />
             </Button>
             @if (_sidebarState.IsHidden)
@@ -66,14 +68,10 @@
                             @onclick="OnSearchButtonClick">
                         <FontIcon Glyph="@('\uF68F')" />
                     </Button>
-                    <TextBox @ref="_searchTextBox"
-                             Type="TextBoxTypes.Search"
+                    <AutoSuggestBox @ref="_autoSuggestBox"
                              Style="@searchTextBoxStyle"
                              Placeholder="Type to search for tools...">
-                        <Buttons>
-                            <FontIcon Glyph="@('\uF68F')" Style="transform: unset; left: 0; height: 16px; margin-left: 4px; margin-right: 4px;" />
-                        </Buttons>
-                    </TextBox>
+                    </AutoSuggestBox>
                 }
 
             </div>

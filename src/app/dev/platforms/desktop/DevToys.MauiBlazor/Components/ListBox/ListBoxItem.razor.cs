@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Components.Web;
-
-namespace DevToys.MauiBlazor.Components;
+﻿namespace DevToys.MauiBlazor.Components;
 
 public partial class ListBoxItem : StyledComponentBase
 {

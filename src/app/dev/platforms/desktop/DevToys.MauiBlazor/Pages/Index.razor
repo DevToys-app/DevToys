@@ -7,8 +7,10 @@
 <NavBar TElement="INotifyPropertyChanged"
         MenuItemsSource="@ViewModel.HeaderAndBodyToolViewItems"
         FooterMenuItemsSource="@ViewModel.FooterToolViewItems"
+        CanGoBack="@ViewModel.CanGoBack"
         SelectedItem="@ViewModel.SelectedMenuItem"
-        OnSelectedItemChanged="OnSelectedItemChanged">
+        OnSelectedItemChanged="OnSelectedItemChanged"
+        OnBackButtonClicked="OnBackButtonClicked">
     <!-- Header -->
     <Header>
         <TextBlock>DevToys</TextBlock>

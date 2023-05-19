@@ -1,11 +1,9 @@
 ﻿namespace DevToys.MauiBlazor.Components;
 
-public partial class TextBox : StyledComponentBase
+public partial class TextBox : JSStyledComponentBase
 {
+    private readonly string _contextMenuId = NewId();
     private ElementReference _input;
-
-    [Inject]
-    private IJSRuntime JSRuntime { get; set; } = default!;
 
     [Parameter]
     public string? Text { get; set; }
@@ -28,6 +26,9 @@ public partial class TextBox : StyledComponentBase
     [Parameter]
     public RenderFragment? Buttons { get; set; }
 
+    [Parameter]
+    public EventCallback<string> OnTextChanged { get; set; }
+
     internal ValueTask FocusAsync()
     {
         return JSRuntime.InvokeVoidAsync("devtoys.DOM.setFocus", _input);
@@ -37,5 +38,10 @@ public partial class TextBox : StyledComponentBase
     {
         Text = string.Empty;
         FocusAsync();
+    }
+
+    private Task InputTextChangedAsync(ChangeEventArgs e)
+    {
+        return OnTextChanged.InvokeAsync(e.Value as string);
     }
 }

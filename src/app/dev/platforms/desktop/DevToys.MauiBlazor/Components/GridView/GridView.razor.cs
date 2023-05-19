@@ -1,15 +1,10 @@
 ﻿namespace DevToys.MauiBlazor.Components;
 
-public partial class GridView<TKey, TElement> : StyledComponentBase, IAsyncDisposable
+public partial class GridView<TKey, TElement> : JSStyledComponentBase
 {
-    private const string JAVASCRIPT_FILE = "./Components/GridView/GridView.razor.js";
-
     private ScrollViewer? _scrollViewer = default!;
 
-    [Inject]
-    private IJSRuntime JSRuntime { get; set; } = default!;
-
-    private IJSObjectReference JSModule { get; set; } = default!;
+    protected override string? JavaScriptFile => "./Components/GridView/GridView.razor.js";
 
     [Parameter]
     public RenderFragment? Header { get; set; }
@@ -42,22 +37,12 @@ public partial class GridView<TKey, TElement> : StyledComponentBase, IAsyncDispo
         if (firstRender)
         {
             Guard.IsNotNull(_scrollViewer);
-            JSModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", JAVASCRIPT_FILE);
-            await JSModule.InvokeVoidAsync("initializeStickyHeaders", _scrollViewer.Id);
+            await (await JSModule).InvokeVoidAsync("initializeStickyHeaders", _scrollViewer.Id);
 
             if (ItemMinWidth > 0)
             {
-                await JSModule.InvokeVoidAsync("initializeDynamicItemSize", _scrollViewer.Id, ItemMinWidth);
+                await (await JSModule).InvokeVoidAsync("initializeDynamicItemSize", _scrollViewer.Id, ItemMinWidth);
             }
-        }
-    }
-
-    /// <summary />
-    async ValueTask IAsyncDisposable.DisposeAsync()
-    {
-        if (JSModule is not null)
-        {
-            await JSModule.DisposeAsync();
         }
     }
 

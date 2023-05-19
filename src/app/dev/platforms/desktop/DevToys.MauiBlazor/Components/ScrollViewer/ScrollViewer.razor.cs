@@ -1,13 +1,8 @@
 ﻿namespace DevToys.MauiBlazor.Components;
 
-public partial class ScrollViewer : StyledComponentBase, IAsyncDisposable
+public partial class ScrollViewer : JSStyledComponentBase
 {
-    private const string JAVASCRIPT_FILE = "./Components/ScrollViewer/ScrollViewer.razor.js";
-
-    [Inject]
-    private IJSRuntime JSRuntime { get; set; } = default!;
-
-    private IJSObjectReference JSModule { get; set; } = default!;
+    protected override string JavaScriptFile => "./Components/ScrollViewer/ScrollViewer.razor.js";
 
     /// <summary>
     /// Gets or set the orientation in which the content can be scrolled.
@@ -25,8 +20,7 @@ public partial class ScrollViewer : StyledComponentBase, IAsyncDisposable
     {
         if (firstRender)
         {
-            JSModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", JAVASCRIPT_FILE);
-            await JSModule.InvokeVoidAsync("initializeScrollViewer", Id);
+            await (await JSModule).InvokeVoidAsync("initializeScrollViewer", Id);
         }
     }
 
@@ -59,14 +53,5 @@ public partial class ScrollViewer : StyledComponentBase, IAsyncDisposable
         }
 
         base.OnParametersSet();
-    }
-
-    /// <summary />
-    async ValueTask IAsyncDisposable.DisposeAsync()
-    {
-        if (JSModule is not null)
-        {
-            await JSModule.DisposeAsync();
-        }
     }
 }

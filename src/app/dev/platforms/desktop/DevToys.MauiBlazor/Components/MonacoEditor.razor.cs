@@ -1,6 +1,6 @@
 ﻿namespace DevToys.MauiBlazor.Components;
 
-public partial class MonacoEditor : StyledComponentBase, IAsyncDisposable
+public partial class MonacoEditor : JSStyledComponentBase, IAsyncDisposable
 {
     private const string JAVASCRIPT_FILE = "./Components/MonacoEditor.razor.js";
     private const string MONACO_VS_PATH = "./lib/monaco-editor/min/vs";
@@ -73,7 +73,7 @@ public partial class MonacoEditor : StyledComponentBase, IAsyncDisposable
     /// Gets or sets a callback that updates the bound value.
     /// </summary>
     [Parameter]
-    public EventCallback<string> ValueChanged { get; set; }
+    public EventCallback<string> OnValueChanged { get; set; }
 
     /// <summary />
     protected override async Task OnParametersSetAsync()
@@ -121,9 +121,9 @@ public partial class MonacoEditor : StyledComponentBase, IAsyncDisposable
     public async Task UpdateValueAsync(string value)
     {
         _value = value;
-        if (ValueChanged.HasDelegate)
+        if (OnValueChanged.HasDelegate)
         {
-            await ValueChanged.InvokeAsync(_value);
+            await OnValueChanged.InvokeAsync(_value);
         }
     }
 

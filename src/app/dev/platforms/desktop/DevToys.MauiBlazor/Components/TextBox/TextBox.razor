@@ -1,5 +1,5 @@
 @namespace DevToys.MauiBlazor.Components
-@inherits StyledComponentBase
+@inherits JSStyledComponentBase
 
 <CascadingValue Value="this" IsFixed="true">
 
@@ -21,10 +21,10 @@
                    placeholder="@Placeholder"
                    disabled="@(!IsEnabled)"
                    readonly="@(IsReadOnly)"
-                   required
                    type="@(Type.ToString().ToLowerInvariant())"
                    @bind-value="Text"
-                   @bind-value:event="oninput" />
+                   @bind-value:event="oninput"
+                   @onchange="InputTextChangedAsync" />
 
             <div class="text-box-underline" />
             <div class="text-box-buttons">
@@ -42,5 +42,16 @@
                 @Buttons
             </div>
         </div>
+
+
+        @* TODO:
+            <ContextMenu Id="_contextMenuId">
+                <ContextMenuItem Text="Cut" IconGlyph="@('\uF33A')" />
+                <ContextMenuItem Text="Copy" IconGlyph="@('\uF32B')" />
+                <ContextMenuItem Text="Paste" IconGlyph="@('\uF2D5')" />
+                <ContextMenuItem Text="Undo" IconGlyph="@('\uF199')" />
+                <ContextMenuItem Text="Redo" IconGlyph="@('\uF16E')" />
+                <ContextMenuItem Text="Select All" />
+            </ContextMenu>*@
     </div>
 </CascadingValue>
