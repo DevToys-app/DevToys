@@ -4,7 +4,7 @@
 /// A component that can be used to display side by side or inlined texts and highlight differences between them.
 /// This component is powered by Monaco Editor.
 /// </summary>
-public interface IUIDiffTextInput : IUISinglelineTextInput
+public interface IUIDiffTextInput : IUISingleLineTextInput
 {
     /// <summary>
     /// Gets the text displayed to the right of the diff view.

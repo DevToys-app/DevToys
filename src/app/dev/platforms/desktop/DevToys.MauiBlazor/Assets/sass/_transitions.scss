@@ -1,0 +1,38 @@
+@keyframes entrance-theme-transition-key-frames {
+    from {
+        opacity: 0;
+        transform: translateY(150px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.entrance-theme-transition {
+    animation-name: entrance-theme-transition-key-frames;
+    animation-duration: 0.15s;
+    animation-timing-function: ease-out;
+}
+
+@mixin transition($transition...) {
+    @if length($transition) == 0 {
+        $transition: all 0.2s ease-in-out !default;
+    }
+
+    @if length($transition) > 1 {
+        @each $value in $transition {
+            @if $value == null or $value == none {
+                @warn "The keyword 'none' or 'null' must be used as a single argument.";
+            }
+        }
+    }
+
+    @if nth($transition, 1) != null {
+        -webkit-transition: $transition;
+        -o-transition: $transition;
+        -ms-transition: $transition;
+        transition: $transition;
+    }
+}

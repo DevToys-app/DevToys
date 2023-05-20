@@ -22,7 +22,7 @@ public sealed partial class SmartDetectionService
     {
         _logger = this.Log();
 
-        // Build a hiearchy of detectors based on their indicated base data type name.
+        // Build a hierarchy of detectors based on their indicated base data type name.
         _detectorHierarchy = BuildDetectorNodeHierarchy(dataTypeDetectors);
 
         // Create a map of data types to tools.
@@ -30,7 +30,7 @@ public sealed partial class SmartDetectionService
     }
 
     /// <summary>
-    /// Presumbly the active tool in the app.
+    /// Presumably the active tool in the app.
     /// </summary>
     public GuiToolInstance? ActiveToolInstance { private get; set; }
 
@@ -40,10 +40,10 @@ public sealed partial class SmartDetectionService
     /// <param name="rawData">The raw data to use to detect the tools that could be used.</param>
     /// <param name="strict">When true, only returns tools that fit the best the given <paramref name="rawData"/>.
     /// When false, returns in priority the best tools that fit the given <paramref name="rawData"/>, then the first level of data type base that fit the <paramref name="rawData"/>.
-    /// Example: Assuming the following data type dependencies: JWT-Header > JSON > Text. If <paramref name="rawData"/> is a JWT-Header and that <paramref name="strict"/> is true, only tools that stricly support JWT-Header data type will be return.
+    /// Example: Assuming the following data type dependencies: JWT-Header > JSON > Text. If <paramref name="rawData"/> is a JWT-Header and that <paramref name="strict"/> is true, only tools that strictly support JWT-Header data type will be return.
     /// if <paramref name="strict"/> is false, tools that support JWT-Header and JSON data types will be return, but tools that support Text won't be returned.</param>
     /// <returns>
-    /// Assuming the following data type dependencies: JWT-Header > JSON > Text. If <paramref name="rawData"/> is a JWT-Header and that <paramref name="strict"/> is true, only tools that stricly support JWT-Header data type will be return.
+    /// Assuming the following data type dependencies: JWT-Header > JSON > Text. If <paramref name="rawData"/> is a JWT-Header and that <paramref name="strict"/> is true, only tools that strictly support JWT-Header data type will be return.
     /// if <paramref name="strict"/> is false, tools that support JWT-Header and JSON data types will be return, but tools that support Text won't be returned.
     /// </returns>
     public async Task<IReadOnlyList<SmartDetectedTool>> DetectAsync(object? rawData, bool strict, CancellationToken cancellationToken)

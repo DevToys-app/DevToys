@@ -93,7 +93,7 @@ public sealed partial class MainWindow : BackdropPage
         // So we manually expand the items that should be expanded on load.
         foreach (INotifyPropertyChanged? item in ViewModel.HeaderAndBodyToolViewItems)
         {
-            if (item is GroupViewItem groupViewItem && groupViewItem.MenuItemShouldBeExpandedByDefault)
+            if (item is GroupViewItem groupViewItem && groupViewItem.GroupShouldBeExpandedByDefaultInUI)
             {
                 var menuItem = MenuNavigationView.ContainerFromMenuItem(item) as NavigationViewItem;
                 if (menuItem is not null)

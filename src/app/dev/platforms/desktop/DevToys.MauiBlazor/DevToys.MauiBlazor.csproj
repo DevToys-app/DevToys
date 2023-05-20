@@ -103,7 +103,6 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="$(DotNetVersion)" />
-        <PackageReference Include="Microsoft.Fast.Components.FluentUI" Version="$(MicrosoftFastComponentsFluentUIVersion)" />
         <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="$(MicrosoftTypeScriptMSBuildVersion)">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

@@ -1,6 +1,5 @@
 ﻿using DevToys.Api;
 using DevToys.Api.Core.Theme;
-using DevToys.Core.Settings;
 
 namespace DevToys.MauiBlazor.Core.Theme;
 

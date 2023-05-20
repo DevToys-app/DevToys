@@ -43,10 +43,10 @@ public sealed partial class GuiToolProvider
     private readonly IReadOnlyList<GuiToolInstance> _footerToolInstances;
     private readonly IReadOnlyList<GuiToolInstance> _bodyToolInstances;
 
-    private ObservableCollection<INotifyPropertyChanged>? _headerAndBodyToolViewItems;
-    private ReadOnlyObservableCollection<INotifyPropertyChanged>? _headerAndBodyToolViewItemsReadOnly;
-    private ObservableCollection<INotifyPropertyChanged>? _footerToolViewItems;
-    private ReadOnlyObservableCollection<INotifyPropertyChanged>? _footerToolViewItemsReadOnly;
+    private ObservableCollection<INotifyPropertyChanged?>? _headerAndBodyToolViewItems;
+    private ReadOnlyObservableCollection<INotifyPropertyChanged?>? _headerAndBodyToolViewItemsReadOnly;
+    private ObservableCollection<INotifyPropertyChanged?>? _footerToolViewItems;
+    private ReadOnlyObservableCollection<INotifyPropertyChanged?>? _footerToolViewItemsReadOnly;
     private GroupViewItem? _favoriteToolsGroupViewItem;
     private SeparatorViewItem? _separatorAfterAllToolsItem;
     private SeparatorViewItem? _separatorAfterRecentTools;
@@ -81,7 +81,7 @@ public sealed partial class GuiToolProvider
     /// Gets a hierarchical list containing all the tools available, ordered, to display in the top and body menu.
     /// This includes "All tools" menu item, recents and favorites.
     /// </summary>
-    public ReadOnlyObservableCollection<INotifyPropertyChanged> HeaderAndBodyToolViewItems
+    public ReadOnlyObservableCollection<INotifyPropertyChanged?> HeaderAndBodyToolViewItems
     {
         get
         {
@@ -100,7 +100,7 @@ public sealed partial class GuiToolProvider
     /// <summary>
     /// Gets a flat list containing all the footer tools available, ordered.
     /// </summary>
-    public ReadOnlyObservableCollection<INotifyPropertyChanged> FooterToolViewItems
+    public ReadOnlyObservableCollection<INotifyPropertyChanged?> FooterToolViewItems
     {
         get
         {
@@ -184,7 +184,8 @@ public sealed partial class GuiToolProvider
         if (_headerAndBodyToolViewItems is not null)
         {
             Guard.HasSizeGreaterThan((ICollection<INotifyPropertyChanged>)_headerAndBodyToolViewItems!, 2);
-            Guard.IsOfType<SeparatorViewItem>(_headerAndBodyToolViewItems[1]);
+            Guard.IsNotNull(_headerAndBodyToolViewItems[1]);
+            Guard.IsOfType<SeparatorViewItem>(_headerAndBodyToolViewItems[1]!);
 
             if (isFavorite) // Add the tool to the favorites
             {
@@ -256,7 +257,7 @@ public sealed partial class GuiToolProvider
     {
         for (int i = 0; i < FooterToolViewItems.Count; i++)
         {
-            INotifyPropertyChanged item = FooterToolViewItems[i];
+            INotifyPropertyChanged? item = FooterToolViewItems[i];
             if (item is GuiToolViewItem guiToolViewItem && guiToolViewItem.ToolInstance == guiToolInstance)
             {
                 yield return guiToolViewItem;
@@ -265,7 +266,7 @@ public sealed partial class GuiToolProvider
 
         for (int i = 0; i < HeaderAndBodyToolViewItems.Count; i++)
         {
-            INotifyPropertyChanged item = HeaderAndBodyToolViewItems[i];
+            INotifyPropertyChanged? item = HeaderAndBodyToolViewItems[i];
             if (item is GuiToolViewItem guiToolViewItem && guiToolViewItem.ToolInstance == guiToolInstance)
             {
                 yield return guiToolViewItem;
@@ -288,7 +289,7 @@ public sealed partial class GuiToolProvider
     {
         for (int i = 0; i < FooterToolViewItems.Count; i++)
         {
-            INotifyPropertyChanged item = FooterToolViewItems[i];
+            INotifyPropertyChanged? item = FooterToolViewItems[i];
             if (item is GuiToolViewItem guiToolViewItem)
             {
                 action(guiToolViewItem);
@@ -297,7 +298,7 @@ public sealed partial class GuiToolProvider
 
         for (int i = 0; i < HeaderAndBodyToolViewItems.Count; i++)
         {
-            INotifyPropertyChanged item = HeaderAndBodyToolViewItems[i];
+            INotifyPropertyChanged? item = HeaderAndBodyToolViewItems[i];
             if (item is GuiToolViewItem guiToolViewItem)
             {
                 action(guiToolViewItem);

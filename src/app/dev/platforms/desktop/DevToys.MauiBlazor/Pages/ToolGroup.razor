@@ -1,30 +1,33 @@
-﻿@inherits MefLayoutComponentBase
+﻿@inherits MefComponentBase
 
 <CascadingValue Value="this" IsFixed="true">
-    <GridView Class="entranceThemeTransition"
+    <GridView Class="entrance-theme-transition"
               ItemsSource="@ViewModel.Tools"
               ItemMinWidth="330"
-              style="padding: 2.5rem"
+              Style="padding: 2.5rem"
               OnItemClick=@OnToolSelected>
         <Header>
-            <div class="subtitle-text-block" style="font-size: 24px !important">@ViewModel.HeaderText</div>
+            <TextBlock Appearance="@TextBlockAppearance.Subtitle" Style="font-size: 24px !important">@ViewModel.HeaderText</TextBlock>
         </Header>
         <GroupHeaderTemplate Context="item">
-            <div class="subtitle-text-block">@item</div>
+            <TextBlock Appearance="@TextBlockAppearance.Subtitle">@item</TextBlock>
         </GroupHeaderTemplate>
         <ItemTemplate Context="item">
             <div class="tool-group-grid-view-item">
                 <div class="icon">
                     <FontIcon Class="fonticon" FontFamily="@item.IconFontName" Glyph="@item.IconGlyph" />
                 </div>
-                <span class="title body-strong-text-block">@item.LongOrShortDisplayTitle</span>
-                <span class="description caption-text-block">@item.Description</span>
+                <div class="title">
+                    <TextBlock Appearance="@TextBlockAppearance.BodyStrong">@item.LongOrShortDisplayTitle</TextBlock>
+                </div>
+                <div class="description">
+                    <TextBlock Appearance="@TextBlockAppearance.Caption">@item.Description</TextBlock>
+                </div>
                 <div class="buttons" @onclick:stopPropagation="true">
                     <Button Class="button"
-                            Appearance="@ButtonAppearance.Stealth"
-                            IconOnly="true"
+                            Appearance="@ButtonAppearance.Neutral"
                             @onclick="() => OnOpenInNewWindow(item)">
-                        <FontIcon Class="fonticon" FontFamily="FluentSystemIcons" Glyph="@('\uEE7A')" />
+                        <FontIcon Class="fonticon" Glyph="@('\uEE7A')" />
                     </Button>
                 </div>
             </div>

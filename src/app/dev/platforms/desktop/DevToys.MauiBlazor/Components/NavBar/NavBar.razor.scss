@@ -1,0 +1,136 @@
+@use "../../Assets/sass/devtoys" as *;
+
+$sidebar-hidden-width: 0px;
+$sidebar-collapsed-width: 49px;
+$sidebar-expanded-width: 320px;
+$sidebar-expanded-overlay-zindex: 10000;
+$sidebar-top-bar-height: 48px;
+
+.nav-bar-root {
+    height: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: $sidebar-top-bar-height calc(100vh - $sidebar-top-bar-height);
+    gap: 0px 0px;
+    grid-template-areas:
+        "header header" "sidebar content";
+
+    &.hidden {
+        background: var(--navigation-view-content-background);
+
+        main {
+            background: transparent;
+            border: 0px solid;
+            border-color: transparent;
+            border-top-left-radius: 0px;
+        }
+    }
+
+    .button-icon {
+        height: 36px;
+        width: 40px;
+        font-size: 16px;
+        line-height: 16px;
+    }
+
+    .header {
+        grid-area: header;
+        z-index: calc($sidebar-expanded-overlay-zindex + 1);
+    }
+
+    nav {
+        grid-area: sidebar;
+        width: $sidebar-expanded-width;
+        max-width: $sidebar-expanded-width;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto;
+        gap: 0px 0px;
+        grid-template-areas:
+            "sidebar-header" "sidebar-body" "sidebar-footer";
+
+        &.transition {
+            @include transition( left 0.2s ease-in-out, width 0.2s ease-in-out, max-width 0.2s ease-in-out, box-shadow 0.2s ease-in-out );
+        }
+
+        &.hidden {
+            width: $sidebar-hidden-width;
+            max-width: $sidebar-hidden-width;
+            overflow-x: hidden;
+        }
+
+        &.collapsed {
+            width: $sidebar-collapsed-width;
+            max-width: $sidebar-collapsed-width;
+            overflow-x: hidden;
+        }
+
+        &.expanded-overlay {
+            z-index: $sidebar-expanded-overlay-zindex;
+            position: absolute;
+            padding-top: $sidebar-top-bar-height;
+            height: 100%;
+            width: $sidebar-expanded-width;
+            max-width: $sidebar-expanded-width;
+            border-top-right-radius: var(--overlay-corner-radius);
+            border-bottom-right-radius: var(--overlay-corner-radius);
+            border: 1px solid;
+            border-color: var(--navigation-view-flyout-border-color);
+            background-color: var(--navigation-view-flyout-background-color);
+            -webkit-backdrop-filter: var(--navigation-view-flyout-backdrop-filter);
+            backdrop-filter: var(--navigation-view-flyout-backdrop-filter);
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.26);
+        }
+
+        .sidebar-header {
+            grid-area: sidebar-header;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-body {
+            grid-area: sidebar-body;
+            height: 100%; // Will change dynamically at runtime.
+        }
+
+        .sidebar-footer {
+            grid-area: sidebar-footer;
+            padding-bottom: 4px;
+        }
+
+        .sidebar-items {
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    main {
+        grid-area: content;
+        background: var(--navigation-view-content-background);
+        border: var(--navigation-view-content-grid-border-thickness);
+        border-color: var(--navigation-view-content-grid-border);
+        border-top-left-radius: var(--overlay-corner-radius);
+    }
+
+    .expanded-overlay-closer {
+        display: none;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        background-color: transparent;
+        z-index: calc($sidebar-expanded-overlay-zindex - 1);
+
+        &.show {
+            display: block;
+        }
+    }
+
+    &.expanded-overlay {
+        &:not(.hidden) {
+            main {
+                margin-left: $sidebar-collapsed-width;
+            }
+        }
+    }
+}

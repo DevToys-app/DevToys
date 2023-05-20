@@ -41,7 +41,7 @@ public sealed partial class UITextInputHeader : UserControl
         Unloaded += UITextInputHeader_Unloaded;
     }
 
-    internal IUISinglelineTextInput UITextInput => (IUISinglelineTextInput)DataContext;
+    internal IUISingleLineTextInput UITextInput => (IUISingleLineTextInput)DataContext;
 
     public static readonly DependencyProperty TitleProperty
        = DependencyProperty.Register(

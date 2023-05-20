@@ -1,22 +1,26 @@
-﻿using DevToys.Api.Core.Theme;
-using DevToys.MauiBlazor.Components;
-using Microsoft.Fast.Components.FluentUI;
+﻿using DevToys.Api;
+using DevToys.Api.Core.Theme;
 
 namespace DevToys.MauiBlazor.Shared;
 
-public partial class MainLayout : MefLayoutComponentBase
+public partial class MainLayout : LayoutComponentBase
 {
+    [Inject]
+    protected IMefProvider MefProvider { get; set; } = default!;
+
     [Import]
     private IThemeListener ThemeListener { get; set; } = default!;
 
-    [Inject]
-    private GlobalState GlobalState { get; set; } = default!;
+    [Parameter]
+    public string ThemeName { get; set; } = default!;
 
-    private float _baseLayerLuminanceValue;
+    [Parameter]
+    public string Class { get; set; } = default!;
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        await base.OnInitializedAsync();
+        MefProvider.SatisfyImports(this);
+        base.OnInitialized();
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -38,19 +42,28 @@ public partial class MainLayout : MefLayoutComponentBase
 
     private void ApplyTheme()
     {
-        StandardLuminance theme;
+        Class = "theme-transition";
+
+        string themeName;
         if (ThemeListener.ActualAppTheme == ApplicationTheme.Dark)
         {
-            theme = StandardLuminance.DarkMode;
+            themeName = "windows-dark-theme";
         }
         else
         {
-            theme = StandardLuminance.LightMode;
+            themeName = "windows-light-theme";
         }
 
-        _baseLayerLuminanceValue = theme.GetLuminanceValue();
-        GlobalState.SetLuminance(theme);
-
+        ThemeName = themeName;
         StateHasChanged();
+
+        Task.Delay(1000).ContinueWith(t =>
+        {
+            InvokeAsync(() =>
+            {
+                Class = "";
+                StateHasChanged();
+            });
+        });
     }
 }

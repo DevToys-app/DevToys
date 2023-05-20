@@ -1,0 +1,12 @@
+@namespace DevToys.MauiBlazor.Components
+@inherits StyledComponentBase
+
+<CascadingValue Value="this" IsFixed="true">
+    <li class="list-box-item @(FinalCssClasses)"
+        style="@(Style)"
+        @ref=Element
+        @attributes="AdditionalAttributes"
+        @onclick="OnClickAsync">
+        @ChildContent
+    </li>
+</CascadingValue>

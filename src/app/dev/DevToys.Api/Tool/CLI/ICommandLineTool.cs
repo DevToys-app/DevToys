@@ -46,7 +46,7 @@ public interface ICommandLineTool
     /// Using <paramref name="logger"/>:
     /// - DO report errors.
     /// - DO report information about performance of some tasks, if relevant.
-    /// - DO report some system information, but only if it can truly be helpful when investigating performance or compatiblity issues.
+    /// - DO report some system information, but only if it can truly be helpful when investigating performance or compatibility issues.
     /// - DO NOT report what the user input in the app as it might contains user personal information.
     /// </remarks>
     ValueTask<int> InvokeAsync(ILogger logger, CancellationToken cancellationToken);

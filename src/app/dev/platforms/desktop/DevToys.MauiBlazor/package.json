@@ -16,6 +16,9 @@
     "@types/gulp-sass": "^5.0.0",
     "@types/gulp-svg-sprite": "^1.2.32",
     "@types/merge-stream": "^1.1.2",
+    "@typescript-eslint/eslint-plugin": "^5.59.6",
+    "@typescript-eslint/parser": "^5.59.6",
+    "eslint": "^8.40.0",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",
@@ -31,11 +34,11 @@
     "vinyl-source-stream": "2.0.0"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.6",
     "@types/jquery": "3.5.5",
+    "del": "6.1.1",
     "fs": "0.0.1-security",
     "merge-stream": "^2.0.0",
-    "stylelint-scss": "^4.2.0",
-    "@popperjs/core": "^2.11.6",
-    "del": "6.1.1"
+    "stylelint-scss": "^4.2.0"
   }
 }

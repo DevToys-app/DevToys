@@ -7,7 +7,7 @@ namespace DevToys.Core.Tools.ViewItems;
 /// Represents a tool in the main menu.
 /// </summary>
 [DebuggerDisplay($"InternalComponentName = {{{nameof(ToolInstance)}.{nameof(GuiToolInstance.InternalComponentName)}}}")]
-public sealed partial class GuiToolViewItem : ObservableObject
+public sealed partial class GuiToolViewItem : ObservableObject, IItem
 {
     private readonly bool _showLongDisplayTitle;
 

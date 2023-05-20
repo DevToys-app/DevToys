@@ -21,19 +21,19 @@ function onGridViewScroll(ev) {
     const gridView = ev.target;
     const gridViewPosition = gridView.getBoundingClientRect();
     const gridViewPaddingTop = parseFloat(getComputedStyle(gridView).paddingTop);
-    let groups = gridView.querySelectorAll(".grid-view-group");
-    for (var i = 0; i < groups.length; i++) {
-        let group = groups[i];
-        let header = group.querySelector(".grid-view-group-header");
-        let itemsContainer = group.querySelector(".grid-view-items-container");
-        let headerMarginBottom = parseFloat(getComputedStyle(header).marginBottom);
-        let headerTopPositionInGridView = header.getBoundingClientRect().top - gridViewPosition.top - gridViewPaddingTop;
+    const groups = gridView.querySelectorAll(".grid-view-group");
+    for (let i = 0; i < groups.length; i++) {
+        const group = groups[i];
+        const header = group.querySelector(".grid-view-group-header");
+        const itemsContainer = group.querySelector(".grid-view-items-container");
+        const headerMarginBottom = parseFloat(getComputedStyle(header).marginBottom);
+        const headerTopPositionInGridView = header.getBoundingClientRect().top - gridViewPosition.top - gridViewPaddingTop;
         if (headerTopPositionInGridView <= 0) {
-            let itemsContainerTopPositionInGridView = itemsContainer.getBoundingClientRect().top - gridViewPosition.top - gridViewPaddingTop;
+            const itemsContainerTopPositionInGridView = itemsContainer.getBoundingClientRect().top - gridViewPosition.top - gridViewPaddingTop;
             itemsContainer.style.clipPath = `inset(${header.offsetHeight + headerMarginBottom - itemsContainerTopPositionInGridView}px 0 0 0)`;
         }
         else {
-            itemsContainer.style.clipPath = `none`;
+            itemsContainer.style.clipPath = "none";
         }
     }
 }
@@ -42,27 +42,26 @@ function onGridViewScroll(ev) {
 function fitGridViewItemsToContainer(gridView, gridViewBounds, itemMinWidth) {
     const newGridViewContentSize = gridViewBounds;
     const gridViewWidth = newGridViewContentSize.width;
-    let groups = gridView.querySelectorAll(".grid-view-group");
+    const groups = gridView.querySelectorAll(".grid-view-group");
     if (groups.length > 0) {
         // Calculating the number of columns based on the width of the page
-        let firstGroupItemsContainer = groups[0].querySelector(".grid-view-items-container");
-        let gapBetweenItems = parseFloat(getComputedStyle(firstGroupItemsContainer).gap);
-        let itemMinWidthWithGap = itemMinWidth + gapBetweenItems;
-        let columns = Math.max(1, Math.floor(gridViewWidth / itemMinWidthWithGap));
+        const firstGroupItemsContainer = groups[0].querySelector(".grid-view-items-container");
+        const gapBetweenItems = parseFloat(getComputedStyle(firstGroupItemsContainer).gap);
+        const itemMinWidthWithGap = itemMinWidth + gapBetweenItems;
+        const columns = Math.max(1, Math.floor(gridViewWidth / itemMinWidthWithGap));
         // Calculating the new width of the grid view item.
         let newItemWidth;
         if (columns == 1) {
             newItemWidth = "100%";
         }
         else {
-            let gridViewWidthWithoutGaps = gridViewWidth - (gapBetweenItems * (columns - 1));
+            const gridViewWidthWithoutGaps = gridViewWidth - (gapBetweenItems * (columns - 1));
             newItemWidth = `${Math.max(itemMinWidth, (gridViewWidthWithoutGaps / columns))}px`;
-            ;
         }
         // Apply the new width to every items.
-        let items = gridView.querySelectorAll(".grid-view-item");
-        for (var i = 0; i < items.length; i++) {
-            let item = items[i];
+        const items = gridView.querySelectorAll(".grid-view-item");
+        for (let i = 0; i < items.length; i++) {
+            const item = items[i];
             item.style.width = newItemWidth;
         }
     }

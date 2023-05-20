@@ -1,39 +1,18 @@
-﻿@use "configs/variables" as variables;
-@use "configs/fonts";
-@use "mixins/index" as mixins;
+﻿@import "theme/default";
+@import "transitions";
+@import "typography";
+@import "layout";
 
-@use "features/page";
-@use "features/form";
-@use "features/header";
-@use "features/navbar";
-@use "features/control";
-@use "features/scrollbars";
-@use "features/text";
-@use "features/transitions";
-
-@use "theme/default";
+*, *::before, *::after {
+    box-sizing: border-box;
+}
 
 html, body {
     /* Default margin and padding */
     padding: 0;
     margin: 0;
 
-    /* Default fonts */
-    font-family:
-        "Segoe UI", /* Windows (Vista+) and Windows Phone. */
-        -apple-system, /* San Francisco in Safari (on Mac OS X and iOS); Neue Helvetica and Lucida Grande on older versions of Mac OS X. */
-        BlinkMacSystemFont, /* Equivalent of -apple-system, for Chrome on Mac OS X. */
-        Roboto, /* Android (Ice Cream Sandwich (4.0)+) and Chrome OS. */
-        Ubuntu, /* all versions of Ubuntu. */
-        system-ui, /* Default UI font on a given platform. */
-        'Helvetica Neue', Helvetica, Arial, sans-serif; /* Fallback */
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-    font-feature-settings: "rclt" off;
-
-    /* Default overflow behavior */
+    /* Default scrollbar behavior */
     overflow: hidden;
 }
 
@@ -46,7 +25,7 @@ html, body {
     padding: 0.6rem 1.25rem 0.7rem 1.25rem;
     position: fixed;
     width: 100%;
-    z-index: 2147483647; /* maximum range */
+    z-index: 2147483647; // maximum range
 }
 
 #blazor-error-ui .dismiss {
@@ -64,68 +43,4 @@ html, body {
 
 .blazor-error-boundary::after {
     content: "An error has occurred."
-}
-
-// need to handle dynamic font depending on user settings
-body {
-
-    &:before {
-        content: "small";
-        display: none;
-        visibility: hidden;
-
-        @include mixins.media-breakpoint-up(medium) {
-            content: "medium";
-        }
-
-        @include mixins.media-breakpoint-up(wide) {
-            content: "wide";
-        }
-    }
-}
-
-.container {
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: variables.$header-medium-height calc(100vh - variables.$header-medium-height);
-    grid-template-areas: "header header" "sidebar page";
-    column-gap: 0;
-    row-gap: 0;
-    min-height: 100vh;
-    min-width: calc(100vw - 17px);
-
-    @include mixins.media-breakpoint-up(medium) {
-        grid-template-areas: "sidebar header" "sidebar page";
-        grid-template-columns: variables.$sidebar-medium-width 1fr;
-        column-gap: 0;
-        row-gap: variables.$grid-separator;
-    }
-
-    @include mixins.media-breakpoint-up(wide) {
-        margin: 0;
-        row-gap: 0;
-        column-gap: 0;
-        grid-template-columns: auto 1fr;
-        /*grid-template-rows: variables.$header-wide-height 1.8fr;*/
-    }
-}
-
-.collapse {
-    &:not(.show) {
-        display: none;
-    }
-}
-
-.collapsing {
-    height: 0;
-    overflow: hidden;
-    transition: height 0.35s ease;
-}
-
-
-.sticky-bottom {
-    position: sticky;
-    bottom: 0;
 }

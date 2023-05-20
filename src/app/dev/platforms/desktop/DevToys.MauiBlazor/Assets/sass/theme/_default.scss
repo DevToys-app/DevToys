@@ -1,277 +1,68 @@
-﻿@use "../mixins/index" as mixins;
-@use "../configs/variables";
+@import 'windows/dark';
+@import 'windows/light';
+@import 'macos/dark';
+@import 'macos/light';
 
-:root {
-    --current-accent-color: #60cdff;
-    --background-color: #202020;
-    /*--page-background-color: rgba(58, 58, 58, 0.3);*/
-    --page-background-color: rgba(44, 44, 44, 0.96);
-    --sidebar-hover-background-color: rgba(255, 255, 255, 0.1);
-    // --neutral-fill-stealth-rest: blue;
+html, body {
+    /* Font Families */
+    --font-family-fallback:
+        "Segoe UI", /* Windows (Vista+) and Windows Phone. */
+        -apple-system, /* San Francisco in Safari (on Mac OS X and iOS); Neue Helvetica and Lucida Grande on older versions of Mac OS X. */
+        BlinkMacSystemFont, /* Equivalent of -apple-system, for Chrome on Mac OS X. */
+        Roboto, /* Android (Ice Cream Sandwich (4.0)+) and Chrome OS. */
+        Ubuntu, /* all versions of Ubuntu. */
+        system-ui, /* Default UI font on a given platform. */
+        'Helvetica Neue', Helvetica, Arial, sans-serif; /* Fallback */
+    --font-family-text: "Segoe UI Variable Text", "Seoge UI Variable Static Text", var(--font-family-fallback);
+    --font-family-small: "Segoe UI Variable Small", "Seoge UI Variable Static Small", var(--font-family-fallback);
+    --font-family-display: "Segoe UI Variable Display", "Seoge UI Variable Static Display", var(--font-family-fallback);
 
-    --system-reveal-base-low-color: rgba(255, 255, 255, 0.2);
-    --subtle-fill-color-secondary: rgba(255, 255, 255, 0.06);
+    /* Font Size */
+    --font-size-caption: 12px;
+    --font-size-body: 14px;
+    --font-size-body-large: 18px;
+    --font-size-subtitle: 20px;
+    --font-size-title: 28px;
+    --font-size-title-large: 40px;
+    --font-size-display: 68px;
 
-    --card-background-fill-color-default: rgba(255, 255, 255, 0.05);
-    --card-stroke-color-default: rgba(0, 0, 0, 0.3);
+    /* Roundness */
+    --control-corner-radius: 4px;
+    --overlay-corner-radius: 8px;
 
-    --text-fill-color-primary: rgba(255, 255, 255, 1);
-    --text-fill-color-secondary: rgba(255, 255, 255, 0.77);
-
-    --navbar-border-color: transparent;
-    --navbar-background-color: transparent;
-    --navbar-item-color: #ffffff;
-    --navbar-separator-background-color: rgba(255, 255, 255, 0.0605);
-    --navbar-item-hover-border-color: rgba(255, 255, 255, 0.1);
-    --navbar-item-hover-background-color: rgba(255, 255, 255, 0.1);
-    --navbar-flyout-border-color: #202020;
-    --navbar-flyout-background-color: #2c2c2c;
-    --button-text-primary-color: #ffffff;
-    // scrollbar
-    --scrollbar-track-background-color: transparent;
-    --scrollbar-track-background-color-hover: rgba(44, 44, 44, 0.96);
-    --scrollbar-thumb-border-color: transparent;
-    --scrollbar-thumb-border-color-hover: rgba(44, 44, 44, 0.96);
-    --scrollbar-thumb-background-color: rgba(255, 255, 255, 0.5442);
-    --scrollbar-thumb-background-color-hover: rgba(255, 255, 255, 0.5442);
-
-    @include mixins.media-breakpoint-up(wide) {
-        --navbar-border-color: rgba(0, 0, 0, 0.1);
-        --navbar-background-color: #202020;
-    }
+    /* Focus Stroke */
+    --focus-stroke:
+        0 0 0 1px var(--focus-stroke-inner),
+        0 0 0 3px var(--focus-stroke-outer);
 }
 
-html[data-theme="light-fluent"] {
+/* Themes */
+div[data-theme='windows-dark-theme'] {
+    @include windows-dark;
 }
 
-html[data-theme="dark-fluent"] {
-    --background-color: rgba(32, 32, 32, 0.8);
-    --page-background-color: rgba(255, 255, 255, 0.1);
-    --sidebar-hover-background-color: rgba(255, 255, 255, 0.0605);
+div[data-theme='windows-light-theme'] {
+    @include windows-light;
 }
 
-html[data-theme="light-macos"] {
+div[data-theme='macos-dark-theme'] {
+    @include macos-dark;
 }
 
-html[data-theme="dark-macos"] {
+div[data-theme='macos-light-theme'] {
+    @include macos-light;
 }
 
-body {
-    background: var(--background-color);
-
-    .navbar {
-        &.navbar-vertical {
-            border-color: var(--navbar-flyout-border-color);
-            background-color: var(--navbar-flyout-background-color);
-
-            .nav-items {
-                .nav-item {
-                    border-color: transparent;
-                    background-color: transparent;
-
-                    .item-link {
-                        color: var(--navbar-item-color);
-
-                        &::before {
-                            background: transparent;
-                        }
-                    }
-
-                    &.active,
-                    &:hover {
-                        border-color: var(--navbar-item-hover-border-color);
-                        background-color: var(--navbar-item-hover-background-color);
-
-                        button {
-                            &.stealth {
-                                &:hover {
-                                    border-color: transparent;
-                                    background-color: transparent;
-                                }
-                            }
-                        }
-                    }
-
-                    &.active {
-                        .item-link {
-                            &::before {
-                                background: var(--current-accent-color);
-                            }
-                        }
-                    }
-
-                    &.nav-group-child {
-                        &.active,
-                        &:hover {
-                            border-color: transparent;
-                            background-color: transparent;
-                        }
-                    }
-
-                    &.nav-separator {
-                        border-color: transparent;
-                        background-color: var(--navbar-separator-background-color);
-                    }
-                }
-            }
-
-            &[data-collapse="false"] {
-                @include mixins.box-shadow(0px 8px 16px rgba(0, 0, 0, 0.26));
-            }
-
-            @include mixins.media-breakpoint-up(medium) {
-                border-color: var(--navbar-border-color);
-                background-color: var(--navbar-background-color);
-
-                .nav-items {
-                }
-
-                &[data-collapse="false"] {
-                    border-color: var(--navbar-flyout-border-color);
-                    background-color: var(--navbar-flyout-background-color);
-                }
-            }
-
-            @include mixins.media-breakpoint-up(wide) {
-                border-color: var(--navbar-border-color);
-                background-color: var(--navbar-background-color);
-
-                &[data-collapse="false"] {
-                    border-color: var(--navbar-border-color);
-                    background-color: var(--navbar-background-color);
-                    @include mixins.box-shadow(none);
-                }
-            }
-            // .form-input-group {
-            //     color: rgba(255, 255, 255, 0.786);
-            //     border-color: transparent;
-            //     border-bottom-color: transparent;
-            //     background-color: transparent;
-            // }
-            // .nav-items {
-            //     .nav-item {
-            //         &.list-item-container {
-            //             color: #ffffff;
-            //             color: var(--sidebar-content-color, #ffffff);
-            //         }
-            //         &.nav-group-child {
-            //             &.active,
-            //             &:hover {
-            //                 border-color: transparent;
-            //                 background-color: transparent;
-            //             }
-            //         }
-            //     }
-            // }
-            // .navbar-toggler {
-            //     background: inherit;
-            // }
-            // &.show {
-            //     .form-input-group {
-            //         color: rgba(255, 255, 255, 0.786);
-            //         border-color: transparent;
-            //         border-bottom-color: rgba(255, 255, 255, 0.54);
-            //         background-color: rgba(255, 255, 255, 0.0605);
-            //     }
-            // }
-        }
-    }
-
-    .page {
-        color: #ffffff;
-        border-color: rgba(0, 0, 0, 0.1);
-        background: rgba(58, 58, 58, 0.3);
-    }
-
-    input[type="text"] {
-        color: rgba(255, 255, 255, 0.786);
-        background-color: rgba(255, 255, 255, 0.0605);
-        border-color: transparent;
-        border-bottom-color: rgba(255, 255, 255, 0.54);
-
-        &:focus {
-            color: rgba(255, 255, 255, 0.786);
-            background-color: rgba(30, 30, 30, 0.7);
-            border-color: rgba(255, 255, 255, 0.0698);
-            border-bottom-color: rgba(96, 205, 255, 1);
-        }
-    }
-
-    .form-input-group {
-        color: rgba(255, 255, 255, 0.786);
-        border-color: transparent;
-        border-bottom-color: rgba(255, 255, 255, 0.54);
-        background-color: rgba(255, 255, 255, 0.0605);
-
-        input[type="text"] {
-            color: inherit;
-            background-color: transparent;
-            border-color: transparent;
-            border-bottom-color: transparent;
-        }
-
-        .form-input-group-text {
-            color: inherit;
-            background-color: transparent;
-            border-color: transparent;
-            border-bottom-color: transparent;
-        }
-
-        &:focus-within {
-            color: rgba(255, 255, 255, 0.786);
-            background-color: rgba(30, 30, 30, 0.7);
-            border-color: rgba(255, 255, 255, 0.0698);
-            border-bottom-color: rgba(96, 205, 255, 1);
-
-            input[type="text"] {
-                &:focus {
-                    border-color: transparent;
-                    border-bottom-color: transparent;
-                }
-            }
-        }
-    }
-
-    button {
-        &.stealth {
-            color: #ffffff;
-            color: var(--button-text-primary-color, #ffffff);
-            border-color: transparent;
-            background-color: transparent;
-
-            &:hover {
-                border-color: rgba(255, 255, 255, 0.0605);
-                background-color: rgba(255, 255, 255, 0.0605);
-            }
-        }
-    }
-
-    .scrollable {
-        &::-webkit-scrollbar-track {
-            background: var(--scrollbar-track-background-color);
-        }
-
-        &::-webkit-scrollbar-thumb {
-            border-color: var(--scrollbar-thumb-border-color);
-            background-color: var(--scrollbar-thumb-background-color);
-        }
-
-        &:hover {
-            &::-webkit-scrollbar-track {
-                background: var(--scrollbar-track-background-color-hover);
-            }
-
-            &::-webkit-scrollbar-thumb {
-                border-color: var(--scrollbar-thumb-border-color-hover);
-                background-color: var(--scrollbar-thumb-background-color-hover);
-            }
-        }
-    }
+div {
+    color: var(--text-fill-color-primary);
 }
 
-/* Works on Firefox */
-* {
-    scrollbar-width: thin;
-    scrollbar-color: blue orange;
+.theme-transition,
+.theme-transition *,
+.theme-transition *:before,
+.theme-transition *:after {
+    transition-property: color, background-color;
+    transition-timing-function: ease-out;
+    transition-duration: 200ms;
+    transition-delay: 0 !important;
 }
-

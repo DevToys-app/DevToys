@@ -38,9 +38,9 @@ internal sealed partial class Clipboard : Api.Core.IClipboard
                         Windows.ApplicationModel.DataTransfer.DataPackageView package = Windows.ApplicationModel.DataTransfer.Clipboard.GetContent();
                         if (package.Contains(StandardDataFormats.StorageItems))
                         {
-                            IReadOnlyList<IStorageItem> storageitems = await package.GetStorageItemsAsync();
+                            IReadOnlyList<IStorageItem> storageItems = await package.GetStorageItemsAsync();
                             var files = new List<FileInfo>();
-                            foreach (IStorageItem storageItem in storageitems)
+                            foreach (IStorageItem storageItem in storageItems)
                             {
                                 files.Add(new FileInfo(storageItem.Path));
                             }

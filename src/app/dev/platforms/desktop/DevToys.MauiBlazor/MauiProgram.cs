@@ -6,8 +6,6 @@ using DevToys.MauiBlazor.Core.FileStorage;
 using DevToys.MauiBlazor.Core.Languages;
 using DevToys.Tools;
 using Microsoft.Extensions.Logging;
-using Microsoft.Fast.Components.FluentUI;
-using Microsoft.Fast.Components.FluentUI.Infrastructure;
 using Uno.Extensions;
 using PredefinedSettings = DevToys.Core.Settings.PredefinedSettings;
 
@@ -30,14 +28,6 @@ public static partial class MauiProgram
         builder.UseMauiApp<App>();
 
         builder.Services.AddMauiBlazorWebView();
-
-        // Initialize Microsoft.Fast.Components.FluentUI
-        builder.Services.AddFluentUIComponents(options =>
-        {
-            Guard.IsNotNull(options);
-            options.HostingModel = BlazorHostingModel.Hybrid;
-        });
-        builder.Services.AddScoped<IStaticAssetService, FileBasedStaticAssetService>();
 
 #if DEBUG
         builder.Services.AddBlazorWebViewDeveloperTools();

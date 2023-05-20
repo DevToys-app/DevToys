@@ -1,0 +1,106 @@
+@use "../../Assets/sass/devtoys" as *;
+
+// TODO: credit https://fluent-svelte.vercel.app/docs in Third Party Licenses.
+
+button {
+    @include flex($inline: true, $align: center, $justify: center);
+    @include typography-body;
+    position: relative;
+    box-sizing: border-box;
+    padding-block: 4px 6px;
+    padding-inline: 11px;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    cursor: default;
+    border-radius: var(--control-corner-radius);
+    transition: 83ms ease background;
+
+    &:focus-visible {
+        box-shadow: var(--focus-stroke);
+    }
+
+    &.type- {
+        &neutral {
+            border: var(--button-border-thickness);
+            border-color: var(--button-border);
+            background-color: var(--button-background);
+            color: var(--button-foreground);
+            background-clip: padding-box;
+
+            &:hover {
+                border-color: var(--button-border-pointer-over);
+                background-color: var(--button-background-pointer-over);
+                color: var(--button-foreground-pointer-over);
+            }
+
+            &:active {
+                border-color: var(--button-border-pressed);
+                background-color: var(--button-background-pressed);
+                color: var(--button-foreground-pressed);
+            }
+
+            &.disabled {
+                border-color: var(--button-border-disabled);
+                background-color: var(--button-background-disabled);
+                color: var(--button-foreground-disabled);
+            }
+        }
+
+        &accent {
+            border: var(--accent-button-border-thickness);
+            border-color: var(--accent-button-border);
+            background-color: var(--accent-button-background);
+            color: var(--accent-button-foreground);
+            transition: 83ms ease border-color;
+
+            &:hover {
+                border-color: var(--accent-button-border-pointer-over);
+                background-color: var(--accent-button-background-pointer-over);
+                color: var(--accent-button-foreground-pointer-over);
+            }
+
+            &:active {
+                border-color: var(--accent-button-border-pressed);
+                background-color: var(--accent-button-background-pressed);
+                color: var(--accent-button-foreground-pressed);
+            }
+
+            &.disabled {
+                border-color: var(--accent-button-border-disabled);
+                background-color: var(--accent-button-background-disabled);
+                color: var(--accent-button-foreground-disabled);
+            }
+        }
+
+        &stealth {
+            border: var(--stealth-button-border-thickness);
+            border-color: var(--stealth-button-border);
+            background-color: var(--stealth-button-background);
+            color: var(--stealth-button-foreground);
+            background-clip: padding-box;
+
+            &:hover {
+                border-color: var(--stealth-button-border-pointer-over);
+                background-color: var(--stealth-button-background-pointer-over);
+                color: var(--stealth-button-foreground-pointer-over);
+            }
+
+            &:active {
+                border-color: var(--stealth-button-border-pressed);
+                background-color: var(--stealth-button-background-pressed);
+                color: var(--stealth-button-foreground-pressed);
+            }
+
+            &.disabled {
+                border-color: var(--stealth-button-border-disabled);
+                background-color: var(--stealth-button-background-disabled);
+                color: var(--stealth-button-foreground-disabled);
+            }
+        }
+    }
+
+    &.disabled {
+        pointer-events: none;
+    }
+}
