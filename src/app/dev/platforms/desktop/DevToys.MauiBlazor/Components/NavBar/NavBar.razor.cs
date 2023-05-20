@@ -41,7 +41,7 @@ public partial class NavBar<TElement> : JSStyledComponentBase where TElement : c
     public TElement? SelectedItem { get; set; }
 
     [Parameter]
-    public EventCallback<TElement> OnSelectedItemChanged { get; set; }
+    public EventCallback<TElement> SelectedItemChanged { get; set; }
 
     [Parameter]
     public bool CanGoBack { get; set; }
@@ -91,19 +91,16 @@ public partial class NavBar<TElement> : JSStyledComponentBase where TElement : c
     private void OnToggleSidebarClick()
     {
         _sidebarState.ToggleSidebar();
-        StateHasChanged();
     }
 
     private void OnCloseExpandedOverlaySidebarClick()
     {
         _sidebarState.CloseExpandedOverlay();
-        StateHasChanged();
     }
 
     private void OnSearchButtonClick()
     {
         _sidebarState.ToggleSidebar();
-        StateHasChanged();
         Task.Delay(200)
             .ContinueWith(t =>
             {
@@ -117,6 +114,6 @@ public partial class NavBar<TElement> : JSStyledComponentBase where TElement : c
     private Task OnItemSelectedAsync(TElement item)
     {
         SelectedItem = item;
-        return OnSelectedItemChanged.InvokeAsync(item);
+        return SelectedItemChanged.InvokeAsync(item);
     }
 }

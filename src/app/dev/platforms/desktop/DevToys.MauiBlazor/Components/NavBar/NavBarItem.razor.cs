@@ -1,7 +1,11 @@
-﻿namespace DevToys.MauiBlazor.Components;
+﻿using DevToys.Core;
+
+namespace DevToys.MauiBlazor.Components;
 
 public partial class NavBarItem<TElement> : StyledComponentBase where TElement : class
 {
+    private bool _isExpanded;
+
     [Parameter]
     public NavBar<TElement> OwnerNavBar { get; set; } = default!;
 
@@ -12,9 +16,6 @@ public partial class NavBarItem<TElement> : StyledComponentBase where TElement :
     public IEnumerable<object>? Children { get; set; }
 
     [Parameter]
-    public bool IsExpanded { get; set; }
-
-    [Parameter]
     public RenderFragment<TElement> TitleTemplate { get; set; } = default!;
 
     [Parameter]
@@ -22,6 +23,48 @@ public partial class NavBarItem<TElement> : StyledComponentBase where TElement :
 
     [Parameter]
     public EventCallback<TElement> OnSelected { get; set; }
+
+    public bool IsExpanded
+    {
+        get
+        {
+            if (Item is IGroup group)
+            {
+                if (group.GroupShouldBeExpandedInUI)
+                {
+                    group.GroupIsExpandedInUI = true;
+                    return true;
+                }
+
+                return group.GroupIsExpandedInUI;
+            }
+            else
+            {
+                return _isExpanded;
+            }
+        }
+        set
+        {
+            if (Item is IGroup group)
+            {
+                group.GroupIsExpandedInUI = value;
+            }
+            else
+            {
+                _isExpanded = value;
+            }
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        if (Item is IGroup group && group.GroupShouldBeExpandedByDefaultInUI)
+        {
+            IsExpanded = true;
+        }
+
+        base.OnInitialized();
+    }
 
     private Task OnItemSelectedAsync(object item)
     {

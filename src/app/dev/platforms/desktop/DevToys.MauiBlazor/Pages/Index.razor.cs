@@ -33,11 +33,6 @@ public partial class Index : MefComponentBase
         StateHasChanged();
     }
 
-    private void OnSelectedItemChanged(INotifyPropertyChanged item)
-    {
-        ViewModel.SelectedMenuItem = item;
-    }
-
     private void OnBackButtonClicked()
     {
         ViewModel.GoBack();

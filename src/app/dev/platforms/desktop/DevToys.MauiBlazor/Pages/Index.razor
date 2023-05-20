@@ -8,8 +8,7 @@
         MenuItemsSource="@ViewModel.HeaderAndBodyToolViewItems"
         FooterMenuItemsSource="@ViewModel.FooterToolViewItems"
         CanGoBack="@ViewModel.CanGoBack"
-        SelectedItem="@ViewModel.SelectedMenuItem"
-        OnSelectedItemChanged="OnSelectedItemChanged"
+        @bind-SelectedItem="ViewModel.SelectedMenuItem"
         OnBackButtonClicked="OnBackButtonClicked">
     <!-- Header -->
     <Header>

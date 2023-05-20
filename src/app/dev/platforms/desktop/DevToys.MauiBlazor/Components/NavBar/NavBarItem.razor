@@ -7,14 +7,15 @@
 <CascadingValue Value="this" IsFixed="true">
     @if (Item is ISeparator)
     {
-        <li class="sidebar-item-separator"></li>
+        <li id="@Id" class="sidebar-item-separator"></li>
     }
     else if (Item is IGroup || Item is IItem)
     {
         var group = Item as IGroup;
         bool isGroupWithChildren = group is not null && group.ChildrenItems is not null;
 
-        <ListBoxItem Item="Item"
+        <ListBoxItem id="@Id"
+                     Item="Item"
                      IsSelected="Item == OwnerNavBar.SelectedItem"
                      Class="@FinalCssClasses"
                      OnSelected=@OnItemSelectedAsync>
@@ -31,7 +32,7 @@
                             Class="sidebar-expand-group-button"
                             aria-expanded="true"
                             data-expanded="@(IsExpanded.ToString().ToLowerInvariant())"
-                    @onclick="OnToggleExpandClick">
+                            @onclick="OnToggleExpandClick">
                         <FontIcon Glyph="@('\uf2a6')" Style="height: 18px" />
                     </Button>
                 </div>

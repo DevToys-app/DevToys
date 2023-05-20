@@ -20,7 +20,7 @@ public partial class AutoSuggestBox : StyledComponentBase
     public bool IsReadOnly { get; set; }
 
     [Parameter]
-    public EventCallback<string> OnQueryChanged { get; set; }
+    public EventCallback<string> QueryChanged { get; set; }
 
     internal ValueTask FocusAsync()
     {
@@ -30,6 +30,6 @@ public partial class AutoSuggestBox : StyledComponentBase
 
     private Task OnTextBoxTextChangedAsync(string text)
     {
-        return OnQueryChanged.InvokeAsync(text);
+        return QueryChanged.InvokeAsync(text);
     }
 }

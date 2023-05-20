@@ -11,6 +11,7 @@ namespace DevToys.Core.Tools.ViewItems;
 public sealed class GroupViewItem : ObservableObject, IGroup
 {
     private bool _childItemJustGotSelected;
+    private bool _isExpanded;
 
     internal GroupViewItem(
         string internalName,
@@ -44,7 +45,7 @@ public sealed class GroupViewItem : ObservableObject, IGroup
         IconGlyph = iconGlyph;
         Children = children;
         ChildrenItems = Children;
-        MenuItemShouldBeExpandedByDefault = menuItemShouldBeExpandedByDefault;
+        GroupShouldBeExpandedByDefaultInUI = menuItemShouldBeExpandedByDefault;
 
         if (children is not null)
         {
@@ -90,17 +91,20 @@ public sealed class GroupViewItem : ObservableObject, IGroup
     /// </summary>
     public ObservableCollection<GuiToolViewItem>? Children { get; }
 
+    /// <summary>
+    /// Gets all the children items of this group.
+    /// </summary>
     public IEnumerable<IItem>? ChildrenItems { get; set; }
 
     /// <summary>
     /// Gets whether the group should be expanded by default.
     /// </summary>
-    public bool MenuItemShouldBeExpandedByDefault { get; }
+    public bool GroupShouldBeExpandedByDefaultInUI { get; }
 
     /// <summary>
     /// Gets whether the group should be expanded.
     /// </summary>
-    public bool MenuItemShouldBeExpanded
+    public bool GroupShouldBeExpandedInUI
     {
         get
         {
@@ -121,6 +125,15 @@ public sealed class GroupViewItem : ObservableObject, IGroup
 
             return false;
         }
+    }
+
+    /// <summary>
+    /// Gets or sets whether the group is expanded in the UI.
+    /// </summary>
+    public bool GroupIsExpandedInUI
+    {
+        get => _isExpanded;
+        set => SetProperty(ref _isExpanded, value);
     }
 
     private void Children_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -154,14 +167,14 @@ public sealed class GroupViewItem : ObservableObject, IGroup
     {
         if (e.PropertyName == nameof(GuiToolViewItem.IsRecommended) && IsAnyChildrenRecommended())
         {
-            OnPropertyChanged(nameof(MenuItemShouldBeExpanded));
+            OnPropertyChanged(nameof(GroupShouldBeExpandedInUI));
         }
     }
 
     private void Child_GotSelected(object? sender, EventArgs e)
     {
         _childItemJustGotSelected = true;
-        OnPropertyChanged(nameof(MenuItemShouldBeExpanded));
+        OnPropertyChanged(nameof(GroupShouldBeExpandedInUI));
     }
 
     private bool IsAnyChildrenRecommended()
