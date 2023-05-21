@@ -136,7 +136,7 @@
     <value>JWT fejléc, adat és aláírás dekódolása</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="Algorithm" xml:space="preserve">
     <value>Algorithm</value>
