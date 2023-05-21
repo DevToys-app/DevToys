@@ -145,6 +145,6 @@
     <value>目前尚不支持请求的凭证格式。</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value/>
+    <value>CER PFX PEM</value>
   </data>
 </root>
