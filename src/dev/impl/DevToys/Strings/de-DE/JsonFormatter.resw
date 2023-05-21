@@ -154,7 +154,7 @@
     <value>Json Formatierer</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="SortProperties" xml:space="preserve">
     <value>JSON-Attribute alphabetisch sortieren</value>
