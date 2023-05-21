@@ -157,6 +157,6 @@
     <value>Cho các thuộc tính attribute ở dòng mới</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
 </root>
