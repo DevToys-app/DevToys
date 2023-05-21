@@ -136,7 +136,7 @@
     <value>Decodeer een JWT header, payload en signature</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="Algorithm" xml:space="preserve">
     <value>Algoritme</value>
