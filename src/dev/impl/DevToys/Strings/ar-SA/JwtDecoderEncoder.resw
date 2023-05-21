@@ -136,7 +136,7 @@
     <value>فك شفرة رأس JWT والحمولة والتوقيع</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="Algorithm" xml:space="preserve">
     <value>الخوارزمية</value>
