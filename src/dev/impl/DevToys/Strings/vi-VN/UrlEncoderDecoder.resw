@@ -151,6 +151,6 @@
     <value>Mã hóa / giải mã URL</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
 </root>
