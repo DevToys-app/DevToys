@@ -136,7 +136,7 @@
     <value>Розшифровування заголовка JWT, вмісту та сигнатури</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="Algorithm" xml:space="preserve">
     <value>Алгоритм</value>
