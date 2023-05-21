@@ -136,7 +136,7 @@
     <value>JWT ヘッダー、ペイロード、署名をデコードします</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="Algorithm" xml:space="preserve">
     <value>アルゴリズム</value>
