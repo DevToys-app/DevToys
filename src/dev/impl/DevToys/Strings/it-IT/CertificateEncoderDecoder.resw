@@ -145,6 +145,6 @@
     <value>Formato della richiesta di certificato attualmente non supportato.</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value/>
+    <value>CER PFX PEM</value>
   </data>
 </root>
