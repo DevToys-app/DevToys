@@ -163,6 +163,6 @@
     <value>GZip 編碼 / 解碼</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
 </root>
