@@ -136,7 +136,7 @@
     <value>Giải mã một tiêu đề JWT, tải trọng và chữ kí</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="Algorithm" xml:space="preserve">
     <value>Thuật toán</value>
