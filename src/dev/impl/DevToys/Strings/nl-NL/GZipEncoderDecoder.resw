@@ -163,6 +163,6 @@
     <value>GZip comprimeren / decomprimeren</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
 </root>
