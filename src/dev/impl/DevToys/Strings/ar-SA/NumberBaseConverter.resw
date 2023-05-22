@@ -130,7 +130,7 @@
     <value>عشري</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Number Base</value>
+    <value>أساس الرَّقم</value>
   </data>
   <data name="Format" xml:space="preserve">
     <value>Format number</value>
