@@ -130,13 +130,13 @@
     <value>عشري</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>أساس الرَّقم</value>
+    <value>نظام الرَّقم</value>
   </data>
   <data name="Format" xml:space="preserve">
-    <value>Format number</value>
+    <value>تنسيق الرَّقم</value>
   </data>
   <data name="HexadecimalLabel" xml:space="preserve">
-    <value>Hexadecimal</value>
+    <value>سداسي عشري</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>ادخال</value>
@@ -148,42 +148,42 @@
     <value>عشري</value>
   </data>
   <data name="InputTypeDescription" xml:space="preserve">
-    <value>Select which input type you want to use</value>
+    <value>حدد نوع الإدخال الذي تريد استخدامه</value>
   </data>
   <data name="InputTypeHexadecimal" xml:space="preserve">
-    <value>Hexadecimal</value>
+    <value>سداسي عشري</value>
   </data>
   <data name="InputTypeOctal" xml:space="preserve">
-    <value>Octal</value>
+    <value>ثماني</value>
   </data>
   <data name="InputTypeTitle" xml:space="preserve">
-    <value>Input type</value>
+    <value>نوع الإدخال</value>
   </data>
   <data name="OctalLabel" xml:space="preserve">
-    <value>Octal</value>
+    <value>ثماني</value>
   </data>
   <data name="ValueInvalid" xml:space="preserve">
-    <value>The current value isn't a valid {0}</value>
+    <value>القيمة الحالية ليست صالحة {0}</value>
     <comment>The parameter is the Base Number Type (Decimal, Octal, ...)</comment>
   </data>
   <data name="ValueOverflow" xml:space="preserve">
-    <value>The current value cannot be converted as it exceeds the maximum value ({0})</value>
+    <value>لا يمكن تحويل القيمة الحالية لأنها تتجاوز القيمة القصوى ({0})</value>
     <comment>The parameter is the Max value of a long</comment>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Convert numbers from one base to another</value>
+    <value>تحويل الأرقام من نظام إلى آخر</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Number Base Converter</value>
+    <value>محول نظام الرَّقم</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Binary Octal Decimal Hexadecimal</value>
+    <value>ثنائي ثماني عشري سداسي عشري</value>
   </data>
   <data name="AdvancedModeLabel" xml:space="preserve">
-    <value>Advanced mode</value>
+    <value>الوضع المتقدم</value>
   </data>
   <data name="InputDictionaryLabel" xml:space="preserve">
-    <value>Input dictionary</value>
+    <value>قاموس المدخلات</value>
   </data>
   <data name="OutputDictionaryLabel" xml:space="preserve">
     <value>قاموس النتائج</value>
