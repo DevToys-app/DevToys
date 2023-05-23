@@ -20,6 +20,7 @@ i[class^="FluentSystemIcons"]:before, i[class*=" FluentSystemIcons"]:before {
 
 @mixin typography-body {
     user-select: none;
+    -webkit-user-select: none;
 
     font: {
         family: var(--font-family-text);

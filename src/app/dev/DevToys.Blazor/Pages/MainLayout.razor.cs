@@ -46,11 +46,25 @@ public partial class MainLayout : LayoutComponentBase
         string themeName;
         if (ThemeListener.ActualAppTheme == ApplicationTheme.Dark)
         {
-            themeName = "windows-dark-theme";
+            if (OperatingSystem.IsWindows())
+            {
+                themeName = "windows-dark-theme";
+            }
+            else
+            {
+                themeName = "macos-dark-theme";
+            }
         }
         else
         {
-            themeName = "windows-light-theme";
+            if (OperatingSystem.IsWindows())
+            {
+                themeName = "windows-light-theme";
+            }
+            else
+            {
+                themeName = "macos-light-theme";
+            }
         }
 
         ThemeName = themeName;

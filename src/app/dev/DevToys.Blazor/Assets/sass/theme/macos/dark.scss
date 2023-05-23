@@ -1,3 +1,169 @@
 @mixin macos-dark {
+    /* Accent Colors (rgb) */
+    --accent-light-3: 154, 236, 254;
+    --accent-light-2: 98, 205, 254;
+    --accent-light-1: 0, 146, 250;
+    --accent-base: 0, 121, 214;
+    --accent-dark-1: 0, 95, 184;
+    --accent-dark-2: 0, 62, 148;
+    --accent-dark-3: 0, 24, 102;
+    --accent-default: rgba(var(--accent-light-2));
+    --accent-secondary: rgba(var(--accent-light-2), 0.9);
+    --accent-tertiary: rgba(var(--accent-light-2), 0.8);
+    --accent-disabled: rgba(255, 255, 255, 0.158);
+
+    /* Text on Accent */
+    --text-on-accent-primary: rgb(0, 0, 0);
+    --text-on-accent-secondary: rgba(0, 0, 0, 0.5);
+    --text-on-accent-disabled: rgba(255, 255, 255, 0.53);
+    --text-on-accent-selected: rgb(255, 255, 255);
+
+    /* Focus Stroke */
+    --focus-stroke-outer: rgb(255, 255, 255);
+    --focus-stroke-inner: rgba(0, 0, 0, 0.7);
+
+    /* Text */
     --text-fill-color-primary: rgba(255, 255, 255, 1);
+    --text-fill-color-secondary: rgba(255, 255, 255, 0.77);
+    --text-fill-color-tertiary: rgba(255, 255, 255, 0.53);
+    --text-fill-color-disabled: rgba(255, 255, 255, 0.36);
+    --text-fill-color-inverse: rgba(0, 0, 0, 0.89);
+
+    /* Control Fill */
+    --control-fill-color-default: rgba(255, 255, 255, 0.059);
+    --control-fill-color-secondary: rgba(255, 255, 255, 0.082);
+    --control-fill-color-tertiary: rgba(255, 255, 255, 0.031);
+    --control-fill-color-disabled: rgba(255, 255, 255, 0.043);
+    --control-fill-color-transparent: rgba(255, 255, 255, 0);
+    --control-fill-color-input-active: rgba(30, 30, 30, 0.702);
+
+    /* Control Stroke */
+    --control-stroke-color-default: rgba(255, 255, 255, 0.071);
+    --control-stroke-color-secondary: rgba(255, 255, 255, 0.094);
+    --control-stroke-on-accent-default: hsla(0, 0%, 100%, 8%);
+    --control-stroke-on-accent-secondary: hsla(0, 0%, 0%, 14%);
+    --control-strong-stroke-default: rgba(255, 255, 255, 0.544);
+
+    /* Subtle Fill */
+    --subtle-fill-transparent: transparent;
+    --subtle-fill-secondary: rgba(255, 255, 255, 0.061);
+    --subtle-fill-tertiary: rgba(255, 255, 255, 0.042);
+    --subtle-fill-disabled: transparent;
+
+    /* Background */
+    --background-color: rgb(32, 32, 32);
+    --layer-fill-color-default: rgba(58, 58, 58, 0.3);
+
+    /* Borders */
+    --control-border-color-default:
+        var(--control-stroke-color-secondary)
+        var(--control-stroke-color-default)
+        var(--control-stroke-color-default)
+        var(--control-stroke-color-default);
+    --accent-control-border-color-default:
+        var(--control-stroke-on-accent-default)
+        var(--control-stroke-on-accent-secondary)
+        var(--control-stroke-on-accent-secondary)
+        var(--control-stroke-on-accent-secondary);
+
+    /* Card */
+    --card-stroke-color-default: rgba(0, 0, 0, 0.06);
+    --card-background-color: rgba(255, 255, 255, 0.05);
+    --card-hover-background-color: rgba(255, 255, 255, 0.06);
+
+    /* Button */
+    --button-background: var(--control-fill-color-default);
+    --button-background-pointer-over: var(--control-fill-color-secondary);
+    --button-background-pressed: var(--control-fill-color-tertiary);
+    --button-background-disabled: var(--control-fill-color-disabled);
+    --button-foreground: var(--text-fill-color-primary);
+    --button-foreground-pointer-over: var(--text-fill-color-primary);
+    --button-foreground-pressed: var(--text-fill-color-secondary);
+    --button-foreground-disabled: var(--text-fill-color-disabled);
+    --button-border: var(--control-border-color-default);
+    --button-border-pointer-over: var(--control-border-color-default);
+    --button-border-pressed: var(--control-stroke-color-default);
+    --button-border-disabled: var(--control-stroke-color-default);
+    --button-border-thickness: 1px solid;
+
+    --accent-button-background: var(--accent-default);
+    --accent-button-background-pointer-over: var(--accent-secondary);
+    --accent-button-background-pressed: var(--accent-tertiary);
+    --accent-button-background-disabled: var(--accent-disabled);
+    --accent-button-foreground: var(--text-on-accent-primary);
+    --accent-button-foreground-pointer-over: var(--text-on-accent-primary);
+    --accent-button-foreground-pressed: var(--text-on-accent-secondary);
+    --accent-button-foreground-disabled: var(--text-on-accent-disabled);
+    --accent-button-border: var(--accent-control-border-color-default);
+    --accent-button-border-pointer-over: var(--accent-control-border-color-default);
+    --accent-button-border-pressed: var(--control-fill-color-transparent);
+    --accent-button-border-disabled: var(--control-fill-color-transparent);
+    --accent-button-border-thickness: 1px solid;
+
+    --stealth-button-background: var(--control-fill-color-transparent);
+    --stealth-button-background-pointer-over: var(--control-fill-color-secondary);
+    --stealth-button-background-pressed: var(--control-fill-color-tertiary);
+    --stealth-button-background-disabled: var(--control-fill-color-transparent);
+    --stealth-button-foreground: var(--text-fill-color-primary);
+    --stealth-button-foreground-pointer-over: var(--text-fill-color-primary);
+    --stealth-button-foreground-pressed: var(--text-fill-color-secondary);
+    --stealth-button-foreground-disabled: var(--text-fill-color-disabled);
+    --stealth-button-border: var(--control-fill-color-transparent);
+    --stealth-button-border-pointer-over: var(--control-border-color-default);
+    --stealth-button-border-pressed: var(--control-stroke-color-default);
+    --stealth-button-border-disabled: var(--control-fill-color-transparent);
+    --stealth-button-border-thickness: 1px solid;
+
+    /* GridView */
+    --grid-view-header-border-line: rgba(255, 255, 255, 0.2);
+    --grid-view-item-background: var(--card-background-color);
+    --grid-view-item-background-hover: var(--card-hover-background-color);
+    --grid-view-item-stroke: rgba(0, 0, 0, 0.3);
+
+    /* NavBar */
+    --navigation-view-content-background: var(--layer-fill-color-default);
+    --navigation-view-content-grid-border: var(--card-stroke-color-default);
+    --navigation-view-content-grid-border-thickness: 1px solid;
+    --navigation-view-flyout-border-color: var(--control-stroke-color-secondary);
+    --navigation-view-flyout-background-color: rgba(32, 32, 32, 0.4);
+    --navigation-view-flyout-backdrop-filter: blur(50px) saturate(125%);
+    --navigation-view-separator-color: rgba(255, 255, 255, 0.0605);
+
+    /* List Box */
+    --list-box-item-background: var(--subtle-fill-transparent);
+    --list-box-item-background-disabled: var(--subtle-fill-transparent);
+    --list-box-item-background-pointer-over: var(--subtle-fill-secondary);
+    --list-box-item-background-selected: var(--subtle-fill-secondary);
+    --list-box-item-background-selected-disabled: var(--subtle-fill-secondary);
+    --list-box-item-background-active: var(--subtle-fill-tertiary);
+    --list-box-item-foreground: var(--text-fill-color-primary);
+    --list-box-item-foreground-active: var(--text-fill-color-secondary);
+    --list-box-item-foreground-disabled: var(--text-fill-color-disabled);
+
+    /* Text Box */
+    --text-box-background: var(--control-fill-color-default);
+    --text-box-background-pointer-over: var(--control-fill-color-secondary);
+    --text-box-background-focused: var(--control-fill-color-input-active);
+    --text-box-background-disabled: var(--control-fill-color-disabled);
+    --text-box-border: var(--control-stroke-color-default);
+    --text-box-border-pointer-over: var(--control-stroke-color-default);
+    --text-box-border-focused: var(--control-stroke-color-default);
+    --text-box-border-disabled: var(--control-stroke-color-default);
+    --text-box-foreground: var(--text-fill-color-primary);
+    --text-box-foreground-pointer-over: var(--text-fill-color-primary);
+    --text-box-foreground-focused: var(--text-fill-color-primary);
+    --text-box-foreground-disabled: var(--text-fill-color-disabled);
+    --text-box-placeholder-foreground: var(--text-fill-color-secondary);
+    --text-box-placeholder-foreground-pointer-over: var(--text-fill-color-secondary);
+    --text-box-placeholder-foreground-focused: var(--text-fill-color-tertiary);
+    --text-box-placeholder-foreground-disabled: var(--text-fill-color-disabled);
+    --text-box-selection-highlight-color: rgb(var(--accent-base));
+
+    /* Scrollbars */
+    --scrollbar-track-background-color: transparent;
+    --scrollbar-track-background-color-hover: rgba(44, 44, 44, 0.96);
+    --scrollbar-thumb-border-color: transparent;
+    --scrollbar-thumb-border-color-hover: rgba(44, 44, 44, 0.96);
+    --scrollbar-thumb-background-color: rgba(255, 255, 255, 0.5442);
+    --scrollbar-thumb-background-color-hover: rgba(255, 255, 255, 0.5442);
 }

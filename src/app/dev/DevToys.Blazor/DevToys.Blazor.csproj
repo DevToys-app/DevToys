@@ -10,7 +10,7 @@
     <PrepareForBuildDependsOn>CompileTypeScript;GetTypeScriptOutputForPublishing;$(PrepareForBuildDependsOn)</PrepareForBuildDependsOn>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="$(IsMac) != 'true'">
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 

@@ -62,7 +62,7 @@ internal sealed class ThemeListener : IThemeListener
     /// <summary>
     /// Evaluates whether the theme should automatically be updated or not, based on app and operating system settings.
     /// </summary>
-    public void UpdateSystemSettingsAndApplyTheme()
+    private void UpdateSystemSettingsAndApplyTheme()
     {
         IsHighContrast = SystemParameters.HighContrast;
         CurrentSystemTheme = GetCurrentSystemTheme();
