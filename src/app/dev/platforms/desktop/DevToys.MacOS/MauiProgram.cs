@@ -12,10 +12,10 @@ namespace DevToys.MacOS;
 
 public static partial class MauiProgram
 {
-    private static MauiApp? app;
+    internal static MefComposer? MefComposer;
 
-    private static MefComposer? _mefComposer;
-    private static ILogger? _logger;
+    private static MauiApp? app;
+    private static ILogger? logger;
 
     public static MauiApp CreateMauiApp()
     {
@@ -41,7 +41,7 @@ public static partial class MauiProgram
         };
 
         // Initialize MEF.
-        _mefComposer
+        MefComposer
             = new MefComposer(
                 new[] {
                     typeof(DevToysToolsResourceManagerAssemblyIdentifier).Assembly,
@@ -56,7 +56,7 @@ public static partial class MauiProgram
         MauiProgram.app = app;
 
         // Set the user-defined language.
-        string? languageIdentifier = _mefComposer.Provider.Import<ISettingsProvider>().GetSetting(PredefinedSettings.Language);
+        string? languageIdentifier = MefComposer.Provider.Import<ISettingsProvider>().GetSetting(PredefinedSettings.Language);
         LanguageDefinition languageDefinition
             = LanguageManager.Instance.AvailableLanguages.FirstOrDefault(l => string.Equals(l.InternalName, languageIdentifier))
             ?? LanguageManager.Instance.AvailableLanguages[0];
@@ -94,29 +94,29 @@ public static partial class MauiProgram
             builder.AddFilter("System", LogLevel.Warning);
         });
 
-        serviceCollection.AddSingleton(provider => _mefComposer.Provider);
+        serviceCollection.AddSingleton(provider => MefComposer!.Provider);
 
         ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
 
         ILoggerFactory loggerFactory = serviceProvider.GetRequiredService<ILoggerFactory>();
         Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory = loggerFactory;
-        _logger = loggerFactory.CreateLogger<MauiApp>();
+        logger = loggerFactory.CreateLogger<MauiApp>();
 
         return serviceProvider;
     }
 
     private static void LogUnhandledException(Exception exception)
     {
-        _logger?.LogCritical(0, exception, "Unhandled exception !!!    (╯°□°）╯︵ ┻━┻");
+        logger?.LogCritical(0, exception, "Unhandled exception !!!    (╯°□°）╯︵ ┻━┻");
     }
 
     private static void LogAppStarting()
     {
-        _logger?.LogInformation(1, "App is starting...");
+        logger?.LogInformation(1, "App is starting...");
     }
 
     private static void LogInitialization(double duration)
     {
-        _logger?.LogInformation(2, "MEF, services and logging initialized in {duration} ms", duration);
+        logger?.LogInformation(2, "MEF, services and logging initialized in {duration} ms", duration);
     }
 }

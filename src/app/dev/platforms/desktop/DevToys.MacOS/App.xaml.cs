@@ -1,4 +1,4 @@
-﻿using DevToys.Api.Core.Theme;
+﻿using DevToys.Api;
 
 namespace DevToys.MacOS;
 
@@ -9,7 +9,8 @@ public partial class App : Application
         InitializeComponent();
 
         // Apply the app color theme.
-        MauiProgram.MefComposer.Value.Provider.Import<IThemeListener>().ApplyDesiredColorTheme();
+        Guard.IsNotNull(MauiProgram.MefComposer);
+        MauiProgram.MefComposer.Provider.Import<IThemeListener>().ApplyDesiredColorTheme();
 
         MainPage = new MainPage();
     }
