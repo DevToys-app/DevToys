@@ -1,7 +1,4 @@
-﻿using System;
-using static System.Net.Mime.MediaTypeNames;
-
-namespace DevToys.Api;
+﻿namespace DevToys.Api;
 
 /// <summary>
 /// A component that can be used to display or edit unformatted text on multiple lines.

@@ -13,6 +13,7 @@ fi
 # ------------------------
 TEMP_DIR_NAME=".temp"
 TOOLS_DIR="$1/tools"
+DESTINATION_DIR="../src/app/dev/DevToys.Blazor/wwwroot/lib/monaco-editor"
 
 cd "$TOOLS_DIR"
 
@@ -21,14 +22,14 @@ MONACO_VERSION=$(head -n 1 "$TOOLS_DIR/monaco-editor-version-number.txt")
 MONACO_TGZ_URL="https://registry.npmjs.org/monaco-editor/-/monaco-editor-$MONACO_VERSION.tgz"
 
 # Remove Old Dependency
-rm -rf "../src/app/dev/DevToys.MonacoEditor/monaco-editor"
+rm -rf $DESTINATION_DIR
 
 # Clean-up Temp Dir, if already exist
 rm -rf "$TOOLS_DIR/$TEMP_DIR_NAME"
 
 # Create Temp Directory and Output
 mkdir "$TOOLS_DIR/$TEMP_DIR_NAME"
-mkdir "../src/app/dev/DevToys.MonacoEditor/monaco-editor"
+mkdir $DESTINATION_DIR
 
 echo "Downloading Monaco v.$MONACO_VERSION"
 
@@ -39,7 +40,7 @@ echo "Extracting..."
 mkdir "$TOOLS_DIR/$TEMP_DIR_NAME/monaco"
 tar -zxf "$TOOLS_DIR/$TEMP_DIR_NAME/monaco.tgz" -C "$TOOLS_DIR/$TEMP_DIR_NAME/monaco"
 
-cp -r "$TOOLS_DIR/$TEMP_DIR_NAME/monaco/package/" "../src/app/dev/DevToys.MonacoEditor/monaco-editor"
+cp -r "$TOOLS_DIR/$TEMP_DIR_NAME/monaco/package/" $DESTINATION_DIR
 
 # Clean-up Temp Dir
 rm -rf "$TOOLS_DIR/$TEMP_DIR_NAME"

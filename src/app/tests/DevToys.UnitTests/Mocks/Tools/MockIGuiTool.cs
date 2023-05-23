@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.Composition;
-using DevToys.Api;
 
 namespace DevToys.UnitTests.Mocks.Tools;
 

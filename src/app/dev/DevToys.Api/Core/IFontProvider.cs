@@ -1,4 +1,4 @@
-﻿namespace DevToys.Api.Core;
+﻿namespace DevToys.Api;
 
 /// <summary>
 /// Provides a platform agnostic way to retrieve information about fonts installed on the operating system.

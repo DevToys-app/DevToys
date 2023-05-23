@@ -1,4 +1,4 @@
-﻿using DevToys.Api.Core;
+﻿using DevToys.Api;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 

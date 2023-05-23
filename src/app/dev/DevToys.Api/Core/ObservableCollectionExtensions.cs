@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace DevToys.Api.Core;
+namespace DevToys.Api;
 
 public static class ObservableCollectionExtensions
 {

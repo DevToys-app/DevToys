@@ -1,4 +1,4 @@
-﻿namespace DevToys.Api.Core.Theme;
+﻿namespace DevToys.Api;
 
 /// <summary>
 /// Specifies a UI theme that should be used for individual UIElement parts of an app UI.

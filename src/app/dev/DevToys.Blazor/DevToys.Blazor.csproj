@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>$(NetCore)</TargetFramework>
+    <RootNamespace>DevToys.Blazor</RootNamespace>
+    <EnableDefaultCssItems>false</EnableDefaultCssItems>
+    <TypeScriptTarget>ES6</TypeScriptTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DevToys.Api\DevToys.Api.csproj" />
+    <ProjectReference Include="..\DevToys.Business\DevToys.Business.csproj" />
+    <ProjectReference Include="..\DevToys.Core\DevToys.Core.csproj" />
+    <ProjectReference Include="..\DevToys.Localization\DevToys.Localization.csproj" />
+    <ProjectReference Include="..\DevToys.Tools\DevToys.Tools.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- TypeScript -->
+    <ConfigFiles Include="tsconfig.json" />
+    <Content Update="tsconfig.json" PublishFolderType="None" />
+    <Content Update="package.json" PublishFolderType="None" ExcludeFromBundleResources="true" />
+    <TypeScriptCompile Remove="**\*.ts" />
+    <None Include="**\*.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="node_modules\**" />
+    <TypeScriptCompile Remove="node_modules\**" />
+    <TypeScriptCompile Remove="wwwroot\lib\monaco-editor\**\*.*" />
+  </ItemGroup>
+
+  <!-- Target ran on `dotnet restore` -->
+  <Target Name="NodeJsRestoreTarget" BeforeTargets="_GenerateRestoreProjectSpec">
+    <!-- Verify that Node.JS is installed. -->
+    <Exec Command="node --version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+
+    <!-- Restore Node.JS dependencies. -->
+    <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+    <Exec WorkingDirectory="$(ProjectDir)" Command="npm install" />
+  </Target>
+
+  <!-- Target ran on `dotnet build` -->
+  <Target Name="GulpPrecompileTarget" AfterTargets="PrepareForBuild">
+    <!-- Run the Gulp tasks. -->
+    <Message Importance="high" Text="Generating CSS and JavaScript..." />
+    <Exec WorkingDirectory="$(ProjectDir)" Command="node_modules\.bin\gulp devtoysJavaScript" />
+    <Exec WorkingDirectory="$(ProjectDir)" Command="node_modules\.bin\gulp devtoysSass" />
+  </Target>
+</Project>

@@ -15,6 +15,7 @@ if (-not (Test-Path -Path "$RootFolder\\.gitignore"))
 # ------------------------
 $temp_dir_name = ".temp"
 $tools_dir = "$RootFolder\tools"
+$destination_dir = "..\src\app\dev\DevToys.Blazor\wwwroot\lib\monaco-editor"
 
 Push-Location $tools_dir
 
@@ -23,14 +24,14 @@ $monaco_version = Get-Content "monaco-editor-version-number.txt" -First 1
 $monaco_tgz_url = "https://registry.npmjs.org/monaco-editor/-/monaco-editor-$monaco_version.tgz"
 
 # Remove Old Dependency
-Remove-Item "..\src\app\dev\DevToys.MonacoEditor\monaco-editor" -Force -Recurse -ErrorAction SilentlyContinue
+Remove-Item $destination_dir -Force -Recurse -ErrorAction SilentlyContinue
 
 # Clean-up Temp Dir, if already exist
 Remove-Item $temp_dir_name -Force -Recurse -ErrorAction SilentlyContinue
 
 # Create Temp Directory and Output
 New-Item -Name $temp_dir_name -ItemType Directory | Out-Null
-New-Item -Name "..\src\app\dev\DevToys.MonacoEditor\monaco-editor" -ItemType Directory | Out-Null
+New-Item -Name $destination_dir -ItemType Directory | Out-Null
 
 Write-Host "Downloading Monaco v.$monaco_version"
 
@@ -42,7 +43,7 @@ Write-Host "Extracting..."
 mkdir "$tools_dir\$temp_dir_name\monaco"
 tar -zxf "$tools_dir\$temp_dir_name\monaco.tgz" -C "$tools_dir\$temp_dir_name\monaco"
 
-Copy-Item -Path ".\$temp_dir_name\monaco\package\*" -Destination "..\src\app\dev\DevToys.MonacoEditor\monaco-editor" -Recurse
+Copy-Item -Path ".\$temp_dir_name\monaco\package\*" -Destination $destination_dir -Recurse
 
 # Clean-up Temp Dir
 Remove-Item $temp_dir_name -Force -Recurse -ErrorAction SilentlyContinue

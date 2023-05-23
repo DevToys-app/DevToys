@@ -1,0 +1,15 @@
+﻿using DevToys.Api;
+
+namespace DevToys.Blazor.Components;
+
+public abstract class MefComponentBase : StyledComponentBase
+{
+    [Inject]
+    protected IMefProvider MefProvider { get; set; } = default!;
+
+    protected override void OnInitialized()
+    {
+        MefProvider.SatisfyImports(this);
+        base.OnInitialized();
+    }
+}

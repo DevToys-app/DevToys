@@ -21,9 +21,12 @@
     <PackageVersion Include="CommunityToolkit.WinUI.UI.Animations" Version="$(CommunityToolkitWinUINuGetVersion)" />
     <PackageVersion Include="coverlet.collector" Version="3.1.2" />
     <PackageVersion Include="FuzzySharp" Version="2.0.2" />
+    <PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="$(DotNetVersion)" />
+    <PackageVersion Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="7.0.86" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.4.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" />
     <PackageVersion Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageVersion Include="Microsoft.Extensions.FileProviders.Embedded" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.Extensions.Logging" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Configuration" Version="$(DotNetVersion)" />

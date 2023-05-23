@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Specialized;
 
-namespace DevToys.Api.Core;
+namespace DevToys.Api;
 
 /// <summary>
 ///     COPY FROM https://github.com/dotnet/efcore/blob/2d7c4a407e3ae8b1fab38500465e37619786d362/src/EFCore/ChangeTracking/ObservableHashSet.cs

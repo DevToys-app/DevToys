@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using DevToys.Api;
-using DevToys.Api.Core;
 using DevToys.Business.Models;
 using DevToys.Core.Models;
 using DevToys.Core.Tools;

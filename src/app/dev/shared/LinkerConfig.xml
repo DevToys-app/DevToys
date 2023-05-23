@@ -26,11 +26,7 @@
     <assembly fullname="DevToys.Core" />
     <assembly fullname="DevToys.CLI" />
     <assembly fullname="DevToys.Localization" />
-    <assembly fullname="DevToys.MauiBlazor" />
-    <assembly fullname="DevToys.MonacoEditor" />
-    <assembly fullname="DevToys.UI" />
+    <assembly fullname="DevToys.Blazor" />
     <assembly fullname="DevToys.Business" />
-    <assembly fullname="DevToys.Wasdk" />
-    <assembly fullname="DevToys.Wasm" />
     <assembly fullname="DevToys.Tools" />
 </linker>

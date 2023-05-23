@@ -9,7 +9,8 @@
     <Windows10MinSDKVersion>$(Windows10MinSDKVersionTrimmed).0</Windows10MinSDKVersion>
 
     <NetCore>net7.0</NetCore>
-    <NetCoreWindows>$(NetCore)-windows$(Windows10MinSDKVersionTrimmed)</NetCoreWindows>
+    <NetCoreWindows10>$(NetCore)-windows$(Windows10MinSDKVersionTrimmed)</NetCoreWindows10>
+    <NetCoreWindows>$(NetCore)-windows</NetCoreWindows>
     <NetMacCatalyst>$(NetCore)-maccatalyst</NetMacCatalyst>
     <NetMacOS>$(NetCore)-macos</NetMacOS>
 
