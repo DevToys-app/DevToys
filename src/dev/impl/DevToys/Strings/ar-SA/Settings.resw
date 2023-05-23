@@ -118,22 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>About</value>
+    <value>عن التطبيق</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
     <value>مظهر التطبيق</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>Select which app theme to display</value>
+    <value>حدد سمة التطبيق التي تريد عرضها</value>
   </data>
   <data name="AppTitle" xml:space="preserve">
     <value>DevToys</value>
   </data>
   <data name="Behaviors" xml:space="preserve">
-    <value>Behaviors</value>
+    <value>السلوك</value>
   </data>
   <data name="Close" xml:space="preserve">
-    <value>Close</value>
+    <value>إغلاق</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>نسخ</value>
@@ -142,37 +142,37 @@
     <value>داكن</value>
   </data>
   <data name="DefaultLanguage" xml:space="preserve">
-    <value>Same as Microsoft Windows</value>
+    <value>تماثل مايكروسوفت ويندوز</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Settings</value>
+    <value>الإعدادات</value>
   </data>
   <data name="Font" xml:space="preserve">
-    <value>Font</value>
+    <value>نوع الخط</value>
   </data>
   <data name="HighlightCurrentLine" xml:space="preserve">
-    <value>Highlight current line</value>
+    <value>تسليط الضوء على السطر الحالي</value>
   </data>
   <data name="HighlightCurrentLineDescription" xml:space="preserve">
-    <value>Change the background color of the current line so it's more visible</value>
+    <value>تغيير لون الخلفية للسطر الحالي بحيث يكون أكثر وضوحاً</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>اللغة</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>The app needs to be restarted when selecting another language</value>
+    <value>يحتاج التطبيق إلى إعادة تشغيل عند تحديد لغة أخرى</value>
   </data>
   <data name="License" xml:space="preserve">
-    <value>License</value>
+    <value>الترخيص</value>
   </data>
   <data name="Light" xml:space="preserve">
     <value>مضيء</value>
   </data>
   <data name="LineNumbers" xml:space="preserve">
-    <value>Line numbers</value>
+    <value>أرقام الأسطر</value>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>Display line numbers in the text editor</value>
+    <value>عرض أرقام السطر في محرر النص</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
     <value>Open logs</value>
@@ -226,7 +226,7 @@
     <value>Customize DevToys look &amp; feel</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Settings</value>
+    <value>الإعدادات</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>Configurations Options</value>
