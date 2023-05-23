@@ -1,4 +1,4 @@
-﻿using DevToys.Api.Core;
+﻿using DevToys.Api;
 using Microsoft.Extensions.Logging;
 using Uno.Extensions;
 

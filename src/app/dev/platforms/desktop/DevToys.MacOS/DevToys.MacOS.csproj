@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <!-- <TargetFrameworks Condition="$(IsWindows)">$(NetCoreWindows)</TargetFrameworks> -->
+    <TargetFrameworks Condition="$(IsWindows)">$(NetCoreWindows10)</TargetFrameworks>
     <TargetFrameworks Condition="$(IsMac)">$(NetMacCatalyst)</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <RootNamespace>DevToys.MacOS</RootNamespace>

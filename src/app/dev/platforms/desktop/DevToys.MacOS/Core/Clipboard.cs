@@ -1,11 +1,10 @@
-﻿using DevToys.Api;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Uno.Extensions;
 
 namespace DevToys.MacOS.Core;
 
-[Export(typeof(Api.Core.IClipboard))]
-internal sealed partial class Clipboard : Api.Core.IClipboard
+[Export(typeof(Api.IClipboard))]
+internal sealed partial class Clipboard : Api.IClipboard
 {
     private readonly ILogger _logger;
 

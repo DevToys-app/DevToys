@@ -1,4 +1,4 @@
-﻿using DevToys.Api.Core;
+﻿using DevToys.Api;
 
 namespace DevToys.MacOS.Core;
 
