@@ -26,6 +26,8 @@ internal sealed class ThemeListener : IThemeListener
 
         // TODO: Support High contrast
         IsHighContrast = false;
+
+        ApplyDesiredColorTheme();
     }
 
     public AvailableApplicationTheme CurrentSystemTheme { get; private set; }
