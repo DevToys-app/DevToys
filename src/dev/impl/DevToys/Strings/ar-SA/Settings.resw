@@ -175,69 +175,69 @@
     <value>عرض أرقام السطر في محرر النص</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
-    <value>Open logs</value>
+    <value>فتح السجلات</value>
   </data>
   <data name="PrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
+    <value>سياسة الخصوصية</value>
   </data>
   <data name="RateAndReview" xml:space="preserve">
-    <value>Rate and review on Microsoft Store</value>
+    <value>تقييم ومراجعة على متجر Microsoft</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>Render white space</value>
+    <value>عرض المسافات البيضاء</value>
   </data>
   <data name="ReportProblem" xml:space="preserve">
-    <value>Report a problem</value>
+    <value>الإبلاغ عن مشكلة</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
-    <value>Smart detection</value>
+    <value>الاكتشاف الذكي</value>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Automatically detect the best tool based on the clipboard content</value>
+    <value>الكشف تلقائياً عن أفضل أداة استناداً إلى محتوى الحافظة</value>
   </data>
   <data name="SmartDetectionHowTo" xml:space="preserve">
-    <value>How to use Smart Detection</value>
+    <value>كيفية استخدام الاكتشاف الذكي</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automatically paste the clipboard content when selecting a recommended tool</value>
+    <value>لصق محتوى الحافظة تلقائياً عند اختيار أداة موصى بها</value>
   </data>
   <data name="SourceCode" xml:space="preserve">
-    <value>Source code</value>
+    <value>الشفرة المصدرية</value>
   </data>
   <data name="TextEditor" xml:space="preserve">
-    <value>Text editor</value>
+    <value>محرر النصوص</value>
   </data>
   <data name="ThirdPartyNotices" xml:space="preserve">
-    <value>Third party licenses</value>
+    <value>تراخيص الطرف الثالث</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>Useful links</value>
+    <value>روابط مفيدة</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
-    <value>Use system settings</value>
+    <value>استخدم إعدادات النظام</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>الإصدار {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Wrap word</value>
+    <value>التفاف النص</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Customize DevToys look &amp; feel</value>
+    <value>تخصيص مظهر DevToys</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>الإعدادات</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Configurations Options</value>
+    <value>خيارات الإعدادات</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
-    <value>Help us translating DevToys!</value>
+    <value>ساعدنا في تَرْجَمَة DevToys!</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>استبدال النص عند اللصق</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
+    <value>عند النقر على زر اللصق، امسح النص قبل اللصق بدلاً من إضافته إلى المحتوى الحالي لمحرر النص.</value>
   </data>
 </root>
