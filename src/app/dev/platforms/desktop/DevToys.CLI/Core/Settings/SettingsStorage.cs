@@ -24,7 +24,7 @@ internal sealed class SettingsStorage : ISettingsStorage
 
     public void ResetSetting(string settingName)
     {
-        _settings.Value.Remove(settingName, out string _);
+        _settings.Value.Remove(settingName, out string? _);
     }
 
     public bool TryReadSetting(string settingName, out object? value)

@@ -65,7 +65,7 @@ internal sealed class CommandToICommandLineToolMap
     {
         string? commandDescription
             = resourceManager is not null && !string.IsNullOrWhiteSpace(metadata.DescriptionResourceName)
-            ? resourceManager.GetString(metadata.DescriptionResourceName)
+            ? resourceManager.GetString(metadata.DescriptionResourceName) ?? string.Empty
             : string.Empty;
 
         return commandDescription;

@@ -28,8 +28,8 @@ rm -rf $DESTINATION_DIR
 rm -rf "$TOOLS_DIR/$TEMP_DIR_NAME"
 
 # Create Temp Directory and Output
-mkdir "$TOOLS_DIR/$TEMP_DIR_NAME"
-mkdir $DESTINATION_DIR
+mkdir -p "$TOOLS_DIR/$TEMP_DIR_NAME"
+mkdir -p $DESTINATION_DIR
 
 echo "Downloading Monaco v.$MONACO_VERSION"
 

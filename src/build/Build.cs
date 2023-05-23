@@ -322,7 +322,7 @@ class Build : NukeBuild
 
     IEnumerable<DotnetParameters> GetDotnetParametersForMauiBlazorApp()
     {
-        string publishProject = "DevToys.MauiBlazor";
+        string publishProject = "DevToys.MacOS";
         Project project;
 
         if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))

@@ -27,11 +27,11 @@
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" />
     <PackageVersion Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageVersion Include="Microsoft.Extensions.FileProviders.Embedded" Version="$(DotNetVersion)" />
-    <PackageVersion Include="Microsoft.Extensions.Logging" Version="$(DotNetVersion)" />
-    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="$(DotNetVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Logging" Version="$(DotNetVersion)" Condition="'$(UseMaui)' != 'true'" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="$(DotNetVersion)" Condition="'$(UseMaui)' != 'true'" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Configuration" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="$(DotNetVersion)" />
-    <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="$(DotNetVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="$(DotNetVersion)" Condition="'$(UseMaui)' != 'true'" />
     <PackageVersion Include="Microsoft.Graphics.Win2D" Version="1.0.4" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
     <PackageVersion Include="Microsoft.TypeScript.MSBuild" Version="$(MicrosoftTypeScriptMSBuildVersion)" />

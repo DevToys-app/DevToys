@@ -321,7 +321,9 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
             }
         }
 
-        return HeaderAndBodyToolViewItems[0];
+        var firstItem = HeaderAndBodyToolViewItems[0];
+        Guard.IsNotNull(firstItem);
+        return firstItem;
     }
 
     private void OnChangeSelectedMenuItemMessageReceived(MainWindowViewModel vm, ChangeSelectedMenuItemMessage message)
