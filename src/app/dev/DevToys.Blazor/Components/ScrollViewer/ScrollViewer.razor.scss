@@ -1,16 +1,16 @@
 .scroll-viewer {
-    overflow-y: scroll;
-    overflow-x: scroll;
+    overflow-y: overlay;
+    overflow-x: overlay;
 
     &.vertical {
-        overflow-y: scroll;
+        overflow-y: overlay;
         overflow-x: hidden;
         height: 100%;
     }
 
     &.horizontal {
         overflow-y: hidden;
-        overflow-x: scroll;
+        overflow-x: overlay;
         width: 100%;
     }
 
@@ -26,20 +26,17 @@
         border-color: var(--scrollbar-thumb-border-color);
         background-color: var(--scrollbar-thumb-background-color);
     }
-
     // By default, scrollbar is invisible.
     &::-webkit-scrollbar {
         width: 0px;
         transition: all 0.2s ease-in-out;
     }
-
     // When mouse is over the control, shows the scrollbar in small.
     &:hover {
         &::-webkit-scrollbar {
             width: 3px;
         }
     }
-
     // When the mouse cursor is close from the scrollbar, enlarge it.
     &.on-hover {
         &::-webkit-scrollbar {
