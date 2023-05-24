@@ -27,7 +27,8 @@
         <DefineConstants>$(DefineConstants);__MACCATALYST__</DefineConstants>
         <RuntimeIdentifiers>maccatalyst-arm64</RuntimeIdentifiers>
         <UseInterpreter>true</UseInterpreter>
-        <!-- TODO: Only do this in DEBUG build. -->
+      </PropertyGroup>
+      <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
         <CodeSignEntitlements>Platforms/MacCatalyst/Entitlements.Debug.plist</CodeSignEntitlements>
       </PropertyGroup>
       <PropertyGroup Condition="'$(RuntimeIdentifier)'=='' AND '$(Configuration)'=='Release'">

@@ -4,6 +4,8 @@
 <dict>
     <key>com.apple.security.app-sandbox</key>
     <false/>
+    <!-- Enable this value to use browser developer tools while debugging.-->
+    <!-- See https://aka.ms/blazor-hybrid-developer-tools -->
     <key>com.apple.security.get-task-allow</key>
     <true/>
 </dict>
