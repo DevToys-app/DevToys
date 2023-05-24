@@ -10,10 +10,6 @@
     <PrepareForBuildDependsOn>CompileTypeScript;GetTypeScriptOutputForPublishing;$(PrepareForBuildDependsOn)</PrepareForBuildDependsOn>
   </PropertyGroup>
 
-  <ItemGroup Condition="$(IsMac) != 'true'">
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" />
@@ -46,8 +42,8 @@
     <TypeScriptCompile Remove="wwwroot\lib\monaco-editor\**\*.*" />
   </ItemGroup>
 
-  <!-- Target ran on `dotnet restore` -->
-  <Target Name="NodeJsRestoreTarget" BeforeTargets="_GenerateRestoreProjectSpec">
+  <!-- Target ran on `dotnet restore -p:RestoreNpm=true` -->
+  <Target Name="NodeJsRestoreTarget" AfterTargets="_GenerateRestoreProjectSpec" Condition="$(RestoreNpm) == 'true'">
     <!-- Verify that Node.JS is installed. -->
     <Exec Command="node --version" ContinueOnError="true">
       <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />

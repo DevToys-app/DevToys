@@ -14,7 +14,7 @@ Write-Host "Restoring all dependencies"
 Get-ChildItem $PSScriptRoot\src\ -rec |? { $_.FullName.EndsWith('DevToys-Windows.sln') } |% {
     $SolutionPath = $_.FullName;
     Write-Host "Restoring packages for $($SolutionPath)..."
-    ExecSafe { & $env:DOTNET_EXE restore -p:PublishReadyToRun=true -v:quiet $SolutionPath  }
+    ExecSafe { & $env:DOTNET_EXE restore -p:RestoreNpm=true -p:PublishReadyToRun=true -v:quiet $SolutionPath  }
 }
 
 Write-Host "Done."

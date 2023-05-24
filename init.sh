@@ -23,7 +23,7 @@ SOLUTIONS=$(find ./src/ -iname "*DevToys-MacOS.sln" -print)
 for SOLUTION_FILE in $SOLUTIONS
 do
     echo "Restoring packages for $SOLUTION_FILE..."
-    "$DOTNET_EXE" restore  -p:PublishReadyToRun=true -v:quiet $SOLUTION_FILE
+    "$DOTNET_EXE" restore -p:RestoreNpm=true -p:PublishReadyToRun=true -v:quiet $SOLUTION_FILE
 done
 
 echo "Done."
