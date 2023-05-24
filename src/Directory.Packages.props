@@ -1,24 +1,12 @@
 <Project>
   <PropertyGroup>
-    <!--
-      Central Package Management isn't supported by Razor Sdk project type. We keep the version of some packages in variables below so we can reuse
-      them in projects explicitely so we keep consistent package version number across the repository.
-    -->
     <CommunityToolkitVersion>8.1.0</CommunityToolkitVersion>
-    <CommunityToolkitWinUINuGetVersion>7.1.2</CommunityToolkitWinUINuGetVersion>
     <DotNetVersion>7.0.0</DotNetVersion>
-    <UnoVersion>4.7.37</UnoVersion>
-    <UnoCommunityToolkitWinUINuGetVersion>7.1.100</UnoCommunityToolkitWinUINuGetVersion>
-    <UnoWasmBootstrapVersion>8.0.0-dev.65</UnoWasmBootstrapVersion>
-    <MicrosoftTypeScriptMSBuildVersion>4.9.4</MicrosoftTypeScriptMSBuildVersion>
-    <SixLaborsImageSharpVersion>3.0.0</SixLaborsImageSharpVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="CommunityToolkit.Common" Version="$(CommunityToolkitVersion)" />
     <PackageVersion Include="CommunityToolkit.Diagnostics" Version="$(CommunityToolkitVersion)" />
     <PackageVersion Include="CommunityToolkit.Mvvm" Version="$(CommunityToolkitVersion)" />
-    <PackageVersion Include="CommunityToolkit.WinUI.UI" Version="$(CommunityToolkitWinUINuGetVersion)" />
-    <PackageVersion Include="CommunityToolkit.WinUI.UI.Animations" Version="$(CommunityToolkitWinUINuGetVersion)" />
     <PackageVersion Include="coverlet.collector" Version="3.1.2" />
     <PackageVersion Include="FuzzySharp" Version="2.0.2" />
     <PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="$(DotNetVersion)" />
@@ -26,45 +14,19 @@
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.4.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" />
     <PackageVersion Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageVersion Include="Microsoft.Extensions.FileProviders.Embedded" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.Extensions.Logging" Version="$(DotNetVersion)" Condition="'$(UseMaui)' != 'true'" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="$(DotNetVersion)" Condition="'$(UseMaui)' != 'true'" />
-    <PackageVersion Include="Microsoft.Extensions.Logging.Configuration" Version="$(DotNetVersion)" />
-    <PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="$(DotNetVersion)" Condition="'$(UseMaui)' != 'true'" />
-    <PackageVersion Include="Microsoft.Graphics.Win2D" Version="1.0.4" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
-    <PackageVersion Include="Microsoft.TypeScript.MSBuild" Version="$(MicrosoftTypeScriptMSBuildVersion)" />
-    <PackageVersion Include="Microsoft.UI.Xaml" Version="2.8.1" />
-    <PackageVersion Include="Microsoft.Web.WebView2" Version="1.0.1462.37" />
-    <PackageVersion Include="Microsoft.Windows.Compatibility" Version="$(DotNetVersion)" />
-    <PackageVersion Include="Microsoft.Windows.CsWin32" Version="0.2.188-beta" />
-    <PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.756" Condition="'$(UseMaui)' != 'true'" />
-    <PackageVersion Include="Microsoft.WindowsAppSDK" Version="1.2.230313.1" Condition="'$(UseMaui)' != 'true'" />
-    <PackageVersion Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9"/>
+    <PackageVersion Include="Microsoft.TypeScript.MSBuild" Version="4.9.4" />
     <PackageVersion Include="Moq" Version="4.18.2" />
     <PackageVersion Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageVersion Include="Nuke.Common" Version="6.2.1" />
-    <PackageVersion Include="SixLabors.ImageSharp" Version="$(SixLaborsImageSharpVersion)"/>
     <PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
     <PackageVersion Include="System.ComponentModel.Composition" Version="$(DotNetVersion)" />
     <PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
-    <PackageVersion Include="System.Runtime.InteropServices.WindowsRuntime" Version="4.3.0" />
-    <PackageVersion Include="Uno.CommunityToolkit.WinUI.UI" Version="$(UnoCommunityToolkitWinUINuGetVersion)" />
-    <PackageVersion Include="Uno.CommunityToolkit.WinUI.UI.Animations" Version="$(UnoCommunityToolkitWinUINuGetVersion)" />
     <PackageVersion Include="Uno.Core.Extensions.Logging" Version="4.0.1" />
     <PackageVersion Include="Uno.Core.Extensions.Logging.Singleton" Version="4.0.1" />
-    <PackageVersion Include="Uno.Extensions.Logging.OSLog" Version="1.4.0" />
-    <PackageVersion Include="Uno.Extensions.Logging.WebAssembly.Console" Version="1.4.0" />
-    <PackageVersion Include="Uno.Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.3.0" />
-    <PackageVersion Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="$(UnoVersion)" />
-    <PackageVersion Include="Uno.Wasm.Bootstrap" Version="$(UnoWasmBootstrapVersion)" />
-    <PackageVersion Include="Uno.Wasm.Bootstrap.DevServer" Version="$(UnoWasmBootstrapVersion)" />
-    <PackageVersion Include="Uno.WinUI" Version="$(UnoVersion)" />
-    <PackageVersion Include="Uno.WinUI.Lottie" Version="$(UnoVersion)" />
-    <PackageVersion Include="Uno.WinUI.RemoteControl" Version="$(UnoVersion)" />
-    <PackageVersion Include="Uno.WinUI.Runtime.WebAssembly" Version="$(UnoVersion)" />
-    <PackageVersion Include="Uno.WinUI.WebAssembly" Version="$(UnoVersion)" />
     <PackageVersion Include="xunit" Version="2.4.2" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="2.4.5" />
   </ItemGroup>
