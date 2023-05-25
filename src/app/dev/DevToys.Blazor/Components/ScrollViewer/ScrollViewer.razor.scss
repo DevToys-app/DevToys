@@ -1,0 +1,55 @@
+.scroll-viewer {
+    overflow-y: overlay;
+    overflow-x: overlay;
+
+    &.vertical {
+        overflow-y: overlay;
+        overflow-x: hidden;
+        height: 100%;
+    }
+
+    &.horizontal {
+        overflow-y: hidden;
+        overflow-x: overlay;
+        width: 100%;
+    }
+
+    &::-webkit-scrollbar-track {
+        border-radius: 999px;
+        background: var(--scrollbar-track-background-color);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 999px;
+        border-width: 3px;
+        border-style: solid;
+        border-color: var(--scrollbar-thumb-border-color);
+        background-color: var(--scrollbar-thumb-background-color);
+    }
+    // By default, scrollbar is invisible.
+    &::-webkit-scrollbar {
+        width: 0px;
+        transition: all 0.2s ease-in-out;
+    }
+    // When mouse is over the control, shows the scrollbar in small.
+    &:hover {
+        &::-webkit-scrollbar {
+            width: 3px;
+        }
+    }
+    // When the mouse cursor is close from the scrollbar, enlarge it.
+    &.on-hover {
+        &::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: var(--scrollbar-track-background-color-hover);
+        }
+
+        &::-webkit-scrollbar-thumb {
+            border-color: var(--scrollbar-thumb-border-color-hover);
+            background-color: var(--scrollbar-thumb-background-color-hover);
+        }
+    }
+}

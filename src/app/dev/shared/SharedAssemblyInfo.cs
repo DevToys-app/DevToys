@@ -22,3 +22,4 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyCulture("")]
 
 [assembly: InternalsVisibleTo("DevToys.UnitTests")]
+

@@ -1,0 +1,83 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFrameworks Condition="$(IsWindows)">$(NetCoreWindows10)</TargetFrameworks>
+    <TargetFrameworks Condition="$(IsMac)">$(NetMacCatalyst)</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>DevToys.MacOS</RootNamespace>
+    <UseMaui>true</UseMaui>
+    <SingleProject>true</SingleProject>
+    <EnableDefaultCssItems>false</EnableDefaultCssItems>
+
+    <!-- Display name -->
+    <ApplicationTitle>DevToys</ApplicationTitle>
+
+    <!-- App Identifier -->
+    <ApplicationId>com.etiennebaudoux.devtoys</ApplicationId>
+    <ApplicationIdGuid>856CF642-FDC7-42BE-A1D5-5D7F0FC09091</ApplicationIdGuid>
+
+    <!-- Versions -->
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <ApplicationVersion>1</ApplicationVersion>
+  </PropertyGroup>
+
+  <Choose>
+    <When Condition="'$(TargetFramework)' == '$(NetMacCatalyst)'">
+      <PropertyGroup>
+        <DefineConstants>$(DefineConstants);__MACCATALYST__</DefineConstants>
+        <RuntimeIdentifiers>maccatalyst-arm64</RuntimeIdentifiers>
+        <UseInterpreter>true</UseInterpreter>
+      </PropertyGroup>
+      <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+        <CodeSignEntitlements>Platforms/MacCatalyst/Entitlements.Debug.plist</CodeSignEntitlements>
+      </PropertyGroup>
+      <PropertyGroup Condition="'$(RuntimeIdentifier)'=='' AND '$(Configuration)'=='Release'">
+        <!-- Default values for command line builds -->
+        <RuntimeIdentifier>maccatalyst-arm64</RuntimeIdentifier>
+      </PropertyGroup>
+    </When>
+
+    <When Condition="'$(TargetFramework)' == '$(NetCoreWindows10)'">
+      <PropertyGroup>
+        <DefineConstants>$(DefineConstants);__WINDOWS__</DefineConstants>
+        <TargetPlatformMinVersion>$(Windows10MinSDKVersion)</TargetPlatformMinVersion>
+        <SupportedOSPlatformVersion>$(Windows10MinSDKVersion)</SupportedOSPlatformVersion>
+      </PropertyGroup>
+      <PropertyGroup Condition="'$(Configuration)'=='Release'">
+        <Platforms>x86;x64;arm64</Platforms>
+        <RuntimeIdentifiers>win10-arm64;win10-x64;win10-x86</RuntimeIdentifiers>
+        <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+        <AppxPackage>false</AppxPackage>
+        <WindowsPackageType>None</WindowsPackageType>
+      </PropertyGroup>
+    </When>
+  </Choose>
+
+  <PropertyGroup Condition="'$(RuntimeIdentifierOverride)' != ''">
+    <RuntimeIdentifier>$(RuntimeIdentifierOverride)</RuntimeIdentifier>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- App Icon -->
+    <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+
+    <!-- Splash Screen -->
+    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
+    <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+    <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.TypeScript.MSBuild">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\DevToys.Blazor\DevToys.Blazor.csproj" />
+    <ProjectReference Include="..\..\..\DevToys.Localization\DevToys.Localization.csproj" />
+  </ItemGroup>
+
+</Project>

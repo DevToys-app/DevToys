@@ -1,0 +1,34 @@
+@font-face {
+    font-family: "FluentSystemIcons-Regular";
+    src: url("../fonts/FluentSystemIcons-Regular.woff2?b48ba7b19a15536ed3d062b9b6c8fa0e") format("woff2"), url("../fonts/FluentSystemIcons-Regular.woff?b48ba7b19a15536ed3d062b9b6c8fa0e") format("woff"), url("../fonts/FluentSystemIcons-Regular.ttf?b48ba7b19a15536ed3d062b9b6c8fa0e") format("truetype");
+}
+
+i[class^="FluentSystemIcons"]:before, i[class*=" FluentSystemIcons"]:before {
+    font-family: FluentSystemIcons-Regular !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+    text-rendering: geometricPrecision;
+}
+
+@mixin typography-body {
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: default;
+
+    font: {
+        family: var(--font-family-text);
+        size: var(--font-size-body);
+        optical-sizing: none;
+        weight: normal;
+    }
+
+    line-height: 20px;
+}

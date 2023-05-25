@@ -8,7 +8,7 @@
             "name": "Debug (MAUI Blazor desktop app)",
             "type": "coreclr",
             "request": "attach",
-            "processName": "DevToys.MauiBlazor",
+            "processName": "DevToys.MacOS",
             "preLaunchTask": "Run",
         }
     ]

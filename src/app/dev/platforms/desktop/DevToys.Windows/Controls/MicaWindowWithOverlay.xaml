@@ -1,0 +1,217 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:DevToys.Windows.Controls">
+
+    <LinearGradientBrush x:Key="ControlElevationBorder" MappingMode="Absolute" StartPoint="0,0" EndPoint="0,3">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Offset="0.33" Color="{DynamicResource ControlStrokeColorSecondary}" />
+            <GradientStop Offset="1.0" Color="{DynamicResource ControlStrokeColorDefault}" />
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <Style x:Key="MicaWindowWithOverlayButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Background" Value="{DynamicResource FakeTransparentColor}" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <ContentPresenter
+                            x:Name="contentPresenter"
+                            Margin="{TemplateBinding Padding}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            RecognizesAccessKey="True"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ControlElevationBorder}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ControlElevationBorder}" />
+                            <Setter TargetName="contentPresenter" Property="Opacity" Value=".5" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="contentPresenter" Property="Opacity" Value=".5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MicaWindowWithOverlayCloseButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Background" Value="{DynamicResource FakeTransparentColor}" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <ContentPresenter
+                            x:Name="contentPresenter"
+                            Margin="{TemplateBinding Padding}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            RecognizesAccessKey="True"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#C42B1C" />
+                            <Setter Property="Foreground" Value="#FFFFFF" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="#B4271C" />
+                            <Setter Property="Foreground" Value="#C5FFFFFF" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="contentPresenter" Property="Opacity" Value=".5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MicaWindowWithOverlayStyle" TargetType="{x:Type controls:MicaWindowWithOverlay}">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="ResizeMode" Value="CanResize" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:MicaWindowWithOverlay}">
+                    <Border
+                        x:Name="WindowBorder"
+                        BorderThickness="2"
+                        CornerRadius="0">
+                        <Grid Margin="-1">
+                            <AdornerDecorator>
+                                <Grid Margin="{TemplateBinding MarginMaximized}">
+                                    <ContentPresenter />
+
+                                    <controls:OverlayControl
+                                        x:Name="TitleBar"
+                                        VerticalAlignment="Top"
+                                        Height="32">
+                                        <Grid
+                                            VerticalAlignment="Top"
+                                            Height="32">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="{TemplateBinding TitleBarMarginLeft}"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="{TemplateBinding TitleBarMarginRight}"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Border
+                                                x:Name="DraggableTitleBarArea"
+                                                Grid.Column="1"
+                                                Background="{DynamicResource FakeTransparentColor}"/>
+                                            <StackPanel
+                                                Grid.Column="3"
+                                                Orientation="Horizontal">
+                                                <Button
+                                                    x:Name="MinimizeButton"
+                                                    Style="{StaticResource MicaWindowWithOverlayButtonStyle}"
+                                                    ToolTip="Minimize">
+                                                    <Button.Content>
+                                                        <Grid Width="46" Height="32">
+                                                            <Path
+                                                                Width="10"
+                                                                Height="10"
+                                                                HorizontalAlignment="Center"
+                                                                VerticalAlignment="Center"
+                                                                Data="M1 0.5 L0 0.5"
+                                                                Stretch="Uniform"
+                                                                Stroke="{DynamicResource Foreground}"
+                                                                StrokeThickness="1" />
+                                                        </Grid>
+                                                    </Button.Content>
+                                                </Button>
+                                                <Button
+                                                    x:Name="RestoreButton"
+                                                    Style="{StaticResource MicaWindowWithOverlayButtonStyle}"
+                                                    WindowChrome.IsHitTestVisibleInChrome="True"
+                                                    Visibility="Collapsed">
+                                                    <Button.Content>
+                                                        <Grid Width="46" Height="32" UseLayoutRounding="True">
+                                                            <Path
+                                                                Width="10"
+                                                                Height="10"
+                                                                HorizontalAlignment="Center"
+                                                                VerticalAlignment="Center"
+                                                                Data="M0 0.2 L0.8 0.2 M0 01 L0.8 1 M0.8 1 L0.8 0.2 M0 0.2 L0 1 M0.3 0 L0.95 0 M01 0.05 L1 0.7"
+                                                                Stretch="Uniform"
+                                                                Stroke="{DynamicResource Foreground}"
+                                                                StrokeThickness="1" />
+                                                        </Grid>
+                                                    </Button.Content>
+                                                </Button>
+                                                <Button
+                                                    x:Name="MaximizeButton"
+                                                    Style="{StaticResource MicaWindowWithOverlayButtonStyle}"
+                                                    WindowChrome.IsHitTestVisibleInChrome="True">
+                                                    <Button.Content>
+                                                        <Grid Width="46" Height="32">
+                                                            <Path
+                                                                Width="10"
+                                                                Height="10"
+                                                                HorizontalAlignment="Center"
+                                                                VerticalAlignment="Center"
+                                                                Data="M0.025 0 L0.975 0 M0.025 1 L0.975 1 M1 0.975 L1 0.025 M0 0.025 L0 0.975"
+                                                                Stretch="Uniform"
+                                                                Stroke="{DynamicResource Foreground}"
+                                                                StrokeThickness="1" />
+                                                        </Grid>
+                                                    </Button.Content>
+                                                </Button>
+                                                <Button
+                                                    x:Name="CloseButton"
+                                                    Style="{StaticResource MicaWindowWithOverlayCloseButtonStyle}"
+                                                    ToolTip="Close">
+                                                    <Button.Content>
+                                                        <Grid Width="46" Height="32">
+                                                            <Path
+                                                                Width="10"
+                                                                Height="10"
+                                                                HorizontalAlignment="Center"
+                                                                VerticalAlignment="Center"
+                                                                Data="M0,0 L1,1 M0,1 L1,0"
+                                                                Stretch="Uniform"
+                                                                Stroke="{DynamicResource Foreground}"
+                                                                StrokeThickness="1" />
+                                                        </Grid>
+                                                    </Button.Content>
+                                                </Button>
+                                            </StackPanel>
+                                        </Grid>
+                                    </controls:OverlayControl>
+                                </Grid>
+                            </AdornerDecorator>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="WindowState" Value="Maximized">
+                            <Setter TargetName="MaximizeButton" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="RestoreButton" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="WindowState" Value="Normal">
+                            <Setter TargetName="MaximizeButton" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="RestoreButton" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

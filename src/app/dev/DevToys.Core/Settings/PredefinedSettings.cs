@@ -1,5 +1,4 @@
 ﻿using DevToys.Api;
-using DevToys.Api.Core.Theme;
 
 namespace DevToys.Core.Settings;
 

@@ -1,3 +1,0 @@
-﻿MonitorFromPoint
-GetScaleFactorForMonitor
-GetDpiForMonitor

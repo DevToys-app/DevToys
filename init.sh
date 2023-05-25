@@ -14,7 +14,7 @@ xattr -cr ./src/
 
 # Install .NET workloads
 echo "Installing .NET workloads"
-sudo dotnet workload install maccatalyst
+sudo dotnet workload install maui-maccatalyst --from-rollback-file rollback.json
 
 # Restore NuGet solution dependencies
 echo "Restoring all dependencies"
@@ -22,7 +22,7 @@ SOLUTIONS=$(find ./src/ -iname "*DevToys-MacOS.sln" -print)
 for SOLUTION_FILE in $SOLUTIONS
 do
     echo "Restoring packages for $SOLUTION_FILE..."
-    "$DOTNET_EXE" restore  -p:PublishReadyToRun=true -v:quiet $SOLUTION_FILE
+    "$DOTNET_EXE" restore -p:RestoreNpm=true -p:PublishReadyToRun=true -v:quiet $SOLUTION_FILE
 done
 
 echo "Done."

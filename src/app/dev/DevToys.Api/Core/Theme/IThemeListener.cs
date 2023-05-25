@@ -1,4 +1,4 @@
-﻿namespace DevToys.Api.Core.Theme;
+﻿namespace DevToys.Api;
 
 /// <summary>
 /// Provides information about the application theme.
@@ -39,9 +39,4 @@ public interface IThemeListener
     /// Change the color theme of the app based on <see cref="CurrentSystemTheme"/> and <see cref="CurrentAppTheme"/>.
     /// </summary>
     void ApplyDesiredColorTheme();
-
-    /// <summary>
-    /// Evaluates whether the theme should automatically be updated or not, based on app and operating system settings.
-    /// </summary>
-    void UpdateThemeIfNeeded();
 }

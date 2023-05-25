@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using DevToys.Api.Core.Threading;
 
 namespace DevToys.UnitTests.Core.Threading;
 

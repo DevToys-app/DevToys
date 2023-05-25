@@ -1,4 +1,4 @@
-﻿namespace DevToys.Api.Core.Threading;
+﻿namespace DevToys.Api;
 
 [DebuggerDisplay($"IsValueCreated = {{{nameof(IsValueCreated)}}}")]
 public class AsyncLazy<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>

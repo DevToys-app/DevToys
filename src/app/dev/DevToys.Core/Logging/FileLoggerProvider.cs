@@ -1,6 +1,5 @@
 ﻿using System.Collections.Concurrent;
-using DevToys.Api.Core;
-using DevToys.Api.Core.Threading;
+using DevToys.Api;
 using Microsoft.Extensions.Logging;
 
 namespace DevToys.Core.Logging;
@@ -43,7 +42,7 @@ internal sealed class FileLoggerProvider : ILoggerProvider
         _entryQueue.CompleteAdding();
         try
         {
-            _processQueueTask.Wait(1500);  // the same as in ConsoleLogger
+            _processQueueTask.Wait(1500); // the same as in ConsoleLogger
         }
         catch (TaskCanceledException) { }
         catch (AggregateException ex) when (ex.InnerExceptions.Count == 1 && ex.InnerExceptions[0] is TaskCanceledException) { }

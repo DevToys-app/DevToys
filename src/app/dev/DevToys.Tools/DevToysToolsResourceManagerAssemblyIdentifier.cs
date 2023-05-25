@@ -1,6 +1,4 @@
-﻿using DevToys.Api;
-
-namespace DevToys.Tools;
+﻿namespace DevToys.Tools;
 
 [Export(typeof(IResourceManagerAssemblyIdentifier))]
 [Name(nameof(DevToysToolsResourceManagerAssemblyIdentifier))]

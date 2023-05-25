@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="Foreground">#FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="FakeTransparentColor">#01000000</SolidColorBrush>
+    <Color x:Key="ControlStrokeColorDefault">#12FFFFFF</Color>
+    <Color x:Key="ControlStrokeColorSecondary">#18FFFFFF</Color>
+</ResourceDictionary>

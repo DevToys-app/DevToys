@@ -1,6 +1,4 @@
-﻿using DevToys.Api.Core.Theme;
-
-namespace DevToys.Tools.Tools.Settings;
+﻿namespace DevToys.Tools.Tools.Settings;
 
 [Export(typeof(IGuiTool))]
 [Name("Settings")]

@@ -16,9 +16,7 @@ You can contribute to DevToys app by:
 1. Install [Visual Studio 2022 17.3 or later](https://visualstudio.microsoft.com/vs/) installed with the following Workloads, or import the [vs2022.vsconfig](vs2022.vsconfig) file.
     * ASP.NET and web development
     * Node.js development
-    * .NET Multi-Platform App UI development
     * .NET desktop development
-    * Universal Windows Platform development
 
 ### Finalize your environment
 1. Clone this repository.
@@ -34,8 +32,9 @@ You can contribute to DevToys app by:
 
 ### Build, Run & Debug
 1. Open `src/DevToys-Windows.sln` with Visual Studio.
-1. In Visual Studio, set `app/dev/platforms/web/DevToys.Wasm` or `app/dev/platforms/desktop/windows/DevToys.Wasdk` or `app/dev/platforms/desktop/DevToys.CLI` as startup project.
+1. In Visual Studio, set `app/dev/platforms/desktop/DevToys.Windows` or `app/dev/platforms/desktop/DevToys.CLI` as startup project.
 1. Now you should be able to build and run DevToys on your machine by pressing `F5`.
+1. Most of the `DevToys.Windows` app runs in a web browser (WebView2). Press `F12` to open the web developer tools.
 
 ## From macOS
 
@@ -67,7 +66,7 @@ You can contribute to DevToys app by:
 ### Build, Run & Debug
 #### If you are using Visual Studio for Mac or JetBains Rider:
 1. Open `src/DevToys-MacOS.sln` with Visual Studio for Mac or JetBrains Rider.
-1. Set `app/dev/platforms/web/DevToys.Wasm` or `app/dev/platforms/desktop/macos/DevToys.MacOS` or `app/dev/platforms/desktop/DevToys.CLI` as startup project.
+1. Set `app/dev/platforms/desktop/DevToys.MacOS` or `app/dev/platforms/desktop/DevToys.CLI` as startup project.
 1. Now you should be able to build and run DevToys on your machine.
 
 #### If you are using Visual Studio Code:
@@ -75,11 +74,11 @@ You can contribute to DevToys app by:
 2. Install the `C#` extension.
 1. In `Run and Debug`, select `Debug (macOS dektop app)` and press Start.
 
-#### Special note for `DevToys.MauiBlazor`
-In order to access the Safari developer tools with macOS to debug the HTML/CSS/JS of the Maui Blazor app, follow the following instructions:
+#### Special note for `DevToys.MacOS`
+Most of the `DevToys.MacOS` app runs in a web browser (Safari). In order to access the Safari developer tools with macOS to debug the HTML/CSS/JS of the Maui Blazor app, follow the following instructions:
 1. Open desktop Safari.
 2. Select the Safari > Preferences > Advanced > Show Develop menu in the menu bar checkbox.
-3. Run the `DevToys.MauiBlazor` app in macOS.
+3. Run the `DevToys.MacOS` app in macOS.
 4. Return to Safari. Select Develop > {REMOTE INSPECTION TARGET} > 0.0.0.0, where the {REMOTE INSPECTION TARGET} placeholder is either the devices's plain name (for example, MacBook Pro) or the device's serial number (for example XMVM7VFF10). If multiple entries for 0.0.0.0 are present, select the entry that highlights the BlazorWebView. The BlazorWebView is highlighted in blue in macOS when the correct 0.0.0.0 entry is selected.
 5. The Web Inspector window appears for the BlazorWebView.
 

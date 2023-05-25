@@ -430,7 +430,7 @@ package-lock.json
 mono_crash.*
 
 # Monaco Dependency (Download from https://microsoft.github.io/monaco-editor/)
-src/app/dev/DevToys.MonacoEditor/monaco-editor
+src/app/dev/DevToys.Blazor/wwwroot/lib/monaco-editor
 
 # Highlight.js dependency https://highlightjs.org/
 !highlight.min.js

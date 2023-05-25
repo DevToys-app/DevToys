@@ -1,0 +1,12 @@
+@namespace DevToys.Blazor.Components
+@inherits JSStyledComponentBase
+
+<CascadingValue Value="this" IsFixed="true">
+    <div id=@Id
+         class="scroll-viewer @(FinalCssClasses)"
+         style="@(Style)"
+         @ref=Element
+         @attributes="AdditionalAttributes">
+         @ChildContent
+    </div>
+</CascadingValue>

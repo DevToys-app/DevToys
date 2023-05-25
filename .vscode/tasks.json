@@ -6,10 +6,10 @@
             // in vscode.
             "id": "project",
             "type": "pickString",
-            "default": "${workspaceFolder}/src/app/dev/platforms/desktop/DevToys.MauiBlazor/DevToys.MauiBlazor.csproj",
+            "default": "${workspaceFolder}/src/app/dev/platforms/desktop/DevToys.MacOS/DevToys.MacOS.csproj",
             "description": "Pick the Project you want to build.",
             "options": [
-                "${workspaceFolder}/src/app/dev/platforms/desktop/DevToys.MauiBlazor/DevToys.MauiBlazor.csproj",
+                "${workspaceFolder}/src/app/dev/platforms/desktop/DevToys.MacOS/DevToys.MacOS.csproj",
             ]
         },
         {

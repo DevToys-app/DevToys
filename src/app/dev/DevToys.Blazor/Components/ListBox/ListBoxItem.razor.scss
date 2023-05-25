@@ -1,0 +1,81 @@
+@use "../../Assets/sass/devtoys" as *;
+
+.list-box-item {
+    @include flex( $align: center, $inline: true );
+    inline-size: calc(100% - 10px);
+    position: relative;
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    margin: 3px 5px;
+    padding-inline: 12px;
+    border-radius: var(--control-corner-radius);
+    outline: none;
+    background-color: var(--list-box-item-background);
+    color: var(--list-box-item-foreground);
+    text-decoration: none;
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+    block-size: 34px;
+    text-decoration: none;
+
+    &::before {
+        content: "";
+        position: absolute;
+        border-radius: 3px;
+        background-color: var(--accent-default);
+        transition: transform 167ms cubic-bezier(0, 0, 0, 1);
+        opacity: 0;
+        inset-inline-start: 0;
+        inline-size: 3px;
+        block-size: 16px;
+        transform: scaleY(0);
+    }
+
+    &.selected::before {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+
+    &:focus-visible {
+        box-shadow: var(--focus-stroke);
+    }
+
+    &:hover {
+        background-color: var(--list-box-item-background-pointer-over);
+    }
+
+    &.selected {
+        background-color: var(--list-box-item-background-selected);
+    }
+
+    &:active {
+        background-color: var(--list-box-item-background-active);
+        color: var(--list-box-item-foreground-active);
+
+        &::before {
+            transform: scaleY(0.625);
+        }
+    }
+
+    &.disabled {
+        background-color: var(--list-box-item-background-disabled);
+        color: var(--list-box-item-foreground-disabled);
+        pointer-events: none;
+
+        &.selected {
+            background-color: var(--list-box-item-background-selected-disabled);
+
+            &::before {
+                background-color: var(--accent-disabled);
+            }
+        }
+    }
+
+    > :global(svg) {
+        inline-size: 16px;
+        block-size: auto;
+        fill: currentColor;
+        margin-inline-end: 16px;
+    }
+}
