@@ -53,7 +53,7 @@ namespace DevToys.Helpers.SqlFormatter.Core
             string[] specialWordChars,
             string[]? operators = null)
         {
-            var operatorsParam = new List<string> { "<>", "<=", ">=" };
+            var operatorsParam = new List<string> { "<>", "<=", ">=", "&&", "||", "!=" };
             if (operators is not null)
             {
                 operatorsParam.AddRange(operators);
