@@ -69,6 +69,15 @@ public partial class Index : MefComponentBase
 
     protected override void OnAfterRender(bool firstRender)
     {
+        if (firstRender)
+        {
+            // TODO: Focus on the Search Box.
+
+            // TODO: 
+            // Start Smart Detection
+            // ViewModel.RunSmartDetectionAsync(IsInCompactOverlay).Forget();
+        }
+
         if (IsTransitioning)
         {
             // This will force the page content to re-populate.

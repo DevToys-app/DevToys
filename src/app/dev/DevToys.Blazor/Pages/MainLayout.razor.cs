@@ -10,6 +10,12 @@ public partial class MainLayout : LayoutComponentBase
     [Import]
     private IThemeListener ThemeListener { get; set; } = default!;
 
+    [Import]
+    private ISettingsProvider SettingsProvider { get; set; } = default!;
+
+    [Import]
+    private IFontProvider FontProvider { get; set; } = default!;
+
     [Parameter]
     public string ThemeName { get; set; } = default!;
 
@@ -20,6 +26,8 @@ public partial class MainLayout : LayoutComponentBase
     {
         MefProvider.SatisfyImports(this);
         base.OnInitialized();
+
+        SetDefaultTextEditorFont();
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -78,5 +86,22 @@ public partial class MainLayout : LayoutComponentBase
                 StateHasChanged();
             });
         });
+    }
+
+    private void SetDefaultTextEditorFont()
+    {
+        string? currentFontName = SettingsProvider.GetSetting(PredefinedSettings.TextEditorFont); // By default, the value is null.
+        string[] systemFontFamilies = FontProvider.GetFontFamilies();
+        if (!systemFontFamilies.Contains(currentFontName))
+        {
+            for (int i = 0; i < PredefinedSettings.DefaultFonts.Length; i++)
+            {
+                if (systemFontFamilies.Contains(PredefinedSettings.DefaultFonts[i]))
+                {
+                    SettingsProvider.SetSetting(PredefinedSettings.TextEditorFont, PredefinedSettings.DefaultFonts[i]);
+                    return;
+                }
+            }
+        }
     }
 }
