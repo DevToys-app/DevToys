@@ -15,7 +15,6 @@ xattr -cr ./src/
 # Install .NET workloads
 echo "Installing .NET workloads"
 sudo dotnet workload install maui-maccatalyst --from-rollback-file rollback.json
-#sudo dotnet workload install maccatalyst
 
 # Restore NuGet solution dependencies
 echo "Restoring all dependencies"
