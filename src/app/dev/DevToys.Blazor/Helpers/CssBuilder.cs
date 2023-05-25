@@ -1,7 +1,5 @@
 ﻿namespace DevToys.Blazor.Core.Helpers;
 
-// TODO: Add unit tests from https://github.com/EdCharbeneau/BlazorComponentUtilities/blob/master/BlazorComponentUtilities.Tests/CssBuilderTests.cs
-
 public struct CssBuilder
 {
     private string? _stringBuffer;
