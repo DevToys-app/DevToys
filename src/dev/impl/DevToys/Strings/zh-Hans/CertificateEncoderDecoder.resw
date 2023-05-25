@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>凭证编码与解码工具</value>
+    <value>证书解码工具</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>凭证</value>
+    <value>证书</value>
   </data>
   <data name="PasswordTitle" xml:space="preserve">
     <value>密码</value>
@@ -133,18 +133,18 @@
     <value>输出</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>对凭证进行编码或解码</value>
+    <value>对证书进行解码</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>凭证编码器 / 解码器</value>
+    <value>证书解码器</value>
   </data>
   <data name="InvalidPasswordError" xml:space="preserve">
     <value>无效的密码。</value>
   </data>
   <data name="UnsupportedFormatError" xml:space="preserve">
-    <value>目前尚不支持请求的凭证格式。</value>
+    <value>目前尚不支持请求的证书格式。</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value/>
+    <value>CER PFX PEM</value>
   </data>
 </root>

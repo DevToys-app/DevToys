@@ -118,33 +118,33 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Certificate Decoder tool</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Decode a certificate</value>
-  </data>
-  <data name="InputTitle" xml:space="preserve">
-    <value>Input</value>
-  </data>
-  <data name="InvalidPasswordError" xml:space="preserve">
-    <value>Invalid password.</value>
+    <value>أداة فك تشفير الشهادة</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Certificate</value>
-  </data>
-  <data name="OutputTitle" xml:space="preserve">
-    <value>Output</value>
+    <value>الشهادة</value>
   </data>
   <data name="PasswordTitle" xml:space="preserve">
-    <value>Password</value>
+    <value>كلمة المرور</value>
+  </data>
+  <data name="InputTitle" xml:space="preserve">
+    <value>ادخال</value>
+  </data>
+  <data name="OutputTitle" xml:space="preserve">
+    <value>ناتج</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>فك تشفير الشهادة</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Certificate Decoder</value>
+    <value>مفكك تشفير الشهادة</value>
+  </data>
+  <data name="InvalidPasswordError" xml:space="preserve">
+    <value>كلمة المرور غير صحيحة.</value>
+  </data>
+  <data name="UnsupportedFormatError" xml:space="preserve">
+    <value>تنسيق طلب الشهادة غير مدعوم حاليًا.</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>CER PFX PEM</value>
-  </data>
-  <data name="UnsupportedFormatError" xml:space="preserve">
-    <value>Certificate Request format not currently supported.</value>
   </data>
 </root>

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Sertifika Kodlayıcı ve Kod Çözücü aracı</value>
+    <value>Sertifika Kod Çözücü aracı</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Sertifika</value>
@@ -133,10 +133,10 @@
     <value>Çıktı</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Bir sertifikayı kodlama veya kodunu çözme</value>
+    <value>Sertifika kodu çöz</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Sertifika Kodlayıcı / Kod Çözücü</value>
+    <value>Sertifika Kod Çözücü</value>
   </data>
   <data name="InvalidPasswordError" xml:space="preserve">
     <value>Geçersiz şifre.</value>
@@ -145,6 +145,6 @@
     <value>Sertifika İstek formatı şu anda desteklenmiyor.</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value/>
+    <value>CER PFX PEM</value>
   </data>
 </root>

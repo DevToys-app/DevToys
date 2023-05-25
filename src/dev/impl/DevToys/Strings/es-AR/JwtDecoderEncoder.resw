@@ -136,7 +136,7 @@
     <value>Decodificá el encabezado, contenido y firma de un JWT</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="Algorithm" xml:space="preserve">
     <value>Algorithm</value>

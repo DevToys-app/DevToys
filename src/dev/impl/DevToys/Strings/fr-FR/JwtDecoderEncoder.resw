@@ -136,7 +136,7 @@
     <value>Décoder un en-tête, une charge utile et une signature JWT</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="Algorithm" xml:space="preserve">
     <value>Algorithme</value>

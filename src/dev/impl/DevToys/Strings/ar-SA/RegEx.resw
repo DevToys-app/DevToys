@@ -118,34 +118,34 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Regular expression tester tool</value>
+    <value>أداة اختبار التعابير النمطية</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>الإعدادات</value>
   </data>
   <data name="CultureInvariant" xml:space="preserve">
-    <value>Culture Invariant</value>
+    <value>تجاهل الإعدادات المحلية</value>
   </data>
   <data name="CultureInvariantDescription" xml:space="preserve">
-    <value>Specifies that cultural differences in language is ignored.</value>
+    <value>يوضح أن الإعدادات المحلية للغة لا تؤخذ بعين الاعتبار.</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Regex Tester</value>
+    <value>أداة اختبار التعابير النمطية</value>
   </data>
   <data name="EcmaScript" xml:space="preserve">
     <value>ECMA Script</value>
   </data>
   <data name="EcmaScriptDescription" xml:space="preserve">
-    <value>Enables ECMAScript-compliant behavior for the expression. This value can be used only in conjunction with the Culture Invariant, Ignore Case and Multiline options.</value>
+    <value>تمكين التوافق مع ECMAScript لهذا التعبير. هذه القيمة لا يمكن استخدامها إلا بالاقتران مع الخيارات التالية: تجاهل الإعدادات المحلية، تجاهل حالة الأحرف والأسطر المتعددة.</value>
   </data>
   <data name="IgnoreCase" xml:space="preserve">
-    <value>Ignore Case</value>
+    <value>تجاهل حالة الأحرف</value>
   </data>
   <data name="IgnoreCaseDescription" xml:space="preserve">
-    <value>Specifies case-insensitive matching.</value>
+    <value>يحدد المطابقة مع تجاهل حالة الأحرف.</value>
   </data>
   <data name="IgnoreWhitespace" xml:space="preserve">
-    <value>Ignore Whitespace</value>
+    <value>تجاهل المسافات البيضاء</value>
   </data>
   <data name="IgnoreWhitespaceDescription" xml:space="preserve">
     <value>Eliminates unescaped white space from the pattern and enables comments marked with #. However, this value does not affect or eliminate white space in character classes, numeric quantifiers, or tokens that mark the beginning of individual regular expression language elements.</value>
@@ -181,7 +181,7 @@
     <value>Validate and test regular expressions</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Regex Tester</value>
+    <value>أداة اختبار التعابير النمطية</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>التعبير العادي</value>

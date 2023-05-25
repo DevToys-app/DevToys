@@ -135,16 +135,16 @@
   <data name="OutputTitle" xml:space="preserve">
     <value>Output</value>
   </data>
-  <data name="PasswordTitle" xml:space="preserve">
-    <value>Password</value>
+  <data name="Description" xml:space="preserve">
+    <value>Decode a certificate</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Certificate Decoder</value>
   </data>
-  <data name="SearchKeywords" xml:space="preserve">
-    <value>CER PFX PEM</value>
-  </data>
   <data name="UnsupportedFormatError" xml:space="preserve">
     <value>Certificate Request format not currently supported.</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>CER PFX PEM</value>
   </data>
 </root>
