@@ -5,5 +5,7 @@ namespace DevToys.MacOS;
 [Register("AppDelegate")]
 public class AppDelegate : MauiUIApplicationDelegate
 {
-    protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
+    private readonly MauiProgram _program = new();
+
+    protected override MauiApp CreateMauiApp() => _program.CreateMauiApp();
 }

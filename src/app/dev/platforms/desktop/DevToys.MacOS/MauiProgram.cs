@@ -4,21 +4,23 @@ using DevToys.Business.ViewModels;
 using DevToys.Core.Logging;
 using DevToys.Core.Mef;
 using DevToys.MacOS.Core;
-using DevToys.Tools;
 using Microsoft.Extensions.Logging;
+using Uno.Extensions;
 using PredefinedSettings = DevToys.Core.Settings.PredefinedSettings;
 
 namespace DevToys.MacOS;
 
-public static partial class MauiProgram
+public partial class MauiProgram
 {
-    internal static MefComposer? MefComposer;
+    private ILogger? _logger;
+    private MauiApp? _app;
 
-    private static MauiApp? app;
-    private static ILogger? logger;
+    internal MefComposer? MefComposer;
 
-    public static MauiApp CreateMauiApp()
+    public MauiApp CreateMauiApp()
     {
+        Guard.IsNull(_app);
+
         DateTime startTime = DateTime.Now;
 
         MauiAppBuilder builder = MauiApp.CreateBuilder();
@@ -44,16 +46,14 @@ public static partial class MauiProgram
         MefComposer
             = new MefComposer(
                 new[] {
-                    typeof(DevToysToolsResourceManagerAssemblyIdentifier).Assembly,
                     typeof(MainWindowViewModel).Assembly
-                });
+                },
+                pluginFolder: "../Resources/Plugins");
 
         LogInitialization((DateTime.Now - startTime).TotalMilliseconds);
         LogAppStarting();
 
-        MauiApp app = builder.Build();
-
-        MauiProgram.app = app;
+        _app = builder.Build();
 
         // Set the user-defined language.
         string? languageIdentifier = MefComposer.Provider.Import<ISettingsProvider>().GetSetting(PredefinedSettings.Language);
@@ -62,15 +62,15 @@ public static partial class MauiProgram
             ?? LanguageManager.Instance.AvailableLanguages[0];
         LanguageManager.Instance.SetCurrentCulture(languageDefinition);
 
-        return app;
+        return _app;
     }
 
-    private static void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+    private void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
     {
         LogUnhandledException((Exception)e.ExceptionObject);
     }
 
-    private static ServiceProvider InitializeServices(IServiceCollection serviceCollection)
+    private ServiceProvider InitializeServices(IServiceCollection serviceCollection)
     {
         serviceCollection.AddMauiBlazorWebView();
 
@@ -100,23 +100,23 @@ public static partial class MauiProgram
 
         ILoggerFactory loggerFactory = serviceProvider.GetRequiredService<ILoggerFactory>();
         Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory = loggerFactory;
-        logger = loggerFactory.CreateLogger<MauiApp>();
+        _logger = this.Log();
 
         return serviceProvider;
     }
 
-    private static void LogUnhandledException(Exception exception)
+    private void LogUnhandledException(Exception exception)
     {
-        logger?.LogCritical(0, exception, "Unhandled exception !!!    (╯°□°）╯︵ ┻━┻");
+        _logger?.LogCritical(0, exception, "Unhandled exception !!!    (╯°□°）╯︵ ┻━┻");
     }
 
-    private static void LogAppStarting()
+    private void LogAppStarting()
     {
-        logger?.LogInformation(1, "App is starting...");
+        _logger?.LogInformation(1, "App is starting...");
     }
 
-    private static void LogInitialization(double duration)
+    private void LogInitialization(double duration)
     {
-        logger?.LogInformation(2, "MEF, services and logging initialized in {duration} ms", duration);
+        _logger?.LogInformation(2, "MEF, services and logging initialized in {duration} ms", duration);
     }
 }

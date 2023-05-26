@@ -35,6 +35,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "desktops", "desktops", "{22EE9386-CEFA-47D8-97B2-09A63EDF7F2E}"
+	ProjectSection(SolutionItems) = preProject
+		app\dev\platforms\desktop\Directory.Build.props = app\dev\platforms\desktop\Directory.Build.props
+		app\dev\platforms\desktop\Directory.Build.targets = app\dev\platforms\desktop\Directory.Build.targets
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToys.CLI", "app\dev\platforms\desktop\DevToys.CLI\DevToys.CLI.csproj", "{8C72D38A-658D-4C9D-B0AD-2DA975BE7826}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -62,9 +66,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToys.Localization", "app
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToys.Business", "app\dev\DevToys.Business\DevToys.Business.csproj", "{AC565EE5-BF5F-4D14-8F40-DFB3E06D9724}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToys.MacOS", "app\dev\platforms\desktop\DevToys.MacOS\DevToys.MacOS.csproj", "{2EBD314E-B862-41B8-AB9E-F6371EB50666}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevToys.MacOS", "app\dev\platforms\desktop\DevToys.MacOS\DevToys.MacOS.csproj", "{2EBD314E-B862-41B8-AB9E-F6371EB50666}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToys.Blazor", "app\dev\DevToys.Blazor\DevToys.Blazor.csproj", "{608B24BF-8491-4167-932F-9CF23C97FDEE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevToys.Blazor", "app\dev\DevToys.Blazor\DevToys.Blazor.csproj", "{608B24BF-8491-4167-932F-9CF23C97FDEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
