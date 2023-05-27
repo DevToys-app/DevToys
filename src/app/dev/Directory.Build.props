@@ -8,13 +8,11 @@
     <Nullable>enable</Nullable>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 
-    <!-- Workaround for https://github.com/unoplatform/uno/discussions/5007, to remove when original VS issue is fixed. -->
-    <SynthesizeLinkMetadata>true</SynthesizeLinkMetadata>
-
     <!-- https://github.com/dotnet/project-system/blob/main/docs/build-acceleration.md -->
     <AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
 
-    <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+    <!-- AOT & Trim settings -->
+    <!-- <EnableTrimAnalyzer>true</EnableTrimAnalyzer> -->
 
     <NoWarm>$(NoWarm);IL2007;IL2091;IL2077;IL2055;IL2075</NoWarm>
   </PropertyGroup>
@@ -25,14 +23,15 @@
     <!-- AOT & Trim settings -->
     <!-- https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/ -->
     <!-- https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trimming-options?source=recommendations&pivots=dotnet-7-0 -->
-    <TrimMode>partial</TrimMode>
-    <StripSymbols>true</StripSymbols>
+    <!--<TrimMode>partial</TrimMode>
+    <StripSymbols>true</StripSymbols>-->
+    <!--<BuiltInComInteropSupport>false</BuiltInComInteropSupport>-->
   </PropertyGroup>
 
   <ItemGroup>
-    <TrimmerRootDescriptor Include="$(RepoRoot)\src\app\dev\shared\LinkerConfig.xml" Link="Properties\$(MSBuildProjectName).xml">
+    <!--<TrimmerRootDescriptor Include="$(RepoRoot)\src\app\dev\shared\LinkerConfig.xml" Link="Properties\$(MSBuildProjectName).xml">
       <LogicalName>$(MSBuildProjectName).xml</LogicalName>
-    </TrimmerRootDescriptor>
+    </TrimmerRootDescriptor>-->
     <Compile Include="$(RepoRoot)\src\app\dev\shared\GlobalUsings.cs" Link="Properties\GlobalUsings.cs" />
     <Compile Include="$(RepoRoot)\src\app\dev\shared\SharedAssemblyInfo.cs" Link="Properties\SharedAssemblyInfo.cs" />
     <Compile Include="$(RepoRoot)\src\app\dev\shared\SharedAssemblyVersion.cs" Link="Properties\SharedAssemblyVersion.cs" />

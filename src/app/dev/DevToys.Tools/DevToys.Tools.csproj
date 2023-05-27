@@ -46,4 +46,17 @@
     <PackageReference Include="Uno.Core.Extensions.Logging.Singleton" />
     <PackageReference Include="Newtonsoft.Json" />
   </ItemGroup>
+
+  <Target Name="CopyPluginAfterBuild" AfterTargets="Build">
+    <ItemGroup>
+      <PluginOutput Include="$(OutputPath)\**\*" />
+    </ItemGroup>
+    <Copy
+      SourceFiles="@(PluginOutput)"
+      DestinationFolder="$(RepoRoot)bin\$(Configuration)\Plugins\DevToys.Tools"
+      SkipUnchangedFiles="false"
+      OverwriteReadOnlyFiles="true"
+      Retries="10"
+      RetryDelayMilliseconds="1000" />
+  </Target>
 </Project>

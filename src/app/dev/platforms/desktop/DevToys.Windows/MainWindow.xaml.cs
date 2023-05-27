@@ -1,11 +1,9 @@
-﻿using System;
-using DevToys.Api;
+﻿using DevToys.Api;
 using DevToys.Blazor.Core.Languages;
 using DevToys.Business.ViewModels;
 using DevToys.Core;
 using DevToys.Core.Logging;
 using DevToys.Core.Mef;
-using DevToys.Tools;
 using DevToys.Windows.Controls;
 using DevToys.Windows.Core;
 using Microsoft.AspNetCore.Components.WebView;
@@ -42,7 +40,6 @@ public partial class MainWindow : MicaWindowWithOverlay
         _mefComposer
             = new MefComposer(
                 new[] {
-                    typeof(DevToysToolsResourceManagerAssemblyIdentifier).Assembly,
                     typeof(MainWindowViewModel).Assembly
                 });
 

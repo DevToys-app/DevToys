@@ -117,12 +117,30 @@ class Build : NukeBuild
                         .SetVerbosity(DotNetVerbosity.Quiet)));
         });
 
+    Target BuildPlugins => _ => _
+        .DependentFor(Publish)
+        .After(Restore)
+        .After(SetVersion)
+        .After(BuildGenerators)
+        .Executes(() =>
+        {
+            Log.Information($"Building plugins ...");
+            Project project = WindowsSolution!.GetProject("DevToys.Tools");
+            DotNetBuild(s => s
+                .SetProjectFile(project)
+                .SetConfiguration(Configuration)
+                .SetSelfContained(false)
+                .SetPublishTrimmed(false)
+                .SetVerbosity(DotNetVerbosity.Quiet));
+        });
+
 #pragma warning disable IDE0051 // Remove unused private members
     Target UnitTests => _ => _
         .DependentFor(Publish)
         .After(Restore)
         .After(SetVersion)
         .After(BuildGenerators)
+        .After(BuildPlugins)
         .OnlyWhenDynamic(() => RunTests)
         .Executes(() =>
         {
@@ -144,118 +162,89 @@ class Build : NukeBuild
         {
             if (PlatformTargets!.Contains(PlatformTarget.Windows))
             {
-                // DevToys MAUI Blazor
-                foreach (DotnetParameters dotnetParameters in GetDotnetParametersForMauiBlazorApp())
-                {
-                    Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + " - " + dotnetParameters.TargetFramework + " - " + dotnetParameters.RuntimeIdentifier} ...");
-                    DotNetPublish(s => s
-                        .SetProject(dotnetParameters.ProjectOrSolutionPath)
-                        .SetConfiguration(Configuration)
-                        .SetFramework(dotnetParameters.TargetFramework)
-                        .SetRuntime(dotnetParameters.RuntimeIdentifier)
-                        .SetSelfContained(true)
-                        .SetPublishSingleFile(false)
-                        .SetPublishReadyToRun(false)
-                        .SetPublishTrimmed(dotnetParameters.Portable)
-                        .SetVerbosity(DotNetVerbosity.Quiet)
-                        .SetProcessArgumentConfigurator(_ => _
-                            .Add("/p:RuntimeIdentifierOverride=" + dotnetParameters.RuntimeIdentifier)
-                            .Add($"/bl:\"{RootDirectory / "publish" / dotnetParameters.OutputPath}.binlog\""))
-                        .SetOutput(RootDirectory / "publish" / dotnetParameters.OutputPath));
-                }
-
-                // DevToys WASDK
-                foreach (DotnetParameters dotnetParameters in GetDotnetParametersForWasdkApp())
-                {
-                    Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + " - " + dotnetParameters.TargetFramework + " - " + dotnetParameters.RuntimeIdentifier + (dotnetParameters.Portable ? "-Portable" : string.Empty)} ...");
-                    DotNetPublish(s => s
-                        .SetProject(dotnetParameters.ProjectOrSolutionPath)
-                        .SetConfiguration(Configuration)
-                        .SetFramework(dotnetParameters.TargetFramework)
-                        .SetRuntime(dotnetParameters.RuntimeIdentifier)
-                        .SetPlatform(dotnetParameters.Platform)
-                        .SetSelfContained(true)
-                        .SetPublishSingleFile(false)
-                        .SetPublishReadyToRun(true)
-                        // TODO: Enable trimming. There are some things we will need to workaround to enable it.
-                        //       Trimming makes that we can't do COM invokes like User32.dll using DllImport.
-                        //       We use it at least in Backdrop.Windows.cs. We will need to find a workaround by either
-                        //       upgrading WASDK and use `SystemBackdrop = new MicaBackdrop();` and/or by writing our own
-                        //       wrapper like here: https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/incompatibilities?source=recommendations#built-in-com-marshalling
-                        .SetPublishTrimmed(false)
-                        //.SetPublishTrimmed(dotnetParameters.Portable)
-                        .SetVerbosity(DotNetVerbosity.Quiet)
-                        .SetProcessArgumentConfigurator(_ => _
-                            .Add("/p:RuntimeIdentifierOverride=" + dotnetParameters.RuntimeIdentifier)
-                            .Add("/p:Unpackaged=" + dotnetParameters.Portable)
-                            .Add($"/bl:\"{RootDirectory / "publish" / dotnetParameters.OutputPath}.binlog\""))
-                        .SetOutput(RootDirectory / "publish" / dotnetParameters.OutputPath));
-                }
+                PublishWindowsApp();
             }
 
             if (PlatformTargets!.Contains(PlatformTarget.MacCatalyst))
             {
-                // DevToys MAUI Blazor
-                foreach (DotnetParameters dotnetParameters in GetDotnetParametersForMauiBlazorApp())
-                {
-                    Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + " - " + dotnetParameters.TargetFramework + " - " + dotnetParameters.RuntimeIdentifier} ...");
-                    DotNetBuild(s => s
-                        .SetProjectFile(dotnetParameters.ProjectOrSolutionPath)
-                        .SetConfiguration(Configuration)
-                        .SetPublishSingleFile(false) // Not supported by MacCatalyst as it would require UseAppHost to be true, which isn't supported on Mac
-                        .SetPublishReadyToRun(false)
-                        .SetPublishTrimmed(true) /* Required True for MacCatalyst ? */
-                        .SetVerbosity(DotNetVerbosity.Quiet)
-                        .SetNoRestore(true) /* workaround for https://github.com/xamarin/xamarin-macios/issues/15664#issuecomment-1233123515 */
-                        .SetProcessArgumentConfigurator(_ => _
-                            .Add("/p:RuntimeIdentifierOverride=" + dotnetParameters.RuntimeIdentifier)
-                            .Add("/p:CreatePackage=True") /* Will create an installable .pkg */
-                            .Add($"/bl:\"{RootDirectory / "publish" / dotnetParameters.OutputPath}.binlog\""))
-                        .SetOutputDirectory(RootDirectory / "publish" / dotnetParameters.OutputPath));
-                }
-
-                // DevToys Uno Mac Catalyst
-                foreach (DotnetParameters dotnetParameters in GetDotnetParametersForMacOSApp())
-                {
-                    Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + " - " + dotnetParameters.TargetFramework + " - " + dotnetParameters.RuntimeIdentifier} ...");
-                    DotNetBuild(s => s
-                        .SetProjectFile(dotnetParameters.ProjectOrSolutionPath)
-                        .SetConfiguration(Configuration)
-                        .SetPublishSingleFile(false) // Not supported by MacCatalyst as it would require UseAppHost to be true, which isn't supported on Mac
-                        .SetPublishReadyToRun(false)
-                        .SetPublishTrimmed(true) /* Required True for MacCatalyst ? */
-                        .SetVerbosity(DotNetVerbosity.Quiet)
-                        .SetNoRestore(true) /* workaround for https://github.com/xamarin/xamarin-macios/issues/15664#issuecomment-1233123515 */
-                        .SetProcessArgumentConfigurator(_ => _
-                            .Add("/p:RuntimeIdentifierOverride=" + dotnetParameters.RuntimeIdentifier)
-                            .Add("/p:CreatePackage=True") /* Will create an installable .pkg */
-                            .Add($"/bl:\"{RootDirectory / "publish" / dotnetParameters.OutputPath}.binlog\""))
-                        .SetOutputDirectory(RootDirectory / "publish" / dotnetParameters.OutputPath));
-                }
+                PublishMacApp();
             }
 
             if (PlatformTargets!.Contains(PlatformTarget.CLI))
             {
-                // DevToys CLI
-                foreach (DotnetParameters dotnetParameters in GetDotnetParametersForCliApp())
-                {
-                    Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + " - " + dotnetParameters.TargetFramework + " - " + dotnetParameters.RuntimeIdentifier} ...");
-                    DotNetPublish(s => s
-                        .SetProject(dotnetParameters.ProjectOrSolutionPath)
-                        .SetConfiguration(Configuration)
-                        .SetFramework(dotnetParameters.TargetFramework)
-                        .SetRuntime(dotnetParameters.RuntimeIdentifier)
-                        .SetSelfContained(dotnetParameters.Portable)
-                        .SetPublishSingleFile(true)
-                        .SetPublishReadyToRun(true)
-                        .SetPublishTrimmed(dotnetParameters.Portable)
-                        .SetVerbosity(DotNetVerbosity.Quiet)
-                        .SetProcessArgumentConfigurator(_ => _
-                            .Add($"/bl:\"{RootDirectory / "publish" / dotnetParameters.OutputPath}.binlog\""))
-                        .SetOutput(RootDirectory / "publish" / dotnetParameters.OutputPath));
-                }
+                PublishCliApp();
             }
         });
+
+    void PublishWindowsApp()
+    {
+        // DevToys WPF
+        foreach (DotnetParameters dotnetParameters in GetDotnetParametersForWindowsApp())
+        {
+            Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + " - " + dotnetParameters.TargetFramework + " - " + dotnetParameters.RuntimeIdentifier + (dotnetParameters.Portable ? "-Portable" : string.Empty)} ...");
+            DotNetPublish(s => s
+                .SetProject(dotnetParameters.ProjectOrSolutionPath)
+                .SetConfiguration(Configuration)
+                .SetFramework(dotnetParameters.TargetFramework)
+                .SetRuntime(dotnetParameters.RuntimeIdentifier)
+                .SetPlatform(dotnetParameters.Platform)
+                .SetSelfContained(dotnetParameters.Portable)
+                .SetPublishSingleFile(false)
+                .SetPublishReadyToRun(false)
+                .SetPublishTrimmed(false)
+                .SetVerbosity(DotNetVerbosity.Quiet)
+                .SetProcessArgumentConfigurator(_ => _
+                    .Add("/p:RuntimeIdentifierOverride=" + dotnetParameters.RuntimeIdentifier)
+                    .Add("/p:Unpackaged=" + dotnetParameters.Portable)
+                    .Add($"/bl:\"{RootDirectory / "publish" / dotnetParameters.OutputPath}.binlog\""))
+                .SetOutput(RootDirectory / "publish" / dotnetParameters.OutputPath));
+        }
+    }
+
+    void PublishMacApp()
+    {
+        // DevToys MAUI Blazor Mac Catalyst
+        foreach (DotnetParameters dotnetParameters in GetDotnetParametersForMacOSApp())
+        {
+            Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + " - " + dotnetParameters.TargetFramework + " - " + dotnetParameters.RuntimeIdentifier} ...");
+            DotNetBuild(s => s
+                .SetProjectFile(dotnetParameters.ProjectOrSolutionPath)
+                .SetConfiguration(Configuration)
+                .SetSelfContained(true)
+                .SetPublishSingleFile(false) // Not supported by MacCatalyst as it would require UseAppHost to be true, which isn't supported on Mac
+                .SetPublishReadyToRun(false)
+                .SetPublishTrimmed(false)
+                .SetVerbosity(DotNetVerbosity.Quiet)
+                .SetNoRestore(true) /* workaround for https://github.com/xamarin/xamarin-macios/issues/15664#issuecomment-1233123515 */
+                .SetProcessArgumentConfigurator(_ => _
+                    .Add("/p:RuntimeIdentifierOverride=" + dotnetParameters.RuntimeIdentifier)
+                    .Add("/p:CreatePackage=True") /* Will create an installable .pkg */
+                    .Add($"/bl:\"{RootDirectory / "publish" / dotnetParameters.OutputPath}.binlog\""))
+                .SetOutputDirectory(RootDirectory / "publish" / dotnetParameters.OutputPath));
+        }
+    }
+
+    void PublishCliApp()
+    {
+        // DevToys CLI
+        foreach (DotnetParameters dotnetParameters in GetDotnetParametersForCliApp())
+        {
+            Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + " - " + dotnetParameters.TargetFramework + " - " + dotnetParameters.RuntimeIdentifier} ...");
+            DotNetPublish(s => s
+                .SetProject(dotnetParameters.ProjectOrSolutionPath)
+                .SetConfiguration(Configuration)
+                .SetFramework(dotnetParameters.TargetFramework)
+                .SetRuntime(dotnetParameters.RuntimeIdentifier)
+                .SetSelfContained(dotnetParameters.Portable)
+                .SetPublishSingleFile(dotnetParameters.Portable)
+                .SetPublishReadyToRun(false)
+                .SetPublishTrimmed(false)
+                .SetVerbosity(DotNetVerbosity.Quiet)
+                .SetProcessArgumentConfigurator(_ => _
+                    .Add($"/bl:\"{RootDirectory / "publish" / dotnetParameters.OutputPath}.binlog\""))
+                .SetOutput(RootDirectory / "publish" / dotnetParameters.OutputPath));
+        }
+    }
 
     IEnumerable<DotnetParameters> GetDotnetParametersForCliApp()
     {
@@ -292,12 +281,13 @@ class Build : NukeBuild
         else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
         {
             // TODO
+            throw new NotSupportedException();
         }
     }
 
-    IEnumerable<DotnetParameters> GetDotnetParametersForWasdkApp()
+    IEnumerable<DotnetParameters> GetDotnetParametersForWindowsApp()
     {
-        string publishProject = "DevToys.Wasdk";
+        string publishProject = "DevToys.Windows";
         Project project;
 
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
@@ -320,36 +310,6 @@ class Build : NukeBuild
         }
     }
 
-    IEnumerable<DotnetParameters> GetDotnetParametersForMauiBlazorApp()
-    {
-        string publishProject = "DevToys.MacOS";
-        Project project;
-
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-        {
-            project = MacSolution!.GetProject(publishProject);
-            foreach (string targetFramework in project.GetTargetFrameworks())
-            {
-                yield return new DotnetParameters(project.Path, "maccatalyst-arm64", targetFramework, portable: true);
-                yield return new DotnetParameters(project.Path, "maccatalyst-x64", targetFramework, portable: true);
-            }
-        }
-        else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-        {
-            project = WindowsSolution!.GetProject(publishProject);
-            foreach (string targetFramework in project.GetTargetFrameworks())
-            {
-                yield return new DotnetParameters(project.Path, "win10-arm64", targetFramework, portable: true);
-                yield return new DotnetParameters(project.Path, "win10-x64", targetFramework, portable: true);
-                yield return new DotnetParameters(project.Path, "win10-x86", targetFramework, portable: true);
-            }
-        }
-        else
-        {
-            throw new NotSupportedException();
-        }
-    }
-
     IEnumerable<DotnetParameters> GetDotnetParametersForMacOSApp()
     {
         string publishProject = "DevToys.MacOS";
@@ -362,16 +322,6 @@ class Build : NukeBuild
             {
                 yield return new DotnetParameters(project.Path, "maccatalyst-arm64", targetFramework, portable: true);
                 yield return new DotnetParameters(project.Path, "maccatalyst-x64", targetFramework, portable: true);
-            }
-        }
-        else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-        {
-            project = WindowsSolution!.GetProject(publishProject);
-            foreach (string targetFramework in project.GetTargetFrameworks())
-            {
-                yield return new DotnetParameters(project.Path, "win10-arm64", targetFramework, portable: true);
-                yield return new DotnetParameters(project.Path, "win10-x64", targetFramework, portable: true);
-                yield return new DotnetParameters(project.Path, "win10-x86", targetFramework, portable: true);
             }
         }
         else

@@ -26,7 +26,11 @@
       <PropertyGroup>
         <DefineConstants>$(DefineConstants);__MACCATALYST__</DefineConstants>
         <RuntimeIdentifiers>maccatalyst-arm64</RuntimeIdentifiers>
+
+        <!-- The following 3 properties disable trimming and AOT. This allow us to load plugins at runtime. -->
         <UseInterpreter>true</UseInterpreter>
+        <MtouchLink>None</MtouchLink>
+        <MtouchInterpreter>all</MtouchInterpreter>
       </PropertyGroup>
       <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
         <CodeSignEntitlements>Platforms/MacCatalyst/Entitlements.Debug.plist</CodeSignEntitlements>

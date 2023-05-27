@@ -1,0 +1,18 @@
+﻿<Project>
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.targets', '$(MSBuildThisFileDirectory)../'))" />
+
+  <Target Name="ImportPluginOnPublish" BeforeTargets="Publish">
+    <Message Text="Importing plugins..." Importance="high" />
+    <ItemGroup>
+      <PluginOutput Include="$(RepoRoot)bin\$(Configuration)\Plugins\**\*" />
+    </ItemGroup>
+    <Copy
+      SourceFiles="@(PluginOutput)"
+      DestinationFolder="$(PublishDir)\Plugins\%(RecursiveDir)"
+      SkipUnchangedFiles="true"
+      OverwriteReadOnlyFiles="true"
+      Retries="10"
+      RetryDelayMilliseconds="1000" />
+    <Message Text="Plugins imported!" Importance="high" />
+  </Target>
+</Project>

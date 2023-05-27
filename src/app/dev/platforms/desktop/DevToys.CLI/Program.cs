@@ -6,7 +6,6 @@ using DevToys.CLI.Core.FileStorage;
 using DevToys.Core;
 using DevToys.Core.Logging;
 using DevToys.Core.Mef;
-using DevToys.Tools;
 using Microsoft.Extensions.Logging;
 
 namespace DevToys.CLI;
@@ -67,8 +66,7 @@ internal partial class Program
                 = new MefComposer(
                     new[]
                     {
-                    typeof(DevToysToolsResourceManagerAssemblyIdentifier).Assembly,
-                    typeof(Program).Assembly
+                        typeof(Program).Assembly
                     });
 
             // Get all the command line tools.
