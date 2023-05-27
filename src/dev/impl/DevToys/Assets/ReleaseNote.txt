@@ -1,8 +1,7 @@
-﻿👏 Improvements
-  • XML Validator can now detect inconsistent XML namespace references
-  • UI tweaks in JWT Encoder / Decoder
-  • Translations
+﻿🎉 New Features
+  • SSL Certificate Decoder tool!
+👏 Improvements
+  • Selected options are displayed in RegEx Tester
+  • Clear Payload when empty JWT provided
 🐛 Bug Fixes
-  • SQL Formatter issue with VALUES
-  • URL Encoder / Decoder was encoding new lines incorrectly
-  • DevToys won't appear as a file picker anymore
+  • SQL Formatter issue with operators
