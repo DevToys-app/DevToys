@@ -95,6 +95,7 @@
             "type": "string",
             "enum": [
               "BuildGenerators",
+              "BuildPlugins",
               "Clean",
               "PreliminaryCheck",
               "Publish",
@@ -111,6 +112,7 @@
             "type": "string",
             "enum": [
               "BuildGenerators",
+              "BuildPlugins",
               "Clean",
               "PreliminaryCheck",
               "Publish",

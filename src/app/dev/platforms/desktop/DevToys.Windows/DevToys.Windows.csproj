@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>$(NetCoreWindows10)</TargetFramework>
+    <TargetFramework>$(NetCoreWindows)</TargetFramework>
     <TargetPlatformMinVersion>7.0</TargetPlatformMinVersion>
     <OutputType>WinExe</OutputType>
     <UseWPF>true</UseWPF>

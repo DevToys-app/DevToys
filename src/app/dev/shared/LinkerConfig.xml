@@ -20,13 +20,13 @@
         <type fullname="System.Linq.Expressions*" />
     </assembly>
     <assembly fullname="System.Private.CoreLib" />
-    <assembly fullname="Uno.UI" />
     <assembly fullname="Microsoft.Extensions.Options" />
     <assembly fullname="DevToys.API" />
     <assembly fullname="DevToys.Core" />
-    <assembly fullname="DevToys.CLI" />
     <assembly fullname="DevToys.Localization" />
     <assembly fullname="DevToys.Blazor" />
     <assembly fullname="DevToys.Business" />
-    <assembly fullname="DevToys.Tools" />
+    <assembly fullname="DevToys.CLI" />
+    <assembly fullname="DevToys.Windows" />
+    <assembly fullname="DevToys.MacOS" />
 </linker>
