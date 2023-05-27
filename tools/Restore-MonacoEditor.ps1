@@ -43,7 +43,7 @@ Write-Host "Extracting..."
 mkdir "$tools_dir\$temp_dir_name\monaco"
 tar -zxf "$tools_dir\$temp_dir_name\monaco.tgz" -C "$tools_dir\$temp_dir_name\monaco"
 
-Copy-Item -Path ".\$temp_dir_name\monaco\package\*" -Destination $destination_dir -Recurse
+Copy-Item -Path ".\$temp_dir_name\monaco\package\min\*" -Destination "$destination_dir\min" -Recurse
 
 # Clean-up Temp Dir
 Remove-Item $temp_dir_name -Force -Recurse -ErrorAction SilentlyContinue

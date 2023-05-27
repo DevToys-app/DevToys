@@ -40,7 +40,7 @@ echo "Extracting..."
 mkdir "$TOOLS_DIR/$TEMP_DIR_NAME/monaco"
 tar -zxf "$TOOLS_DIR/$TEMP_DIR_NAME/monaco.tgz" -C "$TOOLS_DIR/$TEMP_DIR_NAME/monaco"
 
-cp -r "$TOOLS_DIR/$TEMP_DIR_NAME/monaco/package/" $DESTINATION_DIR
+cp -r "$TOOLS_DIR/$TEMP_DIR_NAME/monaco/package/min" "$DESTINATION_DIR/min"
 
 # Clean-up Temp Dir
 rm -rf "$TOOLS_DIR/$TEMP_DIR_NAME"
