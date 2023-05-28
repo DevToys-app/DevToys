@@ -1,6 +1,5 @@
 ﻿namespace DevToys.Blazor.Components;
 
-// TODO: Write unit tests
 internal sealed class NavBarState
 {
     // TODO: Save state in settings and restore it, along with window size and location.

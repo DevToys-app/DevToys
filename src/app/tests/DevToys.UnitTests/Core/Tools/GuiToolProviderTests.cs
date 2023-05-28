@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Threading.Tasks;
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
 
@@ -14,8 +13,8 @@ public class GuiToolProviderTests : MefBasedTest
         GuiToolProvider guiToolProvider = MefProvider.Import<GuiToolProvider>();
         GuiToolInstance toolInstance = guiToolProvider.AllTools.FirstOrDefault(t => t.InternalComponentName == "MockTool");
 
-        Assert.Equal("Sample title", toolInstance.LongDisplayTitle);
-        Assert.Equal("Sample title", toolInstance.ShortDisplayTitle);
+        toolInstance.LongDisplayTitle.Should().Be("Sample title");
+        toolInstance.ShortDisplayTitle.Should().Be("Sample title");
     }
 
     [Fact]
@@ -23,8 +22,8 @@ public class GuiToolProviderTests : MefBasedTest
     {
         GuiToolProvider guiToolProvider = MefProvider.Import<GuiToolProvider>();
 
-        Assert.Equal("MockTool", guiToolProvider.AllTools[0].InternalComponentName);
-        Assert.Equal("MockTool2", guiToolProvider.AllTools[1].InternalComponentName);
+        guiToolProvider.AllTools[0].InternalComponentName.Should().Be("MockTool");
+        guiToolProvider.AllTools[1].InternalComponentName.Should().Be("MockTool2");
     }
 
     [Fact]
@@ -33,19 +32,22 @@ public class GuiToolProviderTests : MefBasedTest
         GuiToolProvider guiToolProvider = MefProvider.Import<GuiToolProvider>();
 
         ReadOnlyObservableCollection<INotifyPropertyChanged> menuItems = guiToolProvider.HeaderAndBodyToolViewItems;
-        Assert.Equal(3, menuItems.Count);
-        Assert.IsType<GroupViewItem>(menuItems[0]);
-        Assert.IsType<SeparatorViewItem>(menuItems[1]);
-        Assert.IsType<GroupViewItem>(menuItems[2]);
 
-        Assert.Equal("All tools", ((GroupViewItem)menuItems[0]).DisplayTitle);
-        Assert.Null(((GroupViewItem)menuItems[0]).Children);
-        Assert.Equal("Group title", ((GroupViewItem)menuItems[2]).DisplayTitle);
-        Assert.Equal(4, ((GroupViewItem)menuItems[2]).Children.Count);
-        Assert.Equal("MockTool", ((GroupViewItem)menuItems[2]).Children[0].ToolInstance.InternalComponentName);
-        Assert.Equal("MockTool2", ((GroupViewItem)menuItems[2]).Children[1].ToolInstance.InternalComponentName);
-        Assert.Equal("MockTool3-XMLFormatter", ((GroupViewItem)menuItems[2]).Children[2].ToolInstance.InternalComponentName);
-        Assert.Equal("MockTool4-XMLValidator", ((GroupViewItem)menuItems[2]).Children[3].ToolInstance.InternalComponentName);
+        menuItems.Should().HaveCount(3);
+        menuItems[0].Should().BeOfType<GroupViewItem>();
+        menuItems[1].Should().BeOfType<SeparatorViewItem>();
+        menuItems[2].Should().BeOfType<GroupViewItem>();
+
+        ((GroupViewItem)menuItems[0]).DisplayTitle.Should().Be("All tools");
+        ((GroupViewItem)menuItems[0]).Children.Should().BeNull();
+
+        var item3 = ((GroupViewItem)menuItems[2]);
+        item3.DisplayTitle.Should().Be("Group title");
+        item3.Children.Should().HaveCount(4);
+        item3.Children[0].ToolInstance.InternalComponentName.Should().Be("MockTool");
+        item3.Children[1].ToolInstance.InternalComponentName.Should().Be("MockTool2");
+        item3.Children[2].ToolInstance.InternalComponentName.Should().Be("MockTool3-XMLFormatter");
+        item3.Children[3].ToolInstance.InternalComponentName.Should().Be("MockTool4-XMLValidator");
     }
 
     [Fact]
@@ -54,18 +56,18 @@ public class GuiToolProviderTests : MefBasedTest
         GuiToolProvider guiToolProvider = MefProvider.Import<GuiToolProvider>();
 
         ReadOnlyObservableCollection<INotifyPropertyChanged> menuItems = guiToolProvider.HeaderAndBodyToolViewItems;
-        Assert.Equal(3, menuItems.Count);
-        Assert.IsType<GroupViewItem>(menuItems[0]);
-        Assert.IsType<SeparatorViewItem>(menuItems[1]);
-        Assert.IsType<GroupViewItem>(menuItems[2]);
+        menuItems.Should().HaveCount(3);
+        menuItems[0].Should().BeOfType<GroupViewItem>();
+        menuItems[1].Should().BeOfType<SeparatorViewItem>();
+        menuItems[2].Should().BeOfType<GroupViewItem>();
 
         guiToolProvider.SetMostRecentUsedTool(((GroupViewItem)menuItems[2]).Children[0].ToolInstance);
 
         // Menu should be unchanged.
-        Assert.Equal(3, menuItems.Count);
-        Assert.IsType<GroupViewItem>(menuItems[0]);
-        Assert.IsType<SeparatorViewItem>(menuItems[1]);
-        Assert.IsType<GroupViewItem>(menuItems[2]);
+        menuItems.Should().HaveCount(3);
+        menuItems[0].Should().BeOfType<GroupViewItem>();
+        menuItems[1].Should().BeOfType<SeparatorViewItem>();
+        menuItems[2].Should().BeOfType<GroupViewItem>();
     }
 
     [Fact]
@@ -77,30 +79,30 @@ public class GuiToolProviderTests : MefBasedTest
         GuiToolViewItem toolToSetAsFavorite = ((GroupViewItem)menuItems[2]).Children[0];
 
         // At first, no favorites at all.
-        Assert.Equal(3, menuItems.Count);
-        Assert.IsType<GroupViewItem>(menuItems[0]);
-        Assert.IsType<SeparatorViewItem>(menuItems[1]);
-        Assert.IsType<GroupViewItem>(menuItems[2]);
+        menuItems.Should().HaveCount(3);
+        menuItems[0].Should().BeOfType<GroupViewItem>();
+        menuItems[1].Should().BeOfType<SeparatorViewItem>();
+        menuItems[2].Should().BeOfType<GroupViewItem>();
 
         // Set item as favorite. The menu should then have "Favorites" group.
         guiToolProvider.SetToolIsFavorite(toolToSetAsFavorite.ToolInstance, isFavorite: true);
-        Assert.Equal(4, menuItems.Count);
-        Assert.IsType<GroupViewItem>(menuItems[0]);
-        Assert.IsType<SeparatorViewItem>(menuItems[1]);
-        Assert.IsType<GroupViewItem>(menuItems[2]);
-        Assert.IsType<GroupViewItem>(menuItems[3]);
-        Assert.Equal("Favorites", ((GroupViewItem)menuItems[2]).DisplayTitle);
-        Assert.Equal("Group title", ((GroupViewItem)menuItems[3]).DisplayTitle);
-        Assert.Single(((GroupViewItem)menuItems[2]).Children);
-        Assert.Equal(toolToSetAsFavorite.ToolInstance, ((GroupViewItem)menuItems[2]).Children[0].ToolInstance);
-        Assert.NotEqual(toolToSetAsFavorite, ((GroupViewItem)menuItems[2]).Children[0]);
+        menuItems.Should().HaveCount(4);
+        menuItems[0].Should().BeOfType<GroupViewItem>();
+        menuItems[1].Should().BeOfType<SeparatorViewItem>();
+        menuItems[2].Should().BeOfType<GroupViewItem>();
+        menuItems[3].Should().BeOfType<GroupViewItem>();
+        ((GroupViewItem)menuItems[2]).DisplayTitle.Should().Be("Favorites");
+        ((GroupViewItem)menuItems[3]).DisplayTitle.Should().Be("Group title");
+        ((GroupViewItem)menuItems[2]).Children.Should().ContainSingle();
+        ((GroupViewItem)menuItems[2]).Children[0].ToolInstance.Should().Be(toolToSetAsFavorite.ToolInstance);
+        ((GroupViewItem)menuItems[2]).Children[0].Should().NotBe(toolToSetAsFavorite);
 
         // Unfavorite the item. The menu should remove "Favorite" group because the group is now empty.
         guiToolProvider.SetToolIsFavorite(toolToSetAsFavorite.ToolInstance, isFavorite: false);
-        Assert.Equal(3, menuItems.Count);
-        Assert.IsType<GroupViewItem>(menuItems[0]);
-        Assert.IsType<SeparatorViewItem>(menuItems[1]);
-        Assert.IsType<GroupViewItem>(menuItems[2]);
+        menuItems.Should().HaveCount(3);
+        menuItems[0].Should().BeOfType<GroupViewItem>();
+        menuItems[1].Should().BeOfType<SeparatorViewItem>();
+        menuItems[2].Should().BeOfType<GroupViewItem>();
     }
 
     [Theory]
@@ -109,16 +111,16 @@ public class GuiToolProviderTests : MefBasedTest
     [InlineData("XML", "MockTool3-XMLFormatter", "MockTool4-XMLValidator")]
     [InlineData("XML Validator", "MockTool4-XMLValidator")]
     [InlineData("XML Valid", "MockTool4-XMLValidator")]
-    public async Task ToolSearch(string searchQuery, params string[] toolNames)
+    public void ToolSearch(string searchQuery, params string[] toolNames)
     {
         GuiToolProvider guiToolProvider = MefProvider.Import<GuiToolProvider>();
         var results = new ObservableCollection<GuiToolViewItem>();
         guiToolProvider.SearchTools(searchQuery, results);
 
-        Assert.Equal(toolNames.Length, results.Count);
+        results.Should().HaveSameCount(toolNames);
         for (int i = 0; i < toolNames.Length; i++)
         {
-            Assert.Equal(toolNames[i], results[i].ToolInstance.InternalComponentName);
+            results[i].ToolInstance.InternalComponentName.Should().Be(toolNames[i]);
         }
     }
 }

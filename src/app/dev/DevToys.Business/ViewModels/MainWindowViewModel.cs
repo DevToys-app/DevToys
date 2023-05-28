@@ -101,10 +101,7 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
             OnPropertyChanged(nameof(IsSelectedMenuItemATool));
             SelectedMenuItemChanged?.Invoke(this, EventArgs.Empty);
 
-            if (guiToolViewItem is not null)
-            {
-                guiToolViewItem.RaiseGotSelected();
-            }
+            guiToolViewItem?.RaiseGotSelected();
         }
     }
 
@@ -321,7 +318,7 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
             }
         }
 
-        var firstItem = HeaderAndBodyToolViewItems[0];
+        INotifyPropertyChanged? firstItem = HeaderAndBodyToolViewItems[0];
         Guard.IsNotNull(firstItem);
         return firstItem;
     }
@@ -330,10 +327,7 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
     {
         // Select the actual menu item in the navigation view. This will trigger the navigation.
         SelectedMenuItem = GetBestMenuItemToSelect(message.Value);
-        if (message.SmartDetectionInfo is not null)
-        {
-            message.SmartDetectionInfo.ToolInstance.PassSmartDetectedData(message.SmartDetectionInfo.DataTypeName, message.SmartDetectionInfo.ParsedData);
-        }
+        message.SmartDetectionInfo?.ToolInstance.PassSmartDetectedData(message.SmartDetectionInfo.DataTypeName, message.SmartDetectionInfo.ParsedData);
     }
 
     [LoggerMessage(1, LogLevel.Warning, "Failed to perform smart detection.")]

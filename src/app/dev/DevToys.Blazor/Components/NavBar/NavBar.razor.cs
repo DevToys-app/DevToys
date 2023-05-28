@@ -111,7 +111,7 @@ public partial class NavBar<TElement> : JSStyledComponentBase where TElement : c
 
     private void OnSearchButtonClick()
     {
-        _sidebarState.ToggleSidebar();
+        _sidebarState.ForceExpand();
         Task.Delay(200)
             .ContinueWith(t =>
             {

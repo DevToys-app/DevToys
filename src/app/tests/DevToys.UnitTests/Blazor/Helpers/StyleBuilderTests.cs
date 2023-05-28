@@ -1,11 +1,11 @@
 ﻿using DevToys.Blazor.Core.Helpers;
 
-namespace DevToys.UnitTests.Helpers;
+namespace DevToys.UnitTests.Blazor.Helpers;
 
 public class StyleBuilderTests
 {
     [Fact]
-    public void ShouldBulidConditionalInlineStyles()
+    public void ShouldBuildConditionalInlineStyles()
     {
         //arrange
         bool hasBorder = true;
@@ -23,13 +23,12 @@ public class StyleBuilderTests
                         .AddStyle("padding", "35px")
                         .Build();
         //assert
-        Assert.Equal("background-color:DodgerBlue;border-width:2px 20px 10px 4px;z-index:-1;padding:35px;", ClassToRender);
+        ClassToRender.Should().Be("background-color:DodgerBlue;border-width:2px 20px 10px 4px;z-index:-1;padding:35px;");
     }
 
     [Fact]
-    public void ShouldBulidConditionalInlineStylesFromAttributes()
+    public void ShouldBuildConditionalInlineStylesFromAttributes()
     {
-
         //arrange
         bool hasBorder = true;
         bool isOnTop = false;
@@ -50,7 +49,7 @@ public class StyleBuilderTests
 
         string ClassToRender = new StyleBuilder().AddStyleFromAttributes(attributes).Build();
         //assert
-        Assert.Equal("background-color:DodgerBlue;border-width:2px 20px 10px 4px;z-index:-1;padding:35px;", ClassToRender);
+        ClassToRender.Should().Be("background-color:DodgerBlue;border-width:2px 20px 10px 4px;z-index:-1;padding:35px;");
     }
 
     [Fact]
@@ -67,24 +66,22 @@ public class StyleBuilderTests
         /// The CSS syntax allows for empty declarations, which means that you can add leading and trailing semicolons as you like. For instance, this is valid CSS
         /// .foo { ;;;display:none;;;color:black;;; }
         /// Trimming is possible, but is it worth the operations for a non-issue?
-        Assert.Equal("background-color:DodgerBlue;;padding:35px;", StyleToRender);
-        Assert.Equal("background-color:DodgerBlue;;padding:35px;;", StyleToRenderFromDefaultConstructor);
-
+        StyleToRender.Should().Be("background-color:DodgerBlue;;padding:35px;");
+        StyleToRenderFromDefaultConstructor.Should().Be("background-color:DodgerBlue;;padding:35px;;");
     }
 
     [Fact]
     public void ShouldNotAddEmptyStyle()
     {
-        StyleBuilder StyleToRender = StyleBuilder.Empty().AddStyle("");
+        StyleBuilder? StyleToRender = StyleBuilder.Empty().AddStyle("");
+        StyleToRender = string.IsNullOrEmpty(StyleToRender.ToString()) ? null : StyleToRender;
 
-        Assert.Null(string.IsNullOrEmpty(StyleToRender.ToString()) ? null : StyleToRender.ToString());
-
+        StyleToRender.Should().BeNull();
     }
 
     [Fact]
     public void ShouldAddNestedStyles()
     {
-
         StyleBuilder Child = StyleBuilder.Empty()
             .AddStyle("background-color", "DodgerBlue")
             .AddStyle("padding", "35px");
@@ -98,7 +95,7 @@ public class StyleBuilderTests
         /// The CSS syntax allows for empty declarations, which means that you can add leading and trailing semicolons as you like. For instance, this is valid CSS
         /// .foo { ;;;display:none;;;color:black;;; }
         /// Trimming is possible, but is it worth the operations for a non-issue?
-        Assert.Equal("background-color:DodgerBlue;padding:35px;z-index:-1;", StyleToRender);
+        StyleToRender.Should().Be("background-color:DodgerBlue;padding:35px;z-index:-1;");
 
     }
 
@@ -118,25 +115,22 @@ public class StyleBuilderTests
         /// The CSS syntax allows for empty declarations, which means that you can add leading and trailing semicolons as you like. For instance, this is valid CSS
         /// .foo { ;;;display:none;;;color:black;;; }
         /// Trimming is possible, but is it worth the operations for a non-issue?
-        Assert.Equal("text-decoration:underline line-through;z-index:-1;", StyleToRender);
-
+        StyleToRender.Should().Be("text-decoration:underline line-through;z-index:-1;");
     }
 
     [Fact]
     public void ShouldBuildStyleWithFunc()
     {
-        {
-            //arrange
-            // Simulates Razor Components attribute splatting feature
-            IReadOnlyDictionary<string, object> attributes = new Dictionary<string, object> { { "class", "my-custom-class-1" } };
+        //arrange
+        // Simulates Razor Components attribute splatting feature
+        IReadOnlyDictionary<string, object> attributes = new Dictionary<string, object> { { "class", "my-custom-class-1" } };
 
-            //act
-            string StyleToRender = StyleBuilder.Empty()
-                            .AddStyle("background-color", () => attributes["style"].ToString(), when: attributes.ContainsKey("style"))
-                            .AddStyle("background-color", "black")
-                            .Build();
-            //assert
-            Assert.Equal("background-color:black;", StyleToRender);
-        }
+        //act
+        string StyleToRender = StyleBuilder.Empty()
+                        .AddStyle("background-color", () => attributes["style"].ToString(), when: attributes.ContainsKey("style"))
+                        .AddStyle("background-color", "black")
+                        .Build();
+        //assert
+        StyleToRender.Should().Be("background-color:black;");
     }
 }

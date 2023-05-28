@@ -17,10 +17,10 @@ public class SmartDetectionServiceTests : MefBasedTest
         SmartDetectionService smartDetectionService = MefProvider.Import<SmartDetectionService>();
         IReadOnlyList<SmartDetectedTool> detectedTools = await smartDetectionService.DetectAsync(rawData, isStrict, CancellationToken.None);
 
-        Assert.Equal(toolNames.Length, detectedTools.Count);
+        detectedTools.Should().HaveSameCount(toolNames);
         for (int i = 0; i < toolNames.Length; i++)
         {
-            Assert.Equal(toolNames[i], detectedTools[i].ToolInstance.InternalComponentName);
+            detectedTools[i].ToolInstance.InternalComponentName.Should().Be(toolNames[i]);
         }
     }
 }

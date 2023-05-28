@@ -9,6 +9,7 @@ using DevToys.Windows.Core;
 using Microsoft.AspNetCore.Components.WebView;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Web.WebView2.Core;
 using PredefinedSettings = DevToys.Core.Settings.PredefinedSettings;
 
 namespace DevToys.Windows;
@@ -74,6 +75,7 @@ public partial class MainWindow : MicaWindowWithOverlay
 
     private void BlazorWebView_BlazorWebViewInitialized(object? sender, BlazorWebViewInitializedEventArgs e)
     {
+        blazorWebView.WebView.CoreWebView2.Settings.IsStatusBarEnabled = false;
         LogUiLoadTime((DateTime.Now - _uiLoadingTime).TotalMilliseconds);
     }
 

@@ -1,4 +1,4 @@
-﻿namespace DevToys.UnitTests.Core;
+﻿namespace DevToys.UnitTests.Api.Core;
 
 public class ExtensionOrdererTests
 {
@@ -14,7 +14,7 @@ public class ExtensionOrdererTests
 
         IEnumerable<Lazy<string, OrderableMetadata>> result = ExtensionOrderer.Order(extensions);
 
-        Assert.Equivalent(extensions, result);
+        result.Should().BeEquivalentTo(extensions);
     }
 
     [Fact]
@@ -27,7 +27,8 @@ public class ExtensionOrdererTests
                     Create("Baz")
                 };
 
-        Assert.Throws<ArgumentException>(() => ExtensionOrderer.Order(extensions));
+        Action act = () => ExtensionOrderer.Order(extensions);
+        act.Should().Throw<ArgumentException>();
     }
 
     [Fact]
@@ -38,7 +39,8 @@ public class ExtensionOrdererTests
                 Create("Foo").After("Foo"),
             };
 
-        Assert.Throws<ArgumentException>(() => ExtensionOrderer.Order(extensions));
+        Action act = () => ExtensionOrderer.Order(extensions);
+        act.Should().Throw<ArgumentException>();
     }
 
     [Fact]
@@ -49,7 +51,8 @@ public class ExtensionOrdererTests
                 Create("Foo").Before("Foo"),
             };
 
-        Assert.Throws<ArgumentException>(() => ExtensionOrderer.Order(extensions));
+        Action act = () => ExtensionOrderer.Order(extensions);
+        act.Should().Throw<ArgumentException>();
     }
 
     [Fact]
@@ -70,7 +73,7 @@ public class ExtensionOrdererTests
                 "Foo"
             };
 
-        Assert.Equivalent(result.Select(e => e.Metadata.InternalComponentName), expected);
+        result.Select(e => e.Metadata.InternalComponentName).Should().BeEquivalentTo(expected);
     }
 
     [Fact]
@@ -83,7 +86,8 @@ public class ExtensionOrdererTests
                 Create("Baz").After("Foo")
             };
 
-        Assert.Throws<ArgumentException>(() => ExtensionOrderer.Order(extensions));
+        Action act = () => ExtensionOrderer.Order(extensions);
+        act.Should().Throw<ArgumentException>();
     }
 
     [Fact]
@@ -104,7 +108,7 @@ public class ExtensionOrdererTests
                 "Foo"
             };
 
-        Assert.Equivalent(result.Select(e => e.Metadata.InternalComponentName), expected);
+        result.Select(e => e.Metadata.InternalComponentName).Should().BeEquivalentTo(expected);
     }
 
     [Fact]
@@ -125,7 +129,7 @@ public class ExtensionOrdererTests
                 "Foo"
             };
 
-        Assert.Equivalent(result.Select(e => e.Metadata.InternalComponentName), expected);
+        result.Select(e => e.Metadata.InternalComponentName).Should().BeEquivalentTo(expected);
     }
 
     #region Helper

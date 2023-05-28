@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace DevToys.UnitTests.Core.Threading;
+namespace DevToys.UnitTests.Api.Core.Threading;
 
 public class AsyncLazyTests
 {
@@ -15,7 +15,7 @@ public class AsyncLazyTests
         });
 
         TestClass actual = await lazy.GetValueAsync();
-        Assert.Same(expected, actual);
+        actual.Should().BeSameAs(expected);
     }
 
     [Fact]
@@ -28,19 +28,20 @@ public class AsyncLazyTests
             return new TestClass(5);
         });
 
-        Assert.False(lazy.IsValueCreated);
+        lazy.IsValueCreated.Should().BeFalse();
         Task<TestClass> resultTask = lazy.GetValueAsync();
-        Assert.False(lazy.IsValueCreated);
+        lazy.IsValueCreated.Should().BeFalse();
         tcs.SetResult(true);
         await resultTask;
-        Assert.True(lazy.IsValueCreated);
-        Assert.Equal(5, (await resultTask).Value);
+        lazy.IsValueCreated.Should().BeTrue();
+        (await resultTask).Value.Should().Be(5);
     }
 
     [Fact]
     public void BadArguments()
     {
-        Assert.Throws<ArgumentNullException>(() => new AsyncLazy<object>(null));
+        Action act = () => new AsyncLazy<object>(null);
+        act.Should().Throw<ArgumentNullException>();
     }
 
     public class TestClass
@@ -55,9 +56,7 @@ public class AsyncLazyTests
         public override bool Equals(object obj)
         {
             if (obj is TestClass other)
-            {
                 return Value == other.Value;
-            }
 
             return false;
         }
