@@ -2,7 +2,20 @@
     "recommendations": [
       "ms-dotnettools.csharp",
       "visualstudioexptteam.vscodeintellicode",
-      "ms-dotnettools.blazorwasm-companion",
-      "eamodio.gitlens"
+      "visualstudioexptteam.intellicode-api-usage-examples",
+      "eamodio.gitlens",
+      "formulahendry.dotnet-test-explorer",
+      "formulahendry.dotnet",
+      "ms-dotnettools.vscode-dotnet-runtime",
+      "fudge.auto-using",
+      "kreativ-software.csharpextensions",
+      "adrianwilczynski.namespace",
+      "k--kato.docomment",
+      "editorconfig.editorconfig",
+      "github.copilot",
+      "github.vscode-pull-request-github",
+      "christian-kohler.path-intellisense",
+      "kevin-chatham.aspnetcorerazor-html-css-class-completion",
+      "vscode-icons-team.vscode-icons"
     ]
 }

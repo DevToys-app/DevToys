@@ -2,29 +2,6 @@
     "version": "2.0.0",
     "inputs": [
         {
-            // Add additional projects here. They will be available in the drop down
-            // in vscode.
-            "id": "project",
-            "type": "pickString",
-            "default": "${workspaceFolder}/src/app/dev/platforms/desktop/DevToys.MacOS/DevToys.MacOS.csproj",
-            "description": "Pick the Project you want to build.",
-            "options": [
-                "${workspaceFolder}/src/app/dev/platforms/desktop/DevToys.MacOS/DevToys.MacOS.csproj",
-            ]
-        },
-        {
-            // Add additional projects here. They will be available in the drop down
-            // in vscode.
-            "id": "framework",
-            "type": "pickString",
-            "default": "net7.0-maccatalyst",
-            "description": "Pick the framework you want to target.",
-            "options": [
-                "net7.0-maccatalyst",
-                "net7.0-windows",
-            ]
-        },
-        {
             "id": "configuration",
             "type": "pickString",
             "default": "Debug",
@@ -37,13 +14,12 @@
     ],
     "tasks": [
         {
-            "label": "Build",
+            "label": "BuildMacOS",
             "type": "shell",
             "command": "dotnet",
             "args": [
                 "build",
-                "${input:project}",
-                "-f:${input:framework}",
+                "src/app/dev/platforms/desktop/DevToys.MacOS/DevToys.MacOS.csproj",
                 "-c:${input:configuration}",
                 // Do not generate summary otherwise it leads to duplicate errors in Problems panel
                 "/consoleloggerparameters:NoSummary"
@@ -56,25 +32,37 @@
             "problemMatcher": ["$msCompile"]
         },
         {
-            "label": "Run",
+            "label": "BuildWindows",
             "type": "shell",
             "command": "dotnet",
             "args": [
                 "build",
-                "${input:project}",
-                "-t:Run",
-                "-f:${input:framework}",
+                "src/app/dev/platforms/desktop/DevToys.Windows/DevToys.Windows.csproj",
                 "-c:${input:configuration}",
                 // Do not generate summary otherwise it leads to duplicate errors in Problems panel
                 "/consoleloggerparameters:NoSummary"
             ],
-            "presentation": {
-                // Reveal the output only if unrecognized errors occur.
-                "reveal": "silent"
-            },
             "group": {
-                "kind": "none",
-                "isDefault": false
+                "kind": "build",
+                "isDefault": true
+            },
+            // Use the standard MS compiler pattern to detect errors, warnings and infos
+            "problemMatcher": ["$msCompile"]
+        },
+        {
+            "label": "BuildCLI",
+            "type": "shell",
+            "command": "dotnet",
+            "args": [
+                "build",
+                "src/app/dev/platforms/desktop/DevToys.CLI/DevToys.CLI.csproj",
+                "-c:${input:configuration}",
+                // Do not generate summary otherwise it leads to duplicate errors in Problems panel
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
             },
             // Use the standard MS compiler pattern to detect errors, warnings and infos
             "problemMatcher": ["$msCompile"]

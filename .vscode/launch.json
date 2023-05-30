@@ -5,11 +5,37 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug (MAUI Blazor desktop app)",
+            "name": "Debug (MacOS)",
             "type": "coreclr",
-            "request": "attach",
-            "processName": "DevToys.MacOS",
-            "preLaunchTask": "Run",
+            "request": "launch",
+            "program": "${workspaceRoot}/bin/Debug/AnyCPU/DevToys.MacOS/net7.0-maccatalyst/DevToys.MacOS.app",
+            "args": [],
+            "cwd": "${workspaceRoot}",
+            "stopAtEntry": false,
+            "console": "internalConsole",
+            "preLaunchTask": "BuildMacOS"
+        },
+        {
+            "name": "Debug (Windows)",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "${workspaceRoot}/bin/Debug/AnyCPU/DevToys.Windows/net7.0-windows/DevToys.Windows.exe",
+            "args": [],
+            "cwd": "${workspaceRoot}",
+            "stopAtEntry": false,
+            "console": "internalConsole",
+            "preLaunchTask": "BuildWindows"
+        },
+        {
+            "name": "Debug (CLI)",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "${workspaceRoot}/bin/Debug/AnyCPU/DevToys.CLI/net7.0/DevToys.CLI.exe",
+            "args": [],
+            "cwd": "${workspaceRoot}",
+            "stopAtEntry": false,
+            "console": "internalConsole",
+            "preLaunchTask": "BuildCLI"
         }
     ]
 }
