@@ -14,12 +14,14 @@
     ],
     "tasks": [
         {
-            "label": "BuildMacOS",
+            "label": "BuildAndRunMacOS",
             "type": "shell",
             "command": "dotnet",
             "args": [
                 "build",
                 "src/app/dev/platforms/desktop/DevToys.MacOS/DevToys.MacOS.csproj",
+                "-t:Run",
+                "-f:net7.0-maccatalyst",
                 "-c:${input:configuration}",
                 // Do not generate summary otherwise it leads to duplicate errors in Problems panel
                 "/consoleloggerparameters:NoSummary"
@@ -44,7 +46,7 @@
             ],
             "group": {
                 "kind": "build",
-                "isDefault": true
+                "isDefault": false
             },
             // Use the standard MS compiler pattern to detect errors, warnings and infos
             "problemMatcher": ["$msCompile"]

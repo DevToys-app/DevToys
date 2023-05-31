@@ -16,6 +16,7 @@
       "github.vscode-pull-request-github",
       "christian-kohler.path-intellisense",
       "kevin-chatham.aspnetcorerazor-html-css-class-completion",
-      "vscode-icons-team.vscode-icons"
+      "vscode-icons-team.vscode-icons",
+      "nromanov.dotnet-meteor"
     ]
 }

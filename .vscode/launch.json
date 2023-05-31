@@ -6,14 +6,9 @@
     "configurations": [
         {
             "name": "Debug (MacOS)",
-            "type": "coreclr",
+            "type": "dotnet-meteor.debugger",
             "request": "launch",
-            "program": "${workspaceRoot}/bin/Debug/AnyCPU/DevToys.MacOS/net7.0-maccatalyst/DevToys.MacOS.app",
-            "args": [],
-            "cwd": "${workspaceRoot}",
-            "stopAtEntry": false,
-            "console": "internalConsole",
-            "preLaunchTask": "BuildMacOS"
+            "preLaunchTask": "dotnet-meteor: Build"
         },
         {
             "name": "Debug (Windows)",

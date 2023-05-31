@@ -1,3 +1,6 @@
 {
-    "dotnet-test-explorer.testProjectPath": "src\\app\\tests\\DevToys.UnitTests\\DevToys.UnitTests.csproj"
+    "dotnet-test-explorer.testProjectPath": "src/app/tests/DevToys.UnitTests/DevToys.UnitTests.csproj",
+    "emmet.includeLanguages": {
+        "aspnetcorerazor": "html"
+    }
 }
