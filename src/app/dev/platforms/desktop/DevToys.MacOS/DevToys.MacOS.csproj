@@ -1,13 +1,15 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFrameworks Condition="$(IsWindows)">$(NetCoreWindows10)</TargetFrameworks>
-    <TargetFrameworks Condition="$(IsMac)">$(NetMacCatalyst)</TargetFrameworks>
+    <!-- Don't use $(NetMacCatalyst) here or it breaks .Net Meteor extension for VS Code. -->
+    <TargetFramework>net7.0-maccatalyst</TargetFramework>
     <OutputType>Exe</OutputType>
     <RootNamespace>DevToys.MacOS</RootNamespace>
     <UseMaui>true</UseMaui>
     <SingleProject>true</SingleProject>
     <EnableDefaultCssItems>false</EnableDefaultCssItems>
+    <DefineConstants>$(DefineConstants);__MACCATALYST__</DefineConstants>
+    <RuntimeIdentifiers>maccatalyst-arm64</RuntimeIdentifiers>
 
     <!-- Display name -->
     <ApplicationTitle>DevToys</ApplicationTitle>
@@ -19,43 +21,21 @@
     <!-- Versions -->
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
     <ApplicationVersion>1</ApplicationVersion>
+
+    <!-- The following 3 properties disable trimming and AOT. This allow us to load plugins at runtime. -->
+    <UseInterpreter>true</UseInterpreter>
+    <MtouchLink>None</MtouchLink>
+    <MtouchInterpreter>all</MtouchInterpreter>
   </PropertyGroup>
 
-  <Choose>
-    <When Condition="'$(TargetFramework)' == '$(NetMacCatalyst)'">
-      <PropertyGroup>
-        <DefineConstants>$(DefineConstants);__MACCATALYST__</DefineConstants>
-        <RuntimeIdentifiers>maccatalyst-arm64</RuntimeIdentifiers>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <CodeSignEntitlements>Platforms/MacCatalyst/Entitlements.Debug.plist</CodeSignEntitlements>
+  </PropertyGroup>
 
-        <!-- The following 3 properties disable trimming and AOT. This allow us to load plugins at runtime. -->
-        <UseInterpreter>true</UseInterpreter>
-        <MtouchLink>None</MtouchLink>
-        <MtouchInterpreter>all</MtouchInterpreter>
-      </PropertyGroup>
-      <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-        <CodeSignEntitlements>Platforms/MacCatalyst/Entitlements.Debug.plist</CodeSignEntitlements>
-      </PropertyGroup>
-      <PropertyGroup Condition="'$(RuntimeIdentifier)'=='' AND '$(Configuration)'=='Release'">
-        <!-- Default values for command line builds -->
-        <RuntimeIdentifier>maccatalyst-arm64</RuntimeIdentifier>
-      </PropertyGroup>
-    </When>
-
-    <When Condition="'$(TargetFramework)' == '$(NetCoreWindows10)'">
-      <PropertyGroup>
-        <DefineConstants>$(DefineConstants);__WINDOWS__</DefineConstants>
-        <TargetPlatformMinVersion>$(Windows10MinSDKVersion)</TargetPlatformMinVersion>
-        <SupportedOSPlatformVersion>$(Windows10MinSDKVersion)</SupportedOSPlatformVersion>
-      </PropertyGroup>
-      <PropertyGroup Condition="'$(Configuration)'=='Release'">
-        <Platforms>x86;x64;arm64</Platforms>
-        <RuntimeIdentifiers>win10-arm64;win10-x64;win10-x86</RuntimeIdentifiers>
-        <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
-        <AppxPackage>false</AppxPackage>
-        <WindowsPackageType>None</WindowsPackageType>
-      </PropertyGroup>
-    </When>
-  </Choose>
+  <PropertyGroup Condition="'$(RuntimeIdentifier)'=='' AND '$(Configuration)'=='Release'">
+    <!-- Default values for command line builds -->
+    <RuntimeIdentifier>maccatalyst-arm64</RuntimeIdentifier>
+  </PropertyGroup>
 
   <PropertyGroup Condition="'$(RuntimeIdentifierOverride)' != ''">
     <RuntimeIdentifier>$(RuntimeIdentifierOverride)</RuntimeIdentifier>
