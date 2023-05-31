@@ -121,10 +121,10 @@
     <value>String utilities tool</value>
   </data>
   <data name="AlternatingCase" xml:space="preserve">
-    <value>aLtErNaTiNg cAsE</value>
+    <value>مناوبة الحجم</value>
   </data>
   <data name="Bytes" xml:space="preserve">
-    <value>Bytes:</value>
+    <value>بايت:</value>
   </data>
   <data name="CamelCase" xml:space="preserve">
     <value>camelCase</value>
@@ -139,7 +139,7 @@
     <value>COBOL-CASE</value>
   </data>
   <data name="Column" xml:space="preserve">
-    <value>Column:</value>
+    <value>الأعمدة:</value>
   </data>
   <data name="ConstantCase" xml:space="preserve">
     <value>CONSTANT_CASE</value>
@@ -157,10 +157,10 @@
     <value>kebab-case</value>
   </data>
   <data name="Line" xml:space="preserve">
-    <value>Line:</value>
+    <value>سطر:</value>
   </data>
   <data name="Lines" xml:space="preserve">
-    <value>Lines:</value>
+    <value>الأسطر:</value>
   </data>
   <data name="LowerCase" xml:space="preserve">
     <value>lower case</value>
@@ -208,10 +208,10 @@
     <value>Word distribution</value>
   </data>
   <data name="Words" xml:space="preserve">
-    <value>Words:</value>
+    <value>كلمات:</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Analyze text and convert it to a different case</value>
+    <value>تحليل النص وتحويله إلى حالة مختلفة</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Text Case Converter and Inspector</value>
