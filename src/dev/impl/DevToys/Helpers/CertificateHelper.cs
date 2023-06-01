@@ -71,35 +71,33 @@ namespace DevToys.Helpers
             }
 
             // Try to decode the X.509 extensions. Put this is a separate try/catch because it's not critical.
-            try
+            if (certificate.Extensions.OfType<X509Extension>().Any())
             {
-                decoded += Environment.NewLine;
-
-                foreach (X509Extension x509Extension in certificate.Extensions)
+                try
                 {
-                    StringBuilder extensionData = new StringBuilder();
-                    AsnEncodedData asnEncodedData = new AsnEncodedData(x509Extension.Oid, x509Extension.RawData);
+                    decoded += Environment.NewLine;
 
-                    // Add the name in brackets to match the previous output from X509Certificate.ToString()
-                    extensionData.Append($"[{x509Extension.Oid.FriendlyName}]");
-                    extensionData.Append(Environment.NewLine);
-
-                    // Add each line of the data, indented by two spaces to match the output from X509Certificate.ToString()
-                    foreach (string dataLine in asnEncodedData.Format(multiLine: true).Split(Environment.NewLine))
+                    StringBuilder extensionData = new();
+                    foreach (X509Extension x509Extension in certificate.Extensions)
                     {
-                        extensionData.Append($"  {dataLine}");
-                        extensionData.Append(Environment.NewLine);
+                        AsnEncodedData asnEncodedData = new(x509Extension.Oid, x509Extension.RawData);
+
+                        // Add the name in brackets to match the previous output from X509Certificate.ToString()
+                        extensionData.AppendLine($"[{x509Extension.Oid.FriendlyName}]");
+
+                        // Add each line of the data, indented by two spaces to match the output from X509Certificate.ToString()
+                        foreach (string dataLine in asnEncodedData.Format(multiLine: true).Split(Environment.NewLine))
+                        {
+                            extensionData.AppendLine($"  {dataLine}");
+                        }
                     }
 
-                    // Add it to the output
-                    decoded += extensionData.ToString();
+                    decoded += extensionData.ToString().Trim();
                 }
-
-                decoded = decoded.Trim();
-            }
-            catch (Exception ex)
-            {
-                Logger.LogFault("Failed to parse X.509 extensions from certificate.", ex);
+                catch (Exception ex)
+                {
+                    Logger.LogFault("Failed to parse X.509 extensions from certificate.", ex);
+                }
             }
 
             return true;
