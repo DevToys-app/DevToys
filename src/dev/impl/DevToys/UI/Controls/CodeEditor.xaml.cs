@@ -189,6 +189,19 @@ namespace DevToys.UI.Controls
             set => SetValue(InlineDiffViewModeProperty, value);
         }
 
+        public static readonly DependencyProperty ShowDatesHoverProperty
+            = DependencyProperty.Register(
+                nameof(ShowDatesHover),
+                typeof(bool),
+                typeof(CodeEditor),
+                new PropertyMetadata(false));
+
+        public bool ShowDatesHover
+        {
+            get => (bool)GetValue(ShowDatesHoverProperty);
+            set => SetValue(ShowDatesHoverProperty, value);
+        }
+
         public CodeEditor()
         {
             SettingsProvider = MefComposer.Provider.Import<ISettingsProvider>();
@@ -251,8 +264,13 @@ namespace DevToys.UI.Controls
                 };
                 _codeEditorCore.Options.Hover = new EditorHoverOptions()
                 {
-                    Enabled = false
+                    Enabled = ShowDatesHover
                 };
+
+                if (ShowDatesHover)
+                {
+                    _codeEditorCore.RegisterDateHoverProvider();
+                }
 
                 _codeEditorCore.DiffOptions.GlyphMargin = false;
                 _codeEditorCore.DiffOptions.MouseWheelZoom = false;

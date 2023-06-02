@@ -20,6 +20,32 @@ var registerHoverProvider = function (languageId: string) {
     });
 }
 
+var registerDateHoverProvider = function (languageId: string) {
+    return monaco.languages.registerHoverProvider(languageId, {
+        provideHover: function (model, position) {
+            var wordAtPosition = model.getWordAtPosition(position);
+            if (wordAtPosition === null) {
+                return null;
+            }
+            var date = new Date(Number(wordAtPosition.word) * 1000);
+            if (isNaN(date.getTime())) {
+                return null;
+            }
+            return {
+                range: new monaco.Range(
+                    position.lineNumber,
+                    wordAtPosition.startColumn,
+                    position.lineNumber,
+                    wordAtPosition.endColumn
+                ),
+                contents: [
+                    { value: date.toString() },
+                ],
+            };
+        }
+    });
+}
+
 var addAction = function (action: monaco.editor.IActionDescriptor) {
     action.run = function (ed) {
         Parent.callAction("Action" + action.id)

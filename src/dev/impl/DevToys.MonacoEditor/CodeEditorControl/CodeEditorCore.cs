@@ -1069,6 +1069,11 @@ namespace DevToys.MonacoEditor.CodeEditorControl
             return SendScriptAsync("editor.setPosition(" + JsonConvert.SerializeObject(position) + ");").AsAsyncAction();
         }
 
+        public void RegisterDateHoverProvider()
+        {
+            _ = InvokeScriptAsync("registerDateHoverProvider", "json");
+        }
+
         /// <summary>
         /// https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.icommoncodeeditor.html#deltadecorations
         /// 
