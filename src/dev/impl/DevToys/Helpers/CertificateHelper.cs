@@ -70,37 +70,42 @@ namespace DevToys.Helpers
                 return false;
             }
 
-            // Try to decode the X.509 extensions. Put this is a separate try/catch because it's not critical.
-            if (certificate.Extensions.OfType<X509Extension>().Any())
+            if (!string.IsNullOrEmpty(decoded) && certificate.Extensions.OfType<X509Extension>().Any())
             {
-                try
-                {
-                    decoded += Environment.NewLine;
-
-                    StringBuilder extensionData = new();
-                    foreach (X509Extension x509Extension in certificate.Extensions)
-                    {
-                        AsnEncodedData asnEncodedData = new(x509Extension.Oid, x509Extension.RawData);
-
-                        // Add the name in brackets to match the previous output from X509Certificate.ToString()
-                        extensionData.AppendLine($"[{x509Extension.Oid.FriendlyName}]");
-
-                        // Add each line of the data, indented by two spaces to match the output from X509Certificate.ToString()
-                        foreach (string dataLine in asnEncodedData.Format(multiLine: true).Split(Environment.NewLine))
-                        {
-                            extensionData.AppendLine($"  {dataLine}");
-                        }
-                    }
-
-                    decoded += extensionData.ToString().Trim();
-                }
-                catch (Exception ex)
-                {
-                    Logger.LogFault("Failed to parse X.509 extensions from certificate.", ex);
-                }
+                decoded = string.Join(Environment.NewLine, decoded, DecodeExtensions(certificate));
             }
 
             return true;
+        }
+
+        private static string DecodeExtensions(X509Certificate2 certificate)
+        {
+            // Try to decode the X.509 extensions.
+            try
+            {
+                StringBuilder extensionData = new();
+                foreach (X509Extension x509Extension in certificate.Extensions)
+                {
+                    AsnEncodedData asnEncodedData = new(x509Extension.Oid, x509Extension.RawData);
+
+                    // Add the name in brackets to match the previous output from X509Certificate.ToString()
+                    extensionData.AppendLine($"[{x509Extension.Oid.FriendlyName}]");
+
+                    // Add each line of the data, indented by two spaces to match the output from X509Certificate.ToString()
+                    foreach (string dataLine in asnEncodedData.Format(multiLine: true).Split(Environment.NewLine))
+                    {
+                        extensionData.AppendLine($"  {dataLine}");
+                    }
+                }
+
+                return extensionData.ToString().Trim();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogFault("Failed to parse X.509 extensions from certificate.", ex);
+            }
+
+            return string.Empty;
         }
 
         /// <summary>
