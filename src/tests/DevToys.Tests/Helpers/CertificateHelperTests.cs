@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using DevToys.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -28,18 +29,32 @@ namespace DevToys.Tests.Helpers
 
         private void DecodeCertificate(string input, string password, bool successfullyDecoded, string expectedResult)
         {
-            // Convert date output to UTC so that tests pass on any machine with any timezone
-            var notBefore = DateTime.Parse("4/17/2023 10:40:48 AM");
-            var notAfter = DateTime.Parse("4/16/2024 10:40:48 AM");
-            var easternZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
-            DateTime notBeforeUtc = TimeZoneInfo.ConvertTimeToUtc(notBefore, easternZone);
-            DateTime notAfterUtc = TimeZoneInfo.ConvertTimeToUtc(notAfter, easternZone);
-
             bool result = CertificateHelper.TryDecodeCertificate(input, password, out string decoded);
-            decoded = decoded.Replace(notBefore.ToString(), notBeforeUtc.ToString());
-            decoded = decoded.Replace(notAfter.ToString(), notAfterUtc.ToString());
+            decoded = CleanDateTimes(decoded);
+            expectedResult = CleanDateTimes(expectedResult);
             Assert.AreEqual(result, successfullyDecoded);
             Assert.AreEqual(expectedResult, decoded);
+        }
+
+        /// <summary>
+        /// Strips times from decoded certificates to avoid issues with testing in different timezones
+        /// </summary>
+        private string CleanDateTimes(string decoded)
+        {
+            var decodedCleaned = new StringBuilder();
+            foreach (string line in decoded.Split(Environment.NewLine))
+            {
+                if (DateTime.TryParse(line, out DateTime dateTime))
+                {
+                    decodedCleaned.AppendLine($"  {dateTime.Date}");
+                }
+                else
+                {
+                    decodedCleaned.AppendLine(line);
+                }
+            }
+
+            return decodedCleaned.ToString();
         }
 
         /// <summary>
