@@ -1,11 +1,10 @@
 ﻿namespace DevToys.Blazor.Components;
 
-public partial class MonacoEditor : JSStyledComponentBase, IAsyncDisposable
+public partial class MonacoEditor : JSStyledComponentBase
 {
     private const string JAVASCRIPT_FILE = "./_content/DevToys.Blazor/Components/MonacoEditor.razor.js";
     private const string MONACO_VS_PATH = "./_content/DevToys.Blazor/lib/monaco-editor/min/vs";
 
-    private DotNetObjectReference<MonacoEditor>? _objRef = null;
     private string _value = """
                             using System;
                             void Main()
@@ -90,10 +89,11 @@ public partial class MonacoEditor : JSStyledComponentBase, IAsyncDisposable
     /// <summary />
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        await base.OnAfterRenderAsync(firstRender);
+
         if (firstRender)
         {
             JSModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", JAVASCRIPT_FILE);
-            _objRef = DotNetObjectReference.Create(this);
 
             var options = new
             {
@@ -104,7 +104,7 @@ public partial class MonacoEditor : JSStyledComponentBase, IAsyncDisposable
                 LineNumbers = true,
                 ReadOnly = false,
             };
-            await JSModule.InvokeVoidAsync("monacoInitialize", Id, _objRef, options);
+            await JSModule.InvokeVoidAsync("monacoInitialize", Id, Reference, options);
         }
 
         await base.OnAfterRenderAsync(firstRender);
@@ -128,16 +128,13 @@ public partial class MonacoEditor : JSStyledComponentBase, IAsyncDisposable
     }
 
     /// <summary />
-    async ValueTask IAsyncDisposable.DisposeAsync()
+    public override async ValueTask DisposeAsync()
     {
         if (JSModule is not null)
         {
             await JSModule.DisposeAsync();
         }
 
-        if (_objRef is not null)
-        {
-            _objRef.Dispose();
-        }
+        await base.DisposeAsync();
     }
 }

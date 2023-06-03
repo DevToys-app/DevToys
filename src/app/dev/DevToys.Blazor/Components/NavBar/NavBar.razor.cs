@@ -5,7 +5,6 @@ namespace DevToys.Blazor.Components;
 public partial class NavBar<TElement> : JSStyledComponentBase where TElement : class
 {
     private readonly NavBarState _sidebarState = new();
-    private DotNetObjectReference<NavBar<TElement>>? _objRef;
     private AutoSuggestBox _autoSuggestBox = default!;
 
     public string NavId { get; } = NewId();
@@ -73,19 +72,17 @@ public partial class NavBar<TElement> : JSStyledComponentBase where TElement : c
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        await base.OnAfterRenderAsync(firstRender);
+
         if (firstRender)
         {
-            _objRef = DotNetObjectReference.Create(this);
-            await (await JSModule).InvokeVoidAsync("registerResizeHandler", Id, NavId, _objRef);
+            await (await JSModule).InvokeVoidAsync("registerResizeHandler", Id, NavId, Reference);
         }
-
-        await base.OnAfterRenderAsync(firstRender);
     }
 
     public override ValueTask DisposeAsync()
     {
         _sidebarState.IsHiddenChanged -= SidebarState_IsHiddenChanged;
-        _objRef?.Dispose();
         return base.DisposeAsync();
     }
 

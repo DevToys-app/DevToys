@@ -34,6 +34,8 @@ public partial class GridView<TKey, TElement> : JSStyledComponentBase
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        await base.OnAfterRenderAsync(firstRender);
+
         if (firstRender)
         {
             Guard.IsNotNull(_scrollViewer);

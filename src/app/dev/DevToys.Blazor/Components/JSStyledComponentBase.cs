@@ -1,8 +1,11 @@
+﻿using Microsoft.AspNetCore.Components.Web;
+
 ﻿namespace DevToys.Blazor.Components;
 
 public abstract class JSStyledComponentBase : StyledComponentBase, IAsyncDisposable
 {
     private Task<IJSObjectReference>? _jsModule;
+    private DotNetObjectReference<JSStyledComponentBase>? _reference;
 
     /// <summary>
     /// Gets the JavaScript file to use in this component.
@@ -29,9 +32,24 @@ public abstract class JSStyledComponentBase : StyledComponentBase, IAsyncDisposa
         }
     }
 
+    /// <summary>
+    /// Gets the reference for the current component.
+    /// </summary>
+    /// <value>The reference.</value>
+    protected DotNetObjectReference<JSStyledComponentBase> Reference
+    {
+        get
+        {
+            _reference ??= DotNetObjectReference.Create(this);
+            return _reference;
+        }
+    }
     /// <summary />
     public virtual async ValueTask DisposeAsync()
     {
+        _reference?.Dispose();
+        _reference = null;
+
         if (_jsModule is not null)
         {
             await (await _jsModule).DisposeAsync();

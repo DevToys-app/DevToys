@@ -57,6 +57,12 @@ public abstract class StyledComponentBase : ComponentBase
         });
     }
 
+    /// <inheritdoc />
+    public new void StateHasChanged()
+    {
+        base.StateHasChanged();
+    }
+
     private void CSS_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
     {
         BuildClassAttribute();

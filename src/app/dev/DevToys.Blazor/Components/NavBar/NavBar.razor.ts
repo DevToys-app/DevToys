@@ -1,4 +1,4 @@
-export function registerResizeHandler(id: string, navId: string, dotNetObjRef: any): void {
+export function registerResizeHandler(id: string, navId: string, dotNetObjRef: DotNet.DotNetObject): void {
     const navBar = document.getElementById(id);
     const navTag = document.getElementById(navId);
 

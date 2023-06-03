@@ -18,6 +18,8 @@ public partial class ScrollViewer : JSStyledComponentBase
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        await base.OnAfterRenderAsync(firstRender);
+
         if (firstRender)
         {
             await (await JSModule).InvokeVoidAsync("initializeScrollViewer", Id);

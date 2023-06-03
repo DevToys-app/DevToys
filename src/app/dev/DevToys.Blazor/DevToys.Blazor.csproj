@@ -55,7 +55,7 @@
   </Target>
 
   <!-- Target ran on `dotnet build` -->
-  <Target Name="GulpPrecompileTarget" AfterTargets="PrepareForBuild">
+  <Target Name="GulpPrecompileTarget" AfterTargets="CompileTypeScriptWithTSConfig">
     <!-- Run the Gulp tasks. -->
     <Message Importance="high" Text="Generating CSS and JavaScript..." />
     <Exec WorkingDirectory="$(ProjectDir)" Command="node_modules\.bin\gulp devtoysJavaScript" />

@@ -20,7 +20,7 @@
     <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="$(DotNetVersion)" Condition="'$(UseMaui)' != 'true'" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
     <PackageVersion Include="Microsoft.TypeScript.MSBuild" Version="4.9.4" />
-    <PackageVersion Include="Moq" Version="4.18.2" />
+    <PackageVersion Include="Moq" Version="4.18.4" />
     <PackageVersion Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageVersion Include="Nuke.Common" Version="6.2.1" />
     <PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />

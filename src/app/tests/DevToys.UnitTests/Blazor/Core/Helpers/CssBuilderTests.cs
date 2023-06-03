@@ -1,6 +1,6 @@
 ﻿using DevToys.Blazor.Core.Helpers;
 
-namespace DevToys.UnitTests.Blazor.Helpers;
+namespace DevToys.UnitTests.Blazor.Core.Helpers;
 
 public class CssBuilderTests
 {
