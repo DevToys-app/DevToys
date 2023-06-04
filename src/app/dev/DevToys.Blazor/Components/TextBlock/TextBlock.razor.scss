@@ -16,7 +16,7 @@
         &display {
             font: {
                 family: var(--font-family-display);
-                weight: 400;
+                weight: 300;
             }
         }
 
@@ -28,10 +28,11 @@
 
         &caption {
             line-height: 16px;
+            letter-spacing: 0.3px;
 
             font: {
                 size: var(--font-size-caption);
-                weight: 400;
+                weight: 300;
                 family: var(--font-family-small);
             }
         }
@@ -40,9 +41,10 @@
         &body-strong,
         &body-large {
             line-height: 20px;
+            letter-spacing: 0.3px;
 
             font: {
-                weight: 400;
+                weight: 300;
                 size: var(--font-size-body);
             }
         }
