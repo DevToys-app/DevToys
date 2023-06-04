@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Components.Forms;
 
 namespace DevToys.Blazor.Components;
 
-public partial class TextBox : JSStyledComponentBase
+public partial class TextBox : MefComponentBase
 {
     private static readonly ContextMenuItem CutContextMenuItem
         = new()
@@ -42,6 +42,9 @@ public partial class TextBox : JSStyledComponentBase
 
     protected override string JavaScriptFile => "./_content/DevToys.Blazor/Components/TextBox/TextBox.razor.js";
 
+    [Import]
+    internal IClipboard Clipboard { get; set; } = default!;
+
     [Parameter]
     public string? Text { get; set; }
 
@@ -61,7 +64,7 @@ public partial class TextBox : JSStyledComponentBase
     public RenderFragment? Buttons { get; set; }
 
     [Parameter]
-    public EventCallback<string> OnTextChanged { get; set; }
+    public EventCallback<string?> OnTextChanged { get; set; }
 
     internal ValueTask<bool> FocusAsync()
     {
@@ -72,8 +75,7 @@ public partial class TextBox : JSStyledComponentBase
 
     private void OnClearClick()
     {
-        Text = string.Empty;
-        OnTextChanged.InvokeAsync(Text).Forget();
+        SetTextAsync(string.Empty).Forget();
         FocusAsync();
     }
 
@@ -96,8 +98,7 @@ public partial class TextBox : JSStyledComponentBase
     private Task InputTextChangedAsync(ChangeEventArgs e)
     {
         Interlocked.Increment(ref _textChangedCount);
-        Text = e.Value as string;
-        return OnTextChanged.InvokeAsync(e.Value as string);
+        return SetTextAsync(e.Value as string ?? string.Empty);
     }
 
     private async Task UpdateContextMenuAsync()
@@ -135,25 +136,60 @@ public partial class TextBox : JSStyledComponentBase
 
     private async Task OnCutAsync()
     {
-        Guard.IsNotNull(_input);
-        await (await JSModule).InvokeVoidAsync("cut", _input.Element);
+        await OnCopyAsync();
+
+        if (!string.IsNullOrEmpty(Text))
+        {
+            Guard.IsNotNull(_input);
+            Guard.IsEqualTo(_input.Value!, Text);
+            TextSpan selection = await GetSelectionAsync();
+
+            string newText = Text.Remove(selection.StartPosition, selection.Length);
+            await SetTextAsync(newText);
+        }
     }
 
     private async Task OnCopyAsync()
     {
-        Guard.IsNotNull(_input);
-        await (await JSModule).InvokeVoidAsync("copy", _input.Element);
+        if (!string.IsNullOrEmpty(Text))
+        {
+            Guard.IsNotNull(_input);
+            Guard.IsEqualTo(_input.Value!, Text);
+            TextSpan selection = await GetSelectionAsync();
+
+            string textToCopy = Text.Substring(selection.StartPosition, selection.Length);
+            await Clipboard.SetClipboardTextAsync(textToCopy);
+        }
     }
 
     private async Task OnPasteAsync()
     {
-        Guard.IsNotNull(_input);
-        await (await JSModule).InvokeVoidAsync("paste", _input.Element);
+        object? clipboardData = await Clipboard.GetClipboardDataAsync();
+        if (clipboardData is string)
+        {
+            TextSpan selection = await GetSelectionAsync();
+            Text ??= string.Empty;
+            string newText = Text.Substring(0, selection.StartPosition) + (string)clipboardData + Text.Substring(selection.StartPosition + selection.Length);
+            await SetTextAsync(newText);
+        }
     }
 
     private async Task OnSelectAllAsync()
     {
         Guard.IsNotNull(_input);
         await (await JSModule).InvokeVoidAsync("selectAll", _input.Element);
+    }
+
+    private async Task<TextSpan> GetSelectionAsync()
+    {
+        Guard.IsNotNull(_input);
+        int[] selection = await (await JSModule).InvokeAsync<int[]>("getSelectionSpan", _input.Element);
+        return new TextSpan(selection[0], selection[1] - selection[0]);
+    }
+
+    private Task SetTextAsync(string text)
+    {
+        Text = text;
+        return OnTextChanged.InvokeAsync(Text);
     }
 }
