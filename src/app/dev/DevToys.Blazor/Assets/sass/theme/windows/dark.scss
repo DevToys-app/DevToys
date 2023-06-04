@@ -140,6 +140,23 @@
     --list-box-item-foreground-active: var(--text-fill-color-secondary);
     --list-box-item-foreground-disabled: var(--text-fill-color-disabled);
 
+    /* Context Menu */
+    --menu-flyout-presenter-background: rgb(44, 44, 44); // Could be semi-transparent if we didn't have Mica: rgb(44, 44, 44, 0.8)
+    --menu-flyout-presenter-border: rgba(0, 0, 0, 0.2);
+    --menu-flyout-presenter-backdrop-filter: blur(50px) saturate(125%);
+    --menu-flyout-presenter-shadow: 0px 8px 16px rgba(0, 0, 0, 0.14);
+
+    /* Context Menu Item */
+    --context-menu-item-background: var(--subtle-fill-transparent);
+    --context-menu-item-background-disabled: var(--subtle-fill-transparent);
+    --context-menu-item-background-pointer-over: var(--subtle-fill-secondary);
+    --context-menu-item-background-active: var(--subtle-fill-tertiary);
+    --context-menu-item-foreground: var(--text-fill-color-primary);
+    --context-menu-item-foreground-active: var(--text-fill-color-secondary);
+    --context-menu-item-foreground-disabled: var(--text-fill-color-disabled);
+    --context-menu-item-key-accelerator-foreground: var(--text-fill-color-secondary);
+    --context-menu-item-key-accelerator-foreground-disabled: var(--text-fill-color-disabled);
+
     /* Text Box */
     --text-box-background: var(--control-fill-color-default);
     --text-box-background-pointer-over: var(--control-fill-color-secondary);

@@ -1,0 +1,60 @@
+@namespace DevToys.Blazor.Components
+@inherits StyledComponentBase
+
+
+<div id="@Id"
+     Class="context-menu @(FinalCssClasses)"
+     Style="@Style"
+     @attributes="AdditionalAttributes"
+     @oncontextmenu:preventDefault="true">
+    <CascadingValue Value="this" IsFixed="true">
+        <div @oncontextmenu="@ToggleMenuAsync"
+             disabled="@(!IsEnabled)"
+             class="context-menu-activator">
+            @ChildContent
+        </div>
+    </CascadingValue>
+
+    <Popover Open="_isOpen"
+             AnchorOrigin="Origin.TopLeft"
+             TransformOrigin="Origin.TopLeft"
+             RelativeWidth="false"
+             Style="@(PopoverStyle)"
+             @ontouchend:stopPropagation>
+        <CascadingValue Value="@this" IsFixed="true">
+            <FocusTrapper @ref="_focusTrapper"
+                          Style="display: contents;"
+                          OnEscapeKeyPressed="OnEscapeKeyPressedAsync">
+                <ul class="menu-flyout" role="menu">
+                    @if (Items is not null)
+                    {
+                        foreach (ContextMenuItem item in Items)
+                        {
+                            <li role="menuitem"
+                                class="@($"context-menu-item {(item.IsEnabled ? string.Empty : "disabled")}")"
+                                tabindex="0"
+                                @onclick="@(() => OnItemClickAsync(item))"
+                                @onkeypress="@((ev) => OnItemKeyPressAsync(ev, item))">
+                                <div class="icon-container">
+                                    <FontIcon Glyph="@item.IconGlyph" FontFamily="@item.IconFontFamily" />
+                                </div>
+                                <TextBlock Class="text"
+                                           NoWrap="true">
+                                    @item.Text
+                                </TextBlock>
+                                @if (!string.IsNullOrWhiteSpace(item.KeyboardShortcut))
+                                {
+                                    <TextBlock Appearance="TextBlockAppearance.Caption"
+                                               NoWrap="true"
+                                               Class="keyboard-accelerator">
+                                        @item.KeyboardShortcut
+                                    </TextBlock>
+                                }
+                            </li>
+                        }
+                    }
+                </ul>
+            </FocusTrapper>
+        </CascadingValue>
+    </Popover>
+</div>

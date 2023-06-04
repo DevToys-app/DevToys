@@ -14,6 +14,9 @@ html, body {
 
     /* Default scrollbar behavior */
     overflow: hidden;
+    
+    /* Default popover z-index */
+    --popover-zindex: 90000;
 }
 
 #blazor-error-ui {

@@ -122,7 +122,8 @@
         </main>
 
         <!-- A transparent clickable area that appears when the sidebar is expanded overlay. Clicking on it will close the sidebar. -->
-        <div class="expanded-overlay-closer @(_sidebarState.IsExpandedOverlay ? "show" : string.Empty)"
-             @onclick="OnCloseExpandedOverlaySidebarClick" />
+        <Overlay Visible="_sidebarState.IsExpandedOverlay"
+                 ZIndex="@(10_000 - 1)"
+                 OnClick="OnCloseExpandedOverlaySidebarClick" />
     </div>
 </CascadingValue>

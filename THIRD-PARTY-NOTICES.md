@@ -2,6 +2,7 @@
 
 This project incorporates components from the projects listed below. The original copyright notices and the licenses under which Etienne Baudoux received such components are set forth below. Etienne Baudoux reserves all rights not expressly granted herein, whether by implication, estoppel or otherwise.
 
+1. MudBlazor's Popover
 1. [Newtonsoft.Json](#newtonsoftjson) (<https://github.com/JamesNK/Newtonsoft.Json>)
 2. [GitInfo](#gitinfo) (<https://github.com/devlooped/GitInfo>)
 3. [Windows Community Toolkit](#windows-community-toolkit) (<https://github.com/CommunityToolkit/WindowsCommunityToolkit>)

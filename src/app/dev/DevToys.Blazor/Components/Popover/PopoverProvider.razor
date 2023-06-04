@@ -1,0 +1,23 @@
+@namespace DevToys.Blazor.Components
+@using DevToys.Blazor.Core.Services;
+
+<div class="popover-provider">
+    @foreach (PopoverHandler handler in PopoverService.Handlers)
+    {
+        <Render @ref="handler.ElementReference"
+                @key="handler.Id">
+            <div id="@($"popovercontent-{handler.Id}")"
+                 data-ticks="@(handler.ActivationDate?.Ticks ?? 0)"
+                 @attributes="@handler.AdditionalAttributes"
+                 class="@handler.Class"
+                 style="@handler.Style">
+
+                 @if (handler.ShowContent == true)
+                 {
+                     @handler.Fragment
+                 }
+
+            </div>
+        </Render>
+    }
+</div>

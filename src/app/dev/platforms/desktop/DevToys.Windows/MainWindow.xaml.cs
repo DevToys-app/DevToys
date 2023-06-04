@@ -1,5 +1,6 @@
 ﻿using DevToys.Api;
 using DevToys.Blazor.Core.Languages;
+using DevToys.Blazor.Core.Services;
 using DevToys.Business.ViewModels;
 using DevToys.Core;
 using DevToys.Core.Logging;
@@ -8,8 +9,8 @@ using DevToys.Windows.Controls;
 using DevToys.Windows.Core;
 using Microsoft.AspNetCore.Components.WebView;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
-using Microsoft.Web.WebView2.Core;
 using PredefinedSettings = DevToys.Core.Settings.PredefinedSettings;
 
 namespace DevToys.Windows;
@@ -112,6 +113,8 @@ public partial class MainWindow : MicaWindowWithOverlay
         });
 
         serviceCollection.AddSingleton(provider => _mefComposer.Provider);
+        serviceCollection.TryAddScoped<PopoverService, PopoverService>();
+        serviceCollection.TryAddScoped<ContextMenuService, ContextMenuService>();
 
         ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
 

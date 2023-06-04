@@ -1,0 +1,24 @@
+.overlay {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 !important;
+    align-items: center;
+    justify-content: center;
+    border-radius: inherit;
+    background: transparent;
+    cursor: default;
+    display: flex;
+    position: fixed;
+    transition: .3s cubic-bezier(.25,.8,.5,1), z-index 1ms;
+    z-index: 5;
+
+    &.overlay-absolute {
+        position: absolute;
+    }
+
+    & .overlay-content {
+        position: relative;
+    }
+}
