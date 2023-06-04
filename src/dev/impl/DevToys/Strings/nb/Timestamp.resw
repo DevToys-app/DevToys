@@ -136,7 +136,7 @@
     <value>Det er ingen sommertid.</value>
   </data>
   <data name="DSTAmbiguousTime" xml:space="preserve">
-    <value>DST Ambiguous time.</value>
+    <value>Sommertid-tvetydig tidspunkt.</value>
   </data>
   <data name="HourTitle" xml:space="preserve">
     <value>Time (24 timer)</value>
