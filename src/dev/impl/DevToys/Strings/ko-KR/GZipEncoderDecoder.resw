@@ -130,7 +130,7 @@
     <value>압축풀기</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
-    <value>입력을 압축할지 압축 해제할지 선택합니다</value>
+    <value>입력을 압축할지, 압축 해제할지 선택합니다</value>
   </data>
   <data name="ConversionCompress" xml:space="preserve">
     <value>압축</value>
