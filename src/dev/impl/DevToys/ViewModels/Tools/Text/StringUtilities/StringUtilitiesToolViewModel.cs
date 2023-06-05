@@ -702,13 +702,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                 string? line1LastWord = line1.Split(' ', ',').LastOrDefault();
                 string? line2LastWord = line2.Split(' ', ',').LastOrDefault();
 
-                if (string.Equals(line1LastWord, line2LastWord, StringComparison.CurrentCulture))
-                {
-                    return 0;
-                }
-
-                var newList = new List<string> { line1LastWord, line2LastWord }.OrderBy(word => word).ToList();
-                return newList.IndexOf(line1LastWord) == 0 ? -1 : 1;
+                return string.Compare(line1LastWord, line2LastWord, StringComparison.CurrentCulture);
             });
             text = string.Join('\r', lines);
 
@@ -740,13 +734,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                 string? line1LastWord = line1.Split(' ', ',').LastOrDefault();
                 string? line2LastWord = line2.Split(' ', ',').LastOrDefault();
 
-                if (string.Equals(line1LastWord, line2LastWord, StringComparison.CurrentCulture))
-                {
-                    return 0;
-                }
-
-                var newList = new List<string> { line1LastWord, line2LastWord }.OrderByDescending(word => word, StringComparer.CurrentCulture).ToList();
-                return newList.IndexOf(line1LastWord) == 0 ? -1 : 1;
+                return string.Compare(line1LastWord, line2LastWord, StringComparison.CurrentCulture) * -1;
             });
             text = string.Join('\r', lines);
 
