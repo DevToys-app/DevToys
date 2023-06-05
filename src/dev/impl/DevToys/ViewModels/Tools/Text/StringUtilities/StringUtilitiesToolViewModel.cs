@@ -23,6 +23,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
         private static readonly object _lockObject = new();
 
         private readonly IMarketingService _marketingService;
+        private readonly Random _random;
 
         private bool _toolSuccessfullyWorked;
         private bool _forbidBackup;
@@ -143,6 +144,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
         public StringUtilitiesToolViewModel(IMarketingService marketingService)
         {
             _marketingService = marketingService;
+            _random = new Random();
             OriginalCaseCommand = new RelayCommand(ExecuteOriginalCaseCommand, CanExecuteOriginalCaseCommand);
             SentenceCaseCommand = new RelayCommand(ExecuteSentenceCaseCommand);
             LowerCaseCommand = new RelayCommand(ExecuteLowerCaseCommand);
@@ -157,6 +159,12 @@ namespace DevToys.ViewModels.Tools.StringUtilities
             TrainCaseCommand = new RelayCommand(ExecuteTrainCaseCommand);
             AlternatingCaseCommand = new RelayCommand(ExecuteAlternatingCaseCommand);
             InverseCaseCommand = new RelayCommand(ExecuteInverseCaseCommand);
+            AlphabetizeCommand = new RelayCommand(ExecuteAlphabetizeCommand);
+            ReverseAlphabetizeCommand = new RelayCommand(ExecuteReverseAlphabetizeCommand);
+            AlphabetizeLastCommand = new RelayCommand(ExecuteAlphabetizeLastCommand);
+            ReverseAlphabetizeLastCommand = new RelayCommand(ExecuteReverseAlphabetizeLastCommand);
+            ReverseCommand = new RelayCommand(ExecuteReverseCommand);
+            RandomizeCommand = new RelayCommand(ExecuteRandomizeCommand);
 
             QueueSelectionStatisticCalculation();
             QueueTextStatisticCalculation();
@@ -620,6 +628,189 @@ namespace DevToys.ViewModels.Tools.StringUtilities
             {
                 _forbidBackup = true;
                 Text = new string(titleCaseString);
+                _forbidBackup = false;
+            }
+        }
+
+        #endregion
+
+        #region AlphabetizeCommand
+
+        public IRelayCommand AlphabetizeCommand { get; }
+
+        private void ExecuteAlphabetizeCommand()
+        {
+            string? text = _textBackup;
+            if (text is null)
+            {
+                return;
+            }
+
+            var lines = text.Split('\r').ToList();
+            lines.Sort(StringComparer.CurrentCulture);
+            text = string.Join('\r', lines);
+
+            lock (_lockObject)
+            {
+                _forbidBackup = true;
+                Text = text;
+                _forbidBackup = false;
+            }
+        }
+
+        #endregion
+
+        #region ReverseAlphabetizeCommand
+
+        public IRelayCommand ReverseAlphabetizeCommand { get; }
+
+        private void ExecuteReverseAlphabetizeCommand()
+        {
+            string? text = _textBackup;
+            if (text is null)
+            {
+                return;
+            }
+
+            var lines = text.Split('\r').ToList();
+            lines.Sort(StringComparer.CurrentCulture);
+            lines.Reverse();
+            text = string.Join('\r', lines);
+
+            lock (_lockObject)
+            {
+                _forbidBackup = true;
+                Text = text;
+                _forbidBackup = false;
+            }
+        }
+
+        #endregion
+
+        #region AlphabetizeLastCommand
+
+        public IRelayCommand AlphabetizeLastCommand { get; }
+
+        private void ExecuteAlphabetizeLastCommand()
+        {
+            string? text = _textBackup;
+            if (text is null)
+            {
+                return;
+            }
+
+            var lines = text.Split('\r').ToList();
+            lines.Sort((line1, line2) =>
+            {
+                string? line1LastWord = line1.Split(' ', ',').LastOrDefault();
+                string? line2LastWord = line2.Split(' ', ',').LastOrDefault();
+
+                if (string.Equals(line1LastWord, line2LastWord, StringComparison.CurrentCulture))
+                {
+                    return 0;
+                }
+
+                var newList = new List<string> { line1LastWord, line2LastWord };
+                newList.Sort(StringComparer.CurrentCulture);
+                return newList.IndexOf(line1LastWord) == 0 ? -1 : 1;
+            });
+            text = string.Join('\r', lines);
+
+            lock (_lockObject)
+            {
+                _forbidBackup = true;
+                Text = text;
+                _forbidBackup = false;
+            }
+        }
+
+        #endregion
+
+        #region ReverseAlphabetizeLastCommand
+
+        public IRelayCommand ReverseAlphabetizeLastCommand { get; }
+
+        private void ExecuteReverseAlphabetizeLastCommand()
+        {
+            string? text = _textBackup;
+            if (text is null)
+            {
+                return;
+            }
+
+            var lines = text.Split('\r').ToList();
+            lines.Sort((line1, line2) =>
+            {
+                string? line1LastWord = line1.Split(' ', ',').LastOrDefault();
+                string? line2LastWord = line2.Split(' ', ',').LastOrDefault();
+
+                if (string.Equals(line1LastWord, line2LastWord, StringComparison.CurrentCulture))
+                {
+                    return 0;
+                }
+
+                var newList = new List<string> { line1LastWord, line2LastWord };
+                newList.Sort(StringComparer.CurrentCulture);
+                return newList.IndexOf(line1LastWord) == 0 ? -1 : 1;
+            });
+            lines.Reverse();
+            text = string.Join('\r', lines);
+
+            lock (_lockObject)
+            {
+                _forbidBackup = true;
+                Text = text;
+                _forbidBackup = false;
+            }
+        }
+
+        #endregion
+
+        #region ReverseCommand
+
+        public IRelayCommand ReverseCommand { get; }
+
+        private void ExecuteReverseCommand()
+        {
+            string? text = _textBackup;
+            if (text is null)
+            {
+                return;
+            }
+
+            var lines = text.Split('\r').ToList();
+            lines.Reverse();
+            text = string.Join('\r', lines);
+
+            lock (_lockObject)
+            {
+                _forbidBackup = true;
+                Text = text;
+                _forbidBackup = false;
+            }
+        }
+
+        #endregion
+
+        #region RandomizeCommand
+
+        public IRelayCommand RandomizeCommand { get; }
+
+        private void ExecuteRandomizeCommand()
+        {
+            string? text = _textBackup;
+            if (text is null)
+            {
+                return;
+            }
+
+            var lines = text.Split('\r').OrderBy(_ => _random.Next());
+            text = string.Join('\r', lines);
+
+            lock (_lockObject)
+            {
+                _forbidBackup = true;
+                Text = text;
                 _forbidBackup = false;
             }
         }
