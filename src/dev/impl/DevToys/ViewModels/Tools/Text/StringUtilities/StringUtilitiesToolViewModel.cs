@@ -181,12 +181,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
 
         private void ExecuteOriginalCaseCommand()
         {
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = _textBackup;
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(_textBackup);
         }
 
         #endregion
@@ -226,12 +221,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                 }
             }
 
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = new string(sentenceCaseString);
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(new string(sentenceCaseString));
         }
 
         #endregion
@@ -242,12 +232,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
 
         private void ExecuteLowerCaseCommand()
         {
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = _textBackup?.ToLowerInvariant();
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(_textBackup?.ToLowerInvariant());
         }
 
         #endregion
@@ -258,12 +243,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
 
         private void ExecuteUpperCaseCommand()
         {
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = _textBackup?.ToUpperInvariant();
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(_textBackup?.ToUpperInvariant());
         }
 
         #endregion
@@ -293,12 +273,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                 }
             }
 
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = new string(titleCaseString);
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(new string(titleCaseString));
         }
 
         #endregion
@@ -347,12 +322,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                 }
             }
 
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = camelCaseStringBuilder.ToString();
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(camelCaseStringBuilder.ToString());
         }
 
         #endregion
@@ -397,12 +367,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                 }
             }
 
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = pascalCaseStringBuilder.ToString();
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(pascalCaseStringBuilder.ToString());
         }
 
         #endregion
@@ -421,12 +386,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
 
             string? snakeCase = SnakeConstantKebabCobolCaseConverter(text, '_', isUpperCase: false);
 
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = snakeCase;
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(snakeCase);
         }
 
         #endregion
@@ -445,12 +405,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
 
             string? constantCase = SnakeConstantKebabCobolCaseConverter(text, '_', isUpperCase: true);
 
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = constantCase;
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(constantCase);
         }
 
         #endregion
@@ -469,12 +424,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
 
             string? kebabCase = SnakeConstantKebabCobolCaseConverter(text, '-', isUpperCase: false);
 
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = kebabCase;
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(kebabCase);
         }
 
         #endregion
@@ -493,12 +443,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
 
             string? cobolCase = SnakeConstantKebabCobolCaseConverter(text, '-', isUpperCase: true);
 
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = cobolCase;
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(cobolCase);
         }
 
         #endregion
@@ -549,13 +494,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                 }
             }
 
-
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = snakeCaseStringBuilder.ToString();
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(snakeCaseStringBuilder.ToString());
         }
 
         #endregion
@@ -587,12 +526,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                 lowerCase = !lowerCase;
             }
 
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = new string(titleCaseString);
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(new string(titleCaseString));
         }
 
         #endregion
@@ -624,12 +558,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                 lowerCase = !lowerCase;
             }
 
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = new string(titleCaseString);
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(new string(titleCaseString));
         }
 
         #endregion
@@ -649,12 +578,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
             IOrderedEnumerable<string> lines = text.Split('\r').OrderBy(line => line, StringComparer.CurrentCulture);
             text = string.Join('\r', lines);
 
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = text;
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(text);
         }
 
         #endregion
@@ -674,12 +598,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
             IOrderedEnumerable<string> lines = text.Split('\r').OrderByDescending(line => line, StringComparer.CurrentCulture);
             text = string.Join('\r', lines);
 
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = text;
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(text);
         }
 
         #endregion
@@ -706,12 +625,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
             });
             text = string.Join('\r', lines);
 
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = text;
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(text);
         }
 
         #endregion
@@ -738,12 +652,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
             });
             text = string.Join('\r', lines);
 
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = text;
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(text);
         }
 
         #endregion
@@ -763,12 +672,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
             IEnumerable<string> lines = text.Split('\r').Reverse();
             text = string.Join('\r', lines);
 
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = text;
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(text);
         }
 
         #endregion
@@ -788,6 +692,13 @@ namespace DevToys.ViewModels.Tools.StringUtilities
             IOrderedEnumerable<string> lines = text.Split('\r').OrderBy(_ => _random.Next());
             text = string.Join('\r', lines);
 
+            SetTextWithoutBackup(text);
+        }
+
+        #endregion
+
+        private void SetTextWithoutBackup(string? text)
+        {
             lock (_lockObject)
             {
                 _forbidBackup = true;
@@ -795,8 +706,6 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                 _forbidBackup = false;
             }
         }
-
-        #endregion
 
         private string SnakeConstantKebabCobolCaseConverter(string text, char spaceReplacement, bool isUpperCase)
         {
