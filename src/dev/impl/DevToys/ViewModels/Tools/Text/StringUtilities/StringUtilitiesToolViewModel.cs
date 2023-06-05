@@ -646,8 +646,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                 return;
             }
 
-            var lines = text.Split('\r').ToList();
-            lines.Sort(StringComparer.CurrentCulture);
+            IOrderedEnumerable<string> lines = text.Split('\r').OrderBy(line => line, StringComparer.CurrentCulture);
             text = string.Join('\r', lines);
 
             lock (_lockObject)
@@ -672,9 +671,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                 return;
             }
 
-            var lines = text.Split('\r').ToList();
-            lines.Sort(StringComparer.CurrentCulture);
-            lines.Reverse();
+            IOrderedEnumerable<string> lines = text.Split('\r').OrderByDescending(line => line, StringComparer.CurrentCulture);
             text = string.Join('\r', lines);
 
             lock (_lockObject)
@@ -710,8 +707,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                     return 0;
                 }
 
-                var newList = new List<string> { line1LastWord, line2LastWord };
-                newList.Sort(StringComparer.CurrentCulture);
+                var newList = new List<string> { line1LastWord, line2LastWord }.OrderBy(word => word).ToList();
                 return newList.IndexOf(line1LastWord) == 0 ? -1 : 1;
             });
             text = string.Join('\r', lines);
@@ -749,11 +745,9 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                     return 0;
                 }
 
-                var newList = new List<string> { line1LastWord, line2LastWord };
-                newList.Sort(StringComparer.CurrentCulture);
+                var newList = new List<string> { line1LastWord, line2LastWord }.OrderByDescending(word => word, StringComparer.CurrentCulture).ToList();
                 return newList.IndexOf(line1LastWord) == 0 ? -1 : 1;
             });
-            lines.Reverse();
             text = string.Join('\r', lines);
 
             lock (_lockObject)
@@ -778,8 +772,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                 return;
             }
 
-            var lines = text.Split('\r').ToList();
-            lines.Reverse();
+            IEnumerable<string> lines = text.Split('\r').Reverse();
             text = string.Join('\r', lines);
 
             lock (_lockObject)
@@ -804,7 +797,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                 return;
             }
 
-            var lines = text.Split('\r').OrderBy(_ => _random.Next());
+            IOrderedEnumerable<string> lines = text.Split('\r').OrderBy(_ => _random.Next());
             text = string.Join('\r', lines);
 
             lock (_lockObject)
