@@ -7,18 +7,7 @@ export function dispose(rootElement: HTMLElement): void {
 }
 
 function onKeyDown(e: KeyboardEvent): void {
-    const focusableElements
-        = (e.currentTarget as HTMLElement).querySelectorAll(
-            "a[href]:not([tabindex='-1'])," +
-            "area[href]:not([tabindex='-1'])," +
-            "button:not([disabled]):not([tabindex='-1'])," +
-            "input:not([disabled]):not([tabindex='-1']):not([type='hidden'])," +
-            "select:not([disabled]):not([tabindex='-1'])," +
-            "textarea:not([disabled]):not([tabindex='-1'])," +
-            "iframe:not([tabindex='-1'])," +
-            "details:not([tabindex='-1'])," +
-            "[tabindex]:not([tabindex='-1'])," +
-            "[contentEditable=true]:not([tabindex='-1']");
+    const focusableElements = (window as any).devtoys.DOM.getFocusableElements(e.currentTarget as HTMLElement) as NodeListOf<Element>;
 
     if (focusableElements.length > 0) {
         const firstFocusableElement = focusableElements[0] as HTMLElement;
