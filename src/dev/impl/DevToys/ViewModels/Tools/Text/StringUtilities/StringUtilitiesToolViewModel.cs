@@ -618,8 +618,8 @@ namespace DevToys.ViewModels.Tools.StringUtilities
             var lines = text.Split('\r').ToList();
             lines.Sort((line1, line2) =>
             {
-                string? line1LastWord = line1.Split(' ', ',').LastOrDefault();
-                string? line2LastWord = line2.Split(' ', ',').LastOrDefault();
+                string line1LastWord = new(line1.Reverse().TakeWhile(char.IsLetterOrDigit).Reverse().ToArray());
+                string line2LastWord = new(line2.Reverse().TakeWhile(char.IsLetterOrDigit).Reverse().ToArray());
 
                 return string.Compare(line1LastWord, line2LastWord, StringComparison.CurrentCulture);
             });
@@ -645,8 +645,8 @@ namespace DevToys.ViewModels.Tools.StringUtilities
             var lines = text.Split('\r').ToList();
             lines.Sort((line1, line2) =>
             {
-                string? line1LastWord = line1.Split(' ', ',').LastOrDefault();
-                string? line2LastWord = line2.Split(' ', ',').LastOrDefault();
+                string line1LastWord = new(line1.Reverse().TakeWhile(char.IsLetterOrDigit).Reverse().ToArray());
+                string line2LastWord = new(line2.Reverse().TakeWhile(char.IsLetterOrDigit).Reverse().ToArray());
 
                 return string.Compare(line1LastWord, line2LastWord, StringComparison.CurrentCulture) * -1;
             });
