@@ -3,10 +3,13 @@ using Microsoft.AspNetCore.Components.Web;
 
 namespace DevToys.Blazor.Components;
 
-public partial class NavBar<TElement> : JSStyledComponentBase where TElement : class
+public partial class NavBar<TElement, TSearchElement>
+    : JSStyledComponentBase
+    where TElement : class
+    where TSearchElement : class
 {
     private readonly NavBarState _sidebarState = new();
-    private AutoSuggestBox _autoSuggestBox = default!;
+    private AutoSuggestBox<TSearchElement> _autoSuggestBox = default!;
 
     public string NavId { get; } = NewId();
 
@@ -65,6 +68,36 @@ public partial class NavBar<TElement> : JSStyledComponentBase where TElement : c
     /// </summary>
     [Parameter]
     public EventCallback<bool> OnHiddenStateChanged { get; set; }
+
+    /// <summary>
+    /// Raised when the text in the search bar changed.
+    /// </summary>
+    [Parameter]
+    public EventCallback<string> SearchQueryChanged { get; set; }
+
+    /// <summary>
+    /// Raised when the user press Enter in the search box or explicitly select an item in the search result list.
+    /// </summary>
+    [Parameter]
+    public EventCallback<TSearchElement?> SearchQuerySubmitted { get; set; }
+
+    /// <summary>
+    /// Gets or sets the placeholder to display in the search bar.
+    /// </summary>
+    [Parameter]
+    public string SearchBarPlaceholder { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets or sets the list of items to display in the search bar's drop down list.
+    /// </summary>
+    [Parameter]
+    public ICollection<TSearchElement>? SearchResultItems { get; set; }
+
+    /// <summary>
+    /// Gets or sets the template of search bar result item to use.
+    /// </summary>
+    [Parameter]
+    public RenderFragment<TSearchElement> SearchResultItemTemplate { get; set; } = default!;
 
     public NavBar()
     {
@@ -128,6 +161,9 @@ public partial class NavBar<TElement> : JSStyledComponentBase where TElement : c
 
     private void SidebarState_IsHiddenChanged(object? sender, EventArgs e)
     {
-        OnHiddenStateChanged.InvokeAsync(_sidebarState.IsHidden);
+        if (OnHiddenStateChanged.HasDelegate)
+        {
+            OnHiddenStateChanged.InvokeAsync(_sidebarState.IsHidden);
+        }
     }
 }

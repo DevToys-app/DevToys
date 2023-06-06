@@ -255,16 +255,10 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
     /// <summary>
     /// Command invoked when the search box's text changed.
     /// </summary>
-    /// <param name="reason">The reason for which the text has changed.</param>
     [RelayCommand]
-    private void SearchBoxTextChanged(SearchBoxTextChangedReason reason)
+    private void SearchBoxTextChanged()
     {
-        // Since selecting an item will also change the text,
-        // only listen to changes caused by user entering text.
-        if (reason == SearchBoxTextChangedReason.UserInput)
-        {
-            _guiToolProvider.SearchTools(SearchQuery, SearchResults);
-        }
+        _guiToolProvider.SearchTools(SearchQuery, SearchResults);
     }
 
     /// <summary>

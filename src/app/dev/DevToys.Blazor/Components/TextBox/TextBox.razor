@@ -9,7 +9,7 @@
 
         @if (!string.IsNullOrWhiteSpace(Header))
         {
-            <TextBlock Appearance="TextBlockAppearance.Body" Class="text-box-header">@Header</TextBlock>
+            <TextBlock Appearance="TextBlockAppearance.Body" Class="text-box-header" Text="@Header" />
         }
 
         <div class="text-box-container @(IsEnabled ? string.Empty : "disabled") @(_isContextMenuOpened ? "is-context-menu-opened" : string.Empty)"

@@ -20,6 +20,12 @@ public partial class FocusTrapper : JSStyledComponentBase
         return JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.DOM.setFocus", Element);
     }
 
+    public override async ValueTask DisposeAsync()
+    {
+        await (await JSModule).InvokeVoidAsync("dispose", Element);
+        await base.DisposeAsync();
+    }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await base.OnAfterRenderAsync(firstRender);
@@ -36,11 +42,5 @@ public partial class FocusTrapper : JSStyledComponentBase
         {
             OnEscapeKeyPressed.InvokeAsync();
         }
-    }
-
-    public override async ValueTask DisposeAsync()
-    {
-        await (await JSModule).InvokeVoidAsync("dispose", Element);
-        await base.DisposeAsync();
     }
 }

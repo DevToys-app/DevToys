@@ -73,6 +73,22 @@ public partial class TextBox : MefComponentBase
         return JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.DOM.setFocus", _input.Element);
     }
 
+    public override async ValueTask DisposeAsync()
+    {
+        await (await JSModule).InvokeVoidAsync("dispose", Element);
+        await base.DisposeAsync();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender)
+        {
+            await (await JSModule).InvokeVoidAsync("initializeKeyboardTracking", Element);
+        }
+    }
+
     private void OnClearClick()
     {
         SetTextAsync(string.Empty).Forget();
@@ -169,7 +185,7 @@ public partial class TextBox : MefComponentBase
         {
             TextSpan selection = await GetSelectionAsync();
             Text ??= string.Empty;
-            string newText = Text.Substring(0, selection.StartPosition) + (string)clipboardData + Text.Substring(selection.StartPosition + selection.Length);
+            string newText = Text.Substring(0, selection.StartPosition) + (string)clipboardData + Text.Substring(selection.EndPosition);
             await SetTextAsync(newText);
         }
     }

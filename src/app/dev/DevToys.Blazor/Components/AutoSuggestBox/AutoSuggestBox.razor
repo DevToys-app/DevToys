@@ -1,20 +1,42 @@
 @namespace DevToys.Blazor.Components
 @inherits StyledComponentBase
+@typeparam TElement
 
 <CascadingValue Value="this" IsFixed="true">
-    <TextBox @ref="_textBox"
-             Class="@(FinalCssClasses)"
-             Style="@(Style)"
-             @attributes="AdditionalAttributes"
-             Type="TextBoxTypes.Search"
-             Header="@Header"
-             Placeholder="@Placeholder"
-             IsEnabled="IsEnabled"
-             IsReadOnly="@IsReadOnly"
-             @bind-Text="Query"
-             OnTextChanged="@OnTextBoxTextChangedAsync">
-        <Buttons>
-            <FontIcon Glyph="@('\uF68F')" Style="transform: unset; left: 0; height: 16px; margin-left: 4px; margin-right: 4px;" />
-        </Buttons>
-    </TextBox>
+    <div id="@Id" style="@Style">
+        <TextBox @ref="_textBox"
+                 Class="@(FinalCssClasses)"
+                 @attributes="AdditionalAttributes"
+                 Type="TextBoxTypes.Search"
+                 Header="@Header"
+                 Placeholder="@Placeholder"
+                 IsEnabled="@IsEnabled"
+                 IsReadOnly="@IsReadOnly"
+                 OnTextChanged="@OnTextBoxTextChangedAsync"
+                 @onkeydown="@OnTextBoxKeyPress"
+                 @onfocusout="@OnTextBoxFocusLost">
+            <Buttons>
+                <FontIcon Glyph="@('\uF68F')" Style="transform: unset; left: 0; height: 16px; margin-left: 4px; margin-right: 4px;" />
+            </Buttons>
+        </TextBox>
+
+        <Popover Open="_showDropDown"
+                 AnchorOrigin="Origin.BottomLeft"
+                 TransformOrigin="Origin.TopLeft"
+                 RelativeWidth="true"
+                 Class="auto-suggest-box-drop-down"
+                 @ontouchend:stopPropagation>
+            <CascadingValue Value="@this" IsFixed="true">
+                <ListBox @ref="_resultListBox"
+                         Items="@Items"
+                         Context="item"
+                         RaiseSelectionEventOnKeyboardNavigation="false"
+                         OnSelectedIndexChanged="OnSelectedIndexChanged">
+                    <ItemTemplate>
+                        @ItemTemplate(item)
+                    </ItemTemplate>
+                </ListBox>
+            </CascadingValue>
+        </Popover>
+    </div>
 </CascadingValue>

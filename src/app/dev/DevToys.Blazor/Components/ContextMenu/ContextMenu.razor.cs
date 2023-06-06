@@ -4,12 +4,11 @@ using Microsoft.AspNetCore.Components.Web;
 
 namespace DevToys.Blazor.Components;
 
-// TODO: handle Up and Down arrow navigation in the list of context menu items.
 // TODO: Close the context menu when the window lose focus or get resized.
 public partial class ContextMenu : StyledComponentBase
 {
     private bool _isOpen;
-    private FocusTrapper? _focusTrapper;
+    private ListBox<ContextMenuItem>? _listBox;
 
     [Inject]
     internal ContextMenuService ContextMenuService { get; set; } = default!;
@@ -24,7 +23,7 @@ public partial class ContextMenu : StyledComponentBase
     /// Gets or sets the menu items to display in the context menu.
     /// </summary>
     [Parameter]
-    public IReadOnlyList<ContextMenuItem>? Items { get; set; }
+    public ICollection<ContextMenuItem>? Items { get; set; }
 
     [Parameter]
     public EventCallback OnContextMenuOpening { get; set; }
@@ -41,9 +40,9 @@ public partial class ContextMenu : StyledComponentBase
     {
         await base.OnAfterRenderAsync(firstRender);
 
-        if (_isOpen && _focusTrapper is not null)
+        if (_isOpen && _listBox is not null)
         {
-            await _focusTrapper.FocusAsync();
+            await _listBox.FocusAsync();
         }
     }
 
@@ -109,21 +108,20 @@ public partial class ContextMenu : StyledComponentBase
         }
     }
 
-    private async Task OnItemClickAsync(ContextMenuItem item)
+    private void OnListBoxKeyDown(KeyboardEventArgs ev)
     {
-        if (item.IsEnabled)
+        if (_listBox is not null && string.Equals(ev.Key, "Tab", StringComparison.OrdinalIgnoreCase))
         {
-            CloseMenuAsync(null).Forget();
-            await item.OnClick.InvokeAsync();
+            _listBox.SelectNextItem();
         }
     }
 
-    private async Task OnItemKeyPressAsync(KeyboardEventArgs ev, ContextMenuItem item)
+    private void OnContextMenuItemSelected(int itemIndex)
     {
-        if (string.Equals(ev.Code, "Enter", StringComparison.OrdinalIgnoreCase)
-            || string.Equals(ev.Code, "Space", StringComparison.OrdinalIgnoreCase))
+        if (_listBox is not null && _listBox.SelectedItem is not null && _listBox.SelectedItem.IsEnabled)
         {
-            await OnItemClickAsync(item);
+            CloseMenuAsync(null).Forget();
+            _listBox.SelectedItem.OnClick.InvokeAsync().Forget();
         }
     }
 }

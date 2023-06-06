@@ -2,6 +2,7 @@
 
 @using DevToys.Blazor.Pages.SubPages
 @using DevToys.Core.Tools.ViewItems;
+@using DevToys.Core.Tools;
 @namespace DevToys.Blazor.Pages
 @inherits MefComponentBase
 
@@ -14,17 +15,33 @@
          OnClick="ContextMenuService.OnCloseContextMenuRequested" />
 
 <!-- Navigation View -->
+<!-- TODO: Localize -->
 <NavBar TElement="INotifyPropertyChanged"
+        TSearchElement="GuiToolViewItem"
         MenuItemsSource="@ViewModel.HeaderAndBodyToolViewItems"
         FooterMenuItemsSource="@ViewModel.FooterToolViewItems"
         CanGoBack="@ViewModel.CanGoBack"
         @bind-SelectedItem="ViewModel.SelectedMenuItem"
         OnBackButtonClicked="OnBackButtonClicked"
-        OnHiddenStateChanged="OnHiddenStateChanged">
+        OnHiddenStateChanged="OnHiddenStateChanged"
+        SearchBarPlaceholder="Type to search for tools..."
+        SearchQueryChanged="OnSearchQueryChanged"
+        SearchQuerySubmitted="OnSearchQuerySubmitted"
+        SearchResultItems="ViewModel.SearchResults">
     <!-- Header -->
     <Header>
-        <TextBlock>DevToys</TextBlock>
+        <TextBlock Text="DevToys" />
     </Header>
+
+    <!-- Search box's result item design -->
+    <SearchResultItemTemplate Context="item">
+        <div class="sidebar-item-icon">
+            <FontIcon FontFamily="@item.ToolInstance.IconFontName" Glyph="@item.ToolInstance.IconGlyph" />
+        </div>
+        <div class="sidebar-item-text">
+            <TextBlock NoWrap="true" Text="@item.ToolInstance.LongDisplayTitle" HighlightedSpans="@item.MatchedSpans" />
+        </div>
+    </SearchResultItemTemplate>
 
     <!-- Item design -->
     <NavBarItemIconTemplate Context="item">
@@ -58,7 +75,7 @@
                 title = groupViewItem.DisplayTitle;
             }
 
-            <TextBlock NoWrap="true">@title</TextBlock>
+            <TextBlock NoWrap="true" Text="@title" />
         }
     </NavBarItemTitleTemplate>
 
@@ -69,7 +86,7 @@
             if (ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem)
             {
                 <div class="entranceThemeTransition">
-                    <TextBlock Appearance="TextBlockAppearance.TitleLarge">@guiToolViewItem.ToolInstance.LongOrShortDisplayTitle</TextBlock>
+                    <TextBlock Appearance="TextBlockAppearance.TitleLarge" Text="@guiToolViewItem.ToolInstance.LongOrShortDisplayTitle" />
                     <!-- TODO: Place here a component that takes in argument the guiToolViewItem -->
 
                     <Button IsEnabled="true" @onclick="OnSetFavorite">Set favorite</Button>

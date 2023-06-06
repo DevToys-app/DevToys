@@ -67,6 +67,17 @@ public partial class Index : MefComponentBase
         }
     }
 
+    private void OnSearchQueryChanged(string searchQuery)
+    {
+        ViewModel.SearchQuery = searchQuery;
+        ViewModel.SearchBoxTextChangedCommand.Execute(null);
+    }
+
+    private void OnSearchQuerySubmitted(GuiToolViewItem? selectedItem)
+    {
+        ViewModel.SearchBoxQuerySubmittedCommand.Execute(selectedItem);
+    }
+
     internal void OnSetFavorite()
     {
         // WARNING: This should be done in ToolPageViewModel. Doing it here just for demo.

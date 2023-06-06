@@ -103,7 +103,7 @@ internal class UISingleLineTextInput : UITitledElement, IUISingleLineTextInput
                         nameof(TextSpan.StartPosition),
                         "The start position of the selection is greater than the text length.");
                 }
-                else if (_selection.StartPosition + _selection.Length > Text.Length)
+                else if (_selection.EndPosition > Text.Length)
                 {
                     ThrowHelper.ThrowArgumentOutOfRangeException(
                         nameof(TextSpan.Length),
