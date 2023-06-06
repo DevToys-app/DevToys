@@ -1,6 +1,27 @@
 {
-    "dotnet-test-explorer.testProjectPath": "src/app/tests/DevToys.UnitTests/DevToys.UnitTests.csproj",
+    "files.associations": {
+        "*.csproj": "msbuild",
+        "*.globalconfig": "ini",
+        "*.manifest": "xml",
+        "*.nuspec": "xml",
+        "*.projitems": "msbuild",
+        "*.props": "msbuild",
+        "*.resx": "xml",
+        "*.ruleset": "xml",
+        "*.settings": "xml",
+        "*.shproj": "msbuild",
+        "*.slnf": "json",
+        "*.targets": "msbuild",
+        "*.xlf": "xml",
+        "*.yml": "azure-pipelines"
+    },
     "emmet.includeLanguages": {
         "aspnetcorerazor": "html"
-    }
+    },
+    // ms-dotnettools.csharp settings
+    "omnisharp.enableEditorConfigSupport": true,
+    "omnisharp.useModernNet": true,
+    "omnisharp.enableAsyncCompletion": true,
+    // dotnet-test-explorer settings
+    "dotnet-test-explorer.testProjectPath": "src/app/tests/DevToys.UnitTests/DevToys.UnitTests.csproj"
 }
