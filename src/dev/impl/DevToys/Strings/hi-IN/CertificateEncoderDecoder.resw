@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Certificate Encoder and Decoder tool</value>
+    <value>सर्टिफिकेट डिकोडर यंत्र</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Certificate</value>
+    <value>सर्टिफिकेट</value>
   </data>
   <data name="PasswordTitle" xml:space="preserve">
-    <value>Password</value>
+    <value>पासवर्ड</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
     <value>इनपुट</value>
@@ -133,22 +133,18 @@
     <value>आउटपुट</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Encode or decode a certificate</value>
+    <value>सर्टिफिकेट एनकोड या डिकोड करें</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Certificate Encoder / Decoder</value>
+    <value>सर्टिफिकेट डिकोडर</value>
   </data>
   <data name="InvalidPasswordError" xml:space="preserve">
-    <value>Invalid password.</value>
+    <value>अमान्य पासवर्ड।</value>
   </data>
   <data name="UnsupportedFormatError" xml:space="preserve">
-    <value>Certificate Request format not currently supported.</value>
+    <value>अनुरोध किये प्रमाणपत्र फ़ॉर्मेट वर्तमान में समर्थित नहीं है।</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>कुंजी: खोज कीवर्ड
-मुख्य शब्द खोजे
-वैकल्पिक खोज कीवर्ड। उन शब्दों की खोज को सक्षम करता है जो विवरण, मेनूडिस्प्लेनाम और सर्चडिस्प्लेनाम में शामिल नहीं हैं।
-यदि कोई कीवर्ड जोड़ने के लिए नहीं हैं तो कृपया इस अनुवाद को खाली छोड़ दें।
-फ़ाइल: CheckSumGenerator. resw</value>
+    <value>CER PFX PEM</value>
   </data>
 </root>
