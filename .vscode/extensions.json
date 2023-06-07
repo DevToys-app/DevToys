@@ -1,16 +1,7 @@
 {
     "recommendations": [
-      "ms-dotnettools.csharp",
-      "visualstudioexptteam.vscodeintellicode",
-      "visualstudioexptteam.intellicode-api-usage-examples",
+      "ms-dotnettools.csdevkit",
       "eamodio.gitlens",
-      "formulahendry.dotnet-test-explorer",
-      "formulahendry.dotnet",
-      "ms-dotnettools.vscode-dotnet-runtime",
-      "fudge.auto-using",
-      "kreativ-software.csharpextensions",
-      "adrianwilczynski.namespace",
-      "k--kato.docomment",
       "editorconfig.editorconfig",
       "github.copilot",
       "github.vscode-pull-request-github",

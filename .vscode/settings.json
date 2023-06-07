@@ -18,10 +18,4 @@
     "emmet.includeLanguages": {
         "aspnetcorerazor": "html"
     },
-    // ms-dotnettools.csharp settings
-    "omnisharp.enableEditorConfigSupport": true,
-    "omnisharp.useModernNet": true,
-    "omnisharp.enableAsyncCompletion": true,
-    // dotnet-test-explorer settings
-    "dotnet-test-explorer.testProjectPath": "src/app/tests/DevToys.UnitTests/DevToys.UnitTests.csproj"
 }
