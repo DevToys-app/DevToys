@@ -118,25 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Timestamp converter tool</value>
+    <value>Aikaleiman muuntajatyökalu</value>
   </data>
   <data name="TimeZoneTitle" xml:space="preserve">
-    <value>Time zone</value>
+    <value>Aikavyöhyke</value>
   </data>
   <data name="DaylightSavingTime" xml:space="preserve">
-    <value>Daylight saving time.</value>
+    <value>Kesäaika.</value>
   </data>
   <data name="DayTitle" xml:space="preserve">
-    <value>Day</value>
+    <value>Päivä</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Convert timestamp to human-readable date and vice versa</value>
+    <value>Muunna aikaleima ihmisluettavaksi päivämääräksi ja päinvastoin</value>
   </data>
   <data name="DisabledDaylightSavingTime" xml:space="preserve">
-    <value>There is no daylight saving time.</value>
+    <value>Kesäaikaa ei ole.</value>
   </data>
   <data name="DSTAmbiguousTime" xml:space="preserve">
-    <value>DST Ambiguous time.</value>
+    <value>KA epäselvä aika.</value>
   </data>
   <data name="HourTitle" xml:space="preserve">
     <value>Hour (24 hour)</value>
