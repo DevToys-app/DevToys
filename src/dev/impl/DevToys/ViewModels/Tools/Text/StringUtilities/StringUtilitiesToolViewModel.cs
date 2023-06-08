@@ -23,6 +23,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
         private static readonly object _lockObject = new();
 
         private readonly IMarketingService _marketingService;
+        private readonly Random _random;
 
         private bool _toolSuccessfullyWorked;
         private bool _forbidBackup;
@@ -143,6 +144,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
         public StringUtilitiesToolViewModel(IMarketingService marketingService)
         {
             _marketingService = marketingService;
+            _random = new Random();
             OriginalCaseCommand = new RelayCommand(ExecuteOriginalCaseCommand, CanExecuteOriginalCaseCommand);
             SentenceCaseCommand = new RelayCommand(ExecuteSentenceCaseCommand);
             LowerCaseCommand = new RelayCommand(ExecuteLowerCaseCommand);
@@ -157,6 +159,12 @@ namespace DevToys.ViewModels.Tools.StringUtilities
             TrainCaseCommand = new RelayCommand(ExecuteTrainCaseCommand);
             AlternatingCaseCommand = new RelayCommand(ExecuteAlternatingCaseCommand);
             InverseCaseCommand = new RelayCommand(ExecuteInverseCaseCommand);
+            AlphabetizeCommand = new RelayCommand(ExecuteAlphabetizeCommand);
+            ReverseAlphabetizeCommand = new RelayCommand(ExecuteReverseAlphabetizeCommand);
+            AlphabetizeLastCommand = new RelayCommand(ExecuteAlphabetizeLastCommand);
+            ReverseAlphabetizeLastCommand = new RelayCommand(ExecuteReverseAlphabetizeLastCommand);
+            ReverseCommand = new RelayCommand(ExecuteReverseCommand);
+            RandomizeCommand = new RelayCommand(ExecuteRandomizeCommand);
 
             QueueSelectionStatisticCalculation();
             QueueTextStatisticCalculation();
@@ -173,12 +181,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
 
         private void ExecuteOriginalCaseCommand()
         {
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = _textBackup;
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(_textBackup);
         }
 
         #endregion
@@ -218,12 +221,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                 }
             }
 
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = new string(sentenceCaseString);
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(new string(sentenceCaseString));
         }
 
         #endregion
@@ -234,12 +232,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
 
         private void ExecuteLowerCaseCommand()
         {
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = _textBackup?.ToLowerInvariant();
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(_textBackup?.ToLowerInvariant());
         }
 
         #endregion
@@ -250,12 +243,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
 
         private void ExecuteUpperCaseCommand()
         {
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = _textBackup?.ToUpperInvariant();
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(_textBackup?.ToUpperInvariant());
         }
 
         #endregion
@@ -285,12 +273,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                 }
             }
 
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = new string(titleCaseString);
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(new string(titleCaseString));
         }
 
         #endregion
@@ -339,12 +322,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                 }
             }
 
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = camelCaseStringBuilder.ToString();
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(camelCaseStringBuilder.ToString());
         }
 
         #endregion
@@ -389,12 +367,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                 }
             }
 
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = pascalCaseStringBuilder.ToString();
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(pascalCaseStringBuilder.ToString());
         }
 
         #endregion
@@ -413,12 +386,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
 
             string? snakeCase = SnakeConstantKebabCobolCaseConverter(text, '_', isUpperCase: false);
 
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = snakeCase;
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(snakeCase);
         }
 
         #endregion
@@ -437,12 +405,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
 
             string? constantCase = SnakeConstantKebabCobolCaseConverter(text, '_', isUpperCase: true);
 
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = constantCase;
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(constantCase);
         }
 
         #endregion
@@ -461,12 +424,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
 
             string? kebabCase = SnakeConstantKebabCobolCaseConverter(text, '-', isUpperCase: false);
 
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = kebabCase;
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(kebabCase);
         }
 
         #endregion
@@ -485,12 +443,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
 
             string? cobolCase = SnakeConstantKebabCobolCaseConverter(text, '-', isUpperCase: true);
 
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = cobolCase;
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(cobolCase);
         }
 
         #endregion
@@ -541,13 +494,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                 }
             }
 
-
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = snakeCaseStringBuilder.ToString();
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(snakeCaseStringBuilder.ToString());
         }
 
         #endregion
@@ -579,12 +526,7 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                 lowerCase = !lowerCase;
             }
 
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = new string(titleCaseString);
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(new string(titleCaseString));
         }
 
         #endregion
@@ -616,15 +558,154 @@ namespace DevToys.ViewModels.Tools.StringUtilities
                 lowerCase = !lowerCase;
             }
 
-            lock (_lockObject)
-            {
-                _forbidBackup = true;
-                Text = new string(titleCaseString);
-                _forbidBackup = false;
-            }
+            SetTextWithoutBackup(new string(titleCaseString));
         }
 
         #endregion
+
+        #region AlphabetizeCommand
+
+        public IRelayCommand AlphabetizeCommand { get; }
+
+        private void ExecuteAlphabetizeCommand()
+        {
+            string? text = _textBackup;
+            if (text is null)
+            {
+                return;
+            }
+
+            IOrderedEnumerable<string> lines = text.Split('\r').OrderBy(line => line, StringComparer.CurrentCulture);
+            text = string.Join('\r', lines);
+
+            SetTextWithoutBackup(text);
+        }
+
+        #endregion
+
+        #region ReverseAlphabetizeCommand
+
+        public IRelayCommand ReverseAlphabetizeCommand { get; }
+
+        private void ExecuteReverseAlphabetizeCommand()
+        {
+            string? text = _textBackup;
+            if (text is null)
+            {
+                return;
+            }
+
+            IOrderedEnumerable<string> lines = text.Split('\r').OrderByDescending(line => line, StringComparer.CurrentCulture);
+            text = string.Join('\r', lines);
+
+            SetTextWithoutBackup(text);
+        }
+
+        #endregion
+
+        #region AlphabetizeLastCommand
+
+        public IRelayCommand AlphabetizeLastCommand { get; }
+
+        private void ExecuteAlphabetizeLastCommand()
+        {
+            string? text = _textBackup;
+            if (text is null)
+            {
+                return;
+            }
+
+            var lines = text.Split('\r').ToList();
+            lines.Sort((line1, line2) =>
+            {
+                string line1LastWord = new(line1.Reverse().TakeWhile(char.IsLetterOrDigit).Reverse().ToArray());
+                string line2LastWord = new(line2.Reverse().TakeWhile(char.IsLetterOrDigit).Reverse().ToArray());
+
+                return string.Compare(line1LastWord, line2LastWord, StringComparison.CurrentCulture);
+            });
+            text = string.Join('\r', lines);
+
+            SetTextWithoutBackup(text);
+        }
+
+        #endregion
+
+        #region ReverseAlphabetizeLastCommand
+
+        public IRelayCommand ReverseAlphabetizeLastCommand { get; }
+
+        private void ExecuteReverseAlphabetizeLastCommand()
+        {
+            string? text = _textBackup;
+            if (text is null)
+            {
+                return;
+            }
+
+            var lines = text.Split('\r').ToList();
+            lines.Sort((line1, line2) =>
+            {
+                string line1LastWord = new(line1.Reverse().TakeWhile(char.IsLetterOrDigit).Reverse().ToArray());
+                string line2LastWord = new(line2.Reverse().TakeWhile(char.IsLetterOrDigit).Reverse().ToArray());
+
+                return string.Compare(line1LastWord, line2LastWord, StringComparison.CurrentCulture) * -1;
+            });
+            text = string.Join('\r', lines);
+
+            SetTextWithoutBackup(text);
+        }
+
+        #endregion
+
+        #region ReverseCommand
+
+        public IRelayCommand ReverseCommand { get; }
+
+        private void ExecuteReverseCommand()
+        {
+            string? text = _textBackup;
+            if (text is null)
+            {
+                return;
+            }
+
+            IEnumerable<string> lines = text.Split('\r').Reverse();
+            text = string.Join('\r', lines);
+
+            SetTextWithoutBackup(text);
+        }
+
+        #endregion
+
+        #region RandomizeCommand
+
+        public IRelayCommand RandomizeCommand { get; }
+
+        private void ExecuteRandomizeCommand()
+        {
+            string? text = _textBackup;
+            if (text is null)
+            {
+                return;
+            }
+
+            IOrderedEnumerable<string> lines = text.Split('\r').OrderBy(_ => _random.Next());
+            text = string.Join('\r', lines);
+
+            SetTextWithoutBackup(text);
+        }
+
+        #endregion
+
+        private void SetTextWithoutBackup(string? text)
+        {
+            lock (_lockObject)
+            {
+                _forbidBackup = true;
+                Text = text;
+                _forbidBackup = false;
+            }
+        }
 
         private string SnakeConstantKebabCobolCaseConverter(string text, char spaceReplacement, bool isUpperCase)
         {

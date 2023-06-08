@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using DevToys.ViewModels.Tools.StringUtilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -528,6 +530,127 @@ PrOgRaMmAbLe iN C#, C++, vIsUaL BaSiC, aNd jAvAsCrIpT. fOr uI, uSe wInUi, XaMl, 
 lEt's lOoK At tHeSe iN MoRe dEtAiL.";
 
             Assert.AreEqual(expectedResult, viewModel.Text);
+        }
+
+        [DataTestMethod]
+        [DataRow(null, null)]
+        [DataRow("", "")]
+        [DataRow("c\ra\rb", "a\rb\rc")]
+        [DataRow("C\rA\rB", "A\rB\rC")]
+        [DataRow("c\rA\rB", "A\rB\rc")]
+        [DataRow("c\ra\rb\r3\r1\r2", "1\r2\r3\ra\rb\rc")]
+        [DataRow("Steve Adams\rAdam,Smith\rBob Barker\rXander", "Adam,Smith\rBob Barker\rSteve Adams\rXander")]
+        public void Alphabetize(string input, string expectedResult)
+        {
+            StringUtilitiesToolViewModel viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
+
+            viewModel.Text = input;
+
+            viewModel.AlphabetizeCommand.Execute(null);
+
+            Assert.AreEqual(expectedResult, viewModel.Text);
+        }
+
+        [DataTestMethod]
+        [DataRow(null, null)]
+        [DataRow("", "")]
+        [DataRow("c\ra\rb", "c\rb\ra")]
+        [DataRow("C\rA\rB", "C\rB\rA")]
+        [DataRow("c\rA\rB", "c\rB\rA")]
+        [DataRow("c\ra\rb\r3\r1\r2", "c\rb\ra\r3\r2\r1")]
+        [DataRow("Steve Adams\rAdam,Smith\rBob Barker\rXander", "Xander\rSteve Adams\rBob Barker\rAdam,Smith")]
+        public void ReverseAlphabetize(string input, string expectedResult)
+        {
+            StringUtilitiesToolViewModel viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
+
+            viewModel.Text = input;
+
+            viewModel.ReverseAlphabetizeCommand.Execute(null);
+
+            Assert.AreEqual(expectedResult, viewModel.Text);
+        }
+
+        [DataTestMethod]
+        [DataRow(null, null)]
+        [DataRow("", "")]
+        [DataRow("c\ra\rb", "a\rb\rc")]
+        [DataRow("C\rA\rB", "A\rB\rC")]
+        [DataRow("c\rA\rB", "A\rB\rc")]
+        [DataRow("c\ra\rb\r3\r1\r2", "1\r2\r3\ra\rb\rc")]
+        [DataRow("Steve Adams\rAdam,Smith\rBob Barker\rXander", "Steve Adams\rBob Barker\rAdam,Smith\rXander")]
+        public void AlphabetizeLast(string input, string expectedResult)
+        {
+            StringUtilitiesToolViewModel viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
+
+            viewModel.Text = input;
+
+            viewModel.AlphabetizeLastCommand.Execute(null);
+
+            Assert.AreEqual(expectedResult, viewModel.Text);
+        }
+
+        [DataTestMethod]
+        [DataRow(null, null)]
+        [DataRow("", "")]
+        [DataRow("c\ra\rb", "c\rb\ra")]
+        [DataRow("C\rA\rB", "C\rB\rA")]
+        [DataRow("c\rA\rB", "c\rB\rA")]
+        [DataRow("c\ra\rb\r3\r1\r2", "c\rb\ra\r3\r2\r1")]
+        [DataRow("Steve Adams\rAdam,Smith\rBob Barker\rXander", "Xander\rAdam,Smith\rBob Barker\rSteve Adams")]
+        public void ReverseAlphabetizeLast(string input, string expectedResult)
+        {
+            StringUtilitiesToolViewModel viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
+
+            viewModel.Text = input;
+
+            viewModel.ReverseAlphabetizeLastCommand.Execute(null);
+
+            Assert.AreEqual(expectedResult, viewModel.Text);
+        }
+
+        [DataTestMethod]
+        [DataRow(null, null)]
+        [DataRow("", "")]
+        [DataRow("c\ra\rb", "b\ra\rc")]
+        [DataRow("C\rA\rB", "B\rA\rC")]
+        [DataRow("c\rA\rB", "B\rA\rc")]
+        [DataRow("c\ra\rb\r3\r1\r2", "2\r1\r3\rb\ra\rc")]
+        [DataRow("Steve Adams\rAdam,Smith\rBob Barker\rXander", "Xander\rBob Barker\rAdam,Smith\rSteve Adams")]
+        public void Reverse(string input, string expectedResult)
+        {
+            StringUtilitiesToolViewModel viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
+
+            viewModel.Text = input;
+
+            viewModel.ReverseCommand.Execute(null);
+
+            Assert.AreEqual(expectedResult, viewModel.Text);
+        }
+
+        [DataTestMethod]
+        [DataRow(null)]
+        [DataRow("")]
+        [DataRow("c\ra\rb")]
+        [DataRow("C\rA\rB")]
+        [DataRow("c\rA\rB")]
+        [DataRow("c\ra\rb\r3\r1\r2")]
+        [DataRow("Steve Adams\rAdam,Smith\rBob Barker\rXander")]
+        public void Randomize(string input)
+        {
+            StringUtilitiesToolViewModel viewModel = ExportProvider.Import<StringUtilitiesToolViewModel>();
+
+            viewModel.Text = input;
+
+            viewModel.RandomizeCommand.Execute(null);
+
+            // Can't guarantee the order, just make sure everything is still there
+            string[] inputLines = input?.Split('\r') ?? Array.Empty<string>();
+            string[] outputLines = viewModel.Text?.Split('\r') ?? Array.Empty<string>();
+            Assert.AreEqual(inputLines.Length, outputLines.Length);
+            foreach (string inputLine in inputLines)
+            {
+                Assert.IsTrue(outputLines.Contains(inputLine));
+            }
         }
     }
 }
