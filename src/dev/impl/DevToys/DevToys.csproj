@@ -813,32 +813,6 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>rd /S /Q "$(TargetDir)da"
-rd /S /Q "$(TargetDir)de"
-rd /S /Q "$(TargetDir)es"
-rd /S /Q "$(TargetDir)es-MX"
-rd /S /Q "$(TargetDir)fa"
-rd /S /Q "$(TargetDir)fi"
-rd /S /Q "$(TargetDir)fr"
-rd /S /Q "$(TargetDir)he-IL"
-rd /S /Q "$(TargetDir)it"
-rd /S /Q "$(TargetDir)ja"
-rd /S /Q "$(TargetDir)ko"
-rd /S /Q "$(TargetDir)nb"
-rd /S /Q "$(TargetDir)nl"
-rd /S /Q "$(TargetDir)pl"
-rd /S /Q "$(TargetDir)pt"
-rd /S /Q "$(TargetDir)ro"
-rd /S /Q "$(TargetDir)ru"
-rd /S /Q "$(TargetDir)sl"
-rd /S /Q "$(TargetDir)sv"
-rd /S /Q "$(TargetDir)tr"
-rd /S /Q "$(TargetDir)uk"
-rd /S /Q "$(TargetDir)vi"
-rd /S /Q "$(TargetDir)zh-Hans"
-rd /S /Q "$(TargetDir)zh-Hant"</PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
