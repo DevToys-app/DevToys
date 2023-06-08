@@ -1,8 +1,7 @@
 @namespace DevToys.Blazor.Components
-@inherits JSStyledComponentBase
+@inherits MefComponentBase
 
 <CascadingValue Value="this" IsFixed="true">
-
     <div id=@Id
          class="text-box-with-header @(FinalCssClasses)"
          style="@(Style)"
@@ -13,18 +12,23 @@
             <TextBlock Appearance="TextBlockAppearance.Body" Class="text-box-header">@Header</TextBlock>
         }
 
-        <div class="text-box-container @(IsEnabled ? string.Empty : "disabled")"
+        <div class="text-box-container @(IsEnabled ? string.Empty : "disabled") @(_isContextMenuOpened ? "is-context-menu-opened" : string.Empty)"
              @ref=Element>
 
-            <input @ref="_input"
-                   class="text-box @(IsEnabled ? string.Empty : "disabled")"
-                   placeholder="@Placeholder"
-                   disabled="@(!IsEnabled)"
-                   readonly="@(IsReadOnly)"
-                   type="@(Type.ToString().ToLowerInvariant())"
-                   @bind-value="Text"
-                   @bind-value:event="oninput"
-                   @onchange="InputTextChangedAsync" />
+            <ContextMenu IsEnabled="IsEnabled"
+                         OnContextMenuOpening="OnContextMenuOpening"
+                         OnContextMenuOpened="OnContextMenuOpened"
+                         OnContextMenuClosed="OnContextMenuClosedAsync"
+                         Items="_contextMenuItems">
+                <InputText @ref="_input"
+                           class="@($"text-box {(IsEnabled ? string.Empty : "disabled")})")"
+                           placeholder="@Placeholder"
+                           disabled="@(!IsEnabled)"
+                           readonly="@(IsReadOnly)"
+                           type="@(Type.ToString().ToLowerInvariant())"
+                           @bind-Value="@Text"
+                           @oninput="@InputTextChangedAsync" />
+            </ContextMenu>
 
             <div class="text-box-underline" />
             <div class="text-box-buttons">
@@ -42,16 +46,5 @@
                 @Buttons
             </div>
         </div>
-
-
-        @* TODO:
-            <ContextMenu Id="_contextMenuId">
-                <ContextMenuItem Text="Cut" IconGlyph="@('\uF33A')" />
-                <ContextMenuItem Text="Copy" IconGlyph="@('\uF32B')" />
-                <ContextMenuItem Text="Paste" IconGlyph="@('\uF2D5')" />
-                <ContextMenuItem Text="Undo" IconGlyph="@('\uF199')" />
-                <ContextMenuItem Text="Redo" IconGlyph="@('\uF16E')" />
-                <ContextMenuItem Text="Select All" />
-            </ContextMenu>*@
     </div>
 </CascadingValue>

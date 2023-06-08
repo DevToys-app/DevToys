@@ -1,0 +1,13 @@
+@namespace DevToys.Blazor.Components
+@inherits StyledComponentBase
+
+@ChildContent
+
+@code {
+
+    /// <summary>
+    /// The content to render
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}

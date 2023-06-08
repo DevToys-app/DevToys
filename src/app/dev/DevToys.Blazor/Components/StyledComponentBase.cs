@@ -38,6 +38,12 @@ public abstract class StyledComponentBase : ComponentBase
     public string Style { get; set; } = string.Empty;
 
     /// <summary>
+    /// Gets or sets whether the component is enabled.
+    /// </summary>
+    [Parameter]
+    public bool IsEnabled { get; set; } = true;
+
+    /// <summary>
     /// Gets a list of CSS class to apply to the component.
     /// </summary>
     protected ObservableHashSet<string> CSS => _css.Value;

@@ -87,7 +87,7 @@
             }
         }
 
-        &:focus-within {
+        &:focus-within, &.is-context-menu-opened {
             color: var(--text-box-foreground-focused);
             background-color: var(--text-box-background-focused);
             border-color: var(--text-box-border-focused);

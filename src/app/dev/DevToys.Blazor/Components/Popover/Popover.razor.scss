@@ -1,0 +1,33 @@
+@use "../../Assets/sass/devtoys" as *;
+
+.popover {
+    outline: 0;
+    z-index: calc(var(--popover-zindex) + 1);
+    position: absolute;
+    opacity: 0;
+
+    &.popover-fixed {
+        position: fixed;
+    }
+
+    &.popover-relative-width {
+        width: 100%;
+    }
+
+    &.popover-open {
+        opacity: 1;
+        transition: opacity;
+    }
+
+    &:not(.popover-open ) {
+        pointer-events: none;
+        transition-duration: 0ms !important;
+        transition-delay: 0ms !important;
+    }
+}
+
+/*.dialog {
+    .popover-cascading-value {
+        z-index: calc(var(--popover-zindex) + 3);
+    }
+}*/

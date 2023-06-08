@@ -5,6 +5,15 @@
 @namespace DevToys.Blazor.Pages
 @inherits MefComponentBase
 
+<!-- Provider for popover -->
+<PopoverProvider/>
+
+<!-- Overlay that covers the whole window for context menus -->
+<Overlay ZIndex="80000"
+         Visible="ContextMenuService.IsContextMenuOpened"
+         OnClick="ContextMenuService.OnCloseContextMenuRequested" />
+
+<!-- Navigation View -->
 <NavBar TElement="INotifyPropertyChanged"
         MenuItemsSource="@ViewModel.HeaderAndBodyToolViewItems"
         FooterMenuItemsSource="@ViewModel.FooterToolViewItems"

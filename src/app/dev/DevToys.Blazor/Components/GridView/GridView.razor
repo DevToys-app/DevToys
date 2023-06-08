@@ -36,7 +36,7 @@
                             @foreach (TElement item in group)
                             {
                                 <li class="grid-view-item"
-                                    style="min-width: @ItemMinWidth px">
+                                    style="min-width: @ItemMinWidth.ToPx()">
                                     <div class="grid-view-item-hover-filter" @onclick="() => OnItemClickAsync(item)">
                                         @ItemTemplate(item)
                                     </div>

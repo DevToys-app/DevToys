@@ -9,9 +9,6 @@ public partial class ListBoxItem : StyledComponentBase
     public bool IsSelected { get; set; }
 
     [Parameter]
-    public bool IsEnabled { get; set; } = true;
-
-    [Parameter]
     public EventCallback<object> OnSelected { get; set; }
 
     /// <summary>

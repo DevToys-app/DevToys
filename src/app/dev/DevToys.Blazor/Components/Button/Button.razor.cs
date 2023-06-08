@@ -3,9 +3,6 @@
 public partial class Button : JSStyledComponentBase
 {
     [Parameter]
-    public bool IsEnabled { get; set; } = true;
-
-    [Parameter]
     public ButtonAppearance Appearance { get; set; } = ButtonAppearance.Neutral;
 
     /// <summary>
@@ -36,8 +33,8 @@ public partial class Button : JSStyledComponentBase
         base.OnParametersSet();
     }
 
-    internal ValueTask FocusAsync()
+    internal ValueTask<bool> FocusAsync()
     {
-        return JSRuntime.InvokeVoidAsync("devtoys.DOM.setFocus", Element);
+        return JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.DOM.setFocus", Element);
     }
 }

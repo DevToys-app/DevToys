@@ -34,7 +34,7 @@ function devtoysSass() {
         .pipe(sass())
         .pipe(concat("devtoys.g.css"))
         .pipe(gulp.dest(paths.devtoysScssOut))
-        .pipe(cleanCSS({ compatibility: "ie8" }))
+        .pipe(cleanCSS({ compatibility: "*", inline: ["all"], level: 2 }))
         .pipe(gulp.dest(paths.devtoysScssOut));
 }
 

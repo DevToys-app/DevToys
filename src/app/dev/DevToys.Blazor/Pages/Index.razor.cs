@@ -1,4 +1,5 @@
 ﻿using DevToys.Blazor.Components;
+using DevToys.Blazor.Core.Services;
 using DevToys.Business.ViewModels;
 using DevToys.Core;
 using DevToys.Core.Tools;
@@ -20,6 +21,9 @@ public partial class Index : MefComponentBase
     [Import]
     internal TitleBarMarginProvider TitleBarMarginProvider { get; set; } = default!;
 
+    [Inject]
+    internal ContextMenuService ContextMenuService { get; set; } = default!;
+
     /// <summary>
     /// Indicates whether we're transitioning to another selected menu item.
     /// </summary>
@@ -30,6 +34,7 @@ public partial class Index : MefComponentBase
         base.OnInitialized();
         ViewModel.SelectedMenuItemChanged += ViewModel_SelectedMenuItemChanged;
         ViewModel.SelectedMenuItem = ViewModel.HeaderAndBodyToolViewItems[0];
+        ContextMenuService.IsContextMenuOpenedChanged += ContextMenuService_IsContextMenuOpenedChanged;
     }
 
     private void ViewModel_SelectedMenuItemChanged(object? sender, EventArgs e)
@@ -37,6 +42,11 @@ public partial class Index : MefComponentBase
         // This will force the page content to clear our, disposing the current tool group or tool component before creating a new one, instead
         // of re-using the one currently displayed.
         IsTransitioning = true;
+        StateHasChanged();
+    }
+
+    private void ContextMenuService_IsContextMenuOpenedChanged(object? sender, EventArgs e)
+    {
         StateHasChanged();
     }
 

@@ -14,15 +14,12 @@ public partial class AutoSuggestBox : StyledComponentBase
     public string? Query { get; set; }
 
     [Parameter]
-    public bool IsEnabled { get; set; } = true;
-
-    [Parameter]
     public bool IsReadOnly { get; set; }
 
     [Parameter]
     public EventCallback<string> QueryChanged { get; set; }
 
-    internal ValueTask FocusAsync()
+    internal ValueTask<bool> FocusAsync()
     {
         Guard.IsNotNull(_textBox);
         return _textBox.FocusAsync();

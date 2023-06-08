@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
 using System.Globalization;
-using System.IO;
 using System.Reflection;
 
 namespace DevToys.Core.Mef;

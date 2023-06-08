@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace DevToys.Blazor.Components;
 
@@ -101,7 +102,7 @@ public partial class NavBar<TElement> : JSStyledComponentBase where TElement : c
         _sidebarState.ToggleSidebar();
     }
 
-    private void OnCloseExpandedOverlaySidebarClick()
+    private void OnCloseExpandedOverlaySidebarClick(MouseEventArgs ev)
     {
         _sidebarState.CloseExpandedOverlay();
     }

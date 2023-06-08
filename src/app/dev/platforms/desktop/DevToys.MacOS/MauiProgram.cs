@@ -1,9 +1,11 @@
 ﻿using DevToys.Api;
 using DevToys.Blazor.Core.Languages;
+using DevToys.Blazor.Services;
 using DevToys.Business.ViewModels;
 using DevToys.Core.Logging;
 using DevToys.Core.Mef;
 using DevToys.MacOS.Core;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using Uno.Extensions;
 using PredefinedSettings = DevToys.Core.Settings.PredefinedSettings;
@@ -95,6 +97,8 @@ public partial class MauiProgram
         });
 
         serviceCollection.AddSingleton(provider => MefComposer!.Provider);
+        serviceCollection.TryAddScoped<PopoverService, PopoverService>();
+        serviceCollection.TryAddScoped<ContextMenuService, ContextMenuService>();
 
         ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
 
