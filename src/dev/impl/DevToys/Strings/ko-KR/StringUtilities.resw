@@ -148,7 +148,7 @@
     <value>변환</value>
   </data>
   <data name="Sort" xml:space="preserve">
-    <value>Sort Lines</value>
+    <value>줄 정렬</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>분석 및 대소문자 변환기</value>
@@ -160,22 +160,22 @@
     <value>kebab-case</value>
   </data>
   <data name="Alphabetize" xml:space="preserve">
-    <value>Alphabetize</value>
+    <value>알파벳순</value>
   </data>
   <data name="ReverseAlphabetize" xml:space="preserve">
-    <value>Reverse alphabetize</value>
+    <value>알파벳 역순</value>
   </data>
   <data name="AlphabetizeLast" xml:space="preserve">
-    <value>Alphabetize by last word</value>
+    <value>마지막 단어로 알파벳순</value>
   </data>
   <data name="ReverseAlphabetizeLast" xml:space="preserve">
-    <value>Reverse alphabetize by last word</value>
+    <value>마지막 단어로 알파벳 역순</value>
   </data>
   <data name="Reverse" xml:space="preserve">
-    <value>Reverse</value>
+    <value>역순</value>
   </data>
   <data name="Randomize" xml:space="preserve">
-    <value>Randomize</value>
+    <value>무작위</value>
   </data>
   <data name="Line" xml:space="preserve">
     <value>줄:</value>
