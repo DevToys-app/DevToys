@@ -147,6 +147,9 @@
   <data name="Convert" xml:space="preserve">
     <value>बदलना</value>
   </data>
+  <data name="Sort" xml:space="preserve">
+    <value>Sort Lines</value>
+  </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>इंस्पेक्टर और केस कन्वर्टर</value>
   </data>
@@ -155,6 +158,24 @@
   </data>
   <data name="KebabCase" xml:space="preserve">
     <value>कबाब-केस</value>
+  </data>
+  <data name="Alphabetize" xml:space="preserve">
+    <value>Alphabetize</value>
+  </data>
+  <data name="ReverseAlphabetize" xml:space="preserve">
+    <value>Reverse alphabetize</value>
+  </data>
+  <data name="AlphabetizeLast" xml:space="preserve">
+    <value>Alphabetize by last word</value>
+  </data>
+  <data name="ReverseAlphabetizeLast" xml:space="preserve">
+    <value>Reverse alphabetize by last word</value>
+  </data>
+  <data name="Reverse" xml:space="preserve">
+    <value>Reverse</value>
+  </data>
+  <data name="Randomize" xml:space="preserve">
+    <value>Randomize</value>
   </data>
   <data name="Line" xml:space="preserve">
     <value>रेखा:</value>
