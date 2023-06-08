@@ -1,5 +1,3 @@
-@use "../../Assets/sass/devtoys" as *;
-
 .popover {
     outline: 0;
     z-index: calc(var(--popover-zindex) + 1);
@@ -17,6 +15,18 @@
     &.popover-open {
         opacity: 1;
         transition: opacity;
+
+        margin: 0px;
+        padding: 0px;
+        min-inline-size: 75px;
+        box-sizing: border-box;
+        border-radius: var(--overlay-corner-radius);
+        border: 1px solid var(--menu-flyout-presenter-border);
+        background-color: var(--menu-flyout-presenter-background);
+        -webkit-backdrop-filter: var(--menu-flyout-presenter-backdrop-filter);
+        backdrop-filter: var(--menu-flyout-presenter-backdrop-filter);
+        background-clip: padding-box;
+        box-shadow: var(--menu-flyout-presenter-shadow);
     }
 
     &:not(.popover-open ) {

@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using DevToys.Api;
 using DevToys.Core.Tools.Metadata;
 using DevToys.Core.Tools.ViewItems;
@@ -621,7 +622,8 @@ public sealed partial class GuiToolProvider
             matches.AddRange(spans);
         }
 
-        matchedSpans = matches.Distinct().ToArray();
+        // Sort spans and make sure no span overlap.
+        matchedSpans = CleanUpMatchedSpans(matches);
     }
 
     private static void WeightMatch(
@@ -684,6 +686,37 @@ public sealed partial class GuiToolProvider
                 weight += 5;
             }
         }
+    }
+
+    private static TextSpan[] CleanUpMatchedSpans(List<TextSpan>? spans)
+    {
+        if (spans is null)
+        {
+            return Array.Empty<TextSpan>();
+        }
+
+        spans.Sort((x, y) => x.StartPosition.CompareTo(y.StartPosition));
+
+        for (int i = 0; i < spans.Count - 1; i++)
+        {
+            if (spans[i].EndPosition > spans[i + 1].StartPosition)
+            {
+                if (spans[i].EndPosition >= spans[i + 1].EndPosition)
+                {
+                    spans.RemoveAt(i + 1);
+                    i--;
+                }
+                else
+                {
+                    spans[i]
+                        = new TextSpan(
+                            spans[i].StartPosition,
+                            spans[i].Length - (spans[i].EndPosition - spans[i + 1].StartPosition));
+                }
+            }
+        }
+
+        return spans.ToArray();
     }
 
     [LoggerMessage(0, LogLevel.Information, "Set '{toolName}' as the most recently used tool.")]

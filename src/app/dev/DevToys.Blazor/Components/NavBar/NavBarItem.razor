@@ -3,6 +3,7 @@
 
 @inherits StyledComponentBase
 @typeparam TElement
+@typeparam TSearchElement
 
 <CascadingValue Value="this" IsFixed="true">
     @if (Item is ISeparator)
@@ -18,6 +19,7 @@
                      Item="Item"
                      IsSelected="Item == OwnerNavBar.SelectedItem"
                      Class="@FinalCssClasses"
+                     Style="margin: 3px 5px;"
                      OnSelected=@OnItemSelectedAsync>
             <div class="sidebar-item-icon">
                 @IconTemplate(Item)
@@ -41,12 +43,13 @@
 
         @if (isGroupWithChildren && IsExpanded)
         {
-            <ul class="sidebar-items children">
+            <ul class="sidebar-items children" role="listbox">
                 @foreach (var childItem in group!.ChildrenItems!)
                 {
                     <NavBarItem Item="childItem as TElement"
                                 OwnerNavBar="OwnerNavBar"
                                 TElement="TElement"
+                                TSearchElement="TSearchElement"
                                 TitleTemplate="TitleTemplate"
                                 IconTemplate="IconTemplate"
                                 Children="childItem is IGroup childItemGroup ? childItemGroup.ChildrenItems : null"
@@ -58,6 +61,6 @@
     }
     else
     {
-        ThrowHelper.ThrowInvalidDataException($"{nameof(NavBarItem<TElement>)}.{nameof(Item)} is expected to implement '{nameof(IItem)}', '{nameof(IGroup)}' or '{nameof(ISeparator)}'");
+        ThrowHelper.ThrowInvalidDataException($"{nameof(NavBarItem<TElement, TSearchElement>)}.{nameof(Item)} is expected to implement '{nameof(IItem)}', '{nameof(IGroup)}' or '{nameof(ISeparator)}'");
     }
 </CascadingValue>

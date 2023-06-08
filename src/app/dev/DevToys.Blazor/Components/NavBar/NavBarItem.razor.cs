@@ -2,12 +2,15 @@
 
 namespace DevToys.Blazor.Components;
 
-public partial class NavBarItem<TElement> : StyledComponentBase where TElement : class
+public partial class NavBarItem<TElement, TSearchElement>
+    : StyledComponentBase
+    where TElement : class
+    where TSearchElement : class
 {
     private bool _isExpanded;
 
     [Parameter]
-    public NavBar<TElement> OwnerNavBar { get; set; } = default!;
+    public NavBar<TElement, TSearchElement> OwnerNavBar { get; set; } = default!;
 
     [Parameter]
     public TElement Item { get; set; } = default!;

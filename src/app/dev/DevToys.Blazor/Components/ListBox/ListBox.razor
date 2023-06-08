@@ -1,0 +1,59 @@
+@namespace DevToys.Blazor.Components
+@inherits JSStyledComponentBase
+@typeparam TElement
+
+<ScrollViewer Orientation="Orientation.Vertical"
+              IsEnabled="@IsEnabled"
+              Class="@FinalCssClasses"
+              Style="@Style"
+              AdditionalAttributes="@AdditionalAttributes">
+    <ul @ref="Element"
+        role="@Role"
+        class="list-box"
+        tabindex="0"
+        @onkeydown="OnKeyDown">
+
+        @if (Virtualize)
+        {
+            <Virtualize Items="@Items" Context="item">
+                @RenderItem(item)
+            </Virtualize>
+        }
+        else if (Items is not null)
+        {
+            foreach (var item in Items)
+            {
+                @RenderItem(item)
+            }
+        }
+
+    </ul>
+</ScrollViewer>
+
+@code {
+    private RenderFragment<TElement> RenderItem { get; set; } = default!;
+
+    protected override Task OnInitializedAsync()
+    {
+        RenderItem = (item) => __builder =>
+        {
+            @if (!OverrideDefaultItemTemplate)
+            {
+                <ListBoxItem OnSelected="OnItemClick"
+                             IsSelected="object.ReferenceEquals(item, SelectedItem)"
+                             Item="item">
+                    @ItemTemplate(item)
+                </ListBoxItem>
+            }
+            else
+            {
+                <div class="@((object.ReferenceEquals(item, SelectedItem) ? "selected" : string.Empty))"
+                     @onclick="@(() => OnItemClick(item))">
+                    @ItemTemplate(item)
+                </div>
+            }
+        };
+
+        return base.OnInitializedAsync();
+    }
+}

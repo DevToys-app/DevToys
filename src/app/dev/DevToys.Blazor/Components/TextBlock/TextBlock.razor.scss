@@ -9,6 +9,11 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
+    mark {
+        background-color: var(--text-box-selection-highlight-color);
+        color: currentColor;
+    }
+
     &.type- {
         &subtitle,
         &title,

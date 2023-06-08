@@ -22,38 +22,39 @@
              Style="@(PopoverStyle)"
              @ontouchend:stopPropagation>
         <CascadingValue Value="@this" IsFixed="true">
-            <FocusTrapper @ref="_focusTrapper"
-                          Style="display: contents;"
-                          OnEscapeKeyPressed="OnEscapeKeyPressedAsync">
-                <ul class="menu-flyout" role="menu">
-                    @if (Items is not null)
-                    {
-                        foreach (ContextMenuItem item in Items)
-                        {
-                            <li role="menuitem"
-                                class="@($"context-menu-item {(item.IsEnabled ? string.Empty : "disabled")}")"
-                                tabindex="0"
-                                @onclick="@(() => OnItemClickAsync(item))"
-                                @onkeypress="@((ev) => OnItemKeyPressAsync(ev, item))">
-                                <div class="icon-container">
-                                    <FontIcon Glyph="@item.IconGlyph" FontFamily="@item.IconFontFamily" />
-                                </div>
-                                <TextBlock Class="text"
-                                           NoWrap="true">
-                                    @item.Text
-                                </TextBlock>
-                                @if (!string.IsNullOrWhiteSpace(item.KeyboardShortcut))
-                                {
-                                    <TextBlock Appearance="TextBlockAppearance.Caption"
-                                               NoWrap="true"
-                                               Class="keyboard-accelerator">
-                                        @item.KeyboardShortcut
-                                    </TextBlock>
-                                }
-                            </li>
-                        }
-                    }
-                </ul>
+            <FocusTrapper Style="display: contents;"
+                          OnEscapeKeyPressed="OnEscapeKeyPressedAsync"
+                          @onfocusout="OnEscapeKeyPressedAsync">
+                <ListBox @ref="_listBox"
+                         Items="Items"
+                         Context="item"
+                         Role="menu"
+                         OverrideDefaultItemTemplate="true"
+                         Virtualize="false"
+                         RaiseSelectionEventOnKeyboardNavigation="false"
+                         OnSelectedIndexChanged="OnContextMenuItemSelected"
+                         Class="context-menu-list-box"
+                         @onkeydown="OnListBoxKeyDown">
+                    <ItemTemplate>
+                        <li role="menuitem"
+                            class="@($"context-menu-item {(_listBox!.SelectedItem == item ? "selected" : string.Empty)} {(item.IsEnabled ? string.Empty : "disabled")}")"
+                            aria-disabled="@(item.IsEnabled ? string.Empty : "true")">
+                            <div class="icon-container">
+                                <FontIcon Glyph="@item.IconGlyph" FontFamily="@item.IconFontFamily" />
+                            </div>
+                            <TextBlock Class="text"
+                                       NoWrap="true"
+                                       Text="@item.Text" />
+                            @if (!string.IsNullOrWhiteSpace(item.KeyboardShortcut))
+                            {
+                                <TextBlock Appearance="TextBlockAppearance.Caption"
+                                           NoWrap="true"
+                                           Class="keyboard-accelerator"
+                                           Text="@item.KeyboardShortcut" />
+                            }
+                        </li>
+                    </ItemTemplate>
+                </ListBox>
             </FocusTrapper>
         </CascadingValue>
     </Popover>

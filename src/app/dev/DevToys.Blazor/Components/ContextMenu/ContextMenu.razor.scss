@@ -1,5 +1,3 @@
-@use "../../Assets/sass/devtoys" as *;
-
 .context-menu {
     display: contents;
     position: relative;
@@ -9,29 +7,23 @@
     }
 }
 
-.menu-flyout {
-    margin: 0px;
-    padding: 4px;
-    min-inline-size: 75px;
-    box-sizing: border-box;
-    border-radius: var(--overlay-corner-radius);
-    border: 1px solid var(--menu-flyout-presenter-border);
-    background-color: var(--menu-flyout-presenter-background);
-    -webkit-backdrop-filter: var(--menu-flyout-presenter-backdrop-filter);
-    backdrop-filter: var(--menu-flyout-presenter-backdrop-filter);
-    background-clip: padding-box;
-    box-shadow: var(--menu-flyout-presenter-shadow);
+.context-menu-list-box {
+    .list-box:focus, .list-box:focus-visible, .list-box:focus-within {
+        outline: none;
+    }
 
     .context-menu-item {
         padding: 5px 8px;
         cursor: default;
-        border-radius: inherit;
+        border-radius: var(--control-corner-radius);
         background-color: var(--context-menu-item-background);
         color: var(--context-menu-item-foreground);
         display: flex;
         gap: 8px;
+        margin: 3px;
 
-        &:hover {
+        &:hover, &:focus, &:focus-visible, &.selected {
+            outline: none;
             background-color: var(--context-menu-item-background-pointer-over);
         }
 
