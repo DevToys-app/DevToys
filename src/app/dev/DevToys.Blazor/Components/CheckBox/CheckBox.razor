@@ -1,0 +1,34 @@
+﻿@namespace DevToys.Blazor.Components
+
+@inherits JSStyledComponentBase
+
+<CascadingValue Value="this" IsFixed="true">
+    <label
+        id=@Id
+        role="button"
+        class="checkbox-container @(IsEnabled ? string.Empty : "disabled")"
+        style="@(Style)"
+        @ref=Element>
+        <span class="checkbox-inner">
+            <input
+                type="checkbox"
+                tabindex="0"
+                class="checkbox @(FinalCssClasses)"
+                checked="@IsChecked"
+                disabled="@(!IsEnabled)"
+                @onclick:preventDefault="@(!IsEnabled)"
+                @onchange="OnChange"
+                @attributes="AdditionalAttributes" />
+            <svg
+                aria-hidden="true"
+                class="checkbox-glyph"
+                viewBox="0 0 24 24">
+                <path
+                    class="path-checkmark"
+                    d="M 4.5303 12.9697 L 8.5 16.9393 L 18.9697 6.4697"
+                    fill="none" />
+            </svg>
+        </span>
+        <TextBlock Text="@Text" />
+    </label>
+</CascadingValue>

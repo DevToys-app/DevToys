@@ -1,0 +1,127 @@
+@use "../../Assets/sass/devtoys" as *;
+
+$control-fast-duration: 167ms;
+$control-fast-out-slow-in-easing: cubic-bezier(0, 0, 0, 1);
+
+.toggle-switch {
+    @include flex($inline: true, $align: center);
+    @include typography-body;
+
+    position: relative;
+    margin: 0;
+    border: var(--toggle-switch-outer-border-stroke-thickness) solid var(--toggle-switch-stroke-off);
+    border-radius: 20px;
+    outline: none;
+    background-color: var(--toggle-switch-fill-off);
+    appearance: none;
+    inline-size: 40px;
+    block-size: 20px;
+
+    &::before {
+        content: "";
+        position: absolute;
+        border-radius: 7px;
+        background-color: var(--toggle-switch-knob-fill-off);
+        transition: $control-fast-duration ease-in-out transform,
+            $control-fast-duration $control-fast-out-slow-in-easing height,
+            $control-fast-duration $control-fast-out-slow-in-easing width,
+            $control-fast-duration $control-fast-out-slow-in-easing margin,
+            $control-fast-duration linear background;
+        inset-inline-start: 3px;
+        inline-size: 12px;
+        block-size: 12px;
+    }
+
+    &:focus-visible {
+        box-shadow: var(--focus-stroke);
+    }
+
+    &:hover {
+        border-color: var(--toggle-switch-stroke-off-pointer-over);
+        background-color: var(--toggle-switch-fill-off-pointer-over);
+
+        &::before {
+            inline-size: 14px;
+            block-size: 14px;
+        }
+    }
+
+    &:active {
+        border-color: var(--toggle-switch-stroke-off-pressed);
+        background-color: var(--toggle-switch-fill-off-pressed);
+
+        &::before {
+            inline-size: 17px;
+            block-size: 14px;
+        }
+    }
+
+    &:disabled {
+        border-color: var(--toggle-switch-stroke-off-disabled);
+        background-color: var(--toggle-switch-fill-off-disabled);
+
+        &::before {
+            margin: 0 !important;
+            background-color: var(--toggle-switch-knob-fill-off-disabled);
+            box-shadow: none;
+            inline-size: 12px;
+            block-size: 12px;
+        }
+
+        + span {
+            color: var(--toggle-switch-foreground-disabled) !important;
+        }
+    }
+
+    &:checked {
+        border: var(--toggle-switch-on-stroke-thickness) solid var(--toggle-switch-stroke-on);
+        background-color: var(--toggle-switch-fill-on);
+
+        &::before {
+            background-color: var(--toggle-switch-knob-fill-on);
+            box-shadow: 0 0 0 1px solid var(--toggle-switch-knob-stroke-on);
+            transform: translateX(20px);
+        }
+
+        &:hover {
+            border-color: var(--toggle-switch-stroke-on-pointer-over);
+            background-color: var(--toggle-switch-fill-on-pointer-over);
+
+            &::before {
+                margin-inline-start: -1px;
+            }
+        }
+
+        &:active {
+            border-color: var(--toggle-switch-stroke-on-pressed);
+            background-color: var(--toggle-switch-fill-on-pressed);
+
+            &::before {
+                margin-inline-start: -4px;
+            }
+        }
+
+        &:disabled {
+            border-color: var(--toggle-switch-stroke-on-disabled);
+            background-color: var(--toggle-switch-fill-on-disabled);
+
+            &::before {
+                box-shadow: none;
+                background-color: var(--toggle-switch-knob-fill-on-disabled);
+            }
+        }
+    }
+
+    &-container {
+        @include flex($inline: true, $align: center);
+        @include typography-body;
+
+        color: var(--toggle-switch-foreground) !important;
+        user-select: none;
+        min-block-size: 32px;
+
+        > span {
+            padding-inline-start: 8px;
+        }
+    }
+}
