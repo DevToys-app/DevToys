@@ -148,7 +148,7 @@
     <value>轉換</value>
   </data>
   <data name="Sort" xml:space="preserve">
-    <value>Sort Lines</value>
+    <value>排序行</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>檢查工具 &amp; 大小寫轉換工具</value>
