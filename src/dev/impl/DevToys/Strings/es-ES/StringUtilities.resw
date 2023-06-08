@@ -148,7 +148,7 @@
     <value>Convertir</value>
   </data>
   <data name="Sort" xml:space="preserve">
-    <value>Sort Lines</value>
+    <value>Ordenar por</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Inspector &amp; Conversor de Mayúsculas y Minúsculas</value>
@@ -160,10 +160,10 @@
     <value>capitalización-kebab</value>
   </data>
   <data name="Alphabetize" xml:space="preserve">
-    <value>Alphabetize</value>
+    <value>Orden alfabético</value>
   </data>
   <data name="ReverseAlphabetize" xml:space="preserve">
-    <value>Reverse alphabetize</value>
+    <value>Orden alfabético inverso</value>
   </data>
   <data name="AlphabetizeLast" xml:space="preserve">
     <value>Alphabetize by last word</value>
@@ -172,10 +172,10 @@
     <value>Reverse alphabetize by last word</value>
   </data>
   <data name="Reverse" xml:space="preserve">
-    <value>Reverse</value>
+    <value>Invertir</value>
   </data>
   <data name="Randomize" xml:space="preserve">
-    <value>Randomize</value>
+    <value>Ordenar aleatoriamente</value>
   </data>
   <data name="Line" xml:space="preserve">
     <value>Línea:</value>
