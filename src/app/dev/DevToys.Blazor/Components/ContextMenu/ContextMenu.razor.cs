@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Components.Web;
 
 namespace DevToys.Blazor.Components;
 
-// TODO: Close the context menu when the window lose focus or get resized.
 public partial class ContextMenu : StyledComponentBase
 {
     private bool _isOpen;
