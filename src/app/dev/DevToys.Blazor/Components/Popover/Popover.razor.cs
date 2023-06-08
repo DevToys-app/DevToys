@@ -14,9 +14,9 @@ public partial class Popover : StyledComponentBase, IAsyncDisposable
         new CssBuilder("popover")
         .AddClass($"popover-fixed", Fixed)
         .AddClass($"popover-open", Open)
-        .AddClass($"popover-{TransformOrigin.ToDescriptionString()}")
-        .AddClass($"popover-anchor-{AnchorOrigin.ToDescriptionString()}")
-        .AddClass($"popover-overflow-{OverflowBehavior.ToDescriptionString()}")
+        .AddClass($"popover-{OriginToPartialClassName(TransformOrigin)}")
+        .AddClass($"popover-anchor-{OriginToPartialClassName(AnchorOrigin)}")
+        .AddClass($"popover-overflow-{OverflowBehaviorToPartialClassName(OverflowBehavior)}")
         .AddClass($"popover-relative-width", RelativeWidth)
         .AddClass($"overflow-y-auto", MaxHeight != null)
         .AddClass(FinalCssClasses)
@@ -130,5 +130,33 @@ public partial class Popover : StyledComponentBase, IAsyncDisposable
         catch (TaskCanceledException) { }
 
         GC.SuppressFinalize(this);
+    }
+
+    private static string OverflowBehaviorToPartialClassName(OverflowBehavior overflowBehavior)
+    {
+        return overflowBehavior switch
+        {
+            OverflowBehavior.FlipNever => "flip-never",
+            OverflowBehavior.FlipOnOpen => "flip-onopen",
+            OverflowBehavior.FlipAlways => "flip-always",
+            _ => throw new NotSupportedException()
+        };
+    }
+
+    private static string OriginToPartialClassName(Origin origin)
+    {
+        return origin switch
+        {
+            Origin.TopLeft => "top-left",
+            Origin.TopCenter => "top-center",
+            Origin.TopRight => "top-right",
+            Origin.CenterLeft => "center-left",
+            Origin.CenterCenter => "center-center",
+            Origin.CenterRight => "center-right",
+            Origin.BottomLeft => "bottom-left",
+            Origin.BottomCenter => "bottom-center",
+            Origin.BottomRight => "bottom-right",
+            _ => throw new NotSupportedException()
+        };
     }
 }
