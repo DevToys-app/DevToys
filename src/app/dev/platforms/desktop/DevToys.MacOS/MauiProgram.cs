@@ -97,8 +97,8 @@ public partial class MauiProgram
         });
 
         serviceCollection.AddSingleton(provider => MefComposer!.Provider);
-        serviceCollection.TryAddScoped<PopoverService, PopoverService>();
-        serviceCollection.TryAddScoped<ContextMenuService, ContextMenuService>();
+        serviceCollection.AddScoped<PopoverService, PopoverService>();
+        serviceCollection.AddScoped<ContextMenuService, ContextMenuService>();
 
         ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
 

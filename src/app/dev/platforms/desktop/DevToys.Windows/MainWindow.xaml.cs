@@ -1,4 +1,5 @@
-﻿using DevToys.Api;
+﻿using System;
+using DevToys.Api;
 using DevToys.Blazor.Core.Languages;
 using DevToys.Blazor.Core.Services;
 using DevToys.Business.ViewModels;
@@ -9,7 +10,6 @@ using DevToys.Windows.Controls;
 using DevToys.Windows.Core;
 using Microsoft.AspNetCore.Components.WebView;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using PredefinedSettings = DevToys.Core.Settings.PredefinedSettings;
 
@@ -23,6 +23,7 @@ public partial class MainWindow : MicaWindowWithOverlay
     private static MainWindow? mainWindowInstance;
 
     private readonly MefComposer _mefComposer;
+    private readonly ServiceProvider _serviceProvider;
     private readonly DateTime _uiLoadingTime;
     private ILogger? _logger;
 
@@ -33,7 +34,7 @@ public partial class MainWindow : MicaWindowWithOverlay
         DateTime startTime = DateTime.Now;
 
         // Initialize services and logging.
-        ServiceProvider serviceProvider = InitializeServices();
+        _serviceProvider = InitializeServices();
 
         // Listen for unhandled exceptions.
         AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
@@ -58,7 +59,7 @@ public partial class MainWindow : MicaWindowWithOverlay
         LanguageManager.Instance.SetCurrentCulture(languageDefinition);
 
         // Load the UI.
-        Resources.Add("services", serviceProvider);
+        Resources.Add("services", _serviceProvider);
         InitializeComponent();
 
         _themeListener = _mefComposer.Provider.Import<IThemeListener>();
@@ -66,6 +67,12 @@ public partial class MainWindow : MicaWindowWithOverlay
 
         blazorWebView.BlazorWebViewInitializing += BlazorWebView_BlazorWebViewInitializing;
         blazorWebView.BlazorWebViewInitialized += BlazorWebView_BlazorWebViewInitialized;
+    }
+
+    private void MainWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
+    {
+        var windowService = (WindowService)_serviceProvider.GetService<IWindowService>()!;
+        windowService.SetWindow(this);
     }
 
     private void BlazorWebView_BlazorWebViewInitializing(object? sender, BlazorWebViewInitializingEventArgs e)
@@ -113,8 +120,9 @@ public partial class MainWindow : MicaWindowWithOverlay
         });
 
         serviceCollection.AddSingleton(provider => _mefComposer.Provider);
-        serviceCollection.TryAddScoped<PopoverService, PopoverService>();
-        serviceCollection.TryAddScoped<ContextMenuService, ContextMenuService>();
+        serviceCollection.AddSingleton<IWindowService, WindowService>();
+        serviceCollection.AddScoped<PopoverService, PopoverService>();
+        serviceCollection.AddScoped<ContextMenuService, ContextMenuService>();
 
         ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
 
