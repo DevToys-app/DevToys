@@ -741,6 +741,11 @@ namespace DevToys
         public string Clear => _resources.GetString("Clear");
 
         /// <summary>
+        /// Gets the resource Collapse.
+        /// </summary>
+        public string Collapse => _resources.GetString("Collapse");
+
+        /// <summary>
         /// Gets the resource Copy.
         /// </summary>
         public string Copy => _resources.GetString("Copy");
@@ -754,6 +759,11 @@ namespace DevToys
         /// Gets the resource Delete.
         /// </summary>
         public string Delete => _resources.GetString("Delete");
+
+        /// <summary>
+        /// Gets the resource Expand.
+        /// </summary>
+        public string Expand => _resources.GetString("Expand");
 
         /// <summary>
         /// Gets the resource FileSelectorBrowseFiles.

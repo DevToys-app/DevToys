@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using System;
 using DevToys.Api.Core.Navigation;
 using DevToys.Shared.Core;
 using DevToys.ViewModels.Tools.TextDiff;
@@ -45,6 +46,22 @@ namespace DevToys.Views.Tools.TextDiff
             }
 
             base.OnNavigatedTo(e);
+        }
+
+        private void OutputTextEditor_ExpandedChanged(object sender, EventArgs e)
+        {
+            if (OutputTextEditor.IsExpanded)
+            {
+                MainControl.Children.Remove(OutputTextEditor);
+                MainControl.Visibility = Visibility.Collapsed;
+                ExpandedControl.Children.Add(OutputTextEditor);
+            }
+            else
+            {
+                ExpandedControl.Children.Remove(OutputTextEditor);
+                MainControl.Children.Add(OutputTextEditor);
+                MainControl.Visibility = Visibility.Visible;
+            }
         }
     }
 }
