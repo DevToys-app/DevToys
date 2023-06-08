@@ -47,6 +47,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
             if (ValidateSignature)
             {
                 decoderParamters.ValidateSignature = ValidateSignature;
+                decoderParamters.ValidateIssuerSigningKey = ValidateIssuerSigningKey;
                 decoderParamters.ValidateAudience = ValidateAudience;
                 decoderParamters.ValidateLifetime = ValidateLifetime;
                 decoderParamters.ValidateIssuer = ValidateIssuer;
@@ -95,7 +96,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
 
                 }
 
-                DisplayValidationInfoBar();
+                DisplayValidationInfoBar(decoderParamters);
 
 
                 if (ToolSuccessfullyWorked)

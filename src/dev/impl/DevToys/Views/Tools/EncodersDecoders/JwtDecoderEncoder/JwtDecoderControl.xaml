@@ -73,6 +73,15 @@
                 <controls:ExpandableSettingControl.ExpandableContent>
                     <StackPanel Padding="6" Spacing="4" HorizontalAlignment="Stretch">
                         <controls:ExpandableSettingControl
+                            Title="{x:Bind ViewModel.LocalizedStrings.DecodeValidateIssuerSigningKey}">
+                            <controls:ExpandableSettingControl.Icon>
+                                <FontIcon Glyph="&#xF283;" />
+                            </controls:ExpandableSettingControl.Icon>
+                            <ToggleSwitch 
+                                Style="{StaticResource RightAlignedToggleSwitchStyle}" 
+                                IsOn="{x:Bind ViewModel.ValidateIssuerSigningKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </controls:ExpandableSettingControl>
+                        <controls:ExpandableSettingControl
                             Title="{x:Bind ViewModel.LocalizedStrings.DecodeValidateIssuerLabel}">
                             <controls:ExpandableSettingControl.Icon>
                                 <FontIcon Glyph="&#xF283;" />

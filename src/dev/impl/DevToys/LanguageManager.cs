@@ -1763,6 +1763,11 @@ namespace DevToys
         public string SignatureLabel => _resources.GetString("SignatureLabel");
 
         /// <summary>
+        /// Gets the resource JwtNotValidated.
+        /// </summary>
+        public string JwtNotValidated => _resources.GetString("JwtNotValidated");
+
+        /// <summary>
         /// Gets the resource JwtIsValidMessage.
         /// </summary>
         public string JwtIsValidMessage => _resources.GetString("JwtIsValidMessage");
@@ -1786,6 +1791,11 @@ namespace DevToys
         /// Gets the resource DecodeValidateAudienceLabel.
         /// </summary>
         public string DecodeValidateAudienceLabel => _resources.GetString("DecodeValidateAudienceLabel");
+
+        /// <summary>
+        /// Gets the resource DecodeValidateIssuerSigningKey.
+        /// </summary>
+        public string DecodeValidateIssuerSigningKey => _resources.GetString("DecodeValidateIssuerSigningKey");
 
         /// <summary>
         /// Gets the resource DecodeValidateIssuerLabel.
