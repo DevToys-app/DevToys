@@ -3001,6 +3001,11 @@ namespace DevToys
         public string Convert => _resources.GetString("Convert");
 
         /// <summary>
+        /// Gets the resource Sort.
+        /// </summary>
+        public string Sort => _resources.GetString("Sort");
+
+        /// <summary>
         /// Gets the resource MenuDisplayName.
         /// </summary>
         public string MenuDisplayName => _resources.GetString("MenuDisplayName");
@@ -3014,6 +3019,36 @@ namespace DevToys
         /// Gets the resource KebabCase.
         /// </summary>
         public string KebabCase => _resources.GetString("KebabCase");
+
+        /// <summary>
+        /// Gets the resource Alphabetize.
+        /// </summary>
+        public string Alphabetize => _resources.GetString("Alphabetize");
+
+        /// <summary>
+        /// Gets the resource ReverseAlphabetize.
+        /// </summary>
+        public string ReverseAlphabetize => _resources.GetString("ReverseAlphabetize");
+
+        /// <summary>
+        /// Gets the resource AlphabetizeLast.
+        /// </summary>
+        public string AlphabetizeLast => _resources.GetString("AlphabetizeLast");
+
+        /// <summary>
+        /// Gets the resource ReverseAlphabetizeLast.
+        /// </summary>
+        public string ReverseAlphabetizeLast => _resources.GetString("ReverseAlphabetizeLast");
+
+        /// <summary>
+        /// Gets the resource Reverse.
+        /// </summary>
+        public string Reverse => _resources.GetString("Reverse");
+
+        /// <summary>
+        /// Gets the resource Randomize.
+        /// </summary>
+        public string Randomize => _resources.GetString("Randomize");
 
         /// <summary>
         /// Gets the resource Line.
