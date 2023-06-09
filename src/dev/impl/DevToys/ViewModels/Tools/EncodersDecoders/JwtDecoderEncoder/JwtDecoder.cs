@@ -33,12 +33,13 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         public TokenResult? DecodeToken(
                 DecoderParameters decodeParameters,
                 TokenParameters tokenParameters,
-                Action<TokenResultErrorEventArgs> decodingErrorCallBack)
+                Action<TokenResultErrorEventArgs> decodingErrorCallBack, out JwtAlgorithm? jwtAlgorithm)
         {
             Arguments.NotNull(decodeParameters, nameof(decodeParameters));
             Arguments.NotNull(tokenParameters, nameof(tokenParameters));
             _decodingErrorCallBack = Arguments.NotNull(decodingErrorCallBack, nameof(decodingErrorCallBack));
             Arguments.NotNullOrWhiteSpace(tokenParameters.Token, nameof(tokenParameters.Token));
+            jwtAlgorithm = null;
 
             var tokenResult = new TokenResult();
 
@@ -49,7 +50,10 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                 JwtSecurityToken jwtSecurityToken = handler.ReadJwtToken(tokenParameters.Token);
                 tokenResult.Header = JsonHelper.Format(jwtSecurityToken.Header.SerializeToJson(), Indentation.TwoSpaces, false);
                 tokenResult.Payload = JsonHelper.Format(jwtSecurityToken.Payload.SerializeToJson(), Indentation.TwoSpaces, false);
-                tokenResult.TokenAlgorithm = tokenParameters.TokenAlgorithm;
+                jwtAlgorithm = tokenResult.TokenAlgorithm = tokenParameters.TokenAlgorithm =
+                    Enum.TryParse(jwtSecurityToken.SignatureAlgorithm, out JwtAlgorithm parsedAlgorithm)
+                        ? parsedAlgorithm
+                        : tokenParameters.TokenAlgorithm;
 
                 if (decodeParameters.ValidateSignature)
                 {
