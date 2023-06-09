@@ -172,9 +172,9 @@
     <value>Saniyeleri de koy (6 bölmeli Cron)</value>
   </data>
   <data name="DescriptionTitle" xml:space="preserve">
-    <value>Description</value>
+    <value>Açıklama</value>
   </data>
   <data name="DescriptionErrorMessage" xml:space="preserve">
-    <value>Unable to generate description</value>
+    <value>Açıklama oluşturulamıyor</value>
   </data>
 </root>
