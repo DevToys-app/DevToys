@@ -172,9 +172,9 @@
     <value>秒を使用 (6 フィールドの Cron)</value>
   </data>
   <data name="DescriptionTitle" xml:space="preserve">
-    <value>Description</value>
+    <value>スケジュールの説明</value>
   </data>
   <data name="DescriptionErrorMessage" xml:space="preserve">
-    <value>Unable to generate description</value>
+    <value>スケジュールの説明を作成できません</value>
   </data>
 </root>
