@@ -1,0 +1,41 @@
+@use "../../Assets/sass/devtoys" as *;
+
+.drop-down-list {
+    @include typography-body;
+
+    &-with-header {
+        display: inline-flex;
+        position: relative;
+
+        .drop-down-list-header {
+            margin-bottom: 4px;
+        }
+    }
+
+    &-button {
+        .arrow-down-icon {
+            height: 16px;
+            width: 16px;
+            padding-top: 4px;
+            margin-left: 4px;
+            transition-duration: 0.2s;
+            transition-property: transform;
+            color: currentColor !important;
+        }
+
+        &:active {
+            .arrow-down-icon {
+                transform: translateY(2px);
+                color: currentColor !important;
+            }
+        }
+    }
+}
+
+.drop-down-list-drop-down {
+    margin-top: 4px !important;
+
+    &[data-popover-flip="flipped"] {
+        margin-top: -4px !important;
+    }
+}

@@ -382,6 +382,44 @@ class Popover {
         Popover.placePopover(popoverNode);
     }
 }
+Popover.flipClassReplacements = {
+    "top": {
+        "popover-top-left": "popover-bottom-left",
+        "popover-top-center": "popover-bottom-center",
+        "popover-anchor-bottom-center": "popover-anchor-top-center",
+        "popover-top-right": "popover-bottom-right",
+    },
+    "left": {
+        "popover-top-left": "popover-top-right",
+        "popover-center-left": "popover-center-right",
+        "popover-anchor-center-right": "popover-anchor-center-left",
+        "popover-bottom-left": "popover-bottom-right",
+    },
+    "right": {
+        "popover-top-right": "popover-top-left",
+        "popover-center-right": "popover-center-left",
+        "popover-anchor-center-left": "popover-anchor-center-right",
+        "popover-bottom-right": "popover-bottom-left",
+    },
+    "bottom": {
+        "popover-bottom-left": "popover-top-left",
+        "popover-bottom-center": "popover-top-center",
+        "popover-anchor-top-center": "popover-anchor-bottom-center",
+        "popover-bottom-right": "popover-top-right",
+    },
+    "top-and-left": {
+        "popover-top-left": "popover-bottom-right",
+    },
+    "top-and-right": {
+        "popover-top-right": "popover-bottom-left",
+    },
+    "bottom-and-left": {
+        "popover-bottom-left": "popover-top-right",
+    },
+    "bottom-and-right": {
+        "popover-bottom-right": "popover-top-left",
+    },
+};
 Popover.flipMargin = 0;
 Popover.map = {};
 Popover.contentObserver = null;

@@ -38,7 +38,7 @@ public partial class FocusTrapper : JSStyledComponentBase
 
     private void OnKeyDown(KeyboardEventArgs ev)
     {
-        if (OnEscapeKeyPressed.HasDelegate && string.Equals(ev.Key, "Escape", StringComparison.OrdinalIgnoreCase))
+        if (OnEscapeKeyPressed.HasDelegate && string.Equals(ev.Code, "Escape", StringComparison.OrdinalIgnoreCase))
         {
             OnEscapeKeyPressed.InvokeAsync();
         }

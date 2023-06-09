@@ -109,7 +109,7 @@ public partial class ContextMenu : StyledComponentBase
 
     private void OnListBoxKeyDown(KeyboardEventArgs ev)
     {
-        if (_listBox is not null && string.Equals(ev.Key, "Tab", StringComparison.OrdinalIgnoreCase))
+        if (_listBox is not null && string.Equals(ev.Code, "Tab", StringComparison.OrdinalIgnoreCase))
         {
             _listBox.SelectNextItem();
         }

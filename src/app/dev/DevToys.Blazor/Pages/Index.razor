@@ -7,7 +7,7 @@
 @inherits MefComponentBase
 
 <!-- Provider for popover -->
-<PopoverProvider/>
+<PopoverProvider />
 
 <!-- Overlay that covers the whole window for context menus -->
 <Overlay ZIndex="80000"
@@ -21,7 +21,7 @@
         MenuItemsSource="@ViewModel.HeaderAndBodyToolViewItems"
         FooterMenuItemsSource="@ViewModel.FooterToolViewItems"
         CanGoBack="@ViewModel.CanGoBack"
-        @bind-SelectedItem="ViewModel.SelectedMenuItem"
+@bind-SelectedItem="ViewModel.SelectedMenuItem"
         OnBackButtonClicked="OnBackButtonClicked"
         OnHiddenStateChanged="OnHiddenStateChanged"
         SearchBarPlaceholder="Type to search for tools..."
@@ -104,6 +104,26 @@
                     <ToggleSwitch IsOn="true" Text="An option" />
                     <ToggleSwitch IsOn="true" IsEnabled="false" Text="An option" />
                     <ToggleSwitch IsOn="false" IsEnabled="false" Text="An option" />
+                    <DropDownList Items="@(new List<DropDownListItem>
+                        {
+                            new DropDownListItem { Text = "Item 1", IconGlyph = '\uE670' },
+                            new DropDownListItem { Text = "Item 2" },
+                            new DropDownListItem { Text = "Item 3" },
+                            new DropDownListItem { Text = "Item 4" },
+                            new DropDownListItem { Text = "Item 5" },
+                            new DropDownListItem { Text = "Item 6" },
+                            new DropDownListItem { Text = "Item 7" },
+                            new DropDownListItem { Text = "Item 8" },
+                            new DropDownListItem { Text = "Item 9" },
+                            new DropDownListItem { Text = "Item 10" },
+                            new DropDownListItem { Text = "Item 11" },
+                            new DropDownListItem { Text = "Item 12" },
+                            new DropDownListItem { Text = "Item 13" },
+                            new DropDownListItem { Text = "Item 14" },
+                            new DropDownListItem { Text = "Item 15" }
+                        })">
+                        <TextBlock Appearance="TextBlockAppearance.Body" Text="Click me!" />
+                    </DropDownList>
                 </div>
             }
             else if (ViewModel.SelectedMenuItem is GroupViewItem groupToolViewItem)

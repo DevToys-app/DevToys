@@ -12,7 +12,7 @@ class PopoverPosition {
 }
 
 class Popover {
-    private static flipClassReplacements: {
+    private static flipClassReplacements = {
         "top": {
             "popover-top-left": "popover-bottom-left",
             "popover-top-center": "popover-bottom-center",

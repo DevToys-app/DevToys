@@ -69,17 +69,17 @@ public partial class AutoSuggestBox<TElement> : StyledComponentBase, IDisposable
 
     private void OnTextBoxKeyPress(KeyboardEventArgs ev)
     {
-        if (string.Equals(ev.Key, "Enter", StringComparison.OrdinalIgnoreCase))
+        if (string.Equals(ev.Code, "Enter", StringComparison.OrdinalIgnoreCase))
         {
             SubmitQuery();
         }
         else if (_showDropDown && _resultListBox is not null && Items is not null)
         {
-            if (string.Equals(ev.Key, "ArrowDown", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(ev.Code, "ArrowDown", StringComparison.OrdinalIgnoreCase))
             {
                 _resultListBox.SelectNextItem();
             }
-            else if (string.Equals(ev.Key, "ArrowUp", StringComparison.OrdinalIgnoreCase))
+            else if (string.Equals(ev.Code, "ArrowUp", StringComparison.OrdinalIgnoreCase))
             {
                 _resultListBox.SelectPreviousItem();
             }

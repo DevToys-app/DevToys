@@ -191,23 +191,24 @@ public partial class ListBox<TElement> : JSStyledComponentBase where TElement : 
     {
         if (Items is not null && Items.Count > 0)
         {
-            if (string.Equals(ev.Key, "Enter", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(ev.Code, "Enter", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(ev.Code, "Space", StringComparison.OrdinalIgnoreCase))
             {
                 RaiseOnSelectedIndexChanged();
             }
-            else if (string.Equals(ev.Key, "ArrowDown", StringComparison.OrdinalIgnoreCase))
+            else if (string.Equals(ev.Code, "ArrowDown", StringComparison.OrdinalIgnoreCase))
             {
                 SelectNextItem();
             }
-            else if (string.Equals(ev.Key, "ArrowUp", StringComparison.OrdinalIgnoreCase))
+            else if (string.Equals(ev.Code, "ArrowUp", StringComparison.OrdinalIgnoreCase))
             {
                 SelectPreviousItem();
             }
-            else if (string.Equals(ev.Key, "Home", StringComparison.OrdinalIgnoreCase))
+            else if (string.Equals(ev.Code, "Home", StringComparison.OrdinalIgnoreCase))
             {
                 SetSelectedIndex(Math.Min(0, Items.Count - 1));
             }
-            else if (string.Equals(ev.Key, "End", StringComparison.OrdinalIgnoreCase))
+            else if (string.Equals(ev.Code, "End", StringComparison.OrdinalIgnoreCase))
             {
                 SetSelectedIndex(Items.Count - 1);
             }
