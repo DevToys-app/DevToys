@@ -172,9 +172,9 @@
     <value>포함된 시간 (6 - 세그먼트 Cron)</value>
   </data>
   <data name="DescriptionTitle" xml:space="preserve">
-    <value>Description</value>
+    <value>설명</value>
   </data>
   <data name="DescriptionErrorMessage" xml:space="preserve">
-    <value>Unable to generate description</value>
+    <value>설명을 생성할 수 없습니다</value>
   </data>
 </root>
