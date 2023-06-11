@@ -74,13 +74,13 @@
         .text {
             grid-area: title;
             align-self: center;
-            margin-right: 32px;
         }
 
         .keyboard-accelerator {
             grid-area: keyboard-shortcut;
             color: var(--context-menu-item-key-accelerator-foreground);
             align-self: center;
+            margin-left: 32px;
         }
     }
 }

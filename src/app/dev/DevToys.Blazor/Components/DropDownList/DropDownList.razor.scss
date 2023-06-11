@@ -5,6 +5,7 @@
 
     &-with-header {
         display: inline-flex;
+        flex-direction: column;
         position: relative;
 
         .drop-down-list-header {
