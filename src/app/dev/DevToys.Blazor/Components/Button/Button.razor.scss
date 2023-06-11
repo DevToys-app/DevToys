@@ -15,6 +15,7 @@ button {
     cursor: default;
     border-radius: var(--control-corner-radius);
     transition: 83ms ease background;
+    width: fit-content;
 
     &:focus-visible {
         box-shadow: var(--focus-stroke);

@@ -104,49 +104,49 @@
                         <CheckBox IsChecked="true" Text="An option" />
                         <CheckBox IsChecked="true" IsEnabled="false" Text="An option" />
                         <CheckBox IsChecked="false" IsEnabled="false" Text="An option" />
+                        <DropDownList Header="Drop down list header"
+                                      Items="@(new List<DropDownListItem>
+                                        {
+                                            new DropDownListItem { Text = "Item 1", IconGlyph = '\uE670' },
+                                            new DropDownListItem { Text = "Item 2" },
+                                            new DropDownListItem { Text = "Item 3" },
+                                            new DropDownListItem { Text = "Item 4" },
+                                            new DropDownListItem { Text = "Item 5" },
+                                            new DropDownListItem { Text = "Item 6" },
+                                            new DropDownListItem { Text = "Item 7" },
+                                            new DropDownListItem { Text = "Item 8" },
+                                            new DropDownListItem { Text = "Item 9" },
+                                            new DropDownListItem { Text = "Item 10" },
+                                            new DropDownListItem { Text = "Item 11" },
+                                            new DropDownListItem { Text = "Item 12" },
+                                            new DropDownListItem { Text = "Item 13" },
+                                            new DropDownListItem { Text = "Item 14" },
+                                            new DropDownListItem { Text = "Item 15 - longer text" }
+                                        })">
+                            <TextBlock Appearance="TextBlockAppearance.Body" Text="Click me!" />
+                        </DropDownList>
                         <ToggleSwitch IsOn="true" Text="An option" />
                         <ToggleSwitch IsOn="true" IsEnabled="false" Text="An option" />
                         <ToggleSwitch IsOn="false" IsEnabled="false" Text="An option" />
-                        <DropDownList Items="@(new List<DropDownListItem>
-                        {
-                            new DropDownListItem { Text = "Item 1", IconGlyph = '\uE670' },
-                            new DropDownListItem { Text = "Item 2" },
-                            new DropDownListItem { Text = "Item 3" },
-                            new DropDownListItem { Text = "Item 4" },
-                            new DropDownListItem { Text = "Item 5" },
-                            new DropDownListItem { Text = "Item 6" },
-                            new DropDownListItem { Text = "Item 7" },
-                            new DropDownListItem { Text = "Item 8" },
-                            new DropDownListItem { Text = "Item 9" },
-                            new DropDownListItem { Text = "Item 10" },
-                            new DropDownListItem { Text = "Item 11" },
-                            new DropDownListItem { Text = "Item 12" },
-                            new DropDownListItem { Text = "Item 13" },
-                            new DropDownListItem { Text = "Item 14" },
-                            new DropDownListItem { Text = "Item 15" }
-                        })">
-                            <TextBlock Appearance="TextBlockAppearance.Body" Text="Click me!" />
-                        </DropDownList>
+                        <ComboBox Items="@(new List<string>
+                                    {
+                                       "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8", "Item 9", "Item 10",
+                                       "Item 11", "Item 12", "Item 13", "Item 14", "Item 15", "Item 16 - longer text"
+                                    })"
+                                  Context="item"
+                                  @bind-SelectedIndex="@ComboBoxSelectedItem"
+                                  Header="ComboBox header">
+                            <ItemTemplate>
+                                @item
+                            </ItemTemplate>
+                        </ComboBox>
                         <ListBox Items="@(new List<string>
-                             {
-                                "Item 1",
-                                "Item 2",
-                                "Item 3",
-                                "Item 4",
-                                "Item 5",
-                                "Item 6",
-                                "Item 7",
-                                "Item 8",
-                                "Item 9",
-                                "Item 10",
-                                "Item 11",
-                                "Item 12",
-                                "Item 13",
-                                "Item 14",
-                                "Item 15",
-                                "Item 16"
-                             })"
-                                 Context="item">
+                                   {
+                                      "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8", "Item 9", "Item 10",
+                                      "Item 11", "Item 12", "Item 13", "Item 14", "Item 15", "Item 16 - longer text"
+                                   })"
+                                 Context="item"
+                                 SelectedIndex="1">
                             <ItemTemplate>
                                 @item
                             </ItemTemplate>

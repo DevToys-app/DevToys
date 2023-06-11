@@ -24,6 +24,10 @@ public partial class Index : MefComponentBase
     [Inject]
     internal ContextMenuService ContextMenuService { get; set; } = default!;
 
+    // TODO: Temp.
+    [Parameter]
+    public int ComboBoxSelectedItem { get; set; } = 1;
+
     /// <summary>
     /// Indicates whether we're transitioning to another selected menu item.
     /// </summary>
