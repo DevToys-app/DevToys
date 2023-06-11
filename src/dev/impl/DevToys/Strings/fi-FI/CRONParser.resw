@@ -172,9 +172,9 @@
     <value>Seconds included (6 - segment Cron)</value>
   </data>
   <data name="DescriptionTitle" xml:space="preserve">
-    <value>Description</value>
+    <value>Kuvaus</value>
   </data>
   <data name="DescriptionErrorMessage" xml:space="preserve">
-    <value>Unable to generate description</value>
+    <value>Kuvausta ei voi luoda</value>
   </data>
 </root>
