@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Aikaleiman muuntajatyökalu</value>
+    <value>Aikaleiman muuntotyökalu</value>
   </data>
   <data name="TimeZoneTitle" xml:space="preserve">
     <value>Aikavyöhyke</value>
@@ -179,12 +179,12 @@
     <value>UTC-päivämäärä ja -kellonaika</value>
   </data>
   <data name="UtcTicksTitle" xml:space="preserve">
-    <value>UtcTicks</value>
+    <value>UTC-jaksot</value>
   </data>
   <data name="YearTitle" xml:space="preserve">
-    <value>Year</value>
+    <value>Vuosi</value>
   </data>
   <data name="Now" xml:space="preserve">
-    <value>Now</value>
+    <value>Nyt</value>
   </data>
 </root>
