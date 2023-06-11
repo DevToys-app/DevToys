@@ -8,8 +8,14 @@
 }
 
 .context-menu-list-box {
-    .list-box:focus, .list-box:focus-visible, .list-box:focus-within {
-        outline: none;
+    .list-box {
+        display: inline-block;
+
+        &:focus,
+        &:focus-visible,
+        &:focus-within {
+            outline: none;
+        }
     }
 
     .context-menu-item {
@@ -18,11 +24,18 @@
         border-radius: var(--control-corner-radius);
         background-color: var(--context-menu-item-background);
         color: var(--context-menu-item-foreground);
-        display: flex;
-        gap: 8px;
         margin: 3px;
+        display: grid;
+        grid-template-columns: 16px 1fr auto;
+        grid-template-rows: 1fr;
+        gap: 0px 12px;
+        grid-template-areas:
+            "icon title keyboard-shortcut";
 
-        &:hover, &:focus, &:focus-visible, &.selected {
+        &:hover,
+        &:focus,
+        &:focus-visible,
+        &.selected {
             outline: none;
             background-color: var(--context-menu-item-background-pointer-over);
         }
@@ -46,6 +59,7 @@
         }
 
         .icon-container {
+            grid-area: icon;
             height: 20px;
             width: 20px;
             display: block;
@@ -58,12 +72,13 @@
         }
 
         .text {
-            flex-grow: 1;
+            grid-area: title;
             align-self: center;
             margin-right: 32px;
         }
 
         .keyboard-accelerator {
+            grid-area: keyboard-shortcut;
             color: var(--context-menu-item-key-accelerator-foreground);
             align-self: center;
         }

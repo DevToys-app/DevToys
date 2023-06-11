@@ -31,6 +31,9 @@ public partial class ListBox<TElement> : JSStyledComponentBase where TElement : 
     [Parameter]
     public bool RaiseSelectionEventOnKeyboardNavigation { get; set; } = true;
 
+    [Parameter]
+    public bool UseNativeScrollBar { get; set; }
+
     internal TElement? SelectedItem { get; private set; }
 
     internal ValueTask<bool> FocusAsync()
@@ -139,7 +142,7 @@ public partial class ListBox<TElement> : JSStyledComponentBase where TElement : 
     private void SetSelectedItem(TElement? item, bool raiseEvent)
     {
         Guard.IsNotNull(Items);
-        if (item == SelectedItem)
+        if (item == SelectedItem && !raiseEvent)
         {
             return;
         }

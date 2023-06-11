@@ -75,8 +75,17 @@ public partial class TextBox : MefComponentBase
 
     public override async ValueTask DisposeAsync()
     {
-        await (await JSModule).InvokeVoidAsync("dispose", Element);
-        await base.DisposeAsync();
+        try
+        {
+            await (await JSModule).InvokeVoidAsync("dispose", Element);
+        }
+        catch
+        {
+        }
+        finally
+        {
+            await base.DisposeAsync();
+        }
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

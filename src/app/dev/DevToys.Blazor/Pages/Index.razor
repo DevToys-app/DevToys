@@ -21,7 +21,7 @@
         MenuItemsSource="@ViewModel.HeaderAndBodyToolViewItems"
         FooterMenuItemsSource="@ViewModel.FooterToolViewItems"
         CanGoBack="@ViewModel.CanGoBack"
-@bind-SelectedItem="ViewModel.SelectedMenuItem"
+        @bind-SelectedItem="ViewModel.SelectedMenuItem"
         OnBackButtonClicked="OnBackButtonClicked"
         OnHiddenStateChanged="OnHiddenStateChanged"
         SearchBarPlaceholder="Type to search for tools..."
@@ -35,11 +35,13 @@
 
     <!-- Search box's result item design -->
     <SearchResultItemTemplate Context="item">
-        <div class="sidebar-item-icon">
-            <FontIcon FontFamily="@item.ToolInstance.IconFontName" Glyph="@item.ToolInstance.IconGlyph" />
-        </div>
-        <div class="sidebar-item-text">
-            <TextBlock NoWrap="true" Text="@item.ToolInstance.LongDisplayTitle" HighlightedSpans="@item.MatchedSpans" />
+        <div class="sidebar-searchbar-result-item">
+            <div class="sidebar-searchbar-result-item-icon">
+                <FontIcon FontFamily="@item.ToolInstance.IconFontName" Glyph="@item.ToolInstance.IconGlyph" />
+            </div>
+            <div class="sidebar-searchbar-result-item-text">
+                <TextBlock NoWrap="true" Text="@item.ToolInstance.LongDisplayTitle" HighlightedSpans="@item.MatchedSpans" />
+            </div>
         </div>
     </SearchResultItemTemplate>
 
@@ -85,26 +87,27 @@
         {
             if (ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem)
             {
-                <div class="entranceThemeTransition">
-                    <TextBlock Appearance="TextBlockAppearance.TitleLarge" Text="@guiToolViewItem.ToolInstance.LongOrShortDisplayTitle" />
-                    <!-- TODO: Place here a component that takes in argument the guiToolViewItem -->
+                <div class="entranceThemeTransition" style="display: contents">
+                    <ScrollViewer>
+                        <TextBlock Appearance="TextBlockAppearance.TitleLarge" Text="@guiToolViewItem.ToolInstance.LongOrShortDisplayTitle" />
+                        <!-- TODO: Place here a component that takes in argument the guiToolViewItem -->
 
-                    <Button IsEnabled="true" @onclick="OnSetFavorite">Set favorite</Button>
-                    <Button IsEnabled="false">Set favorite</Button>
-                    <Button IsEnabled="true" Appearance="ButtonAppearance.Accent">Set favorite</Button>
-                    <Button IsEnabled="false" Appearance="ButtonAppearance.Accent">Set favorite</Button>
-                    <Button IsEnabled="true" Appearance="ButtonAppearance.Stealth">Set favorite</Button>
-                    <Button IsEnabled="false" Appearance="ButtonAppearance.Stealth">Set favorite</Button>
-                    <TextBox Header="First name" Placeholder="Normal" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
-                    <TextBox Header="Middle name" Placeholder="Read only" IsReadOnly="true" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
-                    <TextBox Header="Last name" Placeholder="Disabled" IsEnabled="false" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
-                    <CheckBox IsChecked="true" Text="An option" />
-                    <CheckBox IsChecked="true" IsEnabled="false" Text="An option" />
-                    <CheckBox IsChecked="false" IsEnabled="false" Text="An option" />
-                    <ToggleSwitch IsOn="true" Text="An option" />
-                    <ToggleSwitch IsOn="true" IsEnabled="false" Text="An option" />
-                    <ToggleSwitch IsOn="false" IsEnabled="false" Text="An option" />
-                    <DropDownList Items="@(new List<DropDownListItem>
+                        <Button IsEnabled="true" @onclick="OnSetFavorite">Set favorite</Button>
+                        <Button IsEnabled="false">Set favorite</Button>
+                        <Button IsEnabled="true" Appearance="ButtonAppearance.Accent">Set favorite</Button>
+                        <Button IsEnabled="false" Appearance="ButtonAppearance.Accent">Set favorite</Button>
+                        <Button IsEnabled="true" Appearance="ButtonAppearance.Stealth">Set favorite</Button>
+                        <Button IsEnabled="false" Appearance="ButtonAppearance.Stealth">Set favorite</Button>
+                        <TextBox Header="First name" Placeholder="Normal" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
+                        <TextBox Header="Middle name" Placeholder="Read only" IsReadOnly="true" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
+                        <TextBox Header="Last name" Placeholder="Disabled" IsEnabled="false" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
+                        <CheckBox IsChecked="true" Text="An option" />
+                        <CheckBox IsChecked="true" IsEnabled="false" Text="An option" />
+                        <CheckBox IsChecked="false" IsEnabled="false" Text="An option" />
+                        <ToggleSwitch IsOn="true" Text="An option" />
+                        <ToggleSwitch IsOn="true" IsEnabled="false" Text="An option" />
+                        <ToggleSwitch IsOn="false" IsEnabled="false" Text="An option" />
+                        <DropDownList Items="@(new List<DropDownListItem>
                         {
                             new DropDownListItem { Text = "Item 1", IconGlyph = '\uE670' },
                             new DropDownListItem { Text = "Item 2" },
@@ -122,8 +125,33 @@
                             new DropDownListItem { Text = "Item 14" },
                             new DropDownListItem { Text = "Item 15" }
                         })">
-                        <TextBlock Appearance="TextBlockAppearance.Body" Text="Click me!" />
-                    </DropDownList>
+                            <TextBlock Appearance="TextBlockAppearance.Body" Text="Click me!" />
+                        </DropDownList>
+                        <ListBox Items="@(new List<string>
+                             {
+                                "Item 1",
+                                "Item 2",
+                                "Item 3",
+                                "Item 4",
+                                "Item 5",
+                                "Item 6",
+                                "Item 7",
+                                "Item 8",
+                                "Item 9",
+                                "Item 10",
+                                "Item 11",
+                                "Item 12",
+                                "Item 13",
+                                "Item 14",
+                                "Item 15",
+                                "Item 16"
+                             })"
+                                 Context="item">
+                            <ItemTemplate>
+                                @item
+                            </ItemTemplate>
+                        </ListBox>
+                    </ScrollViewer>
                 </div>
             }
             else if (ViewModel.SelectedMenuItem is GroupViewItem groupToolViewItem)

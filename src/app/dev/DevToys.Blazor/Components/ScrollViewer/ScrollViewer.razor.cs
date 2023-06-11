@@ -1,9 +1,7 @@
 ﻿namespace DevToys.Blazor.Components;
 
-public partial class ScrollViewer : JSStyledComponentBase
+public partial class ScrollViewer : StyledComponentBase
 {
-    protected override string JavaScriptFile => "./_content/DevToys.Blazor/Components/ScrollViewer/ScrollViewer.razor.js";
-
     /// <summary>
     /// Gets or set the orientation in which the content can be scrolled.
     /// </summary>
@@ -16,18 +14,36 @@ public partial class ScrollViewer : JSStyledComponentBase
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
+    /// <summary>
+    /// Gets or sets a value indicating whether the native scroll bars of the web browser should be used instead of the scroll bars
+    /// provided by SimpleBar library.
+    /// </summary>
+    /// <remarks>
+    /// This is often useful when the scroll viewer is expect to get the width (or height) or its content instead of fitting within its parent.
+    /// This is commonly happening in context menu / drop down menu list scenarios, where the width of the list of item displayed in the menu
+    /// is dynamic and the parent of the scroll view has no width.
+    /// </remarks>
+    [Parameter]
+    public bool UseNativeScrollBar { get; set; }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await base.OnAfterRenderAsync(firstRender);
-
-        if (firstRender)
-        {
-            await (await JSModule).InvokeVoidAsync("initializeScrollViewer", Id);
-        }
     }
 
     protected override void OnParametersSet()
     {
+        AdditionalAttributes ??= new Dictionary<string, object>();
+        if (IsEnabled && !UseNativeScrollBar)
+        {
+            // This will trigger simplebar to start.
+            AdditionalAttributes.TryAdd("data-simplebar", true);
+        }
+        else
+        {
+            AdditionalAttributes.Remove("data-simplebar");
+        }
+
         if ((Orientation & Orientation.Vertical) != 0
             && (Orientation & Orientation.Horizontal) != 0)
         {
@@ -52,6 +68,15 @@ public partial class ScrollViewer : JSStyledComponentBase
             {
                 CSS.Remove("horizontal");
             }
+        }
+
+        if (UseNativeScrollBar)
+        {
+            CSS.Add("use-native-scroll");
+        }
+        else
+        {
+            CSS.Remove("use-native-scroll");
         }
 
         base.OnParametersSet();

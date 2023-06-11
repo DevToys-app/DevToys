@@ -1,11 +1,18 @@
 export function initializeStickyHeaders(id) {
     const gridView = document.getElementById(id);
-    gridView.addEventListener("scroll", onGridViewScroll);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const simpleBar = SimpleBar.instances.get(gridView);
+    simpleBar.getScrollElement().addEventListener("scroll", onGridViewScroll);
 }
 export function initializeDynamicItemSize(id, itemMinWidth) {
-    const gridView = document.getElementById(id);
+    let gridView = document.getElementById(id);
     const gridViewBounds = gridView.getBoundingClientRect();
     fitGridViewItemsToContainer(gridView, gridViewBounds, itemMinWidth);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const simpleBar = SimpleBar.instances.get(gridView);
+    gridView = simpleBar.getScrollElement();
     // On grid view resize
     const resizeObserver = new ResizeObserver((gridViews) => {
         fitGridViewItemsToContainer(gridViews[0].target, gridViews[0].contentRect, itemMinWidth);
@@ -40,8 +47,11 @@ function onGridViewScroll(ev) {
 // Calculate the best size items in the grid view should take in order to fill
 // as much space possible while having as many columns at possible.
 function fitGridViewItemsToContainer(gridView, gridViewBounds, itemMinWidth) {
+    const gridViewContentContainerStyle = getComputedStyle(gridView.getElementsByClassName("simplebar-content")[0]);
     const newGridViewContentSize = gridViewBounds;
-    const gridViewWidth = newGridViewContentSize.width;
+    const gridViewWidth = newGridViewContentSize.width
+        - parseInt(gridViewContentContainerStyle.paddingLeft)
+        - parseInt(gridViewContentContainerStyle.paddingRight);
     const groups = gridView.querySelectorAll(".grid-view-group");
     if (groups.length > 0) {
         // Calculating the number of columns based on the width of the page

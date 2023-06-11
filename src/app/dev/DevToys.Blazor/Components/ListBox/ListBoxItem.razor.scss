@@ -1,7 +1,7 @@
 @use "../../Assets/sass/devtoys" as *;
 
 .list-box-item {
-    @include flex( $align: center, $inline: true );
+    @include flex( $align: center );
     position: relative;
     box-sizing: border-box;
     flex: 0 0 auto;
