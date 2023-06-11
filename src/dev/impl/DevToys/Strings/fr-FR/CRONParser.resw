@@ -175,6 +175,6 @@
     <value>Description</value>
   </data>
   <data name="DescriptionErrorMessage" xml:space="preserve">
-    <value>Unable to generate description</value>
+    <value>Impossible de générer une description</value>
   </data>
 </root>
