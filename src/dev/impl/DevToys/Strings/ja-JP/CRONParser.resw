@@ -171,4 +171,10 @@
   <data name="SecondsIncludedMode" xml:space="preserve">
     <value>秒を使用 (6 フィールドの Cron)</value>
   </data>
+  <data name="DescriptionTitle" xml:space="preserve">
+    <value>スケジュールの説明</value>
+  </data>
+  <data name="DescriptionErrorMessage" xml:space="preserve">
+    <value>スケジュールの説明を作成できません</value>
+  </data>
 </root>
