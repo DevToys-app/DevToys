@@ -1006,6 +1006,16 @@ namespace DevToys
         /// Gets the resource SecondsIncludedMode.
         /// </summary>
         public string SecondsIncludedMode => _resources.GetString("SecondsIncludedMode");
+
+        /// <summary>
+        /// Gets the resource DescriptionTitle.
+        /// </summary>
+        public string DescriptionTitle => _resources.GetString("DescriptionTitle");
+
+        /// <summary>
+        /// Gets the resource DescriptionErrorMessage.
+        /// </summary>
+        public string DescriptionErrorMessage => _resources.GetString("DescriptionErrorMessage");
     }
 
     public class GuidGeneratorStrings : ObservableObject

@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Certificate Encoder and Decoder tool</value>
+    <value>Varmenteen purkutyökalu</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Certificate</value>
+    <value>Varmenne</value>
   </data>
   <data name="PasswordTitle" xml:space="preserve">
     <value>Password</value>
@@ -136,13 +136,13 @@
     <value>Encode or decode a certificate</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Certificate Encoder / Decoder</value>
+    <value>Varmenteen dekooderi</value>
   </data>
   <data name="InvalidPasswordError" xml:space="preserve">
     <value>Invalid password.</value>
   </data>
   <data name="UnsupportedFormatError" xml:space="preserve">
-    <value>Certificate Request format not currently supported.</value>
+    <value>Varmennepyyntömuotoa ei tällä hetkellä tueta.</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>CER PFX PEM</value>

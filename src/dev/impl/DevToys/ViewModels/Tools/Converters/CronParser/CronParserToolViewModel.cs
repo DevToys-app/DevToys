@@ -12,6 +12,8 @@ using DevToys.Views.Tools.CronParser;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Windows.ApplicationModel.DataTransfer;
+using CronExpressionDescriptor;
+using DevToys.Core;
 
 namespace DevToys.ViewModels.Tools.CronParser
 {
@@ -25,6 +27,7 @@ namespace DevToys.ViewModels.Tools.CronParser
         private string _cronExpression;
         private bool _setPropertyInProgress;
         private string? _outputValue;
+        private string? _cronDescription;
 
         private const string DefaultCronWithSeconds = "* * * * * *";
         private const string DefaultCronWithoutSeconds = "* * * * *";
@@ -165,6 +168,14 @@ namespace DevToys.ViewModels.Tools.CronParser
             private set => SetProperty(ref _outputValue, value);
         }
 
+        /// <summary>
+        /// A human-readable description of the cron expression
+        /// </summary>
+        internal string? CronDescription
+        {
+            get => _cronDescription;
+            set => SetProperty(ref _cronDescription, value);
+        }
 
         [ImportingConstructor]
         public CronParserToolViewModel(ISettingsProvider settingsProvider)
@@ -216,6 +227,17 @@ namespace DevToys.ViewModels.Tools.CronParser
                 if (nextOccurence == null)
                 {
                     return;
+                }
+
+                // Attempt to generate a description
+                try
+                {
+                    CronDescription = ExpressionDescriptor.GetDescription(UserCronExpression);
+                }
+                catch (Exception ex)
+                {
+                    CronDescription = Strings.DescriptionErrorMessage;
+                    Logger.LogFault($"Error generating description from cron expression: '{UserCronExpression}'", ex);
                 }
 
                 output.Add(nextOccurence.Value.ToString(OutputDateTimeFormat));

@@ -36,6 +36,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
@@ -102,7 +103,15 @@
              Tag="UserCronExpression"/>
 
         <controls:CustomTextBox
-             Grid.Row="2"
+            Grid.Row="2"
+            IsReadOnly="True"
+            AcceptsReturn="True"
+            IsRichTextEdit="False"
+            Header="{x:Bind ViewModel.Strings.DescriptionTitle}"
+            Text="{x:Bind ViewModel.CronDescription, Mode=OneWay}"/>
+
+        <controls:CustomTextBox
+             Grid.Row="3"
              MinHeight="250"
              IsReadOnly="True"            
              AcceptsReturn="True"

@@ -171,4 +171,10 @@
   <data name="SecondsIncludedMode" xml:space="preserve">
     <value>Secunde incluse (6- segment Cron)</value>
   </data>
+  <data name="DescriptionTitle" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DescriptionErrorMessage" xml:space="preserve">
+    <value>Unable to generate description</value>
+  </data>
 </root>

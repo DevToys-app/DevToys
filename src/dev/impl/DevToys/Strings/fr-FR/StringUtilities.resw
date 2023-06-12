@@ -148,7 +148,7 @@
     <value>Convertir</value>
   </data>
   <data name="Sort" xml:space="preserve">
-    <value>Sort Lines</value>
+    <value>Trier les lignes</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Inspecteur &amp; Convertisseur de Casse</value>

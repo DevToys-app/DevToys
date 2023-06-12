@@ -71,10 +71,23 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                 tokenParameters.ValidAudiences = ValidAudiences!.Split(',').ToHashSet();
             }
 
-            TokenResult? result = _decoder.DecodeToken(decoderParamters, tokenParameters, TokenErrorCallBack);
+            TokenResult? result = _decoder.DecodeToken(decoderParamters, tokenParameters, TokenErrorCallBack, out JwtAlgorithm? jwtAlgorithm);
 
             ThreadHelper.RunOnUIThreadAsync(ThreadPriority.Low, () =>
             {
+                if (ValidateSignature)
+                {
+                    RequireSignature = true;
+                    if (jwtAlgorithm is
+                        not null and
+                        not JwtAlgorithm.HS256 and
+                        not JwtAlgorithm.HS384 and
+                        not JwtAlgorithm.HS512)
+                    {
+                        RequireSignature = false;
+                    }
+                }
+
                 if (result is null)
                 {
                     return;
@@ -83,21 +96,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                 Header = result.Header;
                 Payload = result.Payload;
 
-                if (ValidateSignature)
-                {
-                    RequireSignature = true;
-                    if (result.TokenAlgorithm is
-                        not JwtAlgorithm.HS256 and
-                        not JwtAlgorithm.HS384 and
-                        not JwtAlgorithm.HS512)
-                    {
-                        RequireSignature = false;
-                    }
-
-                }
-
                 DisplayValidationInfoBar(decoderParamters);
-
 
                 if (ToolSuccessfullyWorked)
                 {

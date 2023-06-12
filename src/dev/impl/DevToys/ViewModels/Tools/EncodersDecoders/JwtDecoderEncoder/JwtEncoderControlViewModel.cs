@@ -213,7 +213,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                 {
                     Token = result.Token;
                 }
-                HasError = JwtValidation.IsValid!;
+                HasError = !JwtValidation.IsValid;
                 if (ToolSuccessfullyWorked)
                 {
                     ToolSuccessfullyWorked = true;
