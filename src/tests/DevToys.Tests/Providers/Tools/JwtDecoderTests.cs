@@ -346,12 +346,13 @@ namespace DevToys.Tests.Providers.Tools
                 ValidAudiences = new HashSet<string> { "devtoys" },
             };
             var jwtDecoder = new JwtDecoder();
-            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack);
+            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out JwtAlgorithm? algorithm);
 
             Assert.IsNotNull(result);
             Assert.IsNull(_validationResult);
             Assert.AreEqual(result.Header, header);
             Assert.AreEqual(result.Payload, payload);
+            Assert.AreEqual(algorithm, JwtAlgorithm.HS256);
         }
 
         #endregion
@@ -472,18 +473,18 @@ namespace DevToys.Tests.Providers.Tools
             };
             var tokenParameters = new TokenParameters
             {
-                TokenAlgorithm = JwtAlgorithm.RS384,
                 Token = await TestDataProvider.GetFileContent("Jwt.RS.ComplexToken.txt"),
                 ValidIssuers = new HashSet<string> { "devtoys" },
                 ValidAudiences = new HashSet<string> { "devtoys" },
             };
             var jwtDecoder = new JwtDecoder();
-            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack);
+            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out JwtAlgorithm? algorithm);
 
             Assert.IsNotNull(result);
             Assert.IsNull(_validationResult);
             Assert.AreEqual(result.Header, header);
             Assert.AreEqual(result.Payload, payload);
+            Assert.AreEqual(algorithm, JwtAlgorithm.RS256);
         }
 
         #endregion
@@ -604,18 +605,18 @@ namespace DevToys.Tests.Providers.Tools
             };
             var tokenParameters = new TokenParameters
             {
-                TokenAlgorithm = JwtAlgorithm.PS384,
                 Token = await TestDataProvider.GetFileContent("Jwt.PS.ComplexToken.txt"),
                 ValidIssuers = new HashSet<string> { "devtoys" },
                 ValidAudiences = new HashSet<string> { "devtoys" },
             };
             var jwtDecoder = new JwtDecoder();
-            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack);
+            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out JwtAlgorithm? algorithm);
 
             Assert.IsNotNull(result);
             Assert.IsNull(_validationResult);
             Assert.AreEqual(result.Header, header);
             Assert.AreEqual(result.Payload, payload);
+            Assert.AreEqual(algorithm, JwtAlgorithm.PS256);
         }
 
         #endregion
@@ -736,18 +737,18 @@ namespace DevToys.Tests.Providers.Tools
             };
             var tokenParameters = new TokenParameters
             {
-                TokenAlgorithm = JwtAlgorithm.ES384,
                 Token = await TestDataProvider.GetFileContent("Jwt.ES.ComplexToken.txt"),
                 ValidIssuers = new HashSet<string> { "devtoys" },
                 ValidAudiences = new HashSet<string> { "devtoys" },
             };
             var jwtDecoder = new JwtDecoder();
-            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack);
+            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out JwtAlgorithm? algorithm);
 
             Assert.IsNotNull(result);
             Assert.IsNull(_validationResult);
             Assert.AreEqual(result.Header, header);
             Assert.AreEqual(result.Payload, payload);
+            Assert.AreEqual(algorithm, JwtAlgorithm.ES256);
         }
 
         #endregion
