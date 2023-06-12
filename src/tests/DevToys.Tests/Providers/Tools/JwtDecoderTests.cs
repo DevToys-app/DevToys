@@ -212,7 +212,6 @@ namespace DevToys.Tests.Providers.Tools
             };
             var tokenParameters = new TokenParameters()
             {
-                TokenAlgorithm = JwtAlgorithm.RS512,
                 Token = await TestDataProvider.GetFileContent("Jwt.RS.BasicToken.txt"),
                 PublicKey = publicKey,
                 ValidIssuers = new HashSet<string> { "devtoys" },
@@ -235,18 +234,18 @@ namespace DevToys.Tests.Providers.Tools
             var decodeParameters = new DecoderParameters();
             var tokenParameters = new TokenParameters()
             {
-                TokenAlgorithm = JwtAlgorithm.HS256,
                 Token = await TestDataProvider.GetFileContent("Jwt.HS.BasicToken.txt")
             };
 
 
             var jwtDecoder = new JwtDecoder();
-            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out _);
+            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out JwtAlgorithm? algorithm);
 
             Assert.IsNotNull(result);
             Assert.IsNull(_validationResult);
             Assert.AreEqual(result.Header, header);
             Assert.AreEqual(result.Payload, payload);
+            Assert.AreEqual(algorithm, JwtAlgorithm.HS256);
         }
 
         [TestMethod]
@@ -261,17 +260,17 @@ namespace DevToys.Tests.Providers.Tools
             };
             var tokenParameters = new TokenParameters()
             {
-                TokenAlgorithm = JwtAlgorithm.HS256,
                 Token = await TestDataProvider.GetFileContent("Jwt.HS.BasicToken.txt"),
                 Signature = signature
             };
             var jwtDecoder = new JwtDecoder();
-            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out _);
+            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out JwtAlgorithm? jwtAlgorithm);
 
             Assert.IsNotNull(result);
             Assert.IsNull(_validationResult);
             Assert.AreEqual(result.Payload, payload);
             Assert.AreEqual(result.Signature, signature);
+            Assert.AreEqual(jwtAlgorithm, JwtAlgorithm.HS256);
         }
 
         [TestMethod]
@@ -282,18 +281,18 @@ namespace DevToys.Tests.Providers.Tools
             var decodeParameters = new DecoderParameters();
             var tokenParameters = new TokenParameters()
             {
-                TokenAlgorithm = JwtAlgorithm.HS512,
                 Token = await TestDataProvider.GetFileContent("Jwt.HS.ComplexToken.txt")
             };
 
 
             var jwtDecoder = new JwtDecoder();
-            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out _);
+            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out JwtAlgorithm? algorithm);
 
             Assert.IsNotNull(result);
             Assert.IsNull(_validationResult);
             Assert.AreEqual(result.Header, header);
             Assert.AreEqual(result.Payload, payload);
+            Assert.AreEqual(algorithm, JwtAlgorithm.HS256);
         }
 
         [TestMethod]
@@ -339,18 +338,18 @@ namespace DevToys.Tests.Providers.Tools
             var decodeParameters = new DecoderParameters();
             var tokenParameters = new TokenParameters()
             {
-                TokenAlgorithm = JwtAlgorithm.RS256,
                 Token = await TestDataProvider.GetFileContent("Jwt.RS.BasicToken.txt")
             };
 
 
             var jwtDecoder = new JwtDecoder();
-            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out _);
+            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out JwtAlgorithm? algorithm);
 
             Assert.IsNotNull(result);
             Assert.IsNull(_validationResult);
             Assert.AreEqual(result.Header, header);
             Assert.AreEqual(result.Payload, payload);
+            Assert.AreEqual(algorithm, JwtAlgorithm.RS256);
         }
 
         [TestMethod]
@@ -365,17 +364,17 @@ namespace DevToys.Tests.Providers.Tools
             };
             var tokenParameters = new TokenParameters()
             {
-                TokenAlgorithm = JwtAlgorithm.RS384,
                 Token = await TestDataProvider.GetFileContent("Jwt.RS.BasicToken.txt"),
                 PublicKey = publicKey,
             };
             var jwtDecoder = new JwtDecoder();
-            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out _);
+            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out JwtAlgorithm? algorithm);
 
             Assert.IsNotNull(result);
             Assert.IsNull(_validationResult);
             Assert.AreEqual(result.Payload, payload);
             Assert.AreEqual(result.PublicKey, publicKey);
+            Assert.AreEqual(algorithm, JwtAlgorithm.RS256);
         }
 
         [TestMethod]
@@ -385,17 +384,17 @@ namespace DevToys.Tests.Providers.Tools
             var decodeParameters = new DecoderParameters();
             var tokenParameters = new TokenParameters()
             {
-                TokenAlgorithm = JwtAlgorithm.RS512,
                 Token = await TestDataProvider.GetFileContent("Jwt.RS.ComplexToken.txt")
             };
 
 
             var jwtDecoder = new JwtDecoder();
-            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out _);
+            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out JwtAlgorithm? algorithm);
 
             Assert.IsNotNull(result);
             Assert.IsNull(_validationResult);
             Assert.AreEqual(result.Payload, payload);
+            Assert.AreEqual(algorithm, JwtAlgorithm.RS256);
         }
 
         [TestMethod]
@@ -414,20 +413,20 @@ namespace DevToys.Tests.Providers.Tools
             };
             var tokenParameters = new TokenParameters()
             {
-                TokenAlgorithm = JwtAlgorithm.RS384,
                 Token = await TestDataProvider.GetFileContent("Jwt.RS.ComplexToken.txt"),
                 PublicKey = publicKey,
                 ValidIssuers = new HashSet<string> { "devtoys" },
                 ValidAudiences = new HashSet<string> { "devtoys" },
             };
             var jwtDecoder = new JwtDecoder();
-            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out _);
+            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out JwtAlgorithm? algorithm);
 
             Assert.IsNotNull(result);
             Assert.IsNull(_validationResult);
             Assert.AreEqual(result.Header, header);
             Assert.AreEqual(result.Payload, payload);
             Assert.AreEqual(result.PublicKey, publicKey);
+            Assert.AreEqual(algorithm, JwtAlgorithm.RS256);
         }
 
         #endregion
@@ -442,18 +441,18 @@ namespace DevToys.Tests.Providers.Tools
             var decodeParameters = new DecoderParameters();
             var tokenParameters = new TokenParameters()
             {
-                TokenAlgorithm = JwtAlgorithm.PS256,
                 Token = await TestDataProvider.GetFileContent("Jwt.PS.BasicToken.txt")
             };
 
 
             var jwtDecoder = new JwtDecoder();
-            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out _);
+            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out JwtAlgorithm? algorithm);
 
             Assert.IsNotNull(result);
             Assert.IsNull(_validationResult);
             Assert.AreEqual(result.Header, header);
             Assert.AreEqual(result.Payload, payload);
+            Assert.AreEqual(algorithm, JwtAlgorithm.PS256);
         }
 
         [TestMethod]
@@ -468,17 +467,17 @@ namespace DevToys.Tests.Providers.Tools
             };
             var tokenParameters = new TokenParameters()
             {
-                TokenAlgorithm = JwtAlgorithm.PS384,
                 Token = await TestDataProvider.GetFileContent("Jwt.PS.BasicToken.txt"),
                 PublicKey = publicKey,
             };
             var jwtDecoder = new JwtDecoder();
-            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out _);
+            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out JwtAlgorithm? algorithm);
 
             Assert.IsNotNull(result);
             Assert.IsNull(_validationResult);
             Assert.AreEqual(result.Payload, payload);
             Assert.AreEqual(result.PublicKey, publicKey);
+            Assert.AreEqual(algorithm, JwtAlgorithm.PS256);
         }
 
         [TestMethod]
@@ -488,17 +487,17 @@ namespace DevToys.Tests.Providers.Tools
             var decodeParameters = new DecoderParameters();
             var tokenParameters = new TokenParameters()
             {
-                TokenAlgorithm = JwtAlgorithm.PS512,
                 Token = await TestDataProvider.GetFileContent("Jwt.PS.ComplexToken.txt")
             };
 
 
             var jwtDecoder = new JwtDecoder();
-            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out _);
+            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out JwtAlgorithm? algorithm);
 
             Assert.IsNotNull(result);
             Assert.IsNull(_validationResult);
             Assert.AreEqual(result.Payload, payload);
+            Assert.AreEqual(algorithm, JwtAlgorithm.PS256);
         }
 
         [TestMethod]
@@ -517,20 +516,20 @@ namespace DevToys.Tests.Providers.Tools
             };
             var tokenParameters = new TokenParameters()
             {
-                TokenAlgorithm = JwtAlgorithm.PS384,
                 Token = await TestDataProvider.GetFileContent("Jwt.PS.ComplexToken.txt"),
                 PublicKey = publicKey,
                 ValidIssuers = new HashSet<string> { "devtoys" },
                 ValidAudiences = new HashSet<string> { "devtoys" },
             };
             var jwtDecoder = new JwtDecoder();
-            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out _);
+            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out JwtAlgorithm? algorithm);
 
             Assert.IsNotNull(result);
             Assert.IsNull(_validationResult);
             Assert.AreEqual(result.Header, header);
             Assert.AreEqual(result.Payload, payload);
             Assert.AreEqual(result.PublicKey, publicKey);
+            Assert.AreEqual(algorithm, JwtAlgorithm.PS256);
         }
 
         #endregion
@@ -545,18 +544,18 @@ namespace DevToys.Tests.Providers.Tools
             var decodeParameters = new DecoderParameters();
             var tokenParameters = new TokenParameters()
             {
-                TokenAlgorithm = JwtAlgorithm.ES256,
                 Token = await TestDataProvider.GetFileContent("Jwt.ES.BasicToken.txt")
             };
 
 
             var jwtDecoder = new JwtDecoder();
-            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out _);
+            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out JwtAlgorithm? algorithm);
 
             Assert.IsNotNull(result);
             Assert.IsNull(_validationResult);
             Assert.AreEqual(result.Header, header);
             Assert.AreEqual(result.Payload, payload);
+            Assert.AreEqual(algorithm, JwtAlgorithm.ES256);
         }
 
         [TestMethod]
@@ -571,17 +570,17 @@ namespace DevToys.Tests.Providers.Tools
             };
             var tokenParameters = new TokenParameters()
             {
-                TokenAlgorithm = JwtAlgorithm.ES256,
                 Token = await TestDataProvider.GetFileContent("Jwt.ES.BasicToken.txt"),
                 PublicKey = publicKey,
             };
             var jwtDecoder = new JwtDecoder();
-            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out _);
+            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out JwtAlgorithm? algorithm);
 
             Assert.IsNotNull(result);
             Assert.IsNull(_validationResult);
             Assert.AreEqual(result.Payload, payload);
             Assert.AreEqual(result.PublicKey, publicKey);
+            Assert.AreEqual(algorithm, JwtAlgorithm.ES256);
         }
 
         [TestMethod]
@@ -591,17 +590,17 @@ namespace DevToys.Tests.Providers.Tools
             var decodeParameters = new DecoderParameters();
             var tokenParameters = new TokenParameters()
             {
-                TokenAlgorithm = JwtAlgorithm.ES512,
                 Token = await TestDataProvider.GetFileContent("Jwt.ES.ComplexToken.txt")
             };
 
 
             var jwtDecoder = new JwtDecoder();
-            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out _);
+            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out JwtAlgorithm? algorithm);
 
             Assert.IsNotNull(result);
             Assert.IsNull(_validationResult);
             Assert.AreEqual(result.Payload, payload);
+            Assert.AreEqual(algorithm, JwtAlgorithm.ES256);
         }
 
         [TestMethod]
@@ -620,20 +619,20 @@ namespace DevToys.Tests.Providers.Tools
             };
             var tokenParameters = new TokenParameters()
             {
-                TokenAlgorithm = JwtAlgorithm.ES384,
                 Token = await TestDataProvider.GetFileContent("Jwt.ES.ComplexToken.txt"),
                 PublicKey = publicKey,
                 ValidIssuers = new HashSet<string> { "devtoys" },
                 ValidAudiences = new HashSet<string> { "devtoys" },
             };
             var jwtDecoder = new JwtDecoder();
-            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out _);
+            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out JwtAlgorithm? algorithm);
 
             Assert.IsNotNull(result);
             Assert.IsNull(_validationResult);
             Assert.AreEqual(result.Header, header);
             Assert.AreEqual(result.Payload, payload);
             Assert.AreEqual(result.PublicKey, publicKey);
+            Assert.AreEqual(algorithm, JwtAlgorithm.ES256);
         }
 
         #endregion
