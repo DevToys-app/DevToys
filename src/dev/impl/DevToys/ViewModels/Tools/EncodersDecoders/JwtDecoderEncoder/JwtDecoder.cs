@@ -33,7 +33,8 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         public TokenResult? DecodeToken(
                 DecoderParameters decodeParameters,
                 TokenParameters tokenParameters,
-                Action<TokenResultErrorEventArgs> decodingErrorCallBack, out JwtAlgorithm? jwtAlgorithm)
+                Action<TokenResultErrorEventArgs> decodingErrorCallBack,
+                out JwtAlgorithm? jwtAlgorithm)
         {
             Arguments.NotNull(decodeParameters, nameof(decodeParameters));
             Arguments.NotNull(tokenParameters, nameof(tokenParameters));
