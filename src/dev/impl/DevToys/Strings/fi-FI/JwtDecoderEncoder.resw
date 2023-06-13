@@ -196,10 +196,10 @@
     <value>Allekirjoitus</value>
   </data>
   <data name="JwtNotValidated" xml:space="preserve">
-    <value>Token not validated (no parameters selected)</value>
+    <value>Tunnusta ei ole vahvistettu (parametreja ei ole valittu)</value>
   </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>Token Validated</value>
+    <value>Tunnus vahvistettu</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
     <value>Virheellinen julkinen avain</value>
@@ -214,7 +214,7 @@
     <value>Validoi yleisö</value>
   </data>
   <data name="DecodeValidateIssuerSigningKey" xml:space="preserve">
-    <value>Validate issuer signing key</value>
+    <value>Vahvista myöntäjän allekirjoitusavain</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
     <value>Validoi myöntäjä</value>
