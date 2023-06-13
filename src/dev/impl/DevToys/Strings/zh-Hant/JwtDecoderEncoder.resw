@@ -127,7 +127,7 @@
     <value>標頭</value>
   </data>
   <data name="JwtTokenLabel" xml:space="preserve">
-    <value>令牌</value>
+    <value>權杖</value>
   </data>
   <data name="JwtPayloadLabel" xml:space="preserve">
     <value>載荷</value>
@@ -145,7 +145,7 @@
     <value>解碼</value>
   </data>
   <data name="DecodeValidateTokenLabel" xml:space="preserve">
-    <value>驗證令牌</value>
+    <value>驗證權杖</value>
   </data>
   <data name="DecodeValidateTokenNoLabel" xml:space="preserve">
     <value>否</value>
@@ -154,7 +154,7 @@
     <value>是</value>
   </data>
   <data name="EncodeExpirationTitle" xml:space="preserve">
-    <value>令牌設有到期時間</value>
+    <value>權杖設有到期時間</value>
   </data>
   <data name="EncodeExpirationMonthLabel" xml:space="preserve">
     <value>過期時間(月)</value>
@@ -163,7 +163,7 @@
     <value>過期時間(年)</value>
   </data>
   <data name="EncodeHashingTitle" xml:space="preserve">
-    <value>令牌雜湊演算法</value>
+    <value>權杖雜湊演算法</value>
   </data>
   <data name="EncodeSettingsTitle" xml:space="preserve">
     <value>設定</value>
@@ -178,7 +178,7 @@
     <value>設定</value>
   </data>
   <data name="EncodeDefaultTimeTitle" xml:space="preserve">
-    <value>令牌設有預設時間</value>
+    <value>權杖設有預設時間</value>
   </data>
   <data name="EncodeExpirationDaysLabel" xml:space="preserve">
     <value>過期時間(日)</value>
@@ -196,10 +196,10 @@
     <value>簽章</value>
   </data>
   <data name="JwtNotValidated" xml:space="preserve">
-    <value>Token not validated (no parameters selected)</value>
+    <value>權杖未驗證 (未選取參數)</value>
   </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>Token Validated</value>
+    <value>權杖已驗證</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
     <value>無效的公開金鑰</value>
@@ -214,7 +214,7 @@
     <value>驗證接收方</value>
   </data>
   <data name="DecodeValidateIssuerSigningKey" xml:space="preserve">
-    <value>Validate issuer signing key</value>
+    <value>驗證簽發者簽署金鑰</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
     <value>驗證簽發者</value>
@@ -229,10 +229,10 @@
     <value>有效的簽發者</value>
   </data>
   <data name="DecodeValidationSettingsDescription" xml:space="preserve">
-    <value>選擇一個令牌參數來驗證</value>
+    <value>選擇一個權杖參數來驗證</value>
   </data>
   <data name="DecodeValidationSettingsTitle" xml:space="preserve">
-    <value>令牌驗證設定</value>
+    <value>權杖驗證設定</value>
   </data>
   <data name="ValidAudiencesError" xml:space="preserve">
     <value>有效的接收方為空</value>
@@ -244,13 +244,13 @@
     <value>提供的公開金鑰實際上為私密金鑰</value>
   </data>
   <data name="EncodeAudienceLabel" xml:space="preserve">
-    <value>令牌具有接收方</value>
+    <value>權杖具有接收方</value>
   </data>
   <data name="EncodeIssuerLabel" xml:space="preserve">
-    <value>令牌具有簽發者</value>
+    <value>權杖具有簽發者</value>
   </data>
   <data name="EncodeSettingsDescription" xml:space="preserve">
-    <value>選擇令牌參數</value>
+    <value>選取權杖參數</value>
   </data>
   <data name="InvalidPrivateKeyError" xml:space="preserve">
     <value>無效的私密金鑰</value>
