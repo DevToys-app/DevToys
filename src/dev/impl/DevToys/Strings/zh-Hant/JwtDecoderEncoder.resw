@@ -195,8 +195,11 @@
   <data name="SignatureLabel" xml:space="preserve">
     <value>簽章</value>
   </data>
+  <data name="JwtNotValidated" xml:space="preserve">
+    <value>Token not validated (no parameters selected)</value>
+  </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>簽章已被驗證</value>
+    <value>Token Validated</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
     <value>無效的公開金鑰</value>
@@ -209,6 +212,9 @@
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
     <value>驗證接收方</value>
+  </data>
+  <data name="DecodeValidateIssuerSigningKey" xml:space="preserve">
+    <value>Validate issuer signing key</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
     <value>驗證簽發者</value>
