@@ -196,10 +196,10 @@
     <value>Signature</value>
   </data>
   <data name="JwtNotValidated" xml:space="preserve">
-    <value>Token not validated (no parameters selected)</value>
+    <value>Jeton non validé (aucun paramètre sélectionné)</value>
   </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>Token Validated</value>
+    <value>Jeton validé</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
     <value>Clé publique invalide</value>
@@ -214,7 +214,7 @@
     <value>Valider l'audience</value>
   </data>
   <data name="DecodeValidateIssuerSigningKey" xml:space="preserve">
-    <value>Validate issuer signing key</value>
+    <value>Valider la clé de signature de l'émetteur</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
     <value>Valider l'émetteur</value>
