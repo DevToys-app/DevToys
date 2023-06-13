@@ -232,10 +232,18 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         {
             get
             {
-                JwtAlgorithm settingsValue = SettingsProvider.GetSetting(JwtDecoderEncoderSettings.JwtAlgorithm);
-                JwtAlgorithmDisplayPair? algorithm = Algorithms.FirstOrDefault(x => x.Value == settingsValue);
-                Header = JsonHelper.Format(@"{""alg"": """ + algorithm.DisplayName + @""", ""typ"": ""JWT""}", Indentation.TwoSpaces, false);
-                IsSignatureRequired(algorithm);
+                if (_algorithmSelected is null)
+                {
+                    JwtAlgorithm settingsValue = SettingsProvider.GetSetting(JwtDecoderEncoderSettings.JwtAlgorithm);
+                    _algorithmSelected = Algorithms.FirstOrDefault(x => x.Value == settingsValue);
+                }
+
+                if (_algorithmSelected is not null)
+                {
+                    Header = JsonHelper.Format(@"{""alg"": """ + _algorithmSelected.DisplayName + @""", ""typ"": ""JWT""}", Indentation.TwoSpaces, false);
+                    IsSignatureRequired(_algorithmSelected);
+                }
+
                 return _algorithmSelected ?? JwtAlgorithmDisplayPair.HS256;
             }
             set

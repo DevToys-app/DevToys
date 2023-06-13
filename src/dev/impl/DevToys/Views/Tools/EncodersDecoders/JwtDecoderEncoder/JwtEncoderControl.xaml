@@ -250,6 +250,7 @@
             Grid.Row="3"
             Grid.Column="0"
             Header="{x:Bind ViewModel.LocalizedStrings.JwtHeaderLabel}"
+            IsReadOnly="True"
             Text="{x:Bind ViewModel.Header, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             CodeLanguage="json"/>
         <toolkit:GridSplitter

@@ -283,6 +283,25 @@ namespace DevToys.Tests.Providers.Tools
             Assert.AreEqual(_validationResult.Severity, InfoBarSeverity.Error);
         }
 
+        [TestMethod]
+        public async Task JwtEncoder_Generate_RS_Token_With_RSA_Key()
+        {
+            var encoderParameters = new EncoderParameters();
+            var tokenParameters = new TokenParameters
+            {
+                TokenAlgorithm = JwtAlgorithm.RS256,
+                Payload = await TestDataProvider.GetFileContent("Jwt.BasicPayload.json"),
+                // Generated with:  openssl genrsa -out test-devtoys.key 2048
+                PrivateKey = await TestDataProvider.GetFileContent("Jwt.RS.RsaPrivateKey.txt")
+            };
+            var jwtDecoder = new JwtEncoder();
+            TokenResult result = jwtDecoder.GenerateToken(encoderParameters, tokenParameters, DecodingErrorCallBack);
+
+            Assert.IsNotNull(result);
+            Assert.IsNull(_validationResult);
+            Assert.IsNotNull(result.Token);
+        }
+
         #endregion
 
         #region GeneratePS

@@ -18,6 +18,7 @@ using Microsoft.UI.Xaml.Controls;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.OpenSsl;
+using Org.BouncyCastle.X509;
 
 namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
 {
@@ -27,6 +28,8 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
     {
         private const string PublicKeyStart = "-----BEGIN PUBLIC KEY-----";
         private const string PublicKeyEnd = "-----END PUBLIC KEY-----";
+        private const string CertificateStart = "-----BEGIN CERTIFICATE-----";
+        private const string CertificateEnd = "-----END CERTIFICATE-----";
         private Action<TokenResultErrorEventArgs>? _decodingErrorCallBack;
         private JwtDecoderEncoderStrings _localizedStrings => LanguageManager.Instance.JwtDecoderEncoder;
 
@@ -282,17 +285,31 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                 return null;
             }
             var publicKeyStringBuilder = new StringBuilder(tokenParameters.PublicKey!.Trim());
-            if (!tokenParameters.PublicKey!.StartsWith(PublicKeyStart, StringComparison.OrdinalIgnoreCase))
+            if (!tokenParameters.PublicKey!.StartsWith(PublicKeyStart, StringComparison.OrdinalIgnoreCase) &&
+                !tokenParameters.PublicKey!.StartsWith(CertificateStart, StringComparison.OrdinalIgnoreCase))
             {
                 publicKeyStringBuilder.Insert(0, PublicKeyStart);
             }
-            if (!tokenParameters.PublicKey.EndsWith(PublicKeyEnd, StringComparison.OrdinalIgnoreCase))
+            if (!tokenParameters.PublicKey.EndsWith(PublicKeyEnd, StringComparison.OrdinalIgnoreCase) &&
+                !tokenParameters.PublicKey.EndsWith(CertificateEnd, StringComparison.OrdinalIgnoreCase))
             {
                 publicKeyStringBuilder.Append(PublicKeyEnd);
             }
 
             var pemReader = new PemReader(new StringReader(publicKeyStringBuilder.ToString()));
-            var asymetricPublicKey = (AsymmetricKeyParameter)pemReader.ReadObject();
+            var pemObject = pemReader.ReadObject();
+            AsymmetricKeyParameter asymetricPublicKey;
+
+            // If it's a cert, extract the public key
+            if (pemObject is X509Certificate certificate)
+            {
+                asymetricPublicKey = certificate.GetPublicKey();
+            }
+            else
+            {
+                asymetricPublicKey = (AsymmetricKeyParameter)pemObject;
+            }
+
             if (asymetricPublicKey is null)
             {
                 RaiseError(_localizedStrings.InvalidPublicKeyError);

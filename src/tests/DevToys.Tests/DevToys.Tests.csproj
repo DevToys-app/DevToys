@@ -94,6 +94,9 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <EmbeddedResource Include="Providers\TestData\Jwt\RS\CertBasicToken.txt" />
+    <EmbeddedResource Include="Providers\TestData\Jwt\RS\Certificate.txt" />
+    <EmbeddedResource Include="Providers\TestData\Jwt\RS\RsaPrivateKey.txt" />
     <EmbeddedResource Include="Providers\TestData\Jwt\ES\BasicToken.txt" />
     <EmbeddedResource Include="Providers\TestData\Jwt\ES\ComplexToken.txt" />
     <EmbeddedResource Include="Providers\TestData\Jwt\ES\PrivateKey.txt" />
