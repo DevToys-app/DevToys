@@ -196,10 +196,10 @@
     <value>İmza</value>
   </data>
   <data name="JwtNotValidated" xml:space="preserve">
-    <value>Token not validated (no parameters selected)</value>
+    <value>Belirteç doğrulanmadı (hiçbir parametre seçilmedi)</value>
   </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>Token Validated</value>
+    <value>Belirteç Onaylandı</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
     <value>Geçersiz Ortak Anahtar</value>
@@ -214,7 +214,7 @@
     <value>Seyirciyi doğrula</value>
   </data>
   <data name="DecodeValidateIssuerSigningKey" xml:space="preserve">
-    <value>Validate issuer signing key</value>
+    <value>Veren imza anahtarını doğrula</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
     <value>Sağlayıcıyı doğrula</value>
