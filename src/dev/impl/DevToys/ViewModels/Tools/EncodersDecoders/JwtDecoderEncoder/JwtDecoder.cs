@@ -83,17 +83,26 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
             TokenParameters tokenParameters,
             TokenResult tokenResult)
         {
-            SigningCredentials? signingCredentials = GetValidationCredentials(tokenParameters);
             var validationParameters = new TokenValidationParameters
             {
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = signingCredentials.Key,
-                TryAllIssuerSigningKeys = true,
                 ValidateActor = decodeParameters.ValidateActor,
                 ValidateLifetime = decodeParameters.ValidateLifetime,
                 ValidateIssuer = decodeParameters.ValidateIssuer,
                 ValidateAudience = decodeParameters.ValidateAudience
             };
+            
+            if (decodeParameters.ValidateIssuerSigningKey)
+            {
+                SigningCredentials? signingCredentials = GetValidationCredentials(tokenParameters);
+                validationParameters.ValidateIssuerSigningKey = decodeParameters.ValidateIssuerSigningKey;
+                validationParameters.IssuerSigningKey = signingCredentials.Key;
+                validationParameters.TryAllIssuerSigningKeys = true;
+            }
+            else
+            {
+                // Create a custom signature validator that does nothing so it always passes in this mode
+                validationParameters.SignatureValidator = (token, _) => new JwtSecurityToken(token);
+            }
 
             /// check if the token issuers are part of the user provided issuers
             if (decodeParameters.ValidateIssuer)

@@ -8,6 +8,8 @@ namespace DevToys.Models.JwtDecoderEncoder
     {
         public bool ValidateSignature { get; set; }
 
+        public bool ValidateIssuerSigningKey { get; set; }
+
         public bool ValidateActor { get; set; }
 
         public bool ValidateLifetime { get; set; }

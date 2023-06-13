@@ -7,6 +7,7 @@ using DevToys.Api.Core;
 using DevToys.Api.Core.Settings;
 using DevToys.Helpers.JsonYaml;
 using DevToys.Models;
+using DevToys.Models.JwtDecoderEncoder;
 using DevToys.UI.Controls;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Messaging;
@@ -83,6 +84,17 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                 SettingsProvider.SetSetting(JwtDecoderEncoderSettings.ValidateSignature, value);
                 OnPropertyChanged();
                 ShowValidation = value;
+                QueueNewTokenJob();
+            }
+        }
+
+        internal bool ValidateIssuerSigningKey
+        {
+            get => SettingsProvider.GetSetting(JwtDecoderEncoderSettings.ValidateIssuerSigningKey);
+            set
+            {
+                SettingsProvider.SetSetting(JwtDecoderEncoderSettings.ValidateIssuerSigningKey, value);
+                OnPropertyChanged();
                 QueueNewTokenJob();
             }
         }
@@ -265,7 +277,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
             Messenger.Send(newJob);
         }
 
-        protected void DisplayValidationInfoBar()
+        protected void DisplayValidationInfoBar(DecoderParameters? decoderParameters = null)
         {
             InfoBarSeverity infoBarSeverity;
             string message;
@@ -277,7 +289,9 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
             else
             {
                 infoBarSeverity = InfoBarSeverity.Success;
-                message = LocalizedStrings.JwtIsValidMessage;
+                message = decoderParameters is null || AnyValidationParametersSelected(decoderParameters) 
+                    ? LocalizedStrings.JwtIsValidMessage 
+                    : LocalizedStrings.JwtNotValidated;
             }
 
             ValidationResult = new InfoBarData(infoBarSeverity, message);
@@ -308,5 +322,17 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                 RequireSignature = false;
             }
         }
+
+        /// <summary>
+        /// Returns true if we have been instructed to validate the token
+        /// and we have been given at least one specific thing to validate.
+        /// </summary>
+        private bool AnyValidationParametersSelected(DecoderParameters decoderParameters)
+            => decoderParameters.ValidateSignature &&
+               (decoderParameters.ValidateIssuerSigningKey ||
+                decoderParameters.ValidateActor ||
+                decoderParameters.ValidateLifetime ||
+                decoderParameters.ValidateIssuer ||
+                decoderParameters.ValidateAudience);
     }
 }

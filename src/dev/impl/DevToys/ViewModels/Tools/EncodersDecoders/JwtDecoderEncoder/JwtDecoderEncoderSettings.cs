@@ -26,6 +26,15 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                 defaultValue: false);
 
         /// <summary>
+        /// Define if we need to validate the token issuer signing key
+        /// </summary>
+        public static readonly SettingDefinition<bool> ValidateIssuerSigningKey
+            = new(
+                name: $"{nameof(JwtDecoderEncoderViewModelBase)}.{nameof(ValidateIssuerSigningKey)}",
+                isRoaming: true,
+                defaultValue: true);
+
+        /// <summary>
         /// Define if we need to validate the token issuer
         /// </summary>
         public static readonly SettingDefinition<bool> ValidateIssuer
