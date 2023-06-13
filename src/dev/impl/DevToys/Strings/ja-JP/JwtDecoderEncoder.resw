@@ -195,8 +195,11 @@
   <data name="SignatureLabel" xml:space="preserve">
     <value>署名</value>
   </data>
+  <data name="JwtNotValidated" xml:space="preserve">
+    <value>Token not validated (no parameters selected)</value>
+  </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>署名が認証されました</value>
+    <value>Token Validated</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
     <value>無効な公開鍵です</value>
@@ -209,6 +212,9 @@
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
     <value>オーディエンスを検証する</value>
+  </data>
+  <data name="DecodeValidateIssuerSigningKey" xml:space="preserve">
+    <value>Validate issuer signing key</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
     <value>発行者を検証する</value>
