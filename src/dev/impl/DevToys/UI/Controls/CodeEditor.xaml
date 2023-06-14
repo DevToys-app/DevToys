@@ -65,6 +65,7 @@
                 x:DeferLoadStrategy="Lazy"
                 Visibility="Collapsed"
                 TabIndex="0"
+                Margin="8,0,0,0"
                 AutomationProperties.Name="{Binding Instance.Common.Paste, Mode=OneTime, Source={StaticResource LanguageManager}}"
                 Click="PasteButton_Click">
                 <StackPanel Orientation="Horizontal" Spacing="4">

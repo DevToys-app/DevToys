@@ -52,5 +52,39 @@ namespace DevToys.Views.Tools.JwtDecoderEncoder
 
             base.OnNavigatedTo(e);
         }
+
+        private void JwtDecoderControl_ExpandedChanged(object sender, System.EventArgs e)
+        {
+            if (sender is UIElement uiElement)
+            {
+                if (JwtDecoderControl.IsExpanded)
+                {
+                    MainGrid.Visibility = Visibility.Collapsed;
+                    ExpandedGrid.Children.Add(uiElement);
+                }
+                else
+                {
+                    ExpandedGrid.Children.Remove(uiElement);
+                    MainGrid.Visibility = Visibility.Visible;
+                }
+            }
+        }
+
+        private void JwtEncoderControl_ExpandedChanged(object sender, System.EventArgs e)
+        {
+            if (sender is UIElement uiElement)
+            {
+                if (JwtEncoderControl.IsExpanded)
+                {
+                    MainGrid.Visibility = Visibility.Collapsed;
+                    ExpandedGrid.Children.Add(uiElement);
+                }
+                else
+                {
+                    ExpandedGrid.Children.Remove(uiElement);
+                    MainGrid.Visibility = Visibility.Visible;
+                }
+            }
+        }
     }
 }

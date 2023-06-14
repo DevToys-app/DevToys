@@ -34,7 +34,8 @@
                 <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
             </TransitionCollection>
         </Grid.ChildrenTransitions>
-        <Grid x:Name="MainControl">
+
+        <Grid x:Name="MainGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition x:Name="InputGridRow" MinHeight="200"/>
@@ -113,13 +114,13 @@
             Grid.Row="3"
             Header="{x:Bind ViewModel.Strings.Difference}"
             IsReadOnly="True"
-            AllowExpand="True"
-            ExpandedChanged="OutputTextEditor_ExpandedChanged"
             IsDiffViewMode="True"
             InlineDiffViewMode="{x:Bind ViewModel.InlineMode, Mode=OneWay}"
             DiffLeftText="{x:Bind ViewModel.OldText, Mode=OneWay}"
-            DiffRightText="{x:Bind ViewModel.NewText, Mode=OneWay}"/>
+            DiffRightText="{x:Bind ViewModel.NewText, Mode=OneWay}"
+            AllowExpand="True"
+            ExpandedChanged="OutputTextEditor_ExpandedChanged"/>
         </Grid>
-        <Grid x:Name="ExpandedControl"/>
+        <Grid x:Name="ExpandedGrid"/>
     </Grid>
 </Page>

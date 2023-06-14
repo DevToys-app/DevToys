@@ -171,6 +171,23 @@ namespace DevToys.UI.Controls
             set => SetValue(SettingsProviderProperty, value);
         }
 
+        public static readonly DependencyProperty AllowExpandProperty
+            = DependencyProperty.Register(
+                nameof(AllowExpand),
+                typeof(bool),
+                typeof(CodeEditor),
+                new PropertyMetadata(false));
+
+        public bool AllowExpand
+        {
+            get => (bool)GetValue(AllowExpandProperty);
+            set => SetValue(AllowExpandProperty, value);
+        }
+
+        public bool IsExpanded { get; private set; }
+
+        public event EventHandler? ExpandedChanged;
+
         public CustomTextBox()
         {
             SettingsProvider = Shared.Core.MefComposer.Provider.Import<ISettingsProvider>();
@@ -511,6 +528,21 @@ namespace DevToys.UI.Controls
                     }
                 }
             }
+
+            if (AllowExpand)
+            {
+                GetExpandButton().Visibility = Visibility.Visible;
+            }
+        }
+
+        private Button GetExpandButton()
+        {
+            return (Button)(ExpandButton ?? FindName(nameof(ExpandButton)));
+        }
+
+        private FontIcon GetExpandButtonIcon()
+        {
+            return (FontIcon)(ExpandButtonIcon ?? FindName(nameof(ExpandButtonIcon)));
         }
 
         private Button GetCopyButton()
@@ -658,6 +690,23 @@ namespace DevToys.UI.Controls
                     TextBox.Text = string.Empty;
                 }
                 TextBox.PasteFromClipboard();
+            }
+        }
+
+        private void ExpandButton_Click(object _, RoutedEventArgs e)
+        {
+            IsExpanded = !IsExpanded;
+            ExpandedChanged?.Invoke(this, EventArgs.Empty);
+
+            if (IsExpanded)
+            {
+                GetExpandButtonIcon().Glyph = "\uF165";
+                ToolTipService.SetToolTip(GetExpandButton(), LanguageManager.Instance.Common.Collapse);
+            }
+            else
+            {
+                GetExpandButtonIcon().Glyph = "\uF15F";
+                ToolTipService.SetToolTip(GetExpandButton(), LanguageManager.Instance.Common.Expand);
             }
         }
 
@@ -823,7 +872,10 @@ namespace DevToys.UI.Controls
 
         private static void OnIsReadOnlyPropertyChangedCalled(DependencyObject sender, DependencyPropertyChangedEventArgs eventArgs)
         {
-            ((CustomTextBox)sender).UpdateUI();
+            if (!((CustomTextBox)sender)._isTextPendingUpdate)
+            {
+                ((CustomTextBox)sender).UpdateUI();
+            }
         }
 
         private static void OnAcceptsReturnPropertyChangedCalled(DependencyObject sender, DependencyPropertyChangedEventArgs eventArgs)

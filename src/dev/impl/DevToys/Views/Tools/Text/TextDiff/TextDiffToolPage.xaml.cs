@@ -52,15 +52,15 @@ namespace DevToys.Views.Tools.TextDiff
         {
             if (OutputTextEditor.IsExpanded)
             {
-                MainControl.Children.Remove(OutputTextEditor);
-                MainControl.Visibility = Visibility.Collapsed;
-                ExpandedControl.Children.Add(OutputTextEditor);
+                MainGrid.Children.Remove(OutputTextEditor);
+                MainGrid.Visibility = Visibility.Collapsed;
+                ExpandedGrid.Children.Add(OutputTextEditor);
             }
             else
             {
-                ExpandedControl.Children.Remove(OutputTextEditor);
-                MainControl.Children.Add(OutputTextEditor);
-                MainControl.Visibility = Visibility.Visible;
+                ExpandedGrid.Children.Remove(OutputTextEditor);
+                MainGrid.Children.Add(OutputTextEditor);
+                MainGrid.Visibility = Visibility.Visible;
             }
         }
     }
