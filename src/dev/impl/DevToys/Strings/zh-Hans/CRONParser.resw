@@ -172,9 +172,9 @@
     <value>包括秒数（6段 Cron）</value>
   </data>
   <data name="DescriptionTitle" xml:space="preserve">
-    <value>Description</value>
+    <value>描述</value>
   </data>
   <data name="DescriptionErrorMessage" xml:space="preserve">
-    <value>Unable to generate description</value>
+    <value>无法生成描述</value>
   </data>
 </root>
