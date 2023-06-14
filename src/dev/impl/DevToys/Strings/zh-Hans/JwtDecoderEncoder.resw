@@ -196,10 +196,10 @@
     <value>签名</value>
   </data>
   <data name="JwtNotValidated" xml:space="preserve">
-    <value>Token not validated (no parameters selected)</value>
+    <value>令牌未验证（未选择参数）</value>
   </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>Token Validated</value>
+    <value>令牌已验证</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
     <value>公钥无效</value>
@@ -214,7 +214,7 @@
     <value>验证接收者</value>
   </data>
   <data name="DecodeValidateIssuerSigningKey" xml:space="preserve">
-    <value>Validate issuer signing key</value>
+    <value>验证签发者签名密钥</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
     <value>验证签发者</value>
