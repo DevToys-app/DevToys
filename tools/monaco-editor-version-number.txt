@@ -1,3 +1,1 @@
-0.33.0
-
-# Can't use 0.34.1 due to https://github.com/microsoft/monaco-editor/issues/3237
+0.39.0
