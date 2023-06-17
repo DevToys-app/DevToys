@@ -152,6 +152,51 @@
     --check-box-check-glyph-foreground-checked-pressed: var(--text-on-accent-secondary);
     --check-box-check-glyph-foreground-checked-disabled: var(--text-on-accent-disabled);
 
+    /* RadioButton */
+    --radio-button-foreground: var(--text-fill-color-primary);
+    --radio-button-foreground-pointer-over: var(--text-fill-color-primary);
+    --radio-button-foreground-pressed: var(--text-fill-color-primary);
+    --radio-button-foreground-disabled: var(--text-fill-color-disabled);
+    --radio-button-background: var(--control-fill-color-transparent);
+    --radio-button-background-pointer-over: var(--control-fill-color-transparent);
+    --radio-button-background-pressed: var(--control-fill-color-transparent);
+    --radio-button-background-disabled: var(--control-fill-color-transparent);
+    --radio-button-border: var(--control-fill-color-transparent);
+    --radio-button-border-pointer-over: var(--control-fill-color-transparent);
+    --radio-button-border-pressed: var(--control-fill-color-transparent);
+    --radio-button-border-disabled: var(--control-fill-color-transparent);
+
+    --radio-button-outer-ellipse-stroke: var(--control-strong-stroke-default);
+    --radio-button-outer-ellipse-stroke-pointer-over: var(--control-strong-stroke-default);
+    --radio-button-outer-ellipse-stroke-pressed: var(--control-strong-stroke-disabled);
+    --radio-button-outer-ellipse-stroke-disabled: var(--control-strong-stroke-disabled);
+    --radio-button-outer-ellipse-fill: var(--control-alt-fill-color-secondary);
+    --radio-button-outer-ellipse-fill-pointer-over: var(--control-alt-fill-color-tertiary);
+    --radio-button-outer-ellipse-fill-pressed: var(--control-alt-fill-color-quarternary);
+    --radio-button-outer-ellipse-fill-disabled: var(--control-alt-fill-color-disabled);
+
+    --radio-button-outer-ellipse-checked-stroke: var(--accent-default);
+    --radio-button-outer-ellipse-checked-stroke-pointer-over: var(--accent-secondary);
+    --radio-button-outer-ellipse-checked-stroke-pressed: var(--accent-tertiary);
+    --radio-button-outer-ellipse-checked-stroke-disabled: var(--accent-disabled);
+    --radio-button-outer-ellipse-checked-fill: var(--accent-default);
+    --radio-button-outer-ellipse-checked-fill-pointer-over: var(--accent-secondary);
+    --radio-button-outer-ellipse-checked-fill-pressed: var(--accent-tertiary);
+    --radio-button-outer-ellipse-checked-fill-disabled: var(--accent-disabled);
+
+    --radio-button-check-glyph-fill: var(--text-on-accent-primary);
+    --radio-button-check-glyph-fill-pointer-over: var(--text-on-accent-primary);
+    --radio-button-check-glyph-fill-pressed: var(--text-on-accent-primary);
+    --radio-button-check-glyph-fill-disabled: var(--text-on-accent-primary);
+    --radio-button-check-glyph-stroke: var(--control-stroke-color-default);
+    --radio-button-check-glyph-stroke-pointer-over: var(--control-stroke-color-default);
+    --radio-button-check-glyph-stroke-pressed: var(--control-stroke-color-default);
+    --radio-button-check-glyph-stroke-disabled: var(--control-stroke-color-default);
+    --radio-button-check-glyph-stroke-checked: var(--control-stroke-on-accent-default);
+    --radio-button-check-glyph-stroke-checked-pointer-over: var(--control-stroke-on-accent-default);
+    --radio-button-check-glyph-stroke-checked-pressed: var(--control-stroke-on-accent-default);
+    --radio-button-check-glyph-stroke-checked-disabled: var(--control-stroke-color-default);
+
     /* ToggleSwitch */
     --toggle-switch-foreground: var(--text-fill-color-primary);
     --toggle-switch-foreground-disabled: var(--text-fill-color-disabled);

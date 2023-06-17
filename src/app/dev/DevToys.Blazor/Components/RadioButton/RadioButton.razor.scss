@@ -1,0 +1,143 @@
+@use "../../Assets/sass/devtoys" as *;
+
+.radio-button {
+    @include flex($inline: true, $align: center, $justify: center);
+    @include typography-body;
+    position: relative;
+    margin: 0;
+    border: 1px solid var(--radio-button-outer-ellipse-stroke);
+    border-radius: 20px;
+    outline: none;
+    background-clip: padding-box;
+    background-color: var(--radio-button-outer-ellipse-fill);
+    appearance: none;
+    inline-size: 20px;
+    block-size: 20px;
+
+    &::before {
+        content: "";
+        inline-size: 4px;
+        block-size: 4px;
+        visibility: hidden;
+        position: absolute;
+        border-radius: 12px;
+        background-color: var(--radio-button-check-glyph-fill);
+    }
+
+    &:focus-visible {
+        box-shadow: var(--focus-stroke-outer);
+    }
+
+    &:hover {
+        border-color: var(--radio-button-outer-ellipse-stroke-pointer-over);
+        background-color: var(--radio-button-outer-ellipse-fill-pointer-over);
+
+        + span {
+            color: var(--radio-button-foreground-pointer-over);
+        }
+    }
+
+    &:active {
+        border-color: var(--radio-button-outer-ellipse-stroke-pressed);
+        background-color: var(--radio-button-outer-ellipse-fill-pressed);
+
+        &::before {
+            transition: 250ms cubic-bezier(0, 0, 0, 1);
+            visibility: visible;
+            inline-size: 10px;
+            block-size: 10px;
+        }
+
+        + span {
+            color: var(--radio-button-foreground-pressed);
+        }
+    }
+
+    &:disabled {
+        border-color: var(--radio-button-outer-ellipse-stroke-disabled);
+        background-color: var(--radio-button-outer-ellipse-fill-disabled);
+
+        &::before {
+            visibility: hidden;
+        }
+
+        + span {
+            color: var(--radio-button-foreground-disabled);
+        }
+    }
+
+    &:checked {
+        border: none;
+        background-color: var(--radio-button-outer-ellipse-checked-fill);
+
+        &::before {
+            visibility: visible;
+            transition: 250ms cubic-bezier(0, 0, 0, 1);
+            box-shadow: 0 0 0 1px var(--radio-button-check-glyph-stroke);
+            inline-size: 12px;
+            block-size: 12px;
+        }
+
+        &:hover {
+            background-color: var(--radio-button-outer-ellipse-checked-fill-pointer-over);
+
+            &::before {
+                inline-size: 14px;
+                block-size: 14px;
+            }
+        }
+
+        &:active {
+            background-color: var(--radio-button-outer-ellipse-checked-fill-pressed);
+
+            &::before {
+                inline-size: 10px;
+                block-size: 10px;
+            }
+        }
+
+        &:disabled {
+            background-color: var(--radio-button-outer-ellipse-checked-fill-disabled);
+
+            &::before {
+                box-shadow: none;
+                inline-size: 12px;
+                block-size: 12px;
+            }
+        }
+    }
+
+    &-container {
+        @include flex($inline: true, $align: center);
+        @include typography-body;
+        color: var(--radio-button-foreground);
+        background-color: var(--radio-button-background);
+        user-select: none;
+        min-block-size: 32px;
+
+        &:hover {
+            background-color: var(--radio-button-background-pointer-over);
+            > span {
+                color: var(--radio-button-foreground-pointer-over) !important;
+            }
+        }
+
+        &:active {
+            background-color: var(--radio-button-background-pressed);
+            > span {
+                color: var(--radio-button-foreground-pressed) !important;
+            }
+        }
+
+        &.disabled {
+            background-color: var(--radio-button-background-disabled);
+            > span {
+                color: var(--radio-button-foreground-disabled) !important;
+            }
+        }
+
+        > span {
+            padding-inline-start: 8px;
+        }
+    }
+}
