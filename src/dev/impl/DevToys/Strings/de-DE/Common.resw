@@ -124,7 +124,7 @@
     <value>Leeren</value>
   </data>
   <data name="Collapse" xml:space="preserve">
-    <value>Collapse</value>
+    <value>Einklappen</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>Kopieren</value>
@@ -136,7 +136,7 @@
     <value>Löschen</value>
   </data>
   <data name="Expand" xml:space="preserve">
-    <value>Expand</value>
+    <value>Ausklappen</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
     <value>Dateien durchsuchen</value>
