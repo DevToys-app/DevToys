@@ -124,7 +124,7 @@
     <value>Varmenne</value>
   </data>
   <data name="PasswordTitle" xml:space="preserve">
-    <value>Password</value>
+    <value>Salasana</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
     <value>Syöte</value>
@@ -139,7 +139,7 @@
     <value>Varmenteen dekooderi</value>
   </data>
   <data name="InvalidPasswordError" xml:space="preserve">
-    <value>Invalid password.</value>
+    <value>Virheellinen salasana.</value>
   </data>
   <data name="UnsupportedFormatError" xml:space="preserve">
     <value>Varmennepyyntömuotoa ei tällä hetkellä tueta.</value>
