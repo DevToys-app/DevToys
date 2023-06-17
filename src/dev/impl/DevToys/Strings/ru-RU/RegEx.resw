@@ -121,7 +121,7 @@
     <value>Инструмент проверки регулярных выражений</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Установки</value>
+    <value>Настройки</value>
   </data>
   <data name="CultureInvariant" xml:space="preserve">
     <value>Инвариантная культура</value>
