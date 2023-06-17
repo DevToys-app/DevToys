@@ -148,28 +148,28 @@
     <value>Jäsennettävä Cron-lauseke</value>
   </data>
   <data name="OutputDateTimeDescription" xml:space="preserve">
-    <value>Date time fomat of upcoming dates</value>
+    <value>Tulevien päivämäärien päivämäärät ja kellonajat</value>
   </data>
   <data name="OutputDateTimeTitle" xml:space="preserve">
-    <value>Output format</value>
+    <value>Tulosteen muoto</value>
   </data>
   <data name="OutputFormatErrorMessage" xml:space="preserve">
-    <value>Output date time format is not valid</value>
+    <value>Tulostepäivämäärän aikaformaatti ei ole kelvollinen</value>
   </data>
   <data name="OutputLimitDescription" xml:space="preserve">
-    <value>How many scheduled dates needs to be generated</value>
+    <value>Kuinka monta ajoitettua päivämäärää on luotava</value>
   </data>
   <data name="OutputLimitTitle" xml:space="preserve">
-    <value>Next scheduled dates</value>
+    <value>Seuraavat aikataulutetut päivämäärät</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Next scheduled dates</value>
+    <value>Seuraavat aikataulutetut päivämäärät</value>
   </data>
   <data name="SecondsExcludedMode" xml:space="preserve">
-    <value>Standard mode (5 - segment Cron)</value>
+    <value>Vakiotila (5 - segmentti Cron)</value>
   </data>
   <data name="SecondsIncludedMode" xml:space="preserve">
-    <value>Seconds included (6 - segment Cron)</value>
+    <value>Mukana sekunnit (6 - segmentti Cron)</value>
   </data>
   <data name="DescriptionTitle" xml:space="preserve">
     <value>Kuvaus</value>
