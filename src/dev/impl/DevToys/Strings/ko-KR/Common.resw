@@ -124,7 +124,7 @@
     <value>지우기</value>
   </data>
   <data name="Collapse" xml:space="preserve">
-    <value>Collapse</value>
+    <value>접기</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>복사</value>
@@ -136,7 +136,7 @@
     <value>삭제</value>
   </data>
   <data name="Expand" xml:space="preserve">
-    <value>Expand</value>
+    <value>펴기</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
     <value>파일 찾아보기</value>
