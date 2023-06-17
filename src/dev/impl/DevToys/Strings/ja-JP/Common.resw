@@ -124,7 +124,7 @@
     <value>クリア</value>
   </data>
   <data name="Collapse" xml:space="preserve">
-    <value>Collapse</value>
+    <value>縮小</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>コピー</value>
@@ -136,7 +136,7 @@
     <value>削除</value>
   </data>
   <data name="Expand" xml:space="preserve">
-    <value>Expand</value>
+    <value>最大化</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
     <value>ファイルを開く</value>
