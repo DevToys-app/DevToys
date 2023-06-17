@@ -1,11 +1,12 @@
 @namespace DevToys.Blazor.Components
-@inherits JSStyledComponentBase
 @typeparam TElement
+@inherits SelectBase<TElement>
 
 <ScrollViewer Orientation="Orientation.Vertical"
               IsEnabled="@IsEnabled"
               Class="@FinalCssClasses"
               Style="@Style"
+              UseNativeScrollBar="@UseNativeScrollBar"
               AdditionalAttributes="@AdditionalAttributes">
     <ul @ref="Element"
         role="@Role"
@@ -48,7 +49,7 @@
             else
             {
                 <div class="@((object.ReferenceEquals(item, SelectedItem) ? "selected" : string.Empty))"
-                     @onclick="@(() => OnItemClick(item))">
+                @onclick="@(() => OnItemClick(item))">
                     @ItemTemplate(item)
                 </div>
             }

@@ -31,7 +31,8 @@
                          Items="@Items"
                          Context="item"
                          RaiseSelectionEventOnKeyboardNavigation="false"
-                         OnSelectedIndexChanged="OnSelectedIndexChanged">
+                         UseNativeScrollBar="true"
+                         SelectedIndexChanged="OnSelectedIndexChanged">
                     <ItemTemplate>
                         @ItemTemplate(item)
                     </ItemTemplate>

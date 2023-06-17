@@ -18,7 +18,7 @@ public partial class CheckBox : JSStyledComponentBase
     /// Raised when the check box is toggled.
     /// </summary>
     [Parameter]
-    public EventCallback<bool> OnCheckedChanged { get; set; }
+    public EventCallback<bool> IsCheckedChanged { get; set; }
 
     internal ValueTask<bool> FocusAsync()
     {
@@ -31,7 +31,7 @@ public partial class CheckBox : JSStyledComponentBase
         if (value != IsChecked)
         {
             IsChecked = value;
-            OnCheckedChanged.InvokeAsync(value);
+            IsCheckedChanged.InvokeAsync(value);
         }
     }
 }

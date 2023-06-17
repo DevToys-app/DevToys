@@ -1,0 +1,99 @@
+@namespace DevToys.Blazor.Components
+@typeparam TElement
+@inherits SelectBase<TElement>
+
+<CascadingValue Value="this" IsFixed="false">
+    <div id=@Id
+         class="combo-box-with-header @(FinalCssClasses)"
+         style="@(Style)"
+    @attributes="AdditionalAttributes">
+
+        @if (!string.IsNullOrWhiteSpace(Header))
+        {
+            <TextBlock Appearance="TextBlockAppearance.Body" Class="combo-box-header" Text="@Header" />
+        }
+
+        <Button @ref="_button"
+                Class="@($"combo-box-button {FinalCssClasses}")"
+                Appearance="ButtonAppearance.Neutral"
+                IsEnabled="@IsEnabled"
+                @onclick="@ToggleDropDown">
+            @if (SelectedItem is not null)
+            {
+                @ItemTemplate(SelectedItem)
+            }
+            <div class="arrow-down-icon">
+                <FontIcon Glyph="@('\uf2a6')" />
+            </div>
+
+            <Popover Open="_isOpen"
+                     AnchorOrigin="Origin.CenterCenter"
+                     TransformOrigin="Origin.CenterCenter"
+                     RelativeWidth="false"
+                     @ontouchend:stopPropagation>
+                <CascadingValue Value="@this" IsFixed="true">
+                    <FocusTrapper Style="display: contents;"
+                                  OnEscapeKeyPressed="OnEscapeKeyPressed"
+                                  @onfocusout="OnEscapeKeyPressed">
+                        <ScrollViewer Orientation="Orientation.Vertical"
+                                      IsEnabled="@IsEnabled"
+                                      Class="@FinalCssClasses"
+                                      Style="@Style"
+                                      UseNativeScrollBar="true"
+                                      AdditionalAttributes="@AdditionalAttributes">
+                            <ul @ref="_listBox"
+                                role="menu"
+                                class="combo-box-list-box"
+                                tabindex="0"
+                                @onkeydown="OnKeyDown">
+
+                                @if (Virtualize)
+                                {
+                                    <Virtualize Items="@Items" Context="item">
+                                        @RenderItem(item)
+                                    </Virtualize>
+                                }
+                                else if (Items is not null)
+                                {
+                                    foreach (var item in Items)
+                                    {
+                                        @RenderItem(item)
+                                    }
+                                }
+
+                            </ul>
+                        </ScrollViewer>
+                    </FocusTrapper>
+                </CascadingValue>
+            </Popover>
+        </Button>
+    </div>
+</CascadingValue>
+
+@code {
+    private RenderFragment<TElement> RenderItem { get; set; } = default!;
+
+    protected override Task OnInitializedAsync()
+    {
+        RenderItem = (item) => __builder =>
+        {
+            @if (!OverrideDefaultItemTemplate)
+            {
+                <ListBoxItem OnSelected="OnItemClick"
+                             IsSelected="object.ReferenceEquals(item, SelectedItem)"
+                             Item="item">
+                    @ItemTemplate(item)
+                </ListBoxItem>
+            }
+            else
+            {
+                <div class="@((object.ReferenceEquals(item, SelectedItem) ? "selected" : string.Empty))"
+                     @onclick="@(() => OnItemClick(item))">
+                    @ItemTemplate(item)
+                </div>
+            }
+        };
+
+        return base.OnInitializedAsync();
+    }
+}

@@ -1,0 +1,16 @@
+.sidebar-searchbar-result-item {
+    display: grid;
+    grid-template-columns: 16px 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 12px;
+    grid-template-areas:
+        "icon title";
+
+    .sidebar-searchbar-result-item-icon {
+        grid-area: icon;
+    }
+
+    .sidebar-searchbar-result-item-title {
+        grid-area: title;
+    }
+}

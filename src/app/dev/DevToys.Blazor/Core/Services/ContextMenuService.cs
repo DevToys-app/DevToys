@@ -54,6 +54,9 @@ public sealed class ContextMenuService
 
     private void WindowService_MajorWindowChange(object? sender, EventArgs e)
     {
-        OnCloseContextMenuRequested();
+        if (!Debugger.IsAttached)
+        {
+            OnCloseContextMenuRequested();
+        }
     }
 }
