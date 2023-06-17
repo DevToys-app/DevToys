@@ -124,7 +124,7 @@
     <value>Nollaa</value>
   </data>
   <data name="Collapse" xml:space="preserve">
-    <value>Collapse</value>
+    <value>Kutista</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>Kopioi</value>
@@ -136,7 +136,7 @@
     <value>Poista</value>
   </data>
   <data name="Expand" xml:space="preserve">
-    <value>Expand</value>
+    <value>Laajenna</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
     <value>Selaa tiedostoja</value>
