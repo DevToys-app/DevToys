@@ -142,7 +142,7 @@
     <value>XML on määritellyn XSD-mallin mukainen.</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>XML XSD Validate</value>
+    <value>XML XSD Validointi</value>
   </data>
   <data name="XmlNamespacesInconsistentMsg" xml:space="preserve">
     <value>Validointitulos on aina kelvollinen, koska XML ei määrittele näitä XSD:ssä määritettyjä nimiavaruuksia: {0}</value>
@@ -151,6 +151,6 @@
     <value>Validointitulos on aina kelvollinen, koska XSD ei määrittele näitä XML:ssä määritettyjä nimiavaruuksia: {0}</value>
   </data>
   <data name="TargetNamespaceNotDefinedInXml" xml:space="preserve">
-    <value>Validation result will potentially always be 'valid' since the XML does not reference the following "targetNamespace" defined in the XSD: {0}</value>
+    <value>Validointitulos on mahdollisesti aina kelvollinen, koska XML ei viittaa seuraavaan XSD:ssä määritettyyn "targetNamespace":en: {0}</value>
   </data>
 </root>
