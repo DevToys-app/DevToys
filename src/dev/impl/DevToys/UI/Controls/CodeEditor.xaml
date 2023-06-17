@@ -50,10 +50,22 @@
             Margin="0,0,0,8"
             AutomationProperties.LabeledBy="{x:Bind HeaderTextBlock}">
             <Button
+                x:Name="ExpandButton"
+                x:DeferLoadStrategy="Lazy"
+                Visibility="Visible"
+                TabIndex="0"
+                Margin="8,0,0,0"
+                ToolTipService.ToolTip="{Binding Instance.Common.Expand, Mode=OneTime, Source={StaticResource LanguageManager}}"
+                AutomationProperties.Name="{Binding Instance.Common.Expand, Mode=OneTime, Source={StaticResource LanguageManager}}"
+                Click="ExpandButton_Click">
+                <FontIcon x:Name="ExpandButtonIcon" Glyph="&#xF15F;"/>
+            </Button>
+            <Button
                 x:Name="PasteButton"
                 x:DeferLoadStrategy="Lazy"
                 Visibility="Collapsed"
                 TabIndex="0"
+                Margin="8,0,0,0"
                 AutomationProperties.Name="{Binding Instance.Common.Paste, Mode=OneTime, Source={StaticResource LanguageManager}}"
                 Click="PasteButton_Click">
                 <StackPanel Orientation="Horizontal" Spacing="4">

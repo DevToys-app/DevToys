@@ -28,58 +28,63 @@
                 <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="50"/>
             </TransitionCollection>
         </Grid.ChildrenTransitions>
-        
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
 
-        <StackPanel Spacing="4" Grid.Row="0" >
-            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.ConfigurationTitle}" />
-            <controls:ExpandableSettingControl
-                Title="{x:Bind ViewModel.Strings.ConversionTitle}"
-                Description="{x:Bind ViewModel.Strings.ConversionDescription}">
-                <controls:ExpandableSettingControl.Icon>
-                    <FontIcon Glyph="&#xF18D;" />
-                </controls:ExpandableSettingControl.Icon>
-                <ToggleSwitch 
-                    Style="{StaticResource RightAlignedToggleSwitchStyle}"
-                    OnContent="{x:Bind ViewModel.Strings.ConversionEncode}" OffContent="{x:Bind ViewModel.Strings.ConversionDecode}"
-                    IsOn="{x:Bind ViewModel.IsEncodeMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            </controls:ExpandableSettingControl>
-            <controls:ExpandableSettingControl
-                x:Name="EncodingSetting"
-                Title="{x:Bind ViewModel.Strings.EncodingTitle}"
-                Description="{x:Bind ViewModel.Strings.EncodingDescription}">
-                <controls:ExpandableSettingControl.Icon>
-                    <FontIcon Glyph="&#xF7E4;" />
-                </controls:ExpandableSettingControl.Icon>
-                <ComboBox
-                    SelectedValuePath="Tag"
-                    SelectedValue="{x:Bind ViewModel.EncodingMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                    <ComboBoxItem Tag="UTF-8" Content="{x:Bind ViewModel.Strings.Utf8}" />
-                    <ComboBoxItem Tag="ASCII" Content="{x:Bind ViewModel.Strings.Ascii}" />
-                </ComboBox>
-            </controls:ExpandableSettingControl>
-        </StackPanel>
+        <Grid x:Name="MainGrid" RowSpacing="12">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <controls:CustomTextBox
-            Grid.Row="1"
-            MinHeight="150"
-            AcceptsReturn="True"
-            IsRichTextEdit="True"
-            Header="{x:Bind ViewModel.Strings.InputTitle}"
-            Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <StackPanel Spacing="4" Grid.Row="0" >
+                <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.ConfigurationTitle}" />
+                <controls:ExpandableSettingControl
+                    Title="{x:Bind ViewModel.Strings.ConversionTitle}"
+                    Description="{x:Bind ViewModel.Strings.ConversionDescription}">
+                    <controls:ExpandableSettingControl.Icon>
+                        <FontIcon Glyph="&#xF18D;" />
+                    </controls:ExpandableSettingControl.Icon>
+                    <ToggleSwitch 
+                        Style="{StaticResource RightAlignedToggleSwitchStyle}"
+                        OnContent="{x:Bind ViewModel.Strings.ConversionEncode}" OffContent="{x:Bind ViewModel.Strings.ConversionDecode}"
+                        IsOn="{x:Bind ViewModel.IsEncodeMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                </controls:ExpandableSettingControl>
+                <controls:ExpandableSettingControl
+                    x:Name="EncodingSetting"
+                    Title="{x:Bind ViewModel.Strings.EncodingTitle}"
+                    Description="{x:Bind ViewModel.Strings.EncodingDescription}">
+                    <controls:ExpandableSettingControl.Icon>
+                        <FontIcon Glyph="&#xF7E4;" />
+                    </controls:ExpandableSettingControl.Icon>
+                    <ComboBox
+                        SelectedValuePath="Tag"
+                        SelectedValue="{x:Bind ViewModel.EncodingMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <ComboBoxItem Tag="UTF-8" Content="{x:Bind ViewModel.Strings.Utf8}" />
+                        <ComboBoxItem Tag="ASCII" Content="{x:Bind ViewModel.Strings.Ascii}" />
+                    </ComboBox>
+                </controls:ExpandableSettingControl>
+            </StackPanel>
 
-        <controls:CustomTextBox
-            Grid.Row="2"
-            MinHeight="150"
-            IsReadOnly="True"
-            AcceptsReturn="True"
-            IsRichTextEdit="True"
-            Header="{x:Bind ViewModel.Strings.OutputTitle}"
-            Text="{x:Bind ViewModel.OutputValue, Mode=OneWay}"/>
+            <controls:CustomTextBox
+                Grid.Row="1"
+                MinHeight="150"
+                AcceptsReturn="True"
+                IsRichTextEdit="True"
+                Header="{x:Bind ViewModel.Strings.InputTitle}"
+                Text="{x:Bind ViewModel.InputValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
+            <controls:CustomTextBox
+                x:Name="OutputTextBox"
+                Grid.Row="2"
+                MinHeight="150"
+                IsReadOnly="True"
+                AcceptsReturn="True"
+                IsRichTextEdit="True"
+                Header="{x:Bind ViewModel.Strings.OutputTitle}"
+                Text="{x:Bind ViewModel.OutputValue, Mode=OneWay}"
+                AllowExpand="True"
+                ExpandedChanged="OutputTextBox_ExpandedChanged"/>
+        </Grid>
+        <Grid x:Name="ExpandedGrid"/>
     </Grid>
 </Page>

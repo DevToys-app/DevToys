@@ -51,5 +51,21 @@ namespace DevToys.Views.Tools.SqlFormatter
 
             base.OnNavigatedTo(e);
         }
+
+        private void OutputCodeEditor_ExpandedChanged(object sender, System.EventArgs e)
+        {
+            if (OutputCodeEditor.IsExpanded)
+            {
+                InputOutputGrid.Children.Remove(OutputCodeEditor);
+                MainGrid.Visibility = Visibility.Collapsed;
+                ExpandedGrid.Children.Add(OutputCodeEditor);
+            }
+            else
+            {
+                ExpandedGrid.Children.Remove(OutputCodeEditor);
+                InputOutputGrid.Children.Add(OutputCodeEditor);
+                MainGrid.Visibility = Visibility.Visible;
+            }
+        }
     }
 }

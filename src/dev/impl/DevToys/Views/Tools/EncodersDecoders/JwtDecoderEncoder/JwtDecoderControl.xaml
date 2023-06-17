@@ -184,7 +184,9 @@
             Header="{x:Bind ViewModel.LocalizedStrings.JwtPayloadLabel}"
             Text="{x:Bind ViewModel.Payload, Mode=OneWay}"
             CodeLanguage="json"
-            IsReadOnly="True"/>
+            IsReadOnly="True"
+            AllowExpand="True"
+            ExpandedChanged="PayloadCodeEditor_ExpandedChanged"/>
         <Grid
             x:Name="SignatureGrid"
             Grid.Row="4"
