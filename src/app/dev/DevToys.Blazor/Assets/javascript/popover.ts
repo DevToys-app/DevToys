@@ -57,6 +57,18 @@ class Popover {
     private static contentObserver: ResizeObserver = null;
     private static mainContainerClass: string = null;
 
+    // constructor
+    static {
+        window.addEventListener("scroll", () => {
+            Popover.placePopoverByClassSelector("popover-fixed");
+            Popover.placePopoverByClassSelector("popover-overflow-flip-always");
+        });
+
+        window.addEventListener("resize", () => {
+            Popover.placePopoverByClassSelector();
+        });
+    }
+
     public static callback(id: string, mutationsList: MutationRecord[], observer: MutationObserver) {
         for (const mutation of mutationsList) {
             if (mutation.type === "attributes") {
@@ -473,12 +485,3 @@ class Popover {
 }
 
 export default Popover;
-
-//window.addEventListener("scroll", () => {
-//    Popover.placePopoverByClassSelector("popover-fixed");
-//    Popover.placePopoverByClassSelector("popover-overflow-flip-always");
-//});
-
-//window.addEventListener("resize", () => {
-//    Popover.placePopoverByClassSelector();
-//});

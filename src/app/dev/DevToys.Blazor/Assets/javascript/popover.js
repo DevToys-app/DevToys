@@ -424,12 +424,15 @@ Popover.flipMargin = 0;
 Popover.map = {};
 Popover.contentObserver = null;
 Popover.mainContainerClass = null;
+// constructor
+(() => {
+    window.addEventListener("scroll", () => {
+        Popover.placePopoverByClassSelector("popover-fixed");
+        Popover.placePopoverByClassSelector("popover-overflow-flip-always");
+    });
+    window.addEventListener("resize", () => {
+        Popover.placePopoverByClassSelector();
+    });
+})();
 export default Popover;
-//window.addEventListener("scroll", () => {
-//    Popover.placePopoverByClassSelector("popover-fixed");
-//    Popover.placePopoverByClassSelector("popover-overflow-flip-always");
-//});
-//window.addEventListener("resize", () => {
-//    Popover.placePopoverByClassSelector();
-//});
 //# sourceMappingURL=popover.js.map

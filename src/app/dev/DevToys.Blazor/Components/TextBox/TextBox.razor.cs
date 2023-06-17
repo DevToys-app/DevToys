@@ -64,7 +64,7 @@ public partial class TextBox : MefComponentBase
     public RenderFragment? Buttons { get; set; }
 
     [Parameter]
-    public EventCallback<string?> OnTextChanged { get; set; }
+    public EventCallback<string?> TextChanged { get; set; }
 
     internal ValueTask<bool> FocusAsync()
     {
@@ -215,6 +215,6 @@ public partial class TextBox : MefComponentBase
     private Task SetTextAsync(string text)
     {
         Text = text;
-        return OnTextChanged.InvokeAsync(Text);
+        return TextChanged.InvokeAsync(Text);
     }
 }

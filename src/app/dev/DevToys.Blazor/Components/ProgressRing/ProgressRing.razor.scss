@@ -1,0 +1,40 @@
+@keyframes progress-ring-indeterminate {
+    0% {
+        stroke-dasharray: 0.01px 43.97px;
+        transform: rotate(0);
+    }
+
+    50% {
+        stroke-dasharray: 21.99px 21.99px;
+        transform: rotate(450deg);
+    }
+
+    100% {
+        stroke-dasharray: 0.01px 43.97px;
+        transform: rotate(1080deg);
+    }
+}
+
+.progress-ring {
+    outline: none;
+    min-inline-size: 16px;
+    min-block-size: 16px;
+
+    circle {
+        transform: rotate(-90deg);
+        transform-origin: 50% 50%;
+        transition: all 250ms linear;
+        fill: none;
+        stroke: var(--accent-default);
+
+        stroke: {
+            width: 1.5;
+            linecap: round;
+            dasharray: 43.97;
+        }
+    }
+
+    &.indeterminate circle {
+        animation: progress-ring-indeterminate 2s linear infinite;
+    }
+}

@@ -12,7 +12,7 @@ internal static class IJSRuntimeExtensions
     /// <param name="args">JSON-serializable arguments.</param>
     /// <returns>A <see cref="ValueTask"/> that represents the asynchronous invocation operation and resolves to true in case
     /// no exception has occurred otherwise false.</returns>
-    public static async ValueTask<bool> InvokeVoidWithErrorHandlingAsync(this IJSRuntime jsRuntime, string identifier, params object[] args)
+    public static async ValueTask<bool> InvokeVoidWithErrorHandlingAsync(this IJSRuntime jsRuntime, string identifier, params object?[]? args)
     {
         try
         {
