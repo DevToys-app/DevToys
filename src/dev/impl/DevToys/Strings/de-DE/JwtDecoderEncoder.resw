@@ -195,8 +195,11 @@
   <data name="SignatureLabel" xml:space="preserve">
     <value>Signatur</value>
   </data>
+  <data name="JwtNotValidated" xml:space="preserve">
+    <value>Token nicht validiert (keine Parameter ausgewählt)</value>
+  </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>Signatur bestätigt</value>
+    <value>Token validiert</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
     <value>Ungültiger öffentlicher Schlüssel</value>
@@ -209,6 +212,9 @@
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
     <value>Zielgruppe überprüfen</value>
+  </data>
+  <data name="DecodeValidateIssuerSigningKey" xml:space="preserve">
+    <value>Signaturschlüssel des Ausstellers überprüfen</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
     <value>Ersteller überprüfen</value>

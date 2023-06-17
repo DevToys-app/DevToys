@@ -123,6 +123,9 @@
   <data name="Clear" xml:space="preserve">
     <value>Καθαρισμός</value>
   </data>
+  <data name="Collapse" xml:space="preserve">
+    <value>Collapse</value>
+  </data>
   <data name="Copy" xml:space="preserve">
     <value>Αντιγραφή</value>
   </data>
@@ -131,6 +134,9 @@
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Διαγραφή</value>
+  </data>
+  <data name="Expand" xml:space="preserve">
+    <value>Expand</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
     <value>Εμφάνιση αρχείων</value>

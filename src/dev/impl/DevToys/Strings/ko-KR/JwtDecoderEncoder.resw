@@ -195,8 +195,11 @@
   <data name="SignatureLabel" xml:space="preserve">
     <value>서명</value>
   </data>
+  <data name="JwtNotValidated" xml:space="preserve">
+    <value>토큰이 유효하지 않음 (선택된 매개 변수 없음)</value>
+  </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>서명 확인됨</value>
+    <value>토큰 유효성 확인</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
     <value>잘못된 공개 키</value>
@@ -209,6 +212,9 @@
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
     <value>대상자 확인</value>
+  </data>
+  <data name="DecodeValidateIssuerSigningKey" xml:space="preserve">
+    <value>발급자 서명 키 유효성 확인</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
     <value>발행자 확인</value>

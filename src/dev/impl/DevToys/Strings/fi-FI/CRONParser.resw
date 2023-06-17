@@ -118,58 +118,58 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Cron parsing tool</value>
+    <value>Cronin jäsennystyökalu</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Kokoonpano</value>
   </data>
   <data name="UseSecondsDescription" xml:space="preserve">
-    <value>Choose whatever Cron expression should includes seconds in its definition</value>
+    <value>Valitse mikä tahansa Cron-lauseke, jonka määritelmään kuuluu sekunteja</value>
   </data>
   <data name="UseSecondsTitle" xml:space="preserve">
-    <value>Cron Mode</value>
+    <value>Cron-tila</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Cron parser</value>
+    <value>Cron-jäsentäjä</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Parse Cron expression to get scheduled dates</value>
+    <value>Jäsennä Cron-lauseke saadaksesi ajoitetut päivämäärät</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Cron expression parser</value>
+    <value>Cron-lausekkeen jäsentäjä</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>Cron</value>
   </data>
   <data name="CronErrorMessage" xml:space="preserve">
-    <value>Cron expression is not valid</value>
+    <value>Cron-lauseke ei kelpaa</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>Cron expression to parse</value>
+    <value>Jäsennettävä Cron-lauseke</value>
   </data>
   <data name="OutputDateTimeDescription" xml:space="preserve">
-    <value>Date time fomat of upcoming dates</value>
+    <value>Tulevien päivämäärien päivämäärät ja kellonajat</value>
   </data>
   <data name="OutputDateTimeTitle" xml:space="preserve">
-    <value>Output format</value>
+    <value>Tulosteen muoto</value>
   </data>
   <data name="OutputFormatErrorMessage" xml:space="preserve">
-    <value>Output date time format is not valid</value>
+    <value>Tulostepäivämäärän aikaformaatti ei ole kelvollinen</value>
   </data>
   <data name="OutputLimitDescription" xml:space="preserve">
-    <value>How many scheduled dates needs to be generated</value>
+    <value>Kuinka monta ajoitettua päivämäärää on luotava</value>
   </data>
   <data name="OutputLimitTitle" xml:space="preserve">
-    <value>Next scheduled dates</value>
+    <value>Seuraavat aikataulutetut päivämäärät</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Next scheduled dates</value>
+    <value>Seuraavat aikataulutetut päivämäärät</value>
   </data>
   <data name="SecondsExcludedMode" xml:space="preserve">
-    <value>Standard mode (5 - segment Cron)</value>
+    <value>Vakiotila (5 - segmentti Cron)</value>
   </data>
   <data name="SecondsIncludedMode" xml:space="preserve">
-    <value>Seconds included (6 - segment Cron)</value>
+    <value>Mukana sekunnit (6 - segmentti Cron)</value>
   </data>
   <data name="DescriptionTitle" xml:space="preserve">
     <value>Kuvaus</value>
