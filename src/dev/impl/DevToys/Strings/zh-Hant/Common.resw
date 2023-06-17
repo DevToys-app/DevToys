@@ -124,7 +124,7 @@
     <value>清除</value>
   </data>
   <data name="Collapse" xml:space="preserve">
-    <value>Collapse</value>
+    <value>摺疊</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>複製</value>
@@ -136,7 +136,7 @@
     <value>刪除</value>
   </data>
   <data name="Expand" xml:space="preserve">
-    <value>Expand</value>
+    <value>展開</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
     <value>瀏覽檔案</value>
