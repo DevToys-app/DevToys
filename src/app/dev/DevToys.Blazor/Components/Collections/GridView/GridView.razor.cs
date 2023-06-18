@@ -4,7 +4,7 @@ public partial class GridView<TKey, TElement> : JSStyledComponentBase
 {
     private ScrollViewer? _scrollViewer = default!;
 
-    protected override string? JavaScriptFile => "./_content/DevToys.Blazor/Components/GridView/GridView.razor.js";
+    protected override string? JavaScriptFile => "./_content/DevToys.Blazor/Components/Collections/GridView/GridView.razor.js";
 
     [Parameter]
     public RenderFragment? Header { get; set; }

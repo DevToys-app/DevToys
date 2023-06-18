@@ -13,7 +13,7 @@ public partial class NavBar<TElement, TSearchElement>
 
     public string NavId { get; } = NewId();
 
-    protected override string? JavaScriptFile => "./_content/DevToys.Blazor/Components/NavBar/NavBar.razor.js";
+    protected override string? JavaScriptFile => "./_content/DevToys.Blazor/Components/Menu/NavBar/NavBar.razor.js";
 
     [Parameter]
     public RenderFragment<TElement> NavBarItemTitleTemplate { get; set; } = default!;

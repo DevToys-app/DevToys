@@ -1,6 +1,6 @@
-@use "../../Assets/sass/devtoys" as *;
+@use "../../../Assets/sass/devtoys" as *;
 
-.combo-box {
+.drop-down-list {
     @include typography-body;
 
     &-with-header {
@@ -8,7 +8,7 @@
         flex-direction: column;
         position: relative;
 
-        .combo-box-header {
+        .drop-down-list-header {
             margin-bottom: 4px;
         }
     }
@@ -31,10 +31,12 @@
             }
         }
     }
+}
 
-    &-list-box {
-        margin: 0px;
-        padding: 0px;
-        max-height: 400px;
+.drop-down-list-drop-down {
+    margin-top: 4px !important;
+
+    &[data-popover-flip="flipped"] {
+        margin-top: -4px !important;
     }
 }

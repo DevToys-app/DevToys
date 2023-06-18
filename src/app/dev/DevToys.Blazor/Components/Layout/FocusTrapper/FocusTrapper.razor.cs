@@ -4,7 +4,7 @@ namespace DevToys.Blazor.Components;
 
 public partial class FocusTrapper : JSStyledComponentBase
 {
-    protected override string JavaScriptFile => "./_content/DevToys.Blazor/Components/FocusTrapper/FocusTrapper.razor.js";
+    protected override string JavaScriptFile => "./_content/DevToys.Blazor/Components/Layout/FocusTrapper/FocusTrapper.razor.js";
 
     [Parameter]
     public EventCallback OnEscapeKeyPressed { get; set; }

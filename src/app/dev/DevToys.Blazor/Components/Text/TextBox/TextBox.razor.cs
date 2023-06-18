@@ -40,7 +40,7 @@ public partial class TextBox : MefComponentBase
     private bool _isContextMenuOpened;
     private int _textChangedCount;
 
-    protected override string JavaScriptFile => "./_content/DevToys.Blazor/Components/TextBox/TextBox.razor.js";
+    protected override string JavaScriptFile => "./_content/DevToys.Blazor/Components/Text/TextBox/TextBox.razor.js";
 
     [Import]
     internal IClipboard Clipboard { get; set; } = default!;
