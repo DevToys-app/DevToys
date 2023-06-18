@@ -89,6 +89,7 @@
             {
                 <div class="entranceThemeTransition" style="display: contents">
                     <ScrollViewer>
+                        <StackPanel Orientation="Orientation.Vertical">
                         <TextBlock Appearance="TextBlockAppearance.TitleLarge" Text="@guiToolViewItem.ToolInstance.LongOrShortDisplayTitle" />
                         <!-- TODO: Place here a component that takes in argument the guiToolViewItem -->
 
@@ -160,6 +161,7 @@
                                 @item
                             </ItemTemplate>
                         </ListBox>
+                        </StackPanel>
                     </ScrollViewer>
                 </div>
             }

@@ -52,10 +52,6 @@ public partial class StackPanel : StyledComponentBase
         .Build();
 
     protected string? StyleValue => new StyleBuilder()
-        .AddStyle("align-items", GetHorizontalAlignment(), () => Orientation == Orientation.Vertical)
-        .AddStyle("justify-content", GetVerticalAlignment(), () => Orientation == Orientation.Vertical)
-        .AddStyle("justify-content", GetHorizontalAlignment(), () => Orientation == Orientation.Horizontal)
-        .AddStyle("align-items", GetVerticalAlignment(), () => Orientation == Orientation.Horizontal)
         .AddStyle("column-gap", HorizontalGap.ToPx(), () => HorizontalGap.HasValue)
         .AddStyle("row-gap", VerticalGap.ToPx(), () => VerticalGap.HasValue)
         .AddStyle("width", Width, () => !string.IsNullOrEmpty(Width))
