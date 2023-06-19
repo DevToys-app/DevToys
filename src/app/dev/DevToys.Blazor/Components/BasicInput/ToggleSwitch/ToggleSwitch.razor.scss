@@ -113,7 +113,7 @@ $control-fast-out-slow-in-easing: cubic-bezier(0, 0, 0, 1);
     }
 
     &-container {
-        @include flex($inline: true, $align: center);
+        @include flex($align: center);
         @include typography-body;
 
         color: var(--toggle-switch-foreground) !important;

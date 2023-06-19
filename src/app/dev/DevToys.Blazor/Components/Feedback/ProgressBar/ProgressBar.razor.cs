@@ -4,6 +4,11 @@ namespace DevToys.Blazor.Components;
 
 public partial class ProgressBar : StyledComponentBase
 {
+    public ProgressBar()
+    {
+        VerticalAlignment = VerticalAlignment.Top;
+    }
+
     [Parameter]
     [Range(0.0, 100.0, ErrorMessage = $"{nameof(Value)} must be between 0 and 100.")]
     public double Value { get; set; }

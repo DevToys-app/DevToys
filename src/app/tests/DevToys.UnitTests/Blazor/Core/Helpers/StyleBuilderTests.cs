@@ -46,7 +46,7 @@ public class StyleBuilderTests
                         .AddStyle("padding", "35px")
                         .Build();
 
-        IReadOnlyDictionary<string, object> attributes = new Dictionary<string, object> { { "style", StyleToRender } };
+        IDictionary<string, object> attributes = new Dictionary<string, object> { { "style", StyleToRender } };
 
         string ClassToRender = new StyleBuilder().AddStyleFromAttributes(attributes).Build();
         //assert

@@ -32,6 +32,7 @@
                 <div @onclick:stopPropagation="true">
                     <Button Appearance="ButtonAppearance.Stealth"
                             Class="sidebar-expand-group-button"
+                            HorizontalAlignment="HorizontalAlignment.Right"
                             aria-expanded="true"
                             data-expanded="@(IsExpanded.ToString().ToLowerInvariant())"
                             @onclick="OnToggleExpandClick">

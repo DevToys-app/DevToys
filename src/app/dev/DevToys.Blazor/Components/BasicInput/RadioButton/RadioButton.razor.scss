@@ -108,7 +108,7 @@
     }
 
     &-container {
-        @include flex($inline: true, $align: center);
+        @include flex($align: center);
         @include typography-body;
         color: var(--radio-button-foreground);
         background-color: var(--radio-button-background);

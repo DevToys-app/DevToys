@@ -15,31 +15,34 @@
 
         <!-- Header -->
         <div class="header">
-            <Button Appearance="ButtonAppearance.Stealth"
-                    Class="button-icon"
-                    Style="margin: 5px 0px 0px 5px;"
-                    IsEnabled="@CanGoBack"
-                    title="Back"
-                    aria-label="Back"
-                    @onclick="OnBackButtonClicked">
-                <FontIcon Glyph="@('\uF15B')" />
-            </Button>
-            @if (_sidebarState.IsHidden)
-            {
+            <StackPanel Orientation="Orientation.Horizontal"
+                        HorizontalAlignment="HorizontalAlignment.Left">
                 <Button Appearance="ButtonAppearance.Stealth"
                         Class="button-icon"
-                        title="Toggle Navigation"
-                        aria-label="Toggle Navigation"
-                        aria-controls="@NavId"
-                        aria-expanded="@_sidebarState.IsCollapsed"
-                    @onclick="OnToggleSidebarClick">
-                    <FontIcon Glyph="@('\uF560')" />
+                        Style="margin: 5px 0px 0px 5px;"
+                        IsEnabled="@CanGoBack"
+                        title="Back"
+                        aria-label="Back"
+                        @onclick="OnBackButtonClicked">
+                    <FontIcon Glyph="@('\uF15B')" />
                 </Button>
-            }
+                @if (_sidebarState.IsHidden)
+                {
+                    <Button Appearance="ButtonAppearance.Stealth"
+                            Class="button-icon"
+                            title="Toggle Navigation"
+                            aria-label="Toggle Navigation"
+                            aria-controls="@NavId"
+                            aria-expanded="@_sidebarState.IsCollapsed"
+                        @onclick="OnToggleSidebarClick">
+                        <FontIcon Glyph="@('\uF560')" />
+                    </Button>
+                }
 
-            <div style="margin-left: 4px; display: inline;">
-                @Header
-            </div>
+                <div style="margin-left: 4px; display: inline;">
+                    @Header
+                </div>
+            </StackPanel>
         </div>
 
         <!-- Sidebar -->
@@ -128,7 +131,9 @@
 
         <!-- Content of the nav bar -->
         <main>
-            @Content
+            <Container>
+                @Content
+            </Container>
         </main>
 
         <!-- A transparent clickable area that appears when the sidebar is expanded overlay. Clicking on it will close the sidebar. -->

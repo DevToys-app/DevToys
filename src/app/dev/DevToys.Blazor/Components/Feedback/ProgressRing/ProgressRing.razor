@@ -2,19 +2,25 @@
 @inherits StyledComponentBase
 
 <CascadingValue Value="this" IsFixed="true">
-    <svg @ref="Element"
-         tabindex="-1"
-         role="@((IsIndeterminate ? "status" : "progressbar"))"
-         width="@(Size.ToPx())"
-         height="@(Size.ToPx())"
-         class="progress-ring @((IsIndeterminate ? "indeterminate" : string.Empty)) @FinalCssClasses"
-         style="@Style"
-         viewBox="0 0 16 16"
-         @attributes="AdditionalAttributes">
-        <circle cx="50%"
-                cy="50%"
-                r="@CircleElementR"
-                stroke-dasharray="3"
-                stroke-dashoffset="@(((100 - Value) / 100) * _circumference)" />
-    </svg>
+    <Container HorizontalAlignment="@HorizontalAlignment"
+               VerticalAlignment="@VerticalAlignment"
+               Width="@Width"
+               Height="@Height"
+               IsVisible="@IsVisible">
+        <svg @ref="Element"
+             tabindex="-1"
+             role="@((IsIndeterminate ? "status" : "progressbar"))"
+             width="@(Width.ToPx())"
+             height="@(Height.ToPx())"
+             class="progress-ring @((IsIndeterminate ? "indeterminate" : string.Empty)) @FinalCssClasses"
+             style="@Style"
+             viewBox="0 0 16 16"
+             @attributes="AdditionalAttributes">
+            <circle cx="50%"
+                    cy="50%"
+                    r="@CircleElementR"
+                    stroke-dasharray="3"
+                    stroke-dashoffset="@(((100 - Value) / 100) * _circumference)" />
+        </svg>
+    </Container>
 </CascadingValue>

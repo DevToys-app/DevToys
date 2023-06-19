@@ -3,21 +3,27 @@
 @inherits JSStyledComponentBase
 
 <CascadingValue Value="this" IsFixed="true">
-    <label
-        id=@Id
-        role="button"
-        class="toggle-switch-container @(IsEnabled ? string.Empty : "disabled")"
-        style="@(Style)"
-        @ref=Element>
-        <input
-            type="checkbox"
-            tabindex="0"
-            class="toggle-switch @(FinalCssClasses)"
-            checked="@IsOn"
-            disabled="@(!IsEnabled)"
-            @onclick:preventDefault="@(!IsEnabled)"
-            @onchange="OnChange"
-            @attributes="AdditionalAttributes" />
-        <TextBlock Text="@Text" />
-    </label>
+    <Container HorizontalAlignment="@HorizontalAlignment"
+               VerticalAlignment="@VerticalAlignment"
+               Width="@Width"
+               Height="@Height"
+               IsVisible="@IsVisible">
+        <label
+            id=@Id
+            role="button"
+            class="toggle-switch-container @(IsEnabled ? string.Empty : "disabled")"
+            style="@(Style)"
+            @ref=Element>
+            <input
+                type="checkbox"
+                tabindex="0"
+                class="toggle-switch @(FinalCssClasses)"
+                checked="@IsOn"
+                disabled="@(!IsEnabled)"
+                @onclick:preventDefault="@(!IsEnabled)"
+                @onchange="OnChange"
+                @attributes="AdditionalAttributes" />
+            <TextBlock Text="@Text" />
+        </label>
+    </Container>
 </CascadingValue>

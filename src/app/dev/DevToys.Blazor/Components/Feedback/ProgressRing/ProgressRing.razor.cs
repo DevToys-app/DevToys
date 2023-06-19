@@ -7,12 +7,17 @@ public partial class ProgressRing : StyledComponentBase
     private const int CircleElementR = 7;
     private readonly double _circumference = Math.PI * (CircleElementR * 2);
 
+    public ProgressRing()
+    {
+        VerticalAlignment = VerticalAlignment.Center;
+        HorizontalAlignment = HorizontalAlignment.Center;
+        Height = 48;
+        Width = 48;
+    }
+
     [Parameter]
     [Range(0.0, 100.0, ErrorMessage = $"{nameof(Value)} must be between 0 and 100.")]
     public double Value { get; set; }
-
-    [Parameter]
-    public int Size { get; set; } = 48;
 
     [Parameter]
     public bool IsIndeterminate { get; set; }

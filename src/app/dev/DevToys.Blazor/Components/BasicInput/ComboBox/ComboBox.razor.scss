@@ -4,7 +4,7 @@
     @include typography-body;
 
     &-with-header {
-        display: inline-flex;
+        display: flex;
         flex-direction: column;
         position: relative;
 

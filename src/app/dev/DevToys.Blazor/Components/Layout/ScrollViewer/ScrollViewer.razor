@@ -2,11 +2,17 @@
 @inherits StyledComponentBase
 
 <CascadingValue Value="this" IsFixed="true">
-    <div id=@Id
-         class="scroll-viewer @(FinalCssClasses)"
-         style="@(Style)"
-         @ref=Element
-         @attributes="AdditionalAttributes">
-         @ChildContent
-    </div>
+    <Container HorizontalAlignment="@HorizontalAlignment"
+               VerticalAlignment="@VerticalAlignment"
+               Width="@Width"
+               Height="@Height"
+               IsVisible="@IsVisible">
+        <div id=@Id
+             class="scroll-viewer @(FinalCssClasses)"
+             style="@(Style)"
+             @ref=Element
+             @attributes="AdditionalAttributes">
+             @ChildContent
+        </div>
+    </Container>
 </CascadingValue>

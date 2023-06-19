@@ -44,6 +44,38 @@ public abstract class StyledComponentBase : ComponentBase
     public bool IsEnabled { get; set; } = true;
 
     /// <summary>
+    /// Gets or sets how the component should horizontally align.
+    /// </summary>
+    [Parameter]
+    public HorizontalAlignment HorizontalAlignment { get; set; } = HorizontalAlignment.Stretch;
+
+    /// <summary>
+    /// Gets or sets how the component should vertically align.
+    /// </summary>
+    [Parameter]
+    public VerticalAlignment VerticalAlignment { get; set; } = VerticalAlignment.Stretch;
+
+    /// <summary>
+    /// Gets or sets the width the component should have.
+    /// If null, the component will take as much space as it can.
+    /// </summary>
+    [Parameter]
+    public int? Width { get; set; }
+
+    /// <summary>
+    /// Gets or sets the height the component should have.
+    /// If null, the component will take as much space as it can.
+    /// </summary>
+    [Parameter]
+    public int? Height { get; set; }
+
+    /// <summary>
+    /// Gets or sets whether the component should be visible. Default is true.
+    /// </summary>
+    [Parameter]
+    public bool IsVisible { get; set; } = true;
+
+    /// <summary>
     /// Gets a list of CSS class to apply to the component.
     /// </summary>
     protected ObservableHashSet<string> CSS => _css.Value;

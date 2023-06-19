@@ -54,7 +54,6 @@ public partial class StackPanel : StyledComponentBase
     protected string? StyleValue => new StyleBuilder()
         .AddStyle("column-gap", HorizontalGap.ToPx(), () => HorizontalGap.HasValue)
         .AddStyle("row-gap", VerticalGap.ToPx(), () => VerticalGap.HasValue)
-        .AddStyle("width", Width, () => !string.IsNullOrEmpty(Width))
         .AddStyle("flex-wrap", "wrap", () => Wrap)
         .AddStyle(Style)
         .Build();
@@ -63,25 +62,19 @@ public partial class StackPanel : StyledComponentBase
     /// The horizontal alignment of the components in the stack. 
     /// </summary>
     [Parameter]
-    public StackHorizontalAlignment HorizontalAlignment { get; set; } = StackHorizontalAlignment.Left;
+    public StackHorizontalAlignment ContentHorizontalAlignment { get; set; } = StackHorizontalAlignment.Left;
 
     /// <summary>
     /// The vertical alignment of the components in the stack.
     /// </summary>
     [Parameter]
-    public StackVerticalAlignment VerticalAlignment { get; set; } = StackVerticalAlignment.Top;
+    public StackVerticalAlignment ContentVerticalAlignment { get; set; } = StackVerticalAlignment.Top;
 
     /// <summary>
     /// Gets or set the orientation of the stacked components. 
     /// </summary>
     [Parameter]
     public Orientation Orientation { get; set; } = Orientation.Horizontal;
-
-    /// <summary>
-    /// The width of the stack as a percentage string (default = 100%).
-    /// </summary>
-    [Parameter]
-    public string Width { get; set; } = "100%";
 
     /// <summary>
     /// Gets or sets if the stack wraps.
@@ -109,7 +102,7 @@ public partial class StackPanel : StyledComponentBase
 
     private string GetHorizontalAlignment()
     {
-        return HorizontalAlignment switch
+        return ContentHorizontalAlignment switch
         {
             StackHorizontalAlignment.Left => "start",
             StackHorizontalAlignment.Center => "center",
@@ -120,7 +113,7 @@ public partial class StackPanel : StyledComponentBase
 
     private string GetVerticalAlignment()
     {
-        return VerticalAlignment switch
+        return ContentVerticalAlignment switch
         {
             StackVerticalAlignment.Top => "start",
             StackVerticalAlignment.Center => "center",

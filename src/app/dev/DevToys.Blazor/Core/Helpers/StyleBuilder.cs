@@ -130,12 +130,62 @@ public struct StyleBuilder
     }
 
     /// <summary>
+    /// Adds a conditional in-line style to the builder with space separator and closing semicolon.
+    /// </summary>
+    /// <param name="style"></param>
+    public StyleBuilder AddImportantStyle(string style) => !string.IsNullOrWhiteSpace(style) ? AddRaw($"{style} !important;") : this;
+
+    /// <summary>
+    /// Adds a conditional in-line style to the builder with space separator and closing semicolon..
+    /// </summary>
+    /// <param name="prop"></param>
+    /// <param name="value">Style to add</param>
+    /// <returns>StyleBuilder</returns>
+    public StyleBuilder AddImportantStyle(string prop, string value) => AddRaw($"{prop}:{value} !important;");
+
+    /// <summary>
+    /// Adds a conditional in-line style to the builder with space separator and closing semicolon..
+    /// </summary>
+    /// <param name="prop"></param>
+    /// <param name="value">Style to conditionally add.</param>
+    /// <param name="when">Condition in which the style is added.</param>
+    /// <returns>StyleBuilder</returns>
+    public StyleBuilder AddImportantStyle(string prop, string value, bool when = true) => when ? this.AddImportantStyle(prop, value) : this;
+
+    /// <summary>
+    /// Adds a conditional in-line style to the builder with space separator and closing semicolon..
+    /// </summary>
+    /// <param name="prop"></param>
+    /// <param name="value">Style to conditionally add.</param>
+    /// <param name="when">Condition in which the style is added.</param>
+    /// <returns></returns>
+    public StyleBuilder AddImportantStyle(string prop, Func<string> value, bool when = true) => when ? this.AddImportantStyle(prop, value()) : this;
+
+    /// <summary>
+    /// Adds a conditional in-line style to the builder with space separator and closing semicolon..
+    /// </summary>
+    /// <param name="prop"></param>
+    /// <param name="value">Style to conditionally add.</param>
+    /// <param name="when">Condition in which the style is added.</param>
+    /// <returns>StyleBuilder</returns>
+    public StyleBuilder AddImportantStyle(string prop, string value, Func<bool> when) => this.AddImportantStyle(prop, value, when());
+
+    /// <summary>
+    /// Adds a conditional in-line style to the builder with space separator and closing semicolon..
+    /// </summary>
+    /// <param name="prop"></param>
+    /// <param name="value">Style to conditionally add.</param>
+    /// <param name="when">Condition in which the style is added.</param>
+    /// <returns>StyleBuilder</returns>
+    public StyleBuilder AddImportantStyle(string prop, Func<string> value, Func<bool> when) => this.AddImportantStyle(prop, value(), when());
+
+    /// <summary>
     /// Adds a conditional in-line style when it exists in a dictionary to the builder with separator.
     /// Null safe operation.
     /// </summary>
     /// <param name="additionalAttributes">Additional Attribute splat parameters</param>
     /// <returns>StyleBuilder</returns>
-    public StyleBuilder AddStyleFromAttributes(IReadOnlyDictionary<string, object> additionalAttributes) =>
+    public StyleBuilder AddStyleFromAttributes(IDictionary<string, object> additionalAttributes) =>
         additionalAttributes == null ? this :
         additionalAttributes.TryGetValue("style", out object? c) ? AddRaw(c.ToString() ?? string.Empty) : this;
 

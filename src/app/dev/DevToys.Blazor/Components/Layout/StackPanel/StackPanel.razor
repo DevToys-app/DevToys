@@ -2,6 +2,12 @@
 
 @inherits StyledComponentBase
 
-<div id="@Id" @ref="@Element" class="@ClassValue" style="@StyleValue" @attributes="AdditionalAttributes">
-    @ChildContent
-</div>
+<Container HorizontalAlignment="@HorizontalAlignment"
+           VerticalAlignment="@VerticalAlignment"
+           Width="@Width"
+           Height="@Height"
+           IsVisible="@IsVisible">
+    <div id="@Id" @ref="@Element" class="@ClassValue" style="@StyleValue" @attributes="AdditionalAttributes">
+        @ChildContent
+    </div>
+</Container>

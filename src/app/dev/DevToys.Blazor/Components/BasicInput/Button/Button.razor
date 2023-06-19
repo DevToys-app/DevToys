@@ -3,13 +3,19 @@
 @inherits JSStyledComponentBase
 
 <CascadingValue Value="this" IsFixed="true">
-    <button id=@Id
-            role="button"
-            class="@(FinalCssClasses)"
-            style="@(Style)"
-            tabindex="0"
-            @ref=Element
-            @attributes="AdditionalAttributes">
-        @ChildContent
-    </button>
+    <Container HorizontalAlignment="@HorizontalAlignment"
+               VerticalAlignment="@VerticalAlignment"
+               Width="@Width"
+               Height="@Height"
+               IsVisible="@IsVisible">
+        <button id=@Id
+                role="button"
+                class="@(FinalCssClasses)"
+                style="@(Style)"
+                tabindex="0"
+                @ref=Element
+                @attributes="AdditionalAttributes">
+            @ChildContent
+        </button>
+    </Container>
 </CascadingValue>

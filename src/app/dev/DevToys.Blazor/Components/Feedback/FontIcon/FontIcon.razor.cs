@@ -2,6 +2,12 @@
 
 public partial class FontIcon : StyledComponentBase
 {
+    public FontIcon()
+    {
+        VerticalAlignment = VerticalAlignment.Center;
+        HorizontalAlignment = HorizontalAlignment.Center;
+    }
+
     [Parameter]
     public char Glyph { get; set; }
 

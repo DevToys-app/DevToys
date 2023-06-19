@@ -2,26 +2,32 @@
 @inherits RicherMonacoEditorBase
 
 <CascadingValue Value="this" IsFixed="true">
-    <div id="@(Id)-monaco-container"
-         class="monaco-editor-standalone-with-header @(FinalCssClasses)"
-         style="@(Style)"
-         @attributes="AdditionalAttributes">
+    <Container HorizontalAlignment="@HorizontalAlignment"
+               VerticalAlignment="@VerticalAlignment"
+               Width="@Width"
+               Height="@Height"
+               IsVisible="@IsVisible">
+        <div id="@(Id)-monaco-container"
+             class="monaco-editor-standalone-with-header @(FinalCssClasses)"
+             style="@(Style)"
+             @attributes="AdditionalAttributes">
 
-        @if (!string.IsNullOrWhiteSpace(Header))
-        {
-            <TextBlock Appearance="TextBlockAppearance.Body" Class="monaco-editor-standalone-header" Text="@Header" />
-        }
+            @if (!string.IsNullOrWhiteSpace(Header))
+            {
+                <TextBlock Appearance="TextBlockAppearance.Body" Class="monaco-editor-standalone-header" Text="@Header" />
+            }
 
-        <div class="monaco-editor-standalone-container @(IsEnabled ? string.Empty : "disabled")"
-             @ref=Element>
+            <div class="monaco-editor-standalone-container @(IsEnabled ? string.Empty : "disabled")"
+                 @ref=Element>
 
-            <ProgressRing id="@($"{Id}-loading")"
-                          IsIndeterminate="@ShowLoading"
-                          Style="@((ShowLoading ? string.Empty : "display: none;"))"/>
+                <ProgressRing id="@($"{Id}-loading")"
+                              IsIndeterminate="@ShowLoading"
+                              IsVisible="@ShowLoading" />
 
-            <div id="@Id" class="monaco-editor-standalone-instance"></div>
+                <div id="@Id" class="monaco-editor-standalone-instance"></div>
 
-            <div class="monaco-editor-standalone-underline" />
+                <div class="monaco-editor-standalone-underline" />
+            </div>
         </div>
-    </div>
+    </Container>
 </CascadingValue>

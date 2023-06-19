@@ -2,35 +2,41 @@
 @inherits StyledComponentBase
 
 <CascadingValue Value="this" IsFixed="true">
-    <svg @ref="Element"
-         tabindex="-1"
-         role="@((IsIndeterminate ? "status" : "progressbar"))"
-         class="progress-bar @((IsIndeterminate ? "indeterminate" : string.Empty)) @FinalCssClasses"
-         width="100%"
-         height="3"
-         style="@Style"
-         @attributes="AdditionalAttributes">
-        @if (IsIndeterminate)
-        {
-            <rect height="3"
-                  ry="3"
-                  class="progress-bar-track" />
-            <rect height="3"
-                  ry="3"
-                  class="progress-bar-track" />
-        }
-        else
-        {
-            <rect width="100%"
-                  height="1"
-                  rx="0.5"
-                  y="1"
-                  class="progress-bar-rail" />
+    <Container HorizontalAlignment="@HorizontalAlignment"
+               VerticalAlignment="@VerticalAlignment"
+               Width="@Width"
+               Height="@Height"
+               IsVisible="@IsVisible">
+        <svg @ref="Element"
+             tabindex="-1"
+             role="@((IsIndeterminate ? "status" : "progressbar"))"
+             class="progress-bar @((IsIndeterminate ? "indeterminate" : string.Empty)) @FinalCssClasses"
+             width="100%"
+             height="3"
+             style="@Style"
+             @attributes="AdditionalAttributes">
+            @if (IsIndeterminate)
+            {
+                <rect height="3"
+                      ry="3"
+                      class="progress-bar-track" />
+                <rect height="3"
+                      ry="3"
+                      class="progress-bar-track" />
+            }
+            else
+            {
+                <rect width="100%"
+                      height="1"
+                      rx="0.5"
+                      y="1"
+                      class="progress-bar-rail" />
 
-            <rect width="@(Value.ToPercentage())"
-                  height="3"
-                  rx="1.5"
-                  class="progress-bar-track" />
-        }
-    </svg>
+                <rect width="@(Value.ToPercentage())"
+                      height="3"
+                      rx="1.5"
+                      class="progress-bar-track" />
+            }
+        </svg>
+    </Container>
 </CascadingValue>

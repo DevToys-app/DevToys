@@ -75,7 +75,7 @@
     }
 
     &-container {
-        @include flex($inline: true, $align: center);
+        @include flex($align: center);
         @include typography-body;
 
         color: var(--check-box-foreground) !important;
