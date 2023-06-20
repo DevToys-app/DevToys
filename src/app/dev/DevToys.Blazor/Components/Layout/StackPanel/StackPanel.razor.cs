@@ -1,48 +1,4 @@
-﻿// Remember to replace the namespace below with your own project's namespace..
-
-namespace DevToys.Blazor.Components;
-
-/// <summary>
-/// Determines the horizontal alignment of the content within the <see cref="StackPanel"/>.
-/// </summary>
-public enum StackHorizontalAlignment
-{
-    /// <summary>
-    /// The content is aligned to the left.
-    /// </summary>
-    Left,
-
-    /// <summary>
-    /// The content is center aligned.
-    /// </summary>
-    Center,
-
-    /// <summary>
-    /// The content is aligned to the right.
-    /// </summary>
-    Right,
-}
-
-/// <summary>
-/// Determines the vertical alignment of the content within the <see cref="StackPanel"/>.
-/// </summary>
-public enum StackVerticalAlignment
-{
-    /// <summary>
-    /// The content is aligned to the top.
-    /// </summary>
-    Top,
-
-    /// <summary>
-    /// The content is center aligned.
-    /// </summary>
-    Center,
-
-    /// <summary>
-    /// The content is aligned to the bottom
-    /// </summary>
-    Bottom,
-}
+﻿namespace DevToys.Blazor.Components;
 
 public partial class StackPanel : StyledComponentBase
 {
@@ -57,18 +13,6 @@ public partial class StackPanel : StyledComponentBase
         .AddStyle("flex-wrap", "wrap", () => Wrap)
         .AddStyle(Style)
         .Build();
-
-    /// <summary>
-    /// The horizontal alignment of the components in the stack. 
-    /// </summary>
-    [Parameter]
-    public StackHorizontalAlignment ContentHorizontalAlignment { get; set; } = StackHorizontalAlignment.Left;
-
-    /// <summary>
-    /// The vertical alignment of the components in the stack.
-    /// </summary>
-    [Parameter]
-    public StackVerticalAlignment ContentVerticalAlignment { get; set; } = StackVerticalAlignment.Top;
 
     /// <summary>
     /// Gets or set the orientation of the stacked components. 
@@ -99,26 +43,4 @@ public partial class StackPanel : StyledComponentBase
     /// </summary>
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
-
-    private string GetHorizontalAlignment()
-    {
-        return ContentHorizontalAlignment switch
-        {
-            StackHorizontalAlignment.Left => "start",
-            StackHorizontalAlignment.Center => "center",
-            StackHorizontalAlignment.Right => "end",
-            _ => "start",
-        };
-    }
-
-    private string GetVerticalAlignment()
-    {
-        return ContentVerticalAlignment switch
-        {
-            StackVerticalAlignment.Top => "start",
-            StackVerticalAlignment.Center => "center",
-            StackVerticalAlignment.Bottom => "end",
-            _ => "start",
-        };
-    }
 }
