@@ -1,0 +1,24 @@
+@namespace DevToys.Blazor.Components
+@inherits JSStyledComponentBase
+
+<Container HorizontalAlignment="@HorizontalAlignment"
+           VerticalAlignment="@VerticalAlignment"
+           Width="@Width"
+           Height="@Height"
+           IsVisible="@IsVisible">
+    <div id="@Id"
+         @ref="@Element"
+         class="@FinalCssClasses"
+         style="@StyleValue"
+         @attributes="AdditionalAttributes">
+        <Container>
+            @LeftOrTopCellContent
+        </Container>
+        <div @ref="@_gutterElement" class="grid-split-gripper" style="@GutterStyle">
+            <FontIcon Glyph="@GripperGlyph" />
+        </div>
+        <Container>
+            @RightOrBottomCellContent
+        </Container>
+    </div>
+</Container>

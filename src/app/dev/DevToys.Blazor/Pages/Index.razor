@@ -118,24 +118,30 @@
                             </GridCell>
 
                             <GridCell Column="1" ColumnSpan="2">
-                                <StackPanel Orientation="Orientation.Vertical">
-                                    <TextBlock Appearance="TextBlockAppearance.TitleLarge" Text="@guiToolViewItem.ToolInstance.LongOrShortDisplayTitle" />
-                                    <!-- TODO: Place here a component that takes in argument the guiToolViewItem -->
+                                <SplitGrid>
+                                    <LeftOrTopCellContent>
+                                        <StackPanel Orientation="Orientation.Vertical">
+                                            <TextBlock Appearance="TextBlockAppearance.TitleLarge" Text="@guiToolViewItem.ToolInstance.LongOrShortDisplayTitle" />
+                                            <!-- TODO: Place here a component that takes in argument the guiToolViewItem -->
 
-                                    <MonacoEditor />
-                                    <Button VerticalAlignment="VerticalAlignment.Center" IsEnabled="true" @onclick="OnSetFavorite">Set favorite</Button>
-                                    <Button HorizontalAlignment="HorizontalAlignment.Left" IsEnabled="false">Set favorite</Button>
-                                    <Button HorizontalAlignment="HorizontalAlignment.Center" IsEnabled="true" Appearance="ButtonAppearance.Accent">Set favorite</Button>
-                                    <Button HorizontalAlignment="HorizontalAlignment.Right" Height="100" Width="200" IsEnabled="false" Appearance="ButtonAppearance.Accent">Set favorite</Button>
-                                    <Button IsEnabled="true" Appearance="ButtonAppearance.Stealth">Set favorite</Button>
-                                    <Button VerticalAlignment="VerticalAlignment.Bottom" IsEnabled="false" Appearance="ButtonAppearance.Stealth">Set favorite</Button>
-                                    <TextBox Header="First name" Placeholder="Normal" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
-                                    <TextBox Header="Middle name" Placeholder="Read only" IsReadOnly="true" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
-                                    <TextBox Header="Last name" Placeholder="Disabled" IsEnabled="false" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
-                                    <ProgressBar IsIndeterminate="true" Width="150" HorizontalAlignment="HorizontalAlignment.Left" />
-                                    <ProgressBar Value="75" />
-                                    <DropDownList Header="Drop down list header"
-                                                  Items="@(new List<DropDownListItem>
+                                            <MonacoEditor />
+                                            <Button VerticalAlignment="VerticalAlignment.Center" IsEnabled="true" @onclick="OnSetFavorite">Set favorite</Button>
+                                            <Button HorizontalAlignment="HorizontalAlignment.Left" IsEnabled="false">Set favorite</Button>
+                                            <Button HorizontalAlignment="HorizontalAlignment.Center" IsEnabled="true" Appearance="ButtonAppearance.Accent">Set favorite</Button>
+                                            <Button HorizontalAlignment="HorizontalAlignment.Right" Height="100" Width="200" IsEnabled="false" Appearance="ButtonAppearance.Accent">Set favorite</Button>
+                                            <Button IsEnabled="true" Appearance="ButtonAppearance.Stealth">Set favorite</Button>
+                                            <Button VerticalAlignment="VerticalAlignment.Bottom" IsEnabled="false" Appearance="ButtonAppearance.Stealth">Set favorite</Button>
+                                            <TextBox Header="First name" Placeholder="Normal" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
+                                            <TextBox Header="Middle name" Placeholder="Read only" IsReadOnly="true" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
+                                            <TextBox Header="Last name" Placeholder="Disabled" IsEnabled="false" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
+                                            <ProgressBar IsIndeterminate="true" Width="150" HorizontalAlignment="HorizontalAlignment.Left" />
+                                            <ProgressBar Value="75" />
+                                        </StackPanel>
+                                    </LeftOrTopCellContent>
+                                    <RightOrBottomCellContent>
+                                        <StackPanel Orientation="Orientation.Vertical">
+                                            <DropDownList Header="Drop down list header"
+                                                          Items="@(new List<DropDownListItem>
                                                     {
                                                         new DropDownListItem { Text = "Item 1", IconGlyph = '\uE670' },
                                                         new DropDownListItem { Text = "Item 2" },
@@ -153,33 +159,35 @@
                                                         new DropDownListItem { Text = "Item 14" },
                                                         new DropDownListItem { Text = "Item 15 - longer text" }
                                                     })">
-                                        <TextBlock Appearance="TextBlockAppearance.Body" Text="Click me!" />
-                                    </DropDownList>
-                                    <ComboBox Items="@(new List<string>
-                                                {
-                                                   "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8", "Item 9", "Item 10",
-                                                   "Item 11", "Item 12", "Item 13", "Item 14", "Item 15", "Item 16 - longer text"
-                                                })"
-                                              Context="item"
-                                              @bind-SelectedIndex="@ComboBoxSelectedItem"
-                                              Header="ComboBox header"
-                                              HorizontalAlignment="HorizontalAlignment.Left">
-                                        <ItemTemplate>
-                                            @item
-                                        </ItemTemplate>
-                                    </ComboBox>
-                                    <ListBox Items="@(new List<string>
-                                                {
-                                                   "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8", "Item 9", "Item 10",
-                                                   "Item 11", "Item 12", "Item 13", "Item 14", "Item 15", "Item 16 - longer text"
-                                                })"
-                                             Context="item"
-                                             SelectedIndex="1">
-                                        <ItemTemplate>
-                                            @item
-                                        </ItemTemplate>
-                                    </ListBox>
-                                </StackPanel>
+                                                <TextBlock Appearance="TextBlockAppearance.Body" Text="Click me!" />
+                                            </DropDownList>
+                                            <ComboBox Items="@(new List<string>
+                                                        {
+                                                           "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8", "Item 9", "Item 10",
+                                                           "Item 11", "Item 12", "Item 13", "Item 14", "Item 15", "Item 16 - longer text"
+                                                        })"
+                                                      Context="item"
+                                                      @bind-SelectedIndex="@ComboBoxSelectedItem"
+                                                      Header="ComboBox header"
+                                                      HorizontalAlignment="HorizontalAlignment.Left">
+                                                <ItemTemplate>
+                                                    @item
+                                                </ItemTemplate>
+                                            </ComboBox>
+                                            <ListBox Items="@(new List<string>
+                                                        {
+                                                           "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8", "Item 9", "Item 10",
+                                                           "Item 11", "Item 12", "Item 13", "Item 14", "Item 15", "Item 16 - longer text"
+                                                        })"
+                                                     Context="item"
+                                                     SelectedIndex="1">
+                                                <ItemTemplate>
+                                                    @item
+                                                </ItemTemplate>
+                                            </ListBox>
+                                        </StackPanel>
+                                    </RightOrBottomCellContent>
+                                </SplitGrid>
                             </GridCell>
                         </Grid>
                     </ScrollViewer>
