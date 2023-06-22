@@ -2,12 +2,14 @@
 
 public partial class SplitGrid : JSStyledComponentBase
 {
+    protected override string JavaScriptFile => "./_content/DevToys.Blazor/Components/Layout/SplitGrid/SplitGrid.razor.js";
+
     private ElementReference _gutterElement;
 
     protected string? StyleValue => new StyleBuilder()
         .AddStyle("display", "grid")
-        .AddStyle("grid-template-columns", $"{GetCellLength(LeftOrTopCellSize)} 10px {GetCellLength(RightOrBottomCellSize)}", GutterOrientation == Orientation.Vertical)
-        .AddStyle("grid-template-rows", $"{GetCellLength(LeftOrTopCellSize)} 10px {GetCellLength(RightOrBottomCellSize)}", GutterOrientation == Orientation.Horizontal)
+        .AddStyle("grid-template-columns", $"{GetCellLength(LeftOrTopCellSize)} 16px {GetCellLength(RightOrBottomCellSize)}", GutterOrientation == Orientation.Vertical)
+        .AddStyle("grid-template-rows", $"{GetCellLength(LeftOrTopCellSize)} 16px {GetCellLength(RightOrBottomCellSize)}", GutterOrientation == Orientation.Horizontal)
         .AddStyle(Style)
         .Build();
 
@@ -19,6 +21,8 @@ public partial class SplitGrid : JSStyledComponentBase
         .AddStyle("grid-row", "1/-1", GutterOrientation == Orientation.Vertical)
         .AddStyle("grid-row", "2", GutterOrientation == Orientation.Horizontal)
         .Build();
+
+    protected char GripperGlyph => GutterOrientation == Orientation.Vertical ? '\uE9F8' : '\uE9F5';
 
     /// <summary>
     /// Gets or sets the length of the left or top cell.
@@ -58,7 +62,7 @@ public partial class SplitGrid : JSStyledComponentBase
 
     public override async ValueTask DisposeAsync()
     {
-        await JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.SplitGrid.dispose", Element);
+        await (await JSModule).InvokeVoidAsync("dispose", Element);
         await base.DisposeAsync();
     }
 
@@ -68,8 +72,8 @@ public partial class SplitGrid : JSStyledComponentBase
 
         if (firstRender)
         {
-            await JSRuntime.InvokeVoidWithErrorHandlingAsync(
-                "devtoys.SplitGrid.initializeSplitGrid",
+            await (await JSModule).InvokeVoidAsync(
+                "initializeSplitGrid",
                 Element,
                 _gutterElement,
                 GutterOrientation == Orientation.Vertical,
