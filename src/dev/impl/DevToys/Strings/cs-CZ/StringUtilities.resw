@@ -121,13 +121,13 @@
     <value>Nástroj pro práci s řetězci</value>
   </data>
   <data name="AlternatingCase" xml:space="preserve">
-    <value>aLtErNaTiNg cAsE</value>
+    <value>sTřÍdAvá nOtAcE</value>
   </data>
   <data name="Bytes" xml:space="preserve">
     <value>Bajty:</value>
   </data>
   <data name="CamelCase" xml:space="preserve">
-    <value>camelCase</value>
+    <value>velbloudíNotace</value>
   </data>
   <data name="CharacterDistribution" xml:space="preserve">
     <value>Rozložení znaků</value>
@@ -136,46 +136,46 @@
     <value>Znaky:</value>
   </data>
   <data name="CobolCase" xml:space="preserve">
-    <value>COBOL-CASE</value>
+    <value>COBOL-NOTACE</value>
   </data>
   <data name="Column" xml:space="preserve">
     <value>Sloupec:</value>
   </data>
   <data name="ConstantCase" xml:space="preserve">
-    <value>CONSTANT_CASE</value>
+    <value>KONSTANTNÍ-NOTACE</value>
   </data>
   <data name="Convert" xml:space="preserve">
     <value>Převést</value>
   </data>
   <data name="Sort" xml:space="preserve">
-    <value>Sort Lines</value>
+    <value>Seřadit řádky</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Velikost písmen</value>
+    <value>Inspektor a převodník notací</value>
   </data>
   <data name="InverseCase" xml:space="preserve">
-    <value>InVeRsE CaSe</value>
+    <value>InVeRzNí NoTaCe</value>
   </data>
   <data name="KebabCase" xml:space="preserve">
-    <value>kebab-case</value>
+    <value>kebabová-notace</value>
   </data>
   <data name="Alphabetize" xml:space="preserve">
-    <value>Alphabetize</value>
+    <value>Seřadit abecedně</value>
   </data>
   <data name="ReverseAlphabetize" xml:space="preserve">
-    <value>Reverse alphabetize</value>
+    <value>Seřadit abecedně obráceně</value>
   </data>
   <data name="AlphabetizeLast" xml:space="preserve">
-    <value>Alphabetize by last word</value>
+    <value>Seřadit abecedně podle posledního slova</value>
   </data>
   <data name="ReverseAlphabetizeLast" xml:space="preserve">
-    <value>Reverse alphabetize by last word</value>
+    <value>Seřadit abecedně obráceně podle posledního slova</value>
   </data>
   <data name="Reverse" xml:space="preserve">
-    <value>Reverse</value>
+    <value>Obrátit</value>
   </data>
   <data name="Randomize" xml:space="preserve">
-    <value>Randomize</value>
+    <value>Náhodně</value>
   </data>
   <data name="Line" xml:space="preserve">
     <value>Řádek:</value>
@@ -184,7 +184,7 @@
     <value>Řádky:</value>
   </data>
   <data name="LowerCase" xml:space="preserve">
-    <value>lower case</value>
+    <value>malá písmena</value>
   </data>
   <data name="OriginalCase" xml:space="preserve">
     <value>Originální text</value>
@@ -193,7 +193,7 @@
     <value>Odstavce:</value>
   </data>
   <data name="PascalCase" xml:space="preserve">
-    <value>PascalCase</value>
+    <value>PascalováNotace</value>
   </data>
   <data name="Position" xml:space="preserve">
     <value>Pozice:</value>
@@ -202,13 +202,13 @@
     <value>Výběr</value>
   </data>
   <data name="SentenceCase" xml:space="preserve">
-    <value>Sentence case</value>
+    <value>Větná notace</value>
   </data>
   <data name="Sentences" xml:space="preserve">
     <value>Věty:</value>
   </data>
   <data name="SnakeCase" xml:space="preserve">
-    <value>snake_case</value>
+    <value>hadí_notace</value>
   </data>
   <data name="Statistics" xml:space="preserve">
     <value>Statistiky</value>
@@ -217,13 +217,13 @@
     <value>Řetězec (String)</value>
   </data>
   <data name="TitleCase" xml:space="preserve">
-    <value>Title Case</value>
+    <value>Titulová Notace</value>
   </data>
   <data name="TrainCase" xml:space="preserve">
-    <value>Train-Case</value>
+    <value>Vlaková-Notace</value>
   </data>
   <data name="UpperCase" xml:space="preserve">
-    <value>UPPER CASE</value>
+    <value>VELKÁ PÍSMENA</value>
   </data>
   <data name="WordDistribution" xml:space="preserve">
     <value>Rozložení slov</value>
@@ -232,10 +232,10 @@
     <value>Slova:</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Analýza a převod velikosti písmen textu</value>
+    <value>Analyzovat text a převést jej na jinou notaci</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Převodník a inspektor velikosti písmen textu</value>
+    <value>Převodník a inspektor textových notací</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>Řetězec (String)</value>
