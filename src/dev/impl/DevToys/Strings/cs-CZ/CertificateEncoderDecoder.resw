@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Certificate Encoder and Decoder tool</value>
+    <value>Nástroj pro dekódování certifikátů</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Certificate</value>
+    <value>Certifikát</value>
   </data>
   <data name="PasswordTitle" xml:space="preserve">
-    <value>Password</value>
+    <value>Heslo</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
     <value>Vstup</value>
@@ -133,18 +133,18 @@
     <value>Výstup</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Encode or decode a certificate</value>
+    <value>Dekódovat certifikát</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Certificate Encoder / Decoder</value>
+    <value>Dekodér certifikátu</value>
   </data>
   <data name="InvalidPasswordError" xml:space="preserve">
-    <value>Invalid password.</value>
+    <value>Neplatné heslo.</value>
   </data>
   <data name="UnsupportedFormatError" xml:space="preserve">
-    <value>Certificate Request format not currently supported.</value>
+    <value>Formát žádosti o certifikát není v současné době podporován.</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Checksum Generator</value>
+    <value>CER PFX PEM</value>
   </data>
 </root>
