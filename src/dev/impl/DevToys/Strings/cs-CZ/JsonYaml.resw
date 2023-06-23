@@ -133,7 +133,7 @@
     <value>JSON &lt;&gt; YAML</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
-    <value>4 místa</value>
+    <value>4 mezery</value>
   </data>
   <data name="Indentation" xml:space="preserve">
     <value>Odsazení</value>
@@ -151,7 +151,7 @@
     <value>Výstup</value>
   </data>
   <data name="TwoSpaces" xml:space="preserve">
-    <value>2 místa</value>
+    <value>2 mezery</value>
   </data>
   <data name="YamlToJson" xml:space="preserve">
     <value>YAML na JSON</value>
