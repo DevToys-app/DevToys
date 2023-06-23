@@ -127,7 +127,7 @@
     <value>Konfigurasjon</value>
   </data>
   <data name="ConversionDecompress" xml:space="preserve">
-    <value>Decompress</value>
+    <value>Dekomprimer</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
     <value>Select whether the input should be compressed or decompressed</value>
