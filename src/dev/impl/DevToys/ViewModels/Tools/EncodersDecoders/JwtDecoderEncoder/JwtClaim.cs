@@ -26,6 +26,8 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
 
         #region Statics
 
+        // We need a direct reference to the ResourceLoader here, rather than going through LanguageManager.Instance.JwtDecoderEncoder,
+        // so that we can generically load any resource by name with GetString, rather than having to use the properties.
         private static readonly ResourceLoader Resources = ResourceLoader.GetForViewIndependentUse(nameof(JwtDecoderEncoder));
 
         private static bool TryGetDescription(string claim, out string? description)
