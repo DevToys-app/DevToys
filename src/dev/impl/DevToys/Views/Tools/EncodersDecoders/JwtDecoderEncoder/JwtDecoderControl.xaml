@@ -9,8 +9,7 @@
     xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:DevToys="using:DevToys"
     xmlns:controls="using:DevToys.UI.Controls"
-    xmlns:converters="using:DevToys.UI.Converters"
-    Loaded="OnLoaded">
+    xmlns:converters="using:DevToys.UI.Converters">
 
     <UserControl.Resources>
         <converters:NullToBooleanConverter x:Name="NullToVisible" IsInverted="True"/>
@@ -206,11 +205,11 @@
                     CornerRadius="{ThemeResource ControlCornerRadius}"
                     Background="{ThemeResource TextControlBackground}">
                     <toolkit:DataGrid
-                        x:Name="InfoDataGrid"
                         AutoGenerateColumns="False"
                         ItemsSource="{x:Bind ViewModel.Claims, Mode=OneWay}"
                         AlternatingRowBackground="{ThemeResource TextControlButtonBackgroundPressed}"
-                        RowDetailsTemplate="{StaticResource InfoDataGridRowDetailsTemplate}">
+                        RowDetailsTemplate="{StaticResource InfoDataGridRowDetailsTemplate}"
+                        FontFamily="{x:Bind InfoDataGridFontFamily, Mode=OneWay}">
                         <toolkit:DataGrid.Resources>
                             <!-- This key just has to exist to remove the default coloring of the column headers and make them look like the rows. -->
                             <SolidColorBrush x:Key="DataGridColumnHeaderBackgroundColor"/>

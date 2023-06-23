@@ -14,7 +14,7 @@ namespace DevToys.Views.Tools.EncodersDecoders.JwtDecoderEncoder
 {
     public sealed partial class JwtDecoderControl : UserControl
     {
-        private readonly ISettingsProvider? _settingsProvider;
+        private readonly ISettingsProvider _settingsProvider;
 
         public static readonly DependencyProperty ViewModelProperty
            = DependencyProperty.Register(
@@ -37,10 +37,25 @@ namespace DevToys.Views.Tools.EncodersDecoders.JwtDecoderEncoder
             set => SetValue(ViewModelProperty, value);
         }
 
+        public static readonly DependencyProperty InfoDataGridFontFamilyProperty
+            = DependencyProperty.Register(
+                nameof(FontFamily),
+                typeof(JwtDecoderControlViewModel),
+                typeof(JwtDecoderControl),
+                new PropertyMetadata(null));
+
+        public FontFamily InfoDataGridFontFamily
+        {
+            get => (FontFamily)GetValue(InfoDataGridFontFamilyProperty);
+            set => SetValue(InfoDataGridFontFamilyProperty, value);
+        }
+
         public JwtDecoderControl()
         {
             _settingsProvider = Shared.Core.MefComposer.Provider.Import<ISettingsProvider>();
             _settingsProvider.SettingChanged += SettingsProvider_SettingChanged;
+
+            ApplySettings();
 
             InitializeComponent();
         }
@@ -66,21 +81,9 @@ namespace DevToys.Views.Tools.EncodersDecoders.JwtDecoderEncoder
             }
         }
 
-        private void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            ApplySettings();
-        }
-
         private void ApplySettings()
         {
-            if (_settingsProvider is not null && InfoDataGrid is not null)
-            {
-                FontFamily fontFamily = new(_settingsProvider.GetSetting(PredefinedSettings.TextEditorFont));
-                InfoDataGrid.FontFamily = fontFamily;
-                Style style = new(typeof(DataGridColumnHeader));
-                style.Setters.Add(new Setter(FontFamilyProperty, fontFamily));
-                InfoDataGrid.ColumnHeaderStyle = style;
-            }
+            InfoDataGridFontFamily = new FontFamily(_settingsProvider.GetSetting(PredefinedSettings.TextEditorFont));
         }
     }
 }
