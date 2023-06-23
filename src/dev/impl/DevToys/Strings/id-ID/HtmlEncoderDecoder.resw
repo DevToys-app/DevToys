@@ -148,7 +148,7 @@
     <value>Encode atau decode semua karakter yang berlaku ke entitas HTML yang sesuai</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>HTML Encoder / Decoder</value>
+    <value>Encoder / Dekoder HTML</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value/>
