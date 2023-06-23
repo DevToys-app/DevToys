@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Nástroj pro generování Kontrolního součtu</value>
+    <value>Nástroj pro generování kontrolního součtu</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Zrušit</value>
@@ -127,7 +127,7 @@
     <value>Konfigurace</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generování Hashe s Kontrolním součtem souboru</value>
+    <value>Generování hashe s kontrolním součtem na základě souboru</value>
   </data>
   <data name="HashingAlgorithmDescription" xml:space="preserve">
     <value>Zvolte hashovací algoritmus, který chcete použít</value>
@@ -157,7 +157,7 @@
     <value>Checksum Generator</value>
   </data>
   <data name="HashesMatch" xml:space="preserve">
-    <value>Hashe jsou stené.</value>
+    <value>Hashe jsou totožné.</value>
   </data>
   <data name="HashesMismatch" xml:space="preserve">
     <value>Hashe se neshodují.</value>
