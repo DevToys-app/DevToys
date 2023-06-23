@@ -148,7 +148,7 @@
     <value>Encode atau decode semua karakter yang berlaku ke entitas URL yang sesuai</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>URL Encoder / Decoder</value>
+    <value>Enkoder / Dekoder URL</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value/>
