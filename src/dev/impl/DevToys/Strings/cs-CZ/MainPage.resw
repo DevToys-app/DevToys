@@ -133,7 +133,7 @@
     <value>Líbí se Vám DevToys? Budeme rádi, pokud zvážíte aplikaci ohodnotit!</value>
   </data>
   <data name="NotificationRateAppTitle" xml:space="preserve">
-    <value>Zdravíme! 😅</value>
+    <value>Um... ahoj! 😅</value>
   </data>
   <data name="NotificationReleaseNoteActionableActionText" xml:space="preserve">
     <value>zjistit více...</value>
@@ -167,13 +167,13 @@
     <value>Nebyly nalezeny žádné výsledky</value>
   </data>
   <data name="SurveyDescription" xml:space="preserve">
-    <value>We would love to hear about your experience with DevToys so we can improve it.</value>
+    <value>Rádi bychom se dozvěděli o vašich zkušenostech s aplikací DevToys, abychom ji mohli vylepšit.</value>
   </data>
   <data name="SurveyTitle" xml:space="preserve">
-    <value>The development of DevToys 2.0 started! 🥳</value>
+    <value>Vývoj DevToys 2.0 začal! 🥳</value>
   </data>
   <data name="SurveyYesButton" xml:space="preserve">
-    <value>open the survey...</value>
+    <value>otevřít dotazník...</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
