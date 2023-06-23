@@ -151,7 +151,7 @@
     <value>Pembuat Hash</value>
   </data>
   <data name="OutputBase64" xml:space="preserve">
-    <value>Base64</value>
+    <value>Basis64</value>
   </data>
   <data name="OutputHex" xml:space="preserve">
     <value>Hex</value>
