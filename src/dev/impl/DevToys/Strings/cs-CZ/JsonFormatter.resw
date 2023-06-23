@@ -127,7 +127,7 @@
     <value>JSON</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
-    <value>4 místa</value>
+    <value>4 mezery</value>
   </data>
   <data name="Indentation" xml:space="preserve">
     <value>Odsazení</value>
@@ -145,10 +145,10 @@
     <value>Výstup</value>
   </data>
   <data name="TwoSpaces" xml:space="preserve">
-    <value>2 místa</value>
+    <value>2 mezery</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Odsazení nebo zmenšení dat Json</value>
+    <value>Odsazení nebo minimalizování JSON dat</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Formátování JSON</value>
@@ -157,6 +157,6 @@
     <value>Checksum Generator</value>
   </data>
   <data name="SortProperties" xml:space="preserve">
-    <value>Sort JSON properties alphabetically</value>
+    <value>Abecedně seřadit JSON vlastnosti</value>
   </data>
 </root>
