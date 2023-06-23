@@ -87,109 +87,118 @@
         {
             if (ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem)
             {
+                <!-- TODO: Place here a component that takes in argument the guiToolViewItem -->
                 <div class="entranceThemeTransition" style="display: contents">
                     <ScrollViewer>
-                        <Grid ColumnSpacing="12"
-                              RowSpacing="12"
-                              Columns="@(new List<GridLength>
-                                {
-                                    GridLength.Auto,
-                                    new GridLength(1, GridUnitType.Fraction),
-                                    new GridLength(250)
-                                })">
+                        <StackPanel Orientation="Orientation.Vertical">
+                            <Grid ColumnSpacing="12"
+                                  RowSpacing="12"
+                                  Columns="@(new List<GridLength>
+                                    {
+                                        GridLength.Auto,
+                                        new GridLength(1, GridUnitType.Fraction),
+                                        new GridLength(250)
+                                    })">
 
-                            <GridCell Column="0">
-                                <StackPanel Orientation="Orientation.Vertical">
-                                    <ProgressRing IsIndeterminate="true" />
-                                    <ProgressRing Value="75" Size="32" />
-                                    <CheckBox IsChecked="true" Text="An option" />
-                                    <CheckBox IsChecked="true" IsEnabled="false" Text="An option" />
-                                    <CheckBox IsChecked="false" IsEnabled="false" Text="An option" />
-                                    <ToggleSwitch IsOn="true" Text="An option" />
-                                    <ToggleSwitch IsOn="true" IsEnabled="false" Text="An option" />
-                                    <ToggleSwitch IsOn="false" IsEnabled="false" Text="An option" />
-                                    <StackPanel>
-                                        <RadioButton Text="Option 1" Group="Group1" />
-                                        <RadioButton Text="Option 2" Group="Group1" />
-                                        <RadioButton Text="Option 3" Group="Group1" />
-                                        <RadioButton Text="Option 4" Group="Group1" IsEnabled="false" />
+                                <GridCell Column="0">
+                                    <StackPanel Orientation="Orientation.Vertical">
+                                        <ProgressRing IsIndeterminate="true" />
+                                        <ProgressRing Value="75" Size="32" />
+                                        <CheckBox IsChecked="true" Text="An option" />
+                                        <CheckBox IsChecked="true" IsEnabled="false" Text="An option" />
+                                        <CheckBox IsChecked="false" IsEnabled="false" Text="An option" />
+                                        <ToggleSwitch IsOn="true" Text="An option" />
+                                        <ToggleSwitch IsOn="true" IsEnabled="false" Text="An option" />
+                                        <ToggleSwitch IsOn="false" IsEnabled="false" Text="An option" />
+                                        <StackPanel>
+                                            <RadioButton Text="Option 1" Group="Group1" />
+                                            <RadioButton Text="Option 2" Group="Group1" />
+                                            <RadioButton Text="Option 3" Group="Group1" />
+                                            <RadioButton Text="Option 4" Group="Group1" IsEnabled="false" />
+                                        </StackPanel>
                                     </StackPanel>
-                                </StackPanel>
-                            </GridCell>
+                                </GridCell>
 
-                            <GridCell Column="1" ColumnSpan="2">
-                                <SplitGrid>
-                                    <LeftOrTopCellContent>
-                                        <StackPanel Orientation="Orientation.Vertical">
-                                            <TextBlock Appearance="TextBlockAppearance.TitleLarge" Text="@guiToolViewItem.ToolInstance.LongOrShortDisplayTitle" />
-                                            <!-- TODO: Place here a component that takes in argument the guiToolViewItem -->
-
-                                            <MonacoEditor />
-                                            <Button VerticalAlignment="VerticalAlignment.Center" IsEnabled="true" @onclick="OnSetFavorite">Set favorite</Button>
-                                            <Button HorizontalAlignment="HorizontalAlignment.Left" IsEnabled="false">Set favorite</Button>
-                                            <Button HorizontalAlignment="HorizontalAlignment.Center" IsEnabled="true" Appearance="ButtonAppearance.Accent">Set favorite</Button>
-                                            <Button HorizontalAlignment="HorizontalAlignment.Right" Height="100" Width="200" IsEnabled="false" Appearance="ButtonAppearance.Accent">Set favorite</Button>
-                                            <Button IsEnabled="true" Appearance="ButtonAppearance.Stealth">Set favorite</Button>
-                                            <Button VerticalAlignment="VerticalAlignment.Bottom" IsEnabled="false" Appearance="ButtonAppearance.Stealth">Set favorite</Button>
-                                            <TextBox Header="First name" Placeholder="Normal" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
-                                            <TextBox Header="Middle name" Placeholder="Read only" IsReadOnly="true" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
-                                            <TextBox Header="Last name" Placeholder="Disabled" IsEnabled="false" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
-                                            <ProgressBar IsIndeterminate="true" Width="150" HorizontalAlignment="HorizontalAlignment.Left" />
-                                            <ProgressBar Value="75" />
-                                        </StackPanel>
-                                    </LeftOrTopCellContent>
-                                    <RightOrBottomCellContent>
-                                        <StackPanel Orientation="Orientation.Vertical">
-                                            <DropDownList Header="Drop down list header"
-                                                          Items="@(new List<DropDownListItem>
-                                                    {
-                                                        new DropDownListItem { Text = "Item 1", IconGlyph = '\uE670' },
-                                                        new DropDownListItem { Text = "Item 2" },
-                                                        new DropDownListItem { Text = "Item 3" },
-                                                        new DropDownListItem { Text = "Item 4" },
-                                                        new DropDownListItem { Text = "Item 5" },
-                                                        new DropDownListItem { Text = "Item 6" },
-                                                        new DropDownListItem { Text = "Item 7" },
-                                                        new DropDownListItem { Text = "Item 8" },
-                                                        new DropDownListItem { Text = "Item 9" },
-                                                        new DropDownListItem { Text = "Item 10" },
-                                                        new DropDownListItem { Text = "Item 11" },
-                                                        new DropDownListItem { Text = "Item 12" },
-                                                        new DropDownListItem { Text = "Item 13" },
-                                                        new DropDownListItem { Text = "Item 14" },
-                                                        new DropDownListItem { Text = "Item 15 - longer text" }
-                                                    })">
-                                                <TextBlock Appearance="TextBlockAppearance.Body" Text="Click me!" />
-                                            </DropDownList>
-                                            <ComboBox Items="@(new List<string>
+                                <GridCell Column="1" ColumnSpan="2">
+                                    <SplitGrid>
+                                        <LeftOrTopCellContent>
+                                            <StackPanel Orientation="Orientation.Vertical">
+                                                <TextBlock Appearance="TextBlockAppearance.TitleLarge" Text="@guiToolViewItem.ToolInstance.LongOrShortDisplayTitle" />
+                                                <MonacoEditor />
+                                                <Button VerticalAlignment="VerticalAlignment.Center" IsEnabled="true" @onclick="OnSetFavorite">Set favorite</Button>
+                                                <Button HorizontalAlignment="HorizontalAlignment.Left" IsEnabled="false">Set favorite</Button>
+                                                <Button HorizontalAlignment="HorizontalAlignment.Center" IsEnabled="true" Appearance="ButtonAppearance.Accent">Set favorite</Button>
+                                                <Button HorizontalAlignment="HorizontalAlignment.Right" Height="100" Width="200" IsEnabled="false" Appearance="ButtonAppearance.Accent">Set favorite</Button>
+                                                <Button IsEnabled="true" Appearance="ButtonAppearance.Stealth">Set favorite</Button>
+                                                <Button VerticalAlignment="VerticalAlignment.Bottom" IsEnabled="false" Appearance="ButtonAppearance.Stealth">Set favorite</Button>
+                                                <TextBox Header="First name" Placeholder="Normal" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
+                                                <TextBox Header="Middle name" Placeholder="Read only" IsReadOnly="true" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
+                                                <TextBox Header="Last name" Placeholder="Disabled" IsEnabled="false" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
+                                                <ProgressBar IsIndeterminate="true" Width="150" HorizontalAlignment="HorizontalAlignment.Left" />
+                                                <ProgressBar Value="75" />
+                                            </StackPanel>
+                                        </LeftOrTopCellContent>
+                                        <RightOrBottomCellContent>
+                                            <StackPanel Orientation="Orientation.Vertical">
+                                                <DropDownList Header="Drop down list header"
+                                                              Items="@(new List<DropDownListItem>
                                                         {
-                                                           "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8", "Item 9", "Item 10",
-                                                           "Item 11", "Item 12", "Item 13", "Item 14", "Item 15", "Item 16 - longer text"
-                                                        })"
-                                                      Context="item"
-                                                      @bind-SelectedIndex="@ComboBoxSelectedItem"
-                                                      Header="ComboBox header"
-                                                      HorizontalAlignment="HorizontalAlignment.Left">
-                                                <ItemTemplate>
-                                                    @item
-                                                </ItemTemplate>
-                                            </ComboBox>
-                                            <ListBox Items="@(new List<string>
-                                                        {
-                                                           "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8", "Item 9", "Item 10",
-                                                           "Item 11", "Item 12", "Item 13", "Item 14", "Item 15", "Item 16 - longer text"
-                                                        })"
-                                                     Context="item"
-                                                     SelectedIndex="1">
-                                                <ItemTemplate>
-                                                    @item
-                                                </ItemTemplate>
-                                            </ListBox>
-                                        </StackPanel>
-                                    </RightOrBottomCellContent>
-                                </SplitGrid>
-                            </GridCell>
-                        </Grid>
+                                                            new DropDownListItem { Text = "Item 1", IconGlyph = '\uE670' },
+                                                            new DropDownListItem { Text = "Item 2" },
+                                                            new DropDownListItem { Text = "Item 3" },
+                                                            new DropDownListItem { Text = "Item 4" },
+                                                            new DropDownListItem { Text = "Item 5" },
+                                                            new DropDownListItem { Text = "Item 6" },
+                                                            new DropDownListItem { Text = "Item 7" },
+                                                            new DropDownListItem { Text = "Item 8" },
+                                                            new DropDownListItem { Text = "Item 9" },
+                                                            new DropDownListItem { Text = "Item 10" },
+                                                            new DropDownListItem { Text = "Item 11" },
+                                                            new DropDownListItem { Text = "Item 12" },
+                                                            new DropDownListItem { Text = "Item 13" },
+                                                            new DropDownListItem { Text = "Item 14" },
+                                                            new DropDownListItem { Text = "Item 15 - longer text" }
+                                                        })">
+                                                    <TextBlock Appearance="TextBlockAppearance.Body" Text="Click me!" />
+                                                </DropDownList>
+                                                <ComboBox Items="@(new List<string>
+                                                            {
+                                                               "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8", "Item 9", "Item 10",
+                                                               "Item 11", "Item 12", "Item 13", "Item 14", "Item 15", "Item 16 - longer text"
+                                                            })"
+                                                          Context="item"
+                                                          @bind-SelectedIndex="@ComboBoxSelectedItem"
+                                                          Header="ComboBox header"
+                                                          HorizontalAlignment="HorizontalAlignment.Left">
+                                                    <ItemTemplate>
+                                                        @item
+                                                    </ItemTemplate>
+                                                </ComboBox>
+                                                <ListBox Items="@(new List<string>
+                                                            {
+                                                               "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8", "Item 9", "Item 10",
+                                                               "Item 11", "Item 12", "Item 13", "Item 14", "Item 15", "Item 16 - longer text"
+                                                            })"
+                                                         Context="item"
+                                                         SelectedIndex="1">
+                                                    <ItemTemplate>
+                                                        @item
+                                                    </ItemTemplate>
+                                                </ListBox>
+                                            </StackPanel>
+                                        </RightOrBottomCellContent>
+                                    </SplitGrid>
+                                </GridCell>
+                            </Grid>
+                            <InfoBar IsOpen="true" IsClosable="false" Title="Title" Message="Message" />
+                            <InfoBar IsOpen="true" IsIconVisible="false" Title="Title" Message="Message" />
+                            <InfoBar IsOpen="true" ActionButtonText="Action" Title="Title" Message="Message" />
+                            <InfoBar IsOpen="true" ActionButtonText="Action" IsActionButtonAccent="true" Title="Title" Message="Message" />
+                            <InfoBar IsOpen="true" Title="Title" Message="Message" Severity="InfoBarSeverity.Success" />
+                            <InfoBar IsOpen="true" Title="Title" Message="Message" Severity="InfoBarSeverity.Warning" />
+                            <InfoBar IsOpen="true" Title="Title" Message="Message" Severity="InfoBarSeverity.Error" />
+                            <InfoBar IsOpen="true" ActionButtonText="Action" Title="Title" Message="Sanctus gubergren dolore molestie rebum minim molestie et aliquyam lorem ea. Nulla feugiat dolor elitr kasd vero vero lorem imperdiet stet dolor mazim accusam. Sanctus elit ex possim sit rebum stet dolores. Ipsum eos duis sed accusam et takimata kasd sea diam." />
+                        </StackPanel>
                     </ScrollViewer>
                 </div>
             }

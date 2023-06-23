@@ -12,6 +12,17 @@
     --accent-tertiary: rgba(var(--accent-light-2), 0.8);
     --accent-disabled: rgba(255, 255, 255, 0.158);
 
+    /* System fill colors */
+    --system-fill-color-success: rgb(108, 203, 95);
+    --system-fill-color-caution: rgb(252, 225, 0);
+    --system-fill-color-critical: rgb(255, 153, 164);
+    --system-fill-color-neutral: rgba(255, 255, 255, 0.545);
+    --system-fill-color-success-background: rgb(57, 61, 27);
+    --system-fill-color-caution-background: rgb(67, 53, 25);
+    --system-fill-color-critical-background: rgb(68, 39, 38);
+    --system-fill-color-neutral-background: rgba(255, 255, 255, 0.031);
+    --system-fill-color-attention-background: rgba(255, 255, 255, 0.031);
+
     /* Text on Accent */
     --text-on-accent-primary: rgb(0, 0, 0);
     --text-on-accent-secondary: rgba(0, 0, 0, 0.5);
@@ -298,4 +309,27 @@
     --scrollbar-thumb-border-color-hover: rgba(183, 183, 183, 0.42);
     --scrollbar-thumb-background-color: rgb(205, 205, 205);
     --scrollbar-thumb-background-color-hover: rgb(218, 218, 218);
+
+    /* InfoBar */
+    --info-bar-error-severity-background: var(--system-fill-color-critical-background);
+    --info-bar-warning-severity-background: var(--system-fill-color-caution-background);
+    --info-bar-success-severity-background: var(--system-fill-color-success-background);
+    --info-bar-informational-severity-background: var(--system-fill-color-attention-background);
+
+    --info-bar-error-severity-icon-background: var(--system-fill-color-critical);
+    --info-bar-warning-severity-icon-background: var(--system-fill-color-caution);
+    --info-bar-success-severity-icon-background: var(--system-fill-color-success);
+    --info-bar-informational-severity-icon-background: var(--accent-default);
+
+    --info-bar-error-severity-icon-foreground: var(--text-fill-color-inverse);
+    --info-bar-warning-severity-icon-foreground: var(--text-fill-color-inverse);
+    --info-bar-success-severity-icon-foreground: var(--text-fill-color-inverse);
+    --info-bar-informational-severity-icon-foreground: var(--text-fill-color-inverse);
+
+    --info-bar-title-foreground: var(--text-fill-color-primary);
+    --info-bar-message-foreground: var(--text-fill-color-primary);
+
+    --info-bar-border: var(--card-stroke-color-default);
+    --info-bar-border-thickness: 1px;
+    --info-bar-border-corner-radius: var(--control-corner-radius);
 }
