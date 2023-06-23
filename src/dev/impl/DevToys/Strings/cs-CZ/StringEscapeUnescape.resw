@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Text Escape and Unescape tool</value>
+    <value>Nástroj na escapování/unescapování textu</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Escape / Unescape</value>
+    <value>Escapovat/Unescapovat</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
     <value>Výstup</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Escapes or unescapes a string, removing characters that could prevent parsing.</value>
+    <value>Escapuje nebo unescapuje řetězec, čímž odstraní znaky, které by mohly zabránit parsování.</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Text Escape / Unescape</value>
+    <value>Escapování / Unescapování textu</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>Checksum Generator</value>
@@ -140,13 +140,13 @@
     <value>Konfigurace</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
-    <value>Unescape</value>
+    <value>Unescapovat</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
     <value>Zvolte režim převodu, který chcete použít</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
-    <value>Escape</value>
+    <value>Escapovat</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
     <value>Převod</value>
