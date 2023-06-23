@@ -766,6 +766,16 @@ namespace DevToys
         public string Expand => _resources.GetString("Expand");
 
         /// <summary>
+        /// Gets the resource ShowInfo.
+        /// </summary>
+        public string ShowInfo => _resources.GetString("ShowInfo");
+
+        /// <summary>
+        /// Gets the resource HideInfo.
+        /// </summary>
+        public string HideInfo => _resources.GetString("HideInfo");
+
+        /// <summary>
         /// Gets the resource FileSelectorBrowseFiles.
         /// </summary>
         public string FileSelectorBrowseFiles => _resources.GetString("FileSelectorBrowseFiles");
@@ -1678,6 +1688,21 @@ namespace DevToys
         public string JwtPayloadLabel => _resources.GetString("JwtPayloadLabel");
 
         /// <summary>
+        /// Gets the resource Type.
+        /// </summary>
+        public string Type => _resources.GetString("Type");
+
+        /// <summary>
+        /// Gets the resource Value.
+        /// </summary>
+        public string Value => _resources.GetString("Value");
+
+        /// <summary>
+        /// Gets the resource DescriptionHeader.
+        /// </summary>
+        public string DescriptionHeader => _resources.GetString("DescriptionHeader");
+
+        /// <summary>
         /// Gets the resource Description.
         /// </summary>
         public string Description => _resources.GetString("Description");
@@ -1896,6 +1921,181 @@ namespace DevToys
         /// Gets the resource InvalidSignatureError.
         /// </summary>
         public string InvalidSignatureError => _resources.GetString("InvalidSignatureError");
+
+        /// <summary>
+        /// Gets the resource NoDescription.
+        /// </summary>
+        public string NoDescription => _resources.GetString("NoDescription");
+
+        /// <summary>
+        /// Gets the resource iss.
+        /// </summary>
+        public string iss => _resources.GetString("iss");
+
+        /// <summary>
+        /// Gets the resource sub.
+        /// </summary>
+        public string sub => _resources.GetString("sub");
+
+        /// <summary>
+        /// Gets the resource aud.
+        /// </summary>
+        public string aud => _resources.GetString("aud");
+
+        /// <summary>
+        /// Gets the resource exp.
+        /// </summary>
+        public string exp => _resources.GetString("exp");
+
+        /// <summary>
+        /// Gets the resource nbf.
+        /// </summary>
+        public string nbf => _resources.GetString("nbf");
+
+        /// <summary>
+        /// Gets the resource iat.
+        /// </summary>
+        public string iat => _resources.GetString("iat");
+
+        /// <summary>
+        /// Gets the resource jti.
+        /// </summary>
+        public string jti => _resources.GetString("jti");
+
+        /// <summary>
+        /// Gets the resource name.
+        /// </summary>
+        public string name => _resources.GetString("name");
+
+        /// <summary>
+        /// Gets the resource given_name.
+        /// </summary>
+        public string given_name => _resources.GetString("given_name");
+
+        /// <summary>
+        /// Gets the resource family_name.
+        /// </summary>
+        public string family_name => _resources.GetString("family_name");
+
+        /// <summary>
+        /// Gets the resource middle_name.
+        /// </summary>
+        public string middle_name => _resources.GetString("middle_name");
+
+        /// <summary>
+        /// Gets the resource nickname.
+        /// </summary>
+        public string nickname => _resources.GetString("nickname");
+
+        /// <summary>
+        /// Gets the resource preferred_username.
+        /// </summary>
+        public string preferred_username => _resources.GetString("preferred_username");
+
+        /// <summary>
+        /// Gets the resource profile.
+        /// </summary>
+        public string profile => _resources.GetString("profile");
+
+        /// <summary>
+        /// Gets the resource picture.
+        /// </summary>
+        public string picture => _resources.GetString("picture");
+
+        /// <summary>
+        /// Gets the resource website.
+        /// </summary>
+        public string website => _resources.GetString("website");
+
+        /// <summary>
+        /// Gets the resource email.
+        /// </summary>
+        public string email => _resources.GetString("email");
+
+        /// <summary>
+        /// Gets the resource email_verified.
+        /// </summary>
+        public string email_verified => _resources.GetString("email_verified");
+
+        /// <summary>
+        /// Gets the resource gender.
+        /// </summary>
+        public string gender => _resources.GetString("gender");
+
+        /// <summary>
+        /// Gets the resource birthdate.
+        /// </summary>
+        public string birthdate => _resources.GetString("birthdate");
+
+        /// <summary>
+        /// Gets the resource zoneinfo.
+        /// </summary>
+        public string zoneinfo => _resources.GetString("zoneinfo");
+
+        /// <summary>
+        /// Gets the resource locale.
+        /// </summary>
+        public string locale => _resources.GetString("locale");
+
+        /// <summary>
+        /// Gets the resource phone_number.
+        /// </summary>
+        public string phone_number => _resources.GetString("phone_number");
+
+        /// <summary>
+        /// Gets the resource phone_number_verified.
+        /// </summary>
+        public string phone_number_verified => _resources.GetString("phone_number_verified");
+
+        /// <summary>
+        /// Gets the resource address.
+        /// </summary>
+        public string address => _resources.GetString("address");
+
+        /// <summary>
+        /// Gets the resource updated_at.
+        /// </summary>
+        public string updated_at => _resources.GetString("updated_at");
+
+        /// <summary>
+        /// Gets the resource azp.
+        /// </summary>
+        public string azp => _resources.GetString("azp");
+
+        /// <summary>
+        /// Gets the resource nonce.
+        /// </summary>
+        public string nonce => _resources.GetString("nonce");
+
+        /// <summary>
+        /// Gets the resource auth_time.
+        /// </summary>
+        public string auth_time => _resources.GetString("auth_time");
+
+        /// <summary>
+        /// Gets the resource at_hash.
+        /// </summary>
+        public string at_hash => _resources.GetString("at_hash");
+
+        /// <summary>
+        /// Gets the resource c_hash.
+        /// </summary>
+        public string c_hash => _resources.GetString("c_hash");
+
+        /// <summary>
+        /// Gets the resource acr.
+        /// </summary>
+        public string acr => _resources.GetString("acr");
+
+        /// <summary>
+        /// Gets the resource amr.
+        /// </summary>
+        public string amr => _resources.GetString("amr");
+
+        /// <summary>
+        /// Gets the resource sub_jwk.
+        /// </summary>
+        public string sub_jwk => _resources.GetString("sub_jwk");
     }
 
     public class LoremIpsumGeneratorStrings : ObservableObject

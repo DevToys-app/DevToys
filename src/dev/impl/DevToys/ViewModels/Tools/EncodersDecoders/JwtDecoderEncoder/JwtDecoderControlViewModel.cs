@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System;
+using System.Collections.Generic;
 using System.Composition;
 using System.Linq;
 using DevToys.Api.Core;
@@ -19,8 +20,18 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
     public sealed class JwtDecoderControlViewModel : JwtDecoderEncoderViewModelBase, IToolViewModel, IRecipient<JwtJobAddedMessage>
     {
         private readonly JwtDecoder _decoder;
+        private IEnumerable<JwtClaim>? _claims;
 
         public Type View { get; } = typeof(JwtDecoderControl);
+
+        internal IEnumerable<JwtClaim>? Claims
+        {
+            get => _claims;
+            set
+            {
+                SetProperty(ref _claims, value);
+            }
+        }
 
         [ImportingConstructor]
         public JwtDecoderControlViewModel(
@@ -95,6 +106,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
 
                 Header = result.Header;
                 Payload = result.Payload;
+                Claims = result.Claims;
 
                 DisplayValidationInfoBar(decoderParamters);
 
@@ -121,6 +133,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         private void ClearPayload()
         {
             Payload = string.Empty;
+            Claims = null;
         }
     }
 }
