@@ -64,4 +64,8 @@
     <ProjectReference Include="..\..\..\DevToys.Localization\DevToys.Localization.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="$(RepoRoot)\src\app\dev\platforms\desktop\DevToys.Windows\wwwroot\index.html" Link="wwwroot\index.html" />
+  </ItemGroup>
+
 </Project>
