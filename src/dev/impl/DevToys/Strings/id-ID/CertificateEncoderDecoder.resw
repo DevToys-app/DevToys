@@ -121,10 +121,10 @@
     <value>Certificate Encoder and Decoder tool</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Certificate</value>
+    <value>Sertifikat</value>
   </data>
   <data name="PasswordTitle" xml:space="preserve">
-    <value>Password</value>
+    <value>Kata sandi</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
     <value>Masukan</value>
@@ -139,10 +139,10 @@
     <value>Certificate Encoder / Decoder</value>
   </data>
   <data name="InvalidPasswordError" xml:space="preserve">
-    <value>Invalid password.</value>
+    <value>Kata sandi tidak valid.</value>
   </data>
   <data name="UnsupportedFormatError" xml:space="preserve">
-    <value>Certificate Request format not currently supported.</value>
+    <value>Format Permintaan Sertifikat saat ini tidak didukung.</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>CER PFX PEM</value>
