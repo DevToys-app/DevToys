@@ -124,7 +124,7 @@
     <value>Konfigurace</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generování dočasného Lorem Ipsum textu</value>
+    <value>Generování zástupného textu Lorem Ipsum</value>
   </data>
   <data name="LengthDescription" xml:space="preserve">
     <value>Počet slov, vět nebo odstavců na vygenerování</value>
@@ -148,7 +148,7 @@
     <value>Věty</value>
   </data>
   <data name="StartWithLoremTitle" xml:space="preserve">
-    <value>Začněte s 'Lorem ipsum dolor sit amet...'</value>
+    <value>Začít s 'Lorem ipsum dolor sit amet...'</value>
   </data>
   <data name="TypeDescription" xml:space="preserve">
     <value>Generovat slova, věty nebo odstavce</value>
