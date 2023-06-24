@@ -15,6 +15,16 @@ export function initializeKeyboardTracking(input: HTMLInputElement): void {
     input.addEventListener("keypress", onKeyPress);
 }
 
+export function increaseValue(input: HTMLInputElement): number {
+    input.stepUp();
+    return input.valueAsNumber;
+}
+
+export function decreaseValue(input: HTMLInputElement): number {
+    input.stepDown();
+    return input.valueAsNumber;
+}
+
 export function dispose(input: HTMLInputElement): void {
     input.removeEventListener("keydown", onKeyDown);
     input.removeEventListener("keydown", onKeyPress);
