@@ -154,7 +154,7 @@
     <value>1</value>
   </data>
   <data name="VersionDescription" xml:space="preserve">
-    <value>Verze UUID pro generovaní</value>
+    <value>Zvolte verzi UUID, která se má vygenerovat</value>
   </data>
   <data name="VersionTitle" xml:space="preserve">
     <value>Verze UUID</value>

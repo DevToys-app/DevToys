@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddToFavorites" xml:space="preserve">
-    <value>Add to favorites</value>
+    <value>Tambahkan ke favorit</value>
   </data>
   <data name="EnterCompactOverlayTooltip" xml:space="preserve">
     <value>Pertahankan diatas (Ctrl+Up)</value>
@@ -133,7 +133,7 @@
     <value>Menikmati DevToys? Harap pertimbangkan untuk menilai kami</value>
   </data>
   <data name="NotificationRateAppTitle" xml:space="preserve">
-    <value>Um... hi! 😅</value>
+    <value>Um... hai! 😅</value>
   </data>
   <data name="NotificationReleaseNoteActionableActionText" xml:space="preserve">
     <value>baca lebih lanjut...</value>
@@ -158,7 +158,7 @@
     <value>Tidak dapat menyematkan alat untuk memulai. Untuk lebih jelasnya, silakan periksa log.</value>
   </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
-    <value>Remove from favorites</value>
+    <value>Hapus dari favorit</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Ketikkan untuk mencari alat</value>
@@ -167,13 +167,13 @@
     <value>Hasil tidak ditemukan</value>
   </data>
   <data name="SurveyDescription" xml:space="preserve">
-    <value>We would love to hear about your experience with DevToys so we can improve it.</value>
+    <value>Kami senang mendengar pengalaman Anda dengan DevToys agar kami dapat memperbaikinya.</value>
   </data>
   <data name="SurveyTitle" xml:space="preserve">
-    <value>The development of DevToys 2.0 started! 🥳</value>
+    <value>Pengembangan DevToys 2.0 dimulai! 🥳</value>
   </data>
   <data name="SurveyYesButton" xml:space="preserve">
-    <value>open the survey...</value>
+    <value>buka survei...</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>

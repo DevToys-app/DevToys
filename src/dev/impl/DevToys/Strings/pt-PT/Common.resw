@@ -124,7 +124,7 @@
     <value>Limpar</value>
   </data>
   <data name="Collapse" xml:space="preserve">
-    <value>Collapse</value>
+    <value>Recolher</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>Copiar</value>
@@ -136,7 +136,7 @@
     <value>Eliminar</value>
   </data>
   <data name="Expand" xml:space="preserve">
-    <value>Expand</value>
+    <value>Expandir</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
     <value>Procurar ficheiros</value>

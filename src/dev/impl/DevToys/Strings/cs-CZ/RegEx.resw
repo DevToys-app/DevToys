@@ -124,16 +124,16 @@
     <value>Konfigurace</value>
   </data>
   <data name="CultureInvariant" xml:space="preserve">
-    <value>Kulturní invariant</value>
+    <value>Jakákoliv kultura</value>
   </data>
   <data name="CultureInvariantDescription" xml:space="preserve">
-    <value>Určuje, aby byly kulturní jazykové rozdíly ignorovány.</value>
+    <value>Určuje, že kulturní rozdíly v jazyce jsou ignorovány.</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Tester regulárních výrazů</value>
   </data>
   <data name="EcmaScript" xml:space="preserve">
-    <value>ECMA Script</value>
+    <value>Skript ECMA</value>
   </data>
   <data name="EcmaScriptDescription" xml:space="preserve">
     <value>Povolí chování výrazu v souladu s ECMAScript. Tuto hodnotu lze použít pouze ve spojení s možnostmi Kulturní invariant, Ignorovat malá a velká písmena a Víceřádkový.</value>
@@ -142,7 +142,7 @@
     <value>Ignorovat malá a velká písmena</value>
   </data>
   <data name="IgnoreCaseDescription" xml:space="preserve">
-    <value>Porovnávání bez rozlišení velkých a malých písmen.</value>
+    <value>Určuje přiřazování bez ohledu na velikost písmen.</value>
   </data>
   <data name="IgnoreWhitespace" xml:space="preserve">
     <value>Ignorovat bílé znaky</value>
@@ -154,7 +154,7 @@
     <value>Víceřádkový</value>
   </data>
   <data name="MultilineDescription" xml:space="preserve">
-    <value>Mění význam znaků ^ a $ tak, aby odpovídaly na začátku, respektive na konci libovolného řádku, narozdíl od pouze začátku a konce celého řetězce.</value>
+    <value>Změní význam znaků ^ a $ tak, aby se shodovaly na začátku a na konci libovolného řádku, nikoli pouze na začátku a na konci celého řetězce.</value>
   </data>
   <data name="Options" xml:space="preserve">
     <value>Možnosti</value>
@@ -193,12 +193,12 @@
     <value>Výstup</value>
   </data>
   <data name="Group" xml:space="preserve">
-    <value>Group</value>
+    <value>Skupina</value>
   </data>
   <data name="Match" xml:space="preserve">
-    <value>Match</value>
+    <value>Shoda</value>
   </data>
   <data name="Matches" xml:space="preserve">
-    <value>Matches</value>
+    <value>Shody</value>
   </data>
 </root>

@@ -127,7 +127,7 @@
     <value>Encoders dan decoders</value>
   </data>
   <data name="EncodersDecodersDisplayName" xml:space="preserve">
-    <value>Encoders / Decoders</value>
+    <value>Enkoder / Dekoder</value>
   </data>
   <data name="FormattersAccessibleName" xml:space="preserve">
     <value>Pemformatan</value>

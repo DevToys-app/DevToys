@@ -124,7 +124,7 @@
     <value>Vymazat</value>
   </data>
   <data name="Collapse" xml:space="preserve">
-    <value>Collapse</value>
+    <value>Sbalit</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>Kopírovat</value>
@@ -136,7 +136,7 @@
     <value>Odstranit</value>
   </data>
   <data name="Expand" xml:space="preserve">
-    <value>Expand</value>
+    <value>Rozbalit</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
     <value>Procházet soubory</value>
@@ -148,14 +148,14 @@
     <value>Sem přetáhněte libovolný soubor</value>
   </data>
   <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
-    <value>Sem přetáhněte libovolný soubor</value>
+    <value>Sem přetáhněte libovolné soubory</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
     <value>Sem přetáhněte soubor {0}</value>
     <comment>{0} is a single file extension like "PNG"</comment>
   </data>
   <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
-    <value>Sem přetáhněte soubor {0}</value>
+    <value>Sem přetáhněte libovolné soubory {0}</value>
     <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">

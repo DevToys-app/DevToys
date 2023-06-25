@@ -121,13 +121,13 @@
     <value>Alat utilitas string</value>
   </data>
   <data name="AlternatingCase" xml:space="preserve">
-    <value>aLtErNaTiNg cAsE</value>
+    <value>hUrUf aLtErNaTiNg</value>
   </data>
   <data name="Bytes" xml:space="preserve">
     <value>Bytes:</value>
   </data>
   <data name="CamelCase" xml:space="preserve">
-    <value>camelCase</value>
+    <value>hurufUnta</value>
   </data>
   <data name="CharacterDistribution" xml:space="preserve">
     <value>Distribusi karakter</value>
@@ -136,55 +136,55 @@
     <value>Karakter:</value>
   </data>
   <data name="CobolCase" xml:space="preserve">
-    <value>COBOL-CASE</value>
+    <value>HURUF-KOBOL</value>
   </data>
   <data name="Column" xml:space="preserve">
     <value>Kolom:</value>
   </data>
   <data name="ConstantCase" xml:space="preserve">
-    <value>CONSTANT_CASE</value>
+    <value>HURUF_KONSTAN</value>
   </data>
   <data name="Convert" xml:space="preserve">
     <value>Konversi</value>
   </data>
   <data name="Sort" xml:space="preserve">
-    <value>Sort Lines</value>
+    <value>Urutkan Garis</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Pemeriksan dan Konversi argumen</value>
   </data>
   <data name="InverseCase" xml:space="preserve">
-    <value>InVeRsE CaSe</value>
+    <value>HuRuF TeRbAlIk</value>
   </data>
   <data name="KebabCase" xml:space="preserve">
-    <value>kebab-case</value>
+    <value>huruf-kebab</value>
   </data>
   <data name="Alphabetize" xml:space="preserve">
-    <value>Alphabetize</value>
+    <value>Abjad</value>
   </data>
   <data name="ReverseAlphabetize" xml:space="preserve">
-    <value>Reverse alphabetize</value>
+    <value>Abjad terbalik</value>
   </data>
   <data name="AlphabetizeLast" xml:space="preserve">
-    <value>Alphabetize by last word</value>
+    <value>Urutkan abjad berdasarkan kata akhir</value>
   </data>
   <data name="ReverseAlphabetizeLast" xml:space="preserve">
-    <value>Reverse alphabetize by last word</value>
+    <value>Balikkan abjad berdasarkan kata terakhir</value>
   </data>
   <data name="Reverse" xml:space="preserve">
-    <value>Reverse</value>
+    <value>Balik</value>
   </data>
   <data name="Randomize" xml:space="preserve">
-    <value>Randomize</value>
+    <value>Acak</value>
   </data>
   <data name="Line" xml:space="preserve">
     <value>Garis:</value>
   </data>
   <data name="Lines" xml:space="preserve">
-    <value>Garis:</value>
+    <value>Garis-garis:</value>
   </data>
   <data name="LowerCase" xml:space="preserve">
-    <value>lower case</value>
+    <value>huruf kecil</value>
   </data>
   <data name="OriginalCase" xml:space="preserve">
     <value>Teks asli</value>
@@ -193,7 +193,7 @@
     <value>Paragraf:</value>
   </data>
   <data name="PascalCase" xml:space="preserve">
-    <value>PascalCase</value>
+    <value>HurufPaskal</value>
   </data>
   <data name="Position" xml:space="preserve">
     <value>Posisi:</value>
@@ -202,13 +202,13 @@
     <value>Pilihan</value>
   </data>
   <data name="SentenceCase" xml:space="preserve">
-    <value>Sentence case</value>
+    <value>Huruf Kalimat</value>
   </data>
   <data name="Sentences" xml:space="preserve">
     <value>Kalimat:</value>
   </data>
   <data name="SnakeCase" xml:space="preserve">
-    <value>snake_case</value>
+    <value>huruf_ular</value>
   </data>
   <data name="Statistics" xml:space="preserve">
     <value>Statistik</value>
@@ -217,13 +217,13 @@
     <value>String</value>
   </data>
   <data name="TitleCase" xml:space="preserve">
-    <value>Title Case</value>
+    <value>Huruf Judul</value>
   </data>
   <data name="TrainCase" xml:space="preserve">
-    <value>Train-Case</value>
+    <value>Huruf-Kereta</value>
   </data>
   <data name="UpperCase" xml:space="preserve">
-    <value>UPPER CASE</value>
+    <value>HURUF BESAR</value>
   </data>
   <data name="WordDistribution" xml:space="preserve">
     <value>Distribusi kata</value>
@@ -238,6 +238,6 @@
     <value>Pemeriksan dan Konversi argumen teks</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Text String</value>
+    <value>String</value>
   </data>
 </root>

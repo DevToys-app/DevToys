@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Color Picker and contrast ratio tool</value>
+    <value>Nástroj pro výběr barev a poměr kontrastu</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Color Picker &amp; Contrast</value>
+    <value>Výběr barev a kontrast</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Pick up a color or two and validate the contrast ratio</value>
+    <value>Vyberte si jednu nebo dvě barvy a ověřte kontrastní poměr</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Color Picker &amp; Contrast</value>
+    <value>Výběr barev a kontrast</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>RGB WCAG</value>
@@ -139,7 +139,7 @@
     <value>Konfigurace</value>
   </data>
   <data name="Mode" xml:space="preserve">
-    <value>Mode</value>
+    <value>Režim</value>
   </data>
   <data name="ModeHSL" xml:space="preserve">
     <value>HSL</value>
@@ -154,16 +154,16 @@
     <value>Barva pozadí</value>
   </data>
   <data name="ContrastRatio" xml:space="preserve">
-    <value>Contrast ratio</value>
+    <value>Poměr kontrastu</value>
   </data>
   <data name="Fail" xml:space="preserve">
-    <value>Fail</value>
+    <value>Selhání</value>
   </data>
   <data name="LargeText" xml:space="preserve">
     <value>Velký text</value>
   </data>
   <data name="Pass" xml:space="preserve">
-    <value>Pass</value>
+    <value>Úspěch</value>
   </data>
   <data name="SampleText" xml:space="preserve">
     <value>Sit kasd feugait takimata in eirmod sadipscing sanctus consectetuer voluptua dolor dolor dolore rebum.</value>

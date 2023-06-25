@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Nástroj pro náhled Mardownu</value>
+    <value>Nástroj pro náhled Markdownu</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Konfigurace</value>
@@ -127,7 +127,7 @@
     <value>Tmavý</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Náhled Markdown</value>
+    <value>Náhled Markdownu</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>Markdown</value>
@@ -142,10 +142,10 @@
     <value>Motiv</value>
   </data>
   <data name="ThemeDescription" xml:space="preserve">
-    <value>Změna motivu Markdown náhledu</value>
+    <value>Vyberte motiv, který se má použít k náhledu Markdownu</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Náhled dokumentu Markdown podobný GitHubu</value>
+    <value>Náhled dokumentu Markdown s renderováním podobným GitHubu</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Náhled Markdown</value>

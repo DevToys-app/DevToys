@@ -142,7 +142,7 @@
     <value>GZip</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
-    <value>Komprimování nebo dekomprimování textových řetězců pomocí GZip</value>
+    <value>Vyberte, zda se má vstup komprimovat nebo dekomprimovat</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
     <value>Kódování</value>
