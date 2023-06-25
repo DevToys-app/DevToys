@@ -1,0 +1,84 @@
+@use "../../../Assets/sass/devtoys" as *;
+
+@keyframes indeterminate-1 {
+    0% {
+        opacity: 1;
+        transform: translateX(-100%);
+    }
+
+    70% {
+        opacity: 1;
+        transform: translateX(100%);
+    }
+
+    70.01% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes indeterminate-2 {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    50.01% {
+        opacity: 1;
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+        opacity: 1;
+    }
+}
+
+.progress-bar {
+    @include flex($align: center);
+    width: 100%;
+    height: 3px;
+    min-block-size: 3px;
+
+    &-track {
+        max-width: 50%;
+        height: 3px;
+        transition: 167ms linear fill;
+        fill: var(--accent-default);
+    }
+
+    &-rail {
+        fill: var(--control-strong-stroke-default);
+        width: 100%;
+        height: 1px;
+    }
+
+    &.indeterminate {
+        .progress-bar- {
+            &track {
+                fill: transparent;
+
+                &:first-of-type {
+                    width: 40%;
+                    fill: var(--accent-default);
+                    animation: 2s ease 0s infinite normal none running indeterminate-1;
+                }
+
+                &:nth-of-type(2) {
+                    width: 60%;
+                    fill: var(--accent-default);
+                    opacity: 0;
+                    animation: 2s ease 0s infinite normal none running indeterminate-2;
+                }
+            }
+        }
+    }
+}

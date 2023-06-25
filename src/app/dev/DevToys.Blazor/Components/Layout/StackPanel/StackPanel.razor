@@ -1,0 +1,13 @@
+﻿@namespace DevToys.Blazor.Components
+
+@inherits StyledComponentBase
+
+<Container HorizontalAlignment="@HorizontalAlignment"
+           VerticalAlignment="@VerticalAlignment"
+           Width="@Width"
+           Height="@Height"
+           IsVisible="@IsVisible">
+    <div id="@Id" @ref="@Element" class="@ClassValue" style="@StyleValue" @attributes="AdditionalAttributes">
+        @ChildContent
+    </div>
+</Container>

@@ -1,0 +1,91 @@
+@use "../../../Assets/sass/devtoys" as *;
+
+.monaco-editor-standalone {
+    @include typography-body;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    cursor: unset;
+    margin: 0;
+    inline-size: 100%;
+    min-block-size: 30px;
+    padding-inline: 10px;
+    border-radius: var(--control-corner-radius);
+    color: var(--text-box-foreground);
+    background-color: transparent;
+
+    &.disabled {
+        color: var(--text-fill-color-disabled);
+    }
+
+    &-instance {
+        min-height: 100px;
+    }
+
+    &-with-header {
+        display: block;
+        position: relative;
+
+        .monaco-editor-standalone-header {
+            margin-bottom: 4px;
+        }
+    }
+
+    &-container {
+        cursor: text;
+        position: relative;
+        border-radius: var(--control-corner-radius);
+        background-clip: padding-box;
+        background-color: var(--text-box-background);
+        border: 1px solid var(--text-box-border);
+
+        &:hover {
+            color: var(--text-box-foreground-pointer-over);
+            background-color: var(--text-box-background-pointer-over);
+            border-color: var(--text-box-border-pointer-over);
+        }
+
+        &.disabled {
+            cursor: default;
+            color: var(--text-box-foreground-disabled);
+            background-color: var(--text-box-background-disabled);
+            border-color: var(--text-box-border-disabled);
+
+            .monaco-editor-standalone-underline {
+                display: none;
+            }
+        }
+
+        &:focus-within {
+            color: var(--text-box-foreground-focused);
+            background-color: var(--text-box-background-focused);
+            border-color: var(--text-box-border-focused);
+
+            .monaco-editor-standalone-underline::after {
+                border-bottom: 2px solid var(--accent-default);
+            }
+        }
+    }
+
+    &-underline {
+        position: absolute;
+        inset-inline-start: -1px;
+        inset-block-start: -1px;
+        inline-size: calc(100% + 2px);
+        block-size: calc(100% + 2px);
+        pointer-events: none;
+        border-radius: var(--control-corner-radius);
+        overflow: hidden;
+
+        &::after {
+            content: "";
+            box-sizing: border-box;
+            position: absolute;
+            inset-block-end: 0;
+            inset-inline-start: 0;
+            inline-size: 100%;
+            block-size: 100%;
+            border-bottom: 1px solid var(--control-strong-stroke-default);
+        }
+    }
+}

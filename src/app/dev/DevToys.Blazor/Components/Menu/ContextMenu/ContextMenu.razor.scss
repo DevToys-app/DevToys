@@ -1,0 +1,86 @@
+.context-menu {
+    display: contents;
+    position: relative;
+
+    & > div.context-menu-activator {
+        display: contents;
+    }
+}
+
+.context-menu-list-box {
+    .list-box {
+        display: inline-block;
+
+        &:focus,
+        &:focus-visible,
+        &:focus-within {
+            outline: none;
+        }
+    }
+
+    .context-menu-item {
+        padding: 5px 8px;
+        cursor: default;
+        border-radius: var(--control-corner-radius);
+        background-color: var(--context-menu-item-background);
+        color: var(--context-menu-item-foreground);
+        margin: 3px;
+        display: grid;
+        grid-template-columns: 16px 1fr auto;
+        grid-template-rows: 1fr;
+        gap: 0px 12px;
+        grid-template-areas:
+            "icon title keyboard-shortcut";
+
+        &:hover,
+        &:focus,
+        &:focus-visible,
+        &.selected {
+            outline: none;
+            background-color: var(--context-menu-item-background-pointer-over);
+        }
+
+        &:active {
+            background-color: var(--context-menu-item-background-active);
+            color: var(--context-menu-item-foreground-active);
+        }
+
+        &.disabled {
+            background-color: var(--context-menu-item-background-disabled);
+            color: var(--context-menu-item-foreground-disabled);
+
+            .keyboard-accelerator {
+                color: var(--context-menu-item-key-accelerator-foreground-disabled);
+            }
+
+            .font-icon {
+                color: var(--context-menu-item-foreground-disabled);
+            }
+        }
+
+        .icon-container {
+            grid-area: icon;
+            height: 20px;
+            width: 20px;
+            display: block;
+            align-self: center;
+        }
+
+        .font-icon {
+            align-self: center;
+            font-size: 20px;
+        }
+
+        .text {
+            grid-area: title;
+            align-self: center;
+        }
+
+        .keyboard-accelerator {
+            grid-area: keyboard-shortcut;
+            color: var(--context-menu-item-key-accelerator-foreground);
+            align-self: center;
+            margin-left: 32px;
+        }
+    }
+}

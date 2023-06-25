@@ -2,7 +2,7 @@
 
 namespace DevToys.Blazor.Components;
 
-public abstract class MefComponentBase : StyledComponentBase
+public abstract class MefComponentBase : JSStyledComponentBase
 {
     [Inject]
     protected IMefProvider MefProvider { get; set; } = default!;

@@ -1,0 +1,125 @@
+@use "../../../Assets/sass/devtoys" as *;
+
+.checkbox {
+    @include typography-body;
+    margin: 0;
+    border: 1px solid var(--check-box-check-background-stroke-unchecked);
+    border-radius: var(--check-box-check-corner-radius);
+    outline: none;
+    background-clip: padding-box;
+    background-color: var(--check-box-check-background-fill-unchecked);
+    color: var(--check-box-check-glyph-foreground-unchecked);
+    appearance: none;
+    inline-size: 20px;
+    block-size: 20px;
+
+    &:focus-visible {
+        box-shadow: var(--focus-stroke);
+    }
+
+    &:hover {
+        background-color: var(--check-box-check-background-fill-unchecked-pointer-over);
+        border-color: var(--check-box-check-background-stroke-unchecked-pointer-over);
+        color: var(--check-box-check-glyph-foreground-unchecked-pointer-over);
+    }
+
+    &:active {
+        border-color: var(--check-box-check-background-stroke-unchecked-pressed);
+        background-color: var(--check-box-check-background-fill-unchecked-pressed);
+        color: var(--check-box-check-glyph-foreground-unchecked-pressed);
+
+        +.checkbox-glyph {
+            color: var(--text-on-accent-secondary);
+        }
+    }
+
+    &:disabled {
+        border-color: var(--check-box-check-background-stroke-unchecked-disabled);
+        background-color: var(--check-box-check-background-fill-unchecked-disabled);
+        color: var(--check-box-check-glyph-foreground-unchecked-disabled);
+        pointer-events: none;
+    }
+
+    &:checked {
+        border: none;
+        border-color: var(--check-box-check-background-stroke-checked);
+        background-color: var(--check-box-check-background-fill-checked);
+        color: var(--check-box-check-glyph-foreground-checked);
+
+        &:hover {
+            border-color: var(--check-box-check-background-stroke-checked-pointer-over);
+            background-color: var(--check-box-check-background-fill-checked-pointer-over);
+            color: var(--check-box-check-glyph-foreground-checked-pointer-over);
+        }
+
+        &:active {
+            border-color: var(--check-box-check-background-stroke-checked-pressed);
+            background-color: var(--check-box-check-background-fill-checked-pressed);
+            color: var(--check-box-check-glyph-foreground-checked-pressed);
+        }
+
+        &:disabled {
+            border-color: var(--check-box-check-background-stroke-checked-disabled);
+            background-color: var(--check-box-check-background-fill-checked-disabled);
+            color: var(--check-box-check-glyph-foreground-checked-disabled);
+
+            +.checkbox-glyph {
+                color: var(--text-on-accent-disabled);
+            }
+        }
+
+        +.checkbox-glyph .path-checkmark {
+            transition: 250ms cubic-bezier(0.55, 0, 0, 1) stroke-dashoffset;
+            stroke-dashoffset: 0;
+        }
+    }
+
+    &-container {
+        @include flex($align: center);
+        @include typography-body;
+
+        color: var(--check-box-foreground) !important;
+        user-select: none;
+        min-block-size: 32px;
+
+        >span {
+            padding-inline-start: 8px;
+        }
+
+        &.disabled {
+            color: var(--check-box-foreground-disabled) !important;
+        }
+    }
+
+    &-inner {
+        @include flex($align: center, $justify: center);
+        position: relative;
+    }
+
+    &-glyph {
+        pointer-events: none;
+        position: absolute;
+        color: var(--check-box-check-glyph-foreground-unchecked);
+        inline-size: 12px;
+        block-size: 12px;
+
+        path {
+            transform-origin: center;
+        }
+
+        .path- {
+            &checkmark {
+                transform: scale(1.2);
+                stroke: currentColor;
+
+                stroke: {
+                    width: 2;
+                    linecap: round;
+                    linejoin: round;
+                    dasharray: 20.5;
+                    dashoffset: 20.5;
+                }
+            }
+        }
+    }
+}

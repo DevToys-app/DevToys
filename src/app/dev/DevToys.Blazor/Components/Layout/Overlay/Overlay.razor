@@ -1,0 +1,18 @@
+@namespace DevToys.Blazor.Components
+@inherits StyledComponentBase
+
+@if (Visible)
+{
+    <div @attributes="AdditionalAttributes"
+         class="@OverlayClasses"
+         style="@OverlayStyles"
+         @onclick="OnClickAsync"
+         @onclick:stopPropagation="true">
+        @if (ChildContent is not null)
+        {
+            <div class="overlay-content">
+                @ChildContent
+            </div>
+        }
+    </div>
+}

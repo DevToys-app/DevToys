@@ -1,0 +1,81 @@
+@namespace DevToys.Blazor.Components
+@inherits MefComponentBase
+
+<CascadingValue Value="this" IsFixed="true">
+    <Container HorizontalAlignment="@HorizontalAlignment"
+               VerticalAlignment="@VerticalAlignment"
+               Width="@Width"
+               Height="@Height"
+               IsVisible="@IsVisible">
+        <div id=@Id
+             class="text-box-with-header @(FinalCssClasses)"
+             style="@(Style)"
+             @attributes="AdditionalAttributes">
+
+            @if (!string.IsNullOrWhiteSpace(Header))
+            {
+                <TextBlock Appearance="TextBlockAppearance.Body" Class="text-box-header" Text="@Header" />
+            }
+
+            <div class="text-box-container @(IsEnabled ? string.Empty : "disabled") @(_isContextMenuOpened ? "is-context-menu-opened" : string.Empty)"
+                 @ref=Element>
+
+                <ContextMenu IsEnabled="IsEnabled"
+                             OnContextMenuOpening="OnContextMenuOpening"
+                             OnContextMenuOpened="OnContextMenuOpened"
+                             OnContextMenuClosed="OnContextMenuClosedAsync"
+                             Items="_contextMenuItems">
+                    <InputText @ref="_input"
+                               class="@($"text-box {(IsEnabled ? string.Empty : "disabled")})")"
+                               placeholder="@Placeholder"
+                               disabled="@(!IsEnabled)"
+                               readonly="@(IsReadOnly)"
+                               type="@(Type.ToString().ToLowerInvariant())"
+                               min="@Min"
+                               max="@Max"
+                               step="@Step"
+                               @bind-Value="@Text"
+                               @oninput="@InputTextChangedAsync" />
+                </ContextMenu>
+
+                <div class="text-box-underline" />
+                <div class="text-box-buttons">
+                    @if (IsEnabled && !IsReadOnly)
+                    {
+                        if (!string.IsNullOrEmpty(Text))
+                        {
+                            <Button Appearance="ButtonAppearance.Stealth"
+                                    Class="text-box-clear-button"
+                                    HorizontalAlignment="HorizontalAlignment.Right"
+                                    title="Clear"
+                                    aria-label="Clear"
+                                    @onclick="OnClearClick">
+                                <FontIcon Glyph="@('\uF369')" />
+                            </Button>
+                        }
+
+                        if (Type == TextBoxTypes.Number)
+                        {
+                            <Button Appearance="ButtonAppearance.Stealth"
+                                    HorizontalAlignment="HorizontalAlignment.Right"
+                                    title="Increase"
+                                    aria-label="Increase"
+                                    @onclick="OnIncreaseClickAsync">
+                                <FontIcon Glyph="@('\uF2B6')" />
+                            </Button>
+                            <Button Appearance="ButtonAppearance.Stealth"
+                                    HorizontalAlignment="HorizontalAlignment.Right"
+                                    title="Decrease"
+                                    aria-label="Decrease"
+                                    @onclick="OnDecreaseClickAsync">
+                                <FontIcon Glyph="@('\uF2A3')" />
+                            </Button>
+                        }
+                    }
+
+                    @Buttons
+                </div>
+            </div>
+        </div>
+    </Container>
+</CascadingValue>

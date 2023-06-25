@@ -1,5 +1,3 @@
-﻿using Microsoft.AspNetCore.Components.Web;
-
 ﻿namespace DevToys.Blazor.Components;
 
 public abstract class JSStyledComponentBase : StyledComponentBase, IAsyncDisposable
@@ -44,6 +42,7 @@ public abstract class JSStyledComponentBase : StyledComponentBase, IAsyncDisposa
             return _reference;
         }
     }
+
     /// <summary />
     public virtual async ValueTask DisposeAsync()
     {

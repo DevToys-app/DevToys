@@ -1,0 +1,49 @@
+@namespace DevToys.Blazor.Components
+@inherits StyledComponentBase
+@typeparam TElement
+
+<CascadingValue Value="this" IsFixed="true">
+    <Container HorizontalAlignment="@HorizontalAlignment"
+               VerticalAlignment="@VerticalAlignment"
+               Width="@Width"
+               Height="@Height"
+               IsVisible="@IsVisible">
+        <div id="@Id" style="@Style">
+            <TextBox @ref="_textBox"
+                     Class="@(FinalCssClasses)"
+                     @attributes="AdditionalAttributes"
+                     Type="TextBoxTypes.Search"
+                     Header="@Header"
+                     Placeholder="@Placeholder"
+                     IsEnabled="@IsEnabled"
+                     IsReadOnly="@IsReadOnly"
+                     TextChanged="@OnTextBoxTextChangedAsync"
+                     @onkeydown="@OnTextBoxKeyPress"
+                     @onfocusout="@OnTextBoxFocusLost">
+                <Buttons>
+                    <FontIcon Glyph="@('\uF68F')" Style="transform: unset; left: 0; height: 16px; margin-left: 4px; margin-right: 4px;" />
+                </Buttons>
+            </TextBox>
+
+            <Popover Open="_showDropDown"
+                     AnchorOrigin="Origin.BottomLeft"
+                     TransformOrigin="Origin.TopLeft"
+                     RelativeWidth="true"
+                     Class="auto-suggest-box-drop-down"
+                     @ontouchend:stopPropagation>
+                <CascadingValue Value="@this" IsFixed="true">
+                    <ListBox @ref="_resultListBox"
+                             Items="@Items"
+                             Context="item"
+                             RaiseSelectionEventOnKeyboardNavigation="false"
+                             UseNativeScrollBar="true"
+                             SelectedIndexChanged="OnSelectedIndexChanged">
+                        <ItemTemplate>
+                            @ItemTemplate(item)
+                        </ItemTemplate>
+                    </ListBox>
+                </CascadingValue>
+            </Popover>
+        </div>
+    </Container>
+</CascadingValue>

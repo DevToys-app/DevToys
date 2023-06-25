@@ -1,0 +1,12 @@
+@namespace DevToys.Blazor.Components
+@inherits StyledComponentBase
+
+<CascadingValue Value="this" IsFixed="true">
+    <div class="@(FinalCssClasses)"
+         style="@(FinalStyles)"
+         @attributes="AdditionalAttributes">
+        <div style="@(FinalInnerStyles)">
+            @ChildContent
+         </div>
+    </div>
+</CascadingValue>

@@ -17,5 +17,5 @@
     },
     "emmet.includeLanguages": {
         "aspnetcorerazor": "html"
-    },
+    }
 }

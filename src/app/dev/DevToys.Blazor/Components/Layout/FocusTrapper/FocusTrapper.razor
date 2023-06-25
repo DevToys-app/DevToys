@@ -1,0 +1,9 @@
+@namespace DevToys.Blazor.Components
+@inherits JSStyledComponentBase
+
+<div @ref="Element"
+     style="@Style"
+     tabindex="-1"
+     @onkeydown="@OnKeyDown">
+    @ChildContent
+</div>

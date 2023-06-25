@@ -8,6 +8,7 @@
     xmlns:controls="clr-namespace:DevToys.Windows.Controls"
     xmlns:blazor="clr-namespace:Microsoft.AspNetCore.Components.WebView.Wpf;assembly=Microsoft.AspNetCore.Components.WebView.Wpf"
     mc:Ignorable="d"
+    Loaded="MainWindow_Loaded"
     Title="MainWindow"
     Height="450"
     Width="800"

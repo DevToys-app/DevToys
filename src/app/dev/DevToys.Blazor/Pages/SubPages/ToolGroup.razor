@@ -8,10 +8,10 @@
               Style="padding: 2.5rem"
               OnItemClick=@OnToolSelected>
         <Header>
-            <TextBlock Appearance="@TextBlockAppearance.Subtitle" Style="font-size: 24px !important">@ViewModel.HeaderText</TextBlock>
+            <TextBlock Appearance="@TextBlockAppearance.Subtitle" Style="font-size: 24px !important" Text="@ViewModel.HeaderText" />
         </Header>
         <GroupHeaderTemplate Context="item">
-            <TextBlock Appearance="@TextBlockAppearance.Subtitle">@item</TextBlock>
+            <TextBlock Appearance="@TextBlockAppearance.Subtitle" Text="@item" />
         </GroupHeaderTemplate>
         <ItemTemplate Context="item">
             <div class="tool-group-grid-view-item">
@@ -19,13 +19,14 @@
                     <FontIcon Class="fonticon" FontFamily="@item.IconFontName" Glyph="@item.IconGlyph" />
                 </div>
                 <div class="title">
-                    <TextBlock Appearance="@TextBlockAppearance.BodyStrong">@item.LongOrShortDisplayTitle</TextBlock>
+                    <TextBlock Appearance="@TextBlockAppearance.BodyStrong" Text="@item.LongOrShortDisplayTitle" />
                 </div>
                 <div class="description">
-                    <TextBlock Appearance="@TextBlockAppearance.Caption">@item.Description</TextBlock>
+                    <TextBlock Appearance="@TextBlockAppearance.Caption" Text="@item.Description" />
                 </div>
                 <div class="buttons" @onclick:stopPropagation="true">
-                    <Button Class="button"
+                    <Button HorizontalAlignment="HorizontalAlignment.Right"
+                            Class="button"
                             Appearance="@ButtonAppearance.Neutral"
                             @onclick="() => OnOpenInNewWindow(item)">
                         <FontIcon Class="fonticon" Glyph="@('\uEE7A')" />

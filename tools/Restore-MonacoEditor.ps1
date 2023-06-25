@@ -40,9 +40,10 @@ Invoke-WebRequest -Uri $monaco_tgz_url -OutFile ".\$temp_dir_name\monaco.tgz"
 
 Write-Host "Extracting..."
 
-mkdir "$tools_dir\$temp_dir_name\monaco"
+New-Item -Path "$tools_dir\$temp_dir_name\monaco" -ItemType Directory | out-null
 tar -zxf "$tools_dir\$temp_dir_name\monaco.tgz" -C "$tools_dir\$temp_dir_name\monaco"
 
+New-Item -Path "$destination_dir\min" -ItemType Directory | out-null
 Copy-Item -Path ".\$temp_dir_name\monaco\package\min\*" -Destination "$destination_dir\min" -Recurse
 
 # Clean-up Temp Dir

@@ -1,4 +1,5 @@
-﻿using DevToys.Blazor.Core.Helpers;
+﻿using DevToys.Blazor.Core.Extensions;
+using DevToys.Blazor.Core.Helpers;
 
 namespace DevToys.UnitTests.Blazor.Core.Helpers;
 
@@ -17,7 +18,7 @@ public class StyleBuilderTests
 
         //act
         string ClassToRender = new StyleBuilder("background-color", "DodgerBlue")
-                        .AddStyle("border-width", $"{top}px {right}px {bottom}px {left}px", when: hasBorder)
+                        .AddStyle("border-width", $"{top.ToPx()} {right.ToPx()} {bottom.ToPx()} {left.ToPx()}", when: hasBorder)
                         .AddStyle("z-index", "999", when: isOnTop)
                         .AddStyle("z-index", "-1", when: !isOnTop)
                         .AddStyle("padding", "35px")
@@ -45,7 +46,7 @@ public class StyleBuilderTests
                         .AddStyle("padding", "35px")
                         .Build();
 
-        IReadOnlyDictionary<string, object> attributes = new Dictionary<string, object> { { "style", StyleToRender } };
+        IDictionary<string, object> attributes = new Dictionary<string, object> { { "style", StyleToRender } };
 
         string ClassToRender = new StyleBuilder().AddStyleFromAttributes(attributes).Build();
         //assert

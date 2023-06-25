@@ -1,0 +1,58 @@
+@namespace DevToys.Blazor.Components
+@inherits JSStyledComponentBase
+@typeparam TKey
+@typeparam TElement
+
+<CascadingValue Value="this" IsFixed="true">
+    <Container HorizontalAlignment="@HorizontalAlignment"
+               VerticalAlignment="@VerticalAlignment"
+               Width="@Width"
+               Height="@Height"
+               IsVisible="@IsVisible">
+        <ScrollViewer @ref=_scrollViewer
+                      Orientation="Orientation.Vertical"
+                      Class="@(FinalCssClasses)"
+                      style="@(Style)"
+                      @attributes="AdditionalAttributes">
+                @if (Header is not null)
+                {
+                    <div class="header">@Header</div>
+                }
+
+                @if (ItemsSource is not null)
+                {
+                    Guard.IsNotNull(ItemTemplate);
+
+                    foreach (IGrouping<TKey, TElement> group in ItemsSource)
+                    {
+                        <section class="grid-view-group">
+                            <header class="grid-view-group-header">
+                                @if (GroupHeaderTemplate is null)
+                                {
+                                    @group.Key?.ToString()
+                                }
+                                else
+                                {
+                                    @GroupHeaderTemplate(group.Key)
+                                }
+                            </header>
+
+                            <ul class="grid-view-items-container">
+                                @foreach (TElement item in group)
+                                {
+                                    <li class="grid-view-item"
+                                        style="min-width: @ItemMinWidth.ToPx()">
+                                        <div class="grid-view-item-hover-filter" @onclick="() => OnItemClickAsync(item)">
+                                            @ItemTemplate(item)
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </section>
+                    }
+                }
+
+                @Footer
+        </ScrollViewer>
+    </Container>
+</CascadingValue>

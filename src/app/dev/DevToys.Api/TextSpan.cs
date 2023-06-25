@@ -27,4 +27,9 @@ public record TextSpan
     /// Gets the length of the span.
     /// </summary>
     public int Length { get; }
+
+    /// <summary>
+    /// Gets the end position of the span.
+    /// </summary>
+    public int EndPosition => StartPosition + Length;
 }

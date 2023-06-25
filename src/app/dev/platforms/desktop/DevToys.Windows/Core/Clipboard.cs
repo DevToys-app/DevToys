@@ -70,10 +70,24 @@ internal sealed partial class Clipboard : Api.IClipboard
 
     public Task SetClipboardTextAsync(string? data)
     {
-        // TODO
-        throw new NotImplementedException();
+        return ThreadHelper.RunOnUIThreadAsync(
+            DispatcherPriority.Background,
+            () =>
+            {
+                try
+                {
+                    System.Windows.Clipboard.SetText(data);
+                }
+                catch (Exception ex)
+                {
+                    LogSetClipboardTextFailed(ex);
+                }
+            });
     }
 
-    [LoggerMessage(1, LogLevel.Warning, "Failed to retrieve the clipboard data.")]
+    [LoggerMessage(0, LogLevel.Warning, "Failed to retrieve the clipboard data.")]
     partial void LogGetClipboardFailed(Exception ex);
+
+    [LoggerMessage(1, LogLevel.Error, "Failed to set the clipboard text.")]
+    partial void LogSetClipboardTextFailed(Exception ex);
 }

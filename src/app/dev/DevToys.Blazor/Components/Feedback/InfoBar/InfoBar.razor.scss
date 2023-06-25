@@ -1,0 +1,120 @@
+@use "../../../Assets/sass/devtoys" as *;
+
+.info-bar {
+    @include flex($align: center);
+    position: relative;
+    min-block-size: 48px;
+    box-sizing: border-box;
+    user-select: none;
+    background-clip: padding-box;
+    border: var(--info-bar-border-thickness) solid var(--info-bar-border);
+    border-radius: var(--info-bar-border-corner-radius);
+    padding: 6px;
+
+    &.severity- {
+        &success {
+            background-color: var(--info-bar-success-severity-background);
+        }
+
+        &warning {
+            background-color: var(--info-bar-warning-severity-background);
+        }
+
+        &error {
+            background-color: var(--info-bar-error-severity-background);
+        }
+
+        &informational {
+            background-color: var(--info-bar-informational-severity-background);
+        }
+    }
+
+    &-icon {
+        align-self: flex-start;
+        display: flex;
+        flex: 0 0 auto;
+        margin-left: 6px;
+        margin-right: 6px;
+        margin-top: 10px;
+
+        .info-badge {
+            @include flex($inline: true, $align: center, $justify: center);
+            box-sizing: border-box;
+            user-select: none;
+            min-inline-size: 16px;
+            min-block-size: 16px;
+            border-radius: 16px;
+            padding: 2px 4px;
+            margin-inline-end: 0px;
+
+            &.severity- {
+                &informational {
+                    background-color: var(--info-bar-informational-severity-icon-background);
+                    color: var(--info-bar-informational-severity-icon-foreground);
+                    fill: var(--info-bar-informational-severity-icon-foreground);
+                }
+
+                &success {
+                    background-color: var(--info-bar-success-severity-icon-background);
+                    color: var(--info-bar-success-severity-icon-foreground);
+                    fill: var(--info-bar-success-severity-icon-foreground);
+                }
+
+                &warning {
+                    background-color: var(--info-bar-warning-severity-icon-background);
+                    color: var(--info-bar-warning-severity-icon-foreground);
+                    fill: var(--info-bar-warning-severity-icon-foreground);
+                }
+
+                &error {
+                    background-color: var(--info-bar-error-severity-icon-background);
+                    color: var(--info-bar-error-severity-icon-foreground);
+                    fill: var(--info-bar-error-severity-icon-foreground);
+                }
+            }
+
+            svg {
+                line-height: 12px;
+                font-size: 12px;
+                inline-size: 8px;
+                block-size: 8px;
+                fill: currentColor;
+            }
+        }
+    }
+
+    &-content {
+        @include flex($align: center, $wrap: true);
+        position: relative;
+        box-sizing: border-box;
+        flex: 1 1 auto;
+        margin-left: 6px;
+
+        h5,
+        span {
+            margin: 0;
+            line-height: 20px;
+        }
+
+        h5 {
+            margin-inline-end: 12px;
+            color: var(--info-bar-title-foreground);
+        }
+
+        span {
+            flex: 1 1 auto;
+            margin-inline-end: 15px;
+            color: var(--info-bar-message-foreground);
+        }
+    }
+
+    &-button {
+        margin-left: 6px;
+        margin-top: 0;
+        margin-bottom: auto;
+
+        &.action {
+            margin-top: 1px;
+        }
+    }
+}
