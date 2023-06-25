@@ -2,53 +2,77 @@
 
 .expander {
     .card {
+        &:focus-visible {
+            box-shadow: var(--focus-stroke);
+        }
+
+        &[data-expanded='true'] {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+
+            .expander-expand-button {
+                .font-icon {
+                    transform: rotate(180deg);
+                    @include transition(transform .2s ease-in-out);
+                }
+            }
+        }
+
         &.expander-card {
-            margin-bottom: 2px;
             @include transition(border-bottom-left-radius .2s ease-in-out, border-bottom-right-radius .2s ease-in-out);
 
-            &[data-expanded='true'] {
-                border-bottom-left-radius: 0;
-                border-bottom-right-radius: 0;
+            .expander-expand-button {
+                display: grid;
+                height: 32px;
+                width: 32px;
+                border-radius: var(--control-corner-radius);
 
-                .control {
-                    .font-icon {
-                        transform: rotate(180deg);
-                        @include transition(transform .2s ease-in-out);
-                    }
+                .font-icon {
+                    @include transition(transform .2s ease-in-out);
                 }
             }
 
-            .control {
-                .font-icon {
-                    @include transition(transform .2s ease-in-out);
+            &:hover {
+                .expander-expand-button {
+                    border-color: var(--stealth-button-border-pointer-over);
+                    background-color: var(--stealth-button-background-pointer-over);
+                    color: var(--stealth-button-foreground-pointer-over);
                 }
             }
         }
     }
 
-    .expander-content {
-        @include flex($direction: row, $align: center, $justify: between);
-        @include typography-body;
-        // todo: Use dynamic values based on selected mode (compact, normal)
-        margin: 1rem;
-        min-height: 4rem;
-        padding-block: 4px 6px;
-        padding-inline: 11px;
+    .expander-content-anchor {
+        max-height: 0;
+        position: relative;
+        overflow: hidden;
+        @include transition(0ms linear 250ms max-height);
 
-        margin-top: 0;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        transform-origin: top;
-        border-color: var(--card-border-secondary);
-        background-color: var(--card-background-color-secondary);
-        @include transition(transform .2s ease-in-out);
-
-        &[aria-expanded='false'] {
-            transform: scaleY(0);
+        .expander-content {
+            @include flex($direction: row, $align: center, $justify: between);
+            @include typography-body;
+            min-height: 72px;
+            margin-top: 0;
+            border-radius: var(--control-corner-radius);
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            border: var(--card-border-thickness);
+            border-top-width: 0px;
+            border-color: var(--card-border);
+            background-clip: padding-box;
+            background-color: var(--card-background-color-secondary);
+            @include transition(transform 250ms cubic-bezier(1, 1, 0, 1));
+            transform: translateY(-100%);
         }
 
         &[aria-expanded='true'] {
-            transform: scaleY(1);
+            max-block-size: 6.02e23vmax;
+            transition: none;
+
+            .expander-content {
+                transform: none;
+                @include transition(250ms cubic-bezier(0, 0, 0, 1) transform);
+            }
         }
     }
 }

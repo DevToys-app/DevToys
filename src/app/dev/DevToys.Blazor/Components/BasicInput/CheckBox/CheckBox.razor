@@ -7,12 +7,21 @@
                VerticalAlignment="@VerticalAlignment"
                Width="@Width"
                Height="@Height"
+               MarginLeft="@MarginLeft"
+               MarginRight="@MarginRight"
+               MarginTop="@MarginTop"
+               MarginBottom="@MarginBottom"
+               PaddingLeft="@PaddingLeft"
+               PaddingRight="@PaddingRight"
+               PaddingTop="@PaddingTop"
+               PaddingBottom="@PaddingBottom"
                IsVisible="@IsVisible">
         <label
             id=@Id
             role="button"
             class="checkbox-container @(IsEnabled ? string.Empty : "disabled")"
             style="@(Style)"
+            @onclick:stopPropagation="@IsEnabled"
             @ref=Element>
             <span class="checkbox-inner">
                 <input

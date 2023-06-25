@@ -1,7 +1,7 @@
 @use "../../../Assets/sass/devtoys" as *;
 
 .card {
-    @include flex($direction: row, $align: center, $justify: between);
+    @include flex($direction: row, $align: center, $justify: between, $gap: 12px);
     @include typography-body;
     color: var(--card-foreground);
     border: var(--card-border-thickness);
@@ -9,18 +9,33 @@
     border-radius: var(--control-corner-radius);
     background-clip: padding-box;
     background-color: var(--card-background-color);
-    // todo: Use dynamic values based on selected mode (compact, normal)
-    margin: 1rem;
-    min-height: 4rem;
-    padding-block: 4px 6px;
+    min-height: 72px;
+    padding-block: 16px;
     padding-inline: 11px;
-    // End of todo
 
-    .header {
-        @include flex($direction: row, $align: center, $justify: between, $gap: 1rem);
+    .card-header {
+        display: grid;
+        grid-template-columns: 20px 1fr;
+        gap: 20px;
+        grid-template-areas: "icon context";
+        margin-left: 4px;
 
-        .context {
-            @include flex($direction: column, $align: left, $gap: .5rem);
+        .card-icon {
+            grid-area: icon;
         }
+
+        .card-context {
+            grid-area: context;
+            @include flex($direction: column, $align: left);
+
+            .card-description {
+                color: var(--card-foreground-description);
+            }
+        }
+    }
+
+    .card-control {
+        display: inline-flex;
+        gap: 16px;
     }
 }

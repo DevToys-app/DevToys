@@ -27,14 +27,14 @@ $sidebar-top-bar-height: 48px;
         }
     }
 
-    .button-icon {
+    .nav-bar-button-icon {
         height: 36px;
         width: 40px;
         font-size: 16px;
         line-height: 16px;
     }
 
-    .header {
+    .nav-bar-header {
         grid-area: header;
         z-index: calc($sidebar-expanded-overlay-zindex + 1);
     }

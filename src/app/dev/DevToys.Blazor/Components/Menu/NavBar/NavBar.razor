@@ -14,11 +14,11 @@
          @attributes="AdditionalAttributes">
 
         <!-- Header -->
-        <div class="header">
+        <div class="nav-bar-header">
             <StackPanel Orientation="Orientation.Horizontal"
                         HorizontalAlignment="HorizontalAlignment.Left">
                 <Button Appearance="ButtonAppearance.Stealth"
-                        Class="button-icon"
+                        Class="nav-bar-button-icon"
                         Style="margin: 5px 0px 0px 5px;"
                         IsEnabled="@CanGoBack"
                         title="Back"
@@ -29,7 +29,7 @@
                 @if (_sidebarState.IsHidden)
                 {
                     <Button Appearance="ButtonAppearance.Stealth"
-                            Class="button-icon"
+                            Class="nav-bar-button-icon"
                             title="Toggle Navigation"
                             aria-label="Toggle Navigation"
                             aria-controls="@NavId"
@@ -51,7 +51,7 @@
                 @if (!_sidebarState.IsHidden)
                 {
                     <Button Appearance="ButtonAppearance.Stealth"
-                            Class="button-icon"
+                            Class="nav-bar-button-icon"
                             Style="margin: 0px 4px 0px 5px;"
                             title="Toggle Navigation"
                             aria-label="Toggle Navigation"
@@ -68,7 +68,7 @@
 
                     // TODO: Localize
                     <Button Appearance="ButtonAppearance.Stealth"
-                            Class="button-icon"
+                            Class="nav-bar-button-icon"
                             Style="@searchButtonStyle"
                             title="Click to search"
                             aria-label="Search"

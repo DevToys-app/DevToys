@@ -6,37 +6,39 @@
                VerticalAlignment="@VerticalAlignment"
                Width="@Width"
                Height="@Height"
+               MarginLeft="@MarginLeft"
+               MarginRight="@MarginRight"
+               MarginTop="@MarginTop"
+               MarginBottom="@MarginBottom"
+               PaddingLeft="@PaddingLeft"
+               PaddingRight="@PaddingRight"
+               PaddingTop="@PaddingTop"
+               PaddingBottom="@PaddingBottom"
                IsVisible="@IsVisible">
         <div class="card @(FinalCssClasses)"
              style="@(Style)"
              @ref=Element
              @attributes="AdditionalAttributes">
-            @if (Icon is not null || Title is not null)
-            {
-                <div class="header">
-                    @if (Icon is not null)
+            <div class="card-header">
+                <FontIcon class="card-icon"
+                          Glyph="@IconGlyph"
+                          FontFamily="@IconFontFamily"/>
+                <div class="card-context">
+                    <div class="card-title">
+                        <TextBlock Appearance="TextBlockAppearance.Body" Text="@Title" />
+                    </div>
+                    @if (!string.IsNullOrWhiteSpace(Description))
                     {
-                        <div class="icon">
-                            @Icon
+                        <div class="card-description">
+                            <TextBlock Appearance="TextBlockAppearance.Caption" Text="@Description" />
                         </div>
                     }
-                    <div class="context">
-                        <div class="title">
-                            @Title
-                        </div>
-                        @if (Description is not null)
-                        {
-                            <div class="description">
-                                @Description
-                            </div>
-                        }
-                    </div>
                 </div>
-            }
+            </div>
 
             @if (Control is not null)
             {
-                <div class="control">
+                <div class="card-control">
                     @Control
                 </div>
             }

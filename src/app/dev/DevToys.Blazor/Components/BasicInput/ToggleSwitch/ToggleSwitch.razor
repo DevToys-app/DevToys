@@ -7,13 +7,23 @@
                VerticalAlignment="@VerticalAlignment"
                Width="@Width"
                Height="@Height"
+               MarginLeft="@MarginLeft"
+               MarginRight="@MarginRight"
+               MarginTop="@MarginTop"
+               MarginBottom="@MarginBottom"
+               PaddingLeft="@PaddingLeft"
+               PaddingRight="@PaddingRight"
+               PaddingTop="@PaddingTop"
+               PaddingBottom="@PaddingBottom"
                IsVisible="@IsVisible">
         <label
             id=@Id
             role="button"
             class="toggle-switch-container @(IsEnabled ? string.Empty : "disabled")"
             style="@(Style)"
+            @onclick:stopPropagation="@IsEnabled"
             @ref=Element>
+            <TextBlock Text="@Text" NoWrap="true" />
             <input
                 type="checkbox"
                 tabindex="0"
@@ -23,7 +33,6 @@
                 @onclick:preventDefault="@(!IsEnabled)"
                 @onchange="OnChange"
                 @attributes="AdditionalAttributes" />
-            <TextBlock Text="@Text" />
         </label>
     </Container>
 </CascadingValue>

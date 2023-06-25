@@ -90,7 +90,11 @@
                 <!-- TODO: Place here a component that takes in argument the guiToolViewItem -->
                 <div class="entranceThemeTransition" style="display: contents">
                     <ScrollViewer>
-                        <StackPanel Orientation="Orientation.Vertical">
+                        <StackPanel Orientation="Orientation.Vertical"
+                                    PaddingLeft="16"
+                                    PaddingBottom="16"
+                                    PaddingRight="16"
+                                    PaddingTop="16">
                             <Grid ColumnSpacing="12"
                                   RowSpacing="12"
                                   Columns="@(new List<GridLength>
@@ -200,44 +204,21 @@
                             <InfoBar IsOpen="true" Title="Title" Message="Message" Severity="InfoBarSeverity.Warning" />
                             <InfoBar IsOpen="true" Title="Title" Message="Message" Severity="InfoBarSeverity.Error" />
                             <InfoBar IsOpen="true" ActionButtonText="Action" Title="Title" Message="Sanctus gubergren dolore molestie rebum minim molestie et aliquyam lorem ea. Nulla feugiat dolor elitr kasd vero vero lorem imperdiet stet dolor mazim accusam. Sanctus elit ex possim sit rebum stet dolores. Ipsum eos duis sed accusam et takimata kasd sea diam." />
-                            <Card>
-                                <Title>
-                                    <TextBlock Appearance="@TextBlockAppearance.BodyStrong" Text="Card Title" />
-                                </Title>
-                            </Card>
-                            <Card>
-                                <Title>
-                                    <TextBlock Appearance="@TextBlockAppearance.BodyStrong" Text="Card Title" />
-                                </Title>
-                                <Description>
-                                    <TextBlock Appearance="@TextBlockAppearance.Caption" Text="Card Description" />
-                                </Description>
-                            </Card>
-                            <Card>
-                                <Icon>
-                                    <FontIcon Glyph="@('\uEE7A')" />
-                                </Icon>
-                                <Title>
-                                    <TextBlock Appearance="@TextBlockAppearance.BodyStrong" Text="Card Title" />
-                                </Title>
-                                <Description>
-                                    <TextBlock Appearance="@TextBlockAppearance.Caption" Text="Card Description" />
-                                </Description>
-                            </Card>
-                            <Expander>
-                                <Icon>
-                                    <FontIcon Glyph="@('\uEE7A')" />
-                                </Icon>
-                                <Title>
-                                    <TextBlock Appearance="@TextBlockAppearance.BodyStrong" Text="Expander Card Title" />
-                                </Title>
-                                <Description>
-                                    <TextBlock Appearance="@TextBlockAppearance.Caption" Text="Card Description" />
-                                </Description>
+                            <Card Title="Card Title"/>
+                            <Card Title="Card Title" Description="Card Description" />
+                            <Expander IconGlyph="@('\uEE7A')" Title="Card Title" Description="Card Description">
+                                <Control>
+                                    <ToggleSwitch IsOn="false" Text="An option" />
+                                </Control>
                                 <ChildContent>
-                                    <TextBlock Appearance="@TextBlockAppearance.BodyStrong" Text="Expander Content" />
+                                    <TextBlock Appearance="@TextBlockAppearance.Display" Text="This text is scaled." />
                                 </ChildContent>
                             </Expander>
+                            <Card IconGlyph="@('\uEE7A')" Title="Card Title" Description="Lorem kasd dolore vero vulputate rebum sit et vel amet consetetur. Est et velit no consetetur diam et. Eos magna duo amet eu ea clita. Volutpat nulla diam exerci erat labore.">
+                                <Control>
+                                    <ToggleSwitch IsOn="false" Text="An option" />
+                                </Control>
+                            </Card>
                         </StackPanel>
                     </ScrollViewer>
                 </div>

@@ -3,13 +3,16 @@
 public partial class Card : StyledComponentBase
 {
     [Parameter]
-    public RenderFragment? Icon { get; set; }
+    public char IconGlyph { get; set; }
 
     [Parameter]
-    public RenderFragment? Title { get; set; }
+    public string IconFontFamily { get; set; } = "FluentSystemIcons";
 
     [Parameter]
-    public RenderFragment? Description { get; set; }
+    public string? Title { get; set; }
+
+    [Parameter]
+    public string? Description { get; set; }
 
     [Parameter]
     public RenderFragment? Control { get; set; }

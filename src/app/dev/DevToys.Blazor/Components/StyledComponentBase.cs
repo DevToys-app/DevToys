@@ -76,6 +76,62 @@ public abstract class StyledComponentBase : ComponentBase
     public bool IsVisible { get; set; } = true;
 
     /// <summary>
+    /// Gets or sets the outer-space to set on the left of the component.
+    /// If null, the component will use the default margin.
+    /// </summary>
+    [Parameter]
+    public int? MarginLeft { get; set; }
+
+    /// <summary>
+    /// Gets or sets the outer-space to set on the right of the component.
+    /// If null, the component will use the default margin.
+    /// </summary>
+    [Parameter]
+    public int? MarginRight { get; set; }
+
+    /// <summary>
+    /// Gets or sets the outer-space to set on the top of the component.
+    /// If null, the component will use the default margin.
+    /// </summary>
+    [Parameter]
+    public int? MarginTop { get; set; }
+
+    /// <summary>
+    /// Gets or sets the outer-space to set on the bottom of the component.
+    /// If null, the component will use the default margin.
+    /// </summary>
+    [Parameter]
+    public int? MarginBottom { get; set; }
+
+    /// <summary>
+    /// Gets or sets the inner-space to set on the left of the component.
+    /// If null, the component will use the default margin.
+    /// </summary>
+    [Parameter]
+    public int? PaddingLeft { get; set; }
+
+    /// <summary>
+    /// Gets or sets the inner-space to set on the right of the component.
+    /// If null, the component will use the default margin.
+    /// </summary>
+    [Parameter]
+    public int? PaddingRight { get; set; }
+
+    /// <summary>
+    /// Gets or sets the inner-space to set on the top of the component.
+    /// If null, the component will use the default margin.
+    /// </summary>
+    [Parameter]
+    public int? PaddingTop { get; set; }
+
+    /// <summary>
+    /// Gets or sets the inner-space to set on the bottom of the component.
+    /// If null, the component will use the default margin.
+    /// </summary>
+    [Parameter]
+    public int? PaddingBottom { get; set; }
+
+    /// <summary>
     /// Gets a list of CSS class to apply to the component.
     /// </summary>
     protected ObservableHashSet<string> CSS => _css.Value;

@@ -6,26 +6,38 @@
                VerticalAlignment="@VerticalAlignment"
                Width="@Width"
                Height="@Height"
+               MarginLeft="@MarginLeft"
+               MarginRight="@MarginRight"
+               MarginTop="@MarginTop"
+               MarginBottom="@MarginBottom"
+               PaddingLeft="@PaddingLeft"
+               PaddingRight="@PaddingRight"
+               PaddingTop="@PaddingTop"
+               PaddingBottom="@PaddingBottom"
                IsVisible="@IsVisible"
                Class="expander">
         <Card data-expanded="@IsExpanded.ToString().ToLower()"
+              aria-label="Toggle Expander"
+              aria-expanded="@IsExpanded.ToString()"
+              tabindex="0"
               Class="expander-card"
-              Icon=@Icon
+              IconGlyph=@IconGlyph
+              IconFontFamily=@IconFontFamily
               Title=@Title
-              Description=@Description>
+              Description=@Description
+              @onclick="@OnClick"
+              @onkeydown="@OnKeyDown">
             <Control>
-                <Button Appearance="@ButtonAppearance.Stealth"
-                        @onclick="OnClickAsync"
-                        Height="32"
-                        Width="32"
-                        aria-label="Toggle Expander"
-                        aria-expanded="@IsExpanded.ToString()">
+                @Control
+                <div class="expander-expand-button">
                     <FontIcon Glyph="@('\uf2a6')" Height="12" Width="12" />
-                </Button>
+                </div>
             </Control>
         </Card>
-        <div class="expander-content" aria-expanded="@IsExpanded.ToString().ToLower()">
-            @(ChildContent)
+        <div class="expander-content-anchor" aria-expanded="@IsExpanded.ToString().ToLower()">
+            <div class="expander-content">
+                @(ChildContent)
+            </div>
         </div>
     </Container>
 </CascadingValue>

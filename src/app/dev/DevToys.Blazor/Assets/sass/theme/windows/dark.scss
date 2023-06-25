@@ -85,11 +85,11 @@
         var(--control-stroke-on-accent-secondary);
 
     /* Card */
-    --card-border: var(--control-border-color-default);
-    --card-border-secondary: var(--card-background-color-secondary);
+    --card-stroke-color-default: rgba(0, 0, 0, 0.1);
+    --card-border: var(--card-stroke-color-default);
     --card-border-thickness: 1px solid;
     --card-foreground: var(--text-fill-color-primary);
-    --card-stroke-color-default: rgba(0, 0, 0, 0.1);
+    --card-foreground-description: var(--text-fill-color-secondary);
     --card-background-color: rgba(255, 255, 255, 0.05);
     --card-background-color-secondary: rgba(255, 255, 255, 0.03);
     --card-hover-background-color: rgba(255, 255, 255, 0.06);

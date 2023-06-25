@@ -1,17 +1,26 @@
-﻿namespace DevToys.Blazor.Components;
+﻿using DevToys.Core;
+using Microsoft.AspNetCore.Components.Web;
+
+namespace DevToys.Blazor.Components;
 
 public partial class Expander : StyledComponentBase
 {
     public bool IsExpanded { get; set; } = false;
 
     [Parameter]
-    public RenderFragment? Icon { get; set; }
+    public char IconGlyph { get; set; }
 
     [Parameter]
-    public RenderFragment? Title { get; set; }
+    public string IconFontFamily { get; set; } = "FluentSystemIcons";
 
     [Parameter]
-    public RenderFragment? Description { get; set; }
+    public string? Title { get; set; }
+
+    [Parameter]
+    public string? Description { get; set; }
+
+    [Parameter]
+    public RenderFragment? Control { get; set; }
 
     /// <summary>
     /// Gets or sets the content to be rendered inside the component.
@@ -19,9 +28,18 @@ public partial class Expander : StyledComponentBase
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
-    private Task OnClickAsync()
+    private void OnClick()
     {
-        return Task.Run(() => IsExpanded = !IsExpanded);
+        IsExpanded = !IsExpanded;
+    }
+
+    protected void OnKeyDown(KeyboardEventArgs ev)
+    {
+        if (string.Equals(ev.Code, "Enter", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(ev.Code, "Space", StringComparison.OrdinalIgnoreCase))
+        {
+            OnClick();
+        }
     }
 }
 

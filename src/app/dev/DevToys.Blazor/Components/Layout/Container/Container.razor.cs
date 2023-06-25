@@ -37,6 +37,11 @@ public partial class Container : StyledComponentBase
         styleBuilder.AddImportantStyle("flex-direction", "row");
         styleBuilder.AddImportantStyle("flex-wrap", "nowrap");
 
+        styleBuilder.AddStyle("margin-left", MarginLeft.ToPx(), MarginLeft.HasValue);
+        styleBuilder.AddStyle("margin-right", MarginRight.ToPx(), MarginRight.HasValue);
+        styleBuilder.AddStyle("margin-top", MarginTop.ToPx(), MarginTop.HasValue);
+        styleBuilder.AddStyle("margin-bottom", MarginBottom.ToPx(), MarginBottom.HasValue);
+
         switch (HorizontalAlignment)
         {
             case HorizontalAlignment.Stretch:
@@ -80,6 +85,10 @@ public partial class Container : StyledComponentBase
 
         innerStyleBuilder.AddImportantStyle("width", Width.ToPx(), Width.HasValue);
         innerStyleBuilder.AddImportantStyle("height", Height.ToPx(), Height.HasValue);
+        innerStyleBuilder.AddImportantStyle("padding-left", PaddingLeft.ToPx(), PaddingLeft.HasValue);
+        innerStyleBuilder.AddImportantStyle("padding-right", PaddingRight.ToPx(), PaddingRight.HasValue);
+        innerStyleBuilder.AddImportantStyle("padding-top", PaddingTop.ToPx(), PaddingTop.HasValue);
+        innerStyleBuilder.AddImportantStyle("padding-bottom", PaddingBottom.ToPx(), PaddingBottom.HasValue);
 
         FinalStyles = styleBuilder.ToString();
         FinalInnerStyles = innerStyleBuilder.ToString();
