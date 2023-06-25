@@ -1,4 +1,4 @@
-/// <binding BeforeBuild='devtoysJavaScript, devtoysSass' Clean='devtoysCleanup' ProjectOpened='watchDevtoysSass, watchDevtoysJavaScript' />
+/// <binding BeforeBuild='devtoysJavaScript, devtoysSass' ProjectOpened='watchDevtoysSass, watchDevtoysJavaScript' />
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-undef */
 const gulp = require("gulp"); // or import * as gulp = require('gulp'

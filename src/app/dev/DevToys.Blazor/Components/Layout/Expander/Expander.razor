@@ -1,0 +1,30 @@
+﻿@namespace DevToys.Blazor.Components
+@inherits StyledComponentBase
+
+<CascadingValue Value="this" IsFixed="true">
+    <Container HorizontalAlignment="@HorizontalAlignment"
+               VerticalAlignment="@VerticalAlignment"
+               Width="@Width"
+               Height="@Height"
+               IsVisible="@IsVisible"
+               Class="expander">
+        <Card data-expanded="@IsExpanded.ToString().ToLower()"
+              Class="expander-card"
+              Icon=@Icon
+              Title=@Title
+              Description=@Description>
+            <Control>
+                <Button Class="button"
+                        Appearance="@ButtonAppearance.Stealth"
+                        @onclick="OnClickAsync"
+                        aria-label="Toggle Expander"
+                        aria-expanded="@IsExpanded.ToString()">
+                    <FontIcon Glyph="@('\uf2a6')" />
+                </Button>
+            </Control>
+        </Card>
+        <div class="expander-content" aria-expanded="@IsExpanded.ToString().ToLower()">
+            @(ChildContent)
+        </div>
+    </Container>
+</CascadingValue>
