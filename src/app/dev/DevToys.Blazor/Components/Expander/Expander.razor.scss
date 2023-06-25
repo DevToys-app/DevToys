@@ -1,0 +1,44 @@
+@use "../../Assets/sass/devtoys" as *;
+
+.card {
+    &.expander {
+        margin-bottom: 2px;
+        @include transition(border-bottom-left-radius .2s ease-in-out, border-bottom-right-radius .2s ease-in-out);
+
+        &[data-expanded='true'] {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+
+            .control {
+                .font-icon {
+                    transform: rotate(180deg);
+                    @include transition(transform .2s ease-in-out);
+                }
+            }
+        }
+
+        .control {
+            .font-icon {
+                @include transition(transform .2s ease-in-out);
+            }
+        }
+
+        &+.card {
+            margin-top: 0;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            transform-origin: top;
+            border-color: var(--card-border-secondary);
+            background-color: var(--card-background-color-secondary);
+            @include transition(transform .2s ease-in-out);
+
+            &[aria-expanded='false'] {
+                transform: scaleY(0);
+            }
+
+            &[aria-expanded='true'] {
+                transform: scaleY(1);
+            }
+        }
+    }
+}

@@ -5,13 +5,10 @@
 @namespace DevToys.Blazor.Pages
 @inherits MefComponentBase
 
-<NavBar TElement="INotifyPropertyChanged"
-        MenuItemsSource="@ViewModel.HeaderAndBodyToolViewItems"
-        FooterMenuItemsSource="@ViewModel.FooterToolViewItems"
-        CanGoBack="@ViewModel.CanGoBack"
-        @bind-SelectedItem="ViewModel.SelectedMenuItem"
-        OnBackButtonClicked="OnBackButtonClicked"
-        OnHiddenStateChanged="OnHiddenStateChanged">
+<NavBar TElement="INotifyPropertyChanged" MenuItemsSource="@ViewModel.HeaderAndBodyToolViewItems"
+    FooterMenuItemsSource="@ViewModel.FooterToolViewItems" CanGoBack="@ViewModel.CanGoBack"
+    @bind-SelectedItem="ViewModel.SelectedMenuItem" OnBackButtonClicked="OnBackButtonClicked"
+    OnHiddenStateChanged="OnHiddenStateChanged">
     <!-- Header -->
     <Header>
         <TextBlock>DevToys</TextBlock>
@@ -60,7 +57,8 @@
             if (ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem)
             {
                 <div class="entranceThemeTransition">
-                    <TextBlock Appearance="TextBlockAppearance.TitleLarge">@guiToolViewItem.ToolInstance.LongOrShortDisplayTitle</TextBlock>
+                    <TextBlock Appearance="TextBlockAppearance.TitleLarge">@guiToolViewItem.ToolInstance.LongOrShortDisplayTitle
+                    </TextBlock>
                     <!-- TODO: Place here a component that takes in argument the guiToolViewItem -->
 
                     <Button IsEnabled="true" @onclick="OnSetFavorite">Set favorite</Button>
@@ -69,9 +67,51 @@
                     <Button IsEnabled="false" Appearance="ButtonAppearance.Accent">Set favorite</Button>
                     <Button IsEnabled="true" Appearance="ButtonAppearance.Stealth">Set favorite</Button>
                     <Button IsEnabled="false" Appearance="ButtonAppearance.Stealth">Set favorite</Button>
-                    <TextBox Header="First name" Placeholder="Normal" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
-                    <TextBox Header="Middle name" Placeholder="Read only" IsReadOnly="true" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
-                    <TextBox Header="Last name" Placeholder="Disabled" IsEnabled="false" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
+                    <TextBox Header="First name" Placeholder="Normal"
+                        Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
+                    <TextBox Header="Middle name" Placeholder="Read only" IsReadOnly="true"
+                        Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
+                    <TextBox Header="Last name" Placeholder="Disabled" IsEnabled="false"
+                        Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
+                    <Card>
+                        <Title>
+                            <TextBlock Appearance="@TextBlockAppearance.BodyStrong">Card Title</TextBlock>
+                        </Title>
+                    </Card>
+                    <Card>
+                        <Title>
+                            <TextBlock Appearance="@TextBlockAppearance.BodyStrong">Card Title</TextBlock>
+                        </Title>
+                        <Description>
+                            <TextBlock Appearance="@TextBlockAppearance.Caption">Card Description</TextBlock>
+                        </Description>
+                    </Card>
+                    <Card>
+                        <Icon>
+                            <FontIcon Class="fonticon" Glyph="@('\uEE7A')" />
+                        </Icon>
+                        <Title>
+                            <TextBlock Appearance="@TextBlockAppearance.BodyStrong">Card Title</TextBlock>
+                        </Title>
+                        <Description>
+                            <TextBlock Appearance="@TextBlockAppearance.Caption">Card Description</TextBlock>
+                        </Description>
+                    </Card>
+                    <Expander>
+                        <Icon>
+                            <FontIcon Class="fonticon" Glyph="@('\uEE7A')" />
+                        </Icon>
+                        <Title>
+                            <TextBlock Appearance="@TextBlockAppearance.BodyStrong">Card Title</TextBlock>
+                        </Title>
+                        <Description>
+                            <TextBlock Appearance="@TextBlockAppearance.Caption">Card Description</TextBlock>
+                        </Description>
+                        <ChildContent>
+                            <TextBlock Appearance="@TextBlockAppearance.BodyStrong">Expander Content</TextBlock>
+                        </ChildContent>
+                    </Expander>
+
                 </div>
             }
             else if (ViewModel.SelectedMenuItem is GroupViewItem groupToolViewItem)

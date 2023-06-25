@@ -1,0 +1,35 @@
+﻿@namespace DevToys.Blazor.Components
+@inherits StyledComponentBase
+
+<CascadingValue Value="this" IsFixed="true">
+    <div class="card @(FinalCssClasses)" style="@(Style)" @ref=Element @attributes="AdditionalAttributes">
+        @if (Icon is not null || Title is not null)
+        {
+            <div class="header">
+                @if (Icon is not null)
+                {
+                    <div class="icon">
+                        @Icon
+                    </div>
+                }
+                <div class="context">
+                    <div class="title">
+                        @Title
+                    </div>
+                    @if (Description is not null)
+                    {
+                        <div class="description">
+                            @Description
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+        @if (Control is not null)
+        {
+            <div class="control">
+                @Control
+            </div>
+        }
+    </div>
+</CascadingValue>

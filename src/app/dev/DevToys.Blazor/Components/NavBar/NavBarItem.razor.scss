@@ -10,15 +10,15 @@
     display: grid;
     grid-template-columns: auto 1fr auto;
     grid-template-rows: 1fr;
-    gap: 0px 0px;
+    gap: 0px 16px;
     grid-template-areas: ". . .";
     padding-right: 0px;
 
     .sidebar-item-icon {
         height: 16px;
         width: 16px;
-        padding-top: 4px;
-        margin-right: 16px;
+        // padding-top: 4px;
+        // margin-right: 16px;
     }
 
     .sidebar-expand-group-button {
@@ -51,7 +51,8 @@
         max-width: 40px;
         overflow: hidden;
 
-        .sidebar-item-text, .sidebar-expand-group-button {
+        .sidebar-item-text,
+        .sidebar-expand-group-button {
             display: none;
         }
     }

@@ -56,19 +56,18 @@
 
     /* Borders */
     --control-border-color-default:
-        var(--control-stroke-color-secondary)
-        var(--control-stroke-color-default)
-        var(--control-stroke-color-default)
-        var(--control-stroke-color-default);
+        var(--control-stroke-color-secondary) var(--control-stroke-color-default) var(--control-stroke-color-default) var(--control-stroke-color-default);
     --accent-control-border-color-default:
-        var(--control-stroke-on-accent-default)
-        var(--control-stroke-on-accent-secondary)
-        var(--control-stroke-on-accent-secondary)
-        var(--control-stroke-on-accent-secondary);
+        var(--control-stroke-on-accent-default) var(--control-stroke-on-accent-secondary) var(--control-stroke-on-accent-secondary) var(--control-stroke-on-accent-secondary);
 
     /* Card */
+    --card-border: var(--control-border-color-default);
+    --card-border-secondary: var(--card-background-color-secondary);
+    --card-border-thickness: 1px solid;
+    --card-foreground: var(--text-fill-color-primary);
     --card-stroke-color-default: rgba(0, 0, 0, 0.06);
     --card-background-color: rgba(255, 255, 255, 0.05);
+    --card-background-color-secondary: rgba(255, 255, 255, 0.03);
     --card-hover-background-color: rgba(255, 255, 255, 0.06);
 
     /* Button */
