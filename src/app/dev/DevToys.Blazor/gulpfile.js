@@ -1,6 +1,6 @@
+/// <binding BeforeBuild='devtoysJavaScript, devtoysSass' Clean='devtoysCleanup' ProjectOpened='watchDevtoysSass, watchDevtoysJavaScript' />
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-undef */
-/// <binding ProjectOpened='watchDevtoysSass, watchDevtoysJavaScript' />
 const gulp = require("gulp"); // or import * as gulp = require('gulp'
 const cleanCSS = require("gulp-clean-css");
 const rename = require("gulp-rename");
@@ -74,11 +74,22 @@ function watchDevtoysJavaScript() {
     gulp.watch(`${paths.devtoysJavascript}/**/*.js`, devtoysJavascript);
 }
 
-function cleanJavaScript(cb) {
-    return del(`${paths.devtoysJavascriptOut}/Assets/**`);
+function devtoysCleanup(cb) {
+    return del(
+        [
+            "./Assets/sass/**/*.css",
+            "./Components/**/*.css",
+            "./Pages/**/*.css",
+            "./Assets/javascript/**/*.js",
+            "./Components/**/*.js",
+            "./Pages/**/*.js",
+            "./wwwroot/**/*.g.js",
+            "./wwwroot/**/*.g.css"
+        ]);
 }
 
 exports.devtoysSass = devtoysSass;
 exports.watchDevtoysSass = watchDevtoysSass;
 exports.devtoysJavaScript = devtoysJavascript;
 exports.watchDevtoysJavaScript = watchDevtoysJavaScript;
+exports.devtoysCleanup = devtoysCleanup;
