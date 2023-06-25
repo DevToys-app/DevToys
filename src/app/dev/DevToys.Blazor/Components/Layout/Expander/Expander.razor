@@ -14,12 +14,13 @@
               Title=@Title
               Description=@Description>
             <Control>
-                <Button Class="button"
-                        Appearance="@ButtonAppearance.Stealth"
+                <Button Appearance="@ButtonAppearance.Stealth"
                         @onclick="OnClickAsync"
+                        Height="32"
+                        Width="32"
                         aria-label="Toggle Expander"
                         aria-expanded="@IsExpanded.ToString()">
-                    <FontIcon Glyph="@('\uf2a6')" />
+                    <FontIcon Glyph="@('\uf2a6')" Height="12" Width="12" />
                 </Button>
             </Control>
         </Card>

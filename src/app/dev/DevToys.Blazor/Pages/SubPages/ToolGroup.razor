@@ -16,7 +16,10 @@
         <ItemTemplate Context="item">
             <div class="tool-group-grid-view-item">
                 <div class="icon">
-                    <FontIcon Class="fonticon" FontFamily="@item.IconFontName" Glyph="@item.IconGlyph" />
+                    <FontIcon Height="64"
+                              Width="64"
+                              FontFamily="@item.IconFontName"
+                              Glyph="@item.IconGlyph" />
                 </div>
                 <div class="title">
                     <TextBlock Appearance="@TextBlockAppearance.BodyStrong" Text="@item.LongOrShortDisplayTitle" />

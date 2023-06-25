@@ -2,13 +2,19 @@
 @inherits StyledComponentBase
 
 <CascadingValue Value="this" IsFixed="true">
-    <i id=@Id
-       class="font-icon @(FinalCssClasses)"
-       style="@Style"
-       @ref=Element
-       @attributes="AdditionalAttributes"
-       data-glyph='@Glyph'
-       aria-hidden="true"
-       role="presentation">
-    </i>
+    <Container HorizontalAlignment="@HorizontalAlignment"
+               VerticalAlignment="@VerticalAlignment"
+               Width="null"
+               Height="null"
+               IsVisible="@IsVisible">
+        <i id=@Id
+           class="font-icon @(FinalCssClasses)"
+           style="@StyleValue"
+           @ref=Element
+           @attributes="AdditionalAttributes"
+           data-glyph='@Glyph'
+           aria-hidden="true"
+           role="presentation">
+        </i>
+    </Container>
 </CascadingValue>

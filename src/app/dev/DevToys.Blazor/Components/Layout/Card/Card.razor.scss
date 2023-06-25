@@ -19,22 +19,8 @@
     .header {
         @include flex($direction: row, $align: center, $justify: between, $gap: 1rem);
 
-        .icon {
-            font-size: 16px;
-            height: 16px;
-            line-height: 16px;
-        }
-
         .context {
             @include flex($direction: column, $align: left, $gap: .5rem);
-        }
-    }
-
-    .control {
-        .icon {
-            font-size: 16px;
-            height: 16px;
-            line-height: 16px;
         }
     }
 }

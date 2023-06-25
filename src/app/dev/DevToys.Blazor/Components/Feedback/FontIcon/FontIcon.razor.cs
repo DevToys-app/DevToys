@@ -2,10 +2,20 @@
 
 public partial class FontIcon : StyledComponentBase
 {
+    protected string? StyleValue => new StyleBuilder()
+        .AddStyle("height", Height.ToPx())
+        .AddStyle("width", Width.ToPx())
+        .AddStyle("font-size", Width.ToPx())
+        .AddStyle("line-height", Height.ToPx())
+        .AddStyle(Style)
+        .Build();
+
     public FontIcon()
     {
         VerticalAlignment = VerticalAlignment.Center;
         HorizontalAlignment = HorizontalAlignment.Center;
+        Height = 16;
+        Width = 16;
     }
 
     [Parameter]

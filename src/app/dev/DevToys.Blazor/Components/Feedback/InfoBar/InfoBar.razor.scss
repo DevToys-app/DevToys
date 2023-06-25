@@ -9,7 +9,6 @@
     background-clip: padding-box;
     border: var(--info-bar-border-thickness) solid var(--info-bar-border);
     border-radius: var(--info-bar-border-corner-radius);
-    padding: 6px;
 
     &.severity- {
         &success {
@@ -29,13 +28,23 @@
         }
     }
 
+    &-content-container {
+        @include flex($align: center);
+        width: 100%;
+        justify-content: center;
+        position: relative;
+        padding-top: 12px;
+        padding-left: 16px;
+        padding-bottom: 12px;
+        padding-right: 0px;
+    }
+
     &-icon {
         align-self: flex-start;
         display: flex;
         flex: 0 0 auto;
-        margin-left: 6px;
         margin-right: 6px;
-        margin-top: 10px;
+        margin-top: 2px;
 
         .info-badge {
             @include flex($inline: true, $align: center, $justify: center);
@@ -109,12 +118,12 @@
     }
 
     &-button {
-        margin-left: 6px;
-        margin-top: 0;
+        margin-right: 6px;
+        margin-top: 6px;
         margin-bottom: auto;
 
         &.action {
-            margin-top: 1px;
+            margin-top: 7px;
         }
     }
 }

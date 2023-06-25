@@ -12,17 +12,12 @@
 
     .icon {
         grid-area: icon;
+        display: grid;
         height: 100px;
         width: 100px;
         padding: 12px;
         background-color: var(--card-background-color);
         border-radius: var(--control-corner-radius);
-
-        .fonticon {
-            text-align: center;
-            font-size: 64px;
-            height: 64px;
-        }
     }
 
     .title {

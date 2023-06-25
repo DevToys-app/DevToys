@@ -33,10 +33,11 @@
                     <Button Appearance="ButtonAppearance.Stealth"
                             Class="sidebar-expand-group-button"
                             HorizontalAlignment="HorizontalAlignment.Right"
-                            aria-expanded="true"
+                            Width="32"
+                            aria-expanded="@(IsExpanded.ToString().ToLowerInvariant())"
                             data-expanded="@(IsExpanded.ToString().ToLowerInvariant())"
                             @onclick="OnToggleExpandClick">
-                        <FontIcon Glyph="@('\uf2a6')" Style="height: 18px" />
+                        <FontIcon Glyph="@('\uf2a6')" Height="12" Width="12" />
                     </Button>
                 </div>
             }

@@ -1,4 +1,6 @@
 .grid-split-gripper {
+    display: flex;
+
     &:hover, &:active {
         background-color: var(--subtle-fill-secondary);
     }
