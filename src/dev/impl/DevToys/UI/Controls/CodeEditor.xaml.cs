@@ -219,7 +219,18 @@ namespace DevToys.UI.Controls
             set => SetValue(InfoContentProperty, value);
         }
 
-        private bool ShowInfoContent { get; set; }
+        public static readonly DependencyProperty ShowInfoContentProperty
+            = DependencyProperty.Register(
+                nameof(ShowInfoContent),
+                typeof(bool),
+                typeof(CodeEditor),
+                new PropertyMetadata(false));
+
+        public bool ShowInfoContent
+        {
+            get => (bool)GetValue(ShowInfoContentProperty);
+            set => SetValue(ShowInfoContentProperty, value);
+        }
 
         public CodeEditor()
         {
@@ -521,7 +532,6 @@ namespace DevToys.UI.Controls
             // when being expanded/collapsed. 
             bool showInfo = ShowInfoContent;
             ShowInfoContent = false;
-            UpdateInfoVisibility();
 
             IsExpanded = !IsExpanded;
             ExpandedChanged?.Invoke(this, EventArgs.Empty);
@@ -541,31 +551,13 @@ namespace DevToys.UI.Controls
             Window.Current.Dispatcher.RunIdleAsync(_ =>
             {
                 ShowInfoContent = showInfo;
-                UpdateInfoVisibility();
             });
         }
 
         private void InfoButton_Click(object sender, RoutedEventArgs e)
         {
             ShowInfoContent = !ShowInfoContent;
-
             ToolTipService.SetToolTip(GetInfoButton(), ShowInfoContent ? LanguageManager.Instance.Common.HideInfo : LanguageManager.Instance.Common.ShowInfo);
-
-            UpdateInfoVisibility();
-        }
-
-        private void UpdateInfoVisibility()
-        {
-            if (ShowInfoContent)
-            {
-                CodeEditorCoreContainer.Visibility = Visibility.Collapsed;
-                InfoGrid.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                CodeEditorCoreContainer.Visibility = Visibility.Visible;
-                InfoGrid.Visibility = Visibility.Collapsed;
-            }
         }
 
         private async void PasteButton_Click(object sender, RoutedEventArgs e)

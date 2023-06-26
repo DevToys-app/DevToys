@@ -18,6 +18,8 @@
         <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
         <converters:BooleanToTextWrappingConverter x:Key="BooleanToTextWrappingConverter" TextWrappingOnTrue="Wrap" TextWrappingOnFalse="NoWrap"/>
         <converters:BooleanToIntegerConverter x:Key="ReadOnlyToClearButtonTabIndexConverter" ValueOnTrue="3" ValueOnFalse="0"/>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <converters:BooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" IsInverted="True"/>
     </UserControl.Resources>
 
     <Grid>
@@ -124,7 +126,8 @@
             x:Name="CodeEditorCoreContainer"
             Grid.Row="1"
             Grid.Column="0"
-            Grid.ColumnSpan="2">
+            Grid.ColumnSpan="2"
+            Visibility="{x:Bind ShowInfoContent, Mode=OneWay, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
             <!--<monaco:CodeEditorCore
                 Grid.Row="1"
                 Grid.Column="0"
@@ -150,7 +153,7 @@
             Grid.Row="1"
             Grid.Column="0"
             Grid.ColumnSpan="2"
-            Visibility="Collapsed"
+            Visibility="{x:Bind ShowInfoContent, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
             Content="{x:Bind InfoContent}">
         </ContentControl>
         <TextBlock
