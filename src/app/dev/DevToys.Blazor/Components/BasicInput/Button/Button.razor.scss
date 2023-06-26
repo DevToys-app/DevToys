@@ -7,6 +7,7 @@ button {
     @include typography-body;
     position: relative;
     box-sizing: border-box;
+    min-block-size: 32px;
     padding-block: 4px 6px;
     padding-inline: 11px;
     text-decoration: none;
@@ -104,5 +105,13 @@ button {
 
     &.disabled {
         pointer-events: none;
+    }
+}
+
+// Compact mode
+div[data-compactmode] {
+    button {
+        min-block-size: 24px;
+        padding-block: 2px 2px;
     }
 }

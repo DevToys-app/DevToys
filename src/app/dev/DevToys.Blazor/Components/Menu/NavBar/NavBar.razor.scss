@@ -13,8 +13,7 @@ $sidebar-top-bar-height: 48px;
     grid-template-rows: $sidebar-top-bar-height calc(100vh - $sidebar-top-bar-height);
     gap: 0px 0px;
     grid-template-areas:
-        "header header"
-        "sidebar content";
+        "header header" "sidebar content";
 
     &.hidden {
         background: var(--navigation-view-content-background);
@@ -49,9 +48,7 @@ $sidebar-top-bar-height: 48px;
         grid-template-rows: auto 1fr auto;
         gap: 0px 0px;
         grid-template-areas:
-            "sidebar-header"
-            "sidebar-body"
-            "sidebar-footer";
+            "sidebar-header" "sidebar-body" "sidebar-footer";
 
         &.transition {
             @include transition( left 0.2s ease-in-out, width 0.2s ease-in-out, max-width 0.2s ease-in-out, box-shadow 0.2s ease-in-out );
@@ -120,6 +117,18 @@ $sidebar-top-bar-height: 48px;
         &:not(.hidden) {
             main {
                 margin-left: $sidebar-collapsed-width;
+            }
+        }
+    }
+}
+
+// Compact mode
+div[data-compactmode] {
+    .nav-bar-root {
+        .sidebar-header {
+            .text-box {
+                min-block-size: 32px;
+                padding-inline: 10px;
             }
         }
     }
