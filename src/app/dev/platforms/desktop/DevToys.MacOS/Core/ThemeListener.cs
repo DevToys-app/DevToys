@@ -29,7 +29,9 @@ internal sealed class ThemeListener : IThemeListener
 
     public bool IsHighContrast { get; private set; }
 
-    public bool IsCompactMode => _settingsProvider.GetSetting(DevToys.Api.PredefinedSettings.CompactMode);
+    public bool IsCompactMode { get; private set; }
+
+    public bool UserIsCompactModePreference => _settingsProvider.GetSetting(PredefinedSettings.CompactMode);
 
     public event EventHandler? ThemeChanged;
 

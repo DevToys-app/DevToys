@@ -25,13 +25,13 @@ public partial class NavBar<TElement, TSearchElement>
     /// Gets or sets the minimum width at which the sidebar should get hidden.
     /// </summary>
     [Parameter]
-    public int NavBarWidthSidebarHiddenThreshold { get; set; } = 640;
+    public int NavBarWidthSidebarHiddenThreshold { get; set; } = NavBarThresholds.NavBarWidthSidebarHiddenThreshold;
 
     /// <summary>
     /// Gets or sets the minimum width at which the sidebar should collapse.
     /// </summary>
     [Parameter]
-    public int NavBarWidthSidebarCollapseThreshold { get; set; } = 1008;
+    public int NavBarWidthSidebarCollapseThreshold { get; set; } = NavBarThresholds.NavBarWidthSidebarCollapseThreshold;
 
     [Parameter]
     public ReadOnlyObservableCollection<TElement>? MenuItemsSource { get; set; }

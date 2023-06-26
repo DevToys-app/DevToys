@@ -67,12 +67,22 @@ public partial class MainWindow : MicaWindowWithOverlay
 
         blazorWebView.BlazorWebViewInitializing += BlazorWebView_BlazorWebViewInitializing;
         blazorWebView.BlazorWebViewInitialized += BlazorWebView_BlazorWebViewInitialized;
+
+        // Set window default size and location.
+        // TODO: Save and restore user settings.
+        Width = Math.Max(System.Windows.SystemParameters.WorkArea.Width - 400, 1200);
+        Height = Math.Max(System.Windows.SystemParameters.WorkArea.Height - 200, 600);
+        Left = (System.Windows.SystemParameters.WorkArea.Width - Width) / 2;
+        Top = (System.Windows.SystemParameters.WorkArea.Height - Height) / 2;
     }
 
     private void MainWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
     {
         var windowService = (WindowService)_serviceProvider.GetService<IWindowService>()!;
         windowService.SetWindow(this);
+
+        Guard.IsNotNull(_themeListener);
+        ((ThemeListener)_themeListener).SetWindow(this);
     }
 
     private void BlazorWebView_BlazorWebViewInitializing(object? sender, BlazorWebViewInitializingEventArgs e)

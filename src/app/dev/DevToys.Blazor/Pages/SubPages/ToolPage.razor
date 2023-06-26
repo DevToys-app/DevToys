@@ -2,7 +2,14 @@
 @inherits MefComponentBase
 
 <CascadingValue Value="this" IsFixed="true">
-    <ScrollViewer Class="entrance-theme-transition">
-        <TextBlock Text="@ViewModel.HeaderText" />
+    <ScrollViewer Class="entrance-theme-transition tool-page">
+        <StackPanel Orientation="Orientation.Vertical">
+            <TextBlock Appearance="@TextBlockAppearance.Title" Style="font-size: 24px !important" Text="@ViewModel.HeaderText" />
+            <Card Title="Compact mode" Description="Description of the option" IconGlyph="@('\uEA19')">
+                <Control>
+                    <ToggleSwitch IsOn="@IsCompactModeEnabled" OnCheckedChanged="OnCompactModeChanged" Text="@((IsCompactModeEnabled ? "On" : "Off"))" />
+                </Control>
+            </Card>
+        </StackPanel>
     </ScrollViewer>
 </CascadingValue>

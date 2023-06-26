@@ -2,6 +2,8 @@
 @inherits LayoutComponentBase
 
 <div class="main-layout @(Class)"
-     data-theme="@ThemeName">
+     data-theme="@ThemeName"
+     data-compactmode="@IsCompactMode"
+     data-usercompactmode="@UserIsCompactModePreference">
         @Body
 </div>

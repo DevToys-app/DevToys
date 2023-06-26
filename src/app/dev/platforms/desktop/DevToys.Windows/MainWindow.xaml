@@ -10,8 +10,6 @@
     mc:Ignorable="d"
     Loaded="MainWindow_Loaded"
     Title="MainWindow"
-    Height="450"
-    Width="800"
     TitleBarMarginLeft="{Binding TitleBarMarginLeft}"
     TitleBarMarginRight="{Binding TitleBarMarginRight}">
     <Grid>

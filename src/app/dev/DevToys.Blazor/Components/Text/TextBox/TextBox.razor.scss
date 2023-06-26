@@ -169,3 +169,11 @@
         }
     }
 }
+
+// Compact mode
+div[data-compactmode] {
+    .text-box {
+        min-block-size: 24px;
+        padding-inline: 6px 2px;
+    }
+}

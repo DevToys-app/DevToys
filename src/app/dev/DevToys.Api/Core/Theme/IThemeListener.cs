@@ -31,6 +31,11 @@ public interface IThemeListener
     bool IsCompactMode { get; }
 
     /// <summary>
+    /// Gets a value indicating whether the customer wish to be in compact mode.
+    /// </summary>
+    bool UserIsCompactModePreference { get; }
+
+    /// <summary>
     /// Raised when the theme has changed.
     /// </summary>
     event EventHandler? ThemeChanged;

@@ -39,3 +39,11 @@
         gap: 16px;
     }
 }
+
+// Compact mode
+div[data-compactmode] {
+    .card {
+        min-height: 48px;
+        padding-block: 4px;
+    }
+}

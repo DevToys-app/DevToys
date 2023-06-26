@@ -78,3 +78,10 @@
         margin-inline-end: 16px;
     }
 }
+
+// Compact mode
+div[data-compactmode] {
+    .list-box-item {
+        block-size: 24px;
+    }
+}

@@ -20,6 +20,12 @@ public partial class MainLayout : LayoutComponentBase
     public string ThemeName { get; set; } = default!;
 
     [Parameter]
+    public bool IsCompactMode { get; set; }
+
+    [Parameter]
+    public bool UserIsCompactModePreference { get; set; }
+
+    [Parameter]
     public string Class { get; set; } = default!;
 
     protected override void OnInitialized()
@@ -76,6 +82,8 @@ public partial class MainLayout : LayoutComponentBase
         }
 
         ThemeName = themeName;
+        IsCompactMode = ThemeListener.IsCompactMode;
+        UserIsCompactModePreference = ThemeListener.UserIsCompactModePreference;
         StateHasChanged();
 
         Task.Delay(1000).ContinueWith(t =>

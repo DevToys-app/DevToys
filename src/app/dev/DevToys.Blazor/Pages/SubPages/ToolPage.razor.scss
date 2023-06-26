@@ -1,0 +1,10 @@
+.tool-page {
+    padding: 40px;
+}
+
+// Compact mode
+div[data-compactmode] {
+    .tool-page {
+        padding: 32px 16px;
+    }
+}

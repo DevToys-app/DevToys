@@ -2,13 +2,12 @@
 @inherits MefComponentBase
 
 <CascadingValue Value="this" IsFixed="true">
-    <GridView Class="entrance-theme-transition"
+    <GridView Class="entrance-theme-transition tool-group-grid-view"
               ItemsSource="@ViewModel.Tools"
               ItemMinWidth="330"
-              Style="padding: 2.5rem"
               OnItemClick=@OnToolSelected>
         <Header>
-            <TextBlock Appearance="@TextBlockAppearance.Subtitle" Style="font-size: 24px !important" Text="@ViewModel.HeaderText" />
+            <TextBlock Appearance="@TextBlockAppearance.Title" Style="font-size: 24px !important" Text="@ViewModel.HeaderText" />
         </Header>
         <GroupHeaderTemplate Context="item">
             <TextBlock Appearance="@TextBlockAppearance.Subtitle" Text="@item" />

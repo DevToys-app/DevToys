@@ -62,3 +62,22 @@ nav {
         }
     }
 }
+
+// Compact mode
+div[data-usercompactmode] {
+    nav {
+        .list-box-item {
+            .sidebar-expand-group-button {
+                height: 24px;
+            }
+        }
+    }
+}
+
+div[data-compactmode]:not(div[data-usercompactmode]) {
+    nav {
+        .list-box-item {
+            block-size: 34px;
+        }
+    }
+}

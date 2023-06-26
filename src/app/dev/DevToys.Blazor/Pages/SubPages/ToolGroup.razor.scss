@@ -1,65 +1,75 @@
-.tool-group-grid-view-item {
-    height: 134px;
-    max-height: 134px;
-    padding: 16px;
-    display: grid;
-    grid-template-columns: min-content 1fr min-content;
-    grid-template-rows: min-content 1fr;
-    gap: 0px 0px;
-    grid-template-areas:
-        "icon title buttons"
-        "icon description description";
+.tool-group-grid-view {
+    padding: 40px;
 
-    .icon {
-        grid-area: icon;
+    .tool-group-grid-view-item {
+        height: 134px;
+        max-height: 134px;
+        padding: 16px;
         display: grid;
-        height: 100px;
-        width: 100px;
-        padding: 12px;
-        background-color: var(--card-background-color);
-        border-radius: var(--control-corner-radius);
-    }
+        grid-template-columns: min-content 1fr min-content;
+        grid-template-rows: min-content 1fr;
+        gap: 0px 0px;
+        grid-template-areas:
+            "icon title buttons" "icon description description";
 
-    .title {
-        grid-area: title;
-        margin-left: 16px;
-        max-height: 75px;
-        word-wrap: break-word;
-        text-overflow: ellipsis;
-        color: var(--text-fill-color-primary);
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-    }
-
-    .description {
-        grid-area: description;
-        margin-left: 16px;
-        margin-top: 2px;
-        margin-right: 8px;
-        color: var(--text-fill-color-secondary);
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: 5;
-        -webkit-box-orient: vertical;
-    }
-
-    .buttons {
-        grid-area: buttons;
-        margin-left: 16px;
-        top: 0px;
-
-        .button {
-            height: 24px;
-            width: 24px;
-            padding: 0px;
+        .icon {
+            grid-area: icon;
+            display: grid;
+            height: 100px;
+            width: 100px;
+            padding: 12px;
+            background-color: var(--card-background-color);
+            border-radius: var(--control-corner-radius);
         }
 
-        .fonticon {
-            text-align: center;
-            font-size: 16px;
-            width: 21px;
+        .title {
+            grid-area: title;
+            margin-left: 16px;
+            max-height: 75px;
+            word-wrap: break-word;
+            text-overflow: ellipsis;
+            color: var(--text-fill-color-primary);
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
         }
+
+        .description {
+            grid-area: description;
+            margin-left: 16px;
+            margin-top: 2px;
+            margin-right: 8px;
+            color: var(--text-fill-color-secondary);
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+        }
+
+        .buttons {
+            grid-area: buttons;
+            margin-left: 16px;
+            top: 0px;
+
+            .button {
+                height: 24px;
+                width: 24px;
+                padding: 0px;
+            }
+
+            .fonticon {
+                text-align: center;
+                font-size: 16px;
+                width: 21px;
+            }
+        }
+    }
+}
+
+// Compact mode
+div[data-compactmode] {
+    .tool-group-grid-view {
+        padding: 32px 16px;
     }
 }

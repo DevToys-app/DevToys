@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using DevToys.Api;
+using DevToys.Blazor.Components;
 using Microsoft.Win32;
 
 namespace DevToys.Windows.Core;
@@ -12,6 +13,8 @@ internal sealed class ThemeListener : IThemeListener
 
     private readonly ISettingsProvider _settingsProvider;
 
+    private Window? _window;
+
     [ImportingConstructor]
     public ThemeListener(ISettingsProvider settingsProvider)
     {
@@ -23,6 +26,8 @@ internal sealed class ThemeListener : IThemeListener
         SystemEvents.UserPreferenceChanged += SystemEventsUserPreferenceChanged;
 
         UpdateSystemSettingsAndApplyTheme();
+
+        IsCompactMode = GetBestValueForCompactMode();
     }
 
     public AvailableApplicationTheme CurrentSystemTheme { get; private set; }
@@ -33,7 +38,9 @@ internal sealed class ThemeListener : IThemeListener
 
     public bool IsHighContrast { get; private set; }
 
-    public bool IsCompactMode => _settingsProvider.GetSetting(PredefinedSettings.CompactMode);
+    public bool IsCompactMode { get; private set; }
+
+    public bool UserIsCompactModePreference => _settingsProvider.GetSetting(PredefinedSettings.CompactMode);
 
     public event EventHandler? ThemeChanged;
 
@@ -59,6 +66,16 @@ internal sealed class ThemeListener : IThemeListener
         ThemeChanged?.Invoke(this, EventArgs.Empty);
     }
 
+    internal void SetWindow(Window window)
+    {
+        Guard.IsNull(_window);
+        Guard.IsNotNull(window);
+        _window = window;
+
+        _window.SizeChanged += Window_SizeChanged;
+        UpdateCompactModeBasedOnWindowSize();
+    }
+
     /// <summary>
     /// Evaluates whether the theme should automatically be updated or not, based on app and operating system settings.
     /// </summary>
@@ -78,8 +95,14 @@ internal sealed class ThemeListener : IThemeListener
         }
         else if (string.Equals(PredefinedSettings.CompactMode.Name, e.SettingName, StringComparison.Ordinal))
         {
-            // TODO: Apply the mode.
+            IsCompactMode = GetBestValueForCompactMode();
+            ThemeChanged?.Invoke(this, EventArgs.Empty);
         }
+    }
+
+    private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        UpdateCompactModeBasedOnWindowSize();
     }
 
     private void SystemEventsUserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
@@ -90,6 +113,31 @@ internal sealed class ThemeListener : IThemeListener
         }
 
         UpdateSystemSettingsAndApplyTheme();
+    }
+
+    private void UpdateCompactModeBasedOnWindowSize()
+    {
+        bool newIsCompactMode = GetBestValueForCompactMode();
+        if (newIsCompactMode != IsCompactMode)
+        {
+            IsCompactMode = newIsCompactMode;
+            ThemeChanged?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
+    private bool GetBestValueForCompactMode()
+    {
+        if (UserIsCompactModePreference)
+        {
+            return true;
+        }
+
+        if (_window is not null)
+        {
+            return _window.Width <= NavBarThresholds.NavBarWidthSidebarCollapseThreshold;
+        }
+
+        return false;
     }
 
     private static AvailableApplicationTheme GetCurrentSystemTheme()
