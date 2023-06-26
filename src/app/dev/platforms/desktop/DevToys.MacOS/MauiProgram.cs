@@ -16,7 +16,7 @@ public partial class MauiProgram
     private ILogger? _logger;
     private MauiApp? _app;
 
-    internal MefComposer? MefComposer;
+    internal static MefComposer? MefComposer;
 
     public MauiApp CreateMauiApp()
     {

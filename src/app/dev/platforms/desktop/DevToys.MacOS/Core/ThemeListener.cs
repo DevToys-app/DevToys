@@ -1,4 +1,8 @@
 ﻿using DevToys.Api;
+using DevToys.Blazor.Components;
+using Foundation;
+using Microsoft.Maui.Controls;
+using UIKit;
 
 namespace DevToys.MacOS.Core;
 
@@ -6,6 +10,7 @@ namespace DevToys.MacOS.Core;
 internal sealed class ThemeListener : IThemeListener
 {
     private readonly ISettingsProvider _settingsProvider;
+    private ContentPage? _contentPage;
 
     [ImportingConstructor]
     public ThemeListener(ISettingsProvider settingsProvider)
@@ -19,6 +24,8 @@ internal sealed class ThemeListener : IThemeListener
         Application.Current.RequestedThemeChanged += System_RequestedThemeChanged;
 
         UpdateSystemSettingsAndApplyTheme();
+
+        IsCompactMode = GetBestValueForCompactMode();
     }
 
     public AvailableApplicationTheme CurrentSystemTheme { get; private set; }
@@ -76,6 +83,14 @@ internal sealed class ThemeListener : IThemeListener
         ThemeChanged?.Invoke(this, EventArgs.Empty);
     }
 
+    internal void SetContentPage(ContentPage page)
+    {
+        Guard.IsNull(_contentPage);
+        Guard.IsNotNull(page);
+        _contentPage = page;
+        _contentPage.SizeChanged += ContentPage_SizeChanged;
+    }
+
     /// <summary>
     /// Evaluates whether the theme should automatically be updated or not, based on app and operating system settings.
     /// </summary>
@@ -96,13 +111,44 @@ internal sealed class ThemeListener : IThemeListener
         }
         else if (string.Equals(DevToys.Api.PredefinedSettings.CompactMode.Name, e.SettingName, StringComparison.Ordinal))
         {
-            // TODO: Apply the mode.
+            IsCompactMode = GetBestValueForCompactMode();
+            ThemeChanged?.Invoke(this, EventArgs.Empty);
         }
+    }
+
+    private void ContentPage_SizeChanged(object? sender, EventArgs e)
+    {
+        UpdateCompactModeBasedOnWindowSize();
     }
 
     private void System_RequestedThemeChanged(object? sender, AppThemeChangedEventArgs e)
     {
         UpdateSystemSettingsAndApplyTheme();
+    }
+
+    private void UpdateCompactModeBasedOnWindowSize()
+    {
+        bool newIsCompactMode = GetBestValueForCompactMode();
+        if (newIsCompactMode != IsCompactMode)
+        {
+            IsCompactMode = newIsCompactMode;
+            ThemeChanged?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
+    private bool GetBestValueForCompactMode()
+    {
+        if (UserIsCompactModePreference)
+        {
+            return true;
+        }
+
+        if (_contentPage is not null)
+        {
+            return _contentPage.Width <= NavBarThresholds.NavBarWidthSidebarCollapseThreshold;
+        }
+
+        return false;
     }
 
     private static AvailableApplicationTheme GetCurrentSystemTheme()

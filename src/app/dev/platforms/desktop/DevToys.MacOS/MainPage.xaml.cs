@@ -1,4 +1,6 @@
 ﻿using System.Reflection;
+using DevToys.Api;
+using DevToys.MacOS.Core;
 
 namespace DevToys.MacOS;
 
@@ -8,6 +10,10 @@ public partial class MainPage : ContentPage
     {
         InitializeComponent();
         Loaded += OnLoaded;
+
+        Guard.IsNotNull(MauiProgram.MefComposer);
+        IThemeListener themeListener = MauiProgram.MefComposer.Provider.Import<IThemeListener>();
+        ((ThemeListener)themeListener).SetContentPage(this);
     }
 
     private void OnLoaded(object? sender, EventArgs e)

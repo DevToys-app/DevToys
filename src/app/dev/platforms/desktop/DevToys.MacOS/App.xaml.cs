@@ -1,4 +1,7 @@
-﻿namespace DevToys.MacOS;
+﻿using DevToys.Api;
+using DevToys.MacOS.Core;
+
+namespace DevToys.MacOS;
 
 public partial class App : Application
 {
@@ -12,7 +15,7 @@ public partial class App : Application
     protected override Window CreateWindow(IActivationState? activationState)
     {
         Window window = base.CreateWindow(activationState);
-        window.Width = 800;
+        window.Width = 1200;
         window.Height = 600;
 
         return window;

@@ -53,4 +53,11 @@
     <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
     <Exec WorkingDirectory="$(ProjectDir)" Command="npm install" />
   </Target>
+
+  <Target Name="GulpPrecompileTarget" AfterTargets="CompileTypeScriptWithTSConfig" Condition="'$(IsWindows)' == 'false'">
+    <!-- Run the Gulp tasks. -->
+    <Message Importance="high" Text="Generating CSS and JavaScript..." />
+    <Exec WorkingDirectory="$(ProjectDir)" Command="node_modules\.bin\gulp devtoysJavaScript" />
+    <Exec WorkingDirectory="$(ProjectDir)" Command="node_modules\.bin\gulp devtoysSass" />
+  </Target>
 </Project>
