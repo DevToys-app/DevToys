@@ -87,7 +87,7 @@
         {
             if (ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem)
             {
-                <ToolPage />
+                <ToolPage GuiToolViewItem="@guiToolViewItem"/>
             }
             else if (ViewModel.SelectedMenuItem is GroupViewItem groupToolViewItem)
             {
