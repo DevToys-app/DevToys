@@ -1,0 +1,15 @@
+@namespace DevToys.Blazor.Components.UIElements
+@using DevToys.Api;
+@inherits ComponentBase
+
+<CascadingValue Value="this" IsFixed="true">
+    @if (UIButton is not null)
+    {
+        <Button IsVisible="@UIButton.IsVisible"
+                IsEnabled="@UIButton.IsEnabled"
+                Appearance="ButtonAppearance.Neutral"
+                @onclick=OnButtonClickAsync>
+            @UIButton?.Text
+        </Button>
+    }
+</CascadingValue>

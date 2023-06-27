@@ -51,17 +51,17 @@ internal sealed class SampleCommandLineTool : ICommandLineTool
 [AcceptedDataTypeName(PredefinedCommonDataTypeNames.Json)]
 internal sealed class SampleGuiTool : IGuiTool
 {
-    private readonly IUIMultilineLineTextInput _editor = MultilineTextInput().Language("json").CanCopyWhenEditable();
+    //private readonly IUIMultilineLineTextInput _editor = MultilineTextInput().Language("json").CanCopyWhenEditable();
 
-    public IUIElement View
-        => _editor;
+    public IUIElement View => Button().Text("Hello !");
+      //  => _editor;
 
     public void OnDataReceived(string dataTypeName, object? parsedData)
     {
         if (dataTypeName == PredefinedCommonDataTypeNames.Json && parsedData is Tuple<JToken, string> strongTypedParsedData)
         {
-            _editor.Text(strongTypedParsedData.Item2);
-            _editor.Highlight(new TextSpan(3, 6));
+            //_editor.Text(strongTypedParsedData.Item2);
+            //_editor.Highlight(new TextSpan(3, 6));
         }
     }
 }

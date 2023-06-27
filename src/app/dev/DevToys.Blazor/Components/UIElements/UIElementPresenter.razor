@@ -1,0 +1,22 @@
+@namespace DevToys.Blazor.Components.UIElements
+@using DevToys.Api;
+@inherits ComponentBase
+
+<CascadingValue Value="this" IsFixed="true">
+    @if (UIElement is not null)
+    {
+        switch (UIElement)
+        {
+            @*case IUIStack stack:
+                <UIStackPresenter UIStack="@stack" />
+                break;*@
+
+            case IUIButton button:
+                <UIButtonPresenter UIButton="@button" />
+                break;
+
+            default:
+                throw new NotSupportedException($"Gui Tool component of type '{UIElement.GetType().FullName}' isn't supported.");
+        }
+    }
+</CascadingValue>
