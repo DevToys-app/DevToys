@@ -104,13 +104,26 @@ public partial class NavBar<TElement, TSearchElement>
         _sidebarState.IsHiddenChanged += SidebarState_IsHiddenChanged;
     }
 
+    internal ValueTask<bool> TryFocusSearchBoxAsync()
+    {
+        if (!_sidebarState.IsCollapsed && !_sidebarState.IsHidden)
+        {
+            return _autoSuggestBox.FocusAsync();
+        }
+
+        return new ValueTask<bool>(false);
+    }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await base.OnAfterRenderAsync(firstRender);
 
         if (firstRender)
         {
-            await (await JSModule).InvokeVoidAsync("registerResizeHandler", Id, NavId, Reference);
+            using (await Semaphore.WaitAsync(CancellationToken.None))
+            {
+                await (await JSModule).InvokeVoidWithErrorHandlingAsync("registerResizeHandler", Id, NavId, Reference);
+            }
         }
     }
 

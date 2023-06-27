@@ -10,7 +10,7 @@ public sealed class ContextMenuService
         Guard.IsNotNull(windowService);
         _windowService = windowService;
 
-        _windowService.WindowLostFocus += WindowService_MajorWindowChange;
+        _windowService.WindowDeactivated += WindowService_MajorWindowChange;
         _windowService.WindowClosing += WindowService_MajorWindowChange;
         _windowService.WindowLocationChanged += WindowService_MajorWindowChange;
         _windowService.WindowSizeChanged += WindowService_MajorWindowChange;

@@ -1,7 +1,10 @@
-﻿namespace DevToys.Blazor.Components;
+﻿using DevToys.Api;
+
+namespace DevToys.Blazor.Components;
 
 public abstract class JSStyledComponentBase : StyledComponentBase, IAsyncDisposable
 {
+    protected readonly DisposableSemaphore Semaphore = new();
     private Task<IJSObjectReference>? _jsModule;
     private DotNetObjectReference<JSStyledComponentBase>? _reference;
 
@@ -43,15 +46,29 @@ public abstract class JSStyledComponentBase : StyledComponentBase, IAsyncDisposa
         }
     }
 
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        return base.OnAfterRenderAsync(firstRender);
+    }
+
     /// <summary />
     public virtual async ValueTask DisposeAsync()
     {
         _reference?.Dispose();
         _reference = null;
 
-        if (_jsModule is not null)
+        using (await Semaphore.WaitAsync(CancellationToken.None))
         {
-            await (await _jsModule).DisposeAsync();
+            try
+            {
+                if (_jsModule is not null)
+                {
+                    await (await _jsModule).DisposeAsync();
+                }
+            }
+            catch (JSDisconnectedException)
+            {
+            }
         }
 
         GC.SuppressFinalize(this);

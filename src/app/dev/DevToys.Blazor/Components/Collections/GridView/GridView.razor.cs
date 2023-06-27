@@ -38,14 +38,22 @@ public partial class GridView<TKey, TElement> : JSStyledComponentBase
 
         if (firstRender)
         {
-            Guard.IsNotNull(_scrollViewer);
-            await (await JSModule).InvokeVoidAsync("initializeStickyHeaders", _scrollViewer.Id);
-
-            if (ItemMinWidth > 0)
+            using (await Semaphore.WaitAsync(CancellationToken.None))
             {
-                await (await JSModule).InvokeVoidAsync("initializeDynamicItemSize", _scrollViewer.Id, ItemMinWidth);
+                Guard.IsNotNull(_scrollViewer);
+                await (await JSModule).InvokeVoidWithErrorHandlingAsync("initializeStickyHeaders", _scrollViewer.Id);
+
+                if (ItemMinWidth > 0)
+                {
+                    await (await JSModule).InvokeVoidWithErrorHandlingAsync("initializeDynamicItemSize", _scrollViewer.Id, ItemMinWidth);
+                }
             }
         }
+    }
+
+    public override async ValueTask DisposeAsync()
+    {
+        await base.DisposeAsync();
     }
 
     internal Task OnItemClickAsync(TElement item)

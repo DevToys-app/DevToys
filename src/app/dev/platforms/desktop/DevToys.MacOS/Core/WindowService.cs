@@ -5,22 +5,29 @@ namespace DevToys.MacOS.Core;
 
 internal sealed class WindowService : IWindowService
 {
-    public event EventHandler<EventArgs>? WindowLostFocus;
+    public event EventHandler<EventArgs>? WindowActivated;
+    public event EventHandler<EventArgs>? WindowDeactivated;
     public event EventHandler<EventArgs>? WindowLocationChanged;
     public event EventHandler<EventArgs>? WindowSizeChanged;
     public event EventHandler<EventArgs>? WindowClosing;
 
     public WindowService()
     {
-        NSNotificationCenter.DefaultCenter.AddObserver(new NSString("NSWindowDidResignMainNotification"), OnWindowLostFocus);
+        NSNotificationCenter.DefaultCenter.AddObserver(new NSString("NSWindowDidBecomeMainNotification"), OnWindowActivated);
+        NSNotificationCenter.DefaultCenter.AddObserver(new NSString("NSWindowDidResignMainNotification"), OnWindowDeactivated);
         NSNotificationCenter.DefaultCenter.AddObserver(new NSString("NSWindowWillMoveNotification"), OnWindowLocationChanged);
         NSNotificationCenter.DefaultCenter.AddObserver(new NSString("NSWindowWillStartLiveResizeNotification"), OnWindowSizeChanged);
         NSNotificationCenter.DefaultCenter.AddObserver(new NSString("NSWindowWillCloseNotification"), OnWindowClosing);
     }
 
-    public void OnWindowLostFocus(NSNotification notification)
+    public void OnWindowActivated(NSNotification notification)
     {
-        WindowLostFocus?.Invoke(this, EventArgs.Empty);
+        WindowActivated?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void OnWindowDeactivated(NSNotification notification)
+    {
+        WindowDeactivated?.Invoke(this, EventArgs.Empty);
     }
 
     public void OnWindowLocationChanged(NSNotification notification)

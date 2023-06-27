@@ -7,10 +7,13 @@ internal sealed class WindowService : IWindowService
 {
     private Window? _window;
 
-    public event EventHandler<EventArgs>? WindowLostFocus;
+    public event EventHandler<EventArgs>? WindowActivated;
+    public event EventHandler<EventArgs>? WindowDeactivated;
     public event EventHandler<EventArgs>? WindowLocationChanged;
     public event EventHandler<EventArgs>? WindowSizeChanged;
     public event EventHandler<EventArgs>? WindowClosing;
+
+    public bool IsOverlayMode { get; set; }
 
     internal void SetWindow(Window window)
     {
@@ -18,15 +21,21 @@ internal sealed class WindowService : IWindowService
         Guard.IsNotNull(window);
         _window = window;
 
-        _window.LostFocus += Window_LostFocus;
+        _window.Activated += Window_Activated;
+        _window.Deactivated += Window_Deactivated;
         _window.LocationChanged += Window_LocationChanged;
         _window.SizeChanged += Window_SizeChanged;
         _window.Closing += Window_Closing;
     }
 
-    private void Window_LostFocus(object sender, RoutedEventArgs e)
+    private void Window_Activated(object? sender, EventArgs e)
     {
-        WindowLostFocus?.Invoke(this, EventArgs.Empty);
+        WindowActivated?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void Window_Deactivated(object? sender, EventArgs e)
+    {
+        WindowDeactivated?.Invoke(this, EventArgs.Empty);
     }
 
     private void Window_LocationChanged(object? sender, EventArgs e)

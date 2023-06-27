@@ -95,7 +95,7 @@ public partial class TextBox : MefComponentBase
     {
         try
         {
-            await (await JSModule).InvokeVoidAsync("dispose", Element);
+            await (await JSModule).InvokeVoidWithErrorHandlingAsync("dispose", Element);
         }
         catch
         {
@@ -112,7 +112,10 @@ public partial class TextBox : MefComponentBase
 
         if (firstRender)
         {
-            await (await JSModule).InvokeVoidAsync("initializeKeyboardTracking", Element);
+            using (await Semaphore.WaitAsync(CancellationToken.None))
+            {
+                await (await JSModule).InvokeVoidWithErrorHandlingAsync("initializeKeyboardTracking", Element);
+            }
         }
     }
 
@@ -124,18 +127,24 @@ public partial class TextBox : MefComponentBase
 
     private async Task OnDecreaseClickAsync()
     {
-        Guard.IsNotNull(_input);
-        Guard.IsNotNull(_input.Element);
-        await SetTextAsync((await (await JSModule).InvokeAsync<int>("decreaseValue", _input.Element)).ToString());
-        await FocusAsync();
+        using (await Semaphore.WaitAsync(CancellationToken.None))
+        {
+            Guard.IsNotNull(_input);
+            Guard.IsNotNull(_input.Element);
+            await SetTextAsync((await (await JSModule).InvokeAsync<int>("decreaseValue", _input.Element)).ToString());
+            await FocusAsync();
+        }
     }
 
     private async Task OnIncreaseClickAsync()
     {
-        Guard.IsNotNull(_input);
-        Guard.IsNotNull(_input.Element);
-        await SetTextAsync((await (await JSModule).InvokeAsync<int>("increaseValue", _input.Element)).ToString());
-        await FocusAsync();
+        using (await Semaphore.WaitAsync(CancellationToken.None))
+        {
+            Guard.IsNotNull(_input);
+            Guard.IsNotNull(_input.Element);
+            await SetTextAsync((await (await JSModule).InvokeAsync<int>("increaseValue", _input.Element)).ToString());
+            await FocusAsync();
+        }
     }
 
     private Task OnContextMenuOpening()
@@ -162,34 +171,37 @@ public partial class TextBox : MefComponentBase
 
     private async Task UpdateContextMenuAsync()
     {
-        Guard.IsNotNull(_input);
-        Guard.IsNotNull(_input.Element);
-        int selectionLength = await (await JSModule).InvokeAsync<int>("getSelectionLength", _input.Element);
-
-        _contextMenuItems.Clear();
-
-        if (selectionLength > 0)
+        using (await Semaphore.WaitAsync(CancellationToken.None))
         {
-            if (!IsReadOnly)
+            Guard.IsNotNull(_input);
+            Guard.IsNotNull(_input.Element);
+            int selectionLength = await (await JSModule).InvokeAsync<int>("getSelectionLength", _input.Element);
+
+            _contextMenuItems.Clear();
+
+            if (selectionLength > 0)
             {
-                CutContextMenuItem.OnClick = EventCallback.Factory.Create(this, OnCutAsync);
-                _contextMenuItems.Add(CutContextMenuItem);
+                if (!IsReadOnly)
+                {
+                    CutContextMenuItem.OnClick = EventCallback.Factory.Create(this, OnCutAsync);
+                    _contextMenuItems.Add(CutContextMenuItem);
+                }
+
+                CopyContextMenuItem.OnClick = EventCallback.Factory.Create(this, OnCopyAsync);
+                _contextMenuItems.Add(CopyContextMenuItem);
             }
 
-            CopyContextMenuItem.OnClick = EventCallback.Factory.Create(this, OnCopyAsync);
-            _contextMenuItems.Add(CopyContextMenuItem);
-        }
+            if (!IsReadOnly)
+            {
+                PasteContextMenuItem.OnClick = EventCallback.Factory.Create(this, OnPasteAsync);
+                _contextMenuItems.Add(PasteContextMenuItem);
+            }
 
-        if (!IsReadOnly)
-        {
-            PasteContextMenuItem.OnClick = EventCallback.Factory.Create(this, OnPasteAsync);
-            _contextMenuItems.Add(PasteContextMenuItem);
-        }
-
-        if (Text?.Length > 0)
-        {
-            SelectAllContextMenuItem.OnClick = EventCallback.Factory.Create(this, OnSelectAllAsync);
-            _contextMenuItems.Add(SelectAllContextMenuItem);
+            if (Text?.Length > 0)
+            {
+                SelectAllContextMenuItem.OnClick = EventCallback.Factory.Create(this, OnSelectAllAsync);
+                _contextMenuItems.Add(SelectAllContextMenuItem);
+            }
         }
     }
 
@@ -235,15 +247,21 @@ public partial class TextBox : MefComponentBase
 
     private async Task OnSelectAllAsync()
     {
-        Guard.IsNotNull(_input);
-        await (await JSModule).InvokeVoidAsync("selectAll", _input.Element);
+        using (await Semaphore.WaitAsync(CancellationToken.None))
+        {
+            Guard.IsNotNull(_input);
+            await (await JSModule).InvokeVoidWithErrorHandlingAsync("selectAll", _input.Element);
+        }
     }
 
     private async Task<TextSpan> GetSelectionAsync()
     {
-        Guard.IsNotNull(_input);
-        int[] selection = await (await JSModule).InvokeAsync<int[]>("getSelectionSpan", _input.Element);
-        return new TextSpan(selection[0], selection[1] - selection[0]);
+        using (await Semaphore.WaitAsync(CancellationToken.None))
+        {
+            Guard.IsNotNull(_input);
+            int[] selection = await (await JSModule).InvokeAsync<int[]>("getSelectionSpan", _input.Element);
+            return new TextSpan(selection[0], selection[1] - selection[0]);
+        }
     }
 
     private Task SetTextAsync(string text)

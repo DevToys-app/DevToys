@@ -16,7 +16,8 @@
 
 <!-- Navigation View -->
 <!-- TODO: Localize -->
-<NavBar TElement="INotifyPropertyChanged"
+<NavBar @ref=_navBar
+        TElement="INotifyPropertyChanged"
         TSearchElement="GuiToolViewItem"
         MenuItemsSource="@ViewModel.HeaderAndBodyToolViewItems"
         FooterMenuItemsSource="@ViewModel.FooterToolViewItems"
@@ -77,7 +78,19 @@
                 title = groupViewItem.DisplayTitle;
             }
 
-            <TextBlock NoWrap="true" Text="@title" />
+            <div style="display: flex;">
+                <TextBlock NoWrap="true"
+                           Text="@title"
+                           Style="flex-grow: 1 !important; flex-basis: auto !important; align-self:center;" />
+                @if (item is GuiToolViewItem guiToolViewItem2 && guiToolViewItem2.IsRecommended)
+                {
+                    <img src="_content/DevToys.Blazor/img/idea.svg"
+                         height="16"
+                         width="16"
+                         style="flex-basis: auto; align-self:center;" />
+                }
+                <img />
+            </div>
         }
     </NavBarItemTitleTemplate>
 

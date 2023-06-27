@@ -22,7 +22,7 @@ public partial class FocusTrapper : JSStyledComponentBase
 
     public override async ValueTask DisposeAsync()
     {
-        await (await JSModule).InvokeVoidAsync("dispose", Element);
+        await (await JSModule).InvokeVoidWithErrorHandlingAsync("dispose", Element);
         await base.DisposeAsync();
     }
 
@@ -32,7 +32,10 @@ public partial class FocusTrapper : JSStyledComponentBase
 
         if (firstRender)
         {
-            await (await JSModule).InvokeVoidAsync("initializeFocusTracking", Element);
+            using (await Semaphore.WaitAsync(CancellationToken.None))
+            {
+                await (await JSModule).InvokeVoidWithErrorHandlingAsync("initializeFocusTracking", Element);
+            }
         }
     }
 

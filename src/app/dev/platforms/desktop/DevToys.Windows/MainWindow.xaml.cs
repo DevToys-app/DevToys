@@ -1,5 +1,4 @@
-﻿using System;
-using DevToys.Api;
+﻿using DevToys.Api;
 using DevToys.Blazor.Core.Languages;
 using DevToys.Blazor.Core.Services;
 using DevToys.Business.ViewModels;
@@ -9,6 +8,7 @@ using DevToys.Core.Mef;
 using DevToys.Windows.Controls;
 using DevToys.Windows.Core;
 using Microsoft.AspNetCore.Components.WebView;
+using Microsoft.AspNetCore.Components.WebView.Wpf;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using PredefinedSettings = DevToys.Core.Settings.PredefinedSettings;
@@ -93,7 +93,18 @@ public partial class MainWindow : MicaWindowWithOverlay
 
     private void BlazorWebView_BlazorWebViewInitialized(object? sender, BlazorWebViewInitializedEventArgs e)
     {
+        if (!Debugger.IsAttached)
+        {
+            blazorWebView.WebView.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = false;
+        }
+        blazorWebView.WebView.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
+        blazorWebView.WebView.CoreWebView2.Settings.IsGeneralAutofillEnabled = false;
+        blazorWebView.WebView.CoreWebView2.Settings.IsPinchZoomEnabled = false;
+        blazorWebView.WebView.CoreWebView2.Settings.IsZoomControlEnabled = false;
+        blazorWebView.WebView.CoreWebView2.Settings.IsSwipeNavigationEnabled = false;
         blazorWebView.WebView.CoreWebView2.Settings.IsStatusBarEnabled = false;
+        blazorWebView.Focus();
+        blazorWebView.WebView.Focus();
         LogUiLoadTime((DateTime.Now - _uiLoadingTime).TotalMilliseconds);
     }
 

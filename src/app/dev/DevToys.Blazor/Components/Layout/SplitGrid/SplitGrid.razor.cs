@@ -62,7 +62,7 @@ public partial class SplitGrid : JSStyledComponentBase
 
     public override async ValueTask DisposeAsync()
     {
-        await (await JSModule).InvokeVoidAsync("dispose", Element);
+        await (await JSModule).InvokeVoidWithErrorHandlingAsync("dispose", Element);
         await base.DisposeAsync();
     }
 
@@ -72,12 +72,15 @@ public partial class SplitGrid : JSStyledComponentBase
 
         if (firstRender)
         {
-            await (await JSModule).InvokeVoidAsync(
+            using (await Semaphore.WaitAsync(CancellationToken.None))
+            {
+                await (await JSModule).InvokeVoidWithErrorHandlingAsync(
                 "initializeSplitGrid",
                 Element,
                 _gutterElement,
                 GutterOrientation == Orientation.Vertical,
                 MinimumCellSize);
+            }
         }
     }
 

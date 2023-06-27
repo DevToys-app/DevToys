@@ -1,4 +1,5 @@
-﻿using DevToys.Blazor.Components;
+﻿using DevToys.Api;
+using DevToys.Blazor.Components;
 using DevToys.Blazor.Core.Services;
 using DevToys.Business.ViewModels;
 using DevToys.Core;
@@ -12,6 +13,8 @@ public partial class Index : MefComponentBase
     private const int TitleBarMarginLeftWhenNavBarHidden = 87;
     private const int TitleBarMarginLeftWhenNavBarNotHidden = 47;
 
+    private NavBar<INotifyPropertyChanged, GuiToolViewItem> _navBar = default!;
+
     [Import]
     internal MainWindowViewModel ViewModel { get; set; } = default!;
 
@@ -21,12 +24,14 @@ public partial class Index : MefComponentBase
     [Import]
     internal TitleBarMarginProvider TitleBarMarginProvider { get; set; } = default!;
 
+    [Import]
+    internal IThemeListener ThemeListener { get; set; } = default!;
+
     [Inject]
     internal ContextMenuService ContextMenuService { get; set; } = default!;
 
-    // TODO: Temp.
-    [Parameter]
-    public int ComboBoxSelectedItem { get; set; } = 1;
+    [Inject]
+    internal IWindowService WindowService { get; set; } = default!;
 
     /// <summary>
     /// Indicates whether we're transitioning to another selected menu item.
@@ -39,6 +44,7 @@ public partial class Index : MefComponentBase
         ViewModel.SelectedMenuItemChanged += ViewModel_SelectedMenuItemChanged;
         ViewModel.SelectedMenuItem = ViewModel.HeaderAndBodyToolViewItems[0];
         ContextMenuService.IsContextMenuOpenedChanged += ContextMenuService_IsContextMenuOpenedChanged;
+        WindowService.WindowActivated += WindowService_WindowActivated;
     }
 
     private void ViewModel_SelectedMenuItemChanged(object? sender, EventArgs e)
@@ -52,6 +58,12 @@ public partial class Index : MefComponentBase
     private void ContextMenuService_IsContextMenuOpenedChanged(object? sender, EventArgs e)
     {
         StateHasChanged();
+    }
+
+    private void WindowService_WindowActivated(object? sender, EventArgs e)
+    {
+        // Start Smart Detection
+        ViewModel.RunSmartDetectionAsync(WindowService.IsOverlayMode).Forget();
     }
 
     private void OnBackButtonClicked()
@@ -96,11 +108,11 @@ public partial class Index : MefComponentBase
     {
         if (firstRender)
         {
-            // TODO: Focus on the Search Box.
+            // Focus on the Search Box.
+            _navBar.TryFocusSearchBoxAsync();
 
-            // TODO: 
             // Start Smart Detection
-            // ViewModel.RunSmartDetectionAsync(IsInCompactOverlay).Forget();
+            ViewModel.RunSmartDetectionAsync(WindowService.IsOverlayMode).Forget();
         }
 
         if (IsTransitioning)
