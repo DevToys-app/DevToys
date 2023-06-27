@@ -10,11 +10,13 @@
                     GridLength.Auto,
                     new GridLength(1, GridUnitType.Fraction)
                 })">
+
             <GridCell Row="0">
                 <TextBlock Appearance="@TextBlockAppearance.Title"
                            Style="font-size: 24px !important"
                            Text="@ViewModel.HeaderText" />
             </GridCell>
+
             <GridCell Row="1">
                 <UIElementPresenter UIElement="@ViewModel.ToolView" />
             </GridCell>

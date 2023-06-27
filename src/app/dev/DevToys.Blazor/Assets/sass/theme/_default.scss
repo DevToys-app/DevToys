@@ -6,11 +6,11 @@
 html, body {
     /* Font Families */
     --font-family-fallback:
-        "Segoe UI", /* Windows (Vista+) and Windows Phone. */
         -apple-system, /* San Francisco in Safari (on Mac OS X and iOS); Neue Helvetica and Lucida Grande on older versions of Mac OS X. */
         BlinkMacSystemFont, /* Equivalent of -apple-system, for Chrome on Mac OS X. */
-        Roboto, /* Android (Ice Cream Sandwich (4.0)+) and Chrome OS. */
-        Ubuntu, /* all versions of Ubuntu. */
+        "Segoe UI", /* Windows (Vista+) and Windows Phone. */
+        "Roboto", /* Android (Ice Cream Sandwich (4.0)+) and Chrome OS. */
+        "Ubuntu", /* all versions of Ubuntu. */
         system-ui, /* Default UI font on a given platform. */
         'Helvetica Neue', Helvetica, Arial, sans-serif; /* Fallback */
     --font-family-text: "Segoe UI Variable Text", "Seoge UI Variable Static Text", var(--font-family-fallback);

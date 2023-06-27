@@ -10,6 +10,8 @@ public partial class Grid : StyledComponentBase
         .AddStyle("grid-template-columns", GetGridTemplate(Columns))
         .AddStyle("grid-template-rows", GetGridTemplate(Rows))
         .AddStyle("gap", $"{RowSpacing.ToPx()} {ColumnSpacing.ToPx()}")
+        .AddImportantStyle("height", "inherit")
+        .AddImportantStyle("width", "inherit")
         .AddStyle(Style)
         .Build();
 

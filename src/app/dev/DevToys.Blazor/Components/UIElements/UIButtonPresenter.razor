@@ -9,7 +9,7 @@
                 IsEnabled="@UIButton.IsEnabled"
                 Appearance="ButtonAppearance.Neutral"
                 @onclick=OnButtonClickAsync>
-            @UIButton?.Text
+            <TextBlock Text="@UIButton?.Text" />
         </Button>
     }
 </CascadingValue>

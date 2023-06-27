@@ -66,8 +66,10 @@ public partial class Container : StyledComponentBase
         {
             case VerticalAlignment.Stretch:
                 styleBuilder.AddImportantStyle("align-items", "stretch");
+                styleBuilder.AddImportantStyle("height", "100%", !Height.HasValue);
                 styleBuilder.AddImportantStyle("max-height", "100%", !Height.HasValue);
                 innerStyleBuilder.AddImportantStyle("max-height", "inherit", !Height.HasValue);
+                innerStyleBuilder.AddImportantStyle("height", "100%", !Height.HasValue);
                 break;
 
             case VerticalAlignment.Top:
