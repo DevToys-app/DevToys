@@ -11,6 +11,8 @@ internal sealed class WindowService : IWindowService
     public event EventHandler<EventArgs>? WindowSizeChanged;
     public event EventHandler<EventArgs>? WindowClosing;
 
+    public bool IsOverlayMode { get; set; }
+
     public WindowService()
     {
         NSNotificationCenter.DefaultCenter.AddObserver(new NSString("NSWindowDidBecomeMainNotification"), OnWindowActivated);
