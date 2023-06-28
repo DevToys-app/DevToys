@@ -28,8 +28,6 @@ $sidebar-top-bar-height: 48px;
     }
 
     .nav-bar-button-icon {
-        height: 36px !important;
-        width: 40px;
         font-size: 16px;
         line-height: 16px;
     }
@@ -88,8 +86,6 @@ $sidebar-top-bar-height: 48px;
 
         .sidebar-header {
             grid-area: sidebar-header;
-            display: flex;
-            flex-direction: column;
         }
 
         .sidebar-body {

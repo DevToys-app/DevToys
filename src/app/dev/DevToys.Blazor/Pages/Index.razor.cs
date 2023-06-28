@@ -10,7 +10,7 @@ namespace DevToys.Blazor.Pages;
 
 public partial class Index : MefComponentBase
 {
-    private const int TitleBarMarginLeftWhenNavBarHidden = 87;
+    private const int TitleBarMarginLeftWhenNavBarHidden = 90;
     private const int TitleBarMarginLeftWhenNavBarNotHidden = 47;
 
     private NavBar<INotifyPropertyChanged, GuiToolViewItem> _navBar = default!;
