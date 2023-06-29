@@ -30,7 +30,7 @@
                 tabindex="0"
                 class="toggle-switch @(FinalCssClasses)"
                 checked="@IsOn"
-                   disabled="@(!IsActuallyEnabled)"
+                disabled="@(!IsActuallyEnabled)"
                 @onclick:preventDefault="@(!IsActuallyEnabled)"
                 @onchange="OnChange"
                 @attributes="AdditionalAttributes" />

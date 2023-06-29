@@ -13,7 +13,7 @@ public interface IUIIcon : IUIElement
     /// <summary>
     /// Gets the glyph corresponding to the icon in the <see cref="FontName"/>.
     /// </summary>
-    string Glyph { get; }
+    char Glyph { get; }
 
     /// <summary>
     /// Gets the size of the icon.
@@ -40,16 +40,15 @@ public interface IUIIcon : IUIElement
 internal sealed class UIIcon : UIElement, IUIIcon
 {
     private string _fontName;
-    private string _glyph;
+    private char _glyph;
     private int _size = 16;
 
-    internal UIIcon(string? id, string fontName, string glyph)
+    internal UIIcon(string? id, string fontName, char glyph)
         : base(id)
     {
         _fontName = fontName;
         _glyph = glyph;
         Guard.IsNotNullOrWhiteSpace(FontName);
-        Guard.IsNotNullOrWhiteSpace(Glyph);
     }
 
     public string FontName
@@ -62,14 +61,10 @@ internal sealed class UIIcon : UIElement, IUIIcon
         }
     }
 
-    public string Glyph
+    public char Glyph
     {
         get => _glyph;
-        internal set
-        {
-            Guard.IsNotNullOrWhiteSpace(value);
-            SetPropertyValue(ref _glyph, value, GlyphChanged);
-        }
+        internal set => SetPropertyValue(ref _glyph, value, GlyphChanged);
     }
 
     public int Size
@@ -90,7 +85,7 @@ public static partial class GUI
     /// </summary>
     /// <param name="fontName">The name of the font containing the icon.</param>
     /// <param name="glyph">The glyph corresponding to the icon</param>
-    public static IUIIcon Icon(string fontName, string glyph)
+    public static IUIIcon Icon(string fontName, char glyph)
     {
         return Icon(id: null, fontName, glyph);
     }
@@ -101,7 +96,7 @@ public static partial class GUI
     /// <param name="id">An optional unique identifier for this UI element.</param>
     /// <param name="fontName">The name of the font containing the icon.</param>
     /// <param name="glyph">The glyph corresponding to the icon</param>
-    public static IUIIcon Icon(string? id, string fontName, string glyph)
+    public static IUIIcon Icon(string? id, string fontName, char glyph)
     {
         return new UIIcon(id, fontName, glyph);
     }
@@ -118,7 +113,7 @@ public static partial class GUI
     /// <summary>
     /// Sets the <see cref="IUIIcon.FontName"/> of the icon.
     /// </summary>
-    public static IUIIcon Glyph(this IUIIcon element, string glyph)
+    public static IUIIcon Glyph(this IUIIcon element, char glyph)
     {
         ((UIIcon)element).Glyph = glyph;
         return element;

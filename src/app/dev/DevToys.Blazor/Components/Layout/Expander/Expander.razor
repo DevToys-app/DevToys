@@ -16,7 +16,7 @@
                PaddingBottom="@PaddingBottom"
                IsEnabled="@IsActuallyEnabled"
                IsVisible="@IsVisible"
-               Class="expander">
+               Class="@($"expander {FinalCssClasses}")">
         <Card data-expanded="@IsExpanded.ToString().ToLower()"
               aria-label="Toggle Expander"
               aria-expanded="@IsExpanded.ToString()"

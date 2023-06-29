@@ -8,10 +8,10 @@ public enum UIOrientation
     /// <summary>
     /// Element or layout should be horizontally oriented.
     /// </summary>
-    Horizontal,
+    Horizontal = 0,
 
     /// <summary>
     /// Element or layout should be vertically oriented.
     /// </summary>
-    Vertical
+    Vertical = 1
 }

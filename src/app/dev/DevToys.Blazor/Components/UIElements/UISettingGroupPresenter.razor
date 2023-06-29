@@ -1,0 +1,34 @@
+@namespace DevToys.Blazor.Components.UIElements
+@using DevToys.Api;
+@inherits ComponentBase
+
+<Expander id="@UISettingGroup.Id"
+          Class="ui-setting-group-presenter"
+          IsVisible="@UISettingGroup.IsVisible"
+          IsEnabled="@UISettingGroup.IsEnabled"
+          HorizontalAlignment="@UISettingGroup.HorizontalAlignment"
+          VerticalAlignment="@UISettingGroup.VerticalAlignment"
+          Title="@UISettingGroup.Title"
+          Description="@UISettingGroup.Description"
+          IconGlyph="@(UISettingGroup.Icon?.Glyph ?? '\0')"
+          IconFontFamily="@UISettingGroup.Icon?.FontName">
+    <Control>
+        @if (UISettingGroup.InteractiveElement is not null)
+        {
+            <UIElementPresenter UIElement="@UISettingGroup.InteractiveElement" />
+        }
+    </Control>
+    <ChildContent>
+        <StackPanel Orientation="UIOrientation.Vertical"
+                    HorizontalAlignment="UIHorizontalAlignment.Stretch"
+                    Style="@(UISettingGroup.ChildrenAreAllSettings ? "row-gap: 0px !important" : string.Empty)">
+            @if (UISettingGroup.Children is not null)
+            {
+                for (int i = 0; i < UISettingGroup.Children.Length; i++)
+                {
+                    <UIElementPresenter UIElement="@UISettingGroup.Children[i]" />
+                }
+            }
+        </StackPanel>
+    </ChildContent>
+</Expander>

@@ -1,0 +1,13 @@
+@namespace DevToys.Blazor.Components.UIElements
+@using DevToys.Api;
+@inherits ComponentBase
+
+<!-- TODO: Localize -->
+<ToggleSwitch id="@UISwitch.Id"
+              IsVisible="@UISwitch.IsVisible"
+              IsEnabled="@UISwitch.IsEnabled"
+              HorizontalAlignment="@UISwitch.HorizontalAlignment"
+              VerticalAlignment="@UISwitch.VerticalAlignment"
+              Text="@(UISwitch.IsOn ? (UISwitch.OnText ?? "On") : (UISwitch.OffText ?? "Off"))"
+              IsOn="@UISwitch.IsOn"
+              OnCheckedChanged="@OnCheckedChanged"/>

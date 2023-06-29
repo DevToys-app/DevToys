@@ -49,8 +49,8 @@
         @include transition(0ms linear 250ms max-height);
 
         .expander-content {
-            @include flex($direction: row, $align: center, $justify: between);
             @include typography-body;
+            display: block;
             min-height: 72px;
             margin-top: 0;
             border-radius: var(--control-corner-radius);

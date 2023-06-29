@@ -26,5 +26,6 @@ public partial class UIElementPresenter : ComponentBase, IDisposable
     {
         Guard.IsAssignableToType<INotifyPropertyChanged>(UIElement);
         ((INotifyPropertyChanged)UIElement).PropertyChanged -= UIElementPresenter_PropertyChanged;
+        GC.SuppressFinalize(this);
     }
 }

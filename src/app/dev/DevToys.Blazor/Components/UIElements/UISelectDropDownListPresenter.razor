@@ -1,0 +1,17 @@
+@namespace DevToys.Blazor.Components.UIElements
+@using DevToys.Api;
+@inherits ComponentBase
+
+<ComboBox id="@UISelectDropDownList.Id"
+          IsVisible="@UISelectDropDownList.IsVisible"
+          IsEnabled="@UISelectDropDownList.IsEnabled"
+          HorizontalAlignment="@UISelectDropDownList.HorizontalAlignment"
+          VerticalAlignment="@UISelectDropDownList.VerticalAlignment"
+          Header="@UISelectDropDownList.Title"
+          @bind-SelectedIndex="@SelectedIndex"
+          Items="@UISelectDropDownList.Items"
+          Context="item">
+    <ItemTemplate>
+        <TextBlock Text="@item.Text"/>
+    </ItemTemplate>
+</ComboBox>

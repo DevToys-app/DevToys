@@ -8,8 +8,8 @@ public partial class StackPanel : StyledComponentBase
         .Build();
 
     protected string? StyleValue => new StyleBuilder()
-        .AddStyle("column-gap", HorizontalGap.ToPx(), () => HorizontalGap.HasValue)
-        .AddStyle("row-gap", VerticalGap.ToPx(), () => VerticalGap.HasValue)
+        .AddStyle("column-gap", Spacing.ToPx())
+        .AddStyle("row-gap", Spacing.ToPx())
         .AddStyle("flex-wrap", "wrap", () => Wrap)
         .AddStyle(Style)
         .Build();
@@ -27,16 +27,10 @@ public partial class StackPanel : StyledComponentBase
     public bool Wrap { get; set; } = false;
 
     /// <summary>
-    /// Gets or sets the gap between horizontally stacked components (in pixels).
+    /// Gets or sets the space between stacked components (in pixels).
     /// </summary>
     [Parameter]
-    public int? HorizontalGap { get; set; } = 4;
-
-    /// <summary>
-    /// Gets or sets the gap between vertically stacked components (in pixels).
-    /// </summary>
-    [Parameter]
-    public int? VerticalGap { get; set; } = 4;
+    public int Spacing { get; set; } = 4;
 
     /// <summary>
     /// Gets or sets the content to be rendered inside the component.

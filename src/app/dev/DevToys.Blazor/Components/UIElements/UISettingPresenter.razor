@@ -1,0 +1,21 @@
+@namespace DevToys.Blazor.Components.UIElements
+@using DevToys.Api;
+@inherits ComponentBase
+
+<Card id="@UISetting.Id"
+      Class="ui-setting-presenter"
+      IsVisible="@UISetting.IsVisible"
+      IsEnabled="@UISetting.IsEnabled"
+      HorizontalAlignment="@UISetting.HorizontalAlignment"
+      VerticalAlignment="@UISetting.VerticalAlignment"
+      Title="@UISetting.Title"
+      Description="@UISetting.Description"
+      IconGlyph="@(UISetting.Icon?.Glyph ?? '\0')"
+      IconFontFamily="@UISetting.Icon?.FontName">
+    <Control>
+        @if (UISetting.InteractiveElement is not null)
+        {
+            <UIElementPresenter UIElement="@UISetting.InteractiveElement" />
+        }
+    </Control>
+</Card>

@@ -73,7 +73,7 @@ public static partial class GUI
     /// <summary>
     /// Sets the <see cref="IUISettingGroup.Icon"/> of the setting.
     /// </summary>
-    public static IUISettingGroup Icon(this IUISettingGroup element, string fontName, string glyph)
+    public static IUISettingGroup Icon(this IUISettingGroup element, string fontName, char glyph)
     {
         ((UISettingGroup)element).Icon = Icon(fontName, glyph);
         return element;
@@ -101,7 +101,7 @@ public static partial class GUI
     }
 
     /// <summary>
-    /// Sets a <see cref="IUIDropDownList"/> to <see cref="IUISetting.InteractiveElement"/> and automatically associate the
+    /// Sets a <see cref="IUISelectDropDownList"/> to <see cref="IUISetting.InteractiveElement"/> and automatically associate the
     /// given <paramref name="settingDefinition"/> to the switch state.
     /// </summary>
     /// <param name="settingsProvider">The settings provider used for handling the given <paramref name="settingDefinition"/>.</param>

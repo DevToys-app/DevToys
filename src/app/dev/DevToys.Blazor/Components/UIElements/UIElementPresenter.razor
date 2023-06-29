@@ -14,6 +14,22 @@
             <UIButtonPresenter UIButton="@button" />
             break;
 
+        case IUISettingGroup settingGroup:
+            <UISettingGroupPresenter UISettingGroup="@settingGroup" />
+            break;
+
+        case IUISetting setting:
+            <UISettingPresenter UISetting="@setting" />
+            break;
+
+        case IUISwitch @switch:
+            <UISwitchPresenter UISwitch="@(@switch)" />
+            break;
+
+        case IUISelectDropDownList selectDropDownList:
+            <UISelectDropDownListPresenter UISelectDropDownList="@selectDropDownList" />
+            break;
+
         default:
             throw new NotSupportedException($"Gui Tool component of type '{UIElement.GetType().FullName}' isn't supported.");
     }

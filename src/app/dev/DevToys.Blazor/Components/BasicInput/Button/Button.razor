@@ -23,7 +23,8 @@
                 style="@(Style)"
                 tabindex="0"
                 @ref=Element
-                @attributes="AdditionalAttributes">
+                @attributes="AdditionalAttributes"
+                @onclick:stopPropagation="@IsActuallyEnabled">
             @ChildContent
         </button>
     </Container>

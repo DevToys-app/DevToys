@@ -7,9 +7,15 @@ public interface IUIStack : IUIElement
 {
     /// <summary>
     /// Gets a value that indicates the dimension by which child elements are stacked.
-    /// Default is horizontal.
+    /// Default is <see cref="UIOrientation.Horizontal"/>.
     /// </summary>
     UIOrientation Orientation { get; }
+
+    /// <summary>
+    /// Gets a value that indicates the space between stacked elements.
+    /// Default is <see cref="UISpacing.Small"/>.
+    /// </summary>
+    UISpacing Spacing { get; }
 
     /// <summary>
     /// Gets the list of child elements.
@@ -22,6 +28,11 @@ public interface IUIStack : IUIElement
     public event EventHandler? OrientationChanged;
 
     /// <summary>
+    /// Raised when <see cref="Spacing"/> is changed.
+    /// </summary>
+    public event EventHandler? SpacingChanged;
+
+    /// <summary>
     /// Raised when <see cref="Children"/> is changed.
     /// </summary>
     public event EventHandler? ChildrenChanged;
@@ -30,7 +41,8 @@ public interface IUIStack : IUIElement
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Orientation = {{{nameof(Orientation)}}}")]
 internal sealed class UIStack : UIElement, IUIStack
 {
-    private UIOrientation _orientation;
+    private UIOrientation _orientation = UIOrientation.Horizontal;
+    private UISpacing _spacing = UISpacing.Small;
     private IUIElement[]? _children;
 
     internal UIStack(string? id)
@@ -44,6 +56,12 @@ internal sealed class UIStack : UIElement, IUIStack
         internal set => SetPropertyValue(ref _orientation, value, OrientationChanged);
     }
 
+    public UISpacing Spacing
+    {
+        get => _spacing;
+        internal set => SetPropertyValue(ref _spacing, value, SpacingChanged);
+    }
+
     public IUIElement[]? Children
     {
         get => _children;
@@ -51,6 +69,8 @@ internal sealed class UIStack : UIElement, IUIStack
     }
 
     public event EventHandler? OrientationChanged;
+
+    public event EventHandler? SpacingChanged;
 
     public event EventHandler? ChildrenChanged;
 }
@@ -98,6 +118,33 @@ public static partial class GUI
     public static IUIStack WithChildren(this IUIStack element, params IUIElement[] children)
     {
         ((UIStack)element).Children = children;
+        return element;
+    }
+
+    /// <summary>
+    /// Set a small spacing between children.
+    /// </summary>
+    public static IUIStack SmallSpacing(this IUIStack element)
+    {
+        ((UIStack)element).Spacing = UISpacing.Small;
+        return element;
+    }
+
+    /// <summary>
+    /// Set a medium spacing between children.
+    /// </summary>
+    public static IUIStack MediumSpacing(this IUIStack element)
+    {
+        ((UIStack)element).Spacing = UISpacing.Medium;
+        return element;
+    }
+
+    /// <summary>
+    /// Set a large spacing between children.
+    /// </summary>
+    public static IUIStack LargeSpacing(this IUIStack element)
+    {
+        ((UIStack)element).Spacing = UISpacing.Large;
         return element;
     }
 }

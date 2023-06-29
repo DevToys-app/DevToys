@@ -102,7 +102,7 @@ public static partial class GUI
     /// <summary>
     /// Sets the <see cref="IUISetting.Icon"/> of the setting.
     /// </summary>
-    public static IUISetting Icon(this IUISetting element, string fontName, string glyph)
+    public static IUISetting Icon(this IUISetting element, string fontName, char glyph)
     {
         ((UISetting)element).Icon = Icon(fontName, glyph);
         return element;
@@ -153,7 +153,7 @@ public static partial class GUI
     }
 
     /// <summary>
-    /// Sets a <see cref="IUIDropDownList"/> to <see cref="IUISetting.InteractiveElement"/> and automatically associate the
+    /// Sets a <see cref="IUISelectDropDownList"/> to <see cref="IUISetting.InteractiveElement"/> and automatically associate the
     /// given <paramref name="settingDefinition"/> to the switch state.
     /// </summary>
     /// <param name="settingsProvider">The settings provider used for handling the given <paramref name="settingDefinition"/>.</param>
@@ -169,8 +169,8 @@ public static partial class GUI
 
         var settingElement = (UISetting)element;
 
-        IUIDropDownList dropDownList
-            = DropDownList()
+        IUISelectDropDownList dropDownList
+            = SelectDropDownList()
                 .WithItems(dropDownListItems);
 
         T currentSettingValue = settingsProvider.GetSetting(settingDefinition);

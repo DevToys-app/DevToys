@@ -3,7 +3,7 @@
 /// <summary>
 /// A component that represents a drop down list where the user can select one item in it.
 /// </summary>
-public interface IUIDropDownList : IUITitledElement
+public interface IUISelectDropDownList : IUITitledElement
 {
     /// <summary>
     /// Gets the list of items displayed in the drop down list.
@@ -32,12 +32,12 @@ public interface IUIDropDownList : IUITitledElement
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Title = {{{nameof(Title)}}}")]
-internal sealed class UIDropDownList : UITitledElement, IUIDropDownList
+internal sealed class UISelectDropDownList : UITitledElement, IUISelectDropDownList
 {
     private IUIDropDownListItem[]? _items;
     private IUIDropDownListItem? _selectedItem;
 
-    internal UIDropDownList(string? id)
+    internal UISelectDropDownList(string? id)
         : base(id)
     {
     }
@@ -74,35 +74,35 @@ public static partial class GUI
     /// <summary>
     /// A component that represents a drop down list where the user can select one item in it.
     /// </summary>
-    public static IUIDropDownList DropDownList()
+    public static IUISelectDropDownList SelectDropDownList()
     {
-        return DropDownList(null);
+        return SelectDropDownList(null);
     }
 
     /// <summary>
     /// A component that represents a drop down list where the user can select one item in it.
     /// </summary>
     /// <param name="id">An optional unique identifier for this UI element.</param>
-    public static IUIDropDownList DropDownList(string? id)
+    public static IUISelectDropDownList SelectDropDownList(string? id)
     {
-        return new UIDropDownList(id);
+        return new UISelectDropDownList(id);
     }
 
     /// <summary>
-    /// Sets the <see cref="IUIDropDownList.Items"/> of the drop down list.
+    /// Sets the <see cref="IUISelectDropDownList.Items"/> of the drop down list.
     /// </summary>
-    public static IUIDropDownList WithItems(this IUIDropDownList element, params IUIDropDownListItem[] items)
+    public static IUISelectDropDownList WithItems(this IUISelectDropDownList element, params IUIDropDownListItem[] items)
     {
-        ((UIDropDownList)element).Items = items;
+        ((UISelectDropDownList)element).Items = items;
         return element;
     }
 
     /// <summary>
     /// Sets the action to run when selecting an item in the drop down list.
     /// </summary>
-    public static IUIDropDownList OnItemSelected(this IUIDropDownList element, Func<IUIDropDownListItem?, ValueTask>? onItemSelectedAction)
+    public static IUISelectDropDownList OnItemSelected(this IUISelectDropDownList element, Func<IUIDropDownListItem?, ValueTask>? onItemSelectedAction)
     {
-        ((UIDropDownList)element).OnItemSelectedAction = onItemSelectedAction;
+        ((UISelectDropDownList)element).OnItemSelectedAction = onItemSelectedAction;
         return element;
     }
 
@@ -110,9 +110,9 @@ public static partial class GUI
     /// Sets the <see cref="IUIDropDownListItem"/> that should be selected in the drop down list.
     /// If <paramref name="item"/> is null or does not exist in the list, no item will be selected.
     /// </summary>
-    public static IUIDropDownList Select(this IUIDropDownList element, IUIDropDownListItem? item)
+    public static IUISelectDropDownList Select(this IUISelectDropDownList element, IUIDropDownListItem? item)
     {
-        var dropDownList = (UIDropDownList)element;
+        var dropDownList = (UISelectDropDownList)element;
         if (item is not null && dropDownList.Items is not null && !dropDownList.Items.Contains(item))
         {
             dropDownList.SelectedItem = null;
@@ -129,9 +129,9 @@ public static partial class GUI
     /// Sets the <see cref="IUIDropDownListItem"/> that should be selected in the drop down list, using its index in the list.
     /// If <paramref name="index"/> smaller or greater than the amount of items in the list, no item will be selected.
     /// </summary>
-    public static IUIDropDownList Select(this IUIDropDownList element, int index)
+    public static IUISelectDropDownList Select(this IUISelectDropDownList element, int index)
     {
-        var dropDownList = (UIDropDownList)element;
+        var dropDownList = (UISelectDropDownList)element;
 
         if (dropDownList.Items is null || index < 0 || index > dropDownList.Items.Length - 1)
         {

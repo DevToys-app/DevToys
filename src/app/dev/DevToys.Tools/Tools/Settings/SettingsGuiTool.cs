@@ -50,7 +50,7 @@ internal sealed class SettingsGuiTool : IGuiTool
             .Vertical()
             .WithChildren(
                 SettingGroup()
-                    .Icon("FluentSystemIcons", "\uF6A9")
+                    .Icon("FluentSystemIcons", '\uF6A9')
                     .Title("Title")
                     .Description("Description")
                     .Handle(
@@ -89,8 +89,8 @@ internal sealed class SettingsGuiTool : IGuiTool
                     .WithChildren(
                         Button().Text("Bottom Left button"),
                         Button().Text("Bottom Center button").OnClick(OnBottomCenterButtonClickAsync),
-                        Button().Text("Bottom Right button")),
-                SingleLineTextInput().CanCopyWhenEditable());
+                        Button().Text("Bottom Right button"))//,
+                /*SingleLineTextInput().CanCopyWhenEditable()*/);
 
     public void OnDataReceived(string dataTypeName, object? parsedData)
     {
