@@ -44,27 +44,27 @@ public partial class Container : StyledComponentBase
 
         switch (HorizontalAlignment)
         {
-            case HorizontalAlignment.Stretch:
+            case UIHorizontalAlignment.Stretch:
                 innerStyleBuilder.AddImportantStyle("width", "100%", !Width.HasValue);
                 styleBuilder.AddImportantStyle("justify-content", "center", Width.HasValue);
                 break;
 
-            case HorizontalAlignment.Left:
+            case UIHorizontalAlignment.Left:
                 styleBuilder.AddImportantStyle("justify-content", "flex-start");
                 break;
 
-            case HorizontalAlignment.Right:
+            case UIHorizontalAlignment.Right:
                 styleBuilder.AddImportantStyle("justify-content", "flex-end");
                 break;
 
-            case HorizontalAlignment.Center:
+            case UIHorizontalAlignment.Center:
                 styleBuilder.AddImportantStyle("justify-content", "center");
                 break;
         }
 
         switch (VerticalAlignment)
         {
-            case VerticalAlignment.Stretch:
+            case UIVerticalAlignment.Stretch:
                 styleBuilder.AddImportantStyle("align-items", "stretch");
                 styleBuilder.AddImportantStyle("height", "100%", !Height.HasValue);
                 styleBuilder.AddImportantStyle("max-height", "100%", !Height.HasValue);
@@ -72,15 +72,15 @@ public partial class Container : StyledComponentBase
                 innerStyleBuilder.AddImportantStyle("height", "100%", !Height.HasValue);
                 break;
 
-            case VerticalAlignment.Top:
+            case UIVerticalAlignment.Top:
                 styleBuilder.AddImportantStyle("align-items", "flex-start");
                 break;
 
-            case VerticalAlignment.Bottom:
+            case UIVerticalAlignment.Bottom:
                 styleBuilder.AddImportantStyle("align-items", "flex-end");
                 break;
 
-            case VerticalAlignment.Center:
+            case UIVerticalAlignment.Center:
                 styleBuilder.AddImportantStyle("align-items", "center");
                 break;
         }

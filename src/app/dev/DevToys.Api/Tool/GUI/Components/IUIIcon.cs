@@ -57,9 +57,8 @@ internal sealed class UIIcon : UIElement, IUIIcon
         get => _fontName;
         internal set
         {
-            _fontName = value;
-            Guard.IsNotNullOrWhiteSpace(FontName);
-            FontNameChanged?.Invoke(this, EventArgs.Empty);
+            Guard.IsNotNullOrWhiteSpace(value);
+            SetPropertyValue(ref _fontName, value, FontNameChanged);
         }
     }
 
@@ -68,20 +67,15 @@ internal sealed class UIIcon : UIElement, IUIIcon
         get => _glyph;
         internal set
         {
-            _glyph = value;
-            Guard.IsNotNullOrWhiteSpace(Glyph);
-            GlyphChanged?.Invoke(this, EventArgs.Empty);
+            Guard.IsNotNullOrWhiteSpace(value);
+            SetPropertyValue(ref _glyph, value, GlyphChanged);
         }
     }
 
     public int Size
     {
         get => _size;
-        internal set
-        {
-            _size = value;
-            SizeChanged?.Invoke(this, EventArgs.Empty);
-        }
+        internal set => SetPropertyValue(ref _size, value, SizeChanged);
     }
 
     public event EventHandler? FontNameChanged;

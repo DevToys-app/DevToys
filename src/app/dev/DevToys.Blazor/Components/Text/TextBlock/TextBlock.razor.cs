@@ -1,5 +1,4 @@
-﻿using DevToys.Api;
-using Microsoft.AspNetCore.Components.Rendering;
+﻿using Microsoft.AspNetCore.Components.Rendering;
 
 namespace DevToys.Blazor.Components;
 

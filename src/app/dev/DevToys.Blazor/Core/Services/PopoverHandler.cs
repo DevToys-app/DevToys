@@ -1,5 +1,4 @@
-﻿using DevToys.Api;
-using DevToys.Blazor.Components;
+﻿using DevToys.Blazor.Components;
 
 namespace DevToys.Blazor.Core.Services;
 

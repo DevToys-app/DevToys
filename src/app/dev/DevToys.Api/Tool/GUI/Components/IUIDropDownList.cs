@@ -45,11 +45,7 @@ internal sealed class UIDropDownList : UITitledElement, IUIDropDownList
     public IUIDropDownListItem[]? Items
     {
         get => _items;
-        internal set
-        {
-            _items = value;
-            ItemsChanged?.Invoke(this, EventArgs.Empty);
-        }
+        internal set => SetPropertyValue(ref _items, value, ItemsChanged);
     }
 
     public IUIDropDownListItem? SelectedItem
@@ -57,9 +53,13 @@ internal sealed class UIDropDownList : UITitledElement, IUIDropDownList
         get => _selectedItem;
         internal set
         {
-            _selectedItem = value;
-            OnItemSelectedAction?.Invoke(_selectedItem);
-            SelectedItemChanged?.Invoke(this, EventArgs.Empty);
+            if (_selectedItem != value)
+            {
+                _selectedItem = value;
+                OnItemSelectedAction?.Invoke(_selectedItem);
+                SelectedItemChanged?.Invoke(this, EventArgs.Empty);
+                OnPropertyChanged();
+            }
         }
     }
 

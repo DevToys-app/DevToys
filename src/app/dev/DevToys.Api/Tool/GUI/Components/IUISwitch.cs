@@ -55,8 +55,7 @@ internal sealed class UISwitch : UITitledElement, IUISwitch
         get => _state;
         internal set
         {
-            _state = value;
-            IsOnChanged?.Invoke(this, EventArgs.Empty);
+            SetPropertyValue(ref _state, value, IsOnChanged);
             ActionOnToggle?.Invoke(_state);
         }
     }
@@ -64,21 +63,13 @@ internal sealed class UISwitch : UITitledElement, IUISwitch
     public string? OnText
     {
         get => _onText;
-        internal set
-        {
-            _onText = value;
-            OnTextChanged?.Invoke(this, EventArgs.Empty);
-        }
+        internal set => SetPropertyValue(ref _onText, value, OnTextChanged);
     }
 
     public string? OffText
     {
         get => _offText;
-        internal set
-        {
-            _offText = value;
-            OffTextChanged?.Invoke(this, EventArgs.Empty);
-        }
+        internal set => SetPropertyValue(ref _offText, value, OffTextChanged);
     }
 
     internal Func<bool, ValueTask>? ActionOnToggle { get; set; }

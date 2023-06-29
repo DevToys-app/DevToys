@@ -54,7 +54,7 @@ public partial class AutoSuggestBox<TElement> : StyledComponentBase, IDisposable
     private void OnItemsChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
         Guard.IsNotNull(Items);
-        _showDropDown = IsEnabled && !IsReadOnly && Items.Count > 0;
+        _showDropDown = IsActuallyEnabled && !IsReadOnly && Items.Count > 0;
     }
 
     private Task OnTextBoxTextChangedAsync(string text)

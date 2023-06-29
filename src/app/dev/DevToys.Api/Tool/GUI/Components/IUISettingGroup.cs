@@ -34,11 +34,7 @@ internal sealed class UISettingGroup : UISetting, IUISettingGroup
     public IUIElement[]? Children
     {
         get => _children;
-        internal set
-        {
-            _children = value;
-            ChildrenChanged?.Invoke(this, EventArgs.Empty);
-        }
+        internal set => SetPropertyValue(ref _children, value, ChildrenChanged);
     }
 
     public bool ChildrenAreAllSettings { get; internal set; }

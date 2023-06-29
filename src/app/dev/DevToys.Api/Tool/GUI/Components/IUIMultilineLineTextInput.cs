@@ -43,21 +43,13 @@ internal class UIMultilineTextInput : UISingleLineTextInput, IUIMultilineLineTex
     public IReadOnlyList<TextSpan> HighlightedSpans
     {
         get => _highlightedSpans ?? Array.Empty<TextSpan>();
-        internal set
-        {
-            _highlightedSpans = value;
-            HighlightedSpansChanged?.Invoke(this, EventArgs.Empty);
-        }
+        internal set => SetPropertyValue(ref _highlightedSpans, value, HighlightedSpansChanged);
     }
 
     public string SyntaxColorizationLanguageName
     {
         get => _syntaxColorizationLanguageName ?? string.Empty;
-        internal set
-        {
-            _syntaxColorizationLanguageName = value;
-            SyntaxColorizationLanguageNameChanged?.Invoke(this, EventArgs.Empty);
-        }
+        internal set => SetPropertyValue(ref _syntaxColorizationLanguageName, value, SyntaxColorizationLanguageNameChanged);
     }
 
     public event EventHandler? HighlightedSpansChanged;

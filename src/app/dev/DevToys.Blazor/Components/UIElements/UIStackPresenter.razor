@@ -1,0 +1,18 @@
+@namespace DevToys.Blazor.Components.UIElements
+@using DevToys.Api;
+@inherits ComponentBase
+
+<StackPanel id="@UIStack.Id"
+            IsVisible="@UIStack.IsVisible"
+            IsEnabled="@UIStack.IsEnabled"
+            HorizontalAlignment="@UIStack.HorizontalAlignment"
+            VerticalAlignment="@UIStack.VerticalAlignment"
+            Orientation="@UIStack.Orientation">
+    @if (UIStack.Children is not null)
+    {
+        for (int i = 0; i < UIStack.Children.Length; i++)
+        {
+            <UIElementPresenter UIElement="@UIStack.Children[i]"/>
+        }
+    }
+</StackPanel>

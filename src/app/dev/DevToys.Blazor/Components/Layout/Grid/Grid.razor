@@ -1,20 +1,23 @@
 @namespace DevToys.Blazor.Components
 @inherits StyledComponentBase
 
-<Container HorizontalAlignment="@HorizontalAlignment"
-           VerticalAlignment="@VerticalAlignment"
-           Width="@Width"
-           Height="@Height"
-           MarginLeft="@MarginLeft"
-           MarginRight="@MarginRight"
-           MarginTop="@MarginTop"
-           MarginBottom="@MarginBottom"
-           PaddingLeft="@PaddingLeft"
-           PaddingRight="@PaddingRight"
-           PaddingTop="@PaddingTop"
-           PaddingBottom="@PaddingBottom"
-           IsVisible="@IsVisible">
-    <div id="@Id" @ref="@Element" class="@FinalCssClasses" style="@StyleValue" @attributes="AdditionalAttributes">
-        @ChildContent
-    </div>
-</Container>
+<CascadingValue Name="ParentIsEnabled" Value="@IsActuallyEnabled">
+    <Container HorizontalAlignment="@HorizontalAlignment"
+               VerticalAlignment="@VerticalAlignment"
+               Width="@Width"
+               Height="@Height"
+               MarginLeft="@MarginLeft"
+               MarginRight="@MarginRight"
+               MarginTop="@MarginTop"
+               MarginBottom="@MarginBottom"
+               PaddingLeft="@PaddingLeft"
+               PaddingRight="@PaddingRight"
+               PaddingTop="@PaddingTop"
+               PaddingBottom="@PaddingBottom"
+               IsEnabled="@IsActuallyEnabled"
+               IsVisible="@IsVisible">
+        <div id="@Id" @ref="@Element" class="@FinalCssClasses" style="@StyleValue" @attributes="AdditionalAttributes">
+            @ChildContent
+        </div>
+    </Container>
+</CascadingValue>

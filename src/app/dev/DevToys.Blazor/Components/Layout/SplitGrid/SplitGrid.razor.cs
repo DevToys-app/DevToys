@@ -8,21 +8,21 @@ public partial class SplitGrid : JSStyledComponentBase
 
     protected string? StyleValue => new StyleBuilder()
         .AddStyle("display", "grid")
-        .AddStyle("grid-template-columns", $"{GetCellLength(LeftOrTopCellSize)} 16px {GetCellLength(RightOrBottomCellSize)}", GutterOrientation == Orientation.Vertical)
-        .AddStyle("grid-template-rows", $"{GetCellLength(LeftOrTopCellSize)} 16px {GetCellLength(RightOrBottomCellSize)}", GutterOrientation == Orientation.Horizontal)
+        .AddStyle("grid-template-columns", $"{GetCellLength(LeftOrTopCellSize)} 16px {GetCellLength(RightOrBottomCellSize)}", GutterOrientation == UIOrientation.Vertical)
+        .AddStyle("grid-template-rows", $"{GetCellLength(LeftOrTopCellSize)} 16px {GetCellLength(RightOrBottomCellSize)}", GutterOrientation == UIOrientation.Horizontal)
         .AddStyle(Style)
         .Build();
 
     protected string? GutterStyle => new StyleBuilder()
-        .AddStyle("cursor", "col-resize", GutterOrientation == Orientation.Vertical)
-        .AddStyle("cursor", "row-resize", GutterOrientation == Orientation.Horizontal)
-        .AddStyle("grid-column", "2", GutterOrientation == Orientation.Vertical)
-        .AddStyle("grid-column", "1/-1", GutterOrientation == Orientation.Horizontal)
-        .AddStyle("grid-row", "1/-1", GutterOrientation == Orientation.Vertical)
-        .AddStyle("grid-row", "2", GutterOrientation == Orientation.Horizontal)
+        .AddStyle("cursor", "col-resize", GutterOrientation == UIOrientation.Vertical)
+        .AddStyle("cursor", "row-resize", GutterOrientation == UIOrientation.Horizontal)
+        .AddStyle("grid-column", "2", GutterOrientation == UIOrientation.Vertical)
+        .AddStyle("grid-column", "1/-1", GutterOrientation == UIOrientation.Horizontal)
+        .AddStyle("grid-row", "1/-1", GutterOrientation == UIOrientation.Vertical)
+        .AddStyle("grid-row", "2", GutterOrientation == UIOrientation.Horizontal)
         .Build();
 
-    protected char GripperGlyph => GutterOrientation == Orientation.Vertical ? '\uE9F8' : '\uE9F5';
+    protected char GripperGlyph => GutterOrientation == UIOrientation.Vertical ? '\uE9F8' : '\uE9F5';
 
     /// <summary>
     /// Gets or sets the length of the left or top cell.
@@ -52,7 +52,7 @@ public partial class SplitGrid : JSStyledComponentBase
     /// Gets or set the orientation of the grid gutter.
     /// </summary>
     [Parameter]
-    public Orientation GutterOrientation { get; set; } = Orientation.Vertical;
+    public UIOrientation GutterOrientation { get; set; } = UIOrientation.Vertical;
 
     /// <summary>
     /// Gets or set the minimum size of the cells.
@@ -78,7 +78,7 @@ public partial class SplitGrid : JSStyledComponentBase
                 "initializeSplitGrid",
                 Element,
                 _gutterElement,
-                GutterOrientation == Orientation.Vertical,
+                GutterOrientation == UIOrientation.Vertical,
                 MinimumCellSize);
             }
         }

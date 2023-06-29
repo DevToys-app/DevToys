@@ -29,11 +29,7 @@ internal abstract class UITitledElement : UIElement, IUITitledElement
     public string? Title
     {
         get => _title;
-        internal set
-        {
-            _title = value;
-            TitleChanged?.Invoke(this, EventArgs.Empty);
-        }
+        internal set => SetPropertyValue(ref _title, value, TitleChanged);
     }
 
     public event EventHandler? TitleChanged;

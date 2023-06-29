@@ -62,31 +62,19 @@ internal class UISingleLineTextInput : UITitledElement, IUISingleLineTextInput
     public string Text
     {
         get => _text ?? string.Empty;
-        internal set
-        {
-            _text = value;
-            TextChanged?.Invoke(this, EventArgs.Empty);
-        }
+        internal set => SetPropertyValue(ref _text, value, TextChanged);
     }
 
     public bool IsReadOnly
     {
         get => _isReadOnly;
-        internal set
-        {
-            _isReadOnly = value;
-            IsReadOnlyChanged?.Invoke(this, EventArgs.Empty);
-        }
+        internal set => SetPropertyValue(ref _isReadOnly, value, IsReadOnlyChanged);
     }
 
     public bool CanCopyWhenEditable
     {
         get => _canCopyWhenEditable;
-        internal set
-        {
-            _canCopyWhenEditable = value;
-            CanCopyWhenEditableChanged?.Invoke(this, EventArgs.Empty);
-        }
+        internal set => SetPropertyValue(ref _canCopyWhenEditable, value, CanCopyWhenEditableChanged);
     }
 
     public TextSpan Selection
@@ -111,6 +99,7 @@ internal class UISingleLineTextInput : UITitledElement, IUISingleLineTextInput
                 }
             }
             SelectionChanged?.Invoke(this, EventArgs.Empty);
+            OnPropertyChanged();
         }
     }
 

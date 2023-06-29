@@ -5,7 +5,7 @@
 @typeparam TElement
 @typeparam TSearchElement
 
-<CascadingValue Value="this" IsFixed="true">
+<CascadingValue Name="ParentIsEnabled" Value="@IsActuallyEnabled">
     @if (Item is ISeparator)
     {
         <li id="@Id" class="sidebar-item-separator"></li>
@@ -32,7 +32,7 @@
                 <div @onclick:stopPropagation="true">
                     <Button Appearance="ButtonAppearance.Stealth"
                             Class="sidebar-expand-group-button"
-                            HorizontalAlignment="HorizontalAlignment.Right"
+                            HorizontalAlignment="UIHorizontalAlignment.Right"
                             Width="32"
                             aria-expanded="@(IsExpanded.ToString().ToLowerInvariant())"
                             data-expanded="@(IsExpanded.ToString().ToLowerInvariant())"

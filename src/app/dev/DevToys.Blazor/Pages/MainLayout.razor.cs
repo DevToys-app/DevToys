@@ -1,6 +1,4 @@
-﻿using DevToys.Api;
-
-namespace DevToys.Blazor.Pages;
+﻿namespace DevToys.Blazor.Pages;
 
 public partial class MainLayout : LayoutComponentBase
 {

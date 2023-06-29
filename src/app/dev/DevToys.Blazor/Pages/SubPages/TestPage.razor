@@ -3,7 +3,7 @@
 <CascadingValue Value="this" IsFixed="true">
     <ScrollViewer>
         <StackPanel Class="entrance-theme-transition"
-                    Orientation="Orientation.Vertical"
+                    Orientation="UIOrientation.Vertical"
                     PaddingLeft="16"
                     PaddingBottom="16"
                     PaddingRight="16"
@@ -18,7 +18,7 @@
                                     })">
 
                 <GridCell Column="0">
-                    <StackPanel Orientation="Orientation.Vertical">
+                    <StackPanel Orientation="UIOrientation.Vertical">
                         <ProgressRing IsIndeterminate="true" />
                         <ProgressRing Value="75" Size="32" />
                         <CheckBox IsChecked="true" Text="An option" />
@@ -39,26 +39,26 @@
                 <GridCell Column="1" ColumnSpan="2">
                     <SplitGrid>
                         <LeftOrTopCellContent>
-                            <StackPanel Orientation="Orientation.Vertical">
+                            <StackPanel Orientation="UIOrientation.Vertical">
                                 <TextBlock Appearance="TextBlockAppearance.TitleLarge" Text="Test" />
                                 <MonacoEditor />
-                                <Button VerticalAlignment="VerticalAlignment.Center" IsEnabled="true">Set favorite</Button>
-                                <Button HorizontalAlignment="HorizontalAlignment.Left" IsEnabled="false">Set favorite</Button>
-                                <Button HorizontalAlignment="HorizontalAlignment.Center" IsEnabled="true" Appearance="ButtonAppearance.Accent">Set favorite</Button>
-                                <Button HorizontalAlignment="HorizontalAlignment.Right" Height="100" Width="200" IsEnabled="false" Appearance="ButtonAppearance.Accent">Set favorite</Button>
+                                <Button VerticalAlignment="UIVerticalAlignment.Center" IsEnabled="true">Set favorite</Button>
+                                <Button HorizontalAlignment="UIHorizontalAlignment.Left" IsEnabled="false">Set favorite</Button>
+                                <Button HorizontalAlignment="UIHorizontalAlignment.Center" IsEnabled="true" Appearance="ButtonAppearance.Accent">Set favorite</Button>
+                                <Button HorizontalAlignment="UIHorizontalAlignment.Right" Height="100" Width="200" IsEnabled="false" Appearance="ButtonAppearance.Accent">Set favorite</Button>
                                 <Button IsEnabled="true" Appearance="ButtonAppearance.Stealth">Set favorite</Button>
-                                <Button VerticalAlignment="VerticalAlignment.Bottom" IsEnabled="false" Appearance="ButtonAppearance.Stealth">Set favorite</Button>
+                                <Button VerticalAlignment="UIVerticalAlignment.Bottom" IsEnabled="false" Appearance="ButtonAppearance.Stealth">Set favorite</Button>
                                 <TextBox Header="First name" Placeholder="Normal" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
                                 <TextBox Header="Middle name" Placeholder="Read only" IsReadOnly="true" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
                                 <TextBox Header="Last name" Placeholder="Disabled" IsEnabled="false" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
                                 <TextBox Header="Number input" Type="TextBoxTypes.Number" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
                                 <TextBox Header="Password input" Type="TextBoxTypes.Password" Style="margin-top: 12px; margin-left: 8px; margin-right: 8px;" />
-                                <ProgressBar IsIndeterminate="true" Width="150" HorizontalAlignment="HorizontalAlignment.Left" />
+                                <ProgressBar IsIndeterminate="true" Width="150" HorizontalAlignment="UIHorizontalAlignment.Left" />
                                 <ProgressBar Value="75" />
                             </StackPanel>
                         </LeftOrTopCellContent>
                         <RightOrBottomCellContent>
-                            <StackPanel Orientation="Orientation.Vertical">
+                            <StackPanel Orientation="UIOrientation.Vertical">
                                 <DropDownList Header="Drop down list header"
                                               Items="@(new List<DropDownListItem>
                                                         {

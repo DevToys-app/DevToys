@@ -16,6 +16,7 @@
     background-color: transparent;
 
     &::placeholder {
+        @include typography-body;
         user-select: none;
         -webkit-user-select: none;
         color: var(--text-box-placeholder-foreground);

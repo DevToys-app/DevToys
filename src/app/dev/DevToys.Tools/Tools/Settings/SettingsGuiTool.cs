@@ -47,50 +47,50 @@ internal sealed class SettingsGuiTool : IGuiTool
 
     public IUIElement View
         => Stack()
-        .Vertical()
-        .WithChildren(
-            SettingGroup()
-                .Icon("FluentSystemIcons", "\uF6A9")
-                .Title("Title")
-                .Description("Description")
-                .Handle(
-                    _settingsProvider,
-                    DummySetting2,
-                    OnDummySetting2ChangedAsync,
-                    Item("Use system settings", AvailableApplicationTheme.Default),
-                    Item("Light", AvailableApplicationTheme.Light),
-                    Item("Dark", AvailableApplicationTheme.Dark))
-                .WithSettings(
-                    Setting()
-                        .Title("Compact mode")
-                        .Handle(_settingsProvider, PredefinedSettings.CompactMode),
-                    Setting()
-                        .Title("Line numbers")
-                        .Handle(_settingsProvider, PredefinedSettings.TextEditorLineNumbers),
-                    Setting()
-                        .Title("Title")
-                        .Description("Description")
-                        .InteractiveElement(
-                            Switch()),
-                    Setting()
-                        .Title("Title")
-                        .Description("Description")
-                        .InteractiveElement(
-                            Switch())),
-            Stack()
-                .Horizontal()
-                .WithChildren(
-                    _topLeftButton,
-                    Button().Text("Top Center button"),
-                    Button().Text("Top Right button")),
-            Stack()
-                .Horizontal()
-                .Disable()
-                .WithChildren(
-                    Button().Text("Bottom Left button"),
-                    Button().Text("Bottom Center button").OnClick(OnBottomCenterButtonClickAsync),
-                    Button().Text("Bottom Right button")),
-            SingleLineTextInput().CanCopyWhenEditable());
+            .Vertical()
+            .WithChildren(
+                SettingGroup()
+                    .Icon("FluentSystemIcons", "\uF6A9")
+                    .Title("Title")
+                    .Description("Description")
+                    .Handle(
+                        _settingsProvider,
+                        DummySetting2,
+                        OnDummySetting2ChangedAsync,
+                        Item("Use system settings", AvailableApplicationTheme.Default),
+                        Item("Light", AvailableApplicationTheme.Light),
+                        Item("Dark", AvailableApplicationTheme.Dark))
+                    .WithSettings(
+                        Setting()
+                            .Title("Compact mode")
+                            .Handle(_settingsProvider, PredefinedSettings.CompactMode),
+                        Setting()
+                            .Title("Line numbers")
+                            .Handle(_settingsProvider, PredefinedSettings.TextEditorLineNumbers),
+                        Setting()
+                            .Title("Title")
+                            .Description("Description")
+                            .InteractiveElement(
+                                Switch()),
+                        Setting()
+                            .Title("Title")
+                            .Description("Description")
+                            .InteractiveElement(
+                                Switch())),
+                Stack()
+                    .Horizontal()
+                    .WithChildren(
+                        _topLeftButton,
+                        Button().Text("Top Center button"),
+                        Button().Text("Top Right button")),
+                Stack()
+                    .Horizontal()
+                    .Disable()
+                    .WithChildren(
+                        Button().Text("Bottom Left button"),
+                        Button().Text("Bottom Center button").OnClick(OnBottomCenterButtonClickAsync),
+                        Button().Text("Bottom Right button")),
+                SingleLineTextInput().CanCopyWhenEditable());
 
     public void OnDataReceived(string dataTypeName, object? parsedData)
     {

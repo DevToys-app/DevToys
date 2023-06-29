@@ -1,7 +1,7 @@
 @namespace DevToys.Blazor.Components
 @inherits StyledComponentBase
 
-<CascadingValue Value="this" IsFixed="true">
+<CascadingValue Name="ParentIsEnabled" Value="@IsActuallyEnabled">
     <li class="list-box-item @(FinalCssClasses)"
         style="@(Style)"
         role="listitem"

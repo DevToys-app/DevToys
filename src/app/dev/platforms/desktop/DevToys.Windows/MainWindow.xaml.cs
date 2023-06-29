@@ -8,7 +8,6 @@ using DevToys.Core.Mef;
 using DevToys.Windows.Controls;
 using DevToys.Windows.Core;
 using Microsoft.AspNetCore.Components.WebView;
-using Microsoft.AspNetCore.Components.WebView.Wpf;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using PredefinedSettings = DevToys.Core.Settings.PredefinedSettings;

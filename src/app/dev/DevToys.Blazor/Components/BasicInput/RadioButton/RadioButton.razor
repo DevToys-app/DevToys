@@ -2,7 +2,7 @@
 
 @inherits JSStyledComponentBase
 
-<CascadingValue Value="this" IsFixed="true">
+<CascadingValue Name="ParentIsEnabled" Value="@IsActuallyEnabled">
     <Container HorizontalAlignment="@HorizontalAlignment"
                VerticalAlignment="@VerticalAlignment"
                Width="@Width"
@@ -15,19 +15,20 @@
                PaddingRight="@PaddingRight"
                PaddingTop="@PaddingTop"
                PaddingBottom="@PaddingBottom"
+               IsEnabled="@IsActuallyEnabled"
                IsVisible="@IsVisible">
         <label id=@Id
-               class="radio-button-container @(IsEnabled ? string.Empty : "disabled")"
+               class="radio-button-container @(IsActuallyEnabled ? string.Empty : "disabled")"
                style="@(Style)"
-               @onclick:stopPropagation="@IsEnabled"
+               @onclick:stopPropagation="@IsActuallyEnabled"
                @ref=Element>
             <input type="radio"
                    tabindex="0"
                    class="radio-button @(FinalCssClasses)"
                    checked="@IsChecked"
-                   disabled="@(!IsEnabled)"
+                   disabled="@(!IsActuallyEnabled)"
                    name="@Group"
-                   @onclick:preventDefault="@(!IsEnabled)"
+                   @onclick:preventDefault="@(!IsActuallyEnabled)"
                    @onchange="OnChange"
                    @attributes="AdditionalAttributes" />
             <TextBlock Text="@Text" />

@@ -1,4 +1,6 @@
-﻿namespace DevToys.Api;
+﻿using System.Runtime.CompilerServices;
+
+namespace DevToys.Api;
 
 /// <summary>
 /// A base interface for all UI elements.
@@ -22,6 +24,16 @@ public interface IUIElement
     bool IsEnabled { get; }
 
     /// <summary>
+    /// Gets how the element should align horizontally.
+    /// </summary>
+    UIHorizontalAlignment HorizontalAlignment { get; }
+
+    /// <summary>
+    /// Gets how the element should align vertically.
+    /// </summary>
+    UIVerticalAlignment VerticalAlignment { get; }
+
+    /// <summary>
     /// Raised when <see cref="IsVisible"/> is changed.
     /// </summary>
     event EventHandler? IsVisibleChanged;
@@ -30,13 +42,25 @@ public interface IUIElement
     /// Raised when <see cref="IsEnabled"/> is changed.
     /// </summary>
     event EventHandler? IsEnabledChanged;
+
+    /// <summary>
+    /// Raised when <see cref="HorizontalAlignment"/> is changed.
+    /// </summary>
+    event EventHandler? HorizontalAlignmentChanged;
+
+    /// <summary>
+    /// Raised when <see cref="VerticalAlignment"/> is changed.
+    /// </summary>
+    event EventHandler? VerticalAlignmentChanged;
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, IsVisible = {{{nameof(IsVisible)}}}, IsEnabled = {{{nameof(IsEnabled)}}}")]
-internal abstract class UIElement : IUIElement
+internal abstract class UIElement : IUIElement, INotifyPropertyChanged
 {
     private bool _isVisible = true;
     private bool _isEnabled = true;
+    private UIHorizontalAlignment _horizontalAlignment = UIHorizontalAlignment.Stretch;
+    private UIVerticalAlignment _verticalAlignment = UIVerticalAlignment.Stretch;
 
     protected UIElement(string? id)
     {
@@ -48,26 +72,55 @@ internal abstract class UIElement : IUIElement
     public bool IsVisible
     {
         get => _isVisible;
-        internal set
-        {
-            _isVisible = value;
-            IsVisibleChanged?.Invoke(this, EventArgs.Empty);
-        }
+        internal set => SetPropertyValue(ref _isVisible, value, IsVisibleChanged);
     }
 
     public bool IsEnabled
     {
         get => _isEnabled;
-        internal set
-        {
-            _isEnabled = value;
-            IsEnabledChanged?.Invoke(this, EventArgs.Empty);
-        }
+        internal set => SetPropertyValue(ref _isEnabled, value, IsEnabledChanged);
+    }
+
+    public UIHorizontalAlignment HorizontalAlignment
+    {
+        get => _horizontalAlignment;
+        internal set => SetPropertyValue(ref _horizontalAlignment, value, HorizontalAlignmentChanged);
+    }
+
+    public UIVerticalAlignment VerticalAlignment
+    {
+        get => _verticalAlignment;
+        internal set => SetPropertyValue(ref _verticalAlignment, value, VerticalAlignmentChanged);
     }
 
     public event EventHandler? IsVisibleChanged;
 
     public event EventHandler? IsEnabledChanged;
+
+    public event EventHandler? HorizontalAlignmentChanged;
+
+    public event EventHandler? VerticalAlignmentChanged;
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    protected void SetPropertyValue<T>(
+        ref T field,
+        T value,
+        EventHandler? propertyChangedEventHandler,
+        [CallerMemberName] string? propertyName = null)
+    {
+        if (!EqualityComparer<T>.Default.Equals(field, value))
+        {
+            field = value;
+            propertyChangedEventHandler?.Invoke(this, EventArgs.Empty);
+            OnPropertyChanged(propertyName);
+        }
+    }
+
+    protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new(propertyName));
+    }
 }
 
 public static partial class GUI
@@ -116,6 +169,30 @@ public static partial class GUI
         if (element is UIElement strongElement)
         {
             strongElement.IsEnabled = true;
+        }
+        return element;
+    }
+
+    /// <summary>
+    /// Align the element horizontally.
+    /// </summary>
+    public static T AlignHorizontally<T>(this T element, UIHorizontalAlignment alignment) where T : IUIElement
+    {
+        if (element is UIElement strongElement)
+        {
+            strongElement.HorizontalAlignment = alignment;
+        }
+        return element;
+    }
+
+    /// <summary>
+    /// Align the element vertically.
+    /// </summary>
+    public static T AlignVertically<T>(this T element, UIVerticalAlignment alignment) where T : IUIElement
+    {
+        if (element is UIElement strongElement)
+        {
+            strongElement.VerticalAlignment = alignment;
         }
         return element;
     }

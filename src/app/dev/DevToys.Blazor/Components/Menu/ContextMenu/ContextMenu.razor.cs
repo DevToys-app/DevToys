@@ -1,5 +1,4 @@
-﻿using DevToys.Api;
-using DevToys.Blazor.Core.Services;
+﻿using DevToys.Blazor.Core.Services;
 using Microsoft.AspNetCore.Components.Web;
 
 namespace DevToys.Blazor.Components;
@@ -64,7 +63,7 @@ public partial class ContextMenu : StyledComponentBase
 
     private async Task OpenMenuAsync(MouseEventArgs ev)
     {
-        if (IsEnabled)
+        if (IsActuallyEnabled)
         {
             // This may update the item list.
             await OnContextMenuOpening.InvokeAsync();

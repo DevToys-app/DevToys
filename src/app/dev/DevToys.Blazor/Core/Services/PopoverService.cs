@@ -1,6 +1,4 @@
-﻿using DevToys.Api;
-
-namespace DevToys.Blazor.Core.Services;
+﻿namespace DevToys.Blazor.Core.Services;
 
 public sealed class PopoverService : IAsyncDisposable
 {

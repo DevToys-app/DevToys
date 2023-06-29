@@ -3,7 +3,7 @@
 @typeparam TKey
 @typeparam TElement
 
-<CascadingValue Value="this" IsFixed="true">
+<CascadingValue Name="ParentIsEnabled" Value="@IsActuallyEnabled">
     <Container HorizontalAlignment="@HorizontalAlignment"
                VerticalAlignment="@VerticalAlignment"
                Width="@Width"
@@ -16,9 +16,10 @@
                PaddingRight="@PaddingRight"
                PaddingTop="@PaddingTop"
                PaddingBottom="@PaddingBottom"
+               IsEnabled="@IsActuallyEnabled"
                IsVisible="@IsVisible">
         <ScrollViewer @ref=_scrollViewer
-                      Orientation="Orientation.Vertical"
+                      Orientation="UIOrientation.Vertical"
                       Class="@(FinalCssClasses)"
                       style="@(Style)"
                       @attributes="AdditionalAttributes">

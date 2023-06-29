@@ -1,7 +1,7 @@
 @namespace DevToys.Blazor.Components
 @inherits MefComponentBase
 
-<CascadingValue Value="this" IsFixed="true">
+<CascadingValue Name="ParentIsEnabled" Value="@IsActuallyEnabled">
     <Container HorizontalAlignment="@HorizontalAlignment"
                VerticalAlignment="@VerticalAlignment"
                Width="@Width"
@@ -14,6 +14,7 @@
                PaddingRight="@PaddingRight"
                PaddingTop="@PaddingTop"
                PaddingBottom="@PaddingBottom"
+               IsEnabled="@IsActuallyEnabled"
                IsVisible="@IsVisible">
         <div id=@Id
              class="text-box-with-header @(FinalCssClasses)"
@@ -25,18 +26,18 @@
                 <TextBlock Appearance="TextBlockAppearance.Body" Class="text-box-header" Text="@Header" />
             }
 
-            <div class="text-box-container @(IsEnabled ? string.Empty : "disabled") @(_isContextMenuOpened ? "is-context-menu-opened" : string.Empty)"
+            <div class="text-box-container @(IsActuallyEnabled ? string.Empty : "disabled") @(_isContextMenuOpened ? "is-context-menu-opened" : string.Empty)"
                  @ref=Element>
 
-                <ContextMenu IsEnabled="IsEnabled"
+                <ContextMenu IsEnabled="IsActuallyEnabled"
                              OnContextMenuOpening="OnContextMenuOpening"
                              OnContextMenuOpened="OnContextMenuOpened"
                              OnContextMenuClosed="OnContextMenuClosedAsync"
                              Items="_contextMenuItems">
                     <InputText @ref="_input"
-                               class="@($"text-box {(IsEnabled ? string.Empty : "disabled")})")"
+                               class="@($"text-box {(IsActuallyEnabled ? string.Empty : "disabled")})")"
                                placeholder="@Placeholder"
-                               disabled="@(!IsEnabled)"
+                               disabled="@(!IsActuallyEnabled)"
                                readonly="@(IsReadOnly)"
                                type="@(Type.ToString().ToLowerInvariant())"
                                min="@Min"
@@ -48,13 +49,13 @@
 
                 <div class="text-box-underline" />
                 <div class="text-box-buttons">
-                    @if (IsEnabled && !IsReadOnly)
+                    @if (IsActuallyEnabled && !IsReadOnly)
                     {
                         if (!string.IsNullOrEmpty(Text))
                         {
                             <Button Appearance="ButtonAppearance.Stealth"
                                     Class="text-box-clear-button"
-                                    HorizontalAlignment="HorizontalAlignment.Right"
+                                    HorizontalAlignment="UIHorizontalAlignment.Right"
                                     title="Clear"
                                     aria-label="Clear"
                                     @onclick="OnClearClick">
@@ -65,14 +66,14 @@
                         if (Type == TextBoxTypes.Number)
                         {
                             <Button Appearance="ButtonAppearance.Stealth"
-                                    HorizontalAlignment="HorizontalAlignment.Right"
+                                    HorizontalAlignment="UIHorizontalAlignment.Right"
                                     title="Increase"
                                     aria-label="Increase"
                                     @onclick="OnIncreaseClickAsync">
                                 <FontIcon Glyph="@('\uF2B6')" />
                             </Button>
                             <Button Appearance="ButtonAppearance.Stealth"
-                                    HorizontalAlignment="HorizontalAlignment.Right"
+                                    HorizontalAlignment="UIHorizontalAlignment.Right"
                                     title="Decrease"
                                     aria-label="Decrease"
                                     @onclick="OnDecreaseClickAsync">

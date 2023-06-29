@@ -1,7 +1,7 @@
 @namespace DevToys.Blazor.Components
 @inherits StyledComponentBase
 
-<CascadingValue Value="this" IsFixed="true">
+<CascadingValue Name="ParentIsEnabled" Value="@IsActuallyEnabled">
     <Container HorizontalAlignment="@HorizontalAlignment"
                VerticalAlignment="@VerticalAlignment"
                Width="@Width"
@@ -14,6 +14,7 @@
                PaddingRight="@PaddingRight"
                PaddingTop="@PaddingTop"
                PaddingBottom="@PaddingBottom"
+               IsEnabled="@IsActuallyEnabled"
                IsVisible="@IsVisible">
         <svg @ref="Element"
              tabindex="-1"

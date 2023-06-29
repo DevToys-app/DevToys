@@ -3,8 +3,8 @@
 public partial class StackPanel : StyledComponentBase
 {
     protected string? ClassValue => new CssBuilder(FinalCssClasses)
-        .AddClass("stack-horizontal", () => Orientation == Orientation.Horizontal)
-        .AddClass("stack-vertical", () => Orientation == Orientation.Vertical)
+        .AddClass("stack-horizontal", () => Orientation == UIOrientation.Horizontal)
+        .AddClass("stack-vertical", () => Orientation == UIOrientation.Vertical)
         .Build();
 
     protected string? StyleValue => new StyleBuilder()
@@ -18,7 +18,7 @@ public partial class StackPanel : StyledComponentBase
     /// Gets or set the orientation of the stacked components. 
     /// </summary>
     [Parameter]
-    public Orientation Orientation { get; set; } = Orientation.Horizontal;
+    public UIOrientation Orientation { get; set; } = UIOrientation.Horizontal;
 
     /// <summary>
     /// Gets or sets if the stack wraps.

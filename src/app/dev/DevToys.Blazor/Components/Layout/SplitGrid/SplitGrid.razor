@@ -1,32 +1,35 @@
 @namespace DevToys.Blazor.Components
 @inherits JSStyledComponentBase
 
-<Container HorizontalAlignment="@HorizontalAlignment"
-           VerticalAlignment="@VerticalAlignment"
-           Width="@Width"
-           Height="@Height"
-           MarginLeft="@MarginLeft"
-           MarginRight="@MarginRight"
-           MarginTop="@MarginTop"
-           MarginBottom="@MarginBottom"
-           PaddingLeft="@PaddingLeft"
-           PaddingRight="@PaddingRight"
-           PaddingTop="@PaddingTop"
-           PaddingBottom="@PaddingBottom"
-           IsVisible="@IsVisible">
-    <div id="@Id"
-         @ref="@Element"
-         class="@FinalCssClasses"
-         style="@StyleValue"
-         @attributes="AdditionalAttributes">
-        <Container>
-            @LeftOrTopCellContent
-        </Container>
-        <div @ref="@_gutterElement" class="grid-split-gripper" style="@GutterStyle">
-            <FontIcon Glyph="@GripperGlyph" />
+<CascadingValue Name="ParentIsEnabled" Value="@IsActuallyEnabled">
+    <Container HorizontalAlignment="@HorizontalAlignment"
+               VerticalAlignment="@VerticalAlignment"
+               Width="@Width"
+               Height="@Height"
+               MarginLeft="@MarginLeft"
+               MarginRight="@MarginRight"
+               MarginTop="@MarginTop"
+               MarginBottom="@MarginBottom"
+               PaddingLeft="@PaddingLeft"
+               PaddingRight="@PaddingRight"
+               PaddingTop="@PaddingTop"
+               PaddingBottom="@PaddingBottom"
+               IsEnabled="@IsActuallyEnabled"
+               IsVisible="@IsVisible">
+        <div id="@Id"
+             @ref="@Element"
+             class="@FinalCssClasses"
+             style="@StyleValue"
+             @attributes="AdditionalAttributes">
+            <Container IsEnabled="@IsActuallyEnabled">
+                @LeftOrTopCellContent
+            </Container>
+            <div @ref="@_gutterElement" class="grid-split-gripper" style="@GutterStyle">
+                <FontIcon Glyph="@GripperGlyph" />
+            </div>
+            <Container IsEnabled="@IsActuallyEnabled">
+                @RightOrBottomCellContent
+            </Container>
         </div>
-        <Container>
-            @RightOrBottomCellContent
-        </Container>
-    </div>
-</Container>
+    </Container>
+</CascadingValue>

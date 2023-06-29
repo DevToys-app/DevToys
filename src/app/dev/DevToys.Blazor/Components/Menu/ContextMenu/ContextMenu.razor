@@ -5,11 +5,11 @@
 <div id="@Id"
      Class="context-menu @(FinalCssClasses)"
      Style="@Style"
-@attributes="AdditionalAttributes"
-@oncontextmenu:preventDefault="true">
+     @attributes="AdditionalAttributes"
+     @oncontextmenu:preventDefault="true">
     <CascadingValue Value="this" IsFixed="true">
         <div @oncontextmenu="@ToggleMenuAsync"
-             disabled="@(!IsEnabled)"
+             disabled="@(!IsActuallyEnabled)"
              class="context-menu-activator">
             @ChildContent
         </div>

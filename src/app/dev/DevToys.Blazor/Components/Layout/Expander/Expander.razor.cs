@@ -1,5 +1,4 @@
-﻿using DevToys.Core;
-using Microsoft.AspNetCore.Components.Web;
+﻿using Microsoft.AspNetCore.Components.Web;
 
 namespace DevToys.Blazor.Components;
 

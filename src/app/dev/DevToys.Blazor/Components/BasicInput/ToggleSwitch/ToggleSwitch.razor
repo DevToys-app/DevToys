@@ -2,7 +2,7 @@
 
 @inherits JSStyledComponentBase
 
-<CascadingValue Value="this" IsFixed="true">
+<CascadingValue Name="ParentIsEnabled" Value="@IsActuallyEnabled">
     <Container HorizontalAlignment="@HorizontalAlignment"
                VerticalAlignment="@VerticalAlignment"
                Width="@Width"
@@ -15,13 +15,14 @@
                PaddingRight="@PaddingRight"
                PaddingTop="@PaddingTop"
                PaddingBottom="@PaddingBottom"
+               IsEnabled="@IsActuallyEnabled"
                IsVisible="@IsVisible">
         <label
             id=@Id
             role="button"
-            class="toggle-switch-container @(IsEnabled ? string.Empty : "disabled")"
+            class="toggle-switch-container @(IsActuallyEnabled ? string.Empty : "disabled")"
             style="@(Style)"
-            @onclick:stopPropagation="@IsEnabled"
+            @onclick:stopPropagation="@IsActuallyEnabled"
             @ref=Element>
             <TextBlock Text="@Text" NoWrap="true" />
             <input
@@ -29,8 +30,8 @@
                 tabindex="0"
                 class="toggle-switch @(FinalCssClasses)"
                 checked="@IsOn"
-                disabled="@(!IsEnabled)"
-                @onclick:preventDefault="@(!IsEnabled)"
+                   disabled="@(!IsActuallyEnabled)"
+                @onclick:preventDefault="@(!IsActuallyEnabled)"
                 @onchange="OnChange"
                 @attributes="AdditionalAttributes" />
         </label>

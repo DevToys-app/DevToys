@@ -51,31 +51,19 @@ internal class UISetting : UITitledElement, IUISetting
     public string? Description
     {
         get => _description;
-        internal set
-        {
-            _description = value;
-            DescriptionChanged?.Invoke(this, EventArgs.Empty);
-        }
+        internal set => SetPropertyValue(ref _description, value, DescriptionChanged);
     }
 
     public IUIIcon? Icon
     {
         get => _icon;
-        internal set
-        {
-            _icon = value;
-            IconChanged?.Invoke(this, EventArgs.Empty);
-        }
+        internal set => SetPropertyValue(ref _icon, value, IconChanged);
     }
 
     public IUIElement? InteractiveElement
     {
         get => _interactiveElement;
-        internal set
-        {
-            _interactiveElement = value;
-            InteractiveElementChanged?.Invoke(this, EventArgs.Empty);
-        }
+        internal set => SetPropertyValue(ref _interactiveElement, value, InteractiveElementChanged);
     }
 
     public event EventHandler? DescriptionChanged;

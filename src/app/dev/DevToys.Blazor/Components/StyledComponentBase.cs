@@ -1,12 +1,12 @@
-﻿using DevToys.Api;
-
-namespace DevToys.Blazor.Components;
+﻿namespace DevToys.Blazor.Components;
 
 public abstract class StyledComponentBase : ComponentBase
 {
     private static readonly Random random = new();
 
     private readonly Lazy<ObservableHashSet<string>> _css;
+    private bool _isEnabled = true;
+    private bool _parentIsEnabled = true;
 
     /// <summary>
     /// Gets a reference to the HTML element rendered by the component.
@@ -44,16 +44,27 @@ public abstract class StyledComponentBase : ComponentBase
     public bool IsEnabled { get; set; } = true;
 
     /// <summary>
+    /// Gets or sets whether the parent component is enabled or not.
+    /// </summary>
+    [CascadingParameter(Name = nameof(ParentIsEnabled))]
+    protected bool ParentIsEnabled { get; set; } = true;
+
+    /// <summary>
+    /// Gets whether the component is actually enabled or not, based on <see cref="IsEnabled"/> and <see cref="ParentIsEnabled"/>.
+    /// </summary>
+    public bool IsActuallyEnabled => IsEnabled && ParentIsEnabled;
+
+    /// <summary>
     /// Gets or sets how the component should horizontally align.
     /// </summary>
     [Parameter]
-    public HorizontalAlignment HorizontalAlignment { get; set; } = HorizontalAlignment.Stretch;
+    public UIHorizontalAlignment HorizontalAlignment { get; set; } = UIHorizontalAlignment.Stretch;
 
     /// <summary>
     /// Gets or sets how the component should vertically align.
     /// </summary>
     [Parameter]
-    public VerticalAlignment VerticalAlignment { get; set; } = VerticalAlignment.Stretch;
+    public UIVerticalAlignment VerticalAlignment { get; set; } = UIVerticalAlignment.Stretch;
 
     /// <summary>
     /// Gets or sets the width the component should have.

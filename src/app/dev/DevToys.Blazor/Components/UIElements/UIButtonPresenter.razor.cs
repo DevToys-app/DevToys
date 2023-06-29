@@ -1,11 +1,9 @@
-﻿using DevToys.Api;
-
-namespace DevToys.Blazor.Components.UIElements;
+﻿namespace DevToys.Blazor.Components.UIElements;
 
 public partial class UIButtonPresenter : ComponentBase
 {
     [Parameter]
-    public IUIButton? UIButton { get; set; }
+    public IUIButton UIButton { get; set; } = default!;
 
     internal async Task OnButtonClickAsync()
     {

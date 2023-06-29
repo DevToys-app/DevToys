@@ -1,7 +1,7 @@
 @namespace DevToys.Blazor.Components
 @inherits StyledComponentBase
 
-<CascadingValue Value="this" IsFixed="true">
+<CascadingValue Name="ParentIsEnabled" Value="@IsActuallyEnabled">
     <div class="@(FinalCssClasses)"
          style="@(FinalStyles)"
          @attributes="AdditionalAttributes">

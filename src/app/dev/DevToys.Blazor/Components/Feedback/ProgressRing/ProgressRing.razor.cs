@@ -9,8 +9,8 @@ public partial class ProgressRing : StyledComponentBase
 
     public ProgressRing()
     {
-        VerticalAlignment = VerticalAlignment.Center;
-        HorizontalAlignment = HorizontalAlignment.Center;
+        VerticalAlignment = UIVerticalAlignment.Center;
+        HorizontalAlignment = UIHorizontalAlignment.Center;
         Height = 48;
         Width = 48;
     }

@@ -6,6 +6,11 @@
 public interface IUIButton : IUIElement
 {
     /// <summary>
+    /// Gets whether the button appearance should be accented.
+    /// </summary>
+    bool IsAccent { get; }
+
+    /// <summary>
     /// Gets the text to display in the button.
     /// </summary>
     string? Text { get; }
@@ -18,12 +23,18 @@ public interface IUIButton : IUIElement
     /// <summary>
     /// Raised when <see cref="Text"/> is changed.
     /// </summary>
-    public event EventHandler? TextChanged;
+    event EventHandler? TextChanged;
+
+    /// <summary>
+    /// Raised when <see cref="IsAccent"/> is changed.
+    /// </summary>
+    event EventHandler? IsAccentChanged;
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Text = {{{nameof(Text)}}}")]
 internal sealed class UIButton : UIElement, IUIButton
 {
+    private bool _isAccent;
     private string? _text;
 
     internal UIButton(string? id)
@@ -31,19 +42,23 @@ internal sealed class UIButton : UIElement, IUIButton
     {
     }
 
+    public bool IsAccent
+    {
+        get => _isAccent;
+        internal set => SetPropertyValue(ref _isAccent, value, IsAccentChanged);
+    }
+
     public string? Text
     {
         get => _text;
-        internal set
-        {
-            _text = value;
-            TextChanged?.Invoke(this, EventArgs.Empty);
-        }
+        internal set => SetPropertyValue(ref _text, value, TextChanged);
     }
 
     public Func<ValueTask>? OnClickAction { get; internal set; }
 
     public event EventHandler? TextChanged;
+
+    public event EventHandler? IsAccentChanged;
 }
 
 public static partial class GUI
@@ -90,6 +105,24 @@ public static partial class GUI
     public static IUIButton OnClick(this IUIButton element, Func<ValueTask>? actionOnClick)
     {
         ((UIButton)element).OnClickAction = actionOnClick;
+        return element;
+    }
+
+    /// <summary>
+    /// Sets the button to appear as accented.
+    /// </summary>
+    public static IUIButton AccentAppearance(this IUIButton element)
+    {
+        ((UIButton)element).IsAccent = true;
+        return element;
+    }
+
+    /// <summary>
+    /// Sets the button to appear as neutral.
+    /// </summary>
+    public static IUIButton NeutralAppearance(this IUIButton element)
+    {
+        ((UIButton)element).IsAccent = false;
         return element;
     }
 }

@@ -6,7 +6,7 @@ public partial class ProgressBar : StyledComponentBase
 {
     public ProgressBar()
     {
-        VerticalAlignment = VerticalAlignment.Top;
+        VerticalAlignment = UIVerticalAlignment.Top;
     }
 
     [Parameter]

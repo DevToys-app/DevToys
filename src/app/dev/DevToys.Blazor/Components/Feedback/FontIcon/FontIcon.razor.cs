@@ -12,8 +12,8 @@ public partial class FontIcon : StyledComponentBase
 
     public FontIcon()
     {
-        VerticalAlignment = VerticalAlignment.Center;
-        HorizontalAlignment = HorizontalAlignment.Center;
+        VerticalAlignment = UIVerticalAlignment.Center;
+        HorizontalAlignment = UIHorizontalAlignment.Center;
         Height = 16;
         Width = 16;
     }

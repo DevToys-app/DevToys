@@ -27,7 +27,7 @@
                     <TextBlock Appearance="@TextBlockAppearance.Caption" Text="@item.Description" />
                 </div>
                 <div class="buttons" @onclick:stopPropagation="true">
-                    <Button HorizontalAlignment="HorizontalAlignment.Right"
+                    <Button HorizontalAlignment="UIHorizontalAlignment.Right"
                             Class="button"
                             Appearance="@ButtonAppearance.Neutral"
                             @onclick="() => OnOpenInNewWindow(item)">

@@ -1,7 +1,7 @@
 ﻿@namespace DevToys.Blazor.Components
 @inherits RicherMonacoEditorBase
 
-<CascadingValue Value="this" IsFixed="true">
+<CascadingValue Name="ParentIsEnabled" Value="@IsActuallyEnabled">
     <Container HorizontalAlignment="@HorizontalAlignment"
                VerticalAlignment="@VerticalAlignment"
                Width="@Width"
@@ -14,6 +14,7 @@
                PaddingRight="@PaddingRight"
                PaddingTop="@PaddingTop"
                PaddingBottom="@PaddingBottom"
+               IsEnabled="@IsActuallyEnabled"
                IsVisible="@IsVisible">
         <div id="@(Id)-monaco-container"
              class="monaco-editor-standalone-with-header @(FinalCssClasses)"
@@ -25,7 +26,7 @@
                 <TextBlock Appearance="TextBlockAppearance.Body" Class="monaco-editor-standalone-header" Text="@Header" />
             }
 
-            <div class="monaco-editor-standalone-container @(IsEnabled ? string.Empty : "disabled")"
+            <div class="monaco-editor-standalone-container @(IsActuallyEnabled ? string.Empty : "disabled")"
                  @ref=Element>
 
                 <ProgressRing id="@($"{Id}-loading")"

@@ -27,8 +27,9 @@ i[class^="FluentSystemIcons"]:before, i[class*=" FluentSystemIcons"]:before {
         family: var(--font-family-text);
         size: var(--font-size-body);
         optical-sizing: none;
-        weight: normal;
+        weight: 300;
     }
 
     line-height: 20px;
+    letter-spacing: 0.3px;
 }

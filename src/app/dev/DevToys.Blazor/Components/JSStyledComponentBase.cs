@@ -1,6 +1,4 @@
-﻿using DevToys.Api;
-
-namespace DevToys.Blazor.Components;
+﻿namespace DevToys.Blazor.Components;
 
 public abstract class JSStyledComponentBase : StyledComponentBase, IAsyncDisposable
 {

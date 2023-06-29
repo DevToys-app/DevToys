@@ -41,21 +41,13 @@ internal sealed class UIStack : UIElement, IUIStack
     public UIOrientation Orientation
     {
         get => _orientation;
-        internal set
-        {
-            _orientation = value;
-            OrientationChanged?.Invoke(this, EventArgs.Empty);
-        }
+        internal set => SetPropertyValue(ref _orientation, value, OrientationChanged);
     }
 
     public IUIElement[]? Children
     {
         get => _children;
-        internal set
-        {
-            _children = value;
-            ChildrenChanged?.Invoke(this, EventArgs.Empty);
-        }
+        internal set => SetPropertyValue(ref _children, value, ChildrenChanged);
     }
 
     public event EventHandler? OrientationChanged;

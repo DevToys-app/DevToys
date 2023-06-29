@@ -28,7 +28,7 @@ public partial class ListBoxItem : StyledComponentBase
             CSS.Remove("selected");
         }
 
-        if (IsEnabled)
+        if (IsActuallyEnabled)
         {
             CSS.Remove("disabled");
         }

@@ -6,7 +6,7 @@
 @typeparam TElement
 @typeparam TSearchElement
 
-<CascadingValue Value="this" IsFixed="true">
+<CascadingValue Name="ParentIsEnabled" Value="@IsActuallyEnabled">
     <div id=@Id
          class="nav-bar-root @(_sidebarState.NavBarClassNames) @(FinalCssClasses)"
          style="@(Style)"
@@ -15,8 +15,8 @@
 
         <!-- Header -->
         <div class="nav-bar-header">
-            <StackPanel Orientation="Orientation.Horizontal"
-                        HorizontalAlignment="HorizontalAlignment.Left">
+            <StackPanel Orientation="UIOrientation.Horizontal"
+                        HorizontalAlignment="UIHorizontalAlignment.Left">
                 <Button Appearance="ButtonAppearance.Stealth"
                         Class="nav-bar-button-icon"
                         Height="36"
@@ -57,11 +57,11 @@
         <!-- Sidebar -->
         <nav id="@NavId" class="@(_sidebarState.NavBarClassNames)">
             <StackPanel Class="sidebar-header"
-                        Orientation="Orientation.Vertical">
+                        Orientation="UIOrientation.Vertical">
                 @* TODO: Localize *@
                 <Button Appearance="ButtonAppearance.Stealth"
                         Class="nav-bar-button-icon"
-                        HorizontalAlignment="HorizontalAlignment.Left"
+                        HorizontalAlignment="UIHorizontalAlignment.Left"
                         Height="36"
                         Width="40"
                         MarginTop="0"
@@ -79,7 +79,7 @@
 
                 <Button Appearance="ButtonAppearance.Stealth"
                         Class="nav-bar-button-icon"
-                        HorizontalAlignment="HorizontalAlignment.Left"
+                        HorizontalAlignment="UIHorizontalAlignment.Left"
                         Height="36"
                         Width="40"
                         MarginTop="6"
@@ -106,7 +106,7 @@
                 </AutoSuggestBox>
             </StackPanel>
             <div class="sidebar-body">
-                <ScrollViewer Orientation="Orientation.Vertical">
+                <ScrollViewer Orientation="UIOrientation.Vertical">
                     <ul class="sidebar-items" role="listbox">
                         @if (MenuItemsSource is not null)
                         {

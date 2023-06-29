@@ -6,7 +6,7 @@ public partial class ScrollViewer : StyledComponentBase
     /// Gets or set the orientation in which the content can be scrolled.
     /// </summary>
     [Parameter]
-    public Orientation Orientation { get; set; } = Orientation.Vertical;
+    public UIOrientation Orientation { get; set; } = UIOrientation.Vertical;
 
     /// <summary>
     /// Gets or sets the content to be rendered inside the component.
@@ -34,7 +34,7 @@ public partial class ScrollViewer : StyledComponentBase
     protected override void OnParametersSet()
     {
         AdditionalAttributes ??= new Dictionary<string, object>();
-        if (IsEnabled && !UseNativeScrollBar)
+        if (IsActuallyEnabled && !UseNativeScrollBar)
         {
             // This will trigger simplebar to start.
             AdditionalAttributes.TryAdd("data-simplebar", true);
@@ -44,14 +44,14 @@ public partial class ScrollViewer : StyledComponentBase
             AdditionalAttributes.Remove("data-simplebar");
         }
 
-        if ((Orientation & Orientation.Vertical) != 0
-            && (Orientation & Orientation.Horizontal) != 0)
+        if ((Orientation & UIOrientation.Vertical) != 0
+            && (Orientation & UIOrientation.Horizontal) != 0)
         {
             CSS.Clear();
         }
         else
         {
-            if ((Orientation & Orientation.Vertical) != 0)
+            if ((Orientation & UIOrientation.Vertical) != 0)
             {
                 CSS.Add("vertical");
             }
@@ -60,7 +60,7 @@ public partial class ScrollViewer : StyledComponentBase
                 CSS.Remove("vertical");
             }
 
-            if ((Orientation & Orientation.Horizontal) != 0)
+            if ((Orientation & UIOrientation.Horizontal) != 0)
             {
                 CSS.Add("horizontal");
             }

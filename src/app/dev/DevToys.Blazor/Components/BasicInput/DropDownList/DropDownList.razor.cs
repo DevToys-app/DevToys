@@ -1,5 +1,4 @@
-﻿using DevToys.Api;
-using DevToys.Blazor.Core.Services;
+﻿using DevToys.Blazor.Core.Services;
 using Microsoft.AspNetCore.Components.Web;
 
 namespace DevToys.Blazor.Components;
@@ -56,7 +55,7 @@ public partial class DropDownList : StyledComponentBase
 
     private void OpenDropDown(MouseEventArgs ev)
     {
-        if (IsEnabled && ContextMenuService.TryOpenContextMenu())
+        if (IsActuallyEnabled && ContextMenuService.TryOpenContextMenu())
         {
             ContextMenuService.CloseContextMenuRequested += ContextMenuService_CloseContextMenuRequested;
             _isOpen = true;

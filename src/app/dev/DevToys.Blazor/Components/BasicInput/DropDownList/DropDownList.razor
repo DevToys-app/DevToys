@@ -1,80 +1,83 @@
 @namespace DevToys.Blazor.Components
 @inherits StyledComponentBase
 
-<CascadingValue Value="this" IsFixed="true">
-    <Container HorizontalAlignment="@HorizontalAlignment"
-               VerticalAlignment="@VerticalAlignment"
-               Width="@Width"
-               Height="@Height"
-               MarginLeft="@MarginLeft"
-               MarginRight="@MarginRight"
-               MarginTop="@MarginTop"
-               MarginBottom="@MarginBottom"
-               PaddingLeft="@PaddingLeft"
-               PaddingRight="@PaddingRight"
-               PaddingTop="@PaddingTop"
-               PaddingBottom="@PaddingBottom"
-               IsVisible="@IsVisible">
-        <div id=@Id
-             class="drop-down-list-with-header @(FinalCssClasses)"
-             style="@(Style)"
-             @attributes="AdditionalAttributes">
-
-            @if (!string.IsNullOrWhiteSpace(Header))
-            {
-                <TextBlock Appearance="TextBlockAppearance.Body" Class="drop-down-list-header" Text="@Header" />
-            }
-
-            <Button Class="@($"drop-down-list-button {FinalCssClasses}")"
-                    HorizontalAlignment="@HorizontalAlignment"
-                    Width="@Width"
-                    Appearance="ButtonAppearance.Neutral"
-                    IsEnabled="@IsEnabled"
-                    @onclick="@ToggleDropDown">
-                @ChildContent
-                <div class="arrow-down-icon">
-                    <FontIcon Glyph="@('\uf2a6')" Height="12" Width="12" />
-                </div>
-
-                <Popover Open="_isOpen"
-                         AnchorOrigin="Origin.BottomCenter"
-                         TransformOrigin="Origin.TopCenter"
-                         RelativeWidth="false"
-                         Class="drop-down-list-drop-down"
-                         @ontouchend:stopPropagation>
-                    <CascadingValue Value="@this" IsFixed="true">
-                        <FocusTrapper Style="display: contents;"
-                                      OnEscapeKeyPressed="OnEscapeKeyPressed"
-                                      @onfocusout="OnEscapeKeyPressed">
-                            <ListBox @ref="_listBox"
-                                     Items="Items"
-                                     Context="item"
-                                     Role="menu"
-                                     OverrideDefaultItemTemplate="true"
-                                     Virtualize="true"
-                                     RaiseSelectionEventOnKeyboardNavigation="false"
-                                     SelectedIndexChanged="OnDropDowlListItemSelected"
-                                     UseNativeScrollBar="true"
-                                     Class="context-menu-list-box"
-                                     Style="max-height: 400px">
-                                <ItemTemplate>
-                                    <li role="menuitem"
-                                        class="@($"context-menu-item {(_listBox!.SelectedItem == item ? "selected" : string.Empty)} {(item.IsEnabled ? string.Empty : "disabled")}")"
-                                        aria-disabled="@(item.IsEnabled ? string.Empty : "true")">
-                                        <div class="icon-container">
-                                            <FontIcon Glyph="@item.IconGlyph" FontFamily="@item.IconFontFamily" />
-                                        </div>
-                                        <TextBlock Class="text"
-                                                   NoWrap="true"
-                                                   Text="@item.Text" />
-                                    </li>
-                                </ItemTemplate>
-                            </ListBox>
-                        </FocusTrapper>
-                    </CascadingValue>
-                </Popover>
-            </Button>
-
-        </div>
-    </Container>
+<CascadingValue Name="ParentIsEnabled" Value="@IsActuallyEnabled">
+    <CascadingValue Value="this" IsFixed="true">
+        <Container HorizontalAlignment="@HorizontalAlignment"
+                   VerticalAlignment="@VerticalAlignment"
+                   Width="@Width"
+                   Height="@Height"
+                   MarginLeft="@MarginLeft"
+                   MarginRight="@MarginRight"
+                   MarginTop="@MarginTop"
+                   MarginBottom="@MarginBottom"
+                   PaddingLeft="@PaddingLeft"
+                   PaddingRight="@PaddingRight"
+                   PaddingTop="@PaddingTop"
+                   PaddingBottom="@PaddingBottom"
+                   IsEnabled="@IsActuallyEnabled"
+                   IsVisible="@IsVisible">
+            <div id=@Id
+                 class="drop-down-list-with-header @(FinalCssClasses)"
+                 style="@(Style)"
+                 @attributes="AdditionalAttributes">
+    
+                @if (!string.IsNullOrWhiteSpace(Header))
+                {
+                    <TextBlock Appearance="TextBlockAppearance.Body" Class="drop-down-list-header" Text="@Header" />
+                }
+    
+                <Button Class="@($"drop-down-list-button {FinalCssClasses}")"
+                        HorizontalAlignment="@HorizontalAlignment"
+                        Width="@Width"
+                        Appearance="ButtonAppearance.Neutral"
+                        IsEnabled="@IsActuallyEnabled"
+                        @onclick="@ToggleDropDown">
+                    @ChildContent
+                    <div class="arrow-down-icon">
+                        <FontIcon Glyph="@('\uf2a6')" Height="12" Width="12" />
+                    </div>
+    
+                    <Popover Open="_isOpen"
+                             AnchorOrigin="Origin.BottomCenter"
+                             TransformOrigin="Origin.TopCenter"
+                             RelativeWidth="false"
+                             Class="drop-down-list-drop-down"
+                             @ontouchend:stopPropagation>
+                        <CascadingValue Value="@this" IsFixed="true">
+                            <FocusTrapper Style="display: contents;"
+                                          OnEscapeKeyPressed="OnEscapeKeyPressed"
+                                          @onfocusout="OnEscapeKeyPressed">
+                                <ListBox @ref="_listBox"
+                                         Items="Items"
+                                         Context="item"
+                                         Role="menu"
+                                         OverrideDefaultItemTemplate="true"
+                                         Virtualize="true"
+                                         RaiseSelectionEventOnKeyboardNavigation="false"
+                                         SelectedIndexChanged="OnDropDowlListItemSelected"
+                                         UseNativeScrollBar="true"
+                                         Class="context-menu-list-box"
+                                         Style="max-height: 400px">
+                                    <ItemTemplate>
+                                        <li role="menuitem"
+                                            class="@($"context-menu-item {(_listBox!.SelectedItem == item ? "selected" : string.Empty)} {(item.IsEnabled ? string.Empty : "disabled")}")"
+                                            aria-disabled="@(item.IsEnabled ? string.Empty : "true")">
+                                            <div class="icon-container">
+                                                <FontIcon Glyph="@item.IconGlyph" FontFamily="@item.IconFontFamily" />
+                                            </div>
+                                            <TextBlock Class="text"
+                                                       NoWrap="true"
+                                                       Text="@item.Text" />
+                                        </li>
+                                    </ItemTemplate>
+                                </ListBox>
+                            </FocusTrapper>
+                        </CascadingValue>
+                    </Popover>
+                </Button>
+    
+            </div>
+        </Container>
+    </CascadingValue>
 </CascadingValue>

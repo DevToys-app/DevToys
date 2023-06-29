@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using DevToys.Api;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 
 namespace DevToys.Tools.Tools.Sample;
@@ -52,9 +53,51 @@ internal sealed class SampleCommandLineTool : ICommandLineTool
 internal sealed class SampleGuiTool : IGuiTool
 {
     //private readonly IUIMultilineLineTextInput _editor = MultilineTextInput().Language("json").CanCopyWhenEditable();
+    private readonly IUIButton _button = Button();
+    private readonly IUIButton _button2 = Button();
+    private readonly IUIButton _button3 = Button();
+    private readonly IUIButton _button4 = Button();
+    private readonly IUIButton _button5 = Button();
+    private readonly IUIButton _button6 = Button();
+    private readonly IUIButton _button7 = Button();
+    private readonly IUIButton _button8 = Button();
+    private readonly IUIButton _button9 = Button();
+    private readonly IUIButton _button10 = Button();
+    private readonly IUIButton _button11 = Button();
+    private readonly IUIButton _button12 = Button();
+    private readonly IUIStack _mainStack = Stack();
+    private readonly IUIStack _subStack = Stack();
 
-    public IUIElement View => Button().Text("Hello !");
+    public IUIElement View =>
+        _mainStack
+            .Vertical()
+            .WithChildren(
+                _button.Text("I'm in a StackPanel. Click me to disable the parent StackPanel and all its children").OnClick(OnClick),
+                _subStack
+                    .Vertical()
+                    .WithChildren(
+                        _button2.Text("Hello !"),
+                        _button3.Text("Hello !"),
+                        _button4.Text("Hello !"),
+                        _button5.Text("Hello !"),
+                        _button6.Text("Hello !"),
+                        _button7.Text("Hello !"),
+                        _button8.Text("Hello !"),
+                        _button9.Text("Hello !"),
+                        _button10.Text("Hello !"),
+                        _button11.Text("Hello !"),
+                        _button12.Text("Hello !")));
+        //Button().Text("Hello !");
       //  => _editor;
+
+    private ValueTask OnClick()
+    {
+        _button.Text("Done !");
+        //_button.AccentAppearance();
+        _mainStack.Disable();
+        //_button.Hide();
+        return ValueTask.CompletedTask;
+    }
 
     public void OnDataReceived(string dataTypeName, object? parsedData)
     {

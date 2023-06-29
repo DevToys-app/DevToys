@@ -4,7 +4,7 @@ public partial class InfoBar : StyledComponentBase
 {
     public InfoBar()
     {
-        VerticalAlignment = VerticalAlignment.Center;
+        VerticalAlignment = UIVerticalAlignment.Center;
     }
 
     [Parameter]

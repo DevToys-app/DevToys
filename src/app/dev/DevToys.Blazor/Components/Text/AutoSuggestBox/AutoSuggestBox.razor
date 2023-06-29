@@ -2,58 +2,61 @@
 @inherits StyledComponentBase
 @typeparam TElement
 
-<CascadingValue Value="this" IsFixed="true">
-    <Container HorizontalAlignment="@HorizontalAlignment"
-               VerticalAlignment="@VerticalAlignment"
-               Width="@Width"
-               Height="@Height"
-               MarginLeft="@MarginLeft"
-               MarginRight="@MarginRight"
-               MarginTop="@MarginTop"
-               MarginBottom="@MarginBottom"
-               PaddingLeft="@PaddingLeft"
-               PaddingRight="@PaddingRight"
-               PaddingTop="@PaddingTop"
-               PaddingBottom="@PaddingBottom"
-               IsVisible="@IsVisible">
-        <div id="@Id" style="@Style">
-            <TextBox @ref="_textBox"
-                     Class="@(FinalCssClasses)"
-                     @attributes="AdditionalAttributes"
-                     Type="TextBoxTypes.Search"
-                     Header="@Header"
-                     Placeholder="@Placeholder"
-                     IsEnabled="@IsEnabled"
-                     IsReadOnly="@IsReadOnly"
-                     TextChanged="@OnTextBoxTextChangedAsync"
-                     @onkeydown="@OnTextBoxKeyPress"
-                     @onfocusout="@OnTextBoxFocusLost">
-                <Buttons>
-                    <FontIcon Glyph="@('\uF68F')"
-                              HorizontalAlignment="HorizontalAlignment.Right"
-                              Style="margin-right: 12px; margin-left: 6px;" />
-                </Buttons>
-            </TextBox>
-
-            <Popover Open="_showDropDown"
-                     AnchorOrigin="Origin.BottomLeft"
-                     TransformOrigin="Origin.TopLeft"
-                     RelativeWidth="true"
-                     Class="auto-suggest-box-drop-down"
-                     @ontouchend:stopPropagation>
-                <CascadingValue Value="@this" IsFixed="true">
-                    <ListBox @ref="_resultListBox"
-                             Items="@Items"
-                             Context="item"
-                             RaiseSelectionEventOnKeyboardNavigation="false"
-                             UseNativeScrollBar="true"
-                             SelectedIndexChanged="OnSelectedIndexChanged">
-                        <ItemTemplate>
-                            @ItemTemplate(item)
-                        </ItemTemplate>
-                    </ListBox>
-                </CascadingValue>
-            </Popover>
-        </div>
-    </Container>
+<CascadingValue Name="ParentIsEnabled" Value="@IsActuallyEnabled">
+    <CascadingValue Value="this" IsFixed="true">
+        <Container HorizontalAlignment="@HorizontalAlignment"
+                   VerticalAlignment="@VerticalAlignment"
+                   Width="@Width"
+                   Height="@Height"
+                   MarginLeft="@MarginLeft"
+                   MarginRight="@MarginRight"
+                   MarginTop="@MarginTop"
+                   MarginBottom="@MarginBottom"
+                   PaddingLeft="@PaddingLeft"
+                   PaddingRight="@PaddingRight"
+                   PaddingTop="@PaddingTop"
+                   PaddingBottom="@PaddingBottom"
+                   IsEnabled="@IsActuallyEnabled"
+                   IsVisible="@IsVisible">
+            <div id="@Id" style="@Style">
+                <TextBox @ref="_textBox"
+                         Class="@(FinalCssClasses)"
+                         @attributes="AdditionalAttributes"
+                         Type="TextBoxTypes.Search"
+                         Header="@Header"
+                         Placeholder="@Placeholder"
+                         IsEnabled="@IsActuallyEnabled"
+                         IsReadOnly="@IsReadOnly"
+                         TextChanged="@OnTextBoxTextChangedAsync"
+                         @onkeydown="@OnTextBoxKeyPress"
+                         @onfocusout="@OnTextBoxFocusLost">
+                    <Buttons>
+                        <FontIcon Glyph="@('\uF68F')"
+                                  HorizontalAlignment="UIHorizontalAlignment.Right"
+                                  Style="margin-right: 12px; margin-left: 6px;" />
+                    </Buttons>
+                </TextBox>
+    
+                <Popover Open="_showDropDown"
+                         AnchorOrigin="Origin.BottomLeft"
+                         TransformOrigin="Origin.TopLeft"
+                         RelativeWidth="true"
+                         Class="auto-suggest-box-drop-down"
+                         @ontouchend:stopPropagation>
+                    <CascadingValue Value="@this" IsFixed="true">
+                        <ListBox @ref="_resultListBox"
+                                 Items="@Items"
+                                 Context="item"
+                                 RaiseSelectionEventOnKeyboardNavigation="false"
+                                 UseNativeScrollBar="true"
+                                 SelectedIndexChanged="OnSelectedIndexChanged">
+                            <ItemTemplate>
+                                @ItemTemplate(item)
+                            </ItemTemplate>
+                        </ListBox>
+                    </CascadingValue>
+                </Popover>
+            </div>
+        </Container>
+    </CascadingValue>
 </CascadingValue>

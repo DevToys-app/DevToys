@@ -16,12 +16,12 @@ public partial class Button : JSStyledComponentBase
         CSS.Clear();
         CSS.Add($"type-{Appearance.Class}");
 
-        if (IsEnabled && AdditionalAttributes is not null)
+        if (IsActuallyEnabled && AdditionalAttributes is not null)
         {
             AdditionalAttributes.Remove("disabled");
         }
 
-        if (!IsEnabled)
+        if (!IsActuallyEnabled)
         {
             CSS.Add("disabled");
 
