@@ -1,11 +1,9 @@
-﻿using System.IO;
-using CommunityToolkit.Mvvm.Messaging;
+﻿using CommunityToolkit.Mvvm.Messaging;
 using DevToys.Core.Models;
 using DevToys.Core.Tools;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.Extensions.Logging;
 using Uno.Extensions;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace DevToys.Blazor.Components.UIElements;
 
@@ -67,11 +65,15 @@ public partial class UITextInputWrapper : MefComponentBase
 
     protected List<SmartDetectionDropDownListItem> SmartDetectionDropDownItems { get; } = new();
 
+    protected List<DropDownListItem> CollapsedDropDownListItems { get; } = new();
+
     protected string ExtendedId => UITextInput.Id + "-" + Id;
 
     public UITextInputWrapper()
     {
         _logger = this.Log();
+
+
     }
 
     protected override void OnInitialized()
@@ -117,6 +119,11 @@ public partial class UITextInputWrapper : MefComponentBase
         _hideNonEssentialToolBar = _isToolBarShrink && textInputWrapperWidth < MinimumWidthBeforeHidingNonEssentialToolBar;
         if (_hideNonEssentialToolBar != oldNonEssentialToolBarState)
         {
+            if (_hideNonEssentialToolBar)
+            {
+                BuildCollapsedMenu();
+            }
+
             StateHasChanged();
         }
     }
@@ -359,6 +366,50 @@ public partial class UITextInputWrapper : MefComponentBase
         if (menuItem is SmartDetectionDropDownListItem smartDetectionDropDownListItem)
         {
             WeakReferenceMessenger.Default.Send(new ChangeSelectedMenuItemMessage(smartDetectionDropDownListItem.SmartDetectedTool));
+        }
+    }
+
+    private void BuildCollapsedMenu()
+    {
+        // TODO: Localize
+        CollapsedDropDownListItems.Clear();
+
+        if (!UITextInput.IsReadOnly)
+        {
+            CollapsedDropDownListItems.Add(new DropDownListItem
+            {
+                IconGlyph = '\uF2D5',
+                Text = "Paste",
+                OnClick = EventCallback.Factory.Create<DropDownListItem>(this, OnPasteButtonClickAsync)
+            });
+            CollapsedDropDownListItems.Add(new DropDownListItem
+            {
+                IconGlyph = '\uF378',
+                Text = "Load a file",
+                OnClick = EventCallback.Factory.Create<DropDownListItem>(this, OnLoadFileButtonClickAsync)
+            });
+            CollapsedDropDownListItems.Add(new DropDownListItem
+            {
+                IconGlyph = '\uF369',
+                Text = "Clear",
+                OnClick = EventCallback.Factory.Create<DropDownListItem>(this, OnClearButtonClick)
+            });
+        }
+
+        if (UITextInput.IsReadOnly || UITextInput.CanCopyWhenEditable)
+        {
+            CollapsedDropDownListItems.Add(new DropDownListItem
+            {
+                IconGlyph = '\uF67F',
+                Text = "Save as...",
+                OnClick = EventCallback.Factory.Create<DropDownListItem>(this, OnSaveAsButtonClickAsync)
+            });
+            CollapsedDropDownListItems.Add(new DropDownListItem
+            {
+                IconGlyph = '\uF32B',
+                Text = "Copy",
+                OnClick = EventCallback.Factory.Create<DropDownListItem>(this, OnCopyButtonClick)
+            });
         }
     }
 

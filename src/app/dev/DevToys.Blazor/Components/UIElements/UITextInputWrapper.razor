@@ -38,37 +38,58 @@
     </GridCell>
     <GridCell Row="0"
               Column="1">
-        <StackPanel IsEnabled="@(!IsLoadingFile)">
-            <Button @onclick="@OnPasteButtonClickAsync"
-                    IsVisible="@(!_hideNonEssentialToolBar)">
-                <StackPanel>
-                    <FontIcon Glyph="@('\uF2D5')" />
-                    <TextBlock Text="Paste"
-                               IsVisible="@(!_isToolBarShrink)" />
-                </StackPanel>
-            </Button>
-            <Button ToolTip="Load a file"
-                    @onclick="@OnLoadFileButtonClickAsync">
-                <FontIcon Glyph="@('\uF378')" />
-            </Button>
-            <Button ToolTip="Clear"
-                    @onclick="@OnClearButtonClick"
-                    IsVisible="@(!_hideNonEssentialToolBar)">
-                <FontIcon Glyph="@('\uF369')" />
-            </Button>
-            <div class="ui-text-input-wrapper-separator"></div>
-            <Button ToolTip="Save as..."
-                    @onclick="@OnSaveAsButtonClickAsync">
-                <FontIcon Glyph="@('\uF67F')" />
-            </Button>
-            <Button @onclick="@OnCopyButtonClick"
-                    IsVisible="@(!_hideNonEssentialToolBar)">
-                <StackPanel>
-                    <FontIcon Glyph="@('\uF32B')" />
-                    <TextBlock Text="Copy"
-                               IsVisible="@(!_isToolBarShrink)" />
-                </StackPanel>
-            </Button>
+        <StackPanel IsEnabled="@(!IsLoadingFile)" Wrap="false">
+            @if (!_hideNonEssentialToolBar)
+            {
+                @if (!UITextInput.IsReadOnly)
+                {
+                    <Button @onclick="@OnPasteButtonClickAsync">
+                        <StackPanel>
+                            <FontIcon Glyph="@('\uF2D5')" />
+                            <TextBlock Text="Paste"
+                                       IsVisible="@(!_isToolBarShrink)" />
+                        </StackPanel>
+                    </Button>
+                    <Button ToolTip="Load a file"
+                            @onclick="@OnLoadFileButtonClickAsync">
+                        <FontIcon Glyph="@('\uF378')" />
+                    </Button>
+                    <Button ToolTip="Clear"
+                            @onclick="@OnClearButtonClick">
+                        <FontIcon Glyph="@('\uF369')" />
+                    </Button>
+                }
+
+                @if (!UITextInput.IsReadOnly && UITextInput.CanCopyWhenEditable)
+                {
+                    <div class="ui-text-input-wrapper-separator"></div>
+                }
+
+                @if (UITextInput.IsReadOnly || UITextInput.CanCopyWhenEditable)
+                {
+                    <Button ToolTip="Save as..."
+                            @onclick="@OnSaveAsButtonClickAsync">
+                        <FontIcon Glyph="@('\uF67F')" />
+                    </Button>
+                    <Button @onclick="@OnCopyButtonClick">
+                        <StackPanel>
+                            <FontIcon Glyph="@('\uF32B')" />
+                            <TextBlock Text="Copy"
+                                       IsVisible="@(!_isToolBarShrink)" />
+                        </StackPanel>
+                    </Button>
+                }
+            }
+            else
+            {
+                <DropDownButton ToolTip="More..."
+                                Items="@CollapsedDropDownListItems"
+                                AnchorOrigin="Origin.BottomRight"
+                                TransformOrigin="Origin.TopRight"
+                                DisplayArrow="false">
+                    <FontIcon Glyph="@('\uE824')" Height="22" Width="22" />
+                </DropDownButton>
+            }
             <div class="ui-text-input-wrapper-separator"></div>
             <DropDownButton ToolTip="Transfer to another tool"
                             Items="@SmartDetectionDropDownItems"

@@ -77,14 +77,12 @@ internal sealed class SettingsGuiTool : IGuiTool
                             .Description("Description")
                             .InteractiveElement(
                                 Switch())),
-                Stack()
-                    .Horizontal()
+                Wrap()
                     .WithChildren(
                         _topLeftButton,
                         Button().Text("Top Center button"),
                         Button().Text("Top Right button")),
-                Stack()
-                    .Horizontal()
+                Wrap()
                     .Disable()
                     .WithChildren(
                         Button().Text("Bottom Left button"),

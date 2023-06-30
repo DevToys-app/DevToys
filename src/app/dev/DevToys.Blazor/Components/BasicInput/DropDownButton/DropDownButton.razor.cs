@@ -23,6 +23,9 @@ public partial class DropDownButton<TItem> : StyledComponentBase where TItem : D
     [Parameter]
     public string? ToolTip { get; set; }
 
+    [Parameter]
+    public bool DisplayArrow { get; set; } = true;
+
     /// <summary>
     /// Set the anchor point on the element of the popover.
     /// The anchor point will determinate where the popover will be placed.
@@ -31,7 +34,7 @@ public partial class DropDownButton<TItem> : StyledComponentBase where TItem : D
     public Origin AnchorOrigin { get; set; } = Origin.BottomCenter;
 
     /// <summary>
-    /// Sets the intersection point if the anchor element. At this point the popover will lay above the popover. 
+    /// Sets the intersection point if the anchor element. At this point the popover will lay above the popover.
     /// This property in conjunction with <see cref="AnchorOrigin"/> determinate where the popover will be placed.
     /// </summary>
     [Parameter]

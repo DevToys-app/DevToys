@@ -1,0 +1,20 @@
+@namespace DevToys.Blazor.Components.UIElements
+@using DevToys.Api;
+@inherits ComponentBase
+
+<StackPanel id="@UIWrap.Id"
+            IsVisible="@UIWrap.IsVisible"
+            IsEnabled="@UIWrap.IsEnabled"
+            HorizontalAlignment="@UIWrap.HorizontalAlignment"
+            VerticalAlignment="@UIWrap.VerticalAlignment"
+            Orientation="UIOrientation.Horizontal"
+            Wrap="true"
+            Spacing="@(UIWrap.Spacing == UISpacing.Small ? 4 : (UIWrap.Spacing == UISpacing.Medium ? 8 : 12))">
+    @if (UIWrap.Children is not null)
+    {
+        for (int i = 0; i < UIWrap.Children.Length; i++)
+        {
+            <UIElementPresenter UIElement="@UIWrap.Children[i]" />
+        }
+    }
+</StackPanel>
