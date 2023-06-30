@@ -16,8 +16,15 @@ public interface IFileStorage
     /// Prompt the user to select a location to save a file, and decide of the file name.
     /// </summary>
     /// <param name="fileTypes">The list of file types the user can choose. For example, ".txt". Use "*" for any file type.</param>
-    /// <returns>If succeeded, returns the file path selected by the user, otherwise, returns null.</returns>
-    ValueTask<string?> PickSaveFileAsync(string[] fileTypes);
+    /// <returns>If succeeded, returns a write-only stream corresponding to the file the user selected, otherwise, returns null.</returns>
+    ValueTask<Stream?> PickSaveFileAsync(string[] fileTypes);
+
+    /// <summary>
+    /// Prompt the user to select a file to open.
+    /// </summary>
+    /// <param name="fileTypes">The list of file types the user can choose. For example, ".txt". Use "*" for any file type.</param>
+    /// <returns>If succeeded, returns a read-only stream corresponding to the file the user selected, otherwise, returns null.</returns>
+    ValueTask<Stream?> PickOpenFileAsync(string[] fileTypes);
 
     /// <summary>
     /// Determines whether the file indicated by the given <paramref name="relativeOrAbsoluteFilePath"/> exists.

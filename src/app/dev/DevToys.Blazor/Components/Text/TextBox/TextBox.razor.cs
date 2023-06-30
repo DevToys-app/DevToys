@@ -182,31 +182,31 @@ public partial class TextBox : MefComponentBase
             {
                 if (!IsReadOnly)
                 {
-                    CutContextMenuItem.OnClick = EventCallback.Factory.Create(this, OnCutAsync);
+                    CutContextMenuItem.OnClick = EventCallback.Factory.Create<DropDownListItem>(this, OnCutAsync);
                     _contextMenuItems.Add(CutContextMenuItem);
                 }
 
-                CopyContextMenuItem.OnClick = EventCallback.Factory.Create(this, OnCopyAsync);
+                CopyContextMenuItem.OnClick = EventCallback.Factory.Create<DropDownListItem>(this, OnCopyAsync);
                 _contextMenuItems.Add(CopyContextMenuItem);
             }
 
             if (!IsReadOnly)
             {
-                PasteContextMenuItem.OnClick = EventCallback.Factory.Create(this, OnPasteAsync);
+                PasteContextMenuItem.OnClick = EventCallback.Factory.Create<DropDownListItem>(this, OnPasteAsync);
                 _contextMenuItems.Add(PasteContextMenuItem);
             }
 
             if (Text?.Length > 0)
             {
-                SelectAllContextMenuItem.OnClick = EventCallback.Factory.Create(this, OnSelectAllAsync);
+                SelectAllContextMenuItem.OnClick = EventCallback.Factory.Create<DropDownListItem>(this, OnSelectAllAsync);
                 _contextMenuItems.Add(SelectAllContextMenuItem);
             }
         }
     }
 
-    private async Task OnCutAsync()
+    private async Task OnCutAsync(DropDownListItem dropDownListItem)
     {
-        await OnCopyAsync();
+        await OnCopyAsync(dropDownListItem);
 
         if (!string.IsNullOrEmpty(Text))
         {
@@ -219,7 +219,7 @@ public partial class TextBox : MefComponentBase
         }
     }
 
-    private async Task OnCopyAsync()
+    private async Task OnCopyAsync(DropDownListItem _)
     {
         if (!string.IsNullOrEmpty(Text))
         {
@@ -232,7 +232,7 @@ public partial class TextBox : MefComponentBase
         }
     }
 
-    private async Task OnPasteAsync()
+    private async Task OnPasteAsync(DropDownListItem _)
     {
         object? clipboardData = await Clipboard.GetClipboardDataAsync();
         if (clipboardData is string)
@@ -244,7 +244,7 @@ public partial class TextBox : MefComponentBase
         }
     }
 
-    private async Task OnSelectAllAsync()
+    private async Task OnSelectAllAsync(DropDownListItem _)
     {
         using (await Semaphore.WaitAsync(CancellationToken.None))
         {

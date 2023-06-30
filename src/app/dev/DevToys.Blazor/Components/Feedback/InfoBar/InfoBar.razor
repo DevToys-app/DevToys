@@ -78,7 +78,7 @@
                     <div class="info-bar-button action">
                         <Button Appearance="@(IsActionButtonAccent ? ButtonAppearance.Accent : ButtonAppearance.Neutral)"
                                 @onclick="@OnActionButtonClicked">
-                            <TextBlock Text="@ActionButtonText" />
+                            <TextBlock Text="@ActionButtonText" NoWrap="true"/>
                         </Button>
                     </div>
                 }

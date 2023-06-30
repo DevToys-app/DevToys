@@ -87,4 +87,14 @@
     &.no-wrap {
         white-space: nowrap;
     }
+
+    &.trim {
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+        width: 100%;
+    }
+
+    &.hide {
+        display: none !important;
+    }
 }

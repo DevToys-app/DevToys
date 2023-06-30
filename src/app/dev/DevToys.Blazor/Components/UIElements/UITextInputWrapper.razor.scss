@@ -1,0 +1,21 @@
+.ui-text-input-wrapper {
+    border: 2px dashed transparent;
+    border-radius: var(--overlay-corner-radius);
+
+    .ui-text-input-wrapper-separator {
+        border-left: 1px solid var(--divider-stroke-color-default);
+        width: 1px;
+        height: 100%;
+        margin-left: 2px;
+        margin-right: 2px;
+    }
+
+    &.dragging {
+        border-color: var(--ui-text-input-wrapper-dragging-stroke-color);
+        background-color: var(--ui-text-input-wrapper-dragging-background-color);
+
+        > * {
+            pointer-events: none !important;
+        }
+    }
+}

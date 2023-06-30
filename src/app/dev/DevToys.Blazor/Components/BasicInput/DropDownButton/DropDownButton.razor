@@ -1,5 +1,6 @@
 @namespace DevToys.Blazor.Components
 @inherits StyledComponentBase
+@typeparam TItem
 
 <CascadingValue Name="ParentIsEnabled" Value="@IsActuallyEnabled">
     <CascadingValue Value="this" IsFixed="true">
@@ -32,6 +33,7 @@
                         Width="@Width"
                         Appearance="ButtonAppearance.Neutral"
                         IsEnabled="@IsActuallyEnabled"
+                        ToolTip="@ToolTip"
                         @onclick="@ToggleDropDown">
                     @ChildContent
                     <div class="arrow-down-icon">
@@ -39,8 +41,8 @@
                     </div>
     
                     <Popover Open="_isOpen"
-                             AnchorOrigin="Origin.BottomCenter"
-                             TransformOrigin="Origin.TopCenter"
+                             AnchorOrigin="@AnchorOrigin"
+                             TransformOrigin="@TransformOrigin"
                              RelativeWidth="false"
                              Class="drop-down-list-drop-down"
                              @ontouchend:stopPropagation>

@@ -10,5 +10,5 @@ public class DropDownListItem
 
     internal bool IsEnabled { get; set; } = true;
 
-    internal EventCallback OnClick { get; set; }
+    internal EventCallback<DropDownListItem> OnClick { get; set; }
 }

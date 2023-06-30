@@ -59,7 +59,7 @@
                         </LeftOrTopCellContent>
                         <RightOrBottomCellContent>
                             <StackPanel Orientation="UIOrientation.Vertical">
-                                <DropDownList Header="Drop down list header"
+                                <DropDownButton Header="Drop down list header"
                                               Items="@(new List<DropDownListItem>
                                                         {
                                                             new DropDownListItem { Text = "Item 1", IconGlyph = '\uE670' },
@@ -79,7 +79,7 @@
                                                             new DropDownListItem { Text = "Item 15 - longer text" }
                                                         })">
                                     <TextBlock Appearance="TextBlockAppearance.Body" Text="Click me!" />
-                                </DropDownList>
+                                </DropDownButton>
                                 @*<ComboBox Items="@(new List<string>
                                 {
                                 "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8", "Item 9", "Item 10",

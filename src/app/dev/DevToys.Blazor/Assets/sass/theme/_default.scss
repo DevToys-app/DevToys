@@ -54,6 +54,11 @@ div[data-theme='macos-light-theme'] {
 }
 
 div {
+    color: currentColor;
+}
+
+*, .main-layout {
+    /* Default foreground */
     color: var(--text-fill-color-primary);
 }
 
@@ -63,6 +68,6 @@ div {
 .theme-transition *:after {
     transition-property: color, background-color;
     transition-timing-function: ease-out;
-    transition-duration: 200ms;
+    transition-duration: 0ms;
     transition-delay: 0 !important;
 }

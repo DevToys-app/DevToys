@@ -5,6 +5,9 @@ public partial class Button : JSStyledComponentBase
     [Parameter]
     public ButtonAppearance Appearance { get; set; } = ButtonAppearance.Neutral;
 
+    [Parameter]
+    public string? ToolTip { get; set; }
+
     /// <summary>
     /// Gets or sets the content to be rendered inside the component.
     /// </summary>

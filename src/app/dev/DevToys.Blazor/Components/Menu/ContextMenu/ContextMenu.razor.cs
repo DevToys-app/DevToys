@@ -119,7 +119,7 @@ public partial class ContextMenu : StyledComponentBase
         if (_listBox is not null && _listBox.SelectedItem is not null && _listBox.SelectedItem.IsEnabled)
         {
             CloseMenuAsync(null).Forget();
-            _listBox.SelectedItem.OnClick.InvokeAsync().Forget();
+            _listBox.SelectedItem.OnClick.InvokeAsync(_listBox.SelectedItem).Forget();
         }
     }
 }
