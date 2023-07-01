@@ -5,8 +5,8 @@ public abstract class StyledComponentBase : ComponentBase
     private static readonly Random random = new();
 
     private readonly Lazy<ObservableHashSet<string>> _css;
-    private bool _isEnabled = true;
-    private bool _parentIsEnabled = true;
+
+    protected readonly HashSet<StyledComponentBase> _childrenComponents = new();
 
     /// <summary>
     /// Gets a reference to the HTML element rendered by the component.
@@ -142,6 +142,9 @@ public abstract class StyledComponentBase : ComponentBase
     [Parameter]
     public int? PaddingBottom { get; set; }
 
+    [Parameter]
+    public StyledComponentBase? ParentComponent { get; set; }
+
     /// <summary>
     /// Gets a list of CSS class to apply to the component.
     /// </summary>
@@ -202,6 +205,22 @@ public abstract class StyledComponentBase : ComponentBase
         BuildClassAttribute();
 
         base.OnParametersSet();
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        if (ParentComponent is not null)
+        {
+            ParentComponent.RegisterChildComponent(this);
+        }
+    }
+
+    protected void RegisterChildComponent(StyledComponentBase component)
+    {
+        Guard.IsNotNull(component);
+        _childrenComponents.Add(component);
     }
 
     /// <summary>

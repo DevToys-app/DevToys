@@ -10,6 +10,16 @@
         margin-right: 2px;
     }
 
+    .ui-text-input-wrapper-centered-progress-bar {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(0%, -50%);
+        bottom: 50%;
+        right: 0;
+        height: fit-content;
+    }
+
     &.dragging {
         border-color: var(--ui-text-input-wrapper-dragging-stroke-color);
         background-color: var(--ui-text-input-wrapper-dragging-background-color);

@@ -1,5 +1,4 @@
-/* eslint-disable no-var */
-export function registerResizeHandlerAndSetupDropZone(id, dotNetObjRef) {
+export function registerResizeHandler(id, dotNetObjRef) {
     const element = document.getElementById(id);
     // Setup resize observer.
     const resizeObserver = new ResizeObserver((elements) => {
@@ -7,7 +6,9 @@ export function registerResizeHandlerAndSetupDropZone(id, dotNetObjRef) {
     });
     resizeObserver.observe(element);
     element.resizeObserver = resizeObserver;
-    // Setup drop zone.
+}
+export function registerDropZone(id) {
+    const element = document.getElementById(id);
     // Prevent default drag behaviors
     ["dragenter", "dragover", "dragleave", "drop"].forEach(eventName => {
         element.addEventListener(eventName, preventDefaults, false);
@@ -29,7 +30,6 @@ export function dispose(id) {
     // Stop drop zone
     ["dragenter", "dragover", "dragleave", "drop"].forEach(eventName => {
         element.removeEventListener(eventName, preventDefaults, false);
-        document.body.removeEventListener(eventName, preventDefaults, false);
     });
     ["dragenter", "dragover"].forEach(eventName => {
         element.removeEventListener(eventName, highlight, false);

@@ -55,7 +55,7 @@
                         <FontIcon Glyph="@('\uF378')" />
                     </Button>
                     <Button ToolTip="Clear"
-                            @onclick="@OnClearButtonClick">
+                            @onclick="@OnClearButtonClickAsync">
                         <FontIcon Glyph="@('\uF369')" />
                     </Button>
                 }
@@ -107,12 +107,14 @@
             @ChildContent
 
             <!-- Progress bar to indicate when a file is being loaded -->
-            <ProgressBar IsIndeterminate="true"
-                         IsVisible="@IsLoadingFile"
-                         MarginLeft="24"
-                         MarginRight="24"
-                         HorizontalAlignment="UIHorizontalAlignment.Stretch"
-                         VerticalAlignment="UIVerticalAlignment.Center" />
+            <div class="ui-text-input-wrapper-centered-progress-bar">
+                <ProgressBar IsIndeterminate="true"
+                             IsVisible="@IsLoadingFile"
+                             MarginLeft="24"
+                             MarginRight="24"
+                             HorizontalAlignment="UIHorizontalAlignment.Stretch"
+                             VerticalAlignment="UIVerticalAlignment.Top" />
+            </div>
 
             <!-- Input form used for getting the dropped file when use drag and drop a file into the UI. -->
             <InputFile style="display: none;" OnChange="OnFileDroppedAsync" />

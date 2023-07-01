@@ -88,7 +88,8 @@ internal sealed class SettingsGuiTool : IGuiTool
                         Button().Text("Bottom Left button"),
                         Button().Text("Bottom Center button").OnClick(OnBottomCenterButtonClickAsync),
                         Button().Text("Bottom Right button")),
-                SingleLineTextInput().Title("Read-write text input with copy").CanCopyWhenEditable());
+                SingleLineTextInput().Title("Read-write text input with copy").ReadOnly(),
+                MultilineTextInput().Title("Monaco editor").Language("json"));
 
     public void OnDataReceived(string dataTypeName, object? parsedData)
     {

@@ -1,6 +1,6 @@
 ﻿namespace DevToys.Blazor.Components;
 
-public partial class ToggleSwitch : JSStyledComponentBase
+public partial class ToggleSwitch : JSStyledComponentBase, IFocusable
 {
     /// <summary>
     /// Gets or sets the text to display in the toggle switch.
@@ -20,7 +20,7 @@ public partial class ToggleSwitch : JSStyledComponentBase
     [Parameter]
     public EventCallback<bool> OnCheckedChanged { get; set; }
 
-    internal ValueTask<bool> FocusAsync()
+    public ValueTask<bool> FocusAsync()
     {
         return JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.DOM.setFocus", Element);
     }

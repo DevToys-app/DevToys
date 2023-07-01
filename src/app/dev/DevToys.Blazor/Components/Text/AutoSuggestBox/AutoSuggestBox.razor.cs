@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components.Web;
 
 namespace DevToys.Blazor.Components;
 
-public partial class AutoSuggestBox<TElement> : StyledComponentBase, IDisposable where TElement : class
+public partial class AutoSuggestBox<TElement> : StyledComponentBase, IFocusable, IDisposable where TElement : class
 {
     private TextBox? _textBox = default!;
     private ListBox<TElement>? _resultListBox = default!;
@@ -32,7 +32,7 @@ public partial class AutoSuggestBox<TElement> : StyledComponentBase, IDisposable
 
     public string? Query => _textBox?.Text;
 
-    internal ValueTask<bool> FocusAsync()
+    public ValueTask<bool> FocusAsync()
     {
         Guard.IsNotNull(_textBox);
         return _textBox.FocusAsync();

@@ -91,6 +91,7 @@ public partial class Container : StyledComponentBase
         innerStyleBuilder.AddImportantStyle("padding-right", PaddingRight.ToPx(), PaddingRight.HasValue);
         innerStyleBuilder.AddImportantStyle("padding-top", PaddingTop.ToPx(), PaddingTop.HasValue);
         innerStyleBuilder.AddImportantStyle("padding-bottom", PaddingBottom.ToPx(), PaddingBottom.HasValue);
+        innerStyleBuilder.AddImportantStyle("position", "relative");
 
         FinalStyles = styleBuilder.ToString();
         FinalInnerStyles = innerStyleBuilder.ToString();

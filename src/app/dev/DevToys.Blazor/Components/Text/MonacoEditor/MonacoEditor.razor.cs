@@ -8,6 +8,8 @@ public partial class MonacoEditor : RicherMonacoEditorBase
 {
     private readonly object _lock = new object();
     private bool _isLoaded;
+    private bool _oldIsActuallyEnabled;
+    private bool _oldReadOnlyState;
 
     [Import]
     internal IThemeListener ThemeListener { get; set; } = default!;
@@ -25,6 +27,7 @@ public partial class MonacoEditor : RicherMonacoEditorBase
         base.OnInitialized();
 
         ThemeListener.ThemeChanged += ThemeListener_ThemeChanged;
+        _oldIsActuallyEnabled = IsActuallyEnabled;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -43,20 +46,37 @@ public partial class MonacoEditor : RicherMonacoEditorBase
             options.MouseWheelZoom = false;
             options.OverviewRulerBorder = false;
             options.ScrollBeyondLastLine = false;
-            options.FontLigatures = true;
+            options.FontLigatures = false;
             options.SnippetSuggestions = "none";
             options.CodeLens = false;
-            options.QuickSuggestions = new QuickSuggestionsOptions { Comments = false, Other = false, Strings = false } ;
+            options.QuickSuggestions = new QuickSuggestionsOptions { Comments = false, Other = false, Strings = false };
             options.WordBasedSuggestions = false;
             options.Minimap = new EditorMinimapOptions { Enabled = false };
             options.Hover = new EditorHoverOptions { Enabled = false };
             options.MatchBrackets = "always";
             options.BracketPairColorization = new BracketPairColorizationOptions { Enabled = true };
 
-            options.Language = "json";
-
             // Create the editor
             await MonacoEditorHelper.CreateMonacoEditorInstanceAsync(JSRuntime, Id, options, null, Reference);
+        }
+
+        if (IsActuallyEnabled != _oldIsActuallyEnabled)
+        {
+            _oldIsActuallyEnabled = IsActuallyEnabled;
+
+            var options = new EditorUpdateOptions();
+            if (IsActuallyEnabled)
+            {
+                options.ReadOnly = _oldReadOnlyState;
+            }
+            else
+            {
+                EditorOptions currentOptions = await this.GetRawOptionsAsync();
+                _oldReadOnlyState = currentOptions.ReadOnly.GetValueOrDefault(false);
+                options.ReadOnly = true;
+            }
+
+            await UpdateOptionsAsync(options);
         }
 
         await base.OnAfterRenderAsync(firstRender);

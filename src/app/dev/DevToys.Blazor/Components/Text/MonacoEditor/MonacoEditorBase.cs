@@ -4,7 +4,7 @@ using DevToys.Blazor.Components.Monaco.Editor;
 
 namespace DevToys.Blazor.Components;
 
-public abstract class MonacoEditorBase : MefComponentBase
+public abstract class MonacoEditorBase : MefComponentBase, IFocusable
 {
     private static readonly object themeDefinedLock = new();
     private static bool isThemeDefined;
@@ -139,7 +139,7 @@ public abstract class MonacoEditorBase : MefComponentBase
     /// <summary>
     /// Brings browser focus to the editor text
     /// </summary>
-    internal ValueTask<bool> FocusAsync()
+    public ValueTask<bool> FocusAsync()
         => JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.focus", Id);
 
     /// <summary>

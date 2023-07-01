@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components.Forms;
 
 namespace DevToys.Blazor.Components;
 
-public partial class TextBox : MefComponentBase
+public partial class TextBox : MefComponentBase, IFocusable
 {
     private static readonly ContextMenuItem CutContextMenuItem
         = new()
@@ -83,7 +83,7 @@ public partial class TextBox : MefComponentBase
     [Parameter]
     public EventCallback<string?> TextChanged { get; set; }
 
-    internal ValueTask<bool> FocusAsync()
+    public ValueTask<bool> FocusAsync()
     {
         Guard.IsNotNull(_input);
         Guard.IsNotNull(_input.Element);

@@ -1,6 +1,6 @@
 ﻿namespace DevToys.Blazor.Components;
 
-public partial class RadioButton : JSStyledComponentBase
+public partial class RadioButton : JSStyledComponentBase, IFocusable
 {
     /// <summary>
     /// Gets or sets the text to display in the radio button.
@@ -26,7 +26,7 @@ public partial class RadioButton : JSStyledComponentBase
     [Parameter]
     public EventCallback<bool> IsCheckedChanged { get; set; }
 
-    internal ValueTask<bool> FocusAsync()
+    public ValueTask<bool> FocusAsync()
     {
         return JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.DOM.setFocus", Element);
     }

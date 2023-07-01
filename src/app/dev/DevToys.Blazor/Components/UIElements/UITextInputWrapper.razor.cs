@@ -72,8 +72,6 @@ public partial class UITextInputWrapper : MefComponentBase
     public UITextInputWrapper()
     {
         _logger = this.Log();
-
-
     }
 
     protected override void OnInitialized()
@@ -91,7 +89,11 @@ public partial class UITextInputWrapper : MefComponentBase
 
             using (await Semaphore.WaitAsync(CancellationToken.None))
             {
-                await (await JSModule).InvokeVoidWithErrorHandlingAsync("registerResizeHandlerAndSetupDropZone", ExtendedId, Reference);
+                await (await JSModule).InvokeVoidWithErrorHandlingAsync("registerResizeHandler", ExtendedId, Reference);
+                if (!UITextInput.IsReadOnly)
+                {
+                    await (await JSModule).InvokeVoidWithErrorHandlingAsync("registerDropZone", ExtendedId);
+                }
             }
         }
     }
@@ -162,6 +164,8 @@ public partial class UITextInputWrapper : MefComponentBase
                 UITextInput.Text(UITextInput.Text + clipboardString);
             }
         }
+
+        await FocusOnTextEditorAsync();
     }
 
     private async Task OnLoadFileButtonClickAsync()
@@ -181,9 +185,10 @@ public partial class UITextInputWrapper : MefComponentBase
         }
     }
 
-    private void OnClearButtonClick()
+    private async Task OnClearButtonClickAsync()
     {
         UITextInput.Text(string.Empty);
+        await FocusOnTextEditorAsync();
     }
 
     private async Task OnSaveAsButtonClickAsync()
@@ -262,14 +267,15 @@ public partial class UITextInputWrapper : MefComponentBase
             using var reader = new StreamReader(fileStream);
             string? text = await reader.ReadToEndAsync();
 
-            await InvokeAsync(() =>
+            await InvokeAsync(async () =>
             {
                 UITextInput.Text(text);
 
                 IsLoadingFile = false;
 
-                // TODO: Give focus to text box.
                 StateHasChanged();
+
+                await FocusOnTextEditorAsync();
             });
         }
         catch (Exception ex)
@@ -292,6 +298,16 @@ public partial class UITextInputWrapper : MefComponentBase
                 //};
                 //await dialog.ShowAsync();
             });
+        }
+    }
+
+    private async Task FocusOnTextEditorAsync()
+    {
+        Guard.IsEqualTo(_childrenComponents.Count, 1);
+        var focusableChild = _childrenComponents.First() as IFocusable;
+        if (focusableChild is not null)
+        {
+            await focusableChild.FocusAsync();
         }
     }
 
@@ -392,7 +408,7 @@ public partial class UITextInputWrapper : MefComponentBase
             {
                 IconGlyph = '\uF369',
                 Text = "Clear",
-                OnClick = EventCallback.Factory.Create<DropDownListItem>(this, OnClearButtonClick)
+                OnClick = EventCallback.Factory.Create<DropDownListItem>(this, OnClearButtonClickAsync)
             });
         }
 

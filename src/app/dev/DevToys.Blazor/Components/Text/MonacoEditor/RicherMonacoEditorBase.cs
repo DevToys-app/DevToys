@@ -693,4 +693,10 @@ public abstract class RicherMonacoEditorBase : MonacoEditorBase
     /// </summary>
     internal ValueTask<ScrolledVisiblePosition> GetScrolledVisiblePositionAsync(Position position)
         => JSRuntime.InvokeAsync<ScrolledVisiblePosition>("devtoys.MonacoEditor.getScrolledVisiblePosition", Id, position);
+
+    /// <summary>
+    /// Change the language for a model.
+    /// </summary>
+    internal async ValueTask<bool> SetLanguageAsync(string languageId)
+        => await MonacoEditorHelper.SetModelLanguageAsync(JSRuntime, await GetModelAsync(), languageId);
 }

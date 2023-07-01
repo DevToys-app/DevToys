@@ -1,6 +1,6 @@
 ﻿namespace DevToys.Blazor.Components;
 
-public partial class Button : JSStyledComponentBase
+public partial class Button : JSStyledComponentBase, IFocusable
 {
     [Parameter]
     public ButtonAppearance Appearance { get; set; } = ButtonAppearance.Neutral;
@@ -36,7 +36,7 @@ public partial class Button : JSStyledComponentBase
         base.OnParametersSet();
     }
 
-    internal ValueTask<bool> FocusAsync()
+    public ValueTask<bool> FocusAsync()
     {
         return JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.DOM.setFocus", Element);
     }

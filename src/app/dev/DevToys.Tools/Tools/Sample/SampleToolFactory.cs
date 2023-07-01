@@ -128,7 +128,7 @@ internal sealed class SampleGuiTool : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool2 : IGuiTool
 {
-    private readonly IUIMultilineLineTextInput _editor = MultilineTextInput().CanCopyWhenEditable();
+    private readonly IUIMultiLineTextInput _editor = MultilineTextInput().CanCopyWhenEditable();
 
     public IUIElement View
         => _editor;

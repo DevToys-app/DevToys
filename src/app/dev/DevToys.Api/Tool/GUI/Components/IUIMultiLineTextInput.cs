@@ -6,7 +6,7 @@
 /// <remarks>
 /// This component is powered by Monaco Editor.
 /// </remarks>
-public interface IUIMultilineLineTextInput : IUISingleLineTextInput
+public interface IUIMultiLineTextInput : IUISingleLineTextInput
 {
     /// <summary>
     /// Gets the list of spans to highlight in the text document.
@@ -30,7 +30,7 @@ public interface IUIMultilineLineTextInput : IUISingleLineTextInput
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Text = {{{nameof(Text)}}}")]
-internal class UIMultilineTextInput : UISingleLineTextInput, IUIMultilineLineTextInput
+internal class UIMultilineTextInput : UISingleLineTextInput, IUIMultiLineTextInput
 {
     private IReadOnlyList<TextSpan>? _highlightedSpans;
     private string? _syntaxColorizationLanguageName;
@@ -64,7 +64,7 @@ public static partial class GUI
     /// <remarks>
     /// This component is powered by Monaco Editor.
     /// </remarks>
-    public static IUIMultilineLineTextInput MultilineTextInput()
+    public static IUIMultiLineTextInput MultilineTextInput()
     {
         return MultilineTextInput(null);
     }
@@ -76,7 +76,7 @@ public static partial class GUI
     /// This component is powered by Monaco Editor.
     /// </remarks>
     /// <param name="id">An optional unique identifier for this UI element.</param>
-    public static IUIMultilineLineTextInput MultilineTextInput(string? id)
+    public static IUIMultiLineTextInput MultilineTextInput(string? id)
     {
         return new UIMultilineTextInput(id);
     }
@@ -89,7 +89,7 @@ public static partial class GUI
     /// </remarks>
     /// <param name="id">An optional unique identifier for this UI element.</param>
     /// <param name="programmingLanguageName">the programming language name to use to colorize the text in the control.</param>
-    public static IUIMultilineLineTextInput MultilineTextInput(string? id, string programmingLanguageName)
+    public static IUIMultiLineTextInput MultilineTextInput(string? id, string programmingLanguageName)
     {
         return new UIMultilineTextInput(id).Language(programmingLanguageName);
     }
@@ -97,7 +97,7 @@ public static partial class GUI
     /// <summary>
     /// Sets the list of spans to highlight in the text document.
     /// </summary>
-    public static IUIMultilineLineTextInput Highlight(this IUIMultilineLineTextInput element, params TextSpan[] spans)
+    public static IUIMultiLineTextInput Highlight(this IUIMultiLineTextInput element, params TextSpan[] spans)
     {
         ((UIMultilineTextInput)element).HighlightedSpans = spans;
         return element;
@@ -106,7 +106,7 @@ public static partial class GUI
     /// <summary>
     /// Sets the programming language name to use to colorize the text in the control.
     /// </summary>
-    public static IUIMultilineLineTextInput Language(this IUIMultilineLineTextInput element, string programmingLanguageName)
+    public static IUIMultiLineTextInput Language(this IUIMultiLineTextInput element, string programmingLanguageName)
     {
         ((UIMultilineTextInput)element).SyntaxColorizationLanguageName = programmingLanguageName;
         return element;

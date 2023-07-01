@@ -1,7 +1,7 @@
 ﻿<h3>TestPage</h3>
 
 <CascadingValue Value="this" IsFixed="true">
-    <ScrollViewer>
+    @*<ScrollViewer>
         <StackPanel Class="entrance-theme-transition"
                     Orientation="UIOrientation.Vertical"
                     PaddingLeft="16"
@@ -80,7 +80,7 @@
                                                         })">
                                     <TextBlock Appearance="TextBlockAppearance.Body" Text="Click me!" />
                                 </DropDownButton>
-                                @*<ComboBox Items="@(new List<string>
+                                <ComboBox Items="@(new List<string>
                                 {
                                 "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8", "Item 9", "Item 10",
                                 "Item 11", "Item 12", "Item 13", "Item 14", "Item 15", "Item 16 - longer text"
@@ -92,7 +92,7 @@
                                 <ItemTemplate>
                                 @item
                                 </ItemTemplate>
-                                </ComboBox>*@
+                                </ComboBox>
                                 <ListBox Items="@(new List<string>
                                                             {
                                                                "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8", "Item 9", "Item 10",
@@ -133,5 +133,5 @@
                 </Control>
             </Card>
         </StackPanel>
-    </ScrollViewer>
+    </ScrollViewer>*@
 </CascadingValue>
