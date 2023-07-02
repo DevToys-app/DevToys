@@ -48,7 +48,7 @@ public interface IGuiTool
     /// <summary>
     /// Gets the view for the tool.
     /// </summary>
-    IUIElement View { get; }
+    UIToolView View { get; }
 
     /// <summary>
     /// Invoked when the app detected a data compatible with the tool and that the user navigates to this tool in question.

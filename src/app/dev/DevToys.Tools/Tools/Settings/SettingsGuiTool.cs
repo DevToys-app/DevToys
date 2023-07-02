@@ -45,52 +45,62 @@ internal sealed class SettingsGuiTool : IGuiTool
             .OnClick(OnMyButtonClickAsync);
     }
 
-    public IUIElement View
-        => Stack()
-            .Vertical()
-            .WithChildren(
-                SettingGroup()
-                    .Icon("FluentSystemIcons", '\uF6A9')
-                    .Title("Title")
-                    .Description("Description")
-                    .Handle(
-                        _settingsProvider,
-                        DummySetting2,
-                        OnDummySetting2ChangedAsync,
-                        Item("Use system settings", AvailableApplicationTheme.Default),
-                        Item("Light", AvailableApplicationTheme.Light),
-                        Item("Dark", AvailableApplicationTheme.Dark))
-                    .WithSettings(
-                        Setting()
-                            .Title("Compact mode")
-                            .Handle(_settingsProvider, PredefinedSettings.CompactMode),
-                        Setting()
-                            .Title("Line numbers")
-                            .Handle(_settingsProvider, PredefinedSettings.TextEditorLineNumbers),
-                        Setting()
-                            .Title("Title")
-                            .Description("Description")
-                            .InteractiveElement(
-                                Switch()),
-                        Setting()
-                            .Title("Title")
-                            .Description("Description")
-                            .InteractiveElement(
-                                Switch())),
-                Wrap()
-                    .WithChildren(
-                        _topLeftButton,
-                        Button().Text("Top Center button"),
-                        Button().Text("Top Right button")),
-                Wrap()
-                    .Disable()
-                    .WithChildren(
-                        Button().Text("Bottom Left button"),
-                        Button().Text("Bottom Center button").OnClick(OnBottomCenterButtonClickAsync),
-                        Button().Text("Bottom Right button")),
-                SingleLineTextInput().Title("Read-write text input with copy").ReadOnly(),
-                MultilineTextInput().Title("Monaco editor").Text("{\"hello\": \"there\"}").Language("json"),
-                DiffTextInput().Title("Difference").OriginalText("hello").ModifiedText("hello world"));
+    public UIToolView View
+        => new(
+            Stack()
+             .Vertical()
+             .WithChildren(
+                 SettingGroup()
+                     .Icon("FluentSystemIcons", '\uF6A9')
+                     .Title("Title")
+                     .Description("Description")
+                     .Handle(
+                         _settingsProvider,
+                         DummySetting2,
+                         OnDummySetting2ChangedAsync,
+                         Item("Use system settings", AvailableApplicationTheme.Default),
+                         Item("Light", AvailableApplicationTheme.Light),
+                         Item("Dark", AvailableApplicationTheme.Dark))
+                     .WithSettings(
+                         Setting()
+                             .Title("Compact mode")
+                             .Handle(_settingsProvider, PredefinedSettings.CompactMode),
+                         Setting()
+                             .Title("Line numbers")
+                             .Handle(_settingsProvider, PredefinedSettings.TextEditorLineNumbers),
+                         Setting()
+                             .Title("Title")
+                             .Description("Description")
+                             .InteractiveElement(
+                                 Switch()),
+                         Setting()
+                             .Title("Title")
+                             .Description("Description")
+                             .InteractiveElement(
+                                 Switch())),
+                 Wrap()
+                     .WithChildren(
+                         _topLeftButton,
+                         Button().Text("Top Center button"),
+                         Button().Text("Top Right button")),
+                 Wrap()
+                     .Disable()
+                     .WithChildren(
+                         Button().Text("Bottom Left button"),
+                         Button().Text("Bottom Center button").OnClick(OnBottomCenterButtonClickAsync),
+                         Button().Text("Bottom Right button")),
+                 SingleLineTextInput().Title("Read-write text input with copy").ReadOnly(),
+                 MultilineTextInput()
+                    .Title("Monaco editor")
+                    .Extendable()
+                    .Text("{\"hello\": \"there\"}")
+                    .Language("json"),
+                 DiffTextInput()
+                    .Title("Difference")
+                    .OriginalText("hello")
+                    .Extendable()
+                    .ModifiedText("hello world")),
+            isScrollable: true);
 
     public void OnDataReceived(string dataTypeName, object? parsedData)
     {

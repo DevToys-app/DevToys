@@ -1,0 +1,15 @@
+@namespace DevToys.Blazor.Components
+@inherits JSStyledComponentBase
+
+<CascadingValue Value="this" IsFixed="true">
+    <Container HorizontalAlignment="UIHorizontalAlignment.Stretch"
+               VerticalAlignment="UIVerticalAlignment.Stretch">
+        <div id="@FullScreenId"
+             class="full-screen-container @(FinalCssClasses)"
+             style="@(IsInFullScreenMode ? string.Empty : "display: none !important;")">
+        </div>
+        <Container IsVisible=@(!IsInFullScreenMode)>
+            @ChildContent
+        </Container>
+    </Container>
+</CascadingValue>

@@ -4,13 +4,16 @@ using DevToys.Core.Tools.ViewItems;
 
 namespace DevToys.Blazor.Pages.SubPages;
 
-public partial class ToolPage : MefComponentBase
+public partial class ToolPage : MefComponentBase, IDisposable
 {
     [Import]
     internal ToolPageViewModel ViewModel { get; set; } = default!;
 
     [Parameter]
     public GuiToolViewItem? GuiToolViewItem { get; set; }
+
+    [Parameter]
+    public bool IsInFullScreenMode { get; set; }
 
     protected override void OnInitialized()
     {
@@ -24,6 +27,24 @@ public partial class ToolPage : MefComponentBase
         if (GuiToolViewItem is not null)
         {
             ViewModel.Load(GuiToolViewItem);
+            ViewModel.ToolView.PropertyChanged -= ToolView_PropertyChanged;
+            ViewModel.ToolView.PropertyChanged += ToolView_PropertyChanged;
         }
+    }
+
+    public void Dispose()
+    {
+        ViewModel.ToolView.PropertyChanged -= ToolView_PropertyChanged;
+        GC.SuppressFinalize(this);
+    }
+
+    private void ToolView_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        StateHasChanged();
+    }
+
+    private void OnIsInFullScreenModeChanged(bool isInFullScreenMode)
+    {
+        IsInFullScreenMode = isInFullScreenMode;
     }
 }

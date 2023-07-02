@@ -2,7 +2,9 @@
 @using DevToys.Api;
 @inherits StyledComponentBase
 
-<UITextInputWrapper @ref="_textInputWrapper" UITextInput="@UIMultiLineTextInput">
+<UITextInputWrapper @ref="_textInputWrapper"
+                    UITextInput="@UIMultiLineTextInput"
+                    IsExtendableToFullScreen="@UIMultiLineTextInput.IsExtendableToFullScreen">
     <MonacoEditor @ref="_monacoEditor"
                   IsVisible="@UIMultiLineTextInput.IsVisible"
                   IsEnabled="@UIMultiLineTextInput.IsEnabled"

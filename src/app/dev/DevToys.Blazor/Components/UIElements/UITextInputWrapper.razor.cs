@@ -34,10 +34,10 @@ public partial class UITextInputWrapper : MefComponentBase
     private readonly ILogger _logger;
     private readonly DisposableSemaphore _disposableSemaphore = new();
 
-    private Grid _rootGrid = default!;
     private CancellationTokenSource? _cancellationTokenSource;
     private bool _isToolBarShrink;
     private bool _hideNonEssentialToolBar;
+    private bool _isInFullScreenMode;
 
     protected override string? JavaScriptFile => "./_content/DevToys.Blazor/Components/UIElements/UITextInputWrapper.razor.js";
 
@@ -59,6 +59,9 @@ public partial class UITextInputWrapper : MefComponentBase
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
+    [Parameter]
+    public bool IsExtendableToFullScreen { get; set; }
+
     protected bool IsLoadingFile { get; set; }
 
     protected bool ToolsDetectedBySmartDetection { get; set; }
@@ -68,6 +71,9 @@ public partial class UITextInputWrapper : MefComponentBase
     protected List<DropDownListItem> CollapsedDropDownListItems { get; } = new();
 
     protected string ExtendedId => UITextInput.Id + "-" + Id;
+
+    [CascadingParameter]
+    protected FullScreenContainer? FullScreenContainer { get; set; }
 
     public UITextInputWrapper()
     {
@@ -282,7 +288,7 @@ public partial class UITextInputWrapper : MefComponentBase
         {
             LogErrorOpeningFile(ex);
 
-            await InvokeAsync(async () =>
+            await InvokeAsync(() =>
             {
                 IsLoadingFile = false;
                 // TODO: Display ContentDialog
@@ -299,6 +305,13 @@ public partial class UITextInputWrapper : MefComponentBase
                 //await dialog.ShowAsync();
             });
         }
+    }
+
+    private async Task OnToggleFullScreenButtonClickAsync()
+    {
+        Guard.IsNotNull(FullScreenContainer);
+        _isInFullScreenMode = await FullScreenContainer.ToggleFullScreenModeAsync(ExtendedId);
+        StateHasChanged();
     }
 
     private async Task FocusOnTextEditorAsync()

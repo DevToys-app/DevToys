@@ -324,3 +324,7 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
+
+[data-simplebar-not-scrollable] .simplebar-content{
+    height: 100% !important;
+}

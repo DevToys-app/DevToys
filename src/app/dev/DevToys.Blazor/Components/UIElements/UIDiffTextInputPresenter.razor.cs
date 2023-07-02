@@ -6,10 +6,15 @@ namespace DevToys.Blazor.Components.UIElements;
 public partial class UIDiffTextInputPresenter : JSStyledComponentBase, IDisposable
 {
     private MonacoEditorDiff _monacoEditor = default!;
-    private UITextInputWrapper _textInputWrapper = default!;
+    private bool _isInFullScreenMode;
 
     [Parameter]
     public IUIDiffTextInput UIDiffTextInput { get; set; } = default!;
+
+    [CascadingParameter]
+    protected FullScreenContainer? FullScreenContainer { get; set; }
+
+    protected string ExtendedId => UIDiffTextInput.Id + "-" + Id;
 
     protected override void OnInitialized()
     {
@@ -79,6 +84,13 @@ public partial class UIDiffTextInputPresenter : JSStyledComponentBase, IDisposab
         {
             EnableSplitViewResizing = !UIDiffTextInput.InlineMode
         });
+    }
+
+    private async Task OnToggleFullScreenButtonClickAsync()
+    {
+        Guard.IsNotNull(FullScreenContainer);
+        _isInFullScreenMode = await FullScreenContainer.ToggleFullScreenModeAsync(ExtendedId);
+        StateHasChanged();
     }
 
     private StandaloneDiffEditorConstructionOptions OnMonacoConstructionOptions(MonacoEditorDiff monacoEditor)

@@ -16,6 +16,11 @@ public interface IUIMultiLineTextInput : IUISingleLineTextInput
     string SyntaxColorizationLanguageName { get; }
 
     /// <summary>
+    /// Gets whether the element can be expanded to take the size of the whole tool boundaries.
+    /// </summary>
+    bool IsExtendableToFullScreen { get; }
+
+    /// <summary>
     /// Raised when <see cref="HighlightedSpans"/> is changed.
     /// </summary>
     event EventHandler? HighlightedSpansChanged;
@@ -24,13 +29,19 @@ public interface IUIMultiLineTextInput : IUISingleLineTextInput
     /// Raised when <see cref="SyntaxColorizationLanguageName"/> is changed.
     /// </summary>
     event EventHandler? SyntaxColorizationLanguageNameChanged;
+
+    /// <summary>
+    /// Raised when <see cref="IsExtendableToFullScreen"/> is changed.
+    /// </summary>
+    event EventHandler? IsExtendableToFullScreenChanged;
 }
 
-[DebuggerDisplay($"Id = {{{nameof(Id)}}}, Text = {{{nameof(Text)}}}")]
+[DebuggerDisplay($"Id = {{{nameof(Id)}}}, Text = {{{nameof(Text)}}}, SyntaxColorizationLanguageName = {{{nameof(SyntaxColorizationLanguageName)}}}")]
 internal class UIMultilineTextInput : UISingleLineTextInput, IUIMultiLineTextInput
 {
     private IReadOnlyList<TextSpan>? _highlightedSpans;
     private string? _syntaxColorizationLanguageName;
+    private bool _isExtendableToFullScreen;
 
     internal UIMultilineTextInput(string? id)
         : base(id)
@@ -49,8 +60,15 @@ internal class UIMultilineTextInput : UISingleLineTextInput, IUIMultiLineTextInp
         internal set => SetPropertyValue(ref _syntaxColorizationLanguageName, value, SyntaxColorizationLanguageNameChanged);
     }
 
+    public bool IsExtendableToFullScreen
+    {
+        get => _isExtendableToFullScreen;
+        internal set => SetPropertyValue(ref _isExtendableToFullScreen, value, IsExtendableToFullScreenChanged);
+    }
+
     public event EventHandler? HighlightedSpansChanged;
     public event EventHandler? SyntaxColorizationLanguageNameChanged;
+    public event EventHandler? IsExtendableToFullScreenChanged;
 }
 
 public static partial class GUI
@@ -106,6 +124,24 @@ public static partial class GUI
     public static IUIMultiLineTextInput Language(this IUIMultiLineTextInput element, string programmingLanguageName)
     {
         ((UIMultilineTextInput)element).SyntaxColorizationLanguageName = programmingLanguageName;
+        return element;
+    }
+
+    /// <summary>
+    /// Indicates that the control can be extended to take the size of the whole tool boundaries.
+    /// </summary>
+    public static IUIMultiLineTextInput Extendable(this IUIMultiLineTextInput element)
+    {
+        ((UIMultilineTextInput)element).IsExtendableToFullScreen = true;
+        return element;
+    }
+
+    /// <summary>
+    /// Indicates that the control can not be extended to take the size of the whole tool boundaries.
+    /// </summary>
+    public static IUIMultiLineTextInput NotExtendable(this IUIMultiLineTextInput element)
+    {
+        ((UIMultilineTextInput)element).IsExtendableToFullScreen = false;
         return element;
     }
 }

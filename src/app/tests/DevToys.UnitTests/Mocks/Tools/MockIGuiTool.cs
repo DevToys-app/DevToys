@@ -19,7 +19,7 @@ namespace DevToys.UnitTests.Mocks.Tools;
 [AcceptedDataTypeName("text")]
 internal sealed class MockIGuiTool2 : IGuiTool
 {
-    public IUIElement View => null!;
+    public UIToolView View => null!;
 
     public void OnDataReceived(string dataTypeName, object parsedData) { }
 }
@@ -40,7 +40,7 @@ internal sealed class MockIGuiTool2 : IGuiTool
 [AcceptedDataTypeName("JSON")]
 internal sealed class MockIGuiTool : IGuiTool
 {
-    public IUIElement View => null!;
+    public UIToolView View => null!;
 
     public void OnDataReceived(string dataTypeName, object parsedData) { }
 }
@@ -60,7 +60,7 @@ internal sealed class MockIGuiTool : IGuiTool
     SearchKeywordsResourceName = nameof(MockToolResource.TitleXmlFormatter))]
 internal sealed class MockIGuiTool3 : IGuiTool
 {
-    public IUIElement View => null!;
+    public UIToolView View => null!;
 
     public void OnDataReceived(string dataTypeName, object parsedData) { }
 }
@@ -80,7 +80,7 @@ internal sealed class MockIGuiTool3 : IGuiTool
     SearchKeywordsResourceName = nameof(MockToolResource.TitleXmlValidator))]
 internal sealed class MockIGuiTool4 : IGuiTool
 {
-    public IUIElement View => null!;
+    public UIToolView View => null!;
 
     public void OnDataReceived(string dataTypeName, object parsedData) { }
 }

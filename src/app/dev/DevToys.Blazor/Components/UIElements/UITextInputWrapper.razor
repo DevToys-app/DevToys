@@ -7,8 +7,8 @@
       Class="ui-text-input-wrapper"
       IsVisible="@UITextInput.IsVisible"
       IsEnabled="@UITextInput.IsEnabled"
-      HorizontalAlignment="@UITextInput.HorizontalAlignment"
-      VerticalAlignment="@UITextInput.VerticalAlignment"
+      HorizontalAlignment="@(_isInFullScreenMode ? UIHorizontalAlignment.Stretch : UITextInput.HorizontalAlignment)"
+      VerticalAlignment="@(_isInFullScreenMode ? UIVerticalAlignment.Stretch : UITextInput.VerticalAlignment)"
       RowSpacing="6"
       Rows="@(new List<GridLength>
         {
@@ -90,6 +90,16 @@
                     <FontIcon Glyph="@('\uE824')" Height="22" Width="22" />
                 </DropDownButton>
             }
+
+            @if (IsExtendableToFullScreen)
+            {
+                <div class="ui-text-input-wrapper-separator"></div>
+                <Button ToolTip="@(_isInFullScreenMode ? "Shrink" : "Extend")"
+                        @onclick="@OnToggleFullScreenButtonClickAsync">
+                    <FontIcon Glyph="@(_isInFullScreenMode ? '\uE0DC' : '\uE0C5')" />
+                </Button>
+            }
+
             <div class="ui-text-input-wrapper-separator"></div>
             <DropDownButton ToolTip="Transfer to another tool"
                             Items="@SmartDetectionDropDownItems"

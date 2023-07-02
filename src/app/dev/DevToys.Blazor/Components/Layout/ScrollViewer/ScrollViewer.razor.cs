@@ -26,6 +26,12 @@ public partial class ScrollViewer : StyledComponentBase
     [Parameter]
     public bool UseNativeScrollBar { get; set; }
 
+    /// <summary>
+    /// Gets or sets whether the scroll viewer is allowed to have its content scrolled.
+    /// </summary>
+    [Parameter]
+    public bool IsScrollable { get; set; } = true;
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await base.OnAfterRenderAsync(firstRender);
@@ -34,7 +40,7 @@ public partial class ScrollViewer : StyledComponentBase
     protected override void OnParametersSet()
     {
         AdditionalAttributes ??= new Dictionary<string, object>();
-        if (IsActuallyEnabled && !UseNativeScrollBar)
+        if (IsActuallyEnabled && !UseNativeScrollBar && IsScrollable)
         {
             // This will trigger simplebar to start.
             AdditionalAttributes.TryAdd("data-simplebar", true);
@@ -44,8 +50,17 @@ public partial class ScrollViewer : StyledComponentBase
             AdditionalAttributes.Remove("data-simplebar");
         }
 
-        if ((Orientation & UIOrientation.Vertical) != 0
-            && (Orientation & UIOrientation.Horizontal) != 0)
+        if (IsScrollable)
+        {
+            AdditionalAttributes.Remove("data-simplebar-not-scrollable");
+        }
+        else
+        {
+            AdditionalAttributes.TryAdd("data-simplebar-not-scrollable", true);
+        }
+
+        if (((Orientation & UIOrientation.Vertical) != 0 && (Orientation & UIOrientation.Horizontal) != 0)
+            || !IsScrollable)
         {
             CSS.Clear();
         }
@@ -70,7 +85,7 @@ public partial class ScrollViewer : StyledComponentBase
             }
         }
 
-        if (UseNativeScrollBar)
+        if (UseNativeScrollBar && IsScrollable)
         {
             CSS.Add("use-native-scroll");
         }

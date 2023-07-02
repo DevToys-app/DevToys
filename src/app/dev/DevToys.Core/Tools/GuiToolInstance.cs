@@ -14,7 +14,7 @@ public sealed partial class GuiToolInstance : ObservableObject
     private readonly ILogger _logger;
     private readonly Lazy<IGuiTool, GuiToolMetadata> _guiToolDefinition;
     private readonly Lazy<IGuiTool> _instance;
-    private readonly Lazy<IUIElement> _view;
+    private readonly Lazy<UIToolView> _view;
     private readonly Lazy<ResourceManager?> _resourceManager;
     private readonly Lazy<string> _shortDisplayTitle;
     private readonly Lazy<string> _longDisplayTitle;
@@ -84,7 +84,7 @@ public sealed partial class GuiToolInstance : ObservableObject
     /// Gets the view of the tool.
     /// Calling this property is expensive the first time as it will create the instance of the tool and the instance of the view.
     /// </summary>
-    public IUIElement View => _view.Value;
+    public UIToolView View => _view.Value;
 
     /// <summary>
     /// Send data coming from Smart Detection to the tool.

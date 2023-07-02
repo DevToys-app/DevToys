@@ -1,40 +1,38 @@
 ﻿@namespace DevToys.Blazor.Pages.SubPages
 @inherits MefComponentBase
 
-<CascadingValue Value="this" IsFixed="true">
-    <GridView Class="entrance-theme-transition tool-group-grid-view"
-              ItemsSource="@ViewModel.Tools"
-              ItemMinWidth="330"
-              OnItemClick=@OnToolSelected>
-        <Header>
-            <TextBlock Appearance="@TextBlockAppearance.Title" Style="font-size: 24px !important" Text="@ViewModel.HeaderText" />
-        </Header>
-        <GroupHeaderTemplate Context="item">
-            <TextBlock Appearance="@TextBlockAppearance.Subtitle" Text="@item" />
-        </GroupHeaderTemplate>
-        <ItemTemplate Context="item">
-            <div class="tool-group-grid-view-item">
-                <div class="icon">
-                    <FontIcon Height="64"
-                              Width="64"
-                              FontFamily="@item.IconFontName"
-                              Glyph="@item.IconGlyph" />
-                </div>
-                <div class="title">
-                    <TextBlock Appearance="@TextBlockAppearance.BodyStrong" Text="@item.LongOrShortDisplayTitle" />
-                </div>
-                <div class="description">
-                    <TextBlock Appearance="@TextBlockAppearance.Caption" Text="@item.Description" />
-                </div>
-                <div class="buttons" @onclick:stopPropagation="true">
-                    <Button HorizontalAlignment="UIHorizontalAlignment.Right"
-                            Class="button"
-                            Appearance="@ButtonAppearance.Neutral"
-                            @onclick="() => OnOpenInNewWindow(item)">
-                        <FontIcon Class="fonticon" Glyph="@('\uEE7A')" />
-                    </Button>
-                </div>
+<GridView Class="entrance-theme-transition tool-group-grid-view"
+          ItemsSource="@ViewModel.Tools"
+          ItemMinWidth="330"
+          OnItemClick=@OnToolSelected>
+    <Header>
+        <TextBlock Appearance="@TextBlockAppearance.Title" Style="font-size: 24px !important" Text="@ViewModel.HeaderText" />
+    </Header>
+    <GroupHeaderTemplate Context="item">
+        <TextBlock Appearance="@TextBlockAppearance.Subtitle" Text="@item" />
+    </GroupHeaderTemplate>
+    <ItemTemplate Context="item">
+        <div class="tool-group-grid-view-item">
+            <div class="icon">
+                <FontIcon Height="64"
+                          Width="64"
+                          FontFamily="@item.IconFontName"
+                          Glyph="@item.IconGlyph" />
             </div>
-        </ItemTemplate>
-    </GridView>
-</CascadingValue>
+            <div class="title">
+                <TextBlock Appearance="@TextBlockAppearance.BodyStrong" Text="@item.LongOrShortDisplayTitle" />
+            </div>
+            <div class="description">
+                <TextBlock Appearance="@TextBlockAppearance.Caption" Text="@item.Description" />
+            </div>
+            <div class="buttons" @onclick:stopPropagation="true">
+                <Button HorizontalAlignment="UIHorizontalAlignment.Right"
+                        Class="button"
+                        Appearance="@ButtonAppearance.Neutral"
+                        @onclick="() => OnOpenInNewWindow(item)">
+                    <FontIcon Class="fonticon" Glyph="@('\uEE7A')" />
+                </Button>
+            </div>
+        </div>
+    </ItemTemplate>
+</GridView>

@@ -2,18 +2,26 @@
 @using DevToys.Blazor.Components.UIElements
 @inherits MefComponentBase
 
-<CascadingValue Value="this" IsFixed="true">
-    <ScrollViewer Class="entrance-theme-transition tool-page">
-        @RenderTool
+@if (ViewModel.ToolView.IsScrollable)
+{
+    <ScrollViewer Class="entrance-theme-transition tool-page-content"
+                  IsScrollable="@(!IsInFullScreenMode)">
+        @RenderToolWithHeader(true)
     </ScrollViewer>
-</CascadingValue>
+}
+else
+{
+    <div class="entrance-theme-transition tool-page-content">
+            @RenderToolWithHeader(false)
+    </div>
+}
 
 @code {
-    private RenderFragment RenderTool { get; set; } = default!;
+    private RenderFragment<bool> RenderToolWithHeader { get; set; } = default!;
 
     protected override Task OnInitializedAsync()
     {
-        RenderTool = (__builder) =>
+        RenderToolWithHeader = (bool isScrollable) => (__builder) =>
         {
             <Grid RowSpacing="12"
                   Rows="@(new List<GridLength>
@@ -29,7 +37,19 @@
                 </GridCell>
 
                 <GridCell Row="1">
-                    <UIElementPresenter UIElement="@ViewModel.ToolView" />
+                    @*@if (isScrollable)
+                    {
+                        <UIElementPresenter UIElement="@ViewModel.ToolView.RootElement" />
+                    }
+                    else
+                    {
+                        <FullScreenContainer>
+                            <UIElementPresenter UIElement="@ViewModel.ToolView.RootElement" />
+                        </FullScreenContainer>
+                    }*@
+                    <FullScreenContainer IsInFullScreenModeChanged="@OnIsInFullScreenModeChanged">
+                        <UIElementPresenter UIElement="@ViewModel.ToolView.RootElement" />
+                    </FullScreenContainer>
                 </GridCell>
             </Grid>
         };

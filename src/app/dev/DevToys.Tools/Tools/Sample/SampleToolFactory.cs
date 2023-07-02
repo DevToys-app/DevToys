@@ -68,27 +68,26 @@ internal sealed class SampleGuiTool : IGuiTool
     private readonly IUIStack _mainStack = Stack();
     private readonly IUIStack _subStack = Stack();
 
-    public IUIElement View =>
-        _mainStack
-            .Vertical()
-            .WithChildren(
-                _button.Text("I'm in a StackPanel. Click me to disable the parent StackPanel and all its children").OnClick(OnClick),
-                _subStack
-                    .Vertical()
-                    .WithChildren(
-                        _button2.Text("Hello !"),
-                        _button3.Text("Hello !"),
-                        _button4.Text("Hello !"),
-                        _button5.Text("Hello !"),
-                        _button6.Text("Hello !"),
-                        _button7.Text("Hello !"),
-                        _button8.Text("Hello !"),
-                        _button9.Text("Hello !"),
-                        _button10.Text("Hello !"),
-                        _button11.Text("Hello !"),
-                        _button12.Text("Hello !")));
-        //Button().Text("Hello !");
-      //  => _editor;
+    public UIToolView View =>
+        new(
+            _mainStack
+                .Vertical()
+                .WithChildren(
+                    _button.Text("I'm in a StackPanel. Click me to disable the parent StackPanel and all its children").OnClick(OnClick),
+                    _subStack
+                        .Vertical()
+                        .WithChildren(
+                            _button2.Text("Hello !"),
+                            _button3.Text("Hello !"),
+                            _button4.Text("Hello !"),
+                            _button5.Text("Hello !"),
+                            _button6.Text("Hello !"),
+                            _button7.Text("Hello !"),
+                            _button8.Text("Hello !"),
+                            _button9.Text("Hello !"),
+                            _button10.Text("Hello !"),
+                            _button11.Text("Hello !"),
+                            _button12.Text("Hello !"))));
 
     private ValueTask OnClick()
     {
@@ -128,10 +127,7 @@ internal sealed class SampleGuiTool : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool2 : IGuiTool
 {
-    private readonly IUIMultiLineTextInput _editor = MultilineTextInput().CanCopyWhenEditable();
-
-    public IUIElement View
-        => _editor;
+    public UIToolView View => null!;
 
     public void OnDataReceived(string dataTypeName, object? parsedData)
     {
@@ -157,7 +153,7 @@ internal sealed class SampleGuiTool2 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool3 : IGuiTool
 {
-    public IUIElement View => null!;
+    public UIToolView View => null!;
 
     public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
@@ -181,7 +177,7 @@ internal sealed class SampleGuiTool3 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool4 : IGuiTool
 {
-    public IUIElement View => null!;
+    public UIToolView View => null!;
 
     public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
@@ -205,7 +201,7 @@ internal sealed class SampleGuiTool4 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool5 : IGuiTool
 {
-    public IUIElement View => null!;
+    public UIToolView View => null!;
 
     public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
@@ -229,7 +225,7 @@ internal sealed class SampleGuiTool5 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool6 : IGuiTool
 {
-    public IUIElement View => null!;
+    public UIToolView View => null!;
 
     public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
@@ -253,7 +249,7 @@ internal sealed class SampleGuiTool6 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool7 : IGuiTool
 {
-    public IUIElement View => null!;
+    public UIToolView View => null!;
 
     public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
@@ -277,7 +273,7 @@ internal sealed class SampleGuiTool7 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool8 : IGuiTool
 {
-    public IUIElement View => null!;
+    public UIToolView View => null!;
 
     public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
@@ -301,7 +297,7 @@ internal sealed class SampleGuiTool8 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool9 : IGuiTool
 {
-    public IUIElement View => null!;
+    public UIToolView View => null!;
 
     public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
@@ -325,7 +321,7 @@ internal sealed class SampleGuiTool9 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool10 : IGuiTool
 {
-    public IUIElement View => null!;
+    public UIToolView View => null!;
 
     public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
@@ -349,7 +345,7 @@ internal sealed class SampleGuiTool10 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool11 : IGuiTool
 {
-    public IUIElement View => null!;
+    public UIToolView View => null!;
 
     public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
@@ -373,7 +369,7 @@ internal sealed class SampleGuiTool11 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool12 : IGuiTool
 {
-    public IUIElement View => null!;
+    public UIToolView View => null!;
 
     public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
@@ -397,7 +393,7 @@ internal sealed class SampleGuiTool12 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool13 : IGuiTool
 {
-    public IUIElement View => null!;
+    public UIToolView View => null!;
 
     public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
@@ -421,7 +417,7 @@ internal sealed class SampleGuiTool13 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool14 : IGuiTool
 {
-    public IUIElement View => null!;
+    public UIToolView View => null!;
 
     public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
@@ -445,7 +441,7 @@ internal sealed class SampleGuiTool14 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool15 : IGuiTool
 {
-    public IUIElement View => null!;
+    public UIToolView View => null!;
 
     public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
@@ -469,7 +465,7 @@ internal sealed class SampleGuiTool15 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool16 : IGuiTool
 {
-    public IUIElement View => null!;
+    public UIToolView View => null!;
 
     public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }
@@ -493,7 +489,7 @@ internal sealed class SampleGuiTool16 : IGuiTool
 [TargetPlatform(Platform.WASM)]
 internal sealed class SampleGuiTool17 : IGuiTool
 {
-    public IUIElement View => null!;
+    public UIToolView View => null!;
 
     public void OnDataReceived(string dataTypeName, object? parsedData) { }
 }

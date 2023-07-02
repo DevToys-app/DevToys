@@ -2,11 +2,55 @@
 @using DevToys.Api;
 @inherits JSStyledComponentBase
 
-<MonacoEditorDiff @ref="_monacoEditor"
-                  IsVisible="@UIDiffTextInput.IsVisible"
-                  IsEnabled="@UIDiffTextInput.IsEnabled"
-                  HorizontalAlignment="@UIDiffTextInput.HorizontalAlignment"
-                  VerticalAlignment="@UIDiffTextInput.VerticalAlignment"
-                  Header="@UIDiffTextInput.Title"
-                  ConstructionOptions="@OnMonacoConstructionOptions"
-                  OnDidInit="@OnMonacoEditorInitializedAsync" />
+<!-- TODO: Localize -->
+<Grid id="@ExtendedId"
+      Class="ui-text-input-wrapper"
+      IsVisible="@UIDiffTextInput.IsVisible"
+      IsEnabled="@UIDiffTextInput.IsEnabled"
+      HorizontalAlignment="@(_isInFullScreenMode ? UIHorizontalAlignment.Stretch : UIDiffTextInput.HorizontalAlignment)"
+      VerticalAlignment="@(_isInFullScreenMode ? UIVerticalAlignment.Stretch : UIDiffTextInput.VerticalAlignment)"
+      RowSpacing="6"
+      Rows="@(new List<GridLength>
+        {
+            GridLength.Auto,
+            new GridLength(1, GridUnitType.Fraction)
+        })"
+      ColumnSpacing="6"
+      Columns="@(new List<GridLength>
+        {
+            new GridLength(1, GridUnitType.Fraction),
+            GridLength.Auto
+        })">
+    <GridCell Row="0" Column="0">
+        <Grid RowSpacing="0"
+              Rows="@(new List<GridLength>
+                {
+                    new GridLength(1, GridUnitType.Fraction),
+                    new GridLength(20, GridUnitType.Pixel)
+                })">
+            <GridCell Row="1">
+                <TextBlock id="@(ExtendedId + "-title")"
+                           Text="@UIDiffTextInput.Title"
+                           NoWrap="true"
+                           CanTrim="true" />
+            </GridCell>
+        </Grid>
+    </GridCell>
+    <GridCell Row="0"
+              Column="1">
+        <StackPanel Wrap="false">
+            @if (@UIDiffTextInput.IsExtendableToFullScreen)
+            {
+                <Button ToolTip="@(_isInFullScreenMode ? "Shrink" : "Extend")"
+                    @onclick="@OnToggleFullScreenButtonClickAsync">
+                    <FontIcon Glyph="@(_isInFullScreenMode ? '\uE0DC' : '\uE0C5')" />
+                </Button>
+            }
+        </StackPanel>
+    </GridCell>
+    <GridCell Row="1" Column="0" ColumnSpan="2">
+        <MonacoEditorDiff @ref="_monacoEditor"
+                          ConstructionOptions="@OnMonacoConstructionOptions"
+                          OnDidInit="@OnMonacoEditorInitializedAsync" />
+    </GridCell>
+</Grid>

@@ -34,7 +34,14 @@ internal sealed partial class ToolPageViewModel : ObservableRecipient
     /// <summary>
     /// Gets the UI of the tool.
     /// </summary>
-    internal IUIElement? ToolView => _guiToolViewItem?.ToolInstance.View;
+    internal UIToolView ToolView
+    {
+        get
+        {
+            Guard.IsNotNull(_guiToolViewItem);
+            return _guiToolViewItem.ToolInstance.View;
+        }
+    }
 
     internal void Load(GuiToolViewItem guiToolViewItem)
     {

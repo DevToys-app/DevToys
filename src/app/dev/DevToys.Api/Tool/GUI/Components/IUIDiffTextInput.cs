@@ -24,6 +24,11 @@ public interface IUIDiffTextInput : IUISingleLineTextInput
     bool InlineMode { get; }
 
     /// <summary>
+    /// Gets whether the element can be expanded to take the size of the whole tool boundaries.
+    /// </summary>
+    bool IsExtendableToFullScreen { get; }
+
+    /// <summary>
     /// Raised when <see cref="ModifiedText"/> is changed.
     /// </summary>
     event EventHandler? ModifiedTextChanged;
@@ -32,6 +37,11 @@ public interface IUIDiffTextInput : IUISingleLineTextInput
     /// Raised when <see cref="InlineMode"/> is changed.
     /// </summary>
     event EventHandler? InlineModeChanged;
+
+    /// <summary>
+    /// Raised when <see cref="IsExtendableToFullScreen"/> is changed.
+    /// </summary>
+    event EventHandler? IsExtendableToFullScreenChanged;
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Text = {{{nameof(Text)}}}")]
@@ -39,6 +49,7 @@ internal class UIDiffTextInput : UISingleLineTextInput, IUIDiffTextInput
 {
     private bool _inline;
     private string? _modifiedText;
+    private bool _isExtendableToFullScreen;
 
     internal UIDiffTextInput(string? id)
         : base(id)
@@ -63,8 +74,15 @@ internal class UIDiffTextInput : UISingleLineTextInput, IUIDiffTextInput
         internal set => SetPropertyValue(ref _inline, value, InlineModeChanged);
     }
 
+    public bool IsExtendableToFullScreen
+    {
+        get => _isExtendableToFullScreen;
+        internal set => SetPropertyValue(ref _isExtendableToFullScreen, value, IsExtendableToFullScreenChanged);
+    }
+
     public event EventHandler? ModifiedTextChanged;
     public event EventHandler? InlineModeChanged;
+    public event EventHandler? IsExtendableToFullScreenChanged;
 }
 
 public static partial class GUI
@@ -125,6 +143,24 @@ public static partial class GUI
     public static IUIDiffTextInput SplitView(this IUIDiffTextInput element)
     {
         ((UIDiffTextInput)element).InlineMode = false;
+        return element;
+    }
+
+    /// <summary>
+    /// Indicates that the control can be extended to take the size of the whole tool boundaries.
+    /// </summary>
+    public static IUIDiffTextInput Extendable(this IUIDiffTextInput element)
+    {
+        ((UIDiffTextInput)element).IsExtendableToFullScreen = true;
+        return element;
+    }
+
+    /// <summary>
+    /// Indicates that the control can not be extended to take the size of the whole tool boundaries.
+    /// </summary>
+    public static IUIDiffTextInput NotExtendable(this IUIDiffTextInput element)
+    {
+        ((UIDiffTextInput)element).IsExtendableToFullScreen = false;
         return element;
     }
 }
