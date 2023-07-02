@@ -16,9 +16,16 @@ public partial class UIDiffTextInputPresenter : JSStyledComponentBase, IDisposab
 
     protected string ExtendedId => UIDiffTextInput.Id + "-" + Id;
 
+    private string _originalModelName = string.Empty;
+    private string _modifiedModelName = string.Empty;
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
+
+        _originalModelName = ExtendedId + "-originalModel";
+        _modifiedModelName = ExtendedId + "-modifiedModel";
+
         UIDiffTextInput.TextChanged += UIMultiLineTextInput_TextChanged;
         UIDiffTextInput.ModifiedTextChanged += UIDiffTextInput_RightTextChanged;
         UIDiffTextInput.IsReadOnlyChanged += UIMultiLineTextInput_IsReadOnlyChanged;
@@ -37,17 +44,27 @@ public partial class UIDiffTextInputPresenter : JSStyledComponentBase, IDisposab
     private async Task OnMonacoEditorInitializedAsync()
     {
         // Get or create the original model
-        TextModel original_model = await MonacoEditorHelper.GetModelAsync(JSRuntime, "sample-diff-editor-originalModel");
+        TextModel original_model = await MonacoEditorHelper.GetModelAsync(JSRuntime, uri: _originalModelName);
         if (original_model == null)
         {
-            original_model = await MonacoEditorHelper.CreateModelAsync(JSRuntime, UIDiffTextInput.Text, "javascript", "sample-diff-editor-originalModel");
+            original_model
+                = await MonacoEditorHelper.CreateModelAsync(
+                    JSRuntime,
+                    UIDiffTextInput.Text,
+                    language: null,
+                    uri: _originalModelName);
         }
 
         // Get or create the modified model
-        TextModel modified_model = await MonacoEditorHelper.GetModelAsync(JSRuntime, "sample-diff-editor-modifiedModel");
+        TextModel modified_model = await MonacoEditorHelper.GetModelAsync(JSRuntime, uri: _modifiedModelName);
         if (modified_model == null)
         {
-            modified_model = await MonacoEditorHelper.CreateModelAsync(JSRuntime, UIDiffTextInput.ModifiedText, "javascript", "sample-diff-editor-modifiedModel");
+            modified_model
+                = await MonacoEditorHelper.CreateModelAsync(
+                    JSRuntime,
+                    UIDiffTextInput.ModifiedText,
+                    language: null,
+                    uri: _modifiedModelName);
         }
 
         // Set the editor model
@@ -56,6 +73,13 @@ public partial class UIDiffTextInputPresenter : JSStyledComponentBase, IDisposab
             Original = original_model,
             Modified = modified_model
         });
+
+        Guard.IsNotNull(_monacoEditor.ModifiedEditor);
+        await _monacoEditor.ModifiedEditor.UpdateOptionsAsync(
+            new EditorUpdateOptions
+            {
+                ReadOnly = UIDiffTextInput.IsReadOnly
+            });
     }
 
     private async void UIMultiLineTextInput_TextChanged(object? sender, EventArgs e)
@@ -72,18 +96,28 @@ public partial class UIDiffTextInputPresenter : JSStyledComponentBase, IDisposab
 
     private async void UIMultiLineTextInput_IsReadOnlyChanged(object? sender, EventArgs e)
     {
-        await _monacoEditor.UpdateOptionsAsync(new DiffEditorOptions
-        {
-            ReadOnly = UIDiffTextInput.IsReadOnly
-        });
+        Guard.IsNotNull(_monacoEditor.ModifiedEditor);
+        await _monacoEditor.UpdateOptionsAsync(
+            new DiffEditorOptions
+            {
+                ReadOnly = UIDiffTextInput.IsReadOnly,
+                OriginalEditable = !UIDiffTextInput.IsReadOnly
+            });
+        await _monacoEditor.ModifiedEditor.UpdateOptionsAsync(
+            new EditorUpdateOptions
+            {
+                ReadOnly = UIDiffTextInput.IsReadOnly
+            });
     }
 
     private async void UIDiffTextInput_InlineModeChanged(object? sender, EventArgs e)
     {
-        await _monacoEditor.UpdateOptionsAsync(new DiffEditorOptions
-        {
-            EnableSplitViewResizing = !UIDiffTextInput.InlineMode
-        });
+        await _monacoEditor.UpdateOptionsAsync(
+            new DiffEditorOptions
+            {
+                EnableSplitViewResizing = !UIDiffTextInput.InlineMode,
+                RenderSideBySide = !UIDiffTextInput.InlineMode
+            });
     }
 
     private async Task OnToggleFullScreenButtonClickAsync()
@@ -98,7 +132,10 @@ public partial class UIDiffTextInputPresenter : JSStyledComponentBase, IDisposab
         return new StandaloneDiffEditorConstructionOptions
         {
             ReadOnly = UIDiffTextInput.IsReadOnly,
-            EnableSplitViewResizing = !UIDiffTextInput.InlineMode
+            OriginalEditable = !UIDiffTextInput.IsReadOnly,
+            EnableSplitViewResizing = !UIDiffTextInput.InlineMode,
+            RenderSideBySide = !UIDiffTextInput.InlineMode,
+            AutomaticLayout = true
         };
     }
 }

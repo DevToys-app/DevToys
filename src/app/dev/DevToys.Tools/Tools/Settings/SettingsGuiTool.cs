@@ -99,6 +99,7 @@ internal sealed class SettingsGuiTool : IGuiTool
                     .Title("Difference")
                     .OriginalText("hello")
                     .Extendable()
+                    .ReadOnly()
                     .ModifiedText("hello world")),
             isScrollable: true);
 

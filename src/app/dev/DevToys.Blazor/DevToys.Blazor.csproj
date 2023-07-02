@@ -31,11 +31,6 @@
     <ConfigFiles Include="tsconfig.json" />
     <Content Update="tsconfig.json" PublishFolderType="None" />
     <Content Update="package.json" PublishFolderType="None" ExcludeFromBundleResources="true" />
-    <Compile Remove="%2a%2a\**" />
-    <Content Remove="%2a%2a\**" />
-    <EmbeddedResource Remove="%2a%2a\**" />
-    <TypeScriptCompile Remove="%2a%2a\**" />
-    <TypeScriptCompile Remove="**\*.ts" />
   </ItemGroup>
 
   <ItemGroup>

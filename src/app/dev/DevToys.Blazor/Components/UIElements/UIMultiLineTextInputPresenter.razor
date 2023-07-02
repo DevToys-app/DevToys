@@ -1,6 +1,6 @@
 @namespace DevToys.Blazor.Components.UIElements
 @using DevToys.Api;
-@inherits StyledComponentBase
+@inherits JSStyledComponentBase
 
 <UITextInputWrapper @ref="_textInputWrapper"
                     UITextInput="@UIMultiLineTextInput"
@@ -9,6 +9,7 @@
                   IsVisible="@UIMultiLineTextInput.IsVisible"
                   IsEnabled="@UIMultiLineTextInput.IsEnabled"
                   ConstructionOptions="@OnMonacoConstructionOptions"
-                  OnDidChangeModelContent="OnTextChangedAsync"
+                  OnDidChangeModelContent="OnMonacoEditorTextChangedAsync"
+                  OnDidInit="OnMonacoEditorInitializedAsync"
                   ParentComponent="_textInputWrapper" />
 </UITextInputWrapper>

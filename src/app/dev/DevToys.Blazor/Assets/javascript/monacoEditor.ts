@@ -518,7 +518,7 @@ class MonacoEditor {
                 const eStrong = e as monaco.editor.ConfigurationChangedEvent;
                 eventJson = JSON.stringify((eStrong as any)._values);
             }
-            dotNetObjRef.invokeMethodAsync("EventCallback", eventName, eventJson);
+            dotNetObjRef.invokeMethodAsync("EventCallbackAsync", eventName, eventJson);
         };
 
         switch (eventName) {

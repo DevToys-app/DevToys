@@ -57,7 +57,6 @@ public partial class MonacoEditorDiff : RicherMonacoEditorDiffBase
             options.BracketPairColorization = new BracketPairColorizationOptions { Enabled = true };
             options.RenderLineHighlightOnlyWhenFocus = true;
 
-            options.OriginalEditable = false;
             options.DiffCodeLens = false;
             options.RenderOverviewRuler = true;
 
