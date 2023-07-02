@@ -6,106 +6,108 @@
 @namespace DevToys.Blazor.Pages
 @inherits MefComponentBase
 
-<!-- Provider for popover -->
-<PopoverProvider />
-
-<!-- Overlay that covers the whole window for context menus -->
-<Overlay ZIndex="80000"
-         Visible="ContextMenuService.IsContextMenuOpened"
-         OnClick="ContextMenuService.OnCloseContextMenuRequested" />
-
-<!-- Navigation View -->
-<!-- TODO: Localize -->
-<NavBar @ref=_navBar
-        TElement="INotifyPropertyChanged"
-        TSearchElement="GuiToolViewItem"
-        MenuItemsSource="@ViewModel.HeaderAndBodyToolViewItems"
-        FooterMenuItemsSource="@ViewModel.FooterToolViewItems"
-        CanGoBack="@ViewModel.CanGoBack"
-        @bind-SelectedItem="ViewModel.SelectedMenuItem"
-        OnBackButtonClicked="OnBackButtonClicked"
-        OnHiddenStateChanged="OnHiddenStateChanged"
-        SearchBarPlaceholder="Type to search for tools..."
-        SearchQueryChanged="OnSearchQueryChanged"
-        SearchQuerySubmitted="OnSearchQuerySubmitted"
-        SearchResultItems="ViewModel.SearchResults">
-    <!-- Header -->
-    <Header>
-        <TextBlock Text="DevToys" />
-    </Header>
-
-    <!-- Search box's result item design -->
-    <SearchResultItemTemplate Context="item">
-        <div class="sidebar-searchbar-result-item">
-            <div class="sidebar-searchbar-result-item-icon">
-                <FontIcon FontFamily="@item.ToolInstance.IconFontName" Glyph="@item.ToolInstance.IconGlyph" />
+<CascadingValue Value="this" IsFixed="true">
+    <!-- Provider for popover -->
+    <PopoverProvider />
+    
+    <!-- Overlay that covers the whole window for context menus -->
+    <Overlay ZIndex="80000"
+             Visible="ContextMenuService.IsContextMenuOpened"
+             OnClick="ContextMenuService.OnCloseContextMenuRequested" />
+    
+    <!-- Navigation View -->
+    <!-- TODO: Localize -->
+    <NavBar @ref=_navBar
+            TElement="INotifyPropertyChanged"
+            TSearchElement="GuiToolViewItem"
+            MenuItemsSource="@ViewModel.HeaderAndBodyToolViewItems"
+            FooterMenuItemsSource="@ViewModel.FooterToolViewItems"
+            CanGoBack="@ViewModel.CanGoBack"
+            @bind-SelectedItem="ViewModel.SelectedMenuItem"
+            OnBackButtonClicked="OnBackButtonClicked"
+            OnHiddenStateChanged="OnHiddenStateChanged"
+            SearchBarPlaceholder="Type to search for tools..."
+            SearchQueryChanged="OnSearchQueryChanged"
+            SearchQuerySubmitted="OnSearchQuerySubmitted"
+            SearchResultItems="ViewModel.SearchResults">
+        <!-- Header -->
+        <Header>
+            <TextBlock Text="DevToys" />
+        </Header>
+    
+        <!-- Search box's result item design -->
+        <SearchResultItemTemplate Context="item">
+            <div class="sidebar-searchbar-result-item">
+                <div class="sidebar-searchbar-result-item-icon">
+                    <FontIcon FontFamily="@item.ToolInstance.IconFontName" Glyph="@item.ToolInstance.IconGlyph" />
+                </div>
+                <div class="sidebar-searchbar-result-item-text">
+                    <TextBlock NoWrap="true" Text="@item.ToolInstance.LongDisplayTitle" HighlightedSpans="@item.MatchedSpans" />
+                </div>
             </div>
-            <div class="sidebar-searchbar-result-item-text">
-                <TextBlock NoWrap="true" Text="@item.ToolInstance.LongDisplayTitle" HighlightedSpans="@item.MatchedSpans" />
-            </div>
-        </div>
-    </SearchResultItemTemplate>
-
-    <!-- Item design -->
-    <NavBarItemIconTemplate Context="item">
-        @{
-            var iconGlyph = '\0';
-            var iconFontFamily = string.Empty;
-            if (item is GuiToolViewItem guiToolViewItem)
-            {
-                iconGlyph = guiToolViewItem.ToolInstance.IconGlyph;
-                iconFontFamily = guiToolViewItem.ToolInstance.IconFontName;
-            }
-            else if (item is GroupViewItem groupViewItem)
-            {
-                iconGlyph = groupViewItem.IconGlyph;
-                iconFontFamily = groupViewItem.IconFontName;
-            }
-
-            <FontIcon FontFamily="@iconFontFamily" Glyph="@iconGlyph" />
-        }
-    </NavBarItemIconTemplate>
-
-    <NavBarItemTitleTemplate Context="item">
-        @{
-            var title = string.Empty;
-            if (item is GuiToolViewItem guiToolViewItem)
-            {
-                title = guiToolViewItem.MenuDisplayTitle;
-            }
-            else if (item is GroupViewItem groupViewItem)
-            {
-                title = groupViewItem.DisplayTitle;
-            }
-
-            <div style="display: flex;">
-                <TextBlock NoWrap="true"
-                           Text="@title"
-                           Style="flex-grow: 1 !important; flex-basis: auto !important; align-self:center;" />
-                @if (item is GuiToolViewItem guiToolViewItem2 && guiToolViewItem2.IsRecommended)
+        </SearchResultItemTemplate>
+    
+        <!-- Item design -->
+        <NavBarItemIconTemplate Context="item">
+            @{
+                var iconGlyph = '\0';
+                var iconFontFamily = string.Empty;
+                if (item is GuiToolViewItem guiToolViewItem)
                 {
-                    <img src="_content/DevToys.Blazor/img/idea.svg"
-                         height="16"
-                         width="16"
-                         style="flex-basis: auto; align-self:center;" />
+                    iconGlyph = guiToolViewItem.ToolInstance.IconGlyph;
+                    iconFontFamily = guiToolViewItem.ToolInstance.IconFontName;
                 }
-                <img />
-            </div>
-        }
-    </NavBarItemTitleTemplate>
-
-    <!-- Content of the NavBar-->
-    <Content>
-        @if (!IsTransitioning)
-        {
-            if (ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem)
-            {
-                <ToolPage GuiToolViewItem="@guiToolViewItem"/>
+                else if (item is GroupViewItem groupViewItem)
+                {
+                    iconGlyph = groupViewItem.IconGlyph;
+                    iconFontFamily = groupViewItem.IconFontName;
+                }
+    
+                <FontIcon FontFamily="@iconFontFamily" Glyph="@iconGlyph" />
             }
-            else if (ViewModel.SelectedMenuItem is GroupViewItem groupToolViewItem)
-            {
-                <ToolGroup GroupViewItem="@groupToolViewItem" />
+        </NavBarItemIconTemplate>
+    
+        <NavBarItemTitleTemplate Context="item">
+            @{
+                var title = string.Empty;
+                if (item is GuiToolViewItem guiToolViewItem)
+                {
+                    title = guiToolViewItem.MenuDisplayTitle;
+                }
+                else if (item is GroupViewItem groupViewItem)
+                {
+                    title = groupViewItem.DisplayTitle;
+                }
+    
+                <div style="display: flex;">
+                    <TextBlock NoWrap="true"
+                               Text="@title"
+                               Style="flex-grow: 1 !important; flex-basis: auto !important; align-self:center;" />
+                    @if (item is GuiToolViewItem guiToolViewItem2 && guiToolViewItem2.IsRecommended)
+                    {
+                        <img src="_content/DevToys.Blazor/img/idea.svg"
+                             height="16"
+                             width="16"
+                             style="flex-basis: auto; align-self:center;" />
+                    }
+                    <img />
+                </div>
             }
-        }
-    </Content>
-</NavBar>
+        </NavBarItemTitleTemplate>
+    
+        <!-- Content of the NavBar-->
+        <Content>
+            @if (!IsTransitioning)
+            {
+                if (ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem)
+                {
+                    <ToolPage GuiToolViewItem="@guiToolViewItem"/>
+                }
+                else if (ViewModel.SelectedMenuItem is GroupViewItem groupToolViewItem)
+                {
+                    <ToolGroup GroupViewItem="@groupToolViewItem" />
+                }
+            }
+        </Content>
+    </NavBar>
+</CascadingValue>

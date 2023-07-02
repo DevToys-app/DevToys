@@ -12,7 +12,7 @@
 else
 {
     <div class="entrance-theme-transition tool-page-content">
-            @RenderToolWithHeader(false)
+        @RenderToolWithHeader(false)
     </div>
 }
 
@@ -25,28 +25,37 @@ else
         {
             <Grid RowSpacing="12"
                   Rows="@(new List<GridLength>
-                {
-                    GridLength.Auto,
-                    new GridLength(1, GridUnitType.Fraction)
-                })">
+                    {
+                        GridLength.Auto,
+                        new GridLength(1, GridUnitType.Fraction)
+                    })"
+                  ColumnSpacing="6"
+                  Columns="@(new List<GridLength>
+                    {
+                        new GridLength(1, GridUnitType.Fraction),
+                        GridLength.Auto
+                    })">
 
-                <GridCell Row="0">
+                <GridCell Row="0" Column="0">
                     <TextBlock Appearance="@TextBlockAppearance.Title"
                                Style="font-size: 24px !important"
                                Text="@ViewModel.HeaderText" />
                 </GridCell>
+                <GridCell Row="0"
+                          Column="1">
+                    <StackPanel Wrap="false">
+                        <Button IsVisible="@ViewModel.IsSelectedMenuItemSupportFavorite"
+                                Appearance="ButtonAppearance.Stealth"
+                                @onclick="@OnToggleFavorite">
+                            <StackPanel>
+                                <FontIcon Glyph="@(ViewModel.IsSelectedMenuItemAFavoriteTool ? '\uF71A' : '\uF70F')" />
+                                <TextBlock Text="@ViewModel.GetFavoriteButtonText(ViewModel.IsSelectedMenuItemAFavoriteTool)" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </GridCell>
 
-                <GridCell Row="1">
-                    @*@if (isScrollable)
-                    {
-                        <UIElementPresenter UIElement="@ViewModel.ToolView.RootElement" />
-                    }
-                    else
-                    {
-                        <FullScreenContainer>
-                            <UIElementPresenter UIElement="@ViewModel.ToolView.RootElement" />
-                        </FullScreenContainer>
-                    }*@
+                <GridCell Row="1" ColumnSpan="2">
                     <FullScreenContainer IsInFullScreenModeChanged="@OnIsInFullScreenModeChanged">
                         <UIElementPresenter UIElement="@ViewModel.ToolView.RootElement" />
                     </FullScreenContainer>

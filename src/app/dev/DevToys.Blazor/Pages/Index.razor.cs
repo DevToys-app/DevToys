@@ -97,16 +97,6 @@ public partial class Index : MefComponentBase
         ViewModel.SearchBoxQuerySubmittedCommand.Execute(selectedItem);
     }
 
-    internal void OnSetFavorite()
-    {
-        // WARNING: This should be done in ToolPageViewModel. Doing it here just for demo.
-        if (ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem)
-        {
-            bool isFavorite = GuiToolProvider.GetToolIsFavorite(guiToolViewItem.ToolInstance);
-            GuiToolProvider.SetToolIsFavorite(guiToolViewItem.ToolInstance, !isFavorite);
-        }
-    }
-
     protected override void OnAfterRender(bool firstRender)
     {
         if (firstRender)

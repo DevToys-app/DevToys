@@ -15,6 +15,9 @@ public partial class ToolPage : MefComponentBase, IDisposable
     [Parameter]
     public bool IsInFullScreenMode { get; set; }
 
+    [CascadingParameter]
+    protected Index? IndexPage { get; set; }
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
@@ -46,5 +49,11 @@ public partial class ToolPage : MefComponentBase, IDisposable
     private void OnIsInFullScreenModeChanged(bool isInFullScreenMode)
     {
         IsInFullScreenMode = isInFullScreenMode;
+    }
+
+    private void OnToggleFavorite()
+    {
+        ViewModel.ToggleSelectedMenuItemFavoriteCommand.Execute(null);
+        IndexPage.StateHasChanged();
     }
 }
