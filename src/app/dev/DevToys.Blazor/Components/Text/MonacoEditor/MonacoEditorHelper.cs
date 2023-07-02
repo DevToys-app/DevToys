@@ -47,43 +47,42 @@ internal static class MonacoEditorHelper
         return dotnetObjectRef.Value as MonacoEditor;
     }
 
-
     /// <summary>
     /// Create a new diff editor under `domElement`.
     /// `domElement` should be empty (not contain other dom nodes).
     /// The editor will read the size of `domElement`.
     /// </summary>
-    //internal static async ValueTask<DiffMonacoEditor?> CreateDiffEditorAsync(
-    //    IJSRuntime runtime,
-    //    string domElementId,
-    //    StandaloneDiffEditorConstructionOptions options,
-    //    EditorOverrideServices overrideServices,
-    //    DotNetObjectReference<JSStyledComponentBase> dotnetObjectRef,
-    //    DotNetObjectReference<JSStyledComponentBase> dotnetObjectRefOriginal,
-    //    DotNetObjectReference<JSStyledComponentBase> dotnetObjectRefModified)
-    //{
-    //    options ??= new StandaloneDiffEditorConstructionOptions();
+    internal static async ValueTask<MonacoEditorDiff?> CreateMonacoEditorDiffInstanceAsync(
+        IJSRuntime runtime,
+        string domElementId,
+        StandaloneDiffEditorConstructionOptions options,
+        EditorOverrideServices? overrideServices,
+        DotNetObjectReference<JSStyledComponentBase> dotnetObjectRef,
+        DotNetObjectReference<JSStyledComponentBase> dotnetObjectRefOriginal,
+        DotNetObjectReference<JSStyledComponentBase> dotnetObjectRefModified)
+    {
+        options ??= new StandaloneDiffEditorConstructionOptions();
 
-    //    // Convert the options object into a JsonElement to get rid of the properties with null values
-    //    string optionsJson = JsonSerializer.Serialize(options, new JsonSerializerOptions
-    //    {
-    //        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-    //        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-    //    });
-    //    JsonElement optionsDict = JsonSerializer.Deserialize<JsonElement>(optionsJson);
+        // Convert the options object into a JsonElement to get rid of the properties with null values
+        string optionsJson = JsonSerializer.Serialize(options, new JsonSerializerOptions
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        });
+        JsonElement optionsDict = JsonSerializer.Deserialize<JsonElement>(optionsJson);
 
-    //    // Create the editor
-    //    await runtime.InvokeVoidAsync(
-    //        "devtoys.MonacoEditor.createDiffEditor",
-    //        domElementId,
-    //        optionsDict,
-    //        overrideServices,
-    //        dotnetObjectRef,
-    //        dotnetObjectRefOriginal,
-    //        dotnetObjectRefModified);
+        // Create the editor
+        await runtime.InvokeVoidAsync(
+            "devtoys.MonacoEditor.createDiffEditor",
+            domElementId,
+            optionsDict,
+            overrideServices,
+            dotnetObjectRef,
+            dotnetObjectRefOriginal,
+            dotnetObjectRefModified);
 
-    //    return dotnetObjectRef.Value as DiffMonacoEditor;
-    //}
+        return dotnetObjectRef.Value as MonacoEditorDiff;
+    }
 
     /// <summary>
     /// Create a new editor model.
@@ -145,4 +144,13 @@ internal static class MonacoEditorHelper
     /// </summary>
     internal static ValueTask<bool> RemeasureFontsAsync(IJSRuntime runtime)
         => runtime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.remeasureFonts");
+
+    internal static MonacoEditor CreateVirtualEditor(IJSRuntime jsRuntime, string id, string? cssClass = null)
+    {
+        var virtual_editor = new MonacoEditor(jsRuntime, id)
+        {
+            Class = cssClass ?? string.Empty
+        };
+        return virtual_editor;
+    }
 }

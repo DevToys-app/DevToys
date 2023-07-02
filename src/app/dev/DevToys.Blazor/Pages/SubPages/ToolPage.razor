@@ -4,37 +4,36 @@
 
 <CascadingValue Value="this" IsFixed="true">
     <ScrollViewer Class="entrance-theme-transition tool-page">
-        <Grid RowSpacing="12"
-              Rows="@(new List<GridLength>
+        @RenderTool
+    </ScrollViewer>
+</CascadingValue>
+
+@code {
+    private RenderFragment RenderTool { get; set; } = default!;
+
+    protected override Task OnInitializedAsync()
+    {
+        RenderTool = (__builder) =>
+        {
+            <Grid RowSpacing="12"
+                  Rows="@(new List<GridLength>
                 {
                     GridLength.Auto,
                     new GridLength(1, GridUnitType.Fraction)
                 })">
 
-            <GridCell Row="0">
-                <TextBlock Appearance="@TextBlockAppearance.Title"
-                           Style="font-size: 24px !important"
-                           Text="@ViewModel.HeaderText" />
-            </GridCell>
+                <GridCell Row="0">
+                    <TextBlock Appearance="@TextBlockAppearance.Title"
+                               Style="font-size: 24px !important"
+                               Text="@ViewModel.HeaderText" />
+                </GridCell>
 
-            <GridCell Row="1">
-                <UIElementPresenter UIElement="@ViewModel.ToolView" />
-            </GridCell>
-        </Grid>
-        @*<StackPanel Orientation="Orientation.Vertical">
-            <TextBlock Appearance="@TextBlockAppearance.Title" Style="font-size: 24px !important" Text="@ViewModel.HeaderText" />
-            <Card Title="Compact mode" Description="Description of the option" IconGlyph="@('\uEA19')">
-                <Control>
-                    <ToggleSwitch IsOn="@IsCompactModeEnabled" OnCheckedChanged="OnCompactModeChanged" Text="@((IsCompactModeEnabled ? "On" : "Off"))" />
-                </Control>
-            </Card>
-            <Button HorizontalAlignment="HorizontalAlignment.Left"><TextBlock Text="Sample button" /></Button>
-            <Button HorizontalAlignment="HorizontalAlignment.Left"><TextBlock Text="Sample button" /></Button>
-            <Button HorizontalAlignment="HorizontalAlignment.Left"><TextBlock Text="Sample button" /></Button>
-            <Button HorizontalAlignment="HorizontalAlignment.Left"><TextBlock Text="Sample button" /></Button>
-            <Button HorizontalAlignment="HorizontalAlignment.Left"><TextBlock Text="Sample button" /></Button>
-            <Button HorizontalAlignment="HorizontalAlignment.Left"><TextBlock Text="Sample button" /></Button>
-            <Button HorizontalAlignment="HorizontalAlignment.Left"><TextBlock Text="Sample button" /></Button>
-        </StackPanel>*@
-    </ScrollViewer>
-</CascadingValue>
+                <GridCell Row="1">
+                    <UIElementPresenter UIElement="@ViewModel.ToolView" />
+                </GridCell>
+            </Grid>
+        };
+
+        return base.OnInitializedAsync();
+    }
+}

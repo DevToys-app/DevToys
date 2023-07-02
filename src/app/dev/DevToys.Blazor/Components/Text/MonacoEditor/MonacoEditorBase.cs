@@ -4,7 +4,7 @@ using DevToys.Blazor.Components.Monaco.Editor;
 
 namespace DevToys.Blazor.Components;
 
-public abstract class MonacoEditorBase : MefComponentBase
+public abstract class MonacoEditorBase : MefComponentBase, IFocusable
 {
     private static readonly object themeDefinedLock = new();
     private static bool isThemeDefined;
@@ -84,7 +84,7 @@ public abstract class MonacoEditorBase : MefComponentBase
         await base.OnAfterRenderAsync(firstRender);
     }
 
-    protected virtual async Task SetEventListenersAsync()
+    internal virtual async Task SetEventListenersAsync()
     {
         if (OnDidDispose.HasDelegate)
         {
@@ -100,11 +100,13 @@ public abstract class MonacoEditorBase : MefComponentBase
     {
         switch (eventName)
         {
-            case nameof(OnDidDispose): await OnDidDispose.InvokeAsync(this); break;
+            case nameof(OnDidDispose):
+                await OnDidDispose.InvokeAsync(this);
+                break;
         }
     }
 
-    protected ValueTask<bool> SetEventListenerAsync(string eventName)
+    internal ValueTask<bool> SetEventListenerAsync(string eventName)
         => JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.setEventListener", Id, eventName);
 
     public override async ValueTask DisposeAsync()
@@ -139,7 +141,7 @@ public abstract class MonacoEditorBase : MefComponentBase
     /// <summary>
     /// Brings browser focus to the editor text
     /// </summary>
-    internal ValueTask<bool> FocusAsync()
+    public ValueTask<bool> FocusAsync()
         => JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.focus", Id);
 
     /// <summary>

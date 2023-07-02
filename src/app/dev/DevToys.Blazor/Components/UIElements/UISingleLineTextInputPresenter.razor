@@ -1,0 +1,12 @@
+@namespace DevToys.Blazor.Components.UIElements
+@using DevToys.Api;
+@inherits StyledComponentBase
+
+<UITextInputWrapper @ref="_textInputWrapper" UITextInput="@UISingleLineTextInput">
+    <TextBox IsVisible="@UISingleLineTextInput.IsVisible"
+             IsEnabled="@UISingleLineTextInput.IsEnabled"
+             Text="@UISingleLineTextInput.Text"
+             IsReadOnly="@UISingleLineTextInput.IsReadOnly"
+             TextChanged="@OnTextChanged"
+             ParentComponent="_textInputWrapper" />
+</UITextInputWrapper>

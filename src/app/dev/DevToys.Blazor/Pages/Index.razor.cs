@@ -62,7 +62,11 @@ public partial class Index : MefComponentBase
     private void WindowService_WindowActivated(object? sender, EventArgs e)
     {
         // Start Smart Detection
-        ViewModel.RunSmartDetectionAsync(WindowService.IsOverlayMode).Forget();
+        ViewModel.RunSmartDetectionAsync(WindowService.IsOverlayMode)
+            .ContinueWith(async _ =>
+            {
+                await InvokeAsync(StateHasChanged);
+            });
     }
 
     private void OnBackButtonClicked()

@@ -61,6 +61,7 @@
     --control-stroke-on-accent-secondary: hsla(0, 0%, 0%, 14%);
     --control-strong-stroke-default: rgba(255, 255, 255, 0.544);
     --control-strong-stroke-disabled: rgba(255, 255, 255, 0.157);
+    --divider-stroke-color-default: rgba(255, 255, 255, 0.082);
 
     /* Subtle Fill */
     --subtle-fill-transparent: transparent;
@@ -340,4 +341,8 @@
 
     /* UISettingGroup */
     --ui-setting-group-presenter-inner-ui-setting-background-color: transparent;
+
+    /* UITextInputWrapper */
+    --ui-text-input-wrapper-dragging-background-color: var(--control-fill-color-tertiary);
+    --ui-text-input-wrapper-dragging-stroke-color: var(--text-fill-color-tertiary);
 }

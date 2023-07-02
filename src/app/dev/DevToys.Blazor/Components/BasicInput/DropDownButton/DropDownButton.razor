@@ -1,5 +1,6 @@
 @namespace DevToys.Blazor.Components
 @inherits StyledComponentBase
+@typeparam TItem
 
 <CascadingValue Name="ParentIsEnabled" Value="@IsActuallyEnabled">
     <CascadingValue Value="this" IsFixed="true">
@@ -21,26 +22,30 @@
                  class="drop-down-list-with-header @(FinalCssClasses)"
                  style="@(Style)"
                  @attributes="AdditionalAttributes">
-    
+
                 @if (!string.IsNullOrWhiteSpace(Header))
                 {
                     <TextBlock Appearance="TextBlockAppearance.Body" Class="drop-down-list-header" Text="@Header" />
                 }
-    
+
                 <Button Class="@($"drop-down-list-button {FinalCssClasses}")"
                         HorizontalAlignment="@HorizontalAlignment"
                         Width="@Width"
                         Appearance="ButtonAppearance.Neutral"
                         IsEnabled="@IsActuallyEnabled"
+                        ToolTip="@ToolTip"
                         @onclick="@ToggleDropDown">
                     @ChildContent
-                    <div class="arrow-down-icon">
-                        <FontIcon Glyph="@('\uf2a6')" Height="12" Width="12" />
-                    </div>
-    
+                    @if (DisplayArrow)
+                    {
+                        <div class="arrow-down-icon">
+                            <FontIcon Glyph="@('\uf2a6')" Height="12" Width="12" />
+                        </div>
+                    }
+
                     <Popover Open="_isOpen"
-                             AnchorOrigin="Origin.BottomCenter"
-                             TransformOrigin="Origin.TopCenter"
+                             AnchorOrigin="@AnchorOrigin"
+                             TransformOrigin="@TransformOrigin"
                              RelativeWidth="false"
                              Class="drop-down-list-drop-down"
                              @ontouchend:stopPropagation>
@@ -76,7 +81,7 @@
                         </CascadingValue>
                     </Popover>
                 </Button>
-    
+
             </div>
         </Container>
     </CascadingValue>

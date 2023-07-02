@@ -2,7 +2,7 @@
 
 namespace DevToys.Blazor.Components;
 
-public partial class FocusTrapper : JSStyledComponentBase
+public partial class FocusTrapper : JSStyledComponentBase, IFocusable
 {
     protected override string JavaScriptFile => "./_content/DevToys.Blazor/Components/Layout/FocusTrapper/FocusTrapper.razor.js";
 
@@ -15,7 +15,7 @@ public partial class FocusTrapper : JSStyledComponentBase
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
-    internal ValueTask<bool> FocusAsync()
+    public ValueTask<bool> FocusAsync()
     {
         return JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.DOM.setFocus", Element);
     }

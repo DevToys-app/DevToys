@@ -1,0 +1,42 @@
+@namespace DevToys.Blazor.Components
+@inherits RicherMonacoEditorDiffBase
+
+<CascadingValue Name="ParentIsEnabled" Value="@IsActuallyEnabled">
+    <Container HorizontalAlignment="@HorizontalAlignment"
+               VerticalAlignment="@VerticalAlignment"
+               Width="@Width"
+               Height="@Height"
+               MarginLeft="@MarginLeft"
+               MarginRight="@MarginRight"
+               MarginTop="@MarginTop"
+               MarginBottom="@MarginBottom"
+               PaddingLeft="@PaddingLeft"
+               PaddingRight="@PaddingRight"
+               PaddingTop="@PaddingTop"
+               PaddingBottom="@PaddingBottom"
+               IsEnabled="@IsActuallyEnabled"
+               IsVisible="@IsVisible">
+        <div id="@(Id)-monaco-container"
+             class="monaco-editor-standalone-with-header @(FinalCssClasses)"
+             style="@(Style)"
+             @attributes="AdditionalAttributes">
+
+            @if (!string.IsNullOrWhiteSpace(Header))
+            {
+                <TextBlock Appearance="TextBlockAppearance.Body" Class="monaco-editor-standalone-header" Text="@Header" />
+            }
+
+            <div class="monaco-editor-standalone-container @(IsActuallyEnabled ? string.Empty : "disabled")"
+                 @ref=Element>
+
+                <ProgressRing id="@($"{Id}-loading")"
+                              IsIndeterminate="@ShowLoading"
+                              IsVisible="@ShowLoading" />
+
+                <div id="@Id" class="monaco-editor-standalone-instance"></div>
+
+                <div class="monaco-editor-standalone-underline" />
+            </div>
+        </div>
+    </Container>
+</CascadingValue>

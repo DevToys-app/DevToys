@@ -18,6 +18,7 @@ button {
     transition: 83ms ease background;
     width: inherit;
     height: inherit;
+    min-width: fit-content;
 
     &:focus-visible {
         box-shadow: var(--focus-stroke);

@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Components.Web;
 
 namespace DevToys.Blazor.Components;
 
-public partial class DropDownList : StyledComponentBase
+public partial class DropDownButton<TItem> : StyledComponentBase where TItem : DropDownListItem
 {
     private bool _isOpen;
-    private ListBox<DropDownListItem>? _listBox;
+    private ListBox<TItem>? _listBox;
 
     [Inject]
     internal ContextMenuService ContextMenuService { get; set; } = default!;
@@ -20,11 +20,31 @@ public partial class DropDownList : StyledComponentBase
     [Parameter]
     public string? Header { get; set; }
 
+    [Parameter]
+    public string? ToolTip { get; set; }
+
+    [Parameter]
+    public bool DisplayArrow { get; set; } = true;
+
+    /// <summary>
+    /// Set the anchor point on the element of the popover.
+    /// The anchor point will determinate where the popover will be placed.
+    /// </summary>
+    [Parameter]
+    public Origin AnchorOrigin { get; set; } = Origin.BottomCenter;
+
+    /// <summary>
+    /// Sets the intersection point if the anchor element. At this point the popover will lay above the popover.
+    /// This property in conjunction with <see cref="AnchorOrigin"/> determinate where the popover will be placed.
+    /// </summary>
+    [Parameter]
+    public Origin TransformOrigin { get; set; } = Origin.TopCenter;
+
     /// <summary>
     /// Gets or sets the menu items to display in the drop down list.
     /// </summary>
     [Parameter]
-    public ICollection<DropDownListItem>? Items { get; set; }
+    public ICollection<TItem>? Items { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -84,7 +104,7 @@ public partial class DropDownList : StyledComponentBase
         if (_listBox is not null && _listBox.SelectedItem is not null && _listBox.SelectedItem.IsEnabled)
         {
             CloseDropDown(null);
-            _listBox.SelectedItem.OnClick.InvokeAsync().Forget();
+            _listBox.SelectedItem.OnClick.InvokeAsync(_listBox.SelectedItem).Forget();
         }
     }
 }

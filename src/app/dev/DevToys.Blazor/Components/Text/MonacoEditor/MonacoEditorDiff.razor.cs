@@ -2,25 +2,12 @@
 
 namespace DevToys.Blazor.Components;
 
-public partial class MonacoEditor : RicherMonacoEditorBase
+public partial class MonacoEditorDiff : RicherMonacoEditorDiffBase
 {
     private readonly object _lock = new object();
     private bool _isLoaded;
     private bool _oldIsActuallyEnabled;
     private bool _oldReadOnlyState;
-
-    public MonacoEditor()
-    {
-    }
-
-    public MonacoEditor(IJSRuntime? jsRuntime = null, string? id = null)
-        : base(jsRuntime)
-    {
-        if (!string.IsNullOrEmpty(id))
-        {
-            Id = id;
-        }
-    }
 
     [Import]
     internal IThemeListener ThemeListener { get; set; } = default!;
@@ -29,7 +16,7 @@ public partial class MonacoEditor : RicherMonacoEditorBase
     public string? Header { get; set; }
 
     [Parameter]
-    public Func<MonacoEditor, StandaloneEditorConstructionOptions>? ConstructionOptions { get; set; }
+    public Func<MonacoEditorDiff, StandaloneDiffEditorConstructionOptions>? ConstructionOptions { get; set; }
 
     private bool ShowLoading { get; set; }
 
@@ -45,10 +32,13 @@ public partial class MonacoEditor : RicherMonacoEditorBase
     {
         if (firstRender)
         {
+            Guard.IsNull(OriginalEditor);
+            Guard.IsNull(ModifiedEditor);
+
             InvokeAsync(DisplayLoadingIfSlowLoadingAsync).Forget();
 
             // Get desired options
-            StandaloneEditorConstructionOptions options = ConstructionOptions?.Invoke(this) ?? new();
+            StandaloneDiffEditorConstructionOptions options = ConstructionOptions?.Invoke(this) ?? new();
 
             // Overwrite some important options.
             options.Theme = GetTheme();
@@ -61,37 +51,55 @@ public partial class MonacoEditor : RicherMonacoEditorBase
             options.SnippetSuggestions = "none";
             options.CodeLens = false;
             options.QuickSuggestions = new QuickSuggestionsOptions { Comments = false, Other = false, Strings = false };
-            options.WordBasedSuggestions = false;
             options.Minimap = new EditorMinimapOptions { Enabled = false };
             options.Hover = new EditorHoverOptions { Enabled = false };
             options.MatchBrackets = "always";
             options.BracketPairColorization = new BracketPairColorizationOptions { Enabled = true };
             options.RenderLineHighlightOnlyWhenFocus = true;
 
+            options.OriginalEditable = false;
+            options.DiffCodeLens = false;
+            options.RenderOverviewRuler = true;
+
+            // Create the bridges for the inner editors
+            _originalEditor = MonacoEditorHelper.CreateVirtualEditor(JSRuntime, Id + "_original");
+            _modifiedEditor = MonacoEditorHelper.CreateVirtualEditor(JSRuntime, Id + "_modified");
+
+            Guard.IsNotNull(OriginalEditor);
+            Guard.IsNotNull(ModifiedEditor);
+
             // Create the editor
-            await MonacoEditorHelper.CreateMonacoEditorInstanceAsync(JSRuntime, Id, options, null, Reference);
+            await MonacoEditorHelper.CreateMonacoEditorDiffInstanceAsync(
+                JSRuntime,
+                Id,
+                options,
+                null,
+                Reference,
+                OriginalEditor.Reference,
+                ModifiedEditor.Reference);
         }
+
+        await base.OnAfterRenderAsync(firstRender);
 
         if (IsActuallyEnabled != _oldIsActuallyEnabled)
         {
             _oldIsActuallyEnabled = IsActuallyEnabled;
 
-            var options = new EditorUpdateOptions();
+            var options = new DiffEditorOptions();
             if (IsActuallyEnabled)
             {
                 options.ReadOnly = _oldReadOnlyState;
             }
             else
             {
-                EditorOptions currentOptions = await this.GetRawOptionsAsync();
+                Guard.IsNotNull(ModifiedEditor);
+                EditorOptions currentOptions = await this.ModifiedEditor.GetRawOptionsAsync();
                 _oldReadOnlyState = currentOptions.ReadOnly.GetValueOrDefault(false);
                 options.ReadOnly = true;
             }
 
             await UpdateOptionsAsync(options);
         }
-
-        await base.OnAfterRenderAsync(firstRender);
     }
 
     public override ValueTask DisposeAsync()
@@ -117,12 +125,7 @@ public partial class MonacoEditor : RicherMonacoEditorBase
 
     private void ThemeListener_ThemeChanged(object? sender, EventArgs e)
     {
-        var options = new EditorUpdateOptions()
-        {
-            Theme = GetTheme()
-        };
-
-        UpdateOptionsAsync(options);
+        MonacoEditorHelper.SetThemeAsync(JSRuntime, GetTheme());
     }
 
     private string GetTheme()

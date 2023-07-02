@@ -17,6 +17,12 @@ public class TextBlock : StyledComponentBase
     public bool NoWrap { get; set; }
 
     /// <summary>
+    /// Indicates whether the text can be trimmed if there's not enough space to display it fully.
+    /// </summary>
+    [Parameter]
+    public bool CanTrim { get; set; }
+
+    /// <summary>
     /// Gets or sets the text to display.
     /// </summary>
     [Parameter]
@@ -30,19 +36,37 @@ public class TextBlock : StyledComponentBase
 
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
+        string classBuilder
+            = new CssBuilder("text-block")
+            .AddClass($"type-{Appearance.Class}")
+            .AddClass("no-wrap", NoWrap)
+            .AddClass("trim", CanTrim)
+            .AddClass("hide", !IsVisible)
+            .AddClass(FinalCssClasses)
+            .Build();
+
         builder.OpenElement(0, Appearance.Tag);
         builder.AddAttribute(1, "id", Id);
-        builder.AddAttribute(2, "class", $"text-block type-{Appearance.Class} {(NoWrap ? "no-wrap" : string.Empty)} {FinalCssClasses}");
+        builder.AddAttribute(2, "class", classBuilder.ToString());
         builder.AddAttribute(3, "style", Style);
+
+        int sequence = 4;
+        if (AdditionalAttributes is not null)
+        {
+            foreach (KeyValuePair<string, object> attribute in AdditionalAttributes)
+            {
+                builder.AddAttribute(sequence, attribute.Key, attribute.Value);
+                sequence++;
+            }
+        }
 
         if (HighlightedSpans is null || HighlightedSpans.Length == 0)
         {
-            builder.AddContent(4, Text);
+            builder.AddContent(sequence, Text);
         }
         else if (!string.IsNullOrEmpty(Text!))
         {
             // Create a set of `text <mark> highlighted span </mark> text`
-            int sequence = 4;
             int lastPlainTextStartPosition = 0;
 
             foreach (TextSpan highlightedSpan in HighlightedSpans.OrderBy(span => span.StartPosition))

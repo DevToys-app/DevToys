@@ -35,7 +35,7 @@ public abstract class JSStyledComponentBase : StyledComponentBase, IAsyncDisposa
     /// Gets the reference for the current component.
     /// </summary>
     /// <value>The reference.</value>
-    protected DotNetObjectReference<JSStyledComponentBase> Reference
+    internal DotNetObjectReference<JSStyledComponentBase> Reference
     {
         get
         {

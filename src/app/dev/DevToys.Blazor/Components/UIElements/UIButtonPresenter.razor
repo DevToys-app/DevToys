@@ -9,5 +9,5 @@
         VerticalAlignment="@UIButton.VerticalAlignment"
         Appearance="@((UIButton.IsAccent ? ButtonAppearance.Accent : ButtonAppearance.Neutral))"
         @onclick=OnButtonClickAsync>
-    <TextBlock Text="@UIButton?.Text" />
+    <TextBlock Text="@UIButton?.Text" NoWrap="true" />
 </Button>

@@ -34,6 +34,9 @@ html, body {
     --focus-stroke:
         0 0 0 1px var(--focus-stroke-inner),
         0 0 0 3px var(--focus-stroke-outer);
+
+    /* Monaco Editor diff view vertical splitter width */
+    --vscode-sash-size: 16px;
 }
 
 /* Themes */
@@ -54,6 +57,11 @@ div[data-theme='macos-light-theme'] {
 }
 
 div {
+    color: currentColor;
+}
+
+*, .main-layout {
+    /* Default foreground */
     color: var(--text-fill-color-primary);
 }
 
@@ -63,6 +71,6 @@ div {
 .theme-transition *:after {
     transition-property: color, background-color;
     transition-timing-function: ease-out;
-    transition-duration: 200ms;
+    transition-duration: 0ms;
     transition-delay: 0 !important;
 }

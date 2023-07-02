@@ -51,11 +51,6 @@ public partial class GridView<TKey, TElement> : JSStyledComponentBase
         }
     }
 
-    public override async ValueTask DisposeAsync()
-    {
-        await base.DisposeAsync();
-    }
-
     internal Task OnItemClickAsync(TElement item)
     {
         return OnItemClick.InvokeAsync(item);

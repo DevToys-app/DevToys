@@ -21,7 +21,7 @@
         &display {
             font: {
                 family: var(--font-family-display);
-                weight: 300;
+                weight: 400;
             }
         }
 
@@ -86,5 +86,15 @@
 
     &.no-wrap {
         white-space: nowrap;
+    }
+
+    &.trim {
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+        width: 100%;
+    }
+
+    &.hide {
+        display: none !important;
     }
 }

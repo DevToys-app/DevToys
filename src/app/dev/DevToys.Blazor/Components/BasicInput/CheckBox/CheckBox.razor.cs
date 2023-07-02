@@ -1,6 +1,6 @@
 ﻿namespace DevToys.Blazor.Components;
 
-public partial class CheckBox : JSStyledComponentBase
+public partial class CheckBox : JSStyledComponentBase, IFocusable
 {
     /// <summary>
     /// Gets or sets the text to display in the check box.
@@ -20,7 +20,7 @@ public partial class CheckBox : JSStyledComponentBase
     [Parameter]
     public EventCallback<bool> IsCheckedChanged { get; set; }
 
-    internal ValueTask<bool> FocusAsync()
+    public ValueTask<bool> FocusAsync()
     {
         return JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.DOM.setFocus", Element);
     }

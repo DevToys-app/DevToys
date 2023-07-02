@@ -21,7 +21,7 @@
     <ChildContent>
         <StackPanel Orientation="UIOrientation.Vertical"
                     HorizontalAlignment="UIHorizontalAlignment.Stretch"
-                    Style="@(UISettingGroup.ChildrenAreAllSettings ? "row-gap: 0px !important" : string.Empty)">
+                    Spacing="@(UISettingGroup.ChildrenAreAllSettings ? 0 : 4)">
             @if (UISettingGroup.Children is not null)
             {
                 for (int i = 0; i < UISettingGroup.Children.Length; i++)

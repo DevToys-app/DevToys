@@ -10,6 +10,10 @@
             <UIStackPresenter UIStack="@stack" />
             break;
 
+        case IUIWrap wrap:
+            <UIWrapPresenter UIWrap="@wrap" />
+            break;
+
         case IUIButton button:
             <UIButtonPresenter UIButton="@button" />
             break;
@@ -28,6 +32,22 @@
 
         case IUISelectDropDownList selectDropDownList:
             <UISelectDropDownListPresenter UISelectDropDownList="@selectDropDownList" />
+            break;
+
+        case IUIDiffTextInput diffTextInput:
+            <UIDiffTextInputPresenter UIDiffTextInput="@diffTextInput" />
+            break;
+
+        case IUIMultiLineTextInput multiLineTextInput:
+            <UIMultiLineTextInputPresenter UIMultiLineTextInput="@multiLineTextInput" />
+            break;
+
+        case IUISingleLineTextInput singleLineTextInput:
+            <UISingleLineTextInputPresenter UISingleLineTextInput="@singleLineTextInput" />
+            break;
+
+        case IUIIcon icon:
+            <UIIconPresenter UIIcon="@icon" />
             break;
 
         default:

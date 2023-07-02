@@ -59,7 +59,13 @@ internal sealed class FileStorage : IFileStorage
         return File.OpenWrite(relativeOrAbsoluteFilePath);
     }
 
-    public ValueTask<string?> PickSaveFileAsync(string[] fileTypes)
+    public ValueTask<Stream?> PickSaveFileAsync(string[] fileTypes)
+    {
+        // TODO: prompt the user to type in the console a relative or absolute file path that has one of the file types indicated.
+        throw new NotImplementedException();
+    }
+
+    public ValueTask<Stream?> PickOpenFileAsync(string[] fileTypes)
     {
         // TODO: prompt the user to type in the console a relative or absolute file path that has one of the file types indicated.
         throw new NotImplementedException();

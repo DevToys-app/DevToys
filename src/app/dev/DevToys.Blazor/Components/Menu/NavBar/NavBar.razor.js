@@ -4,7 +4,7 @@ export function registerResizeHandler(id, navId, dotNetObjRef) {
     // On nav bar resize
     const resizeObserver = new ResizeObserver((navBars) => {
         adjustSidebarBodyHeight(navTag);
-        dotNetObjRef.invokeMethodAsync("OnComponentResize", navBars[0].contentRect.width);
+        dotNetObjRef.invokeMethodAsync("OnComponentResize", Math.trunc(navBars[0].contentRect.width));
     });
     resizeObserver.observe(navBar);
 }
