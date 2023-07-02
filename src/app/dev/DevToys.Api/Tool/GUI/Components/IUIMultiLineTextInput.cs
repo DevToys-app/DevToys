@@ -3,9 +3,6 @@
 /// <summary>
 /// A component that can be used to display or edit unformatted text on multiple lines.
 /// </summary>
-/// <remarks>
-/// This component is powered by Monaco Editor.
-/// </remarks>
 public interface IUIMultiLineTextInput : IUISingleLineTextInput
 {
     /// <summary>

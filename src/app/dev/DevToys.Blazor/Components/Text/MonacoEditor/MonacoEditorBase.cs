@@ -84,7 +84,7 @@ public abstract class MonacoEditorBase : MefComponentBase, IFocusable
         await base.OnAfterRenderAsync(firstRender);
     }
 
-    protected virtual async Task SetEventListenersAsync()
+    internal virtual async Task SetEventListenersAsync()
     {
         if (OnDidDispose.HasDelegate)
         {
@@ -100,11 +100,13 @@ public abstract class MonacoEditorBase : MefComponentBase, IFocusable
     {
         switch (eventName)
         {
-            case nameof(OnDidDispose): await OnDidDispose.InvokeAsync(this); break;
+            case nameof(OnDidDispose):
+                await OnDidDispose.InvokeAsync(this);
+                break;
         }
     }
 
-    protected ValueTask<bool> SetEventListenerAsync(string eventName)
+    internal ValueTask<bool> SetEventListenerAsync(string eventName)
         => JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.setEventListener", Id, eventName);
 
     public override async ValueTask DisposeAsync()

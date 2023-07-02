@@ -1,0 +1,12 @@
+@namespace DevToys.Blazor.Components.UIElements
+@using DevToys.Api;
+@inherits JSStyledComponentBase
+
+<MonacoEditorDiff @ref="_monacoEditor"
+                  IsVisible="@UIDiffTextInput.IsVisible"
+                  IsEnabled="@UIDiffTextInput.IsEnabled"
+                  HorizontalAlignment="@UIDiffTextInput.HorizontalAlignment"
+                  VerticalAlignment="@UIDiffTextInput.VerticalAlignment"
+                  Header="@UIDiffTextInput.Title"
+                  ConstructionOptions="@OnMonacoConstructionOptions"
+                  OnDidInit="@OnMonacoEditorInitializedAsync" />

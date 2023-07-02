@@ -19,12 +19,15 @@
     }
 
     &-instance {
-        min-height: 100px;
+        min-height: 200px;
+        height: inherit;
+        display: grid;
     }
 
     &-with-header {
         display: block;
         position: relative;
+        height: 100%;
 
         .monaco-editor-standalone-header {
             margin-bottom: 4px;
@@ -32,6 +35,7 @@
     }
 
     &-container {
+        height: inherit;
         cursor: text;
         position: relative;
         border-radius: var(--control-corner-radius);

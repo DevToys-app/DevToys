@@ -5,10 +5,18 @@ using DevToys.Blazor.Components.Monaco.Editor;
 
 namespace DevToys.Blazor.Components;
 
-public abstract class RicherMonacoEditorBase : MonacoEditorBase
+public class RicherMonacoEditorBase : MonacoEditorBase
 {
     private readonly List<string> _deltaDecorationIds = new();
     private CursorStateComputer? _executeEditsLambda;
+
+    public RicherMonacoEditorBase(IJSRuntime? jsRuntime = null)
+    {
+        if (jsRuntime is not null)
+        {
+            JSRuntime = jsRuntime;
+        }
+    }
 
     /// <summary>
     /// An event emitted when the content of the current model has changed.
@@ -166,7 +174,7 @@ public abstract class RicherMonacoEditorBase : MonacoEditorBase
     [Parameter]
     public EventCallback<ScrollEvent> OnDidScrollChange { get; set; }
 
-    protected override async Task SetEventListenersAsync()
+    internal override async Task SetEventListenersAsync()
     {
         if (OnDidCompositionEnd.HasDelegate)
         {
@@ -699,4 +707,16 @@ public abstract class RicherMonacoEditorBase : MonacoEditorBase
     /// </summary>
     internal async ValueTask<bool> SetLanguageAsync(string languageId)
         => await MonacoEditorHelper.SetModelLanguageAsync(JSRuntime, await GetModelAsync(), languageId);
+
+    internal ValueTask<bool> UpdateOptionsAsync(EditorUpdateOptions newOptions)
+    {
+        // Convert the options object into a JsonElement to get rid of the properties with null values
+        string optionsJson = JsonSerializer.Serialize(newOptions, new JsonSerializerOptions
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        });
+        JsonElement optionsDict = JsonSerializer.Deserialize<JsonElement>(optionsJson);
+        return JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.updateOptions", Id, optionsDict);
+    }
 }

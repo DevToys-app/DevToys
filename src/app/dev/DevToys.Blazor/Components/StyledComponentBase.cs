@@ -16,7 +16,7 @@ public abstract class StyledComponentBase : ComponentBase
     /// <summary>
     /// Gets the value of the <c>id</c> attribute in the DOM of this component.
     /// </summary>
-    public string Id { get; } = NewId();
+    public string Id { get; protected set; } = NewId();
 
     /// <summary>
     /// Gets or sets additional custom attributes that will be rendered by the component.

@@ -89,7 +89,8 @@ internal sealed class SettingsGuiTool : IGuiTool
                         Button().Text("Bottom Center button").OnClick(OnBottomCenterButtonClickAsync),
                         Button().Text("Bottom Right button")),
                 SingleLineTextInput().Title("Read-write text input with copy").ReadOnly(),
-                MultilineTextInput().Title("Monaco editor").Language("json"));
+                MultilineTextInput().Title("Monaco editor").Text("{\"hello\": \"there\"}").Language("json"),
+                DiffTextInput().Title("Difference").OriginalText("hello").ModifiedText("hello world"));
 
     public void OnDataReceived(string dataTypeName, object? parsedData)
     {
