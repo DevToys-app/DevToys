@@ -26,6 +26,11 @@ public interface IUISingleLineTextInput : IUITitledElement
     TextSpan Selection { get; }
 
     /// <summary>
+    /// Gets an extra interactive content to display in the command bar of the text input.
+    /// </summary>
+    IUIElement? CommandBarExtraContent { get; }
+
+    /// <summary>
     /// Raised when <see cref="IsReadOnly"/> is changed.
     /// </summary>
     event EventHandler? IsReadOnlyChanged;
@@ -44,6 +49,11 @@ public interface IUISingleLineTextInput : IUITitledElement
     /// Raised when <see cref="Selection"/> is changed.
     /// </summary>
     event EventHandler? SelectionChanged;
+
+    /// <summary>
+    /// Raised when <see cref="CommandBarExtraContent"/> is changed.
+    /// </summary>
+    event EventHandler? CommandBarExtraContentChanged;
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Text = {{{nameof(Text)}}}")]
@@ -53,6 +63,7 @@ internal class UISingleLineTextInput : UITitledElement, IUISingleLineTextInput
     private bool _isReadOnly;
     private bool _canCopyWhenEditable;
     private TextSpan? _selection;
+    private IUIElement? _commandBarExtraContent;
 
     internal UISingleLineTextInput(string? id)
         : base(id)
@@ -103,10 +114,17 @@ internal class UISingleLineTextInput : UITitledElement, IUISingleLineTextInput
         }
     }
 
+    public IUIElement? CommandBarExtraContent
+    {
+        get => _commandBarExtraContent;
+        internal set => SetPropertyValue(ref _commandBarExtraContent, value, CommandBarExtraContentChanged);
+    }
+
     public event EventHandler? TextChanged;
     public event EventHandler? IsReadOnlyChanged;
     public event EventHandler? CanCopyWhenEditableChanged;
     public event EventHandler? SelectionChanged;
+    public event EventHandler? CommandBarExtraContentChanged;
 }
 
 public static partial class GUI
@@ -208,6 +226,18 @@ public static partial class GUI
         if (element is UISingleLineTextInput strongElement)
         {
             strongElement.Selection = new TextSpan(start, length);
+        }
+        return element;
+    }
+
+    /// <summary>
+    /// Defines an additional element to display in the command bar.
+    /// </summary>
+    public static T CommandBarExtraContent<T>(this T element, IUIElement? extraElement) where T : IUISingleLineTextInput
+    {
+        if (element is UISingleLineTextInput strongElement)
+        {
+            strongElement.CommandBarExtraContent = extraElement;
         }
         return element;
     }

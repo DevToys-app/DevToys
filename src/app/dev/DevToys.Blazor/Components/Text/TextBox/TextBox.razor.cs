@@ -63,19 +63,19 @@ public partial class TextBox : MefComponentBase, IFocusable
     /// Gets or sets the minimum value possible when <see cref="Type"/> is <see cref="TextBoxTypes.Number"/>.
     /// </summary>
     [Parameter]
-    public int Min { get; set; } = int.MinValue;
+    public double Min { get; set; } = int.MinValue;
 
     /// <summary>
     /// Gets or sets the maximum value possible when <see cref="Type"/> is <see cref="TextBoxTypes.Number"/>.
     /// </summary>
     [Parameter]
-    public int Max { get; set; } = int.MaxValue;
+    public double Max { get; set; } = int.MaxValue;
 
     /// <summary>
     /// Gets or sets the interval between legal numbers when <see cref="Type"/> is <see cref="TextBoxTypes.Number"/>.
     /// </summary>
     [Parameter]
-    public int Step { get; set; } = 1;
+    public double Step { get; set; } = 1;
 
     [Parameter]
     public RenderFragment? Buttons { get; set; }
@@ -130,7 +130,7 @@ public partial class TextBox : MefComponentBase, IFocusable
         {
             Guard.IsNotNull(_input);
             Guard.IsNotNull(_input.Element);
-            await SetTextAsync((await (await JSModule).InvokeAsync<int>("decreaseValue", _input.Element)).ToString());
+            await SetTextAsync((await (await JSModule).InvokeAsync<double>("decreaseValue", _input.Element)).ToString());
             await FocusAsync();
         }
     }
@@ -141,7 +141,7 @@ public partial class TextBox : MefComponentBase, IFocusable
         {
             Guard.IsNotNull(_input);
             Guard.IsNotNull(_input.Element);
-            await SetTextAsync((await (await JSModule).InvokeAsync<int>("increaseValue", _input.Element)).ToString());
+            await SetTextAsync((await (await JSModule).InvokeAsync<double>("increaseValue", _input.Element)).ToString());
             await FocusAsync();
         }
     }

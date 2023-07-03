@@ -39,6 +39,12 @@
     <GridCell Row="0"
               Column="1">
         <StackPanel IsEnabled="@(!IsLoadingFile)" Wrap="false">
+            @if (UITextInput.CommandBarExtraContent is not null)
+            {
+                <UIElementPresenter UIElement="@UITextInput.CommandBarExtraContent" />
+                <div class="ui-text-input-wrapper-separator"></div>
+            }
+
             @if (!_hideNonEssentialToolBar)
             {
                 @if (!UITextInput.IsReadOnly)
@@ -100,16 +106,19 @@
                 </Button>
             }
 
-            <div class="ui-text-input-wrapper-separator"></div>
-            <DropDownButton ToolTip="Transfer to another tool"
-                            Items="@SmartDetectionDropDownItems"
-                            AnchorOrigin="Origin.BottomRight"
-                            TransformOrigin="Origin.TopRight">
-                <img src="@(ToolsDetectedBySmartDetection ? "_content/DevToys.Blazor/img/idea.svg" : "_content/DevToys.Blazor/img/idea-disabled.svg")"
-                     height="22"
-                     width="22"
-                     style="flex-basis: auto; align-self:center;" />
-            </DropDownButton>
+            @if (UITextInput.IsReadOnly)
+            {
+                <div class="ui-text-input-wrapper-separator"></div>
+                <DropDownButton ToolTip="Transfer to another tool"
+                                Items="@SmartDetectionDropDownItems"
+                                AnchorOrigin="Origin.BottomRight"
+                                TransformOrigin="Origin.TopRight">
+                    <img src="@(ToolsDetectedBySmartDetection ? "_content/DevToys.Blazor/img/idea.svg" : "_content/DevToys.Blazor/img/idea-disabled.svg")"
+                         height="22"
+                         width="22"
+                         style="flex-basis: auto; align-self:center;" />
+                </DropDownButton>
+            }
         </StackPanel>
     </GridCell>
     <GridCell Row="1" Column="0" ColumnSpan="2">

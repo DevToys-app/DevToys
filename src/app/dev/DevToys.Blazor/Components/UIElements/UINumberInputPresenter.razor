@@ -1,0 +1,13 @@
+@namespace DevToys.Blazor.Components.UIElements
+@using DevToys.Api;
+@inherits StyledComponentBase
+
+<UITextInputWrapper @ref="_textInputWrapper" UITextInput="@UINumberInput">
+    <TextBox IsVisible="@UINumberInput.IsVisible"
+             IsEnabled="@UINumberInput.IsEnabled"
+             Text="@UINumberInput.Text"
+             IsReadOnly="@UINumberInput.IsReadOnly"
+             TextChanged="@OnTextChanged"
+             Type="TextBoxTypes.Number"
+             ParentComponent="_textInputWrapper" />
+</UITextInputWrapper>
