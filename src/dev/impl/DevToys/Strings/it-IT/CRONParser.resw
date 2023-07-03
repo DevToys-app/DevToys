@@ -172,9 +172,9 @@
     <value>Secondi compresi (6 - segmenti Cron)</value>
   </data>
   <data name="DescriptionTitle" xml:space="preserve">
-    <value>Description</value>
+    <value>Descrizione</value>
   </data>
   <data name="DescriptionErrorMessage" xml:space="preserve">
-    <value>Unable to generate description</value>
+    <value>Impossibile generare descrizioni</value>
   </data>
 </root>
