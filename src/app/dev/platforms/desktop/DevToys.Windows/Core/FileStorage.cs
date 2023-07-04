@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Text;
 using DevToys.Api;
+using DevToys.Windows.Helpers;
 using Microsoft.Win32;
 
 namespace DevToys.Windows.Core;
@@ -56,7 +57,7 @@ internal sealed class FileStorage : IFileStorage
         return File.OpenWrite(relativeOrAbsoluteFilePath);
     }
 
-    public ValueTask<Stream?> PickSaveFileAsync(string[] fileTypes)
+    public async ValueTask<Stream?> PickSaveFileAsync(string[] fileTypes)
     {
         return await ThreadHelper.RunOnUIThreadAsync(async () =>
         {
@@ -80,14 +81,14 @@ internal sealed class FileStorage : IFileStorage
                     fileStream.Close();
                 }
 
-                return new ValueTask<Stream?>(saveFileDialog.OpenFile());
+                return saveFileDialog.OpenFile();
             }
 
-            return new ValueTask<Stream?>(Task.FromResult<Stream?>(null));
+            return null;
         });
     }
 
-    public ValueTask<Stream?> PickOpenFileAsync(string[] fileTypes)
+    public async ValueTask<Stream?> PickOpenFileAsync(string[] fileTypes)
     {
         return await ThreadHelper.RunOnUIThreadAsync(async () =>
         {
@@ -106,10 +107,10 @@ internal sealed class FileStorage : IFileStorage
 
             if (openFileDialog.ShowDialog() == true)
             {
-                return new ValueTask<Stream?>(openFileDialog.OpenFile());
+                return openFileDialog.OpenFile();
             }
 
-            return new ValueTask<Stream?>(Task.FromResult<Stream?>(null));
+            return null;
         });
     }
 
