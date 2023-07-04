@@ -64,6 +64,8 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                         return null;
                     }
                 }
+
+                tokenResult.Claims = jwtSecurityToken.Claims.Select(c => new JwtClaim(c));
             }
             catch (Exception exception)
             {

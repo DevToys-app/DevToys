@@ -18,6 +18,8 @@
         <converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
         <converters:BooleanToTextWrappingConverter x:Key="BooleanToTextWrappingConverter" TextWrappingOnTrue="Wrap" TextWrappingOnFalse="NoWrap"/>
         <converters:BooleanToIntegerConverter x:Key="ReadOnlyToClearButtonTabIndexConverter" ValueOnTrue="3" ValueOnFalse="0"/>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <converters:BooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" IsInverted="True"/>
     </UserControl.Resources>
 
     <Grid>
@@ -59,6 +61,17 @@
                 AutomationProperties.Name="{Binding Instance.Common.Expand, Mode=OneTime, Source={StaticResource LanguageManager}}"
                 Click="ExpandButton_Click">
                 <FontIcon x:Name="ExpandButtonIcon" Glyph="&#xF15F;"/>
+            </Button>
+            <Button
+                x:Name="InfoButton"
+                x:DeferLoadStrategy="Lazy"
+                Visibility="Collapsed"
+                TabIndex="0"
+                Margin="8,0,0,0"
+                ToolTipService.ToolTip="{Binding Instance.Common.ShowInfo, Mode=OneTime, Source={StaticResource LanguageManager}}"
+                AutomationProperties.Name="{Binding Instance.Common.ShowInfo, Mode=OneTime, Source={StaticResource LanguageManager}}"
+                Click="InfoButton_Click">
+                <FontIcon Glyph="&#xF4A3;"/>
             </Button>
             <Button
                 x:Name="PasteButton"
@@ -113,7 +126,8 @@
             x:Name="CodeEditorCoreContainer"
             Grid.Row="1"
             Grid.Column="0"
-            Grid.ColumnSpan="2">
+            Grid.ColumnSpan="2"
+            Visibility="{x:Bind ShowInfoContent, Mode=OneWay, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
             <!--<monaco:CodeEditorCore
                 Grid.Row="1"
                 Grid.Column="0"
@@ -126,6 +140,22 @@
                 DiffRightText="{x:Bind DiffRightText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 AutomationProperties.LabeledBy="{x:Bind HeaderTextBlock}"/>-->
         </Grid>
+        <Border
+            x:Name="CodeEditorSizeFit"
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            SizeChanged="CodeEditorSizeFit_SizeChanged"/>
+        <ContentControl
+            x:Name="InfoGrid"
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Visibility="{x:Bind ShowInfoContent, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+            Content="{x:Bind InfoContent}">
+        </ContentControl>
         <TextBlock
             Grid.Row="1"
             Grid.Column="0"
