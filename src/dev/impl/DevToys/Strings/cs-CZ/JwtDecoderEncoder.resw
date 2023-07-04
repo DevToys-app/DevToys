@@ -298,73 +298,73 @@
     <value>Deklarace "jti" (JWT ID) poskytuje jedinečný identifikátor pro JWT. Hodnota identifikátoru MUSÍ být přiřazena způsobem, který zajistí, že existuje zanedbatelná pravděpodobnost, že stejná hodnota bude omylem přiřazena jinému datovému objektu; pokud aplikace používá více vydavatelů, MUSÍ být zabráněno kolizím i mezi hodnotami vytvořenými různými vydavateli. K zabránění přehrání JWT lze použít deklaraci "jti". Hodnota "jti" je řetězec rozlišující malá a velká písmena. Použití této deklarace je VOLITELNÉ.</value>
   </data>
   <data name="name" xml:space="preserve">
-    <value>End-User's full name in displayable form including all name parts, possibly including titles and suffixes, ordered according to the End-User's locale and preferences.</value>
+    <value>Celé jméno koncového uživatele v zobrazitelné podobě včetně všech částí jména, případně včetně titulů a přípon, seřazené podle lokalizace a preferencí koncového uživatele.</value>
   </data>
   <data name="given_name" xml:space="preserve">
-    <value>Given name(s) or first name(s) of the End-User. Note that in some cultures, people can have multiple given names; all can be present, with the names being separated by space characters.</value>
+    <value>Křestní jméno(a) koncového uživatele. Berte na vědomí, že v některých kulturách mohou mít lidé více křestních jmen; mohou být uvedena všechna, přičemž jména musí být oddělena znaky mezery.</value>
   </data>
   <data name="family_name" xml:space="preserve">
-    <value>Surname(s) or last name(s) of the End-User. Note that in some cultures, people can have multiple family names or no family name; all can be present, with the names being separated by space characters.</value>
+    <value>Příjmení koncového uživatele. Berte na vědomí, že v některých kulturách mohou mít lidé více příjmení nebo žádné příjmení; mohou být přítomna všechna, přičemž jména musí být oddělena znaky mezery.</value>
   </data>
   <data name="middle_name" xml:space="preserve">
-    <value>Middle name(s) of the End-User. Note that in some cultures, people can have multiple middle names; all can be present, with the names being separated by space characters. Also note that in some cultures, middle names are not used.</value>
+    <value>Druhé/prostřední jméno(a) koncového uživatele. Berte na vědomí, že v některých kulturách mohou mít lidé více druhých/prostředních jmen; mohou být uvedena všechna, přičemž jména musí být oddělena mezerou. Berte také na vědomí, že v některých kulturách se prostřední jména nepoužívají.</value>
   </data>
   <data name="nickname" xml:space="preserve">
-    <value>Casual name of the End-User that may or may not be the same as the given_name. For instance, a nickname value of Mike might be returned alongside a given_name value of Michael.</value>
+    <value>Domácké podoby jména koncového uživatele, které může, ale nemusí být stejné jako given_name. Například vedle hodnoty given_name Michal může být vrácena hodnota domácké podoby Míša.</value>
   </data>
   <data name="preferred_username" xml:space="preserve">
-    <value>Shorthand name by which the End-User wishes to be referred to at the RP, such as janedoe or j.doe. This value MAY be any valid JSON string including special characters such as @, /, or whitespace. The RP MUST NOT rely upon this value being unique.</value>
+    <value>Zkrácené jméno, pod kterým si koncový uživatel přeje být v RP označován, například jannovak nebo j.novak. Tato hodnota MŮŽE být jakýkoli platný JSON řetězec včetně speciálních znaků, jako jsou @, / nebo bílé znaky. RP NESMÍ spoléhat na to, že tato hodnota je jedinečná.</value>
   </data>
   <data name="profile" xml:space="preserve">
-    <value>URL of the End-User's profile page. The contents of this Web page SHOULD be about the End-User.</value>
+    <value>URL odkaz profilové stránky koncového uživatele. Obsah této webové stránky BY MĚL být o koncovém uživateli.</value>
   </data>
   <data name="picture" xml:space="preserve">
-    <value>URL of the End-User's profile picture. This URL MUST refer to an image file (for example, a PNG, JPEG, or GIF image file), rather than to a Web page containing an image. Note that this URL SHOULD specifically reference a profile photo of the End-User suitable for displaying when describing the End-User, rather than an arbitrary photo taken by the End-User.</value>
+    <value>URL odkaz profilového obrázku koncového uživatele. Tento URL odkaz MUSÍ odkazovat na soubor s obrázkem (například soubor PNG, JPEG nebo GIF), nikoli na webovou stránku obsahující obrázek. Berte na vědomí, že tento URL odkaz BY MĚL odkazovat konkrétně na profilový obrázek koncového uživatele vhodný pro zobrazení při popisu koncového uživatele, nikoli na libovolnou fotografii pořízenou koncovým uživatelem.</value>
   </data>
   <data name="website" xml:space="preserve">
-    <value>URL of the End-User's Web page or blog. This Web page SHOULD contain information published by the End-User or an organization that the End-User is affiliated with.</value>
+    <value>URL odkaz webové stránky nebo blogu koncového uživatele. Tato webová stránka MUSÍ obsahovat informace zveřejněné koncovým uživatelem nebo organizací, se kterou je koncový uživatel spojen.</value>
   </data>
   <data name="email" xml:space="preserve">
-    <value>End-User's preferred e-mail address. Its value MUST conform to the RFC 5322 addr-spec syntax. The RP MUST NOT rely upon this value being unique.</value>
+    <value>Preferovaná e-mailová adresa koncového uživatele. Její hodnota MUSÍ odpovídat syntaxi RFC 5322 addr-spec. RP NESMÍ spoléhat na to, že tato hodnota je jedinečná.</value>
   </data>
   <data name="email_verified" xml:space="preserve">
-    <value>True if the End-User's e-mail address has been verified; otherwise false. When this Claim Value is true, this means that the OP took affirmative steps to ensure that this e-mail address was controlled by the End-User at the time the verification was performed. The means by which an e-mail address is verified is context-specific, and dependent upon the trust framework or contractual agreements within which the parties are operating.</value>
+    <value>Pravda, pokud byla e-mailová adresa koncového uživatele ověřena; jinak nepravda. Pokud je tato hodnota tvrzení pravdivá, znamená to, že OP podnikl potvrzující kroky, aby zajistil, že tato e-mailová adresa byla v době ověření využívaná koncovým uživatelem. Způsob, jakým se e-mailová adresa ověřuje, je specifický pro daný kontext a závisí na rámci důvěry nebo smluvních ujednáních, v jejichž rámci strany jednají.</value>
   </data>
   <data name="gender" xml:space="preserve">
-    <value>End-User's gender. Values defined by this specification are female and male. Other values MAY be used when neither of the defined values are applicable.</value>
+    <value>Pohlaví koncového uživatele. Hodnoty definované touto specifikací jsou žena a muž. Pokud není použitelná žádná z definovaných hodnot, LZE použít jiné hodnoty.</value>
   </data>
   <data name="birthdate" xml:space="preserve">
-    <value>End-User's birthday, represented as an ISO 8601:2004 YYYY-MM-DD format. The year MAY be 0000, indicating that it is omitted. To represent only the year, YYYY format is allowed. Note that depending on the underlying platform's date related function, providing just year can result in varying month and day, so the implementers need to take this factor into account to correctly process the dates.</value>
+    <value>Datum narození koncového uživatele, reprezentované ve formátu ISO 8601:2004 RRRR-MM-DD. Rok MŮŽE být 0000, což znamená, že je vynechán. Pro vyjádření pouze roku je povolen formát RRRR. Berte na vědomí, že v závislosti na funkci související s datem podkladové platformy může zadání pouze roku vést k odlišnému měsíci a dni, takže implementátoři musí tento faktor vzít v úvahu, aby data správně zpracovali.</value>
   </data>
   <data name="zoneinfo" xml:space="preserve">
-    <value>String from zoneinfo time zone database representing the End-User's time zone. For example, Europe/Paris or America/Los_Angeles.</value>
+    <value>Řetězec z databáze časových pásem zoneinfo reprezentující časové pásmo koncového uživatele. Například Evropa/Paříž nebo Amerika/Los_Angeles.</value>
   </data>
   <data name="locale" xml:space="preserve">
-    <value>End-User's locale, represented as a BCP47 [RFC5646] language tag. This is typically an ISO 639-1 Alpha-2 language code in lowercase and an ISO 3166-1 Alpha-2 country code in uppercase, separated by a dash. For example, en-US or fr-CA. As a compatibility note, some implementations have used an underscore as the separator rather than a dash, for example, en_US; Relying Parties MAY choose to accept this locale syntax as well.</value>
+    <value>Lokalizace koncového uživatele, reprezentovaná jako jazyková značka BCP47 [RFC5646]. Obvykle se jedná o kód jazyka ISO 639-1 Alpha-2 malými písmeny a kód země ISO 3166-1 Alpha-2 velkými písmeny, oddělený pomlčkou. Například en-US nebo fr-CA. Jako poznámku ke kompatibilitě lze uvést, že některé implementace používají jako oddělovač místo pomlčky podtržítko, například en_US; spoléhající se strany se MOHOU rozhodnout přijmout i tuto syntaxi lokalizace.</value>
   </data>
   <data name="phone_number" xml:space="preserve">
-    <value>End-User's preferred telephone number. E.164 is RECOMMENDED as the format of this Claim, for example, +1 (425) 555-1212 or +56 (2) 687 2400. If the phone number contains an extension, it is RECOMMENDED that the extension be represented using the RFC 3966 extension syntax, for example, +1 (604) 555-1234;ext=5678.</value>
+    <value>Preferované telefonní číslo koncového uživatele. Jako formát tohoto požadavku se DOPORUČUJE E.164, například +1 (425) 555-1212 nebo +56 (2) 687 2400. Pokud telefonní číslo obsahuje přípony, DOPORUČUJE se, aby byly reprezentovány pomocí syntaxe přípony RFC 3966, například +1 (604) 555-1234;ext=5678.</value>
   </data>
   <data name="phone_number_verified" xml:space="preserve">
-    <value>True if the End-User's phone number has been verified; otherwise false. When this Claim Value is true, this means that the OP took affirmative steps to ensure that this phone number was controlled by the End-User at the time the verification was performed. The means by which a phone number is verified is context-specific, and dependent upon the trust framework or contractual agreements within which the parties are operating. When true, the phone_number Claim MUST be in E.164 format and any extensions MUST be represented in RFC 3966 format.</value>
+    <value>Pravda, pokud bylo telefonní číslo koncového uživatele ověřeno; jinak nepravda. Pokud je tato hodnota tvrzení pravdivá, znamená to, že OP podnikl potvrzující kroky, aby zajistil, že toto telefonní číslo bylo v době ověření využíváno koncovým uživatelem. Způsob, jakým se telefonní číslo ověřuje, je specifický pro daný kontext a závisí na rámci důvěry nebo smluvních ujednáních, v jejichž rámci strany jednají. Je-li to pravda, MUSÍ být deklarace phone_number ve formátu E.164 a případná rozšíření MUSÍ být reprezentována ve formátu RFC 3966.</value>
   </data>
   <data name="address" xml:space="preserve">
-    <value>End-User's preferred postal address. The value of the address member is a JSON [RFC4627] structure.</value>
+    <value>Preferovaná poštovní adresa koncového uživatele. Hodnota části adresy je ve struktuře JSON [RFC4627].</value>
   </data>
   <data name="updated_at" xml:space="preserve">
-    <value>Time the End-User's information was last updated. Its value is a JSON number representing the number of seconds from 1970-01-01T0:0:0Z as measured in UTC until the date/time.</value>
+    <value>Čas poslední aktualizace informací o koncovém uživateli. Jeho hodnota je číslo JSON představující počet sekund od 1970-01-01T0:0:0Z měřeno v UTC do data/času.</value>
   </data>
   <data name="azp" xml:space="preserve">
-    <value>Authorized party - the party to which the ID Token was issued. If present, it MUST contain the OAuth 2.0 Client ID of this party. This Claim is only needed when the ID Token has a single audience value and that audience is different than the authorized party. It MAY be included even when the authorized party is the same as the sole audience. The azp value is a case sensitive string containing a StringOrURI value.</value>
+    <value>Oprávněná strana - strana, které byl ID Token vydán. Pokud existuje, MUSÍ obsahovat ID klienta OAuth 2.0 této strany. Tato deklarace je potřeba pouze v případě, že ID Token má jedinou hodnotu příjemce a tento příjemce je jiný než autorizovaná strana. MŮŽE být obsažena i v případě, že autorizovaná strana je stejná jako jediný příjemce. Hodnota "azp" je řetězec rozlišující malá a velká písmena obsahující hodnotu StringOrURI.</value>
   </data>
   <data name="nonce" xml:space="preserve">
-    <value>String value used to associate a Client session with an ID Token, and to mitigate replay attacks. The value is passed through unmodified from the Authentication Request to the ID Token. If present in the ID Token, Clients MUST verify that the nonce Claim Value is equal to the value of the nonce parameter sent in the Authentication Request. If present in the Authentication Request, Authorization Servers MUST include a nonce Claim in the ID Token with the Claim Value being the nonce value sent in the Authentication Request. Authorization Servers SHOULD perform no other processing on nonce values used. The nonce value is a case sensitive string.</value>
+    <value>Řetězcová hodnota sloužící k přiřazení relace klienta k ID tokenu a ke zmírnění přehrávacích útoků. Hodnota se předává z požadavku na ověření do ID tokenu v nezměněné podobě. Pokud je v ID tokenu přítomna, klienti MUSÍ ověřit, zda se nonce hodnota deklarace rovná nonce hodnotě parametru zaslaného v požadavku na ověření. Pokud je v ověřovacím požadavku obsažen, MUSÍ autorizační servery do ID tokenu zahrnout nonce parametr deklarace, přičemž hodnota deklarace je rovna nonce hodnotě zaslané v ověřovacím požadavku. Autorizační servery NESMÍ provádět žádné další zpracování použitých nonce hodnot. Nonce hodnota je řetězec, u kterého se rozlišují malá a velká písmena.</value>
   </data>
   <data name="auth_time" xml:space="preserve">
-    <value>Time when the End-User authentication occurred. Its value is a JSON number representing the number of seconds from 1970-01-01T0:0:0Z as measured in UTC until the date/time. When a max_age request is made or when auth_time is requested as an Essential Claim, then this Claim is REQUIRED; otherwise, its inclusion is OPTIONAL. (The auth_time Claim semantically corresponds to the OpenID 2.0 PAPE auth_time response parameter.)</value>
+    <value>Čas, kdy došlo k ověření koncového uživatele. Jeho hodnota je číslo JSON představující počet sekund od 1970-01-01T0:0:0Z měřeno v UTC do data/času. Pokud je zadán požadavek max_age nebo pokud je auth_time požadován jako základní požadavek, pak je tento požadavek VYŽADOVÁN; jinak je jeho zahrnutí VOLITELNÉ. (Požadavek auth_time sémanticky odpovídá parametru odpovědi OpenID 2.0 PAPE auth_time.)</value>
   </data>
   <data name="at_hash" xml:space="preserve">
-    <value>Access Token hash value. Its value is the base64url encoding of the left-most half of the hash of the octets of the ASCII representation of the access_token value, where the hash algorithm used is the hash algorithm used in the alg Header Parameter of the ID Token's JOSE Header. For instance, if the alg is RS256, hash the access_token value with SHA-256, then take the left-most 128 bits and base64url encode them. The at_hash value is a case sensitive string.</value>
+    <value>Hash hodnota přístupového tokenu. Jeho hodnota je base64url kódování levé poloviny hashe oktetů ASCII reprezentace hodnoty access_token, přičemž použitý hashovací algoritmus je hashovací algoritmus použitý v parametru alg hlavičky v hlavičce JOSE ID tokenu. Pokud je alg například RS256, udělejte hash z hodnoty access_token pomocí SHA-256, pak vezměte nejlevějších 128 bitů a zakódujte je pomocí base64url. Hodnota at_hash je řetězec rozlišující malá a velká písmena.</value>
   </data>
   <data name="c_hash" xml:space="preserve">
     <value>Code hash value. Its value is the base64url encoding of the left-most half of the hash of the octets of the ASCII representation of the code value, where the hash algorithm used is the hash algorithm used in the alg Header Parameter of the ID Token's JOSE Header. For instance, if the alg is HS512, hash the code value with SHA-512, then take the left-most 256 bits and base64url encode them. The c_hash value is a case sensitive string. If the ID Token is issued from the Authorization Endpoint with a code, which is the case for the response_type values code id_token and code id_token token, this is REQUIRED; otherwise, its inclusion is OPTIONAL.</value>
