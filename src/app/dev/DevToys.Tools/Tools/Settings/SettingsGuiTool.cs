@@ -94,6 +94,7 @@ internal sealed class SettingsGuiTool : IGuiTool
                  MultilineTextInput()
                     .Title("Monaco editor")
                     .Extendable()
+                    .CanCopyWhenEditable()
                     .Text("{\"hello\": \"there\"}")
                     .Language("json")
                     .CommandBarExtraContent(Button().Text("None")),

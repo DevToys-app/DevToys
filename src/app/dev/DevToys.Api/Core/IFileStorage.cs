@@ -27,6 +27,12 @@ public interface IFileStorage
     ValueTask<Stream?> PickOpenFileAsync(string[] fileTypes);
 
     /// <summary>
+    /// Prompt the user to select a folder.
+    /// </summary>
+    /// <returns>If succeeded, returns the absolute path to the folder the user selected, otherwise, returns null.</returns>
+    ValueTask<string?> PickFolderAsync();
+
+    /// <summary>
     /// Determines whether the file indicated by the given <paramref name="relativeOrAbsoluteFilePath"/> exists.
     /// </summary>
     /// <param name="relativeOrAbsoluteFilePath">The path to the file to check.</param>

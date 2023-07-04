@@ -35,4 +35,9 @@ internal class MockIFileStorage : IFileStorage
         // TODO: prompt the user to type in the console a relative or absolute file path that has one of the file types indicated.
         throw new NotImplementedException();
     }
+
+    public ValueTask<string> PickFolderAsync()
+    {
+        throw new NotImplementedException();
+    }
 }

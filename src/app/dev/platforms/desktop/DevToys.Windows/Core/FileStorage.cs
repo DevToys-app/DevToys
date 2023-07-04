@@ -58,53 +58,65 @@ internal sealed class FileStorage : IFileStorage
 
     public ValueTask<Stream?> PickSaveFileAsync(string[] fileTypes)
     {
-        var saveFileDialog = new SaveFileDialog
+        return await ThreadHelper.RunOnUIThreadAsync(async () =>
         {
-            OverwritePrompt = true
-        };
-
-        if (fileTypes is not null)
-        {
-            saveFileDialog.Filter = GenerateFilter(fileTypes);
-        }
-
-        if (saveFileDialog.ShowDialog() == true)
-        {
-            if (File.Exists(saveFileDialog.FileName))
+            var saveFileDialog = new SaveFileDialog
             {
-                // Clear the file.
-                using FileStream fileStream = File.Open(saveFileDialog.FileName, FileMode.Open);
-                fileStream.SetLength(0);
-                fileStream.Close();
+                OverwritePrompt = true
+            };
+
+            if (fileTypes is not null)
+            {
+                saveFileDialog.Filter = GenerateFilter(fileTypes);
             }
 
-            return new ValueTask<Stream?>(saveFileDialog.OpenFile());
-        }
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                if (File.Exists(saveFileDialog.FileName))
+                {
+                    // Clear the file.
+                    using FileStream fileStream = File.Open(saveFileDialog.FileName, FileMode.Open);
+                    fileStream.SetLength(0);
+                    fileStream.Close();
+                }
 
-        return new ValueTask<Stream?>(Task.FromResult<Stream?>(null));
+                return new ValueTask<Stream?>(saveFileDialog.OpenFile());
+            }
+
+            return new ValueTask<Stream?>(Task.FromResult<Stream?>(null));
+        });
     }
 
     public ValueTask<Stream?> PickOpenFileAsync(string[] fileTypes)
     {
-        var openFileDialog = new OpenFileDialog
+        return await ThreadHelper.RunOnUIThreadAsync(async () =>
         {
-            CheckFileExists = true,
-            CheckPathExists = true,
-            Multiselect = false,
-            ShowReadOnly = true
-        };
+            var openFileDialog = new OpenFileDialog
+            {
+                CheckFileExists = true,
+                CheckPathExists = true,
+                Multiselect = false,
+                ShowReadOnly = true
+            };
 
-        if (fileTypes is not null)
-        {
-            openFileDialog.Filter = GenerateFilter(fileTypes);
-        }
+            if (fileTypes is not null)
+            {
+                openFileDialog.Filter = GenerateFilter(fileTypes);
+            }
 
-        if (openFileDialog.ShowDialog() == true)
-        {
-            return new ValueTask<Stream?>(openFileDialog.OpenFile());
-        }
+            if (openFileDialog.ShowDialog() == true)
+            {
+                return new ValueTask<Stream?>(openFileDialog.OpenFile());
+            }
 
-        return new ValueTask<Stream?>(Task.FromResult<Stream?>(null));
+            return new ValueTask<Stream?>(Task.FromResult<Stream?>(null));
+        });
+    }
+
+    public ValueTask<string?> PickFolderAsync()
+    {
+        // TODO: prompt the user to type in the console a relative or absolute file path that has one of the file types indicated.
+        throw new NotImplementedException();
     }
 
     private static string GenerateFilter(string[] fileTypes)

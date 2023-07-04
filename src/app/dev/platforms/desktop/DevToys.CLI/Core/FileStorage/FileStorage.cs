@@ -70,4 +70,10 @@ internal sealed class FileStorage : IFileStorage
         // TODO: prompt the user to type in the console a relative or absolute file path that has one of the file types indicated.
         throw new NotImplementedException();
     }
+
+    public ValueTask<string?> PickFolderAsync()
+    {
+        // TODO: prompt the user to type in the console a relative or absolute file path that has one of the file types indicated.
+        throw new NotImplementedException();
+    }
 }

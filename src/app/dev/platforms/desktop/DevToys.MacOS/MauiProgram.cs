@@ -5,6 +5,7 @@ using DevToys.Business.ViewModels;
 using DevToys.Core.Logging;
 using DevToys.Core.Mef;
 using DevToys.MacOS.Core;
+using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using Uno.Extensions;
 using PredefinedSettings = DevToys.Core.Settings.PredefinedSettings;
@@ -26,6 +27,9 @@ public partial class MauiProgram
 
         MauiAppBuilder builder = MauiApp.CreateBuilder();
         builder.UseMauiApp<App>();
+
+        // Initialize the .NET MAUI Community Toolkit by adding the below line of code
+        builder.UseMauiCommunityToolkit();
 
         // Initialize services and logging.
         ServiceProvider serviceProvider = InitializeServices(builder.Services);
