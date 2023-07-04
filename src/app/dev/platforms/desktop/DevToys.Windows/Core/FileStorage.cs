@@ -59,7 +59,7 @@ internal sealed class FileStorage : IFileStorage
 
     public async ValueTask<Stream?> PickSaveFileAsync(string[] fileTypes)
     {
-        return await ThreadHelper.RunOnUIThreadAsync(async () =>
+        return await ThreadHelper.RunOnUIThreadAsync(() =>
         {
             var saveFileDialog = new SaveFileDialog
             {
@@ -90,7 +90,7 @@ internal sealed class FileStorage : IFileStorage
 
     public async ValueTask<Stream?> PickOpenFileAsync(string[] fileTypes)
     {
-        return await ThreadHelper.RunOnUIThreadAsync(async () =>
+        return await ThreadHelper.RunOnUIThreadAsync(() =>
         {
             var openFileDialog = new OpenFileDialog
             {
