@@ -139,10 +139,10 @@
     <value>Ausklappen</value>
   </data>
   <data name="ShowInfo" xml:space="preserve">
-    <value>Show additional info</value>
+    <value>Zusätzliche Informationen anzeigen</value>
   </data>
   <data name="HideInfo" xml:space="preserve">
-    <value>Hide additional info</value>
+    <value>Zusätzliche Informationen verbergen</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
     <value>Dateien durchsuchen</value>
