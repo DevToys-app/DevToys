@@ -487,6 +487,32 @@ namespace DevToys.Tests.Providers.Tools
             Assert.AreEqual(algorithm, JwtAlgorithm.RS256);
         }
 
+        [TestMethod]
+        public async Task JwtDecoder_Decode_Basic_RS_Token_With_Certificate_Signature_Validation()
+        {
+            // Generated with:  openssl req -x509 -key test-devtoys.key -out test-devtoys.pem -sha256 -days 3650 -nodes
+            string publicKey = await TestDataProvider.GetFileContent("Jwt.RS.Certificate.txt");
+            string payload = await TestDataProvider.GetFileContent("Jwt.BasicPayload.json");
+            var decodeParameters = new DecoderParameters
+            {
+                ValidateSignature = true
+            };
+            var tokenParameters = new TokenParameters
+            {
+                TokenAlgorithm = JwtAlgorithm.RS384,
+                // Generated using BasicPayload.json and RsaPrivateKey.txt
+                Token = await TestDataProvider.GetFileContent("Jwt.RS.CertBasicToken.txt"),
+                PublicKey = publicKey,
+            };
+            var jwtDecoder = new JwtDecoder();
+            TokenResult result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out _);
+
+            Assert.IsNotNull(result);
+            Assert.IsNull(_validationResult);
+            Assert.AreEqual(result.Payload, payload);
+            Assert.AreEqual(result.PublicKey, publicKey);
+        }
+
         #endregion
 
         #region DecodePS

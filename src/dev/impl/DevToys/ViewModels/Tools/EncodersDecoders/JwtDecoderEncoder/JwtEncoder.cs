@@ -27,6 +27,8 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
     {
         private const string PrivateKeyStart = "-----BEGIN PRIVATE KEY-----";
         private const string PrivateKeyEnd = "-----END PRIVATE KEY-----";
+        private const string RsaPrivateKeyStart = "-----BEGIN RSA PRIVATE KEY-----";
+        private const string RsaPrivateKeyEnd = "-----END RSA PRIVATE KEY-----";
         private Action<TokenResultErrorEventArgs>? _encodingErrorCallBack;
         private JwtDecoderEncoderStrings _localizedStrings => LanguageManager.Instance.JwtDecoderEncoder;
 
@@ -208,11 +210,13 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                 throw new InvalidOperationException(_localizedStrings.InvalidPrivateKeyError);
             }
             var privateKeyStringBuilder = new StringBuilder(tokenParameters.PrivateKey!.Trim());
-            if (!tokenParameters.PrivateKey!.StartsWith(PrivateKeyStart, StringComparison.OrdinalIgnoreCase))
+            if (!tokenParameters.PrivateKey!.StartsWith(PrivateKeyStart, StringComparison.OrdinalIgnoreCase) &&
+                !tokenParameters.PrivateKey!.StartsWith(RsaPrivateKeyStart, StringComparison.OrdinalIgnoreCase))
             {
                 privateKeyStringBuilder.Insert(0, PrivateKeyStart);
             }
-            if (!tokenParameters.PrivateKey.EndsWith(PrivateKeyEnd, StringComparison.OrdinalIgnoreCase))
+            if (!tokenParameters.PrivateKey.EndsWith(PrivateKeyEnd, StringComparison.OrdinalIgnoreCase) &&
+                !tokenParameters.PrivateKey.EndsWith(RsaPrivateKeyEnd, StringComparison.OrdinalIgnoreCase))
             {
                 privateKeyStringBuilder.Append(PrivateKeyEnd);
             }
