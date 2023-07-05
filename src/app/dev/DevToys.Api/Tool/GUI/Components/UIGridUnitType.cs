@@ -1,6 +1,6 @@
-﻿namespace DevToys.Blazor.Components;
+﻿namespace DevToys.Api;
 
-public enum GridUnitType
+public enum UIGridUnitType
 {
     /// <summary>
     /// The row or column is auto-sized to fit its content.

@@ -19,13 +19,13 @@ public partial class Grid : StyledComponentBase
     /// Gets or sets the list of columns in the grid.
     /// </summary>
     [Parameter]
-    public IEnumerable<GridLength>? Columns { get; set; }
+    public IEnumerable<UIGridLength>? Columns { get; set; }
 
     /// <summary>
     /// Gets or sets the list of rows in the grid.
     /// </summary>
     [Parameter]
-    public IEnumerable<GridLength>? Rows { get; set; }
+    public IEnumerable<UIGridLength>? Rows { get; set; }
 
     /// <summary>
     /// Gets or sets the uniform distance (in pixels) between grid columns.
@@ -47,7 +47,7 @@ public partial class Grid : StyledComponentBase
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
-    private static string GetGridTemplate(IEnumerable<GridLength>? collection)
+    private static string GetGridTemplate(IEnumerable<UIGridLength>? collection)
     {
         if (collection is null || !collection.Any())
         {
@@ -55,7 +55,7 @@ public partial class Grid : StyledComponentBase
         }
 
         var builder = new StringBuilder();
-        foreach (GridLength item in collection)
+        foreach (UIGridLength item in collection)
         {
             if (item.IsFraction)
             {

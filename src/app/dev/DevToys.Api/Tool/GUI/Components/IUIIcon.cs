@@ -23,17 +23,17 @@ public interface IUIIcon : IUIElement
     /// <summary>
     /// Raised when <see cref="FontName"/> is changed.
     /// </summary>
-    public event EventHandler? FontNameChanged;
+    event EventHandler? FontNameChanged;
 
     /// <summary>
     /// Raised when <see cref="Glyph"/> is changed.
     /// </summary>
-    public event EventHandler? GlyphChanged;
+    event EventHandler? GlyphChanged;
 
     /// <summary>
     /// Raised when <see cref="Size"/> is changed.
     /// </summary>
-    public event EventHandler? SizeChanged;
+    event EventHandler? SizeChanged;
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Glyph = {{{nameof(Glyph)}}}")]

@@ -1,5 +1,17 @@
 ﻿namespace DevToys.Tools.Tools.Settings;
 
+internal enum GridTestRow
+{
+    FileSelection,
+    InputTextBox,
+    Output
+}
+
+internal enum GridTestColumn
+{
+    UniqueColumn
+}
+
 [Export(typeof(IGuiTool))]
 [Name("Settings")]
 [ToolDisplayInformation(
@@ -90,18 +102,32 @@ internal sealed class SettingsGuiTool : IGuiTool
                          Button().Text("Bottom Center button").OnClick(OnBottomCenterButtonClickAsync),
                          Button().Text("Bottom Right button")),
                  NumberInput(),
-                 FileSelector()
-                    .CanSelectManyFiles()
-                    .LimitFileTypesTo("*.bmp", "jpeg", "png", ".jpg")
-                    .OnFilesSelected(OnFilesSelected),
-                 SingleLineTextInput().Title("Read-write text input with copy").ReadOnly(),
-                 MultilineTextInput()
-                    .Title("Monaco editor")
-                    .Extendable()
-                    .CanCopyWhenEditable()
-                    .Text("{\"hello\": \"there\"}")
-                    .Language("json")
-                    .CommandBarExtraContent(Button().Text("None")),
+                 Grid()
+                    .Rows(
+                        (GridTestRow.FileSelection, Fraction(1)),
+                        (GridTestRow.InputTextBox, 200),
+                        (GridTestRow.Output, Auto))
+                    .Columns(
+                        (GridTestColumn.UniqueColumn, Fraction(1)))
+                    .Cells(
+                        Cell(
+                            GridTestRow.FileSelection, GridTestColumn.UniqueColumn,
+                            FileSelector()
+                                .CanSelectManyFiles()
+                                .LimitFileTypesTo("*.bmp", "jpeg", "png", ".jpg")
+                                .OnFilesSelected(OnFilesSelected)),
+                        Cell(
+                            GridTestRow.InputTextBox, GridTestColumn.UniqueColumn,
+                            MultilineTextInput()
+                                .Title("Monaco editor")
+                                .Extendable()
+                                .CanCopyWhenEditable()
+                                .Text("{\"hello\": \"there\"}")
+                                .Language("json")
+                                .CommandBarExtraContent(Button().Text("None"))),
+                        Cell(
+                            GridTestRow.Output, GridTestColumn.UniqueColumn,
+                            SingleLineTextInput().Title("Read-write text input with copy").ReadOnly())),
                  DiffTextInput()
                     .Title("Difference")
                     .OriginalText("hello")

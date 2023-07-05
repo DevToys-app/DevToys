@@ -24,16 +24,16 @@ else
         RenderToolWithHeader = (bool isScrollable) => (__builder) =>
         {
             <Grid RowSpacing="12"
-                  Rows="@(new List<GridLength>
+                  Rows="@(new List<UIGridLength>
                     {
-                        GridLength.Auto,
-                        new GridLength(1, GridUnitType.Fraction)
+                        UIGridLength.Auto,
+                        new UIGridLength(1, UIGridUnitType.Fraction)
                     })"
                   ColumnSpacing="6"
-                  Columns="@(new List<GridLength>
+                  Columns="@(new List<UIGridLength>
                     {
-                        new GridLength(1, GridUnitType.Fraction),
-                        GridLength.Auto
+                        new UIGridLength(1, UIGridUnitType.Fraction),
+                        UIGridLength.Auto
                     })">
 
                 <GridCell Row="0" Column="0">

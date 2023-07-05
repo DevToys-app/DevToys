@@ -1,0 +1,30 @@
+@namespace DevToys.Blazor.Components.UIElements
+@using DevToys.Api;
+@inherits ComponentBase
+
+<Grid id="@UIGrid.Id"
+      IsVisible="@UIGrid.IsVisible"
+      IsEnabled="@UIGrid.IsEnabled"
+      HorizontalAlignment="@UIGrid.HorizontalAlignment"
+      VerticalAlignment="@UIGrid.VerticalAlignment"
+      RowSpacing="@(UIGrid.RowSpacing == UISpacing.Small ? 4 : (UIGrid.RowSpacing == UISpacing.Medium ? 8 : 12))"
+      ColumnSpacing="@(UIGrid.ColumnSpacing == UISpacing.Small ? 4 : (UIGrid.ColumnSpacing == UISpacing.Medium ? 8 : 12))"
+      Rows="@UIGrid.Rows"
+      Columns="@UIGrid.Columns">
+    @if (UIGrid.Cells is not null)
+    {
+        for (int i = 0; i < UIGrid.Cells.Length; i++)
+        {
+            IUIGridCell cell = UIGrid.Cells[i];
+            <GridCell Row="@cell.Row"
+                      Column="@cell.Column"
+                      RowSpan="@cell.RowSpan"
+                      ColumnSpan="@cell.ColumnSpan">
+                @if (cell.Child is not null)
+                {
+                    <UIElementPresenter UIElement="@cell.Child" />
+                }
+            </GridCell>
+        }
+    }
+</Grid>

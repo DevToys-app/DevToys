@@ -38,7 +38,7 @@ internal abstract class UITitledElement : UIElement, IUITitledElement
 public static partial class GUI
 {
     /// <summary>
-    /// Set the title of the element.
+    /// Sets the title of the element.
     /// </summary>
     public static T Title<T>(this T element, string? title) where T : IUITitledElement
     {

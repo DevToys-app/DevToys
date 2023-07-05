@@ -18,7 +18,7 @@ public interface IUISettingGroup : IUISetting
     /// <summary>
     /// Raised when <see cref="Children"/> is changed.
     /// </summary>
-    public event EventHandler? ChildrenChanged;
+    event EventHandler? ChildrenChanged;
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Title = {{{nameof(Title)}}}")]
@@ -114,7 +114,7 @@ public static partial class GUI
     }
 
     /// <summary>
-    /// Set the children to be displayed in the group.
+    /// Sets the children to be displayed in the group.
     /// </summary>
     public static IUISettingGroup WithChildren(this IUISettingGroup element, params IUIElement[] children)
     {
@@ -125,7 +125,7 @@ public static partial class GUI
     }
 
     /// <summary>
-    /// Set the children to be displayed in the group.
+    /// Sets the children to be displayed in the group.
     /// </summary>
     public static IUISettingGroup WithSettings(this IUISettingGroup element, params IUISetting[] settings)
     {

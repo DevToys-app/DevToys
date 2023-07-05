@@ -23,12 +23,12 @@ public interface IUISelectDropDownList : IUITitledElement
     /// <summary>
     /// Raised when <see cref="Items"/> is changed.
     /// </summary>
-    public event EventHandler? ItemsChanged;
+    event EventHandler? ItemsChanged;
 
     /// <summary>
     /// Raised when <see cref="SelectedItem"/> is changed.
     /// </summary>
-    public event EventHandler? SelectedItemChanged;
+    event EventHandler? SelectedItemChanged;
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Title = {{{nameof(Title)}}}")]

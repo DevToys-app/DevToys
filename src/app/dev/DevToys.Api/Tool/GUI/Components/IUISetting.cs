@@ -23,17 +23,17 @@ public interface IUISetting : IUITitledElement
     /// <summary>
     /// Raised when <see cref="Description"/> is changed.
     /// </summary>
-    public event EventHandler? DescriptionChanged;
+    event EventHandler? DescriptionChanged;
 
     /// <summary>
     /// Raised when <see cref="Icon"/> is changed.
     /// </summary>
-    public event EventHandler? IconChanged;
+    event EventHandler? IconChanged;
 
     /// <summary>
     /// Raised when <see cref="InteractiveElement"/> is changed.
     /// </summary>
-    public event EventHandler? InteractiveElementChanged;
+    event EventHandler? InteractiveElementChanged;
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Title = {{{nameof(Title)}}}")]

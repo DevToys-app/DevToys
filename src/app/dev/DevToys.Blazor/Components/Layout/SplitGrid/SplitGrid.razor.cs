@@ -28,13 +28,13 @@ public partial class SplitGrid : JSStyledComponentBase
     /// Gets or sets the length of the left or top cell.
     /// </summary>
     [Parameter]
-    public GridLength LeftOrTopCellSize { get; set; } = new GridLength(1, GridUnitType.Fraction);
+    public UIGridLength LeftOrTopCellSize { get; set; } = new UIGridLength(1, UIGridUnitType.Fraction);
 
     /// <summary>
     /// Gets or sets the length of the right or bottom cell.
     /// </summary>
     [Parameter]
-    public GridLength RightOrBottomCellSize { get; set; } = new GridLength(1, GridUnitType.Fraction);
+    public UIGridLength RightOrBottomCellSize { get; set; } = new UIGridLength(1, UIGridUnitType.Fraction);
 
     /// <summary>
     /// Gets or sets the content to be rendered inside the component.
@@ -84,7 +84,7 @@ public partial class SplitGrid : JSStyledComponentBase
         }
     }
 
-    private static string GetCellLength(GridLength length)
+    private static string GetCellLength(UIGridLength length)
     {
         if (length.IsFraction)
         {
@@ -97,7 +97,7 @@ public partial class SplitGrid : JSStyledComponentBase
         else
         {
             Guard.IsTrue(length.IsAuto);
-            ThrowHelper.ThrowNotSupportedException($"{nameof(GridLength)}.{nameof(GridLength.Auto)} is not supported in {nameof(SplitGrid)}.");
+            ThrowHelper.ThrowNotSupportedException($"{nameof(UIGridLength)}.{nameof(UIGridLength.Auto)} is not supported in {nameof(SplitGrid)}.");
             return string.Empty;
         }
     }

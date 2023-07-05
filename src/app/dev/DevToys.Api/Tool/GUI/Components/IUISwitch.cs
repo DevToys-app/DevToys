@@ -25,17 +25,17 @@ public interface IUISwitch : IUIElement
     /// <summary>
     /// Raised when <see cref="OnText"/> is changed.
     /// </summary>
-    public event EventHandler? OnTextChanged;
+    event EventHandler? OnTextChanged;
 
     /// <summary>
     /// Raised when <see cref="OffText"/> is changed.
     /// </summary>
-    public event EventHandler? OffTextChanged;
+    event EventHandler? OffTextChanged;
 
     /// <summary>
     /// Raised when <see cref="IsOn"/> is changed.
     /// </summary>
-    public event EventHandler? IsOnChanged;
+    event EventHandler? IsOnChanged;
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, IsOn = {{{nameof(IsOn)}}}")]

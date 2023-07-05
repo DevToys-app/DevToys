@@ -25,17 +25,17 @@ public interface IUIStack : IUIElement
     /// <summary>
     /// Raised when <see cref="Orientation"/> is changed.
     /// </summary>
-    public event EventHandler? OrientationChanged;
+    event EventHandler? OrientationChanged;
 
     /// <summary>
     /// Raised when <see cref="Spacing"/> is changed.
     /// </summary>
-    public event EventHandler? SpacingChanged;
+    event EventHandler? SpacingChanged;
 
     /// <summary>
     /// Raised when <see cref="Children"/> is changed.
     /// </summary>
-    public event EventHandler? ChildrenChanged;
+    event EventHandler? ChildrenChanged;
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Orientation = {{{nameof(Orientation)}}}")]
@@ -113,7 +113,7 @@ public static partial class GUI
     }
 
     /// <summary>
-    /// Set the children to be displayed in the stack.
+    /// Sets the children to be displayed in the stack.
     /// </summary>
     public static IUIStack WithChildren(this IUIStack element, params IUIElement[] children)
     {
@@ -122,7 +122,7 @@ public static partial class GUI
     }
 
     /// <summary>
-    /// Set a small spacing between children.
+    /// Sets a small spacing between children.
     /// </summary>
     public static IUIStack SmallSpacing(this IUIStack element)
     {
@@ -131,7 +131,7 @@ public static partial class GUI
     }
 
     /// <summary>
-    /// Set a medium spacing between children.
+    /// Sets a medium spacing between children.
     /// </summary>
     public static IUIStack MediumSpacing(this IUIStack element)
     {
@@ -140,7 +140,7 @@ public static partial class GUI
     }
 
     /// <summary>
-    /// Set a large spacing between children.
+    /// Sets a large spacing between children.
     /// </summary>
     public static IUIStack LargeSpacing(this IUIStack element)
     {
