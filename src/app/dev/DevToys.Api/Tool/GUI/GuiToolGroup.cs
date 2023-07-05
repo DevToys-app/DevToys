@@ -23,6 +23,7 @@
 ///     </code>
 /// </example>
 /// </remarks>
+[DebuggerDisplay($"DisplayTitle = {{{nameof(DisplayTitle)}}}")]
 public class GuiToolGroup
 {
     /// <summary>

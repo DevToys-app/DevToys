@@ -1,5 +1,6 @@
 ﻿namespace DevToys.Api;
 
+[DebuggerDisplay($"{{{nameof(ToString)}}}")]
 public readonly struct UIGridLength : IEquatable<UIGridLength>
 {
     private readonly UIGridUnitType _type;
@@ -132,5 +133,20 @@ public readonly struct UIGridLength : IEquatable<UIGridLength>
     public override int GetHashCode()
     {
         return _value.GetHashCode() ^ _type.GetHashCode();
+    }
+
+    public override string ToString()
+    {
+        if (IsAuto)
+        {
+            return "Auto";
+        }
+
+        if (IsAbsolute)
+        {
+            return $"{Value}px";
+        }
+
+        return $"{Value}*";
     }
 }

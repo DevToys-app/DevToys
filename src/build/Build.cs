@@ -213,7 +213,7 @@ class Build : NukeBuild
                 .SetSelfContained(true)
                 .SetPublishSingleFile(false) // Not supported by MacCatalyst as it would require UseAppHost to be true, which isn't supported on Mac
                 .SetPublishReadyToRun(false)
-                .SetPublishTrimmed(false)
+                .SetPublishTrimmed(true) // Should be true, even though the CSPROJ disable AOT and Trimming.
                 .SetVerbosity(DotNetVerbosity.Quiet)
                 .SetNoRestore(true) /* workaround for https://github.com/xamarin/xamarin-macios/issues/15664#issuecomment-1233123515 */
                 .SetProcessArgumentConfigurator(_ => _

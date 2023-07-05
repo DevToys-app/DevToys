@@ -17,6 +17,5 @@
     },
     "emmet.includeLanguages": {
         "aspnetcorerazor": "html"
-    },
-    "dotnet.defaultSolution": "src\\DevToys-MacOS.sln"
+    }
 }

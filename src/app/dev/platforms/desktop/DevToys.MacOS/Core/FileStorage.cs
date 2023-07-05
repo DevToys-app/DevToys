@@ -84,7 +84,7 @@ internal sealed class FileStorage : IFileStorage
         });
     }
 
-    public async ValueTask<PickFileResult?> PickOpenFileAsync(string[] fileTypes)
+    public async ValueTask<PickedFile?> PickOpenFileAsync(string[] fileTypes)
     {
         return await ThreadHelper.RunOnUIThreadAsync(async () =>
         {
@@ -102,14 +102,14 @@ internal sealed class FileStorage : IFileStorage
             FileResult? fileResult = await FilePicker.Default.PickAsync(otpions);
             if (fileResult is not null)
             {
-                return new PickFileResult(fileResult.FileName, await fileResult.OpenReadAsync());
+                return new PickedFile(fileResult.FileName, await fileResult.OpenReadAsync());
             }
 
             return null;
         });
     }
 
-    public async ValueTask<PickFileResult[]> PickOpenFilesAsync(string[] fileTypes)
+    public async ValueTask<PickedFile[]> PickOpenFilesAsync(string[] fileTypes)
     {
         return await ThreadHelper.RunOnUIThreadAsync(async () =>
         {
@@ -127,16 +127,16 @@ internal sealed class FileStorage : IFileStorage
             IEnumerable<FileResult>? fileResults = await FilePicker.Default.PickMultipleAsync(otpions);
             if (fileResults is not null)
             {
-                var result = new List<PickFileResult>();
+                var result = new List<PickedFile>();
                 foreach (FileResult file in fileResults)
                 {
-                    result.Add(new PickFileResult(file.FileName, await file.OpenReadAsync()));
+                    result.Add(new PickedFile(file.FileName, await file.OpenReadAsync()));
                 }
 
                 return result.ToArray();
             }
 
-            return Array.Empty<PickFileResult>();
+            return Array.Empty<PickedFile>();
         });
     }
 
