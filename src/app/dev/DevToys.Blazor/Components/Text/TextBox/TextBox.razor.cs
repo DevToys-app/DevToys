@@ -196,7 +196,7 @@ public partial class TextBox : MefComponentBase, IFocusable
                 _contextMenuItems.Add(PasteContextMenuItem);
             }
 
-            if (Text?.Length > 0)
+            if (Text?.Length > 0 && Type != TextBoxTypes.Number)
             {
                 SelectAllContextMenuItem.OnClick = EventCallback.Factory.Create<DropDownListItem>(this, OnSelectAllAsync);
                 _contextMenuItems.Add(SelectAllContextMenuItem);

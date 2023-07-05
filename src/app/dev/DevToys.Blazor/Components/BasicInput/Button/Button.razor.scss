@@ -102,6 +102,32 @@ button {
                 color: var(--stealth-button-foreground-disabled);
             }
         }
+
+        &hyperlink {
+            border: var(--hyperlink-button-border-thickness);
+            border-color: var(--hyperlink-button-border);
+            background-color: var(--hyperlink-button-background);
+            color: var(--hyperlink-button-foreground);
+            background-clip: padding-box;
+
+            &:hover {
+                border-color: var(--hyperlink-button-border-pointer-over);
+                background-color: var(--hyperlink-button-background-pointer-over);
+                color: var(--hyperlink-button-foreground-pointer-over);
+            }
+
+            &:active {
+                border-color: var(--hyperlink-button-border-pressed);
+                background-color: var(--hyperlink-button-background-pressed);
+                color: var(--hyperlink-button-foreground-pressed);
+            }
+
+            &.disabled {
+                border-color: var(--hyperlink-button-border-disabled);
+                background-color: var(--hyperlink-button-background-disabled);
+                color: var(--hyperlink-button-foreground-disabled);
+            }
+        }
     }
 
     &.disabled {

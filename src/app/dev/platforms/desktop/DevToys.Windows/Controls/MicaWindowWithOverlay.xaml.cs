@@ -8,6 +8,12 @@ using System.Windows.Media;
 using System.Windows.Shell;
 using DevToys.Api;
 using DevToys.Windows.Native;
+using Application = System.Windows.Application;
+using Button = System.Windows.Controls.Button;
+using Color = System.Windows.Media.Color;
+using KeyEventArgs = System.Windows.Input.KeyEventArgs;
+using Point = System.Windows.Point;
+using Size = System.Windows.Size;
 
 namespace DevToys.Windows.Controls;
 
@@ -204,7 +210,7 @@ public abstract partial class MicaWindowWithOverlay : Window
         }
         else if (msg == HwndSourceMessages.WM_NCLBUTTONDOWN)
         {
-            HandleClickOnMaximizeAndRestoreButon(lParam, ref handled);
+            HandleClickOnMaximizeAndRestoreButton(lParam, ref handled);
         }
 
         return (nint.Zero, handled);
@@ -383,7 +389,7 @@ public abstract partial class MicaWindowWithOverlay : Window
         return nint.Zero;
     }
 
-    private void HandleClickOnMaximizeAndRestoreButon(nint lParam, ref bool handled)
+    private void HandleClickOnMaximizeAndRestoreButton(nint lParam, ref bool handled)
     {
         int x = lParam.ToInt32() & 0xffff;
         int y = lParam.ToInt32() >> 16;

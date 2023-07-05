@@ -22,9 +22,18 @@ public interface IFileStorage
     /// <summary>
     /// Prompt the user to select a file to open.
     /// </summary>
+    /// <remarks>The returned items contain a stream. It won't be disposed automatically. It is important to dispose the stream yourself, when not needed anymore</remarks>
     /// <param name="fileTypes">The list of file types the user can choose. For example, ".txt". Use "*" for any file type.</param>
     /// <returns>If succeeded, returns a read-only stream corresponding to the file the user selected, otherwise, returns null.</returns>
-    ValueTask<Stream?> PickOpenFileAsync(string[] fileTypes);
+    ValueTask<PickedFile?> PickOpenFileAsync(string[] fileTypes);
+
+    /// <summary>
+    /// Prompt the user to select many files to open.
+    /// </summary>
+    /// <remarks>The returned items contain a stream. It won't be disposed automatically. It is important to dispose the stream yourself, when not needed anymore</remarks>
+    /// <param name="fileTypes">The list of file types the user can choose. For example, ".txt". Use "*" for any file type.</param>
+    /// <returns>If succeeded, returns a read-only stream corresponding to the file the user selected, otherwise, returns null.</returns>
+    ValueTask<PickedFile[]> PickOpenFilesAsync(string[] fileTypes);
 
     /// <summary>
     /// Prompt the user to select a folder.

@@ -138,6 +138,20 @@
     --stealth-button-border-disabled: var(--control-fill-color-transparent);
     --stealth-button-border-thickness: 1px solid;
 
+    --hyperlink-button-background: var(--control-fill-color-transparent);
+    --hyperlink-button-background-pointer-over: var(--control-fill-color-secondary);
+    --hyperlink-button-background-pressed: var(--control-fill-color-tertiary);
+    --hyperlink-button-background-disabled: var(--control-fill-color-transparent);
+    --hyperlink-button-foreground: var(--accent-default);
+    --hyperlink-button-foreground-pointer-over: var(--accent-tertiary);
+    --hyperlink-button-foreground-pressed: var(--accent-disabled);
+    --hyperlink-button-foreground-disabled: var(--accent-disabled);
+    --hyperlink-button-border: var(--control-fill-color-transparent);
+    --hyperlink-button-border-pointer-over: var(--control-border-color-default);
+    --hyperlink-button-border-pressed: var(--control-stroke-color-default);
+    --hyperlink-button-border-disabled: var(--control-fill-color-transparent);
+    --hyperlink-button-border-thickness: 1px solid;
+
     /* CheckBox */
     --check-box-check-corner-radius: var(--control-corner-radius);
     --check-box-foreground: var(--text-fill-color-primary);
@@ -342,7 +356,9 @@
     /* UISettingGroup */
     --ui-setting-group-presenter-inner-ui-setting-background-color: transparent;
 
-    /* UITextInputWrapper */
-    --ui-text-input-wrapper-dragging-background-color: var(--control-fill-color-tertiary);
-    --ui-text-input-wrapper-dragging-stroke-color: var(--text-fill-color-tertiary);
+    /* UIFileSelector */
+    --ui-file-selector-background-color: transparent;
+    --ui-file-selector-stroke-color: var(--text-fill-color-disabled);
+    --ui-file-selector-dragging-background-color: var(--control-fill-color-tertiary);
+    --ui-file-selector-dragging-stroke-color: var(--text-fill-color-tertiary);
 }

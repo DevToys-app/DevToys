@@ -1,5 +1,4 @@
-﻿using DevToys.Api;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 
 namespace DevToys.Tools.Tools.Sample;

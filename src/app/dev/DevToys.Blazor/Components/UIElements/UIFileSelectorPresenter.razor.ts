@@ -1,14 +1,3 @@
-export function registerResizeHandler(id: string, dotNetObjRef: DotNet.DotNetObject): void {
-    const element = document.getElementById(id);
-
-    // Setup resize observer.
-    const resizeObserver = new ResizeObserver((elements) => {
-        dotNetObjRef.invokeMethodAsync("OnComponentResize", Math.trunc(elements[0].contentRect.width));
-    });
-    resizeObserver.observe(element);
-    (<any>element).resizeObserver = resizeObserver;
-}
-
 export function registerDropZone(id: string): void {
     const element = document.getElementById(id);
 
@@ -31,9 +20,6 @@ export function registerDropZone(id: string): void {
 export function dispose(id: string): void {
     const element = document.getElementById(id);
 
-    // Stop resize observer.
-    (<ResizeObserver>(<any>element).resizeObserver).disconnect();
-
     // Stop drop zone
     ["dragenter", "dragover", "dragleave", "drop"].forEach(eventName => {
         element.removeEventListener(eventName, preventDefaults, false);
@@ -51,7 +37,7 @@ function preventDefaults(e: DragEvent): void {
 }
 
 function highlight(e: DragEvent) {
-    if (e.dataTransfer.items.length === 1 && e.dataTransfer.items[0].kind === "file") {
+    if (e.dataTransfer.items.length > 0 && e.dataTransfer.items[0].kind === "file") {
         e.dataTransfer.dropEffect = "copy";
         (<HTMLElement>e.currentTarget).classList.add("dragging");
     } else {
@@ -79,7 +65,7 @@ function handleDrop(e: DragEvent) {
     const files: FileList = dt.files;
     const element = (<HTMLElement>e.currentTarget);
 
-    if (files.length === 1) {
+    if (files.length > 0) {
         const inputFileElement = element.querySelector("input[type=file]") as HTMLInputElement | null;
         if (inputFileElement === null) {
             throw new Error("");

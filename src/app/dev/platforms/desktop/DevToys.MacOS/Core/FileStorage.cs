@@ -62,7 +62,7 @@ internal sealed class FileStorage : IFileStorage
             string? fileExtension = fileTypes.FirstOrDefault(fileType => fileType.Replace(".", string.Empty).Replace("*", string.Empty).Length > 0);
             if (!string.IsNullOrWhiteSpace(fileExtension))
             {
-                fileExtension = fileExtension.Trim('*').Trim('.');
+                fileExtension = fileExtension.Trim('*').Trim('.').ToLower();
             }
             else
             {
@@ -84,11 +84,11 @@ internal sealed class FileStorage : IFileStorage
         });
     }
 
-    public async ValueTask<Stream?> PickOpenFileAsync(string[] fileTypes)
+    public async ValueTask<PickFileResult?> PickOpenFileAsync(string[] fileTypes)
     {
         return await ThreadHelper.RunOnUIThreadAsync(async () =>
         {
-            fileTypes = fileTypes.Select(fileType => fileType.Trim('*').Trim('.')).ToArray();
+            fileTypes = fileTypes.Select(fileType => fileType.Trim('*').Trim('.').ToLower()).ToArray();
 
             var otpions = new PickOptions()
             {
@@ -102,10 +102,41 @@ internal sealed class FileStorage : IFileStorage
             FileResult? fileResult = await FilePicker.Default.PickAsync(otpions);
             if (fileResult is not null)
             {
-                return await fileResult.OpenReadAsync();
+                return new PickFileResult(fileResult.FileName, await fileResult.OpenReadAsync());
             }
 
             return null;
+        });
+    }
+
+    public async ValueTask<PickFileResult[]> PickOpenFilesAsync(string[] fileTypes)
+    {
+        return await ThreadHelper.RunOnUIThreadAsync(async () =>
+        {
+            fileTypes = fileTypes.Select(fileType => fileType.Trim('*').Trim('.').ToLower()).ToArray();
+
+            var otpions = new PickOptions()
+            {
+                FileTypes = new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
+                {
+                    { DevicePlatform.macOS, fileTypes },
+                    { DevicePlatform.MacCatalyst, fileTypes }
+                })
+            };
+
+            IEnumerable<FileResult>? fileResults = await FilePicker.Default.PickMultipleAsync(otpions);
+            if (fileResults is not null)
+            {
+                var result = new List<PickFileResult>();
+                foreach (FileResult file in fileResults)
+                {
+                    result.Add(new PickFileResult(file.FileName, await file.OpenReadAsync()));
+                }
+
+                return result.ToArray();
+            }
+
+            return Array.Empty<PickFileResult>();
         });
     }
 

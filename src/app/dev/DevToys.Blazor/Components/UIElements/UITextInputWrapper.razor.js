@@ -17,9 +17,8 @@ export function registerDropZone(id) {
     ["dragenter", "dragover"].forEach(eventName => {
         element.addEventListener(eventName, highlight, false);
     });
-    ["dragleave", "drop"].forEach(eventName => {
-        element.addEventListener(eventName, unhighlight, false);
-    });
+    element.addEventListener("dragleave", unhighlightIfNeeded, false);
+    element.addEventListener("drop", unhighlight, false);
     // Handle dropped files
     element.addEventListener("drop", handleDrop, false);
 }
@@ -34,9 +33,8 @@ export function dispose(id) {
     ["dragenter", "dragover"].forEach(eventName => {
         element.removeEventListener(eventName, highlight, false);
     });
-    ["dragleave", "drop"].forEach(eventName => {
-        element.removeEventListener(eventName, unhighlight, false);
-    });
+    element.removeEventListener("dragleave", unhighlightIfNeeded, false);
+    element.removeEventListener("drop", unhighlight, false);
 }
 function preventDefaults(e) {
     e.preventDefault();
@@ -45,19 +43,28 @@ function preventDefaults(e) {
 function highlight(e) {
     if (e.dataTransfer.items.length === 1 && e.dataTransfer.items[0].kind === "file") {
         e.dataTransfer.dropEffect = "copy";
-        e.target.classList.add("dragging");
+        e.currentTarget.classList.add("dragging");
     }
     else {
         e.dataTransfer.dropEffect = "none";
     }
 }
+function unhighlightIfNeeded(e) {
+    // Get the location on screen of the element.
+    const rect = e.currentTarget.getBoundingClientRect();
+    // Check the mouseEvent coordinates are outside of the rectangle
+    if (e.x > rect.left + rect.width || e.x < rect.left
+        || e.y > rect.top + rect.height || e.y < rect.top) {
+        unhighlight(e);
+    }
+}
 function unhighlight(e) {
-    e.target.classList.remove("dragging");
+    e.currentTarget.classList.remove("dragging");
 }
 function handleDrop(e) {
     const dt = e.dataTransfer;
     const files = dt.files;
-    const element = e.target;
+    const element = e.currentTarget;
     if (files.length === 1) {
         const inputFileElement = element.querySelector("input[type=file]");
         if (inputFileElement === null) {

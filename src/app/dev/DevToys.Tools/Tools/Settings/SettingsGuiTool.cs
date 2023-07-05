@@ -90,6 +90,10 @@ internal sealed class SettingsGuiTool : IGuiTool
                          Button().Text("Bottom Center button").OnClick(OnBottomCenterButtonClickAsync),
                          Button().Text("Bottom Right button")),
                  NumberInput(),
+                 FileSelector()
+                    .CanSelectManyFiles()
+                    .LimitFileTypesTo("*.bmp", "jpeg", "png", ".jpg")
+                    .OnFilesSelected(OnFilesSelected),
                  SingleLineTextInput().Title("Read-write text input with copy").ReadOnly(),
                  MultilineTextInput()
                     .Title("Monaco editor")
@@ -111,6 +115,11 @@ internal sealed class SettingsGuiTool : IGuiTool
     }
 
     private ValueTask OnDummySettingChangedAsync(bool state)
+    {
+        return ValueTask.CompletedTask;
+    }
+
+    private ValueTask OnFilesSelected(PickedFile[] files)
     {
         return ValueTask.CompletedTask;
     }

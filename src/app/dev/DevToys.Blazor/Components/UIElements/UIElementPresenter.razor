@@ -54,6 +54,10 @@
             <UIIconPresenter UIIcon="@icon" />
             break;
 
+        case IUIFileSelector fileSelector:
+            <UIFileSelectorPresenter UIFileSelector="@fileSelector"/>
+            break;
+
         default:
             throw new NotSupportedException($"Gui Tool component of type '{UIElement.GetType().FullName}' isn't supported.");
     }

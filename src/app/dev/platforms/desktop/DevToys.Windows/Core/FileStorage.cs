@@ -2,7 +2,8 @@
 using System.Text;
 using DevToys.Api;
 using DevToys.Windows.Helpers;
-using Microsoft.Win32;
+using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
+using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 
 namespace DevToys.Windows.Core;
 
@@ -88,7 +89,7 @@ internal sealed class FileStorage : IFileStorage
         });
     }
 
-    public async ValueTask<Stream?> PickOpenFileAsync(string[] fileTypes)
+    public async ValueTask<PickedFile?> PickOpenFileAsync(string[] fileTypes)
     {
         return await ThreadHelper.RunOnUIThreadAsync(() =>
         {
@@ -107,31 +108,88 @@ internal sealed class FileStorage : IFileStorage
 
             if (openFileDialog.ShowDialog() == true)
             {
-                return openFileDialog.OpenFile();
+                return new PickedFile(openFileDialog.FileName, openFileDialog.OpenFile());
             }
 
             return null;
         });
     }
 
-    public ValueTask<string?> PickFolderAsync()
+    public async ValueTask<PickedFile[]> PickOpenFilesAsync(string[] fileTypes)
     {
-        // TODO: prompt the user to type in the console a relative or absolute file path that has one of the file types indicated.
-        throw new NotImplementedException();
+        return await ThreadHelper.RunOnUIThreadAsync(() =>
+        {
+            var openFileDialog = new OpenFileDialog
+            {
+                CheckFileExists = true,
+                CheckPathExists = true,
+                Multiselect = true,
+                ShowReadOnly = true
+            };
+
+            if (fileTypes is not null)
+            {
+                openFileDialog.Filter = GenerateFilter(fileTypes);
+            }
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                Stream[] streams = openFileDialog.OpenFiles();
+                string[] fileNames = openFileDialog.FileNames;
+                Guard.IsEqualTo(streams.Length, fileNames.Length);
+
+                var result = new PickedFile[streams.Length];
+                for (int i = 0; i < streams.Length; i++)
+                {
+                    result[i] = new(fileNames[i], streams[i]);
+                }
+
+                return result;
+            }
+
+            return Array.Empty<PickedFile>();
+        });
+    }
+
+    public async ValueTask<string?> PickFolderAsync()
+    {
+        return await ThreadHelper.RunOnUIThreadAsync(() =>
+        {
+            var openFolderDialog = new FolderBrowserDialog();
+
+            if (openFolderDialog.ShowDialog() == DialogResult.OK)
+            {
+                return openFolderDialog.SelectedPath;
+            }
+
+            return null;
+        });
     }
 
     private static string GenerateFilter(string[] fileTypes)
     {
         var filters = new StringBuilder();
-        foreach (string fileType in fileTypes)
+        var allFileTypesDescription = new List<string>();
+        var allFileTypes = new List<string>();
+
+        foreach (string fileType in fileTypes.Order())
         {
-            filters.Append($"{fileType}|{fileType}|");
+            string lowercaseFileType = "*." + fileType.Trim('*').Trim('.').ToLower();
+            string fileTypeDescription = fileType.Trim('*').Trim('.').ToUpper();
+            filters.Append($"{fileTypeDescription}|{lowercaseFileType}|");
+            allFileTypesDescription.Add(fileTypeDescription);
+            allFileTypes.Add(lowercaseFileType);
         }
 
         if (filters.Length > 0)
         {
             filters.Remove(filters.Length - 1, 1);
+
+            // TODO: Localize.
+            string allFiles = "All " + string.Join(", ", allFileTypesDescription);
+            filters.Insert(0, $"{allFiles}|{string.Join(";", allFileTypes)}|");
         }
+
         return filters.ToString();
     }
 }

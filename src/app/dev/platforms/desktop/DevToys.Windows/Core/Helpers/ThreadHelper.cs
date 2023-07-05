@@ -1,6 +1,6 @@
-﻿using System.Windows;
-using System.Windows.Threading;
+﻿using System.Windows.Threading;
 using DevToys.Api;
+using Application = System.Windows.Application;
 
 namespace DevToys.Windows.Helpers;
 

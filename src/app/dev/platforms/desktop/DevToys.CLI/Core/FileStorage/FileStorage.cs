@@ -65,7 +65,13 @@ internal sealed class FileStorage : IFileStorage
         throw new NotImplementedException();
     }
 
-    public ValueTask<Stream?> PickOpenFileAsync(string[] fileTypes)
+    public ValueTask<PickedFile?> PickOpenFileAsync(string[] fileTypes)
+    {
+        // TODO: prompt the user to type in the console a relative or absolute file path that has one of the file types indicated.
+        throw new NotImplementedException();
+    }
+
+    public ValueTask<PickedFile[]> PickOpenFilesAsync(string[] fileTypes)
     {
         // TODO: prompt the user to type in the console a relative or absolute file path that has one of the file types indicated.
         throw new NotImplementedException();

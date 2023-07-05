@@ -21,10 +21,10 @@
     }
 
     &.dragging {
-        border-color: var(--ui-text-input-wrapper-dragging-stroke-color);
-        background-color: var(--ui-text-input-wrapper-dragging-background-color);
+        border-color: var(--ui-file-selector-dragging-stroke-color);
+        background-color: var(--ui-file-selector-dragging-background-color);
 
-        > * {
+        * {
             pointer-events: none !important;
         }
     }

@@ -1,0 +1,74 @@
+@namespace DevToys.Blazor.Components.UIElements
+@using DevToys.Api;
+@inherits MefComponentBase
+
+<!-- TODO: Localize -->
+<Container id="@ExtendedId"
+           IsVisible="@UIFileSelector.IsVisible"
+           IsEnabled="@UIFileSelector.IsEnabled"
+           HorizontalAlignment="@UIFileSelector.HorizontalAlignment"
+           VerticalAlignment="@UIFileSelector.VerticalAlignment"
+           Class="ui-file-selector">
+
+    <!-- Input form used for getting the dropped file when use drag and drop a file into the UI. -->
+    <InputFile id="@InputFileId"
+               style="display: none;"
+               multiple="true"
+               webkitdirectory="true"
+               directory="true"
+               OnChange="OnFileDropped" />
+
+    <StackPanel Spacing="8"
+                Orientation="UIOrientation.Vertical"
+                MarginTop="24"
+                MarginLeft="24"
+                MarginBottom="24"
+                MarginRight="24"
+                HorizontalAlignment="UIHorizontalAlignment.Center"
+                VerticalAlignment="UIVerticalAlignment.Center">
+
+        <TextBlock HorizontalAlignment="UIHorizontalAlignment.Center"
+                   Text="@DragDropInstructions" />
+
+        <TextBlock HorizontalAlignment="UIHorizontalAlignment.Center"
+                   NoWrap="true"
+                   Text="or" />
+
+        <StackPanel HorizontalAlignment="UIHorizontalAlignment.Center"
+                    Spacing="6"
+                    Orientation="UIOrientation.Horizontal">
+            <Button VerticalAlignment="UIVerticalAlignment.Center"
+                    Appearance="ButtonAppearance.Hyperlink"
+                    @onclick="@OnBrowseFilesButtonClickAsync">
+                <TextBlock Text="Browse files" />
+            </Button>
+
+            @if (@UIFileSelector.CanSelectManyFiles)
+            {
+                <TextBlock Text="/"
+                           VerticalAlignment="UIVerticalAlignment.Center" />
+                <Button VerticalAlignment="UIVerticalAlignment.Center"
+                        Appearance="ButtonAppearance.Hyperlink"
+                        @onclick="@OnBrowseFoldersButtonClickAsync">
+                    <TextBlock Text="Browse folders" />
+                </Button>
+            }
+
+            <TextBlock Text="/"
+                       VerticalAlignment="UIVerticalAlignment.Center" />
+            <Button VerticalAlignment="UIVerticalAlignment.Center"
+                    Appearance="ButtonAppearance.Hyperlink"
+                    @onclick="@OnPasteButtonClickAsync">
+                <TextBlock Text="Paste" />
+            </Button>
+        </StackPanel>
+
+        <TextBlock Text="@HasInvalidFilesSelectedIndication"
+                   IsVisible="@HasInvalidFilesSelected"
+                   Appearance="TextBlockAppearance.Caption"
+                   HorizontalAlignment="UIHorizontalAlignment.Center"
+                   Style="color: orange"/>
+
+    </StackPanel>
+
+</Container>

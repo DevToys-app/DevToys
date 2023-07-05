@@ -138,6 +138,11 @@ public partial class UITextInputWrapper : MefComponentBase
 
     private async Task OnFileDroppedAsync(InputFileChangeEventArgs args)
     {
+        if (string.IsNullOrEmpty(args.File.Name))
+        {
+            return;
+        }
+
         await InvokeAsync(() =>
         {
             IsLoadingFile = true;
@@ -145,7 +150,7 @@ public partial class UITextInputWrapper : MefComponentBase
         });
 
         using var stream = new MemoryStream();
-        using Stream fileStream = args.File.OpenReadStream(maxAllowedSize: int.MaxValue);
+        using Stream fileStream = args.File.OpenReadStream(maxAllowedSize: long.MaxValue);
         await fileStream.CopyToAsync(stream);
         stream.Seek(0, SeekOrigin.Begin);
         await LoadFileAsync(stream);
@@ -176,18 +181,18 @@ public partial class UITextInputWrapper : MefComponentBase
 
     private async Task OnLoadFileButtonClickAsync()
     {
-        Stream? fileStream = null;
+        PickedFile? pickedFile = null;
         try
         {
-            fileStream = await FileStorage.PickOpenFileAsync(FileTypes);
-            if (fileStream is not null)
+            pickedFile = await FileStorage.PickOpenFileAsync(FileTypes);
+            if (pickedFile is not null)
             {
-                await LoadFileAsync(fileStream);
+                await LoadFileAsync(pickedFile.Stream);
             }
         }
         finally
         {
-            fileStream?.Dispose();
+            pickedFile?.Stream.Dispose();
         }
     }
 
