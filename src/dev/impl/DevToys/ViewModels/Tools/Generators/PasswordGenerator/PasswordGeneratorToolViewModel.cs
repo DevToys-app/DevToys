@@ -77,6 +77,7 @@ namespace DevToys.ViewModels.Tools.Generators.PasswordGenerator
         internal ICustomTextBox? OutputTextBox { private get; set; }
 
         private string _output = string.Empty;
+        private string? _errorMsg;
 
         public Type View => typeof(PasswordGeneratorPage);
 
@@ -94,6 +95,7 @@ namespace DevToys.ViewModels.Tools.Generators.PasswordGenerator
 
                 SettingsProvider.SetSetting(Uppercase, value);
                 OnPropertyChanged();
+                Validate();
             }
         }
 
@@ -109,6 +111,7 @@ namespace DevToys.ViewModels.Tools.Generators.PasswordGenerator
 
                 SettingsProvider.SetSetting(Lowercase, value);
                 OnPropertyChanged();
+                Validate();
             }
         }
 
@@ -124,6 +127,7 @@ namespace DevToys.ViewModels.Tools.Generators.PasswordGenerator
 
                 SettingsProvider.SetSetting(Numbers, value);
                 OnPropertyChanged();
+                Validate();
             }
         }
 
@@ -139,6 +143,7 @@ namespace DevToys.ViewModels.Tools.Generators.PasswordGenerator
 
                 SettingsProvider.SetSetting(SpecialCharacters, value);
                 OnPropertyChanged();
+                Validate();
             }
         }
 
@@ -178,11 +183,18 @@ namespace DevToys.ViewModels.Tools.Generators.PasswordGenerator
             set => SetProperty(ref _output, value);
         }
 
+        internal string? ErrorMsg
+        {
+            get => _errorMsg;
+            set => SetProperty(ref _errorMsg, value);
+        }
+
         [ImportingConstructor]
         public PasswordGeneratorToolViewModel(ISettingsProvider settingsProvider)
         {
             SettingsProvider = settingsProvider;
             GenerateCommand = new RelayCommand(ExecuteGenerateCommand);
+            Validate();
         }
 
         #region GenerateCommand
@@ -191,6 +203,12 @@ namespace DevToys.ViewModels.Tools.Generators.PasswordGenerator
 
         private void ExecuteGenerateCommand()
         {
+            // There are no character sets selected, so we can't generate anything.
+            if (!HasAnyCharacterSets)
+            {
+                return;
+            }
+            
             var sb = new StringBuilder();
             for (int i = 0; i < NumberOfPasswordsToGenerate; i++)
             {
@@ -242,6 +260,13 @@ namespace DevToys.ViewModels.Tools.Generators.PasswordGenerator
             Output = sb.ToString();
             OutputTextBox?.ScrollToBottom();
         }
+
+        private void Validate()
+        {
+            ErrorMsg = HasAnyCharacterSets ? default : Strings.NoCharacterSetsWarning;
+        }
+
+        private bool HasAnyCharacterSets => HasUppercase || HasLowercase || HasNumbers | HasSpecialCharacters;
 
         #endregion
 

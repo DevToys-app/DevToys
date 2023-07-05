@@ -2591,6 +2591,11 @@ namespace DevToys
         public string Digits => _resources.GetString("Digits");
 
         /// <summary>
+        /// Gets the resource DigitsDescription.
+        /// </summary>
+        public string DigitsDescription => _resources.GetString("DigitsDescription");
+
+        /// <summary>
         /// Gets the resource Lowercase.
         /// </summary>
         public string Lowercase => _resources.GetString("Lowercase");
@@ -2629,6 +2634,11 @@ namespace DevToys
         /// Gets the resource UppercaseDescription.
         /// </summary>
         public string UppercaseDescription => _resources.GetString("UppercaseDescription");
+
+        /// <summary>
+        /// Gets the resource NoCharacterSetsWarning.
+        /// </summary>
+        public string NoCharacterSetsWarning => _resources.GetString("NoCharacterSetsWarning");
     }
 
     public class PngJpgCompressorStrings : ObservableObject
