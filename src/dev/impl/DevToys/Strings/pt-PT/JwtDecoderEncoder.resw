@@ -136,7 +136,7 @@
     <value>Descodificar um cabeçalho JWT, carga útil e assinatura</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="Algorithm" xml:space="preserve">
     <value>Algoritmo</value>
@@ -195,8 +195,11 @@
   <data name="SignatureLabel" xml:space="preserve">
     <value>Assinatura</value>
   </data>
+  <data name="JwtNotValidated" xml:space="preserve">
+    <value>Token não validado (sem parâmetros selecionados)</value>
+  </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>Assinatura verificada</value>
+    <value>Token Validado</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
     <value>Chave pública inválida</value>
@@ -209,6 +212,9 @@
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
     <value>Validar público</value>
+  </data>
+  <data name="DecodeValidateIssuerSigningKey" xml:space="preserve">
+    <value>Validar chave de assinatura do emissor</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
     <value>Validar emissor</value>

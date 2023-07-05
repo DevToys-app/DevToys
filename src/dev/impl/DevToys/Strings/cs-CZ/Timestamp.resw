@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Timestamp converter tool</value>
+    <value>Nástroj pro převod časových značek</value>
   </data>
   <data name="TimeZoneTitle" xml:space="preserve">
     <value>Časové pásmo</value>
@@ -136,10 +136,10 @@
     <value>Není k dispozici žádný letní čas.</value>
   </data>
   <data name="DSTAmbiguousTime" xml:space="preserve">
-    <value>DST Ambiguous time.</value>
+    <value>DST Nejednoznačný čas.</value>
   </data>
   <data name="HourTitle" xml:space="preserve">
-    <value>Hour (24 hour)</value>
+    <value>Hodina (24 hodin)</value>
   </data>
   <data name="InvalidValue" xml:space="preserve">
     <value>Neplatná hodnota</value>
@@ -160,10 +160,10 @@
     <value>Posun</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Unix Timestamp Converter</value>
+    <value>Převodník unixových časových značek</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Time Date Timezone Epoch</value>
+    <value>Čas Datum Časové pásmo Epocha</value>
     <comment>Alternative search keywords. Enables searching for words that are not included in Description, MenuDisplayName, and SearchDisplayName.</comment>
   </data>
   <data name="SecondsTitle" xml:space="preserve">
@@ -176,10 +176,10 @@
     <value>Časové razítko</value>
   </data>
   <data name="UTCDateTime" xml:space="preserve">
-    <value>UTC Date and Time</value>
+    <value>UTC Datum a Čas</value>
   </data>
   <data name="UtcTicksTitle" xml:space="preserve">
-    <value>UtcTicks</value>
+    <value>UTC Ticky</value>
   </data>
   <data name="YearTitle" xml:space="preserve">
     <value>Rok</value>

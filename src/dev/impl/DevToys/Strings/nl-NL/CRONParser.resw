@@ -171,4 +171,10 @@
   <data name="SecondsIncludedMode" xml:space="preserve">
     <value>Seconden inbegrepen (Cron met 6 segmenten)</value>
   </data>
+  <data name="DescriptionTitle" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DescriptionErrorMessage" xml:space="preserve">
+    <value>Unable to generate description</value>
+  </data>
 </root>

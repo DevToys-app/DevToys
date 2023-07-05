@@ -154,7 +154,7 @@
     <value>Json 格式化工具</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="SortProperties" xml:space="preserve">
     <value>按大小寫排序 JSON 屬性</value>

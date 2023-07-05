@@ -50,6 +50,16 @@
             Margin="0,0,0,8"
             AutomationProperties.LabeledBy="{Binding ElementName=HeaderTextBlock}">
             <Button
+                x:Name="ExpandButton"
+                x:DeferLoadStrategy="Lazy"
+                Visibility="Visible"
+                TabIndex="0"
+                ToolTipService.ToolTip="{Binding Instance.Common.Expand, Mode=OneTime, Source={StaticResource LanguageManager}}"
+                AutomationProperties.Name="{Binding Instance.Common.Expand, Mode=OneTime, Source={StaticResource LanguageManager}}"
+                Click="ExpandButton_Click">
+                <FontIcon x:Name="ExpandButtonIcon" Glyph="&#xF15F;"/>
+            </Button>
+            <Button
                 x:Name="RefreshButton"
                 x:DeferLoadStrategy="Lazy"
                 TabIndex="2"

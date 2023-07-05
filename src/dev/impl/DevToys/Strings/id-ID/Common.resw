@@ -123,6 +123,9 @@
   <data name="Clear" xml:space="preserve">
     <value>Bersihkan</value>
   </data>
+  <data name="Collapse" xml:space="preserve">
+    <value>Sembunyikan</value>
+  </data>
   <data name="Copy" xml:space="preserve">
     <value>Salin</value>
   </data>
@@ -131,6 +134,9 @@
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Hapus</value>
+  </data>
+  <data name="Expand" xml:space="preserve">
+    <value>Perluas</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
     <value>Cari File</value>
@@ -169,7 +175,7 @@
     <value>MB</value>
   </data>
   <data name="Ok" xml:space="preserve">
-    <value>OK</value>
+    <value>OKE</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
     <value>Muat file</value>
@@ -178,7 +184,7 @@
     <value>Tempel</value>
   </data>
   <data name="Redo" xml:space="preserve">
-    <value>Redo</value>
+    <value>Kembalikan</value>
   </data>
   <data name="Refresh" xml:space="preserve">
     <value>Perbarui</value>
@@ -205,7 +211,7 @@
     <value>Tidak dapat memuat file '{0}'. Hanya berkas teks saja yang dapat dibuka, Untuk lebih detailnya, silahkan cek log.</value>
   </data>
   <data name="Undo" xml:space="preserve">
-    <value>Undo</value>
+    <value>Urungkan</value>
   </data>
   <data name="ViewImage" xml:space="preserve">
     <value>Lihat</value>

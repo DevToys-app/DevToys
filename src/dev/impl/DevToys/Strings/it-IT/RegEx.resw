@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Strumento Tester Espressioni Regolari</value>
+    <value>Strumento Test di espressioni regolari</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Configurazione</value>
@@ -127,7 +127,7 @@
     <value>Cultura invariante</value>
   </data>
   <data name="CultureInvariantDescription" xml:space="preserve">
-    <value>Specifica che le differenze culturali nella lingua vengono ignorate.</value>
+    <value>Specifica di ignorare le impostazioni specifiche della lingua.</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Tester espressioni regolari</value>
@@ -136,13 +136,13 @@
     <value>ECMAScript</value>
   </data>
   <data name="EcmaScriptDescription" xml:space="preserve">
-    <value>Abilita il comportamento conforme a ECMAScript per l'espressione. Questo valore può essere utilizzato solo insieme alle opzioni "Cultura invariante", "Ignora distinzione lettere" e "Multilinea".</value>
+    <value>Abilita il comportamento conforme a ECMAScript per l'espressione. Questo valore può essere utilizzato solo insieme alle opzioni "Cultura invariante", "Ignora distinzione lettere" e "Multiriga".</value>
   </data>
   <data name="IgnoreCase" xml:space="preserve">
-    <value>Ignora distinzione lettere</value>
+    <value>Ignora maiuscolo/minuscolo</value>
   </data>
   <data name="IgnoreCaseDescription" xml:space="preserve">
-    <value>Specifica la corrispondenza senza distinzione tra maiuscole e minuscole.</value>
+    <value>Specifica di non distinguere tra maiuscole e minuscole nelle corrispondenze.</value>
   </data>
   <data name="IgnoreWhitespace" xml:space="preserve">
     <value>Ignora spazi bianchi</value>
@@ -151,7 +151,7 @@
     <value>Elimina lo spazio bianco senza escape dal pattern e abilita i commenti contrassegnati con #. Tuttavia, questo valore non influisce o elimina gli spazi vuoti nelle classi di caratteri, quantificatori numerici o token che segnano l'inizio dei singoli elementi del linguaggio delle espressioni regolari.</value>
   </data>
   <data name="Multiline" xml:space="preserve">
-    <value>Multilinea</value>
+    <value>Multiriga</value>
   </data>
   <data name="MultilineDescription" xml:space="preserve">
     <value>Cambia il significato di ^ e $ in modo che corrispondano rispettivamente all'inizio e alla fine di qualsiasi riga e non solo all'inizio e alla fine dell'intera stringa.</value>
@@ -169,7 +169,7 @@
     <value>Specifica che la ricerca sarà da destra a sinistra anziché da sinistra a destra.</value>
   </data>
   <data name="Singleline" xml:space="preserve">
-    <value>Linea singola</value>
+    <value>Riga singola</value>
   </data>
   <data name="SinglelineDescription" xml:space="preserve">
     <value>Cambia il significato del punto (.) in modo che corrisponda a tutti i caratteri (anziché a tutti i caratteri tranne \n).</value>
@@ -184,7 +184,7 @@
     <value>Tester espressioni regolari</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Espressioni regolari</value>
+    <value>Espressione regolare</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
     <value>Input</value>
@@ -196,9 +196,9 @@
     <value>Gruppo</value>
   </data>
   <data name="Match" xml:space="preserve">
-    <value>Abbina</value>
+    <value>Corrispondenza</value>
   </data>
   <data name="Matches" xml:space="preserve">
-    <value>Abbinamenti</value>
+    <value>Corrispondenze</value>
   </data>
 </root>

@@ -118,9 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="SearchResults" xml:space="preserve">
-    <value>"{0}" 검색 결과</value>
+    <value>"{0}"에 대한 검색 결과</value>
   </data>
   <data name="NoResultsFound" xml:space="preserve">
-    <value>결과를 찾지 못했습니다.</value>
+    <value>결과를 찾을 수 없습니다</value>
   </data>
 </root>

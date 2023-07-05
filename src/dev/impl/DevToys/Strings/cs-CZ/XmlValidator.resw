@@ -139,18 +139,18 @@
     <value>Obsah XML a XSD musí být nastaven, aby bylo možné provést ověření.</value>
   </data>
   <data name="XmlIsValidMessage" xml:space="preserve">
-    <value>XML is compliant to the defined XSD scheme.</value>
+    <value>XML je v souladu s definovaným schématem XSD.</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>XML XSD Validate</value>
+    <value>XML XSD Ověrit</value>
   </data>
   <data name="XmlNamespacesInconsistentMsg" xml:space="preserve">
-    <value>Výsledek oveření bude vždy "platný", protože XML nedefinuje tyto jmenné prostory definované v XSD: {0}</value>
+    <value>Výsledek ověření bude vždy "platný", protože XML nedefinuje tyto jmenné prostory definované v XSD: {0}</value>
   </data>
   <data name="XsdNamespacesInconsistentMsg" xml:space="preserve">
-    <value>Výsledek oveření bude vždy "platný", protože XSD nedefinuje tyto jmenné prostory definované v XML: {0}</value>
+    <value>Výsledek ověření bude vždy "platný", protože XSD nedefinuje tyto jmenné prostory definované v XML: {0}</value>
   </data>
   <data name="TargetNamespaceNotDefinedInXml" xml:space="preserve">
-    <value>Výsledek oveření bude potencionálně vždy "platný", protože XML neodkazuje na následující "cílový jmenný prostor" definovaný v XSD: {0}</value>
+    <value>Výsledek ověření bude potencionálně vždy "platný", protože XML neodkazuje na následující "targetNamespace" definovaný v XSD: {0}</value>
   </data>
 </root>

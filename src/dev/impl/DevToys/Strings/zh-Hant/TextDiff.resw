@@ -145,6 +145,6 @@
     <value>文字比較工具</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
 </root>

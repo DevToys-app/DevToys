@@ -199,8 +199,11 @@
   <data name="SignatureLabel" xml:space="preserve">
     <value>हस्ताक्षर</value>
   </data>
+  <data name="JwtNotValidated" xml:space="preserve">
+    <value>Token not validated (no parameters selected)</value>
+  </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>हस्ताक्षर सत्यापित</value>
+    <value>Token Validated</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
     <value>अमान्य सार्वजनिक कुंजी</value>
@@ -213,6 +216,9 @@
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
     <value>दर्शकों की पुष्टि करें</value>
+  </data>
+  <data name="DecodeValidateIssuerSigningKey" xml:space="preserve">
+    <value>Validate issuer signing key</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
     <value>जारीकर्ता को मान्य करें</value>

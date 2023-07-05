@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>JWT Encoder / Decoder tool</value>
+    <value>Nástroj pro kódování a dekódování JWT</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>JWT</value>
@@ -130,7 +130,7 @@
     <value>Token</value>
   </data>
   <data name="JwtPayloadLabel" xml:space="preserve">
-    <value>Payload</value>
+    <value>Obsah</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Dekódování hlavičky, obsahu a podpisu JWT</value>
@@ -145,7 +145,7 @@
     <value>Dekódovat</value>
   </data>
   <data name="DecodeValidateTokenLabel" xml:space="preserve">
-    <value>Validate Token</value>
+    <value>Ověřit token</value>
   </data>
   <data name="DecodeValidateTokenNoLabel" xml:space="preserve">
     <value>Ne</value>
@@ -154,16 +154,16 @@
     <value>Ano</value>
   </data>
   <data name="EncodeExpirationTitle" xml:space="preserve">
-    <value>Token has expirations</value>
+    <value>Token má expiraci</value>
   </data>
   <data name="EncodeExpirationMonthLabel" xml:space="preserve">
-    <value>Expire in month(s)</value>
+    <value>Vyprší za měsíc(e)</value>
   </data>
   <data name="EncodeExpirationYearLabel" xml:space="preserve">
-    <value>Expire in year(s)</value>
+    <value>Vyprší za rok(y)</value>
   </data>
   <data name="EncodeHashingTitle" xml:space="preserve">
-    <value>Token hashing algorithm</value>
+    <value>Algoritmus hashování tokenů</value>
   </data>
   <data name="EncodeSettingsTitle" xml:space="preserve">
     <value>Nastavení</value>
@@ -172,22 +172,22 @@
     <value>Zakódovat</value>
   </data>
   <data name="SettingsSwitchModeLabel" xml:space="preserve">
-    <value>Encode / Decode</value>
+    <value>Kódovat / dekódovat</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>Konfigurace</value>
   </data>
   <data name="EncodeDefaultTimeTitle" xml:space="preserve">
-    <value>Token has default time</value>
+    <value>Token má výchozí čas</value>
   </data>
   <data name="EncodeExpirationDaysLabel" xml:space="preserve">
-    <value>Expire in day(s)</value>
+    <value>Vyprší za den(dní)</value>
   </data>
   <data name="EncodeExpirationHoursLabel" xml:space="preserve">
-    <value>Expire in hour(s)</value>
+    <value>Vyprší za hodinu(y)</value>
   </data>
   <data name="EncodeExpirationMinutesLabel" xml:space="preserve">
-    <value>Expire in minute(s)</value>
+    <value>Vyprší za minutu(y)</value>
   </data>
   <data name="PrivateKeyLabel" xml:space="preserve">
     <value>Privátní klíč</value>
@@ -195,56 +195,62 @@
   <data name="SignatureLabel" xml:space="preserve">
     <value>Podpis</value>
   </data>
+  <data name="JwtNotValidated" xml:space="preserve">
+    <value>Token není ověřen (nebyly vybrány žádné parametry)</value>
+  </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>Podpis ověřen</value>
+    <value>Token ověřen</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
-    <value>Invalid Public Key</value>
+    <value>Neplatný veřejný klíč</value>
   </data>
   <data name="JwtInValidMessage" xml:space="preserve">
-    <value>Invalid Signature</value>
+    <value>Neplatný podpis</value>
   </data>
   <data name="DecodeValidateActorLabel" xml:space="preserve">
-    <value>Validate actor</value>
+    <value>Ověřit aktéra</value>
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
-    <value>Validate audience</value>
+    <value>Ověřit příjemce</value>
+  </data>
+  <data name="DecodeValidateIssuerSigningKey" xml:space="preserve">
+    <value>Ověřit podpisový klíč vydavatele</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
-    <value>Validate issuer</value>
+    <value>Ověřit vydavatele</value>
   </data>
   <data name="DecodeValidateLifetimeLabel" xml:space="preserve">
-    <value>Validate lifetime</value>
+    <value>Ověřit životnost</value>
   </data>
   <data name="ValidAudiencesLabel" xml:space="preserve">
-    <value>Valid audiences</value>
+    <value>Ověřit příjemce</value>
   </data>
   <data name="ValidIssuersLabel" xml:space="preserve">
-    <value>Valid issuers</value>
+    <value>Ověřit vydavatele</value>
   </data>
   <data name="DecodeValidationSettingsDescription" xml:space="preserve">
-    <value>Select which token parameters to validate</value>
+    <value>Vyberte parametry tokenu, které se mají ověřit</value>
   </data>
   <data name="DecodeValidationSettingsTitle" xml:space="preserve">
     <value>Nastavení ověření tokenu</value>
   </data>
   <data name="ValidAudiencesError" xml:space="preserve">
-    <value>Valid audiences are empty</value>
+    <value>Platní příjemci jsou prázdní</value>
   </data>
   <data name="ValidIssuersError" xml:space="preserve">
-    <value>Valid issuers are empty</value>
+    <value>Platní vydavatelé jsou prázdní</value>
   </data>
   <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
-    <value>The public key provided is a private key</value>
+    <value>Poskytnutý veřejný klíč je privátní klíč</value>
   </data>
   <data name="EncodeAudienceLabel" xml:space="preserve">
-    <value>Token has audience</value>
+    <value>Token má příjemce</value>
   </data>
   <data name="EncodeIssuerLabel" xml:space="preserve">
-    <value>Token has issuer</value>
+    <value>Token má vydavatele</value>
   </data>
   <data name="EncodeSettingsDescription" xml:space="preserve">
-    <value>Select token parameters</value>
+    <value>Vybrat parametry tokenu</value>
   </data>
   <data name="InvalidPrivateKeyError" xml:space="preserve">
     <value>Neplatný privátní klíč</value>
@@ -253,7 +259,7 @@
     <value>Veřejný klíč</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>JWT Encoder / Decoder</value>
+    <value>Kodér / Dekodér JWT</value>
   </data>
   <data name="InvalidSignatureError" xml:space="preserve">
     <value>Neplatný podpis</value>

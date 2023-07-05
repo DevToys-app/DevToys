@@ -127,7 +127,7 @@
     <value>Genera un placeholder Lorem Ipsum</value>
   </data>
   <data name="LengthDescription" xml:space="preserve">
-    <value>Scegli se generare parole, frasi o paragrafi</value>
+    <value>Numero di parole, frasi o paragrafi da generare</value>
   </data>
   <data name="LengthTitle" xml:space="preserve">
     <value>Lunghezza</value>
@@ -151,7 +151,7 @@
     <value>Inizia con 'Lorem ipsum dolor sit amet...'</value>
   </data>
   <data name="TypeDescription" xml:space="preserve">
-    <value>Genera placeholder Lorem Ipsum</value>
+    <value>Genera parole, frasi o paragrafi Lorem Ipsum</value>
   </data>
   <data name="TypeTitle" xml:space="preserve">
     <value>Tipologia</value>
@@ -160,6 +160,6 @@
     <value>Parole</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
 </root>

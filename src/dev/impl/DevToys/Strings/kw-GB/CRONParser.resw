@@ -171,4 +171,10 @@
   <data name="SecondsIncludedMode" xml:space="preserve">
     <value>Eylennow yssynsys (Cron 6 - rann)</value>
   </data>
+  <data name="DescriptionTitle" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DescriptionErrorMessage" xml:space="preserve">
+    <value>Unable to generate description</value>
+  </data>
 </root>

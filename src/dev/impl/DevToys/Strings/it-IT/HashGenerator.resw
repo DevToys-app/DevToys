@@ -160,7 +160,7 @@
     <value>Tipo di output</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="HmacMode" xml:space="preserve">
     <value>Modalità HMAC</value>

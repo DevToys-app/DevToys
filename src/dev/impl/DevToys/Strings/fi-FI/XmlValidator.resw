@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Xml Validator tool</value>
+    <value>XML-validointityökalu</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>XML Validator</value>
+    <value>XML-validaattori</value>
   </data>
   <data name="XsdScheme" xml:space="preserve">
     <value>XSD</value>
@@ -130,27 +130,27 @@
     <value>XML</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Validate XML data via an XSD scheme.</value>
+    <value>Validoi XML-data XSD-mallin avulla.</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>XML Validator</value>
+    <value>XML-validaattori</value>
   </data>
   <data name="ValidationImpossibleMsg" xml:space="preserve">
-    <value>XML and XSD content must be set in order to perform a validation.</value>
+    <value>XML- ja XSD-sisältö on asetettava, jotta varmennus voidaan suorittaa.</value>
   </data>
   <data name="XmlIsValidMessage" xml:space="preserve">
-    <value>XML is compliant to the defined XSD scheme.</value>
+    <value>XML on määritellyn XSD-mallin mukainen.</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>XML XSD Validate</value>
+    <value>XML XSD Validointi</value>
   </data>
   <data name="XmlNamespacesInconsistentMsg" xml:space="preserve">
-    <value>Validation result will always be 'valid' since the XML does not define these namespace(s) defined in the XSD: {0}</value>
+    <value>Validointitulos on aina kelvollinen, koska XML ei määrittele näitä XSD:ssä määritettyjä nimiavaruuksia: {0}</value>
   </data>
   <data name="XsdNamespacesInconsistentMsg" xml:space="preserve">
-    <value>Validation result will always be 'valid' since the XSD does not define these namespace(s) defined in the XML: {0}</value>
+    <value>Validointitulos on aina kelvollinen, koska XSD ei määrittele näitä XML:ssä määritettyjä nimiavaruuksia: {0}</value>
   </data>
   <data name="TargetNamespaceNotDefinedInXml" xml:space="preserve">
-    <value>Validation result will potentially always be 'valid' since the XML does not reference the following "targetNamespace" defined in the XSD: {0}</value>
+    <value>Validointitulos on mahdollisesti aina kelvollinen, koska XML ei viittaa seuraavaan XSD:ssä määritettyyn "targetNamespace":en: {0}</value>
   </data>
 </root>

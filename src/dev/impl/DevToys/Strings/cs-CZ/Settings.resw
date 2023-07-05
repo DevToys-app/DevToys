@@ -124,7 +124,7 @@
     <value>Motiv aplikace</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>Umožňuje změnit v jakém motivu se má aplikace zobrazit</value>
+    <value>Vyberte motiv aplikace, který se má zobrazit</value>
   </data>
   <data name="AppTitle" xml:space="preserve">
     <value>DevToys</value>
@@ -196,10 +196,10 @@
     <value>Automatická detekce nejlepšího nástroje na základě obsahu schránky</value>
   </data>
   <data name="SmartDetectionHowTo" xml:space="preserve">
-    <value>Jak používat Chytrou detekci</value>
+    <value>Jak používat chytrou detekci</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automatické vkládání obsahu schránky při výběru doporučeného nástroje</value>
+    <value>Automaticky vkládat obsah schránky při výběru doporučeného nástroje</value>
   </data>
   <data name="SourceCode" xml:space="preserve">
     <value>Zdrojový kód</value>
@@ -229,7 +229,7 @@
     <value>Nastavení</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Configurations Options Settings</value>
+    <value>Možnosti konfigurace</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
     <value>Pomozte s překladem!</value>

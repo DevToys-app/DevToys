@@ -43,6 +43,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -52,7 +53,7 @@
         </Grid.ColumnDefinitions>
 
         <controls:CustomTextBox
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.Column="0"
             Header="{x:Bind ViewModel.Strings.String}"
             AcceptsReturn="True"
@@ -86,10 +87,27 @@
             </toolkit:WrapPanel>
         </StackPanel>
 
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Spacing="4">
+            <TextBlock Style="{StaticResource SubTitleTextBlock}" Text="{x:Bind ViewModel.Strings.Sort}" />
+
+            <toolkit:WrapPanel VerticalSpacing="4" HorizontalSpacing="4">
+                <Button Content="{x:Bind ViewModel.Strings.Alphabetize}" Command="{x:Bind ViewModel.AlphabetizeCommand}"/>
+                <Button Content="{x:Bind ViewModel.Strings.ReverseAlphabetize}" Command="{x:Bind ViewModel.ReverseAlphabetizeCommand}"/>
+                <Button Content="{x:Bind ViewModel.Strings.AlphabetizeLast}" Command="{x:Bind ViewModel.AlphabetizeLastCommand}"/>
+                <Button Content="{x:Bind ViewModel.Strings.ReverseAlphabetizeLast}" Command="{x:Bind ViewModel.ReverseAlphabetizeLastCommand}"/>
+                <Button Content="{x:Bind ViewModel.Strings.Reverse}" Command="{x:Bind ViewModel.ReverseCommand}"/>
+                <Button Content="{x:Bind ViewModel.Strings.Randomize}" Command="{x:Bind ViewModel.RandomizeCommand}"/>
+            </toolkit:WrapPanel>
+        </StackPanel>
+
         <Grid
             x:Name="StatisticsGrid"
             Style="{StaticResource CardStyle}"
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.Column="1"
             Margin="0,42,0,0">
             <StackPanel

@@ -154,7 +154,7 @@
     <value>Versaler</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="HashesMatch" xml:space="preserve">
     <value>Hashen är samma.</value>

@@ -189,6 +189,49 @@ namespace DevToys.UI.Controls
             set => SetValue(InlineDiffViewModeProperty, value);
         }
 
+        public static readonly DependencyProperty AllowExpandProperty
+            = DependencyProperty.Register(
+                nameof(AllowExpand),
+                typeof(bool),
+                typeof(CodeEditor),
+                new PropertyMetadata(false));
+
+        public bool AllowExpand
+        {
+            get => (bool)GetValue(AllowExpandProperty);
+            set => SetValue(AllowExpandProperty, value);
+        }
+
+        public bool IsExpanded { get; private set; }
+
+        public event EventHandler? ExpandedChanged;
+
+        public static readonly DependencyProperty InfoContentProperty
+            = DependencyProperty.Register(
+                nameof(InfoContent),
+                typeof(object),
+                typeof(CodeEditor),
+                new PropertyMetadata(null));
+
+        public object? InfoContent
+        {
+            get => GetValue(InfoContentProperty);
+            set => SetValue(InfoContentProperty, value);
+        }
+
+        public static readonly DependencyProperty ShowInfoContentProperty
+            = DependencyProperty.Register(
+                nameof(ShowInfoContent),
+                typeof(bool),
+                typeof(CodeEditor),
+                new PropertyMetadata(false));
+
+        public bool ShowInfoContent
+        {
+            get => (bool)GetValue(ShowInfoContentProperty);
+            set => SetValue(ShowInfoContentProperty, value);
+        }
+
         public CodeEditor()
         {
             SettingsProvider = MefComposer.Provider.Import<ISettingsProvider>();
@@ -273,6 +316,21 @@ namespace DevToys.UI.Controls
 
                 ApplySettings();
             }
+        }
+
+        private Button GetExpandButton()
+        {
+            return (Button)(ExpandButton ?? FindName(nameof(ExpandButton)));
+        }
+
+        private FontIcon GetExpandButtonIcon()
+        {
+            return (FontIcon)(ExpandButtonIcon ?? FindName(nameof(ExpandButtonIcon)));
+        }
+
+        private Button GetInfoButton()
+        {
+            return (Button)(InfoButton ?? FindName(nameof(InfoButton)));
         }
 
         private Button GetCopyButton()
@@ -456,6 +514,50 @@ namespace DevToys.UI.Controls
                     ClearButton.Visibility = Visibility.Collapsed;
                 }
             }
+
+            if (AllowExpand)
+            {
+                GetExpandButton().Visibility = Visibility.Visible;
+            }
+
+            if (InfoContent is not null)
+            {
+                GetInfoButton().Visibility = Visibility.Visible;
+            }
+        }
+
+        private void ExpandButton_Click(object _, RoutedEventArgs e)
+        {
+            // This little trick is needed because the info content doesn't always size properly
+            // when being expanded/collapsed. 
+            bool showInfo = ShowInfoContent;
+            ShowInfoContent = false;
+
+            IsExpanded = !IsExpanded;
+            ExpandedChanged?.Invoke(this, EventArgs.Empty);
+
+            if (IsExpanded)
+            {
+                GetExpandButtonIcon().Glyph = "\uF165";
+                ToolTipService.SetToolTip(GetExpandButton(), LanguageManager.Instance.Common.Collapse);
+            }
+            else
+            {
+                GetExpandButtonIcon().Glyph = "\uF15F";
+                ToolTipService.SetToolTip(GetExpandButton(), LanguageManager.Instance.Common.Expand);
+            }
+
+            // Must dispatch this final resize to give the main control a chance to size properly
+            Window.Current.Dispatcher.RunIdleAsync(_ =>
+            {
+                ShowInfoContent = showInfo;
+            });
+        }
+
+        private void InfoButton_Click(object sender, RoutedEventArgs e)
+        {
+            ShowInfoContent = !ShowInfoContent;
+            ToolTipService.SetToolTip(GetInfoButton(), ShowInfoContent ? LanguageManager.Instance.Common.HideInfo : LanguageManager.Instance.Common.ShowInfo);
         }
 
         private async void PasteButton_Click(object sender, RoutedEventArgs e)
@@ -596,6 +698,16 @@ namespace DevToys.UI.Controls
                 codeEditor._codeEditorCore.ReadOnly = (bool)eventArgs.NewValue;
             }
             codeEditor.UpdateUI();
+        }
+
+        private void CodeEditorSizeFit_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (InfoGrid is not null)
+            {
+                CodeEditorSizeFit.MinHeight = InfoGrid.MinHeight;
+                InfoGrid.Height = CodeEditorSizeFit.ActualHeight;
+                InfoGrid.Width = CodeEditorSizeFit.ActualWidth;
+            }
         }
     }
 }

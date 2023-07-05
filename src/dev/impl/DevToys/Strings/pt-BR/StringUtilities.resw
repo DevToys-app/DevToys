@@ -147,6 +147,9 @@
   <data name="Convert" xml:space="preserve">
     <value>Converter</value>
   </data>
+  <data name="Sort" xml:space="preserve">
+    <value>Ordenar Linhas</value>
+  </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Inspecionador e conversor de maiúsculo/minúsculo</value>
   </data>
@@ -155,6 +158,24 @@
   </data>
   <data name="KebabCase" xml:space="preserve">
     <value>kebab-case</value>
+  </data>
+  <data name="Alphabetize" xml:space="preserve">
+    <value>Ordem alfabética</value>
+  </data>
+  <data name="ReverseAlphabetize" xml:space="preserve">
+    <value>Ordem alfabética invertida</value>
+  </data>
+  <data name="AlphabetizeLast" xml:space="preserve">
+    <value>Ordem alfabética pela última palavra</value>
+  </data>
+  <data name="ReverseAlphabetizeLast" xml:space="preserve">
+    <value>Ordem alfabética invertida pela última palavra</value>
+  </data>
+  <data name="Reverse" xml:space="preserve">
+    <value>Invertido</value>
+  </data>
+  <data name="Randomize" xml:space="preserve">
+    <value>Aleatorizar</value>
   </data>
   <data name="Line" xml:space="preserve">
     <value>Linha:</value>

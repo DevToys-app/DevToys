@@ -151,15 +151,15 @@
     <value>Penghasil Checksum</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
-    <value>Uppercase</value>
+    <value>Huruf besar</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="HashesMatch" xml:space="preserve">
-    <value>The hashes are the same.</value>
+    <value>Hash-nya sama.</value>
   </data>
   <data name="HashesMismatch" xml:space="preserve">
-    <value>The hashes are different.</value>
+    <value>Hash-nya berbeda.</value>
   </data>
 </root>

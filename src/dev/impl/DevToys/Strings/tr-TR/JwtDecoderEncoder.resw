@@ -136,7 +136,7 @@
     <value>JWT başlığını, yükünü ve imzasını çözümle</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="Algorithm" xml:space="preserve">
     <value>Algoritma</value>
@@ -195,8 +195,11 @@
   <data name="SignatureLabel" xml:space="preserve">
     <value>İmza</value>
   </data>
+  <data name="JwtNotValidated" xml:space="preserve">
+    <value>Belirteç doğrulanmadı (hiçbir parametre seçilmedi)</value>
+  </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>İmza Doğrulandı</value>
+    <value>Belirteç Onaylandı</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
     <value>Geçersiz Ortak Anahtar</value>
@@ -209,6 +212,9 @@
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
     <value>Seyirciyi doğrula</value>
+  </data>
+  <data name="DecodeValidateIssuerSigningKey" xml:space="preserve">
+    <value>Veren imza anahtarını doğrula</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
     <value>Sağlayıcıyı doğrula</value>

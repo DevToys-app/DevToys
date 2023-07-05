@@ -125,6 +125,9 @@
   <data name="Clear" xml:space="preserve">
     <value>साफ़</value>
   </data>
+  <data name="Collapse" xml:space="preserve">
+    <value>Collapse</value>
+  </data>
   <data name="Copy" xml:space="preserve">
     <value>प्रतिलिपि</value>
   </data>
@@ -133,6 +136,9 @@
   </data>
   <data name="Delete" xml:space="preserve">
     <value>मिटाना</value>
+  </data>
+  <data name="Expand" xml:space="preserve">
+    <value>Expand</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
     <value>फ़ाइल चयनकर्ता ब्राउज़ फ़ाइलें</value>

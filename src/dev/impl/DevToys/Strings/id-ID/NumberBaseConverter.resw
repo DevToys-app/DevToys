@@ -121,7 +121,7 @@
     <value>Alat Konversi Basis Angka</value>
   </data>
   <data name="BinaryLabel" xml:space="preserve">
-    <value>Binary</value>
+    <value>Biner</value>
   </data>
   <data name="ConfigurationTitle" xml:space="preserve">
     <value>Konfigurasi</value>
@@ -142,7 +142,7 @@
     <value>Masukan</value>
   </data>
   <data name="InputTypeBinary" xml:space="preserve">
-    <value>Binary</value>
+    <value>Biner</value>
   </data>
   <data name="InputTypeDecimal" xml:space="preserve">
     <value>Desimal</value>
@@ -154,13 +154,13 @@
     <value>Hexadesimal</value>
   </data>
   <data name="InputTypeOctal" xml:space="preserve">
-    <value>Octal</value>
+    <value>Oktal</value>
   </data>
   <data name="InputTypeTitle" xml:space="preserve">
     <value>Tipe Input</value>
   </data>
   <data name="OctalLabel" xml:space="preserve">
-    <value>Octal</value>
+    <value>Oktal</value>
   </data>
   <data name="ValueInvalid" xml:space="preserve">
     <value>Nilai saat ini tidak sesuai {0}</value>
@@ -177,27 +177,27 @@
     <value>Konversi Basis Data</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Binary Octal Decimal Hexadecimal</value>
+    <value>Biner Oktal Desimal Heksadesimal</value>
   </data>
   <data name="AdvancedModeLabel" xml:space="preserve">
-    <value>Advanced mode</value>
+    <value>Mode lanjutan</value>
   </data>
   <data name="InputDictionaryLabel" xml:space="preserve">
-    <value>Input dictionary</value>
+    <value>Kamus input</value>
   </data>
   <data name="OutputDictionaryLabel" xml:space="preserve">
-    <value>Output dictionary</value>
+    <value>Kamus output</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Hasil</value>
   </data>
   <data name="BaseNumberError" xml:space="preserve">
-    <value>Base number should be greater than 1.</value>
+    <value>Angka dasar harus lebih besar dari 1.</value>
   </data>
   <data name="DictionarySizeError" xml:space="preserve">
-    <value>Dictionary size should be greater than 1.</value>
+    <value>Ukuran kamus harus lebih besar dari 1.</value>
   </data>
   <data name="IncompatibleBaseDictionaryError" xml:space="preserve">
-    <value>Dictionary size could not be smaller than the base number.</value>
+    <value>Ukuran kamus tidak boleh lebih kecil dari nomor dasar.</value>
   </data>
 </root>

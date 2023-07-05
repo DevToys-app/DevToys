@@ -136,7 +136,7 @@
     <value>解码 JWT 头部、有效载荷和签名</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="Algorithm" xml:space="preserve">
     <value>算法</value>
@@ -195,8 +195,11 @@
   <data name="SignatureLabel" xml:space="preserve">
     <value>签名</value>
   </data>
+  <data name="JwtNotValidated" xml:space="preserve">
+    <value>令牌未验证（未选择参数）</value>
+  </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>已验证签名</value>
+    <value>令牌已验证</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
     <value>公钥无效</value>
@@ -209,6 +212,9 @@
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
     <value>验证接收者</value>
+  </data>
+  <data name="DecodeValidateIssuerSigningKey" xml:space="preserve">
+    <value>验证签发者签名密钥</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
     <value>验证签发者</value>

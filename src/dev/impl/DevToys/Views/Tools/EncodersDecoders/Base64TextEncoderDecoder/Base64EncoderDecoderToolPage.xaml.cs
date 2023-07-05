@@ -52,5 +52,21 @@ namespace DevToys.Views.Tools.Base64EncoderDecoder
 
             base.OnNavigatedTo(e);
         }
+
+        private void OutputTextBox_ExpandedChanged(object sender, System.EventArgs e)
+        {
+            if (OutputTextBox.IsExpanded)
+            {
+                MainGrid.Children.Remove(OutputTextBox);
+                MainGrid.Visibility = Visibility.Collapsed;
+                ExpandedGrid.Children.Add(OutputTextBox);
+            }
+            else
+            {
+                ExpandedGrid.Children.Remove(OutputTextBox);
+                MainGrid.Children.Add(OutputTextBox);
+                MainGrid.Visibility = Visibility.Visible;
+            }
+        }
     }
 }

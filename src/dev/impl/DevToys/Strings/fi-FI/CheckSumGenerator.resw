@@ -154,7 +154,7 @@
     <value>Isot kirjaimet</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="HashesMatch" xml:space="preserve">
     <value>Hajautusarvot ovat samat.</value>

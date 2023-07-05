@@ -23,6 +23,17 @@
             <Setter Property="MinHeight" Value="{StaticResource ExpanderMinHeight}" />
             <Setter Property="Padding" Value="{StaticResource ExpanderContentPadding}" />
         </Style>
+
+        <!-- Details row template for Claims info DataGrid -->
+        <DataTemplate x:Key="InfoDataGridRowDetailsTemplate">
+            <!-- Need a border because TextBlock doesn't have background -->
+            <Border Background="{ThemeResource TextControlBackgroundFocused}">
+                <TextBlock
+                    Text="{Binding Description}"
+                    Padding="20,10,10,10"
+                    TextWrapping="Wrap"/>
+            </Border>
+        </DataTemplate>
     </UserControl.Resources>
 
     <Grid x:Name="JwtDecoderGrid" Margin="0,0,0,16" RowSpacing="12">
@@ -72,6 +83,15 @@
                 </controls:ExpandableSettingControl.Icon>
                 <controls:ExpandableSettingControl.ExpandableContent>
                     <StackPanel Padding="6" Spacing="4" HorizontalAlignment="Stretch">
+                        <controls:ExpandableSettingControl
+                            Title="{x:Bind ViewModel.LocalizedStrings.DecodeValidateIssuerSigningKey}">
+                            <controls:ExpandableSettingControl.Icon>
+                                <FontIcon Glyph="&#xF283;" />
+                            </controls:ExpandableSettingControl.Icon>
+                            <ToggleSwitch 
+                                Style="{StaticResource RightAlignedToggleSwitchStyle}" 
+                                IsOn="{x:Bind ViewModel.ValidateIssuerSigningKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </controls:ExpandableSettingControl>
                         <controls:ExpandableSettingControl
                             Title="{x:Bind ViewModel.LocalizedStrings.DecodeValidateIssuerLabel}">
                             <controls:ExpandableSettingControl.Icon>
@@ -175,7 +195,47 @@
             Header="{x:Bind ViewModel.LocalizedStrings.JwtPayloadLabel}"
             Text="{x:Bind ViewModel.Payload, Mode=OneWay}"
             CodeLanguage="json"
-            IsReadOnly="True"/>
+            IsReadOnly="True"
+            AllowExpand="True"
+            ExpandedChanged="PayloadCodeEditor_ExpandedChanged">
+            <controls:CodeEditor.InfoContent>
+                <Border
+                    BorderThickness="1" 
+                    BorderBrush="{ThemeResource TextControlBorderBrush}" 
+                    CornerRadius="{ThemeResource ControlCornerRadius}"
+                    Background="{ThemeResource TextControlBackground}">
+                    <toolkit:DataGrid
+                        AutoGenerateColumns="False"
+                        ItemsSource="{x:Bind ViewModel.Claims, Mode=OneWay}"
+                        AlternatingRowBackground="{ThemeResource TextControlButtonBackgroundPressed}"
+                        RowDetailsTemplate="{StaticResource InfoDataGridRowDetailsTemplate}"
+                        FontFamily="{x:Bind InfoDataGridFontFamily, Mode=OneWay}">
+                        <toolkit:DataGrid.Resources>
+                            <!-- This key just has to exist to remove the default coloring of the column headers and make them look like the rows. -->
+                            <SolidColorBrush x:Key="DataGridColumnHeaderBackgroundColor"/>
+                        </toolkit:DataGrid.Resources>
+                        <!-- Claims Type column -->
+                        <toolkit:DataGrid.Columns>
+                            <toolkit:DataGridTextColumn Header="{x:Bind ViewModel.LocalizedStrings.Type}" Width="*" Binding="{Binding Type}">
+                                <toolkit:DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </toolkit:DataGridTextColumn.ElementStyle>
+                            </toolkit:DataGridTextColumn>
+                            <!--Claims Value column-->
+                            <toolkit:DataGridTextColumn Header="{x:Bind ViewModel.LocalizedStrings.Value}" Width="2*" Binding="{Binding Value}">
+                                <toolkit:DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </toolkit:DataGridTextColumn.ElementStyle>
+                            </toolkit:DataGridTextColumn>
+                        </toolkit:DataGrid.Columns>
+                    </toolkit:DataGrid>
+                </Border>
+            </controls:CodeEditor.InfoContent>
+        </controls:CodeEditor>
         <Grid
             x:Name="SignatureGrid"
             Grid.Row="4"

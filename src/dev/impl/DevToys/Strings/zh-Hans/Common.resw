@@ -123,6 +123,9 @@
   <data name="Clear" xml:space="preserve">
     <value>清空</value>
   </data>
+  <data name="Collapse" xml:space="preserve">
+    <value>折叠</value>
+  </data>
   <data name="Copy" xml:space="preserve">
     <value>复制</value>
   </data>
@@ -131,6 +134,9 @@
   </data>
   <data name="Delete" xml:space="preserve">
     <value>删除</value>
+  </data>
+  <data name="Expand" xml:space="preserve">
+    <value>展开</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
     <value>浏览文件</value>

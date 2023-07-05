@@ -171,4 +171,10 @@
   <data name="SecondsIncludedMode" xml:space="preserve">
     <value>Sekunden enthalten (6 - Segment Cron)</value>
   </data>
+  <data name="DescriptionTitle" xml:space="preserve">
+    <value>Beschreibung</value>
+  </data>
+  <data name="DescriptionErrorMessage" xml:space="preserve">
+    <value>Generieren der Beschreibung fehlgeschlagen</value>
+  </data>
 </root>

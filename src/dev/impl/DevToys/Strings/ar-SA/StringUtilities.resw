@@ -121,10 +121,10 @@
     <value>String utilities tool</value>
   </data>
   <data name="AlternatingCase" xml:space="preserve">
-    <value>aLtErNaTiNg cAsE</value>
+    <value>مناوبة الحجم</value>
   </data>
   <data name="Bytes" xml:space="preserve">
-    <value>Bytes:</value>
+    <value>بايت:</value>
   </data>
   <data name="CamelCase" xml:space="preserve">
     <value>camelCase</value>
@@ -139,13 +139,16 @@
     <value>COBOL-CASE</value>
   </data>
   <data name="Column" xml:space="preserve">
-    <value>Column:</value>
+    <value>الأعمدة:</value>
   </data>
   <data name="ConstantCase" xml:space="preserve">
     <value>CONSTANT_CASE</value>
   </data>
   <data name="Convert" xml:space="preserve">
     <value>Convert</value>
+  </data>
+  <data name="Sort" xml:space="preserve">
+    <value>Sort Lines</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Inspector &amp; Case Converter</value>
@@ -156,11 +159,29 @@
   <data name="KebabCase" xml:space="preserve">
     <value>kebab-case</value>
   </data>
+  <data name="Alphabetize" xml:space="preserve">
+    <value>Alphabetize</value>
+  </data>
+  <data name="ReverseAlphabetize" xml:space="preserve">
+    <value>Reverse alphabetize</value>
+  </data>
+  <data name="AlphabetizeLast" xml:space="preserve">
+    <value>Alphabetize by last word</value>
+  </data>
+  <data name="ReverseAlphabetizeLast" xml:space="preserve">
+    <value>Reverse alphabetize by last word</value>
+  </data>
+  <data name="Reverse" xml:space="preserve">
+    <value>Reverse</value>
+  </data>
+  <data name="Randomize" xml:space="preserve">
+    <value>Randomize</value>
+  </data>
   <data name="Line" xml:space="preserve">
-    <value>Line:</value>
+    <value>سطر:</value>
   </data>
   <data name="Lines" xml:space="preserve">
-    <value>Lines:</value>
+    <value>الأسطر:</value>
   </data>
   <data name="LowerCase" xml:space="preserve">
     <value>lower case</value>
@@ -208,10 +229,10 @@
     <value>Word distribution</value>
   </data>
   <data name="Words" xml:space="preserve">
-    <value>Words:</value>
+    <value>كلمات:</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Analyze text and convert it to a different case</value>
+    <value>تحليل النص وتحويله إلى حالة مختلفة</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Text Case Converter and Inspector</value>

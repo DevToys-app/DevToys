@@ -118,73 +118,73 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Timestamp converter tool</value>
+    <value>Aikaleiman muuntotyökalu</value>
   </data>
   <data name="TimeZoneTitle" xml:space="preserve">
-    <value>Time zone</value>
+    <value>Aikavyöhyke</value>
   </data>
   <data name="DaylightSavingTime" xml:space="preserve">
-    <value>Daylight saving time.</value>
+    <value>Kesäaika.</value>
   </data>
   <data name="DayTitle" xml:space="preserve">
-    <value>Day</value>
+    <value>Päivä</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Convert timestamp to human-readable date and vice versa</value>
+    <value>Muunna aikaleima ihmisluettavaksi päivämääräksi ja päinvastoin</value>
   </data>
   <data name="DisabledDaylightSavingTime" xml:space="preserve">
-    <value>There is no daylight saving time.</value>
+    <value>Kesäaikaa ei ole.</value>
   </data>
   <data name="DSTAmbiguousTime" xml:space="preserve">
-    <value>DST Ambiguous time.</value>
+    <value>KA epäselvä aika.</value>
   </data>
   <data name="HourTitle" xml:space="preserve">
-    <value>Hour (24 hour)</value>
+    <value>Tunti (24 tuntia)</value>
   </data>
   <data name="InvalidValue" xml:space="preserve">
-    <value>Invalid value</value>
+    <value>Virheellinen arvo</value>
   </data>
   <data name="LocalDateTime" xml:space="preserve">
-    <value>Local Date and Time</value>
+    <value>Paikallinen päivämäärä ja aika</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Timestamp</value>
+    <value>Aikaleima</value>
   </data>
   <data name="MinutesTitle" xml:space="preserve">
-    <value>Minutes</value>
+    <value>Minuutit</value>
   </data>
   <data name="MonthTitle" xml:space="preserve">
-    <value>Month</value>
+    <value>Kuukausi</value>
   </data>
   <data name="OffsetTitle" xml:space="preserve">
-    <value>Offset</value>
+    <value>Poikkeama</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Unix Timestamp Converter</value>
+    <value>Unix-aikaleiman muunnin</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Time Date Timezone Epoch</value>
+    <value>Aika Päivämäärä Aikavyöhyke Ajanjakso</value>
     <comment>Alternative search keywords. Enables searching for words that are not included in Description, MenuDisplayName, and SearchDisplayName.</comment>
   </data>
   <data name="SecondsTitle" xml:space="preserve">
-    <value>Seconds</value>
+    <value>Sekunnit</value>
   </data>
   <data name="SupportsDaylightSavingTime" xml:space="preserve">
-    <value>There is daylight saving time.</value>
+    <value>Kesäaika on käytössä.</value>
   </data>
   <data name="TimestampTitle" xml:space="preserve">
-    <value>Timestamp</value>
+    <value>Aikaleima</value>
   </data>
   <data name="UTCDateTime" xml:space="preserve">
-    <value>UTC Date and Time</value>
+    <value>UTC-päivämäärä ja -kellonaika</value>
   </data>
   <data name="UtcTicksTitle" xml:space="preserve">
-    <value>UtcTicks</value>
+    <value>UTC-jaksot</value>
   </data>
   <data name="YearTitle" xml:space="preserve">
-    <value>Year</value>
+    <value>Vuosi</value>
   </data>
   <data name="Now" xml:space="preserve">
-    <value>Now</value>
+    <value>Nyt</value>
   </data>
 </root>

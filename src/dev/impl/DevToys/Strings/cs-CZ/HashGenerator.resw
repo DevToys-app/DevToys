@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Nástroj pro generovaní Hashů</value>
+    <value>Nástroj pro generovaní hashů</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Konfigurace</value>
@@ -163,9 +163,9 @@
     <value>Checksum Generator</value>
   </data>
   <data name="HmacMode" xml:space="preserve">
-    <value>HMAC Mode</value>
+    <value>Režim HMAC</value>
   </data>
   <data name="SecretKey" xml:space="preserve">
-    <value>Secret Key</value>
+    <value>Tajný klíč</value>
   </data>
 </root>

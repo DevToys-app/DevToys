@@ -128,6 +128,7 @@
     <Compile Include="Helpers\JsonYaml\Core\DecimalJsonConverter.cs" />
     <Compile Include="Helpers\JsonYaml\Core\DecimalYamlTypeResolver.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\EncodersDecodersGroupToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtClaim.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtEncoder.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtDecoder.cs" />
     <Compile Include="ViewModels\Tools\EncodersDecoders\JwtDecoderEncoder\JwtDecoderControlViewModel.cs" />
@@ -786,6 +787,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="CronExpressionDescriptor" Version="$(Nuget_CronExpressionDescriptor)" />
     <PackageReference Include="Cronos" Version="$(Nuget_Cronos)" />
     <PackageReference Include="GitInfo" Version="$(Nuget_GitInfo)" />
     <PackageReference Include="Markdig" Version="$(Nuget_Markdig)" />

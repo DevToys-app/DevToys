@@ -148,7 +148,7 @@
     <value>Kalimat</value>
   </data>
   <data name="StartWithLoremTitle" xml:space="preserve">
-    <value>Start with 'Lorem ipsum dolor sit amet...'</value>
+    <value>Mulailah dengan 'Lorem ipsum dolor sit amet...'</value>
   </data>
   <data name="TypeDescription" xml:space="preserve">
     <value>Buat kata, kalimat atau paragraf Lorem Ipsum</value>
@@ -157,9 +157,9 @@
     <value>Mengetik</value>
   </data>
   <data name="WordsType" xml:space="preserve">
-    <value>Words</value>
+    <value>Kata</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
 </root>

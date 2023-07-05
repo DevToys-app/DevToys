@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Cron parsing tool</value>
+    <value>Strumento di parsing Cron</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Configurazione</value>
   </data>
   <data name="UseSecondsDescription" xml:space="preserve">
-    <value>Scegli se la espressione Cron dovrebbe includere i secondi nella sua definizione o no</value>
+    <value>Scegli se l'espressione Cron deve includere i secondi nella definizione</value>
   </data>
   <data name="UseSecondsTitle" xml:space="preserve">
     <value>Modalità Cron</value>
@@ -133,10 +133,10 @@
     <value>Analizzatore Cron</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Analizza l'espressione Cron per ottenere le date schedulate</value>
+    <value>Analizza un'espressione Cron per ottenere le date pianificate</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Analizzatore dell'espressione Cron</value>
+    <value>Parser di espressioni Cron</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>Cron</value>
@@ -148,27 +148,33 @@
     <value>Espressione Cron da analizzare</value>
   </data>
   <data name="OutputDateTimeDescription" xml:space="preserve">
-    <value>Formato dati delle date future</value>
+    <value>Formato delle date future</value>
   </data>
   <data name="OutputDateTimeTitle" xml:space="preserve">
-    <value>Formato output</value>
+    <value>Formato di output</value>
   </data>
   <data name="OutputFormatErrorMessage" xml:space="preserve">
-    <value>Il formato data di uscita non è valido</value>
+    <value>Il formato della data di output non è valido</value>
   </data>
   <data name="OutputLimitDescription" xml:space="preserve">
-    <value>Quante date schedulate devono essere generate</value>
+    <value>Quante date pianificate devono essere generate</value>
   </data>
   <data name="OutputLimitTitle" xml:space="preserve">
-    <value>Prossime date schedulate</value>
+    <value>Prossime date pianificate</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
-    <value>Prossime date schedulate</value>
+    <value>Prossime date pianificate</value>
   </data>
   <data name="SecondsExcludedMode" xml:space="preserve">
     <value>Modalità standard (5 - segmenti Cron)</value>
   </data>
   <data name="SecondsIncludedMode" xml:space="preserve">
     <value>Secondi compresi (6 - segmenti Cron)</value>
+  </data>
+  <data name="DescriptionTitle" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DescriptionErrorMessage" xml:space="preserve">
+    <value>Unable to generate description</value>
   </data>
 </root>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using DevToys.Core;
 
 namespace DevToys.Helpers
 {
@@ -47,9 +48,10 @@ namespace DevToys.Helpers
                 }
             }
 
+            X509Certificate2 certificate;
             try
             {
-                var certificate = new X509Certificate2(Convert.FromBase64String(publicCert), password);
+                certificate = new X509Certificate2(Convert.FromBase64String(publicCert), password);
                 decoded = certificate.ToString();
             }
             catch (CryptographicException wce)
@@ -68,7 +70,42 @@ namespace DevToys.Helpers
                 return false;
             }
 
+            if (!string.IsNullOrEmpty(decoded) && certificate.Extensions.OfType<X509Extension>().Any())
+            {
+                decoded = string.Join(Environment.NewLine, decoded, DecodeExtensions(certificate));
+            }
+
             return true;
+        }
+
+        private static string DecodeExtensions(X509Certificate2 certificate)
+        {
+            // Try to decode the X.509 extensions.
+            try
+            {
+                StringBuilder extensionData = new();
+                foreach (X509Extension x509Extension in certificate.Extensions)
+                {
+                    AsnEncodedData asnEncodedData = new(x509Extension.Oid, x509Extension.RawData);
+
+                    // Add the name in brackets to match the previous output from X509Certificate.ToString()
+                    extensionData.AppendLine($"[{x509Extension.Oid.FriendlyName}]");
+
+                    // Add each line of the data, indented by two spaces to match the output from X509Certificate.ToString()
+                    foreach (string dataLine in asnEncodedData.Format(multiLine: true).Split(Environment.NewLine))
+                    {
+                        extensionData.AppendLine($"  {dataLine}");
+                    }
+                }
+
+                return extensionData.ToString().Trim();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogFault("Failed to parse X.509 extensions from certificate.", ex);
+            }
+
+            return string.Empty;
         }
 
         /// <summary>

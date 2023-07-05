@@ -33,12 +33,14 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         public TokenResult? DecodeToken(
                 DecoderParameters decodeParameters,
                 TokenParameters tokenParameters,
-                Action<TokenResultErrorEventArgs> decodingErrorCallBack)
+                Action<TokenResultErrorEventArgs> decodingErrorCallBack,
+                out JwtAlgorithm? jwtAlgorithm)
         {
             Arguments.NotNull(decodeParameters, nameof(decodeParameters));
             Arguments.NotNull(tokenParameters, nameof(tokenParameters));
             _decodingErrorCallBack = Arguments.NotNull(decodingErrorCallBack, nameof(decodingErrorCallBack));
             Arguments.NotNullOrWhiteSpace(tokenParameters.Token, nameof(tokenParameters.Token));
+            jwtAlgorithm = null;
 
             var tokenResult = new TokenResult();
 
@@ -49,7 +51,10 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                 JwtSecurityToken jwtSecurityToken = handler.ReadJwtToken(tokenParameters.Token);
                 tokenResult.Header = JsonHelper.Format(jwtSecurityToken.Header.SerializeToJson(), Indentation.TwoSpaces, false);
                 tokenResult.Payload = JsonHelper.Format(jwtSecurityToken.Payload.SerializeToJson(), Indentation.TwoSpaces, false);
-                tokenResult.TokenAlgorithm = tokenParameters.TokenAlgorithm;
+                jwtAlgorithm = tokenResult.TokenAlgorithm = tokenParameters.TokenAlgorithm =
+                    Enum.TryParse(jwtSecurityToken.SignatureAlgorithm, out JwtAlgorithm parsedAlgorithm)
+                        ? parsedAlgorithm
+                        : tokenParameters.TokenAlgorithm;
 
                 if (decodeParameters.ValidateSignature)
                 {
@@ -59,6 +64,8 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
                         return null;
                     }
                 }
+
+                tokenResult.Claims = jwtSecurityToken.Claims.Select(c => new JwtClaim(c));
             }
             catch (Exception exception)
             {
@@ -78,17 +85,26 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
             TokenParameters tokenParameters,
             TokenResult tokenResult)
         {
-            SigningCredentials? signingCredentials = GetValidationCredentials(tokenParameters);
             var validationParameters = new TokenValidationParameters
             {
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = signingCredentials.Key,
-                TryAllIssuerSigningKeys = true,
                 ValidateActor = decodeParameters.ValidateActor,
                 ValidateLifetime = decodeParameters.ValidateLifetime,
                 ValidateIssuer = decodeParameters.ValidateIssuer,
                 ValidateAudience = decodeParameters.ValidateAudience
             };
+            
+            if (decodeParameters.ValidateIssuerSigningKey)
+            {
+                SigningCredentials? signingCredentials = GetValidationCredentials(tokenParameters);
+                validationParameters.ValidateIssuerSigningKey = decodeParameters.ValidateIssuerSigningKey;
+                validationParameters.IssuerSigningKey = signingCredentials.Key;
+                validationParameters.TryAllIssuerSigningKeys = true;
+            }
+            else
+            {
+                // Create a custom signature validator that does nothing so it always passes in this mode
+                validationParameters.SignatureValidator = (token, _) => new JwtSecurityToken(token);
+            }
 
             /// check if the token issuers are part of the user provided issuers
             if (decodeParameters.ValidateIssuer)

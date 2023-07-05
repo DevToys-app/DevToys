@@ -67,7 +67,7 @@ namespace DevToys.Tests.Providers.Tools
             };
 
             var jwtDecoder = new JwtDecoder();
-            result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack);
+            result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out _);
 
             Assert.IsNotNull(result);
             Assert.IsNull(_validationResult);
@@ -126,7 +126,7 @@ namespace DevToys.Tests.Providers.Tools
                 ValidAudiences = new HashSet<string> { "devtoys" },
             };
             var jwtDecoder = new JwtDecoder();
-            result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack);
+            result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out _);
 
             Assert.IsNotNull(result);
             Assert.IsNull(_validationResult);
@@ -165,7 +165,7 @@ namespace DevToys.Tests.Providers.Tools
             };
 
             var jwtDecoder = new JwtDecoder();
-            result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack);
+            result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out _);
 
             Assert.IsNotNull(result);
             Assert.IsNull(_validationResult);
@@ -222,7 +222,7 @@ namespace DevToys.Tests.Providers.Tools
                 ValidAudiences = new HashSet<string> { "devtoys" },
             };
             var jwtDecoder = new JwtDecoder();
-            result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack);
+            result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out _);
 
             Assert.IsNotNull(result);
             Assert.IsNull(_validationResult);
@@ -261,7 +261,7 @@ namespace DevToys.Tests.Providers.Tools
             };
 
             var jwtDecoder = new JwtDecoder();
-            result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack);
+            result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out _);
 
             Assert.IsNotNull(result);
             Assert.IsNull(_validationResult);
@@ -318,7 +318,7 @@ namespace DevToys.Tests.Providers.Tools
                 ValidAudiences = new HashSet<string> { "devtoys" },
             };
             var jwtDecoder = new JwtDecoder();
-            result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack);
+            result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out _);
 
             Assert.IsNotNull(result);
             Assert.IsNull(_validationResult);
@@ -357,7 +357,7 @@ namespace DevToys.Tests.Providers.Tools
             };
 
             var jwtDecoder = new JwtDecoder();
-            result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack);
+            result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out _);
 
             Assert.IsNotNull(result);
             Assert.IsNull(_validationResult);
@@ -414,7 +414,7 @@ namespace DevToys.Tests.Providers.Tools
                 ValidAudiences = new HashSet<string> { "devtoys" },
             };
             var jwtDecoder = new JwtDecoder();
-            result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack);
+            result = jwtDecoder.DecodeToken(decodeParameters, tokenParameters, DecodingErrorCallBack, out _);
 
             Assert.IsNotNull(result);
             Assert.IsNull(_validationResult);

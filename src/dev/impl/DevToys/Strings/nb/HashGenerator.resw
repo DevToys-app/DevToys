@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Hash Generator tool</value>
+    <value>Hash Generatorverktøy</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Konfigurasjon</value>
@@ -145,7 +145,7 @@
     <value>Store bokstaver</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Calculate MD5, SHA1, SHA256 and SHA512 hash from text data</value>
+    <value>Beregn MD5, SHA1, SHA256 og SHA512 hash fra tekstdata</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Hash Generator</value>
@@ -157,15 +157,15 @@
     <value>Hex</value>
   </data>
   <data name="OutputTypeTitle" xml:space="preserve">
-    <value>Output Type</value>
+    <value>Utdatatype</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value></value>
+    <value/>
   </data>
   <data name="HmacMode" xml:space="preserve">
-    <value>HMAC Mode</value>
+    <value>HMAC modus</value>
   </data>
   <data name="SecretKey" xml:space="preserve">
-    <value>Secret Key</value>
+    <value>Hemmelig Nøkkel</value>
   </data>
 </root>
