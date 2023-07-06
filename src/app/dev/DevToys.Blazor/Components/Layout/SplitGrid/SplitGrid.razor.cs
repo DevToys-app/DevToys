@@ -22,7 +22,7 @@ public partial class SplitGrid : JSStyledComponentBase
         .AddStyle("grid-row", "2", GutterOrientation == UIOrientation.Horizontal)
         .Build();
 
-    protected char GripperGlyph => GutterOrientation == UIOrientation.Vertical ? '\uE9F8' : '\uE9F5';
+    protected char GripperGlyph => GutterOrientation == UIOrientation.Vertical ? '\uE9F9' : '\uE9F6';
 
     /// <summary>
     /// Gets or sets the length of the left or top cell.
