@@ -3,12 +3,26 @@
     border-radius: var(--overlay-corner-radius);
     background-color: var(--ui-file-selector-background-color);
 
+    &-content {
+        margin: 24px;
+    }
+
     &.dragging {
         border-color: var(--ui-file-selector-dragging-stroke-color);
         background-color: var(--ui-file-selector-dragging-background-color);
 
         * {
             pointer-events: none !important;
+        }
+    }
+}
+
+
+// Compact mode
+div[data-compactmode] {
+    .ui-file-selector {
+        &-content {
+            margin: 8px;
         }
     }
 }
