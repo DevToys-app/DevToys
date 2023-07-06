@@ -13,9 +13,9 @@ public class UIToolView : INotifyPropertyChanged
     /// <summary>
     /// Creates a new instance of the <see cref="UIToolView"/> class.
     /// </summary>
-    /// <param name="rootElement">The root element of the tool's UI.</param>
     /// <param name="isScrollable">Indicates whether the UI of the tool is scrollable or should fits to the window boundaries.</param>
-    public UIToolView(IUIElement rootElement, bool isScrollable = false)
+    /// <param name="rootElement">The root element of the tool's UI.</param>
+    public UIToolView(bool isScrollable, IUIElement rootElement)
     {
         Guard.IsNotNull(rootElement);
         IsScrollable = isScrollable;

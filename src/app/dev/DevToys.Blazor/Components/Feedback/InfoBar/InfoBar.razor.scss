@@ -60,25 +60,25 @@
                 &informational {
                     background-color: var(--info-bar-informational-severity-icon-background);
                     color: var(--info-bar-informational-severity-icon-foreground);
-                    fill: var(--info-bar-informational-severity-icon-foreground);
+                    fill: var(--info-bar-informational-severity-icon-foreground) !important;
                 }
 
                 &success {
                     background-color: var(--info-bar-success-severity-icon-background);
                     color: var(--info-bar-success-severity-icon-foreground);
-                    fill: var(--info-bar-success-severity-icon-foreground);
+                    fill: var(--info-bar-success-severity-icon-foreground) !important;
                 }
 
                 &warning {
                     background-color: var(--info-bar-warning-severity-icon-background);
                     color: var(--info-bar-warning-severity-icon-foreground);
-                    fill: var(--info-bar-warning-severity-icon-foreground);
+                    fill: var(--info-bar-warning-severity-icon-foreground) !important;
                 }
 
                 &error {
                     background-color: var(--info-bar-error-severity-icon-background);
                     color: var(--info-bar-error-severity-icon-foreground);
-                    fill: var(--info-bar-error-severity-icon-foreground);
+                    fill: var(--info-bar-error-severity-icon-foreground) !important;
                 }
             }
 
@@ -87,7 +87,11 @@
                 font-size: 12px;
                 inline-size: 8px;
                 block-size: 8px;
-                fill: currentColor;
+                fill: inherit;
+
+                path {
+                    fill: inherit;
+                }
             }
         }
     }

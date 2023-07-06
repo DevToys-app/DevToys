@@ -59,6 +59,7 @@ internal sealed class SettingsGuiTool : IGuiTool
 
     public UIToolView View
         => new(
+            isScrollable: true,
             Stack()
              .Vertical()
              .WithChildren(
@@ -102,6 +103,12 @@ internal sealed class SettingsGuiTool : IGuiTool
                          Button().Text("Bottom Center button").OnClick(OnBottomCenterButtonClickAsync),
                          Button().Text("Bottom Right button")),
                  NumberInput(),
+                 InfoBar()
+                    .Title("Title")
+                    .Description("Description")
+                    .Warning()
+                    .WithActionButton("Click me", isAccent: false, null)
+                    .Open(),
                  Grid()
                     .Rows(
                         (GridTestRow.FileSelection, Fraction(1)),
@@ -144,8 +151,7 @@ internal sealed class SettingsGuiTool : IGuiTool
                     .OriginalText("hello")
                     .Extendable()
                     .ReadOnly()
-                    .ModifiedText("hello world")),
-            isScrollable: true);
+                    .ModifiedText("hello world")));
 
     public void OnDataReceived(string dataTypeName, object? parsedData)
     {

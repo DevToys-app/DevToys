@@ -69,6 +69,7 @@ internal sealed class SampleGuiTool : IGuiTool
 
     public UIToolView View =>
         new(
+            isScrollable: false,
             _mainStack
                 .Vertical()
                 .WithChildren(

@@ -8,7 +8,7 @@ public partial class InfoBar : StyledComponentBase
     }
 
     [Parameter]
-    public bool IsOpen { get; set; }
+    public bool IsOpened { get; set; }
 
     [Parameter]
     public bool IsClosable { get; set; } = true;
@@ -44,7 +44,7 @@ public partial class InfoBar : StyledComponentBase
 
     private void OnCloseButtonClicked()
     {
-        IsOpen = false;
+        IsOpened = false;
         if (Closed.HasDelegate)
         {
             Closed.InvokeAsync();
