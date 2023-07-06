@@ -131,3 +131,26 @@
         }
     }
 }
+
+// Compact mode
+div[data-compactmode] {
+    .info-bar {
+        min-block-size: 34px;
+
+        &-content-container {
+            padding-top: 6px;
+            padding-left: 16px;
+            padding-bottom: 6px;
+            padding-right: 0px;
+        }
+
+        &-button {
+            margin-top: 4px;
+            margin-bottom: auto;
+
+            &.action {
+                margin-top: 7px;
+            }
+        }
+    }
+}
