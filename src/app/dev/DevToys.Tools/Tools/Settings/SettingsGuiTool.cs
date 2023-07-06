@@ -118,13 +118,24 @@ internal sealed class SettingsGuiTool : IGuiTool
                                 .OnFilesSelected(OnFilesSelected)),
                         Cell(
                             GridTestRow.InputTextBox, GridTestColumn.UniqueColumn,
-                            MultilineTextInput()
-                                .Title("Monaco editor")
-                                .Extendable()
-                                .CanCopyWhenEditable()
-                                .Text("{\"hello\": \"there\"}")
-                                .Language("json")
-                                .CommandBarExtraContent(Button().Text("None"))),
+                            SplitGrid()
+                                .Vertical()
+                                .WithLeftPaneChild(
+                                    MultilineTextInput()
+                                        .Title("Monaco editor")
+                                        .Extendable()
+                                        .CanCopyWhenEditable()
+                                        .Text("{\"hello\": \"there\"}")
+                                        .Language("json")
+                                        .CommandBarExtraContent(Button().Text("None")))
+                                .WithRightPaneChild(
+                                    MultilineTextInput()
+                                        .Title("Monaco editor")
+                                        .Extendable()
+                                        .CanCopyWhenEditable()
+                                        .Text("{\"hello\": \"there\"}")
+                                        .Language("json")
+                                        .CommandBarExtraContent(Button().Text("None")))),
                         Cell(
                             GridTestRow.Output, GridTestColumn.UniqueColumn,
                             SingleLineTextInput().Title("Read-write text input with copy").ReadOnly())),

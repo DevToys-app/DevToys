@@ -1,0 +1,20 @@
+@namespace DevToys.Blazor.Components.UIElements
+@using DevToys.Api;
+@inherits ComponentBase
+
+<SplitGrid id="@UISplitGrid.Id"
+           IsVisible="@UISplitGrid.IsVisible"
+           IsEnabled="@UISplitGrid.IsEnabled"
+           HorizontalAlignment="@UISplitGrid.HorizontalAlignment"
+           VerticalAlignment="@UISplitGrid.VerticalAlignment"
+           GutterOrientation="@UISplitGrid.Orientation"
+           MinimumCellSize="@UISplitGrid.MinimumCellLength"
+           LeftOrTopCellSize="@UISplitGrid.LeftOrTopCellLength"
+           RightOrBottomCellSize="@UISplitGrid.RightOrBottomCellLength">
+    <LeftOrTopCellContent>
+        <UIElementPresenter UIElement="@UISplitGrid.LeftOrTopCellContent" />
+    </LeftOrTopCellContent>
+    <RightOrBottomCellContent>
+        <UIElementPresenter UIElement="@UISplitGrid.RightOrBottomCellContent" />
+    </RightOrBottomCellContent>
+</SplitGrid>
