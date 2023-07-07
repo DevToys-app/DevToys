@@ -22,6 +22,12 @@
         min-height: 100px;
         height: inherit;
         display: grid;
+
+        &.disabled {
+            pointer-events: none;
+            cursor: none;
+            color: var(--text-fill-color-disabled) !important;
+        }
     }
 
     &-with-header {

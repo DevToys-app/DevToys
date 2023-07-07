@@ -33,7 +33,7 @@
                               IsIndeterminate="@ShowLoading"
                               IsVisible="@ShowLoading" />
 
-                <div id="@Id" class="monaco-editor-standalone-instance"></div>
+                <div id="@Id" class="monaco-editor-standalone-instance @(IsActuallyEnabled ? string.Empty : "disabled")"></div>
 
                 <div class="monaco-editor-standalone-underline" />
             </div>
