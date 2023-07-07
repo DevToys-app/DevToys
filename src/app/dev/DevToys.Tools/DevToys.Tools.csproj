@@ -30,6 +30,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="Tools\Test\Test.Designer.cs">
+      <DependentUpon>Test.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Tools\Sample\Sample.resx">
@@ -38,6 +43,10 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Tools\Settings\Settings.resx">
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Tools\Test\Test.resx">
+      <LastGenOutput>Test.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -51,12 +60,6 @@
     <ItemGroup>
       <PluginOutput Include="$(OutputPath)\**\*" />
     </ItemGroup>
-    <Copy
-      SourceFiles="@(PluginOutput)"
-      DestinationFolder="$(RepoRoot)bin\$(Configuration)\Plugins\DevToys.Tools"
-      SkipUnchangedFiles="false"
-      OverwriteReadOnlyFiles="true"
-      Retries="10"
-      RetryDelayMilliseconds="1000" />
+    <Copy SourceFiles="@(PluginOutput)" DestinationFolder="$(RepoRoot)bin\$(Configuration)\Plugins\DevToys.Tools" SkipUnchangedFiles="false" OverwriteReadOnlyFiles="true" Retries="10" RetryDelayMilliseconds="1000" />
   </Target>
 </Project>
