@@ -12,6 +12,8 @@ public partial class UIInfoBarPresenter : ComponentBase
         {
             await UIInfoBar.OnCloseAction.Invoke(); // TODO: Try Catch and log?
         }
+
+        UIInfoBar.Close();
     }
 
     internal async Task OnActionButtonClickAsync()

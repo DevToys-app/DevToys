@@ -3,140 +3,142 @@
 @inherits MefComponentBase
 
 <!-- TODO: Localize -->
-<Grid id="@ExtendedId"
-      Class="ui-text-input-wrapper"
-      IsVisible="@UITextInput.IsVisible"
-      IsEnabled="@UITextInput.IsEnabled"
-      HorizontalAlignment="@(_isInFullScreenMode ? UIHorizontalAlignment.Stretch : UITextInput.HorizontalAlignment)"
-      VerticalAlignment="@(_isInFullScreenMode ? UIVerticalAlignment.Stretch : UITextInput.VerticalAlignment)"
-      RowSpacing="6"
-      Rows="@(new List<UIGridLength>
-        {
-            UIGridLength.Auto,
-            new UIGridLength(1, UIGridUnitType.Fraction)
-        })"
-      ColumnSpacing="6"
-      Columns="@(new List<UIGridLength>
-        {
-            new UIGridLength(1, UIGridUnitType.Fraction),
-            UIGridLength.Auto
-        })">
-    <GridCell Row="0" Column="0">
-        <Grid RowSpacing="0"
-              Rows="@(new List<UIGridLength>
-                {
-                    new UIGridLength(1, UIGridUnitType.Fraction),
-                    new UIGridLength(20, UIGridUnitType.Pixel)
-                })">
-            <GridCell Row="1">
-                <TextBlock id="@(ExtendedId + "-title")"
-                           Text="@UITextInput.Title"
-                           NoWrap="true"
-                           CanTrim="true" />
-            </GridCell>
-        </Grid>
-    </GridCell>
-    <GridCell Row="0"
-              Column="1">
-        <StackPanel IsEnabled="@(!IsLoadingFile)" Wrap="false">
-            @if (UITextInput.CommandBarExtraContent is not null)
+<CascadingValue Name="ParentIsEnabled" Value="@IsActuallyEnabled">
+    <Grid id="@ExtendedId"
+          Class="ui-text-input-wrapper"
+          IsVisible="@UITextInput.IsVisible"
+          IsEnabled="@UITextInput.IsEnabled"
+          HorizontalAlignment="@(_isInFullScreenMode ? UIHorizontalAlignment.Stretch : UITextInput.HorizontalAlignment)"
+          VerticalAlignment="@(_isInFullScreenMode ? UIVerticalAlignment.Stretch : UITextInput.VerticalAlignment)"
+          RowSpacing="6"
+          Rows="@(new List<UIGridLength>
             {
-                <UIElementPresenter UIElement="@UITextInput.CommandBarExtraContent" />
-                <div class="ui-text-input-wrapper-separator"></div>
-            }
-
-            @if (!_hideNonEssentialToolBar)
+                UIGridLength.Auto,
+                new UIGridLength(1, UIGridUnitType.Fraction)
+            })"
+          ColumnSpacing="6"
+          Columns="@(new List<UIGridLength>
             {
-                @if (!UITextInput.IsReadOnly)
+                new UIGridLength(1, UIGridUnitType.Fraction),
+                UIGridLength.Auto
+            })">
+        <GridCell Row="0" Column="0">
+            <Grid RowSpacing="0"
+                  Rows="@(new List<UIGridLength>
+                    {
+                        new UIGridLength(1, UIGridUnitType.Fraction),
+                        new UIGridLength(20, UIGridUnitType.Pixel)
+                    })">
+                <GridCell Row="1">
+                    <TextBlock id="@(ExtendedId + "-title")"
+                               Text="@UITextInput.Title"
+                               NoWrap="true"
+                               CanTrim="true" />
+                </GridCell>
+            </Grid>
+        </GridCell>
+        <GridCell Row="0"
+                  Column="1">
+            <StackPanel IsEnabled="@(!IsLoadingFile)" Wrap="false">
+                @if (UITextInput.CommandBarExtraContent is not null)
                 {
-                    <Button @onclick="@OnPasteButtonClickAsync">
-                        <StackPanel>
-                            <FontIcon Glyph="@('\uF2D5')" />
-                            <TextBlock Text="Paste"
-                                       IsVisible="@(!_isToolBarShrink)" />
-                        </StackPanel>
-                    </Button>
-                    <Button ToolTip="Load a file"
-                            @onclick="@OnLoadFileButtonClickAsync">
-                        <FontIcon Glyph="@('\uF378')" />
-                    </Button>
-                    <Button ToolTip="Clear"
-                            @onclick="@OnClearButtonClickAsync">
-                        <FontIcon Glyph="@('\uF369')" />
-                    </Button>
-                }
-
-                @if (!UITextInput.IsReadOnly && UITextInput.CanCopyWhenEditable)
-                {
+                    <UIElementPresenter UIElement="@UITextInput.CommandBarExtraContent" />
                     <div class="ui-text-input-wrapper-separator"></div>
                 }
-
-                @if (UITextInput.IsReadOnly || UITextInput.CanCopyWhenEditable)
+    
+                @if (!_hideNonEssentialToolBar)
                 {
-                    <Button ToolTip="Save as..."
-                            @onclick="@OnSaveAsButtonClickAsync">
-                        <FontIcon Glyph="@('\uF67F')" />
-                    </Button>
-                    <Button @onclick="@OnCopyButtonClick">
-                        <StackPanel>
-                            <FontIcon Glyph="@('\uF32B')" />
-                            <TextBlock Text="Copy"
-                                       IsVisible="@(!_isToolBarShrink)" />
-                        </StackPanel>
+                    @if (!UITextInput.IsReadOnly)
+                    {
+                        <Button @onclick="@OnPasteButtonClickAsync">
+                            <StackPanel>
+                                <FontIcon Glyph="@('\uF2D5')" />
+                                <TextBlock Text="Paste"
+                                           IsVisible="@(!_isToolBarShrink)" />
+                            </StackPanel>
+                        </Button>
+                        <Button ToolTip="Load a file"
+                                @onclick="@OnLoadFileButtonClickAsync">
+                            <FontIcon Glyph="@('\uF378')" />
+                        </Button>
+                        <Button ToolTip="Clear"
+                                @onclick="@OnClearButtonClickAsync">
+                            <FontIcon Glyph="@('\uF369')" />
+                        </Button>
+                    }
+    
+                    @if (!UITextInput.IsReadOnly && UITextInput.CanCopyWhenEditable)
+                    {
+                        <div class="ui-text-input-wrapper-separator"></div>
+                    }
+    
+                    @if (UITextInput.IsReadOnly || UITextInput.CanCopyWhenEditable)
+                    {
+                        <Button ToolTip="Save as..."
+                                @onclick="@OnSaveAsButtonClickAsync">
+                            <FontIcon Glyph="@('\uF67F')" />
+                        </Button>
+                        <Button @onclick="@OnCopyButtonClick">
+                            <StackPanel>
+                                <FontIcon Glyph="@('\uF32B')" />
+                                <TextBlock Text="Copy"
+                                           IsVisible="@(!_isToolBarShrink)" />
+                            </StackPanel>
+                        </Button>
+                    }
+                }
+                else
+                {
+                    <DropDownButton ToolTip="More..."
+                                    Items="@CollapsedDropDownListItems"
+                                    AnchorOrigin="Origin.BottomRight"
+                                    TransformOrigin="Origin.TopRight"
+                                    DisplayArrow="false">
+                        <FontIcon Glyph="@('\uE823')" Height="22" Width="22" />
+                    </DropDownButton>
+                }
+    
+                @if (IsExtendableToFullScreen)
+                {
+                    <div class="ui-text-input-wrapper-separator"></div>
+                    <Button ToolTip="@(_isInFullScreenMode ? "Shrink" : "Extend")"
+                            @onclick="@OnToggleFullScreenButtonClickAsync">
+                        <FontIcon Glyph="@(_isInFullScreenMode ? '\uF165' : '\uF15F')" />
                     </Button>
                 }
-            }
-            else
-            {
-                <DropDownButton ToolTip="More..."
-                                Items="@CollapsedDropDownListItems"
-                                AnchorOrigin="Origin.BottomRight"
-                                TransformOrigin="Origin.TopRight"
-                                DisplayArrow="false">
-                    <FontIcon Glyph="@('\uE823')" Height="22" Width="22" />
-                </DropDownButton>
-            }
-
-            @if (IsExtendableToFullScreen)
-            {
-                <div class="ui-text-input-wrapper-separator"></div>
-                <Button ToolTip="@(_isInFullScreenMode ? "Shrink" : "Extend")"
-                        @onclick="@OnToggleFullScreenButtonClickAsync">
-                    <FontIcon Glyph="@(_isInFullScreenMode ? '\uF165' : '\uF15F')" />
-                </Button>
-            }
-
-            @if (UITextInput.IsReadOnly)
-            {
-                <div class="ui-text-input-wrapper-separator"></div>
-                <DropDownButton ToolTip="Transfer to another tool"
-                                Items="@SmartDetectionDropDownItems"
-                                AnchorOrigin="Origin.BottomRight"
-                                TransformOrigin="Origin.TopRight">
-                    <img src="@(ToolsDetectedBySmartDetection ? "_content/DevToys.Blazor/img/idea.svg" : "_content/DevToys.Blazor/img/idea-disabled.svg")"
-                         height="22"
-                         width="22"
-                         style="flex-basis: auto; align-self:center;" />
-                </DropDownButton>
-            }
-        </StackPanel>
-    </GridCell>
-    <GridCell Row="1" Column="0" ColumnSpan="2">
-        <Container IsEnabled="@(!IsLoadingFile)">
-            @ChildContent
-
-            <!-- Progress bar to indicate when a file is being loaded -->
-            <div class="ui-text-input-wrapper-centered-progress-bar">
-                <ProgressBar IsIndeterminate="true"
-                             IsVisible="@IsLoadingFile"
-                             MarginLeft="24"
-                             MarginRight="24"
-                             HorizontalAlignment="UIHorizontalAlignment.Stretch"
-                             VerticalAlignment="UIVerticalAlignment.Top" />
-            </div>
-
-            <!-- Input form used for getting the dropped file when use drag and drop a file into the UI. -->
-            <InputFile style="display: none;" OnChange="OnFileDroppedAsync" />
-        </Container>
-    </GridCell>
-</Grid>
+    
+                @if (UITextInput.IsReadOnly)
+                {
+                    <div class="ui-text-input-wrapper-separator"></div>
+                    <DropDownButton ToolTip="Transfer to another tool"
+                                    Items="@SmartDetectionDropDownItems"
+                                    AnchorOrigin="Origin.BottomRight"
+                                    TransformOrigin="Origin.TopRight">
+                        <img src="@(ToolsDetectedBySmartDetection ? "_content/DevToys.Blazor/img/idea.svg" : "_content/DevToys.Blazor/img/idea-disabled.svg")"
+                             height="22"
+                             width="22"
+                             style="flex-basis: auto; align-self:center;" />
+                    </DropDownButton>
+                }
+            </StackPanel>
+        </GridCell>
+        <GridCell Row="1" Column="0" ColumnSpan="2">
+            <Container IsEnabled="@(!IsLoadingFile)">
+                @ChildContent
+    
+                <!-- Progress bar to indicate when a file is being loaded -->
+                <div class="ui-text-input-wrapper-centered-progress-bar">
+                    <ProgressBar IsIndeterminate="true"
+                                 IsVisible="@IsLoadingFile"
+                                 MarginLeft="24"
+                                 MarginRight="24"
+                                 HorizontalAlignment="UIHorizontalAlignment.Stretch"
+                                 VerticalAlignment="UIVerticalAlignment.Top" />
+                </div>
+    
+                <!-- Input form used for getting the dropped file when use drag and drop a file into the UI. -->
+                <InputFile style="display: none;" OnChange="OnFileDroppedAsync" />
+            </Container>
+        </GridCell>
+    </Grid>
+</CascadingValue>

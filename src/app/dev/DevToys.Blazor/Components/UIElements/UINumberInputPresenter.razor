@@ -4,7 +4,7 @@
 
 <UITextInputWrapper @ref="_textInputWrapper" UITextInput="@UINumberInput">
     <TextBox IsVisible="@UINumberInput.IsVisible"
-             IsEnabled="@UINumberInput.IsEnabled"
+             IsEnabled="@(UINumberInput.IsEnabled && IsActuallyEnabled)"
              Text="@UINumberInput.Text"
              IsReadOnly="@UINumberInput.IsReadOnly"
              TextChanged="@OnTextChanged"

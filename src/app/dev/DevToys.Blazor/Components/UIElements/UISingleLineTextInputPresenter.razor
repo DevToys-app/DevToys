@@ -4,7 +4,7 @@
 
 <UITextInputWrapper @ref="_textInputWrapper" UITextInput="@UISingleLineTextInput">
     <TextBox IsVisible="@UISingleLineTextInput.IsVisible"
-             IsEnabled="@UISingleLineTextInput.IsEnabled"
+             IsEnabled="@(UISingleLineTextInput.IsEnabled && IsActuallyEnabled)"
              Text="@UISingleLineTextInput.Text"
              IsReadOnly="@UISingleLineTextInput.IsReadOnly"
              TextChanged="@OnTextChanged"

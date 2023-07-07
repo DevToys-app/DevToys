@@ -57,6 +57,11 @@ public partial class UIFileSelectorPresenter : MefComponentBase
 
     private void OnFileDropped(InputFileChangeEventArgs args)
     {
+        if (!IsActuallyEnabled)
+        {
+            return;
+        }
+
         IReadOnlyList<IBrowserFile> droppedFiles = args.GetMultipleFiles(maximumFileCount: int.MaxValue);
 
         if (droppedFiles.Count == 0)

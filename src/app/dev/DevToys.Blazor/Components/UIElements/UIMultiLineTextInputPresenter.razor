@@ -7,7 +7,7 @@
                     IsExtendableToFullScreen="@UIMultiLineTextInput.IsExtendableToFullScreen">
     <MonacoEditor @ref="_monacoEditor"
                   IsVisible="@UIMultiLineTextInput.IsVisible"
-                  IsEnabled="@UIMultiLineTextInput.IsEnabled"
+                  IsEnabled="@(UIMultiLineTextInput.IsEnabled && IsActuallyEnabled)"
                   ConstructionOptions="@OnMonacoConstructionOptions"
                   OnDidChangeModelContent="OnMonacoEditorTextChangedAsync"
                   OnDidInit="OnMonacoEditorInitializedAsync"

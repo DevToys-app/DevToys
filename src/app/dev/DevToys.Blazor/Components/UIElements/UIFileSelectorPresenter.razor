@@ -5,7 +5,7 @@
 <!-- TODO: Localize -->
 <Container id="@ExtendedId"
            IsVisible="@UIFileSelector.IsVisible"
-           IsEnabled="@UIFileSelector.IsEnabled"
+           IsEnabled="@(UIFileSelector.IsEnabled && IsActuallyEnabled)"
            HorizontalAlignment="@UIFileSelector.HorizontalAlignment"
            VerticalAlignment="@UIFileSelector.VerticalAlignment"
            Class="ui-file-selector">

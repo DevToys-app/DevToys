@@ -6,7 +6,7 @@
 <Grid id="@ExtendedId"
       Class="ui-text-input-wrapper"
       IsVisible="@UIDiffTextInput.IsVisible"
-      IsEnabled="@UIDiffTextInput.IsEnabled"
+      IsEnabled="@(UIDiffTextInput.IsEnabled && IsActuallyEnabled)"
       HorizontalAlignment="@(_isInFullScreenMode ? UIHorizontalAlignment.Stretch : UIDiffTextInput.HorizontalAlignment)"
       VerticalAlignment="@(_isInFullScreenMode ? UIVerticalAlignment.Stretch : UIDiffTextInput.VerticalAlignment)"
       RowSpacing="6"

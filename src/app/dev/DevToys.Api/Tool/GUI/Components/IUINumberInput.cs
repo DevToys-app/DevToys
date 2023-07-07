@@ -21,6 +21,11 @@ public interface IUINumberInput : IUISingleLineTextInput
     double Step { get; }
 
     /// <summary>
+    /// Gets the value of the input.
+    /// </summary>
+    double Value { get; }
+
+    /// <summary>
     /// Raised when <see cref="Min"/> is changed.
     /// </summary>
     event EventHandler? MinChanged;
@@ -64,6 +69,21 @@ internal class UINumberInput : UISingleLineTextInput, IUINumberInput
     {
         get => _step;
         internal set => SetPropertyValue(ref _step, value, StepChanged);
+    }
+
+    public double Value
+    {
+        get
+        {
+            if (double.TryParse(Text, out double value))
+            {
+                return Math.Min(Math.Max(value, Min), Max);
+            }
+            else
+            {
+                return 0;
+            }
+        }
     }
 
     public event EventHandler? MinChanged;
