@@ -154,6 +154,7 @@ internal sealed class TestGuiTool : IGuiTool
 
                         Stack()
                             .Vertical()
+                            .MediumSpacing()
 
                             .WithChildren(
                                 SingleLineTextInput()
