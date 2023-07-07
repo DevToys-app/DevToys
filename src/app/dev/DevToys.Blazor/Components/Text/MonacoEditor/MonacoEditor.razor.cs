@@ -52,6 +52,7 @@ public partial class MonacoEditor : RicherMonacoEditorBase
 
             // Overwrite some important options.
             options.Theme = GetTheme();
+            options.ReadOnly = options.ReadOnly.GetValueOrDefault(false) || !IsActuallyEnabled;
             options.AutomaticLayout = true;
             options.GlyphMargin = false;
             options.MouseWheelZoom = false;
