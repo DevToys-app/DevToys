@@ -124,4 +124,13 @@ public static partial class GUI
         ((UINumberInput)element).Step = step;
         return element;
     }
+
+    /// <summary>
+    /// Sets the <see cref="IUISingleLineTextInput.Text"/> property of the <see cref="IUINumberInput"/>.
+    /// </summary>
+    public static IUINumberInput Value(this IUINumberInput element, double value)
+    {
+        element.Text(value.ToString());
+        return element;
+    }
 }

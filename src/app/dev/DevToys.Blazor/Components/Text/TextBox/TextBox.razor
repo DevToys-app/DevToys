@@ -35,7 +35,7 @@
                              OnContextMenuClosed="OnContextMenuClosedAsync"
                              Items="_contextMenuItems">
                     <InputText @ref="_input"
-                               class="@($"text-box {(IsActuallyEnabled ? string.Empty : "disabled")})")"
+                               class="@($"text-box {(IsActuallyEnabled ? string.Empty : "disabled")}")"
                                placeholder="@Placeholder"
                                disabled="@(!IsActuallyEnabled)"
                                readonly="@(IsReadOnly)"
