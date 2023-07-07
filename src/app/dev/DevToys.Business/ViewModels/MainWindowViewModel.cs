@@ -24,6 +24,7 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
 
     private IReadOnlyList<SmartDetectedTool>? _oldSmartDetectedTools;
     private object? _oldRawClipboardData;
+    private bool _passSmartDetectedDataToNextSelectedToolIsAllowed;
     private INotifyPropertyChanged? _selectedMenuItem;
     private bool _isGoingBack;
 
@@ -101,6 +102,25 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
             SelectedMenuItemChanged?.Invoke(this, EventArgs.Empty);
 
             guiToolViewItem?.RaiseGotSelected();
+
+            // If we selected a tool (not a group)
+            if (guiToolViewItem is not null)
+            {
+                // Try to pass Smart Detection data, if the selected tool fits the detected data.
+                if (_passSmartDetectedDataToNextSelectedToolIsAllowed)
+                {
+                    _passSmartDetectedDataToNextSelectedToolIsAllowed = false;
+                    if (_oldSmartDetectedTools is not null)
+                    {
+                        SmartDetectedTool? smartDetectedTool
+                            = _oldSmartDetectedTools.FirstOrDefault(tool => tool.ToolInstance == guiToolViewItem.ToolInstance);
+                        if (smartDetectedTool is not null)
+                        {
+                            guiToolViewItem.ToolInstance.PassSmartDetectedData(smartDetectedTool.DataTypeName, smartDetectedTool.ParsedData);
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -235,6 +255,12 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
                     // Then let's navigate immediately to it and set the detected data as an input.
                     SelectedMenuItem = firstToolViewItem;
                     detectedTools[0].ToolInstance.PassSmartDetectedData(detectedTools[0].DataTypeName, detectedTools[0].ParsedData);
+                }
+                else if (detectedTools.Count > 1)
+                {
+                    // Next time user navigates to a tool, if this one has been detected by Smart Detection,
+                    // we will pass data to it.
+                    _passSmartDetectedDataToNextSelectedToolIsAllowed = true;
                 }
 
                 _oldSmartDetectedTools = detectedTools;
