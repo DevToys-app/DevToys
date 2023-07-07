@@ -26,7 +26,10 @@
             {
                 for (int i = 0; i < UISettingGroup.Children.Length; i++)
                 {
-                    <UIElementPresenter UIElement="@UISettingGroup.Children[i]" />
+                    if (UISettingGroup.Children[i] is not null)
+                    {
+                        <UIElementPresenter UIElement="@UISettingGroup.Children[i]" />
+                    }
                 }
             }
         </StackPanel>

@@ -1,7 +1,11 @@
-.grid-split-gripper {
-    display: flex;
+.split-grid {
+    height: inherit;
 
-    &:hover, &:active {
-        background-color: var(--subtle-fill-secondary);
+    &-gripper {
+        display: flex;
+
+        &:hover, &:active {
+            background-color: var(--subtle-fill-secondary);
+        }
     }
 }

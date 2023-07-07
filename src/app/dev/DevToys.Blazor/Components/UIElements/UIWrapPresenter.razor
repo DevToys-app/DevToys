@@ -14,7 +14,10 @@
     {
         for (int i = 0; i < UIWrap.Children.Length; i++)
         {
-            <UIElementPresenter UIElement="@UIWrap.Children[i]" />
+            if (UIWrap.Children[i] is not null)
+            {
+                <UIElementPresenter UIElement="@UIWrap.Children[i]" />
+            }
         }
     }
 </StackPanel>

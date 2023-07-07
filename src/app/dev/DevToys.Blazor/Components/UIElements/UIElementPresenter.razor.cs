@@ -8,6 +8,7 @@ public partial class UIElementPresenter : ComponentBase, IDisposable
     protected override void OnInitialized()
     {
         base.OnInitialized();
+        Guard.IsNotNull(UIElement);
         Guard.IsAssignableToType<INotifyPropertyChanged>(UIElement);
         ((INotifyPropertyChanged)UIElement).PropertyChanged += UIElementPresenter_PropertyChanged;
     }

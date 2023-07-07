@@ -13,7 +13,10 @@
     {
         for (int i = 0; i < UIStack.Children.Length; i++)
         {
-            <UIElementPresenter UIElement="@UIStack.Children[i]"/>
+            if (UIStack.Children[i] is not null)
+            {
+                <UIElementPresenter UIElement="@UIStack.Children[i]" />
+            }
         }
     }
 </StackPanel>

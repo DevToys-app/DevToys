@@ -18,13 +18,13 @@
                IsVisible="@IsVisible">
         <div id="@Id"
              @ref="@Element"
-             class="@FinalCssClasses"
+             class="split-grid @FinalCssClasses"
              style="@StyleValue"
              @attributes="AdditionalAttributes">
             <Container IsEnabled="@IsActuallyEnabled">
                 @LeftOrTopCellContent
             </Container>
-            <div @ref="@_gutterElement" class="grid-split-gripper" style="@GutterStyle">
+            <div @ref="@_gutterElement" class="split-grid-gripper" style="@GutterStyle">
                 <FontIcon Glyph="@GripperGlyph" />
             </div>
             <Container IsEnabled="@IsActuallyEnabled">

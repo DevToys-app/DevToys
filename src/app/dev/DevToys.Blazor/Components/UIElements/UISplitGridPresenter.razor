@@ -12,9 +12,15 @@
            LeftOrTopCellSize="@UISplitGrid.LeftOrTopCellLength"
            RightOrBottomCellSize="@UISplitGrid.RightOrBottomCellLength">
     <LeftOrTopCellContent>
-        <UIElementPresenter UIElement="@UISplitGrid.LeftOrTopCellContent" />
+        @if (UISplitGrid.LeftOrTopCellContent is not null)
+        {
+            <UIElementPresenter UIElement="@UISplitGrid.LeftOrTopCellContent" />
+        }
     </LeftOrTopCellContent>
     <RightOrBottomCellContent>
-        <UIElementPresenter UIElement="@UISplitGrid.RightOrBottomCellContent" />
+        @if (UISplitGrid.RightOrBottomCellContent is not null)
+        {
+            <UIElementPresenter UIElement="@UISplitGrid.RightOrBottomCellContent" />
+        }
     </RightOrBottomCellContent>
 </SplitGrid>
