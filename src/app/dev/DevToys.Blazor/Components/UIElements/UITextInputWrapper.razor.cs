@@ -9,8 +9,8 @@ namespace DevToys.Blazor.Components.UIElements;
 
 public partial class UITextInputWrapper : MefComponentBase
 {
-    private const int MinimumWidthBeforeShrinkingToolBar = 650;
-    private const int MinimumWidthBeforeHidingNonEssentialToolBar = 500;
+    private const int MinimumWidthBeforeShrinkingToolBar = 500;
+    private const int MinimumWidthBeforeHidingNonEssentialToolBar = 300;
 
     private static readonly string[] FileTypes = new[]
     {

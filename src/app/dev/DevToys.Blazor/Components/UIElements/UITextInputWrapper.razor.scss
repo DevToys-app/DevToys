@@ -2,7 +2,7 @@
     border: 2px dashed transparent;
     border-radius: var(--overlay-corner-radius);
 
-    .ui-text-input-wrapper-separator {
+    &-separator {
         border-left: 1px solid var(--divider-stroke-color-default);
         width: 1px;
         height: 100%;
@@ -10,7 +10,7 @@
         margin-right: 2px;
     }
 
-    .ui-text-input-wrapper-centered-progress-bar {
+    &-centered-progress-bar {
         position: absolute;
         top: 50%;
         left: 0;
@@ -20,12 +20,27 @@
         height: fit-content;
     }
 
+    &-icon {
+        height: 20px;
+        width: 20px;
+    }
+
     &.dragging {
         border-color: var(--ui-file-selector-dragging-stroke-color);
         background-color: var(--ui-file-selector-dragging-background-color);
 
         * {
             pointer-events: none !important;
+        }
+    }
+}
+
+// Compact mode
+div[data-compactmode] {
+    .ui-text-input-wrapper {
+        &-icon {
+            height: 16px;
+            width: 16px;
         }
     }
 }

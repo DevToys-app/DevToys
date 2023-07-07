@@ -52,25 +52,25 @@ public abstract partial class MicaWindowWithOverlay : Window
     internal static readonly DependencyProperty TitleBarMarginLeftProperty
         = DependencyProperty.Register(
             nameof(TitleBarMarginLeft),
-            typeof(UIGridLength),
+            typeof(GridLength),
             typeof(MicaWindowWithOverlay));
 
-    internal UIGridLength TitleBarMarginLeft
+    internal GridLength TitleBarMarginLeft
     {
-        get => (UIGridLength)GetValue(MarginMaximizedProperty);
-        set => SetValue(MarginMaximizedProperty, value);
+        get => (GridLength)GetValue(TitleBarMarginLeftProperty);
+        set => SetValue(TitleBarMarginLeftProperty, value);
     }
 
     internal static readonly DependencyProperty TitleBarMarginRightProperty
         = DependencyProperty.Register(
             nameof(TitleBarMarginRight),
-            typeof(UIGridLength),
+            typeof(GridLength),
             typeof(MicaWindowWithOverlay));
 
-    internal UIGridLength TitleBarMarginRight
+    internal GridLength TitleBarMarginRight
     {
-        get => (UIGridLength)GetValue(MarginMaximizedProperty);
-        set => SetValue(MarginMaximizedProperty, value);
+        get => (GridLength)GetValue(TitleBarMarginRightProperty);
+        set => SetValue(TitleBarMarginRightProperty, value);
     }
 
     internal static readonly DependencyProperty MarginMaximizedProperty

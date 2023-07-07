@@ -1,5 +1,4 @@
 ﻿#if DEBUG
-using DevToys.Api;
 using Newtonsoft.Json.Linq;
 
 namespace DevToys.Tools.Tools.Test;
@@ -38,7 +37,7 @@ internal sealed class TestGuiTool : IGuiTool
     public static readonly SettingDefinition<AvailableApplicationTheme> DummyListSetting
         = new(name: nameof(DummyListSetting), defaultValue: AvailableApplicationTheme.Default);
 
-    private readonly ISettingsProvider _settingsProvider = null!;
+    private readonly ISettingsProvider _settingsProvider;
     private readonly IUIMultiLineTextInput _inputJsonEditor;
 
     [ImportingConstructor]
@@ -86,7 +85,7 @@ internal sealed class TestGuiTool : IGuiTool
 
                                 Wrap() // A horizontal Stack that wraps when needed.
                                     .WithChildren(
-                                        Button().Text("Disable Input").OnClick(OnMyButtonClickAsync),
+                                        Button().Text("Disable Input").OnClick(OnButtonClickAsync),
                                         Button().Text("Top Center button"),
                                         Button().Text("Top Right button")),
 
@@ -168,7 +167,8 @@ internal sealed class TestGuiTool : IGuiTool
                                     .Value(1.5),
 
                                 SelectDropDownList()
-                                    .Title("Drop down list")
+                                    .AlignHorizontally(UIHorizontalAlignment.Left) // Align on the left.
+                                    .Title("Left-aligned drop down list")
                                     .WithItems(
                                         Item("Item 1", value: null),
                                         Item("Item 2", value: null),
@@ -211,7 +211,7 @@ internal sealed class TestGuiTool : IGuiTool
     }
 
     // Invoked on click on "Disable Input" button.
-    private ValueTask OnMyButtonClickAsync()
+    private ValueTask OnButtonClickAsync()
     {
         _inputJsonEditor.Disable();
         return ValueTask.CompletedTask;

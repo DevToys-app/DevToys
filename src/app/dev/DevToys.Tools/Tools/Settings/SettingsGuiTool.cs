@@ -45,18 +45,6 @@ internal sealed class SettingsGuiTool : IGuiTool
     public static readonly SettingDefinition<AvailableApplicationTheme> DummySetting2
         = new(name: nameof(DummySetting2), defaultValue: AvailableApplicationTheme.Default);
 
-    private readonly IUIButton _topLeftButton;
-
-    private int _clickCount;
-
-    public SettingsGuiTool()
-    {
-        _topLeftButton
-            = Button(id: "topLeftButtonUniqueId-for-logs")
-            .Text("Top Left button")
-            .OnClick(OnMyButtonClickAsync);
-    }
-
     public UIToolView View
         => new(
             isScrollable: true,
@@ -70,7 +58,7 @@ internal sealed class SettingsGuiTool : IGuiTool
                      .Handle(
                          _settingsProvider,
                          DummySetting2,
-                         OnDummySetting2ChangedAsync,
+                         onOptionSelected: null,
                          Item("Use system settings", AvailableApplicationTheme.Default),
                          Item("Light", AvailableApplicationTheme.Light),
                          Item("Dark", AvailableApplicationTheme.Dark))
@@ -90,102 +78,9 @@ internal sealed class SettingsGuiTool : IGuiTool
                              .Title("Title")
                              .Description("Description")
                              .InteractiveElement(
-                                 Switch())),
-                 Wrap()
-                     .WithChildren(
-                         _topLeftButton,
-                         Button().Text("Top Center button"),
-                         Button().Text("Top Right button")),
-                 Wrap()
-                     .Disable()
-                     .WithChildren(
-                         Button().Text("Bottom Left button"),
-                         Button().Text("Bottom Center button").OnClick(OnBottomCenterButtonClickAsync),
-                         Button().Text("Bottom Right button")),
-                 NumberInput(),
-                 InfoBar()
-                    .Title("Title")
-                    .Description("Description")
-                    .Warning()
-                    .WithActionButton("Click me", isAccent: false, null)
-                    .Open(),
-                 Grid()
-                    .Rows(
-                        (GridTestRow.FileSelection, Fraction(1)),
-                        (GridTestRow.InputTextBox, 200),
-                        (GridTestRow.Output, Auto))
-                    .Columns(
-                        (GridTestColumn.UniqueColumn, Fraction(1)))
-                    .Cells(
-                        Cell(
-                            GridTestRow.FileSelection, GridTestColumn.UniqueColumn,
-                            FileSelector()
-                                .CanSelectManyFiles()
-                                .LimitFileTypesTo("*.bmp", "jpeg", "png", ".jpg")
-                                .OnFilesSelected(OnFilesSelected)),
-                        Cell(
-                            GridTestRow.InputTextBox, GridTestColumn.UniqueColumn,
-                            SplitGrid()
-                                .Vertical()
-                                .WithLeftPaneChild(
-                                    MultilineTextInput()
-                                        .Title("Monaco editor")
-                                        .Extendable()
-                                        .CanCopyWhenEditable()
-                                        .Text("{\"hello\": \"there\"}")
-                                        .Language("json")
-                                        .CommandBarExtraContent(Button().Text("None")))
-                                .WithRightPaneChild(
-                                    MultilineTextInput()
-                                        .Title("Monaco editor")
-                                        .Extendable()
-                                        .CanCopyWhenEditable()
-                                        .Text("{\"hello\": \"there\"}")
-                                        .Language("json")
-                                        .CommandBarExtraContent(Button().Text("None")))),
-                        Cell(
-                            GridTestRow.Output, GridTestColumn.UniqueColumn,
-                            SingleLineTextInput().Title("Read-write text input with copy").ReadOnly())),
-                 DiffTextInput()
-                    .Title("Difference")
-                    .OriginalText("hello")
-                    .Extendable()
-                    .ReadOnly()
-                    .ModifiedText("hello world")));
+                                 Switch()))));
 
     public void OnDataReceived(string dataTypeName, object? parsedData)
     {
-    }
-
-    private ValueTask OnDummySettingChangedAsync(bool state)
-    {
-        return ValueTask.CompletedTask;
-    }
-
-    private ValueTask OnFilesSelected(PickedFile[] files)
-    {
-        return ValueTask.CompletedTask;
-    }
-
-    private ValueTask OnDropDownListSelectionChangeAsync(IUIDropDownListItem? selection)
-    {
-        return ValueTask.CompletedTask;
-    }
-
-    private ValueTask OnDummySetting2ChangedAsync(AvailableApplicationTheme theme)
-    {
-        return ValueTask.CompletedTask;
-    }
-
-    private ValueTask OnMyButtonClickAsync()
-    {
-        _clickCount++;
-        _topLeftButton.Text($"Clicked {_clickCount} time !");
-        return ValueTask.CompletedTask;
-    }
-
-    private ValueTask OnBottomCenterButtonClickAsync()
-    {
-        return ValueTask.CompletedTask;
     }
 }
