@@ -1,6 +1,4 @@
-﻿using DevToys.Api;
-
-namespace DevToys.Core;
+﻿namespace DevToys.Core;
 
 public static class OSHelper
 {

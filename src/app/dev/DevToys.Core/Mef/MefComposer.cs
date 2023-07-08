@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.Composition.Hosting;
 using System.Reflection;
-using DevToys.Api;
 using Microsoft.Extensions.Logging;
 using Uno.Extensions;
 

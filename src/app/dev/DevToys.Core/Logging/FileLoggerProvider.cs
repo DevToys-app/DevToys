@@ -1,5 +1,4 @@
 ﻿using System.Collections.Concurrent;
-using DevToys.Api;
 using Microsoft.Extensions.Logging;
 
 namespace DevToys.Core.Logging;

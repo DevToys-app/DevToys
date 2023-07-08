@@ -1,7 +1,11 @@
 ﻿namespace DevToys.Tools;
 
-[Export(typeof(IResourceManagerAssemblyIdentifier))]
+[Export(typeof(IResourceAssemblyIdentifier))]
 [Name(nameof(DevToysToolsResourceManagerAssemblyIdentifier))]
-public sealed class DevToysToolsResourceManagerAssemblyIdentifier : IResourceManagerAssemblyIdentifier
+public sealed class DevToysToolsResourceManagerAssemblyIdentifier : IResourceAssemblyIdentifier
 {
+    public ValueTask<FontDefinition[]> GetFontDefinitionsAsync()
+    {
+        throw new NotImplementedException();
+    }
 }

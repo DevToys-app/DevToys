@@ -110,7 +110,7 @@ public static partial class GUI
     /// <param name="dropDownListItems">(optional) A list of items to be displayed in the drop down list. <see cref="IUIDropDownListItem.Value"/> should be of type <typeparamref name="T"/>.</param>
     public static IUISettingGroup Handle<T>(this IUISettingGroup element, ISettingsProvider settingsProvider, SettingDefinition<T> settingDefinition, Func<T, ValueTask>? onOptionSelected, params IUIDropDownListItem[] dropDownListItems) where T : struct, IConvertible
     {
-        return (IUISettingGroup)((IUISetting)element).Handle<T>(settingsProvider, settingDefinition, onOptionSelected, dropDownListItems);
+        return (IUISettingGroup)((IUISetting)element).Handle(settingsProvider, settingDefinition, onOptionSelected, dropDownListItems);
     }
 
     /// <summary>

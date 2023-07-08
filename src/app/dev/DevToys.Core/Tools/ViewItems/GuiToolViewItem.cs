@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using DevToys.Api;
 
 namespace DevToys.Core.Tools.ViewItems;
 

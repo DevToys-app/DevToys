@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using System.Resources;
 using CommunityToolkit.Mvvm.ComponentModel;
-using DevToys.Api;
 using DevToys.Core.Tools.Metadata;
 using Microsoft.Extensions.Logging;
 using Uno.Extensions;
@@ -37,13 +36,13 @@ public sealed partial class GuiToolInstance : ObservableObject
         _instance = new(() =>
         {
             IGuiTool instance = _guiToolDefinition.Value;
-            LogInstanceCreated(_guiToolDefinition.Metadata.InternalComponentName);
+            LogInstanceCreated(InternalComponentName);
             return instance;
         });
 
         _view = new(() => _instance.Value.View); // TODO: Try Catch and log?
 
-        LogInitialized(_guiToolDefinition.Metadata.InternalComponentName);
+        LogInitialized(InternalComponentName);
     }
 
     public string InternalComponentName => _guiToolDefinition.Metadata.InternalComponentName;
@@ -91,7 +90,15 @@ public sealed partial class GuiToolInstance : ObservableObject
     /// </summary>
     public void PassSmartDetectedData(string dataTypeName, object? parsedData)
     {
-        _instance.Value.OnDataReceived(dataTypeName, parsedData);
+        try
+        {
+            _instance.Value.OnDataReceived(dataTypeName, parsedData);
+        }
+        catch (NotImplementedException) { }
+        catch (Exception ex)
+        {
+            LogPassSmartDetectedDataFailed(ex, InternalComponentName);
+        }
     }
 
     private ResourceManager? GetResourceManager(Assembly? resourceManagerAssembly)
@@ -122,4 +129,7 @@ public sealed partial class GuiToolInstance : ObservableObject
 
     [LoggerMessage(1, LogLevel.Information, "Instance of '{toolName}' tool created.")]
     partial void LogInstanceCreated(string toolName);
+
+    [LoggerMessage(2, LogLevel.Warning, "Unexpectedly failed to pass smart detection data to '{toolName}'.")]
+    partial void LogPassSmartDetectedDataFailed(Exception ex, string toolName);
 }

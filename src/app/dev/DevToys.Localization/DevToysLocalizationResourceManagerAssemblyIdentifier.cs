@@ -2,8 +2,12 @@
 
 namespace DevToys.Localization;
 
-[Export(typeof(IResourceManagerAssemblyIdentifier))]
+[Export(typeof(IResourceAssemblyIdentifier))]
 [Name(nameof(DevToysLocalizationResourceManagerAssemblyIdentifier))]
-public sealed class DevToysLocalizationResourceManagerAssemblyIdentifier : IResourceManagerAssemblyIdentifier
+public sealed class DevToysLocalizationResourceManagerAssemblyIdentifier : IResourceAssemblyIdentifier
 {
+    public ValueTask<FontDefinition[]> GetFontDefinitionsAsync()
+    {
+        throw new NotImplementedException();
+    }
 }

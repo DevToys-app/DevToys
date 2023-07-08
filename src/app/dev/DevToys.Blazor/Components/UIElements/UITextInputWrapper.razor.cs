@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
 using DevToys.Core.Models;
+using DevToys.Core.Settings;
 using DevToys.Core.Tools;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.Extensions.Logging;

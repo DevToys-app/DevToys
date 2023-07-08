@@ -1,6 +1,4 @@
-﻿using DevToys.Api;
-
-namespace DevToys.Core.Tools.Metadata;
+﻿namespace DevToys.Core.Tools.Metadata;
 
 [DebuggerDisplay($"DataTypeName = {{{nameof(DataTypeName)}}}, DataTypeBaseName = {{{nameof(DataTypeBaseName)}}}")]
 public sealed class DataTypeDetectorMetadata

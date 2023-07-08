@@ -17,4 +17,21 @@
     <PackageReference Include="Uno.Core.Extensions.Logging" />
     <PackageReference Include="Uno.Core.Extensions.Logging.Singleton" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Fonts\FluentSystemIcons-Regular.ttf">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </EmbeddedResource>
+    <Compile Update="BuiltInTools\Settings\Settings.Designer.cs">
+      <DependentUpon>Settings.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="BuiltInTools\Settings\Settings.resx">
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>

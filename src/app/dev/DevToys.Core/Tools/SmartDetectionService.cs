@@ -1,5 +1,4 @@
-﻿using DevToys.Api;
-using DevToys.Core.Tools.Metadata;
+﻿using DevToys.Core.Tools.Metadata;
 using Microsoft.Extensions.Logging;
 using Uno.Extensions;
 

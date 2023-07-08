@@ -6,7 +6,7 @@
 /// <remarks>
 /// <para>
 /// The project containing the <see cref="System.Resources.ResourceManager"/> with all the strings for the tool should contain an implementation
-/// of <see cref="IResourceManagerAssemblyIdentifier"/> as shown in the example.
+/// of <see cref="IResourceAssemblyIdentifier"/> as shown in the example.
 /// </para>
 /// <example>
 ///     <code>
@@ -16,7 +16,7 @@
 ///             IconFontName = "FluentSystemIcons",
 ///             IconGlyph = "\u0108",
 ///             GroupName = "Encoders / Decoders",                                                  // <seealso cref="GuiToolGroup"/>
-///             ResourceManagerAssemblyIdentifier = nameof(MyResourceManagerAssemblyIdentifier),    // <seealso cref="IResourceManagerAssemblyIdentifier"/>
+///             ResourceManagerAssemblyIdentifier = nameof(MyResourceManagerAssemblyIdentifier),    // <seealso cref="IResourceAssemblyIdentifier"/>
 ///             ResourceManagerBaseName = "MyProject.Strings",
 ///             ShortDisplayTitleResourceName = nameof(MyProject.Strings.ShortDisplayTitle),
 ///             LongDisplayTitleResourceName = nameof(MyProject.Strings.LongDisplayTitle),          // Optional

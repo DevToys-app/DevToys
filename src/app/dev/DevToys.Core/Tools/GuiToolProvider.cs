@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.Reflection;
-using DevToys.Api;
 using DevToys.Core.Tools.Metadata;
 using DevToys.Core.Tools.ViewItems;
 using DevToys.Localization;
@@ -36,7 +35,7 @@ public sealed partial class GuiToolProvider
             showLongDisplayTitle: true);
 
     private readonly ILogger _logger;
-    private readonly IEnumerable<Lazy<IResourceManagerAssemblyIdentifier, ResourceManagerAssemblyIdentifierMetadata>> _resourceManagerAssemblyIdentifiers;
+    private readonly IEnumerable<Lazy<IResourceAssemblyIdentifier, ResourceAssemblyIdentifierMetadata>> _resourceAssemblyIdentifiers;
     private readonly IEnumerable<Lazy<GuiToolGroup, GuiToolGroupMetadata>> _guiToolGroups;
     private readonly ISettingsProvider _settingsProvider;
     private readonly IReadOnlyList<GuiToolInstance> _footerToolInstances;
@@ -54,11 +53,11 @@ public sealed partial class GuiToolProvider
     public GuiToolProvider(
         [ImportMany] IEnumerable<Lazy<IGuiTool, GuiToolMetadata>> guiTools,
         [ImportMany] IEnumerable<Lazy<GuiToolGroup, GuiToolGroupMetadata>> guiToolGroups,
-        [ImportMany] IEnumerable<Lazy<IResourceManagerAssemblyIdentifier, ResourceManagerAssemblyIdentifierMetadata>> resourceManagerAssemblyIdentifiers,
+        [ImportMany] IEnumerable<Lazy<IResourceAssemblyIdentifier, ResourceAssemblyIdentifierMetadata>> resourceAssemblyIdentifiers,
         ISettingsProvider settingsProvider)
     {
         _logger = this.Log();
-        _resourceManagerAssemblyIdentifiers = resourceManagerAssemblyIdentifiers;
+        _resourceAssemblyIdentifiers = resourceAssemblyIdentifiers;
         _settingsProvider = settingsProvider;
         _guiToolGroups = guiToolGroups;
 
@@ -563,7 +562,7 @@ public sealed partial class GuiToolProvider
 
     private Assembly GetResourceManagerAssembly(string resourceManagerAssemblyIdentifier)
     {
-        foreach (Lazy<IResourceManagerAssemblyIdentifier, ResourceManagerAssemblyIdentifierMetadata> item in _resourceManagerAssemblyIdentifiers)
+        foreach (Lazy<IResourceAssemblyIdentifier, ResourceAssemblyIdentifierMetadata> item in _resourceAssemblyIdentifiers)
         {
             if (string.Equals(item.Metadata.InternalComponentName, resourceManagerAssemblyIdentifier, StringComparison.Ordinal))
             {

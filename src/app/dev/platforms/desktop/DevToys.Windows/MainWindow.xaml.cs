@@ -3,6 +3,7 @@ using DevToys.Blazor.Core.Languages;
 using DevToys.Blazor.Core.Services;
 using DevToys.Business.ViewModels;
 using DevToys.Core;
+using DevToys.Core.BuiltInTools;
 using DevToys.Core.Logging;
 using DevToys.Core.Mef;
 using DevToys.Windows.Controls;
@@ -42,7 +43,8 @@ public partial class MainWindow : MicaWindowWithOverlay
         _mefComposer
             = new MefComposer(
                 new[] {
-                    typeof(MainWindowViewModel).Assembly
+                    typeof(MainWindowViewModel).Assembly,
+                    typeof(DevToysCoreResourceManagerAssemblyIdentifier).Assembly
                 });
 
         LogInitialization((DateTime.Now - startTime).TotalMilliseconds);
@@ -143,6 +145,7 @@ public partial class MainWindow : MicaWindowWithOverlay
         serviceCollection.AddSingleton<IWindowService, WindowService>();
         serviceCollection.AddScoped<PopoverService, PopoverService>();
         serviceCollection.AddScoped<ContextMenuService, ContextMenuService>();
+        serviceCollection.AddScoped<FontService, FontService>();
 
         ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
 

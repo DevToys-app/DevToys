@@ -1,24 +1,14 @@
-﻿namespace DevToys.Tools.Tools.Settings;
+﻿using DevToys.Core.Settings;
 
-internal enum GridTestRow
-{
-    FileSelection,
-    InputTextBox,
-    Output
-}
-
-internal enum GridTestColumn
-{
-    UniqueColumn
-}
+namespace DevToys.Core.BuiltInTools.Settings;
 
 [Export(typeof(IGuiTool))]
 [Name("Settings")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
     IconGlyph = '\uF6A9',
-    ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
-    ResourceManagerBaseName = "DevToys.Tools.Tools.Settings.Settings",
+    ResourceManagerAssemblyIdentifier = nameof(DevToysCoreResourceManagerAssemblyIdentifier),
+    ResourceManagerBaseName = "DevToys.Core.BuiltInTools.Settings.Settings",
     ShortDisplayTitleResourceName = nameof(Settings.ShortDisplayTitle),
     DescriptionResourceName = nameof(Settings.Description),
     AccessibleNameResourceName = nameof(Settings.AccessibleName))]

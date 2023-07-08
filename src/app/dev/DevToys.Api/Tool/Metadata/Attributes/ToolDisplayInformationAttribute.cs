@@ -34,7 +34,7 @@ public sealed class ToolDisplayInformationAttribute : Attribute
     }
 
     /// <summary>
-    /// Gets or sets the name of the <see cref="IResourceManagerAssemblyIdentifier"/> that contains the type indicated by
+    /// Gets or sets the name of the <see cref="IResourceAssemblyIdentifier"/> that contains the type indicated by
     /// <see cref="ResourceManagerBaseName"/>.
     /// </summary>
     public string ResourceManagerAssemblyIdentifier

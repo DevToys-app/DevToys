@@ -32,6 +32,12 @@ class DOM {
             "[tabindex]:not([tabindex='-1'])," +
             "[contentEditable=true]:not([tabindex='-1']");
     }
+
+    public static addFontToDocument(fontDefinition: string): void {
+        const css: HTMLStyleElement = document.createElement("style");
+        css.innerHTML = fontDefinition;
+        document.head.appendChild(css);
+    }
 }
 
 export default DOM;

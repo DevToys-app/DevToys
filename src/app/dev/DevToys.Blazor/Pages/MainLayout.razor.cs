@@ -1,4 +1,7 @@
-﻿namespace DevToys.Blazor.Pages;
+﻿using DevToys.Blazor.Core.Services;
+using DevToys.Core.Settings;
+
+namespace DevToys.Blazor.Pages;
 
 public partial class MainLayout : LayoutComponentBase
 {
@@ -13,6 +16,9 @@ public partial class MainLayout : LayoutComponentBase
 
     [Import]
     private IFontProvider FontProvider { get; set; } = default!;
+
+    [Inject]
+    internal FontService FontService { get; set; } = default!;
 
     [Parameter]
     public string ThemeName { get; set; } = default!;
@@ -32,6 +38,12 @@ public partial class MainLayout : LayoutComponentBase
         base.OnInitialized();
 
         SetDefaultTextEditorFont();
+    }
+
+    protected override Task OnInitializedAsync()
+    {
+        FontService.ImportThirdPartyFontsAsync().ForgetSafely();
+        return base.OnInitializedAsync();
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

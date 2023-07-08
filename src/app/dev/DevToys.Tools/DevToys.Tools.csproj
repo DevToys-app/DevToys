@@ -25,11 +25,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Sample.resx</DependentUpon>
     </Compile>
-    <Compile Update="Tools\Settings\Settings.Designer.cs">
-      <DependentUpon>Settings.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
     <Compile Update="Tools\Test\Test.Designer.cs">
       <DependentUpon>Test.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -40,10 +35,6 @@
     <EmbeddedResource Update="Tools\Sample\Sample.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Sample.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Tools\Settings\Settings.resx">
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-      <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Tools\Test\Test.resx">
       <LastGenOutput>Test.Designer.cs</LastGenOutput>

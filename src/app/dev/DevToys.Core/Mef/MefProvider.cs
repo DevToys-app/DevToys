@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.Composition.Hosting;
-using DevToys.Api;
 
 namespace DevToys.Core.Mef;
 

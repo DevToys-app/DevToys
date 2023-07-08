@@ -1,6 +1,4 @@
-﻿using DevToys.Api;
-
-namespace DevToys.Core.Tools.Metadata;
+﻿namespace DevToys.Core.Tools.Metadata;
 
 [DebuggerDisplay($"InternalComponentName = {{{nameof(InternalComponentName)}}}")]
 public sealed class GuiToolGroupMetadata : IOrderableMetadata

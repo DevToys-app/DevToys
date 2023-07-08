@@ -28,12 +28,18 @@
                           Height="20"/>
                 <div class="card-context">
                     <div class="card-title">
-                        <TextBlock Appearance="TextBlockAppearance.Body" Text="@Title" NoWrap="true" CanTrim="true" />
+                        <TextBlock Appearance="TextBlockAppearance.Body"
+                                   Text="@Title"
+                                   NoWrap="true"
+                                   CanTrim="true"
+                                   Style="display: flex;" />
                     </div>
                     @if (!string.IsNullOrWhiteSpace(Description))
                     {
                         <div class="card-description">
-                            <TextBlock Appearance="TextBlockAppearance.Caption" Text="@Description" />
+                            <TextBlock Appearance="TextBlockAppearance.Caption"
+                                       Text="@Description"
+                                       Style="display: flex;" />
                         </div>
                     }
                 </div>

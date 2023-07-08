@@ -35,7 +35,7 @@ internal partial class Program
 #endif
             });
 
-        global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory = loggerFactory;
+        Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory = loggerFactory;
 
         logger = new Logger<Program>(loggerFactory);
         LogLoggerInitialization(logger, (DateTime.Now - startTime).TotalMilliseconds);

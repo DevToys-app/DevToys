@@ -1,5 +1,4 @@
 ﻿#if DEBUG
-using DevToys.Api;
 using Newtonsoft.Json.Linq;
 
 namespace DevToys.Tools.Tools.Test;
