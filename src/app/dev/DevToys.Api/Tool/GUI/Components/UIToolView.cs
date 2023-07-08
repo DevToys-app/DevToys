@@ -5,30 +5,17 @@ namespace DevToys.Api;
 /// <summary>
 /// Represents the root ui definition of a <see cref="IGuiTool"/>.
 /// </summary>
-[DebuggerDisplay($"IsScrollable = {{{nameof(IsScrollable)}}}")]
+[DebuggerDisplay($"RootElement = {{{nameof(RootElement)}}}")]
 public class UIToolView : INotifyPropertyChanged
 {
-    private bool _isScrollable;
-
     /// <summary>
     /// Creates a new instance of the <see cref="UIToolView"/> class.
     /// </summary>
-    /// <param name="isScrollable">Indicates whether the UI of the tool is scrollable or should fits to the window boundaries.</param>
     /// <param name="rootElement">The root element of the tool's UI.</param>
-    public UIToolView(bool isScrollable, IUIElement rootElement)
+    public UIToolView(IUIElement rootElement)
     {
         Guard.IsNotNull(rootElement);
-        IsScrollable = isScrollable;
         RootElement = rootElement;
-    }
-
-    /// <summary>
-    /// Gets whether the UI of the tool is scrollable or should fits to the window boundaries.
-    /// </summary>
-    public bool IsScrollable
-    {
-        get => _isScrollable;
-        internal set => SetPropertyValue(ref _isScrollable, value, IsScrollableChanged);
     }
 
     /// <summary>

@@ -51,7 +51,7 @@ public partial class Grid : StyledComponentBase
     {
         if (collection is null || !collection.Any())
         {
-            return "1fr";
+            return "minmax(min-content, 1fr)";
         }
 
         var builder = new StringBuilder();
@@ -59,7 +59,7 @@ public partial class Grid : StyledComponentBase
         {
             if (item.IsFraction)
             {
-                builder.Append($" {item.Value}fr");
+                builder.Append($" minmax(min-content, {item.Value}fr)");
             }
             else if (item.IsAbsolute)
             {
@@ -67,7 +67,7 @@ public partial class Grid : StyledComponentBase
             }
             else if (item.IsAuto)
             {
-                builder.Append($" auto");
+                builder.Append($" minmax(min-content, auto)");
             }
             else
             {

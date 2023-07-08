@@ -47,7 +47,6 @@ internal sealed class SettingsGuiTool : IGuiTool
 
     public UIToolView View
         => new(
-            isScrollable: true,
             Stack()
              .Vertical()
              .WithChildren(

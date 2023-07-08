@@ -51,8 +51,6 @@ internal sealed class TestGuiTool : IGuiTool
 
     public UIToolView View
         => new(
-            isScrollable: false, // This tool is non-scrollable.
-
             Grid()
                 .ColumnLargeSpacing()
                 .RowLargeSpacing()

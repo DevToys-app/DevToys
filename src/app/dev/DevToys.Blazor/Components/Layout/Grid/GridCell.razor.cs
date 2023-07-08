@@ -5,8 +5,8 @@ namespace DevToys.Blazor.Components;
 public partial class GridCell : ComponentBase
 {
     protected string? GridCellStyleValue => new StyleBuilder()
-        .AddStyle("grid-column", $"{Column + 1}", ColumnSpan == 1)
-        .AddStyle("grid-row", $"{Row + 1}", RowSpan == 1)
+        .AddStyle("grid-column", $"{Column + 1}", ColumnSpan <= 1)
+        .AddStyle("grid-row", $"{Row + 1}", RowSpan <= 1)
         .AddStyle("grid-column", $"{Column + 1} / span {ColumnSpan}", ColumnSpan > 1)
         .AddStyle("grid-row", $"{Row + 1} / span {RowSpan}", RowSpan > 1)
         .Build();

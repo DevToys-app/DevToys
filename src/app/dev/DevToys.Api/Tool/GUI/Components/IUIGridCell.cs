@@ -20,11 +20,13 @@ public interface IUIGridCell
 
     /// <summary>
     /// Gets a value that indicates the total number of rows that the cell content spans within the parent grid.
+    /// Default is 1.
     /// </summary>
     int RowSpan { get; }
 
     /// <summary>
     /// Gets a value that indicates the total number of columns that the cell content spans within the parent grid.
+    /// Default is 1.
     /// </summary>
     int ColumnSpan { get; }
 
@@ -64,8 +66,8 @@ internal sealed class UIGridCell : IUIGridCell, INotifyPropertyChanged
 {
     private int _row;
     private int _column;
-    private int _rowSpan;
-    private int _columnSpan;
+    private int _rowSpan = 1;
+    private int _columnSpan = 1;
     private IUIElement? _child;
 
     public int Row
@@ -83,13 +85,21 @@ internal sealed class UIGridCell : IUIGridCell, INotifyPropertyChanged
     public int RowSpan
     {
         get => _rowSpan;
-        internal set => SetPropertyValue(ref _rowSpan, value, RowSpanChanged);
+        internal set
+        {
+            Guard.IsGreaterThanOrEqualTo(value, 1);
+            SetPropertyValue(ref _rowSpan, value, RowSpanChanged);
+        }
     }
 
     public int ColumnSpan
     {
         get => _columnSpan;
-        internal set => SetPropertyValue(ref _columnSpan, value, ColumnSpanChanged);
+        internal set
+        {
+            Guard.IsGreaterThanOrEqualTo(value, 1);
+            SetPropertyValue(ref _columnSpan, value, ColumnSpanChanged);
+        }
     }
 
     public IUIElement? Child

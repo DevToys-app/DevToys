@@ -325,6 +325,8 @@
     -ms-overflow-style: none;
 }
 
-[data-simplebar-not-scrollable] .simplebar-content{
-    height: 100% !important;
+.simplebar-content {
+    display: grid;
+    grid-template-rows: minmax(min-content, 1fr);
+    height: 100%;
 }
