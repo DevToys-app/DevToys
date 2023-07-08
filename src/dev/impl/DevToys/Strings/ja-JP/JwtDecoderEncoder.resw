@@ -142,7 +142,7 @@
     <value>スケジュールの説明</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>JWT ヘッダー、ペイロード、署名をデコードします</value>
+    <value>ヘッダー、ペイロード、署名から JWT の生成とトークンの検証</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value/>
@@ -187,7 +187,7 @@
     <value>構成</value>
   </data>
   <data name="EncodeDefaultTimeTitle" xml:space="preserve">
-    <value>トークンにはデフォルトの時間があります</value>
+    <value>デフォルトの有効期間を設定する</value>
   </data>
   <data name="EncodeExpirationDaysLabel" xml:space="preserve">
     <value>日</value>
@@ -208,61 +208,61 @@
     <value>トークンは検証されていません (検証するパラメーターが選択されていません)</value>
   </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>トークンは検証済みです</value>
+    <value>指定された項目のすべてが検証済みのトークンです</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
-    <value>無効な公開鍵です</value>
+    <value>有効な公開鍵ではありません</value>
   </data>
   <data name="JwtInValidMessage" xml:space="preserve">
-    <value>無効な署名です。</value>
+    <value>有効な署名ではありません</value>
   </data>
   <data name="DecodeValidateActorLabel" xml:space="preserve">
-    <value>アクターを検証する</value>
+    <value>アクタークレームを検証する</value>
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
-    <value>オーディエンスを検証する</value>
+    <value>オーディエンスクレームを検証する</value>
   </data>
   <data name="DecodeValidateIssuerSigningKey" xml:space="preserve">
     <value>発行者の署名鍵を検証する</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
-    <value>発行者を検証する</value>
+    <value>発行者クレームを検証する</value>
   </data>
   <data name="DecodeValidateLifetimeLabel" xml:space="preserve">
-    <value>有効時間の設定</value>
+    <value>有効期間を検証する</value>
   </data>
   <data name="ValidAudiencesLabel" xml:space="preserve">
-    <value>オーディエンスを検証する</value>
+    <value>オーディエンスクレームの値</value>
   </data>
   <data name="ValidIssuersLabel" xml:space="preserve">
-    <value>発行者を検証する</value>
+    <value>発行者クレームの値</value>
   </data>
   <data name="DecodeValidationSettingsDescription" xml:space="preserve">
-    <value>検証するトークンパラメーターを選択してください</value>
+    <value>検証を行うトークン内のパラメーターを設定します</value>
   </data>
   <data name="DecodeValidationSettingsTitle" xml:space="preserve">
-    <value>トークン検証の設定</value>
+    <value>検証するパラメーターの設定</value>
   </data>
   <data name="ValidAudiencesError" xml:space="preserve">
-    <value>有効なオーディエンスが空です</value>
+    <value>検証を行うための オーディエンスクレームの値が入力されていません</value>
   </data>
   <data name="ValidIssuersError" xml:space="preserve">
-    <value>有効な発行者が空です</value>
+    <value>検証を行うための 発行者クレームの値が入力されていません</value>
   </data>
   <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
-    <value>指定された公開鍵は秘密鍵です</value>
+    <value>公開鍵の入力欄に秘密鍵が入力されました</value>
   </data>
   <data name="EncodeAudienceLabel" xml:space="preserve">
-    <value>トークンにはオーディエンスがあります</value>
+    <value>オーディエンスクレームを設定する</value>
   </data>
   <data name="EncodeIssuerLabel" xml:space="preserve">
-    <value>トークンには発行者がいます。</value>
+    <value>発行者クレームを設定する</value>
   </data>
   <data name="EncodeSettingsDescription" xml:space="preserve">
-    <value>トークンパラメータを選択</value>
+    <value>トークンに使用するパラメーターを設定します</value>
   </data>
   <data name="InvalidPrivateKeyError" xml:space="preserve">
-    <value>秘密鍵が無効です</value>
+    <value>有効な秘密鍵ではありません</value>
   </data>
   <data name="PublicKeyLabel" xml:space="preserve">
     <value>公開鍵</value>
@@ -271,7 +271,7 @@
     <value>JWT エンコーダー / デコーダー</value>
   </data>
   <data name="InvalidSignatureError" xml:space="preserve">
-    <value>無効な署名です。</value>
+    <value>有効な署名ではありません</value>
   </data>
   <data name="NoDescription" xml:space="preserve">
     <value>No description</value>
@@ -349,7 +349,8 @@
     <value>True if the End-User's phone number has been verified; otherwise false. When this Claim Value is true, this means that the OP took affirmative steps to ensure that this phone number was controlled by the End-User at the time the verification was performed. The means by which a phone number is verified is context-specific, and dependent upon the trust framework or contractual agreements within which the parties are operating. When true, the phone_number Claim MUST be in E.164 format and any extensions MUST be represented in RFC 3966 format.</value>
   </data>
   <data name="address" xml:space="preserve">
-    <value>End-User's preferred postal address. The value of the address member is a JSON [RFC4627] structure.</value>
+    <value>[OpenID]
+End-User の希望する郵送先住所。address メンバーの値は Address クレームに定義されたメンバーを含む JSON [RFC4627] 構造体です。</value>
   </data>
   <data name="updated_at" xml:space="preserve">
     <value>Time the End-User's information was last updated. Its value is a JSON number representing the number of seconds from 1970-01-01T0:0:0Z as measured in UTC until the date/time.</value>
