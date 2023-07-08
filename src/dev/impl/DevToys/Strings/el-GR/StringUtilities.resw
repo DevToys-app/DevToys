@@ -167,7 +167,7 @@
     <value>Reverse alphabetize</value>
   </data>
   <data name="AlphabetizeLast" xml:space="preserve">
-    <value>Alphabetize by last word</value>
+    <value>Αλφαβητισμός βάση της τελευταίας λέξης</value>
   </data>
   <data name="ReverseAlphabetizeLast" xml:space="preserve">
     <value>Reverse alphabetize by last word</value>
