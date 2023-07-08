@@ -1,4 +1,5 @@
 ﻿#if DEBUG
+using DevToys.Api;
 using Newtonsoft.Json.Linq;
 
 namespace DevToys.Tools.Tools.Test;
@@ -112,6 +113,10 @@ internal sealed class TestGuiTool : IGuiTool
                             .Vertical()
 
                             .WithChildren(
+                                Label()
+                                    .Style(UILabelStyle.Display)
+                                    .Text("A large text"),
+
                                 SettingGroup()
                                     .Icon("FluentSystemIcons", '\uF6A9')
                                     .Title("Dummy list setting")

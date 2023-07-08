@@ -70,6 +70,10 @@
             <UIInfoBarPresenter UIInfoBar="@infoBar" />
             break;
 
+        case IUILabel label:
+            <UILabelPresenter UILabel="@label" />
+            break;
+
         default:
             throw new NotSupportedException($"Gui Tool component of type '{UIElement.GetType().FullName}' isn't supported.");
     }
