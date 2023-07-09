@@ -167,13 +167,13 @@
     <value>Δε βρέθηκαν αποτελέσματα</value>
   </data>
   <data name="SurveyDescription" xml:space="preserve">
-    <value>We would love to hear about your experience with DevToys so we can improve it.</value>
+    <value>Θα θέλαμε πολύ να ακούσουμε για την εμπειρία σας με το DevToys, ώστε να μπορέσουμε να τη βελτιώσουμε.</value>
   </data>
   <data name="SurveyTitle" xml:space="preserve">
-    <value>The development of DevToys 2.0 started! 🥳</value>
+    <value>Η ανάπτυξη του DevToys 2.0 ξεκίνησε! 🥳</value>
   </data>
   <data name="SurveyYesButton" xml:space="preserve">
-    <value>open the survey...</value>
+    <value>ανοίξτε το ερωτηματολόγιο...</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
