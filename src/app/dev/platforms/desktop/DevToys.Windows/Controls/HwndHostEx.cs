@@ -1,14 +1,15 @@
 ﻿using System.Runtime.InteropServices;
 using System.Windows.Interop;
 using DevToys.Windows.Native;
+using Windows.Win32.Foundation;
 
 namespace DevToys.Windows.Controls;
 
 internal sealed class HwndHostEx : HwndHost
 {
-    private readonly nint _childHandle;
+    private readonly HWND _childHandle;
 
-    public HwndHostEx(nint handle)
+    public HwndHostEx(HWND handle)
     {
         _childHandle = handle;
     }
@@ -19,7 +20,7 @@ internal sealed class HwndHostEx : HwndHost
 
         if (_childHandle != IntPtr.Zero)
         {
-            NativeMethods.SetWindowAsChildOf(_childHandle, windowHandleParent.Handle);
+            NativeMethods.SetWindowAsChildOf(_childHandle, new HWND(windowHandleParent.Handle));
             handleRef = new HandleRef(this, _childHandle);
         }
 

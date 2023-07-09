@@ -193,7 +193,7 @@ public struct StyleBuilder
     /// Finalize the completed Style as a string.
     /// </summary>
     /// <returns>string</returns>
-    public string Build()
+    public readonly string Build()
     {
         // String buffer finalization code
         return _stringBuffer != null ? _stringBuffer.Trim() : string.Empty;

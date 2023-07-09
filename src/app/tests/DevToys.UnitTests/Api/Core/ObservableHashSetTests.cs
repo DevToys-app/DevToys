@@ -5,7 +5,7 @@ namespace DevToys.UnitTests.Api.Core;
 
 public class ObservableHashSetTests
 {
-    private static readonly Random _random = new();
+    private static readonly Random random = new();
 
     [Fact]
     public void CanConstruct()
@@ -511,11 +511,11 @@ public class ObservableHashSetTests
 
     private static List<int> CreateTestData(int minSize = 0, int maxLength = 1000)
     {
-        int length = _random.Next(minSize, maxLength);
+        int length = random.Next(minSize, maxLength);
         var data = new List<int>();
         for (int i = 0; i < length; i++)
         {
-            data.Add(_random.Next(int.MinValue, int.MaxValue));
+            data.Add(random.Next(int.MinValue, int.MaxValue));
         }
 
         return data;

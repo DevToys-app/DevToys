@@ -68,6 +68,7 @@ internal sealed partial class ToolPageViewModel : ObservableRecipient
 
     internal string GetFavoriteButtonText(bool isSelectedMenuItemAFavoriteTool)
     {
+        Guard.IsNotNull(_guiToolViewItem);
         if (isSelectedMenuItemAFavoriteTool)
         {
             return ToolPage.RemoveFromFavorites;

@@ -30,9 +30,9 @@ internal sealed class SettingsStorage : ISettingsStorage
 
     public bool TryReadSetting(string settingName, out object? value)
     {
-        if (_settings.Value.ContainsKey(settingName))
+        if (_settings.Value.TryGetValue(settingName, out string? valueString))
         {
-            value = _settings.Value[settingName];
+            value = valueString;
             return true;
         }
 

@@ -89,5 +89,4 @@ public class EditorLayoutInfo
     /// The position of the overview ruler.
     /// </summary>
     public OverviewRulerPosition? OverviewRuler { get; set; }
-
 }

@@ -75,8 +75,8 @@ internal sealed class UISplitGrid : UIElement, IUISplitGrid
 {
     private UIOrientation _orientation = UIOrientation.Vertical;
     private int _minimumCellLength = 50;
-    private UIGridLength _leftOrTopCellLength = new UIGridLength(1, UIGridUnitType.Fraction);
-    private UIGridLength _rightOrBottomCellLength = new UIGridLength(1, UIGridUnitType.Fraction);
+    private UIGridLength _leftOrTopCellLength = new(1, UIGridUnitType.Fraction);
+    private UIGridLength _rightOrBottomCellLength = new(1, UIGridUnitType.Fraction);
     private IUIElement? _rightOrBottomCellContent;
     private IUIElement? _leftOrTopCellContent;
 

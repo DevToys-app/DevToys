@@ -63,6 +63,7 @@ public partial class MainWindow : MicaWindowWithOverlay
         Resources.Add("services", _serviceProvider);
         InitializeComponent();
 
+        _efficiencyModeService = _mefComposer.Provider.Import<EfficiencyModeService>();
         _themeListener = _mefComposer.Provider.Import<IThemeListener>();
         DataContext = _mefComposer.Provider.Import<TitleBarMarginProvider>();
 

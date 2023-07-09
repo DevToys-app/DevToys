@@ -1,73 +1,43 @@
 ﻿using System.Runtime.InteropServices;
-using System.Security;
+using Windows.Win32;
+using Windows.Win32.Foundation;
+using Windows.Win32.Graphics.Dwm;
+using Windows.Win32.UI.Controls;
+using Windows.Win32.UI.WindowsAndMessaging;
 
 namespace DevToys.Windows.Native;
 
 internal static partial class NativeMethods
 {
-    [SecurityCritical]
-    [DllImport("ntdll.dll", SetLastError = true, CharSet = CharSet.Unicode)]
-    [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
-    [SuppressMessage("Interoperability", "SYSLIB1054:Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time", Justification = "Cannot marshal OSVERSIONINFOEX")]
-    internal static extern int RtlGetVersion(out OSVERSIONINFOEX versionInfo);
-
-    [LibraryImport("dwmapi.dll")]
-    [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
-    private static partial int DwmSetWindowAttribute(nint hwnd, DWMWINDOWATTRIBUTE dwAttribute, ref int pvAttribute, int cbAttribute);
-
-    [LibraryImport("dwmapi.dll")]
-    [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
-    private static partial int DwmExtendFrameIntoClientArea(nint hwnd, ref MARGINS pMarInset);
-
-    [LibraryImport("user32.dll", EntryPoint = "SetWindowLongA")]
-    [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
-    private static partial int SetWindowLong(nint hWnd, int nIndex, int dwNewLong);
-
-    [LibraryImport("user32.dll", EntryPoint = "GetWindowLongPtrA")]
-    [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
-    private static partial int GetWindowLong(nint hWnd, int nIndex);
-
-    [LibraryImport("user32.dll")]
-    [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
-    private static partial nint SetParent(nint hWndChild, nint hWndNewParent);
-
-    [LibraryImport("user32.dll")]
-    [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
-    internal static partial nint GetDC(nint ptr);
-
-    [LibraryImport(libraryName: "gdi32.dll", SetLastError = true)]
-    [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
-    internal static partial int GetDeviceCaps(nint hdc, int nIndex);
-
-    [LibraryImport("user32.dll", SetLastError = true)]
-    [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
-    internal static partial int ReleaseDC(nint window, nint dc);
-
-    internal static int SetWindowAttribute(nint windowHandle, DWMWINDOWATTRIBUTE attribute, int parameter)
+    internal static unsafe HRESULT SetWindowAttribute(HWND windowHandle, DWMWINDOWATTRIBUTE attribute, ref int parameter)
     {
-        return DwmSetWindowAttribute(windowHandle, attribute, ref parameter, Marshal.SizeOf<int>());
+#pragma warning disable CA1416 // Validate platform compatibility
+        fixed (void* value = &parameter)
+        {
+            return PInvoke.DwmSetWindowAttribute(windowHandle, attribute, value, (uint)Marshal.SizeOf<int>());
+        }
+#pragma warning restore CA1416 // Validate platform compatibility
     }
 
-    internal static int ExtendFrame(nint windowHandle, MARGINS margins)
+    internal static int ExtendFrame(HWND windowHandle, MARGINS margins)
     {
-        return DwmExtendFrameIntoClientArea(windowHandle, ref margins);
+#pragma warning disable CA1416 // Validate platform compatibility
+        return PInvoke.DwmExtendFrameIntoClientArea(windowHandle, in margins);
+#pragma warning restore CA1416 // Validate platform compatibility
     }
 
-    internal static int RoundWindowCorner(nint windowHandle, DWM_WINDOW_CORNER_PREFERENCE cornerPreference = DWM_WINDOW_CORNER_PREFERENCE.DWMWCP_ROUND)
+    internal static void HideAllWindowButton(HWND windowHandle)
     {
-        DWMWINDOWATTRIBUTE attribute = DWMWINDOWATTRIBUTE.DWMWA_WINDOW_CORNER_PREFERENCE;
-        int preference = (int)cornerPreference;
-        return DwmSetWindowAttribute(windowHandle, attribute, ref preference, sizeof(uint));
+#pragma warning disable CA1416 // Validate platform compatibility
+        _ = PInvoke.SetWindowLong(windowHandle, WINDOW_LONG_PTR_INDEX.GWL_STYLE, PInvoke.GetWindowLong(windowHandle, WINDOW_LONG_PTR_INDEX.GWL_STYLE) & ~HwndButtons.WS_SYSMENU);
+#pragma warning restore CA1416 // Validate platform compatibility
     }
 
-    internal static void HideAllWindowButton(nint windowHandle)
+    internal static void SetWindowAsChildOf(HWND windowHandleChild, HWND windowHandleParent)
     {
-        _ = SetWindowLong(windowHandle, HwndButtons.GWL_STYLE, GetWindowLong(windowHandle, HwndButtons.GWL_STYLE) & ~HwndButtons.WS_SYSMENU);
-    }
-
-    internal static void SetWindowAsChildOf(nint windowHandleChild, nint windowHandleParent)
-    {
-        SetWindowLong(windowHandleChild, HwndButtons.GWL_STYLE, HwndSourceMessages.WS_CHILD);
-        SetParent(windowHandleChild, windowHandleParent);
+#pragma warning disable CA1416 // Validate platform compatibility
+        PInvoke.SetWindowLong(windowHandleChild, WINDOW_LONG_PTR_INDEX.GWL_STYLE, HwndSourceMessages.WS_CHILD);
+        PInvoke.SetParent(windowHandleChild, windowHandleParent);
+#pragma warning restore CA1416 // Validate platform compatibility
     }
 }

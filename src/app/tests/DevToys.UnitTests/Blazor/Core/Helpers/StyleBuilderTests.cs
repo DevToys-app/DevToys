@@ -17,14 +17,14 @@ public class StyleBuilderTests
         int right = 20;
 
         //act
-        string ClassToRender = new StyleBuilder("background-color", "DodgerBlue")
+        string classToRender = new StyleBuilder("background-color", "DodgerBlue")
                         .AddStyle("border-width", $"{top.ToPx()} {right.ToPx()} {bottom.ToPx()} {left.ToPx()}", when: hasBorder)
                         .AddStyle("z-index", "999", when: isOnTop)
                         .AddStyle("z-index", "-1", when: !isOnTop)
                         .AddStyle("padding", "35px")
                         .Build();
         //assert
-        ClassToRender.Should().Be("background-color:DodgerBlue;border-width:2px 20px 10px 4px;z-index:-1;padding:35px;");
+        classToRender.Should().Be("background-color:DodgerBlue;border-width:2px 20px 10px 4px;z-index:-1;padding:35px;");
     }
 
     [Fact]
@@ -39,56 +39,56 @@ public class StyleBuilderTests
         int right = 20;
 
         //act
-        string StyleToRender = new StyleBuilder("background-color", "DodgerBlue")
+        string styleToRender = new StyleBuilder("background-color", "DodgerBlue")
                         .AddStyle("border-width", $"{top}px {right}px {bottom}px {left}px", when: hasBorder)
                         .AddStyle("z-index", "999", when: isOnTop)
                         .AddStyle("z-index", "-1", when: !isOnTop)
                         .AddStyle("padding", "35px")
                         .Build();
 
-        IDictionary<string, object> attributes = new Dictionary<string, object> { { "style", StyleToRender } };
+        IDictionary<string, object> attributes = new Dictionary<string, object> { { "style", styleToRender } };
 
-        string ClassToRender = new StyleBuilder().AddStyleFromAttributes(attributes).Build();
+        string classToRender = new StyleBuilder().AddStyleFromAttributes(attributes).Build();
         //assert
-        ClassToRender.Should().Be("background-color:DodgerBlue;border-width:2px 20px 10px 4px;z-index:-1;padding:35px;");
+        classToRender.Should().Be("background-color:DodgerBlue;border-width:2px 20px 10px 4px;z-index:-1;padding:35px;");
     }
 
     [Fact]
     public void ShouldAddExistingStyle()
     {
-        string StyleToRender = StyleBuilder.Empty()
+        string styleToRender = StyleBuilder.Empty()
             .AddStyle("background-color:DodgerBlue;")
             .AddStyle("padding", "35px")
             .Build();
 
-        string StyleToRenderFromDefaultConstructor = StyleBuilder.Default(StyleToRender).Build();
+        string styleToRenderFromDefaultConstructor = StyleBuilder.Default(styleToRender).Build();
 
         /// Double ;; is valid HTML.
         /// The CSS syntax allows for empty declarations, which means that you can add leading and trailing semicolons as you like. For instance, this is valid CSS
         /// .foo { ;;;display:none;;;color:black;;; }
         /// Trimming is possible, but is it worth the operations for a non-issue?
-        StyleToRender.Should().Be("background-color:DodgerBlue;;padding:35px;");
-        StyleToRenderFromDefaultConstructor.Should().Be("background-color:DodgerBlue;;padding:35px;;");
+        styleToRender.Should().Be("background-color:DodgerBlue;;padding:35px;");
+        styleToRenderFromDefaultConstructor.Should().Be("background-color:DodgerBlue;;padding:35px;;");
     }
 
     [Fact]
     public void ShouldNotAddEmptyStyle()
     {
-        StyleBuilder? StyleToRender = StyleBuilder.Empty().AddStyle("");
-        StyleToRender = string.IsNullOrEmpty(StyleToRender.ToString()) ? null : StyleToRender;
+        StyleBuilder? styleToRender = StyleBuilder.Empty().AddStyle("");
+        styleToRender = string.IsNullOrEmpty(styleToRender.ToString()) ? null : styleToRender;
 
-        StyleToRender.Should().BeNull();
+        styleToRender.Should().BeNull();
     }
 
     [Fact]
     public void ShouldAddNestedStyles()
     {
-        StyleBuilder Child = StyleBuilder.Empty()
+        StyleBuilder child = StyleBuilder.Empty()
             .AddStyle("background-color", "DodgerBlue")
             .AddStyle("padding", "35px");
 
-        string StyleToRender = StyleBuilder.Empty()
-            .AddStyle(Child)
+        string styleToRender = StyleBuilder.Empty()
+            .AddStyle(child)
             .AddStyle("z-index", "-1")
             .Build();
 
@@ -96,14 +96,14 @@ public class StyleBuilderTests
         /// The CSS syntax allows for empty declarations, which means that you can add leading and trailing semicolons as you like. For instance, this is valid CSS
         /// .foo { ;;;display:none;;;color:black;;; }
         /// Trimming is possible, but is it worth the operations for a non-issue?
-        StyleToRender.Should().Be("background-color:DodgerBlue;padding:35px;z-index:-1;");
+        styleToRender.Should().Be("background-color:DodgerBlue;padding:35px;z-index:-1;");
 
     }
 
     [Fact]
     public void ShouldAddComplexStyles()
     {
-        string StyleToRender = StyleBuilder.Empty()
+        string styleToRender = StyleBuilder.Empty()
             .AddStyle("text-decoration", v => v
                         .AddValue("underline", true)
                         .AddValue("overline", false)
@@ -116,7 +116,7 @@ public class StyleBuilderTests
         /// The CSS syntax allows for empty declarations, which means that you can add leading and trailing semicolons as you like. For instance, this is valid CSS
         /// .foo { ;;;display:none;;;color:black;;; }
         /// Trimming is possible, but is it worth the operations for a non-issue?
-        StyleToRender.Should().Be("text-decoration:underline line-through;z-index:-1;");
+        styleToRender.Should().Be("text-decoration:underline line-through;z-index:-1;");
     }
 
     [Fact]
@@ -127,11 +127,11 @@ public class StyleBuilderTests
         IReadOnlyDictionary<string, object> attributes = new Dictionary<string, object> { { "class", "my-custom-class-1" } };
 
         //act
-        string StyleToRender = StyleBuilder.Empty()
+        string styleToRender = StyleBuilder.Empty()
                         .AddStyle("background-color", () => attributes["style"].ToString(), when: attributes.ContainsKey("style"))
                         .AddStyle("background-color", "black")
                         .Build();
         //assert
-        StyleToRender.Should().Be("background-color:black;");
+        styleToRender.Should().Be("background-color:black;");
     }
 }

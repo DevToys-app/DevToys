@@ -1,0 +1,32 @@
+// Efficiency Mode
+GetCurrentProcess
+SetProcessInformation
+PROCESS_POWER_THROTTLING_STATE
+PROCESS_POWER_THROTTLING_CURRENT_VERSION
+PROCESS_POWER_THROTTLING_EXECUTION_SPEED
+SetPriorityClass
+
+// dwmapi
+DwmSetWindowAttribute
+DwmExtendFrameIntoClientArea
+
+// user32
+SetWindowLong
+GetWindowLong
+SetParent
+GetDC
+GetDeviceCaps
+ReleaseDC
+
+// Windows messages
+WM_NCHITTEST
+WM_NCLBUTTONDOWN
+WM_NCPAINT
+WM_ERASEBKGND
+WM_PAINT
+WM_GETMINMAXINFO
+WM_MOVING
+WM_SETCURSOR
+WM_GETTEXT
+WM_WINDOWPOSCHANGING
+WINDOW_STYLE

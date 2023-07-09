@@ -4,7 +4,7 @@ namespace DevToys.Blazor.Components;
 
 public partial class MonacoEditorDiff : RicherMonacoEditorDiffBase
 {
-    private readonly object _lock = new object();
+    private readonly object _lock = new();
     private bool _isLoaded;
     private bool _oldIsActuallyEnabled;
     private bool _oldReadOnlyState;
@@ -140,9 +140,9 @@ public partial class MonacoEditorDiff : RicherMonacoEditorDiffBase
         // if we succeed to load within 100ms.
         // https://psychology.stackexchange.com/questions/1664/what-is-the-threshold-where-actions-are-perceived-as-instant
 
-        const int delay = 100;
+        const int Delay = 100;
 
-        await Task.Delay(delay);
+        await Task.Delay(Delay);
 
         lock (_lock)
         {

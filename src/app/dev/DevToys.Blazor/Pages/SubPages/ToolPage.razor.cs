@@ -53,6 +53,7 @@ public partial class ToolPage : MefComponentBase, IDisposable
 
     private void OnToggleFavorite()
     {
+        Guard.IsNotNull(IndexPage);
         ViewModel.ToggleSelectedMenuItemFavoriteCommand.Execute(null);
         IndexPage.StateHasChanged();
     }

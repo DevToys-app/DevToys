@@ -126,7 +126,7 @@ public sealed partial class FontService
         return string.Empty;
     }
 
-    private async Task<string> ConvertFontToBase64Async(FontDefinition fontDefinition)
+    private static async Task<string> ConvertFontToBase64Async(FontDefinition fontDefinition)
     {
         byte[] buffer = new byte[fontDefinition.FontReader.Length];
 

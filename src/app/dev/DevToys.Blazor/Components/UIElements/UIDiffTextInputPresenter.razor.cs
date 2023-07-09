@@ -45,27 +45,21 @@ public partial class UIDiffTextInputPresenter : JSStyledComponentBase, IDisposab
     {
         // Get or create the original model
         TextModel original_model = await MonacoEditorHelper.GetModelAsync(JSRuntime, uri: _originalModelName);
-        if (original_model == null)
-        {
-            original_model
-                = await MonacoEditorHelper.CreateModelAsync(
+        original_model
+                ??= await MonacoEditorHelper.CreateModelAsync(
                     JSRuntime,
                     UIDiffTextInput.Text,
                     language: null,
                     uri: _originalModelName);
-        }
 
         // Get or create the modified model
         TextModel modified_model = await MonacoEditorHelper.GetModelAsync(JSRuntime, uri: _modifiedModelName);
-        if (modified_model == null)
-        {
-            modified_model
-                = await MonacoEditorHelper.CreateModelAsync(
+        modified_model
+                ??= await MonacoEditorHelper.CreateModelAsync(
                     JSRuntime,
                     UIDiffTextInput.ModifiedText,
                     language: null,
                     uri: _modifiedModelName);
-        }
 
         // Set the editor model
         await _monacoEditor.SetModelAsync(new DiffEditorModel

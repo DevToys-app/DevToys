@@ -8,7 +8,6 @@ public class MarkdownString
 {
     public string? Value { get; set; }
 
-
     public bool? IsTrusted { get; set; }
 
     public bool? SupportThemeIcons { get; set; }

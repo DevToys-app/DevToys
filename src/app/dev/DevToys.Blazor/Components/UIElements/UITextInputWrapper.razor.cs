@@ -13,7 +13,7 @@ public partial class UITextInputWrapper : MefComponentBase
     private const int MinimumWidthBeforeShrinkingToolBar = 500;
     private const int MinimumWidthBeforeHidingNonEssentialToolBar = 300;
 
-    private static readonly string[] FileTypes = new[]
+    private static readonly string[] fileTypes = new[]
     {
         "*.*",
         "*.txt",
@@ -185,7 +185,7 @@ public partial class UITextInputWrapper : MefComponentBase
         PickedFile? pickedFile = null;
         try
         {
-            pickedFile = await FileStorage.PickOpenFileAsync(FileTypes);
+            pickedFile = await FileStorage.PickOpenFileAsync(fileTypes);
             if (pickedFile is not null)
             {
                 await LoadFileAsync(pickedFile.Stream);
@@ -322,8 +322,8 @@ public partial class UITextInputWrapper : MefComponentBase
 
     private async Task FocusOnTextEditorAsync()
     {
-        Guard.IsEqualTo(_childrenComponents.Count, 1);
-        var focusableChild = _childrenComponents.First() as IFocusable;
+        Guard.IsEqualTo(ChildrenComponents.Count, 1);
+        var focusableChild = ChildrenComponents.First() as IFocusable;
         if (focusableChild is not null)
         {
             await focusableChild.FocusAsync();

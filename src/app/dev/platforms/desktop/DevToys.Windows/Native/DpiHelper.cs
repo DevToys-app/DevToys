@@ -1,4 +1,7 @@
 ﻿using System.Windows.Media;
+using Windows.Win32;
+using Windows.Win32.Foundation;
+using Windows.Win32.Graphics.Gdi;
 
 namespace DevToys.Windows.Native;
 
@@ -11,20 +14,20 @@ public static class DpiHelper
 
     static DpiHelper()
     {
-        nint dC = NativeMethods.GetDC(nint.Zero);
+#pragma warning disable CA1416 // Validate platform compatibility
+        HDC dC = PInvoke.GetDC(HWND.Null);
         if (dC != nint.Zero)
         {
-            const int logicPixelsX = 88;
-            const int logicPixelsY = 90;
-            _ = DeviceDpiX = NativeMethods.GetDeviceCaps(dC, logicPixelsX);
-            _ = DeviceDpiY = NativeMethods.GetDeviceCaps(dC, logicPixelsY);
-            _ = NativeMethods.ReleaseDC(nint.Zero, dC);
+            _ = DeviceDpiX = PInvoke.GetDeviceCaps(dC, GET_DEVICE_CAPS_INDEX.LOGPIXELSX);
+            _ = DeviceDpiY = PInvoke.GetDeviceCaps(dC, GET_DEVICE_CAPS_INDEX.LOGPIXELSY);
+            _ = PInvoke.ReleaseDC(HWND.Null, dC);
         }
         else
         {
             DeviceDpiX = LogicalDpi;
             DeviceDpiY = LogicalDpi;
         }
+#pragma warning restore CA1416 // Validate platform compatibility
 
         Matrix identity = Matrix.Identity;
         Matrix identity2 = Matrix.Identity;

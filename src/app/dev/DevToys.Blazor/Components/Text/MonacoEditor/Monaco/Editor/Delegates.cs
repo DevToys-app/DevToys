@@ -4,7 +4,6 @@
 
 namespace DevToys.Blazor.Components.Monaco.Editor;
 
-
 public delegate void CommandHandler(params object[] args);
 
 /// <summary>

@@ -6,7 +6,7 @@ public abstract class StyledComponentBase : ComponentBase
 
     private readonly Lazy<ObservableHashSet<string>> _css;
 
-    protected readonly HashSet<StyledComponentBase> _childrenComponents = new();
+    protected readonly HashSet<StyledComponentBase> ChildrenComponents = new();
 
     /// <summary>
     /// Gets a reference to the HTML element rendered by the component.
@@ -211,16 +211,13 @@ public abstract class StyledComponentBase : ComponentBase
     {
         base.OnInitialized();
 
-        if (ParentComponent is not null)
-        {
-            ParentComponent.RegisterChildComponent(this);
-        }
+        ParentComponent?.RegisterChildComponent(this);
     }
 
     protected void RegisterChildComponent(StyledComponentBase component)
     {
         Guard.IsNotNull(component);
-        _childrenComponents.Add(component);
+        ChildrenComponents.Add(component);
     }
 
     /// <summary>

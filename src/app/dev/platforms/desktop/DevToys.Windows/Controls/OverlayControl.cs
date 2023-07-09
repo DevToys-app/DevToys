@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Interop;
+using Windows.Win32.Foundation;
 
 namespace DevToys.Windows.Controls;
 
@@ -26,7 +27,7 @@ internal sealed class OverlayControl : ContentControl, IDisposable
         };
         _overlayWindow.Show();
 
-        IntPtr windowHandle = new WindowInteropHelper(_overlayWindow).Handle;
+        var windowHandle = new HWND(new WindowInteropHelper(_overlayWindow).Handle);
 
         _host = new HwndHostEx(windowHandle);
         Content = _host;

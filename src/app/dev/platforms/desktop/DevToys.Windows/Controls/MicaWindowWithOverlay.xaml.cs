@@ -7,7 +7,12 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Shell;
 using DevToys.Api;
+using DevToys.Windows.Core;
 using DevToys.Windows.Native;
+using Windows.Win32;
+using Windows.Win32.Foundation;
+using Windows.Win32.Graphics.Dwm;
+using Windows.Win32.UI.Controls;
 using Application = System.Windows.Application;
 using Button = System.Windows.Controls.Button;
 using Color = System.Windows.Media.Color;
@@ -19,19 +24,9 @@ namespace DevToys.Windows.Controls;
 
 public abstract partial class MicaWindowWithOverlay : Window
 {
-    private readonly Lazy<Version> _windowsVersion
-        = new(() =>
-        {
-            if (NativeMethods.RtlGetVersion(out OSVERSIONINFOEX osv) != 0)
-            {
-                throw new PlatformNotSupportedException("This app can only run on Windows.");
-            }
-
-            return new Version(osv.MajorVersion, osv.MinorVersion, osv.BuildNumber, osv.Revision);
-        });
-
     private readonly ResourceDictionary _resourceDictionary;
     protected IThemeListener? _themeListener;
+    protected EfficiencyModeService? _efficiencyModeService;
     private Button? _restoreButton;
     private Button? _maximizeButton;
 
@@ -47,6 +42,7 @@ public abstract partial class MicaWindowWithOverlay : Window
         ApplyResizeBorderThickness();
 
         Closed += MicaWindowWithOverlay_Closed;
+        Loaded += MicaWindowWithOverlay_Loaded;
     }
 
     internal static readonly DependencyProperty TitleBarMarginLeftProperty
@@ -126,8 +122,17 @@ public abstract partial class MicaWindowWithOverlay : Window
         base.OnPropertyChanged(e);
     }
 
+    private void MicaWindowWithOverlay_Loaded(object sender, RoutedEventArgs e)
+    {
+        Guard.IsNotNull(_efficiencyModeService);
+        _efficiencyModeService.RegisterWindow(this);
+    }
+
     private void MicaWindowWithOverlay_Closed(object? sender, EventArgs e)
     {
+        Guard.IsNotNull(_efficiencyModeService);
+        _efficiencyModeService.UnregisterWindow(this);
+
         var overlayControl = (OverlayControl)Template.FindName("TitleBar", this);
         overlayControl.Dispose();
     }
@@ -199,16 +204,16 @@ public abstract partial class MicaWindowWithOverlay : Window
         bool handled = false;
 
         // Handle Windows 11's Snap Layout.
-        if (msg == HwndSourceMessages.WM_NCHITTEST)
+        if (msg == PInvoke.WM_NCHITTEST)
         {
-            bool isWindow11_OrGreater = _windowsVersion.Value >= new Version(10, 0, 22000);
+            bool isWindow11_OrGreater = Environment.OSVersion.Version >= new Version(10, 0, 22000);
             if (isWindow11_OrGreater & SnapLayoutHelper.IsSnapLayoutEnabled())
             {
                 nint result = ShowSnapLayout(lParam, ref handled);
                 return (result, handled);
             }
         }
-        else if (msg == HwndSourceMessages.WM_NCLBUTTONDOWN)
+        else if (msg == PInvoke.WM_NCLBUTTONDOWN)
         {
             HandleClickOnMaximizeAndRestoreButton(lParam, ref handled);
         }
@@ -221,12 +226,12 @@ public abstract partial class MicaWindowWithOverlay : Window
         // Apply the dark / light theme.
         UpdateTheme();
 
-        bool isWindow10_17763_OrHigher = _windowsVersion.Value >= new Version(10, 0, 17763);
+        bool isWindow10_17763_OrHigher = Environment.OSVersion.Version >= new Version(10, 0, 17763);
 
         // If Windows 10 17763 or higher
         if (isWindow10_17763_OrHigher)
         {
-            nint windowHandle = new WindowInteropHelper(this).EnsureHandle();
+            var windowHandle = new HWND(new WindowInteropHelper(this).EnsureHandle());
 
             // Extends the window frame into the client area.
             ExtendWindowFrameIntoClientArea(windowHandle);
@@ -259,38 +264,41 @@ public abstract partial class MicaWindowWithOverlay : Window
             cyBottomHeight = -1
         };
 
-        NativeMethods.ExtendFrame(mainWindowSrc.Handle, margins);
+        NativeMethods.ExtendFrame(new HWND(mainWindowSrc.Handle), margins);
     }
 
-    private void ApplyBackdrop(nint windowHandle)
+    private void ApplyBackdrop(HWND windowHandle)
     {
         Guard.IsNotNull(_themeListener);
-        bool isWindow11_22523_OrGreater = _windowsVersion.Value >= new Version(10, 0, 22523);
-        bool isWindow11_OrGreater = _windowsVersion.Value >= new Version(10, 0, 22000);
+        bool isWindow11_22523_OrGreater = Environment.OSVersion.Version >= new Version(10, 0, 22523);
+        bool isWindow11_OrGreater = Environment.OSVersion.Version >= new Version(10, 0, 22000);
 
         if (_themeListener.ActualAppTheme == ApplicationTheme.Dark)
         {
-            NativeMethods.SetWindowAttribute(windowHandle, DWMWINDOWATTRIBUTE.DWMWA_USE_IMMERSIVE_DARK_MODE, DwmValues.True);
+            int parameter = DwmValues.True;
+            NativeMethods.SetWindowAttribute(windowHandle, DWMWINDOWATTRIBUTE.DWMWA_USE_IMMERSIVE_DARK_MODE, ref parameter);
         }
         else
         {
-            NativeMethods.SetWindowAttribute(windowHandle, DWMWINDOWATTRIBUTE.DWMWA_USE_IMMERSIVE_DARK_MODE, DwmValues.False);
+            int parameter = DwmValues.False;
+            NativeMethods.SetWindowAttribute(windowHandle, DWMWINDOWATTRIBUTE.DWMWA_USE_IMMERSIVE_DARK_MODE, ref parameter);
         }
 
         if (isWindow11_22523_OrGreater)
         {
-            const int Mica = 2;
-            NativeMethods.SetWindowAttribute(windowHandle, DWMWINDOWATTRIBUTE.DWMWA_SYSTEMBACKDROP_TYPE, Mica);
+            int Mica = 2;
+            NativeMethods.SetWindowAttribute(windowHandle, DWMWINDOWATTRIBUTE.DWMWA_SYSTEMBACKDROP_TYPE, ref Mica);
         }
         else if (isWindow11_OrGreater)
         {
-            NativeMethods.SetWindowAttribute(windowHandle, DWMWINDOWATTRIBUTE.DWMWA_MICA_EFFECT, DwmValues.True);
+            int parameter = DwmValues.True;
+            NativeMethods.SetWindowAttribute(windowHandle, (DWMWINDOWATTRIBUTE)DWMWINDOWATTRIBUTE_EXTENDED.DWMWA_MICA_EFFECT, ref parameter);
         }
     }
 
     private void ApplyResizeBorderThickness()
     {
-        bool isWindow11_OrGreater = _windowsVersion.Value >= new Version(10, 0, 22000);
+        bool isWindow11_OrGreater = Environment.OSVersion.Version >= new Version(10, 0, 22000);
         int cornerRadius = isWindow11_OrGreater ? 8 : 0;
 
         MarginMaximized = WindowState == WindowState.Maximized ? new Thickness(6) : new Thickness(0);
@@ -347,7 +355,7 @@ public abstract partial class MicaWindowWithOverlay : Window
         dictionaries.Add(resourceDictionary);
         UpdateLayout();
 
-        bool isWindow10_17763_OrLower = _windowsVersion.Value < new Version(10, 0, 17763);
+        bool isWindow10_17763_OrLower = Environment.OSVersion.Version < new Version(10, 0, 17763);
 
         // If Windows 10 17763 or lower
         if (isWindow10_17763_OrLower)

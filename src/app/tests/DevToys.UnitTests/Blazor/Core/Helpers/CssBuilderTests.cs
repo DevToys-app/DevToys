@@ -8,21 +8,21 @@ public class CssBuilderTests
     public void ShouldConstructWithDefaultValue()
     {
         //arrange
-        string ClassToRender = CssBuilder.Default("item-one").Build();
+        string classToRender = CssBuilder.Default("item-one").Build();
 
         //assert
-        ClassToRender.Should().Be("item-one");
+        classToRender.Should().Be("item-one");
     }
 
     [Fact]
     public void ShouldConstructWithEmpty()
     {
         //arrange
-        CssBuilder? ClassToRender = CssBuilder.Empty();
-        ClassToRender = string.IsNullOrEmpty(ClassToRender.ToString()) ? null : ClassToRender;
+        CssBuilder? classToRender = CssBuilder.Empty();
+        classToRender = string.IsNullOrEmpty(classToRender.ToString()) ? null : classToRender;
 
         //assert
-        ClassToRender.Should().BeNull();
+        classToRender.Should().BeNull();
     }
 
     [Fact]
@@ -34,14 +34,14 @@ public class CssBuilderTests
         Func<bool> hasFive = () => false;
 
         //act
-        string ClassToRender = new CssBuilder("item-one")
+        string classToRender = new CssBuilder("item-one")
                         .AddClass("item-two", when: hasTwo)
                         .AddClass("item-three", when: hasThree)
                         .AddClass("item-four")
                         .AddClass("item-five", when: hasFive)
                         .Build();
         //assert
-        ClassToRender.Should().Be("item-one item-three item-four");
+        classToRender.Should().Be("item-one item-three item-four");
     }
 
     [Fact]
@@ -53,7 +53,7 @@ public class CssBuilderTests
         Func<bool> hasFive = () => false;
 
         //act
-        string ClassToRender = new CssBuilder("item-one")
+        string classToRender = new CssBuilder("item-one")
                         .AddClass("item-two", when: hasTwo)
                         .AddClass(new CssBuilder("item-three")
                                         .AddClass("item-foo", false)
@@ -63,7 +63,7 @@ public class CssBuilderTests
                         .AddClass("item-five", when: hasFive)
                         .Build();
         //assert
-        ClassToRender.Should().Be("item-one item-three item-sub-three item-four");
+        classToRender.Should().Be("item-one item-three item-sub-three item-four");
     }
 
     [Fact]
@@ -73,11 +73,11 @@ public class CssBuilderTests
         bool shouldShow = false;
 
         //act
-        string ClassToRender = new CssBuilder()
+        string classToRender = new CssBuilder()
                         .AddClass("some-class", shouldShow)
                         .Build();
         //assert
-        ClassToRender.Should().Be(string.Empty);
+        classToRender.Should().Be(string.Empty);
     }
 
     [Fact]
@@ -89,11 +89,11 @@ public class CssBuilderTests
             IDictionary<string, object> attributes = new Dictionary<string, object> { { "class", "my-custom-class-1" } };
 
             //act
-            string ClassToRender = new CssBuilder("item-one")
+            string classToRender = new CssBuilder("item-one")
                             .AddClass(() => attributes["class"].ToString(), when: attributes.ContainsKey("class"))
                             .Build();
             //assert
-            ClassToRender.Should().Be("item-one my-custom-class-1");
+            classToRender.Should().Be("item-one my-custom-class-1");
         }
     }
 
@@ -106,11 +106,11 @@ public class CssBuilderTests
             IDictionary<string, object> attributes = new Dictionary<string, object> { { "class", "my-custom-class-1" } };
 
             //act
-            string ClassToRender = new CssBuilder("item-one")
+            string classToRender = new CssBuilder("item-one")
                             .AddClassFromAttributes(attributes)
                             .Build();
             //assert
-            ClassToRender.Should().Be("item-one my-custom-class-1");
+            classToRender.Should().Be("item-one my-custom-class-1");
         }
     }
 
@@ -123,11 +123,11 @@ public class CssBuilderTests
             IDictionary<string, object> attributes = null;
 
             //act
-            string ClassToRender = new CssBuilder("item-one")
+            string classToRender = new CssBuilder("item-one")
                             .AddClassFromAttributes(attributes)
                             .Build();
             //assert
-            ClassToRender.Should().Be("item-one");
+            classToRender.Should().Be("item-one");
         }
     }
 
@@ -140,12 +140,12 @@ public class CssBuilderTests
             IDictionary<string, object> attributes = null;
 
             //act
-            CssBuilder? ClassToRender = new CssBuilder()
+            CssBuilder? classToRender = new CssBuilder()
                             .AddClassFromAttributes(attributes);
-            ClassToRender = string.IsNullOrEmpty(ClassToRender.ToString()) ? null : ClassToRender;
+            classToRender = string.IsNullOrEmpty(classToRender.ToString()) ? null : classToRender;
 
             //assert
-            ClassToRender.Should().BeNull();
+            classToRender.Should().BeNull();
         }
     }
 
@@ -157,10 +157,10 @@ public class CssBuilderTests
         IDictionary<string, object> attributes = new Dictionary<string, object> { { "foo", "bar" } };
 
         //act
-        string ClassToRender = new CssBuilder("item-one")
+        string classToRender = new CssBuilder("item-one")
                         .AddClass(() => attributes["string"].ToString(), when: attributes.ContainsKey("class"))
                         .Build();
         //assert
-        ClassToRender.Should().Be("item-one");
+        classToRender.Should().Be("item-one");
     }
 }

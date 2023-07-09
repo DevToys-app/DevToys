@@ -25,7 +25,7 @@ public class EditorUpdateOptions : EditorOptions, IGlobalEditorOptions
 
     public int? MaxTokenizationLineLength { get; set; }
 
-    public string? Theme { get; set; }
+    public string Theme { get; set; } = default!;
 
     public bool? AutoDetectHighContrast { get; set; }
 }

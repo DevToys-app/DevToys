@@ -172,7 +172,7 @@ public sealed partial class SmartDetectionService
         {
             return await detector.TryDetectDataAsync(rawData, resultFromBaseDetector, cancellationToken) ?? DataDetectionResult.Unsuccessful;
         }
-        catch (Exception ex) when (!(ex is OperationCanceledException))
+        catch (Exception ex) when (ex is not OperationCanceledException)
         {
             LogDetectAsyncError(ex);
         }
@@ -211,10 +211,7 @@ public sealed partial class SmartDetectionService
             {
                 // If the current detector has a base data type name and its parent node exists in the dictionary,
                 // add it as a child to its parent node
-                if (parentNode.ChildrenDetectors is null)
-                {
-                    parentNode.ChildrenDetectors = new();
-                }
+                parentNode.ChildrenDetectors ??= new();
 
                 parentNode.ChildrenDetectors.Add(node.Value);
             }
