@@ -8,12 +8,15 @@
     xmlns:core="clr-namespace:DevToys.Core;assembly=DevToys.Core"
     xmlns:controls="clr-namespace:DevToys.Windows.Controls"
     xmlns:blazor="clr-namespace:Microsoft.AspNetCore.Components.WebView.Wpf;assembly=Microsoft.AspNetCore.Components.WebView.Wpf"
-    d:DataContext="{d:DesignInstance Type=core:TitleBarMarginProvider}"
+    d:DataContext="{d:DesignInstance Type=core:TitleBarInfoProvider}"
     mc:Ignorable="d"
     Loaded="MainWindow_Loaded"
-    Title="MainWindow"
+    MinWidth="600"
+    MinHeight="400"
+    Title="{Binding Title}"
     TitleBarMarginLeft="{Binding TitleBarMarginLeft}"
-    TitleBarMarginRight="{Binding TitleBarMarginRight}">
+    TitleBarMarginRight="{Binding TitleBarMarginRight}"
+    TitleBarWindowStateButtonsWidth="{Binding TitleBarWindowStateButtonsWidth, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}">
     <Grid>
         <blazor:BlazorWebView
             x:Name="blazorWebView"

@@ -1,4 +1,5 @@
-﻿using DevToys.Api;
+﻿using System.Windows.Interop;
+using DevToys.Api;
 using DevToys.Blazor.BuiltInTools;
 using DevToys.Blazor.Core.Languages;
 using DevToys.Blazor.Core.Services;
@@ -8,6 +9,7 @@ using DevToys.Core.Logging;
 using DevToys.Core.Mef;
 using DevToys.Windows.Controls;
 using DevToys.Windows.Core;
+using DevToys.Windows.Core.Helpers;
 using Microsoft.AspNetCore.Components.WebView;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -65,17 +67,21 @@ public partial class MainWindow : MicaWindowWithOverlay
 
         _efficiencyModeService = _mefComposer.Provider.Import<EfficiencyModeService>();
         _themeListener = _mefComposer.Provider.Import<IThemeListener>();
-        DataContext = _mefComposer.Provider.Import<TitleBarMarginProvider>();
+        DataContext = _mefComposer.Provider.Import<TitleBarInfoProvider>();
 
         blazorWebView.BlazorWebViewInitializing += BlazorWebView_BlazorWebViewInitializing;
         blazorWebView.BlazorWebViewInitialized += BlazorWebView_BlazorWebViewInitialized;
 
         // Set window default size and location.
         // TODO: Save and restore user settings.
-        Width = Math.Max(System.Windows.SystemParameters.WorkArea.Width - 400, 1200);
-        Height = Math.Max(System.Windows.SystemParameters.WorkArea.Height - 200, 600);
-        Left = (System.Windows.SystemParameters.WorkArea.Width - Width) / 2;
-        Top = (System.Windows.SystemParameters.WorkArea.Height - Height) / 2;
+        var dpiHelper = new DpiHelper(this);
+        double DPI_SCALE = dpiHelper.LogicalToDeviceUnitsScalingFactorX;
+        var windowInteropHelper = new WindowInteropHelper(this);
+        var screen = Screen.FromHandle(windowInteropHelper.Handle);
+        Width = Math.Max(screen.WorkingArea.Width - 400, 1200) / DPI_SCALE;
+        Height = Math.Max(screen.WorkingArea.Height - 200, 600) / DPI_SCALE;
+        Left = ((screen.WorkingArea.Width / DPI_SCALE) - Width) / 2;
+        Top = ((screen.WorkingArea.Height / DPI_SCALE) - Height) / 2;
     }
 
     private void MainWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)

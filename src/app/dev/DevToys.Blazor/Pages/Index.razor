@@ -31,10 +31,39 @@
             SearchQuerySubmitted="OnSearchQuerySubmitted"
             SearchResultItems="ViewModel.SearchResults">
         <!-- Header -->
-        <Header>
-            <TextBlock Text="DevToys" />
-        </Header>
-    
+        <HeaderLeft>
+            @if (ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem && WindowService.IsCompactOverlayMode)
+            {
+                TitleBarInfoProvider.Title = "DevToys - " + guiToolViewItem.ToolInstance.LongOrShortDisplayTitle;
+                <TextBlock Text="@TitleBarInfoProvider.Title"
+                           Style="margin-left: 16px;"/>
+            }
+            else
+            {
+                TitleBarInfoProvider.Title = "DevToys";
+                <TextBlock Text="@TitleBarInfoProvider.Title" />
+            }
+        </HeaderLeft>
+        <HeaderRight>
+            <StackPanel MarginRight="@TitleBarInfoProvider.TitleBarWindowStateButtonsWidth"
+                        VerticalAlignment="UIVerticalAlignment.Top"
+                        Orientation="UIOrientation.Horizontal"
+                        Spacing="6">
+                @{
+                    bool compactOverlayModeAllowed
+                            = ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem
+                            && !guiToolViewItem.ToolInstance.NoCompactOverlaySupport;
+                }
+                <Button Appearance="ButtonAppearance.Stealth"
+                        Height="32"
+                        IsEnabled="@compactOverlayModeAllowed"
+                        ToolTip="Picture in picture"
+                        @onclick="@OnToggleCompactOverlayModeButtonClick">
+                    <FontIcon Glyph="@(WindowService.IsCompactOverlayMode ? '\uE97C' : '\uE97F')" />
+                </Button>
+            </StackPanel>
+        </HeaderRight>
+
         <!-- Search box's result item design -->
         <SearchResultItemTemplate Context="item">
             <div class="sidebar-searchbar-result-item">

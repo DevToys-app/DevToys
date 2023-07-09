@@ -69,10 +69,6 @@ public sealed partial class GuiToolInstance : ObservableObject
 
     public bool NoCompactOverlaySupport => _guiToolDefinition.Metadata.NoCompactOverlaySupport;
 
-    public int? CompactOverlayHeight => _guiToolDefinition.Metadata.CompactOverlayHeight;
-
-    public int? CompactOverlayWidth => _guiToolDefinition.Metadata.CompactOverlayWidth;
-
     public string GroupName => _guiToolDefinition.Metadata.GroupName;
 
     public bool IsFooterTool => _guiToolDefinition.Metadata.MenuPlacement == MenuPlacement.Footer;

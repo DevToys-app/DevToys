@@ -49,8 +49,6 @@ public sealed class GuiToolMetadata : IOrderableMetadata
         NotFavorable = metadata.GetValueOrDefault(nameof(NotFavorableAttribute.NotFavorable)) as bool? ?? false;
         NoCompactOverlaySupport = metadata.GetValueOrDefault(nameof(NoCompactOverlaySupportAttribute.NoCompactOverlaySupport)) as bool? ?? false;
         MenuPlacement = metadata.GetValueOrDefault(nameof(MenuPlacementAttribute.MenuPlacement)) as MenuPlacement?;
-        CompactOverlayHeight = metadata.GetValueOrDefault(nameof(CompactOverlaySizeAttribute.CompactOverlayHeight)) as int?;
-        CompactOverlayWidth = metadata.GetValueOrDefault(nameof(CompactOverlaySizeAttribute.CompactOverlayWidth)) as int?;
         TargetPlatforms = metadata.GetValueOrDefault(nameof(TargetPlatformAttribute.TargetPlatform)) as IReadOnlyList<Platform> ?? Array.Empty<Platform>();
         AcceptedDataTypeNames = metadata.GetValueOrDefault(nameof(AcceptedDataTypeNameAttribute.DataTypeName)) as IReadOnlyList<string> ?? Array.Empty<string>();
         Guard.IsNotNullOrWhiteSpace(InternalComponentName);
@@ -136,10 +134,6 @@ public sealed class GuiToolMetadata : IOrderableMetadata
     public bool NoCompactOverlaySupport { get; }
 
     public MenuPlacement? MenuPlacement { get; }
-
-    public int? CompactOverlayHeight { get; }
-
-    public int? CompactOverlayWidth { get; }
 
     public IReadOnlyList<Platform> TargetPlatforms { get; }
 

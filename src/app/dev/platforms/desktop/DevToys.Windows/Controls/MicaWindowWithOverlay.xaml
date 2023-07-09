@@ -118,6 +118,7 @@
                                                 Grid.Column="1"
                                                 Background="{DynamicResource FakeTransparentColor}"/>
                                             <StackPanel
+                                                x:Name="WindowStateButtonsStackPanel"
                                                 Grid.Column="3"
                                                 Orientation="Horizontal">
                                                 <Button
@@ -208,6 +209,11 @@
                         <Trigger Property="WindowState" Value="Normal">
                             <Setter TargetName="MaximizeButton" Property="Visibility" Value="Visible" />
                             <Setter TargetName="RestoreButton" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="ForbidMinimizeAndMaximize" Value="True">
+                            <Setter TargetName="MaximizeButton" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="RestoreButton" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="MinimizeButton" Property="Visibility" Value="Collapsed" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

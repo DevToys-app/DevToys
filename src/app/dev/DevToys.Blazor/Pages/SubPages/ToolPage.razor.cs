@@ -1,4 +1,5 @@
 ﻿using DevToys.Blazor.Components;
+using DevToys.Blazor.Core.Services;
 using DevToys.Business.ViewModels;
 using DevToys.Core.Tools.ViewItems;
 
@@ -6,6 +7,9 @@ namespace DevToys.Blazor.Pages.SubPages;
 
 public partial class ToolPage : MefComponentBase, IDisposable
 {
+    [Inject]
+    internal IWindowService WindowService { get; set; } = default!;
+
     [Import]
     internal ToolPageViewModel ViewModel { get; set; } = default!;
 

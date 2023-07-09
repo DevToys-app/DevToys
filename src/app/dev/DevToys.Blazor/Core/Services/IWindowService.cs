@@ -12,5 +12,7 @@ public interface IWindowService
 
     event EventHandler<EventArgs>? WindowClosing;
 
-    bool IsOverlayMode { get; set; }
+    event EventHandler<EventArgs>? IsCompactOverlayModeChanged;
+
+    bool IsCompactOverlayMode { get; set; }
 }

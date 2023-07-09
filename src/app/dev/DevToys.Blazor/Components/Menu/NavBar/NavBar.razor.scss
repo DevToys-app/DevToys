@@ -83,6 +83,8 @@ $sidebar-top-bar-height: 48px;
 
         .sidebar-header {
             grid-area: sidebar-header;
+            display: block;
+            width: 100%;
         }
 
         .sidebar-body {

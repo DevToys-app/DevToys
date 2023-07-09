@@ -9,6 +9,7 @@ namespace DevToys.Blazor.Pages;
 
 public partial class Index : MefComponentBase
 {
+    private const int TitleBarMarginLeftWhenCompactOverlayMode = 0;
     private const int TitleBarMarginLeftWhenNavBarHidden = 90;
     private const int TitleBarMarginLeftWhenNavBarNotHidden = 47;
 
@@ -21,7 +22,7 @@ public partial class Index : MefComponentBase
     internal GuiToolProvider GuiToolProvider { get; set; } = default!;
 
     [Import]
-    internal TitleBarMarginProvider TitleBarMarginProvider { get; set; } = default!;
+    internal TitleBarInfoProvider TitleBarInfoProvider { get; set; } = default!;
 
     [Import]
     internal IThemeListener ThemeListener { get; set; } = default!;
@@ -44,6 +45,9 @@ public partial class Index : MefComponentBase
         ViewModel.SelectedMenuItem = ViewModel.HeaderAndBodyToolViewItems[0];
         ContextMenuService.IsContextMenuOpenedChanged += ContextMenuService_IsContextMenuOpenedChanged;
         WindowService.WindowActivated += WindowService_WindowActivated;
+        TitleBarInfoProvider.PropertyChanged += TitleBarMarginProvider_PropertyChanged;
+
+        TitleBarInfoProvider.TitleBarMarginRight = 40;
     }
 
     private void ViewModel_SelectedMenuItemChanged(object? sender, EventArgs e)
@@ -59,10 +63,15 @@ public partial class Index : MefComponentBase
         StateHasChanged();
     }
 
+    private void TitleBarMarginProvider_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        StateHasChanged();
+    }
+
     private void WindowService_WindowActivated(object? sender, EventArgs e)
     {
         // Start Smart Detection
-        ViewModel.RunSmartDetectionAsync(WindowService.IsOverlayMode)
+        ViewModel.RunSmartDetectionAsync(WindowService.IsCompactOverlayMode)
             .ContinueWith(async _ =>
             {
                 await InvokeAsync(StateHasChanged);
@@ -74,15 +83,26 @@ public partial class Index : MefComponentBase
         ViewModel.GoBack();
     }
 
+    private void OnToggleCompactOverlayModeButtonClick()
+    {
+        WindowService.IsCompactOverlayMode = !WindowService.IsCompactOverlayMode;
+
+        OnHiddenStateChanged(_navBar.IsHiddenMode);
+    }
+
     private void OnHiddenStateChanged(bool isHidden)
     {
-        if (isHidden)
+        if (WindowService.IsCompactOverlayMode)
         {
-            TitleBarMarginProvider.TitleBarMarginLeft = TitleBarMarginLeftWhenNavBarHidden;
+            TitleBarInfoProvider.TitleBarMarginLeft = TitleBarMarginLeftWhenCompactOverlayMode;
+        }
+        else if (isHidden)
+        {
+            TitleBarInfoProvider.TitleBarMarginLeft = TitleBarMarginLeftWhenNavBarHidden;
         }
         else
         {
-            TitleBarMarginProvider.TitleBarMarginLeft = TitleBarMarginLeftWhenNavBarNotHidden;
+            TitleBarInfoProvider.TitleBarMarginLeft = TitleBarMarginLeftWhenNavBarNotHidden;
         }
     }
 
@@ -105,7 +125,7 @@ public partial class Index : MefComponentBase
             _navBar.TryFocusSearchBoxAsync();
 
             // Start Smart Detection
-            ViewModel.RunSmartDetectionAsync(WindowService.IsOverlayMode).Forget();
+            ViewModel.RunSmartDetectionAsync(WindowService.IsCompactOverlayMode).Forget();
         }
 
         if (IsTransitioning)

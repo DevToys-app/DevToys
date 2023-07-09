@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using DevToys.Blazor.Core.Services;
 using Microsoft.AspNetCore.Components.Web;
 
 namespace DevToys.Blazor.Components;
@@ -58,10 +59,16 @@ public partial class NavBar<TElement, TSearchElement>
     public RenderFragment? Content { get; set; }
 
     /// <summary>
-    /// Gets or sets the header to be rendered inside the component.
+    /// Gets or sets the header to be rendered inside the component, to the left.
     /// </summary>
     [Parameter]
-    public RenderFragment? Header { get; set; }
+    public RenderFragment? HeaderLeft { get; set; }
+
+    /// <summary>
+    /// Gets or sets the header to be rendered inside the component, to the right.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? HeaderRight { get; set; }
 
     /// <summary>
     /// Raised when the NavBar goes and leave the hidden state.
@@ -99,6 +106,14 @@ public partial class NavBar<TElement, TSearchElement>
     [Parameter]
     public RenderFragment<TSearchElement> SearchResultItemTemplate { get; set; } = default!;
 
+    /// <summary>
+    /// Gets whether the <see cref="NavBar{TElement, TSearchElement}"/>'s side bar is hidden or not.
+    /// </summary>
+    public bool IsHiddenMode => _sidebarState.IsHidden;
+
+    [Inject]
+    internal IWindowService WindowService { get; set; } = default!;
+
     public NavBar()
     {
         _sidebarState.IsHiddenChanged += SidebarState_IsHiddenChanged;
@@ -106,7 +121,7 @@ public partial class NavBar<TElement, TSearchElement>
 
     internal ValueTask<bool> TryFocusSearchBoxAsync()
     {
-        if (!_sidebarState.IsCollapsed && !_sidebarState.IsHidden)
+        if (!WindowService.IsCompactOverlayMode && !_sidebarState.IsCollapsed && !_sidebarState.IsHidden)
         {
             return _autoSuggestBox.FocusAsync();
         }
@@ -152,6 +167,11 @@ public partial class NavBar<TElement, TSearchElement>
 
     private void OnToggleSidebarClick()
     {
+        if (WindowService.IsCompactOverlayMode)
+        {
+            return;
+        }
+
         _sidebarState.ToggleSidebar();
     }
 
@@ -162,6 +182,11 @@ public partial class NavBar<TElement, TSearchElement>
 
     private void OnSearchButtonClick()
     {
+        if (WindowService.IsCompactOverlayMode)
+        {
+            return;
+        }
+
         _sidebarState.ForceExpand();
         Task.Delay(200)
             .ContinueWith(t =>

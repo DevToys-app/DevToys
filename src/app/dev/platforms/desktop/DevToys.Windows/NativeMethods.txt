@@ -17,6 +17,8 @@ SetParent
 GetDC
 GetDeviceCaps
 ReleaseDC
+GetSystemMenu
+EnableMenuItem
 
 // Windows messages
 WM_NCHITTEST
@@ -29,4 +31,10 @@ WM_MOVING
 WM_SETCURSOR
 WM_GETTEXT
 WM_WINDOWPOSCHANGING
+
+// Windowing
 WINDOW_STYLE
+SC_SIZE
+SC_MAXIMIZE
+SC_MINIMIZE
+MENU_ITEM_FLAGS

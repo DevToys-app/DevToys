@@ -10,8 +10,7 @@ internal sealed class WindowService : IWindowService
     public event EventHandler<EventArgs>? WindowLocationChanged;
     public event EventHandler<EventArgs>? WindowSizeChanged;
     public event EventHandler<EventArgs>? WindowClosing;
-
-    public bool IsOverlayMode { get; set; }
+    public event EventHandler<EventArgs>? IsCompactOverlayModeChanged;
 
     public WindowService()
     {
@@ -21,6 +20,8 @@ internal sealed class WindowService : IWindowService
         NSNotificationCenter.DefaultCenter.AddObserver(new NSString("NSWindowWillStartLiveResizeNotification"), OnWindowSizeChanged);
         NSNotificationCenter.DefaultCenter.AddObserver(new NSString("NSWindowWillCloseNotification"), OnWindowClosing);
     }
+
+    public bool IsCompactOverlayMode { get; set; }
 
     public void OnWindowActivated(NSNotification notification)
     {

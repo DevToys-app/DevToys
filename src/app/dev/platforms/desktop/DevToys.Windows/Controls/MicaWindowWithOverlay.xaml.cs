@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Shell;
 using DevToys.Api;
 using DevToys.Windows.Core;
+using DevToys.Windows.Core.Helpers;
 using DevToys.Windows.Native;
 using Windows.Win32;
 using Windows.Win32.Foundation;
@@ -29,6 +30,8 @@ public abstract partial class MicaWindowWithOverlay : Window
     protected EfficiencyModeService? _efficiencyModeService;
     private Button? _restoreButton;
     private Button? _maximizeButton;
+    private Button? _minimizeButton;
+    private StackPanel? _windowStateButtonsStackPanel;
 
     protected MicaWindowWithOverlay()
     {
@@ -69,6 +72,18 @@ public abstract partial class MicaWindowWithOverlay : Window
         set => SetValue(TitleBarMarginRightProperty, value);
     }
 
+    internal static readonly DependencyProperty TitleBarWindowStateButtonsWidthProperty
+        = DependencyProperty.Register(
+            nameof(TitleBarWindowStateButtonsWidth),
+            typeof(int),
+            typeof(MicaWindowWithOverlay));
+
+    internal int TitleBarWindowStateButtonsWidth
+    {
+        get => (int)GetValue(TitleBarWindowStateButtonsWidthProperty);
+        set => SetValue(TitleBarWindowStateButtonsWidthProperty, value);
+    }
+
     internal static readonly DependencyProperty MarginMaximizedProperty
         = DependencyProperty.Register(
             nameof(MarginMaximized),
@@ -81,19 +96,34 @@ public abstract partial class MicaWindowWithOverlay : Window
         set => SetValue(MarginMaximizedProperty, value);
     }
 
+    internal static readonly DependencyProperty ForbidMinimizeAndMaximizeProperty
+        = DependencyProperty.Register(
+            nameof(ForbidMinimizeAndMaximize),
+            typeof(bool),
+            typeof(MicaWindowWithOverlay),
+            new PropertyMetadata(OnForbidMinimizeAndMaximizePropertyChangedCallback));
+
+    internal bool ForbidMinimizeAndMaximize
+    {
+        get => (bool)GetValue(ForbidMinimizeAndMaximizeProperty);
+        set => SetValue(ForbidMinimizeAndMaximizeProperty, value);
+    }
+
     public override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
 
+        _windowStateButtonsStackPanel = (StackPanel)Template.FindName("WindowStateButtonsStackPanel", this);
         var closeButton = (Button)Template.FindName("CloseButton", this);
-        var minimizeButton = (Button)Template.FindName("MinimizeButton", this);
+        _minimizeButton = (Button)Template.FindName("MinimizeButton", this);
         _restoreButton = (Button)Template.FindName("RestoreButton", this);
         _maximizeButton = (Button)Template.FindName("MaximizeButton", this);
         var draggableTitleBarArea = (Border)Template.FindName("DraggableTitleBarArea", this);
         var overlayControl = (OverlayControl)Template.FindName("TitleBar", this);
 
+        _windowStateButtonsStackPanel.SizeChanged += WindowStateButtonsStackPanel_SizeChanged;
         closeButton.Click += CloseButton_Click;
-        minimizeButton.Click += MinimizeButton_Click;
+        _minimizeButton.Click += MinimizeButton_Click;
         _restoreButton.Click += RestoreButton_Click;
         _maximizeButton.Click += MaximizeButton_Click;
         draggableTitleBarArea.MouseLeftButtonDown += DraggableTitleBarArea_MouseLeftButtonDown;
@@ -147,6 +177,12 @@ public abstract partial class MicaWindowWithOverlay : Window
         }
     }
 
+    private void WindowStateButtonsStackPanel_SizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        Guard.IsNotNull(_windowStateButtonsStackPanel);
+        TitleBarWindowStateButtonsWidth = (int)_windowStateButtonsStackPanel.ActualWidth;
+    }
+
     private void CloseButton_Click(object sender, RoutedEventArgs e)
     {
         SystemCommands.CloseWindow(this);
@@ -171,14 +207,17 @@ public abstract partial class MicaWindowWithOverlay : Window
     {
         if (e.ClickCount == 2)
         {
-            // Toggle Maximize / Normal state.
-            if (WindowState == WindowState.Maximized)
+            if (!ForbidMinimizeAndMaximize)
             {
-                SystemCommands.RestoreWindow(this);
-            }
-            else
-            {
-                SystemCommands.MaximizeWindow(this);
+                // Toggle Maximize / Normal state.
+                if (WindowState == WindowState.Maximized)
+                {
+                    SystemCommands.RestoreWindow(this);
+                }
+                else
+                {
+                    SystemCommands.MaximizeWindow(this);
+                }
             }
         }
         else
@@ -369,7 +408,8 @@ public abstract partial class MicaWindowWithOverlay : Window
         short x = (short)(lParam.ToInt32() & 0xffff);
         int y = lParam.ToInt32() >> 16;
         var point = new Point(x, y);
-        double DPI_SCALE = DpiHelper.LogicalToDeviceUnitsScalingFactorX;
+        var dpiHelper = new DpiHelper(this);
+        double DPI_SCALE = dpiHelper.LogicalToDeviceUnitsScalingFactorX;
 
         Button? button = WindowState == WindowState.Maximized ? _restoreButton : _maximizeButton;
         Guard.IsNotNull(button);
@@ -402,7 +442,8 @@ public abstract partial class MicaWindowWithOverlay : Window
         int x = lParam.ToInt32() & 0xffff;
         int y = lParam.ToInt32() >> 16;
 
-        double DPI_SCALE = DpiHelper.LogicalToDeviceUnitsScalingFactorX;
+        var dpiHelper = new DpiHelper(this);
+        double DPI_SCALE = dpiHelper.LogicalToDeviceUnitsScalingFactorX;
 
         Button? button = WindowState == WindowState.Maximized ? _restoreButton : _maximizeButton;
         Guard.IsNotNull(button);
@@ -422,5 +463,19 @@ public abstract partial class MicaWindowWithOverlay : Window
         handled = true;
         var invokeProv = new ButtonAutomationPeer(button).GetPattern(PatternInterface.Invoke) as IInvokeProvider;
         invokeProv?.Invoke();
+    }
+
+    private static void OnForbidMinimizeAndMaximizePropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var window = (MicaWindowWithOverlay)d;
+        var windowHandle = new HWND(new WindowInteropHelper(window).EnsureHandle());
+        if (window.ForbidMinimizeAndMaximize)
+        {
+            NativeMethods.DisableMinimizeAndMaximizeCapabilities(windowHandle);
+        }
+        else
+        {
+            NativeMethods.EnableMinimizeAndMaximizeCapabilities(windowHandle);
+        }
     }
 }

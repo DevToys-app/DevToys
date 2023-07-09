@@ -1,21 +1,24 @@
-﻿using System.Windows.Media;
+﻿using System.Windows;
+using System.Windows.Interop;
+using System.Windows.Media;
 using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.Graphics.Gdi;
 
-namespace DevToys.Windows.Native;
+namespace DevToys.Windows.Core.Helpers;
 
 /// <summary>
 /// An helper class to help with DPI.
 /// </summary>
-public static class DpiHelper
+internal sealed class DpiHelper
 {
     private const double LogicalDpi = 96.0;
 
-    static DpiHelper()
+    internal DpiHelper(Window window)
     {
 #pragma warning disable CA1416 // Validate platform compatibility
-        HDC dC = PInvoke.GetDC(HWND.Null);
+        var windowInteropHelper = new WindowInteropHelper(window);
+        HDC dC = PInvoke.GetDC(new HWND(windowInteropHelper.Handle));
         if (dC != nint.Zero)
         {
             _ = DeviceDpiX = PInvoke.GetDeviceCaps(dC, GET_DEVICE_CAPS_INDEX.LOGPIXELSX);
@@ -42,30 +45,30 @@ public static class DpiHelper
     /// <summary>
     /// The current device.
     /// </summary>
-    public static MatrixTransform TransformFromDevice { get; }
+    internal MatrixTransform TransformFromDevice { get; }
 
     /// <summary>
     /// The destination device.
     /// </summary>
-    public static MatrixTransform TransformToDevice { get; }
+    internal MatrixTransform TransformToDevice { get; }
 
     /// <summary>
     /// The device DPI X value.
     /// </summary>
-    public static double DeviceDpiX { get; }
+    internal double DeviceDpiX { get; }
 
     /// <summary>
     /// The device DPI Y value.
     /// </summary>
-    public static double DeviceDpiY { get; }
+    internal double DeviceDpiY { get; }
 
     /// <summary>
     /// Logical value to Unit Scaling X.
     /// </summary>
-    public static double LogicalToDeviceUnitsScalingFactorX => TransformToDevice.Matrix.M11;
+    internal double LogicalToDeviceUnitsScalingFactorX => TransformToDevice.Matrix.M11;
 
     /// <summary>
     /// Logical value to Unit Scaling Y.
     /// </summary>
-    public static double LogicalToDeviceUnitsScalingFactorY => TransformToDevice.Matrix.M22;
+    internal double LogicalToDeviceUnitsScalingFactorY => TransformToDevice.Matrix.M22;
 }

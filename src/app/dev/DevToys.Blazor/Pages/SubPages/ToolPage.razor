@@ -28,13 +28,15 @@
                     })">
 
                 <GridCell Row="0" Column="0">
-                    <TextBlock Appearance="@TextBlockAppearance.Title"
+                    <TextBlock IsVisible="@(!WindowService.IsCompactOverlayMode)"
+                               Appearance="@TextBlockAppearance.Title"
                                Style="font-size: 24px !important"
                                Text="@ViewModel.HeaderText" />
                 </GridCell>
                 <GridCell Row="0"
                           Column="1">
-                    <StackPanel Wrap="false">
+                    <StackPanel Wrap="false"
+                                IsVisible="@(!WindowService.IsCompactOverlayMode)">
                         <Button IsVisible="@ViewModel.IsSelectedMenuItemSupportFavorite"
                                 Appearance="ButtonAppearance.Stealth"
                                 @onclick="@OnToggleFavorite">

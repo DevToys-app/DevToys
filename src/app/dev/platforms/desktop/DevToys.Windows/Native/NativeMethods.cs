@@ -40,4 +40,22 @@ internal static partial class NativeMethods
         PInvoke.SetParent(windowHandleChild, windowHandleParent);
 #pragma warning restore CA1416 // Validate platform compatibility
     }
+
+    internal static void DisableMinimizeAndMaximizeCapabilities(HWND windowHandle)
+    {
+#pragma warning disable CA1416 // Validate platform compatibility
+        HMENU systemMenuHandle = PInvoke.GetSystemMenu(windowHandle, false);
+        PInvoke.EnableMenuItem(systemMenuHandle, (uint)PInvoke.SC_MAXIMIZE, MENU_ITEM_FLAGS.MF_BYCOMMAND | MENU_ITEM_FLAGS.MF_GRAYED);
+        PInvoke.EnableMenuItem(systemMenuHandle, (uint)PInvoke.SC_MINIMIZE, MENU_ITEM_FLAGS.MF_BYCOMMAND | MENU_ITEM_FLAGS.MF_GRAYED);
+#pragma warning restore CA1416 // Validate platform compatibility
+    }
+
+    internal static void EnableMinimizeAndMaximizeCapabilities(HWND windowHandle)
+    {
+#pragma warning disable CA1416 // Validate platform compatibility
+        HMENU systemMenuHandle = PInvoke.GetSystemMenu(windowHandle, false);
+        PInvoke.EnableMenuItem(systemMenuHandle, (uint)PInvoke.SC_MAXIMIZE, MENU_ITEM_FLAGS.MF_BYCOMMAND | MENU_ITEM_FLAGS.MF_ENABLED);
+        PInvoke.EnableMenuItem(systemMenuHandle, (uint)PInvoke.SC_MINIMIZE, MENU_ITEM_FLAGS.MF_BYCOMMAND | MENU_ITEM_FLAGS.MF_ENABLED);
+#pragma warning restore CA1416 // Validate platform compatibility
+    }
 }

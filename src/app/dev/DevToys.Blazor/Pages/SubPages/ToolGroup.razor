@@ -26,9 +26,11 @@
                 <TextBlock Appearance="@TextBlockAppearance.Caption" Text="@item.Description" />
             </div>
             <div class="buttons" @onclick:stopPropagation="true">
+                <!-- TODO: Localize -->
                 <Button HorizontalAlignment="UIHorizontalAlignment.Right"
                         Class="button"
                         Appearance="@ButtonAppearance.Neutral"
+                        ToolTip="Open in a new window"
                         @onclick="() => OnOpenInNewWindow(item)">
                     <FontIcon Class="fonticon" Glyph="@('\uEE7A')" />
                 </Button>
