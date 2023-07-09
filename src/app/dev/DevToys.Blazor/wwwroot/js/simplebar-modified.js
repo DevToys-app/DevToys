@@ -1129,6 +1129,9 @@ var SimpleBar = (function () {
                 });
                 this.resizeObserver.observe(this.el);
                 this.resizeObserver.observe(this.contentEl);
+                if (this.contentEl.firstChild !== undefined) {
+                    this.resizeObserver.observe(this.contentEl.firstChild);
+                }
                 elWindow.requestAnimationFrame(function () {
                     resizeObserverStarted_1 = true;
                 });

@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using System.Threading;
 using DevToys.Core.Tools;
 using Microsoft.Extensions.Logging;
 using Uno.Extensions;
@@ -27,9 +26,18 @@ public sealed partial class FontService
         await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(CancellationToken.None);
 
         var tasks = new List<Task<string>>();
+        var fontNames = new HashSet<string>();
+
         await foreach (FontDefinition fontDefinition in GetFontDefinitionsAsync())
         {
-            tasks.Add(GenerateCssForFontAsync(fontDefinition));
+            if (fontNames.Add(fontDefinition.FontFamily))
+            {
+                tasks.Add(GenerateCssForFontAsync(fontDefinition));
+            }
+            else
+            {
+                LogFontAlreadyRegistered(fontDefinition.FontFamily);
+            }
         }
 
         var allFontCss = new StringBuilder();
@@ -138,4 +146,7 @@ public sealed partial class FontService
 
     [LoggerMessage(2, LogLevel.Information, "Loaded {fontCount} font(s) in {loadingDuration} ms and injected them in {injectionDuration} ms")]
     partial void LogImportThirdPartyFontsAsync(int fontCount, double loadingDuration, double injectionDuration);
+
+    [LoggerMessage(3, LogLevel.Warning, "The font {fontName} has already been registered, maybe by another extension.")]
+    partial void LogFontAlreadyRegistered(string fontName);
 }
