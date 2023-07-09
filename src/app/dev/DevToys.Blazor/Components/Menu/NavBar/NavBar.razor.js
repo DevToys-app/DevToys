@@ -8,6 +8,16 @@ export function registerResizeHandler(id, navId, dotNetObjRef) {
     });
     resizeObserver.observe(navBar);
 }
+export function registerKeyboardShortcut(id, dotNetObjRef) {
+    const navBar = document.getElementById(id);
+    navBar.addEventListener("keydown", function onPress(event) {
+        // Ctrl + F
+        if (event.ctrlKey && event.key === "f") {
+            event.preventDefault();
+            dotNetObjRef.invokeMethodAsync("OnFindRequested");
+        }
+    });
+}
 function adjustSidebarBodyHeight(navTag) {
     const sidebarHeader = navTag.querySelector(".sidebar-header");
     const sidebarBody = navTag.querySelector(".sidebar-body");

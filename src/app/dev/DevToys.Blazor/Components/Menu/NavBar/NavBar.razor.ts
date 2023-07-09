@@ -11,6 +11,18 @@ export function registerResizeHandler(id: string, navId: string, dotNetObjRef: D
     resizeObserver.observe(navBar);
 }
 
+export function registerKeyboardShortcut(id: string, dotNetObjRef: DotNet.DotNetObject): void {
+    const navBar = document.getElementById(id);
+
+    navBar.addEventListener("keydown", function onPress(event) {
+        // Ctrl + F
+        if (event.ctrlKey && event.key === "f") {
+            event.preventDefault();
+            dotNetObjRef.invokeMethodAsync("OnFindRequested");
+        }
+    });
+}
+
 function adjustSidebarBodyHeight(navTag: HTMLElement) {
     const sidebarHeader = navTag.querySelector(".sidebar-header") as HTMLElement;
     const sidebarBody = navTag.querySelector(".sidebar-body") as HTMLElement;

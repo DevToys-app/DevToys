@@ -123,6 +123,7 @@ public partial class NavBar<TElement, TSearchElement>
             using (await Semaphore.WaitAsync(CancellationToken.None))
             {
                 await (await JSModule).InvokeVoidWithErrorHandlingAsync("registerResizeHandler", Id, NavId, Reference);
+                await (await JSModule).InvokeVoidWithErrorHandlingAsync("registerKeyboardShortcut", Id, Reference);
             }
         }
     }
@@ -141,6 +142,12 @@ public partial class NavBar<TElement, TSearchElement>
         {
             StateHasChanged();
         }
+    }
+
+    [JSInvokable]
+    public void OnFindRequested()
+    {
+        OnSearchButtonClick();
     }
 
     private void OnToggleSidebarClick()
