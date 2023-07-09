@@ -1,5 +1,6 @@
 ﻿using DevToys.Api;
 using DevToys.Blazor.Components;
+using DevToys.Core.Settings;
 using Foundation;
 using Microsoft.Maui.Controls;
 using UIKit;
@@ -30,7 +31,7 @@ internal sealed class ThemeListener : IThemeListener
 
     public AvailableApplicationTheme CurrentSystemTheme { get; private set; }
 
-    public AvailableApplicationTheme CurrentAppTheme => _settingsProvider.GetSetting(DevToys.Core.Settings.PredefinedSettings.Theme);
+    public AvailableApplicationTheme CurrentAppTheme => _settingsProvider.GetSetting(PredefinedSettings.Theme);
 
     public ApplicationTheme ActualAppTheme { get; private set; }
 
@@ -104,12 +105,12 @@ internal sealed class ThemeListener : IThemeListener
 
     private void SettingsProvider_SettingChanged(object? sender, SettingChangedEventArgs e)
     {
-        if (string.Equals(DevToys.Core.Settings.PredefinedSettings.Theme.Name, e.SettingName, StringComparison.Ordinal))
+        if (string.Equals(PredefinedSettings.Theme.Name, e.SettingName, StringComparison.Ordinal))
         {
             ApplyDesiredColorTheme();
             ThemeChanged?.Invoke(this, EventArgs.Empty);
         }
-        else if (string.Equals(DevToys.Api.PredefinedSettings.CompactMode.Name, e.SettingName, StringComparison.Ordinal))
+        else if (string.Equals(PredefinedSettings.CompactMode.Name, e.SettingName, StringComparison.Ordinal))
         {
             IsCompactMode = GetBestValueForCompactMode();
             ThemeChanged?.Invoke(this, EventArgs.Empty);
