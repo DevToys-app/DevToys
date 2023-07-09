@@ -1,9 +1,9 @@
 ﻿using DevToys.Api;
+using DevToys.Blazor.BuiltInTools;
 using DevToys.Blazor.Core.Languages;
 using DevToys.Blazor.Core.Services;
 using DevToys.Business.ViewModels;
 using DevToys.Core;
-using DevToys.Core.BuiltInTools;
 using DevToys.Core.Logging;
 using DevToys.Core.Mef;
 using DevToys.Windows.Controls;
@@ -44,7 +44,7 @@ public partial class MainWindow : MicaWindowWithOverlay
             = new MefComposer(
                 new[] {
                     typeof(MainWindowViewModel).Assembly,
-                    typeof(DevToysCoreResourceManagerAssemblyIdentifier).Assembly
+                    typeof(DevToysBlazorResourceManagerAssemblyIdentifier).Assembly
                 });
 
         LogInitialization((DateTime.Now - startTime).TotalMilliseconds);

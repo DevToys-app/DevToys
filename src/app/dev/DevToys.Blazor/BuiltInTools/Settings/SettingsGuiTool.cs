@@ -1,14 +1,14 @@
 ﻿using DevToys.Core.Settings;
 
-namespace DevToys.Core.BuiltInTools.Settings;
+namespace DevToys.Blazor.BuiltInTools.Settings;
 
 [Export(typeof(IGuiTool))]
 [Name("Settings")]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
     IconGlyph = '\uF6A9',
-    ResourceManagerAssemblyIdentifier = nameof(DevToysCoreResourceManagerAssemblyIdentifier),
-    ResourceManagerBaseName = "DevToys.Core.BuiltInTools.Settings.Settings",
+    ResourceManagerAssemblyIdentifier = nameof(DevToysBlazorResourceManagerAssemblyIdentifier),
+    ResourceManagerBaseName = "DevToys.Blazor.BuiltInTools.Settings.Settings",
     ShortDisplayTitleResourceName = nameof(Settings.ShortDisplayTitle),
     DescriptionResourceName = nameof(Settings.Description),
     AccessibleNameResourceName = nameof(Settings.AccessibleName))]

@@ -40,6 +40,22 @@
     <TypeScriptCompile Remove="wwwroot\lib\monaco-editor\**\*.*" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\fonts\FluentSystemIcons-Regular.ttf">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="BuiltInTools\Settings\Settings.resx">
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <Compile Update="BuiltInTools\Settings\Settings.Designer.cs">
+      <DependentUpon>Settings.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+
   <!-- Target ran on `dotnet restore -p:RestoreNpm=true` -->
   <Target Name="NodeJsRestoreTarget" AfterTargets="_GenerateRestoreProjectSpec" Condition="$(RestoreNpm) == 'true'">
     <!-- Verify that Node.JS is installed. -->

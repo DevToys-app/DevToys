@@ -1,8 +1,8 @@
 ﻿using DevToys.Api;
+using DevToys.Blazor.BuiltInTools;
 using DevToys.Blazor.Core.Languages;
 using DevToys.Blazor.Core.Services;
 using DevToys.Business.ViewModels;
-using DevToys.Core.BuiltInTools;
 using DevToys.Core.Logging;
 using DevToys.Core.Mef;
 using DevToys.MacOS.Core;
