@@ -325,10 +325,15 @@
     <value>URL of the End-User's Web page or blog. This Web page SHOULD contain information published by the End-User or an organization that the End-User is affiliated with.</value>
   </data>
   <data name="email" xml:space="preserve">
-    <value>End-User's preferred e-mail address. Its value MUST conform to the RFC 5322 addr-spec syntax. The RP MUST NOT rely upon this value being unique.</value>
+    <value>[OpenID]
+End-User の希望する電子メールアドレス。RFC 5322 の addr-spec 構文に準拠している必要があります。
+OAuth 2.0 Client (RP) は、email 値がユニークであることを前提としてはなりません (MUST NOT)。</value>
   </data>
   <data name="email_verified" xml:space="preserve">
-    <value>True if the End-User's e-mail address has been verified; otherwise false. When this Claim Value is true, this means that the OP took affirmative steps to ensure that this e-mail address was controlled by the End-User at the time the verification was performed. The means by which an e-mail address is verified is context-specific, and dependent upon the trust framework or contractual agreements within which the parties are operating.</value>
+    <value>[OpenID]
+End-User の電子メールアドレスが検証済みの場合は true、それ以外の場合は false を示す boolean 値です。
+このクレームの値が true の場合、OpenID Provider (OP) が検証を行った時点において、電子メールアドレスが End-User のコントロール下にあることを確認する処理を行ったことを示します。
+電子メールアドレスの検証方法は、コンテキストに依存し、当事者間のトラストフレームワークや契約上の同意事項等に依存します。</value>
   </data>
   <data name="gender" xml:space="preserve">
     <value>End-User's gender. Values defined by this specification are female and male. Other values MAY be used when neither of the defined values are applicable.</value>
