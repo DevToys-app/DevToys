@@ -121,16 +121,16 @@
     <value>Herramienta de Codificación y Decodificación de Imágenes Base64</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Imágen Base64</value>
+    <value>Imagen Base64</value>
   </data>
   <data name="Base64InputTitle" xml:space="preserve">
     <value>Base64</value>
   </data>
   <data name="ImageInputTitle" xml:space="preserve">
-    <value>Imágen</value>
+    <value>Imagen</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Codifica y Decodifica datos de imágen Base64</value>
+    <value>Codifica y Decodifica datos de imagen Base64</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Codificador y Decodificador de Imágenes Base64</value>
