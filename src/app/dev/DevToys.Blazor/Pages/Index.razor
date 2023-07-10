@@ -57,6 +57,7 @@
                 <Button Appearance="ButtonAppearance.Stealth"
                         Height="32"
                         IsEnabled="@compactOverlayModeAllowed"
+                        IsVisible="@WindowService.IsCompactOverlayModeSupportedByPlatform"
                         ToolTip="Picture in picture"
                         @onclick="@OnToggleCompactOverlayModeButtonClick">
                     <FontIcon Glyph="@(WindowService.IsCompactOverlayMode ? '\uE97C' : '\uE97F')" />

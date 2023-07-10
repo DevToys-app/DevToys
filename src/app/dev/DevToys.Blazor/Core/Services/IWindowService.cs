@@ -15,4 +15,6 @@ public interface IWindowService
     event EventHandler<EventArgs>? IsCompactOverlayModeChanged;
 
     bool IsCompactOverlayMode { get; set; }
+
+    bool IsCompactOverlayModeSupportedByPlatform { get; }
 }

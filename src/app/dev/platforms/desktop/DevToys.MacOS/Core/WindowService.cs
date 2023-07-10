@@ -5,6 +5,8 @@ namespace DevToys.MacOS.Core;
 
 internal sealed class WindowService : IWindowService
 {
+    private bool _isCompactOverlayMode;
+
     public event EventHandler<EventArgs>? WindowActivated;
     public event EventHandler<EventArgs>? WindowDeactivated;
     public event EventHandler<EventArgs>? WindowLocationChanged;
@@ -21,7 +23,24 @@ internal sealed class WindowService : IWindowService
         NSNotificationCenter.DefaultCenter.AddObserver(new NSString("NSWindowWillCloseNotification"), OnWindowClosing);
     }
 
-    public bool IsCompactOverlayMode { get; set; }
+    // TODO: support Picture-in-Picture mode or mock it.
+    public bool IsCompactOverlayModeSupportedByPlatform => false;
+
+    public bool IsCompactOverlayMode
+    {
+        get => _isCompactOverlayMode;
+        set
+        {
+            _isCompactOverlayMode = value;
+            UpdateCompactOverlayState(value);
+            IsCompactOverlayModeChanged?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
+    private void UpdateCompactOverlayState(bool shouldEnterCompactOverlayMode)
+    {
+
+    }
 
     public void OnWindowActivated(NSNotification notification)
     {

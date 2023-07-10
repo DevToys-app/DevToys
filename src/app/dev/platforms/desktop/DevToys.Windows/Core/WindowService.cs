@@ -20,6 +20,8 @@ internal sealed class WindowService : IWindowService
     public event EventHandler<EventArgs>? WindowClosing;
     public event EventHandler<EventArgs>? IsCompactOverlayModeChanged;
 
+    public bool IsCompactOverlayModeSupportedByPlatform => true;
+
     public bool IsCompactOverlayMode
     {
         get => _isCompactOverlayMode;

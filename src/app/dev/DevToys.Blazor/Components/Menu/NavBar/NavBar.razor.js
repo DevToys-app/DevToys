@@ -12,7 +12,7 @@ export function registerKeyboardShortcut(id, dotNetObjRef) {
     const navBar = document.getElementById(id);
     navBar.addEventListener("keydown", function onPress(event) {
         // Ctrl + F
-        if (event.ctrlKey && event.key === "f") {
+        if ((event.ctrlKey || event.metaKey) && event.key === "f") {
             event.preventDefault();
             dotNetObjRef.invokeMethodAsync("OnFindRequested");
         }
