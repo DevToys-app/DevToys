@@ -334,7 +334,12 @@
     <value>End-User's gender. Values defined by this specification are female and male. Other values MAY be used when neither of the defined values are applicable.</value>
   </data>
   <data name="birthdate" xml:space="preserve">
-    <value>End-User's birthday, represented as an ISO 8601:2004 YYYY-MM-DD format. The year MAY be 0000, indicating that it is omitted. To represent only the year, YYYY format is allowed. Note that depending on the underlying platform's date related function, providing just year can result in varying month and day, so the implementers need to take this factor into account to correctly process the dates.</value>
+    <value>[OpenID]
+End-User の誕生日。
+ISO 8601:2004 YYYY-MM-DD 形式で表現されます。
+年の値を 0000 とすることで省略されていることを示すことができます (MAY)。
+年のみを表すために、YYYY 形式が許可されています。
+ただし、利用するプラットフォームの日付関連機能や関数の実装によっては、年だけを提供した際の月や日が異なる結果となる場合があるため、実装者はこの点を考慮に入れて日付を正しく処理する必要があります。</value>
   </data>
   <data name="zoneinfo" xml:space="preserve">
     <value>String from zoneinfo time zone database representing the End-User's time zone. For example, Europe/Paris or America/Los_Angeles.</value>
@@ -356,13 +361,24 @@ End-User の希望する郵送先住所。address メンバーの値は Address 
     <value>Time the End-User's information was last updated. Its value is a JSON number representing the number of seconds from 1970-01-01T0:0:0Z as measured in UTC until the date/time.</value>
   </data>
   <data name="azp" xml:space="preserve">
-    <value>Authorized party - the party to which the ID Token was issued. If present, it MUST contain the OAuth 2.0 Client ID of this party. This Claim is only needed when the ID Token has a single audience value and that audience is different than the authorized party. It MAY be included even when the authorized party is the same as the sole audience. The azp value is a case sensitive string containing a StringOrURI value.</value>
+    <value>[OpenID/OPTIONAL]
+Authorized party.
+ID Token が発行された当事者です。
+このクレームが存在する場合、この当事者の OAuth 2.0 Client ID でなければなりません (MUST)。
+このクレームは、ID Token に単一の audience 値があり、その値が承認済みの当事者と異なる場合にのみ必要になります。
+audience 値と azp 値が同じ場合でも、このクレームを含めることができます (MAY)。
+azp の値は、StringOrURI の値を含む、大文字と小文字が区別される文字列です。</value>
   </data>
   <data name="nonce" xml:space="preserve">
     <value>String value used to associate a Client session with an ID Token, and to mitigate replay attacks. The value is passed through unmodified from the Authentication Request to the ID Token. If present in the ID Token, Clients MUST verify that the nonce Claim Value is equal to the value of the nonce parameter sent in the Authentication Request. If present in the Authentication Request, Authorization Servers MUST include a nonce Claim in the ID Token with the Claim Value being the nonce value sent in the Authentication Request. Authorization Servers SHOULD perform no other processing on nonce values used. The nonce value is a case sensitive string.</value>
   </data>
   <data name="auth_time" xml:space="preserve">
-    <value>Time when the End-User authentication occurred. Its value is a JSON number representing the number of seconds from 1970-01-01T0:0:0Z as measured in UTC until the date/time. When a max_age request is made or when auth_time is requested as an Essential Claim, then this Claim is REQUIRED; otherwise, its inclusion is OPTIONAL. (The auth_time Claim semantically corresponds to the OpenID 2.0 PAPE auth_time response parameter.)</value>
+    <value>[OpenID/REQUIRED/OPTIONAL]
+End-User の認証が行われた時刻です。
+この値は UTC 1970-01-01T0:0:0Z からの経過秒数を示す JSON 数値です。
+リクエストに max_age が含まれている場合や、auth_time が Essential クレーム として要求される場合には、このクレームは必須です (REQUIRED)。
+それ以外の場合は任意です (OPTIONAL)。
+（ auth_time クレームは、OpenID 2.0 PAPE の auth_time レスポンスパラメーターに相当します。）</value>
   </data>
   <data name="at_hash" xml:space="preserve">
     <value>[OpenID/OPTIONAL]
@@ -373,7 +389,14 @@ access_token の ASCII オクテット列のハッシュ値の左半分を base6
 at_hash の値は、大文字と小文字が区別される文字列です。</value>
   </data>
   <data name="c_hash" xml:space="preserve">
-    <value>Code hash value. Its value is the base64url encoding of the left-most half of the hash of the octets of the ASCII representation of the code value, where the hash algorithm used is the hash algorithm used in the alg Header Parameter of the ID Token's JOSE Header. For instance, if the alg is HS512, hash the code value with SHA-512, then take the left-most 256 bits and base64url encode them. The c_hash value is a case sensitive string. If the ID Token is issued from the Authorization Endpoint with a code, which is the case for the response_type values code id_token and code id_token token, this is REQUIRED; otherwise, its inclusion is OPTIONAL.</value>
+    <value>[OpenID/REQUIRED/OPTIONAL]
+Code hash value.
+code の ASCII オクテット列のハッシュ値の左半分を base64url エンコードしたものです。
+ハッシュアルゴリズムは、 ID Token の JOSE Header にある alg Header Parameter で指定されるハッシュアルゴリズムと同じものを使用します。
+例えば、alg が RS256 の場合では、code の値を SHA-256 ハッシュ化して、左側半分の128ビットを取り、base64url エンコードします。
+c_hash の値は、大文字と小文字が区別される文字列です。
+ID Token が code と共に Authorization Endpoint から発行される場合(response_type の値が code id_token や code id_token token の場合)、このクレームは必須です (REQUIRED)。
+それ以外の場合は任意です (OPTIONAL)。</value>
   </data>
   <data name="acr" xml:space="preserve">
     <value>[OpenID/OPTIONAL]
