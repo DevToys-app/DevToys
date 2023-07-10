@@ -365,7 +365,12 @@ End-User の希望する郵送先住所。address メンバーの値は Address 
     <value>Time when the End-User authentication occurred. Its value is a JSON number representing the number of seconds from 1970-01-01T0:0:0Z as measured in UTC until the date/time. When a max_age request is made or when auth_time is requested as an Essential Claim, then this Claim is REQUIRED; otherwise, its inclusion is OPTIONAL. (The auth_time Claim semantically corresponds to the OpenID 2.0 PAPE auth_time response parameter.)</value>
   </data>
   <data name="at_hash" xml:space="preserve">
-    <value>Access Token hash value. Its value is the base64url encoding of the left-most half of the hash of the octets of the ASCII representation of the access_token value, where the hash algorithm used is the hash algorithm used in the alg Header Parameter of the ID Token's JOSE Header. For instance, if the alg is RS256, hash the access_token value with SHA-256, then take the left-most 128 bits and base64url encode them. The at_hash value is a case sensitive string.</value>
+    <value>[OpenID/OPTIONAL]
+Access Token hash value.
+access_token の ASCII オクテット列のハッシュ値の左半分を base64url エンコードしたものです。
+ハッシュアルゴリズムは、 ID Token の JOSE Header にある alg Header Parameter で指定されるハッシュアルゴリズムと同じものを使用します。
+例えば、alg が RS256 の場合では、access_token の値を SHA-256 ハッシュ化して、左側半分の 128 ビットを取り、base64url エンコードします。
+at_hash の値は、大文字と小文字が区別される文字列です。</value>
   </data>
   <data name="c_hash" xml:space="preserve">
     <value>Code hash value. Its value is the base64url encoding of the left-most half of the hash of the octets of the ASCII representation of the code value, where the hash algorithm used is the hash algorithm used in the alg Header Parameter of the ID Token's JOSE Header. For instance, if the alg is HS512, hash the code value with SHA-512, then take the left-most 256 bits and base64url encode them. The c_hash value is a case sensitive string. If the ID Token is issued from the Authorization Endpoint with a code, which is the case for the response_type values code id_token and code id_token token, this is REQUIRED; otherwise, its inclusion is OPTIONAL.</value>
@@ -384,7 +389,13 @@ acr の値は、絶対 URI または RFC 6711 で登録された値を使用す�
 acr の値は、大文字と小文字が区別される文字列です。</value>
   </data>
   <data name="amr" xml:space="preserve">
-    <value>Authentication Methods References. JSON array of strings that are identifiers for authentication methods used in the authentication. For instance, values might indicate that both password and OTP authentication methods were used. Parties using this claim will need to agree upon the meanings of the values used, which may be context-specific. The amr value is an array of case sensitive strings.</value>
+    <value>[OpenID/OPTIONAL]
+Authentication Methods References.
+認証に使用される認証方法の識別子である文字列の JSON 配列。
+例えば、パスワードと OTP 認証の両方が使用されたことを示す場合があります。
+amr クレームで使用される値はの定義は、仕様の範囲外です。
+この値は、コンテキストに依存する可能性があるため、使用する当事者間で値の意味について合意する必要があります。
+amr の値は、大文字と小文字が区別される文字列です。</value>
   </data>
   <data name="sub_jwk" xml:space="preserve">
     <value>Public key used to check the signature of an ID Token issued by a Self-Issued OpenID Provider. The key is a bare key in JWK format (not an X.509 certificate value). The sub_jwk value is a JSON object. Use of the sub_jwk Claim is NOT RECOMMENDED when the OP is not Self-Issued.</value>
