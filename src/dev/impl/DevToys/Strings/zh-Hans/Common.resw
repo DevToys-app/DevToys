@@ -139,10 +139,10 @@
     <value>展开</value>
   </data>
   <data name="ShowInfo" xml:space="preserve">
-    <value>Show additional info</value>
+    <value>显示额外信息</value>
   </data>
   <data name="HideInfo" xml:space="preserve">
-    <value>Hide additional info</value>
+    <value>隐藏额外信息</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
     <value>浏览文件</value>
