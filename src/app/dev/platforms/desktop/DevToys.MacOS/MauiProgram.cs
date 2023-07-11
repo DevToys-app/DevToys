@@ -15,8 +15,11 @@ namespace DevToys.MacOS;
 
 public partial class MauiProgram
 {
+    private readonly WindowService _windowService = new();
     private ILogger? _logger;
     private MauiApp? _app;
+
+    internal static ServiceProvider? ServiceProvider;
 
     internal static MefComposer? MefComposer;
 
@@ -33,7 +36,7 @@ public partial class MauiProgram
         builder.UseMauiCommunityToolkit();
 
         // Initialize services and logging.
-        ServiceProvider serviceProvider = InitializeServices(builder.Services);
+        ServiceProvider = InitializeServices(builder.Services);
 
         // Listen for unhandled exceptions.
         AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
@@ -102,7 +105,7 @@ public partial class MauiProgram
         });
 
         serviceCollection.AddSingleton(provider => MefComposer!.Provider);
-        serviceCollection.AddSingleton<IWindowService, WindowService>();
+        serviceCollection.AddSingleton<IWindowService>(provider => _windowService);
         serviceCollection.AddScoped<PopoverService, PopoverService>();
         serviceCollection.AddScoped<ContextMenuService, ContextMenuService>();
         serviceCollection.AddScoped<FontService, FontService>();

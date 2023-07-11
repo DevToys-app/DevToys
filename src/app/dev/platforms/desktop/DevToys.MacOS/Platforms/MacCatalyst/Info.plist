@@ -31,5 +31,14 @@
     </array>
     <key>XSAppIconAssets</key>
     <string>Assets.xcassets/appicon.appiconset</string>
+
+    <key>CFBundleDisplayName</key>
+    <string>DevToys</string>
+
+    <key>CFBundleName</key>
+    <string>DevToys</string>
+
+    <key>CFBundleSpokenName</key>
+    <string>Dev Toys</string>
 </dict>
 </plist>

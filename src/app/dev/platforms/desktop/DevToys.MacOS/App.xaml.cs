@@ -1,4 +1,6 @@
 ﻿using DevToys.Api;
+using DevToys.Blazor.Core.Services;
+using DevToys.Core;
 using DevToys.MacOS.Core;
 
 namespace DevToys.MacOS;
@@ -15,8 +17,13 @@ public partial class App : Application
     protected override Window CreateWindow(IActivationState? activationState)
     {
         Window window = base.CreateWindow(activationState);
-        window.Width = 1200;
-        window.Height = 600;
+
+        Guard.IsNotNull(MauiProgram.MefComposer);
+        var titleBarInfoProvider = MauiProgram.MefComposer.Provider.Import<TitleBarInfoProvider>();
+
+        Guard.IsNotNull(MauiProgram.ServiceProvider);
+        var windowService = (WindowService)MauiProgram.ServiceProvider.GetService<IWindowService>()!;
+        windowService.SetWindow(window, titleBarInfoProvider);
 
         return window;
     }

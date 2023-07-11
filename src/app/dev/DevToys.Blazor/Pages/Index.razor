@@ -35,13 +35,19 @@
             @if (ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem && WindowService.IsCompactOverlayMode)
             {
                 TitleBarInfoProvider.Title = "DevToys - " + guiToolViewItem.ToolInstance.LongOrShortDisplayTitle;
-                <TextBlock Text="@TitleBarInfoProvider.Title"
-                           Style="margin-left: 16px;"/>
+                if (OperatingSystem.IsWindows())
+                {
+                    <TextBlock Text="@TitleBarInfoProvider.Title"
+                               Style="margin-left: 16px;" />
+                }
             }
             else
             {
                 TitleBarInfoProvider.Title = "DevToys";
-                <TextBlock Text="@TitleBarInfoProvider.Title" />
+                if (OperatingSystem.IsWindows())
+                {
+                    <TextBlock Text="@TitleBarInfoProvider.Title" />
+                }
             }
         </HeaderLeft>
         <HeaderRight>
