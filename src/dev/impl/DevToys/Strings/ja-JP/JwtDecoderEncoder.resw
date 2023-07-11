@@ -301,10 +301,16 @@
     <value>End-User's full name in displayable form including all name parts, possibly including titles and suffixes, ordered according to the End-User's locale and preferences.</value>
   </data>
   <data name="given_name" xml:space="preserve">
-    <value>Given name(s) or first name(s) of the End-User. Note that in some cultures, people can have multiple given names; all can be present, with the names being separated by space characters.</value>
+    <value>[OpenID]
+End-User の名 (given name / first name)。
+複数の名を持つ文化圏や、名を持たない文化圏もあります。
+複数の名が入力された場合は、スペース区切りで表記されます。</value>
   </data>
   <data name="family_name" xml:space="preserve">
-    <value>Surname(s) or last name(s) of the End-User. Note that in some cultures, people can have multiple family names or no family name; all can be present, with the names being separated by space characters.</value>
+    <value>[OpenID]
+End-User の姓 (surname / last name)。
+複数の姓を持つ文化圏や、姓を持たない文化圏もあります。
+複数の姓が入力された場合は、スペース区切りで表記されます。</value>
   </data>
   <data name="middle_name" xml:space="preserve">
     <value>Middle name(s) of the End-User. Note that in some cultures, people can have multiple middle names; all can be present, with the names being separated by space characters. Also note that in some cultures, middle names are not used.</value>
@@ -336,7 +342,10 @@ End-User の電子メールアドレスが検証済みの場合は true、それ
 電子メールアドレスの検証方法は、コンテキストに依存し、当事者間のトラストフレームワークや契約上の同意事項等に依存します。</value>
   </data>
   <data name="gender" xml:space="preserve">
-    <value>End-User's gender. Values defined by this specification are female and male. Other values MAY be used when neither of the defined values are applicable.</value>
+    <value>[OpenID]
+エンドユーザーの性別。
+この仕様で定義されている値は female (女性) と male (男性) です。
+定義された値のいずれにも該当しない場合は、他の値を使用することができます (MAY)。</value>
   </data>
   <data name="birthdate" xml:space="preserve">
     <value>[OpenID]
