@@ -332,7 +332,8 @@ End-User の姓 (surname / last name)。
   </data>
   <data name="email" xml:space="preserve">
     <value>[OpenID]
-End-User の希望する電子メールアドレス。RFC 5322 の addr-spec 構文に準拠している必要があります。
+End-User の希望する電子メールアドレス。
+RFC 5322 の addr-spec 構文に準拠している必要があります。
 OAuth 2.0 Client (RP) は、email 値がユニークであることを前提としてはなりません (MUST NOT)。</value>
   </data>
   <data name="email_verified" xml:space="preserve">
