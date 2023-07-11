@@ -313,7 +313,10 @@ End-User の姓 (surname / last name)。
 複数の姓が入力された場合は、スペース区切りで表記されます。</value>
   </data>
   <data name="middle_name" xml:space="preserve">
-    <value>Middle name(s) of the End-User. Note that in some cultures, people can have multiple middle names; all can be present, with the names being separated by space characters. Also note that in some cultures, middle names are not used.</value>
+    <value>[OpenID]
+End-User のミドルネーム。
+複数のミドルネームを持つ文化圏や、ミドルネームを持たない文化圏もあります。
+複数のミドルネームが入力された場合は、スペース区切りで表記されます。</value>
   </data>
   <data name="nickname" xml:space="preserve">
     <value>Casual name of the End-User that may or may not be the same as the given_name. For instance, a nickname value of Mike might be returned alongside a given_name value of Michael.</value>
@@ -360,7 +363,12 @@ ISO 8601:2004 YYYY-MM-DD 形式で表現されます。
     <value>String from zoneinfo time zone database representing the End-User's time zone. For example, Europe/Paris or America/Los_Angeles.</value>
   </data>
   <data name="locale" xml:space="preserve">
-    <value>End-User's locale, represented as a BCP47 [RFC5646] language tag. This is typically an ISO 639-1 Alpha-2 language code in lowercase and an ISO 3166-1 Alpha-2 country code in uppercase, separated by a dash. For example, en-US or fr-CA. As a compatibility note, some implementations have used an underscore as the separator rather than a dash, for example, en_US; Relying Parties MAY choose to accept this locale syntax as well.</value>
+    <value>[OpenID]
+End-User のロケール。
+BCP47 [RFC5646] の言語タグとして表されます。
+通常、これは ISO 639-1 Alpha-2 [ISO639‑1] の言語コード (小文字) と ISO 3166-1 Alpha-2 [ISO3166‑1] の国コード (大文字) がダッシュで区切られた形式です。
+例えば、 en-US や fr-CA です。
+互換性のため、一部の実装ではダッシュの代わりにアンダースコアを区切り文字 (例: en_US) として使用している場合もあります。Relying Party (RP) は、このロケール構文を受け入れることも選択できます (MAY)。</value>
   </data>
   <data name="phone_number" xml:space="preserve">
     <value>End-User's preferred telephone number. E.164 is RECOMMENDED as the format of this Claim, for example, +1 (425) 555-1212 or +56 (2) 687 2400. If the phone number contains an extension, it is RECOMMENDED that the extension be represented using the RFC 3966 extension syntax, for example, +1 (604) 555-1234;ext=5678.</value>
