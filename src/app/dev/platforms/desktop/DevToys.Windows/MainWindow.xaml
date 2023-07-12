@@ -18,9 +18,11 @@
     TitleBarMarginRight="{Binding TitleBarMarginRight}"
     TitleBarWindowStateButtonsWidth="{Binding TitleBarWindowStateButtonsWidth, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}">
     <Grid>
+        <!-- Interestingly, on some monitors, setting a margin of 2px makes the BlazorWebView rendering a white line in diagonale.
+             See https://github.com/veler/DevToys/issues/878 -->
         <blazor:BlazorWebView
             x:Name="blazorWebView"
-            Margin="2"
+            Margin="0"
             HostPage="wwwroot/index.html"
             Services="{StaticResource services}">
             <blazor:BlazorWebView.RootComponents>
