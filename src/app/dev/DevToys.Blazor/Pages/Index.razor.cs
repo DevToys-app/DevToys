@@ -38,6 +38,9 @@ public partial class Index : MefComponentBase
     /// </summary>
     public bool IsTransitioning { get; set; }
 
+    [Parameter]
+    public bool WindowHasFocus { get; set; }
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
@@ -45,9 +48,11 @@ public partial class Index : MefComponentBase
         ViewModel.SelectedMenuItem = ViewModel.HeaderAndBodyToolViewItems[0];
         ContextMenuService.IsContextMenuOpenedChanged += ContextMenuService_IsContextMenuOpenedChanged;
         WindowService.WindowActivated += WindowService_WindowActivated;
+        WindowService.WindowDeactivated += WindowService_WindowDeactivated;
         TitleBarInfoProvider.PropertyChanged += TitleBarMarginProvider_PropertyChanged;
 
         TitleBarInfoProvider.TitleBarMarginRight = 40;
+        WindowHasFocus = true;
     }
 
     private void ViewModel_SelectedMenuItemChanged(object? sender, EventArgs e)
@@ -70,12 +75,21 @@ public partial class Index : MefComponentBase
 
     private void WindowService_WindowActivated(object? sender, EventArgs e)
     {
+        WindowHasFocus = true;
+        StateHasChanged();
+
         // Start Smart Detection
         ViewModel.RunSmartDetectionAsync(WindowService.IsCompactOverlayMode)
             .ContinueWith(async _ =>
             {
                 await InvokeAsync(StateHasChanged);
             });
+    }
+
+    private void WindowService_WindowDeactivated(object? sender, EventArgs e)
+    {
+        WindowHasFocus = false;
+        StateHasChanged();
     }
 
     private void OnBackButtonClicked()

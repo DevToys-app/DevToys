@@ -38,7 +38,8 @@
                 if (OperatingSystem.IsWindows())
                 {
                     <TextBlock Text="@TitleBarInfoProvider.Title"
-                               Style="margin-left: 16px;" />
+                               Style="margin-left: 16px;"
+                               IsEnabled="@WindowHasFocus"/>
                 }
             }
             else
@@ -46,7 +47,8 @@
                 TitleBarInfoProvider.Title = "DevToys";
                 if (OperatingSystem.IsWindows())
                 {
-                    <TextBlock Text="@TitleBarInfoProvider.Title" />
+                    <TextBlock Text="@TitleBarInfoProvider.Title"
+                               IsEnabled="@WindowHasFocus" />
                 }
             }
         </HeaderLeft>
@@ -66,6 +68,7 @@
                         IsVisible="@WindowService.IsCompactOverlayModeSupportedByPlatform"
                         ToolTip="Picture in picture"
                         @onclick="@OnToggleCompactOverlayModeButtonClick">
+                        <!-- TODO: Change FontIcon to support "Rotation" parameter, and change the icon to -->
                     <FontIcon Glyph="@(WindowService.IsCompactOverlayMode ? '\uE97C' : '\uE97F')" />
                 </Button>
             </StackPanel>

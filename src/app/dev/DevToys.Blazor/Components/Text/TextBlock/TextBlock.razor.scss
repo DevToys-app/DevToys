@@ -98,6 +98,10 @@
         display: none !important;
     }
 
+    &.disabled {
+        color: var(--text-fill-color-disabled);
+    }
+
     &.horizontal-center {
         text-align: center;
     }

@@ -42,6 +42,7 @@ public class TextBlock : StyledComponentBase
             .AddClass("no-wrap", NoWrap)
             .AddClass("trim", CanTrim)
             .AddClass("hide", !IsVisible)
+            .AddClass("disabled", !IsEnabled) // Don't use IsActuallyEnabled
             .AddClass("horizontal-center", HorizontalAlignment == UIHorizontalAlignment.Center)
             .AddClass(FinalCssClasses)
             .Build();
