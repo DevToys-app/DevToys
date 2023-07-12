@@ -364,18 +364,18 @@
     <value>最终用户身份验证实施时间。该值是一个 JSON 数值，代表从 1970-01-01T0:0:0Z 以来测量的 UTC 日期/时间对应的秒数。当发出 max_age 请求或 auth_time 必须作为必要声明给出时，此声明是必需的；否则，此声明就是可选的。（auth_time 声明在语义上对应 OpenID 2.0 PAPE auth_time 响应参数。）</value>
   </data>
   <data name="at_hash" xml:space="preserve">
-    <value>Access Token hash value. Its value is the base64url encoding of the left-most half of the hash of the octets of the ASCII representation of the access_token value, where the hash algorithm used is the hash algorithm used in the alg Header Parameter of the ID Token's JOSE Header. For instance, if the alg is RS256, hash the access_token value with SHA-256, then take the left-most 128 bits and base64url encode them. The at_hash value is a case sensitive string.</value>
+    <value>访问令牌散列值。此值是 access_token 值的 8 位 ASCII 形式散列值左半部分的 base64url 编码，使用的散列算法是用于 ID 令牌的 JOSE 头部的 alg 头部参数。例如，假设 alg 为 RS256，使用 SHA-256 将 access_token 值做散列运算，取出最左侧的 128 位，再使用 base64url 对其编码。at_hash 值是一个区分大小写的字符串。</value>
   </data>
   <data name="c_hash" xml:space="preserve">
-    <value>Code hash value. Its value is the base64url encoding of the left-most half of the hash of the octets of the ASCII representation of the code value, where the hash algorithm used is the hash algorithm used in the alg Header Parameter of the ID Token's JOSE Header. For instance, if the alg is HS512, hash the code value with SHA-512, then take the left-most 256 bits and base64url encode them. The c_hash value is a case sensitive string. If the ID Token is issued from the Authorization Endpoint with a code, which is the case for the response_type values code id_token and code id_token token, this is REQUIRED; otherwise, its inclusion is OPTIONAL.</value>
+    <value>code 散列值。此值是 code 值的 8 位 ASCII 形式散列值左半部分的 base64url 编码，使用的散列算法是用于 ID 令牌的 JOSE 头部的 alg 头部参数。例如，假设 alg 为 HS512，使用 SHA-512 将 code 值做散列运算，取出最左侧的 256 位，再使用 base64url 对其编码。c_hash 值是一个区分大小写的字符串。如果 ID 令牌从身份验证端附带 code 签发，且 response_type 值为 code id_token 和 code id_token token，此值是必需的；否则，此值就是可选的。</value>
   </data>
   <data name="acr" xml:space="preserve">
-    <value>Authentication Context Class Reference. String specifying an Authentication Context Class Reference value that identifies the Authentication Context Class that the authentication performed satisfied. The value "0" indicates the End-User authentication did not meet the requirements of ISO/IEC 29115 level 1. Authentication using a long-lived browser cookie, for instance, is one example where the use of "level 0" is appropriate. Authentications with level 0 SHOULD NOT be used to authorize access to any resource of any monetary value. (This corresponds to the OpenID 2.0 PAPE nist_auth_level 0.) An absolute URI or an RFC 6711 registered name SHOULD be used as the acr value; registered names MUST NOT be used with a different meaning than that which is registered. Parties using this claim will need to agree upon the meanings of the values used, which may be context-specific. The acr value is a case sensitive string.</value>
+    <value>身份验证上下文类引用。是指定一个身份验证上下文类引用值的字符串，此值能够识别身份验证实施所满足的身份验证上下文类。值“0”表示最终用户身份验证未达到 ISO/IEC 29115 级别 1 的要求。例如，使用持久浏览器 cookie 进行身份验证是一个合适的“级别 0”的例子。级别 0 的身份验证不应用于授权访问任何货币值资源。（这对应 OpenID 2.0 PAPE nist_auth_level 0。）绝对 URI 或已注册 RFC 6711 名称应用作 acr 值；已注册名称不得使用与其本身不同的含义。使用此声明的各方需要对所使用值的含义达成一致，含义可能因上下文而异。acr 值是一个区分大小写的字符串。</value>
   </data>
   <data name="amr" xml:space="preserve">
-    <value>Authentication Methods References. JSON array of strings that are identifiers for authentication methods used in the authentication. For instance, values might indicate that both password and OTP authentication methods were used. Parties using this claim will need to agree upon the meanings of the values used, which may be context-specific. The amr value is an array of case sensitive strings.</value>
+    <value>身份验证方法引用。是在身份验证中使用的身份验证方法标识符字符串组成的 JSON 数组。例如，此值可能指出使用的密码和 OTP 身份验证方法。使用此声明的各方需要对所使用值的含义达成一致，含义可能因上下文而异。amr 值是一个数组，包含区分大小写的字符串。</value>
   </data>
   <data name="sub_jwk" xml:space="preserve">
-    <value>Public key used to check the signature of an ID Token issued by a Self-Issued OpenID Provider. The key is a bare key in JWK format (not an X.509 certificate value). The sub_jwk value is a JSON object. Use of the sub_jwk Claim is NOT RECOMMENDED when the OP is not Self-Issued.</value>
+    <value>公钥，用于检查自签发 OpenID 提供商签发的 ID 令牌签名。密钥为 JWK 格式的裸密钥（不是 X.509 证书值）。sub_jwk 值是一个 JSON 对象。当 OP 不是自签发时不推荐使用 sub_jwk 声明。</value>
   </data>
 </root>
