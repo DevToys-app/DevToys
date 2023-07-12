@@ -44,7 +44,7 @@
 
   <ItemGroup>
     <PackageReference Include="Uno.Core.Extensions.Logging.Singleton" />
-    <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="System.Text.Json" />
   </ItemGroup>
 
   <Target Name="CopyPluginAfterBuild" AfterTargets="Build">

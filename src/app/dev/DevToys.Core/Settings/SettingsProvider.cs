@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Globalization;
+using System.Text.Json;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using Uno.Extensions;
 
 namespace DevToys.Core.Settings;
@@ -31,7 +31,12 @@ internal sealed partial class SettingsProvider : ISettingsProvider
             }
             else if (typeof(IList).IsAssignableFrom(typeof(T)))
             {
-                return JsonConvert.DeserializeObject<T>(settingValue?.ToString() ?? string.Empty)!;
+                return JsonSerializer.Deserialize<T>(
+                    settingValue?.ToString() ?? string.Empty,
+                    new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    })!;
             }
 
             object? result = Convert.ChangeType(settingValue, typeof(T), CultureInfo.InvariantCulture);
@@ -53,7 +58,14 @@ internal sealed partial class SettingsProvider : ISettingsProvider
         }
         else if (value is IList list)
         {
-            valueToSave = JsonConvert.SerializeObject(list, Formatting.None);
+            valueToSave
+                = JsonSerializer.Serialize(
+                    list,
+                    new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true,
+                        WriteIndented = false,
+                    });
         }
 
         _settingsStorage.WriteSetting(settingDefinition.Name, valueToSave);

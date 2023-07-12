@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.Composition;
+using System.Text.Json.Nodes;
 using System.Threading;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
 
 namespace DevToys.UnitTests.Mocks.Tools;
 
@@ -17,10 +17,10 @@ internal class MockJsonDataTypeDetector : IDataTypeDetector
         {
             try
             {
-                var jtoken = JToken.Parse(dataString);
+                var jtoken = JsonNode.Parse(dataString);
                 if (jtoken is not null)
                 {
-                    return ValueTask.FromResult(new DataDetectionResult(Success: true, Data: new Tuple<JToken, string>(jtoken, dataString)));
+                    return ValueTask.FromResult(new DataDetectionResult(Success: true, Data: new Tuple<JsonNode, string>(jtoken, dataString)));
                 }
             }
             catch

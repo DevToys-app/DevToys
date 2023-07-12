@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
-using Newtonsoft.Json.Linq;
+﻿using System.Text.Json.Nodes;
+using Microsoft.Extensions.Logging;
 
 namespace DevToys.Tools.Tools.Sample;
 
@@ -113,7 +113,7 @@ internal sealed class SampleGuiTool : IGuiTool
 
     public void OnDataReceived(string dataTypeName, object? parsedData)
     {
-        if (dataTypeName == PredefinedCommonDataTypeNames.Json && parsedData is Tuple<JToken, string> strongTypedParsedData)
+        if (dataTypeName == PredefinedCommonDataTypeNames.Json && parsedData is Tuple<JsonNode, string> strongTypedParsedData)
         {
             //_editor.Text(strongTypedParsedData.Item2);
             //_editor.Highlight(new TextSpan(3, 6));

@@ -13,7 +13,7 @@
     <PackageReference Include="CommunityToolkit.Mvvm" />
     <PackageReference Include="FuzzySharp" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
-    <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="System.Text.Json" />
     <PackageReference Include="System.ComponentModel.Composition" />
     <PackageReference Include="Uno.Core.Extensions.Logging" />
     <PackageReference Include="Uno.Core.Extensions.Logging.Singleton" />

@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using System.Text.Json;
+using System.Text.Json.Nodes;
+using Microsoft.Extensions.Logging;
 using Uno.Extensions;
 
 namespace DevToys.Tools.SmartDetection;
@@ -25,13 +25,13 @@ internal sealed partial class JsonDataTypeDetector : IDataTypeDetector
         {
             try
             {
-                var jtoken = JToken.Parse(dataString);
-                if (jtoken is not null)
+                var jsonNode = JsonNode.Parse(dataString);
+                if (jsonNode is not null)
                 {
-                    return ValueTask.FromResult(new DataDetectionResult(Success: true, Data: new Tuple<JToken, string>(jtoken, dataString)));
+                    return ValueTask.FromResult(new DataDetectionResult(Success: true, Data: new Tuple<JsonNode, string>(jsonNode, dataString)));
                 }
             }
-            catch (JsonReaderException)
+            catch (JsonException)
             {
                 // Exception in parsing json. It likely mean the text isn't a JSON.
             }

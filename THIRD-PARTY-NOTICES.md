@@ -3,7 +3,6 @@
 This project incorporates components from the projects listed below. The original copyright notices and the licenses under which Etienne Baudoux received such components are set forth below. Etienne Baudoux reserves all rights not expressly granted herein, whether by implication, estoppel or otherwise.
 
 1. MudBlazor's Popover
-1. [Newtonsoft.Json](#newtonsoftjson) (<https://github.com/JamesNK/Newtonsoft.Json>)
 2. [GitInfo](#gitinfo) (<https://github.com/devlooped/GitInfo>)
 3. [Windows Community Toolkit](#windows-community-toolkit) (<https://github.com/CommunityToolkit/WindowsCommunityToolkit>)
 4. [YamlDotNet](#yamldotnet) (<https://github.com/aaubry/YamlDotNet>)
@@ -19,30 +18,6 @@ This project incorporates components from the projects listed below. The origina
 14. [SQL Formatter](#sql-formatter) (<https://github.com/zeroturnaround/sql-formatter>)
 15. [Cronos](#cronos) (<https://github.com/HangfireIO/Cronos>)
 16. [BouncyCastle](#bouncy-castle) (<https://www.bouncycastle.org/>)
-
-Newtonsoft.Json
-=========================================
-
-The MIT License (MIT)
-
-Copyright (c) 2007 James Newton-King
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 GitInfo
 =========================================
