@@ -298,7 +298,9 @@
     <value>The "jti" (JWT ID) claim provides a unique identifier for the JWT. The identifier value MUST be assigned in a manner that ensures that there is a negligible probability that the same value will be accidentally assigned to a different data object; if the application uses multiple issuers, collisions MUST be prevented among values produced by different issuers as well. The "jti" claim can be used to prevent the JWT from being replayed. The "jti" value is a case-sensitive string. Use of this claim is OPTIONAL.</value>
   </data>
   <data name="name" xml:space="preserve">
-    <value>End-User's full name in displayable form including all name parts, possibly including titles and suffixes, ordered according to the End-User's locale and preferences.</value>
+    <value>[OpenID]
+End-User の表示用フルネーム。
+肩書や称号 (suffixes) を含む場合もあります。この表示は End-User のロケールと設定に基づいて順序付けされます。</value>
   </data>
   <data name="given_name" xml:space="preserve">
     <value>[OpenID]
