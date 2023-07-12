@@ -321,7 +321,10 @@ End-User のミドルネーム。
 複数のミドルネームが入力された場合は、スペース区切りで表記されます。</value>
   </data>
   <data name="nickname" xml:space="preserve">
-    <value>Casual name of the End-User that may or may not be the same as the given_name. For instance, a nickname value of Mike might be returned alongside a given_name value of Michael.</value>
+    <value>[OpenID]
+End-User のニックネーム。
+これは、given_name 値と異なる場合もあります。
+例えば、nickname 値が Mike であっても、given_name 値は Michael が返されることがあります。</value>
   </data>
   <data name="preferred_username" xml:space="preserve">
     <value>Shorthand name by which the End-User wishes to be referred to at the RP, such as janedoe or j.doe. This value MAY be any valid JSON string including special characters such as @, /, or whitespace. The RP MUST NOT rely upon this value being unique.</value>
@@ -343,7 +346,7 @@ OAuth 2.0 Client (RP) は、email 値がユニークであることを前提と�
   </data>
   <data name="email_verified" xml:space="preserve">
     <value>[OpenID]
-End-User の電子メールアドレスが検証済みの場合は true、それ以外の場合は false を示す boolean 値です。
+End-User の電子メールアドレスが検証済みの場合は true、それ以外の場合は false を示す boolean 値。
 このクレームの値が true の場合、OpenID Provider (OP) が検証を行った時点において、電子メールアドレスが End-User のコントロール下にあることを確認する処理を行ったことを示します。
 電子メールアドレスの検証方法は、コンテキストに依存し、当事者間のトラストフレームワークや契約上の同意事項等に依存します。</value>
   </data>
@@ -373,10 +376,19 @@ BCP47 [RFC5646] の言語タグとして表されます。
 互換性のため、一部の実装ではダッシュの代わりにアンダースコアを区切り文字 (例: en_US) として使用している場合もあります。Relying Party (RP) は、このロケール構文を受け入れることも選択できます (MAY)。</value>
   </data>
   <data name="phone_number" xml:space="preserve">
-    <value>End-User's preferred telephone number. E.164 is RECOMMENDED as the format of this Claim, for example, +1 (425) 555-1212 or +56 (2) 687 2400. If the phone number contains an extension, it is RECOMMENDED that the extension be represented using the RFC 3966 extension syntax, for example, +1 (604) 555-1234;ext=5678.</value>
+    <value>[OpenID]
+End-User の希望する電話番号。
+このクレームのフォーマットは E.164 形式が推奨されます (RECOMMENDED)。
+例えば、+1 (425) 555-1212 や +56 (2) 687 2400 です。
+電話番号に拡張子 (内線番号) が含まれている場合は、RFC 3966 拡張構文で表記することが推奨されます (RECOMMENDED)。
+例えば、+1 (604) 555-1234;ext=567 です。</value>
   </data>
   <data name="phone_number_verified" xml:space="preserve">
-    <value>True if the End-User's phone number has been verified; otherwise false. When this Claim Value is true, this means that the OP took affirmative steps to ensure that this phone number was controlled by the End-User at the time the verification was performed. The means by which a phone number is verified is context-specific, and dependent upon the trust framework or contractual agreements within which the parties are operating. When true, the phone_number Claim MUST be in E.164 format and any extensions MUST be represented in RFC 3966 format.</value>
+    <value>[OpenID]
+End-User の電話番号が検証済みの場合は true、それ以外の場合は false を示す boolean 値。
+このクレームの値が true の場合、OpenID Provider (OP) が検証を行った時点において、電話番号が End-User のコントロール下にあることを確認する処理を行ったことを示します。
+電話番号の検証方法は、コンテキストに依存し、当事者間のトラストフレームワークや契約上の同意事項等に依存します。
+このクレームの値が true の場合、phone_number クレームは E.164 形式でなければならず (MUST)、拡張子 (内線番号) は RFC 3966 拡張構文で表記されている必要があります (MUST)。</value>
   </data>
   <data name="address" xml:space="preserve">
     <value>[OpenID]
@@ -395,11 +407,17 @@ audience 値と azp 値が同じ場合でも、このクレームを含めるこ
 azp の値は、StringOrURI の値を含む、大文字と小文字が区別される文字列です。</value>
   </data>
   <data name="nonce" xml:space="preserve">
-    <value>String value used to associate a Client session with an ID Token, and to mitigate replay attacks. The value is passed through unmodified from the Authentication Request to the ID Token. If present in the ID Token, Clients MUST verify that the nonce Claim Value is equal to the value of the nonce parameter sent in the Authentication Request. If present in the Authentication Request, Authorization Servers MUST include a nonce Claim in the ID Token with the Claim Value being the nonce value sent in the Authentication Request. Authorization Servers SHOULD perform no other processing on nonce values used. The nonce value is a case sensitive string.</value>
+    <value>[OpenID]
+Client (RP) セッションを ID Token と関連付けて、リプレイアタックを緩和するために使用される文字列の値。
+この値は、Authentication Request から ID Token に変更せずに渡されます。
+ID Token に nonce クレームが含まれている場合、Client (RP) は Authentication Request で送信された nonce パラメーターの値と nonce クレーム値が一致することを検証しなければなりません (MUST)。
+Authentication Request に nonce クレームが含まれている場合、Authentication Server (OP) は ID Token に nonce クレーム値を含める必要があります (MUST)。
+Authentication Server (OP) は、nonce 値に対して他の処理を行うべきではありません (SHOULD)。
+nonce の値は、大文字と小文字が区別される文字列です。</value>
   </data>
   <data name="auth_time" xml:space="preserve">
     <value>[OpenID/REQUIRED/OPTIONAL]
-End-User の認証が行われた時刻です。
+End-User の認証が行われた時刻。
 この値は UTC 1970-01-01T0:0:0Z からの経過秒数を示す JSON 数値です。
 リクエストに max_age が含まれている場合や、auth_time が Essential クレーム として要求される場合には、このクレームは必須です (REQUIRED)。
 それ以外の場合は任意です (OPTIONAL)。
