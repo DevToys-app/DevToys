@@ -277,76 +277,76 @@
     <value>没有描述</value>
   </data>
   <data name="iss" xml:space="preserve">
-    <value>“iss”（issuer，签发者）声明指出签发JWT的一方。对此声明的处理一般因应用而异。“iss”值是一个包含StringOrURI值的字符串，区分大小写。此声明的使用不是必须的。</value>
+    <value>“iss”（issuer，签发者）声明指出签发 JWT 的一方。对此声明的处理一般因应用而异。“iss”值是一个包含 StringOrURI 值的字符串，区分大小写。此声明的使用不是必须的。</value>
   </data>
   <data name="sub" xml:space="preserve">
-    <value>“sub”（subject，主题）声明指出JWT的主题。JWT中的声明通常是与主题相关的说明。主题的值必须在签发者上下文局部或全局唯一。对此声明的处理一般因应用而异。“sub”值是一个包含StringOrURI值的字符串，区分大小写。此声明的使用不是必须的。</value>
+    <value>“sub”（subject，主题）声明指出 JWT 的主题。JWT 中的声明通常是与主题相关的说明。主题的值必须在签发者上下文局部或全局唯一。对此声明的处理一般因应用而异。“sub”值是一个包含 StringOrURI 值的字符串，区分大小写。此声明的使用不是必须的。</value>
   </data>
   <data name="aud" xml:space="preserve">
-    <value>“aud”（audience，接收者）声明指出JWT预定的接收对象。希望处理JWT的各方必须在接收者声明中为自己指定一个值。如果处理该声明的一方在“aud”声明提交时没有在其中为自己指定一个值，JWT就会被拒绝。通常情况下，“aud”值是一个数组，包含StringOrURI值的字符串，区分大小写。在JWT只有一个接收者的特殊情况下，“aud”值可能是包含StringOrURI值的单一字符串，区分大小写。对接收者值的解释一般因应用而异。此声明的使用不是必须的。</value>
+    <value>“aud”（audience，接收者）声明指出 JWT 预定的接收对象。希望处理 JWT 的各方必须在接收者声明中为自己指定一个值。如果处理该声明的一方在“aud”声明提交时没有在其中为自己指定一个值，JWT 就会被拒绝。通常情况下，“aud”值是一个数组，包含 StringOrURI 值的字符串，区分大小写。在 JWT 只有一个接收者的特殊情况下，“aud”值可能是包含 StringOrURI 值的单一字符串，区分大小写。对接收者值的解释一般因应用而异。此声明的使用不是必须的。</value>
   </data>
   <data name="exp" xml:space="preserve">
-    <value>The "exp" (expiration time) claim identifies the expiration time on or after which the JWT MUST NOT be accepted for processing. The processing of the "exp" claim requires that the current date/time MUST be before the expiration date/time listed in the "exp" claim. Implementers MAY provide for some small leeway, usually no more than a few minutes, to account for clock skew. Its value MUST be a number containing a NumericDate value. Use of this claim is OPTIONAL.</value>
+    <value>“exp”（expiration time，到期时间）声明指出不接受处理 JWT 的到期时间。对“exp”声明的处理要求当前日期/时间必须在“exp”声明所列出的到期日期/时间之前。考虑到时钟偏移，实现器可能会提供通常不多于几分钟的弹性时间。声明的值必须是一个包含 NumericDate 值的数值。此声明的使用不是必须的。</value>
   </data>
   <data name="nbf" xml:space="preserve">
-    <value>The "nbf" (not before) claim identifies the time before which the JWT MUST NOT be accepted for processing. The processing of the "nbf" claim requires that the current date/time MUST be after or equal to the not-before date/time listed in the "nbf" claim. Implementers MAY provide for some small leeway, usually no more than a few minutes, to account for clock skew. Its value MUST be a number containing a NumericDate value. Use of this claim is OPTIONAL.</value>
+    <value>“nbf”（not before，不早于）声明指出不接受处理 JWT 的最晚时间。对“nbf”声明的处理要求当前日期/时间必须在“nbf”声明所列出的最晚日期/时间之后或与之相等。考虑到时钟偏移，实现器可能会提供通常不多于几分钟的弹性时间。声明的值必须是一个包含 NumericDate 值的数值。此声明的使用不是必须的。</value>
   </data>
   <data name="iat" xml:space="preserve">
-    <value>The "iat" (issued at) claim identifies the time at which the JWT was issued. This claim can be used to determine the age of the JWT. Its value MUST be a number containing a NumericDate value. Use of this claim is OPTIONAL.</value>
+    <value>“iat”（签发时间）声明指出 JWT 签发的时间。此声明可用于确定 JWT 的存在时间。声明的值必须是一个包含 NumericDate 值的数值。此声明的使用不是必须的。</value>
   </data>
   <data name="jti" xml:space="preserve">
-    <value>The "jti" (JWT ID) claim provides a unique identifier for the JWT. The identifier value MUST be assigned in a manner that ensures that there is a negligible probability that the same value will be accidentally assigned to a different data object; if the application uses multiple issuers, collisions MUST be prevented among values produced by different issuers as well. The "jti" claim can be used to prevent the JWT from being replayed. The "jti" value is a case-sensitive string. Use of this claim is OPTIONAL.</value>
+    <value>“jti”（JWT ID）声明为 JWT 提供独特标识符。标识符的值必须以特定方式分配，这种方式应确保相同值会以极小概率分配给另一数据对象；如果应用使用多个签发者，则还应避免不同签发者产生的值不会互相冲突。“jti”声明可用于防止 JWT 重放。“jti”值是一个字符串，区分大小写。此声明的使用不是必须的。</value>
   </data>
   <data name="name" xml:space="preserve">
-    <value>End-User's full name in displayable form including all name parts, possibly including titles and suffixes, ordered according to the End-User's locale and preferences.</value>
+    <value>最终用户的全名，displayable 形式，包括全部姓名结构，还可能包括标题和后缀，按最终用户的区域和偏好设置排序。</value>
   </data>
   <data name="given_name" xml:space="preserve">
-    <value>Given name(s) or first name(s) of the End-User. Note that in some cultures, people can have multiple given names; all can be present, with the names being separated by space characters.</value>
+    <value>最终用户的名。注意，在某些文化圈，一个人可以拥有多个名；多个名会以空格符分隔显示。</value>
   </data>
   <data name="family_name" xml:space="preserve">
-    <value>Surname(s) or last name(s) of the End-User. Note that in some cultures, people can have multiple family names or no family name; all can be present, with the names being separated by space characters.</value>
+    <value>最终用户的姓。注意，在某些文化圈，一个人可以拥有多个姓或不拥有姓；多个姓会以空格符分隔显示。</value>
   </data>
   <data name="middle_name" xml:space="preserve">
-    <value>Middle name(s) of the End-User. Note that in some cultures, people can have multiple middle names; all can be present, with the names being separated by space characters. Also note that in some cultures, middle names are not used.</value>
+    <value>最终用户的中间名。注意，在某些文化圈，一个人可以拥有多个中间名或不拥有中间名；多个中间名会以空格符分隔显示。</value>
   </data>
   <data name="nickname" xml:space="preserve">
-    <value>Casual name of the End-User that may or may not be the same as the given_name. For instance, a nickname value of Mike might be returned alongside a given_name value of Michael.</value>
+    <value>最终用户的昵称，其可能与 given_name 值相同或不同。例如，可能会在返回 given_name 值 Michael 的同时返回 nickname 值 Mike。</value>
   </data>
   <data name="preferred_username" xml:space="preserve">
-    <value>Shorthand name by which the End-User wishes to be referred to at the RP, such as janedoe or j.doe. This value MAY be any valid JSON string including special characters such as @, /, or whitespace. The RP MUST NOT rely upon this value being unique.</value>
+    <value>最终用户希望在 RP 中被指代的简记名，如 janedoe 或 j.doe。该值可能是任意有效的 JSON 字符串，包含特殊字符如 @、/ 或空格。RP 不应认定该值唯一。</value>
   </data>
   <data name="profile" xml:space="preserve">
-    <value>URL of the End-User's profile page. The contents of this Web page SHOULD be about the End-User.</value>
+    <value>最终用户个人资料页面的 URL。此网页的内容应与最终用户有关。</value>
   </data>
   <data name="picture" xml:space="preserve">
-    <value>URL of the End-User's profile picture. This URL MUST refer to an image file (for example, a PNG, JPEG, or GIF image file), rather than to a Web page containing an image. Note that this URL SHOULD specifically reference a profile photo of the End-User suitable for displaying when describing the End-User, rather than an arbitrary photo taken by the End-User.</value>
+    <value>最终用户个人资料图片的 URL。此 URL 必须指定一个图像文件（如一个 PNG、JPEG 或 GIF 图像文件）而不是包含图像的网页。注意，此 URL 应确保是一张在描述最终用户时适合展示的个人照片，而非由最终用户随意拍摄的一张照片。</value>
   </data>
   <data name="website" xml:space="preserve">
-    <value>URL of the End-User's Web page or blog. This Web page SHOULD contain information published by the End-User or an organization that the End-User is affiliated with.</value>
+    <value>最终用户个人网页或博客的 URL。此网页应包含最终用户或其所属组织发布的信息。</value>
   </data>
   <data name="email" xml:space="preserve">
-    <value>End-User's preferred e-mail address. Its value MUST conform to the RFC 5322 addr-spec syntax. The RP MUST NOT rely upon this value being unique.</value>
+    <value>最终用户偏好的电子邮件地址。该值必须遵从 RFC 5322 addr-spec 语法。RP 不应认定该值唯一。</value>
   </data>
   <data name="email_verified" xml:space="preserve">
-    <value>True if the End-User's e-mail address has been verified; otherwise false. When this Claim Value is true, this means that the OP took affirmative steps to ensure that this e-mail address was controlled by the End-User at the time the verification was performed. The means by which an e-mail address is verified is context-specific, and dependent upon the trust framework or contractual agreements within which the parties are operating.</value>
+    <value>若最终用户的电子邮件地址已验证则为 true，否则为 false。此声明值为 true ，说明 OP 通过一定措施确认了在验证时，此电子邮件地址由最终用户控制。确认电子邮件地址已验证的方式因实际情形而异，同时取决于当事各方采用的信托框架或合同协议。</value>
   </data>
   <data name="gender" xml:space="preserve">
-    <value>End-User's gender. Values defined by this specification are female and male. Other values MAY be used when neither of the defined values are applicable.</value>
+    <value>最终用户的性别。此规范定义的值为 female（女性）和 male（男性）。在已定义的值不适用的情形下，可以使用其他值。</value>
   </data>
   <data name="birthdate" xml:space="preserve">
-    <value>End-User's birthday, represented as an ISO 8601:2004 YYYY-MM-DD format. The year MAY be 0000, indicating that it is omitted. To represent only the year, YYYY format is allowed. Note that depending on the underlying platform's date related function, providing just year can result in varying month and day, so the implementers need to take this factor into account to correctly process the dates.</value>
+    <value>最终用户的生日，依照 ISO 8601:2004 YYYY-MM-DD 格式。年份可以用 0000 表示省略。若只表示年份，允许采用 YYYY 格式。注意，取决于底层平台的日期相关函数，只提供年份可能会导致月份及日期有所出入，所以实现器需要考虑到此因素以正确处理日期。</value>
   </data>
   <data name="zoneinfo" xml:space="preserve">
-    <value>String from zoneinfo time zone database representing the End-User's time zone. For example, Europe/Paris or America/Los_Angeles.</value>
+    <value>zoneinfo 时区数据库字符串，代表最终用户的时区。如 Europe/Paris 或 America/Los_Angeles。</value>
   </data>
   <data name="locale" xml:space="preserve">
-    <value>End-User's locale, represented as a BCP47 [RFC5646] language tag. This is typically an ISO 639-1 Alpha-2 language code in lowercase and an ISO 3166-1 Alpha-2 country code in uppercase, separated by a dash. For example, en-US or fr-CA. As a compatibility note, some implementations have used an underscore as the separator rather than a dash, for example, en_US; Relying Parties MAY choose to accept this locale syntax as well.</value>
+    <value>最终用户的区域，依照 BCP47 [RFC5646] 语言标签表示。通常组成为一个小写 ISO 639-1 Alpha-2 语言代码加上一个大写 ISO 3166-1 Alpha-2 国家代码，中间用短横线分隔。如 en-US 或 fr-CA。出于兼容性说明，某些实现使用下划线而不是短横线作为分隔符，如 en_US；依赖方可能也会接受这种区域语法。</value>
   </data>
   <data name="phone_number" xml:space="preserve">
-    <value>End-User's preferred telephone number. E.164 is RECOMMENDED as the format of this Claim, for example, +1 (425) 555-1212 or +56 (2) 687 2400. If the phone number contains an extension, it is RECOMMENDED that the extension be represented using the RFC 3966 extension syntax, for example, +1 (604) 555-1234;ext=5678.</value>
+    <value>最终用户偏好的电话号码。此声明推荐依照 E. 164 格式，如 +1 (425) 555-1212 或 +56 (2) 687 2400。如果电话号码中包含分机号，推荐该部分使用 RFC 3966 分机号语法，如 +1 (604) 555-1234;ext=5678。</value>
   </data>
   <data name="phone_number_verified" xml:space="preserve">
-    <value>True if the End-User's phone number has been verified; otherwise false. When this Claim Value is true, this means that the OP took affirmative steps to ensure that this phone number was controlled by the End-User at the time the verification was performed. The means by which a phone number is verified is context-specific, and dependent upon the trust framework or contractual agreements within which the parties are operating. When true, the phone_number Claim MUST be in E.164 format and any extensions MUST be represented in RFC 3966 format.</value>
+    <value>若最终用户的电话号码已验证则为 true，否则为 false。此声明值为 true ，说明 OP 通过一定措施确认了在验证时，此电话号码由最终用户控制。确认电话号码已验证的方式因实际情形而异，同时取决于当事各方采用的信托框架或合同协议。此声明值为 true 时，phone_number 声明必须依照 E. 164 格式，分机号必须依照 RFC 3966 格式。</value>
   </data>
   <data name="address" xml:space="preserve">
     <value>End-User's preferred postal address. The value of the address member is a JSON [RFC4627] structure.</value>
