@@ -298,13 +298,13 @@
     <value>The "jti" (JWT ID) claim provides a unique identifier for the JWT. The identifier value MUST be assigned in a manner that ensures that there is a negligible probability that the same value will be accidentally assigned to a different data object; if the application uses multiple issuers, collisions MUST be prevented among values produced by different issuers as well. The "jti" claim can be used to prevent the JWT from being replayed. The "jti" value is a case-sensitive string. Use of this claim is OPTIONAL.</value>
   </data>
   <data name="name" xml:space="preserve">
-    <value>End-User's full name in displayable form including all name parts, possibly including titles and suffixes, ordered according to the End-User's locale and preferences.</value>
+    <value>Vollständiger Name des Benutzers einschließlich etwaiger Titel, geordnet nach dem Gebietsschema und den Einstellungen des Benutzers.</value>
   </data>
   <data name="given_name" xml:space="preserve">
-    <value>Given name(s) or first name(s) of the End-User. Note that in some cultures, people can have multiple given names; all can be present, with the names being separated by space characters.</value>
+    <value>Vorname(n) des Benutzers. Beachten Sie, dass in einigen Kulturen Menschen mehrere Vornamen haben können; alle Vornamen können, durch Leerzeichen getrennt, angegeben werden.</value>
   </data>
   <data name="family_name" xml:space="preserve">
-    <value>Surname(s) or last name(s) of the End-User. Note that in some cultures, people can have multiple family names or no family name; all can be present, with the names being separated by space characters.</value>
+    <value>Familienname(n) oder Geburtsname des Benutzers. Beachten Sie, dass in einigen Kulturen Menschen mehrere oder keinen Familiennamen oder Geburtsname haben können; alle können, durch Leerzeichen getrennt, angegeben werden.</value>
   </data>
   <data name="middle_name" xml:space="preserve">
     <value>Middle name(s) of the End-User. Note that in some cultures, people can have multiple middle names; all can be present, with the names being separated by space characters. Also note that in some cultures, middle names are not used.</value>
