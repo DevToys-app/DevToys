@@ -13,13 +13,15 @@ public partial class MonacoEditor : RicherMonacoEditorBase
     {
     }
 
-    public MonacoEditor(IJSRuntime? jsRuntime = null, string? id = null)
+    public MonacoEditor(IJSRuntime? jsRuntime = null, string? id = null, string? @class = null)
         : base(jsRuntime)
     {
         if (!string.IsNullOrEmpty(id))
         {
             Id = id;
         }
+
+        Class = @class ?? string.Empty;
     }
 
     [Import]

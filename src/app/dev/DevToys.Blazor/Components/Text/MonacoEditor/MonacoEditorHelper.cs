@@ -147,10 +147,6 @@ internal static class MonacoEditorHelper
 
     internal static MonacoEditor CreateVirtualEditor(IJSRuntime jsRuntime, string id, string? cssClass = null)
     {
-        var virtual_editor = new MonacoEditor(jsRuntime, id)
-        {
-            Class = cssClass ?? string.Empty
-        };
-        return virtual_editor;
+        return new MonacoEditor(jsRuntime, id, cssClass);
     }
 }
