@@ -174,11 +174,20 @@ internal sealed class FileStorage : IFileStorage
 
         foreach (string fileType in fileTypes.Order())
         {
-            string lowercaseFileType = "*." + fileType.Trim('*').Trim('.').ToLower();
-            string fileTypeDescription = fileType.Trim('*').Trim('.').ToUpper();
-            filters.Append($"{fileTypeDescription}|{lowercaseFileType}|");
-            allFileTypesDescription.Add(fileTypeDescription);
-            allFileTypes.Add(lowercaseFileType);
+            if (string.Equals(fileType, "*.*", StringComparison.CurrentCultureIgnoreCase))
+            {
+                filters.Append($"*.*|*.*|");
+                allFileTypesDescription.Add("*.*");
+                allFileTypes.Add("*.*");
+            }
+            else
+            {
+                string lowercaseFileType = "*." + fileType.Trim('*').Trim('.').ToLower();
+                string fileTypeDescription = fileType.Trim('*').Trim('.').ToUpper();
+                filters.Append($"{fileTypeDescription}|{lowercaseFileType}|");
+                allFileTypesDescription.Add(fileTypeDescription);
+                allFileTypes.Add(lowercaseFileType);
+            }
         }
 
         if (filters.Length > 0)

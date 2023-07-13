@@ -9,12 +9,12 @@
 <CascadingValue Value="this" IsFixed="true">
     <!-- Provider for popover -->
     <PopoverProvider />
-    
+
     <!-- Overlay that covers the whole window for context menus -->
     <Overlay ZIndex="80000"
              Visible="ContextMenuService.IsContextMenuOpened"
              OnClick="ContextMenuService.OnCloseContextMenuRequested" />
-    
+
     <!-- Navigation View -->
     <!-- TODO: Localize -->
     <NavBar @ref=_navBar
@@ -29,7 +29,8 @@
             SearchBarPlaceholder="Type to search for tools..."
             SearchQueryChanged="OnSearchQueryChanged"
             SearchQuerySubmitted="OnSearchQuerySubmitted"
-            SearchResultItems="ViewModel.SearchResults">
+            SearchResultItems="ViewModel.SearchResults"
+            @onmouseup="@OnMouseUp">
         <!-- Header -->
         <HeaderLeft>
             @if (ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem && WindowService.IsCompactOverlayMode)

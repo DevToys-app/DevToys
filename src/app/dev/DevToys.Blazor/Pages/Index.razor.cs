@@ -1,9 +1,11 @@
 ﻿using DevToys.Blazor.Components;
+using DevToys.Blazor.Components.Monaco;
 using DevToys.Blazor.Core.Services;
 using DevToys.Business.ViewModels;
 using DevToys.Core;
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace DevToys.Blazor.Pages;
 
@@ -130,6 +132,17 @@ public partial class Index : MefComponentBase
     {
         ViewModel.SearchBoxQuerySubmittedCommand.Execute(selectedItem);
         // TODO: If succeeded, move the focus to the ToolPage.
+    }
+
+    private void OnMouseUp(MouseEventArgs ev)
+    {
+        if (ev.Buttons == 3)
+        {
+            if (ViewModel.CanGoBack)
+            {
+                ViewModel.GoBack();
+            }
+        }
     }
 
     protected override void OnAfterRender(bool firstRender)
