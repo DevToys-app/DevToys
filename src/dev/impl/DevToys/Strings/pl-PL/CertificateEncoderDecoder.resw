@@ -133,10 +133,10 @@
     <value>Wyjście</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Encode or decode a certificate</value>
+    <value>Dekodowanie certyfikatu</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Certificate Encoder / Decoder</value>
+    <value>Dekoder certyfikatów</value>
   </data>
   <data name="InvalidPasswordError" xml:space="preserve">
     <value>Nieprawidłowe hasło.</value>
