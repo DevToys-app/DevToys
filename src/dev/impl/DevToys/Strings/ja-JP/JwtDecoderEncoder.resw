@@ -333,7 +333,10 @@ End-User のニックネーム。
     <value>URL of the End-User's profile page. The contents of this Web page SHOULD be about the End-User.</value>
   </data>
   <data name="picture" xml:space="preserve">
-    <value>URL of the End-User's profile picture. This URL MUST refer to an image file (for example, a PNG, JPEG, or GIF image file), rather than to a Web page containing an image. Note that this URL SHOULD specifically reference a profile photo of the End-User suitable for displaying when describing the End-User, rather than an arbitrary photo taken by the End-User.</value>
+    <value>[OpenID]
+End-User のプロフィール画像のURL。
+この URL は画像ファイル (例えば、PNG、JPEG、GIFなど) を参照する必要があります (MUST)。
+また、画像は End-User が撮影した任意の写真ではなく、エンドユーザーのプロフィール用の画像を指定する必要があります (SHOULD)。</value>
   </data>
   <data name="website" xml:space="preserve">
     <value>URL of the End-User's Web page or blog. This Web page SHOULD contain information published by the End-User or an organization that the End-User is affiliated with.</value>
