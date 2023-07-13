@@ -277,7 +277,12 @@
     <value>No description</value>
   </data>
   <data name="iss" xml:space="preserve">
-    <value>The "iss" (issuer) claim identifies the principal that issued the JWT. The processing of this claim is generally application specific. The "iss" value is a case-sensitive string containing a StringOrURI value. Use of this claim is OPTIONAL.</value>
+    <value>[RFC 7519/OPTIONAL]
+issuer。
+JWT を発行した主体の値です。
+通常は、iss クレーム値の処理はアプリケーション固有です。
+iss クレーム値は、StringOrURI の値を含む、大文字と小文字が区別される文字列です。
+このクレームの使用は任意です。</value>
   </data>
   <data name="sub" xml:space="preserve">
     <value>The "sub" (subject) claim identifies the principal that is the subject of the JWT. The claims in a JWT are normally statements about the subject. The subject value MUST either be scoped to be locally unique in the context of the issuer or be globally unique. The processing of this claim is generally application specific. The "sub" value is a case-sensitive string containing a StringOrURI value. Use of this claim is OPTIONAL.</value>
@@ -294,16 +299,34 @@ aud クレーム値の解釈は、通常はアプリケーション固有です�
 このクレームの使用は任意です。</value>
   </data>
   <data name="exp" xml:space="preserve">
-    <value>The "exp" (expiration time) claim identifies the expiration time on or after which the JWT MUST NOT be accepted for processing. The processing of the "exp" claim requires that the current date/time MUST be before the expiration date/time listed in the "exp" claim. Implementers MAY provide for some small leeway, usually no more than a few minutes, to account for clock skew. Its value MUST be a number containing a NumericDate value. Use of this claim is OPTIONAL.</value>
+    <value>[RFC 7519/OPTIONAL]
+expiration time。
+JWT の有効期限です。
+exp クレームの処理では、現在の日付/時刻が exp クレーム値の有効期限よりも前である必要があります (MUST)。
+実装者は、クロックスキューを考慮して、多少 (通常は数分以内) の猶予を設けることができます (MAY)。
+この値は、1970-01-01T0:0:0Z からの経過秒数 (NumericDate) を表す JSON 数値で示す必要があります (MUST)。
+このクレームの使用は任意です。</value>
   </data>
   <data name="nbf" xml:space="preserve">
     <value>The "nbf" (not before) claim identifies the time before which the JWT MUST NOT be accepted for processing. The processing of the "nbf" claim requires that the current date/time MUST be after or equal to the not-before date/time listed in the "nbf" claim. Implementers MAY provide for some small leeway, usually no more than a few minutes, to account for clock skew. Its value MUST be a number containing a NumericDate value. Use of this claim is OPTIONAL.</value>
   </data>
   <data name="iat" xml:space="preserve">
-    <value>The "iat" (issued at) claim identifies the time at which the JWT was issued. This claim can be used to determine the age of the JWT. Its value MUST be a number containing a NumericDate value. Use of this claim is OPTIONAL.</value>
+    <value>[RFC 7519/OPTIONAL]
+issued at。
+JWT が発行された日時です。
+このクレームは、JWT の古さを判断するために使用できます。
+この値は、1970-01-01T0:0:0Z からの経過秒数 (NumericDate) を表す JSON 数値で示す必要があります (MUST)。
+このクレームの使用は任意です。</value>
   </data>
   <data name="jti" xml:space="preserve">
-    <value>The "jti" (JWT ID) claim provides a unique identifier for the JWT. The identifier value MUST be assigned in a manner that ensures that there is a negligible probability that the same value will be accidentally assigned to a different data object; if the application uses multiple issuers, collisions MUST be prevented among values produced by different issuers as well. The "jti" claim can be used to prevent the JWT from being replayed. The "jti" value is a case-sensitive string. Use of this claim is OPTIONAL.</value>
+    <value>[RFC 7519/OPTIONAL]
+JWT ID。
+JWT の一意の識別子とされる値です。
+この値は、同じ値が別のデータオブジェクトに割り当てられる可能性が無視できる程度であることを保証する方法で付与する必要があります (MUST)。
+アプリケーションが複数のの発行者を使用する場合、異なる発行者によって付与された値の間でも衝突を防止する必要があります (MUST)。
+jti クレーム値は、JWT の再生を防止するために使用できます。
+jti クレーム値は、大文字と小文字が区別される文字列です。
+このクレームの使用は任意です。</value>
   </data>
   <data name="name" xml:space="preserve">
     <value>[OpenID]
