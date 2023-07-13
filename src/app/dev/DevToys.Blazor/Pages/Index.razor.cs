@@ -129,6 +129,7 @@ public partial class Index : MefComponentBase
     private void OnSearchQuerySubmitted(GuiToolViewItem? selectedItem)
     {
         ViewModel.SearchBoxQuerySubmittedCommand.Execute(selectedItem);
+        // TODO: If succeeded, move the focus to the ToolPage.
     }
 
     protected override void OnAfterRender(bool firstRender)

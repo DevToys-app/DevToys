@@ -73,6 +73,11 @@ public partial class AutoSuggestBox<TElement> : StyledComponentBase, IFocusable,
         {
             SubmitQuery();
         }
+        else if (string.Equals(ev.Code, "Escape", StringComparison.OrdinalIgnoreCase))
+        {
+            Guard.IsNotNull(_textBox);
+            _textBox.SetTextAsync(string.Empty).Forget();
+        }
         else if (_showDropDown && _resultListBox is not null && Items is not null)
         {
             if (string.Equals(ev.Code, "ArrowDown", StringComparison.OrdinalIgnoreCase))
@@ -99,6 +104,9 @@ public partial class AutoSuggestBox<TElement> : StyledComponentBase, IFocusable,
             {
                 _showDropDown = false;
                 StateHasChanged();
+
+                Guard.IsNotNull(_textBox);
+                _textBox.SetTextAsync(string.Empty).Forget();
             });
         });
     }

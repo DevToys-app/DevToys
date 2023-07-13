@@ -118,6 +118,12 @@ public partial class TextBox : MefComponentBase, IFocusable
         }
     }
 
+    internal Task SetTextAsync(string text)
+    {
+        Text = text;
+        return TextChanged.InvokeAsync(Text);
+    }
+
     private void OnClearClick()
     {
         SetTextAsync(string.Empty).Forget();
@@ -261,11 +267,5 @@ public partial class TextBox : MefComponentBase, IFocusable
             int[] selection = await (await JSModule).InvokeAsync<int[]>("getSelectionSpan", _input.Element);
             return new TextSpan(selection[0], selection[1] - selection[0]);
         }
-    }
-
-    private Task SetTextAsync(string text)
-    {
-        Text = text;
-        return TextChanged.InvokeAsync(Text);
     }
 }
