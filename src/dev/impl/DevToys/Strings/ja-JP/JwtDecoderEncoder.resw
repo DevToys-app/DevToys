@@ -327,10 +327,16 @@ End-User のニックネーム。
 例えば、nickname 値が Mike であっても、given_name 値は Michael が返されることがあります。</value>
   </data>
   <data name="preferred_username" xml:space="preserve">
-    <value>Shorthand name by which the End-User wishes to be referred to at the RP, such as janedoe or j.doe. This value MAY be any valid JSON string including special characters such as @, /, or whitespace. The RP MUST NOT rely upon this value being unique.</value>
+    <value>[OpenID]
+End-User が Relying Party (RP) で参照される際に希望する短縮された名前。
+例えば、janedoe や j.doe です。
+この値は、@、/、空白文字といったあらゆる特殊文字を含む、有効な JSON 文字列とすることができます (MAY)。
+RP は、preferred_username 値がユニークであることを前提としてはなりません (MUST NOT)。</value>
   </data>
   <data name="profile" xml:space="preserve">
-    <value>URL of the End-User's profile page. The contents of this Web page SHOULD be about the End-User.</value>
+    <value>[OpenID]
+End-User のプロフィール ページの URL。
+この Web ページのコンテンツは、End-User に関するものである必要があります (SHOULD)。</value>
   </data>
   <data name="picture" xml:space="preserve">
     <value>[OpenID]
@@ -339,7 +345,9 @@ End-User のプロフィール画像のURL。
 また、画像は End-User が撮影した任意の写真ではなく、エンドユーザーのプロフィール用の画像を指定する必要があります (SHOULD)。</value>
   </data>
   <data name="website" xml:space="preserve">
-    <value>URL of the End-User's Web page or blog. This Web page SHOULD contain information published by the End-User or an organization that the End-User is affiliated with.</value>
+    <value>[OpenID]
+End-User の Web ページやブログの URL。
+この Web ページは End-User または End-User が所属する組織によって公開された情報が含まれている必要があります (SHOULD)。</value>
   </data>
   <data name="email" xml:space="preserve">
     <value>[OpenID]
@@ -368,7 +376,9 @@ ISO 8601:2004 YYYY-MM-DD 形式で表現されます。
 ただし、利用するプラットフォームの日付関連機能や関数の実装によっては、年だけを提供した際の月や日が異なる結果となる場合があるため、実装者はこの点を考慮に入れて日付を正しく処理する必要があります。</value>
   </data>
   <data name="zoneinfo" xml:space="preserve">
-    <value>String from zoneinfo time zone database representing the End-User's time zone. For example, Europe/Paris or America/Los_Angeles.</value>
+    <value>[OpenID]
+End-User のタイムゾーンを表す zoneinfo タイムゾーンデータベースに登録されている文字列。
+例えば、Europe/Paris や America/Los_Angeles です。</value>
   </data>
   <data name="locale" xml:space="preserve">
     <value>[OpenID]
@@ -376,7 +386,8 @@ End-User のロケール。
 BCP47 [RFC5646] の言語タグとして表されます。
 通常、これは ISO 639-1 Alpha-2 [ISO639‑1] の言語コード (小文字) と ISO 3166-1 Alpha-2 [ISO3166‑1] の国コード (大文字) がダッシュで区切られた形式です。
 例えば、 en-US や fr-CA です。
-互換性のため、一部の実装ではダッシュの代わりにアンダースコアを区切り文字 (例: en_US) として使用している場合もあります。Relying Party (RP) は、このロケール構文を受け入れることも選択できます (MAY)。</value>
+互換性のため、一部の実装ではダッシュの代わりにアンダースコアを区切り文字 (例: en_US) として使用している場合もあります。
+Relying Party (RP) は、このロケール構文を受け入れることも選択できます (MAY)。</value>
   </data>
   <data name="phone_number" xml:space="preserve">
     <value>[OpenID]
@@ -398,7 +409,9 @@ End-User の電話番号が検証済みの場合は true、それ以外の場合
 End-User の希望する郵送先住所。address メンバーの値は Address クレームに定義されたメンバーを含む JSON [RFC4627] 構造体です。</value>
   </data>
   <data name="updated_at" xml:space="preserve">
-    <value>Time the End-User's information was last updated. Its value is a JSON number representing the number of seconds from 1970-01-01T0:0:0Z as measured in UTC until the date/time.</value>
+    <value>[OpenID]
+End-User の情報が最後に更新された日時を表す数値。
+この値は、1970-01-01T0:0:0Z からの経過秒数を表す JSON 数値です。</value>
   </data>
   <data name="azp" xml:space="preserve">
     <value>[OpenID/OPTIONAL]
@@ -467,6 +480,10 @@ amr クレームで使用される値はの定義は、仕様の範囲外です�
 amr の値は、大文字と小文字が区別される文字列です。</value>
   </data>
   <data name="sub_jwk" xml:space="preserve">
-    <value>Public key used to check the signature of an ID Token issued by a Self-Issued OpenID Provider. The key is a bare key in JWK format (not an X.509 certificate value). The sub_jwk value is a JSON object. Use of the sub_jwk Claim is NOT RECOMMENDED when the OP is not Self-Issued.</value>
+    <value>[OpenID]
+自己発行型 OpenID Provider (OP) によって発行された ID Token の署名を検証するために使われる公開鍵。
+Self-Issued OpenID Provider を利用する場合には、このクレームは必須です (REQUIRED)。
+この鍵は JWK 形式の ベア キーであり (bare key。X.509 証明書ではありません)、sub_jwk クレーム値は JSON オブジェクトです。
+OP が自己発行型ではない場合、sub_jwk クレームの使用は推奨されません (NOT RECOMMENDED)。</value>
   </data>
 </root>
