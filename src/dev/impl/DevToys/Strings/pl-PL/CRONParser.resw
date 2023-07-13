@@ -172,9 +172,9 @@
     <value>Sekundy uwzględnione (6 - segment Cron)</value>
   </data>
   <data name="DescriptionTitle" xml:space="preserve">
-    <value>Description</value>
+    <value>Opis</value>
   </data>
   <data name="DescriptionErrorMessage" xml:space="preserve">
-    <value>Unable to generate description</value>
+    <value>Nie można wygenerować opisu</value>
   </data>
 </root>
