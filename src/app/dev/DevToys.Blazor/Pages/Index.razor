@@ -66,10 +66,10 @@
                         Height="32"
                         IsEnabled="@compactOverlayModeAllowed"
                         IsVisible="@WindowService.IsCompactOverlayModeSupportedByPlatform"
-                        ToolTip="Picture in picture"
+                        ToolTip="@(WindowService.IsCompactOverlayMode ? "Back to full view" : "Keep on top")"
                         @onclick="@OnToggleCompactOverlayModeButtonClick">
-                        <!-- TODO: Change FontIcon to support "Rotation" parameter, and change the icon to -->
-                    <FontIcon Glyph="@(WindowService.IsCompactOverlayMode ? '\uE97C' : '\uE97F')" />
+                    <FontIcon Glyph="@(WindowService.IsCompactOverlayMode ? '\uF42C' : '\uF364')"
+                              Rotation="@(WindowService.IsCompactOverlayMode ? -90 : 180)"/>
                 </Button>
             </StackPanel>
         </HeaderRight>

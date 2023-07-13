@@ -77,7 +77,7 @@ public sealed partial class GuiToolProvider
 
     /// <summary>
     /// Gets a hierarchical list containing all the tools available, ordered, to display in the top and body menu.
-    /// This includes "All tools" menu item, recents and favorites.
+    /// This includes "All tools" menu item, recent and favorites.
     /// </summary>
     public ReadOnlyObservableCollection<INotifyPropertyChanged?> HeaderAndBodyToolViewItems
     {
@@ -113,6 +113,11 @@ public sealed partial class GuiToolProvider
             return _footerToolViewItemsReadOnly;
         }
     }
+
+    /// <summary>
+    /// Raised when the list of favorite tools changed.
+    /// </summary>
+    public event EventHandler? FavoriteToolsChanged;
 
     /// <summary>
     /// Sets a tool as the most recently used one.
@@ -236,6 +241,8 @@ public sealed partial class GuiToolProvider
                 }
             }
         }
+
+        FavoriteToolsChanged?.Invoke(this, EventArgs.Empty);
     }
 
     /// <summary>
@@ -369,6 +376,16 @@ public sealed partial class GuiToolProvider
         {
             searchResultListToUpdate.Add(NoResultFoundItem);
         }
+    }
+
+    public GuiToolInstance? GetToolFromInternalName(string name)
+    {
+        if (string.IsNullOrEmpty(name))
+        {
+            return null;
+        }
+
+        return AllTools.FirstOrDefault(t => string.Equals(t.InternalComponentName, name, StringComparison.Ordinal));
     }
 
     private void BuildGuiToolInstances(
@@ -571,16 +588,6 @@ public sealed partial class GuiToolProvider
         }
 
         throw new InvalidDataException($"Unable to find the {nameof(ToolDisplayInformationAttribute.ResourceManagerAssemblyIdentifier)} '{resourceManagerAssemblyIdentifier}'.");
-    }
-
-    private GuiToolInstance? GetToolFromInternalName(string name)
-    {
-        if (string.IsNullOrEmpty(name))
-        {
-            return null;
-        }
-
-        return AllTools.FirstOrDefault(t => string.Equals(t.InternalComponentName, name, StringComparison.Ordinal));
     }
 
     private GroupViewItem CreateFavoriteGroupViewItem(IReadOnlyList<GuiToolViewItem> favoriteTools)

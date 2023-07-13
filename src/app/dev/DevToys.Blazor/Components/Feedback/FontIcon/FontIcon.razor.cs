@@ -7,6 +7,7 @@ public partial class FontIcon : StyledComponentBase
         .AddStyle("width", Width.ToPx())
         .AddStyle("font-size", Width.ToPx())
         .AddStyle("line-height", Height.ToPx())
+        .AddStyle("transform", $"rotate({Rotation}deg)", Rotation != 0)
         .AddStyle(Style)
         .Build();
 
@@ -23,6 +24,9 @@ public partial class FontIcon : StyledComponentBase
 
     [Parameter]
     public string FontFamily { get; set; } = "FluentSystemIcons";
+
+    [Parameter]
+    public int Rotation { get; set; }
 
     protected override void OnParametersSet()
     {

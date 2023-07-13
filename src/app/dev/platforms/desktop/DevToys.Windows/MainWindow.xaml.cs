@@ -114,6 +114,8 @@ public partial class MainWindow : MicaWindowWithOverlay
         blazorWebView.Focus();
         blazorWebView.WebView.Focus();
         LogUiLoadTime((DateTime.Now - _uiLoadingTime).TotalMilliseconds);
+
+        InitializeLowPriorityServices();
     }
 
     private static void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -161,6 +163,12 @@ public partial class MainWindow : MicaWindowWithOverlay
         _logger = loggerFactory.CreateLogger<MainWindow>();
 
         return serviceProvider;
+    }
+
+    private void InitializeLowPriorityServices()
+    {
+        // Start the Taskbar Jump List service after the web view loaded.
+        _mefComposer.Provider.Import<TaskbarJumpListService>();
     }
 
     private void LogUnhandledException(Exception exception)

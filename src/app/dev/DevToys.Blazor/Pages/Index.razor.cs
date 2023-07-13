@@ -45,7 +45,7 @@ public partial class Index : MefComponentBase
     {
         base.OnInitialized();
         ViewModel.SelectedMenuItemChanged += ViewModel_SelectedMenuItemChanged;
-        ViewModel.SelectedMenuItem = ViewModel.HeaderAndBodyToolViewItems[0];
+        ViewModel.SelectedMenuItem ??= ViewModel.HeaderAndBodyToolViewItems[0];
         ContextMenuService.IsContextMenuOpenedChanged += ContextMenuService_IsContextMenuOpenedChanged;
         WindowService.WindowActivated += WindowService_WindowActivated;
         WindowService.WindowDeactivated += WindowService_WindowDeactivated;
