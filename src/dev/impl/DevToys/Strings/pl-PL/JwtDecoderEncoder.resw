@@ -136,10 +136,10 @@
     <value>Typ</value>
   </data>
   <data name="Value" xml:space="preserve">
-    <value>Value</value>
+    <value>Wartość</value>
   </data>
   <data name="DescriptionHeader" xml:space="preserve">
-    <value>Description</value>
+    <value>Opis</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Dekoduj nagłówek JWT, jego zawartość oraz sygnaturę</value>
@@ -205,10 +205,10 @@
     <value>Podpis</value>
   </data>
   <data name="JwtNotValidated" xml:space="preserve">
-    <value>Token not validated (no parameters selected)</value>
+    <value>Token nie został zatwierdzony (nie wybrano żadnych parametrów)</value>
   </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>Token Validated</value>
+    <value>Token zweryfikowany</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
     <value>Nieprawidłowy Klucz Publiczny</value>
@@ -223,7 +223,7 @@
     <value>Zatwierdź odbiorców</value>
   </data>
   <data name="DecodeValidateIssuerSigningKey" xml:space="preserve">
-    <value>Validate issuer signing key</value>
+    <value>Sprawdź poprawność klucza podpisującego wystawcę</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
     <value>Zatwierdź emitenta</value>
@@ -274,19 +274,19 @@
     <value>Nieprawidłowy Podpis</value>
   </data>
   <data name="NoDescription" xml:space="preserve">
-    <value>No description</value>
+    <value>Brak opisu</value>
   </data>
   <data name="iss" xml:space="preserve">
-    <value>The "iss" (issuer) claim identifies the principal that issued the JWT. The processing of this claim is generally application specific. The "iss" value is a case-sensitive string containing a StringOrURI value. Use of this claim is OPTIONAL.</value>
+    <value>Oświadczenie "iss" (wystawca) identyfikuje zleceniodawcę, który wystawił JWT. Przetwarzanie tego oświadczenia jest generalnie specyficzne dla aplikacji. Wartość "iss" to rozróżniający wielkość liter ciąg znaków zawierający wartość StringOrURI. Użycie tego oświadczenia jest OPCJONALNE.</value>
   </data>
   <data name="sub" xml:space="preserve">
-    <value>The "sub" (subject) claim identifies the principal that is the subject of the JWT. The claims in a JWT are normally statements about the subject. The subject value MUST either be scoped to be locally unique in the context of the issuer or be globally unique. The processing of this claim is generally application specific. The "sub" value is a case-sensitive string containing a StringOrURI value. Use of this claim is OPTIONAL.</value>
+    <value>Oświadczenie "sub" (temat) identyfikuje podmiot, który jest przedmiotem JWT. Oświadczenia w JWT są zwykle stwierdzeniami dotyczącymi podmiotu. Wartość subject MUSI być określona tak, aby była lokalnie unikalna w kontekście wystawcy lub globalnie unikalna. Przetwarzanie tego oświadczenia jest zasadniczo specyficzne dla aplikacji. Wartość "sub" to rozróżniający wielkość liter ciąg znaków zawierający wartość StringOrURI. Użycie tego oświadczenia jest OPCJONALNE.</value>
   </data>
   <data name="aud" xml:space="preserve">
-    <value>The "aud" (audience) claim identifies the recipients that the JWT is intended for. Each principal intended to process the JWT MUST identify itself with a value in the audience claim. If the principal processing the claim does not identify itself with a value in the "aud" claim when this claim is present, then the JWT MUST be rejected. In the general case, the "aud" value is an array of case-sensitive strings, each containing a StringOrURI value. In the special case when the JWT has one audience, the "aud" value MAY be a single case-sensitive string containing a StringOrURI value. The interpretation of audience values is generally application specific. Use of this claim is OPTIONAL.</value>
+    <value>Oświadczenie "aud" (audience) identyfikuje odbiorców, dla których przeznaczony jest JWT. Każdy podmiot, który ma przetwarzać JWT, MUSI zidentyfikować się za pomocą wartości w oświadczeniu odbiorców. Jeśli podmiot przetwarzający oświadczenie nie identyfikuje się z wartością w oświadczeniu "aud", gdy to oświadczenie jest obecne, wówczas JWT MUSI zostać odrzucone. W ogólnym przypadku wartość "aud" jest tablicą łańcuchów z rozróżnianiem wielkości liter, z których każdy zawiera wartość StringOrURI. W szczególnym przypadku, gdy JWT ma jednego odbiorcę, wartość "aud" MOŻE być pojedynczym rozróżniającym wielkość liter ciągiem znaków zawierającym wartość StringOrURI. Interpretacja wartości odbiorców jest zasadniczo zależna od aplikacji. Użycie tego oświadczenia jest OPCJONALNE.</value>
   </data>
   <data name="exp" xml:space="preserve">
-    <value>The "exp" (expiration time) claim identifies the expiration time on or after which the JWT MUST NOT be accepted for processing. The processing of the "exp" claim requires that the current date/time MUST be before the expiration date/time listed in the "exp" claim. Implementers MAY provide for some small leeway, usually no more than a few minutes, to account for clock skew. Its value MUST be a number containing a NumericDate value. Use of this claim is OPTIONAL.</value>
+    <value>Oświadczenie "exp" (czas wygaśnięcia) określa czas wygaśnięcia, w którym lub po którym JWT NIE MOŻE zostać zaakceptowany do przetwarzania. Przetwarzanie oświadczenia "exp" wymaga, aby bieżąca data/godzina MUSIAŁA być wcześniejsza niż data/godzina wygaśnięcia wymieniona w oświadczeniu "exp". Implementatorzy MOGĄ zapewnić pewną niewielką swobodę, zwykle nie większą niż kilka minut, w celu uwzględnienia odchylenia zegara. Jego wartość MUSI być liczbą zawierającą wartość NumericDate. Użycie tego oświadczenia jest OPCJONALNE.</value>
   </data>
   <data name="nbf" xml:space="preserve">
     <value>The "nbf" (not before) claim identifies the time before which the JWT MUST NOT be accepted for processing. The processing of the "nbf" claim requires that the current date/time MUST be after or equal to the not-before date/time listed in the "nbf" claim. Implementers MAY provide for some small leeway, usually no more than a few minutes, to account for clock skew. Its value MUST be a number containing a NumericDate value. Use of this claim is OPTIONAL.</value>
