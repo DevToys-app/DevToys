@@ -308,7 +308,14 @@ exp クレームの処理では、現在の日付/時刻が exp クレーム値�
 このクレームの使用は任意です。</value>
   </data>
   <data name="nbf" xml:space="preserve">
-    <value>The "nbf" (not before) claim identifies the time before which the JWT MUST NOT be accepted for processing. The processing of the "nbf" claim requires that the current date/time MUST be after or equal to the not-before date/time listed in the "nbf" claim. Implementers MAY provide for some small leeway, usually no more than a few minutes, to account for clock skew. Its value MUST be a number containing a NumericDate value. Use of this claim is OPTIONAL.</value>
+    <value>[RFC 7519/OPTIONAL]
+not before。
+JWT の使用開始日時です。
+nbf クレーム値より前の日付/時刻では、JWT の処理が行われないようにしなければなりません (MUST NOT)。
+nbf クレーム値の処理では、現在の日付/時刻が使用開始日時と同じかそれ以降である必要があります。
+実装者は、クロックスキューを考慮して、多少 (通常は数分以内) の猶予を設けることができます (MAY)。
+この値は、1970-01-01T0:0:0Z からの経過秒数 (NumericDate) を表す JSON 数値で示す必要があります (MUST)。
+このクレームの使用は任意です。</value>
   </data>
   <data name="iat" xml:space="preserve">
     <value>[RFC 7519/OPTIONAL]
