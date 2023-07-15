@@ -1,4 +1,5 @@
 ﻿@namespace DevToys.Blazor.Pages.SubPages
+@using DevToys.Localization.Strings.ToolGroupPage;
 @inherits MefComponentBase
 
 <GridView Class="entrance-theme-transition tool-group-grid-view"
@@ -37,4 +38,16 @@
             </div>
         </div>
     </ItemTemplate>
+    <Footer>
+        @if (ViewModel.DisplayFooter)
+        {
+            <InfoBar Severity="InfoBarSeverity.Informational"
+                     IsClosable="false"
+                     IsOpened="true"
+                     Title="@ToolGroupPage.NotFindingTool"
+                     Message="@ToolGroupPage.NotFindingToolOpenFeatureRequest"
+                     ActionButtonText="@ToolGroupPage.NotFindingToolSuggestIdea"
+                     ActionButtonClicked="@OnSuggestToolIdeaClick" />
+        }
+    </Footer>
 </GridView>

@@ -129,6 +129,11 @@
         &.action {
             margin-top: 7px;
         }
+
+        .close-button {
+            height: 36px;
+            width: 36px;
+        }
     }
 }
 
@@ -149,7 +154,12 @@ div[data-compactmode] {
             margin-bottom: auto;
 
             &.action {
-                margin-top: 7px;
+                margin-top: 3px;
+            }
+
+            .close-button {
+                height: 16px;
+                width: 24px;
             }
         }
     }

@@ -3,6 +3,7 @@
 @using DevToys.Blazor.Pages.SubPages
 @using DevToys.Core.Tools.ViewItems;
 @using DevToys.Core.Tools;
+@using DevToys.Localization.Strings.MainWindow;
 @namespace DevToys.Blazor.Pages
 @inherits MefComponentBase
 
@@ -16,7 +17,6 @@
              OnClick="ContextMenuService.OnCloseContextMenuRequested" />
 
     <!-- Navigation View -->
-    <!-- TODO: Localize -->
     <NavBar @ref=_navBar
             TElement="INotifyPropertyChanged"
             TSearchElement="GuiToolViewItem"
@@ -26,7 +26,7 @@
             @bind-SelectedItem="ViewModel.SelectedMenuItem"
             OnBackButtonClicked="OnBackButtonClicked"
             OnHiddenStateChanged="OnHiddenStateChanged"
-            SearchBarPlaceholder="Type to search for tools..."
+            SearchBarPlaceholder="@MainWindow.Search"
             SearchQueryChanged="OnSearchQueryChanged"
             SearchQuerySubmitted="OnSearchQuerySubmitted"
             SearchResultItems="ViewModel.SearchResults"
@@ -35,7 +35,7 @@
         <HeaderLeft>
             @if (ViewModel.SelectedMenuItem is GuiToolViewItem guiToolViewItem && WindowService.IsCompactOverlayMode)
             {
-                TitleBarInfoProvider.Title = "DevToys - " + guiToolViewItem.ToolInstance.LongOrShortDisplayTitle;
+                TitleBarInfoProvider.Title = string.Format(MainWindow.WindowTitleWithToolName, guiToolViewItem.ToolInstance.LongOrShortDisplayTitle);
                 if (OperatingSystem.IsWindows())
                 {
                     <TextBlock Text="@TitleBarInfoProvider.Title"
@@ -45,7 +45,7 @@
             }
             else
             {
-                TitleBarInfoProvider.Title = "DevToys";
+                TitleBarInfoProvider.Title = MainWindow.WindowTitle;
                 if (OperatingSystem.IsWindows())
                 {
                     <TextBlock Text="@TitleBarInfoProvider.Title"
@@ -67,7 +67,7 @@
                         Height="32"
                         IsEnabled="@compactOverlayModeAllowed"
                         IsVisible="@WindowService.IsCompactOverlayModeSupportedByPlatform"
-                        ToolTip="@(WindowService.IsCompactOverlayMode ? "Back to full view" : "Keep on top")"
+                        ToolTip="@(WindowService.IsCompactOverlayMode ? MainWindow.PictureInPictureExpand : MainWindow.PictureInPictureContract)"
                         @onclick="@OnToggleCompactOverlayModeButtonClick">
                     <FontIcon Glyph="@(WindowService.IsCompactOverlayMode ? '\uF42C' : '\uF364')"
                               Rotation="@(WindowService.IsCompactOverlayMode ? -90 : 180)"/>

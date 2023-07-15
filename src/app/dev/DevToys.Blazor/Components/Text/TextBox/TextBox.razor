@@ -56,8 +56,8 @@
                             <Button Appearance="ButtonAppearance.Stealth"
                                     Class="text-box-clear-button"
                                     HorizontalAlignment="UIHorizontalAlignment.Right"
-                                    title="Clear"
-                                    aria-label="Clear"
+                                    title="@DevToys.Localization.Strings.TextBox.TextBox.Clear"
+                                    aria-label="@DevToys.Localization.Strings.TextBox.TextBox.Clear"
                                     @onclick="OnClearClick">
                                 <FontIcon Glyph="@('\uF369')" />
                             </Button>
@@ -67,15 +67,15 @@
                         {
                             <Button Appearance="ButtonAppearance.Stealth"
                                     HorizontalAlignment="UIHorizontalAlignment.Right"
-                                    title="Increase"
-                                    aria-label="Increase"
+                                    title="@DevToys.Localization.Strings.TextBox.TextBox.Increase"
+                                    aria-label="@DevToys.Localization.Strings.TextBox.TextBox.Increase"
                                     @onclick="OnIncreaseClickAsync">
                                 <FontIcon Glyph="@('\uF2B6')" />
                             </Button>
                             <Button Appearance="ButtonAppearance.Stealth"
                                     HorizontalAlignment="UIHorizontalAlignment.Right"
-                                    title="Decrease"
-                                    aria-label="Decrease"
+                                    title="@DevToys.Localization.Strings.TextBox.TextBox.Decrease"
+                                    aria-label="@DevToys.Localization.Strings.TextBox.TextBox.Decrease"
                                     @onclick="OnDecreaseClickAsync">
                                 <FontIcon Glyph="@('\uF2A3')" />
                             </Button>

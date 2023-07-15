@@ -6,6 +6,7 @@ using DevToys.Business.ViewModels;
 using DevToys.Core.Models;
 using DevToys.Core.Tools;
 using DevToys.Windows.Helpers;
+using DevToys.Windows.Strings.TaskBar;
 
 namespace DevToys.Windows.Core;
 
@@ -67,8 +68,7 @@ internal class TaskbarJumpListService : ObservableRecipient
                 GuiToolInstance tool = _guiToolProvider.AllTools[i];
                 if (_guiToolProvider.GetToolIsFavorite(tool))
                 {
-                    // TODO: Localize.
-                    AddToolToJumpList(jumpList, tool, "Favorite tools");
+                    AddToolToJumpList(jumpList, tool, TaskBar.FavoriteTools);
                 }
             }
 

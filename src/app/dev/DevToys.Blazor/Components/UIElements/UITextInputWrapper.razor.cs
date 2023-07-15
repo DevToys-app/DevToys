@@ -383,7 +383,7 @@ public partial class UITextInputWrapper : MefComponentBase
 
                         var noToolDetectedMenuItem = new SmartDetectionDropDownListItem
                         {
-                            Text = "No tool to suggest",
+                            Text = DevToys.Localization.Strings.UITextInputWrapper.UITextInputWrapper.NoToolSuggested,
                             IsEnabled = false
                         };
 
@@ -406,7 +406,6 @@ public partial class UITextInputWrapper : MefComponentBase
 
     private void BuildCollapsedMenu()
     {
-        // TODO: Localize
         CollapsedDropDownListItems.Clear();
 
         if (!UITextInput.IsReadOnly)
@@ -414,19 +413,19 @@ public partial class UITextInputWrapper : MefComponentBase
             CollapsedDropDownListItems.Add(new DropDownListItem
             {
                 IconGlyph = '\uF2D5',
-                Text = "Paste",
+                Text = DevToys.Localization.Strings.UITextInputWrapper.UITextInputWrapper.PasteButonText,
                 OnClick = EventCallback.Factory.Create<DropDownListItem>(this, OnPasteButtonClickAsync)
             });
             CollapsedDropDownListItems.Add(new DropDownListItem
             {
                 IconGlyph = '\uF378',
-                Text = "Load a file",
+                Text = DevToys.Localization.Strings.UITextInputWrapper.UITextInputWrapper.LoadFileButtonText,
                 OnClick = EventCallback.Factory.Create<DropDownListItem>(this, OnLoadFileButtonClickAsync)
             });
             CollapsedDropDownListItems.Add(new DropDownListItem
             {
                 IconGlyph = '\uF369',
-                Text = "Clear",
+                Text = DevToys.Localization.Strings.UITextInputWrapper.UITextInputWrapper.ClearButtonText,
                 OnClick = EventCallback.Factory.Create<DropDownListItem>(this, OnClearButtonClickAsync)
             });
         }
@@ -436,13 +435,13 @@ public partial class UITextInputWrapper : MefComponentBase
             CollapsedDropDownListItems.Add(new DropDownListItem
             {
                 IconGlyph = '\uF67F',
-                Text = "Save as...",
+                Text = DevToys.Localization.Strings.UITextInputWrapper.UITextInputWrapper.SaveAsButtonText,
                 OnClick = EventCallback.Factory.Create<DropDownListItem>(this, OnSaveAsButtonClickAsync)
             });
             CollapsedDropDownListItems.Add(new DropDownListItem
             {
                 IconGlyph = '\uF32B',
-                Text = "Copy",
+                Text = DevToys.Localization.Strings.UITextInputWrapper.UITextInputWrapper.CopyButtonText,
                 OnClick = EventCallback.Factory.Create<DropDownListItem>(this, OnCopyButtonClick)
             });
         }

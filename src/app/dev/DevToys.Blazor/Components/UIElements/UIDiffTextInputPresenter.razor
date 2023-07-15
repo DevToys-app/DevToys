@@ -2,7 +2,6 @@
 @using DevToys.Api;
 @inherits JSStyledComponentBase
 
-<!-- TODO: Localize -->
 <Grid id="@ExtendedId"
       Class="ui-text-input-wrapper"
       IsVisible="@UIDiffTextInput.IsVisible"
@@ -41,7 +40,7 @@
         <StackPanel Wrap="false">
             @if (@UIDiffTextInput.IsExtendableToFullScreen)
             {
-                <Button ToolTip="@(_isInFullScreenMode ? "Shrink" : "Extend")"
+                <Button ToolTip="@(_isInFullScreenMode ? DevToys.Localization.Strings.UITextInputWrapper.UITextInputWrapper.ShrinkButtonToolTip : DevToys.Localization.Strings.UITextInputWrapper.UITextInputWrapper.ExtendButtonToolTip)"
                     @onclick="@OnToggleFullScreenButtonClickAsync">
                     <FontIcon Glyph="@(_isInFullScreenMode ? '\uF165' : '\uF15F')" />
                 </Button>

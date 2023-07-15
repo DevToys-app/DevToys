@@ -16,15 +16,25 @@
     <PackageReference Include="System.ComponentModel.Composition" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Strings\InfoBar\InfoBar.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>InfoBar.resx</DependentUpon>
+    </Compile>
     <Compile Update="Strings\MainWindow\MainWindow.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>MainWindow.resx</DependentUpon>
     </Compile>
-    <Compile Update="Strings\Settings\Settings.Designer.cs">
+    <Compile Update="Strings\TextBox\TextBox.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.resx</DependentUpon>
+      <DependentUpon>TextBox.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Strings\ToggleSwitch\ToggleSwitch.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ToggleSwitch.resx</DependentUpon>
     </Compile>
     <Compile Update="Strings\ToolGroupPage\ToolGroupPage.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -36,6 +46,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ToolPage.resx</DependentUpon>
     </Compile>
+    <Compile Update="Strings\UIFileSelectorPresenter\UIFileSelectorPresenter.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UIFileSelectorPresenter.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Strings\UITextInputWrapper\UITextInputWrapper.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UITextInputWrapper.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="**\*.resx" />
@@ -46,5 +66,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DevToys.Api\DevToys.Api.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Update="Strings\UIFileSelectorPresenter\UIFileSelectorPresenter.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UIFileSelectorPresenter.Designer.cs</LastGenOutput>
+    </AdditionalFiles>
   </ItemGroup>
 </Project>

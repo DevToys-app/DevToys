@@ -2,6 +2,7 @@
 using System.Text;
 using DevToys.Api;
 using DevToys.Windows.Helpers;
+using DevToys.Windows.Strings.Other;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 
@@ -194,8 +195,7 @@ internal sealed class FileStorage : IFileStorage
         {
             filters.Remove(filters.Length - 1, 1);
 
-            // TODO: Localize.
-            string allFiles = "All " + string.Join(", ", allFileTypesDescription);
+            string allFiles = string.Format(Other.AllFiles, string.Join(", ", allFileTypesDescription));
             filters.Insert(0, $"{allFiles}|{string.Join(";", allFileTypes)}|");
         }
 

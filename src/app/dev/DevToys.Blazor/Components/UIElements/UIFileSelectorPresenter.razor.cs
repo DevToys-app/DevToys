@@ -199,7 +199,6 @@ public partial class UIFileSelectorPresenter : MefComponentBase
         return UIFileSelector.AllowedFileExtensions.Select(fileType => fileType.Trim('*').Trim('.').ToLower()).ToArray();
     }
 
-    // TODO: Localize
     private void UpdateInstructionStrings()
     {
         string[] allowedFileExtensions = GetTreatedFileExtensions();
@@ -210,11 +209,11 @@ public partial class UIFileSelectorPresenter : MefComponentBase
         {
             if (UIFileSelector.CanSelectManyFiles)
             {
-                DragDropInstructions = "Drag & drop any files here"; // FileSelectorDragDropAnyFiles
+                DragDropInstructions = DevToys.Localization.Strings.UIFileSelectorPresenter.UIFileSelectorPresenter.FileSelectorDragDropAnyFiles;
             }
             else
             {
-                DragDropInstructions = "Drag & drop any file here"; // FileSelectorDragDropAnyFile
+                DragDropInstructions = DevToys.Localization.Strings.UIFileSelectorPresenter.UIFileSelectorPresenter.FileSelectorDragDropAnyFile;
             }
         }
         else if (allowedFileExtensions.Length == 1)
@@ -228,20 +227,20 @@ public partial class UIFileSelectorPresenter : MefComponentBase
             {
                 DragDropInstructions
                     = string.Format(
-                        "Drag & drop any {0} files here", // FileSelectorDragDropAnySpecificFiles
+                        DevToys.Localization.Strings.UIFileSelectorPresenter.UIFileSelectorPresenter.FileSelectorDragDropAnySpecificFiles,
                         extensionsString);
             }
             else
             {
                 DragDropInstructions
                     = string.Format(
-                        "Drag & drop a {0} file here", // FileSelectorDragDropAnySpecificFile
+                        DevToys.Localization.Strings.UIFileSelectorPresenter.UIFileSelectorPresenter.FileSelectorDragDropAnySpecificFile,
                         extensionsString);
             }
 
             HasInvalidFilesSelectedIndication
                     = string.Format(
-                        "Only {0} file(s) can be used.", // FileSelectorInvalidSelectedFiles
+                        DevToys.Localization.Strings.UIFileSelectorPresenter.UIFileSelectorPresenter.FileSelectorInvalidSelectedFiles,
                         extensionsString);
         }
         else
@@ -255,20 +254,20 @@ public partial class UIFileSelectorPresenter : MefComponentBase
             {
                 DragDropInstructions
                     = string.Format(
-                        "Drag & drop any {0} files here", // FileSelectorDragDropAnySpecificFiles
+                        DevToys.Localization.Strings.UIFileSelectorPresenter.UIFileSelectorPresenter.FileSelectorDragDropAnySpecificFiles,
                         extensionsString);
             }
             else
             {
                 DragDropInstructions
                     = string.Format(
-                        "Drag & drop a {0} file here", // FileSelectorDragDropAnySpecificFile
+                        DevToys.Localization.Strings.UIFileSelectorPresenter.UIFileSelectorPresenter.FileSelectorDragDropAnySpecificFile,
                         extensionsString);
             }
 
             HasInvalidFilesSelectedIndication
                     = string.Format(
-                        "Only {0} file(s) can be used.", // FileSelectorInvalidSelectedFiles
+                        DevToys.Localization.Strings.UIFileSelectorPresenter.UIFileSelectorPresenter.FileSelectorInvalidSelectedFiles,
                         extensionsString);
         }
     }

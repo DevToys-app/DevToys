@@ -1,6 +1,7 @@
 @namespace DevToys.Blazor.Components
 @using DevToys.Core.Tools.ViewItems;
 @using DevToys.Core;
+@using DevToys.Localization.Strings.MainWindow;
 
 @inherits JSStyledComponentBase
 @typeparam TElement
@@ -34,8 +35,8 @@
                                 MarginLeft="5"
                                 IsEnabled="@CanGoBack"
                                 IsVisible="@(!WindowService.IsCompactOverlayMode)"
-                                title="Back"
-                                aria-label="Back"
+                                title="@MainWindow.Back"
+                                aria-label="@MainWindow.Back"
                                 @onclick="OnBackButtonClicked">
                             <FontIcon Glyph="@('\uF15B')" />
                         </Button>
@@ -48,8 +49,8 @@
                                 MarginBottom="0"
                                 MarginLeft="0"
                                 IsVisible="@(_sidebarState.IsHidden && !WindowService.IsCompactOverlayMode)"
-                                title="Toggle Navigation"
-                                aria-label="Toggle Navigation"
+                                title="@MainWindow.ToggleNavigation"
+                                aria-label="@MainWindow.ToggleNavigation"
                                 aria-controls="@NavId"
                                 aria-expanded="@_sidebarState.IsCollapsed"
                                 @onclick="OnToggleSidebarClick">
@@ -70,7 +71,6 @@
         <!-- Sidebar -->
         <nav id="@NavId" class="@(_sidebarState.NavBarClassNames)">
             <div class="sidebar-header">
-                @* TODO: Localize *@
                 <Button Appearance="ButtonAppearance.Stealth"
                         Class="nav-bar-button-icon"
                         HorizontalAlignment="UIHorizontalAlignment.Left"
@@ -81,8 +81,8 @@
                         MarginBottom="0"
                         MarginLeft="5"
                         IsVisible="@(!_sidebarState.IsHidden)"
-                        title="Toggle Navigation"
-                        aria-label="Toggle Navigation"
+                        title="@MainWindow.ToggleNavigation"
+                        aria-label="@MainWindow.ToggleNavigation"
                         aria-controls="@NavId"
                         aria-expanded="@_sidebarState.IsCollapsed"
                         @onclick="OnToggleSidebarClick">
@@ -99,8 +99,8 @@
                         MarginBottom="8"
                         MarginLeft="5"
                         IsVisible="@_sidebarState.IsCollapsed"
-                        title="Click to search"
-                        aria-label="Search"
+                        title="@MainWindow.SearchButtonTootip"
+                        aria-label="@MainWindow.SearchButtonAccessibleName"
                         @onclick="OnSearchButtonClick">
                     <FontIcon Glyph="@('\uF68F')" />
                 </Button>

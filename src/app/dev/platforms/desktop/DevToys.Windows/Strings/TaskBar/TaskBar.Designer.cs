@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DevToys.Blazor.BuiltInTools.Settings {
+namespace DevToys.Windows.Strings.TaskBar {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace DevToys.Blazor.BuiltInTools.Settings {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Settings {
+    internal class TaskBar {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Settings() {
+        internal TaskBar() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DevToys.Blazor.BuiltInTools.Settings {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Blazor.BuiltInTools.Settings.Settings", typeof(Settings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Windows.Strings.TaskBar.TaskBar", typeof(TaskBar).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,38 +61,11 @@ namespace DevToys.Blazor.BuiltInTools.Settings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Settings.
+        ///   Looks up a localized string similar to Favorite tools.
         /// </summary>
-        internal static string AccessibleName {
+        internal static string FavoriteTools {
             get {
-                return ResourceManager.GetString("AccessibleName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Same as the system.
-        /// </summary>
-        internal static string DefaultLanguage {
-            get {
-                return ResourceManager.GetString("DefaultLanguage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Customize DevToys look &amp; feel.
-        /// </summary>
-        internal static string Description {
-            get {
-                return ResourceManager.GetString("Description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Settings.
-        /// </summary>
-        internal static string ShortDisplayTitle {
-            get {
-                return ResourceManager.GetString("ShortDisplayTitle", resourceCulture);
+                return ResourceManager.GetString("FavoriteTools", resourceCulture);
             }
         }
     }

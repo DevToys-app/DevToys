@@ -73,6 +73,7 @@
                 {
                     <div class="info-bar-button action">
                         <Button Appearance="@(IsActionButtonAccent ? ButtonAppearance.Accent : ButtonAppearance.Neutral)"
+                                VerticalAlignment="UIVerticalAlignment.Center"
                                 @onclick="@OnActionButtonClicked">
                             <TextBlock Text="@ActionButtonText" NoWrap="true"/>
                         </Button>
@@ -81,12 +82,10 @@
 
                 @if (IsClosable)
                 {
-                    <!-- TODO: Localize-->
                     <div class="info-bar-button">
-                        <Button Appearance="ButtonAppearance.Stealth"
-                                aria-label="Close"
-                                Height="36"
-                                Width="36"
+                        <Button Class="close-button"
+                                Appearance="ButtonAppearance.Stealth"
+                                aria-label="@DevToys.Localization.Strings.InfoBar.InfoBar.CloseButtonAccessibleName"
                                 Style="padding: 0px;"
                                 @onclick="@OnCloseButtonClicked">
                             <FontIcon Glyph="@('\uF369')" />

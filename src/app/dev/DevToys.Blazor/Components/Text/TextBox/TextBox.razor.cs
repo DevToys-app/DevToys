@@ -9,27 +9,27 @@ public partial class TextBox : MefComponentBase, IFocusable
         = new()
         {
             IconGlyph = '\uF33A',
-            Text = "Cut", // TODO: Localize
+            Text = DevToys.Localization.Strings.TextBox.TextBox.Cut,
             KeyboardShortcut = "Ctrl+X"
         };
     private static readonly ContextMenuItem CopyContextMenuItem
         = new()
         {
             IconGlyph = '\uF32B',
-            Text = "Copy", // TODO: Localize
+            Text = DevToys.Localization.Strings.TextBox.TextBox.Copy,
             KeyboardShortcut = "Ctrl+C"
         };
     private static readonly ContextMenuItem PasteContextMenuItem
         = new()
         {
             IconGlyph = '\uF2D5',
-            Text = "Paste", // TODO: Localize
+            Text = DevToys.Localization.Strings.TextBox.TextBox.Paste,
             KeyboardShortcut = "Ctrl+V"
         };
     private static readonly ContextMenuItem SelectAllContextMenuItem
         = new()
         {
-            Text = "Select All", // TODO: Localize
+            Text = DevToys.Localization.Strings.TextBox.TextBox.SelectAll,
             KeyboardShortcut = "Ctrl+A"
         };
 

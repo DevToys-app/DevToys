@@ -123,11 +123,20 @@
   <data name="AllToolsDisplayTitle" xml:space="preserve">
     <value>All tools</value>
   </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
   <data name="FavoriteToolsAccessibleName" xml:space="preserve">
     <value>Favorite tools</value>
   </data>
   <data name="FavoriteToolsDisplayTitle" xml:space="preserve">
     <value>Favorites</value>
+  </data>
+  <data name="PictureInPictureContract" xml:space="preserve">
+    <value>Keep on top</value>
+  </data>
+  <data name="PictureInPictureExpand" xml:space="preserve">
+    <value>Back to full view</value>
   </data>
   <data name="RecentToolsDisplayTitle" xml:space="preserve">
     <value>Recents</value>
@@ -135,8 +144,17 @@
   <data name="Search" xml:space="preserve">
     <value>Type to search for tools...</value>
   </data>
+  <data name="SearchButtonAccessibleName" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SearchButtonTootip" xml:space="preserve">
+    <value>Click to search</value>
+  </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
     <value>No results found</value>
+  </data>
+  <data name="ToggleNavigation" xml:space="preserve">
+    <value>Toggle Navigation</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>

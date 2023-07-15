@@ -79,6 +79,15 @@ namespace DevToys.Localization.Strings.MainWindow {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string Back {
+            get {
+                return ResourceManager.GetString("Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Favorite tools.
         /// </summary>
         public static string FavoriteToolsAccessibleName {
@@ -93,6 +102,24 @@ namespace DevToys.Localization.Strings.MainWindow {
         public static string FavoriteToolsDisplayTitle {
             get {
                 return ResourceManager.GetString("FavoriteToolsDisplayTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keep on top.
+        /// </summary>
+        public static string PictureInPictureContract {
+            get {
+                return ResourceManager.GetString("PictureInPictureContract", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Back to full view.
+        /// </summary>
+        public static string PictureInPictureExpand {
+            get {
+                return ResourceManager.GetString("PictureInPictureExpand", resourceCulture);
             }
         }
         
@@ -115,11 +142,38 @@ namespace DevToys.Localization.Strings.MainWindow {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string SearchButtonAccessibleName {
+            get {
+                return ResourceManager.GetString("SearchButtonAccessibleName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click to search.
+        /// </summary>
+        public static string SearchButtonTootip {
+            get {
+                return ResourceManager.GetString("SearchButtonTootip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No results found.
         /// </summary>
         public static string SearchNoResultsFound {
             get {
                 return ResourceManager.GetString("SearchNoResultsFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle Navigation.
+        /// </summary>
+        public static string ToggleNavigation {
+            get {
+                return ResourceManager.GetString("ToggleNavigation", resourceCulture);
             }
         }
         

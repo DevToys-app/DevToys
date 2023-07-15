@@ -2,7 +2,6 @@
 @using DevToys.Api;
 @inherits MefComponentBase
 
-<!-- TODO: Localize -->
 <Container id="@ExtendedId"
            IsVisible="@UIFileSelector.IsVisible"
            IsEnabled="@(UIFileSelector.IsEnabled && IsActuallyEnabled)"
@@ -29,7 +28,7 @@
 
         <TextBlock HorizontalAlignment="UIHorizontalAlignment.Center"
                    NoWrap="true"
-                   Text="or" />
+                   Text="@DevToys.Localization.Strings.UIFileSelectorPresenter.UIFileSelectorPresenter.Or" />
 
         <StackPanel HorizontalAlignment="UIHorizontalAlignment.Center"
                     Spacing="6"
@@ -37,7 +36,7 @@
             <Button VerticalAlignment="UIVerticalAlignment.Center"
                     Appearance="ButtonAppearance.Hyperlink"
                     @onclick="@OnBrowseFilesButtonClickAsync">
-                <TextBlock Text="Browse files" />
+                <TextBlock Text="@DevToys.Localization.Strings.UIFileSelectorPresenter.UIFileSelectorPresenter.BrowseFiles" />
             </Button>
 
             @if (@UIFileSelector.CanSelectManyFiles)
@@ -47,7 +46,7 @@
                 <Button VerticalAlignment="UIVerticalAlignment.Center"
                         Appearance="ButtonAppearance.Hyperlink"
                         @onclick="@OnBrowseFoldersButtonClickAsync">
-                    <TextBlock Text="Browse folders" />
+                    <TextBlock Text="@DevToys.Localization.Strings.UIFileSelectorPresenter.UIFileSelectorPresenter.BrowserFolders" />
                 </Button>
             }
 
@@ -56,7 +55,7 @@
             <Button VerticalAlignment="UIVerticalAlignment.Center"
                     Appearance="ButtonAppearance.Hyperlink"
                     @onclick="@OnPasteButtonClickAsync">
-                <TextBlock Text="Paste" />
+                <TextBlock Text="@DevToys.Localization.Strings.UIFileSelectorPresenter.UIFileSelectorPresenter.Paste" />
             </Button>
         </StackPanel>
 

@@ -61,7 +61,10 @@
                     }
                 }
 
-                @Footer
+                @if (Footer is not null)
+                {
+                    <div class="footer">@Footer</div>
+                }
         </ScrollViewer>
     </Container>
 </CascadingValue>

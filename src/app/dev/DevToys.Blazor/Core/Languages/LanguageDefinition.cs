@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using DevToys.Blazor.BuiltInTools.Settings;
 
 namespace DevToys.Blazor.Core.Languages;
 
@@ -37,7 +38,7 @@ public class LanguageDefinition
         if (string.IsNullOrEmpty(identifier))
         {
             Culture = CultureInfo.CurrentUICulture;
-            DisplayName = Localization.Strings.Settings.Settings.DefaultLanguage;
+            DisplayName = Settings.DefaultLanguage;
             InternalName = "default";
         }
         else

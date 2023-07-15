@@ -2,12 +2,11 @@
 @using DevToys.Api;
 @inherits ComponentBase
 
-<!-- TODO: Localize -->
 <ToggleSwitch id="@UISwitch.Id"
               IsVisible="@UISwitch.IsVisible"
               IsEnabled="@UISwitch.IsEnabled"
               HorizontalAlignment="@UISwitch.HorizontalAlignment"
               VerticalAlignment="@UISwitch.VerticalAlignment"
-              Text="@(UISwitch.IsOn ? (UISwitch.OnText ?? "On") : (UISwitch.OffText ?? "Off"))"
+              Text="@(UISwitch.IsOn ? (UISwitch.OnText ?? DevToys.Localization.Strings.ToggleSwitch.ToggleSwitch.On) : (UISwitch.OffText ?? DevToys.Localization.Strings.ToggleSwitch.ToggleSwitch.Off))"
               IsOn="@UISwitch.IsOn"
               OnCheckedChanged="@OnCheckedChanged"/>

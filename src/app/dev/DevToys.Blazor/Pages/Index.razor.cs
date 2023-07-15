@@ -136,7 +136,7 @@ public partial class Index : MefComponentBase
 
     private void OnMouseUp(MouseEventArgs ev)
     {
-        if (ev.Buttons == 3)
+        if (ev.Button == 3)
         {
             if (ViewModel.CanGoBack)
             {
