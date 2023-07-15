@@ -34,13 +34,31 @@ internal sealed partial class Clipboard : Api.IClipboard
         return null;
     }
 
+    public Task<string?> GetClipboardTextAsync()
+    {
+        // TODO
+        throw new NotImplementedException();
+    }
+
+    public Task<FileInfo[]?> GetClipboardFilesAsync()
+    {
+        // TODO
+        throw new NotImplementedException();
+    }
+
+    public Task<string?> GetClipboardBitmapAsync()
+    {
+        // TODO
+        throw new NotImplementedException();
+    }
+
     public Task SetClipboardBitmapAsync(string? data)
     {
         // TODO
         throw new NotImplementedException();
     }
 
-    public Task SetClipboardFilesAsync(string? data)
+    public Task SetClipboardFilesAsync(FileInfo[]? data)
     {
         // TODO
         throw new NotImplementedException();
@@ -52,6 +70,9 @@ internal sealed partial class Clipboard : Api.IClipboard
         throw new NotImplementedException();
     }
 
-    [LoggerMessage(1, LogLevel.Warning, "Failed to retrieve the clipboard data.")]
+    [LoggerMessage(0, LogLevel.Warning, "Failed to retrieve the clipboard data.")]
     partial void LogGetClipboardFailed(Exception ex);
+
+    [LoggerMessage(1, LogLevel.Error, "Failed to set the clipboard text.")]
+    partial void LogSetClipboardTextFailed(Exception ex);
 }

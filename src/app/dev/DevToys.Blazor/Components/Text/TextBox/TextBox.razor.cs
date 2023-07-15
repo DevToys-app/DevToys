@@ -240,8 +240,8 @@ public partial class TextBox : MefComponentBase, IFocusable
 
     private async Task OnPasteAsync(DropDownListItem _)
     {
-        object? clipboardData = await Clipboard.GetClipboardDataAsync();
-        if (clipboardData is string clipboardDataString)
+        string? clipboardDataString = await Clipboard.GetClipboardTextAsync();
+        if (clipboardDataString is not null)
         {
             TextSpan selection = await GetSelectionAsync();
             Text ??= string.Empty;

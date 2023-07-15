@@ -164,8 +164,8 @@ public partial class UITextInputWrapper : MefComponentBase
 
     private async Task OnPasteButtonClickAsync()
     {
-        object? clipboardContent = await Clipboard.GetClipboardDataAsync();
-        if (clipboardContent is string clipboardString)
+        string? clipboardString = await Clipboard.GetClipboardTextAsync();
+        if (clipboardString is not null)
         {
             if (SettingsProvider.GetSetting(PredefinedSettings.TextEditorPasteClearsText))
             {

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Specialized;
+using System.IO;
 using System.Windows.Threading;
 using DevToys.Windows.Helpers;
 using Microsoft.Extensions.Logging;
@@ -39,7 +40,7 @@ internal sealed partial class Clipboard : Api.IClipboard
                                 files.Add(new FileInfo(filePath));
                             }
                         }
-                        return files;
+                        return files.ToArray();
                     }
                     else if (System.Windows.Clipboard.ContainsImage())
                     {
@@ -56,16 +57,93 @@ internal sealed partial class Clipboard : Api.IClipboard
             });
     }
 
+    public Task<string?> GetClipboardTextAsync()
+    {
+        return ThreadHelper.RunOnUIThreadAsync<string?>(
+            DispatcherPriority.Background,
+            () =>
+            {
+                try
+                {
+                    if (System.Windows.Clipboard.ContainsText())
+                    {
+                        return System.Windows.Clipboard.GetText();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    LogGetClipboardFailed(ex);
+                }
+
+                return null;
+            });
+    }
+
+    public Task<FileInfo[]?> GetClipboardFilesAsync()
+    {
+        return ThreadHelper.RunOnUIThreadAsync<FileInfo[]?>(
+            DispatcherPriority.Background,
+            () =>
+            {
+                try
+                {
+                    if (System.Windows.Clipboard.ContainsFileDropList())
+                    {
+                        var files = new List<FileInfo>();
+                        foreach (string? filePath in System.Windows.Clipboard.GetFileDropList())
+                        {
+                            if (!string.IsNullOrEmpty(filePath))
+                            {
+                                files.Add(new FileInfo(filePath));
+                            }
+                        }
+                        return files.ToArray();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    LogGetClipboardFailed(ex);
+                }
+
+                return null;
+            });
+    }
+
+    public Task<string?> GetClipboardBitmapAsync()
+    {
+        // TODO
+        throw new NotImplementedException();
+    }
+
     public Task SetClipboardBitmapAsync(string? data)
     {
         // TODO
         throw new NotImplementedException();
     }
 
-    public Task SetClipboardFilesAsync(string? data)
+    public Task SetClipboardFilesAsync(FileInfo[]? data)
     {
-        // TODO
-        throw new NotImplementedException();
+        return ThreadHelper.RunOnUIThreadAsync(
+            DispatcherPriority.Background,
+            () =>
+            {
+                try
+                {
+                    var fileList = new StringCollection();
+                    if (data is not null)
+                    {
+                        for (int i = 0; i < data.Length; i++)
+                        {
+                            fileList.Add(data[i].FullName);
+                        }
+                    }
+                    System.Windows.Clipboard.SetFileDropList(fileList);
+                }
+                catch (Exception ex)
+                {
+                    LogSetClipboardTextFailed(ex);
+                }
+            });
     }
 
     public Task SetClipboardTextAsync(string? data)
