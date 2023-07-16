@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Collections.Specialized;
+using Foundation;
+using Microsoft.Extensions.Logging;
+using UIKit;
 using Uno.Extensions;
 
 namespace DevToys.MacOS.Core;
@@ -18,6 +21,21 @@ internal sealed partial class Clipboard : Api.IClipboard
     {
         try
         {
+            if (UIPasteboard.General.HasUrls && UIPasteboard.General.Urls is not null)
+            {
+                var files = new List<FileInfo>();
+                foreach (NSUrl filePath in UIPasteboard.General.Urls)
+                {
+                    if (filePath.AbsoluteString is not null && filePath.Path is not null)
+                    {
+                        if (filePath.AbsoluteString.StartsWith("file:///"))
+                        {
+                            files.Add(new FileInfo(filePath.Path));
+                        }
+                    }
+                }
+                return files.ToArray();
+            }
             if (Microsoft.Maui.ApplicationModel.DataTransfer.Clipboard.Default.HasText)
             {
                 return await Microsoft.Maui.ApplicationModel.DataTransfer.Clipboard.Default.GetTextAsync();
@@ -34,16 +52,47 @@ internal sealed partial class Clipboard : Api.IClipboard
         return null;
     }
 
-    public Task<string?> GetClipboardTextAsync()
+    public async Task<string?> GetClipboardTextAsync()
     {
-        // TODO
-        throw new NotImplementedException();
+        try
+        {
+            if (Microsoft.Maui.ApplicationModel.DataTransfer.Clipboard.Default.HasText)
+            {
+                return await Microsoft.Maui.ApplicationModel.DataTransfer.Clipboard.Default.GetTextAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            LogGetClipboardFailed(ex);
+        }
+        return null;
     }
 
     public Task<FileInfo[]?> GetClipboardFilesAsync()
     {
-        // TODO
-        throw new NotImplementedException();
+        try
+        {
+            if (UIPasteboard.General.HasUrls && UIPasteboard.General.Urls is not null)
+            {
+                var files = new List<FileInfo>();
+                foreach (NSUrl filePath in UIPasteboard.General.Urls)
+                {
+                    if (filePath.AbsoluteString is not null && filePath.Path is not null)
+                    {
+                        if (filePath.AbsoluteString.StartsWith("file:///"))
+                        {
+                            files.Add(new FileInfo(filePath.Path));
+                        }
+                    }
+                }
+                return Task.FromResult<FileInfo[]?>(files.ToArray());
+            }
+        }
+        catch (Exception ex)
+        {
+            LogGetClipboardFailed(ex);
+        }
+        return Task.FromResult<FileInfo[]?>(null);
     }
 
     public Task<string?> GetClipboardBitmapAsync()
@@ -60,14 +109,41 @@ internal sealed partial class Clipboard : Api.IClipboard
 
     public Task SetClipboardFilesAsync(FileInfo[]? data)
     {
-        // TODO
-        throw new NotImplementedException();
+        try
+        {
+            NSUrl[]? fileList = null;
+            if (data is not null)
+            {
+                fileList = new NSUrl[data.Length];
+                if (data is not null)
+                {
+                    for (int i = 0; i < data.Length; i++)
+                    {
+                        fileList[i] = new NSUrl("file://" + data[i].FullName);
+                    }
+                }
+            }
+
+            UIPasteboard.General.Urls = fileList;
+        }
+        catch (Exception ex)
+        {
+            LogSetClipboardTextFailed(ex);
+        }
+
+        return Task.CompletedTask;
     }
 
-    public Task SetClipboardTextAsync(string? data)
+    public async Task SetClipboardTextAsync(string? data)
     {
-        // TODO
-        throw new NotImplementedException();
+        try
+        {
+            await Microsoft.Maui.ApplicationModel.DataTransfer.Clipboard.Default.SetTextAsync(data);
+        }
+        catch (Exception ex)
+        {
+            LogSetClipboardTextFailed(ex);
+        }
     }
 
     [LoggerMessage(0, LogLevel.Warning, "Failed to retrieve the clipboard data.")]

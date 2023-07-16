@@ -26,11 +26,7 @@ internal sealed partial class Clipboard : Api.IClipboard
             {
                 try
                 {
-                    if (System.Windows.Clipboard.ContainsText())
-                    {
-                        return System.Windows.Clipboard.GetText();
-                    }
-                    else if (System.Windows.Clipboard.ContainsFileDropList())
+                    if (System.Windows.Clipboard.ContainsFileDropList())
                     {
                         var files = new List<FileInfo>();
                         foreach (string? filePath in System.Windows.Clipboard.GetFileDropList())
@@ -41,6 +37,10 @@ internal sealed partial class Clipboard : Api.IClipboard
                             }
                         }
                         return files.ToArray();
+                    }
+                    else if (System.Windows.Clipboard.ContainsText())
+                    {
+                        return System.Windows.Clipboard.GetText();
                     }
                     else if (System.Windows.Clipboard.ContainsImage())
                     {

@@ -31,6 +31,7 @@ public class AppDelegate : MauiUIApplicationDelegate
 
         // TODO: Add custom "About" that navigates to Settings page.
         // TODO: Add a Settings menu that navigates to Settings page.
+        // TODO: Add a Edit menu that works well (default one doesn't do much?).
         // TODO: Add a custom "Help" that offers to open feedback
     }
 }
