@@ -1,7 +1,9 @@
 ﻿namespace DevToys.Blazor.Components;
 
-public partial class ScrollViewer : StyledComponentBase
+public partial class ScrollViewer : JSStyledComponentBase
 {
+    protected override string? JavaScriptFile => "./_content/DevToys.Blazor/Components/Layout/ScrollViewer/ScrollViewer.razor.js";
+
     /// <summary>
     /// Gets or set the orientation in which the content can be scrolled.
     /// </summary>
@@ -95,5 +97,15 @@ public partial class ScrollViewer : StyledComponentBase
         }
 
         base.OnParametersSet();
+    }
+
+    public async Task ScrollToAsync(string elementId)
+    {
+        Guard.IsNotNullOrWhiteSpace(elementId);
+
+        using (await Semaphore.WaitAsync(CancellationToken.None))
+        {
+            await (await JSModule).InvokeVoidWithErrorHandlingAsync("scrollToElement", Element, elementId);
+        }
     }
 }

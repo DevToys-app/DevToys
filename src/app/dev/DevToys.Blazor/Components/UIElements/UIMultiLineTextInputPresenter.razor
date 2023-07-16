@@ -6,6 +6,8 @@
                     UITextInput="@UIMultiLineTextInput"
                     IsExtendableToFullScreen="@UIMultiLineTextInput.IsExtendableToFullScreen">
     <MonacoEditor @ref="_monacoEditor"
+                  VerticalAlignment="@UIMultiLineTextInput.VerticalAlignment"
+                  HorizontalAlignment="@UIMultiLineTextInput.HorizontalAlignment"
                   IsVisible="@UIMultiLineTextInput.IsVisible"
                   IsEnabled="@(UIMultiLineTextInput.IsEnabled && IsActuallyEnabled)"
                   ConstructionOptions="@OnMonacoConstructionOptions"

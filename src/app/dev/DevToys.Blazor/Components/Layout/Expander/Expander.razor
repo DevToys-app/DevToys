@@ -37,7 +37,9 @@
         </Card>
         <div class="expander-content-anchor" aria-expanded="@IsExpanded.ToString().ToLower()">
             <div class="expander-content">
-                @(ChildContent)
+                <CascadingValue Value="this" IsFixed="true">
+                    @(ChildContent)
+                </CascadingValue>
             </div>
         </div>
     </Container>

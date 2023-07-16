@@ -52,7 +52,8 @@
                             <FocusTrapper Style="display: contents;"
                                           OnEscapeKeyPressed="OnEscapeKeyPressed"
                                           @onfocusout="OnEscapeKeyPressed">
-                                <ScrollViewer Orientation="UIOrientation.Vertical"
+                                <ScrollViewer @ref="_scrollViewer"
+                                              Orientation="UIOrientation.Vertical"
                                               IsEnabled="@IsActuallyEnabled"
                                               Class="@FinalCssClasses"
                                               Style="@Style"
@@ -96,17 +97,20 @@
     {
         RenderItem = (item) => __builder =>
         {
-            @if (!OverrideDefaultItemTemplate)
+            bool isSelected = object.ReferenceEquals(item, SelectedItem);
+            if (!OverrideDefaultItemTemplate)
             {
                 <ListBoxItem OnSelected="OnItemClick"
-                             IsSelected="object.ReferenceEquals(item, SelectedItem)"
-                             Item="item">
+                             IsSelected="isSelected"
+                             Item="item"
+                             id="@(isSelected ? SelectedItemId : string.Empty)">
                     @ItemTemplate(item)
                 </ListBoxItem>
             }
             else
             {
-                <div class="@((object.ReferenceEquals(item, SelectedItem) ? "selected" : string.Empty))"
+                <div class="@((isSelected ? "selected" : string.Empty))"
+                     id="@(isSelected ? SelectedItemId : string.Empty)"
                      @onclick="@(() => OnItemClick(item))">
                     @ItemTemplate(item)
                 </div>

@@ -76,3 +76,14 @@
         }
     }
 }
+
+// Compact mode
+div[data-compactmode] {
+    .expander {
+        .expander-content-anchor {
+            .expander-content{
+                min-height: 48px;
+            }
+        }
+    }
+}

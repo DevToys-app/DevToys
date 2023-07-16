@@ -47,7 +47,7 @@
 
             @if (Control is not null)
             {
-                <div class="card-control">
+                <div class="card-control @(IsChildOfExpander ? "child-of-expander" : string.Empty)">
                     <StackPanel VerticalAlignment="UIVerticalAlignment.Center" HorizontalAlignment="UIHorizontalAlignment.Stretch">
                         @Control
                     </StackPanel>

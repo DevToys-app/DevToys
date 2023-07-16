@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using DevToys.Api;
 using DevToys.Core.Models;
+using DevToys.Core.Settings;
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
 using DevToys.Localization.Strings.MainWindow;
@@ -203,7 +204,7 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
     /// </summary>
     internal async Task RunSmartDetectionAsync(bool isInCompactOverlayMode)
     {
-        if (isInCompactOverlayMode || !_settingsProvider.GetSetting(DevToys.Core.Settings.PredefinedSettings.SmartDetection))
+        if (isInCompactOverlayMode || !_settingsProvider.GetSetting(PredefinedSettings.SmartDetection))
         {
             return;
         }
@@ -248,19 +249,23 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
                     }
                 }
 
-                // If one unique tool got found
-                // And that the current selected menu item is a group, or that the user didn't selected another menu item since the smart detection started
-                if (detectedTools.Count == 1 && (SelectedMenuItem == selectedMenuBeforeSmartDetection || SelectedMenuItem is GroupViewItem && firstToolViewItem is not null))
+                // If user's setting allow us to jump to a tool automatically and paste the data automatically
+                if (_settingsProvider.GetSetting(PredefinedSettings.SmartDetectionPaste))
                 {
-                    // Then let's navigate immediately to it and set the detected data as an input.
-                    SelectedMenuItem = firstToolViewItem;
-                    detectedTools[0].ToolInstance.PassSmartDetectedData(detectedTools[0].DataTypeName, detectedTools[0].ParsedData);
-                }
-                else if (detectedTools.Count > 1)
-                {
-                    // Next time user navigates to a tool, if this one has been detected by Smart Detection,
-                    // we will pass data to it.
-                    _passSmartDetectedDataToNextSelectedToolIsAllowed = true;
+                    // If one unique tool got found
+                    // And that the current selected menu item is a group, or that the user didn't selected another menu item since the smart detection started
+                    if (detectedTools.Count == 1 && (SelectedMenuItem == selectedMenuBeforeSmartDetection || SelectedMenuItem is GroupViewItem && firstToolViewItem is not null))
+                    {
+                        // Then let's navigate immediately to it and set the detected data as an input.
+                        SelectedMenuItem = firstToolViewItem;
+                        detectedTools[0].ToolInstance.PassSmartDetectedData(detectedTools[0].DataTypeName, detectedTools[0].ParsedData);
+                    }
+                    else if (detectedTools.Count > 1)
+                    {
+                        // Next time user navigates to a tool, if this one has been detected by Smart Detection,
+                        // we will pass data to it.
+                        _passSmartDetectedDataToNextSelectedToolIsAllowed = true;
+                    }
                 }
 
                 _oldSmartDetectedTools = detectedTools;

@@ -41,10 +41,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Assets\samples\json-sample.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include="Assets\fonts\FluentSystemIcons-Regular.ttf">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Assets\samples\json-sample.json" />
     <EmbeddedResource Update="BuiltInTools\Settings\Settings.resx">
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>

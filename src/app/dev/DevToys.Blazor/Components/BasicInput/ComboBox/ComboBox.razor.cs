@@ -7,7 +7,10 @@ public partial class ComboBox<TElement> : SelectBase<TElement> where TElement : 
 {
     private bool _isOpen;
     private ElementReference? _listBox;
+    private ScrollViewer? _scrollViewer;
     private Button? _button;
+
+    protected string SelectedItemId => Id + "-selectedItem";
 
     public ComboBox()
     {
@@ -54,6 +57,16 @@ public partial class ComboBox<TElement> : SelectBase<TElement> where TElement : 
             ContextMenuService.CloseContextMenuRequested += ContextMenuService_CloseContextMenuRequested;
             _isOpen = true;
             StateHasChanged();
+
+            Task.Delay(200)
+                .ContinueWith(t =>
+                {
+                    InvokeAsync(async () =>
+                    {
+                        Guard.IsNotNull(_scrollViewer);
+                        await _scrollViewer.ScrollToAsync(SelectedItemId);
+                    });
+                });
         }
     }
 

@@ -11,6 +11,11 @@ public interface IUIButton : IUIElement
     bool IsAccent { get; }
 
     /// <summary>
+    /// Gets whether the button appearance should be a hyperlink.
+    /// </summary>
+    bool IsHyperlink { get; }
+
+    /// <summary>
     /// Gets the text to display in the button.
     /// </summary>
     string? Text { get; }
@@ -35,6 +40,7 @@ public interface IUIButton : IUIElement
 internal sealed class UIButton : UIElement, IUIButton
 {
     private bool _isAccent;
+    private bool _isHyperlink;
     private string? _text;
 
     internal UIButton(string? id)
@@ -45,7 +51,27 @@ internal sealed class UIButton : UIElement, IUIButton
     public bool IsAccent
     {
         get => _isAccent;
-        internal set => SetPropertyValue(ref _isAccent, value, IsAccentChanged);
+        internal set
+        {
+            if (_isAccent != value)
+            {
+                SetPropertyValue(ref _isAccent, value, IsAccentChanged);
+                IsHyperlink = false;
+            }
+        }
+    }
+
+    public bool IsHyperlink
+    {
+        get => _isHyperlink;
+        internal set
+        {
+            if (_isHyperlink != value)
+            {
+                SetPropertyValue(ref _isHyperlink, value, IsAccentChanged);
+                IsAccent = false;
+            }
+        }
     }
 
     public string? Text
@@ -59,6 +85,8 @@ internal sealed class UIButton : UIElement, IUIButton
     public event EventHandler? TextChanged;
 
     public event EventHandler? IsAccentChanged;
+
+    public event EventHandler? IsHyperlinkChanged;
 }
 
 public static partial class GUI
@@ -114,6 +142,15 @@ public static partial class GUI
     public static IUIButton AccentAppearance(this IUIButton element)
     {
         ((UIButton)element).IsAccent = true;
+        return element;
+    }
+
+    /// <summary>
+    /// Sets the button to appear as a hyperlink.
+    /// </summary>
+    public static IUIButton HyperlinkAppearance(this IUIButton element)
+    {
+        ((UIButton)element).IsHyperlink = true;
         return element;
     }
 

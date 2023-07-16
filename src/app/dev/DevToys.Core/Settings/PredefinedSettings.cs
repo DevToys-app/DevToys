@@ -79,6 +79,15 @@ public static class PredefinedSettings
         = new(
             name: nameof(SmartDetection),
             defaultValue: true);
+
+    /// <summary>
+    /// Whether the application should automatically paste the content of the clipboard when selecting a tool that has been automatically recommended by Smart Detection.
+    /// </summary>
+    public static readonly SettingDefinition<bool> SmartDetectionPaste
+        = new(
+            name: nameof(SmartDetectionPaste),
+            defaultValue: true);
+
     /// <summary>
     /// Whether the compact mode is enabled or not.
     /// </summary>

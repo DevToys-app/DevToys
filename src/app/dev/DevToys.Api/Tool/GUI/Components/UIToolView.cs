@@ -23,8 +23,6 @@ public class UIToolView : INotifyPropertyChanged
     /// </summary>
     public IUIElement RootElement { get; }
 
-    public event EventHandler? IsScrollableChanged;
-
     public event PropertyChangedEventHandler? PropertyChanged;
 
     protected void SetPropertyValue<T>(

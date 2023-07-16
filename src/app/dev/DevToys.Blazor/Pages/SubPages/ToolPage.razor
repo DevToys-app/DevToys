@@ -50,7 +50,7 @@
 
                 <GridCell Row="1" ColumnSpan="2">
                     <FullScreenContainer IsInFullScreenModeChanged="@OnIsInFullScreenModeChanged">
-                        @if (ViewModel.ToolView.RootElement is not null)
+                        @if (ViewModel.ToolView is not null && ViewModel.ToolView.RootElement is not null)
                         {
                             <UIElementPresenter UIElement="@ViewModel.ToolView.RootElement" />
                         }

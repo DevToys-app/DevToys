@@ -34,14 +34,20 @@ public partial class ToolPage : MefComponentBase, IDisposable
         if (GuiToolViewItem is not null)
         {
             ViewModel.Load(GuiToolViewItem);
-            ViewModel.ToolView.PropertyChanged -= ToolView_PropertyChanged;
-            ViewModel.ToolView.PropertyChanged += ToolView_PropertyChanged;
+            if (ViewModel.ToolView is not null)
+            {
+                ViewModel.ToolView.PropertyChanged -= ToolView_PropertyChanged;
+                ViewModel.ToolView.PropertyChanged += ToolView_PropertyChanged;
+            }
         }
     }
 
     public void Dispose()
     {
-        ViewModel.ToolView.PropertyChanged -= ToolView_PropertyChanged;
+        if (ViewModel.ToolView is not null)
+        {
+            ViewModel.ToolView.PropertyChanged -= ToolView_PropertyChanged;
+        }
         GC.SuppressFinalize(this);
     }
 

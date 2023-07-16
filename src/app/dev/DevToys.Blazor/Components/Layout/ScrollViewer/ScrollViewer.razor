@@ -1,5 +1,5 @@
 @namespace DevToys.Blazor.Components
-@inherits StyledComponentBase
+@inherits JSStyledComponentBase
 
 <CascadingValue Name="ParentIsEnabled" Value="@IsActuallyEnabled">
     <Container HorizontalAlignment="@HorizontalAlignment"
@@ -16,7 +16,7 @@
                PaddingBottom="@PaddingBottom"
                IsEnabled="@IsActuallyEnabled"
                IsVisible="@IsVisible">
-        <div id=@Id
+        <div id="@Id"
              class="scroll-viewer @(FinalCssClasses)"
              style="@(Style)"
              @ref=Element

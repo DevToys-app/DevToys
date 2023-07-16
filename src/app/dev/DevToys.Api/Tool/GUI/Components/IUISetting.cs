@@ -160,12 +160,9 @@ public static partial class GUI
     /// <param name="settingDefinition">The definition of the setting to associate to this <see cref="IUISetting"/>.</param>
     /// <param name="onOptionSelected">(optional) A method to invoke when the setting value changed.</param>
     /// <param name="dropDownListItems">(optional) A list of items to be displayed in the drop down list. <see cref="IUIDropDownListItem.Value"/> should be of type <typeparamref name="T"/>.</param>
-    public static IUISetting Handle<T>(this IUISetting element, ISettingsProvider settingsProvider, SettingDefinition<T> settingDefinition, Func<T, ValueTask>? onOptionSelected, params IUIDropDownListItem[] dropDownListItems) where T : struct, IConvertible
+    public static IUISetting Handle<T>(this IUISetting element, ISettingsProvider settingsProvider, SettingDefinition<T> settingDefinition, Func<T, ValueTask>? onOptionSelected, params IUIDropDownListItem[] dropDownListItems)
     {
-        if (!typeof(T).IsEnum)
-        {
-            ThrowHelper.ThrowArgumentException($"{nameof(T)} must be an enumerated type.");
-        }
+        bool typeIsEnum = typeof(T).IsEnum;
 
         var settingElement = (UISetting)element;
 
@@ -175,7 +172,23 @@ public static partial class GUI
 
         T currentSettingValue = settingsProvider.GetSetting(settingDefinition);
 
-        dropDownList.Select(dropDownList.Items?.FirstOrDefault(i => i.Value is T e && e.ToInt32(null) == currentSettingValue.ToInt32(null)));
+        dropDownList.Select(
+            dropDownList.Items?.FirstOrDefault((IUIDropDownListItem item) =>
+            {
+                if (item.Value is null)
+                {
+                    if (currentSettingValue is null)
+                    {
+                        return true;
+                    }
+
+                    return false;
+                }
+
+                Guard.IsOfType<T>(item.Value);
+
+                return item.Value.Equals(currentSettingValue);
+            }));
 
         dropDownList.OnItemSelected((IUIDropDownListItem? item) =>
         {

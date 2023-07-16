@@ -1,4 +1,5 @@
 ﻿#if DEBUG
+using System.Text.Json;
 using System.Text.Json.Nodes;
 
 namespace DevToys.Tools.Tools.Test;
@@ -199,7 +200,7 @@ internal sealed class TestGuiTool : IGuiTool
     // Smart detection handler.
     public void OnDataReceived(string dataTypeName, object? parsedData)
     {
-        if (dataTypeName == PredefinedCommonDataTypeNames.Json && parsedData is Tuple<JsonNode, string> strongTypedParsedData)
+        if (dataTypeName == PredefinedCommonDataTypeNames.Json && parsedData is Tuple<JsonDocument, string> strongTypedParsedData)
         {
             // Pass the JSON from Smart Detection into the Input text editor.
             _inputJsonEditor.Text(strongTypedParsedData.Item2);

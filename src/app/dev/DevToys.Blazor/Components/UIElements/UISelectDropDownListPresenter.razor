@@ -10,6 +10,7 @@
           Header="@UISelectDropDownList.Title"
           @bind-SelectedIndex="@SelectedIndex"
           Items="@UISelectDropDownList.Items"
+          Virtualize="false"
           Context="item">
     <ItemTemplate>
         <TextBlock Text="@item.Text" NoWrap="true" />

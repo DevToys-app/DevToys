@@ -10,8 +10,9 @@ public partial class Grid : StyledComponentBase
         .AddStyle("grid-template-columns", GetGridTemplate(Columns))
         .AddStyle("grid-template-rows", GetGridTemplate(Rows))
         .AddStyle("gap", $"{RowSpacing.ToPx()} {ColumnSpacing.ToPx()}")
-        .AddImportantStyle("height", "inherit")
-        .AddImportantStyle("width", "inherit")
+        .AddImportantStyle("height", "inherit", VerticalAlignment == UIVerticalAlignment.Stretch)
+        .AddImportantStyle("height", "fit-content", VerticalAlignment != UIVerticalAlignment.Stretch)
+        .AddImportantStyle("width", "inherit", HorizontalAlignment == UIHorizontalAlignment.Stretch)
         .AddStyle(Style)
         .Build();
 

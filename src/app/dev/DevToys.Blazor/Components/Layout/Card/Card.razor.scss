@@ -37,6 +37,10 @@
     .card-control {
         display: inline-flex;
         gap: 16px;
+
+        &.child-of-expander {
+            margin-right: calc(32px + 4px);
+        }
     }
 }
 

@@ -14,6 +14,7 @@ public partial class UISelectDropDownListPresenter : ComponentBase, IDisposable
     {
         base.OnInitialized();
         UISelectDropDownList.SelectedItemChanged += UISelectDropDownList_SelectedItemChanged;
+        UISelectDropDownList_SelectedItemChanged(this, EventArgs.Empty);
     }
 
     protected override void OnParametersSet()

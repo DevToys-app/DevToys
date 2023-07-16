@@ -16,5 +16,10 @@ public partial class Card : StyledComponentBase
 
     [Parameter]
     public RenderFragment? Control { get; set; }
+
+    [CascadingParameter]
+    protected Expander? ParentExpander { get; set; }
+
+    protected bool IsChildOfExpander => ParentExpander is not null;
 }
 

@@ -70,6 +70,69 @@ namespace DevToys.Blazor.BuiltInTools.Settings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Appearance.
+        /// </summary>
+        internal static string Appearance {
+            get {
+                return ResourceManager.GetString("Appearance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to App theme.
+        /// </summary>
+        internal static string AppTheme {
+            get {
+                return ResourceManager.GetString("AppTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select which app theme to display.
+        /// </summary>
+        internal static string AppThemeDescription {
+            get {
+                return ResourceManager.GetString("AppThemeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Behaviors.
+        /// </summary>
+        internal static string Behaviors {
+            get {
+                return ResourceManager.GetString("Behaviors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compact spacing.
+        /// </summary>
+        internal static string CompactMode {
+            get {
+                return ResourceManager.GetString("CompactMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decrease space between UI elements.
+        /// </summary>
+        internal static string CompactModeDescription {
+            get {
+                return ResourceManager.GetString("CompactModeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark.
+        /// </summary>
+        internal static string Dark {
+            get {
+                return ResourceManager.GetString("Dark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Same as the system.
         /// </summary>
         internal static string DefaultLanguage {
@@ -88,11 +151,110 @@ namespace DevToys.Blazor.BuiltInTools.Settings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Font.
+        /// </summary>
+        internal static string Font {
+            get {
+                return ResourceManager.GetString("Font", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help us translating DevToys!.
+        /// </summary>
+        internal static string HelpTranslating {
+            get {
+                return ResourceManager.GetString("HelpTranslating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        internal static string Language {
+            get {
+                return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The app needs to be restarted when selecting another language.
+        /// </summary>
+        internal static string LanguageDescription {
+            get {
+                return ResourceManager.GetString("LanguageDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Light.
+        /// </summary>
+        internal static string Light {
+            get {
+                return ResourceManager.GetString("Light", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         internal static string ShortDisplayTitle {
             get {
                 return ResourceManager.GetString("ShortDisplayTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Smart detection.
+        /// </summary>
+        internal static string SmartDetection {
+            get {
+                return ResourceManager.GetString("SmartDetection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically detect the best tool based on the clipboard content.
+        /// </summary>
+        internal static string SmartDetectionDescription {
+            get {
+                return ResourceManager.GetString("SmartDetectionDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically paste the clipboard content when selecting a recommended tool.
+        /// </summary>
+        internal static string SmartDetectionPaste {
+            get {
+                return ResourceManager.GetString("SmartDetectionPaste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text editor.
+        /// </summary>
+        internal static string TextEditor {
+            get {
+                return ResourceManager.GetString("TextEditor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview.
+        /// </summary>
+        internal static string TextEditorPreview {
+            get {
+                return ResourceManager.GetString("TextEditorPreview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use system settings.
+        /// </summary>
+        internal static string UseSystemSettings {
+            get {
+                return ResourceManager.GetString("UseSystemSettings", resourceCulture);
             }
         }
     }

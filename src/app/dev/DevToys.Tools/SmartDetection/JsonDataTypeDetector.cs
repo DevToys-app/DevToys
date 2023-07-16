@@ -25,10 +25,16 @@ internal sealed partial class JsonDataTypeDetector : IDataTypeDetector
         {
             try
             {
-                var jsonNode = JsonNode.Parse(dataString);
-                if (jsonNode is not null)
+                var options = new JsonDocumentOptions
                 {
-                    return ValueTask.FromResult(new DataDetectionResult(Success: true, Data: new Tuple<JsonNode, string>(jsonNode, dataString)));
+                    CommentHandling = JsonCommentHandling.Skip,
+                    AllowTrailingCommas = true,
+                    MaxDepth = int.MaxValue
+                };
+                var jsonDocument = JsonDocument.Parse(dataString, options);
+                if (jsonDocument is not null)
+                {
+                    return ValueTask.FromResult(new DataDetectionResult(Success: true, Data: new Tuple<JsonDocument, string>(jsonDocument, dataString)));
                 }
             }
             catch (JsonException)

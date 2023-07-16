@@ -7,7 +7,7 @@
         IsEnabled="@UIButton.IsEnabled"
         HorizontalAlignment="@UIButton.HorizontalAlignment"
         VerticalAlignment="@UIButton.VerticalAlignment"
-        Appearance="@((UIButton.IsAccent ? ButtonAppearance.Accent : ButtonAppearance.Neutral))"
+        Appearance="@((UIButton.IsAccent ? ButtonAppearance.Accent : UIButton.IsHyperlink ? ButtonAppearance.Hyperlink : ButtonAppearance.Neutral))"
         @onclick=OnButtonClickAsync>
     <TextBlock Text="@UIButton?.Text" NoWrap="true" />
 </Button>

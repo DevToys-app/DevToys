@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.Composition;
-using System.Text.Json.Nodes;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -17,10 +17,16 @@ internal class MockJsonDataTypeDetector : IDataTypeDetector
         {
             try
             {
-                var jtoken = JsonNode.Parse(dataString);
-                if (jtoken is not null)
+                var options = new JsonDocumentOptions
                 {
-                    return ValueTask.FromResult(new DataDetectionResult(Success: true, Data: new Tuple<JsonNode, string>(jtoken, dataString)));
+                    CommentHandling = JsonCommentHandling.Allow,
+                    AllowTrailingCommas = true,
+                    MaxDepth = int.MaxValue
+                };
+                var jsonDocument = JsonDocument.Parse(dataString, options);
+                if (jsonDocument is not null)
+                {
+                    return ValueTask.FromResult(new DataDetectionResult(Success: true, Data: new Tuple<JsonDocument, string>(jsonDocument, dataString)));
                 }
             }
             catch

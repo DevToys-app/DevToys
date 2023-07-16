@@ -1,4 +1,5 @@
 ﻿using DevToys.Blazor.Components.Monaco.Editor;
+using DevToys.Core.Settings;
 
 namespace DevToys.Blazor.Components;
 
@@ -27,6 +28,9 @@ public partial class MonacoEditor : RicherMonacoEditorBase
     [Import]
     internal IThemeListener ThemeListener { get; set; } = default!;
 
+    [Import]
+    internal ISettingsProvider SettingsProvider { get; set; } = default!;
+
     [Parameter]
     public string? Header { get; set; }
 
@@ -40,6 +44,7 @@ public partial class MonacoEditor : RicherMonacoEditorBase
         base.OnInitialized();
 
         ThemeListener.ThemeChanged += ThemeListener_ThemeChanged;
+        SettingsProvider.SettingChanged += SettingsProvider_SettingChanged;
         _oldIsActuallyEnabled = IsActuallyEnabled;
     }
 
@@ -70,6 +75,9 @@ public partial class MonacoEditor : RicherMonacoEditorBase
             options.MatchBrackets = "always";
             options.BracketPairColorization = new BracketPairColorizationOptions { Enabled = true };
             options.RenderLineHighlightOnlyWhenFocus = true;
+
+            // Apply global user settings
+            options.FontFamily = SettingsProvider.GetSetting(PredefinedSettings.TextEditorFont);
 
             // Create the editor
             await MonacoEditorHelper.CreateMonacoEditorInstanceAsync(JSRuntime, Id, options, null, Reference);
@@ -103,6 +111,10 @@ public partial class MonacoEditor : RicherMonacoEditorBase
         {
             ThemeListener.ThemeChanged -= ThemeListener_ThemeChanged;
         }
+        if (SettingsProvider is not null)
+        {
+            SettingsProvider.SettingChanged -= SettingsProvider_SettingChanged;
+        }
 
         return base.DisposeAsync();
     }
@@ -116,6 +128,16 @@ public partial class MonacoEditor : RicherMonacoEditorBase
             ShowLoading = false;
             StateHasChanged();
         }
+    }
+
+    private void SettingsProvider_SettingChanged(object? sender, SettingChangedEventArgs e)
+    {
+        var options = new EditorUpdateOptions()
+        {
+            FontFamily = SettingsProvider.GetSetting(PredefinedSettings.TextEditorFont)
+        };
+
+        UpdateOptionsAsync(options);
     }
 
     private void ThemeListener_ThemeChanged(object? sender, EventArgs e)
