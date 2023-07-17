@@ -1,10 +1,7 @@
 ﻿using System.Reflection;
 using DevToys.Api;
 using DevToys.Blazor.Core.Languages;
-using DevToys.Core;
 using DevToys.Core.Settings;
-using Microsoft.VisualBasic;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace DevToys.Blazor.BuiltInTools.Settings;
 
@@ -31,6 +28,7 @@ internal sealed class SettingsGuiTool : IGuiTool
     private readonly IUIDropDownListItem _currentLanguage;
     private readonly IUIDropDownListItem[] _availableFonts;
     private readonly IUISetting _smartDetectionAutomaticallyPasteSetting = Setting("smart-detection-automatically-paste-setting");
+    private readonly IUISetting _textEditorFontSetting = Setting("text-editor-font-setting");
     private readonly string _previewJsonText;
 
     [ImportingConstructor]
@@ -128,50 +126,59 @@ internal sealed class SettingsGuiTool : IGuiTool
                     .WithChildren(
 
                         Label().Text(Settings.TextEditor),
-                        Setting("text-editor-font-settings")
-                            .Icon("FluentSystemIcons", '\uF7E3')
-                            .Title(Settings.Font)
-                            .Handle(
-                                _settingsProvider,
-                                PredefinedSettings.TextEditorFont,
-                                onOptionSelected: null,
-                                dropDownListItems: _availableFonts),
+                        SettingGroup()
+                            .Icon("FluentSystemIcons", '\uE3BB')
+                            .Title(Settings.TextEditor)
+                            .WithChildren(
 
-                        Setting("text-editor-word-wrap-settings")
-                            .Icon("FluentSystemIcons", '\uEF28')
-                            .Title(Settings.WordWrap)
-                            .Handle(
-                                _settingsProvider,
-                                PredefinedSettings.TextEditorTextWrapping),
+                                _textEditorFontSetting
+                                    .Title(Settings.Font)
+                                    .StateDescription(_settingsProvider.GetSetting(PredefinedSettings.TextEditorFont))
+                                    .Handle(
+                                        _settingsProvider,
+                                        PredefinedSettings.TextEditorFont,
+                                        OnTextEditorFontChangedAsync,
+                                        dropDownListItems: _availableFonts),
 
-                        Setting("text-editor-line-number-settings")
-                            .Icon("FluentSystemIcons", '\uED3A')
-                            .Title(Settings.LineNumbers)
-                            .Description(Settings.LineNumbersDescription)
-                            .Handle(
-                                _settingsProvider,
-                                PredefinedSettings.TextEditorLineNumbers),
+                                Setting("text-editor-word-wrap-settings")
+                                    .Title(Settings.WordWrap)
+                                    .Handle(
+                                        _settingsProvider,
+                                        PredefinedSettings.TextEditorTextWrapping,
+                                        stateDescriptionWhenOn: Settings.WordWrapStateDescriptionWhenOn,
+                                        stateDescriptionWhenOff: null),
 
-                        Setting("text-editor-line-highlight-settings")
-                            .Icon("FluentSystemIcons", '\uE3C5')
-                            .Title(Settings.HighlightCurrentLine)
-                            .Description(Settings.HighlightCurrentLineDescription)
-                            .Handle(
-                                _settingsProvider,
-                                PredefinedSettings.TextEditorHighlightCurrentLine),
+                                Setting("text-editor-line-number-settings")
+                                    .Title(Settings.LineNumbers)
+                                    .Description(Settings.LineNumbersDescription)
+                                    .Handle(
+                                        _settingsProvider,
+                                        PredefinedSettings.TextEditorLineNumbers,
+                                        stateDescriptionWhenOn: Settings.LineNumbersStateDescriptionWhenOn,
+                                        stateDescriptionWhenOff: null),
 
-                        Setting("text-editor-white-spaces-settings")
-                            .Icon("FluentSystemIcons", '\uEB31')
-                            .Title(Settings.RenderWhitespace)
-                            .Handle(
-                                _settingsProvider,
-                                PredefinedSettings.TextEditorRenderWhitespace),
+                                Setting("text-editor-line-highlight-settings")
+                                    .Title(Settings.HighlightCurrentLine)
+                                    .Description(Settings.HighlightCurrentLineDescription)
+                                    .Handle(
+                                        _settingsProvider,
+                                        PredefinedSettings.TextEditorHighlightCurrentLine,
+                                        stateDescriptionWhenOn: Settings.HighlightCurrentLineStateDescriptionWhenOn,
+                                        stateDescriptionWhenOff: null),
 
-                        MultilineTextInput("text-editor-render-preview")
-                            .Title(Settings.TextEditorPreview)
-                            .AlignVertically(UIVerticalAlignment.Top)
-                            .Language("json")
-                            .Text(_previewJsonText)),
+                                Setting("text-editor-white-spaces-settings")
+                                    .Title(Settings.RenderWhitespace)
+                                    .Handle(
+                                        _settingsProvider,
+                                        PredefinedSettings.TextEditorRenderWhitespace,
+                                        stateDescriptionWhenOn: Settings.RenderWhitespaceStateDescriptionWhenOn,
+                                        stateDescriptionWhenOff: null),
+
+                                MultilineTextInput("text-editor-render-preview")
+                                    .Title(Settings.TextEditorPreview)
+                                    .AlignVertically(UIVerticalAlignment.Top)
+                                    .Language("json")
+                                    .Text(_previewJsonText))),
 
                 // About
                 Stack()
@@ -224,6 +231,12 @@ internal sealed class SettingsGuiTool : IGuiTool
     private ValueTask OnCopyVersionNumberButtonClickAsync()
     {
         _clipboard.SetClipboardTextAsync(GetAppVersionDescription());
+        return ValueTask.CompletedTask;
+    }
+
+    private ValueTask OnTextEditorFontChangedAsync(string fontName)
+    {
+        _textEditorFontSetting.StateDescription(fontName);
         return ValueTask.CompletedTask;
     }
 
@@ -280,16 +293,7 @@ internal sealed class SettingsGuiTool : IGuiTool
 
     private static string GetAppVersionDescription()
     {
-#if DEBUG
-        string? buildConfiguration = "DEBUG";
-#else
-        string buildConfiguration = "RELEASE";
-#endif
-
-        string? gitBranch = ThisAssembly.Git.Branch;
-        string? gitCommit = ThisAssembly.Git.Commit;
         string? version = Assembly.GetExecutingAssembly().GetName().Version?.ToString();
-
-        return string.Format(Settings.Version, $"{version} | {buildConfiguration} | {gitBranch} | {gitCommit}");
+        return string.Format(Settings.Version, version);
     }
 }

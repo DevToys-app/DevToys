@@ -11,6 +11,11 @@ public interface IUISetting : IUITitledElement
     string? Description { get; }
 
     /// <summary>
+    /// Gets the description of the state of the setting.
+    /// </summary>
+    string? StateDescription { get; }
+
+    /// <summary>
     /// Gets the icon of the setting.
     /// </summary>
     IUIIcon? Icon { get; }
@@ -24,6 +29,11 @@ public interface IUISetting : IUITitledElement
     /// Raised when <see cref="Description"/> is changed.
     /// </summary>
     event EventHandler? DescriptionChanged;
+
+    /// <summary>
+    /// Raised when <see cref="StateDescription"/> is changed.
+    /// </summary>
+    event EventHandler? StateDescriptionChanged;
 
     /// <summary>
     /// Raised when <see cref="Icon"/> is changed.
@@ -40,6 +50,7 @@ public interface IUISetting : IUITitledElement
 internal class UISetting : UITitledElement, IUISetting
 {
     private string? _description;
+    private string? _stateDescription;
     private IUIIcon? _icon;
     private IUIElement? _interactiveElement;
 
@@ -52,6 +63,12 @@ internal class UISetting : UITitledElement, IUISetting
     {
         get => _description;
         internal set => SetPropertyValue(ref _description, value, DescriptionChanged);
+    }
+
+    public string? StateDescription
+    {
+        get => _stateDescription;
+        internal set => SetPropertyValue(ref _stateDescription, value, StateDescriptionChanged);
     }
 
     public IUIIcon? Icon
@@ -67,6 +84,7 @@ internal class UISetting : UITitledElement, IUISetting
     }
 
     public event EventHandler? DescriptionChanged;
+    public event EventHandler? StateDescriptionChanged;
     public event EventHandler? IconChanged;
     public event EventHandler? InteractiveElementChanged;
 }
@@ -100,6 +118,15 @@ public static partial class GUI
     }
 
     /// <summary>
+    /// Sets the <see cref="IUISetting.StateDescription"/> of the setting.
+    /// </summary>
+    public static IUISetting StateDescription(this IUISetting element, string? text)
+    {
+        ((UISetting)element).StateDescription = text;
+        return element;
+    }
+
+    /// <summary>
     /// Sets the <see cref="IUISetting.Icon"/> of the setting.
     /// </summary>
     public static IUISetting Icon(this IUISetting element, string fontName, char glyph)
@@ -124,32 +151,47 @@ public static partial class GUI
     /// <param name="settingsProvider">The settings provider used for handling the given <paramref name="settingDefinition"/>.</param>
     /// <param name="settingDefinition">The definition of the setting to associate to this <see cref="IUISetting"/>.</param>
     /// <param name="onToggled">(optional) A method to invoke when the setting value changed.</param>
-    public static IUISetting Handle(this IUISetting element, ISettingsProvider settingsProvider, SettingDefinition<bool> settingDefinition, Func<bool, ValueTask>? onToggled = null)
+    public static IUISetting Handle(
+        this IUISetting element,
+        ISettingsProvider settingsProvider,
+        SettingDefinition<bool> settingDefinition,
+        Func<bool, ValueTask>? onToggled = null)
     {
-        var settingElement = (UISetting)element;
+        return Handle(
+            element,
+            settingsProvider,
+            settingDefinition,
+            stateDescriptionWhenOn: null,
+            stateDescriptionWhenOff: null,
+            ignoreStateDescription: true,
+            onToggled);
+    }
 
-        IUISwitch toggleSwitch = Switch();
-        if (settingsProvider.GetSetting(settingDefinition))
-        {
-            toggleSwitch.On();
-        }
-        else
-        {
-            toggleSwitch.Off();
-        }
-
-        toggleSwitch.OnToggle((bool state) =>
-        {
-            settingsProvider.SetSetting(settingDefinition, state);
-            if (onToggled is not null)
-            {
-                return onToggled.Invoke(state);
-            }
-            return ValueTask.CompletedTask;
-        });
-
-        settingElement.InteractiveElement(toggleSwitch);
-        return element;
+    /// <summary>
+    /// Sets a <see cref="IUISwitch"/> to <see cref="IUISetting.InteractiveElement"/> and automatically associate the
+    /// given <paramref name="settingDefinition"/> to the switch state.
+    /// </summary>
+    /// <param name="settingsProvider">The settings provider used for handling the given <paramref name="settingDefinition"/>.</param>
+    /// <param name="settingDefinition">The definition of the setting to associate to this <see cref="IUISetting"/>.</param>
+    /// <param name="stateDescriptionWhenOn">The <see cref="IUISetting.StateDescription"/> to use when the option is On.</param>
+    /// <param name="stateDescriptionWhenOff">The <see cref="IUISetting.StateDescription"/> to use when the option is Off.</param>
+    /// <param name="onToggled">(optional) A method to invoke when the setting value changed.</param>
+    public static IUISetting Handle(
+        this IUISetting element,
+        ISettingsProvider settingsProvider,
+        SettingDefinition<bool> settingDefinition,
+        string? stateDescriptionWhenOn,
+        string? stateDescriptionWhenOff,
+        Func<bool, ValueTask>? onToggled = null)
+    {
+        return Handle(
+            element,
+            settingsProvider,
+            settingDefinition,
+            stateDescriptionWhenOn,
+            stateDescriptionWhenOff,
+            ignoreStateDescription: false,
+            onToggled);
     }
 
     /// <summary>
@@ -160,7 +202,12 @@ public static partial class GUI
     /// <param name="settingDefinition">The definition of the setting to associate to this <see cref="IUISetting"/>.</param>
     /// <param name="onOptionSelected">(optional) A method to invoke when the setting value changed.</param>
     /// <param name="dropDownListItems">(optional) A list of items to be displayed in the drop down list. <see cref="IUIDropDownListItem.Value"/> should be of type <typeparamref name="T"/>.</param>
-    public static IUISetting Handle<T>(this IUISetting element, ISettingsProvider settingsProvider, SettingDefinition<T> settingDefinition, Func<T, ValueTask>? onOptionSelected, params IUIDropDownListItem[] dropDownListItems)
+    public static IUISetting Handle<T>(
+        this IUISetting element,
+        ISettingsProvider settingsProvider,
+        SettingDefinition<T> settingDefinition,
+        Func<T, ValueTask>? onOptionSelected,
+        params IUIDropDownListItem[] dropDownListItems)
     {
         bool typeIsEnum = typeof(T).IsEnum;
 
@@ -205,6 +252,62 @@ public static partial class GUI
         });
 
         settingElement.InteractiveElement(dropDownList);
+        return element;
+    }
+
+    private static IUISetting Handle(
+        this IUISetting element,
+        ISettingsProvider settingsProvider,
+        SettingDefinition<bool> settingDefinition,
+        string? stateDescriptionWhenOn,
+        string? stateDescriptionWhenOff,
+        bool ignoreStateDescription,
+        Func<bool, ValueTask>? onToggled)
+    {
+        var settingElement = (UISetting)element;
+
+        IUISwitch toggleSwitch = Switch();
+        if (settingsProvider.GetSetting(settingDefinition))
+        {
+            toggleSwitch.On();
+            if (!ignoreStateDescription)
+            {
+                settingElement.StateDescription = stateDescriptionWhenOn;
+            }
+        }
+        else
+        {
+            toggleSwitch.Off();
+            if (!ignoreStateDescription)
+            {
+                settingElement.StateDescription = stateDescriptionWhenOff;
+            }
+        }
+
+        toggleSwitch.OnToggle((bool state) =>
+        {
+            settingsProvider.SetSetting(settingDefinition, state);
+
+            if (!ignoreStateDescription)
+            {
+                if (state)
+                {
+                    settingElement.StateDescription = stateDescriptionWhenOn;
+                }
+                else
+                {
+                    settingElement.StateDescription = stateDescriptionWhenOff;
+                }
+            }
+
+            if (onToggled is not null)
+            {
+                return onToggled.Invoke(state);
+            }
+            return ValueTask.CompletedTask;
+        });
+
+        settingElement.InteractiveElement(toggleSwitch);
         return element;
     }
 }

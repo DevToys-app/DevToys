@@ -196,6 +196,15 @@ namespace DevToys.Blazor.BuiltInTools.Settings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Higlight the current line.
+        /// </summary>
+        internal static string HighlightCurrentLineStateDescriptionWhenOn {
+            get {
+                return ResourceManager.GetString("HighlightCurrentLineStateDescriptionWhenOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         internal static string Language {
@@ -241,11 +250,29 @@ namespace DevToys.Blazor.BuiltInTools.Settings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show line numbers.
+        /// </summary>
+        internal static string LineNumbersStateDescriptionWhenOn {
+            get {
+                return ResourceManager.GetString("LineNumbersStateDescriptionWhenOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Render white space.
         /// </summary>
         internal static string RenderWhitespace {
             get {
                 return ResourceManager.GetString("RenderWhitespace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show whitespace.
+        /// </summary>
+        internal static string RenderWhitespaceStateDescriptionWhenOn {
+            get {
+                return ResourceManager.GetString("RenderWhitespaceStateDescriptionWhenOn", resourceCulture);
             }
         }
         
@@ -327,6 +354,15 @@ namespace DevToys.Blazor.BuiltInTools.Settings {
         internal static string WordWrap {
             get {
                 return ResourceManager.GetString("WordWrap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Word wrap.
+        /// </summary>
+        internal static string WordWrapStateDescriptionWhenOn {
+            get {
+                return ResourceManager.GetString("WordWrapStateDescriptionWhenOn", resourceCulture);
             }
         }
     }

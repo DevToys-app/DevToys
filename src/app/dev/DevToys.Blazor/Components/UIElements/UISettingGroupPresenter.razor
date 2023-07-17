@@ -9,7 +9,7 @@
           HorizontalAlignment="@UISettingGroup.HorizontalAlignment"
           VerticalAlignment="@UISettingGroup.VerticalAlignment"
           Title="@UISettingGroup.Title"
-          Description="@UISettingGroup.Description"
+          Description="@Description"
           IconGlyph="@(UISettingGroup.Icon?.Glyph ?? '\0')"
           IconFontFamily="@UISettingGroup.Icon?.FontName">
     <Control>
@@ -21,14 +21,29 @@
     <ChildContent>
         <StackPanel Orientation="UIOrientation.Vertical"
                     HorizontalAlignment="UIHorizontalAlignment.Stretch"
-                    Spacing="@(UISettingGroup.ChildrenAreAllSettings ? 0 : 4)">
+                    Spacing="0">
             @if (UISettingGroup.Children is not null)
             {
                 for (int i = 0; i < UISettingGroup.Children.Length; i++)
                 {
-                    if (UISettingGroup.Children[i] is not null)
+                    IUIElement element = UISettingGroup.Children[i];
+                    if (element is not null)
                     {
-                        <UIElementPresenter UIElement="@UISettingGroup.Children[i]" />
+                        if (element is IUISetting)
+                        {
+                            <UIElementPresenter UIElement="element" />
+                        }
+                        else
+                        {
+                            <Container HorizontalAlignment="@element.HorizontalAlignment"
+                                       VerticalAlignment="@element.VerticalAlignment"
+                                       MarginLeft="55"
+                                       MarginRight="45"
+                                       MarginBottom="2"
+                                       MarginTop="2">
+                                <UIElementPresenter UIElement="element" />
+                            </Container>
+                        }
                     }
                 }
             }
