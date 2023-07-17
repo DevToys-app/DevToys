@@ -78,6 +78,10 @@ public partial class MonacoEditor : RicherMonacoEditorBase
 
             // Apply global user settings
             options.FontFamily = SettingsProvider.GetSetting(PredefinedSettings.TextEditorFont);
+            options.WordWrap = SettingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping) ? "on" : "off";
+            options.LineNumbers = SettingsProvider.GetSetting(PredefinedSettings.TextEditorLineNumbers) ? "on" : "off";
+            options.RenderLineHighlight = SettingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine) ? "all" : "none";
+            options.RenderWhitespace = SettingsProvider.GetSetting(PredefinedSettings.TextEditorRenderWhitespace) ? "all" : "none";
 
             // Create the editor
             await MonacoEditorHelper.CreateMonacoEditorInstanceAsync(JSRuntime, Id, options, null, Reference);
@@ -111,6 +115,7 @@ public partial class MonacoEditor : RicherMonacoEditorBase
         {
             ThemeListener.ThemeChanged -= ThemeListener_ThemeChanged;
         }
+
         if (SettingsProvider is not null)
         {
             SettingsProvider.SettingChanged -= SettingsProvider_SettingChanged;
@@ -134,7 +139,11 @@ public partial class MonacoEditor : RicherMonacoEditorBase
     {
         var options = new EditorUpdateOptions()
         {
-            FontFamily = SettingsProvider.GetSetting(PredefinedSettings.TextEditorFont)
+            FontFamily = SettingsProvider.GetSetting(PredefinedSettings.TextEditorFont),
+            WordWrap = SettingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping) ? "on" : "off",
+            LineNumbers = SettingsProvider.GetSetting(PredefinedSettings.TextEditorLineNumbers) ? "on" : "off",
+            RenderLineHighlight = SettingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine) ? "all" : "none",
+            RenderWhitespace = SettingsProvider.GetSetting(PredefinedSettings.TextEditorRenderWhitespace) ? "all" : "none"
         };
 
         UpdateOptionsAsync(options);

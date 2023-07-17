@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using DevToys.Blazor.Components.Monaco.Editor;
+using DevToys.Core.Settings;
 using Microsoft.AspNetCore.Components.Forms;
 
 namespace DevToys.Blazor.Components;
@@ -44,6 +46,9 @@ public partial class TextBox : MefComponentBase, IFocusable
     [Import]
     internal IClipboard Clipboard { get; set; } = default!;
 
+    [Import]
+    internal ISettingsProvider SettingsProvider { get; set; } = default!;
+
     [Parameter]
     public string? Text { get; set; }
 
@@ -83,6 +88,15 @@ public partial class TextBox : MefComponentBase, IFocusable
     [Parameter]
     public EventCallback<string?> TextChanged { get; set; }
 
+    [Parameter]
+    public string? FontFamily { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        SettingsProvider.SettingChanged += SettingsProvider_SettingChanged;
+    }
+
     public ValueTask<bool> FocusAsync()
     {
         Guard.IsNotNull(_input);
@@ -92,6 +106,11 @@ public partial class TextBox : MefComponentBase, IFocusable
 
     public override async ValueTask DisposeAsync()
     {
+        if (SettingsProvider is not null)
+        {
+            SettingsProvider.SettingChanged -= SettingsProvider_SettingChanged;
+        }
+
         try
         {
             await (await JSModule).InvokeVoidWithErrorHandlingAsync("dispose", Element);
@@ -267,5 +286,10 @@ public partial class TextBox : MefComponentBase, IFocusable
             int[] selection = await (await JSModule).InvokeAsync<int[]>("getSelectionSpan", _input.Element);
             return new TextSpan(selection[0], selection[1] - selection[0]);
         }
+    }
+
+    private void SettingsProvider_SettingChanged(object? sender, SettingChangedEventArgs e)
+    {
+        FontFamily = SettingsProvider.GetSetting(PredefinedSettings.TextEditorFont);
     }
 }

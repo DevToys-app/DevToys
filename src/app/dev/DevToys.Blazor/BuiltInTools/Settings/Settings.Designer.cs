@@ -61,6 +61,15 @@ namespace DevToys.Blazor.BuiltInTools.Settings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        internal static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         internal static string AccessibleName {
@@ -169,6 +178,24 @@ namespace DevToys.Blazor.BuiltInTools.Settings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Highlight current line.
+        /// </summary>
+        internal static string HighlightCurrentLine {
+            get {
+                return ResourceManager.GetString("HighlightCurrentLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change the background color of the current line so it&apos;s more visible.
+        /// </summary>
+        internal static string HighlightCurrentLineDescription {
+            get {
+                return ResourceManager.GetString("HighlightCurrentLineDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         internal static string Language {
@@ -192,6 +219,33 @@ namespace DevToys.Blazor.BuiltInTools.Settings {
         internal static string Light {
             get {
                 return ResourceManager.GetString("Light", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Line numbers.
+        /// </summary>
+        internal static string LineNumbers {
+            get {
+                return ResourceManager.GetString("LineNumbers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display line numbers in the text editor.
+        /// </summary>
+        internal static string LineNumbersDescription {
+            get {
+                return ResourceManager.GetString("LineNumbersDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Render white space.
+        /// </summary>
+        internal static string RenderWhitespace {
+            get {
+                return ResourceManager.GetString("RenderWhitespace", resourceCulture);
             }
         }
         
@@ -255,6 +309,24 @@ namespace DevToys.Blazor.BuiltInTools.Settings {
         internal static string UseSystemSettings {
             get {
                 return ResourceManager.GetString("UseSystemSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version {0}.
+        /// </summary>
+        internal static string Version {
+            get {
+                return ResourceManager.GetString("Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrap word.
+        /// </summary>
+        internal static string WordWrap {
+            get {
+                return ResourceManager.GetString("WordWrap", resourceCulture);
             }
         }
     }

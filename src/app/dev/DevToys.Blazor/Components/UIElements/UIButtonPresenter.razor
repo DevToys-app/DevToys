@@ -9,5 +9,21 @@
         VerticalAlignment="@UIButton.VerticalAlignment"
         Appearance="@((UIButton.IsAccent ? ButtonAppearance.Accent : UIButton.IsHyperlink ? ButtonAppearance.Hyperlink : ButtonAppearance.Neutral))"
         @onclick=OnButtonClickAsync>
-    <TextBlock Text="@UIButton?.Text" NoWrap="true" />
+    @if (!string.IsNullOrWhiteSpace(UIButton.IconFontName) && UIButton.IconGlyph != '\0')
+    {
+        <StackPanel Orientiation="UIOrientation.Horizontal" Spacing="4">
+            <FontIcon Glyph="@UIButton.IconGlyph"
+                      FontFamily="@UIButton.IconFontName"
+                      Height="16"
+                      Width="16"/>
+            @if (!string.IsNullOrEmpty(UIButton?.Text))
+            {
+                <TextBlock Text="@UIButton?.Text" NoWrap="true" />
+            }
+        </StackPanel>
+    }
+    else
+    {
+        <TextBlock Text="@UIButton?.Text" NoWrap="true" />
+    }
 </Button>

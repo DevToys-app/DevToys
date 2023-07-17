@@ -1,6 +1,10 @@
 ﻿using System.Reflection;
+using DevToys.Api;
 using DevToys.Blazor.Core.Languages;
+using DevToys.Core;
 using DevToys.Core.Settings;
+using Microsoft.VisualBasic;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DevToys.Blazor.BuiltInTools.Settings;
 
@@ -21,6 +25,7 @@ namespace DevToys.Blazor.BuiltInTools.Settings;
 internal sealed class SettingsGuiTool : IGuiTool
 {
     private readonly ISettingsProvider _settingsProvider;
+    private readonly IClipboard _clipboard;
     private readonly IFontProvider _fontProvider;
     private readonly IUIDropDownListItem[] _availableLanguages;
     private readonly IUIDropDownListItem _currentLanguage;
@@ -29,10 +34,11 @@ internal sealed class SettingsGuiTool : IGuiTool
     private readonly string _previewJsonText;
 
     [ImportingConstructor]
-    public SettingsGuiTool(ISettingsProvider settingsProvider, IFontProvider fontProvider)
+    public SettingsGuiTool(ISettingsProvider settingsProvider, IFontProvider fontProvider, IClipboard clipboard)
     {
         _settingsProvider = settingsProvider;
         _fontProvider = fontProvider;
+        _clipboard = clipboard;
 
         // Load available languages and current language.
         (IUIDropDownListItem[] availableLanguagesItems, IUIDropDownListItem currentLanguageItem) = LoadLanguages();
@@ -131,12 +137,56 @@ internal sealed class SettingsGuiTool : IGuiTool
                                 onOptionSelected: null,
                                 dropDownListItems: _availableFonts),
 
+                        Setting("text-editor-word-wrap-settings")
+                            .Icon("FluentSystemIcons", '\uEF28')
+                            .Title(Settings.WordWrap)
+                            .Handle(
+                                _settingsProvider,
+                                PredefinedSettings.TextEditorTextWrapping),
+
+                        Setting("text-editor-line-number-settings")
+                            .Icon("FluentSystemIcons", '\uED3A')
+                            .Title(Settings.LineNumbers)
+                            .Description(Settings.LineNumbersDescription)
+                            .Handle(
+                                _settingsProvider,
+                                PredefinedSettings.TextEditorLineNumbers),
+
+                        Setting("text-editor-line-highlight-settings")
+                            .Icon("FluentSystemIcons", '\uE3C5')
+                            .Title(Settings.HighlightCurrentLine)
+                            .Description(Settings.HighlightCurrentLineDescription)
+                            .Handle(
+                                _settingsProvider,
+                                PredefinedSettings.TextEditorHighlightCurrentLine),
+
+                        Setting("text-editor-white-spaces-settings")
+                            .Icon("FluentSystemIcons", '\uEB31')
+                            .Title(Settings.RenderWhitespace)
+                            .Handle(
+                                _settingsProvider,
+                                PredefinedSettings.TextEditorRenderWhitespace),
+
                         MultilineTextInput("text-editor-render-preview")
                             .Title(Settings.TextEditorPreview)
                             .AlignVertically(UIVerticalAlignment.Top)
-                            .ReadOnly()
                             .Language("json")
-                            .Text(_previewJsonText))));
+                            .Text(_previewJsonText)),
+
+                // About
+                Stack()
+                    .Vertical()
+                    .WithChildren(
+
+                        Label().Text(Settings.About),
+                        Setting("about-settings")
+                            .Icon("FluentSystemIcons", '\uF4A2')
+                            .Title("DevToys")
+                            .Description(GetAppVersionDescription())
+                            .InteractiveElement(
+                                Button("copy-about-settings")
+                                    .Icon("FluentSystemIcons", '\uF32B')
+                                    .OnClick(OnCopyVersionNumberButtonClickAsync)))));
 
     public void OnDataReceived(string dataTypeName, object? parsedData)
     {
@@ -168,6 +218,12 @@ internal sealed class SettingsGuiTool : IGuiTool
             _smartDetectionAutomaticallyPasteSetting.Disable();
         }
 
+        return ValueTask.CompletedTask;
+    }
+
+    private ValueTask OnCopyVersionNumberButtonClickAsync()
+    {
+        _clipboard.SetClipboardTextAsync(GetAppVersionDescription());
         return ValueTask.CompletedTask;
     }
 
@@ -220,5 +276,20 @@ internal sealed class SettingsGuiTool : IGuiTool
         using Stream stream = assembly.GetManifestResourceStream(resourceName)!;
         using var reader = new StreamReader(stream);
         return reader.ReadToEnd();
+    }
+
+    private static string GetAppVersionDescription()
+    {
+#if DEBUG
+        string? buildConfiguration = "DEBUG";
+#else
+        string buildConfiguration = "RELEASE";
+#endif
+
+        string? gitBranch = ThisAssembly.Git.Branch;
+        string? gitCommit = ThisAssembly.Git.Commit;
+        string? version = Assembly.GetExecutingAssembly().GetName().Version?.ToString();
+
+        return string.Format(Settings.Version, $"{version} | {buildConfiguration} | {gitBranch} | {gitCommit}");
     }
 }

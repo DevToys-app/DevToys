@@ -1,4 +1,5 @@
 ﻿using DevToys.Blazor.Components.Monaco.Editor;
+using DevToys.Core.Settings;
 
 namespace DevToys.Blazor.Components;
 
@@ -11,6 +12,9 @@ public partial class MonacoEditorDiff : RicherMonacoEditorDiffBase
 
     [Import]
     internal IThemeListener ThemeListener { get; set; } = default!;
+
+    [Import]
+    internal ISettingsProvider SettingsProvider { get; set; } = default!;
 
     [Parameter]
     public string? Header { get; set; }
@@ -25,6 +29,7 @@ public partial class MonacoEditorDiff : RicherMonacoEditorDiffBase
         base.OnInitialized();
 
         ThemeListener.ThemeChanged += ThemeListener_ThemeChanged;
+        SettingsProvider.SettingChanged += SettingsProvider_SettingChanged;
         _oldIsActuallyEnabled = IsActuallyEnabled;
     }
 
@@ -59,6 +64,13 @@ public partial class MonacoEditorDiff : RicherMonacoEditorDiffBase
 
             options.DiffCodeLens = false;
             options.RenderOverviewRuler = true;
+
+            // Apply global user settings
+            options.FontFamily = SettingsProvider.GetSetting(PredefinedSettings.TextEditorFont);
+            options.WordWrap = SettingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping) ? "on" : "off";
+            options.LineNumbers = SettingsProvider.GetSetting(PredefinedSettings.TextEditorLineNumbers) ? "on" : "off";
+            options.RenderLineHighlight = SettingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine) ? "all" : "none";
+            options.RenderWhitespace = SettingsProvider.GetSetting(PredefinedSettings.TextEditorRenderWhitespace) ? "all" : "none";
 
             // Create the bridges for the inner editors
             _originalEditor = MonacoEditorHelper.CreateVirtualEditor(JSRuntime, Id + "_original");
@@ -108,6 +120,11 @@ public partial class MonacoEditorDiff : RicherMonacoEditorDiffBase
             ThemeListener.ThemeChanged -= ThemeListener_ThemeChanged;
         }
 
+        if (SettingsProvider is not null)
+        {
+            SettingsProvider.SettingChanged -= SettingsProvider_SettingChanged;
+        }
+
         return base.DisposeAsync();
     }
 
@@ -120,6 +137,20 @@ public partial class MonacoEditorDiff : RicherMonacoEditorDiffBase
             ShowLoading = false;
             StateHasChanged();
         }
+    }
+
+    private void SettingsProvider_SettingChanged(object? sender, SettingChangedEventArgs e)
+    {
+        var options = new DiffEditorOptions()
+        {
+            FontFamily = SettingsProvider.GetSetting(PredefinedSettings.TextEditorFont),
+            WordWrap = SettingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping) ? "on" : "off",
+            LineNumbers = SettingsProvider.GetSetting(PredefinedSettings.TextEditorLineNumbers) ? "on" : "off",
+            RenderLineHighlight = SettingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine) ? "all" : "none",
+            RenderWhitespace = SettingsProvider.GetSetting(PredefinedSettings.TextEditorRenderWhitespace) ? "all" : "none"
+        };
+
+        UpdateOptionsAsync(options);
     }
 
     private void ThemeListener_ThemeChanged(object? sender, EventArgs e)

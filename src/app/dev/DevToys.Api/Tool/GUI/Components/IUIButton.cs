@@ -21,6 +21,16 @@ public interface IUIButton : IUIElement
     string? Text { get; }
 
     /// <summary>
+    /// Gets the name of the font containing the icon.
+    /// </summary>
+    string? IconFontName { get; }
+
+    /// <summary>
+    /// Gets the glyph corresponding to the icon in the <see cref="IconFontName"/>.
+    /// </summary>
+    char IconGlyph { get; }
+
+    /// <summary>
     /// Gets the action to run when the user clicks the button.
     /// </summary>
     Func<ValueTask>? OnClickAction { get; }
@@ -34,6 +44,16 @@ public interface IUIButton : IUIElement
     /// Raised when <see cref="IsAccent"/> is changed.
     /// </summary>
     event EventHandler? IsAccentChanged;
+
+    /// <summary>
+    /// Raised when <see cref="IconFontName"/> is changed.
+    /// </summary>
+    event EventHandler? IconFontNameChanged;
+
+    /// <summary>
+    /// Raised when <see cref="IconGlyph"/> is changed.
+    /// </summary>
+    event EventHandler? IconGlyphChanged;
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Text = {{{nameof(Text)}}}")]
@@ -42,6 +62,8 @@ internal sealed class UIButton : UIElement, IUIButton
     private bool _isAccent;
     private bool _isHyperlink;
     private string? _text;
+    private string? _iconFontName;
+    private char _iconGlyph;
 
     internal UIButton(string? id)
         : base(id)
@@ -80,13 +102,29 @@ internal sealed class UIButton : UIElement, IUIButton
         internal set => SetPropertyValue(ref _text, value, TextChanged);
     }
 
+    public string? IconFontName
+    {
+        get => _iconFontName;
+        internal set
+        {
+            Guard.IsNotNullOrWhiteSpace(value);
+            SetPropertyValue(ref _iconFontName, value, IconFontNameChanged);
+        }
+    }
+
+    public char IconGlyph
+    {
+        get => _iconGlyph;
+        internal set => SetPropertyValue(ref _iconGlyph, value, IconGlyphChanged);
+    }
+
     public Func<ValueTask>? OnClickAction { get; internal set; }
 
     public event EventHandler? TextChanged;
-
     public event EventHandler? IsAccentChanged;
-
     public event EventHandler? IsHyperlinkChanged;
+    public event EventHandler? IconFontNameChanged;
+    public event EventHandler? IconGlyphChanged;
 }
 
 public static partial class GUI
@@ -161,5 +199,16 @@ public static partial class GUI
     {
         ((UIButton)element).IsAccent = false;
         return element;
+    }
+
+    /// <summary>
+    /// Sets the icon of the button.
+    /// </summary>
+    public static IUIButton Icon(this IUIButton element, string fontName, char glyph)
+    {
+        var button = (UIButton)element;
+        button.IconFontName = fontName;
+        button.IconGlyph = glyph;
+        return button;
     }
 }

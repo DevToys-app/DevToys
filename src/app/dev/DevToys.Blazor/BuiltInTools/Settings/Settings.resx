@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
   <data name="AccessibleName" xml:space="preserve">
     <value>Settings</value>
   </data>
@@ -153,6 +156,12 @@
   <data name="HelpTranslating" xml:space="preserve">
     <value>Help us translating DevToys!</value>
   </data>
+  <data name="HighlightCurrentLine" xml:space="preserve">
+    <value>Highlight current line</value>
+  </data>
+  <data name="HighlightCurrentLineDescription" xml:space="preserve">
+    <value>Change the background color of the current line so it's more visible</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
   </data>
@@ -161,6 +170,15 @@
   </data>
   <data name="Light" xml:space="preserve">
     <value>Light</value>
+  </data>
+  <data name="LineNumbers" xml:space="preserve">
+    <value>Line numbers</value>
+  </data>
+  <data name="LineNumbersDescription" xml:space="preserve">
+    <value>Display line numbers in the text editor</value>
+  </data>
+  <data name="RenderWhitespace" xml:space="preserve">
+    <value>Render white space</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
     <value>Settings</value>
@@ -182,5 +200,11 @@
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
     <value>Use system settings</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version {0}</value>
+  </data>
+  <data name="WordWrap" xml:space="preserve">
+    <value>Wrap word</value>
   </data>
 </root>

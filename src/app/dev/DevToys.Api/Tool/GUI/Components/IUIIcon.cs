@@ -111,7 +111,7 @@ public static partial class GUI
     }
 
     /// <summary>
-    /// Sets the <see cref="IUIIcon.FontName"/> of the icon.
+    /// Sets the <see cref="IUIIcon.Glyph"/> of the icon.
     /// </summary>
     public static IUIIcon Glyph(this IUIIcon element, char glyph)
     {
