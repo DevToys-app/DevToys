@@ -259,6 +259,33 @@ namespace DevToys.Blazor.BuiltInTools.Settings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Replace text when pasting.
+        /// </summary>
+        internal static string PasteClearsText {
+            get {
+                return ResourceManager.GetString("PasteClearsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content..
+        /// </summary>
+        internal static string PasteClearsTextDescription {
+            get {
+                return ResourceManager.GetString("PasteClearsTextDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace text when pasting.
+        /// </summary>
+        internal static string PasteClearsTextStateDescriptionWhenOn {
+            get {
+                return ResourceManager.GetString("PasteClearsTextStateDescriptionWhenOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Render white space.
         /// </summary>
         internal static string RenderWhitespace {

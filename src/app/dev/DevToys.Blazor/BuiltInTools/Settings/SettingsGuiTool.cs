@@ -174,6 +174,15 @@ internal sealed class SettingsGuiTool : IGuiTool
                                         stateDescriptionWhenOn: Settings.RenderWhitespaceStateDescriptionWhenOn,
                                         stateDescriptionWhenOff: null),
 
+                                Setting("text-editor-clear-text-on-paste-settings")
+                                    .Title(Settings.PasteClearsText)
+                                    .Description(Settings.PasteClearsTextDescription)
+                                    .Handle(
+                                        _settingsProvider,
+                                        PredefinedSettings.TextEditorPasteClearsText,
+                                        stateDescriptionWhenOn: Settings.PasteClearsTextStateDescriptionWhenOn,
+                                        stateDescriptionWhenOff: null),
+
                                 MultilineTextInput("text-editor-render-preview")
                                     .Title(Settings.TextEditorPreview)
                                     .AlignVertically(UIVerticalAlignment.Top)

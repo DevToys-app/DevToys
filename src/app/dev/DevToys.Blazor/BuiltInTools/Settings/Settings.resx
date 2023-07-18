@@ -183,6 +183,15 @@
   <data name="LineNumbersStateDescriptionWhenOn" xml:space="preserve">
     <value>Show line numbers</value>
   </data>
+  <data name="PasteClearsText" xml:space="preserve">
+    <value>Replace text when pasting</value>
+  </data>
+  <data name="PasteClearsTextDescription" xml:space="preserve">
+    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
+  </data>
+  <data name="PasteClearsTextStateDescriptionWhenOn" xml:space="preserve">
+    <value>Replace text when pasting</value>
+  </data>
   <data name="RenderWhitespace" xml:space="preserve">
     <value>Render white space</value>
   </data>

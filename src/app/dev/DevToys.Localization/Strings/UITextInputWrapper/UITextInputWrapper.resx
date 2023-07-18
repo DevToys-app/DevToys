@@ -135,7 +135,7 @@
   <data name="NoToolSuggested" xml:space="preserve">
     <value>No tool to suggest</value>
   </data>
-  <data name="PasteButonText" xml:space="preserve">
+  <data name="PasteButtonText" xml:space="preserve">
     <value>Paste</value>
   </data>
   <data name="SaveAsButtonText" xml:space="preserve">

@@ -413,7 +413,7 @@ public partial class UITextInputWrapper : MefComponentBase
             CollapsedDropDownListItems.Add(new DropDownListItem
             {
                 IconGlyph = '\uF2D5',
-                Text = DevToys.Localization.Strings.UITextInputWrapper.UITextInputWrapper.PasteButonText,
+                Text = DevToys.Localization.Strings.UITextInputWrapper.UITextInputWrapper.PasteButtonText,
                 OnClick = EventCallback.Factory.Create<DropDownListItem>(this, OnPasteButtonClickAsync)
             });
             CollapsedDropDownListItems.Add(new DropDownListItem

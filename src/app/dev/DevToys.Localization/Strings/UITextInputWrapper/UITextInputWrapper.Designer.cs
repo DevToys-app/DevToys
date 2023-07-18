@@ -117,9 +117,9 @@ namespace DevToys.Localization.Strings.UITextInputWrapper {
         /// <summary>
         ///   Looks up a localized string similar to Paste.
         /// </summary>
-        public static string PasteButonText {
+        public static string PasteButtonText {
             get {
-                return ResourceManager.GetString("PasteButonText", resourceCulture);
+                return ResourceManager.GetString("PasteButtonText", resourceCulture);
             }
         }
         
