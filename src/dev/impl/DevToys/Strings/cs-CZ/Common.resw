@@ -138,6 +138,12 @@
   <data name="Expand" xml:space="preserve">
     <value>Rozbalit</value>
   </data>
+  <data name="ShowInfo" xml:space="preserve">
+    <value>Zobrazit další informace</value>
+  </data>
+  <data name="HideInfo" xml:space="preserve">
+    <value>Skrýt další informace</value>
+  </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
     <value>Procházet soubory</value>
   </data>

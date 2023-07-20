@@ -132,6 +132,15 @@
   <data name="JwtPayloadLabel" xml:space="preserve">
     <value>Obsah</value>
   </data>
+  <data name="Type" xml:space="preserve">
+    <value>Druh</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Hodnota</value>
+  </data>
+  <data name="DescriptionHeader" xml:space="preserve">
+    <value>Popis</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Dekódování hlavičky, obsahu a podpisu JWT</value>
   </data>
@@ -263,5 +272,110 @@
   </data>
   <data name="InvalidSignatureError" xml:space="preserve">
     <value>Neplatný podpis</value>
+  </data>
+  <data name="NoDescription" xml:space="preserve">
+    <value>Bez popisu</value>
+  </data>
+  <data name="iss" xml:space="preserve">
+    <value>Deklarace "iss" (issuer-vydavatel) identifikuje zadavatele, který vydal JWT. Zpracování této deklarace je obecně specifické pro danou aplikaci. Hodnota "iss" je řetězec rozlišující malá a velká písmena obsahující hodnotu StringOrURI. Použití této deklarace je VOLITELNÉ.</value>
+  </data>
+  <data name="sub" xml:space="preserve">
+    <value>Deklarace "sub" (subject-subjekt) identifikuje zadavatele, který je subjektem JWT. Deklarace v JWT jsou obvykle prohlášení o subjektu. Hodnota subjektu MUSÍ být buď rozsahem lokálně jedinečná v kontextu vydavatele, nebo globálně jedinečná. Zpracování této deklarace je obecně specifické pro danou aplikaci. Hodnota "sub" je řetězec rozlišující velká a malá písmena obsahující hodnotu StringOrURI. Použití této deklarace je VOLITELNÉ.</value>
+  </data>
+  <data name="aud" xml:space="preserve">
+    <value>Deklarace "aud" (audience-příjemce) identifikuje příjemce, kterým je JWT určen. Každý zadavatel určený ke zpracování JWT se MUSÍ identifikovat hodnotou v deklaraci příjemce. Pokud se zadavatel zpracovávající deklaraci neidentifikuje hodnotou v deklaraci "aud", když je tato deklarace přítomna, pak MUSÍ být JWT odmítnut. V obecném případě je hodnota "aud" pole řetězců rozlišujících malá a velká písmena, z nichž každý obsahuje hodnotu StringOrURI. Ve zvláštním případě, kdy má JWT jednoho příjemce, MŮŽE být hodnota "aud" jediným řetězcem rozlišujícím malá a velká písmena, který obsahuje hodnotu StringOrURI. Interpretace těchto hodnot je obecně specifická pro danou aplikaci. Použití této deklarace je VOLITELNÉ.</value>
+  </data>
+  <data name="exp" xml:space="preserve">
+    <value>Deklarace "exp" (expiration date-doba vypršení) určuje dobu vypršení, kdy v ten čas nebo po něm NESMÍ být JWT přijat ke zpracování. Zpracování deklarace "exp" vyžaduje, aby aktuální datum/čas MUSEL být před datem/časem vypršení uvedeným v deklaraci "exp". Implementátoři MOHOU poskytnout určitou malou odchylku, obvykle ne více než několik minut, aby zohlednili zpoždění hodin. Jeho hodnotou MUSÍ být číslo obsahující hodnotu NumericDate. Použití této deklarace je VOLITELNÉ.</value>
+  </data>
+  <data name="nbf" xml:space="preserve">
+    <value>Deklarace "nbf" (not before-ne dříve než) označuje čas, před kterým NESMÍ být JWT přijat ke zpracování. Zpracování deklarace "nbf" vyžaduje, aby aktuální datum/čas MUSEL být po datu/času uvedeném v deklaraci "nbf" nebo se mu rovnal. Implementátoři MOHOU poskytnout určitou malou odchylku, obvykle ne více než několik minut, aby zohlednili zpoždění hodin. Jeho hodnota MUSÍ být číslo obsahující hodnotu NumericDate. Použití této deklarace je VOLITELNÉ.</value>
+  </data>
+  <data name="iat" xml:space="preserve">
+    <value>Deklarace "iat" (issued at-vydáno v) označuje čas, kdy byl JWT vydán. Tento údaj lze použít k určení stáří JWT. Jeho hodnota MUSÍ být číslo obsahující hodnotu NumericDate. Použití této deklarace je VOLITELNÉ.</value>
+  </data>
+  <data name="jti" xml:space="preserve">
+    <value>Deklarace "jti" (JWT ID) poskytuje jedinečný identifikátor pro JWT. Hodnota identifikátoru MUSÍ být přiřazena způsobem, který zajistí, že existuje zanedbatelná pravděpodobnost, že stejná hodnota bude omylem přiřazena jinému datovému objektu; pokud aplikace používá více vydavatelů, MUSÍ být zabráněno kolizím i mezi hodnotami vytvořenými různými vydavateli. K zabránění přehrání JWT lze použít deklaraci "jti". Hodnota "jti" je řetězec rozlišující malá a velká písmena. Použití této deklarace je VOLITELNÉ.</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Celé jméno koncového uživatele v zobrazitelné podobě včetně všech částí jména, případně včetně titulů a přípon, seřazené podle lokalizace a preferencí koncového uživatele.</value>
+  </data>
+  <data name="given_name" xml:space="preserve">
+    <value>Křestní jméno(a) koncového uživatele. Berte na vědomí, že v některých kulturách mohou mít lidé více křestních jmen; mohou být uvedena všechna, přičemž jména musí být oddělena znaky mezery.</value>
+  </data>
+  <data name="family_name" xml:space="preserve">
+    <value>Příjmení koncového uživatele. Berte na vědomí, že v některých kulturách mohou mít lidé více příjmení nebo žádné příjmení; mohou být přítomna všechna, přičemž jména musí být oddělena znaky mezery.</value>
+  </data>
+  <data name="middle_name" xml:space="preserve">
+    <value>Druhé/prostřední jméno(a) koncového uživatele. Berte na vědomí, že v některých kulturách mohou mít lidé více druhých/prostředních jmen; mohou být uvedena všechna, přičemž jména musí být oddělena mezerou. Berte také na vědomí, že v některých kulturách se prostřední jména nepoužívají.</value>
+  </data>
+  <data name="nickname" xml:space="preserve">
+    <value>Domácké podoby jména koncového uživatele, které může, ale nemusí být stejné jako given_name. Například vedle hodnoty given_name Michal může být vrácena hodnota domácké podoby Míša.</value>
+  </data>
+  <data name="preferred_username" xml:space="preserve">
+    <value>Zkrácené jméno, pod kterým si koncový uživatel přeje být v RP označován, například jannovak nebo j.novak. Tato hodnota MŮŽE být jakýkoli platný JSON řetězec včetně speciálních znaků, jako jsou @, / nebo bílé znaky. RP NESMÍ spoléhat na to, že tato hodnota je jedinečná.</value>
+  </data>
+  <data name="profile" xml:space="preserve">
+    <value>URL odkaz profilové stránky koncového uživatele. Obsah této webové stránky BY MĚL být o koncovém uživateli.</value>
+  </data>
+  <data name="picture" xml:space="preserve">
+    <value>URL odkaz profilového obrázku koncového uživatele. Tento URL odkaz MUSÍ odkazovat na soubor s obrázkem (například soubor PNG, JPEG nebo GIF), nikoli na webovou stránku obsahující obrázek. Berte na vědomí, že tento URL odkaz BY MĚL odkazovat konkrétně na profilový obrázek koncového uživatele vhodný pro zobrazení při popisu koncového uživatele, nikoli na libovolnou fotografii pořízenou koncovým uživatelem.</value>
+  </data>
+  <data name="website" xml:space="preserve">
+    <value>URL odkaz webové stránky nebo blogu koncového uživatele. Tato webová stránka MUSÍ obsahovat informace zveřejněné koncovým uživatelem nebo organizací, se kterou je koncový uživatel spojen.</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>Preferovaná e-mailová adresa koncového uživatele. Její hodnota MUSÍ odpovídat syntaxi RFC 5322 addr-spec. RP NESMÍ spoléhat na to, že tato hodnota je jedinečná.</value>
+  </data>
+  <data name="email_verified" xml:space="preserve">
+    <value>Pravda, pokud byla e-mailová adresa koncového uživatele ověřena; jinak nepravda. Pokud je tato hodnota tvrzení pravdivá, znamená to, že OP podnikl potvrzující kroky, aby zajistil, že tato e-mailová adresa byla v době ověření využívaná koncovým uživatelem. Způsob, jakým se e-mailová adresa ověřuje, je specifický pro daný kontext a závisí na rámci důvěry nebo smluvních ujednáních, v jejichž rámci strany jednají.</value>
+  </data>
+  <data name="gender" xml:space="preserve">
+    <value>Pohlaví koncového uživatele. Hodnoty definované touto specifikací jsou žena a muž. Pokud není použitelná žádná z definovaných hodnot, LZE použít jiné hodnoty.</value>
+  </data>
+  <data name="birthdate" xml:space="preserve">
+    <value>Datum narození koncového uživatele, reprezentované ve formátu ISO 8601:2004 RRRR-MM-DD. Rok MŮŽE být 0000, což znamená, že je vynechán. Pro vyjádření pouze roku je povolen formát RRRR. Berte na vědomí, že v závislosti na funkci související s datem podkladové platformy může zadání pouze roku vést k odlišnému měsíci a dni, takže implementátoři musí tento faktor vzít v úvahu, aby data správně zpracovali.</value>
+  </data>
+  <data name="zoneinfo" xml:space="preserve">
+    <value>Řetězec z databáze časových pásem zoneinfo reprezentující časové pásmo koncového uživatele. Například Evropa/Paříž nebo Amerika/Los_Angeles.</value>
+  </data>
+  <data name="locale" xml:space="preserve">
+    <value>Lokalizace koncového uživatele, reprezentovaná jako jazyková značka BCP47 [RFC5646]. Obvykle se jedná o kód jazyka ISO 639-1 Alpha-2 malými písmeny a kód země ISO 3166-1 Alpha-2 velkými písmeny, oddělený pomlčkou. Například en-US nebo fr-CA. Jako poznámku ke kompatibilitě lze uvést, že některé implementace používají jako oddělovač místo pomlčky podtržítko, například en_US; spoléhající se strany se MOHOU rozhodnout přijmout i tuto syntaxi lokalizace.</value>
+  </data>
+  <data name="phone_number" xml:space="preserve">
+    <value>Preferované telefonní číslo koncového uživatele. Jako formát tohoto požadavku se DOPORUČUJE E.164, například +1 (425) 555-1212 nebo +56 (2) 687 2400. Pokud telefonní číslo obsahuje přípony, DOPORUČUJE se, aby byly reprezentovány pomocí syntaxe přípony RFC 3966, například +1 (604) 555-1234;ext=5678.</value>
+  </data>
+  <data name="phone_number_verified" xml:space="preserve">
+    <value>Pravda, pokud bylo telefonní číslo koncového uživatele ověřeno; jinak nepravda. Pokud je tato hodnota tvrzení pravdivá, znamená to, že OP podnikl potvrzující kroky, aby zajistil, že toto telefonní číslo bylo v době ověření využíváno koncovým uživatelem. Způsob, jakým se telefonní číslo ověřuje, je specifický pro daný kontext a závisí na rámci důvěry nebo smluvních ujednáních, v jejichž rámci strany jednají. Je-li to pravda, MUSÍ být deklarace phone_number ve formátu E.164 a případná rozšíření MUSÍ být reprezentována ve formátu RFC 3966.</value>
+  </data>
+  <data name="address" xml:space="preserve">
+    <value>Preferovaná poštovní adresa koncového uživatele. Hodnota části adresy je ve struktuře JSON [RFC4627].</value>
+  </data>
+  <data name="updated_at" xml:space="preserve">
+    <value>Čas poslední aktualizace informací o koncovém uživateli. Jeho hodnota je číslo JSON představující počet sekund od 1970-01-01T0:0:0Z měřeno v UTC do data/času.</value>
+  </data>
+  <data name="azp" xml:space="preserve">
+    <value>Oprávněná strana - strana, které byl ID Token vydán. Pokud existuje, MUSÍ obsahovat ID klienta OAuth 2.0 této strany. Tato deklarace je potřeba pouze v případě, že ID Token má jedinou hodnotu příjemce a tento příjemce je jiný než autorizovaná strana. MŮŽE být obsažena i v případě, že autorizovaná strana je stejná jako jediný příjemce. Hodnota "azp" je řetězec rozlišující malá a velká písmena obsahující hodnotu StringOrURI.</value>
+  </data>
+  <data name="nonce" xml:space="preserve">
+    <value>Řetězcová hodnota sloužící k přiřazení relace klienta k ID tokenu a ke zmírnění přehrávacích útoků. Hodnota se předává z požadavku na ověření do ID tokenu v nezměněné podobě. Pokud je v ID tokenu přítomna, klienti MUSÍ ověřit, zda se nonce hodnota deklarace rovná nonce hodnotě parametru zaslaného v požadavku na ověření. Pokud je v ověřovacím požadavku obsažen, MUSÍ autorizační servery do ID tokenu zahrnout nonce parametr deklarace, přičemž hodnota deklarace je rovna nonce hodnotě zaslané v ověřovacím požadavku. Autorizační servery NESMÍ provádět žádné další zpracování použitých nonce hodnot. Nonce hodnota je řetězec, u kterého se rozlišují malá a velká písmena.</value>
+  </data>
+  <data name="auth_time" xml:space="preserve">
+    <value>Čas, kdy došlo k ověření koncového uživatele. Jeho hodnota je číslo JSON představující počet sekund od 1970-01-01T0:0:0Z měřeno v UTC do data/času. Pokud je zadán požadavek max_age nebo pokud je auth_time požadován jako základní požadavek, pak je tento požadavek VYŽADOVÁN; jinak je jeho zahrnutí VOLITELNÉ. (Požadavek auth_time sémanticky odpovídá parametru odpovědi OpenID 2.0 PAPE auth_time.)</value>
+  </data>
+  <data name="at_hash" xml:space="preserve">
+    <value>Hash hodnota přístupového tokenu. Jeho hodnota je base64url kódování levé poloviny hashe oktetů ASCII reprezentace hodnoty access_token, přičemž použitý hashovací algoritmus je hashovací algoritmus použitý v parametru alg hlavičky v hlavičce JOSE ID tokenu. Pokud je alg například RS256, udělejte hash z hodnoty access_token pomocí SHA-256, pak vezměte nejlevějších 128 bitů a zakódujte je pomocí base64url. Hodnota at_hash je řetězec rozlišující malá a velká písmena.</value>
+  </data>
+  <data name="c_hash" xml:space="preserve">
+    <value>Hodnota hash kódu. Jeho hodnota je base64url kódování levé poloviny hashe oktetů ASCII reprezentace hodnoty kódu, přičemž použitý hashovací algoritmus je hashovací algoritmus použitý v parametru alg hlavičky v hlavičce JOSE ID tokenu. Pokud je alg například HS512, udělejte hash z hodnoty kódu pomocí SHA-512, pak vezměte nejlevějších 256 bitů a zakódujte je pomocí base64url. Hodnota c_hash je řetězec rozlišující malá a velká písmena. Pokud je ID token vydáván z koncového bodu autorizace s kódem, což se stává u tokenů s hodnotami response_type code id_token a code id_token token, je jeho implementace POŽADOVÁNA; v opačném případě je jeho implementace VOLITELNÁ.</value>
+  </data>
+  <data name="acr" xml:space="preserve">
+    <value>Odkaz na kontextovou třídu ověřování. Řetězec určující hodnotu odkazu na kontextovou třídu ověřování, která identifikuje kontextovou třídu ověřování, které bylo provedeným ověřením splňeno. Hodnota "0" označuje, že ověření koncového uživatele nesplnilo požadavky normy ISO/IEC 29115 úrovně 1. Jedním z příkladů, kdy je vhodné použít "úroveň 0", je například ověření pomocí dlouhodobého souboru cookie prohlížeče. Ověření s úrovní 0 BY SE NĚMELO použít k autorizaci přístupu k jakémukoli zdroji jakékoli peněžní hodnoty. (To odpovídá PAPE OpenID 2.0 nist_auth_level 0.) Jako hodnota acr BY MĚL být použit absolutní URI nebo registrované jméno RFC 6711; registrovaná jména NESMÍ být použita s jiným významem, než který je registrován. Strany používající tuto deklaraci se budou muset dohodnout na významu použitých hodnot, který může být specifický pro daný kontext. Hodnota acr je řetězec rozlišující malá a velká písmena.</value>
+  </data>
+  <data name="amr" xml:space="preserve">
+    <value>Odkazy na metody ověřování. JSON pole řetězců, které jsou identifikátory ověřovacích metod použitých při ověřování. Hodnoty mohou například označovat, že byly použity metody ověřování heslem i OTP. Strany používající tuto deklaraci se budou muset dohodnout na významu použitých hodnot, který může být specifický pro daný kontext. Hodnota amr je pole řetězců rozlišující malá a velká písmena.</value>
+  </data>
+  <data name="sub_jwk" xml:space="preserve">
+    <value>Veřejný klíč, který se používá ke kontrole podpisu ID tokenu vydaným Self-Issued OpenID poskytovatelem. Klíč je holý klíč ve formátu JWK (nikoli hodnota certifikátu X.509). Hodnota sub_jwk je objekt JSON. Použití deklarace sub_jwk se NEDOPORUČUJE, pokud OP není Self-Issued.</value>
   </data>
 </root>

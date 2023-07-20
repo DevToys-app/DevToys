@@ -132,6 +132,15 @@
   <data name="JwtPayloadLabel" xml:space="preserve">
     <value>Payload</value>
   </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="DescriptionHeader" xml:space="preserve">
+    <value>Description</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Decode a JWT header, payload and signature</value>
   </data>
@@ -263,5 +272,110 @@
   </data>
   <data name="InvalidSignatureError" xml:space="preserve">
     <value>Invalid Signature</value>
+  </data>
+  <data name="NoDescription" xml:space="preserve">
+    <value>No description</value>
+  </data>
+  <data name="iss" xml:space="preserve">
+    <value>The "iss" (issuer) claim identifies the principal that issued the JWT. The processing of this claim is generally application specific. The "iss" value is a case-sensitive string containing a StringOrURI value. Use of this claim is OPTIONAL.</value>
+  </data>
+  <data name="sub" xml:space="preserve">
+    <value>The "sub" (subject) claim identifies the principal that is the subject of the JWT. The claims in a JWT are normally statements about the subject. The subject value MUST either be scoped to be locally unique in the context of the issuer or be globally unique. The processing of this claim is generally application specific. The "sub" value is a case-sensitive string containing a StringOrURI value. Use of this claim is OPTIONAL.</value>
+  </data>
+  <data name="aud" xml:space="preserve">
+    <value>The "aud" (audience) claim identifies the recipients that the JWT is intended for. Each principal intended to process the JWT MUST identify itself with a value in the audience claim. If the principal processing the claim does not identify itself with a value in the "aud" claim when this claim is present, then the JWT MUST be rejected. In the general case, the "aud" value is an array of case-sensitive strings, each containing a StringOrURI value. In the special case when the JWT has one audience, the "aud" value MAY be a single case-sensitive string containing a StringOrURI value. The interpretation of audience values is generally application specific. Use of this claim is OPTIONAL.</value>
+  </data>
+  <data name="exp" xml:space="preserve">
+    <value>The "exp" (expiration time) claim identifies the expiration time on or after which the JWT MUST NOT be accepted for processing. The processing of the "exp" claim requires that the current date/time MUST be before the expiration date/time listed in the "exp" claim. Implementers MAY provide for some small leeway, usually no more than a few minutes, to account for clock skew. Its value MUST be a number containing a NumericDate value. Use of this claim is OPTIONAL.</value>
+  </data>
+  <data name="nbf" xml:space="preserve">
+    <value>The "nbf" (not before) claim identifies the time before which the JWT MUST NOT be accepted for processing. The processing of the "nbf" claim requires that the current date/time MUST be after or equal to the not-before date/time listed in the "nbf" claim. Implementers MAY provide for some small leeway, usually no more than a few minutes, to account for clock skew. Its value MUST be a number containing a NumericDate value. Use of this claim is OPTIONAL.</value>
+  </data>
+  <data name="iat" xml:space="preserve">
+    <value>The "iat" (issued at) claim identifies the time at which the JWT was issued. This claim can be used to determine the age of the JWT. Its value MUST be a number containing a NumericDate value. Use of this claim is OPTIONAL.</value>
+  </data>
+  <data name="jti" xml:space="preserve">
+    <value>The "jti" (JWT ID) claim provides a unique identifier for the JWT. The identifier value MUST be assigned in a manner that ensures that there is a negligible probability that the same value will be accidentally assigned to a different data object; if the application uses multiple issuers, collisions MUST be prevented among values produced by different issuers as well. The "jti" claim can be used to prevent the JWT from being replayed. The "jti" value is a case-sensitive string. Use of this claim is OPTIONAL.</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>End-User's full name in displayable form including all name parts, possibly including titles and suffixes, ordered according to the End-User's locale and preferences.</value>
+  </data>
+  <data name="given_name" xml:space="preserve">
+    <value>Given name(s) or first name(s) of the End-User. Note that in some cultures, people can have multiple given names; all can be present, with the names being separated by space characters.</value>
+  </data>
+  <data name="family_name" xml:space="preserve">
+    <value>Surname(s) or last name(s) of the End-User. Note that in some cultures, people can have multiple family names or no family name; all can be present, with the names being separated by space characters.</value>
+  </data>
+  <data name="middle_name" xml:space="preserve">
+    <value>Middle name(s) of the End-User. Note that in some cultures, people can have multiple middle names; all can be present, with the names being separated by space characters. Also note that in some cultures, middle names are not used.</value>
+  </data>
+  <data name="nickname" xml:space="preserve">
+    <value>Casual name of the End-User that may or may not be the same as the given_name. For instance, a nickname value of Mike might be returned alongside a given_name value of Michael.</value>
+  </data>
+  <data name="preferred_username" xml:space="preserve">
+    <value>Shorthand name by which the End-User wishes to be referred to at the RP, such as janedoe or j.doe. This value MAY be any valid JSON string including special characters such as @, /, or whitespace. The RP MUST NOT rely upon this value being unique.</value>
+  </data>
+  <data name="profile" xml:space="preserve">
+    <value>URL of the End-User's profile page. The contents of this Web page SHOULD be about the End-User.</value>
+  </data>
+  <data name="picture" xml:space="preserve">
+    <value>URL of the End-User's profile picture. This URL MUST refer to an image file (for example, a PNG, JPEG, or GIF image file), rather than to a Web page containing an image. Note that this URL SHOULD specifically reference a profile photo of the End-User suitable for displaying when describing the End-User, rather than an arbitrary photo taken by the End-User.</value>
+  </data>
+  <data name="website" xml:space="preserve">
+    <value>URL of the End-User's Web page or blog. This Web page SHOULD contain information published by the End-User or an organization that the End-User is affiliated with.</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>End-User's preferred e-mail address. Its value MUST conform to the RFC 5322 addr-spec syntax. The RP MUST NOT rely upon this value being unique.</value>
+  </data>
+  <data name="email_verified" xml:space="preserve">
+    <value>True if the End-User's e-mail address has been verified; otherwise false. When this Claim Value is true, this means that the OP took affirmative steps to ensure that this e-mail address was controlled by the End-User at the time the verification was performed. The means by which an e-mail address is verified is context-specific, and dependent upon the trust framework or contractual agreements within which the parties are operating.</value>
+  </data>
+  <data name="gender" xml:space="preserve">
+    <value>End-User's gender. Values defined by this specification are female and male. Other values MAY be used when neither of the defined values are applicable.</value>
+  </data>
+  <data name="birthdate" xml:space="preserve">
+    <value>End-User's birthday, represented as an ISO 8601:2004 YYYY-MM-DD format. The year MAY be 0000, indicating that it is omitted. To represent only the year, YYYY format is allowed. Note that depending on the underlying platform's date related function, providing just year can result in varying month and day, so the implementers need to take this factor into account to correctly process the dates.</value>
+  </data>
+  <data name="zoneinfo" xml:space="preserve">
+    <value>String from zoneinfo time zone database representing the End-User's time zone. For example, Europe/Paris or America/Los_Angeles.</value>
+  </data>
+  <data name="locale" xml:space="preserve">
+    <value>End-User's locale, represented as a BCP47 [RFC5646] language tag. This is typically an ISO 639-1 Alpha-2 language code in lowercase and an ISO 3166-1 Alpha-2 country code in uppercase, separated by a dash. For example, en-US or fr-CA. As a compatibility note, some implementations have used an underscore as the separator rather than a dash, for example, en_US; Relying Parties MAY choose to accept this locale syntax as well.</value>
+  </data>
+  <data name="phone_number" xml:space="preserve">
+    <value>End-User's preferred telephone number. E.164 is RECOMMENDED as the format of this Claim, for example, +1 (425) 555-1212 or +56 (2) 687 2400. If the phone number contains an extension, it is RECOMMENDED that the extension be represented using the RFC 3966 extension syntax, for example, +1 (604) 555-1234;ext=5678.</value>
+  </data>
+  <data name="phone_number_verified" xml:space="preserve">
+    <value>True if the End-User's phone number has been verified; otherwise false. When this Claim Value is true, this means that the OP took affirmative steps to ensure that this phone number was controlled by the End-User at the time the verification was performed. The means by which a phone number is verified is context-specific, and dependent upon the trust framework or contractual agreements within which the parties are operating. When true, the phone_number Claim MUST be in E.164 format and any extensions MUST be represented in RFC 3966 format.</value>
+  </data>
+  <data name="address" xml:space="preserve">
+    <value>End-User's preferred postal address. The value of the address member is a JSON [RFC4627] structure.</value>
+  </data>
+  <data name="updated_at" xml:space="preserve">
+    <value>Time the End-User's information was last updated. Its value is a JSON number representing the number of seconds from 1970-01-01T0:0:0Z as measured in UTC until the date/time.</value>
+  </data>
+  <data name="azp" xml:space="preserve">
+    <value>Authorized party - the party to which the ID Token was issued. If present, it MUST contain the OAuth 2.0 Client ID of this party. This Claim is only needed when the ID Token has a single audience value and that audience is different than the authorized party. It MAY be included even when the authorized party is the same as the sole audience. The azp value is a case sensitive string containing a StringOrURI value.</value>
+  </data>
+  <data name="nonce" xml:space="preserve">
+    <value>String value used to associate a Client session with an ID Token, and to mitigate replay attacks. The value is passed through unmodified from the Authentication Request to the ID Token. If present in the ID Token, Clients MUST verify that the nonce Claim Value is equal to the value of the nonce parameter sent in the Authentication Request. If present in the Authentication Request, Authorization Servers MUST include a nonce Claim in the ID Token with the Claim Value being the nonce value sent in the Authentication Request. Authorization Servers SHOULD perform no other processing on nonce values used. The nonce value is a case sensitive string.</value>
+  </data>
+  <data name="auth_time" xml:space="preserve">
+    <value>Time when the End-User authentication occurred. Its value is a JSON number representing the number of seconds from 1970-01-01T0:0:0Z as measured in UTC until the date/time. When a max_age request is made or when auth_time is requested as an Essential Claim, then this Claim is REQUIRED; otherwise, its inclusion is OPTIONAL. (The auth_time Claim semantically corresponds to the OpenID 2.0 PAPE auth_time response parameter.)</value>
+  </data>
+  <data name="at_hash" xml:space="preserve">
+    <value>Access Token hash value. Its value is the base64url encoding of the left-most half of the hash of the octets of the ASCII representation of the access_token value, where the hash algorithm used is the hash algorithm used in the alg Header Parameter of the ID Token's JOSE Header. For instance, if the alg is RS256, hash the access_token value with SHA-256, then take the left-most 128 bits and base64url encode them. The at_hash value is a case sensitive string.</value>
+  </data>
+  <data name="c_hash" xml:space="preserve">
+    <value>Code hash value. Its value is the base64url encoding of the left-most half of the hash of the octets of the ASCII representation of the code value, where the hash algorithm used is the hash algorithm used in the alg Header Parameter of the ID Token's JOSE Header. For instance, if the alg is HS512, hash the code value with SHA-512, then take the left-most 256 bits and base64url encode them. The c_hash value is a case sensitive string. If the ID Token is issued from the Authorization Endpoint with a code, which is the case for the response_type values code id_token and code id_token token, this is REQUIRED; otherwise, its inclusion is OPTIONAL.</value>
+  </data>
+  <data name="acr" xml:space="preserve">
+    <value>Authentication Context Class Reference. String specifying an Authentication Context Class Reference value that identifies the Authentication Context Class that the authentication performed satisfied. The value "0" indicates the End-User authentication did not meet the requirements of ISO/IEC 29115 level 1. Authentication using a long-lived browser cookie, for instance, is one example where the use of "level 0" is appropriate. Authentications with level 0 SHOULD NOT be used to authorize access to any resource of any monetary value. (This corresponds to the OpenID 2.0 PAPE nist_auth_level 0.) An absolute URI or an RFC 6711 registered name SHOULD be used as the acr value; registered names MUST NOT be used with a different meaning than that which is registered. Parties using this claim will need to agree upon the meanings of the values used, which may be context-specific. The acr value is a case sensitive string.</value>
+  </data>
+  <data name="amr" xml:space="preserve">
+    <value>Authentication Methods References. JSON array of strings that are identifiers for authentication methods used in the authentication. For instance, values might indicate that both password and OTP authentication methods were used. Parties using this claim will need to agree upon the meanings of the values used, which may be context-specific. The amr value is an array of case sensitive strings.</value>
+  </data>
+  <data name="sub_jwk" xml:space="preserve">
+    <value>Public key used to check the signature of an ID Token issued by a Self-Issued OpenID Provider. The key is a bare key in JWK format (not an X.509 certificate value). The sub_jwk value is a JSON object. Use of the sub_jwk Claim is NOT RECOMMENDED when the OP is not Self-Issued.</value>
   </data>
 </root>

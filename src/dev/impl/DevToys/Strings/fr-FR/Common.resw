@@ -124,7 +124,7 @@
     <value>Effacer</value>
   </data>
   <data name="Collapse" xml:space="preserve">
-    <value>Collapse</value>
+    <value>Réduire</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>Copier</value>
@@ -136,7 +136,13 @@
     <value>Supprimer</value>
   </data>
   <data name="Expand" xml:space="preserve">
-    <value>Expand</value>
+    <value>Développer</value>
+  </data>
+  <data name="ShowInfo" xml:space="preserve">
+    <value>Afficher les informations supplémentaires</value>
+  </data>
+  <data name="HideInfo" xml:space="preserve">
+    <value>Masquer les informations supplémentaires</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
     <value>Parcourir les fichiers</value>

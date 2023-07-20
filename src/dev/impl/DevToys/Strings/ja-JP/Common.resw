@@ -138,6 +138,12 @@
   <data name="Expand" xml:space="preserve">
     <value>最大化</value>
   </data>
+  <data name="ShowInfo" xml:space="preserve">
+    <value>追加情報を表示</value>
+  </data>
+  <data name="HideInfo" xml:space="preserve">
+    <value>追加情報を閉じる</value>
+  </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
     <value>ファイルを開く</value>
   </data>

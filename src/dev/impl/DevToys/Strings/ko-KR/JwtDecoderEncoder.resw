@@ -132,6 +132,15 @@
   <data name="JwtPayloadLabel" xml:space="preserve">
     <value>적재 내용</value>
   </data>
+  <data name="Type" xml:space="preserve">
+    <value>유형</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>값</value>
+  </data>
+  <data name="DescriptionHeader" xml:space="preserve">
+    <value>설명</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>JWT 헤더, 내용및 서명 디코드</value>
   </data>
@@ -263,5 +272,110 @@
   </data>
   <data name="InvalidSignatureError" xml:space="preserve">
     <value>잘못된 서명</value>
+  </data>
+  <data name="NoDescription" xml:space="preserve">
+    <value>설명 없음</value>
+  </data>
+  <data name="iss" xml:space="preserve">
+    <value>"iss" (발급자) 클레임은 JWT를 발급한 주체를 식별합니다. 이 클레임의 처리는 일반적으로 응용 프로그램에 따라 다릅니다. "iss" 값은 대/소문자를 구분하는 문자열로 StringOrURI 값을 포함합니다. 이 클레임의 사용은 선택 사항입니다.</value>
+  </data>
+  <data name="sub" xml:space="preserve">
+    <value>"하위" (주제) 클레임은 JWT의 주체가 되는 주체를 식별합니다. JWT의 클레임은 일반적으로 주제에 대한 진술입니다. 주체 값은 발급자의 컨텍스트에서 로컬로 고유하거나 전 세계적으로 고유하도록 범위가 지정되어야 합니다. 이 클레임의 처리는 일반적으로 응용 프로그램에 따라 다릅니다. "sub" 값은 대소문자를 구분하는 문자열로 StringOrURI 값을 포함합니다. 이 클레임의 사용은 선택 사항입니다.</value>
+  </data>
+  <data name="aud" xml:space="preserve">
+    <value>"aud" (대상) 클레임은 JWT가 대상인 수신자를 식별합니다. JWT를 처리하려는 각 주체는 대상 클레임의 값으로 자신을 식별해야 합니다. 이 클레임이 있을 때 클레임을 처리하는 주체가 "aud" 클레임의 값으로 자신을 식별하지 않으면 JWT를 거부해야 합니다. 일반적인 경우 "aud" 값은 대소문자를 구분하는 문자열 배열이며, 각 문자열은 StringOrURI 값을 포함합니다. JWT에 하나의 대상 그룹이 있는 특수한 경우에는 "aud" 값이 StringOrURI 값을 포함하는 대소문자를 구분하는 단일 문자열일 수 있습니다. 대상 값의 해석은 일반적으로 응용 프로그램에 따라 다릅니다. 이 클레임의 사용은 선택 사항입니다.</value>
+  </data>
+  <data name="exp" xml:space="preserve">
+    <value>"만료" (만료 시간) 클레임은 JWT 처리를 수락해서는 안 되는 만료 시간 또는 그 이후를 식별합니다. "만료" 클레임을 처리하려면 현재 날짜/시간이 "만료" 클레임에 명시된 만료 날짜/시간 이전이어야 합니다. 구현자는 시계 왜곡을 고려하기 위해 일반적으로 몇 분 이하의 약간의 여유를 제공할 수 있습니다. 해당 값은 반드시 NumericDate 값을 포함하는 숫자여야 합니다. 이 클레임의 사용은 선택 사항입니다.</value>
+  </data>
+  <data name="nbf" xml:space="preserve">
+    <value>"nbf" (이전이 아님) 클레임은 JWT 처리를 위해 허용되어서는 안 되는 이전 시간을 식별합니다. "nbf" 클레임을 처리하려면 현재 날짜/시간이 "nbf" 클레임에 나열된 이전이 아닌 날짜/시간 이후이거나 같아야 합니다. 구현자는 시계 왜곡을 고려하기 위해 일반적으로 몇 분 이하의 약간의 여유를 제공할 수 있습니다. 그 값은 반드시 NumericDate 값을 포함하는 숫자여야 합니다. 이 클레임의 사용은 선택 사항입니다.</value>
+  </data>
+  <data name="iat" xml:space="preserve">
+    <value>"iat" (발행일) 클레임은 JWT가 발행된 시점을 식별합니다. 이 클레임은 JWT의 연령을 결정하는 데 사용할 수 있습니다. 이 값은 반드시 NumericDate 값을 포함하는 숫자여야 합니다. 이 클레임의 사용은 선택 사항입니다.</value>
+  </data>
+  <data name="jti" xml:space="preserve">
+    <value>"jti" (JWT ID) 클레임은 JWT에 대한 고유 식별자를 제공합니다. 식별자 값은 동일한 값이 실수로 다른 데이터 개체에 할당될 가능성을 무시할 수 있는 방식으로 할당되어야 하며, 애플리케이션에서 여러 발급자를 사용하는 경우 다른 발급자가 생성한 값 간의 충돌도 방지해야 합니다. "jti" 클레임을 사용하여 JWT가 재생되는 것을 방지할 수 있습니다. "jti" 값은 대소문자를 구분하는 문자열입니다. 이 클레임의 사용은 선택 사항입니다.</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>제목과 접미사를 포함한 모든 이름 부분을 포함한 표시 가능한 형태의 최종 사용자의 전체 이름이며, 최종 사용자의 로케일 및 환경설정에 따라 정렬됩니다.</value>
+  </data>
+  <data name="given_name" xml:space="preserve">
+    <value>최종 사용자의 지정된 이름 또는 이름입니다. 일부 문화권에서 사람들은 여러 개의 주어진 이름을 가질 수 있으며, 모두 존재할 수 있으며 이름은 공백 문자로 구분됩니다.</value>
+  </data>
+  <data name="family_name" xml:space="preserve">
+    <value>최종 사용자의 성 또는 이름입니다. 일부 문화권에서는 성이 여러 개이거나 성이 없을 수 있으며, 모두 공백 문자로 구분하여 표시할 수 있습니다.</value>
+  </data>
+  <data name="middle_name" xml:space="preserve">
+    <value>최종 사용자의 중간 이름입니다. 일부 문화권에서는 한 사람이 여러 개의 중간 이름을 가질 수 있으며, 공백 문자로 이름을 구분하여 모두 사용할 수 있습니다. 또한 일부 문화권에서는 중간 이름을 사용하지 않는다는 점에 유의하세요.</value>
+  </data>
+  <data name="nickname" xml:space="preserve">
+    <value>given_name과 다를 수 있는 최종 사용자의 일상적인 이름입니다. 예를 들어 Mike의 닉네임 값이 Michael의 given_name 값과 함께 반환될 수 있습니다.</value>
+  </data>
+  <data name="preferred_username" xml:space="preserve">
+    <value>최종 사용자가 RP에서 참조하기를 원하는 간단한 이름 (예: janedoe 또는 j.doe)입니다. 이 값은 @, / 또는 공백과 같은 특수 문자를 포함하는 유효한 JSON 문자열일 수 있습니다. RP는 이 값이 고유하다고 해서는 안 됩니다.</value>
+  </data>
+  <data name="profile" xml:space="preserve">
+    <value>최종 사용자 프로필 페이지의 URL입니다. 이 웹 페이지의 내용은 일반 사용자에 관한 것이어야 합니다.</value>
+  </data>
+  <data name="picture" xml:space="preserve">
+    <value>최종 사용자 프로필 사진의 URL입니다. 이 URL은 이미지가 포함된 웹 페이지가 아니라 이미지 파일 (예: PNG, JPEG 또는 GIF 이미지 파일)을 참조해야 합니다. 이 URL은 일반 사용자가 임의로 찍은 사진이 아니라 일반 사용자를 설명할 때 표시하기에 적합한 일반 사용자의 프로필 사진을 구체적으로 참조해야 합니다.</value>
+  </data>
+  <data name="website" xml:space="preserve">
+    <value>최종 사용자 웹 페이지 또는 블로그의 URL입니다. 이 웹 페이지에는 일반 사용자 또는 일반 사용자가 속한 조직에서 게시한 정보가 포함되어야 합니다.</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>최종 사용자가 선호하는 전자 메일 주소입니다. 이 값은 RFC 5322 addr-spec 구문을 준수해야 합니다. RP는 이 값이 고유하다고 해서는 안 됩니다.</value>
+  </data>
+  <data name="email_verified" xml:space="preserve">
+    <value>최종 사용자의 전자 메일 주소가 확인되면 true이고, 확인되지 않으면 false입니다. 이 클레임 값이 참이면 OP가 확인을 수행할 당시 이 전자 메일 주소가 최종 사용자에 의해 제어되었음을 확인하기 위한 긍정적인 조치를 취했음을 의미합니다. 전자 메일 주소를 확인하는 방법은 상황에 따라 다르며, 당사자가 운영하는 신뢰 프레임워크 또는 계약 계약에 따라 다릅니다.</value>
+  </data>
+  <data name="gender" xml:space="preserve">
+    <value>최종 사용자의 성별입니다. 이 규격에 의해 정의된 값은 여성과 남성입니다. 정의된 값 중 어느 것도 해당되지 않는 경우 다른 값을 사용할 수 있습니다.</value>
+  </data>
+  <data name="birthdate" xml:space="preserve">
+    <value>ISO 8601:2004 YYYY-MM-DD 형식으로 표시되는 최종 사용자의 생일입니다. 연도는 0000일 수 있으며 생략됨을 나타냅니다. 연도만 나타내기 위해 YYYY 형식을 사용할 수 있습니다. 기본 플랫폼의 날짜 관련 기능에 따라 연도만 제공하면 월과 일이 달라질 수 있으므로, 구현자는 이 요소를 고려하여 날짜를 올바르게 처리해야 합니다.</value>
+  </data>
+  <data name="zoneinfo" xml:space="preserve">
+    <value>최종 사용자의 표준 시간대를 나타내는 zoneinfo 표준 시간대 데이터베이스의 문자열. 예를 들어 유럽/파리 또는 미국/로스앤젤레스입니다.</value>
+  </data>
+  <data name="locale" xml:space="preserve">
+    <value>BCP47 [RFC5646] 언어 태그로 표시되는 최종 사용자의 로케일. 일반적으로 ISO 639-1 Alpha-2 언어 코드는 소문자이고 ISO 3166-1 Alpha-2 국가 코드는 대문자이며 대시로 구분됩니다. 예를 들어 en-US 또는 fr-CA가 있습니다. 호환성 참고로 일부 구현에서는 대시 대신 밑줄을 구분 기호로 사용했습니다 (예: en_)미국; 의존 당사자는 이 로케일 구문도 사용하도록 선택할 수 있습니다.</value>
+  </data>
+  <data name="phone_number" xml:space="preserve">
+    <value>최종 사용자가 선호하는 전화 번호입니다. 본 클레임의 형식으로 E.164가 권장됩니다 (예: +1 (425) 555-1212 or +56 (2) 687 2400). 전화 번호에 내선 번호가 포함된 경우 RFC 3966 내선 번호 구문 (예: +1 (604) 555-1234;ext=5678)을 사용하여 내선 번호를 표시하는 것이 좋습니다.</value>
+  </data>
+  <data name="phone_number_verified" xml:space="preserve">
+    <value>일반 사용자의 전화 번호가 확인되면 true이고, 확인되지 않으면 false입니다. 이 클레임 값이 참이면 OP가 확인을 수행할 당시 이 전화 번호가 최종 사용자에 의해 제어되었음을 확인하기 위한 긍정적인 조치를 취했음을 의미합니다. 전화 번호를 확인하는 방법은 상황에 따라 다르며, 당사자가 운영하는 신뢰 프레임워크 또는 계약 계약에 따라 다릅니다. true인 경우 phone_number 클레임은 E.164 형식이어야 하며 내선 번호는 RFC 3966 형식으로 표시되어야 합니다.</value>
+  </data>
+  <data name="address" xml:space="preserve">
+    <value>최종 사용자가 선호하는 우편 주소입니다. 주소 멤버의 값은 JSON [RFC4627] 구조입니다.</value>
+  </data>
+  <data name="updated_at" xml:space="preserve">
+    <value>최종 사용자의 정보가 마지막으로 업데이트된 시간입니다. 이 값은 UTC로 측정된 1970-01-01T0:0:0Z부터 날짜/시간까지 초 수를 나타내는 JSON 숫자입니다.</value>
+  </data>
+  <data name="azp" xml:space="preserve">
+    <value>인증된 파티 - ID 토큰이 발급된 파티입니다. 있는 경우 이 파티의 OAuth 2.0 클라이언트 ID를 포함해야 합니다. 이 클레임은 ID 토큰에 단일 청중 값이 있고 해당 청중이 승인된 당사자와 다른 경우에만 필요합니다. 허가를 받은 당사자가 단독 방청객과 동일한 경우에도 포함될 수 있습니다. zp 값은 StringOr을 포함하는 대소문자를 구분하는 문자열입니다URI 값입니다</value>
+  </data>
+  <data name="nonce" xml:space="preserve">
+    <value>클라이언트 세션을 ID 토큰과 연결하고 재생 공격을 완화하는 데 사용되는 문자열 값입니다. 값은 수정되지 않은 상태로 인증 요청에서 ID 토큰으로 전달됩니다. ID 토큰에 있는 경우 클라이언트는 nonce Claim Value가 Authentication Request에 전송된 nonce 매개 변수의 값과 동일한지 확인해야 합니다. 인증 요청에 있는 경우 인증 서버는 ID 토큰에 클레임 값을 포함해야 하며 클레임 값은 인증 요청에 전송된 클레임 값입니다. 권한 부여 서버는 일단 사용된 값에 대해 다른 처리를 수행하면 안 됩니다. nonce 값은 대소문자를 구분하는 문자열입니다.</value>
+  </data>
+  <data name="auth_time" xml:space="preserve">
+    <value>최종 사용자 인증이 발생한 시간입니다. 이 값은 1970-01-01의 초 수를 나타내는 JSON 숫자입니다날짜/시간까지 UTC로 측정한 T0:0:0Z. max_age 요청이 있거나 auth_time이 필수 클레임으로 요청된 경우 이 클레임이 필수이며, 그렇지 않으면 포함이 선택 사항입니다. (auth_time 클레임은 의미적으로 Open에 해당합니다ID 2.0 PAPE auth_time 응답 매개 변수입니다.)</value>
+  </data>
+  <data name="at_hash" xml:space="preserve">
+    <value>토큰 해시 값에 액세스합니다. 이 값은 access_token 값의 ASCII 표현의 8진수 해시의 맨 왼쪽 절반에 대한 base64url 인코딩입니다. 여기서 사용되는 해시 알고리즘은 ID 토큰의 JOSE 헤더의 alg Header Parameter에 사용되는 해시 알고리즘입니다. 예를 들어, 알고리즘이 RS256이면 access_token 값을 SHA-256으로 해시한 다음 가장 왼쪽에 있는 128비트를 사용하여 base64url을 인코딩합니다. at_hash 값은 대소문자를 구분하는 문자열입니다.</value>
+  </data>
+  <data name="c_hash" xml:space="preserve">
+    <value>코드 해시 값입니다. 이 값은 코드 값의 ASCII 표현의 8진수 해시의 맨 왼쪽 절반에 대한 base64url 인코딩이며, 여기서 사용되는 해시 알고리즘은 ID 토큰의 JOSE 헤더의 alg Header Parameter에 사용되는 해시 알고리즘입니다. 예를 들어, 알고리즘이 HS512인 경우 코드 값을 SHA-512로 해시한 다음 가장 왼쪽에 있는 256비트를 가져와 base64url로 인코딩합니다. c_hash 값은 대소문자를 구분하는 문자열입니다. ID 토큰이 권한 부여 끝점에서 코드와 함께 발급된 경우(response_type values code id_token 및 code id_token 토큰의 경우), 이는 필수 항목이며, 그렇지 않으면 포함 항목이 선택 사항입니다.</value>
+  </data>
+  <data name="acr" xml:space="preserve">
+    <value>인증 컨텍스트 클래스 참조입니다. 인증을 수행한 인증 컨텍스트 클래스를 식별하는 인증 컨텍스트 클래스 참조 값을 지정하는 문자열입니다. 값 "0"은 최종 사용자 인증이 ISO/IEC 29115 수준 1의 요구 사항을 충족하지 않았음을 나타냅니다. 예를 들어, 오래 지속되는 브라우저 쿠키를 사용한 인증은 "레벨 0"의 사용이 적절한 한 예입니다. 수준 0의 인증을 사용하여 금전적 가치가 있는 리소스에 대한 액세스 권한을 부여해서는 안 됩니다. (열린 상태에 해당합니다ID 2.0 PAPEnist_auth_level 0.) 절대 URI 또는 RFC 6711 등록된 이름을 acr 값으로 사용해야 합니다. 등록된 이름은 등록된 이름과 다른 의미로 사용하면 안 됩니다. 이 청구를 사용하는 당사자는 상황에 따라 달라질 수 있는 사용된 값의 의미에 동의해야 합니다. acr 값은 대소문자를 구분하는 문자열입니다.</value>
+  </data>
+  <data name="amr" xml:space="preserve">
+    <value>인증 방법 참조입니다. 인증에 사용되는 인증 방법에 대한 식별자인 문자열의 JSON 배열. 예를 들어, 값은 암호와 OTP 인증 방법이 모두 사용되었음을 나타낼 수 있습니다. 이 청구를 사용하는 당사자는 상황에 따라 달라질 수 있는 사용된 값의 의미에 동의해야 합니다. amr 값은 대소문자를 구분하는 문자열의 배열입니다.</value>
+  </data>
+  <data name="sub_jwk" xml:space="preserve">
+    <value>자체 발급 오픈에서 발급한 ID 토큰의 서명을 확인하는 데 사용되는 공용 키ID 공급자. 키는 X.509 인증서 값이 아닌 JWK 형식의 베어 키입니다. sub_jwk 값은 JSON 개체입니다. OP가 자체 발행되지 않은 경우 sub_jwk 클레임을 사용하지 않는 것이 좋습니다.</value>
   </data>
 </root>

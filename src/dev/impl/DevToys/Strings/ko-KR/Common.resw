@@ -138,6 +138,12 @@
   <data name="Expand" xml:space="preserve">
     <value>펴기</value>
   </data>
+  <data name="ShowInfo" xml:space="preserve">
+    <value>추가 정보 표시</value>
+  </data>
+  <data name="HideInfo" xml:space="preserve">
+    <value>추가 정보 숨기기</value>
+  </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
     <value>파일 찾아보기</value>
   </data>

@@ -138,6 +138,12 @@
   <data name="Expand" xml:space="preserve">
     <value>Genişlet</value>
   </data>
+  <data name="ShowInfo" xml:space="preserve">
+    <value>Ek bilgileri göster</value>
+  </data>
+  <data name="HideInfo" xml:space="preserve">
+    <value>Ek bilgileri gizle</value>
+  </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
     <value>Dosyalara gözat</value>
   </data>

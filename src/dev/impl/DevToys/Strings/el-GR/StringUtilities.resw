@@ -149,7 +149,7 @@
     <value>Μετατροπή</value>
   </data>
   <data name="Sort" xml:space="preserve">
-    <value>Sort Lines</value>
+    <value>Ταξινόμηση γραμμών</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Μετατροπέας Επιθεωρητών &amp; Υπόθεση</value>
@@ -161,22 +161,22 @@
     <value>Περίπτωση κεμπάπ</value>
   </data>
   <data name="Alphabetize" xml:space="preserve">
-    <value>Alphabetize</value>
+    <value>Αλφαβητισμός</value>
   </data>
   <data name="ReverseAlphabetize" xml:space="preserve">
-    <value>Reverse alphabetize</value>
+    <value>Αλφαβητισμός ανάποδα</value>
   </data>
   <data name="AlphabetizeLast" xml:space="preserve">
-    <value>Alphabetize by last word</value>
+    <value>Αλφαβητισμός βάση της τελευταίας λέξης</value>
   </data>
   <data name="ReverseAlphabetizeLast" xml:space="preserve">
-    <value>Reverse alphabetize by last word</value>
+    <value>Αλφαβητισμός ανάποδα βάση της τελευταίας λέξης</value>
   </data>
   <data name="Reverse" xml:space="preserve">
-    <value>Reverse</value>
+    <value>Ανάποδα</value>
   </data>
   <data name="Randomize" xml:space="preserve">
-    <value>Randomize</value>
+    <value>Τυχαία σειρά</value>
   </data>
   <data name="Line" xml:space="preserve">
     <value>Γραμμή:</value>

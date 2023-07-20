@@ -132,8 +132,17 @@
   <data name="JwtPayloadLabel" xml:space="preserve">
     <value>ペイロード</value>
   </data>
+  <data name="Type" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>値</value>
+  </data>
+  <data name="DescriptionHeader" xml:space="preserve">
+    <value>スケジュールの説明</value>
+  </data>
   <data name="Description" xml:space="preserve">
-    <value>JWT ヘッダー、ペイロード、署名をデコードします</value>
+    <value>ヘッダー、ペイロード、署名から JWT の生成とトークンの検証</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value/>
@@ -178,7 +187,7 @@
     <value>構成</value>
   </data>
   <data name="EncodeDefaultTimeTitle" xml:space="preserve">
-    <value>トークンにはデフォルトの時間があります</value>
+    <value>デフォルトの有効期間を設定する</value>
   </data>
   <data name="EncodeExpirationDaysLabel" xml:space="preserve">
     <value>日</value>
@@ -199,61 +208,61 @@
     <value>トークンは検証されていません (検証するパラメーターが選択されていません)</value>
   </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>トークンは検証済みです</value>
+    <value>指定された項目のすべてが検証済みのトークンです</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
-    <value>無効な公開鍵です</value>
+    <value>有効な公開鍵ではありません</value>
   </data>
   <data name="JwtInValidMessage" xml:space="preserve">
-    <value>無効な署名です。</value>
+    <value>有効な署名ではありません</value>
   </data>
   <data name="DecodeValidateActorLabel" xml:space="preserve">
-    <value>アクターを検証する</value>
+    <value>アクタークレームを検証する</value>
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
-    <value>オーディエンスを検証する</value>
+    <value>オーディエンスクレームを検証する</value>
   </data>
   <data name="DecodeValidateIssuerSigningKey" xml:space="preserve">
     <value>発行者の署名鍵を検証する</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
-    <value>発行者を検証する</value>
+    <value>発行者クレームを検証する</value>
   </data>
   <data name="DecodeValidateLifetimeLabel" xml:space="preserve">
-    <value>有効時間の設定</value>
+    <value>有効期間を検証する</value>
   </data>
   <data name="ValidAudiencesLabel" xml:space="preserve">
-    <value>オーディエンスを検証する</value>
+    <value>オーディエンスクレームの値</value>
   </data>
   <data name="ValidIssuersLabel" xml:space="preserve">
-    <value>発行者を検証する</value>
+    <value>発行者クレームの値</value>
   </data>
   <data name="DecodeValidationSettingsDescription" xml:space="preserve">
-    <value>検証するトークンパラメーターを選択してください</value>
+    <value>検証を行うトークン内のパラメーターを設定します</value>
   </data>
   <data name="DecodeValidationSettingsTitle" xml:space="preserve">
-    <value>トークン検証の設定</value>
+    <value>検証するパラメーターの設定</value>
   </data>
   <data name="ValidAudiencesError" xml:space="preserve">
-    <value>有効なオーディエンスが空です</value>
+    <value>検証を行うための オーディエンスクレームの値が入力されていません</value>
   </data>
   <data name="ValidIssuersError" xml:space="preserve">
-    <value>有効な発行者が空です</value>
+    <value>検証を行うための 発行者クレームの値が入力されていません</value>
   </data>
   <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
-    <value>指定された公開鍵は秘密鍵です</value>
+    <value>公開鍵の入力欄に秘密鍵が入力されました</value>
   </data>
   <data name="EncodeAudienceLabel" xml:space="preserve">
-    <value>トークンにはオーディエンスがあります</value>
+    <value>オーディエンスクレームを設定する</value>
   </data>
   <data name="EncodeIssuerLabel" xml:space="preserve">
-    <value>トークンには発行者がいます。</value>
+    <value>発行者クレームを設定する</value>
   </data>
   <data name="EncodeSettingsDescription" xml:space="preserve">
-    <value>トークンパラメータを選択</value>
+    <value>トークンに使用するパラメーターを設定します</value>
   </data>
   <data name="InvalidPrivateKeyError" xml:space="preserve">
-    <value>秘密鍵が無効です</value>
+    <value>有効な秘密鍵ではありません</value>
   </data>
   <data name="PublicKeyLabel" xml:space="preserve">
     <value>公開鍵</value>
@@ -262,6 +271,264 @@
     <value>JWT エンコーダー / デコーダー</value>
   </data>
   <data name="InvalidSignatureError" xml:space="preserve">
-    <value>無効な署名です。</value>
+    <value>有効な署名ではありません</value>
+  </data>
+  <data name="NoDescription" xml:space="preserve">
+    <value>(説明なし)</value>
+  </data>
+  <data name="iss" xml:space="preserve">
+    <value>[RFC 7519/OPTIONAL]
+issuer。
+JWT を発行した主体の値です。
+通常は、iss クレーム値の処理はアプリケーション固有です。
+iss クレーム値は、StringOrURI の値を含む、大文字と小文字が区別される文字列です。
+このクレームの使用は任意です。</value>
+  </data>
+  <data name="sub" xml:space="preserve">
+    <value>[RFC 7519/OPTIONAL]
+subject。
+JWT の主体 (ユーザー) を識別する値です。
+JWT のクレームは通常、主体に関するステートメントです。
+sub クレーム値は、発行者のコンテキスト内でローカルに一意であるか、グローバルに一意でなければなりません (MUST)。
+sub クレーム値は、StringOrURI の値を含む、大文字と小文字が区別される文字列です。
+通常は、sub クレーム値の処理はアプリケーション固有です。
+このクレームの使用は任意です。</value>
+  </data>
+  <data name="aud" xml:space="preserve">
+    <value>[RFC 7519/OPTIONAL]
+audience。
+JWT の想定する利用者の値です。
+JWT を処理することを意図する各主体は、aud クレーム値で自身を識別しなければなりません (MUST)。
+このクレームが存在するとき、クレームを処理する各主体が aud クレーム値で自身を識別しない場合、JWT は拒否しなければなりません (MUST)。
+一般的に、aud クレーム値は、StringOrURI の値を含む、大文字と小文字が区別される文字列の配列です。
+特殊なケースとして、JWT の audience が1つである場合は、aud クレーム値は、StringOrURI の値を含む、大文字と小文字が区別される文字列で示すことができます (MAY)。
+aud クレーム値の解釈は、通常はアプリケーション固有です。
+このクレームの使用は任意です。</value>
+  </data>
+  <data name="exp" xml:space="preserve">
+    <value>[RFC 7519/OPTIONAL]
+expiration time。
+JWT の有効期限です。
+exp クレームの処理では、現在の日付/時刻が exp クレーム値の有効期限よりも前である必要があります (MUST)。
+実装者は、クロックスキューを考慮して、多少 (通常は数分以内) の猶予を設けることができます (MAY)。
+この値は、1970-01-01T0:0:0Z からの経過秒数 (NumericDate) を表す JSON 数値で示す必要があります (MUST)。
+このクレームの使用は任意です。</value>
+  </data>
+  <data name="nbf" xml:space="preserve">
+    <value>[RFC 7519/OPTIONAL]
+not before。
+JWT の使用開始日時です。
+nbf クレーム値より前の日付/時刻では、JWT の処理が行われないようにしなければなりません (MUST NOT)。
+nbf クレーム値の処理では、現在の日付/時刻が使用開始日時と同じかそれ以降である必要があります。
+実装者は、クロックスキューを考慮して、多少 (通常は数分以内) の猶予を設けることができます (MAY)。
+この値は、1970-01-01T0:0:0Z からの経過秒数 (NumericDate) を表す JSON 数値で示す必要があります (MUST)。
+このクレームの使用は任意です。</value>
+  </data>
+  <data name="iat" xml:space="preserve">
+    <value>[RFC 7519/OPTIONAL]
+issued at。
+JWT が発行された日時です。
+このクレームは、JWT の古さを判断するために使用できます。
+この値は、1970-01-01T0:0:0Z からの経過秒数 (NumericDate) を表す JSON 数値で示す必要があります (MUST)。
+このクレームの使用は任意です。</value>
+  </data>
+  <data name="jti" xml:space="preserve">
+    <value>[RFC 7519/OPTIONAL]
+JWT ID。
+JWT の一意の識別子とされる値です。
+この値は、同じ値が別のデータオブジェクトに割り当てられる可能性が無視できる程度であることを保証する方法で付与する必要があります (MUST)。
+アプリケーションが複数のの発行者を使用する場合、異なる発行者によって付与された値の間でも衝突を防止する必要があります (MUST)。
+jti クレーム値は、JWT の再生を防止するために使用できます。
+jti クレーム値は、大文字と小文字が区別される文字列です。
+このクレームの使用は任意です。</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>[OpenID]
+End-User の表示用フルネーム。
+肩書や称号 (suffixes) を含む場合もあります。この表示は End-User のロケールと設定に基づいて順序付けされます。</value>
+  </data>
+  <data name="given_name" xml:space="preserve">
+    <value>[OpenID]
+End-User の名 (given name / first name)。
+複数の名を持つ文化圏や、名を持たない文化圏もあります。
+複数の名が入力された場合は、スペース区切りで表記されます。</value>
+  </data>
+  <data name="family_name" xml:space="preserve">
+    <value>[OpenID]
+End-User の姓 (surname / last name)。
+複数の姓を持つ文化圏や、姓を持たない文化圏もあります。
+複数の姓が入力された場合は、スペース区切りで表記されます。</value>
+  </data>
+  <data name="middle_name" xml:space="preserve">
+    <value>[OpenID]
+End-User のミドルネーム。
+複数のミドルネームを持つ文化圏や、ミドルネームを持たない文化圏もあります。
+複数のミドルネームが入力された場合は、スペース区切りで表記されます。</value>
+  </data>
+  <data name="nickname" xml:space="preserve">
+    <value>[OpenID]
+End-User のニックネーム。
+これは、given_name 値と異なる場合もあります。
+例えば、nickname 値が Mike であっても、given_name 値は Michael が返されることがあります。</value>
+  </data>
+  <data name="preferred_username" xml:space="preserve">
+    <value>[OpenID]
+End-User が Relying Party (RP) で参照される際に希望する短縮された名前。
+例えば、janedoe や j.doe です。
+この値は、@、/、空白文字といったあらゆる特殊文字を含む、有効な JSON 文字列とすることができます (MAY)。
+RP は、preferred_username 値がユニークであることを前提としてはなりません (MUST NOT)。</value>
+  </data>
+  <data name="profile" xml:space="preserve">
+    <value>[OpenID]
+End-User のプロフィール ページの URL。
+この Web ページのコンテンツは、End-User に関するものである必要があります (SHOULD)。</value>
+  </data>
+  <data name="picture" xml:space="preserve">
+    <value>[OpenID]
+End-User のプロフィール画像のURL。
+この URL は画像ファイル (例えば、PNG、JPEG、GIFなど) を参照する必要があります (MUST)。
+また、画像は End-User が撮影した任意の写真ではなく、エンドユーザーのプロフィール用の画像を指定する必要があります (SHOULD)。</value>
+  </data>
+  <data name="website" xml:space="preserve">
+    <value>[OpenID]
+End-User の Web ページやブログの URL。
+この Web ページは End-User または End-User が所属する組織によって公開された情報が含まれている必要があります (SHOULD)。</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>[OpenID]
+End-User の希望する電子メールアドレス。
+RFC 5322 の addr-spec 構文に準拠している必要があります。
+OAuth 2.0 Client (RP) は、email 値がユニークであることを前提としてはなりません (MUST NOT)。</value>
+  </data>
+  <data name="email_verified" xml:space="preserve">
+    <value>[OpenID]
+End-User の電子メールアドレスが検証済みの場合は true、それ以外の場合は false を示す boolean 値。
+このクレームの値が true の場合、OpenID Provider (OP) が検証を行った時点において、電子メールアドレスが End-User のコントロール下にあることを確認する処理を行ったことを示します。
+電子メールアドレスの検証方法は、コンテキストに依存し、当事者間のトラストフレームワークや契約上の同意事項等に依存します。</value>
+  </data>
+  <data name="gender" xml:space="preserve">
+    <value>[OpenID]
+エンドユーザーの性別。
+この仕様で定義されている値は female (女性) と male (男性) です。
+定義された値のいずれにも該当しない場合は、他の値を使用することができます (MAY)。</value>
+  </data>
+  <data name="birthdate" xml:space="preserve">
+    <value>[OpenID]
+End-User の誕生日。
+ISO 8601:2004 YYYY-MM-DD 形式で表現されます。
+年の値を 0000 とすることで省略されていることを示すことができます (MAY)。
+年のみを表すために、YYYY 形式が許可されています。
+ただし、利用するプラットフォームの日付関連機能や関数の実装によっては、年だけを提供した際の月や日が異なる結果となる場合があるため、実装者はこの点を考慮に入れて日付を正しく処理する必要があります。</value>
+  </data>
+  <data name="zoneinfo" xml:space="preserve">
+    <value>[OpenID]
+End-User のタイムゾーンを表す zoneinfo タイムゾーンデータベースに登録されている文字列。
+例えば、Europe/Paris や America/Los_Angeles です。</value>
+  </data>
+  <data name="locale" xml:space="preserve">
+    <value>[OpenID]
+End-User のロケール。
+BCP47 [RFC5646] の言語タグとして表されます。
+通常、これは ISO 639-1 Alpha-2 [ISO639‑1] の言語コード (小文字) と ISO 3166-1 Alpha-2 [ISO3166‑1] の国コード (大文字) がダッシュで区切られた形式です。
+例えば、 en-US や fr-CA です。
+互換性のため、一部の実装ではダッシュの代わりにアンダースコアを区切り文字 (例: en_US) として使用している場合もあります。
+Relying Party (RP) は、このロケール構文を受け入れることも選択できます (MAY)。</value>
+  </data>
+  <data name="phone_number" xml:space="preserve">
+    <value>[OpenID]
+End-User の希望する電話番号。
+このクレームのフォーマットは E.164 形式が推奨されます (RECOMMENDED)。
+例えば、+1 (425) 555-1212 や +56 (2) 687 2400 です。
+電話番号に拡張子 (内線番号) が含まれている場合は、RFC 3966 拡張構文で表記することが推奨されます (RECOMMENDED)。
+例えば、+1 (604) 555-1234;ext=567 です。</value>
+  </data>
+  <data name="phone_number_verified" xml:space="preserve">
+    <value>[OpenID]
+End-User の電話番号が検証済みの場合は true、それ以外の場合は false を示す boolean 値。
+このクレームの値が true の場合、OpenID Provider (OP) が検証を行った時点において、電話番号が End-User のコントロール下にあることを確認する処理を行ったことを示します。
+電話番号の検証方法は、コンテキストに依存し、当事者間のトラストフレームワークや契約上の同意事項等に依存します。
+このクレームの値が true の場合、phone_number クレームは E.164 形式でなければならず (MUST)、拡張子 (内線番号) は RFC 3966 拡張構文で表記されている必要があります (MUST)。</value>
+  </data>
+  <data name="address" xml:space="preserve">
+    <value>[OpenID]
+End-User の希望する郵送先住所。address メンバーの値は Address クレームに定義されたメンバーを含む JSON [RFC4627] 構造体です。</value>
+  </data>
+  <data name="updated_at" xml:space="preserve">
+    <value>[OpenID]
+End-User の情報が最後に更新された日時を表す数値。
+この値は、1970-01-01T0:0:0Z からの経過秒数を表す JSON 数値です。</value>
+  </data>
+  <data name="azp" xml:space="preserve">
+    <value>[OpenID/OPTIONAL]
+Authorized party.
+ID Token が発行された当事者です。
+このクレームが存在する場合、この当事者の OAuth 2.0 Client ID でなければなりません (MUST)。
+このクレームは、ID Token に単一の audience 値があり、その値が承認済みの当事者と異なる場合にのみ必要になります。
+audience 値と azp 値が同じ場合でも、このクレームを含めることができます (MAY)。
+azp の値は、StringOrURI の値を含む、大文字と小文字が区別される文字列です。</value>
+  </data>
+  <data name="nonce" xml:space="preserve">
+    <value>[OpenID]
+Client (RP) セッションを ID Token と関連付けて、リプレイアタックを緩和するために使用される文字列の値。
+この値は、Authentication Request から ID Token に変更せずに渡されます。
+ID Token に nonce クレームが含まれている場合、Client (RP) は Authentication Request で送信された nonce パラメーターの値と nonce クレーム値が一致することを検証しなければなりません (MUST)。
+Authentication Request に nonce クレームが含まれている場合、Authentication Server (OP) は ID Token に nonce クレーム値を含める必要があります (MUST)。
+Authentication Server (OP) は、nonce 値に対して他の処理を行うべきではありません (SHOULD)。
+nonce の値は、大文字と小文字が区別される文字列です。</value>
+  </data>
+  <data name="auth_time" xml:space="preserve">
+    <value>[OpenID/REQUIRED/OPTIONAL]
+End-User の認証が行われた時刻。
+この値は UTC 1970-01-01T0:0:0Z からの経過秒数を示す JSON 数値です。
+リクエストに max_age が含まれている場合や、auth_time が Essential クレーム として要求される場合には、このクレームは必須です (REQUIRED)。
+それ以外の場合は任意です (OPTIONAL)。
+（ auth_time クレームは、OpenID 2.0 PAPE の auth_time レスポンスパラメーターに相当します。）</value>
+  </data>
+  <data name="at_hash" xml:space="preserve">
+    <value>[OpenID/OPTIONAL]
+Access Token hash value.
+access_token の ASCII オクテット列のハッシュ値の左半分を base64url エンコードしたものです。
+ハッシュアルゴリズムは、 ID Token の JOSE Header にある alg Header Parameter で指定されるハッシュアルゴリズムと同じものを使用します。
+例えば、alg が RS256 の場合では、access_token の値を SHA-256 ハッシュ化して、左側半分の 128 ビットを取り、base64url エンコードします。
+at_hash の値は、大文字と小文字が区別される文字列です。</value>
+  </data>
+  <data name="c_hash" xml:space="preserve">
+    <value>[OpenID/REQUIRED/OPTIONAL]
+Code hash value.
+code の ASCII オクテット列のハッシュ値の左半分を base64url エンコードしたものです。
+ハッシュアルゴリズムは、 ID Token の JOSE Header にある alg Header Parameter で指定されるハッシュアルゴリズムと同じものを使用します。
+例えば、alg が RS256 の場合では、code の値を SHA-256 ハッシュ化して、左側半分の128ビットを取り、base64url エンコードします。
+c_hash の値は、大文字と小文字が区別される文字列です。
+ID Token が code と共に Authorization Endpoint から発行される場合(response_type の値が code id_token や code id_token token の場合)、このクレームは必須です (REQUIRED)。
+それ以外の場合は任意です (OPTIONAL)。</value>
+  </data>
+  <data name="acr" xml:space="preserve">
+    <value>[OpenID/OPTIONAL]
+Authentication Context Class Reference。
+実施された認証処理が満たす Authentication Context Class を表す、文字列で指定する値。
+値 "0" は、End-User の認証が ISO/IEC 29115 レベル 1 の要件を満たしていないことを意味します。
+例えば、長期間有効なブラウザの Cookie を使用した認証は "レベル 0" として指定されます。
+レベル 0 の認証は、金銭にかかわるリソースへの認可要求に使用してはなりません (SHOULD NOT)。
+(これは OpenID 2.0 PAPE nist_auth_level 0 に対応します。)
+acr の値は、絶対 URI または RFC 6711 で登録された値を使用する事が推奨されます (SHOULD)。
+登録された値は、登録されたものとは異なる意味で使用してはなりません (MUST NOT)。
+この値は、コンテキストに依存する可能性があるため、使用する当事者間で値の意味について合意する必要があります。
+acr の値は、大文字と小文字が区別される文字列です。</value>
+  </data>
+  <data name="amr" xml:space="preserve">
+    <value>[OpenID/OPTIONAL]
+Authentication Methods References.
+認証に使用される認証方法の識別子である文字列の JSON 配列。
+例えば、パスワードと OTP 認証の両方が使用されたことを示す場合があります。
+amr クレームで使用される値はの定義は、仕様の範囲外です。
+この値は、コンテキストに依存する可能性があるため、使用する当事者間で値の意味について合意する必要があります。
+amr の値は、大文字と小文字が区別される文字列です。</value>
+  </data>
+  <data name="sub_jwk" xml:space="preserve">
+    <value>[OpenID]
+自己発行型 OpenID Provider (OP) によって発行された ID Token の署名を検証するために使われる公開鍵。
+Self-Issued OpenID Provider を利用する場合には、このクレームは必須です (REQUIRED)。
+この鍵は JWK 形式の ベア キーであり (bare key。X.509 証明書ではありません)、sub_jwk クレーム値は JSON オブジェクトです。
+OP が自己発行型ではない場合、sub_jwk クレームの使用は推奨されません (NOT RECOMMENDED)。</value>
   </data>
 </root>

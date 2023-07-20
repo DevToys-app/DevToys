@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Bytes" xml:space="preserve">
-    <value>B</value>
+    <value>Bajty</value>
   </data>
   <data name="Clear" xml:space="preserve">
     <value>Wyczyść</value>
   </data>
   <data name="Collapse" xml:space="preserve">
-    <value>Collapse</value>
+    <value>Zwiń</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>Kopiuj</value>
@@ -136,7 +136,13 @@
     <value>Usuń</value>
   </data>
   <data name="Expand" xml:space="preserve">
-    <value>Expand</value>
+    <value>Rozwiń</value>
+  </data>
+  <data name="ShowInfo" xml:space="preserve">
+    <value>Pokaż dodatkowe informacje</value>
+  </data>
+  <data name="HideInfo" xml:space="preserve">
+    <value>Ukryj dodatkowe informacje</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
     <value>Przeglądaj pliki</value>
@@ -145,21 +151,21 @@
     <value>Przeglądaj foldery</value>
   </data>
   <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>Przeciągnij i upuść tutaj plik</value>
+    <value>Przeciągnij i upuść tutaj dowolny plik</value>
   </data>
   <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
     <value>Przeciągnij i upuść plik tutaj</value>
   </data>
   <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
-    <value>Przeciągnij i upuść tutaj {0} plik</value>
+    <value>Przeciągnij i upuść plik {0} tutaj</value>
     <comment>{0} is a single file extension like "PNG"</comment>
   </data>
   <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
-    <value>Przeciągnij i upuść tutaj {0} plik</value>
+    <value>Przeciągnij i upuść dowolne pliki {0} tutaj</value>
     <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
-    <value>Można użyć tylko {0} plik/ów.</value>
+    <value>Tylko {0} plik(i) mogą być użyte.</value>
     <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorOr" xml:space="preserve">
@@ -214,7 +220,7 @@
     <value>Cofnij</value>
   </data>
   <data name="ViewImage" xml:space="preserve">
-    <value>Zobacz</value>
+    <value>Wyświetl</value>
     <comment>In the context of "view / display an image".</comment>
   </data>
 </root>
