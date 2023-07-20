@@ -139,10 +139,10 @@
     <value>Perluas</value>
   </data>
   <data name="ShowInfo" xml:space="preserve">
-    <value>Show additional info</value>
+    <value>Tampilkan Info Tambahan</value>
   </data>
   <data name="HideInfo" xml:space="preserve">
-    <value>Hide additional info</value>
+    <value>Sembunyikan Info Tambahan</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
     <value>Cari File</value>
