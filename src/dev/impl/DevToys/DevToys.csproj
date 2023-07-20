@@ -32,6 +32,7 @@
     <Compile Include="Core\Threading\AsyncLazy.cs" />
     <Compile Include="Helpers\Base64Helper.cs" />
     <Compile Include="Helpers\CertificateHelper.cs" />
+    <Compile Include="Helpers\CryptoRandomGenerator.cs" />
     <Compile Include="Helpers\JsonYaml\Core\BooleanYamlTypeResolver.cs" />
     <Compile Include="Helpers\StorageFileHelper.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
@@ -145,6 +146,8 @@
     <Compile Include="ViewModels\Tools\Generators\GeneratorsGroupToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Generators\LoremIpsumGenerator\LoremIpsumGeneratorToolViewModel.cs" />
+    <Compile Include="ViewModels\Tools\Generators\PasswordGenerator\PasswordGeneratorToolProvider.cs" />
+    <Compile Include="ViewModels\Tools\Generators\PasswordGenerator\PasswordGeneratorToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Graphic\ColorBlindnessSimulator\ColorBlindnessSimulatorToolProvider.cs" />
     <Compile Include="ViewModels\Tools\Graphic\ColorBlindnessSimulator\ColorBlindnessSimulatorToolViewModel.cs" />
     <Compile Include="ViewModels\Tools\Graphic\ColorPicker\ColorPickerToolProvider.cs" />
@@ -214,6 +217,9 @@
     </Compile>
     <Compile Include="Views\Tools\Generators\CheckSumGenerator\CheckSumGeneratorToolPage.xaml.cs">
       <DependentUpon>CheckSumGeneratorToolPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tools\Generators\PasswordGenerator\PasswordGeneratorPage.xaml.cs">
+      <DependentUpon>PasswordGeneratorPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tools\Graphic\ColorBlindnessSimulator\ColorBlindnessSimulatorToolPage.xaml.cs">
       <DependentUpon>ColorBlindnessSimulatorToolPage.xaml</DependentUpon>
@@ -597,6 +603,10 @@
     <Page Include="Views\Tools\EncodersDecoders\JwtDecoderEncoder\JwtEncoderControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tools\Generators\PasswordGenerator\PasswordGeneratorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Tools\Graphic\ColorPicker\ColorPickerToolPage.xaml">
       <Generator>MSBuild:Compile</Generator>
