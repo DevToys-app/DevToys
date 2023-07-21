@@ -67,4 +67,9 @@ public partial class ToolPage : MefComponentBase, IDisposable
         ViewModel.ToggleSelectedMenuItemFavoriteCommand.Execute(null);
         IndexPage.StateHasChanged();
     }
+
+    private void OnHotReloadButtonClick()
+    {
+        ViewModel.RebuildViewCommand.Execute(null);
+    }
 }

@@ -10,10 +10,10 @@ namespace DevToys.Core.Tools;
 [DebuggerDisplay($"InternalComponentName = {{{nameof(InternalComponentName)}}}")]
 public sealed partial class GuiToolInstance : ObservableObject
 {
+    private Lazy<UIToolView> _view;
     private readonly ILogger _logger;
     private readonly Lazy<IGuiTool, GuiToolMetadata> _guiToolDefinition;
     private readonly Lazy<IGuiTool> _instance;
-    private readonly Lazy<UIToolView> _view;
     private readonly Lazy<ResourceManager?> _resourceManager;
     private readonly Lazy<string> _shortDisplayTitle;
     private readonly Lazy<string> _longDisplayTitle;
@@ -40,7 +40,8 @@ public sealed partial class GuiToolInstance : ObservableObject
             return instance;
         });
 
-        _view = new(() => _instance.Value.View); // TODO: Try Catch and log?
+        RebuildView();
+        Guard.IsNotNull(_view);
 
         LogInitialized(InternalComponentName);
     }
@@ -97,6 +98,28 @@ public sealed partial class GuiToolInstance : ObservableObject
         }
     }
 
+    /// <summary>
+    /// Re-create the <see cref="View"/> instance.
+    /// </summary>
+    public void RebuildView()
+    {
+        _view
+            = new(() =>
+            {
+                try
+                {
+                    return _instance.Value.View;
+                }
+                catch (NotImplementedException) { }
+                catch (Exception ex)
+                {
+                    LogGetToolViewFailed(ex, InternalComponentName);
+                }
+
+                return new UIToolView(GUI.Label("unable-load-tool-view", $"Failed to load '{InternalComponentName}'."));
+            });
+    }
+
     private ResourceManager? GetResourceManager(Assembly? resourceManagerAssembly)
     {
         ResourceManager? resourceManager = null;
@@ -128,4 +151,7 @@ public sealed partial class GuiToolInstance : ObservableObject
 
     [LoggerMessage(2, LogLevel.Warning, "Unexpectedly failed to pass smart detection data to '{toolName}'.")]
     partial void LogPassSmartDetectedDataFailed(Exception ex, string toolName);
+
+    [LoggerMessage(3, LogLevel.Error, "Unexpectedly failed to get the view for the tool '{toolName}'.")]
+    partial void LogGetToolViewFailed(Exception ex, string toolName);
 }

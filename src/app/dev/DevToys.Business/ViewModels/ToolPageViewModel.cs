@@ -66,6 +66,17 @@ internal sealed partial class ToolPageViewModel : ObservableRecipient
         OnPropertyChanged(nameof(IsSelectedMenuItemAFavoriteTool));
     }
 
+    /// <summary>
+    /// Rebuild the view of the tool.
+    /// </summary>
+    [RelayCommand]
+    private void RebuildView()
+    {
+        Guard.IsNotNull(_guiToolViewItem);
+        _guiToolViewItem.ToolInstance.RebuildView();
+        OnPropertyChanged(nameof(ToolView));
+    }
+
     internal string GetFavoriteButtonText(bool isSelectedMenuItemAFavoriteTool)
     {
         Guard.IsNotNull(_guiToolViewItem);
