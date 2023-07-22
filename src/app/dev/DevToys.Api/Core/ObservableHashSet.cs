@@ -475,12 +475,12 @@ public class ObservableHashSet<T>
     /// <param name="e">Details of the change.</param>
     protected virtual void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
         => CollectionChanged?.Invoke(this, e);
-}
 
-internal static class ObservableHashSetSingletons
-{
-    public static readonly PropertyChangedEventArgs CountPropertyChanged = new("Count");
-    public static readonly PropertyChangingEventArgs CountPropertyChanging = new("Count");
+    private static class ObservableHashSetSingletons
+    {
+        public static readonly PropertyChangedEventArgs CountPropertyChanged = new("Count");
+        public static readonly PropertyChangingEventArgs CountPropertyChanging = new("Count");
 
-    public static readonly object[] NoItems = Array.Empty<object>();
+        public static readonly object[] NoItems = Array.Empty<object>();
+    }
 }

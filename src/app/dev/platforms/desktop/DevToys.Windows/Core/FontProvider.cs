@@ -1,7 +1,6 @@
 ﻿using System.Windows.Media;
 using DevToys.Api;
 using Microsoft.Extensions.Logging;
-using Uno.Extensions;
 
 namespace DevToys.Windows.Core;
 

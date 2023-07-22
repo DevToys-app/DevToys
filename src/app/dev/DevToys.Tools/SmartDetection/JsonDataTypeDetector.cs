@@ -1,7 +1,5 @@
 ﻿using System.Text.Json;
-using System.Text.Json.Nodes;
 using Microsoft.Extensions.Logging;
-using Uno.Extensions;
 
 namespace DevToys.Tools.SmartDetection;
 

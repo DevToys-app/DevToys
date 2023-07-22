@@ -150,6 +150,9 @@
   <data name="Description" xml:space="preserve">
     <value>Customize DevToys look &amp; feel</value>
   </data>
+  <data name="Editing" xml:space="preserve">
+    <value>Editing</value>
+  </data>
   <data name="Font" xml:space="preserve">
     <value>Font</value>
   </data>

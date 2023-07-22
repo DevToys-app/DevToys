@@ -8,7 +8,6 @@ using DevToys.Core.Mef;
 using DevToys.MacOS.Core;
 using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
-using Uno.Extensions;
 using PredefinedSettings = DevToys.Core.Settings.PredefinedSettings;
 
 namespace DevToys.MacOS;
@@ -113,7 +112,7 @@ public partial class MauiProgram
         ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
 
         ILoggerFactory loggerFactory = serviceProvider.GetRequiredService<ILoggerFactory>();
-        Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory = loggerFactory;
+        LoggingExtensions.LoggerFactory = loggerFactory;
         _logger = this.Log();
 
         return serviceProvider;

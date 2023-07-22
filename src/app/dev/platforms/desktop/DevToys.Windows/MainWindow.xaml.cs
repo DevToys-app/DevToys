@@ -1,4 +1,5 @@
-﻿using System.Windows.Interop;
+﻿using System.Transactions;
+using System.Windows.Interop;
 using DevToys.Api;
 using DevToys.Blazor.BuiltInTools;
 using DevToys.Blazor.Core.Languages;
@@ -159,8 +160,8 @@ public partial class MainWindow : MicaWindowWithOverlay
         ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
 
         ILoggerFactory loggerFactory = serviceProvider.GetRequiredService<ILoggerFactory>();
-        Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory = loggerFactory;
-        _logger = loggerFactory.CreateLogger<MainWindow>();
+        LoggingExtensions.LoggerFactory = loggerFactory;
+        _logger = typeof(MainWindow).Log();
 
         return serviceProvider;
     }

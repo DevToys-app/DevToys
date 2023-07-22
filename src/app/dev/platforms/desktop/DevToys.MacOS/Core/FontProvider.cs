@@ -1,6 +1,5 @@
 ﻿using DevToys.Api;
 using Microsoft.Extensions.Logging;
-using Uno.Extensions;
 
 namespace DevToys.MacOS.Core;
 

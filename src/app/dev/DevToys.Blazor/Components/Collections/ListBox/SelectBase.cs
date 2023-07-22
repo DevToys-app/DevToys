@@ -27,6 +27,9 @@ public abstract class SelectBase<TElement> : JSStyledComponentBase where TElemen
     public EventCallback<TElement> SelectedItemChanged { get; set; }
 
     [Parameter]
+    public bool CanSelectItem { get; set; } = true;
+
+    [Parameter]
     public bool OverrideDefaultItemTemplate { get; set; }
 
     [Parameter]
@@ -113,6 +116,11 @@ public abstract class SelectBase<TElement> : JSStyledComponentBase where TElemen
 
     private void SetSelectedIndex(int index, bool raiseEvent)
     {
+        if (!CanSelectItem)
+        {
+            return;
+        }
+
         if (index >= Items?.Count)
         {
             ThrowHelper.ThrowArgumentOutOfRangeException(nameof(index));
@@ -142,7 +150,12 @@ public abstract class SelectBase<TElement> : JSStyledComponentBase where TElemen
     private void SetSelectedItem(TElement? item, bool raiseEvent)
     {
         Guard.IsNotNull(Items);
-        if (item == SelectedItem && !raiseEvent)
+
+        if (!CanSelectItem)
+        {
+            return;
+        }
+        else if (item == SelectedItem && !raiseEvent)
         {
             return;
         }
@@ -174,16 +187,19 @@ public abstract class SelectBase<TElement> : JSStyledComponentBase where TElemen
 
     private void RaiseOnSelectionChanged()
     {
-        OnItemSelected();
-
-        if (SelectedIndexChanged.HasDelegate)
+        if (CanSelectItem)
         {
-            SelectedIndexChanged.InvokeAsync(SelectedIndex);
-        }
+            OnItemSelected();
 
-        if (SelectedItemChanged.HasDelegate)
-        {
-            SelectedItemChanged.InvokeAsync(SelectedItem);
+            if (SelectedIndexChanged.HasDelegate)
+            {
+                SelectedIndexChanged.InvokeAsync(SelectedIndex);
+            }
+
+            if (SelectedItemChanged.HasDelegate)
+            {
+                SelectedItemChanged.InvokeAsync(SelectedItem);
+            }
         }
     }
 

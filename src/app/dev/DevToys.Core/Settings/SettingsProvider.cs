@@ -2,7 +2,6 @@
 using System.Globalization;
 using System.Text.Json;
 using Microsoft.Extensions.Logging;
-using Uno.Extensions;
 
 namespace DevToys.Core.Settings;
 

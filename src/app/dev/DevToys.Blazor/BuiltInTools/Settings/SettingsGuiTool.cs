@@ -1,12 +1,11 @@
 ﻿using System.Reflection;
-using DevToys.Api;
 using DevToys.Blazor.Core.Languages;
 using DevToys.Core.Settings;
 
 namespace DevToys.Blazor.BuiltInTools.Settings;
 
 [Export(typeof(IGuiTool))]
-[Name("Settings")]
+[Name(SettingsInternalToolName)]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
     IconGlyph = '\uF6A9',
@@ -21,6 +20,8 @@ namespace DevToys.Blazor.BuiltInTools.Settings;
 [NoCompactOverlaySupport]
 internal sealed class SettingsGuiTool : IGuiTool
 {
+    internal const string SettingsInternalToolName = "Settings";
+
     private readonly ISettingsProvider _settingsProvider;
     private readonly IClipboard _clipboard;
     private readonly IFontProvider _fontProvider;
@@ -120,12 +121,12 @@ internal sealed class SettingsGuiTool : IGuiTool
                                     .Title(Settings.SmartDetectionPaste)
                                     .Handle(_settingsProvider, PredefinedSettings.SmartDetectionPaste))),
 
-                // Text Editor settings
+                // Editing settings
                 Stack()
                     .Vertical()
                     .WithChildren(
 
-                        Label().Text(Settings.TextEditor),
+                        Label().Text(Settings.Editing),
                         SettingGroup()
                             .Icon("FluentSystemIcons", '\uE3BB')
                             .Title(Settings.TextEditor)

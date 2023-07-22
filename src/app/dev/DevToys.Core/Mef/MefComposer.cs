@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.Composition.Hosting;
 using System.Reflection;
 using Microsoft.Extensions.Logging;
-using Uno.Extensions;
 
 namespace DevToys.Core.Mef;
 

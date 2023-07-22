@@ -4,6 +4,10 @@
 
     <!-- See https://learn.microsoft.com/en-us/dotnet/core/project-sdk/msbuild-props#enabledynamicloading -->
     <EnableDynamicLoading>true</EnableDynamicLoading>
+    
+    <!-- NuGet package -->
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>DevToys.Tools</Title>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\DevToys.Api\DevToys.Api.csproj">
@@ -43,7 +47,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Uno.Core.Extensions.Logging.Singleton" />
     <PackageReference Include="System.Text.Json" />
   </ItemGroup>
 

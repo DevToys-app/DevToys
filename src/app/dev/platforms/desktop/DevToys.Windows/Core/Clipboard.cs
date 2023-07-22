@@ -1,9 +1,9 @@
 ﻿using System.Collections.Specialized;
 using System.IO;
 using System.Windows.Threading;
+using DevToys.Api;
 using DevToys.Windows.Helpers;
 using Microsoft.Extensions.Logging;
-using Uno.Extensions;
 
 namespace DevToys.Windows.Core;
 

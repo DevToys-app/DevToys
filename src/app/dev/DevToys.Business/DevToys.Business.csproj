@@ -15,7 +15,5 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
     <PackageReference Include="System.Text.Json" />
     <PackageReference Include="System.ComponentModel.Composition" />
-    <PackageReference Include="Uno.Core.Extensions.Logging" />
-    <PackageReference Include="Uno.Core.Extensions.Logging.Singleton" />
   </ItemGroup>
 </Project>

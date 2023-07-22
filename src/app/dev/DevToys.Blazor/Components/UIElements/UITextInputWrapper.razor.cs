@@ -4,7 +4,6 @@ using DevToys.Core.Settings;
 using DevToys.Core.Tools;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.Extensions.Logging;
-using Uno.Extensions;
 
 namespace DevToys.Blazor.Components.UIElements;
 

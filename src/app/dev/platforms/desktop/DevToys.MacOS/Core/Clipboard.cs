@@ -1,8 +1,8 @@
-﻿using System.Collections.Specialized;
+﻿using DevToys.Api;
+using System.Collections.Specialized;
 using Foundation;
 using Microsoft.Extensions.Logging;
 using UIKit;
-using Uno.Extensions;
 
 namespace DevToys.MacOS.Core;
 

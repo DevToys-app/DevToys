@@ -9,7 +9,6 @@ using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
 using DevToys.Localization.Strings.MainWindow;
 using Microsoft.Extensions.Logging;
-using Uno.Extensions;
 
 namespace DevToys.Business.ViewModels;
 

@@ -1,7 +1,6 @@
 ﻿using System.Text;
 using DevToys.Core.Tools;
 using Microsoft.Extensions.Logging;
-using Uno.Extensions;
 
 namespace DevToys.Blazor.Core.Services;
 

@@ -7,7 +7,6 @@ using DevToys.Localization.Strings.MainWindow;
 using FuzzySharp;
 using FuzzySharp.PreProcess;
 using Microsoft.Extensions.Logging;
-using Uno.Extensions;
 using PredefinedSettings = DevToys.Core.Settings.PredefinedSettings;
 
 namespace DevToys.Core.Tools;

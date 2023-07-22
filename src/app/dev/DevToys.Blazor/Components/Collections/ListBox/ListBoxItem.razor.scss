@@ -15,7 +15,7 @@
     cursor: default;
     user-select: none;
     -webkit-user-select: none;
-    block-size: 34px;
+    min-block-size: 34px;
     text-decoration: none;
 
     &::before {
@@ -27,7 +27,7 @@
         opacity: 0;
         inset-inline-start: 0;
         inline-size: 3px;
-        block-size: 16px;
+        min-block-size: 16px;
         transform: scaleY(0);
     }
 
@@ -73,7 +73,7 @@
 
     > :global(svg) {
         inline-size: 16px;
-        block-size: auto;
+        min-block-size: auto;
         fill: currentColor;
         margin-inline-end: 16px;
     }
@@ -82,6 +82,6 @@
 // Compact mode
 div[data-compactmode] {
     .list-box-item {
-        block-size: 24px;
+        min-block-size: 24px;
     }
 }

@@ -3,7 +3,6 @@ using System.Resources;
 using CommunityToolkit.Mvvm.ComponentModel;
 using DevToys.Core.Tools.Metadata;
 using Microsoft.Extensions.Logging;
-using Uno.Extensions;
 
 namespace DevToys.Core.Tools;
 

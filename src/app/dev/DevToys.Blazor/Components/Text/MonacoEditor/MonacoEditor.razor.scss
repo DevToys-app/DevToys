@@ -28,6 +28,16 @@
             cursor: none;
             color: var(--text-fill-color-disabled) !important;
         }
+
+        .monaco-editor {
+            height: 100% !important;
+            min-height: min-content !important;
+
+            .overflow-guard {
+                height: 100% !important;
+                min-height: min-content !important;
+            }
+        }
     }
 
     &-with-header {

@@ -1,0 +1,19 @@
+@namespace DevToys.Blazor.Components.UIElements
+@using DevToys.Api;
+@inherits ComponentBase
+
+<ListBox id="@UIList.Id"
+         IsVisible="@UIList.IsVisible"
+         IsEnabled="@UIList.IsEnabled"
+         HorizontalAlignment="@UIList.HorizontalAlignment"
+         VerticalAlignment="@UIList.VerticalAlignment"
+         @bind-SelectedIndex="@SelectedIndex"
+         Items="@UIList.Items"
+         Context="item"
+         CanSelectItem="@UIList.CanSelectItem"
+         OverrideDefaultItemTemplate="@(!UIList.CanSelectItem)"
+         Virtualize="true">
+    <ItemTemplate>
+        <UIElementPresenter UIElement="@item.UIElement"/>
+    </ItemTemplate>
+</ListBox>

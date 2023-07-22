@@ -74,6 +74,18 @@
             <UILabelPresenter UILabel="@label" />
             break;
 
+        case IUIProgressRing progressRing:
+            <UIProgressRingPresenter UIProgressRing="@progressRing" />
+            break;
+
+        case IUIProgressBar progressBar:
+            <UIProgressBarPresenter UIProgressBar="@progressBar" />
+            break;
+
+        case IUIList list:
+            <UIListPresenter UIList="@list" />
+            break;
+
         default:
             throw new NotSupportedException($"Gui Tool component of type '{UIElement.GetType().FullName}' isn't supported.");
     }

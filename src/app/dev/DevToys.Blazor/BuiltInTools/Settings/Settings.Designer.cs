@@ -160,6 +160,15 @@ namespace DevToys.Blazor.BuiltInTools.Settings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Editing.
+        /// </summary>
+        internal static string Editing {
+            get {
+                return ResourceManager.GetString("Editing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Font.
         /// </summary>
         internal static string Font {
