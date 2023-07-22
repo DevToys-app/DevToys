@@ -18,8 +18,10 @@ internal sealed class FileLoggerProvider : ILoggerProvider
         Guard.IsNotNull(fileStorage);
         _fileStorage = fileStorage;
 
-        // TODO: Delete older log files?
+        // Delete older log files
+        ClearOlderLogFiles();
 
+        // Create log file for the current instance.
         string logFileName = $"log-{DateTime.Now.ToString("s").Replace(":", string.Empty).Replace("-", string.Empty)}.txt";
         _fileStream = new(() => _fileStorage.OpenWriteFile(logFileName, replaceIfExist: true));
         _textWriter = new(() => new StreamWriter(_fileStream.Value));
@@ -102,6 +104,25 @@ internal sealed class FileLoggerProvider : ILoggerProvider
                 textWriter.Flush();
             }
             catch (NotSupportedException) { } // May not work in WASM.
+        }
+    }
+
+    private void ClearOlderLogFiles()
+    {
+        try
+        {
+            foreach (string logFilePath in Directory.EnumerateFiles(_fileStorage.AppCacheDirectory, "log-*.txt", SearchOption.TopDirectoryOnly))
+            {
+                var fileInfo = new FileInfo(logFilePath);
+                if (DateTime.Now - fileInfo.LastWriteTime > TimeSpan.FromDays(2))
+                {
+                    File.Delete(logFilePath);
+                }
+            }
+        }
+        catch
+        {
+            // Ignore.
         }
     }
 }
