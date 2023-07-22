@@ -4,6 +4,8 @@ public partial class ScrollViewer : JSStyledComponentBase
 {
     protected override string? JavaScriptFile => "./_content/DevToys.Blazor/Components/Layout/ScrollViewer/ScrollViewer.razor.js";
 
+    private string? _scrollViewerCssClasses;
+
     /// <summary>
     /// Gets or set the orientation in which the content can be scrolled.
     /// </summary>
@@ -61,40 +63,20 @@ public partial class ScrollViewer : JSStyledComponentBase
             AdditionalAttributes.TryAdd("data-simplebar-not-scrollable", true);
         }
 
+        var scrollViewerCssClasses = new CssBuilder();
         if (((Orientation & UIOrientation.Vertical) != 0 && (Orientation & UIOrientation.Horizontal) != 0)
             || !IsScrollable)
         {
-            CSS.Clear();
+            scrollViewerCssClasses.AddClass("not-scrollable");
         }
         else
         {
-            if ((Orientation & UIOrientation.Vertical) != 0)
-            {
-                CSS.Add("vertical");
-            }
-            else
-            {
-                CSS.Remove("vertical");
-            }
-
-            if ((Orientation & UIOrientation.Horizontal) != 0)
-            {
-                CSS.Add("horizontal");
-            }
-            else
-            {
-                CSS.Remove("horizontal");
-            }
+            scrollViewerCssClasses.AddClass("vertical", (Orientation & UIOrientation.Vertical) != 0);
+            scrollViewerCssClasses.AddClass("horizontal", (Orientation & UIOrientation.Horizontal) != 0);
         }
 
-        if (UseNativeScrollBar && IsScrollable)
-        {
-            CSS.Add("use-native-scroll");
-        }
-        else
-        {
-            CSS.Remove("use-native-scroll");
-        }
+        scrollViewerCssClasses.AddClass("use-native-scroll", UseNativeScrollBar && IsScrollable);
+        _scrollViewerCssClasses = scrollViewerCssClasses.Build();
 
         base.OnParametersSet();
     }

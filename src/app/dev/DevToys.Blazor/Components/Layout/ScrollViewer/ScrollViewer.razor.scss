@@ -14,6 +14,11 @@
         overflow-x: overlay;
     }
 
+    &.not-scrollable {
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+
     &.use-native-scroll {
         &::-webkit-scrollbar-track {
             border-radius: 999px;

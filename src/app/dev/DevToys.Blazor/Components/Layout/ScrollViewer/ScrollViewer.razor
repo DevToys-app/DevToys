@@ -17,11 +17,10 @@
                IsEnabled="@IsActuallyEnabled"
                IsVisible="@IsVisible">
         <div id="@Id"
-             class="scroll-viewer @(FinalCssClasses)"
-             style="@(Style)"
+             class="scroll-viewer @(_scrollViewerCssClasses)"
              @ref=Element
              @attributes="AdditionalAttributes">
-            <div style="grid-row: 1;">
+            <div class="@(FinalCssClasses)" style="@(Style); grid-row: 1;">
                 @ChildContent
             </div>
         </div>

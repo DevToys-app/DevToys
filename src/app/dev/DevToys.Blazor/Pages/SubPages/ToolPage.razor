@@ -3,7 +3,7 @@
 @inherits MefComponentBase
 
 <ScrollViewer Class="entrance-theme-transition tool-page-content"
-              IsScrollable="@(!IsInFullScreenMode)">
+              IsScrollable="@(!IsInFullScreenMode && ViewModel.ToolView.IsScrollable)">
     @RenderToolWithHeader(true)
 </ScrollViewer>
 
@@ -14,8 +14,7 @@
     {
         RenderToolWithHeader = (bool isScrollable) => (__builder) =>
         {
-            <Grid PaddingBottom="40"
-                  RowSpacing="12"
+            <Grid RowSpacing="12"
                   Rows="@(new List<UIGridLength>
                     {
                         UIGridLength.Auto,

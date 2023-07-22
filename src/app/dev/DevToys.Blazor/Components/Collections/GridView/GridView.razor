@@ -20,9 +20,10 @@
                IsVisible="@IsVisible">
         <ScrollViewer @ref=_scrollViewer
                       Orientation="UIOrientation.Vertical"
+                      IsEnabled="@IsActuallyEnabled"
                       Class="@(FinalCssClasses)"
                       style="@(Style)"
-                      @attributes="AdditionalAttributes">
+                      @attributes="@AdditionalAttributes">
                 @if (Header is not null)
                 {
                     <div class="header">@Header</div>

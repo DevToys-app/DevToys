@@ -57,7 +57,7 @@ function onGridViewScroll(ev: Event): void {
 // Calculate the best size items in the grid view should take in order to fill
 // as much space possible while having as many columns at possible.
 function fitGridViewItemsToContainer(gridView: HTMLElement, gridViewBounds: DOMRectReadOnly, itemMinWidth: number): void {
-    const gridViewContentContainerStyle = getComputedStyle(gridView.getElementsByClassName("simplebar-content")[0]);
+    const gridViewContentContainerStyle = getComputedStyle(gridView.getElementsByClassName("grid-view")[0]);
     const newGridViewContentSize = gridViewBounds;
     const gridViewWidth
         = newGridViewContentSize.width
