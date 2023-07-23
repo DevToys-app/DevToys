@@ -1,7 +1,11 @@
 ﻿🎉 New Features
-  • SSL Certificate Decoder tool!
+  • Password Generator tool!
 👏 Improvements
-  • Selected options are displayed in RegEx Tester
-  • Clear Payload when empty JWT provided
+  • General improvements to JWT Encoder / Decoder
+  • Show X.509 extensions in Certificate Encoder / Decoder
+  • CRON Parser shows description of the CRON expression
+  • Text Inspector can now sort lines
+  • Many tool's output can now be expanded
+  • Many translations improved
 🐛 Bug Fixes
-  • SQL Formatter issue with operators
+  • Many bug fixes in JWT Encoder / Decoder
