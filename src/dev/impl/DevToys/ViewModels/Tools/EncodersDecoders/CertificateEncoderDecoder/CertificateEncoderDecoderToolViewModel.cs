@@ -32,6 +32,7 @@ namespace DevToys.ViewModels.Tools.CertificateEncoderDecoder
         private readonly ImmutableHashSet<string> _allowedFileExtensions = new HashSet<string>()
         {
             ".cer",
+            ".crt",
             ".pfx",
             ".pem"
         }.ToImmutableHashSet();
