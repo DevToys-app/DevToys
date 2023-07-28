@@ -128,17 +128,6 @@
             Grid.Column="0"
             Grid.ColumnSpan="2"
             Visibility="{x:Bind ShowInfoContent, Mode=OneWay, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
-            <!--<monaco:CodeEditorCore
-                Grid.Row="1"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                TabIndex="1"
-                CodeLanguage="{x:Bind CodeLanguage, Mode=OneWay}"
-                Text="{x:Bind Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                IsDiffViewMode="{x:Bind IsDiffViewMode}"
-                DiffLeftText="{x:Bind DiffLeftText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                DiffRightText="{x:Bind DiffRightText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                AutomationProperties.LabeledBy="{x:Bind HeaderTextBlock}"/>-->
         </Grid>
         <Border
             x:Name="CodeEditorSizeFit"
