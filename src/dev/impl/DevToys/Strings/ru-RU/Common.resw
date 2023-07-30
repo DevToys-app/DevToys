@@ -124,7 +124,7 @@
     <value>Очистить</value>
   </data>
   <data name="Collapse" xml:space="preserve">
-    <value>Collapse</value>
+    <value>Свернуть</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>Копировать</value>
@@ -136,13 +136,13 @@
     <value>Удалить</value>
   </data>
   <data name="Expand" xml:space="preserve">
-    <value>Expand</value>
+    <value>Развернуть</value>
   </data>
   <data name="ShowInfo" xml:space="preserve">
-    <value>Show additional info</value>
+    <value>Показать дополнительную информацию</value>
   </data>
   <data name="HideInfo" xml:space="preserve">
-    <value>Hide additional info</value>
+    <value>Скрыть дополнительную информацию</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
     <value>Обзор файлов</value>
