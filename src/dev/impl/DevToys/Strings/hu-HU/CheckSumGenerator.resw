@@ -127,13 +127,13 @@
     <value>Beállítások</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Hash készítése fájl alapján</value>
+    <value>Hash készítése checksum segítségével fájl alapján</value>
   </data>
   <data name="HashingAlgorithmDescription" xml:space="preserve">
-    <value>Válassza ki a használni kívánt hash függvényt</value>
+    <value>Válassza ki a használni kívánt hash algoritmust</value>
   </data>
   <data name="HashingAlgorithmTitle" xml:space="preserve">
-    <value>Hash függvény</value>
+    <value>Hash algoritmus</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>Bemenet</value>
@@ -145,10 +145,10 @@
     <value>Kimenet</value>
   </data>
   <data name="OutputComparer" xml:space="preserve">
-    <value>Összehasonlító eredmény</value>
+    <value>Eredmény összehasonlító</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Checksum Generator</value>
+    <value>Checksum Generátor</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
     <value>Nagybetűs</value>

@@ -121,7 +121,7 @@
     <value>Színvakság szimulációs eszköz</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Szívakság Szimulátor</value>
+    <value>Színvakság Szimulátor</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Színvakság szimulációja egy képen vagy képernyőképen</value>
