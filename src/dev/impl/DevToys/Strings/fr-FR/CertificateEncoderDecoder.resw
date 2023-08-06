@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Certificate Encoder and Decoder tool</value>
+    <value>Certificate Encoder / Decoder</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Certificat</value>
@@ -142,7 +142,7 @@
     <value>Mot de passe invalide.</value>
   </data>
   <data name="UnsupportedFormatError" xml:space="preserve">
-    <value>Certificate Request format not currently supported.</value>
+    <value>Le format de demande de certificat n'est pas supporté actuellement.</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>CER PFX PEM</value>
