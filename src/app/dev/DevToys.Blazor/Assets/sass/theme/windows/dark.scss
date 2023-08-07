@@ -281,9 +281,9 @@
     --list-box-item-background-pointer-over: var(--subtle-fill-secondary);
     --list-box-item-background-selected: var(--subtle-fill-secondary);
     --list-box-item-background-selected-disabled: var(--subtle-fill-secondary);
-    --list-box-item-background-active: var(--subtle-fill-tertiary);
+    --list-box-item-background-pressed: var(--subtle-fill-tertiary);
     --list-box-item-foreground: var(--text-fill-color-primary);
-    --list-box-item-foreground-active: var(--text-fill-color-secondary);
+    --list-box-item-foreground-pressed: var(--text-fill-color-secondary);
     --list-box-item-foreground-disabled: var(--text-fill-color-disabled);
 
     /* Context Menu */
@@ -296,9 +296,9 @@
     --context-menu-item-background: var(--subtle-fill-transparent);
     --context-menu-item-background-disabled: var(--subtle-fill-transparent);
     --context-menu-item-background-pointer-over: var(--subtle-fill-secondary);
-    --context-menu-item-background-active: var(--subtle-fill-tertiary);
+    --context-menu-item-background-pressed: var(--subtle-fill-tertiary);
     --context-menu-item-foreground: var(--text-fill-color-primary);
-    --context-menu-item-foreground-active: var(--text-fill-color-secondary);
+    --context-menu-item-foreground-pressed: var(--text-fill-color-secondary);
     --context-menu-item-foreground-disabled: var(--text-fill-color-disabled);
     --context-menu-item-key-accelerator-foreground: var(--text-fill-color-secondary);
     --context-menu-item-key-accelerator-foreground-disabled: var(--text-fill-color-disabled);
@@ -352,6 +352,20 @@
     --info-bar-border: var(--card-stroke-color-default);
     --info-bar-border-thickness: 1px;
     --info-bar-border-corner-radius: var(--control-corner-radius);
+
+    /* DataGrid */
+    --data-grid-column-header-foreground: var(--text-fill-color-tertiary);
+    --data-grid-column-header-background: var(--control-fill-color-default);
+    --data-grid-column-header-background-pointer-over: rgba(255, 255, 255, 0.15);
+    --data-grid-column-header-background-pressed: var(--subtle-fill-tertiary);
+    --data-grid-row-foreground: var(--text-fill-color-primary);
+    --data-grid-row-background: var(--control-fill-color-default);
+    --data-grid-row-background-pointer-over: rgba(255, 255, 255, 0.15);
+    --data-grid-row-odd-background: rgba(255, 255, 255, 0.095);
+    --data-grid-row-odd-background-pointer-over: rgba(255, 255, 255, 0.18);
+    --data-grid-row-selected-background: rgba(var(--accent-base), 0.9);
+    --data-grid-row-selected-background-pointer-over: rgba(var(--accent-base), 0.8);
+    --data-grid-border: var(--control-stroke-color-default);
 
     /* UISettingGroup */
     --ui-setting-group-presenter-inner-ui-setting-background-color: transparent;

@@ -49,8 +49,8 @@
     }
 
     &:active {
-        background-color: var(--list-box-item-background-active);
-        color: var(--list-box-item-foreground-active);
+        background-color: var(--list-box-item-background-pressed);
+        color: var(--list-box-item-foreground-pressed);
 
         &::before {
             transform: scaleY(0.625);

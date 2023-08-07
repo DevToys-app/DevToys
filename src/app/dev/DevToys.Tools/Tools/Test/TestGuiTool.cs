@@ -1,6 +1,5 @@
 ﻿#if DEBUG
 using System.Text.Json;
-using System.Text.Json.Nodes;
 
 namespace DevToys.Tools.Tools.Test;
 
@@ -191,11 +190,18 @@ internal sealed class TestGuiTool : IGuiTool
                                     .Title("Input"))
 
                             .WithRightPaneChild(
-                                MultilineTextInput()
-                                    .Language("json")
-                                    .Title("Output")
-                                    .ReadOnly()
-                                    .Extendable()))));
+                                DataGrid()
+                                    .WithColumns("Column 1", "Column 2", "Column 3")
+                                    .WithRows(
+                                        Row(null, "Cell 1", "This is the Cell number 2", "Cell3"),
+                                        Row(null, Cell("Cell 1"), Cell("Cell 2"), Cell(Button().Text("Cell 3"))),
+                                        Row(null, Label().Text("Duis accusam sed eos veniam molestie invidunt vel invidunt magna kasd diam invidunt erat option diam. Ullamcorper euismod et justo ipsum lorem dolores nulla. Hendrerit odio ea dolor eos amet et ea vero. Ut consetetur et elitr nonumy."), "Cell 1", "This is the Cell number 2", "Cell3"),
+                                        Row(null, "Cell 1", "This is the Cell number 2", "Cell3"),
+                                        Row(null, "Cell 1", "This is the Cell number 2", "Cell3"),
+                                        Row(null, "Cell 1", "This is the Cell number 2", "Cell3"),
+                                        Row(null, "Cell 1", "This is the Cell number 2", "Cell3"),
+                                        Row(null, "Cell 1", "This is the Cell number 2", "Cell3"))
+                                ))));
 
     // Smart detection handler.
     public void OnDataReceived(string dataTypeName, object? parsedData)

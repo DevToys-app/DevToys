@@ -1,0 +1,26 @@
+@namespace DevToys.Blazor.Components.UIElements
+@using DevToys.Api;
+@using System.Collections.ObjectModel;
+@inherits ComponentBase
+
+<DataGrid id="@UIDataGrid.Id"
+          TRow="IUIDataGridRow"
+          TCell="IUIDataGridCell"
+          TRowDetail="IUIElement"
+          IsVisible="@UIDataGrid.IsVisible"
+          IsEnabled="@UIDataGrid.IsEnabled"
+          HorizontalAlignment="@UIDataGrid.HorizontalAlignment"
+          VerticalAlignment="@UIDataGrid.VerticalAlignment"
+          @bind-SelectedIndex="@SelectedIndex"
+          Columns="@UIDataGrid.Columns"
+          Rows="@UIDataGrid.Rows"
+          Context="element"
+          CanSelectRow="@UIDataGrid.CanSelectRow"
+          Virtualize="true">
+    <CellTemplate>
+        <UIElementPresenter UIElement="@element.UIElement" />
+    </CellTemplate>
+    <RowDetailTemplate>
+        <UIElementPresenter UIElement="@element" />
+    </RowDetailTemplate>
+</DataGrid>

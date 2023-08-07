@@ -1,0 +1,110 @@
+@namespace DevToys.Blazor.Components
+@typeparam TRow
+@typeparam TCell
+@typeparam TRowDetail
+@inherits JSStyledComponentBase
+
+<CascadingValue Value="this" IsFixed="true">
+    <CascadingValue Name="ParentIsEnabled" Value="@IsActuallyEnabled">
+        <Container HorizontalAlignment="@HorizontalAlignment"
+                   VerticalAlignment="@VerticalAlignment"
+                   Width="@Width"
+                   Height="@Height"
+                   MarginLeft="@MarginLeft"
+                   MarginRight="@MarginRight"
+                   MarginTop="@MarginTop"
+                   MarginBottom="@MarginBottom"
+                   PaddingLeft="@PaddingLeft"
+                   PaddingRight="@PaddingRight"
+                   PaddingTop="@PaddingTop"
+                   PaddingBottom="@PaddingBottom"
+                   IsEnabled="@IsActuallyEnabled"
+                   IsVisible="@IsVisible">
+            <div class="data-grid-container">
+                <ScrollViewer Orientation="@(UIOrientation.Vertical | UIOrientation.Horizontal)"
+                              IsEnabled="@IsActuallyEnabled"
+                              Class="@FinalCssClasses"
+                              Style="@Style"
+                              @attributes="@AdditionalAttributes">
+                    <table @ref=Element class="data-grid @((IsResizing ? "resizing" : string.Empty))">
+                        <thead>
+                            @if (Columns is not null)
+                            {
+                                foreach (string column in Columns)
+                                {
+                                    <DataGridColumnHeader TCell="TCell"
+                                                          TRow="TRow"
+                                                          TRowDetail="TRowDetail"
+                                                          Title="@column"/>
+                                }
+                            }
+                        </thead>
+                        <tbody>
+                            @if (Virtualize)
+                            {
+                                <Virtualize Items="@Rows" Context="row">
+                                    @RenderRow(row)
+                                </Virtualize>
+                            }
+                            else if (Rows is not null)
+                            {
+                                foreach (var row in Rows)
+                                {
+                                    RenderRow(row);
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </ScrollViewer>
+                <div class="data-grid-underline" />
+            </div>
+        </Container>
+    </CascadingValue>
+</CascadingValue>
+
+@code {
+    private RenderFragment<TRow> RenderRow { get; set; } = default!;
+
+    protected override Task OnInitializedAsync()
+    {
+        RenderRow = (row) => __builder =>
+        {
+            Guard.IsNotNull(Rows);
+            bool isOdd = Rows.IndexOf(row) % 2 == 1;
+            <tr class="@($"{(isOdd ? "odd" : string.Empty)} {(object.ReferenceEquals(row, SelectedRow) ? "selected" : string.Empty)}")"
+                @onclick="@(() => OnRowClick(row))">
+                @if (row is not null)
+                {
+                    var columnCount = 0;
+                    foreach (var cell in row)
+                    {
+                        if (Columns is null || columnCount == Columns.Length)
+                        {
+                            // Make sure we don't write more cell than columns.
+                            break;
+                        }
+
+                        <td>
+                            @CellTemplate(cell)
+                        </td>
+
+                        columnCount++;
+                    }
+                }
+            </tr>
+
+            @if ((object.ReferenceEquals(row, SelectedRow) || !CanSelectRow)
+                && row is not null
+                && row.Details is not null)
+            {
+                <tr class="@($"{(isOdd ? "odd" : string.Empty)} {(CanSelectRow ? "selected" : string.Empty)}")">
+                    <td colspan="1000">
+                        @RowDetailTemplate(row.Details)
+                    </td>
+                </tr>
+            }
+        };
+
+        return base.OnInitializedAsync();
+    }
+}

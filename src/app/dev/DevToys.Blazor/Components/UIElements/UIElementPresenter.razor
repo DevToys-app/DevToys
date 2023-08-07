@@ -86,6 +86,10 @@
             <UIListPresenter UIList="@list" />
             break;
 
+        case IUIDataGrid dataGrid:
+            <UIDataGridPresenter UIDataGrid="@dataGrid" />
+            break;
+
         default:
             throw new NotSupportedException($"Gui Tool component of type '{UIElement.GetType().FullName}' isn't supported.");
     }

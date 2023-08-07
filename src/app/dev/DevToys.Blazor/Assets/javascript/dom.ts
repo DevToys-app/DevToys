@@ -38,6 +38,37 @@ class DOM {
         css.innerHTML = fontDefinition;
         document.head.appendChild(css);
     }
+
+    public static registerDocumentEventService(dotNetObjRef: DotNet.DotNetObject): void {
+        (<any>document).documentEventService = dotNetObjRef;
+    }
+
+    public static subscribeDocumentEvent(eventName: string): void {
+        document.addEventListener(eventName, DOM.documentEventListener);
+    }
+
+    public static unsubscribeDocumentEvent(eventName: string): void {
+        document.removeEventListener(eventName, DOM.documentEventListener);
+    }
+
+    private static documentEventListener(e?: Event): void {
+        const eventJson = DOM.stringifyEvent(e);
+        const dotNetObjRef = (<DotNet.DotNetObject>(<any>document).documentEventService);
+        const eventName = e.type;
+        dotNetObjRef.invokeMethodAsync("EventCallback", eventName, eventJson);
+    }
+
+    private static stringifyEvent(e): string {
+        const obj = {};
+        for (const k in e) {
+            obj[k] = e[k];
+        }
+        return JSON.stringify(obj, (k, v) => {
+            if (v instanceof Node) return "Node";
+            if (v instanceof Window) return "Window";
+            return v;
+        }, " ");
+    }
 }
 
 export default DOM;

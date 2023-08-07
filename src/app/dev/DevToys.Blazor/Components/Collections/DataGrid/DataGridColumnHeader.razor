@@ -1,0 +1,17 @@
+@namespace DevToys.Blazor.Components
+@typeparam TRow
+@typeparam TCell
+@typeparam TRowDetail
+@inherits JSStyledComponentBase
+
+<th @ref=Element scope="col" colspan="1" style="@DataGridColumnHeaderStyle">
+    <TextBlock NoWrap="true"
+               CanTrim="true"
+               HorizontalAlignment="UIHorizontalAlignment.Left"
+               Text="@Title" />
+    <div class="@($"data-grid-resizer {(_isResizing ? "data-grid-resizing" : string.Empty)} {FinalCssClasses}")"
+         style="@ResizerStyle"
+         @onmousedown=OnResizerMouseDown
+         @onmouseover=OnResizerMouseOver
+         @onmouseleave=OnResizerMouseLeave />
+</th>

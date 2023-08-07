@@ -41,8 +41,8 @@
         }
 
         &:active {
-            background-color: var(--context-menu-item-background-active);
-            color: var(--context-menu-item-foreground-active);
+            background-color: var(--context-menu-item-background-pressed);
+            color: var(--context-menu-item-foreground-pressed);
         }
 
         &.disabled {

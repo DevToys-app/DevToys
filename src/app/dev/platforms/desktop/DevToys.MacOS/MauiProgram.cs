@@ -105,6 +105,7 @@ public partial class MauiProgram
 
         serviceCollection.AddSingleton(provider => MefComposer!.Provider);
         serviceCollection.AddSingleton<IWindowService>(provider => _windowService);
+        serviceCollection.AddScoped<DocumentEventService, DocumentEventService>();
         serviceCollection.AddScoped<PopoverService, PopoverService>();
         serviceCollection.AddScoped<ContextMenuService, ContextMenuService>();
         serviceCollection.AddScoped<FontService, FontService>();

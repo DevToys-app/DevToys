@@ -1,0 +1,95 @@
+.data-grid {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    border-collapse: collapse;
+    border-spacing: 0px;
+
+    &-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        flex: 1;
+        border-radius: var(--control-corner-radius);
+        background-clip: padding-box;
+        border: 1px solid var(--data-grid-border);
+    }
+
+    &-underline {
+        position: absolute;
+        inset-inline-start: -1px;
+        inset-block-start: -1px;
+        inline-size: calc(100% + 2px);
+        block-size: calc(100% + 2px);
+        pointer-events: none;
+        border-radius: var(--control-corner-radius);
+        overflow: hidden;
+
+        &::after {
+            content: "";
+            box-sizing: border-box;
+            position: absolute;
+            inset-block-end: 0;
+            inset-inline-start: 0;
+            inline-size: 100%;
+            block-size: 100%;
+            border-bottom: 1px solid var(--control-strong-stroke-default);
+        }
+    }
+
+    &-resizer {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 8px;
+        cursor: col-resize;
+        user-select: none;
+    }
+
+    thead {
+        th {
+            display: table-cell;
+            position: relative;
+            color: var(--data-grid-column-header-foreground);
+            background-color: var(--data-grid-column-header-background);
+            border-right: 1px solid var(--control-stroke-color-default);
+            border-bottom: 1px solid var(--control-stroke-color-default);
+
+            &:hover {
+                background-color: var(--data-grid-column-header-background-pointer-over);
+            }
+
+            &:active {
+                background-color: var(--data-grid-column-header-background-pressed);
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            color: var(--data-grid-row-foreground);
+            background-color: var(--data-grid-row-background);
+
+            &:hover {
+                background-color: var(--data-grid-row-background-pointer-over);
+            }
+
+            &.odd {
+                background-color: var(--data-grid-row-odd-background);
+
+                &:hover {
+                    background-color: var(--data-grid-row-odd-background-pointer-over);
+                }
+            }
+
+            &.selected {
+                background-color: var(--data-grid-row-selected-background) !important;
+
+                &:hover {
+                    background-color: var(--data-grid-row-selected-background-pointer-over) !important;
+                }
+            }
+        }
+    }
+}

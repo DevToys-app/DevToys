@@ -1,5 +1,4 @@
 ﻿using DevToys.Blazor.Components;
-using DevToys.Blazor.Components.Monaco;
 using DevToys.Blazor.Core.Services;
 using DevToys.Business.ViewModels;
 using DevToys.Core;

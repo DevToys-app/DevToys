@@ -64,8 +64,11 @@ public partial class ScrollViewer : JSStyledComponentBase
         }
 
         var scrollViewerCssClasses = new CssBuilder();
-        if (((Orientation & UIOrientation.Vertical) != 0 && (Orientation & UIOrientation.Horizontal) != 0)
-            || !IsScrollable)
+        if (((Orientation & UIOrientation.Vertical) != 0 && (Orientation & UIOrientation.Horizontal) != 0))
+        {
+            // Nothing. Scrollable in both axis.
+        }
+        else if (!IsScrollable)
         {
             scrollViewerCssClasses.AddClass("not-scrollable");
         }

@@ -1,5 +1,4 @@
-﻿using System.Transactions;
-using System.Windows.Interop;
+﻿using System.Windows.Interop;
 using DevToys.Api;
 using DevToys.Blazor.BuiltInTools;
 using DevToys.Blazor.Core.Languages;
@@ -153,6 +152,7 @@ public partial class MainWindow : MicaWindowWithOverlay
 
         serviceCollection.AddSingleton(provider => _mefComposer.Provider);
         serviceCollection.AddSingleton<IWindowService, WindowService>();
+        serviceCollection.AddScoped<DocumentEventService, DocumentEventService>();
         serviceCollection.AddScoped<PopoverService, PopoverService>();
         serviceCollection.AddScoped<ContextMenuService, ContextMenuService>();
         serviceCollection.AddScoped<FontService, FontService>();
