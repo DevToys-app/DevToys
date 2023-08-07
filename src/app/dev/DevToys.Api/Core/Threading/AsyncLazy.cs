@@ -1,7 +1,7 @@
 ﻿namespace DevToys.Api;
 
 [DebuggerDisplay($"IsValueCreated = {{{nameof(IsValueCreated)}}}")]
-public class AsyncLazy<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>
+public class AsyncLazy<T>
 {
     private static Func<Task<T>> FromFuncT(Func<T> valueFunc)
     {
