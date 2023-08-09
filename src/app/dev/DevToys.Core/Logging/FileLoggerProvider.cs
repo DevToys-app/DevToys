@@ -6,6 +6,8 @@ namespace DevToys.Core.Logging;
 [ProviderAlias("File")]
 internal sealed class FileLoggerProvider : ILoggerProvider
 {
+    private const string LogFolderName = "Logs";
+
     private readonly ConcurrentDictionary<string, FileLogger> _loggers = new();
     private readonly BlockingCollection<string> _entryQueue = new(1024);
     private readonly Task _processQueueTask;
@@ -23,7 +25,7 @@ internal sealed class FileLoggerProvider : ILoggerProvider
 
         // Create log file for the current instance.
         string logFileName = $"log-{DateTime.Now.ToString("s").Replace(":", string.Empty).Replace("-", string.Empty)}.txt";
-        _fileStream = new(() => _fileStorage.OpenWriteFile(logFileName, replaceIfExist: true));
+        _fileStream = new(() => _fileStorage.OpenWriteFile(Path.Combine(LogFolderName, logFileName), replaceIfExist: true));
         _textWriter = new(() => new StreamWriter(_fileStream.Value));
 
         _processQueueTask
@@ -111,12 +113,16 @@ internal sealed class FileLoggerProvider : ILoggerProvider
     {
         try
         {
-            foreach (string logFilePath in Directory.EnumerateFiles(_fileStorage.AppCacheDirectory, "log-*.txt", SearchOption.TopDirectoryOnly))
+            string logFolder = Path.Combine(_fileStorage.AppCacheDirectory, LogFolderName);
+            if (Directory.Exists(logFolder))
             {
-                var fileInfo = new FileInfo(logFilePath);
-                if (DateTime.Now - fileInfo.LastWriteTime > TimeSpan.FromDays(2))
+                foreach (string logFilePath in Directory.EnumerateFiles(logFolder, "log-*.txt", SearchOption.TopDirectoryOnly))
                 {
-                    File.Delete(logFilePath);
+                    var fileInfo = new FileInfo(logFilePath);
+                    if (DateTime.Now - fileInfo.LastWriteTime > TimeSpan.FromDays(2))
+                    {
+                        File.Delete(logFilePath);
+                    }
                 }
             }
         }

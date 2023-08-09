@@ -42,11 +42,13 @@ public partial class TextBox : MefComponentBase, IFocusable
 
     protected override string JavaScriptFile => "./_content/DevToys.Blazor/Components/Text/TextBox/TextBox.razor.js";
 
+#pragma warning disable IDE0044 // Add readonly modifier
     [Import]
-    internal IClipboard Clipboard { get; set; } = default!;
+    private IClipboard _clipboard = default!;
 
     [Import]
-    internal ISettingsProvider SettingsProvider { get; set; } = default!;
+    private ISettingsProvider _settingsProvider = default!;
+#pragma warning restore IDE0044 // Add readonly modifier
 
     [Parameter]
     public string? Text { get; set; }
@@ -93,7 +95,7 @@ public partial class TextBox : MefComponentBase, IFocusable
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        SettingsProvider.SettingChanged += SettingsProvider_SettingChanged;
+        _settingsProvider.SettingChanged += SettingsProvider_SettingChanged;
     }
 
     public ValueTask<bool> FocusAsync()
@@ -105,9 +107,9 @@ public partial class TextBox : MefComponentBase, IFocusable
 
     public override async ValueTask DisposeAsync()
     {
-        if (SettingsProvider is not null)
+        if (_settingsProvider is not null)
         {
-            SettingsProvider.SettingChanged -= SettingsProvider_SettingChanged;
+            _settingsProvider.SettingChanged -= SettingsProvider_SettingChanged;
         }
 
         try
@@ -252,13 +254,13 @@ public partial class TextBox : MefComponentBase, IFocusable
             TextSpan selection = await GetSelectionAsync();
 
             string textToCopy = Text.Substring(selection.StartPosition, selection.Length);
-            await Clipboard.SetClipboardTextAsync(textToCopy);
+            await _clipboard.SetClipboardTextAsync(textToCopy);
         }
     }
 
     private async Task OnPasteAsync(DropDownListItem _)
     {
-        string? clipboardDataString = await Clipboard.GetClipboardTextAsync();
+        string? clipboardDataString = await _clipboard.GetClipboardTextAsync();
         if (clipboardDataString is not null)
         {
             TextSpan selection = await GetSelectionAsync();
@@ -289,6 +291,6 @@ public partial class TextBox : MefComponentBase, IFocusable
 
     private void SettingsProvider_SettingChanged(object? sender, SettingChangedEventArgs e)
     {
-        FontFamily = SettingsProvider.GetSetting(PredefinedSettings.TextEditorFont);
+        FontFamily = _settingsProvider.GetSetting(PredefinedSettings.TextEditorFont);
     }
 }

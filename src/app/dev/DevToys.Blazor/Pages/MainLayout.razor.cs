@@ -5,17 +5,19 @@ namespace DevToys.Blazor.Pages;
 
 public partial class MainLayout : LayoutComponentBase
 {
+#pragma warning disable IDE0044 // Add readonly modifier
+    [Import]
+    private IThemeListener _themeListener = default!;
+
+    [Import]
+    private ISettingsProvider _settingsProvider = default!;
+
+    [Import]
+    private IFontProvider _fontProvider = default!;
+#pragma warning restore IDE0044 // Add readonly modifier
+
     [Inject]
     protected IMefProvider MefProvider { get; set; } = default!;
-
-    [Import]
-    private IThemeListener ThemeListener { get; set; } = default!;
-
-    [Import]
-    private ISettingsProvider SettingsProvider { get; set; } = default!;
-
-    [Import]
-    private IFontProvider FontProvider { get; set; } = default!;
 
     [Inject]
     internal FontService FontService { get; set; } = default!;
@@ -50,7 +52,7 @@ public partial class MainLayout : LayoutComponentBase
     {
         if (firstRender)
         {
-            ThemeListener.ThemeChanged += ThemeListener_ThemeChanged;
+            _themeListener.ThemeChanged += ThemeListener_ThemeChanged;
 
             ApplyTheme();
         }
@@ -68,7 +70,7 @@ public partial class MainLayout : LayoutComponentBase
         Class = "theme-transition";
 
         string themeName;
-        if (ThemeListener.ActualAppTheme == ApplicationTheme.Dark)
+        if (_themeListener.ActualAppTheme == ApplicationTheme.Dark)
         {
             if (OperatingSystem.IsWindows())
             {
@@ -92,8 +94,8 @@ public partial class MainLayout : LayoutComponentBase
         }
 
         ThemeName = themeName;
-        IsCompactMode = ThemeListener.IsCompactMode;
-        UserIsCompactModePreference = ThemeListener.UserIsCompactModePreference;
+        IsCompactMode = _themeListener.IsCompactMode;
+        UserIsCompactModePreference = _themeListener.UserIsCompactModePreference;
         StateHasChanged();
 
         Task.Delay(1000).ContinueWith(t =>
@@ -108,15 +110,15 @@ public partial class MainLayout : LayoutComponentBase
 
     private void SetDefaultTextEditorFont()
     {
-        string? currentFontName = SettingsProvider.GetSetting(PredefinedSettings.TextEditorFont); // By default, the value is null.
-        string[] systemFontFamilies = FontProvider.GetFontFamilies();
+        string? currentFontName = _settingsProvider.GetSetting(PredefinedSettings.TextEditorFont); // By default, the value is null.
+        string[] systemFontFamilies = _fontProvider.GetFontFamilies();
         if (!systemFontFamilies.Contains(currentFontName))
         {
             for (int i = 0; i < PredefinedSettings.DefaultFonts.Length; i++)
             {
                 if (systemFontFamilies.Contains(PredefinedSettings.DefaultFonts[i]))
                 {
-                    SettingsProvider.SetSetting(PredefinedSettings.TextEditorFont, PredefinedSettings.DefaultFonts[i]);
+                    _settingsProvider.SetSetting(PredefinedSettings.TextEditorFont, PredefinedSettings.DefaultFonts[i]);
                     return;
                 }
             }

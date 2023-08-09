@@ -17,7 +17,7 @@ public interface IFileStorage
     /// </summary>
     /// <param name="fileTypes">The list of file types the user can choose. For example, ".txt". Use "*" for any file type.</param>
     /// <returns>If succeeded, returns a write-only stream corresponding to the file the user selected, otherwise, returns null.</returns>
-    ValueTask<Stream?> PickSaveFileAsync(string[] fileTypes);
+    ValueTask<Stream?> PickSaveFileAsync(params string[] fileTypes);
 
     /// <summary>
     /// Prompt the user to select a file to open.
@@ -25,7 +25,7 @@ public interface IFileStorage
     /// <remarks>The returned items contain a stream. It won't be disposed automatically. It is important to dispose the stream yourself, when not needed anymore</remarks>
     /// <param name="fileTypes">The list of file types the user can choose. For example, ".txt". Use "*" for any file type.</param>
     /// <returns>If succeeded, returns a read-only stream corresponding to the file the user selected, otherwise, returns null.</returns>
-    ValueTask<PickedFile?> PickOpenFileAsync(string[] fileTypes);
+    ValueTask<PickedFile?> PickOpenFileAsync(params string[] fileTypes);
 
     /// <summary>
     /// Prompt the user to select many files to open.
@@ -33,7 +33,7 @@ public interface IFileStorage
     /// <remarks>The returned items contain a stream. It won't be disposed automatically. It is important to dispose the stream yourself, when not needed anymore</remarks>
     /// <param name="fileTypes">The list of file types the user can choose. For example, ".txt". Use "*" for any file type.</param>
     /// <returns>If succeeded, returns a read-only stream corresponding to the file the user selected, otherwise, returns null.</returns>
-    ValueTask<PickedFile[]> PickOpenFilesAsync(string[] fileTypes);
+    ValueTask<PickedFile[]> PickOpenFilesAsync(params string[] fileTypes);
 
     /// <summary>
     /// Prompt the user to select a folder.
@@ -43,6 +43,7 @@ public interface IFileStorage
 
     /// <summary>
     /// Determines whether the file indicated by the given <paramref name="relativeOrAbsoluteFilePath"/> exists.
+    /// If a relative path is indicated, use the <see cref="AppCacheDirectory"/> as working directory.
     /// </summary>
     /// <param name="relativeOrAbsoluteFilePath">The path to the file to check.</param>
     /// <returns>Returns true if the file exist</returns>

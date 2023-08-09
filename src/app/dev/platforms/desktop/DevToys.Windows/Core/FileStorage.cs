@@ -11,7 +11,7 @@ namespace DevToys.Windows.Core;
 [Export(typeof(IFileStorage))]
 internal sealed class FileStorage : IFileStorage
 {
-    public string AppCacheDirectory => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "DevToys");
+    public string AppCacheDirectory => Constants.AppCacheDirectory;
 
     public bool FileExists(string relativeOrAbsoluteFilePath)
     {
@@ -59,7 +59,7 @@ internal sealed class FileStorage : IFileStorage
         return File.OpenWrite(relativeOrAbsoluteFilePath);
     }
 
-    public async ValueTask<Stream?> PickSaveFileAsync(string[] fileTypes)
+    public async ValueTask<Stream?> PickSaveFileAsync(params string[] fileTypes)
     {
         return await ThreadHelper.RunOnUIThreadAsync(() =>
         {
@@ -90,7 +90,7 @@ internal sealed class FileStorage : IFileStorage
         });
     }
 
-    public async ValueTask<PickedFile?> PickOpenFileAsync(string[] fileTypes)
+    public async ValueTask<PickedFile?> PickOpenFileAsync(params string[] fileTypes)
     {
         return await ThreadHelper.RunOnUIThreadAsync(() =>
         {
@@ -116,7 +116,7 @@ internal sealed class FileStorage : IFileStorage
         });
     }
 
-    public async ValueTask<PickedFile[]> PickOpenFilesAsync(string[] fileTypes)
+    public async ValueTask<PickedFile[]> PickOpenFilesAsync(params string[] fileTypes)
     {
         return await ThreadHelper.RunOnUIThreadAsync(() =>
         {

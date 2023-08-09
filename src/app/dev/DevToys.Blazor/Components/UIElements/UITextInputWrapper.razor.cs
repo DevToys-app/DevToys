@@ -42,16 +42,16 @@ public partial class UITextInputWrapper : MefComponentBase
     protected override string? JavaScriptFile => "./_content/DevToys.Blazor/Components/UIElements/UITextInputWrapper.razor.js";
 
     [Import]
-    internal SmartDetectionService SmartDetectionService { get; set; } = default!;
+    private SmartDetectionService _smartDetectionService = default!;
 
     [Import]
-    internal IClipboard Clipboard { get; set; } = default!;
+    private IClipboard _clipboard = default!;
 
     [Import]
-    internal IFileStorage FileStorage { get; set; } = default!;
+    private IFileStorage _fileStorage = default!;
 
     [Import]
-    internal ISettingsProvider SettingsProvider { get; set; } = default!;
+    private ISettingsProvider _settingsProvider = default!;
 
     [Parameter]
     public IUISingleLineTextInput UITextInput { get; set; } = default!;
@@ -163,10 +163,10 @@ public partial class UITextInputWrapper : MefComponentBase
 
     private async Task OnPasteButtonClickAsync()
     {
-        string? clipboardString = await Clipboard.GetClipboardTextAsync();
+        string? clipboardString = await _clipboard.GetClipboardTextAsync();
         if (clipboardString is not null)
         {
-            if (SettingsProvider.GetSetting(PredefinedSettings.TextEditorPasteClearsText))
+            if (_settingsProvider.GetSetting(PredefinedSettings.TextEditorPasteClearsText))
             {
                 UITextInput.Text(clipboardString);
             }
@@ -184,7 +184,7 @@ public partial class UITextInputWrapper : MefComponentBase
         PickedFile? pickedFile = null;
         try
         {
-            pickedFile = await FileStorage.PickOpenFileAsync(fileTypes);
+            pickedFile = await _fileStorage.PickOpenFileAsync(fileTypes);
             if (pickedFile is not null)
             {
                 await LoadFileAsync(pickedFile.Stream);
@@ -209,7 +209,7 @@ public partial class UITextInputWrapper : MefComponentBase
         Stream? fileStream = null;
         try
         {
-            fileStream = await FileStorage.PickSaveFileAsync(new[] { "*.*" });
+            fileStream = await _fileStorage.PickSaveFileAsync(new[] { "*.*" });
             if (fileStream is not null)
             {
                 await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(CancellationToken.None);
@@ -257,7 +257,7 @@ public partial class UITextInputWrapper : MefComponentBase
 
     private void OnCopyButtonClick()
     {
-        Clipboard.SetClipboardTextAsync(UITextInput.Text).ForgetSafely();
+        _clipboard.SetClipboardTextAsync(UITextInput.Text).ForgetSafely();
     }
 
     private async Task LoadFileAsync(Stream fileStream)
@@ -347,7 +347,7 @@ public partial class UITextInputWrapper : MefComponentBase
         {
             // Detect tools to recommend.
             detectedTools
-                = await SmartDetectionService.DetectAsync(text, strict: false, cancellationToken)
+                = await _smartDetectionService.DetectAsync(text, strict: false, cancellationToken)
                 .ConfigureAwait(true);
 
             await InvokeAsync(() =>

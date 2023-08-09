@@ -7,7 +7,7 @@ namespace DevToys.MacOS.Core;
 [Export(typeof(IFileStorage))]
 internal sealed class FileStorage : IFileStorage
 {
-    public string AppCacheDirectory => Path.Combine(FileSystem.CacheDirectory, "com.etiennebaudoux.devtoys");
+    public string AppCacheDirectory => Constants.AppCacheDirectory;
 
     public bool FileExists(string relativeOrAbsoluteFilePath)
     {

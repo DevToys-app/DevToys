@@ -50,7 +50,7 @@ See [LICENSE](LICENSE.md)
 
 ### A few words regarding the license
 
-DevToys is using a license that permits redistribution of the app as trialware or shareware without changes. However, the authors [Etienne BAUDOUX](https://github.com/veler) and [BenjaminT](https://github.com/btiteux) would prefer you not. If you believe you have a strong reason to do so, kindly reach out to discuss with us first.
+DevToys is using a license that permits redistribution of the app as trialware or shareware without changes. However, the authors [Etienne Baudoux](https://github.com/veler) and [BenjaminT](https://github.com/btiteux) would prefer you not. If you believe you have a strong reason to do so, kindly reach out to discuss with us first.
 
 ## Special Thanks
 

@@ -206,6 +206,7 @@ public abstract class SelectBase<TElement> : JSStyledComponentBase where TElemen
     private void OnItemsChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
         SetSelectedItem(SelectedItem, raiseEvent: false);
+        StateHasChanged();
     }
 
     protected void OnItemClick(object? selectedItem)

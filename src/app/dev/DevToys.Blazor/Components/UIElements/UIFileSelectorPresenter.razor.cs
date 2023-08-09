@@ -10,11 +10,13 @@ public partial class UIFileSelectorPresenter : MefComponentBase
 
     protected string InputFileId => UIFileSelector.Id + "-" + Id + "-InputFile";
 
+#pragma warning disable IDE0044 // Add readonly modifier
     [Import]
-    internal IClipboard Clipboard { get; set; } = default!;
+    private IClipboard _clipboard = default!;
 
     [Import]
-    internal IFileStorage FileStorage { get; set; } = default!;
+    private IFileStorage _fileStorage = default!;
+#pragma warning restore IDE0044 // Add readonly modifier
 
     [Parameter]
     public IUIFileSelector UIFileSelector { get; set; } = default!;
@@ -127,11 +129,11 @@ public partial class UIFileSelectorPresenter : MefComponentBase
         PickedFile[] pickedFiles;
         if (UIFileSelector.CanSelectManyFiles)
         {
-            pickedFiles = await FileStorage.PickOpenFilesAsync(fileTypes);
+            pickedFiles = await _fileStorage.PickOpenFilesAsync(fileTypes);
         }
         else
         {
-            PickedFile? pickedFile = await FileStorage.PickOpenFileAsync(fileTypes);
+            PickedFile? pickedFile = await _fileStorage.PickOpenFileAsync(fileTypes);
             if (pickedFile != null)
             {
                 pickedFiles = new[] { pickedFile };
@@ -151,7 +153,7 @@ public partial class UIFileSelectorPresenter : MefComponentBase
     private async Task OnBrowseFoldersButtonClickAsync()
     {
         var files = new List<PickedFile>();
-        string? selectedFolder = await FileStorage.PickFolderAsync();
+        string? selectedFolder = await _fileStorage.PickFolderAsync();
 
         if (!string.IsNullOrWhiteSpace(selectedFolder))
         {
@@ -186,7 +188,7 @@ public partial class UIFileSelectorPresenter : MefComponentBase
     private async Task OnPasteButtonClickAsync()
     {
         // TODO: Support image (format tbd) + file list.
-        await Clipboard.GetClipboardDataAsync();
+        await _clipboard.GetClipboardDataAsync();
     }
 
     private string[] GetTreatedFileExtensions()

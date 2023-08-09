@@ -24,19 +24,19 @@ internal class MockIFileStorage : IFileStorage
         throw new NotImplementedException();
     }
 
-    public ValueTask<Stream> PickSaveFileAsync(string[] fileTypes)
+    public ValueTask<Stream> PickSaveFileAsync(params string[] fileTypes)
     {
         // TODO: prompt the user to type in the console a relative or absolute file path that has one of the file types indicated.
         throw new NotImplementedException();
     }
 
-    public ValueTask<PickedFile> PickOpenFileAsync(string[] fileTypes)
+    public ValueTask<PickedFile> PickOpenFileAsync(params string[] fileTypes)
     {
         // TODO: prompt the user to type in the console a relative or absolute file path that has one of the file types indicated.
         throw new NotImplementedException();
     }
 
-    public ValueTask<PickedFile[]> PickOpenFilesAsync(string[] fileTypes)
+    public ValueTask<PickedFile[]> PickOpenFilesAsync(params string[] fileTypes)
     {
         throw new NotImplementedException();
     }

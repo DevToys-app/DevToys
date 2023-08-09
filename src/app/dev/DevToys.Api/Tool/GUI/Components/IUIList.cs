@@ -200,4 +200,16 @@ public static partial class GUI
         ((UIList)element).CanSelectItem = false;
         return element;
     }
+
+    /// <summary>
+    /// Removes the first occurrence of an <see cref="IUIListItem"/> where <see cref="IUIListItem.Value"/> match the given <paramref name="value"/>.
+    /// </summary>
+    public static void RemoveValue(this ObservableCollection<IUIListItem> listItems, object? value)
+    {
+        IUIListItem? item = listItems.FirstOrDefault(item => item.Value == value);
+        if (item is not null)
+        {
+            listItems.Remove(item);
+        }
+    }
 }

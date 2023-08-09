@@ -122,7 +122,6 @@ internal sealed class UIButton : UIElement, IUIButton
 
     public event EventHandler? TextChanged;
     public event EventHandler? IsAccentChanged;
-    public event EventHandler? IsHyperlinkChanged;
     public event EventHandler? IconFontNameChanged;
     public event EventHandler? IconGlyphChanged;
 }

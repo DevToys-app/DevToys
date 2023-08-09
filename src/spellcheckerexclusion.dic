@@ -2,9 +2,11 @@ devtoys
 Blazor
 Awaiter
 Fira
-﻿wwwroot
-﻿ntdll
-﻿dwmapi
-﻿hwnd
-﻿Doesnt
+wwwroot
+ntdll
+dwmapi
+hwnd
+Doesnt
 monaco
+nuget
+nuspec
