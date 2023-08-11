@@ -12,6 +12,22 @@
 
     protected override Task OnInitializedAsync()
     {
+        DialogService.DialogContent = (__builder) =>
+        {
+            @if (ViewModel.ToolView.CurrentOpenedDialog is not null)
+            {
+                <UIElementPresenter UIElement="@ViewModel.ToolView.CurrentOpenedDialog.DialogContent" />
+            }
+        };
+
+        DialogService.FooterContent = (__builder) =>
+        {
+            @if (ViewModel.ToolView.CurrentOpenedDialog is not null)
+            {
+                <UIElementPresenter UIElement="@ViewModel.ToolView.CurrentOpenedDialog.FooterContent" />
+            }
+        };
+
         RenderToolWithHeader = (bool isScrollable) => (__builder) =>
         {
             <Grid RowSpacing="12"

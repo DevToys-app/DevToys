@@ -367,6 +367,13 @@
     --data-grid-row-selected-background-pointer-over: rgba(var(--accent-base), 0.8);
     --data-grid-border: var(--control-stroke-color-default);
 
+    /* Dialog */
+    --dialog-light-dismiss-overlay-background: rgba(0, 0, 0, 0.305);
+    --dialog-shadow: 0px 30px 38px -3px rgba(0,0,0,0.24);
+    --dialog-background-color: rgb(43, 43, 43);
+    --dialog-footer-background-color: rgb(32, 32, 32);
+    --dialog-border-color: var(--control-stroke-color-default);
+
     /* UISettingGroup */
     --ui-setting-group-presenter-inner-ui-setting-background-color: transparent;
 

@@ -8,13 +8,23 @@ namespace DevToys.Api;
 [DebuggerDisplay($"RootElement = {{{nameof(RootElement)}}}, IsScrollable = {{{nameof(IsScrollable)}}}")]
 public class UIToolView : INotifyPropertyChanged
 {
+    private UIDialog? _currentOpenedDialog;
+    private IUIElement? _rootElement;
     private bool _isScrollable;
 
     /// <summary>
     /// Creates a new instance of the <see cref="UIToolView"/> class.
     /// </summary>
+    public UIToolView()
+        : this(true, null)
+    {
+    }
+
+    /// <summary>
+    /// Creates a new instance of the <see cref="UIToolView"/> class.
+    /// </summary>
     /// <param name="rootElement">The root element of the tool's UI.</param>
-    public UIToolView(IUIElement rootElement)
+    public UIToolView(IUIElement? rootElement)
         : this(true, rootElement)
     {
     }
@@ -24,7 +34,17 @@ public class UIToolView : INotifyPropertyChanged
     /// </summary>
     /// <param name="isScrollable">Indicates whether the UI of the tool is scrollable or should fits to the window boundaries.</param>
     /// <param name="rootElement">The root element of the tool's UI.</param>
-    public UIToolView(bool isScrollable, IUIElement rootElement)
+    public UIToolView(bool isScrollable)
+        : this(isScrollable, null)
+    {
+    }
+
+    /// <summary>
+    /// Creates a new instance of the <see cref="UIToolView"/> class.
+    /// </summary>
+    /// <param name="isScrollable">Indicates whether the UI of the tool is scrollable or should fits to the window boundaries.</param>
+    /// <param name="rootElement">The root element of the tool's UI.</param>
+    public UIToolView(bool isScrollable, IUIElement? rootElement)
     {
         IsScrollable = isScrollable;
         RootElement = rootElement;
@@ -40,13 +60,86 @@ public class UIToolView : INotifyPropertyChanged
     }
 
     /// <summary>
+    /// Gets the <see cref="UIDialog"/> currently opened. Only one at a time can be opened.
+    /// </summary>
+    public UIDialog? CurrentOpenedDialog
+    {
+        get => _currentOpenedDialog;
+        internal set => SetPropertyValue(ref _currentOpenedDialog, value, CurrentOpenedDialogChanged);
+    }
+
+    /// <summary>
     /// Gets the root element of the tool's UI.
     /// </summary>
-    public IUIElement RootElement { get; }
+    public IUIElement? RootElement
+    {
+        get => _rootElement;
+        internal set => SetPropertyValue(ref _rootElement, value, RootElementChanged);
+    }
 
+    /// <summary>
+    /// Raised when <see cref="IsScrollable"/> changed.
+    /// </summary>
     public event EventHandler? IsScrollableChanged;
 
+    /// <summary>
+    /// Raised when <see cref="CurrentOpenedDialog"/> changed.
+    /// </summary>
+    public event EventHandler? CurrentOpenedDialogChanged;
+
+    /// <summary>
+    /// Raised when <see cref="RootElement"/> changed.
+    /// </summary>
+    public event EventHandler? RootElementChanged;
+
     public event PropertyChangedEventHandler? PropertyChanged;
+
+    /// <summary>
+    /// Shows the dialog box in the UI. Only one dialog can be opened at a time.
+    /// </summary>
+    /// <param name="dialogContent">The element to display in the dialog.</param>
+    /// <param name="isDismissible">Indicates whether the dialog can be closed by clicking outside of the dialog.</param>
+    /// <returns>An instance of the opened dialog.</returns>
+    public UIDialog OpenDialog(
+        IUIElement dialogContent,
+        bool isDismissible)
+    {
+        return OpenDialog(dialogContent, null, isDismissible);
+    }
+
+    /// <summary>
+    /// Shows the dialog box in the UI. Only one dialog can be opened at a time.
+    /// </summary>
+    /// <param name="dialogContent">The element to display in the dialog.</param>
+    /// <param name="footerContent">The element to display in the dialog footer.</param>
+    /// <param name="isDismissible">Indicates whether the dialog can be closed by clicking outside of the dialog.</param>
+    /// <returns>An instance of the opened dialog.</returns>
+    public UIDialog OpenDialog(
+        IUIElement dialogContent,
+        IUIElement? footerContent,
+        bool isDismissible)
+    {
+        if (CurrentOpenedDialog is not null)
+        {
+            ThrowHelper.ThrowInvalidOperationException("A dialog is already opened. Close it before opening another one.");
+        }
+
+        var dialog = new UIDialog(dialogContent, footerContent, isDismissible);
+        dialog.IsOpenedChanged += Dialog_IsOpenedChanged;
+        CurrentOpenedDialog = dialog;
+        return dialog;
+    }
+
+    private void Dialog_IsOpenedChanged(object? sender, EventArgs e)
+    {
+        Guard.IsNotNull(CurrentOpenedDialog);
+        if (!CurrentOpenedDialog.IsOpened)
+        {
+            CurrentOpenedDialog.IsOpenedChanged -= Dialog_IsOpenedChanged;
+            CurrentOpenedDialog.Dispose();
+            CurrentOpenedDialog = null;
+        }
+    }
 
     protected void SetPropertyValue<T>(
         ref T field,
@@ -65,5 +158,17 @@ public class UIToolView : INotifyPropertyChanged
     protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new(propertyName));
+    }
+}
+
+public static partial class GUI
+{
+    /// <summary>
+    /// Sets the element to be displayed in the view.
+    /// </summary>
+    public static UIToolView WithRootElement(this UIToolView toolView, IUIElement? rootElement)
+    {
+        toolView.RootElement = rootElement;
+        return toolView;
     }
 }

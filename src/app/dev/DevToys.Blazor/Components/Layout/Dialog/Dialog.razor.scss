@@ -1,0 +1,88 @@
+.dialog {
+    border: solid 1px var(--dialog-border-color);
+    border-radius: var(--overlay-corner-radius);
+    background-color: var(--dialog-background-color);
+    -webkit-box-shadow: var(--dialog-shadow);
+    box-shadow: var(--dialog-shadow);
+    animation: dialog-open-animation 0.25s cubic-bezier(0.25, 0.1, 0.25, 1) both;
+
+    &-auto-height {
+        display: grid;
+        min-height: 200px;
+        min-width: 300px;
+        max-width: calc(100vh - 128px);
+        max-height: calc(100vh - 64px);
+    }
+
+    &-footer {
+        background-color: var(--dialog-footer-background-color);
+        border-bottom-right-radius: var(--overlay-corner-radius);
+        border-bottom-left-radius: var(--overlay-corner-radius);
+    }
+
+    &-overlay {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: inherit;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        border-color: transparent;
+        animation: dialog-overlay-fadein-animation ease 0.25s;
+        -webkit-animation: dialog-overlay-fadein-animation ease 0.25s;
+        -moz-animation: dialog-overlay-fadein-animation ease 0.25s;
+        -o-animation: dialog-overlay-fadein-animation ease 0.25s;
+
+        &-dim {
+            background-color: var(--dialog-light-dismiss-overlay-background) !important;
+        }
+    }
+
+    &-container {
+        display: flex;
+        position: fixed;
+        top: 0;
+        z-index: calc(20000 + 10);
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: none;
+        pointer-events: none;
+
+        * {
+            pointer-events: auto;
+        }
+    }
+}
+
+@keyframes dialog-overlay-fadein-animation {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes dialog-open-animation {
+    0% {
+        -webkit-transform: scale(1.25);
+        transform: scale(1.25);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+}

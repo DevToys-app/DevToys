@@ -1,0 +1,56 @@
+@namespace DevToys.Blazor.Components
+@inherits StyledComponentBase
+
+@if (IsOpen)
+{
+    <!-- Overlay that covers the whole window for dialog -->
+    <Overlay ZIndex="20000"
+             Visible="true"
+             Class="dialog-overlay dialog-overlay-dim"
+             OnClick="@OnDismiss" />
+
+    <div id="@Id" class="dialog-container">
+        <div @ref="@Element"
+             class="dialog dialog-auto-height @FinalCssClasses"
+             style="@Style"
+             @attributes="AdditionalAttributes">
+            <FocusTrapper OnEscapeKeyPressed="@OnDismiss" Class="dialog-auto-height">
+                <Container Width="@Width"
+                           Height="@Height"
+                           VerticalAlignment="UIVerticalAlignment.Stretch"
+                           IsEnabled="@IsEnabled">
+                    <Grid VerticalAlignment="UIVerticalAlignment.Stretch"
+                          Rows="@(new List<UIGridLength>
+                            {
+                                new UIGridLength(1, UIGridUnitType.Fraction),
+                                UIGridLength.Auto
+                            })">
+                        <GridCell Row="0">
+                            <ScrollViewer Orientation="UIOrientation.Vertical">
+                                <Container PaddingLeft="24"
+                                           PaddingRight="24"
+                                           PaddingTop="24"
+                                           PaddingBottom="24">
+                                    @Content
+                                </Container>
+                            </ScrollViewer>
+                        </GridCell>
+                        <GridCell Row="1">
+                            @if (Footer is not null)
+                            {
+                                <div class="dialog-footer">
+                                    <Container PaddingLeft="24"
+                                               PaddingRight="24"
+                                               PaddingTop="24"
+                                               PaddingBottom="24">
+                                        @Footer
+                                    </Container>
+                                </div>
+                            }
+                        </GridCell>
+                    </Grid>
+                </Container>
+            </FocusTrapper>
+        </div>
+    </div>
+}

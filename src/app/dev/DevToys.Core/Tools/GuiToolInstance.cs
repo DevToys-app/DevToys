@@ -102,6 +102,11 @@ public sealed partial class GuiToolInstance : ObservableObject
     /// </summary>
     public void RebuildView()
     {
+        if (_view is not null && _view.IsValueCreated)
+        {
+            _view.Value.CurrentOpenedDialog?.Dispose();
+        }
+
         _view
             = new(() =>
             {

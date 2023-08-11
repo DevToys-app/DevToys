@@ -32,6 +32,9 @@ public partial class Index : MefComponentBase
     internal ContextMenuService ContextMenuService { get; set; } = default!;
 
     [Inject]
+    internal DialogService DialogService { get; set; } = default!;
+
+    [Inject]
     internal IWindowService WindowService { get; set; } = default!;
 
     /// <summary>
@@ -45,6 +48,7 @@ public partial class Index : MefComponentBase
     protected override void OnInitialized()
     {
         base.OnInitialized();
+        DialogService.IsDialogOpenedChanged += DialogService_IsDialogOpenedChanged;
         ViewModel.SelectedMenuItemChanged += ViewModel_SelectedMenuItemChanged;
         ViewModel.SelectedMenuItem ??= ViewModel.HeaderAndBodyToolViewItems[0];
         ContextMenuService.IsContextMenuOpenedChanged += ContextMenuService_IsContextMenuOpenedChanged;
@@ -54,6 +58,11 @@ public partial class Index : MefComponentBase
 
         TitleBarInfoProvider.TitleBarMarginRight = 40;
         WindowHasFocus = true;
+    }
+
+    private void DialogService_IsDialogOpenedChanged(object? sender, EventArgs e)
+    {
+        StateHasChanged();
     }
 
     private void ViewModel_SelectedMenuItemChanged(object? sender, EventArgs e)

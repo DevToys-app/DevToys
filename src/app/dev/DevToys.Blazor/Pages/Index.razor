@@ -8,6 +8,20 @@
 @inherits MefComponentBase
 
 <CascadingValue Value="this" IsFixed="true">
+    @if (DialogService.IsDialogOpened)
+    {
+        <Dialog IsOpen="@DialogService.IsDialogOpened"
+                Dismissible="@DialogService.IsDismissible"
+                OnDismissed="@(() => DialogService.OnCloseDialogRequested())">
+            <Content>
+                @DialogService.DialogContent
+            </Content>
+            <Footer>
+                @DialogService.FooterContent
+            </Footer>
+        </Dialog>
+    }
+
     <!-- Provider for popover -->
     <PopoverProvider />
 

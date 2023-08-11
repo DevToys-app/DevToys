@@ -155,6 +155,7 @@ public partial class MainWindow : MicaWindowWithOverlay
         serviceCollection.AddScoped<DocumentEventService, DocumentEventService>();
         serviceCollection.AddScoped<PopoverService, PopoverService>();
         serviceCollection.AddScoped<ContextMenuService, ContextMenuService>();
+        serviceCollection.AddScoped<DialogService, DialogService>();
         serviceCollection.AddScoped<FontService, FontService>();
 
         ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
