@@ -100,11 +100,11 @@ public class UIToolView : INotifyPropertyChanged
     /// <param name="dialogContent">The element to display in the dialog.</param>
     /// <param name="isDismissible">Indicates whether the dialog can be closed by clicking outside of the dialog.</param>
     /// <returns>An instance of the opened dialog.</returns>
-    public UIDialog OpenDialog(
+    public Task<UIDialog> OpenDialogAsync(
         IUIElement dialogContent,
-        bool isDismissible)
+        bool isDismissible = false)
     {
-        return OpenDialog(dialogContent, null, isDismissible);
+        return OpenDialogAsync(dialogContent, null, isDismissible);
     }
 
     /// <summary>
@@ -114,11 +114,13 @@ public class UIToolView : INotifyPropertyChanged
     /// <param name="footerContent">The element to display in the dialog footer.</param>
     /// <param name="isDismissible">Indicates whether the dialog can be closed by clicking outside of the dialog.</param>
     /// <returns>An instance of the opened dialog.</returns>
-    public UIDialog OpenDialog(
+    public async Task<UIDialog> OpenDialogAsync(
         IUIElement dialogContent,
         IUIElement? footerContent,
-        bool isDismissible)
+        bool isDismissible = false)
     {
+        await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(CancellationToken.None);
+
         if (CurrentOpenedDialog is not null)
         {
             ThrowHelper.ThrowInvalidOperationException("A dialog is already opened. Close it before opening another one.");

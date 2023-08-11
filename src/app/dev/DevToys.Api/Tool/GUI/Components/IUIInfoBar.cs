@@ -289,11 +289,41 @@ public static partial class GUI
     }
 
     /// <summary>
+    /// Sets the optional action button of the bar. The bar closes when the user click on the button.
+    /// </summary>
+    public static IUIInfoBar WithActionButton(this IUIInfoBar element, string text, bool isAccent, Action actionOnClick)
+    {
+        return WithActionButton(
+            element,
+            text,
+            isAccent,
+            () =>
+            {
+                actionOnClick?.Invoke();
+                return ValueTask.CompletedTask;
+            });
+    }
+
+    /// <summary>
     /// Sets the action to run when the user clicks the action button.
     /// </summary>
     public static IUIInfoBar OnClose(this IUIInfoBar element, Func<ValueTask>? actionOnClose)
     {
         ((UIInfoBar)element).OnCloseAction = actionOnClose;
+        return element;
+    }
+
+    /// <summary>
+    /// Sets the action to run when the user clicks the action button.
+    /// </summary>
+    public static IUIInfoBar OnClose(this IUIInfoBar element, Action? actionOnClose)
+    {
+        ((UIInfoBar)element).OnCloseAction
+            = () =>
+            {
+                actionOnClose?.Invoke();
+                return ValueTask.CompletedTask;
+            };
         return element;
     }
 

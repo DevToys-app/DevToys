@@ -173,6 +173,33 @@ public static partial class GUI
     /// </summary>
     /// <param name="settingsProvider">The settings provider used for handling the given <paramref name="settingDefinition"/>.</param>
     /// <param name="settingDefinition">The definition of the setting to associate to this <see cref="IUISetting"/>.</param>
+    /// <param name="onToggled">(optional) A method to invoke when the setting value changed.</param>
+    public static IUISetting Handle(
+        this IUISetting element,
+        ISettingsProvider settingsProvider,
+        SettingDefinition<bool> settingDefinition,
+        Action<bool> onToggled)
+    {
+        return Handle(
+            element,
+            settingsProvider,
+            settingDefinition,
+            stateDescriptionWhenOn: null,
+            stateDescriptionWhenOff: null,
+            ignoreStateDescription: true,
+            (value) =>
+            {
+                onToggled?.Invoke(value);
+                return ValueTask.CompletedTask;
+            });
+    }
+
+    /// <summary>
+    /// Sets a <see cref="IUISwitch"/> to <see cref="IUISetting.InteractiveElement"/> and automatically associate the
+    /// given <paramref name="settingDefinition"/> to the switch state.
+    /// </summary>
+    /// <param name="settingsProvider">The settings provider used for handling the given <paramref name="settingDefinition"/>.</param>
+    /// <param name="settingDefinition">The definition of the setting to associate to this <see cref="IUISetting"/>.</param>
     /// <param name="stateDescriptionWhenOn">The <see cref="IUISetting.StateDescription"/> to use when the option is On.</param>
     /// <param name="stateDescriptionWhenOff">The <see cref="IUISetting.StateDescription"/> to use when the option is Off.</param>
     /// <param name="onToggled">(optional) A method to invoke when the setting value changed.</param>
@@ -192,6 +219,64 @@ public static partial class GUI
             stateDescriptionWhenOff,
             ignoreStateDescription: false,
             onToggled);
+    }
+
+    /// <summary>
+    /// Sets a <see cref="IUISwitch"/> to <see cref="IUISetting.InteractiveElement"/> and automatically associate the
+    /// given <paramref name="settingDefinition"/> to the switch state.
+    /// </summary>
+    /// <param name="settingsProvider">The settings provider used for handling the given <paramref name="settingDefinition"/>.</param>
+    /// <param name="settingDefinition">The definition of the setting to associate to this <see cref="IUISetting"/>.</param>
+    /// <param name="stateDescriptionWhenOn">The <see cref="IUISetting.StateDescription"/> to use when the option is On.</param>
+    /// <param name="stateDescriptionWhenOff">The <see cref="IUISetting.StateDescription"/> to use when the option is Off.</param>
+    /// <param name="onToggled">(optional) A method to invoke when the setting value changed.</param>
+    public static IUISetting Handle(
+        this IUISetting element,
+        ISettingsProvider settingsProvider,
+        SettingDefinition<bool> settingDefinition,
+        string? stateDescriptionWhenOn,
+        string? stateDescriptionWhenOff,
+        Action<bool>? onToggled)
+    {
+        return Handle(
+            element,
+            settingsProvider,
+            settingDefinition,
+            stateDescriptionWhenOn,
+            stateDescriptionWhenOff,
+            ignoreStateDescription: false,
+            (value) =>
+            {
+                onToggled?.Invoke(value);
+                return ValueTask.CompletedTask;
+            });
+    }
+
+    /// <summary>
+    /// Sets a <see cref="IUISelectDropDownList"/> to <see cref="IUISetting.InteractiveElement"/> and automatically associate the
+    /// given <paramref name="settingDefinition"/> to the switch state.
+    /// </summary>
+    /// <param name="settingsProvider">The settings provider used for handling the given <paramref name="settingDefinition"/>.</param>
+    /// <param name="settingDefinition">The definition of the setting to associate to this <see cref="IUISetting"/>.</param>
+    /// <param name="onOptionSelected">(optional) A method to invoke when the setting value changed.</param>
+    /// <param name="dropDownListItems">(optional) A list of items to be displayed in the drop down list. <see cref="IUIDropDownListItem.Value"/> should be of type <typeparamref name="T"/>.</param>
+    public static IUISetting Handle<T>(
+        this IUISetting element,
+        ISettingsProvider settingsProvider,
+        SettingDefinition<T> settingDefinition,
+        Action<T>? onOptionSelected,
+        params IUIDropDownListItem[] dropDownListItems)
+    {
+        return Handle(
+            element,
+            settingsProvider,
+            settingDefinition,
+            (value) =>
+            {
+                onOptionSelected?.Invoke(value);
+                return ValueTask.CompletedTask;
+            },
+            dropDownListItems);
     }
 
     /// <summary>

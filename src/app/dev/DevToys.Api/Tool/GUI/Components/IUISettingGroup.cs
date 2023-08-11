@@ -95,7 +95,11 @@ public static partial class GUI
     /// <param name="settingsProvider">The settings provider used for handling the given <paramref name="settingDefinition"/>.</param>
     /// <param name="settingDefinition">The definition of the setting to associate to this <see cref="IUISettingGroup"/>.</param>
     /// <param name="onToggled">(optional) A method to invoke when the setting value changed.</param>
-    public static IUISettingGroup Handle(this IUISettingGroup element, ISettingsProvider settingsProvider, SettingDefinition<bool> settingDefinition, Func<bool, ValueTask>? onToggled = null)
+    public static IUISettingGroup Handle(
+        this IUISettingGroup element,
+        ISettingsProvider settingsProvider,
+        SettingDefinition<bool> settingDefinition,
+        Func<bool, ValueTask>? onToggled = null)
     {
         return (IUISettingGroup)((IUISetting)element).Handle(settingsProvider, settingDefinition, onToggled);
     }
@@ -108,9 +112,58 @@ public static partial class GUI
     /// <param name="settingDefinition">The definition of the setting to associate to this <see cref="IUISetting"/>.</param>
     /// <param name="onOptionSelected">(optional) A method to invoke when the setting value changed.</param>
     /// <param name="dropDownListItems">(optional) A list of items to be displayed in the drop down list. <see cref="IUIDropDownListItem.Value"/> should be of type <typeparamref name="T"/>.</param>
-    public static IUISettingGroup Handle<T>(this IUISettingGroup element, ISettingsProvider settingsProvider, SettingDefinition<T> settingDefinition, Func<T, ValueTask>? onOptionSelected, params IUIDropDownListItem[] dropDownListItems) where T : struct, IConvertible
+    public static IUISettingGroup Handle<T>(
+        this IUISettingGroup element,
+        ISettingsProvider settingsProvider,
+        SettingDefinition<T> settingDefinition,
+        Func<T, ValueTask>? onOptionSelected,
+        params IUIDropDownListItem[] dropDownListItems)
+        where T : struct, IConvertible
     {
         return (IUISettingGroup)((IUISetting)element).Handle(settingsProvider, settingDefinition, onOptionSelected, dropDownListItems);
+    }
+
+    /// <summary>
+    /// Sets a <see cref="IUISwitch"/> to <see cref="IUISettingGroup.InteractiveElement"/> and automatically associate the
+    /// given <paramref name="settingDefinition"/> to the switch state.
+    /// </summary>
+    /// <param name="settingsProvider">The settings provider used for handling the given <paramref name="settingDefinition"/>.</param>
+    /// <param name="settingDefinition">The definition of the setting to associate to this <see cref="IUISettingGroup"/>.</param>
+    /// <param name="onToggled">(optional) A method to invoke when the setting value changed.</param>
+    public static IUISettingGroup Handle(
+        this IUISettingGroup element,
+        ISettingsProvider settingsProvider,
+        SettingDefinition<bool> settingDefinition,
+        Action<bool>? onToggled = null)
+    {
+        return (IUISettingGroup)((IUISetting)element).Handle(settingsProvider, settingDefinition, (value) =>
+        {
+            onToggled?.Invoke(value);
+            return ValueTask.CompletedTask;
+        });
+    }
+
+    /// <summary>
+    /// Sets a <see cref="IUISelectDropDownList"/> to <see cref="IUISetting.InteractiveElement"/> and automatically associate the
+    /// given <paramref name="settingDefinition"/> to the switch state.
+    /// </summary>
+    /// <param name="settingsProvider">The settings provider used for handling the given <paramref name="settingDefinition"/>.</param>
+    /// <param name="settingDefinition">The definition of the setting to associate to this <see cref="IUISetting"/>.</param>
+    /// <param name="onOptionSelected">(optional) A method to invoke when the setting value changed.</param>
+    /// <param name="dropDownListItems">(optional) A list of items to be displayed in the drop down list. <see cref="IUIDropDownListItem.Value"/> should be of type <typeparamref name="T"/>.</param>
+    public static IUISettingGroup Handle<T>(
+        this IUISettingGroup element,
+        ISettingsProvider settingsProvider,
+        SettingDefinition<T> settingDefinition,
+        Action<T>? onOptionSelected,
+        params IUIDropDownListItem[] dropDownListItems)
+        where T : struct, IConvertible
+    {
+        return (IUISettingGroup)((IUISetting)element).Handle(settingsProvider, settingDefinition, (value) =>
+        {
+            onOptionSelected?.Invoke(value);
+            return ValueTask.CompletedTask;
+        }, dropDownListItems);
     }
 
     /// <summary>

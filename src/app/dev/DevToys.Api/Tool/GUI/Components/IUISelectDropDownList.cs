@@ -107,6 +107,20 @@ public static partial class GUI
     }
 
     /// <summary>
+    /// Sets the action to run when selecting an item in the drop down list.
+    /// </summary>
+    public static IUISelectDropDownList OnItemSelected(this IUISelectDropDownList element, Action<IUIDropDownListItem?>? onItemSelectedAction)
+    {
+        ((UISelectDropDownList)element).OnItemSelectedAction
+            = (item) =>
+            {
+                onItemSelectedAction?.Invoke(item);
+                return ValueTask.CompletedTask;
+            };
+        return element;
+    }
+
+    /// <summary>
     /// Sets the <see cref="IUIDropDownListItem"/> that should be selected in the drop down list.
     /// If <paramref name="item"/> is null or does not exist in the list, no item will be selected.
     /// </summary>

@@ -174,6 +174,20 @@ public static partial class GUI
     }
 
     /// <summary>
+    /// Sets the action to run when clicking on the button.
+    /// </summary>
+    public static IUIButton OnClick(this IUIButton element, Action? actionOnClick)
+    {
+        ((UIButton)element).OnClickAction
+            = () =>
+            {
+                actionOnClick?.Invoke();
+                return ValueTask.CompletedTask;
+            };
+        return element;
+    }
+
+    /// <summary>
     /// Sets the button to appear as accented.
     /// </summary>
     public static IUIButton AccentAppearance(this IUIButton element)

@@ -77,12 +77,12 @@ internal sealed class SettingsGuiTool : IGuiTool
                                         Button("help-translate-devtoys")
                                             .HyperlinkAppearance()
                                             .Text(Settings.HelpTranslating)
-                                            .OnClick(OnHelpTranslatingButtonClickAsync),
+                                            .OnClick(OnHelpTranslatingButtonClick),
 
                                         SelectDropDownList("language-select-drop-down-list")
                                             .WithItems(_availableLanguages)
                                             .Select(_currentLanguage)
-                                            .OnItemSelected(OnLanguageSelectedAsync))),
+                                            .OnItemSelected(OnLanguageSelected))),
 
                         Setting("app-theme-setting")
                             .Icon("FluentSystemIcons", '\uF591')
@@ -114,7 +114,7 @@ internal sealed class SettingsGuiTool : IGuiTool
                             .Icon("FluentSystemIcons", '\uF4D5')
                             .Title(Settings.SmartDetection)
                             .Description(Settings.SmartDetectionDescription)
-                            .Handle(_settingsProvider, PredefinedSettings.SmartDetection, OnSmartDetectionOptionChangedAsync)
+                            .Handle(_settingsProvider, PredefinedSettings.SmartDetection, OnSmartDetectionOptionChanged)
                             .WithSettings(
 
                                 _smartDetectionAutomaticallyPasteSetting
@@ -138,7 +138,7 @@ internal sealed class SettingsGuiTool : IGuiTool
                                     .Handle(
                                         _settingsProvider,
                                         PredefinedSettings.TextEditorFont,
-                                        OnTextEditorFontChangedAsync,
+                                        OnTextEditorFontChanged,
                                         dropDownListItems: _availableFonts),
 
                                 Setting("text-editor-word-wrap-settings")
@@ -209,22 +209,20 @@ internal sealed class SettingsGuiTool : IGuiTool
     {
     }
 
-    private ValueTask OnHelpTranslatingButtonClickAsync()
+    private void OnHelpTranslatingButtonClick()
     {
         Shell.OpenUrlInWebBrowser("https://crowdin.com/project/devtoys");
-        return ValueTask.CompletedTask;
     }
 
-    private ValueTask OnLanguageSelectedAsync(IUIDropDownListItem? selectedItem)
+    private void OnLanguageSelected(IUIDropDownListItem? selectedItem)
     {
         if (selectedItem is not null && selectedItem.Value is LanguageDefinition languageDefinition)
         {
             _settingsProvider.SetSetting(PredefinedSettings.Language, languageDefinition.InternalName);
         }
-        return ValueTask.CompletedTask;
     }
 
-    private ValueTask OnSmartDetectionOptionChangedAsync(bool enabled)
+    private void OnSmartDetectionOptionChanged(bool enabled)
     {
         if (enabled)
         {
@@ -234,20 +232,16 @@ internal sealed class SettingsGuiTool : IGuiTool
         {
             _smartDetectionAutomaticallyPasteSetting.Disable();
         }
-
-        return ValueTask.CompletedTask;
     }
 
-    private ValueTask OnCopyVersionNumberButtonClickAsync()
+    private async ValueTask OnCopyVersionNumberButtonClickAsync()
     {
-        _clipboard.SetClipboardTextAsync(GetAppVersionDescription());
-        return ValueTask.CompletedTask;
+        await _clipboard.SetClipboardTextAsync(GetAppVersionDescription());
     }
 
-    private ValueTask OnTextEditorFontChangedAsync(string fontName)
+    private void OnTextEditorFontChanged(string fontName)
     {
         _textEditorFontSetting.StateDescription(fontName);
-        return ValueTask.CompletedTask;
     }
 
     private IUIDropDownListItem[] LoadAvailableFonts()

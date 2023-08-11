@@ -163,6 +163,20 @@ public static partial class GUI
     }
 
     /// <summary>
+    /// Sets the action to run when selecting an item in the data grid.
+    /// </summary>
+    public static IUIDataGrid OnRowSelected(this IUIDataGrid element, Action<IUIDataGridRow?>? onRowSelectedAction)
+    {
+        ((UIDataGrid)element).OnRowSelectedAction
+            = (value) =>
+            {
+                onRowSelectedAction?.Invoke(value);
+                return ValueTask.CompletedTask;
+            };
+        return element;
+    }
+
+    /// <summary>
     /// Sets the <see cref="IUIDataGridRow"/> that should be selected in the data grid.
     /// If <paramref name="row"/> is null or does not exist in the data grid, no row will be selected.
     /// </summary>

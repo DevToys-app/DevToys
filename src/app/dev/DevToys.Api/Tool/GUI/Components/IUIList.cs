@@ -139,6 +139,20 @@ public static partial class GUI
     }
 
     /// <summary>
+    /// Sets the action to run when selecting an item in the list.
+    /// </summary>
+    public static IUIList OnItemSelected(this IUIList element, Action<IUIListItem?>? onItemSelectedAction)
+    {
+        ((UIList)element).OnItemSelectedAction
+            = (item) =>
+            {
+                onItemSelectedAction?.Invoke(item);
+                return ValueTask.CompletedTask;
+            };
+        return element;
+    }
+
+    /// <summary>
     /// Sets the <see cref="IUIList"/> that should be selected in the list.
     /// If <paramref name="item"/> is null or does not exist in the list, no item will be selected.
     /// </summary>

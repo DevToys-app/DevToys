@@ -26,14 +26,14 @@
                                 UIGridLength.Auto
                             })">
                         <GridCell Row="0">
-                            <ScrollViewer Orientation="UIOrientation.Vertical">
+                            @* <ScrollViewer Orientation="UIOrientation.Vertical"> *@
                                 <Container PaddingLeft="24"
                                            PaddingRight="24"
                                            PaddingTop="24"
                                            PaddingBottom="24">
                                     @Content
                                 </Container>
-                            </ScrollViewer>
+                            @* </ScrollViewer> *@
                         </GridCell>
                         <GridCell Row="1">
                             @if (Footer is not null)

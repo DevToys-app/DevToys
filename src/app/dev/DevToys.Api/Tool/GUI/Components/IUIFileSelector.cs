@@ -118,6 +118,21 @@ public static partial class GUI
     }
 
     /// <summary>
+    /// Sets the action to run when the user selected file(s).
+    /// </summary>
+    /// <remarks>The items contain a stream. It won't be disposed automatically. It is important to dispose the stream yourself, when not needed anymore</remarks>
+    public static IUIFileSelector OnFilesSelected(this IUIFileSelector element, Action<PickedFile[]>? actionOnFilesSelected)
+    {
+        ((UIFileSelector)element).OnFilesSelectedAction
+            = (value) =>
+            {
+                actionOnFilesSelected?.Invoke(value);
+                return ValueTask.CompletedTask;
+            };
+        return element;
+    }
+
+    /// <summary>
     /// Sets the list of file extensions allowed to be selected. An empty list of file extensions indicates any kind of file.
     /// </summary>
     public static IUIFileSelector LimitFileTypesTo(this IUIFileSelector element, params string[] fileExtensions)

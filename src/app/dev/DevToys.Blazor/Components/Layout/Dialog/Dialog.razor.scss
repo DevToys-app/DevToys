@@ -8,10 +8,10 @@
 
     &-auto-height {
         display: grid;
-        min-height: 200px;
         min-width: 300px;
-        max-width: calc(100vh - 128px);
-        max-height: calc(100vh - 64px);
+        min-height: 200px;
+        max-width: min(calc(100vw - 128px), 800px);
+        max-height: min(calc(100vh - 128px), 600px);
     }
 
     &-footer {
@@ -41,19 +41,18 @@
     }
 
     &-container {
+        z-index: calc(20000 + 10);
         display: flex;
         position: fixed;
-        top: 0;
-        z-index: calc(20000 + 10);
-        align-items: center;
-        justify-content: center;
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
         top: 0;
         left: 0;
         bottom: 0;
         right: 0;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
         background: none;
         pointer-events: none;
 

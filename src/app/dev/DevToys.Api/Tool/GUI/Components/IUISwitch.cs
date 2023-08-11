@@ -144,4 +144,18 @@ public static partial class GUI
         ((UISwitch)element).ActionOnToggle = actionOnToggle;
         return element;
     }
+
+    /// <summary>
+    /// Sets the action to run when toggling the switch.
+    /// </summary>
+    public static IUISwitch OnToggle(this IUISwitch element, Action<bool>? actionOnToggle)
+    {
+        ((UISwitch)element).ActionOnToggle
+            = (value) =>
+            {
+                actionOnToggle?.Invoke(value);
+                return ValueTask.CompletedTask;
+            };
+        return element;
+    }
 }
