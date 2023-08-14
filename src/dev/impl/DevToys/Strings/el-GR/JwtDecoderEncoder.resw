@@ -274,7 +274,7 @@
     <value>Μη έγκυρη υπογραφή</value>
   </data>
   <data name="NoDescription" xml:space="preserve">
-    <value>No description</value>
+    <value>Χωρίς περιγραφή</value>
   </data>
   <data name="iss" xml:space="preserve">
     <value>The "iss" (issuer) claim identifies the principal that issued the JWT. The processing of this claim is generally application specific. The "iss" value is a case-sensitive string containing a StringOrURI value. Use of this claim is OPTIONAL.</value>
