@@ -27,9 +27,13 @@ public static class ExtensionInstallationManager
                 {
                     try
                     {
-                        if (Directory.Exists(lines[i]))
+                        // Make sure we're not deleting something that's not in the extension folder. Could be a security concern otherwise.
+                        if (ExtensionInstallationFolders.Any(path => lines[i].StartsWith(path)))
                         {
-                            Directory.Delete(lines[i], true);
+                            if (Directory.Exists(lines[i]))
+                            {
+                                Directory.Delete(lines[i], true);
+                            }
                         }
                     }
                     catch
