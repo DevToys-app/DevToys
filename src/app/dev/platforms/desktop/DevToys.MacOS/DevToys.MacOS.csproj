@@ -10,6 +10,7 @@
     <EnableDefaultCssItems>false</EnableDefaultCssItems>
     <DefineConstants>$(DefineConstants);__MACCATALYST__</DefineConstants>
     <RuntimeIdentifiers>maccatalyst-arm64</RuntimeIdentifiers>
+    <PluginsInstallationFolder>$(OutputPath)\$(TargetFramework)\Plugins</PluginsInstallationFolder>
 
     <!-- Display name -->
     <ApplicationTitle>DevToys</ApplicationTitle>

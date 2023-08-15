@@ -13,7 +13,10 @@ internal sealed class VersionUpdateRule
         }
         foreach (string partRule in _partRules)
         {
-            if (partRule == "+" || partRule == "=")
+            if (partRule == "+"
+                || partRule == "*"
+                || partRule == "="
+                || partRule.Contains("-pre"))
             {
                 // OK, valid rule
             }
@@ -45,7 +48,7 @@ internal sealed class VersionUpdateRule
                     outParts.Add(inParts[index]);
                 }
             }
-            else if (rule == "+")
+            else if (rule == "+" || rule == "*")
             {
                 if (inPart.Length == 0)
                 {

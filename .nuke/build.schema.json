@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Build Schema",
   "$ref": "#/definitions/build",
+  "title": "Build Schema",
   "definitions": {
     "build": {
       "type": "object",
@@ -97,8 +97,9 @@
               "BuildGenerators",
               "BuildPlugins",
               "Clean",
+              "GenerateSdkNuGet",
               "PreliminaryCheck",
-              "Publish",
+              "PublishApp",
               "Restore",
               "SetVersion",
               "UnitTests"
@@ -114,8 +115,9 @@
               "BuildGenerators",
               "BuildPlugins",
               "Clean",
+              "GenerateSdkNuGet",
               "PreliminaryCheck",
-              "Publish",
+              "PublishApp",
               "Restore",
               "SetVersion",
               "UnitTests"

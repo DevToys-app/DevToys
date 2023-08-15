@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>$(NetCore)</TargetFramework>
@@ -17,6 +17,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="NuGet.Packaging" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,10 +51,19 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\samples\json-sample.json" />
+    <EmbeddedResource Update="BuiltInTools\ExtensionsManager\ExtensionsManager.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ExtensionsManager.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="BuiltInTools\Settings\Settings.resx">
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
+    <Compile Update="BuiltInTools\ExtensionsManager\ExtensionsManager.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ExtensionsManager.resx</DependentUpon>
+    </Compile>
     <Compile Update="BuiltInTools\Settings\Settings.Designer.cs">
       <DependentUpon>Settings.resx</DependentUpon>
       <DesignTime>True</DesignTime>

@@ -1,5 +1,6 @@
 ﻿using DevToys.Api;
 using DevToys.Blazor.BuiltInTools;
+using DevToys.Blazor.BuiltInTools.ExtensionsManager;
 using DevToys.Blazor.Core.Languages;
 using DevToys.Blazor.Core.Services;
 using DevToys.Business.ViewModels;
@@ -50,14 +51,25 @@ public partial class MauiProgram
             args.ExceptionMode = ObjCRuntime.MarshalManagedExceptionMode.UnwindNativeCode;
         };
 
+        // Initialize extension installation folder, and uninstall extensions that are planned for being removed.
+        string[] pluginFolders
+            = new[]
+            {
+                Path.Combine(AppContext.BaseDirectory!, "../Resources/Plugins"),
+                Constants.PluginInstallationFolder
+            };
+        ExtensionInstallationManager.PreferredExtensionInstallationFolder = Constants.PluginInstallationFolder;
+        ExtensionInstallationManager.ExtensionInstallationFolders = pluginFolders;
+        ExtensionInstallationManager.UninstallExtensionsScheduledForRemoval();
+
         // Initialize MEF.
         MefComposer
             = new MefComposer(
-                new[] {
+                assemblies: new[] {
                     typeof(MainWindowViewModel).Assembly,
                     typeof(DevToysBlazorResourceManagerAssemblyIdentifier).Assembly
                 },
-                pluginFolder: "../Resources/Plugins");
+                pluginFolders);
 
         LogInitialization((DateTime.Now - startTime).TotalMilliseconds);
         LogAppStarting();

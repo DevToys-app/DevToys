@@ -1,10 +1,18 @@
 ﻿<Project>
   <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
 
-  <!-- Include DevToys.Tools and other plugins to the output -->
   <ItemGroup>
-    <Content Include="$(RepoRoot)bin\$(Configuration)\Plugins\**\*" Link="Plugins\%(RecursiveDir)%(Filename)%(Extension)">
+    <!-- HACK: This force MSBuild to check whether we rebuilt a plugin. If yes, then it forces to rebuild the current
+               project and unpack the nupkg so we can debug a change we made to an extension. -->
+    <UpToDateCheckInput Include="$(PluginNupkgPath)\**\*.nupkg" />
+  </ItemGroup>
+
+  <!-- Include DevToys.Tools and other plugins to the output -->
+  <!--<ItemGroup>
+    <Content Include="$(RepoRoot)bin\$(Configuration)\Plugins\**\*"
+             Exclude="$(RepoRoot)bin\$(Configuration)\Plugins\**\*.nupkg"
+             Link="Plugins\%(RecursiveDir)%(Filename)%(Extension)">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
+  </ItemGroup>-->
 </Project>

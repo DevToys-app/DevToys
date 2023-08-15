@@ -26,6 +26,8 @@
     <OutputPath>$(BaseOutputPath)$(MSBuildProjectName)\</OutputPath>
     <BaseIntermediateOutputPath>$(RepoRoot)obj\$(Platform)\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)\$(Configuration)</IntermediateOutputPath>
+    <PackageOutputPath>$(OutputPath)</PackageOutputPath>
+    <PluginNupkgPath>$(RepoRoot)bin\$(Configuration)\Plugins</PluginNupkgPath>
     <GeneratedFilesDir>$(BaseIntermediateOutputPath)Generated Files\</GeneratedFilesDir>
     <PackagesConfigRestorePath>$(RepoRoot)packages\</PackagesConfigRestorePath>
 

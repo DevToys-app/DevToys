@@ -64,9 +64,13 @@ internal partial class Program
             // Initialize MEF.
             var mefComposer
                 = new MefComposer(
-                    new[]
+                    assemblies: new[]
                     {
                         typeof(Program).Assembly
+                    },
+                    pluginFolders: new[]
+                    {
+                        Path.Combine(AppContext.BaseDirectory, "Plugins")
                     });
 
             // Get all the command line tools.

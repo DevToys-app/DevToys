@@ -28,7 +28,7 @@ class Build : NukeBuild
     ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
     ///   - Microsoft VSCode           https://nuke.build/vscode
 
-    public static int Main() => Execute<Build>(x => x.Publish);
+    public static int Main() => Execute<Build>(x => x.PublishApp);
 
     [Parameter("Configuration to build - Default is 'Release'")]
     readonly Configuration Configuration = Configuration.Release;
@@ -91,7 +91,7 @@ class Build : NukeBuild
         });
 
     Target SetVersion => _ => _
-        .DependentFor(Publish)
+        .DependentFor(GenerateSdkNuGet)
         .After(Restore)
         .OnlyWhenDynamic(() => Configuration == Configuration.Release)
         .Executes(() =>
@@ -100,7 +100,7 @@ class Build : NukeBuild
         });
 
     Target BuildGenerators => _ => _
-        .DependentFor(Publish)
+        .DependentFor(GenerateSdkNuGet)
         .After(Restore)
         .After(SetVersion)
         .Executes(() =>
@@ -118,14 +118,14 @@ class Build : NukeBuild
         });
 
     Target BuildPlugins => _ => _
-        .DependentFor(Publish)
+        .DependentFor(GenerateSdkNuGet)
         .After(Restore)
         .After(SetVersion)
         .After(BuildGenerators)
         .Executes(() =>
         {
             Log.Information($"Building plugins ...");
-            Project project = WindowsSolution!.GetProject("DevToys.Tools");
+            Project project = WindowsSolution!.GetAllProjects("DevToys.Tools").Single();
             DotNetBuild(s => s
                 .SetProjectFile(project)
                 .SetConfiguration(Configuration)
@@ -136,7 +136,7 @@ class Build : NukeBuild
 
 #pragma warning disable IDE0051 // Remove unused private members
     Target UnitTests => _ => _
-        .DependentFor(Publish)
+        .DependentFor(GenerateSdkNuGet)
         .After(Restore)
         .After(SetVersion)
         .After(BuildGenerators)
@@ -154,10 +154,27 @@ class Build : NukeBuild
         });
 #pragma warning restore IDE0051 // Remove unused private members
 
-    Target Publish => _ => _
+    Target GenerateSdkNuGet => _ => _
+        .Description("Generate the DevToys SDK NuGet package")
         .DependsOn(SetVersion)
         .DependsOn(Restore)
         .DependsOn(BuildGenerators)
+        .Executes(() =>
+        {
+            Log.Information($"Building NuGet packages ...");
+            Project project = WindowsSolution!.GetAllProjects("DevToys.Api").Single();
+            DotNetPack(s => s
+                .SetProject(project)
+                .SetConfiguration(Configuration)
+                .SetPublishTrimmed(false)
+                .SetVerbosity(DotNetVerbosity.Quiet)
+                .SetProcessArgumentConfigurator(_ => _
+                    .Add($"/bl:\"{RootDirectory / "publish" / "Sdk"}.binlog\""))
+                .SetOutputDirectory(RootDirectory / "publish" / "Sdk"));
+        });
+
+    Target PublishApp => _ => _
+        .DependsOn(GenerateSdkNuGet)
         .Executes(() =>
         {
             if (PlatformTargets!.Contains(PlatformTarget.Windows))
@@ -265,7 +282,7 @@ class Build : NukeBuild
         }
         else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
-            project = WindowsSolution!.GetProject(publishProject);
+            project = WindowsSolution!.GetAllProjects(publishProject).Single();
             foreach (string targetFramework in project.GetTargetFrameworks())
             {
                 yield return new DotnetParameters(project.Path, "win10-x64", targetFramework, portable: false);
@@ -292,7 +309,7 @@ class Build : NukeBuild
 
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
-            project = WindowsSolution!.GetProject(publishProject);
+            project = WindowsSolution!.GetAllProjects(publishProject).Single();
             foreach (string targetFramework in project.GetTargetFrameworks())
             {
                 yield return new DotnetParameters(project.Path, "win10-arm64", targetFramework, portable: false, platform: "arm64");
