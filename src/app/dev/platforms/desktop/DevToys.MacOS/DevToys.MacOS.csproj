@@ -68,6 +68,7 @@
 
   <ItemGroup>
     <Content Include="$(RepoRoot)\src\app\dev\platforms\desktop\DevToys.Windows\wwwroot\index.html" Link="wwwroot\index.html" />
+    <Content Include="$(PluginsInstallationFolder)\**\*" Link="Plugins\%(RecursiveDir)%(Filename)%(Extension)"/>
   </ItemGroup>
 
 </Project>

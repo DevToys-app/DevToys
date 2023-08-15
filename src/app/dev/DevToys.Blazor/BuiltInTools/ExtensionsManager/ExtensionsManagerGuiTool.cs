@@ -191,13 +191,16 @@ internal sealed class ExtensionsManagerGuiTool : IGuiTool
 
         for (int i = 0; i < ExtensionInstallationManager.ExtensionInstallationFolders.Length; i++)
         {
-            IEnumerable<string> nuspecFiles
-                = Directory.EnumerateFiles(ExtensionInstallationManager.ExtensionInstallationFolders[i], "*.nuspec", SearchOption.AllDirectories);
-
-            foreach (string nuspecFile in nuspecFiles)
+            if (Directory.Exists(ExtensionInstallationManager.ExtensionInstallationFolders[i]))
             {
-                var nuspec = new NuspecReader(nuspecFile);
-                _extensionList.Items.Add(CreateExtensionListItem(nuspec, Path.GetDirectoryName(nuspecFile)!));
+                IEnumerable<string> nuspecFiles
+                    = Directory.EnumerateFiles(ExtensionInstallationManager.ExtensionInstallationFolders[i], "*.nuspec", SearchOption.AllDirectories);
+
+                foreach (string nuspecFile in nuspecFiles)
+                {
+                    var nuspec = new NuspecReader(nuspecFile);
+                    _extensionList.Items.Add(CreateExtensionListItem(nuspec, Path.GetDirectoryName(nuspecFile)!));
+                }
             }
         }
     }
