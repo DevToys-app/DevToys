@@ -2,6 +2,8 @@
 
 public sealed class UIDialog : IDisposable
 {
+    private readonly TaskCompletionSource _dialogCloseCompletionSource = new();
+
     internal UIDialog(IUIElement dialogContent, bool isDismissible)
         : this(dialogContent, null, isDismissible)
     {
@@ -13,6 +15,7 @@ public sealed class UIDialog : IDisposable
         FooterContent = footerContent;
         IsDismissible = isDismissible;
         IsOpened = true;
+        DialogCloseAwaiter = _dialogCloseCompletionSource.Task;
     }
 
     public bool IsOpened { get; private set; }
@@ -23,12 +26,15 @@ public sealed class UIDialog : IDisposable
 
     public IUIElement? FooterContent { get; }
 
+    public Task DialogCloseAwaiter { get; }
+
     public event EventHandler? IsOpenedChanged;
 
     public void Close()
     {
         IsOpened = false;
         IsOpenedChanged?.Invoke(this, EventArgs.Empty);
+        _dialogCloseCompletionSource.TrySetResult();
     }
 
     public void Dispose()
