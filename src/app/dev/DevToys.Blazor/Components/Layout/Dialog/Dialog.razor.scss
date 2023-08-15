@@ -18,6 +18,10 @@
         background-color: var(--dialog-footer-background-color);
         border-bottom-right-radius: var(--overlay-corner-radius);
         border-bottom-left-radius: var(--overlay-corner-radius);
+
+        button {
+            min-width: 245px;
+        }
     }
 
     &-overlay {
