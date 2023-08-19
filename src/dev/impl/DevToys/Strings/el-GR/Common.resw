@@ -124,7 +124,7 @@
     <value>Καθαρισμός</value>
   </data>
   <data name="Collapse" xml:space="preserve">
-    <value>Collapse</value>
+    <value>Σύμπτυξη</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>Αντιγραφή</value>
@@ -136,13 +136,13 @@
     <value>Διαγραφή</value>
   </data>
   <data name="Expand" xml:space="preserve">
-    <value>Expand</value>
+    <value>Επέκταση</value>
   </data>
   <data name="ShowInfo" xml:space="preserve">
-    <value>Show additional info</value>
+    <value>Εμφάνιση πρόσθετων πληροφοριών</value>
   </data>
   <data name="HideInfo" xml:space="preserve">
-    <value>Hide additional info</value>
+    <value>Απόκρυψη πρόσθετων πληροφοριών</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
     <value>Εμφάνιση αρχείων</value>

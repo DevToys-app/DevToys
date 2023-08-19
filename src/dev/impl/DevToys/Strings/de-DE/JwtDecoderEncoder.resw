@@ -307,22 +307,22 @@
     <value>Familienname(n) oder Geburtsname des Benutzers. Beachten Sie, dass in einigen Kulturen Menschen mehrere oder keinen Familiennamen oder Geburtsname haben können; alle können, durch Leerzeichen getrennt, angegeben werden.</value>
   </data>
   <data name="middle_name" xml:space="preserve">
-    <value>Middle name(s) of the End-User. Note that in some cultures, people can have multiple middle names; all can be present, with the names being separated by space characters. Also note that in some cultures, middle names are not used.</value>
+    <value>Zwischenname(n) des Endbenutzers. Beachten Sie, dass Menschen in einigen Kulturen mehrere Zwischennamen haben können; All diese können mit Leerzeichen getrennt angegeben werden. Beachten Sie außerdem, dass Zwischennamen in einigen Kulturen wiederum nicht verwendet werden.</value>
   </data>
   <data name="nickname" xml:space="preserve">
-    <value>Casual name of the End-User that may or may not be the same as the given_name. For instance, a nickname value of Mike might be returned alongside a given_name value of Michael.</value>
+    <value>Gelegentlicher Name des End-Users, der möglicherweise der gleiche wie der given_name ist. Zum Beispiel kann ein Nickname-Wert von Mike neben einem given_name Wert von Michael zurückgegeben werden.</value>
   </data>
   <data name="preferred_username" xml:space="preserve">
-    <value>Shorthand name by which the End-User wishes to be referred to at the RP, such as janedoe or j.doe. This value MAY be any valid JSON string including special characters such as @, /, or whitespace. The RP MUST NOT rely upon this value being unique.</value>
+    <value>Abgekürzter Name, mit dem der Endbenutzer auf dem RP verwiesen werden möchte, wie zum Beispiel janedoe oder j.doe. Dieser Wert darf jeder gültige JSON-String sein, einschließlich Sonderzeichen wie @, / oder Leerzeichen. Der RP ist NICHT darauf angewiesen, dass dieser Wert einzigartig ist.</value>
   </data>
   <data name="profile" xml:space="preserve">
-    <value>URL of the End-User's profile page. The contents of this Web page SHOULD be about the End-User.</value>
+    <value>URL der Profilseite des Endbenutzers. Der Inhalt dieser Seite SOLLTE sich auf den Endbenutzer beziehen.</value>
   </data>
   <data name="picture" xml:space="preserve">
-    <value>URL of the End-User's profile picture. This URL MUST refer to an image file (for example, a PNG, JPEG, or GIF image file), rather than to a Web page containing an image. Note that this URL SHOULD specifically reference a profile photo of the End-User suitable for displaying when describing the End-User, rather than an arbitrary photo taken by the End-User.</value>
+    <value>URL des Profilbildes des Endbenutzers. Diese URL MUSS sich auf eine Bilddatei beziehen (zum Beispiel eine PNG, JPEG oder GIF Datei), anstatt auf eine Website, welche ein Bild enthält. Beachten Sie, dass diese URL sich auf ein spezifisches Bild des Endbenutzers beziehen SOLLTE, anstatt eines willkürlichen Bildes, welches vom Endbenutzer aufgenommen wurde.</value>
   </data>
   <data name="website" xml:space="preserve">
-    <value>URL of the End-User's Web page or blog. This Web page SHOULD contain information published by the End-User or an organization that the End-User is affiliated with.</value>
+    <value>URL der Website oder des Blogs eines Endbenutzers. Diese Webseite SOLLTE Informationen die vom Endbenutzer oder einer Organisation veröffentlicht wurden enthalten, mit welchen der Endbenutzer verbunden ist.</value>
   </data>
   <data name="email" xml:space="preserve">
     <value>End-User's preferred e-mail address. Its value MUST conform to the RFC 5322 addr-spec syntax. The RP MUST NOT rely upon this value being unique.</value>
