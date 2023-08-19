@@ -1,6 +1,8 @@
-﻿using System.Windows.Interop;
+﻿using System.IO;
+using System.Windows.Interop;
 using DevToys.Api;
 using DevToys.Blazor.BuiltInTools;
+using DevToys.Blazor.BuiltInTools.ExtensionsManager;
 using DevToys.Blazor.Core.Languages;
 using DevToys.Blazor.Core.Services;
 using DevToys.Business.ViewModels;
@@ -41,13 +43,25 @@ public partial class MainWindow : MicaWindowWithOverlay
         // Listen for unhandled exceptions.
         AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
 
+        // Initialize extension installation folder, and uninstall extensions that are planned for being removed.
+        string[] pluginFolders
+            = new[]
+            {
+                Path.Combine(AppContext.BaseDirectory!, "Plugins"),
+                Constants.PluginInstallationFolder
+            };
+        ExtensionInstallationManager.PreferredExtensionInstallationFolder = Constants.PluginInstallationFolder;
+        ExtensionInstallationManager.ExtensionInstallationFolders = pluginFolders;
+        ExtensionInstallationManager.UninstallExtensionsScheduledForRemoval();
+
         // Initialize MEF.
         _mefComposer
             = new MefComposer(
-                new[] {
+                assemblies: new[] {
                     typeof(MainWindowViewModel).Assembly,
                     typeof(DevToysBlazorResourceManagerAssemblyIdentifier).Assembly
-                });
+                },
+                pluginFolders);
 
         LogInitialization((DateTime.Now - startTime).TotalMilliseconds);
         LogAppStarting();

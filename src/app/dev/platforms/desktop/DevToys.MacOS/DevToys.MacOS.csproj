@@ -10,6 +10,7 @@
     <EnableDefaultCssItems>false</EnableDefaultCssItems>
     <DefineConstants>$(DefineConstants);__MACCATALYST__</DefineConstants>
     <RuntimeIdentifiers>maccatalyst-arm64</RuntimeIdentifiers>
+    <PluginsInstallationFolder>$(OutputPath)\$(TargetFramework)\Plugins</PluginsInstallationFolder>
 
     <!-- Display name -->
     <ApplicationTitle>DevToys</ApplicationTitle>
@@ -67,6 +68,7 @@
 
   <ItemGroup>
     <Content Include="$(RepoRoot)\src\app\dev\platforms\desktop\DevToys.Windows\wwwroot\index.html" Link="wwwroot\index.html" />
+    <Content Include="$(PluginsInstallationFolder)\**\*" Link="Plugins\%(RecursiveDir)%(Filename)%(Extension)"/>
   </ItemGroup>
 
 </Project>

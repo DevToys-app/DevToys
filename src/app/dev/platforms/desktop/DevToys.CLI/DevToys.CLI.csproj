@@ -4,6 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>$(NetCore)</TargetFramework>
     <UseAppHost>True</UseAppHost>
+    <PluginsInstallationFolder>$(OutputPath)\$(TargetFramework)\Plugins</PluginsInstallationFolder>
   </PropertyGroup>
 
   <ItemGroup>

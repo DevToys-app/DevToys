@@ -4,10 +4,15 @@
 
     <!-- See https://learn.microsoft.com/en-us/dotnet/core/project-sdk/msbuild-props#enabledynamicloading -->
     <EnableDynamicLoading>true</EnableDynamicLoading>
-    
+
     <!-- NuGet package -->
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>2.0.0-pre.2</Version>
     <Title>DevToys.Tools</Title>
+    <Description>A set of offline tools installed by default with DevToys.</Description>
+    <PackageProjectUrl>https://devtoys.app</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/veler/DevToys</RepositoryUrl>
+    <Authors>veler,btiteux</Authors>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\DevToys.Api\DevToys.Api.csproj">
@@ -50,10 +55,12 @@
     <PackageReference Include="System.Text.Json" />
   </ItemGroup>
 
-  <Target Name="CopyPluginAfterBuild" AfterTargets="Build">
-    <ItemGroup>
-      <PluginOutput Include="$(OutputPath)\**\*" />
-    </ItemGroup>
-    <Copy SourceFiles="@(PluginOutput)" DestinationFolder="$(RepoRoot)bin\$(Configuration)\Plugins\DevToys.Tools" SkipUnchangedFiles="false" OverwriteReadOnlyFiles="true" Retries="10" RetryDelayMilliseconds="1000" />
+  <Target Name="CopyPluginAfterBuild" AfterTargets="Pack">
+    <Copy SourceFiles="$(PackageOutputPath)\$(PackageId).$(PackageVersion).nupkg"
+          DestinationFolder="$(PluginNupkgPath)"
+          SkipUnchangedFiles="false"
+          OverwriteReadOnlyFiles="true"
+          Retries="10"
+          RetryDelayMilliseconds="1000" />
   </Target>
 </Project>

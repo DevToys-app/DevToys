@@ -11,7 +11,7 @@ public sealed partial class MefComposer : IDisposable
 {
     private readonly ILogger _logger;
     private readonly Assembly[] _assemblies;
-    private readonly string? _pluginFolder;
+    private readonly string[]? _pluginFolders;
     private readonly object[] _customExports;
     private bool _isExportProviderDisposed = true;
 
@@ -19,7 +19,7 @@ public sealed partial class MefComposer : IDisposable
 
     public CompositionContainer ExportProvider { get; private set; }
 
-    public MefComposer(Assembly[]? assemblies = null, string? pluginFolder = null, params object[] customExports)
+    public MefComposer(Assembly[]? assemblies = null, string[]? pluginFolders = null, params object[] customExports)
     {
         if (Provider is not null)
         {
@@ -29,7 +29,7 @@ public sealed partial class MefComposer : IDisposable
         _logger = this.Log();
 
         _assemblies = assemblies ?? Array.Empty<Assembly>();
-        _pluginFolder = pluginFolder;
+        _pluginFolders = pluginFolders;
         _customExports = customExports ?? Array.Empty<object>();
         ExportProvider = InitializeMef();
 
@@ -115,22 +115,28 @@ public sealed partial class MefComposer : IDisposable
         string appFolder = AppContext.BaseDirectory;
         if (!string.IsNullOrEmpty(appFolder))
         {
-            string pluginFolder;
-            if (!string.IsNullOrEmpty(_pluginFolder))
+            string[] pluginFolders;
+            if (_pluginFolders is not null)
             {
-                pluginFolder = Path.Combine(appFolder!, _pluginFolder!);
+                pluginFolders = _pluginFolders;
             }
             else
             {
-                pluginFolder = Path.Combine(appFolder!, "Plugins");
+                pluginFolders = new[] { Path.Combine(appFolder!, "Plugins") };
             }
-            if (Directory.Exists(pluginFolder))
+
+            for (int i = 0; i < pluginFolders.Length; i++)
             {
-                return Directory.EnumerateDirectories(pluginFolder, "*", SearchOption.TopDirectoryOnly);
+                string pluginFolder = pluginFolders[i];
+                if (Directory.Exists(pluginFolder))
+                {
+                    foreach (string folder in Directory.EnumerateDirectories(pluginFolder, "*", SearchOption.TopDirectoryOnly))
+                    {
+                        yield return folder;
+                    }
+                }
             }
         }
-
-        return Array.Empty<string>();
     }
 
     [LoggerMessage(0, LogLevel.Information, "MEF composed in {duration} ms")]

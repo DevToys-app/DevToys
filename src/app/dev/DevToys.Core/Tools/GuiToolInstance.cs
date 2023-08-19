@@ -110,6 +110,7 @@ public sealed partial class GuiToolInstance : ObservableObject
         _view
             = new(() =>
             {
+                Exception? exception = null;
                 try
                 {
                     return _instance.Value.View;
@@ -117,10 +118,11 @@ public sealed partial class GuiToolInstance : ObservableObject
                 catch (NotImplementedException) { }
                 catch (Exception ex)
                 {
+                    exception = ex;
                     LogGetToolViewFailed(ex, InternalComponentName);
                 }
 
-                return new UIToolView(GUI.Label("unable-load-tool-view", $"Failed to load '{InternalComponentName}'."));
+                return new UIToolView(GUI.Label("unable-load-tool-view", $"Failed to load '{InternalComponentName}'. " + exception?.Message));
             });
     }
 

@@ -21,7 +21,7 @@ internal sealed class VersionString
 
     private bool Parse(string input)
     {
-        string pattern = @"^(?<Major>\d+)\.(?<Minor>\d+)\.(?:(?:(?<Build>\d+)\.(?<Revision>\*|\d+))|(?<Build>\*|\d+))$";
+        string pattern = @"^(?<Major>\d+)\.(?<Minor>\d+)\.(?:(?:(?<Build>\d+|\d+\-\w*)\.(?<Revision>\*|\d+|\d+\-\w*))|(?<Build>\*|\d+|\d+\-\w*))$";
         var regex = new Regex(pattern);
         Match match = regex.Match(input);
         if (match.Success)

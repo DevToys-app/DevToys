@@ -24,8 +24,9 @@
     <PackageVersion Include="Microsoft.TypeScript.MSBuild" Version="5.1.5" />
     <PackageVersion Include="Microsoft.Windows.CsWin32" Version="0.3.18-beta"/>
     <PackageVersion Include="Moq" Version="4.18.4" />
-    <PackageVersion Include="System.Text.Json" Version="$(DotNetVersion)" />
+    <PackageVersion Include="NuGet.Packaging" Version="6.6.1" />
     <PackageVersion Include="Nuke.Common" Version="7.0.2" />
+    <PackageVersion Include="System.Text.Json" Version="$(DotNetVersion)" />
     <PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
     <PackageVersion Include="System.ComponentModel.Composition" Version="$(DotNetVersion)" />
     <PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.5.4" />

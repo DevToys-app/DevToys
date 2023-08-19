@@ -1,0 +1,4 @@
+<Project>
+    <!-- See https://learn.microsoft.com/en-us/dotnet/core/project-sdk/msbuild-props#enabledynamicloading -->
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+</Project>

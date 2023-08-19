@@ -1,6 +1,16 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>$(NetCore)</TargetFrameworks>
+
+    <!-- NuGet package -->
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>2.0.0-pre.2</Version>
+    <Authors>veler,btiteux</Authors>
+    <Description>SDK for developing extensions for DevToys 2.0 and higher</Description>
+    <PackageProjectUrl>https://devtoys.app</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/veler/DevToys</RepositoryUrl>
+    <PackageTags>devtoys</PackageTags>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -9,6 +19,14 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
     <PackageReference Include="System.ComponentModel.Composition" />
     <PackageReference Include="System.Threading.Tasks.Extensions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(AssemblyName).props" Pack="true" PackagePath="build" />
+    <None Include="$(RepoRoot)LICENSE.md" Link="LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
