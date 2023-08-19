@@ -295,12 +295,26 @@ internal sealed class ExtensionsManagerGuiTool : IGuiTool
                         .Style(UILabelStyle.Body)
                         .Text(ExtensionsManager.WarningThirdPartyExtensionUsageDescription)),
 
-            Button("extension-already-exist-dialog-ok-button")
+            footerContent:
+                Stack()
                 .AlignHorizontally(UIHorizontalAlignment.Right)
-                .AccentAppearance()
-                .Text(ExtensionsManager.WarningThirdPartyExtensionUsageIUnderstand)
-                .OnClick(OnIUnderstandDialogButtonClick),
+                .Horizontal()
+                    .WithChildren(
+                        Button("extension-third-party-warning-terms-service-button")
+                            .HyperlinkAppearance()
+                            .Text(ExtensionsManager.WarningThirdPartyExtensionUsageTermsConditions)
+                            .OnClick(OnTermsConditionsDialogButtonClick),
+                        Button("extension-third-party-warning-understand-button")
+                            .AccentAppearance()
+                            .Text(ExtensionsManager.WarningThirdPartyExtensionUsageIUnderstand)
+                            .OnClick(OnIUnderstandDialogButtonClick)),
             isDismissible: false);
+
+        void OnTermsConditionsDialogButtonClick()
+        {
+            // TODO: Open the terms and conditions page.
+            Shell.OpenUrlInWebBrowser("https://url");
+        }
 
         void OnIUnderstandDialogButtonClick()
         {

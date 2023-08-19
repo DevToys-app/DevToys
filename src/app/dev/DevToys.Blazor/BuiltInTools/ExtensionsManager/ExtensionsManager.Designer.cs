@@ -169,7 +169,7 @@ namespace DevToys.Blazor.BuiltInTools.ExtensionsManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Third-party extensions can change behavior of existing tools and access your computer without your consent, including but not limited to sending your data to the internet or installing unwanted software. We strongly advise caution and only installing extensions you trust..
+        ///   Looks up a localized string similar to Third-party extensions can modify the functionality of existing tools and access your computer without your permission. This may expose your data to the internet or install unwanted software on your device. We strongly recommend that you exercise caution and only install extensions that you trust. DevToys authors are not responsible for any damages or losses caused by extensions..
         /// </summary>
         internal static string WarningThirdPartyExtensionUsageDescription {
             get {
@@ -183,6 +183,15 @@ namespace DevToys.Blazor.BuiltInTools.ExtensionsManager {
         internal static string WarningThirdPartyExtensionUsageIUnderstand {
             get {
                 return ResourceManager.GetString("WarningThirdPartyExtensionUsageIUnderstand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Terms and Conditions.
+        /// </summary>
+        internal static string WarningThirdPartyExtensionUsageTermsConditions {
+            get {
+                return ResourceManager.GetString("WarningThirdPartyExtensionUsageTermsConditions", resourceCulture);
             }
         }
         
