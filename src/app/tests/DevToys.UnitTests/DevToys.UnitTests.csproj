@@ -25,6 +25,7 @@
     <ProjectReference Include="..\..\dev\DevToys.Blazor\DevToys.Blazor.csproj" />
     <ProjectReference Include="..\..\dev\DevToys.Business\DevToys.Business.csproj" />
     <ProjectReference Include="..\..\dev\DevToys.Core\DevToys.Core.csproj" />
+    <ProjectReference Include="..\..\dev\DevToys.Tools\DevToys.Tools.csproj" />
   </ItemGroup>
 
   <ItemGroup>
