@@ -10,8 +10,9 @@
                   HorizontalAlignment="@UIMultiLineTextInput.HorizontalAlignment"
                   IsVisible="@UIMultiLineTextInput.IsVisible"
                   IsEnabled="@(UIMultiLineTextInput.IsEnabled && IsActuallyEnabled)"
+                  WrapMode="@UIMultiLineTextInput.WrapMode"
                   ConstructionOptions="@OnMonacoConstructionOptions"
                   OnDidChangeModelContent="OnMonacoEditorTextChangedAsync"
                   OnDidInit="OnMonacoEditorInitializedAsync"
-                  ParentComponent="_textInputWrapper" />
+                  ParentComponent="_textInputWrapper"/>
 </UITextInputWrapper>

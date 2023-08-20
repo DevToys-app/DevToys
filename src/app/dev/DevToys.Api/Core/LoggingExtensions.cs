@@ -11,7 +11,7 @@ public static class LoggingExtensions
     /// </summary>
     public static ILoggerFactory LoggerFactory
     {
-        private get => _loggerFactory;
+        internal get => _loggerFactory;
         set
         {
             Guard.IsNull(_loggerFactory);

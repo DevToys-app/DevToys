@@ -73,7 +73,11 @@ internal class UISingleLineTextInput : UITitledElement, IUISingleLineTextInput
     public string Text
     {
         get => _text ?? string.Empty;
-        internal set => SetPropertyValue(ref _text, value, TextChanged);
+        internal set
+        {
+            SetPropertyValue(ref _text, value, TextChanged);
+            ActionOnTextChanged?.Invoke(_text ?? string.Empty);
+        }
     }
 
     public bool IsReadOnly
@@ -119,6 +123,8 @@ internal class UISingleLineTextInput : UITitledElement, IUISingleLineTextInput
         get => _commandBarExtraContent;
         internal set => SetPropertyValue(ref _commandBarExtraContent, value, CommandBarExtraContentChanged);
     }
+
+    internal Func<string, ValueTask>? ActionOnTextChanged { get; set; }
 
     public event EventHandler? TextChanged;
     public event EventHandler? IsReadOnlyChanged;
@@ -239,6 +245,37 @@ public static partial class GUI
         {
             strongElement.CommandBarExtraContent = extraElement;
         }
+        return element;
+    }
+
+    /// <summary>
+    /// Sets the action to run when the text changed.
+    /// </summary>
+    public static T OnTextChanged<T>(this T element, Func<string, ValueTask> actionOnTextChanged) where T : IUISingleLineTextInput
+    {
+        if (element is UISingleLineTextInput strongElement)
+        {
+            strongElement.ActionOnTextChanged = actionOnTextChanged;
+        }
+
+        return element;
+    }
+
+    /// <summary>
+    /// Sets the action to run when the text changed.
+    /// </summary>
+    public static T OnTextChanged<T>(this T element, Action<string> actionOnTextChanged) where T : IUISingleLineTextInput
+    {
+        if (element is UISingleLineTextInput strongElement)
+        {
+            strongElement.ActionOnTextChanged
+                = (value) =>
+                {
+                    actionOnTextChanged?.Invoke(value);
+                    return ValueTask.CompletedTask;
+                };
+        }
+
         return element;
     }
 }

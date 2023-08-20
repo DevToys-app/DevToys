@@ -257,6 +257,8 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
                     {
                         // Then let's navigate immediately to it and set the detected data as an input.
                         SelectedMenuItem = firstToolViewItem;
+                        _ = detectedTools[0].ToolInstance.View; // Do nothing with the view but trigger to instance because `PassSmartDetectedData` may assume the UI is instantiated.
+                        // Send the data to the tool.
                         detectedTools[0].ToolInstance.PassSmartDetectedData(detectedTools[0].DataTypeName, detectedTools[0].ParsedData);
                     }
                     else if (detectedTools.Count > 1)

@@ -16,9 +16,14 @@ public interface IUIMultiLineTextInput : IUISingleLineTextInput
     string SyntaxColorizationLanguageName { get; }
 
     /// <summary>
-    /// Gets whether the element can be expanded to take the size of the whole tool boundaries.
+    /// Gets whether the element can be expanded to take the size of the whole tool boundaries. Default is false.
     /// </summary>
     bool IsExtendableToFullScreen { get; }
+
+    /// <summary>
+    /// Gets how the text should wrap when it reached the maximum horizontal space it can take. Default is <see cref="UITextWrapMode.Auto"/>.
+    /// </summary>
+    UITextWrapMode WrapMode { get; }
 
     /// <summary>
     /// Raised when <see cref="HighlightedSpans"/> is changed.
@@ -34,6 +39,11 @@ public interface IUIMultiLineTextInput : IUISingleLineTextInput
     /// Raised when <see cref="IsExtendableToFullScreen"/> is changed.
     /// </summary>
     event EventHandler? IsExtendableToFullScreenChanged;
+
+    /// <summary>
+    /// Raised when <see cref="WrapMode"/> is changed.
+    /// </summary>
+    event EventHandler? WrapModeChanged;
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Text = {{{nameof(Text)}}}, SyntaxColorizationLanguageName = {{{nameof(SyntaxColorizationLanguageName)}}}")]
@@ -42,6 +52,7 @@ internal class UIMultilineTextInput : UISingleLineTextInput, IUIMultiLineTextInp
     private IReadOnlyList<TextSpan>? _highlightedSpans;
     private string? _syntaxColorizationLanguageName;
     private bool _isExtendableToFullScreen;
+    private UITextWrapMode _wrapMode = UITextWrapMode.Auto;
 
     internal UIMultilineTextInput(string? id)
         : base(id)
@@ -66,9 +77,16 @@ internal class UIMultilineTextInput : UISingleLineTextInput, IUIMultiLineTextInp
         internal set => SetPropertyValue(ref _isExtendableToFullScreen, value, IsExtendableToFullScreenChanged);
     }
 
+    public UITextWrapMode WrapMode
+    {
+        get => _wrapMode;
+        internal set => SetPropertyValue(ref _wrapMode, value, WrapModeChanged);
+    }
+
     public event EventHandler? HighlightedSpansChanged;
     public event EventHandler? SyntaxColorizationLanguageNameChanged;
     public event EventHandler? IsExtendableToFullScreenChanged;
+    public event EventHandler? WrapModeChanged;
 }
 
 public static partial class GUI
@@ -142,6 +160,33 @@ public static partial class GUI
     public static IUIMultiLineTextInput NotExtendable(this IUIMultiLineTextInput element)
     {
         ((UIMultilineTextInput)element).IsExtendableToFullScreen = false;
+        return element;
+    }
+
+    /// <summary>
+    /// Indicates that the text in the editor will wrap automatically according to the user's settings.
+    /// </summary>
+    public static IUIMultiLineTextInput AutoWrap(this IUIMultiLineTextInput element)
+    {
+        ((UIMultilineTextInput)element).WrapMode = UITextWrapMode.Auto;
+        return element;
+    }
+
+    /// <summary>
+    /// Indicates that the text in the editor will always wrap when it reaches the border of the editor.
+    /// </summary>
+    public static IUIMultiLineTextInput AlwaysWrap(this IUIMultiLineTextInput element)
+    {
+        ((UIMultilineTextInput)element).WrapMode = UITextWrapMode.Wrap;
+        return element;
+    }
+
+    /// <summary>
+    /// Indicates that the text in the editor will never wrap when it reaches the border of the editor.
+    /// </summary>
+    public static IUIMultiLineTextInput NeverWrap(this IUIMultiLineTextInput element)
+    {
+        ((UIMultilineTextInput)element).WrapMode = UITextWrapMode.NoWrap;
         return element;
     }
 }

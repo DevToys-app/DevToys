@@ -39,6 +39,9 @@ public partial class MonacoEditor : RicherMonacoEditorBase
     [Parameter]
     public Func<MonacoEditor, StandaloneEditorConstructionOptions>? ConstructionOptions { get; set; }
 
+    [Parameter]
+    public UITextWrapMode? WrapMode { get; set; }
+
     private bool ShowLoading { get; set; }
 
     protected override void OnInitialized()
@@ -48,6 +51,16 @@ public partial class MonacoEditor : RicherMonacoEditorBase
         _themeListener.ThemeChanged += ThemeListener_ThemeChanged;
         _settingsProvider.SettingChanged += SettingsProvider_SettingChanged;
         _oldIsActuallyEnabled = IsActuallyEnabled;
+    }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        if (_settingsProvider is not null)
+        {
+            SettingsProvider_SettingChanged(_settingsProvider, null!);
+        }
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -80,10 +93,10 @@ public partial class MonacoEditor : RicherMonacoEditorBase
 
             // Apply global user settings
             options.FontFamily = _settingsProvider.GetSetting(PredefinedSettings.TextEditorFont);
-            options.WordWrap = _settingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping) ? "on" : "off";
             options.LineNumbers = _settingsProvider.GetSetting(PredefinedSettings.TextEditorLineNumbers) ? "on" : "off";
             options.RenderLineHighlight = _settingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine) ? "all" : "none";
             options.RenderWhitespace = _settingsProvider.GetSetting(PredefinedSettings.TextEditorRenderWhitespace) ? "all" : "none";
+            ApplyWordWrapOption(options);
 
             // Create the editor
             await MonacoEditorHelper.CreateMonacoEditorInstanceAsync(JSRuntime, Id, options, null, Reference);
@@ -142,11 +155,12 @@ public partial class MonacoEditor : RicherMonacoEditorBase
         var options = new EditorUpdateOptions()
         {
             FontFamily = _settingsProvider.GetSetting(PredefinedSettings.TextEditorFont),
-            WordWrap = _settingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping) ? "on" : "off",
             LineNumbers = _settingsProvider.GetSetting(PredefinedSettings.TextEditorLineNumbers) ? "on" : "off",
             RenderLineHighlight = _settingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine) ? "all" : "none",
             RenderWhitespace = _settingsProvider.GetSetting(PredefinedSettings.TextEditorRenderWhitespace) ? "all" : "none"
         };
+
+        ApplyWordWrapOption(options);
 
         UpdateOptionsAsync(options);
     }
@@ -185,6 +199,24 @@ public partial class MonacoEditor : RicherMonacoEditorBase
                 ShowLoading = true;
                 StateHasChanged();
             }
+        }
+    }
+
+    private void ApplyWordWrapOption(EditorOptions editorOptions)
+    {
+        switch (WrapMode)
+        {
+            case UITextWrapMode.Auto:
+                editorOptions.WordWrap = _settingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping) ? "on" : "off";
+                break;
+            case UITextWrapMode.Wrap:
+                editorOptions.WordWrap = "on";
+                break;
+            case UITextWrapMode.NoWrap:
+                editorOptions.WordWrap = "off";
+                break;
+            default:
+                throw new NotSupportedException();
         }
     }
 }

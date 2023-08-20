@@ -1,6 +1,5 @@
 ﻿using System.Collections.Immutable;
 using DevToys.Blazor.BuiltInTools.Settings;
-using Newtonsoft.Json;
 using NuGet.Packaging;
 using NuGet.Packaging.Core;
 
@@ -21,6 +20,9 @@ namespace DevToys.Blazor.BuiltInTools.ExtensionsManager;
 [NotSearchable]
 [NoCompactOverlaySupport]
 [Order(Before = SettingsGuiTool.SettingsInternalToolName)]
+[TargetPlatform(Platform.Windows)]
+[TargetPlatform(Platform.Linux)]
+[TargetPlatform(Platform.MacCatalyst)]
 internal sealed class ExtensionsManagerGuiTool : IGuiTool
 {
     private enum GridRows

@@ -568,7 +568,7 @@ public sealed partial class GuiToolProvider
 
             // Add the tool to the group.
             Guard.IsNotNull(groupViewItem.Value.Children);
-            groupViewItem.Value.Children.Add(new GuiToolViewItem(tool));
+            groupViewItem.Value.Children.Add(new GuiToolViewItem(tool, showLongDisplayTitle: false));
         }
 
         // Order tools groups.

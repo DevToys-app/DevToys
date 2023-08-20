@@ -29,10 +29,15 @@
     -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Tools\Sample\Sample.Designer.cs">
+    <Compile Update="Tools\EncodersDecoders\Base64Text\Base64TextEncoderDecoder.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>Sample.resx</DependentUpon>
+      <DependentUpon>Base64TextEncoderDecoder.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Tools\EncodersDecoders\EncodersDecoders.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EncodersDecoders.resx</DependentUpon>
     </Compile>
     <Compile Update="Tools\Test\Test.Designer.cs">
       <DependentUpon>Test.resx</DependentUpon>
@@ -41,9 +46,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Tools\Sample\Sample.resx">
+    <EmbeddedResource Update="Tools\EncodersDecoders\Base64Text\Base64TextEncoderDecoder.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Sample.Designer.cs</LastGenOutput>
+      <LastGenOutput>Base64TextEncoderDecoder.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Tools\EncodersDecoders\EncodersDecoders.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EncodersDecoders.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Tools\Test\Test.resx">
       <LastGenOutput>Test.Designer.cs</LastGenOutput>
@@ -52,15 +61,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="..\..\..\..\assets\font\DevToys-Tools-Icons.ttf" Link="Assets\fonts\DevToys-Tools-Icons.ttf" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <PackageReference Include="System.Text.Json" />
   </ItemGroup>
 
   <Target Name="CopyPluginAfterBuild" AfterTargets="Pack">
-    <Copy SourceFiles="$(PackageOutputPath)\$(PackageId).$(PackageVersion).nupkg"
-          DestinationFolder="$(PluginNupkgPath)"
-          SkipUnchangedFiles="false"
-          OverwriteReadOnlyFiles="true"
-          Retries="10"
-          RetryDelayMilliseconds="1000" />
+    <Copy SourceFiles="$(PackageOutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(PluginNupkgPath)" SkipUnchangedFiles="false" OverwriteReadOnlyFiles="true" Retries="10" RetryDelayMilliseconds="1000" />
   </Target>
 </Project>

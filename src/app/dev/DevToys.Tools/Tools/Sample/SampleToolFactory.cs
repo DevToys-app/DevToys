@@ -35,20 +35,6 @@ internal sealed class SampleCommandLineTool : ICommandLineTool
     }
 }
 
-[Export(typeof(GuiToolGroup))]
-[Name("Encoders / Decoders")]
-internal sealed class EncodersDecodersGroup : GuiToolGroup
-{
-    [ImportingConstructor]
-    internal EncodersDecodersGroup()
-    {
-        IconFontName = "FluentSystemIcons";
-        IconGlyph = '\uE670';
-        DisplayTitle = Sample.CommandDescription;
-        AccessibleName = Sample.CommandDescription;
-    }
-}
-
 [Export(typeof(IGuiTool))]
 [Name("Sample tool")]
 [ToolDisplayInformation(
