@@ -1,4 +1,4 @@
-﻿namespace DevToys.Tools.Helpers;
+﻿namespace DevToys.Tools.Models;
 
 internal enum Base64Encoding
 {

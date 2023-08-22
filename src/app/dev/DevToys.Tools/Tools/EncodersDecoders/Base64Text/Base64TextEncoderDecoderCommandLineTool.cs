@@ -1,4 +1,5 @@
 ﻿using DevToys.Tools.Helpers;
+using DevToys.Tools.Models;
 using Microsoft.Extensions.Logging;
 
 namespace DevToys.Tools.Tools.EncodersDecoders.Base64Text;
@@ -28,7 +29,6 @@ internal sealed class Base64TextEncoderDecoderCommandLineTool : ICommandLineTool
     [CommandLineOption(
         Name = "conversion",
         Alias = "c",
-        IsRequired = true,
         DescriptionResourceName = nameof(Base64TextEncoderDecoder.ConversionOptionDescription))]
     private Conversion ConversionMode { get; set; } = Conversion.Encode;
 
@@ -57,6 +57,7 @@ internal sealed class Base64TextEncoderDecoderCommandLineTool : ICommandLineTool
             output = Base64Helper.FromBase64ToText(Input, EncodingMode, logger, cancellationToken);
         }
 
+        cancellationToken.ThrowIfCancellationRequested();
         Console.WriteLine(output);
 
         return new ValueTask<int>(0);

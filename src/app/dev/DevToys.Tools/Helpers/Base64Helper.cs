@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using System.Text.RegularExpressions;
+using DevToys.Tools.Models;
 using Microsoft.Extensions.Logging;
 
 namespace DevToys.Tools.Helpers;

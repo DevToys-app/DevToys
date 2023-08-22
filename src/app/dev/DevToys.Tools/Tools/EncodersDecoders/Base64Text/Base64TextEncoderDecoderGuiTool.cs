@@ -1,4 +1,5 @@
 ﻿using DevToys.Tools.Helpers;
+using DevToys.Tools.Models;
 using Microsoft.Extensions.Logging;
 
 namespace DevToys.Tools.Tools.EncodersDecoders.Base64Text;
@@ -22,17 +23,17 @@ internal sealed partial class Base64TextEncoderDecoderGuiTool : IGuiTool, IDispo
     /// <summary>
     /// Whether the tool should encode or decode Base64. True is encode, false is decode.
     /// </summary>
-    private static readonly SettingDefinition<bool> ConversionMode
+    private static readonly SettingDefinition<bool> conversionMode
         = new(
-            name: $"{nameof(Base64TextEncoderDecoderGuiTool)}.{nameof(ConversionMode)}",
+            name: $"{nameof(Base64TextEncoderDecoderGuiTool)}.{nameof(conversionMode)}",
             defaultValue: true);
 
     /// <summary>
     /// Whether the tool should encode/decode in Unicode or ASCII.
     /// </summary>
-    private static readonly SettingDefinition<Base64Encoding> Encoder
+    private static readonly SettingDefinition<Base64Encoding> encoder
         = new(
-            name: $"{nameof(Base64TextEncoderDecoderGuiTool)}.{nameof(Encoder)}",
+            name: $"{nameof(Base64TextEncoderDecoderGuiTool)}.{nameof(encoder)}",
             defaultValue: DefaultEncoding);
 
     private enum GridRows
@@ -63,7 +64,7 @@ internal sealed partial class Base64TextEncoderDecoderGuiTool : IGuiTool, IDispo
         _logger = this.Log();
         _settingsProvider = settingsProvider;
 
-        if (_settingsProvider.GetSetting(ConversionMode))
+        if (_settingsProvider.GetSetting(conversionMode))
         {
             // Encode
             _conversionModeSwitch.On();
@@ -123,7 +124,7 @@ internal sealed partial class Base64TextEncoderDecoderGuiTool : IGuiTool, IDispo
 
                                             .Handle(
                                                 _settingsProvider,
-                                                Encoder,
+                                                encoder,
                                                 onOptionSelected: OnEncodingModeChanged,
                                                 Item(Base64TextEncoderDecoder.Utf8, Base64Encoding.Utf8),
                                                 Item(Base64TextEncoderDecoder.Ascii, Base64Encoding.Ascii))))),
@@ -161,7 +162,7 @@ internal sealed partial class Base64TextEncoderDecoderGuiTool : IGuiTool, IDispo
 
     private void OnConversionModeChanged(bool conversionMode)
     {
-        _settingsProvider.SetSetting(ConversionMode, conversionMode);
+        _settingsProvider.SetSetting(Base64TextEncoderDecoderGuiTool.conversionMode, conversionMode);
         _inputText.Text(_outputText.Text); // This will trigger a conversion.
 
         if (conversionMode)
@@ -202,12 +203,12 @@ internal sealed partial class Base64TextEncoderDecoderGuiTool : IGuiTool, IDispo
         await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
 
         string conversionResult;
-        if (_settingsProvider.GetSetting(ConversionMode))
+        if (_settingsProvider.GetSetting(conversionMode))
         {
             conversionResult
                 = Base64Helper.FromTextToBase64(
                     input,
-                    _settingsProvider.GetSetting(Encoder),
+                    _settingsProvider.GetSetting(encoder),
                     _logger,
                     cancellationToken);
         }
@@ -223,7 +224,7 @@ internal sealed partial class Base64TextEncoderDecoderGuiTool : IGuiTool, IDispo
             conversionResult
                 = Base64Helper.FromBase64ToText(
                     input,
-                    _settingsProvider.GetSetting(Encoder),
+                    _settingsProvider.GetSetting(encoder),
                     _logger,
                     cancellationToken);
         }
