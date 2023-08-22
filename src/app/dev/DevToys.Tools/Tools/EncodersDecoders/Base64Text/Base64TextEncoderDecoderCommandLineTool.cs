@@ -13,12 +13,6 @@ namespace DevToys.Tools.Tools.EncodersDecoders.Base64Text;
     DescriptionResourceName = nameof(Base64TextEncoderDecoder.Description))]
 internal sealed class Base64TextEncoderDecoderCommandLineTool : ICommandLineTool
 {
-    private enum Conversion
-    {
-        Encode,
-        Decode
-    }
-
     [CommandLineOption(
         Name = "input",
         Alias = "i",
@@ -30,7 +24,7 @@ internal sealed class Base64TextEncoderDecoderCommandLineTool : ICommandLineTool
         Name = "conversion",
         Alias = "c",
         DescriptionResourceName = nameof(Base64TextEncoderDecoder.ConversionOptionDescription))]
-    private Conversion ConversionMode { get; set; } = Conversion.Encode;
+    private EncodingConversion ConversionMode { get; set; } = EncodingConversion.Encode;
 
     [CommandLineOption(
         Name = "encoding",
@@ -41,20 +35,25 @@ internal sealed class Base64TextEncoderDecoderCommandLineTool : ICommandLineTool
     public ValueTask<int> InvokeAsync(ILogger logger, CancellationToken cancellationToken)
     {
         string output;
-        if (ConversionMode == Conversion.Encode)
+        switch (ConversionMode)
         {
-            output = Base64Helper.FromTextToBase64(Input, EncodingMode, logger, cancellationToken);
-        }
-        else
-        {
-            if (!Base64Helper.IsBase64DataStrict(Input))
-            {
-                cancellationToken.ThrowIfCancellationRequested();
-                Console.Error.WriteLine(Base64TextEncoderDecoder.InvalidBase64);
-                return new ValueTask<int>(-1);
-            }
+            case EncodingConversion.Encode:
+                output = Base64Helper.FromTextToBase64(Input, EncodingMode, logger, cancellationToken);
+                break;
 
-            output = Base64Helper.FromBase64ToText(Input, EncodingMode, logger, cancellationToken);
+            case EncodingConversion.Decode:
+                if (!Base64Helper.IsBase64DataStrict(Input))
+                {
+                    cancellationToken.ThrowIfCancellationRequested();
+                    Console.Error.WriteLine(Base64TextEncoderDecoder.InvalidBase64);
+                    return new ValueTask<int>(-1);
+                }
+
+                output = Base64Helper.FromBase64ToText(Input, EncodingMode, logger, cancellationToken);
+                break;
+
+            default:
+                throw new NotSupportedException();
         }
 
         cancellationToken.ThrowIfCancellationRequested();
