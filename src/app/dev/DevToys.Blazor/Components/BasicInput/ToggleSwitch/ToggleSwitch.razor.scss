@@ -6,7 +6,6 @@ $control-fast-out-slow-in-easing: cubic-bezier(0, 0, 0, 1);
 .toggle-switch {
     @include flex($inline: true, $align: center);
     @include typography-body;
-
     position: relative;
     margin: 0;
     border: var(--toggle-switch-outer-border-stroke-thickness) solid var(--toggle-switch-stroke-off);
@@ -14,22 +13,18 @@ $control-fast-out-slow-in-easing: cubic-bezier(0, 0, 0, 1);
     outline: none;
     background-color: var(--toggle-switch-fill-off);
     appearance: none;
-    inline-size: 40px;
-    block-size: 20px;
+    inline-size: var(--toggle-switch-width);
+    block-size: var(--toggle-switch-height);
 
     &::before {
         content: "";
         position: absolute;
         border-radius: 7px;
         background-color: var(--toggle-switch-knob-fill-off);
-        transition: $control-fast-duration ease-in-out transform,
-            $control-fast-duration $control-fast-out-slow-in-easing height,
-            $control-fast-duration $control-fast-out-slow-in-easing width,
-            $control-fast-duration $control-fast-out-slow-in-easing margin,
-            $control-fast-duration linear background;
-        inset-inline-start: 3px;
-        inline-size: 12px;
-        block-size: 12px;
+        transition: $control-fast-duration ease-in-out transform, $control-fast-duration $control-fast-out-slow-in-easing height, $control-fast-duration $control-fast-out-slow-in-easing width, $control-fast-duration $control-fast-out-slow-in-easing margin, $control-fast-duration linear background;
+        inset-inline-start: var(--toggle-switch-knob-offset);
+        inline-size: var(--toggle-switch-knob-width);
+        block-size: var(--toggle-switch-knob-height);
     }
 
     &:focus-visible {
@@ -41,8 +36,8 @@ $control-fast-out-slow-in-easing: cubic-bezier(0, 0, 0, 1);
         background-color: var(--toggle-switch-fill-off-pointer-over);
 
         &::before {
-            inline-size: 14px;
-            block-size: 14px;
+            inline-size: var(--toggle-switch-knob-width-pointer-over);
+            block-size: var(--toggle-switch-knob-height-pointer-over);
         }
     }
 
@@ -51,8 +46,8 @@ $control-fast-out-slow-in-easing: cubic-bezier(0, 0, 0, 1);
         background-color: var(--toggle-switch-fill-off-pressed);
 
         &::before {
-            inline-size: 17px;
-            block-size: 14px;
+            inline-size: var(--toggle-switch-knob-width-pointer-over);
+            block-size: var(--toggle-switch-knob-height-pointer-over);
         }
     }
 
@@ -64,8 +59,8 @@ $control-fast-out-slow-in-easing: cubic-bezier(0, 0, 0, 1);
             margin: 0 !important;
             background-color: var(--toggle-switch-knob-fill-off-disabled);
             box-shadow: none;
-            inline-size: 12px;
-            block-size: 12px;
+            inline-size: var(--toggle-switch-knob-width);
+            block-size: var(--toggle-switch-knob-height);
         }
 
         + span {
@@ -80,7 +75,7 @@ $control-fast-out-slow-in-easing: cubic-bezier(0, 0, 0, 1);
         &::before {
             background-color: var(--toggle-switch-knob-fill-on);
             box-shadow: 0 0 0 1px solid var(--toggle-switch-knob-stroke-on);
-            transform: translateX(20px);
+            transform: translateX(var(--toggle-switch-knob-active-translation));
         }
 
         &:hover {
@@ -88,7 +83,7 @@ $control-fast-out-slow-in-easing: cubic-bezier(0, 0, 0, 1);
             background-color: var(--toggle-switch-fill-on-pointer-over);
 
             &::before {
-                margin-inline-start: -1px;
+                margin-inline-start: var(--toggle-switch-knob-zoom-pointer-over);
             }
         }
 
@@ -97,7 +92,7 @@ $control-fast-out-slow-in-easing: cubic-bezier(0, 0, 0, 1);
             background-color: var(--toggle-switch-fill-on-pressed);
 
             &::before {
-                margin-inline-start: -4px;
+                margin-inline-start: var(--toggle-switch-knob-zoom-pointer-over);
             }
         }
 
@@ -115,7 +110,6 @@ $control-fast-out-slow-in-easing: cubic-bezier(0, 0, 0, 1);
     &-container {
         @include flex($align: center);
         @include typography-body;
-
         color: var(--toggle-switch-foreground) !important;
         user-select: none;
         min-block-size: 32px;

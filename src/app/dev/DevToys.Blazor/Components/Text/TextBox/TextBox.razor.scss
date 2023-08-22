@@ -109,7 +109,7 @@
             }
 
             .text-box-underline::after {
-                border-bottom: 2px solid var(--accent-default);
+                border-bottom: var(--text-box-underline-border-thickness-focused) solid var(--accent-default);
             }
 
             .text-box-clear-button {
@@ -122,8 +122,8 @@
         position: absolute;
         inset-inline-start: -1px;
         inset-block-start: -1px;
-        inline-size: calc(100% + 2px);
-        block-size: calc(100% + 2px);
+        inline-size: calc(100% + var(--text-box-underline-border-thickness-focused));
+        block-size: calc(100% + var(--text-box-underline-border-thickness-focused));
         pointer-events: none;
         border-radius: var(--control-corner-radius);
         overflow: hidden;
@@ -136,7 +136,7 @@
             inset-inline-start: 0;
             inline-size: 100%;
             block-size: 100%;
-            border-bottom: 1px solid var(--control-strong-stroke-default);
+            border-bottom: var(--text-box-underline-border-thickness) solid var(--control-strong-stroke-default);
         }
     }
 

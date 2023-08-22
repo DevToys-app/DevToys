@@ -1,4 +1,8 @@
 @mixin windows-dark {
+    /* Roundness */
+    --control-corner-radius: 4px;
+    --overlay-corner-radius: 8px;
+
     /* Accent Colors (rgb) */
     --accent-light-3: 154, 236, 254;
     --accent-light-2: 98, 205, 254;
@@ -229,6 +233,8 @@
     --radio-button-check-glyph-stroke-checked-disabled: var(--control-stroke-color-default);
 
     /* ToggleSwitch */
+    --toggle-switch-width: 40px;
+    --toggle-switch-height: 20px;
     --toggle-switch-foreground: var(--text-fill-color-primary);
     --toggle-switch-foreground-disabled: var(--text-fill-color-disabled);
     --toggle-switch-on-stroke-thickness: 0px;
@@ -250,6 +256,13 @@
     --toggle-switch-stroke-on-pressed: var(--accent-tertiary);
     --toggle-switch-stroke-on-disabled: var(--accent-disabled);
 
+    --toggle-switch-knob-width: 12px;
+    --toggle-switch-knob-height: 12px;
+    --toggle-switch-knob-offset: 3px;
+    --toggle-switch-knob-zoom-pointer-over: -1px;
+    --toggle-switch-knob-active-translation: 20px;
+    --toggle-switch-knob-width-pointer-over: 14px;
+    --toggle-switch-knob-height-pointer-over: 14px;
     --toggle-switch-knob-fill-off: var(--text-fill-color-secondary);
     --toggle-switch-knob-fill-off-pointer-over: var(--text-fill-color-secondary);
     --toggle-switch-knob-fill-off-pressed: var(--text-fill-color-secondary);
@@ -285,6 +298,7 @@
     --list-box-item-foreground: var(--text-fill-color-primary);
     --list-box-item-foreground-pressed: var(--text-fill-color-secondary);
     --list-box-item-foreground-disabled: var(--text-fill-color-disabled);
+    --list-box-item-selection-indicator: var(--accent-default);
 
     /* Context Menu */
     --menu-flyout-presenter-background: rgb(44, 44, 44); // Could be semi-transparent if we didn't have Mica: rgb(44, 44, 44, 0.8)
@@ -321,6 +335,8 @@
     --text-box-placeholder-foreground-focused: var(--text-fill-color-tertiary);
     --text-box-placeholder-foreground-disabled: var(--text-fill-color-disabled);
     --text-box-selection-highlight-color: rgb(var(--accent-base));
+    --text-box-underline-border-thickness: 1px;
+    --text-box-underline-border-thickness-focused: 2px;
 
     /* Scrollbars */
     --scrollbar-track-background-color: transparent;
