@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Verificator XML</value>
+    <value>Instrument de Validare XML</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Verificator XML</value>
+    <value>Validator XML</value>
   </data>
   <data name="XsdScheme" xml:space="preserve">
     <value>XSD</value>
@@ -130,27 +130,27 @@
     <value>XML</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Verifică date XML printr-o schemă XSD.</value>
+    <value>Validează date XML printr-o schemă XSD.</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Verificator XML</value>
+    <value>Validator XML</value>
   </data>
   <data name="ValidationImpossibleMsg" xml:space="preserve">
-    <value>XML and XSD content must be set in order to perform a validation.</value>
+    <value>Conținutul XML și XSD trebuie setat pentru a efectua o validare.</value>
   </data>
   <data name="XmlIsValidMessage" xml:space="preserve">
-    <value>XML is compliant to the defined XSD scheme.</value>
+    <value>XML este conform cu sistemul XSD definit.</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>XML XSD Validate</value>
+    <value>XML XSD Validat</value>
   </data>
   <data name="XmlNamespacesInconsistentMsg" xml:space="preserve">
-    <value>Validation result will always be 'valid' since the XML does not define these namespace(s) defined in the XSD: {0}</value>
+    <value>Rezultatul validării va fi întotdeauna 'valid' deoarece XML nu definește aceste spații de nume definite în XSD: {0}</value>
   </data>
   <data name="XsdNamespacesInconsistentMsg" xml:space="preserve">
-    <value>Validation result will always be 'valid' since the XSD does not define these namespace(s) defined in the XML: {0}</value>
+    <value>Rezultatul validării va fi întotdeauna 'valid' deoarece XSD nu definește aceste spații de nume definite în XML: {0}</value>
   </data>
   <data name="TargetNamespaceNotDefinedInXml" xml:space="preserve">
-    <value>Validation result will potentially always be 'valid' since the XML does not reference the following "targetNamespace" defined in the XSD: {0}</value>
+    <value>Rezultatul validării poate fi întotdeauna „valid”, deoarece XML nu face referire la următorul „targetNamspace” definit în XSD: {0}</value>
   </data>
 </root>
