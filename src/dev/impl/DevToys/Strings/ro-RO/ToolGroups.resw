@@ -124,7 +124,7 @@
     <value>Convertori</value>
   </data>
   <data name="EncodersDecodersAccessibleName" xml:space="preserve">
-    <value>Encoders and decoders</value>
+    <value>Codificatori / Decodori</value>
   </data>
   <data name="EncodersDecodersDisplayName" xml:space="preserve">
     <value>Codificatori / Decodori</value>

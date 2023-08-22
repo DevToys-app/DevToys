@@ -130,10 +130,10 @@
     <value>Zi</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Convert timestamp to human-readable date and vice versa</value>
+    <value>Transformați marca temporală în dată care poate fi citită de om și invers</value>
   </data>
   <data name="DisabledDaylightSavingTime" xml:space="preserve">
-    <value>There is no daylight saving time.</value>
+    <value>Nu există ora de vară.</value>
   </data>
   <data name="DSTAmbiguousTime" xml:space="preserve">
     <value>Timp Ambiguu DST.</value>

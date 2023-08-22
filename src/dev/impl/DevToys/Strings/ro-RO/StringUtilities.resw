@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>String utilities tool</value>
+    <value>Instrument utilități string</value>
   </data>
   <data name="AlternatingCase" xml:space="preserve">
-    <value>aLtErNaTiNg cAsE</value>
+    <value>LiTeRe AlTeRnAtIvE</value>
   </data>
   <data name="Bytes" xml:space="preserve">
     <value>Octeți (bytes):</value>
@@ -148,10 +148,10 @@
     <value>Transformă</value>
   </data>
   <data name="Sort" xml:space="preserve">
-    <value>Sort Lines</value>
+    <value>Sortare linii</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Inspector &amp; Case Converter</value>
+    <value>Inspector &amp; Convertor tip scriere</value>
   </data>
   <data name="InverseCase" xml:space="preserve">
     <value>CaZ InVeRs</value>
@@ -160,22 +160,22 @@
     <value>caz kebab</value>
   </data>
   <data name="Alphabetize" xml:space="preserve">
-    <value>Alphabetize</value>
+    <value>Alfabetic</value>
   </data>
   <data name="ReverseAlphabetize" xml:space="preserve">
-    <value>Reverse alphabetize</value>
+    <value>Invers alfabetic</value>
   </data>
   <data name="AlphabetizeLast" xml:space="preserve">
-    <value>Alphabetize by last word</value>
+    <value>Alfabetic după ultimul cuvânt</value>
   </data>
   <data name="ReverseAlphabetizeLast" xml:space="preserve">
-    <value>Reverse alphabetize by last word</value>
+    <value>Invers alfabetic după ultimul cuvânt</value>
   </data>
   <data name="Reverse" xml:space="preserve">
-    <value>Reverse</value>
+    <value>Invers</value>
   </data>
   <data name="Randomize" xml:space="preserve">
-    <value>Randomize</value>
+    <value>Aleator</value>
   </data>
   <data name="Line" xml:space="preserve">
     <value>Linia:</value>
@@ -235,7 +235,7 @@
     <value>Analizează textul și convertește-l</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Text Case Converter and Inspector</value>
+    <value>Convertor și Inspector de text</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>Şir de caractere</value>

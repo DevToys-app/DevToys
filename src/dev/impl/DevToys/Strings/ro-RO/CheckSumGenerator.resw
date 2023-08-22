@@ -130,7 +130,7 @@
     <value>Generează un hash cu Checksum pe baza unui fișier</value>
   </data>
   <data name="HashingAlgorithmDescription" xml:space="preserve">
-    <value>Select which hashing algorithm you want to use</value>
+    <value>Selectați algoritmul de hashing pe care doriți să îl utilizați</value>
   </data>
   <data name="HashingAlgorithmTitle" xml:space="preserve">
     <value>Algoritm de Hash</value>
