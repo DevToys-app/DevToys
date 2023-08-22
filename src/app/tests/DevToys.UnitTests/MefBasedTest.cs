@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using System.Reflection;
 using DevToys.Core.Mef;
+using Microsoft.Extensions.Logging;
 
 namespace DevToys.UnitTests;
 
@@ -17,6 +18,11 @@ public abstract class MefBasedTest
             {
                 typeof(MefBasedTest).Assembly
             };
+
+        if (LoggingExtensions.LoggerFactory is null)
+        {
+            LoggingExtensions.LoggerFactory = LoggerFactory.Create(builder => { });
+        }
 
         // Initialize MEF.
         _mefComposer

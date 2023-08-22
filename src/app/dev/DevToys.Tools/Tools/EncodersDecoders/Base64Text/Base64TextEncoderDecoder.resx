@@ -117,19 +117,65 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CommandDescription" xml:space="preserve">
-    <value>Just A Basic Tool</value>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>Base64 Text Encoder and Decoder tool</value>
+  </data>
+  <data name="Ascii" xml:space="preserve">
+    <value>ASCII</value>
+  </data>
+  <data name="ConfigurationTitle" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="ConversionDecode" xml:space="preserve">
+    <value>Decode</value>
+  </data>
+  <data name="ConversionDescription" xml:space="preserve">
+    <value>Select which conversion mode you want to use</value>
+  </data>
+  <data name="ConversionEncode" xml:space="preserve">
+    <value>Encode</value>
+  </data>
+  <data name="ConversionOptionDescription" xml:space="preserve">
+    <value>Whether to encode or decode Base64 text</value>
+  </data>
+  <data name="ConversionTitle" xml:space="preserve">
+    <value>Conversion</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Encode or decode all the applicable characters to their corresponding HTML entities</value>
+    <value>Encode and decode Base64 text data</value>
   </data>
-  <data name="FileOptionDescription" xml:space="preserve">
-    <value>File to treat</value>
+  <data name="EncodingDescription" xml:space="preserve">
+    <value>Select which encoding do you want to use</value>
   </data>
-  <data name="LongTitle" xml:space="preserve">
-    <value>JSON Formatter</value>
+  <data name="EncodingOptionDescription" xml:space="preserve">
+    <value>Encoding</value>
   </data>
-  <data name="Utf8OptionDescription" xml:space="preserve">
-    <value>A dummy UTF8 option description</value>
+  <data name="EncodingTitle" xml:space="preserve">
+    <value>Encoding</value>
+  </data>
+  <data name="InputOptionDescription" xml:space="preserve">
+    <value>Text to encode or Base64 to decode</value>
+  </data>
+  <data name="InputTitle" xml:space="preserve">
+    <value>Input</value>
+  </data>
+  <data name="InvalidBase64" xml:space="preserve">
+    <value>&lt;Invalid Base64&gt;</value>
+  </data>
+  <data name="LongDisplayTitle" xml:space="preserve">
+    <value>Base64 Text Encoder / Decoder</value>
+  </data>
+  <data name="OutputTitle" xml:space="preserve">
+    <value>Output</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>RFC 4648</value>
+    <comment>Alternative search keywords.</comment>
+  </data>
+  <data name="ShortDisplayTitle" xml:space="preserve">
+    <value>Base64 Text</value>
+  </data>
+  <data name="Utf8" xml:space="preserve">
+    <value>UTF-8</value>
   </data>
 </root>
