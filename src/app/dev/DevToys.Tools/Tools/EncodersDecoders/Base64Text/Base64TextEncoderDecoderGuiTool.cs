@@ -82,6 +82,9 @@ internal sealed partial class Base64TextEncoderDecoderGuiTool : IGuiTool, IDispo
         }
     }
 
+    // For unit tests.
+    internal Task? WorkTask { get; private set; }
+
     public UIToolView View
         => new(
             isScrollable: true,
@@ -201,7 +204,7 @@ internal sealed partial class Base64TextEncoderDecoderGuiTool : IGuiTool, IDispo
         _cancellationTokenSource?.Dispose();
         _cancellationTokenSource = new CancellationTokenSource();
 
-        ConvertAsync(text, _cancellationTokenSource.Token).ForgetSafely();
+        WorkTask = ConvertAsync(text, _cancellationTokenSource.Token);
     }
 
     private async Task ConvertAsync(string input, CancellationToken cancellationToken)

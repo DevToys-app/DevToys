@@ -29,6 +29,11 @@
     -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Tools\EncodersDecoders\Html\HtmlEncoderDecoder.Designer.cs">
+      <DependentUpon>HtmlEncoderDecoder.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Tools\EncodersDecoders\Base64Text\Base64TextEncoderDecoder.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -46,6 +51,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="Tools\EncodersDecoders\Html\HtmlEncoderDecoder.resx">
+      <LastGenOutput>HtmlEncoderDecoder.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Tools\EncodersDecoders\Base64Text\Base64TextEncoderDecoder.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Base64TextEncoderDecoder.Designer.cs</LastGenOutput>

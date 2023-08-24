@@ -24,7 +24,7 @@ internal sealed class Base64TextEncoderDecoderCommandLineTool : ICommandLineTool
         Name = "conversion",
         Alias = "c",
         DescriptionResourceName = nameof(Base64TextEncoderDecoder.ConversionOptionDescription))]
-    private EncodingConversion ConversionMode { get; set; } = EncodingConversion.Encode;
+    private EncodingConversion EncodingConversionMode { get; set; } = EncodingConversion.Encode;
 
     [CommandLineOption(
         Name = "encoding",
@@ -35,7 +35,7 @@ internal sealed class Base64TextEncoderDecoderCommandLineTool : ICommandLineTool
     public ValueTask<int> InvokeAsync(ILogger logger, CancellationToken cancellationToken)
     {
         string output;
-        switch (ConversionMode)
+        switch (EncodingConversionMode)
         {
             case EncodingConversion.Encode:
                 output = Base64Helper.FromTextToBase64(Input, EncodingMode, logger, cancellationToken);
