@@ -31,6 +31,25 @@ internal sealed class UISettingGroup : UISetting, IUISettingGroup
     {
     }
 
+    protected override IEnumerable<IUIElement> GetChildren()
+    {
+        if (InteractiveElement is not null)
+        {
+            yield return InteractiveElement;
+        }
+
+        if (_children is not null)
+        {
+            foreach (IUIElement child in _children)
+            {
+                if (child is not null)
+                {
+                    yield return child;
+                }
+            }
+        }
+    }
+
     public IUIElement[]? Children
     {
         get => _children;

@@ -5,7 +5,7 @@ namespace DevToys.Api;
 /// <summary>
 /// A component that represents a list of items.
 /// </summary>
-public interface IUIList : IUIElement
+public interface IUIList : IUIElementWithChildren
 {
     /// <summary>
     /// Gets the list of items displayed in the list.
@@ -39,7 +39,7 @@ public interface IUIList : IUIElement
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, SelectedItem = {{{nameof(SelectedItem)}}}")]
-internal sealed class UIList : UIElement, IUIList, IDisposable
+internal sealed class UIList : UIElementWithChildren, IUIList, IDisposable
 {
     private readonly ObservableCollection<IUIListItem> _items = new();
     private IUIListItem? _selectedItem;
@@ -49,6 +49,20 @@ internal sealed class UIList : UIElement, IUIList, IDisposable
         : base(id)
     {
         _items.CollectionChanged += Items_CollectionChanged;
+    }
+
+    protected override IEnumerable<IUIElement> GetChildren()
+    {
+        if (_items is not null)
+        {
+            foreach (IUIListItem item in _items)
+            {
+                if (item.UIElement is not null)
+                {
+                    yield return item.UIElement;
+                }
+            }
+        }
     }
 
     public ObservableCollection<IUIListItem> Items => _items;

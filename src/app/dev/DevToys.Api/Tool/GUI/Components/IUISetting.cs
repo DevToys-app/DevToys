@@ -3,7 +3,7 @@
 /// <summary>
 /// A component that represents a setting, with a title, description, icon and <see cref="IUIElement"/> for the option value.
 /// </summary>
-public interface IUISetting : IUITitledElement
+public interface IUISetting : IUITitledElementWithChildren
 {
     /// <summary>
     /// Gets the description of the setting.
@@ -47,7 +47,7 @@ public interface IUISetting : IUITitledElement
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Title = {{{nameof(Title)}}}")]
-internal class UISetting : UITitledElement, IUISetting
+internal class UISetting : UITitledElementWithChildren, IUISetting
 {
     private string? _description;
     private string? _stateDescription;
@@ -57,6 +57,14 @@ internal class UISetting : UITitledElement, IUISetting
     internal UISetting(string? id)
         : base(id)
     {
+    }
+
+    protected override IEnumerable<IUIElement> GetChildren()
+    {
+        if (InteractiveElement is not null)
+        {
+            yield return InteractiveElement;
+        }
     }
 
     public string? Description

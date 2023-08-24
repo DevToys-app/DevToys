@@ -3,7 +3,7 @@
 /// <summary>
 /// A component that splits horizontally or vertically an area into two panes. Panes can be resized by the user.
 /// </summary>
-public interface IUISplitGrid : IUIElement
+public interface IUISplitGrid : IUIElementWithChildren
 {
     /// <summary>
     /// Gets the orientation of the grid gutter.
@@ -71,7 +71,7 @@ public interface IUISplitGrid : IUIElement
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Orientation = {{{nameof(Orientation)}}}")]
-internal sealed class UISplitGrid : UIElement, IUISplitGrid
+internal sealed class UISplitGrid : UIElementWithChildren, IUISplitGrid
 {
     private UIOrientation _orientation = UIOrientation.Vertical;
     private int _minimumCellLength = 50;
@@ -83,6 +83,19 @@ internal sealed class UISplitGrid : UIElement, IUISplitGrid
     internal UISplitGrid(string? id)
         : base(id)
     {
+    }
+
+    protected override IEnumerable<IUIElement> GetChildren()
+    {
+        if (_rightOrBottomCellContent is not null)
+        {
+            yield return _rightOrBottomCellContent;
+        }
+
+        if (_leftOrTopCellContent is not null)
+        {
+            yield return _leftOrTopCellContent;
+        }
     }
 
     public UIOrientation Orientation

@@ -95,6 +95,21 @@ public class UIToolView : INotifyPropertyChanged
     public event PropertyChangedEventHandler? PropertyChanged;
 
     /// <summary>
+    /// Gets the first child element with the specified id.
+    /// </summary>
+    /// <param name="id">The id of a child element.</param>
+    /// <returns>Returns null if the element could not be found. If many elements have the name id, this method returns the first it finds</returns>
+    public IUIElement? GetChildElementById(string id)
+    {
+        if (RootElement is IUIElementWithChildren uiElementWithChildren)
+        {
+            return uiElementWithChildren.GetChildElementById(id);
+        }
+
+        return null;
+    }
+
+    /// <summary>
     /// Shows the dialog box in the UI. Only one dialog can be opened at a time.
     /// </summary>
     /// <param name="dialogContent">The element to display in the dialog.</param>

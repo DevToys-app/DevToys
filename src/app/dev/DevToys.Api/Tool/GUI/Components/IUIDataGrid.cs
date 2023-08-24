@@ -5,7 +5,7 @@ namespace DevToys.Api;
 /// <summary>
 /// A component that represents a grid that can display data with rows and columns.
 /// </summary>
-public interface IUIDataGrid : IUIElement
+public interface IUIDataGrid : IUIElementWithChildren
 {
     /// <summary>
     /// Gets the title of each column in the data grid.
@@ -44,7 +44,7 @@ public interface IUIDataGrid : IUIElement
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, SelectedRow = {{{nameof(SelectedRow)}}}")]
-internal sealed class UIDataGrid : UIElement, IUIDataGrid, IDisposable
+internal sealed class UIDataGrid : UIElementWithChildren, IUIDataGrid, IDisposable
 {
     private readonly ObservableCollection<IUIDataGridRow> _rows = new();
     private string[] _columns = Array.Empty<string>();
@@ -102,6 +102,29 @@ internal sealed class UIDataGrid : UIElement, IUIDataGrid, IDisposable
     public void Dispose()
     {
         _rows.CollectionChanged -= Rows_CollectionChanged;
+    }
+
+    protected override IEnumerable<IUIElement> GetChildren()
+    {
+        IUIDataGridRow[] rows = _rows.ToArray();
+        for (int i = 0; i < rows.Length; i++)
+        {
+            IUIDataGridRow row = rows[i];
+            IUIDataGridCell[] cells = row.ToArray();
+            for (int j = 0; j < cells.Length; j++)
+            {
+                IUIDataGridCell cell = cells[j];
+                if (cell.UIElement is not null)
+                {
+                    yield return cell.UIElement;
+                }
+            }
+
+            if (row.Details is not null)
+            {
+                yield return row.Details;
+            }
+        }
     }
 
     private void Rows_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

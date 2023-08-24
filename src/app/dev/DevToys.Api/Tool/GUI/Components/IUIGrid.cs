@@ -6,7 +6,7 @@ namespace DevToys.Api;
 /// A component provides a flexible grid area that consists of columns and rows.
 /// Child elements of the Grid are measured and arranged according to their row/column assignments and other logic.
 /// </summary>
-public interface IUIGrid : IUIElement
+public interface IUIGrid : IUIElementWithChildren
 {
     /// <summary>
     /// Gets a value that indicates the space between rows.
@@ -64,7 +64,7 @@ public interface IUIGrid : IUIElement
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}")]
-internal sealed class UIGrid : UIElement, IUIGrid
+internal sealed class UIGrid : UIElementWithChildren, IUIGrid
 {
     private UISpacing _rowSpacing = UISpacing.Small;
     private UISpacing _columnSpacing = UISpacing.Small;
@@ -75,6 +75,20 @@ internal sealed class UIGrid : UIElement, IUIGrid
     internal UIGrid(string? id)
         : base(id)
     {
+    }
+
+    protected override IEnumerable<IUIElement> GetChildren()
+    {
+        if (_cells is not null)
+        {
+            foreach (IUIGridCell cell in _cells)
+            {
+                if (cell.Child is not null)
+                {
+                    yield return cell.Child;
+                }
+            }
+        }
     }
 
     public UISpacing RowSpacing

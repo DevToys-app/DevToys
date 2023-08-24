@@ -3,7 +3,7 @@
 /// <summary>
 /// A component that can be used to display or edit unformatted text on a single line.
 /// </summary>
-public interface IUISingleLineTextInput : IUITitledElement
+public interface IUISingleLineTextInput : IUITitledElementWithChildren
 {
     /// <summary>
     /// Gets whether the user can edit the text or not. Default is false.
@@ -57,7 +57,7 @@ public interface IUISingleLineTextInput : IUITitledElement
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Text = {{{nameof(Text)}}}")]
-internal class UISingleLineTextInput : UITitledElement, IUISingleLineTextInput
+internal class UISingleLineTextInput : UITitledElementWithChildren, IUISingleLineTextInput
 {
     private string? _text;
     private bool _isReadOnly;
@@ -68,6 +68,14 @@ internal class UISingleLineTextInput : UITitledElement, IUISingleLineTextInput
     internal UISingleLineTextInput(string? id)
         : base(id)
     {
+    }
+
+    protected override IEnumerable<IUIElement> GetChildren()
+    {
+        if (CommandBarExtraContent is not null)
+        {
+            yield return CommandBarExtraContent;
+        }
     }
 
     public string Text

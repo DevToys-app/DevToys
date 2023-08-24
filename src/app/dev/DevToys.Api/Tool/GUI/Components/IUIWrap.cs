@@ -3,7 +3,7 @@
 /// <summary>
 /// A component that stacks child elements horizontally and stack them into multiple lines if there's not enough space to keep everything on a single line.
 /// </summary>
-public interface IUIWrap : IUIElement
+public interface IUIWrap : IUIElementWithChildren
 {
     /// <summary>
     /// Gets a value that indicates the space between stacked elements.
@@ -28,7 +28,7 @@ public interface IUIWrap : IUIElement
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}")]
-internal sealed class UIWrap : UIElement, IUIWrap
+internal sealed class UIWrap : UIElementWithChildren, IUIWrap
 {
     private UISpacing _spacing = UISpacing.Small;
     private IUIElement[]? _children;
@@ -36,6 +36,20 @@ internal sealed class UIWrap : UIElement, IUIWrap
     internal UIWrap(string? id)
         : base(id)
     {
+    }
+
+    protected override IEnumerable<IUIElement> GetChildren()
+    {
+        if (_children is not null)
+        {
+            foreach (IUIElement child in _children)
+            {
+                if (child is not null)
+                {
+                    yield return child;
+                }
+            }
+        }
     }
 
     public UISpacing Spacing

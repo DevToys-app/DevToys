@@ -3,7 +3,7 @@
 /// <summary>
 /// A component that stacks child elements into a single line that can be oriented horizontally or vertically.
 /// </summary>
-public interface IUIStack : IUIElement
+public interface IUIStack : IUIElementWithChildren
 {
     /// <summary>
     /// Gets a value that indicates the dimension by which child elements are stacked.
@@ -39,7 +39,7 @@ public interface IUIStack : IUIElement
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Orientation = {{{nameof(Orientation)}}}")]
-internal sealed class UIStack : UIElement, IUIStack
+internal sealed class UIStack : UIElementWithChildren, IUIStack
 {
     private UIOrientation _orientation = UIOrientation.Horizontal;
     private UISpacing _spacing = UISpacing.Small;
@@ -48,6 +48,20 @@ internal sealed class UIStack : UIElement, IUIStack
     internal UIStack(string? id)
         : base(id)
     {
+    }
+
+    protected override IEnumerable<IUIElement> GetChildren()
+    {
+        if (_children is not null)
+        {
+            foreach (IUIElement child in _children)
+            {
+                if (child is not null)
+                {
+                    yield return child;
+                }
+            }
+        }
     }
 
     public UIOrientation Orientation
