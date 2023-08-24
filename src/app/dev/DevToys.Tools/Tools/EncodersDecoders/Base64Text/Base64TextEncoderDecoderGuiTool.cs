@@ -21,12 +21,12 @@ namespace DevToys.Tools.Tools.EncodersDecoders.Base64Text;
 internal sealed partial class Base64TextEncoderDecoderGuiTool : IGuiTool, IDisposable
 {
     /// <summary>
-    /// Whether the tool should encode or decode Base64. True is encode, false is decode.
+    /// Whether the tool should encode or decode Base64.
     /// </summary>
-    private static readonly SettingDefinition<bool> conversionMode
+    private static readonly SettingDefinition<EncodingConversion> conversionMode
         = new(
             name: $"{nameof(Base64TextEncoderDecoderGuiTool)}.{nameof(conversionMode)}",
-            defaultValue: true);
+            defaultValue: EncodingConversion.Encode);
 
     /// <summary>
     /// Whether the tool should encode/decode in Unicode or ASCII.
@@ -64,18 +64,21 @@ internal sealed partial class Base64TextEncoderDecoderGuiTool : IGuiTool, IDispo
         _logger = this.Log();
         _settingsProvider = settingsProvider;
 
-        if (_settingsProvider.GetSetting(conversionMode))
+        switch (_settingsProvider.GetSetting(conversionMode))
         {
-            // Encode
-            _conversionModeSwitch.On();
-            _inputText.AutoWrap();
-            _outputText.AlwaysWrap();
-        }
-        else
-        {
-            // Decode
-            _inputText.AlwaysWrap();
-            _outputText.AutoWrap();
+            case EncodingConversion.Encode:
+                _conversionModeSwitch.On();
+                _inputText.AutoWrap();
+                _outputText.AlwaysWrap();
+                break;
+
+            case EncodingConversion.Decode:
+                _inputText.AlwaysWrap();
+                _outputText.AutoWrap();
+                break;
+
+            default:
+                throw new NotSupportedException();
         }
     }
 
@@ -162,20 +165,23 @@ internal sealed partial class Base64TextEncoderDecoderGuiTool : IGuiTool, IDispo
 
     private void OnConversionModeChanged(bool conversionMode)
     {
-        _settingsProvider.SetSetting(Base64TextEncoderDecoderGuiTool.conversionMode, conversionMode);
+        _settingsProvider.SetSetting(Base64TextEncoderDecoderGuiTool.conversionMode, conversionMode ? EncodingConversion.Encode : EncodingConversion.Decode);
         _inputText.Text(_outputText.Text); // This will trigger a conversion.
 
-        if (conversionMode)
+        switch (_settingsProvider.GetSetting(Base64TextEncoderDecoderGuiTool.conversionMode))
         {
-            // Encode
-            _inputText.AutoWrap();
-            _outputText.AlwaysWrap();
-        }
-        else
-        {
-            // Decode
-            _inputText.AlwaysWrap();
-            _outputText.AutoWrap();
+            case EncodingConversion.Encode:
+                _inputText.AutoWrap();
+                _outputText.AlwaysWrap();
+                break;
+
+            case EncodingConversion.Decode:
+                _inputText.AlwaysWrap();
+                _outputText.AutoWrap();
+                break;
+
+            default:
+                throw new NotSupportedException();
         }
     }
 
@@ -203,30 +209,36 @@ internal sealed partial class Base64TextEncoderDecoderGuiTool : IGuiTool, IDispo
         await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
 
         string conversionResult;
-        if (_settingsProvider.GetSetting(conversionMode))
-        {
-            conversionResult
-                = Base64Helper.FromTextToBase64(
-                    input,
-                    _settingsProvider.GetSetting(encoder),
-                    _logger,
-                    cancellationToken);
-        }
-        else
-        {
-            if (!string.IsNullOrEmpty(input) && !Base64Helper.IsBase64DataStrict(input))
-            {
-                cancellationToken.ThrowIfCancellationRequested();
-                _outputText.Text(Base64TextEncoderDecoder.InvalidBase64);
-                return;
-            }
 
-            conversionResult
-                = Base64Helper.FromBase64ToText(
-                    input,
-                    _settingsProvider.GetSetting(encoder),
-                    _logger,
-                    cancellationToken);
+        switch (_settingsProvider.GetSetting(conversionMode))
+        {
+            case EncodingConversion.Encode:
+                conversionResult
+                    = Base64Helper.FromTextToBase64(
+                        input,
+                        _settingsProvider.GetSetting(encoder),
+                        _logger,
+                        cancellationToken);
+                break;
+
+            case EncodingConversion.Decode:
+                if (!string.IsNullOrEmpty(input) && !Base64Helper.IsBase64DataStrict(input))
+                {
+                    cancellationToken.ThrowIfCancellationRequested();
+                    _outputText.Text(Base64TextEncoderDecoder.InvalidBase64);
+                    return;
+                }
+
+                conversionResult
+                    = Base64Helper.FromBase64ToText(
+                        input,
+                        _settingsProvider.GetSetting(encoder),
+                        _logger,
+                        cancellationToken);
+                break;
+
+            default:
+                throw new NotSupportedException();
         }
 
         cancellationToken.ThrowIfCancellationRequested();
