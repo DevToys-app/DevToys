@@ -198,6 +198,10 @@ internal static partial class JsonHelper
         {
             return ex.Message;
         }
+        catch (OperationCanceledException)
+        {
+            return string.Empty;
+        }
         catch (Exception ex)
         {
             logger.LogError("Yaml to Json Converter", ex);

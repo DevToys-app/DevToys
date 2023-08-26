@@ -3,8 +3,10 @@ using DevToys.Blazor.Components.Monaco.Editor;
 
 namespace DevToys.Blazor.Components.UIElements;
 
-public partial class UIMultiLineTextInputPresenter : JSStyledComponentBase, IDisposable
+public partial class UIMultiLineTextInputPresenter : JSStyledComponentBase
 {
+    private readonly TaskCompletionSource _monacoInitializationAwaiter = new();
+
     private MonacoEditor _monacoEditor = default!;
     private UITextInputWrapper _textInputWrapper = default!;
     private bool _ignoreChangeComingFromUIMultiLineTextInput;
@@ -22,29 +24,33 @@ public partial class UIMultiLineTextInputPresenter : JSStyledComponentBase, IDis
         UIMultiLineTextInput.IsReadOnlyChanged += UIMultiLineTextInput_IsReadOnlyChanged;
     }
 
-    public void Dispose()
+    public override ValueTask DisposeAsync()
     {
         UIMultiLineTextInput.SyntaxColorizationLanguageNameChanged -= UIMultiLineTextInput_SyntaxColorizationLanguageNameChanged;
         UIMultiLineTextInput.TextChanged -= UIMultiLineTextInput_TextChanged;
         UIMultiLineTextInput.IsReadOnlyChanged -= UIMultiLineTextInput_IsReadOnlyChanged;
-        GC.SuppressFinalize(this);
+
+        return base.DisposeAsync();
     }
 
-    private void UIMultiLineTextInput_TextChanged(object? sender, EventArgs e)
+    private async void UIMultiLineTextInput_TextChanged(object? sender, EventArgs e)
     {
         if (!_ignoreChangeComingFromUIMultiLineTextInput)
         {
-            _ = _monacoEditor.SetValueAsync(UIMultiLineTextInput.Text);
+            await _monacoInitializationAwaiter.Task;
+            await _monacoEditor.SetValueAsync(UIMultiLineTextInput.Text);
         }
     }
 
     private async void UIMultiLineTextInput_SyntaxColorizationLanguageNameChanged(object? sender, EventArgs e)
     {
+        await _monacoInitializationAwaiter.Task;
         await _monacoEditor.SetLanguageAsync(UIMultiLineTextInput.SyntaxColorizationLanguageName);
     }
 
     private async void UIMultiLineTextInput_IsReadOnlyChanged(object? sender, EventArgs e)
     {
+        await _monacoInitializationAwaiter.Task;
         await _monacoEditor.UpdateOptionsAsync(new EditorUpdateOptions
         {
             ReadOnly = UIMultiLineTextInput.IsReadOnly
@@ -53,9 +59,24 @@ public partial class UIMultiLineTextInputPresenter : JSStyledComponentBase, IDis
 
     private async Task OnMonacoEditorTextChangedAsync(ModelContentChangedEvent ev)
     {
-        _ignoreChangeComingFromUIMultiLineTextInput = true;
-        UIMultiLineTextInput.Text(await _monacoEditor.GetValueAsync(preserveBOM: null, lineEnding: null));
-        _ignoreChangeComingFromUIMultiLineTextInput = false;
+        if (ev.Changes is not null)
+        {
+            _ignoreChangeComingFromUIMultiLineTextInput = true;
+
+            string documentText;
+            if (ev.Changes.Count == 1)
+            {
+                documentText = ev.Changes[0].Text ?? string.Empty;
+            }
+            else
+            {
+                documentText = await _monacoEditor.GetValueAsync(preserveBOM: null, lineEnding: null);
+            }
+
+            UIMultiLineTextInput.Text(documentText);
+
+            _ignoreChangeComingFromUIMultiLineTextInput = false;
+        }
     }
 
     private async Task OnMonacoEditorInitializedAsync()
@@ -77,6 +98,8 @@ public partial class UIMultiLineTextInputPresenter : JSStyledComponentBase, IDis
 
         // Set the text of model
         await textModel.SetValueAsync(JSRuntime, UIMultiLineTextInput.Text);
+
+        _monacoInitializationAwaiter.TrySetResult();
     }
 
     private StandaloneEditorConstructionOptions OnMonacoConstructionOptions(MonacoEditor monacoEditor)

@@ -1,5 +1,4 @@
-﻿using System.Text.Json;
-using DevToys.Tools.Helpers;
+﻿using DevToys.Tools.Helpers;
 using DevToys.Tools.Models;
 using Microsoft.Extensions.Logging;
 
@@ -175,14 +174,13 @@ internal sealed partial class JsonYamlConverterGuiTool : IGuiTool, IDisposable
             default:
                 throw new NotSupportedException();
         }
-        _settingsProvider.SetSetting(JsonYamlConverterGuiTool.conversionMode, conversionMode);
+
         _inputTextArea.Text(_outputTextArea.Text);
     }
 
     private void OnIndentationModelChanged(Indentation indentationMode)
     {
-        _settingsProvider.SetSetting(JsonYamlConverterGuiTool.indentationMode, indentationMode);
-        _inputTextArea.Text(_outputTextArea.Text);
+        StartConvert(_inputTextArea.Text);
     }
 
     private void OnInputTextChanged(string text)
