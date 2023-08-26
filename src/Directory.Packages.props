@@ -22,8 +22,9 @@
     <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="$(DotNetVersion)" Condition="'$(UseMaui)' != 'true'" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
     <PackageVersion Include="Microsoft.TypeScript.MSBuild" Version="5.1.5" />
-    <PackageVersion Include="Microsoft.Windows.CsWin32" Version="0.3.18-beta"/>
+    <PackageVersion Include="Microsoft.Windows.CsWin32" Version="0.3.18-beta" />
     <PackageVersion Include="Moq" Version="4.18.4" />
+    <PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageVersion Include="NuGet.Packaging" Version="6.6.1" />
     <PackageVersion Include="Nuke.Common" Version="7.0.2" />
     <PackageVersion Include="System.Text.Json" Version="$(DotNetVersion)" />
@@ -32,5 +33,6 @@
     <PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
     <PackageVersion Include="xunit" Version="$(XUnit)" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="$(XUnit)" />
+    <PackageVersion Include="YamlDotNet" Version="13.0.0" />
   </ItemGroup>
 </Project>

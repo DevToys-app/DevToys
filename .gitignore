@@ -424,6 +424,7 @@ package-lock.json
 *.js.map
 src/app/dev/DevToys.Blazor/Assets/**/*.js
 src/app/dev/DevToys.Blazor/Assets/**/*.css
+src/app/dev/DevToys.Blazor/Components/**/*.razor.js
 
 # Nuke Build
 .nuke/temp/
