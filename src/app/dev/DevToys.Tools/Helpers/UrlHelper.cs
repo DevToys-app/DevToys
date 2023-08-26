@@ -1,9 +1,35 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using DevToys.Tools.Models;
+using Microsoft.Extensions.Logging;
 
 namespace DevToys.Tools.Helpers;
 
 internal static partial class UrlHelper
 {
+    internal static string EncodeOrDecode(string? input, EncodingConversion conversionMode, ILogger logger, CancellationToken cancellationToken)
+    {
+        string conversionResult
+            = conversionMode switch
+            {
+                EncodingConversion.Encode
+                    => EncodeUrlData(
+                        input,
+                        logger,
+                        cancellationToken),
+
+                EncodingConversion.Decode
+                    => DecodeUrlData(
+                        input,
+                        logger,
+                        cancellationToken),
+
+                _ => throw new NotSupportedException(),
+            };
+
+        cancellationToken.ThrowIfCancellationRequested();
+
+        return conversionResult;
+    }
+
     internal static string EncodeUrlData(string? data, ILogger logger, CancellationToken cancellationToken)
     {
         if (string.IsNullOrWhiteSpace(data))

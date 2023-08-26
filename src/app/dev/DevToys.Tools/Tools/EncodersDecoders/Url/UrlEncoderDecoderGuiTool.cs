@@ -1,4 +1,5 @@
-﻿using DevToys.Tools.Helpers;
+﻿using DevToys.Api;
+using DevToys.Tools.Helpers;
 using DevToys.Tools.Models;
 using Microsoft.Extensions.Logging;
 
@@ -162,30 +163,11 @@ internal sealed partial class UrlEncoderDecoderGuiTool : IGuiTool, IDisposable
     {
         await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
 
-        string conversionResult;
-        switch (_settingsProvider.GetSetting(conversionMode))
-        {
-            case EncodingConversion.Encode:
-                conversionResult
-                    = UrlHelper.EncodeUrlData(
-                        input,
-                        _logger,
-                        cancellationToken);
-                break;
-
-            case EncodingConversion.Decode:
-                conversionResult
-                    = UrlHelper.DecodeUrlData(
-                        input,
-                        _logger,
-                        cancellationToken);
-                break;
-
-            default:
-                throw new NotSupportedException();
-        }
-
-        cancellationToken.ThrowIfCancellationRequested();
-        _outputText.Text(conversionResult);
+        _outputText.Text(
+            UrlHelper.EncodeOrDecode(
+                input,
+                _settingsProvider.GetSetting(conversionMode),
+                _logger,
+                cancellationToken));
     }
 }

@@ -38,6 +38,41 @@ internal static partial class GZipHelper
         return false;
     }
 
+    internal static async Task<(string compressedData, double compressionPercentage)> CompressOrDecompressAsync(
+        string? input,
+        CompressionMode compressionMode,
+        ILogger logger,
+        CancellationToken cancellationToken)
+    {
+        (string data, double differencePercentage) conversionResult;
+
+        switch (compressionMode)
+        {
+            case CompressionMode.Compress:
+                conversionResult
+                    = await CompressGZipDataAsync(
+                        input,
+                        logger,
+                        cancellationToken);
+                break;
+
+            case CompressionMode.Decompress:
+                conversionResult
+                    = await DecompressGZipDataAsync(
+                        input,
+                        logger,
+                        cancellationToken);
+                break;
+
+            default:
+                throw new NotSupportedException();
+        }
+
+        cancellationToken.ThrowIfCancellationRequested();
+
+        return conversionResult;
+    }
+
     internal static async Task<(string compressedData, double compressionPercentage)> CompressGZipDataAsync(string? data, ILogger logger, CancellationToken cancellationToken)
     {
         if (string.IsNullOrWhiteSpace(data))

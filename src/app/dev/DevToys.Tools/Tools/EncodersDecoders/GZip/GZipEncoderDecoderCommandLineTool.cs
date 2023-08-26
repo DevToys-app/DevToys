@@ -27,24 +27,14 @@ internal sealed class GZipEncoderDecoderCommandLineTool : ICommandLineTool
 
     public async ValueTask<int> InvokeAsync(ILogger logger, CancellationToken cancellationToken)
     {
-        (string data, double differencePercentage) output;
+        (string data, double differencePercentage) conversionResult
+            = await GZipHelper.CompressOrDecompressAsync(
+                Input,
+                CompressionMode,
+                logger,
+                cancellationToken);
 
-        switch (CompressionMode)
-        {
-            case CompressionMode.Compress:
-                output = await GZipHelper.CompressGZipDataAsync(Input, logger, cancellationToken);
-                break;
-
-            case CompressionMode.Decompress:
-                output = await GZipHelper.DecompressGZipDataAsync(Input, logger, cancellationToken);
-                break;
-
-            default:
-                throw new NotSupportedException();
-        }
-
-        cancellationToken.ThrowIfCancellationRequested();
-        Console.WriteLine(output.data);
+        Console.WriteLine(conversionResult.data);
 
         return 0;
     }

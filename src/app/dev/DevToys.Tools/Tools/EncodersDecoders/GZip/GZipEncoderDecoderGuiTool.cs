@@ -199,31 +199,13 @@ internal sealed partial class GZipEncoderDecoderGuiTool : IGuiTool, IDisposable
     {
         await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
 
-        (string data, double differencePercentage) conversionResult;
+        (string data, double differencePercentage) conversionResult
+            = await GZipHelper.CompressOrDecompressAsync(
+                input,
+                _settingsProvider.GetSetting(compressionMode),
+                _logger,
+                cancellationToken);
 
-        switch (_settingsProvider.GetSetting(compressionMode))
-        {
-            case CompressionMode.Compress:
-                conversionResult
-                    = await GZipHelper.CompressGZipDataAsync(
-                        input,
-                        _logger,
-                        cancellationToken);
-                break;
-
-            case CompressionMode.Decompress:
-                conversionResult
-                    = await GZipHelper.DecompressGZipDataAsync(
-                        input,
-                        _logger,
-                        cancellationToken);
-                break;
-
-            default:
-                throw new NotSupportedException();
-        }
-
-        cancellationToken.ThrowIfCancellationRequested();
         _compressionRatioInfoBar.Description(string.Format(GZipEncoderDecoder.CompressionRatioValue, conversionResult.differencePercentage));
         _outputText.Text(conversionResult.data);
     }

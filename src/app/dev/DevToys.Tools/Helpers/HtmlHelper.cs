@@ -1,10 +1,36 @@
 ﻿using System.Web;
+using DevToys.Tools.Models;
 using Microsoft.Extensions.Logging;
 
 namespace DevToys.Tools.Helpers;
 
 internal static partial class HtmlHelper
 {
+    internal static string EncodeOrDecode(string? input, EncodingConversion conversionMode, ILogger logger, CancellationToken cancellationToken)
+    {
+        string conversionResult
+            = conversionMode switch
+            {
+                EncodingConversion.Encode
+                    => EncodeHtmlData(
+                        input,
+                        logger,
+                        cancellationToken),
+
+                EncodingConversion.Decode
+                    => DecodeHtmlData(
+                        input,
+                        logger,
+                        cancellationToken),
+
+                _ => throw new NotSupportedException(),
+            };
+
+        cancellationToken.ThrowIfCancellationRequested();
+
+        return conversionResult;
+    }
+
     internal static string EncodeHtmlData(string? data, ILogger logger, CancellationToken cancellationToken)
     {
         if (string.IsNullOrWhiteSpace(data))

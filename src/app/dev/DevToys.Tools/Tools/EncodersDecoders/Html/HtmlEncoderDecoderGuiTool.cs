@@ -162,30 +162,11 @@ internal sealed partial class HtmlEncoderDecoderGuiTool : IGuiTool, IDisposable
     {
         await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
 
-        string conversionResult;
-        switch (_settingsProvider.GetSetting(conversionMode))
-        {
-            case EncodingConversion.Encode:
-                conversionResult
-                    = HtmlHelper.EncodeHtmlData(
-                        input,
-                        _logger,
-                        cancellationToken);
-                break;
-
-            case EncodingConversion.Decode:
-                conversionResult
-                    = HtmlHelper.DecodeHtmlData(
-                        input,
-                        _logger,
-                        cancellationToken);
-                break;
-
-            default:
-                throw new NotSupportedException();
-        }
-
-        cancellationToken.ThrowIfCancellationRequested();
-        _outputText.Text(conversionResult);
+        _outputText.Text(
+            HtmlHelper.EncodeOrDecode(
+                input,
+                _settingsProvider.GetSetting(conversionMode),
+                _logger,
+                cancellationToken));
     }
 }

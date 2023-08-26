@@ -27,23 +27,12 @@ internal sealed class HtmlEncoderDecoderCommandLineTool : ICommandLineTool
 
     public ValueTask<int> InvokeAsync(ILogger logger, CancellationToken cancellationToken)
     {
-        string output;
-        switch (EncodingConversionMode)
-        {
-            case EncodingConversion.Encode:
-                output = HtmlHelper.EncodeHtmlData(Input, logger, cancellationToken);
-                break;
-
-            case EncodingConversion.Decode:
-                output = HtmlHelper.EncodeHtmlData(Input, logger, cancellationToken);
-                break;
-
-            default:
-                throw new NotSupportedException();
-        }
-
-        cancellationToken.ThrowIfCancellationRequested();
-        Console.WriteLine(output);
+        Console.WriteLine(
+            HtmlHelper.EncodeOrDecode(
+                Input,
+                EncodingConversionMode,
+                logger,
+                cancellationToken));
 
         return new ValueTask<int>(0);
     }

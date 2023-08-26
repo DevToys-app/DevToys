@@ -27,23 +27,12 @@ internal sealed class UrlEncoderDecoderCommandLineTool : ICommandLineTool
 
     public ValueTask<int> InvokeAsync(ILogger logger, CancellationToken cancellationToken)
     {
-        string output;
-        switch (EncodingConversionMode)
-        {
-            case EncodingConversion.Encode:
-                output = UrlHelper.EncodeUrlData(Input, logger, cancellationToken);
-                break;
-
-            case EncodingConversion.Decode:
-                output = UrlHelper.EncodeUrlData(Input, logger, cancellationToken);
-                break;
-
-            default:
-                throw new NotSupportedException();
-        }
-
-        cancellationToken.ThrowIfCancellationRequested();
-        Console.WriteLine(output);
+        Console.WriteLine(
+            UrlHelper.EncodeOrDecode(
+                Input,
+                EncodingConversionMode,
+                logger,
+                cancellationToken));
 
         return new ValueTask<int>(0);
     }
