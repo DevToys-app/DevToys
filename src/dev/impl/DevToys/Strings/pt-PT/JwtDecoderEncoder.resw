@@ -136,7 +136,7 @@
     <value>Tipo</value>
   </data>
   <data name="Value" xml:space="preserve">
-    <value>Value</value>
+    <value>Valor</value>
   </data>
   <data name="DescriptionHeader" xml:space="preserve">
     <value>Descrição</value>
@@ -274,34 +274,34 @@
     <value>Assinatura inválida</value>
   </data>
   <data name="NoDescription" xml:space="preserve">
-    <value>No description</value>
+    <value>Sem descrição</value>
   </data>
   <data name="iss" xml:space="preserve">
-    <value>The "iss" (issuer) claim identifies the principal that issued the JWT. The processing of this claim is generally application specific. The "iss" value is a case-sensitive string containing a StringOrURI value. Use of this claim is OPTIONAL.</value>
+    <value>A afirmação de "iss" (emissor) identifica o principal que emitiu o JWT. O processamento desta reivindicação é geralmente específico para aplicação. O valor "iss" é uma string sensível a maiúsculas de minúsculas, contendo um valor de StringOrURI. O uso desta reivindicação é OPCIONAL.</value>
   </data>
   <data name="sub" xml:space="preserve">
-    <value>The "sub" (subject) claim identifies the principal that is the subject of the JWT. The claims in a JWT are normally statements about the subject. The subject value MUST either be scoped to be locally unique in the context of the issuer or be globally unique. The processing of this claim is generally application specific. The "sub" value is a case-sensitive string containing a StringOrURI value. Use of this claim is OPTIONAL.</value>
+    <value>A reivindicação de "sub" (assunto) identifica o principal que é o assunto da JWT. As reivindicações de uma JWT são normalmente declarações sobre o assunto. O valor do assunto DEVE ser escopo para ser local único no contexto do emissor ou ser globalmente único. O processamento desta reivindicação é geralmente específico para aplicação. O valor "sub" é uma string sensível a maiúsculas e minúsculas que contém um valor de StringOrURI. O uso desta reivindicação é OPCIONAL.</value>
   </data>
   <data name="aud" xml:space="preserve">
-    <value>The "aud" (audience) claim identifies the recipients that the JWT is intended for. Each principal intended to process the JWT MUST identify itself with a value in the audience claim. If the principal processing the claim does not identify itself with a value in the "aud" claim when this claim is present, then the JWT MUST be rejected. In the general case, the "aud" value is an array of case-sensitive strings, each containing a StringOrURI value. In the special case when the JWT has one audience, the "aud" value MAY be a single case-sensitive string containing a StringOrURI value. The interpretation of audience values is generally application specific. Use of this claim is OPTIONAL.</value>
+    <value>A afirmação de "aud" (público) identifica os destinatários para os quais a JWT se destina. Cada diretor pretendia processar o JWT DEVE identificar-se com um valor na reivindicação de público. Se o processamento principal da reivindicação não se identifica com um valor na reivindicação "aud" quando essa reivindicação está presente, então a JWT DEVE ser rejeitada. No caso geral, o valor "aud" é um array de sequências de caracteres diferenciadas de maiúsculas de minúsculas, cada uma contendo um valor de StringOrURI. No caso especial quando a JWT tem um público, o valor de "aud" PODE SER uma única sequência de caracteres sensível a maiúsculas e minúsculas contendo um valor de StringOrURI. A interpretação dos valores do público é geralmente específica da aplicação. O uso desta reivindicação é a OPCIONAL.</value>
   </data>
   <data name="exp" xml:space="preserve">
-    <value>The "exp" (expiration time) claim identifies the expiration time on or after which the JWT MUST NOT be accepted for processing. The processing of the "exp" claim requires that the current date/time MUST be before the expiration date/time listed in the "exp" claim. Implementers MAY provide for some small leeway, usually no more than a few minutes, to account for clock skew. Its value MUST be a number containing a NumericDate value. Use of this claim is OPTIONAL.</value>
+    <value>A reivindicação "exp" (tempo de expiração) identifica o tempo de expiração ou após o qual a JWT NÃO DEVE aceitar para processamento. O processamento da reivindicação "exp" requer que a data/hora atual DEVE ser antes da data/hora de expiração na lista de "exp". Os implementadores DEVEM prever uma pequena margem de manobra, geralmente não mais do que alguns minutos, para dar conta do relógio vivido. O seu valor DEVE ser um número que contém um valor numérico. O uso desta reivindicação é OPCIONAL.</value>
   </data>
   <data name="nbf" xml:space="preserve">
-    <value>The "nbf" (not before) claim identifies the time before which the JWT MUST NOT be accepted for processing. The processing of the "nbf" claim requires that the current date/time MUST be after or equal to the not-before date/time listed in the "nbf" claim. Implementers MAY provide for some small leeway, usually no more than a few minutes, to account for clock skew. Its value MUST be a number containing a NumericDate value. Use of this claim is OPTIONAL.</value>
+    <value>A reivindicação de "nbf" (não antes) identifica o tempo antes do qual o JWT NÃO DEVE ser aceito para processamento. O processamento da reivindicação "nbf" requer que a data/hora atual DEVE ser posterior ou igual à data/hora não anterior listada na reclamação "nbf". Os implementadores DEVEM prever uma pequena margem de manobra, geralmente não mais do que alguns minutos, para dar conta do relógio vivido. O seu valor DEVE ser um número que contém um valor numérico. O uso desta reivindicação é OPCIONAL.</value>
   </data>
   <data name="iat" xml:space="preserve">
-    <value>The "iat" (issued at) claim identifies the time at which the JWT was issued. This claim can be used to determine the age of the JWT. Its value MUST be a number containing a NumericDate value. Use of this claim is OPTIONAL.</value>
+    <value>A reivindicação "iat" (emitida em) identifica o momento em que a JWT foi emitida. Esta reivindicação pode ser usada para determinar a idade da JWT. O seu valor DEVE ser um número que contém um valor numérico. O uso desta reivindicação é OPCIONAL.</value>
   </data>
   <data name="jti" xml:space="preserve">
-    <value>The "jti" (JWT ID) claim provides a unique identifier for the JWT. The identifier value MUST be assigned in a manner that ensures that there is a negligible probability that the same value will be accidentally assigned to a different data object; if the application uses multiple issuers, collisions MUST be prevented among values produced by different issuers as well. The "jti" claim can be used to prevent the JWT from being replayed. The "jti" value is a case-sensitive string. Use of this claim is OPTIONAL.</value>
+    <value>A reivindicação de "jti" (JWT ID) fornece um identificador exclusivo para o JWT. O valor do identificador DEVE ser atribuído de uma maneira que garante que haja uma probabilidade insignificante de que o mesmo valor será acidentalmente atribuído a um objeto de dados diferente; se a aplicação utiliza vários emissores, as colisões DEVEM também ser prevenidas entre os valores produzidos por diferentes emissores. A reivindicação "jti" pode ser usada para impedir que a JWT seja reproduzida. O valor do "jti" diferencia maiúsculas de minúsculas. O uso desta reivindicação é OPCIONAL.</value>
   </data>
   <data name="name" xml:space="preserve">
-    <value>End-User's full name in displayable form including all name parts, possibly including titles and suffixes, ordered according to the End-User's locale and preferences.</value>
+    <value>Nome completo do utilizador final em formato exibido, incluindo todos os nomes, possivelmente incluindo títulos e sufixos, ordenados conforme a localidade e as preferências do utilizador final.</value>
   </data>
   <data name="given_name" xml:space="preserve">
-    <value>Given name(s) or first name(s) of the End-User. Note that in some cultures, people can have multiple given names; all can be present, with the names being separated by space characters.</value>
+    <value>Nome(s) do ou primeiro(s) nome(s) do Utilizador final. Observe que, em algumas culturas, as pessoas podem ter vários nomes indicados; todos podem estar presentes, com os nomes sendo separados por caracteres de espaço.</value>
   </data>
   <data name="family_name" xml:space="preserve">
     <value>Surname(s) or last name(s) of the End-User. Note that in some cultures, people can have multiple family names or no family name; all can be present, with the names being separated by space characters.</value>
