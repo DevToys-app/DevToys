@@ -20,7 +20,10 @@ public partial class UIElementPresenter : ComponentBase, IDisposable
         // of the current Button being clicked, but due to optimization, it doesn't re-evaluate other elements that may have changed.
         // As a workaround, we here listen to UIElement.PropertyChanged to be notified when a property of the IUIElement has changed so
         // we can let Blazor know that we should re-render this element.
-        StateHasChanged();
+        InvokeAsync(() =>
+        {
+            StateHasChanged();
+        });
     }
 
     public void Dispose()

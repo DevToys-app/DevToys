@@ -29,6 +29,16 @@
     -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Tools\EncodersDecoders\GZip\GZipEncoderDecoder.Designer.cs">
+      <DependentUpon>GZipEncoderDecoder.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Tools\EncodersDecoders\Url\UrlEncoderDecoder.Designer.cs">
+      <DependentUpon>UrlEncoderDecoder.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Tools\EncodersDecoders\Html\HtmlEncoderDecoder.Designer.cs">
       <DependentUpon>HtmlEncoderDecoder.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -51,6 +61,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="Tools\EncodersDecoders\GZip\GZipEncoderDecoder.resx">
+      <LastGenOutput>GZipEncoderDecoder.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Tools\EncodersDecoders\Url\UrlEncoderDecoder.resx">
+      <LastGenOutput>UrlEncoderDecoder.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Tools\EncodersDecoders\Html\HtmlEncoderDecoder.resx">
       <LastGenOutput>HtmlEncoderDecoder.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
