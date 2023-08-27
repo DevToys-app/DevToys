@@ -312,23 +312,7 @@ public static partial class GUI
 
         T currentSettingValue = settingsProvider.GetSetting(settingDefinition);
 
-        dropDownList.Select(
-            dropDownList.Items?.FirstOrDefault((IUIDropDownListItem item) =>
-            {
-                if (item.Value is null)
-                {
-                    if (currentSettingValue is null)
-                    {
-                        return true;
-                    }
-
-                    return false;
-                }
-
-                Guard.IsOfType<T>(item.Value);
-
-                return item.Value.Equals(currentSettingValue);
-            }));
+        dropDownList.Select(FindItemInDropDownList<T>(dropDownList, currentSettingValue));
 
         dropDownList.OnItemSelected((IUIDropDownListItem? item) =>
         {
@@ -343,6 +327,19 @@ public static partial class GUI
             }
             return ValueTask.CompletedTask;
         });
+
+        settingsProvider.SettingChanged += (object? sender, SettingChangedEventArgs e) =>
+        {
+            if (e.SettingName == settingDefinition.Name)
+            {
+                IUIDropDownListItem? itemToSelect = FindItemInDropDownList<T>(dropDownList, e.NewValue);
+
+                if (itemToSelect is not null && dropDownList.SelectedItem != itemToSelect)
+                {
+                    dropDownList.Select(itemToSelect);
+                }
+            }
+        };
 
         settingElement.InteractiveElement(dropDownList);
         return element;
@@ -400,7 +397,62 @@ public static partial class GUI
             return ValueTask.CompletedTask;
         });
 
+        settingsProvider.SettingChanged += (object? sender, SettingChangedEventArgs e) =>
+        {
+            if (e.SettingName == settingDefinition.Name)
+            {
+                Guard.IsOfType<bool>(e.NewValue!);
+                bool settingValue = (bool)e.NewValue!;
+                if (settingValue)
+                {
+                    if (!toggleSwitch.IsOn)
+                    {
+                        toggleSwitch.On();
+                        if (!ignoreStateDescription)
+                        {
+                            settingElement.StateDescription = stateDescriptionWhenOn;
+                        }
+                    }
+                }
+                else
+                {
+                    if (toggleSwitch.IsOn)
+                    {
+                        toggleSwitch.Off();
+                        if (!ignoreStateDescription)
+                        {
+                            settingElement.StateDescription = stateDescriptionWhenOff;
+                        }
+                    }
+                }
+            }
+        };
+
         settingElement.InteractiveElement(toggleSwitch);
         return element;
+    }
+
+    private static IUIDropDownListItem? FindItemInDropDownList<T>(IUISelectDropDownList element, object? value)
+    {
+        return element.Items?.FirstOrDefault((IUIDropDownListItem item) =>
+        {
+            if (item.Value is null)
+            {
+                if (value is null)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+
+            Guard.IsOfType<T>(item.Value);
+            if (value is not null)
+            {
+                Guard.IsOfType<T>(value);
+            }
+
+            return item.Value.Equals(value);
+        });
     }
 }
