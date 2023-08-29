@@ -139,10 +139,10 @@
     <value>Laajenna</value>
   </data>
   <data name="ShowInfo" xml:space="preserve">
-    <value>Show additional info</value>
+    <value>Näytä lisätiedot</value>
   </data>
   <data name="HideInfo" xml:space="preserve">
-    <value>Hide additional info</value>
+    <value>Piilota lisätiedot</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
     <value>Selaa tiedostoja</value>
