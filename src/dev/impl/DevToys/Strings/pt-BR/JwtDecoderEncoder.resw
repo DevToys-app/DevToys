@@ -298,28 +298,28 @@
     <value>A reivindicação de "jti" (JWT ID) fornece um identificador exclusivo para o JWT. O valor do identificador DEVE ser atribuído de uma maneira que garante que haja uma probabilidade insignificante de que o mesmo valor será acidentalmente atribuído a um objeto de dados diferente; se a aplicação utiliza vários emissores, as colisões DEVEM também serem prevenidas entre os valores produzidos por diferentes emissores. A reivindicação "jti" pode ser usada para impedir que a JWT seja reproduzida. O valor do "jti" diferencia maiúsculas de minúsculas. O uso desta reivindicação é OPTIONAL.</value>
   </data>
   <data name="name" xml:space="preserve">
-    <value>End-User's full name in displayable form including all name parts, possibly including titles and suffixes, ordered according to the End-User's locale and preferences.</value>
+    <value>Nome completo do usuário final em formato de exibição, incluindo todas as partes do nome, possivelmente incluindo títulos e sufixos, ordenados conforme localidade e as preferências do usuário final.</value>
   </data>
   <data name="given_name" xml:space="preserve">
-    <value>Given name(s) or first name(s) of the End-User. Note that in some cultures, people can have multiple given names; all can be present, with the names being separated by space characters.</value>
+    <value>Nome(s) próprio(s) do Usuário Final. Notar que, em algumas culturas, algumas pessoas podem ter vários nomes próprios. Todos podem estar presentes, com as partes separadas por espaços.</value>
   </data>
   <data name="family_name" xml:space="preserve">
-    <value>Surname(s) or last name(s) of the End-User. Note that in some cultures, people can have multiple family names or no family name; all can be present, with the names being separated by space characters.</value>
+    <value>Sobrenome(s) ou sobrenome(s) do usuário final. Observe que, em algumas culturas, as pessoas podem ter múltiplos nomes de família (ou nenhum); todos podem estar presentes, com os nomes sendo separados por espaços.</value>
   </data>
   <data name="middle_name" xml:space="preserve">
-    <value>Middle name(s) of the End-User. Note that in some cultures, people can have multiple middle names; all can be present, with the names being separated by space characters. Also note that in some cultures, middle names are not used.</value>
+    <value>Nome do meio do Usuário Final. Notar que, em algumas culturas, algumas pessoas podem ter vários nomes do meio; todos podem estar presentes, separados por espaços. Notar também, que em algumas culturas, nomes do meio podem não ser usados.</value>
   </data>
   <data name="nickname" xml:space="preserve">
-    <value>Casual name of the End-User that may or may not be the same as the given_name. For instance, a nickname value of Mike might be returned alongside a given_name value of Michael.</value>
+    <value>Nome casual (apelido) do Usuário Final que pode ou não ser o mesmo que o nome_proprio. Por exemplo, pode ser dado um apelido de "Zé" com o nome_proprio de "José".</value>
   </data>
   <data name="preferred_username" xml:space="preserve">
-    <value>Shorthand name by which the End-User wishes to be referred to at the RP, such as janedoe or j.doe. This value MAY be any valid JSON string including special characters such as @, /, or whitespace. The RP MUST NOT rely upon this value being unique.</value>
+    <value>Nome abreviado pelo qual o usuário gostaria de ser referenciado no RP, como jsilva, ou j.silva. Este valor PODE ser qualquer texto válido em JSON, incluindo caracteres especiais como @, /, ou espaços. O RP NÃO DEVE confiar na unicidade deste valor.</value>
   </data>
   <data name="profile" xml:space="preserve">
-    <value>URL of the End-User's profile page. The contents of this Web page SHOULD be about the End-User.</value>
+    <value>URL da página de perfil do Usuário Final. O conteúdo desta página DEVERIA ser sobre o Usuário Final.</value>
   </data>
   <data name="picture" xml:space="preserve">
-    <value>URL of the End-User's profile picture. This URL MUST refer to an image file (for example, a PNG, JPEG, or GIF image file), rather than to a Web page containing an image. Note that this URL SHOULD specifically reference a profile photo of the End-User suitable for displaying when describing the End-User, rather than an arbitrary photo taken by the End-User.</value>
+    <value>URL da foto de perfil do Usuário Final. A URL DEVE apontar para um arquivo de imagem (por exemplo, um arquivo PNG, JPEG ou GIF), ao invés de uma página na web que contenha esta imagem. Notar que esta URL DEVERIA referenciar uma foto de perfil do Usuário Final própria para descrever o Usuário Final, em vez de uma foto arbitrária tirada por este.</value>
   </data>
   <data name="website" xml:space="preserve">
     <value>URL of the End-User's Web page or blog. This Web page SHOULD contain information published by the End-User or an organization that the End-User is affiliated with.</value>
