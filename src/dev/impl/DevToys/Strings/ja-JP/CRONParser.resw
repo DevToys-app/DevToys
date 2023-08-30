@@ -124,7 +124,7 @@
     <value>構成</value>
   </data>
   <data name="UseSecondsDescription" xml:space="preserve">
-    <value>Cron 式に秒を使用</value>
+    <value>Choose whether the Cron expression should include seconds in its definition</value>
   </data>
   <data name="UseSecondsTitle" xml:space="preserve">
     <value>モードの選択</value>
