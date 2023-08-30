@@ -124,7 +124,7 @@
     <value>設定</value>
   </data>
   <data name="UseSecondsDescription" xml:space="preserve">
-    <value>選擇 Cron 表達式是否要在定義中包含秒</value>
+    <value>Choose whether the Cron expression should include seconds in its definition</value>
   </data>
   <data name="UseSecondsTitle" xml:space="preserve">
     <value>Cron 模式</value>
