@@ -124,7 +124,7 @@
     <value>कॉन्फ़िगरेशनशीर्षक</value>
   </data>
   <data name="UseSecondsDescription" xml:space="preserve">
-    <value>वह चुनें जो क्रॉन एक्सप्रेशन में उसकी परिभाषा में सेकंड शामिल होना चाहिए</value>
+    <value>Choose whether the Cron expression should include seconds in its definition</value>
   </data>
   <data name="UseSecondsTitle" xml:space="preserve">
     <value>क्रोन मोड</value>
