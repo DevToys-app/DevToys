@@ -124,7 +124,7 @@
     <value>Διαμόρφωση</value>
   </data>
   <data name="UseSecondsDescription" xml:space="preserve">
-    <value>Επιλέξτε ό, τι έκφραση Cron θα περιλαμβάνει δευτερόλεπτα στον ορισμό της</value>
+    <value>Choose whether the Cron expression should include seconds in its definition</value>
   </data>
   <data name="UseSecondsTitle" xml:space="preserve">
     <value>Λειτουργία Cron</value>
