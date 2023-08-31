@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Composition;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
 using DevToys.Helpers;
@@ -54,6 +55,11 @@ namespace DevToys.ViewModels.Tools.Generators.PasswordGenerator
                 name: $"{nameof(PasswordGeneratorToolViewModel)}.{nameof(SpecialCharacters)}",
                 isRoaming: true,
                 defaultValue: true);
+
+        /// <summary>
+        /// Excluded characters from password.
+        /// </summary>
+        private static string _excludedCharacters = string.Empty;
 
         /// <summary>
         /// How long the password should be.
@@ -146,6 +152,12 @@ namespace DevToys.ViewModels.Tools.Generators.PasswordGenerator
                 Validate();
             }
         }
+        
+        internal string ExcludedCharacters
+        {
+            get => _excludedCharacters;
+            set => SetProperty(ref _excludedCharacters, value);
+        }
 
         internal int LengthOfPasswordToGenerate
         {
@@ -208,50 +220,71 @@ namespace DevToys.ViewModels.Tools.Generators.PasswordGenerator
             {
                 return;
             }
-            
+
+            // Generate a random password using the the combined character set.
             var sb = new StringBuilder();
             for (int i = 0; i < NumberOfPasswordsToGenerate; i++)
             {
+                // Combine all character sets together.
                 string[] randomChars = new[] {
                     string.Empty,
                     string.Empty,
                     string.Empty,
                     string.Empty
                 };
-            
+
                 var rand = new CryptoRandom();
                 var chars = new List<char>();
 
                 if (HasUppercase)
                 {
-                    randomChars[0] = UppercaseLetters;
-                    chars.Insert(rand.Next(0, chars.Count), randomChars[0][rand.Next(0, randomChars[0].Length)]);
+                    randomChars[0] = ExcludeCharacters(UppercaseLetters);
+                    
+                    // If the whole set gets excluded don't include it.
+                    if (randomChars[0].Length != 0)
+                    {
+                        chars.Insert(rand.Next(0, chars.Count), randomChars[0][rand.Next(0, randomChars[0].Length)]);   
+                    }
                 }
 
                 if (HasLowercase)
                 {
-                    randomChars[1] = LowercaseLetters;
-                    chars.Insert(rand.Next(0, chars.Count), randomChars[1][rand.Next(0, randomChars[1].Length)]);
+                    randomChars[1] = ExcludeCharacters(LowercaseLetters);
+                    if (randomChars[0].Length != 0)
+                    {
+                        chars.Insert(rand.Next(0, chars.Count), randomChars[1][rand.Next(0, randomChars[1].Length)]);
+                    }
                 }
 
                 if (HasNumbers)
                 {
-                    randomChars[2] = Digits;
-                    chars.Insert(rand.Next(0, chars.Count), randomChars[2][rand.Next(0, randomChars[2].Length)]);
+                    randomChars[2] = ExcludeCharacters(Digits);
+                    if (randomChars[0].Length != 0)
+                    {
+                        chars.Insert(rand.Next(0, chars.Count), randomChars[2][rand.Next(0, randomChars[2].Length)]);
+                    }
                 }
 
                 if (HasSpecialCharacters)
                 {
-                    randomChars[3] = NonAlphanumerics;
-                    chars.Insert(rand.Next(0, chars.Count), randomChars[3][rand.Next(0, randomChars[3].Length)]);
+                    randomChars[3] = ExcludeCharacters(NonAlphanumerics);
+                    if (randomChars[0].Length != 0)
+                    {
+                        chars.Insert(rand.Next(0, chars.Count), randomChars[3][rand.Next(0, randomChars[3].Length)]);
+                    }
                 }
-
+                
                 randomChars = randomChars.Where(r => r.Length > 0).ToArray();
-                for (int j = chars.Count; j < LengthOfPasswordToGenerate; j++)
+                
+                // Only continue if the user hasn't excluded everything.
+                if (randomChars.Length != 0)
                 {
-                    string rcs = randomChars[rand.Next(0, randomChars.Length)];
-                    chars.Insert(rand.Next(0, chars.Count),
-                        rcs[rand.Next(0, rcs.Length)]);
+                    for (int j = chars.Count; j < LengthOfPasswordToGenerate; j++)
+                    {
+                        string rcs = randomChars[rand.Next(0, randomChars.Length)];
+                        chars.Insert(rand.Next(0, chars.Count),
+                            rcs[rand.Next(0, rcs.Length)]);
+                    }
                 }
 
                 sb.AppendLine(new string(chars.ToArray()));
@@ -264,6 +297,18 @@ namespace DevToys.ViewModels.Tools.Generators.PasswordGenerator
         private void Validate()
         {
             ErrorMsg = HasAnyCharacterSets ? default : Strings.NoCharacterSetsWarning;
+        }
+
+        private string ExcludeCharacters(string from)
+        {
+            try
+            {
+                return Regex.Replace(from, $@"[{_excludedCharacters}]", "");
+            }
+            catch
+            {
+                return from;
+            }
         }
 
         private bool HasAnyCharacterSets => HasUppercase || HasLowercase || HasNumbers | HasSpecialCharacters;

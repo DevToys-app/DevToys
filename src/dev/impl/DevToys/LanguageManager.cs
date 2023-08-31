@@ -2604,6 +2604,11 @@ namespace DevToys
         /// Gets the resource SpecialCharacters.
         /// </summary>
         public string SpecialCharacters => _resources.GetString("SpecialCharacters");
+        
+        /// <summary>
+        /// Gets the resource ExcludeCharacters.
+        /// </summary>
+        public string ExcludeCharacters => _resources.GetString("ExcludeCharacters");
 
         /// <summary>
         /// Gets the resource Length.
