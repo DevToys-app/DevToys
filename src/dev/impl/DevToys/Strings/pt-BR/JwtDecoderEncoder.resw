@@ -325,7 +325,7 @@
     <value>URL of the End-User's Web page or blog. This Web page SHOULD contain information published by the End-User or an organization that the End-User is affiliated with.</value>
   </data>
   <data name="email" xml:space="preserve">
-    <value>O endereço de e-mail preferido do Usuário final. Seu valor DEVE estar de acordo com a sintaxe addr-spec RFC. O RP NÃO DEVE confiar que esse valor seja exclusivo.</value>
+    <value>O endereço de e-mail preferido do Usuário final. Seu valor DEVE estar de acordo com a sintaxe addr-spec do RFC 5322. O RP NÃO DEVE confiar que esse valor seja exclusivo.</value>
   </data>
   <data name="email_verified" xml:space="preserve">
     <value>Verdadeiro se o endereço de email do Usuário Final foi verificado; falso se não. Quando o valor desta declaração é verdadeiro, significa que o OP tomou medidas afirmativas para assegurar que este endereço de email estava sob controle do Usuário Final no momento em que a validação foi performada. Os meios pelos quais o endereço de email são validados são específicos ao context, e dependentes da estrutura de confiança, ou acordos contratuais por onde as partes operam.</value>
