@@ -139,7 +139,7 @@
     <value>Value</value>
   </data>
   <data name="DescriptionHeader" xml:space="preserve">
-    <value>Description</value>
+    <value>Beskrivelse</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Dekode en JWT-header, payload og signatur</value>
