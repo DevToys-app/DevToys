@@ -124,7 +124,7 @@
     <value>Nullstill</value>
   </data>
   <data name="Collapse" xml:space="preserve">
-    <value>Collapse</value>
+    <value>Skjul</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>Kopiere</value>
@@ -136,13 +136,13 @@
     <value>Slett</value>
   </data>
   <data name="Expand" xml:space="preserve">
-    <value>Expand</value>
+    <value>Vis</value>
   </data>
   <data name="ShowInfo" xml:space="preserve">
-    <value>Show additional info</value>
+    <value>Vis tilleggsinformasjon</value>
   </data>
   <data name="HideInfo" xml:space="preserve">
-    <value>Hide additional info</value>
+    <value>Skjul tilleggsinformasjon</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
     <value>Bla gjennom filer</value>
