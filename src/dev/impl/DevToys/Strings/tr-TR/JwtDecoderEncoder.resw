@@ -301,7 +301,7 @@
     <value>End-User's full name in displayable form including all name parts, possibly including titles and suffixes, ordered according to the End-User's locale and preferences.</value>
   </data>
   <data name="given_name" xml:space="preserve">
-    <value>Given name(s) or first name(s) of the End-User. Note that in some cultures, people can have multiple given names; all can be present, with the names being separated by space characters.</value>
+    <value>Son Kullanıcının doğum adı(ları) ya da ilk ismi(leri). Bazı kültürlerde insanların birden fazla adı olabileceğini unutmayın; ismin bir bütün olarak eklenmesi için isimleri boşluk karakteriyle ayırın.</value>
   </data>
   <data name="family_name" xml:space="preserve">
     <value>Surname(s) or last name(s) of the End-User. Note that in some cultures, people can have multiple family names or no family name; all can be present, with the names being separated by space characters.</value>
