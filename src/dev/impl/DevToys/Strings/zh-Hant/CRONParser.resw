@@ -124,7 +124,7 @@
     <value>設定</value>
   </data>
   <data name="UseSecondsDescription" xml:space="preserve">
-    <value>選擇 Cron 表達式是否要在定義中包含秒</value>
+    <value>選擇 Cron 運算式是否要在定義中包含秒</value>
   </data>
   <data name="UseSecondsTitle" xml:space="preserve">
     <value>Cron 模式</value>
@@ -133,19 +133,19 @@
     <value>Cron 剖析器</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>剖析 Cron 表達式以取得排程日期</value>
+    <value>剖析 Cron 運算式以取得排程日期</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Cron 表達式剖析器</value>
+    <value>Cron 運算式剖析器</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>Cron</value>
   </data>
   <data name="CronErrorMessage" xml:space="preserve">
-    <value>Cron 表達式無效</value>
+    <value>Cron 運算式無效</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
-    <value>要剖析的 Cron 表達式</value>
+    <value>要剖析的 Cron 運算式</value>
   </data>
   <data name="OutputDateTimeDescription" xml:space="preserve">
     <value>預定日期的格式</value>

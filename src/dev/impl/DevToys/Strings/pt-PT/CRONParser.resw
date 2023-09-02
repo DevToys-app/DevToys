@@ -124,7 +124,7 @@
     <value>Configuração</value>
   </data>
   <data name="UseSecondsDescription" xml:space="preserve">
-    <value>Escolher qualquer expressão Cron deve incluir segundos na sua definição</value>
+    <value>Escolha se a expressão Cron deve incluir segundos na sua definição</value>
   </data>
   <data name="UseSecondsTitle" xml:space="preserve">
     <value>Modo Cron</value>

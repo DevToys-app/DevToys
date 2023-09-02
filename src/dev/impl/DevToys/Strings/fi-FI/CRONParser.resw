@@ -124,7 +124,7 @@
     <value>Kokoonpano</value>
   </data>
   <data name="UseSecondsDescription" xml:space="preserve">
-    <value>Valitse mikä tahansa Cron-lauseke, jonka määritelmään kuuluu sekunteja</value>
+    <value>Valitse, sisällytetäänkö Cron-lausekkeen määritelmään sekunteja</value>
   </data>
   <data name="UseSecondsTitle" xml:space="preserve">
     <value>Cron-tila</value>

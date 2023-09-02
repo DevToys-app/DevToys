@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>正規表示式測試工具</value>
+    <value>規則運算式測試工具</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>設定</value>
@@ -136,7 +136,7 @@
     <value>ECMAScript</value>
   </data>
   <data name="EcmaScriptDescription" xml:space="preserve">
-    <value>為表示式啟用符合 ECMAScript 的行為。僅能與忽略文化特性、忽略大小寫，及多行選項同時使用。</value>
+    <value>為運算式啟用符合 ECMAScript 的行為。僅能與忽略文化特性、忽略大小寫，及多行選項同時使用。</value>
   </data>
   <data name="IgnoreCase" xml:space="preserve">
     <value>忽略大小寫</value>
@@ -148,7 +148,7 @@
     <value>忽略空白</value>
   </data>
   <data name="IgnoreWhitespaceDescription" xml:space="preserve">
-    <value>從模式中排除未逸出的空白字元並啟用以 # 標記的註解。然而此並不會影響或排除在字元類別、數量詞或標記正規表示式開頭的權杖中的空白字元。</value>
+    <value>從模式中排除未逸出的空白字元並啟用以 # 標記的註解。然而此並不會影響或排除在字元類別、數量詞或標記規則運算式開頭的權杖中的空白字元。</value>
   </data>
   <data name="Multiline" xml:space="preserve">
     <value>多行</value>
@@ -160,7 +160,7 @@
     <value>選項</value>
   </data>
   <data name="RegularExpression" xml:space="preserve">
-    <value>正規表示式</value>
+    <value>規則運算式</value>
   </data>
   <data name="RightToLeft" xml:space="preserve">
     <value>右至左</value>
@@ -178,13 +178,13 @@
     <value>文字</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>驗證並測試正規表示式</value>
+    <value>驗證並測試規則運算式</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Regex 測試工具</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>正則表示式 正則表達式</value>
+    <value>規則運算式 正則表示式 正則表達式</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
     <value>輸入</value>

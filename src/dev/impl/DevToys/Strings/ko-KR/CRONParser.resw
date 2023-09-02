@@ -124,7 +124,7 @@
     <value>구성</value>
   </data>
   <data name="UseSecondsDescription" xml:space="preserve">
-    <value>Cron 표현식이 정의에 몇 초를 포함해야 하는 항목 선택</value>
+    <value>Cron 식을 정의에 초를 포함할지 여부를 선택합니다</value>
   </data>
   <data name="UseSecondsTitle" xml:space="preserve">
     <value>Cron 모드</value>

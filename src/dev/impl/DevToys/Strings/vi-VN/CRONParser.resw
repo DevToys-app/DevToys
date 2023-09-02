@@ -124,7 +124,7 @@
     <value>Cấu hình</value>
   </data>
   <data name="UseSecondsDescription" xml:space="preserve">
-    <value>Chọn bất kì biểu thức Cron nào bao gồm giây trong định nghĩa của nó</value>
+    <value>Choose whether the Cron expression should include seconds in its definition</value>
   </data>
   <data name="UseSecondsTitle" xml:space="preserve">
     <value>Chế độ Cron</value>

@@ -124,7 +124,7 @@
     <value>Konfigurace</value>
   </data>
   <data name="UseSecondsDescription" xml:space="preserve">
-    <value>Zvolte libovolný Cron výraz, který by měl ve své definici obsahovat sekundy</value>
+    <value>Zvolte zdá má Cron výraz zahrnout do své definice sekundy</value>
   </data>
   <data name="UseSecondsTitle" xml:space="preserve">
     <value>Režim Cronu</value>

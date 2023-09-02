@@ -124,7 +124,7 @@
     <value>الإعدادات</value>
   </data>
   <data name="UseSecondsDescription" xml:space="preserve">
-    <value>اختر أي تعبير Cron يجب أن يتضمن ثوان في تعريفه</value>
+    <value>Choose whether the Cron expression should include seconds in its definition</value>
   </data>
   <data name="UseSecondsTitle" xml:space="preserve">
     <value>وضع Cron</value>

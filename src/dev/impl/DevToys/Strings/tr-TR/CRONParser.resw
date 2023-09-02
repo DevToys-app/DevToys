@@ -124,7 +124,7 @@
     <value>Konfigürasyon</value>
   </data>
   <data name="UseSecondsDescription" xml:space="preserve">
-    <value>Hangi Cron ifadesinin tanımında saniyeler içereceğini seç</value>
+    <value>Cron ifadesinin tanımında saniyeleri içerip içermeyeceğini seçin</value>
   </data>
   <data name="UseSecondsTitle" xml:space="preserve">
     <value>Cron Modu</value>

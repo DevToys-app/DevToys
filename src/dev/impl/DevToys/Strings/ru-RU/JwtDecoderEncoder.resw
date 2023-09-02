@@ -205,10 +205,10 @@
     <value>Подпись</value>
   </data>
   <data name="JwtNotValidated" xml:space="preserve">
-    <value>Token not validated (no parameters selected)</value>
+    <value>Токен не проверен (параметры не выбраны)</value>
   </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>Token Validated</value>
+    <value>Токен прошел проверку</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
     <value>Неверный Публичный Ключ</value>
@@ -223,7 +223,7 @@
     <value>Проверить получателей</value>
   </data>
   <data name="DecodeValidateIssuerSigningKey" xml:space="preserve">
-    <value>Validate issuer signing key</value>
+    <value>Проверить ключ подписи эмитента</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
     <value>Проверить эмитент</value>

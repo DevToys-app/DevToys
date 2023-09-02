@@ -151,7 +151,7 @@
     <value>Tidsformat for fremtidige datoer</value>
   </data>
   <data name="OutputDateTimeTitle" xml:space="preserve">
-    <value>Utdata format</value>
+    <value>Utdataformat</value>
   </data>
   <data name="OutputFormatErrorMessage" xml:space="preserve">
     <value>Tidsformat for utdata er ugyldig</value>
@@ -172,9 +172,9 @@
     <value>Sekunder inkludert (6 - segment Cron)</value>
   </data>
   <data name="DescriptionTitle" xml:space="preserve">
-    <value>Description</value>
+    <value>Beskrivelse</value>
   </data>
   <data name="DescriptionErrorMessage" xml:space="preserve">
-    <value>Unable to generate description</value>
+    <value>Kunne ikke generere beskrivelse</value>
   </data>
 </root>
