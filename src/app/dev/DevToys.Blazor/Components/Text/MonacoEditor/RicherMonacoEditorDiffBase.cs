@@ -302,10 +302,14 @@ public abstract class RicherMonacoEditorDiffBase : MonacoEditorBase
     [JSInvokable]
     public override async Task EventCallbackAsync(string eventName, string eventJson)
     {
-        switch (eventName)
+        if (!_isDisposed)
         {
-            case "OnDidUpdateDiff": await OnDidUpdateDiff.InvokeAsync(this); break;
+            switch (eventName)
+            {
+                case "OnDidUpdateDiff": await OnDidUpdateDiff.InvokeAsync(this); break;
+            }
         }
+
         await base.EventCallbackAsync(eventName, eventJson);
     }
 

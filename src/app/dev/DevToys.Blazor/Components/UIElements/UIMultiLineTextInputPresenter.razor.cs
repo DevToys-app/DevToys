@@ -63,15 +63,7 @@ public partial class UIMultiLineTextInputPresenter : JSStyledComponentBase
         {
             _ignoreChangeComingFromUIMultiLineTextInput = true;
 
-            string documentText;
-            if (ev.Changes.Count == 1)
-            {
-                documentText = ev.Changes[0].Text ?? string.Empty;
-            }
-            else
-            {
-                documentText = await _monacoEditor.GetValueAsync(preserveBOM: null, lineEnding: null);
-            }
+            string documentText = await _monacoEditor.GetValueAsync(preserveBOM: null, lineEnding: null);
 
             UIMultiLineTextInput.Text(documentText);
 

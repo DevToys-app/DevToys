@@ -9,6 +9,8 @@ public abstract class MonacoEditorBase : MefComponentBase, IFocusable
     private static readonly object themeDefinedLock = new();
     private static bool isThemeDefined;
 
+    protected bool _isDisposed;
+
     [Parameter]
     public EventCallback OnDidDispose { get; set; }
 
@@ -111,6 +113,8 @@ public abstract class MonacoEditorBase : MefComponentBase, IFocusable
 
     public override async ValueTask DisposeAsync()
     {
+        _isDisposed = true;
+
         try
         {
             await JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.dispose", Id);

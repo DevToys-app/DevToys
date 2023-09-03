@@ -102,7 +102,7 @@ public partial class MonacoEditor : RicherMonacoEditorBase
             await MonacoEditorHelper.CreateMonacoEditorInstanceAsync(JSRuntime, Id, options, null, Reference);
         }
 
-        if (IsActuallyEnabled != _oldIsActuallyEnabled)
+        if (IsActuallyEnabled != _oldIsActuallyEnabled && !_isDisposed)
         {
             _oldIsActuallyEnabled = IsActuallyEnabled;
 
@@ -146,23 +146,32 @@ public partial class MonacoEditor : RicherMonacoEditorBase
         {
             _isLoaded = true;
             ShowLoading = false;
+
+            if (_settingsProvider is not null)
+            {
+                SettingsProvider_SettingChanged(_settingsProvider, null!);
+            }
+
             StateHasChanged();
         }
     }
 
     private void SettingsProvider_SettingChanged(object? sender, SettingChangedEventArgs e)
     {
-        var options = new EditorUpdateOptions()
+        if (_isLoaded)
         {
-            FontFamily = _settingsProvider.GetSetting(PredefinedSettings.TextEditorFont),
-            LineNumbers = _settingsProvider.GetSetting(PredefinedSettings.TextEditorLineNumbers) ? "on" : "off",
-            RenderLineHighlight = _settingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine) ? "all" : "none",
-            RenderWhitespace = _settingsProvider.GetSetting(PredefinedSettings.TextEditorRenderWhitespace) ? "all" : "none"
-        };
+            var options = new EditorUpdateOptions()
+            {
+                FontFamily = _settingsProvider.GetSetting(PredefinedSettings.TextEditorFont),
+                LineNumbers = _settingsProvider.GetSetting(PredefinedSettings.TextEditorLineNumbers) ? "on" : "off",
+                RenderLineHighlight = _settingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine) ? "all" : "none",
+                RenderWhitespace = _settingsProvider.GetSetting(PredefinedSettings.TextEditorRenderWhitespace) ? "all" : "none"
+            };
 
-        ApplyWordWrapOption(options);
+            ApplyWordWrapOption(options);
 
-        UpdateOptionsAsync(options);
+            UpdateOptionsAsync(options);
+        }
     }
 
     private void ThemeListener_ThemeChanged(object? sender, EventArgs e)
