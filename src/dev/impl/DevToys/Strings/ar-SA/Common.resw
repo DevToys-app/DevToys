@@ -151,7 +151,7 @@
     <value>تصفح المجلدات</value>
   </data>
   <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>قم بسحب وإسقاط أي ملف هنا</value>
+    <value>قم بسحب وإسقاط أي مِلَفّ هنا</value>
   </data>
   <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
     <value>قم بسحب وإسقاط أي ملفات هنا</value>
