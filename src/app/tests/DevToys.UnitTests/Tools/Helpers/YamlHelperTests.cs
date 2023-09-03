@@ -25,13 +25,14 @@ public class YamlHelperTests
     public void ConvertFromJsonShouldReturnEmptyString(string input, string expected)
     {
         // prepare & act
-        string actual = YamlHelper.ConvertFromJson(
+        ToolResult<string> actual = YamlHelper.ConvertFromJson(
             input,
             Indentation.FourSpaces,
             new MockILogger(),
             CancellationToken.None);
 
-        actual.Should().Be(expected);
+        actual.HasSucceeded.Should().BeFalse();
+        actual.Data.Should().Be(expected);
     }
 
     [Fact(DisplayName = "Convert From Json with unsupported Indentation")]
@@ -42,13 +43,14 @@ public class YamlHelperTests
         string expected = string.Empty;
 
         // act
-        string actual = YamlHelper.ConvertFromJson(
+        ToolResult<string> actual = YamlHelper.ConvertFromJson(
             input,
             Indentation.Minified,
             new MockILogger(),
             CancellationToken.None);
 
-        actual.Should().Be(expected);
+        actual.HasSucceeded.Should().BeFalse();
+        actual.Data.Should().Be(expected);
     }
 
     [Fact(DisplayName = "Convert From Json with unsupported Json")]
@@ -59,13 +61,14 @@ public class YamlHelperTests
         string expected = "Expected a digit ('0'-'9'), but instead reached end of data. LineNumber: 0 | BytePositionInLine: 1.";
 
         // act
-        string actual = YamlHelper.ConvertFromJson(
+        ToolResult<string> actual = YamlHelper.ConvertFromJson(
             input,
             Indentation.Minified,
             new MockILogger(),
             CancellationToken.None);
 
-        actual.Should().Be(expected);
+        actual.HasSucceeded.Should().BeFalse();
+        actual.Data.Should().Be(expected);
     }
 
     [Theory]
@@ -73,11 +76,12 @@ public class YamlHelperTests
     [InlineData("{\r\n    \"key\": \"value\",\r\n    \"key2\": 1\r\n  }", "key: value\r\nkey2: 1\r\n")]
     public void ConvertFromJsonWithTwoSpaces(string input, string expectedResult)
     {
-        YamlHelper.ConvertFromJson(
-            input,
-            Indentation.TwoSpaces,
-            new MockILogger(),
-            CancellationToken.None).Should().Be(expectedResult);
+        ToolResult<string> result = YamlHelper.ConvertFromJson(
+             input,
+             Indentation.TwoSpaces,
+             new MockILogger(),
+             CancellationToken.None);
+        result.Data.Should().Be(expectedResult);
     }
 
     [Theory]
@@ -85,11 +89,12 @@ public class YamlHelperTests
     [InlineData("{\r\n    \"key\": \"value\",\r\n    \"key2\": 1\r\n  }", "key: value\r\nkey2: 1\r\n")]
     public void ConvertFromJsonWithFourSpaces(string input, string expectedResult)
     {
-        YamlHelper.ConvertFromJson(
-            input,
-            Indentation.FourSpaces,
-            new MockILogger(),
-            CancellationToken.None).Should().Be(expectedResult);
+        ToolResult<string> result = YamlHelper.ConvertFromJson(
+             input,
+             Indentation.FourSpaces,
+             new MockILogger(),
+             CancellationToken.None);
+        result.Data.Should().Be(expectedResult);
     }
 
     [Theory]
@@ -97,11 +102,12 @@ public class YamlHelperTests
     [InlineData("[\r\n  {\r\n    \"key\": \"value\",\r\n    \"key2\": 1\r\n  }\r\n]", "- key: value\r\n  key2: 1\r\n")]
     public void ConvertFromJsonWithJsonRootArrayWithTwoSpaces(string input, string expectedResult)
     {
-        YamlHelper.ConvertFromJson(
-            input,
-            Indentation.TwoSpaces,
-            new MockILogger(),
-            CancellationToken.None).Should().Be(expectedResult);
+        ToolResult<string> result = YamlHelper.ConvertFromJson(
+             input,
+             Indentation.TwoSpaces,
+             new MockILogger(),
+             CancellationToken.None);
+        result.Data.Should().Be(expectedResult);
     }
 
     [Theory]
@@ -109,10 +115,11 @@ public class YamlHelperTests
     [InlineData("[\r\n  {\r\n    \"key\": \"value\",\r\n    \"key2\": 1\r\n  }\r\n]", "-   key: value\r\n    key2: 1\r\n")]
     public void ConvertFromJsonWithJsonRootArrayWithFourSpaces(string input, string expectedResult)
     {
-        YamlHelper.ConvertFromJson(
-            input,
-            Indentation.FourSpaces,
-            new MockILogger(),
-            CancellationToken.None).Should().Be(expectedResult);
+        ToolResult<string> result = YamlHelper.ConvertFromJson(
+             input,
+             Indentation.FourSpaces,
+             new MockILogger(),
+             CancellationToken.None);
+        result.Data.Should().Be(expectedResult);
     }
 }

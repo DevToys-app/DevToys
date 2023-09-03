@@ -135,7 +135,7 @@ internal static partial class JsonHelper
     /// <summary>
     /// Convert a Yaml string to Json
     /// </summary>
-    internal static string? ConvertFromYaml(
+    internal static ToolResult<string> ConvertFromYaml(
         string? input,
         Indentation indentationMode,
         ILogger logger,
@@ -143,7 +143,7 @@ internal static partial class JsonHelper
     {
         if (string.IsNullOrWhiteSpace(input))
         {
-            return string.Empty;
+            return new(string.Empty, false);
         }
 
         try
@@ -192,20 +192,21 @@ internal static partial class JsonHelper
             }
 
             cancellationToken.ThrowIfCancellationRequested();
-            return stringBuilder.ToString();
+            return new(stringBuilder.ToString());
+
         }
         catch (SemanticErrorException ex)
         {
-            return ex.Message;
+            return new(ex.Message, false);
         }
         catch (OperationCanceledException)
         {
-            return string.Empty;
+            return new(string.Empty, false);
         }
         catch (Exception ex)
         {
             logger.LogError("Yaml to Json Converter", ex);
-            return string.Empty;
+            return new(string.Empty, false);
         }
     }
 

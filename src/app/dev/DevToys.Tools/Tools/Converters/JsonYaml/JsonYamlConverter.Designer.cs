@@ -88,6 +88,15 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Whether to convert from Json or Yaml.
+        /// </summary>
+        internal static string ConversionOptionDescription {
+            get {
+                return ResourceManager.GetString("ConversionOptionDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Conversion.
         /// </summary>
         internal static string ConversionTitle {
@@ -102,6 +111,15 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml {
         internal static string Description {
             get {
                 return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File to convert from json or yaml.
+        /// </summary>
+        internal static string FileOptionDescription {
+            get {
+                return ResourceManager.GetString("FileOptionDescription", resourceCulture);
             }
         }
         
@@ -124,11 +142,38 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select which indentation do you want to use.
+        /// </summary>
+        internal static string IndentationOptionDescription {
+            get {
+                return ResourceManager.GetString("IndentationOptionDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Input.
         /// </summary>
         internal static string Input {
             get {
                 return ResourceManager.GetString("Input", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Input file selected doesn&apos;t exist..
+        /// </summary>
+        internal static string InputFileNotFound {
+            get {
+                return ResourceManager.GetString("InputFileNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text to convert from json or yaml.
+        /// </summary>
+        internal static string InputOptionDescription {
+            get {
+                return ResourceManager.GetString("InputOptionDescription", resourceCulture);
             }
         }
         

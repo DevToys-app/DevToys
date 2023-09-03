@@ -1,5 +1,7 @@
-﻿using DevToys.Tools.Helpers;
+﻿using System.Threading;
+using DevToys.Tools.Helpers;
 using DevToys.Tools.Models;
+using DevToys.UnitTests.Mocks;
 
 namespace DevToys.UnitTests.Tools.Helpers;
 
@@ -41,7 +43,7 @@ public class JsonHelperTests
     [InlineData("   { \"foo\": 123 }  ", "{\r\n    \"foo\": 123\r\n}")]
     public void FormatFourSpaces(string input, string expectedResult)
     {
-       JsonHelper.Format(input, Indentation.FourSpaces, sortProperties: false).Should().Be(expectedResult);
+        JsonHelper.Format(input, Indentation.FourSpaces, sortProperties: false).Should().Be(expectedResult);
     }
 
     [Theory]
@@ -91,8 +93,13 @@ public class JsonHelperTests
     public void ConvertFromYamlShouldReturnEmptyString(string input, string expected)
     {
         // prepare & act
-        string actual = JsonHelper.ConvertFromYaml(input, Indentation.FourSpaces);
-        actual.Should().Be(expected);
+        ToolResult<string> actual = JsonHelper.ConvertFromYaml(
+            input,
+            Indentation.FourSpaces,
+            new MockILogger(),
+            CancellationToken.None);
+        actual.HasSucceeded.Should().BeFalse();
+        actual.Data.Should().Be(expected);
     }
 
     [Fact(DisplayName = "Convert From Yaml with unsupported Indentation")]
@@ -103,8 +110,13 @@ public class JsonHelperTests
         string expected = string.Empty;
 
         // act
-        string actual = JsonHelper.ConvertFromYaml(input, Indentation.Minified);
-        actual.Should().Be(expected);
+        ToolResult<string> actual = JsonHelper.ConvertFromYaml(
+            input,
+            Indentation.Minified,
+            new MockILogger(),
+            CancellationToken.None);
+        actual.HasSucceeded.Should().BeFalse();
+        actual.Data.Should().Be(expected);
     }
 
     [Fact(DisplayName = "Convert From Yaml with unsupported yaml")]
@@ -115,8 +127,13 @@ public class JsonHelperTests
         string expected = "While parsing a node, did not find expected node content.";
 
         // act
-        string actual = JsonHelper.ConvertFromYaml(input, Indentation.Minified);
-        actual.Should().Be(expected);
+        ToolResult<string> actual = JsonHelper.ConvertFromYaml(
+            input,
+            Indentation.Minified,
+            new MockILogger(),
+            CancellationToken.None);
+        actual.HasSucceeded.Should().BeFalse();
+        actual.Data.Should().Be(expected);
     }
 
     [Theory]
@@ -124,7 +141,12 @@ public class JsonHelperTests
     [InlineData("   - key: value\r\n     key2: 1", "[\r\n  {\r\n    \"key\": \"value\",\r\n    \"key2\": 1\r\n  }\r\n]")]
     public void ConvertFromYamlWithTwoSpaces(string input, string expectedResult)
     {
-        JsonHelper.ConvertFromYaml(input, Indentation.TwoSpaces).Should().Be(expectedResult);
+        ToolResult<string> result = JsonHelper.ConvertFromYaml(
+             input,
+             Indentation.TwoSpaces,
+             new MockILogger(),
+             CancellationToken.None);
+        result.Data.Should().Be(expectedResult);
     }
 
     [Theory]
@@ -132,6 +154,11 @@ public class JsonHelperTests
     [InlineData("   - key: value\r\n     key2: 1", "[\r\n    {\r\n        \"key\": \"value\",\r\n        \"key2\": 1\r\n    }\r\n]")]
     public void ConvertFromYamlWithFourSpaces(string input, string expectedResult)
     {
-        JsonHelper.ConvertFromYaml(input, Indentation.FourSpaces).Should().Be(expectedResult);
+        ToolResult<string> result = JsonHelper.ConvertFromYaml(
+             input,
+             Indentation.FourSpaces,
+             new MockILogger(),
+             CancellationToken.None);
+        result.Data.Should().Be(expectedResult);
     }
 }

@@ -49,8 +49,8 @@ internal sealed partial class JsonYamlConverterGuiTool : IGuiTool, IDisposable
 
     private readonly ILogger _logger;
     private readonly ISettingsProvider _settingsProvider;
-    private readonly IUIMultiLineTextInput _inputTextArea = MultilineTextInput("json-to-yaml-input-textarea");
-    private readonly IUIMultiLineTextInput _outputTextArea = MultilineTextInput("json-to-yaml-output-textarea");
+    private readonly IUIMultiLineTextInput _inputTextArea = MultilineTextInput("json-to-yaml-input-text-area");
+    private readonly IUIMultiLineTextInput _outputTextArea = MultilineTextInput("json-to-yaml-output-text-area");
 
     private CancellationTokenSource? _cancellationTokenSource;
 
@@ -93,7 +93,7 @@ internal sealed partial class JsonYamlConverterGuiTool : IGuiTool, IDisposable
                     GridRow.Header,
                     GridColumn.Content,
                     Stack().Vertical().WithChildren(
-                        Setting()
+                        Setting("json-to-yaml-text-conversion-setting")
                         .Icon("FluentSystemIcons", '\uF18D')
                         .Title(JsonYamlConverter.ConversionTitle)
                         .Description(JsonYamlConverter.ConversionDescription)
@@ -104,7 +104,7 @@ internal sealed partial class JsonYamlConverterGuiTool : IGuiTool, IDisposable
                             Item(JsonYamlConverter.JsonToYaml, Conversion.JsonToYaml),
                             Item(JsonYamlConverter.YamlToJson, Conversion.YamlToJson)
                         ),
-                        Setting()
+                        Setting("json-to-yaml-text-indentation-setting")
                         .Icon("FluentSystemIcons", '\uF6F8')
                         .Title(JsonYamlConverter.Indentation)
                         .Handle(
@@ -201,31 +201,13 @@ internal sealed partial class JsonYamlConverterGuiTool : IGuiTool, IDisposable
     {
         await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
 
-        string? conversionResult;
-        Indentation indentation = _settingsProvider.GetSetting(indentationMode);
-        if (_settingsProvider.GetSetting(conversionMode) is Conversion.JsonToYaml)
-        {
-            conversionResult = YamlHelper.ConvertFromJson(input, indentation, _logger, cancellationToken);
-            if (string.IsNullOrEmpty(conversionResult))
-            {
-                cancellationToken.ThrowIfCancellationRequested();
-                _outputTextArea.Text(JsonYamlConverter.InvalidJson);
-                return;
-            }
-        }
-        else
-        {
-            conversionResult = JsonHelper.ConvertFromYaml(input, indentation, _logger, cancellationToken);
-            if (string.IsNullOrEmpty(conversionResult))
-            {
-                cancellationToken.ThrowIfCancellationRequested();
-                _outputTextArea.Text(JsonYamlConverter.InvalidYaml);
-                return;
-            }
-        }
-
-        cancellationToken.ThrowIfCancellationRequested();
-        _outputTextArea.Text(conversionResult);
+        ToolResult<string> conversionResult = await JsonYamlHelper.ConvertAsync(
+            input,
+            _settingsProvider.GetSetting(conversionMode),
+            _settingsProvider.GetSetting(indentationMode),
+            _logger,
+            cancellationToken);
+        _outputTextArea.Text(conversionResult.Data);
     }
 
     private void SetJsonToYamlConversion()

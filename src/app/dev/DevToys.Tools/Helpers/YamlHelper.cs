@@ -49,7 +49,7 @@ internal static partial class YamlHelper
     /// <summary>
     /// Convert a Json string to Yaml
     /// </summary>
-    internal static string? ConvertFromJson(
+    internal static ToolResult<string> ConvertFromJson(
         string? input,
         Indentation indentation,
         ILogger logger,
@@ -57,7 +57,7 @@ internal static partial class YamlHelper
     {
         if (string.IsNullOrWhiteSpace(input))
         {
-            return string.Empty;
+            return new(string.Empty, false);
         }
 
         try
@@ -66,7 +66,7 @@ internal static partial class YamlHelper
             var token = JsonNode.Parse(input, documentOptions: new() { CommentHandling = JsonCommentHandling.Skip });
             if (token is null)
             {
-                return string.Empty;
+                return new(string.Empty, false);
             }
 
             object? jsonObject = ConvertJTokenToObject(token, 0);
@@ -89,21 +89,21 @@ internal static partial class YamlHelper
                 string? yaml = serializer.Serialize(jsonObject);
                 if (string.IsNullOrWhiteSpace(yaml))
                 {
-                    return string.Empty;
+                    return new(string.Empty, false);
                 }
                 cancellationToken.ThrowIfCancellationRequested();
-                return yaml;
+                return new(yaml);
             }
-            return string.Empty;
+            return new(string.Empty, false);
         }
         catch (JsonException ex)
         {
-            return ex.Message;
+            return new(ex.Message, false);
         }
         catch (Exception ex)
         {
             logger.LogError("Yaml to Json Converter", ex);
-            return string.Empty;
+            return new(string.Empty, false);
         }
     }
 
@@ -124,19 +124,24 @@ internal static partial class YamlHelper
         };
     }
 
-    private static object ConvertJTokenToObject(JsonNode token, int level)
+    private static object? ConvertJTokenToObject(JsonNode? node, int level)
     {
+        if (node is null)
+        {
+            return null;
+        }
+
         if (level > 10)
         {
             throw new InvalidDataException($"Json structure is not supported: nested level in array is too deep. ({level}).");
         }
-        return token switch
+        return node switch
         {
             JsonValue val => ParseValue(val),
             JsonArray arr => arr.Select(o => ConvertJTokenToObject(o, level + 1)).ToList(),
             JsonObject obj => obj.AsObject().ToDictionary(x => x.Key, x => ConvertJTokenToObject(x.Value, level)),
             null => null,
-            _ => throw new InvalidOperationException("Unexpected token: " + token)
+            _ => throw new InvalidOperationException("Unexpected token: " + node)
         };
     }
 }
