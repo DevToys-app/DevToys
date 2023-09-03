@@ -170,7 +170,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         }
 
         /// <summary>
-        /// Generate a Symetric Security Key using the token signature (base 64 or not)
+        /// Generate a Symmetric Security Key using the token signature (base 64 or not)
         /// </summary>
         /// <param name="tokenParameters">Token parameters with the token signature</param>
         private SymmetricSecurityKey? GetHmacShaValidationKey(TokenParameters tokenParameters)
@@ -276,7 +276,7 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
         }
 
         /// <summary>
-        /// Generate the Asymetric Security Key using the token signing public key
+        /// Generate the Asymmetric Security Key using the token signing public key
         /// </summary>
         /// <param name="tokenParameters">Token parameters with the token signing public key</param>
         private AsymmetricKeyParameter? GetPublicAsymmetricKeyParameter(TokenParameters tokenParameters)
@@ -300,25 +300,25 @@ namespace DevToys.ViewModels.Tools.EncodersDecoders.JwtDecoderEncoder
 
             var pemReader = new PemReader(new StringReader(publicKeyStringBuilder.ToString()));
             var pemObject = pemReader.ReadObject();
-            AsymmetricKeyParameter asymetricPublicKey;
+            AsymmetricKeyParameter asymmetricPublicKey;
 
             // If it's a cert, extract the public key
             if (pemObject is X509Certificate certificate)
             {
-                asymetricPublicKey = certificate.GetPublicKey();
+                asymmetricPublicKey = certificate.GetPublicKey();
             }
             else
             {
-                asymetricPublicKey = (AsymmetricKeyParameter)pemObject;
+                asymmetricPublicKey = (AsymmetricKeyParameter)pemObject;
             }
 
-            if (asymetricPublicKey is null)
+            if (asymmetricPublicKey is null)
             {
                 RaiseError(_localizedStrings.InvalidPublicKeyError);
                 return null;
             }
 
-            return asymetricPublicKey;
+            return asymmetricPublicKey;
         }
 
         private void RaiseError(string message)
