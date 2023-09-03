@@ -292,7 +292,7 @@
     <value>The "nbf" (not before) claim identifies the time before which the JWT MUST NOT be accepted for processing. The processing of the "nbf" claim requires that the current date/time MUST be after or equal to the not-before date/time listed in the "nbf" claim. Implementers MAY provide for some small leeway, usually no more than a few minutes, to account for clock skew. Its value MUST be a number containing a NumericDate value. Use of this claim is OPTIONAL.</value>
   </data>
   <data name="iat" xml:space="preserve">
-    <value>The "iat" (issued at) claim identifies the time at which the JWT was issued. This claim can be used to determine the age of the JWT. Its value MUST be a number containing a NumericDate value. Use of this claim is OPTIONAL.</value>
+    <value>Die Angabe "iat" (issued at) kennzeichnet den Zeitpunkt, zu dem der JWT ausgestellt wurde. Diese Angabe kann verwendet werden, um das Alter des JWT zu bestimmen. Sein Wert MUSS eine Zahl sein, die einen NumericDate-Wert enthält. Die Verwendung dieser Angabe ist OPTIONAL.</value>
   </data>
   <data name="jti" xml:space="preserve">
     <value>The "jti" (JWT ID) claim provides a unique identifier for the JWT. The identifier value MUST be assigned in a manner that ensures that there is a negligible probability that the same value will be accidentally assigned to a different data object; if the application uses multiple issuers, collisions MUST be prevented among values produced by different issuers as well. The "jti" claim can be used to prevent the JWT from being replayed. The "jti" value is a case-sensitive string. Use of this claim is OPTIONAL.</value>
@@ -331,7 +331,7 @@
     <value>True if the End-User's e-mail address has been verified; otherwise false. When this Claim Value is true, this means that the OP took affirmative steps to ensure that this e-mail address was controlled by the End-User at the time the verification was performed. The means by which an e-mail address is verified is context-specific, and dependent upon the trust framework or contractual agreements within which the parties are operating.</value>
   </data>
   <data name="gender" xml:space="preserve">
-    <value>End-User's gender. Values defined by this specification are female and male. Other values MAY be used when neither of the defined values are applicable.</value>
+    <value>Das Geschlecht des Endnutzers. Die von dieser Spezifikation definierten Werten sind weiblich und männlich. Andere Werte dürfen verwendet werden, wenn keine der definierten Werte zutreffen.</value>
   </data>
   <data name="birthdate" xml:space="preserve">
     <value>End-User's birthday, represented as an ISO 8601:2004 YYYY-MM-DD format. The year MAY be 0000, indicating that it is omitted. To represent only the year, YYYY format is allowed. Note that depending on the underlying platform's date related function, providing just year can result in varying month and day, so the implementers need to take this factor into account to correctly process the dates.</value>
