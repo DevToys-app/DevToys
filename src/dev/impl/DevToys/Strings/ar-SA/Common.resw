@@ -124,7 +124,7 @@
     <value>مسح</value>
   </data>
   <data name="Collapse" xml:space="preserve">
-    <value>Collapse</value>
+    <value>تصغير</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>نسخ</value>
@@ -136,13 +136,13 @@
     <value>حذف</value>
   </data>
   <data name="Expand" xml:space="preserve">
-    <value>Expand</value>
+    <value>تكبير</value>
   </data>
   <data name="ShowInfo" xml:space="preserve">
-    <value>Show additional info</value>
+    <value>عرض معلومات إضافية</value>
   </data>
   <data name="HideInfo" xml:space="preserve">
-    <value>Hide additional info</value>
+    <value>إخفاء معلومات إضافية</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
     <value>تصفح الملفات</value>
