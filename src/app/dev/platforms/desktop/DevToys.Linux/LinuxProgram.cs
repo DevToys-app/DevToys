@@ -20,7 +20,10 @@ internal partial class LinuxProgram
     private static MefComposer? MefComposer;
 
     private readonly WindowService _windowService = new();
+    private readonly ServiceCollection _serviceCollection = new();
     private readonly DateTime _startTime = DateTime.Now;
+
+    private MainWindow? _mainWindow;
 
     internal LinuxProgram()
     {
@@ -36,7 +39,7 @@ internal partial class LinuxProgram
     private void OnApplicationActivate(object sender, object e)
     {
         // Initialize services and logging.
-        ServiceProvider serviceProvider = InitializeServices(new ServiceCollection());
+        ServiceProvider serviceProvider = InitializeServices();
 
         // Listen for unhandled exceptions.
         AppDomain.CurrentDomain.UnhandledException += (_, ex) =>
@@ -48,8 +51,8 @@ internal partial class LinuxProgram
         string[] pluginFolders
             = new[]
             {
-                    Path.Combine(AppContext.BaseDirectory!, "Plugins"),
-                    Constants.PluginInstallationFolder
+                Path.Combine(AppContext.BaseDirectory!, "Plugins"),
+                Constants.PluginInstallationFolder
             };
         ExtensionInstallationManager.PreferredExtensionInstallationFolder = Constants.PluginInstallationFolder;
         ExtensionInstallationManager.ExtensionInstallationFolders = pluginFolders;
@@ -74,36 +77,22 @@ internal partial class LinuxProgram
             ?? LanguageManager.Instance.AvailableLanguages[0];
         LanguageManager.Instance.SetCurrentCulture(languageDefinition);
 
-        var webView = new BlazorWebView(serviceProvider);
-
-        var window = Gtk.ApplicationWindow.New((Adw.Application)sender);
-        window.Title = "Blazor";
-        window.SetDefaultSize(800, 600);
-        window.SetChild(webView);
-        window.Show();
-
-        // Allow opening developer tools
-        WebKit.Settings webViewSettings = webView.GetSettings();
-#if DEBUG
-        webViewSettings.EnableDeveloperExtras = true;
-#endif
-        webViewSettings.JavascriptCanAccessClipboard = true;
-        webViewSettings.EnableBackForwardNavigationGestures = false;
+        // Create and open main window.
+        _mainWindow = new MainWindow(serviceProvider, (Adw.Application)sender);
     }
 
-    private ServiceProvider InitializeServices(IServiceCollection serviceCollection)
+    private ServiceProvider InitializeServices()
     {
-        serviceCollection.AddBlazorWebView();
+        _serviceCollection.AddBlazorWebView();
 
-        serviceCollection.AddSingleton(
+        _serviceCollection.AddSingleton(
             new BlazorWebViewOptions()
             {
-                RootComponent = typeof(DevToys.Blazor.Pages.MainLayout),
-                HostPath = "wwwroot/index.html"
+                RootComponent = typeof(DevToys.Blazor.Main)
             }
         );
 
-        serviceCollection.AddLogging((ILoggingBuilder builder) =>
+        _serviceCollection.AddLogging((ILoggingBuilder builder) =>
         {
 #if DEBUG
             builder.AddDebug();
@@ -119,15 +108,15 @@ internal partial class LinuxProgram
             builder.AddFilter("System", LogLevel.Warning);
         });
 
-        serviceCollection.AddSingleton(provider => MefComposer!.Provider);
-        serviceCollection.AddSingleton<IWindowService>(provider => _windowService);
-        serviceCollection.AddScoped<DocumentEventService, DocumentEventService>();
-        serviceCollection.AddScoped<PopoverService, PopoverService>();
-        serviceCollection.AddScoped<ContextMenuService, ContextMenuService>();
-        serviceCollection.AddScoped<DialogService, DialogService>();
-        serviceCollection.AddScoped<FontService, FontService>();
+        _serviceCollection.AddSingleton(provider => MefComposer!.Provider);
+        _serviceCollection.AddSingleton<IWindowService>(provider => _windowService);
+        _serviceCollection.AddScoped<DocumentEventService, DocumentEventService>();
+        _serviceCollection.AddScoped<PopoverService, PopoverService>();
+        _serviceCollection.AddScoped<ContextMenuService, ContextMenuService>();
+        _serviceCollection.AddScoped<DialogService, DialogService>();
+        _serviceCollection.AddScoped<FontService, FontService>();
 
-        ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
+        ServiceProvider serviceProvider = _serviceCollection.BuildServiceProvider();
 
         ILoggerFactory loggerFactory = serviceProvider.GetRequiredService<ILoggerFactory>();
         LoggingExtensions.LoggerFactory = loggerFactory;

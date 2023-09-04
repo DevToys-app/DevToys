@@ -4,7 +4,6 @@ using Gio.Internal;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebView;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using WebKit;
@@ -18,24 +17,22 @@ internal sealed class BlazorWebViewBridge : WebViewManager
 
     private readonly BlazorWebView _webView;
     private readonly string _relativeHostPath;
-    private readonly ILogger _logger;
 
     public BlazorWebViewBridge(
         BlazorWebView webView,
-        IServiceProvider serviceProvider)
+        IServiceProvider serviceProvider,
+        BlazorWebViewOptions options)
         : base(
             serviceProvider,
             Dispatcher.CreateDefault(),
             baseUri,
-            new PhysicalFileProvider(serviceProvider.GetRequiredService<BlazorWebViewOptions>().ContentRoot),
+            new PhysicalFileProvider(options.ContentRoot),
             new JSComponentConfigurationStore(),
-            serviceProvider.GetRequiredService<BlazorWebViewOptions>().RelativeHostPath)
+            options.RelativeHostPath)
     {
         Guard.IsNotNull(webView);
         _webView = webView;
-        _logger = this.Log();
 
-        BlazorWebViewOptions options = serviceProvider.GetRequiredService<BlazorWebViewOptions>();
         _relativeHostPath = options.RelativeHostPath;
         Type rootComponent = options.RootComponent;
 
@@ -79,11 +76,7 @@ internal sealed class BlazorWebViewBridge : WebViewManager
 
         UserContentManager.ScriptMessageReceivedSignal.Connect(
             ucm,
-            (_, signalArgs) =>
-            {
-                JavaScriptCore.Value result = signalArgs.Value;
-                MessageReceived(baseUri, result.ToString());
-            },
+            HandleScriptMessageReceivedSignal,
             true,
             "webview");
 
@@ -97,15 +90,19 @@ internal sealed class BlazorWebViewBridge : WebViewManager
 
     protected override void NavigateCore(Uri absoluteUri)
     {
-        _logger?.LogDebug($"Navigating to \"{absoluteUri}\"");
         _webView.LoadUri(absoluteUri.ToString());
     }
 
-    protected override async void SendMessage(string message)
+    protected override void SendMessage(string message)
     {
         string script = $"__dispatchMessageCallback(\"{HttpUtility.JavaScriptStringEncode(message)}\")";
-        _logger?.LogDebug($"Dispatching `{script}`");
-        _ = await _webView.EvaluateJavascriptAsync(script);
+        _webView.EvaluateJavascriptAsync(script).Forget();
+    }
+
+    private void HandleScriptMessageReceivedSignal(UserContentManager ucm, UserContentManager.ScriptMessageReceivedSignalArgs signalArgs)
+    {
+        JavaScriptCore.Value result = signalArgs.Value;
+        MessageReceived(baseUri, result.ToString());
     }
 
     private void HandleUriScheme(URISchemeRequest request)
@@ -121,8 +118,6 @@ internal sealed class BlazorWebViewBridge : WebViewManager
             uri += _relativeHostPath;
         }
 
-        _logger?.LogDebug($"Fetching '{uri}'");
-
         if (TryGetResponseContent(
             uri,
             false,
@@ -133,10 +128,10 @@ internal sealed class BlazorWebViewBridge : WebViewManager
         {
             using var ms = new MemoryStream();
             content.CopyTo(ms);
+            content.Dispose();
             nint streamPtr = MemoryInputStream.NewFromData(ref ms.GetBuffer()[0], (uint)ms.Length, _ => { });
-            var inputStream = new InputStream(streamPtr, false);
+            using var inputStream = new InputStream(streamPtr, false);
             request.Finish(inputStream, ms.Length, headers["Content-Type"]);
-            // content.Dispose(); // TODO: Is this necessary?
         }
         else
         {

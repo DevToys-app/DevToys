@@ -1,3 +1,4 @@
+using Microsoft.Extensions.DependencyInjection;
 using WebKit;
 
 namespace DevToys.Linux.Components;
@@ -8,6 +9,10 @@ internal sealed class BlazorWebView : WebView
 
     internal BlazorWebView(IServiceProvider serviceProvider)
     {
-        _bridge = new BlazorWebViewBridge(this, serviceProvider);
+        _bridge
+            = new BlazorWebViewBridge(
+                this,
+                serviceProvider,
+                serviceProvider.GetRequiredService<BlazorWebViewOptions>());
     }
 }
