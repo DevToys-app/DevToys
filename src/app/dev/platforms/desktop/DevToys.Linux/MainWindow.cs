@@ -17,6 +17,9 @@ internal class MainWindow
     private IFileStorage _fileStorage = default!;
 
     [Import]
+    private IFontProvider _fontProvider = default!;
+
+    [Import]
     private TitleBarInfoProvider _titleBarInfoProvider = default!;
 #pragma warning restore IDE0044 // Add readonly modifier
 
@@ -51,6 +54,7 @@ internal class MainWindow
         ((ThemeListener)_themeListener).SetMainWindow(_window, windowService);
         windowService.SetMainWindow(_window);
         ((FileStorage)_fileStorage).MainWindow = _window;
+        ((FontProvider)_fontProvider).MainWindow = _window;
 
         _window.Show();
     }

@@ -24,6 +24,9 @@ public static class PredefinedSettings
             "SF Mono",
             "SF Pro",
 
+            // Fonts included on some Linux distro.
+            "Noto Mono",
+
             // Fonts included on Windows and MacOS.
             "Consolas",
             "Courier New",
