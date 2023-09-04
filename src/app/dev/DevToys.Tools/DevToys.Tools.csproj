@@ -95,7 +95,16 @@
     <PackageReference Include="System.Text.Json" />
   </ItemGroup>
 
-  <Target Name="CopyPluginAfterBuild" AfterTargets="Pack">
+  <Target Name="IncludeAllFilesInTargetDir" AfterTargets="Build">
+    <ItemGroup>
+      <None Include="$(OutputPath)\**">
+        <Pack>true</Pack>
+        <PackagePath>lib</PackagePath>
+      </None>
+    </ItemGroup>
+  </Target>
+
+  <Target DependsOnTargets="IncludeAllFilesInTargetDir" Name="CopyPluginAfterBuild" AfterTargets="Pack">
     <Copy SourceFiles="$(PackageOutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(PluginNupkgPath)" SkipUnchangedFiles="false" OverwriteReadOnlyFiles="true" Retries="10" RetryDelayMilliseconds="1000" />
   </Target>
 </Project>

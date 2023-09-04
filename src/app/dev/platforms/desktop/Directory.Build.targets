@@ -1,7 +1,7 @@
 ﻿<Project>
   <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.targets', '$(MSBuildThisFileDirectory)../'))" />
 
-  <Target Name="ImportPluginOnBuild" BeforeTargets="Run" AfterTargets="Build">
+  <!-- <Target Name="ImportPluginOnBuild" BeforeTargets="Run" AfterTargets="Build">
     <Message Text="Importing plugins..." Importance="high" />
     <ItemGroup>
       <PluginNupkgFiles Include="$(PluginNupkgPath)\*.nupkg" />
@@ -25,5 +25,5 @@
       SkipUnchangedFiles="true"
       OverwriteReadOnlyFiles="true"/>
     <Message Text="Plugins imported!" Importance="high" />
-  </Target>
+  </Target> -->
 </Project>
