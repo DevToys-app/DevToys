@@ -43,7 +43,7 @@ You can contribute to DevToys app by:
 1. Install [**Xcode 14.2**](https://developer.apple.com/xcode/) or later. Run it at least once and allow it to install the built-in macOS and iOS tooling.
 1. [**Visual Studio Code**](https://code.visualstudio.com/) or [**Visual Studio for Mac**](https://visualstudio.microsoft.com/vs/mac/) or [**JetBrains Rider**](https://www.jetbrains.com/rider/)
 1. **.NET SDK**. This is required to build the app itself.
-    * [.NET 7.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/7.0) (**version 7.0 (SDK 7.0.101)** or later). If you're on a [Mac computer with Apple silicon processor](https://support.apple.com/en-us/HT211814), you need to install the Arm64 version of the SDK.
+    * [.NET 7.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/7.0) (**version 7.0 (SDK 7.0.110)** or later). If you're on a [Mac computer with Apple silicon processor](https://support.apple.com/en-us/HT211814), you need to install the Arm64 version of the SDK.
     > Use `dotnet --version` from the terminal to get the version installed.
 1. [Node.js](https://nodejs.org/). This is required to build Monaco Editor.
 2. If you're using an [Mac computer with Apple silicon processor](https://support.apple.com/en-us/HT211814), install [Rosetta 2](https://developer.apple.com/documentation/apple-silicon/about-the-rosetta-translation-environment) using the following command in a Terminal:
@@ -71,7 +71,7 @@ You can contribute to DevToys app by:
 
 #### If you are using Visual Studio Code:
 1. Open the repository in Visual Studio Code to edit the code.
-2. Install the `C#` extension.
+2. Install the [.NET MAUI](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.dotnet-maui) extension.
 1. In `Run and Debug`, select `Debug (macOS dektop app)` and press Start.
 
 #### Special note for `DevToys.MacOS`
@@ -81,6 +81,40 @@ Most of the `DevToys.MacOS` app runs in a web browser (Safari). In order to acce
 3. Run the `DevToys.MacOS` app in macOS.
 4. Return to Safari. Select Develop > {REMOTE INSPECTION TARGET} > 0.0.0.0, where the {REMOTE INSPECTION TARGET} placeholder is either the devices's plain name (for example, MacBook Pro) or the device's serial number (for example XMVM7VFF10). If multiple entries for 0.0.0.0 are present, select the entry that highlights the BlazorWebView. The BlazorWebView is highlighted in blue in macOS when the correct 0.0.0.0 entry is selected.
 5. The Web Inspector window appears for the BlazorWebView.
+
+## From Linux
+
+### Prerequisites
+1. Make sure your machine has GTK4 installed. Distro like Ubuntu generally have it pre-installed.
+1. [**Visual Studio Code**](https://code.visualstudio.com/) or [**JetBrains Rider**](https://www.jetbrains.com/rider/)
+1. **.NET SDK**. This is required to build the app itself.
+    * [.NET 7.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/7.0) (**version 7.0 (SDK 7.0.110)** or later). If you're on a [Mac computer with Apple silicon processor](https://support.apple.com/en-us/HT211814), you need to install the Arm64 version of the SDK.
+    > Use `dotnet --version` from the terminal to get the version installed.
+1. [Node.js](https://nodejs.org/). This is required to build Monaco Editor.
+
+### Finalize your environment
+1. Clone this repository.
+1. Open a Terminal command prompt in the root folder of this repository.
+1. Install Nuke.Build command line tooling with the following command from the command prompt:
+    ```
+    sudo dotnet tool install Nuke.GlobalTool --global
+    ```
+1. Restore all the dependencies with the following command:
+    ```
+    sudo bash init.sh
+    ```
+
+### Build, Run & Debug
+#### If you are using JetBains Rider:
+1. Open `src/DevToys-Linux.sln` with JetBrains Rider.
+1. Set `app/dev/platforms/desktop/DevToys.Linux` or `app/dev/platforms/desktop/DevToys.CLI` as startup project.
+1. Now you should be able to build and run DevToys on your machine.
+
+#### If you are using Visual Studio Code:
+1. Open the repository in Visual Studio Code to edit the code.
+2. Install the [C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit) extension.
+1. In command palette (`Ctrl+Shift+P`), execute `.NET: Open Solution` and select `DevToys.Linux`.
+1. In Explorer (`Ctrl+Shift+E`), select `Solution Explorer` panel at the bottom of the screen. Right click on `DevToys.Linux` or `DevToys.CLI` project in the tree view, then `Debug` to start debugging.
 
 # Internationalization and localization
 
