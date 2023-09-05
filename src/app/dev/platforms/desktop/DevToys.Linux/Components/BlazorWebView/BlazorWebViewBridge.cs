@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebView;
 using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.Logging;
 using WebKit;
 
 namespace DevToys.Linux.Components;

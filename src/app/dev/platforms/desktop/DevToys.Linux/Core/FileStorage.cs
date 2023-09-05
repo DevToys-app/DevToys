@@ -1,4 +1,6 @@
 ﻿using DevToys.Api;
+using DevToys.Linux.Strings.Other;
+using Gtk;
 
 namespace DevToys.Linux.Core;
 
@@ -122,189 +124,201 @@ internal sealed class FileStorage : GObject.Object, IFileStorage
 
     public async ValueTask<PickedFile?> PickOpenFileAsync(params string[] fileTypes)
     {
-        Guard.IsNotNull(MainWindow);
-        var tcs = new TaskCompletionSource<Gio.File?>();
+        PickedFile[]? selectedFiles = await PickOpenFileInternalAsync(fileTypes, allowMultiple: false).ConfigureAwait(false);
 
-        var callbackHandler = new Gio.Internal.AsyncReadyCallbackAsyncHandler((sourceObject, res, data) =>
-        {
-            if (sourceObject is null)
-            {
-                tcs.SetException(new Exception("Missing source object"));
-                return;
-            }
-
-            nint fileValue
-                = Gtk.Internal.FileDialog.OpenFinish(
-                    sourceObject.Handle,
-                    res.Handle,
-                    out GLib.Internal.ErrorOwnedHandle? error);
-
-            if (!error.IsInvalid)
-            {
-                tcs.SetException(new GLib.GException(error));
-            }
-            else if (fileValue == IntPtr.Zero)
-            {
-                tcs.SetResult(null);
-            }
-            else
-            {
-                tcs.SetResult(new Gio.FileHelper(fileValue, true));
-            }
-        });
-
-        Gtk.Internal.FileDialog.Open(
-            self: base.Handle,
-            parent: MainWindow.Handle,
-            cancellable: IntPtr.Zero,
-            callback: callbackHandler.NativeCallback,
-            userData: IntPtr.Zero
-        );
-
-        try
-        {
-            Gio.File? file = await tcs.Task;
-            if (file is not null)
-            {
-                string? filePath = file.GetPath();
-                if (!string.IsNullOrEmpty(filePath) && File.Exists(filePath))
-                {
-                    return new PickedFile(Path.GetFileName(filePath), new FileStream(filePath, FileMode.Open, FileAccess.Read));
-                }
-            }
-        }
-        catch
-        {
-        }
-
-        return null;
+        return selectedFiles is null || selectedFiles.Length == 0 ? null : selectedFiles[0];
     }
 
-    public async ValueTask<PickedFile[]> PickOpenFilesAsync(params string[] fileTypes)
+    public ValueTask<PickedFile[]> PickOpenFilesAsync(params string[] fileTypes)
     {
-        Guard.IsNotNull(MainWindow);
-        var tcs = new TaskCompletionSource<Gio.ListModel?>();
-
-        var callbackHandler = new Gio.Internal.AsyncReadyCallbackAsyncHandler((sourceObject, res, data) =>
-        {
-            if (sourceObject is null)
-            {
-                tcs.SetException(new Exception("Missing source object"));
-                return;
-            }
-
-            nint fileValue
-                = Gtk.Internal.FileDialog.OpenMultipleFinish(
-                    sourceObject.Handle,
-                    res.Handle,
-                    out GLib.Internal.ErrorOwnedHandle? error);
-
-            if (!error.IsInvalid)
-            {
-                tcs.SetException(new GLib.GException(error));
-            }
-            else if (fileValue == IntPtr.Zero)
-            {
-                tcs.SetResult(null);
-            }
-            else
-            {
-                tcs.SetResult(new Gio.ListModelHelper(fileValue, true));
-            }
-        });
-
-        Gtk.Internal.FileDialog.OpenMultiple(
-            self: base.Handle,
-            parent: MainWindow.Handle,
-            cancellable: IntPtr.Zero,
-            callback: callbackHandler.NativeCallback,
-            userData: IntPtr.Zero
-        );
-
-        try
-        {
-            Gio.ListModel? files = await tcs.Task;
-            if (files is not null)
-            {
-                var fileResult = new List<PickedFile>();
-                uint fileCount = files.GetNItems();
-                for (uint i = 0; i < fileCount; i++)
-                {
-                    nint fileValue = files.GetItem(i);
-                    var file = new Gio.FileHelper(fileValue, true);
-                    string? filePath = file.GetPath();
-                    if (!string.IsNullOrEmpty(filePath) && File.Exists(filePath))
-                    {
-                        fileResult.Add(new PickedFile(Path.GetFileName(filePath), new FileStream(filePath, FileMode.Open, FileAccess.Read)));
-                    }
-                }
-                return fileResult.ToArray();
-            }
-        }
-        catch
-        {
-        }
-
-        return Array.Empty<PickedFile>();
+        return PickOpenFileInternalAsync(fileTypes, allowMultiple: true);
     }
 
     public async ValueTask<Stream?> PickSaveFileAsync(params string[] fileTypes)
     {
         Guard.IsNotNull(MainWindow);
-        var tcs = new TaskCompletionSource<Gio.File?>();
 
-        var callbackHandler = new Gio.Internal.AsyncReadyCallbackAsyncHandler((sourceObject, res, data) =>
+        // Create a new GtkFileChooserNative object and set its properties
+        using var fileChooser
+            = Gtk.FileChooserNative.New(
+                Other.SaveFile,
+                MainWindow,
+                Gtk.FileChooserAction.Save,
+                Other.Save,
+                Other.Cancel);
+        fileChooser.Modal = true;
+        fileChooser.SelectMultiple = false;
+
+        // Create filters
+        IReadOnlyList<FileFilter> filters = GenerateFilter(fileTypes);
+        for (int i = 0; i < filters.Count; i++)
         {
-            if (sourceObject is null)
+            fileChooser.AddFilter(filters[i]);
+        }
+
+        var taskCompletionSource = new TaskCompletionSource<Stream?>();
+        fileChooser.OnResponse += (_, e) =>
+        {
+            // Handle the result of the window.
+            if (e.ResponseId != (int)Gtk.ResponseType.Accept)
             {
-                tcs.SetException(new Exception("Missing source object"));
+                taskCompletionSource.SetResult(null);
                 return;
             }
 
-            nint fileValue
-                = Gtk.Internal.FileDialog.SaveFinish(
-                    sourceObject.Handle,
-                    res.Handle,
-                    out GLib.Internal.ErrorOwnedHandle? error);
+            Gio.ListModel? fileListModel = fileChooser.GetFiles();
 
-            if (!error.IsInvalid)
+            var fileResult = new List<PickedFile>();
+            if (fileListModel is not null)
             {
-                tcs.SetException(new GLib.GException(error));
+                uint fileCount = fileListModel.GetNItems();
+                if (fileCount == 1)
+                {
+                    nint fileValue = fileListModel.GetItem(0);
+                    var file = new Gio.FileHelper(fileValue, true);
+                    string? filePath = file.GetPath();
+
+                    if (!string.IsNullOrEmpty(filePath))
+                    {
+                        taskCompletionSource.SetResult(
+                            new FileStream(
+                                filePath,
+                                FileMode.OpenOrCreate,
+                                FileAccess.Write));
+                        return;
+                    }
+                }
             }
-            else if (fileValue == IntPtr.Zero)
+
+            taskCompletionSource.SetResult(null);
+        };
+
+        // Show the dialog.
+        fileChooser.Show();
+
+        return await taskCompletionSource.Task;
+    }
+
+    private async ValueTask<PickedFile[]> PickOpenFileInternalAsync(string[] fileTypes, bool allowMultiple)
+    {
+        Guard.IsNotNull(MainWindow);
+
+        // Create a new GtkFileChooserNative object and set its properties
+        using var fileChooser
+            = Gtk.FileChooserNative.New(
+                allowMultiple ? Other.OpenFiles : Other.OpenFile,
+                MainWindow,
+                Gtk.FileChooserAction.Open,
+                Other.Open,
+                Other.Cancel);
+        fileChooser.Modal = true;
+        fileChooser.SelectMultiple = allowMultiple;
+
+        // Create filters
+        IReadOnlyList<FileFilter> filters = GenerateFilter(fileTypes);
+        for (int i = 0; i < filters.Count; i++)
+        {
+            fileChooser.AddFilter(filters[i]);
+        }
+
+        var taskCompletionSource = new TaskCompletionSource<PickedFile[]>();
+        fileChooser.OnResponse += (_, e) =>
+        {
+            // Handle the result of the window.
+            if (e.ResponseId != (int)Gtk.ResponseType.Accept)
             {
-                tcs.SetResult(null);
+                taskCompletionSource.SetResult(Array.Empty<PickedFile>());
+                return;
+            }
+
+            Gio.ListModel? fileListModel = fileChooser.GetFiles();
+
+            var fileResult = new List<PickedFile>();
+            if (fileListModel is not null)
+            {
+                uint fileCount = fileListModel.GetNItems();
+
+                for (uint i = 0; i < fileCount; i++)
+                {
+                    nint fileValue = fileListModel.GetItem(i);
+                    var file = new Gio.FileHelper(fileValue, true);
+                    string? filePath = file.GetPath();
+
+                    if (!string.IsNullOrEmpty(filePath) && File.Exists(filePath))
+                    {
+                        fileResult.Add(
+                            new PickedFile(
+                                Path.GetFileName(filePath),
+                                new FileStream(
+                                    filePath,
+                                    FileMode.Open,
+                                    FileAccess.Read)));
+                    }
+                }
+            }
+            taskCompletionSource.SetResult(fileResult.ToArray());
+        };
+
+        // Show the dialog.
+        fileChooser.Show();
+
+        PickedFile[]? files = await taskCompletionSource.Task;
+        if (files is not null && files.Length > 0)
+        {
+            if (allowMultiple)
+            {
+                return files;
+            }
+
+            return new[] { files[0] };
+        }
+
+        return Array.Empty<PickedFile>();
+    }
+
+    private static IReadOnlyList<FileFilter> GenerateFilter(string[] fileTypes)
+    {
+        var filters = new List<FileFilter>();
+        var allFileTypesDescription = new List<string>();
+        var allFileTypes = new List<string>();
+
+        foreach (string fileType in fileTypes.Order())
+        {
+            var filter = Gtk.FileFilter.New();
+            if (string.Equals(fileType, "*.*", StringComparison.CurrentCultureIgnoreCase))
+            {
+                allFileTypesDescription.Add("*.*");
+                allFileTypes.Add("*.*");
+
+                filter.AddPattern("*");
+                filter.Name = Other.AllFiles2;
             }
             else
             {
-                tcs.SetResult(new Gio.FileHelper(fileValue, true));
+                string lowercaseFileType = "*." + fileType.Trim('*').Trim('.').ToLower();
+                string fileTypeDescription = fileType.Trim('*').Trim('.').ToUpper();
+
+                allFileTypesDescription.Add(fileTypeDescription);
+                allFileTypes.Add(lowercaseFileType);
+
+                filter.AddPattern(lowercaseFileType);
+                filter.Name = fileTypeDescription;
             }
-        });
 
-        Gtk.Internal.FileDialog.Save(
-            self: base.Handle,
-            parent: MainWindow.Handle,
-            cancellable: IntPtr.Zero,
-            callback: callbackHandler.NativeCallback,
-            userData: IntPtr.Zero
-        );
+            filters.Add(filter);
+        }
 
-        try
+        if (filters.Count > 0)
         {
-            Gio.File? file = await tcs.Task;
-            if (file is not null)
+            var filter = Gtk.FileFilter.New();
+            filter.Name = string.Format(Other.AllFiles, string.Join(", ", allFileTypesDescription));
+            for (int i = 0; i < allFileTypes.Count; i++)
             {
-                string? filePath = file.GetPath();
-                if (!string.IsNullOrEmpty(filePath))
-                {
-                    return new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write);
-                }
+                filter.AddPattern(allFileTypes[i]);
             }
-        }
-        catch
-        {
+            filters.Insert(0, filter);
         }
 
-        return null;
+        return filters;
     }
 }

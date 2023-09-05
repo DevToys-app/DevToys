@@ -29,7 +29,7 @@ internal partial class LinuxProgram
     {
         WebKit.Module.Initialize();
 
-        Application = Adw.Application.New("org.gir.core", Gio.ApplicationFlags.FlagsNone);
+        Application = Adw.Application.New("devtoys", Gio.ApplicationFlags.FlagsNone);
 
         Application.OnActivate += OnApplicationActivate;
     }
