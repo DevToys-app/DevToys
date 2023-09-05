@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace DevToys.Linux.Core;
+﻿namespace DevToys.Linux.Core;
 
 internal static class Constants
 {
