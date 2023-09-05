@@ -301,13 +301,13 @@
     <value>Повне ім'я Кінцевого Користувача у відображуваній формі включно з усіма частинами імен, як-от титули та суфікси, впорядковане відповідно до локалізації та налаштувань Кінцевого Користувача.</value>
   </data>
   <data name="given_name" xml:space="preserve">
-    <value>Given name(s) or first name(s) of the End-User. Note that in some cultures, people can have multiple given names; all can be present, with the names being separated by space characters.</value>
+    <value>Власне ім'я або перше(і) ім'я (імена) кінцевого користувача. Зверніть увагу, що в деяких культурах люди можуть мати кілька власних імен; все це може бути представлено, з іменами, що розділено пробілами.</value>
   </data>
   <data name="family_name" xml:space="preserve">
-    <value>Surname(s) or last name(s) of the End-User. Note that in some cultures, people can have multiple family names or no family name; all can be present, with the names being separated by space characters.</value>
+    <value>Прізвище (прізвища) кінцевого користувача. Зверніть увагу, що в деяких культурах люди можуть мати кілька власних імен; все це може бути представлено, з іменами, що розділено пробілами.</value>
   </data>
   <data name="middle_name" xml:space="preserve">
-    <value>Middle name(s) of the End-User. Note that in some cultures, people can have multiple middle names; all can be present, with the names being separated by space characters. Also note that in some cultures, middle names are not used.</value>
+    <value>Середнє ім'я (імена) кінцевого користувача. Зверніть увагу, що в деяких культурах люди можуть мати кілька середніх імен; все це може бути представлено, з іменами, що розділено пробілами. Також зверніть увагу, що в деяких культурах середні імена не використовуються.</value>
   </data>
   <data name="nickname" xml:space="preserve">
     <value>Casual name of the End-User that may or may not be the same as the given_name. For instance, a nickname value of Mike might be returned alongside a given_name value of Michael.</value>
