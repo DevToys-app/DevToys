@@ -7,8 +7,8 @@ internal class ConvertersGroup : GuiToolGroup
     [ImportingConstructor]
     internal ConvertersGroup()
     {
-        IconFontName = "FluentSystemIcons";
-        IconGlyph = '\uE2A2';
+        IconFontName = "DevToys-Tools-Icons";
+        IconGlyph = '\u0103';
         DisplayTitle = Converters.DisplayTitle;
         AccessibleName = Converters.AccessibleName;
     }

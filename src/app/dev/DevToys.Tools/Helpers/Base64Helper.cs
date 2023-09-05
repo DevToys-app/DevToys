@@ -169,12 +169,12 @@ internal static partial class Base64Helper
 
     private static void LogFailEncodeBase64(ILogger logger, Exception exception, Base64Encoding encoding)
     {
-        logger.LogError(0, exception, $"Failed to encode text to Base64. Encoding mode: {encoding}");
+        logger.LogError(0, exception, "Failed to encode text to Base64. Encoding mode: '{encoding}'", encoding);
     }
 
     private static void LogFailDecodeBase64(ILogger logger, Exception exception, Base64Encoding encoding)
     {
-        logger.LogError(1, exception, $"Failed to decode Base64t to text. Encoding mode: {encoding}");
+        logger.LogError(1, exception, "Failed to decode Base64t to text. Encoding mode: '{encoding}'", encoding);
     }
 
     [GeneratedRegex("[^A-Z0-9+/=]", RegexOptions.IgnoreCase, "en-US")]

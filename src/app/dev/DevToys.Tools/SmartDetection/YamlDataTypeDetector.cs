@@ -1,8 +1,5 @@
-﻿using System.Text.Json;
-using DevToys.Tools.Helpers;
+﻿using DevToys.Tools.Helpers;
 using Microsoft.Extensions.Logging;
-using YamlDotNet.Core;
-using YamlDotNet.Serialization;
 
 namespace DevToys.Tools.SmartDetection;
 
@@ -26,7 +23,7 @@ internal sealed partial class YamlDataTypeDetector : IDataTypeDetector
         if (resultFromBaseDetector is not null
             && resultFromBaseDetector.Data is string dataString)
         {
-            if (YamlHelper.IsValid(dataString))
+            if (YamlHelper.IsValid(dataString, _logger))
             {
                 return ValueTask.FromResult(new DataDetectionResult(Success: true, Data: dataString));
             }

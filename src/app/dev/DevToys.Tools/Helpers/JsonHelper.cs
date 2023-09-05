@@ -14,7 +14,7 @@ internal static partial class JsonHelper
     /// <summary>
     /// Detects whether the given string is a valid JSON or not.
     /// </summary>
-    internal static bool IsValid(string? input)
+    internal static bool IsValid(string? input, ILogger logger)
     {
         input = input?.Trim();
 
@@ -38,9 +38,9 @@ internal static partial class JsonHelper
             // Exception in parsing json. It likely mean the text isn't a JSON.
             return false;
         }
-        catch (Exception ex) //some other exception
+        catch (Exception ex)
         {
-            //Logger.LogFault("Check if string is JSON", ex);
+            logger.LogError(ex, "Invalid data detected 'input'", input);
             return false;
         }
     }
@@ -48,9 +48,14 @@ internal static partial class JsonHelper
     /// <summary>
     /// Format a string to the specified JSON format.
     /// </summary>
-    internal static string Format(string? input, Indentation indentationMode, bool sortProperties)
+    internal static async ValueTask<string> Format(
+        string? input,
+        Indentation indentationMode,
+        bool sortProperties,
+        ILogger logger,
+        CancellationToken cancellationToken)
     {
-        if (input == null || !IsValid(input))
+        if (input == null || !IsValid(input, logger))
         {
             return string.Empty;
         }
@@ -70,7 +75,7 @@ internal static partial class JsonHelper
                 jsonReader.DateParseHandling = DateParseHandling.None;
                 jsonReader.DateTimeZoneHandling = DateTimeZoneHandling.RoundtripKind;
 
-                jToken = JToken.Load(jsonReader, jsonLoadSettings);
+                jToken = await JToken.LoadAsync(jsonReader, jsonLoadSettings, cancellationToken);
             }
 
             if (sortProperties)
@@ -125,9 +130,9 @@ internal static partial class JsonHelper
         {
             return ex.Message;
         }
-        catch (Exception ex) //some other exception
+        catch (Exception ex)
         {
-            //Logger.LogFault("Json formatter", ex, $"Indentation: {indentationMode}");
+            logger.LogError(ex, "Invalid JSON format 'indentationMode'", indentationMode);
             return ex.Message;
         }
     }
@@ -159,7 +164,7 @@ internal static partial class JsonHelper
 
             if (yamlObject is null or string)
             {
-                return null;
+                return new(string.Empty, false);
             }
 
             var stringBuilder = new StringBuilder();

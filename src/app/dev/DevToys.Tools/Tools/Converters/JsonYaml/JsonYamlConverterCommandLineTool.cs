@@ -35,7 +35,7 @@ internal sealed class JsonYamlConverterCommandLineTool : ICommandLineTool
         Alias = "c",
         IsRequired = true,
         DescriptionResourceName = nameof(JsonYamlConverter.ConversionOptionDescription))]
-    internal Conversion ConversionMode { get; set; } = Conversion.JsonToYaml;
+    internal JsonToYamlConversion ConversionMode { get; set; } = JsonToYamlConversion.JsonToYaml;
 
     [CommandLineOption(
         Name = "indentation",
@@ -58,6 +58,8 @@ internal sealed class JsonYamlConverterCommandLineTool : ICommandLineTool
                 cancellationToken
             );
         }
+
+        Console.Error.WriteLine(JsonYamlConverter.InvalidInputOrFileCommand);
         return -1;
     }
 

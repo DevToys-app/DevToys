@@ -7,13 +7,13 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml;
 [Export(typeof(IGuiTool))]
 [Name("JsonYamlConverter")]
 [ToolDisplayInformation(
-    IconFontName = "FluentSystemIcons",
-    IconGlyph = '\uE2A2',
+    IconFontName = "DevToys-Tools-Icons",
+    IconGlyph = '\u0109',
     GroupName = "Converters",
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
     ResourceManagerBaseName = "DevToys.Tools.Tools.Converters.JsonYaml.JsonYamlConverter",
     ShortDisplayTitleResourceName = nameof(JsonYamlConverter.ShortDisplayTitle),
-    LongDisplayTitleResourceName = nameof(JsonYamlConverter.ShortDisplayTitle),
+    LongDisplayTitleResourceName = nameof(JsonYamlConverter.LongDisplayTitle),
     DescriptionResourceName = nameof(JsonYamlConverter.Description),
     AccessibleNameResourceName = nameof(JsonYamlConverter.AccessibleName))]
 [AcceptedDataTypeName(PredefinedCommonDataTypeNames.Json)]
@@ -26,8 +26,8 @@ internal sealed partial class JsonYamlConverterGuiTool : IGuiTool, IDisposable
     /// <summary>
     /// Whether the tool should convert Json to Yaml or Yaml to Json.
     /// </summary>
-    private static readonly SettingDefinition<Conversion> conversionMode
-        = new(name: $"{nameof(JsonYamlConverterGuiTool)}.{nameof(conversionMode)}", defaultValue: Conversion.JsonToYaml);
+    private static readonly SettingDefinition<JsonToYamlConversion> conversionMode
+        = new(name: $"{nameof(JsonYamlConverterGuiTool)}.{nameof(conversionMode)}", defaultValue: JsonToYamlConversion.JsonToYaml);
 
     /// <summary>
     /// Which indentation the tool need to use.
@@ -62,10 +62,10 @@ internal sealed partial class JsonYamlConverterGuiTool : IGuiTool, IDisposable
 
         switch (_settingsProvider.GetSetting(conversionMode))
         {
-            case Conversion.JsonToYaml:
+            case JsonToYamlConversion.JsonToYaml:
                 SetJsonToYamlConversion();
                 break;
-            case Conversion.YamlToJson:
+            case JsonToYamlConversion.YamlToJson:
                 SetYamlToJsonConversion();
                 break;
             default:
@@ -101,8 +101,8 @@ internal sealed partial class JsonYamlConverterGuiTool : IGuiTool, IDisposable
                             _settingsProvider,
                             conversionMode,
                             OnConversionModeChanged,
-                            Item(JsonYamlConverter.JsonToYaml, Conversion.JsonToYaml),
-                            Item(JsonYamlConverter.YamlToJson, Conversion.YamlToJson)
+                            Item(JsonYamlConverter.JsonToYaml, JsonToYamlConversion.JsonToYaml),
+                            Item(JsonYamlConverter.YamlToJson, JsonToYamlConversion.YamlToJson)
                         ),
                         Setting("json-to-yaml-text-indentation-setting")
                         .Icon("FluentSystemIcons", '\uF6F8')
@@ -142,7 +142,7 @@ internal sealed partial class JsonYamlConverterGuiTool : IGuiTool, IDisposable
         {
             _inputTextArea.Language(JsonLanguage);
             _outputTextArea.Language(YamlLanguage);
-            _settingsProvider.SetSetting(conversionMode, Conversion.JsonToYaml);
+            _settingsProvider.SetSetting(conversionMode, JsonToYamlConversion.JsonToYaml);
             _inputTextArea.Text(jsonStrongTypedParsedData);
         }
 
@@ -151,7 +151,7 @@ internal sealed partial class JsonYamlConverterGuiTool : IGuiTool, IDisposable
         {
             _inputTextArea.Language(YamlLanguage);
             _outputTextArea.Language(JsonLanguage);
-            _settingsProvider.SetSetting(conversionMode, Conversion.YamlToJson);
+            _settingsProvider.SetSetting(conversionMode, JsonToYamlConversion.YamlToJson);
             _inputTextArea.Text(yamlStrongTypedParsedData);
         }
     }
@@ -161,14 +161,14 @@ internal sealed partial class JsonYamlConverterGuiTool : IGuiTool, IDisposable
         _cancellationTokenSource?.Dispose();
     }
 
-    private void OnConversionModeChanged(Conversion conversionMode)
+    private void OnConversionModeChanged(JsonToYamlConversion conversionMode)
     {
         switch (conversionMode)
         {
-            case Conversion.JsonToYaml:
+            case JsonToYamlConversion.JsonToYaml:
                 SetJsonToYamlConversion();
                 break;
-            case Conversion.YamlToJson:
+            case JsonToYamlConversion.YamlToJson:
                 SetYamlToJsonConversion();
                 break;
             default:

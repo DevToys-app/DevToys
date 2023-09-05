@@ -8,7 +8,7 @@ internal static class JsonYamlHelper
 {
     public static async ValueTask<ToolResult<string>> ConvertAsync(
         string input,
-        Conversion conversion,
+        JsonToYamlConversion conversion,
         Indentation indentation,
         ILogger logger,
         CancellationToken cancellationToken)
@@ -18,7 +18,7 @@ internal static class JsonYamlHelper
         ToolResult<string> conversionResult;
         switch (conversion)
         {
-            case Conversion.JsonToYaml:
+            case JsonToYamlConversion.JsonToYaml:
                 conversionResult = YamlHelper.ConvertFromJson(input, indentation, logger, cancellationToken);
                 if (!conversionResult.HasSucceeded && string.IsNullOrWhiteSpace(conversionResult.Data))
                 {
@@ -26,7 +26,7 @@ internal static class JsonYamlHelper
                     return new(JsonYamlConverter.InvalidJson, false);
                 }
                 break;
-            case Conversion.YamlToJson:
+            case JsonToYamlConversion.YamlToJson:
                 conversionResult = JsonHelper.ConvertFromYaml(input, indentation, logger, cancellationToken);
                 if (!conversionResult.HasSucceeded && string.IsNullOrWhiteSpace(conversionResult.Data))
                 {

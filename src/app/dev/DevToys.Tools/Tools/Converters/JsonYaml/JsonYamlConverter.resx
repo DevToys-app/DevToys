@@ -156,17 +156,20 @@
   <data name="InputOptionDescription" xml:space="preserve">
     <value>Text to convert from json or yaml</value>
   </data>
+  <data name="InvalidInputOrFileCommand" xml:space="preserve">
+    <value>Please specify an input text or a input file</value>
+  </data>
   <data name="InvalidJson" xml:space="preserve">
-    <value>The entered JSON is invalid.</value>
+    <value>&lt;Invalid JSON data&gt;</value>
   </data>
   <data name="InvalidYaml" xml:space="preserve">
-    <value>The entered YAML is invalid.</value>
+    <value>&lt;Invalid Yaml data&gt;</value>
   </data>
   <data name="JsonToYaml" xml:space="preserve">
     <value>JSON to YAML</value>
   </data>
-  <data name="MenuDisplayName" xml:space="preserve">
-    <value>JSON &amp;amp;lt;&amp;amp;gt; YAML</value>
+  <data name="LongDisplayTitle" xml:space="preserve">
+    <value>JSON &amp;amp;lt;&amp;amp;gt; YAML Converter</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Output</value>
@@ -178,7 +181,7 @@
     <value />
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>JSON to YAML</value>
+    <value>JSON &amp;amp;lt;&amp;amp;gt; YAML</value>
   </data>
   <data name="TwoSpaces" xml:space="preserve">
     <value>2 spaces</value>

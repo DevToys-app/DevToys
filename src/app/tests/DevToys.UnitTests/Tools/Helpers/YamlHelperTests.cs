@@ -15,7 +15,7 @@ public class YamlHelperTests
     [InlineData("foo :\n  bar :\n    - boo: 1\n    - rab: 2\n    - plop: 3", true)]
     public void IsValid(string input, bool expectedResult)
     {
-        YamlHelper.IsValid(input).Should().Be(expectedResult);
+        YamlHelper.IsValid(input, new MockILogger()).Should().Be(expectedResult);
     }
 
     [Theory]

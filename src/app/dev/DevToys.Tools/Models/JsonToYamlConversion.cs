@@ -1,5 +1,5 @@
 ﻿namespace DevToys.Tools.Models;
-internal enum Conversion
+internal enum JsonToYamlConversion
 {
     JsonToYaml,
     YamlToJson

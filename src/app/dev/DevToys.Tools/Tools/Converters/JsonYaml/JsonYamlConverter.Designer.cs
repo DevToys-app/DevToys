@@ -178,7 +178,16 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The entered JSON is invalid..
+        ///   Looks up a localized string similar to Please specify an input text or a input file.
+        /// </summary>
+        internal static string InvalidInputOrFileCommand {
+            get {
+                return ResourceManager.GetString("InvalidInputOrFileCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Invalid JSON data&gt;.
         /// </summary>
         internal static string InvalidJson {
             get {
@@ -187,7 +196,7 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The entered YAML is invalid..
+        ///   Looks up a localized string similar to &lt;Invalid Yaml data&gt;.
         /// </summary>
         internal static string InvalidYaml {
             get {
@@ -205,11 +214,11 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JSON &amp;amp;lt;&amp;amp;gt; YAML.
+        ///   Looks up a localized string similar to JSON &amp;amp;lt;&amp;amp;gt; YAML Converter.
         /// </summary>
-        internal static string MenuDisplayName {
+        internal static string LongDisplayTitle {
             get {
-                return ResourceManager.GetString("MenuDisplayName", resourceCulture);
+                return ResourceManager.GetString("LongDisplayTitle", resourceCulture);
             }
         }
         
@@ -241,7 +250,7 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JSON to YAML.
+        ///   Looks up a localized string similar to JSON &amp;amp;lt;&amp;amp;gt; YAML.
         /// </summary>
         internal static string ShortDisplayTitle {
             get {

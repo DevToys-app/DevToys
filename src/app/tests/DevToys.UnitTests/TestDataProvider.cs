@@ -14,10 +14,8 @@ internal static class TestDataProvider
     public static async Task<string> GetFileContent(string filePath)
     {
         var assembly = Assembly.GetExecutingAssembly();
-        Stream resourceStream = assembly.GetManifestResourceStream(filePath);
-        //Stream resourceStream = assembly.GetManifestResourceStream("DevToys.Tests.Providers.TestData." + filePath);
-        var streamReader = new StreamReader(resourceStream);
-
+        using Stream resourceStream = assembly.GetManifestResourceStream(filePath);
+        using StreamReader streamReader = new(resourceStream);
         return await streamReader.ReadToEndAsync();
     }
 

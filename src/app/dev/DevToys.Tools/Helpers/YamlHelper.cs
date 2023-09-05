@@ -12,7 +12,7 @@ internal static partial class YamlHelper
     /// <summary>
     /// Detects whether the given string is a valid YAML or not.
     /// </summary>
-    internal static bool IsValid(string? input)
+    internal static bool IsValid(string? input, ILogger logger)
     {
         if (string.IsNullOrWhiteSpace(input))
         {
@@ -40,8 +40,9 @@ internal static partial class YamlHelper
             object? result = new DeserializerBuilder().Build().Deserialize<object>(input);
             return result is not null and not string;
         }
-        catch (Exception)
+        catch (Exception ex)
         {
+            logger.LogError(ex, "Invalid data detected: 'input'", input);
             return false;
         }
     }

@@ -6,19 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Tools\TestData\Empty.json" />
-    <None Remove="Tools\TestData\Empty.yaml" />
-    <None Remove="Tools\TestData\JsonYamlConverter\FourSpaces.json" />
-    <None Remove="Tools\TestData\JsonYamlConverter\FourSpaces.yaml" />
-    <None Remove="Tools\TestData\JsonYamlConverter\Invalid.json" />
-    <None Remove="Tools\TestData\JsonYamlConverter\TwoSpaces.json" />
-    <None Remove="Tools\TestData\JsonYamlConverter\TwoSpaces.yaml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ApplicationDefinition Include="Tools\TestData\Empty.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </ApplicationDefinition>
+    <Content Include="Tools\TestData\*\*.*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -43,30 +33,6 @@
     <ProjectReference Include="..\..\dev\DevToys.Core\DevToys.Core.csproj" />
     <ProjectReference Include="..\..\dev\DevToys.Tools\DevToys.Tools.csproj" />
     <ProjectReference Include="..\..\dev\platforms\desktop\DevToys.CLI\DevToys.CLI.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Tools\TestData\JsonYamlConverter\Invalid.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\JsonYamlConverter\Invalid.yaml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Tools\TestData\JsonYamlConverter\FourSpaces.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\JsonYamlConverter\FourSpaces.yaml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\JsonYamlConverter\TwoSpaces.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\TestData\JsonYamlConverter\TwoSpaces.yaml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>

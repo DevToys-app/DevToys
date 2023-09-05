@@ -353,7 +353,6 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
     {
         // Select the actual menu item in the navigation view. This will trigger the navigation.
         SelectedMenuItem = GetBestMenuItemToSelect(message.Value);
-        //message.SmartDetectionInfo?.ToolInstance.PassSmartDetectedData(message.SmartDetectionInfo.DataTypeName, message.SmartDetectionInfo.ParsedData);
     }
 
     [LoggerMessage(1, LogLevel.Warning, "Failed to perform smart detection.")]

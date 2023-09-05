@@ -9,8 +9,8 @@ public class SmartDetectionServiceTests : MefBasedTest
     [Theory]
     [InlineData("hello world", true, "MockTool2")]
     [InlineData("hello world", false, "MockTool2")]
-    [InlineData("{ \"json\": 123 }", true, "MockTool2")]
-    [InlineData("{ \"json\": 123 }", false, "MockTool2")]
+    [InlineData("{ \"json\": 123 }", true, "MockTool")]
+    [InlineData("{ \"json\": 123 }", false, "MockTool", "MockTool2")]
     [InlineData(123, false)]
     public async Task DetectToolsAsync(object rawData, bool isStrict, params string[] toolNames)
     {
