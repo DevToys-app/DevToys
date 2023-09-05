@@ -310,22 +310,22 @@
     <value>Середнє ім'я (імена) кінцевого користувача. Зверніть увагу, що в деяких культурах люди можуть мати кілька середніх імен; все це може бути представлено, з іменами, що розділено пробілами. Також зверніть увагу, що в деяких культурах середні імена не використовуються.</value>
   </data>
   <data name="nickname" xml:space="preserve">
-    <value>Casual name of the End-User that may or may not be the same as the given_name. For instance, a nickname value of Mike might be returned alongside a given_name value of Michael.</value>
+    <value>Розмовне ім'я Кінцевого Користувача, яке може бути або не бути таким самим, як given_name. Наприклад, разом з given_name Олександр може використовуватись nickname Лесь.</value>
   </data>
   <data name="preferred_username" xml:space="preserve">
-    <value>Shorthand name by which the End-User wishes to be referred to at the RP, such as janedoe or j.doe. This value MAY be any valid JSON string including special characters such as @, /, or whitespace. The RP MUST NOT rely upon this value being unique.</value>
+    <value>Скорочене ім'я Кінцевого Користувача, яке той бажає використовувати на RP, як-от janedoe або j.doe. Це значення МОЖЕ бути будь-яким дійсним рядком JSON і включати спеціальні символи, такі як @, /, або пробіли. RP НЕ ПОВИННІ покладатися на унікальність цього значення.</value>
   </data>
   <data name="profile" xml:space="preserve">
-    <value>URL of the End-User's profile page. The contents of this Web page SHOULD be about the End-User.</value>
+    <value>URL сторінки профілю Кінцевого Користувача. Вміст цієї вебсторінки ПОВИНЕН стосуватися Кінцевого Користувача.</value>
   </data>
   <data name="picture" xml:space="preserve">
-    <value>URL of the End-User's profile picture. This URL MUST refer to an image file (for example, a PNG, JPEG, or GIF image file), rather than to a Web page containing an image. Note that this URL SHOULD specifically reference a profile photo of the End-User suitable for displaying when describing the End-User, rather than an arbitrary photo taken by the End-User.</value>
+    <value>URL зображення профілю Кінцевого Користувача. Ця URL-адреса ПОВИННА посилатися на файл зображення (наприклад, на PNG, JPEG, або GIF файл), а не на веб-сторінку, що містить зображення. Зверніть увагу, що цей URL ПОВИНЕН посилатися саме на фото профілю Кінцевого Користувача, що підходить для його опису, а не на довільне фото, зроблене Кінцевим Користувачем.</value>
   </data>
   <data name="website" xml:space="preserve">
-    <value>URL of the End-User's Web page or blog. This Web page SHOULD contain information published by the End-User or an organization that the End-User is affiliated with.</value>
+    <value>URL веб-сторінки або блогу Кінцевого Користувача. Ця веб-сторінка ПОВИННА містити дані, опубліковану Кінцевим Користувачем або організацією, з якою афілійований Кінцевий Користувач.</value>
   </data>
   <data name="email" xml:space="preserve">
-    <value>End-User's preferred e-mail address. Its value MUST conform to the RFC 5322 addr-spec syntax. The RP MUST NOT rely upon this value being unique.</value>
+    <value>Бажана адреса електронної пошти Кінцевого Користувача. Це значення ПОВИННЕ відповідати синтаксису RFC 5322 addr-spec. RP НЕ ПОВИННЕ покладатися на унікальність цього значення.</value>
   </data>
   <data name="email_verified" xml:space="preserve">
     <value>True if the End-User's e-mail address has been verified; otherwise false. When this Claim Value is true, this means that the OP took affirmative steps to ensure that this e-mail address was controlled by the End-User at the time the verification was performed. The means by which an e-mail address is verified is context-specific, and dependent upon the trust framework or contractual agreements within which the parties are operating.</value>
