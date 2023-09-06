@@ -4,13 +4,13 @@ using Microsoft.Extensions.Logging;
 namespace DevToys.Tools.SmartDetection;
 
 [Export(typeof(IDataTypeDetector))]
-[DataTypeName(PredefinedCommonDataTypeNames.Json, baseName: PredefinedCommonDataTypeNames.Text)]
-internal sealed partial class JsonDataTypeDetector : IDataTypeDetector
+[DataTypeName(PredefinedCommonDataTypeNames.Yaml, baseName: PredefinedCommonDataTypeNames.Text)]
+internal sealed partial class YamlDataTypeDetector : IDataTypeDetector
 {
     private readonly ILogger _logger;
 
     [ImportingConstructor]
-    public JsonDataTypeDetector()
+    public YamlDataTypeDetector()
     {
         _logger = this.Log();
     }
@@ -21,10 +21,9 @@ internal sealed partial class JsonDataTypeDetector : IDataTypeDetector
         CancellationToken cancellationToken)
     {
         if (resultFromBaseDetector is not null
-            && resultFromBaseDetector.Data is string dataString
-            && !long.TryParse(dataString, out _))
+            && resultFromBaseDetector.Data is string dataString)
         {
-            if (JsonHelper.IsValid(dataString, _logger))
+            if (YamlHelper.IsValid(dataString, _logger))
             {
                 return ValueTask.FromResult(new DataDetectionResult(Success: true, Data: dataString));
             }

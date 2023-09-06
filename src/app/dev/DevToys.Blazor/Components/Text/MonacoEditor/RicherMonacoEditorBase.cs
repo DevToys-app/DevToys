@@ -176,6 +176,11 @@ public class RicherMonacoEditorBase : MonacoEditorBase
 
     internal override async Task SetEventListenersAsync()
     {
+        if (_isDisposed)
+        {
+            return;
+        }
+
         if (OnDidCompositionEnd.HasDelegate)
         {
             await SetEventListenerAsync(nameof(OnDidCompositionEnd));
@@ -315,141 +320,144 @@ public class RicherMonacoEditorBase : MonacoEditorBase
         eventJson ??= string.Empty;
         var jsonOptions = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
 
-        switch (eventName)
+        if (!_isDisposed)
         {
-            case nameof(OnDidCompositionEnd):
-                await OnDidCompositionEnd.InvokeAsync(this);
-                break;
+            switch (eventName)
+            {
+                case nameof(OnDidCompositionEnd):
+                    await OnDidCompositionEnd.InvokeAsync(this);
+                    break;
 
-            case nameof(OnDidCompositionStart):
-                await OnDidCompositionStart.InvokeAsync(this);
-                break;
+                case nameof(OnDidCompositionStart):
+                    await OnDidCompositionStart.InvokeAsync(this);
+                    break;
 
-            case nameof(OnContextMenu):
-                if (!string.IsNullOrEmpty(eventJson))
-                {
-                    await OnContextMenu.InvokeAsync(JsonSerializer.Deserialize<EditorMouseEvent>(eventJson, jsonOptions));
-                }
-                break;
+                case nameof(OnContextMenu):
+                    if (!string.IsNullOrEmpty(eventJson))
+                    {
+                        await OnContextMenu.InvokeAsync(JsonSerializer.Deserialize<EditorMouseEvent>(eventJson, jsonOptions));
+                    }
+                    break;
 
-            case nameof(OnDidBlurEditorText):
-                await OnDidBlurEditorText.InvokeAsync(this);
-                break;
+                case nameof(OnDidBlurEditorText):
+                    await OnDidBlurEditorText.InvokeAsync(this);
+                    break;
 
-            case nameof(OnDidBlurEditorWidget):
-                await OnDidBlurEditorWidget.InvokeAsync(this);
-                break;
+                case nameof(OnDidBlurEditorWidget):
+                    await OnDidBlurEditorWidget.InvokeAsync(this);
+                    break;
 
-            case nameof(OnDidChangeConfiguration):
-                await OnDidChangeConfiguration.InvokeAsync(new ConfigurationChangedEvent(JsonSerializer.Deserialize<List<bool>?>(eventJson, jsonOptions)));
-                break;
+                case nameof(OnDidChangeConfiguration):
+                    await OnDidChangeConfiguration.InvokeAsync(new ConfigurationChangedEvent(JsonSerializer.Deserialize<List<bool>?>(eventJson, jsonOptions)));
+                    break;
 
-            case nameof(OnDidChangeCursorPosition):
-                await OnDidChangeCursorPosition.InvokeAsync(JsonSerializer.Deserialize<CursorPositionChangedEvent>(eventJson, jsonOptions));
-                break;
+                case nameof(OnDidChangeCursorPosition):
+                    await OnDidChangeCursorPosition.InvokeAsync(JsonSerializer.Deserialize<CursorPositionChangedEvent>(eventJson, jsonOptions));
+                    break;
 
-            case nameof(OnDidChangeCursorSelection):
-                await OnDidChangeCursorSelection.InvokeAsync(JsonSerializer.Deserialize<CursorSelectionChangedEvent>(eventJson, jsonOptions));
-                break;
+                case nameof(OnDidChangeCursorSelection):
+                    await OnDidChangeCursorSelection.InvokeAsync(JsonSerializer.Deserialize<CursorSelectionChangedEvent>(eventJson, jsonOptions));
+                    break;
 
-            case nameof(OnDidChangeModel):
-                await OnDidChangeModel.InvokeAsync(JsonSerializer.Deserialize<ModelChangedEvent>(eventJson, jsonOptions));
-                break;
+                case nameof(OnDidChangeModel):
+                    await OnDidChangeModel.InvokeAsync(JsonSerializer.Deserialize<ModelChangedEvent>(eventJson, jsonOptions));
+                    break;
 
-            case nameof(OnDidChangeModelContent):
-                await OnDidChangeModelContent.InvokeAsync(JsonSerializer.Deserialize<ModelContentChangedEvent>(eventJson, jsonOptions));
-                break;
+                case nameof(OnDidChangeModelContent):
+                    await OnDidChangeModelContent.InvokeAsync(JsonSerializer.Deserialize<ModelContentChangedEvent>(eventJson, jsonOptions));
+                    break;
 
-            case nameof(OnDidChangeModelDecorations):
-                await OnDidChangeModelDecorations.InvokeAsync(JsonSerializer.Deserialize<ModelDecorationsChangedEvent>(eventJson, jsonOptions));
-                break;
+                case nameof(OnDidChangeModelDecorations):
+                    await OnDidChangeModelDecorations.InvokeAsync(JsonSerializer.Deserialize<ModelDecorationsChangedEvent>(eventJson, jsonOptions));
+                    break;
 
-            case nameof(OnDidChangeModelLanguage):
-                await OnDidChangeModelLanguage.InvokeAsync(JsonSerializer.Deserialize<ModelLanguageChangedEvent>(eventJson, jsonOptions));
-                break;
+                case nameof(OnDidChangeModelLanguage):
+                    await OnDidChangeModelLanguage.InvokeAsync(JsonSerializer.Deserialize<ModelLanguageChangedEvent>(eventJson, jsonOptions));
+                    break;
 
-            case nameof(OnDidChangeModelLanguageConfiguration):
-                await OnDidChangeModelLanguageConfiguration.InvokeAsync(JsonSerializer.Deserialize<ModelLanguageConfigurationChangedEvent>(eventJson, jsonOptions));
-                break;
+                case nameof(OnDidChangeModelLanguageConfiguration):
+                    await OnDidChangeModelLanguageConfiguration.InvokeAsync(JsonSerializer.Deserialize<ModelLanguageConfigurationChangedEvent>(eventJson, jsonOptions));
+                    break;
 
-            case nameof(OnDidChangeModelOptions):
-                await OnDidChangeModelOptions.InvokeAsync(JsonSerializer.Deserialize<ModelOptionsChangedEvent>(eventJson, jsonOptions));
-                break;
+                case nameof(OnDidChangeModelOptions):
+                    await OnDidChangeModelOptions.InvokeAsync(JsonSerializer.Deserialize<ModelOptionsChangedEvent>(eventJson, jsonOptions));
+                    break;
 
-            case nameof(OnDidContentSizeChange):
-                await OnDidContentSizeChange.InvokeAsync(JsonSerializer.Deserialize<ContentSizeChangedEvent>(eventJson, jsonOptions));
-                break;
+                case nameof(OnDidContentSizeChange):
+                    await OnDidContentSizeChange.InvokeAsync(JsonSerializer.Deserialize<ContentSizeChangedEvent>(eventJson, jsonOptions));
+                    break;
 
-            case nameof(OnDidFocusEditorText):
-                await OnDidFocusEditorText.InvokeAsync(this);
-                break;
+                case nameof(OnDidFocusEditorText):
+                    await OnDidFocusEditorText.InvokeAsync(this);
+                    break;
 
-            case nameof(OnDidFocusEditorWidget):
-                await OnDidFocusEditorWidget.InvokeAsync(this);
-                break;
+                case nameof(OnDidFocusEditorWidget):
+                    await OnDidFocusEditorWidget.InvokeAsync(this);
+                    break;
 
-            case nameof(OnDidLayoutChange):
-                if (!string.IsNullOrEmpty(eventJson))
-                {
-                    await OnDidLayoutChange.InvokeAsync(JsonSerializer.Deserialize<EditorLayoutInfo>(eventJson, jsonOptions));
-                }
-                break;
+                case nameof(OnDidLayoutChange):
+                    if (!string.IsNullOrEmpty(eventJson))
+                    {
+                        await OnDidLayoutChange.InvokeAsync(JsonSerializer.Deserialize<EditorLayoutInfo>(eventJson, jsonOptions));
+                    }
+                    break;
 
-            case nameof(OnDidPaste):
-                if (!string.IsNullOrEmpty(eventJson))
-                {
-                    await OnDidPaste.InvokeAsync(JsonSerializer.Deserialize<PasteEvent>(eventJson, jsonOptions));
-                }
-                break;
+                case nameof(OnDidPaste):
+                    if (!string.IsNullOrEmpty(eventJson))
+                    {
+                        await OnDidPaste.InvokeAsync(JsonSerializer.Deserialize<PasteEvent>(eventJson, jsonOptions));
+                    }
+                    break;
 
-            case nameof(OnDidScrollChange):
-                if (!string.IsNullOrEmpty(eventJson))
-                {
-                    await OnDidScrollChange.InvokeAsync(JsonSerializer.Deserialize<ScrollEvent>(eventJson, jsonOptions));
-                }
-                break;
+                case nameof(OnDidScrollChange):
+                    if (!string.IsNullOrEmpty(eventJson))
+                    {
+                        await OnDidScrollChange.InvokeAsync(JsonSerializer.Deserialize<ScrollEvent>(eventJson, jsonOptions));
+                    }
+                    break;
 
-            case nameof(OnKeyDown):
-                if (!string.IsNullOrEmpty(eventJson))
-                {
-                    await OnKeyDown.InvokeAsync(JsonSerializer.Deserialize<KeyboardEvent>(eventJson, jsonOptions));
-                }
-                break;
+                case nameof(OnKeyDown):
+                    if (!string.IsNullOrEmpty(eventJson))
+                    {
+                        await OnKeyDown.InvokeAsync(JsonSerializer.Deserialize<KeyboardEvent>(eventJson, jsonOptions));
+                    }
+                    break;
 
-            case nameof(OnKeyUp):
-                if (!string.IsNullOrEmpty(eventJson))
-                {
-                    await OnKeyUp.InvokeAsync(JsonSerializer.Deserialize<KeyboardEvent>(eventJson, jsonOptions));
-                }
-                break;
+                case nameof(OnKeyUp):
+                    if (!string.IsNullOrEmpty(eventJson))
+                    {
+                        await OnKeyUp.InvokeAsync(JsonSerializer.Deserialize<KeyboardEvent>(eventJson, jsonOptions));
+                    }
+                    break;
 
-            case nameof(OnMouseDown):
-                if (!string.IsNullOrEmpty(eventJson))
-                {
-                    await OnMouseDown.InvokeAsync(JsonSerializer.Deserialize<EditorMouseEvent>(eventJson, jsonOptions));
-                }
-                break;
+                case nameof(OnMouseDown):
+                    if (!string.IsNullOrEmpty(eventJson))
+                    {
+                        await OnMouseDown.InvokeAsync(JsonSerializer.Deserialize<EditorMouseEvent>(eventJson, jsonOptions));
+                    }
+                    break;
 
-            case nameof(OnMouseLeave):
-                if (!string.IsNullOrEmpty(eventJson))
-                {
-                    await OnMouseLeave.InvokeAsync(JsonSerializer.Deserialize<PartialEditorMouseEvent>(eventJson, jsonOptions));
-                }
-                break;
+                case nameof(OnMouseLeave):
+                    if (!string.IsNullOrEmpty(eventJson))
+                    {
+                        await OnMouseLeave.InvokeAsync(JsonSerializer.Deserialize<PartialEditorMouseEvent>(eventJson, jsonOptions));
+                    }
+                    break;
 
-            case nameof(OnMouseMove):
-                if (!string.IsNullOrEmpty(eventJson))
-                {
-                    await OnMouseMove.InvokeAsync(JsonSerializer.Deserialize<EditorMouseEvent>(eventJson, jsonOptions));
-                }
-                break;
+                case nameof(OnMouseMove):
+                    if (!string.IsNullOrEmpty(eventJson))
+                    {
+                        await OnMouseMove.InvokeAsync(JsonSerializer.Deserialize<EditorMouseEvent>(eventJson, jsonOptions));
+                    }
+                    break;
 
-            case nameof(OnMouseUp):
-                if (!string.IsNullOrEmpty(eventJson))
-                {
-                    await OnMouseUp.InvokeAsync(JsonSerializer.Deserialize<EditorMouseEvent>(eventJson, jsonOptions));
-                }
-                break;
+                case nameof(OnMouseUp):
+                    if (!string.IsNullOrEmpty(eventJson))
+                    {
+                        await OnMouseUp.InvokeAsync(JsonSerializer.Deserialize<EditorMouseEvent>(eventJson, jsonOptions));
+                    }
+                    break;
+            }
         }
 
         await base.EventCallbackAsync(eventName, eventJson);
@@ -710,6 +718,11 @@ public class RicherMonacoEditorBase : MonacoEditorBase
 
     internal ValueTask<bool> UpdateOptionsAsync(EditorUpdateOptions newOptions)
     {
+        if (_isDisposed)
+        {
+            return new ValueTask<bool>(false);
+        }
+
         // Convert the options object into a JsonElement to get rid of the properties with null values
         string optionsJson = JsonSerializer.Serialize(newOptions, new JsonSerializerOptions
         {

@@ -16,7 +16,7 @@ namespace DevToys.UnitTests.Mocks.Tools;
     DescriptionResourceName = nameof(MockToolResource.Title),
     AccessibleNameResourceName = nameof(MockToolResource.Title),
     SearchKeywordsResourceName = nameof(MockToolResource.Title))]
-[AcceptedDataTypeName("text")]
+[AcceptedDataTypeName(PredefinedCommonDataTypeNames.Text)]
 internal sealed class MockIGuiTool2 : IGuiTool
 {
     public UIToolView View => null!;
@@ -37,7 +37,7 @@ internal sealed class MockIGuiTool2 : IGuiTool
     DescriptionResourceName = nameof(MockToolResource.Title),
     AccessibleNameResourceName = nameof(MockToolResource.Title),
     SearchKeywordsResourceName = nameof(MockToolResource.Title))]
-[AcceptedDataTypeName("JSON")]
+[AcceptedDataTypeName(PredefinedCommonDataTypeNames.Json)]
 internal sealed class MockIGuiTool : IGuiTool
 {
     public UIToolView View => null!;

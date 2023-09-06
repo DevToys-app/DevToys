@@ -2,6 +2,7 @@
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using DevToys.Tools.Helpers;
 
 namespace DevToys.UnitTests.Mocks.Tools;
 
@@ -15,22 +16,9 @@ internal class MockJsonDataTypeDetector : IDataTypeDetector
             && resultFromBaseDetector.Data is string dataString
             && !long.TryParse(dataString, out _))
         {
-            try
+            if (JsonHelper.IsValid(dataString, new MockILogger()))
             {
-                var options = new JsonDocumentOptions
-                {
-                    CommentHandling = JsonCommentHandling.Allow,
-                    AllowTrailingCommas = true,
-                    MaxDepth = int.MaxValue
-                };
-                var jsonDocument = JsonDocument.Parse(dataString, options);
-                if (jsonDocument is not null)
-                {
-                    return ValueTask.FromResult(new DataDetectionResult(Success: true, Data: new Tuple<JsonDocument, string>(jsonDocument, dataString)));
-                }
-            }
-            catch
-            {
+                return ValueTask.FromResult(new DataDetectionResult(Success: true, Data: dataString));
             }
         }
 

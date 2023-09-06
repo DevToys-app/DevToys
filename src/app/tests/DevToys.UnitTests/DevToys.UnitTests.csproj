@@ -6,6 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="Tools\TestData\*\*.*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentAssertions" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="Moq" />
@@ -26,6 +32,7 @@
     <ProjectReference Include="..\..\dev\DevToys.Business\DevToys.Business.csproj" />
     <ProjectReference Include="..\..\dev\DevToys.Core\DevToys.Core.csproj" />
     <ProjectReference Include="..\..\dev\DevToys.Tools\DevToys.Tools.csproj" />
+    <ProjectReference Include="..\..\dev\platforms\desktop\DevToys.CLI\DevToys.CLI.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -39,6 +39,16 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="Tools\Converters\Converters.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Converters.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Tools\Converters\JsonYaml\JsonYamlConverter.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>JsonYamlConverter.resx</DependentUpon>
+    </Compile>
     <Compile Update="Tools\EncodersDecoders\Html\HtmlEncoderDecoder.Designer.cs">
       <DependentUpon>HtmlEncoderDecoder.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -69,6 +79,14 @@
       <LastGenOutput>UrlEncoderDecoder.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Tools\Converters\Converters.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Converters.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Tools\Converters\JsonYaml\JsonYamlConverter.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>JsonYamlConverter.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Tools\EncodersDecoders\Html\HtmlEncoderDecoder.resx">
       <LastGenOutput>HtmlEncoderDecoder.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
@@ -92,10 +110,22 @@
   </ItemGroup>
   
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" />
     <PackageReference Include="System.Text.Json" />
+    <PackageReference Include="YamlDotNet" />
   </ItemGroup>
 
-  <Target Name="CopyPluginAfterBuild" AfterTargets="Pack">
+  <Target Name="IncludeAllFilesInTargetDir" AfterTargets="Build">
+    <ItemGroup>
+      <None Include="$(OutputPath)\**">
+        <Pack>true</Pack>
+        <PackagePath>lib</PackagePath>
+      </None>
+    </ItemGroup>
+  </Target>
+
+  <Target DependsOnTargets="IncludeAllFilesInTargetDir" Name="CopyPluginAfterBuild" AfterTargets="Pack">
     <Copy SourceFiles="$(PackageOutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(PluginNupkgPath)" SkipUnchangedFiles="false" OverwriteReadOnlyFiles="true" Retries="10" RetryDelayMilliseconds="1000" />
   </Target>
+  
 </Project>

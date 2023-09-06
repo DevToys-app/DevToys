@@ -116,6 +116,7 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
                             = _oldSmartDetectedTools.FirstOrDefault(tool => tool.ToolInstance == guiToolViewItem.ToolInstance);
                         if (smartDetectedTool is not null)
                         {
+                            _ = guiToolViewItem.ToolInstance.View; // Do nothing with the view but trigger to instance because PassSmartDetectedData may assume the UI is instantiated.
                             guiToolViewItem.ToolInstance.PassSmartDetectedData(smartDetectedTool.DataTypeName, smartDetectedTool.ParsedData);
                         }
                     }
@@ -352,7 +353,6 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
     {
         // Select the actual menu item in the navigation view. This will trigger the navigation.
         SelectedMenuItem = GetBestMenuItemToSelect(message.Value);
-        message.SmartDetectionInfo?.ToolInstance.PassSmartDetectedData(message.SmartDetectionInfo.DataTypeName, message.SmartDetectionInfo.ParsedData);
     }
 
     [LoggerMessage(1, LogLevel.Warning, "Failed to perform smart detection.")]

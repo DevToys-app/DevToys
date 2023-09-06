@@ -3,7 +3,7 @@ using DevToys.Blazor.Components.Monaco.Editor;
 
 namespace DevToys.Blazor.Components.UIElements;
 
-public partial class UIDiffTextInputPresenter : JSStyledComponentBase, IDisposable
+public partial class UIDiffTextInputPresenter : JSStyledComponentBase
 {
     private MonacoEditorDiff _monacoEditor = default!;
     private bool _isInFullScreenMode;
@@ -32,13 +32,13 @@ public partial class UIDiffTextInputPresenter : JSStyledComponentBase, IDisposab
         UIDiffTextInput.InlineModeChanged += UIDiffTextInput_InlineModeChanged;
     }
 
-    public void Dispose()
+    public override ValueTask DisposeAsync()
     {
         UIDiffTextInput.TextChanged -= UIMultiLineTextInput_TextChanged;
         UIDiffTextInput.ModifiedTextChanged -= UIDiffTextInput_RightTextChanged;
         UIDiffTextInput.IsReadOnlyChanged -= UIMultiLineTextInput_IsReadOnlyChanged;
         UIDiffTextInput.InlineModeChanged -= UIDiffTextInput_InlineModeChanged;
-        GC.SuppressFinalize(this);
+        return base.DisposeAsync();
     }
 
     private async Task OnMonacoEditorInitializedAsync()
