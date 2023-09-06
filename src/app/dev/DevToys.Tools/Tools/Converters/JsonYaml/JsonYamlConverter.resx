@@ -169,19 +169,19 @@
     <value>JSON to YAML</value>
   </data>
   <data name="LongDisplayTitle" xml:space="preserve">
-    <value>JSON &lt; &gt; YAML Converter</value>
+    <value>JSON &lt;&gt; YAML Converter</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Output</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>JSON &lt; &gt; YAML Converter</value>
+    <value>JSON &lt;&gt; YAML Converter</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value />
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>JSON &lt; &gt; YAML</value>
+    <value>JSON &lt;&gt; YAML</value>
   </data>
   <data name="TwoSpaces" xml:space="preserve">
     <value>2 spaces</value>
