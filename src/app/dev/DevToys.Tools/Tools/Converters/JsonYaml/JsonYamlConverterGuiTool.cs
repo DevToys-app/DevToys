@@ -20,8 +20,8 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml;
 [AcceptedDataTypeName(PredefinedCommonDataTypeNames.Yaml)]
 internal sealed partial class JsonYamlConverterGuiTool : IGuiTool, IDisposable
 {
-    private static string JsonLanguage => "json";
-    private static string YamlLanguage => "yaml";
+    private const string JsonLanguage = "json";
+    private const string YamlLanguage = "yaml";
 
     /// <summary>
     /// Whether the tool should convert Json to Yaml or Yaml to Json.

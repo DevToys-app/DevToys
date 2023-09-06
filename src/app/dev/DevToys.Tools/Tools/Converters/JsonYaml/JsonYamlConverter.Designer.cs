@@ -214,7 +214,7 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JSON &amp;amp;lt;&amp;amp;gt; YAML Converter.
+        ///   Looks up a localized string similar to JSON &lt; &gt; YAML Converter.
         /// </summary>
         internal static string LongDisplayTitle {
             get {
@@ -232,7 +232,7 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JSON &amp;amp;lt;&amp;amp;gt; YAML Converter.
+        ///   Looks up a localized string similar to JSON &lt; &gt; YAML Converter.
         /// </summary>
         internal static string SearchDisplayName {
             get {
@@ -250,7 +250,7 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JSON &amp;amp;lt;&amp;amp;gt; YAML.
+        ///   Looks up a localized string similar to JSON &lt; &gt; YAML.
         /// </summary>
         internal static string ShortDisplayTitle {
             get {
