@@ -124,7 +124,7 @@
     <value>Tisztítás</value>
   </data>
   <data name="Collapse" xml:space="preserve">
-    <value>Collapse</value>
+    <value>Összecsukás</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>Másolás</value>
@@ -136,7 +136,7 @@
     <value>Törlés</value>
   </data>
   <data name="Expand" xml:space="preserve">
-    <value>Expand</value>
+    <value>Kibontás</value>
   </data>
   <data name="ShowInfo" xml:space="preserve">
     <value>Show additional info</value>
@@ -145,7 +145,7 @@
     <value>Hide additional info</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
-    <value>Browse files</value>
+    <value>Fájlok böngészése</value>
   </data>
   <data name="FileSelectorBrowseFolders" xml:space="preserve">
     <value>Browse folders</value>
