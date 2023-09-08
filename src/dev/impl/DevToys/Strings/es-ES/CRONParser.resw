@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Herramienta analizadora de Cron</value>
+    <value>Cron parsing tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
-    <value>Configuración</value>
+    <value>Configuracion</value>
   </data>
   <data name="UseSecondsDescription" xml:space="preserve">
-    <value>Choose whether the Cron expression should include seconds in its definition</value>
+    <value>Elija si la expresión de Cron debe incluir segundos en su definición</value>
   </data>
   <data name="UseSecondsTitle" xml:space="preserve">
     <value>Modo de Cron</value>
