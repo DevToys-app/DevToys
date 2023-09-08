@@ -376,6 +376,6 @@
     <value>Authentication Methods References. JSON array of strings that are identifiers for authentication methods used in the authentication. For instance, values might indicate that both password and OTP authentication methods were used. Parties using this claim will need to agree upon the meanings of the values used, which may be context-specific. The amr value is an array of case sensitive strings.</value>
   </data>
   <data name="sub_jwk" xml:space="preserve">
-    <value>Public key used to check the signature of an ID Token issued by a Self-Issued OpenID Provider. The key is a bare key in JWK format (not an X.509 certificate value). The sub_jwk value is a JSON object. Use of the sub_jwk Claim is NOT RECOMMENDED when the OP is not Self-Issued.</value>
+    <value>Clave pública utilizada para comprobar la firma de un token de identificación emitido por un proveedor de OpenID auto-emitido. La clave es una clave en bruto en formato JWK (no una valor de un certificado X.509). El valor sub_jwk es un objeto JSON. El uso de la reclamación sub_jwk NO es RECOMENDADO cuando el OP no es auto-emitido.</value>
   </data>
 </root>
