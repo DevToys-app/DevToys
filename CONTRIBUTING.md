@@ -88,7 +88,7 @@ Most of the `DevToys.MacOS` app runs in a web browser (Safari). In order to acce
 1. Make sure your machine has GTK4 installed. Distro like Ubuntu generally have it pre-installed.
 1. [**Visual Studio Code**](https://code.visualstudio.com/) or [**JetBrains Rider**](https://www.jetbrains.com/rider/)
 1. **.NET SDK**. This is required to build the app itself.
-    * [.NET 7.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/7.0) (**version 7.0 (SDK 7.0.110)** or later). If you're on a [Mac computer with Apple silicon processor](https://support.apple.com/en-us/HT211814), you need to install the Arm64 version of the SDK.
+    * [.NET 7.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/7.0) (**version 7.0 (SDK 7.0.110)** or later).
     > Use `dotnet --version` from the terminal to get the version installed.
 1. [Node.js](https://nodejs.org/). This is required to build Monaco Editor.
 
