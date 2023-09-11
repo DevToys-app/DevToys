@@ -151,7 +151,7 @@
     <value>Eliminates unescaped white space from the pattern and enables comments marked with #. However, this value does not affect or eliminate white space in character classes, numeric quantifiers, or tokens that mark the beginning of individual regular expression language elements.</value>
   </data>
   <data name="Multiline" xml:space="preserve">
-    <value>Multiline</value>
+    <value>متعدد الأسطر</value>
   </data>
   <data name="MultilineDescription" xml:space="preserve">
     <value>Changes the meaning of ^ and $ so they match at the beginning and end, respectively, of any line, and not just the beginning and end of the entire string.</value>
