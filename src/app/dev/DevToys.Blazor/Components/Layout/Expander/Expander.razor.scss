@@ -26,6 +26,9 @@
                 height: 32px;
                 width: 32px;
                 border-radius: var(--control-corner-radius);
+                border-color: var(--subtle-fill-transparent);
+                background-color: var(--subtle-fill-transparent);
+                color: var(--text-fill-color-primary);
 
                 .font-icon {
                     @include transition(transform .2s ease-in-out);
@@ -34,9 +37,17 @@
 
             &:hover {
                 .expander-expand-button {
-                    border-color: var(--stealth-button-border-pointer-over);
-                    background-color: var(--stealth-button-background-pointer-over);
-                    color: var(--stealth-button-foreground-pointer-over);
+                    border-color: var(--subtle-fill-transparent);
+                    background-color: var(--subtle-fill-secondary);
+                    color: var(--text-fill-color-primary);
+                }
+            }
+
+            &:active {
+                .expander-expand-button {
+                    border-color: var(--subtle-fill-transparent);
+                    background-color: var(--subtle-fill-tertiary);
+                    color: var(--text-fill-color-primary);
                 }
             }
         }

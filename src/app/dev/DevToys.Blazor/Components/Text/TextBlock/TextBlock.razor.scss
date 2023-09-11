@@ -11,7 +11,7 @@
 
     mark {
         background-color: var(--text-box-selection-highlight-color);
-        color: currentColor;
+        color: var(--text-box-selection-color);
     }
 
     &.type- {

@@ -85,11 +85,17 @@
 
             &.selected {
                 background-color: var(--data-grid-row-selected-background) !important;
+                color: var(--data-grid-row-selected-foreground) !important;
 
                 &:hover {
                     background-color: var(--data-grid-row-selected-background-pointer-over) !important;
+                    color: var(--data-grid-row-selected-foreground-pointer-over) !important;
                 }
             }
         }
+    }
+
+    td {
+        color: currentColor;
     }
 }

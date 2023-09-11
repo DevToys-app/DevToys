@@ -24,6 +24,7 @@
 
     &::selection {
         background: var(--text-box-selection-highlight-color);
+        color: var(--text-box-selection-color);
     }
 
     &::-webkit-search-decoration,

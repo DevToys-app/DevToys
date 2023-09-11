@@ -335,6 +335,7 @@
     --text-box-placeholder-foreground-focused: var(--text-fill-color-tertiary);
     --text-box-placeholder-foreground-disabled: var(--text-fill-color-disabled);
     --text-box-selection-highlight-color: rgb(var(--accent-base));
+    --text-box-selection-color: rgb(255, 255, 255);
     --text-box-underline-border-thickness: 1px;
     --text-box-underline-border-thickness-focused: 2px;
 
@@ -381,6 +382,8 @@
     --data-grid-row-odd-background-pointer-over: rgba(255, 255, 255, 0.18);
     --data-grid-row-selected-background: rgba(var(--accent-base), 0.9);
     --data-grid-row-selected-background-pointer-over: rgba(var(--accent-base), 0.8);
+    --data-grid-row-selected-foreground: var(--text-box-selection-color);
+    --data-grid-row-selected-foreground-pointer-over: var(--text-box-selection-color);
     --data-grid-border: var(--control-stroke-color-default);
 
     /* Dialog */
