@@ -118,40 +118,40 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Bytes" xml:space="preserve">
-    <value>Bytes</value>
+    <value>בייטים</value>
   </data>
   <data name="Clear" xml:space="preserve">
-    <value>Clear</value>
+    <value>ניקוי</value>
   </data>
   <data name="Collapse" xml:space="preserve">
-    <value>Collapse</value>
+    <value>כיווץ</value>
   </data>
   <data name="Copy" xml:space="preserve">
-    <value>Copy</value>
+    <value>העתק</value>
   </data>
   <data name="Cut" xml:space="preserve">
-    <value>Cut</value>
+    <value>גזור</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>מחיקה</value>
   </data>
   <data name="Expand" xml:space="preserve">
-    <value>Expand</value>
+    <value>הרחב</value>
   </data>
   <data name="ShowInfo" xml:space="preserve">
-    <value>Show additional info</value>
+    <value>הצג מידע נוסף</value>
   </data>
   <data name="HideInfo" xml:space="preserve">
-    <value>Hide additional info</value>
+    <value>הסתר מידע נוסף</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
-    <value>Browse files</value>
+    <value>עיון בקבצים</value>
   </data>
   <data name="FileSelectorBrowseFolders" xml:space="preserve">
-    <value>Browse folders</value>
+    <value>עיון בתיקיות</value>
   </data>
   <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>Drag &amp; drop any file here</value>
+    <value>גרור ושחרר כל קובץ לכאן</value>
   </data>
   <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
     <value>Drag &amp; drop any files here</value>
@@ -169,19 +169,19 @@
     <comment>{0} is a list of file extensions like "PNG, TXT, JPG"</comment>
   </data>
   <data name="FileSelectorOr" xml:space="preserve">
-    <value>or</value>
+    <value>או</value>
   </data>
   <data name="Gigabytes" xml:space="preserve">
-    <value>GB</value>
+    <value>ג״ב</value>
   </data>
   <data name="Kilobytes" xml:space="preserve">
-    <value>KB</value>
+    <value>ק״ב</value>
   </data>
   <data name="Megabytes" xml:space="preserve">
-    <value>MB</value>
+    <value>מ״ב</value>
   </data>
   <data name="Ok" xml:space="preserve">
-    <value>OK</value>
+    <value>אישור</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
     <value>Load a file</value>
@@ -211,7 +211,7 @@
     <value>On</value>
   </data>
   <data name="UnableOpenFile" xml:space="preserve">
-    <value>Unable to open this file</value>
+    <value>לא ניתן לפתוח את הקובץ</value>
   </data>
   <data name="UnableOpenFileDescription" xml:space="preserve">
     <value>Unable to load the file '{0}'. Only textual files can be opened. For more details, please check the log.</value>
@@ -220,7 +220,7 @@
     <value>Undo</value>
   </data>
   <data name="ViewImage" xml:space="preserve">
-    <value>View</value>
+    <value>צפייה</value>
     <comment>In the context of "view / display an image".</comment>
   </data>
 </root>

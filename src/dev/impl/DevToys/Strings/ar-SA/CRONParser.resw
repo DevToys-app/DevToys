@@ -124,7 +124,7 @@
     <value>الإعدادات</value>
   </data>
   <data name="UseSecondsDescription" xml:space="preserve">
-    <value>Choose whether the Cron expression should include seconds in its definition</value>
+    <value>اختر ما إذا كان يجب أن يتضمن تعبير Cron ثواني في تعريفه</value>
   </data>
   <data name="UseSecondsTitle" xml:space="preserve">
     <value>وضع Cron</value>
@@ -172,9 +172,9 @@
     <value>يتضمن الثواني ( 6 قطع)</value>
   </data>
   <data name="DescriptionTitle" xml:space="preserve">
-    <value>Description</value>
+    <value>الوصف</value>
   </data>
   <data name="DescriptionErrorMessage" xml:space="preserve">
-    <value>Unable to generate description</value>
+    <value>تعذر توليد الوصف</value>
   </data>
 </root>

@@ -127,10 +127,10 @@
     <value>Base64</value>
   </data>
   <data name="ImageInputTitle" xml:space="preserve">
-    <value>Image</value>
+    <value>תמונה</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Encode and decode Base64 image data</value>
+    <value>קידוד / פענוח Base64 תמונה</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Base64 Image Encoder / Decoder</value>

@@ -186,7 +186,7 @@
     <value>输入字典</value>
   </data>
   <data name="OutputDictionaryLabel" xml:space="preserve">
-    <value>输入字典</value>
+    <value>输出字典</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>输出</value>

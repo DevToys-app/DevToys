@@ -121,10 +121,10 @@
     <value>Certificate Encoder and Decoder tool</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Certificate</value>
+    <value>Сертифікат</value>
   </data>
   <data name="PasswordTitle" xml:space="preserve">
-    <value>Password</value>
+    <value>Пароль</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
     <value>Ввід</value>
@@ -139,10 +139,10 @@
     <value>Certificate Encoder / Decoder</value>
   </data>
   <data name="InvalidPasswordError" xml:space="preserve">
-    <value>Invalid password.</value>
+    <value>Невірний пароль.</value>
   </data>
   <data name="UnsupportedFormatError" xml:space="preserve">
-    <value>Certificate Request format not currently supported.</value>
+    <value>Формат запиту на сертифікат наразі не підтримується.</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>CER PFX PEM</value>

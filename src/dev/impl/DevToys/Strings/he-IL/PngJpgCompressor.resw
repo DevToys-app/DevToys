@@ -127,7 +127,7 @@
     <value>כיוון הגדרות</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>מחיקה</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
     <value>Delete all</value>
@@ -143,7 +143,7 @@
     <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
   </data>
   <data name="OK" xml:space="preserve">
-    <value>OK</value>
+    <value>אישור</value>
   </data>
   <data name="SaveAll" xml:space="preserve">
     <value>Save all</value>

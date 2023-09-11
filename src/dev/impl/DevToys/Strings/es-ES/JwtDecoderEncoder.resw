@@ -298,10 +298,10 @@
     <value>The "jti" (JWT ID) claim provides a unique identifier for the JWT. The identifier value MUST be assigned in a manner that ensures that there is a negligible probability that the same value will be accidentally assigned to a different data object; if the application uses multiple issuers, collisions MUST be prevented among values produced by different issuers as well. The "jti" claim can be used to prevent the JWT from being replayed. The "jti" value is a case-sensitive string. Use of this claim is OPTIONAL.</value>
   </data>
   <data name="name" xml:space="preserve">
-    <value>End-User's full name in displayable form including all name parts, possibly including titles and suffixes, ordered according to the End-User's locale and preferences.</value>
+    <value>Nombre completo del usuario final en forma visible incluyendo todas las partes del nombre, posiblemente incluyendo títulos y sufijos, ordenados de acuerdo a la configuración regional y preferencias del usuario final.</value>
   </data>
   <data name="given_name" xml:space="preserve">
-    <value>Given name(s) or first name(s) of the End-User. Note that in some cultures, people can have multiple given names; all can be present, with the names being separated by space characters.</value>
+    <value>Nombre(s) del usuario final. Tenga en cuenta que en algunas culturas, la gente puede tener varios nombres dados; todos pueden estar presentes y estar separados por caracteres de espacio.</value>
   </data>
   <data name="family_name" xml:space="preserve">
     <value>Surname(s) or last name(s) of the End-User. Note that in some cultures, people can have multiple family names or no family name; all can be present, with the names being separated by space characters.</value>
@@ -340,7 +340,7 @@
     <value>String from zoneinfo time zone database representing the End-User's time zone. For example, Europe/Paris or America/Los_Angeles.</value>
   </data>
   <data name="locale" xml:space="preserve">
-    <value>End-User's locale, represented as a BCP47 [RFC5646] language tag. This is typically an ISO 639-1 Alpha-2 language code in lowercase and an ISO 3166-1 Alpha-2 country code in uppercase, separated by a dash. For example, en-US or fr-CA. As a compatibility note, some implementations have used an underscore as the separator rather than a dash, for example, en_US; Relying Parties MAY choose to accept this locale syntax as well.</value>
+    <value>Idioma del usuario final, representado como una etiqueta de idioma [RFC5646] BCP47. Este es típicamente un código de idioma ISO 639-1 Alpha-2 en minúsculas y un código de país ISO 3166-1 Alpha-2 en mayúsculas, separado por un dash. Por ejemplo, en-US o fr-CA. Como nota de compatibilidad, algunas implementaciones han usado un guión bajo como separador en lugar de un guión, por ejemplo, en_US; las partes usuarias PUEDEN optar por aceptar también esta sintaxis de configuración regional.</value>
   </data>
   <data name="phone_number" xml:space="preserve">
     <value>End-User's preferred telephone number. E.164 is RECOMMENDED as the format of this Claim, for example, +1 (425) 555-1212 or +56 (2) 687 2400. If the phone number contains an extension, it is RECOMMENDED that the extension be represented using the RFC 3966 extension syntax, for example, +1 (604) 555-1234;ext=5678.</value>
@@ -376,6 +376,6 @@
     <value>Authentication Methods References. JSON array of strings that are identifiers for authentication methods used in the authentication. For instance, values might indicate that both password and OTP authentication methods were used. Parties using this claim will need to agree upon the meanings of the values used, which may be context-specific. The amr value is an array of case sensitive strings.</value>
   </data>
   <data name="sub_jwk" xml:space="preserve">
-    <value>Public key used to check the signature of an ID Token issued by a Self-Issued OpenID Provider. The key is a bare key in JWK format (not an X.509 certificate value). The sub_jwk value is a JSON object. Use of the sub_jwk Claim is NOT RECOMMENDED when the OP is not Self-Issued.</value>
+    <value>Clave pública utilizada para comprobar la firma de un token de identificación emitido por un proveedor de OpenID auto-emitido. La clave es una clave en bruto en formato JWK (no una valor de un certificado X.509). El valor sub_jwk es un objeto JSON. El uso de la reclamación sub_jwk NO es RECOMENDADO cuando el OP no es auto-emitido.</value>
   </data>
 </root>

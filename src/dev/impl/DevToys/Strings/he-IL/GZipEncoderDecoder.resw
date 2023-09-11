@@ -133,7 +133,7 @@
     <value>Select whether the input should be compressed or decompressed</value>
   </data>
   <data name="ConversionCompress" xml:space="preserve">
-    <value>Compress</value>
+    <value>דחיסה</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
     <value>GZip Compress / Decompress</value>
