@@ -11,7 +11,7 @@
         family: var(--font-family-text);
         size: var(--font-size-body);
         optical-sizing: none;
-        weight: 300;
+        weight: var(--text-weight-normal);
     }
 
     line-height: 20px;
