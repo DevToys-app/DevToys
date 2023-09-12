@@ -5,7 +5,9 @@
     @include typography-body;
     position: relative;
     margin: 0;
-    border: 1px solid var(--radio-button-outer-ellipse-stroke);
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--radio-button-outer-ellipse-stroke);
     border-radius: 20px;
     outline: none;
     background-clip: padding-box;

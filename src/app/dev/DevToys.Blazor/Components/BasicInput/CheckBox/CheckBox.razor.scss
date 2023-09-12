@@ -3,7 +3,9 @@
 .checkbox {
     @include typography-body;
     margin: 0;
-    border: 1px solid var(--check-box-check-background-stroke-unchecked);
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--check-box-check-background-stroke-unchecked);
     border-radius: var(--check-box-check-corner-radius);
     outline: none;
     background-clip: padding-box;

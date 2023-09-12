@@ -46,6 +46,10 @@
 
     &.selected {
         background-color: var(--list-box-item-background-selected);
+        color: var(--list-box-item-foreground-selected) !important;
+        * {
+            color: var(--list-box-item-foreground-selected) !important;
+        }
     }
 
     &:active {

@@ -57,7 +57,9 @@
         border-radius: var(--control-corner-radius);
         background-clip: padding-box;
         background-color: var(--text-box-background);
-        border: 1px solid var(--text-box-border);
+        border-width: 1px;
+        border-style: solid;
+        border-color: var(--text-box-border);
 
         &:hover {
             color: var(--text-box-foreground-pointer-over);

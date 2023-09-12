@@ -296,6 +296,7 @@
     --list-box-item-background-selected-disabled: var(--subtle-fill-transparent);
     --list-box-item-background-pressed: rvar(--subtle-fill-transparent);
     --list-box-item-foreground: var(--text-fill-color-primary);
+    --list-box-item-foreground-selected: var(--text-fill-color-primary);
     --list-box-item-foreground-pressed: var(--text-fill-color-primary);
     --list-box-item-foreground-disabled: var(--text-fill-color-disabled);
     --list-box-item-selection-indicator: rgb(var(--accent-dark-1));
@@ -341,11 +342,11 @@
 
     /* Scrollbars */
     --scrollbar-track-background-color: transparent;
-    --scrollbar-track-background-color-hover: rgba(31, 31, 31, 0.9);
+    --scrollbar-track-background-color-hover: transparent;
     --scrollbar-thumb-border-color: rgba(85, 85, 85, 0.231);
     --scrollbar-thumb-border-color-hover: rgba(183, 183, 183, 0.42);
-    --scrollbar-thumb-background-color: rgb(205, 205, 205);
-    --scrollbar-thumb-background-color-hover: rgb(218, 218, 218);
+    --scrollbar-thumb-background-color: rgb(118, 118, 118);
+    --scrollbar-thumb-background-color-hover: rgb(169, 170, 170);
 
     /* InfoBar */
     --info-bar-error-severity-background: var(--system-fill-color-critical-background);

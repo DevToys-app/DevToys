@@ -10,6 +10,7 @@
       "vscode-icons-team.vscode-icons",
       "nromanov.dotnet-meteor",
       "tintoy.msbuild-project-tools",
-      "ms-azure-devops.azure-pipelines"
+      "ms-azure-devops.azure-pipelines",
+      "spmeesseman.vscode-taskexplorer"
     ]
 }

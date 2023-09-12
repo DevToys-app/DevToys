@@ -21,7 +21,9 @@
         min-inline-size: 75px;
         box-sizing: border-box;
         border-radius: var(--overlay-corner-radius);
-        border: 1px solid var(--menu-flyout-presenter-border);
+        border-width: 1px;
+        border-style: solid;
+        border-color: var(--menu-flyout-presenter-border);
         background-color: var(--menu-flyout-presenter-background);
         -webkit-backdrop-filter: var(--menu-flyout-presenter-backdrop-filter);
         backdrop-filter: var(--menu-flyout-presenter-backdrop-filter);

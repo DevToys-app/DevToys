@@ -13,7 +13,9 @@
         flex: 1;
         border-radius: var(--control-corner-radius);
         background-clip: padding-box;
-        border: 1px solid var(--data-grid-border);
+        border-width: 1px;
+        border-style: solid;
+        border-color: var(--data-grid-border);
     }
 
     &-underline {
