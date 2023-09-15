@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+  <PropertyGroup>
+    <TargetFramework>$(NetCore)</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <DefineConstants>$(DefineConstants);__LINUX__</DefineConstants>
+    <PluginsInstallationFolder>$(OutputPath)\$(TargetFramework)\Plugins</PluginsInstallationFolder>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GirCore.Adw-1" />
+    <PackageReference Include="GirCore.Gtk-4.0" />
+    <PackageReference Include="GirCore.WebKit-6.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebView" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\DevToys.Blazor\DevToys.Blazor.csproj" />
+    <ProjectReference Include="..\..\..\DevToys.Localization\DevToys.Localization.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="$(RepoRoot)\src\app\dev\platforms\desktop\DevToys.Windows\wwwroot\index.html" Link="wwwroot\index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Strings\Other\Other.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Other.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Strings\Other\Other.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Other.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

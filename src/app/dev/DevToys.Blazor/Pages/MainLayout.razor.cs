@@ -96,7 +96,10 @@ public partial class MainLayout : LayoutComponentBase
         ThemeName = themeName;
         IsCompactMode = _themeListener.IsCompactMode;
         UserIsCompactModePreference = _themeListener.UserIsCompactModePreference;
-        StateHasChanged();
+        InvokeAsync(() =>
+        {
+            StateHasChanged();
+        });
 
         Task.Delay(1000).ContinueWith(t =>
         {

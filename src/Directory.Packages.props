@@ -3,6 +3,7 @@
     <CommunityToolkitVersion>8.2.1</CommunityToolkitVersion>
     <DotNetVersion>7.0.0</DotNetVersion>
     <XUnit>2.5.0</XUnit>
+    <GirCore>0.5.0-preview.1</GirCore>
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="CommunityToolkit.Common" Version="$(CommunityToolkitVersion)" />
@@ -12,7 +13,11 @@
     <PackageVersion Include="coverlet.collector" Version="6.0.0" />
     <PackageVersion Include="FluentAssertions" Version="6.11.0" />
     <PackageVersion Include="FuzzySharp" Version="2.0.2" />
+    <PackageVersion Include="GirCore.Adw-1" Version="$(GirCore)" />
+		<PackageVersion Include="GirCore.Gtk-4.0" Version="$(GirCore)" />
+		<PackageVersion Include="GirCore.WebKit-6.0" Version="$(GirCore)" />
     <PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="$(DotNetVersion)" />
+    <PackageVersion Include="Microsoft.AspNetCore.Components.WebView" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="7.0.86" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.4.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" />
