@@ -342,7 +342,7 @@ public abstract partial class MicaWindowWithOverlay : Window
 
         MarginMaximized = WindowState == WindowState.Maximized ? new Thickness(6) : new Thickness(0);
 
-        if (WindowState == WindowState.Maximized || ResizeMode == ResizeMode.NoResize)
+        if (WindowState == WindowState.Maximized || ResizeMode == System.Windows.ResizeMode.NoResize)
         {
             WindowChrome.SetWindowChrome(this, new WindowChrome()
             {

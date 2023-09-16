@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>$(NetCore)</TargetFrameworks>
 
@@ -19,6 +19,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
     <PackageReference Include="System.ComponentModel.Composition" />
     <PackageReference Include="System.Threading.Tasks.Extensions" />
+    <PackageReference Include="SixLabors.ImageSharp"/>
   </ItemGroup>
 
   <ItemGroup>
