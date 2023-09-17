@@ -6,19 +6,28 @@ set -eo pipefail
 SCRIPT_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
 SCRIPT_DIR="${SCRIPT_DIR}/"
 
-# Required to build macOS app. See https://stackoverflow.com/questions/55320965/resource-fork-finder-information-or-similar-detritus-not-allowed-error-when
-xattr -cr ./src/
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    # Required to build macOS app. See https://stackoverflow.com/questions/55320965/resource-fork-finder-information-or-similar-detritus-not-allowed-error-when
+    xattr -cr ./src/
+fi
 
 # Install .NET
 . "./tools/Install-DotNet.sh" "$SCRIPT_DIR"
 
 # Install .NET workloads
-echo "Installing .NET workloads"
-sudo dotnet workload install maui-maccatalyst
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    echo "Installing .NET workloads"
+    sudo dotnet workload install maui-maccatalyst
+fi
 
 # Restore NuGet solution dependencies
 echo "Restoring all dependencies"
-SOLUTIONS=$(find ./src/ -iname "*DevToys-MacOS.sln" -print)
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    SOLUTIONS=$(find ./src/ -iname "*DevToys-MacOS.sln" -print)
+else
+    SOLUTIONS=$(find ./src/ -iname "*DevToys-Linux.sln" -print)
+fi
+
 for SOLUTION_FILE in $SOLUTIONS
 do
     echo "Restoring packages for $SOLUTION_FILE..."

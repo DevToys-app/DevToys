@@ -2,7 +2,7 @@
 using DevToys.Api;
 using DevToys.Core.Settings;
 
-namespace DevToys.CLI.Core.Settings;
+namespace DevToys.Linux.Core;
 
 [Export(typeof(ISettingsStorage))]
 internal sealed class SettingsStorage : ISettingsStorage
