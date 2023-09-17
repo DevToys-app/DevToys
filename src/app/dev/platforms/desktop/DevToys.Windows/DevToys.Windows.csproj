@@ -23,7 +23,6 @@
     <PackageReference Include="Microsoft.Windows.CsWin32">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="SixLabors.ImageSharp"/>
   </ItemGroup>
 
   <ItemGroup>
