@@ -121,10 +121,10 @@
     <value>Certificate Encoder and Decoder tool</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Certificate</value>
+    <value>சான்றிதழ்</value>
   </data>
   <data name="PasswordTitle" xml:space="preserve">
-    <value>Password</value>
+    <value>கடவுச்சொல்</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
     <value>உள்ளீடு</value>
@@ -139,10 +139,10 @@
     <value>Certificate Encoder / Decoder</value>
   </data>
   <data name="InvalidPasswordError" xml:space="preserve">
-    <value>Invalid password.</value>
+    <value>கடவுச்சொல் தவறானது.</value>
   </data>
   <data name="UnsupportedFormatError" xml:space="preserve">
-    <value>Certificate Request format not currently supported.</value>
+    <value>சான்றிதழ் கோரிக்கை வடிவம் தற்போது ஆதரிக்கப்படவில்லை.</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>CER PFX PEM</value>
