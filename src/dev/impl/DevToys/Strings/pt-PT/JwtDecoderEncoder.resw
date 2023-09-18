@@ -304,10 +304,10 @@
     <value>Nome(s) do ou primeiro(s) nome(s) do Utilizador final. Observe que, em algumas culturas, as pessoas podem ter vários nomes indicados; todos podem estar presentes, com os nomes sendo separados por caracteres de espaço.</value>
   </data>
   <data name="family_name" xml:space="preserve">
-    <value>Surname(s) or last name(s) of the End-User. Note that in some cultures, people can have multiple family names or no family name; all can be present, with the names being separated by space characters.</value>
+    <value>Apelido(s) ou sobrenome(s) do Utilizador Final. Note que em algumas culturas, pessoas podem ter múltiplos nomes de família ou nenhum nome de família; todos podem estar presentes, com os nomes sendo separados por espaços.</value>
   </data>
   <data name="middle_name" xml:space="preserve">
-    <value>Middle name(s) of the End-User. Note that in some cultures, people can have multiple middle names; all can be present, with the names being separated by space characters. Also note that in some cultures, middle names are not used.</value>
+    <value>Nome(s) do meio do Utilizador Final. Note que em algumas culturas, pessoas podem ter vários nomes do meio; podem estar todos presentes, sendo os nomes separados por espaços. Note também que em algumas culturas nomes do meio não são usados.</value>
   </data>
   <data name="nickname" xml:space="preserve">
     <value>Casual name of the End-User that may or may not be the same as the given_name. For instance, a nickname value of Mike might be returned alongside a given_name value of Michael.</value>
