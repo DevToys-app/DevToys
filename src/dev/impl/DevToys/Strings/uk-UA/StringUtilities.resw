@@ -148,7 +148,7 @@
     <value>Конвертувати</value>
   </data>
   <data name="Sort" xml:space="preserve">
-    <value>Sort Lines</value>
+    <value>Сортувати рядки</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Інспектор та перетворювач тексту</value>
@@ -160,22 +160,22 @@
     <value>kebab-case</value>
   </data>
   <data name="Alphabetize" xml:space="preserve">
-    <value>Alphabetize</value>
+    <value>В алфавітному порядку</value>
   </data>
   <data name="ReverseAlphabetize" xml:space="preserve">
-    <value>Reverse alphabetize</value>
+    <value>В зворотному алфавітному порядку</value>
   </data>
   <data name="AlphabetizeLast" xml:space="preserve">
-    <value>Alphabetize by last word</value>
+    <value>В алфавітному порядку за останнім словом</value>
   </data>
   <data name="ReverseAlphabetizeLast" xml:space="preserve">
-    <value>Reverse alphabetize by last word</value>
+    <value>В зворотному алфавітному порядку за останнім словом</value>
   </data>
   <data name="Reverse" xml:space="preserve">
-    <value>Reverse</value>
+    <value>У зворотному порядку</value>
   </data>
   <data name="Randomize" xml:space="preserve">
-    <value>Randomize</value>
+    <value>Перемішати</value>
   </data>
   <data name="Line" xml:space="preserve">
     <value>Рядок:</value>
