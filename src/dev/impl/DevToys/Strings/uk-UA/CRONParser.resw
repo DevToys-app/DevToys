@@ -172,9 +172,9 @@
     <value>Режим з урахуванням секунд (6 - сегментний)</value>
   </data>
   <data name="DescriptionTitle" xml:space="preserve">
-    <value>Description</value>
+    <value>Опис</value>
   </data>
   <data name="DescriptionErrorMessage" xml:space="preserve">
-    <value>Unable to generate description</value>
+    <value>Неможливо згенерувати опис</value>
   </data>
 </root>
