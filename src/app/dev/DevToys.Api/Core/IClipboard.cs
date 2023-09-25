@@ -33,13 +33,13 @@ public interface IClipboard
     Task<FileInfo[]?> GetClipboardFilesAsync();
 
     /// <summary>
-    /// Retrieves bitmap from the system clipboard.
+    /// Retrieves the image from the system clipboard.
     /// </summary>
     /// <remarks>
     /// This method may try to access to the UI thread.
     /// </remarks>
-    /// <returns>The bitmap currently stored in the system clipboard, or null if nothing is present.</returns>
-    Task<string?> GetClipboardBitmapAsync();
+    /// <returns>The image currently stored in the system clipboard, or null if nothing is present.</returns>
+    Task<Image<Rgba32>?> GetClipboardImageAsync();
 
     /// <summary>
     /// Sets text to the system clipboard.
@@ -60,11 +60,11 @@ public interface IClipboard
     Task SetClipboardFilesAsync(FileInfo[]? filePaths);
 
     /// <summary>
-    /// Sets bitmap to the system clipboard.
+    /// Sets image to the system clipboard.
     /// </summary>
     /// <remarks>
     /// This method may try to access to the UI thread.
     /// </remarks>
-    /// <param name="data">The data to be stored in the system clipboard.</param>
-    Task SetClipboardBitmapAsync(string? data);
+    /// <param name="image">The image to be stored in the system clipboard.</param>
+    Task SetClipboardImageAsync(Image? image);
 }

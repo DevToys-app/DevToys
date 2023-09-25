@@ -110,7 +110,7 @@ public partial class MainWindow : MicaWindowWithOverlay
     private void BlazorWebView_BlazorWebViewInitializing(object? sender, BlazorWebViewInitializingEventArgs e)
     {
         // Set the web view transparent.
-        blazorWebView.WebView.DefaultBackgroundColor = Color.Transparent;
+        blazorWebView.WebView.DefaultBackgroundColor = System.Drawing.Color.Transparent;
     }
 
     private void BlazorWebView_BlazorWebViewInitialized(object? sender, BlazorWebViewInitializedEventArgs e)

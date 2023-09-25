@@ -8,7 +8,7 @@ public record PickedFile : IDisposable
     /// </summary>
     public PickedFile(string fileName, Stream stream)
     {
-        FileName = fileName;
+        FileName = Path.GetFileName(fileName);
         Stream = stream;
     }
 

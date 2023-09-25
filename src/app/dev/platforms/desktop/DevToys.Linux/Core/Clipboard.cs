@@ -2,6 +2,10 @@
 using DevToys.Api;
 using Gdk;
 using Microsoft.Extensions.Logging;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
+using SixLabors.ImageSharp.Formats.Png;
+using SixLabors.ImageSharp.Advanced;
 
 namespace DevToys.Linux.Core;
 
@@ -9,17 +13,13 @@ namespace DevToys.Linux.Core;
 internal sealed partial class Clipboard : IClipboard
 {
     private readonly ILogger _logger;
+    private readonly IFileStorage _fileStorage;
 
     [ImportingConstructor]
-    public Clipboard()
+    public Clipboard(IFileStorage fileStorage)
     {
         _logger = this.Log();
-    }
-
-    public Task<string?> GetClipboardBitmapAsync()
-    {
-        // TODO
-        throw new NotImplementedException();
+        _fileStorage = fileStorage;
     }
 
     public async Task<object?> GetClipboardDataAsync()
@@ -38,7 +38,11 @@ internal sealed partial class Clipboard : IClipboard
                 return text;
             }
 
-            // TODO: Get bitmap from clipboard.
+            Image<Rgba32>? image = await GetClipboardImageAsync();
+            if (image is not null)
+            {
+                return image;
+            }
         }
         catch (Exception ex)
         {
@@ -114,10 +118,82 @@ internal sealed partial class Clipboard : IClipboard
         return null;
     }
 
-    public Task SetClipboardBitmapAsync(string? data)
+    public async Task<Image<Rgba32>?> GetClipboardImageAsync()
     {
-        // TODO
-        throw new NotImplementedException();
+        try
+        {
+            Gdk.Clipboard clipboard = Gdk.Display.GetDefault()!.GetClipboard();
+            var tcs = new TaskCompletionSource<Image<Rgba32>?>();
+
+            Gdk.Internal.Clipboard.ReadTextureAsync(
+                clipboard.Handle,
+                IntPtr.Zero,
+                new Gio.Internal.AsyncReadyCallbackAsyncHandler(
+                    async (_, args, _) =>
+                    {
+                        nint textureHandle = Gdk.Internal.Clipboard.ReadTextureFinish(
+                            clipboard.Handle,
+                            args.Handle,
+                            out GLib.Internal.ErrorOwnedHandle error);
+
+                        Texture? texture
+                            = GObject.Internal.ObjectWrapper.WrapNullableHandle<Texture>(
+                                textureHandle,
+                                 ownedRef: true);
+
+                        if (texture is not null)
+                        {
+                            string tempFile = Path.GetTempFileName();
+                            texture.SaveToPng(tempFile);
+
+                            using Image image = await SixLabors.ImageSharp.Image.LoadAsync(tempFile);
+                            tcs.SetResult(image.CloneAs<Rgba32>(image.GetConfiguration()));
+
+                            File.Delete(tempFile);
+                            texture.Dispose();
+                        }
+                        else
+                        {
+                            tcs.SetResult(null);
+                        }
+                    }).NativeCallback, IntPtr.Zero);
+
+            return await tcs.Task;
+        }
+        catch (Exception ex)
+        {
+            LogGetClipboardFailed(ex);
+        }
+
+        return null;
+    }
+
+    public async Task SetClipboardImageAsync(SixLabors.ImageSharp.Image? image)
+    {
+        Gdk.Clipboard clipboard = Gdk.Display.GetDefault()!.GetClipboard();
+
+        if (image is not null)
+        {
+            var encoder = new PngEncoder
+            {
+                ColorType = PngColorType.RgbWithAlpha,
+                TransparentColorMode = PngTransparentColorMode.Preserve,
+                BitDepth = PngBitDepth.Bit8,
+                CompressionLevel = PngCompressionLevel.BestSpeed
+            };
+
+            var pngMemoryStream = new MemoryStream();
+            await image.SaveAsPngAsync(pngMemoryStream, encoder);
+            pngMemoryStream.Seek(0, SeekOrigin.Begin);
+
+            using var pngBytes = GLib.Bytes.New(pngMemoryStream.ToArray());
+            using var texture = Texture.NewFromBytes(pngBytes);
+            clipboard.SetTexture(texture);
+        }
+        else
+        {
+            clipboard.SetText(string.Empty);
+        }
     }
 
     public Task SetClipboardFilesAsync(FileInfo[]? filePaths)

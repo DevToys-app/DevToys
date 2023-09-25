@@ -3,6 +3,11 @@ using System.Collections.Specialized;
 using Foundation;
 using Microsoft.Extensions.Logging;
 using UIKit;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
+using SixLabors.ImageSharp.Advanced;
+using System.IO;
+using SixLabors.ImageSharp.Formats.Png;
 
 namespace DevToys.MacOS.Core;
 
@@ -23,26 +28,15 @@ internal sealed partial class Clipboard : Api.IClipboard
         {
             if (UIPasteboard.General.HasUrls && UIPasteboard.General.Urls is not null)
             {
-                var files = new List<FileInfo>();
-                foreach (NSUrl filePath in UIPasteboard.General.Urls)
-                {
-                    if (filePath.AbsoluteString is not null && filePath.Path is not null)
-                    {
-                        if (filePath.AbsoluteString.StartsWith("file:///"))
-                        {
-                            files.Add(new FileInfo(filePath.Path));
-                        }
-                    }
-                }
-                return files.ToArray();
+                return GetClipboardFilesInternal();
             }
-            if (Microsoft.Maui.ApplicationModel.DataTransfer.Clipboard.Default.HasText)
+            else if (Microsoft.Maui.ApplicationModel.DataTransfer.Clipboard.Default.HasText)
             {
                 return await Microsoft.Maui.ApplicationModel.DataTransfer.Clipboard.Default.GetTextAsync();
             }
-            else
+            else if (UIPasteboard.General.HasImages)
             {
-                // TODO: On Mac, use AppKit API to get file and bitmap from clipboard.
+                return await GetImageFromClipboardInternalAsync();
             }
         }
         catch (Exception ex)
@@ -74,18 +68,7 @@ internal sealed partial class Clipboard : Api.IClipboard
         {
             if (UIPasteboard.General.HasUrls && UIPasteboard.General.Urls is not null)
             {
-                var files = new List<FileInfo>();
-                foreach (NSUrl filePath in UIPasteboard.General.Urls)
-                {
-                    if (filePath.AbsoluteString is not null && filePath.Path is not null)
-                    {
-                        if (filePath.AbsoluteString.StartsWith("file:///"))
-                        {
-                            files.Add(new FileInfo(filePath.Path));
-                        }
-                    }
-                }
-                return Task.FromResult<FileInfo[]?>(files.ToArray());
+                return Task.FromResult<FileInfo[]?>(GetClipboardFilesInternal());
             }
         }
         catch (Exception ex)
@@ -95,16 +78,49 @@ internal sealed partial class Clipboard : Api.IClipboard
         return Task.FromResult<FileInfo[]?>(null);
     }
 
-    public Task<string?> GetClipboardBitmapAsync()
+    public async Task<Image<Rgba32>?> GetClipboardImageAsync()
     {
-        // TODO
-        throw new NotImplementedException();
+        try
+        {
+            if (UIPasteboard.General.HasImages)
+            {
+                return await GetImageFromClipboardInternalAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            LogGetClipboardFailed(ex);
+        }
+
+        return null;
     }
 
-    public Task SetClipboardBitmapAsync(string? data)
+    public async Task SetClipboardImageAsync(SixLabors.ImageSharp.Image? image)
     {
-        // TODO
-        throw new NotImplementedException();
+        if (image is not null)
+        {
+            var encoder = new PngEncoder
+            {
+                ColorType = PngColorType.RgbWithAlpha,
+                TransparentColorMode = PngTransparentColorMode.Preserve,
+                BitDepth = PngBitDepth.Bit8,
+                CompressionLevel = PngCompressionLevel.BestSpeed
+            };
+
+            var pngMemoryStream = new MemoryStream();
+            await image.SaveAsPngAsync(pngMemoryStream, encoder);
+            pngMemoryStream.Seek(0, SeekOrigin.Begin);
+
+            var data = NSData.FromStream(pngMemoryStream);
+            if (data is not null)
+            {
+                var macImage = UIImage.LoadFromData(data);
+                if (macImage is not null)
+                {
+                    UIPasteboard.General.SetData(macImage.AsPNG(), "public.png");
+                }
+            }
+        }
     }
 
     public Task SetClipboardFilesAsync(FileInfo[]? data)
@@ -151,4 +167,45 @@ internal sealed partial class Clipboard : Api.IClipboard
 
     [LoggerMessage(1, LogLevel.Error, "Failed to set the clipboard text.")]
     partial void LogSetClipboardTextFailed(Exception ex);
+
+    private static FileInfo[]? GetClipboardFilesInternal()
+    {
+        if (UIPasteboard.General.HasUrls && UIPasteboard.General.Urls is not null)
+        {
+            var files = new List<FileInfo>();
+            foreach (NSUrl filePath in UIPasteboard.General.Urls)
+            {
+                if (filePath.AbsoluteString is not null && filePath.Path is not null)
+                {
+                    if (filePath.AbsoluteString.StartsWith("file:///"))
+                    {
+                        files.Add(new FileInfo(filePath.Path));
+                    }
+                }
+            }
+            return files.ToArray();
+        }
+
+        return null;
+    }
+
+    private static async Task<Image<Rgba32>?> GetImageFromClipboardInternalAsync()
+    {
+        UIImage? imageFromPasteboard = UIPasteboard.General.Image;
+
+        if (imageFromPasteboard is not null)
+        {
+            using Stream imageFromPasteboardStream = imageFromPasteboard.AsPNG().AsStream();
+            using var pngMemoryStream = new MemoryStream();
+
+            await imageFromPasteboardStream.CopyToAsync(pngMemoryStream);
+            pngMemoryStream.Seek(0, SeekOrigin.Begin);
+
+            using var image = SixLabors.ImageSharp.Image.Load(pngMemoryStream);
+            imageFromPasteboard.Dispose();
+            return image.CloneAs<Rgba32>(image.GetConfiguration());
+        }
+
+        return null;
+    }
 }
