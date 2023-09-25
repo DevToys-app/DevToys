@@ -184,7 +184,7 @@
     <value>Bewerten im Microsoft Store</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>Leerzeichen rendern</value>
+    <value>Leerzeichen anzeigen</value>
   </data>
   <data name="ReportProblem" xml:space="preserve">
     <value>Ein Problem melden</value>

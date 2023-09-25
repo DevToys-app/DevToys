@@ -124,7 +124,7 @@
     <value>Очистити</value>
   </data>
   <data name="Collapse" xml:space="preserve">
-    <value>Collapse</value>
+    <value>Згорнути</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>Копіювати</value>
@@ -136,13 +136,13 @@
     <value>Видалити</value>
   </data>
   <data name="Expand" xml:space="preserve">
-    <value>Expand</value>
+    <value>Розгорнути</value>
   </data>
   <data name="ShowInfo" xml:space="preserve">
-    <value>Show additional info</value>
+    <value>Показати додаткову інформацію</value>
   </data>
   <data name="HideInfo" xml:space="preserve">
-    <value>Hide additional info</value>
+    <value>Приховати додаткову інформацію</value>
   </data>
   <data name="FileSelectorBrowseFiles" xml:space="preserve">
     <value>Обрати файл</value>

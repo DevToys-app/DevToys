@@ -292,7 +292,7 @@
     <value>The "nbf" (not before) claim identifies the time before which the JWT MUST NOT be accepted for processing. The processing of the "nbf" claim requires that the current date/time MUST be after or equal to the not-before date/time listed in the "nbf" claim. Implementers MAY provide for some small leeway, usually no more than a few minutes, to account for clock skew. Its value MUST be a number containing a NumericDate value. Use of this claim is OPTIONAL.</value>
   </data>
   <data name="iat" xml:space="preserve">
-    <value>The "iat" (issued at) claim identifies the time at which the JWT was issued. This claim can be used to determine the age of the JWT. Its value MUST be a number containing a NumericDate value. Use of this claim is OPTIONAL.</value>
+    <value>"iat"-vaatimus (myöntöajankohta) määrittää ajan, jolloin JWT myönnettiin. Tätä väitettä voidaan käyttää JWT:n iän määrittämiseen. Sen arvon PITÄÄ olla numero, joka sisältää NumericDate-arvon. Tämän vaatimuksen käyttö on VALINNAISTA.</value>
   </data>
   <data name="jti" xml:space="preserve">
     <value>The "jti" (JWT ID) claim provides a unique identifier for the JWT. The identifier value MUST be assigned in a manner that ensures that there is a negligible probability that the same value will be accidentally assigned to a different data object; if the application uses multiple issuers, collisions MUST be prevented among values produced by different issuers as well. The "jti" claim can be used to prevent the JWT from being replayed. The "jti" value is a case-sensitive string. Use of this claim is OPTIONAL.</value>
@@ -313,13 +313,13 @@
     <value>Loppukäyttäjän satunnainen nimi, joka voi olla tai ei ole sama kuin given_name. Esimerkiksi lempinimiarvo "Miksu" voidaan palauttaa given_name-arvon "Mikael" rinnalla.</value>
   </data>
   <data name="preferred_username" xml:space="preserve">
-    <value>Shorthand name by which the End-User wishes to be referred to at the RP, such as janedoe or j.doe. This value MAY be any valid JSON string including special characters such as @, /, or whitespace. The RP MUST NOT rely upon this value being unique.</value>
+    <value>Lyhytmuotoinen nimi, jolla loppukäyttäjä haluaa, että häntä kutsutaan RP:ssä, kuten janedoe tai j.doe. Tämä arvo VOI olla mikä tahansa kelvollinen JSON-merkkijono, joka sisältää erikoismerkkejä, kuten @, / tai välilyönti. RP EI SAA luottaa siihen, että tämä arvo on uniikki.</value>
   </data>
   <data name="profile" xml:space="preserve">
     <value>Loppukäyttäjän profiilisivun URL-osoite. Tämän verkkosivun sisällön PITÄÄ koskea loppukäyttäjää.</value>
   </data>
   <data name="picture" xml:space="preserve">
-    <value>URL of the End-User's profile picture. This URL MUST refer to an image file (for example, a PNG, JPEG, or GIF image file), rather than to a Web page containing an image. Note that this URL SHOULD specifically reference a profile photo of the End-User suitable for displaying when describing the End-User, rather than an arbitrary photo taken by the End-User.</value>
+    <value>Loppukäyttäjän profiilikuvan URL-osoite. Tämän URL-osoitteen TÄYTYY viitata kuvatiedostoon (esimerkiksi PNG-, JPEG- tai GIF-kuvatiedostoon) kuvan sisältävän verkkosivun sijaan. Huomaa, että tämän URL-osoitteen PITÄÄ viitata nimenomaan loppukäyttäjän profiilikuvaan, joka soveltuu näytettäväksi loppukäyttäjää kuvattaessa, eikä loppukäyttäjän ottamaan mielivaltaiseen valokuvaan.</value>
   </data>
   <data name="website" xml:space="preserve">
     <value>Loppukäyttäjän verkkosivun tai blogin URL-osoite. Tämän verkkosivun PITÄÄ sisältää loppukäyttäjän tai loppukäyttäjän sidoksissa olevan organisaation julkaisemia tietoja.</value>
@@ -334,7 +334,7 @@
     <value>Loppukäyttäjän sukupuoli. Tämän spesifikaation määrittämät arvot ovat nainen ja mies. Muita arvoja VOIDAAN käyttää, kun kumpaakaan määritellyistä arvoista ei voida soveltaa.</value>
   </data>
   <data name="birthdate" xml:space="preserve">
-    <value>End-User's birthday, represented as an ISO 8601:2004 YYYY-MM-DD format. The year MAY be 0000, indicating that it is omitted. To represent only the year, YYYY format is allowed. Note that depending on the underlying platform's date related function, providing just year can result in varying month and day, so the implementers need to take this factor into account to correctly process the dates.</value>
+    <value>Loppukäyttäjän syntymäpäivä, joka on esitetty ISO 8601:2004 -muodossa VVVV-KK-PP. Vuosi VOI olla 0000, mikä tarkoittaa, että se on jätetty pois. Vain vuoden esittämiseksi VVVV-muoto on sallittu. Huomaa, että taustalla olevan alustan päivämäärään liittyvästä toiminnosta riippuen vain vuoden ilmoittaminen voi johtaa vaihteleviin kuukausiin ja päiviin, joten toteuttajien on otettava tämä tekijä huomioon käsitelläkseen päivämäärät oikein.</value>
   </data>
   <data name="zoneinfo" xml:space="preserve">
     <value>Merkkijono zoneinfo-aikavyöhyketietokannasta, joka edustaa loppukäyttäjän aikavyöhykettä. Esimerkiksi Eurooppa/Pariisi tai Amerikka/Los_Angeles.</value>
@@ -343,7 +343,7 @@
     <value>End-User's locale, represented as a BCP47 [RFC5646] language tag. This is typically an ISO 639-1 Alpha-2 language code in lowercase and an ISO 3166-1 Alpha-2 country code in uppercase, separated by a dash. For example, en-US or fr-CA. As a compatibility note, some implementations have used an underscore as the separator rather than a dash, for example, en_US; Relying Parties MAY choose to accept this locale syntax as well.</value>
   </data>
   <data name="phone_number" xml:space="preserve">
-    <value>End-User's preferred telephone number. E.164 is RECOMMENDED as the format of this Claim, for example, +1 (425) 555-1212 or +56 (2) 687 2400. If the phone number contains an extension, it is RECOMMENDED that the extension be represented using the RFC 3966 extension syntax, for example, +1 (604) 555-1234;ext=5678.</value>
+    <value>Loppukäyttäjän ensisijainen puhelinnumero. E.164 SUOSITELLAAN tämän vaatimuksen muodoksi, esimerkiksi +1 (425) 555-1212 tai +56 (2) 687 2400. Jos puhelinnumero sisältää alaliittymän, on SUOSITELTAVAA, että alaliittymä esitetään käyttämällä RFC 3966 -laajennussyntaksia, esimerkiksi +1 (604) 555-1234;ext=5678.</value>
   </data>
   <data name="phone_number_verified" xml:space="preserve">
     <value>True if the End-User's phone number has been verified; otherwise false. When this Claim Value is true, this means that the OP took affirmative steps to ensure that this phone number was controlled by the End-User at the time the verification was performed. The means by which a phone number is verified is context-specific, and dependent upon the trust framework or contractual agreements within which the parties are operating. When true, the phone_number Claim MUST be in E.164 format and any extensions MUST be represented in RFC 3966 format.</value>
