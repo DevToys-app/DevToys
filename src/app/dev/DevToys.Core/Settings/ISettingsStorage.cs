@@ -1,4 +1,6 @@
-﻿namespace DevToys.Core.Settings;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace DevToys.Core.Settings;
 
 /// <summary>
 /// Provides a platform-specific way to store and read app settings.
@@ -13,7 +15,7 @@ public interface ISettingsStorage
     /// <summary>
     /// Reads an app setting.
     /// </summary>
-    bool TryReadSetting(string settingName, out object? value);
+    bool TryReadSetting(string settingName, [MaybeNullWhen(false)] out object? value);
 
     /// <summary>
     /// Deletes the given setting.

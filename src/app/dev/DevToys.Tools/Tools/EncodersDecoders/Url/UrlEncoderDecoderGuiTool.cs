@@ -1,5 +1,4 @@
-﻿using DevToys.Api;
-using DevToys.Tools.Helpers;
+﻿using DevToys.Tools.Helpers;
 using DevToys.Tools.Models;
 using Microsoft.Extensions.Logging;
 

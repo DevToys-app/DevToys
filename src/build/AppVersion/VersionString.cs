@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 
 internal sealed class VersionString
@@ -34,7 +35,7 @@ internal sealed class VersionString
         return match.Success;
     }
 
-    public static bool TryParse(string input, out VersionString? version)
+    public static bool TryParse(string input, [MaybeNullWhen(false)] out VersionString? version)
     {
         var temp = new VersionString();
         version = null;

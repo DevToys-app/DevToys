@@ -1,7 +1,7 @@
 ﻿namespace DevToys.Tools.Tools.Converters;
 
 [Export(typeof(GuiToolGroup))]
-[Name("Converters")]
+[Name(PredefinedCommonToolGroupNames.Converters)]
 internal class ConvertersGroup : GuiToolGroup
 {
     [ImportingConstructor]

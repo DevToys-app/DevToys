@@ -9,7 +9,7 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml;
 [ToolDisplayInformation(
     IconFontName = "DevToys-Tools-Icons",
     IconGlyph = '\u0109',
-    GroupName = "Converters",
+    GroupName = PredefinedCommonToolGroupNames.Converters,
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
     ResourceManagerBaseName = "DevToys.Tools.Tools.Converters.JsonYaml.JsonYamlConverter",
     ShortDisplayTitleResourceName = nameof(JsonYamlConverter.ShortDisplayTitle),
