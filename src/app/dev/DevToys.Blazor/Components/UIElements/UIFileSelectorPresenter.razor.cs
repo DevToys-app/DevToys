@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components.Forms;
+using SixLabors.ImageSharp;
 
 namespace DevToys.Blazor.Components.UIElements;
 
@@ -71,55 +72,7 @@ public partial class UIFileSelectorPresenter : MefComponentBase
             return;
         }
 
-        if (!UIFileSelector.CanSelectManyFiles)
-        {
-            if (droppedFiles.Count == 1 && !string.IsNullOrEmpty(droppedFiles[0].Name))
-            {
-                string[] fileTypes = GetTreatedFileExtensions();
-                if (fileTypes.Any(fileType => string.Equals(("." + fileType), Path.GetExtension(droppedFiles[0].Name), StringComparison.OrdinalIgnoreCase)))
-                {
-                    UIFileSelector.WithFiles(new PickedFile(droppedFiles[0].Name, droppedFiles[0].OpenReadStream(maxAllowedSize: long.MaxValue)));
-                    return;
-                }
-            }
-
-            HasInvalidFilesSelected = true;
-            return;
-        }
-        else
-        {
-            var pickedFiles = new List<PickedFile>();
-            string[] fileTypes = GetTreatedFileExtensions();
-
-            for (int i = 0; i < droppedFiles.Count; i++)
-            {
-                IBrowserFile droppedFile = droppedFiles[i];
-                if (!string.IsNullOrEmpty(droppedFile.Name))
-                {
-                    if (fileTypes.Any(fileType => string.Equals(("." + fileType), Path.GetExtension(droppedFile.Name), StringComparison.OrdinalIgnoreCase)))
-                    {
-                        pickedFiles.Add(new PickedFile(droppedFile.Name, droppedFile.OpenReadStream(maxAllowedSize: long.MaxValue)));
-                    }
-                    else
-                    {
-                        HasInvalidFilesSelected = true;
-                    }
-                }
-                else
-                {
-                    HasInvalidFilesSelected = true;
-                }
-            }
-
-            if (pickedFiles.Count > 0)
-            {
-                UIFileSelector.WithFiles(pickedFiles.ToArray());
-            }
-            else
-            {
-                HasInvalidFilesSelected = true;
-            }
-        }
+        TreatSelectedFiles(droppedFiles.ToArray(), GetFileName, CreatePickedFile);
     }
 
     private async Task OnBrowseFilesButtonClickAsync()
@@ -187,8 +140,47 @@ public partial class UIFileSelectorPresenter : MefComponentBase
 
     private async Task OnPasteButtonClickAsync()
     {
-        // TODO: Support image (format tbd) + file list.
-        await _clipboard.GetClipboardDataAsync();
+        FileInfo[]? files = await _clipboard.GetClipboardFilesAsync();
+        if (files is not null && files.Length > 0)
+        {
+            TreatSelectedFiles(files, GetFileName, CreatePickedFile);
+            return;
+        }
+
+        string[] fileTypes = GetTreatedFileExtensions();
+        if (fileTypes.Contains("png", StringComparer.OrdinalIgnoreCase))
+        {
+            Image<SixLabors.ImageSharp.PixelFormats.Rgba32>? image = await _clipboard.GetClipboardImageAsync();
+            if (image is not null)
+            {
+                string temporaryFileName = $"clipboard-{DateTime.Now.Ticks}.png";
+
+                using (image)
+                {
+                    using Stream fileStream = _fileStorage.OpenWriteFile(temporaryFileName, replaceIfExist: true);
+                    await image.SaveAsPngAsync(fileStream);
+                }
+
+                var pickedFile = new PickedFile(temporaryFileName, _fileStorage.OpenReadFile(temporaryFileName));
+                pickedFile.Disposed += ImageClipboardPickedFile_Disposed;
+
+                UIFileSelector.WithFiles(pickedFile);
+            }
+        }
+    }
+
+    private void ImageClipboardPickedFile_Disposed(object? sender, EventArgs e)
+    {
+        if (sender is PickedFile pickedFile)
+        {
+            pickedFile.Disposed -= ImageClipboardPickedFile_Disposed;
+
+            string filePath = Path.Combine(_fileStorage.AppCacheDirectory, pickedFile.FileName);
+            if (File.Exists(Path.Combine(_fileStorage.AppCacheDirectory, pickedFile.FileName)))
+            {
+                File.Delete(filePath);
+            }
+        }
     }
 
     private string[] GetTreatedFileExtensions()
@@ -282,5 +274,82 @@ public partial class UIFileSelectorPresenter : MefComponentBase
     private void UIFileSelector_AllowedFileExtensionsChanged(object? sender, EventArgs e)
     {
         UpdateInstructionStrings();
+    }
+
+    private void TreatSelectedFiles<T>(T[] files, Func<T, string> fileNameGetter, Func<T, PickedFile> pickedFileCreator)
+    {
+        string[] fileTypes = GetTreatedFileExtensions();
+        if (UIFileSelector.CanSelectManyFiles)
+        {
+            var pickedFiles = new List<PickedFile>();
+
+            for (int i = 0; i < files.Length; i++)
+            {
+                T file = files[i];
+                string fileName = fileNameGetter(file);
+                if (!string.IsNullOrEmpty(fileName))
+                {
+                    if (fileTypes.Any(fileType => string.Equals(("." + fileType), Path.GetExtension(fileName), StringComparison.OrdinalIgnoreCase)))
+                    {
+                        pickedFiles.Add(pickedFileCreator(file));
+                    }
+                    else
+                    {
+                        HasInvalidFilesSelected = true;
+                    }
+                }
+                else
+                {
+                    HasInvalidFilesSelected = true;
+                }
+            }
+
+            if (pickedFiles.Count > 0)
+            {
+                UIFileSelector.WithFiles(pickedFiles.ToArray());
+            }
+            else
+            {
+                HasInvalidFilesSelected = true;
+            }
+        }
+        else
+        {
+            if (files.Length == 1 && !string.IsNullOrEmpty(fileNameGetter(files[0])))
+            {
+                if (fileTypes.Any(fileType => string.Equals(("." + fileType), Path.GetExtension(fileNameGetter(files[0])), StringComparison.OrdinalIgnoreCase)))
+                {
+                    UIFileSelector.WithFiles(pickedFileCreator(files[0]));
+                    return;
+                }
+            }
+
+            HasInvalidFilesSelected = true;
+            return;
+        }
+    }
+
+    private string GetFileName(IBrowserFile browserFile)
+    {
+        Guard.IsNotNull(browserFile);
+        return browserFile.Name;
+    }
+
+    private string GetFileName(FileInfo fileInfo)
+    {
+        Guard.IsNotNull(fileInfo);
+        return fileInfo.Name;
+    }
+
+    private PickedFile CreatePickedFile(IBrowserFile browserFile)
+    {
+        Guard.IsNotNull(browserFile);
+        return new PickedFile(browserFile.Name, browserFile.OpenReadStream(maxAllowedSize: long.MaxValue));
+    }
+
+    private PickedFile CreatePickedFile(FileInfo fileInfo)
+    {
+        Guard.IsNotNull(fileInfo);
+        return new PickedFile(fileInfo.Name, fileInfo.OpenRead());
     }
 }

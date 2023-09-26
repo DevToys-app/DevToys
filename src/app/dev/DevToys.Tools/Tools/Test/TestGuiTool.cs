@@ -216,6 +216,10 @@ internal sealed class TestGuiTool : IGuiTool
     // Invoked when the user selects some files in the FileSelector.
     private ValueTask OnFilesSelectedAsync(PickedFile[] files)
     {
+        for (int i = 0; i < files.Length; i++)
+        {
+            files[0].Dispose();
+        }
         return ValueTask.CompletedTask;
     }
 

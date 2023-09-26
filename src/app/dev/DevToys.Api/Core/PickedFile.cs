@@ -25,9 +25,15 @@ public record PickedFile : IDisposable
     /// </remarks>
     public Stream Stream { get; init; }
 
+    /// <summary>
+    /// Raised when the <see cref="PickedFile"/> is disposed.
+    /// </summary>
+    public event EventHandler? Disposed;
+
     public void Dispose()
     {
         Stream?.Dispose();
+        Disposed?.Invoke(this, EventArgs.Empty);
         GC.SuppressFinalize(this);
     }
 }
