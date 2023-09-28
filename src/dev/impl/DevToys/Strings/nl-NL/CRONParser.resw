@@ -124,7 +124,7 @@
     <value>Instellingen</value>
   </data>
   <data name="UseSecondsDescription" xml:space="preserve">
-    <value>Choose whether the Cron expression should include seconds in its definition</value>
+    <value>Kies of de Cron expressie seconden moet bevatten in zijn definitie</value>
   </data>
   <data name="UseSecondsTitle" xml:space="preserve">
     <value>Cron modus</value>
@@ -172,9 +172,9 @@
     <value>Seconden inbegrepen (Cron met 6 segmenten)</value>
   </data>
   <data name="DescriptionTitle" xml:space="preserve">
-    <value>Description</value>
+    <value>Beschrijving</value>
   </data>
   <data name="DescriptionErrorMessage" xml:space="preserve">
-    <value>Unable to generate description</value>
+    <value>Kan geen beschrijving genereren</value>
   </data>
 </root>
