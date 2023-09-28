@@ -165,8 +165,18 @@ public partial class UIImageViewerPresenter : MefComponentBase
             else if (UIImageViewer.ImageSource.TryGetThird(out SandboxedFileReader? imagePickedFile) && imagePickedFile is not null)
             {
                 using MemoryStream memoryStream = await imagePickedFile.GetFileCopyAsync(CancellationToken.None);
-                using Image newImage = await Image.LoadAsync(memoryStream);
-                ImageSourceHtml = GetBase64FromImage(newImage);
+                if (string.Equals(Path.GetExtension(imagePickedFile.FileName), ".svg", StringComparison.OrdinalIgnoreCase))
+                {
+                    byte[] bytes = memoryStream.ToArray();
+                    string base64 = Convert.ToBase64String(bytes);
+                    ImageSourceHtml = "data:image/svg+xml;base64," + base64;
+                }
+                else
+                {
+                    using Image newImage = await Image.LoadAsync(memoryStream);
+                    ImageSourceHtml = GetBase64FromImage(newImage);
+                }
+
                 ImageName = imagePickedFile.FileName;
                 IsImageDisplayed = true;
             }
