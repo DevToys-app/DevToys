@@ -1,6 +1,7 @@
 using System.Runtime.InteropServices;
 using DevToys.Blazor.Core.Services;
 using DevToys.Core;
+using DevToys.Core.Tools;
 using Foundation;
 using Microsoft.Maui.Controls;
 using ObjCRuntime;
@@ -226,5 +227,13 @@ internal sealed class WindowService : IWindowService
     public void OnWindowClosing(NSNotification notification)
     {
         WindowClosing?.Invoke(this, EventArgs.Empty);
+
+        Guard.IsNotNull(MauiProgram.MefComposer);
+
+        // Dispose every disposable tool instance.
+        MauiProgram.MefComposer.Provider.Import<GuiToolProvider>().DisposeTools();
+
+        // Clear older temp files.
+        FileHelper.ClearTempFiles(Constants.AppTempFolder);
     }
 }

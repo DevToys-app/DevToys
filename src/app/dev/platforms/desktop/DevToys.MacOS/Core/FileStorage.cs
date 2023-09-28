@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui.Storage;
 using DevToys.Api;
+using DevToys.Core;
 using DevToys.MacOS.Helpers;
 
 namespace DevToys.MacOS.Core;

@@ -12,9 +12,6 @@ public partial class App : Application
         InitializeComponent();
 
         MainPage = new MainPage();
-
-        // TODO: When the app exit, call GuiToolProvider.DisposeTools().
-        // TODO: Invoke FileHelper.ClearTempFiles(Constants.AppTempFolder); when the app exit.
     }
 
     protected override Window CreateWindow(IActivationState? activationState)
