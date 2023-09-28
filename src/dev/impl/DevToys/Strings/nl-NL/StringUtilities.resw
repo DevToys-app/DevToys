@@ -205,7 +205,7 @@
     <value>Sentence case</value>
   </data>
   <data name="Sentences" xml:space="preserve">
-    <value>Sentences:</value>
+    <value>Zinnen:</value>
   </data>
   <data name="SnakeCase" xml:space="preserve">
     <value>snake_case</value>
@@ -229,7 +229,7 @@
     <value>Word distribution</value>
   </data>
   <data name="Words" xml:space="preserve">
-    <value>Words:</value>
+    <value>Woorden:</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Analyze text and convert it to a different case</value>
