@@ -90,6 +90,10 @@
             <UIDataGridPresenter UIDataGrid="@dataGrid" />
             break;
 
+        case IUIImageViewer imageViewer:
+            <UIImageViewerPresenter UIImageViewer="@imageViewer" />
+            break;
+
         default:
             throw new NotSupportedException($"Gui Tool component of type '{UIElement.GetType().FullName}' isn't supported.");
     }

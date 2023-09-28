@@ -10,8 +10,11 @@ internal sealed class ThrottledProgress<T> : Progress<T>
     public ThrottledProgress(Action<T> handler, TimeSpan dueTime)
         : base(handler)
     {
-        if (dueTime < TimeSpan.Zero || dueTime.TotalMilliseconds > Int32.MaxValue)
+        if (dueTime < TimeSpan.Zero || dueTime.TotalMilliseconds > int.MaxValue)
+        {
             throw new ArgumentOutOfRangeException(nameof(dueTime));
+        }
+
         _dueTime = dueTime;
     }
 

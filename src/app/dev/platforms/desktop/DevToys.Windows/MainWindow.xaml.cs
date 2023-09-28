@@ -9,6 +9,7 @@ using DevToys.Business.ViewModels;
 using DevToys.Core;
 using DevToys.Core.Logging;
 using DevToys.Core.Mef;
+using DevToys.Core.Tools;
 using DevToys.Windows.Controls;
 using DevToys.Windows.Core;
 using DevToys.Windows.Core.Helpers;
@@ -42,6 +43,9 @@ public partial class MainWindow : MicaWindowWithOverlay
 
         // Listen for unhandled exceptions.
         AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
+
+        // Clear older temp files.
+        FileHelper.ClearTempFiles(Constants.AppTempFolder);
 
         // Initialize extension installation folder, and uninstall extensions that are planned for being removed.
         string[] pluginFolders
@@ -205,5 +209,14 @@ public partial class MainWindow : MicaWindowWithOverlay
     private void LogUiLoadTime(double duration)
     {
         _logger?.LogInformation(3, "App main window's UI loaded in {duration} ms", duration);
+    }
+
+    private void MainWindow_Closing(object sender, CancelEventArgs e)
+    {
+        // Dispose every disposable tool instance.
+        _mefComposer.Provider.Import<GuiToolProvider>().DisposeTools();
+
+        // Clear older temp files.
+        FileHelper.ClearTempFiles(Constants.AppTempFolder);
     }
 }

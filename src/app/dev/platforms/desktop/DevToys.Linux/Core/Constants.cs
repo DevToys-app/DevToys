@@ -6,6 +6,8 @@ internal static class Constants
 
     internal static string PluginInstallationFolder => Path.Combine(AppCacheDirectory, "Plugins");
 
+    internal static string AppTempFolder => Path.Combine(AppCacheDirectory, "Temp");
+
     private static string GetAppCacheDirectory()
     {
         string? applicationDataRootFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);

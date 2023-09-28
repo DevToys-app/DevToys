@@ -1,0 +1,36 @@
+@use "../../Assets/sass/devtoys" as *;
+
+.ui-image-viewer {
+    @include flex($direction: row, $align: center, $justify: between, $gap: 12px);
+    @include typography-body;
+    color: var(--card-foreground);
+    border: var(--card-border-thickness);
+    border-color: var(--card-border);
+    border-radius: var(--control-corner-radius);
+    background-clip: padding-box;
+    background-color: var(--card-background-color);
+    min-height: 72px;
+    padding-block: 16px;
+    padding-inline: 11px;
+
+    img {
+        object-fit: scale-down;
+        object-position: center;
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        max-height: inherit;
+        min-height: min-content;
+        max-width: inherit;
+        min-width: 100%;
+    }
+}
+
+// Compact mode
+div[data-compactmode] {
+    .ui-image-viewer {
+        padding-block: 6px;
+        padding-inline: 6px;
+    }
+}

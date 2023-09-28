@@ -1,0 +1,73 @@
+@namespace DevToys.Blazor.Components.UIElements
+@using DevToys.Api;
+@inherits MefComponentBase
+
+<CascadingValue Name="ParentIsEnabled" Value="@IsActuallyEnabled">
+
+    <Grid id="@UIImageViewer.Id"
+          Class="ui-image-viewer"
+          IsVisible="@UIImageViewer.IsVisible"
+          IsEnabled="@UIImageViewer.IsEnabled"
+          HorizontalAlignment="@UIImageViewer.HorizontalAlignment"
+          VerticalAlignment="@UIImageViewer.VerticalAlignment"
+          RowSpacing="6"
+          Rows="@(new List<UIGridLength>
+            {
+                UIGridLength.Auto,
+                new UIGridLength(1, UIGridUnitType.Fraction)
+            })"
+          ColumnSpacing="6"
+          Columns="@(new List<UIGridLength>
+            {
+                new UIGridLength(1, UIGridUnitType.Fraction),
+                UIGridLength.Auto
+            })">
+        <GridCell Row="0" Column="0">
+            <Grid RowSpacing="0"
+                  Rows="@(new List<UIGridLength>
+                    {
+                        new UIGridLength(1, UIGridUnitType.Fraction),
+                        new UIGridLength(20, UIGridUnitType.Pixel)
+                    })">
+                <GridCell Row="1">
+                    <TextBlock id="@(UIImageViewer.Id + "-title")"
+                               Text="@UIImageViewer.Title"
+                               NoWrap="true"
+                               CanTrim="true" />
+                </GridCell>
+            </Grid>
+        </GridCell>
+        <GridCell Row="0" Column="1">
+            <StackPanel IsVisible="@(IsImageDisplayed)"
+                        Wrap="false"
+                        Spacing="6">
+                <Button @onclick="@OnViewImageButtonClickAsync">
+                    <StackPanel>
+                        <FontIcon Glyph="@('\uE5F2')" />
+                        <TextBlock Text="@DevToys.Localization.Strings.UIImageViewer.UIImageViewer.ViewButtonText" />
+                    </StackPanel>
+                </Button>
+                <Button ToolTip="@DevToys.Localization.Strings.UIImageViewer.UIImageViewer.CopyButtonTooltip"
+                        @onclick="@OnCopyImageButtonClickAsync">
+                    <FontIcon Glyph="@('\uF32B')" />
+                </Button>
+                <Button ToolTip="@DevToys.Localization.Strings.UIImageViewer.UIImageViewer.SaveAsButtonTooltip"
+                        @onclick="@OnSaveImageAsButtonClickAsync">
+                    <FontIcon Glyph="@('\uF67F')" />
+                </Button>
+            </StackPanel>
+        </GridCell>
+        <GridCell Row="1" Column="0" ColumnSpan="2">
+            <ProgressRing IsIndeterminate="true"
+                          IsVisible="@(IsImageLoading)"
+                          VerticalAlignment="UIVerticalAlignment.Center"
+                          HorizontalAlignment="UIHorizontalAlignment.Center" />
+            <Container IsVisible="@(IsImageDisplayed)">
+                <img id="@(UIImageViewer.Id + "-image")"
+                     src="@ImageSourceHtml"
+                     alt="@ImageName" />
+            </Container>
+        </GridCell>
+    </Grid>
+
+</CascadingValue>

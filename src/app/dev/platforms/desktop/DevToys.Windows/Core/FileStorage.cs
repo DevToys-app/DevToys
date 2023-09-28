@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Text;
 using DevToys.Api;
+using DevToys.Core;
 using DevToys.Windows.Helpers;
 using DevToys.Windows.Strings.Other;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
@@ -90,7 +91,7 @@ internal sealed class FileStorage : IFileStorage
         });
     }
 
-    public async ValueTask<PickedFile?> PickOpenFileAsync(params string[] fileTypes)
+    public async ValueTask<SandboxedFileReader?> PickOpenFileAsync(params string[] fileTypes)
     {
         return await ThreadHelper.RunOnUIThreadAsync(() =>
         {
@@ -109,14 +110,14 @@ internal sealed class FileStorage : IFileStorage
 
             if (openFileDialog.ShowDialog() == true)
             {
-                return new PickedFile(openFileDialog.FileName, openFileDialog.OpenFile());
+                return new SandboxedFileReader(openFileDialog.FileName, openFileDialog.OpenFile());
             }
 
             return null;
         });
     }
 
-    public async ValueTask<PickedFile[]> PickOpenFilesAsync(params string[] fileTypes)
+    public async ValueTask<SandboxedFileReader[]> PickOpenFilesAsync(params string[] fileTypes)
     {
         return await ThreadHelper.RunOnUIThreadAsync(() =>
         {
@@ -139,7 +140,7 @@ internal sealed class FileStorage : IFileStorage
                 string[] fileNames = openFileDialog.FileNames;
                 Guard.IsEqualTo(streams.Length, fileNames.Length);
 
-                var result = new PickedFile[streams.Length];
+                var result = new SandboxedFileReader[streams.Length];
                 for (int i = 0; i < streams.Length; i++)
                 {
                     result[i] = new(fileNames[i], streams[i]);
@@ -148,7 +149,7 @@ internal sealed class FileStorage : IFileStorage
                 return result;
             }
 
-            return Array.Empty<PickedFile>();
+            return Array.Empty<SandboxedFileReader>();
         });
     }
 
@@ -165,6 +166,11 @@ internal sealed class FileStorage : IFileStorage
 
             return null;
         });
+    }
+
+    public FileInfo CreateSelfDestroyingTempFile(string? desiredFileExtension = null)
+    {
+        return FileHelper.CreateTempFile(Constants.AppTempFolder, desiredFileExtension);
     }
 
     private static string GenerateFilter(string[] fileTypes)

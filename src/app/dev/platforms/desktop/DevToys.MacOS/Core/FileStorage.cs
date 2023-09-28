@@ -7,6 +7,8 @@ namespace DevToys.MacOS.Core;
 [Export(typeof(IFileStorage))]
 internal sealed class FileStorage : IFileStorage
 {
+    private const string TempFolderName = "Temp";
+
     public string AppCacheDirectory => Constants.AppCacheDirectory;
 
     public bool FileExists(string relativeOrAbsoluteFilePath)
@@ -84,7 +86,7 @@ internal sealed class FileStorage : IFileStorage
         });
     }
 
-    public async ValueTask<PickedFile?> PickOpenFileAsync(string[] fileTypes)
+    public async ValueTask<SandboxedFileReader?> PickOpenFileAsync(string[] fileTypes)
     {
         return await ThreadHelper.RunOnUIThreadAsync(async () =>
         {
@@ -102,14 +104,14 @@ internal sealed class FileStorage : IFileStorage
             FileResult? fileResult = await FilePicker.Default.PickAsync(otpions);
             if (fileResult is not null)
             {
-                return new PickedFile(fileResult.FileName, await fileResult.OpenReadAsync());
+                return new SandboxedFileReader(fileResult.FileName, await fileResult.OpenReadAsync());
             }
 
             return null;
         });
     }
 
-    public async ValueTask<PickedFile[]> PickOpenFilesAsync(string[] fileTypes)
+    public async ValueTask<SandboxedFileReader[]> PickOpenFilesAsync(string[] fileTypes)
     {
         return await ThreadHelper.RunOnUIThreadAsync(async () =>
         {
@@ -127,16 +129,16 @@ internal sealed class FileStorage : IFileStorage
             IEnumerable<FileResult>? fileResults = await FilePicker.Default.PickMultipleAsync(otpions);
             if (fileResults is not null)
             {
-                var result = new List<PickedFile>();
+                var result = new List<SandboxedFileReader>();
                 foreach (FileResult file in fileResults)
                 {
-                    result.Add(new PickedFile(file.FileName, await file.OpenReadAsync()));
+                    result.Add(new SandboxedFileReader(file.FileName, await file.OpenReadAsync()));
                 }
 
                 return result.ToArray();
             }
 
-            return Array.Empty<PickedFile>();
+            return Array.Empty<SandboxedFileReader>();
         });
     }
 
@@ -152,5 +154,10 @@ internal sealed class FileStorage : IFileStorage
 
             return null;
         });
+    }
+
+    public FileInfo CreateSelfDestroyingTempFile(string? desiredFileExtension = null)
+    {
+        return FileHelper.CreateTempFile(Constants.AppTempFolder, desiredFileExtension);
     }
 }

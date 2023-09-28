@@ -9,7 +9,7 @@ public interface IUIFileSelector : IUIElement
     /// Gets the list of absolute path to the file(s) the user selected.
     /// </summary>
     /// <remarks>The items contain a stream. It won't be disposed automatically. It is important to dispose the stream yourself, when not needed anymore</remarks>
-    PickedFile[] SelectedFiles { get; }
+    SandboxedFileReader[] SelectedFiles { get; }
 
     /// <summary>
     /// Gets whether the user is allowed to select more than one file.
@@ -25,7 +25,7 @@ public interface IUIFileSelector : IUIElement
     /// Gets the action to run when the user selected file(s).
     /// </summary>
     /// <remarks>The items contain a stream. It won't be disposed automatically. It is important to dispose the stream yourself, when not needed anymore</remarks>
-    Func<PickedFile[], ValueTask>? OnFilesSelectedAction { get; }
+    Func<SandboxedFileReader[], ValueTask>? OnFilesSelectedAction { get; }
 
     /// <summary>
     /// Raised when <see cref="CanSelectManyFiles"/> is changed.
@@ -41,7 +41,7 @@ public interface IUIFileSelector : IUIElement
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, SelectedFiles = {{{nameof(SelectedFiles)}}}")]
 internal sealed class UIFileSelector : UIElement, IUIFileSelector
 {
-    private PickedFile[] _selectedFiles = Array.Empty<PickedFile>();
+    private SandboxedFileReader[] _selectedFiles = Array.Empty<SandboxedFileReader>();
     private bool _allowMultipleFileSelection;
     private string[] _allowedFileExtensions = Array.Empty<string>();
 
@@ -50,16 +50,16 @@ internal sealed class UIFileSelector : UIElement, IUIFileSelector
     {
     }
 
-    public PickedFile[] SelectedFiles
+    public SandboxedFileReader[] SelectedFiles
     {
         get => _selectedFiles;
         internal set
         {
             if (SetPropertyValue(ref _selectedFiles, value, null))
             {
-            OnFilesSelectedAction?.Invoke(_selectedFiles);
+                OnFilesSelectedAction?.Invoke(_selectedFiles);
+            }
         }
-    }
     }
 
     public bool CanSelectManyFiles
@@ -74,7 +74,7 @@ internal sealed class UIFileSelector : UIElement, IUIFileSelector
         internal set => SetPropertyValue(ref _allowedFileExtensions, value, AllowedFileExtensionsChanged);
     }
 
-    public Func<PickedFile[], ValueTask>? OnFilesSelectedAction { get; internal set; }
+    public Func<SandboxedFileReader[], ValueTask>? OnFilesSelectedAction { get; internal set; }
 
     public event EventHandler? CanSelectManyFilesChanged;
     public event EventHandler? AllowedFileExtensionsChanged;
@@ -103,7 +103,7 @@ public static partial class GUI
     /// Sets selected files.
     /// </summary>
     /// <remarks>The items contain a stream. It won't be disposed automatically. It is important to dispose the stream yourself, when not needed anymore</remarks>
-    public static IUIFileSelector WithFiles(this IUIFileSelector element, params PickedFile[] files)
+    public static IUIFileSelector WithFiles(this IUIFileSelector element, params SandboxedFileReader[] files)
     {
         ((UIFileSelector)element).SelectedFiles = files;
         return element;
@@ -113,7 +113,7 @@ public static partial class GUI
     /// Sets the action to run when the user selected file(s).
     /// </summary>
     /// <remarks>The items contain a stream. It won't be disposed automatically. It is important to dispose the stream yourself, when not needed anymore</remarks>
-    public static IUIFileSelector OnFilesSelected(this IUIFileSelector element, Func<PickedFile[], ValueTask>? actionOnFilesSelected)
+    public static IUIFileSelector OnFilesSelected(this IUIFileSelector element, Func<SandboxedFileReader[], ValueTask>? actionOnFilesSelected)
     {
         ((UIFileSelector)element).OnFilesSelectedAction = actionOnFilesSelected;
         return element;
@@ -123,7 +123,7 @@ public static partial class GUI
     /// Sets the action to run when the user selected file(s).
     /// </summary>
     /// <remarks>The items contain a stream. It won't be disposed automatically. It is important to dispose the stream yourself, when not needed anymore</remarks>
-    public static IUIFileSelector OnFilesSelected(this IUIFileSelector element, Action<PickedFile[]>? actionOnFilesSelected)
+    public static IUIFileSelector OnFilesSelected(this IUIFileSelector element, Action<SandboxedFileReader[]>? actionOnFilesSelected)
     {
         ((UIFileSelector)element).OnFilesSelectedAction
             = (value) =>

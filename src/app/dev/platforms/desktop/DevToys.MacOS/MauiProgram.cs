@@ -51,6 +51,9 @@ public partial class MauiProgram
             args.ExceptionMode = ObjCRuntime.MarshalManagedExceptionMode.UnwindNativeCode;
         };
 
+        // Clear older temp files.
+        FileHelper.ClearTempFiles(Constants.AppTempFolder);
+
         // Initialize extension installation folder, and uninstall extensions that are planned for being removed.
         string[] pluginFolders
             = new[]

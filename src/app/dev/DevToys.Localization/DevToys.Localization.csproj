@@ -51,6 +51,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>UIFileSelectorPresenter.resx</DependentUpon>
     </Compile>
+    <Compile Update="Strings\UIImageViewer\UIImageViewer.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UIImageViewer.resx</DependentUpon>
+    </Compile>
     <Compile Update="Strings\UITextInputWrapper\UITextInputWrapper.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

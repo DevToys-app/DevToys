@@ -122,14 +122,14 @@ internal sealed class FileStorage : GObject.Object, IFileStorage
         return null;
     }
 
-    public async ValueTask<PickedFile?> PickOpenFileAsync(params string[] fileTypes)
+    public async ValueTask<SandboxedFileReader?> PickOpenFileAsync(params string[] fileTypes)
     {
-        PickedFile[]? selectedFiles = await PickOpenFileInternalAsync(fileTypes, allowMultiple: false).ConfigureAwait(false);
+        SandboxedFileReader[]? selectedFiles = await PickOpenFileInternalAsync(fileTypes, allowMultiple: false).ConfigureAwait(false);
 
         return selectedFiles is null || selectedFiles.Length == 0 ? null : selectedFiles[0];
     }
 
-    public ValueTask<PickedFile[]> PickOpenFilesAsync(params string[] fileTypes)
+    public ValueTask<SandboxedFileReader[]> PickOpenFilesAsync(params string[] fileTypes)
     {
         return PickOpenFileInternalAsync(fileTypes, allowMultiple: true);
     }
@@ -168,7 +168,7 @@ internal sealed class FileStorage : GObject.Object, IFileStorage
 
             Gio.ListModel? fileListModel = fileChooser.GetFiles();
 
-            var fileResult = new List<PickedFile>();
+            var fileResult = new List<SandboxedFileReader>();
             if (fileListModel is not null)
             {
                 uint fileCount = fileListModel.GetNItems();
@@ -199,7 +199,12 @@ internal sealed class FileStorage : GObject.Object, IFileStorage
         return await taskCompletionSource.Task;
     }
 
-    private async ValueTask<PickedFile[]> PickOpenFileInternalAsync(string[] fileTypes, bool allowMultiple)
+    public FileInfo CreateSelfDestroyingTempFile(string? desiredFileExtension = null)
+    {
+        return FileHelper.CreateTempFile(Constants.AppTempFolder, desiredFileExtension);
+    }
+
+    private async ValueTask<SandboxedFileReader[]> PickOpenFileInternalAsync(string[] fileTypes, bool allowMultiple)
     {
         Guard.IsNotNull(MainWindow);
 
@@ -221,19 +226,19 @@ internal sealed class FileStorage : GObject.Object, IFileStorage
             fileChooser.AddFilter(filters[i]);
         }
 
-        var taskCompletionSource = new TaskCompletionSource<PickedFile[]>();
+        var taskCompletionSource = new TaskCompletionSource<SandboxedFileReader[]>();
         fileChooser.OnResponse += (_, e) =>
         {
             // Handle the result of the window.
             if (e.ResponseId != (int)Gtk.ResponseType.Accept)
             {
-                taskCompletionSource.SetResult(Array.Empty<PickedFile>());
+                taskCompletionSource.SetResult(Array.Empty<SandboxedFileReader>());
                 return;
             }
 
             Gio.ListModel? fileListModel = fileChooser.GetFiles();
 
-            var fileResult = new List<PickedFile>();
+            var fileResult = new List<SandboxedFileReader>();
             if (fileListModel is not null)
             {
                 uint fileCount = fileListModel.GetNItems();
@@ -247,7 +252,7 @@ internal sealed class FileStorage : GObject.Object, IFileStorage
                     if (!string.IsNullOrEmpty(filePath) && File.Exists(filePath))
                     {
                         fileResult.Add(
-                            new PickedFile(
+                            new SandboxedFileReader(
                                 Path.GetFileName(filePath),
                                 new FileStream(
                                     filePath,
@@ -262,7 +267,7 @@ internal sealed class FileStorage : GObject.Object, IFileStorage
         // Show the dialog.
         fileChooser.Show();
 
-        PickedFile[]? files = await taskCompletionSource.Task;
+        SandboxedFileReader[]? files = await taskCompletionSource.Task;
         if (files is not null && files.Length > 0)
         {
             if (allowMultiple)
@@ -273,7 +278,7 @@ internal sealed class FileStorage : GObject.Object, IFileStorage
             return new[] { files[0] };
         }
 
-        return Array.Empty<PickedFile>();
+        return Array.Empty<SandboxedFileReader>();
     }
 
     private static IReadOnlyList<FileFilter> GenerateFilter(string[] fileTypes)

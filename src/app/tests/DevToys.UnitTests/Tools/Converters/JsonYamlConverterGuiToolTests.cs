@@ -33,6 +33,7 @@ public class JsonYamlConverterGuiToolTests : MefBasedTest
     [InlineData(" ")]
     public async Task ConvertJsonWithInvalidJsonShouldReturnJsonError(string input)
     {
+        _inputTextArea.Text("abc");
         _inputTextArea.Text(input);
         await _tool.WorkTask;
         _outputTextArea.Text.Should().Be(JsonYamlConverter.InvalidJson);

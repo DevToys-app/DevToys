@@ -11,6 +11,7 @@
     d:DataContext="{d:DesignInstance Type=core:TitleBarInfoProvider}"
     mc:Ignorable="d"
     Loaded="MainWindow_Loaded"
+    Closing="MainWindow_Closing"
     MinWidth="600"
     MinHeight="400"
     Title="{Binding Title}"

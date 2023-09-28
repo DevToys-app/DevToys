@@ -32,6 +32,9 @@ internal partial class LinuxProgram
         Application = Adw.Application.New("devtoys", Gio.ApplicationFlags.FlagsNone);
 
         Application.OnActivate += OnApplicationActivate;
+
+        // TODO: When the app exit, call GuiToolProvider.DisposeTools().
+        // TODO: Invoke FileHelper.ClearTempFiles(Constants.AppTempFolder); when the app exit.
     }
 
     internal Adw.Application Application { get; }
@@ -46,6 +49,9 @@ internal partial class LinuxProgram
         {
             LogUnhandledException((Exception)ex.ExceptionObject);
         };
+
+        // Clear older temp files.
+        FileHelper.ClearTempFiles(Constants.AppTempFolder);
 
         // Initialize extension installation folder, and uninstall extensions that are planned for being removed.
         string[] pluginFolders

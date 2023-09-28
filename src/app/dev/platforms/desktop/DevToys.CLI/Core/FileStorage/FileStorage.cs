@@ -1,4 +1,5 @@
 ﻿using DevToys.Api;
+using DevToys.Core;
 
 namespace DevToys.CLI.Core.FileStorage;
 
@@ -8,7 +9,7 @@ internal sealed class FileStorage : IFileStorage
     [ImportingConstructor]
     internal FileStorage()
     {
-        AppCacheDirectory = Path.Combine(AppContext.BaseDirectory, "Cache");
+        AppCacheDirectory = Constants.AppCacheDirectory;
     }
 
     public string AppCacheDirectory { get; }
@@ -65,13 +66,13 @@ internal sealed class FileStorage : IFileStorage
         throw new NotImplementedException();
     }
 
-    public ValueTask<PickedFile?> PickOpenFileAsync(params string[] fileTypes)
+    public ValueTask<SandboxedFileReader?> PickOpenFileAsync(params string[] fileTypes)
     {
         // TODO: prompt the user to type in the console a relative or absolute file path that has one of the file types indicated.
         throw new NotImplementedException();
     }
 
-    public ValueTask<PickedFile[]> PickOpenFilesAsync(params string[] fileTypes)
+    public ValueTask<SandboxedFileReader[]> PickOpenFilesAsync(params string[] fileTypes)
     {
         // TODO: prompt the user to type in the console a relative or absolute file path that has one of the file types indicated.
         throw new NotImplementedException();
@@ -81,5 +82,10 @@ internal sealed class FileStorage : IFileStorage
     {
         // TODO: prompt the user to type in the console a relative or absolute file path that has one of the file types indicated.
         throw new NotImplementedException();
+    }
+
+    public FileInfo CreateSelfDestroyingTempFile(string? desiredFileExtension = null)
+    {
+        return FileHelper.CreateTempFile(Constants.AppTempFolder, desiredFileExtension);
     }
 }
