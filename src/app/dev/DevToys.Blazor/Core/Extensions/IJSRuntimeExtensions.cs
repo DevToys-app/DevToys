@@ -41,10 +41,6 @@ internal static class IJSRuntimeExtensions
         {
             return false;
         }
-        catch (Exception ex)
-        {
-            return false;
-        }
     }
 
     /// <summary>

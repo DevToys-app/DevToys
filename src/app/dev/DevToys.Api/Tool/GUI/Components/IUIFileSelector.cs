@@ -55,9 +55,11 @@ internal sealed class UIFileSelector : UIElement, IUIFileSelector
         get => _selectedFiles;
         internal set
         {
-            SetPropertyValue(ref _selectedFiles, value, null);
+            if (SetPropertyValue(ref _selectedFiles, value, null))
+            {
             OnFilesSelectedAction?.Invoke(_selectedFiles);
         }
+    }
     }
 
     public bool CanSelectManyFiles
@@ -138,6 +140,15 @@ public static partial class GUI
     public static IUIFileSelector LimitFileTypesTo(this IUIFileSelector element, params string[] fileExtensions)
     {
         ((UIFileSelector)element).AllowedFileExtensions = fileExtensions;
+        return element;
+    }
+
+    /// <summary>
+    /// Limits the list of selectable files to known supported image formats as defined in <see cref="PredefinedSupportedImageFormats.ImageFileExtensions"/>.
+    /// </summary>
+    public static IUIFileSelector LimitFileTypesToImages(this IUIFileSelector element)
+    {
+        ((UIFileSelector)element).AllowedFileExtensions = PredefinedSupportedImageFormats.ImageFileExtensions;
         return element;
     }
 

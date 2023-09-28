@@ -55,9 +55,11 @@ internal sealed class UISwitch : UITitledElement, IUISwitch
         get => _state;
         internal set
         {
-            SetPropertyValue(ref _state, value, IsOnChanged);
+            if (SetPropertyValue(ref _state, value, IsOnChanged))
+            {
             ActionOnToggle?.Invoke(_state);
         }
+    }
     }
 
     public string? OnText

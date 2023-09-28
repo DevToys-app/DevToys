@@ -79,7 +79,7 @@ namespace DevToys.Localization.Strings.ToolGroupPage {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Suggest your ideas!.
+        ///   Looks up a localized string similar to Suggest an idea.
         /// </summary>
         public static string NotFindingToolSuggestIdea {
             get {

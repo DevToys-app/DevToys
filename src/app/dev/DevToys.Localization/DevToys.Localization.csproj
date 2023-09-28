@@ -59,18 +59,14 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="**\*.resx" />
-    <AdditionalFiles Include="**\*.resx" />
+    <AdditionalFiles Include="**\*.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </AdditionalFiles>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="$(RepoRoot)src\generators\ResxHelperGenerator\bin\netstandard2.0\ResxHelperGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DevToys.Api\DevToys.Api.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <AdditionalFiles Update="Strings\UIFileSelectorPresenter\UIFileSelectorPresenter.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>UIFileSelectorPresenter.Designer.cs</LastGenOutput>
-    </AdditionalFiles>
   </ItemGroup>
 </Project>

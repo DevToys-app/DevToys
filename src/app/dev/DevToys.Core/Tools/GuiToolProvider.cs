@@ -387,6 +387,17 @@ public sealed partial class GuiToolProvider
         return AllTools.FirstOrDefault(t => string.Equals(t.InternalComponentName, name, StringComparison.Ordinal));
     }
 
+    /// <summary>
+    /// Dispose every disposable <see cref="IGuiTool"/>.
+    /// </summary>
+    public void DisposeTools()
+    {
+        for (int i = 0; i < AllTools.Count; i++)
+        {
+            AllTools[i].Dispose();
+        }
+    }
+
     private void BuildGuiToolInstances(
         IEnumerable<Lazy<IGuiTool, GuiToolMetadata>> guiTools,
         out IReadOnlyList<GuiToolInstance> allTools,

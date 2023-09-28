@@ -103,7 +103,7 @@ internal abstract class UIElement : IUIElement, INotifyPropertyChanged
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    protected void SetPropertyValue<T>(
+    protected bool SetPropertyValue<T>(
         ref T field,
         T value,
         EventHandler? propertyChangedEventHandler,
@@ -114,7 +114,9 @@ internal abstract class UIElement : IUIElement, INotifyPropertyChanged
             field = value;
             propertyChangedEventHandler?.Invoke(this, EventArgs.Empty);
             OnPropertyChanged(propertyName);
+            return true;
         }
+        return false;
     }
 
     protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)

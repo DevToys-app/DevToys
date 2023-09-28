@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 namespace DevToys.Core.Tools;
 
 [DebuggerDisplay($"InternalComponentName = {{{nameof(InternalComponentName)}}}")]
-public sealed partial class GuiToolInstance : ObservableObject
+public sealed partial class GuiToolInstance : ObservableObject, IDisposable
 {
     private Lazy<UIToolView> _view;
     private readonly ILogger _logger;
@@ -80,6 +80,14 @@ public sealed partial class GuiToolInstance : ObservableObject
     /// Calling this property is expensive the first time as it will create the instance of the tool and the instance of the view.
     /// </summary>
     public UIToolView View => _view.Value;
+
+    public void Dispose()
+    {
+        if (_instance.IsValueCreated && _instance.Value is IDisposable disposable)
+        {
+            disposable.Dispose();
+        }
+    }
 
     /// <summary>
     /// Send data coming from Smart Detection to the tool.
