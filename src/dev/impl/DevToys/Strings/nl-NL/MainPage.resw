@@ -136,20 +136,20 @@
     <value>Um... hi! 😅</value>
   </data>
   <data name="NotificationReleaseNoteActionableActionText" xml:space="preserve">
-    <value>read more...</value>
+    <value>Lees meer...</value>
   </data>
   <data name="NotificationReleaseNoteTitle" xml:space="preserve">
-    <value>We just updated! What's new in {0}? 🚀</value>
+    <value>We zijn zojuist bijgewerkt! Wat is er nieuw in {0}? 🚀</value>
     <comment>{0} is the current app version</comment>
   </data>
   <data name="NotificationUpdateAvailableActionableActionText" xml:space="preserve">
-    <value>update now...</value>
+    <value>nu bijwerken...</value>
   </data>
   <data name="NotificationUpdateAvailableTitle" xml:space="preserve">
-    <value>An update is available! 🚀</value>
+    <value>Er is een update beschikbaar! 🚀</value>
   </data>
   <data name="OpenInNewWindow" xml:space="preserve">
-    <value>Open in a new window</value>
+    <value>In een nieuw venster openen</value>
   </data>
   <data name="PinToolToStart" xml:space="preserve">
     <value>Pin tool to Start</value>
@@ -164,7 +164,7 @@
     <value>Type to search for tools...</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
-    <value>No results found</value>
+    <value>Geen resultaten gevonden</value>
   </data>
   <data name="SurveyDescription" xml:space="preserve">
     <value>We would love to hear about your experience with DevToys so we can improve it.</value>
