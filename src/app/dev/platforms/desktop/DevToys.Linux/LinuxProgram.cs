@@ -11,6 +11,8 @@ using DevToys.Linux.Core;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using DevToys.Core.Logging;
+using DevToys.Core;
+using DevToys.Core.Tools;
 
 namespace DevToys.Linux;
 
@@ -32,9 +34,7 @@ internal partial class LinuxProgram
         Application = Adw.Application.New("devtoys", Gio.ApplicationFlags.FlagsNone);
 
         Application.OnActivate += OnApplicationActivate;
-
-        // TODO: When the app exit, call GuiToolProvider.DisposeTools().
-        // TODO: Invoke FileHelper.ClearTempFiles(Constants.AppTempFolder); when the app exit.
+        Application.OnShutdown += OnApplicationShutdown;
     }
 
     internal Adw.Application Application { get; }
@@ -85,6 +85,20 @@ internal partial class LinuxProgram
 
         // Create and open main window.
         _mainWindow = new MainWindow(serviceProvider, (Adw.Application)sender);
+    }
+
+    private void OnApplicationShutdown(object sender, object e)
+    {
+        Guard.IsNotNull(MefComposer);
+
+        // Dispose every disposable tool instance.
+        MefComposer.Provider.Import<GuiToolProvider>().DisposeTools();
+
+        // Clear older temp files.
+        FileHelper.ClearTempFiles(Constants.AppTempFolder);
+
+        Application.OnActivate -= OnApplicationActivate;
+        Application.OnShutdown -= OnApplicationShutdown;
     }
 
     private ServiceProvider InitializeServices()

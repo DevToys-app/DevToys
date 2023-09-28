@@ -1,4 +1,5 @@
 ﻿using DevToys.Api;
+using DevToys.Core;
 using DevToys.Linux.Strings.Other;
 using Gtk;
 
