@@ -89,9 +89,22 @@ public partial class UIImageViewerPresenter : MefComponentBase
         }
         else if (UIImageViewer.ImageSource.TryGetThird(out SandboxedFileReader? imagePickedFile) && imagePickedFile is not null)
         {
-            using MemoryStream memoryStream = await imagePickedFile.GetFileCopyAsync(CancellationToken.None);
-            using Image newImage = await Image.LoadAsync(memoryStream);
-            await _clipboard.SetClipboardImageAsync(newImage);
+            if (string.Equals(Path.GetExtension(imagePickedFile.FileName), ".svg", StringComparison.OrdinalIgnoreCase))
+            {
+                FileInfo tempFile = _fileStorage.CreateSelfDestroyingTempFile("svg");
+                using (FileStream tempFileStream = tempFile.OpenWrite())
+                {
+                    await imagePickedFile.CopyFileContentToAsync(tempFileStream, CancellationToken.None);
+                }
+
+                await _clipboard.SetClipboardFilesAsync(new[] { tempFile });
+            }
+            else
+            {
+                using MemoryStream memoryStream = await imagePickedFile.GetFileCopyAsync(CancellationToken.None);
+                using Image newImage = await Image.LoadAsync(memoryStream);
+                await _clipboard.SetClipboardImageAsync(newImage);
+            }
         }
     }
 
