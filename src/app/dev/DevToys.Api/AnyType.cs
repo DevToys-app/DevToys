@@ -1,7 +1,19 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.InteropServices;
 
 namespace DevToys.Api;
 
+public static class AnyTypeIdentifiers
+{
+    public const string AnyTypeT2GuidString = "a6a7b494-61f1-4826-ba9a-bb5c569817de";
+    public const string AnyTypeT3GuidString = "59f7ac53-30bd-4066-879a-cbd1672ef5fb";
+    public const string AnyTypeT4GuidString = "3987d3c2-94d0-4818-ae49-9036c60affe7";
+    public static readonly Guid AnyTypeT2Guid = new Guid(AnyTypeT2GuidString);
+    public static readonly Guid AnyTypeT3Guid = new Guid(AnyTypeT3GuidString);
+    public static readonly Guid AnyTypeT4Guid = new Guid(AnyTypeT4GuidString);
+}
+
+[Guid(AnyTypeIdentifiers.AnyTypeT2GuidString)]
 public readonly struct AnyType<T1, T2> : IEquatable<AnyType<T1, T2>>
 {
     public AnyType(T1 val)
@@ -115,6 +127,7 @@ public readonly struct AnyType<T1, T2> : IEquatable<AnyType<T1, T2>>
     }
 }
 
+[Guid(AnyTypeIdentifiers.AnyTypeT3GuidString)]
 public readonly struct AnyType<T1, T2, T3> : IEquatable<AnyType<T1, T2, T3>>
 {
     public AnyType(T1 val)
@@ -267,6 +280,7 @@ public readonly struct AnyType<T1, T2, T3> : IEquatable<AnyType<T1, T2, T3>>
     }
 }
 
+[Guid(AnyTypeIdentifiers.AnyTypeT4GuidString)]
 public readonly struct AnyType<T1, T2, T3, T4> : IEquatable<AnyType<T1, T2, T3, T4>>
 {
     public AnyType(T1 val)

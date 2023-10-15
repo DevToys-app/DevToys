@@ -79,7 +79,7 @@ internal sealed partial class Base64ImageEncoderDecoderGuiTool : IGuiTool, IDisp
 
                                 _fileSelector
                                     .CanSelectOneFile()
-                                    .LimitFileTypesTo("png", "jpg", "jpeg", "bmp", "gif", "ico", "webp", "svg")
+                                    .LimitFileTypesTo("bmp", "gif", "ico", "jpg", "jpeg", "png", "svg", "webp")
                                     .OnFilesSelected(OnFileSelectedAsync)),
 
                             Cell(
@@ -146,24 +146,16 @@ internal sealed partial class Base64ImageEncoderDecoderGuiTool : IGuiTool, IDisp
 
         try
         {
-            string? trimmedData = input?.Trim();
-
-            if (string.IsNullOrWhiteSpace(trimmedData))
+            if (string.IsNullOrWhiteSpace(input))
             {
                 _imageViewer.Clear();
                 return;
             }
 
+            string? trimmedData = input?.Trim();
+
             string fileExtension;
-            if (trimmedData!.StartsWith("data:image/png;base64,", StringComparison.OrdinalIgnoreCase))
-            {
-                fileExtension = "png";
-            }
-            else if (trimmedData!.StartsWith("data:image/jpeg;base64,", StringComparison.OrdinalIgnoreCase))
-            {
-                fileExtension = "jpeg";
-            }
-            else if (trimmedData!.StartsWith("data:image/bmp;base64,", StringComparison.OrdinalIgnoreCase))
+            if (trimmedData!.StartsWith("data:image/bmp;base64,", StringComparison.OrdinalIgnoreCase))
             {
                 fileExtension = "bmp";
             }
@@ -175,13 +167,21 @@ internal sealed partial class Base64ImageEncoderDecoderGuiTool : IGuiTool, IDisp
             {
                 fileExtension = "ico";
             }
-            else if (trimmedData!.StartsWith("data:image/webp;base64,", StringComparison.OrdinalIgnoreCase))
+            else if (trimmedData!.StartsWith("data:image/jpeg;base64,", StringComparison.OrdinalIgnoreCase))
             {
-                fileExtension = "webp";
+                fileExtension = "jpeg";
+            }
+            else if (trimmedData!.StartsWith("data:image/png;base64,", StringComparison.OrdinalIgnoreCase))
+            {
+                fileExtension = "png";
             }
             else if (trimmedData!.StartsWith("data:image/svg+xml;base64,", StringComparison.OrdinalIgnoreCase))
             {
                 fileExtension = "svg";
+            }
+            else if (trimmedData!.StartsWith("data:image/webp;base64,", StringComparison.OrdinalIgnoreCase))
+            {
+                fileExtension = "webp";
             }
             else
             {
@@ -223,13 +223,13 @@ internal sealed partial class Base64ImageEncoderDecoderGuiTool : IGuiTool, IDisp
         string output
             = fileExtension.ToLowerInvariant() switch
             {
-                ".png" => "data:image/png;base64," + base64,
-                ".jpg" or ".jpeg" => "data:image/jpeg;base64," + base64,
                 ".bmp" => "data:image/bmp;base64," + base64,
                 ".gif" => "data:image/gif;base64," + base64,
                 ".ico" => "data:image/x-icon;base64," + base64,
-                ".webp" => "data:image/webp;base64," + base64,
+                ".jpg" or ".jpeg" => "data:image/jpeg;base64," + base64,
+                ".png" => "data:image/png;base64," + base64,
                 ".svg" => "data:image/svg+xml;base64," + base64,
+                ".webp" => "data:image/webp;base64," + base64,
                 _ => throw new NotSupportedException(),
             };
 

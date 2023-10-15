@@ -29,6 +29,11 @@
     -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Strings\GlobalStrings\GlobalStrings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GlobalStrings.resx</DependentUpon>
+    </Compile>
     <Compile Update="Tools\EncodersDecoders\Base64Image\Base64ImageEncoderDecoder.Designer.cs">
       <DependentUpon>Base64ImageEncoderDecoder.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -76,6 +81,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="Strings\GlobalStrings\GlobalStrings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Tools\EncodersDecoders\Base64Image\Base64ImageEncoderDecoder.resx">
       <LastGenOutput>Base64ImageEncoderDecoder.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>

@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.Composition;
 using System.IO;
+using System.Reflection;
 using System.Threading.Tasks;
+using DevToys.Core;
 
 namespace DevToys.UnitTests.Mocks;
 
@@ -48,6 +50,8 @@ internal class MockIFileStorage : IFileStorage
 
     public FileInfo CreateSelfDestroyingTempFile(string? desiredFileExtension = null)
     {
-        throw new NotImplementedException();
+        var assembly = Assembly.GetExecutingAssembly();
+        string assemblyDirectory = Path.GetDirectoryName(assembly.Location);
+        return FileHelper.CreateTempFile(assemblyDirectory, desiredFileExtension);
     }
 }

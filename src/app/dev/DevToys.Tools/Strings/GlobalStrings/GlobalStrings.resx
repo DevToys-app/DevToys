@@ -117,29 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AccessibleName" xml:space="preserve">
-    <value>Base64 Image Encoder and Decoder tool</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Encode and decode Base64 image data</value>
-  </data>
-  <data name="InputOptionDescription" xml:space="preserve">
-    <value>Image file path to encode / text file path containing the Base64 to decode / Base64 text to decode</value>
-  </data>
-  <data name="InvalidBase64" xml:space="preserve">
-    <value>&lt;Invalid Base64&gt;</value>
-  </data>
-  <data name="LongDisplayTitle" xml:space="preserve">
-    <value>Base64 Image Encoder / Decoder</value>
-  </data>
-  <data name="OutputFileOptionDescription" xml:space="preserve">
-    <value>File where the result should be persisted.</value>
-  </data>
-  <data name="SearchKeywords" xml:space="preserve">
-    <value>RFC 4648</value>
-    <comment>Alternative search keywords.</comment>
-  </data>
-  <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Base64 Image</value>
+  <data name="FileNotFound" xml:space="preserve">
+    <value>File '{0}' was not found.</value>
   </data>
 </root>

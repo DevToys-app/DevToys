@@ -36,7 +36,7 @@ internal sealed class FileStorage : IFileStorage
             throw new FileNotFoundException("Unable to find the indicated file.", relativeOrAbsoluteFilePath);
         }
 
-        return File.OpenRead(relativeOrAbsoluteFilePath);
+        return new FileStream(relativeOrAbsoluteFilePath, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, FileOptions.Asynchronous | FileOptions.SequentialScan);
     }
 
     public Stream OpenWriteFile(string relativeOrAbsoluteFilePath, bool replaceIfExist)
@@ -110,7 +110,15 @@ internal sealed class FileStorage : IFileStorage
 
             if (openFileDialog.ShowDialog() == true)
             {
-                return new SandboxedFileReader(openFileDialog.FileName, openFileDialog.OpenFile());
+                return new SandboxedFileReader(
+                    openFileDialog.FileName,
+                    new FileStream(
+                        openFileDialog.FileName,
+                        FileMode.Open,
+                        FileAccess.Read,
+                        FileShare.Read,
+                        4096,
+                        FileOptions.Asynchronous | FileOptions.SequentialScan));
             }
 
             return null;
@@ -136,14 +144,21 @@ internal sealed class FileStorage : IFileStorage
 
             if (openFileDialog.ShowDialog() == true)
             {
-                Stream[] streams = openFileDialog.OpenFiles();
                 string[] fileNames = openFileDialog.FileNames;
-                Guard.IsEqualTo(streams.Length, fileNames.Length);
 
-                var result = new SandboxedFileReader[streams.Length];
-                for (int i = 0; i < streams.Length; i++)
+                var result = new SandboxedFileReader[fileNames.Length];
+                for (int i = 0; i < fileNames.Length; i++)
                 {
-                    result[i] = new(fileNames[i], streams[i]);
+                    result[i]
+                        = new(
+                            fileNames[i],
+                            new FileStream(
+                                fileNames[i],
+                                FileMode.Open,
+                                FileAccess.Read,
+                                FileShare.Read,
+                             4096,
+                                FileOptions.Asynchronous | FileOptions.SequentialScan));
                 }
 
                 return result;

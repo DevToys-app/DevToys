@@ -1,4 +1,5 @@
 ﻿using DevToys.Api;
+using DevToys.CLI.Strings.CliStrings;
 using DevToys.Core;
 
 namespace DevToys.CLI.Core.FileStorage;
@@ -36,7 +37,7 @@ internal sealed class FileStorage : IFileStorage
             throw new FileNotFoundException("Unable to find the indicated file.", relativeOrAbsoluteFilePath);
         }
 
-        return File.OpenRead(relativeOrAbsoluteFilePath);
+        return new FileStream(relativeOrAbsoluteFilePath, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, FileOptions.Asynchronous | FileOptions.SequentialScan);
     }
 
     public Stream OpenWriteFile(string relativeOrAbsoluteFilePath, bool replaceIfExist)
@@ -62,8 +63,13 @@ internal sealed class FileStorage : IFileStorage
 
     public ValueTask<Stream?> PickSaveFileAsync(params string[] fileTypes)
     {
-        // TODO: prompt the user to type in the console a relative or absolute file path that has one of the file types indicated.
-        throw new NotImplementedException();
+        Console.WriteLine(CliStrings.PromptSaveFile);
+        string? filePath = Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(filePath))
+        {
+            return new ValueTask<Stream?>(Task.FromResult<Stream?>(null));
+        }
+        return new ValueTask<Stream?>(File.OpenWrite(filePath!));
     }
 
     public ValueTask<SandboxedFileReader?> PickOpenFileAsync(params string[] fileTypes)

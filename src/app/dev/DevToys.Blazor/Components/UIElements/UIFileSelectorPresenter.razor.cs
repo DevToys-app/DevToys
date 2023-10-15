@@ -115,7 +115,7 @@ public partial class UIFileSelectorPresenter : MefComponentBase
                 foreach (string filePath in Directory.GetFiles(selectedFolder, "*", SearchOption.AllDirectories))
                 {
                     var info = new FileInfo(filePath);
-                    files.Add(new(info.Name, info.OpenRead()));
+                    files.Add(new(info.Name, new FileStream(info.FullName, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, FileOptions.Asynchronous | FileOptions.SequentialScan)));
                 }
             }
             else
@@ -126,7 +126,7 @@ public partial class UIFileSelectorPresenter : MefComponentBase
                     foreach (string filePath in Directory.GetFiles(selectedFolder, "*." + fileType, SearchOption.AllDirectories))
                     {
                         var info = new FileInfo(filePath);
-                        files.Add(new(info.Name, info.OpenRead()));
+                        files.Add(new(info.Name, new FileStream(info.FullName, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, FileOptions.Asynchronous | FileOptions.SequentialScan)));
                     }
                 }
             }
@@ -335,6 +335,6 @@ public partial class UIFileSelectorPresenter : MefComponentBase
     private SandboxedFileReader CreatePickedFile(FileInfo fileInfo)
     {
         Guard.IsNotNull(fileInfo);
-        return new SandboxedFileReader(fileInfo.Name, fileInfo.OpenRead());
+        return new SandboxedFileReader(fileInfo.Name, new FileStream(fileInfo.FullName, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, FileOptions.Asynchronous | FileOptions.SequentialScan));
     }
 }

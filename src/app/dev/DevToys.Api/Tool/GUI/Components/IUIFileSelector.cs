@@ -55,6 +55,23 @@ internal sealed class UIFileSelector : UIElement, IUIFileSelector
         get => _selectedFiles;
         internal set
         {
+            if (!CanSelectManyFiles && value.Length > 1)
+            {
+                ThrowHelper.ThrowInvalidOperationException("Cannot select more than one file.");
+            }
+
+            if (value.Length > 0)
+            {
+                for (int i = 0; i < value.Length; i++)
+                {
+                    string fileExtension = Path.GetExtension(value[i].FileName);
+                    if (!AllowedFileExtensions.All(ext => !string.Equals(ext, fileExtension, StringComparison.CurrentCultureIgnoreCase)))
+                    {
+                        ThrowHelper.ThrowInvalidOperationException($"File extension '{fileExtension}' is not allowed.");
+                    }
+                }
+            }
+
             if (SetPropertyValue(ref _selectedFiles, value, null))
             {
                 OnFilesSelectedAction?.Invoke(_selectedFiles);

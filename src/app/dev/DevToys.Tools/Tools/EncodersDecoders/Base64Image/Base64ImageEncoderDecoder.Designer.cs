@@ -79,6 +79,15 @@ namespace DevToys.Tools.Tools.EncodersDecoders.Base64Image {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Image file path to encode / text file path containing the Base64 to decode / Base64 text to decode.
+        /// </summary>
+        internal static string InputOptionDescription {
+            get {
+                return ResourceManager.GetString("InputOptionDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;Invalid Base64&gt;.
         /// </summary>
         internal static string InvalidBase64 {
@@ -93,6 +102,15 @@ namespace DevToys.Tools.Tools.EncodersDecoders.Base64Image {
         internal static string LongDisplayTitle {
             get {
                 return ResourceManager.GetString("LongDisplayTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File where the result should be persisted..
+        /// </summary>
+        internal static string OutputFileOptionDescription {
+            get {
+                return ResourceManager.GetString("OutputFileOptionDescription", resourceCulture);
             }
         }
         

@@ -13,9 +13,7 @@ public sealed class JsonYamlConverterCommandLineToolTests : MefBasedTest
     private readonly StringWriter _consoleErrorWriter = new();
     private readonly JsonYamlConverterCommandLineTool _tool;
     private readonly Mock<ILogger> _loggerMock;
-
-    private static string _baseTestDataDirectory
-        => Path.Combine("Tools", "TestData", nameof(JsonYamlConverter));
+    private readonly string _baseTestDataDirectory = Path.Combine("Tools", "TestData", nameof(JsonYamlConverter));
 
     public JsonYamlConverterCommandLineToolTests()
         : base(typeof(JsonYamlConverterCommandLineTool).Assembly)
