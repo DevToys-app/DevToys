@@ -19,4 +19,19 @@
     <ProjectReference Include="..\..\..\DevToys.Api\DevToys.Api.csproj" />
     <ProjectReference Include="..\..\..\DevToys.Core\DevToys.Core.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Strings\CliStrings\CliStrings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CliStrings.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Strings\CliStrings\CliStrings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CliStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>

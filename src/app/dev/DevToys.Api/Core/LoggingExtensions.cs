@@ -14,7 +14,6 @@ public static class LoggingExtensions
         internal get => _loggerFactory;
         set
         {
-            Guard.IsNull(_loggerFactory);
             Guard.IsNotNull(value);
             _loggerFactory = value;
         }

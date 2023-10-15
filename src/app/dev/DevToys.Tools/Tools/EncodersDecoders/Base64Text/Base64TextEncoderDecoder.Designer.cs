@@ -169,7 +169,7 @@ namespace DevToys.Tools.Tools.EncodersDecoders.Base64Text {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Text to encode or Base64 to decode.
+        ///   Looks up a localized string similar to Text or path to a file to encode or Base64 to decode.
         /// </summary>
         internal static string InputOptionDescription {
             get {
@@ -201,6 +201,15 @@ namespace DevToys.Tools.Tools.EncodersDecoders.Base64Text {
         internal static string LongDisplayTitle {
             get {
                 return ResourceManager.GetString("LongDisplayTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File where the result should be persisted..
+        /// </summary>
+        internal static string OutputFileOptionDescription {
+            get {
+                return ResourceManager.GetString("OutputFileOptionDescription", resourceCulture);
             }
         }
         

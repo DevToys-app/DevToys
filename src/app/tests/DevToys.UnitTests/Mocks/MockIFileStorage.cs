@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.Composition;
 using System.IO;
+using System.Reflection;
 using System.Threading.Tasks;
+using DevToys.Core;
 
 namespace DevToys.UnitTests.Mocks;
 
@@ -30,13 +32,13 @@ internal class MockIFileStorage : IFileStorage
         throw new NotImplementedException();
     }
 
-    public ValueTask<PickedFile> PickOpenFileAsync(params string[] fileTypes)
+    public ValueTask<SandboxedFileReader> PickOpenFileAsync(params string[] fileTypes)
     {
         // TODO: prompt the user to type in the console a relative or absolute file path that has one of the file types indicated.
         throw new NotImplementedException();
     }
 
-    public ValueTask<PickedFile[]> PickOpenFilesAsync(params string[] fileTypes)
+    public ValueTask<SandboxedFileReader[]> PickOpenFilesAsync(params string[] fileTypes)
     {
         throw new NotImplementedException();
     }
@@ -44,5 +46,12 @@ internal class MockIFileStorage : IFileStorage
     public ValueTask<string> PickFolderAsync()
     {
         throw new NotImplementedException();
+    }
+
+    public FileInfo CreateSelfDestroyingTempFile(string? desiredFileExtension = null)
+    {
+        var assembly = Assembly.GetExecutingAssembly();
+        string assemblyDirectory = Path.GetDirectoryName(assembly.Location);
+        return FileHelper.CreateTempFile(assemblyDirectory, desiredFileExtension);
     }
 }

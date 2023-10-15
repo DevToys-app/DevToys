@@ -36,6 +36,6 @@ public partial class ToolGroup : MefComponentBase
 
     private void OnSuggestToolIdeaClick()
     {
-        Shell.OpenUrlInWebBrowser("https://github.com/veler/DevToys/issues/new/choose");
+        Shell.OpenFileInShell("https://github.com/veler/DevToys/issues/new/choose");
     }
 }

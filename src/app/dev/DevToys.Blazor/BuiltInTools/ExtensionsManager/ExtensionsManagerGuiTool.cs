@@ -129,25 +129,26 @@ internal sealed class ExtensionsManagerGuiTool : IGuiTool
     private void OnFindMoreExtensionsOnlineButtonClick()
     {
         // TODO: Open documentation online
-        Shell.OpenUrlInWebBrowser("http://url");
+        Shell.OpenFileInShell("http://url");
     }
 
     private void OnLearnDevelopExtensionButtonClick()
     {
         // TODO: Open documentation online
-        Shell.OpenUrlInWebBrowser("http://url");
+        Shell.OpenFileInShell("http://url");
     }
 
     private async ValueTask OnInstallExtensionButtonClickAsync()
     {
         await ShowWarningUseThirdPartyExtensionMessageBoxAsync();
 
-        PickedFile[] nugetPackages = await _fileStorage.PickOpenFilesAsync("nupkg");
+        SandboxedFileReader[] nugetPackages = await _fileStorage.PickOpenFilesAsync("nupkg");
 
         for (int i = 0; i < nugetPackages.Length; i++)
         {
-            using PickedFile nugetPackage = nugetPackages[i];
-            using var reader = new PackageArchiveReader(nugetPackage.Stream);
+            using SandboxedFileReader nugetPackage = nugetPackages[i];
+            using MemoryStream nugetPackageStream = await nugetPackage.GetFileCopyAsync(CancellationToken.None);
+            using var reader = new PackageArchiveReader(nugetPackageStream);
 
             NuspecReader nuspec = reader.NuspecReader;
 
@@ -272,7 +273,7 @@ internal sealed class ExtensionsManagerGuiTool : IGuiTool
 
         static void NavigateToUrl(string url)
         {
-            Shell.OpenUrlInWebBrowser(url);
+            Shell.OpenFileInShell(url);
         }
     }
 
@@ -315,7 +316,7 @@ internal sealed class ExtensionsManagerGuiTool : IGuiTool
         void OnTermsConditionsDialogButtonClick()
         {
             // TODO: Open the terms and conditions page.
-            Shell.OpenUrlInWebBrowser("https://url");
+            Shell.OpenFileInShell("https://url");
         }
 
         void OnIUnderstandDialogButtonClick()

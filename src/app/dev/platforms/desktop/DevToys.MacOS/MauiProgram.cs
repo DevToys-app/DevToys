@@ -10,6 +10,7 @@ using DevToys.MacOS.Core;
 using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using PredefinedSettings = DevToys.Core.Settings.PredefinedSettings;
+using DevToys.Core;
 
 namespace DevToys.MacOS;
 
@@ -50,6 +51,9 @@ public partial class MauiProgram
         {
             args.ExceptionMode = ObjCRuntime.MarshalManagedExceptionMode.UnwindNativeCode;
         };
+
+        // Clear older temp files.
+        FileHelper.ClearTempFiles(Constants.AppTempFolder);
 
         // Initialize extension installation folder, and uninstall extensions that are planned for being removed.
         string[] pluginFolders

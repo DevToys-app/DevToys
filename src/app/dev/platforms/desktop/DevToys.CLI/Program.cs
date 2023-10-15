@@ -2,6 +2,7 @@
 using System.CommandLine.Invocation;
 using System.Text;
 using DevToys.Api;
+using DevToys.CLI.Core;
 using DevToys.CLI.Core.FileStorage;
 using DevToys.Core;
 using DevToys.Core.Logging;
@@ -59,6 +60,8 @@ internal partial class Program
     {
         try
         {
+            FileHelper.ClearTempFiles(Constants.AppTempFolder);
+
             var rootCommand = new RootCommand("DevToys");
 
             // Initialize MEF.
@@ -98,6 +101,10 @@ internal partial class Program
         catch (Exception ex)
         {
             LogUnhandledException(logger, ex);
+        }
+        finally
+        {
+            FileHelper.ClearTempFiles(Constants.AppTempFolder);
         }
     }
 

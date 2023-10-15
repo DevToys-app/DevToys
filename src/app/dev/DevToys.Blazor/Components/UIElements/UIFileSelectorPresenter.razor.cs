@@ -79,21 +79,21 @@ public partial class UIFileSelectorPresenter : MefComponentBase
     {
         string[] fileTypes = GetTreatedFileExtensions();
 
-        PickedFile[] pickedFiles;
+        SandboxedFileReader[] pickedFiles;
         if (UIFileSelector.CanSelectManyFiles)
         {
             pickedFiles = await _fileStorage.PickOpenFilesAsync(fileTypes);
         }
         else
         {
-            PickedFile? pickedFile = await _fileStorage.PickOpenFileAsync(fileTypes);
+            SandboxedFileReader? pickedFile = await _fileStorage.PickOpenFileAsync(fileTypes);
             if (pickedFile != null)
             {
                 pickedFiles = new[] { pickedFile };
             }
             else
             {
-                pickedFiles = Array.Empty<PickedFile>();
+                pickedFiles = Array.Empty<SandboxedFileReader>();
             }
         }
 
@@ -105,7 +105,7 @@ public partial class UIFileSelectorPresenter : MefComponentBase
 
     private async Task OnBrowseFoldersButtonClickAsync()
     {
-        var files = new List<PickedFile>();
+        var files = new List<SandboxedFileReader>();
         string? selectedFolder = await _fileStorage.PickFolderAsync();
 
         if (!string.IsNullOrWhiteSpace(selectedFolder))
@@ -115,7 +115,7 @@ public partial class UIFileSelectorPresenter : MefComponentBase
                 foreach (string filePath in Directory.GetFiles(selectedFolder, "*", SearchOption.AllDirectories))
                 {
                     var info = new FileInfo(filePath);
-                    files.Add(new(info.Name, info.OpenRead()));
+                    files.Add(new(info.Name, new FileStream(info.FullName, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, FileOptions.Asynchronous | FileOptions.SequentialScan)));
                 }
             }
             else
@@ -126,7 +126,7 @@ public partial class UIFileSelectorPresenter : MefComponentBase
                     foreach (string filePath in Directory.GetFiles(selectedFolder, "*." + fileType, SearchOption.AllDirectories))
                     {
                         var info = new FileInfo(filePath);
-                        files.Add(new(info.Name, info.OpenRead()));
+                        files.Add(new(info.Name, new FileStream(info.FullName, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, FileOptions.Asynchronous | FileOptions.SequentialScan)));
                     }
                 }
             }
@@ -153,32 +153,17 @@ public partial class UIFileSelectorPresenter : MefComponentBase
             Image<SixLabors.ImageSharp.PixelFormats.Rgba32>? image = await _clipboard.GetClipboardImageAsync();
             if (image is not null)
             {
-                string temporaryFileName = $"clipboard-{DateTime.Now.Ticks}.png";
+                FileInfo temporaryFile = _fileStorage.CreateSelfDestroyingTempFile("png");
 
                 using (image)
                 {
-                    using Stream fileStream = _fileStorage.OpenWriteFile(temporaryFileName, replaceIfExist: true);
+                    using Stream fileStream = _fileStorage.OpenWriteFile(temporaryFile.FullName, replaceIfExist: true);
                     await image.SaveAsPngAsync(fileStream);
                 }
 
-                var pickedFile = new PickedFile(temporaryFileName, _fileStorage.OpenReadFile(temporaryFileName));
-                pickedFile.Disposed += ImageClipboardPickedFile_Disposed;
+                var pickedFile = new SandboxedFileReader(temporaryFile.FullName, _fileStorage.OpenReadFile(temporaryFile.FullName));
 
                 UIFileSelector.WithFiles(pickedFile);
-            }
-        }
-    }
-
-    private void ImageClipboardPickedFile_Disposed(object? sender, EventArgs e)
-    {
-        if (sender is PickedFile pickedFile)
-        {
-            pickedFile.Disposed -= ImageClipboardPickedFile_Disposed;
-
-            string filePath = Path.Combine(_fileStorage.AppCacheDirectory, pickedFile.FileName);
-            if (File.Exists(Path.Combine(_fileStorage.AppCacheDirectory, pickedFile.FileName)))
-            {
-                File.Delete(filePath);
             }
         }
     }
@@ -276,12 +261,12 @@ public partial class UIFileSelectorPresenter : MefComponentBase
         UpdateInstructionStrings();
     }
 
-    private void TreatSelectedFiles<T>(T[] files, Func<T, string> fileNameGetter, Func<T, PickedFile> pickedFileCreator)
+    private void TreatSelectedFiles<T>(T[] files, Func<T, string> fileNameGetter, Func<T, SandboxedFileReader> pickedFileCreator)
     {
         string[] fileTypes = GetTreatedFileExtensions();
         if (UIFileSelector.CanSelectManyFiles)
         {
-            var pickedFiles = new List<PickedFile>();
+            var pickedFiles = new List<SandboxedFileReader>();
 
             for (int i = 0; i < files.Length; i++)
             {
@@ -341,15 +326,15 @@ public partial class UIFileSelectorPresenter : MefComponentBase
         return fileInfo.Name;
     }
 
-    private PickedFile CreatePickedFile(IBrowserFile browserFile)
+    private SandboxedFileReader CreatePickedFile(IBrowserFile browserFile)
     {
         Guard.IsNotNull(browserFile);
-        return new PickedFile(browserFile.Name, browserFile.OpenReadStream(maxAllowedSize: long.MaxValue));
+        return new SandboxedFileReader(browserFile.Name, browserFile.OpenReadStream(maxAllowedSize: long.MaxValue));
     }
 
-    private PickedFile CreatePickedFile(FileInfo fileInfo)
+    private SandboxedFileReader CreatePickedFile(FileInfo fileInfo)
     {
         Guard.IsNotNull(fileInfo);
-        return new PickedFile(fileInfo.Name, fileInfo.OpenRead());
+        return new SandboxedFileReader(fileInfo.Name, new FileStream(fileInfo.FullName, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, FileOptions.Asynchronous | FileOptions.SequentialScan));
     }
 }

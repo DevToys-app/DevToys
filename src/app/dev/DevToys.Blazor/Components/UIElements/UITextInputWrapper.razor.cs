@@ -32,7 +32,7 @@ public partial class UITextInputWrapper : MefComponentBase
     };
 
     private readonly ILogger _logger;
-    private readonly DisposableSemaphore _disposableSemaphore = new();
+    private readonly DisposableSemaphore _semaphore = new();
 
     private CancellationTokenSource? _cancellationTokenSource;
     private bool _isToolBarShrink;
@@ -107,6 +107,7 @@ public partial class UITextInputWrapper : MefComponentBase
     public override async ValueTask DisposeAsync()
     {
         await (await JSModule).InvokeVoidWithErrorHandlingAsync("dispose", ExtendedId);
+        _semaphore.Dispose();
         await base.DisposeAsync();
     }
 
@@ -181,18 +182,19 @@ public partial class UITextInputWrapper : MefComponentBase
 
     private async Task OnLoadFileButtonClickAsync()
     {
-        PickedFile? pickedFile = null;
+        SandboxedFileReader? pickedFile = null;
         try
         {
             pickedFile = await _fileStorage.PickOpenFileAsync(fileTypes);
             if (pickedFile is not null)
             {
-                await LoadFileAsync(pickedFile.Stream);
+                using MemoryStream memoryStream = await pickedFile.GetFileCopyAsync(CancellationToken.None);
+                await LoadFileAsync(memoryStream);
             }
         }
         finally
         {
-            pickedFile?.Stream.Dispose();
+            pickedFile?.Dispose();
         }
     }
 
@@ -343,7 +345,7 @@ public partial class UITextInputWrapper : MefComponentBase
         await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
 
         IReadOnlyList<SmartDetectedTool> detectedTools;
-        using (await _disposableSemaphore.WaitAsync(cancellationToken))
+        using (await _semaphore.WaitAsync(cancellationToken))
         {
             // Detect tools to recommend.
             detectedTools

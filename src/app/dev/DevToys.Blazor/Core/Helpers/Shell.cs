@@ -4,7 +4,7 @@ namespace DevToys.Blazor.Core.Helpers;
 
 internal static class Shell
 {
-    internal static void OpenUrlInWebBrowser(string url)
+    internal static void OpenFileInShell(string url)
     {
         Guard.IsNotNullOrWhiteSpace(url);
 

@@ -85,9 +85,9 @@ internal class UISingleLineTextInput : UITitledElementWithChildren, IUISingleLin
         {
             if (SetPropertyValue(ref _text, value, TextChanged))
             {
-            ActionOnTextChanged?.Invoke(_text ?? string.Empty);
+                ActionOnTextChanged?.Invoke(_text ?? string.Empty);
+            }
         }
-    }
     }
 
     public bool IsReadOnly

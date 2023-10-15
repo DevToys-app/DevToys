@@ -115,15 +115,6 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File to convert from json or yaml.
-        /// </summary>
-        internal static string FileOptionDescription {
-            get {
-                return ResourceManager.GetString("FileOptionDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 4 spaces.
         /// </summary>
         internal static string FourSpaces {
@@ -169,7 +160,7 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Text to convert from json or yaml.
+        ///   Looks up a localized string similar to Text or path to a file to convert from json or yaml.
         /// </summary>
         internal static string InputOptionDescription {
             get {
@@ -228,6 +219,15 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml {
         internal static string Output {
             get {
                 return ResourceManager.GetString("Output", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File where the result should be persisted..
+        /// </summary>
+        internal static string OutputFileOptionDescription {
+            get {
+                return ResourceManager.GetString("OutputFileOptionDescription", resourceCulture);
             }
         }
         

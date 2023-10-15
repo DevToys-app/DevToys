@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Text;
 using DevToys.Api;
+using DevToys.Core;
 using DevToys.Windows.Helpers;
 using DevToys.Windows.Strings.Other;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
@@ -35,7 +36,7 @@ internal sealed class FileStorage : IFileStorage
             throw new FileNotFoundException("Unable to find the indicated file.", relativeOrAbsoluteFilePath);
         }
 
-        return File.OpenRead(relativeOrAbsoluteFilePath);
+        return new FileStream(relativeOrAbsoluteFilePath, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, FileOptions.Asynchronous | FileOptions.SequentialScan);
     }
 
     public Stream OpenWriteFile(string relativeOrAbsoluteFilePath, bool replaceIfExist)
@@ -90,7 +91,7 @@ internal sealed class FileStorage : IFileStorage
         });
     }
 
-    public async ValueTask<PickedFile?> PickOpenFileAsync(params string[] fileTypes)
+    public async ValueTask<SandboxedFileReader?> PickOpenFileAsync(params string[] fileTypes)
     {
         return await ThreadHelper.RunOnUIThreadAsync(() =>
         {
@@ -109,14 +110,22 @@ internal sealed class FileStorage : IFileStorage
 
             if (openFileDialog.ShowDialog() == true)
             {
-                return new PickedFile(openFileDialog.FileName, openFileDialog.OpenFile());
+                return new SandboxedFileReader(
+                    openFileDialog.FileName,
+                    new FileStream(
+                        openFileDialog.FileName,
+                        FileMode.Open,
+                        FileAccess.Read,
+                        FileShare.Read,
+                        4096,
+                        FileOptions.Asynchronous | FileOptions.SequentialScan));
             }
 
             return null;
         });
     }
 
-    public async ValueTask<PickedFile[]> PickOpenFilesAsync(params string[] fileTypes)
+    public async ValueTask<SandboxedFileReader[]> PickOpenFilesAsync(params string[] fileTypes)
     {
         return await ThreadHelper.RunOnUIThreadAsync(() =>
         {
@@ -135,20 +144,27 @@ internal sealed class FileStorage : IFileStorage
 
             if (openFileDialog.ShowDialog() == true)
             {
-                Stream[] streams = openFileDialog.OpenFiles();
                 string[] fileNames = openFileDialog.FileNames;
-                Guard.IsEqualTo(streams.Length, fileNames.Length);
 
-                var result = new PickedFile[streams.Length];
-                for (int i = 0; i < streams.Length; i++)
+                var result = new SandboxedFileReader[fileNames.Length];
+                for (int i = 0; i < fileNames.Length; i++)
                 {
-                    result[i] = new(fileNames[i], streams[i]);
+                    result[i]
+                        = new(
+                            fileNames[i],
+                            new FileStream(
+                                fileNames[i],
+                                FileMode.Open,
+                                FileAccess.Read,
+                                FileShare.Read,
+                             4096,
+                                FileOptions.Asynchronous | FileOptions.SequentialScan));
                 }
 
                 return result;
             }
 
-            return Array.Empty<PickedFile>();
+            return Array.Empty<SandboxedFileReader>();
         });
     }
 
@@ -165,6 +181,11 @@ internal sealed class FileStorage : IFileStorage
 
             return null;
         });
+    }
+
+    public FileInfo CreateSelfDestroyingTempFile(string? desiredFileExtension = null)
+    {
+        return FileHelper.CreateTempFile(Constants.AppTempFolder, desiredFileExtension);
     }
 
     private static string GenerateFilter(string[] fileTypes)

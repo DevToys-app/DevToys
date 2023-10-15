@@ -25,7 +25,7 @@ public interface IFileStorage
     /// <remarks>The returned items contain a stream. It won't be disposed automatically. It is important to dispose the stream yourself, when not needed anymore</remarks>
     /// <param name="fileTypes">The list of file types the user can choose. For example, ".txt". Use "*" for any file type.</param>
     /// <returns>If succeeded, returns a read-only stream corresponding to the file the user selected, otherwise, returns null.</returns>
-    ValueTask<PickedFile?> PickOpenFileAsync(params string[] fileTypes);
+    ValueTask<SandboxedFileReader?> PickOpenFileAsync(params string[] fileTypes);
 
     /// <summary>
     /// Prompt the user to select many files to open.
@@ -33,7 +33,7 @@ public interface IFileStorage
     /// <remarks>The returned items contain a stream. It won't be disposed automatically. It is important to dispose the stream yourself, when not needed anymore</remarks>
     /// <param name="fileTypes">The list of file types the user can choose. For example, ".txt". Use "*" for any file type.</param>
     /// <returns>If succeeded, returns a read-only stream corresponding to the file the user selected, otherwise, returns null.</returns>
-    ValueTask<PickedFile[]> PickOpenFilesAsync(params string[] fileTypes);
+    ValueTask<SandboxedFileReader[]> PickOpenFilesAsync(params string[] fileTypes);
 
     /// <summary>
     /// Prompt the user to select a folder.
@@ -65,4 +65,12 @@ public interface IFileStorage
     /// <param name="replaceIfExist">If true and that the file indicated by <paramref name="relativeOrAbsoluteFilePath"/> already exist, overwrite it. Otherwise, open it without replacing it.</param>
     /// <returns>Returns a write-only stream.</returns>
     Stream OpenWriteFile(string relativeOrAbsoluteFilePath, bool replaceIfExist);
+
+    /// <summary>
+    /// Creates a new temporary file in <see cref="AppCacheDirectory"/> that will be deleted when the app stops, or the next time is starts.
+    /// </summary>
+    /// </summary>
+    /// <param name="desiredFileExtension">(optional) The extension the temporary file should use.</param>
+    /// <returns>Returns information to the file.</returns>
+    FileInfo CreateSelfDestroyingTempFile(string? desiredFileExtension = null);
 }

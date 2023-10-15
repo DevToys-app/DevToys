@@ -211,7 +211,7 @@ internal sealed class SettingsGuiTool : IGuiTool
 
     private void OnHelpTranslatingButtonClick()
     {
-        Shell.OpenUrlInWebBrowser("https://crowdin.com/project/devtoys");
+        Shell.OpenFileInShell("https://crowdin.com/project/devtoys");
     }
 
     private void OnLanguageSelected(IUIDropDownListItem? selectedItem)
