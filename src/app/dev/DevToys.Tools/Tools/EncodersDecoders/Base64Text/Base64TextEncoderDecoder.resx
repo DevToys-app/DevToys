@@ -154,7 +154,7 @@
     <value>Encoding</value>
   </data>
   <data name="InputOptionDescription" xml:space="preserve">
-    <value>Text to encode or Base64 to decode</value>
+    <value>Text or path to a file to encode or Base64 to decode</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
     <value>Input</value>
@@ -164,6 +164,9 @@
   </data>
   <data name="LongDisplayTitle" xml:space="preserve">
     <value>Base64 Text Encoder / Decoder</value>
+  </data>
+  <data name="OutputFileOptionDescription" xml:space="preserve">
+    <value>File where the result should be persisted.</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
     <value>Output</value>

@@ -135,9 +135,6 @@
   <data name="Description" xml:space="preserve">
     <value>Convert JSON data to YAML and vice versa</value>
   </data>
-  <data name="FileOptionDescription" xml:space="preserve">
-    <value>File to convert from json or yaml</value>
-  </data>
   <data name="FourSpaces" xml:space="preserve">
     <value>4 spaces</value>
   </data>
@@ -154,7 +151,7 @@
     <value>Input file selected doesn't exist.</value>
   </data>
   <data name="InputOptionDescription" xml:space="preserve">
-    <value>Text to convert from json or yaml</value>
+    <value>Text or path to a file to convert from json or yaml</value>
   </data>
   <data name="InvalidInputOrFileCommand" xml:space="preserve">
     <value>Please specify an input text or a input file</value>
@@ -173,6 +170,9 @@
   </data>
   <data name="Output" xml:space="preserve">
     <value>Output</value>
+  </data>
+  <data name="OutputFileOptionDescription" xml:space="preserve">
+    <value>File where the result should be persisted.</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>JSON &lt;&gt; YAML Converter</value>
