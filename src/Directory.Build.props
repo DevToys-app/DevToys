@@ -19,6 +19,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <UseAppHost Condition="$(IsMac)">False</UseAppHost>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 
     <!-- Defines the bin and obj folder paths -->
     <RepoRoot>$([System.IO.Path]::GetDirectoryName($([MSBuild]::GetPathOfFileAbove('.gitignore', '$(MSBuildThisFileDirectory)'))))\</RepoRoot>
