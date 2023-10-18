@@ -105,4 +105,10 @@
     &.horizontal-center {
         text-align: center;
     }
+
+    &.vertical-center {
+        top: 50%;
+        bottom: 50%;
+        position: relative;
+    }
 }

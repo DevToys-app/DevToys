@@ -4,7 +4,7 @@
     background-color: var(--ui-file-selector-background-color);
 
     &-content {
-        margin: 24px;
+        padding: 24px;
     }
 
     &.dragging {
@@ -22,7 +22,7 @@
 div[data-compactmode] {
     .ui-file-selector {
         &-content {
-            margin: 8px;
+            padding : 8px;
         }
     }
 }

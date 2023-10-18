@@ -44,6 +44,7 @@ public class TextBlock : StyledComponentBase
             .AddClass("hide", !IsVisible)
             .AddClass("disabled", !IsActuallyEnabled)
             .AddClass("horizontal-center", HorizontalAlignment == UIHorizontalAlignment.Center)
+            .AddClass("vertical-center", VerticalAlignment == UIVerticalAlignment.Center)
             .AddClass(FinalCssClasses)
             .Build();
 
