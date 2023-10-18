@@ -85,7 +85,7 @@ public sealed class JsonYamlConverterCommandLineToolTests : MefBasedTest
         string filePath = Path.Combine(_baseTestDataDirectory, "Unknown.json");
         FileInfo inputFile = TestDataProvider.GetFile(filePath);
         _tool.ConversionMode = JsonToYamlConversion.JsonToYaml;
-        _tool.InputFile = inputFile;
+        _tool.Input = inputFile;
         _tool.OutputFile = new FileInfo("Dummy.yaml");
 
         int result = await _tool.InvokeAsync(_loggerMock.Object, default);
@@ -100,7 +100,7 @@ public sealed class JsonYamlConverterCommandLineToolTests : MefBasedTest
         string filePath = Path.Combine(_baseTestDataDirectory, "Invalid.json");
         FileInfo inputFile = TestDataProvider.GetFile(filePath);
         _tool.ConversionMode = JsonToYamlConversion.JsonToYaml;
-        _tool.InputFile = inputFile;
+        _tool.Input = inputFile;
         _tool.OutputFile = new FileInfo("Dummy.yaml");
 
         int result = await _tool.InvokeAsync(_loggerMock.Object, default);
@@ -115,7 +115,7 @@ public sealed class JsonYamlConverterCommandLineToolTests : MefBasedTest
         string filePath = Path.Combine(_baseTestDataDirectory, "TwoSpaces.json");
         FileInfo inputFile = TestDataProvider.GetFile(filePath);
         _tool.ConversionMode = JsonToYamlConversion.JsonToYaml;
-        _tool.InputFile = inputFile;
+        _tool.Input = inputFile;
         _tool.OutputFile = new FileInfo("TwoSpaces.yaml");
 
         int result = await _tool.InvokeAsync(_loggerMock.Object, default);
@@ -131,7 +131,7 @@ public sealed class JsonYamlConverterCommandLineToolTests : MefBasedTest
         FileInfo inputFile = TestDataProvider.GetFile(filePath);
         _tool.ConversionMode = JsonToYamlConversion.JsonToYaml;
         _tool.IndentationMode = Indentation.FourSpaces;
-        _tool.InputFile = inputFile;
+        _tool.Input = inputFile;
         _tool.OutputFile = new FileInfo("FourSpaces.yaml");
 
         int result = await _tool.InvokeAsync(_loggerMock.Object, default);
@@ -187,7 +187,7 @@ public sealed class JsonYamlConverterCommandLineToolTests : MefBasedTest
         string filePath = Path.Combine(_baseTestDataDirectory, "Invalid.yaml");
         FileInfo inputFile = TestDataProvider.GetFile(filePath);
         _tool.ConversionMode = JsonToYamlConversion.YamlToJson;
-        _tool.InputFile = inputFile;
+        _tool.Input = inputFile;
         _tool.OutputFile = new FileInfo("Dummy.json");
 
         int result = await _tool.InvokeAsync(_loggerMock.Object, default);
@@ -202,7 +202,7 @@ public sealed class JsonYamlConverterCommandLineToolTests : MefBasedTest
         string filePath = Path.Combine(_baseTestDataDirectory, "TwoSpaces.yaml");
         FileInfo inputFile = TestDataProvider.GetFile(filePath);
         _tool.ConversionMode = JsonToYamlConversion.YamlToJson;
-        _tool.InputFile = inputFile;
+        _tool.Input = inputFile;
         _tool.OutputFile = new FileInfo("TwoSpaces.json");
 
         int result = await _tool.InvokeAsync(_loggerMock.Object, default);
@@ -218,7 +218,7 @@ public sealed class JsonYamlConverterCommandLineToolTests : MefBasedTest
         FileInfo inputFile = TestDataProvider.GetFile(filePath);
         _tool.ConversionMode = JsonToYamlConversion.YamlToJson;
         _tool.IndentationMode = Indentation.FourSpaces;
-        _tool.InputFile = inputFile;
+        _tool.Input = inputFile;
         _tool.OutputFile = new FileInfo("FourSpaces.json");
 
         int result = await _tool.InvokeAsync(_loggerMock.Object, default);
