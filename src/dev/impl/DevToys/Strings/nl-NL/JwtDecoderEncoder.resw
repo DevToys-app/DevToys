@@ -205,7 +205,7 @@
     <value>Handtekening</value>
   </data>
   <data name="JwtNotValidated" xml:space="preserve">
-    <value>Token not validated (no parameters selected)</value>
+    <value>Token niet gevalideerd (geen parameters geselecteerd)</value>
   </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
     <value>Token Validated</value>
