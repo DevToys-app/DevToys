@@ -1,6 +1,7 @@
 ﻿using DevToys.Tools.Helpers;
 using DevToys.Tools.Models;
 using Microsoft.Extensions.Logging;
+using OneOf;
 
 namespace DevToys.Tools.Tools.Converters.JsonYaml;
 
@@ -17,7 +18,7 @@ internal sealed class JsonYamlConverterCommandLineTool : ICommandLineTool
         Alias = "i",
         IsRequired = true,
         DescriptionResourceName = nameof(JsonYamlConverter.InputOptionDescription))]
-    internal AnyType<FileInfo, string> Input { get; set; }
+    internal OneOf<FileInfo, string>? Input { get; set; }
 
     [CommandLineOption(
         Name = "outputFile",
@@ -37,27 +38,25 @@ internal sealed class JsonYamlConverterCommandLineTool : ICommandLineTool
         DescriptionResourceName = nameof(JsonYamlConverter.IndentationOptionDescription))]
     internal Indentation IndentationMode { get; set; } = Indentation.TwoSpaces;
 
-    public async ValueTask<int> InvokeAsync(ILogger logger, CancellationToken cancellationToken)
+    public ValueTask<int> InvokeAsync(ILogger logger, CancellationToken cancellationToken)
     {
-        if (Input.TryGetSecond(out string? input) && !string.IsNullOrWhiteSpace(input))
+        if (!Input.HasValue)
         {
-            return await InvokeCliAsync(
-                input,
-                logger,
-                cancellationToken
-            );
-        }
-        else if (Input.TryGetFirst(out FileInfo? file) && file is not null)
-        {
-            return await InvokeFileAsync(
-                file,
-                logger,
-                cancellationToken
-            );
+            Console.Error.WriteLine(JsonYamlConverter.InvalidInputOrFileCommand);
+            return ValueTask.FromResult(-1);
         }
 
-        Console.Error.WriteLine(JsonYamlConverter.InvalidInputOrFileCommand);
-        return -1;
+        return Input.Value.Match(
+            file =>
+                InvokeFileAsync(
+                    file,
+                    logger,
+                    cancellationToken),
+            text =>
+                InvokeCliAsync(
+                    text,
+                    logger,
+                    cancellationToken));
     }
 
     private async ValueTask<int> InvokeCliAsync(string input, ILogger logger, CancellationToken cancellationToken)

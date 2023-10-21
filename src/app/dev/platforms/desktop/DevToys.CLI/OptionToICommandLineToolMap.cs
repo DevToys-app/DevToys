@@ -95,18 +95,15 @@ internal sealed class OptionToICommandLineToolMap
         Type arrayValueType = isArray ? nonNullablePropertyType.GetElementTypeIfEnumerable()! : nonNullablePropertyType;
         nonNullablePropertyType = Nullable.GetUnderlyingType(arrayValueType) ?? arrayValueType;
 
-        bool isAnyType
-            = nonNullablePropertyType.GUID == AnyTypeIdentifiers.AnyTypeT2Guid
-            || nonNullablePropertyType.GUID == AnyTypeIdentifiers.AnyTypeT3Guid
-            || nonNullablePropertyType.GUID == AnyTypeIdentifiers.AnyTypeT4Guid;
+        bool isOneOfType = nonNullablePropertyType.IsAssignableTo(typeof(OneOf.IOneOf));
 
         Option option;
-        if (isAnyType)
+        if (isOneOfType)
         {
-            // The option is of type AnyType<T1, T2>, or AnyType<T1, T2, T3>, or AnyType<T1, T2, T3, T4>.
+            // The option is of type OneOf<T1, T2>, or OneOf<T1, T2, T3>...etc.
             // We have a special code path to try to parse this type.
             option
-                = CreateAnyTypeOption(
+                = CreateOneOfTypeOption(
                     commandLineOptionAttribute,
                     optionName,
                     optionDescription,
@@ -136,14 +133,14 @@ internal sealed class OptionToICommandLineToolMap
         return option;
     }
 
-    private static Option CreateAnyTypeOption(
+    private static Option CreateOneOfTypeOption(
         CommandLineOptionAttribute commandLineOptionAttribute,
         string optionName,
         string? optionDescription,
-        Type anyTypeDefinition,
+        Type oneOfTypeDefinition,
         bool isArray)
     {
-        var option = new AnyTypeOption(optionName, optionDescription, anyTypeDefinition, ParseArgument);
+        var option = new OneOfOption(optionName, optionDescription, oneOfTypeDefinition, ParseArgument);
 
         // Set the option arity.
         if (commandLineOptionAttribute.IsRequired)
@@ -176,19 +173,19 @@ internal sealed class OptionToICommandLineToolMap
 
     private static object? ParseArgument(ArgumentResult result)
     {
-        if (result.Parent is OptionResult optionResult && optionResult.Option is AnyTypeOption anyTypeOption)
+        if (result.Parent is OptionResult optionResult && optionResult.Option is OneOfOption oneOfOption)
         {
-            // Create an array of AnyType<T1, T2>, or AnyType<T1, T2, T3>, or AnyType<T1, T2, T3, T4>.
-            var arguments = Array.CreateInstance(anyTypeOption.AnyTypeDefinition, result.Tokens.Count);
+            // Create an array of OneOf<T1, T2>, or OneOf<T1, T2, T3>, or OneOf<T1, T2, T3, T4>.
+            var arguments = Array.CreateInstance(oneOfOption.OneOfTypeDefinition, result.Tokens.Count);
 
             // Parse each argument.
             for (int i = 0; i < result.Tokens.Count; i++)
             {
-                object? parsedArgument = AnyTypeParser.ParseAnyType(anyTypeOption, result.Tokens[i].Value);
+                object? parsedArgument = OneOfParser.ParseOneOf(oneOfOption, result.Tokens[i].Value);
 
                 if (parsedArgument is null)
                 {
-                    result.ErrorMessage = result.LocalizationResources.ArgumentConversionCannotParse(result.ToString(), anyTypeOption.AnyTypeDefinition);
+                    result.ErrorMessage = result.LocalizationResources.ArgumentConversionCannotParse(result.ToString(), oneOfOption.OneOfTypeDefinition);
                     return null;
                 }
 
@@ -196,7 +193,7 @@ internal sealed class OptionToICommandLineToolMap
             }
 
             // Return the proper value based on the option arity.
-            if (anyTypeOption.Arity.Equals(ArgumentArity.ZeroOrOne))
+            if (oneOfOption.Arity.Equals(ArgumentArity.ZeroOrOne))
             {
                 if (arguments.Length == 0)
                 {
@@ -207,7 +204,7 @@ internal sealed class OptionToICommandLineToolMap
                     return arguments.GetValue(0)!;
                 }
             }
-            else if (anyTypeOption.Arity.Equals(ArgumentArity.ExactlyOne))
+            else if (oneOfOption.Arity.Equals(ArgumentArity.ExactlyOne))
             {
                 if (arguments.Length == 0)
                 {
@@ -223,7 +220,7 @@ internal sealed class OptionToICommandLineToolMap
             return arguments;
         }
 
-        result.ErrorMessage = result.LocalizationResources.ArgumentConversionCannotParse(result.ToString(), typeof(AnyTypeOption));
+        result.ErrorMessage = result.LocalizationResources.ArgumentConversionCannotParse(result.ToString(), typeof(OneOfOption));
         return null;
     }
 }

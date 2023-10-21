@@ -1,16 +1,17 @@
 ﻿using Microsoft.AspNetCore.Components.Forms;
+using OneOf;
 
 namespace DevToys.Blazor.Core;
 
 internal sealed class BlazorSandboxedFileReader : SandboxedFileReader
 {
-    private readonly AnyType<IBrowserFile, FileInfo> _file;
+    private readonly OneOf<IBrowserFile, FileInfo> _file;
     private readonly IFileStorage? _fileStorage;
 
     public BlazorSandboxedFileReader(IBrowserFile browserFile)
         : base(browserFile.Name)
     {
-        _file = new(browserFile);
+        _file = OneOf<IBrowserFile, FileInfo>.FromT0(browserFile);
         _fileStorage = null;
     }
 
@@ -24,17 +25,12 @@ internal sealed class BlazorSandboxedFileReader : SandboxedFileReader
 
     protected override ValueTask<Stream> OpenReadFileAsync(CancellationToken cancellationToken)
     {
-        if (_file.Value is IBrowserFile browserFile)
-        {
-            return ValueTask.FromResult(
-                browserFile.OpenReadStream(browserFile.Size, cancellationToken));
-        }
-        else if (_file.Value is FileInfo fileInfo)
-        {
-            Guard.IsNotNull(_fileStorage);
-            return ValueTask.FromResult<Stream>(_fileStorage.OpenReadFile(fileInfo.FullName));
-        }
-
-        throw new NotSupportedException();
+        return ValueTask.FromResult(_file.Match(
+            (IBrowserFile browserFile) => browserFile.OpenReadStream(browserFile.Size, cancellationToken),
+            (FileInfo fileInfo) =>
+            {
+                Guard.IsNotNull(_fileStorage);
+                return _fileStorage.OpenReadFile(fileInfo.FullName);
+            }));
     }
 }

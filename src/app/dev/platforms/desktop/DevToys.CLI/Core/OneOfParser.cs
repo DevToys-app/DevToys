@@ -2,7 +2,7 @@
 
 namespace DevToys.CLI.Core;
 
-internal static class AnyTypeParser
+internal static class OneOfParser
 {
     private delegate bool TryParseString(string token, [NotNullWhen(true)] out object? value);
 
@@ -281,25 +281,26 @@ internal static class AnyTypeParser
             },
         };
 
-    internal static object? ParseAnyType(AnyTypeOption anyTypeOption, string token)
+    internal static object? ParseOneOf(OneOfOption oneOfOption, string token)
     {
-        // anyTypeOption.AnyTypeDefinition is either of type
-        // - AnyType<T1, T2>
-        // - AnyType<T1, T2, T3>
-        // - AnyType<T1, T2, T3, T4>
+        // oneOfOption.OneOfDefinition is either of type
+        // - OneOf<T1, T2>
+        // - OneOf<T1, T2, T3>
+        // - OneOf<T1, T2, T3, T4>
+        // - etc.
         // For each generic type argument, we will try to parse the token as that type.
 
-        var parsedArguments = new List<object?>();
-        for (int j = 0; j < anyTypeOption.AnyTypeDefinition.GenericTypeArguments.Length; j++)
+        var parsedArguments = new Dictionary<int, object?>();
+        for (int i = 0; i < oneOfOption.OneOfTypeDefinition.GenericTypeArguments.Length; i++)
         {
-            Type genericTypeArgument = anyTypeOption.AnyTypeDefinition.GenericTypeArguments[j];
+            Type genericTypeArgument = oneOfOption.OneOfTypeDefinition.GenericTypeArguments[i];
 
             try
             {
                 object? parsedArgument = ParseScalarValue(token, genericTypeArgument);
                 if (parsedArgument is not null)
                 {
-                    parsedArguments.Add(parsedArgument);
+                    parsedArguments.Add(i, parsedArgument);
                 }
             }
             catch
@@ -307,7 +308,7 @@ internal static class AnyTypeParser
             }
         }
 
-        return SelectBestMatch(parsedArguments, anyTypeOption.AnyTypeDefinition);
+        return SelectBestMatch(parsedArguments, oneOfOption.OneOfTypeDefinition);
     }
 
     private static object? ParseScalarValue(string value, Type type)
@@ -341,7 +342,7 @@ internal static class AnyTypeParser
         return null;
     }
 
-    private static object? SelectBestMatch(List<object?> parsedArguments, Type anyTypeDefinition)
+    private static object? SelectBestMatch(Dictionary<int, object?> parsedArguments, Type oneOfTypeDefinition)
     {
         if (parsedArguments.Count <= 0)
         {
@@ -351,31 +352,42 @@ internal static class AnyTypeParser
         else if (parsedArguments.Count == 1)
         {
             // We could parse the token as one of the generic type arguments.
-            return Activator.CreateInstance(anyTypeDefinition, parsedArguments[0]);
+            KeyValuePair<int, object?> parsedArgument = parsedArguments.ToArray()[0];
+            return CreateNewInstanceOfOneOf(oneOfTypeDefinition, parsedArgument.Key, parsedArgument.Value);
         }
         else
         {
             // We could parse the token as more than one of the generic type arguments.
             // Let's return the first one in the order of priority of parsed values based on the order of keys of _stringParsers.
-            // This way, when we have something like AnyType<string, float>, we will return the float value when the input is something
+            // This way, when we have something like OneOf<string, float>, we will return the float value when the input is something
             // like "100" which match a float as well as a string.
             foreach (Type parserType in _stringParsers.Keys)
             {
-                foreach (object? argument in parsedArguments)
+                foreach (KeyValuePair<int, object?> argument in parsedArguments)
                 {
-                    if (argument is null)
+                    if (argument.Value is null)
                     {
                         continue;
                     }
 
-                    if (parserType.IsAssignableFrom(argument.GetType()))
+                    if (parserType.IsAssignableFrom(argument.Value.GetType()))
                     {
-                        return Activator.CreateInstance(anyTypeDefinition, argument);
+                        return CreateNewInstanceOfOneOf(oneOfTypeDefinition, argument.Key, argument.Value);
                     }
                 }
             }
 
             return null;
         }
+    }
+
+    private static object? CreateNewInstanceOfOneOf(Type oneOfTypeDefinition, int index, object? value)
+    {
+        // Assuming oneOfTypeDefinition is something
+        // like OneOf<T0, T1, T2>, we will call OneOf.FromT1(value)
+        // where T1 is determined by the parameter "index".
+        return oneOfTypeDefinition
+            .GetMethod("FromT" + index, System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public)
+            ?.Invoke(null, new object?[] { value });
     }
 }

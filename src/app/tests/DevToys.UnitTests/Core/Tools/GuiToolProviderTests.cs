@@ -41,7 +41,7 @@ public class GuiToolProviderTests : MefBasedTest
         ((GroupViewItem)menuItems[0]).DisplayTitle.Should().Be("All tools");
         ((GroupViewItem)menuItems[0]).Children.Should().BeNull();
 
-        var item3 = ((GroupViewItem)menuItems[2]);
+        var item3 = (GroupViewItem)menuItems[2];
         item3.DisplayTitle.Should().Be("Group title");
         item3.Children.Should().HaveCount(4);
         item3.Children[0].ToolInstance.InternalComponentName.Should().Be("MockTool");

@@ -1,7 +1,7 @@
 ﻿using DevToys.Tools.Helpers;
 using DevToys.Tools.Models;
-using DevToys.Tools.Tools.Converters.JsonYaml;
 using Microsoft.Extensions.Logging;
+using OneOf;
 
 namespace DevToys.Tools.Tools.EncodersDecoders.Base64Text;
 
@@ -19,7 +19,7 @@ internal sealed class Base64TextEncoderDecoderCommandLineTool : ICommandLineTool
         Alias = "i",
         IsRequired = true,
         DescriptionResourceName = nameof(Base64TextEncoderDecoder.InputOptionDescription))]
-    private AnyType<FileInfo, string> Input { get; set; }
+    private OneOf<FileInfo, string>? Input { get; set; }
 
     [CommandLineOption(
         Name = "outputFile",
@@ -42,16 +42,13 @@ internal sealed class Base64TextEncoderDecoderCommandLineTool : ICommandLineTool
     public async ValueTask<int> InvokeAsync(ILogger logger, CancellationToken cancellationToken)
     {
         string? input = null;
-        if (Input.TryGetFirst(out FileInfo? file) && file is not null)
+
+        if (Input.HasValue)
         {
-            if (file.Exists)
-            {
-                input = await File.ReadAllTextAsync(file.FullName, cancellationToken);
-            }
-        }
-        else
-        {
-            Input.TryGetSecond(out input);
+            input
+                = await Input.Value.Match(
+                    async file => await File.ReadAllTextAsync(file.FullName, cancellationToken),
+                    text => Task.FromResult(text));
         }
 
         Guard.IsNotNull(input);

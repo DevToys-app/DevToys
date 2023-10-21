@@ -1,5 +1,6 @@
 ﻿using DevToys.Tools.Strings.GlobalStrings;
 using Microsoft.Extensions.Logging;
+using OneOf;
 
 namespace DevToys.Tools.Tools.EncodersDecoders.Base64Image;
 
@@ -35,7 +36,7 @@ internal sealed partial class Base64ImageEncoderDecoderCommandLineTool : IComman
         Alias = "i",
         IsRequired = true,
         DescriptionResourceName = nameof(Base64ImageEncoderDecoder.InputOptionDescription))]
-    private AnyType<FileInfo, string> Input { get; set; }
+    private OneOf<FileInfo, string>? Input { get; set; }
 
     [CommandLineOption(
         Name = "outputFile",
@@ -45,31 +46,34 @@ internal sealed partial class Base64ImageEncoderDecoderCommandLineTool : IComman
 
     public async ValueTask<int> InvokeAsync(ILogger logger, CancellationToken cancellationToken)
     {
-        if (Input.TryGetFirst(out FileInfo? file))
+        if (!Input.HasValue)
         {
-            if (!file.Exists)
-            {
-                Console.Error.WriteLine(string.Format(GlobalStrings.FileNotFound, file.FullName));
-                return -1;
-            }
-
-            bool isImageFile = supportedImageExtensions.Any(ext => ext.Equals(file.Extension, StringComparison.OrdinalIgnoreCase));
-            if (isImageFile)
-            {
-                await EncodeAsync(file, cancellationToken);
-            }
-            else
-            {
-                string base64 = await File.ReadAllTextAsync(file.FullName, cancellationToken);
-                return await DecodeAsync(base64, cancellationToken);
-            }
-        }
-        else if (Input.TryGetSecond(out string? base64))
-        {
-            return await DecodeAsync(base64, cancellationToken);
+            return -1;
         }
 
-        return 0;
+        return await Input.Value.Match(
+            async file =>
+            {
+                if (!file.Exists)
+                {
+                    Console.Error.WriteLine(string.Format(GlobalStrings.FileNotFound, file.FullName));
+                    return -1;
+                }
+
+                bool isImageFile = supportedImageExtensions.Any(ext => ext.Equals(file.Extension, StringComparison.OrdinalIgnoreCase));
+                if (isImageFile)
+                {
+                    await EncodeAsync(file, cancellationToken);
+                }
+                else
+                {
+                    string base64 = await File.ReadAllTextAsync(file.FullName, cancellationToken);
+                    return await DecodeAsync(base64, cancellationToken);
+                }
+
+                return 0;
+            },
+            async base64 => await DecodeAsync(base64, cancellationToken));
     }
 
     public async Task EncodeAsync(FileInfo file, CancellationToken cancellationToken)

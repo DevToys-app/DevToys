@@ -17,9 +17,10 @@
     <PackageReference Include="CommunityToolkit.Common" />
     <PackageReference Include="CommunityToolkit.Diagnostics" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="OneOf" />
     <PackageReference Include="System.ComponentModel.Composition" />
     <PackageReference Include="System.Threading.Tasks.Extensions" />
-    <PackageReference Include="SixLabors.ImageSharp"/>
+    <PackageReference Include="SixLabors.ImageSharp" />
   </ItemGroup>
 
   <ItemGroup>

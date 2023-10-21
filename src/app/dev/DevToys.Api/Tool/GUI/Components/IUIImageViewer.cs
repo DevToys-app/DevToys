@@ -1,4 +1,6 @@
-﻿namespace DevToys.Api;
+﻿using OneOf;
+
+namespace DevToys.Api;
 
 /// <summary>
 /// A component that displays an image and allows the user to perform some read-only actions on it.
@@ -9,7 +11,7 @@ public interface IUIImageViewer : IUITitledElement
     /// <summary>
     /// Gets the source the image to display comes from.
     /// </summary>
-    AnyType<FileInfo, Image, SandboxedFileReader> ImageSource { get; }
+    OneOf<FileInfo, Image, SandboxedFileReader>? ImageSource { get; }
 
     /// <summary>
     /// Raised when <see cref="ImageSource"/> is changed.
@@ -20,14 +22,14 @@ public interface IUIImageViewer : IUITitledElement
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, FileName = {{{nameof(Title)}}}")]
 internal sealed class UIImageViewer : UITitledElement, IUIImageViewer, IDisposable
 {
-    private AnyType<FileInfo, Image, SandboxedFileReader> _imageSource = default;
+    private OneOf<FileInfo, Image, SandboxedFileReader>? _imageSource = default;
 
     internal UIImageViewer(string? id)
         : base(id)
     {
     }
 
-    public AnyType<FileInfo, Image, SandboxedFileReader> ImageSource
+    public OneOf<FileInfo, Image, SandboxedFileReader>? ImageSource
     {
         get => _imageSource;
         internal set => SetPropertyValue(ref _imageSource, value, ImageSourceChanged);
@@ -37,7 +39,7 @@ internal sealed class UIImageViewer : UITitledElement, IUIImageViewer, IDisposab
 
     public void Dispose()
     {
-        if (ImageSource.Value is IDisposable disposable)
+        if (ImageSource.HasValue && ImageSource.Value.Value is IDisposable disposable)
         {
             disposable.Dispose();
         }
