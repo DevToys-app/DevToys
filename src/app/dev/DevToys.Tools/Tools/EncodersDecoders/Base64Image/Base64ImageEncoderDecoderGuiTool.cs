@@ -209,10 +209,11 @@ internal sealed partial class Base64ImageEncoderDecoderGuiTool : IGuiTool, IDisp
     {
         await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
 
-        using MemoryStream memoryStream = await file.GetFileCopyAsync(cancellationToken);
+        using Stream stream = await file.GetNewAccessToFileContentAsync(cancellationToken);
 
-        byte[] bytes = memoryStream.ToArray();
-        string base64 = Convert.ToBase64String(bytes);
+        var bytes = new Memory<byte>(new byte[stream.Length]);
+        await stream.ReadAsync(bytes, CancellationToken.None);
+        string base64 = Convert.ToBase64String(bytes.Span);
 
         if (cancellationToken.IsCancellationRequested)
         {

@@ -1,7 +1,9 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
+using DevToys.Blazor.Core;
 using DevToys.Core.Tools.Metadata;
 using DevToys.Tools.Tools.EncodersDecoders.Base64Image;
+using DevToys.UnitTests.Mocks;
 
 namespace DevToys.UnitTests.Tools.EncodersDecoders.Base64Image;
 
@@ -33,7 +35,7 @@ public sealed class Base64ImageEncoderDecoderGuiToolTests : MefBasedTest
     {
         string filePath = Path.Combine(_baseTestDataDirectory, "PNG_transparency_demonstration_1.png");
         FileInfo inputFile = TestDataProvider.GetFile(filePath);
-        using var fileStream = new SandboxedFileReader(inputFile.Name, inputFile.OpenRead());
+        using var fileStream = new BlazorSandboxedFileReader(inputFile, new MockIFileStorage());
 
         _fileSelector.WithFiles(fileStream);
         await _tool.WorkTask;

@@ -34,7 +34,7 @@ internal sealed class FileStorage : IFileStorage
             throw new FileNotFoundException("Unable to find the indicated file.", relativeOrAbsoluteFilePath);
         }
 
-        return File.OpenRead(relativeOrAbsoluteFilePath);
+        return new FileStream(relativeOrAbsoluteFilePath, FileMode.Open, FileAccess.Read, FileShare.Read, SandboxedFileReader.BufferSize, FileOptions.Asynchronous | FileOptions.SequentialScan);
     }
 
     public Stream OpenWriteFile(string relativeOrAbsoluteFilePath, bool replaceIfExist)
@@ -105,7 +105,8 @@ internal sealed class FileStorage : IFileStorage
             FileResult? fileResult = await FilePicker.Default.PickAsync(otpions);
             if (fileResult is not null)
             {
-                return new SandboxedFileReader(fileResult.FileName, await fileResult.OpenReadAsync());
+                // TODO
+                return new MacOSSandboxedFileReader(fileResult.FileName, await fileResult.OpenReadAsync());
             }
 
             return null;
@@ -133,7 +134,8 @@ internal sealed class FileStorage : IFileStorage
                 var result = new List<SandboxedFileReader>();
                 foreach (FileResult file in fileResults)
                 {
-                    result.Add(new SandboxedFileReader(file.FileName, await file.OpenReadAsync()));
+                    // TODO
+                    result.Add(new MacOSSandboxedFileReader(file.FileName, await file.OpenReadAsync()));
                 }
 
                 return result.ToArray();

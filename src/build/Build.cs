@@ -76,7 +76,7 @@ class Build : NukeBuild
         {
             if (!Debugger.IsAttached)
             {
-                RootDirectory.GlobDirectories("bin", "obj", "packages", "publish").ForEach(EnsureCleanDirectory);
+                RootDirectory.GlobDirectories("bin", "obj", "packages", "publish").ForEach(path => path.CreateOrCleanDirectory());
             }
         });
 

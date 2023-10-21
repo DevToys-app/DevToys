@@ -74,14 +74,7 @@ internal sealed partial class Base64ImageEncoderDecoderCommandLineTool : IComman
 
     public async Task EncodeAsync(FileInfo file, CancellationToken cancellationToken)
     {
-        using var fileStream
-            = new FileStream(
-                file.FullName,
-                FileMode.Open,
-                FileAccess.Read,
-                FileShare.Read,
-                4096,
-                FileOptions.Asynchronous | FileOptions.SequentialScan);
+        using Stream fileStream = _fileStorage.OpenReadFile(file.FullName);
         using var memoryStream = new MemoryStream();
 
         await fileStream.CopyToAsync(memoryStream, cancellationToken);

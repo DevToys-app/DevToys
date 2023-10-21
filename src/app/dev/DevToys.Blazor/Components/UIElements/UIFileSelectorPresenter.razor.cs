@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components.Forms;
+﻿using DevToys.Blazor.Core;
+using Microsoft.AspNetCore.Components.Forms;
 using SixLabors.ImageSharp;
 
 namespace DevToys.Blazor.Components.UIElements;
@@ -115,7 +116,7 @@ public partial class UIFileSelectorPresenter : MefComponentBase
                 foreach (string filePath in Directory.GetFiles(selectedFolder, "*", SearchOption.AllDirectories))
                 {
                     var info = new FileInfo(filePath);
-                    files.Add(new(info.Name, new FileStream(info.FullName, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, FileOptions.Asynchronous | FileOptions.SequentialScan)));
+                    files.Add(new BlazorSandboxedFileReader(info, _fileStorage));
                 }
             }
             else
@@ -126,7 +127,7 @@ public partial class UIFileSelectorPresenter : MefComponentBase
                     foreach (string filePath in Directory.GetFiles(selectedFolder, "*." + fileType, SearchOption.AllDirectories))
                     {
                         var info = new FileInfo(filePath);
-                        files.Add(new(info.Name, new FileStream(info.FullName, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, FileOptions.Asynchronous | FileOptions.SequentialScan)));
+                        files.Add(new BlazorSandboxedFileReader(info, _fileStorage));
                     }
                 }
             }
@@ -161,7 +162,7 @@ public partial class UIFileSelectorPresenter : MefComponentBase
                     await image.SaveAsPngAsync(fileStream);
                 }
 
-                var pickedFile = new SandboxedFileReader(temporaryFile.FullName, _fileStorage.OpenReadFile(temporaryFile.FullName));
+                var pickedFile = new BlazorSandboxedFileReader(temporaryFile, _fileStorage);
 
                 UIFileSelector.WithFiles(pickedFile);
             }
@@ -274,7 +275,7 @@ public partial class UIFileSelectorPresenter : MefComponentBase
                 string fileName = fileNameGetter(file);
                 if (!string.IsNullOrEmpty(fileName))
                 {
-                    if (fileTypes.Any(fileType => string.Equals(("." + fileType), Path.GetExtension(fileName), StringComparison.OrdinalIgnoreCase)))
+                    if (fileTypes.Length == 0 || fileTypes.Any(fileType => string.Equals(("." + fileType), Path.GetExtension(fileName), StringComparison.OrdinalIgnoreCase)))
                     {
                         pickedFiles.Add(pickedFileCreator(file));
                     }
@@ -302,7 +303,7 @@ public partial class UIFileSelectorPresenter : MefComponentBase
         {
             if (files.Length == 1 && !string.IsNullOrEmpty(fileNameGetter(files[0])))
             {
-                if (fileTypes.Any(fileType => string.Equals(("." + fileType), Path.GetExtension(fileNameGetter(files[0])), StringComparison.OrdinalIgnoreCase)))
+                if (fileTypes.Length == 0 || fileTypes.Any(fileType => string.Equals(("." + fileType), Path.GetExtension(fileNameGetter(files[0])), StringComparison.OrdinalIgnoreCase)))
                 {
                     UIFileSelector.WithFiles(pickedFileCreator(files[0]));
                     return;
@@ -329,12 +330,12 @@ public partial class UIFileSelectorPresenter : MefComponentBase
     private SandboxedFileReader CreatePickedFile(IBrowserFile browserFile)
     {
         Guard.IsNotNull(browserFile);
-        return new SandboxedFileReader(browserFile.Name, browserFile.OpenReadStream(maxAllowedSize: long.MaxValue));
+        return new BlazorSandboxedFileReader(browserFile);
     }
 
     private SandboxedFileReader CreatePickedFile(FileInfo fileInfo)
     {
         Guard.IsNotNull(fileInfo);
-        return new SandboxedFileReader(fileInfo.Name, new FileStream(fileInfo.FullName, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, FileOptions.Asynchronous | FileOptions.SequentialScan));
+        return new BlazorSandboxedFileReader(fileInfo, _fileStorage);
     }
 }

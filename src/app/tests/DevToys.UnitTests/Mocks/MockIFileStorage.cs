@@ -18,7 +18,7 @@ internal class MockIFileStorage : IFileStorage
 
     public Stream OpenReadFile(string relativeOrAbsoluteFilePath)
     {
-        throw new NotImplementedException();
+        return new FileStream(relativeOrAbsoluteFilePath, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, FileOptions.Asynchronous | FileOptions.SequentialScan);
     }
 
     public Stream OpenWriteFile(string relativeOrAbsoluteFilePath, bool replaceIfExist)

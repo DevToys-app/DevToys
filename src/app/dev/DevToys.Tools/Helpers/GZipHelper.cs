@@ -124,7 +124,7 @@ internal static partial class GZipHelper
             using var inputStream = new MemoryStream(inputBytes);
             using var gZipStream = new GZipStream(inputStream, CompressionMode.Decompress);
             using var streamReader = new StreamReader(gZipStream);
-            decompressed = await streamReader.ReadToEndAsync(cancellationToken);
+            decompressed = await streamReader.ReadToEndAsync(cancellationToken); // TODO: Perf risk. Read in chunks.
             cancellationToken.ThrowIfCancellationRequested();
         }
         catch (OperationCanceledException)

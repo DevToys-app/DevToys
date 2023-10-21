@@ -188,8 +188,8 @@ public partial class UITextInputWrapper : MefComponentBase
             pickedFile = await _fileStorage.PickOpenFileAsync(fileTypes);
             if (pickedFile is not null)
             {
-                using MemoryStream memoryStream = await pickedFile.GetFileCopyAsync(CancellationToken.None);
-                await LoadFileAsync(memoryStream);
+                using Stream stream = await pickedFile.GetNewAccessToFileContentAsync(CancellationToken.None);
+                await LoadFileAsync(stream);
             }
         }
         finally
@@ -278,7 +278,7 @@ public partial class UITextInputWrapper : MefComponentBase
 
             // TODO: Detect encoding.
             using var reader = new StreamReader(fileStream);
-            string? text = await reader.ReadToEndAsync();
+            string? text = await reader.ReadToEndAsync(); // TODO: Perf risk. Read in chunks.
 
             await InvokeAsync(async () =>
             {

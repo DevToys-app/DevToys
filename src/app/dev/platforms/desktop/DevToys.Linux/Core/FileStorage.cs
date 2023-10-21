@@ -42,7 +42,7 @@ internal sealed class FileStorage : GObject.Object, IFileStorage
             throw new FileNotFoundException("Unable to find the indicated file.", relativeOrAbsoluteFilePath);
         }
 
-        return File.OpenRead(relativeOrAbsoluteFilePath);
+        return new FileStream(relativeOrAbsoluteFilePath, FileMode.Open, FileAccess.Read, FileShare.Read, SandboxedFileReader.BufferSize, FileOptions.Asynchronous | FileOptions.SequentialScan);
     }
 
     public Stream OpenWriteFile(string relativeOrAbsoluteFilePath, bool replaceIfExist)
@@ -252,13 +252,7 @@ internal sealed class FileStorage : GObject.Object, IFileStorage
 
                     if (!string.IsNullOrEmpty(filePath) && File.Exists(filePath))
                     {
-                        fileResult.Add(
-                            new SandboxedFileReader(
-                                Path.GetFileName(filePath),
-                                new FileStream(
-                                    filePath,
-                                    FileMode.Open,
-                                    FileAccess.Read)));
+                        fileResult.Add(new LinuxSandboxedFileReader(filePath, this));
                     }
                 }
             }

@@ -147,7 +147,7 @@ internal sealed class ExtensionsManagerGuiTool : IGuiTool
         for (int i = 0; i < nugetPackages.Length; i++)
         {
             using SandboxedFileReader nugetPackage = nugetPackages[i];
-            using MemoryStream nugetPackageStream = await nugetPackage.GetFileCopyAsync(CancellationToken.None);
+            using Stream nugetPackageStream = await nugetPackage.GetNewAccessToFileContentAsync(CancellationToken.None);
             using var reader = new PackageArchiveReader(nugetPackageStream);
 
             NuspecReader nuspec = reader.NuspecReader;
