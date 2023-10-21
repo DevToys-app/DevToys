@@ -2,9 +2,12 @@
 
 /// <summary>
 /// Represents a read-only access to a file on the file system.
-/// The file can be read and accessed multiple times in parallel.
-/// Disposing the <see cref="SandboxedFileReader"/> will close the access to the file.
 /// </summary>
+/// <remarks>
+/// The file can be read and accessed multiple times in parallel.
+/// In some cases, the file's resulting stream is non-seekable.
+/// Disposing the <see cref="SandboxedFileReader"/> will close the access to the file.
+/// </remarks>
 [DebuggerDisplay($"FileName = {{{nameof(FileName)}}}")]
 public abstract class SandboxedFileReader : IDisposable
 {
@@ -50,6 +53,7 @@ public abstract class SandboxedFileReader : IDisposable
     /// Get a new stream that can be used to read the file. The stream gets disposed automatically
     /// when the <see cref="SandboxedFileReader"/> is disposed.
     /// </summary>
+    /// <remarks>In some cases, the returned stream is non-seekable.</remarks>
     /// <exception cref="ObjectDisposedException">The <see cref="SandboxedFileReader"/> has been disposed.</exception>"
     public async Task<Stream> GetNewAccessToFileContentAsync(CancellationToken cancellationToken)
     {
