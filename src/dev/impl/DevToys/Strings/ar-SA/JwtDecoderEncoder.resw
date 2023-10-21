@@ -223,7 +223,7 @@
     <value>التحقق من الجمهور</value>
   </data>
   <data name="DecodeValidateIssuerSigningKey" xml:space="preserve">
-    <value>Validate issuer signing key</value>
+    <value>التحقق من صحة مفتاح التوقيع</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
     <value>التحقق من المصدر</value>
