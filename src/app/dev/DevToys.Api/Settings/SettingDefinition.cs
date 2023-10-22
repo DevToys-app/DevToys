@@ -21,7 +21,6 @@ public readonly struct SettingDefinition<T> : IEquatable<SettingDefinition<T>>
     /// Initializes a new instance of the <see cref="SettingDefinition"/> structure.
     /// </summary>
     /// <param name="name">The name of the setting. Should be unique.</param>
-    /// <param name="isRoaming">Defines whether the setting can be synchronized with the user's Microsoft account.</param>
     /// <param name="defaultValue">The default value of the setting.</param>
     public SettingDefinition(string name, T defaultValue)
     {
@@ -29,9 +28,7 @@ public readonly struct SettingDefinition<T> : IEquatable<SettingDefinition<T>>
 
         if (name.Length > 255)
         {
-            // For both LocalSettings and RoamingSettings on Windows, the name of each setting
-            // can be 255 characters in length at most.
-            // see https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdata.localsettings?view=winrt-22000#remarks
+            // Come one! Make it shorter!
             ThrowHelper.ThrowArgumentOutOfRangeException(nameof(name), "Setting name is limited to 255 characters.");
         }
         else if (name.Contains("="))

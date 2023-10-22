@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using DevToys.Tools.SmartDetection;
+using Microsoft.Extensions.Logging;
+using SixLabors.ImageSharp;
 
 namespace DevToys.Tools.Tools.EncodersDecoders.Base64Image;
 
@@ -16,6 +18,8 @@ namespace DevToys.Tools.Tools.EncodersDecoders.Base64Image;
     AccessibleNameResourceName = nameof(Base64ImageEncoderDecoder.AccessibleName),
     SearchKeywordsResourceName = nameof(Base64ImageEncoderDecoder.SearchKeywords))]
 [AcceptedDataTypeName(PredefinedCommonDataTypeNames.Base64Image)]
+[AcceptedDataTypeName(PredefinedCommonDataTypeNames.Image)]
+[AcceptedDataTypeName("Base64ImageFile")]
 internal sealed partial class Base64ImageEncoderDecoderGuiTool : IGuiTool, IDisposable
 {
     private enum GridRows
@@ -29,6 +33,7 @@ internal sealed partial class Base64ImageEncoderDecoderGuiTool : IGuiTool, IDisp
         Stretch
     }
 
+    private readonly DisposableSemaphore _semaphore = new();
     private readonly IFileStorage _fileStorage;
     private readonly ILogger _logger;
     private readonly IUIMultiLineTextInput _inputText = MultilineTextInput("base64-image-input-box");
@@ -79,7 +84,7 @@ internal sealed partial class Base64ImageEncoderDecoderGuiTool : IGuiTool, IDisp
 
                                 _fileSelector
                                     .CanSelectOneFile()
-                                    .LimitFileTypesTo("bmp", "gif", "ico", "jpg", "jpeg", "png", "svg", "webp")
+                                    .LimitFileTypesTo(Base64ImageFileDataTypeDetector.SupportedFileTypes)
                                     .OnFilesSelected(OnFileSelectedAsync)),
 
                             Cell(
@@ -88,11 +93,27 @@ internal sealed partial class Base64ImageEncoderDecoderGuiTool : IGuiTool, IDisp
 
                                 _imageViewer))));
 
-    public void OnDataReceived(string dataTypeName, object? parsedData)
+    public async void OnDataReceived(string dataTypeName, object? parsedData)
     {
         if (dataTypeName == PredefinedCommonDataTypeNames.Base64Image && parsedData is string base64Image)
         {
             _inputText.Text(base64Image); // This will trigger a conversion.
+        }
+        else if (dataTypeName == PredefinedCommonDataTypeNames.Image && parsedData is Image<SixLabors.ImageSharp.PixelFormats.Rgba32> image)
+        {
+            FileInfo temporaryFile = _fileStorage.CreateSelfDestroyingTempFile("png");
+
+            using (image)
+            {
+                using Stream fileStream = _fileStorage.OpenWriteFile(temporaryFile.FullName, replaceIfExist: true);
+                await image.SaveAsPngAsync(fileStream);
+            }
+
+            _fileSelector.WithFiles(SandboxedFileReader.FromFileInfo(temporaryFile)); // This will trigger a conversion.
+        }
+        else if (dataTypeName == "Base64ImageFile" && parsedData is FileInfo file)
+        {
+            _fileSelector.WithFiles(SandboxedFileReader.FromFileInfo(file)); // This will trigger a conversion.
         }
     }
 
@@ -100,6 +121,7 @@ internal sealed partial class Base64ImageEncoderDecoderGuiTool : IGuiTool, IDisp
     {
         _selectedFile?.Dispose();
         _cancellationTokenSource?.Dispose();
+        _semaphore.Dispose();
     }
 
     private void OnInputTextChanged(string text)
@@ -146,58 +168,61 @@ internal sealed partial class Base64ImageEncoderDecoderGuiTool : IGuiTool, IDisp
 
         try
         {
-            if (string.IsNullOrWhiteSpace(input))
+            using (await _semaphore.WaitAsync(cancellationToken))
             {
-                _imageViewer.Clear();
-                return;
-            }
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    _imageViewer.Clear();
+                    return;
+                }
 
-            string? trimmedData = input?.Trim();
+                string? trimmedData = input?.Trim();
 
-            string fileExtension;
-            if (trimmedData!.StartsWith("data:image/bmp;base64,", StringComparison.OrdinalIgnoreCase))
-            {
-                fileExtension = "bmp";
-            }
-            else if (trimmedData!.StartsWith("data:image/gif;base64,", StringComparison.OrdinalIgnoreCase))
-            {
-                fileExtension = "gif";
-            }
-            else if (trimmedData!.StartsWith("data:image/x-icon;base64,", StringComparison.OrdinalIgnoreCase))
-            {
-                fileExtension = "ico";
-            }
-            else if (trimmedData!.StartsWith("data:image/jpeg;base64,", StringComparison.OrdinalIgnoreCase))
-            {
-                fileExtension = "jpeg";
-            }
-            else if (trimmedData!.StartsWith("data:image/png;base64,", StringComparison.OrdinalIgnoreCase))
-            {
-                fileExtension = "png";
-            }
-            else if (trimmedData!.StartsWith("data:image/svg+xml;base64,", StringComparison.OrdinalIgnoreCase))
-            {
-                fileExtension = "svg";
-            }
-            else if (trimmedData!.StartsWith("data:image/webp;base64,", StringComparison.OrdinalIgnoreCase))
-            {
-                fileExtension = "webp";
-            }
-            else
-            {
-                return;
-            }
+                string fileExtension;
+                if (trimmedData!.StartsWith("data:image/bmp;base64,", StringComparison.OrdinalIgnoreCase))
+                {
+                    fileExtension = "bmp";
+                }
+                else if (trimmedData!.StartsWith("data:image/gif;base64,", StringComparison.OrdinalIgnoreCase))
+                {
+                    fileExtension = "gif";
+                }
+                else if (trimmedData!.StartsWith("data:image/x-icon;base64,", StringComparison.OrdinalIgnoreCase))
+                {
+                    fileExtension = "ico";
+                }
+                else if (trimmedData!.StartsWith("data:image/jpeg;base64,", StringComparison.OrdinalIgnoreCase))
+                {
+                    fileExtension = "jpeg";
+                }
+                else if (trimmedData!.StartsWith("data:image/png;base64,", StringComparison.OrdinalIgnoreCase))
+                {
+                    fileExtension = "png";
+                }
+                else if (trimmedData!.StartsWith("data:image/svg+xml;base64,", StringComparison.OrdinalIgnoreCase))
+                {
+                    fileExtension = "svg";
+                }
+                else if (trimmedData!.StartsWith("data:image/webp;base64,", StringComparison.OrdinalIgnoreCase))
+                {
+                    fileExtension = "webp";
+                }
+                else
+                {
+                    return;
+                }
 
-            input = trimmedData.Substring(trimmedData.IndexOf(',') + 1);
-            byte[] bytes = Convert.FromBase64String(input);
+                input = trimmedData.Substring(trimmedData.IndexOf(',') + 1);
+                byte[] bytes = Convert.FromBase64String(input);
 
-            FileInfo tempFile = _fileStorage.CreateSelfDestroyingTempFile(fileExtension);
-            using (FileStream tempFileStream = tempFile.OpenWrite())
-            {
-                await tempFileStream.WriteAsync(bytes, cancellationToken);
+                FileInfo tempFile = _fileStorage.CreateSelfDestroyingTempFile(fileExtension);
+                using (FileStream tempFileStream = tempFile.OpenWrite())
+                {
+                    await tempFileStream.WriteAsync(bytes, cancellationToken);
+                }
+
+                _imageViewer.WithFile(tempFile);
             }
-
-            _imageViewer.WithFile(tempFile);
         }
         catch
         {
@@ -209,33 +234,36 @@ internal sealed partial class Base64ImageEncoderDecoderGuiTool : IGuiTool, IDisp
     {
         await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
 
-        using Stream stream = await file.GetNewAccessToFileContentAsync(cancellationToken);
-
-        var bytes = new Memory<byte>(new byte[stream.Length]);
-        await stream.ReadAsync(bytes, CancellationToken.None);
-        string base64 = Convert.ToBase64String(bytes.Span);
-
-        if (cancellationToken.IsCancellationRequested)
+        using (await _semaphore.WaitAsync(cancellationToken))
         {
-            return;
-        }
+            using Stream stream = await file.GetNewAccessToFileContentAsync(cancellationToken);
 
-        string fileExtension = Path.GetExtension(file.FileName);
-        string output
-            = fileExtension.ToLowerInvariant() switch
+            var bytes = new Memory<byte>(new byte[stream.Length]);
+            await stream.ReadAsync(bytes, CancellationToken.None);
+            string base64 = Convert.ToBase64String(bytes.Span);
+
+            if (cancellationToken.IsCancellationRequested)
             {
-                ".bmp" => "data:image/bmp;base64," + base64,
-                ".gif" => "data:image/gif;base64," + base64,
-                ".ico" => "data:image/x-icon;base64," + base64,
-                ".jpg" or ".jpeg" => "data:image/jpeg;base64," + base64,
-                ".png" => "data:image/png;base64," + base64,
-                ".svg" => "data:image/svg+xml;base64," + base64,
-                ".webp" => "data:image/webp;base64," + base64,
-                _ => throw new NotSupportedException(),
-            };
+                return;
+            }
 
-        _ignoreBase64DataChange = true;
-        _inputText.Text(output);
-        _ignoreBase64DataChange = false;
+            string fileExtension = Path.GetExtension(file.FileName);
+            string output
+                = fileExtension.ToLowerInvariant() switch
+                {
+                    ".bmp" => "data:image/bmp;base64," + base64,
+                    ".gif" => "data:image/gif;base64," + base64,
+                    ".ico" => "data:image/x-icon;base64," + base64,
+                    ".jpg" or ".jpeg" => "data:image/jpeg;base64," + base64,
+                    ".png" => "data:image/png;base64," + base64,
+                    ".svg" => "data:image/svg+xml;base64," + base64,
+                    ".webp" => "data:image/webp;base64," + base64,
+                    _ => throw new NotSupportedException(),
+                };
+
+            _ignoreBase64DataChange = true;
+            _inputText.Text(output);
+            _ignoreBase64DataChange = false;
+        }
     }
 }

@@ -50,6 +50,7 @@ internal sealed partial class Base64TextEncoderDecoderGuiTool : IGuiTool, IDispo
 
     private const Base64Encoding DefaultEncoding = Base64Encoding.Utf8;
 
+    private readonly DisposableSemaphore _semaphore = new();
     private readonly ILogger _logger;
     private readonly ISettingsProvider _settingsProvider;
     private readonly IUISwitch _conversionModeSwitch = Switch("base64-text-conversion-mode-switch");
@@ -164,6 +165,7 @@ internal sealed partial class Base64TextEncoderDecoderGuiTool : IGuiTool, IDispo
     public void Dispose()
     {
         _cancellationTokenSource?.Dispose();
+        _semaphore.Dispose();
     }
 
     private void OnConversionModeChanged(bool conversionMode)
@@ -209,6 +211,8 @@ internal sealed partial class Base64TextEncoderDecoderGuiTool : IGuiTool, IDispo
 
     private async Task ConvertAsync(string input, CancellationToken cancellationToken)
     {
+        using (await _semaphore.WaitAsync(cancellationToken))
+        {
         await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
 
         string conversionResult;
@@ -247,4 +251,5 @@ internal sealed partial class Base64TextEncoderDecoderGuiTool : IGuiTool, IDispo
         cancellationToken.ThrowIfCancellationRequested();
         _outputText.Text(conversionResult);
     }
+}
 }

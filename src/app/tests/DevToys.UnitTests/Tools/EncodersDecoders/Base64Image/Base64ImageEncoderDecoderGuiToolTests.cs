@@ -50,6 +50,6 @@ public sealed class Base64ImageEncoderDecoderGuiToolTests : MefBasedTest
 
         _inputBox.Text(File.ReadAllText(inputFile.FullName));
         await _tool.WorkTask;
-        _imageViewer.ImageSource.Value.Should().BeOfType<FileInfo>();
+        _imageViewer.ImageSource.Value.Value.Should().BeOfType<FileInfo>();
     }
 }
