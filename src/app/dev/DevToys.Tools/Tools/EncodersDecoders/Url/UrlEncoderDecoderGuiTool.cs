@@ -38,6 +38,7 @@ internal sealed partial class UrlEncoderDecoderGuiTool : IGuiTool, IDisposable
         Stretch
     }
 
+    private readonly DisposableSemaphore _semaphore = new();
     private readonly ILogger _logger;
     private readonly ISettingsProvider _settingsProvider;
     private readonly IUISwitch _conversionModeSwitch = Switch("url-conversion-mode-switch");
@@ -136,6 +137,7 @@ internal sealed partial class UrlEncoderDecoderGuiTool : IGuiTool, IDisposable
     public void Dispose()
     {
         _cancellationTokenSource?.Dispose();
+        _semaphore.Dispose();
     }
 
     private void OnConversionModeChanged(bool conversionMode)
@@ -160,13 +162,16 @@ internal sealed partial class UrlEncoderDecoderGuiTool : IGuiTool, IDisposable
 
     private async Task ConvertAsync(string input, CancellationToken cancellationToken)
     {
-        await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
+        using (await _semaphore.WaitAsync(cancellationToken))
+        {
+            await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
 
-        _outputText.Text(
-            UrlHelper.EncodeOrDecode(
-                input,
-                _settingsProvider.GetSetting(conversionMode),
-                _logger,
-                cancellationToken));
+            _outputText.Text(
+                UrlHelper.EncodeOrDecode(
+                    input,
+                    _settingsProvider.GetSetting(conversionMode),
+                    _logger,
+                    cancellationToken));
+        }
     }
 }

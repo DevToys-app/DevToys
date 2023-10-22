@@ -40,6 +40,7 @@ internal sealed partial class GZipEncoderDecoderGuiTool : IGuiTool, IDisposable
         Stretch
     }
 
+    private readonly DisposableSemaphore _semaphore = new();
     private readonly ILogger _logger;
     private readonly ISettingsProvider _settingsProvider;
     private readonly IUISwitch _compressionModeSwitch = Switch("gzip-compression-mode-switch");
@@ -155,6 +156,7 @@ internal sealed partial class GZipEncoderDecoderGuiTool : IGuiTool, IDisposable
     public void Dispose()
     {
         _cancellationTokenSource?.Dispose();
+        _semaphore.Dispose();
     }
 
     private void OnCompressionModeChanged(bool conversionMode)
@@ -195,16 +197,19 @@ internal sealed partial class GZipEncoderDecoderGuiTool : IGuiTool, IDisposable
 
     private async Task ConvertAsync(string input, CancellationToken cancellationToken)
     {
-        await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
+        using (await _semaphore.WaitAsync(cancellationToken))
+        {
+            await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
 
-        (string data, double differencePercentage) conversionResult
-            = await GZipHelper.CompressOrDecompressAsync(
-                input,
-                _settingsProvider.GetSetting(compressionMode),
-                _logger,
-                cancellationToken);
+            (string data, double differencePercentage) conversionResult
+                = await GZipHelper.CompressOrDecompressAsync(
+                    input,
+                    _settingsProvider.GetSetting(compressionMode),
+                    _logger,
+                    cancellationToken);
 
-        _compressionRatioInfoBar.Description(string.Format(GZipEncoderDecoder.CompressionRatioValue, conversionResult.differencePercentage));
-        _outputText.Text(conversionResult.data);
+            _compressionRatioInfoBar.Description(string.Format(GZipEncoderDecoder.CompressionRatioValue, conversionResult.differencePercentage));
+            _outputText.Text(conversionResult.data);
+        }
     }
 }

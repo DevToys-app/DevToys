@@ -17,6 +17,12 @@ public abstract class SandboxedFileReader : IDisposable
     private bool _disposed;
     private List<Stream>? _fileAccesses;
 
+    public static SandboxedFileReader FromFileInfo(FileInfo fileInfo)
+    {
+        Guard.IsNotNull(fileInfo);
+        return new SimpleSandboxedFileReader(fileInfo);
+    }
+
     /// <summary>
     /// Initializes a new instance of the <see cref="SandboxedFileReader"/> class.
     /// </summary>

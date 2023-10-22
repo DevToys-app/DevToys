@@ -38,6 +38,7 @@ public partial class UIImageViewerPresenter : MefComponentBase
         _cancellationTokenSource?.Cancel();
         _cancellationTokenSource?.Dispose();
         UIImageViewer.ImageSourceChanged -= UIImageViewer_ImageSourceChanged;
+        _semaphore.Dispose();
         await base.DisposeAsync();
     }
 

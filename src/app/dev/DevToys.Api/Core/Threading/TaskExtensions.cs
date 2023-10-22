@@ -20,10 +20,40 @@ public static class TaskExtensions
     }
 
     /// <summary>
+    /// Runs a task without waiting for its result.
+    /// </summary>
+    public static void Forget(this ValueTask _)
+    {
+    }
+
+    /// <summary>
+    /// Runs a task without waiting for its result.
+    /// </summary>
+    public static void Forget<T>(this ValueTask<T> _)
+    {
+    }
+
+    /// <summary>
     /// Runs a task without waiting for its result. Swallows or handle any exception caused by the task.
     /// </summary>
     /// <param name="errorHandler">The action to run when an exception is caught.</param>
     public static async void ForgetSafely(this Task task, Action<Exception>? errorHandler = null)
+    {
+        try
+        {
+            await task.ConfigureAwait(true);
+        }
+        catch (Exception ex)
+        {
+            errorHandler?.Invoke(ex);
+        }
+    }
+
+    /// <summary>
+    /// Runs a task without waiting for its result. Swallows or handle any exception caused by the task.
+    /// </summary>
+    /// <param name="errorHandler">The action to run when an exception is caught.</param>
+    public static async void ForgetSafely(this ValueTask task, Action<Exception>? errorHandler = null)
     {
         try
         {

@@ -110,7 +110,7 @@ internal sealed class FileStorage : IFileStorage
 
             if (openFileDialog.ShowDialog() == true)
             {
-                return new WindowsSandboxedFileReader(openFileDialog.FileName, this);
+                return SandboxedFileReader.FromFileInfo(new FileInfo(openFileDialog.FileName));
             }
 
             return null;
@@ -141,7 +141,7 @@ internal sealed class FileStorage : IFileStorage
                 var result = new SandboxedFileReader[fileNames.Length];
                 for (int i = 0; i < fileNames.Length; i++)
                 {
-                    result[i] = new WindowsSandboxedFileReader(fileNames[i], this);
+                    result[i] = SandboxedFileReader.FromFileInfo(new FileInfo(fileNames[i]));
                 }
 
                 return result;

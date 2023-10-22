@@ -47,6 +47,7 @@ internal sealed partial class JsonYamlConverterGuiTool : IGuiTool, IDisposable
         Footer
     }
 
+    private readonly DisposableSemaphore _semaphore = new();
     private readonly ILogger _logger;
     private readonly ISettingsProvider _settingsProvider;
     private readonly IUIMultiLineTextInput _inputTextArea = MultilineTextInput("json-to-yaml-input-text-area");
@@ -159,6 +160,7 @@ internal sealed partial class JsonYamlConverterGuiTool : IGuiTool, IDisposable
     public void Dispose()
     {
         _cancellationTokenSource?.Dispose();
+        _semaphore.Dispose();
     }
 
     private void OnConversionModeChanged(JsonToYamlConversion conversionMode)
@@ -199,15 +201,18 @@ internal sealed partial class JsonYamlConverterGuiTool : IGuiTool, IDisposable
 
     private async Task ConvertAsync(string input, CancellationToken cancellationToken)
     {
-        await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
+        using (await _semaphore.WaitAsync(cancellationToken))
+        {
+            await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
 
-        ToolResult<string> conversionResult = await JsonYamlHelper.ConvertAsync(
-            input,
-            _settingsProvider.GetSetting(conversionMode),
-            _settingsProvider.GetSetting(indentationMode),
-            _logger,
-            cancellationToken);
-        _outputTextArea.Text(conversionResult.Data);
+            ToolResult<string> conversionResult = await JsonYamlHelper.ConvertAsync(
+                input,
+                _settingsProvider.GetSetting(conversionMode),
+                _settingsProvider.GetSetting(indentationMode),
+                _logger,
+                cancellationToken);
+            _outputTextArea.Text(conversionResult.Data);
+        }
     }
 
     private void SetJsonToYamlConversion()

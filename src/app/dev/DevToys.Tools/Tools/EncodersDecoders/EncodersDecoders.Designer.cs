@@ -61,7 +61,7 @@ namespace DevToys.Tools.Tools.EncodersDecoders {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Encoders and decoders.
         /// </summary>
         internal static string AccessibleName {
             get {

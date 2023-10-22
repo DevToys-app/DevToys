@@ -94,8 +94,12 @@ public sealed partial class GuiToolInstance : ObservableObject, IDisposable
     /// </summary>
     public void PassSmartDetectedData(string dataTypeName, object? parsedData)
     {
+        // Ensure the view is created. We do this because `OnDataReceived` may assume the UI is instantiated.
+        _ = View;
+
         try
         {
+            // Send the data to the tool.
             _instance.Value.OnDataReceived(dataTypeName, parsedData);
         }
         catch (NotImplementedException) { }

@@ -116,7 +116,7 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
                             = _oldSmartDetectedTools.FirstOrDefault(tool => tool.ToolInstance == guiToolViewItem.ToolInstance);
                         if (smartDetectedTool is not null)
                         {
-                            _ = guiToolViewItem.ToolInstance.View; // Do nothing with the view but trigger to instance because PassSmartDetectedData may assume the UI is instantiated.
+                            // Send the data to the tool.
                             guiToolViewItem.ToolInstance.PassSmartDetectedData(smartDetectedTool.DataTypeName, smartDetectedTool.ParsedData);
                         }
                     }
@@ -258,7 +258,7 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
                     {
                         // Then let's navigate immediately to it and set the detected data as an input.
                         SelectedMenuItem = firstToolViewItem;
-                        _ = detectedTools[0].ToolInstance.View; // Do nothing with the view but trigger to instance because `PassSmartDetectedData` may assume the UI is instantiated.
+
                         // Send the data to the tool.
                         detectedTools[0].ToolInstance.PassSmartDetectedData(detectedTools[0].DataTypeName, detectedTools[0].ParsedData);
                     }
@@ -357,6 +357,7 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
         // If this is not null, it means that the user has selected a tool that has been detected by Smart Detection.
         if (message.SmartDetectionInfo is not null)
         {
+            // Send the data to the tool.
             message.Value.PassSmartDetectedData(message.SmartDetectionInfo.DataTypeName, message.SmartDetectionInfo.ParsedData);
         }
     }

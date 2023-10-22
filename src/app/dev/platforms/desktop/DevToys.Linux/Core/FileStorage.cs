@@ -252,7 +252,7 @@ internal sealed class FileStorage : GObject.Object, IFileStorage
 
                     if (!string.IsNullOrEmpty(filePath) && File.Exists(filePath))
                     {
-                        fileResult.Add(new LinuxSandboxedFileReader(filePath, this));
+                        fileResult.Add(SandboxedFileReader.FromFileInfo(new FileInfo(filePath)));
                     }
                 }
             }
