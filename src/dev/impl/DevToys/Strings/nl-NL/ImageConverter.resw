@@ -155,7 +155,7 @@
     <value>Bekijk details</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Lossless image converter</value>
+    <value>Lossless afbeelding converter</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Afbeelding converter</value>
@@ -164,7 +164,7 @@
     <value>Converteren</value>
   </data>
   <data name="ConvertedFormatDescription" xml:space="preserve">
-    <value>Select the converted file format</value>
+    <value>Selecteer de geconverteerde bestandsformaat</value>
   </data>
   <data name="JPEG" xml:space="preserve">
     <value>JPEG</value>
@@ -179,7 +179,7 @@
     <value>GIF</value>
   </data>
   <data name="HEIF" xml:space="preserve">
-    <value>HEIF</value>
+    <value>HIETF</value>
   </data>
   <data name="JPEGXR" xml:space="preserve">
     <value>JPEG XR</value>
@@ -188,7 +188,7 @@
     <value>TIFF</value>
   </data>
   <data name="ErrorMessage" xml:space="preserve">
-    <value>An unexpected error has occurred, the conversion may not have been performed.</value>
+    <value>Er is een onverwachte fout opgetreden, de conversie is mogelijk niet uitgevoerd.</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>BMP GIF HEIF JPG XR PNG TIFF</value>

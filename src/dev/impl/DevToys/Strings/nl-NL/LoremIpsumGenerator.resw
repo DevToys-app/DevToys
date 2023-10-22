@@ -124,13 +124,13 @@
     <value>Instellingen</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generate Lorem Ipsum placeholder text</value>
+    <value>Genereer Lorem Ipsum plaatshouder tekst</value>
   </data>
   <data name="LengthDescription" xml:space="preserve">
-    <value>Number of words, sentences or paragraphs to generate</value>
+    <value>Aantal woorden, zinnen of paragrafen die moeten worden gegenereerd</value>
   </data>
   <data name="LengthTitle" xml:space="preserve">
-    <value>Length</value>
+    <value>Lengte</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Lorem Ipsum</value>
@@ -139,25 +139,25 @@
     <value>Resultaat</value>
   </data>
   <data name="ParagraphsType" xml:space="preserve">
-    <value>Paragraphs</value>
+    <value>Paragrafen</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Lorem Ipsum Generator</value>
   </data>
   <data name="SentencesType" xml:space="preserve">
-    <value>Sentences</value>
+    <value>Zinnen</value>
   </data>
   <data name="StartWithLoremTitle" xml:space="preserve">
-    <value>Start with 'Lorem ipsum dolor sit amet...'</value>
+    <value>Start met 'Lorem ipsum dolor sit amet...'</value>
   </data>
   <data name="TypeDescription" xml:space="preserve">
-    <value>Generate words, sentences or paragraphs of Lorem Ipsum</value>
+    <value>Genereer woorden, zinnen of paragrafen van Lorem Ipsum</value>
   </data>
   <data name="TypeTitle" xml:space="preserve">
-    <value>Type</value>
+    <value>Soort</value>
   </data>
   <data name="WordsType" xml:space="preserve">
-    <value>Words</value>
+    <value>Woorden</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value/>

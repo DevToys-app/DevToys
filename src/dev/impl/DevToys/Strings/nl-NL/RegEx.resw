@@ -151,7 +151,7 @@
     <value>Eliminates unescaped white space from the pattern and enables comments marked with #. However, this value does not affect or eliminate white space in character classes, numeric quantifiers, or tokens that mark the beginning of individual regular expression language elements.</value>
   </data>
   <data name="Multiline" xml:space="preserve">
-    <value>Multiline</value>
+    <value>Meerdere regels</value>
   </data>
   <data name="MultilineDescription" xml:space="preserve">
     <value>Changes the meaning of ^ and $ so they match at the beginning and end, respectively, of any line, and not just the beginning and end of the entire string.</value>
@@ -175,7 +175,7 @@
     <value>Changes the meaning of the dot (.) so it matches every character (instead of every character except \n).</value>
   </data>
   <data name="Text" xml:space="preserve">
-    <value>Text</value>
+    <value>Tekst</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Validate and test regular expressions</value>
@@ -193,12 +193,12 @@
     <value>Resultaat</value>
   </data>
   <data name="Group" xml:space="preserve">
-    <value>Group</value>
+    <value>Groep</value>
   </data>
   <data name="Match" xml:space="preserve">
-    <value>Match</value>
+    <value>Overeenkomst</value>
   </data>
   <data name="Matches" xml:space="preserve">
-    <value>Matches</value>
+    <value>Overeenkomsten</value>
   </data>
 </root>

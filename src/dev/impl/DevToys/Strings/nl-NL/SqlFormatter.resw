@@ -127,10 +127,10 @@
     <value>SQL</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
-    <value>4 spaces</value>
+    <value>4 spaties</value>
   </data>
   <data name="Indentation" xml:space="preserve">
-    <value>Indentation</value>
+    <value>Inspringing</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>Invoer</value>
@@ -142,7 +142,7 @@
     <value>Resultaat</value>
   </data>
   <data name="TwoSpaces" xml:space="preserve">
-    <value>2 spaces</value>
+    <value>2 spaties</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Indent SQL queries</value>
@@ -151,7 +151,7 @@
     <value>SQL Formatter</value>
   </data>
   <data name="SqlLanguage" xml:space="preserve">
-    <value>Language</value>
+    <value>Taal</value>
   </data>
   <data name="SqlLanguageDb2" xml:space="preserve">
     <value>Db2</value>
@@ -178,12 +178,12 @@
     <value>Spark SQL</value>
   </data>
   <data name="SqlLanguageSql" xml:space="preserve">
-    <value>Standard SQL</value>
+    <value>Standaard SQL</value>
   </data>
   <data name="SqlLanguageTsql" xml:space="preserve">
     <value>Transact-SQL</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Db2 MariaDB MySQL N1QL PL/SQL PostgreSQL Amazon Redshift Spark SQL Standard SQL Transact-SQL</value>
+    <value>Db2 MariaDB MySQL N1QL PL/SQL PostgreSQL Amazon Redshift Spark SQL Standaard SQL Transact-SQL</value>
   </data>
 </root>

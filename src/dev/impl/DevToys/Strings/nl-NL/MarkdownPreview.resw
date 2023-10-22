@@ -118,28 +118,28 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Markdown preview tool</value>
+    <value>Markdown voorbeeld tool</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Instellingen</value>
   </data>
   <data name="Dark" xml:space="preserve">
-    <value>Dark</value>
+    <value>Donker</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Markdown Preview</value>
+    <value>Markdown Voorbeeld</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>Markdown</value>
   </data>
   <data name="Light" xml:space="preserve">
-    <value>Light</value>
+    <value>Licht</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Preview</value>
+    <value>Voorbeeld</value>
   </data>
   <data name="Theme" xml:space="preserve">
-    <value>Theme</value>
+    <value>Thema</value>
   </data>
   <data name="ThemeDescription" xml:space="preserve">
     <value>Select which theme to use to preview the Markdown</value>
@@ -148,7 +148,7 @@
     <value>Preview a Markdown document with a GitHub-like render</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Markdown Preview</value>
+    <value>Markdown Voorbeeld</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>MD</value>

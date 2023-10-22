@@ -133,13 +133,13 @@
     <value>Payload</value>
   </data>
   <data name="Type" xml:space="preserve">
-    <value>Type</value>
+    <value>Soort</value>
   </data>
   <data name="Value" xml:space="preserve">
-    <value>Value</value>
+    <value>Waarde</value>
   </data>
   <data name="DescriptionHeader" xml:space="preserve">
-    <value>Description</value>
+    <value>Beschrijving</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Decodeer een JWT header, payload en signature</value>
@@ -205,7 +205,7 @@
     <value>Handtekening</value>
   </data>
   <data name="JwtNotValidated" xml:space="preserve">
-    <value>Token not validated (no parameters selected)</value>
+    <value>Token niet gevalideerd (geen parameters geselecteerd)</value>
   </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
     <value>Token Validated</value>
@@ -274,7 +274,7 @@
     <value>Ongeldige handtekening</value>
   </data>
   <data name="NoDescription" xml:space="preserve">
-    <value>No description</value>
+    <value>Geen omschrijving</value>
   </data>
   <data name="iss" xml:space="preserve">
     <value>The "iss" (issuer) claim identifies the principal that issued the JWT. The processing of this claim is generally application specific. The "iss" value is a case-sensitive string containing a StringOrURI value. Use of this claim is OPTIONAL.</value>
