@@ -10,7 +10,7 @@ public partial class ProgressBar : StyledComponentBase
     }
 
     [Parameter]
-    [Range(0.0, 100.0, ErrorMessage = $"{nameof(Value)} must be between 0 and 100.")]
+    [Range(0d, 100d, ErrorMessage = $"{nameof(Value)} must be between 0 and 100.")]
     public double Value { get; set; }
 
     [Parameter]
@@ -29,8 +29,8 @@ public partial class ProgressBar : StyledComponentBase
         {
             AdditionalAttributes ??= new Dictionary<string, object>();
 
-            AdditionalAttributes.TryAdd("aria-valuemin", 0);
-            AdditionalAttributes.TryAdd("aria-valuemax", 100);
+            AdditionalAttributes.TryAdd("aria-valuemin", 0d);
+            AdditionalAttributes.TryAdd("aria-valuemax", 100d);
             AdditionalAttributes.TryAdd("aria-valuenow", Value);
         }
 

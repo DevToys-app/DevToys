@@ -44,7 +44,7 @@ internal class UIProgressBar : UIElement, IUIProgressBar, IDisposable
         _asyncProgressReporter
             = new ThrottledProgress<double>(
                 OnReportAsync,
-                TimeSpan.FromMilliseconds(250));
+                TimeSpan.FromMilliseconds(10));
     }
 
     public double Value
