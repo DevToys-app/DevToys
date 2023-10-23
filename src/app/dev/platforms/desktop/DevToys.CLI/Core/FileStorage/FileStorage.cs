@@ -65,10 +65,12 @@ internal sealed class FileStorage : IFileStorage
     {
         Console.WriteLine(CliStrings.PromptSaveFile);
         string? filePath = Console.ReadLine();
+
         if (string.IsNullOrWhiteSpace(filePath))
         {
             return new ValueTask<Stream?>(Task.FromResult<Stream?>(null));
         }
+
         return new ValueTask<Stream?>(File.OpenWrite(filePath!));
     }
 

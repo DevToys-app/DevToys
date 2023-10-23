@@ -72,13 +72,17 @@ internal static class OneOfParser
 
             [typeof(DirectoryInfo)] = (string path, [NotNullWhen(true)] out object? value) =>
             {
-                if (string.IsNullOrEmpty(path))
+                value = default;
+                if (!string.IsNullOrEmpty(path))
                 {
-                    value = default;
-                    return false;
+                    var directory = new DirectoryInfo(path);
+                    if (directory.Exists)
+                    {
+                        value = directory;
+                        return true;
+                    }
                 }
-                value = new DirectoryInfo(path);
-                return true;
+                return false;
             },
 
             [typeof(double)] = (string input, [NotNullWhen(true)] out object? value) =>
@@ -95,13 +99,17 @@ internal static class OneOfParser
 
             [typeof(FileInfo)] = (string path, [NotNullWhen(true)] out object? value) =>
             {
-                if (string.IsNullOrEmpty(path))
+                value = default;
+                if (!string.IsNullOrEmpty(path))
                 {
-                    value = default;
-                    return false;
+                    var fileInfo = new FileInfo(path);
+                    if (fileInfo.Exists)
+                    {
+                        value = fileInfo;
+                        return true;
+                    }
                 }
-                value = new FileInfo(path);
-                return true;
+                return false;
             },
 
             [typeof(FileSystemInfo)] = (string path, [NotNullWhen(true)] out object? value) =>
@@ -118,11 +126,23 @@ internal static class OneOfParser
                 else if (path.EndsWith(Path.DirectorySeparatorChar.ToString(), StringComparison.Ordinal) ||
                          path.EndsWith(Path.AltDirectorySeparatorChar.ToString(), StringComparison.Ordinal))
                 {
-                    value = new DirectoryInfo(path);
+                    var directory = new DirectoryInfo(path);
+                    if (!Directory.Exists(path))
+                    {
+                        value = default;
+                        return false;
+                    }
+                    value = directory;
                 }
                 else
                 {
-                    value = new FileInfo(path);
+                    var fileInfo = new FileInfo(path);
+                    if (!fileInfo.Exists)
+                    {
+                        value = default;
+                        return false;
+                    }
+                    value = fileInfo;
                 }
 
                 return true;
@@ -188,7 +208,6 @@ internal static class OneOfParser
                 return false;
             },
 
-#if NET6_0_OR_GREATER
             [typeof(TimeOnly)] = (string input, [NotNullWhen(true)] out object? value) =>
             {
                 if (TimeOnly.TryParse(input, out TimeOnly parsed))
@@ -200,7 +219,6 @@ internal static class OneOfParser
                 value = default;
                 return false;
             },
-#endif
 
             [typeof(uint)] = (string token, [NotNullWhen(true)] out object? value) =>
             {
