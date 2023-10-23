@@ -1,4 +1,5 @@
-﻿using DevToys.Tools.Strings.GlobalStrings;
+﻿using DevToys.Tools.SmartDetection;
+using DevToys.Tools.Strings.GlobalStrings;
 using Microsoft.Extensions.Logging;
 using OneOf;
 
@@ -13,19 +14,6 @@ namespace DevToys.Tools.Tools.EncodersDecoders.Base64Image;
     DescriptionResourceName = nameof(Base64ImageEncoderDecoder.Description))]
 internal sealed partial class Base64ImageEncoderDecoderCommandLineTool : ICommandLineTool
 {
-    private static readonly string[] supportedImageExtensions
-        = new string[]
-        {
-            ".bmp",
-            ".gif",
-            ".ico",
-            ".jpg",
-            ".jpeg",
-            ".png",
-            ".svg",
-            ".webp"
-        };
-
 #pragma warning disable IDE0044 // Add readonly modifier
     [Import]
     private IFileStorage _fileStorage = null!;
@@ -36,13 +24,13 @@ internal sealed partial class Base64ImageEncoderDecoderCommandLineTool : IComman
         Alias = "i",
         IsRequired = true,
         DescriptionResourceName = nameof(Base64ImageEncoderDecoder.InputOptionDescription))]
-    private OneOf<FileInfo, string>? Input { get; set; }
+    internal OneOf<FileInfo, string>? Input { get; set; }
 
     [CommandLineOption(
         Name = "outputFile",
         Alias = "o",
         DescriptionResourceName = nameof(Base64ImageEncoderDecoder.OutputFileOptionDescription))]
-    private FileInfo? OutputFile { get; set; }
+    internal FileInfo? OutputFile { get; set; }
 
     public async ValueTask<int> InvokeAsync(ILogger logger, CancellationToken cancellationToken)
     {
@@ -60,7 +48,8 @@ internal sealed partial class Base64ImageEncoderDecoderCommandLineTool : IComman
                     return -1;
                 }
 
-                bool isImageFile = supportedImageExtensions.Any(ext => ext.Equals(file.Extension, StringComparison.OrdinalIgnoreCase));
+                string fileExtension = file.Extension.Trim('.');
+                bool isImageFile = Base64ImageFileDataTypeDetector.SupportedFileTypes.Any(ext => ext.Equals(fileExtension, StringComparison.OrdinalIgnoreCase));
                 if (isImageFile)
                 {
                     await EncodeAsync(file, cancellationToken);
@@ -76,7 +65,7 @@ internal sealed partial class Base64ImageEncoderDecoderCommandLineTool : IComman
             async base64 => await DecodeAsync(base64, cancellationToken));
     }
 
-    public async Task EncodeAsync(FileInfo file, CancellationToken cancellationToken)
+    private async Task EncodeAsync(FileInfo file, CancellationToken cancellationToken)
     {
         using Stream fileStream = _fileStorage.OpenReadFile(file.FullName);
         using var memoryStream = new MemoryStream();
@@ -115,7 +104,7 @@ internal sealed partial class Base64ImageEncoderDecoderCommandLineTool : IComman
         }
     }
 
-    public async ValueTask<int> DecodeAsync(string input, CancellationToken cancellationToken)
+    private async ValueTask<int> DecodeAsync(string input, CancellationToken cancellationToken)
     {
         Stream? fileStream = null;
         try
@@ -132,7 +121,7 @@ internal sealed partial class Base64ImageEncoderDecoderCommandLineTool : IComman
 
             if (OutputFile is null)
             {
-                fileStream = await _fileStorage.PickSaveFileAsync(supportedImageExtensions);
+                fileStream = await _fileStorage.PickSaveFileAsync(Base64ImageFileDataTypeDetector.SupportedFileTypes);
                 if (fileStream is null)
                 {
                     return -1;
