@@ -29,6 +29,10 @@ public partial class UIFileSelectorPresenter : MefComponentBase
 
     internal bool HasInvalidFilesSelected { get; private set; }
 
+    internal bool HasFilesSelected { get; private set; }
+
+    internal string SelectedFilesDescription { get; private set; } = string.Empty;
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
@@ -102,6 +106,8 @@ public partial class UIFileSelectorPresenter : MefComponentBase
         {
             UIFileSelector.WithFiles(pickedFiles);
         }
+
+        UpdateSelectedFilesDescription();
     }
 
     private async Task OnBrowseFoldersButtonClickAsync()
@@ -137,6 +143,8 @@ public partial class UIFileSelectorPresenter : MefComponentBase
         {
             UIFileSelector.WithFiles(files.ToArray());
         }
+
+        UpdateSelectedFilesDescription();
     }
 
     private async Task OnPasteButtonClickAsync()
@@ -167,6 +175,8 @@ public partial class UIFileSelectorPresenter : MefComponentBase
                 UIFileSelector.WithFiles(pickedFile);
             }
         }
+
+        UpdateSelectedFilesDescription();
     }
 
     private string[] GetTreatedFileExtensions()
@@ -252,6 +262,28 @@ public partial class UIFileSelectorPresenter : MefComponentBase
         }
     }
 
+    private void UpdateSelectedFilesDescription()
+    {
+        if (UIFileSelector.SelectedFiles is null || UIFileSelector.SelectedFiles.Length == 0)
+        {
+            SelectedFilesDescription = string.Empty;
+            HasFilesSelected = false;
+        }
+        else if (UIFileSelector.SelectedFiles.Length == 1)
+        {
+            SelectedFilesDescription = UIFileSelector.SelectedFiles[0].FileName;
+            HasFilesSelected = true;
+        }
+        else
+        {
+            SelectedFilesDescription
+                = string.Format(
+                    DevToys.Localization.Strings.UIFileSelectorPresenter.UIFileSelectorPresenter.FileSelectorMultipleFilesSelected,
+                    UIFileSelector.SelectedFiles.Length);
+            HasFilesSelected = true;
+        }
+    }
+
     private void UIFileSelector_CanSelectManyFilesChanged(object? sender, EventArgs e)
     {
         UpdateInstructionStrings();
@@ -313,6 +345,8 @@ public partial class UIFileSelectorPresenter : MefComponentBase
             HasInvalidFilesSelected = true;
             return;
         }
+
+        UpdateSelectedFilesDescription();
     }
 
     private string GetFileName(IBrowserFile browserFile)

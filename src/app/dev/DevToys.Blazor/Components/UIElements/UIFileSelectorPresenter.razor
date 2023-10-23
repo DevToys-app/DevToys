@@ -63,7 +63,13 @@
                    IsVisible="@HasInvalidFilesSelected"
                    Appearance="TextBlockAppearance.Caption"
                    HorizontalAlignment="UIHorizontalAlignment.Center"
-                   Style="color: orange"/>
+                   Style="color: orange" />
+
+        <TextBlock Text="@SelectedFilesDescription"
+                   IsVisible="@HasFilesSelected"
+                   Appearance="TextBlockAppearance.Caption"
+                   HorizontalAlignment="UIHorizontalAlignment.Center"
+                   Style="color: orange" />
 
     </StackPanel>
 

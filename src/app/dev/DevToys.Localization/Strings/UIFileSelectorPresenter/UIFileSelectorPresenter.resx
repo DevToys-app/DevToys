@@ -138,6 +138,9 @@
   <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
     <value>Only {0} file(s) can be used.</value>
   </data>
+  <data name="FileSelectorMultipleFilesSelected" xml:space="preserve">
+    <value>{0} files have been selected.</value>
+  </data>
   <data name="Or" xml:space="preserve">
     <value>or</value>
   </data>
