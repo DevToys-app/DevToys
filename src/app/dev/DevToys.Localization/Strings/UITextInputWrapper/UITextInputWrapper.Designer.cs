@@ -88,7 +88,7 @@ namespace DevToys.Localization.Strings.UITextInputWrapper {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Load a file.
+        ///   Looks up a localized string similar to Open a text document.
         /// </summary>
         public static string LoadFileButtonText {
             get {

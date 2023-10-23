@@ -127,7 +127,7 @@
     <value>Extend</value>
   </data>
   <data name="LoadFileButtonText" xml:space="preserve">
-    <value>Load a file</value>
+    <value>Open a text document</value>
   </data>
   <data name="MoreButtonToolTip" xml:space="preserve">
     <value>More...</value>
