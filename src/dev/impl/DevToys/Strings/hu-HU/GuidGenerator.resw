@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>UUID Generáló eszköz</value>
+    <value>UUID Generátor</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Konfiguráció</value>
@@ -133,16 +133,16 @@
     <value>UUID(k) generálása</value>
   </data>
   <data name="Guids" xml:space="preserve">
-    <value>UUID(k)</value>
+    <value>UUID érték(ek)</value>
   </data>
   <data name="Hyphens" xml:space="preserve">
     <value>Kötőjelek</value>
   </data>
   <data name="MultiplySymbol" xml:space="preserve">
-    <value>x</value>
+    <value>×</value>
   </data>
   <data name="NumberOfGuidsToGenerate_AutomationProperties_Name" xml:space="preserve">
-    <value>Generálandó UUIDk száma</value>
+    <value>Generálandó UUID értékek száma</value>
   </data>
   <data name="Uppercase" xml:space="preserve">
     <value>Nagybetűs</value>
@@ -154,13 +154,13 @@
     <value>1</value>
   </data>
   <data name="VersionDescription" xml:space="preserve">
-    <value>Válaszd ki a generálandó UUIDk verzióját</value>
+    <value>Válaszd ki a generáláshoz használt UUID verziót</value>
   </data>
   <data name="VersionTitle" xml:space="preserve">
     <value>UUID verzió</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>1-es és 4-es verziójú UUIDk generálása</value>
+    <value>1-es és 4-es verziójú UUID-k generálása</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>UUID Generátor</value>
