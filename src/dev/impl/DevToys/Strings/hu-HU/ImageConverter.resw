@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Image Converter tool</value>
+    <value>Képátalakító</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Mégsem</value>
@@ -130,13 +130,13 @@
     <value>Törlés</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
-    <value>Delete all</value>
+    <value>Összes törlése</value>
   </data>
   <data name="DetailsTitle" xml:space="preserve">
-    <value>Details</value>
+    <value>Részletek</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Image Converter</value>
+    <value>Képátalakító</value>
   </data>
   <data name="FileSizeDisplay" xml:space="preserve">
     <value>{0:0.##} {1}</value>
@@ -146,25 +146,25 @@
     <value>OK</value>
   </data>
   <data name="SaveAll" xml:space="preserve">
-    <value>Save all</value>
+    <value>Összes mentése</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Mentés másként</value>
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
-    <value>See details</value>
+    <value>Részletek megjelenítése</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Lossless image converter</value>
+    <value>Veszteségmentes képátalakító</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Image Converter</value>
+    <value>Képátalakító</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
     <value>Konverzió</value>
   </data>
   <data name="ConvertedFormatDescription" xml:space="preserve">
-    <value>Select the converted file format</value>
+    <value>Válassza ki a konvertált fájl formátumát</value>
   </data>
   <data name="JPEG" xml:space="preserve">
     <value>JPEG</value>
@@ -188,7 +188,7 @@
     <value>TIFF</value>
   </data>
   <data name="ErrorMessage" xml:space="preserve">
-    <value>An unexpected error has occurred, the conversion may not have been performed.</value>
+    <value>Nem várt hiba történt. Lehetséges, hogy a konverzió nem lett végrehajtva.</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>BMP GIF HEIF JPG XR PNG TIFF</value>
