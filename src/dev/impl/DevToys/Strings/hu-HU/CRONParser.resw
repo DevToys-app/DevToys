@@ -118,31 +118,31 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Cron parsing tool</value>
+    <value>CRON elemző</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Konfiguráció</value>
   </data>
   <data name="UseSecondsDescription" xml:space="preserve">
-    <value>Choose whether the Cron expression should include seconds in its definition</value>
+    <value>Válassza ki, hogy a CRON kifejezésnek tartalmaznia kell-e a másodperceket a definíciójában</value>
   </data>
   <data name="UseSecondsTitle" xml:space="preserve">
-    <value>Cron Mode</value>
+    <value>CRON mód</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Cron parser</value>
+    <value>CRON elemző</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Parse Cron expression to get scheduled dates</value>
+    <value>CRON kifejezés elemzése, ütemezett dátumok generálása</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Cron expression parser</value>
+    <value>CRON kifejezés elemző</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>Cron</value>
   </data>
   <data name="CronErrorMessage" xml:space="preserve">
-    <value>Cron expression is not valid</value>
+    <value>Érvénytelen CRON kifejezés</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
     <value>Cron expression to parse</value>
