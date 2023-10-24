@@ -154,13 +154,13 @@
     <value>Hexadecimális</value>
   </data>
   <data name="InputTypeOctal" xml:space="preserve">
-    <value>Octal</value>
+    <value>Oktális</value>
   </data>
   <data name="InputTypeTitle" xml:space="preserve">
     <value>Bemeneti típus</value>
   </data>
   <data name="OctalLabel" xml:space="preserve">
-    <value>Octal</value>
+    <value>Oktális</value>
   </data>
   <data name="ValueInvalid" xml:space="preserve">
     <value>A jelenlegi érték nem érvényes {0}</value>
@@ -177,7 +177,7 @@
     <value>Számbázis átváltó</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Binary Octal Decimal Hexadecimal</value>
+    <value>Bináris Oktális Decimális Hexadecimális</value>
   </data>
   <data name="AdvancedModeLabel" xml:space="preserve">
     <value>Advanced mode</value>
