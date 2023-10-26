@@ -74,6 +74,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>EncodersDecoders.resx</DependentUpon>
     </Compile>
+    <Compile Update="Tools\Generators\Generators.Designer.cs">
+      <DependentUpon>Generators.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Tools\Generators\HashAndChecksum\HashAndChecksumGenerator.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>HashAndChecksumGenerator.resx</DependentUpon>
+    </Compile>
     <Compile Update="Tools\Test\Test.Designer.cs">
       <DependentUpon>Test.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -116,6 +126,14 @@
     <EmbeddedResource Update="Tools\EncodersDecoders\EncodersDecoders.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>EncodersDecoders.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Tools\Generators\Generators.resx">
+      <LastGenOutput>Generators.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Tools\Generators\HashAndChecksum\HashAndChecksumGenerator.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>HashAndChecksumGenerator.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Tools\Test\Test.resx">
       <LastGenOutput>Test.Designer.cs</LastGenOutput>

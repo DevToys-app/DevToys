@@ -124,6 +124,15 @@ namespace DevToys.Localization.Strings.UIFileSelectorPresenter {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} files have been selected..
+        /// </summary>
+        public static string FileSelectorMultipleFilesSelected {
+            get {
+                return ResourceManager.GetString("FileSelectorMultipleFilesSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to or.
         /// </summary>
         public static string Or {

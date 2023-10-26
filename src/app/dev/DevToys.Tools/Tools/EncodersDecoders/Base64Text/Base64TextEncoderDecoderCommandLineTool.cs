@@ -1,4 +1,5 @@
-﻿using DevToys.Tools.Helpers;
+﻿using DevToys.Api.Core;
+using DevToys.Tools.Helpers;
 using DevToys.Tools.Models;
 using Microsoft.Extensions.Logging;
 using OneOf;
@@ -14,6 +15,11 @@ namespace DevToys.Tools.Tools.EncodersDecoders.Base64Text;
     DescriptionResourceName = nameof(Base64TextEncoderDecoder.Description))]
 internal sealed class Base64TextEncoderDecoderCommandLineTool : ICommandLineTool
 {
+#pragma warning disable IDE0044 // Add readonly modifier
+    [Import]
+    private IFileStorage _fileStorage = null!;
+#pragma warning restore IDE0044 // Add readonly modifier
+
     [CommandLineOption(
         Name = "input",
         Alias = "i",
@@ -45,10 +51,7 @@ internal sealed class Base64TextEncoderDecoderCommandLineTool : ICommandLineTool
 
         if (Input.HasValue)
         {
-            input
-                = await Input.Value.Match(
-                    async file => await File.ReadAllTextAsync(file.FullName, cancellationToken),
-                    text => Task.FromResult(text));
+            input = await Input.Value.ReadAllTextAsync(_fileStorage, cancellationToken);
         }
 
         Guard.IsNotNull(input);

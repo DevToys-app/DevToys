@@ -18,6 +18,7 @@ namespace DevToys.Tools.Tools.EncodersDecoders.Base64Text;
     AccessibleNameResourceName = nameof(Base64TextEncoderDecoder.AccessibleName),
     SearchKeywordsResourceName = nameof(Base64TextEncoderDecoder.SearchKeywords))]
 [AcceptedDataTypeName(PredefinedCommonDataTypeNames.Base64Text)]
+[AcceptedDataTypeName(PredefinedCommonDataTypeNames.Text)]
 internal sealed partial class Base64TextEncoderDecoderGuiTool : IGuiTool, IDisposable
 {
     /// <summary>
@@ -160,6 +161,11 @@ internal sealed partial class Base64TextEncoderDecoderGuiTool : IGuiTool, IDispo
             _conversionModeSwitch.Off(); // Switch to Decode mode
             _inputText.Text(base64Text); // This will trigger a conversion.
         }
+        else if (dataTypeName == PredefinedCommonDataTypeNames.Text && parsedData is string text)
+        {
+            _conversionModeSwitch.On(); // Switch to Encode mode
+            _inputText.Text(text); // This will trigger a conversion.
+        }
     }
 
     public void Dispose()
@@ -213,43 +219,43 @@ internal sealed partial class Base64TextEncoderDecoderGuiTool : IGuiTool, IDispo
     {
         using (await _semaphore.WaitAsync(cancellationToken))
         {
-        await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
+            await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
 
-        string conversionResult;
+            string conversionResult;
 
-        switch (_settingsProvider.GetSetting(conversionMode))
-        {
-            case EncodingConversion.Encode:
-                conversionResult
-                    = Base64Helper.FromTextToBase64(
-                        input,
-                        _settingsProvider.GetSetting(encoder),
-                        _logger,
-                        cancellationToken);
-                break;
+            switch (_settingsProvider.GetSetting(conversionMode))
+            {
+                case EncodingConversion.Encode:
+                    conversionResult
+                        = Base64Helper.FromTextToBase64(
+                            input,
+                            _settingsProvider.GetSetting(encoder),
+                            _logger,
+                            cancellationToken);
+                    break;
 
-            case EncodingConversion.Decode:
-                if (!string.IsNullOrEmpty(input) && !Base64Helper.IsBase64DataStrict(input))
-                {
-                    cancellationToken.ThrowIfCancellationRequested();
-                    _outputText.Text(Base64TextEncoderDecoder.InvalidBase64);
-                    return;
-                }
+                case EncodingConversion.Decode:
+                    if (!string.IsNullOrEmpty(input) && !Base64Helper.IsBase64DataStrict(input))
+                    {
+                        cancellationToken.ThrowIfCancellationRequested();
+                        _outputText.Text(Base64TextEncoderDecoder.InvalidBase64);
+                        return;
+                    }
 
-                conversionResult
-                    = Base64Helper.FromBase64ToText(
-                        input,
-                        _settingsProvider.GetSetting(encoder),
-                        _logger,
-                        cancellationToken);
-                break;
+                    conversionResult
+                        = Base64Helper.FromBase64ToText(
+                            input,
+                            _settingsProvider.GetSetting(encoder),
+                            _logger,
+                            cancellationToken);
+                    break;
 
-            default:
-                throw new NotSupportedException();
+                default:
+                    throw new NotSupportedException();
+            }
+
+            cancellationToken.ThrowIfCancellationRequested();
+            _outputText.Text(conversionResult);
         }
-
-        cancellationToken.ThrowIfCancellationRequested();
-        _outputText.Text(conversionResult);
     }
-}
 }

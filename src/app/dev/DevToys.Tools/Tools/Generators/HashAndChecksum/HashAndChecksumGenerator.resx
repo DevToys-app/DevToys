@@ -117,34 +117,73 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BrowseFiles" xml:space="preserve">
-    <value>Browse files</value>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>Hash and Checksum Generator tool</value>
   </data>
-  <data name="BrowserFolders" xml:space="preserve">
-    <value>Browse folders</value>
+  <data name="ChecksumVerificationFailed" xml:space="preserve">
+    <value>FAILED</value>
   </data>
-  <data name="FileSelectorDragDropAnyFile" xml:space="preserve">
-    <value>Drag &amp; drop any file here</value>
+  <data name="ChecksumVerificationOptionDescription" xml:space="preserve">
+    <value>A text or file containing a checksum to verify data integrity</value>
   </data>
-  <data name="FileSelectorDragDropAnyFiles" xml:space="preserve">
-    <value>Drag &amp; drop any files here</value>
+  <data name="ChecksumVerificationSucceeded" xml:space="preserve">
+    <value>OK</value>
   </data>
-  <data name="FileSelectorDragDropAnySpecificFile" xml:space="preserve">
-    <value>Drag &amp; drop a {0} file here</value>
+  <data name="ChecksumVerificationTitle" xml:space="preserve">
+    <value>Checksum to verify data integrity</value>
   </data>
-  <data name="FileSelectorDragDropAnySpecificFiles" xml:space="preserve">
-    <value>Drag &amp; drop any {0} files here</value>
+  <data name="ConfigurationTitle" xml:space="preserve">
+    <value>Configuration</value>
   </data>
-  <data name="FileSelectorInvalidSelectedFiles" xml:space="preserve">
-    <value>Only {0} file(s) can be used.</value>
+  <data name="Description" xml:space="preserve">
+    <value>Calculate hash from text or binary data</value>
   </data>
-  <data name="FileSelectorMultipleFilesSelected" xml:space="preserve">
-    <value>{0} files have been selected.</value>
+  <data name="HashAlgorithmOptionDescription" xml:space="preserve">
+    <value>The type of hash to generate</value>
+  </data>
+  <data name="HashesMatch" xml:space="preserve">
+    <value>The hashes are the same</value>
+  </data>
+  <data name="HashesMismatch" xml:space="preserve">
+    <value>The hashes are different</value>
+  </data>
+  <data name="HashingAlgorithmDescription" xml:space="preserve">
+    <value>Select which hashing algorithm you want to use</value>
+  </data>
+  <data name="HashingAlgorithmTitle" xml:space="preserve">
+    <value>Hashing Algorithm</value>
+  </data>
+  <data name="HmacSecret" xml:space="preserve">
+    <value>Secret key to use to generate a HMAC hash</value>
+  </data>
+  <data name="HmacSecretOptionDescription" xml:space="preserve">
+    <value>Secret key to use to generate a HMAC hash</value>
+  </data>
+  <data name="InputOptionDescription" xml:space="preserve">
+    <value>Text or path to a file to hash</value>
+  </data>
+  <data name="InputTextTitle" xml:space="preserve">
+    <value>Input text</value>
+  </data>
+  <data name="LongDisplayTitle" xml:space="preserve">
+    <value>Hash / Checksum Generator</value>
   </data>
   <data name="Or" xml:space="preserve">
     <value>or</value>
   </data>
-  <data name="Paste" xml:space="preserve">
-    <value>Paste</value>
+  <data name="OutputTitle" xml:space="preserve">
+    <value>Output</value>
+  </data>
+  <data name="ShortDisplayTitle" xml:space="preserve">
+    <value>Hash / Checksum</value>
+  </data>
+  <data name="SilentOptionDescription" xml:space="preserve">
+    <value>Hides the progress of the hashing operation</value>
+  </data>
+  <data name="UppercaseOptionDescription" xml:space="preserve">
+    <value>Whether the generated hash should be in uppercase or not</value>
+  </data>
+  <data name="UppercaseTitle" xml:space="preserve">
+    <value>Uppercase</value>
   </data>
 </root>

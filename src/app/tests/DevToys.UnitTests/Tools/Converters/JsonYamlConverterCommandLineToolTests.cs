@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace DevToys.UnitTests.Tools.Converters;
 
+[Collection(nameof(TestParallelizationDisabled))]
 public sealed class JsonYamlConverterCommandLineToolTests : MefBasedTest
 {
     private readonly StringWriter _consoleWriter = new();
