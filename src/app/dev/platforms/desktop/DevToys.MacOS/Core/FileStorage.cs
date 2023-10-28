@@ -2,7 +2,6 @@
 using DevToys.Api;
 using DevToys.Core;
 using DevToys.MacOS.Helpers;
-
 namespace DevToys.MacOS.Core;
 
 [Export(typeof(IFileStorage))]
@@ -105,8 +104,7 @@ internal sealed class FileStorage : IFileStorage
             FileResult? fileResult = await FilePicker.Default.PickAsync(otpions);
             if (fileResult is not null)
             {
-                // TODO
-                return new MacOSSandboxedFileReader(fileResult.FileName, await fileResult.OpenReadAsync());
+                return SandboxedFileReader.FromFileInfo(new FileInfo(fileResult.FullPath));
             }
 
             return null;
@@ -134,8 +132,7 @@ internal sealed class FileStorage : IFileStorage
                 var result = new List<SandboxedFileReader>();
                 foreach (FileResult file in fileResults)
                 {
-                    // TODO
-                    result.Add(new MacOSSandboxedFileReader(file.FileName, await file.OpenReadAsync()));
+                    result.Add(SandboxedFileReader.FromFileInfo(new FileInfo(file.FullPath)));
                 }
 
                 return result.ToArray();

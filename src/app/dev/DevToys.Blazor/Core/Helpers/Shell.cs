@@ -10,7 +10,9 @@ internal static class Shell
 
         try
         {
-            Process.Start(url);
+            var startInfo = new ProcessStartInfo(url);
+            startInfo.UseShellExecute = true;
+            Process.Start(startInfo);
         }
         catch
         {
