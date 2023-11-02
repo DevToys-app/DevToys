@@ -235,6 +235,15 @@ public static partial class GUI
     }
 
     /// <summary>
+    /// Sets no spacing between rows.
+    /// </summary>
+    public static IUIGrid RowNoSpacing(this IUIGrid element)
+    {
+        ((UIGrid)element).RowSpacing = UISpacing.None;
+        return element;
+    }
+
+    /// <summary>
     /// Sets a small spacing between rows.
     /// </summary>
     public static IUIGrid RowSmallSpacing(this IUIGrid element)
@@ -258,6 +267,15 @@ public static partial class GUI
     public static IUIGrid RowLargeSpacing(this IUIGrid element)
     {
         ((UIGrid)element).RowSpacing = UISpacing.Large;
+        return element;
+    }
+
+    /// <summary>
+    /// Sets no spacing between columns.
+    /// </summary>
+    public static IUIGrid ColumnNoSpacing(this IUIGrid element)
+    {
+        ((UIGrid)element).ColumnSpacing = UISpacing.None;
         return element;
     }
 

@@ -136,6 +136,15 @@ public static partial class GUI
     }
 
     /// <summary>
+    /// Sets no spacing between children.
+    /// </summary>
+    public static IUIStack NoSpacing(this IUIStack element)
+    {
+        ((UIStack)element).Spacing = UISpacing.None;
+        return element;
+    }
+
+    /// <summary>
     /// Sets a small spacing between children.
     /// </summary>
     public static IUIStack SmallSpacing(this IUIStack element)

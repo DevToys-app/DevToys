@@ -9,7 +9,7 @@
             VerticalAlignment="@UIWrap.VerticalAlignment"
             Orientation="UIOrientation.Horizontal"
             Wrap="true"
-            Spacing="@(UIWrap.Spacing == UISpacing.Small ? 4 : (UIWrap.Spacing == UISpacing.Medium ? 8 : 12))">
+            Spacing="@(UIWrap.Spacing.ToPxInteger())">
     @if (UIWrap.Children is not null)
     {
         for (int i = 0; i < UIWrap.Children.Length; i++)

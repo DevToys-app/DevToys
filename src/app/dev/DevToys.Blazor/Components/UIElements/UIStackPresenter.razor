@@ -8,7 +8,7 @@
             HorizontalAlignment="@UIStack.HorizontalAlignment"
             VerticalAlignment="@UIStack.VerticalAlignment"
             Orientation="@UIStack.Orientation"
-            Spacing="@(UIStack.Spacing == UISpacing.Small ? 4 : (UIStack.Spacing == UISpacing.Medium ? 8 : 12))">
+            Spacing="@(UIStack.Spacing.ToPxInteger())">
     @if (UIStack.Children is not null)
     {
         for (int i = 0; i < UIStack.Children.Length; i++)

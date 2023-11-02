@@ -238,6 +238,10 @@ public static partial class GUI
         if (item is not null)
         {
             listItems.Remove(item);
+            if (item is IDisposable disposable)
+            {
+                disposable.Dispose();
+            }
         }
     }
 }

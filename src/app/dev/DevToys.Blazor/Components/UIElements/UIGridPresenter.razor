@@ -7,8 +7,8 @@
       IsEnabled="@UIGrid.IsEnabled"
       HorizontalAlignment="@UIGrid.HorizontalAlignment"
       VerticalAlignment="@UIGrid.VerticalAlignment"
-      RowSpacing="@(UIGrid.RowSpacing == UISpacing.Small ? 4 : (UIGrid.RowSpacing == UISpacing.Medium ? 8 : 12))"
-      ColumnSpacing="@(UIGrid.ColumnSpacing == UISpacing.Small ? 4 : (UIGrid.ColumnSpacing == UISpacing.Medium ? 8 : 12))"
+      RowSpacing="@(UIGrid.RowSpacing.ToPxInteger())"
+      ColumnSpacing="@(UIGrid.ColumnSpacing.ToPxInteger())"
       Rows="@UIGrid.Rows"
       Columns="@UIGrid.Columns">
     @if (UIGrid.Cells is not null)

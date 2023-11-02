@@ -409,7 +409,11 @@ public sealed partial class GuiToolProvider
         var bodyToolInstances = new List<GuiToolInstance>();
 
         // Order all the tools.
-        guiTools = ExtensionOrderer.Order(guiTools.OrderBy(tool => tool.Metadata.MenuPlacement));
+        guiTools
+            = ExtensionOrderer.Order(
+                guiTools
+                    .OrderBy(tool => tool.Metadata.MenuPlacement)
+                    .ThenBy(tool => tool.Metadata.InternalComponentName));
 
         foreach (Lazy<IGuiTool, GuiToolMetadata> guiToolDefinition in guiTools)
         {
@@ -583,7 +587,10 @@ public sealed partial class GuiToolProvider
         }
 
         // Order tools groups.
-        IEnumerable<GroupViewItem> orderedGroups = ExtensionOrderer.Order(groups.Values).Select(g => g.Value);
+        IEnumerable<GroupViewItem> orderedGroups
+            = ExtensionOrderer.Order(
+                groups.Values.OrderBy(g => g.Value.DisplayTitle))
+            .Select(g => g.Value);
         return orderedGroups;
     }
 

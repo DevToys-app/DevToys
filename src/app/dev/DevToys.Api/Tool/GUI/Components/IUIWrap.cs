@@ -98,6 +98,15 @@ public static partial class GUI
     }
 
     /// <summary>
+    /// Sets no spacing between children.
+    /// </summary>
+    public static IUIWrap NoSpacing(this IUIWrap element)
+    {
+        ((UIWrap)element).Spacing = UISpacing.None;
+        return element;
+    }
+
+    /// <summary>
     /// Sets a small spacing between children.
     /// </summary>
     public static IUIWrap SmallSpacing(this IUIWrap element)
