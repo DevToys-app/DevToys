@@ -62,13 +62,13 @@ public partial class Container : StyledComponentBase
                 break;
         }
 
+        styleBuilder.AddImportantStyle("min-height", "min-content", !Height.HasValue);
+        styleBuilder.AddImportantStyle("max-height", "100%", !Height.HasValue);
         switch (VerticalAlignment)
         {
             case UIVerticalAlignment.Stretch:
                 styleBuilder.AddImportantStyle("align-items", "stretch");
                 styleBuilder.AddImportantStyle("height", "100%", !Height.HasValue);
-                styleBuilder.AddImportantStyle("max-height", "100%", !Height.HasValue);
-                styleBuilder.AddImportantStyle("min-height", "min-content", !Height.HasValue);
                 innerStyleBuilder.AddImportantStyle("max-height", "inherit", !Height.HasValue);
                 innerStyleBuilder.AddImportantStyle("height", "100%", !Height.HasValue);
                 innerStyleBuilder.AddImportantStyle("min-height", "min-content", !Height.HasValue);
@@ -83,6 +83,7 @@ public partial class Container : StyledComponentBase
                 break;
 
             case UIVerticalAlignment.Center:
+                styleBuilder.AddImportantStyle("height", "100%", !Height.HasValue);
                 styleBuilder.AddImportantStyle("align-items", "center");
                 break;
         }

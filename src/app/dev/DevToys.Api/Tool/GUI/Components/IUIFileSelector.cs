@@ -64,8 +64,11 @@ internal sealed class UIFileSelector : UIElement, IUIFileSelector
             {
                 for (int i = 0; i < value.Length; i++)
                 {
-                    string fileExtension = Path.GetExtension(value[i].FileName).Trim('.');
-                    if (AllowedFileExtensions.All(ext => !string.Equals(ext, fileExtension, StringComparison.CurrentCultureIgnoreCase)))
+                    string fileExtension = Path.GetExtension(value[i].FileName);
+                    string fileExtensionTrimmed = fileExtension.Trim('.');
+                    if (AllowedFileExtensions
+                        .All(ext => !string.Equals(ext, fileExtension, StringComparison.CurrentCultureIgnoreCase)
+                                    && !string.Equals(ext, fileExtensionTrimmed, StringComparison.CurrentCultureIgnoreCase)))
                     {
                         ThrowHelper.ThrowInvalidOperationException($"File extension '{fileExtension}' is not allowed.");
                     }
