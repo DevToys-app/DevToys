@@ -307,7 +307,8 @@ public partial class UIFileSelectorPresenter : MefComponentBase
                 string fileName = fileNameGetter(file);
                 if (!string.IsNullOrEmpty(fileName))
                 {
-                    if (fileTypes.Length == 0 || fileTypes.Any(fileType => string.Equals(("." + fileType), Path.GetExtension(fileName), StringComparison.OrdinalIgnoreCase)))
+                    var fileExtension = Path.GetExtension(fileName).Trim('.');
+                    if (fileTypes.Length == 0 || fileTypes.Any(fileType => string.Equals(fileType, fileExtension, StringComparison.OrdinalIgnoreCase)))
                     {
                         pickedFiles.Add(pickedFileCreator(file));
                     }
@@ -335,7 +336,8 @@ public partial class UIFileSelectorPresenter : MefComponentBase
         {
             if (files.Length == 1 && !string.IsNullOrEmpty(fileNameGetter(files[0])))
             {
-                if (fileTypes.Length == 0 || fileTypes.Any(fileType => string.Equals(("." + fileType), Path.GetExtension(fileNameGetter(files[0])), StringComparison.OrdinalIgnoreCase)))
+                string fileExtension = Path.GetExtension(fileNameGetter(files[0])).Trim('.');
+                if (fileTypes.Length == 0 || fileTypes.Any(fileType => string.Equals(fileType, fileExtension, StringComparison.OrdinalIgnoreCase)))
                 {
                     UIFileSelector.WithFiles(pickedFileCreator(files[0]));
                     return;
