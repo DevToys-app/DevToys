@@ -6,7 +6,7 @@ public static class DebuggerHelper
     {
 #if DEBUG
         limit ??= TimeSpan.FromSeconds(60);
-        var source = new CancellationTokenSource(limit.Value);
+        using var source = new CancellationTokenSource(limit.Value);
 
         Console.WriteLine($"◉ Waiting {limit.Value.TotalSeconds} secs for debugger (PID: {Process.GetCurrentProcess().Id})...");
 

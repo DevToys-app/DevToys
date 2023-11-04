@@ -213,7 +213,7 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
 
         try
         {
-            var cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(2));
+            using var cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(2));
             INotifyPropertyChanged? selectedMenuBeforeSmartDetection = SelectedMenuItem;
             Guard.IsNotNull(selectedMenuBeforeSmartDetection);
 

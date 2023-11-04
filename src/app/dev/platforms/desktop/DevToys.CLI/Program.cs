@@ -94,6 +94,23 @@ internal partial class Program
                 }
             }
 
+            // Read the pipeline input, if any.
+            if (Console.IsInputRedirected)
+            {
+                string pipelineInput = await Console.In.ReadToEndAsync(CancellationToken.None);
+
+                // Remove the last new line, if any.
+                if (pipelineInput.EndsWith(Environment.NewLine))
+                {
+                    pipelineInput = pipelineInput.Substring(0, pipelineInput.Length - Environment.NewLine.Length);
+                }
+
+                // Remove the BOM character, if any.
+                pipelineInput = pipelineInput.Trim(new char[] { '\uFEFF', '\u200B' });
+
+                args = args.Append(pipelineInput).ToArray();
+            }
+
             // Parse the command prompt arguments and run the appropriate command, if possible.
             int exitCode = await rootCommand.InvokeAsync(args);
             Environment.ExitCode = exitCode;
