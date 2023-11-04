@@ -2,6 +2,7 @@
 
 .drop-down-list {
     @include typography-body;
+    pointer-events: auto;
 
     &-with-header {
         display: flex;

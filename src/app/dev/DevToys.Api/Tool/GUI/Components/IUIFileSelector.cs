@@ -60,7 +60,7 @@ internal sealed class UIFileSelector : UIElement, IUIFileSelector
                 ThrowHelper.ThrowInvalidOperationException("Cannot select more than one file.");
             }
 
-            if (value.Length > 0)
+            if (value.Length > 0 && AllowedFileExtensions.Length > 0)
             {
                 for (int i = 0; i < value.Length; i++)
                 {

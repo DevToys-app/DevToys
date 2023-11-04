@@ -2,6 +2,7 @@
     border: 2px dashed var(--ui-file-selector-stroke-color);
     border-radius: var(--overlay-corner-radius);
     background-color: var(--ui-file-selector-background-color);
+    pointer-events: auto;
 
     &-content {
         padding: 24px;

@@ -15,6 +15,7 @@ $control-fast-out-slow-in-easing: cubic-bezier(0, 0, 0, 1);
     appearance: none;
     inline-size: var(--toggle-switch-width);
     block-size: var(--toggle-switch-height);
+    pointer-events: auto;
 
     &::before {
         content: "";

@@ -1,5 +1,6 @@
 .split-grid {
     height: inherit;
+    pointer-events: auto;
 
     &-gripper {
         display: flex;

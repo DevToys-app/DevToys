@@ -5,6 +5,7 @@
     flex: 1;
     border-collapse: collapse;
     border-spacing: 0px;
+    pointer-events: auto;
 
     &-container {
         position: relative;

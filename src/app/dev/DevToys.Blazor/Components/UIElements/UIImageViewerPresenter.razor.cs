@@ -1,5 +1,6 @@
 ﻿// TODO: Add logs.
 using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats.Png;
 
 namespace DevToys.Blazor.Components.UIElements;
 
@@ -170,8 +171,9 @@ public partial class UIImageViewerPresenter : MefComponentBase
             {
                 await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
 
-                Guard.IsNotNull(UIImageViewer.ImageSource);
-                await UIImageViewer.ImageSource.Value.Match(
+                if (UIImageViewer.ImageSource.HasValue)
+                {
+                    await UIImageViewer.ImageSource.Value.Match(
                     async (FileInfo imageFileInfo) =>
                     {
                         using FileStream fileStream = imageFileInfo.OpenRead();
@@ -225,6 +227,11 @@ public partial class UIImageViewerPresenter : MefComponentBase
                         ImageName = imagePickedFile.FileName;
                         IsImageDisplayed = true;
                     });
+                }
+                else
+                {
+                    IsImageDisplayed = false;
+                }
             }
         }
         catch (OperationCanceledException)
@@ -249,6 +256,6 @@ public partial class UIImageViewerPresenter : MefComponentBase
     {
         Guard.IsNotNull(image);
 
-        return image.ToBase64String(image.Metadata.DecodedImageFormat!);
+        return image.ToBase64String(image.Metadata.DecodedImageFormat ?? PngFormat.Instance);
     }
 }

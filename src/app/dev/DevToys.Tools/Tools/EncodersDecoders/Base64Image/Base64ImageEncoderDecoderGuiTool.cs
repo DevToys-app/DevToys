@@ -138,7 +138,7 @@ internal sealed partial class Base64ImageEncoderDecoderGuiTool : IGuiTool, IDisp
 
         _selectedFile?.Dispose();
         _selectedFile = files[0];
-        _imageViewer.WithPickedFile(_selectedFile);
+        _imageViewer.WithPickedFile(_selectedFile, false);
 
         StartConvert(_selectedFile);
         return ValueTask.CompletedTask;

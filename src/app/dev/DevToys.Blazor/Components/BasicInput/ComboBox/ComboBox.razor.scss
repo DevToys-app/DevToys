@@ -2,6 +2,7 @@
 
 .combo-box {
     @include typography-body;
+    pointer-events: auto;
 
     &-with-header {
         display: flex;

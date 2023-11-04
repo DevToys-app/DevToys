@@ -1,6 +1,8 @@
 @use "../../../Assets/sass/devtoys" as *;
 
 .expander {
+    pointer-events: auto;
+
     .card {
         &:focus-visible {
             box-shadow: var(--focus-stroke);

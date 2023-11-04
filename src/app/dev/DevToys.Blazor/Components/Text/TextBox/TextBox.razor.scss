@@ -14,6 +14,7 @@
     border-radius: var(--control-corner-radius);
     color: var(--text-box-foreground);
     background-color: transparent;
+    pointer-events: auto;
 
     &::placeholder {
         @include typography-body;

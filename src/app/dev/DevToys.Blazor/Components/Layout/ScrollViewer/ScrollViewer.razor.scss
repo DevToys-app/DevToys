@@ -3,6 +3,7 @@
     overflow-x: overlay;
     height: 100%;
     width: 100%;
+    pointer-events: auto;
 
     &.vertical {
         overflow-y: overlay;

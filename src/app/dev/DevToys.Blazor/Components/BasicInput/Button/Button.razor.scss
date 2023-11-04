@@ -19,6 +19,7 @@ button {
     width: inherit;
     height: inherit;
     min-width: fit-content;
+    pointer-events: auto;
 
     &:focus-visible {
         box-shadow: var(--focus-stroke);

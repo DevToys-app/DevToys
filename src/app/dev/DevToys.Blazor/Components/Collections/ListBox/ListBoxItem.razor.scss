@@ -17,6 +17,7 @@
     -webkit-user-select: none;
     min-block-size: 34px;
     text-decoration: none;
+    pointer-events: auto;
 
     &::before {
         content: "";
@@ -47,6 +48,7 @@
     &.selected {
         background-color: var(--list-box-item-background-selected);
         color: var(--list-box-item-foreground-selected) !important;
+
         * {
             color: var(--list-box-item-foreground-selected) !important;
         }

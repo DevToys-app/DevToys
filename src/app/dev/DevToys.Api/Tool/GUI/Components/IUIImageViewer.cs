@@ -29,17 +29,27 @@ internal sealed class UIImageViewer : UITitledElement, IUIImageViewer, IDisposab
     {
     }
 
+    internal bool DisposeAutomatically { get; set; }
+
     public OneOf<FileInfo, Image, SandboxedFileReader>? ImageSource
     {
         get => _imageSource;
-        internal set => SetPropertyValue(ref _imageSource, value, ImageSourceChanged);
+        internal set
+        {
+            if (DisposeAutomatically && ImageSource.HasValue && ImageSource.Value.Value is IDisposable disposable)
+            {
+                disposable.Dispose();
+            }
+
+            SetPropertyValue(ref _imageSource, value, ImageSourceChanged);
+        }
     }
 
     public event EventHandler? ImageSourceChanged;
 
     public void Dispose()
     {
-        if (ImageSource.HasValue && ImageSource.Value.Value is IDisposable disposable)
+        if (ImageSource.HasValue && ImageSource.Value.Value is IDisposable disposable && DisposeAutomatically)
         {
             disposable.Dispose();
         }
@@ -80,19 +90,27 @@ public static partial class GUI
     /// <summary>
     /// Sets the <see cref="IUIImageViewer.ImageSource"/> from a <see cref="SandboxedFileReader"/>.
     /// </summary>
-    public static IUIImageViewer WithPickedFile(this IUIImageViewer element, SandboxedFileReader pickedFile)
+    /// <param name="pickedFile">The file to display.</param>
+    /// <param name="disposeAutomatically">Indicates whether <paramref name="pickedFile"/> should be disposed when not displayed in the UI anymore.</param>
+    public static IUIImageViewer WithPickedFile(this IUIImageViewer element, SandboxedFileReader pickedFile, bool disposeAutomatically)
     {
         ValidateFileExtension(pickedFile.FileName);
-        ((UIImageViewer)element).ImageSource = pickedFile;
+        var imageViewer = (UIImageViewer)element;
+        imageViewer.ImageSource = pickedFile;
+        imageViewer.DisposeAutomatically = disposeAutomatically;
         return element;
     }
 
     /// <summary>
     /// Sets the <see cref="IUIImageViewer.ImageSource"/> from an <see cref="Image"/>.
     /// </summary>
-    public static IUIImageViewer WithImage(this IUIImageViewer element, Image image)
+    /// <param name="image">The image to display</param>
+    /// <param name="disposeAutomatically">Indicates whether <paramref name="image"/> should be disposed when not displayed in the UI anymore.</param>
+    public static IUIImageViewer WithImage(this IUIImageViewer element, Image image, bool disposeAutomatically)
     {
-        ((UIImageViewer)element).ImageSource = image;
+        var imageViewer = (UIImageViewer)element;
+        imageViewer.ImageSource = image;
+        imageViewer.DisposeAutomatically = disposeAutomatically;
         return element;
     }
 

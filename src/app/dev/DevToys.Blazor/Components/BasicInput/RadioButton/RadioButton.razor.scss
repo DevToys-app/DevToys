@@ -15,6 +15,7 @@
     appearance: none;
     inline-size: 20px;
     block-size: 20px;
+    pointer-events: auto;
 
     &::before {
         content: "";
@@ -119,6 +120,7 @@
 
         &:hover {
             background-color: var(--radio-button-background-pointer-over);
+
             > span {
                 color: var(--radio-button-foreground-pointer-over) !important;
             }
@@ -126,6 +128,7 @@
 
         &:active {
             background-color: var(--radio-button-background-pressed);
+
             > span {
                 color: var(--radio-button-foreground-pressed) !important;
             }
@@ -133,6 +136,7 @@
 
         &.disabled {
             background-color: var(--radio-button-background-disabled);
+
             > span {
                 color: var(--radio-button-foreground-disabled) !important;
             }

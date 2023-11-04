@@ -88,6 +88,7 @@ public partial class Container : StyledComponentBase
                 break;
         }
 
+        innerStyleBuilder.AddStyle("pointer-events", "none");
         innerStyleBuilder.AddImportantStyle("width", Width.ToPx(), Width.HasValue);
         innerStyleBuilder.AddImportantStyle("height", Height.ToPx(), Height.HasValue);
         innerStyleBuilder.AddImportantStyle("padding-left", PaddingLeft.ToPx(), PaddingLeft.HasValue);
