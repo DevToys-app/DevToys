@@ -117,12 +117,41 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FileNotFound" xml:space="preserve">
-    <value>File '{0}' was not found.</value>
-    <comment>{0} is a file name.</comment>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>Color Blindness Simulator tool</value>
   </data>
-  <data name="FileTypeNotSupported" xml:space="preserve">
-    <value>File '{0}' is not supported. Only files of type {1} are supported.</value>
-    <comment>{0} is a file name. {1} is a list of file extensions</comment>
+  <data name="Description" xml:space="preserve">
+    <value>Simulate color blindness on a picture or screenshot</value>
+  </data>
+  <data name="DeuteranopiaSimulation" xml:space="preserve">
+    <value>Deuteranopia simulation</value>
+  </data>
+  <data name="InputOptionDescription" xml:space="preserve">
+    <value>Image file path to treat</value>
+  </data>
+  <data name="LongDisplayTitle" xml:space="preserve">
+    <value>Color Blindness Simulator</value>
+  </data>
+  <data name="OriginalPicture" xml:space="preserve">
+    <value>Original</value>
+  </data>
+  <data name="OutputDirectoryOptionDescription" xml:space="preserve">
+    <value>Directory where the result should be persisted. By default, use input file's directory</value>
+  </data>
+  <data name="ProtanopiaSimulation" xml:space="preserve">
+    <value>Protanopia simulation</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>Tritanopia Protanopia Deuteranopia Dalton Daltonism Daltonist</value>
+    <comment>Alternative search keywords.</comment>
+  </data>
+  <data name="ShortDisplayTitle" xml:space="preserve">
+    <value>Color Blindness Simulator</value>
+  </data>
+  <data name="SilentOptionDescription" xml:space="preserve">
+    <value>Hides the progress of the hashing operation</value>
+  </data>
+  <data name="TritanopiaSimulation" xml:space="preserve">
+    <value>Tritanopia simulation</value>
   </data>
 </root>
