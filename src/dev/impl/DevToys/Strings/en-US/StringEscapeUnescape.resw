@@ -154,4 +154,7 @@
   <data name="InputTitle" xml:space="preserve">
     <value>Input</value>
   </data>
+  <data name="NewlineEncoding" xml:space="preserve">
+    <value>Newline Encoding</value>
+  </data>
 </root>

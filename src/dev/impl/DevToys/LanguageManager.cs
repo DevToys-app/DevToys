@@ -2604,7 +2604,7 @@ namespace DevToys
         /// Gets the resource SpecialCharacters.
         /// </summary>
         public string SpecialCharacters => _resources.GetString("SpecialCharacters");
-        
+
         /// <summary>
         /// Gets the resource ExcludeCharacters.
         /// </summary>
@@ -3295,6 +3295,11 @@ namespace DevToys
         /// Gets the resource InputTitle.
         /// </summary>
         public string InputTitle => _resources.GetString("InputTitle");
+
+        /// <summary>
+        /// Gets the resource NewlineEncoding.
+        /// </summary>
+        public string NewlineEncoding => _resources.GetString("NewlineEncoding");
     }
 
     public class StringUtilitiesStrings : ObservableObject

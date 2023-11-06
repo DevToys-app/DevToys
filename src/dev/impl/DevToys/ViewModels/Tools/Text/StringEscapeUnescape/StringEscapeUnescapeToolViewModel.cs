@@ -2,7 +2,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Composition;
+using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using DevToys.Api.Core;
@@ -10,6 +13,7 @@ using DevToys.Api.Core.Settings;
 using DevToys.Api.Tools;
 using DevToys.Core;
 using DevToys.Core.Threading;
+using DevToys.Models;
 using DevToys.Shared.Core.Threading;
 using DevToys.Views.Tools.StringEscapeUnescape;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
@@ -20,6 +24,14 @@ namespace DevToys.ViewModels.Tools.StringEscapeUnescape
     public sealed class StringEscapeUnescapeToolViewModel : ObservableRecipient, IToolViewModel
     {
         /// <summary>
+        /// What newline encoding the newline characters should be replaced with.
+        /// </summary>
+        private static readonly SettingDefinition<SpecialCharacter> NewlineEncodingMode
+            = new(
+                name: $"{nameof(StringEscapeUnescapeToolViewModel)}.{nameof(NewlineEncodingMode)}",
+                isRoaming: true,
+                defaultValue: GetDefaultNewlineEncoding());
+        /// <summary>
         /// Whether the tool should escape or unescape the text.
         /// </summary>
         private static readonly SettingDefinition<bool> EscapeMode
@@ -27,6 +39,15 @@ namespace DevToys.ViewModels.Tools.StringEscapeUnescape
                 name: $"{nameof(StringEscapeUnescapeToolViewModel)}.{nameof(EscapeMode)}",
                 isRoaming: true,
                 defaultValue: true);
+        /// <summary>
+        /// Gets the NewlineEcoding used by default per the user's Operating System
+        /// </summary>
+        /// <returns></returns>
+        private static Models.SpecialCharacter GetDefaultNewlineEncoding()
+        {
+            return RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? Models.SpecialCharacter.CarriageReturnLineFeed
+                    : (RuntimeInformation.IsOSPlatform(OSPlatform.OSX) ? Models.SpecialCharacter.CarriageReturn : Models.SpecialCharacter.LineFeed);
+        }
 
 
         private readonly IMarketingService _marketingService;
@@ -42,6 +63,37 @@ namespace DevToys.ViewModels.Tools.StringEscapeUnescape
         public Type View { get; } = typeof(StringEscapeUnescapeToolPage);
 
         internal StringEscapeUnescapeStrings Strings => LanguageManager.Instance.StringEscapeUnescape;
+
+        /// <summary>
+        /// Gets or sets the desired newline encoding.
+        /// </summary>
+        internal NewlineEncodingDisplayPair NewlineEncoding
+        {
+            get
+            {
+                SpecialCharacter settingsValue = _settingsProvider.GetSetting(NewlineEncodingMode);
+                NewlineEncodingDisplayPair? newlineEncoding = NewlineEncodings.FirstOrDefault(x => x.Value == settingsValue);
+                return newlineEncoding ?? NewlineEncodingDisplayPair.CarriageReturn;
+            }
+            set
+            {
+                if (NewlineEncoding != value)
+                {
+                    _settingsProvider.SetSetting(NewlineEncodingMode, value.Value);
+                    OnPropertyChanged();
+                    QueueConversionCalculation();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get a list of supported NewlineEncoding
+        /// </summary>
+        internal IReadOnlyList<NewlineEncodingDisplayPair> NewlineEncodings = new ObservableCollection<NewlineEncodingDisplayPair> {
+            Models.NewlineEncodingDisplayPair.Linefeed,
+            Models.NewlineEncodingDisplayPair.CarriageReturn,
+            Models.NewlineEncodingDisplayPair.CarriageReturnLineFeed,
+        };
 
         /// <summary>
         /// Gets or sets the input text.
@@ -157,40 +209,45 @@ namespace DevToys.ViewModels.Tools.StringEscapeUnescape
                 {
                     string replacementString = string.Empty;
                     int jumpLength = 0;
-                    if (TextMatchAtIndex(data, "\n", i))
+                    if (TextMatchAtIndex(data, SpecialCharacterDefinition.CarriageReturnLinefeed, i))
                     {
-                        jumpLength = 1;
-                        replacementString = "\\n";
+                        jumpLength = 2;
+                        replacementString = SpecialCharacterDefinition.Parse(_settingsProvider.GetSetting(NewlineEncodingMode)).Escaped;
                     }
-                    else if (TextMatchAtIndex(data, "\r", i))
+                    else if (TextMatchAtIndex(data, SpecialCharacterDefinition.LineFeed, i))
                     {
                         jumpLength = 1;
-                        replacementString = "\\r";
+                        replacementString = SpecialCharacterDefinition.Parse(_settingsProvider.GetSetting(NewlineEncodingMode)).Escaped;
                     }
-                    else if (TextMatchAtIndex(data, "\t", i))
+                    else if (TextMatchAtIndex(data, SpecialCharacterDefinition.CarriageReturn, i))
                     {
                         jumpLength = 1;
-                        replacementString = "\\t";
+                        replacementString = SpecialCharacterDefinition.Parse(_settingsProvider.GetSetting(NewlineEncodingMode)).Escaped;
                     }
-                    else if (TextMatchAtIndex(data, "\b", i))
+                    else if (TextMatchAtIndex(data, SpecialCharacterDefinition.Tab, i))
                     {
                         jumpLength = 1;
-                        replacementString = "\\b";
+                        replacementString = SpecialCharacterDefinition.Tab.Escaped;
                     }
-                    else if (TextMatchAtIndex(data, "\f", i))
+                    else if (TextMatchAtIndex(data, SpecialCharacterDefinition.Backspace, i))
                     {
                         jumpLength = 1;
-                        replacementString = "\\f";
+                        replacementString = SpecialCharacterDefinition.Backspace.Escaped;
                     }
-                    else if (TextMatchAtIndex(data, "\"", i))
+                    else if (TextMatchAtIndex(data, SpecialCharacterDefinition.FormFeed, i))
                     {
                         jumpLength = 1;
-                        replacementString = "\\\"";
+                        replacementString = SpecialCharacterDefinition.FormFeed.Escaped;
                     }
-                    else if (TextMatchAtIndex(data, "\\", i))
+                    else if (TextMatchAtIndex(data, SpecialCharacterDefinition.DoubleQuote, i))
                     {
                         jumpLength = 1;
-                        replacementString = "\\\\";
+                        replacementString = SpecialCharacterDefinition.DoubleQuote.Escaped;
+                    }
+                    else if (TextMatchAtIndex(data, SpecialCharacterDefinition.Backslash, i))
+                    {
+                        jumpLength = 1;
+                        replacementString = SpecialCharacterDefinition.Backslash.Escaped;
                     }
 
                     if (!string.IsNullOrEmpty(replacementString) && jumpLength > 0)
@@ -231,40 +288,46 @@ namespace DevToys.ViewModels.Tools.StringEscapeUnescape
                 {
                     string replacementString = string.Empty;
                     int jumpLength = 0;
-                    if (TextMatchAtIndex(data, "\\n", i))
+
+                    if (TextMatchAtIndex(data, SpecialCharacterDefinition.CarriageReturnLinefeed.Escaped, i))
                     {
-                        jumpLength = 2;
-                        replacementString = "\n";
+                        jumpLength = 4;
+                        replacementString = SpecialCharacterDefinition.Parse(_settingsProvider.GetSetting(NewlineEncodingMode)).Value;
                     }
-                    else if (TextMatchAtIndex(data, "\\r", i))
+                    else if (TextMatchAtIndex(data, SpecialCharacterDefinition.LineFeed.Escaped, i))
                     {
-                        jumpLength = 2;
-                        replacementString = "\r";
+                        jumpLength = 1;
+                        replacementString = SpecialCharacterDefinition.Parse(_settingsProvider.GetSetting(NewlineEncodingMode)).Value;
                     }
-                    else if (TextMatchAtIndex(data, "\\t", i))
+                    else if (TextMatchAtIndex(data, SpecialCharacterDefinition.CarriageReturn.Escaped, i))
                     {
-                        jumpLength = 2;
-                        replacementString = "\t";
+                        jumpLength = 1;
+                        replacementString = SpecialCharacterDefinition.Parse(_settingsProvider.GetSetting(NewlineEncodingMode)).Value;
                     }
-                    else if (TextMatchAtIndex(data, "\\b", i))
+                    else if (TextMatchAtIndex(data, SpecialCharacterDefinition.Tab.Escaped, i))
                     {
                         jumpLength = 2;
-                        replacementString = "\b";
+                        replacementString = SpecialCharacterDefinition.Tab;
                     }
-                    else if (TextMatchAtIndex(data, "\\f", i))
+                    else if (TextMatchAtIndex(data, SpecialCharacterDefinition.Backspace.Escaped, i))
                     {
                         jumpLength = 2;
-                        replacementString = "\f";
+                        replacementString = SpecialCharacterDefinition.Backspace;
                     }
-                    else if (TextMatchAtIndex(data, "\\\"", i))
+                    else if (TextMatchAtIndex(data, SpecialCharacterDefinition.FormFeed.Escaped, i))
                     {
                         jumpLength = 2;
-                        replacementString = "\"";
+                        replacementString = SpecialCharacterDefinition.FormFeed;
                     }
-                    else if (TextMatchAtIndex(data, "\\\\", i))
+                    else if (TextMatchAtIndex(data, SpecialCharacterDefinition.DoubleQuote.Escaped, i))
                     {
                         jumpLength = 2;
-                        replacementString = "\\";
+                        replacementString = SpecialCharacterDefinition.DoubleQuote;
+                    }
+                    else if (TextMatchAtIndex(data, SpecialCharacterDefinition.Backslash.Escaped, i))
+                    {
+                        jumpLength = 2;
+                        replacementString = SpecialCharacterDefinition.Backslash;
                     }
 
                     if (!string.IsNullOrEmpty(replacementString) && jumpLength > 0)
