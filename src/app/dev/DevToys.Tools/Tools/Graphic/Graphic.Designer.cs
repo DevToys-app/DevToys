@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DevToys.Tools.Strings.GlobalStrings {
+namespace DevToys.Tools.Tools.Graphic {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace DevToys.Tools.Strings.GlobalStrings {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class GlobalStrings {
+    internal class Graphic {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal GlobalStrings() {
+        internal Graphic() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DevToys.Tools.Strings.GlobalStrings {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Tools.Strings.GlobalStrings.GlobalStrings", typeof(GlobalStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Tools.Tools.Graphic.Graphic", typeof(Graphic).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,20 +61,20 @@ namespace DevToys.Tools.Strings.GlobalStrings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File &apos;{0}&apos; was not found..
+        ///   Looks up a localized string similar to Graphic.
         /// </summary>
-        internal static string FileNotFound {
+        internal static string AccessibleName {
             get {
-                return ResourceManager.GetString("FileNotFound", resourceCulture);
+                return ResourceManager.GetString("AccessibleName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File &apos;{0}&apos; is not supported. Only files of type {1} are supported..
+        ///   Looks up a localized string similar to Graphic.
         /// </summary>
-        internal static string FileTypeNotSupported {
+        internal static string DisplayTitle {
             get {
-                return ResourceManager.GetString("FileTypeNotSupported", resourceCulture);
+                return ResourceManager.GetString("DisplayTitle", resourceCulture);
             }
         }
     }
