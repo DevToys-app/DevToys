@@ -85,7 +85,6 @@
     <Compile Include="Models\JwtDecoderEncoder\TokenParameters.cs" />
     <Compile Include="Models\JwtDecoderEncoder\TokenResult.cs" />
     <Compile Include="Models\JwtDecoderEncoder\TokenResultErrorEventArgs.cs" />
-    <Compile Include="Models\NewlineEncodingDisplayPair.cs" />
     <Compile Include="Models\NumberBaseDictionary.cs" />
     <Compile Include="Models\SpecialCharacter.cs" />
     <Compile Include="Models\SpecialCharacterDefinition.cs" />

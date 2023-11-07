@@ -40,7 +40,7 @@ namespace DevToys.ViewModels.Tools.StringEscapeUnescape
                 isRoaming: true,
                 defaultValue: true);
         /// <summary>
-        /// Gets the NewlineEcoding used by default per the user's Operating System
+        /// Gets the newline encoding used by default per the user's Operating System
         /// </summary>
         /// <returns></returns>
         private static Models.SpecialCharacter GetDefaultNewlineEncoding()
@@ -67,19 +67,19 @@ namespace DevToys.ViewModels.Tools.StringEscapeUnescape
         /// <summary>
         /// Gets or sets the desired newline encoding.
         /// </summary>
-        internal NewlineEncodingDisplayPair NewlineEncoding
+        internal SpecialCharacterDefinition NewlineEncoding
         {
             get
             {
                 SpecialCharacter settingsValue = _settingsProvider.GetSetting(NewlineEncodingMode);
-                NewlineEncodingDisplayPair? newlineEncoding = NewlineEncodings.FirstOrDefault(x => x.Value == settingsValue);
-                return newlineEncoding ?? NewlineEncodingDisplayPair.CarriageReturn;
+                SpecialCharacterDefinition? newlineEncoding = NewlineEncodings.FirstOrDefault(x => x.Type == settingsValue);
+                return newlineEncoding ?? SpecialCharacterDefinition.CarriageReturn;
             }
             set
             {
                 if (NewlineEncoding != value)
                 {
-                    _settingsProvider.SetSetting(NewlineEncodingMode, value.Value);
+                    _settingsProvider.SetSetting(NewlineEncodingMode, value.Type);
                     OnPropertyChanged();
                     QueueConversionCalculation();
                 }
@@ -87,12 +87,12 @@ namespace DevToys.ViewModels.Tools.StringEscapeUnescape
         }
 
         /// <summary>
-        /// Get a list of supported NewlineEncoding
+        /// Get a list of supported newline encodings
         /// </summary>
-        internal IReadOnlyList<NewlineEncodingDisplayPair> NewlineEncodings = new ObservableCollection<NewlineEncodingDisplayPair> {
-            Models.NewlineEncodingDisplayPair.Linefeed,
-            Models.NewlineEncodingDisplayPair.CarriageReturn,
-            Models.NewlineEncodingDisplayPair.CarriageReturnLineFeed,
+        internal IReadOnlyList<SpecialCharacterDefinition> NewlineEncodings = new ObservableCollection<SpecialCharacterDefinition> {
+            Models.SpecialCharacterDefinition.LineFeed,
+            Models.SpecialCharacterDefinition.CarriageReturn,
+            Models.SpecialCharacterDefinition.CarriageReturnLinefeed,
         };
 
         /// <summary>
@@ -205,7 +205,7 @@ namespace DevToys.ViewModels.Tools.StringEscapeUnescape
             try
             {
                 int i = 0;
-                string linefeedSelected = SpecialCharacterDefinition.Parse(_settingsProvider.GetSetting(NewlineEncodingMode)).Escaped;
+                string newlineSelected = SpecialCharacterDefinition.Parse(_settingsProvider.GetSetting(NewlineEncodingMode)).Escaped;
                 while (i < data!.Length)
                 {
                     string replacementString = string.Empty;
@@ -213,17 +213,17 @@ namespace DevToys.ViewModels.Tools.StringEscapeUnescape
                     if (TextMatchAtIndex(data, SpecialCharacterDefinition.CarriageReturnLinefeed, i))
                     {
                         jumpLength = 2;
-                        replacementString = linefeedSelected;
+                        replacementString = newlineSelected;
                     }
                     else if (TextMatchAtIndex(data, SpecialCharacterDefinition.LineFeed, i))
                     {
                         jumpLength = 1;
-                        replacementString = linefeedSelected;
+                        replacementString = newlineSelected;
                     }
                     else if (TextMatchAtIndex(data, SpecialCharacterDefinition.CarriageReturn, i))
                     {
                         jumpLength = 1;
-                        replacementString = linefeedSelected;
+                        replacementString = newlineSelected;
                     }
                     else if (TextMatchAtIndex(data, SpecialCharacterDefinition.Tab, i))
                     {
@@ -285,7 +285,7 @@ namespace DevToys.ViewModels.Tools.StringEscapeUnescape
             try
             {
                 int i = 0;
-                string linefeedSelected = SpecialCharacterDefinition.Parse(_settingsProvider.GetSetting(NewlineEncodingMode)).Value;
+                string newlineSelected = SpecialCharacterDefinition.Parse(_settingsProvider.GetSetting(NewlineEncodingMode)).Value;
                 while (i < data!.Length)
                 {
                     string replacementString = string.Empty;
@@ -294,17 +294,17 @@ namespace DevToys.ViewModels.Tools.StringEscapeUnescape
                     if (TextMatchAtIndex(data, SpecialCharacterDefinition.CarriageReturnLinefeed.Escaped, i))
                     {
                         jumpLength = 4;
-                        replacementString = linefeedSelected;
+                        replacementString = newlineSelected;
                     }
                     else if (TextMatchAtIndex(data, SpecialCharacterDefinition.LineFeed.Escaped, i))
                     {
                         jumpLength = 1;
-                        replacementString = linefeedSelected;
+                        replacementString = newlineSelected;
                     }
                     else if (TextMatchAtIndex(data, SpecialCharacterDefinition.CarriageReturn.Escaped, i))
                     {
                         jumpLength = 1;
-                        replacementString = linefeedSelected;
+                        replacementString = newlineSelected;
                     }
                     else if (TextMatchAtIndex(data, SpecialCharacterDefinition.Tab.Escaped, i))
                     {
