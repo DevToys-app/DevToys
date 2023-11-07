@@ -145,8 +145,8 @@ internal static class MonacoEditorHelper
     internal static ValueTask<bool> RemeasureFontsAsync(IJSRuntime runtime)
         => runtime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.remeasureFonts");
 
-    internal static MonacoEditor CreateVirtualEditor(IJSRuntime jsRuntime, string id, string? cssClass = null)
+    internal static MonacoEditor CreateVirtualEditor(IJSRuntime jsRuntime, string id, string? cssClass = null, ISettingsProvider? settingsProvider = null)
     {
-        return new MonacoEditor(jsRuntime, id, cssClass);
+        return new MonacoEditor(jsRuntime, id, cssClass, settingsProvider);
     }
 }

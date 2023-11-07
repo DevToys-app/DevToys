@@ -30,6 +30,7 @@ internal sealed class SettingsGuiTool : IGuiTool
     private readonly IUIDropDownListItem[] _availableFonts;
     private readonly IUISetting _smartDetectionAutomaticallyPasteSetting = Setting("smart-detection-automatically-paste-setting");
     private readonly IUISetting _textEditorFontSetting = Setting("text-editor-font-setting");
+    private readonly IUISetting _textEditorEndOfLineSetting = Setting("text-editor-eol-setting");
     private readonly string _previewJsonText;
 
     [ImportingConstructor]
@@ -49,6 +50,8 @@ internal sealed class SettingsGuiTool : IGuiTool
 
         // Load sample JSON.
         _previewJsonText = LoadPreviewJsonText();
+
+        OnTextEditorEndOfLinePreferenceChanged(_settingsProvider.GetSetting(PredefinedSettings.TextEditorEndOfLinePreference));
     }
 
     public UIToolView View
@@ -175,6 +178,16 @@ internal sealed class SettingsGuiTool : IGuiTool
                                         stateDescriptionWhenOn: Settings.RenderWhitespaceStateDescriptionWhenOn,
                                         stateDescriptionWhenOff: null),
 
+                                _textEditorEndOfLineSetting
+                                    .Title(Settings.EndOfLinePreference)
+                                    .Handle(
+                                        _settingsProvider,
+                                        PredefinedSettings.TextEditorEndOfLinePreference,
+                                        OnTextEditorEndOfLinePreferenceChanged,
+                                        Item(Settings.EndOfLinePreferenceAutomatic, UITextEndOfLinePreference.TextDefault),
+                                        Item(Settings.EndOfLinePreferenceLF, UITextEndOfLinePreference.LF),
+                                        Item(Settings.EndOfLinePreferenceCRLF, UITextEndOfLinePreference.CRLF)),
+
                                 Setting("text-editor-clear-text-on-paste-settings")
                                     .Title(Settings.PasteClearsText)
                                     .Description(Settings.PasteClearsTextDescription)
@@ -242,6 +255,25 @@ internal sealed class SettingsGuiTool : IGuiTool
     private void OnTextEditorFontChanged(string fontName)
     {
         _textEditorFontSetting.StateDescription(fontName);
+    }
+
+    private void OnTextEditorEndOfLinePreferenceChanged(UITextEndOfLinePreference endOfLinePreference)
+    {
+        switch (endOfLinePreference)
+        {
+            case UITextEndOfLinePreference.TextDefault:
+                _textEditorEndOfLineSetting.StateDescription(Settings.EndOfLinePreferenceAutomatic);
+                break;
+            case UITextEndOfLinePreference.LF:
+                _textEditorEndOfLineSetting.StateDescription(Settings.EndOfLinePreferenceLF);
+                break;
+            case UITextEndOfLinePreference.CRLF:
+                _textEditorEndOfLineSetting.StateDescription(Settings.EndOfLinePreferenceCRLF);
+                break;
+            default:
+                ThrowHelper.ThrowNotSupportedException();
+                break;
+        }
     }
 
     private IUIDropDownListItem[] LoadAvailableFonts()

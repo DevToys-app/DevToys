@@ -21,7 +21,7 @@ public class TextModel
     /// Get the resolved options for this model.
     /// </summary>
     public ValueTask<TextModelResolvedOptions> GetOptionsAsync(IJSRuntime runtime)
-        => runtime.InvokeAsync<TextModelResolvedOptions>("devtoys.MonacoEditor.model.getOptions", Uri);
+        => runtime.InvokeAsync<TextModelResolvedOptions>("devtoys.MonacoEditor.TextModel.getOptions", Uri);
 
     /// <summary>
     /// Get the current version id of the model.
@@ -29,7 +29,7 @@ public class TextModel
     /// the version id is incremented.
     /// </summary>
     public ValueTask<int> GetVersionIdAsync(IJSRuntime runtime)
-        => runtime.InvokeAsync<int>("devtoys.MonacoEditor.model.getVersionId", Uri);
+        => runtime.InvokeAsync<int>("devtoys.MonacoEditor.TextModel.getVersionId", Uri);
 
     /// <summary>
     /// Get the alternative version id of the model.
@@ -37,13 +37,13 @@ public class TextModel
     /// it will return the same values in the case of undo-redo.
     /// </summary>
     public ValueTask<int> GetAlternativeVersionIdAsync(IJSRuntime runtime)
-        => runtime.InvokeAsync<int>("devtoys.MonacoEditor.model.getAlternativeVersionId", Uri);
+        => runtime.InvokeAsync<int>("devtoys.MonacoEditor.TextModel.getAlternativeVersionId", Uri);
 
     /// <summary>
     /// Replace the entire text buffer value contained in this model.
     /// </summary>
     public ValueTask<bool> SetValueAsync(IJSRuntime runtime, string newValue)
-        => runtime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.model.setValue", Uri, newValue);
+        => runtime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.TextModel.setValue", Uri, newValue);
 
     /// <summary>
     /// Get the text stored in this model.
@@ -52,13 +52,13 @@ public class TextModel
     /// @return The text.
     /// </summary>
     public ValueTask<string> GetValueAsync(IJSRuntime runtime, EndOfLinePreference? eol, bool? preserveBOM)
-        => runtime.InvokeAsync<string>("devtoys.MonacoEditor.model.getValue", Uri, eol, preserveBOM);
+        => runtime.InvokeAsync<string>("devtoys.MonacoEditor.TextModel.getValue", Uri, eol, preserveBOM);
 
     /// <summary>
     /// Get the length of the text stored in this model.
     /// </summary>
     public ValueTask<int> GetValueLengthAsync(IJSRuntime runtime, EndOfLinePreference? eol, bool? preserveBOM)
-        => runtime.InvokeAsync<int>("devtoys.MonacoEditor.model.getValueLength", Uri, eol, preserveBOM);
+        => runtime.InvokeAsync<int>("devtoys.MonacoEditor.TextModel.getValueLength", Uri, eol, preserveBOM);
 
     /// <summary>
     /// Get the text in a certain range.
@@ -67,7 +67,7 @@ public class TextModel
     /// @return The text.
     /// </summary>
     public ValueTask<string> GetValueInRangeAsync(IJSRuntime runtime, Range range, EndOfLinePreference? eol)
-        => runtime.InvokeAsync<string>("devtoys.MonacoEditor.model.getValueInRange", Uri, range, eol);
+        => runtime.InvokeAsync<string>("devtoys.MonacoEditor.TextModel.getValueInRange", Uri, range, eol);
 
     /// <summary>
     /// Get the length of text in a certain range.
@@ -75,83 +75,83 @@ public class TextModel
     /// @return The text length.
     /// </summary>
     public ValueTask<int> GetValueLengthInRangeAsync(IJSRuntime runtime, Range range)
-        => runtime.InvokeAsync<int>("devtoys.MonacoEditor.model.getValueLengthInRange", Uri, range);
+        => runtime.InvokeAsync<int>("devtoys.MonacoEditor.TextModel.getValueLengthInRange", Uri, range);
 
     /// <summary>
     /// Get the character count of text in a certain range.
     /// @param range The range describing what text length to get.
     /// </summary>
     public ValueTask<int> GetCharacterCountInRangeAsync(IJSRuntime runtime, Range range)
-        => runtime.InvokeAsync<int>("devtoys.MonacoEditor.model.getCharacterCountInRange", Uri, range);
+        => runtime.InvokeAsync<int>("devtoys.MonacoEditor.TextModel.getCharacterCountInRange", Uri, range);
 
     /// <summary>
     /// Get the number of lines in the model.
     /// </summary>
     public ValueTask<int> GetLineCountAsync(IJSRuntime runtime)
-        => runtime.InvokeAsync<int>("devtoys.MonacoEditor.model.getLineCount", Uri);
+        => runtime.InvokeAsync<int>("devtoys.MonacoEditor.TextModel.getLineCount", Uri);
 
     /// <summary>
     /// Get the text for a certain line.
     /// </summary>
     public ValueTask<string> GetLineContentAsync(IJSRuntime runtime, int lineNumber)
-        => runtime.InvokeAsync<string>("devtoys.MonacoEditor.model.getLineContent", Uri, lineNumber);
+        => runtime.InvokeAsync<string>("devtoys.MonacoEditor.TextModel.getLineContent", Uri, lineNumber);
 
     /// <summary>
     /// Get the text length for a certain line.
     /// </summary>
     public ValueTask<int> GetLineLengthAsync(IJSRuntime runtime, int lineNumber)
-        => runtime.InvokeAsync<int>("devtoys.MonacoEditor.model.getLineLength", Uri, lineNumber);
+        => runtime.InvokeAsync<int>("devtoys.MonacoEditor.TextModel.getLineLength", Uri, lineNumber);
 
     /// <summary>
     /// Get the text for all lines.
     /// </summary>
     public ValueTask<List<string>> GetLinesContentAsync(IJSRuntime runtime)
-        => runtime.InvokeAsync<List<string>>("devtoys.MonacoEditor.model.getLinesContent", Uri);
+        => runtime.InvokeAsync<List<string>>("devtoys.MonacoEditor.TextModel.getLinesContent", Uri);
 
     /// <summary>
     /// Get the end of line sequence predominantly used in the text buffer.
     /// @return EOL char sequence (e.g.: '\n' or '\r\n').
     /// </summary>
     public ValueTask<string> GetEOLAsync(IJSRuntime runtime)
-        => runtime.InvokeAsync<string>("devtoys.MonacoEditor.model.getEOL", Uri);
+        => runtime.InvokeAsync<string>("devtoys.MonacoEditor.TextModel.getEOL", Uri);
 
     /// <summary>
     /// Get the end of line sequence predominantly used in the text buffer.
     /// </summary>
     public ValueTask<EndOfLineSequence> GetEndOfLineSequenceAsync(IJSRuntime runtime)
-        => runtime.InvokeAsync<EndOfLineSequence>("devtoys.MonacoEditor.model.getEndOfLineSequence", Uri);
+        => runtime.InvokeAsync<EndOfLineSequence>("devtoys.MonacoEditor.TextModel.getEndOfLineSequence", Uri);
 
     /// <summary>
     /// Get the minimum legal column for line at `lineNumber`
     /// </summary>
     public ValueTask<int> GetLineMinColumnAsync(IJSRuntime runtime, int lineNumber)
-        => runtime.InvokeAsync<int>("devtoys.MonacoEditor.model.getLineMinColumn", Uri, lineNumber);
+        => runtime.InvokeAsync<int>("devtoys.MonacoEditor.TextModel.getLineMinColumn", Uri, lineNumber);
 
     /// <summary>
     /// Get the maximum legal column for line at `lineNumber`
     /// </summary>
     public ValueTask<int> GetLineMaxColumnAsync(IJSRuntime runtime, int lineNumber)
-        => runtime.InvokeAsync<int>("devtoys.MonacoEditor.model.getLineMaxColumn", Uri, lineNumber);
+        => runtime.InvokeAsync<int>("devtoys.MonacoEditor.TextModel.getLineMaxColumn", Uri, lineNumber);
 
     /// <summary>
     /// Returns the column before the first non whitespace character for line at `lineNumber`.
     /// Returns 0 if line is empty or contains only whitespace.
     /// </summary>
     public ValueTask<int> GetLineFirstNonWhitespaceColumnAsync(IJSRuntime runtime, int lineNumber)
-        => runtime.InvokeAsync<int>("devtoys.MonacoEditor.model.getLineFirstNonWhitespaceColumn", Uri, lineNumber);
+        => runtime.InvokeAsync<int>("devtoys.MonacoEditor.TextModel.getLineFirstNonWhitespaceColumn", Uri, lineNumber);
 
     /// <summary>
     /// Returns the column after the last non whitespace character for line at `lineNumber`.
     /// Returns 0 if line is empty or contains only whitespace.
     /// </summary>
     public ValueTask<int> GetLineLastNonWhitespaceColumnAsync(IJSRuntime runtime, int lineNumber)
-        => runtime.InvokeAsync<int>("devtoys.MonacoEditor.model.getLineLastNonWhitespaceColumn", Uri, lineNumber);
+        => runtime.InvokeAsync<int>("devtoys.MonacoEditor.TextModel.getLineLastNonWhitespaceColumn", Uri, lineNumber);
 
     /// <summary>
     /// Create a valid position.
     /// </summary>
     public ValueTask<Position> ValidatePositionAsync(IJSRuntime runtime, Position position)
-        => runtime.InvokeAsync<Position>("devtoys.MonacoEditor.model.validatePosition", Uri, position);
+        => runtime.InvokeAsync<Position>("devtoys.MonacoEditor.TextModel.validatePosition", Uri, position);
 
     /// <summary>
     /// Advances the given position by the given offset (negative offsets are also accepted)
@@ -164,13 +164,13 @@ public class TextModel
     /// line terminator, throws an exception.
     /// </summary>
     public ValueTask<Position> ModifyPositionAsync(IJSRuntime runtime, Position position, int offset)
-        => runtime.InvokeAsync<Position>("devtoys.MonacoEditor.model.modifyPosition", Uri, position, offset);
+        => runtime.InvokeAsync<Position>("devtoys.MonacoEditor.TextModel.modifyPosition", Uri, position, offset);
 
     /// <summary>
     /// Create a valid range.
     /// </summary>
     public ValueTask<Range> ValidateRangeAsync(IJSRuntime runtime, Range range)
-        => runtime.InvokeAsync<Range>("devtoys.MonacoEditor.model.validateRange", Uri, range);
+        => runtime.InvokeAsync<Range>("devtoys.MonacoEditor.TextModel.validateRange", Uri, range);
 
     /// <summary>
     /// Converts the position to a zero-based offset.
@@ -181,7 +181,7 @@ public class TextModel
     /// @return A valid zero-based offset.
     /// </summary>
     public ValueTask<int> GetOffsetAtAsync(IJSRuntime runtime, Position position)
-        => runtime.InvokeAsync<int>("devtoys.MonacoEditor.model.getOffsetAt", Uri, position);
+        => runtime.InvokeAsync<int>("devtoys.MonacoEditor.TextModel.getOffsetAt", Uri, position);
 
     /// <summary>
     /// Converts a zero-based offset to a position.
@@ -190,19 +190,19 @@ public class TextModel
     /// @return A valid [position](#Position).
     /// </summary>
     public ValueTask<Position> GetPositionAtAsync(IJSRuntime runtime, int offset)
-        => runtime.InvokeAsync<Position>("devtoys.MonacoEditor.model.getPositionAt", Uri, offset);
+        => runtime.InvokeAsync<Position>("devtoys.MonacoEditor.TextModel.getPositionAt", Uri, offset);
 
     /// <summary>
     /// Get a range covering the entire model.
     /// </summary>
     public ValueTask<Range> GetFullModelRangeAsync(IJSRuntime runtime)
-        => runtime.InvokeAsync<Range>("devtoys.MonacoEditor.model.getFullModelRange", Uri);
+        => runtime.InvokeAsync<Range>("devtoys.MonacoEditor.TextModel.getFullModelRange", Uri);
 
     /// <summary>
     /// Returns if the model was disposed or not.
     /// </summary>
     public ValueTask<bool> IsDisposedAsync(IJSRuntime runtime)
-        => runtime.InvokeAsync<bool>("devtoys.MonacoEditor.model.isDisposed", Uri);
+        => runtime.InvokeAsync<bool>("devtoys.MonacoEditor.TextModel.isDisposed", Uri);
 
     /// <summary>
     /// Search the model.
@@ -216,7 +216,7 @@ public class TextModel
     /// @return The ranges where the matches are. It is empty if not matches have been found.
     /// </summary>
     public ValueTask<List<FindMatch>> FindMatchesAsync(IJSRuntime runtime, string searchString, bool searchOnlyEditableRange, bool isRegex, bool matchCase, string wordSeparators, bool captureMatches, int? limitResultCount)
-        => runtime.InvokeAsync<List<FindMatch>>("devtoys.MonacoEditor.model.findMatches", Uri, searchString, searchOnlyEditableRange, isRegex, matchCase, wordSeparators, captureMatches, limitResultCount);
+        => runtime.InvokeAsync<List<FindMatch>>("devtoys.MonacoEditor.TextModel.findMatches", Uri, searchString, searchOnlyEditableRange, isRegex, matchCase, wordSeparators, captureMatches, limitResultCount);
 
     /// <summary>
     /// Search the model.
@@ -230,7 +230,7 @@ public class TextModel
     /// @return The ranges where the matches are. It is empty if no matches have been found.
     /// </summary>
     public ValueTask<List<FindMatch>> FindMatchesAsync(IJSRuntime runtime, string searchString, Range searchScope, bool isRegex, bool matchCase, string wordSeparators, bool captureMatches, int? limitResultCount)
-        => runtime.InvokeAsync<List<FindMatch>>("devtoys.MonacoEditor.model.findMatches", Uri, searchString, searchScope, isRegex, matchCase, wordSeparators, captureMatches, limitResultCount);
+        => runtime.InvokeAsync<List<FindMatch>>("devtoys.MonacoEditor.TextModel.findMatches", Uri, searchString, searchScope, isRegex, matchCase, wordSeparators, captureMatches, limitResultCount);
 
     /// <summary>
     /// Search the model for the next match. Loops to the beginning of the model if needed.
@@ -243,7 +243,7 @@ public class TextModel
     /// @return The range where the next match is. It is null if no next match has been found.
     /// </summary>
     public ValueTask<FindMatch> FindNextMatchAsync(IJSRuntime runtime, string searchString, Position searchStart, bool isRegex, bool matchCase, string wordSeparators, bool captureMatches)
-        => runtime.InvokeAsync<FindMatch>("devtoys.MonacoEditor.model.findNextMatch", Uri, searchString, searchStart, isRegex, matchCase, wordSeparators, captureMatches);
+        => runtime.InvokeAsync<FindMatch>("devtoys.MonacoEditor.TextModel.findNextMatch", Uri, searchString, searchStart, isRegex, matchCase, wordSeparators, captureMatches);
 
     /// <summary>
     /// Search the model for the previous match. Loops to the end of the model if needed.
@@ -256,13 +256,13 @@ public class TextModel
     /// @return The range where the previous match is. It is null if no previous match has been found.
     /// </summary>
     public ValueTask<FindMatch> FindPreviousMatchAsync(IJSRuntime runtime, string searchString, Position searchStart, bool isRegex, bool matchCase, string wordSeparators, bool captureMatches)
-        => runtime.InvokeAsync<FindMatch>("devtoys.MonacoEditor.model.findPreviousMatch", Uri, searchString, searchStart, isRegex, matchCase, wordSeparators, captureMatches);
+        => runtime.InvokeAsync<FindMatch>("devtoys.MonacoEditor.TextModel.findPreviousMatch", Uri, searchString, searchStart, isRegex, matchCase, wordSeparators, captureMatches);
 
     /// <summary>
     /// Get the language associated with this model.
     /// </summary>
     public ValueTask<string> GetLanguageIdAsync(IJSRuntime runtime)
-        => runtime.InvokeAsync<string>("devtoys.MonacoEditor.model.getLanguageId", Uri);
+        => runtime.InvokeAsync<string>("devtoys.MonacoEditor.TextModel.getLanguageId", Uri);
 
     /// <summary>
     /// Get the word under or besides `position`.
@@ -270,7 +270,7 @@ public class TextModel
     /// @return The word under or besides `position`. Might be null.
     /// </summary>
     public ValueTask<WordAtPosition> GetWordAtPositionAsync(IJSRuntime runtime, Position position)
-        => runtime.InvokeAsync<WordAtPosition>("devtoys.MonacoEditor.model.getWordAtPosition", Uri, position);
+        => runtime.InvokeAsync<WordAtPosition>("devtoys.MonacoEditor.TextModel.getWordAtPosition", Uri, position);
 
     /// <summary>
     /// Get the word under or besides `position` trimmed to `position`.column
@@ -278,7 +278,7 @@ public class TextModel
     /// @return The word under or besides `position`. Will never be null.
     /// </summary>
     public ValueTask<WordAtPosition> GetWordUntilPositionAsync(IJSRuntime runtime, Position position)
-        => runtime.InvokeAsync<WordAtPosition>("devtoys.MonacoEditor.model.getWordUntilPosition", Uri, position);
+        => runtime.InvokeAsync<WordAtPosition>("devtoys.MonacoEditor.TextModel.getWordUntilPosition", Uri, position);
 
     /// <summary>
     /// Perform a minimum amount of operations, in order to transform the decorations
@@ -291,7 +291,7 @@ public class TextModel
     /// @return An array containing the new decorations identifiers.
     /// </summary>
     public ValueTask<List<string>> DeltaDecorationsAsync(IJSRuntime runtime, List<string> oldDecorations, List<ModelDeltaDecoration> newDecorations, int? ownerId)
-        => runtime.InvokeAsync<List<string>>("devtoys.MonacoEditor.model.deltaDecorations", Uri, oldDecorations, newDecorations, ownerId);
+        => runtime.InvokeAsync<List<string>>("devtoys.MonacoEditor.TextModel.deltaDecorations", Uri, oldDecorations, newDecorations, ownerId);
 
     /// <summary>
     /// Get the options associated with a decoration.
@@ -299,7 +299,7 @@ public class TextModel
     /// @return The decoration options or null if the decoration was not found.
     /// </summary>
     public ValueTask<ModelDecorationOptions> GetDecorationOptionsAsync(IJSRuntime runtime, string id)
-        => runtime.InvokeAsync<ModelDecorationOptions>("devtoys.MonacoEditor.model.getDecorationOptions", Uri, id);
+        => runtime.InvokeAsync<ModelDecorationOptions>("devtoys.MonacoEditor.TextModel.getDecorationOptions", Uri, id);
 
     /// <summary>
     /// Get the range associated with a decoration.
@@ -307,7 +307,7 @@ public class TextModel
     /// @return The decoration range or null if the decoration was not found.
     /// </summary>
     public ValueTask<Range> GetDecorationRangeAsync(IJSRuntime runtime, string id)
-        => runtime.InvokeAsync<Range>("devtoys.MonacoEditor.model.getDecorationRange", Uri, id);
+        => runtime.InvokeAsync<Range>("devtoys.MonacoEditor.TextModel.getDecorationRange", Uri, id);
 
     /// <summary>
     /// Gets all the decorations for the line `lineNumber` as an array.
@@ -317,7 +317,7 @@ public class TextModel
     /// @return An array with the decorations
     /// </summary>
     public ValueTask<ModelDecoration> GetLineDecorationsAsync(IJSRuntime runtime, int lineNumber, int? ownerId, bool? filterOutValidation)
-        => runtime.InvokeAsync<ModelDecoration>("devtoys.MonacoEditor.model.getLineDecorations", Uri, lineNumber, ownerId, filterOutValidation);
+        => runtime.InvokeAsync<ModelDecoration>("devtoys.MonacoEditor.TextModel.getLineDecorations", Uri, lineNumber, ownerId, filterOutValidation);
 
     /// <summary>
     /// Gets all the decorations for the lines between `startLineNumber` and `endLineNumber` as an array.
@@ -328,7 +328,7 @@ public class TextModel
     /// @return An array with the decorations
     /// </summary>
     public ValueTask<ModelDecoration> GetLinesDecorationsAsync(IJSRuntime runtime, int startLineNumber, int endLineNumber, int? ownerId, bool? filterOutValidation)
-        => runtime.InvokeAsync<ModelDecoration>("devtoys.MonacoEditor.model.getLinesDecorations", Uri, startLineNumber, endLineNumber, ownerId, filterOutValidation);
+        => runtime.InvokeAsync<ModelDecoration>("devtoys.MonacoEditor.TextModel.getLinesDecorations", Uri, startLineNumber, endLineNumber, ownerId, filterOutValidation);
 
     /// <summary>
     /// Gets all the decorations in a range as an array. Only `startLineNumber` and `endLineNumber` from `range` are used for filtering.
@@ -339,7 +339,7 @@ public class TextModel
     /// @return An array with the decorations
     /// </summary>
     public ValueTask<ModelDecoration[]> GetDecorationsInRangeAsync(IJSRuntime runtime, Range range, int? ownerId, bool? filterOutValidation)
-        => runtime.InvokeAsync<ModelDecoration[]>("devtoys.MonacoEditor.model.getDecorationsInRange", Uri, range, ownerId, filterOutValidation);
+        => runtime.InvokeAsync<ModelDecoration[]>("devtoys.MonacoEditor.TextModel.getDecorationsInRange", Uri, range, ownerId, filterOutValidation);
 
     /// <summary>
     /// Gets all the decorations as an array.
@@ -347,7 +347,7 @@ public class TextModel
     /// @param filterOutValidation If set, it will ignore decorations specific to validation (i.e. warnings, errors).
     /// </summary>
     public ValueTask<List<ModelDecoration>> GetAllDecorationsAsync(IJSRuntime runtime, int? ownerId, bool? filterOutValidation)
-        => runtime.InvokeAsync<List<ModelDecoration>>("devtoys.MonacoEditor.model.getAllDecorations", Uri, ownerId, filterOutValidation);
+        => runtime.InvokeAsync<List<ModelDecoration>>("devtoys.MonacoEditor.TextModel.getAllDecorations", Uri, ownerId, filterOutValidation);
 
     /// <summary>
     /// Gets all the decorations that should be rendered in the overview ruler as an array.
@@ -355,53 +355,53 @@ public class TextModel
     /// @param filterOutValidation If set, it will ignore decorations specific to validation (i.e. warnings, errors).
     /// </summary>
     public ValueTask<ModelDecoration> GetOverviewRulerDecorationsAsync(IJSRuntime runtime, int? ownerId, bool? filterOutValidation)
-        => runtime.InvokeAsync<ModelDecoration>("devtoys.MonacoEditor.model.getOverviewRulerDecorations", Uri, ownerId, filterOutValidation);
+        => runtime.InvokeAsync<ModelDecoration>("devtoys.MonacoEditor.TextModel.getOverviewRulerDecorations", Uri, ownerId, filterOutValidation);
 
     /// <summary>
     /// Gets all the decorations that contain injected text.
     /// @param ownerId If set, it will ignore decorations belonging to other owners.
     /// </summary>
     public ValueTask<ModelDecoration[]> GetInjectedTextDecorationsAsync(IJSRuntime runtime, int? ownerId)
-        => runtime.InvokeAsync<ModelDecoration[]>("devtoys.MonacoEditor.model.getInjectedTextDecorations", Uri, ownerId);
+        => runtime.InvokeAsync<ModelDecoration[]>("devtoys.MonacoEditor.TextModel.getInjectedTextDecorations", Uri, ownerId);
 
     /// <summary>
     /// Normalize a string containing whitespace according to indentation rules (converts to spaces or to tabs).
     /// </summary>
     public ValueTask<string> NormalizeIndentationAsync(IJSRuntime runtime, string str)
-        => runtime.InvokeAsync<string>("devtoys.MonacoEditor.model.normalizeIndentation", Uri, str);
+        => runtime.InvokeAsync<string>("devtoys.MonacoEditor.TextModel.normalizeIndentation", Uri, str);
 
     /// <summary>
     /// Change the options of this model.
     /// </summary>
     public ValueTask<bool> UpdateOptionsAsync(IJSRuntime runtime, TextModelUpdateOptions newOptions)
-        => runtime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.model.updateOptions", Uri, newOptions);
+        => runtime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.TextModel.updateOptions", Uri, newOptions);
 
     /// <summary>
     /// Detect the indentation options for this model from its content.
     /// </summary>
     public ValueTask<bool> DetectIndentationAsync(IJSRuntime runtime, bool defaultInsertSpaces, int defaultTabSize)
-        => runtime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.model.detectIndentation", Uri, defaultInsertSpaces, defaultTabSize);
+        => runtime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.TextModel.detectIndentation", Uri, defaultInsertSpaces, defaultTabSize);
 
     /// <summary>
     /// Close the current undo-redo element.
     /// This offers a way to create an undo/redo stop point.
     /// </summary>
     public ValueTask<bool> PushStackElementAsync(IJSRuntime runtime)
-        => runtime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.model.pushStackElement", Uri);
+        => runtime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.TextModel.pushStackElement", Uri);
 
     /// <summary>
     /// Open the current undo-redo element.
     /// This offers a way to remove the current undo/redo stop point.
     /// </summary>
     public ValueTask<bool> PopStackElementAsync(IJSRuntime runtime)
-        => runtime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.model.popStackElement", Uri);
+        => runtime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.TextModel.popStackElement", Uri);
 
     /// <summary>
     /// Change the end of line sequence. This is the preferred way of
     /// changing the eol sequence. This will land on the undo stack.
     /// </summary>
     public ValueTask<bool> PushEOLAsync(IJSRuntime runtime, EndOfLineSequence eol)
-        => runtime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.model.pushEOL", Uri, eol);
+        => runtime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.TextModel.pushEOL", Uri, eol);
 
     /// <summary>
     /// Edit the model without adding the edits to the undo stack.
@@ -410,18 +410,18 @@ public class TextModel
     /// @return If desired, the inverse edit operations, that, when applied, will bring the model back to the previous state.
     /// </summary>
     public ValueTask<List<ValidEditOperation>> ApplyEditsAsync(IJSRuntime runtime, List<IdentifiedSingleEditOperation> operations, bool computeUndoEdits = false)
-        => runtime.InvokeAsync<List<ValidEditOperation>>("devtoys.MonacoEditor.model.applyEdits", Uri, operations, computeUndoEdits);
+        => runtime.InvokeAsync<List<ValidEditOperation>>("devtoys.MonacoEditor.TextModel.applyEdits", Uri, operations, computeUndoEdits);
 
     /// <summary>
     /// Change the end of line sequence without recording in the undo stack.
     /// This can have dire consequences on the undo stack! See @pushEOL for the preferred way.
     /// </summary>
     public ValueTask<bool> SetEOLAsync(IJSRuntime runtime, EndOfLineSequence eol)
-        => runtime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.model.setEOL", Uri, eol);
+        => runtime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.TextModel.setEOL", Uri, eol);
 
     /// <summary>
     /// Destroy this model.
     /// </summary>
     public ValueTask<bool> DisposeModelAsync(IJSRuntime runtime)
-        => runtime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.model.dispose", Uri);
+        => runtime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.TextModel.dispose", Uri);
 }

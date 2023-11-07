@@ -169,6 +169,42 @@ namespace DevToys.Blazor.BuiltInTools.Settings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to End Of Line character.
+        /// </summary>
+        internal static string EndOfLinePreference {
+            get {
+                return ResourceManager.GetString("EndOfLinePreference", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Same end of line as input (automatic).
+        /// </summary>
+        internal static string EndOfLinePreferenceAutomatic {
+            get {
+                return ResourceManager.GetString("EndOfLinePreferenceAutomatic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Carriage Return and Line Feed (\r\n) (Windows).
+        /// </summary>
+        internal static string EndOfLinePreferenceCRLF {
+            get {
+                return ResourceManager.GetString("EndOfLinePreferenceCRLF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Line Feed (\n) (Unix).
+        /// </summary>
+        internal static string EndOfLinePreferenceLF {
+            get {
+                return ResourceManager.GetString("EndOfLinePreferenceLF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Font.
         /// </summary>
         internal static string Font {

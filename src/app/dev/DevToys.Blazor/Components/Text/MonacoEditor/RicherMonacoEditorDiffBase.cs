@@ -2,6 +2,7 @@
 using System.Text.Json.Serialization;
 using DevToys.Blazor.Components.Monaco;
 using DevToys.Blazor.Components.Monaco.Editor;
+using DevToys.Core.Settings;
 
 namespace DevToys.Blazor.Components;
 
@@ -9,6 +10,9 @@ public abstract class RicherMonacoEditorDiffBase : MonacoEditorBase
 {
     protected RicherMonacoEditorBase? _originalEditor;
     protected RicherMonacoEditorBase? _modifiedEditor;
+
+    [Import]
+    protected ISettingsProvider SettingsProvider = default!;
 
     /// <summary>
     /// Get the `original` editor.
@@ -339,7 +343,7 @@ public abstract class RicherMonacoEditorDiffBase : MonacoEditorBase
     /// <summary>
     /// Update the editor's options after the editor has been created.
     /// </summary>
-    public ValueTask<bool> UpdateOptionsAsync(DiffEditorOptions newOptions)
+    public async ValueTask<bool> UpdateOptionsAsync(DiffEditorOptions newOptions)
     {
         // Convert the options object into a JsonElement to get rid of the properties with null values
         string optionsJson = JsonSerializer.Serialize(newOptions, new JsonSerializerOptions
@@ -348,6 +352,33 @@ public abstract class RicherMonacoEditorDiffBase : MonacoEditorBase
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         });
         JsonElement optionsDict = JsonSerializer.Deserialize<JsonElement>(optionsJson);
-        return JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.updateOptions", Id, optionsDict);
+
+        bool success = await JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.updateOptions", Id, optionsDict);
+
+        if (success)
+        {
+            DiffEditorModel textModel = await this.GetModelAsync();
+
+            if (textModel is not null && textModel.Original is not null && textModel.Modified is not null)
+            {
+                UITextEndOfLinePreference eolPreference = SettingsProvider.GetSetting(PredefinedSettings.TextEditorEndOfLinePreference);
+                if (eolPreference != UITextEndOfLinePreference.TextDefault)
+                {
+                    EndOfLineSequence eol = EndOfLineSequence.CRLF;
+                    if (eolPreference == UITextEndOfLinePreference.LF)
+                    {
+                        eol = EndOfLineSequence.LF;
+                    }
+
+                    success = await textModel.Original.SetEOLAsync(JSRuntime, eol);
+                    if (success)
+                    {
+                        success = await textModel.Modified.SetEOLAsync(JSRuntime, eol);
+                    }
+                }
+            }
+        }
+
+        return success;
     }
 }

@@ -2,6 +2,7 @@
 using System.Text.Json.Serialization;
 using DevToys.Blazor.Components.Monaco;
 using DevToys.Blazor.Components.Monaco.Editor;
+using DevToys.Core.Settings;
 
 namespace DevToys.Blazor.Components;
 
@@ -10,11 +11,19 @@ public class RicherMonacoEditorBase : MonacoEditorBase
     private readonly List<string> _deltaDecorationIds = new();
     private CursorStateComputer? _executeEditsLambda;
 
-    public RicherMonacoEditorBase(IJSRuntime? jsRuntime = null)
+    [Import]
+    protected ISettingsProvider SettingsProvider = default!;
+
+    public RicherMonacoEditorBase(IJSRuntime? jsRuntime = null, ISettingsProvider? settingsProvider = null)
     {
         if (jsRuntime is not null)
         {
             JSRuntime = jsRuntime;
+        }
+
+        if (settingsProvider is not null)
+        {
+            SettingsProvider = settingsProvider;
         }
     }
 
@@ -716,11 +725,11 @@ public class RicherMonacoEditorBase : MonacoEditorBase
     internal async ValueTask<bool> SetLanguageAsync(string languageId)
         => await MonacoEditorHelper.SetModelLanguageAsync(JSRuntime, await GetModelAsync(), languageId);
 
-    internal ValueTask<bool> UpdateOptionsAsync(EditorUpdateOptions newOptions)
+    internal async ValueTask<bool> UpdateOptionsAsync(EditorUpdateOptions newOptions)
     {
         if (_isDisposed)
         {
-            return new ValueTask<bool>(false);
+            return false;
         }
 
         // Convert the options object into a JsonElement to get rid of the properties with null values
@@ -730,6 +739,28 @@ public class RicherMonacoEditorBase : MonacoEditorBase
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         });
         JsonElement optionsDict = JsonSerializer.Deserialize<JsonElement>(optionsJson);
-        return JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.updateOptions", Id, optionsDict);
+        bool success = await JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.updateOptions", Id, optionsDict);
+
+        if (success)
+        {
+            TextModel textModel = await this.GetModelAsync();
+
+            if (textModel is not null)
+            {
+                UITextEndOfLinePreference eolPreference = SettingsProvider.GetSetting(PredefinedSettings.TextEditorEndOfLinePreference);
+                if (eolPreference != UITextEndOfLinePreference.TextDefault)
+                {
+                    EndOfLineSequence eol = EndOfLineSequence.CRLF;
+                    if (eolPreference == UITextEndOfLinePreference.LF)
+                    {
+                        eol = EndOfLineSequence.LF;
+                    }
+
+                    success = await textModel.SetEOLAsync(JSRuntime, eol);
+                }
+            }
+        }
+
+        return success;
     }
 }

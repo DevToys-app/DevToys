@@ -15,6 +15,9 @@ public abstract class MonacoEditorBase : MefComponentBase, IFocusable
     public EventCallback OnDidDispose { get; set; }
 
     [Parameter]
+    public EventCallback OnTextModelInitializationRequested { get; set; }
+
+    [Parameter]
     public EventCallback OnDidInit { get; set; }
 
     protected override Task OnInitializedAsync()
@@ -79,6 +82,7 @@ public abstract class MonacoEditorBase : MefComponentBase, IFocusable
         if (firstRender)
         {
             await SetEventListenersAsync();
+            await OnTextModelInitializationRequested.InvokeAsync(this);
             OnEditorLoaded();
             await OnDidInit.InvokeAsync(this);
         }

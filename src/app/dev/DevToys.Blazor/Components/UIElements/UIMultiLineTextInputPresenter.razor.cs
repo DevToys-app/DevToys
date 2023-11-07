@@ -71,7 +71,7 @@ public partial class UIMultiLineTextInputPresenter : JSStyledComponentBase
         }
     }
 
-    private async Task OnMonacoEditorInitializedAsync()
+    private async Task OnMonacoTextModelInitializationRequestedAsync()
     {
         // Get or create the text model
         TextModel textModel = await MonacoEditorHelper.GetModelAsync(JSRuntime, uri: _modelName);
@@ -90,8 +90,12 @@ public partial class UIMultiLineTextInputPresenter : JSStyledComponentBase
 
         // Set the text of model
         await textModel.SetValueAsync(JSRuntime, UIMultiLineTextInput.Text);
+    }
 
+    private Task OnMonacoEditorInitializedAsync()
+    {
         _monacoInitializationAwaiter.TrySetResult();
+        return Task.CompletedTask;
     }
 
     private StandaloneEditorConstructionOptions OnMonacoConstructionOptions(MonacoEditor monacoEditor)

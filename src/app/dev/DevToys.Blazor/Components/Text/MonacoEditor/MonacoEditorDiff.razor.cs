@@ -13,9 +13,6 @@ public partial class MonacoEditorDiff : RicherMonacoEditorDiffBase
 #pragma warning disable IDE0044 // Add readonly modifier
     [Import]
     private IThemeListener _themeListener = default!;
-
-    [Import]
-    private ISettingsProvider _settingsProvider = default!;
 #pragma warning restore IDE0044 // Add readonly modifier
 
     [Parameter]
@@ -31,7 +28,7 @@ public partial class MonacoEditorDiff : RicherMonacoEditorDiffBase
         base.OnInitialized();
 
         _themeListener.ThemeChanged += ThemeListener_ThemeChanged;
-        _settingsProvider.SettingChanged += SettingsProvider_SettingChanged;
+        SettingsProvider.SettingChanged += SettingsProvider_SettingChanged;
         _oldIsActuallyEnabled = IsActuallyEnabled;
     }
 
@@ -68,15 +65,16 @@ public partial class MonacoEditorDiff : RicherMonacoEditorDiffBase
             options.RenderOverviewRuler = true;
 
             // Apply global user settings
-            options.FontFamily = _settingsProvider.GetSetting(PredefinedSettings.TextEditorFont);
-            options.WordWrap = _settingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping) ? "on" : "off";
-            options.LineNumbers = _settingsProvider.GetSetting(PredefinedSettings.TextEditorLineNumbers) ? "on" : "off";
-            options.RenderLineHighlight = _settingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine) ? "all" : "none";
-            options.RenderWhitespace = _settingsProvider.GetSetting(PredefinedSettings.TextEditorRenderWhitespace) ? "all" : "none";
+            options.FontFamily = SettingsProvider.GetSetting(PredefinedSettings.TextEditorFont);
+            options.WordWrap = SettingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping) ? "on" : "off";
+            options.LineNumbers = SettingsProvider.GetSetting(PredefinedSettings.TextEditorLineNumbers) ? "on" : "off";
+            options.RenderLineHighlight = SettingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine) ? "all" : "none";
+            options.RenderWhitespace = SettingsProvider.GetSetting(PredefinedSettings.TextEditorRenderWhitespace) ? "all" : "none";
 
             // Create the bridges for the inner editors
-            _originalEditor = MonacoEditorHelper.CreateVirtualEditor(JSRuntime, Id + "_original");
-            _modifiedEditor = MonacoEditorHelper.CreateVirtualEditor(JSRuntime, Id + "_modified");
+            Guard.IsNotNull(SettingsProvider);
+            _originalEditor = MonacoEditorHelper.CreateVirtualEditor(JSRuntime, Id + "_original", settingsProvider: SettingsProvider);
+            _modifiedEditor = MonacoEditorHelper.CreateVirtualEditor(JSRuntime, Id + "_modified", settingsProvider: SettingsProvider);
 
             Guard.IsNotNull(OriginalEditor);
             Guard.IsNotNull(ModifiedEditor);
@@ -122,9 +120,9 @@ public partial class MonacoEditorDiff : RicherMonacoEditorDiffBase
             _themeListener.ThemeChanged -= ThemeListener_ThemeChanged;
         }
 
-        if (_settingsProvider is not null)
+        if (SettingsProvider is not null)
         {
-            _settingsProvider.SettingChanged -= SettingsProvider_SettingChanged;
+            SettingsProvider.SettingChanged -= SettingsProvider_SettingChanged;
         }
 
         return base.DisposeAsync();
@@ -145,14 +143,14 @@ public partial class MonacoEditorDiff : RicherMonacoEditorDiffBase
     {
         var options = new DiffEditorOptions()
         {
-            FontFamily = _settingsProvider.GetSetting(PredefinedSettings.TextEditorFont),
-            WordWrap = _settingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping) ? "on" : "off",
-            LineNumbers = _settingsProvider.GetSetting(PredefinedSettings.TextEditorLineNumbers) ? "on" : "off",
-            RenderLineHighlight = _settingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine) ? "all" : "none",
-            RenderWhitespace = _settingsProvider.GetSetting(PredefinedSettings.TextEditorRenderWhitespace) ? "all" : "none"
+            FontFamily = SettingsProvider.GetSetting(PredefinedSettings.TextEditorFont),
+            WordWrap = SettingsProvider.GetSetting(PredefinedSettings.TextEditorTextWrapping) ? "on" : "off",
+            LineNumbers = SettingsProvider.GetSetting(PredefinedSettings.TextEditorLineNumbers) ? "on" : "off",
+            RenderLineHighlight = SettingsProvider.GetSetting(PredefinedSettings.TextEditorHighlightCurrentLine) ? "all" : "none",
+            RenderWhitespace = SettingsProvider.GetSetting(PredefinedSettings.TextEditorRenderWhitespace) ? "all" : "none"
         };
 
-        UpdateOptionsAsync(options);
+        UpdateOptionsAsync(options).Forget();
     }
 
     private void ThemeListener_ThemeChanged(object? sender, EventArgs e)

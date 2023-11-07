@@ -140,6 +140,14 @@ public static class PredefinedSettings
             defaultValue: false);
 
     /// <summary>
+    /// The kind of EOL (End Of Line sequence) to use in the text editor (LF vs CRLF).
+    /// </summary>
+    public static readonly SettingDefinition<UITextEndOfLinePreference> TextEditorEndOfLinePreference
+        = new(
+            name: nameof(TextEditorEndOfLinePreference),
+            defaultValue: UITextEndOfLinePreference.TextDefault);
+
+    /// <summary>
     /// Whether when using the Paste command, the text in the editor should be replaced or appended.
     /// </summary>
     public static readonly SettingDefinition<bool> TextEditorPasteClearsText

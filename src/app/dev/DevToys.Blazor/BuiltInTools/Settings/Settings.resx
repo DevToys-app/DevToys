@@ -153,6 +153,18 @@
   <data name="Editing" xml:space="preserve">
     <value>Editing</value>
   </data>
+  <data name="EndOfLinePreference" xml:space="preserve">
+    <value>End Of Line character</value>
+  </data>
+  <data name="EndOfLinePreferenceAutomatic" xml:space="preserve">
+    <value>Same end of line as input (automatic)</value>
+  </data>
+  <data name="EndOfLinePreferenceCRLF" xml:space="preserve">
+    <value>Carriage Return and Line Feed (\r\n) (Windows)</value>
+  </data>
+  <data name="EndOfLinePreferenceLF" xml:space="preserve">
+    <value>Line Feed (\n) (Unix)</value>
+  </data>
   <data name="Font" xml:space="preserve">
     <value>Font</value>
   </data>

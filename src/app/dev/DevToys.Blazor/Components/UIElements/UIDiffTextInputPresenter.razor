@@ -50,6 +50,7 @@
     <GridCell Row="1" Column="0" ColumnSpan="2">
         <MonacoEditorDiff @ref="_monacoEditor"
                           ConstructionOptions="@OnMonacoConstructionOptions"
+                          OnTextModelInitializationRequested="OnMonacoTextModelInitializationRequestedAsync"
                           OnDidInit="@OnMonacoEditorInitializedAsync" />
     </GridCell>
 </Grid>

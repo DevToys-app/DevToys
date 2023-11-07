@@ -41,7 +41,7 @@ public partial class UIDiffTextInputPresenter : JSStyledComponentBase
         return base.DisposeAsync();
     }
 
-    private async Task OnMonacoEditorInitializedAsync()
+    private async Task OnMonacoTextModelInitializationRequestedAsync()
     {
         // Get or create the original model
         TextModel original_model = await MonacoEditorHelper.GetModelAsync(JSRuntime, uri: _originalModelName);
@@ -67,7 +67,10 @@ public partial class UIDiffTextInputPresenter : JSStyledComponentBase
             Original = original_model,
             Modified = modified_model
         });
+    }
 
+    private async Task OnMonacoEditorInitializedAsync()
+    {
         Guard.IsNotNull(_monacoEditor.ModifiedEditor);
         await _monacoEditor.ModifiedEditor.UpdateOptionsAsync(
             new EditorUpdateOptions
