@@ -194,7 +194,7 @@ namespace DevToys.ViewModels.Tools.StringEscapeUnescape
 
         private async Task<string> EscapeStringAsync(string? data)
         {
-            if (string.IsNullOrWhiteSpace(data))
+            if (string.IsNullOrEmpty(data))
             {
                 return string.Empty;
             }
@@ -205,6 +205,7 @@ namespace DevToys.ViewModels.Tools.StringEscapeUnescape
             try
             {
                 int i = 0;
+                string linefeedSelected = SpecialCharacterDefinition.Parse(_settingsProvider.GetSetting(NewlineEncodingMode)).Escaped;
                 while (i < data!.Length)
                 {
                     string replacementString = string.Empty;
@@ -212,17 +213,17 @@ namespace DevToys.ViewModels.Tools.StringEscapeUnescape
                     if (TextMatchAtIndex(data, SpecialCharacterDefinition.CarriageReturnLinefeed, i))
                     {
                         jumpLength = 2;
-                        replacementString = SpecialCharacterDefinition.Parse(_settingsProvider.GetSetting(NewlineEncodingMode)).Escaped;
+                        replacementString = linefeedSelected;
                     }
                     else if (TextMatchAtIndex(data, SpecialCharacterDefinition.LineFeed, i))
                     {
                         jumpLength = 1;
-                        replacementString = SpecialCharacterDefinition.Parse(_settingsProvider.GetSetting(NewlineEncodingMode)).Escaped;
+                        replacementString = linefeedSelected;
                     }
                     else if (TextMatchAtIndex(data, SpecialCharacterDefinition.CarriageReturn, i))
                     {
                         jumpLength = 1;
-                        replacementString = SpecialCharacterDefinition.Parse(_settingsProvider.GetSetting(NewlineEncodingMode)).Escaped;
+                        replacementString = linefeedSelected;
                     }
                     else if (TextMatchAtIndex(data, SpecialCharacterDefinition.Tab, i))
                     {
@@ -284,6 +285,7 @@ namespace DevToys.ViewModels.Tools.StringEscapeUnescape
             try
             {
                 int i = 0;
+                string linefeedSelected = SpecialCharacterDefinition.Parse(_settingsProvider.GetSetting(NewlineEncodingMode)).Value;
                 while (i < data!.Length)
                 {
                     string replacementString = string.Empty;
@@ -292,17 +294,17 @@ namespace DevToys.ViewModels.Tools.StringEscapeUnescape
                     if (TextMatchAtIndex(data, SpecialCharacterDefinition.CarriageReturnLinefeed.Escaped, i))
                     {
                         jumpLength = 4;
-                        replacementString = SpecialCharacterDefinition.Parse(_settingsProvider.GetSetting(NewlineEncodingMode)).Value;
+                        replacementString = linefeedSelected;
                     }
                     else if (TextMatchAtIndex(data, SpecialCharacterDefinition.LineFeed.Escaped, i))
                     {
                         jumpLength = 1;
-                        replacementString = SpecialCharacterDefinition.Parse(_settingsProvider.GetSetting(NewlineEncodingMode)).Value;
+                        replacementString = linefeedSelected;
                     }
                     else if (TextMatchAtIndex(data, SpecialCharacterDefinition.CarriageReturn.Escaped, i))
                     {
                         jumpLength = 1;
-                        replacementString = SpecialCharacterDefinition.Parse(_settingsProvider.GetSetting(NewlineEncodingMode)).Value;
+                        replacementString = linefeedSelected;
                     }
                     else if (TextMatchAtIndex(data, SpecialCharacterDefinition.Tab.Escaped, i))
                     {
@@ -365,7 +367,7 @@ namespace DevToys.ViewModels.Tools.StringEscapeUnescape
 
             for (int i = 0; i < test.Length; i++)
             {
-                if (data[startIndex + i] != test[i])
+                if ((startIndex + i) >= data.Length || data[startIndex + i] != test[i])
                 {
                     return false;
                 }
