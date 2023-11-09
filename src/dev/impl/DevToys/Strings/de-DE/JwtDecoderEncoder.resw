@@ -337,7 +337,7 @@
     <value>End-User's birthday, represented as an ISO 8601:2004 YYYY-MM-DD format. The year MAY be 0000, indicating that it is omitted. To represent only the year, YYYY format is allowed. Note that depending on the underlying platform's date related function, providing just year can result in varying month and day, so the implementers need to take this factor into account to correctly process the dates.</value>
   </data>
   <data name="zoneinfo" xml:space="preserve">
-    <value>String from zoneinfo time zone database representing the End-User's time zone. For example, Europe/Paris or America/Los_Angeles.</value>
+    <value>Zeichenkette aus der zoneinfo Zeitzonen-Datenbank, die die Zeitzone des End-Users repräsentiert, zum Beispiel in Europa/Paris oder Amerika/Los_Angeles.</value>
   </data>
   <data name="locale" xml:space="preserve">
     <value>End-User's locale, represented as a BCP47 [RFC5646] language tag. This is typically an ISO 639-1 Alpha-2 language code in lowercase and an ISO 3166-1 Alpha-2 country code in uppercase, separated by a dash. For example, en-US or fr-CA. As a compatibility note, some implementations have used an underscore as the separator rather than a dash, for example, en_US; Relying Parties MAY choose to accept this locale syntax as well.</value>
