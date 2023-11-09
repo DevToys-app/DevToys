@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Certificaat-ontsleutelgereedschap</value>
+    <value>Certificaat Decoderen hulpmiddel</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Certificaat</value>
@@ -133,10 +133,10 @@
     <value>Resultaat</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Ontsleutel certificaat</value>
+    <value>Decodeer een certificaat</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Certificaat Ontsleutelen</value>
+    <value>Certificaat Decoderen</value>
   </data>
   <data name="InvalidPasswordError" xml:space="preserve">
     <value>Ongeldig wachtwoord.</value>
