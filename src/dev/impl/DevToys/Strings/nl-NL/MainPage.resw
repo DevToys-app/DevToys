@@ -118,22 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddToFavorites" xml:space="preserve">
-    <value>Add to favorites</value>
+    <value>Toevoegen aan favorieten</value>
   </data>
   <data name="EnterCompactOverlayTooltip" xml:space="preserve">
-    <value>Keep on top (Ctrl+Up)</value>
+    <value>Bovenaan houden (Ctrl+Up)</value>
   </data>
   <data name="ExitCompactOverlayTooltip" xml:space="preserve">
-    <value>Back to full view (Ctrl+Down)</value>
+    <value>Terug naar volledig scherm (Ctrl+Down)</value>
   </data>
   <data name="NotificationRateAppActionableActionText" xml:space="preserve">
-    <value>rate us now...</value>
+    <value>beoordeel ons nu...</value>
   </data>
   <data name="NotificationRateAppMessage" xml:space="preserve">
-    <value>Enjoying DevToys? Please consider rating us!</value>
+    <value>Tevreden over DevToys? Overweeg om ons te beoordelen!</value>
   </data>
   <data name="NotificationRateAppTitle" xml:space="preserve">
-    <value>Um... hi! 😅</value>
+    <value>Ehm... hallo! 😅</value>
   </data>
   <data name="NotificationReleaseNoteActionableActionText" xml:space="preserve">
     <value>Lees meer...</value>
@@ -152,28 +152,28 @@
     <value>In een nieuw venster openen</value>
   </data>
   <data name="PinToolToStart" xml:space="preserve">
-    <value>Pin tool to Start</value>
+    <value>Hulpmiddel vastmaken aan Start</value>
   </data>
   <data name="PinToolToStartProblem" xml:space="preserve">
-    <value>Unable to pin the tool to start. For more details, please check the log.</value>
+    <value>Niet in staat om hulpmiddel vast te maken aan Start. Voor meed details, controleer het logbestand.</value>
   </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
-    <value>Remove from favorites</value>
+    <value>Verwijder uit favorieten</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Type to search for tools...</value>
+    <value>Typ om een hulpmiddel te zoeken...</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
     <value>Geen resultaten gevonden</value>
   </data>
   <data name="SurveyDescription" xml:space="preserve">
-    <value>We would love to hear about your experience with DevToys so we can improve it.</value>
+    <value>We horen graag van je ervaring met DevToys zodat we het kunnen verbeteren.</value>
   </data>
   <data name="SurveyTitle" xml:space="preserve">
-    <value>The development of DevToys 2.0 started! 🥳</value>
+    <value>De ontwikkeling van DevToys 2.0 is gestart! 🥳</value>
   </data>
   <data name="SurveyYesButton" xml:space="preserve">
-    <value>open the survey...</value>
+    <value>open de enquête...</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>
