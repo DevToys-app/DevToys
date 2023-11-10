@@ -148,7 +148,7 @@
     <value>2 spaties</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>JSON-data inspringen of verkleinen</value>
+    <value>JSON-gegevens inspringen of verkleinen</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>JSON Formatteerder</value>
