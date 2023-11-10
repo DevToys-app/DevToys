@@ -146,7 +146,7 @@
     <value>Selecteer hoe u wilt converteren</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
-    <value>Escape</value>
+    <value>Ontsnap</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
     <value>Converteren</value>
