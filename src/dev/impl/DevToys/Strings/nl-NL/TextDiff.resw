@@ -130,7 +130,7 @@
     <value>Tekst vergelijken</value>
   </data>
   <data name="InlineDifference" xml:space="preserve">
-    <value>Inline mode</value>
+    <value>Inline modus</value>
   </data>
   <data name="LeftText" xml:space="preserve">
     <value>Oude tekst</value>
