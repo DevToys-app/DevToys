@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>XML Formatter tool</value>
+    <value>XML Formatteerder hulpmiddel</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Instellingen</value>
@@ -130,7 +130,7 @@
     <value>4 spaties</value>
   </data>
   <data name="Indentation" xml:space="preserve">
-    <value>Inspringing</value>
+    <value>Insprong</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>Invoer</value>
@@ -151,10 +151,10 @@
     <value>XML-data inspringen of verkleinen</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>XML Formatter</value>
+    <value>XML Formatteerder</value>
   </data>
   <data name="NewLineOnAttributesName" xml:space="preserve">
-    <value>Plaats attributen op nieuwe regel</value>
+    <value>Plaats attributen op een nieuwe regel</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value/>
