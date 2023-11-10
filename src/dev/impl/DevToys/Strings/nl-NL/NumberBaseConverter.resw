@@ -133,7 +133,7 @@
     <value>Number Base</value>
   </data>
   <data name="Format" xml:space="preserve">
-    <value>Format number</value>
+    <value>Nummer formatteren</value>
   </data>
   <data name="HexadecimalLabel" xml:space="preserve">
     <value>Hexadecimaal</value>
@@ -148,7 +148,7 @@
     <value>Decimaal</value>
   </data>
   <data name="InputTypeDescription" xml:space="preserve">
-    <value>Select which input type you want to use</value>
+    <value>Selecteer welk invoer type je wilt gebruiken</value>
   </data>
   <data name="InputTypeHexadecimal" xml:space="preserve">
     <value>Hexadecimaal</value>
@@ -163,7 +163,7 @@
     <value>Octaal</value>
   </data>
   <data name="ValueInvalid" xml:space="preserve">
-    <value>The current value isn't a valid {0}</value>
+    <value>De huidige waarde is ongeldig {0}</value>
     <comment>The parameter is the Base Number Type (Decimal, Octal, ...)</comment>
   </data>
   <data name="ValueOverflow" xml:space="preserve">
