@@ -208,7 +208,7 @@
     <value>Token niet gevalideerd (geen parameters geselecteerd)</value>
   </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>Token Validated</value>
+    <value>Token gevalideerd</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
     <value>Ongeldige Public Key</value>
@@ -220,7 +220,7 @@
     <value>Valideer actor</value>
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
-    <value>Validate audience</value>
+    <value>Valideer publiek</value>
   </data>
   <data name="DecodeValidateIssuerSigningKey" xml:space="preserve">
     <value>Validate issuer signing key</value>
@@ -265,10 +265,10 @@
     <value>Invalid Private Key</value>
   </data>
   <data name="PublicKeyLabel" xml:space="preserve">
-    <value>Public Key</value>
+    <value>Publieke sleutel</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>JWT Encoder / Decoder</value>
+    <value>JWT Coderen / Decoderen</value>
   </data>
   <data name="InvalidSignatureError" xml:space="preserve">
     <value>Ongeldige handtekening</value>
