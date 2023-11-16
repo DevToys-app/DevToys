@@ -61,6 +61,15 @@ namespace DevToys.Tools.Strings.GlobalStrings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bytes.
+        /// </summary>
+        internal static string Bytes {
+            get {
+                return ResourceManager.GetString("Bytes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File &apos;{0}&apos; was not found..
         /// </summary>
         internal static string FileNotFound {
@@ -75,6 +84,42 @@ namespace DevToys.Tools.Strings.GlobalStrings {
         internal static string FileTypeNotSupported {
             get {
                 return ResourceManager.GetString("FileTypeNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GB.
+        /// </summary>
+        internal static string Gigabytes {
+            get {
+                return ResourceManager.GetString("Gigabytes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KB.
+        /// </summary>
+        internal static string Kilobytes {
+            get {
+                return ResourceManager.GetString("Kilobytes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MB.
+        /// </summary>
+        internal static string Megabytes {
+            get {
+                return ResourceManager.GetString("Megabytes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TB.
+        /// </summary>
+        internal static string Terabytes {
+            get {
+                return ResourceManager.GetString("Terabytes", resourceCulture);
             }
         }
     }
