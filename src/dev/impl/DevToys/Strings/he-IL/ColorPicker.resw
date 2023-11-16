@@ -157,13 +157,13 @@
     <value>Contrast ratio</value>
   </data>
   <data name="Fail" xml:space="preserve">
-    <value>Fail</value>
+    <value>לא תקין</value>
   </data>
   <data name="LargeText" xml:space="preserve">
     <value>טקסט גדול</value>
   </data>
   <data name="Pass" xml:space="preserve">
-    <value>Pass</value>
+    <value>תקין</value>
   </data>
   <data name="SampleText" xml:space="preserve">
     <value>Sit kasd feugait takimata in eirmod sadipscing sanctus consectetuer voluptua dolor dolor dolore rebum.</value>
