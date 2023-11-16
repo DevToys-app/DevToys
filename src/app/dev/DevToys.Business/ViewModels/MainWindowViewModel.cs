@@ -9,6 +9,8 @@ using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
 using DevToys.Localization.Strings.MainWindow;
 using Microsoft.Extensions.Logging;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
 
 namespace DevToys.Business.ViewModels;
 
@@ -221,7 +223,7 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
             object? rawClipboardData = await _clipboard.GetClipboardDataAsync();
 
             // If the clipboard content has changed since the last time
-            if (!cancellationTokenSource.Token.IsCancellationRequested && !object.Equals(_oldRawClipboardData, rawClipboardData))
+            if (!cancellationTokenSource.Token.IsCancellationRequested && !AreOldAndNewClipboardDataEqual(_oldRawClipboardData, rawClipboardData))
             {
                 // Reset recommended tools.
                 _guiToolProvider.ForEachToolViewItem(toolViewItem => toolViewItem.IsRecommended = false);
@@ -360,6 +362,80 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
             // Send the data to the tool.
             message.Value.PassSmartDetectedData(message.SmartDetectionInfo.DataTypeName, message.SmartDetectionInfo.ParsedData);
         }
+    }
+
+    private static bool AreOldAndNewClipboardDataEqual(object? oldData, object? newData)
+    {
+        if (oldData is null && newData is null)
+        {
+            return true;
+        }
+
+        if (oldData is null || newData is null)
+        {
+            return false;
+        }
+
+        if (oldData.GetType() != newData.GetType())
+        {
+            return false;
+        }
+
+        if (oldData is string oldString && newData is string newString)
+        {
+            return string.Equals(oldString, newString, StringComparison.Ordinal);
+        }
+
+        if (oldData is FileInfo[] oldFileList && newData is FileInfo[] newFileList)
+        {
+            return AreFileListEqual(oldFileList, newFileList);
+        }
+
+        if (oldData is Image<Rgba32> oldImage && newData is Image<Rgba32> newImage)
+        {
+            return AreImageEqual(oldImage, newImage);
+        }
+
+        return object.Equals(oldData, newData);
+    }
+
+    private static bool AreFileListEqual(FileInfo[] source, FileInfo[] target)
+    {
+        if (source.Length != target.Length)
+        {
+            return false;
+        }
+
+        for (int i = 0; i < source.Length; i++)
+        {
+            if (!string.Equals(source[i].FullName, target[i].FullName, StringComparison.Ordinal))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private static bool AreImageEqual(Image<Rgba32> source, Image<Rgba32> target)
+    {
+        if (source.Width != target.Width || source.Height != target.Height)
+        {
+            return false;
+        }
+
+        for (int x = 0; x < source.Width; x++)
+        {
+            for (int y = 0; y < source.Height; y++)
+            {
+                if (source[x, y] != target[x, y])
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
     [LoggerMessage(1, LogLevel.Warning, "Failed to perform smart detection.")]
