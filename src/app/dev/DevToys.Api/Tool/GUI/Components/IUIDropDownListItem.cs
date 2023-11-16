@@ -35,6 +35,15 @@ public static partial class GUI
     /// <summary>
     /// Create component that represents an item in a drop down list.
     /// </summary>
+    /// <param name="value">The value associated to the item. It will be used to generate the text to display in the item</param>
+    public static IUIDropDownListItem Item(object? value)
+    {
+        return Item(text: value?.ToString() ?? string.Empty, value);
+    }
+
+    /// <summary>
+    /// Create component that represents an item in a drop down list.
+    /// </summary>
     /// <param name="text">The text to display in the item.</param>
     /// <param name="value">The value associated to the item.</param>
     public static IUIDropDownListItem Item(string? text, object? value)

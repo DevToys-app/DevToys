@@ -111,8 +111,13 @@ internal sealed class HashAndChecksumGeneratorCommandLineTool : ICommandLineTool
 
             return 0;
         }
+        catch (Exception ex) when (ex is TaskCanceledException or OperationCanceledException)
+        {
+            return -1;
+        }
         catch
         {
+            // TODO: Log exception.
             return -1;
         }
     }

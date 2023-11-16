@@ -17,7 +17,7 @@ internal sealed class GZipEncoderDecoderCommandLineTool : ICommandLineTool
         Alias = "i",
         IsRequired = true,
         DescriptionResourceName = nameof(GZipEncoderDecoder.InputOptionDescription))]
-    private string? Input { get; set; }
+    private string? Input { get; set; } // TODO: Support file as input too.
 
     [CommandLineOption(
         Name = "mode",

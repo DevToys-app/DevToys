@@ -51,14 +51,14 @@ internal sealed class ColorBlindnessSimulatorCommandLineTool : ICommandLineTool
         }
 
         string fileExtension = Input.Extension;
-        bool isSupportedImageFile = ColorBlindnessSimulatorImageFileDataTypeDetector.SupportedFileTypes.Any(ext => ext.Equals(fileExtension, StringComparison.OrdinalIgnoreCase));
+        bool isSupportedImageFile = StaticImageFileDataTypeDetector.SupportedFileTypes.Any(ext => ext.Equals(fileExtension, StringComparison.OrdinalIgnoreCase));
         if (!isSupportedImageFile)
         {
             Console.Error.WriteLine(
                 string.Format(
                     GlobalStrings.FileTypeNotSupported,
                     Input.FullName,
-                    string.Join(", ", ColorBlindnessSimulatorImageFileDataTypeDetector.SupportedFileTypes)));
+                    string.Join(", ", StaticImageFileDataTypeDetector.SupportedFileTypes)));
             return -1;
         }
 

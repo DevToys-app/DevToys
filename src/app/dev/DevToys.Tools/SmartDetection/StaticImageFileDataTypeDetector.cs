@@ -1,8 +1,8 @@
 ﻿namespace DevToys.Tools.SmartDetection;
 
 [Export(typeof(IDataTypeDetector))]
-[DataTypeName("ColorBlindnessSimulatorImageFile", baseName: PredefinedCommonDataTypeNames.File)]
-internal sealed partial class ColorBlindnessSimulatorImageFileDataTypeDetector : IDataTypeDetector
+[DataTypeName("StaticImageFile", baseName: PredefinedCommonDataTypeNames.File)]
+internal sealed partial class StaticImageFileDataTypeDetector : IDataTypeDetector
 {
     internal static readonly string[] SupportedFileTypes = new[]
     {

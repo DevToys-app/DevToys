@@ -20,7 +20,7 @@ namespace DevToys.Tools.Tools.Graphic.ColorBlindnessSimulator;
     DescriptionResourceName = nameof(ColorBlindnessSimulator.Description),
     AccessibleNameResourceName = nameof(ColorBlindnessSimulator.AccessibleName))]
 [AcceptedDataTypeName(PredefinedCommonDataTypeNames.Image)]
-[AcceptedDataTypeName("ColorBlindnessSimulatorImageFile")]
+[AcceptedDataTypeName("StaticImageFile")]
 internal sealed class ColorBlindnessSimulatorGuiTool : IGuiTool, IDisposable
 {
     private enum GridRows
@@ -86,7 +86,7 @@ internal sealed class ColorBlindnessSimulatorGuiTool : IGuiTool, IDisposable
 
                         _fileSelector
                             .CanSelectOneFile()
-                            .LimitFileTypesTo(ColorBlindnessSimulatorImageFileDataTypeDetector.SupportedFileTypes)
+                            .LimitFileTypesTo(StaticImageFileDataTypeDetector.SupportedFileTypes)
                             .OnFilesSelected(OnFilesSelected)),
 
                     Cell(
@@ -153,7 +153,7 @@ internal sealed class ColorBlindnessSimulatorGuiTool : IGuiTool, IDisposable
 
             _fileSelector.WithFiles(SandboxedFileReader.FromFileInfo(temporaryFile)); // This will trigger a new simulation.
         }
-        else if (dataTypeName == "ColorBlindnessSimulatorImageFile" && parsedData is FileInfo file)
+        else if (dataTypeName == "StaticImageFile" && parsedData is FileInfo file)
         {
             _fileSelector.WithFiles(SandboxedFileReader.FromFileInfo(file)); // This will trigger a new simulation.
         }
