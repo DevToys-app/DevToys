@@ -4,6 +4,7 @@
 
     &-gripper {
         display: flex;
+        justify-content: center;
 
         &:hover, &:active {
             background-color: var(--subtle-fill-secondary);

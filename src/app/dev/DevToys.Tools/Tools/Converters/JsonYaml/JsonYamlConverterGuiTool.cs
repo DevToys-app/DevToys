@@ -94,6 +94,8 @@ internal sealed partial class JsonYamlConverterGuiTool : IGuiTool, IDisposable
                     GridRow.Header,
                     GridColumn.Content,
                     Stack().Vertical().WithChildren(
+                        Label()
+                        .Text(JsonYamlConverter.Configuration),
                         Setting("json-to-yaml-text-conversion-setting")
                         .Icon("FluentSystemIcons", '\uF18D')
                         .Title(JsonYamlConverter.ConversionTitle)
