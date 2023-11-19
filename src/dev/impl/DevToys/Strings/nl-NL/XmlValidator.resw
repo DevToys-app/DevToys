@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Xml Validator tool</value>
+    <value>Xml Validatie hulpmiddel</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>XML Validator</value>
+    <value>XML Validatie</value>
   </data>
   <data name="XsdScheme" xml:space="preserve">
     <value>XSD</value>
@@ -130,27 +130,27 @@
     <value>XML</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Validate XML data via an XSD scheme.</value>
+    <value>Valideer XML-gegevens via een XSD-schema.</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>XML Validator</value>
+    <value>XML Validatie</value>
   </data>
   <data name="ValidationImpossibleMsg" xml:space="preserve">
-    <value>XML and XSD content must be set in order to perform a validation.</value>
+    <value>XML en XSD inhoud moet worden ingesteld om een validatie uit te kunnen voeren.</value>
   </data>
   <data name="XmlIsValidMessage" xml:space="preserve">
-    <value>XML is compliant to the defined XSD scheme.</value>
+    <value>XML is in overeenstemming met het gedefinieerde XSD-schema.</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>XML XSD Validate</value>
+    <value>XML XSD Validatie</value>
   </data>
   <data name="XmlNamespacesInconsistentMsg" xml:space="preserve">
-    <value>Validation result will always be 'valid' since the XML does not define these namespace(s) defined in the XSD: {0}</value>
+    <value>Validatieresultaat zal altijd 'geldig' zijn, aangezien XML niet de naamruimte(en) gedefinieerd heeft in XSD: {0}</value>
   </data>
   <data name="XsdNamespacesInconsistentMsg" xml:space="preserve">
-    <value>Validation result will always be 'valid' since the XSD does not define these namespace(s) defined in the XML: {0}</value>
+    <value>Validatieresultaat zal altijd 'geldig' zijn, aangezien XSD niet de naamruimte(en) gedefinieerd heeft in XML: {0}</value>
   </data>
   <data name="TargetNamespaceNotDefinedInXml" xml:space="preserve">
-    <value>Validation result will potentially always be 'valid' since the XML does not reference the following "targetNamespace" defined in the XSD: {0}</value>
+    <value>Validatieresultaat zal altijd 'geldig' zijn, aangezien XML niet de verwijzing gedefinieerd heeft naar "doelNaamruimte" in XSD: {0}</value>
   </data>
 </root>

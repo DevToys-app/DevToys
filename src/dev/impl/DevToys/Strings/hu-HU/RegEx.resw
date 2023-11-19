@@ -124,13 +124,13 @@
     <value>Konfiguráció</value>
   </data>
   <data name="CultureInvariant" xml:space="preserve">
-    <value>Culture Invariant</value>
+    <value>Invariáns kultúra</value>
   </data>
   <data name="CultureInvariantDescription" xml:space="preserve">
-    <value>Meghatározza, hogy a program figyelmen kívül hagyja a nyelvi kulturális különbségeket.</value>
+    <value>A program figyelmen kívül hagyja a nyelvi kulturális különbségeket.</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Regex Tesztelő</value>
+    <value>Regex tesztelő</value>
   </data>
   <data name="EcmaScript" xml:space="preserve">
     <value>ECMA Script</value>
@@ -139,22 +139,22 @@
     <value>Engedélyezi az ECMAScript-kompatibilis viselkedést a kifejezés számára. Ez az érték csak a Culture Invariant, Kis- és nagybetűk figyelmen kívül hagyása és a Többsoros beállításokkal együtt használható.</value>
   </data>
   <data name="IgnoreCase" xml:space="preserve">
-    <value>Kis- és nagybetűk figyelmen kívűl hagyása</value>
+    <value>Kis- és nagybetű különbség figyelmen kívül hagyása</value>
   </data>
   <data name="IgnoreCaseDescription" xml:space="preserve">
-    <value>Meghatározza a kis- és nagybetűk közötti egyezést.</value>
+    <value>Nem különbözteti meg a kis- és a nagybetűket.</value>
   </data>
   <data name="IgnoreWhitespace" xml:space="preserve">
-    <value>Whitespacek Figyelmenkívűl hagyása</value>
+    <value>A whitespace karakterek figyelmen kívül hagyása</value>
   </data>
   <data name="IgnoreWhitespaceDescription" xml:space="preserve">
-    <value>Kiküszöböli az unescaped white space-eket a mintából és engedélyezi a kommenteket amik #-el vannak jelölve. Viszont, ez az érték nem befojásolja vagy szünteti meg a white space-eket a karakter osztályokban, numerikus kvantorokban, vagy tokenekben amik az egyedi reguláris kifejezés nyelvi elemek kezdéseit jelölik.</value>
+    <value>Kiküszöböli az unescaped white space-eket a mintából és engedélyezi a kommenteket amik #-el vannak jelölve. Viszont, ez az érték nem befolyásolja vagy szünteti meg a white space-eket a karakter osztályokban, numerikus kvantorokban, vagy tokenekben amik az egyedi reguláris kifejezés nyelvi elemek kezdéseit jelölik.</value>
   </data>
   <data name="Multiline" xml:space="preserve">
     <value>Többsoros</value>
   </data>
   <data name="MultilineDescription" xml:space="preserve">
-    <value>Megváltoztatja a ^ és a $ jelentését úgy, hogy bármely sor elejét és végét jelentse és nem csak az egész szöveg elejét és végét.</value>
+    <value>Megváltoztatja a ^ és a $ jelentését úgy, hogy bármely sor elejét és végét jelentse, és nem csak az egész szöveg elejét és végét.</value>
   </data>
   <data name="Options" xml:space="preserve">
     <value>Opciók</value>
@@ -163,16 +163,16 @@
     <value>Reguláris kifejezés</value>
   </data>
   <data name="RightToLeft" xml:space="preserve">
-    <value>Jobbról barla</value>
+    <value>Jobbról balra</value>
   </data>
   <data name="RightToLeftDescription" xml:space="preserve">
-    <value>Meghatározza, hogy a keresés jobbról balra fog történni balról jobbra helyett.</value>
+    <value>A keresés jobbról balra fog történni, nem pedig balról jobbra.</value>
   </data>
   <data name="Singleline" xml:space="preserve">
     <value>Egysoros</value>
   </data>
   <data name="SinglelineDescription" xml:space="preserve">
-    <value>Megváltoztatja a pont (.) jelentését, hogy minden karakter egyezését jelentse (Ahelyett, hogy minden karaktert kivéve a \n-t)</value>
+    <value>Megváltoztatja a pont (.) jelentését, így minden karakterre illeszkedik (nem pedig a \n kivételével minden karakterre).</value>
   </data>
   <data name="Text" xml:space="preserve">
     <value>Szöveg</value>
@@ -181,7 +181,7 @@
     <value>Regurális kifejezések tesztelése és validálása</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Regex Tesztelő</value>
+    <value>Regex tesztelő</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>Reguláris kifejezés</value>
@@ -193,12 +193,12 @@
     <value>Kimenet</value>
   </data>
   <data name="Group" xml:space="preserve">
-    <value>Group</value>
+    <value>Csoport</value>
   </data>
   <data name="Match" xml:space="preserve">
-    <value>Match</value>
+    <value>Egyezés</value>
   </data>
   <data name="Matches" xml:space="preserve">
-    <value>Matches</value>
+    <value>Egyezések</value>
   </data>
 </root>

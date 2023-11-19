@@ -295,7 +295,7 @@
     <value>Die Angabe "iat" (issued at) kennzeichnet den Zeitpunkt, zu dem der JWT ausgestellt wurde. Diese Angabe kann verwendet werden, um das Alter des JWT zu bestimmen. Sein Wert MUSS eine Zahl sein, die einen NumericDate-Wert enthält. Die Verwendung dieser Angabe ist OPTIONAL.</value>
   </data>
   <data name="jti" xml:space="preserve">
-    <value>The "jti" (JWT ID) claim provides a unique identifier for the JWT. The identifier value MUST be assigned in a manner that ensures that there is a negligible probability that the same value will be accidentally assigned to a different data object; if the application uses multiple issuers, collisions MUST be prevented among values produced by different issuers as well. The "jti" claim can be used to prevent the JWT from being replayed. The "jti" value is a case-sensitive string. Use of this claim is OPTIONAL.</value>
+    <value>Der Anspruch auf "jti" (JWT ID) stellt eine eindeutige Kennung für die JWT dar. Der Identifikatorwert MÜSSEN in einer Art und Weise zugewiesen werden, die sicherstellt, dass es eine vernachlässigbare Wahrscheinlichkeit gibt, dass der gleiche Wert einem anderen Datenobjekt zugewiesen wird; wenn die Anwendung mehrere Emittenten verwendet, MÜSSEN Kollisionen zwischen Werten, die auch von verschiedenen Emittenten erzeugt werden, verhindert werden. Der "jti"-Anspruch kann dazu benutzt werden, um zu verhindern, dass der JWT wiedergespielt wird. Der "jti"-Wert ist ein Groß-/Kleinschreibungszeichen. Die Verwendung dieses Anspruchs ist OPTIONAL.</value>
   </data>
   <data name="name" xml:space="preserve">
     <value>Vollständiger Name des Benutzers einschließlich etwaiger Titel, geordnet nach dem Gebietsschema und den Einstellungen des Benutzers.</value>
@@ -325,10 +325,10 @@
     <value>URL der Website oder des Blogs eines Endbenutzers. Diese Webseite SOLLTE Informationen die vom Endbenutzer oder einer Organisation veröffentlicht wurden enthalten, mit welchen der Endbenutzer verbunden ist.</value>
   </data>
   <data name="email" xml:space="preserve">
-    <value>End-User's preferred e-mail address. Its value MUST conform to the RFC 5322 addr-spec syntax. The RP MUST NOT rely upon this value being unique.</value>
+    <value>Die bevorzugte E-Mail-Adresse des Endbenutzers. Ihr Wert MUSS der Syntax von RFC 5322 addr-spec entsprechen. Der RP MUSS sich NICHT darauf verlassen, dass dieser Wert eindeutig ist.</value>
   </data>
   <data name="email_verified" xml:space="preserve">
-    <value>True if the End-User's e-mail address has been verified; otherwise false. When this Claim Value is true, this means that the OP took affirmative steps to ensure that this e-mail address was controlled by the End-User at the time the verification was performed. The means by which an e-mail address is verified is context-specific, and dependent upon the trust framework or contractual agreements within which the parties are operating.</value>
+    <value>Richtig, wenn die E-Mail-Adresse des Endbenutzers überprüft wurde; ansonsten falsch. Wenn dieser Anspruchswert wahr ist bedeutet dies, dass die OP positive Schritte unternommen hat, um sicherzustellen, dass diese E-Mail-Adresse zum Zeitpunkt der Überprüfung durch den Endbenutzer kontrolliert wurde. Das Mittel, mit dem eine E-Mail-Adresse überprüft wird, ist kontextspezifisch, und abhängig von dem Vertrauensrahmen oder den vertraglichen Vereinbarungen, innerhalb derer die Parteien agieren.</value>
   </data>
   <data name="gender" xml:space="preserve">
     <value>Das Geschlecht des Endnutzers. Die von dieser Spezifikation definierten Werten sind weiblich und männlich. Andere Werte dürfen verwendet werden, wenn keine der definierten Werte zutreffen.</value>
@@ -337,7 +337,7 @@
     <value>End-User's birthday, represented as an ISO 8601:2004 YYYY-MM-DD format. The year MAY be 0000, indicating that it is omitted. To represent only the year, YYYY format is allowed. Note that depending on the underlying platform's date related function, providing just year can result in varying month and day, so the implementers need to take this factor into account to correctly process the dates.</value>
   </data>
   <data name="zoneinfo" xml:space="preserve">
-    <value>String from zoneinfo time zone database representing the End-User's time zone. For example, Europe/Paris or America/Los_Angeles.</value>
+    <value>Zeichenkette aus der zoneinfo Zeitzonen-Datenbank, die die Zeitzone des End-Users repräsentiert, zum Beispiel in Europa/Paris oder Amerika/Los_Angeles.</value>
   </data>
   <data name="locale" xml:space="preserve">
     <value>End-User's locale, represented as a BCP47 [RFC5646] language tag. This is typically an ISO 639-1 Alpha-2 language code in lowercase and an ISO 3166-1 Alpha-2 country code in uppercase, separated by a dash. For example, en-US or fr-CA. As a compatibility note, some implementations have used an underscore as the separator rather than a dash, for example, en_US; Relying Parties MAY choose to accept this locale syntax as well.</value>

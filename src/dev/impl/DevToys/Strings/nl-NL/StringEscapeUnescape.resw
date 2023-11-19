@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Text Escape and Unescape tool</value>
+    <value>Tekst Ontsnap en On-ontsnap hulpmiddel</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Escape / Unescape</value>
+    <value>Ontsnap / On-ontsnap</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
     <value>Resultaat</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Escapes or unescapes a string, removing characters that could prevent parsing.</value>
+    <value>Ontsnapt of On-ontsnapt een tekst, verwijderd tekens dat het omvormen kan voorkomen.</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Text Escape / Unescape</value>
+    <value>Tekst Ontsnap / On-ontsnap</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value/>
@@ -140,13 +140,13 @@
     <value>Instellingen</value>
   </data>
   <data name="ConversionDecode" xml:space="preserve">
-    <value>Unescape</value>
+    <value>On-ontsnap</value>
   </data>
   <data name="ConversionDescription" xml:space="preserve">
     <value>Selecteer hoe u wilt converteren</value>
   </data>
   <data name="ConversionEncode" xml:space="preserve">
-    <value>Escape</value>
+    <value>Ontsnap</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
     <value>Converteren</value>

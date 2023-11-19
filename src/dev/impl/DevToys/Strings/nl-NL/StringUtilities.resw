@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>String utilities tool</value>
+    <value>Tekst nutsvoorzieningen hulpmiddel</value>
   </data>
   <data name="AlternatingCase" xml:space="preserve">
-    <value>aLtErNaTiNg cAsE</value>
+    <value>aLtErNaTiEvE iNdElInG</value>
   </data>
   <data name="Bytes" xml:space="preserve">
     <value>Bytes:</value>
@@ -130,114 +130,114 @@
     <value>camelCase</value>
   </data>
   <data name="CharacterDistribution" xml:space="preserve">
-    <value>Character distribution</value>
+    <value>Karakter verdeling</value>
   </data>
   <data name="Characters" xml:space="preserve">
-    <value>Characters:</value>
+    <value>Karakters:</value>
   </data>
   <data name="CobolCase" xml:space="preserve">
-    <value>COBOL-CASE</value>
+    <value>COBOL-INDELING</value>
   </data>
   <data name="Column" xml:space="preserve">
-    <value>Column:</value>
+    <value>Kolom:</value>
   </data>
   <data name="ConstantCase" xml:space="preserve">
-    <value>CONSTANT_CASE</value>
+    <value>CONSTANTE_INDELING</value>
   </data>
   <data name="Convert" xml:space="preserve">
-    <value>Convert</value>
+    <value>Zet om</value>
   </data>
   <data name="Sort" xml:space="preserve">
-    <value>Sort Lines</value>
+    <value>Regels sorteren</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Inspector &amp; Case Converter</value>
+    <value>Inspecteerder &amp; Indeling Omzetter</value>
   </data>
   <data name="InverseCase" xml:space="preserve">
-    <value>InVeRsE CaSe</value>
+    <value>OmGeKeErDe InDeLiNg</value>
   </data>
   <data name="KebabCase" xml:space="preserve">
-    <value>kebab-case</value>
+    <value>kebab-indeling</value>
   </data>
   <data name="Alphabetize" xml:space="preserve">
-    <value>Alphabetize</value>
+    <value>Alfabetische volgorde</value>
   </data>
   <data name="ReverseAlphabetize" xml:space="preserve">
-    <value>Reverse alphabetize</value>
+    <value>Omgekeerd alfabetisch</value>
   </data>
   <data name="AlphabetizeLast" xml:space="preserve">
-    <value>Alphabetize by last word</value>
+    <value>Alfabetisch door het laatste woord</value>
   </data>
   <data name="ReverseAlphabetizeLast" xml:space="preserve">
-    <value>Reverse alphabetize by last word</value>
+    <value>Omgekeerd alfabetisch door het laatste woord</value>
   </data>
   <data name="Reverse" xml:space="preserve">
-    <value>Reverse</value>
+    <value>Omgekeerd</value>
   </data>
   <data name="Randomize" xml:space="preserve">
-    <value>Randomize</value>
+    <value>Willekeurig</value>
   </data>
   <data name="Line" xml:space="preserve">
-    <value>Line:</value>
+    <value>Regel:</value>
   </data>
   <data name="Lines" xml:space="preserve">
-    <value>Lines:</value>
+    <value>Regels:</value>
   </data>
   <data name="LowerCase" xml:space="preserve">
-    <value>lower case</value>
+    <value>kleine letters</value>
   </data>
   <data name="OriginalCase" xml:space="preserve">
-    <value>Original text</value>
+    <value>Brontekst</value>
   </data>
   <data name="Paragraphs" xml:space="preserve">
-    <value>Paragraphs:</value>
+    <value>Paragrafen:</value>
   </data>
   <data name="PascalCase" xml:space="preserve">
     <value>PascalCase</value>
   </data>
   <data name="Position" xml:space="preserve">
-    <value>Position:</value>
+    <value>Positie:</value>
   </data>
   <data name="Selection" xml:space="preserve">
-    <value>Selection</value>
+    <value>Selectie</value>
   </data>
   <data name="SentenceCase" xml:space="preserve">
-    <value>Sentence case</value>
+    <value>Zin indeling</value>
   </data>
   <data name="Sentences" xml:space="preserve">
     <value>Zinnen:</value>
   </data>
   <data name="SnakeCase" xml:space="preserve">
-    <value>snake_case</value>
+    <value>slang_indeling</value>
   </data>
   <data name="Statistics" xml:space="preserve">
-    <value>Statistics</value>
+    <value>Statistieken</value>
   </data>
   <data name="String" xml:space="preserve">
-    <value>String</value>
+    <value>Tekst</value>
   </data>
   <data name="TitleCase" xml:space="preserve">
-    <value>Title Case</value>
+    <value>Titel Indeling</value>
   </data>
   <data name="TrainCase" xml:space="preserve">
-    <value>Train-Case</value>
+    <value>Trein-Indeling</value>
   </data>
   <data name="UpperCase" xml:space="preserve">
-    <value>UPPER CASE</value>
+    <value>HOOFDLETTERS</value>
   </data>
   <data name="WordDistribution" xml:space="preserve">
-    <value>Word distribution</value>
+    <value>Woord verdeling</value>
   </data>
   <data name="Words" xml:space="preserve">
     <value>Woorden:</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Analyze text and convert it to a different case</value>
+    <value>Analyseer tekst en zet om naar een andere indeling</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Text Case Converter and Inspector</value>
+    <value>Tekst Indeling Omzetter en Inspecteerder</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>String</value>
+    <value>Tekst</value>
   </data>
 </root>

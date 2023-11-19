@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>JWT Encoder / Decoder tool</value>
+    <value>JWT Coderen / Decoderen hulpmiddel</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>JWT</value>
@@ -142,7 +142,7 @@
     <value>Beschrijving</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Decodeer een JWT header, payload en signature</value>
+    <value>Decodeer een JWT header, payload en handtekening</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value/>
@@ -208,7 +208,7 @@
     <value>Token niet gevalideerd (geen parameters geselecteerd)</value>
   </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>Token Validated</value>
+    <value>Token gevalideerd</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
     <value>Ongeldige Public Key</value>
@@ -220,55 +220,55 @@
     <value>Valideer actor</value>
   </data>
   <data name="DecodeValidateAudienceLabel" xml:space="preserve">
-    <value>Validate audience</value>
+    <value>Valideer publiek</value>
   </data>
   <data name="DecodeValidateIssuerSigningKey" xml:space="preserve">
-    <value>Validate issuer signing key</value>
+    <value>Valideer ondertekende sleutel van emittent</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
-    <value>Validate issuer</value>
+    <value>Valideer emittent</value>
   </data>
   <data name="DecodeValidateLifetimeLabel" xml:space="preserve">
-    <value>Validate lifetime</value>
+    <value>Valideer levensduur</value>
   </data>
   <data name="ValidAudiencesLabel" xml:space="preserve">
-    <value>Valid audiences</value>
+    <value>Valideer publiek</value>
   </data>
   <data name="ValidIssuersLabel" xml:space="preserve">
-    <value>Valid issuers</value>
+    <value>Geldige emittent</value>
   </data>
   <data name="DecodeValidationSettingsDescription" xml:space="preserve">
-    <value>Select which token parameters to validate</value>
+    <value>Selecteer welke token parameters gevalideerd moeten worden</value>
   </data>
   <data name="DecodeValidationSettingsTitle" xml:space="preserve">
-    <value>Token validation settings</value>
+    <value>Token validatie instellingen</value>
   </data>
   <data name="ValidAudiencesError" xml:space="preserve">
-    <value>Valid audiences are empty</value>
+    <value>Geldig publiek is leeg</value>
   </data>
   <data name="ValidIssuersError" xml:space="preserve">
-    <value>Valid issuers are empty</value>
+    <value>Geldige emittenten zijn leeg</value>
   </data>
   <data name="PublicKeyIsPrivateKeyError" xml:space="preserve">
-    <value>The public key provided is a private key</value>
+    <value>Het gegeven publieke sleutel is een privésleutel</value>
   </data>
   <data name="EncodeAudienceLabel" xml:space="preserve">
-    <value>Token has audience</value>
+    <value>Token heeft een publiek</value>
   </data>
   <data name="EncodeIssuerLabel" xml:space="preserve">
-    <value>Token has issuer</value>
+    <value>Token heeft een emittent</value>
   </data>
   <data name="EncodeSettingsDescription" xml:space="preserve">
-    <value>Select token parameters</value>
+    <value>Selecteer token parameters</value>
   </data>
   <data name="InvalidPrivateKeyError" xml:space="preserve">
-    <value>Invalid Private Key</value>
+    <value>Ongeldige Privésleutel</value>
   </data>
   <data name="PublicKeyLabel" xml:space="preserve">
-    <value>Public Key</value>
+    <value>Publieke sleutel</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>JWT Encoder / Decoder</value>
+    <value>JWT Coderen / Decoderen</value>
   </data>
   <data name="InvalidSignatureError" xml:space="preserve">
     <value>Ongeldige handtekening</value>

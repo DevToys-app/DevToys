@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Markdown voorbeeld tool</value>
+    <value>Markdown voorbeeld hulpmiddel</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Instellingen</value>
@@ -142,10 +142,10 @@
     <value>Thema</value>
   </data>
   <data name="ThemeDescription" xml:space="preserve">
-    <value>Select which theme to use to preview the Markdown</value>
+    <value>Selecteer welk thema dat u wilt gebruiken voor de voorvertoning</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Preview a Markdown document with a GitHub-like render</value>
+    <value>Bekijk een voorbeeld van een Markdown document met een GitHub-achtige render</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Markdown Voorbeeld</value>

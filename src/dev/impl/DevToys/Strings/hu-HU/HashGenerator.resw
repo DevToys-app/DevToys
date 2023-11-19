@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Hash Generáló eszköz</value>
+    <value>Hash generátor</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Konfiguráció</value>
@@ -148,7 +148,7 @@
     <value>MD5, SHA1, SHA256 és SHA512 hash számítása szöveges adatból</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Hash Generátor</value>
+    <value>Hash generátor</value>
   </data>
   <data name="OutputBase64" xml:space="preserve">
     <value>Base64</value>
@@ -163,9 +163,9 @@
     <value/>
   </data>
   <data name="HmacMode" xml:space="preserve">
-    <value>HMAC Mode</value>
+    <value>HMAC mód</value>
   </data>
   <data name="SecretKey" xml:space="preserve">
-    <value>Secret Key</value>
+    <value>Titkos kulcs</value>
   </data>
 </root>

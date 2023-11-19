@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddToFavorites" xml:space="preserve">
-    <value>Add to favorites</value>
+    <value>Hozzáadás a kedvencekhez</value>
   </data>
   <data name="EnterCompactOverlayTooltip" xml:space="preserve">
     <value>Felül tartás (Ctrl+Up)</value>
@@ -130,7 +130,7 @@
     <value>értékelj minket most...</value>
   </data>
   <data name="NotificationRateAppMessage" xml:space="preserve">
-    <value>Tetszik a DevToys? Kérlek fontold meg az értékelésünk!</value>
+    <value>Tetszik a DevToys? Kérlek, fontold meg az értékelésünk!</value>
   </data>
   <data name="NotificationRateAppTitle" xml:space="preserve">
     <value>Uhm... szia! 😅</value>
@@ -139,7 +139,7 @@
     <value>olvass tovább...</value>
   </data>
   <data name="NotificationReleaseNoteTitle" xml:space="preserve">
-    <value>Épp most frissültünk! Mik az újdonságok a {0} verzióban? 🚀</value>
+    <value>Épp most frissültünk! Mik az újdonságok a(z) {0} verzióban? 🚀</value>
     <comment>{0} is the current app version</comment>
   </data>
   <data name="NotificationUpdateAvailableActionableActionText" xml:space="preserve">
@@ -149,31 +149,31 @@
     <value>Egy frissítés elérhető! 🚀</value>
   </data>
   <data name="OpenInNewWindow" xml:space="preserve">
-    <value>Új ablakban megnyitás</value>
+    <value>Megnyitás új ablakban</value>
   </data>
   <data name="PinToolToStart" xml:space="preserve">
-    <value>Start-hoz rögzítés</value>
+    <value>Kitűzés a Start menübe</value>
   </data>
   <data name="PinToolToStartProblem" xml:space="preserve">
-    <value>A Start-hoz rögzítés sikertelen volt. További információkért, ellenőrizd a log fájlokat.</value>
+    <value>A kitűzés a Start menübe nem sikerült. További részletekért ellenőrizze a naplót.</value>
   </data>
   <data name="RemoveFromFavorites" xml:space="preserve">
-    <value>Remove from favorites</value>
+    <value>Eltávolítás a kedvencekből</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Gépelj az eszközök kereséséért...</value>
+    <value>Keressen rá az eszközökre...</value>
   </data>
   <data name="SearchNoResultsFound" xml:space="preserve">
     <value>Nincs találat</value>
   </data>
   <data name="SurveyDescription" xml:space="preserve">
-    <value>We would love to hear about your experience with DevToys so we can improve it.</value>
+    <value>Mondja el tapasztalatát a DevToys-szal kapcsolatban, hogy tovább tökéletesíthessük.</value>
   </data>
   <data name="SurveyTitle" xml:space="preserve">
-    <value>The development of DevToys 2.0 started! 🥳</value>
+    <value>A DevToys 2.0 fejlesztése elkezdődött! 🥳</value>
   </data>
   <data name="SurveyYesButton" xml:space="preserve">
-    <value>open the survey...</value>
+    <value>felmérés megnyitása...</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>DevToys</value>

@@ -121,10 +121,10 @@
     <value>Over</value>
   </data>
   <data name="AppTheme" xml:space="preserve">
-    <value>Applicatiethema</value>
+    <value>Thema</value>
   </data>
   <data name="AppThemeDescription" xml:space="preserve">
-    <value>Selecteer welk applicatiethema je wilt weergeven</value>
+    <value>Selecteer welk thema je wilt weergeven</value>
   </data>
   <data name="AppTitle" xml:space="preserve">
     <value>DevToys</value>
@@ -160,7 +160,7 @@
     <value>Taal</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>The app needs to be restarted when selecting another language</value>
+    <value>De app moet opnieuw worden opgestart na het kiezen van een andere taal</value>
   </data>
   <data name="License" xml:space="preserve">
     <value>Licentie</value>
@@ -172,7 +172,7 @@
     <value>Regelnummers</value>
   </data>
   <data name="LineNumbersDescription" xml:space="preserve">
-    <value>Display line numbers in the text editor</value>
+    <value>Regelnummers in de teksteditor weergeven</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
     <value>Logboek openen</value>
@@ -181,25 +181,25 @@
     <value>Privacybeleid</value>
   </data>
   <data name="RateAndReview" xml:space="preserve">
-    <value>Rate and review on Microsoft Store</value>
+    <value>Beoordeel in de Microsoft Store</value>
   </data>
   <data name="RenderWhitespace" xml:space="preserve">
-    <value>Render white space</value>
+    <value>Witruimte weergeven</value>
   </data>
   <data name="ReportProblem" xml:space="preserve">
     <value>Probleem melden</value>
   </data>
   <data name="SmartDetection" xml:space="preserve">
-    <value>Smart detection</value>
+    <value>Slimme detectie</value>
   </data>
   <data name="SmartDetectionDescription" xml:space="preserve">
-    <value>Automatically detect the best tool based on the clipboard content</value>
+    <value>Detecteer automatisch de beste hulpmiddel op basis van de inhoud van het klembord</value>
   </data>
   <data name="SmartDetectionHowTo" xml:space="preserve">
-    <value>How to use Smart Detection</value>
+    <value>Hoe je gebruik maakt van Slimme Detectie</value>
   </data>
   <data name="SmartDetectionPaste" xml:space="preserve">
-    <value>Automatically paste the clipboard content when selecting a recommended tool</value>
+    <value>Plak de inhoud van het klembord automatisch bij het selecteren van een aanbevolen hulpmiddel</value>
   </data>
   <data name="SourceCode" xml:space="preserve">
     <value>Broncode</value>
@@ -214,30 +214,30 @@
     <value>Handige links</value>
   </data>
   <data name="UseSystemSettings" xml:space="preserve">
-    <value>Systeeminstellingen gebruiken</value>
+    <value>Systeemstandaard</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Versie {0}</value>
   </data>
   <data name="WordWrap" xml:space="preserve">
-    <value>Wrap word</value>
+    <value>Tekstomloop</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Customize DevToys look &amp; feel</value>
+    <value>DevToys personaliseren</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Instellingen</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Configurations Options</value>
+    <value>Configuratie-opties</value>
   </data>
   <data name="HelpTranslating" xml:space="preserve">
     <value>Help ons DevToys te vertalen!</value>
   </data>
   <data name="PasteClearsText" xml:space="preserve">
-    <value>Replace text when pasting</value>
+    <value>Tekst vervangen bij plakken</value>
   </data>
   <data name="PasteClearsTextDescription" xml:space="preserve">
-    <value>When clicking the Paste button, clear the text before pasting instead of appending to the existing text editor content.</value>
+    <value>Bij het klikken op de knop Plakken, leeg de tekst voordat u plakt in plaats van aan de bestaande inhoud van de teksteditor toe te voegen.</value>
   </data>
 </root>

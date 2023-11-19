@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Regular expression tester tool</value>
+    <value>Reguliere expressie testing hulpmiddel</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Instellingen</value>
   </data>
   <data name="CultureInvariant" xml:space="preserve">
-    <value>Culture Invariant</value>
+    <value>Onveranderbaar cultuur</value>
   </data>
   <data name="CultureInvariantDescription" xml:space="preserve">
-    <value>Specifies that cultural differences in language is ignored.</value>
+    <value>Specificeert dat culturele verschillen in een taal worden genegeerd.</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>Regex Tester</value>
@@ -136,55 +136,55 @@
     <value>ECMA Script</value>
   </data>
   <data name="EcmaScriptDescription" xml:space="preserve">
-    <value>Enables ECMAScript-compliant behavior for the expression. This value can be used only in conjunction with the Culture Invariant, Ignore Case and Multiline options.</value>
+    <value>Schakelt ECMAScript-overeenkomst gedrag in voor de expressie. Deze waarde kan alleen worden gebruikt in combinatie met de Onveranderbaar cultuur, Hoofdletters negeren en Meerderelijnen opties.</value>
   </data>
   <data name="IgnoreCase" xml:space="preserve">
-    <value>Ignore Case</value>
+    <value>Negeer Hoofdletters</value>
   </data>
   <data name="IgnoreCaseDescription" xml:space="preserve">
-    <value>Specifies case-insensitive matching.</value>
+    <value>Specifieert overeenkomst hoofdletter-ongevoeligheid.</value>
   </data>
   <data name="IgnoreWhitespace" xml:space="preserve">
-    <value>Ignore Whitespace</value>
+    <value>Witruimte negeren</value>
   </data>
   <data name="IgnoreWhitespaceDescription" xml:space="preserve">
-    <value>Eliminates unescaped white space from the pattern and enables comments marked with #. However, this value does not affect or eliminate white space in character classes, numeric quantifiers, or tokens that mark the beginning of individual regular expression language elements.</value>
+    <value>Elimineert niet-ontsnapte witruimte op het patroon en activeert reacties gemarkeerd met #. Deze waarde heeft echter geen invloed op of eliminatie van witruimte in karakterklassen, numerieke hoeveelheden, of tokens die het begin markeren van individuele taalelementen van reguliere expressies.</value>
   </data>
   <data name="Multiline" xml:space="preserve">
     <value>Meerdere regels</value>
   </data>
   <data name="MultilineDescription" xml:space="preserve">
-    <value>Changes the meaning of ^ and $ so they match at the beginning and end, respectively, of any line, and not just the beginning and end of the entire string.</value>
+    <value>Wijzigt de betekenis van ^ en $ zodat ze overeenkomen aan het begin en het einde, van elke lijn, en niet alleen het begin en het einde van de hele lijn.</value>
   </data>
   <data name="Options" xml:space="preserve">
-    <value>Options</value>
+    <value>Opties</value>
   </data>
   <data name="RegularExpression" xml:space="preserve">
-    <value>Regular expression</value>
+    <value>Reguliere expressie</value>
   </data>
   <data name="RightToLeft" xml:space="preserve">
-    <value>Right To Left</value>
+    <value>Rechts naar Links</value>
   </data>
   <data name="RightToLeftDescription" xml:space="preserve">
-    <value>Specifies that the search will be from right to left instead of from left to right.</value>
+    <value>Geeft aan dat de zoekopdracht van rechts naar links gaat in plaats van links naar rechts.</value>
   </data>
   <data name="Singleline" xml:space="preserve">
-    <value>Singleline</value>
+    <value>Éénlijn</value>
   </data>
   <data name="SinglelineDescription" xml:space="preserve">
-    <value>Changes the meaning of the dot (.) so it matches every character (instead of every character except \n).</value>
+    <value>Verandert de betekenis van de stip (.) zodat het overeenkomt met elk teken (in plaats van elk teken behalve \n).</value>
   </data>
   <data name="Text" xml:space="preserve">
     <value>Tekst</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Validate and test regular expressions</value>
+    <value>Valideer en test reguliere expressies</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>Regex Tester</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Regular expression</value>
+    <value>Reguliere expressie</value>
   </data>
   <data name="InputTitle" xml:space="preserve">
     <value>Invoer</value>

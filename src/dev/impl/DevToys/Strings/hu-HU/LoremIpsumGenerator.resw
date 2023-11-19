@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Lorem Ipsum Generáló eszköz</value>
+    <value>Lorem Ipsum generátor</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Konfiguráció</value>
@@ -139,19 +139,19 @@
     <value>Kimenet</value>
   </data>
   <data name="ParagraphsType" xml:space="preserve">
-    <value>Paragrafusok</value>
+    <value>Bekezdések</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Lorem Ipsum Generáló</value>
+    <value>Lorem Ipsum generátor</value>
   </data>
   <data name="SentencesType" xml:space="preserve">
     <value>Mondatok</value>
   </data>
   <data name="StartWithLoremTitle" xml:space="preserve">
-    <value>Start with 'Lorem ipsum dolor sit amet...'</value>
+    <value>Kezdje ezzel: 'Lorem ipsum dolor sit amet...'</value>
   </data>
   <data name="TypeDescription" xml:space="preserve">
-    <value>Lorem Ipsum szavak, mondatok vagy paragrafusok generálása</value>
+    <value>Lorem Ipsum szavak, mondatok vagy bekezdések generálása</value>
   </data>
   <data name="TypeTitle" xml:space="preserve">
     <value>Típus</value>

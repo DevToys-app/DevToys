@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Afbeelding converter tool</value>
+    <value>Afbeelding Omzetter hulpmiddel</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Annuleren</value>
@@ -136,7 +136,7 @@
     <value>Details</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Afbeelding converter</value>
+    <value>Afbeelding Omzetter</value>
   </data>
   <data name="FileSizeDisplay" xml:space="preserve">
     <value>{0:0.##} {1}</value>
@@ -155,10 +155,10 @@
     <value>Bekijk details</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Lossless afbeelding converter</value>
+    <value>Lossless afbeelding omzetten</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Afbeelding converter</value>
+    <value>Afbeelding Omzetter</value>
   </data>
   <data name="ConversionTitle" xml:space="preserve">
     <value>Converteren</value>
@@ -179,7 +179,7 @@
     <value>GIF</value>
   </data>
   <data name="HEIF" xml:space="preserve">
-    <value>HIETF</value>
+    <value>HIEF</value>
   </data>
   <data name="JPEGXR" xml:space="preserve">
     <value>JPEG XR</value>

@@ -118,25 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>JSON Formázó eszköz</value>
+    <value>JSON formázó</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Konfiguráció</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Json</value>
+    <value>JSON</value>
   </data>
   <data name="FourSpaces" xml:space="preserve">
     <value>4 szóköz</value>
   </data>
   <data name="Indentation" xml:space="preserve">
-    <value>Indentálás</value>
+    <value>Behúzás</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>Bemenet</value>
   </data>
   <data name="Minified" xml:space="preserve">
-    <value>Kicsinyített</value>
+    <value>Minimalizált</value>
   </data>
   <data name="OneTab" xml:space="preserve">
     <value>1 tab</value>
@@ -148,15 +148,15 @@
     <value>2 szóköz</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Json adat indentálása vagy kicsinyítése</value>
+    <value>JSON minimalizálása vagy formázása behúzással</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Json Formázó</value>
+    <value>JSON formázó</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value/>
   </data>
   <data name="SortProperties" xml:space="preserve">
-    <value>Sort JSON properties alphabetically</value>
+    <value>JSON tulajdonságok ABC szerinti rendezése</value>
   </data>
 </root>

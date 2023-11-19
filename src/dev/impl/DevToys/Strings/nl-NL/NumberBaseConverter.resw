@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Number Base Converter tool</value>
+    <value>Basisnummer Omzetter hulpmiddel</value>
   </data>
   <data name="BinaryLabel" xml:space="preserve">
     <value>Binair</value>
@@ -130,10 +130,10 @@
     <value>Decimaal</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
-    <value>Number Base</value>
+    <value>Basisnummer</value>
   </data>
   <data name="Format" xml:space="preserve">
-    <value>Format number</value>
+    <value>Nummer formatteren</value>
   </data>
   <data name="HexadecimalLabel" xml:space="preserve">
     <value>Hexadecimaal</value>
@@ -148,7 +148,7 @@
     <value>Decimaal</value>
   </data>
   <data name="InputTypeDescription" xml:space="preserve">
-    <value>Select which input type you want to use</value>
+    <value>Selecteer welk invoer type je wilt gebruiken</value>
   </data>
   <data name="InputTypeHexadecimal" xml:space="preserve">
     <value>Hexadecimaal</value>
@@ -163,41 +163,41 @@
     <value>Octaal</value>
   </data>
   <data name="ValueInvalid" xml:space="preserve">
-    <value>The current value isn't a valid {0}</value>
+    <value>De huidige waarde is ongeldig {0}</value>
     <comment>The parameter is the Base Number Type (Decimal, Octal, ...)</comment>
   </data>
   <data name="ValueOverflow" xml:space="preserve">
-    <value>The current value cannot be converted as it exceeds the maximum value ({0})</value>
+    <value>De huidige waarde kan niet worden omgezet wegens deze de maximumwaarde overschrijdt ({0})</value>
     <comment>The parameter is the Max value of a long</comment>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Convert numbers from one base to another</value>
+    <value>Zet nummers van de ene basis om naar de andere</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Number Base Converter</value>
+    <value>Basisnummer Omzetter</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Binary Octal Decimal Hexadecimal</value>
+    <value>Binair Octaal Decimaal Hexadecimaal</value>
   </data>
   <data name="AdvancedModeLabel" xml:space="preserve">
     <value>Geavanceerde modus</value>
   </data>
   <data name="InputDictionaryLabel" xml:space="preserve">
-    <value>Input dictionary</value>
+    <value>Invoer woordenboek</value>
   </data>
   <data name="OutputDictionaryLabel" xml:space="preserve">
-    <value>Output dictionary</value>
+    <value>Resultaat woordenboek</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Resultaat</value>
   </data>
   <data name="BaseNumberError" xml:space="preserve">
-    <value>Base number should be greater than 1.</value>
+    <value>Basisnummer moet groter zijn dan 1.</value>
   </data>
   <data name="DictionarySizeError" xml:space="preserve">
-    <value>Dictionary size should be greater than 1.</value>
+    <value>Woordenboek grootte moet groter zijn dan 1.</value>
   </data>
   <data name="IncompatibleBaseDictionaryError" xml:space="preserve">
-    <value>Dictionary size could not be smaller than the base number.</value>
+    <value>Woordenboek grootte kan niet kleiner zijn dan het basisnummer.</value>
   </data>
 </root>
