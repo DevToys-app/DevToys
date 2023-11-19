@@ -117,27 +117,50 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Bytes" xml:space="preserve">
-    <value>Bytes</value>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>Image Converter tool</value>
   </data>
-  <data name="FileNotFound" xml:space="preserve">
-    <value>File '{0}' was not found.</value>
-    <comment>{0} is a file name.</comment>
+  <data name="ConfigurationTitle" xml:space="preserve">
+    <value>Configuration</value>
   </data>
-  <data name="FileTypeNotSupported" xml:space="preserve">
-    <value>File '{0}' is not supported. Only files of type {1} are supported.</value>
-    <comment>{0} is a file name. {1} is a list of file extensions</comment>
+  <data name="ConversionTitle" xml:space="preserve">
+    <value>Conversion</value>
   </data>
-  <data name="Gigabytes" xml:space="preserve">
-    <value>GB</value>
+  <data name="ConvertedFormatDescription" xml:space="preserve">
+    <value>Select the image format to convert into</value>
   </data>
-  <data name="Kilobytes" xml:space="preserve">
-    <value>KB</value>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
   </data>
-  <data name="Megabytes" xml:space="preserve">
-    <value>MB</value>
+  <data name="DeleteAll" xml:space="preserve">
+    <value>Delete all</value>
   </data>
-  <data name="Terabytes" xml:space="preserve">
-    <value>TB</value>
+  <data name="Description" xml:space="preserve">
+    <value>Lossless image converter</value>
+  </data>
+  <data name="FileSizeDisplay" xml:space="preserve">
+    <value>{0:0.##} {1}</value>
+    <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
+  </data>
+  <data name="FormatOptionDescription" xml:space="preserve">
+    <value>The format to convert images to</value>
+  </data>
+  <data name="InputOptionDescription" xml:space="preserve">
+    <value>A set of image file paths or directories that contain images to convert</value>
+  </data>
+  <data name="LongDisplayTitle" xml:space="preserve">
+    <value>Image Converter</value>
+  </data>
+  <data name="OutputDirectoryOptionDescription" xml:space="preserve">
+    <value>Directory where the result should be persisted, or a single file path, if the input is also a single file path.</value>
+  </data>
+  <data name="SaveAll" xml:space="preserve">
+    <value>Save all</value>
+  </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>Save as</value>
+  </data>
+  <data name="ShortDisplayTitle" xml:space="preserve">
+    <value>Image Converter</value>
   </data>
 </root>

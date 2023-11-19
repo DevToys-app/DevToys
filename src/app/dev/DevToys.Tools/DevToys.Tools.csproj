@@ -94,6 +94,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="Tools\Graphic\ImageConverter\ImageConverter.Designer.cs">
+      <DependentUpon>ImageConverter.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Tools\Test\Test.Designer.cs">
       <DependentUpon>Test.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -151,6 +156,10 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Tools\Graphic\Graphic.resx">
       <LastGenOutput>Graphic.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Tools\Graphic\ImageConverter\ImageConverter.resx">
+      <LastGenOutput>ImageConverter.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Tools\Test\Test.resx">
