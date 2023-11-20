@@ -1,0 +1,38 @@
+@use "../../Assets/sass/devtoys" as *;
+
+.ui-multiline-text-input-highlighted-text-span {
+    &-default {
+        background-color: var(--text-box-selection-highlight-color);
+        color: var(--text-box-selection-color);
+    }
+
+    &-blue {
+        background-color: var(--ui-multiline-text-input-highlighted-text-span-background-color-blue);
+        color: var(--text-box-selection-color-blue);
+    }
+
+    &-green {
+        background-color: var(--ui-multiline-text-input-highlighted-text-span-background-color-green);
+        color: var(--text-box-selection-color-blue);
+    }
+
+    &-red {
+        background-color: var(--ui-multiline-text-input-highlighted-text-span-background-color-red);
+        color: var(--text-box-selection-color-blue);
+    }
+
+    &-yellow {
+        background-color: var(--ui-multiline-text-input-highlighted-text-span-background-color-yellow);
+        color: var(--text-box-selection-color-blue);
+    }
+
+    &-purple {
+        background-color: var(--ui-multiline-text-input-highlighted-text-span-background-color-purple);
+        color: var(--text-box-selection-color-blue);
+    }
+
+    &-teal {
+        background-color: var(--ui-multiline-text-input-highlighted-text-span-background-color-teal);
+        color: var(--text-box-selection-color-blue);
+    }
+}

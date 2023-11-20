@@ -8,7 +8,7 @@ public interface IUIMultiLineTextInput : IUISingleLineTextInput
     /// <summary>
     /// Gets the list of spans to highlight in the text document.
     /// </summary>
-    IReadOnlyList<TextSpan> HighlightedSpans { get; }
+    IReadOnlyList<UIHighlightedTextSpan> HighlightedSpans { get; }
 
     /// <summary>
     /// Gets the programming language name to use when colorizing the text in the control.
@@ -24,6 +24,11 @@ public interface IUIMultiLineTextInput : IUISingleLineTextInput
     /// Gets how the text should wrap when it reached the maximum horizontal space it can take. Default is <see cref="UITextWrapMode.Auto"/>.
     /// </summary>
     UITextWrapMode WrapMode { get; }
+
+    /// <summary>
+    /// Gets the primary selection of the text control. When the selection length is 0, the span indicates the caret position.
+    /// </summary>
+    TextSpan Selection { get; }
 
     /// <summary>
     /// Raised when <see cref="HighlightedSpans"/> is changed.
@@ -44,24 +49,30 @@ public interface IUIMultiLineTextInput : IUISingleLineTextInput
     /// Raised when <see cref="WrapMode"/> is changed.
     /// </summary>
     event EventHandler? WrapModeChanged;
+
+    /// <summary>
+    /// Raised when <see cref="Selection"/> is changed.
+    /// </summary>
+    event EventHandler? SelectionChanged;
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Text = {{{nameof(Text)}}}, SyntaxColorizationLanguageName = {{{nameof(SyntaxColorizationLanguageName)}}}")]
 internal class UIMultilineTextInput : UISingleLineTextInput, IUIMultiLineTextInput
 {
-    private IReadOnlyList<TextSpan>? _highlightedSpans;
+    private IReadOnlyList<UIHighlightedTextSpan>? _highlightedSpans;
     private string? _syntaxColorizationLanguageName;
     private bool _isExtendableToFullScreen;
     private UITextWrapMode _wrapMode = UITextWrapMode.Auto;
+    private TextSpan? _selection;
 
     internal UIMultilineTextInput(string? id)
         : base(id)
     {
     }
 
-    public IReadOnlyList<TextSpan> HighlightedSpans
+    public IReadOnlyList<UIHighlightedTextSpan> HighlightedSpans
     {
-        get => _highlightedSpans ?? Array.Empty<TextSpan>();
+        get => _highlightedSpans ?? Array.Empty<UIHighlightedTextSpan>();
         internal set => SetPropertyValue(ref _highlightedSpans, value, HighlightedSpansChanged);
     }
 
@@ -83,10 +94,36 @@ internal class UIMultilineTextInput : UISingleLineTextInput, IUIMultiLineTextInp
         internal set => SetPropertyValue(ref _wrapMode, value, WrapModeChanged);
     }
 
+    public TextSpan Selection
+    {
+        get => _selection ?? new TextSpan(0, 0);
+        internal set
+        {
+            if (value != null)
+            {
+                if (value.StartPosition > Text.Length)
+                {
+                    ThrowHelper.ThrowArgumentOutOfRangeException(
+                        nameof(TextSpan.StartPosition),
+                        "The start position of the selection is greater than the text length.");
+                }
+                else if (value.EndPosition > Text.Length)
+                {
+                    ThrowHelper.ThrowArgumentOutOfRangeException(
+                        nameof(TextSpan.Length),
+                        "The end position of the selection is greater than the text length.");
+                }
+            }
+
+            SetPropertyValue(ref _selection, value, SelectionChanged);
+        }
+    }
+
     public event EventHandler? HighlightedSpansChanged;
     public event EventHandler? SyntaxColorizationLanguageNameChanged;
     public event EventHandler? IsExtendableToFullScreenChanged;
     public event EventHandler? WrapModeChanged;
+    public event EventHandler? SelectionChanged;
 }
 
 public static partial class GUI
@@ -130,7 +167,7 @@ public static partial class GUI
     /// <summary>
     /// Sets the list of spans to highlight in the text document.
     /// </summary>
-    public static IUIMultiLineTextInput Highlight(this IUIMultiLineTextInput element, params TextSpan[] spans)
+    public static IUIMultiLineTextInput Highlight(this IUIMultiLineTextInput element, params UIHighlightedTextSpan[] spans)
     {
         ((UIMultilineTextInput)element).HighlightedSpans = spans;
         return element;
@@ -187,6 +224,30 @@ public static partial class GUI
     public static IUIMultiLineTextInput NeverWrap(this IUIMultiLineTextInput element)
     {
         ((UIMultilineTextInput)element).WrapMode = UITextWrapMode.NoWrap;
+        return element;
+    }
+
+    /// <summary>
+    /// Selects the given span in the text document.
+    /// </summary>
+    public static IUIMultiLineTextInput Select(this IUIMultiLineTextInput element, TextSpan span)
+    {
+        if (element is UIMultilineTextInput strongElement)
+        {
+            strongElement.Selection = span;
+        }
+        return element;
+    }
+
+    /// <summary>
+    /// Selects the given span in the text document.
+    /// </summary>
+    public static IUIMultiLineTextInput Select(this IUIMultiLineTextInput element, int start, int length)
+    {
+        if (element is UIMultilineTextInput strongElement)
+        {
+            strongElement.Selection = new TextSpan(start, length);
+        }
         return element;
     }
 }

@@ -290,8 +290,8 @@ public class TextModel
     /// @param ownerId Identifies the editor id in which these decorations should appear. If no `ownerId` is provided, the decorations will appear in all editors that attach this model.
     /// @return An array containing the new decorations identifiers.
     /// </summary>
-    public ValueTask<List<string>> DeltaDecorationsAsync(IJSRuntime runtime, List<string> oldDecorations, List<ModelDeltaDecoration> newDecorations, int? ownerId)
-        => runtime.InvokeAsync<List<string>>("devtoys.MonacoEditor.TextModel.deltaDecorations", Uri, oldDecorations, newDecorations, ownerId);
+    public ValueTask<string[]> DeltaDecorationsAsync(IJSRuntime runtime, string[] oldDecorations, ModelDeltaDecoration[] newDecorations, int? ownerId)
+        => runtime.InvokeAsync<string[]>("devtoys.MonacoEditor.TextModel.deltaDecorations", Uri, oldDecorations, newDecorations, ownerId);
 
     /// <summary>
     /// Get the options associated with a decoration.

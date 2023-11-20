@@ -629,19 +629,17 @@ public class RicherMonacoEditorBase : MonacoEditorBase
     /// </summary>
     internal async Task<string[]> DeltaDecorationsAsync(string[] oldDecorationIds, ModelDeltaDecoration[] newDecorations)
     {
-        oldDecorationIds ??= Array.Empty<string>();
+        TextModel textModel = await this.GetModelAsync();
 
-        // Convert the newDecorations object into a JsonElement to get rid of the properties with null values
-        string newDecorationsJson = JsonSerializer.Serialize(newDecorations, new JsonSerializerOptions
+        if (textModel is not null)
         {
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-        });
-        JsonElement newDecorationsElement = JsonSerializer.Deserialize<JsonElement>(newDecorationsJson);
-        string[] newDecorationIds = await JSRuntime.InvokeAsync<string[]>("devtoys.MonacoEditor.deltaDecorations", Id, oldDecorationIds, newDecorationsElement);
-        _deltaDecorationIds.RemoveAll(d => oldDecorationIds.Any(o => o == d));
-        _deltaDecorationIds.AddRange(newDecorationIds);
-        return newDecorationIds;
+            string[] newDecorationIds = await textModel.DeltaDecorationsAsync(JSRuntime, oldDecorationIds, newDecorations, null);
+            _deltaDecorationIds.RemoveAll(d => oldDecorationIds.Any(o => o == d));
+            _deltaDecorationIds.AddRange(newDecorationIds);
+            return newDecorationIds;
+        }
+
+        return oldDecorationIds ?? Array.Empty<string>();
     }
 
     /// <summary>
@@ -649,6 +647,12 @@ public class RicherMonacoEditorBase : MonacoEditorBase
     /// </summary>
     internal Task ResetDeltaDecorationsAsync()
         => DeltaDecorationsAsync(_deltaDecorationIds.ToArray(), Array.Empty<ModelDeltaDecoration>());
+
+    /// <summary>
+    /// Replaces all the decorations.
+    /// </summary>
+    internal Task ReplaceAllDecorationsByAsync(ModelDeltaDecoration[] newDecorations)
+        => DeltaDecorationsAsync(_deltaDecorationIds.ToArray(), newDecorations);
 
     /// <summary>
     /// Get the layout info for the editor.

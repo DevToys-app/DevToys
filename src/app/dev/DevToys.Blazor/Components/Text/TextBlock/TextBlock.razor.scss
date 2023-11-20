@@ -5,6 +5,7 @@
     padding: 0;
     cursor: default;
     user-select: none;
+    white-space: pre-wrap;
     -webkit-user-select: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -86,7 +87,7 @@
     }
 
     &.no-wrap {
-        white-space: nowrap;
+        white-space: pre;
     }
 
     &.trim {

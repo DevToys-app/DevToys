@@ -208,10 +208,12 @@ public partial class DataGrid<TRow, TCell, TRowDetail> : JSStyledComponentBase, 
 
         if (!CanSelectRow)
         {
+            StateHasChanged();
             return;
         }
         else if (row == SelectedRow && !raiseEvent)
         {
+            StateHasChanged();
             return;
         }
         else if (row is null)
@@ -244,17 +246,20 @@ public partial class DataGrid<TRow, TCell, TRowDetail> : JSStyledComponentBase, 
     {
         if (CanSelectRow)
         {
-            OnRowSelected();
-
-            if (SelectedIndexChanged.HasDelegate)
+            InvokeAsync(() =>
             {
-                SelectedIndexChanged.InvokeAsync(SelectedIndex);
-            }
+                OnRowSelected();
 
-            if (SelectedRowChanged.HasDelegate)
-            {
-                SelectedRowChanged.InvokeAsync(SelectedRow);
-            }
+                if (SelectedIndexChanged.HasDelegate)
+                {
+                    SelectedIndexChanged.InvokeAsync(SelectedIndex);
+                }
+
+                if (SelectedRowChanged.HasDelegate)
+                {
+                    SelectedRowChanged.InvokeAsync(SelectedRow);
+                }
+            });
         }
     }
 

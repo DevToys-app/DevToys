@@ -16,6 +16,12 @@ public partial class UILabelPresenter : ComponentBase, IDisposable
         UILabel.StyleChanged += UILabel_StyleChanged;
     }
 
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        ApplyStyle();
+    }
+
     public void Dispose()
     {
         UILabel.StyleChanged -= UILabel_StyleChanged;
