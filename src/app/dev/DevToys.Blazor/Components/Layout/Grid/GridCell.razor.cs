@@ -2,7 +2,7 @@
 
 namespace DevToys.Blazor.Components;
 
-public partial class GridCell : ComponentBase
+public partial class GridCell : StyledComponentBase
 {
     protected string? GridCellStyleValue => new StyleBuilder()
         .AddStyle("grid-column", $"{Column + 1}", ColumnSpan <= 1)

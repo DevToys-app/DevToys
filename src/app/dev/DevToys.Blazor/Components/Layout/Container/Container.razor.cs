@@ -68,7 +68,7 @@ public partial class Container : StyledComponentBase
         {
             case UIVerticalAlignment.Stretch:
                 styleBuilder.AddImportantStyle("align-items", "stretch");
-                styleBuilder.AddImportantStyle("height", "100%", !Height.HasValue);
+                styleBuilder.AddStyle("height", "100%", !Height.HasValue);
                 innerStyleBuilder.AddImportantStyle("max-height", "inherit", !Height.HasValue);
                 innerStyleBuilder.AddImportantStyle("height", "100%", !Height.HasValue);
                 innerStyleBuilder.AddImportantStyle("min-height", "min-content", !Height.HasValue);
