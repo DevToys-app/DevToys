@@ -32,4 +32,17 @@ public record TextSpan
     /// Gets the end position of the span.
     /// </summary>
     public int EndPosition => StartPosition + Length;
+
+    /// <summary>
+    /// Creates a new <see cref="TextSpan"/> from the given start and end positions.
+    /// </summary>
+    /// <param name="start">The position at which the span starts.</param>
+    /// <param name="end">The position at which the span ends.</param>
+    public static TextSpan FromBounds(int start, int end)
+    {
+        Guard.IsGreaterThanOrEqualTo(start, 0);
+        Guard.IsGreaterThanOrEqualTo(end, 0);
+        Guard.IsGreaterThanOrEqualTo(end, start);
+        return new TextSpan(start, end - start);
+    }
 }

@@ -104,6 +104,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="Tools\Text\AnalyzerAndUtilities\AnalyzerAndUtilities.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AnalyzerAndUtilities.resx</DependentUpon>
+    </Compile>
     <Compile Update="Tools\Text\Compare\TextCompare.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -180,6 +185,10 @@
     <EmbeddedResource Update="Tools\Test\Test.resx">
       <LastGenOutput>Test.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Tools\Text\AnalyzerAndUtilities\AnalyzerAndUtilities.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AnalyzerAndUtilities.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Tools\Text\Compare\TextCompare.resx">
       <Generator>ResXFileCodeGenerator</Generator>

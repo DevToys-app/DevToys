@@ -1,8 +1,9 @@
 @namespace DevToys.Blazor.Components
-@inherits ComponentBase
+@inherits StyledComponentBase
 
 <Container HorizontalAlignment="@UIHorizontalAlignment.Stretch"
            VerticalAlignment="@UIVerticalAlignment.Stretch"
-           Style="@GridCellStyleValue">
+           Style="@GridCellStyleValue"
+           Class="@FinalCssClasses">
     @ChildContent
 </Container>

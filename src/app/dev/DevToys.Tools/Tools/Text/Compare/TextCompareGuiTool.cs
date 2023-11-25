@@ -57,7 +57,7 @@ internal sealed class TextCompareGuiTool : IGuiTool
 
     public UIToolView View
         => new(
-            isScrollable: false,
+            isScrollable: true,
             Grid()
                 .ColumnMediumSpacing()
 

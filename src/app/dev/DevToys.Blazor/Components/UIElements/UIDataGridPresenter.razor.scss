@@ -1,0 +1,16 @@
+.ui-data-grid-presenter {
+    &-title {
+        height: 20px !important;
+        margin-top: 14px;
+    }
+}
+
+// Compact mode
+div[data-compactmode] {
+    .ui-data-grid-presenter {
+        &-title {
+            height: 20px !important;
+            margin-top: 7px;
+        }
+    }
+}
