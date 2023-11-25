@@ -407,4 +407,12 @@
     --ui-file-selector-stroke-color: var(--text-fill-color-disabled);
     --ui-file-selector-dragging-background-color: var(--control-fill-color-tertiary);
     --ui-file-selector-dragging-stroke-color: var(--text-fill-color-tertiary);
+
+    /* UIMultilineTextImput */
+    --ui-multiline-text-input-highlighted-text-span-background-color-blue: rgba(0, 120, 212);
+    --ui-multiline-text-input-highlighted-text-span-background-color-green: rgb(14, 119, 53);
+    --ui-multiline-text-input-highlighted-text-span-background-color-red: rgb(226, 36, 26);
+    --ui-multiline-text-input-highlighted-text-span-background-color-yellow: rgb(204, 146, 0);
+    --ui-multiline-text-input-highlighted-text-span-background-color-purple: rgb(107, 105, 214);
+    --ui-multiline-text-input-highlighted-text-span-background-color-teal: rgb(3, 131, 135);
 }

@@ -3,24 +3,45 @@
 @using System.Collections.ObjectModel;
 @inherits ComponentBase
 
-<DataGrid id="@UIDataGrid.Id"
-          TRow="IUIDataGridRow"
-          TCell="IUIDataGridCell"
-          TRowDetail="IUIElement"
-          IsVisible="@UIDataGrid.IsVisible"
-          IsEnabled="@UIDataGrid.IsEnabled"
-          HorizontalAlignment="@UIDataGrid.HorizontalAlignment"
-          VerticalAlignment="@UIDataGrid.VerticalAlignment"
-          @bind-SelectedIndex="@SelectedIndex"
-          Columns="@UIDataGrid.Columns"
-          Rows="@UIDataGrid.Rows"
-          Context="element"
-          CanSelectRow="@UIDataGrid.CanSelectRow"
-          Virtualize="true">
-    <CellTemplate>
-        <UIElementPresenter UIElement="@element.UIElement" />
-    </CellTemplate>
-    <RowDetailTemplate>
-        <UIElementPresenter UIElement="@element" />
-    </RowDetailTemplate>
-</DataGrid>
+<Grid IsVisible="@UIDataGrid.IsVisible"
+      IsEnabled="@UIDataGrid.IsEnabled"
+      HorizontalAlignment="@UIDataGrid.HorizontalAlignment"
+      VerticalAlignment="@UIDataGrid.VerticalAlignment"
+      RowSpacing="6"
+      Rows="@(new List<UIGridLength>
+        {
+            UIGridLength.Auto,
+            new UIGridLength(1, UIGridUnitType.Fraction)
+        })"
+      ColumnSpacing="6"
+      Columns="@(new List<UIGridLength>
+        {
+            new UIGridLength(1, UIGridUnitType.Fraction)
+        })">
+    <GridCell Row="0" Column="0">
+        <TextBlock Text="@UIDataGrid.Title"
+                   NoWrap="true"
+                   CanTrim="true" />
+    </GridCell>
+    <GridCell Row="1" Column="0">
+        <DataGrid id="@UIDataGrid.Id"
+                  TRow="IUIDataGridRow"
+                  TCell="IUIDataGridCell"
+                  TRowDetail="IUIElement"
+                  HorizontalAlignment="UIHorizontalAlignment.Stretch"
+                  VerticalAlignment="UIVerticalAlignment.Stretch"
+                  @bind-SelectedIndex="@SelectedIndex"
+                  Columns="@UIDataGrid.Columns"
+                  Rows="@UIDataGrid.Rows"
+                  Context="element"
+                  CanSelectRow="@UIDataGrid.CanSelectRow"
+                  Virtualize="true">
+            <CellTemplate>
+                <UIElementPresenter UIElement="@element.UIElement" />
+            </CellTemplate>
+            <RowDetailTemplate>
+                <UIElementPresenter UIElement="@element" />
+            </RowDetailTemplate>
+        </DataGrid>
+    </GridCell>
+</Grid>

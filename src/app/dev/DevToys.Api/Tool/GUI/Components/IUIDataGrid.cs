@@ -5,7 +5,7 @@ namespace DevToys.Api;
 /// <summary>
 /// A component that represents a grid that can display data with rows and columns.
 /// </summary>
-public interface IUIDataGrid : IUIElementWithChildren
+public interface IUIDataGrid : IUITitledElementWithChildren
 {
     /// <summary>
     /// Gets the title of each column in the data grid.
@@ -44,7 +44,7 @@ public interface IUIDataGrid : IUIElementWithChildren
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, SelectedRow = {{{nameof(SelectedRow)}}}")]
-internal sealed class UIDataGrid : UIElementWithChildren, IUIDataGrid, IDisposable
+internal sealed class UIDataGrid : UITitledElementWithChildren, IUIDataGrid, IDisposable
 {
     private readonly ObservableCollection<IUIDataGridRow> _rows = new();
     private string[] _columns = Array.Empty<string>();

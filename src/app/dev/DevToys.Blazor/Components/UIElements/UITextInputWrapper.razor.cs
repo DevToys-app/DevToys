@@ -333,11 +333,14 @@ public partial class UITextInputWrapper : MefComponentBase
 
     private void TriggerSmartDetection()
     {
-        CancellationTokenSource? cancellationSourceToken = _cancellationTokenSource;
-        cancellationSourceToken?.Cancel();
-        cancellationSourceToken?.Dispose();
-        Interlocked.Exchange(ref _cancellationTokenSource, new(TimeSpan.FromSeconds(5)));
-        SmartDetectToolsAsync(UITextInput.Text, _cancellationTokenSource.Token).ForgetSafely();
+        if (UITextInput.IsReadOnly)
+        {
+            CancellationTokenSource? cancellationSourceToken = _cancellationTokenSource;
+            cancellationSourceToken?.Cancel();
+            cancellationSourceToken?.Dispose();
+            Interlocked.Exchange(ref _cancellationTokenSource, new(TimeSpan.FromSeconds(5)));
+            SmartDetectToolsAsync(UITextInput.Text, _cancellationTokenSource.Token).ForgetSafely();
+        }
     }
 
     private async Task SmartDetectToolsAsync(string text, CancellationToken cancellationToken)

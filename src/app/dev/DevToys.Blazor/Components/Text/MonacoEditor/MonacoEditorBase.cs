@@ -229,27 +229,24 @@ public abstract class MonacoEditorBase : MefComponentBase, IFocusable
     /// <summary>
     /// Set the primary selection of the editor. This will remove any secondary cursors.
     /// @param selection The new selection
-    /// @param source Source of the call that caused the selection
     /// </summary>
-    internal ValueTask<bool> SetSelectionAsync(Monaco.Range selection, string source)
-        => JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.setSelection", Id, selection, source);
+    internal ValueTask<bool> SetSelectionAsync(Monaco.Range selection)
+        => JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.setSelection", Id, selection);
 
     /// <summary>
     /// Set the primary selection of the editor. This will remove any secondary cursors.
     /// @param selection The new selection
-    /// @param source Source of the call that caused the selection
     /// </summary>
-    internal ValueTask<bool> SetSelectionAsync(Selection selection, string source)
-        => JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.setSelection", Id, selection, source);
+    internal ValueTask<bool> SetSelectionAsync(Selection selection)
+        => JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.setSelection", Id, selection);
 
     /// <summary>
     /// Set the selections for all the cursors of the editor.
     /// Cursors will be removed or added, as necessary.
     /// @param selections The new selection
-    /// @param source Source of the call that caused the selection
     /// </summary>
-    internal ValueTask<bool> SetSelectionsAsync(List<Selection> selections, string source)
-        => JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.setSelections", Id, selections, source);
+    internal ValueTask<bool> SetSelectionsAsync(List<Selection> selections)
+        => JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.setSelections", Id, selections);
 
     /// <summary>
     /// Scroll vertically as necessary and reveal lines.

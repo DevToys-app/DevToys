@@ -85,7 +85,15 @@ public sealed partial class GuiToolInstance : ObservableObject, IDisposable
     {
         if (_instance.IsValueCreated && _instance.Value is IDisposable disposable)
         {
-            disposable.Dispose();
+            try
+            {
+                disposable.Dispose();
+            }
+            catch (NotImplementedException) { }
+            catch (Exception ex)
+            {
+                LogDisposingToolFailed(ex, InternalComponentName);
+            }
         }
     }
 
@@ -172,4 +180,7 @@ public sealed partial class GuiToolInstance : ObservableObject, IDisposable
 
     [LoggerMessage(3, LogLevel.Error, "Unexpectedly failed to get the view for the tool '{toolName}'.")]
     partial void LogGetToolViewFailed(Exception ex, string toolName);
+
+    [LoggerMessage(4, LogLevel.Error, "Unexpectedly failed to dispose '{toolName}'.")]
+    partial void LogDisposingToolFailed(Exception ex, string toolName);
 }

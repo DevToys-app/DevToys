@@ -109,6 +109,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>TextCompare.resx</DependentUpon>
     </Compile>
+    <Compile Update="Tools\Text\RegExTester\RegExTester.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RegExTester.resx</DependentUpon>
+    </Compile>
     <Compile Update="Tools\Text\Text.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -179,6 +184,10 @@
     <EmbeddedResource Update="Tools\Text\Compare\TextCompare.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TextCompare.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Tools\Text\RegExTester\RegExTester.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RegExTester.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Tools\Text\Text.resx">
       <Generator>ResXFileCodeGenerator</Generator>

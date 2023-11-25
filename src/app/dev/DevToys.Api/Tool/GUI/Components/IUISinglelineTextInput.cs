@@ -21,11 +21,6 @@ public interface IUISingleLineTextInput : IUITitledElementWithChildren
     string Text { get; }
 
     /// <summary>
-    /// Gets the primary selection of the text control. When the selection length is 0, the span indicates the caret position.
-    /// </summary>
-    TextSpan Selection { get; }
-
-    /// <summary>
     /// Gets an extra interactive content to display in the command bar of the text input.
     /// </summary>
     IUIElement? CommandBarExtraContent { get; }
@@ -46,11 +41,6 @@ public interface IUISingleLineTextInput : IUITitledElementWithChildren
     event EventHandler? TextChanged;
 
     /// <summary>
-    /// Raised when <see cref="Selection"/> is changed.
-    /// </summary>
-    event EventHandler? SelectionChanged;
-
-    /// <summary>
     /// Raised when <see cref="CommandBarExtraContent"/> is changed.
     /// </summary>
     event EventHandler? CommandBarExtraContentChanged;
@@ -62,7 +52,6 @@ internal class UISingleLineTextInput : UITitledElementWithChildren, IUISingleLin
     private string? _text;
     private bool _isReadOnly;
     private bool _canCopyWhenEditable;
-    private TextSpan? _selection;
     private IUIElement? _commandBarExtraContent;
 
     internal UISingleLineTextInput(string? id)
@@ -102,32 +91,6 @@ internal class UISingleLineTextInput : UITitledElementWithChildren, IUISingleLin
         internal set => SetPropertyValue(ref _canCopyWhenEditable, value, CanCopyWhenEditableChanged);
     }
 
-    public TextSpan Selection
-    {
-        get => _selection ?? new TextSpan(0, 0);
-        internal set
-        {
-            _selection = value;
-            if (_selection != null)
-            {
-                if (_selection.StartPosition > Text.Length)
-                {
-                    ThrowHelper.ThrowArgumentOutOfRangeException(
-                        nameof(TextSpan.StartPosition),
-                        "The start position of the selection is greater than the text length.");
-                }
-                else if (_selection.EndPosition > Text.Length)
-                {
-                    ThrowHelper.ThrowArgumentOutOfRangeException(
-                        nameof(TextSpan.Length),
-                        "The end position of the selection is greater than the text length.");
-                }
-            }
-            SelectionChanged?.Invoke(this, EventArgs.Empty);
-            OnPropertyChanged();
-        }
-    }
-
     public IUIElement? CommandBarExtraContent
     {
         get => _commandBarExtraContent;
@@ -139,7 +102,6 @@ internal class UISingleLineTextInput : UITitledElementWithChildren, IUISingleLin
     public event EventHandler? TextChanged;
     public event EventHandler? IsReadOnlyChanged;
     public event EventHandler? CanCopyWhenEditableChanged;
-    public event EventHandler? SelectionChanged;
     public event EventHandler? CommandBarExtraContentChanged;
 }
 
@@ -218,30 +180,6 @@ public static partial class GUI
         if (element is UISingleLineTextInput strongElement)
         {
             strongElement.Text = text;
-        }
-        return element;
-    }
-
-    /// <summary>
-    /// Selects the given span in the text document.
-    /// </summary>
-    public static T Select<T>(this T element, TextSpan span) where T : IUISingleLineTextInput
-    {
-        if (element is UISingleLineTextInput strongElement)
-        {
-            strongElement.Selection = span;
-        }
-        return element;
-    }
-
-    /// <summary>
-    /// Selects the given span in the text document.
-    /// </summary>
-    public static T Select<T>(this T element, int start, int length) where T : IUISingleLineTextInput
-    {
-        if (element is UISingleLineTextInput strongElement)
-        {
-            strongElement.Selection = new TextSpan(start, length);
         }
         return element;
     }

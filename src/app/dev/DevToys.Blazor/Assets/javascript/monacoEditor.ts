@@ -233,11 +233,6 @@ class MonacoEditor {
         }, context);
     }
 
-    public static deltaDecorations(id: string, oldDecorations: string[], newDecorations: monaco.editor.IModelDeltaDecoration[]): string[] {
-        const editor = this.getStandaloneCodeEditor(id);
-        return editor.deltaDecorations(oldDecorations, newDecorations);
-    }
-
     public static focus(id: string): void {
         const editor = this.getEditor(id);
         editor.focus();
