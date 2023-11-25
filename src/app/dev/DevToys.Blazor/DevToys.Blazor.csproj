@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>$(NetCore)</TargetFramework>
@@ -84,10 +84,20 @@
     <Exec WorkingDirectory="$(ProjectDir)" Command="npm install" />
   </Target>
 
-  <Target Name="GulpPrecompileTarget" AfterTargets="CompileTypeScriptWithTSConfig" Condition="'$(IsWindows)' == 'false'">
-    <!-- Run the Gulp tasks. -->
+  <!-- Build all the SCSS and TS whenever the SCSS and TS files are newer than the generated CSS and JS files. -->
+  <ItemGroup>
+    <SCSSFiles Include="**\*.scss" />
+    <TSFiles Include="**\*.ts" />
+    <CSSFiles Include="**\*.g.css" />
+    <JSFiles Include="**\*.g.js" />
+  </ItemGroup>
+  <Target Name="GulpPrecompileTarget"
+          AfterTargets="CompileTypeScriptWithTSConfig"
+          Inputs="@(SCSSFiles);@(TSFiles)"
+          Outputs="@(CSSFiles);@(JSFiles)">
     <Message Importance="high" Text="Generating CSS and JavaScript..." />
     <Exec WorkingDirectory="$(ProjectDir)" Command="node_modules\.bin\gulp devtoysJavaScript" />
     <Exec WorkingDirectory="$(ProjectDir)" Command="node_modules\.bin\gulp devtoysSass" />
   </Target>
+
 </Project>
