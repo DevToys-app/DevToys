@@ -1,8 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <!-- Don't use $(NetMacCatalyst) here or it breaks .Net Meteor extension for VS Code. -->
-    <TargetFramework>net8.0-maccatalyst</TargetFramework>
+    <TargetFramework>$(NetMacCatalyst)</TargetFramework>
     <OutputType>Exe</OutputType>
     <RootNamespace>DevToys.MacOS</RootNamespace>
     <UseMaui>true</UseMaui>
