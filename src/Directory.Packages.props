@@ -3,7 +3,7 @@
     <CommunityToolkitVersion>8.2.1</CommunityToolkitVersion>
     <DotNetVersion>8.0.0</DotNetVersion>
     <XUnit>2.5.0</XUnit>
-    <GirCore>0.5.0-preview.3</GirCore>
+    <GirCore>0.5.0-preview.1</GirCore>
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="CommunityToolkit.Common" Version="$(CommunityToolkitVersion)" />
@@ -26,11 +26,11 @@
     <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="$(DotNetVersion)" Condition="'$(UseMaui)' != 'true'" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="$(DotNetVersion)" Condition="'$(UseMaui)' != 'true'" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
-    <PackageVersion Include="Microsoft.TypeScript.MSBuild" Version="5.1.5" />
+    <PackageVersion Include="Microsoft.TypeScript.MSBuild" Version="5.3.2" />
     <PackageVersion Include="Microsoft.Windows.CsWin32" Version="0.3.18-beta" />
     <PackageVersion Include="Moq" Version="4.18.4" />
     <PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageVersion Include="NuGet.Packaging" Version="6.6.1" />
+    <PackageVersion Include="NuGet.Packaging" Version="6.8.0" />
     <PackageVersion Include="Nuke.Common" Version="7.0.2" />
     <PackageVersion Include="OneOf" Version="3.0.263" />
     <PackageVersion Include="SixLabors.ImageSharp" Version="3.0.2" />

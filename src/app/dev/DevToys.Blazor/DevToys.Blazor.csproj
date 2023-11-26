@@ -35,8 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="%2a%2a\**" />
-    <None Remove="node_modules\**" />
+    <None Remove="node_modules" />
     <TypeScriptCompile Remove="node_modules\**" />
     <TypeScriptCompile Remove="wwwroot\lib\monaco-editor\**\*.*" />
   </ItemGroup>
