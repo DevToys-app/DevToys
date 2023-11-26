@@ -8,7 +8,7 @@
     <Windows10MinSDKVersionTrimmed>10.0.22621</Windows10MinSDKVersionTrimmed>
     <Windows10MinSDKVersion>$(Windows10MinSDKVersionTrimmed).0</Windows10MinSDKVersion>
 
-    <NetCore>net7.0</NetCore>
+    <NetCore>net8.0</NetCore>
     <NetCoreWindows10>$(NetCore)-windows$(Windows10MinSDKVersionTrimmed)</NetCoreWindows10>
     <NetCoreWindows>$(NetCore)-windows</NetCoreWindows>
     <NetMacCatalyst>$(NetCore)-maccatalyst</NetMacCatalyst>
