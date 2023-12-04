@@ -136,6 +136,7 @@ internal sealed partial class UrlEncoderDecoderGuiTool : IGuiTool, IDisposable
 
     public void Dispose()
     {
+        _cancellationTokenSource?.Cancel();
         _cancellationTokenSource?.Dispose();
         _semaphore.Dispose();
     }

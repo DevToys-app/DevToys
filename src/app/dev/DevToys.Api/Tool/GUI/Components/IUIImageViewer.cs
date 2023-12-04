@@ -59,7 +59,7 @@ internal sealed class UIImageViewer : UITitledElement, IUIImageViewer, IDisposab
 public static partial class GUI
 {
     /// <summary>
-    /// A component that displayed an image and allows the user to perform some read-only actions on it.
+    /// A component that displays an image and allows the user to perform some read-only actions on it.
     /// By default, image viewer supports BMP, GIF, JPEG, PBM, PNG, TIFF, TGA, WEBP, SVG formats.
     /// </summary>
     public static IUIImageViewer ImageViewer()
@@ -68,7 +68,7 @@ public static partial class GUI
     }
 
     /// <summary>
-    /// A component that displayed an image and allows the user to perform some read-only actions on it.
+    /// A component that displays an image and allows the user to perform some read-only actions on it.
     /// By default, image viewer supports BMP, GIF, JPEG, PBM, PNG, TIFF, TGA, WEBP, SVG formats.
     /// </summary>
     /// <param name="id">An optional unique identifier for this UI element.</param>

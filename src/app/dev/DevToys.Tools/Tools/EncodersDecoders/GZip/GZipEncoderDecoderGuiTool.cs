@@ -155,6 +155,7 @@ internal sealed partial class GZipEncoderDecoderGuiTool : IGuiTool, IDisposable
 
     public void Dispose()
     {
+        _cancellationTokenSource?.Cancel();
         _cancellationTokenSource?.Dispose();
         _semaphore.Dispose();
     }

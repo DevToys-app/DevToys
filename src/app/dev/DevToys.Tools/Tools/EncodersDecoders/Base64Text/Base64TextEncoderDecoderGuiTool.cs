@@ -170,6 +170,7 @@ internal sealed partial class Base64TextEncoderDecoderGuiTool : IGuiTool, IDispo
 
     public void Dispose()
     {
+        _cancellationTokenSource?.Cancel();
         _cancellationTokenSource?.Dispose();
         _semaphore.Dispose();
     }

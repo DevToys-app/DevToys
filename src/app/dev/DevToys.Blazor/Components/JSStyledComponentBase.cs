@@ -69,6 +69,8 @@ public abstract class JSStyledComponentBase : StyledComponentBase, IAsyncDisposa
             }
         }
 
+        Semaphore.Dispose();
+
         GC.SuppressFinalize(this);
     }
 }

@@ -75,11 +75,11 @@ public partial class SplitGrid : JSStyledComponentBase
             using (await Semaphore.WaitAsync(CancellationToken.None))
             {
                 await (await JSModule).InvokeVoidWithErrorHandlingAsync(
-                "initializeSplitGrid",
-                Element,
-                _gutterElement,
-                GutterOrientation == UIOrientation.Vertical,
-                MinimumCellSize);
+                     "initializeSplitGrid",
+                     Element,
+                     _gutterElement,
+                     GutterOrientation == UIOrientation.Vertical,
+                     MinimumCellSize);
             }
         }
     }

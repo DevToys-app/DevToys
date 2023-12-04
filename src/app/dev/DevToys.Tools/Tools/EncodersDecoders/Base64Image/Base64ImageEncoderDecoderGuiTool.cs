@@ -120,6 +120,7 @@ internal sealed partial class Base64ImageEncoderDecoderGuiTool : IGuiTool, IDisp
     public void Dispose()
     {
         _selectedFile?.Dispose();
+        _cancellationTokenSource?.Cancel();
         _cancellationTokenSource?.Dispose();
         _semaphore.Dispose();
     }

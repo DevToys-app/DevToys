@@ -161,6 +161,7 @@ internal sealed partial class JsonYamlConverterGuiTool : IGuiTool, IDisposable
 
     public void Dispose()
     {
+        _cancellationTokenSource?.Cancel();
         _cancellationTokenSource?.Dispose();
         _semaphore.Dispose();
     }
