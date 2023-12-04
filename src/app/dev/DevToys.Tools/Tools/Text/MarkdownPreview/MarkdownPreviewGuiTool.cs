@@ -166,6 +166,8 @@ internal sealed class MarkdownPreviewGuiTool : IGuiTool, IDisposable
                     .UseSmartyPants()
                     .UseAdvancedExtensions()
                     .UseColorCode(styleDictionary: codeStyleDictionary)
+                    .EnableTrackTrivia()
+                    .UseYamlFrontMatter()
                     .Build();
 
             string? htmlBody = Markdig.Markdown.ToHtml(markdown, pipeline);
