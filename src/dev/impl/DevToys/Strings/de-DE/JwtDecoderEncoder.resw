@@ -334,7 +334,7 @@
     <value>Das Geschlecht des Endnutzers. Die von dieser Spezifikation definierten Werten sind weiblich und männlich. Andere Werte dürfen verwendet werden, wenn keine der definierten Werte zutreffen.</value>
   </data>
   <data name="birthdate" xml:space="preserve">
-    <value>End-User's birthday, represented as an ISO 8601:2004 YYYY-MM-DD format. The year MAY be 0000, indicating that it is omitted. To represent only the year, YYYY format is allowed. Note that depending on the underlying platform's date related function, providing just year can result in varying month and day, so the implementers need to take this factor into account to correctly process the dates.</value>
+    <value>Geburtsdatum des End-Users im Format YYYY-MM-DD nach ISO 8601:2004. Das Jahr darf 0000 sein, was anzeigt, dass es bei der Eingabe weggelassen wurde. Um nur das Jahr einzugeben ist das Format YYYY erlaubt. Beachten Sie, dass je nach der datumsbezogenen Funktion der zugrunde liegenden Plattform die Angabe nur des Jahres zu unterschiedlichen Monaten und Tagen führen kann.</value>
   </data>
   <data name="zoneinfo" xml:space="preserve">
     <value>Zeichenkette aus der zoneinfo Zeitzonen-Datenbank, die die Zeitzone des End-Users repräsentiert, zum Beispiel in Europa/Paris oder Amerika/Los_Angeles.</value>
