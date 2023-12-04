@@ -109,6 +109,7 @@ internal sealed class MarkdownPreviewGuiTool : IGuiTool, IDisposable
                                 _inputText
                                     .Title(MarkdownPreview.Input)
                                     .Language("markdown")
+                                    .CanCopyWhenEditable()
                                     .OnTextChanged(OnInputTextChanged))
 
                             .WithRightPaneChild(

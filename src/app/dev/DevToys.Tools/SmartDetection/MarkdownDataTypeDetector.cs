@@ -25,7 +25,7 @@ internal sealed partial class MarkdownDataTypeDetector : IDataTypeDetector
     {
         if (resultFromBaseDetector is not null
             && resultFromBaseDetector.Data is string dataString
-            && dataString.Length <= 1_000) // Perf: Don't try to detect Markdown in large strings as RegEx are expensive.
+            && dataString.Length <= 10_000) // Perf: Don't try to detect Markdown in large strings as RegEx are expensive.
         {
             // Check if the input string contains any of the Markdown elements
             if (HeaderRegex().IsMatch(dataString)
