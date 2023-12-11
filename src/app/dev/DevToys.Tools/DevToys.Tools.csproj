@@ -114,6 +114,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>TextCompare.resx</DependentUpon>
     </Compile>
+    <Compile Update="Tools\Text\MarkdownPreview\MarkdownPreview.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MarkdownPreview.resx</DependentUpon>
+    </Compile>
     <Compile Update="Tools\Text\RegExTester\RegExTester.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -194,6 +199,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TextCompare.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Tools\Text\MarkdownPreview\MarkdownPreview.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MarkdownPreview.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Tools\Text\RegExTester\RegExTester.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>RegExTester.Designer.cs</LastGenOutput>
@@ -206,9 +215,12 @@
 
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\..\assets\font\DevToys-Tools-Icons.ttf" Link="Assets\fonts\DevToys-Tools-Icons.ttf" />
+    <EmbeddedResource Include="Assets\GitHubMarkdown\index.html" />
   </ItemGroup>
   
   <ItemGroup>
+    <PackageReference Include="Markdig" />
+    <PackageReference Include="Markdown.ColorCode" />
     <PackageReference Include="Newtonsoft.Json" />
     <PackageReference Include="System.Text.Json" />
     <PackageReference Include="YamlDotNet" />

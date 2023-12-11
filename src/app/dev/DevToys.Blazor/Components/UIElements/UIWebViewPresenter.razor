@@ -1,0 +1,40 @@
+@namespace DevToys.Blazor.Components.UIElements
+@using DevToys.Api;
+@inherits JSStyledComponentBase
+
+<CascadingValue Name="ParentIsEnabled" Value="@IsActuallyEnabled">
+
+    <Grid id="@UIWebView.Id"
+          Class="ui-web-view"
+          IsVisible="@UIWebView.IsVisible"
+          IsEnabled="@UIWebView.IsEnabled"
+          HorizontalAlignment="@UIWebView.HorizontalAlignment"
+          VerticalAlignment="@UIWebView.VerticalAlignment"
+          RowSpacing="6"
+          Rows="@(new List<UIGridLength>
+            {
+                UIGridLength.Auto,
+                new UIGridLength(1, UIGridUnitType.Fraction)
+            })"
+          ColumnSpacing="6"
+          Columns="@(new List<UIGridLength>
+            {
+                new UIGridLength(1, UIGridUnitType.Fraction)
+            })">
+        <GridCell Row="0" Column="0" Class="ui-web-view-title">
+            <TextBlock id="@(UIWebView.Id + "-title")"
+                       Text="@UIWebView.Title"
+                       NoWrap="true"
+                       CanTrim="true" />
+        </GridCell>
+        <GridCell Row="1" Column="0">
+            <Container>
+                <iframe @ref="@_iframeElement"
+                        id="@(UIWebView.Id + "-iframe")"
+                        sandbox="allow-scripts allow-same-origin"
+                        class="ui-web-view-frame" />
+            </Container>
+        </GridCell>
+    </Grid>
+
+</CascadingValue>
