@@ -2,14 +2,17 @@
 using System.ComponentModel.Composition.Primitives;
 using System.Globalization;
 using System.Reflection;
+using Microsoft.Extensions.Logging;
 
 namespace DevToys.Core.Mef;
 
 /// <summary>
 /// Extends <see cref="DirectoryCatalog"/> to support discovery of parts in sub-directories.
 /// </summary>
-internal sealed class RecursiveDirectoryCatalog : ComposablePartCatalog, INotifyComposablePartCatalogChanged, ICompositionElement
+internal sealed partial class RecursiveDirectoryCatalog : ComposablePartCatalog, INotifyComposablePartCatalogChanged,
+    ICompositionElement
 {
+    private readonly ILogger _logger;
     private readonly string _path;
     private AggregateCatalog? _aggregateCatalog;
 
@@ -33,6 +36,7 @@ internal sealed class RecursiveDirectoryCatalog : ComposablePartCatalog, INotify
         Guard.IsNotNull(path);
 
         _path = path;
+        _logger = this.Log();
 
         Initialize(path, searchPattern);
     }
@@ -44,6 +48,7 @@ internal sealed class RecursiveDirectoryCatalog : ComposablePartCatalog, INotify
         {
             result.AddRange(GetFoldersRecursive(child));
         }
+
         return result;
     }
 
@@ -77,8 +82,9 @@ internal sealed class RecursiveDirectoryCatalog : ComposablePartCatalog, INotify
                     _aggregateCatalog.Catalogs.Add(asmCat);
                 }
             }
-            catch (ReflectionTypeLoadException)
+            catch (ReflectionTypeLoadException ex)
             {
+                LogLoadLibraryFault(ex, file);
             }
             catch (BadImageFormatException)
             {
@@ -129,4 +135,7 @@ internal sealed class RecursiveDirectoryCatalog : ComposablePartCatalog, INotify
     /// Gets the composition element from which the directory catalog originated.
     /// </summary>
     ICompositionElement? ICompositionElement.Origin => null;
+
+    [LoggerMessage(0, LogLevel.Warning, "Unable to load library '{filePath}'...")]
+    partial void LogLoadLibraryFault(Exception ex, string filePath);
 }

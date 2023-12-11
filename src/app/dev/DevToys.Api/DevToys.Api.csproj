@@ -1,7 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>$(NetCore)</TargetFrameworks>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
 
+  <PropertyGroup>
     <!-- NuGet package -->
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Version>2.0.0-pre.2</Version>

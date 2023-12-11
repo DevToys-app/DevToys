@@ -1,43 +1,38 @@
-﻿using DevToys.Api;
+using DevToys.Api;
 using DevToys.Blazor.BuiltInTools;
 using DevToys.Blazor.BuiltInTools.ExtensionsManager;
 using DevToys.Blazor.Core.Languages;
 using DevToys.Blazor.Core.Services;
 using DevToys.Business.ViewModels;
+using DevToys.Core;
 using DevToys.Core.Logging;
 using DevToys.Core.Mef;
+using DevToys.Core.Settings;
 using DevToys.MacOS.Core;
-using CommunityToolkit.Maui;
+using DevToys.MacOS.Views;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using PredefinedSettings = DevToys.Core.Settings.PredefinedSettings;
-using DevToys.Core;
+using ObjCRuntime;
+using Constants = DevToys.MacOS.Core.Constants;
 
 namespace DevToys.MacOS;
 
-public partial class MauiProgram
+[Register("AppDelegate")]
+public class AppDelegate : NSApplicationDelegate
 {
-    private readonly WindowService _windowService = new();
+    private WindowService? _windowService;
     private ILogger? _logger;
-    private MauiApp? _app;
 
     internal static ServiceProvider? ServiceProvider;
 
     internal static MefComposer? MefComposer;
 
-    public MauiApp CreateMauiApp()
+    public override void WillFinishLaunching(NSNotification notification)
     {
-        Guard.IsNull(_app);
-
         DateTime startTime = DateTime.Now;
 
-        MauiAppBuilder builder = MauiApp.CreateBuilder();
-        builder.UseMauiApp<App>();
-
-        // Initialize the .NET MAUI Community Toolkit by adding the below line of code
-        builder.UseMauiCommunityToolkit();
-
         // Initialize services and logging.
-        ServiceProvider = InitializeServices(builder.Services);
+        ServiceProvider = InitializeServices();
 
         // Listen for unhandled exceptions.
         AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
@@ -49,7 +44,8 @@ public partial class MauiProgram
         // See: https://github.com/xamarin/xamarin-macios/issues/15252
         ObjCRuntime.Runtime.MarshalManagedException += (_, args) =>
         {
-            args.ExceptionMode = ObjCRuntime.MarshalManagedExceptionMode.UnwindNativeCode;
+            args.ExceptionMode = MarshalManagedExceptionMode.UnwindNativeCode;
+            OnUnhandledException(this, new UnhandledExceptionEventArgs(args.Exception, isTerminating: true));
         };
 
         // Clear older temp files.
@@ -57,9 +53,8 @@ public partial class MauiProgram
 
         // Initialize extension installation folder, and uninstall extensions that are planned for being removed.
         string[] pluginFolders
-            = new[]
-            {
-                Path.Combine(AppContext.BaseDirectory!, "../Resources/Plugins"),
+            = {
+                Path.Combine(NSBundle.MainBundle.ResourcePath, "Plugins"),
                 Constants.PluginInstallationFolder
             };
         ExtensionInstallationManager.PreferredExtensionInstallationFolder = Constants.PluginInstallationFolder;
@@ -69,25 +64,42 @@ public partial class MauiProgram
         // Initialize MEF.
         MefComposer
             = new MefComposer(
-                assemblies: new[] {
+                assemblies: new[]
+                {
                     typeof(MainWindowViewModel).Assembly,
                     typeof(DevToysBlazorResourceManagerAssemblyIdentifier).Assembly
                 },
                 pluginFolders);
 
+        // Initialize the window service.
+        _windowService = new WindowService();
+
         LogInitialization((DateTime.Now - startTime).TotalMilliseconds);
         LogAppStarting();
 
-        _app = builder.Build();
-
         // Set the user-defined language.
-        string? languageIdentifier = MefComposer.Provider.Import<ISettingsProvider>().GetSetting(PredefinedSettings.Language);
+        string languageIdentifier
+            = MefComposer.Provider.Import<ISettingsProvider>().GetSetting(PredefinedSettings.Language);
         LanguageDefinition languageDefinition
-            = LanguageManager.Instance.AvailableLanguages.FirstOrDefault(l => string.Equals(l.InternalName, languageIdentifier))
-            ?? LanguageManager.Instance.AvailableLanguages[0];
+            = LanguageManager.Instance.AvailableLanguages.FirstOrDefault(l =>
+                  string.Equals(l.InternalName, languageIdentifier))
+              ?? LanguageManager.Instance.AvailableLanguages[0];
         LanguageManager.Instance.SetCurrentCulture(languageDefinition);
+    }
 
-        return _app;
+    public override void DidFinishLaunching(NSNotification notification)
+    {
+        // Create the main app menu
+        NSApplication.SharedApplication.MainMenu = new AppMenuBar();
+
+        // Show the main window
+        MainWindow.Instance.Show();
+    }
+
+    public override bool ApplicationShouldTerminateAfterLastWindowClosed(NSApplication sender)
+    {
+        // The app should always shut down after every window closed.
+        return true;
     }
 
     private void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -95,13 +107,9 @@ public partial class MauiProgram
         LogUnhandledException((Exception)e.ExceptionObject);
     }
 
-    private ServiceProvider InitializeServices(IServiceCollection serviceCollection)
+    private ServiceProvider InitializeServices()
     {
-        serviceCollection.AddMauiBlazorWebView();
-
-#if DEBUG
-        serviceCollection.AddBlazorWebViewDeveloperTools();
-#endif
+        var serviceCollection = new ServiceCollection();
 
         serviceCollection.AddLogging((ILoggingBuilder builder) =>
         {
@@ -119,8 +127,10 @@ public partial class MauiProgram
             builder.AddFilter("System", LogLevel.Warning);
         });
 
-        serviceCollection.AddSingleton(provider => MefComposer!.Provider);
-        serviceCollection.AddSingleton<IWindowService>(provider => _windowService);
+        serviceCollection.AddBlazorWebView();
+
+        serviceCollection.AddSingleton(_ => MefComposer!.Provider);
+        serviceCollection.AddSingleton<IWindowService>(_ => _windowService!);
         serviceCollection.AddScoped<DocumentEventService, DocumentEventService>();
         serviceCollection.AddScoped<PopoverService, PopoverService>();
         serviceCollection.AddScoped<ContextMenuService, ContextMenuService>();

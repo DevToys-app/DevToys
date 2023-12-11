@@ -6,7 +6,11 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
 
     <!-- NuGet package -->
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <IsPackable>true</IsPackable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeBuildOutput>true</IncludeBuildOutput>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+
     <Version>2.0.0-pre.2</Version>
     <Title>DevToys.Tools</Title>
     <Description>A set of offline tools installed by default with DevToys.</Description>
@@ -205,16 +209,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="..\..\..\..\assets\font\DevToys-Tools-Icons.ttf" Link="Assets\fonts\DevToys-Tools-Icons.ttf" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" />
-    <PackageReference Include="System.Text.Json" />
-    <PackageReference Include="YamlDotNet" />
+    <EmbeddedResource Include="..\..\..\..\assets\font\DevToys-Tools-Icons.ttf" Link="Assets\fonts\DevToys-Tools-Icons.ttf"/>
   </ItemGroup>
 
-  <Target Name="IncludeAllFilesInTargetDir" AfterTargets="Build">
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json"/>
+    <PackageReference Include="YamlDotNet"/>
+  </ItemGroup>
+
+  <Target Name="IncludeAllFilesInTargetDir" BeforeTargets="_GetPackageFiles">
     <ItemGroup>
       <None Include="$(OutputPath)\**">
         <Pack>true</Pack>
@@ -223,8 +226,8 @@
     </ItemGroup>
   </Target>
 
-  <Target DependsOnTargets="IncludeAllFilesInTargetDir" Name="CopyPluginAfterBuild" AfterTargets="Pack">
-    <Copy SourceFiles="$(PackageOutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(PluginNupkgPath)" SkipUnchangedFiles="false" OverwriteReadOnlyFiles="true" Retries="10" RetryDelayMilliseconds="1000" />
+  <Target Name="CopyPluginAfterBuild" AfterTargets="Pack">
+    <Copy SourceFiles="$(PackageOutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(PluginNupkgPath)" SkipUnchangedFiles="false" OverwriteReadOnlyFiles="true" Retries="10" RetryDelayMilliseconds="1000"/>
   </Target>
-  
+
 </Project>

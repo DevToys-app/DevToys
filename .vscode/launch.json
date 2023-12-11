@@ -5,32 +5,42 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug (MacOS)",
-            "type": "dotnet-meteor.debugger",
+            "name": "DevToys CLI",
+            "preLaunchTask": "Build DevToys CLI",
+            "type": "dotnet",
             "request": "launch",
-            "preLaunchTask": "dotnet-meteor: Build"
+            "projectPath": "${workspaceFolder}/src/app/dev/platforms/desktop/DevToys.CLI/DevToys.CLI.csproj"
         },
         {
-            "name": "Debug (Windows)",
+            "name": "DevToys MacOS arm64",
+            "preLaunchTask": "Build DevToys MacOS",
             "type": "coreclr",
             "request": "launch",
-            "program": "${workspaceRoot}/bin/Debug/AnyCPU/DevToys.Windows/net7.0-windows/DevToys.Windows.exe",
+            "program": "${workspaceFolder}/bin/Debug/AnyCPU/DevToys.MacOS/net8.0-macos/osx-arm64/DevToys.MacOS.app/Contents/MacOS/DevToys.MacOS",
             "args": [],
-            "cwd": "${workspaceRoot}",
-            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/src/app/dev/platforms/desktop/DevToys.MacOS",
+            // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",
-            "preLaunchTask": "BuildWindows"
+            "stopAtEntry": false
         },
         {
-            "name": "Debug (CLI)",
+            "name": "DevToys MacOS x64",
+            "preLaunchTask": "Build DevToys MacOS",
             "type": "coreclr",
             "request": "launch",
-            "program": "${workspaceRoot}/bin/Debug/AnyCPU/DevToys.CLI/net7.0/DevToys.CLI.exe",
+            "program": "${workspaceFolder}/bin/Debug/AnyCPU/DevToys.MacOS/net8.0-macos/osx-x64/DevToys.MacOS.app/Contents/MacOS/DevToys.MacOS",
             "args": [],
-            "cwd": "${workspaceRoot}",
-            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/src/app/dev/platforms/desktop/DevToys.MacOS",
+            // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",
-            "preLaunchTask": "BuildCLI"
-        }
+            "stopAtEntry": false
+        },
+        {
+            "name": "DevToys Windows",
+            "preLaunchTask": "Build DevToys Windows",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/src/app/dev/platforms/desktop/DevToys.Windows/DevToys.Windows.csproj"
+        },
     ]
 }

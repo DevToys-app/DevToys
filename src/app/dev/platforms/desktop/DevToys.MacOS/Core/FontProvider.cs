@@ -1,4 +1,4 @@
-﻿using DevToys.Api;
+using DevToys.Api;
 using Microsoft.Extensions.Logging;
 
 namespace DevToys.MacOS.Core;
@@ -18,7 +18,7 @@ internal sealed partial class FontProvider : IFontProvider
     {
         try
         {
-            return UIKit.UIFont.FamilyNames;
+            return NSFontManager.SharedFontManager.AvailableFontFamilies;
         }
         catch (Exception ex)
         {

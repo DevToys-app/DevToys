@@ -1,10 +1,8 @@
-﻿using DevToys.Api;
+namespace DevToys.MacOS.Core.Helpers;
 
-namespace DevToys.MacOS.Helpers;
-
-public static class ThreadHelper
+internal static class ThreadHelper
 {
-    public static void ThrowIfNotOnUIThread()
+    internal static void ThrowIfNotOnUIThread()
     {
         if (!IsOnUIThread())
         {
@@ -12,7 +10,7 @@ public static class ThreadHelper
         }
     }
 
-    public static void ThrowIfOnUIThread()
+    internal static void ThrowIfOnUIThread()
     {
         if (IsOnUIThread())
         {
@@ -20,7 +18,7 @@ public static class ThreadHelper
         }
     }
 
-    public static Task RunOnUIThreadAsync(Action action)
+    internal static Task RunOnUIThreadAsync(Action? action)
     {
         if (action is null)
         {
@@ -35,7 +33,7 @@ public static class ThreadHelper
         else
         {
             var tcs = new TaskCompletionSource<int>(0);
-            MainThread.InvokeOnMainThreadAsync(
+            NSApplication.SharedApplication.BeginInvokeOnMainThread(
                 () =>
                 {
                     try
@@ -55,7 +53,7 @@ public static class ThreadHelper
         }
     }
 
-    public static Task<T> RunOnUIThreadAsync<T>(Func<T> func)
+    internal static Task<T> RunOnUIThreadAsync<T>(Func<T>? func)
     {
         if (func is null)
         {
@@ -69,7 +67,7 @@ public static class ThreadHelper
         else
         {
             var tcs = new TaskCompletionSource<T>();
-            MainThread.InvokeOnMainThreadAsync(
+            NSApplication.SharedApplication.BeginInvokeOnMainThread(
                 () =>
                 {
                     T result = default!;
@@ -90,7 +88,7 @@ public static class ThreadHelper
         }
     }
 
-    public static async Task RunOnUIThreadAsync(Func<Task> action)
+    internal static async Task RunOnUIThreadAsync(Func<Task>? action)
     {
         if (action is null)
         {
@@ -104,7 +102,7 @@ public static class ThreadHelper
         else
         {
             var tcs = new TaskCompletionSource<int>(0);
-            MainThread.InvokeOnMainThreadAsync(
+            NSApplication.SharedApplication.BeginInvokeOnMainThread(
                 async () =>
                 {
                     try
@@ -120,13 +118,13 @@ public static class ThreadHelper
                     {
                         tcs.TrySetResult(0);
                     }
-                }).Forget();
+                });
 
             await tcs.Task.ConfigureAwait(false);
         }
     }
 
-    public static async Task<T> RunOnUIThreadAsync<T>(Func<Task<T>> action)
+    internal static async Task<T> RunOnUIThreadAsync<T>(Func<Task<T>> action)
     {
         Guard.IsNotNull(action);
 
@@ -138,7 +136,7 @@ public static class ThreadHelper
         {
             T result = default!;
             var tcs = new TaskCompletionSource<int>(0);
-            MainThread.InvokeOnMainThreadAsync(
+            NSApplication.SharedApplication.BeginInvokeOnMainThread(
                 async () =>
                 {
                     try
@@ -154,7 +152,7 @@ public static class ThreadHelper
                     {
                         tcs.TrySetResult(0);
                     }
-                }).Forget();
+                });
 
             await tcs.Task.ConfigureAwait(false);
             return result!;
@@ -163,6 +161,6 @@ public static class ThreadHelper
 
     private static bool IsOnUIThread()
     {
-        return MainThread.IsMainThread;
+        return NSThread.IsMain;
     }
 }

@@ -1,14 +1,14 @@
-﻿using CommunityToolkit.Maui.Storage;
+using System.Runtime.Versioning;
 using DevToys.Api;
 using DevToys.Core;
-using DevToys.MacOS.Helpers;
+using DevToys.MacOS.Core.Helpers;
+using UniformTypeIdentifiers;
+
 namespace DevToys.MacOS.Core;
 
 [Export(typeof(IFileStorage))]
 internal sealed class FileStorage : IFileStorage
 {
-    private const string TempFolderName = "Temp";
-
     public string AppCacheDirectory => Constants.AppCacheDirectory;
 
     public bool FileExists(string relativeOrAbsoluteFilePath)
@@ -33,7 +33,8 @@ internal sealed class FileStorage : IFileStorage
             throw new FileNotFoundException("Unable to find the indicated file.", relativeOrAbsoluteFilePath);
         }
 
-        return new FileStream(relativeOrAbsoluteFilePath, FileMode.Open, FileAccess.Read, FileShare.Read, SandboxedFileReader.BufferSize, FileOptions.Asynchronous | FileOptions.SequentialScan);
+        return new FileStream(relativeOrAbsoluteFilePath, FileMode.Open, FileAccess.Read, FileShare.Read,
+            SandboxedFileReader.BufferSize, FileOptions.Asynchronous | FileOptions.SequentialScan);
     }
 
     public Stream OpenWriteFile(string relativeOrAbsoluteFilePath, bool replaceIfExist)
@@ -59,27 +60,37 @@ internal sealed class FileStorage : IFileStorage
 
     public async ValueTask<Stream?> PickSaveFileAsync(string[] fileTypes)
     {
-        return await ThreadHelper.RunOnUIThreadAsync(async () =>
+        return await ThreadHelper.RunOnUIThreadAsync(() =>
         {
-            string? fileExtension = fileTypes.FirstOrDefault(fileType => fileType.Replace(".", string.Empty).Replace("*", string.Empty).Length > 0);
-            if (!string.IsNullOrWhiteSpace(fileExtension))
+            UTType[]? utTypes;
+            if (fileTypes.Contains("*.*") || fileTypes.Contains(string.Empty) || fileTypes.Contains(null) ||
+                fileTypes.Contains(".*"))
             {
-                fileExtension = fileExtension.Trim('*').Trim('.').ToLower();
+                utTypes = null;
             }
             else
             {
-                fileExtension = "txt";
+                utTypes = fileTypes
+                    .Select(fileType => UTType.CreateFromExtension(fileType.Trim('*').Trim('.').ToLower()))
+                    .Where(utType => utType != null)
+                    .ToArray()!;
             }
 
-            FileSaverResult fileSaverResult;
-            using (var stream = new MemoryStream())
+            var savePanel = new NSSavePanel();
+            if (utTypes is not null)
             {
-                fileSaverResult = await FileSaver.Default.SaveAsync(string.Empty, "document." + fileExtension, stream, CancellationToken.None);
+                savePanel.AllowedContentTypes = utTypes;
             }
 
-            if (fileSaverResult is not null && fileSaverResult.IsSuccessful)
+            bool result = savePanel.RunModal() == 1; // 1 indicates OK button was pressed
+
+            if (result)
             {
-                return new FileStream(fileSaverResult.FilePath, FileMode.OpenOrCreate, FileAccess.Write);
+                string? filePath = savePanel.Url?.Path;
+                if (!string.IsNullOrEmpty(filePath))
+                {
+                    return new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write);
+                }
             }
 
             return null;
@@ -88,23 +99,40 @@ internal sealed class FileStorage : IFileStorage
 
     public async ValueTask<SandboxedFileReader?> PickOpenFileAsync(string[] fileTypes)
     {
-        return await ThreadHelper.RunOnUIThreadAsync(async () =>
+        return await ThreadHelper.RunOnUIThreadAsync(() =>
         {
-            fileTypes = fileTypes.Select(fileType => fileType.Trim('*').Trim('.').ToLower()).ToArray();
-
-            var otpions = new PickOptions()
+            UTType[]? utTypes;
+            if (fileTypes.Contains("*.*") || fileTypes.Contains(string.Empty) || fileTypes.Contains(null) ||
+                fileTypes.Contains(".*"))
             {
-                FileTypes = new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
+                utTypes = null;
+            }
+            else
+            {
+                utTypes = fileTypes
+                    .Select(fileType => UTType.CreateFromExtension(fileType.Trim('*').Trim('.').ToLower()))
+                    .Where(utType => utType != null)
+                    .ToArray()!;
+            }
+
+            var openPanel = new NSOpenPanel();
+            openPanel.CanChooseFiles = true;
+            openPanel.CanChooseDirectories = false;
+            if (utTypes is not null)
+            {
+                openPanel.AllowedContentTypes = utTypes;
+            }
+
+            bool result = openPanel.RunModal() == 1; // 1 indicates OK button was pressed
+
+            if (result)
+            {
+                NSUrl selectedUrl = openPanel.Url;
+                if (selectedUrl.Path is not null)
                 {
-                    { DevicePlatform.macOS, fileTypes },
-                    { DevicePlatform.MacCatalyst, fileTypes }
-                })
-            };
-
-            FileResult? fileResult = await FilePicker.Default.PickAsync(otpions);
-            if (fileResult is not null)
-            {
-                return SandboxedFileReader.FromFileInfo(new FileInfo(fileResult.FullPath));
+                    var fileInfo = new FileInfo(selectedUrl.Path);
+                    return SandboxedFileReader.FromFileInfo(fileInfo);
+                }
             }
 
             return null;
@@ -113,29 +141,50 @@ internal sealed class FileStorage : IFileStorage
 
     public async ValueTask<SandboxedFileReader[]> PickOpenFilesAsync(string[] fileTypes)
     {
-        return await ThreadHelper.RunOnUIThreadAsync(async () =>
+        return await ThreadHelper.RunOnUIThreadAsync(() =>
         {
-            fileTypes = fileTypes.Select(fileType => fileType.Trim('*').Trim('.').ToLower()).ToArray();
-
-            var otpions = new PickOptions()
+            UTType[]? utTypes;
+            if (fileTypes.Contains("*.*") || fileTypes.Contains(string.Empty) || fileTypes.Contains(null) ||
+                fileTypes.Contains(".*"))
             {
-                FileTypes = new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
-                {
-                    { DevicePlatform.macOS, fileTypes },
-                    { DevicePlatform.MacCatalyst, fileTypes }
-                })
-            };
-
-            IEnumerable<FileResult>? fileResults = await FilePicker.Default.PickMultipleAsync(otpions);
-            if (fileResults is not null)
+                utTypes = null;
+            }
+            else
             {
-                var result = new List<SandboxedFileReader>();
-                foreach (FileResult file in fileResults)
+                utTypes = fileTypes
+                    .Select(fileType => UTType.CreateFromExtension(fileType.Trim('*').Trim('.').ToLower()))
+                    .Where(utType => utType != null)
+                    .ToArray()!;
+            }
+
+            var openPanel = new NSOpenPanel();
+            openPanel.CanChooseFiles = true;
+            openPanel.CanChooseDirectories = false;
+            openPanel.AllowsMultipleSelection = true;
+            if (utTypes is not null)
+            {
+                openPanel.AllowedContentTypes = utTypes;
+            }
+
+            bool result = openPanel.RunModal() == 1; // 1 indicates OK button was pressed
+
+            if (result)
+            {
+                NSUrl[] selectedUrls = openPanel.Urls;
+                if (selectedUrls.Any())
                 {
-                    result.Add(SandboxedFileReader.FromFileInfo(new FileInfo(file.FullPath)));
+                    var fileList = new List<SandboxedFileReader>();
+                    foreach (NSUrl url in selectedUrls)
+                    {
+                        if (url.Path is not null)
+                        {
+                            var fileInfo = new FileInfo(url.Path);
+                            fileList.Add(SandboxedFileReader.FromFileInfo(fileInfo));
+                        }
+                    }
+
+                    return fileList.ToArray();
                 }
-
-                return result.ToArray();
             }
 
             return Array.Empty<SandboxedFileReader>();
@@ -144,12 +193,24 @@ internal sealed class FileStorage : IFileStorage
 
     public async ValueTask<string?> PickFolderAsync()
     {
-        return await ThreadHelper.RunOnUIThreadAsync(async () =>
+        return await ThreadHelper.RunOnUIThreadAsync(() =>
         {
-            FolderPickerResult folderPickerResult = await FolderPicker.Default.PickAsync(CancellationToken.None);
-            if (folderPickerResult is not null && folderPickerResult.IsSuccessful)
+            var openPanel = new NSOpenPanel
             {
-                return folderPickerResult.Folder.Path;
+                CanChooseFiles = false,
+                CanChooseDirectories = true,
+                AllowsMultipleSelection = false
+            };
+
+            bool result = openPanel.RunModal() == 1; // 1 indicates OK button was pressed
+
+            if (result)
+            {
+                NSUrl selectedUrl = openPanel.Url;
+                if (selectedUrl.Path != null)
+                {
+                    return selectedUrl.Path;
+                }
             }
 
             return null;

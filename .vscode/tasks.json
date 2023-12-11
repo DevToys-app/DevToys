@@ -10,34 +10,52 @@
                 "Debug",
                 "Release"
             ]
-        },
+        }
     ],
     "tasks": [
         {
-            "label": "BuildWindows",
+            "label": "Build DevToys CLI",
             "type": "shell",
             "command": "dotnet",
             "args": [
                 "build",
-                "src/app/dev/platforms/desktop/DevToys.Windows/DevToys.Windows.csproj",
+                "src/app/dev/platforms/desktop/DevToys.CLI/DevToys.CLI.csproj",
                 "-c:${input:configuration}",
                 // Do not generate summary otherwise it leads to duplicate errors in Problems panel
                 "/consoleloggerparameters:NoSummary"
             ],
             "group": {
                 "kind": "build",
-                "isDefault": false
+                "isDefault": true
             },
             // Use the standard MS compiler pattern to detect errors, warnings and infos
             "problemMatcher": ["$msCompile"]
         },
         {
-            "label": "BuildCLI",
+            "label": "Build DevToys MacOS",
             "type": "shell",
             "command": "dotnet",
             "args": [
                 "build",
-                "src/app/dev/platforms/desktop/DevToys.CLI/DevToys.CLI.csproj",
+                "src/DevToys-MacOS.sln",
+                "-c:${input:configuration}",
+                // Do not generate summary otherwise it leads to duplicate errors in Problems panel
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            // Use the standard MS compiler pattern to detect errors, warnings and infos
+            "problemMatcher": ["$msCompile"]
+        },
+        {
+            "label": "Build DevToys Windows",
+            "type": "shell",
+            "command": "dotnet",
+            "args": [
+                "build",
+                "src/DevToys-Windows.sln",
                 "-c:${input:configuration}",
                 // Do not generate summary otherwise it leads to duplicate errors in Problems panel
                 "/consoleloggerparameters:NoSummary"
