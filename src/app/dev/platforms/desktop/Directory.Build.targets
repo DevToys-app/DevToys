@@ -1,6 +1,6 @@
 ﻿<Project>
   <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.targets', '$(MSBuildThisFileDirectory)../'))" />
-  
+
   <Target Name="ImportPluginOnBuild" BeforeTargets="CheckForDuplicateItems">
     <CallTarget Targets="ImportPlugins" />
   </Target>
@@ -11,7 +11,7 @@
 
   <Target Name="ImportPlugins">
     <Message Text="Importing plugins in '$(PluginsInstallationFolder)'..." Importance="high" />
-    
+
     <ItemGroup>
       <PluginNupkgFiles Include="$(PluginNupkgPath)\*.nupkg" />
     </ItemGroup>
@@ -22,29 +22,29 @@
              ContinueOnError="false"
              RunEachTargetSeparately="true">
     </MSBuild>
-    
+
     <Message Text="Plugins imported!" Importance="high" />
   </Target>
 
   <Target Name="UnzipNupkg">
     <Message Text="Extracting plugin '$(NupkgFile)'..." Importance="high" />
-    
+
     <PropertyGroup>
       <FileNameWithoutExtension>$([System.IO.Path]::GetFileNameWithoutExtension($(NupkgFile)))</FileNameWithoutExtension>
       <FileNameWithoutExtensionAndVersionNumber>$([System.String]::Copy('$(FileNameWithoutExtension)').Split('.')[0]).$([System.String]::Copy('$(FileNameWithoutExtension)').Split('.')[1])</FileNameWithoutExtensionAndVersionNumber>
     </PropertyGroup>
-    
-    <MakeDir Directories="$(PluginsInstallationFolder)/$(FileNameWithoutExtensionAndVersionNumber)"/>
-    
-    <!-- Unzip on Windows and Linux. -->
-    <Unzip
-      Condition="$(IsMac) != 'true'"
-      SourceFiles="@(NupkgFile)"
-      DestinationFolder="$(PluginsInstallationFolder)\$(FileNameWithoutExtensionAndVersionNumber)"
-      SkipUnchangedFiles="true"
-      OverwriteReadOnlyFiles="true"/>
 
-    <!-- Use bash on Mac. -->
+    <MakeDir Directories="$(PluginsInstallationFolder)/$(FileNameWithoutExtensionAndVersionNumber)"/>
+
+    <!-- Use powershell on Windows. -->
+    <Exec
+      Condition="$(IsWindows) == 'true'"
+      Command="powershell -Command Copy-Item -Force &quot;$(NupkgFile)&quot; &quot;$(NupkgFile).zip&quot;" />
+    <Exec
+      Condition="$(IsWindows) == 'true'"
+      Command="powershell -Command Expand-Archive -Force -Path &quot;$(NupkgFile).zip&quot; -DestinationPath &quot;$(PluginsInstallationFolder)/$(FileNameWithoutExtensionAndVersionNumber)&quot;" />
+
+    <!-- Use bash on Mac and Linux. -->
     <Exec
       Condition="$(IsWindows) != 'true'"
       Command="bash -c &quot;unzip -o $(NupkgFile) -d $(PluginsInstallationFolder)/$(FileNameWithoutExtensionAndVersionNumber) &quot;" />
