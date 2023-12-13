@@ -184,36 +184,44 @@ public sealed partial class SmartDetectionService
     /// </summary>
     /// <param name="detectors">The collection of detectors.</param>
     /// <returns>A list of root detector nodes.</returns>
-    private static List<DetectorNode> BuildDetectorNodeHierarchy(IEnumerable<Lazy<IDataTypeDetector, DataTypeDetectorMetadata>> detectors)
+    private List<DetectorNode> BuildDetectorNodeHierarchy(IEnumerable<Lazy<IDataTypeDetector, DataTypeDetectorMetadata>> detectors)
     {
-        // Create a dictionary that maps data type names to detector nodes
-        var lookup
-            = detectors.ToDictionary(
-                node => node.Metadata.DataTypeName,
-                node => new DetectorNode(node));
         var result = new List<DetectorNode>();
 
-        foreach (KeyValuePair<string, DetectorNode> node in lookup)
+        try
         {
-            // Check if the current detector is supported by the current operating system
-            if (!OSHelper.IsOsSupported(node.Value.Detector.Metadata.TargetPlatforms))
-            {
-                // If not supported, ignore it.
-                Debug.WriteLine($"Ignoring '{node.Value.Detector.Metadata.DataTypeName}' data type detector as it isn't supported by the current OS.");
-            }
-            else if (string.IsNullOrEmpty(node.Value.Detector.Metadata.DataTypeBaseName))
-            {
-                // If the current detector does not have a base data type name, add it to the result list as a root node
-                result.Add(node.Value);
-            }
-            else if (lookup.TryGetValue(node.Value.Detector.Metadata.DataTypeBaseName, out DetectorNode? parentNode))
-            {
-                // If the current detector has a base data type name and its parent node exists in the dictionary,
-                // add it as a child to its parent node
-                parentNode.ChildrenDetectors ??= new();
+            // Create a dictionary that maps data type names to detector nodes
+            var lookup
+                = detectors.ToDictionary(
+                    node => node.Metadata.DataTypeName,
+                    node => new DetectorNode(node));
 
-                parentNode.ChildrenDetectors.Add(node.Value);
+            foreach (KeyValuePair<string, DetectorNode> node in lookup)
+            {
+                // Check if the current detector is supported by the current operating system
+                if (!OSHelper.IsOsSupported(node.Value.Detector.Metadata.TargetPlatforms))
+                {
+                    // If not supported, ignore it.
+                    Debug.WriteLine($"Ignoring '{node.Value.Detector.Metadata.DataTypeName}' data type detector as it isn't supported by the current OS.");
+                }
+                else if (string.IsNullOrEmpty(node.Value.Detector.Metadata.DataTypeBaseName))
+                {
+                    // If the current detector does not have a base data type name, add it to the result list as a root node
+                    result.Add(node.Value);
+                }
+                else if (lookup.TryGetValue(node.Value.Detector.Metadata.DataTypeBaseName, out DetectorNode? parentNode))
+                {
+                    // If the current detector has a base data type name and its parent node exists in the dictionary,
+                    // add it as a child to its parent node
+                    parentNode.ChildrenDetectors ??= new();
+
+                    parentNode.ChildrenDetectors.Add(node.Value);
+                }
             }
+        }
+        catch (Exception ex)
+        {
+            LogBuildDetectorNodeHierarchyError(ex);
         }
 
         return result;
@@ -251,8 +259,11 @@ public sealed partial class SmartDetectionService
         return dataTypeToToolInstanceMap;
     }
 
-    [LoggerMessage(0, LogLevel.Error, $"Error in {nameof(DetectAsync)}.")]
+    [LoggerMessage(0, LogLevel.Error, $"Error while running Smart Detection.")]
     partial void LogDetectAsyncError(Exception ex);
+
+    [LoggerMessage(1, LogLevel.Error, $"Error while building data detectors.")]
+    partial void LogBuildDetectorNodeHierarchyError(Exception ex);
 
     private sealed class DetectorNode
     {

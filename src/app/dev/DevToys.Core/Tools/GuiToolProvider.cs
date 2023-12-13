@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Reflection;
+using DevToys.Api;
 using DevToys.Core.Tools.Metadata;
 using DevToys.Core.Tools.ViewItems;
 using DevToys.Localization;
@@ -409,11 +410,19 @@ public sealed partial class GuiToolProvider
         var bodyToolInstances = new List<GuiToolInstance>();
 
         // Order all the tools.
-        guiTools
-            = ExtensionOrderer.Order(
-                guiTools
-                    .OrderBy(tool => tool.Metadata.MenuPlacement)
-                    .ThenBy(tool => tool.Metadata.InternalComponentName));
+        try
+        {
+            guiTools
+                = ExtensionOrderer.Order(
+                    guiTools
+                        .OrderBy(tool => tool.Metadata.MenuPlacement)
+                        .ThenBy(tool => tool.Metadata.InternalComponentName));
+        }
+        catch (Exception ex)
+        {
+            // TODO: We should let the user know that something went wrong.
+            LogOrderingToolsFailed(ex);
+        }
 
         foreach (Lazy<IGuiTool, GuiToolMetadata> guiToolDefinition in guiTools)
         {
@@ -587,11 +596,22 @@ public sealed partial class GuiToolProvider
         }
 
         // Order tools groups.
-        IEnumerable<GroupViewItem> orderedGroups
-            = ExtensionOrderer.Order(
-                groups.Values.OrderBy(g => g.Value.DisplayTitle))
-            .Select(g => g.Value);
-        return orderedGroups;
+        try
+        {
+            IEnumerable<GroupViewItem> orderedGroups
+                = ExtensionOrderer.Order(
+                    groups.Values.OrderBy(g => g.Value.DisplayTitle))
+                .Select(g => g.Value);
+            return orderedGroups;
+        }
+        catch (Exception ex)
+        {
+            // TODO: We should let the user know that something went wrong.
+            LogOrderingGroupsFailed(ex);
+        }
+
+        // Fallback
+        return groups.Values.Select(g => g.Value);
     }
 
     private Assembly GetResourceManagerAssembly(string resourceManagerAssemblyIdentifier)
@@ -743,4 +763,10 @@ public sealed partial class GuiToolProvider
 
     [LoggerMessage(0, LogLevel.Information, "Set '{toolName}' as the most recently used tool.")]
     partial void LogSetMostRecentUsedTool(string toolName);
+
+    [LoggerMessage(1, LogLevel.Error, "Error while ordering tools.")]
+    partial void LogOrderingToolsFailed(Exception ex);
+
+    [LoggerMessage(2, LogLevel.Error, "Error while ordering groups.")]
+    partial void LogOrderingGroupsFailed(Exception ex);
 }
