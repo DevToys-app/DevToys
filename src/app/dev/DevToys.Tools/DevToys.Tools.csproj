@@ -84,6 +84,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>HashAndChecksumGenerator.resx</DependentUpon>
     </Compile>
+    <Compile Update="Tools\Generators\UUID\UUIDGenerator.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UUIDGenerator.resx</DependentUpon>
+    </Compile>
     <Compile Update="Tools\Graphic\ColorBlindnessSimulator\ColorBlindnessSimulator.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -174,6 +179,10 @@
     <EmbeddedResource Update="Tools\Generators\HashAndChecksum\HashAndChecksumGenerator.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>HashAndChecksumGenerator.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Tools\Generators\UUID\UUIDGenerator.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UUIDGenerator.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Tools\Graphic\ColorBlindnessSimulator\ColorBlindnessSimulator.resx">
       <Generator>ResXFileCodeGenerator</Generator>
