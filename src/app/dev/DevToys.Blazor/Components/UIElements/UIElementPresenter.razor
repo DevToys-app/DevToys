@@ -94,6 +94,10 @@
             <UIImageViewerPresenter UIImageViewer="@imageViewer" />
             break;
 
+        case IUIWebView webView:
+            <UIWebViewPresenter UIWebView="@webView" />
+            break;
+
         default:
             throw new NotSupportedException($"Gui Tool component of type '{UIElement.GetType().FullName}' isn't supported.");
     }
