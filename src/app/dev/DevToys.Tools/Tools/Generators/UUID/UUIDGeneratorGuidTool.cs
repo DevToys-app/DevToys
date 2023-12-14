@@ -68,6 +68,8 @@ internal sealed class UUIDGeneratorGuidTool : IGuiTool
     public UUIDGeneratorGuidTool(ISettingsProvider settingsProvider)
     {
         _settingsProvider = settingsProvider;
+
+        OnGenerateButtonClick();
     }
 
     public UIToolView View
@@ -102,14 +104,16 @@ internal sealed class UUIDGeneratorGuidTool : IGuiTool
                                         .Title(UUIDGenerator.Hyphens)
                                         .Handle(
                                             _settingsProvider,
-                                            hyphens),
+                                            hyphens,
+                                            OnSettingChanged),
 
                                     Setting()
                                         .Icon("FluentSystemIcons", '\uF7B2')
                                         .Title(UUIDGenerator.Uppercase)
                                         .Handle(
                                             _settingsProvider,
-                                            uppercase),
+                                            uppercase,
+                                            OnSettingChanged),
 
                                     Setting()
                                         .Icon("FluentSystemIcons", '\uF587')
@@ -118,7 +122,7 @@ internal sealed class UUIDGeneratorGuidTool : IGuiTool
                                         .Handle(
                                             _settingsProvider,
                                             version,
-                                            onOptionSelected: null,
+                                            OnSettingChanged,
                                             Item(UUIDGenerator.UuidVersionOne, UuidVersion.One),
                                             Item(UUIDGenerator.UuidVersionFour, UuidVersion.Four))),
 
@@ -158,6 +162,16 @@ internal sealed class UUIDGeneratorGuidTool : IGuiTool
     {
     }
 
+    private void OnSettingChanged(bool value)
+    {
+        OnGenerateButtonClick();
+    }
+
+    private void OnSettingChanged(UuidVersion value)
+    {
+        OnGenerateButtonClick();
+    }
+
     private void OnNumberOfUuidsToGenerateChanged(string value)
     {
         if (int.TryParse(value, out int result))
@@ -168,13 +182,15 @@ internal sealed class UUIDGeneratorGuidTool : IGuiTool
         {
             _settingsProvider.SetSetting(uuidToGenerate, 1);
         }
+
+        OnGenerateButtonClick();
     }
 
     private void OnGenerateButtonClick()
     {
         var newGuids = new StringBuilder();
 
-        for (int i = 0; i < _settingsProvider.GetSetting(uuidToGenerate); i++)
+        for (int i = 0; i < Math.Max(_settingsProvider.GetSetting(uuidToGenerate), 1); i++)
         {
             string newUuid
                 = UuidHelper.GenerateUuid(
