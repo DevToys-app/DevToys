@@ -142,7 +142,7 @@ internal sealed class UUIDGeneratorGuidTool : IGuiTool
                                             NumberInput()
                                                 .Minimum(1)
                                                 .Maximum(10000)
-                                                .Value(1)
+                                                .Value(_settingsProvider.GetSetting(uuidToGenerate))
                                                 .HideCommandBar()
                                                 .OnTextChanged(OnNumberOfUuidsToGenerateChanged))))),
 
@@ -151,8 +151,12 @@ internal sealed class UUIDGeneratorGuidTool : IGuiTool
                     GridColumn.Stretch,
 
                     _outputText
+                        .Title(UUIDGenerator.Output)
                         .ReadOnly()
-                        .Title(UUIDGenerator.Output))));
+                        .CommandBarExtraContent(
+                            Button()
+                                .Icon("FluentSystemIcons", '\uF369')
+                                .OnClick(OnClearOutputButtonClick)))));
 
     public void OnDataReceived(string dataTypeName, object? parsedData)
     {
@@ -168,6 +172,11 @@ internal sealed class UUIDGeneratorGuidTool : IGuiTool
         {
             _settingsProvider.SetSetting(uuidToGenerate, 1);
         }
+    }
+
+    private void OnClearOutputButtonClick()
+    {
+        _outputText.Text(string.Empty);
     }
 
     private void OnGenerateButtonClick()
