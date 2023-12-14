@@ -152,11 +152,7 @@ internal sealed class UUIDGeneratorGuidTool : IGuiTool
 
                     _outputText
                         .Title(UUIDGenerator.Output)
-                        .ReadOnly()
-                        .CommandBarExtraContent(
-                            Button()
-                                .Icon("FluentSystemIcons", '\uF369')
-                                .OnClick(OnClearOutputButtonClick)))));
+                        .ReadOnly())));
 
     public void OnDataReceived(string dataTypeName, object? parsedData)
     {
@@ -174,15 +170,9 @@ internal sealed class UUIDGeneratorGuidTool : IGuiTool
         }
     }
 
-    private void OnClearOutputButtonClick()
-    {
-        _outputText.Text(string.Empty);
-    }
-
     private void OnGenerateButtonClick()
     {
         var newGuids = new StringBuilder();
-        newGuids.Append(_outputText.Text);
 
         for (int i = 0; i < _settingsProvider.GetSetting(uuidToGenerate); i++)
         {
