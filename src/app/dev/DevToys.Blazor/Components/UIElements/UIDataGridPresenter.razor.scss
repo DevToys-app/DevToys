@@ -1,16 +1,17 @@
 .ui-data-grid-presenter {
-    &-title {
-        height: 20px !important;
-        margin-top: 14px;
+    border: 2px dashed transparent;
+    border-radius: var(--overlay-corner-radius);
+
+    &-command-bar {
+        min-height: 32px;
     }
 }
 
 // Compact mode
 div[data-compactmode] {
     .ui-data-grid-presenter {
-        &-title {
-            height: 20px !important;
-            margin-top: 7px;
+        &-command-bar {
+            min-height: 26px;
         }
     }
 }

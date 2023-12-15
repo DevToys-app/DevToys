@@ -36,9 +36,9 @@ public interface IUINumberInput : IUISingleLineTextInput
     event EventHandler? MaxChanged;
 
     /// <summary>
-    /// Raised when <see cref="Step"/> is changed.
+    /// Raised when <see cref="Value"/> is changed.
     /// </summary>
-    event EventHandler? StepChanged;
+    event EventHandler? ValueChanged;
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Text = {{{nameof(Text)}}}, Min = {{{nameof(Min)}}}, Max = {{{nameof(Max)}}}, Step = {{{nameof(Step)}}}")]
@@ -75,20 +75,15 @@ internal class UINumberInput : UISingleLineTextInput, IUINumberInput
     {
         get
         {
-            if (double.TryParse(Text, out double value))
-            {
-                return Math.Min(Math.Max(value, Min), Max);
-            }
-            else
-            {
-                return 0;
-            }
+            double.TryParse(Text, out double value);
+            return Math.Min(Math.Max(value, Min), Max);
         }
     }
 
     public event EventHandler? MinChanged;
     public event EventHandler? MaxChanged;
     public event EventHandler? StepChanged;
+    public event EventHandler? ValueChanged;
 }
 
 public static partial class GUI
@@ -150,7 +145,43 @@ public static partial class GUI
     /// </summary>
     public static IUINumberInput Value(this IUINumberInput element, double value)
     {
-        element.Text(value.ToString());
+        double safeValue = Math.Min(Math.Max(value, element.Min), element.Max);
+        element.Text(safeValue.ToString());
+        return element;
+    }
+
+    /// <summary>
+    /// Sets the action to run when the value changed.
+    /// </summary>
+    public static T OnValueChanged<T>(this T element, Func<double, ValueTask> actionOnValueChanged) where T : IUISingleLineTextInput
+    {
+        if (element is UINumberInput strongElement)
+        {
+            strongElement.ActionOnTextChanged
+                = (value) =>
+                {
+                    return actionOnValueChanged?.Invoke(strongElement.Value) ?? ValueTask.CompletedTask;
+                };
+        }
+
+        return element;
+    }
+
+    /// <summary>
+    /// Sets the action to run when the value changed.
+    /// </summary>
+    public static T OnValueChanged<T>(this T element, Action<double> actionOnValueChanged) where T : IUISingleLineTextInput
+    {
+        if (element is UINumberInput strongElement)
+        {
+            strongElement.ActionOnTextChanged
+                = (value) =>
+                {
+                    actionOnValueChanged?.Invoke(strongElement.Value);
+                    return ValueTask.CompletedTask;
+                };
+        }
+
         return element;
     }
 }

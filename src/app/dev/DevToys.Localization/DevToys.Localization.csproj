@@ -46,6 +46,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ToolPage.resx</DependentUpon>
     </Compile>
+    <Compile Update="Strings\UIDataGrid\UIDataGrid.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UIDataGrid.resx</DependentUpon>
+    </Compile>
     <Compile Update="Strings\UIFileSelectorPresenter\UIFileSelectorPresenter.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

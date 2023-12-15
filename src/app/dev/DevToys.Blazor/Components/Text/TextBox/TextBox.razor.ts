@@ -17,12 +17,14 @@ export function initializeKeyboardTracking(input: HTMLInputElement): void {
 
 export function increaseValue(input: HTMLInputElement): number {
     input.stepUp();
-    return input.valueAsNumber;
+    const value = input.valueAsNumber;
+    return isNaN(value) ? parseFloat(input.max) : value;
 }
 
 export function decreaseValue(input: HTMLInputElement): number {
     input.stepDown();
-    return input.valueAsNumber;
+    const value = input.valueAsNumber;
+    return isNaN(value) ? parseFloat(input.min) : value;
 }
 
 export function dispose(input: HTMLInputElement): void {

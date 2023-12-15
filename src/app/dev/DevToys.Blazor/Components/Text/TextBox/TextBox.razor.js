@@ -13,11 +13,13 @@ export function initializeKeyboardTracking(input) {
 }
 export function increaseValue(input) {
     input.stepUp();
-    return input.valueAsNumber;
+    const value = input.valueAsNumber;
+    return isNaN(value) ? parseFloat(input.max) : value;
 }
 export function decreaseValue(input) {
     input.stepDown();
-    return input.valueAsNumber;
+    const value = input.valueAsNumber;
+    return isNaN(value) ? parseFloat(input.min) : value;
 }
 export function dispose(input) {
     input.removeEventListener("keydown", onKeyDown);
