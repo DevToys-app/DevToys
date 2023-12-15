@@ -12,7 +12,7 @@
     <string>Dev Toys</string>
     
 	<key>CFBundleIdentifier</key>
-	<string>com.etiennebaudoux.devtoys</string>
+	<string>com.devtoysys</string>
     
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>

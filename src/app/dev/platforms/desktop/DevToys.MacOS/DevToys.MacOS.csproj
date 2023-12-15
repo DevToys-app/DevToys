@@ -20,7 +20,7 @@
     <MtouchLink>None</MtouchLink>
     <MtouchInterpreter>all</MtouchInterpreter> -->
 
-    <ApplicationId>com.etiennebaudoux.devtoys</ApplicationId>
+    <ApplicationId>com.devtoys</ApplicationId>
   </PropertyGroup>
 
   <!-- Notes about the values set below:

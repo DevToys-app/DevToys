@@ -2,9 +2,9 @@ namespace DevToys.MacOS.Core;
 
 internal static class Constants
 {
-    internal static readonly string AppCacheDirectory = Path.Combine(GetCacheDirectory(), "com.etiennebaudoux.devtoys");
+    internal static readonly string AppCacheDirectory = Path.Combine(GetCacheDirectory(), "com.devtoys");
 
-    internal static string PluginInstallationFolder => Path.Combine(GetLibraryDirectory(), "com.etiennebaudoux.devtoys", "Plugins");
+    internal static string PluginInstallationFolder => Path.Combine(GetLibraryDirectory(), "com.devtoys", "Plugins");
 
     internal static string AppTempFolder => Path.Combine(AppCacheDirectory, "Temp");
 
