@@ -129,10 +129,10 @@ internal sealed class PasswordGeneratorGuidTool : IGuiTool
                                         .Title(PasswordGenerator.Length)
                                         .InteractiveElement(
                                             NumberInput()
-                                                .Minimum(1)
-                                                .Value(_settingsProvider.GetSetting(length))
                                                 .HideCommandBar()
-                                                .OnTextChanged(OnLengthChanged))
+                                                .Minimum(5)
+                                                .OnValueChanged(OnLengthChanged)
+                                                .Value(_settingsProvider.GetSetting(length)))
                                         .WithSettings(
 
                                             Setting()
@@ -207,11 +207,11 @@ internal sealed class PasswordGeneratorGuidTool : IGuiTool
                                             Label().Style(UILabelStyle.BodyStrong).Text(PasswordGenerator.MultiplySymbol),
 
                                             NumberInput()
+                                                .HideCommandBar()
                                                 .Minimum(1)
                                                 .Maximum(10000)
-                                                .Value(_settingsProvider.GetSetting(passwordsToGenerate))
-                                                .HideCommandBar()
-                                                .OnTextChanged(OnNumberOfPasswordsToGenerateChanged))))),
+                                                .OnValueChanged(OnNumberOfPasswordsToGenerateChanged)
+                                                .Value(_settingsProvider.GetSetting(passwordsToGenerate)))))),
 
                 Cell(
                     GridRow.Results,
@@ -236,17 +236,9 @@ internal sealed class PasswordGeneratorGuidTool : IGuiTool
         OnGenerateButtonClick();
     }
 
-    private void OnLengthChanged(string value)
+    private void OnLengthChanged(double value)
     {
-        if (int.TryParse(value, out int result))
-        {
-            _settingsProvider.SetSetting(length, result);
-        }
-        else
-        {
-            _settingsProvider.SetSetting(length, 1);
-        }
-
+        _settingsProvider.SetSetting(length, (int)value);
         OnGenerateButtonClick();
     }
 
@@ -258,17 +250,9 @@ internal sealed class PasswordGeneratorGuidTool : IGuiTool
         OnGenerateButtonClick();
     }
 
-    private void OnNumberOfPasswordsToGenerateChanged(string value)
+    private void OnNumberOfPasswordsToGenerateChanged(double value)
     {
-        if (int.TryParse(value, out int result))
-        {
-            _settingsProvider.SetSetting(passwordsToGenerate, result);
-        }
-        else
-        {
-            _settingsProvider.SetSetting(passwordsToGenerate, 1);
-        }
-
+        _settingsProvider.SetSetting(passwordsToGenerate, (int)value);
         OnGenerateButtonClick();
     }
 
