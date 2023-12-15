@@ -1,6 +1,7 @@
 ﻿using DevToys.Blazor.Components;
 using DevToys.Blazor.Core.Services;
 using DevToys.Business.ViewModels;
+using DevToys.Core.Debugger;
 using DevToys.Core.Tools.ViewItems;
 
 namespace DevToys.Blazor.Pages.SubPages;
@@ -16,6 +17,9 @@ public partial class ToolPage : MefComponentBase, IDisposable
     [Import]
     internal ToolPageViewModel ViewModel { get; set; } = default!;
 
+    [Import]
+    internal HotReloadService HotReloadService { get; set; } = default!;
+
     [Parameter]
     public GuiToolViewItem? GuiToolViewItem { get; set; }
 
@@ -29,6 +33,7 @@ public partial class ToolPage : MefComponentBase, IDisposable
     {
         base.OnInitialized();
         DialogService.CloseDialogRequested += DialogService_CloseDialogRequested;
+        HotReloadService.HotReloadRequestUpdateApplication += OnHotReloadRequestUpdateApplication;
     }
 
     protected override void OnParametersSet()
@@ -50,6 +55,7 @@ public partial class ToolPage : MefComponentBase, IDisposable
 
     public void Dispose()
     {
+        HotReloadService.HotReloadRequestUpdateApplication -= OnHotReloadRequestUpdateApplication;
         DialogService.CloseDialogRequested -= DialogService_CloseDialogRequested;
         if (ViewModel.ToolView is not null)
         {
@@ -100,7 +106,7 @@ public partial class ToolPage : MefComponentBase, IDisposable
         IndexPage.StateHasChanged();
     }
 
-    private void OnHotReloadButtonClick()
+    private void OnHotReloadRequestUpdateApplication(object? sender, HotReloadEventArgs e)
     {
         ViewModel.RebuildViewCommand.Execute(null);
     }
