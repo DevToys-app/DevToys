@@ -1,8 +1,9 @@
 ﻿namespace DevToys.Blazor.Components.UIElements;
 
-public partial class UIDataGridPresenter : ComponentBase, IDisposable
+public partial class UIDataGridPresenter : StyledComponentBase, IDisposable
 {
     private int _selectedIndex = -1;
+    private bool _isInFullScreenMode;
 
     [Parameter]
     public IUIDataGrid UIDataGrid { get; set; } = default!;
@@ -10,10 +11,16 @@ public partial class UIDataGridPresenter : ComponentBase, IDisposable
     [Parameter]
     public int SelectedIndex { get; set; }
 
+    protected string ExtendedId => UIDataGrid.Id + "-" + Id;
+
+    [CascadingParameter]
+    protected FullScreenContainer? FullScreenContainer { get; set; }
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
         UIDataGrid.SelectedRowChanged += UIDataGrid_SelectedRowChanged;
+        UIDataGrid.IsVisibleChanged += UIDataGrid_IsVisibleChanged;
         UIDataGrid_SelectedRowChanged(this, EventArgs.Empty);
     }
 
@@ -35,6 +42,13 @@ public partial class UIDataGridPresenter : ComponentBase, IDisposable
         }
     }
 
+    public void Dispose()
+    {
+        UIDataGrid.SelectedRowChanged -= UIDataGrid_SelectedRowChanged;
+        UIDataGrid.IsVisibleChanged -= UIDataGrid_IsVisibleChanged;
+        GC.SuppressFinalize(this);
+    }
+
     private void UIDataGrid_SelectedRowChanged(object? sender, EventArgs e)
     {
         if (UIDataGrid.Rows is not null && UIDataGrid.SelectedRow is not null && UIDataGrid.CanSelectRow)
@@ -48,9 +62,19 @@ public partial class UIDataGridPresenter : ComponentBase, IDisposable
         }
     }
 
-    public void Dispose()
+    private void UIDataGrid_IsVisibleChanged(object? sender, EventArgs e)
     {
-        UIDataGrid.SelectedRowChanged -= UIDataGrid_SelectedRowChanged;
-        GC.SuppressFinalize(this);
+        if (_isInFullScreenMode && !UIDataGrid.IsVisible)
+        {
+            // If the element is not visible anymore, we need to exit the full screen mode.
+            OnToggleFullScreenButtonClickAsync().Forget();
+        }
+    }
+
+    private async Task OnToggleFullScreenButtonClickAsync()
+    {
+        Guard.IsNotNull(FullScreenContainer);
+        _isInFullScreenMode = await FullScreenContainer.ToggleFullScreenModeAsync(ExtendedId);
+        StateHasChanged();
     }
 }
