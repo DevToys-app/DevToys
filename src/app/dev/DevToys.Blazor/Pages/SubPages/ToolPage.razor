@@ -61,12 +61,6 @@
                                 <TextBlock Text="@ViewModel.GetFavoriteButtonText(ViewModel.IsSelectedMenuItemAFavoriteTool)" />
                             </StackPanel>
                         </Button>
-                        <Button IsVisible="@Debugger.IsAttached"
-                                Appearance="ButtonAppearance.Stealth"
-                                ToolTip="Hot reload"
-                                @onclick="@OnHotReloadButtonClick">
-                            <FontIcon Glyph="@('\uEF68')" Style="color: red;" />
-                        </Button>
                     </StackPanel>
                 </GridCell>
 

@@ -9,7 +9,7 @@
           IsEnabled="@UITextInput.IsEnabled"
           HorizontalAlignment="@(_isInFullScreenMode ? UIHorizontalAlignment.Stretch : UITextInput.HorizontalAlignment)"
           VerticalAlignment="@(_isInFullScreenMode ? UIVerticalAlignment.Stretch : UITextInput.VerticalAlignment)"
-          RowSpacing="6"
+          RowSpacing="@(string.IsNullOrEmpty(UITextInput.Title) && UITextInput.HideCommandBar ? 0 : 6)"
           Rows="@(new List<UIGridLength>
             {
                 UIGridLength.Auto,
@@ -22,7 +22,8 @@
                 UIGridLength.Auto
             })">
         <GridCell Row="0" Column="0">
-            <Grid RowSpacing="0"
+            <Grid IsVisible="@(!string.IsNullOrEmpty(UITextInput.Title))"
+                  RowSpacing="0"
                   Rows="@(new List<UIGridLength>
                     {
                         new UIGridLength(1, UIGridUnitType.Fraction),
@@ -38,7 +39,9 @@
         </GridCell>
         <GridCell Row="0"
                   Column="1">
-            <StackPanel IsEnabled="@(!IsLoadingFile)" Wrap="false">
+            <StackPanel IsEnabled="@(!IsLoadingFile)"
+                        IsVisible="@(!UITextInput.HideCommandBar)"
+                        Wrap="false">
                 @if (UITextInput.CommandBarExtraContent is not null)
                 {
                     <UIElementPresenter UIElement="@UITextInput.CommandBarExtraContent" />
