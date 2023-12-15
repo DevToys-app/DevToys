@@ -18,6 +18,9 @@ public interface IUIMultiLineTextInput : IUISingleLineTextInput
     /// <summary>
     /// Gets whether the element can be expanded to take the size of the whole tool boundaries. Default is false.
     /// </summary>
+    /// <remarks>
+    /// When <see cref="IUIMultiLineTextInput.IsVisible"/> is false and that the element is in full screen mode, the element goes back to normal mode.
+    /// </remarks>
     bool IsExtendableToFullScreen { get; }
 
     /// <summary>
@@ -185,6 +188,9 @@ public static partial class GUI
     /// <summary>
     /// Indicates that the control can be extended to take the size of the whole tool boundaries.
     /// </summary>
+    /// <remarks>
+    /// When <see cref="IUIMultiLineTextInput.IsVisible"/> is false and that the element is in full screen mode, the element goes back to normal mode.
+    /// </remarks>
     public static IUIMultiLineTextInput Extendable(this IUIMultiLineTextInput element)
     {
         ((UIMultilineTextInput)element).IsExtendableToFullScreen = true;

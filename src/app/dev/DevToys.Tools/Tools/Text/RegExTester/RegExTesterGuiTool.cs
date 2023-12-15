@@ -341,6 +341,7 @@ internal sealed class RegExTesterGuiTool : IGuiTool, IDisposable
                                     .WithTopPaneChild(
                                         DataGrid()
                                             .Title(RegExTester.CheatSheetTitle)
+                                            .Extendable()
                                             .WithColumns(RegExTester.CheatSheetDescription, RegExTester.CheatSheetSyntax)
                                             .WithRows(cheatSheetRows))
 
