@@ -33,6 +33,19 @@ public interface IUIDataGrid : IUITitledElementWithChildren
     Func<IUIDataGridRow?, ValueTask>? OnRowSelectedAction { get; }
 
     /// <summary>
+    /// Gets whether the element can be expanded to take the size of the whole tool boundaries. Default is false.
+    /// </summary>
+    /// <remarks>
+    /// When <see cref="IUIDataGrid.IsVisible"/> is false and that the element is in full screen mode, the element goes back to normal mode.
+    /// </remarks>
+    bool IsExtendableToFullScreen { get; }
+
+    /// <summary>
+    /// Gets an extra interactive content to display in the command bar of the text input.
+    /// </summary>
+    IUIElement? CommandBarExtraContent { get; }
+
+    /// <summary>
     /// Raised when <see cref="CanSelectRow"/> is changed.
     /// </summary>
     event EventHandler? CanSelectRowChanged;
@@ -41,6 +54,16 @@ public interface IUIDataGrid : IUITitledElementWithChildren
     /// Raised when <see cref="SelectedRow"/> is changed.
     /// </summary>
     event EventHandler? SelectedRowChanged;
+
+    /// <summary>
+    /// Raised when <see cref="IsExtendableToFullScreen"/> is changed.
+    /// </summary>
+    event EventHandler? IsExtendableToFullScreenChanged;
+
+    /// <summary>
+    /// Raised when <see cref="CommandBarExtraContent"/> is changed.
+    /// </summary>
+    event EventHandler? CommandBarExtraContentChanged;
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, SelectedRow = {{{nameof(SelectedRow)}}}")]
@@ -50,6 +73,8 @@ internal sealed class UIDataGrid : UITitledElementWithChildren, IUIDataGrid, IDi
     private string[] _columns = Array.Empty<string>();
     private IUIDataGridRow? _selectedRow;
     private bool _canSelectRow = true;
+    private bool _isExtendableToFullScreen;
+    private IUIElement? _commandBarExtraContent;
 
     internal UIDataGrid(string? id)
         : base(id)
@@ -93,11 +118,25 @@ internal sealed class UIDataGrid : UITitledElementWithChildren, IUIDataGrid, IDi
         }
     }
 
+    public bool IsExtendableToFullScreen
+    {
+        get => _isExtendableToFullScreen;
+        internal set => SetPropertyValue(ref _isExtendableToFullScreen, value, IsExtendableToFullScreenChanged);
+    }
+
+    public IUIElement? CommandBarExtraContent
+    {
+        get => _commandBarExtraContent;
+        internal set => SetPropertyValue(ref _commandBarExtraContent, value, CommandBarExtraContentChanged);
+    }
+
     public Func<IUIDataGridRow?, ValueTask>? OnRowSelectedAction { get; internal set; }
 
     public event EventHandler? CanSelectRowChanged;
     public event EventHandler? SelectedRowChanged;
     public event EventHandler? ColumnsChanged;
+    public event EventHandler? IsExtendableToFullScreenChanged;
+    public event EventHandler? CommandBarExtraContentChanged;
 
     public void Dispose()
     {
@@ -259,6 +298,36 @@ public static partial class GUI
     public static IUIDataGrid ForbidSelectItem(this IUIDataGrid element)
     {
         ((UIDataGrid)element).CanSelectRow = false;
+        return element;
+    }
+
+    /// <summary>
+    /// Indicates that the control can be extended to take the size of the whole tool boundaries.
+    /// </summary>
+    /// <remarks>
+    /// When <see cref="IUIDataGrid.IsVisible"/> is false and that the element is in full screen mode, the element goes back to normal mode.
+    /// </remarks>
+    public static IUIDataGrid Extendable(this IUIDataGrid element)
+    {
+        ((UIDataGrid)element).IsExtendableToFullScreen = true;
+        return element;
+    }
+
+    /// <summary>
+    /// Indicates that the control can not be extended to take the size of the whole tool boundaries.
+    /// </summary>
+    public static IUIDataGrid NotExtendable(this IUIDataGrid element)
+    {
+        ((UIDataGrid)element).IsExtendableToFullScreen = false;
+        return element;
+    }
+
+    /// <summary>
+    /// Defines an additional element to display in the command bar.
+    /// </summary>
+    public static IUIDataGrid CommandBarExtraContent(this IUIDataGrid element, IUIElement? extraElement)
+    {
+        ((UIDataGrid)element).CommandBarExtraContent = extraElement;
         return element;
     }
 }
