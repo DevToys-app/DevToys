@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Globalization;
 using DevToys.Core.Settings;
 using Microsoft.AspNetCore.Components.Forms;
 
@@ -140,7 +141,31 @@ public partial class TextBox : MefComponentBase, IFocusable
 
     internal Task SetTextAsync(string text)
     {
-        Text = text;
+        if (Type == TextBoxTypes.Number)
+        {
+            if (double.TryParse(text, out double value))
+            {
+                if (value < Min)
+                {
+                    value = Min;
+                }
+                else if (value > Max)
+                {
+                    value = Max;
+                }
+
+                Text = value.ToString(CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                Text = Math.Max(Min, Math.Min(0, Max)).ToString(CultureInfo.InvariantCulture);
+            }
+        }
+        else
+        {
+            Text = text;
+        }
+
         return TextChanged.InvokeAsync(Text);
     }
 
