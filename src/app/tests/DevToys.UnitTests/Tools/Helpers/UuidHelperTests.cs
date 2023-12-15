@@ -5,25 +5,16 @@ namespace DevToys.UnitTests.Tools.Helpers;
 
 public class UuidHelperTests
 {
-    [Fact]
-    internal void GenerateUuidVersionOne()
-    {
-        TestUuid(UuidVersion.One, hyphens: true, uppercase: true);
-        TestUuid(UuidVersion.One, hyphens: false, uppercase: true);
-        TestUuid(UuidVersion.One, hyphens: true, uppercase: false);
-        TestUuid(UuidVersion.One, hyphens: false, uppercase: false);
-    }
-
-    [Fact]
-    internal void GenerateUuidVersionFour()
-    {
-        TestUuid(UuidVersion.Four, hyphens: true, uppercase: true);
-        TestUuid(UuidVersion.Four, hyphens: false, uppercase: true);
-        TestUuid(UuidVersion.Four, hyphens: true, uppercase: false);
-        TestUuid(UuidVersion.Four, hyphens: false, uppercase: false);
-    }
-
-    private void TestUuid(UuidVersion uuidVersion, bool hyphens, bool uppercase)
+    [Theory]
+    [InlineData(UuidVersion.One, true, true)]
+    [InlineData(UuidVersion.One, false, true)]
+    [InlineData(UuidVersion.One, true, false)]
+    [InlineData(UuidVersion.One, false, false)]
+    [InlineData(UuidVersion.Four, true, true)]
+    [InlineData(UuidVersion.Four, false, true)]
+    [InlineData(UuidVersion.Four, true, false)]
+    [InlineData(UuidVersion.Four, false, false)]
+    internal void GenerateUuid(UuidVersion uuidVersion, bool hyphens, bool uppercase)
     {
         string newUuid
             = UuidHelper.GenerateUuid(

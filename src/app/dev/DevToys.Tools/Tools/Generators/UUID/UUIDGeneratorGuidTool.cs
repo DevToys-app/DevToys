@@ -144,11 +144,11 @@ internal sealed class UUIDGeneratorGuidTool : IGuiTool
                                             Label().Style(UILabelStyle.BodyStrong).Text(UUIDGenerator.MultiplySymbol),
 
                                             NumberInput()
+                                                .HideCommandBar()
                                                 .Minimum(1)
                                                 .Maximum(10000)
-                                                .Value(_settingsProvider.GetSetting(uuidToGenerate))
-                                                .HideCommandBar()
-                                                .OnTextChanged(OnNumberOfUuidsToGenerateChanged))))),
+                                                .OnValueChanged(OnNumberOfUuidsToGenerateChanged)
+                                                .Value(_settingsProvider.GetSetting(uuidToGenerate)))))),
 
                 Cell(
                     GridRow.Results,
@@ -172,17 +172,9 @@ internal sealed class UUIDGeneratorGuidTool : IGuiTool
         OnGenerateButtonClick();
     }
 
-    private void OnNumberOfUuidsToGenerateChanged(string value)
+    private void OnNumberOfUuidsToGenerateChanged(double value)
     {
-        if (int.TryParse(value, out int result))
-        {
-            _settingsProvider.SetSetting(uuidToGenerate, result);
-        }
-        else
-        {
-            _settingsProvider.SetSetting(uuidToGenerate, 1);
-        }
-
+        _settingsProvider.SetSetting(uuidToGenerate, (int)value);
         OnGenerateButtonClick();
     }
 
