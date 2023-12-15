@@ -84,6 +84,11 @@ internal class UINumberInput : UISingleLineTextInput, IUINumberInput
     public event EventHandler? MaxChanged;
     public event EventHandler? StepChanged;
     public event EventHandler? ValueChanged;
+
+    internal void OnValueChanged()
+    {
+        ValueChanged?.Invoke(this, EventArgs.Empty);
+    }
 }
 
 public static partial class GUI
@@ -160,6 +165,7 @@ public static partial class GUI
             strongElement.ActionOnTextChanged
                 = (value) =>
                 {
+                    strongElement.OnValueChanged();
                     return actionOnValueChanged?.Invoke(strongElement.Value) ?? ValueTask.CompletedTask;
                 };
         }
@@ -177,6 +183,7 @@ public static partial class GUI
             strongElement.ActionOnTextChanged
                 = (value) =>
                 {
+                    strongElement.OnValueChanged();
                     actionOnValueChanged?.Invoke(strongElement.Value);
                     return ValueTask.CompletedTask;
                 };
