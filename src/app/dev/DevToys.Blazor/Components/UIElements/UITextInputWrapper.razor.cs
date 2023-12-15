@@ -84,6 +84,7 @@ public partial class UITextInputWrapper : MefComponentBase
     {
         base.OnInitialized();
         UITextInput.TextChanged += UITextInput_TextChanged;
+        UITextInput.IsVisibleChanged += UITextInput_IsVisibleChanged;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -106,6 +107,8 @@ public partial class UITextInputWrapper : MefComponentBase
 
     public override async ValueTask DisposeAsync()
     {
+        UITextInput.TextChanged -= UITextInput_TextChanged;
+        UITextInput.IsVisibleChanged -= UITextInput_IsVisibleChanged;
         await (await JSModule).InvokeVoidWithErrorHandlingAsync("dispose", ExtendedId);
         _semaphore.Dispose();
         await base.DisposeAsync();
@@ -160,6 +163,15 @@ public partial class UITextInputWrapper : MefComponentBase
     private void UITextInput_TextChanged(object? sender, EventArgs e)
     {
         TriggerSmartDetection();
+    }
+
+    private void UITextInput_IsVisibleChanged(object? sender, EventArgs e)
+    {
+        if (_isInFullScreenMode && !UITextInput.IsVisible)
+        {
+            // If the element is not visible anymore, we need to exit the full screen mode.
+            OnToggleFullScreenButtonClickAsync().Forget();
+        }
     }
 
     private async Task OnPasteButtonClickAsync()

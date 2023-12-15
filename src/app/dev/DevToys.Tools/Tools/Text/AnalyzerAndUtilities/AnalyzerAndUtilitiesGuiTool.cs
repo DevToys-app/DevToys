@@ -167,6 +167,7 @@ internal sealed class AnalyzerAndUtilitiesGuiTool : IGuiTool, IDisposable
                                 _statisticsDataGrid
                                     .Title(AnalyzerAndUtilities.Statistics)
                                     .ForbidSelectItem()
+                                    .Extendable()
                                     .WithColumns(AnalyzerAndUtilities.StatisticTitle, AnalyzerAndUtilities.StatisticValue)))));
 
     public void Dispose()
