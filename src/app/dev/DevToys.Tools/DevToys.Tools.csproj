@@ -34,6 +34,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>GlobalStrings.resx</DependentUpon>
     </Compile>
+    <Compile Update="Tools\Converters\JsonTable\JsonTableConverter.Designer.cs">
+      <DependentUpon>JsonTableConverter.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Tools\EncodersDecoders\Base64Image\Base64ImageEncoderDecoder.Designer.cs">
       <DependentUpon>Base64ImageEncoderDecoder.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -144,6 +149,10 @@
     <EmbeddedResource Update="Strings\GlobalStrings\GlobalStrings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>GlobalStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Tools\Converters\JsonTable\JsonTableConverter.resx">
+      <LastGenOutput>JsonTableConverter.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Tools\EncodersDecoders\Base64Image\Base64ImageEncoderDecoder.resx">
       <LastGenOutput>Base64ImageEncoderDecoder.Designer.cs</LastGenOutput>
