@@ -1,47 +1,84 @@
 @namespace DevToys.Blazor.Components.UIElements
 @using DevToys.Api;
 @using System.Collections.ObjectModel;
-@inherits ComponentBase
+@inherits StyledComponentBase
 
-<Grid IsVisible="@UIDataGrid.IsVisible"
-      IsEnabled="@UIDataGrid.IsEnabled"
-      HorizontalAlignment="@UIDataGrid.HorizontalAlignment"
-      VerticalAlignment="@UIDataGrid.VerticalAlignment"
-      RowSpacing="6"
-      Rows="@(new List<UIGridLength>
-        {
-            UIGridLength.Auto,
-            new UIGridLength(1, UIGridUnitType.Fraction)
-        })"
-      ColumnSpacing="6"
-      Columns="@(new List<UIGridLength>
-        {
-            new UIGridLength(1, UIGridUnitType.Fraction)
-        })">
-    <GridCell Row="0" Column="0" Class="ui-data-grid-presenter-title">
-        <TextBlock Text="@UIDataGrid.Title"
-                   NoWrap="true"
-                   CanTrim="true" />
-    </GridCell>
-    <GridCell Row="1" Column="0">
-        <DataGrid id="@UIDataGrid.Id"
-                  TRow="IUIDataGridRow"
-                  TCell="IUIDataGridCell"
-                  TRowDetail="IUIElement"
-                  HorizontalAlignment="UIHorizontalAlignment.Stretch"
-                  VerticalAlignment="UIVerticalAlignment.Stretch"
-                  @bind-SelectedIndex="@SelectedIndex"
-                  Columns="@UIDataGrid.Columns"
-                  Rows="@UIDataGrid.Rows"
-                  Context="element"
-                  CanSelectRow="@UIDataGrid.CanSelectRow"
-                  Virtualize="true">
-            <CellTemplate>
-                <UIElementPresenter UIElement="@element.UIElement" />
-            </CellTemplate>
-            <RowDetailTemplate>
-                <UIElementPresenter UIElement="@element" />
-            </RowDetailTemplate>
-        </DataGrid>
-    </GridCell>
-</Grid>
+<CascadingValue Name="ParentIsEnabled" Value="@IsActuallyEnabled">
+    <Grid id="@ExtendedId"
+          Class="ui-data-grid-presenter"
+          IsVisible="@UIDataGrid.IsVisible"
+          IsEnabled="@UIDataGrid.IsEnabled"
+          HorizontalAlignment="@(_isInFullScreenMode ? UIHorizontalAlignment.Stretch : UIDataGrid.HorizontalAlignment)"
+          VerticalAlignment="@(_isInFullScreenMode ? UIVerticalAlignment.Stretch : UIDataGrid.VerticalAlignment)"
+          RowSpacing="6"
+          Rows="@(new List<UIGridLength>
+            {
+                UIGridLength.Auto,
+                new UIGridLength(1, UIGridUnitType.Fraction)
+            })"
+          ColumnSpacing="6"
+          Columns="@(new List<UIGridLength>
+            {
+                new UIGridLength(1, UIGridUnitType.Fraction),
+                UIGridLength.Auto
+            })">
+        <GridCell Row="0" Column="0">
+            <Grid IsVisible="@(!string.IsNullOrEmpty(UIDataGrid.Title))"
+                  RowSpacing="0"
+                  Rows="@(new List<UIGridLength>
+                        {
+                            new UIGridLength(1, UIGridUnitType.Fraction),
+                            new UIGridLength(20, UIGridUnitType.Pixel)
+                        })">
+                <GridCell Row="1">
+                    <TextBlock id="@(ExtendedId + "-title")"
+                               Text="@UIDataGrid.Title"
+                               NoWrap="true"
+                               CanTrim="true" />
+                </GridCell>
+            </Grid>
+        </GridCell>
+        <GridCell Row="0"
+                  Column="1">
+            <StackPanel Wrap="false" Class="ui-data-grid-presenter-command-bar">
+                @if (UIDataGrid.CommandBarExtraContent is not null)
+                {
+                    <UIElementPresenter UIElement="@UIDataGrid.CommandBarExtraContent" />
+                    @if (UIDataGrid.IsExtendableToFullScreen)
+                    {
+                        <div class="ui-text-input-wrapper-separator"></div>
+                    }
+                }
+    
+                @if (UIDataGrid.IsExtendableToFullScreen)
+                {
+                    <Button ToolTip="@(_isInFullScreenMode ? DevToys.Localization.Strings.UIDataGrid.UIDataGrid.ShrinkButtonToolTip : DevToys.Localization.Strings.UIDataGrid.UIDataGrid.ExtendButtonToolTip)"
+                            @onclick="@OnToggleFullScreenButtonClickAsync">
+                        <FontIcon Glyph="@(_isInFullScreenMode ? '\uF165' : '\uF15F')" />
+                    </Button>
+                }
+            </StackPanel>
+        </GridCell>
+        <GridCell Row="1" Column="0" ColumnSpan="2">
+            <DataGrid id="@UIDataGrid.Id"
+                      TRow="IUIDataGridRow"
+                      TCell="IUIDataGridCell"
+                      TRowDetail="IUIElement"
+                      HorizontalAlignment="UIHorizontalAlignment.Stretch"
+                      VerticalAlignment="UIVerticalAlignment.Stretch"
+                      @bind-SelectedIndex="@SelectedIndex"
+                      Columns="@UIDataGrid.Columns"
+                      Rows="@UIDataGrid.Rows"
+                      Context="element"
+                      CanSelectRow="@UIDataGrid.CanSelectRow"
+                      Virtualize="true">
+                <CellTemplate>
+                    <UIElementPresenter UIElement="@element.UIElement" />
+                </CellTemplate>
+                <RowDetailTemplate>
+                    <UIElementPresenter UIElement="@element" />
+                </RowDetailTemplate>
+            </DataGrid>
+        </GridCell>
+    </Grid>
+</CascadingValue>

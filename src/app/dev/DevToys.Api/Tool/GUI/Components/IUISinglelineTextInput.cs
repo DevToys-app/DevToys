@@ -26,6 +26,14 @@ public interface IUISingleLineTextInput : IUITitledElementWithChildren
     IUIElement? CommandBarExtraContent { get; }
 
     /// <summary>
+    /// Gets whether the command bar should be hidden. Default is false.
+    /// </summary>
+    /// <remarks>
+    /// When true, <see cref="CommandBarExtraContent"/> is ignored.
+    /// </remarks>
+    bool HideCommandBar { get; }
+
+    /// <summary>
     /// Raised when <see cref="IsReadOnly"/> is changed.
     /// </summary>
     event EventHandler? IsReadOnlyChanged;
@@ -44,6 +52,11 @@ public interface IUISingleLineTextInput : IUITitledElementWithChildren
     /// Raised when <see cref="CommandBarExtraContent"/> is changed.
     /// </summary>
     event EventHandler? CommandBarExtraContentChanged;
+
+    /// <summary>
+    /// Raised when <see cref="HideCommandBar"/> is changed.
+    /// </summary>
+    event EventHandler? HideCommandBarChanged;
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, Text = {{{nameof(Text)}}}")]
@@ -52,6 +65,7 @@ internal class UISingleLineTextInput : UITitledElementWithChildren, IUISingleLin
     private string? _text;
     private bool _isReadOnly;
     private bool _canCopyWhenEditable;
+    private bool _hideCommandBar;
     private IUIElement? _commandBarExtraContent;
 
     internal UISingleLineTextInput(string? id)
@@ -97,12 +111,19 @@ internal class UISingleLineTextInput : UITitledElementWithChildren, IUISingleLin
         internal set => SetPropertyValue(ref _commandBarExtraContent, value, CommandBarExtraContentChanged);
     }
 
+    public bool HideCommandBar
+    {
+        get => _hideCommandBar;
+        internal set => SetPropertyValue(ref _hideCommandBar, value, HideCommandBarChanged);
+    }
+
     internal Func<string, ValueTask>? ActionOnTextChanged { get; set; }
 
     public event EventHandler? TextChanged;
     public event EventHandler? IsReadOnlyChanged;
     public event EventHandler? CanCopyWhenEditableChanged;
     public event EventHandler? CommandBarExtraContentChanged;
+    public event EventHandler? HideCommandBarChanged;
 }
 
 public static partial class GUI
@@ -168,6 +189,31 @@ public static partial class GUI
         if (element is UISingleLineTextInput strongElement)
         {
             strongElement.CanCopyWhenEditable = false;
+        }
+        return element;
+    }
+
+    /// <summary>
+    /// Hides the command bar on top of the editor.
+    /// This will also hide the <see cref="IUISingleLineTextInput.CommandBarExtraContent"/>.
+    /// </summary>
+    public static T HideCommandBar<T>(this T element) where T : IUISingleLineTextInput
+    {
+        if (element is UISingleLineTextInput strongElement)
+        {
+            strongElement.HideCommandBar = true;
+        }
+        return element;
+    }
+
+    /// <summary>
+    /// Shows the command bar on top of the editor.
+    /// </summary>
+    public static T ShowCommandBar<T>(this T element) where T : IUISingleLineTextInput
+    {
+        if (element is UISingleLineTextInput strongElement)
+        {
+            strongElement.HideCommandBar = false;
         }
         return element;
     }

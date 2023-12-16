@@ -30,6 +30,7 @@ public partial class UIDiffTextInputPresenter : JSStyledComponentBase
         UIDiffTextInput.ModifiedTextChanged += UIDiffTextInput_RightTextChanged;
         UIDiffTextInput.IsReadOnlyChanged += UIMultiLineTextInput_IsReadOnlyChanged;
         UIDiffTextInput.InlineModeChanged += UIDiffTextInput_InlineModeChanged;
+        UIDiffTextInput.IsVisibleChanged += UIDiffTextInput_IsVisibleChanged;
     }
 
     public override ValueTask DisposeAsync()
@@ -38,6 +39,7 @@ public partial class UIDiffTextInputPresenter : JSStyledComponentBase
         UIDiffTextInput.ModifiedTextChanged -= UIDiffTextInput_RightTextChanged;
         UIDiffTextInput.IsReadOnlyChanged -= UIMultiLineTextInput_IsReadOnlyChanged;
         UIDiffTextInput.InlineModeChanged -= UIDiffTextInput_InlineModeChanged;
+        UIDiffTextInput.IsVisibleChanged -= UIDiffTextInput_IsVisibleChanged;
         return base.DisposeAsync();
     }
 
@@ -115,6 +117,15 @@ public partial class UIDiffTextInputPresenter : JSStyledComponentBase
                 EnableSplitViewResizing = !UIDiffTextInput.InlineMode,
                 RenderSideBySide = !UIDiffTextInput.InlineMode
             });
+    }
+
+    private void UIDiffTextInput_IsVisibleChanged(object? sender, EventArgs e)
+    {
+        if (_isInFullScreenMode && !UIDiffTextInput.IsVisible)
+        {
+            // If the element is not visible anymore, we need to exit the full screen mode.
+            OnToggleFullScreenButtonClickAsync().Forget();
+        }
     }
 
     private async Task OnToggleFullScreenButtonClickAsync()
