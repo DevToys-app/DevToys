@@ -38,7 +38,8 @@ internal static class JsonTableHelper
 
         var table = new DataGridContents(properties, new());
 
-        var clipboard = new StringBuilder(string.Join(separator, properties));
+        var clipboard = new StringBuilder();
+        clipboard.AppendLine(string.Join(separator, properties));
 
         foreach (JObject obj in flattened)
         {
