@@ -14,7 +14,7 @@ internal static class JsonTableHelper
             CopyFormat.TSV => '\t',
             CopyFormat.CSV => ',',
             CopyFormat.FSV => ';',
-            _ => throw new ArgumentException($"Unhandled {nameof(CopyFormat)}: {format}", nameof(format)),
+            _ => throw new NotSupportedException($"Unhandled {nameof(CopyFormat)}: {format}"),
         };
 
         JObject[]? array = ParseJsonArray(text);

@@ -61,7 +61,7 @@ namespace DevToys.Tools.Tools.Converters.JsonTable {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JSON list to tabular form converter tool.
+        ///   Looks up a localized string similar to JSON array to tabular form converter tool.
         /// </summary>
         internal static string AccessibleName {
             get {
@@ -124,7 +124,7 @@ namespace DevToys.Tools.Tools.Converters.JsonTable {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Convert a JSON list to tabular format, export to CSV or Excel.
+        ///   Looks up a localized string similar to Convert a JSON array to tabular format, export to CSV or TSV.
         /// </summary>
         internal static string Description {
             get {
@@ -142,7 +142,7 @@ namespace DevToys.Tools.Tools.Converters.JsonTable {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Text or path to a file to convert from json or yaml.
+        ///   Looks up a localized string similar to Text or path to a file to convert from JSON.
         /// </summary>
         internal static string InputOptionDescription {
             get {
@@ -160,7 +160,7 @@ namespace DevToys.Tools.Tools.Converters.JsonTable {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JSON List to Table.
+        ///   Looks up a localized string similar to JSON Array to Table.
         /// </summary>
         internal static string LongDisplayTitle {
             get {
@@ -187,7 +187,16 @@ namespace DevToys.Tools.Tools.Converters.JsonTable {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JSON,CSV,TSV,French,Excel.
+        ///   Looks up a localized string similar to Select which format to output.
+        /// </summary>
+        internal static string OutputFormatDescription {
+            get {
+                return ResourceManager.GetString("OutputFormatDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JSON,CSV,TSV,French,Excel,Tabular,Data.
         /// </summary>
         internal static string SearchKeywords {
             get {

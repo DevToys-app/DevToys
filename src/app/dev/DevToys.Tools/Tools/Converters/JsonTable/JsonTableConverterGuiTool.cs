@@ -18,7 +18,7 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml;
     DescriptionResourceName = nameof(JsonTableConverter.Description),
     AccessibleNameResourceName = nameof(JsonTableConverter.AccessibleName),
     SearchKeywordsResourceName = nameof(JsonTableConverter.SearchKeywords))]
-[AcceptedDataTypeName(PredefinedCommonDataTypeNames.Json)]
+[AcceptedDataTypeName(PredefinedCommonDataTypeNames.JsonArray)]
 internal sealed partial class JsonTableConverterGuiTool : IGuiTool, IDisposable
 {
     /// <summary>
@@ -72,7 +72,7 @@ internal sealed partial class JsonTableConverterGuiTool : IGuiTool, IDisposable
                 .Disable(); // disable until valid JSON is input
 
             return new(
-                isScrollable: true,
+                isScrollable: false,
                 Grid()
                     .ColumnLargeSpacing()
                     .RowLargeSpacing()

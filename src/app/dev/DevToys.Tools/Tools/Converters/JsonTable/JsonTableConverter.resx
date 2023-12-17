@@ -118,14 +118,14 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>JSON list to tabular form converter tool</value>
+    <value>JSON array to tabular form converter tool</value>
   </data>
   <data name="LongDisplayTitle" xml:space="preserve">
-    <value>JSON List to Table</value>
+    <value>JSON Array to Table</value>
     <comment>Grid view title</comment>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Convert a JSON list to tabular format, export to CSV or Excel</value>
+    <value>Convert a JSON array to tabular format, export to CSV or TSV</value>
     <comment>Grid view description</comment>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
@@ -133,7 +133,7 @@
     <comment>Sidebar heading</comment>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>JSON,CSV,TSV,French,Excel</value>
+    <value>JSON,CSV,TSV,French,Excel,Tabular,Data</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Configuration</value>
@@ -164,9 +164,15 @@
     <value>Semicolon separated values (CSV French)</value>
   </data>
   <data name="InputOptionDescription" xml:space="preserve">
-    <value>Text or path to a file to convert from json or yaml</value>
+    <value>Text or path to a file to convert from JSON</value>
+    <comment>CLI parameter description</comment>
   </data>
   <data name="OutputFileOptionDescription" xml:space="preserve">
     <value>File where the result should be persisted.</value>
+    <comment>CLI parameter description</comment>
+  </data>
+  <data name="OutputFormatDescription" xml:space="preserve">
+    <value>Select which format to output</value>
+    <comment>CLI parameter description</comment>
   </data>
 </root>

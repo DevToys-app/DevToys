@@ -28,9 +28,9 @@ internal sealed class JsonTableConverterCommandLineTool : ICommandLineTool
 
     // Default to comma-separated-values because output-to-file is the most likely use-case.
     [CommandLineOption(
-        Name = "copyFormat",
+        Name = "format",
         DescriptionResourceName = nameof(JsonTableConverter.ClipboardFormatDescription))]
-    internal JsonTableHelper.CopyFormat CopyFormat { get; set; } = JsonTableHelper.CopyFormat.CSV;
+    internal JsonTableHelper.CopyFormat Format { get; set; } = JsonTableHelper.CopyFormat.CSV;
 
     public ValueTask<int> InvokeAsync(ILogger logger, CancellationToken cancellationToken)
     {
@@ -55,7 +55,7 @@ internal sealed class JsonTableConverterCommandLineTool : ICommandLineTool
     {
         Guard.IsNotNull(Input);
 
-        JsonTableHelper.ConvertResult conversionResult = JsonTableHelper.ConvertFromJson(input, CopyFormat, cancellationToken);
+        JsonTableHelper.ConvertResult conversionResult = JsonTableHelper.ConvertFromJson(input, Format, cancellationToken);
         string resultText = conversionResult.Text;
 
         cancellationToken.ThrowIfCancellationRequested();
