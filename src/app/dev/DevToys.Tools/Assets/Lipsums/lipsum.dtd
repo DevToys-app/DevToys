@@ -1,0 +1,7 @@
+<!-- This is the valid DTD of a lipsum file used by Lipsum - the text generator -->
+<!ELEMENT lipsum (copyright, title, author, text)>
+
+    <!ELEMENT copyright (#PCDATA)>
+    <!ELEMENT title (#PCDATA)>
+    <!ELEMENT author (#PCDATA)>
+    <!ELEMENT text (#PCDATA)>
