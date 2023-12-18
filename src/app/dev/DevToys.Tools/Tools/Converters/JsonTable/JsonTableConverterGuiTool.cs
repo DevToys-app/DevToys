@@ -129,7 +129,7 @@ internal sealed partial class JsonTableConverterGuiTool : IGuiTool, IDisposable
     // Smart detection handler.
     public void OnDataReceived(string dataTypeName, object? parsedData)
     {
-        if (dataTypeName == PredefinedCommonDataTypeNames.Json &&
+        if (dataTypeName == PredefinedCommonDataTypeNames.JsonArray &&
             parsedData is string jsonStrongTypedParsedData)
         {
             _inputTextArea.Text(jsonStrongTypedParsedData);
