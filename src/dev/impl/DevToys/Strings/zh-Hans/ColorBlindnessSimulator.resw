@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>色盲模拟工具</value>
-  </data>
-  <data name="MenuDisplayName" xml:space="preserve">
     <value>色盲模拟</value>
   </data>
+  <data name="MenuDisplayName" xml:space="preserve">
+    <value>色盲模拟工具</value>
+  </data>
   <data name="Description" xml:space="preserve">
-    <value>在一张图片或屏幕截图上模拟色盲视觉效果</value>
+    <value>在图片或屏幕截图上模拟色盲度</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
     <value>色盲模拟工具</value>
