@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DevToys.Tools.Tools.EncodersDecoders.Base64Image {
+namespace DevToys.Tools.Tools.Formatters {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace DevToys.Tools.Tools.EncodersDecoders.Base64Image {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Base64ImageEncoderDecoder {
+    internal class Formatters {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Base64ImageEncoderDecoder() {
+        internal Formatters() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DevToys.Tools.Tools.EncodersDecoders.Base64Image {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Tools.Tools.EncodersDecoders.Base64Image.Base64ImageEncoderDecoder", typeof(Base64ImageEncoderDecoder).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Tools.Tools.Formatters.Formatters", typeof(Formatters).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace DevToys.Tools.Tools.EncodersDecoders.Base64Image {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Base64 Image Encoder and Decoder tool.
+        ///   Looks up a localized string similar to Formatters.
         /// </summary>
         internal static string AccessibleName {
             get {
@@ -70,65 +70,11 @@ namespace DevToys.Tools.Tools.EncodersDecoders.Base64Image {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Encode and decode Base64 image data.
+        ///   Looks up a localized string similar to Formatters.
         /// </summary>
-        internal static string Description {
+        internal static string DisplayTitle {
             get {
-                return ResourceManager.GetString("Description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Image file path to encode / text file path containing the Base64 to decode / Base64 text to decode.
-        /// </summary>
-        internal static string InputOptionDescription {
-            get {
-                return ResourceManager.GetString("InputOptionDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;Invalid Base64&gt;.
-        /// </summary>
-        internal static string InvalidBase64 {
-            get {
-                return ResourceManager.GetString("InvalidBase64", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Base64 Image Encoder / Decoder.
-        /// </summary>
-        internal static string LongDisplayTitle {
-            get {
-                return ResourceManager.GetString("LongDisplayTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Path to the output file.
-        /// </summary>
-        internal static string OutputFileOptionDescription {
-            get {
-                return ResourceManager.GetString("OutputFileOptionDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to RFC 4648.
-        /// </summary>
-        internal static string SearchKeywords {
-            get {
-                return ResourceManager.GetString("SearchKeywords", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Base64 Image.
-        /// </summary>
-        internal static string ShortDisplayTitle {
-            get {
-                return ResourceManager.GetString("ShortDisplayTitle", resourceCulture);
+                return ResourceManager.GetString("DisplayTitle", resourceCulture);
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using DevToys.Tools.Helpers;
+﻿using DevToys.Api.Core;
+using DevToys.Tools.Helpers;
 using DevToys.Tools.Models;
 using Microsoft.Extensions.Logging;
 using OneOf;
@@ -13,6 +14,10 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml;
     DescriptionResourceName = nameof(JsonYamlConverter.Description))]
 internal sealed class JsonYamlConverterCommandLineTool : ICommandLineTool
 {
+#pragma warning disable IDE0044 // Add readonly modifier
+    [Import]
+    private IFileStorage _fileStorage = null!;
+#pragma warning restore IDE0044 // Add readonly modifier
     [CommandLineOption(
         Name = "input",
         Alias = "i",
@@ -38,33 +43,24 @@ internal sealed class JsonYamlConverterCommandLineTool : ICommandLineTool
         DescriptionResourceName = nameof(JsonYamlConverter.IndentationOptionDescription))]
     internal Indentation IndentationMode { get; set; } = Indentation.TwoSpaces;
 
-    public ValueTask<int> InvokeAsync(ILogger logger, CancellationToken cancellationToken)
+    public async ValueTask<int> InvokeAsync(ILogger logger, CancellationToken cancellationToken)
     {
         if (!Input.HasValue)
         {
             Console.Error.WriteLine(JsonYamlConverter.InvalidInputOrFileCommand);
-            return ValueTask.FromResult(-1);
+            return -1;
         }
 
-        return Input.Value.Match(
-            file =>
-                InvokeFileAsync(
-                    file,
-                    logger,
-                    cancellationToken),
-            text =>
-                InvokeCliAsync(
-                    text,
-                    logger,
-                    cancellationToken));
-    }
+        ResultInfo<string> input = await Input.Value.ReadAllTextAsync(_fileStorage, cancellationToken);
+        if (!input.HasSucceeded)
+        {
+            Console.Error.WriteLine(JsonYamlConverter.InputFileNotFound);
+            return -1;
+        }
 
-    private async ValueTask<int> InvokeCliAsync(string input, ILogger logger, CancellationToken cancellationToken)
-    {
-        Guard.IsNotNull(Input);
-
-        ToolResult<string> conversionResult = await JsonYamlHelper.ConvertAsync(
-            input,
+        Guard.IsNotNull(input.Data);
+        ResultInfo<string> conversionResult = await JsonYamlHelper.ConvertAsync(
+            input.Data,
             ConversionMode,
             IndentationMode,
             logger,
@@ -79,37 +75,7 @@ internal sealed class JsonYamlConverterCommandLineTool : ICommandLineTool
             return -1;
         }
 
-        Console.WriteLine(conversionResult.Data);
-        return 0;
-    }
-
-    private async ValueTask<int> InvokeFileAsync(FileInfo file, ILogger logger, CancellationToken cancellationToken)
-    {
-        Guard.IsNotNull(OutputFile);
-
-        if (!file.Exists)
-        {
-            Console.Error.WriteLine(JsonYamlConverter.InputFileNotFound);
-            return -1;
-        }
-
-        string content = await File.ReadAllTextAsync(file.FullName, cancellationToken);
-
-        ToolResult<string> conversionResult
-            = await JsonYamlHelper.ConvertAsync(
-                content!,
-                ConversionMode,
-                IndentationMode,
-                logger,
-                cancellationToken);
-
-        if (!conversionResult.HasSucceeded)
-        {
-            Console.Error.WriteLine(conversionResult.Data);
-            return -1;
-        }
-
-        await File.WriteAllTextAsync(OutputFile.FullName, conversionResult.Data, cancellationToken);
+        await FileHelper.WriteOutputAsync(conversionResult.Data, OutputFile, cancellationToken);
         return 0;
     }
 }

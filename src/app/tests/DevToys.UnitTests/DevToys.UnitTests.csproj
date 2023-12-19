@@ -12,6 +12,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Tools\TestData\XmlFormatter\FourSpaces.xml" />
+    <None Remove="Tools\TestData\XmlFormatter\Minified.xml" />
+    <None Remove="Tools\TestData\XmlFormatter\NewLineOnAttributes.xml" />
+    <None Remove="Tools\TestData\XmlFormatter\OneTab.xml" />
+    <None Remove="Tools\TestData\XmlFormatter\TwoSpaces.xml" />
+    <None Remove="Tools\TestData\XmlFormatter\ValidXml.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentAssertions" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="Moq" />

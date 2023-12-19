@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using DevToys.Api.Core;
 using DevToys.Tools.Helpers;
 using DevToys.Tools.Models;
 using DevToys.UnitTests.Mocks;
@@ -100,7 +101,7 @@ public class JsonHelperTests
     public void ConvertFromYamlShouldReturnEmptyString(string input, string expected)
     {
         // prepare & act
-        ToolResult<string> actual = JsonHelper.ConvertFromYaml(
+        ResultInfo<string> actual = JsonHelper.ConvertFromYaml(
             input,
             Indentation.FourSpaces,
             new MockILogger(),
@@ -117,7 +118,7 @@ public class JsonHelperTests
         string expected = string.Empty;
 
         // act
-        ToolResult<string> actual = JsonHelper.ConvertFromYaml(
+        ResultInfo<string> actual = JsonHelper.ConvertFromYaml(
             input,
             Indentation.Minified,
             new MockILogger(),
@@ -134,7 +135,7 @@ public class JsonHelperTests
         string expected = "While parsing a node, did not find expected node content.";
 
         // act
-        ToolResult<string> actual = JsonHelper.ConvertFromYaml(
+        ResultInfo<string> actual = JsonHelper.ConvertFromYaml(
             input,
             Indentation.Minified,
             new MockILogger(),
@@ -148,7 +149,7 @@ public class JsonHelperTests
     [InlineData("   - key: value\r\n     key2: 1", "[\r\n  {\r\n    \"key\": \"value\",\r\n    \"key2\": 1\r\n  }\r\n]")]
     public void ConvertFromYamlWithTwoSpaces(string input, string expectedResult)
     {
-        ToolResult<string> result = JsonHelper.ConvertFromYaml(
+        ResultInfo<string> result = JsonHelper.ConvertFromYaml(
              input,
              Indentation.TwoSpaces,
              new MockILogger(),
@@ -161,7 +162,7 @@ public class JsonHelperTests
     [InlineData("   - key: value\r\n     key2: 1", "[\r\n    {\r\n        \"key\": \"value\",\r\n        \"key2\": 1\r\n    }\r\n]")]
     public void ConvertFromYamlWithFourSpaces(string input, string expectedResult)
     {
-        ToolResult<string> result = JsonHelper.ConvertFromYaml(
+        ResultInfo<string> result = JsonHelper.ConvertFromYaml(
              input,
              Indentation.FourSpaces,
              new MockILogger(),

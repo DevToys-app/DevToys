@@ -145,13 +145,16 @@
     <value>Encode and decode Base64 text data</value>
   </data>
   <data name="EncodingDescription" xml:space="preserve">
-    <value>Select which encoding do you want to use</value>
+    <value>Select which encoding you want to use</value>
   </data>
   <data name="EncodingOptionDescription" xml:space="preserve">
     <value>Encoding</value>
   </data>
   <data name="EncodingTitle" xml:space="preserve">
     <value>Encoding</value>
+  </data>
+  <data name="InputFileNotFound" xml:space="preserve">
+    <value>Input file selected doesn't exist</value>
   </data>
   <data name="InputOptionDescription" xml:space="preserve">
     <value>Text or path to a file to encode or Base64 to decode</value>
@@ -162,11 +165,14 @@
   <data name="InvalidBase64" xml:space="preserve">
     <value>&lt;Invalid Base64&gt;</value>
   </data>
+  <data name="InvalidInputOrFileCommand" xml:space="preserve">
+    <value>Please specify an input text or an input file</value>
+  </data>
   <data name="LongDisplayTitle" xml:space="preserve">
     <value>Base64 Text Encoder / Decoder</value>
   </data>
   <data name="OutputFileOptionDescription" xml:space="preserve">
-    <value>File where the result should be persisted.</value>
+    <value>Path to the output file</value>
   </data>
   <data name="OutputTitle" xml:space="preserve">
     <value>Output</value>

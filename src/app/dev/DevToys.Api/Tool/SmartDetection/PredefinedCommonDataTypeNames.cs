@@ -6,6 +6,7 @@ public static class PredefinedCommonDataTypeNames
     public const string Json = "json";
     public const string JsonArray = "jsonArray";
     public const string Yaml = "yaml";
+    public const string Xml = "xml";
     public const string Base64Text = "base64Text";
     public const string Base64Image = "base64Image";
     public const string Image = "image";

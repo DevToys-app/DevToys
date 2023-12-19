@@ -87,8 +87,8 @@ internal sealed class HashAndChecksumGeneratorCommandLineTool : ICommandLineTool
 
             if (ChecksumVerification.HasValue)
             {
-                string? checksum = await ChecksumVerification.Value.ReadAllTextAsync(_fileStorage, cancellationToken);
-                if (string.Equals(checksum, fileHashString, StringComparison.OrdinalIgnoreCase))
+                ResultInfo<string> checksum = await ChecksumVerification.Value.ReadAllTextAsync(_fileStorage, cancellationToken);
+                if (checksum.HasSucceeded && string.Equals(checksum.Data, fileHashString, StringComparison.OrdinalIgnoreCase))
                 {
                     Console.WriteLine(HashAndChecksumGenerator.ChecksumVerificationSucceeded);
                     return 0;

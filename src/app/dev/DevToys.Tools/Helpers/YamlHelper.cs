@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Nodes;
+using DevToys.Api.Core;
 using DevToys.Tools.Models;
 using Microsoft.Extensions.Logging;
 using YamlDotNet.Core;
@@ -50,7 +51,7 @@ internal static partial class YamlHelper
     /// <summary>
     /// Convert a Json string to Yaml
     /// </summary>
-    internal static ToolResult<string> ConvertFromJson(
+    internal static ResultInfo<string> ConvertFromJson(
         string? input,
         Indentation indentation,
         ILogger logger,

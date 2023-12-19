@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DevToys.Tools.Tools.Converters.JsonYaml {
+namespace DevToys.Tools.Tools.Formatters.Xml {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class JsonYamlConverter {
+    internal class XmlFormatter {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal JsonYamlConverter() {
+        internal XmlFormatter() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Tools.Tools.Converters.JsonYaml.JsonYamlConverter", typeof(JsonYamlConverter).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Tools.Tools.Formatters.Xml.XmlFormatter", typeof(XmlFormatter).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JSON to YAML and YAML to JSON converter tool.
+        ///   Looks up a localized string similar to XML Formatter tool.
         /// </summary>
         internal static string AccessibleName {
             get {
@@ -79,34 +79,7 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select which conversion mode you want to use.
-        /// </summary>
-        internal static string ConversionDescription {
-            get {
-                return ResourceManager.GetString("ConversionDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Whether to convert from Json or Yaml.
-        /// </summary>
-        internal static string ConversionOptionDescription {
-            get {
-                return ResourceManager.GetString("ConversionOptionDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Conversion.
-        /// </summary>
-        internal static string ConversionTitle {
-            get {
-                return ResourceManager.GetString("ConversionTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Convert JSON data to YAML and vice versa.
+        ///   Looks up a localized string similar to Indent or minify XML data.
         /// </summary>
         internal static string Description {
             get {
@@ -160,7 +133,7 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Text or path to a file to convert from json or yaml.
+        ///   Looks up a localized string similar to Text or path to a file containing the xml to format.
         /// </summary>
         internal static string InputOptionDescription {
             get {
@@ -178,38 +151,47 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;Invalid JSON data&gt;.
-        /// </summary>
-        internal static string InvalidJson {
-            get {
-                return ResourceManager.GetString("InvalidJson", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;Invalid Yaml data&gt;.
-        /// </summary>
-        internal static string InvalidYaml {
-            get {
-                return ResourceManager.GetString("InvalidYaml", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to JSON to YAML.
-        /// </summary>
-        internal static string JsonToYaml {
-            get {
-                return ResourceManager.GetString("JsonToYaml", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to JSON &lt;&gt; YAML Converter.
+        ///   Looks up a localized string similar to XML Formatter.
         /// </summary>
         internal static string LongDisplayTitle {
             get {
                 return ResourceManager.GetString("LongDisplayTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minified.
+        /// </summary>
+        internal static string Minified {
+            get {
+                return ResourceManager.GetString("Minified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Line on Attributes.
+        /// </summary>
+        internal static string NewLineOnAttributes {
+            get {
+                return ResourceManager.GetString("NewLineOnAttributes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Whether to put attributes on a new line.
+        /// </summary>
+        internal static string NewLineOnAttributesDescription {
+            get {
+                return ResourceManager.GetString("NewLineOnAttributesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 tab.
+        /// </summary>
+        internal static string OneTab {
+            get {
+                return ResourceManager.GetString("OneTab", resourceCulture);
             }
         }
         
@@ -232,16 +214,16 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to XML Formatter.
         /// </summary>
-        internal static string SearchKeywords {
+        internal static string SearchDisplayName {
             get {
-                return ResourceManager.GetString("SearchKeywords", resourceCulture);
+                return ResourceManager.GetString("SearchDisplayName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JSON &lt;&gt; YAML.
+        ///   Looks up a localized string similar to XML.
         /// </summary>
         internal static string ShortDisplayTitle {
             get {
@@ -255,15 +237,6 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml {
         internal static string TwoSpaces {
             get {
                 return ResourceManager.GetString("TwoSpaces", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to YAML to JSON.
-        /// </summary>
-        internal static string YamlToJson {
-            get {
-                return ResourceManager.GetString("YamlToJson", resourceCulture);
             }
         }
     }

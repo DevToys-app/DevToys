@@ -39,33 +39,37 @@ public static class OneOfExtensions
                 });
     }
 
-    public static Task<string> ReadAllTextAsync(
+    public static async Task<ResultInfo<string>> ReadAllTextAsync(
         this OneOf<string, FileInfo> input,
         IFileStorage fileStorage,
         CancellationToken cancellationToken)
     {
         if (input.IsT1)
         {
-            return ReadAllTextAsync(OneOf<FileInfo, string>.FromT0(input.AsT1), fileStorage, cancellationToken);
+            return await ReadAllTextAsync(OneOf<FileInfo, string>.FromT0(input.AsT1), fileStorage, cancellationToken);
         }
 
-        return ReadAllTextAsync(OneOf<FileInfo, string>.FromT1(input.AsT0), fileStorage, cancellationToken);
+        return await ReadAllTextAsync(OneOf<FileInfo, string>.FromT1(input.AsT0), fileStorage, cancellationToken);
     }
 
-    public static Task<string> ReadAllTextAsync(
+    public static async Task<ResultInfo<string>> ReadAllTextAsync(
         this OneOf<FileInfo, string> input,
         IFileStorage fileStorage,
         CancellationToken cancellationToken)
     {
-        return
-            input.Match(
-                async inputFile =>
+        return await input.Match(
+            async inputFile =>
+            {
+                if (!fileStorage.FileExists(inputFile.FullName))
                 {
-                    using Stream fileStream = fileStorage.OpenReadFile(inputFile.FullName);
-                    using var reader = new StreamReader(fileStream);
-                    string content = await reader.ReadToEndAsync(cancellationToken);
-                    return content;
-                },
-                inputString => Task.FromResult(inputString));
+                    return new ResultInfo<string>("", false);
+                }
+
+                using Stream fileStream = fileStorage.OpenReadFile(inputFile.FullName);
+                using var reader = new StreamReader(fileStream);
+                string content = await reader.ReadToEndAsync(cancellationToken);
+                return new ResultInfo<string>(content, true);
+            },
+            inputString => Task.FromResult(new ResultInfo<string>(inputString, true)));
     }
 }

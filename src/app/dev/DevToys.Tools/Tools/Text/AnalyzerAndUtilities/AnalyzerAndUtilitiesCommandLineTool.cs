@@ -66,16 +66,22 @@ internal sealed class AnalyzerAndUtilitiesCommandLineTool : ICommandLineTool
 
     public async ValueTask<int> InvokeAsync(ILogger logger, CancellationToken cancellationToken)
     {
-        string? input = null;
-
-        if (Input.HasValue)
+        if (!Input.HasValue)
         {
-            input = await Input.Value.ReadAllTextAsync(_fileStorage, cancellationToken);
+            Console.Error.WriteLine(AnalyzerAndUtilities.InvalidInputOrFileCommand);
+            return -1;
         }
 
-        Guard.IsNotNull(input);
+        ResultInfo<string> input = await Input.Value.ReadAllTextAsync(_fileStorage, cancellationToken);
+        if (!input.HasSucceeded)
+        {
+            Console.Error.WriteLine(AnalyzerAndUtilities.InputFileNotFound);
+            return -1;
+        }
 
-        string newText = input;
+        Guard.IsNotNull(input.Data);
+
+        string newText = input.Data;
         for (int i = 0; i < Actions.Length; i++)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -129,15 +135,7 @@ internal sealed class AnalyzerAndUtilitiesCommandLineTool : ICommandLineTool
             };
         }
 
-        if (OutputFile is null)
-        {
-            Console.WriteLine(newText);
-        }
-        else
-        {
-            await File.WriteAllTextAsync(OutputFile.FullName, newText, cancellationToken);
-        }
-
+        await FileHelper.WriteOutputAsync(newText, OutputFile, cancellationToken);
         return 0;
     }
 }

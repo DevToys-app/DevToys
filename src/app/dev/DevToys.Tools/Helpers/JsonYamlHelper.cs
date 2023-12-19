@@ -1,4 +1,5 @@
-﻿using DevToys.Tools.Models;
+﻿using DevToys.Api.Core;
+using DevToys.Tools.Models;
 using DevToys.Tools.Tools.Converters.JsonYaml;
 using Microsoft.Extensions.Logging;
 
@@ -6,7 +7,7 @@ namespace DevToys.Tools.Helpers;
 
 internal static class JsonYamlHelper
 {
-    public static async ValueTask<ToolResult<string>> ConvertAsync(
+    public static async ValueTask<ResultInfo<string>> ConvertAsync(
         string input,
         JsonToYamlConversion conversion,
         Indentation indentation,
@@ -15,7 +16,7 @@ internal static class JsonYamlHelper
     {
         await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
 
-        ToolResult<string> conversionResult;
+        ResultInfo<string> conversionResult;
         switch (conversion)
         {
             case JsonToYamlConversion.JsonToYaml:

@@ -1,4 +1,5 @@
-﻿using DevToys.Tools.Helpers;
+﻿using DevToys.Api.Core;
+using DevToys.Tools.Helpers;
 using DevToys.Tools.Models;
 using Microsoft.Extensions.Logging;
 
@@ -208,7 +209,7 @@ internal sealed partial class JsonYamlConverterGuiTool : IGuiTool, IDisposable
         {
             await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
 
-            ToolResult<string> conversionResult = await JsonYamlHelper.ConvertAsync(
+            ResultInfo<string> conversionResult = await JsonYamlHelper.ConvertAsync(
                 input,
                 _settingsProvider.GetSetting(conversionMode),
                 _settingsProvider.GetSetting(indentationMode),

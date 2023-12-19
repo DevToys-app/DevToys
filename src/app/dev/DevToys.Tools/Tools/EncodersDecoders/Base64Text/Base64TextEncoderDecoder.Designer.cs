@@ -142,7 +142,7 @@ namespace DevToys.Tools.Tools.EncodersDecoders.Base64Text {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select which encoding do you want to use.
+        ///   Looks up a localized string similar to Select which encoding you want to use.
         /// </summary>
         internal static string EncodingDescription {
             get {
@@ -165,6 +165,15 @@ namespace DevToys.Tools.Tools.EncodersDecoders.Base64Text {
         internal static string EncodingTitle {
             get {
                 return ResourceManager.GetString("EncodingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Input file selected doesn&apos;t exist.
+        /// </summary>
+        internal static string InputFileNotFound {
+            get {
+                return ResourceManager.GetString("InputFileNotFound", resourceCulture);
             }
         }
         
@@ -196,6 +205,15 @@ namespace DevToys.Tools.Tools.EncodersDecoders.Base64Text {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please specify an input text or an input file.
+        /// </summary>
+        internal static string InvalidInputOrFileCommand {
+            get {
+                return ResourceManager.GetString("InvalidInputOrFileCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Base64 Text Encoder / Decoder.
         /// </summary>
         internal static string LongDisplayTitle {
@@ -205,7 +223,7 @@ namespace DevToys.Tools.Tools.EncodersDecoders.Base64Text {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File where the result should be persisted..
+        ///   Looks up a localized string similar to Path to the output file.
         /// </summary>
         internal static string OutputFileOptionDescription {
             get {
