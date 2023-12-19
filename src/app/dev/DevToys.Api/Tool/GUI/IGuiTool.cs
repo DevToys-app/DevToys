@@ -30,7 +30,6 @@
 ///         [NotSearchable]                                                                         // Optional
 ///         [NotFavorable]                                                                          // Optional
 ///         [NoCompactOverlaySupport]                                                               // Optional
-///         [CompactOverlaySize(height: 200, width: 250)]                                           // Optional
 ///         internal sealed class Base64GuiTool : IGuiTool
 ///         {
 ///         }

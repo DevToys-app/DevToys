@@ -1,17 +1,18 @@
-﻿using DevToys.Api;
+using DevToys.Api;
 using DevToys.Blazor.Components;
 using DevToys.Core.Settings;
-using Foundation;
-using Microsoft.Maui.Controls;
-using UIKit;
+using DevToys.MacOS.Core.Helpers;
+using DevToys.MacOS.Views;
 
 namespace DevToys.MacOS.Core;
 
 [Export(typeof(IThemeListener))]
-internal sealed class ThemeListener : IThemeListener
+internal sealed class ThemeListener : IThemeListener, IDisposable
 {
     private readonly ISettingsProvider _settingsProvider;
-    private ContentPage? _contentPage;
+    private readonly SystemThemeObserver _systemThemeObserver = new();
+
+    private bool _ignoreSystemThemeChangeNotification;
 
     [ImportingConstructor]
     public ThemeListener(ISettingsProvider settingsProvider)
@@ -20,13 +21,19 @@ internal sealed class ThemeListener : IThemeListener
         _settingsProvider = settingsProvider;
         _settingsProvider.SettingChanged += SettingsProvider_SettingChanged;
 
-        // Listen for operating system settings.
-        Guard.IsNotNull(Application.Current);
-        Application.Current.RequestedThemeChanged += System_RequestedThemeChanged;
+        // Listen for system theme changes.
+        _systemThemeObserver.SystemThemeChanged += OnSystemThemeChanged;
 
-        UpdateSystemSettingsAndApplyTheme();
+        // Is it safe because we're already on the UI Thread and this method asynchronously switch to it?
+        // We really need to determine ActualAppTheme before the end of the constructor. Alternatively,
+        // we can make ActualAppTheme asynchronous or share a flag indicating whether it's up to date or not.
+        UpdateSystemSettingsAndApplyThemeAsync()
+            .CompleteOnCurrentThread();
 
         IsCompactMode = GetBestValueForCompactMode();
+        MainWindow.Instance.WillStartLiveResize += OnMainWindowSizeChanged;
+        MainWindow.Instance.DidResize += OnMainWindowSizeChanged;
+        MainWindow.Instance.DidEndLiveResize += OnMainWindowSizeChanged;
     }
 
     public AvailableApplicationTheme CurrentSystemTheme { get; private set; }
@@ -43,64 +50,53 @@ internal sealed class ThemeListener : IThemeListener
 
     public event EventHandler? ThemeChanged;
 
+    public void Dispose()
+    {
+        _systemThemeObserver.Dispose();
+    }
+
     public void ApplyDesiredColorTheme()
     {
-        Guard.IsNotNull(Application.Current);
-        AvailableApplicationTheme theme = CurrentAppTheme;
-
-        if (theme == AvailableApplicationTheme.Default)
+        ThreadHelper.RunOnUIThreadAsync(async () =>
         {
-            theme = CurrentSystemTheme;
+            AvailableApplicationTheme theme = CurrentAppTheme;
 
-            // This makes System_RequestedThemeChanged reacting to the system theme change
-            // and makes the app titlebar following the system theme.
-            Application.Current.UserAppTheme = AppTheme.Unspecified;
-
-            // Set theme for window root.
-            if (theme == AvailableApplicationTheme.Dark)
+            if (theme == AvailableApplicationTheme.Default)
             {
-                ActualAppTheme = ApplicationTheme.Dark;
+                // Setting NSApplication.SharedApplication.Appearance to null makes the app adopting the theme of the system.
+                _ignoreSystemThemeChangeNotification = true;
+                NSApplication.SharedApplication.Appearance = null;
+                CurrentSystemTheme = await GetCurrentSystemThemeAsync().ConfigureAwait(true);
+
+                theme = CurrentSystemTheme;
+
+                // Set theme for window root.
+                if (theme == AvailableApplicationTheme.Dark)
+                {
+                    ActualAppTheme = ApplicationTheme.Dark;
+                }
+                else
+                {
+                    ActualAppTheme = ApplicationTheme.Light;
+                }
             }
             else
             {
-                ActualAppTheme = ApplicationTheme.Light;
+                // Set theme for window root.
+                if (theme == AvailableApplicationTheme.Dark)
+                {
+                    ActualAppTheme = ApplicationTheme.Dark;
+                    NSApplication.SharedApplication.Appearance = NSAppearance.GetAppearance(NSAppearance.NameDarkAqua);
+                }
+                else
+                {
+                    ActualAppTheme = ApplicationTheme.Light;
+                    NSApplication.SharedApplication.Appearance = NSAppearance.GetAppearance(NSAppearance.NameAqua);
+                }
             }
-        }
-        else
-        {
-            // Set theme for window root.
-            if (theme == AvailableApplicationTheme.Dark)
-            {
-                ActualAppTheme = ApplicationTheme.Dark;
-                Application.Current.UserAppTheme = AppTheme.Dark;
-            }
-            else
-            {
-                ActualAppTheme = ApplicationTheme.Light;
-                Application.Current.UserAppTheme = AppTheme.Light;
-            }
-        }
 
-        ThemeChanged?.Invoke(this, EventArgs.Empty);
-    }
-
-    internal void SetContentPage(ContentPage page)
-    {
-        Guard.IsNull(_contentPage);
-        Guard.IsNotNull(page);
-        _contentPage = page;
-        _contentPage.SizeChanged += ContentPage_SizeChanged;
-    }
-
-    /// <summary>
-    /// Evaluates whether the theme should automatically be updated or not, based on app and operating system settings.
-    /// </summary>
-    private void UpdateSystemSettingsAndApplyTheme()
-    {
-        IsHighContrast = false; // TODO: Detect high contrast
-        CurrentSystemTheme = GetCurrentSystemTheme();
-
-        ApplyDesiredColorTheme();
+            ThemeChanged?.Invoke(this, EventArgs.Empty);
+        }).Forget();
     }
 
     private void SettingsProvider_SettingChanged(object? sender, SettingChangedEventArgs e)
@@ -117,14 +113,32 @@ internal sealed class ThemeListener : IThemeListener
         }
     }
 
-    private void ContentPage_SizeChanged(object? sender, EventArgs e)
+    private void OnMainWindowSizeChanged(object? sender, EventArgs e)
     {
         UpdateCompactModeBasedOnWindowSize();
     }
 
-    private void System_RequestedThemeChanged(object? sender, AppThemeChangedEventArgs e)
+    private void OnSystemThemeChanged(object? sender, EventArgs e)
     {
-        UpdateSystemSettingsAndApplyTheme();
+        if (_ignoreSystemThemeChangeNotification)
+        {
+            _ignoreSystemThemeChangeNotification = false;
+        }
+        else
+        {
+            UpdateSystemSettingsAndApplyThemeAsync().Forget();
+        }
+    }
+
+    /// <summary>
+    /// Evaluates whether the theme should automatically be updated or not, based on app and operating system settings.
+    /// </summary>
+    private async Task UpdateSystemSettingsAndApplyThemeAsync()
+    {
+        IsHighContrast = false; // TODO: Detect high contrast
+        CurrentSystemTheme = await GetCurrentSystemThemeAsync();
+
+        ApplyDesiredColorTheme();
     }
 
     private void UpdateCompactModeBasedOnWindowSize()
@@ -144,19 +158,51 @@ internal sealed class ThemeListener : IThemeListener
             return true;
         }
 
-        if (_contentPage is not null)
-        {
-            return _contentPage.Width <= NavBarThresholds.NavBarWidthSidebarCollapseThreshold;
-        }
-
-        return false;
+        return MainWindow.Instance.Frame.Width <= NavBarThresholds.NavBarWidthSidebarCollapseThreshold;
     }
 
-    private static AvailableApplicationTheme GetCurrentSystemTheme()
+    private static Task<AvailableApplicationTheme> GetCurrentSystemThemeAsync()
     {
-        Guard.IsNotNull(Application.Current);
-        AppTheme currentSystemTheme = Application.Current.RequestedTheme;
+        return ThreadHelper.RunOnUIThreadAsync(() =>
+        {
+            NSAppearance newAppearance = NSApplication.SharedApplication.EffectiveAppearance;
+            if (newAppearance.FindBestMatch(new string[] { NSAppearance.NameAqua, NSAppearance.NameDarkAqua }) == NSAppearance.NameDarkAqua)
+            {
+                return AvailableApplicationTheme.Dark;
+            }
 
-        return currentSystemTheme == AppTheme.Light ? AvailableApplicationTheme.Light : AvailableApplicationTheme.Dark;
+            return AvailableApplicationTheme.Light;
+        });
+    }
+
+    private sealed class SystemThemeObserver : NSObject
+    {
+        internal SystemThemeObserver()
+        {
+            // Observe changes in effectiveAppearance
+            NSApplication.SharedApplication.AddObserver(
+                this,
+                new NSString("effectiveAppearance"),
+                NSKeyValueObservingOptions.New,
+                IntPtr.Zero);
+        }
+
+        internal EventHandler? SystemThemeChanged;
+
+        // Respond to changes in effectiveAppearance
+        [Foundation.Export("observeValueForKeyPath:ofObject:change:context:")]
+        public void ObserveValue(NSString keyPath, NSObject ofObject, NSDictionary change, IntPtr context)
+        {
+            if (keyPath == "effectiveAppearance")
+            {
+                SystemThemeChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            NSApplication.SharedApplication.RemoveObserver(this, new NSString("effectiveAppearance"));
+            base.Dispose(disposing);
+        }
     }
 }

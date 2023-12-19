@@ -2,13 +2,12 @@
   <Import Project="Environment.props" />
 
   <PropertyGroup>
-    <MinimumVisualStudioVersion>16.0</MinimumVisualStudioVersion>
 
     <Windows10SDKVersion>10.0.22000.0</Windows10SDKVersion>
     <Windows10MinSDKVersionTrimmed>10.0.22621</Windows10MinSDKVersionTrimmed>
     <Windows10MinSDKVersion>$(Windows10MinSDKVersionTrimmed).0</Windows10MinSDKVersion>
 
-    <NetCore>net7.0</NetCore>
+    <NetCore>net8.0</NetCore>
     <NetCoreWindows10>$(NetCore)-windows$(Windows10MinSDKVersionTrimmed)</NetCoreWindows10>
     <NetCoreWindows>$(NetCore)-windows</NetCoreWindows>
     <NetMacCatalyst>$(NetCore)-maccatalyst</NetMacCatalyst>
@@ -38,10 +37,6 @@
 
     <!-- Keep generated code in `obj` folder -->
     <EmitCompilerGeneratedFiles>True</EmitCompilerGeneratedFiles>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '16.0' ">
-    <VisualStudioVersion>16.0</VisualStudioVersion>
   </PropertyGroup>
 
 </Project>

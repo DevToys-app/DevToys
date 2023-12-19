@@ -1,73 +1,104 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>$(NetMacCatalyst)</TargetFramework>
+    <TargetFramework>$(NetMacOS)</TargetFramework>
+    <SupportedOSPlatformVersion>12.0</SupportedOSPlatformVersion>
     <OutputType>Exe</OutputType>
     <RootNamespace>DevToys.MacOS</RootNamespace>
-    <UseMaui>true</UseMaui>
-    <SingleProject>true</SingleProject>
     <EnableDefaultCssItems>false</EnableDefaultCssItems>
-    <DefineConstants>$(DefineConstants);__MACCATALYST__</DefineConstants>
-    <RuntimeIdentifiers>maccatalyst-arm64</RuntimeIdentifiers>
+    <DefineConstants>$(DefineConstants);__MACOS__</DefineConstants>
     <PluginsInstallationFolder>$(OutputPath)\$(TargetFramework)\Plugins</PluginsInstallationFolder>
 
-    <!-- Display name -->
-    <ApplicationTitle>DevToys</ApplicationTitle>
-
-    <!-- App Identifier -->
-    <ApplicationId>com.etiennebaudoux.devtoys</ApplicationId>
-    <ApplicationIdGuid>856CF642-FDC7-42BE-A1D5-5D7F0FC09091</ApplicationIdGuid>
-
-    <!-- Versions -->
-    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-    <ApplicationVersion>1</ApplicationVersion>
+    <!-- The default runtime is osx-x64, except in Release config, in which case the default is osx-x64;osx-arm64.
+         When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifer>.
+         The App Store will NOT accept apps with ONLY osx-arm64 indicated;
+         either BOTH runtimes must be indicated or ONLY osx-x64. -->
+    <!-- ex. <RuntimeIdentifiers>osx-x64;osx-arm64</RuntimeIdentifiers> -->
 
     <!-- The following 3 properties disable trimming and AOT. This allow us to load plugins at runtime. -->
-    <UseInterpreter>true</UseInterpreter>
+    <!-- <UseInterpreter>true</UseInterpreter>
     <MtouchLink>None</MtouchLink>
-    <MtouchInterpreter>all</MtouchInterpreter>
+    <MtouchInterpreter>all</MtouchInterpreter> -->
+
+    <ApplicationId>com.devtoys</ApplicationId>
   </PropertyGroup>
 
+  <!-- Notes about the values set below:
+    1. For macOS it's possible to sign both the app bundle (EnableCodesigning=true) and the package (*.pkg) (EnablePackageSigning=true),
+       and these are signed separately and with different certificates.
+          CodesignKey: this is the signing key used for the app bundle
+          PackageSigningKey: this is the signing key used for the package
+    2. Publishing to the App Store requires signing both the app bundle and the package.
+          Must be 'Apple Distribution: ...' for the app bundle. Note that apps signed like this will not execute locally.
+          They have to be published to the App Store and then downloaded (Apple will resign the app with a different signing identity that allows for local execution).
+          Must be '3rd Party Mac Developer Installer: ...' for the pkg
+    3. Publishing outside of the App Store (i.e. only notarizing) requires:
+          Must be 'Developer ID Application: ...' for the app bundle
+          Must be 'Developer ID Installer: ...' for the pkg
+    4. During development, use the 'Apple Development: ...' signing key (typically to verify that the app works when is signed and entitlements are enforced).
+    5. Depending on the entitlements the app needs, a specific provisioning profile (CodesignProvision) might be needed.
+    6. UseHardenedRuntime must be set to true when app sandbox is enabled in Info.plist.
+    -->
+  <!--
+  For Debug: (Note: Replace placeholder information before building)
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-    <CodeSignEntitlements>Platforms/MacCatalyst/Entitlements.Debug.plist</CodeSignEntitlements>
+    <CodesignKey>Apple Development: YOURNAME (*******)</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision>YOUR PROFILE NAME</CodesignProvision>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(RuntimeIdentifier)'=='' AND '$(Configuration)'=='Release'">
-    <!-- Default values for command line builds -->
-    <RuntimeIdentifier>maccatalyst-arm64</RuntimeIdentifier>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(RuntimeIdentifierOverride)' != ''">
-    <RuntimeIdentifier>$(RuntimeIdentifierOverride)</RuntimeIdentifier>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <!-- App Icon -->
-    <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
-
-    <!-- Splash Screen -->
-    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
-
-    <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
-    <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
-  </ItemGroup>
+  -->
+  <!--
+  For Release: (Note: Replace placeholder information before building)
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <EnableCodeSigning>True</EnableCodeSigning>
+    <ProvisionType>Manual</ProvisionType>
+    <CreatePackage>true</CreatePackage>
+    <EnablePackageSigning>true</EnablePackageSigning>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignKey>Apple Development: YOURNAME (*******)</CodesignKey>
+    <CodesignProvision>YOUR PROFILE NAME</CodesignProvision>
+    <PackageSigningKey>3rd Party Mac Developer Installer: YOURNAME (*******)</PackageSigningKey>
+    <UseHardenedRuntime>true</UseHardenedRuntime>
+  </PropertyGroup>-->
 
   <ItemGroup>
     <PackageReference Include="Microsoft.TypeScript.MSBuild">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-   <PackageReference Include="CommunityToolkit.Maui" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebView"/>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\DevToys.Blazor\DevToys.Blazor.csproj" />
-    <ProjectReference Include="..\..\..\DevToys.Localization\DevToys.Localization.csproj" />
+    <ProjectReference Include="..\..\..\DevToys.Blazor\DevToys.Blazor.csproj"/>
+    <ProjectReference Include="..\..\..\DevToys.Localization\DevToys.Localization.csproj"/>
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="$(RepoRoot)\src\app\dev\platforms\desktop\DevToys.Windows\wwwroot\index.html" Link="wwwroot\index.html" />
-    <Content Include="$(PluginsInstallationFolder)\**\*" Link="Plugins\%(RecursiveDir)%(Filename)%(Extension)"/>
+    <Content Include="$(RepoRoot)\src\app\dev\platforms\desktop\DevToys.Windows\wwwroot\index.html" Link="wwwroot\index.html"/>
+    <BundleResource Include="$(PluginsInstallationFolder)\**\*" Link="Plugins\%(RecursiveDir)%(Filename)%(Extension)" Visible="false"/>
+
+    <!-- Workaround for an error "The path .. would result in a file outside the App Bundle and cannot be used"
+     See https://stackoverflow.com/a/16939385 -->
+    <Content Remove="Assets.xcassets\Contents.json"/>
+    <BundleResource Include="Assets.xcassets\Contents.json"/>
+
+    <Content Remove="Assets.xcassets\AppIcon.appiconset\Contents.json"/>
+    <BundleResource Include="Assets.xcassets\AppIcon.appiconset\Contents.json"/>
   </ItemGroup>
 
+  <Target Name="PublishStaticWebAssetsFiles" AfterTargets="_ComputePublishLocation">
+    <!-- Include the .staticwebassets.runtime.json files to the app bundle -->
+    <PropertyGroup>
+      <_AssemblyPublishDir Condition="'$(_PlatformName)' == 'iOS' Or '$(_PlatformName)' == 'tvOS' Or '$(_PlatformName)' == 'watchOS'">$(_RelativeAppBundlePath)\</_AssemblyPublishDir>
+      <_AssemblyPublishDir Condition="'$(_PlatformName)' == 'macOS' Or '$(_PlatformName)' == 'MacCatalyst'">$(_RelativeAppBundlePath)\Contents\$(_CustomBundleName)\</_AssemblyPublishDir>
+    </PropertyGroup>
+    <ItemGroup>
+      <StaticWebAssetsFiles Include="$(OutputPath)\*.staticwebassets.runtime.json"/>
+      <ResolvedFileToPublish
+        Include="@(StaticWebAssetsFiles)"
+        RelativePath="$(_AssemblyPublishDir)\%(Filename)%(Extension)" />
+    </ItemGroup>
+  </Target>
+  
 </Project>

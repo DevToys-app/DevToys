@@ -17,7 +17,7 @@ fi
 # Install .NET workloads
 if [[ "$OSTYPE" == "darwin"* ]]; then
     echo "Installing .NET workloads"
-    sudo dotnet workload install maui-maccatalyst
+    sudo dotnet workload install macos
 fi
 
 # Restore NuGet solution dependencies
@@ -31,7 +31,7 @@ fi
 for SOLUTION_FILE in $SOLUTIONS
 do
     echo "Restoring packages for $SOLUTION_FILE..."
-    "$DOTNET_EXE" restore -p:RestoreNpm=true -p:PublishReadyToRun=true -v:quiet $SOLUTION_FILE
+    "$DOTNET_EXE" restore -p:RestoreNpm=true -v:quiet $SOLUTION_FILE
 done
 
 echo "Done."

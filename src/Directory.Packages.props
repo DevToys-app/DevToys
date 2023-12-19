@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
     <CommunityToolkitVersion>8.2.1</CommunityToolkitVersion>
-    <DotNetVersion>7.0.0</DotNetVersion>
+    <DotNetVersion>8.0.0</DotNetVersion>
     <XUnit>2.5.0</XUnit>
     <GirCore>0.5.0-preview.1</GirCore>
   </PropertyGroup>
@@ -20,7 +20,7 @@
     <PackageVersion Include="Markdown.ColorCode" Version="2.1.0" />
     <PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.AspNetCore.Components.WebView" Version="$(DotNetVersion)" />
-    <PackageVersion Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="7.0.86" />
+    <PackageVersion Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="8.0.3" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.4.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" />
     <PackageVersion Include="Microsoft.CSharp" Version="4.7.0" />

@@ -1,30 +1,58 @@
-﻿using DevToys.Core.Settings;
+using DevToys.Core.Settings;
 
 namespace DevToys.MacOS.Core;
 
 [Export(typeof(ISettingsStorage))]
 internal sealed class SettingsStorage : ISettingsStorage
 {
+    private readonly object _lock = new();
+
     public void ResetSetting(string settingName)
     {
-        Preferences.Default.Remove(settingName);
+        lock (_lock)
+        {
+            using NSUserDefaults userDefaults = NSUserDefaults.StandardUserDefaults;
+            if (userDefaults[settingName] != null)
+            {
+                userDefaults.RemoveObject(settingName);
+            }
+        }
     }
 
     public bool TryReadSetting(string settingName, out object? value)
     {
-        if (Preferences.Default.ContainsKey(settingName))
+        lock (_lock)
         {
-            value = Preferences.Default.Get<string?>(settingName, default);
+            using NSUserDefaults userDefaults = NSUserDefaults.StandardUserDefaults;
+
+            if (userDefaults[settingName] == null)
+            {
+                value = null;
+                return false;
+            }
+
+            value = userDefaults.StringForKey(settingName);
             return true;
         }
-
-        value = null;
-        return false;
     }
 
     public void WriteSetting(string settingName, object? value)
     {
-        string? valueString = value?.ToString();
-        Preferences.Default.Set(settingName, valueString);
+        lock (_lock)
+        {
+            using NSUserDefaults userDefaults = NSUserDefaults.StandardUserDefaults;
+
+            string? valueString = value?.ToString();
+            if (value == null)
+            {
+                if (userDefaults[settingName] != null)
+                {
+                    userDefaults.RemoveObject(settingName);
+                }
+                return;
+            }
+
+            userDefaults.SetString(valueString, settingName);
+        }
     }
 }

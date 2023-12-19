@@ -39,11 +39,12 @@ You can contribute to DevToys app by:
 ## From macOS
 
 ### Prerequisites
-1. Make sure your machine is running on macOS Ventura 13.1 or later.
-1. Install [**Xcode 14.2**](https://developer.apple.com/xcode/) or later. Run it at least once and allow it to install the built-in macOS and iOS tooling.
-1. [**Visual Studio Code**](https://code.visualstudio.com/) or [**Visual Studio for Mac**](https://visualstudio.microsoft.com/vs/mac/) or [**JetBrains Rider**](https://www.jetbrains.com/rider/)
+1. Make sure your machine is running on macOS 12.0 or later.
+1. Install [**Xcode 15.0**](https://developer.apple.com/xcode/) or later. Run it at least once and allow it to install the built-in macOS and iOS tooling.
+1. [**Visual Studio Code**](https://code.visualstudio.com/) with [**C# Dev Kit**](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit), or [**JetBrains Rider**](https://www.jetbrains.com/rider/).
+   > [**Visual Studio for Mac**](https://visualstudio.microsoft.com/vs/mac/) is not supported because it is a deprecated product and does not support .NET 8.0.
 1. **.NET SDK**. This is required to build the app itself.
-    * [.NET 7.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/7.0) (**version 7.0 (SDK 7.0.110)** or later). If you're on a [Mac computer with Apple silicon processor](https://support.apple.com/en-us/HT211814), you need to install the Arm64 version of the SDK.
+    * [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/8.0) (**version 8.0 (SDK 8.0.100)** or later). If you're on a [Mac computer with Apple silicon processor](https://support.apple.com/en-us/HT211814), you need to install the Arm64 version of the SDK.
     > Use `dotnet --version` from the terminal to get the version installed.
 1. [Node.js](https://nodejs.org/) **14.0 or later**. This is required to build Monaco Editor.
 2. If you're using an [Mac computer with Apple silicon processor](https://support.apple.com/en-us/HT211814), install [Rosetta 2](https://developer.apple.com/documentation/apple-silicon/about-the-rosetta-translation-environment) using the following command in a Terminal:
@@ -64,18 +65,17 @@ You can contribute to DevToys app by:
     ```
 
 ### Build, Run & Debug
-#### If you are using Visual Studio for Mac or JetBains Rider:
-1. Open `src/DevToys-MacOS.sln` with Visual Studio for Mac or JetBrains Rider.
+#### If you are using JetBains Rider:
+1. Open `src/DevToys-MacOS.sln` with JetBrains Rider.
 1. Set `app/dev/platforms/desktop/DevToys.MacOS` or `app/dev/platforms/desktop/DevToys.CLI` as startup project.
 1. Now you should be able to build and run DevToys on your machine.
 
 #### If you are using Visual Studio Code:
 1. Open the repository in Visual Studio Code to edit the code.
-2. Install the [.NET MAUI](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.dotnet-maui) extension.
-1. In `Run and Debug`, select `Debug (macOS dektop app)` and press Start.
+1. In `Run and Debug`, select `DevToys MacOS` or `DevToys CLI` and press Start.
 
 #### Special note for `DevToys.MacOS`
-Most of the `DevToys.MacOS` app runs in a web browser (Safari). In order to access the Safari developer tools with macOS to debug the HTML/CSS/JS of the Maui Blazor app, follow the following instructions:
+Most of the `DevToys.MacOS` app runs in a web browser (Safari). In order to access the Safari developer tools with macOS to debug the HTML/CSS/JS of the Blazor app, you might need to follow the following instructions:
 1. Open desktop Safari.
 2. Select the Safari > Preferences > Advanced > Show Develop menu in the menu bar checkbox.
 3. Run the `DevToys.MacOS` app in macOS.
@@ -86,9 +86,9 @@ Most of the `DevToys.MacOS` app runs in a web browser (Safari). In order to acce
 
 ### Prerequisites
 1. Make sure your machine has GTK4 installed. Distro like Ubuntu generally have it pre-installed.
-1. [**Visual Studio Code**](https://code.visualstudio.com/) or [**JetBrains Rider**](https://www.jetbrains.com/rider/)
+1. [**Visual Studio Code**](https://code.visualstudio.com/) with [**C# Dev Kit**](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit), or [**JetBrains Rider**](https://www.jetbrains.com/rider/).
 1. **.NET SDK**. This is required to build the app itself.
-    * [.NET 7.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/7.0) (**version 7.0 (SDK 7.0.110)** or later).
+    * [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/8.0) (**version 8.0 (SDK 8.0.100)** or later).
     > Use `dotnet --version` from the terminal to get the version installed.
 1. [Node.js](https://nodejs.org/) **14.0 or later**. This is required to build Monaco Editor.
 
@@ -112,9 +112,7 @@ Most of the `DevToys.MacOS` app runs in a web browser (Safari). In order to acce
 
 #### If you are using Visual Studio Code:
 1. Open the repository in Visual Studio Code to edit the code.
-2. Install the [C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit) extension.
-1. In command palette (`Ctrl+Shift+P`), execute `.NET: Open Solution` and select `DevToys.Linux`.
-1. In Explorer (`Ctrl+Shift+E`), select `Solution Explorer` panel at the bottom of the screen. Right click on `DevToys.Linux` or `DevToys.CLI` project in the tree view, then `Debug` to start debugging.
+1. In `Run and Debug`, select `DevToys Linux` or `DevToys CLI` and press Start.
 
 # Internationalization and localization
 
