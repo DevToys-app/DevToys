@@ -97,6 +97,15 @@ namespace DevToys.Tools.Tools.Converters.JsonTable {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy as.
+        /// </summary>
+        internal static string CopyAs {
+            get {
+                return ResourceManager.GetString("CopyAs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Comma separated values (CSV).
         /// </summary>
         internal static string CopyFormatCSV {
@@ -192,6 +201,15 @@ namespace DevToys.Tools.Tools.Converters.JsonTable {
         internal static string OutputFormatDescription {
             get {
                 return ResourceManager.GetString("OutputFormatDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save as.
+        /// </summary>
+        internal static string SaveAs {
+            get {
+                return ResourceManager.GetString("SaveAs", resourceCulture);
             }
         }
         

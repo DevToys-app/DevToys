@@ -7,16 +7,8 @@ namespace DevToys.Tools.Helpers;
 
 internal static class JsonTableHelper
 {
-    internal static ConvertResult ConvertFromJson(string? text, CopyFormat format, CancellationToken cancellationToken)
+    internal static ConvertResult ConvertFromJson(string? text, CopyFormat? format, CancellationToken cancellationToken)
     {
-        char separator = format switch
-        {
-            CopyFormat.TSV => '\t',
-            CopyFormat.CSV => ',',
-            CopyFormat.FSV => ';',
-            _ => throw new NotSupportedException($"Unhandled {nameof(CopyFormat)}: {format}"),
-        };
-
         JObject[]? array = ParseJsonArray(text);
         if (array == null)
         {
@@ -38,8 +30,20 @@ internal static class JsonTableHelper
 
         var table = new DataGridContents(properties, new());
 
-        var clipboard = new StringBuilder();
-        clipboard.AppendLine(string.Join(separator, properties));
+        StringBuilder? clipboard = null;
+        char separator = '\0';
+        if (format.HasValue)
+        {
+            separator = format switch
+            {
+                CopyFormat.TSV => '\t',
+                CopyFormat.CSV => ',',
+                CopyFormat.FSV => ';',
+                _ => throw new NotSupportedException($"Unhandled {nameof(CopyFormat)}: {format}"),
+            };
+            clipboard = new StringBuilder();
+            clipboard.AppendLine(string.Join(separator, properties));
+        }
 
         foreach (JObject obj in flattened)
         {
@@ -50,10 +54,14 @@ internal static class JsonTableHelper
                 .ToArray();
 
             table.Rows.Add(values);
-            clipboard.AppendLine(string.Join(separator, values));
+
+            if (format.HasValue)
+            {
+                clipboard!.AppendLine(string.Join(separator, values));
+            }
         }
 
-        return new(table, clipboard.ToString(), ConvertResultError.None);
+        return new(table, clipboard?.ToString() ?? string.Empty, ConvertResultError.None);
     }
 
     internal record ConvertResult(DataGridContents? Data, string Text, ConvertResultError Error);

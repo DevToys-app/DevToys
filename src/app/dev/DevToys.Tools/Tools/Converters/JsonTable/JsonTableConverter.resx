@@ -175,4 +175,10 @@
     <value>Select which format to output</value>
     <comment>CLI parameter description</comment>
   </data>
+  <data name="CopyAs" xml:space="preserve">
+    <value>Copy as</value>
+  </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>Save as</value>
+  </data>
 </root>

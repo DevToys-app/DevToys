@@ -55,7 +55,7 @@ public interface IUIElement
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, IsVisible = {{{nameof(IsVisible)}}}, IsEnabled = {{{nameof(IsEnabled)}}}")]
-internal abstract class UIElement : IUIElement, INotifyPropertyChanged
+internal abstract class UIElement : ViewModelBase, IUIElement
 {
     private bool _isVisible = true;
     private bool _isEnabled = true;
@@ -100,29 +100,6 @@ internal abstract class UIElement : IUIElement, INotifyPropertyChanged
     public event EventHandler? HorizontalAlignmentChanged;
 
     public event EventHandler? VerticalAlignmentChanged;
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    protected bool SetPropertyValue<T>(
-        ref T field,
-        T value,
-        EventHandler? propertyChangedEventHandler,
-        [CallerMemberName] string? propertyName = null)
-    {
-        if (!EqualityComparer<T>.Default.Equals(field, value))
-        {
-            field = value;
-            propertyChangedEventHandler?.Invoke(this, EventArgs.Empty);
-            OnPropertyChanged(propertyName);
-            return true;
-        }
-        return false;
-    }
-
-    protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-    {
-        PropertyChanged?.Invoke(this, new(propertyName));
-    }
 }
 
 public static partial class GUI

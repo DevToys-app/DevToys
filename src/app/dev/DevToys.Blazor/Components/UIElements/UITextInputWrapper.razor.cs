@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
+﻿using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.Messaging;
 using DevToys.Core.Models;
 using DevToys.Core.Settings;
 using DevToys.Core.Tools;
@@ -377,10 +378,10 @@ public partial class UITextInputWrapper : MefComponentBase
                     {
                         ToolsDetectedBySmartDetection = true;
 
+                        EventCallback<DropDownListItem> onClickEventCallback = EventCallback.Factory.Create<DropDownListItem>(this, SmartDetectionMenuItem_Click);
                         for (int i = 0; i < detectedTools.Count; i++)
                         {
                             SmartDetectedTool detectedTool = detectedTools[i];
-                            EventCallback<DropDownListItem> onClickEventCallback = EventCallback.Factory.Create<DropDownListItem>(this, SmartDetectionMenuItem_Click);
                             var menuItem = new SmartDetectionDropDownListItem
                             {
                                 IconGlyph = detectedTool.ToolInstance.IconGlyph,

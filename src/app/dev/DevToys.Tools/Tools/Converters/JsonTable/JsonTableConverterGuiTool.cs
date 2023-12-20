@@ -1,4 +1,6 @@
 ﻿using System.Data;
+using System.IO;
+using System.Threading;
 using DevToys.Tools.Tools.Converters.JsonTable;
 using Microsoft.Extensions.Logging;
 using static DevToys.Tools.Helpers.JsonTableHelper;
@@ -8,8 +10,8 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml;
 [Export(typeof(IGuiTool))]
 [Name("JsonTableConverter")]
 [ToolDisplayInformation(
-    IconFontName = "DevToys-Tools-Icons",
-    IconGlyph = '\u0109',
+    IconFontName = "FluentSystemIcons",
+    IconGlyph = '\uF0D8',
     GroupName = PredefinedCommonToolGroupNames.Converters,
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
     ResourceManagerBaseName = "DevToys.Tools.Tools.Converters.JsonTable.JsonTableConverter",
@@ -21,110 +23,65 @@ namespace DevToys.Tools.Tools.Converters.JsonYaml;
 [AcceptedDataTypeName(PredefinedCommonDataTypeNames.JsonArray)]
 internal sealed partial class JsonTableConverterGuiTool : IGuiTool, IDisposable
 {
-    /// <summary>
-    /// Whether the tool should copy to clipboard as CSV or TSV.
-    /// </summary>
-    /// <remarks>
-    /// Default to tab-separated-values because copy-to-Excel is the most likely use-case.
-    /// </remarks>
-    private static readonly SettingDefinition<CopyFormat> copyFormat
-        = new(name: $"{nameof(JsonTableConverterGuiTool)}.{nameof(copyFormat)}", defaultValue: CopyFormat.TSV);
-
-    private enum GridColumn
-    {
-        Content
-    }
-
-    private enum GridRow
-    {
-        Header,
-        Content,
-    }
-
     private readonly ILogger _logger;
-    private readonly ISettingsProvider _settingsProvider;
     private readonly IClipboard _clipboard;
+    private readonly IFileStorage _fileStorage;
 
     private readonly IUIMultiLineTextInput _inputTextArea = MultilineTextInput("json-input-text-area");
     private readonly IUIDataGrid _outputDataGrid = DataGrid("output-data-grid");
-    private readonly IUIButton _copyButton = Button("copy-data-grid");
+    private readonly IUIStack _copyOrSaveStack = Stack("copy-or-save-data-grid");
 
     private readonly DisposableSemaphore _semaphore = new(); // one convert at a time
     private CancellationTokenSource? _cancellationTokenSource;
 
     [ImportingConstructor]
-    public JsonTableConverterGuiTool(ISettingsProvider settingsProvider, IClipboard clipboard)
+    public JsonTableConverterGuiTool(IClipboard clipboard, IFileStorage fileStorage)
     {
         _logger = this.Log();
-        _settingsProvider = settingsProvider;
         _clipboard = clipboard;
+        _fileStorage = fileStorage;
     }
 
     internal Task? WorkTask { get; private set; }
 
     public UIToolView View
-    {
-        get
-        {
-            _copyButton
-                .Icon("FluentSystemIcons", '\uF32B')
-                .OnClick(OnCopyDataGrid)
-                .Disable(); // disable until valid JSON is input
+        => new(
+            isScrollable: false,
+            SplitGrid()
+                .Vertical()
+                .WithLeftPaneChild(
 
-            return new(
-                isScrollable: false,
-                Grid()
-                    .ColumnLargeSpacing()
-                    .RowLargeSpacing()
-                    .Rows(
-                        (GridRow.Header, Auto),
-                        (GridRow.Content, new UIGridLength(1, UIGridUnitType.Fraction))
-                    )
-                    .Columns(
-                        (GridColumn.Content, new UIGridLength(1, UIGridUnitType.Fraction))
-                    )
-                .Cells(
-                    Cell(
-                        GridRow.Header,
-                        GridColumn.Content,
-                        Stack().Vertical().WithChildren(
-                            Label()
-                            .Text(JsonTableConverter.Configuration),
+                    _inputTextArea
+                        .Title(JsonTableConverter.Input)
+                        .Language("json")
+                        .OnTextChanged(OnInputTextChanged))
 
-                            Setting("clipboard-copy-format-setting")
-                            .Icon("FluentSystemIcons", '\uF7ED')
-                            .Title(JsonTableConverter.ClipboardFormatTitle)
-                            .Description(JsonTableConverter.ClipboardFormatDescription)
-                            .Handle(
-                                _settingsProvider,
-                                copyFormat,
-                                null,
-                                Item(JsonTableConverter.CopyFormatTSV, CopyFormat.TSV),
-                                Item(JsonTableConverter.CopyFormatCSV, CopyFormat.CSV),
-                                Item(JsonTableConverter.CopyFormatFSV, CopyFormat.FSV)
-                            )
-                        )
-                    ),
-                    Cell(
-                        GridRow.Content,
-                        GridColumn.Content,
-                        SplitGrid()
-                            .Vertical()
-                            .WithLeftPaneChild(
-                                _inputTextArea
-                                    .Title(JsonTableConverter.Input)
-                                    .Language("json")
-                                    .OnTextChanged(OnInputTextChanged))
-                            .WithRightPaneChild(
-                                _outputDataGrid
-                                    .Title(JsonTableConverter.Output)
-                                    .CommandBarExtraContent(_copyButton)
-                                    .Extendable())
-                    )
-                )
-            );
-        }
-    }
+                .WithRightPaneChild(
+
+                    _outputDataGrid
+                        .Title(JsonTableConverter.Output)
+                        .Extendable()
+                        .CommandBarExtraContent(
+                            _copyOrSaveStack
+                                .Horizontal()
+                                .Disable() // disable until valid JSON is input
+                                .WithChildren(
+
+                                    DropDownButton()
+                                        .Icon("FluentSystemIcons", '\uF32B')
+                                        .Text(JsonTableConverter.CopyAs)
+                                        .WithMenuItems(
+                                            DropDownMenuItem(JsonTableConverter.CopyFormatCSV).OnClick(OnCopyCSV),
+                                            DropDownMenuItem(JsonTableConverter.CopyFormatTSV).OnClick(OnCopyTSV),
+                                            DropDownMenuItem(JsonTableConverter.CopyFormatFSV).OnClick(OnCopyFSV)),
+
+                                    DropDownButton()
+                                        .Icon("FluentSystemIcons", '\uF67F')
+                                        .Text(JsonTableConverter.SaveAs)
+                                        .WithMenuItems(
+                                            DropDownMenuItem(JsonTableConverter.CopyFormatCSV).OnClick(OnSaveCSV),
+                                            DropDownMenuItem(JsonTableConverter.CopyFormatTSV).OnClick(OnSaveTSV),
+                                            DropDownMenuItem(JsonTableConverter.CopyFormatFSV).OnClick(OnSaveFSV))))));
 
     // Smart detection handler.
     public void OnDataReceived(string dataTypeName, object? parsedData)
@@ -145,29 +102,34 @@ internal sealed partial class JsonTableConverterGuiTool : IGuiTool, IDisposable
 
     private void OnInputTextChanged(string text)
     {
-        StartConvert(ConvertTarget.DataGrid);
+        StartConvert(ConvertTarget.DataGrid, null);
     }
 
-    private void StartConvert(ConvertTarget target)
+    private void StartConvert(ConvertTarget target, CopyFormat? copyFormat)
     {
         _cancellationTokenSource?.Cancel();
         _cancellationTokenSource?.Dispose();
         _cancellationTokenSource = new CancellationTokenSource();
 
-        WorkTask = ConvertAsync(target, _cancellationTokenSource.Token);
+        WorkTask = ConvertAsync(target, copyFormat, _cancellationTokenSource.Token);
     }
 
-    private async Task ConvertAsync(ConvertTarget target, CancellationToken cancellationToken)
+    private async Task ConvertAsync(ConvertTarget target, CopyFormat? copyFormat, CancellationToken cancellationToken)
     {
         using (await _semaphore.WaitAsync(cancellationToken))
         {
             await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
 
-            ConvertResult conversionResult = ConvertFromJson(_inputTextArea.Text, _settingsProvider.GetSetting(copyFormat), cancellationToken);
+            if (target == ConvertTarget.Clipboard || target == ConvertTarget.Save)
+            {
+                Guard.IsNotNull(copyFormat);
+            }
+
+            ConvertResult conversionResult = ConvertFromJson(_inputTextArea.Text, copyFormat, cancellationToken);
 
             if (conversionResult.Error == ConvertResultError.None && conversionResult.Data != null)
             {
-                _copyButton.Enable();
+                _copyOrSaveStack.Enable();
                 switch (target)
                 {
                     case ConvertTarget.DataGrid:
@@ -177,17 +139,39 @@ internal sealed partial class JsonTableConverterGuiTool : IGuiTool, IDisposable
                     case ConvertTarget.Clipboard:
                         await _clipboard.SetClipboardTextAsync(conversionResult.Text);
                         break;
+
+                    case ConvertTarget.Save:
+                        Stream? fileStream = null;
+                        try
+                        {
+                            fileStream = await _fileStorage.PickSaveFileAsync("txt", "csv");
+                            if (fileStream is not null)
+                            {
+                                using var writer = new StreamWriter(fileStream);
+                                writer.Write(conversionResult.Text);
+                            }
+                        }
+                        finally
+                        {
+                            fileStream?.Dispose();
+                        }
+                        break;
                 }
             }
             else
             {
-                _copyButton.Disable();
+                _copyOrSaveStack.Disable();
                 SetDataGridError();
             }
         }
     }
 
-    private enum ConvertTarget { DataGrid, Clipboard }
+    private enum ConvertTarget
+    {
+        DataGrid,
+        Clipboard,
+        Save
+    }
 
     private void SetDataGridData(DataGridContents table)
     {
@@ -202,9 +186,39 @@ internal sealed partial class JsonTableConverterGuiTool : IGuiTool, IDisposable
         _outputDataGrid.WithRows();
     }
 
-    private ValueTask OnCopyDataGrid()
+    private ValueTask OnCopyCSV()
     {
-        StartConvert(ConvertTarget.Clipboard);
+        StartConvert(ConvertTarget.Clipboard, CopyFormat.CSV);
+        return ValueTask.CompletedTask;
+    }
+
+    private ValueTask OnCopyTSV()
+    {
+        StartConvert(ConvertTarget.Clipboard, CopyFormat.TSV);
+        return ValueTask.CompletedTask;
+    }
+
+    private ValueTask OnCopyFSV()
+    {
+        StartConvert(ConvertTarget.Clipboard, CopyFormat.FSV);
+        return ValueTask.CompletedTask;
+    }
+
+    private ValueTask OnSaveCSV()
+    {
+        StartConvert(ConvertTarget.Save, CopyFormat.CSV);
+        return ValueTask.CompletedTask;
+    }
+
+    private ValueTask OnSaveTSV()
+    {
+        StartConvert(ConvertTarget.Save, CopyFormat.TSV);
+        return ValueTask.CompletedTask;
+    }
+
+    private ValueTask OnSaveFSV()
+    {
+        StartConvert(ConvertTarget.Save, CopyFormat.FSV);
         return ValueTask.CompletedTask;
     }
 }

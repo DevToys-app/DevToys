@@ -16,14 +16,17 @@
                PaddingBottom="@PaddingBottom"
                IsEnabled="@IsActuallyEnabled"
                IsVisible="@IsVisible">
-        <i id=@Id
-           class="font-icon @(FinalCssClasses)"
-           style="@StyleValue"
-           @ref=Element
-           @attributes="AdditionalAttributes"
-           data-glyph='@Glyph'
-           aria-hidden="true"
-           role="presentation">
-        </i>
+        @if (!string.IsNullOrWhiteSpace(FontFamily))
+        {
+            <i id=@Id
+               class="font-icon @(FinalCssClasses)"
+               style="@StyleValue"
+               @ref=Element
+               @attributes="AdditionalAttributes"
+               data-glyph='@Glyph'
+               aria-hidden="true"
+               role="presentation">
+            </i>
+        }
     </Container>
 </CascadingValue>

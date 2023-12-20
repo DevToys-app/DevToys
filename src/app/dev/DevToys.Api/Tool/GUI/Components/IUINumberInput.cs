@@ -36,6 +36,11 @@ public interface IUINumberInput : IUISingleLineTextInput
     event EventHandler? MaxChanged;
 
     /// <summary>
+    /// Raised when <see cref="Step"/> is changed.
+    /// </summary>
+    event EventHandler? StepChanged;
+
+    /// <summary>
     /// Raised when <see cref="Value"/> is changed.
     /// </summary>
     event EventHandler? ValueChanged;
