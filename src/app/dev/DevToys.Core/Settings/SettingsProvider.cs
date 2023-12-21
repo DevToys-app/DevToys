@@ -28,6 +28,15 @@ internal sealed partial class SettingsProvider : ISettingsProvider
             {
                 return (T)Enum.Parse(typeof(T), settingValue?.ToString() ?? string.Empty);
             }
+            else if (
+                typeof(DateTimeOffset).IsAssignableFrom(typeof(T))
+                && DateTimeOffset.TryParse(settingValue?.ToString() ?? string.Empty, out DateTimeOffset parseResult))
+            {
+                if (parseResult is T test)
+                {
+                    return test;
+                }
+            }
             else if (typeof(IList).IsAssignableFrom(typeof(T)))
             {
                 return JsonSerializer.Deserialize<T>(

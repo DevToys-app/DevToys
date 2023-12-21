@@ -20,30 +20,32 @@
              style="@(Style)"
              @ref=Element
              @attributes="AdditionalAttributes">
-            <div class="card-header">
-                <FontIcon class="card-icon"
-                          Glyph="@IconGlyph"
-                          FontFamily="@IconFontFamily"
-                          Width="20"
-                          Height="20"/>
-                <div class="card-context">
-                    <div class="card-title">
-                        <TextBlock Appearance="TextBlockAppearance.Body"
-                                   Text="@Title"
-                                   CanTrim="true"
-                                   Style="display: flex;" />
-                    </div>
-                    @if (!string.IsNullOrWhiteSpace(Description))
-                    {
-                        <div class="card-description">
-                            <TextBlock Appearance="TextBlockAppearance.Caption"
-                                       Text="@Description"
+            @if (!string.IsNullOrWhiteSpace(Title))
+            {
+                <div class="card-header">
+                    <FontIcon class="card-icon"
+                              Glyph="@IconGlyph"
+                              FontFamily="@IconFontFamily"
+                              Width="20"
+                              Height="20" />
+                    <div class="card-context">
+                        <div class="card-title">
+                            <TextBlock Appearance="TextBlockAppearance.Body"
+                                       Text="@Title"
+                                       CanTrim="true"
                                        Style="display: flex;" />
                         </div>
-                    }
+                        @if (!string.IsNullOrWhiteSpace(Description))
+                        {
+                            <div class="card-description">
+                                <TextBlock Appearance="TextBlockAppearance.Caption"
+                                           Text="@Description"
+                                           Style="display: flex;" />
+                            </div>
+                        }
+                    </div>
                 </div>
-            </div>
-
+            }
             @if (Control is not null)
             {
                 <div class="card-control @(IsChildOfExpander ? "child-of-expander" : string.Empty)">
@@ -51,6 +53,10 @@
                         @Control
                     </StackPanel>
                 </div>
+            }
+            @if (ChildContent is not null)
+            {
+                @ChildContent
             }
         </div>
     </Container>

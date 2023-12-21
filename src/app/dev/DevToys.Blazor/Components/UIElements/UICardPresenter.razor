@@ -1,0 +1,21 @@
+@namespace DevToys.Blazor.Components.UIElements
+@using DevToys.Api;
+@inherits ComponentBase
+
+<Card id="@UICard.Id"
+      Class="ui-card-presenter"
+      IsVisible="@UICard.IsVisible"
+      IsEnabled="@UICard.IsEnabled"
+      HorizontalAlignment="@UICard.HorizontalAlignment"
+      VerticalAlignment="@UICard.VerticalAlignment">
+    @if (UICard.Children is not null)
+    {
+        for (int i = 0; i < UICard.Children.Length; i++)
+        {
+            if (UICard.Children[i] is not null)
+            {
+                <UIElementPresenter UIElement="@UICard.Children[i]" />
+            }
+        }
+    }
+</Card>

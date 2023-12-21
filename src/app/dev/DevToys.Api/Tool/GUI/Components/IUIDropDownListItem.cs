@@ -17,7 +17,7 @@ public interface IUIDropDownListItem
 }
 
 [DebuggerDisplay($"Text = {{{nameof(Text)}}}")]
-internal sealed class UIDropDownListItem : IUIDropDownListItem
+internal sealed class UIDropDownListItem : IUIDropDownListItem, IEquatable<UIDropDownListItem>
 {
     internal UIDropDownListItem(string? text, object? value)
     {
@@ -28,6 +28,35 @@ internal sealed class UIDropDownListItem : IUIDropDownListItem
     public string? Text { get; }
 
     public object? Value { get; }
+
+    public static bool operator ==(UIDropDownListItem item1, UIDropDownListItem item2)
+        => Equals(item1, item2);
+
+    public static bool operator !=(UIDropDownListItem item1, UIDropDownListItem item2)
+        => !Equals(item1, item2);
+
+    public override bool Equals(object? other)
+        => Equals(other as UIDropDownListItem);
+
+    public bool Equals(UIDropDownListItem? other)
+    {
+        if (other is null)
+        {
+            return false;
+        }
+
+        if (Value == other.Value && Text == other.Text)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Text!.GetHashCode(), Value!.GetHashCode());
+    }
 }
 
 public static partial class GUI

@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using DevToys.CLI;
 using DevToys.Tools.Tools.Generators.HashAndChecksum;
-using DevToys.UnitTests.Mocks;
 
 namespace DevToys.UnitTests.Tools.Generators;
 
