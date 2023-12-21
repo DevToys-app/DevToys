@@ -18,7 +18,7 @@ namespace DevToys.Tools.Tools.Converters.Date;
     LongDisplayTitleResourceName = nameof(DateConverter.LongDisplayTitle),
     DescriptionResourceName = nameof(DateConverter.Description),
     AccessibleNameResourceName = nameof(DateConverter.AccessibleName))]
-[AcceptedDataTypeName(PredefinedCommonDataTypeNames.Text)]
+[AcceptedDataTypeName(PredefinedCommonDataTypeNames.Date)]
 internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
 {
     /// <summary>
@@ -222,7 +222,17 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
     // Smart detection handler.
     public void OnDataReceived(string dataTypeName, object? parsedData)
     {
-        throw new NotImplementedException();
+        if (dataTypeName == PredefinedCommonDataTypeNames.Date &&
+            parsedData is DateTimeOffset dateStrongTypedParsedData)
+        {
+            _timeYearInputNumber.Value(dateStrongTypedParsedData.Year);
+            _timeMonthInputNumber.Value(dateStrongTypedParsedData.Month);
+            _timeDayInputNumber.Value(dateStrongTypedParsedData.Day);
+            _timeHourInputNumber.Value(dateStrongTypedParsedData.Hour);
+            _timeMinuteInputNumber.Value(dateStrongTypedParsedData.Minute);
+            _timeSecondsInputNumber.Value(dateStrongTypedParsedData.Second);
+            _timeMillisecondsInputNumber.Value(dateStrongTypedParsedData.Millisecond);
+        }
     }
 
     public void Dispose()
