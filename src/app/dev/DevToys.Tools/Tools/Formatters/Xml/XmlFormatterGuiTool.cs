@@ -1,5 +1,4 @@
-﻿using DevToys.Api.Core;
-using DevToys.Tools.Helpers;
+﻿using DevToys.Tools.Helpers;
 using DevToys.Tools.Models;
 using Microsoft.Extensions.Logging;
 
@@ -29,7 +28,7 @@ internal sealed partial class XmlFormatterGuiTool : IGuiTool, IDisposable
         = new(name: $"{nameof(XmlFormatterGuiTool)}.{nameof(indentationMode)}", defaultValue: Indentation.TwoSpaces);
 
     /// <summary>
-    /// Which attributes are put on a new line
+    /// Whether XML attributes are put on a new line
     /// </summary>
     private static readonly SettingDefinition<bool> newLineOnAttributes
         = new(name: $"{nameof(XmlFormatterGuiTool)}.{nameof(newLineOnAttributes)}", defaultValue: false);
@@ -97,11 +96,10 @@ internal sealed partial class XmlFormatterGuiTool : IGuiTool, IDisposable
                         Setting("xml-text-newLineOnAttributes-setting")
                         .Icon("FluentSystemIcons", '\uf7ed')
                         .Title(XmlFormatter.NewLineOnAttributes)
+                        .Description(XmlFormatter.NewLineOnAttributesDescription)
                         .Handle(
                             _settingsProvider,
                             newLineOnAttributes,
-                            stateDescriptionWhenOn: XmlFormatter.NewLineOnAttributesDescription,
-                            stateDescriptionWhenOff: null,
                             OnSettingChanged
                         )
                     )
@@ -164,10 +162,10 @@ internal sealed partial class XmlFormatterGuiTool : IGuiTool, IDisposable
         _cancellationTokenSource?.Dispose();
         _cancellationTokenSource = new CancellationTokenSource();
 
-        WorkTask = FormatAsync(text, _cancellationTokenSource.Token);
+        WorkTask = FormatAsync(text, _cancellationTokenSource.Token, indentationMode, newLineOnAttributes);
     }
 
-    private async Task FormatAsync(string input, CancellationToken cancellationToken)
+    private async Task FormatAsync(string input, CancellationToken cancellationToken, SettingDefinition<Indentation> indentationSetting, SettingDefinition<bool> newLineOnAttributesetting)
     {
         using (await _semaphore.WaitAsync(cancellationToken))
         {
@@ -175,8 +173,8 @@ internal sealed partial class XmlFormatterGuiTool : IGuiTool, IDisposable
 
             ResultInfo<string> formatResult = XmlHelper.Format(
                 input,
-                _settingsProvider.GetSetting(indentationMode),
-                _settingsProvider.GetSetting(newLineOnAttributes),
+                _settingsProvider.GetSetting(indentationSetting),
+                _settingsProvider.GetSetting(newLineOnAttributesetting),
                 _logger);
 
             _outputTextArea.Text(formatResult.Data);

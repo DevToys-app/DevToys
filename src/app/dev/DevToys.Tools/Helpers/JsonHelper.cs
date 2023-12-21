@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using DevToys.Api.Core;
 using DevToys.Tools.Helpers.Core;
 using DevToys.Tools.Models;
 using Microsoft.Extensions.Logging;

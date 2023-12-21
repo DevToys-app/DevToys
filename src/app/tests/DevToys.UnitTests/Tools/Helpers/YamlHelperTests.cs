@@ -1,5 +1,4 @@
 ﻿using System.Threading;
-using DevToys.Api.Core;
 using DevToys.Tools.Helpers;
 using DevToys.Tools.Models;
 using DevToys.UnitTests.Mocks;

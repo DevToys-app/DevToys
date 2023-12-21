@@ -1,5 +1,4 @@
-﻿using DevToys.Api.Core;
-using DevToys.Tools.Helpers;
+﻿using DevToys.Tools.Helpers;
 using DevToys.Tools.Models;
 using Microsoft.Extensions.Logging;
 using OneOf;
@@ -53,11 +52,8 @@ internal sealed class Base64TextEncoderDecoderCommandLineTool : ICommandLineTool
             Console.Error.WriteLine(Base64TextEncoderDecoder.InvalidInputOrFileCommand);
             return -1;
         }
-        else
-        {
-            result = await Input.Value.ReadAllTextAsync(_fileStorage, cancellationToken);
-        }
 
+        result = await Input.Value.ReadAllTextAsync(_fileStorage, cancellationToken);
         if (!result.HasSucceeded)
         {
             Console.Error.WriteLine(Base64TextEncoderDecoder.InputFileNotFound);

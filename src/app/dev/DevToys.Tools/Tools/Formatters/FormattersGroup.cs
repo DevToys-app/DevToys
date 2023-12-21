@@ -8,7 +8,7 @@ internal class FormattersGroup : GuiToolGroup
     internal FormattersGroup()
     {
         IconFontName = "DevToys-Tools-Icons";
-        IconGlyph = '\u0103';
+        IconGlyph = '\u0122';
         DisplayTitle = Formatters.DisplayTitle;
         AccessibleName = Formatters.AccessibleName;
     }

@@ -1,5 +1,4 @@
-﻿using DevToys.Api.Core;
-using DevToys.Tools.Helpers;
+﻿using DevToys.Tools.Helpers;
 using DevToys.Tools.Models;
 using Microsoft.Extensions.Logging;
 using OneOf;
@@ -19,6 +18,7 @@ internal sealed class XmlFormatterCommandLineTool : ICommandLineTool
     [Import]
     private IFileStorage _fileStorage = null!;
 #pragma warning restore IDE0044 // Add readonly modifier
+
     [CommandLineOption(
         Name = "input",
         Alias = "i",

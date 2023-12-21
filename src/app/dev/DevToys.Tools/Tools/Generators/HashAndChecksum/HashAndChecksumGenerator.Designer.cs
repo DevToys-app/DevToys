@@ -205,6 +205,15 @@ namespace DevToys.Tools.Tools.Generators.HashAndChecksum {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please specify an input text or an input file.
+        /// </summary>
+        internal static string InvalidInputOrFileCommand {
+            get {
+                return ResourceManager.GetString("InvalidInputOrFileCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hash / Checksum Generator.
         /// </summary>
         internal static string LongDisplayTitle {

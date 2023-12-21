@@ -1,10 +1,10 @@
 ﻿using OneOf;
 
-namespace DevToys.Api.Core;
+namespace DevToys.Api;
 
 public static class OneOfExtensions
 {
-    public static Task<Stream> GetStreamAsync(
+    public static Task<ResultInfo<Stream>> GetStreamAsync(
         this OneOf<string, FileInfo> input,
         IFileStorage fileStorage,
         CancellationToken cancellationToken)
@@ -17,14 +17,22 @@ public static class OneOfExtensions
         return GetStreamAsync(OneOf<FileInfo, string>.FromT1(input.AsT0), fileStorage, cancellationToken);
     }
 
-    public static Task<Stream> GetStreamAsync(
+    public static async Task<ResultInfo<Stream>> GetStreamAsync(
         this OneOf<FileInfo, string> input,
         IFileStorage fileStorage,
         CancellationToken cancellationToken)
     {
-        return
+        return await
             input.Match(
-                inputFile => Task.FromResult(fileStorage.OpenReadFile(inputFile.FullName)),
+                async inputFile =>
+                {
+                    if (!fileStorage.FileExists(inputFile.FullName))
+                    {
+                        return new ResultInfo<Stream>(Stream.Null, false);
+                    }
+
+                    return new ResultInfo<Stream>(fileStorage.OpenReadFile(inputFile.FullName), true);
+                },
                 async inputString =>
                 {
                     var stringStream = new MemoryStream();
@@ -35,7 +43,7 @@ public static class OneOfExtensions
                     }
                     writer.Flush();
                     stringStream.Position = 0;
-                    return (Stream)stringStream;
+                    return new ResultInfo<Stream>((Stream)stringStream, true);
                 });
     }
 

@@ -15,7 +15,7 @@ public class XmlDataTypeDetectorTests
     [InlineData("<xml />", true)]
     [InlineData("<root><xml /></root>", true)]
     [InlineData("<root><xml test=\"true\" /></root>", true)]
-    [InlineData("<root>\r\n\t<xml test=\"true\" />\r\n</root>", true)]
+    [InlineData("   <root>\r\n\t<xml test=\"true\" />\r\n</root>", true)]
     public async Task TryDetectDataAsync(string input, bool expectedResult)
     {
         LoggingExtensions.LoggerFactory ??= LoggerFactory.Create(builder => { });

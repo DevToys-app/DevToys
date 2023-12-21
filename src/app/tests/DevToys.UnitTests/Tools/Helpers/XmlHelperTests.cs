@@ -1,5 +1,4 @@
-﻿using DevToys.Api.Core;
-using DevToys.Tools.Helpers;
+﻿using DevToys.Tools.Helpers;
 using DevToys.Tools.Models;
 using DevToys.UnitTests.Mocks;
 
@@ -14,8 +13,9 @@ public class XmlHelperTests
     [InlineData("<>", false)]
     [InlineData("</>", false)]
     [InlineData("<xml />", true)]
-    [InlineData("<root><xml /></root>", true)]
-    [InlineData("<root><xml test=\"true\" /></root>", true)]
+    [InlineData("<root><xml /></root>    ", true)]
+    [InlineData("    <root><xml test=\"true\" /></root>", true)]
+    [InlineData("    <root><xml test=\"true\" /></root    ", false)]
     public void IsValid(string input, bool expectedResult)
     {
         XmlHelper.IsValid(input, new MockILogger()).Should().Be(expectedResult);

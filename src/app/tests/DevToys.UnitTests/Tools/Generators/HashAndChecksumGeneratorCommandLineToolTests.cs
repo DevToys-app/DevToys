@@ -49,6 +49,20 @@ public sealed class HashAndChecksumGeneratorCommandLineToolTests : MefBasedTest
     }
 
     [Fact]
+    public async Task HashNonExistentFileOutputsError()
+    {
+        _tool.Input = TestDataProvider.GetFile(Path.Combine(_baseTestDataDirectory, "DoesNotExist.txt"));
+        ((MockIFileStorage)MefProvider.Import<IFileStorage>()).FileExistsResult = false;
+
+        using var consoleOutput = new ConsoleOutputMonitor();
+        int exitCode = await _tool.InvokeAsync(new MockILogger(), CancellationToken.None);
+        exitCode.Should().Be(-1);
+
+        string result = consoleOutput.GetError().Trim();
+        result.Should().Be(HashAndChecksumGenerator.InvalidInputOrFileCommand);
+    }
+
+    [Fact]
     public async Task HashNoAlgorithm()
     {
         _tool.Input = "Hello";

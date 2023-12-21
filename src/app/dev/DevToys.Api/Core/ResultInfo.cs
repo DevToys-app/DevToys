@@ -1,4 +1,4 @@
-﻿namespace DevToys.Api.Core;
+﻿namespace DevToys.Api;
 
 /// <summary>
 /// Record to contain both whether the task was a success and the resulting data

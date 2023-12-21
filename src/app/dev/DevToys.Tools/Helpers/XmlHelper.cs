@@ -1,9 +1,9 @@
 ﻿using System.Text;
 using System.Text.RegularExpressions;
-using DevToys.Tools.Models;
 using System.Xml;
+using DevToys.Tools.Models;
+using Markdig.Helpers;
 using Microsoft.Extensions.Logging;
-using DevToys.Api.Core;
 
 namespace DevToys.Tools.Helpers;
 
@@ -19,9 +19,7 @@ internal static class XmlHelper
             return false;
         }
 
-        input = input!.Trim();
-
-        if (!input.StartsWith("<") || !input.EndsWith(">"))
+        if (!ValidateFirstAndLastCharOfXml(input))
         {
             return false;
         }
@@ -55,8 +53,6 @@ internal static class XmlHelper
         {
             return new(string.Empty, false);
         }
-
-        input = input!.Trim();
 
         try
         {
@@ -125,5 +121,37 @@ internal static class XmlHelper
             logger.LogError(ex, "Xml formatter", $"Indentation: {indentationMode}");
             return new(ex.Message, false);
         }
+    }
+
+    /// <summary>
+    /// Validate that the XML starts with "<" and ends with ">", ignoring whitespace
+    /// </summary>
+    private static bool ValidateFirstAndLastCharOfXml(string input)
+    {
+        for (int i = 0; i < input.Length; ++i)
+        {
+            if (!input[i].IsWhitespace())
+            {
+                if (input[i] == '<')
+                {
+                    break;
+                }
+                return false;
+            }
+        }
+
+        for (int i = input.Length - 1; i >= 0; --i)
+        {
+            if (!input[i].IsWhitespace())
+            {
+                if (input[i] == '>')
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        return false;
     }
 }
