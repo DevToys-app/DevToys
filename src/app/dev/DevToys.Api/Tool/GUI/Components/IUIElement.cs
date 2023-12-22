@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace DevToys.Api;
+﻿namespace DevToys.Api;
 
 /// <summary>
 /// A base interface for all UI elements.

@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.Reflection;
-using DevToys.Api;
 using DevToys.Core.Tools.Metadata;
 using DevToys.Core.Tools.ViewItems;
 using DevToys.Localization;

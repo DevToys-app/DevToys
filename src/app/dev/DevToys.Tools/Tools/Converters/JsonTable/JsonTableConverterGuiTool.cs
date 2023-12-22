@@ -1,6 +1,4 @@
 ﻿using System.Data;
-using System.IO;
-using System.Threading;
 using DevToys.Tools.Tools.Converters.JsonTable;
 using Microsoft.Extensions.Logging;
 using static DevToys.Tools.Helpers.JsonTableHelper;
