@@ -141,19 +141,13 @@ internal sealed partial class JsonTableConverterGuiTool : IGuiTool, IDisposable
                         break;
 
                     case ConvertTarget.Save:
-                        Stream? fileStream = null;
-                        try
                         {
-                            fileStream = await _fileStorage.PickSaveFileAsync("txt", "csv");
+                            using Stream? fileStream = await _fileStorage.PickSaveFileAsync("txt", "csv");
                             if (fileStream is not null)
                             {
                                 using var writer = new StreamWriter(fileStream);
                                 writer.Write(conversionResult.Text);
                             }
-                        }
-                        finally
-                        {
-                            fileStream?.Dispose();
                         }
                         break;
                 }

@@ -29,7 +29,7 @@ internal sealed class MarkdownPreviewGuiTool : IGuiTool, IDisposable
     private static readonly SettingDefinition<MarkdownPreviewTheme> theme
         = new(
             name: $"{nameof(MarkdownPreviewGuiTool)}.{nameof(theme)}",
-            defaultValue: MarkdownPreviewTheme.Dark);
+            defaultValue: MarkdownPreviewTheme.Light);
 
     private enum GridRows
     {
@@ -52,10 +52,17 @@ internal sealed class MarkdownPreviewGuiTool : IGuiTool, IDisposable
     private CancellationTokenSource? _cancellationTokenSource;
 
     [ImportingConstructor]
-    public MarkdownPreviewGuiTool(ISettingsProvider settingsProvider)
+    public MarkdownPreviewGuiTool(ISettingsProvider settingsProvider, IThemeListener themeListener)
     {
         _logger = this.Log();
         _settingsProvider = settingsProvider;
+
+        // Override the theme with the one defined in the app settings.
+        _settingsProvider.SetSetting(
+            theme,
+            themeListener.ActualAppTheme == ApplicationTheme.Dark
+                ? MarkdownPreviewTheme.Dark
+                : MarkdownPreviewTheme.Light);
     }
 
     // For unit tests.
