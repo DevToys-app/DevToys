@@ -153,6 +153,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>RegExTester.resx</DependentUpon>
     </Compile>
+    <Compile Update="Tools\Text\SmartCalculator\SmartCalculator.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SmartCalculator.resx</DependentUpon>
+    </Compile>
     <Compile Update="Tools\Text\Text.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -256,6 +261,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>RegExTester.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Tools\Text\SmartCalculator\SmartCalculator.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SmartCalculator.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Tools\Text\Text.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Text.Designer.cs</LastGenOutput>
@@ -265,13 +274,26 @@
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\..\assets\font\DevToys-Tools-Icons.ttf" Link="Assets\fonts\DevToys-Tools-Icons.ttf" />
     <EmbeddedResource Include="Assets\GitHubMarkdown\index.html" />
+    <EmbeddedResource Include="Tools\Text\SmartCalculator\Core\Assets\defaultExchangeRates.json" />
+    <EmbeddedResource Include="Tools\Text\SmartCalculator\Features\Grammars\en-us\FunctionDefinition.json" />
+    <EmbeddedResource Include="Tools\Text\SmartCalculator\Features\Grammars\en-us\TokenDefinition.json" />
+    <EmbeddedResource Include="Tools\Text\SmartCalculator\Features\Grammars\en-us\UnitNames.json" />
+    <EmbeddedResource Include="Tools\Text\SmartCalculator\Features\Grammars\fr-fr\UnitNames.json" />
+    <EmbeddedResource Include="Tools\Text\SmartCalculator\Features\Grammars\SpecialTokenDefinition.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json"/>
-    <PackageReference Include="YamlDotNet"/>
+    <PackageReference Include="Microsoft.Recognizers.Text" />
+    <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="YamlDotNet" />
     <PackageReference Include="Markdig" />
     <PackageReference Include="Markdown.ColorCode" />
+    <PackageReference Include="Microsoft.Recognizers.Text" />
+    <PackageReference Include="Microsoft.Recognizers.Text.Number" />
+    <PackageReference Include="Microsoft.Recognizers.Text.NumberWithUnit" />
+    <PackageReference Include="Microsoft.Recognizers.Text.DateTime" />
+    <PackageReference Include="System.Text.RegularExpressions" />
+    <PackageReference Include="UnitsNet" />
   </ItemGroup>
 
   <Target Name="IncludeAllFilesInTargetDir" BeforeTargets="_GetPackageFiles">
@@ -284,7 +306,7 @@
   </Target>
 
   <Target Name="CopyPluginAfterBuild" AfterTargets="Pack">
-    <Copy SourceFiles="$(PackageOutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(PluginNupkgPath)" SkipUnchangedFiles="false" OverwriteReadOnlyFiles="true" Retries="10" RetryDelayMilliseconds="1000"/>
+    <Copy SourceFiles="$(PackageOutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(PluginNupkgPath)" SkipUnchangedFiles="false" OverwriteReadOnlyFiles="true" Retries="10" RetryDelayMilliseconds="1000" />
   </Target>
 
 </Project>

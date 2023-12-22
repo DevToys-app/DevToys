@@ -1,0 +1,82 @@
+{
+  "general": {
+    "random": [
+      "random number between NUMERIC and NUMERIC",
+      "random between NUMERIC and NUMERIC"
+    ],
+    "midpoint": [
+      "midpoint between NUMERIC and NUMERIC",
+      "average between NUMERIC and NUMERIC"
+    ],
+    "remainder": [
+      "remainder of NUMERIC divided by NUMERIC"
+    ]
+  },
+  "percentage": {
+    "percentOf": [
+      "PERCENTAGE of NUMERIC"
+    ],
+    "percentOff": [
+      "PERCENTAGE off NUMERIC"
+    ],
+    "percentOn": [
+      "PERCENTAGE on NUMERIC"
+    ],
+    "isPercentOfWhat": [
+      "NUMERIC is PERCENTAGE of what",
+      "NUMERIC is PERCENTAGE of what number",
+      "NUMERIC is PERCENTAGE off what",
+      "NUMERIC is PERCENTAGE off what number",
+      "PERCENTAGE of what is NUMERIC",
+      "PERCENTAGE of what number is NUMERIC",
+      "PERCENTAGE off what is NUMERIC",
+      "PERCENTAGE off what number is NUMERIC"
+    ],
+    "isPercentOnWhat": [
+      "NUMERIC is PERCENTAGE on what",
+      "NUMERIC is PERCENTAGE on what number",
+      "NUMERIC is what plus PERCENTAGE",
+      "PERCENTAGE on what is NUMERIC",
+      "PERCENTAGE on what number is NUMERIC"
+    ],
+    "isWhatPercentOn": [
+      "NUMERIC is what % on NUMERIC",
+      "NUMERIC is what percent on NUMERIC",
+      "NUMERIC is what percentage on NUMERIC",
+      "NUMERIC as a % on NUMERIC",
+      "NUMERIC as % on NUMERIC",
+      "NUMERIC as percent on NUMERIC",
+      "NUMERIC as a percent on NUMERIC",
+      "NUMERIC as percentage on NUMERIC",
+      "NUMERIC as a percentage on NUMERIC"
+    ],
+    "isWhatPercentOff": [
+      "NUMERIC is what % off NUMERIC",
+      "NUMERIC is what percent off NUMERIC",
+      "NUMERIC is what percentage off NUMERIC",
+      "NUMERIC as a % off NUMERIC",
+      "NUMERIC as % off NUMERIC",
+      "NUMERIC as a percent off NUMERIC",
+      "NUMERIC as percent off NUMERIC",
+      "NUMERIC as a percentage off NUMERIC",
+      "NUMERIC as percentage off NUMERIC"
+    ],
+    "isWhatPercentOf": [
+      "NUMERIC is what % of NUMERIC",
+      "NUMERIC is what percent of NUMERIC",
+      "NUMERIC is what percentage of NUMERIC",
+      "NUMERIC represents what % of NUMERIC",
+      "NUMERIC represents what percent of NUMERIC",
+      "NUMERIC represents what percentage of NUMERIC",
+      "NUMERIC off NUMERIC is what %",
+      "NUMERIC off NUMERIC is what percent",
+      "NUMERIC off NUMERIC is what percentage",
+      "NUMERIC as a % of NUMERIC",
+      "NUMERIC as % of NUMERIC",
+      "NUMERIC as a percent of NUMERIC",
+      "NUMERIC as percent of NUMERIC",
+      "NUMERIC as a percentage of NUMERIC",
+      "NUMERIC as percentage of NUMERIC"
+    ]
+  }
+}

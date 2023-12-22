@@ -1,0 +1,89 @@
+{
+  "Length": {
+    "Centimètres": "Centimeter",
+    "Décamètre": "Decameter",
+    "Décimètres": "Decimeter",
+    "Pied": "Foot",
+    "Hectomètre": "Hectometer",
+    "Pouce": "Inch",
+    "Kilomètres": "Kilometer",
+    "Mètres": "Meter",
+    "Micromètres": "Micrometer",
+    "Mile": "Mile",
+    "Millimètres": "Millimeter",
+    "Nanomètres": "Nanometer",
+    "Yard": "Yard"
+  },
+  "Information": {
+    "Bit": "Bit",
+    "Kilobit": "Kilobit",
+    "Megabit": "Megabit",
+    "Mégabit": "Megabit",
+    "Gigabit": "Gigabit",
+    "Terabit": "Terabit",
+    "Petabit": "Petabit",
+    "octet": "Byte",
+    "Kilooctet": "Kilobyte",
+    "Mégaoctet": "Megabyte",
+    "Gigaoctet": "Gigabyte",
+    "Téraoctet": "Terabyte",
+    "Pétaoctet": "Petabyte"
+  },
+  "Area": {
+    "Acre": "Acre",
+    "Hectare": "Hectare",
+    "Hectomètre carré": "Hectare",
+    "Centimètre carré": "SquareCentimeter",
+    "Décimètre carré": "SquareDecimeter",
+    "Pied carré": "SquareFoot",
+    "Pouce carré": "SquareInch",
+    "Kilomètre carré": "SquareKilometer",
+    "Mètre carré": "SquareMeter",
+    "Mile carré": "SquareMile",
+    "Millimètre carré": "SquareMillimeter"
+  },
+  "Speed": {
+    "Mètre par seconde": "MeterPerSecond",
+    "Kilomètre par heure": "KilometerPerHour",
+    "Kilomètre par minute": "KilometerPerMinute",
+    "Kilomètre par seconde": "KilometerPerSecond",
+    "Miles par heure": "MilePerHour",
+    "Noeuds": "Knot",
+    "Pied par seconde": "FootPerSecond",
+    "Pied par minute": "FootPerMinute"
+  },
+  "Volume": {
+    "Mètre cube": "CubicMeter",
+    "Centimètre cube": "CubicCentimeter",
+    "Millimètre cube": "CubicMillimeter",
+    "Kilomètre cube": "CubicKilometer",
+    "Pieds cube": "CubicFoot",
+    "Litre": "Liter",
+    "Décilitre": "Deciliter",
+    "Centilitre": "Centiliter",
+    "Milliliter": "Milliliter",
+    "Gallon": "UsGallon",
+    "Pintes": "UsPint",
+    "Baril": "OilBarrel",
+    "Onces": "UsOunce"
+  },
+  "Mass": {
+    "Kilogramme": "Kilogram",
+    "Gram": "Gram",
+    "Milligramme": "Milligram",
+    "Microgramme": "Microgram",
+    "Tonne": "Tonne",
+    "Livre": "Pound"
+  },
+  "Angle": {
+    "Degree": "Degree",
+    "Radian": "Radian"
+  },
+  "Temperature": {
+    "Kelvin": "Kelvin",
+    "F": "DegreeFahrenheit",
+    "R": "DegreeRankine",
+    "C": "DegreeCelsius",
+    "Degré": "DegreeCelsius"
+  }
+}

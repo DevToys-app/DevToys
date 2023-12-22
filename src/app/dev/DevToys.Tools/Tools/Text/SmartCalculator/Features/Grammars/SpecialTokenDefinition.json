@@ -1,0 +1,15 @@
+{
+  "common_tokens": {
+    "comment_operators": [
+      "//"
+    ],
+    "header_operators": [
+      "#",
+      "##",
+      "###",
+      "####",
+      "#####",
+      "######"
+    ]
+  }
+}

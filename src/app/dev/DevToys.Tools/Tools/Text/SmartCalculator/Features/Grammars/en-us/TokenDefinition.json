@@ -1,0 +1,76 @@
+{
+  "common_tokens": {
+    "equal_to_operators": [
+      "==",
+      "equal",
+      "equals"
+    ],
+    "not_equal_to_operators": [
+      "!=",
+      "=!",
+      "not equal"
+    ],
+    "less_than_or_equal_to_operators": [
+      "<=",
+      "=<",
+      "less than or equal to"
+    ],
+    "less_than_operators": [
+      "<",
+      "less than"
+    ],
+    "greater_than_or_equal_to_operators": [
+      ">=",
+      "=>",
+      "greater than or equal to"
+    ],
+    "greater_than_operators": [
+      ">",
+      "greater than"
+    ],
+    "addition_operators": [
+      "+",
+      "plus",
+      "and",
+      "along with"
+    ],
+    "substration_operators": [
+      "−", // U+2212
+      "–", // U+2013
+      "-", // U+002D
+      "minus"
+    ],
+    "multiplication_operators": [
+      "*",
+      "×",
+      "x",
+      "⋅",
+      "·",
+      "times",
+      "multiplied by",
+      "multiply by"
+    ],
+    "division_operators": [
+      "/",
+      "÷",
+      "per",
+      "divided by",
+      "divide by"
+    ],
+    "if_identifiers": [
+      "if"
+    ],
+    "then_identifiers": [
+      "then"
+    ],
+    "else_identifiers": [
+      "else"
+    ],
+    "boolean_true_identifiers": [
+      "true"
+    ],
+    "boolean_false_identifiers": [
+      "false"
+    ]
+  }
+}

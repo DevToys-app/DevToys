@@ -4,6 +4,7 @@
     <DotNetVersion>8.0.0</DotNetVersion>
     <XUnit>2.5.0</XUnit>
     <GirCore>0.5.0-preview.1</GirCore>
+    <MicrosoftRecognizersTextVersion>1.8.8</MicrosoftRecognizersTextVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="CommunityToolkit.Common" Version="$(CommunityToolkitVersion)" />
@@ -28,6 +29,13 @@
     <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="$(DotNetVersion)" Condition="'$(UseMaui)' != 'true'" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="$(DotNetVersion)" Condition="'$(UseMaui)' != 'true'" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+    <PackageVersion Include="Microsoft.Recognizers.Text" Version="$(MicrosoftRecognizersTextVersion)" />
+    <PackageVersion Include="Microsoft.Recognizers.Text.Number" Version="$(MicrosoftRecognizersTextVersion)" />
+    <PackageVersion Include="Microsoft.Recognizers.Text.NumberWithUnit" Version="$(MicrosoftRecognizersTextVersion)" />
+    <PackageVersion Include="Microsoft.Recognizers.Text.DataTypes.TimexExpression" Version="$(MicrosoftRecognizersTextVersion)" />
+    <PackageVersion Include="Microsoft.Recognizers.Text.DateTime" Version="$(MicrosoftRecognizersTextVersion)" />
+    <PackageVersion Include="Microsoft.Recognizers.Text.Choice" Version="$(MicrosoftRecognizersTextVersion)" />
+    <PackageVersion Include="Microsoft.Recognizers.Text.Sequence" Version="$(MicrosoftRecognizersTextVersion)" />
     <PackageVersion Include="Microsoft.TypeScript.MSBuild" Version="5.3.2" />
     <PackageVersion Include="Microsoft.Windows.CsWin32" Version="0.3.18-beta" />
     <PackageVersion Include="Moq" Version="4.18.4" />
@@ -39,7 +47,9 @@
     <PackageVersion Include="System.Text.Json" Version="$(DotNetVersion)" />
     <PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
     <PackageVersion Include="System.ComponentModel.Composition" Version="$(DotNetVersion)" />
+    <PackageVersion Include="System.Text.RegularExpressions" Version="4.3.1" />
     <PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
+    <PackageVersion Include="UnitsNet" Version="4.144.0" />
     <PackageVersion Include="xunit" Version="$(XUnit)" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="$(XUnit)" />
     <PackageVersion Include="YamlDotNet" Version="13.0.0" />
