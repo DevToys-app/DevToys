@@ -31,7 +31,4 @@ internal sealed partial class XmlDataTypeDetector : IDataTypeDetector
 
         return ValueTask.FromResult(DataDetectionResult.Unsuccessful);
     }
-
-    [LoggerMessage(1, LogLevel.Error, "An unexpected exception happened while trying to detect some XML data.")]
-    partial void LogError(Exception ex);
 }

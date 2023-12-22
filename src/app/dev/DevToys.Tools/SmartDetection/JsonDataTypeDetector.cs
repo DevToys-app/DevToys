@@ -32,7 +32,4 @@ internal sealed partial class JsonDataTypeDetector : IDataTypeDetector
 
         return ValueTask.FromResult(DataDetectionResult.Unsuccessful);
     }
-
-    [LoggerMessage(1, LogLevel.Error, "An unexpected exception happened while trying to detect some JSON data.")]
-    partial void LogError(Exception ex);
 }

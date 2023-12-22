@@ -46,7 +46,4 @@ internal sealed partial class JsonArrayDataTypeDetector : IDataTypeDetector
             return false;
         }
     }
-
-    [LoggerMessage(1, LogLevel.Error, "An unexpected exception happened while trying to detect some JSON Array data.")]
-    partial void LogError(Exception ex);
 }
