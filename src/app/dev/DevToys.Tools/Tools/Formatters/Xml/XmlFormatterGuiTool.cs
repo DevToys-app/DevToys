@@ -111,10 +111,12 @@ internal sealed partial class XmlFormatterGuiTool : IGuiTool, IDisposable
                         .Vertical()
                         .WithLeftPaneChild(
                             _inputTextArea
+                                .Language("xml")
                                 .Title(XmlFormatter.Input)
                                 .OnTextChanged(OnInputTextChanged))
                         .WithRightPaneChild(
                             _outputTextArea
+                                .Language("xml")
                                 .Title(XmlFormatter.Output)
                                 .ReadOnly()
                                 .Extendable())
