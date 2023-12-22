@@ -85,7 +85,7 @@ internal sealed class LipsumGenerator
         }
         else
         {
-            throw new NotImplementedException("Sorry, this is not yet implemented.");
+            throw new NotImplementedException();
         }
 
         int length = data.Length;
