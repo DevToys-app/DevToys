@@ -62,7 +62,7 @@ public interface IUIGridCell
 }
 
 [DebuggerDisplay($"Row = {{{nameof(Row)}}}, Column = {{{nameof(Column)}}}, RowSpan = {{{nameof(RowSpan)}}}, ColumnSpan = {{{nameof(ColumnSpan)}}}")]
-internal sealed class UIGridCell : IUIGridCell, INotifyPropertyChanged
+internal sealed class UIGridCell : ViewModelBase, IUIGridCell
 {
     private int _row;
     private int _column;
@@ -113,27 +113,6 @@ internal sealed class UIGridCell : IUIGridCell, INotifyPropertyChanged
     public event EventHandler? RowSpanChanged;
     public event EventHandler? ColumnSpanChanged;
     public event EventHandler? ChildChanged;
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    private void SetPropertyValue<T>(
-        ref T field,
-        T value,
-        EventHandler? propertyChangedEventHandler,
-        [CallerMemberName] string? propertyName = null)
-    {
-        if (!EqualityComparer<T>.Default.Equals(field, value))
-        {
-            field = value;
-            propertyChangedEventHandler?.Invoke(this, EventArgs.Empty);
-            OnPropertyChanged(propertyName);
-        }
-    }
-
-    private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-    {
-        PropertyChanged?.Invoke(this, new(propertyName));
-    }
 }
 
 public static partial class GUI
@@ -153,6 +132,7 @@ public static partial class GUI
     /// <param name="column">The column alignment of the cell.</param>
     /// <param name="rowSpan">A value that indicates the total number of rows that the cell content spans within the parent grid.</param>
     /// <param name="columnSpan">A value that indicates the total number of columns that the cell content spans within the parent grid.</param>
+    /// <param name="child">The child element to display in the cell.</param>
     public static IUIGridCell Cell(int row, int column, int rowSpan, int columnSpan, IUIElement? child = null)
     {
         return new UIGridCell()
@@ -168,6 +148,7 @@ public static partial class GUI
     /// </summary>
     /// <param name="row">The row where the cell should be placed.</param>
     /// <param name="column">The column where the cell should be placed.</param>
+    /// <param name="child">The child element to display in the cell.</param>
     public static IUIGridCell Cell<TRow, TColumn>(TRow row, TColumn column, IUIElement? child = null)
         where TRow : Enum
         where TColumn : Enum
@@ -188,6 +169,7 @@ public static partial class GUI
     /// <param name="lastRow">The last row where the cell should appear.</param>
     /// <param name="firstColumn">The first column where the cell should appear.</param>
     /// <param name="lastColumn">The last column where the cell should appear.</param>
+    /// <param name="child">The child element to display in the cell.</param>
     public static IUIGridCell Cell<TRow, TColumn>(
         TRow firstRow,
         TRow lastRow,

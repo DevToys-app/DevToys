@@ -12,6 +12,7 @@ public interface IFileStorage
     /// </summary>
     string AppCacheDirectory { get; }
 
+    // TODO: There's a problem with this API. It's not possible to know what file type the user selected. The file type can impact the data written into the file (i.e PNG vs JPEG).
     /// <summary>
     /// Prompt the user to select a location to save a file, and decide of the file name.
     /// </summary>

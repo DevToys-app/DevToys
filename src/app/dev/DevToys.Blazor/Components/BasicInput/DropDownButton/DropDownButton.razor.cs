@@ -1,9 +1,10 @@
-﻿using DevToys.Blazor.Core.Services;
+﻿using System.Collections.Specialized;
+using DevToys.Blazor.Core.Services;
 using Microsoft.AspNetCore.Components.Web;
 
 namespace DevToys.Blazor.Components;
 
-public partial class DropDownButton<TItem> : StyledComponentBase where TItem : DropDownListItem
+public partial class DropDownButton<TItem> : StyledComponentBase, IDisposable where TItem : DropDownListItem
 {
     private bool _isOpen;
     private ListBox<TItem>? _listBox;
@@ -46,9 +47,25 @@ public partial class DropDownButton<TItem> : StyledComponentBase where TItem : D
     [Parameter]
     public ICollection<TItem>? Items { get; set; }
 
+    public void Dispose()
+    {
+        if (Items is INotifyCollectionChanged notifyCollection)
+        {
+            notifyCollection.CollectionChanged -= OnItemsChanged;
+        }
+    }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender)
+        {
+            if (Items is INotifyCollectionChanged notifyCollection)
+            {
+                notifyCollection.CollectionChanged += OnItemsChanged;
+            }
+        }
 
         if (_isOpen && _listBox is not null)
         {
@@ -106,5 +123,10 @@ public partial class DropDownButton<TItem> : StyledComponentBase where TItem : D
             CloseDropDown(null);
             _listBox.SelectedItem.OnClick.InvokeAsync(_listBox.SelectedItem).Forget();
         }
+    }
+
+    private void OnItemsChanged(object? sender, NotifyCollectionChangedEventArgs e)
+    {
+        StateHasChanged();
     }
 }

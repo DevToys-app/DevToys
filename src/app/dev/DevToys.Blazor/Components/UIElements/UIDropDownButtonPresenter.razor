@@ -1,0 +1,28 @@
+﻿@namespace DevToys.Blazor.Components.UIElements
+@using DevToys.Api;
+@inherits ComponentBase
+
+<DropDownButton id="@UIDropDownButton.Id"
+                IsVisible="@UIDropDownButton.IsVisible"
+                IsEnabled="@UIDropDownButton.IsEnabled"
+                HorizontalAlignment="@UIDropDownButton.HorizontalAlignment"
+                VerticalAlignment="@UIDropDownButton.VerticalAlignment"
+                Items="@MenuItemComponents">
+    @if (!string.IsNullOrWhiteSpace(UIDropDownButton.IconFontName) && UIDropDownButton.IconGlyph != '\0')
+    {
+        <StackPanel Orientiation="UIOrientation.Horizontal" Spacing="4">
+            <FontIcon Glyph="@UIDropDownButton.IconGlyph"
+                      FontFamily="@UIDropDownButton.IconFontName"
+                      Height="16"
+                      Width="16" />
+            @if (!string.IsNullOrEmpty(UIDropDownButton?.Text))
+            {
+                <TextBlock Text="@UIDropDownButton?.Text" NoWrap="true" />
+            }
+        </StackPanel>
+    }
+    else
+    {
+        <TextBlock Text="@UIDropDownButton?.Text" NoWrap="true" />
+    }
+</DropDownButton>
