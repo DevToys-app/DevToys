@@ -17,6 +17,7 @@ You can contribute to DevToys app by:
     * ASP.NET and web development
     * Node.js development
     * .NET desktop development
+1. Install latest [Node.js](https://nodejs.org/).
 
 ### Finalize your environment
 1. Clone this repository.

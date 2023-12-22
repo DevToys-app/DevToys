@@ -160,7 +160,7 @@ namespace DevToys.Tools.Tools.Graphic.ImageConverter {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Directory where the result should be persisted, or a single file path, if the input is also a single file path..
+        ///   Looks up a localized string similar to Directory where the result should be saved, or a single file path, if the input is also a single file path..
         /// </summary>
         internal static string OutputDirectoryOptionDescription {
             get {

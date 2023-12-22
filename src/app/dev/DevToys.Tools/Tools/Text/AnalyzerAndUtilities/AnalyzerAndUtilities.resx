@@ -177,8 +177,14 @@
   <data name="EndOfLineSequenceUnknown" xml:space="preserve">
     <value>Unknown</value>
   </data>
+  <data name="InputFileNotFound" xml:space="preserve">
+    <value>Input file selected doesn't exist.</value>
+  </data>
   <data name="InputOptionDescription" xml:space="preserve">
     <value>Text or path to a file to treat.</value>
+  </data>
+  <data name="InvalidInputOrFileCommand" xml:space="preserve">
+    <value>Please specify an input text or an input file</value>
   </data>
   <data name="InverseCase" xml:space="preserve">
     <value>InVeRsE CaSe</value>
@@ -196,7 +202,7 @@
     <value>lower case</value>
   </data>
   <data name="OutputFileOptionDescription" xml:space="preserve">
-    <value>File where the result should be persisted.</value>
+    <value>Path to the output file</value>
   </data>
   <data name="Paragraphs" xml:space="preserve">
     <value>Paragraphs</value>

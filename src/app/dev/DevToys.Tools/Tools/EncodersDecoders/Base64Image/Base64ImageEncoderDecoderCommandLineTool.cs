@@ -1,4 +1,5 @@
-﻿using DevToys.Tools.SmartDetection;
+﻿using DevToys.Tools.Helpers;
+using DevToys.Tools.SmartDetection;
 using DevToys.Tools.Strings.GlobalStrings;
 using Microsoft.Extensions.Logging;
 using OneOf;
@@ -94,14 +95,7 @@ internal sealed partial class Base64ImageEncoderDecoderCommandLineTool : IComman
                 _ => throw new NotSupportedException(),
             };
 
-        if (OutputFile is null)
-        {
-            Console.WriteLine(output);
-        }
-        else
-        {
-            await File.WriteAllTextAsync(OutputFile.FullName, output, cancellationToken);
-        }
+        await FileHelper.WriteOutputAsync(output, OutputFile, cancellationToken);
     }
 
     private async ValueTask<int> DecodeAsync(string input, CancellationToken cancellationToken)

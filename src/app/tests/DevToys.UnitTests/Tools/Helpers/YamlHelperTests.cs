@@ -25,7 +25,7 @@ public class YamlHelperTests
     public void ConvertFromJsonShouldReturnEmptyString(string input, string expected)
     {
         // prepare & act
-        ToolResult<string> actual = YamlHelper.ConvertFromJson(
+        ResultInfo<string> actual = YamlHelper.ConvertFromJson(
             input,
             Indentation.FourSpaces,
             new MockILogger(),
@@ -43,7 +43,7 @@ public class YamlHelperTests
         string expected = string.Empty;
 
         // act
-        ToolResult<string> actual = YamlHelper.ConvertFromJson(
+        ResultInfo<string> actual = YamlHelper.ConvertFromJson(
             input,
             Indentation.Minified,
             new MockILogger(),
@@ -61,7 +61,7 @@ public class YamlHelperTests
         string expected = "Expected a digit ('0'-'9'), but instead reached end of data. LineNumber: 0 | BytePositionInLine: 1.";
 
         // act
-        ToolResult<string> actual = YamlHelper.ConvertFromJson(
+        ResultInfo<string> actual = YamlHelper.ConvertFromJson(
             input,
             Indentation.Minified,
             new MockILogger(),
@@ -76,7 +76,7 @@ public class YamlHelperTests
     [InlineData("{\r\n    \"key\": \"value\",\r\n    \"key2\": 1\r\n  }", "key: value\r\nkey2: 1\r\n")]
     public void ConvertFromJsonWithTwoSpaces(string input, string expectedResult)
     {
-        ToolResult<string> result = YamlHelper.ConvertFromJson(
+        ResultInfo<string> result = YamlHelper.ConvertFromJson(
              input,
              Indentation.TwoSpaces,
              new MockILogger(),
@@ -89,7 +89,7 @@ public class YamlHelperTests
     [InlineData("{\r\n    \"key\": \"value\",\r\n    \"key2\": 1\r\n  }", "key: value\r\nkey2: 1\r\n")]
     public void ConvertFromJsonWithFourSpaces(string input, string expectedResult)
     {
-        ToolResult<string> result = YamlHelper.ConvertFromJson(
+        ResultInfo<string> result = YamlHelper.ConvertFromJson(
              input,
              Indentation.FourSpaces,
              new MockILogger(),
@@ -102,7 +102,7 @@ public class YamlHelperTests
     [InlineData("[\r\n  {\r\n    \"key\": \"value\",\r\n    \"key2\": 1\r\n  }\r\n]", "- key: value\r\n  key2: 1\r\n")]
     public void ConvertFromJsonWithJsonRootArrayWithTwoSpaces(string input, string expectedResult)
     {
-        ToolResult<string> result = YamlHelper.ConvertFromJson(
+        ResultInfo<string> result = YamlHelper.ConvertFromJson(
              input,
              Indentation.TwoSpaces,
              new MockILogger(),
@@ -115,7 +115,7 @@ public class YamlHelperTests
     [InlineData("[\r\n  {\r\n    \"key\": \"value\",\r\n    \"key2\": 1\r\n  }\r\n]", "-   key: value\r\n    key2: 1\r\n")]
     public void ConvertFromJsonWithJsonRootArrayWithFourSpaces(string input, string expectedResult)
     {
-        ToolResult<string> result = YamlHelper.ConvertFromJson(
+        ResultInfo<string> result = YamlHelper.ConvertFromJson(
              input,
              Indentation.FourSpaces,
              new MockILogger(),

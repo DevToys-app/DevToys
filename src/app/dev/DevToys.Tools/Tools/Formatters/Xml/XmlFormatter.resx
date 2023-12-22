@@ -118,49 +118,63 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Image Converter tool</value>
+    <value>XML Formatter tool</value>
   </data>
-  <data name="ConfigurationTitle" xml:space="preserve">
+  <data name="Configuration" xml:space="preserve">
     <value>Configuration</value>
   </data>
-  <data name="ConversionTitle" xml:space="preserve">
-    <value>Conversion</value>
-  </data>
-  <data name="ConvertedFormatDescription" xml:space="preserve">
-    <value>Select the image format to convert into</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="DeleteAll" xml:space="preserve">
-    <value>Delete all</value>
-  </data>
   <data name="Description" xml:space="preserve">
-    <value>Lossless image converter</value>
+    <value>Indent or minify XML data</value>
   </data>
-  <data name="FileSizeDisplay" xml:space="preserve">
-    <value>{0:0.##} {1}</value>
-    <comment>{0} is a decimal number representing a file size. {1} is a unit, like Bytes, KB, MB, GB, TB</comment>
+  <data name="FourSpaces" xml:space="preserve">
+    <value>4 spaces</value>
   </data>
-  <data name="FormatOptionDescription" xml:space="preserve">
-    <value>The format to convert images to</value>
+  <data name="Indentation" xml:space="preserve">
+    <value>Indentation</value>
+  </data>
+  <data name="IndentationOptionDescription" xml:space="preserve">
+    <value>Select which indentation you want to use</value>
+  </data>
+  <data name="Input" xml:space="preserve">
+    <value>Input</value>
+  </data>
+  <data name="InputFileNotFound" xml:space="preserve">
+    <value>Input file selected doesn't exist.</value>
   </data>
   <data name="InputOptionDescription" xml:space="preserve">
-    <value>A set of image file paths or directories that contain images to convert</value>
+    <value>Text or path to a file containing the xml to format</value>
+  </data>
+  <data name="InvalidInputOrFileCommand" xml:space="preserve">
+    <value>Please specify an input text or an input file</value>
   </data>
   <data name="LongDisplayTitle" xml:space="preserve">
-    <value>Image Converter</value>
+    <value>XML Formatter</value>
   </data>
-  <data name="OutputDirectoryOptionDescription" xml:space="preserve">
-    <value>Directory where the result should be saved, or a single file path, if the input is also a single file path.</value>
+  <data name="Minified" xml:space="preserve">
+    <value>Minified</value>
   </data>
-  <data name="SaveAll" xml:space="preserve">
-    <value>Save all</value>
+  <data name="NewLineOnAttributes" xml:space="preserve">
+    <value>New Line on Attributes</value>
   </data>
-  <data name="SaveAs" xml:space="preserve">
-    <value>Save as</value>
+  <data name="NewLineOnAttributesDescription" xml:space="preserve">
+    <value>Whether to put attributes on a new line</value>
+  </data>
+  <data name="OneTab" xml:space="preserve">
+    <value>1 tab</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>Output</value>
+  </data>
+  <data name="OutputFileOptionDescription" xml:space="preserve">
+    <value>Path to the output file</value>
+  </data>
+  <data name="SearchDisplayName" xml:space="preserve">
+    <value>XML Formatter</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Image Converter</value>
+    <value>XML</value>
+  </data>
+  <data name="TwoSpaces" xml:space="preserve">
+    <value>2 spaces</value>
   </data>
 </root>

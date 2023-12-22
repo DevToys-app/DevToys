@@ -241,11 +241,29 @@ namespace DevToys.Tools.Tools.Text.AnalyzerAndUtilities {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Input file selected doesn&apos;t exist..
+        /// </summary>
+        internal static string InputFileNotFound {
+            get {
+                return ResourceManager.GetString("InputFileNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Text or path to a file to treat..
         /// </summary>
         internal static string InputOptionDescription {
             get {
                 return ResourceManager.GetString("InputOptionDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please specify an input text or an input file.
+        /// </summary>
+        internal static string InvalidInputOrFileCommand {
+            get {
+                return ResourceManager.GetString("InvalidInputOrFileCommand", resourceCulture);
             }
         }
         
@@ -295,7 +313,7 @@ namespace DevToys.Tools.Tools.Text.AnalyzerAndUtilities {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File where the result should be persisted..
+        ///   Looks up a localized string similar to Path to the output file.
         /// </summary>
         internal static string OutputFileOptionDescription {
             get {

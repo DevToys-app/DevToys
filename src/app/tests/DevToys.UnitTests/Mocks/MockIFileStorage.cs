@@ -9,11 +9,13 @@ namespace DevToys.UnitTests.Mocks;
 [Export(typeof(IFileStorage))]
 internal class MockIFileStorage : IFileStorage
 {
+    public bool FileExistsResult { get; set; } = true;
+
     public string AppCacheDirectory => throw new NotImplementedException();
 
     public bool FileExists(string relativeOrAbsoluteFilePath)
     {
-        throw new NotImplementedException();
+        return FileExistsResult;
     }
 
     public Stream OpenReadFile(string relativeOrAbsoluteFilePath)

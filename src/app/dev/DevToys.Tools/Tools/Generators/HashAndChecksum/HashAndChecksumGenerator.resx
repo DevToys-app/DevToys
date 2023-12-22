@@ -165,6 +165,9 @@
   <data name="InputTextTitle" xml:space="preserve">
     <value>Input text</value>
   </data>
+  <data name="InvalidInputOrFileCommand" xml:space="preserve">
+    <value>Please specify an input text or an input file</value>
+  </data>
   <data name="LongDisplayTitle" xml:space="preserve">
     <value>Hash / Checksum Generator</value>
   </data>

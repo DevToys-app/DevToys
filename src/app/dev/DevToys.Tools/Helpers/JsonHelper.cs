@@ -140,7 +140,7 @@ internal static partial class JsonHelper
     /// <summary>
     /// Convert a Yaml string to Json
     /// </summary>
-    internal static ToolResult<string> ConvertFromYaml(
+    internal static ResultInfo<string> ConvertFromYaml(
         string? input,
         Indentation indentationMode,
         ILogger logger,

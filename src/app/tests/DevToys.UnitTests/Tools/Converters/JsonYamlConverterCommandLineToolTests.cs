@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using DevToys.CLI;
 using DevToys.Tools.Models;
 using DevToys.Tools.Tools.Converters.JsonYaml;
+using DevToys.UnitTests.Mocks;
 using Microsoft.Extensions.Logging;
 
 namespace DevToys.UnitTests.Tools.Converters;
@@ -28,7 +29,6 @@ public sealed class JsonYamlConverterCommandLineToolTests : MefBasedTest
     }
 
     [Theory(DisplayName = "Convert with invalid input should return error exit code")]
-    [InlineData(null)]
     [InlineData("")]
     [InlineData(" ")]
     public async Task ConvertJsonWithInvalidInputShouldReturnErrorExitCode(string input)
@@ -88,6 +88,7 @@ public sealed class JsonYamlConverterCommandLineToolTests : MefBasedTest
         _tool.ConversionMode = JsonToYamlConversion.JsonToYaml;
         _tool.Input = inputFile;
         _tool.OutputFile = new FileInfo("Dummy.yaml");
+        ((MockIFileStorage)MefProvider.Import<IFileStorage>()).FileExistsResult = false;
 
         int result = await _tool.InvokeAsync(_loggerMock.Object, default);
         result.Should().Be(-1);

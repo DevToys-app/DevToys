@@ -142,7 +142,7 @@
     <value>Indentation</value>
   </data>
   <data name="IndentationOptionDescription" xml:space="preserve">
-    <value>Select which indentation do you want to use</value>
+    <value>Select which indentation you want to use</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>Input</value>
@@ -154,7 +154,7 @@
     <value>Text or path to a file to convert from json or yaml</value>
   </data>
   <data name="InvalidInputOrFileCommand" xml:space="preserve">
-    <value>Please specify an input text or a input file</value>
+    <value>Please specify an input text or an input file</value>
   </data>
   <data name="InvalidJson" xml:space="preserve">
     <value>&lt;Invalid JSON data&gt;</value>
@@ -172,10 +172,7 @@
     <value>Output</value>
   </data>
   <data name="OutputFileOptionDescription" xml:space="preserve">
-    <value>File where the result should be persisted.</value>
-  </data>
-  <data name="SearchDisplayName" xml:space="preserve">
-    <value>JSON &lt;&gt; YAML Converter</value>
+    <value>Path to the output file</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value />

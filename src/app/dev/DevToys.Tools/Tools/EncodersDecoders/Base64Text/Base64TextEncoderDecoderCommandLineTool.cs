@@ -1,5 +1,4 @@
-﻿using DevToys.Api.Core;
-using DevToys.Tools.Helpers;
+﻿using DevToys.Tools.Helpers;
 using DevToys.Tools.Models;
 using Microsoft.Extensions.Logging;
 using OneOf;
@@ -47,31 +46,38 @@ internal sealed class Base64TextEncoderDecoderCommandLineTool : ICommandLineTool
 
     public async ValueTask<int> InvokeAsync(ILogger logger, CancellationToken cancellationToken)
     {
-        string? input = null;
-
-        if (Input.HasValue)
+        ResultInfo<string> result;
+        if (!Input.HasValue)
         {
-            input = await Input.Value.ReadAllTextAsync(_fileStorage, cancellationToken);
+            Console.Error.WriteLine(Base64TextEncoderDecoder.InvalidInputOrFileCommand);
+            return -1;
         }
 
-        Guard.IsNotNull(input);
+        result = await Input.Value.ReadAllTextAsync(_fileStorage, cancellationToken);
+        if (!result.HasSucceeded)
+        {
+            Console.Error.WriteLine(Base64TextEncoderDecoder.InputFileNotFound);
+            return -1;
+        }
+
+        Guard.IsNotNull(result.Data);
 
         string output;
         switch (EncodingConversionMode)
         {
             case EncodingConversion.Encode:
-                output = Base64Helper.FromTextToBase64(input, EncodingMode, logger, cancellationToken);
+                output = Base64Helper.FromTextToBase64(result.Data, EncodingMode, logger, cancellationToken);
                 break;
 
             case EncodingConversion.Decode:
-                if (!Base64Helper.IsBase64DataStrict(input))
+                if (!Base64Helper.IsBase64DataStrict(result.Data))
                 {
                     cancellationToken.ThrowIfCancellationRequested();
                     Console.Error.WriteLine(Base64TextEncoderDecoder.InvalidBase64);
                     return -1;
                 }
 
-                output = Base64Helper.FromBase64ToText(input, EncodingMode, logger, cancellationToken);
+                output = Base64Helper.FromBase64ToText(result.Data, EncodingMode, logger, cancellationToken);
                 break;
 
             default:
@@ -80,15 +86,7 @@ internal sealed class Base64TextEncoderDecoderCommandLineTool : ICommandLineTool
 
         cancellationToken.ThrowIfCancellationRequested();
 
-        if (OutputFile is null)
-        {
-            Console.WriteLine(output);
-        }
-        else
-        {
-            await File.WriteAllTextAsync(OutputFile.FullName, output, cancellationToken);
-        }
-
+        await FileHelper.WriteOutputAsync(output, OutputFile, cancellationToken);
         return 0;
     }
 }

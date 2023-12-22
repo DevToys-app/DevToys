@@ -1,5 +1,4 @@
 ﻿using System.Security.Authentication;
-using DevToys.Api.Core;
 using DevToys.Api.Tool.CLI;
 using DevToys.Tools.Helpers;
 using Microsoft.Extensions.Logging;
@@ -67,7 +66,14 @@ internal sealed class HashAndChecksumGeneratorCommandLineTool : ICommandLineTool
 
         try
         {
-            using Stream inputStream = await Input.Value.GetStreamAsync(_fileStorage, cancellationToken);
+            ResultInfo<Stream> streamResult = await Input.Value.GetStreamAsync(_fileStorage, cancellationToken);
+            using Stream inputStream = streamResult.Data;
+
+            if (inputStream == null || inputStream == Stream.Null)
+            {
+                Console.Error.WriteLine(HashAndChecksumGenerator.InvalidInputOrFileCommand);
+                return -1;
+            }
 
             string? fileHashString = null;
             ConsoleProgressBar? progressBar = Silent ? null : new ConsoleProgressBar();
@@ -87,8 +93,8 @@ internal sealed class HashAndChecksumGeneratorCommandLineTool : ICommandLineTool
 
             if (ChecksumVerification.HasValue)
             {
-                string? checksum = await ChecksumVerification.Value.ReadAllTextAsync(_fileStorage, cancellationToken);
-                if (string.Equals(checksum, fileHashString, StringComparison.OrdinalIgnoreCase))
+                ResultInfo<string> checksum = await ChecksumVerification.Value.ReadAllTextAsync(_fileStorage, cancellationToken);
+                if (checksum.HasSucceeded && string.Equals(checksum.Data, fileHashString, StringComparison.OrdinalIgnoreCase))
                 {
                     Console.WriteLine(HashAndChecksumGenerator.ChecksumVerificationSucceeded);
                     return 0;
