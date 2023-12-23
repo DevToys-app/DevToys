@@ -158,6 +158,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Text.resx</DependentUpon>
     </Compile>
+    <Compile Update="Tools\Text\XMLValidator\XMLValidator.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>XMLValidator.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Strings\GlobalStrings\GlobalStrings.resx">
@@ -260,6 +265,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Text.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Tools\Text\XMLValidator\XMLValidator.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>XMLValidator.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -268,8 +277,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json"/>
-    <PackageReference Include="YamlDotNet"/>
+    <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="YamlDotNet" />
     <PackageReference Include="Markdig" />
     <PackageReference Include="Markdown.ColorCode" />
   </ItemGroup>
@@ -284,7 +293,7 @@
   </Target>
 
   <Target Name="CopyPluginAfterBuild" AfterTargets="Pack">
-    <Copy SourceFiles="$(PackageOutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(PluginNupkgPath)" SkipUnchangedFiles="false" OverwriteReadOnlyFiles="true" Retries="10" RetryDelayMilliseconds="1000"/>
+    <Copy SourceFiles="$(PackageOutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(PluginNupkgPath)" SkipUnchangedFiles="false" OverwriteReadOnlyFiles="true" Retries="10" RetryDelayMilliseconds="1000" />
   </Target>
 
 </Project>
