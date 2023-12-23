@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 namespace DevToys.Tools.SmartDetection;
 
 [Export(typeof(IDataTypeDetector))]
-[DataTypeName("Xsd", baseName: PredefinedCommonDataTypeNames.Xml)]
+[DataTypeName(PredefinedCommonDataTypeNames.Xsd, baseName: PredefinedCommonDataTypeNames.Xml)]
 internal sealed partial class XsdDataTypeDetector : IDataTypeDetector
 {
     private readonly ILogger _logger;

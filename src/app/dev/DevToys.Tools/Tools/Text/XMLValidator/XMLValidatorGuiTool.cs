@@ -18,7 +18,7 @@ namespace DevToys.Tools.Tools.Text.XMLValidator;
     AccessibleNameResourceName = nameof(XMLValidator.AccessibleName),
     SearchKeywordsResourceName = nameof(XMLValidator.SearchKeywords))]
 [AcceptedDataTypeName(PredefinedCommonDataTypeNames.Xml)]
-[AcceptedDataTypeName("Xsd")]
+[AcceptedDataTypeName(PredefinedCommonDataTypeNames.Xsd)]
 internal sealed class XMLValidatorGuiTool : IGuiTool, IDisposable
 {
     private enum GridRows
@@ -106,7 +106,7 @@ internal sealed class XMLValidatorGuiTool : IGuiTool, IDisposable
         {
             _xmlInputText.Text(xml);
         }
-        else if (dataTypeName == "Xsd" && parsedData is string xsd)
+        else if (dataTypeName == PredefinedCommonDataTypeNames.Xsd && parsedData is string xsd)
         {
             _xsdInputText.Text(xsd);
         }
