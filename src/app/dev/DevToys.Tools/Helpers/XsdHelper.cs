@@ -22,11 +22,7 @@ internal static class XsdHelper
             var xmlSchema = XmlSchema.Read(reader, null);
             return xmlSchema is not null;
         }
-        catch (XmlException)
-        {
-            return false;
-        }
-        catch (XmlSchemaException)
+        catch (Exception ex) when (ex is XmlException || ex is XmlSchemaException)
         {
             return false;
         }
