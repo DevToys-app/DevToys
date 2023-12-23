@@ -163,17 +163,15 @@ public static partial class GUI
     /// <summary>
     /// Sets the action to run when the value changed.
     /// </summary>
-    public static T OnValueChanged<T>(this T element, Func<double, ValueTask> actionOnValueChanged) where T : IUISingleLineTextInput
+    public static IUINumberInput OnValueChanged(this IUINumberInput element, Func<double, ValueTask> actionOnValueChanged)
     {
-        if (element is UINumberInput strongElement)
-        {
-            strongElement.ActionOnTextChanged
-                = (value) =>
-                {
-                    strongElement.OnValueChanged();
-                    return actionOnValueChanged?.Invoke(strongElement.Value) ?? ValueTask.CompletedTask;
-                };
-        }
+        var numberInput = (UINumberInput)element;
+        numberInput.ActionOnTextChanged
+            = (value) =>
+            {
+                numberInput.OnValueChanged();
+                return actionOnValueChanged?.Invoke(numberInput.Value) ?? ValueTask.CompletedTask;
+            };
 
         return element;
     }
@@ -181,18 +179,16 @@ public static partial class GUI
     /// <summary>
     /// Sets the action to run when the value changed.
     /// </summary>
-    public static T OnValueChanged<T>(this T element, Action<double> actionOnValueChanged) where T : IUISingleLineTextInput
+    public static IUINumberInput OnValueChanged(this IUINumberInput element, Action<double> actionOnValueChanged)
     {
-        if (element is UINumberInput strongElement)
-        {
-            strongElement.ActionOnTextChanged
-                = (value) =>
-                {
-                    strongElement.OnValueChanged();
-                    actionOnValueChanged?.Invoke(strongElement.Value);
-                    return ValueTask.CompletedTask;
-                };
-        }
+        var numberInput = (UINumberInput)element;
+        numberInput.ActionOnTextChanged
+            = (value) =>
+            {
+                numberInput.OnValueChanged();
+                actionOnValueChanged?.Invoke(numberInput.Value);
+                return ValueTask.CompletedTask;
+            };
 
         return element;
     }
