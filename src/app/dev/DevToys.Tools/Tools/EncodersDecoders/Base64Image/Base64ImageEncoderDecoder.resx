@@ -120,6 +120,12 @@
   <data name="AccessibleName" xml:space="preserve">
     <value>Base64 Image Encoder and Decoder tool</value>
   </data>
+  <data name="Base64Image" xml:space="preserve">
+    <value>Image preview</value>
+  </data>
+  <data name="Base64Input" xml:space="preserve">
+    <value>Base64 text</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Encode and decode Base64 image data</value>
   </data>

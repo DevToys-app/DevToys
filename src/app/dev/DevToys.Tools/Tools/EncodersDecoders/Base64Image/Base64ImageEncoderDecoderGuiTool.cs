@@ -59,9 +59,12 @@ internal sealed partial class Base64ImageEncoderDecoderGuiTool : IGuiTool, IDisp
             isScrollable: true,
             SplitGrid()
                 .Vertical()
+                .LeftPaneLength(new UIGridLength(4, UIGridUnitType.Fraction))
+                .RightPaneLength(new UIGridLength(2, UIGridUnitType.Fraction))
 
                 .WithLeftPaneChild(
                     _inputText
+                        .Title(Base64ImageEncoderDecoder.Base64Input)
                         .AlwaysWrap()
                         .CanCopyWhenEditable()
                         .OnTextChanged(OnInputTextChanged))
@@ -91,7 +94,8 @@ internal sealed partial class Base64ImageEncoderDecoderGuiTool : IGuiTool, IDisp
                                 GridRows.ImagePreviewer,
                                 GridColumns.Stretch,
 
-                                _imageViewer))));
+                                _imageViewer
+                                    .Title(Base64ImageEncoderDecoder.Base64Image)))));
 
     public async void OnDataReceived(string dataTypeName, object? parsedData)
     {

@@ -70,6 +70,24 @@ namespace DevToys.Tools.Tools.EncodersDecoders.Base64Image {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Image preview.
+        /// </summary>
+        internal static string Base64Image {
+            get {
+                return ResourceManager.GetString("Base64Image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Base64 text.
+        /// </summary>
+        internal static string Base64Input {
+            get {
+                return ResourceManager.GetString("Base64Input", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Encode and decode Base64 image data.
         /// </summary>
         internal static string Description {
