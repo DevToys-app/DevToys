@@ -1,4 +1,5 @@
-﻿using OneOf;
+﻿using System.Collections.ObjectModel;
+using OneOf;
 
 namespace DevToys.Api;
 
@@ -14,15 +15,26 @@ public interface IUIImageViewer : IUITitledElement
     OneOf<FileInfo, Image, SandboxedFileReader>? ImageSource { get; }
 
     /// <summary>
+    /// Gets the custom actions to perform when the user saves the image with a specific file extension.
+    /// </summary>
+    IReadOnlyDictionary<string, Func<FileStream, ValueTask>> CustomActionPerFileExtensionOnSaving { get; }
+
+    /// <summary>
     /// Raised when <see cref="ImageSource"/> is changed.
     /// </summary>
     event EventHandler? ImageSourceChanged;
+
+    /// <summary>
+    /// Raised when <see cref="CustomActionPerFileExtensionOnSaving"/> is changed.
+    /// </summary>
+    event EventHandler? CustomActionPerFileExtensionOnSavingChanged;
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}, FileName = {{{nameof(Title)}}}")]
 internal sealed class UIImageViewer : UITitledElement, IUIImageViewer, IDisposable
 {
     private OneOf<FileInfo, Image, SandboxedFileReader>? _imageSource = default;
+    private IReadOnlyDictionary<string, Func<FileStream, ValueTask>> _customActionPerFileExtensionOnSaving = ReadOnlyDictionary<string, Func<FileStream, ValueTask>>.Empty;
 
     internal UIImageViewer(string? id)
         : base(id)
@@ -45,7 +57,14 @@ internal sealed class UIImageViewer : UITitledElement, IUIImageViewer, IDisposab
         }
     }
 
+    public IReadOnlyDictionary<string, Func<FileStream, ValueTask>> CustomActionPerFileExtensionOnSaving
+    {
+        get => _customActionPerFileExtensionOnSaving;
+        internal set => SetPropertyValue(ref _customActionPerFileExtensionOnSaving, value, CustomActionPerFileExtensionOnSavingChanged);
+    }
+
     public event EventHandler? ImageSourceChanged;
+    public event EventHandler? CustomActionPerFileExtensionOnSavingChanged;
 
     public void Dispose()
     {
@@ -111,6 +130,44 @@ public static partial class GUI
         var imageViewer = (UIImageViewer)element;
         imageViewer.ImageSource = image;
         imageViewer.DisposeAutomatically = disposeAutomatically;
+        return element;
+    }
+
+    /// <summary>
+    /// Adds a custom action to perform when the user saves the image with a specific file extension.
+    /// </summary>
+    /// <remarks>
+    /// As a side effect of this method, the specified file extension will be available in the Save File Dialog when the user decides to save the image.
+    /// When the user saves the image with the specified <paramref name="fileExtension"/>, the specified <paramref name="action"/> will be invoked
+    /// with a <see cref="FileStream"/> pointing to the file to save. The <paramref name="action"/> is responsible for writing the image to the file.
+    /// </remarks>
+    /// <param name="fileExtension">The file extension to handle</param>
+    /// <param name="action">The action to perform when the user wishes to save the image with the given <paramref name="fileExtension"/>.</param>
+    public static IUIImageViewer ManuallyHandleSaveAs(this IUIImageViewer element, string fileExtension, Func<FileStream, ValueTask> action)
+    {
+        fileExtension = "." + fileExtension.ToLowerInvariant().Trim().TrimStart('.');
+
+        var imageViewer = (UIImageViewer)element;
+        var customActions = new Dictionary<string, Func<FileStream, ValueTask>>(imageViewer.CustomActionPerFileExtensionOnSaving)
+        {
+            [fileExtension] = action
+        };
+        imageViewer.CustomActionPerFileExtensionOnSaving = new ReadOnlyDictionary<string, Func<FileStream, ValueTask>>(customActions);
+        return element;
+    }
+
+    /// <summary>
+    /// Removes the custom action to perform when the user saves the image with a specific file extension.
+    /// </summary>
+    /// <param name="fileExtension">The file extension to remove.</param>
+    public static IUIImageViewer RemoveManuallyHandleSaveAs(this IUIImageViewer element, string fileExtension)
+    {
+        fileExtension = "." + fileExtension.ToLowerInvariant().Trim().TrimStart('.');
+
+        var imageViewer = (UIImageViewer)element;
+        var customActions = imageViewer.CustomActionPerFileExtensionOnSaving.ToDictionary();
+        customActions.Remove(fileExtension);
+        imageViewer.CustomActionPerFileExtensionOnSaving = new ReadOnlyDictionary<string, Func<FileStream, ValueTask>>(customActions);
         return element;
     }
 
