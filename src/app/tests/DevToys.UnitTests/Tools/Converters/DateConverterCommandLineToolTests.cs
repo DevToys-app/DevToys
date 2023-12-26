@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel.__Internals;
 using DevToys.CLI;
 using DevToys.Tools.Models;
 using DevToys.Tools.Tools.Converters.Date;
@@ -32,8 +33,8 @@ public sealed class DateConverterCommandLineToolTests : MefBasedTest
     [InlineData(" ")]
     public async Task ConvertJsonWithInvalidInputShouldReturnErrorExitCode(string input)
     {
+        _tool.Input = input;
         _tool.FormatOption = DateFormat.Seconds;
-        _tool.TimeZoneOption = input;
 
         int result = await _tool.InvokeAsync(_loggerMock.Object, default);
         result.Should().Be(-1);
@@ -54,7 +55,7 @@ public sealed class DateConverterCommandLineToolTests : MefBasedTest
         string timeZoneString,
         long exceptedTimestamp)
     {
-        _tool.DateOption = dateTimeString;
+        _tool.Input = dateTimeString;
         _tool.EpochOption = epochString;
         _tool.TimeZoneOption = timeZoneString;
         _tool.FormatOption = DateFormat.Seconds;
@@ -79,7 +80,7 @@ public sealed class DateConverterCommandLineToolTests : MefBasedTest
         string timeZoneString,
         long exceptedTimestamp)
     {
-        _tool.DateOption = dateTimeString;
+        _tool.Input = dateTimeString;
         _tool.TimeZoneOption = timeZoneString;
         _tool.FormatOption = DateFormat.Seconds;
 
@@ -108,7 +109,7 @@ public sealed class DateConverterCommandLineToolTests : MefBasedTest
         string timeZoneString,
         string exceptedDateTimeString)
     {
-        _tool.NumberOption = timestamp;
+        _tool.Input = timestamp;
         _tool.EpochOption = epochString;
         _tool.TimeZoneOption = timeZoneString;
         _tool.FormatOption = DateFormat.Seconds;
@@ -133,7 +134,7 @@ public sealed class DateConverterCommandLineToolTests : MefBasedTest
     string timeZoneString,
     string exceptedDateTimeString)
     {
-        _tool.NumberOption = timestamp;
+        _tool.Input = timestamp;
         _tool.TimeZoneOption = timeZoneString;
         _tool.FormatOption = DateFormat.Seconds;
 
@@ -162,7 +163,7 @@ public sealed class DateConverterCommandLineToolTests : MefBasedTest
         string timeZoneString,
         long exceptedTimestamp)
     {
-        _tool.DateOption = dateTimeString;
+        _tool.Input = dateTimeString;
         _tool.EpochOption = epochString;
         _tool.TimeZoneOption = timeZoneString;
         _tool.FormatOption = DateFormat.Milliseconds;
@@ -187,7 +188,7 @@ public sealed class DateConverterCommandLineToolTests : MefBasedTest
         string timeZoneString,
         long exceptedTimestamp)
     {
-        _tool.DateOption = dateTimeString;
+        _tool.Input = dateTimeString;
         _tool.TimeZoneOption = timeZoneString;
         _tool.FormatOption = DateFormat.Milliseconds;
 
@@ -216,7 +217,7 @@ public sealed class DateConverterCommandLineToolTests : MefBasedTest
         string timeZoneString,
         string exceptedDateTimeString)
     {
-        _tool.NumberOption = timestamp;
+        _tool.Input = timestamp;
         _tool.EpochOption = epochString;
         _tool.TimeZoneOption = timeZoneString;
         _tool.FormatOption = DateFormat.Milliseconds;
@@ -241,7 +242,7 @@ public sealed class DateConverterCommandLineToolTests : MefBasedTest
     string timeZoneString,
     string exceptedDateTimeString)
     {
-        _tool.NumberOption = timestamp;
+        _tool.Input = timestamp;
         _tool.TimeZoneOption = timeZoneString;
         _tool.FormatOption = DateFormat.Milliseconds;
 
@@ -267,7 +268,7 @@ public sealed class DateConverterCommandLineToolTests : MefBasedTest
         string timeZoneString,
         long exceptedTimestamp)
     {
-        _tool.DateOption = dateTimeString;
+        _tool.Input = dateTimeString;
         _tool.TimeZoneOption = timeZoneString;
         _tool.FormatOption = DateFormat.Ticks;
 
@@ -291,7 +292,7 @@ public sealed class DateConverterCommandLineToolTests : MefBasedTest
         string timeZoneString,
         string exceptedDateTimeString)
     {
-        _tool.NumberOption = timestamp;
+        _tool.Input = timestamp;
         _tool.TimeZoneOption = timeZoneString;
         _tool.FormatOption = DateFormat.Ticks;
 

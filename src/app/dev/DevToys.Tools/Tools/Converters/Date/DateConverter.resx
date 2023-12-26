@@ -138,9 +138,6 @@
   <data name="HourTitle" xml:space="preserve">
     <value>Hour (24 hour)</value>
   </data>
-  <data name="InvalidValue" xml:space="preserve">
-    <value>Invalid value</value>
-  </data>
   <data name="TimeZoneTitle" xml:space="preserve">
     <value>Time zone</value>
   </data>
@@ -163,7 +160,7 @@
     <value>Date Converter</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
-    <value>Time Date Timezone Epoch</value>
+    <value>Time Date Timezone Epoch Timestamp Ticks</value>
     <comment>Alternative search keywords. Enables searching for words that are not included in Description, MenuDisplayName, and SearchDisplayName.</comment>
   </data>
   <data name="SecondsTitle" xml:space="preserve">
@@ -221,23 +218,23 @@
     <value>Milliseconds</value>
   </data>
   <data name="DateOptionDescription" xml:space="preserve">
-    <value>Date to convert. Supported format: "ISO 8601"</value>
+    <value>Date to convert. Supported format: "ISO 8601" example 2023-11-22T19:58:07.0000000+00:00</value>
     <comment>CLI parameter description</comment>
   </data>
   <data name="EpochOptionDescription" xml:space="preserve">
-    <value>Epoch to use. Supported format: "ISO 8601"</value>
+    <value>Epoch to use. Supported format: "ISO 8601" example 1970-01-01T00:00:00.0000000+00:00</value>
     <comment>CLI parameter description</comment>
   </data>
   <data name="FormatOptionDescription" xml:space="preserve">
     <value>Format to use default Seconds</value>
     <comment>CLI parameter description</comment>
   </data>
-  <data name="NumberOptionDescription" xml:space="preserve">
-    <value>Number to convert. Supported format: "Ticks", "Seconds", "Milliseconds"</value>
+  <data name="InputDescription" xml:space="preserve">
+    <value>Input to convert in long or Date supported format "ISO 8601" example 2023-11-22T19:58:07.0000000+00:00</value>
     <comment>CLI parameter description</comment>
   </data>
   <data name="TimezoneOptionDescription" xml:space="preserve">
-    <value>Timezone to use.</value>
+    <value>Timezone to use (supported timezones: https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/default-time-zones?view=windows-11&amp;WT.mc_id=DT-MVP-5001664&amp;source=post_page-----cff0e2b37f52--------------------------------#time-zones).</value>
     <comment>CLI parameter description</comment>
   </data>
   <data name="InvalidDateTimeCommand" xml:space="preserve">
@@ -249,7 +246,10 @@
     <comment>CLI error message</comment>
   </data>
   <data name="InvalidTimeZoneCommand" xml:space="preserve">
-    <value>Please specify a timezone</value>
+    <value>Unable to find the Timezone Provided please check if the timezone exist here https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/default-time-zones?view=windows-11&amp;WT.mc_id=DT-MVP-5001664&amp;source=post_page-----cff0e2b37f52--------------------------------#time-zones</value>
     <comment>CLI error message</comment>
+  </data>
+  <data name="InvalidValue" xml:space="preserve">
+    <value>Please specify an input number or date</value>
   </data>
 </root>

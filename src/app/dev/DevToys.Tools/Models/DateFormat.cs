@@ -1,6 +1,6 @@
 ﻿namespace DevToys.Tools.Models;
 
-public enum DateFormat
+internal enum DateFormat
 {
     Ticks,
     Seconds,

@@ -15,14 +15,11 @@ internal static class DateHelper
         return true;
     }
 
-    internal static async Task<ToolResult<DateTimeOffset>> ConvertToDateTimeUtcAsync(
+    internal static ResultInfo<DateTimeOffset> ConvertToDateTimeUtc(
         long value,
         DateTimeOffset currentEpoch,
-        DateFormat format,
-        CancellationToken cancellationToken)
+        DateFormat format)
     {
-        await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
-
         DateTimeOffset conversionResult = format switch
         {
             DateFormat.Ticks => new DateTime(value, DateTimeKind.Utc),
@@ -31,18 +28,14 @@ internal static class DateHelper
             _ => throw new NotSupportedException(""),
         };
 
-        cancellationToken.ThrowIfCancellationRequested();
-        return new(conversionResult);
+        return new(conversionResult, true);
     }
 
-    internal static async Task<ToolResult<long>> ConvertToLongAsync(
+    internal static ResultInfo<long> ConvertToLong(
         DateTimeOffset value,
         DateTimeOffset epoch,
-        DateFormat format,
-        CancellationToken cancellationToken)
+        DateFormat format)
     {
-        await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
-
         DateTimeOffset dateTimeOffsetUtc = TimeZoneInfo.ConvertTime(value, TimeZoneInfo.Utc);
         TimeSpan elapsedTime = dateTimeOffsetUtc - epoch;
         long result = format switch
@@ -52,11 +45,10 @@ internal static class DateHelper
             DateFormat.Milliseconds => (long)elapsedTime.TotalMilliseconds,
             _ => throw new NotSupportedException(""),
         };
-        cancellationToken.ThrowIfCancellationRequested();
         return new(result);
     }
 
-    internal static ToolResult<DateTimeOffset> ChangeDateTime(
+    internal static ResultInfo<DateTimeOffset> ChangeDateTime(
         int value,
         DateTimeOffset target,
         TimeZoneInfo timeZoneInfo,

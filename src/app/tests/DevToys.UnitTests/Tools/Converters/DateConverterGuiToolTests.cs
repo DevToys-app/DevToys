@@ -6,72 +6,40 @@ using DevToys.Tools.Tools.Converters.Date;
 
 namespace DevToys.UnitTests.Tools.Converters;
 
-[Collection(nameof(TestParallelizationDisabled))]
 public class DateConverterGuiToolTests : MefBasedTest
 {
-    private readonly UIToolView _toolView;
+    private const string ToolName = "DateConverter";
+    private const string NumberInputText = "date-converter-number-input";
+    private const string SelectTimeZoneList = "date-converter-timezone-dropdown";
 
-    private readonly DateConverterGuiTool _tool;
-
-    private readonly IUIInfoBar _errorInfoBar;
-
-    private readonly IUINumberInput _timeStampInputText;
-
-    private readonly IUISelectDropDownList _timeZoneDropDownList;
-
-    private readonly IUISetting _formatSetting;
+    #region Settings
+    private const string DateFormatSetting = "date-converter-format-setting";
+    #endregion
 
     #region EpochUiInputs
-    private readonly IUINumberInput _epochYearInputNumber;
-    private readonly IUINumberInput _epochMonthInputNumber;
-    private readonly IUINumberInput _epochDayInputNumber;
-    private readonly IUINumberInput _epochHourInputNumber;
-    private readonly IUINumberInput _epochMinuteInputNumber;
-    private readonly IUINumberInput _epochSecondsInputNumber;
-    private readonly IUINumberInput _epochMillisecondsInputNumber;
+    private const string UseCustomEpochSwitch = "date-converter-use-custom-epoch-switch";
+    private const string EpochYearInputNumber = "date-converter-epoch-input-year";
+    private const string EpochMonthInputNumber = "date-converter-epoch-input-month";
+    private const string EpochDayInputNumber = "date-converter-epoch-input-day";
+    private const string EpochHourInputNumber = "date-converter-epoch-input-hour";
+    private const string EpochMinuteInputNumber = "date-converter-epoch-input-minute";
+    private const string EpochSecondsInputNumber = "date-converter-epoch-input-second";
+    private const string EpochMillisecondsInputNumber = "date-converter-epoch-input-millisecond";
     #endregion
 
     #region DateTimeUiInputs
-    private readonly IUINumberInput _timeYearInputNumber;
-    private readonly IUINumberInput _timeMonthInputNumber;
-    private readonly IUINumberInput _timeDayInputNumber;
-    private readonly IUINumberInput _timeHourInputNumber;
-    private readonly IUINumberInput _timeMinuteInputNumber;
-    private readonly IUINumberInput _timeSecondsInputNumber;
-    private readonly IUINumberInput _timeMillisecondsInputNumber;
+    private const string DateYearInputNumber = "date-converter-input-time-year";
+    private const string DateMonthInputNumber = "date-converter-input-time-month";
+    private const string DateDayInputNumber = "date-converter-input-time-day";
+    private const string DateHourInputNumber = "date-converter-input-time-hour";
+    private const string DateMinuteInputNumber = "date-converter-input-time-minute";
+    private const string DateSecondsInputNumber = "date-converter-input-time-second";
+    private const string DateMillisecondsInputNumber = "date-converter-input-time-millisecond";
     #endregion
 
     public DateConverterGuiToolTests()
-        : base(typeof(DateConverterGuiTool).Assembly)
-    {
-        _tool = (DateConverterGuiTool)MefProvider.ImportMany<IGuiTool, GuiToolMetadata>()
-            .Single(t => t.Metadata.InternalComponentName == "DateConverter")
-            .Value;
-
-        _toolView = _tool.View;
-
-        _errorInfoBar = (IUIInfoBar)_toolView.GetChildElementById("error-info-bar");
-
-        _timeStampInputText = (IUINumberInput)_toolView.GetChildElementById("timestamp-input-value");
-        _formatSetting = (IUISetting)_toolView.GetChildElementById("timestamp-format-setting");
-        _timeZoneDropDownList = (IUISelectDropDownList)_toolView.GetChildElementById("timestamp-timezone-dropdown");
-
-        _epochYearInputNumber = (IUINumberInput)_toolView.GetChildElementById("timestamp-epoch-input-year");
-        _epochMonthInputNumber = (IUINumberInput)_toolView.GetChildElementById("timestamp-epoch-input-time-month");
-        _epochDayInputNumber = (IUINumberInput)_toolView.GetChildElementById("timestamp-epoch-input-time-day");
-        _epochHourInputNumber = (IUINumberInput)_toolView.GetChildElementById("timestamp-epoch-input-time-hour");
-        _epochMinuteInputNumber = (IUINumberInput)_toolView.GetChildElementById("timestamp-epoch-input-time-minute");
-        _epochSecondsInputNumber = (IUINumberInput)_toolView.GetChildElementById("timestamp-epoch-input-time-second");
-        _epochMillisecondsInputNumber = (IUINumberInput)_toolView.GetChildElementById("timestamp-epoch-input-time-millisecond");
-
-        _timeYearInputNumber = (IUINumberInput)_toolView.GetChildElementById("timestamp-input-time-year");
-        _timeMonthInputNumber = (IUINumberInput)_toolView.GetChildElementById("timestamp-input-time-month");
-        _timeDayInputNumber = (IUINumberInput)_toolView.GetChildElementById("timestamp-input-time-day");
-        _timeHourInputNumber = (IUINumberInput)_toolView.GetChildElementById("timestamp-input-time-hour");
-        _timeMinuteInputNumber = (IUINumberInput)_toolView.GetChildElementById("timestamp-input-time-minute");
-        _timeSecondsInputNumber = (IUINumberInput)_toolView.GetChildElementById("timestamp-input-time-second");
-        _timeMillisecondsInputNumber = (IUINumberInput)_toolView.GetChildElementById("timestamp-input-time-millisecond");
-    }
+    : base(typeof(DateConverterGuiTool).Assembly)
+    { }
 
     #region DateTimeSeconds
 
@@ -79,83 +47,92 @@ public class DateConverterGuiToolTests : MefBasedTest
     [InlineData("1870-01-01T00:00:00.0000000Z", "1870-01-01T00:00:00.0000000Z", "UTC", 0)]
     [InlineData("1923-11-23T19:58:07.0000000Z", "1870-01-01T00:00:00.0000000Z", "UTC", 1700683087)]
     [InlineData("1800-11-22T19:58:07.0000000Z", "1870-01-01T00:00:00.0000000Z", "UTC", -2180836913)]
-    [InlineData("1870-01-01T00:00:00.0000000Z", "1870-01-01T00:00:00.0000000Z", "Pacific Standard Time", 0)]
-    [InlineData("1923-11-23T19:58:07.0000000Z", "1870-01-01T00:00:00.0000000Z", "Pacific Standard Time", 1700683087)]
-    [InlineData("1800-11-22T19:58:07.0000000Z", "1870-01-01T00:00:00.0000000Z", "Pacific Standard Time", -2180836913)]
+    [InlineData("1870-01-01T00:00:00.0000000Z", "1870-01-01T00:00:00.0000000Z", "Pacific Standard Time", 28800)]
+    [InlineData("1923-11-23T19:58:07.0000000Z", "1870-01-01T00:00:00.0000000Z", "Pacific Standard Time", 1700711887)]
+    [InlineData("1800-11-22T19:58:07.0000000Z", "1870-01-01T00:00:00.0000000Z", "Pacific Standard Time", -2180808113)]
     public async Task ConvertValidDateTimeWithCustomEpochAndSecondsFormatShouldReturnValidTimestampInSeconds(
         string dateTimeString,
         string epochString,
         string timeZoneString,
         long exceptedTimestamp)
     {
-        var dateTime = DateTimeOffset.Parse(dateTimeString, CultureInfo.InvariantCulture);
+        var date = DateTimeOffset.Parse(dateTimeString, CultureInfo.InvariantCulture);
         var epoch = DateTimeOffset.Parse(epochString, CultureInfo.InvariantCulture);
 
-        var epochSettings = (IUISwitch)_toolView.GetChildElementById("timestamp-use-custom-epoch-switch");
+        DateConverterGuiTool tool = GetToolInstance<DateConverterGuiTool>(MefProvider, ToolName);
+        IUISwitch epochSettings = GetGUIElementById<IUISwitch>(tool.View, UseCustomEpochSwitch);
+        IUISelectDropDownList timeZoneDropDownList = GetGUIElementById<IUISelectDropDownList>(tool.View, SelectTimeZoneList);
+        IUISetting formatSetting = GetGUIElementById<IUISetting>(tool.View, DateFormatSetting);
+        var formatDropdownList = formatSetting.InteractiveElement as IUISelectDropDownList;
+
         epochSettings.On();
 
-        int timezoneIndex = Array.FindIndex(_timeZoneDropDownList.Items, w => w.Value.Equals(timeZoneString));
-        _timeZoneDropDownList.Select(timezoneIndex);
+        int timezoneIndex = Array.FindIndex(timeZoneDropDownList.Items, w => w.Value.Equals(timeZoneString));
+        timeZoneDropDownList.Select(timezoneIndex);
 
-        var formatDropdownList = _formatSetting.InteractiveElement as IUISelectDropDownList;
         int formatIndex = Array.FindIndex(formatDropdownList.Items, w => w.Value.Equals(DateFormat.Seconds));
         formatDropdownList.Select(formatIndex);
 
-        _epochYearInputNumber.Text(epoch.Year.ToString());
-        _epochMonthInputNumber.Text(epoch.Month.ToString());
-        _epochDayInputNumber.Text(epoch.Day.ToString());
-        _epochHourInputNumber.Text(epoch.Hour.ToString());
-        _epochMinuteInputNumber.Text(epoch.Minute.ToString());
-        _epochSecondsInputNumber.Text(epoch.Second.ToString());
-        _epochMillisecondsInputNumber.Text(epoch.Millisecond.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochYearInputNumber).Text(epoch.Year.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochMonthInputNumber).Text(epoch.Month.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochDayInputNumber).Text(epoch.Day.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochHourInputNumber).Text(epoch.Hour.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochMinuteInputNumber).Text(epoch.Minute.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochSecondsInputNumber).Text(epoch.Second.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochMillisecondsInputNumber).Text(epoch.Millisecond.ToString());
 
-        _timeYearInputNumber.Text(dateTime.Year.ToString());
-        _timeMonthInputNumber.Text(dateTime.Month.ToString());
-        _timeDayInputNumber.Text(dateTime.Day.ToString());
-        _timeHourInputNumber.Text(dateTime.Hour.ToString());
-        _timeMinuteInputNumber.Text(dateTime.Minute.ToString());
-        _timeSecondsInputNumber.Text(dateTime.Second.ToString());
-        _timeMillisecondsInputNumber.Text("0");
+        GetGUIElementById<IUINumberInput>(tool.View, DateYearInputNumber).Text(date.Year.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMonthInputNumber).Text(date.Month.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateDayInputNumber).Text(date.Day.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateHourInputNumber).Text(date.Hour.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMinuteInputNumber).Text(date.Minute.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateSecondsInputNumber).Text(date.Second.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMillisecondsInputNumber).Value(0);
 
-        await _tool.WorkTask;
+        await tool.WorkTask;
 
-        _timeStampInputText.Text.Should().Be(exceptedTimestamp.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, NumberInputText).Text.Should().Be(exceptedTimestamp.ToString());
     }
 
     [Theory(DisplayName = "Convert valid dateTime with unix epoch and Seconds format should return valid timestamp to Seconds")]
     [InlineData("1970-01-01T00:00:00.0000000Z", "UTC", 0)]
     [InlineData("2023-11-22T19:58:07.0000000Z", "UTC", 1700683087)]
-    [InlineData("1900-11-22T19:58:07.0000000Z", "UTC", -2180836912)]
-    [InlineData("1970-01-01T00:00:00.0000000Z", "Pacific Standard Time", 0)]
-    [InlineData("2023-11-22T19:58:07.0000000Z", "Pacific Standard Time", 1700683087)]
-    [InlineData("1900-11-22T19:58:07.0000000Z", "Pacific Standard Time", -2180836912)]
+    [InlineData("1900-11-22T19:58:07.0000000Z", "UTC", -2180836913)]
+    [InlineData("1970-01-01T00:00:00.0000000Z", "Pacific Standard Time", 28800)]
+    [InlineData("2023-11-22T19:58:07.0000000Z", "Pacific Standard Time", 1700711887)]
+    [InlineData("1900-11-22T19:58:07.0000000Z", "Pacific Standard Time", -2180808113)]
     public async Task ConvertValidDateTimeWithUnixEpochAndSecondsFormatShouldReturnValidTimestampInSeconds(
         string dateTimeString,
         string timeZoneString,
         long exceptedTimestamp)
     {
-        var epochSettings = (IUISwitch)_toolView.GetChildElementById("timestamp-use-custom-epoch-switch");
+        var date = DateTimeOffset.Parse(dateTimeString, CultureInfo.InvariantCulture);
+
+        DateConverterGuiTool tool = GetToolInstance<DateConverterGuiTool>(MefProvider, ToolName);
+        IUISwitch epochSettings = GetGUIElementById<IUISwitch>(tool.View, UseCustomEpochSwitch);
+        IUISelectDropDownList timeZoneDropDownList = GetGUIElementById<IUISelectDropDownList>(tool.View, SelectTimeZoneList);
+        IUISetting formatSetting = GetGUIElementById<IUISetting>(tool.View, DateFormatSetting);
+        var formatDropdownList = formatSetting.InteractiveElement as IUISelectDropDownList;
+
         epochSettings.Off();
 
-        int timezoneIndex = Array.FindIndex(_timeZoneDropDownList.Items, w => w.Value.Equals(timeZoneString));
-        _timeZoneDropDownList.Select(timezoneIndex);
+        int timezoneIndex = Array.FindIndex(timeZoneDropDownList.Items, w => w.Value.Equals(timeZoneString));
+        timeZoneDropDownList.Select(timezoneIndex);
 
-        var formatDropdownList = _formatSetting.InteractiveElement as IUISelectDropDownList;
         int formatIndex = Array.FindIndex(formatDropdownList.Items, w => w.Value.Equals(DateFormat.Seconds));
         formatDropdownList.Select(formatIndex);
 
-        var dateTime = DateTimeOffset.Parse(dateTimeString);
-        _timeYearInputNumber.Text(dateTime.Year.ToString());
-        _timeMonthInputNumber.Text(dateTime.Month.ToString());
-        _timeDayInputNumber.Text(dateTime.Day.ToString());
-        _timeHourInputNumber.Text(dateTime.Hour.ToString());
-        _timeMinuteInputNumber.Text(dateTime.Minute.ToString());
-        _timeSecondsInputNumber.Text(dateTime.Second.ToString());
-        _timeMillisecondsInputNumber.Text("0");
+        GetGUIElementById<IUINumberInput>(tool.View, DateYearInputNumber).Text(date.Year.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMonthInputNumber).Text(date.Month.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateDayInputNumber).Text(date.Day.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateHourInputNumber).Text(date.Hour.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMinuteInputNumber).Text(date.Minute.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateSecondsInputNumber).Text(date.Second.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMillisecondsInputNumber).Value(0);
 
-        await _tool.WorkTask;
+        await tool.WorkTask;
 
-        _timeStampInputText.Text.Should().Be(exceptedTimestamp.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, NumberInputText).Text.Should().Be(exceptedTimestamp.ToString());
     }
 
     #endregion
@@ -175,38 +152,41 @@ public class DateConverterGuiToolTests : MefBasedTest
         string timeZoneString,
         string exceptedDateTimeString)
     {
-        DateTimeOffset.TryParseExact(exceptedDateTimeString, "O", null, DateTimeStyles.None, out DateTimeOffset expectedDateTime);
-        DateTimeOffset.TryParseExact(epochString, "O", null, DateTimeStyles.None, out DateTimeOffset epoch);
+        var expectedDate = DateTimeOffset.Parse(exceptedDateTimeString, CultureInfo.InvariantCulture);
+        var epoch = DateTimeOffset.Parse(epochString, CultureInfo.InvariantCulture);
 
-        var epochSettings = (IUISwitch)_toolView.GetChildElementById("timestamp-use-custom-epoch-switch");
+        DateConverterGuiTool tool = GetToolInstance<DateConverterGuiTool>(MefProvider, ToolName);
+        IUISwitch epochSettings = GetGUIElementById<IUISwitch>(tool.View, UseCustomEpochSwitch);
+        IUISelectDropDownList timeZoneDropDownList = GetGUIElementById<IUISelectDropDownList>(tool.View, SelectTimeZoneList);
+        IUISetting formatSetting = GetGUIElementById<IUISetting>(tool.View, DateFormatSetting);
+        var formatDropdownList = formatSetting.InteractiveElement as IUISelectDropDownList;
+
         epochSettings.On();
 
-        int timezoneIndex = Array.FindIndex(_timeZoneDropDownList.Items, w => w.Value.Equals(timeZoneString));
-        _timeZoneDropDownList.Select(timezoneIndex);
+        int timezoneIndex = Array.FindIndex(timeZoneDropDownList.Items, w => w.Value.Equals(timeZoneString));
+        timeZoneDropDownList.Select(timezoneIndex);
 
-        var formatDropdownList = _formatSetting.InteractiveElement as IUISelectDropDownList;
         int formatIndex = Array.FindIndex(formatDropdownList.Items, w => w.Value.Equals(DateFormat.Seconds));
         formatDropdownList.Select(formatIndex);
 
-        _epochYearInputNumber.Text(epoch.Year.ToString());
-        _epochMonthInputNumber.Text(epoch.Month.ToString());
-        _epochDayInputNumber.Text(epoch.Day.ToString());
-        _epochHourInputNumber.Text(epoch.Hour.ToString());
-        _epochMinuteInputNumber.Text(epoch.Minute.ToString());
-        _epochSecondsInputNumber.Text(epoch.Second.ToString());
-        _epochMillisecondsInputNumber.Text(epoch.Millisecond.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochYearInputNumber).Text(epoch.Year.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochMonthInputNumber).Text(epoch.Month.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochDayInputNumber).Text(epoch.Day.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochHourInputNumber).Text(epoch.Hour.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochMinuteInputNumber).Text(epoch.Minute.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochSecondsInputNumber).Text(epoch.Second.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochMillisecondsInputNumber).Text(epoch.Millisecond.ToString());
 
-        _timeStampInputText.Text(timestamp.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, NumberInputText).Text(timestamp.ToString());
 
-        await _tool.WorkTask;
+        await tool.WorkTask;
 
-        _timeYearInputNumber.Text.Should().Be(expectedDateTime.Year.ToString());
-        _timeMonthInputNumber.Text.Should().Be(expectedDateTime.Month.ToString());
-        _timeDayInputNumber.Text.Should().Be(expectedDateTime.Day.ToString());
-        _timeHourInputNumber.Text.Should().Be(expectedDateTime.Hour.ToString());
-        _timeMinuteInputNumber.Text.Should().Be(expectedDateTime.Minute.ToString());
-        _timeSecondsInputNumber.Text.Should().Be(expectedDateTime.Second.ToString());
-        _timeMillisecondsInputNumber.Text.Should().Be("0");
+        GetGUIElementById<IUINumberInput>(tool.View, DateYearInputNumber).Text.Should().Be(expectedDate.Year.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMonthInputNumber).Text.Should().Be(expectedDate.Month.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateDayInputNumber).Text.Should().Be(expectedDate.Day.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateHourInputNumber).Text.Should().Be(expectedDate.Hour.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMinuteInputNumber).Text.Should().Be(expectedDate.Minute.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateSecondsInputNumber).Text.Should().Be(expectedDate.Second.ToString());
     }
 
     [Theory(DisplayName = "Convert valid timestamp with unix epoch and Seconds format should return valid dateTime")]
@@ -221,28 +201,33 @@ public class DateConverterGuiToolTests : MefBasedTest
         string timeZoneString,
         string exceptedDateTimeString)
     {
-        DateTimeOffset.TryParseExact(exceptedDateTimeString, "O", null, DateTimeStyles.None, out DateTimeOffset expectedDateTime);
-        var epochSettings = (IUISwitch)_toolView.GetChildElementById("timestamp-use-custom-epoch-switch");
+        var expectedDate = DateTimeOffset.Parse(exceptedDateTimeString, CultureInfo.InvariantCulture);
+
+        DateConverterGuiTool tool = GetToolInstance<DateConverterGuiTool>(MefProvider, ToolName);
+        IUISwitch epochSettings = GetGUIElementById<IUISwitch>(tool.View, UseCustomEpochSwitch);
+        IUISelectDropDownList timeZoneDropDownList = GetGUIElementById<IUISelectDropDownList>(tool.View, SelectTimeZoneList);
+        IUISetting formatSetting = GetGUIElementById<IUISetting>(tool.View, DateFormatSetting);
+        var formatDropdownList = formatSetting.InteractiveElement as IUISelectDropDownList;
+
         epochSettings.Off();
 
-        int timezoneIndex = Array.FindIndex(_timeZoneDropDownList.Items, w => w.Value.Equals(timeZoneString));
-        _timeZoneDropDownList.Select(timezoneIndex);
+        int timezoneIndex = Array.FindIndex(timeZoneDropDownList.Items, w => w.Value.Equals(timeZoneString));
+        timeZoneDropDownList.Select(timezoneIndex);
 
-        var formatDropdownList = _formatSetting.InteractiveElement as IUISelectDropDownList;
         int formatIndex = Array.FindIndex(formatDropdownList.Items, w => w.Value.Equals(DateFormat.Seconds));
         formatDropdownList.Select(formatIndex);
 
-        _timeStampInputText.Text(timestamp.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, NumberInputText).Text(timestamp.ToString());
 
-        await _tool.WorkTask;
+        await tool.WorkTask;
 
-        _timeYearInputNumber.Text.Should().Be(expectedDateTime.Year.ToString());
-        _timeMonthInputNumber.Text.Should().Be(expectedDateTime.Month.ToString());
-        _timeDayInputNumber.Text.Should().Be(expectedDateTime.Day.ToString());
-        _timeHourInputNumber.Text.Should().Be(expectedDateTime.Hour.ToString());
-        _timeMinuteInputNumber.Text.Should().Be(expectedDateTime.Minute.ToString());
-        _timeSecondsInputNumber.Text.Should().Be(expectedDateTime.Second.ToString());
-        _timeMillisecondsInputNumber.Text.Should().Be("0");
+        GetGUIElementById<IUINumberInput>(tool.View, DateYearInputNumber).Text.Should().Be(expectedDate.Year.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMonthInputNumber).Text.Should().Be(expectedDate.Month.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateDayInputNumber).Text.Should().Be(expectedDate.Day.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateHourInputNumber).Text.Should().Be(expectedDate.Hour.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMinuteInputNumber).Text.Should().Be(expectedDate.Minute.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateSecondsInputNumber).Text.Should().Be(expectedDate.Second.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMillisecondsInputNumber).Value.Should().Be(0);
     }
 
     #endregion
@@ -252,84 +237,93 @@ public class DateConverterGuiToolTests : MefBasedTest
     [Theory(DisplayName = "Convert valid dateTime with custom epoch and Milliseconds format should return valid timestamp to Milliseconds")]
     [InlineData("1870-01-01T00:00:00.0000000Z", "1870-01-01T00:00:00.0000000Z", "UTC", 0)]
     [InlineData("1923-11-23T19:58:07.0000000Z", "1870-01-01T00:00:00.0000000Z", "UTC", 1700683087000)]
-    [InlineData("1800-11-22T19:58:07.0000000Z", "1870-01-01T00:00:00.0000000Z", "UTC", -2180836912999)]
-    [InlineData("1870-01-01T00:00:00.0000000Z", "1870-01-01T00:00:00.0000000Z", "Pacific Standard Time", 0)]
-    [InlineData("1923-11-23T19:58:07.0000000Z", "1870-01-01T00:00:00.0000000Z", "Pacific Standard Time", 1700683087000)]
-    [InlineData("1800-11-22T19:58:07.0000000Z", "1870-01-01T00:00:00.0000000Z", "Pacific Standard Time", -2180836912999)]
+    [InlineData("1800-11-22T19:58:07.0000000Z", "1870-01-01T00:00:00.0000000Z", "UTC", -2180836913000)]
+    [InlineData("1870-01-01T00:00:00.0000000Z", "1870-01-01T00:00:00.0000000Z", "Pacific Standard Time", 28800000)]
+    [InlineData("1923-11-23T19:58:07.0000000Z", "1870-01-01T00:00:00.0000000Z", "Pacific Standard Time", 1700711887000)]
+    [InlineData("1800-11-22T19:58:07.0000000Z", "1870-01-01T00:00:00.0000000Z", "Pacific Standard Time", -2180808113000)]
     public async Task ConvertValidDateTimeWithCustomEpochAndMillisecondsFormatShouldReturnValidTimestampInMilliseconds(
         string dateTimeString,
         string epochString,
         string timeZoneString,
         long exceptedTimestamp)
     {
-        var dateTime = DateTimeOffset.Parse(dateTimeString, CultureInfo.InvariantCulture);
+        var date = DateTimeOffset.Parse(dateTimeString, CultureInfo.InvariantCulture);
         var epoch = DateTimeOffset.Parse(epochString, CultureInfo.InvariantCulture);
 
-        var epochSettings = (IUISwitch)_toolView.GetChildElementById("timestamp-use-custom-epoch-switch");
+        DateConverterGuiTool tool = GetToolInstance<DateConverterGuiTool>(MefProvider, ToolName);
+        IUISwitch epochSettings = GetGUIElementById<IUISwitch>(tool.View, UseCustomEpochSwitch);
+        IUISelectDropDownList timeZoneDropDownList = GetGUIElementById<IUISelectDropDownList>(tool.View, SelectTimeZoneList);
+        IUISetting formatSetting = GetGUIElementById<IUISetting>(tool.View, DateFormatSetting);
+        var formatDropdownList = formatSetting.InteractiveElement as IUISelectDropDownList;
+
         epochSettings.On();
 
-        int timezoneIndex = Array.FindIndex(_timeZoneDropDownList.Items, w => w.Value.Equals(timeZoneString));
-        _timeZoneDropDownList.Select(timezoneIndex);
+        int timezoneIndex = Array.FindIndex(timeZoneDropDownList.Items, w => w.Value.Equals(timeZoneString));
+        timeZoneDropDownList.Select(timezoneIndex);
 
-        var formatDropdownList = _formatSetting.InteractiveElement as IUISelectDropDownList;
         int formatIndex = Array.FindIndex(formatDropdownList.Items, w => w.Value.Equals(DateFormat.Milliseconds));
         formatDropdownList.Select(formatIndex);
 
-        _epochYearInputNumber.Text(epoch.Year.ToString());
-        _epochMonthInputNumber.Text(epoch.Month.ToString());
-        _epochDayInputNumber.Text(epoch.Day.ToString());
-        _epochHourInputNumber.Text(epoch.Hour.ToString());
-        _epochMinuteInputNumber.Text(epoch.Minute.ToString());
-        _epochSecondsInputNumber.Text(epoch.Second.ToString());
-        _epochMillisecondsInputNumber.Text(epoch.Millisecond.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochYearInputNumber).Text(epoch.Year.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochMonthInputNumber).Text(epoch.Month.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochDayInputNumber).Text(epoch.Day.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochHourInputNumber).Text(epoch.Hour.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochMinuteInputNumber).Text(epoch.Minute.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochSecondsInputNumber).Text(epoch.Second.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochMillisecondsInputNumber).Text(epoch.Millisecond.ToString());
 
-        _timeYearInputNumber.Text(dateTime.Year.ToString());
-        _timeMonthInputNumber.Text(dateTime.Month.ToString());
-        _timeDayInputNumber.Text(dateTime.Day.ToString());
-        _timeHourInputNumber.Text(dateTime.Hour.ToString());
-        _timeMinuteInputNumber.Text(dateTime.Minute.ToString());
-        _timeSecondsInputNumber.Text(dateTime.Second.ToString());
-        _timeMillisecondsInputNumber.Text(dateTime.Millisecond.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateYearInputNumber).Text(date.Year.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMonthInputNumber).Text(date.Month.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateDayInputNumber).Text(date.Day.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateHourInputNumber).Text(date.Hour.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMinuteInputNumber).Text(date.Minute.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateSecondsInputNumber).Text(date.Second.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMillisecondsInputNumber).Text(date.Millisecond.ToString());
 
-        await _tool.WorkTask;
+        await tool.WorkTask;
 
-        _timeStampInputText.Text.Should().Be(exceptedTimestamp.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, NumberInputText).Text.Should().Be(exceptedTimestamp.ToString());
     }
 
     [Theory(DisplayName = "Convert valid dateTime with unix epoch and Milliseconds format should return valid timestamp to Milliseconds")]
     [InlineData("1970-01-01T00:00:00.0000000Z", "UTC", 0)]
     [InlineData("2023-11-22T19:58:07.0000000Z", "UTC", 1700683087000)]
-    [InlineData("1900-11-22T19:58:07.0000000Z", "UTC", -2180836912999)]
-    [InlineData("1970-01-01T00:00:00.0000000Z", "Pacific Standard Time", 0)]
-    [InlineData("2023-11-22T19:58:07.0000000Z", "Pacific Standard Time", 1700683087000)]
-    [InlineData("1900-11-22T19:58:07.0000000Z", "Pacific Standard Time", -2180836912999)]
+    [InlineData("1900-11-22T19:58:07.0000000Z", "UTC", -2180836913000)]
+    [InlineData("1970-01-01T00:00:00.0000000Z", "Pacific Standard Time", 28800000)]
+    [InlineData("2023-11-22T19:58:07.0000000Z", "Pacific Standard Time", 1700711887000)]
+    [InlineData("1900-11-22T19:58:07.0000000Z", "Pacific Standard Time", -2180808113000)]
     public async Task ConvertValidDateTimeWithUnixEpochAndMillisecondsFormatShouldReturnValidTimestampInMilliseconds(
         string dateTimeString,
         string timeZoneString,
         long exceptedTimestamp)
     {
-        var epochSettings = (IUISwitch)_toolView.GetChildElementById("timestamp-use-custom-epoch-switch");
+        var date = DateTimeOffset.Parse(dateTimeString, CultureInfo.InvariantCulture);
+
+        DateConverterGuiTool tool = GetToolInstance<DateConverterGuiTool>(MefProvider, ToolName);
+        IUISwitch epochSettings = GetGUIElementById<IUISwitch>(tool.View, UseCustomEpochSwitch);
+        IUISelectDropDownList timeZoneDropDownList = GetGUIElementById<IUISelectDropDownList>(tool.View, SelectTimeZoneList);
+        IUISetting formatSetting = GetGUIElementById<IUISetting>(tool.View, DateFormatSetting);
+        var formatDropdownList = formatSetting.InteractiveElement as IUISelectDropDownList;
+
         epochSettings.Off();
 
-        int timezoneIndex = Array.FindIndex(_timeZoneDropDownList.Items, w => w.Value.Equals(timeZoneString));
-        _timeZoneDropDownList.Select(timezoneIndex);
+        int timezoneIndex = Array.FindIndex(timeZoneDropDownList.Items, w => w.Value.Equals(timeZoneString));
+        timeZoneDropDownList.Select(timezoneIndex);
 
-        var formatDropdownList = _formatSetting.InteractiveElement as IUISelectDropDownList;
         int formatIndex = Array.FindIndex(formatDropdownList.Items, w => w.Value.Equals(DateFormat.Milliseconds));
         formatDropdownList.Select(formatIndex);
 
-        var dateTime = DateTimeOffset.Parse(dateTimeString);
-        _timeYearInputNumber.Text(dateTime.Year.ToString());
-        _timeMonthInputNumber.Text(dateTime.Month.ToString());
-        _timeDayInputNumber.Text(dateTime.Day.ToString());
-        _timeHourInputNumber.Text(dateTime.Hour.ToString());
-        _timeMinuteInputNumber.Text(dateTime.Minute.ToString());
-        _timeSecondsInputNumber.Text(dateTime.Second.ToString());
-        _timeMillisecondsInputNumber.Text(dateTime.Millisecond.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateYearInputNumber).Text(date.Year.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMonthInputNumber).Text(date.Month.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateDayInputNumber).Text(date.Day.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateHourInputNumber).Text(date.Hour.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMinuteInputNumber).Text(date.Minute.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateSecondsInputNumber).Text(date.Second.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMillisecondsInputNumber).Value(0);
 
-        await _tool.WorkTask;
+        await tool.WorkTask;
 
-        _timeStampInputText.Value.Should().Be(exceptedTimestamp);
+        GetGUIElementById<IUINumberInput>(tool.View, NumberInputText).Text.Should().Be(exceptedTimestamp.ToString());
     }
 
     #endregion
@@ -349,38 +343,42 @@ public class DateConverterGuiToolTests : MefBasedTest
         string timeZoneString,
         string exceptedDateTimeString)
     {
-        var expectedDateTime = DateTimeOffset.Parse(exceptedDateTimeString, CultureInfo.InvariantCulture);
+        var expectedDate = DateTimeOffset.Parse(exceptedDateTimeString, CultureInfo.InvariantCulture);
         var epoch = DateTimeOffset.Parse(epochString, CultureInfo.InvariantCulture);
 
-        var epochSettings = (IUISwitch)_toolView.GetChildElementById("timestamp-use-custom-epoch-switch");
+        DateConverterGuiTool tool = GetToolInstance<DateConverterGuiTool>(MefProvider, ToolName);
+        IUISwitch epochSettings = GetGUIElementById<IUISwitch>(tool.View, UseCustomEpochSwitch);
+        IUISelectDropDownList timeZoneDropDownList = GetGUIElementById<IUISelectDropDownList>(tool.View, SelectTimeZoneList);
+        IUISetting formatSetting = GetGUIElementById<IUISetting>(tool.View, DateFormatSetting);
+        var formatDropdownList = formatSetting.InteractiveElement as IUISelectDropDownList;
+
         epochSettings.On();
 
-        int timezoneIndex = Array.FindIndex(_timeZoneDropDownList.Items, w => w.Value.Equals(timeZoneString));
-        _timeZoneDropDownList.Select(timezoneIndex);
+        int timezoneIndex = Array.FindIndex(timeZoneDropDownList.Items, w => w.Value.Equals(timeZoneString));
+        timeZoneDropDownList.Select(timezoneIndex);
 
-        var formatDropdownList = _formatSetting.InteractiveElement as IUISelectDropDownList;
         int formatIndex = Array.FindIndex(formatDropdownList.Items, w => w.Value.Equals(DateFormat.Milliseconds));
         formatDropdownList.Select(formatIndex);
 
-        _epochYearInputNumber.Text(epoch.Year.ToString());
-        _epochMonthInputNumber.Text(epoch.Month.ToString());
-        _epochDayInputNumber.Text(epoch.Day.ToString());
-        _epochHourInputNumber.Text(epoch.Hour.ToString());
-        _epochMinuteInputNumber.Text(epoch.Minute.ToString());
-        _epochSecondsInputNumber.Text(epoch.Second.ToString());
-        _epochMillisecondsInputNumber.Text(epoch.Millisecond.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochYearInputNumber).Text(epoch.Year.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochMonthInputNumber).Text(epoch.Month.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochDayInputNumber).Text(epoch.Day.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochHourInputNumber).Text(epoch.Hour.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochMinuteInputNumber).Text(epoch.Minute.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochSecondsInputNumber).Text(epoch.Second.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, EpochMillisecondsInputNumber).Text(epoch.Millisecond.ToString());
 
-        _timeStampInputText.Text(timestamp.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, NumberInputText).Text(timestamp.ToString());
 
-        await _tool.WorkTask;
+        await tool.WorkTask;
 
-        _timeYearInputNumber.Text.Should().Be(expectedDateTime.Year.ToString());
-        _timeMonthInputNumber.Text.Should().Be(expectedDateTime.Month.ToString());
-        _timeDayInputNumber.Text.Should().Be(expectedDateTime.Day.ToString());
-        _timeHourInputNumber.Text.Should().Be(expectedDateTime.Hour.ToString());
-        _timeMinuteInputNumber.Text.Should().Be(expectedDateTime.Minute.ToString());
-        _timeSecondsInputNumber.Text.Should().Be(expectedDateTime.Second.ToString());
-        _timeMillisecondsInputNumber.Text.Should().Be("0");
+        GetGUIElementById<IUINumberInput>(tool.View, DateYearInputNumber).Text.Should().Be(expectedDate.Year.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMonthInputNumber).Text.Should().Be(expectedDate.Month.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateDayInputNumber).Text.Should().Be(expectedDate.Day.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateHourInputNumber).Text.Should().Be(expectedDate.Hour.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMinuteInputNumber).Text.Should().Be(expectedDate.Minute.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateSecondsInputNumber).Text.Should().Be(expectedDate.Second.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMillisecondsInputNumber).Text.Should().Be(expectedDate.Millisecond.ToString());
     }
 
     [Theory(DisplayName = "Convert valid timestamp with unix epoch and Milliseconds format should return valid dateTime")]
@@ -395,26 +393,33 @@ public class DateConverterGuiToolTests : MefBasedTest
         string timeZoneString,
         string exceptedDateTimeString)
     {
-        var expectedDateTime = DateTimeOffset.Parse(exceptedDateTimeString);
+        var expectedDate = DateTimeOffset.Parse(exceptedDateTimeString, CultureInfo.InvariantCulture);
 
-        int timezoneIndex = Array.FindIndex(_timeZoneDropDownList.Items, w => w.Value.Equals(timeZoneString));
-        _timeZoneDropDownList.Select(timezoneIndex);
+        DateConverterGuiTool tool = GetToolInstance<DateConverterGuiTool>(MefProvider, ToolName);
+        IUISwitch epochSettings = GetGUIElementById<IUISwitch>(tool.View, UseCustomEpochSwitch);
+        IUISelectDropDownList timeZoneDropDownList = GetGUIElementById<IUISelectDropDownList>(tool.View, SelectTimeZoneList);
+        IUISetting formatSetting = GetGUIElementById<IUISetting>(tool.View, DateFormatSetting);
+        var formatDropdownList = formatSetting.InteractiveElement as IUISelectDropDownList;
 
-        var formatDropdownList = _formatSetting.InteractiveElement as IUISelectDropDownList;
+        epochSettings.Off();
+
+        int timezoneIndex = Array.FindIndex(timeZoneDropDownList.Items, w => w.Value.Equals(timeZoneString));
+        timeZoneDropDownList.Select(timezoneIndex);
+
         int formatIndex = Array.FindIndex(formatDropdownList.Items, w => w.Value.Equals(DateFormat.Milliseconds));
         formatDropdownList.Select(formatIndex);
 
-        _timeStampInputText.Text(timestamp.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, NumberInputText).Text(timestamp.ToString());
 
-        await _tool.WorkTask;
+        await tool.WorkTask;
 
-        _timeYearInputNumber.Text.Should().Be(expectedDateTime.Year.ToString());
-        _timeMonthInputNumber.Text.Should().Be(expectedDateTime.Month.ToString());
-        _timeDayInputNumber.Text.Should().Be(expectedDateTime.Day.ToString());
-        _timeHourInputNumber.Text.Should().Be(expectedDateTime.Hour.ToString());
-        _timeMinuteInputNumber.Text.Should().Be(expectedDateTime.Minute.ToString());
-        _timeSecondsInputNumber.Text.Should().Be(expectedDateTime.Second.ToString());
-        _timeMillisecondsInputNumber.Text.Should().Be("0");
+        GetGUIElementById<IUINumberInput>(tool.View, DateYearInputNumber).Text.Should().Be(expectedDate.Year.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMonthInputNumber).Text.Should().Be(expectedDate.Month.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateDayInputNumber).Text.Should().Be(expectedDate.Day.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateHourInputNumber).Text.Should().Be(expectedDate.Hour.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMinuteInputNumber).Text.Should().Be(expectedDate.Minute.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateSecondsInputNumber).Text.Should().Be(expectedDate.Second.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMillisecondsInputNumber).Text.Should().Be(expectedDate.Millisecond.ToString());
     }
 
     #endregion
@@ -423,38 +428,42 @@ public class DateConverterGuiToolTests : MefBasedTest
     [InlineData("1870-01-01T00:00:00.0000000+00:00", "UTC", 589799232000000000)]
     [InlineData("1923-11-23T19:58:07.0000000+00:00", "UTC", 606806062870000000)]
     [InlineData("1800-11-22T19:58:07.0000000+00:00", "UTC", 567990862870000000)]
-    [InlineData("1870-01-01T00:00:00.0000000-08:00", "Pacific Standard Time", 589799520000000582)]
-    [InlineData("1870-01-01T00:00:00.0000000+00:00", "Pacific Standard Time", 589799232000000000)]
-    [InlineData("1923-11-23T19:58:07.0000000Z", "Pacific Standard Time", 606806062870000000)]
-    [InlineData("1800-11-22T19:58:07.0000000Z", "Pacific Standard Time", 567990574870000000)]
+    [InlineData("1870-01-01T00:00:00.0000000-08:00", "Pacific Standard Time", 589799520000000000)]
+    [InlineData("1870-01-01T00:00:00.0000000+00:00", "Pacific Standard Time", 589799520000000000)]
+    [InlineData("1923-11-23T19:58:07.0000000Z", "Pacific Standard Time", 606806350870000000)]
+    [InlineData("1800-11-22T19:58:07.0000000Z", "Pacific Standard Time", 567991150870000000)]
     public async Task ConvertValidDateTimeShouldReturnValidTicks(
         string dateTimeString,
         string timeZoneString,
         long exceptedTicks)
     {
-        DateTimeOffset.TryParseExact(dateTimeString, "O", null, DateTimeStyles.None, out DateTimeOffset dateTimeOffset);
+        var date = DateTimeOffset.Parse(dateTimeString, CultureInfo.InvariantCulture);
 
-        var epochSettings = (IUISwitch)_toolView.GetChildElementById("timestamp-use-custom-epoch-switch");
+        DateConverterGuiTool tool = GetToolInstance<DateConverterGuiTool>(MefProvider, ToolName);
+        IUISwitch epochSettings = GetGUIElementById<IUISwitch>(tool.View, UseCustomEpochSwitch);
+        IUISelectDropDownList timeZoneDropDownList = GetGUIElementById<IUISelectDropDownList>(tool.View, SelectTimeZoneList);
+        IUISetting formatSetting = GetGUIElementById<IUISetting>(tool.View, DateFormatSetting);
+        var formatDropdownList = formatSetting.InteractiveElement as IUISelectDropDownList;
+
         epochSettings.Off();
 
-        int timezoneIndex = Array.FindIndex(_timeZoneDropDownList.Items, w => w.Value.Equals(timeZoneString));
-        _timeZoneDropDownList.Select(timezoneIndex);
+        int timezoneIndex = Array.FindIndex(timeZoneDropDownList.Items, w => w.Value.Equals(timeZoneString));
+        timeZoneDropDownList.Select(timezoneIndex);
 
-        var formatDropdownList = _formatSetting.InteractiveElement as IUISelectDropDownList;
         int formatIndex = Array.FindIndex(formatDropdownList.Items, w => w.Value.Equals(DateFormat.Ticks));
         formatDropdownList.Select(formatIndex);
 
-        _timeYearInputNumber.Value(dateTimeOffset.Year);
-        _timeMonthInputNumber.Value(dateTimeOffset.Month);
-        _timeDayInputNumber.Value(dateTimeOffset.Day);
-        _timeHourInputNumber.Value(dateTimeOffset.Hour);
-        _timeMinuteInputNumber.Value(dateTimeOffset.Minute);
-        _timeSecondsInputNumber.Value(dateTimeOffset.Second);
-        _timeMillisecondsInputNumber.Value(dateTimeOffset.Millisecond);
+        GetGUIElementById<IUINumberInput>(tool.View, DateYearInputNumber).Text(date.Year.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMonthInputNumber).Text(date.Month.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateDayInputNumber).Text(date.Day.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateHourInputNumber).Text(date.Hour.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMinuteInputNumber).Text(date.Minute.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateSecondsInputNumber).Text(date.Second.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMillisecondsInputNumber).Value(0);
 
-        await _tool.WorkTask;
+        await tool.WorkTask;
 
-        _timeStampInputText.Text.Should().Be(exceptedTicks.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, NumberInputText).Text.Should().Be(exceptedTicks.ToString());
     }
 
     [Theory(DisplayName = "Convert valid ticks should return valid dateTime")]
@@ -469,29 +478,42 @@ public class DateConverterGuiToolTests : MefBasedTest
         string timeZoneString,
         string exceptedDateTimeString)
     {
-        var expectedDateTime = DateTimeOffset.Parse(exceptedDateTimeString, CultureInfo.InvariantCulture);
+        var expectedDate = DateTimeOffset.Parse(exceptedDateTimeString, CultureInfo.InvariantCulture);
 
-        var epochSettings = (IUISwitch)_toolView.GetChildElementById("timestamp-use-custom-epoch-switch");
+        DateConverterGuiTool tool = GetToolInstance<DateConverterGuiTool>(MefProvider, ToolName);
+        IUISwitch epochSettings = GetGUIElementById<IUISwitch>(tool.View, UseCustomEpochSwitch);
+        IUISelectDropDownList timeZoneDropDownList = GetGUIElementById<IUISelectDropDownList>(tool.View, SelectTimeZoneList);
+        IUISetting formatSetting = GetGUIElementById<IUISetting>(tool.View, DateFormatSetting);
+        var formatDropdownList = formatSetting.InteractiveElement as IUISelectDropDownList;
+
         epochSettings.Off();
 
-        int timezoneIndex = Array.FindIndex(_timeZoneDropDownList.Items, w => w.Value.Equals(timeZoneString));
-        _timeZoneDropDownList.Select(timezoneIndex);
+        int timezoneIndex = Array.FindIndex(timeZoneDropDownList.Items, w => w.Value.Equals(timeZoneString));
+        timeZoneDropDownList.Select(timezoneIndex);
 
-        var formatDropdownList = _formatSetting.InteractiveElement as IUISelectDropDownList;
         int formatIndex = Array.FindIndex(formatDropdownList.Items, w => w.Value.Equals(DateFormat.Ticks));
         formatDropdownList.Select(formatIndex);
 
-        _timeStampInputText.Text(ticks.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, NumberInputText).Text(ticks.ToString());
 
-        await _tool.WorkTask;
+        await tool.WorkTask;
 
-        _timeYearInputNumber.Text.Should().Be(expectedDateTime.Year.ToString());
-        _timeMonthInputNumber.Text.Should().Be(expectedDateTime.Month.ToString());
-        _timeDayInputNumber.Text.Should().Be(expectedDateTime.Day.ToString());
-        _timeHourInputNumber.Text.Should().Be(expectedDateTime.Hour.ToString());
-        _timeMinuteInputNumber.Text.Should().Be(expectedDateTime.Minute.ToString());
-        _timeSecondsInputNumber.Text.Should().Be(expectedDateTime.Second.ToString());
-        _timeMillisecondsInputNumber.Text.Should().Be("0");
+        GetGUIElementById<IUINumberInput>(tool.View, DateYearInputNumber).Text.Should().Be(expectedDate.Year.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMonthInputNumber).Text.Should().Be(expectedDate.Month.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateDayInputNumber).Text.Should().Be(expectedDate.Day.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateHourInputNumber).Text.Should().Be(expectedDate.Hour.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMinuteInputNumber).Text.Should().Be(expectedDate.Minute.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateSecondsInputNumber).Text.Should().Be(expectedDate.Second.ToString());
+        GetGUIElementById<IUINumberInput>(tool.View, DateMillisecondsInputNumber).Text.Should().Be(expectedDate.Millisecond.ToString());
     }
+
+    private static T GetGUIElementById<T>(UIToolView toolView, string name)
+        => (T)toolView.GetChildElementById(name);
+
+    private static T GetToolInstance<T>(IMefProvider mefProvider, string name)
+        where T : IGuiTool
+        => (T)mefProvider.ImportMany<IGuiTool, GuiToolMetadata>()
+        .Single(t => t.Metadata.InternalComponentName == name)
+        .Value;
 
 }

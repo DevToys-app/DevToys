@@ -2,7 +2,7 @@
   "profiles": {
     "DevToys.CLI": {
       "commandName": "Project",
-      "commandLineArgs": "imageconverter -i \"C:\\Users\\ebaud\\Downloads\\Untitled - Copy.png\" \"C:\\Users\\ebaud\\Downloads\\Untitled.png\" -t webp"
+      "commandLineArgs": ""
     }
   }
 }

@@ -1,89 +1,49 @@
-﻿namespace DevToys.Api;
+﻿using System.Xml.Linq;
+
+namespace DevToys.Api;
 
 /// <summary>
-/// A component that represents a setting, with a title, description, icon and <see cref="IUIElement"/> for the option value.
+/// A component that represents a empty card and <see cref="IUIElement"/> for the option value.
 /// </summary>
-public interface IUICard : IUIElementWithChildren
+public interface IUICard : IUIElement
 {
     /// <summary>
-    /// Gets the list of child elements.
+    /// Gets the <see cref="IUIElement"/> to display in the item.
     /// </summary>
-    IUIElement[]? Children { get; }
-
-    /// <summary>
-    /// Raised when <see cref="Children"/> is changed.
-    /// </summary>
-    event EventHandler? ChildrenChanged;
+    IUIElement UIElement { get; }
 }
 
 [DebuggerDisplay($"Id = {{{nameof(Id)}}}")]
-internal class UICard : UIElementWithChildren, IUICard
+internal class UICard : UIElement, IUICard
 {
-    private IUIElement[]? _children;
-
-    internal UICard(string? id)
+    internal UICard(string? id, IUIElement uiElement)
         : base(id)
     {
+        Guard.IsNotNull(uiElement);
+        UIElement = uiElement;
     }
 
-    protected override IEnumerable<IUIElement> GetChildren()
-    {
-        if (_children is not null)
-        {
-            foreach (IUIElement child in _children)
-            {
-                if (child is not null)
-                {
-                    yield return child;
-                }
-            }
-        }
-    }
-
-    public IUIElement[]? Children
-    {
-        get => _children;
-        internal set => SetPropertyValue(ref _children, value, ChildrenChanged);
-    }
-
-    public event EventHandler? ChildrenChanged;
+    public IUIElement UIElement { get;  }
 }
 
 public static partial class GUI
 {
     /// <summary>
-    /// A component that represents a setting, with a title, description, icon and <see cref="IUIElement"/> for the option value.
+    /// A component that represents an empty card and <see cref="IUIElement"/> for the option value.
     /// </summary>
-    public static IUICard Card()
+    /// <param name="uiElement">The UI element to display.</param>
+    public static IUICard Card(IUIElement uiElement)
     {
-        return Card(null);
+        return Card(null, uiElement);
     }
 
     /// <summary>
-    /// A component that represents a setting, with a title, description, icon and <see cref="IUIElement"/> for the option value.
+    /// A component that represents an empty card and <see cref="IUIElement"/> for the option value.
     /// </summary>
     /// <param name="id">An optional unique identifier for this UI element.</param>
-    public static IUICard Card(string? id)
+    /// <param name="uiElement">The UI element to display.</param>
+    public static IUICard Card(string? id, IUIElement uiElement)
     {
-        return new UICard(id);
+        return new UICard(id, uiElement);
     }
-
-    /// <summary>
-    /// Sets the <see cref="IUISetting.InteractiveElement"/> of the setting.
-    /// </summary>
-    public static IUICard InteractiveElement(this IUICard element, IUIElement? uiElement)
-    {
-        ((UISetting)element).InteractiveElement = uiElement;
-        return element;
-    }
-
-    /// <summary>
-    /// Sets the children to be displayed in the stack.
-    /// </summary>
-    public static IUICard WithChildren(this IUICard element, params IUIElement[] children)
-    {
-        ((UICard)element).Children = children;
-        return element;
-    }
-
 }

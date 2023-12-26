@@ -1,5 +1,6 @@
 ﻿namespace DevToys.Tools.Models;
-public enum DateValueType
+
+internal enum DateValueType
 {
     Year,
     Month,

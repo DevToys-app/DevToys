@@ -45,6 +45,11 @@ internal sealed class UIDropDownListItem : IUIDropDownListItem, IEquatable<UIDro
             return false;
         }
 
+        if (ReferenceEquals(this, other))
+        {
+            return true;
+        }
+
         if (Value == other.Value && Text == other.Text)
         {
             return true;

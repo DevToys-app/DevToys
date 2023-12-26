@@ -70,7 +70,7 @@ namespace DevToys.Tools.Tools.Converters.Date {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Date to convert. Supported format: &quot;ISO 8601&quot;.
+        ///   Looks up a localized string similar to Date to convert. Supported format: &quot;ISO 8601&quot; example 2023-11-22T19:58:07.0000000+00:00.
         /// </summary>
         internal static string DateOptionDescription {
             get {
@@ -124,7 +124,7 @@ namespace DevToys.Tools.Tools.Converters.Date {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Epoch to use. Supported format: &quot;ISO 8601&quot;.
+        ///   Looks up a localized string similar to Epoch to use. Supported format: &quot;ISO 8601&quot; example 1970-01-01T00:00:00.0000000+00:00.
         /// </summary>
         internal static string EpochOptionDescription {
             get {
@@ -178,6 +178,15 @@ namespace DevToys.Tools.Tools.Converters.Date {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Input to convert in long or Date supported format &quot;ISO 8601&quot; example 2023-11-22T19:58:07.0000000+00:00.
+        /// </summary>
+        internal static string InputDescription {
+            get {
+                return ResourceManager.GetString("InputDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to parse date.
         /// </summary>
         internal static string InvalidDateTimeCommand {
@@ -196,7 +205,7 @@ namespace DevToys.Tools.Tools.Converters.Date {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please specify a timezone.
+        ///   Looks up a localized string similar to Unable to find the Timezone Provided please check if the timezone exist here https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/default-time-zones?view=windows-11&amp;WT.mc_id=DT-MVP-5001664&amp;source=post_page-----cff0e2b37f52--------------------------------#time-zones.
         /// </summary>
         internal static string InvalidTimeZoneCommand {
             get {
@@ -205,7 +214,7 @@ namespace DevToys.Tools.Tools.Converters.Date {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid value.
+        ///   Looks up a localized string similar to Please specify an input number or date.
         /// </summary>
         internal static string InvalidValue {
             get {
@@ -295,15 +304,6 @@ namespace DevToys.Tools.Tools.Converters.Date {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number to convert. Supported format: &quot;Ticks&quot;, &quot;Seconds&quot;, &quot;Milliseconds&quot;.
-        /// </summary>
-        internal static string NumberOptionDescription {
-            get {
-                return ResourceManager.GetString("NumberOptionDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Offset.
         /// </summary>
         internal static string OffsetTitle {
@@ -322,7 +322,7 @@ namespace DevToys.Tools.Tools.Converters.Date {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time Date Timezone Epoch.
+        ///   Looks up a localized string similar to Time Date Timezone Epoch Timestamp Ticks.
         /// </summary>
         internal static string SearchKeywords {
             get {
@@ -385,7 +385,7 @@ namespace DevToys.Tools.Tools.Converters.Date {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Timezone to use..
+        ///   Looks up a localized string similar to Timezone to use (supported timezones: https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/default-time-zones?view=windows-11&amp;WT.mc_id=DT-MVP-5001664&amp;source=post_page-----cff0e2b37f52--------------------------------#time-zones)..
         /// </summary>
         internal static string TimezoneOptionDescription {
             get {

@@ -24,21 +24,25 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
     /// <summary>
     /// Whether the tool should use the custom Epoch.
     /// </summary>
-    private static readonly SettingDefinition<bool> customEpochSettings
-       = new(name: $"{nameof(DateConverterGuiTool)}.{nameof(customEpochSettings)}", defaultValue: false);
+    private static readonly SettingDefinition<bool> useCustomEpochSettings
+       = new(
+           name: $"{nameof(DateConverterGuiTool)}.{nameof(useCustomEpochSettings)}",
+           defaultValue: false);
 
     /// <summary>
     /// The Epoch to use.
     /// </summary>
-    private static readonly SettingDefinition<DateTimeOffset> epochSettings
-        = new(name: $"{nameof(DateConverterGuiTool)}.{nameof(epochSettings)}",
+    private static readonly SettingDefinition<DateTimeOffset> customEpochSettings
+        = new(
+            name: $"{nameof(DateConverterGuiTool)}.{nameof(customEpochSettings)}",
             defaultValue: DateTime.UnixEpoch);
 
     /// <summary>
     /// The DateTime to use.
     /// </summary>
-    private static readonly SettingDefinition<DateTimeOffset> currentTimeUTCSettings
-        = new(name: $"{nameof(DateConverterGuiTool)}.{nameof(currentTimeUTCSettings)}",
+    private static readonly SettingDefinition<DateTimeOffset> currentTimeSettings
+        = new(
+            name: $"{nameof(DateConverterGuiTool)}.{nameof(currentTimeSettings)}",
             defaultValue: DateTime.UtcNow);
 
     /// <summary>
@@ -59,16 +63,6 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
 
     private bool _ignoreInputTextChange;
 
-    private bool _useCustomEpoch;
-
-    private DateTimeOffset _currentTimeUtc;
-
-    private DateTimeOffset _customEpoch;
-
-    private TimeZoneInfo _timeZoneInfo;
-
-    private DateFormat _dateFormat;
-
     private readonly ILogger _logger;
 
     private readonly DisposableSemaphore _semaphore = new();
@@ -82,54 +76,55 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
             TimeZoneInfo timeZoneInfo = GetSelectedTimeZone();
             if (timeZoneInfo is null)
             {
-                return Item(TimeZoneInfo.Local.DisplayName, TimeZoneInfo.Local.Id);
+                return Item(FormatTimeZone(TimeZoneInfo.Local), TimeZoneInfo.Local.Id);
             }
-            return Item(timeZoneInfo.DisplayName, timeZoneInfo.Id);
+            return Item(FormatTimeZone(timeZoneInfo), timeZoneInfo.Id);
         }
         set
         {
-            _settingsProvider.SetSetting(timeZoneIdSettings!, value.Value!.ToString());
+            _settingsProvider.SetSetting(timeZoneIdSettings, value.Value!.ToString());
         }
     }
 
-    private readonly IUIInfoBar _errorInfoBar = InfoBar("error-info-bar");
+    private readonly IUIInfoBar _errorInfoBar = InfoBar("date-converter-error-info-bar");
 
-    private readonly IUINumberInput _numberInputText = NumberInput("timestamp-input-value");
+    private readonly IUINumberInput _numberInputText = NumberInput("date-converter-number-input");
 
-    private readonly IUISelectDropDownList _selectTimeZoneList = SelectDropDownList("timestamp-timezone-dropdown");
+    private readonly IUISelectDropDownList _selectTimeZoneList = SelectDropDownList("date-converter-timezone-dropdown");
 
-    private readonly IUISettingGroup _customEpochSetting = SettingGroup("timestamp-custom-epoch-setting");
+    private readonly IUISettingGroup _customEpochSetting = SettingGroup("date-converter-custom-epoch-setting");
 
-    private readonly IUIDataGrid _dstInformation = DataGrid("timestamp-dst-information-data-grid");
+    private readonly IUIDataGrid _dstInformation = DataGrid("date-converter-dst-information-data-grid");
 
     #region EpochUiInputs
-    private readonly IUISwitch _useCustomEpochSwitch = Switch("timestamp-use-custom-epoch-switch");
-    private readonly IUINumberInput _epochYearInputNumber = NumberInput("timestamp-epoch-input-year");
-    private readonly IUINumberInput _epochMonthInputNumber = NumberInput("timestamp-epoch-input-month");
-    private readonly IUINumberInput _epochDayInputNumber = NumberInput("timestamp-epoch-input-day");
-    private readonly IUINumberInput _epochHourInputNumber = NumberInput("timestamp-epoch-input-hour");
-    private readonly IUINumberInput _epochMinuteInputNumber = NumberInput("timestamp-epoch-input-minute");
-    private readonly IUINumberInput _epochSecondsInputNumber = NumberInput("timestamp-epoch-input-second");
-    private readonly IUINumberInput _epochMillisecondsInputNumber = NumberInput("timestamp-epoch-input-millisecond");
+    private readonly IUIStack _epochStack = Stack("date-converter-epoch-stack");
+    private readonly IUISwitch _useCustomEpochSwitch = Switch("date-converter-use-custom-epoch-switch");
+    private readonly IUINumberInput _epochYearInputNumber = NumberInput("date-converter-epoch-input-year");
+    private readonly IUINumberInput _epochMonthInputNumber = NumberInput("date-converter-epoch-input-month");
+    private readonly IUINumberInput _epochDayInputNumber = NumberInput("date-converter-epoch-input-day");
+    private readonly IUINumberInput _epochHourInputNumber = NumberInput("date-converter-epoch-input-hour");
+    private readonly IUINumberInput _epochMinuteInputNumber = NumberInput("date-converter-epoch-input-minute");
+    private readonly IUINumberInput _epochSecondsInputNumber = NumberInput("date-converter-epoch-input-second");
+    private readonly IUINumberInput _epochMillisecondsInputNumber = NumberInput("date-converter-epoch-input-millisecond");
     #endregion
 
     #region DateTimeUiInputs
-    private readonly IUINumberInput _timeYearInputNumber = NumberInput("timestamp-input-time-year");
-    private readonly IUINumberInput _timeMonthInputNumber = NumberInput("timestamp-input-time-month");
-    private readonly IUINumberInput _timeDayInputNumber = NumberInput("timestamp-input-time-day");
-    private readonly IUINumberInput _timeHourInputNumber = NumberInput("timestamp-input-time-hour");
-    private readonly IUINumberInput _timeMinuteInputNumber = NumberInput("timestamp-input-time-minute");
-    private readonly IUINumberInput _timeSecondsInputNumber = NumberInput("timestamp-input-time-second");
-    private readonly IUINumberInput _timeMillisecondsInputNumber = NumberInput("timestamp-input-time-millisecond");
+    private readonly IUINumberInput _dateYearInputNumber = NumberInput("date-converter-input-time-year");
+    private readonly IUINumberInput _dateMonthInputNumber = NumberInput("date-converter-input-time-month");
+    private readonly IUINumberInput _dateDayInputNumber = NumberInput("date-converter-input-time-day");
+    private readonly IUINumberInput _dateHourInputNumber = NumberInput("date-converter-input-time-hour");
+    private readonly IUINumberInput _dateMinuteInputNumber = NumberInput("date-converter-input-time-minute");
+    private readonly IUINumberInput _dateSecondsInputNumber = NumberInput("date-converter-input-time-second");
+    private readonly IUINumberInput _dateMillisecondsInputNumber = NumberInput("date-converter-input-time-millisecond");
     #endregion
 
     #region DstInformation
 
-    private readonly IUILabel _dstDaylightSavingLabel = Label("timestamp-dst-daylight-label").Style(UILabelStyle.Body);
-    private readonly IUILabel _dstOffsetLabel = Label("timestamp-dst-offset-label").Style(UILabelStyle.Body);
-    private readonly IUILabel _dstTicksLabel = Label("timestamp-dst-ticks-label").Style(UILabelStyle.Body);
-    private readonly IUILabel _dstLocalDateTimeLabel = Label("timestamp-dst-local-dateTime-label").Style(UILabelStyle.Body);
-    private readonly IUILabel _dstUtcDateTimeLabel = Label("timestamp-dst-utc-dateTime-label").Style(UILabelStyle.Body);
+    private readonly IUILabel _dstDaylightSavingLabel = Label("date-converter-dst-daylight-label").Style(UILabelStyle.Body);
+    private readonly IUILabel _dstOffsetLabel = Label("date-converter-dst-offset-label").Style(UILabelStyle.Body);
+    private readonly IUILabel _dstTicksLabel = Label("date-converter-dst-ticks-label").Style(UILabelStyle.Body);
+    private readonly IUILabel _dstLocalDateTimeLabel = Label("date-converter-dst-local-dateTime-label").Style(UILabelStyle.Body);
+    private readonly IUILabel _dstUtcDateTimeLabel = Label("date-converter-dst-utc-dateTime-label").Style(UILabelStyle.Body);
 
     #endregion
 
@@ -141,12 +136,26 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
         _logger = this.Log();
         _settingsProvider = settingsProvider;
 
-        _timeZoneInfo = GetSelectedTimeZone();
-        _dateFormat = settingsProvider.GetSetting(formatSettings);
-        _currentTimeUtc = settingsProvider.GetSetting(currentTimeUTCSettings);
-        _customEpoch = settingsProvider.GetSetting(epochSettings);
-        _useCustomEpoch = settingsProvider.GetSetting(customEpochSettings);
-        _numberInputText.Text(_currentTimeUtc.ToUnixTimeMilliseconds().ToString());
+        switch (_settingsProvider.GetSetting(useCustomEpochSettings))
+        {
+            case true:
+                _useCustomEpochSwitch.On();
+                DateTimeOffset epoch = _settingsProvider.GetSetting(customEpochSettings);
+                PopulateEpoch(epoch);
+                _epochStack.Enable();
+                break;
+
+            case false:
+                _useCustomEpochSwitch.Off();
+                _epochStack.Disable();
+                break;
+
+            default:
+                throw new NotSupportedException();
+        }
+
+        DateTimeOffset date = _settingsProvider.GetSetting(currentTimeSettings);
+        PopulateDate(date);
     }
 
     internal Task? WorkTask { get; private set; }
@@ -176,7 +185,7 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
                                 .Error()
                                 .Close(),
                             EpochSettingsViewComponent(),
-                            Setting("timestamp-timezone-setting")
+                            Setting("date-converter-timezone-setting")
                                 .Icon("FluentSystemIcons", '\uE36E')
                                 .Title(DateConverter.TimeZoneTitle)
                                 .InteractiveElement(
@@ -185,7 +194,7 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
                                     .WithItems(BuildTimeZoneItems())
                                     .OnItemSelected(OnTimeZoneSelected)
                                 ),
-                            Setting("timestamp-format-setting")
+                            Setting("date-converter-format-setting")
                                 .Icon("FluentSystemIcons", '\uF6F8')
                                 .Title(DateConverter.FormatTitle)
                                 .Handle(
@@ -225,55 +234,64 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
         if (dataTypeName == PredefinedCommonDataTypeNames.Date &&
             parsedData is DateTimeOffset dateStrongTypedParsedData)
         {
-            _timeYearInputNumber.Value(dateStrongTypedParsedData.Year);
-            _timeMonthInputNumber.Value(dateStrongTypedParsedData.Month);
-            _timeDayInputNumber.Value(dateStrongTypedParsedData.Day);
-            _timeHourInputNumber.Value(dateStrongTypedParsedData.Hour);
-            _timeMinuteInputNumber.Value(dateStrongTypedParsedData.Minute);
-            _timeSecondsInputNumber.Value(dateStrongTypedParsedData.Second);
-            _timeMillisecondsInputNumber.Value(dateStrongTypedParsedData.Millisecond);
+            PopulateDate(dateStrongTypedParsedData);
         }
     }
 
     public void Dispose()
     {
+        _cancellationTokenSource?.Cancel();
         _cancellationTokenSource?.Dispose();
         _semaphore.Dispose();
     }
 
     private void OnTimeZoneSelected(IUIDropDownListItem? item)
     {
-        if (item is null)
+        if (item is null || item.Value is null)
         {
             return;
         }
+
         if (_ignoreInputTextChange)
         {
             return;
         }
+
         SelectedTimeZoneDropDownItem = item;
-        _timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById(item.Value!.ToString()!);
-        _settingsProvider.SetSetting(timeZoneIdSettings, _timeZoneInfo.Id);
-        StartDateTimeConvert(_currentTimeUtc);
+        DateTimeOffset currentTime = _settingsProvider.GetSetting(DateConverterGuiTool.currentTimeSettings);
+        StartDateTimeConvert(currentTime);
     }
 
     private void OnFormatChanged(DateFormat format)
     {
-        _dateFormat = format;
-        StartDateTimeConvert(_currentTimeUtc);
+        _settingsProvider.SetSetting(DateConverterGuiTool.formatSettings, format);
         if (format is not DateFormat.Seconds)
         {
-            _timeMillisecondsInputNumber.Editable();
-            return;
+            _dateMillisecondsInputNumber.Editable();
         }
-        _timeMillisecondsInputNumber.ReadOnly();
+        else
+        {
+            _dateMillisecondsInputNumber.ReadOnly();
+        }
+
+        DateTimeOffset currentTime = _settingsProvider.GetSetting(DateConverterGuiTool.currentTimeSettings);
+        StartDateTimeConvert(currentTime);
     }
 
     private void OnCustomEpochChanged(bool useCustomEpoch)
     {
-        _useCustomEpoch = useCustomEpoch;
-        _settingsProvider.SetSetting(customEpochSettings, useCustomEpoch);
-        StartDateTimeConvert(_currentTimeUtc);
+        _settingsProvider.SetSetting(DateConverterGuiTool.useCustomEpochSettings, useCustomEpoch);
+        DateTimeOffset currentTime = _settingsProvider.GetSetting(DateConverterGuiTool.currentTimeSettings);
+        if (useCustomEpoch)
+        {
+            _epochStack.Enable();
+        }
+        else
+        {
+            _epochStack.Disable();
+        }
+
+        StartDateTimeConvert(currentTime);
     }
 
     private void OnTimeChanged(string value, DateValueType valueChanged)
@@ -283,10 +301,13 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
             return;
         }
 
-        ToolResult<DateTimeOffset> result = DateHelper.ChangeDateTime(
+        TimeZoneInfo timeZoneInfo = GetSelectedTimeZone();
+        DateTimeOffset currentTime = _settingsProvider.GetSetting(DateConverterGuiTool.currentTimeSettings);
+
+        ResultInfo<DateTimeOffset> result = DateHelper.ChangeDateTime(
             Convert.ToInt32(value),
-            _currentTimeUtc,
-            _timeZoneInfo,
+            currentTime,
+            timeZoneInfo,
             valueChanged);
         if (!result.HasSucceeded)
         {
@@ -294,9 +315,9 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
             _errorInfoBar.Open();
             return;
         }
+
         _errorInfoBar.Close();
-        _currentTimeUtc = result.Data;
-        _settingsProvider.SetSetting(currentTimeUTCSettings, result.Data);
+        _settingsProvider.SetSetting(DateConverterGuiTool.currentTimeSettings, result.Data);
         StartDateTimeConvert(result.Data);
     }
 
@@ -307,26 +328,31 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
             return;
         }
 
-        if (!_settingsProvider.GetSetting(customEpochSettings))
-        {
-            return;
-        }
+        DateTimeOffset epochToUse = _settingsProvider.GetSetting(DateConverterGuiTool.customEpochSettings);
 
-        ToolResult<DateTimeOffset> result = DateHelper.ChangeDateTime(
+        ResultInfo<DateTimeOffset> result = DateHelper.ChangeDateTime(
             Convert.ToInt32(value),
-            _customEpoch,
+            epochToUse,
             TimeZoneInfo.Utc,
             valueChanged);
+
         if (!result.HasSucceeded)
         {
             _errorInfoBar.Description(DateConverter.InvalidValue);
             _errorInfoBar.Open();
             return;
         }
+
         _errorInfoBar.Close();
-        _customEpoch = result.Data;
-        _settingsProvider.SetSetting(epochSettings, result.Data);
-        StartDateTimeConvert(_currentTimeUtc);
+        _settingsProvider.SetSetting(DateConverterGuiTool.customEpochSettings, result.Data);
+
+        if (!_settingsProvider.GetSetting(useCustomEpochSettings))
+        {
+            return;
+        }
+
+        DateTimeOffset currentTime = _settingsProvider.GetSetting(DateConverterGuiTool.currentTimeSettings);
+        StartDateTimeConvert(currentTime);
     }
 
     private void OnTimeStampChanged(string value)
@@ -354,12 +380,16 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
 
         _errorInfoBar.Close();
 
-        DateTimeOffset epoch = DateTime.UnixEpoch;
-        if (_useCustomEpoch)
+        bool useCustomEpoch = _settingsProvider.GetSetting(DateConverterGuiTool.useCustomEpochSettings);
+        DateFormat format = _settingsProvider.GetSetting(DateConverterGuiTool.formatSettings);
+        TimeZoneInfo timeZoneInfo = GetSelectedTimeZone();
+        DateTimeOffset epochToUse = DateTime.UnixEpoch;
+        if (useCustomEpoch)
         {
-            epoch = _customEpoch;
+            epochToUse = _settingsProvider.GetSetting(DateConverterGuiTool.customEpochSettings);
         }
-        StartNumberConvert(Convert.ToInt64(number), epoch, _timeZoneInfo, _dateFormat);
+
+        StartNumberConvert(Convert.ToInt64(number), epochToUse, timeZoneInfo, format);
     }
 
     private void StartNumberConvert(
@@ -372,12 +402,14 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
         _cancellationTokenSource?.Dispose();
         _cancellationTokenSource = new CancellationTokenSource();
 
+        _ignoreInputTextChange = true;
         WorkTask = ConvertNumberAsync(
             number,
             epoch,
             timeZone,
             dateFormat,
             _cancellationTokenSource.Token);
+        _ignoreInputTextChange = false;
     }
 
     private async Task ConvertNumberAsync(
@@ -389,26 +421,18 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
     {
         using (await _semaphore.WaitAsync(cancellationToken))
         {
-            ToolResult<DateTimeOffset> result = await DateHelper.ConvertToDateTimeUtcAsync(
+            ResultInfo<DateTimeOffset> result = DateHelper.ConvertToDateTimeUtc(
                 number,
                 epoch,
-                selectedFormat,
-                cancellationToken);
+                selectedFormat);
 
-            _ignoreInputTextChange = true;
             DateTimeOffset convertedDateTime = TimeZoneInfo.ConvertTime(result.Data, timeZone);
-            _timeYearInputNumber.Value(convertedDateTime.Year);
-            _timeMonthInputNumber.Value(convertedDateTime.Month);
-            _timeDayInputNumber.Value(convertedDateTime.Day);
-            _timeHourInputNumber.Value(convertedDateTime.Hour);
-            _timeMinuteInputNumber.Value(convertedDateTime.Minute);
-            _timeSecondsInputNumber.Value(convertedDateTime.Second);
-            _timeMillisecondsInputNumber.Value(convertedDateTime.Millisecond);
+            PopulateDate(convertedDateTime);
             _numberInputText.Text(number.ToString());
-            _settingsProvider.SetSetting(currentTimeUTCSettings, convertedDateTime);
-            _currentTimeUtc = convertedDateTime;
-            ComputeDstInformation(convertedDateTime);
-            _ignoreInputTextChange = false;
+
+            _settingsProvider.SetSetting(currentTimeSettings, convertedDateTime);
+
+            ComputeDstInformation(convertedDateTime, timeZone);
         }
     }
 
@@ -418,18 +442,23 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
         _cancellationTokenSource?.Dispose();
         _cancellationTokenSource = new CancellationTokenSource();
 
-        DateTimeOffset epoch = DateTime.UnixEpoch;
-        if (_useCustomEpoch)
+        bool useCustomEpoch = _settingsProvider.GetSetting(DateConverterGuiTool.useCustomEpochSettings);
+        DateFormat format = _settingsProvider.GetSetting(DateConverterGuiTool.formatSettings);
+        TimeZoneInfo timeZoneInfo = GetSelectedTimeZone();
+        DateTimeOffset epochToUse = DateTime.UnixEpoch;
+        if (useCustomEpoch)
         {
-            epoch = _customEpoch;
+            epochToUse = _settingsProvider.GetSetting(DateConverterGuiTool.customEpochSettings);
         }
 
+        _ignoreInputTextChange = true;
         WorkTask = ConvertDateTimeOffsetAsync(
             dateTimeOffset,
-            epoch,
-            _timeZoneInfo,
-            _dateFormat,
+            epochToUse,
+            timeZoneInfo,
+            format,
             _cancellationTokenSource.Token);
+        _ignoreInputTextChange = false;
     }
 
     private async Task ConvertDateTimeOffsetAsync(
@@ -441,32 +470,22 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
     {
         using (await _semaphore.WaitAsync(cancellationToken))
         {
-            ToolResult<long> result = await DateHelper.ConvertToLongAsync(
+            ResultInfo<long> result = DateHelper.ConvertToLong(
                 dateTimeOffset,
                 epoch,
-                selectedFormat,
-                cancellationToken);
-
-            _ignoreInputTextChange = true;
+                selectedFormat);
 
             _numberInputText.Text(result.Data.ToString());
             DateTimeOffset convertedDateTime = TimeZoneInfo.ConvertTime(dateTimeOffset, timeZone);
-            _timeYearInputNumber.Value(convertedDateTime.Year);
-            _timeMonthInputNumber.Value(convertedDateTime.Month);
-            _timeDayInputNumber.Value(convertedDateTime.Day);
-            _timeHourInputNumber.Value(convertedDateTime.Hour);
-            _timeMinuteInputNumber.Value(convertedDateTime.Minute);
-            _timeSecondsInputNumber.Value(convertedDateTime.Second);
-            _timeMillisecondsInputNumber.Value(convertedDateTime.Millisecond);
-            ComputeDstInformation(convertedDateTime);
-            _ignoreInputTextChange = false;
+            PopulateDate(convertedDateTime);
+            ComputeDstInformation(convertedDateTime, timeZone);
         }
     }
 
     private TimeZoneInfo GetSelectedTimeZone()
     {
-        string timeZone = _settingsProvider.GetSetting(timeZoneIdSettings);
-        return TimeZoneInfo.FindSystemTimeZoneById(timeZone);
+        string timeZoneId = _settingsProvider.GetSetting(timeZoneIdSettings);
+        return TimeZoneInfo.FindSystemTimeZoneById(timeZoneId);
     }
 
     private IUISettingGroup EpochSettingsViewComponent()
@@ -483,14 +502,13 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
                         .OnToggle(OnCustomEpochChanged)
                 )
                 .WithChildren(
-                    EpochStack()
+                    EpochTimeStack()
                 );
     }
 
-    private IUIStack EpochStack()
+    private IUIStack EpochTimeStack()
     {
-        return
-            Stack()
+        return _epochStack
             .Vertical()
             .WithChildren(
                 Grid("epoch-date-grid")
@@ -514,7 +532,6 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
                         .WithChildren(
                             _epochYearInputNumber
                             .Title(DateConverter.YearTitle)
-                            .Value(_settingsProvider.GetSetting(epochSettings).Year)
                             .HideCommandBar()
                             .OnTextChanged((value) =>
                             {
@@ -533,7 +550,6 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
                         .WithChildren(
                             _epochMonthInputNumber
                             .Title(DateConverter.MonthTitle)
-                            .Value(_settingsProvider.GetSetting(epochSettings).Month)
                             .HideCommandBar()
                             .OnTextChanged((value) =>
                             {
@@ -552,7 +568,6 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
                         .WithChildren(
                             _epochDayInputNumber
                             .Title(DateConverter.DayTitle)
-                            .Value(_settingsProvider.GetSetting(epochSettings).Day)
                             .HideCommandBar()
                             .OnTextChanged((value) =>
                             {
@@ -585,7 +600,6 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
                         .WithChildren(
                             _epochHourInputNumber
                             .Title(DateConverter.HourTitle)
-                            .Value(_settingsProvider.GetSetting(epochSettings).Hour)
                             .HideCommandBar()
                             .OnTextChanged((value) =>
                             {
@@ -604,7 +618,6 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
                         .WithChildren(
                             _epochMinuteInputNumber
                             .Title(DateConverter.MinutesTitle)
-                            .Value(_settingsProvider.GetSetting(epochSettings).Minute)
                             .HideCommandBar()
                             .OnTextChanged((value) =>
                             {
@@ -623,7 +636,6 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
                         .WithChildren(
                             _epochSecondsInputNumber
                             .Title(DateConverter.SecondsTitle)
-                            .Value(_settingsProvider.GetSetting(epochSettings).Second)
                             .HideCommandBar()
                             .OnTextChanged((value) =>
                             {
@@ -642,7 +654,6 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
                         .WithChildren(
                             _epochMillisecondsInputNumber
                             .Title(DateConverter.MillisecondsTitle)
-                            .Value(_settingsProvider.GetSetting(epochSettings).Millisecond)
                             .HideCommandBar()
                             .OnTextChanged((value) =>
                             {
@@ -650,10 +661,10 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
                             })
                             .Minimum(0)
                             .Maximum(999)
-                        )
                     )
                 )
-            );
+            )
+        );
     }
 
     private IUIStack DateTimeStack()
@@ -681,9 +692,8 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
                         .Vertical()
                         .SmallSpacing()
                         .WithChildren(
-                            _timeYearInputNumber
+                            _dateYearInputNumber
                             .Title(DateConverter.YearTitle)
-                            .Value(_currentTimeUtc.Year)
                             .HideCommandBar()
                             .OnTextChanged((value) =>
                             {
@@ -701,9 +711,8 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
                         .Vertical()
                         .SmallSpacing()
                         .WithChildren(
-                            _timeMonthInputNumber
+                            _dateMonthInputNumber
                             .Title(DateConverter.MonthTitle)
-                            .Value(_currentTimeUtc.Month)
                             .HideCommandBar()
                             .OnTextChanged((value) =>
                             {
@@ -721,9 +730,8 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
                         .Vertical()
                         .SmallSpacing()
                         .WithChildren(
-                            _timeDayInputNumber
+                            _dateDayInputNumber
                             .Title(DateConverter.DayTitle)
-                            .Value(_currentTimeUtc.Day)
                             .HideCommandBar()
                             .OnTextChanged((value) =>
                             {
@@ -755,9 +763,8 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
                         .Vertical()
                         .SmallSpacing()
                         .WithChildren(
-                            _timeHourInputNumber
+                            _dateHourInputNumber
                             .Title(DateConverter.HourTitle)
-                            .Value(_currentTimeUtc.Hour)
                             .HideCommandBar()
                             .OnTextChanged((value) =>
                             {
@@ -775,9 +782,8 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
                         .Vertical()
                         .SmallSpacing()
                         .WithChildren(
-                            _timeMinuteInputNumber
+                            _dateMinuteInputNumber
                             .Title(DateConverter.MinutesTitle)
-                            .Value(_currentTimeUtc.Minute)
                             .HideCommandBar()
                             .OnTextChanged((value) =>
                             {
@@ -795,9 +801,8 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
                         .Vertical()
                         .SmallSpacing()
                         .WithChildren(
-                            _timeSecondsInputNumber
+                            _dateSecondsInputNumber
                             .Title(DateConverter.SecondsTitle)
-                            .Value(_currentTimeUtc.Second)
                             .HideCommandBar()
                             .OnTextChanged((value) =>
                             {
@@ -815,9 +820,8 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
                         .Vertical()
                         .SmallSpacing()
                         .WithChildren(
-                            _timeMillisecondsInputNumber
+                            _dateMillisecondsInputNumber
                             .Title(DateConverter.MillisecondsTitle)
-                            .Value(_currentTimeUtc.Millisecond)
                             .HideCommandBar()
                             .OnTextChanged((value) =>
                             {
@@ -834,124 +838,123 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
     private IUICard DstInformation()
     {
         return
-            Card()
-            .WithChildren(
-            Stack()
-            .Vertical()
-            .WithChildren(
-                Grid()
-                    .Rows(
-                        (DateConvertDstGridRow.Daylight, Auto),
-                        (DateConvertDstGridRow.Offset, Auto),
-                        (DateConvertDstGridRow.DateTime, Auto)
-                    )
-                    .Columns(
-                        (DateConvertDstGridColumn.LeftTitle, new UIGridLength(1, UIGridUnitType.Fraction)),
-                        (DateConvertDstGridColumn.LeftContent, new UIGridLength(1, UIGridUnitType.Fraction)),
-                        (DateConvertDstGridColumn.RightTitle, new UIGridLength(1, UIGridUnitType.Fraction)),
-                        (DateConvertDstGridColumn.RightContent, new UIGridLength(1, UIGridUnitType.Fraction))
-                    )
-                    .Cells(
-                        Cell(
-                            DateConvertDstGridRow.Daylight,
-                            DateConvertDstGridColumn.LeftTitle,
-                            Stack()
-                                .Vertical()
-                                .SmallSpacing()
-                                .WithChildren(
-                                    _dstDaylightSavingLabel
-                                )
-                        ),
-                        Cell(
-                            DateConvertDstGridRow.Offset,
-                            DateConvertDstGridColumn.LeftTitle,
-                            Stack()
-                                .Vertical()
-                                .SmallSpacing()
-                                .WithChildren(
-                                    Label()
-                                        .Style(UILabelStyle.Body)
-                                        .Text("Offset")
-                                )
-                        ),
-                        Cell(
-                            DateConvertDstGridRow.Offset,
-                            DateConvertDstGridColumn.LeftContent,
-                            Stack()
-                                .Vertical()
-                                .SmallSpacing()
-                                .WithChildren(
-                                    _dstOffsetLabel
-                                )
-                        ),
-                        Cell(
-                            DateConvertDstGridRow.Offset,
-                            DateConvertDstGridColumn.RightTitle,
-                            Stack()
-                                .Vertical()
-                                .SmallSpacing()
-                                .WithChildren(
-                                    Label()
-                                        .Style(UILabelStyle.Body)
-                                        .Text("Ticks")
-                                )
-                        ),
-                        Cell(
-                            DateConvertDstGridRow.Offset,
-                            DateConvertDstGridColumn.RightContent,
-                            Stack()
-                                .Vertical()
-                                .SmallSpacing()
-                                .WithChildren(
-                                    _dstTicksLabel
-                                )
-                        ),
-                        Cell(
-                            DateConvertDstGridRow.DateTime,
-                            DateConvertDstGridColumn.LeftTitle,
-                            Stack()
-                                .Vertical()
-                                .SmallSpacing()
-                                .WithChildren(
-                                    Label()
-                                        .Style(UILabelStyle.Body)
-                                        .Text("Local DateTime")
-                                )
-                        ),
-                        Cell(
-                            DateConvertDstGridRow.DateTime,
-                            DateConvertDstGridColumn.LeftContent,
-                            Stack()
-                                .Vertical()
-                                .SmallSpacing()
-                                .WithChildren(
-                                    _dstLocalDateTimeLabel
-                                )
-                        ),
-                        Cell(
-                            DateConvertDstGridRow.DateTime,
-                            DateConvertDstGridColumn.RightTitle,
-                            Stack()
-                                .Vertical()
-                                .SmallSpacing()
-                                .WithChildren(
-                                    Label()
-                                        .Style(UILabelStyle.Body)
-                                        .Text("UTC DateTime")
-                                )
-                        ),
-                        Cell(
-                            DateConvertDstGridRow.DateTime,
-                            DateConvertDstGridColumn.RightContent,
-                            Stack()
-                                .Vertical()
-                                .SmallSpacing()
-                                .WithChildren(
-                                    _dstUtcDateTimeLabel
-                                )
+            Card(
+                Stack()
+                .Vertical()
+                .WithChildren(
+                    Grid()
+                        .Rows(
+                            (DateConvertDstGridRow.Daylight, Auto),
+                            (DateConvertDstGridRow.Offset, Auto),
+                            (DateConvertDstGridRow.DateTime, Auto)
                         )
-                    )
-            )
+                        .Columns(
+                            (DateConvertDstGridColumn.LeftTitle, new UIGridLength(1, UIGridUnitType.Fraction)),
+                            (DateConvertDstGridColumn.LeftContent, new UIGridLength(1, UIGridUnitType.Fraction)),
+                            (DateConvertDstGridColumn.RightTitle, new UIGridLength(1, UIGridUnitType.Fraction)),
+                            (DateConvertDstGridColumn.RightContent, new UIGridLength(1, UIGridUnitType.Fraction))
+                        )
+                        .Cells(
+                            Cell(
+                                DateConvertDstGridRow.Daylight,
+                                DateConvertDstGridColumn.LeftTitle,
+                                Stack()
+                                    .Vertical()
+                                    .SmallSpacing()
+                                    .WithChildren(
+                                        _dstDaylightSavingLabel
+                                    )
+                            ),
+                            Cell(
+                                DateConvertDstGridRow.Offset,
+                                DateConvertDstGridColumn.LeftTitle,
+                                Stack()
+                                    .Vertical()
+                                    .SmallSpacing()
+                                    .WithChildren(
+                                        Label()
+                                            .Style(UILabelStyle.Body)
+                                            .Text(DateConverter.OffsetTitle)
+                                    )
+                            ),
+                            Cell(
+                                DateConvertDstGridRow.Offset,
+                                DateConvertDstGridColumn.LeftContent,
+                                Stack()
+                                    .Vertical()
+                                    .SmallSpacing()
+                                    .WithChildren(
+                                        _dstOffsetLabel
+                                    )
+                            ),
+                            Cell(
+                                DateConvertDstGridRow.Offset,
+                                DateConvertDstGridColumn.RightTitle,
+                                Stack()
+                                    .Vertical()
+                                    .SmallSpacing()
+                                    .WithChildren(
+                                        Label()
+                                            .Style(UILabelStyle.Body)
+                                            .Text(DateConverter.UtcTicksTitle)
+                                    )
+                            ),
+                            Cell(
+                                DateConvertDstGridRow.Offset,
+                                DateConvertDstGridColumn.RightContent,
+                                Stack()
+                                    .Vertical()
+                                    .SmallSpacing()
+                                    .WithChildren(
+                                        _dstTicksLabel
+                                    )
+                            ),
+                            Cell(
+                                DateConvertDstGridRow.DateTime,
+                                DateConvertDstGridColumn.LeftTitle,
+                                Stack()
+                                    .Vertical()
+                                    .SmallSpacing()
+                                    .WithChildren(
+                                        Label()
+                                            .Style(UILabelStyle.Body)
+                                            .Text(DateConverter.LocalDateTime)
+                                    )
+                            ),
+                            Cell(
+                                DateConvertDstGridRow.DateTime,
+                                DateConvertDstGridColumn.LeftContent,
+                                Stack()
+                                    .Vertical()
+                                    .SmallSpacing()
+                                    .WithChildren(
+                                        _dstLocalDateTimeLabel
+                                    )
+                            ),
+                            Cell(
+                                DateConvertDstGridRow.DateTime,
+                                DateConvertDstGridColumn.RightTitle,
+                                Stack()
+                                    .Vertical()
+                                    .SmallSpacing()
+                                    .WithChildren(
+                                        Label()
+                                            .Style(UILabelStyle.Body)
+                                            .Text(DateConverter.UTCDateTime)
+                                    )
+                            ),
+                            Cell(
+                                DateConvertDstGridRow.DateTime,
+                                DateConvertDstGridColumn.RightContent,
+                                Stack()
+                                    .Vertical()
+                                    .SmallSpacing()
+                                    .WithChildren(
+                                        _dstUtcDateTimeLabel
+                                    )
+                            )
+                        )
+                )
             );
     }
 
@@ -983,9 +986,8 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
             // version >= .Net6
             for (int i = 0; i < systemTimeZone.Count; i++)
             {
-                string displayName = systemTimeZone[i].DisplayName;
                 string timeZoneId = systemTimeZone[i].Id;
-                timeZoneDropDownItems[i] = Item(displayName, timeZoneId);
+                timeZoneDropDownItems[i] = Item(FormatTimeZone(systemTimeZone[i]), timeZoneId);
 
                 if (timeZoneId.Equals(timeZoneSelectedId, StringComparison.OrdinalIgnoreCase))
                 {
@@ -996,17 +998,17 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
         return timeZoneDropDownItems.ToArray();
     }
 
-    private void ComputeDstInformation(DateTimeOffset dateTimeOffset)
+    private void ComputeDstInformation(DateTimeOffset dateTimeOffset, TimeZoneInfo timeZone)
     {
-        if (_timeZoneInfo.IsAmbiguousTime(dateTimeOffset))
+        if (timeZone.IsAmbiguousTime(dateTimeOffset))
         {
             _dstDaylightSavingLabel.Text(DateConverter.DSTAmbiguousTime);
         }
-        else if (_timeZoneInfo.IsDaylightSavingTime(dateTimeOffset))
+        else if (timeZone.IsDaylightSavingTime(dateTimeOffset))
         {
             _dstDaylightSavingLabel.Text(DateConverter.DaylightSavingTime);
         }
-        else if (_timeZoneInfo.SupportsDaylightSavingTime)
+        else if (timeZone.SupportsDaylightSavingTime)
         {
             _dstDaylightSavingLabel.Text(DateConverter.SupportsDaylightSavingTime);
         }
@@ -1018,5 +1020,37 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
         _dstTicksLabel.Text(dateTimeOffset.UtcDateTime.Ticks.ToString());
         _dstLocalDateTimeLabel.Text(dateTimeOffset.LocalDateTime.ToString("yyyy/MM/dd HH:mm:ss"));
         _dstUtcDateTimeLabel.Text(dateTimeOffset.UtcDateTime.ToString("yyyy/MM/dd HH:mm:ss"));
+    }
+
+    private void PopulateEpoch(DateTimeOffset epoch)
+    {
+        _epochYearInputNumber.Value(epoch.Year);
+        _epochMonthInputNumber.Value(epoch.Month);
+        _epochDayInputNumber.Value(epoch.Day);
+        _epochHourInputNumber.Value(epoch.Hour);
+        _epochMinuteInputNumber.Value(epoch.Minute);
+        _epochSecondsInputNumber.Value(epoch.Second);
+        _epochMillisecondsInputNumber.Value(epoch.Millisecond);
+    }
+
+    private void PopulateDate(DateTimeOffset date)
+    {
+        _dateYearInputNumber.Value(date.Year);
+        _dateMonthInputNumber.Value(date.Month);
+        _dateDayInputNumber.Value(date.Day);
+        _dateHourInputNumber.Value(date.Hour);
+        _dateMinuteInputNumber.Value(date.Minute);
+        _dateSecondsInputNumber.Value(date.Second);
+        _dateMillisecondsInputNumber.Value(date.Millisecond);
+    }
+
+    private static string FormatTimeZone(TimeZoneInfo timeZoneInfo)
+    {
+        string displayName = $"(UTC{timeZoneInfo.BaseUtcOffset.Hours:+00;-00;}:{timeZoneInfo.BaseUtcOffset.Minutes:00;00;}) " + timeZoneInfo.StandardName;
+        if (timeZoneInfo.Id == TimeZoneInfo.Utc.Id)
+        {
+            displayName = "(UTC) " + timeZoneInfo.StandardName;
+        }
+        return displayName;
     }
 }
