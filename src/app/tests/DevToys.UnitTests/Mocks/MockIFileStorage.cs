@@ -18,17 +18,17 @@ internal class MockIFileStorage : IFileStorage
         return FileExistsResult;
     }
 
-    public Stream OpenReadFile(string relativeOrAbsoluteFilePath)
+    public FileStream OpenReadFile(string relativeOrAbsoluteFilePath)
     {
         return new FileStream(relativeOrAbsoluteFilePath, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, FileOptions.Asynchronous | FileOptions.SequentialScan);
     }
 
-    public Stream OpenWriteFile(string relativeOrAbsoluteFilePath, bool replaceIfExist)
+    public FileStream OpenWriteFile(string relativeOrAbsoluteFilePath, bool replaceIfExist)
     {
         throw new NotImplementedException();
     }
 
-    public ValueTask<Stream> PickSaveFileAsync(params string[] fileTypes)
+    public ValueTask<FileStream> PickSaveFileAsync(params string[] fileTypes)
     {
         // TODO: prompt the user to type in the console a relative or absolute file path that has one of the file types indicated.
         throw new NotImplementedException();

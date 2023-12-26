@@ -12,13 +12,12 @@ public interface IFileStorage
     /// </summary>
     string AppCacheDirectory { get; }
 
-    // TODO: There's a problem with this API. It's not possible to know what file type the user selected. The file type can impact the data written into the file (i.e PNG vs JPEG).
     /// <summary>
     /// Prompt the user to select a location to save a file, and decide of the file name.
     /// </summary>
     /// <param name="fileTypes">The list of file types the user can choose. For example, ".txt". Use "*" for any file type.</param>
     /// <returns>If succeeded, returns a write-only stream corresponding to the file the user selected, otherwise, returns null.</returns>
-    ValueTask<Stream?> PickSaveFileAsync(params string[] fileTypes);
+    ValueTask<FileStream?> PickSaveFileAsync(params string[] fileTypes);
 
     /// <summary>
     /// Prompt the user to select a file to open.
@@ -56,7 +55,7 @@ public interface IFileStorage
     /// </summary>
     /// <param name="relativeOrAbsoluteFilePath">The path to the file to read.</param>
     /// <returns>Returns a read-only stream if the file exist and can be read, otherwise, raise an exception.</returns>
-    Stream OpenReadFile(string relativeOrAbsoluteFilePath);
+    FileStream OpenReadFile(string relativeOrAbsoluteFilePath);
 
     /// <summary>
     /// Tries to open the given <paramref name="relativeOrAbsoluteFilePath"/> with write access rights. The file will be created if it doesn't exist.
@@ -65,7 +64,7 @@ public interface IFileStorage
     /// <param name="relativeOrAbsoluteFilePath">The path to the file to write.</param>
     /// <param name="replaceIfExist">If true and that the file indicated by <paramref name="relativeOrAbsoluteFilePath"/> already exist, overwrite it. Otherwise, open it without replacing it.</param>
     /// <returns>Returns a write-only stream.</returns>
-    Stream OpenWriteFile(string relativeOrAbsoluteFilePath, bool replaceIfExist);
+    FileStream OpenWriteFile(string relativeOrAbsoluteFilePath, bool replaceIfExist);
 
     /// <summary>
     /// Creates a new temporary file in <see cref="AppCacheDirectory"/> that will be deleted when the app stops, or the next time is starts.

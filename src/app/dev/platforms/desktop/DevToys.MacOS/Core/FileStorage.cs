@@ -21,7 +21,7 @@ internal sealed class FileStorage : IFileStorage
         return File.Exists(relativeOrAbsoluteFilePath);
     }
 
-    public Stream OpenReadFile(string relativeOrAbsoluteFilePath)
+    public FileStream OpenReadFile(string relativeOrAbsoluteFilePath)
     {
         if (!Path.IsPathRooted(relativeOrAbsoluteFilePath))
         {
@@ -37,7 +37,7 @@ internal sealed class FileStorage : IFileStorage
             SandboxedFileReader.BufferSize, FileOptions.Asynchronous | FileOptions.SequentialScan);
     }
 
-    public Stream OpenWriteFile(string relativeOrAbsoluteFilePath, bool replaceIfExist)
+    public FileStream OpenWriteFile(string relativeOrAbsoluteFilePath, bool replaceIfExist)
     {
         if (!Path.IsPathRooted(relativeOrAbsoluteFilePath))
         {
@@ -58,7 +58,7 @@ internal sealed class FileStorage : IFileStorage
         return File.OpenWrite(relativeOrAbsoluteFilePath);
     }
 
-    public async ValueTask<Stream?> PickSaveFileAsync(string[] fileTypes)
+    public async ValueTask<FileStream?> PickSaveFileAsync(string[] fileTypes)
     {
         return await ThreadHelper.RunOnUIThreadAsync(() =>
         {

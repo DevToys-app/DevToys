@@ -30,7 +30,7 @@ internal sealed class FileStorage : GObject.Object, IFileStorage
         return File.Exists(relativeOrAbsoluteFilePath);
     }
 
-    public Stream OpenReadFile(string relativeOrAbsoluteFilePath)
+    public FileStream OpenReadFile(string relativeOrAbsoluteFilePath)
     {
         if (!Path.IsPathRooted(relativeOrAbsoluteFilePath))
         {
@@ -45,7 +45,7 @@ internal sealed class FileStorage : GObject.Object, IFileStorage
         return new FileStream(relativeOrAbsoluteFilePath, FileMode.Open, FileAccess.Read, FileShare.Read, SandboxedFileReader.BufferSize, FileOptions.Asynchronous | FileOptions.SequentialScan);
     }
 
-    public Stream OpenWriteFile(string relativeOrAbsoluteFilePath, bool replaceIfExist)
+    public FileStream OpenWriteFile(string relativeOrAbsoluteFilePath, bool replaceIfExist)
     {
         if (!Path.IsPathRooted(relativeOrAbsoluteFilePath))
         {
@@ -135,7 +135,7 @@ internal sealed class FileStorage : GObject.Object, IFileStorage
         return PickOpenFileInternalAsync(fileTypes, allowMultiple: true);
     }
 
-    public async ValueTask<Stream?> PickSaveFileAsync(params string[] fileTypes)
+    public async ValueTask<FileStream?> PickSaveFileAsync(params string[] fileTypes)
     {
         Guard.IsNotNull(MainWindow);
 
@@ -157,7 +157,7 @@ internal sealed class FileStorage : GObject.Object, IFileStorage
             fileChooser.AddFilter(filters[i]);
         }
 
-        var taskCompletionSource = new TaskCompletionSource<Stream?>();
+        var taskCompletionSource = new TaskCompletionSource<FileStream?>();
         fileChooser.OnResponse += (_, e) =>
         {
             // Handle the result of the window.

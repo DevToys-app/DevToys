@@ -25,7 +25,7 @@ internal sealed class FileStorage : IFileStorage
         return File.Exists(relativeOrAbsoluteFilePath);
     }
 
-    public Stream OpenReadFile(string relativeOrAbsoluteFilePath)
+    public FileStream OpenReadFile(string relativeOrAbsoluteFilePath)
     {
         if (!Path.IsPathRooted(relativeOrAbsoluteFilePath))
         {
@@ -40,7 +40,7 @@ internal sealed class FileStorage : IFileStorage
         return new FileStream(relativeOrAbsoluteFilePath, FileMode.Open, FileAccess.Read, FileShare.Read, SandboxedFileReader.BufferSize, FileOptions.Asynchronous | FileOptions.SequentialScan);
     }
 
-    public Stream OpenWriteFile(string relativeOrAbsoluteFilePath, bool replaceIfExist)
+    public FileStream OpenWriteFile(string relativeOrAbsoluteFilePath, bool replaceIfExist)
     {
         if (!Path.IsPathRooted(relativeOrAbsoluteFilePath))
         {
@@ -61,17 +61,18 @@ internal sealed class FileStorage : IFileStorage
         return File.OpenWrite(relativeOrAbsoluteFilePath);
     }
 
-    public ValueTask<Stream?> PickSaveFileAsync(params string[] fileTypes)
+    public ValueTask<FileStream?> PickSaveFileAsync(params string[] fileTypes)
     {
+        // TODO: Limit input to the indicated file types.
         Console.WriteLine(CliStrings.PromptSaveFile);
         string? filePath = Console.ReadLine();
 
         if (string.IsNullOrWhiteSpace(filePath))
         {
-            return new ValueTask<Stream?>(Task.FromResult<Stream?>(null));
+            return new ValueTask<FileStream?>(Task.FromResult<FileStream?>(null));
         }
 
-        return new ValueTask<Stream?>(File.OpenWrite(filePath!));
+        return new ValueTask<FileStream?>(File.OpenWrite(filePath!));
     }
 
     public ValueTask<SandboxedFileReader?> PickOpenFileAsync(params string[] fileTypes)
