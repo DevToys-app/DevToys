@@ -108,6 +108,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>HashAndChecksumGenerator.resx</DependentUpon>
     </Compile>
+    <Compile Update="Tools\Generators\LoremIpsum\LoremIpsumGenerator.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LoremIpsumGenerator.resx</DependentUpon>
+    </Compile>
     <Compile Update="Tools\Generators\Password\PasswordGenerator.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -225,6 +230,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>HashAndChecksumGenerator.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Tools\Generators\LoremIpsum\LoremIpsumGenerator.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LoremIpsumGenerator.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Tools\Generators\Password\PasswordGenerator.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>PasswordGenerator.Designer.cs</LastGenOutput>
@@ -274,6 +283,19 @@
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\..\assets\font\DevToys-Tools-Icons.ttf" Link="Assets\fonts\DevToys-Tools-Icons.ttf" />
     <EmbeddedResource Include="Assets\GitHubMarkdown\index.html" />
+    <EmbeddedResource Include="Assets\Lipsums\childharold.xml" />
+    <EmbeddedResource Include="Assets\Lipsums\decameron.xml" />
+    <EmbeddedResource Include="Assets\Lipsums\faust.xml" />
+    <EmbeddedResource Include="Assets\Lipsums\inderfremde.xml" />
+    <EmbeddedResource Include="Assets\Lipsums\lebateauivre.xml" />
+    <EmbeddedResource Include="Assets\Lipsums\lemasque.xml" />
+    <EmbeddedResource Include="Assets\Lipsums\LICENSE.MD" />
+    <EmbeddedResource Include="Assets\Lipsums\loremipsum.xml" />
+    <EmbeddedResource Include="Assets\Lipsums\nagyonfaj.xml" />
+    <EmbeddedResource Include="Assets\Lipsums\omagyar.xml" />
+    <EmbeddedResource Include="Assets\Lipsums\robinsonokruso.xml" />
+    <EmbeddedResource Include="Assets\Lipsums\theraven.xml" />
+    <EmbeddedResource Include="Assets\Lipsums\tierrayluna.xml" />
   </ItemGroup>
 
   <ItemGroup>
