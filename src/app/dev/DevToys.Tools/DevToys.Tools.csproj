@@ -53,6 +53,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="Tools\Converters\Date\DateConverter.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DateConverter.resx</DependentUpon>
+    </Compile>
     <Compile Update="Tools\EncodersDecoders\Base64Image\Base64ImageEncoderDecoder.Designer.cs">
       <DependentUpon>Base64ImageEncoderDecoder.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -176,6 +181,10 @@
       <LastGenOutput>Formatters.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Tools\Converters\Date\DateConverter.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DateConverter.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Tools\EncodersDecoders\Base64Image\Base64ImageEncoderDecoder.resx">
       <LastGenOutput>Base64ImageEncoderDecoder.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
@@ -268,8 +277,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json"/>
-    <PackageReference Include="YamlDotNet"/>
+    <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="YamlDotNet" />
     <PackageReference Include="Markdig" />
     <PackageReference Include="Markdown.ColorCode" />
   </ItemGroup>
@@ -284,7 +293,7 @@
   </Target>
 
   <Target Name="CopyPluginAfterBuild" AfterTargets="Pack">
-    <Copy SourceFiles="$(PackageOutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(PluginNupkgPath)" SkipUnchangedFiles="false" OverwriteReadOnlyFiles="true" Retries="10" RetryDelayMilliseconds="1000"/>
+    <Copy SourceFiles="$(PackageOutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(PluginNupkgPath)" SkipUnchangedFiles="false" OverwriteReadOnlyFiles="true" Retries="10" RetryDelayMilliseconds="1000" />
   </Target>
 
 </Project>

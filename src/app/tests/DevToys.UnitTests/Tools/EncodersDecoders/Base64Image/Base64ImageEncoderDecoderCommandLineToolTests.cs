@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using DevToys.CLI;
 using DevToys.Tools.Tools.EncodersDecoders.Base64Image;
-using DevToys.UnitTests.Mocks;
 
 namespace DevToys.UnitTests.Tools.EncodersDecoders.Base64Image;
 
