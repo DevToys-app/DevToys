@@ -34,6 +34,11 @@ export function dispose(input: HTMLInputElement): void {
 
 // Forbid Up/Down keys, as this text box should stays as a single-line text input anyway.
 function onKeyDown(e: KeyboardEvent): void {
+    // We want to allow the use of ArrowDown & ArrowUp to change values in case of input type number
+    const input = e.target as HTMLInputElement;
+    if (input.type === "number") {
+        return;
+    }
     if (e.key === "ArrowDown" || e.key === "ArrowUp") {
         e.preventDefault();
     }

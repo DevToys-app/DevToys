@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using DevToys.Blazor.Core;
 using DevToys.Core.Tools.Metadata;
 using DevToys.Tools.Tools.EncodersDecoders.Base64Image;
-using DevToys.UnitTests.Mocks;
 
 namespace DevToys.UnitTests.Tools.EncodersDecoders.Base64Image;
 

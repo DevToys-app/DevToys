@@ -53,6 +53,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="Tools\Converters\Date\DateConverter.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DateConverter.resx</DependentUpon>
+    </Compile>
     <Compile Update="Tools\EncodersDecoders\Base64Image\Base64ImageEncoderDecoder.Designer.cs">
       <DependentUpon>Base64ImageEncoderDecoder.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -102,6 +107,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>HashAndChecksumGenerator.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Tools\Generators\LoremIpsum\LoremIpsumGenerator.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LoremIpsumGenerator.resx</DependentUpon>
     </Compile>
     <Compile Update="Tools\Generators\Password\PasswordGenerator.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -176,6 +186,10 @@
       <LastGenOutput>Formatters.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Tools\Converters\Date\DateConverter.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DateConverter.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Tools\EncodersDecoders\Base64Image\Base64ImageEncoderDecoder.resx">
       <LastGenOutput>Base64ImageEncoderDecoder.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
@@ -215,6 +229,10 @@
     <EmbeddedResource Update="Tools\Generators\HashAndChecksum\HashAndChecksumGenerator.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>HashAndChecksumGenerator.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Tools\Generators\LoremIpsum\LoremIpsumGenerator.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LoremIpsumGenerator.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Tools\Generators\Password\PasswordGenerator.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -265,11 +283,24 @@
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\..\assets\font\DevToys-Tools-Icons.ttf" Link="Assets\fonts\DevToys-Tools-Icons.ttf" />
     <EmbeddedResource Include="Assets\GitHubMarkdown\index.html" />
+    <EmbeddedResource Include="Assets\Lipsums\childharold.xml" />
+    <EmbeddedResource Include="Assets\Lipsums\decameron.xml" />
+    <EmbeddedResource Include="Assets\Lipsums\faust.xml" />
+    <EmbeddedResource Include="Assets\Lipsums\inderfremde.xml" />
+    <EmbeddedResource Include="Assets\Lipsums\lebateauivre.xml" />
+    <EmbeddedResource Include="Assets\Lipsums\lemasque.xml" />
+    <EmbeddedResource Include="Assets\Lipsums\LICENSE.MD" />
+    <EmbeddedResource Include="Assets\Lipsums\loremipsum.xml" />
+    <EmbeddedResource Include="Assets\Lipsums\nagyonfaj.xml" />
+    <EmbeddedResource Include="Assets\Lipsums\omagyar.xml" />
+    <EmbeddedResource Include="Assets\Lipsums\robinsonokruso.xml" />
+    <EmbeddedResource Include="Assets\Lipsums\theraven.xml" />
+    <EmbeddedResource Include="Assets\Lipsums\tierrayluna.xml" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json"/>
-    <PackageReference Include="YamlDotNet"/>
+    <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="YamlDotNet" />
     <PackageReference Include="Markdig" />
     <PackageReference Include="Markdown.ColorCode" />
   </ItemGroup>
@@ -284,7 +315,7 @@
   </Target>
 
   <Target Name="CopyPluginAfterBuild" AfterTargets="Pack">
-    <Copy SourceFiles="$(PackageOutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(PluginNupkgPath)" SkipUnchangedFiles="false" OverwriteReadOnlyFiles="true" Retries="10" RetryDelayMilliseconds="1000"/>
+    <Copy SourceFiles="$(PackageOutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(PluginNupkgPath)" SkipUnchangedFiles="false" OverwriteReadOnlyFiles="true" Retries="10" RetryDelayMilliseconds="1000" />
   </Target>
 
 </Project>

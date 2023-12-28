@@ -14,4 +14,5 @@ public static class PredefinedCommonDataTypeNames
     public const string File = "file";
     public const string Files = "files";
     public const string GZip = "gzip";
+    public const string Date = "date";
 }
