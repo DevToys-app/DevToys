@@ -8,6 +8,7 @@ public partial class NavBarItem<TElement, TSearchElement>
     where TSearchElement : class
 {
     private bool _isExpanded;
+    private bool _ignoreGroupShouldBeExpandedInUI;
 
     [Parameter]
     public NavBar<TElement, TSearchElement> OwnerNavBar { get; set; } = default!;
@@ -33,7 +34,7 @@ public partial class NavBarItem<TElement, TSearchElement>
         {
             if (Item is IGroup group)
             {
-                if (group.GroupShouldBeExpandedInUI)
+                if (!_ignoreGroupShouldBeExpandedInUI && group.GroupShouldBeExpandedInUI)
                 {
                     group.GroupIsExpandedInUI = true;
                     return true;
@@ -66,6 +67,11 @@ public partial class NavBarItem<TElement, TSearchElement>
             IsExpanded = true;
         }
 
+        if (Item is INotifyPropertyChanged notifyPropertyChanged)
+        {
+            notifyPropertyChanged.PropertyChanged += Item_PropertyChanged;
+        }
+
         base.OnInitialized();
     }
 
@@ -78,6 +84,19 @@ public partial class NavBarItem<TElement, TSearchElement>
 
     private void OnToggleExpandClick()
     {
+        if (IsExpanded)
+        {
+            _ignoreGroupShouldBeExpandedInUI = true;
+        }
+
         IsExpanded = !IsExpanded;
+    }
+
+    private void Item_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(IGroup.GroupShouldBeExpandedInUI))
+        {
+            _ignoreGroupShouldBeExpandedInUI = false;
+        }
     }
 }
