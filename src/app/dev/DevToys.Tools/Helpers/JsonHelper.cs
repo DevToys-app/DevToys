@@ -16,8 +16,6 @@ internal static partial class JsonHelper
     /// </summary>
     internal static bool IsValid(string? input, ILogger logger)
     {
-        input = input?.Trim();
-
         if (input == null)
         {
             return true;
@@ -48,16 +46,16 @@ internal static partial class JsonHelper
     /// <summary>
     /// Format a string to the specified JSON format.
     /// </summary>
-    internal static async ValueTask<string> Format(
+    internal static async Task<ResultInfo<string>> FormatAsync(
         string? input,
         Indentation indentationMode,
         bool sortProperties,
         ILogger logger,
         CancellationToken cancellationToken)
     {
-        if (input == null || !IsValid(input, logger))
+        if (string.IsNullOrWhiteSpace(input))
         {
-            return string.Empty;
+            return new(string.Empty, false);
         }
 
         try
@@ -124,16 +122,16 @@ internal static partial class JsonHelper
                 jToken.WriteTo(jsonTextWriter);
             }
 
-            return stringBuilder.ToString();
+            return new(stringBuilder.ToString(), true);
         }
         catch (JsonReaderException ex)
         {
-            return ex.Message;
+            return new(ex.Message, false);
         }
         catch (Exception ex)
         {
             logger.LogError(ex, "Invalid JSON format 'indentationMode'", indentationMode);
-            return ex.Message;
+            return new(ex.Message, false);
         }
     }
 

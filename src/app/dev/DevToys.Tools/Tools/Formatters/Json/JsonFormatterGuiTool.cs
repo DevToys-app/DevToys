@@ -2,34 +2,34 @@
 using DevToys.Tools.Models;
 using Microsoft.Extensions.Logging;
 
-namespace DevToys.Tools.Tools.Formatters.Xml;
+namespace DevToys.Tools.Tools.Formatters.Json;
 
 [Export(typeof(IGuiTool))]
-[Name("XmlFormatter")]
+[Name("JsonFormatter")]
 [ToolDisplayInformation(
     IconFontName = "DevToys-Tools-Icons",
-    IconGlyph = '\u0122',
+    IconGlyph = '\u0108',
     GroupName = PredefinedCommonToolGroupNames.Formatters,
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
-    ResourceManagerBaseName = "DevToys.Tools.Tools.Formatters.Xml.XmlFormatter",
-    ShortDisplayTitleResourceName = nameof(XmlFormatter.ShortDisplayTitle),
-    LongDisplayTitleResourceName = nameof(XmlFormatter.LongDisplayTitle),
-    DescriptionResourceName = nameof(XmlFormatter.Description),
-    AccessibleNameResourceName = nameof(XmlFormatter.AccessibleName))]
-[AcceptedDataTypeName(PredefinedCommonDataTypeNames.Xml)]
-internal sealed partial class XmlFormatterGuiTool : IGuiTool, IDisposable
+    ResourceManagerBaseName = "DevToys.Tools.Tools.Formatters.Json.JsonFormatter",
+    ShortDisplayTitleResourceName = nameof(JsonFormatter.ShortDisplayTitle),
+    LongDisplayTitleResourceName = nameof(JsonFormatter.LongDisplayTitle),
+    DescriptionResourceName = nameof(JsonFormatter.Description),
+    AccessibleNameResourceName = nameof(JsonFormatter.AccessibleName))]
+[AcceptedDataTypeName(PredefinedCommonDataTypeNames.Json)]
+internal sealed partial class JsonFormatterGuiTool : IGuiTool, IDisposable
 {
     /// <summary>
     /// Which indentation the tool need to use.
     /// </summary>
     private static readonly SettingDefinition<Indentation> indentationMode
-        = new(name: $"{nameof(XmlFormatterGuiTool)}.{nameof(indentationMode)}", defaultValue: Indentation.TwoSpaces);
+        = new(name: $"{nameof(JsonFormatterGuiTool)}.{nameof(indentationMode)}", defaultValue: Indentation.TwoSpaces);
 
     /// <summary>
-    /// Whether XML attributes are put on a new line
+    /// Whether properties within the JSON should be sorted alphabetically
     /// </summary>
-    private static readonly SettingDefinition<bool> newLineOnAttributes
-        = new(name: $"{nameof(XmlFormatterGuiTool)}.{nameof(newLineOnAttributes)}", defaultValue: false);
+    private static readonly SettingDefinition<bool> sortProperties
+        = new(name: $"{nameof(JsonFormatterGuiTool)}.{nameof(sortProperties)}", defaultValue: false);
 
     private enum GridColumn
     {
@@ -46,13 +46,13 @@ internal sealed partial class XmlFormatterGuiTool : IGuiTool, IDisposable
     private readonly DisposableSemaphore _semaphore = new();
     private readonly ILogger _logger;
     private readonly ISettingsProvider _settingsProvider;
-    private readonly IUIMultiLineTextInput _inputTextArea = MultilineTextInput("xml-input-text-area");
-    private readonly IUIMultiLineTextInput _outputTextArea = MultilineTextInput("xml-output-text-area");
+    private readonly IUIMultiLineTextInput _inputTextArea = MultilineTextInput("json-input-text-area");
+    private readonly IUIMultiLineTextInput _outputTextArea = MultilineTextInput("json-output-text-area");
 
     private CancellationTokenSource? _cancellationTokenSource;
 
     [ImportingConstructor]
-    public XmlFormatterGuiTool(ISettingsProvider settingsProvider)
+    public JsonFormatterGuiTool(ISettingsProvider settingsProvider)
     {
         _logger = this.Log();
         _settingsProvider = settingsProvider;
@@ -78,26 +78,26 @@ internal sealed partial class XmlFormatterGuiTool : IGuiTool, IDisposable
                     GridRow.Header,
                     GridColumn.Content,
                     Stack().Vertical().WithChildren(
-                        Label().Text(XmlFormatter.Configuration),
-                        Setting("xml-text-indentation-setting")
+                        Label().Text(JsonFormatter.Configuration),
+                        Setting("json-text-indentation-setting")
                         .Icon("FluentSystemIcons", '\uF6F8')
-                        .Title(XmlFormatter.Indentation)
+                        .Title(JsonFormatter.Indentation)
                         .Handle(
                             _settingsProvider,
                             indentationMode,
                             OnIndentationModelChanged,
-                            Item(XmlFormatter.TwoSpaces, Indentation.TwoSpaces),
-                            Item(XmlFormatter.FourSpaces, Indentation.FourSpaces),
-                            Item(XmlFormatter.OneTab, Indentation.OneTab),
-                            Item(XmlFormatter.Minified, Indentation.Minified)
+                            Item(JsonFormatter.TwoSpaces, Indentation.TwoSpaces),
+                            Item(JsonFormatter.FourSpaces, Indentation.FourSpaces),
+                            Item(JsonFormatter.OneTab, Indentation.OneTab),
+                            Item(JsonFormatter.Minified, Indentation.Minified)
                         ),
-                        Setting("xml-text-newLineOnAttributes-setting")
+                        Setting("json-text-sortProperties-setting")
                         .Icon("FluentSystemIcons", '\uf7ed')
-                        .Title(XmlFormatter.NewLineOnAttributes)
-                        .Description(XmlFormatter.NewLineOnAttributesDescription)
+                        .Title(JsonFormatter.SortProperties)
+                        .Description(JsonFormatter.SortPropertiesOptionDescription)
                         .Handle(
                             _settingsProvider,
-                            newLineOnAttributes,
+                            sortProperties,
                             OnSettingChanged
                         )
                     )
@@ -106,16 +106,16 @@ internal sealed partial class XmlFormatterGuiTool : IGuiTool, IDisposable
                     GridRow.Content,
                     GridColumn.Content,
                     SplitGrid()
-                        .Vertical()
+                        .Vertical() 
                         .WithLeftPaneChild(
                             _inputTextArea
-                                .Language("xml")
-                                .Title(XmlFormatter.Input)
+                                .Title(JsonFormatter.Input)
+                                .Language("json")
                                 .OnTextChanged(OnInputTextChanged))
                         .WithRightPaneChild(
                             _outputTextArea
-                                .Language("xml")
-                                .Title(XmlFormatter.Output)
+                                .Title(JsonFormatter.Output)
+                                .Language("json")
                                 .ReadOnly()
                                 .Extendable())
                 )
@@ -125,10 +125,10 @@ internal sealed partial class XmlFormatterGuiTool : IGuiTool, IDisposable
     // Smart detection handler.
     public void OnDataReceived(string dataTypeName, object? parsedData)
     {
-        if (dataTypeName == PredefinedCommonDataTypeNames.Xml &&
-            parsedData is string xmlStrongTypedParsedData)
+        if (dataTypeName == PredefinedCommonDataTypeNames.Json &&
+            parsedData is string jsonStrongTypedParsedData)
         {
-            _inputTextArea.Text(xmlStrongTypedParsedData);
+            _inputTextArea.Text(jsonStrongTypedParsedData);
         }
     }
 
@@ -160,20 +160,21 @@ internal sealed partial class XmlFormatterGuiTool : IGuiTool, IDisposable
         _cancellationTokenSource?.Dispose();
         _cancellationTokenSource = new CancellationTokenSource();
 
-        WorkTask = FormatAsync(text, _settingsProvider.GetSetting(indentationMode), _settingsProvider.GetSetting(newLineOnAttributes), _cancellationTokenSource.Token);
+        WorkTask = FormatAsync(text, _settingsProvider.GetSetting(indentationMode), _settingsProvider.GetSetting(sortProperties), _cancellationTokenSource.Token);
     }
 
-    private async Task FormatAsync(string input, Indentation indentationSetting, bool newLineOnAttributeSetting, CancellationToken cancellationToken)
+    private async Task FormatAsync(string input, Indentation indentationSetting, bool sortPropertiesSetting, CancellationToken cancellationToken)
     {
         using (await _semaphore.WaitAsync(cancellationToken))
         {
             await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
 
-            ResultInfo<string> formatResult = XmlHelper.Format(
+            ResultInfo<string> formatResult = await JsonHelper.FormatAsync(
                 input,
                 indentationSetting,
-                newLineOnAttributeSetting,
-                _logger);
+                sortPropertiesSetting,
+                _logger,
+                cancellationToken);
 
             _outputTextArea.Text(formatResult.Data);
         }

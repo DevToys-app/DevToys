@@ -290,6 +290,7 @@ internal sealed class HashAndChecksumGeneratorGuiTool : IGuiTool, IDisposable
                 = ComputeHashAsync(
                     _input.Value,
                     _settingsProvider.GetSetting(hashAlgorithm),
+                    _settingsProvider.GetSetting(uppercase),
                     _hmacSecretKeyInput.Text,
                     _cancellationTokenSource.Token);
         }
@@ -302,6 +303,7 @@ internal sealed class HashAndChecksumGeneratorGuiTool : IGuiTool, IDisposable
     private async Task ComputeHashAsync(
         OneOf<string, SandboxedFileReader> input,
         HashAlgorithmType hashAlgorithm,
+        bool uppercase,
         string hmacSecretKey,
         CancellationToken cancellationToken)
     {
@@ -335,6 +337,7 @@ internal sealed class HashAndChecksumGeneratorGuiTool : IGuiTool, IDisposable
                     = await ComputeHashFromStreamAsync(
                         inputStream,
                         hashAlgorithm,
+                        uppercase,
                         hmacSecretKey,
                         UpdateProgress,
                         cancellationToken);
@@ -353,6 +356,7 @@ internal sealed class HashAndChecksumGeneratorGuiTool : IGuiTool, IDisposable
     private async Task<string> ComputeHashFromStreamAsync(
         Stream inputStream,
         HashAlgorithmType hashAlgorithm,
+        bool uppercase,
         string hmacSecretKey,
         Action<HashingProgress> progressCallback,
         CancellationToken cancellationToken)
@@ -367,7 +371,7 @@ internal sealed class HashAndChecksumGeneratorGuiTool : IGuiTool, IDisposable
                     progressCallback,
                     cancellationToken);
 
-            if (!_settingsProvider.GetSetting(uppercase))
+            if (!uppercase)
             {
                 return fileHashString.ToLowerInvariant();
             }

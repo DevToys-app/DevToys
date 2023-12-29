@@ -199,10 +199,10 @@ internal sealed partial class JsonYamlConverterGuiTool : IGuiTool, IDisposable
         _cancellationTokenSource?.Dispose();
         _cancellationTokenSource = new CancellationTokenSource();
 
-        WorkTask = ConvertAsync(text, _cancellationTokenSource.Token);
+        WorkTask = ConvertAsync(text, _settingsProvider.GetSetting(conversionMode), _settingsProvider.GetSetting(indentationMode), _cancellationTokenSource.Token);
     }
 
-    private async Task ConvertAsync(string input, CancellationToken cancellationToken)
+    private async Task ConvertAsync(string input, JsonToYamlConversion conversionModeSetting, Indentation indentationModeSetting, CancellationToken cancellationToken)
     {
         using (await _semaphore.WaitAsync(cancellationToken))
         {
@@ -210,8 +210,8 @@ internal sealed partial class JsonYamlConverterGuiTool : IGuiTool, IDisposable
 
             ResultInfo<string> conversionResult = await JsonYamlHelper.ConvertAsync(
                 input,
-                _settingsProvider.GetSetting(conversionMode),
-                _settingsProvider.GetSetting(indentationMode),
+                conversionModeSetting,
+                indentationModeSetting,
                 _logger,
                 cancellationToken);
             _outputTextArea.Text(conversionResult.Data);

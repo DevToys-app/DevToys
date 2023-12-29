@@ -193,10 +193,10 @@ internal sealed partial class GZipEncoderDecoderGuiTool : IGuiTool, IDisposable
         _cancellationTokenSource?.Dispose();
         _cancellationTokenSource = new CancellationTokenSource();
 
-        WorkTask = ConvertAsync(text, _cancellationTokenSource.Token);
+        WorkTask = ConvertAsync(text, _settingsProvider.GetSetting(compressionMode), _cancellationTokenSource.Token);
     }
 
-    private async Task ConvertAsync(string input, CancellationToken cancellationToken)
+    private async Task ConvertAsync(string input, CompressionMode compressionModeSetting, CancellationToken cancellationToken)
     {
         using (await _semaphore.WaitAsync(cancellationToken))
         {
@@ -205,7 +205,7 @@ internal sealed partial class GZipEncoderDecoderGuiTool : IGuiTool, IDisposable
             (string data, double differencePercentage) conversionResult
                 = await GZipHelper.CompressOrDecompressAsync(
                     input,
-                    _settingsProvider.GetSetting(compressionMode),
+                    compressionModeSetting,
                     _logger,
                     cancellationToken);
 
