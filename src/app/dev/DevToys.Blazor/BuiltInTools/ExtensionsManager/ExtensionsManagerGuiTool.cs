@@ -6,7 +6,7 @@ using NuGet.Packaging.Core;
 namespace DevToys.Blazor.BuiltInTools.ExtensionsManager;
 
 [Export(typeof(IGuiTool))]
-[Name("Extensions Manager")]
+[Name(ExtensionmanagerToolName)]
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",
     IconGlyph = '\uE9E8',
@@ -25,6 +25,8 @@ namespace DevToys.Blazor.BuiltInTools.ExtensionsManager;
 [TargetPlatform(Platform.MacCatalyst)]
 internal sealed class ExtensionsManagerGuiTool : IGuiTool
 {
+    internal const string ExtensionmanagerToolName = "Extensions Manager";
+
     private enum GridRows
     {
         TopButtons,

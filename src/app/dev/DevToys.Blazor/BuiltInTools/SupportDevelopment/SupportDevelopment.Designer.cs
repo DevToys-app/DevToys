@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DevToys.Tools.Tools.Test {
+namespace DevToys.Blazor.BuiltInTools.SupportDevelopment {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace DevToys.Tools.Tools.Test {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Test {
+    internal class SupportDevelopment {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Test() {
+        internal SupportDevelopment() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DevToys.Tools.Tools.Test {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Tools.Tools.Test.Test", typeof(Test).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Blazor.BuiltInTools.SupportDevelopment.SupportDevelopment", typeof(SupportDevelopment).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace DevToys.Tools.Tools.Test {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Test.
+        ///   Looks up a localized string similar to Support the development of DevToys.
         /// </summary>
         internal static string AccessibleName {
             get {
@@ -70,7 +70,7 @@ namespace DevToys.Tools.Tools.Test {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Test tool.
+        ///   Looks up a localized string similar to See how you can help improving DevToys.
         /// </summary>
         internal static string Description {
             get {
@@ -79,7 +79,7 @@ namespace DevToys.Tools.Tools.Test {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Test.
+        ///   Looks up a localized string similar to Support the development.
         /// </summary>
         internal static string ShortDisplayTitle {
             get {

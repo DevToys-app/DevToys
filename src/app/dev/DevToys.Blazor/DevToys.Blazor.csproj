@@ -58,6 +58,10 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="BuiltInTools\SupportDevelopment\SupportDevelopment.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SupportDevelopment.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <Compile Update="BuiltInTools\ExtensionsManager\ExtensionsManager.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -67,6 +71,11 @@
       <DependentUpon>Settings.resx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="BuiltInTools\SupportDevelopment\SupportDevelopment.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SupportDevelopment.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
