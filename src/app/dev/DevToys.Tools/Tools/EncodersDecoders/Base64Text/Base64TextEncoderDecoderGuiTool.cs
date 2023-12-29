@@ -213,10 +213,10 @@ internal sealed partial class Base64TextEncoderDecoderGuiTool : IGuiTool, IDispo
         _cancellationTokenSource?.Dispose();
         _cancellationTokenSource = new CancellationTokenSource();
 
-        WorkTask = ConvertAsync(text, _cancellationTokenSource.Token);
+        WorkTask = ConvertAsync(text, _settingsProvider.GetSetting(encoder), _cancellationTokenSource.Token);
     }
 
-    private async Task ConvertAsync(string input, CancellationToken cancellationToken)
+    private async Task ConvertAsync(string input, Base64Encoding encoderSetting, CancellationToken cancellationToken)
     {
         using (await _semaphore.WaitAsync(cancellationToken))
         {
@@ -230,7 +230,7 @@ internal sealed partial class Base64TextEncoderDecoderGuiTool : IGuiTool, IDispo
                     conversionResult
                         = Base64Helper.FromTextToBase64(
                             input,
-                            _settingsProvider.GetSetting(encoder),
+                            encoderSetting,
                             _logger,
                             cancellationToken);
                     break;
@@ -246,7 +246,7 @@ internal sealed partial class Base64TextEncoderDecoderGuiTool : IGuiTool, IDispo
                     conversionResult
                         = Base64Helper.FromBase64ToText(
                             input,
-                            _settingsProvider.GetSetting(encoder),
+                           encoderSetting,
                             _logger,
                             cancellationToken);
                     break;

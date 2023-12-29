@@ -46,7 +46,7 @@ internal static partial class JsonHelper
     /// <summary>
     /// Format a string to the specified JSON format.
     /// </summary>
-    internal static async Task<ResultInfo<string>> Format(
+    internal static async Task<ResultInfo<string>> FormatAsync(
         string? input,
         Indentation indentationMode,
         bool sortProperties,

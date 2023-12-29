@@ -19,8 +19,6 @@ namespace DevToys.Tools.Tools.Formatters.Xml;
 [AcceptedDataTypeName(PredefinedCommonDataTypeNames.Xml)]
 internal sealed partial class XmlFormatterGuiTool : IGuiTool, IDisposable
 {
-    private const string XmlLanguage = "xml";
-
     /// <summary>
     /// Which indentation the tool need to use.
     /// </summary>
@@ -130,8 +128,6 @@ internal sealed partial class XmlFormatterGuiTool : IGuiTool, IDisposable
         if (dataTypeName == PredefinedCommonDataTypeNames.Xml &&
             parsedData is string xmlStrongTypedParsedData)
         {
-            _inputTextArea.Language(XmlLanguage);
-            _outputTextArea.Language(XmlLanguage);
             _inputTextArea.Text(xmlStrongTypedParsedData);
         }
     }
@@ -164,10 +160,10 @@ internal sealed partial class XmlFormatterGuiTool : IGuiTool, IDisposable
         _cancellationTokenSource?.Dispose();
         _cancellationTokenSource = new CancellationTokenSource();
 
-        WorkTask = FormatAsync(text, _cancellationTokenSource.Token, indentationMode, newLineOnAttributes);
+        WorkTask = FormatAsync(text, _settingsProvider.GetSetting(indentationMode), _settingsProvider.GetSetting(newLineOnAttributes), _cancellationTokenSource.Token);
     }
 
-    private async Task FormatAsync(string input, CancellationToken cancellationToken, SettingDefinition<Indentation> indentationSetting, SettingDefinition<bool> newLineOnAttributesetting)
+    private async Task FormatAsync(string input, Indentation indentationSetting, bool newLineOnAttributeSetting, CancellationToken cancellationToken)
     {
         using (await _semaphore.WaitAsync(cancellationToken))
         {
@@ -175,8 +171,8 @@ internal sealed partial class XmlFormatterGuiTool : IGuiTool, IDisposable
 
             ResultInfo<string> formatResult = XmlHelper.Format(
                 input,
-                _settingsProvider.GetSetting(indentationSetting),
-                _settingsProvider.GetSetting(newLineOnAttributesetting),
+                indentationSetting,
+                newLineOnAttributeSetting,
                 _logger);
 
             _outputTextArea.Text(formatResult.Data);

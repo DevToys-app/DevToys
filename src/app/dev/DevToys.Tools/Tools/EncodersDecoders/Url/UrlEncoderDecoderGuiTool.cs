@@ -158,10 +158,10 @@ internal sealed partial class UrlEncoderDecoderGuiTool : IGuiTool, IDisposable
         _cancellationTokenSource?.Dispose();
         _cancellationTokenSource = new CancellationTokenSource();
 
-        WorkTask = ConvertAsync(text, _cancellationTokenSource.Token);
+        WorkTask = ConvertAsync(text, _settingsProvider.GetSetting(conversionMode), _cancellationTokenSource.Token);
     }
 
-    private async Task ConvertAsync(string input, CancellationToken cancellationToken)
+    private async Task ConvertAsync(string input, EncodingConversion conversionModeSetting, CancellationToken cancellationToken)
     {
         using (await _semaphore.WaitAsync(cancellationToken))
         {
@@ -170,7 +170,7 @@ internal sealed partial class UrlEncoderDecoderGuiTool : IGuiTool, IDisposable
             _outputText.Text(
                 UrlHelper.EncodeOrDecode(
                     input,
-                    _settingsProvider.GetSetting(conversionMode),
+                    conversionModeSetting,
                     _logger,
                     cancellationToken));
         }

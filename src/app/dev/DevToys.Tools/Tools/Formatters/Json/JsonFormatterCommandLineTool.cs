@@ -58,7 +58,7 @@ internal sealed class JsonFormatterCommandLineTool : ICommandLineTool
         }
 
         Guard.IsNotNull(input.Data);
-        ResultInfo<string> formatResult = await JsonHelper.Format(
+        ResultInfo<string> formatResult = await JsonHelper.FormatAsync(
             input.Data,
             IndentationMode,
             SortProperties,

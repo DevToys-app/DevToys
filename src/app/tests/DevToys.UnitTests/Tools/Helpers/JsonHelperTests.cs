@@ -31,7 +31,7 @@ public class JsonHelperTests
     [InlineData("   { \"foo\": 123 }  ", "{\r\n  \"foo\": 123\r\n}")]
     public async Task FormatTwoSpaces(string input, string expectedResult)
     {
-        ResultInfo<string> result = await JsonHelper.Format(input, Indentation.TwoSpaces, false, new MockILogger(), CancellationToken.None);
+        ResultInfo<string> result = await JsonHelper.FormatAsync(input, Indentation.TwoSpaces, false, new MockILogger(), CancellationToken.None);
         result.Data.Should().Be(expectedResult);
     }
 
@@ -44,7 +44,7 @@ public class JsonHelperTests
     [InlineData("   { \"foo\": 123 }  ", "{\r\n    \"foo\": 123\r\n}")]
     public async Task FormatFourSpaces(string input, string expectedResult)
     {
-        ResultInfo<string> result = await JsonHelper.Format(input, Indentation.FourSpaces, false, new MockILogger(), CancellationToken.None);
+        ResultInfo<string> result = await JsonHelper.FormatAsync(input, Indentation.FourSpaces, false, new MockILogger(), CancellationToken.None);
         result.Data.Should().Be(expectedResult);
     }
 
@@ -57,7 +57,7 @@ public class JsonHelperTests
     [InlineData("   { \"foo\": 123 }  ", "{\r\n\t\"foo\": 123\r\n}")]
     public async Task FormatOneTab(string input, string expectedResult)
     {
-        ResultInfo<string> result = await JsonHelper.Format(input, Indentation.OneTab, false, new MockILogger(), CancellationToken.None);
+        ResultInfo<string> result = await JsonHelper.FormatAsync(input, Indentation.OneTab, false, new MockILogger(), CancellationToken.None);
         result.Data.Should().Be(expectedResult);
     }
 
@@ -70,7 +70,7 @@ public class JsonHelperTests
     [InlineData("   { \"foo\": 123 }  ", "{\"foo\":123}")]
     public async Task FormatMinifiedAsync(string input, string expectedResult)
     {
-        ResultInfo<string> result = await JsonHelper.Format(input, Indentation.Minified, false, new MockILogger(), CancellationToken.None);
+        ResultInfo<string> result = await JsonHelper.FormatAsync(input, Indentation.Minified, false, new MockILogger(), CancellationToken.None);
         result.Data.Should().Be(expectedResult);
     }
 
@@ -78,7 +78,7 @@ public class JsonHelperTests
     [InlineData("{ \"Date\": \"2012-04-21T18:25:43-05:00\" }", "{\"Date\":\"2012-04-21T18:25:43-05:00\"}")]
     public async Task FormatDoesNotAlterateDateTimesAsync(string input, string expectedResult)
     {
-        ResultInfo<string> result = await JsonHelper.Format(input, Indentation.Minified, false, new MockILogger(), CancellationToken.None);
+        ResultInfo<string> result = await JsonHelper.FormatAsync(input, Indentation.Minified, false, new MockILogger(), CancellationToken.None);
         result.Data.Should().Be(expectedResult);
     }
 
@@ -88,7 +88,7 @@ public class JsonHelperTests
         "{\"a\":\"asdf\",\"array\":[{\"a\":\"asdf\",\"array\":[],\"b\":33,\"c\":545}],\"b\":33,\"c\":545}")]
     public async Task FormatSortPropertiesAlphabeticallyAsync(string input, string expectedResult)
     {
-        ResultInfo<string> result = await JsonHelper.Format(input, Indentation.Minified, true, new MockILogger(), CancellationToken.None);
+        ResultInfo<string> result = await JsonHelper.FormatAsync(input, Indentation.Minified, true, new MockILogger(), CancellationToken.None);
         result.Data.Should().Be(expectedResult);
     }
 

@@ -19,8 +19,6 @@ namespace DevToys.Tools.Tools.Formatters.Json;
 [AcceptedDataTypeName(PredefinedCommonDataTypeNames.Json)]
 internal sealed partial class JsonFormatterGuiTool : IGuiTool, IDisposable
 {
-    private const string JsonLanguage = "json";
-
     /// <summary>
     /// Which indentation the tool need to use.
     /// </summary>
@@ -112,10 +110,12 @@ internal sealed partial class JsonFormatterGuiTool : IGuiTool, IDisposable
                         .WithLeftPaneChild(
                             _inputTextArea
                                 .Title(JsonFormatter.Input)
+                                .Language("json")
                                 .OnTextChanged(OnInputTextChanged))
                         .WithRightPaneChild(
                             _outputTextArea
                                 .Title(JsonFormatter.Output)
+                                .Language("json")
                                 .ReadOnly()
                                 .Extendable())
                 )
@@ -128,8 +128,6 @@ internal sealed partial class JsonFormatterGuiTool : IGuiTool, IDisposable
         if (dataTypeName == PredefinedCommonDataTypeNames.Json &&
             parsedData is string jsonStrongTypedParsedData)
         {
-            _inputTextArea.Language(JsonLanguage);
-            _outputTextArea.Language(JsonLanguage);
             _inputTextArea.Text(jsonStrongTypedParsedData);
         }
     }
@@ -162,19 +160,19 @@ internal sealed partial class JsonFormatterGuiTool : IGuiTool, IDisposable
         _cancellationTokenSource?.Dispose();
         _cancellationTokenSource = new CancellationTokenSource();
 
-        WorkTask = FormatAsync(text, _cancellationTokenSource.Token, indentationMode, sortProperties);
+        WorkTask = FormatAsync(text, _settingsProvider.GetSetting(indentationMode), _settingsProvider.GetSetting(sortProperties), _cancellationTokenSource.Token);
     }
 
-    private async Task FormatAsync(string input, CancellationToken cancellationToken, SettingDefinition<Indentation> indentationSetting, SettingDefinition<bool> sortPropertiesSetting)
+    private async Task FormatAsync(string input, Indentation indentationSetting, bool sortPropertiesSetting, CancellationToken cancellationToken)
     {
         using (await _semaphore.WaitAsync(cancellationToken))
         {
             await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
 
-            ResultInfo<string> formatResult = await JsonHelper.Format(
+            ResultInfo<string> formatResult = await JsonHelper.FormatAsync(
                 input,
-                _settingsProvider.GetSetting(indentationSetting),
-                _settingsProvider.GetSetting(sortPropertiesSetting),
+                indentationSetting,
+                sortPropertiesSetting,
                 _logger,
                 cancellationToken);
 
