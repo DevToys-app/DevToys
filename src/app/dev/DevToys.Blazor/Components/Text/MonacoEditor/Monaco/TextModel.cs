@@ -291,7 +291,7 @@ public class TextModel
     /// @return An array containing the new decorations identifiers.
     /// </summary>
     public ValueTask<string[]> DeltaDecorationsAsync(IJSRuntime runtime, string[] oldDecorations, ModelDeltaDecoration[] newDecorations, int? ownerId)
-        => runtime.InvokeAsync<string[]>("devtoys.MonacoEditor.TextModel.deltaDecorations", Uri, oldDecorations, newDecorations, ownerId);
+        => runtime.InvokeAsync<string[]>("devtoys.MonacoEditor.TextModel.deltaDecorations", Uri, oldDecorations, newDecorations.PrepareJsInterop(), ownerId);
 
     /// <summary>
     /// Get the options associated with a decoration.
