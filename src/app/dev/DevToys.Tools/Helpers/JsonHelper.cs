@@ -123,7 +123,7 @@ internal static partial class JsonHelper
                 jToken.WriteTo(jsonTextWriter);
             }
 
-            return new(stringBuilder.ToString(), true);
+            return new(stringBuilder.ToString());
         }
         catch (JsonReaderException ex)
         {

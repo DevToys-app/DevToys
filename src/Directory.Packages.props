@@ -37,6 +37,7 @@
     <PackageVersion Include="Nuke.Common" Version="8.0.0" />
     <PackageVersion Include="OneOf" Version="3.0.263" />
     <PackageVersion Include="SixLabors.ImageSharp" Version="3.0.2" />
+    <PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="7.0.3" />
     <PackageVersion Include="System.Text.Json" Version="$(DotNetVersion)" />
     <PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
     <PackageVersion Include="System.ComponentModel.Composition" Version="$(DotNetVersion)" />

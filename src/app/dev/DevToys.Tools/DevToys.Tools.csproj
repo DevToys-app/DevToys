@@ -48,6 +48,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>CronParser.resx</DependentUpon>
     </Compile>
+    <Compile Update="Tools\EncodersDecoders\Jwt\JwtEncoderDecoder.Designer.cs">
+      <DependentUpon>JwtEncoderDecoder.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Tools\EncodersDecoders\Certificate\CertificateDecoder.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -244,6 +249,10 @@
       <LastGenOutput>JsonFormatter.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Tools\EncodersDecoders\Jwt\JwtEncoderDecoder.resx">
+      <LastGenOutput>JwtEncoderDecoder.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Tools\Formatters\Sql\SqlFormatter.resx">
       <LastGenOutput>SqlFormatter.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
@@ -389,6 +398,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" />
     <PackageReference Include="CronExpressionDescriptor" />
     <PackageReference Include="Cronos" />
     <PackageReference Include="YamlDotNet" />

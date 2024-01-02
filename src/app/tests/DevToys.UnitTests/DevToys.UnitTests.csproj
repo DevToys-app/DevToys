@@ -90,6 +90,67 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Tools\TestData\JwtEncoderDecoder\ES\ES256-ComplexToken.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\ES\ES256-Header.json" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\ES\ES256-PrivateKey.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\ES\ES256-PublicKey.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\ES\ES384-ComplexToken.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\ES\ES384-Header.json" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\ES\ES384-PrivateKey.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\ES\ES384-PublicKey.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\ES\ES512-ComplexToken.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\ES\ES512-Header.json" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\ES\ES512-PrivateKey.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\ES\ES512-PublicKey.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\HS\BasicToken.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\HS\ComplexToken.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\HS\Header.json" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\HS\Signature.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\PS\PS256-Header.json" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\PS\PS256-PrivateKey.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\PS\PS256-PublicKey-ComplexToken.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\PS\PS256-PublicKey.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\PS\PS256-RsaPrivateKey.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\PS\PS256-RsaPublicKey-ComplexToken.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\PS\PS256-RsaPublicKey.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\PS\PS384-ComplexToken.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\PS\PS384-Header.json" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\PS\PS384-PrivateKey.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\PS\PS384-PublicKey.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\PS\PS512-ComplexToken.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\PS\PS512-Header.json" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\PS\PS512-PrivateKey.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\PS\PS512-PublicKey.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\RS\RS256-Header.json" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\RS\RS256-PrivateKey.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\RS\RS256-PublicKey-ComplexToken.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\RS\RS256-PublicKey.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\RS\RS256-RsaPrivateKey.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\RS\RS256-RsaPublicKey-ComplexToken.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\RS\RS256-RsaPublicKey.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\RS\RS384-Header.json" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\RS\RS384-PrivateKey.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\RS\RS384-PublicKey-ComplexToken.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\RS\RS384-PublicKey.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\RS\RS512-Header.json" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\RS\RS512-PrivateKey.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\RS\RS512-PublicKey-ComplexToken.txt" />
+    <None Remove="Tools\TestData\JwtEncoderDecoder\RS\RS512-PublicKey.txt" />
+    <None Remove="Tools\TestData\XmlFormatter\FourSpaces.xml" />
+    <None Remove="Tools\TestData\XmlFormatter\Minified.xml" />
+    <None Remove="Tools\TestData\XmlFormatter\NewLineOnAttributes.xml" />
+    <None Remove="Tools\TestData\XmlFormatter\OneTab.xml" />
+    <None Remove="Tools\TestData\XmlFormatter\TwoSpaces.xml" />
+    <None Remove="Tools\TestData\XmlFormatter\ValidXml.xml" />
+    <EmbeddedResource Include="Tools\TestData\XmlValidator\InvalidXml.xml" />
+    <EmbeddedResource Include="Tools\TestData\XmlValidator\InvalidXsd.xml" />
+    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXml.xml" />
+    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXmlWithNamespace.xml" />
+    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXmlWithoutNamespace.xml" />
+    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXsd.xml" />
+    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXsdOnlyWithTargetNamespace.xml" />
+    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXsdWithNamespace.xml" />
+    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXsdWithoutNamespace.xml" />
     <EmbeddedResource Include="Tools\TestData\XMLTester\InvalidXml.xml" />
     <EmbeddedResource Include="Tools\TestData\XMLTester\InvalidXsd.xml" />
     <EmbeddedResource Include="Tools\TestData\XMLTester\ValidXml.xml" />
@@ -99,6 +160,147 @@
     <EmbeddedResource Include="Tools\TestData\XMLTester\ValidXsdOnlyWithTargetNamespace.xml" />
     <EmbeddedResource Include="Tools\TestData\XMLTester\ValidXsdWithNamespace.xml" />
     <EmbeddedResource Include="Tools\TestData\XMLTester\ValidXsdWithoutNamespace.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\ES\ES512-ComplexToken.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\ES\ES384-ComplexToken.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\ES\ES512-Header.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\ES\ES512-PrivateKey.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\ES\ES384-PrivateKey.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\ES\ES512-PublicKey.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\ES\ES384-PublicKey.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\ES\ES384-Header.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\ES\ES256-Header.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\ES\ES256-PrivateKey.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\ES\ES256-ComplexToken.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\ES\ES256-PublicKey.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\HS\BasicToken.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\HS\ComplexToken.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\HS\Header.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\HS\Signature.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\PS\PS256-Header.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\PS\PS256-PrivateKey.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\PS\PS256-PublicKey-ComplexToken.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\PS\PS256-PublicKey.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\PS\PS256-RsaPrivateKey.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\PS\PS256-RsaPublicKey-ComplexToken.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\PS\PS256-RsaPublicKey.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\PS\PS384-Header.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\PS\PS384-PrivateKey.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\PS\PS384-ComplexToken.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\PS\PS384-PublicKey.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\PS\PS512-Header.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\PS\PS512-PrivateKey.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\PS\PS512-ComplexToken.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\PS\PS512-PublicKey.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\RS\RS512-Header.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\RS\RS384-Header.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\RS\RS512-PrivateKey.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\RS\RS384-PrivateKey.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\RS\RS512-PublicKey.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\RS\RS512-PublicKey-ComplexToken.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\RS\RS384-PublicKey.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\RS\RS384-PublicKey-ComplexToken.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\RS\RS256-RsaPublicKey-ComplexToken.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\RS\RS256-RsaPrivateKey.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\RS\RS256-RsaPublicKey.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\RS\RS256-PublicKey-ComplexToken.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\RS\RS256-Header.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\RS\RS256-PublicKey.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JwtEncoderDecoder\RS\RS256-PrivateKey.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
