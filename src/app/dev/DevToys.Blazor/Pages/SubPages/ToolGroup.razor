@@ -1,13 +1,36 @@
 ﻿@namespace DevToys.Blazor.Pages.SubPages
 @using DevToys.Localization.Strings.ToolGroupPage;
+@using DevToys.Blazor.Core.Helpers;
 @inherits MefComponentBase
 
-<GridView Class="entrance-theme-transition tool-group-grid-view"
+@if (ViewModel.IsAllToolsGroup)
+{
+    <div id="@HeroId" class="hero"></div>
+}
+
+<GridView @ref=_gridView
+          Class ="entrance-theme-transition tool-group-grid-view"
           ItemsSource="@ViewModel.Tools"
           ItemMinWidth="330"
           OnItemClick=@OnToolSelected>
     <Header>
-        <TextBlock Appearance="@TextBlockAppearance.Title" Style="font-size: 24px !important" Text="@ViewModel.HeaderText" />
+        @if (ViewModel.IsAllToolsGroup)
+        {
+            <!-- TODO: Localize -->
+            <StackPanel Orientation="UIOrientation.Horizontal">
+                <h1 class="text-block type-title-large no-wrap hero-title">
+                    <span>Welcome to</span><span>&nbsp;</span><span>DevToys</span>
+                </h1>
+                <TextBlock Appearance="@TextBlockAppearance.Body"
+                           NoWrap="true"
+                           VerticalAlignment="@UIVerticalAlignment.Bottom"
+                           Text="v2.0.0"/>
+            </StackPanel>
+        }
+        else
+        {
+            <TextBlock Appearance="@TextBlockAppearance.Title" Style="font-size: 24px !important" Text="@ViewModel.HeaderText" />
+        }
     </Header>
     <GroupHeaderTemplate Context="item">
         <TextBlock Appearance="@TextBlockAppearance.Subtitle" Text="@item" />
@@ -39,7 +62,7 @@
         </div>
     </ItemTemplate>
     <Footer>
-        @if (ViewModel.DisplayFooter)
+        @if (ViewModel.IsAllToolsGroup)
         {
             <InfoBar Severity="InfoBarSeverity.Informational"
                      IsClosable="false"
