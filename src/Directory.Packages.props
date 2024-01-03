@@ -43,5 +43,7 @@
     <PackageVersion Include="xunit" Version="$(XUnit)" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="$(XUnit)" />
     <PackageVersion Include="YamlDotNet" Version="13.0.0" />
+    <PackageVersion Include="ZXing.Net" Version="0.16.9" />
+    <PackageVersion Include="ZXing.Net.Bindings.ImageSharp.V3" Version="0.16.15" />
   </ItemGroup>
 </Project>

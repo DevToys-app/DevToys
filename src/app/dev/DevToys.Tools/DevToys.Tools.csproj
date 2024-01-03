@@ -123,6 +123,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>PasswordGenerator.resx</DependentUpon>
     </Compile>
+    <Compile Update="Tools\EncodersDecoders\QRCode\QRCodeEncoderDecoder.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>QRCodeEncoderDecoder.resx</DependentUpon>
+    </Compile>
     <Compile Update="Tools\Generators\UUID\UUIDGenerator.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -247,6 +252,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>PasswordGenerator.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Tools\EncodersDecoders\QRCode\QRCodeEncoderDecoder.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>QRCodeEncoderDecoder.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Tools\Generators\UUID\UUIDGenerator.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>UUIDGenerator.Designer.cs</LastGenOutput>
@@ -312,6 +321,8 @@
     <PackageReference Include="YamlDotNet" />
     <PackageReference Include="Markdig" />
     <PackageReference Include="Markdown.ColorCode" />
+    <PackageReference Include="ZXing.Net" />
+    <PackageReference Include="ZXing.Net.Bindings.ImageSharp.V3" />
   </ItemGroup>
 
   <Target Name="IncludeAllFilesInTargetDir" BeforeTargets="_GetPackageFiles">
