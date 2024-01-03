@@ -71,7 +71,8 @@ public partial class UIImageViewerPresenter : MefComponentBase
             },
             async (Image image) =>
             {
-                FileInfo tempFile = _fileStorage.CreateSelfDestroyingTempFile(image.Metadata.DecodedImageFormat!.FileExtensions.FirstOrDefault());
+                string? fileExtension = image.Metadata.DecodedImageFormat?.FileExtensions.FirstOrDefault() ?? "png";
+                FileInfo tempFile = _fileStorage.CreateSelfDestroyingTempFile(fileExtension);
                 await image.SaveAsync(tempFile.FullName);
                 Shell.OpenFileInShell(tempFile.FullName);
             },
@@ -126,24 +127,39 @@ public partial class UIImageViewerPresenter : MefComponentBase
         string fileExtension
             = UIImageViewer.ImageSource.Value.Match(
                 (FileInfo imageFileInfo) => imageFileInfo.Extension,
-                (Image image) => image.Metadata.DecodedImageFormat!.FileExtensions.FirstOrDefault() ?? string.Empty,
+                (Image image) => image.Metadata.DecodedImageFormat?.FileExtensions.FirstOrDefault() ?? "png",
                 (SandboxedFileReader imagePickedFile) => Path.GetExtension(imagePickedFile.FileName));
 
         if (!string.IsNullOrWhiteSpace(fileExtension))
         {
-            Stream? pickedFile = await _fileStorage.PickSaveFileAsync(fileExtension);
+            var fileExtensions = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+            {
+                fileExtension
+            };
+            foreach (string customFileExtension in UIImageViewer.CustomActionPerFileExtensionOnSaving.Keys)
+            {
+                fileExtensions.Add(customFileExtension);
+            }
+
+            await using FileStream? pickedFile = await _fileStorage.PickSaveFileAsync(fileExtensions.ToArray());
             if (pickedFile is not null)
             {
+                string userSelectedFileExtension = Path.GetExtension(pickedFile.Name).ToLowerInvariant();
+                if (UIImageViewer.CustomActionPerFileExtensionOnSaving.TryGetValue(userSelectedFileExtension, out Func<FileStream, ValueTask>? customAction))
+                {
+                    // The user has selected a file extension for which we have a custom action defined by the developer.
+                    await customAction(pickedFile);
+                    return;
+                }
+
                 await UIImageViewer.ImageSource.Value.Match(
                     async (FileInfo imageFileInfo) =>
                     {
                         using FileStream fileStream = imageFileInfo.OpenRead();
                         await fileStream.CopyToAsync(pickedFile);
                     },
-                    (Image image) => image.SaveAsync(pickedFile, image.Metadata.DecodedImageFormat!),
+                    (Image image) => image.SaveAsync(pickedFile, image.Metadata.DecodedImageFormat ?? PngFormat.Instance),
                     (SandboxedFileReader imagePickedFile) => imagePickedFile.CopyFileContentToAsync(pickedFile, CancellationToken.None));
-
-                await pickedFile.DisposeAsync();
             }
         }
     }

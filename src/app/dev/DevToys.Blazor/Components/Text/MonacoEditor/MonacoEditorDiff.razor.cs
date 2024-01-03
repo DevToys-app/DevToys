@@ -51,12 +51,12 @@ public partial class MonacoEditorDiff : RicherMonacoEditorDiffBase
             options.MouseWheelZoom = false;
             options.OverviewRulerBorder = false;
             options.ScrollBeyondLastLine = false;
-            options.FontLigatures = false;
+            options.FontLigatures = true;
             options.SnippetSuggestions = "none";
             options.CodeLens = false;
             options.QuickSuggestions = new QuickSuggestionsOptions { Comments = false, Other = false, Strings = false };
             options.Minimap = new EditorMinimapOptions { Enabled = false };
-            options.Hover = new EditorHoverOptions { Enabled = false };
+            options.Hover = new EditorHoverOptions { Enabled = true, Above = false };
             options.MatchBrackets = "always";
             options.BracketPairColorization = new BracketPairColorizationOptions { Enabled = true };
             options.RenderLineHighlightOnlyWhenFocus = true;
