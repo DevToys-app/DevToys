@@ -16,15 +16,14 @@
     <Header>
         @if (ViewModel.IsAllToolsGroup)
         {
-            <!-- TODO: Localize -->
             <StackPanel Orientation="UIOrientation.Horizontal">
                 <h1 class="text-block type-title-large no-wrap hero-title">
-                    <span>Welcome to</span><span>&nbsp;</span><span>DevToys</span>
+                    <span>@ToolGroupPage.WelcomeTo</span><span>&nbsp;</span><span>DevToys</span>
                 </h1>
-                <TextBlock Appearance="@TextBlockAppearance.Body"
+                <TextBlock Appearance="@TextBlockAppearance.Caption"
                            NoWrap="true"
                            VerticalAlignment="@UIVerticalAlignment.Bottom"
-                           Text="v2.0.0"/>
+                           Text="@ToolGroup.DisplayVersionNumber.Value"/>
             </StackPanel>
         }
         else

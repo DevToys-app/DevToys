@@ -2,12 +2,23 @@
 using DevToys.Core.Tools;
 using DevToys.Core.Tools.ViewItems;
 using DevToys.Blazor.Components;
+using System.Reflection;
 
 namespace DevToys.Blazor.Pages.SubPages;
 
 public partial class ToolGroup : MefComponentBase
 {
     private GridView<string, GuiToolInstance>? _gridView = default!;
+
+    internal static readonly Lazy<string> DisplayVersionNumber = new(() =>
+    {
+        var assemblyInformationalVersion
+            = (AssemblyInformationalVersionAttribute)
+            Assembly
+                .GetExecutingAssembly()
+                .GetCustomAttribute(typeof(AssemblyInformationalVersionAttribute))!;
+        return "v" + assemblyInformationalVersion.InformationalVersion;
+    });
 
     protected override string? JavaScriptFile => "./_content/DevToys.Blazor/Pages/SubPages/ToolGroup.razor.js";
 

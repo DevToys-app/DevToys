@@ -86,5 +86,14 @@ namespace DevToys.Localization.Strings.ToolGroupPage {
                 return ResourceManager.GetString("NotFindingToolSuggestIdea", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to.
+        /// </summary>
+        public static string WelcomeTo {
+            get {
+                return ResourceManager.GetString("WelcomeTo", resourceCulture);
+            }
+        }
     }
 }
