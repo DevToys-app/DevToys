@@ -329,7 +329,7 @@ internal sealed class SettingsGuiTool : IGuiTool
 
     private static string GetAppVersionDescription()
     {
-        string? version = Assembly.GetExecutingAssembly().GetName().Version?.ToString();
-        return string.Format(Settings.Version, version);
+        var assemblyInformationalVersion = (AssemblyInformationalVersionAttribute)Assembly.GetExecutingAssembly().GetCustomAttribute(typeof(AssemblyInformationalVersionAttribute))!;
+        return string.Format(Settings.Version, assemblyInformationalVersion.InformationalVersion);
     }
 }
