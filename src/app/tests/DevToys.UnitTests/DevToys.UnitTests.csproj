@@ -6,18 +6,66 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Tools\TestData\*\*.*">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Tools\TestData\Base64ImageEncoderDecoder\PNG_transparency_demonstration_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\Base64ImageEncoderDecoder\Png_transparency_demonstration_1_base64.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\HashAndChecksumGenerator\Checksum.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\HashAndChecksumGenerator\File.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JsonYamlConverter\FourSpaces.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JsonYamlConverter\FourSpaces.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JsonYamlConverter\Invalid.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JsonYamlConverter\Invalid.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JsonYamlConverter\TwoSpaces.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\JsonYamlConverter\TwoSpaces.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\XmlFormatter\FourSpaces.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\XmlFormatter\Minified.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\XmlFormatter\NewLineOnAttributes.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\XmlFormatter\OneTab.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\XmlFormatter\TwoSpaces.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\TestData\XmlFormatter\ValidXml.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Tools\TestData\XmlFormatter\FourSpaces.xml" />
-    <None Remove="Tools\TestData\XmlFormatter\Minified.xml" />
-    <None Remove="Tools\TestData\XmlFormatter\NewLineOnAttributes.xml" />
-    <None Remove="Tools\TestData\XmlFormatter\OneTab.xml" />
-    <None Remove="Tools\TestData\XmlFormatter\TwoSpaces.xml" />
-    <None Remove="Tools\TestData\XmlFormatter\ValidXml.xml" />
+    <EmbeddedResource Include="Tools\TestData\XmlValidator\InvalidXml.xml" />
+    <EmbeddedResource Include="Tools\TestData\XmlValidator\InvalidXsd.xml" />
+    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXml.xml" />
+    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXmlWithNamespace.xml" />
+    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXmlWithoutNamespace.xml" />
+    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXsd.xml" />
+    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXsdOnlyWithTargetNamespace.xml" />
+    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXsdWithNamespace.xml" />
+    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXsdWithoutNamespace.xml" />
   </ItemGroup>
 
   <ItemGroup>
