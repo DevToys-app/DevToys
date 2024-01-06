@@ -60,6 +60,23 @@ internal sealed class SupportDevelopmentGuidTools : IGuiTool
 
                                 Label()
                                     .Style(UILabelStyle.BodyStrong)
+                                    .Text("Buy some swag 👕"),
+
+                                Wrap()
+                                    .WithChildren(
+
+                                        Button()
+                                            .HyperlinkAppearance()
+                                            .Text("Check out our swag store")))),
+
+                    Card(
+                        Stack()
+                            .Vertical()
+                            .SmallSpacing()
+                            .WithChildren(
+
+                                Label()
+                                    .Style(UILabelStyle.BodyStrong)
                                     .Text("Donate"),
 
                                 Wrap()
