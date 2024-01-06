@@ -1762,7 +1762,7 @@ namespace DevToys.Tools.Tools.Testers.RegExTester {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RegEx Tester.
+        ///   Looks up a localized string similar to RegEx.
         /// </summary>
         internal static string ShortDisplayTitle {
             get {

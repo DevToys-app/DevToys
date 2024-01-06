@@ -295,6 +295,15 @@ namespace DevToys.Tools.Tools.Testers.JsonPathTester {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to path json.
+        /// </summary>
+        internal static string SearchKeywords {
+            get {
+                return ResourceManager.GetString("SearchKeywords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to JSONPath.
         /// </summary>
         internal static string ShortDisplayTitle {

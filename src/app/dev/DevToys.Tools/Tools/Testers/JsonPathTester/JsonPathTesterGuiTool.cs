@@ -16,7 +16,8 @@ namespace DevToys.Tools.Tools.Testers.JsonPathTester;
     ShortDisplayTitleResourceName = nameof(JsonPathTester.ShortDisplayTitle),
     LongDisplayTitleResourceName = nameof(JsonPathTester.LongDisplayTitle),
     DescriptionResourceName = nameof(JsonPathTester.Description),
-    AccessibleNameResourceName = nameof(JsonPathTester.AccessibleName))]
+    AccessibleNameResourceName = nameof(JsonPathTester.AccessibleName),
+    SearchKeywordsResourceName = nameof(JsonPathTester.SearchKeywords))]
 [AcceptedDataTypeName(PredefinedCommonDataTypeNames.Json)]
 internal sealed class JsonPathTesterGuiTool : IGuiTool, IDisposable
 {
