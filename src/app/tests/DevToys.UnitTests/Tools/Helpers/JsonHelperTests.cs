@@ -17,9 +17,10 @@ public class JsonHelperTests
     [InlineData("   [  ]  ", true)]
     [InlineData("   { \"foo\": 123 }  ", true)]
     [InlineData("   bar { \"foo\": 123 }  ", false)]
-    public void IsValid(string input, bool expectedResult)
+    public async Task IsValid(string input, bool expectedResult)
     {
-        JsonHelper.IsValid(input, new MockILogger()).Should().Be(expectedResult);
+        (await JsonHelper.IsValidAsync(input, new MockILogger(), CancellationToken.None))
+            .Should().Be(expectedResult);
     }
 
     [Theory]
@@ -166,5 +167,14 @@ public class JsonHelperTests
              new MockILogger(),
              CancellationToken.None);
         result.Data.Should().Be(expectedResult);
+    }
+
+    [Theory]
+    [InlineData(null, null, null)]
+    [InlineData("{\"a\": \"asdf\", \"c\" : 545, \"b\": 33, \"array\": [{\"a\": \"asdf\", \"c\" : 545, \"b\": 42, \"array\": []}]}", "array.[0].b", "[\r\n  42\r\n]")]
+    public async Task TestJsonPath(string json, string jsonPath, string expectedResult)
+    {
+        (await JsonHelper.TestJsonPathAsync(json, jsonPath, new MockILogger(), CancellationToken.None))
+            .Data.Should().Be(expectedResult);
     }
 }

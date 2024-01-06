@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DevToys.Tools.Tools.Text.XMLValidator {
+namespace DevToys.Tools.Tools.Testers.XMLValidator {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace DevToys.Tools.Tools.Text.XMLValidator {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Tools.Tools.Text.XMLValidator.XMLValidator", typeof(XMLValidator).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Tools.Tools.Testers.XMLValidator.XMLValidator", typeof(XMLValidator).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

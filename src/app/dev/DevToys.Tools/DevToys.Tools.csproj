@@ -148,6 +148,16 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="Tools\Testers\JsonPathTester\JsonPathTester.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>JsonPathTester.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Tools\Testers\Testers.Designer.cs">
+      <DependentUpon>Testers.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Tools\Text\AnalyzerAndUtilities\AnalyzerAndUtilities.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -163,7 +173,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>MarkdownPreview.resx</DependentUpon>
     </Compile>
-    <Compile Update="Tools\Text\RegExTester\RegExTester.Designer.cs">
+    <Compile Update="Tools\Testers\RegExTester\RegExTester.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>RegExTester.resx</DependentUpon>
@@ -173,7 +183,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Text.resx</DependentUpon>
     </Compile>
-    <Compile Update="Tools\Text\XMLValidator\XMLValidator.Designer.cs">
+    <Compile Update="Tools\Testers\XMLValidator\XMLValidator.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>XMLValidator.resx</DependentUpon>
@@ -272,6 +282,14 @@
       <LastGenOutput>ImageConverter.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Tools\Testers\JsonPathTester\JsonPathTester.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>JsonPathTester.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Tools\Testers\Testers.resx">
+      <LastGenOutput>Testers.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Tools\Text\AnalyzerAndUtilities\AnalyzerAndUtilities.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AnalyzerAndUtilities.Designer.cs</LastGenOutput>
@@ -284,7 +302,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>MarkdownPreview.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Tools\Text\RegExTester\RegExTester.resx">
+    <EmbeddedResource Update="Tools\Testers\RegExTester\RegExTester.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>RegExTester.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -292,7 +310,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Text.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Tools\Text\XMLValidator\XMLValidator.resx">
+    <EmbeddedResource Update="Tools\Testers\XMLValidator\XMLValidator.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>XMLValidator.Designer.cs</LastGenOutput>
     </EmbeddedResource>

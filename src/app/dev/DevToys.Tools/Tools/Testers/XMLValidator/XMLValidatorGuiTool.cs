@@ -2,16 +2,16 @@
 using DevToys.Tools.Models;
 using Microsoft.Extensions.Logging;
 
-namespace DevToys.Tools.Tools.Text.XMLValidator;
+namespace DevToys.Tools.Tools.Testers.XMLValidator;
 
 [Export(typeof(IGuiTool))]
 [Name("XMLValidator")]
 [ToolDisplayInformation(
     IconFontName = "DevToys-Tools-Icons",
     IconGlyph = '\u0116',
-    GroupName = PredefinedCommonToolGroupNames.Text,
+    GroupName = PredefinedCommonToolGroupNames.Testers,
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
-    ResourceManagerBaseName = "DevToys.Tools.Tools.Text.XMLValidator.XMLValidator",
+    ResourceManagerBaseName = "DevToys.Tools.Tools.Testers.XMLValidator.XMLValidator",
     ShortDisplayTitleResourceName = nameof(XMLValidator.ShortDisplayTitle),
     LongDisplayTitleResourceName = nameof(XMLValidator.LongDisplayTitle),
     DescriptionResourceName = nameof(XMLValidator.Description),

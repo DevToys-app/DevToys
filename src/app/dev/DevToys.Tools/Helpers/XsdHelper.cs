@@ -4,7 +4,7 @@ using System.Xml.Linq;
 using System.Xml.Schema;
 using System.Xml.XPath;
 using DevToys.Tools.Models;
-using DevToys.Tools.Tools.Text.XMLValidator;
+using DevToys.Tools.Tools.Testers.XMLValidator;
 using Microsoft.Extensions.Logging;
 
 namespace DevToys.Tools.Helpers;

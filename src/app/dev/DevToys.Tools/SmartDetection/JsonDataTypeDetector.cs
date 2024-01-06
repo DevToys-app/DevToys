@@ -15,7 +15,7 @@ internal sealed partial class JsonDataTypeDetector : IDataTypeDetector
         _logger = this.Log();
     }
 
-    public ValueTask<DataDetectionResult> TryDetectDataAsync(
+    public async ValueTask<DataDetectionResult> TryDetectDataAsync(
         object data,
         DataDetectionResult? resultFromBaseDetector,
         CancellationToken cancellationToken)
@@ -24,12 +24,12 @@ internal sealed partial class JsonDataTypeDetector : IDataTypeDetector
             && resultFromBaseDetector.Data is string dataString
             && !long.TryParse(dataString, out _))
         {
-            if (JsonHelper.IsValid(dataString, _logger))
+            if (await JsonHelper.IsValidAsync(dataString, _logger, cancellationToken))
             {
-                return ValueTask.FromResult(new DataDetectionResult(Success: true, Data: dataString));
+                return new DataDetectionResult(Success: true, Data: dataString);
             }
         }
 
-        return ValueTask.FromResult(DataDetectionResult.Unsuccessful);
+        return DataDetectionResult.Unsuccessful;
     }
 }

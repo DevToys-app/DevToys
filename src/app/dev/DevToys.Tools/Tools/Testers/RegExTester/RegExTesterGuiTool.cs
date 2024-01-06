@@ -1,21 +1,22 @@
 ﻿using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 
-namespace DevToys.Tools.Tools.Text.RegExTester;
+namespace DevToys.Tools.Tools.Testers.RegExTester;
 
 [Export(typeof(IGuiTool))]
 [Name("RegExTester")]
 [ToolDisplayInformation(
     IconFontName = "DevToys-Tools-Icons",
     IconGlyph = '\u0113',
-    GroupName = PredefinedCommonToolGroupNames.Text,
+    GroupName = PredefinedCommonToolGroupNames.Testers,
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
-    ResourceManagerBaseName = "DevToys.Tools.Tools.Text.RegExTester.RegExTester",
+    ResourceManagerBaseName = "DevToys.Tools.Tools.Testers.RegExTester.RegExTester",
     ShortDisplayTitleResourceName = nameof(RegExTester.ShortDisplayTitle),
     LongDisplayTitleResourceName = nameof(RegExTester.LongDisplayTitle),
     DescriptionResourceName = nameof(RegExTester.Description),
     AccessibleNameResourceName = nameof(RegExTester.AccessibleName),
     SearchKeywordsResourceName = nameof(RegExTester.SearchKeywords))]
+[NoCompactOverlaySupport] // UI is too crowded for it. TODO: Consider adding an event to IThemeListener to notify when entering Picture-in-Picture mode and update the UI accordingly.
 [AcceptedDataTypeName(PredefinedCommonDataTypeNames.Text)]
 internal sealed class RegExTesterGuiTool : IGuiTool, IDisposable
 {

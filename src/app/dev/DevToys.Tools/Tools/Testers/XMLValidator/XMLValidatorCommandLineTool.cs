@@ -3,14 +3,14 @@ using DevToys.Tools.Models;
 using Microsoft.Extensions.Logging;
 using OneOf;
 
-namespace DevToys.Tools.Tools.Text.XMLValidator;
+namespace DevToys.Tools.Tools.Testers.XMLValidator;
 
 [Export(typeof(ICommandLineTool))]
 [Name("XMLValidator")]
 [CommandName(
     Name = "xmlvalidator",
     Alias = "xsd",
-    ResourceManagerBaseName = "DevToys.Tools.Tools.Text.XMLValidator.XMLValidator",
+    ResourceManagerBaseName = "DevToys.Tools.Tools.Testers.XMLValidator.XMLValidator",
     DescriptionResourceName = nameof(XMLValidator.Description))]
 internal sealed class XMLValidatorCommandLineTool : ICommandLineTool
 {

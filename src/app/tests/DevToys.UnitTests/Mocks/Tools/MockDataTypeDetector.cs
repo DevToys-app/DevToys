@@ -9,19 +9,19 @@ namespace DevToys.UnitTests.Mocks.Tools;
 [DataTypeName("JSON", baseName: "text")]
 internal class MockJsonDataTypeDetector : IDataTypeDetector
 {
-    public ValueTask<DataDetectionResult> TryDetectDataAsync(object data, DataDetectionResult resultFromBaseDetector, CancellationToken cancellationToken)
+    public async ValueTask<DataDetectionResult> TryDetectDataAsync(object data, DataDetectionResult resultFromBaseDetector, CancellationToken cancellationToken)
     {
         if (resultFromBaseDetector is not null
             && resultFromBaseDetector.Data is string dataString
             && !long.TryParse(dataString, out _))
         {
-            if (JsonHelper.IsValid(dataString, new MockILogger()))
+            if (await JsonHelper.IsValidAsync(dataString, new MockILogger(), cancellationToken))
             {
-                return ValueTask.FromResult(new DataDetectionResult(Success: true, Data: dataString));
+                return new DataDetectionResult(Success: true, Data: dataString);
             }
         }
 
-        return ValueTask.FromResult(DataDetectionResult.Unsuccessful);
+        return DataDetectionResult.Unsuccessful;
     }
 }
 

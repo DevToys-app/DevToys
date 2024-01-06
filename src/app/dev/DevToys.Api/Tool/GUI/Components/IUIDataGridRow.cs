@@ -67,7 +67,7 @@ public static partial class GUI
     /// <param name="value">The value associated to the item.</param>
     /// <param name="details">The element to display as detail information in the row.</param>
     /// <param name="cells">The cells to display in the row.</param>
-    public static IUIDataGridRow Row(object? value, IUIElement details, params IUIDataGridCell[] cells)
+    public static IUIDataGridRow Row(object? value, IUIElement? details, params IUIDataGridCell[] cells)
     {
         var row = (UIDataGridRow)Row(value, cells);
         row.Details = details;
@@ -80,7 +80,7 @@ public static partial class GUI
     /// <param name="value">The value associated to the item.</param>
     /// <param name="details">The element to display as detail information in the row.</param>
     /// <param name="cells">The cells to display in the row.</param>
-    public static IUIDataGridRow Row(object? value, IUIElement details, params string[] cells)
+    public static IUIDataGridRow Row(object? value, IUIElement? details, params string[] cells)
     {
         var row = (UIDataGridRow)Row(value, cells);
         row.Details = details;
