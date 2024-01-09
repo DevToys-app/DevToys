@@ -266,4 +266,27 @@ public class StringHelperTests
         .Should()
         .NotBe(Text2);
     }
+
+    [Theory]
+    [InlineData(null, "")]
+    [InlineData("", "")]
+    [InlineData("hello world", "hello world")]
+    [InlineData("hello\rworld", "hello\\rworld")]
+    internal void EscapeString(string input, string expectedResult)
+    {
+        StringHelper.EscapeString(input, new MockILogger(), CancellationToken.None)
+            .Data.Should().Be(expectedResult);
+    }
+
+    [Theory]
+    [InlineData(null, "")]
+    [InlineData("", "")]
+    [InlineData("hello world", "hello world")]
+    [InlineData("hello\rworld", "hello\rworld")]
+    [InlineData("hello\\rworld", "hello\rworld")]
+    internal void UnescapeString(string input, string expectedResult)
+    {
+        StringHelper.UnescapeString(input, new MockILogger(), CancellationToken.None)
+            .Data.Should().Be(expectedResult);
+    }
 }

@@ -2,12 +2,181 @@
 using System.Text.RegularExpressions;
 using DevToys.Tools.Helpers.Core;
 using DevToys.Tools.Models;
+using Microsoft.Extensions.Logging;
 
 namespace DevToys.Tools.Helpers;
 
 internal static class StringHelper
 {
     private static readonly Random random = new();
+
+    internal static bool HasEscapeCharacters(string text)
+    {
+        // TODO: This could be improved. Using multiple Contains means we have to iterate through the text multiple times.
+        return text.Contains("\\n")
+            || text.Contains("\\r")
+            || text.Contains("\\\\")
+            || text.Contains("\\\"")
+            || text.Contains("\\t")
+            || text.Contains("\\f")
+            || text.Contains("\\b");
+    }
+
+    internal static ResultInfo<string> EscapeString(string? data, ILogger logger, CancellationToken cancellationToken)
+    {
+        if (string.IsNullOrWhiteSpace(data))
+        {
+            return new(string.Empty, HasSucceeded: true);
+        }
+
+        var encoded = new StringBuilder();
+
+        try
+        {
+            int i = 0;
+            while (i < data!.Length)
+            {
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    return new(string.Empty, HasSucceeded: false);
+                }
+
+                string replacementString = string.Empty;
+                int jumpLength = 0;
+                if (TextMatchAtIndex(data, "\n", i))
+                {
+                    jumpLength = 1;
+                    replacementString = "\\n";
+                }
+                else if (TextMatchAtIndex(data, "\r", i))
+                {
+                    jumpLength = 1;
+                    replacementString = "\\r";
+                }
+                else if (TextMatchAtIndex(data, "\t", i))
+                {
+                    jumpLength = 1;
+                    replacementString = "\\t";
+                }
+                else if (TextMatchAtIndex(data, "\b", i))
+                {
+                    jumpLength = 1;
+                    replacementString = "\\b";
+                }
+                else if (TextMatchAtIndex(data, "\f", i))
+                {
+                    jumpLength = 1;
+                    replacementString = "\\f";
+                }
+                else if (TextMatchAtIndex(data, "\"", i))
+                {
+                    jumpLength = 1;
+                    replacementString = "\\\"";
+                }
+                else if (TextMatchAtIndex(data, "\\", i))
+                {
+                    jumpLength = 1;
+                    replacementString = "\\\\";
+                }
+
+                if (!string.IsNullOrEmpty(replacementString) && jumpLength > 0)
+                {
+                    encoded.Append(replacementString);
+                    i += jumpLength;
+                }
+                else
+                {
+                    encoded.Append(data[i]);
+                    i++;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Failed to escape text");
+            return new(ex.Message, HasSucceeded: false);
+        }
+
+        return new(encoded.ToString(), HasSucceeded: true);
+    }
+
+    internal static ResultInfo<string> UnescapeString(string? data, ILogger logger, CancellationToken cancellationToken)
+    {
+        if (string.IsNullOrWhiteSpace(data))
+        {
+            return new(string.Empty, HasSucceeded: false);
+        }
+
+        var decoded = new StringBuilder();
+
+        try
+        {
+            int i = 0;
+            while (i < data!.Length)
+            {
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    return new(string.Empty, HasSucceeded: false);
+                }
+
+                string replacementString = string.Empty;
+                int jumpLength = 0;
+                if (TextMatchAtIndex(data, "\\n", i))
+                {
+                    jumpLength = 2;
+                    replacementString = "\n";
+                }
+                else if (TextMatchAtIndex(data, "\\r", i))
+                {
+                    jumpLength = 2;
+                    replacementString = "\r";
+                }
+                else if (TextMatchAtIndex(data, "\\t", i))
+                {
+                    jumpLength = 2;
+                    replacementString = "\t";
+                }
+                else if (TextMatchAtIndex(data, "\\b", i))
+                {
+                    jumpLength = 2;
+                    replacementString = "\b";
+                }
+                else if (TextMatchAtIndex(data, "\\f", i))
+                {
+                    jumpLength = 2;
+                    replacementString = "\f";
+                }
+                else if (TextMatchAtIndex(data, "\\\"", i))
+                {
+                    jumpLength = 2;
+                    replacementString = "\"";
+                }
+                else if (TextMatchAtIndex(data, "\\\\", i))
+                {
+                    jumpLength = 2;
+                    replacementString = "\\";
+                }
+
+                if (!string.IsNullOrEmpty(replacementString) && jumpLength > 0)
+                {
+                    decoded.Append(replacementString);
+                    i += jumpLength;
+                }
+                else
+                {
+                    decoded.Append(data[i]);
+                    i++;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Failed to escape text");
+            return new(ex.Message, HasSucceeded: false);
+        }
+
+        return new(decoded.ToString(), HasSucceeded: true);
+    }
 
     internal static string SortLinesAlphabetically(string text, EndOfLineSequence endOfLineSequence)
     {
@@ -710,5 +879,28 @@ internal static class StringHelper
 
         // Rebuilt the text.
         return lines.BuildStringFromListOfLines(endOfLineSequence);
+    }
+
+    private static bool TextMatchAtIndex(string data, string test, int startIndex)
+    {
+        if (string.IsNullOrEmpty(test))
+        {
+            return false;
+        }
+
+        if (data.Length < test.Length)
+        {
+            return false;
+        }
+
+        for (int i = 0; i < test.Length; i++)
+        {
+            if (data[startIndex + i] != test[i])
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
