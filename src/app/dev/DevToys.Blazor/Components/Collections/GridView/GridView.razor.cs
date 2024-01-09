@@ -27,6 +27,15 @@ public partial class GridView<TKey, TElement> : JSStyledComponentBase
     [Parameter]
     public int ItemMinWidth { get; set; }
 
+    internal string ScrollViewerId
+    {
+        get
+        {
+            Guard.IsNotNull(_scrollViewer);
+            return _scrollViewer.Id;
+        }
+    }
+
     public GridView()
     {
         CSS.Add("grid-view");

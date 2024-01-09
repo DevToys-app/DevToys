@@ -26,7 +26,7 @@ internal sealed partial class ToolGroupPageViewModel : ObservableRecipient
     private string _headerText = string.Empty;
 
     [ObservableProperty]
-    private bool _displayFooter;
+    private bool _isAllToolsGroup;
 
     internal void Load(GroupViewItem groupViewItem)
     {
@@ -35,7 +35,7 @@ internal sealed partial class ToolGroupPageViewModel : ObservableRecipient
         if (string.Equals(groupViewItem.InternalName, ReservedGuiToolGroupNames.AllTools, StringComparison.OrdinalIgnoreCase))
         {
             Tools = LoadAllTools();
-            DisplayFooter = true;
+            IsAllToolsGroup = true;
         }
         else if (string.Equals(groupViewItem.InternalName, ReservedGuiToolGroupNames.FavoriteTools, StringComparison.OrdinalIgnoreCase))
         {
