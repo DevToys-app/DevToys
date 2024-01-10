@@ -133,7 +133,7 @@
     <value>RGB WCAG</value>
   </data>
   <data name="TextColor" xml:space="preserve">
-    <value>Text color</value>
+    <value>Tekstfarve</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Indstillinger</value>
@@ -148,13 +148,13 @@
     <value>HSV</value>
   </data>
   <data name="SelectedColor" xml:space="preserve">
-    <value>Selected color</value>
+    <value>Valgt farve</value>
   </data>
   <data name="BackgroundColor" xml:space="preserve">
-    <value>Background color</value>
+    <value>Baggrundsfarve</value>
   </data>
   <data name="ContrastRatio" xml:space="preserve">
-    <value>Contrast ratio</value>
+    <value>Kontrast</value>
   </data>
   <data name="Fail" xml:space="preserve">
     <value>Fail</value>
