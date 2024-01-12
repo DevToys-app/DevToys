@@ -313,10 +313,10 @@
     <value>Casual name of the End-User that may or may not be the same as the given_name. For instance, a nickname value of Mike might be returned alongside a given_name value of Michael.</value>
   </data>
   <data name="preferred_username" xml:space="preserve">
-    <value>Shorthand name by which the End-User wishes to be referred to at the RP, such as janedoe or j.doe. This value MAY be any valid JSON string including special characters such as @, /, or whitespace. The RP MUST NOT rely upon this value being unique.</value>
+    <value>Kortnavn som sluttbruker ønsker å bli referert til på RP, som f.eks. olanordmann eller o.nordmann. Denne verdien KAN være hvilken som heltst JSON streng inkludert spesialtegn som @, / eller mellomrom. Den avhengige parten (RP) KAN IKKE stole på at denne verdien er unik.</value>
   </data>
   <data name="profile" xml:space="preserve">
-    <value>URL of the End-User's profile page. The contents of this Web page SHOULD be about the End-User.</value>
+    <value>URL-adressen til sluttbrukeren sin profilside. Innholdet på denne nettsiden er om sluttbrukeren.</value>
   </data>
   <data name="picture" xml:space="preserve">
     <value>URL of the End-User's profile picture. This URL MUST refer to an image file (for example, a PNG, JPEG, or GIF image file), rather than to a Web page containing an image. Note that this URL SHOULD specifically reference a profile photo of the End-User suitable for displaying when describing the End-User, rather than an arbitrary photo taken by the End-User.</value>
