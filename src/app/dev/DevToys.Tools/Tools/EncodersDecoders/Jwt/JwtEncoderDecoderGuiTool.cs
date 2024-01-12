@@ -1,4 +1,5 @@
-﻿using DevToys.Tools.Models;
+﻿using DevToys.Api;
+using DevToys.Tools.Models;
 using Microsoft.Extensions.Logging;
 
 namespace DevToys.Tools.Tools.EncodersDecoders.Jwt;
@@ -20,57 +21,28 @@ internal sealed partial class JwtEncoderDecoderGuiTool : IGuiTool, IDisposable
     /// <summary>
     /// Whether the tool should encode or decode JWT Token.
     /// </summary>
-    private static readonly SettingDefinition<JwtMode> toolMode
+    private static readonly SettingDefinition<JwtMode> toolModeSetting
         = new(
-            name: $"{nameof(JwtEncoderDecoderGuiTool)}.{nameof(toolMode)}",
+            name: $"{nameof(JwtEncoderDecoderGuiTool)}.{nameof(toolModeSetting)}",
             defaultValue: JwtMode.Decode);
 
-    internal enum JwtGridRows
-    {
-        Settings,
-        SubContainer
-    }
-
-    private enum GridColumns
-    {
-        Stretch
-    }
-
-    private readonly DisposableSemaphore _semaphore = new();
     private readonly ILogger _logger;
     private readonly ISettingsProvider _settingsProvider;
+    private readonly JwtDecoderGuiTool _decoderGuiTool;
+    private readonly JwtEncoderGuiTool _encoderGuiTool;
 
     private readonly IUISwitch _conversionModeSwitch = Switch("jwt-token-conversion-mode-switch");
 
-    private CancellationTokenSource? _cancellationTokenSource;
-
-    private readonly JwtDecoderGuiTool _decoderGuiTool = new();
-
-    private readonly JwtEncoderGuiTool _encoderGuiTool = new();
-
     private readonly IUIGrid _jwtEncoderDecoderGuiGrid = Grid("jwt-encoder-decoder-grid");
-
-    private IUIGridCell _subToolView;
 
     [ImportingConstructor]
     public JwtEncoderDecoderGuiTool(ISettingsProvider settingsProvider)
     {
         _logger = this.Log();
         _settingsProvider = settingsProvider;
-
-        switch (_settingsProvider.GetSetting(JwtEncoderDecoderGuiTool.toolMode))
-        {
-            case JwtMode.Encode:
-                _subToolView = _encoderGuiTool.GridCell;
-                break;
-
-            case JwtMode.Decode:
-                _subToolView = _decoderGuiTool.GridCell;
-                break;
-
-            default:
-                throw new NotSupportedException();
-        }
+        _decoderGuiTool = new(_settingsProvider);
+        _encoderGuiTool = new();
+        LoadChildView();
     }
 
     // For unit tests.
@@ -80,38 +52,49 @@ internal sealed partial class JwtEncoderDecoderGuiTool : IGuiTool, IDisposable
         => new(
             isScrollable: true,
             _jwtEncoderDecoderGuiGrid
-                .RowLargeSpacing()
-                .Rows(
-                    (JwtGridRows.Settings, Auto),
-                    (JwtGridRows.SubContainer, new UIGridLength(1, UIGridUnitType.Fraction))
+            .RowLargeSpacing()
+            .Rows(
+                (JwtGridRows.Settings, Auto),
+                (JwtGridRows.SubContainer, new UIGridLength(1, UIGridUnitType.Fraction))
+            )
+            .Columns(
+                (GridColumns.Stretch, new UIGridLength(1, UIGridUnitType.Fraction))
+            )
+            .Cells(
+                Cell(
+                    JwtGridRows.Settings,
+                    GridColumns.Stretch,
+                    Stack()
+                        .Vertical()
+                        .SmallSpacing()
+                        .WithChildren(
+                            Label()
+                                .Text(JwtEncoderDecoder.ConfigurationTitle),
+                            Setting("jwt-token-conversion-mode-setting")
+                                .Icon("FluentSystemIcons", '\uF18D')
+                                .Title(JwtEncoderDecoder.ToolModeTitle)
+                                .Description(JwtEncoderDecoder.ToolModeDescription)
+                                .InteractiveElement(
+                                    _conversionModeSwitch
+                                    .OnText(JwtEncoderDecoder.EncodeMode)
+                                    .OffText(JwtEncoderDecoder.DecodeMode)
+                                    .OnToggle(OnConversionModeChanged)
+                                )
+                        )
+                ),
+                Cell(
+                    JwtGridRows.SubContainer,
+                    GridColumns.Stretch,
+                    Stack()
+                    .Vertical()
+                    .WithChildren(
+                        _decoderGuiTool.ViewStack(),
+                        _encoderGuiTool.ViewStack()
+                    )
                 )
-                .Columns(
-                    (GridColumns.Stretch, new UIGridLength(1, UIGridUnitType.Fraction))
-                )
-                .Cells(
-                    Cell(
-                        JwtGridRows.Settings,
-                        GridColumns.Stretch,
-                        Stack()
-                            .Vertical()
-                            .SmallSpacing()
-                            .WithChildren(
-                                Label()
-                                    .Text(JwtEncoderDecoder.ConfigurationTitle),
-                                Setting("jwt-token-conversion-mode-setting")
-                                    .Icon("FluentSystemIcons", '\uF18D')
-                                    .Title(JwtEncoderDecoder.ToolModeTitle)
-                                    .Description(JwtEncoderDecoder.ToolModeDescription)
-                                    .InteractiveElement(
-                                        _conversionModeSwitch
-                                        .OnText(JwtEncoderDecoder.EncodeMode)
-                                        .OffText(JwtEncoderDecoder.DecodeMode)
-                                        .OnToggle(OnConversionModeChanged)
-                                    )
-                            )
-                    ),
-                    _subToolView
-                )
+            //_decoderGuiTool.GridCell,
+            //_encoderGuiTool.GridCell
+            )
         );
 
     public void OnDataReceived(string dataTypeName, object? parsedData)
@@ -121,27 +104,54 @@ internal sealed partial class JwtEncoderDecoderGuiTool : IGuiTool, IDisposable
 
     public void Dispose()
     {
-        _cancellationTokenSource?.Cancel();
-        _cancellationTokenSource?.Dispose();
-        _semaphore.Dispose();
+        // Todo need to dispose child view too?
     }
 
     private void OnConversionModeChanged(bool toolMode)
     {
-        _settingsProvider.SetSetting(JwtEncoderDecoderGuiTool.toolMode, toolMode ? JwtMode.Encode : JwtMode.Decode);
-        switch (_settingsProvider.GetSetting(JwtEncoderDecoderGuiTool.toolMode))
+        _settingsProvider.SetSetting(JwtEncoderDecoderGuiTool.toolModeSetting, toolMode ? JwtMode.Encode : JwtMode.Decode);
+        LoadChildView();
+    }
+
+    private IUIGridCell EncodeDecodeSettings()
+        => Cell(
+            JwtGridRows.Settings,
+            GridColumns.Stretch,
+            Stack()
+                .Vertical()
+                .SmallSpacing()
+                .WithChildren(
+                    Label()
+                        .Text(JwtEncoderDecoder.ConfigurationTitle),
+                    Setting("jwt-token-conversion-mode-setting")
+                        .Icon("FluentSystemIcons", '\uF18D')
+                        .Title(JwtEncoderDecoder.ToolModeTitle)
+                        .Description(JwtEncoderDecoder.ToolModeDescription)
+                        .InteractiveElement(
+                            _conversionModeSwitch
+                            .OnText(JwtEncoderDecoder.EncodeMode)
+                            .OffText(JwtEncoderDecoder.DecodeMode)
+                            .OnToggle(OnConversionModeChanged)
+                        )
+                )
+        );
+
+    private void LoadChildView()
+    {
+        switch (_settingsProvider.GetSetting(JwtEncoderDecoderGuiTool.toolModeSetting))
         {
             case JwtMode.Encode:
-                _subToolView = _encoderGuiTool.GridCell;
+                _decoderGuiTool.Hide();
+                _encoderGuiTool.Show();
                 break;
 
             case JwtMode.Decode:
-                _subToolView = _decoderGuiTool.GridCell;
+                _encoderGuiTool.Hide();
+                _decoderGuiTool.Show();
                 break;
 
             default:
                 throw new NotSupportedException();
         }
     }
-
 }

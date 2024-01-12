@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Reflection;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using DevToys.Blazor.Components.Monaco;
 using DevToys.Blazor.Components.Monaco.Editor;
@@ -518,6 +519,13 @@ public class RicherMonacoEditorBase : MonacoEditorBase
     /// </summary>
     internal ValueTask<EditorOptions> GetRawOptionsAsync()
         => JSRuntime.InvokeAsync<EditorOptions>("devtoys.MonacoEditor.getRawOptions", Id);
+
+    /// <summary>
+    /// Get value of the current model attached to this editor.
+    /// See <see cref="TextModel.GetWordAtPosition(Position)"/>
+    /// </summary>
+    internal ValueTask<WordAtPosition> GetWordAtPositionAsync(string position)
+        => JSRuntime.InvokeAsync<WordAtPosition>("devtoys.MonacoEditor.getWordAtPosition", position);
 
     /// <summary>
     /// Get value of the current model attached to this editor.

@@ -1,5 +1,7 @@
 ﻿using DevToys.Blazor.Components.Monaco;
 using DevToys.Blazor.Components.Monaco.Editor;
+using Microsoft.VisualBasic;
+using Range = DevToys.Blazor.Components.Monaco.Range;
 
 namespace DevToys.Blazor.Components.UIElements;
 
@@ -176,6 +178,51 @@ public partial class UIMultiLineTextInputPresenter : JSStyledComponentBase
         UIMultiLineTextInput_SelectionChanged(UIMultiLineTextInput, EventArgs.Empty);
 
         return Task.CompletedTask;
+    }
+
+    private async Task OnMonacoEditorPositionChanged(CursorPositionChangedEvent cursorPosition)
+    {
+        if (UIMultiLineTextInput.Tooltips.Count == 0)
+        {
+            return;
+        }
+
+        await _monacoInitializationAwaiter.Task;
+        TextModel model = await _monacoEditor.GetModelAsync();
+        if (model is not null && cursorPosition.Position is not null)
+        {
+            WordAtPosition wordAtPosition = await model.GetWordAtPositionAsync(JSRuntime, cursorPosition.Position);
+            if (wordAtPosition is not null)
+            {
+                UIHoverTooltip? tooltip = UIMultiLineTextInput.Tooltips.FirstOrDefault(tooltip => tooltip.Word.Equals(wordAtPosition.Word, StringComparison.OrdinalIgnoreCase));
+                if (tooltip != null)
+                {
+                    var decoration = new ModelDeltaDecoration
+                    {
+                        Range = new Range
+                        {
+                            StartLineNumber = 1,
+                            StartColumn = 1,
+                            EndLineNumber = 1,
+                            EndColumn = 10
+                        },
+                        Options = new ModelDecorationOptions
+                        {
+                            HoverMessage
+                            = new[]
+                            {
+                                new MarkdownString()
+                                {
+                                    Value = tooltip.Description
+                                }
+                            }
+                        }
+                    };
+
+                    await _monacoEditor.ReplaceAllDecorationsByAsync(new[] { decoration });
+                }
+            }
+        }
     }
 
     private async Task OnMonacoEditorSelectionChanged(CursorSelectionChangedEvent newSelection)

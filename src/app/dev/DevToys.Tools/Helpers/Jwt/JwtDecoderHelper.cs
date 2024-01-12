@@ -1,5 +1,4 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
-using System.Numerics;
 using System.Security.Cryptography;
 using System.Text;
 using DevToys.Tools.Models;
@@ -13,6 +12,26 @@ namespace DevToys.Tools.Helpers.Jwt;
 
 internal static partial class JwtDecoderHelper
 {
+    public static ResultInfo<JwtAlgorithm?> GetTokenAlgorithm(string token, ILogger logger)
+    {
+        Guard.IsNotNullOrWhiteSpace(token);
+        try
+        {
+            var handler = new JwtSecurityTokenHandler();
+            JwtSecurityToken jwtSecurityToken = handler.ReadJwtToken(token);
+            if (!Enum.TryParse(jwtSecurityToken.SignatureAlgorithm, out JwtAlgorithm jwtAlgorithm))
+            {
+                return new ResultInfo<JwtAlgorithm?>(null, false);
+            }
+            return new ResultInfo<JwtAlgorithm?>(jwtAlgorithm, true);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Invalid token detected");
+            return new ResultInfo<JwtAlgorithm?>(null, false);
+        }
+    }
+
     public static async ValueTask<ResultInfo<JwtTokenResult?, ResultInfoSeverity>> DecodeTokenAsync(
             DecoderParameters decodeParameters,
             TokenParameters tokenParameters,
@@ -42,6 +61,7 @@ internal static partial class JwtDecoderHelper
                 return new ResultInfo<JwtTokenResult?, ResultInfoSeverity>(JwtEncoderDecoder.HeaderInvalid, ResultInfoSeverity.Error);
             }
             tokenResult.Header = headerResult.Data;
+            tokenResult.HeaderClaims = jwtSecurityToken.Header.Select(claim => new JwtClaim(claim.Key, claim.Value.ToString())).ToList();
 
             ResultInfo<string> payloadResult = await JsonHelper.FormatAsync(
                 jwtSecurityToken.Payload.SerializeToJson(),
@@ -54,6 +74,7 @@ internal static partial class JwtDecoderHelper
                 return new ResultInfo<JwtTokenResult?, ResultInfoSeverity>(JwtEncoderDecoder.PayloadInvalid, ResultInfoSeverity.Error);
             }
             tokenResult.Payload = payloadResult.Data;
+            tokenResult.PayloadClaims = jwtSecurityToken.Claims.Select(claim => new JwtClaim(claim)).ToList();
 
             tokenResult.TokenAlgorithm = tokenParameters.TokenAlgorithm =
                 Enum.TryParse(jwtSecurityToken.SignatureAlgorithm, out JwtAlgorithm parsedAlgorithm)
@@ -62,18 +83,21 @@ internal static partial class JwtDecoderHelper
 
             if (decodeParameters.ValidateSignature)
             {
-                ResultInfo<JwtTokenResult> signatureValid = ValidateTokenSignature(handler, decodeParameters, tokenParameters, tokenResult);
-                if (!signatureValid.HasSucceeded)
+                ResultInfo<JwtTokenResult, ResultInfoSeverity> signatureValid = ValidateTokenSignature(handler, decodeParameters, tokenParameters, tokenResult);
+                if (signatureValid.Severity == ResultInfoSeverity.Error)
                 {
-                    return new ResultInfo<JwtTokenResult?, ResultInfoSeverity>(signatureValid.ErrorMessage!, ResultInfoSeverity.Error);
+                    return new ResultInfo<JwtTokenResult?, ResultInfoSeverity>(signatureValid.ErrorMessage!, signatureValid.Severity);
+                }
+                else if (signatureValid.Severity == ResultInfoSeverity.Warning)
+                {
+                    return new ResultInfo<JwtTokenResult?, ResultInfoSeverity>(tokenResult, signatureValid.ErrorMessage!, signatureValid.Severity);
                 }
             }
-
-            tokenResult.Claims = jwtSecurityToken.Claims.Select(c => new JwtClaim(c));
+            //tokenResult.HeaderClaims = jwtSecurityToken.Claims.Select(c => new JwtClaim(c));
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Invalid token detected '{decodeParameters}', '{tokenParameters}'", decodeParameters, tokenParameters);
+            logger.LogError(ex, "Invalid token detected");
             return new ResultInfo<JwtTokenResult?, ResultInfoSeverity>(ex.Message, ResultInfoSeverity.Error);
         }
 
@@ -83,7 +107,7 @@ internal static partial class JwtDecoderHelper
     /// <summary>
     /// Validate the token using the Signing Credentials 
     /// </summary>
-    private static ResultInfo<JwtTokenResult> ValidateTokenSignature(
+    private static ResultInfo<JwtTokenResult, ResultInfoSeverity> ValidateTokenSignature(
         JwtSecurityTokenHandler handler,
         DecoderParameters decodeParameters,
         TokenParameters tokenParameters,
@@ -91,49 +115,49 @@ internal static partial class JwtDecoderHelper
     {
         var validationParameters = new TokenValidationParameters
         {
-            ValidateActor = decodeParameters.ValidateActor,
+            ValidateActor = decodeParameters.ValidateActors,
             ValidateLifetime = decodeParameters.ValidateLifetime,
-            ValidateIssuer = decodeParameters.ValidateIssuer,
-            ValidateAudience = decodeParameters.ValidateAudience
+            ValidateIssuer = decodeParameters.ValidateIssuers,
+            ValidateAudience = decodeParameters.ValidateAudiences
         };
 
-        if (decodeParameters.ValidateIssuerSigningKey)
+        if (decodeParameters.ValidateIssuersSigningKey)
         {
             ResultInfo<SigningCredentials> signingCredentials = GetSigningCredentials(tokenParameters);
             if (!signingCredentials.HasSucceeded)
             {
-                return new ResultInfo<JwtTokenResult>(null!, signingCredentials.ErrorMessage!, signingCredentials.HasSucceeded);
+                return new ResultInfo<JwtTokenResult, ResultInfoSeverity>(signingCredentials.ErrorMessage!, ResultInfoSeverity.Error);
             }
 
-            validationParameters.ValidateIssuerSigningKey = decodeParameters.ValidateIssuerSigningKey;
+            validationParameters.ValidateIssuerSigningKey = decodeParameters.ValidateIssuersSigningKey;
             validationParameters.IssuerSigningKey = signingCredentials.Data!.Key;
             validationParameters.TryAllIssuerSigningKeys = true;
         }
         // Todo maybe we can remove this fake signature validator
-        //else
-        //{
-        //    // Create a custom signature validator that does nothing so it always passes in this mode
-        //    validationParameters.SignatureValidator = (token, _) => new JwtSecurityToken(token);
-        //}
+        else
+        {
+            // Create a custom signature validator that does nothing so it always passes in this mode
+            validationParameters.SignatureValidator = (token, _) => new JwtSecurityToken(token);
+        }
 
         /// check if the token issuers are part of the user provided issuers
-        if (decodeParameters.ValidateIssuer)
+        if (decodeParameters.ValidateIssuers)
         {
-            if (tokenParameters.ValidIssuers.Count == 0)
+            if (tokenParameters.Issuers.Count == 0)
             {
-                return new ResultInfo<JwtTokenResult>(null!, JwtEncoderDecoder.ValidIssuersEmptyError, false);
+                return new ResultInfo<JwtTokenResult, ResultInfoSeverity>(JwtEncoderDecoder.ValidIssuersEmptyError, ResultInfoSeverity.Error);
             }
-            validationParameters.ValidIssuers = tokenParameters.ValidIssuers;
+            validationParameters.ValidIssuers = tokenParameters.Issuers;
         }
 
         /// check if the token audience are part of the user provided audiences
-        if (decodeParameters.ValidateAudience)
+        if (decodeParameters.ValidateAudiences)
         {
-            if (tokenParameters.ValidAudiences.Count == 0)
+            if (tokenParameters.Audiences.Count == 0)
             {
-                return new ResultInfo<JwtTokenResult>(null!, JwtEncoderDecoder.ValidAudiencesEmptyError, false);
+                return new ResultInfo<JwtTokenResult, ResultInfoSeverity>(JwtEncoderDecoder.ValidAudiencesEmptyError, ResultInfoSeverity.Error);
             }
-            validationParameters.ValidAudiences = tokenParameters.ValidAudiences;
+            validationParameters.ValidAudiences = tokenParameters.Audiences;
         }
 
         try
@@ -141,11 +165,18 @@ internal static partial class JwtDecoderHelper
             handler.ValidateToken(tokenParameters.Token, validationParameters, out _);
             tokenResult.Signature = tokenParameters.Signature;
             tokenResult.PublicKey = tokenParameters.PublicKey;
-            return new ResultInfo<JwtTokenResult>(tokenResult);
+
+            if (!decodeParameters.ValidateActors && !decodeParameters.ValidateLifetime &&
+                !decodeParameters.ValidateIssuers && !decodeParameters.ValidateAudiences &&
+                !decodeParameters.ValidateIssuersSigningKey)
+            {
+                return new ResultInfo<JwtTokenResult, ResultInfoSeverity>(tokenResult, JwtEncoderDecoder.TokenNotValidated, ResultInfoSeverity.Warning);
+            }
+            return new ResultInfo<JwtTokenResult, ResultInfoSeverity>(tokenResult, ResultInfoSeverity.Success);
         }
         catch (Exception exception)
         {
-            return new ResultInfo<JwtTokenResult>(null!, exception.Message, false);
+            return new ResultInfo<JwtTokenResult, ResultInfoSeverity>(exception.Message, ResultInfoSeverity.Error);
         }
     }
 

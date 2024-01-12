@@ -1,4 +1,6 @@
-﻿namespace DevToys.Api;
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace DevToys.Api;
 
 /// <summary>
 /// Record to contain both whether the task was a success and the resulting data
@@ -70,16 +72,17 @@ public record ResultInfo<T, ResultInfoSeverity>
         Severity = severity;
         ErrorMessage = errorMessage;
     }
-}
-/// <param name="Data">The resulting data or the task</param>
-/// <param name="HasSucceeded">Whether the task succeeded</param>
-public record ResultInfo<T>(T Data, bool HasSucceeded = true);
 
-/// <summary>
-/// Record to contain both whether the task was a success and the resulting data
-/// </summary>
-/// <typeparam name="T">Type of the result</typeparam>
-/// <typeparam name="U">Type of the severity</typeparam>
-/// <param name="Data">The resulting data or the task</param>
-/// <param name="Severity">The severity of the result</param>
-public record ResultInfo<T, U>(T Data, U Severity);
+    /// <summary>
+    /// Record to contain both whether the task was a success and the resulting data
+    /// </summary>
+    /// <param name="data">The resulting data or the task</param>
+    /// <param name="errorMessage">The error message</param>
+    /// <param name="severity">The severity of the result</param>
+    public ResultInfo(T data, string errorMessage, ResultInfoSeverity severity)
+    {
+        Data = data;
+        Severity = severity;
+        ErrorMessage = errorMessage;
+    }
+}

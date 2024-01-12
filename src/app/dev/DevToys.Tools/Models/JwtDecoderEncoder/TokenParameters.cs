@@ -2,7 +2,7 @@
 
 internal class TokenParameters
 {
-    public string? Token { get; set; }
+    public string Token { get; }
 
     public string? Payload { get; set; }
 
@@ -24,8 +24,13 @@ internal class TokenParameters
 
     public int ExpirationMinute { get; set; }
 
-    public HashSet<string> ValidIssuers { get; set; } = new HashSet<string>();
+    public HashSet<string> Issuers { get; set; } = new HashSet<string>();
 
-    public HashSet<string> ValidAudiences { get; set; } = new HashSet<string>();
+    public HashSet<string> Audiences { get; set; } = new HashSet<string>();
 
+    public TokenParameters(string token)
+    {
+        Guard.IsNotNullOrWhiteSpace(token);
+        Token = token;
+    }
 }

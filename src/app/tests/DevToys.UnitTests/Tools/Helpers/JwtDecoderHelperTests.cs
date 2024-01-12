@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using DevToys.Tools.Helpers;
 using DevToys.Tools.Helpers.Jwt;
@@ -12,14 +11,15 @@ namespace DevToys.UnitTests.Tools.Helpers;
 public class JwtDecoderHelperTests
 {
     private readonly ILogger _logger;
-    private readonly string _baseTestDataDirectory = Path.Combine("Tools", "TestData", nameof(JwtEncoderDecoder));
+    private const string ToolName = "JwtEncoderDecoder";
+    private const string BaseAssembly = "DevToys.UnitTests.Tools.TestData";
 
     public JwtDecoderHelperTests()
     {
         _logger = new MockILogger();
     }
 
-    [Fact(DisplayName = "Decode Jwt Token with Invalid parameters shoult throw argument exception")]
+    [Fact(DisplayName = "Decode Jwt Token with invalid parameters should throw argument exception")]
     public void DecodeTokenWithInvalidParametersShouldThrowArgumentException()
     {
         Func<ValueTask<ResultInfo<JwtTokenResult, ResultInfoSeverity>>> result = ()
@@ -31,10 +31,7 @@ public class JwtDecoderHelperTests
     public async Task DecodeTokenWithTokenShouldReturnError()
     {
         var decodeParameters = new DecoderParameters();
-        var tokenParameters = new TokenParameters()
-        {
-            Token = "eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"
-        };
+        var tokenParameters = new TokenParameters("eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ");
 
         ResultInfo<JwtTokenResult, ResultInfoSeverity> result = await JwtDecoderHelper.DecodeTokenAsync(
             decodeParameters,
@@ -50,16 +47,13 @@ public class JwtDecoderHelperTests
     [Fact(DisplayName = "Decode HS256 Jwt Token with Valid Token, Signature Validation Activated and Invalid Signature should return false")]
     public async Task DecodeHS256TokenWithValidTokenAndSignatureValidationAndInvalidSignatureShouldReturnError()
     {
-        string tokenFilePath = Path.Combine(_baseTestDataDirectory, "HS", "BasicToken.txt");
+        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-BasicToken.txt");
         var decodeParameters = new DecoderParameters()
         {
             ValidateSignature = true,
-            ValidateIssuerSigningKey = true,
+            ValidateIssuersSigningKey = true,
         };
-        var tokenParameters = new TokenParameters()
-        {
-            Token = File.ReadAllText(tokenFilePath)
-        };
+        var tokenParameters = new TokenParameters(tokenContent);
 
         ResultInfo<JwtTokenResult, ResultInfoSeverity> result = await JwtDecoderHelper.DecodeTokenAsync(
             decodeParameters,
@@ -72,17 +66,17 @@ public class JwtDecoderHelperTests
     [Fact(DisplayName = "Decode HS256 Jwt Token with Valid Token, Signature Validation Activated and Invalid Issuers should return false")]
     public async Task DecodeHS256TokenWithValidTokenAndSignatureValidationAndInvalidIssuersShouldReturnError()
     {
-        string tokenFilePath = Path.Combine(_baseTestDataDirectory, "HS", "BasicToken.txt");
-        string signatureFilePath = Path.Combine(_baseTestDataDirectory, "HS", "Signature.txt");
+        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-BasicToken.txt");
+        string signatureContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-Signature.txt");
+
         var decodeParameters = new DecoderParameters()
         {
             ValidateSignature = true,
-            ValidateIssuer = true
+            ValidateIssuers = true
         };
-        var tokenParameters = new TokenParameters()
+        var tokenParameters = new TokenParameters(tokenContent)
         {
-            Token = File.ReadAllText(tokenFilePath),
-            Signature = File.ReadAllText(signatureFilePath)
+            Signature = signatureContent
         };
 
         ResultInfo<JwtTokenResult, ResultInfoSeverity> result = await JwtDecoderHelper.DecodeTokenAsync(
@@ -96,19 +90,18 @@ public class JwtDecoderHelperTests
     [Fact(DisplayName = "Decode HS256 Jwt Token with Valid Token, Signature Validation Activated and Invalid Audiences should return false")]
     public async Task DecodeHS256TokenWithValidTokenAndSignatureValidationAndInvalidAudiencesShouldReturnError()
     {
-        string tokenFilePath = Path.Combine(_baseTestDataDirectory, "HS", "BasicToken.txt");
-        string signatureFilePath = Path.Combine(_baseTestDataDirectory, "HS", "Signature.txt");
+        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-BasicToken.txt");
+        string signatureContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-Signature.txt");
         var decodeParameters = new DecoderParameters()
         {
             ValidateSignature = true,
-            ValidateIssuer = true,
-            ValidateAudience = true,
+            ValidateIssuers = true,
+            ValidateAudiences = true,
         };
-        var tokenParameters = new TokenParameters()
+        var tokenParameters = new TokenParameters(tokenContent)
         {
-            Token = File.ReadAllText(tokenFilePath),
-            Signature = File.ReadAllText(signatureFilePath),
-            ValidIssuers = ["devtoys"]
+            Signature = signatureContent,
+            Issuers = ["devtoys"]
         };
 
         ResultInfo<JwtTokenResult, ResultInfoSeverity> result = await JwtDecoderHelper.DecodeTokenAsync(
@@ -122,22 +115,21 @@ public class JwtDecoderHelperTests
     [Fact(DisplayName = "Decode HS256 Jwt Token with Valid Token, Signature Validation Activated and Expired Lifetime should return false")]
     public async Task DecodeHS256TokenWithValidTokenAndSignatureValidationAndExpiredLifetimeShouldReturnError()
     {
-        string tokenFilePath = Path.Combine(_baseTestDataDirectory, "HS", "ComplexToken.txt");
-        string signatureFilePath = Path.Combine(_baseTestDataDirectory, "HS", "Signature.txt");
+        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-ComplexToken.txt");
+        string signatureContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-Signature.txt");
         var decodeParameters = new DecoderParameters()
         {
             ValidateSignature = true,
-            ValidateIssuerSigningKey = true,
-            ValidateIssuer = true,
-            ValidateAudience = true,
+            ValidateIssuersSigningKey = true,
+            ValidateIssuers = true,
+            ValidateAudiences = true,
             ValidateLifetime = true
         };
-        var tokenParameters = new TokenParameters()
+        var tokenParameters = new TokenParameters(tokenContent)
         {
-            Token = File.ReadAllText(tokenFilePath),
-            Signature = File.ReadAllText(signatureFilePath),
-            ValidIssuers = ["devtoys"],
-            ValidAudiences = ["devtoys"]
+            Signature = signatureContent,
+            Issuers = ["devtoys"],
+            Audiences = ["devtoys"]
         };
 
         ResultInfo<JwtTokenResult, ResultInfoSeverity> result = await JwtDecoderHelper.DecodeTokenAsync(
@@ -150,24 +142,23 @@ public class JwtDecoderHelperTests
     [Fact(DisplayName = "Decode HS256 Jwt Token with Valid Token and valid parameters should return decoded token")]
     public async Task DecodeHS256TokenWithValidTokenAndValidParametersShouldReturnDecodedToken()
     {
-        string headerFilePath = Path.Combine(_baseTestDataDirectory, "HS", "Header.json");
-        string payloadFilePath = Path.Combine(_baseTestDataDirectory, "ComplexPayload.json");
+        string headerContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-Header.json");
+        string payloadContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
 
-        string tokenFilePath = Path.Combine(_baseTestDataDirectory, "HS", "ComplexToken.txt");
-        string signatureFilePath = Path.Combine(_baseTestDataDirectory, "HS", "Signature.txt");
+        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-ComplexToken.txt");
+        string signatureContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-Signature.txt");
         var decodeParameters = new DecoderParameters()
         {
             ValidateSignature = true,
-            ValidateIssuerSigningKey = true,
-            ValidateIssuer = true,
-            ValidateAudience = true
+            ValidateIssuersSigningKey = true,
+            ValidateIssuers = true,
+            ValidateAudiences = true
         };
-        var tokenParameters = new TokenParameters()
+        var tokenParameters = new TokenParameters(tokenContent)
         {
-            Token = File.ReadAllText(tokenFilePath),
-            Signature = File.ReadAllText(signatureFilePath),
-            ValidIssuers = ["devtoys"],
-            ValidAudiences = ["devtoys"]
+            Signature = signatureContent,
+            Issuers = ["devtoys"],
+            Audiences = ["devtoys"]
         };
 
         ResultInfo<JwtTokenResult, ResultInfoSeverity> result = await JwtDecoderHelper.DecodeTokenAsync(
@@ -176,16 +167,16 @@ public class JwtDecoderHelperTests
             new MockILogger(), CancellationToken.None);
         result.Severity.Should().Be(ResultInfoSeverity.Success);
         result.Data.Should().NotBeNull();
-        JwtTokenResult tokenContent = result.Data;
-        tokenContent.Header.Should().NotBeNull();
-        tokenContent.Payload.Should().NotBeNull();
-        tokenContent.Signature.Should().NotBeNull();
+        JwtTokenResult tokenResult = result.Data;
+        tokenResult.Header.Should().NotBeNull();
+        tokenResult.Payload.Should().NotBeNull();
+        tokenResult.Signature.Should().NotBeNull();
 
-        ResultInfo<string> formattedHeader = await GetFormattedDataAsync(File.ReadAllText(headerFilePath));
-        ResultInfo<string> formattedPayload = await GetFormattedDataAsync(File.ReadAllText(payloadFilePath));
+        ResultInfo<string> formattedHeader = await GetFormattedDataAsync(headerContent);
+        ResultInfo<string> formattedPayload = await GetFormattedDataAsync(payloadContent);
 
-        tokenContent.Header.Should().Be(formattedHeader.Data);
-        tokenContent.Payload.Should().Be(formattedPayload.Data);
+        tokenResult.Header.Should().Be(formattedHeader.Data);
+        tokenResult.Payload.Should().Be(formattedPayload.Data);
     }
 
     #endregion
@@ -195,16 +186,13 @@ public class JwtDecoderHelperTests
     [Fact(DisplayName = "Decode RS256 Public Key Jwt Token with Valid Token, Signature Validation Activated and Invalid Public Key should return false")]
     public async Task DecodeRS256PublicKeyTokenWithValidTokenAndSignatureValidationAndInvalidPublicKeyShouldReturnError()
     {
-        string tokenFilePath = Path.Combine(_baseTestDataDirectory, "RS", "RS256-PublicKey-ComplexToken.txt");
+        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.RS.RS256-PublicKey-ComplexToken.txt");
         var decodeParameters = new DecoderParameters()
         {
             ValidateSignature = true,
-            ValidateIssuerSigningKey = true
+            ValidateIssuersSigningKey = true
         };
-        var tokenParameters = new TokenParameters()
-        {
-            Token = File.ReadAllText(tokenFilePath),
-        };
+        var tokenParameters = new TokenParameters(tokenContent);
 
         ResultInfo<JwtTokenResult, ResultInfoSeverity> result = await JwtDecoderHelper.DecodeTokenAsync(
             decodeParameters,
@@ -217,24 +205,24 @@ public class JwtDecoderHelperTests
     [Fact(DisplayName = "Decode RS256 Public Key Jwt Token with Valid Token and valid parameters should return decoded token")]
     public async Task DecodeRS256PublicKeyTokenWithValidTokenAndValidParametersShouldReturnDecodedToken()
     {
-        string headerFilePath = Path.Combine(_baseTestDataDirectory, "RS", "RS256-Header.json");
-        string payloadFilePath = Path.Combine(_baseTestDataDirectory, "ComplexPayload.json");
+        string headerContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.RS.RS256-Header.json");
+        string payloadContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
 
-        string tokenFilePath = Path.Combine(_baseTestDataDirectory, "RS", "RS256-PublicKey-ComplexToken.txt");
-        string publicKeyFilePath = Path.Combine(_baseTestDataDirectory, "RS", "RS256-PublicKey.txt");
+        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.RS.RS256-PublicKey-ComplexToken.txt");
+        string publicKeyContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.RS.RS256-PublicKey.txt");
+
         var decodeParameters = new DecoderParameters()
         {
             ValidateSignature = true,
-            ValidateIssuerSigningKey = true,
-            ValidateIssuer = true,
-            ValidateAudience = true
+            ValidateIssuersSigningKey = true,
+            ValidateIssuers = true,
+            ValidateAudiences = true
         };
-        var tokenParameters = new TokenParameters()
+        var tokenParameters = new TokenParameters(tokenContent)
         {
-            Token = File.ReadAllText(tokenFilePath),
-            PublicKey = File.ReadAllText(publicKeyFilePath),
-            ValidIssuers = ["devtoys"],
-            ValidAudiences = ["devtoys"]
+            PublicKey = publicKeyContent,
+            Issuers = ["devtoys"],
+            Audiences = ["devtoys"]
         };
 
         ResultInfo<JwtTokenResult, ResultInfoSeverity> result = await JwtDecoderHelper.DecodeTokenAsync(
@@ -243,38 +231,38 @@ public class JwtDecoderHelperTests
             new MockILogger(), CancellationToken.None);
         result.Severity.Should().Be(ResultInfoSeverity.Success);
         result.Data.Should().NotBeNull();
-        JwtTokenResult tokenContent = result.Data;
-        tokenContent.Header.Should().NotBeNull();
-        tokenContent.Payload.Should().NotBeNull();
+        JwtTokenResult tokenResult = result.Data;
+        tokenResult.Header.Should().NotBeNull();
+        tokenResult.Payload.Should().NotBeNull();
 
-        ResultInfo<string> formattedHeader = await GetFormattedDataAsync(File.ReadAllText(headerFilePath));
-        ResultInfo<string> formattedPayload = await GetFormattedDataAsync(File.ReadAllText(payloadFilePath));
+        ResultInfo<string> formattedHeader = await GetFormattedDataAsync(headerContent);
+        ResultInfo<string> formattedPayload = await GetFormattedDataAsync(payloadContent);
 
-        tokenContent.Header.Should().Be(formattedHeader.Data);
-        tokenContent.Payload.Should().Be(formattedPayload.Data);
+        tokenResult.Header.Should().Be(formattedHeader.Data);
+        tokenResult.Payload.Should().Be(formattedPayload.Data);
     }
 
     [Fact(DisplayName = "Decode RS256 RSA Public Key Jwt Token with Valid Token and valid parameters should return decoded token")]
     public async Task DecodeRS256RsaPublicKeyTokenWithValidTokenAndValidParametersShouldReturnDecodedToken()
     {
-        string headerFilePath = Path.Combine(_baseTestDataDirectory, "RS", "RS256-Header.json");
-        string payloadFilePath = Path.Combine(_baseTestDataDirectory, "ComplexPayload.json");
+        string headerContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.RS.RS256-Header.json");
+        string payloadContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
 
-        string tokenFilePath = Path.Combine(_baseTestDataDirectory, "RS", "RS256-RsaPublicKey-ComplexToken.txt");
-        string publicKeyFilePath = Path.Combine(_baseTestDataDirectory, "RS", "RS256-RsaPublicKey.txt");
+        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.RS.RS256-RsaPublicKey-ComplexToken.txt");
+        string publicKeyContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.RS.RS256-RsaPublicKey.txt");
+
         var decodeParameters = new DecoderParameters()
         {
             ValidateSignature = true,
-            ValidateIssuerSigningKey = true,
-            ValidateIssuer = true,
-            ValidateAudience = true
+            ValidateIssuersSigningKey = true,
+            ValidateIssuers = true,
+            ValidateAudiences = true
         };
-        var tokenParameters = new TokenParameters()
+        var tokenParameters = new TokenParameters(tokenContent)
         {
-            Token = File.ReadAllText(tokenFilePath),
-            PublicKey = File.ReadAllText(publicKeyFilePath),
-            ValidIssuers = ["devtoys"],
-            ValidAudiences = ["devtoys"]
+            PublicKey = publicKeyContent,
+            Issuers = ["devtoys"],
+            Audiences = ["devtoys"]
         };
 
         ResultInfo<JwtTokenResult, ResultInfoSeverity> result = await JwtDecoderHelper.DecodeTokenAsync(
@@ -283,38 +271,38 @@ public class JwtDecoderHelperTests
             new MockILogger(), CancellationToken.None);
         result.Severity.Should().Be(ResultInfoSeverity.Success);
         result.Data.Should().NotBeNull();
-        JwtTokenResult tokenContent = result.Data;
-        tokenContent.Header.Should().NotBeNull();
-        tokenContent.Payload.Should().NotBeNull();
+        JwtTokenResult tokenResult = result.Data;
+        tokenResult.Header.Should().NotBeNull();
+        tokenResult.Payload.Should().NotBeNull();
 
-        ResultInfo<string> formattedHeader = await GetFormattedDataAsync(File.ReadAllText(headerFilePath));
-        ResultInfo<string> formattedPayload = await GetFormattedDataAsync(File.ReadAllText(payloadFilePath));
+        ResultInfo<string> formattedHeader = await GetFormattedDataAsync(headerContent);
+        ResultInfo<string> formattedPayload = await GetFormattedDataAsync(payloadContent);
 
-        tokenContent.Header.Should().Be(formattedHeader.Data);
-        tokenContent.Payload.Should().Be(formattedPayload.Data);
+        tokenResult.Header.Should().Be(formattedHeader.Data);
+        tokenResult.Payload.Should().Be(formattedPayload.Data);
     }
 
     [Fact(DisplayName = "Decode RS384 Public Key Jwt Token with Valid Token and valid parameters should return decoded token")]
     public async Task DecodeRS384PublicKeyTokenWithValidTokenAndValidParametersShouldReturnDecodedToken()
     {
-        string headerFilePath = Path.Combine(_baseTestDataDirectory, "RS", "RS384-Header.json");
-        string payloadFilePath = Path.Combine(_baseTestDataDirectory, "ComplexPayload.json");
+        string headerContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.RS.RS384-Header.json");
+        string payloadContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
 
-        string tokenFilePath = Path.Combine(_baseTestDataDirectory, "RS", "RS384-PublicKey-ComplexToken.txt");
-        string publicKeyFilePath = Path.Combine(_baseTestDataDirectory, "RS", "RS384-PublicKey.txt");
+        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.RS.RS384-PublicKey-ComplexToken.txt");
+        string publicKeyContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.RS.RS384-PublicKey.txt");
+
         var decodeParameters = new DecoderParameters()
         {
             ValidateSignature = true,
-            ValidateIssuerSigningKey = true,
-            ValidateIssuer = true,
-            ValidateAudience = true
+            ValidateIssuersSigningKey = true,
+            ValidateIssuers = true,
+            ValidateAudiences = true
         };
-        var tokenParameters = new TokenParameters()
+        var tokenParameters = new TokenParameters(tokenContent)
         {
-            Token = File.ReadAllText(tokenFilePath),
-            PublicKey = File.ReadAllText(publicKeyFilePath),
-            ValidIssuers = ["devtoys"],
-            ValidAudiences = ["devtoys"]
+            PublicKey = publicKeyContent,
+            Issuers = ["devtoys"],
+            Audiences = ["devtoys"]
         };
 
         ResultInfo<JwtTokenResult, ResultInfoSeverity> result = await JwtDecoderHelper.DecodeTokenAsync(
@@ -323,38 +311,37 @@ public class JwtDecoderHelperTests
             new MockILogger(), CancellationToken.None);
         result.Severity.Should().Be(ResultInfoSeverity.Success);
         result.Data.Should().NotBeNull();
-        JwtTokenResult tokenContent = result.Data;
-        tokenContent.Header.Should().NotBeNull();
-        tokenContent.Payload.Should().NotBeNull();
+        JwtTokenResult tokenResult = result.Data;
+        tokenResult.Header.Should().NotBeNull();
+        tokenResult.Payload.Should().NotBeNull();
 
-        ResultInfo<string> formattedHeader = await GetFormattedDataAsync(File.ReadAllText(headerFilePath));
-        ResultInfo<string> formattedPayload = await GetFormattedDataAsync(File.ReadAllText(payloadFilePath));
+        ResultInfo<string> formattedHeader = await GetFormattedDataAsync(headerContent);
+        ResultInfo<string> formattedPayload = await GetFormattedDataAsync(payloadContent);
 
-        tokenContent.Header.Should().Be(formattedHeader.Data);
-        tokenContent.Payload.Should().Be(formattedPayload.Data);
+        tokenResult.Header.Should().Be(formattedHeader.Data);
+        tokenResult.Payload.Should().Be(formattedPayload.Data);
     }
 
     [Fact(DisplayName = "Decode RS512 Public Key Jwt Token with Valid Token and valid parameters should return decoded token")]
     public async Task DecodeRS512PublicKeyTokenWithValidTokenAndValidParametersShouldReturnDecodedToken()
     {
-        string headerFilePath = Path.Combine(_baseTestDataDirectory, "RS", "RS512-Header.json");
-        string payloadFilePath = Path.Combine(_baseTestDataDirectory, "ComplexPayload.json");
+        string headerContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.RS.RS512-Header.json");
+        string payloadContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
 
-        string tokenFilePath = Path.Combine(_baseTestDataDirectory, "RS", "RS512-PublicKey-ComplexToken.txt");
-        string publicKeyFilePath = Path.Combine(_baseTestDataDirectory, "RS", "RS512-PublicKey.txt");
+        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.RS.RS512-PublicKey-ComplexToken.txt");
+        string publicKeyContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.RS.RS512-PublicKey.txt");
         var decodeParameters = new DecoderParameters()
         {
             ValidateSignature = true,
-            ValidateIssuerSigningKey = true,
-            ValidateIssuer = true,
-            ValidateAudience = true
+            ValidateIssuersSigningKey = true,
+            ValidateIssuers = true,
+            ValidateAudiences = true
         };
-        var tokenParameters = new TokenParameters()
+        var tokenParameters = new TokenParameters(tokenContent)
         {
-            Token = File.ReadAllText(tokenFilePath),
-            PublicKey = File.ReadAllText(publicKeyFilePath),
-            ValidIssuers = ["devtoys"],
-            ValidAudiences = ["devtoys"]
+            PublicKey = publicKeyContent,
+            Issuers = ["devtoys"],
+            Audiences = ["devtoys"]
         };
 
         ResultInfo<JwtTokenResult, ResultInfoSeverity> result = await JwtDecoderHelper.DecodeTokenAsync(
@@ -363,15 +350,15 @@ public class JwtDecoderHelperTests
             new MockILogger(), CancellationToken.None);
         result.Severity.Should().Be(ResultInfoSeverity.Success);
         result.Data.Should().NotBeNull();
-        JwtTokenResult tokenContent = result.Data;
-        tokenContent.Header.Should().NotBeNull();
-        tokenContent.Payload.Should().NotBeNull();
+        JwtTokenResult tokenResult = result.Data;
+        tokenResult.Header.Should().NotBeNull();
+        tokenResult.Payload.Should().NotBeNull();
 
-        ResultInfo<string> formattedHeader = await GetFormattedDataAsync(File.ReadAllText(headerFilePath));
-        ResultInfo<string> formattedPayload = await GetFormattedDataAsync(File.ReadAllText(payloadFilePath));
+        ResultInfo<string> formattedHeader = await GetFormattedDataAsync(headerContent);
+        ResultInfo<string> formattedPayload = await GetFormattedDataAsync(payloadContent);
 
-        tokenContent.Header.Should().Be(formattedHeader.Data);
-        tokenContent.Payload.Should().Be(formattedPayload.Data);
+        tokenResult.Header.Should().Be(formattedHeader.Data);
+        tokenResult.Payload.Should().Be(formattedPayload.Data);
     }
 
     #endregion
@@ -381,16 +368,14 @@ public class JwtDecoderHelperTests
     [Fact(DisplayName = "Decode PS256 Public Key Jwt Token with Valid Token, Signature Validation Activated and Invalid Public Key should return false")]
     public async Task DecodePS256PublicKeyTokenWithValidTokenAndSignatureValidationAndInvalidPublicKeyShouldReturnError()
     {
-        string tokenFilePath = Path.Combine(_baseTestDataDirectory, "PS", "PS256-PublicKey-ComplexToken.txt");
+        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.PS.PS256-PublicKey-ComplexToken.txt");
+
         var decodeParameters = new DecoderParameters()
         {
             ValidateSignature = true,
-            ValidateIssuerSigningKey = true
+            ValidateIssuersSigningKey = true
         };
-        var tokenParameters = new TokenParameters()
-        {
-            Token = File.ReadAllText(tokenFilePath),
-        };
+        var tokenParameters = new TokenParameters(tokenContent);
 
         ResultInfo<JwtTokenResult, ResultInfoSeverity> result = await JwtDecoderHelper.DecodeTokenAsync(
             decodeParameters,
@@ -403,24 +388,23 @@ public class JwtDecoderHelperTests
     [Fact(DisplayName = "Decode PS256 Public Key Jwt Token with Valid Token and valid parameters should return decoded token")]
     public async Task DecodePS256PublicKeyTokenWithValidTokenAndValidParametersShouldReturnDecodedToken()
     {
-        string headerFilePath = Path.Combine(_baseTestDataDirectory, "PS", "PS256-Header.json");
-        string payloadFilePath = Path.Combine(_baseTestDataDirectory, "ComplexPayload.json");
+        string headerContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.PS.PS256-Header.json");
+        string payloadContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
 
-        string tokenFilePath = Path.Combine(_baseTestDataDirectory, "PS", "PS256-PublicKey-ComplexToken.txt");
-        string publicKeyFilePath = Path.Combine(_baseTestDataDirectory, "PS", "PS256-PublicKey.txt");
+        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.PS.PS256-PublicKey-ComplexToken.txt");
+        string publicKeyContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.PS.PS256-PublicKey.txt");
         var decodeParameters = new DecoderParameters()
         {
             ValidateSignature = true,
-            ValidateIssuerSigningKey = true,
-            ValidateIssuer = true,
-            ValidateAudience = true
+            ValidateIssuersSigningKey = true,
+            ValidateIssuers = true,
+            ValidateAudiences = true
         };
-        var tokenParameters = new TokenParameters()
+        var tokenParameters = new TokenParameters(tokenContent)
         {
-            Token = File.ReadAllText(tokenFilePath),
-            PublicKey = File.ReadAllText(publicKeyFilePath),
-            ValidIssuers = ["devtoys"],
-            ValidAudiences = ["devtoys"]
+            PublicKey = publicKeyContent,
+            Issuers = ["devtoys"],
+            Audiences = ["devtoys"]
         };
 
         ResultInfo<JwtTokenResult, ResultInfoSeverity> result = await JwtDecoderHelper.DecodeTokenAsync(
@@ -429,38 +413,37 @@ public class JwtDecoderHelperTests
             new MockILogger(), CancellationToken.None);
         result.Severity.Should().Be(ResultInfoSeverity.Success);
         result.Data.Should().NotBeNull();
-        JwtTokenResult tokenContent = result.Data;
-        tokenContent.Header.Should().NotBeNull();
-        tokenContent.Payload.Should().NotBeNull();
+        JwtTokenResult tokenResult = result.Data;
+        tokenResult.Header.Should().NotBeNull();
+        tokenResult.Payload.Should().NotBeNull();
 
-        ResultInfo<string> formattedHeader = await GetFormattedDataAsync(File.ReadAllText(headerFilePath));
-        ResultInfo<string> formattedPayload = await GetFormattedDataAsync(File.ReadAllText(payloadFilePath));
+        ResultInfo<string> formattedHeader = await GetFormattedDataAsync(headerContent);
+        ResultInfo<string> formattedPayload = await GetFormattedDataAsync(payloadContent);
 
-        tokenContent.Header.Should().Be(formattedHeader.Data);
-        tokenContent.Payload.Should().Be(formattedPayload.Data);
+        tokenResult.Header.Should().Be(formattedHeader.Data);
+        tokenResult.Payload.Should().Be(formattedPayload.Data);
     }
 
     [Fact(DisplayName = "Decode PS384 Public Key Jwt Token with Valid Token and valid parameters should return decoded token")]
     public async Task DecodePS384PublicKeyTokenWithValidTokenAndValidParametersShouldReturnDecodedToken()
     {
-        string headerFilePath = Path.Combine(_baseTestDataDirectory, "PS", "PS384-Header.json");
-        string payloadFilePath = Path.Combine(_baseTestDataDirectory, "ComplexPayload.json");
+        string headerContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.PS.PS384-Header.json");
+        string payloadContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
 
-        string tokenFilePath = Path.Combine(_baseTestDataDirectory, "PS", "PS384-ComplexToken.txt");
-        string publicKeyFilePath = Path.Combine(_baseTestDataDirectory, "PS", "PS384-PublicKey.txt");
+        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.PS.PS384-ComplexToken.txt");
+        string publicKeyContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.PS.PS384-PublicKey.txt");
         var decodeParameters = new DecoderParameters()
         {
             ValidateSignature = true,
-            ValidateIssuerSigningKey = true,
-            ValidateIssuer = true,
-            ValidateAudience = true
+            ValidateIssuersSigningKey = true,
+            ValidateIssuers = true,
+            ValidateAudiences = true
         };
-        var tokenParameters = new TokenParameters()
+        var tokenParameters = new TokenParameters(tokenContent)
         {
-            Token = File.ReadAllText(tokenFilePath),
-            PublicKey = File.ReadAllText(publicKeyFilePath),
-            ValidIssuers = ["devtoys"],
-            ValidAudiences = ["devtoys"]
+            PublicKey = publicKeyContent,
+            Issuers = ["devtoys"],
+            Audiences = ["devtoys"]
         };
 
         ResultInfo<JwtTokenResult, ResultInfoSeverity> result = await JwtDecoderHelper.DecodeTokenAsync(
@@ -469,38 +452,37 @@ public class JwtDecoderHelperTests
             new MockILogger(), CancellationToken.None);
         result.Severity.Should().Be(ResultInfoSeverity.Success);
         result.Data.Should().NotBeNull();
-        JwtTokenResult tokenContent = result.Data;
-        tokenContent.Header.Should().NotBeNull();
-        tokenContent.Payload.Should().NotBeNull();
+        JwtTokenResult tokenResult = result.Data;
+        tokenResult.Header.Should().NotBeNull();
+        tokenResult.Payload.Should().NotBeNull();
 
-        ResultInfo<string> formattedHeader = await GetFormattedDataAsync(File.ReadAllText(headerFilePath));
-        ResultInfo<string> formattedPayload = await GetFormattedDataAsync(File.ReadAllText(payloadFilePath));
+        ResultInfo<string> formattedHeader = await GetFormattedDataAsync(headerContent);
+        ResultInfo<string> formattedPayload = await GetFormattedDataAsync(payloadContent);
 
-        tokenContent.Header.Should().Be(formattedHeader.Data);
-        tokenContent.Payload.Should().Be(formattedPayload.Data);
+        tokenResult.Header.Should().Be(formattedHeader.Data);
+        tokenResult.Payload.Should().Be(formattedPayload.Data);
     }
 
     [Fact(DisplayName = "Decode PS512 Public Key Jwt Token with Valid Token and valid parameters should return decoded token")]
     public async Task DecodePS512PublicKeyTokenWithValidTokenAndValidParametersShouldReturnDecodedToken()
     {
-        string headerFilePath = Path.Combine(_baseTestDataDirectory, "PS", "PS512-Header.json");
-        string payloadFilePath = Path.Combine(_baseTestDataDirectory, "ComplexPayload.json");
+        string headerContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.PS.PS512-Header.json");
+        string payloadContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
 
-        string tokenFilePath = Path.Combine(_baseTestDataDirectory, "PS", "PS512-ComplexToken.txt");
-        string publicKeyFilePath = Path.Combine(_baseTestDataDirectory, "PS", "PS512-PublicKey.txt");
+        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.PS.PS512-ComplexToken.txt");
+        string publicKeyContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.PS.PS512-PublicKey.txt");
         var decodeParameters = new DecoderParameters()
         {
             ValidateSignature = true,
-            ValidateIssuerSigningKey = true,
-            ValidateIssuer = true,
-            ValidateAudience = true
+            ValidateIssuersSigningKey = true,
+            ValidateIssuers = true,
+            ValidateAudiences = true
         };
-        var tokenParameters = new TokenParameters()
+        var tokenParameters = new TokenParameters(tokenContent)
         {
-            Token = File.ReadAllText(tokenFilePath),
-            PublicKey = File.ReadAllText(publicKeyFilePath),
-            ValidIssuers = ["devtoys"],
-            ValidAudiences = ["devtoys"]
+            PublicKey = publicKeyContent,
+            Issuers = ["devtoys"],
+            Audiences = ["devtoys"]
         };
 
         ResultInfo<JwtTokenResult, ResultInfoSeverity> result = await JwtDecoderHelper.DecodeTokenAsync(
@@ -509,15 +491,15 @@ public class JwtDecoderHelperTests
             new MockILogger(), CancellationToken.None);
         result.Severity.Should().Be(ResultInfoSeverity.Success);
         result.Data.Should().NotBeNull();
-        JwtTokenResult tokenContent = result.Data;
-        tokenContent.Header.Should().NotBeNull();
-        tokenContent.Payload.Should().NotBeNull();
+        JwtTokenResult tokenResult = result.Data;
+        tokenResult.Header.Should().NotBeNull();
+        tokenResult.Payload.Should().NotBeNull();
 
-        ResultInfo<string> formattedHeader = await GetFormattedDataAsync(File.ReadAllText(headerFilePath));
-        ResultInfo<string> formattedPayload = await GetFormattedDataAsync(File.ReadAllText(payloadFilePath));
+        ResultInfo<string> formattedHeader = await GetFormattedDataAsync(headerContent);
+        ResultInfo<string> formattedPayload = await GetFormattedDataAsync(payloadContent);
 
-        tokenContent.Header.Should().Be(formattedHeader.Data);
-        tokenContent.Payload.Should().Be(formattedPayload.Data);
+        tokenResult.Header.Should().Be(formattedHeader.Data);
+        tokenResult.Payload.Should().Be(formattedPayload.Data);
     }
 
     #endregion
@@ -527,16 +509,13 @@ public class JwtDecoderHelperTests
     [Fact(DisplayName = "Decode ES256 Public Key Jwt Token with Valid Token, Signature Validation Activated and Invalid Public Key should return false")]
     public async Task DecodeES256PublicKeyTokenWithValidTokenAndSignatureValidationAndInvalidPublicKeyShouldReturnError()
     {
-        string tokenFilePath = Path.Combine(_baseTestDataDirectory, "ES", "ES256-ComplexToken.txt");
+        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ES.ES256-ComplexToken.txt");
         var decodeParameters = new DecoderParameters()
         {
             ValidateSignature = true,
-            ValidateIssuerSigningKey = true
+            ValidateIssuersSigningKey = true
         };
-        var tokenParameters = new TokenParameters()
-        {
-            Token = File.ReadAllText(tokenFilePath),
-        };
+        var tokenParameters = new TokenParameters(tokenContent);
 
         ResultInfo<JwtTokenResult, ResultInfoSeverity> result = await JwtDecoderHelper.DecodeTokenAsync(
             decodeParameters,
@@ -549,24 +528,24 @@ public class JwtDecoderHelperTests
     [Fact(DisplayName = "Decode ES256 Public Key Jwt Token with Valid Token and valid parameters should return decoded token")]
     public async Task DecodeES256PublicKeyTokenWithValidTokenAndValidParametersShouldReturnDecodedToken()
     {
-        string headerFilePath = Path.Combine(_baseTestDataDirectory, "ES", "ES256-Header.json");
-        string payloadFilePath = Path.Combine(_baseTestDataDirectory, "ComplexPayload.json");
+        string headerContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ES.ES256-Header.json");
+        string payloadContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
 
-        string tokenFilePath = Path.Combine(_baseTestDataDirectory, "ES", "ES256-ComplexToken.txt");
-        string publicKeyFilePath = Path.Combine(_baseTestDataDirectory, "ES", "ES256-PublicKey.txt");
+        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ES.ES256-ComplexToken.txt");
+        string publicKeyContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ES.ES256-PublicKey.txt");
+
         var decodeParameters = new DecoderParameters()
         {
             ValidateSignature = true,
-            ValidateIssuerSigningKey = true,
-            ValidateIssuer = true,
-            ValidateAudience = true
+            ValidateIssuersSigningKey = true,
+            ValidateIssuers = true,
+            ValidateAudiences = true
         };
-        var tokenParameters = new TokenParameters()
+        var tokenParameters = new TokenParameters(tokenContent)
         {
-            Token = File.ReadAllText(tokenFilePath),
-            PublicKey = File.ReadAllText(publicKeyFilePath),
-            ValidIssuers = ["devtoys"],
-            ValidAudiences = ["devtoys"]
+            PublicKey = publicKeyContent,
+            Issuers = ["devtoys"],
+            Audiences = ["devtoys"]
         };
 
         ResultInfo<JwtTokenResult, ResultInfoSeverity> result = await JwtDecoderHelper.DecodeTokenAsync(
@@ -575,38 +554,38 @@ public class JwtDecoderHelperTests
             new MockILogger(), CancellationToken.None);
         result.Severity.Should().Be(ResultInfoSeverity.Success);
         result.Data.Should().NotBeNull();
-        JwtTokenResult tokenContent = result.Data;
-        tokenContent.Header.Should().NotBeNull();
-        tokenContent.Payload.Should().NotBeNull();
+        JwtTokenResult tokenResult = result.Data;
+        tokenResult.Header.Should().NotBeNull();
+        tokenResult.Payload.Should().NotBeNull();
 
-        ResultInfo<string> formattedHeader = await GetFormattedDataAsync(File.ReadAllText(headerFilePath));
-        ResultInfo<string> formattedPayload = await GetFormattedDataAsync(File.ReadAllText(payloadFilePath));
+        ResultInfo<string> formattedHeader = await GetFormattedDataAsync(headerContent);
+        ResultInfo<string> formattedPayload = await GetFormattedDataAsync(payloadContent);
 
-        tokenContent.Header.Should().Be(formattedHeader.Data);
-        tokenContent.Payload.Should().Be(formattedPayload.Data);
+        tokenResult.Header.Should().Be(formattedHeader.Data);
+        tokenResult.Payload.Should().Be(formattedPayload.Data);
     }
 
     [Fact(DisplayName = "Decode ES384 Public Key Jwt Token with Valid Token and valid parameters should return decoded token")]
     public async Task DecodeES384PublicKeyTokenWithValidTokenAndValidParametersShouldReturnDecodedToken()
     {
-        string headerFilePath = Path.Combine(_baseTestDataDirectory, "ES", "ES384-Header.json");
-        string payloadFilePath = Path.Combine(_baseTestDataDirectory, "ComplexPayload.json");
+        string headerContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ES.ES384-Header.json");
+        string payloadContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
 
-        string tokenFilePath = Path.Combine(_baseTestDataDirectory, "ES", "ES384-ComplexToken.txt");
-        string publicKeyFilePath = Path.Combine(_baseTestDataDirectory, "ES", "ES384-PublicKey.txt");
+        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ES.ES384-ComplexToken.txt");
+        string publicKeyContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ES.ES384-PublicKey.txt");
+
         var decodeParameters = new DecoderParameters()
         {
             ValidateSignature = true,
-            ValidateIssuerSigningKey = true,
-            ValidateIssuer = true,
-            ValidateAudience = true
+            ValidateIssuersSigningKey = true,
+            ValidateIssuers = true,
+            ValidateAudiences = true
         };
-        var tokenParameters = new TokenParameters()
+        var tokenParameters = new TokenParameters(tokenContent)
         {
-            Token = File.ReadAllText(tokenFilePath),
-            PublicKey = File.ReadAllText(publicKeyFilePath),
-            ValidIssuers = ["devtoys"],
-            ValidAudiences = ["devtoys"]
+            PublicKey = publicKeyContent,
+            Issuers = ["devtoys"],
+            Audiences = ["devtoys"]
         };
 
         ResultInfo<JwtTokenResult, ResultInfoSeverity> result = await JwtDecoderHelper.DecodeTokenAsync(
@@ -615,38 +594,37 @@ public class JwtDecoderHelperTests
             new MockILogger(), CancellationToken.None);
         result.Severity.Should().Be(ResultInfoSeverity.Success);
         result.Data.Should().NotBeNull();
-        JwtTokenResult tokenContent = result.Data;
-        tokenContent.Header.Should().NotBeNull();
-        tokenContent.Payload.Should().NotBeNull();
+        JwtTokenResult tokenResult = result.Data;
+        tokenResult.Header.Should().NotBeNull();
+        tokenResult.Payload.Should().NotBeNull();
 
-        ResultInfo<string> formattedHeader = await GetFormattedDataAsync(File.ReadAllText(headerFilePath));
-        ResultInfo<string> formattedPayload = await GetFormattedDataAsync(File.ReadAllText(payloadFilePath));
+        ResultInfo<string> formattedHeader = await GetFormattedDataAsync(headerContent);
+        ResultInfo<string> formattedPayload = await GetFormattedDataAsync(payloadContent);
 
-        tokenContent.Header.Should().Be(formattedHeader.Data);
-        tokenContent.Payload.Should().Be(formattedPayload.Data);
+        tokenResult.Header.Should().Be(formattedHeader.Data);
+        tokenResult.Payload.Should().Be(formattedPayload.Data);
     }
 
     [Fact(DisplayName = "Decode ES512 Public Key Jwt Token with Valid Token and valid parameters should return decoded token")]
     public async Task DecodeES512PublicKeyTokenWithValidTokenAndValidParametersShouldReturnDecodedToken()
     {
-        string headerFilePath = Path.Combine(_baseTestDataDirectory, "ES", "ES512-Header.json");
-        string payloadFilePath = Path.Combine(_baseTestDataDirectory, "ComplexPayload.json");
+        string headerContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ES.ES512-Header.json");
+        string payloadContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
 
-        string tokenFilePath = Path.Combine(_baseTestDataDirectory, "ES", "ES512-ComplexToken.txt");
-        string publicKeyFilePath = Path.Combine(_baseTestDataDirectory, "ES", "ES512-PublicKey.txt");
+        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ES.ES512-ComplexToken.txt");
+        string publicKeyContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ES.ES512-PublicKey.txt");
         var decodeParameters = new DecoderParameters()
         {
             ValidateSignature = true,
-            ValidateIssuerSigningKey = true,
-            ValidateIssuer = true,
-            ValidateAudience = true
+            ValidateIssuersSigningKey = true,
+            ValidateIssuers = true,
+            ValidateAudiences = true
         };
-        var tokenParameters = new TokenParameters()
+        var tokenParameters = new TokenParameters(tokenContent)
         {
-            Token = File.ReadAllText(tokenFilePath),
-            PublicKey = File.ReadAllText(publicKeyFilePath),
-            ValidIssuers = ["devtoys"],
-            ValidAudiences = ["devtoys"]
+            PublicKey = publicKeyContent,
+            Issuers = ["devtoys"],
+            Audiences = ["devtoys"]
         };
 
         ResultInfo<JwtTokenResult, ResultInfoSeverity> result = await JwtDecoderHelper.DecodeTokenAsync(
@@ -655,15 +633,79 @@ public class JwtDecoderHelperTests
             new MockILogger(), CancellationToken.None);
         result.Severity.Should().Be(ResultInfoSeverity.Success);
         result.Data.Should().NotBeNull();
-        JwtTokenResult tokenContent = result.Data;
-        tokenContent.Header.Should().NotBeNull();
-        tokenContent.Payload.Should().NotBeNull();
+        JwtTokenResult tokenResult = result.Data;
+        tokenResult.Header.Should().NotBeNull();
+        tokenResult.Payload.Should().NotBeNull();
 
-        ResultInfo<string> formattedHeader = await GetFormattedDataAsync(File.ReadAllText(headerFilePath));
-        ResultInfo<string> formattedPayload = await GetFormattedDataAsync(File.ReadAllText(payloadFilePath));
+        ResultInfo<string> formattedHeader = await GetFormattedDataAsync(headerContent);
+        ResultInfo<string> formattedPayload = await GetFormattedDataAsync(payloadContent);
 
-        tokenContent.Header.Should().Be(formattedHeader.Data);
-        tokenContent.Payload.Should().Be(formattedPayload.Data);
+        tokenResult.Header.Should().Be(formattedHeader.Data);
+        tokenResult.Payload.Should().Be(formattedPayload.Data);
+    }
+
+    #endregion
+
+    #region GetTokenAlgorithm
+
+    [Fact(DisplayName = "Get Jwt Token Algorithm with invalid parameters should throw argument exception")]
+    public void GetTokenAlgorithmWithInvalidParametersShouldThrowArgumentException()
+    {
+        Func<ResultInfo<JwtAlgorithm?>> result = () => JwtDecoderHelper.GetTokenAlgorithm(null, _logger);
+        result.Should().Throw<ArgumentException>();
+    }
+
+    [Fact(DisplayName = "Get Jwt Token Algorithm with invalid token should return error")]
+    public void GetTokenAlgorithmWithInvalidTokenShouldReturnError()
+    {
+        string tokenContent = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwib2JqZWN0Ijp7Ik9iamVjdF";
+
+        ResultInfo<JwtAlgorithm?> result = JwtDecoderHelper.GetTokenAlgorithm(tokenContent, _logger);
+        result.HasSucceeded.Should().BeFalse();
+    }
+
+    [Fact(DisplayName = "Get Jwt Token Algorithm with HS256 token should return HS256")]
+    public async Task GetTokenAlgorithmWithInvalidTokenShouldJwtAlgorithmHS256()
+    {
+        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-BasicToken.txt");
+
+        ResultInfo<JwtAlgorithm?> result = JwtDecoderHelper.GetTokenAlgorithm(tokenContent, _logger);
+        result.HasSucceeded.Should().BeTrue();
+        result.Data.Should().NotBeNull();
+        result.Data.Should().Be(JwtAlgorithm.HS256);
+    }
+
+    [Fact(DisplayName = "Get Jwt Token Algorithm with PS384 token should return PS384")]
+    public async Task GetTokenAlgorithmWithInvalidTokenShouldJwtAlgorithmPS384()
+    {
+        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.PS.PS384-ComplexToken.txt");
+
+        ResultInfo<JwtAlgorithm?> result = JwtDecoderHelper.GetTokenAlgorithm(tokenContent, _logger);
+        result.HasSucceeded.Should().BeTrue();
+        result.Data.Should().NotBeNull();
+        result.Data.Should().Be(JwtAlgorithm.PS384);
+    }
+
+    [Fact(DisplayName = "Get Jwt Token Algorithm with RS512 token should return RS512")]
+    public async Task GetTokenAlgorithmWithInvalidTokenShouldJwtAlgorithmRS512()
+    {
+        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.RS.RS512-PublicKey-ComplexToken.txt");
+
+        ResultInfo<JwtAlgorithm?> result = JwtDecoderHelper.GetTokenAlgorithm(tokenContent, _logger);
+        result.HasSucceeded.Should().BeTrue();
+        result.Data.Should().NotBeNull();
+        result.Data.Should().Be(JwtAlgorithm.RS512);
+    }
+
+    [Fact(DisplayName = "Get Jwt Token Algorithm with ES256 token should return ES256")]
+    public async Task GetTokenAlgorithmWithInvalidTokenShouldJwtAlgorithmES256()
+    {
+        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ES.ES256-ComplexToken.txt");
+
+        ResultInfo<JwtAlgorithm?> result = JwtDecoderHelper.GetTokenAlgorithm(tokenContent, _logger);
+        result.HasSucceeded.Should().BeTrue();
+        result.Data.Should().NotBeNull();
+        result.Data.Should().Be(JwtAlgorithm.ES256);
     }
 
     #endregion

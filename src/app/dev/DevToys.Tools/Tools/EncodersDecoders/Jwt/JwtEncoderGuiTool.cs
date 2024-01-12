@@ -1,7 +1,4 @@
-﻿using DevToys.Tools.Tools.EncodersDecoders.Base64Text;
-using static DevToys.Tools.Tools.EncodersDecoders.Jwt.JwtEncoderDecoderGuiTool;
-
-namespace DevToys.Tools.Tools.EncodersDecoders.Jwt;
+﻿namespace DevToys.Tools.Tools.EncodersDecoders.Jwt;
 
 internal sealed partial class JwtEncoderGuiTool
 {
@@ -15,14 +12,23 @@ internal sealed partial class JwtEncoderGuiTool
         Stretch
     }
 
+    private readonly IUIGridCell _encodeCell = Cell(JwtGridRows.SubContainer, GridColumns.Stretch);
+
+    private readonly IUIStack _viewStack = Stack("jwt-encode-view-stack");
+
     private readonly IUIMultiLineTextInput _outputText = MultilineTextInput("base64-text-output-box");
 
-    public IUIGridCell GridCell
-        => Cell(
-                JwtGridRows.SubContainer,
-                GridColumns.Stretch,
-
-                _outputText
-                    .Title(Base64TextEncoderDecoder.OutputTitle)
+    public IUIStack ViewStack()
+        => _viewStack
+        .Vertical()
+        .WithChildren(
+            _outputText
+            .Title(JwtEncoderDecoder.TokenInputTitle)
         );
+
+    public void Show()
+        => _viewStack.Show();
+
+    public void Hide()
+        => _viewStack.Hide();
 }

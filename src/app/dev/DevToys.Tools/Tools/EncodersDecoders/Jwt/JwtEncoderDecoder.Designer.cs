@@ -70,6 +70,51 @@ namespace DevToys.Tools.Tools.EncodersDecoders.Jwt {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Indicates the algorithm used to sign the token.
+        /// </summary>
+        internal static string alg {
+            get {
+                return ResourceManager.GetString("alg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown token algorithm.
+        /// </summary>
+        internal static string AlgorithmInvalid {
+            get {
+                return ResourceManager.GetString("AlgorithmInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string ClaimDescriptionTitle {
+            get {
+                return ResourceManager.GetString("ClaimDescriptionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        internal static string ClaimTypeTitle {
+            get {
+                return ResourceManager.GetString("ClaimTypeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value.
+        /// </summary>
+        internal static string ClaimValueTitle {
+            get {
+                return ResourceManager.GetString("ClaimValueTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Configuration.
         /// </summary>
         internal static string ConfigurationTitle {
@@ -84,6 +129,96 @@ namespace DevToys.Tools.Tools.EncodersDecoders.Jwt {
         internal static string DecodeMode {
             get {
                 return ResourceManager.GetString("DecodeMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validate actors.
+        /// </summary>
+        internal static string DecodeValidateTokenActorsTitle {
+            get {
+                return ResourceManager.GetString("DecodeValidateTokenActorsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Token audiences (separated by comma).
+        /// </summary>
+        internal static string DecodeValidateTokenAudiencesInputLabel {
+            get {
+                return ResourceManager.GetString("DecodeValidateTokenAudiencesInputLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validate audiences.
+        /// </summary>
+        internal static string DecodeValidateTokenAudiencesTitle {
+            get {
+                return ResourceManager.GetString("DecodeValidateTokenAudiencesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Token issuers (separated by comma).
+        /// </summary>
+        internal static string DecodeValidateTokenIssuersInputLabel {
+            get {
+                return ResourceManager.GetString("DecodeValidateTokenIssuersInputLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validate issuers signing key.
+        /// </summary>
+        internal static string DecodeValidateTokenIssuersSigningKeyTitle {
+            get {
+                return ResourceManager.GetString("DecodeValidateTokenIssuersSigningKeyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validate issuers.
+        /// </summary>
+        internal static string DecodeValidateTokenIssuersTitle {
+            get {
+                return ResourceManager.GetString("DecodeValidateTokenIssuersTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validate lifetime.
+        /// </summary>
+        internal static string DecodeValidateTokenLifetimeTitle {
+            get {
+                return ResourceManager.GetString("DecodeValidateTokenLifetimeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select which token parameters to validate.
+        /// </summary>
+        internal static string DecodeValidateTokenSettingsDescription {
+            get {
+                return ResourceManager.GetString("DecodeValidateTokenSettingsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Token validation settings.
+        /// </summary>
+        internal static string DecodeValidateTokenSettingsTitle {
+            get {
+                return ResourceManager.GetString("DecodeValidateTokenSettingsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validate Token.
+        /// </summary>
+        internal static string DecodeValidateTokenTitle {
+            get {
+                return ResourceManager.GetString("DecodeValidateTokenTitle", resourceCulture);
             }
         }
         
@@ -106,11 +241,29 @@ namespace DevToys.Tools.Tools.EncodersDecoders.Jwt {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Header.
+        /// </summary>
+        internal static string HeaderInputTitle {
+            get {
+                return ResourceManager.GetString("HeaderInputTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to process the token header.
         /// </summary>
         internal static string HeaderInvalid {
             get {
                 return ResourceManager.GetString("HeaderInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the thumbprint for the public key used for validating the signature of the token..
+        /// </summary>
+        internal static string kid {
+            get {
+                return ResourceManager.GetString("kid", resourceCulture);
             }
         }
         
@@ -124,11 +277,38 @@ namespace DevToys.Tools.Tools.EncodersDecoders.Jwt {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        internal static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payload.
+        /// </summary>
+        internal static string PayloadInputTitle {
+            get {
+                return ResourceManager.GetString("PayloadInputTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to process the token payload.
         /// </summary>
         internal static string PayloadInvalid {
             get {
                 return ResourceManager.GetString("PayloadInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Public Key.
+        /// </summary>
+        internal static string PublicKeyInputTitle {
+            get {
+                return ResourceManager.GetString("PublicKeyInputTitle", resourceCulture);
             }
         }
         
@@ -160,11 +340,47 @@ namespace DevToys.Tools.Tools.EncodersDecoders.Jwt {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Signature.
+        /// </summary>
+        internal static string SignatureInputTitle {
+            get {
+                return ResourceManager.GetString("SignatureInputTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to process the token signature.
         /// </summary>
         internal static string SignatureInvalid {
             get {
                 return ResourceManager.GetString("SignatureInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The &quot;sub&quot; (subject) claim identifies the principal that is the subject of the JWT. The claims in a JWT are normally statements about the subject.  The subject value MUST either be scoped to be locally unique in the context of the issuer or be globally unique. The processing of this claim is generally application specific. The &quot;sub&quot; value is a case-sensitive string containing a StringOrURI value.  Use of this claim is OPTIONAL..
+        /// </summary>
+        internal static string sub {
+            get {
+                return ResourceManager.GetString("sub", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Token.
+        /// </summary>
+        internal static string TokenInputTitle {
+            get {
+                return ResourceManager.GetString("TokenInputTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Token not validated (no parameters selected).
+        /// </summary>
+        internal static string TokenNotValidated {
+            get {
+                return ResourceManager.GetString("TokenNotValidated", resourceCulture);
             }
         }
         
@@ -187,6 +403,15 @@ namespace DevToys.Tools.Tools.EncodersDecoders.Jwt {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Indicates the token type.
+        /// </summary>
+        internal static string typ {
+            get {
+                return ResourceManager.GetString("typ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Valid audiences are empty.
         /// </summary>
         internal static string ValidAudiencesEmptyError {
@@ -201,6 +426,24 @@ namespace DevToys.Tools.Tools.EncodersDecoders.Jwt {
         internal static string ValidIssuersEmptyError {
             get {
                 return ResourceManager.GetString("ValidIssuersEmptyError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Functions the same as &quot;kid&quot;. &quot;x5t&quot; is a legacy claim emitted only in v1.0 access tokens for compatibility purposes..
+        /// </summary>
+        internal static string x5t {
+            get {
+                return ResourceManager.GetString("x5t", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        internal static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }
