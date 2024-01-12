@@ -130,10 +130,10 @@
     <value>Slett</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
-    <value>Delete all</value>
+    <value>Slett alle</value>
   </data>
   <data name="DetailsTitle" xml:space="preserve">
-    <value>Details</value>
+    <value>Detaljer</value>
   </data>
   <data name="MenuDisplayName" xml:space="preserve">
     <value>PNG / JPEG Compressor</value>
@@ -146,13 +146,13 @@
     <value>OK</value>
   </data>
   <data name="SaveAll" xml:space="preserve">
-    <value>Save all</value>
+    <value>Lagre alle</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Lagre som</value>
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
-    <value>See details</value>
+    <value>Vis detaljer</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Lossless PNG and JPEG optimizer</value>
