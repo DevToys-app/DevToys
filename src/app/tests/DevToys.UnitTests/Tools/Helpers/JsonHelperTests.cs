@@ -170,9 +170,9 @@ public class JsonHelperTests
     }
 
     [Theory]
-    [InlineData(null, null, null)]
+    [InlineData(null, null, "")]
     [InlineData("{\"a\": \"asdf\", \"c\" : 545, \"b\": 33, \"array\": [{\"a\": \"asdf\", \"c\" : 545, \"b\": 42, \"array\": []}]}", "array.[0].b", "[\r\n  42\r\n]")]
-    public async Task TestJsonPath(string json, string jsonPath, string expectedResult)
+    public async Task JsonPathTests(string json, string jsonPath, string expectedResult)
     {
         (await JsonHelper.TestJsonPathAsync(json, jsonPath, new MockILogger(), CancellationToken.None))
             .Data.Should().Be(expectedResult);

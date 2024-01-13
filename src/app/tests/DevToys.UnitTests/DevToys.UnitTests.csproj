@@ -57,15 +57,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Tools\TestData\XmlValidator\InvalidXml.xml" />
-    <EmbeddedResource Include="Tools\TestData\XmlValidator\InvalidXsd.xml" />
-    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXml.xml" />
-    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXmlWithNamespace.xml" />
-    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXmlWithoutNamespace.xml" />
-    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXsd.xml" />
-    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXsdOnlyWithTargetNamespace.xml" />
-    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXsdWithNamespace.xml" />
-    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXsdWithoutNamespace.xml" />
+    <EmbeddedResource Include="Tools\TestData\XMLTester\InvalidXml.xml" />
+    <EmbeddedResource Include="Tools\TestData\XMLTester\InvalidXsd.xml" />
+    <EmbeddedResource Include="Tools\TestData\XMLTester\ValidXml.xml" />
+    <EmbeddedResource Include="Tools\TestData\XMLTester\ValidXmlWithNamespace.xml" />
+    <EmbeddedResource Include="Tools\TestData\XMLTester\ValidXmlWithoutNamespace.xml" />
+    <EmbeddedResource Include="Tools\TestData\XMLTester\ValidXsd.xml" />
+    <EmbeddedResource Include="Tools\TestData\XMLTester\ValidXsdOnlyWithTargetNamespace.xml" />
+    <EmbeddedResource Include="Tools\TestData\XMLTester\ValidXsdWithNamespace.xml" />
+    <EmbeddedResource Include="Tools\TestData\XMLTester\ValidXsdWithoutNamespace.xml" />
   </ItemGroup>
 
   <ItemGroup>

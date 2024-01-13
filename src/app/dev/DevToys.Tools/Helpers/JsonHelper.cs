@@ -14,7 +14,7 @@ internal static partial class JsonHelper
     /// <summary>
     /// Detects whether the given string is a valid JSON or not.
     /// </summary>
-    internal static async Task<bool> IsValidAsync(string? input, ILogger logger, CancellationToken cancellationToken)
+    internal static async ValueTask<bool> IsValidAsync(string? input, ILogger logger, CancellationToken cancellationToken)
     {
         if (input == null)
         {
@@ -141,6 +141,11 @@ internal static partial class JsonHelper
     /// </summary>
     internal static async Task<ResultInfo<string>> TestJsonPathAsync(string json, string jsonPath, ILogger logger, CancellationToken cancellationToken)
     {
+        if (string.IsNullOrEmpty(json) || string.IsNullOrEmpty(jsonPath))
+        {
+            return new(string.Empty, false);
+        }
+
         try
         {
             using JsonReader reader = new JsonTextReader(new StringReader(json));

@@ -2,24 +2,24 @@
 using DevToys.Tools.Models;
 using Microsoft.Extensions.Logging;
 
-namespace DevToys.Tools.Tools.Testers.XMLValidator;
+namespace DevToys.Tools.Tools.Testers.XMLTester;
 
 [Export(typeof(IGuiTool))]
-[Name("XMLValidator")]
+[Name("XMLTester")]
 [ToolDisplayInformation(
     IconFontName = "DevToys-Tools-Icons",
     IconGlyph = '\u0116',
     GroupName = PredefinedCommonToolGroupNames.Testers,
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
-    ResourceManagerBaseName = "DevToys.Tools.Tools.Testers.XMLValidator.XMLValidator",
-    ShortDisplayTitleResourceName = nameof(XMLValidator.ShortDisplayTitle),
-    LongDisplayTitleResourceName = nameof(XMLValidator.LongDisplayTitle),
-    DescriptionResourceName = nameof(XMLValidator.Description),
-    AccessibleNameResourceName = nameof(XMLValidator.AccessibleName),
-    SearchKeywordsResourceName = nameof(XMLValidator.SearchKeywords))]
+    ResourceManagerBaseName = "DevToys.Tools.Tools.Testers.XMLTester.XMLTester",
+    ShortDisplayTitleResourceName = nameof(XMLTester.ShortDisplayTitle),
+    LongDisplayTitleResourceName = nameof(XMLTester.LongDisplayTitle),
+    DescriptionResourceName = nameof(XMLTester.Description),
+    AccessibleNameResourceName = nameof(XMLTester.AccessibleName),
+    SearchKeywordsResourceName = nameof(XMLTester.SearchKeywords))]
 [AcceptedDataTypeName(PredefinedCommonDataTypeNames.Xml)]
 [AcceptedDataTypeName(PredefinedCommonDataTypeNames.Xsd)]
-internal sealed class XMLValidatorGuiTool : IGuiTool, IDisposable
+internal sealed class XMLTesterGuiTool : IGuiTool, IDisposable
 {
     private enum GridRows
     {
@@ -41,7 +41,7 @@ internal sealed class XMLValidatorGuiTool : IGuiTool, IDisposable
     private CancellationTokenSource? _cancellationTokenSource;
 
     [ImportingConstructor]
-    internal XMLValidatorGuiTool()
+    internal XMLTesterGuiTool()
     {
         _logger = this.Log();
     }
@@ -71,7 +71,7 @@ internal sealed class XMLValidatorGuiTool : IGuiTool, IDisposable
                             .Vertical()
                             .WithLeftPaneChild(
                                 _xsdInputText
-                                    .Title(XMLValidator.XsdScheme)
+                                    .Title(XMLTester.XsdScheme)
                                     .Language("xml")
                                     .CanCopyWhenEditable()
                                     .Extendable()
@@ -79,7 +79,7 @@ internal sealed class XMLValidatorGuiTool : IGuiTool, IDisposable
 
                             .WithRightPaneChild(
                                 _xmlInputText
-                                    .Title(XMLValidator.XmlData)
+                                    .Title(XMLTester.XmlData)
                                     .Language("xml")
                                     .CanCopyWhenEditable()
                                     .Extendable()
@@ -126,34 +126,34 @@ internal sealed class XMLValidatorGuiTool : IGuiTool, IDisposable
         if (string.IsNullOrWhiteSpace(xsd) || string.IsNullOrWhiteSpace(xml))
         {
             _infoBar
-                .Description(XMLValidator.ValidationImpossibleMsg)
+                .Description(XMLTester.ValidationImpossibleMsg)
                 .Informational();
             return;
         }
 
         await TaskSchedulerAwaiter.SwitchOffMainThreadAsync(cancellationToken);
 
-        ResultInfo<string, XmlValidatorResultSeverity> result = XsdHelper.ValidateXmlAgainstXsd(xsd, xml, _logger, cancellationToken);
+        ResultInfo<string, XMLTesterResultSeverity> result = XsdHelper.ValidateXmlAgainstXsd(xsd, xml, _logger, cancellationToken);
 
         switch (result.Severity)
         {
-            case XmlValidatorResultSeverity.Success:
+            case XMLTesterResultSeverity.Success:
                 _infoBar
-                    .Description(XMLValidator.XmlValidMessage)
+                    .Description(XMLTester.XmlValidMessage)
                     .Success();
                 break;
 
-            case XmlValidatorResultSeverity.Warning:
+            case XMLTesterResultSeverity.Warning:
                 _infoBar
                     .Description(result.Data)
                     .Warning();
                 break;
 
-            case XmlValidatorResultSeverity.Error:
+            case XMLTesterResultSeverity.Error:
                 string errorDescription;
                 if (string.IsNullOrWhiteSpace(result.Data))
                 {
-                    errorDescription = XMLValidator.XmlInvalidMessage;
+                    errorDescription = XMLTester.XmlInvalidMessage;
                 }
                 else
                 {

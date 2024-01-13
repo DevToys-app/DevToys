@@ -183,10 +183,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Text.resx</DependentUpon>
     </Compile>
-    <Compile Update="Tools\Testers\XMLValidator\XMLValidator.Designer.cs">
+    <Compile Update="Tools\Testers\XMLTester\XMLTester.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>XMLValidator.resx</DependentUpon>
+      <DependentUpon>XMLTester.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -310,9 +310,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Text.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Tools\Testers\XMLValidator\XMLValidator.resx">
+    <EmbeddedResource Update="Tools\Testers\XMLTester\XMLTester.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>XMLValidator.Designer.cs</LastGenOutput>
+      <LastGenOutput>XMLTester.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 
