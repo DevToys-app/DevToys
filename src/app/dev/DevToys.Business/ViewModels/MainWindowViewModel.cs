@@ -204,9 +204,11 @@ internal sealed partial class MainWindowViewModel : ObservableRecipient
     /// <summary>
     /// Get the data from the clipboard and try to detect tools that can accept the clipboard data as an input.
     /// </summary>
-    internal async Task RunSmartDetectionAsync(bool isInCompactOverlayMode)
+    internal async Task RunSmartDetectionAsync(bool isInCompactOverlayMode, bool isDialogOpened)
     {
-        if (isInCompactOverlayMode || !_settingsProvider.GetSetting(PredefinedSettings.SmartDetection))
+        if (isInCompactOverlayMode
+            || isDialogOpened
+            || !_settingsProvider.GetSetting(PredefinedSettings.SmartDetection))
         {
             return;
         }
