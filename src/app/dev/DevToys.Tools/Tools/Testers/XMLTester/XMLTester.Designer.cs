@@ -61,7 +61,7 @@ namespace DevToys.Tools.Tools.Testers.XMLTester {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Xml Validator tool.
+        ///   Looks up a localized string similar to Xml and XSD tester tool.
         /// </summary>
         internal static string AccessibleName {
             get {
@@ -97,7 +97,7 @@ namespace DevToys.Tools.Tools.Testers.XMLTester {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to XML Validator.
+        ///   Looks up a localized string similar to XML / XSD Tester.
         /// </summary>
         internal static string LongDisplayTitle {
             get {
@@ -115,7 +115,7 @@ namespace DevToys.Tools.Tools.Testers.XMLTester {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to XML Validator.
+        ///   Looks up a localized string similar to XML.
         /// </summary>
         internal static string ShortDisplayTitle {
             get {
