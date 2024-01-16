@@ -39,7 +39,7 @@ internal static class XmlHelper
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Invalid data detected 'input'", input);
+            logger.LogError(ex, "Invalid data detected.");
             return false;
         }
     }

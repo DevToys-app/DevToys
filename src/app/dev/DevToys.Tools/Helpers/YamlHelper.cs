@@ -42,7 +42,7 @@ internal static partial class YamlHelper
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Invalid data detected: 'input'", input);
+            logger.LogError(ex, "Invalid data detected.");
             return false;
         }
     }

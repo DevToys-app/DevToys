@@ -3,16 +3,16 @@ using DevToys.Tools.Models;
 using Microsoft.Extensions.Logging;
 using OneOf;
 
-namespace DevToys.Tools.Tools.Text.XMLValidator;
+namespace DevToys.Tools.Tools.Testers.XMLTester;
 
 [Export(typeof(ICommandLineTool))]
-[Name("XMLValidator")]
+[Name("XMLTester")]
 [CommandName(
-    Name = "xmlvalidator",
+    Name = "xmltester",
     Alias = "xsd",
-    ResourceManagerBaseName = "DevToys.Tools.Tools.Text.XMLValidator.XMLValidator",
-    DescriptionResourceName = nameof(XMLValidator.Description))]
-internal sealed class XMLValidatorCommandLineTool : ICommandLineTool
+    ResourceManagerBaseName = "DevToys.Tools.Tools.Testers.XMLTester.XMLTester",
+    DescriptionResourceName = nameof(XMLTester.Description))]
+internal sealed class XMLTesterCommandLineTool : ICommandLineTool
 {
 #pragma warning disable IDE0044 // Add readonly modifier
     [Import]
@@ -23,60 +23,60 @@ internal sealed class XMLValidatorCommandLineTool : ICommandLineTool
         Name = "xsd",
         Alias = "s",
         IsRequired = true,
-        DescriptionResourceName = nameof(XMLValidator.XsdOptionDescription))]
+        DescriptionResourceName = nameof(XMLTester.XsdOptionDescription))]
     private OneOf<FileInfo, string>? XsdFile { get; set; }
 
     [CommandLineOption(
         Name = "xml",
         Alias = "x",
         IsRequired = true,
-        DescriptionResourceName = nameof(XMLValidator.XmlOptionDescription))]
+        DescriptionResourceName = nameof(XMLTester.XmlOptionDescription))]
     private OneOf<FileInfo, string>? XmlFile { get; set; }
 
     public async ValueTask<int> InvokeAsync(ILogger logger, CancellationToken cancellationToken)
     {
         if (!XsdFile.HasValue)
         {
-            Console.Error.WriteLine(XMLValidator.InvalidXsdOrFileCommand);
+            Console.Error.WriteLine(XMLTester.InvalidXsdOrFileCommand);
             return -1;
         }
 
         ResultInfo<string> xsd = await XsdFile.Value.ReadAllTextAsync(_fileStorage, cancellationToken);
         if (!xsd.HasSucceeded)
         {
-            Console.Error.WriteLine(XMLValidator.XsdFileNotFound);
+            Console.Error.WriteLine(XMLTester.XsdFileNotFound);
             return -1;
         }
 
         if (!XmlFile.HasValue)
         {
-            Console.Error.WriteLine(XMLValidator.InvalidXmlOrFileCommand);
+            Console.Error.WriteLine(XMLTester.InvalidXmlOrFileCommand);
             return -1;
         }
 
         ResultInfo<string> xml = await XmlFile.Value.ReadAllTextAsync(_fileStorage, cancellationToken);
         if (!xml.HasSucceeded)
         {
-            Console.Error.WriteLine(XMLValidator.XmlFileNotFound);
+            Console.Error.WriteLine(XMLTester.XmlFileNotFound);
             return -1;
         }
 
-        ResultInfo<string, XmlValidatorResultSeverity> result = XsdHelper.ValidateXmlAgainstXsd(xsd.Data, xml.Data, logger, cancellationToken);
+        ResultInfo<string, XMLTesterResultSeverity> result = XsdHelper.ValidateXmlAgainstXsd(xsd.Data, xml.Data, logger, cancellationToken);
 
         switch (result.Severity)
         {
-            case XmlValidatorResultSeverity.Success:
+            case XMLTesterResultSeverity.Success:
                 return 0;
 
-            case XmlValidatorResultSeverity.Warning:
+            case XMLTesterResultSeverity.Warning:
                 Console.Error.WriteLine(result.Data);
                 return -1;
 
-            case XmlValidatorResultSeverity.Error:
+            case XMLTesterResultSeverity.Error:
                 string errorDescription;
                 if (string.IsNullOrWhiteSpace(result.Data))
                 {
-                    errorDescription = XMLValidator.XmlInvalidMessage;
+                    errorDescription = XMLTester.XmlInvalidMessage;
                 }
                 else
                 {
