@@ -11,8 +11,8 @@ public class XsdHelperTests
     [Fact]
     public async Task ValidateXml_InvalidXmlFile()
     {
-        string xsdSchemaString = await TestDataProvider.GetFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXsd.xml");
-        string xmlDataString = await TestDataProvider.GetFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.InvalidXml.xml");
+        string xsdSchemaString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXsd.xml");
+        string xmlDataString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.InvalidXml.xml");
 
         ResultInfo<string, XMLTesterResultSeverity> result = XsdHelper.ValidateXmlAgainstXsd(xsdSchemaString, xmlDataString, new MockILogger(), CancellationToken.None);
 
@@ -22,8 +22,8 @@ public class XsdHelperTests
     [Fact]
     public async Task ValidateXml_ValidXmlSchema()
     {
-        string xsdSchemaString = await TestDataProvider.GetFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXsd.xml");
-        string xmlDataString = await TestDataProvider.GetFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXml.xml");
+        string xsdSchemaString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXsd.xml");
+        string xmlDataString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXml.xml");
 
         ResultInfo<string, XMLTesterResultSeverity> result = XsdHelper.ValidateXmlAgainstXsd(xsdSchemaString, xmlDataString, new MockILogger(), CancellationToken.None);
 
@@ -33,8 +33,8 @@ public class XsdHelperTests
     [Fact]
     public async Task ValidateXml_InvalidXsdSchema()
     {
-        string xsdSchemaString = await TestDataProvider.GetFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.InvalidXsd.xml");
-        string xmlDataString = await TestDataProvider.GetFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXml.xml");
+        string xsdSchemaString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.InvalidXsd.xml");
+        string xmlDataString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXml.xml");
 
         ResultInfo<string, XMLTesterResultSeverity> result = XsdHelper.ValidateXmlAgainstXsd(xsdSchemaString, xmlDataString, new MockILogger(), CancellationToken.None);
 
@@ -44,8 +44,8 @@ public class XsdHelperTests
     [Fact]
     public async Task ValidateXml_NoNamespacesMissing()
     {
-        string xsdSchemaString = await TestDataProvider.GetFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXsdWithNamespace.xml");
-        string xmlDataString = await TestDataProvider.GetFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXmlWithNamespace.xml");
+        string xsdSchemaString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXsdWithNamespace.xml");
+        string xmlDataString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXmlWithNamespace.xml");
 
         ResultInfo<string, XMLTesterResultSeverity> result = XsdHelper.ValidateXmlAgainstXsd(xsdSchemaString, xmlDataString, new MockILogger(), CancellationToken.None);
 
@@ -55,8 +55,8 @@ public class XsdHelperTests
     [Fact]
     public async Task ValidateXml_XsdTargetNamespaceIsNotPredefinedElsewhereInXsdHeader()
     {
-        string xsdSchemaString = await TestDataProvider.GetFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXsd.xml");
-        string xmlDataString = await TestDataProvider.GetFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXml.xml");
+        string xsdSchemaString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXsd.xml");
+        string xmlDataString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXml.xml");
 
         ResultInfo<string, XMLTesterResultSeverity> result = XsdHelper.ValidateXmlAgainstXsd(xsdSchemaString, xmlDataString, new MockILogger(), CancellationToken.None);
 
@@ -66,8 +66,8 @@ public class XsdHelperTests
     [Fact]
     public async Task ValidateXml_NamespacesMissingInXml()
     {
-        string xsdSchemaString = await TestDataProvider.GetFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXsdWithNamespace.xml");
-        string xmlDataString = await TestDataProvider.GetFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXmlWithoutNamespace.xml");
+        string xsdSchemaString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXsdWithNamespace.xml");
+        string xmlDataString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXmlWithoutNamespace.xml");
 
         ResultInfo<string, XMLTesterResultSeverity> result = XsdHelper.ValidateXmlAgainstXsd(xsdSchemaString, xmlDataString, new MockILogger(), CancellationToken.None);
 
@@ -77,8 +77,8 @@ public class XsdHelperTests
     [Fact]
     public async Task ValidateXml_NamespacesMissingInXsd()
     {
-        string xsdSchemaString = await TestDataProvider.GetFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXsdWithoutNamespace.xml");
-        string xmlDataString = await TestDataProvider.GetFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXmlWithNamespace.xml");
+        string xsdSchemaString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXsdWithoutNamespace.xml");
+        string xmlDataString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXmlWithNamespace.xml");
 
         ResultInfo<string, XMLTesterResultSeverity> result = XsdHelper.ValidateXmlAgainstXsd(xsdSchemaString, xmlDataString, new MockILogger(), CancellationToken.None);
 
@@ -88,8 +88,8 @@ public class XsdHelperTests
     [Fact]
     public async Task ValidateXml_XmlIsMissingTargetedNamespace()
     {
-        string xsdSchemaString = await TestDataProvider.GetFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXsdOnlyWithTargetNamespace.xml");
-        string xmlDataString = await TestDataProvider.GetFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXmlWithoutNamespace.xml");
+        string xsdSchemaString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXsdOnlyWithTargetNamespace.xml");
+        string xmlDataString = await TestDataProvider.GetEmbeddedFileContent("DevToys.UnitTests.Tools.TestData.XMLTester.ValidXmlWithoutNamespace.xml");
 
         ResultInfo<string, XMLTesterResultSeverity> result = XsdHelper.ValidateXmlAgainstXsd(xsdSchemaString, xmlDataString, new MockILogger(), CancellationToken.None);
 

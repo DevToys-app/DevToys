@@ -18,6 +18,9 @@
     <Content Include="Tools\TestData\HashAndChecksumGenerator\File.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Tools\TestData\JsonPathTester\sample.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Content Include="Tools\TestData\JsonYamlConverter\FourSpaces.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -11,7 +11,7 @@ internal static class TestDataProvider
     /// </summary>
     /// <param name="filePath">Path to the file relative to <c>DevToys.Tests.Providers.TestData</c></param>
     /// <returns></returns>
-    public static async Task<string> GetFileContent(string filePath)
+    public static async Task<string> GetEmbeddedFileContent(string filePath)
     {
         var assembly = Assembly.GetExecutingAssembly();
         using Stream resourceStream = assembly.GetManifestResourceStream(filePath);

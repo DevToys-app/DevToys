@@ -51,9 +51,9 @@ internal sealed class JsonPathTesterGuiTool : IGuiTool, IDisposable
     private readonly DisposableSemaphore _semaphore = new();
     private readonly ILogger _logger;
     private readonly ISettingsProvider _settingsProvider;
-    private readonly IUIMultiLineTextInput _inputJson = MultilineTextInput();
-    private readonly IUISingleLineTextInput _inputJsonPath = SingleLineTextInput();
-    private readonly IUIMultiLineTextInput _outputJson = MultilineTextInput();
+    private readonly IUIMultiLineTextInput _inputJson = MultilineTextInput("input-json-json-path-tester");
+    private readonly IUISingleLineTextInput _inputJsonPath = SingleLineTextInput("input-json-path-json-path-tester");
+    private readonly IUIMultiLineTextInput _outputJson = MultilineTextInput("output-json-path-tester");
 
     private CancellationTokenSource? _cancellationTokenSource;
     private string _lastTreatedInputJson = string.Empty;
