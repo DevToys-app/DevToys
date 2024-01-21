@@ -310,7 +310,7 @@
     <value>Nome(s) do meio do Utilizador Final. Note que em algumas culturas, pessoas podem ter vários nomes do meio; podem estar todos presentes, sendo os nomes separados por espaços. Note também que em algumas culturas nomes do meio não são usados.</value>
   </data>
   <data name="nickname" xml:space="preserve">
-    <value>Casual name of the End-User that may or may not be the same as the given_name. For instance, a nickname value of Mike might be returned alongside a given_name value of Michael.</value>
+    <value>Nome casual do usuário final que pode ou não ser o mesmo que o nome_dado. Por exemplo, um valor de apelido de Mike pode ser retornado juntamente com um valor de Michael.</value>
   </data>
   <data name="preferred_username" xml:space="preserve">
     <value>Shorthand name by which the End-User wishes to be referred to at the RP, such as janedoe or j.doe. This value MAY be any valid JSON string including special characters such as @, /, or whitespace. The RP MUST NOT rely upon this value being unique.</value>
