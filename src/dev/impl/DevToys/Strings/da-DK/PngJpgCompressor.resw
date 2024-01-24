@@ -127,7 +127,7 @@
     <value>Indstillinger</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Slet</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
     <value>Delete all</value>
@@ -149,7 +149,7 @@
     <value>Save all</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
-    <value>Save as</value>
+    <value>Gem som</value>
   </data>
   <data name="SeeErrorMessage" xml:space="preserve">
     <value>See details</value>

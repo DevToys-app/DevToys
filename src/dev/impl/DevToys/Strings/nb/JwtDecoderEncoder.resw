@@ -205,10 +205,10 @@
     <value>Signatur</value>
   </data>
   <data name="JwtNotValidated" xml:space="preserve">
-    <value>Token not validated (no parameters selected)</value>
+    <value>Nøkkel ikke validert (ingen parametere valgt)</value>
   </data>
   <data name="JwtIsValidMessage" xml:space="preserve">
-    <value>Token Validated</value>
+    <value>Nøkkel er bekreftet</value>
   </data>
   <data name="InvalidPublicKeyError" xml:space="preserve">
     <value>Ugyldig offentlig nøkkel</value>
@@ -223,7 +223,7 @@
     <value>Validere publikum</value>
   </data>
   <data name="DecodeValidateIssuerSigningKey" xml:space="preserve">
-    <value>Validate issuer signing key</value>
+    <value>Valider utsteder signeringsnøkkel</value>
   </data>
   <data name="DecodeValidateIssuerLabel" xml:space="preserve">
     <value>Validere utstederen</value>
@@ -274,7 +274,7 @@
     <value>Ugyldig signatur</value>
   </data>
   <data name="NoDescription" xml:space="preserve">
-    <value>No description</value>
+    <value>Ingen beskrivelse</value>
   </data>
   <data name="iss" xml:space="preserve">
     <value>The "iss" (issuer) claim identifies the principal that issued the JWT. The processing of this claim is generally application specific. The "iss" value is a case-sensitive string containing a StringOrURI value. Use of this claim is OPTIONAL.</value>
@@ -313,10 +313,10 @@
     <value>Casual name of the End-User that may or may not be the same as the given_name. For instance, a nickname value of Mike might be returned alongside a given_name value of Michael.</value>
   </data>
   <data name="preferred_username" xml:space="preserve">
-    <value>Shorthand name by which the End-User wishes to be referred to at the RP, such as janedoe or j.doe. This value MAY be any valid JSON string including special characters such as @, /, or whitespace. The RP MUST NOT rely upon this value being unique.</value>
+    <value>Kortnavn som sluttbruker ønsker å bli referert til på RP, som f.eks. olanordmann eller o.nordmann. Denne verdien KAN være hvilken som heltst JSON streng inkludert spesialtegn som @, / eller mellomrom. Den avhengige parten (RP) KAN IKKE stole på at denne verdien er unik.</value>
   </data>
   <data name="profile" xml:space="preserve">
-    <value>URL of the End-User's profile page. The contents of this Web page SHOULD be about the End-User.</value>
+    <value>URL-adressen til sluttbrukeren sin profilside. Innholdet på denne nettsiden er om sluttbrukeren.</value>
   </data>
   <data name="picture" xml:space="preserve">
     <value>URL of the End-User's profile picture. This URL MUST refer to an image file (for example, a PNG, JPEG, or GIF image file), rather than to a Web page containing an image. Note that this URL SHOULD specifically reference a profile photo of the End-User suitable for displaying when describing the End-User, rather than an arbitrary photo taken by the End-User.</value>

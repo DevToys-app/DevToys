@@ -127,7 +127,7 @@
     <value>Настройки</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Генерирует хэш контрольной суммы в файл</value>
+    <value>Создать хэш с контрольной суммой, основанной на файле</value>
   </data>
   <data name="HashingAlgorithmDescription" xml:space="preserve">
     <value>Выберите желаемый алгоритм кодирования</value>

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Base64 文本编码/解码工具</value>
+    <value>Base64 文本编解码工具</value>
   </data>
   <data name="Ascii" xml:space="preserve">
     <value>ASCII</value>
@@ -160,7 +160,7 @@
     <value>编码和解码 Base64 文本数据</value>
   </data>
   <data name="SearchDisplayName" xml:space="preserve">
-    <value>Base64 文本编码/解码工具</value>
+    <value>Base64 文本编解码工具</value>
   </data>
   <data name="SearchKeywords" xml:space="preserve">
     <value>RFC 4648</value>

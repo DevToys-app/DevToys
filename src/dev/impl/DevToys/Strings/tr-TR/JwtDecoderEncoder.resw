@@ -301,7 +301,7 @@
     <value>Son kullanıcının yerel ayarlarına ve tercihlerine göre sıralanmış olarak, başlıklar ve ekler dahil olmak üzere tüm ad parçalarını içeren görüntülenebilir biçimde Son Kullanıcının tam adı.</value>
   </data>
   <data name="given_name" xml:space="preserve">
-    <value>Son Kullanıcının doğum adı(ları) ya da ilk ismi(leri). Bazı kültürlerde insanların birden fazla adı olabileceğini unutmayın; ismin bir bütün olarak eklenmesi için isimleri boşluk karakteriyle ayırın.</value>
+    <value>Son Kullanıcının doğum ad(lar)ı ya da ilk ad(lar)ı. Bazı kültürlerde insanların birden fazla adı olabileceğini unutmayın; ismin bir bütün olarak eklenmesi için isimleri boşluk karakteriyle ayırın.</value>
   </data>
   <data name="family_name" xml:space="preserve">
     <value>Son Kullanıcının soyadı veya soyadları. Bazı kültürlerde insanlar birden fazla aile adına sahip olabilir veya hiç aile adına sahip olmayabilir; bu durumda adlar boşluk karakterleri ile ayrılmış olarak bulunabilir.</value>

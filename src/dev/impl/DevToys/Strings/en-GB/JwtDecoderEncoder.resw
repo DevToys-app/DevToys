@@ -172,7 +172,7 @@
     <value>Expire in year(s)</value>
   </data>
   <data name="EncodeHashingTitle" xml:space="preserve">
-    <value>Token hashing algorithm</value>
+    <value/>
   </data>
   <data name="EncodeSettingsTitle" xml:space="preserve">
     <value>Settings</value>
