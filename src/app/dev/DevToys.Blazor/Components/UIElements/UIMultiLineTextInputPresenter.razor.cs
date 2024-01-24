@@ -203,13 +203,13 @@ public partial class UIMultiLineTextInputPresenter : JSStyledComponentBase
                         {
                             StartLineNumber = 1,
                             StartColumn = 1,
-                            EndLineNumber = 1,
-                            EndColumn = 10
+
+                            EndLineNumber = wordAtPosition.EndColumn,
+                            EndColumn = wordAtPosition.EndColumn
                         },
                         Options = new ModelDecorationOptions
                         {
-                            HoverMessage
-                            = new[]
+                            HoverMessage = new[]
                             {
                                 new MarkdownString()
                                 {
@@ -218,8 +218,11 @@ public partial class UIMultiLineTextInputPresenter : JSStyledComponentBase
                             }
                         }
                     };
-
                     await _monacoEditor.ReplaceAllDecorationsByAsync(new[] { decoration });
+                }
+                else
+                {
+                    await _monacoEditor.ResetDeltaDecorationsAsync();
                 }
             }
         }

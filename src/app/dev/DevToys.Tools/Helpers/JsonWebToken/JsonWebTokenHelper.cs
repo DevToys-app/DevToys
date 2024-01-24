@@ -1,9 +1,10 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 
-namespace DevToys.Tools.Helpers.Jwt;
+namespace DevToys.Tools.Helpers.JsonWebToken;
 
-internal static partial class JwtHelper
+using Microsoft.IdentityModel.JsonWebTokens;
+
+internal static partial class JsonWebTokenHelper
 {
     private static readonly string AuthorizationHeader = "Authorization:";
     private static readonly string BearerScheme = "Bearer";
@@ -32,9 +33,9 @@ internal static partial class JwtHelper
 
         try
         {
-            var handler = new JwtSecurityTokenHandler();
-            JwtSecurityToken jwtSecurityToken = handler.ReadJwtToken(input.Trim());
-            return jwtSecurityToken is not null;
+            JsonWebTokenHandler handler = new();
+            JsonWebToken jsonWebToken = handler.ReadJsonWebToken(input);
+            return jsonWebToken is not null;
         }
         catch (Exception ex) //some other exception
         {

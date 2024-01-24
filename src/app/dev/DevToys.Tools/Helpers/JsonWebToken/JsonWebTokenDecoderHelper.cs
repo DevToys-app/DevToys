@@ -1,117 +1,121 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
 using DevToys.Tools.Models;
 using DevToys.Tools.Models.JwtDecoderEncoder;
-using DevToys.Tools.Tools.EncodersDecoders.Jwt;
+using DevToys.Tools.Tools.EncodersDecoders.JsonWebToken;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
 
-namespace DevToys.Tools.Helpers.Jwt;
+namespace DevToys.Tools.Helpers.JsonWebToken;
 
-internal static partial class JwtDecoderHelper
+using Microsoft.IdentityModel.JsonWebTokens;
+
+internal static partial class JsonWebTokenDecoderHelper
 {
-    public static ResultInfo<JwtAlgorithm?> GetTokenAlgorithm(string token, ILogger logger)
+    public static ResultInfo<JsonWebTokenAlgorithm?> GetTokenAlgorithm(string token, ILogger logger)
     {
         Guard.IsNotNullOrWhiteSpace(token);
         try
         {
-            var handler = new JwtSecurityTokenHandler();
-            JwtSecurityToken jwtSecurityToken = handler.ReadJwtToken(token);
-            if (!Enum.TryParse(jwtSecurityToken.SignatureAlgorithm, out JwtAlgorithm jwtAlgorithm))
+            JsonWebTokenHandler handler = new();
+            JsonWebToken jsonWebToken = handler.ReadJsonWebToken(token);
+            if (!Enum.TryParse(jsonWebToken.Alg, out JsonWebTokenAlgorithm jwtAlgorithm))
             {
-                return new ResultInfo<JwtAlgorithm?>(null, false);
+                return new ResultInfo<JsonWebTokenAlgorithm?>(null, false);
             }
-            return new ResultInfo<JwtAlgorithm?>(jwtAlgorithm, true);
+            return new ResultInfo<JsonWebTokenAlgorithm?>(jwtAlgorithm, true);
         }
         catch (Exception ex)
         {
             logger.LogError(ex, "Invalid token detected");
-            return new ResultInfo<JwtAlgorithm?>(null, false);
+            return new ResultInfo<JsonWebTokenAlgorithm?>(null, false);
         }
     }
 
-    public static async ValueTask<ResultInfo<JwtTokenResult?, ResultInfoSeverity>> DecodeTokenAsync(
-            DecoderParameters decodeParameters,
-            TokenParameters tokenParameters,
-            ILogger logger,
-            CancellationToken cancellationToken)
+    public static async ValueTask<ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>> DecodeTokenAsync(
+        DecoderParameters decodeParameters,
+        TokenParameters tokenParameters,
+        ILogger logger,
+        CancellationToken cancellationToken)
     {
         Guard.IsNotNull(decodeParameters);
         Guard.IsNotNull(tokenParameters);
         Guard.IsNotNullOrWhiteSpace(tokenParameters.Token);
 
-        var tokenResult = new JwtTokenResult();
+        var tokenResult = new JsonWebTokenResult();
 
         try
         {
             IdentityModelEventSource.ShowPII = true;
-            var handler = new JwtSecurityTokenHandler();
-            JwtSecurityToken jwtSecurityToken = handler.ReadJwtToken(tokenParameters.Token);
+            JsonWebTokenHandler handler = new();
+            JsonWebToken jsonWebToken = handler.ReadJsonWebToken(tokenParameters.Token);
 
+            string decodedHeader = Base64Helper.FromBase64ToText(
+                jsonWebToken.EncodedHeader,
+                Base64Encoding.Utf8,
+                logger,
+                cancellationToken);
             ResultInfo<string> headerResult = await JsonHelper.FormatAsync(
-                jwtSecurityToken.Header.SerializeToJson(),
+                decodedHeader,
                 Indentation.TwoSpaces,
                 false,
                 logger,
                 cancellationToken);
             if (!headerResult.HasSucceeded)
             {
-                return new ResultInfo<JwtTokenResult?, ResultInfoSeverity>(JwtEncoderDecoder.HeaderInvalid, ResultInfoSeverity.Error);
+                return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(JsonWebTokenEncoderDecoder.HeaderInvalid, ResultInfoSeverity.Error);
             }
             tokenResult.Header = headerResult.Data;
-            tokenResult.HeaderClaims = jwtSecurityToken.Header.Select(claim => new JwtClaim(claim.Key, claim.Value.ToString())).ToList();
 
+            string decodedpayload = Base64Helper.FromBase64ToText(
+                jsonWebToken.EncodedPayload,
+                Base64Encoding.Utf8,
+                logger,
+                cancellationToken);
             ResultInfo<string> payloadResult = await JsonHelper.FormatAsync(
-                jwtSecurityToken.Payload.SerializeToJson(),
+                decodedpayload,
                 Indentation.TwoSpaces,
                 false,
                 logger,
                 cancellationToken);
             if (!payloadResult.HasSucceeded)
             {
-                return new ResultInfo<JwtTokenResult?, ResultInfoSeverity>(JwtEncoderDecoder.PayloadInvalid, ResultInfoSeverity.Error);
+                return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(JsonWebTokenEncoderDecoder.PayloadInvalid, ResultInfoSeverity.Error);
             }
             tokenResult.Payload = payloadResult.Data;
-            tokenResult.PayloadClaims = jwtSecurityToken.Claims.Select(claim => new JwtClaim(claim)).ToList();
-
-            tokenResult.TokenAlgorithm = tokenParameters.TokenAlgorithm =
-                Enum.TryParse(jwtSecurityToken.SignatureAlgorithm, out JwtAlgorithm parsedAlgorithm)
-                    ? parsedAlgorithm
-                    : tokenParameters.TokenAlgorithm;
+            tokenResult.PayloadClaims = jsonWebToken.Claims.Select(claim => new JsonWebTokenClaim(claim)).ToList();
 
             if (decodeParameters.ValidateSignature)
             {
-                ResultInfo<JwtTokenResult, ResultInfoSeverity> signatureValid = ValidateTokenSignature(handler, decodeParameters, tokenParameters, tokenResult);
+                ResultInfo<JsonWebTokenResult, ResultInfoSeverity> signatureValid = await ValidateTokenSignatureAsync(handler, decodeParameters, tokenParameters, tokenResult);
                 if (signatureValid.Severity == ResultInfoSeverity.Error)
                 {
-                    return new ResultInfo<JwtTokenResult?, ResultInfoSeverity>(signatureValid.ErrorMessage!, signatureValid.Severity);
+                    return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(signatureValid.ErrorMessage!, signatureValid.Severity);
                 }
                 else if (signatureValid.Severity == ResultInfoSeverity.Warning)
                 {
-                    return new ResultInfo<JwtTokenResult?, ResultInfoSeverity>(tokenResult, signatureValid.ErrorMessage!, signatureValid.Severity);
+                    return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(tokenResult, signatureValid.ErrorMessage!, signatureValid.Severity);
                 }
             }
-            //tokenResult.HeaderClaims = jwtSecurityToken.Claims.Select(c => new JwtClaim(c));
         }
         catch (Exception ex)
         {
             logger.LogError(ex, "Invalid token detected");
-            return new ResultInfo<JwtTokenResult?, ResultInfoSeverity>(ex.Message, ResultInfoSeverity.Error);
+            return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(ex.Message, ResultInfoSeverity.Error);
         }
 
-        return new ResultInfo<JwtTokenResult?, ResultInfoSeverity>(tokenResult, ResultInfoSeverity.Success);
+        return new ResultInfo<JsonWebTokenResult?, ResultInfoSeverity>(tokenResult, ResultInfoSeverity.Success);
     }
 
     /// <summary>
     /// Validate the token using the Signing Credentials 
     /// </summary>
-    private static ResultInfo<JwtTokenResult, ResultInfoSeverity> ValidateTokenSignature(
-        JwtSecurityTokenHandler handler,
+    private static async Task<ResultInfo<JsonWebTokenResult, ResultInfoSeverity>> ValidateTokenSignatureAsync(
+        JsonWebTokenHandler handler,
         DecoderParameters decodeParameters,
         TokenParameters tokenParameters,
-        JwtTokenResult tokenResult)
+        JsonWebTokenResult tokenResult)
     {
         var validationParameters = new TokenValidationParameters
         {
@@ -126,43 +130,46 @@ internal static partial class JwtDecoderHelper
             ResultInfo<SigningCredentials> signingCredentials = GetSigningCredentials(tokenParameters);
             if (!signingCredentials.HasSucceeded)
             {
-                return new ResultInfo<JwtTokenResult, ResultInfoSeverity>(signingCredentials.ErrorMessage!, ResultInfoSeverity.Error);
+                return new ResultInfo<JsonWebTokenResult, ResultInfoSeverity>(signingCredentials.ErrorMessage!, ResultInfoSeverity.Error);
             }
 
             validationParameters.ValidateIssuerSigningKey = decodeParameters.ValidateIssuersSigningKey;
             validationParameters.IssuerSigningKey = signingCredentials.Data!.Key;
             validationParameters.TryAllIssuerSigningKeys = true;
         }
-        // Todo maybe we can remove this fake signature validator
         else
         {
             // Create a custom signature validator that does nothing so it always passes in this mode
-            validationParameters.SignatureValidator = (token, _) => new JwtSecurityToken(token);
+            validationParameters.SignatureValidator = (token, _) => new JsonWebToken(token);
         }
 
-        /// check if the token issuers are part of the user provided issuers
+        // check if the token issuers are part of the user provided issuers
         if (decodeParameters.ValidateIssuers)
         {
             if (tokenParameters.Issuers.Count == 0)
             {
-                return new ResultInfo<JwtTokenResult, ResultInfoSeverity>(JwtEncoderDecoder.ValidIssuersEmptyError, ResultInfoSeverity.Error);
+                return new ResultInfo<JsonWebTokenResult, ResultInfoSeverity>(JsonWebTokenEncoderDecoder.ValidIssuersEmptyError, ResultInfoSeverity.Error);
             }
             validationParameters.ValidIssuers = tokenParameters.Issuers;
         }
 
-        /// check if the token audience are part of the user provided audiences
+        // check if the token audience are part of the user provided audiences
         if (decodeParameters.ValidateAudiences)
         {
             if (tokenParameters.Audiences.Count == 0)
             {
-                return new ResultInfo<JwtTokenResult, ResultInfoSeverity>(JwtEncoderDecoder.ValidAudiencesEmptyError, ResultInfoSeverity.Error);
+                return new ResultInfo<JsonWebTokenResult, ResultInfoSeverity>(JsonWebTokenEncoderDecoder.ValidAudiencesEmptyError, ResultInfoSeverity.Error);
             }
             validationParameters.ValidAudiences = tokenParameters.Audiences;
         }
 
         try
         {
-            handler.ValidateToken(tokenParameters.Token, validationParameters, out _);
+            TokenValidationResult validationResult = await handler.ValidateTokenAsync(tokenParameters.Token, validationParameters);
+            if (!validationResult.IsValid)
+            {
+                return new ResultInfo<JsonWebTokenResult, ResultInfoSeverity>(validationResult.Exception.Message, ResultInfoSeverity.Error);
+            }
             tokenResult.Signature = tokenParameters.Signature;
             tokenResult.PublicKey = tokenParameters.PublicKey;
 
@@ -170,13 +177,13 @@ internal static partial class JwtDecoderHelper
                 !decodeParameters.ValidateIssuers && !decodeParameters.ValidateAudiences &&
                 !decodeParameters.ValidateIssuersSigningKey)
             {
-                return new ResultInfo<JwtTokenResult, ResultInfoSeverity>(tokenResult, JwtEncoderDecoder.TokenNotValidated, ResultInfoSeverity.Warning);
+                return new ResultInfo<JsonWebTokenResult, ResultInfoSeverity>(tokenResult, JsonWebTokenEncoderDecoder.TokenNotValidated, ResultInfoSeverity.Warning);
             }
-            return new ResultInfo<JwtTokenResult, ResultInfoSeverity>(tokenResult, ResultInfoSeverity.Success);
+            return new ResultInfo<JsonWebTokenResult, ResultInfoSeverity>(tokenResult, ResultInfoSeverity.Success);
         }
         catch (Exception exception)
         {
-            return new ResultInfo<JwtTokenResult, ResultInfoSeverity>(exception.Message, ResultInfoSeverity.Error);
+            return new ResultInfo<JsonWebTokenResult, ResultInfoSeverity>(exception.Message, ResultInfoSeverity.Error);
         }
     }
 
@@ -188,18 +195,18 @@ internal static partial class JwtDecoderHelper
     {
         return tokenParameters.TokenAlgorithm switch
         {
-            JwtAlgorithm.HS256 or
-            JwtAlgorithm.HS384 or
-            JwtAlgorithm.HS512 => GetHmacShaSigningCredentials(tokenParameters.Signature, tokenParameters.TokenAlgorithm),
-            JwtAlgorithm.RS256 or
-            JwtAlgorithm.RS384 or
-            JwtAlgorithm.RS512 or
-            JwtAlgorithm.PS256 or
-            JwtAlgorithm.PS384 or
-            JwtAlgorithm.PS512 => GetRsaShaSigningCredentials(tokenParameters.PublicKey, tokenParameters.TokenAlgorithm),
-            JwtAlgorithm.ES256 or
-            JwtAlgorithm.ES384 or
-            JwtAlgorithm.ES512 => GetECDsaSigningCredentials(tokenParameters.PublicKey, tokenParameters.TokenAlgorithm),
+            JsonWebTokenAlgorithm.HS256 or
+            JsonWebTokenAlgorithm.HS384 or
+            JsonWebTokenAlgorithm.HS512 => GetHmacShaSigningCredentials(tokenParameters.Signature, tokenParameters.TokenAlgorithm),
+            JsonWebTokenAlgorithm.RS256 or
+            JsonWebTokenAlgorithm.RS384 or
+            JsonWebTokenAlgorithm.RS512 or
+            JsonWebTokenAlgorithm.PS256 or
+            JsonWebTokenAlgorithm.PS384 or
+            JsonWebTokenAlgorithm.PS512 => GetRsaShaSigningCredentials(tokenParameters.PublicKey, tokenParameters.TokenAlgorithm),
+            JsonWebTokenAlgorithm.ES256 or
+            JsonWebTokenAlgorithm.ES384 or
+            JsonWebTokenAlgorithm.ES512 => GetECDsaSigningCredentials(tokenParameters.PublicKey, tokenParameters.TokenAlgorithm),
             _ => throw new NotSupportedException()
         };
     }
@@ -217,11 +224,11 @@ internal static partial class JwtDecoderHelper
     /// <exception cref="NotSupportedException"></exception>
     private static ResultInfo<SigningCredentials> GetHmacShaSigningCredentials(
         string? signature,
-        JwtAlgorithm jwtAlgorithm)
+        JsonWebTokenAlgorithm jwtAlgorithm)
     {
         if (string.IsNullOrWhiteSpace(signature))
         {
-            return new ResultInfo<SigningCredentials>(null!, JwtEncoderDecoder.SignatureInvalid, false);
+            return new ResultInfo<SigningCredentials>(null!, JsonWebTokenEncoderDecoder.SignatureInvalid, false);
         }
 
         byte[]? signatureByte;
@@ -237,17 +244,17 @@ internal static partial class JwtDecoderHelper
         SigningCredentials signingCredentials;
         switch (jwtAlgorithm)
         {
-            case JwtAlgorithm.HS256:
+            case JsonWebTokenAlgorithm.HS256:
                 byte[] hs256Key = new HMACSHA256(signatureByte).Key;
                 var hs256SymmetricSecurityKey = new SymmetricSecurityKey(hs256Key);
                 signingCredentials = new SigningCredentials(hs256SymmetricSecurityKey, SecurityAlgorithms.HmacSha256Signature);
                 break;
-            case JwtAlgorithm.HS384:
+            case JsonWebTokenAlgorithm.HS384:
                 byte[] hs384Key = new HMACSHA384(signatureByte).Key;
                 var hs384SymmetricSecurityKey = new SymmetricSecurityKey(hs384Key);
                 signingCredentials = new SigningCredentials(hs384SymmetricSecurityKey, SecurityAlgorithms.HmacSha384Signature);
                 break;
-            case JwtAlgorithm.HS512:
+            case JsonWebTokenAlgorithm.HS512:
                 byte[] hs512Key = new HMACSHA512(signatureByte).Key;
                 var hs512SymmetricSecurityKey = new SymmetricSecurityKey(hs512Key);
                 signingCredentials = new SigningCredentials(hs512SymmetricSecurityKey, SecurityAlgorithms.HmacSha512Signature);
@@ -275,53 +282,53 @@ internal static partial class JwtDecoderHelper
     /// <exception cref="NotSupportedException"></exception>
     private static ResultInfo<SigningCredentials> GetRsaShaSigningCredentials(
         string? key,
-        JwtAlgorithm jwtAlgorithm)
+        JsonWebTokenAlgorithm jwtAlgorithm)
     {
         if (string.IsNullOrWhiteSpace(key))
         {
-            return new ResultInfo<SigningCredentials>(null!, JwtEncoderDecoder.PublicKeyInvalid, false);
+            return new ResultInfo<SigningCredentials>(null!, JsonWebTokenEncoderDecoder.PublicKeyInvalid, false);
         }
 
         var rsa = RSA.Create();
-        if (key.StartsWith(JwtPemEnumeration.PublicKey.PemStart))
+        if (key.StartsWith(JsonWebTokenPemEnumeration.PublicKey.PemStart))
         {
-            byte[] keyBytes = JwtPemEnumeration.GetBytes(JwtPemEnumeration.PublicKey, key);
+            byte[] keyBytes = JsonWebTokenPemEnumeration.GetBytes(JsonWebTokenPemEnumeration.PublicKey, key);
             rsa.ImportSubjectPublicKeyInfo(keyBytes, out _);
         }
-        else if (key.StartsWith(JwtPemEnumeration.RsaPublicKey.PemStart))
+        else if (key.StartsWith(JsonWebTokenPemEnumeration.RsaPublicKey.PemStart))
         {
-            byte[] keyBytes = JwtPemEnumeration.GetBytes(JwtPemEnumeration.RsaPublicKey, key);
+            byte[] keyBytes = JsonWebTokenPemEnumeration.GetBytes(JsonWebTokenPemEnumeration.RsaPublicKey, key);
             rsa.ImportRSAPublicKey(keyBytes, out _);
         }
         else
         {
-            return new ResultInfo<SigningCredentials>(null!, JwtEncoderDecoder.PublicKeyNotSupported, false);
+            return new ResultInfo<SigningCredentials>(null!, JsonWebTokenEncoderDecoder.PublicKeyNotSupported, false);
         }
 
         SigningCredentials signingCredentials;
         switch (jwtAlgorithm)
         {
-            case JwtAlgorithm.RS256:
+            case JsonWebTokenAlgorithm.RS256:
                 var rs256RsaSecurityKey = new RsaSecurityKey(rsa);
                 signingCredentials = new SigningCredentials(rs256RsaSecurityKey, SecurityAlgorithms.RsaSha256Signature);
                 break;
-            case JwtAlgorithm.RS384:
+            case JsonWebTokenAlgorithm.RS384:
                 var rs384SymmetricSecurityKey = new RsaSecurityKey(rsa);
                 signingCredentials = new SigningCredentials(rs384SymmetricSecurityKey, SecurityAlgorithms.RsaSha384Signature);
                 break;
-            case JwtAlgorithm.RS512:
+            case JsonWebTokenAlgorithm.RS512:
                 var rs512SymmetricSecurityKey = new RsaSecurityKey(rsa);
                 signingCredentials = new SigningCredentials(rs512SymmetricSecurityKey, SecurityAlgorithms.RsaSha512Signature);
                 break;
-            case JwtAlgorithm.PS256:
+            case JsonWebTokenAlgorithm.PS256:
                 var ps256RsaSecurityKey = new RsaSecurityKey(rsa);
                 signingCredentials = new SigningCredentials(ps256RsaSecurityKey, SecurityAlgorithms.RsaSsaPssSha256Signature);
                 break;
-            case JwtAlgorithm.PS384:
+            case JsonWebTokenAlgorithm.PS384:
                 var ps384SymmetricSecurityKey = new RsaSecurityKey(rsa);
                 signingCredentials = new SigningCredentials(ps384SymmetricSecurityKey, SecurityAlgorithms.RsaSsaPssSha384Signature);
                 break;
-            case JwtAlgorithm.PS512:
+            case JsonWebTokenAlgorithm.PS512:
                 var ps512SymmetricSecurityKey = new RsaSecurityKey(rsa);
                 signingCredentials = new SigningCredentials(ps512SymmetricSecurityKey, SecurityAlgorithms.RsaSsaPssSha512Signature);
                 break;
@@ -345,11 +352,11 @@ internal static partial class JwtDecoderHelper
     /// <exception cref="NotSupportedException"></exception>
     private static ResultInfo<SigningCredentials> GetECDsaSigningCredentials(
         string? key,
-        JwtAlgorithm jwtAlgorithm)
+        JsonWebTokenAlgorithm jwtAlgorithm)
     {
         if (string.IsNullOrWhiteSpace(key))
         {
-            return new ResultInfo<SigningCredentials>(null!, JwtEncoderDecoder.PublicKeyInvalid, false);
+            return new ResultInfo<SigningCredentials>(null!, JsonWebTokenEncoderDecoder.PublicKeyInvalid, false);
         }
 
         ECDsa ecd;
@@ -362,63 +369,39 @@ internal static partial class JwtDecoderHelper
             ecd = ECDsaOpenSsl.Create();
         }
 
-        if (key.StartsWith(JwtPemEnumeration.PublicKey.PemStart))
+        if (key.StartsWith(JsonWebTokenPemEnumeration.PublicKey.PemStart))
         {
-            byte[] keyBytes = JwtPemEnumeration.GetBytes(JwtPemEnumeration.PublicKey, key);
+            byte[] keyBytes = JsonWebTokenPemEnumeration.GetBytes(JsonWebTokenPemEnumeration.PublicKey, key);
             ecd.ImportSubjectPublicKeyInfo(keyBytes, out _);
         }
-        else if (key.StartsWith(JwtPemEnumeration.ECDPublicKey.PemStart))
+        else if (key.StartsWith(JsonWebTokenPemEnumeration.ECDPublicKey.PemStart))
         {
-            byte[] keyBytes = JwtPemEnumeration.GetBytes(JwtPemEnumeration.ECDPublicKey, key);
+            byte[] keyBytes = JsonWebTokenPemEnumeration.GetBytes(JsonWebTokenPemEnumeration.ECDPublicKey, key);
             ecd.ImportECPrivateKey(keyBytes, out _);
         }
         else
         {
-            return new ResultInfo<SigningCredentials>(null!, JwtEncoderDecoder.PublicKeyNotSupported, false);
+            return new ResultInfo<SigningCredentials>(null!, JsonWebTokenEncoderDecoder.PublicKeyNotSupported, false);
         }
 
         SigningCredentials signingCredentials;
         switch (jwtAlgorithm)
         {
-            case JwtAlgorithm.ES256:
+            case JsonWebTokenAlgorithm.ES256:
                 var es256RsaSecurityKey = new ECDsaSecurityKey(ecd);
                 signingCredentials = new SigningCredentials(es256RsaSecurityKey, SecurityAlgorithms.EcdsaSha256Signature);
                 break;
-            case JwtAlgorithm.ES384:
+            case JsonWebTokenAlgorithm.ES384:
                 var es384SymmetricSecurityKey = new ECDsaSecurityKey(ecd);
-                signingCredentials = new SigningCredentials(es384SymmetricSecurityKey, SecurityAlgorithms.RsaSha384Signature);
+                signingCredentials = new SigningCredentials(es384SymmetricSecurityKey, SecurityAlgorithms.EcdsaSha384Signature);
                 break;
-            case JwtAlgorithm.ES512:
+            case JsonWebTokenAlgorithm.ES512:
                 var es512SymmetricSecurityKey = new ECDsaSecurityKey(ecd);
-                signingCredentials = new SigningCredentials(es512SymmetricSecurityKey, SecurityAlgorithms.RsaSha512Signature);
+                signingCredentials = new SigningCredentials(es512SymmetricSecurityKey, SecurityAlgorithms.EcdsaSha512Signature);
                 break;
             default:
                 throw new NotSupportedException();
         }
         return new ResultInfo<SigningCredentials>(signingCredentials);
     }
-
-    //private static void ValidatePublicKey(string key)
-    //{
-    //    using var rsa = new RSACryptoServiceProvider();
-    //    try
-    //    {
-    //        rsa.ImportFromPem(key.AsSpan());
-    //        if (rsa.PublicOnly)
-    //        {
-    //            Console.WriteLine("Public RSA key");
-    //        }
-    //        else
-    //        {
-    //            RSAParameters rsaParams = rsa.ExportParameters(true);
-    //            BigInteger m = new(rsaParams.Modulus, true, true);
-    //            BigInteger p = new(rsaParams.P, true, true);
-    //            BigInteger q = new(rsaParams.Q, true, true);
-    //        }
-    //    }
-    //    catch (Exception ex)
-    //    {
-
-    //    }
-    //}
 }

@@ -1,6 +1,6 @@
 ﻿namespace DevToys.Tools.Models;
 
-internal class JwtTokenResult
+internal class JsonWebTokenResult
 {
     public string? Token { get; set; }
 
@@ -13,9 +13,9 @@ internal class JwtTokenResult
 
     public string? PrivateKey { get; set; }
 
-    public JwtAlgorithm TokenAlgorithm { get; set; }
+    public JsonWebTokenAlgorithm TokenAlgorithm { get; set; }
 
-    public List<JwtClaim> HeaderClaims { get; set; } = new List<JwtClaim>();
+    public List<JsonWebTokenClaim> HeaderClaims { get; set; } = new List<JsonWebTokenClaim>();
 
-    public List<JwtClaim> PayloadClaims { get; set; } = new List<JwtClaim>();
+    public List<JsonWebTokenClaim> PayloadClaims { get; set; } = new List<JsonWebTokenClaim>();
 }

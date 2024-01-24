@@ -1,6 +1,6 @@
 ﻿namespace DevToys.Tools.Models;
 
-internal enum JwtAlgorithm
+internal enum JsonWebTokenAlgorithm
 {
     HS256,
     HS384,

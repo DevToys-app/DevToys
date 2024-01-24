@@ -33,6 +33,7 @@ public class JsonHelperTests
     public async Task FormatTwoSpaces(string input, bool expectedSucceeded, string expectedResult)
     {
         ResultInfo<string> result = await JsonHelper.FormatAsync(input, Indentation.TwoSpaces, false, new MockILogger(), CancellationToken.None);
+        result.HasSucceeded.Should().Be(expectedSucceeded);
         result.Data.Should().Be(expectedResult);
     }
 
@@ -46,6 +47,7 @@ public class JsonHelperTests
     public async Task FormatFourSpaces(string input, bool expectedSucceeded, string expectedResult)
     {
         ResultInfo<string> result = await JsonHelper.FormatAsync(input, Indentation.FourSpaces, false, new MockILogger(), CancellationToken.None);
+        result.HasSucceeded.Should().Be(expectedSucceeded);
         result.Data.Should().Be(expectedResult);
     }
 
@@ -59,6 +61,7 @@ public class JsonHelperTests
     public async Task FormatOneTab(string input, bool expectedSucceeded, string expectedResult)
     {
         ResultInfo<string> result = await JsonHelper.FormatAsync(input, Indentation.OneTab, false, new MockILogger(), CancellationToken.None);
+        result.HasSucceeded.Should().Be(expectedSucceeded);
         result.Data.Should().Be(expectedResult);
     }
 
@@ -72,6 +75,7 @@ public class JsonHelperTests
     public async Task FormatMinifiedAsync(string input, bool expectedSucceeded, string expectedResult)
     {
         ResultInfo<string> result = await JsonHelper.FormatAsync(input, Indentation.Minified, false, new MockILogger(), CancellationToken.None);
+        result.HasSucceeded.Should().Be(expectedSucceeded);
         result.Data.Should().Be(expectedResult);
     }
 

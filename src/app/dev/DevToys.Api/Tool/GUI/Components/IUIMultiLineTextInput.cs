@@ -192,7 +192,7 @@ public static partial class GUI
     /// <summary>
     /// Sets the list of tooltips to display on Word hover in the text document.
     /// </summary>
-    public static IUIMultiLineTextInput Tooltip(this IUIMultiLineTextInput element, params UIHoverTooltip[] tooltips)
+    public static IUIMultiLineTextInput HoverTooltip(this IUIMultiLineTextInput element, params UIHoverTooltip[] tooltips)
     {
         ((UIMultilineTextInput)element).Tooltips = tooltips;
         return element;
