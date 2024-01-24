@@ -89,7 +89,7 @@ public partial class Index : MefComponentBase
         StateHasChanged();
 
         // Start Smart Detection
-        ViewModel.RunSmartDetectionAsync(WindowService.IsCompactOverlayMode)
+        ViewModel.RunSmartDetectionAsync(WindowService.IsCompactOverlayMode, DialogService.IsDialogOpened)
             .ContinueWith(async _ =>
             {
                 await InvokeAsync(StateHasChanged);
@@ -161,7 +161,7 @@ public partial class Index : MefComponentBase
             _navBar.TryFocusSearchBoxAsync();
 
             // Start Smart Detection
-            ViewModel.RunSmartDetectionAsync(WindowService.IsCompactOverlayMode).Forget();
+            ViewModel.RunSmartDetectionAsync(WindowService.IsCompactOverlayMode, DialogService.IsDialogOpened).Forget();
         }
 
         if (IsTransitioning)
