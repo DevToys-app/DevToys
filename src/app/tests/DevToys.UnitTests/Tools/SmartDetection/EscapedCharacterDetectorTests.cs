@@ -5,26 +5,22 @@ using Microsoft.Extensions.Logging;
 
 namespace DevToys.UnitTests.Tools.SmartDetection;
 
-public class JsonArrayDataTypeDetectorTests
+public class EscapedCharacterDetectorTests
 {
     [Theory]
     [InlineData(null, false)]
-    [InlineData("\"foo\"", false)]
-    [InlineData("123", false)]
     [InlineData("", false)]
     [InlineData(" ", false)]
-    [InlineData("   {  }  ", false)]
-    [InlineData("   [  ]  ", false)]
-    [InlineData("   { \"foo\": 123 }  ", false)]
-    [InlineData("   [{ \"foo\": 123 }]  ", true)]
-    [InlineData("   [{ \"foo\": 123 }, { \"bar\": 456 }]  ", true)]
+    [InlineData("hello world", false)]
+    [InlineData("hello\rworld", false)]
+    [InlineData("hello\\rworld", true)]
     public async Task TryDetectDataAsync(string input, bool expectedResult)
     {
         LoggingExtensions.LoggerFactory ??= LoggerFactory.Create(builder => { });
 
         DataDetectionResult dataDetectionResult = new(false, input);
-        JsonArrayDataTypeDetector sut = new();
-        DataDetectionResult result = await sut.TryDetectDataAsync(
+        EscapedCharactersDetector detector = new();
+        DataDetectionResult result = await detector.TryDetectDataAsync(
             input,
             dataDetectionResult,
             default);

@@ -5,7 +5,6 @@ using Microsoft.Extensions.Logging;
 
 namespace DevToys.UnitTests.Tools.SmartDetection;
 
-[ExcludeFromCodeCoverage]
 public class YamlDataTypeDetectorTests
 {
     [Theory]

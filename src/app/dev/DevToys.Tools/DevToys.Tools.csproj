@@ -168,6 +168,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>TextCompare.resx</DependentUpon>
     </Compile>
+    <Compile Update="Tools\Text\EscapeUnescape\EscapeUnescape.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EscapeUnescape.resx</DependentUpon>
+    </Compile>
     <Compile Update="Tools\Text\MarkdownPreview\MarkdownPreview.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -297,6 +302,10 @@
     <EmbeddedResource Update="Tools\Text\Compare\TextCompare.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TextCompare.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Tools\Text\EscapeUnescape\EscapeUnescape.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EscapeUnescape.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Tools\Text\MarkdownPreview\MarkdownPreview.resx">
       <Generator>ResXFileCodeGenerator</Generator>
