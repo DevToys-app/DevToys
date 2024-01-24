@@ -1,8 +1,6 @@
-﻿using System.Threading;
-using DevToys.Tools.Helpers;
+﻿using DevToys.Tools.Helpers;
 using DevToys.Tools.Models;
 using DevToys.Tools.SmartDetection;
-using DevToys.Tools.Tools.EncodersDecoders.Base64Text;
 using Microsoft.Extensions.Logging;
 
 namespace DevToys.Tools.Tools.Text.EscapeUnescape;
