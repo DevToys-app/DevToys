@@ -1,5 +1,5 @@
-export function initializeStickyHeaders(id) {
-    const gridView = document.getElementById(id);
+export function initializeStickyHeaders(scrollViewerId) {
+    const gridView = document.getElementById(scrollViewerId);
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const simpleBar = SimpleBar.instances.get(gridView);

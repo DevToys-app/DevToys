@@ -117,16 +117,88 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="NotFindingTool" xml:space="preserve">
-    <value>Not finding what you're looking for?</value>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>JSONPath Tester tool</value>
   </data>
-  <data name="NotFindingToolOpenFeatureRequest" xml:space="preserve">
-    <value>Open a feature request on GitHub</value>
+  <data name="CheatSheetArraySliceOperator" xml:space="preserve">
+    <value>Array slice operator</value>
   </data>
-  <data name="NotFindingToolSuggestIdea" xml:space="preserve">
-    <value>Suggest an idea</value>
+  <data name="CheatSheetBracketNotedChildOperator" xml:space="preserve">
+    <value>Bracket-notated child or children</value>
   </data>
-  <data name="WelcomeTo" xml:space="preserve">
-    <value>Welcome to</value>
+  <data name="CheatSheetCurrentObjectElement" xml:space="preserve">
+    <value>Used for filter expressions. Refers to the current node for further processing.</value>
+  </data>
+  <data name="CheatSheetDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="CheatSheetDotNotedChildOperator" xml:space="preserve">
+    <value>Dot-notated child</value>
+  </data>
+  <data name="CheatSheetFilterExpression" xml:space="preserve">
+    <value>Selects all elements in an object or array that match the specified boolean expression. Returns a list.</value>
+  </data>
+  <data name="CheatSheetRecursiveDescent" xml:space="preserve">
+    <value>Performs a deep scan for the specified property in all available objects. Always returns a list, even for a single match.</value>
+  </data>
+  <data name="CheatSheetRootObjectElement" xml:space="preserve">
+    <value>The root object or array.</value>
+  </data>
+  <data name="CheatSheetScriptExpression" xml:space="preserve">
+    <value>Script expression.</value>
+  </data>
+  <data name="CheatSheetSubscriptOperator" xml:space="preserve">
+    <value>Selects the n-th element from an array. Indexes start from 0.</value>
+  </data>
+  <data name="CheatSheetSyntax" xml:space="preserve">
+    <value>Syntax</value>
+  </data>
+  <data name="CheatSheetTitle" xml:space="preserve">
+    <value>Cheat sheet</value>
+  </data>
+  <data name="CheatSheetUnionOperator" xml:space="preserve">
+    <value>Selects n1 and n2 array items. Returns a list.</value>
+  </data>
+  <data name="CheatSheetWildcard" xml:space="preserve">
+    <value>Wildcard. Selects all elements in an object or array, regardless of their names or indexes.</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Test a JSONPath</value>
+  </data>
+  <data name="InputFileNotFound" xml:space="preserve">
+    <value>Input file selected doesn't exist.</value>
+  </data>
+  <data name="InputJsonOptionDescription" xml:space="preserve">
+    <value>Text or path to a file containing the JSON</value>
+  </data>
+  <data name="InputJsonPathOptionDescription" xml:space="preserve">
+    <value>Text or path to a file containing the JSONPath</value>
+  </data>
+  <data name="InputJsonPathTitle" xml:space="preserve">
+    <value>JSONPath</value>
+  </data>
+  <data name="InputTitle" xml:space="preserve">
+    <value>JSON</value>
+  </data>
+  <data name="InvalidInputOrFileCommand" xml:space="preserve">
+    <value>Please specify an input text or an input file</value>
+  </data>
+  <data name="LongDisplayTitle" xml:space="preserve">
+    <value>JSONPath Tester</value>
+  </data>
+  <data name="NoMatchFound" xml:space="preserve">
+    <value>No match found</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>Test result</value>
+  </data>
+  <data name="OutputFileOptionDescription" xml:space="preserve">
+    <value>Path to the output file</value>
+  </data>
+  <data name="SearchKeywords" xml:space="preserve">
+    <value>path json</value>
+  </data>
+  <data name="ShortDisplayTitle" xml:space="preserve">
+    <value>JSONPath</value>
   </data>
 </root>

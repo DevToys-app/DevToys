@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DevToys.Tools.Tools.Text.XMLValidator {
+namespace DevToys.Tools.Tools.Testers.XMLTester {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace DevToys.Tools.Tools.Text.XMLValidator {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class XMLValidator {
+    internal class XMLTester {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal XMLValidator() {
+        internal XMLTester() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DevToys.Tools.Tools.Text.XMLValidator {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Tools.Tools.Text.XMLValidator.XMLValidator", typeof(XMLValidator).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Tools.Tools.Testers.XMLTester.XMLTester", typeof(XMLTester).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace DevToys.Tools.Tools.Text.XMLValidator {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Xml Validator tool.
+        ///   Looks up a localized string similar to Xml and XSD tester tool.
         /// </summary>
         internal static string AccessibleName {
             get {
@@ -97,7 +97,7 @@ namespace DevToys.Tools.Tools.Text.XMLValidator {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to XML Validator.
+        ///   Looks up a localized string similar to XML / XSD Tester.
         /// </summary>
         internal static string LongDisplayTitle {
             get {
@@ -115,7 +115,7 @@ namespace DevToys.Tools.Tools.Text.XMLValidator {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to XML Validator.
+        ///   Looks up a localized string similar to XML.
         /// </summary>
         internal static string ShortDisplayTitle {
             get {

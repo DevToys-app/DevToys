@@ -14,7 +14,7 @@ internal static partial class JsonHelper
     /// <summary>
     /// Detects whether the given string is a valid JSON or not.
     /// </summary>
-    internal static bool IsValid(string? input, ILogger logger)
+    internal static async ValueTask<bool> IsValidAsync(string? input, ILogger logger, CancellationToken cancellationToken)
     {
         if (input == null)
         {
@@ -28,7 +28,8 @@ internal static partial class JsonHelper
 
         try
         {
-            var jtoken = JToken.Parse(input);
+            using JsonReader reader = new JsonTextReader(new StringReader(input));
+            JToken? jtoken = await JToken.LoadAsync(reader, settings: null, cancellationToken);
             return jtoken is not null;
         }
         catch (JsonReaderException)
@@ -38,7 +39,7 @@ internal static partial class JsonHelper
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Invalid data detected 'input'", input);
+            logger.LogError(ex, "Invalid data detected.");
             return false;
         }
     }
@@ -130,7 +131,63 @@ internal static partial class JsonHelper
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Invalid JSON format 'indentationMode'", indentationMode);
+            logger.LogError(ex, "Invalid JSON format '{indentationMode}'", indentationMode);
+            return new(ex.Message, false);
+        }
+    }
+
+    /// <summary>
+    /// Get the data of a JSON object in the given JSONPath.
+    /// </summary>
+    internal static async Task<ResultInfo<string>> TestJsonPathAsync(string json, string jsonPath, ILogger logger, CancellationToken cancellationToken)
+    {
+        if (string.IsNullOrEmpty(json) || string.IsNullOrEmpty(jsonPath))
+        {
+            return new(string.Empty, false);
+        }
+
+        try
+        {
+            using JsonReader reader = new JsonTextReader(new StringReader(json));
+            JObject? jsonObject = await JObject.LoadAsync(reader, settings: null, cancellationToken);
+            return TestJsonPath(jsonObject, jsonPath, logger, cancellationToken);
+        }
+        catch (Exception ex) when (ex is OperationCanceledException or JsonReaderException)
+        {
+            return new(ex.Message, false);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Error while testing JsonPath.");
+            return new(ex.Message, false);
+        }
+    }
+
+    /// <summary>
+    /// Get the data of a JSON object in the given JSONPath.
+    /// </summary>
+    internal static ResultInfo<string> TestJsonPath(JObject jsonObject, string jsonPath, ILogger logger, CancellationToken cancellationToken)
+    {
+        Guard.IsNotNull(logger);
+        if (jsonObject is null || string.IsNullOrWhiteSpace(jsonPath))
+        {
+            return new(string.Empty, false);
+        }
+
+        try
+        {
+            IEnumerable<JToken> tokens = jsonObject.SelectTokens(jsonPath, errorWhenNoMatch: false);
+
+            cancellationToken.ThrowIfCancellationRequested();
+            return new(JsonConvert.SerializeObject(tokens, Formatting.Indented), true);
+        }
+        catch (OperationCanceledException)
+        {
+            return new(string.Empty, false);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Error while testing JsonPath.");
             return new(ex.Message, false);
         }
     }

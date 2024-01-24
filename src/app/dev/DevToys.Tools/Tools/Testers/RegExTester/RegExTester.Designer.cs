@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DevToys.Tools.Tools.Text.RegExTester {
+namespace DevToys.Tools.Tools.Testers.RegExTester {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace DevToys.Tools.Tools.Text.RegExTester {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Tools.Tools.Text.RegExTester.RegExTester", typeof(RegExTester).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Tools.Tools.Testers.RegExTester.RegExTester", typeof(RegExTester).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -1762,7 +1762,7 @@ namespace DevToys.Tools.Tools.Text.RegExTester {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RegEx Tester.
+        ///   Looks up a localized string similar to RegEx.
         /// </summary>
         internal static string ShortDisplayTitle {
             get {

@@ -117,16 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="NotFindingTool" xml:space="preserve">
-    <value>Not finding what you're looking for?</value>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>Testers</value>
   </data>
-  <data name="NotFindingToolOpenFeatureRequest" xml:space="preserve">
-    <value>Open a feature request on GitHub</value>
-  </data>
-  <data name="NotFindingToolSuggestIdea" xml:space="preserve">
-    <value>Suggest an idea</value>
-  </data>
-  <data name="WelcomeTo" xml:space="preserve">
-    <value>Welcome to</value>
+  <data name="DisplayTitle" xml:space="preserve">
+    <value>Testers</value>
   </data>
 </root>

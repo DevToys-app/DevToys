@@ -1,6 +1,6 @@
 ﻿namespace DevToys.Tools.Models;
 
-internal enum XmlValidatorResultSeverity
+internal enum XMLTesterResultSeverity
 {
     Success,
     Warning,

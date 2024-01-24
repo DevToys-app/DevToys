@@ -715,7 +715,7 @@ Within a character set, only \, -, and ] need to be escaped.</value>
     <value>regular expression</value>
   </data>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>RegEx Tester</value>
+    <value>RegEx</value>
   </data>
   <data name="Singleline" xml:space="preserve">
     <value>Singleline</value>

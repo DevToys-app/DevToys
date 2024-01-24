@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DevToys.Localization.Strings.ToolGroupPage {
+namespace DevToys.Tools.Tools.Testers {
     using System;
     
     
@@ -22,24 +22,24 @@ namespace DevToys.Localization.Strings.ToolGroupPage {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ToolGroupPage {
+    internal class Testers {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ToolGroupPage() {
+        internal Testers() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Localization.Strings.ToolGroupPage.ToolGroupPage", typeof(ToolGroupPage).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Tools.Tools.Testers.Testers", typeof(Testers).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace DevToys.Localization.Strings.ToolGroupPage {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,38 +61,20 @@ namespace DevToys.Localization.Strings.ToolGroupPage {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not finding what you&apos;re looking for?.
+        ///   Looks up a localized string similar to Testers.
         /// </summary>
-        public static string NotFindingTool {
+        internal static string AccessibleName {
             get {
-                return ResourceManager.GetString("NotFindingTool", resourceCulture);
+                return ResourceManager.GetString("AccessibleName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open a feature request on GitHub.
+        ///   Looks up a localized string similar to Testers.
         /// </summary>
-        public static string NotFindingToolOpenFeatureRequest {
+        internal static string DisplayTitle {
             get {
-                return ResourceManager.GetString("NotFindingToolOpenFeatureRequest", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Suggest an idea.
-        /// </summary>
-        public static string NotFindingToolSuggestIdea {
-            get {
-                return ResourceManager.GetString("NotFindingToolSuggestIdea", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Welcome to.
-        /// </summary>
-        public static string WelcomeTo {
-            get {
-                return ResourceManager.GetString("WelcomeTo", resourceCulture);
+                return ResourceManager.GetString("DisplayTitle", resourceCulture);
             }
         }
     }

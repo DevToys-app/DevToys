@@ -1,5 +1,78 @@
+@-webkit-keyframes hero-bg-scrolling {
+    0% {
+        background-position: 0px 196px; // The height of the hero image
+    }
+}
+
+@keyframes hero-bg-scrolling {
+    0% {
+        background-position: 0px 196px; // The height of the hero image
+    }
+}
+
+@keyframes hero-title-shade {
+    to {
+        background-position: 100% 0;
+    }
+}
+
+.hero {
+    height: 250px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-top-left-radius: var(--overlay-corner-radius);
+    mask: linear-gradient(0deg, transparent, rgb(255, 255, 255, 1) 65%);
+    mask-composite: intersect;
+
+    &::before {
+        content: '';
+        position: fixed;
+        width: 2000%;
+        height: 2000%;
+        top: -1000%;
+        left: -1000%;
+        z-index: -1;
+        background: var(--hero-background-image) repeat 0 0;
+        background-color: var(--hero-background-color);
+
+        // 3D translation
+        transform: rotateX(15deg) rotateZ(-15deg) skewX(15deg);
+        transform-style: preserve-3d;
+
+        // Animation
+        -webkit-animation: hero-bg-scrolling 20s infinite;
+        animation: hero-bg-scrolling 20s infinite;
+        -webkit-animation-timing-function: linear;
+        animation-timing-function: linear;
+    }
+
+    &-title {
+        display: flex;
+        font-weight: 900 !important;
+
+        & span:last-of-type {
+            display: inline-block;
+            background: var(--hero-title-color);
+            background-clip: text;
+            color: transparent;
+            animation: hero-title-shade 10s infinite linear;
+        }
+    }
+}
+
+.tool-group-parallax {
+    height: 100vh;
+    overflow-x: hidden;
+    perspective: 1px;
+}
+
 .tool-group-grid-view {
     padding: 40px;
+    transform: translateZ(0);
 
     .tool-group-grid-view-item {
         height: 134px;
@@ -10,7 +83,8 @@
         grid-template-rows: min-content 1fr;
         gap: 0px 0px;
         grid-template-areas:
-            "icon title buttons" "icon description description";
+            "icon title buttons"
+            "icon description description";
 
         .icon {
             grid-area: icon;
@@ -69,6 +143,10 @@
 
 // Compact mode
 div[data-compactmode] {
+    .hero {
+        height: 200px;
+    }
+
     .tool-group-grid-view {
         padding: 8px 16px;
     }

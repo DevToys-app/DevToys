@@ -98,6 +98,7 @@ public class UIToolView : INotifyPropertyChanged
     /// Gets the first child element with the specified id.
     /// </summary>
     /// <param name="id">The id of a child element.</param>
+    /// <remarks>This method is recursive and navigate through each element in the UI. It can be slow depending on the complexity of the UI. Be cautious when using it.</remarks>
     /// <returns>Returns null if the element could not be found. If many elements have the name id, this method returns the first it finds</returns>
     public IUIElement? GetChildElementById(string id)
     {
