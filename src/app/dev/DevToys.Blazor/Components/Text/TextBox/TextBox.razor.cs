@@ -40,6 +40,7 @@ public partial class TextBox : MefComponentBase, IFocusable
     private InputText? _input;
     private bool _isContextMenuOpened;
     private int _textChangedCount;
+    private TextBoxTypes _internalType = TextBoxTypes.Text;
 
     protected override string JavaScriptFile => "./_content/DevToys.Blazor/Components/Text/TextBox/TextBox.razor.js";
 
@@ -97,6 +98,13 @@ public partial class TextBox : MefComponentBase, IFocusable
     {
         base.OnInitialized();
         _settingsProvider.SettingChanged += SettingsProvider_SettingChanged;
+    }
+
+    protected override void OnParametersSet()
+    {
+        _internalType = Type;
+
+        base.OnParametersSet();
     }
 
     public ValueTask<bool> FocusAsync()
@@ -172,6 +180,17 @@ public partial class TextBox : MefComponentBase, IFocusable
     private void OnClearClick()
     {
         SetTextAsync(string.Empty).Forget();
+        FocusAsync();
+    }
+
+    private void OnRevealPasswordMouseDown()
+    {
+        _internalType = TextBoxTypes.Text;
+    }
+
+    private void OnRevealPasswordMouseUp()
+    {
+        _internalType = Type;
         FocusAsync();
     }
 

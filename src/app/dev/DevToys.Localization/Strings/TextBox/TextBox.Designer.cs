@@ -115,6 +115,15 @@ namespace DevToys.Localization.Strings.TextBox {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reveal.
+        /// </summary>
+        public static string RevealPassword {
+            get {
+                return ResourceManager.GetString("RevealPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select All.
         /// </summary>
         public static string SelectAll {
