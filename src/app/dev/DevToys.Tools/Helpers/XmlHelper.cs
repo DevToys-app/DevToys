@@ -118,7 +118,7 @@ internal static class XmlHelper
         }
         catch (Exception ex) // some other exception
         {
-            logger.LogError(ex, "Xml formatter", $"Indentation: {indentationMode}");
+            logger.LogError(ex, "Xml formatter. Indentation: {indentationMode}", indentationMode);
             return new(ex.Message, false);
         }
     }

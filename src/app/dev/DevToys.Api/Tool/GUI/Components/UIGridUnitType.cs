@@ -1,5 +1,8 @@
 ﻿namespace DevToys.Api;
 
+/// <summary>
+/// Represents the unit type of a row or column.
+/// </summary>
 public enum UIGridUnitType
 {
     /// <summary>

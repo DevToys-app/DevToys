@@ -24,10 +24,10 @@ public class UuidHelperTests
         TestUuid(newUuid, hyphens, uppercase);
     }
 
-    private void TestUuid(string uuid, bool hyphens, bool uppercase)
+    private static void TestUuid(string uuid, bool hyphens, bool uppercase)
     {
         Guid.TryParse(uuid, out _).Should().BeTrue();
-        uuid.Contains("-").Should().Be(hyphens);
+        uuid.Contains('-').Should().Be(hyphens);
         uuid.Length.Should().Be(hyphens ? 36 : 32);
         uuid.Should().Be(uppercase ? uuid.ToUpperInvariant() : uuid.ToLowerInvariant());
     }

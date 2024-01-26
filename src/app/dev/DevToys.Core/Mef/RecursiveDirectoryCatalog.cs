@@ -41,17 +41,6 @@ internal sealed partial class RecursiveDirectoryCatalog : ComposablePartCatalog,
         Initialize(path, searchPattern);
     }
 
-    private static IEnumerable<string> GetFoldersRecursive(string path)
-    {
-        var result = new List<string> { path };
-        foreach (string child in Directory.GetDirectories(path))
-        {
-            result.AddRange(GetFoldersRecursive(child));
-        }
-
-        return result;
-    }
-
     private void Initialize(string path, string searchPattern)
     {
         IEnumerable<string> files

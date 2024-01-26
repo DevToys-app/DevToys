@@ -13,7 +13,7 @@ public static class OSHelper
             }
             else if (OperatingSystem.IsMacOS() || OperatingSystem.IsMacCatalyst())
             {
-                currentPlatform = Platform.MacCatalyst;
+                currentPlatform = Platform.MacOS;
             }
             else if (OperatingSystem.IsWindows())
             {

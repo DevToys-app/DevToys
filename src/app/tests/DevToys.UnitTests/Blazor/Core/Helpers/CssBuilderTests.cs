@@ -31,7 +31,7 @@ public class CssBuilderTests
         //arrange
         bool hasTwo = false;
         bool hasThree = true;
-        Func<bool> hasFive = () => false;
+        static bool hasFive() => false;
 
         //act
         string classToRender = new CssBuilder("item-one")
@@ -50,7 +50,7 @@ public class CssBuilderTests
         //arrange
         bool hasTwo = false;
         bool hasThree = true;
-        Func<bool> hasFive = () => false;
+        static bool hasFive() => false;
 
         //act
         string classToRender = new CssBuilder("item-one")
@@ -86,7 +86,7 @@ public class CssBuilderTests
         {
             //arrange
             // Simulates Razor Components attribute splatting feature
-            IDictionary<string, object> attributes = new Dictionary<string, object> { { "class", "my-custom-class-1" } };
+            var attributes = new Dictionary<string, object> { { "class", "my-custom-class-1" } };
 
             //act
             string classToRender = new CssBuilder("item-one")
@@ -103,7 +103,7 @@ public class CssBuilderTests
         {
             //arrange
             // Simulates Razor Components attribute splatting feature
-            IDictionary<string, object> attributes = new Dictionary<string, object> { { "class", "my-custom-class-1" } };
+            var attributes = new Dictionary<string, object> { { "class", "my-custom-class-1" } };
 
             //act
             string classToRender = new CssBuilder("item-one")
@@ -154,7 +154,7 @@ public class CssBuilderTests
     {
         //arrange
         // Simulates Razor Components attribute splatting feature
-        IDictionary<string, object> attributes = new Dictionary<string, object> { { "foo", "bar" } };
+        var attributes = new Dictionary<string, object> { { "foo", "bar" } };
 
         //act
         string classToRender = new CssBuilder("item-one")

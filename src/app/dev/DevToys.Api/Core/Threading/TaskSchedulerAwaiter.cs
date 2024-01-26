@@ -3,10 +3,16 @@
 namespace DevToys.Api;
 
 /// <summary>
-/// An awaiter returned from <see cref="GetAwaiter(TaskScheduler)"/>.
+/// An awaiter returned from <see cref="GetAwaiter()"/>.
 /// </summary>
 public readonly struct TaskSchedulerAwaiter : ICriticalNotifyCompletion
 {
+    /// <summary>
+    /// Switches the execution context off the main thread asynchronously.
+    /// </summary>
+    /// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+    /// <returns>A <see cref="TaskSchedulerAwaiter"/> configured to the appropriate <see cref="TaskScheduler"/>.</returns>
+    /// <exception cref="OperationCanceledException">The token has had cancellation requested.</exception>
     public static TaskSchedulerAwaiter SwitchOffMainThreadAsync(CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -32,6 +38,7 @@ public readonly struct TaskSchedulerAwaiter : ICriticalNotifyCompletion
     /// Initializes a new instance of the <see cref="TaskSchedulerAwaiter"/> struct.
     /// </summary>
     /// <param name="scheduler">The scheduler for continuations.</param>
+    /// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
     /// <param name="alwaysYield">A value indicating whether the caller should yield even if
     /// already executing on the desired task scheduler.</param>
     public TaskSchedulerAwaiter(TaskScheduler scheduler, CancellationToken cancellationToken, bool alwaysYield = false)

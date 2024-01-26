@@ -1,6 +1,4 @@
-﻿using System.Xml.Linq;
-
-namespace DevToys.Api;
+﻿namespace DevToys.Api;
 
 /// <summary>
 /// A component that represents a empty card and <see cref="IUIElement"/> for the option value.
@@ -23,7 +21,7 @@ internal class UICard : UIElement, IUICard
         UIElement = uiElement;
     }
 
-    public IUIElement UIElement { get;  }
+    public IUIElement UIElement { get; }
 }
 
 public static partial class GUI

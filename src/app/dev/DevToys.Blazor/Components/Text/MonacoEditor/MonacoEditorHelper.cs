@@ -11,6 +11,12 @@ namespace DevToys.Blazor.Components;
 
 internal static class MonacoEditorHelper
 {
+    private static readonly JsonSerializerOptions jsonSerializerOptions = new()
+    {
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+    };
+
     /// <summary>
     /// Create a new editor under `domElement`.
     /// `domElement` should be empty (not contain other dom nodes).
@@ -29,11 +35,7 @@ internal static class MonacoEditorHelper
         Guard.IsNotNull(dotnetObjectRef);
 
         // Convert the options object into a JsonElement to get rid of the properties with null values
-        string optionsJson = JsonSerializer.Serialize(options, new JsonSerializerOptions
-        {
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-        });
+        string optionsJson = JsonSerializer.Serialize(options, jsonSerializerOptions);
         JsonElement optionsDict = JsonSerializer.Deserialize<JsonElement>(optionsJson);
 
         // Create the editor
@@ -64,11 +66,7 @@ internal static class MonacoEditorHelper
         options ??= new StandaloneDiffEditorConstructionOptions();
 
         // Convert the options object into a JsonElement to get rid of the properties with null values
-        string optionsJson = JsonSerializer.Serialize(options, new JsonSerializerOptions
-        {
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-        });
+        string optionsJson = JsonSerializer.Serialize(options, jsonSerializerOptions);
         JsonElement optionsDict = JsonSerializer.Deserialize<JsonElement>(optionsJson);
 
         // Create the editor

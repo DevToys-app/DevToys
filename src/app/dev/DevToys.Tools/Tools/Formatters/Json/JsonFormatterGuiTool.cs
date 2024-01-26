@@ -106,7 +106,7 @@ internal sealed partial class JsonFormatterGuiTool : IGuiTool, IDisposable
                     GridRow.Content,
                     GridColumn.Content,
                     SplitGrid()
-                        .Vertical() 
+                        .Vertical()
                         .WithLeftPaneChild(
                             _inputTextArea
                                 .Title(JsonFormatter.Input)

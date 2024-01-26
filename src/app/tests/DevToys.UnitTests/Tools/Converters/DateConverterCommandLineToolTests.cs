@@ -303,5 +303,4 @@ public sealed class DateConverterCommandLineToolTests : MefBasedTest
         string consoleOutput = _consoleWriter.ToString().Trim();
         consoleOutput.Should().Be(exceptedDateTimeString);
     }
-
 }

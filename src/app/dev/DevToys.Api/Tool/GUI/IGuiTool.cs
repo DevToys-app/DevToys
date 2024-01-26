@@ -54,7 +54,7 @@ public interface IGuiTool
     /// The expected behavior of this method is to pass the <paramref name="parsedData"/> to the <see cref="IUIElement"/>
     /// that fits the given data.
     /// </summary>
-    /// <param name="dataTypeName">The data type name, as defined by <see cref="AcceptedDataTypeNameAttribute"/>.<param>
+    /// <param name="dataTypeName">The data type name, as defined by <see cref="AcceptedDataTypeNameAttribute"/>.</param>
     /// <param name="parsedData">The data returned by the corresponding <see cref="IDataTypeDetector"/>.</param>
     void OnDataReceived(string dataTypeName, object? parsedData);
 }

@@ -8,6 +8,12 @@ namespace DevToys.Blazor.Components;
 
 public abstract class RicherMonacoEditorDiffBase : MonacoEditorBase
 {
+    private static readonly JsonSerializerOptions jsonSerializerOptions = new()
+    {
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+    };
+
     protected RicherMonacoEditorBase? _originalEditor;
     protected RicherMonacoEditorBase? _modifiedEditor;
 
@@ -346,11 +352,7 @@ public abstract class RicherMonacoEditorDiffBase : MonacoEditorBase
     public async ValueTask<bool> UpdateOptionsAsync(DiffEditorOptions newOptions)
     {
         // Convert the options object into a JsonElement to get rid of the properties with null values
-        string optionsJson = JsonSerializer.Serialize(newOptions, new JsonSerializerOptions
-        {
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-        });
+        string optionsJson = JsonSerializer.Serialize(newOptions, jsonSerializerOptions);
         JsonElement optionsDict = JsonSerializer.Deserialize<JsonElement>(optionsJson);
 
         bool success = await JSRuntime.InvokeVoidWithErrorHandlingAsync("devtoys.MonacoEditor.updateOptions", Id, optionsDict);

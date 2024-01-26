@@ -50,7 +50,7 @@ public partial class ComboBox<TElement> : SelectBase<TElement> where TElement : 
         }
     }
 
-    private void OpenDropDown(MouseEventArgs ev)
+    private void OpenDropDown(MouseEventArgs _)
     {
         if (IsActuallyEnabled && ContextMenuService.TryOpenContextMenu())
         {
@@ -70,7 +70,7 @@ public partial class ComboBox<TElement> : SelectBase<TElement> where TElement : 
         }
     }
 
-    private void CloseDropDown(MouseEventArgs? ev)
+    private void CloseDropDown(MouseEventArgs? __)
     {
         ContextMenuService.CloseContextMenuRequested -= ContextMenuService_CloseContextMenuRequested;
         ContextMenuService.CloseContextMenu();

@@ -1,5 +1,8 @@
 ﻿namespace DevToys.Api;
 
+/// <summary>
+/// Represents the length of a row or column.
+/// </summary>
 [DebuggerDisplay($"{{{nameof(ToString)}}}")]
 public readonly struct UIGridLength : IEquatable<UIGridLength>
 {
@@ -135,6 +138,10 @@ public readonly struct UIGridLength : IEquatable<UIGridLength>
         return _value.GetHashCode() ^ _type.GetHashCode();
     }
 
+    /// <summary>
+    /// Returns a string that represents the current <see cref="UIGridLength"/>.
+    /// </summary>
+    /// <returns>A string that represents the current <see cref="UIGridLength"/>.</returns>
     public override string ToString()
     {
         if (IsAuto)

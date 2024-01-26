@@ -69,7 +69,6 @@ public interface IFileStorage
     /// <summary>
     /// Creates a new temporary file in <see cref="AppCacheDirectory"/> that will be deleted when the app stops, or the next time is starts.
     /// </summary>
-    /// </summary>
     /// <param name="desiredFileExtension">(optional) The extension the temporary file should use.</param>
     /// <returns>Returns information to the file.</returns>
     FileInfo CreateSelfDestroyingTempFile(string? desiredFileExtension = null);

@@ -15,6 +15,11 @@ public sealed class SettingChangedEventArgs : EventArgs
     /// </summary>
     public object? NewValue { get; }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SettingChangedEventArgs"/> class.
+    /// </summary>
+    /// <param name="settingName">The name of the setting that changed.</param>
+    /// <param name="newValue">The new value of the setting.</param>
     public SettingChangedEventArgs(string settingName, object? newValue)
     {
         SettingName = settingName;

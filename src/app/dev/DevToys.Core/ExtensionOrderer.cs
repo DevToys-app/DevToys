@@ -1,8 +1,18 @@
-﻿namespace DevToys.Api;
+﻿namespace DevToys.Core;
 
-public static class ExtensionOrderer
+/// <summary>
+/// Provides methods for ordering and checking cycles in extensions.
+/// </summary>
+internal static class ExtensionOrderer
 {
-    public static IEnumerable<Lazy<TExtension, TMetadata>> Order<TExtension, TMetadata>(
+    /// <summary>
+    /// Orders the extensions based on their metadata.
+    /// </summary>
+    /// <typeparam name="TExtension">The type of the extension.</typeparam>
+    /// <typeparam name="TMetadata">The type of the metadata.</typeparam>
+    /// <param name="extensions">The extensions to be ordered.</param>
+    /// <returns>The ordered extensions.</returns>
+    internal static IEnumerable<Lazy<TExtension, TMetadata>> Order<TExtension, TMetadata>(
         IEnumerable<Lazy<TExtension, TMetadata>> extensions)
         where TMetadata : IOrderableMetadata
     {
@@ -10,7 +20,13 @@ public static class ExtensionOrderer
         return graph.TopologicalSort();
     }
 
-    public static void CheckForCycles<TExtension, TMetadata>(
+    /// <summary>
+    /// Checks for cycles in the extensions.
+    /// </summary>
+    /// <typeparam name="TExtension">The type of the extension.</typeparam>
+    /// <typeparam name="TMetadata">The type of the metadata.</typeparam>
+    /// <param name="extensions">The extensions to be checked.</param>
+    internal static void CheckForCycles<TExtension, TMetadata>(
         IEnumerable<Lazy<TExtension, TMetadata>> extensions)
         where TMetadata : IOrderableMetadata
     {

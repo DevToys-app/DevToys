@@ -11,12 +11,20 @@
 [DebuggerDisplay($"FileName = {{{nameof(FileName)}}}")]
 public abstract class SandboxedFileReader : IDisposable
 {
+    /// <summary>
+    /// The buffer size used for reading the file in chunks.
+    /// </summary>
     public const int BufferSize = 4096; // 4 KB chunks
 
     private readonly DisposableSemaphore _semaphore = new();
     private bool _disposed;
     private List<Stream>? _fileAccesses;
 
+    /// <summary>
+    /// Creates a new instance of the <see cref="SandboxedFileReader"/> class from a <see cref="FileInfo"/> object.
+    /// </summary>
+    /// <param name="fileInfo">The <see cref="FileInfo"/> object representing the file.</param>
+    /// <returns>A new instance of the <see cref="SandboxedFileReader"/> class.</returns>
     public static SandboxedFileReader FromFileInfo(FileInfo fileInfo)
     {
         Guard.IsNotNull(fileInfo);
@@ -26,6 +34,7 @@ public abstract class SandboxedFileReader : IDisposable
     /// <summary>
     /// Initializes a new instance of the <see cref="SandboxedFileReader"/> class.
     /// </summary>
+    /// <param name="fileName">The name of the file, including its extension.</param>
     protected SandboxedFileReader(string fileName)
     {
         FileName = Path.GetFileName(fileName);
@@ -41,8 +50,16 @@ public abstract class SandboxedFileReader : IDisposable
     /// </summary>
     public event EventHandler? Disposed;
 
+    /// <summary>
+    /// Opens the file for reading asynchronously.
+    /// </summary>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
     protected abstract ValueTask<Stream> OpenReadFileAsync(CancellationToken cancellationToken);
 
+    /// <summary>
+    /// Disposes the <see cref="SandboxedFileReader"/> and releases any resources used.
+    /// </summary>
     public void Dispose()
     {
         lock (_semaphore)
@@ -56,11 +73,13 @@ public abstract class SandboxedFileReader : IDisposable
     }
 
     /// <summary>
-    /// Get a new stream that can be used to read the file. The stream gets disposed automatically
+    /// Gets a new stream that can be used to read the file. The stream gets disposed automatically
     /// when the <see cref="SandboxedFileReader"/> is disposed.
     /// </summary>
     /// <remarks>In some cases, the returned stream is non-seekable.</remarks>
+    /// <param name="cancellationToken">The cancellation token.</param>
     /// <exception cref="ObjectDisposedException">The <see cref="SandboxedFileReader"/> has been disposed.</exception>"
+    /// <returns>A task representing the asynchronous operation.</returns>
     public async Task<Stream> GetNewAccessToFileContentAsync(CancellationToken cancellationToken)
     {
         using (await _semaphore.WaitAsync(cancellationToken))
@@ -78,8 +97,11 @@ public abstract class SandboxedFileReader : IDisposable
     }
 
     /// <summary>
-    /// Copy the content of the file to the given stream.
+    /// Copies the content of the file to the given stream.
     /// </summary>
+    /// <param name="destinationStream">The destination stream.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ObjectDisposedException">The <see cref="SandboxedFileReader"/> has been disposed.</exception>"
     public async Task CopyFileContentToAsync(Stream destinationStream, CancellationToken cancellationToken)
     {

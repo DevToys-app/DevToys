@@ -103,7 +103,7 @@ internal static partial class YamlHelper
         }
         catch (Exception ex)
         {
-            logger.LogError("Yaml to Json Converter", ex);
+            logger.LogError(ex, "Yaml to Json Converter");
             return new(string.Empty, false);
         }
     }

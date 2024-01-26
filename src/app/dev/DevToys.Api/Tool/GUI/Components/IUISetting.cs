@@ -67,33 +67,44 @@ internal class UISetting : UITitledElementWithChildren, IUISetting
         }
     }
 
+    /// <inheritdoc/>
     public string? Description
     {
         get => _description;
         internal set => SetPropertyValue(ref _description, value, DescriptionChanged);
     }
 
+    /// <inheritdoc/>
     public string? StateDescription
     {
         get => _stateDescription;
         internal set => SetPropertyValue(ref _stateDescription, value, StateDescriptionChanged);
     }
 
+    /// <inheritdoc/>
     public IUIIcon? Icon
     {
         get => _icon;
         internal set => SetPropertyValue(ref _icon, value, IconChanged);
     }
 
+    /// <inheritdoc/>
     public IUIElement? InteractiveElement
     {
         get => _interactiveElement;
         internal set => SetPropertyValue(ref _interactiveElement, value, InteractiveElementChanged);
     }
 
+    /// <inheritdoc/>
     public event EventHandler? DescriptionChanged;
+
+    /// <inheritdoc/>
     public event EventHandler? StateDescriptionChanged;
+
+    /// <inheritdoc/>
     public event EventHandler? IconChanged;
+
+    /// <inheritdoc/>
     public event EventHandler? InteractiveElementChanged;
 }
 
@@ -102,6 +113,7 @@ public static partial class GUI
     /// <summary>
     /// A component that represents a setting, with a title, description, icon and <see cref="IUIElement"/> for the option value.
     /// </summary>
+    /// <returns>The created <see cref="IUISetting"/> instance.</returns>
     public static IUISetting Setting()
     {
         return Setting(null);
@@ -111,6 +123,7 @@ public static partial class GUI
     /// A component that represents a setting, with a title, description, icon and <see cref="IUIElement"/> for the option value.
     /// </summary>
     /// <param name="id">An optional unique identifier for this UI element.</param>
+    /// <returns>The created <see cref="IUISetting"/> instance.</returns>
     public static IUISetting Setting(string? id)
     {
         return new UISetting(id);
@@ -119,6 +132,9 @@ public static partial class GUI
     /// <summary>
     /// Sets the <see cref="IUISetting.Description"/> of the setting.
     /// </summary>
+    /// <param name="element">The <see cref="IUISetting"/> instance.</param>
+    /// <param name="text">The description text.</param>
+    /// <returns>The updated <see cref="IUISetting"/> instance.</returns>
     public static IUISetting Description(this IUISetting element, string? text)
     {
         ((UISetting)element).Description = text;
@@ -128,6 +144,9 @@ public static partial class GUI
     /// <summary>
     /// Sets the <see cref="IUISetting.StateDescription"/> of the setting.
     /// </summary>
+    /// <param name="element">The <see cref="IUISetting"/> instance.</param>
+    /// <param name="text">The state description text.</param>
+    /// <returns>The updated <see cref="IUISetting"/> instance.</returns>
     public static IUISetting StateDescription(this IUISetting element, string? text)
     {
         ((UISetting)element).StateDescription = text;
@@ -137,6 +156,10 @@ public static partial class GUI
     /// <summary>
     /// Sets the <see cref="IUISetting.Icon"/> of the setting.
     /// </summary>
+    /// <param name="element">The <see cref="IUISetting"/> instance.</param>
+    /// <param name="fontName">The font name of the icon.</param>
+    /// <param name="glyph">The glyph of the icon.</param>
+    /// <returns>The updated <see cref="IUISetting"/> instance.</returns>
     public static IUISetting Icon(this IUISetting element, string fontName, char glyph)
     {
         ((UISetting)element).Icon = Icon(fontName, glyph);
@@ -146,6 +169,9 @@ public static partial class GUI
     /// <summary>
     /// Sets the <see cref="IUISetting.InteractiveElement"/> of the setting.
     /// </summary>
+    /// <param name="element">The <see cref="IUISetting"/> instance.</param>
+    /// <param name="uiElement">The interactive UI element.</param>
+    /// <returns>The updated <see cref="IUISetting"/> instance.</returns>
     public static IUISetting InteractiveElement(this IUISetting element, IUIElement? uiElement)
     {
         ((UISetting)element).InteractiveElement = uiElement;
@@ -156,9 +182,11 @@ public static partial class GUI
     /// Sets a <see cref="IUISwitch"/> to <see cref="IUISetting.InteractiveElement"/> and automatically associate the
     /// given <paramref name="settingDefinition"/> to the switch state.
     /// </summary>
+    /// <param name="element">The <see cref="IUISetting"/> instance.</param>
     /// <param name="settingsProvider">The settings provider used for handling the given <paramref name="settingDefinition"/>.</param>
-    /// <param name="settingDefinition">The definition of the setting to associate to this <see cref="IUISetting"/>.</param>
-    /// <param name="onToggled">(optional) A method to invoke when the setting value changed.</param>
+    /// <param name="settingDefinition">The definition of the setting to associate with this <see cref="IUISetting"/>.</param>
+    /// <param name="onToggled">(optional) A method to invoke when the setting value changes.</param>
+    /// <returns>The updated <see cref="IUISetting"/> instance.</returns>
     public static IUISetting Handle(
         this IUISetting element,
         ISettingsProvider settingsProvider,
@@ -179,9 +207,11 @@ public static partial class GUI
     /// Sets a <see cref="IUISwitch"/> to <see cref="IUISetting.InteractiveElement"/> and automatically associate the
     /// given <paramref name="settingDefinition"/> to the switch state.
     /// </summary>
+    /// <param name="element">The <see cref="IUISetting"/> instance.</param>
     /// <param name="settingsProvider">The settings provider used for handling the given <paramref name="settingDefinition"/>.</param>
-    /// <param name="settingDefinition">The definition of the setting to associate to this <see cref="IUISetting"/>.</param>
-    /// <param name="onToggled">(optional) A method to invoke when the setting value changed.</param>
+    /// <param name="settingDefinition">The definition of the setting to associate with this <see cref="IUISetting"/>.</param>
+    /// <param name="onToggled">(optional) A method to invoke when the setting value changes.</param>
+    /// <returns>The updated <see cref="IUISetting"/> instance.</returns>
     public static IUISetting Handle(
         this IUISetting element,
         ISettingsProvider settingsProvider,
@@ -206,11 +236,13 @@ public static partial class GUI
     /// Sets a <see cref="IUISwitch"/> to <see cref="IUISetting.InteractiveElement"/> and automatically associate the
     /// given <paramref name="settingDefinition"/> to the switch state.
     /// </summary>
+    /// <param name="element">The <see cref="IUISetting"/> instance.</param>
     /// <param name="settingsProvider">The settings provider used for handling the given <paramref name="settingDefinition"/>.</param>
     /// <param name="settingDefinition">The definition of the setting to associate to this <see cref="IUISetting"/>.</param>
     /// <param name="stateDescriptionWhenOn">The <see cref="IUISetting.StateDescription"/> to use when the option is On.</param>
     /// <param name="stateDescriptionWhenOff">The <see cref="IUISetting.StateDescription"/> to use when the option is Off.</param>
     /// <param name="onToggled">(optional) A method to invoke when the setting value changed.</param>
+    /// <returns>The updated <see cref="IUISetting"/> instance.</returns>
     public static IUISetting Handle(
         this IUISetting element,
         ISettingsProvider settingsProvider,
@@ -233,11 +265,13 @@ public static partial class GUI
     /// Sets a <see cref="IUISwitch"/> to <see cref="IUISetting.InteractiveElement"/> and automatically associate the
     /// given <paramref name="settingDefinition"/> to the switch state.
     /// </summary>
+    /// <param name="element">The <see cref="IUISetting"/> instance.</param>
     /// <param name="settingsProvider">The settings provider used for handling the given <paramref name="settingDefinition"/>.</param>
     /// <param name="settingDefinition">The definition of the setting to associate to this <see cref="IUISetting"/>.</param>
     /// <param name="stateDescriptionWhenOn">The <see cref="IUISetting.StateDescription"/> to use when the option is On.</param>
     /// <param name="stateDescriptionWhenOff">The <see cref="IUISetting.StateDescription"/> to use when the option is Off.</param>
     /// <param name="onToggled">(optional) A method to invoke when the setting value changed.</param>
+    /// <returns>The updated <see cref="IUISetting"/> instance.</returns>
     public static IUISetting Handle(
         this IUISetting element,
         ISettingsProvider settingsProvider,
@@ -264,10 +298,12 @@ public static partial class GUI
     /// Sets a <see cref="IUISelectDropDownList"/> to <see cref="IUISetting.InteractiveElement"/> and automatically associate the
     /// given <paramref name="settingDefinition"/> to the switch state.
     /// </summary>
+    /// <param name="element">The <see cref="IUISetting"/> instance.</param>
     /// <param name="settingsProvider">The settings provider used for handling the given <paramref name="settingDefinition"/>.</param>
     /// <param name="settingDefinition">The definition of the setting to associate to this <see cref="IUISetting"/>.</param>
     /// <param name="onOptionSelected">(optional) A method to invoke when the setting value changed.</param>
     /// <param name="dropDownListItems">(optional) A list of items to be displayed in the drop down list. <see cref="IUIDropDownListItem.Value"/> should be of type <typeparamref name="T"/>.</param>
+    /// <returns>The updated <see cref="IUISetting"/> instance.</returns>
     public static IUISetting Handle<T>(
         this IUISetting element,
         ISettingsProvider settingsProvider,
@@ -291,10 +327,12 @@ public static partial class GUI
     /// Sets a <see cref="IUISelectDropDownList"/> to <see cref="IUISetting.InteractiveElement"/> and automatically associate the
     /// given <paramref name="settingDefinition"/> to the switch state.
     /// </summary>
+    /// <param name="element">The <see cref="IUISetting"/> instance.</param>
     /// <param name="settingsProvider">The settings provider used for handling the given <paramref name="settingDefinition"/>.</param>
     /// <param name="settingDefinition">The definition of the setting to associate to this <see cref="IUISetting"/>.</param>
     /// <param name="onOptionSelected">(optional) A method to invoke when the setting value changed.</param>
     /// <param name="dropDownListItems">(optional) A list of items to be displayed in the drop down list. <see cref="IUIDropDownListItem.Value"/> should be of type <typeparamref name="T"/>.</param>
+    /// <returns>The updated <see cref="IUISetting"/> instance.</returns>
     public static IUISetting Handle<T>(
         this IUISetting element,
         ISettingsProvider settingsProvider,

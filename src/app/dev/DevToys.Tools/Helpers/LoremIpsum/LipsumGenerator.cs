@@ -12,7 +12,7 @@ internal sealed class LipsumGenerator
 {
     private const string LoremIpsumStartText = "Lorem ipsum dolor sit amet";
 
-    private LipsumsCorpus _lipsum = LipsumsCorpus.LoremIpsum;
+    private readonly LipsumsCorpus _lipsum = LipsumsCorpus.LoremIpsum;
     private StringBuilder _lipsumText = new();
     private IReadOnlyList<string> _preparedWords = Array.Empty<string>();
 
@@ -165,7 +165,7 @@ internal sealed class LipsumGenerator
          * refactored into one method that takes a count 
          * and a TextFeature. */
         string[] paragraphs = new string[count];
-        string[] sentences = new string[] { };
+        string[] sentences;
         for (int i = 0; i < count; i++)
         {
             /* Get a random amount of sentences based on the
@@ -216,7 +216,7 @@ internal sealed class LipsumGenerator
     internal string[] GenerateSentences(int count, Sentence options)
     {
         string[] sentences = new string[count];
-        string[] words = new string[] { };
+        string[] words;
 
         for (int i = 0; i < count; i++)
         {

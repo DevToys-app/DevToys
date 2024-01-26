@@ -39,7 +39,6 @@ internal sealed class EscapeUnescapeGuiTool : IGuiTool, IDisposable
         Stretch
     }
 
-
     private readonly DisposableSemaphore _semaphore = new();
     private readonly ILogger _logger;
     private readonly ISettingsProvider _settingsProvider;

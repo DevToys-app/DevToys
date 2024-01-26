@@ -62,8 +62,7 @@ internal sealed class CryptoRandom : Random
     /// </exception>
     public override int Next(int maxValue)
     {
-        if (maxValue < 0)
-            throw new ArgumentOutOfRangeException(nameof(maxValue));
+        ArgumentOutOfRangeException.ThrowIfNegative(maxValue);
 
         return Next(0, maxValue);
     }
@@ -81,8 +80,7 @@ internal sealed class CryptoRandom : Random
     /// </exception>
     public override int Next(int minValue, int maxValue)
     {
-        if (minValue > maxValue)
-            throw new ArgumentOutOfRangeException(nameof(minValue));
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(minValue, maxValue);
 
         if (minValue == maxValue)
             return minValue;
@@ -123,8 +121,7 @@ internal sealed class CryptoRandom : Random
     /// </exception>
     public override void NextBytes(byte[] buffer)
     {
-        if (buffer == null)
-            throw new ArgumentNullException(nameof(buffer));
+        ArgumentNullException.ThrowIfNull(buffer);
 
         Rng.GetBytes(buffer);
     }

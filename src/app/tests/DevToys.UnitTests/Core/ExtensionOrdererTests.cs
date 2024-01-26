@@ -1,4 +1,6 @@
-﻿namespace DevToys.UnitTests.Api.Core;
+﻿using DevToys.Core;
+
+namespace DevToys.UnitTests.Core;
 
 public class ExtensionOrdererTests
 {
