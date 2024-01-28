@@ -301,13 +301,13 @@
     <value>Nome completo dell'utente finale in forma visualizzabile comprensivo di tutte le parti del nome, eventualmente inclusi titoli e suffissi ordinati in base alle impostazioni locali e preferenze dell'utente finale.</value>
   </data>
   <data name="given_name" xml:space="preserve">
-    <value>Given name(s) or first name(s) of the End-User. Note that in some cultures, people can have multiple given names; all can be present, with the names being separated by space characters.</value>
+    <value>Nome dell'utente finale. Si noti che in alcune culture le persone possono avere più nomi dati; tutti possono essere presenti, con i nomi separati da uno spazio.</value>
   </data>
   <data name="family_name" xml:space="preserve">
-    <value>Surname(s) or last name(s) of the End-User. Note that in some cultures, people can have multiple family names or no family name; all can be present, with the names being separated by space characters.</value>
+    <value>Cognomi dell’utente finale. Notare che in alcune culture le persone possono avere più cognomi o nessun cognome; tutti possono essere presenti, con i cognomi separati da uno spazio.</value>
   </data>
   <data name="middle_name" xml:space="preserve">
-    <value>Middle name(s) of the End-User. Note that in some cultures, people can have multiple middle names; all can be present, with the names being separated by space characters. Also note that in some cultures, middle names are not used.</value>
+    <value>Middle name dell'utilizzatore finale. Si noti che in alcune culture le persone possono avere più Middle name; tutti possono essere presenti, con i nomi separati da uno spazio. Si noti anche che in alcune culture, i Middle name non sono usati.</value>
   </data>
   <data name="nickname" xml:space="preserve">
     <value>Nome casuale dell'utente finale che può o meno essere lo stesso nome_dato. Per esempio, un valore di soprannome di Mike potrebbe essere restituito accanto ad un valore given_name di Michael.</value>
