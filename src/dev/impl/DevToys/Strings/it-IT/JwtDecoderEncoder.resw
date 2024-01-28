@@ -298,31 +298,31 @@
     <value>The "jti" (JWT ID) claim provides a unique identifier for the JWT. The identifier value MUST be assigned in a manner that ensures that there is a negligible probability that the same value will be accidentally assigned to a different data object; if the application uses multiple issuers, collisions MUST be prevented among values produced by different issuers as well. The "jti" claim can be used to prevent the JWT from being replayed. The "jti" value is a case-sensitive string. Use of this claim is OPTIONAL.</value>
   </data>
   <data name="name" xml:space="preserve">
-    <value>End-User's full name in displayable form including all name parts, possibly including titles and suffixes, ordered according to the End-User's locale and preferences.</value>
+    <value>Nome completo dell'utente finale in forma visualizzabile comprensivo di tutte le parti del nome, eventualmente inclusi titoli e suffissi ordinati in base alle impostazioni locali e preferenze dell'utente finale.</value>
   </data>
   <data name="given_name" xml:space="preserve">
-    <value>Given name(s) or first name(s) of the End-User. Note that in some cultures, people can have multiple given names; all can be present, with the names being separated by space characters.</value>
+    <value>Nome dell'utente finale. Si noti che in alcune culture le persone possono avere più nomi dati; tutti possono essere presenti, con i nomi separati da uno spazio.</value>
   </data>
   <data name="family_name" xml:space="preserve">
-    <value>Surname(s) or last name(s) of the End-User. Note that in some cultures, people can have multiple family names or no family name; all can be present, with the names being separated by space characters.</value>
+    <value>Cognomi dell’utente finale. Notare che in alcune culture le persone possono avere più cognomi o nessun cognome; tutti possono essere presenti, con i cognomi separati da uno spazio.</value>
   </data>
   <data name="middle_name" xml:space="preserve">
-    <value>Middle name(s) of the End-User. Note that in some cultures, people can have multiple middle names; all can be present, with the names being separated by space characters. Also note that in some cultures, middle names are not used.</value>
+    <value>Middle name dell'utilizzatore finale. Si noti che in alcune culture le persone possono avere più Middle name; tutti possono essere presenti, con i nomi separati da uno spazio. Si noti anche che in alcune culture, i Middle name non sono usati.</value>
   </data>
   <data name="nickname" xml:space="preserve">
-    <value>Casual name of the End-User that may or may not be the same as the given_name. For instance, a nickname value of Mike might be returned alongside a given_name value of Michael.</value>
+    <value>Nome casuale dell'utente finale che può o meno essere lo stesso nome_dato. Per esempio, un valore di soprannome di Mike potrebbe essere restituito accanto ad un valore given_name di Michael.</value>
   </data>
   <data name="preferred_username" xml:space="preserve">
-    <value>Shorthand name by which the End-User wishes to be referred to at the RP, such as janedoe or j.doe. This value MAY be any valid JSON string including special characters such as @, /, or whitespace. The RP MUST NOT rely upon this value being unique.</value>
+    <value>Nome più breve con cui l'Utente finale desidera essere indicato al RP, come janedoe o j.doe. Questo valore POSSONO essere qualsiasi stringa JSON valida, compresi caratteri speciali come @, /, o spazi bianchi. Il RP NON DEVE contare su questo valore essere unico.</value>
   </data>
   <data name="profile" xml:space="preserve">
-    <value>URL of the End-User's profile page. The contents of this Web page SHOULD be about the End-User.</value>
+    <value>URL della pagina del profilo dell'utente finale. Il contenuto di questa pagina Web mostra informazioni sull'utente finale.</value>
   </data>
   <data name="picture" xml:space="preserve">
-    <value>URL of the End-User's profile picture. This URL MUST refer to an image file (for example, a PNG, JPEG, or GIF image file), rather than to a Web page containing an image. Note that this URL SHOULD specifically reference a profile photo of the End-User suitable for displaying when describing the End-User, rather than an arbitrary photo taken by the End-User.</value>
+    <value>URL della foto del profilo dell'utente finale. Questo URL DEVE fare riferimento a un file immagine (ad esempio, un PNG, JPEG, o file immagine GIF) piuttosto che ad una pagina Web contenente un'immagine. Nota che questo URL DEVE fare riferimento in modo specifico a una foto del profilo dell'utente finale idoneo a visualizzare quando si descrive l'utente finale, anziché una foto arbitraria scattata dall'utente finale.</value>
   </data>
   <data name="website" xml:space="preserve">
-    <value>URL of the End-User's Web page or blog. This Web page SHOULD contain information published by the End-User or an organization that the End-User is affiliated with.</value>
+    <value>URL della pagina Web o del blog dell'utente finale. Questa pagina Web DOVE contenere informazioni pubblicate dall'utente finale o da un'organizzazione con cui l'utente finale è affiliato.</value>
   </data>
   <data name="email" xml:space="preserve">
     <value>End-User's preferred e-mail address. Its value MUST conform to the RFC 5322 addr-spec syntax. The RP MUST NOT rely upon this value being unique.</value>
@@ -373,9 +373,9 @@
     <value>Authentication Context Class Reference. String specifying an Authentication Context Class Reference value that identifies the Authentication Context Class that the authentication performed satisfied. The value "0" indicates the End-User authentication did not meet the requirements of ISO/IEC 29115 level 1. Authentication using a long-lived browser cookie, for instance, is one example where the use of "level 0" is appropriate. Authentications with level 0 SHOULD NOT be used to authorize access to any resource of any monetary value. (This corresponds to the OpenID 2.0 PAPE nist_auth_level 0.) An absolute URI or an RFC 6711 registered name SHOULD be used as the acr value; registered names MUST NOT be used with a different meaning than that which is registered. Parties using this claim will need to agree upon the meanings of the values used, which may be context-specific. The acr value is a case sensitive string.</value>
   </data>
   <data name="amr" xml:space="preserve">
-    <value>Authentication Methods References. JSON array of strings that are identifiers for authentication methods used in the authentication. For instance, values might indicate that both password and OTP authentication methods were used. Parties using this claim will need to agree upon the meanings of the values used, which may be context-specific. The amr value is an array of case sensitive strings.</value>
+    <value>Metodi di autenticazione Riferimenti. Array JSON di stringhe che sono identificatori per i metodi di autenticazione usati nell'autenticazione. Ad esempio, i valori potrebbero indicare che sono stati utilizzati sia i metodi di autenticazione di password che OTP. Le parti che si avvalgono di tale affermazione dovranno concordare i significati dei valori utilizzati, che possono essere specifici del contesto. Il valore amr è un array di stringhe sensibili alle maiuscole e minuscole.</value>
   </data>
   <data name="sub_jwk" xml:space="preserve">
-    <value>Public key used to check the signature of an ID Token issued by a Self-Issued OpenID Provider. The key is a bare key in JWK format (not an X.509 certificate value). The sub_jwk value is a JSON object. Use of the sub_jwk Claim is NOT RECOMMENDED when the OP is not Self-Issued.</value>
+    <value>Chiave pubblica utilizzata per verificare la firma di un Token ID rilasciato da un Provider OpenID Auto-Emesso. La chiave è una chiave nuda in formato JWK (non un X. 09 valore del certificato). Il valore sub_jwk è un oggetto JSON. L'uso del reclamo sub_jwk NON è CONSIGLIATO quando l'OP non è Auto-Emesso.</value>
   </data>
 </root>
