@@ -47,22 +47,30 @@ internal class UIProgressBar : UIElement, IUIProgressBar, IDisposable
                 TimeSpan.FromMilliseconds(10));
     }
 
+    /// <inheritdoc/>
     public double Value
     {
         get => _value;
         internal set => SetPropertyValue(ref _value, value, ValueChanged);
     }
 
+    /// <inheritdoc/>
     public bool IsIndeterminate
     {
         get => _isIndeterminate;
         internal set => SetPropertyValue(ref _isIndeterminate, value, IsIndeterminateChanged);
     }
 
+    /// <inheritdoc/>
     public event EventHandler? ValueChanged;
+
+    /// <inheritdoc/>
     public event EventHandler<double>? ValueChangingAsynchronously;
+
+    /// <inheritdoc/>
     public event EventHandler? IsIndeterminateChanged;
 
+    /// <inheritdoc/>
     public void Dispose()
     {
         _asyncProgressReporter.Flush();
@@ -85,6 +93,7 @@ public static partial class GUI
     /// <summary>
     /// Create a component that indicates the progress of an operation.
     /// </summary>
+    /// <returns>The created <see cref="IUIProgressBar"/> instance.</returns>
     public static IUIProgressBar ProgressBar()
     {
         return ProgressBar(null);
@@ -94,6 +103,7 @@ public static partial class GUI
     /// Create a component that indicates the progress of an operation.
     /// </summary>
     /// <param name="id">An optional unique identifier for this UI element.</param>
+    /// <returns>The created <see cref="IUIProgressBar"/> instance.</returns>
     public static IUIProgressBar ProgressBar(string? id)
     {
         return new UIProgressBar(id);
@@ -103,6 +113,7 @@ public static partial class GUI
     /// Synchronously set the <see cref="IUIProgressBar.Value"/> property.
     /// </summary>
     /// <remarks>It is highly recommended to call this method when being on the UI thread.</remarks>
+    /// <param name="element">The <see cref="IUIProgressBar"/> instance.</param>
     /// <param name="percentage">A value between 0 and 100.</param>
     public static T Progress<T>(this T element, double percentage) where T : IUIProgressBar
     {
@@ -119,6 +130,7 @@ public static partial class GUI
     /// progress bar's value without blocking the caller.
     /// </summary>
     /// <remarks>It is highly recommended to call this method when being off the UI thread.</remarks>
+    /// <param name="element">The <see cref="IUIProgressBar"/> instance.</param>
     /// <param name="percentage">A value between 0 and 100.</param>
     public static ValueTask ProgressAsync<T>(this T element, double percentage) where T : IUIProgressBar
     {
@@ -134,6 +146,7 @@ public static partial class GUI
     /// <summary>
     /// Indicates the progress bar should a generic, continuous progress feedback.
     /// </summary>
+    /// <param name="element">The <see cref="IUIProgressBar"/> instance.</param>
     public static T StartIndeterminateProgress<T>(this T element) where T : IUIProgressBar
     {
         if (element is UIProgressBar progressBar)
@@ -147,6 +160,7 @@ public static partial class GUI
     /// <summary>
     /// Indicates the progress bar should show actual values.
     /// </summary>
+    /// <param name="element">The <see cref="IUIProgressBar"/> instance.</param>
     public static T StopIndeterminateProgress<T>(this T element) where T : IUIProgressBar
     {
         if (element is UIProgressBar progressBar)

@@ -121,7 +121,7 @@ public sealed partial class SmartDetectionService
             DetectorNode detectorNode = detectorHierarchy[i];
 
             // Detect data types from raw data using the current detector.
-            DataDetectionResult resultFromDetector = await DetectAsync(cancellationToken, detectorNode.Detector.Value, rawData, resultFromBaseDetector);
+            DataDetectionResult resultFromDetector = await DetectAsync(detectorNode.Detector.Value, rawData, resultFromBaseDetector, cancellationToken);
 
             // If the detection was successful
             if (resultFromDetector.Success)
@@ -162,10 +162,10 @@ public sealed partial class SmartDetectionService
     }
 
     private async ValueTask<DataDetectionResult> DetectAsync(
-        CancellationToken cancellationToken,
         IDataTypeDetector detector,
         object rawData,
-        DataDetectionResult? resultFromBaseDetector)
+        DataDetectionResult? resultFromBaseDetector,
+        CancellationToken cancellationToken)
     {
         try
         {

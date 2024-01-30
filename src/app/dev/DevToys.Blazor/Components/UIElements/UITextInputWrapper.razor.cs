@@ -351,7 +351,7 @@ public partial class UITextInputWrapper : MefComponentBase
             CancellationTokenSource? cancellationSourceToken = _cancellationTokenSource;
             cancellationSourceToken?.Cancel();
             cancellationSourceToken?.Dispose();
-            Interlocked.Exchange(ref _cancellationTokenSource, new(TimeSpan.FromSeconds(5)));
+            Interlocked.Exchange(ref _cancellationTokenSource, new(TimeSpan.FromSeconds(2)));
             SmartDetectToolsAsync(UITextInput.Text, _cancellationTokenSource.Token).ForgetSafely();
         }
     }

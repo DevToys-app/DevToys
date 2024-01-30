@@ -88,7 +88,7 @@ public partial class ContextMenu : StyledComponentBase
         }
     }
 
-    private async Task CloseMenuAsync(MouseEventArgs? ev)
+    private async Task CloseMenuAsync(MouseEventArgs? _)
     {
         ContextMenuService.CloseContextMenuRequested -= ContextMenuService_CloseContextMenuRequested;
         ContextMenuService.CloseContextMenu();

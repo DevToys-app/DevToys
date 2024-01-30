@@ -9,7 +9,7 @@ public sealed class CommandLineOptionAttribute : CommandNameAttribute
 {
     /// <summary>
     /// Gets the name of the option. Example, "file".
-    /// Implicitly, an option named "file" will be usable in a command line through "--file <value>".
+    /// Implicitly, an option named "file" will be usable in a command line through "--file &lt;value&gt;".
     /// </summary>
     public new string Name
     {
@@ -19,7 +19,7 @@ public sealed class CommandLineOptionAttribute : CommandNameAttribute
 
     /// <summary>
     /// Gets or sets the alias name of the option. Example, "f".
-    /// Implicitly, an option named "f" will be usable in a command line through "-f <value>".
+    /// Implicitly, an option named "f" will be usable in a command line through "-f &lt;value&gt;".
     /// </summary>
     public new string Alias
     {

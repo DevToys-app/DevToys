@@ -19,7 +19,7 @@ internal sealed class PolymorphicConverterFactory : JsonConverterFactory
             typeof(PolymorphicConverter<>).MakeGenericType(typeToConvert),
             BindingFlags.Instance | BindingFlags.Public,
             null,
-            new object[] { },
+            Array.Empty<object>(),
             null)!;
     }
 }

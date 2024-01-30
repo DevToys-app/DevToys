@@ -90,7 +90,7 @@ public partial class DropDownButton<TItem> : StyledComponentBase, IDisposable wh
         }
     }
 
-    private void OpenDropDown(MouseEventArgs ev)
+    private void OpenDropDown(MouseEventArgs _)
     {
         if (IsActuallyEnabled && ContextMenuService.TryOpenContextMenu())
         {
@@ -100,7 +100,7 @@ public partial class DropDownButton<TItem> : StyledComponentBase, IDisposable wh
         }
     }
 
-    private void CloseDropDown(MouseEventArgs? ev)
+    private void CloseDropDown(MouseEventArgs? _)
     {
         ContextMenuService.CloseContextMenuRequested -= ContextMenuService_CloseContextMenuRequested;
         ContextMenuService.CloseContextMenu();
@@ -116,7 +116,7 @@ public partial class DropDownButton<TItem> : StyledComponentBase, IDisposable wh
         }
     }
 
-    private void OnDropDowlListItemSelected(int itemIndex)
+    private void OnDropDowlListItemSelected(int _)
     {
         if (_listBox is not null && _listBox.SelectedItem is not null && _listBox.SelectedItem.IsEnabled)
         {

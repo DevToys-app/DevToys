@@ -80,8 +80,12 @@ internal class UINumberInput : UISingleLineTextInput, IUINumberInput
     {
         get
         {
-            double.TryParse(Text, out double value);
-            return Math.Min(Math.Max(value, Min), Max);
+            if (double.TryParse(Text, out double value))
+            {
+                return Math.Min(Math.Max(value, Min), Max);
+            }
+
+            return Math.Min(Math.Max(0, Min), Max);
         }
     }
 

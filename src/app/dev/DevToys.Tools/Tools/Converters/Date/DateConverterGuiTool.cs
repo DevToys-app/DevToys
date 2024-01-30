@@ -82,7 +82,7 @@ internal sealed partial class DateConverterGuiTool : IGuiTool, IDisposable
         }
         set
         {
-            _settingsProvider.SetSetting(timeZoneIdSettings, value.Value!.ToString());
+            _settingsProvider.SetSetting(timeZoneIdSettings, value.Value!.ToString() ?? string.Empty);
         }
     }
 

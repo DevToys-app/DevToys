@@ -133,7 +133,7 @@ internal sealed class OptionToICommandLineToolMap
         return option;
     }
 
-    private static Option CreateOneOfTypeOption(
+    private static OneOfOption CreateOneOfTypeOption(
         CommandLineOptionAttribute commandLineOptionAttribute,
         string optionName,
         string? optionDescription,

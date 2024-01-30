@@ -19,7 +19,7 @@
 public interface IDataTypeDetector
 {
     /// <summary>
-    /// Tries to detect whether the given <paramref name="data"/> match the expected format known by this
+    /// Tries to detect whether the given <paramref name="rawData"/> match the expected format known by this
     /// <see cref="IDataTypeDetector"/>, often by trying to reading and/or parsing it.
     /// </summary>
     /// <remarks>
@@ -34,6 +34,7 @@ public interface IDataTypeDetector
     /// <param name="rawData">The data to analyze, often coming from the OS's clipboard.</param>
     /// <param name="resultFromBaseDetector">The result coming from the <see cref="IDataTypeDetector"/> corresponding to the given <see cref="DataTypeNameAttribute.DataTypeBaseName"/>.
     /// Since, the <see cref="DataTypeNameAttribute.DataTypeBaseName"/> is optional, this parameter can be null.</param>
+    /// <param name="cancellationToken">A <see cref="CancellationToken"/> that gets canceled within 2 seconds.</param>
     /// <returns>
     /// Returns a <see cref="DataDetectionResult"/> that indicates whether the data could be analyzed / parsed / read
     /// correctly, along with the parsed data, if any change has been made to it during parsing (for example, string to

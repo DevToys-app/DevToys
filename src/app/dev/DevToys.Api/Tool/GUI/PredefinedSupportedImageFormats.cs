@@ -1,5 +1,8 @@
 ﻿namespace DevToys.Api;
 
+/// <summary>
+/// Represents a predefined list of supported image formats.
+/// </summary>
 public static class PredefinedSupportedImageFormats
 {
     /// <summary>

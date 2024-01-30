@@ -50,14 +50,17 @@ internal sealed class UISettingGroup : UISetting, IUISettingGroup
         }
     }
 
+    /// <inheritdoc/>
     public IUIElement[]? Children
     {
         get => _children;
         internal set => SetPropertyValue(ref _children, value, ChildrenChanged);
     }
 
+    /// <inheritdoc/>
     public bool ChildrenAreAllSettings { get; internal set; }
 
+    /// <inheritdoc/>
     public event EventHandler? ChildrenChanged;
 }
 
@@ -81,17 +84,24 @@ public static partial class GUI
     }
 
     /// <summary>
-    /// Sets the <see cref="IUISettingGroup.Description"/> of the setting.
+    /// Sets the <see cref="IUISetting.Description"/> of the setting.
     /// </summary>
-    public static IUISettingGroup Description(this IUISettingGroup element, string? text)
+    /// <param name="element">The <see cref="IUISettingGroup"/> element.</param>
+    /// <param name="description">The description.</param>
+    /// <returns>The updated <see cref="IUISettingGroup"/> element.</returns>
+    public static IUISettingGroup Description(this IUISettingGroup element, string? description)
     {
-        ((UISettingGroup)element).Description = text;
+        ((UISettingGroup)element).Description = description;
         return element;
     }
 
     /// <summary>
-    /// Sets the <see cref="IUISettingGroup.Icon"/> of the setting.
+    /// Sets the <see cref="IUISetting.Icon"/> of the setting.
     /// </summary>
+    /// <param name="element">The <see cref="IUISettingGroup"/> element.</param>
+    /// <param name="fontName">The font name.</param>
+    /// <param name="glyph">The glyph character.</param>
+    /// <returns>The updated <see cref="IUISettingGroup"/> element.</returns>
     public static IUISettingGroup Icon(this IUISettingGroup element, string fontName, char glyph)
     {
         ((UISettingGroup)element).Icon = Icon(fontName, glyph);
@@ -99,8 +109,11 @@ public static partial class GUI
     }
 
     /// <summary>
-    /// Sets the <see cref="IUISettingGroup.InteractiveElement"/> of the setting.
+    /// Sets the <see cref="IUISetting.InteractiveElement"/> of the setting.
     /// </summary>
+    /// <param name="element">The <see cref="IUISettingGroup"/> element.</param>
+    /// <param name="uiElement">The interactive UI element.</param>
+    /// <returns>The updated <see cref="IUISettingGroup"/> element.</returns>
     public static IUISettingGroup InteractiveElement(this IUISettingGroup element, IUIElement? uiElement)
     {
         ((UISettingGroup)element).InteractiveElement = uiElement;
@@ -108,12 +121,14 @@ public static partial class GUI
     }
 
     /// <summary>
-    /// Sets a <see cref="IUISwitch"/> to <see cref="IUISettingGroup.InteractiveElement"/> and automatically associate the
+    /// Sets a <see cref="IUISwitch"/> to <see cref="IUISetting.InteractiveElement"/> and automatically associate the
     /// given <paramref name="settingDefinition"/> to the switch state.
     /// </summary>
+    /// <param name="element">The <see cref="IUISettingGroup"/> element.</param>
     /// <param name="settingsProvider">The settings provider used for handling the given <paramref name="settingDefinition"/>.</param>
     /// <param name="settingDefinition">The definition of the setting to associate to this <see cref="IUISettingGroup"/>.</param>
     /// <param name="onToggled">(optional) A method to invoke when the setting value changed.</param>
+    /// <returns>The updated <see cref="IUISettingGroup"/> element.</returns>
     public static IUISettingGroup Handle(
         this IUISettingGroup element,
         ISettingsProvider settingsProvider,
@@ -127,10 +142,13 @@ public static partial class GUI
     /// Sets a <see cref="IUISelectDropDownList"/> to <see cref="IUISetting.InteractiveElement"/> and automatically associate the
     /// given <paramref name="settingDefinition"/> to the switch state.
     /// </summary>
+    /// <typeparam name="T">The type of the setting value.</typeparam>
+    /// <param name="element">The <see cref="IUISettingGroup"/> element.</param>
     /// <param name="settingsProvider">The settings provider used for handling the given <paramref name="settingDefinition"/>.</param>
     /// <param name="settingDefinition">The definition of the setting to associate to this <see cref="IUISetting"/>.</param>
     /// <param name="onOptionSelected">(optional) A method to invoke when the setting value changed.</param>
     /// <param name="dropDownListItems">(optional) A list of items to be displayed in the drop down list. <see cref="IUIDropDownListItem.Value"/> should be of type <typeparamref name="T"/>.</param>
+    /// <returns>The updated <see cref="IUISettingGroup"/> element.</returns>
     public static IUISettingGroup Handle<T>(
         this IUISettingGroup element,
         ISettingsProvider settingsProvider,
@@ -143,12 +161,14 @@ public static partial class GUI
     }
 
     /// <summary>
-    /// Sets a <see cref="IUISwitch"/> to <see cref="IUISettingGroup.InteractiveElement"/> and automatically associate the
+    /// Sets a <see cref="IUISwitch"/> to <see cref="IUISetting.InteractiveElement"/> and automatically associate the
     /// given <paramref name="settingDefinition"/> to the switch state.
     /// </summary>
+    /// <param name="element">The <see cref="IUISettingGroup"/> element.</param>
     /// <param name="settingsProvider">The settings provider used for handling the given <paramref name="settingDefinition"/>.</param>
     /// <param name="settingDefinition">The definition of the setting to associate to this <see cref="IUISettingGroup"/>.</param>
     /// <param name="onToggled">(optional) A method to invoke when the setting value changed.</param>
+    /// <returns>The updated <see cref="IUISettingGroup"/> element.</returns>
     public static IUISettingGroup Handle(
         this IUISettingGroup element,
         ISettingsProvider settingsProvider,
@@ -166,10 +186,13 @@ public static partial class GUI
     /// Sets a <see cref="IUISelectDropDownList"/> to <see cref="IUISetting.InteractiveElement"/> and automatically associate the
     /// given <paramref name="settingDefinition"/> to the switch state.
     /// </summary>
+    /// <typeparam name="T">The type of the setting value.</typeparam>
+    /// <param name="element">The <see cref="IUISettingGroup"/> element.</param>
     /// <param name="settingsProvider">The settings provider used for handling the given <paramref name="settingDefinition"/>.</param>
     /// <param name="settingDefinition">The definition of the setting to associate to this <see cref="IUISetting"/>.</param>
     /// <param name="onOptionSelected">(optional) A method to invoke when the setting value changed.</param>
     /// <param name="dropDownListItems">(optional) A list of items to be displayed in the drop down list. <see cref="IUIDropDownListItem.Value"/> should be of type <typeparamref name="T"/>.</param>
+    /// <returns>The updated <see cref="IUISettingGroup"/> element.</returns>
     public static IUISettingGroup Handle<T>(
         this IUISettingGroup element,
         ISettingsProvider settingsProvider,
@@ -188,6 +211,9 @@ public static partial class GUI
     /// <summary>
     /// Sets the children to be displayed in the group.
     /// </summary>
+    /// <param name="element">The <see cref="IUISettingGroup"/> element.</param>
+    /// <param name="children">The child elements.</param>
+    /// <returns>The updated <see cref="IUISettingGroup"/> element.</returns>
     public static IUISettingGroup WithChildren(this IUISettingGroup element, params IUIElement[] children)
     {
         var settingGroup = (UISettingGroup)element;
@@ -199,6 +225,9 @@ public static partial class GUI
     /// <summary>
     /// Sets the children to be displayed in the group.
     /// </summary>
+    /// <param name="element">The <see cref="IUISettingGroup"/> element.</param>
+    /// <param name="settings">The settings to be displayed in the group.</param>
+    /// <returns>The updated <see cref="IUISettingGroup"/> element.</returns>
     public static IUISettingGroup WithSettings(this IUISettingGroup element, params IUISetting[] settings)
     {
         var settingGroup = (UISettingGroup)element;

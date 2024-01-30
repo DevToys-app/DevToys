@@ -11,7 +11,6 @@ internal sealed partial class DateDataTypeDetector : IDataTypeDetector
             && !long.TryParse(dataString, out _)
             && !string.IsNullOrWhiteSpace(dataString))
         {
-
             if (long.TryParse(dataString, out long potentialTimestamp))
             {
                 try
@@ -28,8 +27,8 @@ internal sealed partial class DateDataTypeDetector : IDataTypeDetector
             {
                 return ValueTask.FromResult(new DataDetectionResult(Success: true, Data: dateTimeOffset));
             }
-
         }
+
         return ValueTask.FromResult(DataDetectionResult.Unsuccessful);
     }
 }

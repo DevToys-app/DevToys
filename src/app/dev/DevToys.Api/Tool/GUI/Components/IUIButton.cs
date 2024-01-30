@@ -131,6 +131,7 @@ public static partial class GUI
     /// <summary>
     /// Create a component that represents a button, which reacts when clicking on it.
     /// </summary>
+    /// <returns>The created <see cref="IUIButton"/> instance.</returns>
     public static IUIButton Button()
     {
         return Button(null);
@@ -140,6 +141,7 @@ public static partial class GUI
     /// Create a component that represents a button, which reacts when clicking on it.
     /// </summary>
     /// <param name="id">An optional unique identifier for this UI element.</param>
+    /// <returns>The created <see cref="IUIButton"/> instance.</returns>
     public static IUIButton Button(string? id)
     {
         return new UIButton(id);
@@ -158,6 +160,9 @@ public static partial class GUI
     /// <summary>
     /// Sets the <see cref="IUIButton.Text"/> of the button.
     /// </summary>
+    /// <param name="element">The <see cref="IUIButton"/> instance.</param>
+    /// <param name="text">The text to display in the button.</param>
+    /// <returns>The updated <see cref="IUIButton"/> instance.</returns>
     public static IUIButton Text(this IUIButton element, string? text)
     {
         ((UIButton)element).Text = text;
@@ -167,6 +172,9 @@ public static partial class GUI
     /// <summary>
     /// Sets the action to run when clicking on the button.
     /// </summary>
+    /// <param name="element">The <see cref="IUIButton"/> instance.</param>
+    /// <param name="actionOnClick">The action to run when clicking on the button.</param>
+    /// <returns>The updated <see cref="IUIButton"/> instance.</returns>
     public static IUIButton OnClick(this IUIButton element, Func<ValueTask>? actionOnClick)
     {
         ((UIButton)element).OnClickAction = actionOnClick;
@@ -176,6 +184,9 @@ public static partial class GUI
     /// <summary>
     /// Sets the action to run when clicking on the button.
     /// </summary>
+    /// <param name="element">The <see cref="IUIButton"/> instance.</param>
+    /// <param name="actionOnClick">The action to run when clicking on the button.</param>
+    /// <returns>The updated <see cref="IUIButton"/> instance.</returns>
     public static IUIButton OnClick(this IUIButton element, Action? actionOnClick)
     {
         ((UIButton)element).OnClickAction
@@ -190,6 +201,8 @@ public static partial class GUI
     /// <summary>
     /// Sets the button to appear as accented.
     /// </summary>
+    /// <param name="element">The <see cref="IUIButton"/> instance.</param>
+    /// <returns>The updated <see cref="IUIButton"/> instance.</returns>
     public static IUIButton AccentAppearance(this IUIButton element)
     {
         ((UIButton)element).IsAccent = true;
@@ -199,6 +212,8 @@ public static partial class GUI
     /// <summary>
     /// Sets the button to appear as a hyperlink.
     /// </summary>
+    /// <param name="element">The <see cref="IUIButton"/> instance.</param>
+    /// <returns>The updated <see cref="IUIButton"/> instance.</returns>
     public static IUIButton HyperlinkAppearance(this IUIButton element)
     {
         ((UIButton)element).IsHyperlink = true;
@@ -208,6 +223,8 @@ public static partial class GUI
     /// <summary>
     /// Sets the button to appear as neutral.
     /// </summary>
+    /// <param name="element">The <see cref="IUIButton"/> instance.</param>
+    /// <returns>The updated <see cref="IUIButton"/> instance.</returns>
     public static IUIButton NeutralAppearance(this IUIButton element)
     {
         ((UIButton)element).IsAccent = false;
@@ -217,6 +234,10 @@ public static partial class GUI
     /// <summary>
     /// Sets the icon of the button.
     /// </summary>
+    /// <param name="element">The <see cref="IUIButton"/> instance.</param>
+    /// <param name="fontName">The name of the font containing the icon.</param>
+    /// <param name="glyph">The glyph corresponding to the icon in the <paramref name="fontName"/>.</param>
+    /// <returns>The updated <see cref="IUIButton"/> instance.</returns>
     public static IUIButton Icon(this IUIButton element, string fontName, char glyph)
     {
         var button = (UIButton)element;

@@ -7,5 +7,8 @@
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
 public sealed class NoCompactOverlaySupportAttribute : Attribute
 {
+    /// <summary>
+    /// Gets a value indicating whether the <see cref="IGuiTool"/> supports Compact Overlay mode.
+    /// </summary>
     public bool NoCompactOverlaySupport { get; } = true;
 }

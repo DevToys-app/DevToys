@@ -78,8 +78,8 @@ internal static class XsdHelper
                 {
                     // XML will always be valid if it doesn't define a namespace. Let's verify that namespaces aren't missing.
                     var xsdDocument = XDocument.Parse(xsd);
-                    IEnumerable<XmlNamespace> xsdNamespaces = GetAllNamespaces(xsdDocument);
-                    IEnumerable<XmlNamespace> xmlNamespaces = GetAllNamespaces(xmlDocument);
+                    IReadOnlyList<XmlNamespace> xsdNamespaces = GetAllNamespaces(xsdDocument);
+                    IReadOnlyList<XmlNamespace> xmlNamespaces = GetAllNamespaces(xmlDocument);
 
                     cancellationToken.ThrowIfCancellationRequested();
 
@@ -187,7 +187,7 @@ internal static class XsdHelper
     /// </summary>
     /// <param name="xmlDocument">XML document containing  namespaces.</param>
     /// <returns></returns>
-    private static IEnumerable<XmlNamespace> GetAllNamespaces(XDocument xmlDocument)
+    private static IReadOnlyList<XmlNamespace> GetAllNamespaces(XDocument xmlDocument)
     {
         XPathNavigator? navigator = xmlDocument.CreateNavigator();
         navigator.MoveToFollowing(XPathNodeType.Element);

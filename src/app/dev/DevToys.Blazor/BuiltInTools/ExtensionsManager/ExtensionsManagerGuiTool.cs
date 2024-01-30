@@ -22,7 +22,7 @@ namespace DevToys.Blazor.BuiltInTools.ExtensionsManager;
 [Order(Before = SettingsGuiTool.SettingsInternalToolName)]
 [TargetPlatform(Platform.Windows)]
 [TargetPlatform(Platform.Linux)]
-[TargetPlatform(Platform.MacCatalyst)]
+[TargetPlatform(Platform.MacOS)]
 internal sealed class ExtensionsManagerGuiTool : IGuiTool
 {
     internal const string ExtensionmanagerToolName = "Extensions Manager";

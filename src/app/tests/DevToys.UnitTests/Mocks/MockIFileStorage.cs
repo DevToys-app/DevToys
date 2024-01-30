@@ -50,7 +50,7 @@ internal class MockIFileStorage : IFileStorage
         throw new NotImplementedException();
     }
 
-    public FileInfo CreateSelfDestroyingTempFile(string? desiredFileExtension = null)
+    public FileInfo CreateSelfDestroyingTempFile(string desiredFileExtension = null)
     {
         var assembly = Assembly.GetExecutingAssembly();
         string assemblyDirectory = Path.GetDirectoryName(assembly.Location);

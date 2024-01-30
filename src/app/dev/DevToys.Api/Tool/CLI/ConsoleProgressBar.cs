@@ -20,6 +20,9 @@ public class ConsoleProgressBar : IDisposable, IProgress<double>
     private bool _disposed = false;
     private int _animationIndex = 0;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ConsoleProgressBar"/> class.
+    /// </summary>
     public ConsoleProgressBar()
     {
         _timer = new Timer(TimerHandler);
@@ -33,6 +36,7 @@ public class ConsoleProgressBar : IDisposable, IProgress<double>
         }
     }
 
+    /// <inheritdoc/>
     public void Dispose()
     {
         lock (_timer)
@@ -44,6 +48,7 @@ public class ConsoleProgressBar : IDisposable, IProgress<double>
         GC.SuppressFinalize(this);
     }
 
+    /// <inheritdoc/>
     public void Report(double value)
     {
         Guard.IsBetweenOrEqualTo(value, 0, 100);

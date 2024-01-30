@@ -10,14 +10,6 @@ namespace DevToys.Tools.SmartDetection;
 [DataTypeName(PredefinedCommonDataTypeNames.JsonArray, baseName: PredefinedCommonDataTypeNames.Json)]
 internal sealed partial class JsonArrayDataTypeDetector : IDataTypeDetector
 {
-    private readonly ILogger _logger;
-
-    [ImportingConstructor]
-    public JsonArrayDataTypeDetector()
-    {
-        _logger = this.Log();
-    }
-
     public ValueTask<DataDetectionResult> TryDetectDataAsync(
         object data,
         DataDetectionResult? resultFromBaseDetector,

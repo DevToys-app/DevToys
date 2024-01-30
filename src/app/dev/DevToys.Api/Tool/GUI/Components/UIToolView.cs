@@ -33,7 +33,6 @@ public class UIToolView : INotifyPropertyChanged
     /// Creates a new instance of the <see cref="UIToolView"/> class.
     /// </summary>
     /// <param name="isScrollable">Indicates whether the UI of the tool is scrollable or should fits to the window boundaries.</param>
-    /// <param name="rootElement">The root element of the tool's UI.</param>
     public UIToolView(bool isScrollable)
         : this(isScrollable, null)
     {
@@ -92,6 +91,9 @@ public class UIToolView : INotifyPropertyChanged
     /// </summary>
     public event EventHandler? RootElementChanged;
 
+    /// <summary>
+    /// Raised when a property value changes.
+    /// </summary>
     public event PropertyChangedEventHandler? PropertyChanged;
 
     /// <summary>
@@ -159,6 +161,14 @@ public class UIToolView : INotifyPropertyChanged
         }
     }
 
+    /// <summary>
+    /// Sets the property value and raises the property changed event if the value has changed.
+    /// </summary>
+    /// <typeparam name="T">The type of the property.</typeparam>
+    /// <param name="field">The reference to the field storing the property value.</param>
+    /// <param name="value">The new value to set.</param>
+    /// <param name="propertyChangedEventHandler">The event handler to raise the property changed event.</param>
+    /// <param name="propertyName">The name of the property. Automatically inferred if not provided.</param>
     protected void SetPropertyValue<T>(
         ref T field,
         T value,
@@ -173,6 +183,10 @@ public class UIToolView : INotifyPropertyChanged
         }
     }
 
+    /// <summary>
+    /// Raises the property changed event for the specified property.
+    /// </summary>
+    /// <param name="propertyName">The name of the property. Automatically inferred if not provided.</param>
     protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new(propertyName));

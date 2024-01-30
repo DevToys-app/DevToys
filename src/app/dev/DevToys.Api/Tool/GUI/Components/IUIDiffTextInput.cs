@@ -27,7 +27,7 @@ public interface IUIDiffTextInput : IUISingleLineTextInput
     /// Gets whether the element can be expanded to take the size of the whole tool boundaries.
     /// </summary>
     /// <remarks>
-    /// When <see cref="IUIDiffTextInput.IsVisible"/> is false and that the element is in full screen mode, the element goes back to normal mode.
+    /// When <see cref="IUIElement.IsVisible"/> is false and that the element is in full screen mode, the element goes back to normal mode.
     /// </remarks>
     bool IsExtendableToFullScreen { get; }
 
@@ -153,7 +153,7 @@ public static partial class GUI
     /// Indicates that the control can be extended to take the size of the whole tool boundaries.
     /// </summary>
     /// <remarks>
-    /// When <see cref="IUIDiffTextInput.IsVisible"/> is false and that the element is in full screen mode, the element goes back to normal mode.
+    /// When <see cref="IUIElement.IsVisible"/> is false and that the element is in full screen mode, the element goes back to normal mode.
     /// </remarks>
     public static IUIDiffTextInput Extendable(this IUIDiffTextInput element)
     {

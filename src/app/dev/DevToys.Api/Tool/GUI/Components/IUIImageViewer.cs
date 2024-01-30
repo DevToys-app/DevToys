@@ -43,6 +43,7 @@ internal sealed class UIImageViewer : UITitledElement, IUIImageViewer, IDisposab
 
     internal bool DisposeAutomatically { get; set; }
 
+    /// <inheritdoc/>
     public OneOf<FileInfo, Image, SandboxedFileReader>? ImageSource
     {
         get => _imageSource;
@@ -57,15 +58,20 @@ internal sealed class UIImageViewer : UITitledElement, IUIImageViewer, IDisposab
         }
     }
 
+    /// <inheritdoc/>
     public IReadOnlyDictionary<string, Func<FileStream, ValueTask>> CustomActionPerFileExtensionOnSaving
     {
         get => _customActionPerFileExtensionOnSaving;
         internal set => SetPropertyValue(ref _customActionPerFileExtensionOnSaving, value, CustomActionPerFileExtensionOnSavingChanged);
     }
 
+    /// <inheritdoc/>
     public event EventHandler? ImageSourceChanged;
+
+    /// <inheritdoc/>
     public event EventHandler? CustomActionPerFileExtensionOnSavingChanged;
 
+    /// <inheritdoc/>
     public void Dispose()
     {
         if (ImageSource.HasValue && ImageSource.Value.Value is IDisposable disposable && DisposeAutomatically)
@@ -81,6 +87,7 @@ public static partial class GUI
     /// A component that displays an image and allows the user to perform some read-only actions on it.
     /// By default, image viewer supports BMP, GIF, JPEG, PBM, PNG, TIFF, TGA, WEBP, SVG formats.
     /// </summary>
+    /// <returns>The created <see cref="IUIImageViewer"/> instance.</returns>
     public static IUIImageViewer ImageViewer()
     {
         return ImageViewer(id: null);
@@ -91,6 +98,7 @@ public static partial class GUI
     /// By default, image viewer supports BMP, GIF, JPEG, PBM, PNG, TIFF, TGA, WEBP, SVG formats.
     /// </summary>
     /// <param name="id">An optional unique identifier for this UI element.</param>
+    /// <returns>The created <see cref="IUIImageViewer"/> instance.</returns>
     public static IUIImageViewer ImageViewer(string? id)
     {
         return new UIImageViewer(id);
@@ -99,6 +107,9 @@ public static partial class GUI
     /// <summary>
     /// Sets the <see cref="IUIImageViewer.ImageSource"/> from a <see cref="FileInfo"/>.
     /// </summary>
+    /// <param name="element">The <see cref="IUIImageViewer"/> instance.</param>
+    /// <param name="imageFile">The <see cref="FileInfo"/> representing the image file.</param>
+    /// <returns>The updated <see cref="IUIImageViewer"/> instance.</returns>
     public static IUIImageViewer WithFile(this IUIImageViewer element, FileInfo imageFile)
     {
         ValidateFileExtension(imageFile.Name);
@@ -109,8 +120,10 @@ public static partial class GUI
     /// <summary>
     /// Sets the <see cref="IUIImageViewer.ImageSource"/> from a <see cref="SandboxedFileReader"/>.
     /// </summary>
-    /// <param name="pickedFile">The file to display.</param>
-    /// <param name="disposeAutomatically">Indicates whether <paramref name="pickedFile"/> should be disposed when not displayed in the UI anymore.</param>
+    /// <param name="element">The <see cref="IUIImageViewer"/> instance.</param>
+    /// <param name="pickedFile">The <see cref="SandboxedFileReader"/> representing the picked file.</param>
+    /// <param name="disposeAutomatically">Indicates whether the <paramref name="pickedFile"/> should be disposed when not displayed in the UI anymore.</param>
+    /// <returns>The updated <see cref="IUIImageViewer"/> instance.</returns>
     public static IUIImageViewer WithPickedFile(this IUIImageViewer element, SandboxedFileReader pickedFile, bool disposeAutomatically)
     {
         ValidateFileExtension(pickedFile.FileName);
@@ -123,8 +136,10 @@ public static partial class GUI
     /// <summary>
     /// Sets the <see cref="IUIImageViewer.ImageSource"/> from an <see cref="Image"/>.
     /// </summary>
-    /// <param name="image">The image to display</param>
-    /// <param name="disposeAutomatically">Indicates whether <paramref name="image"/> should be disposed when not displayed in the UI anymore.</param>
+    /// <param name="element">The <see cref="IUIImageViewer"/> instance.</param>
+    /// <param name="image">The <see cref="Image"/> to display.</param>
+    /// <param name="disposeAutomatically">Indicates whether the <paramref name="image"/> should be disposed when not displayed in the UI anymore.</param>
+    /// <returns>The updated <see cref="IUIImageViewer"/> instance.</returns>
     public static IUIImageViewer WithImage(this IUIImageViewer element, Image image, bool disposeAutomatically)
     {
         var imageViewer = (UIImageViewer)element;
@@ -141,8 +156,10 @@ public static partial class GUI
     /// When the user saves the image with the specified <paramref name="fileExtension"/>, the specified <paramref name="action"/> will be invoked
     /// with a <see cref="FileStream"/> pointing to the file to save. The <paramref name="action"/> is responsible for writing the image to the file.
     /// </remarks>
-    /// <param name="fileExtension">The file extension to handle</param>
+    /// <param name="element">The <see cref="IUIImageViewer"/> instance.</param>
+    /// <param name="fileExtension">The file extension to handle.</param>
     /// <param name="action">The action to perform when the user wishes to save the image with the given <paramref name="fileExtension"/>.</param>
+    /// <returns>The updated <see cref="IUIImageViewer"/> instance.</returns>
     public static IUIImageViewer ManuallyHandleSaveAs(this IUIImageViewer element, string fileExtension, Func<FileStream, ValueTask> action)
     {
         fileExtension = "." + fileExtension.ToLowerInvariant().Trim().TrimStart('.');
@@ -159,7 +176,9 @@ public static partial class GUI
     /// <summary>
     /// Removes the custom action to perform when the user saves the image with a specific file extension.
     /// </summary>
+    /// <param name="element">The <see cref="IUIImageViewer"/> instance.</param>
     /// <param name="fileExtension">The file extension to remove.</param>
+    /// <returns>The updated <see cref="IUIImageViewer"/> instance.</returns>
     public static IUIImageViewer RemoveManuallyHandleSaveAs(this IUIImageViewer element, string fileExtension)
     {
         fileExtension = "." + fileExtension.ToLowerInvariant().Trim().TrimStart('.');
@@ -174,6 +193,8 @@ public static partial class GUI
     /// <summary>
     /// Clears the value of <see cref="IUIImageViewer.ImageSource"/>.
     /// </summary>
+    /// <param name="element">The <see cref="IUIImageViewer"/> instance.</param>
+    /// <returns>The updated <see cref="IUIImageViewer"/> instance.</returns>
     public static IUIImageViewer Clear(this IUIImageViewer element)
     {
         ((UIImageViewer)element).ImageSource = default;

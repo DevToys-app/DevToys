@@ -12,7 +12,7 @@ public class PasswordGeneratorHelperTests
     [InlineData(100, true, true, true, true, null)]
     [InlineData(100, true, true, true, true, "bcdefghijklmnopqrstuvwxyz")]
     [InlineData(100, false, true, false, false, "bcdefghijklmnopqrstuvwxyz")]
-    internal void GeneratePassword(int length, bool hasUppercase, bool hasLowercase, bool hasNumber, bool hasSpecialCharacters, string? excludedCharacters)
+    internal void GeneratePassword(int length, bool hasUppercase, bool hasLowercase, bool hasNumber, bool hasSpecialCharacters, string excludedCharacters)
     {
         string password
             = PasswordGeneratorHelper.GeneratePassword(

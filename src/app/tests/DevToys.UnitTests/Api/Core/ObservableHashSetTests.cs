@@ -38,7 +38,7 @@ public class ObservableHashSetTests
         int collectionChanged = 0;
         int currentCount = 0;
         int countChange = 1;
-        string[] adding = Array.Empty<string>();
+        string[] adding = [];
 
         hashSet.PropertyChanging += (s, a) => AssertCountChanging(hashSet, s, a, currentCount, ref countChanging);
         hashSet.PropertyChanged += (s, a) => AssertCountChanged(hashSet, s, a, ref currentCount, countChange, ref countChanged);
@@ -50,28 +50,28 @@ public class ObservableHashSetTests
             collectionChanged++;
         };
 
-        adding = new[] { "Palmer" };
+        adding = ["Palmer"];
         hashSet.Add("Palmer").Should().BeTrue();
 
         countChanging.Should().Be(1);
         countChanged.Should().Be(1);
         collectionChanged.Should().Be(1);
-        hashSet.Should().BeEquivalentTo(new[] { "Palmer" });
+        hashSet.Should().BeEquivalentTo(["Palmer"]);
 
-        adding = new[] { "Carmack" };
+        adding = ["Carmack"];
         hashSet.Add("Carmack").Should().BeTrue();
 
         countChanging.Should().Be(2);
         countChanged.Should().Be(2);
         collectionChanged.Should().Be(2);
-        hashSet.OrderBy(i => i).Should().BeEquivalentTo(new[] { "Carmack", "Palmer" });
+        hashSet.OrderBy(i => i).Should().BeEquivalentTo(["Carmack", "Palmer"]);
 
         hashSet.Add("Palmer").Should().BeFalse();
 
         countChanging.Should().Be(2);
         countChanged.Should().Be(2);
         collectionChanged.Should().Be(2);
-        hashSet.OrderBy(i => i).Should().BeEquivalentTo(new[] { "Carmack", "Palmer" });
+        hashSet.OrderBy(i => i).Should().BeEquivalentTo(["Carmack", "Palmer"]);
     }
 
     [Fact]
@@ -167,7 +167,7 @@ public class ObservableHashSetTests
         int collectionChanged = 0;
         int currentCount = 2;
         int countChange = -1;
-        string[] removing = Array.Empty<string>();
+        string[] removing = [];
 
         hashSet.PropertyChanging += (s, a) => AssertCountChanging(hashSet, s, a, currentCount, ref countChanging);
         hashSet.PropertyChanged += (s, a) => AssertCountChanged(hashSet, s, a, ref currentCount, countChange, ref countChanged);
@@ -179,15 +179,15 @@ public class ObservableHashSetTests
             collectionChanged++;
         };
 
-        removing = new[] { "Palmer" };
+        removing = ["Palmer"];
         hashSet.Remove("Palmer").Should().BeTrue();
 
         countChanging.Should().Be(1);
         countChanged.Should().Be(1);
         collectionChanged.Should().Be(1);
-        hashSet.Should().BeEquivalentTo(new[] { "Carmack" });
+        hashSet.Should().BeEquivalentTo(["Carmack"]);
 
-        removing = new[] { "Carmack" };
+        removing = ["Carmack"];
         hashSet.Remove("Carmack").Should().BeTrue();
 
         countChanging.Should().Be(2);
@@ -216,7 +216,7 @@ public class ObservableHashSetTests
         int collectionChanged = 0;
         int currentCount = 2;
         int countChange = 2;
-        string[] adding = new[] { "Brendan", "Nate" };
+        string[] adding = ["Brendan", "Nate"];
 
         hashSet.PropertyChanging += (s, a) => AssertCountChanging(hashSet, s, a, currentCount, ref countChanging);
         hashSet.PropertyChanged += (s, a) => AssertCountChanged(hashSet, s, a, ref currentCount, countChange, ref countChanged);
@@ -233,14 +233,14 @@ public class ObservableHashSetTests
         countChanging.Should().Be(1);
         countChanged.Should().Be(1);
         collectionChanged.Should().Be(1);
-        hashSet.OrderBy(i => i).Should().BeEquivalentTo(new[] { "Brendan", "Carmack", "Nate", "Palmer" });
+        hashSet.OrderBy(i => i).Should().BeEquivalentTo(["Brendan", "Carmack", "Nate", "Palmer"]);
 
         hashSet.UnionWith(new[] { "Brendan" });
 
         countChanging.Should().Be(1);
         countChanged.Should().Be(1);
         collectionChanged.Should().Be(1);
-        hashSet.OrderBy(i => i).Should().BeEquivalentTo(new[] { "Brendan", "Carmack", "Nate", "Palmer" });
+        hashSet.OrderBy(i => i).Should().BeEquivalentTo(["Brendan", "Carmack", "Nate", "Palmer"]);
     }
 
     [Fact]
@@ -258,7 +258,7 @@ public class ObservableHashSetTests
         int collectionChanged = 0;
         int currentCount = 4;
         int countChange = -2;
-        string[] removing = new[] { "Brendan", "Nate" };
+        string[] removing = ["Brendan", "Nate"];
 
         hashSet.PropertyChanging += (s, a) => AssertCountChanging(hashSet, s, a, currentCount, ref countChanging);
         hashSet.PropertyChanged += (s, a) => AssertCountChanged(hashSet, s, a, ref currentCount, countChange, ref countChanged);
@@ -275,14 +275,14 @@ public class ObservableHashSetTests
         countChanging.Should().Be(1);
         countChanged.Should().Be(1);
         collectionChanged.Should().Be(1);
-        hashSet.OrderBy(i => i).Should().BeEquivalentTo(new[] { "Carmack", "Palmer" });
+        hashSet.OrderBy(i => i).Should().BeEquivalentTo(["Carmack", "Palmer"]);
 
         hashSet.IntersectWith(new[] { "Carmack", "Palmer", "Abrash" });
 
         countChanging.Should().Be(1);
         countChanged.Should().Be(1);
         collectionChanged.Should().Be(1);
-        hashSet.OrderBy(i => i).Should().BeEquivalentTo(new[] { "Carmack", "Palmer" });
+        hashSet.OrderBy(i => i).Should().BeEquivalentTo(["Carmack", "Palmer"]);
     }
 
     [Fact]
@@ -300,7 +300,7 @@ public class ObservableHashSetTests
         int collectionChanged = 0;
         int currentCount = 4;
         int countChange = -2;
-        string[] removing = new[] { "Carmack", "Palmer" };
+        string[] removing = ["Carmack", "Palmer"];
 
         hashSet.PropertyChanging += (s, a) => AssertCountChanging(hashSet, s, a, currentCount, ref countChanging);
         hashSet.PropertyChanged += (s, a) => AssertCountChanged(hashSet, s, a, ref currentCount, countChange, ref countChanged);
@@ -317,14 +317,14 @@ public class ObservableHashSetTests
         countChanging.Should().Be(1);
         countChanged.Should().Be(1);
         collectionChanged.Should().Be(1);
-        hashSet.OrderBy(i => i).Should().BeEquivalentTo(new[] { "Brendan", "Nate" });
+        hashSet.OrderBy(i => i).Should().BeEquivalentTo(["Brendan", "Nate"]);
 
         hashSet.ExceptWith(new[] { "Abrash", "Carmack", "Palmer" });
 
         countChanging.Should().Be(1);
         countChanged.Should().Be(1);
         collectionChanged.Should().Be(1);
-        hashSet.OrderBy(i => i).Should().BeEquivalentTo(new[] { "Brendan", "Nate" });
+        hashSet.OrderBy(i => i).Should().BeEquivalentTo(["Brendan", "Nate"]);
     }
 
     [Fact]
@@ -342,8 +342,8 @@ public class ObservableHashSetTests
         int collectionChanged = 0;
         int currentCount = 4;
         int countChange = -1;
-        string[] removing = new[] { "Carmack", "Palmer" };
-        string[] adding = new[] { "Abrash" };
+        string[] removing = ["Carmack", "Palmer"];
+        string[] adding = ["Abrash"];
 
         hashSet.PropertyChanging += (s, a) => AssertCountChanging(hashSet, s, a, currentCount, ref countChanging);
         hashSet.PropertyChanged += (s, a) => AssertCountChanged(hashSet, s, a, ref currentCount, countChange, ref countChanged);
@@ -360,14 +360,14 @@ public class ObservableHashSetTests
         countChanging.Should().Be(1);
         countChanged.Should().Be(1);
         collectionChanged.Should().Be(1);
-        hashSet.OrderBy(i => i).Should().BeEquivalentTo(new[] { "Abrash", "Brendan", "Nate" });
+        hashSet.OrderBy(i => i).Should().BeEquivalentTo(["Abrash", "Brendan", "Nate"]);
 
         hashSet.SymmetricExceptWith(Array.Empty<string>());
 
         countChanging.Should().Be(1);
         countChanged.Should().Be(1);
         collectionChanged.Should().Be(1);
-        hashSet.OrderBy(i => i).Should().BeEquivalentTo(new[] { "Abrash", "Brendan", "Nate" });
+        hashSet.OrderBy(i => i).Should().BeEquivalentTo(["Abrash", "Brendan", "Nate"]);
     }
 
     [Fact]
@@ -454,7 +454,7 @@ public class ObservableHashSetTests
         int collectionChanged = 0;
         int currentCount = 4;
         int countChange = -2;
-        string[] removing = new[] { "Carmack", "Palmer" };
+        string[] removing = ["Carmack", "Palmer"];
 
         hashSet.PropertyChanging += (s, a) => AssertCountChanging(hashSet, s, a, currentCount, ref countChanging);
         hashSet.PropertyChanged += (s, a) => AssertCountChanged(hashSet, s, a, ref currentCount, countChange, ref countChanged);
@@ -471,14 +471,14 @@ public class ObservableHashSetTests
         countChanging.Should().Be(1);
         countChanged.Should().Be(1);
         collectionChanged.Should().Be(1);
-        hashSet.OrderBy(i => i).Should().BeEquivalentTo(new[] { "Brendan", "Nate" });
+        hashSet.OrderBy(i => i).Should().BeEquivalentTo(["Brendan", "Nate"]);
 
         hashSet.RemoveWhere(i => i.Contains('m')).Should().Be(0);
 
         countChanging.Should().Be(1);
         countChanged.Should().Be(1);
         collectionChanged.Should().Be(1);
-        hashSet.OrderBy(i => i).Should().BeEquivalentTo(new[] { "Brendan", "Nate" });
+        hashSet.OrderBy(i => i).Should().BeEquivalentTo(["Brendan", "Nate"]);
     }
 
     private static void AssertCountChanging<T>(
