@@ -38,6 +38,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>GlobalStrings.resx</DependentUpon>
     </Compile>
+    <Compile Update="Tools\EncodersDecoders\Certificate\CertificateDecoder.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CertificateDecoder.resx</DependentUpon>
+    </Compile>
     <Compile Update="Tools\Formatters\Json\JsonFormatter.Designer.cs">
       <DependentUpon>JsonFormatter.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -202,6 +207,10 @@
     <EmbeddedResource Update="Tools\Converters\JsonTable\JsonTableConverter.resx">
       <LastGenOutput>JsonTableConverter.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Tools\EncodersDecoders\Certificate\CertificateDecoder.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CertificateDecoder.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Tools\Formatters\Json\JsonFormatter.resx">
       <LastGenOutput>JsonFormatter.Designer.cs</LastGenOutput>

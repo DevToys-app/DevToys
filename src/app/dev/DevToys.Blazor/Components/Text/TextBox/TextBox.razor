@@ -39,7 +39,7 @@
                                placeholder="@Placeholder"
                                disabled="@(!IsActuallyEnabled)"
                                readonly="@(IsReadOnly)"
-                               type="@(Type.ToString().ToLowerInvariant())"
+                               type="@(_internalType.ToString().ToLowerInvariant())"
                                min="@Min.ToString("F0")"
                                max="@Max.ToString("F0")"
                                step="@Step"
@@ -54,14 +54,28 @@
                     {
                         if (!string.IsNullOrEmpty(Text))
                         {
-                            <Button Appearance="ButtonAppearance.Stealth"
-                                    Class="text-box-clear-button"
-                                    HorizontalAlignment="UIHorizontalAlignment.Right"
-                                    title="@DevToys.Localization.Strings.TextBox.TextBox.Clear"
-                                    aria-label="@DevToys.Localization.Strings.TextBox.TextBox.Clear"
-                                    @onclick="OnClearClick">
-                                <FontIcon Glyph="@('\uF369')" />
-                            </Button>
+                            if (Type == TextBoxTypes.Password)
+                            {
+                                <Button Appearance="ButtonAppearance.Stealth"
+                                        HorizontalAlignment="UIHorizontalAlignment.Right"
+                                        title="@DevToys.Localization.Strings.TextBox.TextBox.RevealPassword"
+                                        aria-label="@DevToys.Localization.Strings.TextBox.TextBox.RevealPassword"
+                                        @onmousedown="OnRevealPasswordMouseDown"
+                                        @onmouseup="OnRevealPasswordMouseUp">
+                                    <FontIcon Glyph="@('\uE5F2')" />
+                                </Button>
+                            }
+                            else
+                            {
+                                <Button Appearance="ButtonAppearance.Stealth"
+                                        Class="text-box-clear-button"
+                                        HorizontalAlignment="UIHorizontalAlignment.Right"
+                                        title="@DevToys.Localization.Strings.TextBox.TextBox.Clear"
+                                        aria-label="@DevToys.Localization.Strings.TextBox.TextBox.Clear"
+                                        @onclick="OnClearClick">
+                                    <FontIcon Glyph="@('\uF369')" />
+                                </Button>
+                            }
                         }
 
                         if (Type == TextBoxTypes.Number)
