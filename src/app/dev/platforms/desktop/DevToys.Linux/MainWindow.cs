@@ -4,6 +4,7 @@ using DevToys.Core;
 using DevToys.Linux.Components;
 using DevToys.Linux.Core;
 using Microsoft.Extensions.DependencyInjection;
+using WebKit;
 
 namespace DevToys.Linux;
 
@@ -23,7 +24,7 @@ internal class MainWindow
     private TitleBarInfoProvider _titleBarInfoProvider = default!;
 #pragma warning restore IDE0044 // Add readonly modifier
 
-    private readonly BlazorWebView _blazorWebView;
+    private readonly BlazorWebView _blazorGtkWebView;
     private readonly Gtk.Window _window;
 
     internal MainWindow(IServiceProvider serviceProvider, Adw.Application application)
@@ -33,22 +34,26 @@ internal class MainWindow
         Guard.IsNotNull(_titleBarInfoProvider);
         _titleBarInfoProvider.PropertyChanged += TitleBarInfoProvider_PropertyChanged;
 
-        _blazorWebView = new BlazorWebView(serviceProvider);
+        _blazorGtkWebView = new BlazorWebView(serviceProvider);
+        _blazorGtkWebView.OnContextMenu += BlazorGtkWebViewOnOnContextMenu;
+
+        // Make web view transparent
+        _blazorGtkWebView.SetBackgroundColor(new Gdk.RGBA(Gdk.Internal.RGBAManagedHandle.Create(new Gdk.Internal.RGBAData { Red = 0, Blue = 0, Green = 0, Alpha = 0 })));
 
         // Allow opening developer tools
-        WebKit.Settings webViewSettings = _blazorWebView.GetSettings();
+        Settings webViewSettings = _blazorGtkWebView.GetSettings();
 #if DEBUG
         webViewSettings.EnableDeveloperExtras = true;
 #endif
         webViewSettings.JavascriptCanAccessClipboard = true;
         webViewSettings.EnableBackForwardNavigationGestures = false;
-        _blazorWebView.SetSettings(webViewSettings);
+        _blazorGtkWebView.SetSettings(webViewSettings);
 
         // Create and open main window.
         _window = Gtk.ApplicationWindow.New(application);
         _window.Title = _titleBarInfoProvider.Title ?? string.Empty;
         _window.SetDefaultSize(1280, 800);
-        _window.SetChild(_blazorWebView);
+        _window.SetChild(_blazorGtkWebView);
 
         var windowService = (WindowService)serviceProvider.GetService<IWindowService>()!;
         ((ThemeListener)_themeListener).SetMainWindow(_window, windowService);
@@ -57,6 +62,16 @@ internal class MainWindow
         ((FontProvider)_fontProvider).MainWindow = _window;
 
         _window.Show();
+    }
+
+    private bool BlazorGtkWebViewOnOnContextMenu(WebView sender, WebView.ContextMenuSignalArgs args)
+    {
+        // Returning true to prevent the context menu from opening.
+#if DEBUG
+        return false;
+#else
+        return true;
+#endif
     }
 
     private void TitleBarInfoProvider_PropertyChanged(object? sender, PropertyChangedEventArgs e)

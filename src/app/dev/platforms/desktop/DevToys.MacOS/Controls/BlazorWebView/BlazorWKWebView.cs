@@ -10,49 +10,48 @@ namespace DevToys.MacOS.Controls.BlazorWebView;
 // TODO: Credit MAUI repository
 internal sealed partial class BlazorWkWebView : IDisposable
 {
+    private const string DevToysInteropName = "devtoyswebinterop";
+    private const string Scheme = "app";
     internal const string AppHostAddress = "0.0.0.0";
-    internal static readonly Uri AppOriginUri = new(AppOrigin);
-    private const string AppOrigin = $"app://{AppHostAddress}/";
+    private static readonly Uri appOriginUri = new($"{Scheme}://{AppHostAddress}/");
 
     private const string BlazorInitScript
-        = """
-          
-             window.__receiveMessageCallbacks = [];
-             window.__dispatchMessageCallback = function(message) {
-             	window.__receiveMessageCallbacks.forEach(function(callback) { callback(message); });
-             };
-             window.external = {
-             	sendMessage: function(message) {
-             		window.webkit.messageHandlers.webwindowinterop.postMessage(message);
-             	},
-             	receiveMessage: function(callback) {
-             		window.__receiveMessageCallbacks.push(callback);
-             	}
-             };
-             
-             Blazor.start();
-          
-             (function () {
-             	window.onpageshow = function(event) {
-             		if (event.persisted) {
-             			window.location.reload();
-             		}
-             	};
-             })();
-
-          """;
+        = $$"""
+            window.__receiveMessageCallbacks = [];
+            window.__dispatchMessageCallback = function(message) {
+                window.__receiveMessageCallbacks.forEach(function(callback) { callback(message); });
+            };
+            window.external = {
+                sendMessage: function(message) {
+                    window.webkit.messageHandlers.{{DevToysInteropName}}.postMessage(message);
+                },
+                receiveMessage: function(callback) {
+                    window.__receiveMessageCallbacks.push(callback);
+                }
+            };
+            
+            Blazor.start();
+            
+            (function () {
+                window.onpageshow = function(event) {
+                    if (event.persisted) {
+                        window.location.reload();
+                    }
+                };
+            })();
+            """;
 
     private readonly ILogger _logger;
-    private readonly IServiceProvider? _serviceProvider;
+    private readonly IServiceProvider _serviceProvider;
 
     private BlazorWebViewManager? _webViewManager;
     private string? _hostPage;
 
-    internal BlazorWkWebView(IServiceProvider serviceProviderProvider, bool enableDeveloperTools)
+    internal BlazorWkWebView(IServiceProvider serviceProvider, bool enableDeveloperTools)
     {
         _logger = this.Log();
-        Guard.IsNotNull(serviceProviderProvider);
-        _serviceProvider = serviceProviderProvider;
+        Guard.IsNotNull(serviceProvider);
+        _serviceProvider = serviceProvider;
         View = CreateWebView(enableDeveloperTools);
 
         RootComponents.CollectionChanged += RootComponentsOnCollectionChanged;
@@ -149,7 +148,7 @@ internal sealed partial class BlazorWkWebView : IDisposable
 
     private WKWebView CreateWebView(bool enableDeveloperTools)
     {
-        WKWebViewConfiguration configuration = CreatConfiguration(enableDeveloperTools, MessageReceived);
+        WKWebViewConfiguration configuration = CreateConfiguration(enableDeveloperTools, MessageReceived);
 
         var webView = new WKWebView(CGRect.Empty, configuration)
         {
@@ -172,7 +171,7 @@ internal sealed partial class BlazorWkWebView : IDisposable
         return webView;
     }
 
-    private WKWebViewConfiguration CreatConfiguration(bool enableDeveloperTools, Action<Uri, string> messageReceivedDelegate)
+    private WKWebViewConfiguration CreateConfiguration(bool enableDeveloperTools, Action<Uri, string> messageReceivedDelegate)
     {
         var config = new WKWebViewConfiguration();
 
@@ -192,17 +191,17 @@ internal sealed partial class BlazorWkWebView : IDisposable
         // Handle messages.
         config.UserContentController.AddScriptMessageHandler(
             new WebViewScriptMessageHandler(messageReceivedDelegate),
-            "webwindowinterop");
+            DevToysInteropName);
 
         // Add Blazor initialization script.
         config.UserContentController.AddUserScript(
             new WKUserScript(
                 new NSString(BlazorInitScript),
                 WKUserScriptInjectionTime.AtDocumentEnd,
-                true));
+                isForMainFrameOnly: true));
 
-        // iOS WKWebView doesn't allow handling 'http'/'https' schemes, so we use the fake 'app' scheme
-        config.SetUrlSchemeHandler(new SchemeHandler(this), urlScheme: "app");
+        // Register a "app" url scheme to handle Blazor resources
+        config.SetUrlSchemeHandler(new AppSchemeHandler(this), urlScheme: Scheme);
 
         // Legacy Developer Extras setting.
         config.Preferences.SetValueForKey(
@@ -229,8 +228,9 @@ internal sealed partial class BlazorWkWebView : IDisposable
         IFileProvider fileProvider = CreateFileProvider(contentRootDir);
 
         _webViewManager = new BlazorWebViewManager(
+            appOriginUri,
             this,
-            _serviceProvider!,
+            _serviceProvider,
             fileProvider,
             RootComponents.JSComponents,
             contentRootDir,
@@ -281,15 +281,15 @@ internal sealed partial class BlazorWkWebView : IDisposable
                 throw new ArgumentNullException(nameof(message));
             }
 
-            _messageReceivedAction(AppOriginUri, ((NSString)message.Body).ToString());
+            _messageReceivedAction(appOriginUri, ((NSString)message.Body).ToString());
         }
     }
 
-    private sealed class SchemeHandler : NSObject, IWKUrlSchemeHandler
+    private sealed class AppSchemeHandler : NSObject, IWKUrlSchemeHandler
     {
         private readonly BlazorWkWebView _blazorWebView;
 
-        internal SchemeHandler(BlazorWkWebView blazorWebView)
+        internal AppSchemeHandler(BlazorWkWebView blazorWebView)
         {
             _blazorWebView = blazorWebView;
         }
@@ -332,7 +332,7 @@ internal sealed partial class BlazorWkWebView : IDisposable
 
         private byte[] GetResponseBytes(string? url, out string contentType, out int statusCode)
         {
-            bool allowFallbackOnHostPage = IsUriBaseOfPage(AppOriginUri, url);
+            bool allowFallbackOnHostPage = IsUriBaseOfPage(appOriginUri, url);
             url = RemovePossibleQueryString(url);
 
             if (_blazorWebView._webViewManager!.TryGetResponseContentInternal(

@@ -7,6 +7,11 @@ internal sealed class BlazorWebView : WebView
 {
     private readonly BlazorWebViewBridge _bridge;
 
+    static BlazorWebView()
+    {
+        WebKit.Module.Initialize();
+    }
+
     internal BlazorWebView(IServiceProvider serviceProvider)
     {
         _bridge

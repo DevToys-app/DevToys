@@ -29,6 +29,7 @@ public partial class BlazorWebViewManager : WebViewManager
     /// <param name="contentRootRelativeToAppRoot">Path to the directory containing application content files.</param>
     /// <param name="hostPageRelativePath">Path to the host page within the fileProvider.</param>
     internal BlazorWebViewManager(
+        Uri baseUri,
         BlazorWkWebView blazorMauiWebViewHandler,
         IServiceProvider provider,
         IFileProvider fileProvider,
@@ -38,7 +39,7 @@ public partial class BlazorWebViewManager : WebViewManager
         : base(
             provider,
             new AppKitDispatcher(),
-            BlazorWkWebView.AppOriginUri,
+            baseUri,
             fileProvider,
             jsComponents,
             hostPageRelativePath)
@@ -195,7 +196,7 @@ public partial class BlazorWebViewManager : WebViewManager
             else
             {
                 // Invoke the UrlLoading event to allow overriding the default link handling behavior
-                var callbackArgs = UrlLoadingEventArgs.CreateWithDefaultLoadingStrategy(uri, BlazorWkWebView.AppOriginUri);
+                var callbackArgs = UrlLoadingEventArgs.CreateWithDefaultLoadingStrategy(uri, BlazorWkWebView.appOriginUri);
                 _webView.OnUrlLoading(callbackArgs);
 
                 strategy = callbackArgs.UrlLoadingStrategy;
