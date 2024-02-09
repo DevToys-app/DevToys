@@ -13,7 +13,7 @@ internal sealed partial class BlazorWkWebView : IDisposable
     private const string DevToysInteropName = "devtoyswebinterop";
     private const string Scheme = "app";
     internal const string AppHostAddress = "0.0.0.0";
-    private static readonly Uri appOriginUri = new($"{Scheme}://{AppHostAddress}/");
+    internal static readonly Uri AppOriginUri = new($"{Scheme}://{AppHostAddress}/");
 
     private const string BlazorInitScript
         = $$"""
@@ -228,7 +228,7 @@ internal sealed partial class BlazorWkWebView : IDisposable
         IFileProvider fileProvider = CreateFileProvider(contentRootDir);
 
         _webViewManager = new BlazorWebViewManager(
-            appOriginUri,
+            AppOriginUri,
             this,
             _serviceProvider,
             fileProvider,
@@ -281,7 +281,7 @@ internal sealed partial class BlazorWkWebView : IDisposable
                 throw new ArgumentNullException(nameof(message));
             }
 
-            _messageReceivedAction(appOriginUri, ((NSString)message.Body).ToString());
+            _messageReceivedAction(AppOriginUri, ((NSString)message.Body).ToString());
         }
     }
 
@@ -332,7 +332,7 @@ internal sealed partial class BlazorWkWebView : IDisposable
 
         private byte[] GetResponseBytes(string? url, out string contentType, out int statusCode)
         {
-            bool allowFallbackOnHostPage = IsUriBaseOfPage(appOriginUri, url);
+            bool allowFallbackOnHostPage = IsUriBaseOfPage(AppOriginUri, url);
             url = RemovePossibleQueryString(url);
 
             if (_blazorWebView._webViewManager!.TryGetResponseContentInternal(
