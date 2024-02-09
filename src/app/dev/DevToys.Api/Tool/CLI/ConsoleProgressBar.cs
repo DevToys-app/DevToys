@@ -2,8 +2,6 @@
 
 namespace DevToys.Api.Tool.CLI;
 
-// TODO: Credit https://gist.github.com/DanielSWolf/0ab6a96899cc5377bf54
-
 /// <summary>
 /// A progress bar for the console.
 /// </summary>

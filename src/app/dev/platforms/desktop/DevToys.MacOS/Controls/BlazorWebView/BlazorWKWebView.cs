@@ -7,7 +7,6 @@ using WebKit;
 
 namespace DevToys.MacOS.Controls.BlazorWebView;
 
-// TODO: Credit MAUI repository
 internal sealed partial class BlazorWkWebView : IDisposable
 {
     internal const string AppHostAddress = "0.0.0.0";
