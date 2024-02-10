@@ -93,7 +93,7 @@ public class AppDelegate : NSApplicationDelegate
         NSApplication.SharedApplication.MainMenu = new AppMenuBar();
 
         // Show the main window
-        MainWindow.Instance.Show();
+        MainWindow.Instance.ShowAsync().Forget();
     }
 
     public override bool ApplicationShouldTerminateAfterLastWindowClosed(NSApplication sender)

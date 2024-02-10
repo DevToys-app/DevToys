@@ -1,6 +1,13 @@
-﻿using DevToys.Blazor;
+﻿using DevToys.Api;
+using DevToys.Blazor;
+using DevToys.Blazor.Core.Services;
 using DevToys.Core;
+using DevToys.Core.Tools;
 using DevToys.MacOS.Controls.BlazorWebView;
+using DevToys.MacOS.Core;
+using DevToys.MacOS.Core.Helpers;
+using Microsoft.Extensions.DependencyInjection;
+using SixLabors.ImageSharp;
 using PredefinedSettings = DevToys.Core.Settings.PredefinedSettings;
 
 namespace DevToys.MacOS.Views;
@@ -22,7 +29,8 @@ internal sealed class MainWindow : NSWindow
     private MainWindow()
         : base(
             new CGRect(0, 0, 1200, 600),
-            NSWindowStyle.Closable | NSWindowStyle.Miniaturizable | NSWindowStyle.Resizable | NSWindowStyle.Titled | NSWindowStyle.FullSizeContentView,
+            NSWindowStyle.Closable | NSWindowStyle.Miniaturizable | NSWindowStyle.Resizable | NSWindowStyle.Titled |
+            NSWindowStyle.FullSizeContentView,
             NSBackingStore.Buffered,
             false)
     {
@@ -32,9 +40,24 @@ internal sealed class MainWindow : NSWindow
         _titleBarInfoProvider.PropertyChanged += TitleBarInfoProvider_PropertyChanged;
 
         Title = _titleBarInfoProvider.Title ?? string.Empty;
+
+        WillClose += OnWillClose;
     }
 
-    internal void Show()
+    private void OnWillClose(object? sender, EventArgs e)
+    {
+        SavePositionAndSize();
+
+        Guard.IsNotNull(AppDelegate.MefComposer);
+
+        // Dispose every disposable tool instance.
+        AppDelegate.MefComposer.Provider.Import<GuiToolProvider>().DisposeTools();
+
+        // Clear older temp files.
+        FileHelper.ClearTempFiles(Constants.AppTempFolder);
+    }
+
+    internal async Task ShowAsync()
     {
         if (!_isInitialized)
         {
@@ -43,7 +66,7 @@ internal sealed class MainWindow : NSWindow
         }
 
         // Center and show the window on screen.
-        Center();
+        await SetPositionAndSizeAsync();
         MakeKeyAndOrderFront(this);
 
         // Make this window the main window of the app.
@@ -52,8 +75,6 @@ internal sealed class MainWindow : NSWindow
 
     private void InitializeView()
     {
-        SetPositionAndSize();
-
         // Try to get the title bar view.
         NSView titleBar = StandardWindowButton(NSWindowButton.CloseButton).Superview;
 
@@ -96,50 +117,58 @@ internal sealed class MainWindow : NSWindow
         webView.HostPage = "wwwroot/index.html";
     }
 
-    private void SetPositionAndSize()
+    private async ValueTask SetPositionAndSizeAsync()
     {
-        // TODO : TEST this
-        SixLabors.ImageSharp.Rectangle? bounds = _settingsProvider.GetSetting(PredefinedSettings.MainWindowBounds);
+        Rectangle? bounds = _settingsProvider.GetSetting(PredefinedSettings.MainWindowBounds);
+        bool shouldCenterWindow = bounds is null;
 
-        if (bounds is null)
+        if (shouldCenterWindow)
         {
-            int width = (int)(Math.Max(screen.WorkingArea.Width - 400, 1200));
-            int height = (int)(Math.Max(screen.WorkingArea.Height - 200, 600));
+            await ThreadHelper.RunOnUIThreadAsync(() =>
+            {
+                int width = (int)Math.Max(Screen.Frame.Width - 400, 1200);
+                int height = (int)Math.Max(Screen.Frame.Height - 200, 600);
+                bounds
+                    = new Rectangle(
+                        x: 0,
+                        y: 0,
+                        width,
+                        height);
+            });
+        }
 
+        Guard.IsNotNull(bounds);
+        CGRect newFrame = Frame;
+        newFrame.Width = bounds.Value.Width;
+        newFrame.Height = bounds.Value.Height;
+        newFrame.X = bounds.Value.X;
+        newFrame.Y = bounds.Value.Y;
+        SetFrame(newFrame, display: true);
+
+        if (shouldCenterWindow)
+        {
             // Center the window on the screen.
-            bounds
-                = new(
-                    x: (int)(((screen.WorkingArea.Width / DPI_SCALE) - width) / 2),
-                    y: (int)(((screen.WorkingArea.Height / DPI_SCALE) - height) / 2),
-                    width,
-                    height);
+            Center();
         }
 
-        Left = bounds.Value.X;
-        Top = bounds.Value.Y;
-        Width = bounds.Value.Width;
-        Height = bounds.Value.Height;
-
-        if (_settingsProvider.GetSetting(PredefinedSettings.MainWindowMaximized))
-        {
-            WindowState = System.Windows.WindowState.Maximized;
-        }
+        IsZoomed = _settingsProvider.GetSetting(PredefinedSettings.MainWindowMaximized);
     }
 
     private void SavePositionAndSize()
     {
-        var windowService = (WindowService)_serviceProvider.GetService<IWindowService>()!;
+        Guard.IsNotNull(AppDelegate.ServiceProvider);
+        var windowService = (WindowService)AppDelegate.ServiceProvider.GetService<IWindowService>()!;
         if (!windowService.IsCompactOverlayMode)
         {
             _settingsProvider.SetSetting(
                 PredefinedSettings.MainWindowBounds,
-                new SixLabors.ImageSharp.Rectangle(
-                    (int)Left,
-                    (int)Top,
-                    (int)Width,
-                    (int)Height));
+                new Rectangle(
+                    (int)Frame.Left,
+                    (int)Frame.Top,
+                    (int)Frame.Width,
+                    (int)Frame.Height));
 
-            _settingsProvider.SetSetting(PredefinedSettings.MainWindowMaximized, WindowState == System.Windows.WindowState.Maximized);
+            _settingsProvider.SetSetting(PredefinedSettings.MainWindowMaximized, IsZoomed);
         }
     }
 
