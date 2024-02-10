@@ -241,29 +241,29 @@ namespace DevToys.Tools.Tools.EncodersDecoders.JsonWebToken {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Token issuers (separated by comma).
+        ///   Looks up a localized string similar to Token issuer (separated by comma).
         /// </summary>
-        internal static string DecodeValidateTokenIssuersInputLabel {
+        internal static string DecodeValidateTokenIssuerInputLabel {
             get {
-                return ResourceManager.GetString("DecodeValidateTokenIssuersInputLabel", resourceCulture);
+                return ResourceManager.GetString("DecodeValidateTokenIssuerInputLabel", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Validate issuers signing key.
+        ///   Looks up a localized string similar to Validate issuer signing key.
         /// </summary>
-        internal static string DecodeValidateTokenIssuersSigningKeyTitle {
+        internal static string DecodeValidateTokenIssuerSigningKeyTitle {
             get {
-                return ResourceManager.GetString("DecodeValidateTokenIssuersSigningKeyTitle", resourceCulture);
+                return ResourceManager.GetString("DecodeValidateTokenIssuerSigningKeyTitle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Validate issuers.
+        ///   Looks up a localized string similar to Validate issuer.
         /// </summary>
-        internal static string DecodeValidateTokenIssuersTitle {
+        internal static string DecodeValidateTokenIssuerTitle {
             get {
-                return ResourceManager.GetString("DecodeValidateTokenIssuersTitle", resourceCulture);
+                return ResourceManager.GetString("DecodeValidateTokenIssuerTitle", resourceCulture);
             }
         }
         
@@ -327,6 +327,96 @@ namespace DevToys.Tools.Tools.EncodersDecoders.JsonWebToken {
         internal static string EncodeTokenAlgorithmTitle {
             get {
                 return ResourceManager.GetString("EncodeTokenAlgorithmTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Token audience (separated by comma).
+        /// </summary>
+        internal static string EncodeTokenAudienceInputTitle {
+            get {
+                return ResourceManager.GetString("EncodeTokenAudienceInputTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expire in day(s).
+        /// </summary>
+        internal static string EncodeTokenExpirationDayInputTitle {
+            get {
+                return ResourceManager.GetString("EncodeTokenExpirationDayInputTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expire in hour(s).
+        /// </summary>
+        internal static string EncodeTokenExpirationHourInputTitle {
+            get {
+                return ResourceManager.GetString("EncodeTokenExpirationHourInputTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expire in minute(s).
+        /// </summary>
+        internal static string EncodeTokenExpirationMinuteInputTitle {
+            get {
+                return ResourceManager.GetString("EncodeTokenExpirationMinuteInputTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expire in month(s).
+        /// </summary>
+        internal static string EncodeTokenExpirationMonthInputTitle {
+            get {
+                return ResourceManager.GetString("EncodeTokenExpirationMonthInputTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expire in year(s).
+        /// </summary>
+        internal static string EncodeTokenExpirationYearInputTitle {
+            get {
+                return ResourceManager.GetString("EncodeTokenExpirationYearInputTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Token has audience.
+        /// </summary>
+        internal static string EncodeTokenHasAudienceTitle {
+            get {
+                return ResourceManager.GetString("EncodeTokenHasAudienceTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Token has expiration.
+        /// </summary>
+        internal static string EncodeTokenHasExpirationTitle {
+            get {
+                return ResourceManager.GetString("EncodeTokenHasExpirationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Token has issuer.
+        /// </summary>
+        internal static string EncodeTokenHasIssuerTitle {
+            get {
+                return ResourceManager.GetString("EncodeTokenHasIssuerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Token issuer (separated by comma).
+        /// </summary>
+        internal static string EncodeTokenIssuerInputTitle {
+            get {
+                return ResourceManager.GetString("EncodeTokenIssuerInputTitle", resourceCulture);
             }
         }
         

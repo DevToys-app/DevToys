@@ -6,6 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Tools\TestData\XmlValidator\**" />
+    <EmbeddedResource Remove="Tools\TestData\XmlValidator\**" />
+    <None Remove="Tools\TestData\XmlValidator\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Tools\TestData\JsonWebTokenEncoderDecoder\BasicPayload.json" />
     <None Remove="Tools\TestData\JsonWebTokenEncoderDecoder\ComplexPayload.json" />
     <None Remove="Tools\TestData\JsonWebTokenEncoderDecoder\RS\RS256-EncryptedComplexToken.txt" />
@@ -153,15 +159,6 @@
     <EmbeddedResource Include="Tools\TestData\XmlFormatter\OneTab.xml" />
     <EmbeddedResource Include="Tools\TestData\XmlFormatter\TwoSpaces.xml" />
     <EmbeddedResource Include="Tools\TestData\XmlFormatter\ValidXml.xml" />
-    <EmbeddedResource Include="Tools\TestData\XmlValidator\InvalidXml.xml" />
-    <EmbeddedResource Include="Tools\TestData\XmlValidator\InvalidXsd.xml" />
-    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXml.xml" />
-    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXmlWithNamespace.xml" />
-    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXmlWithoutNamespace.xml" />
-    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXsd.xml" />
-    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXsdOnlyWithTargetNamespace.xml" />
-    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXsdWithNamespace.xml" />
-    <EmbeddedResource Include="Tools\TestData\XmlValidator\ValidXsdWithoutNamespace.xml" />
     <EmbeddedResource Include="Tools\TestData\XMLTester\InvalidXml.xml" />
     <EmbeddedResource Include="Tools\TestData\XMLTester\InvalidXsd.xml" />
     <EmbeddedResource Include="Tools\TestData\XMLTester\ValidXml.xml" />

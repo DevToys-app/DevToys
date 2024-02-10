@@ -26,7 +26,7 @@ internal static class StringHelper
     {
         if (string.IsNullOrWhiteSpace(data))
         {
-            return new(string.Empty, HasSucceeded: true);
+            return new(string.Empty, hasSucceeded: true);
         }
 
         var encoded = new StringBuilder();
@@ -38,7 +38,7 @@ internal static class StringHelper
             {
                 if (cancellationToken.IsCancellationRequested)
                 {
-                    return new(string.Empty, HasSucceeded: false);
+                    return new(string.Empty, hasSucceeded: false);
                 }
 
                 string replacementString = string.Empty;
@@ -94,17 +94,17 @@ internal static class StringHelper
         catch (Exception ex)
         {
             logger.LogError(ex, "Failed to escape text");
-            return new(ex.Message, HasSucceeded: false);
+            return new(ex.Message, hasSucceeded: false);
         }
 
-        return new(encoded.ToString(), HasSucceeded: true);
+        return new(encoded.ToString(), hasSucceeded: true);
     }
 
     internal static ResultInfo<string> UnescapeString(string? data, ILogger logger, CancellationToken cancellationToken)
     {
         if (string.IsNullOrWhiteSpace(data))
         {
-            return new(string.Empty, HasSucceeded: false);
+            return new(string.Empty, hasSucceeded: false);
         }
 
         var decoded = new StringBuilder();
@@ -116,7 +116,7 @@ internal static class StringHelper
             {
                 if (cancellationToken.IsCancellationRequested)
                 {
-                    return new(string.Empty, HasSucceeded: false);
+                    return new(string.Empty, hasSucceeded: false);
                 }
 
                 string replacementString = string.Empty;
@@ -172,10 +172,10 @@ internal static class StringHelper
         catch (Exception ex)
         {
             logger.LogError(ex, "Failed to escape text");
-            return new(ex.Message, HasSucceeded: false);
+            return new(ex.Message, hasSucceeded: false);
         }
 
-        return new(decoded.ToString(), HasSucceeded: true);
+        return new(decoded.ToString(), hasSucceeded: true);
     }
 
     internal static string SortLinesAlphabetically(string text, EndOfLineSequence endOfLineSequence)

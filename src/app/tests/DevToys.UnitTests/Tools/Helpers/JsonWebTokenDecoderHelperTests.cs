@@ -3,9 +3,7 @@ using System.Threading.Tasks;
 using DevToys.Tools.Helpers;
 using DevToys.Tools.Helpers.JsonWebToken;
 using DevToys.Tools.Models;
-using DevToys.Tools.Tools.EncodersDecoders.JsonWebToken;
 using Microsoft.Extensions.Logging;
-using NuGet.Packaging.Signing;
 
 namespace DevToys.UnitTests.Tools.Helpers;
 
@@ -47,7 +45,7 @@ public class JsonWebTokenDecoderHelperTests
     [Fact(DisplayName = "Decode Json Web Token with Invalid Public Key should return false")]
     public async Task DecodeTokenWithInvalidPublicKeyShouldReturnError()
     {
-        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-BasicToken.txt");
+        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-BasicToken.txt");
 
         var decodeParameters = new DecoderParameters()
         {
@@ -70,7 +68,7 @@ public class JsonWebTokenDecoderHelperTests
     [Fact(DisplayName = "Decode Json Web Token with Invalid Signature should return false")]
     public async Task DecodeTokenWithInvalidSignatureShouldReturnError()
     {
-        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-BasicToken.txt");
+        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-BasicToken.txt");
 
         var decodeParameters = new DecoderParameters()
         {
@@ -92,8 +90,8 @@ public class JsonWebTokenDecoderHelperTests
     [Fact(DisplayName = "Decode Json Web Token with Invalid Issuers should return false")]
     public async Task DecodeTokenWithInvalidIssuersShouldReturnError()
     {
-        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-BasicToken.txt");
-        string signatureContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-Signature.txt");
+        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-BasicToken.txt");
+        string signatureContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-Signature.txt");
 
         var decodeParameters = new DecoderParameters()
         {
@@ -116,8 +114,8 @@ public class JsonWebTokenDecoderHelperTests
     [Fact(DisplayName = "Decode Json Web Token with Invalid Audiences should return false")]
     public async Task DecodeTokenWithInvalidAudiencesShouldReturnError()
     {
-        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-BasicToken.txt");
-        string signatureContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-Signature.txt");
+        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-BasicToken.txt");
+        string signatureContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-Signature.txt");
 
         var decodeParameters = new DecoderParameters()
         {
@@ -140,8 +138,8 @@ public class JsonWebTokenDecoderHelperTests
     [Fact(DisplayName = "Decode Json Web Token with Invalid Expired Lifetime should return false")]
     public async Task DecodeTokenWithInvalidExpiredLifetimeShouldReturnError()
     {
-        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-BasicToken.txt");
-        string signatureContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-Signature.txt");
+        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-BasicToken.txt");
+        string signatureContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-Signature.txt");
 
         var decodeParameters = new DecoderParameters()
         {
@@ -168,11 +166,11 @@ public class JsonWebTokenDecoderHelperTests
     [Fact(DisplayName = "Decode HS256 Json Web Token with Valid Token and valid parameters should return decoded token")]
     public async Task DecodeHS256TokenWithValidTokenAndValidParametersShouldReturnDecodedToken()
     {
-        string headerContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-Header.json");
-        string payloadContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
+        string headerContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-Header.json");
+        string payloadContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
 
-        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-ComplexToken.txt");
-        string signatureContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-Signature.txt");
+        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-ComplexToken.txt");
+        string signatureContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-Signature.txt");
         var decodeParameters = new DecoderParameters()
         {
             ValidateSignature = true,
@@ -214,11 +212,11 @@ public class JsonWebTokenDecoderHelperTests
     [Fact(DisplayName = "Decode RS256 Public Key Json Web Token with Valid Token and valid parameters should return decoded token")]
     public async Task DecodeRS256PublicKeyTokenWithValidTokenAndValidParametersShouldReturnDecodedToken()
     {
-        string headerContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.RS.RS256-Header.json");
-        string payloadContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
+        string headerContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.RS.RS256-Header.json");
+        string payloadContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
 
-        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.RS.RS256-ComplexToken.txt");
-        string publicKeyContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.RS.RS256-PublicKey.txt");
+        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.RS.RS256-ComplexToken.txt");
+        string publicKeyContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.RS.RS256-PublicKey.txt");
 
         var decodeParameters = new DecoderParameters()
         {
@@ -256,11 +254,11 @@ public class JsonWebTokenDecoderHelperTests
     [Fact(DisplayName = "Decode RS384 Public Key Json Web Token with Valid Token and valid parameters should return decoded token")]
     public async Task DecodeRS384PublicKeyTokenWithValidTokenAndValidParametersShouldReturnDecodedToken()
     {
-        string headerContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.RS.RS384-Header.json");
-        string payloadContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
+        string headerContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.RS.RS384-Header.json");
+        string payloadContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
 
-        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.RS.RS384-ComplexToken.txt");
-        string publicKeyContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.RS.RS384-PublicKey.txt");
+        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.RS.RS384-ComplexToken.txt");
+        string publicKeyContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.RS.RS384-PublicKey.txt");
 
         var decodeParameters = new DecoderParameters()
         {
@@ -298,11 +296,11 @@ public class JsonWebTokenDecoderHelperTests
     [Fact(DisplayName = "Decode RS512 Public Key Json Web Token with Valid Token and valid parameters should return decoded token")]
     public async Task DecodeRS512PublicKeyTokenWithValidTokenAndValidParametersShouldReturnDecodedToken()
     {
-        string headerContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.RS.RS512-Header.json");
-        string payloadContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
+        string headerContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.RS.RS512-Header.json");
+        string payloadContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
 
-        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.RS.RS512-ComplexToken.txt");
-        string publicKeyContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.RS.RS512-PublicKey.txt");
+        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.RS.RS512-ComplexToken.txt");
+        string publicKeyContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.RS.RS512-PublicKey.txt");
         var decodeParameters = new DecoderParameters()
         {
             ValidateSignature = true,
@@ -343,11 +341,11 @@ public class JsonWebTokenDecoderHelperTests
     [Fact(DisplayName = "Decode PS256 Public Key Json Web Token with Valid Token and valid parameters should return decoded token")]
     public async Task DecodePS256PublicKeyTokenWithValidTokenAndValidParametersShouldReturnDecodedToken()
     {
-        string headerContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.PS.PS256-Header.json");
-        string payloadContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
+        string headerContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.PS.PS256-Header.json");
+        string payloadContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
 
-        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.PS.PS256-ComplexToken.txt");
-        string publicKeyContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.PS.PS256-PublicKey.txt");
+        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.PS.PS256-ComplexToken.txt");
+        string publicKeyContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.PS.PS256-PublicKey.txt");
         var decodeParameters = new DecoderParameters()
         {
             ValidateSignature = true,
@@ -384,11 +382,11 @@ public class JsonWebTokenDecoderHelperTests
     [Fact(DisplayName = "Decode PS384 Public Key Json Web Token with Valid Token and valid parameters should return decoded token")]
     public async Task DecodePS384PublicKeyTokenWithValidTokenAndValidParametersShouldReturnDecodedToken()
     {
-        string headerContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.PS.PS384-Header.json");
-        string payloadContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
+        string headerContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.PS.PS384-Header.json");
+        string payloadContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
 
-        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.PS.PS384-ComplexToken.txt");
-        string publicKeyContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.PS.PS384-PublicKey.txt");
+        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.PS.PS384-ComplexToken.txt");
+        string publicKeyContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.PS.PS384-PublicKey.txt");
         var decodeParameters = new DecoderParameters()
         {
             ValidateSignature = true,
@@ -425,11 +423,11 @@ public class JsonWebTokenDecoderHelperTests
     [Fact(DisplayName = "Decode PS512 Public Key Json Web Token with Valid Token and valid parameters should return decoded token")]
     public async Task DecodePS512PublicKeyTokenWithValidTokenAndValidParametersShouldReturnDecodedToken()
     {
-        string headerContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.PS.PS512-Header.json");
-        string payloadContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
+        string headerContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.PS.PS512-Header.json");
+        string payloadContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
 
-        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.PS.PS512-ComplexToken.txt");
-        string publicKeyContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.PS.PS512-PublicKey.txt");
+        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.PS.PS512-ComplexToken.txt");
+        string publicKeyContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.PS.PS512-PublicKey.txt");
         var decodeParameters = new DecoderParameters()
         {
             ValidateSignature = true,
@@ -470,11 +468,11 @@ public class JsonWebTokenDecoderHelperTests
     [Fact(DisplayName = "Decode ES256 Public Key Json Web Token with Valid Token and valid parameters should return decoded token")]
     public async Task DecodeES256PublicKeyTokenWithValidTokenAndValidParametersShouldReturnDecodedToken()
     {
-        string headerContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ES.ES256-Header.json");
-        string payloadContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
+        string headerContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ES.ES256-Header.json");
+        string payloadContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
 
-        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ES.ES256-ComplexToken.txt");
-        string publicKeyContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ES.ES256-PublicKey.txt");
+        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ES.ES256-ComplexToken.txt");
+        string publicKeyContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ES.ES256-PublicKey.txt");
 
         var decodeParameters = new DecoderParameters()
         {
@@ -512,11 +510,11 @@ public class JsonWebTokenDecoderHelperTests
     [Fact(DisplayName = "Decode ES384 Public Key Json Web Token with Valid Token and valid parameters should return decoded token")]
     public async Task DecodeES384PublicKeyTokenWithValidTokenAndValidParametersShouldReturnDecodedToken()
     {
-        string headerContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ES.ES384-Header.json");
-        string payloadContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
+        string headerContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ES.ES384-Header.json");
+        string payloadContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
 
-        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ES.ES384-ComplexToken.txt");
-        string publicKeyContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ES.ES384-PublicKey.txt");
+        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ES.ES384-ComplexToken.txt");
+        string publicKeyContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ES.ES384-PublicKey.txt");
 
         var decodeParameters = new DecoderParameters()
         {
@@ -554,11 +552,11 @@ public class JsonWebTokenDecoderHelperTests
     [Fact(DisplayName = "Decode ES512 Public Key Json Web Token with Valid Token and valid parameters should return decoded token")]
     public async Task DecodeES512PublicKeyTokenWithValidTokenAndValidParametersShouldReturnDecodedToken()
     {
-        string headerContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ES.ES512-Header.json");
-        string payloadContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
+        string headerContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ES.ES512-Header.json");
+        string payloadContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ComplexPayload.json");
 
-        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ES.ES512-ComplexToken.txt");
-        string publicKeyContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ES.ES512-PublicKey.txt");
+        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ES.ES512-ComplexToken.txt");
+        string publicKeyContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ES.ES512-PublicKey.txt");
         var decodeParameters = new DecoderParameters()
         {
             ValidateSignature = true,
@@ -615,7 +613,7 @@ public class JsonWebTokenDecoderHelperTests
     [Fact(DisplayName = "Get Json Web Token Algorithm with HS256 token should return HS256")]
     public async Task GetTokenAlgorithmWithInvalidTokenShouldJwtAlgorithmHS256()
     {
-        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-BasicToken.txt");
+        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.HS.HS256-BasicToken.txt");
 
         ResultInfo<JsonWebTokenAlgorithm?> result = JsonWebTokenDecoderHelper.GetTokenAlgorithm(tokenContent, _logger);
         result.HasSucceeded.Should().BeTrue();
@@ -626,7 +624,7 @@ public class JsonWebTokenDecoderHelperTests
     [Fact(DisplayName = "Get Json Web Token Algorithm with PS384 token should return PS384")]
     public async Task GetTokenAlgorithmWithInvalidTokenShouldJwtAlgorithmPS384()
     {
-        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.PS.PS384-ComplexToken.txt");
+        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.PS.PS384-ComplexToken.txt");
 
         ResultInfo<JsonWebTokenAlgorithm?> result = JsonWebTokenDecoderHelper.GetTokenAlgorithm(tokenContent, _logger);
         result.HasSucceeded.Should().BeTrue();
@@ -637,7 +635,7 @@ public class JsonWebTokenDecoderHelperTests
     [Fact(DisplayName = "Get Json Web Token Algorithm with RS512 token should return RS512")]
     public async Task GetTokenAlgorithmWithInvalidTokenShouldJwtAlgorithmRS512()
     {
-        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.RS.RS512-ComplexToken.txt");
+        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.RS.RS512-ComplexToken.txt");
 
         ResultInfo<JsonWebTokenAlgorithm?> result = JsonWebTokenDecoderHelper.GetTokenAlgorithm(tokenContent, _logger);
         result.HasSucceeded.Should().BeTrue();
@@ -648,7 +646,7 @@ public class JsonWebTokenDecoderHelperTests
     [Fact(DisplayName = "Get Json Web Token Algorithm with ES256 token should return ES256")]
     public async Task GetTokenAlgorithmWithInvalidTokenShouldJwtAlgorithmES256()
     {
-        string tokenContent = await TestDataProvider.GetFileContent($"{BaseAssembly}.{ToolName}.ES.ES256-ComplexToken.txt");
+        string tokenContent = await TestDataProvider.GetEmbeddedFileContent($"{BaseAssembly}.{ToolName}.ES.ES256-ComplexToken.txt");
 
         ResultInfo<JsonWebTokenAlgorithm?> result = JsonWebTokenDecoderHelper.GetTokenAlgorithm(tokenContent, _logger);
         result.HasSucceeded.Should().BeTrue();

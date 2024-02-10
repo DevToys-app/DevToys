@@ -17,26 +17,26 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
     /// <summary>
     /// Define if we want to validate the token issuer signing key or not
     /// </summary>
-    private static readonly SettingDefinition<bool> validateTokenIssuersSigningKeySetting
+    private static readonly SettingDefinition<bool> validateTokenIssuerSigningKeySetting
         = new(
-            name: $"{nameof(JsonWebTokenDecoderGuiTool)}.{nameof(validateTokenIssuersSigningKeySetting)}",
+            name: $"{nameof(JsonWebTokenDecoderGuiTool)}.{nameof(validateTokenIssuerSigningKeySetting)}",
             defaultValue: false);
 
     #region TokenIssuers
     /// <summary>
     /// Define if we want to validate the token issuers or not
     /// </summary>
-    private static readonly SettingDefinition<bool> validateTokenIssuersSetting
+    private static readonly SettingDefinition<bool> validateTokenIssuerSetting
         = new(
-            name: $"{nameof(JsonWebTokenDecoderGuiTool)}.{nameof(validateTokenIssuersSetting)}",
+            name: $"{nameof(JsonWebTokenDecoderGuiTool)}.{nameof(validateTokenIssuerSetting)}",
             defaultValue: false);
 
     /// <summary>
     /// Define the issuers list
     /// </summary>
-    private static readonly SettingDefinition<string> tokenIssuersSetting
+    private static readonly SettingDefinition<string> tokenIssuerSetting
         = new(
-            name: $"{nameof(JsonWebTokenDecoderGuiTool)}.{nameof(tokenIssuersSetting)}",
+            name: $"{nameof(JsonWebTokenDecoderGuiTool)}.{nameof(tokenIssuerSetting)}",
             defaultValue: string.Empty);
     #endregion
 
@@ -77,7 +77,6 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
     private bool _showPayloadClaim;
     private JsonWebTokenAlgorithm? _currentAlgorithm;
 
-    private readonly DisposableSemaphore _semaphore = new();
     private readonly ILogger _logger;
     private readonly ISettingsProvider _settingsProvider;
 
@@ -85,60 +84,29 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
     private readonly IUIStack _viewStack = Stack("jwt-decode-view-stack");
     private readonly IUIStack _decodeSettingsStack = Stack("jwt-decode-settings-stack");
 
-    #region Settings
-    private readonly IUISwitch _validateTokenSwitch = Switch("jwt-decode-validate-token-switch");
-    private readonly IUISetting _validateTokenSetting = Setting("jwt-decode-validate-token-setting");
     private readonly IUISettingGroup _validateTokenSettingGroups = SettingGroup("jwt-decode-validate-token-setting");
-    #endregion
 
-    #region TokenIssuerSigningKey
+    private readonly IUISwitch _validateTokenSwitch = Switch("jwt-decode-validate-token-switch");
     private readonly IUISwitch _validateTokenIssuerSigningKeySwitch = Switch("jwt-decode-validate-token-issuer-signing-key-switch");
-    private readonly IUISetting _validateTokenIssuerSigningKeySetting = Setting("jwt-decode-validate-token-issuer-signing-key-setting");
-    #endregion
-
-    #region TokenIssuer
     private readonly IUISwitch _validateTokenIssuersSwitch = Switch("jwt-decode-validate-token-issuers-switch");
-    private readonly IUISettingGroup _validateTokenIssuersSettingGroups = SettingGroup("jwt-decode-validate-token-issuers-setting-group");
-    private readonly IUISingleLineTextInput _validateTokenIssuersInput = SingleLineTextInput("jwt-decode-validate-token-issuers-input");
-    #endregion
-
-    #region TokenAudiences
     private readonly IUISwitch _validateTokenAudiencesSwitch = Switch("jwt-decode-validate-token-audiences-switch");
-    private readonly IUISettingGroup _validateTokenAudiencesSettingGroups = SettingGroup("jwt-decode-validate-token-audiences-setting-group");
-    private readonly IUISingleLineTextInput _validateTokenAudiencesInput = SingleLineTextInput("jwt-decode-validate-token-audiences-input");
-    #endregion
-
-    #region TokenLifetime
     private readonly IUISwitch _validateLifetimeSwitch = Switch("jwt-decode-validate-token-lifetime-switch");
-    private readonly IUISetting _validateLifetimeSetting = Setting("jwt-decode-validate-token-lifetime-setting");
-    #endregion
-
-    #region TokenActors
     private readonly IUISwitch _validateActorsSwitch = Switch("jwt-decode-validate-token-actors-switch");
-    private readonly IUISetting _validateActorsSetting = Setting("jwt-decode-validate-token-actors-setting");
-    #endregion
+
+    private readonly IUISingleLineTextInput _validateTokenIssuersInput = SingleLineTextInput("jwt-decode-validate-token-issuers-input");
+    private readonly IUISingleLineTextInput _validateTokenAudiencesInput = SingleLineTextInput("jwt-decode-validate-token-audiences-input");
 
     private readonly IUIMultiLineTextInput _tokenInput = MultilineTextInput("jwt-decode-token-input");
     private readonly IUIMultiLineTextInput _signatureInput = MultilineTextInput("jwt-decode-signature-input");
     private readonly IUIMultiLineTextInput _publicKeyInput = MultilineTextInput("jwt-decode-public-key-input");
-
-    #region Header
-
     private readonly IUIMultiLineTextInput _headerInput = MultilineTextInput("jwt-decode-header-input", "json");
 
-    #endregion
-
-    #region Payload
-
-    private readonly IUIStack _payloadCommandBarStack = Stack("jwt-decode-payload-stack");
     private readonly IUIDataGrid _payloadClaimsDataGrid = DataGrid("jwt-decode-payload-claims-data-grid");
-    private readonly IUIButton _payloadToggleClaimsButton = Button("jwt-decode-payload-toggle-claims-button");
     private readonly IUIMultiLineTextInput _payloadInput = MultilineTextInput("jwt-decode-payload-input", "json");
 
-    #endregion
+    private static readonly List<string> dateFields = new() { "exp", "nbf", "iat", "auth_time", "updated_at" };
 
-    private static readonly List<string> DateFields = new() { "exp", "nbf", "iat", "auth_time", "updated_at" };
-
+    private DisposableSemaphore _semaphore = new();
     private CancellationTokenSource? _cancellationTokenSource;
 
     [ImportingConstructor]
@@ -156,7 +124,7 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
         => _viewStack
         .Vertical()
         .WithChildren(
-            _validateTokenSetting
+            Setting("jwt-decode-validate-token-setting")
                 .Icon("FluentSystemIcons", '\ueac9')
                 .Title(JsonWebTokenEncoderDecoder.DecodeValidateTokenTitle)
                 .InteractiveElement(
@@ -170,30 +138,30 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
                 .Title(JsonWebTokenEncoderDecoder.DecodeValidateTokenSettingsTitle)
                 .Description(JsonWebTokenEncoderDecoder.DecodeValidateTokenSettingsDescription)
                 .WithChildren(
-                    _validateTokenIssuerSigningKeySetting
+                    Setting("jwt-decode-validate-token-issuer-signing-key-setting")
                         .Icon("FluentSystemIcons", '\ue30a')
-                        .Title(JsonWebTokenEncoderDecoder.DecodeValidateTokenIssuersSigningKeyTitle)
+                        .Title(JsonWebTokenEncoderDecoder.DecodeValidateTokenIssuerSigningKeyTitle)
                         .InteractiveElement(
                             _validateTokenIssuerSigningKeySwitch
                                 .OnText(JsonWebTokenEncoderDecoder.Yes)
                                 .OffText(JsonWebTokenEncoderDecoder.No)
-                                .OnToggle(OnValidateTokenIssuersSigningKey)
+                                .OnToggle(OnValidateTokenIssuerSigningKey)
                         ),
-                    _validateTokenIssuersSettingGroups
+                    SettingGroup("jwt-decode-validate-token-issuers-setting-group")
                         .Icon("FluentSystemIcons", '\ue30a')
-                        .Title(JsonWebTokenEncoderDecoder.DecodeValidateTokenIssuersTitle)
+                        .Title(JsonWebTokenEncoderDecoder.DecodeValidateTokenIssuerTitle)
                         .InteractiveElement(
                             _validateTokenIssuersSwitch
                                 .OnText(JsonWebTokenEncoderDecoder.Yes)
                                 .OffText(JsonWebTokenEncoderDecoder.No)
-                                .OnToggle(OnValidateTokenIssuers)
+                                .OnToggle(OnValidateTokenIssuer)
                         )
                         .WithChildren(
                             _validateTokenIssuersInput
-                                .Title(JsonWebTokenEncoderDecoder.DecodeValidateTokenIssuersInputLabel)
-                                .OnTextChanged(OnTokenIssuersInputChanged)
+                                .Title(JsonWebTokenEncoderDecoder.DecodeValidateTokenIssuerInputLabel)
+                                .OnTextChanged(OnTokenIssuerInputChanged)
                         ),
-                    _validateTokenAudiencesSettingGroups
+                    SettingGroup("jwt-decode-validate-token-audiences-setting-group")
                         .Icon("FluentSystemIcons", '\ue30a')
                         .Title(JsonWebTokenEncoderDecoder.DecodeValidateTokenAudiencesTitle)
                         .InteractiveElement(
@@ -207,7 +175,7 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
                                 .Title(JsonWebTokenEncoderDecoder.DecodeValidateTokenAudiencesInputLabel)
                                 .OnTextChanged(OnTokenAudiencesInputChanged)
                         ),
-                    _validateLifetimeSetting
+                    Setting("jwt-decode-validate-token-lifetime-setting")
                         .Icon("FluentSystemIcons", '\ue30a')
                         .Title(JsonWebTokenEncoderDecoder.DecodeValidateTokenLifetimeTitle)
                         .InteractiveElement(
@@ -216,7 +184,7 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
                                 .OffText(JsonWebTokenEncoderDecoder.No)
                                 .OnToggle(OnValidateTokenLifetime)
                         ),
-                    _validateActorsSetting
+                    Setting("jwt-decode-validate-token-actors-setting")
                         .Icon("FluentSystemIcons", '\ue30a')
                         .Title(JsonWebTokenEncoderDecoder.DecodeValidateTokenActorsTitle)
                         .InteractiveElement(
@@ -248,10 +216,10 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
                                 .ReadOnly()
                                 .Extendable()
                                 .CommandBarExtraContent(
-                                    _payloadCommandBarStack
+                                    Stack("jwt-decode-payload-stack")
                                         .Horizontal()
                                         .WithChildren(
-                                            _payloadToggleClaimsButton
+                                            Button("jwt-decode-payload-claims-toggle-button")
                                                 .Icon("FluentSystemIcons", '\uf4a5')
                                                 .OnClick(OnPayloadClaimClicked)
                                         )
@@ -259,10 +227,10 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
                             _payloadClaimsDataGrid
                                 .Extendable()
                                 .CommandBarExtraContent(
-                                    _payloadCommandBarStack
+                                    Stack("jwt-decode-payload-claims-stack")
                                         .Horizontal()
                                         .WithChildren(
-                                            _payloadToggleClaimsButton
+                                            Button("jwt-decode-payload-claims-toggle-button")
                                                 .Icon("FluentSystemIcons", '\uf4a5')
                                                 .OnClick(OnPayloadClaimClicked)
                                         )
@@ -281,8 +249,7 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
     public void Show()
     {
         _viewStack.Show();
-        _cancellationTokenSource?.Cancel();
-        _cancellationTokenSource?.Dispose();
+        _semaphore = new();
         _cancellationTokenSource = new CancellationTokenSource();
     }
 
@@ -302,23 +269,23 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
         StartTokenDecode();
     }
 
-    #region TokenIssuers
+    #region TokenIssuer
 
-    private void OnValidateTokenIssuersSigningKey(bool validateTokenIssuersSigningKey)
+    private void OnValidateTokenIssuerSigningKey(bool validateTokenIssuerSigningKey)
     {
-        _settingsProvider.SetSetting(JsonWebTokenDecoderGuiTool.validateTokenIssuersSigningKeySetting, validateTokenIssuersSigningKey);
+        _settingsProvider.SetSetting(JsonWebTokenDecoderGuiTool.validateTokenIssuerSigningKeySetting, validateTokenIssuerSigningKey);
         StartTokenDecode();
     }
 
-    private void OnValidateTokenIssuers(bool validateTokenIssuers)
+    private void OnValidateTokenIssuer(bool validateTokenIssuer)
     {
-        _settingsProvider.SetSetting(JsonWebTokenDecoderGuiTool.validateTokenIssuersSetting, validateTokenIssuers);
+        _settingsProvider.SetSetting(JsonWebTokenDecoderGuiTool.validateTokenIssuerSetting, validateTokenIssuer);
         StartTokenDecode();
     }
 
-    private ValueTask OnTokenIssuersInputChanged(string issuers)
+    private ValueTask OnTokenIssuerInputChanged(string issuer)
     {
-        _settingsProvider.SetSetting(JsonWebTokenDecoderGuiTool.tokenIssuersSetting, issuers);
+        _settingsProvider.SetSetting(JsonWebTokenDecoderGuiTool.tokenIssuerSetting, issuer);
         StartTokenDecode();
         return ValueTask.CompletedTask;
     }
@@ -407,13 +374,13 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
             decoderParameters.ValidateSignature = validateTokenSignature;
             decoderParameters.ValidateActors = _settingsProvider.GetSetting(validateTokenActorsSetting);
             decoderParameters.ValidateLifetime = _settingsProvider.GetSetting(validateTokenLifetimeSetting);
-            decoderParameters.ValidateIssuersSigningKey = _settingsProvider.GetSetting(validateTokenIssuersSigningKeySetting);
+            decoderParameters.ValidateIssuersSigningKey = _settingsProvider.GetSetting(validateTokenIssuerSigningKeySetting);
 
-            bool validateIssuers = _settingsProvider.GetSetting(validateTokenIssuersSetting);
+            bool validateIssuers = _settingsProvider.GetSetting(validateTokenIssuerSetting);
             if (validateIssuers)
             {
                 decoderParameters.ValidateIssuers = validateIssuers;
-                tokenParameters.Issuers = _settingsProvider.GetSetting(tokenIssuersSetting).Split(',').ToHashSet();
+                tokenParameters.Issuers = _settingsProvider.GetSetting(tokenIssuerSetting).Split(',').ToHashSet();
             }
 
             bool validateAudiences = _settingsProvider.GetSetting(validateTokenAudiencesSetting);
@@ -508,13 +475,13 @@ internal sealed partial class JsonWebTokenDecoderGuiTool
             _infoBar.Close();
         }
 
-        ConfigureSwitch(_settingsProvider.GetSetting(JsonWebTokenDecoderGuiTool.validateTokenIssuersSigningKeySetting), _validateTokenIssuerSigningKeySwitch);
-        ConfigureSwitch(_settingsProvider.GetSetting(JsonWebTokenDecoderGuiTool.validateTokenIssuersSetting), _validateTokenIssuersSwitch);
+        ConfigureSwitch(_settingsProvider.GetSetting(JsonWebTokenDecoderGuiTool.validateTokenIssuerSigningKeySetting), _validateTokenIssuerSigningKeySwitch);
+        ConfigureSwitch(_settingsProvider.GetSetting(JsonWebTokenDecoderGuiTool.validateTokenIssuerSetting), _validateTokenIssuersSwitch);
         ConfigureSwitch(_settingsProvider.GetSetting(JsonWebTokenDecoderGuiTool.validateTokenAudiencesSetting), _validateTokenAudiencesSwitch);
         ConfigureSwitch(_settingsProvider.GetSetting(JsonWebTokenDecoderGuiTool.validateTokenLifetimeSetting), _validateLifetimeSwitch);
         ConfigureSwitch(_settingsProvider.GetSetting(JsonWebTokenDecoderGuiTool.validateTokenActorsSetting), _validateActorsSwitch);
 
-        _validateTokenIssuersInput.Text(_settingsProvider.GetSetting(JsonWebTokenDecoderGuiTool.tokenIssuersSetting));
+        _validateTokenIssuersInput.Text(_settingsProvider.GetSetting(JsonWebTokenDecoderGuiTool.tokenIssuerSetting));
         _validateTokenAudiencesInput.Text(_settingsProvider.GetSetting(JsonWebTokenDecoderGuiTool.tokenAudiencesSetting));
 
         _payloadClaimsDataGrid.Hide();

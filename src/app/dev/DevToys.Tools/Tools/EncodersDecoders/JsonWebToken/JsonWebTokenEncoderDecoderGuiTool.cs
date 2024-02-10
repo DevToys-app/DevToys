@@ -1,18 +1,18 @@
-﻿using DevToys.Api;
-using DevToys.Tools.Models;
+﻿using DevToys.Tools.Models;
 using DevToys.Tools.Tools.EncodersDecoders.JsonWebToken;
 using Microsoft.Extensions.Logging;
+using YamlDotNet.Core.Tokens;
 
 namespace DevToys.Tools.Tools.EncodersDecoders.Jwt;
 
 [Export(typeof(IGuiTool))]
-[Name("JwtEncoderDecoder")]
+[Name("JsonWebTokenEncoderDecoder")]
 [ToolDisplayInformation(
     IconFontName = "DevToys-Tools-Icons",
     IconGlyph = '\ue78d',
     GroupName = PredefinedCommonToolGroupNames.EncodersDecoders,
     ResourceManagerAssemblyIdentifier = nameof(DevToysToolsResourceManagerAssemblyIdentifier),
-    ResourceManagerBaseName = "DevToys.Tools.Tools.EncodersDecoders.JsonWebToken.JwtEncoderDecoder",
+    ResourceManagerBaseName = "DevToys.Tools.Tools.EncodersDecoders.JsonWebToken.JsonWebTokenEncoderDecoder",
     ShortDisplayTitleResourceName = nameof(JsonWebTokenEncoderDecoder.ShortDisplayTitle),
     LongDisplayTitleResourceName = nameof(JsonWebTokenEncoderDecoder.LongDisplayTitle),
     DescriptionResourceName = nameof(JsonWebTokenEncoderDecoder.Description),
@@ -42,7 +42,14 @@ internal sealed partial class JsonWebTokenEncoderDecoderGuiTool : IGuiTool, IDis
         _logger = this.Log();
         _settingsProvider = settingsProvider;
         _decoderGuiTool = new(_settingsProvider);
-        _encoderGuiTool = new();
+        _encoderGuiTool = new(_settingsProvider);
+
+        JwtMode value = _settingsProvider.GetSetting(JsonWebTokenEncoderDecoderGuiTool.toolModeSetting);
+        if (value is JwtMode.Encode)
+        {
+            _conversionModeSwitch.On();
+        }
+        _conversionModeSwitch.Off();
         LoadChildView();
     }
 
@@ -55,15 +62,15 @@ internal sealed partial class JsonWebTokenEncoderDecoderGuiTool : IGuiTool, IDis
             _jwtEncoderDecoderGuiGrid
             .RowLargeSpacing()
             .Rows(
-                (JwtGridRows.Settings, Auto),
-                (JwtGridRows.SubContainer, new UIGridLength(1, UIGridUnitType.Fraction))
+                (JsonWebTokenGridRows.Settings, Auto),
+                (JsonWebTokenGridRows.SubContainer, new UIGridLength(1, UIGridUnitType.Fraction))
             )
             .Columns(
                 (GridColumns.Stretch, new UIGridLength(1, UIGridUnitType.Fraction))
             )
             .Cells(
                 Cell(
-                    JwtGridRows.Settings,
+                    JsonWebTokenGridRows.Settings,
                     GridColumns.Stretch,
                     Stack()
                         .Vertical()
@@ -84,7 +91,7 @@ internal sealed partial class JsonWebTokenEncoderDecoderGuiTool : IGuiTool, IDis
                         )
                 ),
                 Cell(
-                    JwtGridRows.SubContainer,
+                    JsonWebTokenGridRows.SubContainer,
                     GridColumns.Stretch,
                     Stack()
                     .Vertical()
@@ -93,8 +100,6 @@ internal sealed partial class JsonWebTokenEncoderDecoderGuiTool : IGuiTool, IDis
                         _encoderGuiTool.ViewStack()
                     )
                 )
-            //_decoderGuiTool.GridCell,
-            //_encoderGuiTool.GridCell
             )
         );
 
@@ -116,7 +121,7 @@ internal sealed partial class JsonWebTokenEncoderDecoderGuiTool : IGuiTool, IDis
 
     private IUIGridCell EncodeDecodeSettings()
         => Cell(
-            JwtGridRows.Settings,
+            JsonWebTokenGridRows.Settings,
             GridColumns.Stretch,
             Stack()
                 .Vertical()

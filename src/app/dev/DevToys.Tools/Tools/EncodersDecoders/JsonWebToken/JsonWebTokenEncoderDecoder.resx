@@ -197,16 +197,16 @@
     <value>Validate audiences</value>
     <comment>Gui</comment>
   </data>
-  <data name="DecodeValidateTokenIssuersInputLabel" xml:space="preserve">
-    <value>Token issuers (separated by comma)</value>
+  <data name="DecodeValidateTokenIssuerInputLabel" xml:space="preserve">
+    <value>Token issuer (separated by comma)</value>
     <comment>Gui</comment>
   </data>
-  <data name="DecodeValidateTokenIssuersSigningKeyTitle" xml:space="preserve">
-    <value>Validate issuers signing key</value>
+  <data name="DecodeValidateTokenIssuerSigningKeyTitle" xml:space="preserve">
+    <value>Validate issuer signing key</value>
     <comment>Gui</comment>
   </data>
-  <data name="DecodeValidateTokenIssuersTitle" xml:space="preserve">
-    <value>Validate issuers</value>
+  <data name="DecodeValidateTokenIssuerTitle" xml:space="preserve">
+    <value>Validate issuer</value>
     <comment>Gui</comment>
   </data>
   <data name="DecodeValidateTokenLifetimeTitle" xml:space="preserve">
@@ -235,6 +235,46 @@
   </data>
   <data name="EncodeTokenAlgorithmTitle" xml:space="preserve">
     <value>Token hashing algorithm</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="EncodeTokenAudienceInputTitle" xml:space="preserve">
+    <value>Token audience (separated by comma)</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="EncodeTokenExpirationDayInputTitle" xml:space="preserve">
+    <value>Expire in day(s)</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="EncodeTokenExpirationHourInputTitle" xml:space="preserve">
+    <value>Expire in hour(s)</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="EncodeTokenExpirationMinuteInputTitle" xml:space="preserve">
+    <value>Expire in minute(s)</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="EncodeTokenExpirationMonthInputTitle" xml:space="preserve">
+    <value>Expire in month(s)</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="EncodeTokenExpirationYearInputTitle" xml:space="preserve">
+    <value>Expire in year(s)</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="EncodeTokenHasAudienceTitle" xml:space="preserve">
+    <value>Token has audience</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="EncodeTokenHasExpirationTitle" xml:space="preserve">
+    <value>Token has expiration</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="EncodeTokenHasIssuerTitle" xml:space="preserve">
+    <value>Token has issuer</value>
+    <comment>Gui</comment>
+  </data>
+  <data name="EncodeTokenIssuerInputTitle" xml:space="preserve">
+    <value>Token issuer (separated by comma)</value>
     <comment>Gui</comment>
   </data>
   <data name="EncodeTokenSettingsDescription" xml:space="preserve">
