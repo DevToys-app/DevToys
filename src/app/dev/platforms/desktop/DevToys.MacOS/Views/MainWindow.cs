@@ -1,6 +1,7 @@
-using DevToys.Blazor;
+﻿using DevToys.Blazor;
 using DevToys.Core;
 using DevToys.MacOS.Controls.BlazorWebView;
+using PredefinedSettings = DevToys.Core.Settings.PredefinedSettings;
 
 namespace DevToys.MacOS.Views;
 
@@ -13,18 +14,20 @@ internal sealed class MainWindow : NSWindow
 #endif
 
     private readonly TitleBarInfoProvider _titleBarInfoProvider;
+    private readonly ISettingsProvider _settingsProvider;
     private bool _isInitialized;
 
     internal static MainWindow Instance { get; } = new();
 
     private MainWindow()
         : base(
-            new CGRect(0, 0, 1280, 800),
+            new CGRect(0, 0, 1200, 600),
             NSWindowStyle.Closable | NSWindowStyle.Miniaturizable | NSWindowStyle.Resizable | NSWindowStyle.Titled | NSWindowStyle.FullSizeContentView,
             NSBackingStore.Buffered,
             false)
     {
         Guard.IsNotNull(AppDelegate.MefComposer);
+        _settingsProvider = AppDelegate.MefComposer.Provider.Import<ISettingsProvider>();
         _titleBarInfoProvider = AppDelegate.MefComposer.Provider.Import<TitleBarInfoProvider>();
         _titleBarInfoProvider.PropertyChanged += TitleBarInfoProvider_PropertyChanged;
 
@@ -49,6 +52,8 @@ internal sealed class MainWindow : NSWindow
 
     private void InitializeView()
     {
+        SetPositionAndSize();
+
         // Try to get the title bar view.
         NSView titleBar = StandardWindowButton(NSWindowButton.CloseButton).Superview;
 
@@ -89,6 +94,53 @@ internal sealed class MainWindow : NSWindow
         // Navigate to our Blazor webpage.
         webView.RootComponents.Add(new RootComponent { Selector = "#app", ComponentType = typeof(Main) });
         webView.HostPage = "wwwroot/index.html";
+    }
+
+    private void SetPositionAndSize()
+    {
+        // TODO : TEST this
+        SixLabors.ImageSharp.Rectangle? bounds = _settingsProvider.GetSetting(PredefinedSettings.MainWindowBounds);
+
+        if (bounds is null)
+        {
+            int width = (int)(Math.Max(screen.WorkingArea.Width - 400, 1200));
+            int height = (int)(Math.Max(screen.WorkingArea.Height - 200, 600));
+
+            // Center the window on the screen.
+            bounds
+                = new(
+                    x: (int)(((screen.WorkingArea.Width / DPI_SCALE) - width) / 2),
+                    y: (int)(((screen.WorkingArea.Height / DPI_SCALE) - height) / 2),
+                    width,
+                    height);
+        }
+
+        Left = bounds.Value.X;
+        Top = bounds.Value.Y;
+        Width = bounds.Value.Width;
+        Height = bounds.Value.Height;
+
+        if (_settingsProvider.GetSetting(PredefinedSettings.MainWindowMaximized))
+        {
+            WindowState = System.Windows.WindowState.Maximized;
+        }
+    }
+
+    private void SavePositionAndSize()
+    {
+        var windowService = (WindowService)_serviceProvider.GetService<IWindowService>()!;
+        if (!windowService.IsCompactOverlayMode)
+        {
+            _settingsProvider.SetSetting(
+                PredefinedSettings.MainWindowBounds,
+                new SixLabors.ImageSharp.Rectangle(
+                    (int)Left,
+                    (int)Top,
+                    (int)Width,
+                    (int)Height));
+
+            _settingsProvider.SetSetting(PredefinedSettings.MainWindowMaximized, WindowState == System.Windows.WindowState.Maximized);
+        }
     }
 
     private void TitleBarInfoProvider_PropertyChanged(object? sender, PropertyChangedEventArgs e)

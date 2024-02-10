@@ -24,7 +24,11 @@ internal sealed partial class SettingsProvider : ISettingsProvider
     {
         if (_settingsStorage.TryReadSetting(settingDefinition.Name, out object? settingValue))
         {
-            if (typeof(T).IsEnum)
+            if (settingDefinition.Deserialize is not null)
+            {
+                return settingDefinition.Deserialize(settingValue?.ToString() ?? string.Empty);
+            }
+            else if (typeof(T).IsEnum)
             {
                 return (T)Enum.Parse(typeof(T), settingValue?.ToString() ?? string.Empty);
             }
@@ -60,7 +64,12 @@ internal sealed partial class SettingsProvider : ISettingsProvider
     public void SetSetting<T>(SettingDefinition<T> settingDefinition, T value)
     {
         object? valueToSave = value;
-        if (value is Enum valueEnum)
+
+        if (settingDefinition.Serialize is not null)
+        {
+            valueToSave = settingDefinition.Serialize(value);
+        }
+        else if (value is Enum valueEnum)
         {
             valueToSave = valueEnum.ToString();
         }

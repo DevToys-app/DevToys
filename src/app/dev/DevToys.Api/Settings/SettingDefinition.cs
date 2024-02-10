@@ -18,6 +18,16 @@ public readonly struct SettingDefinition<T> : IEquatable<SettingDefinition<T>>
     public T DefaultValue { get; }
 
     /// <summary>
+    /// Gets a callback that can be used to serialize the value of the setting.
+    /// </summary>
+    public Func<T, string>? Serialize { get; }
+
+    /// <summary>
+    /// Gets a callback that can be used to deserialize the value of the setting.
+    /// </summary>
+    public Func<string, T>? Deserialize { get; }
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="SettingDefinition{T}"/> structure.
     /// </summary>
     /// <param name="name">The name of the setting. Should be unique.</param>
@@ -40,6 +50,22 @@ public readonly struct SettingDefinition<T> : IEquatable<SettingDefinition<T>>
 
         Name = name;
         DefaultValue = defaultValue;
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SettingDefinition{T}"/> structure.
+    /// </summary>
+    /// <param name="name">The name of the setting. Should be unique.</param>
+    /// <param name="defaultValue">The default value of the setting.</param>
+    /// <param name="serialize">A callback that can be used to serialize the value of the setting.</param>
+    /// <param name="deserialize">A callback that can be used to deserialize the value of the setting.</param>
+    public SettingDefinition(string name, T defaultValue, Func<T, string> serialize, Func<string, T> deserialize)
+        : this(name, defaultValue)
+    {
+        Guard.IsNotNull(serialize);
+        Guard.IsNotNull(deserialize);
+        Serialize = serialize;
+        Deserialize = deserialize;
     }
 
     /// <summary>
