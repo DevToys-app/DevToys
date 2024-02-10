@@ -33,6 +33,8 @@ public sealed partial class GuiToolProvider
                 typeof(DevToysLocalizationResourceManagerAssemblyIdentifier).Assembly),
             showLongDisplayTitle: true);
 
+    private static readonly char[] WordSeparator = new char[] { ' ', '\t' };
+
     private readonly ILogger _logger;
     private readonly IEnumerable<Lazy<IResourceAssemblyIdentifier, ResourceAssemblyIdentifierMetadata>> _resourceAssemblyIdentifiers;
     private readonly IEnumerable<Lazy<GuiToolGroup, GuiToolGroupMetadata>> _guiToolGroups;
@@ -330,7 +332,7 @@ public sealed partial class GuiToolProvider
             return;
         }
 
-        string[] searchQueries = searchQuery.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+        string[] searchQueries = searchQuery.Split(WordSeparator, StringSplitOptions.RemoveEmptyEntries);
 
         var weightedToolList = new List<(double weight, GuiToolViewItem tool)>();
         for (int i = 0; i < AllTools.Count; i++)
@@ -359,15 +361,15 @@ public sealed partial class GuiToolProvider
 
         if (weightedToolList.Count > 0)
         {
-            var descOrderedWeightedToolList = weightedToolList.OrderByDescending(i => i.weight).ToList();
-            int thirdQuarterItemIndex = Math.Min((int)(0.25 * descOrderedWeightedToolList.Count), descOrderedWeightedToolList.Count - 1);
-            double thirdQuarterWeight = descOrderedWeightedToolList[thirdQuarterItemIndex].weight;
+            var descOrderedWeightedToolList = weightedToolList.OrderByDescending(i => i.weight).ToList(); // Order by weight.
+            int thirdQuarterItemIndex = Math.Min((int)(0.25 * descOrderedWeightedToolList.Count), descOrderedWeightedToolList.Count - 1); // Get the 3/4 item index in the list.
+            double thirdQuarterWeight = descOrderedWeightedToolList[thirdQuarterItemIndex].weight; // Get the 3/4 item weight.
 
             searchResultListToUpdate
                 .AddRange(
                     descOrderedWeightedToolList
-                        .Take(5)
-                        .TakeWhile(i => i.weight >= thirdQuarterWeight)
+                        .Take(5) // Take the 5 first items.
+                        .TakeWhile(i => i.weight >= thirdQuarterWeight) // Take items with a weight greater or equal to the 3/4 item weight. This is to avoid showing too many items with a low weight.
                         .Select(i => i.tool));
         }
 
@@ -404,6 +406,8 @@ public sealed partial class GuiToolProvider
         out IReadOnlyList<GuiToolInstance> footerTools,
         out IReadOnlyList<GuiToolInstance> bodyTools)
     {
+        DateTime startTime = DateTime.UtcNow;
+
         var allToolInstances = new List<GuiToolInstance>();
         var footerToolInstances = new List<GuiToolInstance>();
         var bodyToolInstances = new List<GuiToolInstance>();
@@ -464,6 +468,9 @@ public sealed partial class GuiToolProvider
         allTools = allToolInstances;
         footerTools = footerToolInstances;
         bodyTools = bodyToolInstances;
+
+        double elapsedMilliseconds = (DateTime.UtcNow - startTime).TotalMilliseconds;
+        LogToolInstancesCreated(allToolInstances.Count, elapsedMilliseconds);
     }
 
     private IEnumerable<GuiToolViewItem> BuildFooterToolViewItems()
@@ -717,7 +724,7 @@ public sealed partial class GuiToolProvider
             i++;
         }
 
-        string[] stringToTestAgainstSplitted = stringToTestAgainst.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+        string[] stringToTestAgainstSplitted = stringToTestAgainst.Split(WordSeparator, StringSplitOptions.RemoveEmptyEntries);
         for (i = 0; i < stringToTestAgainstSplitted.Length; i++)
         {
             // Fuzzy match
@@ -768,4 +775,7 @@ public sealed partial class GuiToolProvider
 
     [LoggerMessage(2, LogLevel.Error, "Error while ordering groups.")]
     partial void LogOrderingGroupsFailed(Exception ex);
+
+    [LoggerMessage(3, LogLevel.Information, "Instantiated {toolCount} tools in {duration}ms")]
+    partial void LogToolInstancesCreated(int toolCount, double duration);
 }

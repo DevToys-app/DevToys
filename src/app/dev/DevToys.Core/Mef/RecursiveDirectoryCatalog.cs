@@ -41,45 +41,10 @@ internal sealed partial class RecursiveDirectoryCatalog : ComposablePartCatalog,
         Initialize(path, searchPattern);
     }
 
-    private void Initialize(string path, string searchPattern)
-    {
-        IEnumerable<string> files
-            = Directory.EnumerateFiles(path, searchPattern, SearchOption.AllDirectories);
-
-        _aggregateCatalog = new AggregateCatalog();
-
-        _aggregateCatalog.Changed += (o, e) =>
-        {
-            Changed?.Invoke(o, e);
-        };
-
-        _aggregateCatalog.Changing += (o, e) =>
-        {
-            Changing?.Invoke(o, e);
-        };
-
-        foreach (string file in files)
-        {
-            try
-            {
-                var asmCat = new AssemblyCatalog(file);
-
-                // Force MEF to load the plugin and figure out if there are any exports
-                // good assemblies will not throw the RTLE exception and can be added to the catalog
-                if (asmCat.Parts.ToList().Count > 0)
-                {
-                    _aggregateCatalog.Catalogs.Add(asmCat);
-                }
-            }
-            catch (ReflectionTypeLoadException ex)
-            {
-                LogLoadLibraryFault(ex, file);
-            }
-            catch (BadImageFormatException)
-            {
-            }
-        }
-    }
+    /// <summary>
+    /// The number of assemblies read from the directory catalog.
+    /// </summary>
+    internal int AssemblyCount { get; private set; }
 
     /// <summary>
     /// Gets the part definitions that are contained in the recursive directory catalog. (Overrides ComposablePartCatalog.Parts.)
@@ -102,6 +67,47 @@ internal sealed partial class RecursiveDirectoryCatalog : ComposablePartCatalog,
     /// Occurs when the catalog is changing.
     /// </summary>
     public event EventHandler<ComposablePartCatalogChangeEventArgs>? Changing;
+
+    private void Initialize(string path, string searchPattern)
+    {
+        IEnumerable<string> files
+            = Directory.EnumerateFiles(path, searchPattern, SearchOption.AllDirectories);
+
+        _aggregateCatalog = new AggregateCatalog();
+
+        _aggregateCatalog.Changed += (o, e) =>
+        {
+            Changed?.Invoke(o, e);
+        };
+
+        _aggregateCatalog.Changing += (o, e) =>
+        {
+            Changing?.Invoke(o, e);
+        };
+
+        foreach (string file in files)
+        {
+            try
+            {
+                AssemblyCount++;
+                var asmCat = new AssemblyCatalog(file);
+
+                // Force MEF to load the plugin and figure out if there are any exports
+                // good assemblies will not throw the RTLE exception and can be added to the catalog
+                if (asmCat.Parts.Any())
+                {
+                    _aggregateCatalog.Catalogs.Add(asmCat);
+                }
+            }
+            catch (ReflectionTypeLoadException ex)
+            {
+                LogLoadLibraryFault(ex, file);
+            }
+            catch (BadImageFormatException)
+            {
+            }
+        }
+    }
 
     private string GetDisplayName()
     {

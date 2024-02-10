@@ -67,6 +67,8 @@ public sealed partial class MefComposer : IDisposable
                 typeof(MefComposer).Assembly,  // DevToys.Core
             };
 
+        int assemblyCount = assemblies.Count;
+
         // Discover MEF extensions coming from known assemblies.
         var catalog = new AggregateCatalog();
         foreach (Assembly assembly in assemblies)
@@ -81,7 +83,9 @@ public sealed partial class MefComposer : IDisposable
             LogDiscoveringPlugin(pluginFolder);
             try
             {
-                catalog.Catalogs.Add(new RecursiveDirectoryCatalog(pluginFolder));
+                var directoryCatalog = new RecursiveDirectoryCatalog(pluginFolder);
+                assemblyCount += directoryCatalog.AssemblyCount;
+                catalog.Catalogs.Add(directoryCatalog);
             }
             catch (Exception ex)
             {
@@ -100,7 +104,8 @@ public sealed partial class MefComposer : IDisposable
         }
 
         container.Compose(batch);
-        LogMefComposition((DateTime.Now - startTime).TotalMilliseconds);
+        Guard.IsNotNull(container.Catalog);
+        LogMefComposition(container.Catalog.Count(), assemblyCount, (DateTime.Now - startTime).TotalMilliseconds);
 
         ExportProvider = container;
 
@@ -111,36 +116,32 @@ public sealed partial class MefComposer : IDisposable
 
     private IEnumerable<string> GetPotentialPluginFolders()
     {
-        // TODO: Maybe plugins should be placed in the app's LocalStorage instead?
-        string appFolder = AppContext.BaseDirectory;
-        if (!string.IsNullOrEmpty(appFolder))
+        string[] pluginFolders;
+        if (_pluginFolders is not null)
         {
-            string[] pluginFolders;
-            if (_pluginFolders is not null)
-            {
-                pluginFolders = _pluginFolders;
-            }
-            else
-            {
-                pluginFolders = new[] { Path.Combine(appFolder!, "Plugins") };
-            }
+            pluginFolders = _pluginFolders;
+        }
+        else
+        {
+            string appFolder = AppContext.BaseDirectory;
+            pluginFolders = new[] { Path.Combine(appFolder!, "Plugins") };
+        }
 
-            for (int i = 0; i < pluginFolders.Length; i++)
+        for (int i = 0; i < pluginFolders.Length; i++)
+        {
+            string pluginFolder = pluginFolders[i];
+            if (Directory.Exists(pluginFolder))
             {
-                string pluginFolder = pluginFolders[i];
-                if (Directory.Exists(pluginFolder))
+                foreach (string folder in Directory.EnumerateDirectories(pluginFolder, "*", SearchOption.TopDirectoryOnly))
                 {
-                    foreach (string folder in Directory.EnumerateDirectories(pluginFolder, "*", SearchOption.TopDirectoryOnly))
-                    {
-                        yield return folder;
-                    }
+                    yield return folder;
                 }
             }
         }
     }
 
-    [LoggerMessage(0, LogLevel.Information, "MEF composed in {duration} ms")]
-    partial void LogMefComposition(double duration);
+    [LoggerMessage(0, LogLevel.Information, "MEF composed {parts} parts from {assemblies} assemblies in {duration}ms")]
+    partial void LogMefComposition(int parts, int assemblies, double duration);
 
     [LoggerMessage(1, LogLevel.Information, "Discovering plugin in '{pluginFolder}'...")]
     partial void LogDiscoveringPlugin(string pluginFolder);
