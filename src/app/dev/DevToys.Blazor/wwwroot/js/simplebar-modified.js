@@ -1,8 +1,6 @@
 // NOTE:
 // This is a fork of simplebar - v6.2.5. Some custom changes have been made. Be careful if you decide to update this library.
 
-// TODO: Add license to third party notices
-
 /**
  * simplebar - v6.2.5
  * Scrollbars, simpler.

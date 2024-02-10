@@ -1,7 +1,5 @@
 @use "../../../Assets/sass/devtoys" as *;
 
-// TODO: credit https://fluent-svelte.vercel.app/docs in Third Party Licenses.
-
 button {
     @include flex($inline: true, $align: center, $justify: center);
     @include typography-body;

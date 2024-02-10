@@ -182,7 +182,6 @@ public static partial class GUI
         {
             if (i != Convert.ToInt32(rows[i].name, CultureInfo.InvariantCulture))
             {
-                // TODO: Credit https://github.com/VincentH-Net/CSharpForMarkup
                 throw new ArgumentException(
                     $"Value of row name {rows[i].name} is not {i}. " +
                     "Rows must be defined with enum names whose values form the sequence 0,1,2,..."
