@@ -30,6 +30,7 @@ public partial class MainWindow : MicaWindowWithOverlay
     private readonly MefComposer _mefComposer;
     private readonly ServiceProvider _serviceProvider;
     private readonly DateTime _uiLoadingTime;
+    private readonly ISettingsProvider _settingsProvider;
     private ILogger? _logger;
 
     public MainWindow()
@@ -71,9 +72,10 @@ public partial class MainWindow : MicaWindowWithOverlay
         LogAppStarting();
 
         _uiLoadingTime = DateTime.Now;
+        _settingsProvider = _mefComposer.Provider.Import<ISettingsProvider>();
 
         // Set the user-defined language.
-        string? languageIdentifier = _mefComposer.Provider.Import<ISettingsProvider>().GetSetting(PredefinedSettings.Language);
+        string? languageIdentifier = _settingsProvider.GetSetting(PredefinedSettings.Language);
         LanguageDefinition languageDefinition
             = LanguageManager.Instance.AvailableLanguages.FirstOrDefault(l => string.Equals(l.InternalName, languageIdentifier))
             ?? LanguageManager.Instance.AvailableLanguages[0];
@@ -90,16 +92,7 @@ public partial class MainWindow : MicaWindowWithOverlay
         blazorWebView.BlazorWebViewInitializing += BlazorWebView_BlazorWebViewInitializing;
         blazorWebView.BlazorWebViewInitialized += BlazorWebView_BlazorWebViewInitialized;
 
-        // Set window default size and location.
-        // TODO: Save and restore user settings.
-        var dpiHelper = new DpiHelper(this);
-        double DPI_SCALE = dpiHelper.LogicalToDeviceUnitsScalingFactorX;
-        var windowInteropHelper = new WindowInteropHelper(this);
-        var screen = Screen.FromHandle(windowInteropHelper.Handle);
-        Width = Math.Max(screen.WorkingArea.Width - 400, 1200) / DPI_SCALE;
-        Height = Math.Max(screen.WorkingArea.Height - 200, 600) / DPI_SCALE;
-        Left = ((screen.WorkingArea.Width / DPI_SCALE) - Width) / 2;
-        Top = ((screen.WorkingArea.Height / DPI_SCALE) - Height) / 2;
+        SetPositionAndSize();
     }
 
     private void MainWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
@@ -109,6 +102,17 @@ public partial class MainWindow : MicaWindowWithOverlay
 
         Guard.IsNotNull(_themeListener);
         ((ThemeListener)_themeListener).SetWindow(this);
+    }
+
+    private void MainWindow_Closing(object sender, CancelEventArgs e)
+    {
+        SavePositionAndSize();
+
+        // Dispose every disposable tool instance.
+        _mefComposer.Provider.Import<GuiToolProvider>().DisposeTools();
+
+        // Clear older temp files.
+        FileHelper.ClearTempFiles(Constants.AppTempFolder);
     }
 
     private void BlazorWebView_BlazorWebViewInitializing(object? sender, BlazorWebViewInitializingEventArgs e)
@@ -191,6 +195,57 @@ public partial class MainWindow : MicaWindowWithOverlay
         _mefComposer.Provider.Import<TaskbarJumpListService>();
     }
 
+    private void SetPositionAndSize()
+    {
+        var dpiHelper = new DpiHelper(this);
+        double DPI_SCALE = dpiHelper.LogicalToDeviceUnitsScalingFactorX;
+        var windowInteropHelper = new WindowInteropHelper(this);
+        var screen = Screen.FromHandle(windowInteropHelper.Handle);
+
+        SixLabors.ImageSharp.Rectangle? bounds = _settingsProvider.GetSetting(PredefinedSettings.MainWindowBounds);
+
+        if (bounds is null)
+        {
+            int width = (int)(Math.Max(screen.WorkingArea.Width - 400, 1200) / DPI_SCALE);
+            int height = (int)(Math.Max(screen.WorkingArea.Height - 200, 600) / DPI_SCALE);
+
+            // Center the window on the screen.
+            bounds
+                = new(
+                    x: (int)(((screen.WorkingArea.Width / DPI_SCALE) - width) / 2),
+                    y: (int)(((screen.WorkingArea.Height / DPI_SCALE) - height) / 2),
+                    width,
+                    height);
+        }
+
+        Left = bounds.Value.X;
+        Top = bounds.Value.Y;
+        Width = bounds.Value.Width;
+        Height = bounds.Value.Height;
+
+        if (_settingsProvider.GetSetting(PredefinedSettings.MainWindowMaximized))
+        {
+            WindowState = System.Windows.WindowState.Maximized;
+        }
+    }
+
+    private void SavePositionAndSize()
+    {
+        var windowService = (WindowService)_serviceProvider.GetService<IWindowService>()!;
+        if (!windowService.IsCompactOverlayMode)
+        {
+            _settingsProvider.SetSetting(
+                PredefinedSettings.MainWindowBounds,
+                new SixLabors.ImageSharp.Rectangle(
+                    (int)Left,
+                    (int)Top,
+                    (int)Width,
+                    (int)Height));
+
+            _settingsProvider.SetSetting(PredefinedSettings.MainWindowMaximized, WindowState == System.Windows.WindowState.Maximized);
+        }
+    }
+
     private void LogUnhandledException(Exception exception)
     {
         _logger?.LogCritical(0, exception, "Unhandled exception !!!    (╯°□°）╯︵ ┻━┻");
@@ -209,14 +264,5 @@ public partial class MainWindow : MicaWindowWithOverlay
     private void LogUiLoadTime(double duration)
     {
         _logger?.LogInformation(3, "App main window's UI loaded in {duration} ms", duration);
-    }
-
-    private void MainWindow_Closing(object sender, CancelEventArgs e)
-    {
-        // Dispose every disposable tool instance.
-        _mefComposer.Provider.Import<GuiToolProvider>().DisposeTools();
-
-        // Clear older temp files.
-        FileHelper.ClearTempFiles(Constants.AppTempFolder);
     }
 }

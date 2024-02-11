@@ -70,14 +70,6 @@ internal sealed class WindowService : IWindowService
     private void OnWindowClosing(object? sender, EventArgs e)
     {
         WindowClosing?.Invoke(this, EventArgs.Empty);
-
-        Guard.IsNotNull(AppDelegate.MefComposer);
-
-        // Dispose every disposable tool instance.
-        AppDelegate.MefComposer.Provider.Import<GuiToolProvider>().DisposeTools();
-
-        // Clear older temp files.
-        FileHelper.ClearTempFiles(Constants.AppTempFolder);
     }
 
     private void UpdateCompactOverlayState(bool shouldEnterCompactOverlayMode)
