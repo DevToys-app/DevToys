@@ -35,14 +35,18 @@ internal sealed class BlazorWebViewBridge : WebViewManager
         _relativeHostPath = options.RelativeHostPath;
         Type rootComponent = options.RootComponent;
 
+        try
+        {
+            Guard.IsNotNull(_webView.WebContext); // this might be null or crash when trying to access the WebContext property.
+        }
+        catch (Exception e)
+        {
+            throw new DllNotFoundException("WebKitGTK could not be found. Please verify that the package 'libwebkitgtk-6.0-4' is installed on the operating system and retry.");
+        }
+
         // This is necessary to automatically serve the files in the `_framework` virtual folder.
         // Using `file://` will cause the webview to look for the `_framework` files on the file system,
         // and it won't find them.
-        if (_webView.WebContext is null)
-        {
-            throw new Exception("WebView.WebContext is null");
-        }
-
         _webView.WebContext.RegisterUriScheme(Scheme, HandleUriScheme);
 
         Dispatcher.InvokeAsync(async () =>
