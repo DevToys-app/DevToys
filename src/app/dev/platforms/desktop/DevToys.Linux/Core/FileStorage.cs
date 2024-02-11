@@ -6,16 +6,8 @@ using Gtk;
 namespace DevToys.Linux.Core;
 
 [Export(typeof(IFileStorage))]
-internal sealed class FileStorage : GObject.Object, IFileStorage
+internal sealed class FileStorage : IFileStorage
 {
-    [ImportingConstructor]
-    public FileStorage()
-        : base(
-            Gtk.Internal.FileDialog.New(),
-            ownedRef: true)
-    {
-    }
-
     public string AppCacheDirectory => Constants.AppCacheDirectory;
 
     internal Gtk.Window? MainWindow { private get; set; }
@@ -69,47 +61,39 @@ internal sealed class FileStorage : GObject.Object, IFileStorage
     public async ValueTask<string?> PickFolderAsync()
     {
         Guard.IsNotNull(MainWindow);
-        var tcs = new TaskCompletionSource<Gio.File?>();
 
-        var callbackHandler = new Gio.Internal.AsyncReadyCallbackAsyncHandler((sourceObject, res, data) =>
+        // Create a new GtkFileChooserNative object and set its properties
+        using var fileChooser
+            = Gtk.FileChooserNative.New(
+                Other.OpenFolder,
+                MainWindow,
+                Gtk.FileChooserAction.SelectFolder,
+                Other.Open,
+                Other.Cancel);
+        fileChooser.Modal = true;
+        fileChooser.SelectMultiple = false;
+
+        var taskCompletionSource = new TaskCompletionSource<Gio.File?>();
+        fileChooser.OnResponse += (_, e) =>
         {
-            if (sourceObject is null)
+            // Handle the result of the window.
+            if (e.ResponseId != (int)Gtk.ResponseType.Accept)
             {
-                tcs.SetException(new Exception("Missing source object"));
+                taskCompletionSource.SetResult(null);
                 return;
             }
 
-            nint fileValue
-                = Gtk.Internal.FileDialog.SelectFolderFinish(
-                    sourceObject.Handle,
-                    res.Handle,
-                    out GLib.Internal.ErrorOwnedHandle? error);
+            Gio.File? folder = fileChooser.GetCurrentFolder();
 
-            if (!error.IsInvalid)
-            {
-                tcs.SetException(new GLib.GException(error));
-            }
-            else if (fileValue == IntPtr.Zero)
-            {
-                tcs.SetResult(null);
-            }
-            else
-            {
-                tcs.SetResult(new Gio.FileHelper(fileValue, true));
-            }
-        });
+            taskCompletionSource.SetResult(folder);
+        };
 
-        Gtk.Internal.FileDialog.SelectFolder(
-            self: base.Handle,
-            parent: MainWindow.Handle,
-            cancellable: IntPtr.Zero,
-            callback: callbackHandler.NativeCallback,
-            userData: IntPtr.Zero
-        );
+        // Show the dialog.
+        fileChooser.Show();
 
         try
         {
-            Gio.File? folder = await tcs.Task;
+            Gio.File? folder = await taskCompletionSource.Task;
             if (folder is not null)
             {
                 string? folderPath = folder.GetPath();

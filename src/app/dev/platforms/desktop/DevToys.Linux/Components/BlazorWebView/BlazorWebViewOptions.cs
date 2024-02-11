@@ -1,3 +1,5 @@
+using System.Reflection;
+
 namespace DevToys.Linux.Components;
 
 internal record BlazorWebViewOptions
@@ -6,7 +8,7 @@ internal record BlazorWebViewOptions
 
     internal string HostPath { get; init; } = Path.Combine("wwwroot", "index.html");
 
-    internal string ContentRoot => Path.GetDirectoryName(Path.GetFullPath(HostPath))!;
+    internal string ContentRoot { get; init; } = Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location)!;
 
     internal string RelativeHostPath => Path.GetRelativePath(ContentRoot, HostPath);
 }

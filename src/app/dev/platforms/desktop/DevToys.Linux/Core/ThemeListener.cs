@@ -1,4 +1,5 @@
-﻿using DevToys.Api;
+﻿using Adw;
+using DevToys.Api;
 using DevToys.Core.Settings;
 using DevToys.Blazor.Components;
 using DevToys.Blazor.Core.Services;
@@ -11,8 +12,11 @@ namespace DevToys.Linux.Core;
 internal sealed class ThemeListener : IThemeListener
 {
     private readonly ISettingsProvider _settingsProvider;
+    private readonly Gtk.Settings _gtkSettings;
+    private readonly StyleManager _adwStyleManager;
 
     private Gtk.Window? _mainWindow;
+    private bool _ignoreOperatingSystemSettingChanged;
 
     [ImportingConstructor]
     public ThemeListener(ISettingsProvider settingsProvider)
@@ -21,12 +25,11 @@ internal sealed class ThemeListener : IThemeListener
         _settingsProvider = settingsProvider;
         _settingsProvider.SettingChanged += SettingsProvider_SettingChanged;
 
+        _adwStyleManager = StyleManager.GetDefault();
+
         // Listen for operating system settings.
-        var gtkSettings = Gtk.Settings.GetDefault();
-        if (gtkSettings is not null)
-        {
-            gtkSettings.OnNotify += System_RequestedThemeChanged;
-        }
+        _gtkSettings = Gtk.Settings.GetDefault()!;
+        _gtkSettings.OnNotify += System_RequestedThemeChanged;
 
         UpdateSystemSettingsAndApplyTheme();
 
@@ -57,13 +60,21 @@ internal sealed class ThemeListener : IThemeListener
         }
 
         // Set theme for window root.
-        if (theme == AvailableApplicationTheme.Dark)
+        if (_gtkSettings.GtkThemeName is not null)
         {
-            ActualAppTheme = ApplicationTheme.Dark;
-        }
-        else
-        {
-            ActualAppTheme = ApplicationTheme.Light;
+            _ignoreOperatingSystemSettingChanged = true;
+            if (theme == AvailableApplicationTheme.Dark)
+            {
+                ActualAppTheme = ApplicationTheme.Dark;
+                _adwStyleManager.ColorScheme = ColorScheme.ForceDark;
+            }
+            else
+            {
+                ActualAppTheme = ApplicationTheme.Light;
+                _adwStyleManager.ColorScheme = ColorScheme.ForceLight;
+            }
+
+            _ignoreOperatingSystemSettingChanged = false;
         }
 
         ThemeChanged?.Invoke(this, EventArgs.Empty);
@@ -96,7 +107,10 @@ internal sealed class ThemeListener : IThemeListener
 
     private void System_RequestedThemeChanged(Object? sender, NotifySignalArgs e)
     {
-        UpdateSystemSettingsAndApplyTheme();
+        if (!_ignoreOperatingSystemSettingChanged)
+        {
+            UpdateSystemSettingsAndApplyTheme();
+        }
     }
 
     private void UpdateCompactModeBasedOnWindowSize()
@@ -126,20 +140,14 @@ internal sealed class ThemeListener : IThemeListener
 
     private void UpdateSystemSettingsAndApplyTheme()
     {
-        IsHighContrast = false; // TODO: Detect high contrast
+        IsHighContrast = _adwStyleManager.HighContrast;
         CurrentSystemTheme = GetCurrentSystemTheme();
 
         ApplyDesiredColorTheme();
     }
 
-    private static AvailableApplicationTheme GetCurrentSystemTheme()
+    private AvailableApplicationTheme GetCurrentSystemTheme()
     {
-        var gtkSettings = Gtk.Settings.GetDefault();
-        if (gtkSettings is not null)
-        {
-            return gtkSettings.GtkApplicationPreferDarkTheme ? AvailableApplicationTheme.Dark : AvailableApplicationTheme.Light;
-        }
-
-        return AvailableApplicationTheme.Light;
+        return _gtkSettings.GtkApplicationPreferDarkTheme ? AvailableApplicationTheme.Dark : AvailableApplicationTheme.Light;
     }
 }

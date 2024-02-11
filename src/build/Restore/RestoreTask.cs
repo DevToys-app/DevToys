@@ -41,6 +41,16 @@ internal static class RestoreTask
 
     private static async Task<int> Bash(string cmd)
     {
+        string bashProgram;
+        if (OperatingSystem.IsMacOS())
+        {
+            bashProgram = "sh";
+        }
+        else
+        {
+            bashProgram = "bash";
+        }
+
         var source = new TaskCompletionSource<int>();
         string escapedArgs = cmd.Replace("\"", "\\\"");
         var process = new Process
@@ -48,7 +58,7 @@ internal static class RestoreTask
             StartInfo = new ProcessStartInfo
             {
                 FileName = "/bin/bash",
-                Arguments = $"-c \"sh {escapedArgs}\"",
+                Arguments = $"-c \"{bashProgram} {escapedArgs}\"",
                 UseShellExecute = false,
                 CreateNoWindow = true
             },

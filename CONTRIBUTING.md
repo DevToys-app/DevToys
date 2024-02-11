@@ -86,11 +86,13 @@ Most of the `DevToys.MacOS` app runs in a web browser (Safari). In order to acce
 ## From Linux
 
 ### Prerequisites
-1. Make sure your machine has GTK4 installed. Distro like Ubuntu generally have it pre-installed.
+1. Make sure your machine has GTK4 and WebKitGTK installed. Distro like Ubuntu generally have it pre-installed.
 1. [**Visual Studio Code**](https://code.visualstudio.com/) with [**C# Dev Kit**](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit), or [**JetBrains Rider**](https://www.jetbrains.com/rider/).
 1. **.NET SDK**. This is required to build the app itself.
     * [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/8.0) (**version 8.0 (SDK 8.0.100)** or later).
-    > Use `dotnet --version` from the terminal to get the version installed.
+    * Unless GTK has been installed through `snap`, we recommend to avoid installing .NET from `snap`.
+    * We recommend installing .NET from the [official script](https://learn.microsoft.com/en-us/dotnet/core/install/linux-scripted-manual#scripted-install), then [the dependencies](https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu#dependencies), and finally set the [environment variables](https://learn.microsoft.com/en-us/dotnet/core/install/linux-scripted-manual#set-environment-variables-system-wide).
+    * > Use `dotnet --version` from the terminal to get the version installed.
 1. [Node.js](https://nodejs.org/) **14.0 or later**. This is required to build Monaco Editor.
 
 ### Finalize your environment

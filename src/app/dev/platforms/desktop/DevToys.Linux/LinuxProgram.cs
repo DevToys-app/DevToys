@@ -11,8 +11,10 @@ using DevToys.Linux.Core;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using DevToys.Core.Logging;
-using DevToys.Core;
 using DevToys.Core.Tools;
+using Gio;
+using Constants = DevToys.Linux.Core.Constants;
+using FileHelper = DevToys.Core.FileHelper;
 
 namespace DevToys.Linux;
 
@@ -29,9 +31,11 @@ internal partial class LinuxProgram
 
     internal LinuxProgram()
     {
-        WebKit.Module.Initialize();
+        Application = Adw.Application.New(null, Gio.ApplicationFlags.NonUnique);
 
-        Application = Adw.Application.New("devtoys", Gio.ApplicationFlags.FlagsNone);
+        GLib.Functions.SetPrgname("DevToys");
+        // Set the human-readable application name for app bar and task list.
+        GLib.Functions.SetApplicationName("DevToys");
 
         Application.OnActivate += OnApplicationActivate;
         Application.OnShutdown += OnApplicationShutdown;
@@ -55,11 +59,7 @@ internal partial class LinuxProgram
 
         // Initialize extension installation folder, and uninstall extensions that are planned for being removed.
         string[] pluginFolders
-            = new[]
-            {
-                Path.Combine(AppContext.BaseDirectory!, "Plugins"),
-                Constants.PluginInstallationFolder
-            };
+            = new[] { Path.Combine(AppContext.BaseDirectory!, "Plugins"), Constants.PluginInstallationFolder };
         ExtensionInstallationManager.PreferredExtensionInstallationFolder = Constants.PluginInstallationFolder;
         ExtensionInstallationManager.ExtensionInstallationFolders = pluginFolders;
         ExtensionInstallationManager.UninstallExtensionsScheduledForRemoval();
@@ -67,10 +67,7 @@ internal partial class LinuxProgram
         // Initialize MEF.
         MefComposer
             = new MefComposer(
-                assemblies: new[] {
-                        typeof(MainWindowViewModel).Assembly,
-                        typeof(DevToysBlazorResourceManagerAssemblyIdentifier).Assembly
-                },
+                assemblies: new[] { typeof(MainWindowViewModel).Assembly, typeof(DevToysBlazorResourceManagerAssemblyIdentifier).Assembly },
                 pluginFolders);
 
         LogInitialization((DateTime.Now - _startTime).TotalMilliseconds);
@@ -80,7 +77,7 @@ internal partial class LinuxProgram
         string? languageIdentifier = MefComposer.Provider.Import<ISettingsProvider>().GetSetting(PredefinedSettings.Language);
         LanguageDefinition languageDefinition
             = LanguageManager.Instance.AvailableLanguages.FirstOrDefault(l => string.Equals(l.InternalName, languageIdentifier))
-            ?? LanguageManager.Instance.AvailableLanguages[0];
+              ?? LanguageManager.Instance.AvailableLanguages[0];
         LanguageManager.Instance.SetCurrentCulture(languageDefinition);
 
         // Create and open main window.
@@ -106,10 +103,7 @@ internal partial class LinuxProgram
         _serviceCollection.AddBlazorWebView();
 
         _serviceCollection.AddSingleton(
-            new BlazorWebViewOptions()
-            {
-                RootComponent = typeof(DevToys.Blazor.Main)
-            }
+            new BlazorWebViewOptions() { RootComponent = typeof(DevToys.Blazor.Main) }
         );
 
         _serviceCollection.AddLogging((ILoggingBuilder builder) =>

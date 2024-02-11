@@ -149,4 +149,7 @@
     <value>Save</value>
     <comment/>
   </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>Open folder</value>
+  </data>
 </root>
