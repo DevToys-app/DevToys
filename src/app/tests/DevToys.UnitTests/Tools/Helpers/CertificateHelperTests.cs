@@ -68,7 +68,7 @@ public class CertificateHelperTests
     internal static string CleanDateTimes(string decoded)
     {
         var decodedCleaned = new StringBuilder();
-        foreach (string line in decoded.Split(Environment.NewLine))
+        foreach (string line in decoded.Split(new string[] { "\r\n", "\r", "\n" }, StringSplitOptions.None))
         {
             if (DateTime.TryParse(line, out DateTime dateTime))
             {
