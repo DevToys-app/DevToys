@@ -11,7 +11,7 @@
     <IncludeBuildOutput>true</IncludeBuildOutput>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 
-    <Version>2.0.0-pre.2</Version>
+    <Version>2.0.0-pre.0</Version>
     <Title>DevToys.Tools</Title>
     <Description>A set of offline tools installed by default with DevToys.</Description>
     <PackageProjectUrl>https://devtoys.app</PackageProjectUrl>

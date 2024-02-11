@@ -12,7 +12,7 @@ namespace DevToys.Linux.Components;
 internal sealed class BlazorWebViewBridge : WebViewManager
 {
     private const string Scheme = "app";
-    private static readonly Uri baseUri = new($"{Scheme}://localhost/");
+    private static readonly Uri AppOriginUri = new($"{Scheme}://localhost/");
 
     private readonly BlazorWebView _webView;
     private readonly string _relativeHostPath;
@@ -20,14 +20,16 @@ internal sealed class BlazorWebViewBridge : WebViewManager
     public BlazorWebViewBridge(
         BlazorWebView webView,
         IServiceProvider serviceProvider,
-        BlazorWebViewOptions options)
+        BlazorWebViewOptions options,
+        string contentRootRelativeToAppRoot,
+        string hostPageRelativePath)
         : base(
             serviceProvider,
             Dispatcher.CreateDefault(),
-            baseUri,
-            new PhysicalFileProvider(options.ContentRoot),
+            AppOriginUri,
+            new BlazorAssetFileProvider(Path.Combine(options.ContentRoot, contentRootRelativeToAppRoot)),
             new JSComponentConfigurationStore(),
-            options.RelativeHostPath)
+            hostPageRelativePath)
     {
         Guard.IsNotNull(webView);
         _webView = webView;
@@ -105,7 +107,7 @@ internal sealed class BlazorWebViewBridge : WebViewManager
     private void HandleScriptMessageReceivedSignal(UserContentManager ucm, UserContentManager.ScriptMessageReceivedSignalArgs signalArgs)
     {
         JavaScriptCore.Value result = signalArgs.Value;
-        MessageReceived(baseUri, result.ToString());
+        MessageReceived(AppOriginUri, result.ToString());
     }
 
     private void HandleUriScheme(URISchemeRequest request)
@@ -116,14 +118,11 @@ internal sealed class BlazorWebViewBridge : WebViewManager
         }
 
         string uri = request.GetUri();
-        if (request.GetPath() == "/")
-        {
-            uri += _relativeHostPath;
-        }
+        bool allowFallbackOnHostPage = IsUriBaseOfPage(AppOriginUri, uri);
 
         if (TryGetResponseContent(
             uri,
-            false,
+            allowFallbackOnHostPage,
             out int statusCode,
             out string? statusMessage,
             out Stream? content,
@@ -140,6 +139,18 @@ internal sealed class BlazorWebViewBridge : WebViewManager
         {
             throw new Exception($"Failed to serve \"{uri}\". {statusCode} - {statusMessage}");
         }
+    }
+
+    private static bool IsUriBaseOfPage(Uri baseUri, string? uriString)
+    {
+        if (Path.HasExtension(uriString))
+        {
+            // If the path ends in a file extension, it's not referring to a page.
+            return false;
+        }
+
+        var uri = new Uri(uriString!);
+        return baseUri.IsBaseOf(uri);
     }
 
     // Workaround for protection level access

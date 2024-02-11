@@ -43,6 +43,10 @@
             "VSCode"
           ]
         },
+        "LinuxSolution": {
+          "type": "string",
+          "description": "Path to a solution file that is automatically loaded"
+        },
         "MacSolution": {
           "type": "string",
           "description": "Path to a solution file that is automatically loaded"

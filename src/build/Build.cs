@@ -45,6 +45,9 @@ class Build : NukeBuild
     [Solution]
     readonly Solution? MacSolution;
 
+    [Solution]
+    readonly Solution? LinuxSolution;
+
     Target PreliminaryCheck => _ => _
         .Before(Clean)
         .Executes(() =>
@@ -64,6 +67,12 @@ class Build : NukeBuild
             if (PlatformTargets.Contains(PlatformTarget.MacCatalyst) && !OperatingSystem.IsMacOS())
             {
                 Assert.Fail("To build macOS app, you need to run on macOS Ventura 13.1 or later.");
+                return;
+            }
+
+            if (PlatformTargets.Contains(PlatformTarget.Linux) && !OperatingSystem.IsLinux())
+            {
+                Assert.Fail("To build Linux app, you need to run on Linux.");
                 return;
             }
 
@@ -114,7 +123,7 @@ class Build : NukeBuild
                         .SetConfiguration(Configuration)
                         .SetSelfContained(true)
                         .SetPublishTrimmed(false)
-                        .SetVerbosity(DotNetVerbosity.Quiet)));
+                        .SetVerbosity(DotNetVerbosity.quiet)));
         });
 
     Target BuildPlugins => _ => _
@@ -131,7 +140,7 @@ class Build : NukeBuild
                 .SetConfiguration(Configuration)
                 .SetSelfContained(false)
                 .SetPublishTrimmed(false)
-                .SetVerbosity(DotNetVerbosity.Quiet));
+                .SetVerbosity(DotNetVerbosity.quiet));
         });
 
 #pragma warning disable IDE0051 // Remove unused private members
@@ -150,7 +159,7 @@ class Build : NukeBuild
                     DotNetTest(s => s
                     .SetProjectFile(f)
                     .SetConfiguration(Configuration)
-                    .SetVerbosity(DotNetVerbosity.Quiet)));
+                    .SetVerbosity(DotNetVerbosity.quiet)));
         });
 #pragma warning restore IDE0051 // Remove unused private members
 
@@ -167,7 +176,7 @@ class Build : NukeBuild
                 .SetProject(project)
                 .SetConfiguration(Configuration)
                 .SetPublishTrimmed(false)
-                .SetVerbosity(DotNetVerbosity.Quiet)
+                .SetVerbosity(DotNetVerbosity.quiet)
                 .SetProcessArgumentConfigurator(_ => _
                     .Add($"/bl:\"{RootDirectory / "publish" / "Sdk"}.binlog\""))
                 .SetOutputDirectory(RootDirectory / "publish" / "Sdk"));
@@ -185,6 +194,11 @@ class Build : NukeBuild
             if (PlatformTargets!.Contains(PlatformTarget.MacCatalyst))
             {
                 PublishMacApp();
+            }
+
+            if (PlatformTargets!.Contains(PlatformTarget.Linux))
+            {
+                PublishLinuxApp();
             }
 
             if (PlatformTargets!.Contains(PlatformTarget.CLI))
@@ -209,7 +223,7 @@ class Build : NukeBuild
                 .SetPublishSingleFile(false)
                 .SetPublishReadyToRun(false)
                 .SetPublishTrimmed(false)
-                .SetVerbosity(DotNetVerbosity.Quiet)
+                .SetVerbosity(DotNetVerbosity.quiet)
                 .SetProcessArgumentConfigurator(_ => _
                     .Add("/p:RuntimeIdentifierOverride=" + dotnetParameters.RuntimeIdentifier)
                     .Add("/p:Unpackaged=" + dotnetParameters.Portable)
@@ -231,13 +245,38 @@ class Build : NukeBuild
                 .SetPublishSingleFile(false) // Not supported by MacCatalyst as it would require UseAppHost to be true, which isn't supported on Mac
                 .SetPublishReadyToRun(false)
                 .SetPublishTrimmed(true) // Should be true, even though the CSPROJ disable AOT and Trimming.
-                .SetVerbosity(DotNetVerbosity.Quiet)
+                .SetVerbosity(DotNetVerbosity.quiet)
                 .SetNoRestore(true) /* workaround for https://github.com/xamarin/xamarin-macios/issues/15664#issuecomment-1233123515 */
                 .SetProcessArgumentConfigurator(_ => _
                     .Add("/p:RuntimeIdentifierOverride=" + dotnetParameters.RuntimeIdentifier)
                     .Add("/p:CreatePackage=True") /* Will create an installable .pkg */
                     .Add($"/bl:\"{RootDirectory / "publish" / dotnetParameters.OutputPath}.binlog\""))
                 .SetOutputDirectory(RootDirectory / "publish" / dotnetParameters.OutputPath));
+        }
+    }
+
+    void PublishLinuxApp()
+    {
+        // DevToys Linux
+        foreach (DotnetParameters dotnetParameters in GetDotnetParametersForLinuxApp())
+        {
+            Log.Information($"Publishing {dotnetParameters.ProjectOrSolutionPath + " - " + dotnetParameters.TargetFramework + " - " + dotnetParameters.RuntimeIdentifier + (dotnetParameters.Portable ? "-Portable" : string.Empty)} ...");
+            DotNetPublish(s => s
+                .SetProject(dotnetParameters.ProjectOrSolutionPath)
+                .SetConfiguration(Configuration)
+                .SetFramework(dotnetParameters.TargetFramework)
+                .SetRuntime(dotnetParameters.RuntimeIdentifier)
+                .SetPlatform(dotnetParameters.Platform)
+                .SetSelfContained(dotnetParameters.Portable)
+                .SetPublishSingleFile(false)
+                .SetPublishReadyToRun(false)
+                .SetPublishTrimmed(false)
+                .SetVerbosity(DotNetVerbosity.quiet)
+                .SetProcessArgumentConfigurator(_ => _
+                    .Add("/p:RuntimeIdentifierOverride=" + dotnetParameters.RuntimeIdentifier)
+                    .Add("/p:Unpackaged=" + dotnetParameters.Portable)
+                    .Add($"/bl:\"{RootDirectory / "publish" / dotnetParameters.OutputPath}.binlog\""))
+                .SetOutput(RootDirectory / "publish" / dotnetParameters.OutputPath));
         }
     }
 
@@ -256,7 +295,7 @@ class Build : NukeBuild
                 .SetPublishSingleFile(dotnetParameters.Portable)
                 .SetPublishReadyToRun(false)
                 .SetPublishTrimmed(false)
-                .SetVerbosity(DotNetVerbosity.Quiet)
+                .SetVerbosity(DotNetVerbosity.quiet)
                 .SetProcessArgumentConfigurator(_ => _
                     .Add($"/bl:\"{RootDirectory / "publish" / dotnetParameters.OutputPath}.binlog\""))
                 .SetOutput(RootDirectory / "publish" / dotnetParameters.OutputPath));
@@ -319,6 +358,29 @@ class Build : NukeBuild
                 yield return new DotnetParameters(project.Path, "win10-arm64", targetFramework, portable: true, platform: "arm64");
                 yield return new DotnetParameters(project.Path, "win10-x64", targetFramework, portable: true, platform: "x64");
                 yield return new DotnetParameters(project.Path, "win10-x86", targetFramework, portable: true, platform: "x86");
+            }
+        }
+        else
+        {
+            throw new NotSupportedException();
+        }
+    }
+
+    IEnumerable<DotnetParameters> GetDotnetParametersForLinuxApp()
+    {
+        string publishProject = "DevToys.Linux";
+        Project project;
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        {
+            project = LinuxSolution!.GetAllProjects(publishProject).Single();
+            foreach (string targetFramework in project.GetTargetFrameworks())
+            {
+                yield return new DotnetParameters(project.Path, "linux-arm", targetFramework, portable: false, platform: "arm");
+                yield return new DotnetParameters(project.Path, "linux-x64", targetFramework, portable: false, platform: "x64");
+
+                yield return new DotnetParameters(project.Path, "linux-arm", targetFramework, portable: true, platform: "arm");
+                yield return new DotnetParameters(project.Path, "linux-x64", targetFramework, portable: true, platform: "x64");
             }
         }
         else
