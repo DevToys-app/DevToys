@@ -4,6 +4,9 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>$(NetCore)</TargetFramework>
     <UseAppHost>True</UseAppHost>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(_IsPublishing) == ''">
     <PluginsInstallationFolder>$(OutputPath)\$(TargetFramework)\Plugins</PluginsInstallationFolder>
   </PropertyGroup>
 

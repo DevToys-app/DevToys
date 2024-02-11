@@ -71,7 +71,7 @@
             "enum": [
               "CLI",
               "Linux",
-              "MacCatalyst",
+              "MacOS",
               "Wasm",
               "Windows"
             ]

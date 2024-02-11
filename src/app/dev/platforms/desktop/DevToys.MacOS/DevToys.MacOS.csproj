@@ -7,7 +7,6 @@
     <RootNamespace>DevToys.MacOS</RootNamespace>
     <EnableDefaultCssItems>false</EnableDefaultCssItems>
     <DefineConstants>$(DefineConstants);__MACOS__</DefineConstants>
-    <PluginsInstallationFolder>$(OutputPath)\$(TargetFramework)\Plugins</PluginsInstallationFolder>
 
     <!-- The default runtime is osx-x64, except in Release config, in which case the default is osx-x64;osx-arm64.
          When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifer>.
@@ -21,6 +20,10 @@
     <MtouchInterpreter>all</MtouchInterpreter> -->
 
     <ApplicationId>com.devtoys</ApplicationId>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(_IsPublishing) == ''">
+    <PluginsInstallationFolder>$(OutputPath)\$(TargetFramework)\Plugins</PluginsInstallationFolder>
   </PropertyGroup>
 
   <!-- Notes about the values set below:

@@ -60,11 +60,11 @@ class Build : NukeBuild
 
             if (PlatformTargets.Contains(PlatformTarget.Windows) && !OperatingSystem.IsWindowsVersionAtLeast(10, 0, 0, 0))
             {
-                Assert.Fail("To build Windows WASDK app, you need to run on Windows 10 or later.");
+                Assert.Fail("To build Windows app, you need to run on Windows 10 or later.");
                 return;
             }
 
-            if (PlatformTargets.Contains(PlatformTarget.MacCatalyst) && !OperatingSystem.IsMacOS())
+            if (PlatformTargets.Contains(PlatformTarget.MacOS) && !OperatingSystem.IsMacOS())
             {
                 Assert.Fail("To build macOS app, you need to run on macOS Ventura 13.1 or later.");
                 return;
@@ -191,7 +191,7 @@ class Build : NukeBuild
                 PublishWindowsApp();
             }
 
-            if (PlatformTargets!.Contains(PlatformTarget.MacCatalyst))
+            if (PlatformTargets!.Contains(PlatformTarget.MacOS))
             {
                 PublishMacApp();
             }
@@ -324,14 +324,14 @@ class Build : NukeBuild
             project = WindowsSolution!.GetAllProjects(publishProject).Single();
             foreach (string targetFramework in project.GetTargetFrameworks())
             {
-                yield return new DotnetParameters(project.Path, "win10-x64", targetFramework, portable: false);
-                yield return new DotnetParameters(project.Path, "win10-x64", targetFramework, portable: true);
+                yield return new DotnetParameters(project.Path, "win-x64", targetFramework, portable: false);
+                yield return new DotnetParameters(project.Path, "win-x64", targetFramework, portable: true);
 
-                yield return new DotnetParameters(project.Path, "win10-arm64", targetFramework, portable: false);
-                yield return new DotnetParameters(project.Path, "win10-arm64", targetFramework, portable: true);
+                yield return new DotnetParameters(project.Path, "win-arm64", targetFramework, portable: false);
+                yield return new DotnetParameters(project.Path, "win-arm64", targetFramework, portable: true);
 
-                yield return new DotnetParameters(project.Path, "win10-x86", targetFramework, portable: false);
-                yield return new DotnetParameters(project.Path, "win10-x86", targetFramework, portable: true);
+                yield return new DotnetParameters(project.Path, "win-x86", targetFramework, portable: false);
+                yield return new DotnetParameters(project.Path, "win-x86", targetFramework, portable: true);
             }
         }
         else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
@@ -351,13 +351,13 @@ class Build : NukeBuild
             project = WindowsSolution!.GetAllProjects(publishProject).Single();
             foreach (string targetFramework in project.GetTargetFrameworks())
             {
-                yield return new DotnetParameters(project.Path, "win10-arm64", targetFramework, portable: false, platform: "arm64");
-                yield return new DotnetParameters(project.Path, "win10-x64", targetFramework, portable: false, platform: "x64");
-                yield return new DotnetParameters(project.Path, "win10-x86", targetFramework, portable: false, platform: "x86");
+                yield return new DotnetParameters(project.Path, "win-arm64", targetFramework, portable: false, platform: "arm64");
+                yield return new DotnetParameters(project.Path, "win-x64", targetFramework, portable: false, platform: "x64");
+                yield return new DotnetParameters(project.Path, "win-x86", targetFramework, portable: false, platform: "x86");
 
-                yield return new DotnetParameters(project.Path, "win10-arm64", targetFramework, portable: true, platform: "arm64");
-                yield return new DotnetParameters(project.Path, "win10-x64", targetFramework, portable: true, platform: "x64");
-                yield return new DotnetParameters(project.Path, "win10-x86", targetFramework, portable: true, platform: "x86");
+                yield return new DotnetParameters(project.Path, "win-arm64", targetFramework, portable: true, platform: "arm64");
+                yield return new DotnetParameters(project.Path, "win-x64", targetFramework, portable: true, platform: "x64");
+                yield return new DotnetParameters(project.Path, "win-x86", targetFramework, portable: true, platform: "x86");
             }
         }
         else

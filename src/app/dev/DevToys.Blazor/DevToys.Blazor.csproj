@@ -47,7 +47,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Assets\fonts\FluentSystemIcons-Regular.ttf">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\samples\json-sample.json" />
     <EmbeddedResource Update="BuiltInTools\ExtensionsManager\ExtensionsManager.resx">

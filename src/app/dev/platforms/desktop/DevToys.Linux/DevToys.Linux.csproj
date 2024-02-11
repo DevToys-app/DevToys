@@ -3,6 +3,9 @@
     <TargetFramework>$(NetCore)</TargetFramework>
     <OutputType>Exe</OutputType>
     <DefineConstants>$(DefineConstants);__LINUX__</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(_IsPublishing) == ''">
     <PluginsInstallationFolder>$(OutputPath)\$(TargetFramework)\Plugins</PluginsInstallationFolder>
   </PropertyGroup>
 
