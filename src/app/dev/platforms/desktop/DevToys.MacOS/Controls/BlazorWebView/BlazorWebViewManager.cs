@@ -196,7 +196,7 @@ public partial class BlazorWebViewManager : WebViewManager
             else
             {
                 // Invoke the UrlLoading event to allow overriding the default link handling behavior
-                var callbackArgs = UrlLoadingEventArgs.CreateWithDefaultLoadingStrategy(uri, BlazorWkWebView.appOriginUri);
+                var callbackArgs = UrlLoadingEventArgs.CreateWithDefaultLoadingStrategy(uri, BlazorWkWebView.AppOriginUri);
                 _webView.OnUrlLoading(callbackArgs);
 
                 strategy = callbackArgs.UrlLoadingStrategy;
