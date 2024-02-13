@@ -42,7 +42,7 @@ internal class MainWindow
 
         _blazorGtkWebView = new BlazorWebView(serviceProvider);
         _blazorGtkWebView.OnContextMenu += BlazorGtkWebViewOnContextMenu;
-        _blazorGtkWebView.BlazorWebViewInitialized += BlazorGtkWebViewOnBlazorWebViewInitialized;
+        _blazorGtkWebView.BlazorWebViewInitialized += OnBlazorWebViewInitialized;
 
         // Make web view transparent
         _blazorGtkWebView.SetBackgroundColor(new Gdk.RGBA(Gdk.Internal.RGBAManagedHandle.Create(new Gdk.Internal.RGBAData { Red = 0, Blue = 0, Green = 0, Alpha = 0 })));
@@ -81,7 +81,7 @@ internal class MainWindow
 #endif
     }
 
-    private void BlazorGtkWebViewOnBlazorWebViewInitialized(object? sender, EventArgs args)
+    private void OnBlazorWebViewInitialized(object? sender, EventArgs args)
     {
         InitializeLowPriorityServices();
     }

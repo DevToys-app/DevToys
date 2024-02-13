@@ -1,6 +1,7 @@
 ﻿using DevToys.Api;
 using DevToys.Blazor;
 using DevToys.Blazor.Core.Services;
+using DevToys.Business.Services;
 using DevToys.Core;
 using DevToys.Core.Tools;
 using DevToys.MacOS.Controls.BlazorWebView;
@@ -22,6 +23,7 @@ internal sealed class MainWindow : NSWindow
 
     private readonly TitleBarInfoProvider _titleBarInfoProvider;
     private readonly ISettingsProvider _settingsProvider;
+    private readonly CommandLineLauncherService _commandLineLauncherService;
     private bool _isInitialized;
 
     internal static MainWindow Instance { get; } = new();
@@ -36,6 +38,7 @@ internal sealed class MainWindow : NSWindow
     {
         Guard.IsNotNull(AppDelegate.MefComposer);
         _settingsProvider = AppDelegate.MefComposer.Provider.Import<ISettingsProvider>();
+        _commandLineLauncherService = AppDelegate.MefComposer.Provider.Import<CommandLineLauncherService>();
         _titleBarInfoProvider = AppDelegate.MefComposer.Provider.Import<TitleBarInfoProvider>();
         _titleBarInfoProvider.PropertyChanged += TitleBarInfoProvider_PropertyChanged;
 
@@ -71,6 +74,7 @@ internal sealed class MainWindow : NSWindow
 
         // Make this window the main window of the app.
         MakeMainWindow();
+        OrderFront(null);
     }
 
     private void InitializeView()
@@ -101,6 +105,7 @@ internal sealed class MainWindow : NSWindow
         // Create WebView and add it to NSVisualEffectView
         Guard.IsNotNull(AppDelegate.ServiceProvider);
         var webView = new BlazorWkWebView(AppDelegate.ServiceProvider, EnableDeveloperTools);
+        webView.BlazorWebViewInitialized+= OnBlazorWebViewInitialized;
         visualEffectView.AddSubview(webView.View);
 
         // Make the WKWebView resizing with the window and anchor it below the title bar, so we can still move the window with the title bar.
@@ -172,11 +177,22 @@ internal sealed class MainWindow : NSWindow
         }
     }
 
+    private void OnBlazorWebViewInitialized(object? sender, EventArgs e)
+    {
+        InitializeLowPriorityServices();
+    }
+
     private void TitleBarInfoProvider_PropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
         if (e.PropertyName == nameof(TitleBarInfoProvider.Title))
         {
             Title = _titleBarInfoProvider.Title ?? string.Empty;
         }
+    }
+
+    private void InitializeLowPriorityServices()
+    {
+        // Treat command line arguments.
+        _commandLineLauncherService.HandleCommandLineArguments();
     }
 }
